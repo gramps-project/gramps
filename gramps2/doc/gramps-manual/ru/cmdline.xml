@@ -17,70 +17,70 @@
 
       <!-- =============== Appendices Subsection ================ -->
   <sect2 id="append-cmdline">
-  <title>Command line reference</title>
-  <para>This appendix provides the reference to the command line 
-  capabilities available when launching &app; from the terminal. </para>
+  <title>Справка командной строки</title>
+  <para>Это приложение содержит справку по возможностям командной
+  строки при заупске &app; из терминала. </para>
   
-  <para>Let us note here that &app; was designed to be an interactive 
-  program. Therefore it uses graphical display and cannot run from the 
-  true non-graphical console. It would take an enormous amount of effort 
-  to enable it to run in a text-only terminal. This is why the set of 
-  command line options does not aim to completely get rid of dependency
-  on the graphical display. Rather, it merely makes certain (typical) tasks 
-  more convenient. It also allows one to execute these tasks from the scripts. 
-  However, the graphical display must be accessible at all times! 
-  </para>
+  <para>Здесь важно отметить, что &app; была спроектирована как 
+  интерактивная программа. Поэтому она использует графический
+  дисплей и не работает в по-настоящему текстовой консоли. Переработка
+  программы с целью обеспечить её работу из чисто текстового терминала 
+  потребовала бы чрезвычайных усилий. Поэтому, набор опций командной 
+  строки не ставит своей целью устранение зависимости от графического 
+  дисплея. Возможности командной строки просто делают выполнение 
+  определённых (типичных) задач более удобным. Также, они позволяют 
+  выполнять эти операции из скриптов. Однако, графический дисплей 
+  должен быть всё время доступен!</para>
 
-  <para>To summarize, the use of the command line options provides 
-  non-interactive behavior, but does not get rid of graphical display
-  dependency. Take it or leave it! 
+  <para>Другими словами, использование командной строки обеспечивает
+  неинтерактивное поведение, но не снимает зависимости от графического
+  дисплея, нравится это Вам или нет!
   </para>
 
 
       <sect3 id="cmdline-options">
-      <title>Available options</title>
+      <title>Возможные опции</title>
 
-      <para>Here is the list of the command line options in &app;:
+      <para>Вот список возможных опций командной строки &app;:
       </para>
 
           <variablelist>
 
-          <varlistentry><term>Format options</term>
-          <listitem><para> The format of any file destined for import or export
-          can be specified with the 
-          	<command>-f</command> <replaceable>format</replaceable>
-          option. The <replaceable>format</replaceable> can be one of the 
-          following:
+          <varlistentry><term>Опции формата</term>
+          <listitem><para> Формат любого файла, предназначенного для 
+          импорта или экспорта, может быть указан с помощью опции 
+          	<command>-f</command> <replaceable>format</replaceable>.
+          <replaceable>format</replaceable> может иметь следующие значения:
           
           	<variablelist>
 
           	<varlistentry><term>gramps</term>
-          	<listitem><para> &app; database. This format is available 
-                for both import and export. When not specified, it can be 
-                guessed if the filename represents a directory. 
+          	<listitem><para> База данных &app;. Этот формат доступен для импорта и 
+          	экспорта. Если не указан, он может быть угадан, если имя является 
+          	каталогом. 
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>gedcom</term>
-          	<listitem><para> GEDCOM file. This format is available 
-                for both import and export. When not specified, it can be 
-                guessed if the filename ends with .ged
+          	<listitem><para> Файл GEDCOM. Этот формат доступен для импорта и 
+          	экспорта. Если не указан, он может быть угадан, если имя заканчивается
+          	на .ged
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>gramps-pkg</term>
-          	<listitem><para> &app; package. This format is available 
-                for both import and export. When not specified, it can be 
-                guessed if the filename ends with .tgz
+          	<listitem><para>Пакет &app;. Этот формат доступен для импорта и 
+          	экспорта. Если не указан, он может быть угадан, если имя заканчивается
+          	на .tgz
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>wft</term>
-          	<listitem><para> Web Family Tree. This format is available 
-                for export only. When not specified, it can be guessed 
-                if the filename ends with .wft
+          	<listitem><para> Семейное Веб-Дерево (Web Family Tree). Этот формат доступен 
+          	только для экспорта. Если не указан, он может быть угадан, если имя 
+          	заканчивается на .wft
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>iso</term>
-          	<listitem><para> CD image. This format is available 
-                for export only. It must always be specified explicitly. 
+          	<listitem><para> Изображение CD. Этот формат доступен 
+          	только для экспорта. Он должен быть всегда явно указан.
                 </para></listitem></varlistentry>
 
           	</variablelist>
@@ -88,72 +88,72 @@
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Import options</term>
-          <listitem><para> The files destined for import can be specified with 
-          the 
+          <varlistentry><term>Опции импорта</term>
+          <listitem><para> Файлы, предназначенные для импорта, могут быть
+          указаны с помощью опции
           	<command>-i</command> <replaceable>filename</replaceable>
-          option. The format can be specified with the <command>-f</command> 
-          option immediately following the <replaceable>filename</replaceable>. 
-          If not specified, the guess will be attempted based on 
-          the <replaceable>filename</replaceable>. For <term>gramps</term> 
-          format, the <replaceable>filename</replaceable> is actually the 
-          name of directory under which the gramps database resides. For 
-          <term>gedcom</term> and <term>gramps-pkg</term>, the 
-          <replaceable>filename</replaceable> is the name of the 
-          corresponding file.
+          	Формат может быть указан опцией <command>-f</command>
+          следующей непосредственно за именем <replaceable>filename</replaceable>. 
+          Если формат не указан, &app; сделает попытку угадать формат, основываясь
+          на имени <replaceable>filename</replaceable>. Для формата <term>gramps</term>,
+          имя <replaceable>filename</replaceable> на самом деле является именем
+          каталога, в котором находится база данных &app;. Для форматов 
+          <term>gedcom</term> и <term>gramps-pkg</term>, имя 
+          <replaceable>filename</replaceable> является именем соответствующего файла.
           </para>
 
-          <para>When more than one input file is given, each has to be preceded
-          by  <command>-i</command> flag. The files are imported in the 
-          specified order, i.e. 
+          <para>Если задано более одного имени для импорта, каждому должен
+          предшествовать флаг <command>-i</command>. Файлы импортируются
+          в указанном порядке, т.е. 
           <command>-i</command> <replaceable>file1</replaceable> 
           <command>-i</command> <replaceable>file2</replaceable> 
-          and 
+          и 
           <command>-i</command> <replaceable>file2</replaceable> 
           <command>-i</command> <replaceable>file1</replaceable> 
-          might produce different gramps IDs in the resulting database.
+          могут произвести различные ID в конечной базе данных. 
           </para></listitem>
           </varlistentry>
 
 
-          <varlistentry><term>Export options</term>
-          <listitem><para> The files destined for export can be specified with 
-          the 
-          	<command>-o</command> <replaceable>filename</replaceable>
-          option. The format can be specified with the <command>-f</command> 
-          option immediately following the <replaceable>filename</replaceable>. 
-          If not specified, the guess will be attempted based on 
-          the <replaceable>filename</replaceable>. For <term>gramps</term> 
-          and <term>iso</term> formats, the <replaceable>filename</replaceable> 
-          is actually the name of directory the gramps database will be written 
-          into. For <term>gedcom</term>, <term>wft</term>, 
-          and <term>gramps-pkg</term>, the <replaceable>filename</replaceable> 
-          is the name of the resulting file.
+          <varlistentry><term>Опции экспорта</term>
+          <listitem><para> Файлы, преднахначенные для экспорта, могут быть указаны
+          с помощью опции 
+          	<command>-o</command> <replaceable>filename</replaceable>.
+          	Формат может быть указан опцией <command>-f</command>
+          следующей непосредственно за именем<replaceable>filename</replaceable>. 
+          Если формат не указан, &app; сделает попытку угадать формат, основываясь
+          на имени <replaceable>filename</replaceable>. Для форматов 
+          <term>gramps</term> и <term>iso</term>, 
+          имя <replaceable>filename</replaceable> на самом деле является именем
+          каталога, в который будет записана база данных &app;. Для форматов 
+          <term>gedcom</term>, <term>wft</term> и <term>gramps-pkg</term>, имя 
+          <replaceable>filename</replaceable> является именем экспортируемого файла.
           </para>
 
-          <para> When more than one output file is given, each has to be 
-          preceded by <command>-o</command> flag. The files are written one 
-          by one, in the specified order.
+          <para> Если задано более одного имени для экспорта, каждому должен
+          предшествовать флаг <command>-o</command>. Файлы экспортируются
+          один за другим, в указанном порядке.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Action options</term>
-          <listitem><para> The action to perform on the imported data can be 
-          specified with the 
-          	<command>-a</command> <replaceable>action</replaceable>
-          option. This is done after all imports are successfully completed. 
-          Currently available actions are <term>summary</term> (same as 
-          <menuchoice><guimenu>Reports</guimenu><guisubmenu>View</guisubmenu>
-	  <guimenuitem>Summary</guimenuitem></menuchoice>)
-          and <term>check</term> (same as 
-          <menuchoice><guimenu>Tools</guimenu>
-          <guisubmenu>Database Processing</guisubmenu>
-	  <guimenuitem>Check and Repair</guimenuitem></menuchoice>).
+          <varlistentry><term>Опции действия</term>
+          <listitem><para> Действие, производимое над ипортированными данными,
+          может быть указано с помощью опции 
+          <command>-a</command> <replaceable>action</replaceable>. 
+          Действие производится после успешного завершения всех импортов.
+          В настоящий момент, доступные опции таковы: 
+          <term>summary</term> (то же самое, что и 
+          <menuchoice><guimenu>Отчёты</guimenu><guisubmenu>Вид</guisubmenu>
+	  <guimenuitem>Итоги базы данных...</guimenuitem></menuchoice>)
+          и <term>check</term> (то же самое, что и  
+          <menuchoice><guimenu>Инструменты</guimenu>
+          <guisubmenu>Обработка Базы Данных</guisubmenu>
+	  <guimenuitem>Проверить и починить базу данных...</guimenuitem></menuchoice>).
           </para>
 
-          <para>When more than one output action is given, each has to be 
-          preceded by <command>-a</command> flag. The actions are performed 
-          one by one, in the specified order.
+          <para> Если задано более одного действия, каждому должен
+          предшествовать флаг <command>-a</command>. Действия призводятся
+          один за другим, в указанном порядке.
           </para></listitem>
           </varlistentry>
 
@@ -163,35 +163,37 @@
 
 
       <sect3 id="cmdline-operation">
-      <title>Operation</title>
+      <title>Порядок работы</title>
       
-       <para>The order of <command>-i</command>, <command>-o</command>, 
-       or <command>-a</command> options with respect to each does not matter. 
-       The actual execution order always is: all imports (if any) -> all 
-       exports (if any) -> all actions (if any).</para>
+       <para>Порядок опций <command>-i</command>, <command>-o</command>, 
+       или <command>-a</command> относительно друг друга не имеет значения. 
+       Настоящий порядок выполнения всегда таков: все импорты (если есть) -> 
+       все экспорты (если есть) -> все действия (если есть). </para>
                                                                                 
-       <para>If no <command>-i</command> option is given, gramps will launch 
-       its main window and start the usual interactive session with the empty 
-       database (since there is no data to process, anyway).</para>
+       <para>Если не дано ни одной опции <command>-i</command>, &app; 
+       запустит своё главное окно и начнёт обычный интерактивный сеанс с пустой
+       базой данных (т.к. данных всё равно не дано). </para>
                                                                                 
-       <para>If no <command>-o</command> or <command>-a</command> options 
-       are given, gramps will launch its main window and start the usual 
-       interactive session with the database resulted from all imports. 
-       This database resides under 
-       <replaceable>~/.gramps/import</replaceable> directory.</para>
+       <para>Если не дано ни одной опции
+       <command>-o</command> или <command>-a</command>, &app; 
+       запустит своё главное окно и начнёт обычный интерактивный сеанс
+       с базой данных, получившейся как результат всех импортов. 
+       Эта база данных будет находится в каталоге 
+       <replaceable>~/.gramps/import</replaceable>. </para>
                                                                                 
-       <para>Any errors encountered during import, export, or action, will 
-       be either dumped to stdout (if these are exceptions handled by gramps) 
-       or or to stderr (if these are not handled). Use usual shell redirections 
-       of stdout and stderr to save messages and errors in files.</para>
+       <para>Любые ошибки в процессе импорта, экспорта или действия 
+       будут выброшены на стандартный вывод stdout (если это исключения,
+       пойманные &app;) или на стандартное устройство ошибки stderr 
+       (если они не пойманы). Используйте обычные методы перенаправления 
+       стандартных устройств, чтобы сохранить сообщения и ошибки в файлы. </para>
 
       </sect3>
 
       <sect3 id="cmdline-examples">
-      <title>Examples</title>
-        <para>To import four databases (whose formats can be  determined from  
-        their names) and then check the resulting database for errors, one may 
-        type:</para>
+      <title>Примеры</title>
+        <para>Для импорта четырёх баз данных (формат которых может быть определён
+        по их именам) и последующей проверки получившейся базы данных на целостность, 
+        можно набрать: </para>
         <para><command>gramps -i</command> <replaceable>file1.ged</replaceable> 
         <command>-i</command> <replaceable>file2.tgz</replaceable> 
         <command>-i</command> <replaceable>~/db3</replaceable> 
@@ -199,8 +201,8 @@
         <command>-a</command> <replaceable>check</replaceable>
         </para> 
         
-        <para>To explicitly specify the formats in the above  example, append 
-        filenames with appropriate <command>-f</command> options:</para>
+        <para>Чтобы явно указать форматы файлов в предыдущем примере, добавьте 
+        соответствующие опции <command>-f</command> после каждого имени: </para>
         <para><command>gramps -i</command> <replaceable>file1.ged</replaceable> 
           <command>-f</command> <replaceable>gedcom</replaceable> 
         <command>-i</command> <replaceable>file2.tgz</replaceable> 
@@ -212,18 +214,18 @@
         <command>-a</command> <replaceable>check</replaceable>
         </para>
 
-       <para>To record the database resulting from all imports, supply 
-       <command>-o</command> flag (use <command>-f</command>
-       if the filename does not allow gramps to guess the format):</para>
+       <para>Чтобы записать базу данных, получившуюся в результате всех импортов, 
+       добавьте флаг <command>-o</command> (используйте опцию 
+       <command>-f</command> если имя не позволяет &app; угадать формат): </para>
         <para><command>gramps -i</command> <replaceable>file1.ged</replaceable> 
         <command>-i</command> <replaceable>file2.tgz</replaceable> 
         <command>-o</command> <replaceable>~/new-package</replaceable> 
           <command>-f</command> <replaceable>gramps-pkg</replaceable> 
         </para>
                                                                                 
-       <para>To save any error messages of the above example into files
-       <replaceable>outfile</replaceable> and 
-       <replaceable>errfile</replaceable>, run:</para>
+       <para>Для сохранения сообщений об ошибке в предыдущем примере в файлы 
+       <replaceable>outfile</replaceable> и 
+       <replaceable>errfile</replaceable>, запустите:</para>
         <para><command>gramps -i</command> <replaceable>file1.ged</replaceable> 
         <command>-i</command> <replaceable>file2.tgz</replaceable> 
         <command>-o</command> <replaceable>~/new-package</replaceable> 
@@ -232,14 +234,14 @@
         2&gt;<replaceable>errfile</replaceable> 
         </para>
 
-       <para>To import three databases and start interactive gramps 
-       session with the result:</para>
+       <para>Чтобы импортировать три базы данных и начать интерактивный сеанс 
+       &app; с результатом: </para>
         <para><command>gramps -i</command> <replaceable>file1.ged</replaceable> 
         <command>-i</command> <replaceable>file2.tgz</replaceable> 
         <command>-i</command> <replaceable>~/db3</replaceable> 
         </para> 
                                                                                 
-       <para>Finally, to start normal interactive session type:</para>
+       <para>Наконец, чтобы начать обычный интерактивный сеанс, наберите: </para>
        <para> <command>gramps </command></para>
                                                                                 
       </sect3>
