@@ -53,30 +53,30 @@ class PatchNames:
         self.title_list = []
         self.nick_list = []
         
-        personMap = self.db.getPersonMap()
-        for key in personMap.keys():
+        for key in self.db.getPersonKeys():
         
-            person = personMap[key]
+            person = self.db.getPerson(key)
             first = person.getPrimaryName().getFirstName()
             match = _title_re.match(first)
             if match:
                 groups = match.groups()
-                self.title_list.append((person,groups[0],groups[1]))
-
+                self.title_list.append((key,groups[0],groups[1]))
             match = _nick_re.match(first)
             if match:
                 groups = match.groups()
-                self.nick_list.append((person,groups[0],groups[1]))
+                self.nick_list.append((key,groups[0],groups[1]))
 
         msg = ""
         if len(self.nick_list) > 0 or len(self.title_list) > 0:
-            for name in self.nick_list:
+            for (id,name,nick) in self.nick_list:
+                p = self.db.getPerson(id)
                 msg = msg + _("%s will be extracted as a nickname from %s\n") % \
-                      (name[2],name[0].getPrimaryName().getName())
+                      (nick,p.getPrimaryName().getName())
 
-            for name in self.title_list:
+            for (id,title,nick) in self.title_list:
+                p = self.db.getPerson(id)
                 msg = msg + _("%s will be extracted as a title from %s\n") % \
-                      (name[0].getPrimaryName().getName(),name[1])
+                      (title,p.getPrimaryName().getName())
 
             base = os.path.dirname(__file__)
             glade_file = base + os.sep + "patchnames.glade"
@@ -93,15 +93,19 @@ class PatchNames:
 
     def on_ok_clicked(self,obj):
         for grp in self.nick_list:
-            name = grp[0].getPrimaryName()
+            p = self.db.getPerson(grp[0])
+            name = p.getPrimaryName()
             name.setFirstName(grp[1])
-            grp[0].setNickName(grp[2])
+            p.setNickName(grp[2])
+            self.db.buildPersonDisplay(grp[0])
             Utils.modified()
 
         for grp in self.title_list:
-            name = grp[0].getPrimaryName()
+            p = self.db.getPerson(grp[0])
+            name = p.getPrimaryName()
             name.setFirstName(grp[2])
             name.setTitle(grp[1])
+            self.db.buildPersonDisplay(grp[0])
             Utils.modified()
 
         Utils.destroy_passed_object(obj)

@@ -43,7 +43,7 @@ import libglade
 #-------------------------------------------------------------------------
 import RelLib
 import const
-import sort
+import Sorter
 import Utils
 import GrampsCfg
 
@@ -82,8 +82,13 @@ class AddSpouse:
         self.ok = self.glade.get_widget('spouse_ok')
 
         self.ok.set_sensitive(0)
-        self.name_list = self.db.getPersonMap().values()
-        self.name_list.sort(sort.by_last_name)
+        arrow_map = [(2,self.glade.get_widget('NameArrow')),
+                     (3,self.glade.get_widget('DateArrow'))]
+                     
+        self.spouse_list.set_column_visibility(2,0)
+        self.spouse_list.set_column_visibility(3,0)
+        self.sorter = Sorter.Sorter(self.spouse_list,arrow_map,'spouse',self.top)
+        self.name_list = self.db.getPersonKeys()
         self.rel_combo.set_popdown_strings(const.familyRelations)
         title = _("Choose Spouse/Partner of %s") % GrampsCfg.nameof(person)
         self.glade.get_widget("spouseTitle").set_text(title)
@@ -127,11 +132,11 @@ class AddSpouse:
         QuickAdd.QuickAdd(self.db,gen,self.update_list)
 
     def update_list(self,person):
-        self.name_list.append(person)
-        self.name_list.sort(sort.by_last_name)
+        self.name_list.append(person.getId())
         self.addperson(person)
         self.relation_type_changed(self.relation_type)
         row = self.spouse_list.find_row_from_data(person)
+        self.sorter.sort_list()
         self.spouse_list.select_row(row,0)
         self.spouse_list.moveto(row,0)
 
@@ -143,7 +148,7 @@ class AddSpouse:
         if len(self.spouse_list.selection) == 0:
             return
         row = self.spouse_list.selection[0]
-        spouse = self.spouse_list.get_row_data(row)
+        spouse = self.db.getPerson(self.spouse_list.get_row_data(row))
 
         # don't do anything if the marriage already exists
         for f in self.person.getFamilyList():
@@ -188,13 +193,15 @@ class AddSpouse:
         index = 0
         self.spouse_list.clear()
         self.spouse_list.freeze()
-        for person in self.name_list:
+        for key in self.name_list:
+            person = self.db.getPerson(key)
             if person.getGender() == gender:
                 continue
-            name = person.getPrimaryName().getName()
-            self.spouse_list.append([name,Utils.birthday(person)])
-            self.spouse_list.set_row_data(index,person)
+            data = person.getDisplayInfo()
+            self.spouse_list.append([data[0],data[3],data[5],data[6]])
+            self.spouse_list.set_row_data(index,key)
             index = index + 1
+        self.sorter.sort_list()
         self.spouse_list.thaw()
 
 #-------------------------------------------------------------------------
@@ -280,7 +287,7 @@ class SetSpouse:
         if len(self.spouse_list.selection) == 0:
             return
         row = self.spouse_list.selection[0]
-        spouse = self.spouse_list.get_row_data(row)
+        spouse = self.db.getPerson(self.spouse_list.get_row_data(row))
 
         # don't do anything if the marriage already exists
         for f in self.person.getFamilyList():

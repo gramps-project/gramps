@@ -1675,11 +1675,9 @@ class GedcomParser:
                         self.db.removePerson(person.getId())
                         person.setId(new_key)
                         self.db.addPersonAs(person)
-                    # person currently using it was just added, change it
-                    elif self.added.has_key(tp.getId()):
-                        self.db.removePerson(person.getId())
-                        person.setId(new_key)
-                        self.db.addPersonAs(person)
+                    # give up trying to use the refn as a key
+                    else:
+                        pass
 
         self.db.pmapIndex = new_pmax
 

@@ -330,25 +330,23 @@ class Gramps:
     def on_find_activate(self,obj):
         """Display the find box"""
         if self.notebook.get_current_page() == 4:
-            Find.FindPlace(self.place_view.place_list,self.find_goto_place,
-                           self.db.getPlaceMap().values())
+            Find.FindPlace(self.place_view.place_list,self.find_goto_place,self.db)
         elif self.notebook.get_current_page() == 3:
-            Find.FindSource(self.source_view.source_list,self.find_goto_source,
-                           self.db.getSourceMap().values())
+            Find.FindSource(self.source_view.source_list,self.find_goto_source,self.db)
         elif self.notebook.get_current_page() == 5:
             Find.FindMedia(self.media_view.media_list,self.find_goto_media,
                            self.db.getObjectMap().values())
         else:
-            Find.FindPerson(self.person_list,self.find_goto_to,
-                            self.db.getPersonMap().values())
+            Find.FindPerson(self.person_list,self.find_goto_to,self.db)
 
     def on_findname_activate(self,obj):
         """Display the find box"""
         pass
 
-    def find_goto_to(self,person):
+    def find_goto_to(self,row):
         """Find callback to jump to the selected person"""
-        self.change_active_person(person)
+        id = self.person_list.get_row_data(row)
+        self.change_active_person(self.db.getPerson(id))
         self.goto_active_person()
         self.update_display(0)
 
@@ -1290,9 +1288,9 @@ class Gramps:
             EditPerson.EditPerson(person, self.db, self.update_after_edit)
 
     def build_spouse_dropdown(self):
+        list = []
         mymap = {}
         mynmap = {}
-        list = []
         sel = None
         for f in self.active_person.getFamilyList():
             if self.active_person == f.getFather():
@@ -1303,8 +1301,8 @@ class Gramps:
             list.append(c)
             if f == self.active_family or sel == None:
                 sel = c
-            mymap[f] = c
-            mynmap[f] = sname
+            mynmap[f.getId()] = sname
+            mymap[f.getId()] = c
         self.spouse_combo.disable_activate()
         self.spouse_combo.list.clear_items(0,-1)
         self.spouse_combo.list.append_items(list)
@@ -1706,10 +1704,13 @@ class Gramps:
             gnome.ui.GnomeErrorDialog(_("No default/home person has been set"))
 
     def on_add_bookmark_activate(self,obj):
-        self.bookmarks.add(self.active_person)
-        name = GrampsCfg.nameof(self.active_person)
-        self.statusbar.set_status(_("%s has been bookmarked") % name)
-        gtk.timeout_add(5000,self.modify_statusbar)
+        if self.active_person:
+            self.bookmarks.add(self.active_person)
+            name = GrampsCfg.nameof(self.active_person)
+            self.statusbar.set_status(_("%s has been bookmarked") % name)
+            gtk.timeout_add(5000,self.modify_statusbar)
+        else:
+            GnomeWarningDialog(_("Bookmark could not be set because no one was selected"))
 
     def on_edit_bookmarks_activate(self,obj):
         self.bookmarks.edit()
@@ -1760,7 +1761,7 @@ class Gramps:
         if len(select) == 0:
             self.active_family = None
         else:
-            self.active_family = select[0].get_data('d')
+            self.active_family = self.db.getFamily(select[0].get_data('d'))
 
         if self.active_family == self.active_person.getFamilyList()[0]:
             self.pref_spouse.set_sensitive(0)
