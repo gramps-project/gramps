@@ -1,5 +1,6 @@
 2004-08-23  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/RelLib.py: (probably_alive): Fixed typo (bug #1014223).
+	* src/NameEdit.py: Proper use of ComboBoxEntry widgets (#1014238).
 
 2004-08-23  Tim Waugh  <twaugh@redhat.com>
 	* install-sh: Removed this generated file.

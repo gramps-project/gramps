@@ -68,11 +68,11 @@ class NameEditor:
         self.title_field  = self.top.get_widget("alt_title")
         self.suffix_field = self.top.get_widget("alt_suffix")
         self.combo = self.top.get_widget("alt_surname_list")
-        self.surname_field = self.top.get_widget("alt_last")
 
         AutoComp.fill_combo(self.combo,self.parent.db.get_surname_list())
+        self.surname_field = self.combo.get_child()
 
-        self.type_field = self.top.get_widget("name_type")
+        self.type_combo = self.top.get_widget("name_type")
         self.note_field = self.top.get_widget("alt_note")
         self.slist = self.top.get_widget('slist')
         self.priv = self.top.get_widget("priv")
@@ -83,7 +83,8 @@ class NameEditor:
 
         types = const.NameTypesMap.get_values()
         types.sort()
-        AutoComp.fill_combo(self.type_field,types)
+        AutoComp.fill_combo(self.type_combo,types)
+	self.type_field = self.type_combo.get_child()
 
         if self.name:
             self.srcreflist = self.name.get_source_references()
@@ -122,7 +123,7 @@ class NameEditor:
             self.surname_field.set_text(name.get_surname())
             self.title_field.set_text(name.get_title())
             self.suffix_field.set_text(name.get_suffix())
-            self.type_field.entry.set_text(_(name.get_type()))
+            self.type_field.set_text(_(name.get_type()))
             self.priv.set_active(name.get_privacy())
             if name.get_note():
                 self.note_buffer.set_text(name.get_note())
@@ -193,7 +194,7 @@ class NameEditor:
         format = self.preform.get_active()
         priv = self.priv.get_active()
 
-        mtype = unicode(self.type_field.entry.get_text())
+        mtype = unicode(self.type_field.get_text())
 
         if const.NameTypesMap.has_value(mtype):
             mtype = const.NameTypesMap.find_key(mtype)
