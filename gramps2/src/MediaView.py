@@ -249,7 +249,7 @@ class MediaView:
             id = src.getId()
             type = Utils.get_mime_description(src.getMimeType())
             if src.getLocal():
-                path = "<local copy>"
+                path = _("<local copy>")
             else:
                 path = src.getPath()
             stitle = string.upper(title)

@@ -871,7 +871,7 @@
 
 	      <child>
 		<widget class="GtkVBox" id="sidebar">
-		  <property name="width_request">80</property>
+		  <property name="border_width">10</property>
 		  <property name="visible">True</property>
 		  <property name="homogeneous">False</property>
 		  <property name="spacing">0</property>
