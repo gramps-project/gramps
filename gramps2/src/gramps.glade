@@ -723,21 +723,7 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkToolButton" id="button3">
-		  <property name="visible">True</property>
-		  <property name="tooltip" translatable="yes">Save database</property>
-		  <property name="label" translatable="yes">Save As...</property>
-		  <property name="use_underline">True</property>
-		  <property name="stock_id">gtk-save-as</property>
-		  <property name="visible_horizontal">True</property>
-		  <property name="visible_vertical">True</property>
-		  <property name="is_important">False</property>
-		  <signal name="clicked" handler="on_export_activate"/>
-		</widget>
-		<packing>
-		  <property name="expand">False</property>
-		  <property name="homogeneous">True</property>
-		</packing>
+		<placeholder/>
 	      </child>
 
 	      <child>

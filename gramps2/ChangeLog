@@ -1,3 +1,6 @@
+2004-10-12 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps.glade: Remove "Save as" from toolbar.
+
 2004-10-11  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DisplayModels.py: fix initialization of self.map
 	* src/DateParser.py: dynamically detect numerical parsing based
