@@ -360,8 +360,8 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return ("spouse",[])
 
         try:
-            self.apply_filter(orig_person.get_id(),0,firstList,firstMap)
-            self.apply_filter(other_person.get_id(),0,secondList,secondMap)
+            self.apply_filter(orig_person,0,firstList,firstMap)
+            self.apply_filter(other_person,0,secondList,secondMap)
         except RuntimeError,msg:
             return (_("Relationship loop detected"),None)
     
@@ -437,8 +437,8 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return ('', [])
 
         try:
-            self.apply_filter(orig_person.get_id(),0,firstList,firstMap)
-            self.apply_filter(other_person.get_id(),0,secondList,secondMap)
+            self.apply_filter(orig_person,0,firstList,firstMap)
+            self.apply_filter(other_person,0,secondList,secondMap)
         except RuntimeError,msg:
             return (_("Relationship loop detected"),None)
     
