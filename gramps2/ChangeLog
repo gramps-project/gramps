@@ -1,3 +1,8 @@
+2004-09-22  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditPerson.py: change sort mechanism to new Date sort value
+	* src/FamilyView.py: change sort mechanism to new Date sort valu
+	* src/Sort.py: remove unused sorting functions
+
 2004-09-20 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/GrampsInMemDB.py: Remove unused modules.
 

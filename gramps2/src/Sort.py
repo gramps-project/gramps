@@ -48,22 +48,6 @@ _prefix = {}
 for i in _plist:
     _prefix[i] = 1
 
-def build_sort_name(n):
-    """Builds a name from a RelLib.Name instance that is suitable for
-    use as a sort key in a GtkCList. The name is converted to upper case
-    to provide for case-insenstive sorting"""
-    if n.Surname:
-        return "%-25s%-30s%s" % (n.Surname.upper(),n.FirstName.upper(),n.Suffix.upper())
-    else:
-        return "@"
-
-def build_sort_date(n):
-    """Builds a date from a Date.Date instance that is suitable for
-    use as a sort key in a GtkCList. The resultant string is in the format
-    of YYYYMMDD. Unknown values are given as all nines, so that the
-    appear at the end"""
-    return "%010d" % n.get_sort_value()
-
 class Sort:
     def __init__(self,database):
         self.database = database
