@@ -363,7 +363,7 @@ class Gramps:
 
         self.family_view = FamilyView.FamilyView(self)
 
-        self.pedigree_view = PedView.PedigreeView(
+        self.pedigree_view = PedView.PedigreeView(self,
             self.canvas, self.modify_statusbar, self.statusbar,
             self.change_active_person, self.load_person
             )

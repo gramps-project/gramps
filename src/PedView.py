@@ -139,7 +139,8 @@ class DispBox:
 #
 #-------------------------------------------------------------------------
 class PedigreeView:
-    def __init__(self,canvas,update,status_bar,change_active,lp):
+    def __init__(self,parent,canvas,update,status_bar,change_active,lp):
+        self.parent = parent
         self.canvas = canvas
         self.canvas_items = []
         self.boxes = []
@@ -154,6 +155,7 @@ class PedigreeView:
         self.change_active_person = change_active
         self.load_person = lp
         self.presel_descendants = []
+        self.canvas.connect('button-press-event',self.on_canvas_press)
 
     def clear(self):
         for i in self.canvas_items:
@@ -422,3 +424,28 @@ class PedigreeView:
                 self.y1 = y1; self.y2 = y2
                 self.load_canvas(self.active_person)
         return 0
+
+    def on_canvas_press(self,obj,event):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            self.build_nav_menu()
+
+    def build_nav_menu(self):
+        """Builds the menu with navigation."""
+        
+        back_sensitivity = self.parent.hindex > 0 
+        fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
+        entries = [
+            ('gtk-go-back',self.parent.back_clicked,back_sensitivity),
+            ('gtk-go-forward',self.parent.fwd_clicked,fwd_sensitivity),
+            ('gtk-home',self.parent.on_home_clicked,1),
+        ]
+        menu = gtk.Menu()
+        menu.set_title(_('People Menu'))
+        for stock_id,callback,sensitivity in entries:
+            item = gtk.ImageMenuItem(stock_id)
+            if callback:
+                item.connect("activate",callback)
+            item.set_sensitive(sensitivity)
+            item.show()
+            menu.append(item)
+        menu.popup(None,None,None,0,0)
