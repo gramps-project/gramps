@@ -33,6 +33,7 @@ import Report
 import TextDoc
 import RelLib
 import Errors
+import Relationship
 from QuestionDialog import ErrorDialog
 from intl import gettext as _
 
@@ -221,25 +222,15 @@ class ComprehensiveAncestorsReport (Report.Report):
                 if self.pgbrk:
                     self.doc.page_break()
                 self.doc.start_paragraph ("AR-Heading")
-                if thisgen > 4:
-                    n = thisgen - 3
-                    if n % 10 == 1 and n != 11:
-                        nth = 'st'
-                    elif n % 10 == 2 and n != 12:
-                        nth = 'nd'
-                    elif n % 10 == 3 and n != 13:
-                        nth = 'rd'
-                    else:
-                        nth = 'th'
-                    heading = '%d%s great grandparents' % (n, nth)
-                elif thisgen == 4:
-                    heading = 'Great grandparents'
-                elif thisgen == 3:
-                    heading = 'Grandparents'
-                elif thisgen == 2:
-                    heading = 'Parents'
-                else:
-                    heading = 'Generation %d' % thisgen
+                for self.gp in [families[0].getFather (),
+                                families[0].getMother ()]:
+                    if self.gp:
+                        break
+                heading = _("%(name)s's %(grandparents)s") % \
+                          { 'name': self.first_name_or_nick (self.start),
+                            'grandparents':
+                            Relationship.get_grandparents_string (self.start,
+                                                                  self.gp)[0]}
                 self.doc.write_text (heading)
                 self.doc.end_paragraph ()
                 self.write_paragraphs (people)

@@ -1,3 +1,6 @@
+2003-08-11  Tim Waugh  <twaugh@redhat.com>
+	* src/plugins/Ancestors.py: Use Relationship.get_grandparents_string.
+
 2003-08-10  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/Relationship.py: add "get_grandparents_string" to return the
 	grandparents relationship between to people.
