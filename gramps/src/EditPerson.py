@@ -959,7 +959,7 @@ class EditPerson:
             d = Date()
             d.set(date)
             if compare_dates(d,ord.getDateObj()) != 0:
-                ord.setDateObj(date)
+                ord.setDateObj(d)
                 utils.modified()
             if ord.getTemple() != temple:
                 ord.setTemple(temple)

@@ -470,6 +470,7 @@ class GedcomParser:
 
     def parse_individual(self):
         name_cnt = 0
+        note = ""
         while 1:
 	    matches = self.get_next()
 
@@ -513,7 +514,11 @@ class GedcomParser:
                     self.parse_person_object(2)
             elif matches[1] == "NOTE":
                 if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
-                    note = matches[2] + self.parse_continue_data()
+                    note = self.person.getNote()
+                    if note == "":
+                        note = matches[2] + self.parse_continue_data()
+                    else:
+                        note = "%s\n\n%s%s" % (note,matches[2],self.parse_continue_data())
                     self.person.setNote(note)
                     self.ignore_sub_junk(2)
                 else:
@@ -533,7 +538,10 @@ class GedcomParser:
 	    elif matches[1] == "FAMS":
                 family = self.db.findFamily(matches[2],self.fmap)
                 self.person.addFamily(family)
-                note = self.parse_optional_note(2)
+                if note == "":
+                    note = self.parse_optional_note(2)
+                else:
+                    note = "%s\n\n%s" % (note,self.parse_optional_note(2))
 	    elif matches[1] == "FAMC":
                 type,note = self.parse_famc_type(2)
                 family = self.db.findFamily(matches[2],self.fmap)
@@ -1039,12 +1047,14 @@ class GedcomParser:
                 if attr.getValue() == "":
                     attr.setValue(val)
                     self.ignore_sub_junk(level+1)
+	    elif matches[1] == "DATE":
+                note = "%s\n\n" % ("Date : %s" % matches[2])
             elif matches[1] == "NOTE":
                 info = matches[2] + self.parse_continue_data()
                 if note == "":
                     note = info
                 else:
-                    note = "\n%s" % info
+                    note = "%s\n\n%s" % (note,info)
 	    elif matches[1] == "CONC":
                 if self.broken_conc:
                     attr.setValue("%s %s" % (attr.getValue(), matches[2]))
@@ -1054,6 +1064,8 @@ class GedcomParser:
 	        attr.setValue("%s\n%s" % (attr.getValue(),matches[2]))
             else:
 	        self.barf(level+1)
+        if note != "":
+            attr.setNote(note)
 
     def parse_family_event(self,event,level):
         global ged2fam

@@ -616,6 +616,10 @@ class Address(DataObj):
         """returns the Date object associated with the Address"""
         return self.date
 
+    def setDateObj(self,obj):
+        """sets the Date object associated with the Address"""
+        self.date = obj
+
     def setStreet(self,val):
         """sets the street portion of the Address"""
         self.street = val
@@ -1246,6 +1250,13 @@ class Family:
         self.note = Note()
         self.attributeList = []
         self.position = None
+        self.lds_seal = None
+
+    def setLdsSeal(self,ord):
+        self.lds_seal = ord
+
+    def getLdsSeal(self):
+        return self.lds_seal
 
     def setPosition(self,pos):
         """sets a graphical location pointer for graphic display (x,y)"""
