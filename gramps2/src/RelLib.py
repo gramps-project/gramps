@@ -37,7 +37,7 @@ import os
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Date import Date, compare_dates, not_too_old
+from Date import Date, SingleDate, compare_dates, not_too_old
 import sort
 import const
 
@@ -1384,10 +1384,59 @@ class Person(Persistent):
         return self.lds_seal
 
     def probablyAlive(self):
+        """Returns true if the person may be alive."""
         if not self.death.is_empty ():
             return 0
         if self.birth.getDate() != "":
             return not_too_old(self.birth.getDateObj().get_start_date())
+
+        # Neither birth nor death events are available.  Try looking
+        # for descendants that were born more than a lifespan ago.
+
+        min_generation = 13
+        def descendants_too_old (person, years):
+            for family in person.getFamilyList ():
+                for child in family.getChildList ():
+                    if child.birth.getDate () != "":
+                        d = SingleDate (child.birth.getDateObj ().
+                                        get_start_date ())
+                        d.setYear (d.getYear () - years)
+                        if not not_too_old (d):
+                            return 1
+
+                    if child.death.getDate () != "":
+                        d = SingleDate (child.death.getDateObj ().
+                                        get_start_date ())
+                        if not not_too_old (d):
+                            return 1
+
+                    if descendants_too_old (child, years + min_generation):
+                        return 1
+
+        if descendants_too_old (self, min_generation):
+            return 0
+
+        # What about their parents?
+        family = self.getMainParents ()
+        if family:
+            for parent in [family.getFather (), family.getMother ()]:
+                if not parent:
+                    continue
+
+                if parent.birth.getDate () != "":
+                    d = SingleDate (parent.birth.getDateObj ().
+                                    get_start_date ())
+                    d.setYear (d.getYear () + min_generation)
+                    print d.getYear ()
+                    if not not_too_old (d):
+                        return 0
+
+                if parent.death.getDate () != "":
+                    d = SingleDate (parent.death.getDateObj ().
+                                    get_start_date ())
+                    if not not_too_old (d):
+                        return 0
+
         return 1
     
 class Event(DataObj):
