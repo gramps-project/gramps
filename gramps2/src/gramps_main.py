@@ -1553,7 +1553,7 @@ class Gramps:
             except OSError,msg:
                 ErrorDialog(_('Example database not created'),str(msg))
             
-        self.read_file(dir)
+        self.read_file(dest)
 
 DARKEN = 1.4
 
