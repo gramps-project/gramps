@@ -934,7 +934,7 @@ _style_name = "default"
 _person_id = ""
 _max_gen = 10
 _pg_brk = 0
-_opt_cite = gtk.TRUE
+_opt_cite = 1
 
 _options = ( _person_id, _max_gen, _pg_brk, _opt_cite )
 
