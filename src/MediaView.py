@@ -20,6 +20,7 @@
 
 import GTK
 import GDK
+import gtk
 import gnome.ui
 import string
 import ImageSelect
@@ -139,12 +140,42 @@ class MediaView:
         self.mdetails.set_text(utils.get_detail_text(mobj,0))
 
     def on_button_press_event(self,obj,event):
-        if event.button != 1 or event.type != GDK._2BUTTON_PRESS:
-            return
         if len(self.media_list.selection) <= 0:
             return
         object = self.media_list.get_row_data(self.media_list.selection[0])
-        ImageSelect.GlobalMediaProperties(self.db,object,self.load_media)
+        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+            ImageSelect.GlobalMediaProperties(self.db,object,self.load_media)
+        elif event.button == 3:
+            menu = gtk.GtkMenu()
+            item = gtk.GtkTearoffMenuItem()
+            item.show()
+            menu.append(item)
+            self.obj = object
+            utils.add_menuitem(menu,_("View in the default viewer"),None,self.popup_view_photo)
+            if object.getMimeType()[0:5] == "image":
+                utils.add_menuitem(menu,_("Edit with the GIMP"),\
+                                   None,self.popup_edit_photo)
+            utils.add_menuitem(menu,_("Edit Object Properties"),None,
+                               self.popup_change_description)
+            if object.getLocal() == 0:
+                utils.add_menuitem(menu,_("Convert to local copy"),None,
+                                   self.popup_convert_to_private)
+            menu.popup(None,None,None,0,0)
+
+    def popup_view_photo(self, obj):
+        utils.view_photo(self.obj)
+    
+    def popup_edit_photo(self, obj):
+        if os.fork() == 0:
+            os.execvp(const.editor,[const.editor, self.obj.getPath()])
+    
+    def popup_convert_to_private(self, obj):
+        name = RelImage.import_media_object(self.obj.getPath(),self.path,self.obj.getId())
+        self.obj.setPath(name)
+        self.obj.setLocal(1)
+
+    def popup_change_description(self, obj):
+        ImageSelect.GlobalMediaProperties(self.db,self.obj,self.load_media)
 
     def load_media(self):
 

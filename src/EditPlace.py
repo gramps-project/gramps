@@ -47,7 +47,7 @@ _ = gettext
 #-------------------------------------------------------------------------
 class EditPlace:
 
-    def __init__(self,place,db,func):
+    def __init__(self,place,db,func=None):
         self.place = place
         self.db = db
         self.callback = func
@@ -227,7 +227,8 @@ class EditPlace:
         self.update_lists()
 
         utils.destroy_passed_object(self.top)
-        self.callback(self.place)
+        if self.callback:
+            self.callback(self.place)
 
     def on_switch_page(self,obj,a,page):
         if page == 3 and self.not_loaded:

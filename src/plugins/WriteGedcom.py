@@ -61,17 +61,21 @@ _ALT_EVENT_AKA   = 4
 _CAL_NO          = 0
 _CAL_YES         = 1
 
+_EVEN_NONE       = 0
+_EVEN_GED        = 1
+_EVEN_FTW        = 2
+
 targets = [
-    ("Standard GEDCOM 5.5", "GEDCOM 5.5", _ADOPT_EVENT_EXT, _CONC_OK, _ALT_STD, _CAL_YES),
-    ("Brother's Keeper", "BROSKEEP", _ADOPT_NONE, _CONC_BROKEN, _ALT_NONE, _CAL_NO),
-    ("Family Origins", "FamilyOrigins", _ADOPT_EVENT, _CONC_BROKEN, _ALT_EVENT_AKA, _CAL_NO),
-    ("Family Tree Maker", "FTW", _ADOPT_FTW, _CONC_BROKEN, _ALT_ALIAS, _CAL_NO),
-    ("Ftree", "", _ADOPT_NONE, _CONC_BROKEN, _ALT_NONE, _CAL_NO),
-    ("GeneWeb", "", _ADOPT_NONE, _CONC_OK, _ALT_NONE, _CAL_YES),
-    ("Legacy", "Legacy", _ADOPT_LEGACY, _CONC_BROKEN, _ALT_STD, _CAL_NO),
-    ("Personal Ancestral File", "PAF",  _ADOPT_PEDI, _CONC_OK, _ALT_AKA, _CAL_NO),
-    ("Reunion", "REUNION",  _ADOPT_NONE, _CONC_BROKEN, _ALT_NONE, _CAL_NO),
-    ("Visual Genealogie", "", _ADOPT_NONE, _CONC_BROKEN, _ALT_NONE, _CAL_NO),
+    ("Standard GEDCOM 5.5", "GEDCOM 5.5", _ADOPT_EVENT_EXT, _CONC_OK, _ALT_STD, _CAL_YES, _EVEN_GED),
+    ("Brother's Keeper", "BROSKEEP", _ADOPT_NONE, _CONC_OK, _ALT_NONE, _CAL_NO, _EVEN_GED),
+    ("Family Origins", "FamilyOrigins", _ADOPT_EVENT, _CONC_BROKEN, _ALT_EVENT_AKA, _CAL_NO, _EVEN_GED),
+    ("Family Tree Maker", "FTW", _ADOPT_FTW, _CONC_BROKEN, _ALT_ALIAS, _CAL_NO, _EVEN_FTW),
+    ("Ftree", "", _ADOPT_NONE, _CONC_BROKEN, _ALT_NONE, _CAL_NO, _EVEN_GED),
+    ("GeneWeb", "", _ADOPT_EVENT_EXT, _CONC_OK, _ALT_NONE, _CAL_YES, _EVEN_GED),
+    ("Legacy", "Legacy", _ADOPT_LEGACY, _CONC_BROKEN, _ALT_STD, _CAL_NO, _EVEN_GED),
+    ("Personal Ancestral File", "PAF",  _ADOPT_PEDI, _CONC_OK, _ALT_AKA, _CAL_NO, _EVEN_GED),
+    ("Reunion", "REUNION",  _ADOPT_NONE, _CONC_BROKEN, _ALT_NONE, _CAL_NO, _EVEN_GED),
+    ("Visual Genealogie", "", _ADOPT_NONE, _CONC_BROKEN, _ALT_NONE, _CAL_NO, _EVEN_GED),
     ]
 
 #-------------------------------------------------------------------------
@@ -447,10 +451,10 @@ class GedcomWriter:
 
         target_obj = self.topDialog.get_widget("target")
         myMenu = gtk.GtkMenu()
-        for (name,dest,adopt,conc,alt,cal) in targets:
+        for (name,dest,adopt,conc,alt,cal,even) in targets:
             menuitem = gtk.GtkMenuItem(name)
             myMenu.append(menuitem)
-            menuitem.set_data("data",(dest,adopt,conc,alt,cal))
+            menuitem.set_data("data",(dest,adopt,conc,alt,cal,even))
             menuitem.show()
 
         target_obj.set_menu(myMenu)
@@ -465,7 +469,7 @@ class GedcomWriter:
 
         filter = self.filter_menu.get_active().get_data("filter")
         act_tgt = self.target_menu.get_active()
-        (self.dest,self.adopt,self.conc,self.altname,self.cal) = act_tgt.get_data("data")
+        (self.dest,self.adopt,self.conc,self.altname,self.cal,self.even) = act_tgt.get_data("data")
 
         if self.topDialog.get_widget("ansel").get_active():
             self.cnvtxt = latin_to_ansel
@@ -600,13 +604,19 @@ class GedcomWriter:
 
                     if const.familyConstantEvents.has_key(name):
                         val = const.familyConstantEvents[name]
+                        if val[0] == '_' and self.even != _EVEN_FTW:
+                            val = ''
                     else:
                         val = ""
-                        if val != "":
-                            self.g.write("1 %s\n" % const.familyConstantEvents[name])
-                        else:	
-                            self.g.write("1 EVEN\n")
-                            self.g.write("2 TYPE %s\n" % self.cnvtxt(name))
+                        
+                    if val != "":
+                        if self.even == _EVEN_NONE:
+                            continue
+                        self.g.write("1 %s %s\n" % (self.cnvtxt(val),
+                                                 self.cnvtxt(event.getDescription())))
+                    else:	
+                        self.g.write("1 EVEN %s\n" % self.cnvtxt(event.getDescription()))
+                        self.g.write("2 TYPE %s\n" % self.cnvtxt(name))
 					
                     self.dump_event_stats(event)
 
@@ -696,8 +706,11 @@ class GedcomWriter:
                 name = event.getName()
                 if const.personalConstantEvents.has_key(name):
                     val = const.personalConstantEvents[name]
+                    if val[0] == '_' and self.even != _EVEN_FTW:
+                        val = ''
                 else:
                     val = ""
+                    
                 if self.adopt == _ADOPT_EVENT and val == "ADOP":
                     ad = 1
                     self.g.write('1 ADOP\n')
@@ -717,6 +730,8 @@ class GedcomWriter:
                         else:
                             self.g.write('3 ADOP HUSB\n')
                 elif val != "" :
+                    if self.even == _EVEN_NONE:
+                        continue
                     self.g.write("1 %s %s\n" % (self.cnvtxt(val),\
                                                 self.cnvtxt(event.getDescription())))
                 else:

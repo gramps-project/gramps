@@ -48,7 +48,7 @@ _ = gettext
 
 class EditSource:
 
-    def __init__(self,source,db,func):
+    def __init__(self,source,db,func=None):
         self.source = source
         self.db = db
         self.callback = func
@@ -211,7 +211,8 @@ class EditSource:
             utils.modified()
 
         utils.destroy_passed_object(self.top)
-        self.callback(self.source)
+        if self.callback:
+            self.callback(self.source)
 
     def on_switch_page(self,obj,a,page):
         if page == 2 and self.not_loaded:
