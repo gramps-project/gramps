@@ -77,6 +77,7 @@ class Compare:
         self.update()
 
     def add(self, tobj, tag, text):
+        text += "\n"
         tobj.insert_with_tags(tobj.get_end_iter(),text,tag)
         
     def display(self, tobj, person):
@@ -91,53 +92,70 @@ class Compare:
         title = tobj.create_tag()
         title.set_property('weight',pango.WEIGHT_BOLD)
         title.set_property('scale',pango.SCALE_LARGE)
-        self.add(tobj,title,NameDisplay.displayer.display(person) + "\n")
-        self.add(tobj,normal,"%s:\t%s\n" % (_('ID'),person.get_gramps_id()))
-        self.add(tobj,normal,"%s:\t%s\n" % (_('Gender'),sex[person.get_gender()]))
+        self.add(tobj,title,NameDisplay.displayer.display(person))
+        self.add(tobj,normal,"%s:\t%s" % (_('ID'),person.get_gramps_id()))
+        self.add(tobj,normal,"%s:\t%s" % (_('Gender'),sex[person.get_gender()]))
         bhandle = person.get_birth_handle()
-        self.add(tobj,normal,"%s:\t%s\n" % (_('Birth'),self.get_event_info(bhandle)))
+        self.add(tobj,normal,"%s:\t%s" % (_('Birth'),self.get_event_info(bhandle)))
         dhandle = person.get_death_handle()
-        self.add(tobj,normal,"%s:\t%s\n" % (_('Death'),self.get_event_info(dhandle)))
+        self.add(tobj,normal,"%s:\t%s" % (_('Death'),self.get_event_info(dhandle)))
+
+        nlist = person.get_alternate_names()
+        if len(nlist) > 0:
+            self.add(tobj,title,_("Alternate Names"))
+            for name in nlist:
+                self.add(tobj,normal,NameDisplay.displayer.display_name(name))
+
         elist = person.get_event_list()
         if len(elist) > 0:
-            self.add(tobj,title,_("Events") + "\n")
+            self.add(tobj,title,_("Events"))
             for event_handle in person.get_event_list():
                 name = self.db.get_event_from_handle(event_handle).get_name()
-                self.add(tobj,normal,"%s:\t%s\n" % (name,self.get_event_info(dhandle)))
+                self.add(tobj,normal,"%s:\t%s" % (name,self.get_event_info(event_handle)))
         plist = person.get_parent_family_handle_list()
+
         if len(plist) > 0:
-            self.add(tobj,title,_("Parents") + "\n")
+            self.add(tobj,title,_("Parents"))
             for fid in person.get_parent_family_handle_list():
                 (fn,mn,id) = self.get_parent_info(fid[0])
-                self.add(tobj,normal,"%s:\t%s\n" % (_('Family ID'),id))
+                self.add(tobj,normal,"%s:\t%s" % (_('Family ID'),id))
                 if fn:
-                    self.add(tobj,indent,"%s:\t%s\n" % (_('Father'),fn))
+                    self.add(tobj,indent,"%s:\t%s" % (_('Father'),fn))
                 if mn:
-                    self.add(tobj,indent,"%s:\t%s\n" % (_('Mother'),mn))
+                    self.add(tobj,indent,"%s:\t%s" % (_('Mother'),mn))
         else:
-            self.add(tobj,normal,_("No parents found") + "\n")
+            self.add(tobj,normal,_("No parents found"))
             
-        self.add(tobj,title,_("Spouses") + "\n")
+        self.add(tobj,title,_("Spouses"))
         slist = person.get_family_handle_list()
         if len(slist) > 0:
             for fid in slist:
                 (fn,mn,id) = self.get_parent_info(fid)
                 family = self.db.get_family_from_handle(fid)
-                self.add(tobj,normal,"%s:\t%s\n" % (_('Family ID'),id))
+                self.add(tobj,normal,"%s:\t%s" % (_('Family ID'),id))
                 spouse_id = ReportUtils.find_spouse(person,family)
                 if spouse_id:
                     spouse = self.db.get_person_from_handle(spouse_id)
-                    self.add(tobj,indent,"%s:\t%s\n" % (_('Spouse'),name_of(spouse)))
+                    self.add(tobj,indent,"%s:\t%s" % (_('Spouse'),name_of(spouse)))
                 relstr = const.family_relations[family.get_relationship()][0]
-                self.add(tobj,indent,"%s:\t%s\n" % (_('Type'),relstr))
+                self.add(tobj,indent,"%s:\t%s" % (_('Type'),relstr))
                 event = ReportUtils.find_marriage(self.db,family)
                 if event:
-                    self.add(tobj,indent,"%s:\t%s\n" % (_('Marriage'),self.get_event_info(event.get_handle())))
+                    self.add(tobj,indent,"%s:\t%s" % (_('Marriage'),
+                                                      self.get_event_info(event.get_handle())))
                 for child_id in family.get_child_handle_list():
                     child = self.db.get_person_from_handle(child_id)
-                    self.add(tobj,indent,"%s:\t%s\n" % (_('Child'),name_of(child)))
+                    self.add(tobj,indent,"%s:\t%s" % (_('Child'),name_of(child)))
         else:
-            self.add(tobj,normal,_("No spouses or children found") + "\n")
+            self.add(tobj,normal,_("No spouses or children found"))
+
+        alist = person.get_address_list()
+        if len(alist) > 0:
+            self.add(tobj,title,_("Addresses"))
+            for addr in alist:
+                location = ", ".join([addr.get_street(),addr.get_city(),
+                                     addr.get_state(),addr.get_country()])
+                self.add(tobj,normal,location.strip())
 
     def get_parent_info(self,fid):
         family = self.db.get_family_from_handle(fid)
@@ -361,28 +379,15 @@ class MergePeople:
 
         # merge family events
 
-        lst = tgt_family.get_event_list()[:]
-        for xdata in src_family.get_event_list():
-            for data in lst:
-                if data.are_equal(xdata):
-                    self.copy_note(data,xdata)
-                    self.copy_sources(data,xdata)
-                    break
-            else:
-                tgt_family.add_event(xdata)
+        elist = tgt_family.get_event_list()[:]
+        for event_id in src_family.get_event_list():
+            if event_id not in elist:
+                tgt_family.add_event(event_id)
 
         # merge family attributes
 
-        lst = tgt_family.get_attribute_list()[:]
         for xdata in src_family.get_attribute_list():
-            for data in lst:
-                if data.get_type() == xdata.get_type() and \
-                   data.getValue() == xdata.get_value():
-                    self.copy_note(data,xdata)
-                    self.copy_sources(data,xdata)
-                    break
-            else:
-                tgt_family.add_attribute(xdata)
+            tgt_family.add_attribute(xdata)
 
         # merge family notes
 
