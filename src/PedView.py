@@ -191,7 +191,7 @@ class PedigreeView:
         db.connect('person-delete', self.person_updated_cb)
         db.connect('person-rebuild', self.person_updated_cb)
 
-    def person_updated_cb(self,handle_list):
+    def person_updated_cb(self,handle_list=None):
         # Redraw view on changes of persons
         self.load_canvas(self.active_person)
         
