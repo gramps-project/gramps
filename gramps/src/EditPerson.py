@@ -70,13 +70,8 @@ pycode_tgts = [('url', 0, 0),
 #-------------------------------------------------------------------------
 class EditPerson:
 
-    #---------------------------------------------------------------------
-    #
-    # __init__ - Creates an edit window.  Associates a person with the 
-    # window.
-    #
-    #---------------------------------------------------------------------
     def __init__(self,person,db,callback=None):
+        """Creates an edit window.  Associates a person with the window."""
         self.person = person
         self.db = db
         self.callback = callback
@@ -573,18 +568,14 @@ class EditPerson:
         """redraws the address list for the person"""
         utils.redraw_list(self.plist,self.addr_list,disp_addr)
 
-    #---------------------------------------------------------------------
-    #
-    # redraw_event_list - Update both the birth and death place combo
-    # boxes for any changes that occurred in the 'Event Edit' window.
-    # Make sure not to allow the editing of a birth event to change
-    # any values in the death event, and vice versa.  Since updating a
-    # combo list resets its present value, this code will have to save
-    # and restore the value for the event *not* being edited.
-    #
-    #---------------------------------------------------------------------
     def redraw_event_list(self):
-        """redraws the event list for the person"""
+        """redraw_event_list - Update both the birth and death place combo
+        boxes for any changes that occurred in the 'Event Edit' window.
+        Make sure not to allow the editing of a birth event to change
+        any values in the death event, and vice versa.  Since updating a
+        combo list resets its present value, this code will have to save
+        and restore the value for the event *not* being edited."""
+        
         utils.redraw_list(self.elist,self.event_list,disp_event)
 
         # Remember old combo list input
@@ -651,10 +642,13 @@ class EditPerson:
         """Brings up the EventEditor for a new event"""
         import EventEdit
         pname = self.person.getPrimaryName().getName()
-        EventEdit.EventEditor(self,pname,const.personalEvents,const.save_fevent,None,None,0)
+        EventEdit.EventEditor(self,pname,const.personalEvents,
+                              const.save_fevent,None,None,0)
 
     def on_edit_birth_clicked(self,obj):
-        """Brings up the EventEditor for the birth record, event name cannot be changed"""
+        """Brings up the EventEditor for the birth record, event
+        name cannot be changed"""
+        
         import EventEdit
         self.update_birth = 1
         pname = self.person.getPrimaryName().getName()
@@ -666,11 +660,13 @@ class EditPerson:
             def_placename = None
         else:
             def_placename = self.bpcombo.entry.get_text()
-        EventEdit.EventEditor(self,pname,const.personalEvents,\
+        EventEdit.EventEditor(self,pname,const.personalEvents,
                               const.save_fevent,event,def_placename,1)
 
     def on_edit_death_clicked(self,obj):
-        """Brings up the EventEditor for the death record, event name cannot be changed"""
+        """Brings up the EventEditor for the death record, event
+        name cannot be changed"""
+        
         import EventEdit
         self.update_death = 1
         pname = self.person.getPrimaryName().getName()

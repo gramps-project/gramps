@@ -135,11 +135,13 @@ class EditSource:
             f = p.getFather()
             m = p.getMother()
             if f and m:
-                name = _("%s and %s") % (Config.nameof(f),Config.nameof(m))
+                name = _("%(father)s and %(mother)s") % {
+                    "father" : Config.nameof(f),
+                    "mother" : Config.nameof(m)}
             elif f:
-                name = "%s" % Config.nameof(f)
+                name = Config.nameof(f)
             else:
-                name = "%s" % Config.nameof(m)
+                name = Config.nameof(m)
             for v in p.getEventList():
                 for sref in v.getSourceRefList():
                     if sref.getBase() == self.source:

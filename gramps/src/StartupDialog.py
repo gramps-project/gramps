@@ -31,33 +31,43 @@ class StartupDialog:
 
         self.druid = libglade.GladeXML(const.configFile,"initDruid")
         self.druid.signal_autoconnect({
-            "destroy_passed_object" : self.on_cancel_clicked,
-            "on_initDruid_finish" : self.on_finish
+            "on_cancel_clicked" : self.on_cancel_clicked,
+            "destroy_event": self.destroy,
+            "on_finish" : self.on_finish
             })
 
+        self.rlist = ['name','addr','city','state','country',
+                      'postal', 'phone', 'email']
+
+        for tag in self.rlist:
+            val = gnome.config.get_string("/gramps/researcher/%s" % tag)
+            if val != None:
+                self.druid.get_widget(tag).set_text(val)
+
+    def destroy(self,obj):
+        self.task(self.arg)
+       
     def on_finish(self,obj,b):
+        for tag in self.rlist:
+            val = self.druid.get_widget(tag).get_text()
+            gnome.config.set_string("/gramps/researcher/%s" % tag,val)
+
+        if self.druid.get_widget("num_us").get_active():
+            dateFormat = 0
+        elif self.druid.get_widget("num_eu").get_active():
+            dateFormat = 1
+        else:
+            dateFormat = 2
+        gnome.config.set_int("/gramps/config/dateEntry",dateFormat)
+
+        showcal = self.druid.get_widget("altcal").get_active()
+        gnome.config.set_int("/gramps/config/ShowCalendar",showcal)
+
+        lds = self.druid.get_widget("enable_lds").get_active()
+        gnome.config.set_int("/gramps/config/UseLDS",lds)
         
-        name = self.druid.get_widget("dresname").get_text()
-        addr = self.druid.get_widget("dresaddr").get_text()
-        city = self.druid.get_widget("drescity").get_text()
-        state = self.druid.get_widget("dresstate").get_text()
-        country = self.druid.get_widget("drescountry").get_text()
-        postal = self.druid.get_widget("drespostal").get_text()
-        phone = self.druid.get_widget("dresphone").get_text()
-        email = self.druid.get_widget("dresemail").get_text()
-        
-        gnome.config.set_string("/gramps/researcher/name",name)
-        gnome.config.set_string("/gramps/researcher/addr",addr)
-        gnome.config.set_string("/gramps/researcher/city",city)
-        gnome.config.set_string("/gramps/researcher/state",state)
-        gnome.config.set_string("/gramps/researcher/country",country)
-        gnome.config.set_string("/gramps/researcher/postal",postal)
-        gnome.config.set_string("/gramps/researcher/phone",phone)
-        gnome.config.set_string("/gramps/researcher/email",email)
-        gnome.config.sync()
         utils.destroy_passed_object(obj)
         self.task(self.arg)
 
-    def on_cancel_clicked(self,obj,a):
-        self.task(self.arg)
+    def on_cancel_clicked(self,obj):
         utils.destroy_passed_object(obj)

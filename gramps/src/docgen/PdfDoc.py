@@ -18,11 +18,21 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#------------------------------------------------------------------------
+#
+# gramps modules
+#
+#------------------------------------------------------------------------
 from TextDoc import *
 import Plugins
 import intl
 _ = intl.gettext
 
+#------------------------------------------------------------------------
+#
+# ReportLab python/PDF modules
+#
+#------------------------------------------------------------------------
 import reportlab.platypus.tables
 from reportlab.platypus import *
 from reportlab.lib.units import cm
@@ -30,8 +40,11 @@ from reportlab.lib.colors import Color
 from reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER, TA_JUSTIFY
 import reportlab.lib.styles
 
-from latin_utf8 import latin_to_utf8
-
+#------------------------------------------------------------------------
+#
+# Attempt to load the python imaging library
+#
+#------------------------------------------------------------------------
 try:
     import PIL.Image
     no_pil = 0
@@ -40,24 +53,18 @@ except:
 
 #------------------------------------------------------------------------
 #
-# 
+# GrampsDocTemplate
 #
 #------------------------------------------------------------------------
 class GrampsDocTemplate(BaseDocTemplate):
-
+    """A document template for the ReportLab routines."""
+    
     def build(self,flowables):
-        self._calc()	#in case we changed margins sizes etc
+        """Override the default build routine, to recalculate
+        for any changes in the document (margins, etc.)"""
+        self._calc()	
         BaseDocTemplate.build(self,flowables)
 
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def make_color(color):
-    return Color(float(color[0])/255.0, float(color[1])/255.0,
-                 float(color[2])/255.0)
-    
 #------------------------------------------------------------------------
 #
 # 
@@ -67,7 +74,7 @@ class PdfDoc(TextDoc):
 
     def open(self,filename):
         if filename[-4:] != ".pdf":
-            self.filename = filename + ".pdf"
+            self.filename = "%s.pdf" % filename
         else:
             self.filename = filename
             
@@ -82,8 +89,8 @@ class PdfDoc(TextDoc):
                                      topMargin=self.tmargin*cm,
                                      bottomMargin=self.bmargin*cm)
         frameT = Frame(0,0,self.width*cm,self.height*cm,
-                       self.lmargin*cm, self.bmargin*cm, \
-                       self.rmargin*cm,self.tmargin*cm,\
+                       self.lmargin*cm, self.bmargin*cm, 
+                       self.rmargin*cm,self.tmargin*cm,
                        id='normal')
         ptemp = PageTemplate(frames=frameT,pagesize=self.pagesize)
         self.doc.addPageTemplates([ptemp])
@@ -215,7 +222,6 @@ class PdfDoc(TextDoc):
 
     def end_cell(self):
         if self.span == 1:
-#            self.cur_row.append(self.text)
             self.cur_row.append(Paragraph(self.text,self.current_para))
         else:
             self.cur_row.append(self.text)
@@ -281,4 +287,25 @@ class PdfDoc(TextDoc):
     def write_text(self,text):
 	self.text = self.text + text
 
-Plugins.register_text_doc(_("PDF"),PdfDoc,1,1,1)
+#------------------------------------------------------------------------
+#
+# Convert an RGB color tulple to a Color instance
+#
+#------------------------------------------------------------------------
+def make_color(color):
+    return Color(float(color[0])/255.0, float(color[1])/255.0,
+                 float(color[2])/255.0)
+
+#------------------------------------------------------------------------
+#
+# Register the document generator with the GRAMPS plugin system
+#
+#------------------------------------------------------------------------
+
+Plugins.register_text_doc(
+    name=_("PDF"),
+    classref=PdfDoc,
+    table=1,
+    paper=1,
+    style=1
+    )
