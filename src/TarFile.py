@@ -20,7 +20,6 @@
 import gzip
 import cStringIO
 import string
-import os
 
 _BLKSIZE=512
 nul = '\0'

@@ -37,6 +37,7 @@ import string
 #
 #-------------------------------------------------------------------------
 import gtk
+import gnome
 import gnome.ui
 
 #-------------------------------------------------------------------------
@@ -52,7 +53,6 @@ import TextDoc
 import StyleEditor
 import GrampsCfg
 import PaperMenu
-import Errors
 
 from intl import gettext as _
 from QuestionDialog import  ErrorDialog
@@ -534,7 +534,6 @@ class ReportDialog:
         label = gtk.Label("%s:" % _("Styles"))
         label.set_alignment(0.0,0.5)
 
-        hbox = gtk.HBox()
         self.style_menu = gtk.OptionMenu()
         self.style_button = gtk.Button("%s..." % _("Style Editor"))
         self.style_button.connect('clicked',self.on_style_edit_clicked)
@@ -832,7 +831,6 @@ class ReportDialog:
             row += 1
 
     def setup_other_frames(self):
-        pad = ReportDialog.border_pad
         for key in self.frame_names:
             list = self.frames[key]
             table = gtk.Table(3,len(list))

@@ -77,7 +77,8 @@ class ImageSelect:
         self.parent      = parent
         self.canvas_list = {}
         self.p_map       = {}
-
+        self.canvas      = None
+        
     def add_thumbnail(self, photo):
         "should be overrridden"
         pass

@@ -44,8 +44,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-import GrampsCfg
-import AutoComp
 import Utils
 from intl import gettext as _
 
@@ -76,7 +74,7 @@ class FindBase:
         self.forward_button = self.glade.get_widget('forward')
         self.back_button = self.glade.get_widget('back')
         Utils.set_titles(self.top, self.glade.get_widget('title'), name)
-
+        self.list = None
         self.index = 0
 
     def get_value(self,id):
