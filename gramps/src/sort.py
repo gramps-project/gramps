@@ -26,18 +26,113 @@ from Date import *
 #
 #
 #-------------------------------------------------------------------------
-def by_last_name2(first, second) :
+def build_sort_name(person):
+    n = person[0]
+    nm = "%-25s%-30s%s" % (n.Surname,n.FirstName,n.Suffix)
+    return (nm,person)
 
-    name1 = first[0]
-    name2 = second[0]
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def build_sort_birth(person):
+    n = person[1].birth.date.start
 
-    if name1.getSurname() == name2.getSurname() :
-        if name1.getFirstName() == name2.getFirstName() :
-            return cmp(name1.getSuffix(), name2.getSuffix())
-        else :
-            return cmp(name1.getFirstName(), name2.getFirstName())
-    else :
-        return cmp(name1.getSurname(), name2.getSurname())
+    y = n.year
+    if y == -1:
+        y = 9999
+    m = n.month
+    if m == -1:
+        m = 99
+    d = n.day
+    if d == -1:
+        d = 99
+    nm = "%04d%2d%2d" % (y,m,d)
+    return (nm,person)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def build_sort_death(person):
+    n = person[1].death.date.start
+
+    y = n.year
+    if y == -1:
+        y = 9999
+    m = n.month
+    if m == -1:
+        m = 99
+    d = n.day
+    if d == -1:
+        d = 99
+    nm = "%04d%2d%2d" % (y,m,d)
+    return (nm,person)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def fast_name_sort(list):
+    nlist = map(build_sort_name,list)
+    nlist.sort()
+    return map(lambda(key,x): x, nlist)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def reverse_name_sort(list):
+    nlist = map(build_sort_name,list)
+    nlist.sort()
+    nlist.reverse()
+    return map(lambda(key,x): x, nlist)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def fast_birth_sort(list):
+    nlist = map(build_sort_birth,list)
+    nlist.sort()
+    return map(lambda(key,x): x, nlist)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def reverse_birth_sort(list):
+    nlist = map(build_sort_birth,list)
+    nlist.sort()
+    nlist.reverse()
+    return map(lambda(key,x): x, nlist)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def fast_death_sort(list):
+    nlist = map(build_sort_death,list)
+    nlist.sort()
+    return map(lambda(key,x): x, nlist)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def reverse_death_sort(list):
+    nlist = map(build_sort_death,list)
+    nlist.sort()
+    nlist.reverse()
+    return map(lambda(key,x): x, nlist)
 
 #-------------------------------------------------------------------------
 #
@@ -70,14 +165,6 @@ def by_last_name_backwards(first, second) :
 #
 #
 #-------------------------------------------------------------------------
-def by_last_name_backwards2(first, second) :
-    return by_last_name2(second,first)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def by_birthdate(first, second) :
 
     date1 = first.getBirth().getDateObj()
@@ -87,78 +174,4 @@ def by_birthdate(first, second) :
         return by_last_name(first,second)
     return val
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def by_deathdate(first, second) :
 
-    date1 = first.getDeath().getDateObj()
-    date2 = second.getDeath().getDateObj()
-    val = compare_dates(date1,date2)
-    if val == 0:
-        return by_last_name(first,second)
-    return val
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def by_birthdate_backwards(first, second) :
-    return by_birthdate(second,first)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def by_deathdate_backwards(first, second) :
-    return by_deathdate(second,first)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def by_birthdate2(first, second) :
-
-    date1 = first[1].getBirth().getDateObj()
-    date2 = second[1].getBirth().getDateObj()
-    val = compare_dates(date1,date2)
-    if val == 0:
-        return by_last_name2(first,second)
-    return val
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def by_deathdate2(first, second) :
-
-    date1 = first[1].getDeath().getDateObj()
-    date2 = second[1].getDeath().getDateObj()
-    val = compare_dates(date1,date2)
-    if val == 0:
-        return by_last_name2(first,second)
-    return val
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def by_birthdate_backwards2(first, second) :
-    return by_birthdate2(second,first)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def by_deathdate_backwards2(first, second) :
-    return by_deathdate2(second,first)
-
-    

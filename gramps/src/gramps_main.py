@@ -19,7 +19,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-
 #-------------------------------------------------------------------------
 #
 # Standard python modules
@@ -107,7 +106,7 @@ family_window = None
 queryTop      = None
 prefsTop      = None
 pv            = {}
-sortFunc      = sort.by_last_name2
+sortFunc      = sort.fast_name_sort
 sbar_active   = 1
 DataFilter    = Filter.create("")
 
@@ -1194,31 +1193,31 @@ def on_person_list_click_column(obj,column):
         dateArrow.hide()
         deathArrow.hide()
         nameArrow.show()
-        if sortFunc != sort.by_last_name2:
-            sortFunc = sort.by_last_name2
+        if sortFunc != sort.fast_name_sort:
+            sortFunc = sort.fast_name_sort
             nameArrow.set(GTK.ARROW_DOWN,2)
         else:
-            sortFunc = sort.by_last_name_backwards2
+            sortFunc = sort.reverse_name_sort
             nameArrow.set(GTK.ARROW_UP,2)
     elif column == 2:
         nameArrow.hide()
         deathArrow.hide()
         dateArrow.show()
-        if sortFunc != sort.by_birthdate2:
-            sortFunc = sort.by_birthdate2
+        if sortFunc != sort.fast_birth_sort:
+            sortFunc = sort.fast_birth_sort
             dateArrow.set(GTK.ARROW_DOWN,2)
         else:
-            sortFunc = sort.by_birthdate_backwards2
+            sortFunc = reverse_birth_sort
             dateArrow.set(GTK.ARROW_UP,2)
     elif column == 3:
         nameArrow.hide()
         deathArrow.show()
         dateArrow.hide()
-        if sortFunc != sort.by_deathdate2:
-            sortFunc = sort.by_deathdate2
+        if sortFunc != sort.fast_death_sort:
+            sortFunc = sort.fast_death_sort
             deathArrow.set(GTK.ARROW_DOWN,2)
         else:
-            sortFunc = sort.by_deathdate_backwards2
+            sortFunc = sort.reverse_death_sort
             deathArrow.set(GTK.ARROW_UP,2)
     apply_filter()
 
@@ -2008,7 +2007,7 @@ def apply_filter():
     if Config.hide_altnames == 0:
         names = names + altnames
 
-    names.sort(sortFunc)
+    names = sortFunc(names)
     
     person_list.freeze()
     person_list.clear()
