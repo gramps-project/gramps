@@ -197,7 +197,7 @@ class PedigreeView:
         list = [None]*31
         self.find_tree(self.active_person,0,1,list)
 
-	# determine the largest string width and height for calcuation
+        # determine the largest string width and height for calcuation
         # of box sizes.
 
         a = pango.Layout(self.canvas.get_pango_context())
@@ -360,13 +360,15 @@ class PedigreeView:
                 childlist = []
                 for family_id in p.get_family_id_list():
                     family = self.parent.db.find_family_from_id(family_id)
-                    for child in family.get_child_id_list():
-                        childlist.append(child)
+                    for child_id in family.get_child_id_list():
+                        childlist.append(child_id)
                 return childlist
 
             childlist = find_children(self.active_person)
             if len(childlist) == 1:
-                self.load_canvas(childlist[0])
+                child = self.parent.db.find_person_from_id(childlist[0])
+                if child:
+                    self.load_canvas(child)
             elif len(childlist) > 1:
                 myMenu = gtk.Menu()
                 for child_id in childlist:
@@ -402,7 +404,7 @@ class PedigreeView:
            the specified location. Attach the passed parent and the callback
            to the button."""
 
-	button,arrow = self.make_arrow_button(gtk.ARROW_RIGHT,self.change_to_parent)
+        button,arrow = self.make_arrow_button(gtk.ARROW_RIGHT,self.change_to_parent)
         button.set_data(_PERSON,parent)
 
         item = self.root.add(gnome.canvas.CanvasWidget, widget=button, x=x, y=y+(h/2),
@@ -451,7 +453,7 @@ class PedigreeView:
     def line_event(self,obj,event):
         """Catch X events over a line and respond to the ones we care about"""
 
-	person = obj.get_data(_PERSON)
+        person = obj.get_data(_PERSON)
         style = self.canvas.get_style()
 
         if event.type == gtk.gdk._2BUTTON_PRESS:
@@ -515,7 +517,7 @@ class PedigreeView:
             (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
             (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
             #FIXME: revert to stock item when German gtk translation is fixed
-	    #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
+            #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
             (_("Home"),self.parent.on_home_clicked,1),
             (None,None,0),
             (_("Set anchor"),self.on_anchor_set,1),
@@ -526,10 +528,10 @@ class PedigreeView:
         for stock_id,callback,sensitivity in entries:
             item = gtk.ImageMenuItem(stock_id)
             #FIXME: remove when German gtk translation is fixed
-	    if stock_id == _("Home"):
-	    	im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
-	    	im.show()
-		item.set_image(im)
+            if stock_id == _("Home"):
+                im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
+                im.show()
+                item.set_image(im)
             if callback:
                 item.connect("activate",callback)
             item.set_sensitive(sensitivity)
