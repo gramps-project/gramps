@@ -450,6 +450,8 @@ class GrampsParser(handler.ContentHandler):
     def start_objref(self,attrs):
         self.objref = ObjectRef()
         self.objref.setReference(self.db.findObjectNoMap(u2l(attrs['ref'])))
+        if attrs.has_key('priv'):
+            self.objref.setPrivacy(int(u2l(attrs['priv'])))
         if self.family:
             self.family.addPhoto(self.objref)
         elif self.source:
