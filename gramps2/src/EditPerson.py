@@ -99,6 +99,8 @@ class EditPerson:
     def __init__(self,parent,person,db,callback=None):
         """Creates an edit window.  Associates a person with the window."""
 
+        self.retval = const.UPDATE_PERSON
+        
         self.dp = DateHandler.parser
         self.dd = DateHandler.displayer
         self.person = person
@@ -423,15 +425,13 @@ class EditPerson:
         self.death_date_object = self.death.get_date_object()
         self.update_birth_death()
 
-        self.bdate_check = DateEdit.DateEdit(self.birth_date_object,
-                                            self.bdate,
-                                            self.get_widget("birth_stat"),
-                                            self.window)
+        self.bdate_check = DateEdit.DateEdit(
+            self.birth_date_object, self.bdate,
+            self.get_widget("birth_stat"), self.window)
 
-        self.ddate_check = DateEdit.DateEdit(self.death_date_object,
-                                            self.ddate,
-                                            self.get_widget("death_stat"),
-                                            self.window)
+        self.ddate_check = DateEdit.DateEdit(
+            self.death_date_object, self.ddate,
+            self.get_widget("death_stat"), self.window)
 
         self.top.signal_autoconnect({
             "destroy_passed_object"     : self.on_cancel_edit,
@@ -475,11 +475,16 @@ class EditPerson:
             "on_help_person_clicked"    : self.on_help_clicked,
             })
 
-        self.sourcetab = Sources.SourceTab(self.srcreflist,self,
-                                           self.top,self.window,self.slist,
-                                           self.top.get_widget('add_src'),
-                                           self.top.get_widget('edit_src'),
-                                           self.top.get_widget('del_src'))
+        if self.parent:
+            self.update_sources = self.parent.source_view.build_tree
+        else:
+            self.update_sources = None
+        
+        self.sourcetab = Sources.SourceTab(
+            self.srcreflist, self, self.top, self.window, self.slist,
+            self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
+            self.top.get_widget('del_src'), self.db.readonly,
+            self.update_sources)
 
         self.complete.set_active(self.person.get_complete_flag())
         self.private.set_active(self.person.get_privacy())
@@ -633,7 +638,8 @@ class EditPerson:
 
         build_dropdown(place,self.place_list)
         if lds_ord and lds_ord.get_place_handle():
-            lds_ord_place = self.db.get_place_from_handle(lds_ord.get_place_handle())
+            handle = lds_ord.get_place_handle()
+            lds_ord_place = self.db.get_place_from_handle(handle)
             place.set_text(lds_ord_place.get_title())
         return stat
 
@@ -674,20 +680,18 @@ class EditPerson:
         self.ldssealstat.set_sensitive(not self.db.readonly)
 
 
-        self.bstat = self.lds_field(self.lds_baptism,
-                                    self.ldsbap_temple,
-                                    self.ldsbap_date,
-                                    self.ldsbapplace)
+        self.bstat = self.lds_field(
+            self.lds_baptism, self.ldsbap_temple,
+            self.ldsbap_date, self.ldsbapplace)
         
-        self.estat = self.lds_field(self.lds_endowment,
-                                    self.ldsend_temple,
-                                    self.ldsend_date,
-                                    self.ldsendowplace)
+        self.estat = self.lds_field(
+            self.lds_endowment, self.ldsend_temple,
+            self.ldsend_date, self.ldsendowplace)
 
-        self.seal_stat = self.lds_field(self.lds_sealing,
-                                        self.ldsseal_temple,
-                                        self.ldsseal_date,
-                                        self.ldssealplace)
+        self.seal_stat = self.lds_field(
+            self.lds_sealing, self.ldsseal_temple,
+            self.ldsseal_date, self.ldssealplace)
+        
         if self.lds_sealing:
             self.ldsfam = self.lds_sealing.get_family_handle()
         else:
@@ -1081,12 +1085,15 @@ class EditPerson:
     def on_add_addr_clicked(self,obj):
         """Invokes the address editor to add a new address"""
         import AddrEdit
-        AddrEdit.AddressEditor(self,None,self.addr_edit_callback,self.window)
+        AddrEdit.AddressEditor(self,None,self.addr_edit_callback,self.window,
+                               self.update_death_info, self.update_death_info)
 
     def on_add_aka_clicked(self,obj):
         """Invokes the name editor to add a new name"""
         import NameEdit
-        NameEdit.NameEditor(self,None,self.name_edit_callback,self.window)
+        NameEdit.NameEditor(
+            self, None, self.name_edit_callback, self.window,
+            self.update_sources)
 
     def on_add_url_clicked(self,obj):
         """Invokes the url editor to add a new name"""
@@ -1099,7 +1106,8 @@ class EditPerson:
         import AttrEdit
         pname = self.name_display.display(self.person)
         AttrEdit.AttributeEditor(self,None,pname,const.personalAttributes,
-                                 self.attr_edit_callback,self.window)
+                                 self.attr_edit_callback,self.window,
+                                 self.update_sources)
 
     def on_up_clicked(self,obj):
         sel = obj.get_selection()
@@ -1119,10 +1127,12 @@ class EditPerson:
         """Brings up the EventEditor for a new event"""
         import EventEdit
         pname = self.name_display.display(self.person)
-        EventEdit.EventEditor(self,pname,const.personalEvents,
-                              const.personal_events,None,None,0,
-                              self.event_edit_callback,
-                              noedit=self.db.readonly)
+        EventEdit.EventEditor(
+            self,pname,const.personalEvents,
+            const.personal_events,None,None,0,
+            self.event_edit_callback,
+            noedit=self.db.readonly,
+            redraw_main_source_list=self.update_sources)
 
     def on_edit_birth_clicked(self,obj):
         """Brings up the EventEditor for the birth record, event
@@ -1138,11 +1148,12 @@ class EditPerson:
         p = self.get_place(self.bplace)
         if p:
             event.set_place_handle(p)
-        EventEdit.EventEditor(self,pname,const.personalEvents,
-                              const.personal_events,event,def_placename,1,
-                              self.event_edit_callback,
-                              noedit=self.db.readonly)
-                              
+        EventEdit.EventEditor(
+            self,pname, const.personalEvents,
+            const.personal_events,event,def_placename,1,
+            self.event_edit_callback,
+            noedit=self.db.readonly,
+            redraw_main_source_list=self.update_sources)
 
     def on_edit_death_clicked(self,obj):
         """Brings up the EventEditor for the death record, event
@@ -1158,10 +1169,12 @@ class EditPerson:
         p = self.get_place(self.dplace)
         if p:
             event.set_place_handle(p)
-        EventEdit.EventEditor(self,pname,const.personalEvents,
-                              const.personal_events,event,def_placename,1,
-                              self.event_edit_callback,
-                              noedit=self.db.readonly)
+        EventEdit.EventEditor(
+            self,pname,const.personalEvents,
+            const.personal_events,event,def_placename,1,
+            self.event_edit_callback,
+            noedit=self.db.readonly,
+            redraw_main_source_list=self.update_sources)
 
     def on_aka_delete_clicked(self,obj):
         """Deletes the selected name from the name list"""
@@ -1254,8 +1267,10 @@ class EditPerson:
         male = self.is_male.get_active()
         female = self.is_female.get_active()
         unknown = self.is_unknown.get_active()
-        text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                          self.notes_buffer.get_end_iter(),False))
+
+        start = self.notes_buffer.get_start_iter()
+        end = self.notes_buffer.get_end_iter()
+        text = unicode(self.notes_buffer.get_text(start, end, False))
         format = self.preform.get_active()
         idval = unicode(self.gid.get_text())
         if idval == "":
@@ -1381,14 +1396,16 @@ class EditPerson:
             attr = self.atree.get_object(node)
             pname = self.name_display.display(self.person)
             AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes,
-                                     self.attr_edit_callback,self.window)
+                                     self.attr_edit_callback,self.window,
+                                     self.update_sources)
 
     def on_update_addr_clicked(self,obj):
         import AddrEdit
         store,node = self.ptree.get_selected()
         if node:
-            AddrEdit.AddressEditor(self,self.ptree.get_object(node),
-                            self.addr_edit_callback,self.window)
+            AddrEdit.AddressEditor(
+                self,self.ptree.get_object(node),
+                self.addr_edit_callback,self.window, self.update_sources)
 
     def on_update_url_clicked(self,obj):
         import UrlEdit
@@ -1406,10 +1423,12 @@ class EditPerson:
             return
         pname = self.name_display.display(self.person)
         event = self.etree.get_object(node)
-        EventEdit.EventEditor(self,pname,const.personalEvents,
-                              const.personal_events,event,None,0,
-                              self.event_edit_callback,
-                              noedit=self.db.readonly)
+        EventEdit.EventEditor(
+            self,pname,const.personalEvents,
+            const.personal_events,event,None,0,
+            self.event_edit_callback,
+            noedit=self.db.readonly,
+            redraw_main_source_list=self.update_sources)
 
     def on_aka_delete_clicked(self,obj):
         """Deletes the selected name from the name list"""
@@ -1631,14 +1650,16 @@ class EditPerson:
             attr = self.atree.get_object(node)
             pname = self.name_display.display(self.person)
             AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes,
-                                     self.attr_edit_callback,self.window)
+                                     self.attr_edit_callback,self.window,
+                                     self.update_sources)
 
     def on_update_addr_clicked(self,obj):
         import AddrEdit
         store,node = self.ptree.get_selected()
         if node:
-            AddrEdit.AddressEditor(self,self.ptree.get_object(node),
-                            self.addr_edit_callback,self.window)
+            AddrEdit.AddressEditor(
+                self, self.ptree. get_object(node), self.addr_edit_callback,
+                self.window, self.update_sources)
 
     def on_update_url_clicked(self,obj):
         import UrlEdit
@@ -1656,9 +1677,11 @@ class EditPerson:
             return
         pname = self.name_display.display(self.person)
         event = self.etree.get_object(node)
-        EventEdit.EventEditor(self,pname,const.personalEvents,
-                              const.personal_events,event,None,0,
-                              self.event_edit_callback,noedit=self.db.readonly)
+        EventEdit.EventEditor(
+            self,pname,const.personalEvents,
+            const.personal_events,event,None,0,
+            self.event_edit_callback,noedit=self.db.readonly,
+            redraw_main_source_list=self.update_sources)
         
     def on_event_select_row(self,obj):
         store,node = obj.get_selected()
@@ -1821,8 +1844,9 @@ class EditPerson:
         import NameEdit
         store,node = self.ntree.get_selected()
         if node:
-            NameEdit.NameEditor(self,self.ntree.get_object(node),
-                                self.name_edit_callback,self.window)
+            NameEdit.NameEditor(self, self.ntree.get_object(node),
+                                self.name_edit_callback, self.window,
+                                self.update_sources)
 
     def load_photo(self,photo):
         """loads, scales, and displays the person's main photo"""
@@ -2030,16 +2054,14 @@ class EditPerson:
 
         if not self.person.get_handle():
             self.db.add_person(self.person, trans)
-            call_value = 0
         else:
             if not self.person.get_gramps_id():
                 self.person.set_gramps_id(self.db.find_next_person_gramps_id())
-            call_value = 1
             self.db.commit_person(self.person, trans)
         n = self.person.get_primary_name().get_regular_name()
         self.db.transaction_commit(trans,_("Edit Person (%s)") % n)
         if self.callback:
-            self.callback(self,call_value)
+            self.callback(self,self.retval)
         self.close()
 
     def get_place(self,field,makenew=0):
@@ -2052,6 +2074,7 @@ class EditPerson:
                 place.set_title(text)
                 trans = self.db.transaction_begin()
                 self.db.add_place(place,trans)
+                self.retval |= const.UPDATE_PLACE
                 self.db.transaction_commit(trans,_('Add Place (%s)' % text))
                 self.pdmap[text] = place.get_handle()
                 self.add_places.append(place)
@@ -2075,7 +2098,8 @@ class EditPerson:
         self.pname.set_first_name(unicode(self.given.get_text()))
         self.pname.set_title(unicode(self.title.get_text()))
 
-        NameEdit.NameEditor(self,self.pname,self.update_name,self.window)
+        NameEdit.NameEditor(self, self.pname, self.update_name,
+                            self.window, self.update_sources)
 
     def update_name(self,name):
         self.write_primary_name()

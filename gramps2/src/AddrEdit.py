@@ -61,7 +61,8 @@ class AddressEditor:
     """
     Displays a dialog that allows the user to edit an address.
     """
-    def __init__(self,parent,addr,callback,parent_window=None):
+    def __init__(self,parent,addr,callback,parent_window=None
+                 update_sources=None):
         """
         Displays the dialog box.
 
@@ -69,6 +70,7 @@ class AddressEditor:
         addr - The address that is to be edited
         """
 
+        self.update_sources = update_sources
         self.parent = parent
         if addr:
             if self.parent.child_windows.has_key(addr):
@@ -127,17 +129,15 @@ class AddressEditor:
             self.addr_date_obj = Date.Date()
             self.srcreflist = []
 
-        self.sourcetab = Sources.SourceTab(self.srcreflist,self,
-                                           self.top, self.window, self.slist,
-                                           self.top.get_widget('add_src'),
-                                           self.top.get_widget('edit_src'),
-                                           self.top.get_widget('del_src'))
+        self.sourcetab = Sources.SourceTab(
+            self.srcreflist, self, self.top, self.window, self.slist,
+            self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
+            self.top.get_widget('del_src'), self.db.readonly,
+            self.update_sources)
 
         date_stat = self.top.get_widget("date_stat")
-        self.date_check = DateEdit.DateEdit(self.addr_date_obj,
-                                                    self.addr_start,
-                                                    date_stat,
-                                                    self.window)
+        self.date_check = DateEdit.DateEdit(
+            self.addr_date_obj, self.addr_start, date_stat, self.window)
 
         self.top.signal_autoconnect({
             "on_switch_page" : self.on_switch_page,

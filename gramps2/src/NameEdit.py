@@ -54,7 +54,10 @@ import NameDisplay
 #-------------------------------------------------------------------------
 class NameEditor:
 
-    def __init__(self,parent,name,callback,parent_window=None):
+    def __init__(self,parent,name,callback,parent_window=None,
+                 update_sources=None):
+
+        self.update_sources = update_sources
         self.parent = parent
         self.db = self.parent.db
         if name:
@@ -114,11 +117,11 @@ class NameEditor:
 
         Utils.set_titles(self.window, alt_title, tmsg, _('Name Editor'))
 
-        self.sourcetab = Sources.SourceTab(self.srcreflist, self,
-                                           self.top, self.window, self.slist,
-                                           self.top.get_widget('add_src'),
-                                           self.top.get_widget('edit_src'),
-                                           self.top.get_widget('del_src'))
+        self.sourcetab = Sources.SourceTab(
+            self.srcreflist, self, self.top, self.window, self.slist,
+            self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
+            self.top.get_widget('del_src'), self.db.readonly,
+            self.update_sources)
         
         self.note_buffer = self.note_field.get_buffer()
         
@@ -274,12 +277,14 @@ class NameEditor:
         elif self.name.get_group_as() != grp_as:
             if grp_as not in self.db.get_name_group_keys():
                 from QuestionDialog import QuestionDialog2
-                q = QuestionDialog2(_("Group all people with the same name?"),
-                                    _("You have the choice of grouping all people with the "
-                                      "name of %(surname)s with the name of %(group_name)s, or "
-                                      "just mapping this particular name.") % {'surname' : srn, 'group_name':grp_as},
-                                    _("Group all"),
-                                    _("Group this name only"))
+                q = QuestionDialog2(
+                    _("Group all people with the same name?"),
+                    _("You have the choice of grouping all people with the "
+                      "name of %(surname)s with the name of %(group_name)s, or "
+                      "just mapping this particular name.") % { 'surname' : srn,
+                                                                'group_name':grp_as},
+                    _("Group all"),
+                    _("Group this name only"))
                 val = q.run()
                 if val:
                     self.name.set_group_as("")

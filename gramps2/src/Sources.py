@@ -218,8 +218,10 @@ class SourceSelector:
 #
 #-------------------------------------------------------------------------
 class SourceTab:
-    def __init__(self,srclist,parent,top,window,clist,add_btn,
-                 edit_btn,del_btn,readonly=False):
+    def __init__(self, srclist, parent, top, window, clist, add_btn,
+                 edit_btn, del_btn, readonly=False, main_update=None ):
+
+        self.main_update = main_update
         self.db = parent.db
         self.parent = parent
         self.list = srclist
@@ -270,22 +272,22 @@ class SourceTab:
     def update_clist(self,inst,ref):
         inst.redraw()
         self.parent.lists_changed = 1
+            
+    def add_ref(self,inst,ref):
+        self.parent.lists_changed = 1
+        inst.list.append(ref)
+        inst.redraw()
 
     def edit_src_clicked(self,obj):
         store,node = self.selection.get_selected()
         if node:
             col = store.get_path(node)
             src = self.list[col[0]]
-            SourceEditor(src,self.db,self.update_clist,self)
+            SourceEditor(src,self.db,self.update_clist,self, self.main_update)
 
     def add_src_clicked(self,obj):
         src = RelLib.SourceRef()
-        SourceEditor(src,self.db,self.add_ref,self)
-
-    def add_ref(self,inst,ref):
-        self.parent.lists_changed = 1
-        inst.list.append(ref)
-        inst.redraw()
+        SourceEditor(src,self.db,self.add_ref,self, self.main_update)
 
     def del_src_clicked(self,obj):
         (store,node) = self.selection.get_selected()
@@ -302,8 +304,9 @@ class SourceTab:
 #-------------------------------------------------------------------------
 class SourceEditor:
 
-    def __init__(self,srcref,database,update=None,parent=None):
+    def __init__(self, srcref, database, update, parent, main_update=None):
 
+        self.main_update = main_update
         self.db = database
         self.parent = parent
         if self.parent.__dict__.has_key('child_windows'):
@@ -321,18 +324,20 @@ class SourceEditor:
         self.update = update
         self.source_ref = srcref
         self.child_windows = {}
-        self.showSource = gtk.glade.XML(const.srcselFile, "sourceDisplay","gramps")
+        self.showSource = gtk.glade.XML(const.srcselFile,
+                                        "sourceDisplay","gramps")
         self.sourceDisplay = self.get_widget("sourceDisplay")
 
-        Utils.set_titles(self.sourceDisplay, self.showSource.get_widget('title'),
+        Utils.set_titles(self.sourceDisplay,
+                         self.showSource.get_widget('title'),
                          _('Source Information'))
         
         self.showSource.signal_autoconnect({
-            "on_add_src_clicked"    : self.add_src_clicked,
-            "on_help_srcDisplay_clicked"   : self.on_help_clicked,
-            "on_ok_srcDisplay_clicked"   : self.on_sourceok_clicked,
-            "on_cancel_srcDisplay_clicked"   : self.close,
-            "on_sourceDisplay_delete_event"  : self.on_delete_event,
+            "on_add_src_clicked"            : self.add_src_clicked,
+            "on_help_srcDisplay_clicked"    : self.on_help_clicked,
+            "on_ok_srcDisplay_clicked"      : self.on_sourceok_clicked,
+            "on_cancel_srcDisplay_clicked"  : self.close,
+            "on_sourceDisplay_delete_event" : self.on_delete_event,
             })
         self.source_field = self.get_widget("sourceList")
 
@@ -453,7 +458,7 @@ class SourceEditor:
         keys = self.db.get_source_handles()
         keys.sort(self.db._sortbysource)
 
-        store = gtk.ListStore(gobject.TYPE_STRING)
+        store = gtk.ListStore(str)
 
         sel_child = None
         self.active_source = sel
@@ -480,7 +485,8 @@ class SourceEditor:
 
     def on_sourceok_clicked(self,obj):
 
-        if self.active_source != self.db.get_source_from_handle(self.source_ref.get_base_handle()):
+        shandle = self.source_ref.get_base_handle()
+        if self.active_source != self.db.get_source_from_handle(shandle):
             self.source_ref.set_base_handle(self.active_source.get_handle())
         
         conf = self.get_widget("conf").get_active()
@@ -504,9 +510,7 @@ class SourceEditor:
         self.source_ref.set_confidence_level(conf)
         self.source_ref.set_privacy(self.private.get_active())
 
-        if self.update:
-            self.update(self.parent,self.source_ref)
-        
+        self.update(self.parent,self.source_ref)
         self.close(obj)
 
     def on_source_changed(self,obj):
@@ -518,6 +522,8 @@ class SourceEditor:
 
     def update_display(self,source):
         self.draw(source,fresh=False)
+        if self.main_update:
+            self.main_update()
 
     def add_src_clicked(self,obj):
         import EditSource

@@ -61,7 +61,9 @@ from QuestionDialog import WarningDialog
 class EventEditor:
 
     def __init__(self,parent,name,elist,trans,event,def_placename,
-                 read_only, cb, def_event=None, noedit=False):
+                 read_only, cb, def_event=None, noedit=False,
+                 redraw_main_source_list=None):
+        self.redraw_main_source_list = redraw_main_source_list
         self.parent = parent
         self.db = self.parent.db
         if event:
@@ -161,12 +163,10 @@ class EventEditor:
         del_src = self.top.get_widget('del_src')
         del_src.set_sensitive(not noedit)
 
-        self.sourcetab = Sources.SourceTab(self.srcreflist,self,
-                                           self.top,self.window,self.slist,
-                                           add_src,
-                                           self.top.get_widget('edit_src'),
-                                           del_src, self.db.readonly
-                                           )
+        self.sourcetab = Sources.SourceTab(
+            self.srcreflist, self, self.top, self.window, self.slist,
+            add_src, self.top.get_widget('edit_src'), del_src,
+            self.db.readonly, self.redraw_main_source_list )
 
         add_witness = self.top.get_widget('add_witness')
         add_witness.set_sensitive(not noedit)
@@ -174,11 +174,9 @@ class EventEditor:
         del_witness = self.top.get_widget('del_witness')
         del_witness.set_sensitive(not noedit)
         
-        self.witnesstab = Witness.WitnessTab(self.witnesslist,self,
-                                             self.top,self.window,self.wlist,
-                                             add_witness,
-                                             edit_witness,
-                                             del_witness)
+        self.witnesstab = Witness.WitnessTab(
+            self.witnesslist, self, self.top, self.window, self.wlist,
+            add_witness, edit_witness, del_witness)
 
         AutoComp.fill_combo(self.event_menu,self.elist)
         AutoComp.fill_entry(self.place_field,self.pmap.keys())
@@ -324,9 +322,10 @@ class EventEditor:
         epriv = self.priv.get_active()
 
         if not ename in self.elist:
-            WarningDialog(_('New event type created'),
-                          _('The "%s" event type has been added to this database.\n'
-                            'It will now appear in the event menus for this database') % ename)
+            WarningDialog(
+                _('New event type created'),
+                _('The "%s" event type has been added to this database.\n'
+                  'It will now appear in the event menus for this database') % ename)
             self.elist.append(ename)
             self.elist.sort()
 

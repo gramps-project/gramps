@@ -71,7 +71,7 @@ pycode_tgts = [('fevent', 0, 0), ('fattr', 0, 1)]
 #-------------------------------------------------------------------------
 class Marriage:
 
-    def __init__(self,parent,family,db,callback,update):
+    def __init__(self,parent,family,db,callback,update,source_update):
         """Initializes the Marriage class, and displays the window"""
         self.family = family
         self.parent = parent
@@ -85,6 +85,7 @@ class Marriage:
         self.update_fv = update
         self.pmap = {}
         self.dp = DateHandler.parser
+        self.update_sources = source_update
 
         if family:
             self.srcreflist = family.get_source_references()
@@ -285,12 +286,11 @@ class Marriage:
             else:
                 self.flowed.set_active(1)
 
-        self.sourcetab = Sources.SourceTab(self.srcreflist,self,
-                                           self.top,self.window,self.slist,
-                                           self.top.get_widget('add_src'),
-                                           self.top.get_widget('edit_src'),
-                                           self.top.get_widget('del_src'),
-                                           self.db.readonly)
+        self.sourcetab = Sources.SourceTab(
+            self.srcreflist, self, self.top, self.window, self.slist,
+            self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
+            self.top.get_widget('del_src'), self.db.readonly,
+            self.update_sources)
 
         self.redraw_event_list()
         self.redraw_attr_list()
@@ -679,7 +679,8 @@ class Marriage:
         EventEdit.EventEditor(self,name,const.marriageEvents,
                               const.family_events,None,None,
                               0,self.event_edit_callback,
-                              const.defaultMarriageEvent)
+                              const.defaultMarriageEvent,
+                              self.update_sources)
 
     def on_event_update_clicked(self,obj):
         import EventEdit
@@ -690,7 +691,8 @@ class Marriage:
         name = Utils.family_name(self.family,self.db)
         EventEdit.EventEditor(self,name,const.marriageEvents,
                               const.family_events,event,
-                              None,0,self.event_edit_callback)
+                              None,0,self.event_edit_callback,
+                              self.update_sources)                              
 
     def on_delete_clicked(self,obj):
         if Utils.delete_selected(obj,self.elist):
@@ -762,8 +764,9 @@ class Marriage:
             name = NameDisplay.displayer.display(father)
         else:
             name = NameDisplay.displayer.display(mother)
-        AttrEdit.AttributeEditor(self,attr,name,const.familyAttributes,
-                                 self.attr_edit_callback)
+        AttrEdit.AttributeEditor(
+            self, attr, name, const.familyAttributes,
+            self.attr_edit_callback, self.update_sources)
 
     def on_delete_attr_clicked(self,obj):
         if Utils.delete_selected(obj,self.alist):
@@ -784,8 +787,9 @@ class Marriage:
             name = NameDisplay.displayer.display(father)
         else:
             name = NameDisplay.displayer.display(mother)
-        AttrEdit.AttributeEditor(self,None,name,const.familyAttributes,
-                                 self.attr_edit_callback)
+        AttrEdit.AttributeEditor(
+            self, None, name, const.familyAttributes,
+            self.attr_edit_callback, self.update_sources)
 
     def move_element(self,list,src,dest):
         if src == -1:
