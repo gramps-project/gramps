@@ -25,7 +25,6 @@ pkgpython_PYTHON = \
 	IndivComplete.py\
 	IndivSummary.py\
 	Merge.py\
-	Partition.py\
 	PatchNames.py\
 	ReadGedcom.py\
 	ReadPkg.py\
