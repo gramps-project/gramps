@@ -1573,7 +1573,6 @@ def on_filter_name_changed(obj):
 def on_spouselist_changed(obj):
     if active_person == None :
         return
-
     display_marriage(obj.get_data("family"))
 
 #-------------------------------------------------------------------------
