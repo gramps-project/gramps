@@ -54,10 +54,10 @@ from intl import gettext
 _ = gettext
 
 _surname_styles = [
-    _("North American (Father's surname)"),
+    _("Father's surname"),
     _("None"),
-    _("Latin American (Combination of mother's and father's surname)"),
-    _("Icelandic (Father's surname with son/daughter indicator"),
+    _("Latin American style (Combination of mother's and father's surname)"),
+    _("Icelandic style (Father's surname with son/daughter indicator)"),
     ]
 
 _date_format_list = [

@@ -58,7 +58,7 @@ class Find:
             self.nlist.append(n.getPrimaryName().getName())
             
         if Config.autocomp:
-            AutoComp.AutoComp(self.entry,self.nlist)
+            self.comp = AutoComp.AutoComp(self.entry,self.nlist)
 
         self.next = self.xml.get_widget("next")
         self.top.editable_enters(self.entry)

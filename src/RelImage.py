@@ -157,7 +157,7 @@ def mk_thumb(source,dest,size):
             return
 
     if not os.path.exists(source):
-        GnomeErrorDialog(_("Could not create a thumbnail for %s\nThe file has been moved or deleted") % filename)
+        GnomeErrorDialog(_("Could not create a thumbnail for %s\nThe file has been moved or deleted") % source)
 
     if no_pil:
         cmd = "%s -geometry %dx%d '%s' '%s'" % (const.convert,size,size,source,dest)

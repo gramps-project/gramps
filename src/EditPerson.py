@@ -233,7 +233,7 @@ class EditPerson:
         self.window.editable_enters(self.dplace);
         
         if Config.autocomp:
-            AutoComp.AutoComp(self.surname_field,const.surnames)
+            self.comp = AutoComp.AutoComp(self.surname_field,const.surnames)
 
         self.gid.set_text(person.getId())
         self.gid.set_editable(Config.id_edit)
