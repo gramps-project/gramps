@@ -28,6 +28,7 @@ import tempfile
 import string
 import zipfile
 import time
+from math import pi, cos, sin
 
 #-------------------------------------------------------------------------
 #
@@ -39,6 +40,7 @@ import BaseDoc
 import const
 import Plugins
 import ImgManip
+import FontScale
 
 #-------------------------------------------------------------------------
 #
@@ -67,10 +69,6 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 
     def set_mode(self, mode):
         self.mode = mode
-        if self.first_page == 0:
-            self.page_break(mode)
-        else:
-            self.first_page = 0
 
     def open(self,filename):
         t = time.localtime(time.time())
@@ -89,10 +87,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             self.f = open(self.content_xml,"wb")
         except IOError,msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.content_xml, msg)
-            pass
             raise Errors.ReportError(errmsg)
         except:
-            pass
             raise Errors.ReportError("Could not create %s" % self.content_xml)
 
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
@@ -133,16 +129,10 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 
 	for style_name in self.draw_styles.keys():
             style = self.draw_styles[style_name]
-            self.f.write('<style:style style:name="')
-  	    self.f.write(style_name)
-	    self.f.write('" style:family="graphics" ')
-	    self.f.write('style:parent-style-name="standard">\n')
+            self.f.write('<style:style style:name="%s"' % style_name)
+	    self.f.write(' style:family="graphics">\n')
 	    self.f.write('<style:properties ')
-            if style.color[0] == 255 and style.color[1] == 255 and style.color[2] == 255:
-                self.f.write('draw:fill="none" ')
-            else:
-                self.f.write('draw:fill="solid" ')
-
+            self.f.write('draw:fill="solid" ')
             self.f.write('draw:fill-color="#%02x%02x%02x" ' % style.get_fill_color())
                 
             if style.get_line_style() == BaseDoc.DASHED:
@@ -150,35 +140,51 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             else:
                 self.f.write('draw:color="#%02x%02x%02x" ' % style.get_color())
                 
-            
             if style.get_line_width():
                 self.f.write('draw:stroke="solid" ')
             else:
                 self.f.write('draw:stroke="none" ')
-            if style.get_shadow():
-		self.f.write('draw:shadow="visible" ')
-            else:
-		self.f.write('draw:shadow="hidden" ')
+            self.f.write('draw:shadow="hidden" ')
+            self.f.write('style:run-through="background" ')
+	    self.f.write('/>\n')
+  	    self.f.write('</style:style>\n')
+
+            self.f.write('<style:style style:name="%s_shadow"' % style_name)
+	    self.f.write(' style:family="graphics">\n')
+	    self.f.write('<style:properties ')
+            self.f.write('draw:fill="solid" ')
+            self.f.write('draw:fill-color="#cccccc" ')
+            self.f.write('draw:stroke="none" ')
+            self.f.write('style:run-through="background" ')
 	    self.f.write('/>\n')
   	    self.f.write('</style:style>\n')
 
         for style_name in self.style_list.keys():
 	    style = self.style_list[style_name]
-            self.f.write('<style:style style:name="NL')
-            self.f.write(style_name)
-            self.f.write('" style:family="paragraph" ')
-            self.f.write('style:parent-style-name="')
-            self.f.write(style_name)
-            self.f.write('">\n<style:properties fo:break-before="page"/>\n')
+            self.f.write('<style:style style:name="NL%s" ' % style_name)
+            self.f.write('style:family="paragraph" ')
+            self.f.write('style:parent-style-name="%s">\n' % style_name)
+            self.f.write('"<style:properties fo:break-before="page"/>\n')
             self.f.write('</style:style>\n')
+            self.f.write('<style:style style:name="F%s" ' % style_name)
+            self.f.write('style:family="text">\n')
+            self.f.write('<style:properties ')
+            font = style.get_font()
+            if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
+                self.f.write('style:font-name="Arial" ')
+            else:
+                self.f.write('style:font-name="Times New Roman" ')
+            self.f.write('fo:font-size="' + str(font.get_size()) + 'pt"/>')
+            self.f.write('</style:style>\n')
+            
 	for style_name in self.table_styles.keys():
 	    style = self.table_styles[style_name]
-            self.f.write('<style:style style:name="' + style_name + '" ')
+            self.f.write('<style:style style:name="%s" ' % style_name)
 	    self.f.write('style:family="table">\n')
             table_width = float(self.get_usable_width())
             table_width_str = "%.4f" % table_width
 	    self.f.write('<style:properties style:width="%scm" '%table_width_str)
-            self.f.write('/>\n')
+            vself.f.write('/>\n')
             self.f.write('</style:style>\n')
 	    for col in range(0,style.get_columns()):
 	        self.f.write('<style:style style:name="')
@@ -189,11 +195,11 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 		self.f.write('<style:properties ')
                 self.f.write('style:column-width="%scm"/>' % width_str)
 	        self.f.write('</style:style>\n')
+                
         for cell in self.cell_styles.keys():
             cell_style = self.cell_styles[cell]
-            self.f.write('<style:style style:name="')
-            self.f.write(cell)
-            self.f.write('" style:family="table-cell">\n')
+            self.f.write('<style:style style:name="%s" ' % cell)
+            self.f.write('style:family="table-cell">\n')
             self.f.write('<style:properties')
             self.f.write(' fo:padding="%.3fcm"' % cell_style.get_padding())
             if cell_style.get_top_border():
@@ -453,7 +459,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         
         for key in self.style_list.keys():
             style = self.style_list[key]
-            self.f.write('<style:style style:name="' + key + '" ')
+            self.f.write('<style:style style:name="T%s" ' % key)
             self.f.write('style:family="paragraph" ')
             self.f.write('style:parent-style-name="Standard" ')
             self.f.write('style:class="text">\n')
@@ -559,17 +565,14 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.f.write('</office:document-styles>\n')
 	self.f.close()
 
-    def page_break(self, graphics=-1):
-        if self.mode == BaseDoc.GRAPHICS_MODE:
-            self.f.write('</text:p>\n')
-        if graphics != -1:
-            self.mode = graphics
-            
-        if self.mode == BaseDoc.GRAPHICS_MODE:
-            self.page = self.page + 1
-            self.f.write('<text:p text:style-name="docgen_page_break">')
-        else:
-            self.new_page = 1
+    def page_break(self):
+        self.new_page = 1
+
+    def start_page(self):
+        self.f.write('<text:p text:style-name="docgen_page_break">')
+
+    def end_page(self):
+        self.f.write('</text:p>')
         
     def start_paragraph(self,style_name,leader=None):
 	style = self.style_list[style_name]
@@ -712,8 +715,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.f.write('draw:layer="layout" svg:width="%.3fcm" ' % wcm)
         self.f.write('svg:height="%.3fpt" ' % hcm)
         self.f.write('draw:transform="rotate (%.8f) ' % rangle)
-        xloc = x-((wcm/2.0)*cos(-rangle)) + self.lmargin
-        yloc = y-((hcm)*sin(-rangle)) + self.tmargin
+        xloc = x-((wcm/2.0)*cos(-rangle))
+        yloc = y-((hcm)*sin(-rangle))
         self.f.write('translate (%.3fcm %.3fcm)"' % (xloc,yloc))
         self.f.write('>')
         self.f.write('<text:p><text:span text:style-name="T%s">' % pname)
@@ -735,8 +738,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             maxy = max(point[1],maxy)
 
         self.f.write('<draw:polygon draw:style-name="%s" draw:layer="layout" ' % style)
-        x = int((minx+self.lmargin)*1000)
-        y = int((miny+self.tmargin)*1000)
+        x = int((minx)*1000)
+        y = int((miny)*1000)
         
         self.f.write('svg:x="%d" svg:y="%d" ' % (x,y))
         self.f.write('svg:viewBox="0 0 %d %d" ' % (int(maxx-minx)*1000,int(maxy-miny)*1000))
@@ -755,10 +758,6 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.f.write('"/>\n')
 
     def draw_line(self,style,x1,y1,x2,y2):
-        x1 = x1 + self.lmargin
-        x2 = x2 + self.lmargin
-        y1 = y1 + self.tmargin
-        y2 = y2 + self.tmargin
 	box_style = self.draw_styles[style]
 
         self.f.write('<draw:line draw:style="')
@@ -770,8 +769,6 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.f.write('/>\n')
 
     def draw_text(self,style,text,x,y):
-        x = x + self.lmargin
-        y = y + self.tmargin
 	box_style = self.draw_styles[style]
 	para_name = box_style.get_paragraph_style()
 
@@ -795,11 +792,6 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.f.write('</draw:text-box>\n')
 
     def draw_bar(self,style,x,y,x2,y2):
-        x = x + self.lmargin
-        x2 = x2 + self.lmargin
-        y = y + self.tmargin
-        y2 = y2 + self.tmargin
-
 	box_style = self.draw_styles[style]
 	para_name = box_style.get_paragraph_style()
 
@@ -813,40 +805,53 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.f.write('</draw:rect>\n')
 
     def draw_box(self,style,text,x,y):
-        x = x + self.lmargin
-        y = y + self.tmargin
 	box_style = self.draw_styles[style]
 	para_name = box_style.get_paragraph_style()
 
-	self.f.write('<draw:rect text:anchor-type="paragraph" draw:style-name="')
-	self.f.write(style)
-	self.f.write('" draw:z-index="0" ')
-	self.f.write('svg:width="%.3fcm" ' % box_style.get_width())
+	self.f.write('<draw:rect text:anchor-type="paragraph" ')
+        self.f.write('draw:style-name="%s_shadow" ' % style)
+        self.f.write('draw:text-style-name="%s" ' % para_name)
+	self.f.write('draw:z-index="0" ')
+        self.f.write('svg:width="%.3fcm" ' % box_style.get_width())
+	self.f.write('svg:height="%.3fcm" ' % box_style.get_height())
+	self.f.write('svg:x="%.3fcm" ' % (float(x)+0.2))
+        self.f.write('svg:y="%.3fcm">\n' % (float(y)+0.2))
+        self.f.write('</draw:rect>\n')
+
+	self.f.write('<draw:rect text:anchor-type="paragraph" ')
+        self.f.write('draw:style-name="%s" ' % style)
+        self.f.write('draw:text-style-name="%s" ' % para_name)
+	self.f.write('draw:z-index="1" ')
+        self.f.write('svg:width="%.3fcm" ' % box_style.get_width())
 	self.f.write('svg:height="%.3fcm" ' % box_style.get_height())
 	self.f.write('svg:x="%.3fcm" ' % float(x))
-        self.f.write('svg:y="%.3fcm"' % float(y))
+        self.f.write('svg:y="%.3fcm">\n' % float(y))
 	if text != "":
+  	    self.f.write('<text:p text:style-name="T%s">' % para_name)
+            self.f.write('<text:span text:style-name="F%s">' % para_name)
             text = string.replace(text,'\t','<text:tab-stop/>')
             text = string.replace(text,'\n','<text:line-break/>')
-            self.f.write('>\n')
-  	    self.f.write('<text:p text:style-name="P1">')
-	    self.f.write('<text:span text:style-name="T%s">' % para_name)
 	    self.f.write(text)
-            self.f.write('</text:span></text:p>\n')
-            self.f.write('</draw:rect>\n')
-        else:
-            self.f.write('/>\n')
+            self.f.write('</text:span>')
+            self.f.write('</text:p>\n')
+        self.f.write('</draw:rect>\n')
 
-print_label = None
-if os.access ("/usr/bin/oowriter", os.X_OK):
-    print_label = _("Open in OpenOffice.org")
-     
 #--------------------------------------------------------------------------
 #
 # Register plugins
 #
 #--------------------------------------------------------------------------
+print_label = None
+if os.access ("/usr/bin/oowriter", os.X_OK):
+    print_label = _("Open in OpenOffice.org")
+     
 Plugins.register_text_doc(_("OpenOffice.org Writer"),OpenOfficeDoc,1,1,1,
                            ".sxw",print_label)
 Plugins.register_book_doc(_("OpenOffice.org Writer"),OpenOfficeDoc,1,1,1,".sxw")
 
+print_label = None
+if os.access ("/usr/bin/oodraw", os.X_OK):
+    print_label = _("Open in OpenOffice.org")
+
+Plugins.register_draw_doc(_("OpenOffice.org Draw"),OpenOfficeDoc,1,1,".sxd",
+                          print_label);
