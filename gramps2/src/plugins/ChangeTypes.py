@@ -77,7 +77,7 @@ class ChangeTypes:
     def on_apply_clicked(self,obj):
         modified = 0
         original = unicode(self.auto1.child.get_text())
-        new = unicode(self.auto2.child..get_text())
+        new = unicode(self.auto2.child.get_text())
 
         for person_handle in self.db.get_person_handles(sort_handles=False):
             person = self.db.get_person_from_handle(person_handle)
