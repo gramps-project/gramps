@@ -160,12 +160,14 @@ class XmlWriter:
 
         date = string.split(time.ctime(time.time()))
         owner = self.db.getResearcher()
-        familyList = self.db.getFamilyMap().values()
+        familyMap = self.db.getFamilyMap()
+        familyList = familyMap.keys ()
         person_len = len(self.db.getPersonKeys())
         family_len = len(familyList)
         source_len = len(self.db.getSourceKeys())
         place_len = len(self.db.getPlaceKeys())
-        objList = self.db.getObjectMap().values()
+        objMap = self.db.getObjectMap()
+        objList = objMap.keys ()
         
         total = person_len + family_len + place_len + source_len
 
@@ -201,7 +203,9 @@ class XmlWriter:
                 self.g.write(' default="%s"' % person.getId())
             self.g.write(">\n")
 
-            for key in self.db.getPersonKeys():
+            keys = self.db.getPersonKeys()
+            keys.sort ()
+            for key in keys:
                 person = self.db.getPerson(key)
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
@@ -274,8 +278,10 @@ class XmlWriter:
 
         if family_len > 0:
             self.g.write("  <families>\n")
-            
-            for family in familyList:
+
+            familyList.sort ()            
+            for key in familyList:
+                family = familyMap[key]
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1
@@ -303,7 +309,9 @@ class XmlWriter:
 
         if source_len > 0:
             self.g.write("  <sources>\n")
-            for key in self.db.getSourceKeys():
+            keys = self.db.getSourceKeys ()
+            keys.sort ()
+            for key in keys:
                 source = self.db.getSource(key)
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
@@ -321,7 +329,9 @@ class XmlWriter:
 
         if place_len > 0:
             self.g.write("  <places>\n")
-            for key in self.db.getPlaceKeys():
+            keys = self.db.getPlaceKeys()
+            keys.sort ()
+            for key in keys:
                 try:
                     place = self.db.getPlace(key)
                     if self.callback and count % delta == 0:
@@ -335,7 +345,9 @@ class XmlWriter:
 
         if len(objList) > 0:
             self.g.write("  <objects>\n")
-            for object in objList:
+            objList.sort ()
+            for key in objList:
+                object = objMap[key]
                 self.write_object(object)
             self.g.write("  </objects>\n")
 
