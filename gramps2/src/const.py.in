@@ -382,6 +382,7 @@ personalConstantAttributes = {
     "Description"           : "DSCR",
     "Identification Number" : "IDNO",
     "National Origin"       : "NATI",
+    "Number of Children"    : "NCHI",
     "Social Security Number": "SSN"
     }
 
@@ -396,6 +397,7 @@ personal_attributes = TransTable({
     "Description"           : _("Description"),
     "Identification Number" : _("Identification Number"),
     "National Origin"       : _("National Origin"),
+    "Number of Children"    : _("Number of Children"),
     "Social Security Number": _("Social Security Number")
     })
 

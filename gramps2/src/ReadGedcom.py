@@ -985,7 +985,7 @@ class GedcomParser:
                     self.person.add_event_handle(event.get_handle())
             elif matches[1] == "SOUR":
                 source_ref = self.handle_source(matches,2)
-                self.person.get_primary_name().add_source_reference(source_ref)
+                self.person.add_source_reference(source_ref)
             elif matches[1] == "REFN":
                 if intRE.match(matches[2]):
                     try:

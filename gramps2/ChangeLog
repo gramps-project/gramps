@@ -1,3 +1,13 @@
+2004-11-14  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DateParser.py: handle leap year in gregorial validity check
+	* src/MergeData.py: Preserve more data when merging 
+	the 1.0.X patch from Julio Sanchez)
+	* src/plugins/ReadGedcom.py: Attach top leve source to the
+	person instead of the primary name (ported from	the 1.0.X patch 
+	from Julio Sanchez)
+	* src/const.py: Add support for "Number of Children" attribute
+	(GEDCOM NCHI) (ported from the 1.0.X patch from Julio Sanchez)
+
 2004-11-12 Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py (person_name): Handle surname prefix (patch
 	from Julio Sanchez).
