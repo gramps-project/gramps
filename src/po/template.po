@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Wed Apr 16 09:05:03 2003\n"
+"POT-Creation-Date: Wed Apr 16 10:37:11 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2171,10 +2171,6 @@ msgstr ""
 msgid "SVG (Scalable Vector Graphics)"
 msgstr ""
 
-#: docgen/TextBufDoc.py:169
-msgid "Text Buffer Preview"
-msgstr ""
-
 #: edit_person.glade:33
 msgid "Abandon changes and close window"
 msgstr ""
@@ -3368,9 +3364,8 @@ msgid "Ancestor Chart"
 msgstr ""
 
 #: plugins/AncestorChart.py:217 plugins/AncestorChart.py:426
-#: plugins/DesGraph.py:308 plugins/DesGraph.py:460 plugins/FullFamily.py:105
-#: plugins/FullFamily.py:170 plugins/GraphViz.py:78 plugins/GraphViz.py:448
-#: plugins/TimeLine.py:316 plugins/TimeLine.py:457
+#: plugins/DesGraph.py:308 plugins/DesGraph.py:460 plugins/GraphViz.py:78
+#: plugins/GraphViz.py:448 plugins/TimeLine.py:316 plugins/TimeLine.py:457
 msgid "Graphical Reports"
 msgstr ""
 
@@ -3383,38 +3378,33 @@ msgid "Save Ancestor Chart"
 msgstr ""
 
 #: plugins/AncestorChart.py:238 plugins/DesGraph.py:325
-#: plugins/FullFamily.py:126
 msgid "Display Format"
 msgstr ""
 
 #: plugins/AncestorChart.py:239 plugins/DesGraph.py:326
-#: plugins/FullFamily.py:127
 msgid "Allows you to customize the data in the boxes in the report"
 msgstr ""
 
 #: plugins/AncestorChart.py:248 plugins/AncestorReport.py:262
 #: plugins/DesGraph.py:335 plugins/FamilyGroup.py:417
-#: plugins/FtmStyleAncestors.py:231 plugins/IndivComplete.py:528
-#: plugins/IndivSummary.py:371
+#: plugins/IndivComplete.py:528 plugins/IndivSummary.py:371
 msgid "The basic style used for the text display."
 msgstr ""
 
 #: plugins/AncestorChart.py:427 plugins/AncestorReport.py:389
 #: plugins/DescendReport.py:284 plugins/DetAncestralReport.py:972
 #: plugins/DetDescendantReport.py:850 plugins/FamilyGroup.py:566
-#: plugins/FtmStyleAncestors.py:358 plugins/FullFamily.py:171
 #: plugins/GraphViz.py:447 plugins/IndivComplete.py:667
 #: plugins/IndivSummary.py:500 plugins/Summary.py:150 plugins/TimeLine.py:456
 #: plugins/WebPage.py:1267
 msgid "Beta"
 msgstr ""
 
-#: plugins/AncestorChart.py:428 plugins/FullFamily.py:172
+#: plugins/AncestorChart.py:428
 msgid "Produces a graphical ancestral tree graph"
 msgstr ""
 
 #: plugins/AncestorReport.py:75 plugins/AncestorReport.py:229
-#: plugins/FtmStyleAncestors.py:196
 msgid "Ahnentafel Report for %s"
 msgstr ""
 
@@ -3492,7 +3482,6 @@ msgid " and was buried in %s."
 msgstr ""
 
 #: plugins/AncestorReport.py:225 plugins/AncestorReport.py:387
-#: plugins/FtmStyleAncestors.py:192
 msgid "Ahnentafel Report"
 msgstr ""
 
@@ -3500,25 +3489,22 @@ msgstr ""
 #: plugins/DescendReport.py:124 plugins/DescendReport.py:283
 #: plugins/DetAncestralReport.py:973 plugins/DetDescendantReport.py:851
 #: plugins/FamilyGroup.py:344 plugins/FamilyGroup.py:565
-#: plugins/FtmStyleAncestors.py:192 plugins/FtmStyleAncestors.py:357
 #: plugins/IndivComplete.py:446 plugins/IndivComplete.py:668
 #: plugins/IndivSummary.py:317 plugins/IndivSummary.py:501
 msgid "Text Reports"
 msgstr ""
 
 #: plugins/AncestorReport.py:234 plugins/DetAncestralReport.py:677
-#: plugins/FtmStyleAncestors.py:201
 msgid "Save Ancestor Report"
 msgstr ""
 
 #: plugins/AncestorReport.py:248 plugins/DescendReport.py:148
-#: plugins/FamilyGroup.py:408 plugins/FtmStyleAncestors.py:216
-#: plugins/IndivComplete.py:502 plugins/IndivSummary.py:345
-#: plugins/TimeLine.py:395 plugins/WebPage.py:960
+#: plugins/FamilyGroup.py:408 plugins/IndivComplete.py:502
+#: plugins/IndivSummary.py:345 plugins/TimeLine.py:395 plugins/WebPage.py:960
 msgid "The style used for the title of the page."
 msgstr ""
 
-#: plugins/AncestorReport.py:257 plugins/FtmStyleAncestors.py:226
+#: plugins/AncestorReport.py:257
 msgid "The style used for the generation header."
 msgstr ""
 
@@ -4065,7 +4051,7 @@ msgid "Custom Filter Editor"
 msgstr ""
 
 #: plugins/FilterEditor.py:398 plugins/FilterEditor.py:411
-#: plugins/RelCalc.py:452 plugins/Verify.py:302 plugins/soundgen.py:95
+#: plugins/RelCalc.py:452 plugins/Verify.py:417 plugins/soundgen.py:95
 msgid "Utilities"
 msgstr ""
 
@@ -4079,60 +4065,6 @@ msgstr ""
 
 #: plugins/FilterEditor.py:412
 msgid "The System Filter Editor builds custom filters that can be used by anyone on the system to select people included in reports, exports, and other utilities."
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:73 plugins/GraphViz.py:107
-#: plugins/IndivComplete.py:479 plugins/TimeLine.py:363 plugins/WebPage.py:933
-#: plugins/WriteGedcom.py:382
-msgid "Ancestors of %s"
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:86
-msgid "Generation No. %d"
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:120
-msgid "born %(date)s in %(place)s"
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:125
-msgid "born on %(date)s"
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:130
-msgid "born in %(place)s"
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:150
-msgid "died %(date)s in %(place)s. "
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:155
-msgid "died on %(date)s. "
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:160
-msgid "died in %(place)s. "
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:356
-msgid "FTM Style Ancestor Report"
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:359
-msgid "Produces a textual ancestral report similar to Family Tree Maker."
-msgstr ""
-
-#: plugins/FullFamily.py:105 plugins/FullFamily.py:169
-msgid "Full Family Chart"
-msgstr ""
-
-#: plugins/FullFamily.py:109
-msgid "Full Family Chart for %s"
-msgstr ""
-
-#: plugins/FullFamily.py:114
-msgid "Save Full Family Chart"
 msgstr ""
 
 #: plugins/GraphViz.py:60 plugins/GraphViz.py:87
@@ -4153,6 +4085,11 @@ msgstr ""
 
 #: plugins/GraphViz.py:83
 msgid "Graphviz File"
+msgstr ""
+
+#: plugins/GraphViz.py:107 plugins/IndivComplete.py:479
+#: plugins/TimeLine.py:363 plugins/WebPage.py:933 plugins/WriteGedcom.py:382
+msgid "Ancestors of %s"
 msgstr ""
 
 #: plugins/GraphViz.py:111 plugins/TimeLine.py:367 plugins/WriteGedcom.py:386
@@ -4870,190 +4807,280 @@ msgstr ""
 msgid "Timeline Graph"
 msgstr ""
 
-#: plugins/Verify.py:83 plugins/Verify.py:282
+#: plugins/Verify.py:85 plugins/Verify.py:397
 msgid "Database Verify"
 msgstr ""
 
-#: plugins/Verify.py:117
+#: plugins/Verify.py:120
 msgid ""
-"Baptized before birth: %s born %d, baptized %d.\n"
+"Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
 msgstr ""
 
-#: plugins/Verify.py:119
+#: plugins/Verify.py:123
 msgid ""
-"Baptized late: %s born %d, baptized %d.\n"
+"Baptized before birth: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n"
 msgstr ""
 
-#: plugins/Verify.py:122
+#: plugins/Verify.py:127
 msgid ""
-"Buried before death: %s died %d, buried %d.\n"
-msgstr ""
-
-#: plugins/Verify.py:124
-msgid ""
-"Buried late: %s died %d, buried %d.\n"
-msgstr ""
-
-#: plugins/Verify.py:126
-msgid ""
-"Died before birth: %s born %d, died %d.\n"
-msgstr ""
-
-#: plugins/Verify.py:128
-msgid ""
-"Died before baptism: %s baptized %d, died %d.\n"
+"Baptized late: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
 msgstr ""
 
 #: plugins/Verify.py:130
 msgid ""
-"Buried before birth: %s born %d, buried %d.\n"
+"Baptized late: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n"
 msgstr ""
 
-#: plugins/Verify.py:132
+#: plugins/Verify.py:135
 msgid ""
-"Buried before birth: %s baptized %d, buried %d.\n"
+"Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
+msgstr ""
+
+#: plugins/Verify.py:138
+msgid ""
+"Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
 msgstr ""
 
 #: plugins/Verify.py:142
 msgid ""
-"Old age: %s born %d, died %d, at the age of %d.\n"
+"Buried late: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
 msgstr ""
 
-#: plugins/Verify.py:146
-msgid "mother "
+#: plugins/Verify.py:145
+msgid ""
+"Buried late: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
 msgstr ""
 
-#: plugins/Verify.py:149 plugins/Verify.py:160 plugins/Verify.py:166
-msgid " was a widow "
+#: plugins/Verify.py:149
+msgid ""
+"Died before birth: %(male_name)s born %(byear)d, died %(dyear)d.\n"
 msgstr ""
 
-#: plugins/Verify.py:151
-msgid "father "
-msgstr ""
-
-#: plugins/Verify.py:154
-msgid " was a widower "
+#: plugins/Verify.py:152
+msgid ""
+"Died before birth: %(female_name)s born %(byear)d, died %(dyear)d.\n"
 msgstr ""
 
 #: plugins/Verify.py:156
 msgid ""
-"Unknown gender for %s.\n"
+"Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
 msgstr ""
 
-#: plugins/Verify.py:157 plugins/Verify.py:163
-msgid "parent "
-msgstr ""
-
-#: plugins/Verify.py:162
+#: plugins/Verify.py:159
 msgid ""
-"Ambigous gender for %s.\n"
+"Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)d.\n"
+msgstr ""
+
+#: plugins/Verify.py:163
+msgid ""
+"Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
+msgstr ""
+
+#: plugins/Verify.py:166
+msgid ""
+"Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n"
 msgstr ""
 
 #: plugins/Verify.py:170
 msgid ""
+"Buried before baptism: %(male_name)s baptized %(bapyear)d, buried %(buryear)d.\n"
+msgstr ""
+
+#: plugins/Verify.py:173
+msgid ""
+"Buried before baptism: %(female_name)s baptized %(bapyear)d, buried %(buryear)d.\n"
+msgstr ""
+
+#: plugins/Verify.py:185
+msgid ""
+"Old age: %(male_name)s born %(byear)d, died %(dyear)d, at the age of %(ageatdeath)d.\n"
+msgstr ""
+
+#: plugins/Verify.py:188
+msgid ""
+"Old age: %(female_name)s born %(byear)d, died %(dyear)d, at the age of %(ageatdeath)d.\n"
+msgstr ""
+
+#: plugins/Verify.py:205
+msgid ""
+"Unknown gender for %s.\n"
+msgstr ""
+
+#: plugins/Verify.py:211
+msgid ""
+"Ambigous gender for %s.\n"
+msgstr ""
+
+#: plugins/Verify.py:219
+msgid ""
 "Multiple parentage for %s.\n"
-msgstr ""
-
-#: plugins/Verify.py:176
-msgid ""
-"Married often: %s married %d times.\n"
-msgstr ""
-
-#: plugins/Verify.py:178
-msgid ""
-"Old and unmarried: %s died unmarried, at the age of %d years.\n"
-msgstr ""
-
-#: plugins/Verify.py:191
-msgid ""
-"Homosexual marriage: %s in family %s.\n"
-msgstr ""
-
-#: plugins/Verify.py:193
-msgid ""
-"Female husband: %s in family %s.\n"
-msgstr ""
-
-#: plugins/Verify.py:195
-msgid ""
-"Male wife: %s in family %s.\n"
-msgstr ""
-
-#: plugins/Verify.py:203
-msgid ""
-"Husband and wife with the same surname: %s in family %s, and %s.\n"
-msgstr ""
-
-#: plugins/Verify.py:221
-msgid ""
-"Married before birth: %s born %d, married %d to %s.\n"
-msgstr ""
-
-#: plugins/Verify.py:224
-msgid ""
-"Young marriage: %s married at age %d to %s.\n"
 msgstr ""
 
 #: plugins/Verify.py:226
 msgid ""
-"Old marriage: %s married at age %d to %s.\n"
+"Married often: %(male_name)s married %(nfam)d times.\n"
 msgstr ""
 
-#: plugins/Verify.py:228
+#: plugins/Verify.py:229
 msgid ""
-"Married after death: %s died %d, married %d to %s.\n"
+"Married often: %(female_name)s married %(nfam)d times.\n"
 msgstr ""
 
-#: plugins/Verify.py:230
+#: plugins/Verify.py:233
 msgid ""
-"Marriage before birth from previous family: %s married %d to %s, previous birth %d.\n"
+"Old and unmarried: %(male_name)s died unmarried, at the age of %(ageatdeath)d years.\n"
 msgstr ""
 
-#: plugins/Verify.py:238
+#: plugins/Verify.py:236
 msgid ""
-"Long widowhood: %s %s %d years before, family %s.\n"
+"Old and unmarried: %(female_name)s died unmarried, at the age of %(ageatdeath)d years.\n"
 msgstr ""
 
-#: plugins/Verify.py:243
+#: plugins/Verify.py:250
 msgid ""
-"Long widowhood: %s %s %d years.\n"
+"Homosexual marriage: %s in family %s.\n"
 msgstr ""
 
-#: plugins/Verify.py:257
+#: plugins/Verify.py:252
 msgid ""
-"Old %s: %s at age of %d in family %s had a child %s.\n"
+"Female husband: %s in family %s.\n"
 msgstr ""
 
-#: plugins/Verify.py:259
+#: plugins/Verify.py:254
 msgid ""
-"Unborn %s: %s born %d, in family %s had a child %s born %d.\n"
+"Male wife: %s in family %s.\n"
 msgstr ""
 
 #: plugins/Verify.py:262
 msgid ""
-"Young %s: %s at the age of %d in family %s had a child %s.\n"
+"Husband and wife with the same surname: %s in family %s, and %s.\n"
 msgstr ""
 
-#: plugins/Verify.py:266 plugins/Verify.py:268 plugins/Verify.py:270
+#: plugins/Verify.py:281
 msgid ""
-"Dead %s: %s died %d, but in family %s had a child %s born %d.\n"
+"Married before birth: %(male_name)s born %(byear)d, married %(maryear)d to %(spouse)s.\n"
 msgstr ""
 
-#: plugins/Verify.py:275
+#: plugins/Verify.py:284
+msgid ""
+"Married before birth: %(female_name)s born %(byear)d, married %(maryear)d to %(spouse)s.\n"
+msgstr ""
+
+#: plugins/Verify.py:289
+msgid ""
+"Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr ""
+
+#: plugins/Verify.py:292
+msgid ""
+"Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr ""
+
+#: plugins/Verify.py:296
+msgid ""
+"Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr ""
+
+#: plugins/Verify.py:299
+msgid ""
+"Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr ""
+
+#: plugins/Verify.py:303
+msgid ""
+"Married after death: %(male_name)s died %(dyear)d, married %(maryear)d to %(spouse)s.\n"
+msgstr ""
+
+#: plugins/Verify.py:306
+msgid ""
+"Married after death: %(female_name)s died %(dyear)d, married %(maryear)d to %(spouse)s.\n"
+msgstr ""
+
+#: plugins/Verify.py:310
+msgid ""
+"Marriage before birth from previous family: %(male_name)s married %(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
+msgstr ""
+
+#: plugins/Verify.py:313
+msgid ""
+"Marriage before birth from previous family: %(female_name)s married %(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
+msgstr ""
+
+#: plugins/Verify.py:323
+msgid ""
+"Long widowhood: %s was a widower %d years before, family %s.\n"
+msgstr ""
+
+#: plugins/Verify.py:325
+msgid ""
+"Long widowhood: %s was a widow %d years before, family %s.\n"
+msgstr ""
+
+#: plugins/Verify.py:331
+msgid ""
+"Long widowhood: %s was a widower %d years.\n"
+msgstr ""
+
+#: plugins/Verify.py:333
+msgid ""
+"Long widowhood: %s was a widow %d years.\n"
+msgstr ""
+
+#: plugins/Verify.py:348
+msgid ""
+"Old father: %(male_name)s at age of %(bage)d in family %(fam)s had a child %(child)s.\n"
+msgstr ""
+
+#: plugins/Verify.py:351
+msgid ""
+"Old mother: %(female_name)s at age of %(bage)d in family %(fam)s had a child %(child)s.\n"
+msgstr ""
+
+#: plugins/Verify.py:355
+msgid ""
+"Unborn father: %(male_name)s born %(byear)d, in family %(fam)s had a child %(child)s born %(cbyear)d.\n"
+msgstr ""
+
+#: plugins/Verify.py:358
+msgid ""
+"Unborn mother: %(female_name)s born %(byear)d, in family %(fam)s had a child %(child)s born %(cbyear)d.\n"
+msgstr ""
+
+#: plugins/Verify.py:363
+msgid ""
+"Young father: %(male_name)s at the age of %(bage)d in family %(fam)s had a child %(child)s.\n"
+msgstr ""
+
+#: plugins/Verify.py:366
+msgid ""
+"Young mother: %(female_name)s at the age of %(bage)d in family %(fam)s had a child %(child)s.\n"
+msgstr ""
+
+#: plugins/Verify.py:371 plugins/Verify.py:378
+msgid ""
+"Dead father: %(male_name)s died %(dyear)d, but in family %(fam)s had a child %(child)s born %(cbyear)d.\n"
+msgstr ""
+
+#: plugins/Verify.py:374 plugins/Verify.py:381
+msgid ""
+"Dead mother: %(female_name)s died %(dyear)d, but in family %(fam)s had a child %(child)s born %(cbyear)d.\n"
+msgstr ""
+
+#: plugins/Verify.py:387
 msgid ""
 "ERRORS:\n"
 msgstr ""
 
-#: plugins/Verify.py:277
+#: plugins/Verify.py:389
 msgid ""
 "WARNINGS:\n"
 msgstr ""
 
-#: plugins/Verify.py:301
+#: plugins/Verify.py:416
 msgid "Verify the database"
 msgstr ""
 
-#: plugins/Verify.py:303
+#: plugins/Verify.py:418
 msgid "List exceptions to assertions or checks about the database"
 msgstr ""
 
