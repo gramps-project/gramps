@@ -126,7 +126,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                                             needs_name = 1))
         families = [self.start.getMainParents ()]
         if len (families) > 0:
-            self.generation (self.max_generations, families, [self.start])
+            self.generation (self.max_generations, families, [], [self.start])
 
         if len (self.sources) > 0:
             self.doc.start_paragraph ("AR-Heading")
@@ -211,48 +211,77 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         return ret
 
-    def generation (self, generations, families, already_described,
-                    thisgen = 2):
-        if generations > 1 and len (families):
+    def generation (self, generations, pfamilies, mfamilies,
+                    already_described, thisgen = 2):
+        if generations > 1 and (len (pfamilies) + len (mfamilies)):
             people = []
-            for family in families:
+            for family in pfamilies:
+                people.extend (self.family (family, already_described))
+
+            if thisgen > 2 and len (mfamilies):
+                for self.gp in [mfamilies[0].getFather (),
+                                mfamilies[0].getMother ()]:
+                    if self.gp:
+                        break
+
+                relstring = Relationship.get_grandparents_string (self.start,
+                                                                  self.gp)[0]
+                heading = _("%(name)s's maternal %(grandparents)s") % \
+                          { 'name': self.first_name_or_nick (self.start),
+                            'grandparents': relstring }
+                people.append ((self.doc.start_paragraph, ['AR-Heading']))
+                people.append ((self.doc.write_text, [heading]))
+                people.append ((self.doc.end_paragraph, []))
+
+            for family in mfamilies:
                 people.extend (self.family (family, already_described))
 
             if len (people):
                 if self.pgbrk:
                     self.doc.page_break()
                 self.doc.start_paragraph ("AR-Heading")
+                families = pfamilies
+                families.extend (mfamilies)
                 for self.gp in [families[0].getFather (),
                                 families[0].getMother ()]:
                     if self.gp:
                         break
-                heading = _("%(name)s's %(grandparents)s") % \
-                          { 'name': self.first_name_or_nick (self.start),
-                            'grandparents':
-                            Relationship.get_grandparents_string (self.start,
-                                                                  self.gp)[0]}
+
+                relstring = Relationship.get_grandparents_string (self.start,
+                                                                  self.gp)[0]
+                if thisgen == 2:
+                    heading = _("%(name)s's %(parents)s") % \
+                              { 'name': self.first_name_or_nick (self.start),
+                                'parents': relstring }
+                else:
+                    heading = _("%(name)s's paternal %(grandparents)s") % \
+                              { 'name': self.first_name_or_nick (self.start),
+                                'grandparents': relstring }
+
                 self.doc.write_text (heading)
                 self.doc.end_paragraph ()
                 self.write_paragraphs (people)
 
-                next_families = []
+                next_pfamilies = []
+                next_mfamilies = []
                 for family in families:
                     father = family.getFather ()
                     if father:
                         already_described.append (father)
                         father_family = father.getMainParents ()
                         if father_family:
-                            next_families.append (father_family)
+                            next_pfamilies.append (father_family)
 
                     mother = family.getMother ()
                     if mother:
                         already_described.append (mother)
                         mother_family = mother.getMainParents ()
                         if mother_family:
-                            next_families.append (mother_family)
+                            next_mfamilies.append (mother_family)
 
-                self.generation (generations - 1, next_families,
-                                 already_described, thisgen + 1)
+                self.generation (generations - 1, next_pfamilies,
+                                 next_mfamilies, already_described,
+                                 thisgen + 1)
 
     def person (self, person,
                 suppress_children = 0,
