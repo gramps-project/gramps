@@ -768,30 +768,31 @@ class FamilyView:
         self.parent.db.transaction_commit(trans,_("Modify family"))
             
     def new_child_after_edit(self,epo,value):
-        if not self.family:
+        family = self.family
+        person = self.person
+        new_person = epo.person
+        trans = self.parent.db.transaction_begin()
+        if not family:
             # Add family to active person, 
             # if it does not exist yet (child with no spouse)
-            trans = self.parent.db.transaction_begin()
-            self.family = RelLib.Family()
-            self.parent.db.add_family(self.family,trans)
-            self.person.add_family_handle(self.family.get_handle())
-            if self.person.get_gender() == RelLib.Person.MALE:
-                self.family.set_father_handle(self.person.get_handle())
+            family = RelLib.Family()
+            self.parent.db.add_family(family,trans)
+            person.add_family_handle(family.get_handle())
+            if person.get_gender() == RelLib.Person.MALE:
+                family.set_father_handle(person.get_handle())
             else:
-                self.family.set_mother_handle(self.person.get_handle())
-            self.parent.db.commit_family(self.family,trans)
-            self.parent.db.commit_person(self.person,trans)
-            self.parent.db.transaction_commit(trans,_("Add Family"))
+                family.set_mother_handle(person.get_handle())
+            self.parent.db.commit_family(family,trans)
+            self.parent.db.commit_person(person,trans)
 
-        trans = self.parent.db.transaction_begin()
-        self.family.add_child_handle(epo.person.get_handle())
-        epo.person.add_parent_family_handle(self.family.get_handle(),
+        family.add_child_handle(new_person.get_handle())
+        new_person.add_parent_family_handle(family.get_handle(),
                                             RelLib.Person.CHILD_REL_BIRTH,
                                             RelLib.Person.CHILD_REL_BIRTH)
-        self.parent.db.commit_person(epo.person,trans)
-        self.parent.db.commit_family(self.family,trans)
+        self.parent.db.commit_person(new_person,trans)
+        self.parent.db.commit_family(family,trans)
         self.parent.db.transaction_commit(trans,_("Add Child to Family"))
-        self.display_marriage(self.family)
+        self.display_marriage(family)
 
     def select_child_clicked(self,obj):
         if not self.person:

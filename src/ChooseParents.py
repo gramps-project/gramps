@@ -163,8 +163,6 @@ class ChooseParents:
         self.glade.signal_autoconnect({
             "on_add_parent_clicked"    : self.add_parent_clicked,
             "on_prel_changed"          : self.parent_relation_changed,
-            #"on_showallf_toggled"      : self.showallf_toggled,
-            #"on_showallm_toggled"      : self.showallm_toggled,
             "destroy_passed_object"    : self.close,
             "on_save_parents_clicked"   : self.save_parents_clicked,
             "on_help_familyDialog_clicked"  : self.on_help_clicked,
@@ -287,7 +285,8 @@ class ChooseParents:
         """Called everytime the parent relationship information is changed"""
         self.old_type = self.type
         self.type = self.prel.get_active()
-        if self.old_type == RelLib.Family.CIVIL_UNION or self.type == RelLib.Family.CIVIL_UNION:
+        if (self.old_type == RelLib.Family.CIVIL_UNION or
+            self.type == RelLib.Family.CIVIL_UNION):
             self.redrawf()
             self.redrawm()
 
@@ -315,11 +314,13 @@ class ChooseParents:
     
         for family_handle in self.db.get_family_handles():
             family = self.db.get_family_from_handle(family_handle)
-            if family.get_father_handle() == father_handle and family.get_mother_handle() == mother_handle:
+            if (family.get_father_handle() == father_handle and
+                family.get_mother_handle() == mother_handle):
                 family.add_child_handle(self.person.get_handle())
                 self.db.commit_family(family,trans)
                 return family
-            elif family.get_father_handle() == mother_handle and family.get_mother_handle() == father_handle:
+            elif (family.get_father_handle() == mother_handle and
+                  family.get_mother_handle() == father_handle):
                 family.add_child_handle(self.person.get_handle())
                 self.db.commit_family(family,trans)
                 return family
@@ -379,12 +380,12 @@ class ChooseParents:
             family_handle_list = self.father.get_family_handle_list()
             if len(family_handle_list) >= 1:
                 family = self.db.get_family_from_handle(family_handle_list[0])
-                mother_handle = family.get_mother_handle()
-                mother = self.db.get_person_from_handle(mother_handle)
+                handle = family.get_mother_handle()
+                mother = self.db.get_person_from_handle(handle)
                 sname = mother.get_primary_name().get_surname()
                 tpath = self.mother_model.on_get_path(sname)
                 self.mother_list.expand_row(tpath,0)
-                path = self.mother_model.on_get_path(mother_handle)
+                path = self.mother_model.on_get_path(handle)
                 self.mother_selection.select_path(path)
                 self.mother_list.scroll_to_cell(path,None,1,0.5,0)
 
@@ -403,12 +404,12 @@ class ChooseParents:
             family_handle_list = self.mother.get_family_handle_list()
             if len(family_handle_list) >= 1:
                 family = self.db.get_family_from_handle(family_handle_list[0])
-                father_handle = family.get_mother_handle()
-                father = self.db.get_person_from_handle(father_handle)
+                handle = family.get_father_handle()
+                father = self.db.get_person_from_handle(handle)
                 sname = father.get_primary_name().get_surname()
                 tpath = self.father_model.on_get_path(sname)
                 self.father_list.expand_row(tpath,0)
-                path = self.father_model.on_get_path(father_handle)
+                path = self.father_model.on_get_path(handle)
                 self.father_selection.select_path(path)
                 self.father_list.scroll_to_cell(path,None,1,0.5,0)
 
@@ -529,10 +530,12 @@ class ChooseParents:
                     return
                 if mother_rel != fam[1] or father_rel != fam[2]:
                     self.person.remove_parent_family_handle(family_handle)
-                    self.person.add_parent_family_handle(family_handle,mother_rel,father_rel)
+                    self.person.add_parent_family_handle(family_handle,
+                                                         mother_rel,father_rel)
                     break
         else:
-            self.person.add_parent_family_handle(family_handle,mother_rel,father_rel)
+            self.person.add_parent_family_handle(family_handle,
+                                                 mother_rel,father_rel)
 
         trans = self.db.transaction_begin()
         self.db.commit_person(self.person,trans)
