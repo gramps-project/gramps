@@ -3,7 +3,7 @@
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003  Alexander Roitman
+	  Copyright (C) 2003-2004  Alexander Roitman
 
 	  Permission is granted to copy, distribute and/or modify this
 	  document under the terms of the GNU Free Documentation
@@ -30,6 +30,13 @@
         <para>Ez a kategória a következő általános szabályokat tartalmazza:</para>
         
           <variablelist>
+
+          <varlistentry><term>Teljes információ mező bejelölve</term>
+          <listitem><para> Ez a szabály minden olyan személyre illeszkedik akiknek az 
+          adatai teljesnek van jelölve. Jelenleg ezt a tulajdonságágot csak a 
+          <guilabel>Személy szerkesztése</guilabel> dialógusablakban lehet beállítani.
+          </para></listitem>
+          </varlistentry>
 
           <varlistentry><term>Mindenki</term>
           <listitem><para> Ez a szabály mindenkire illeszkedik az adatbázisból. 

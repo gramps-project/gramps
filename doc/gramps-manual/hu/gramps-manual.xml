@@ -3,7 +3,7 @@
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003  Alexander Roitman
+	  Copyright (C) 2003-2004  Alexander Roitman
 
 	  Permission is granted to copy, distribute and/or modify this
 	  document under the terms of the GNU Free Documentation
@@ -27,9 +27,9 @@
   <!ENTITY keybind SYSTEM "keybind.xml">
   <!ENTITY filtref SYSTEM "filtref.xml">
   <!ENTITY cmdline SYSTEM "cmdline.xml">
-  <!ENTITY appversion "0.98.0">
-  <!ENTITY manrevision "2.4">
-  <!ENTITY date "December 2003">
+  <!ENTITY appversion "1.0.0">
+  <!ENTITY manrevision "2.5">
+  <!ENTITY date "January 2004">
   <!ENTITY app "<application>GRAMPS</application>">
   <!-- Information about the entities
        The legal.xml file contains legal information, there is no need to edit the file. 
@@ -52,8 +52,8 @@
   <articleinfo> 
     <title>&app; Manual V&manrevision;</title>       
 
-    <copyright> <year>2003</year> <holder>Alex Roitman</holder> </copyright> 
     <copyright> <year>2001</year> <holder>Donald N. Allingham</holder> </copyright>
+    <copyright> <year>2003-2004</year> <holder>Alex Roitman</holder> </copyright> 
 
 <!-- translators: uncomment this: -->
 
@@ -121,6 +121,15 @@
       <revision> 
 		<revnumber>GRAMPS Manual V&manrevision;</revnumber> 
 		<date>&date;</date> 
+		<revdescription> 
+	  	<para role="author">Alex Roitman
+		    	<email>shura@alex.neuro.umn.edu</email></para>
+                <para role="publisher">GRAMPS Project</para>
+		</revdescription> 
+      </revision> 
+      <revision> 
+		<revnumber>GRAMPS Manual V2.4</revnumber> 
+		<date>December 2003</date> 
 		<revdescription> 
 	  	<para role="author">Alex Roitman
 		    	<email>shura@alex.neuro.umn.edu</email></para>
@@ -258,13 +267,25 @@
 <!-- This section is optional and is commented out by default. 
      You can use it to describe known bugs and limitations of the 
 	  program if there are any - please be frank and list all
-     problems you know of. 
+     problems you know of. -->
   
   <sect1 id="mayapp-bugs">
-  <title>Known Bugs and Limitations</title>
-  <para> </para>
+  <title>Jelenleg ismert korlátozó tényezők</title>
+  <para>Jelenleg a &app; minden adatot a memóriában tárol, ami jelentősen 
+  lelassíthatja a rendszert nagy adatbázis használatakor (kb. 15000 ember egy átlagos 
+  rendszeren). Az 1.2 verzióban ez javítva lesz egy adatbázismotor használatával. 
+  Adatbázis kezelő rendszer jelentősen javítani fogja a program futási 
+  sebességét és a memória gazdálkodást. </para>
+  
+  <para>Közvetlen nyomtatás még nem működik. Ez is ki lesz javítva az 
+  1.0 verzió kiadása után a gnome-print rendszer használatával.</para>
+  
+  <para>PS és PDF összesítők nem jól készülnek el az unicode karakterekkel. 
+  Ez a probléma is megoldódik a gnome-print rendszer használatával. Addig is 
+  megoldást tud nyújtani, ha az összesítőket OpenOffice.org formátumba menti és 
+  utána az OpenOffice.org programból készít PDF mentést.</para>
  </sect1>
--->
+
 <!-- ============= About ================================== -->
 <!-- This section contains info about the program (not docs), such as
       author's name(s), web page, license, feedback address. This
