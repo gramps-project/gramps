@@ -35,6 +35,12 @@ from TextDoc import *
 from OpenOfficeDoc import *
 from HtmlDoc import *
 from AbiWordDoc import *
+try:
+    import reportlab.platypus.tables
+    from PdfDoc import *
+    no_pdf = 0
+except:
+    no_pdf = 1
 
 from gtk import *
 from gnome.ui import *
@@ -183,7 +189,7 @@ class IndivSummary:
         self.d.start_row()
         self.d.start_cell("TableHead",2)
         self.d.start_paragraph("TableTitle")
-        self.d.write_text("Marriages/Children")
+        self.d.write_text(_("Marriages/Children"))
         self.d.end_paragraph()
         self.d.end_cell()
         self.d.end_row()
@@ -211,7 +217,7 @@ class IndivSummary:
                 self.d.start_row()
                 self.d.start_cell("NormalCell")
                 self.d.start_paragraph("Normal")
-                self.d.write_text("Children")
+                self.d.write_text(_("Children"))
                 self.d.end_paragraph()
                 self.d.end_cell()
 
@@ -237,10 +243,10 @@ class IndivSummary:
     #--------------------------------------------------------------------
     def write_report(self):
         photo_list = self.person.getPhotoList()
-            
+
+        name = self.person.getPrimaryName().getRegularName()
         self.d.start_paragraph("Title")
-        self.d.write_text('Summary of ')
-        self.d.write_text(self.person.getPrimaryName().getRegularName())
+        self.d.write_text(_("Summary of %s") % name)
         self.d.end_paragraph()
 
         self.d.start_paragraph("Normal")
@@ -257,7 +263,7 @@ class IndivSummary:
         self.d.start_row()
         self.d.start_cell("NormalCell")
         self.d.start_paragraph("Normal")
-        self.d.write_text("Name:")
+        self.d.write_text("%s:" % _("Name"))
         self.d.end_paragraph()
         self.d.end_cell()
 
@@ -271,16 +277,16 @@ class IndivSummary:
         self.d.start_row()
         self.d.start_cell("NormalCell")
         self.d.start_paragraph("Normal")
-        self.d.write_text("Gender:")
+        self.d.write_text("%s:" % _("Gender"))
         self.d.end_paragraph()
         self.d.end_cell()
 
         self.d.start_cell("NormalCell")
         self.d.start_paragraph("Normal")
         if self.person.getGender() == RelLib.Person.male:
-            self.d.write_text("Male")
+            self.d.write_text(_("Male"))
         else:
-            self.d.write_text("Female")
+            self.d.write_text(_("Female"))
         self.d.end_paragraph()
         self.d.end_cell()
         self.d.end_row()
@@ -296,7 +302,7 @@ class IndivSummary:
         self.d.start_row()
         self.d.start_cell("NormalCell")
         self.d.start_paragraph("Normal")
-        self.d.write_text("Father:")
+        self.d.write_text("%s:" % _("Father"))
         self.d.end_paragraph()
         self.d.end_cell()
 
@@ -310,7 +316,7 @@ class IndivSummary:
         self.d.start_row()
         self.d.start_cell("NormalCell")
         self.d.start_paragraph("Normal")
-        self.d.write_text("Mother:")
+        self.d.write_text("%s:" % _("Mother"))
         self.d.end_paragraph()
         self.d.end_cell()
 
@@ -329,7 +335,7 @@ class IndivSummary:
         self.d.start_row()
         self.d.start_cell("TableHead",2)
         self.d.start_paragraph("TableTitle")
-        self.d.write_text("Individual Facts")
+        self.d.write_text(_("Individual Facts"))
         self.d.end_paragraph()
         self.d.end_cell()
         self.d.end_row()
@@ -367,6 +373,8 @@ def report(database,person):
     label = topDialog.get_widget("labelTitle")
     
     label.set_text("Individual Summary for " + name)
+    if no_pdf:
+        topDialog.get_widget("pdf").set_sensitive(0)
 
     PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
     PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
@@ -406,6 +414,8 @@ def on_save_clicked(obj):
     if topDialog.get_widget("html").get_active():
         template = topDialog.get_widget("htmlfile").get_text()
         doc = HtmlDoc(template)
+    elif topDialog.get_widget("pdf").get_active():
+        doc = PdfDoc(paper,orien)
     else:
         doc = OpenOfficeDoc(paper,orien)
 
@@ -422,9 +432,10 @@ def on_save_clicked(obj):
 #
 #------------------------------------------------------------------------
 def get_description():
-    return _("Creates a family group report, showing information on ") +\
-           _("a set of parents and their children.")
+    return _("Creates a family group report, showing information on a set of parents and their children.")
 
+def get_name():
+    return _("Generate files/Individual Summary")
 
 
 

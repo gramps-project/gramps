@@ -26,6 +26,9 @@ import re
 import sort
 import string
 import utils
+import intl
+
+_ = intl.gettext
 
 from gtk import *
 from gnome.ui import *
@@ -238,10 +241,11 @@ def dump_index(person_list,file):
 #
 #------------------------------------------------------------------------
 def get_description():
-    return "Generates relationship graphs, currently only in GraphVis " \
-           "format.  GraphViz (dot) will transform the graph into "\
-           "postscript, jpeg, png, vrml, svg, and many other formats. "\
-           "GraphViz is a research project from former AT&T Research Labs. "\
-           "For more information or to get a copy of GraphViz, goto "\
-           "http://www.graphviz.org"
-    
+    return _("Generates relationship graphs, currently only in GraphVis format.") + \
+           " " + \
+           _("GraphViz (dot) will transform the graph into postscript, jpeg, png, vrml, svg, and many other formats.") + \
+           " " + \
+           _("For more information or to get a copy of GraphViz, goto http://www.graphviz.org")
+
+def get_name():
+    return _("Generate files/Relationship graph")

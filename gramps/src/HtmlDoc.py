@@ -87,20 +87,22 @@ class HtmlDoc(TextDoc):
                         self.bottom.append(line)
                 templateFile.close()
                 if top_add == 1:
-                    mymsg = "Did not file '<!-- START -->' marker in the template"
+                    mymsg = _("The marker '<!-- START -->' was not in the template")
                     gnome.ui.GnomeErrorDialog(mymsg)
             except IOError,msg:
                 import gnome.ui
 
-                mymsg = "Could not open the template file\n" + str(msg) + "\n" +\
-                        "Using default template"
+                mymsg = _("Could not open %s\nUsing the default template") % \
+                        self.template
+                mymsg = "%s\n%s" % (mymsg,msg)
                 gnome.ui.GnomeWarningDialog(mymsg)
                 self.bottom = _bottom
                 self.top = _top
             except:
                 import gnome.ui
 
-                mymsg = "Could not open the template file\n" + "Using default template"
+                mymsg = _("Could not open %s\nUsing the default template") % \
+                        self.template
                 gnome.ui.GnomeWarningDialog(mymsg)
                 self.bottom = _bottom
                 self.top = _top
@@ -196,7 +198,7 @@ class HtmlDoc(TextDoc):
 
     def start_cell(self,style_name,span=1):
         self.empty = 1
-        self.f.write('<td')
+        self.f.write('<td valign="top"')
         if span > 1:
             self.f.write(' colspan="' + str(span) + '"')
         else:
@@ -223,6 +225,6 @@ class HtmlDoc(TextDoc):
     def write_text(self,text):
         if text != "":
             self.empty = 0
-        text = string.replace(text,'\n','<br>>')
+        text = string.replace(text,'\n','<br>')
 	self.f.write(text)
 

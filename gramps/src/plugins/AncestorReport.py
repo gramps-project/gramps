@@ -36,6 +36,12 @@ from OpenOfficeDoc import *
 from HtmlDoc import *
 from AbiWordDoc import *
 
+try:
+    from PdfDoc import *
+    no_pdf = 0
+except:
+    no_pdf = 1
+
 from gtk import *
 from gnome.ui import *
 from libglade import *
@@ -129,7 +135,7 @@ class AncestorReport:
         try:
             self.doc.open(output)
         except IOError,msg:
-            GnomeErrorDialog(_("Could not open %s\n%s"),msg)
+            GnomeErrorDialog(_("Could not open %s") % output + "\n" + msg)
         
     #--------------------------------------------------------------------
     #
@@ -320,6 +326,9 @@ def report(database,person):
     PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
     PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
 
+    if no_pdf:
+        topDialog.get_widget("pdf").set_sensitive(0)
+        
     topDialog.get_widget("labelTitle").set_text("Ahnentafel Report for " + name)
     topDialog.signal_autoconnect({
         "destroy_passed_object" : utils.destroy_passed_object,
@@ -368,6 +377,8 @@ def on_save_clicked(obj):
         document = OpenOfficeDoc(paper,orien)
     elif topDialog.get_widget("abiword").get_active():
         document = AbiWordDoc(paper,orien)
+    elif topDialog.get_widget("pdf").get_active():
+        document = PdfDoc(paper,orien)
     else:
         document = HtmlDoc(template)
 

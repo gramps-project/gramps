@@ -101,10 +101,10 @@ def loadData(database, filename, callback):
         else:
             xml_file = EncodedFile(gzip.open(filename,"rb"),'utf-8','latin-1')
     except IOError,msg:
-        GnomeErrorDialog(filename + _(" could not be opened\n") + str(msg))
+        GnomeErrorDialog(_("%s could not be opened\n") % filename + str(msg))
         return 0
     except:
-        GnomeErrorDialog(filename + _(" could not be opened\n"))
+        GnomeErrorDialog(_("%s could not be opened\n") % filename)
         return 0
         
     try:
@@ -113,14 +113,13 @@ def loadData(database, filename, callback):
         else:
             parser.parse(xml_file)
     except xml.sax.SAXParseException:
-        GnomeErrorDialog(filename + _(" is a corrupt file"))
+        GnomeErrorDialog(_("%s is a corrupt file") % filename)
         return 0
     except IOError,msg:
-        GnomeErrorDialog(filename + _(" is not a valid gramps file\n") + \
-                         str(msg))
+        GnomeErrorDialog(_("Error reading %s") % filename + "\n" + str(msg))
         return 0
     except:
-        GnomeErrorDialog(_("Could not read ") + filename)
+        GnomeErrorDialog(_("Error reading %s") % filename)
         return 0
 
 

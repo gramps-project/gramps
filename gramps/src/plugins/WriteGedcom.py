@@ -590,30 +590,30 @@ def writeData(database,person):
 
     filter_obj = topDialog.get_widget("filter")
     myMenu = GtkMenu()
-    menuitem = GtkMenuItem("Entire Database")
+    menuitem = GtkMenuItem(_("Entire Database"))
     myMenu.append(menuitem)
     menuitem.set_data("filter",entire_database)
     menuitem.show()
-    menuitem = GtkMenuItem("Ancestors of " + \
-                           active_person.getPrimaryName().getRegularName())
+    name = active_person.getPrimaryName().getRegularName()
+    menuitem = GtkMenuItem(_("Ancestors of %s") % name)
     myMenu.append(menuitem)
     menuitem.set_data("filter",active_person_ancestors)
     menuitem.show()
-    menuitem = GtkMenuItem("Descendants of " + \
-                           active_person.getPrimaryName().getRegularName())
+    menuitem = GtkMenuItem(_("Descendants of %s") % name)
     myMenu.append(menuitem)
     menuitem.set_data("filter",active_person_descendants)
     menuitem.show()
-    menuitem = GtkMenuItem("Ancestors and Descendants of " + \
-                           active_person.getPrimaryName().getRegularName())
+    menuitem = GtkMenuItem(_("Ancestors and Descendants of %s") % name)
     myMenu.append(menuitem)
     menuitem.set_data("filter",active_person_ancestors_and_descendants)
     menuitem.show()
-    menuitem = GtkMenuItem("People somehow connected to " + \
-                           active_person.getPrimaryName().getRegularName())
+    menuitem = GtkMenuItem(_("People somehow connected to %s") % name)
     myMenu.append(menuitem)
     menuitem.set_data("filter",interconnected)
     menuitem.show()
     filter_obj.set_menu(myMenu)
 
     topDialog.get_widget("gedcomExport").show()
+
+def get_name():
+    return _("Export to GEDCOM")

@@ -734,12 +734,7 @@ def on_event_add_clicked(obj):
     desc = edit_person_obj.event_descr_field.get_text()
 
     event = Event()
-    try:
-        event.set(name,date,place,desc)
-    except Date.BadFormat,msg:
-        msg1 = _(" is not a valid date format, and has been\n")
-        msg2 = _("ignored as the date of the event.")
-        GnomeWarningDialog(str(msg) + msg1)
+    event.set(name,date,place,desc)
 	
     if name not in const.personalEvents:
         const.personalEvents.append(name)

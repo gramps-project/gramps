@@ -24,6 +24,9 @@ import os
 import re
 import sort
 import string
+import intl
+
+_ = intl.gettext
 
 import RelLib
 import const
@@ -33,6 +36,12 @@ from TextDoc import *
 from OpenOfficeDoc import *
 from AbiWordDoc import *
 from HtmlDoc import *
+try:
+    import reportlab.platypus.tables
+    from PdfDoc import *
+    no_pdf = 0
+except:
+    no_pdf = 1
 
 from gtk import *
 from gnome.ui import *
@@ -96,8 +105,9 @@ class DescendantReport:
     #--------------------------------------------------------------------
     def report(self):
         self.doc.start_paragraph("Title")
-        self.doc.write_text('Descendants of ')
-        self.doc.write_text(self.person.getPrimaryName().getRegularName())
+        name = self.person.getPrimaryName().getRegularName()
+        self.doc.write_text(_("Descendants of %s") % name)
+        self.doc.write_text()
         self.doc.end_paragraph()
         self.dump(1,self.person)
 
@@ -151,6 +161,10 @@ class DesReportWindow:
         PaperMenu.make_orientation_menu(self.top.get_widget("orientation"))
         
         mytop = self.top.get_widget("dialog1")
+
+        if no_pdf:
+            self.top.get_widget("pdf").set_sensitive(0)
+
         mytop.set_data("o",self)
         mytop.set_data("d",db)
         mytop.show()
@@ -187,7 +201,7 @@ def on_save_clicked(obj):
     elif myobj.top.get_widget("abiword").get_active():
         document = AbiWordDoc(paper,orien)
     else:
-        return
+        document = PdfDoc(paper,orien)
 
     report = DescendantReport(file,myobj.person,db,document)
     report.setup()
@@ -218,8 +232,11 @@ def on_html_toggled(obj):
 #
 #------------------------------------------------------------------------
 def get_description():
-    return "Generates a list of descendants of the active person"
-    
+    return _("Generates a list of descendants of the active person")
+
+def get_name():
+    return _("Generate files/Descendant Report")
+
 #------------------------------------------------------------------------
 #
 # 

@@ -640,26 +640,19 @@ def read_file(filename):
     if base == const.indexFile:
         filename = os.path.dirname(filename)
     elif not os.path.isdir(filename):
-        displayError(filename + _(" is not a directory"))
+        displayError(_("%s is not a directory") % filename)
         return
 
-    statusbar.set_status(_("Loading ") +\
-                         filename + "...")
+    statusbar.set_status(_("Loading %s ...") % filename)
 
-    if load_database(filename) == 1:
-        topWindow.set_title("Gramps - " + filename)
-    else:
-        statusbar.set_status("")
-        Config.save_last_file("")
-
-#    try:
-#        if load_database(filename) == 1:
-#            topWindow.set_title("Gramps - " + filename)
-#        else:
-#            statusbar.set_status("")
-#            Config.save_last_file("")
-#    except:
-#        displayError(_("Failure reading ") + filename)
+    try:
+        if load_database(filename) == 1:
+            topWindow.set_title("%s - %s" % (_("Gramps"),filename))
+        else:
+            statusbar.set_status("")
+            Config.save_last_file("")
+    except:
+        displayError(_("Failure reading %s") % filename)
 
     statusbar.set_progress(0.0)
 
@@ -683,31 +676,27 @@ def on_ok_button2_clicked(obj):
 #-------------------------------------------------------------------------
 def save_file(filename):        
     import WriteXML
+
+    filename = os.path.normpath(filename)
     
     if sbar_active:
-        statusbar.set_status(_("Saving ") \
-                             + filename + "...")
+        statusbar.set_status(_("Saving %s ...") % filename)
 
     if os.path.exists(filename):
         if os.path.isdir(filename) == 0:
-            displayError(filename + _(" is not a directory"))
+            displayError(_("%s is not a directory") % filename)
             return
     else:
         try:
             os.mkdir(filename)
         except IOError, msg:
-            GnomeErrorDialog(_("Could not create ") + \
-                             os.path.normpath(filename) +\
-                             "\n" + str(msg))
+            GnomeErrorDialog(_("Could not create %s") % filename + "\n" + str(msg))
             return
         except OSError, msg:
-            GnomeErrorDialog(_("Could not create ") + \
-                             os.path.normpath(filename) +\
-                             "\n" + str(msg))
+            GnomeErrorDialog(_("Could not create %s") % filename + "\n" + str(msg))
             return
         except:
-            GnomeErrorDialog(_("Could not create ") + \
-                             os.path.normpath(filename))
+            GnomeErrorDialog(_("Could not create %s") % filename)
             return
         
     old_file = filename
@@ -1906,8 +1895,8 @@ def on_edit_bookmarks_activate(obj):
 def on_default_person_activate(obj):
     if active_person:
         name = active_person.getPrimaryName().getRegularName()
-        topWindow.question(_("Do you wish to set ") + name + \
-                           _(" as the home person?"), set_person)
+        topWindow.question(_("Do you wish to set %s as the home person") % name, \
+                           set_person)
 
 #-------------------------------------------------------------------------
 #

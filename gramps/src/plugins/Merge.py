@@ -24,6 +24,8 @@ import RelLib
 import utils
 import soundex
 import Check
+import intl
+_ = intl.gettext
 
 import string
 import os
@@ -537,8 +539,9 @@ class Merge:
         else:
             mother2 = ""
 
-        label1 = "First Person (" + str(person1.getId()) + ")"
-        label2 = "Second Person (" + str(person2.getId()) + ")"
+        label1 = "%s (%s)" % (_("First Person"),str(person1.getId()))
+        label2 = "%s (%s)" % (_("Second Person"),str(person2.getId()))
+        
         self.topDialog.get_widget("PersonFrame1").set_label(label1)
         self.topDialog.get_widget("PersonFrame2").set_label(label2)
         self.topDialog.get_widget("name1_text").set_text(name1)
@@ -933,8 +936,10 @@ def runTool(database,active_person,callback):
 #
 #-------------------------------------------------------------------------
 def get_description():
-    return "Searches the entire database, looking for individual "\
-           "entries that may represent the same person"
+    return _("Searches the entire database, looking for individual entries that may represent the same person")
+
+def get_name():
+    return _("Database Processing/Merge people")
 
 #-------------------------------------------------------------------------
 #

@@ -27,10 +27,19 @@ import re
 import sort
 import string
 import utils
+import intl
+
+_ = intl.gettext
 
 from TextDoc import *
 from OpenOfficeDoc import *
 from HtmlDoc import *
+try:
+    import reportlab.platypus.tables
+    from PdfDoc import *
+    no_pdf = 0
+except:
+    no_pdf = 1
 
 from gtk import *
 from gnome.ui import *
@@ -157,7 +166,7 @@ class FamilyGroup:
     def setup(self):
         self.doc.open(self.output)
         self.doc.start_paragraph('Title')
-        self.doc.write_text("Family Group Record")
+        self.doc.write_text(_("Family Group Record"))
         self.doc.end_paragraph()
     
     def end(self):
@@ -186,7 +195,7 @@ class FamilyGroup:
         self.doc.start_row()
         self.doc.start_cell("TextContents")
         self.doc.start_paragraph('Normal')
-        self.doc.write_text("Birth")
+        self.doc.write_text(_("Birth"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.start_cell("TextContents")
@@ -204,7 +213,7 @@ class FamilyGroup:
         self.doc.start_row()
         self.doc.start_cell("TextContents")
         self.doc.start_paragraph('Normal')
-        self.doc.write_text("Death")
+        self.doc.write_text(_("Death"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.start_cell("TextContents")
@@ -232,7 +241,7 @@ class FamilyGroup:
         self.doc.start_row()
         self.doc.start_cell("TextContents")
         self.doc.start_paragraph('Normal')
-        self.doc.write_text("Father")
+        self.doc.write_text(_("Father"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.start_cell("TextContentsEnd",2)
@@ -245,7 +254,7 @@ class FamilyGroup:
         self.doc.start_row()
         self.doc.start_cell("TextContents")
         self.doc.start_paragraph('Normal')
-        self.doc.write_text("Mother")
+        self.doc.write_text(_("Mother"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.start_cell("TextContentsEnd",2)
@@ -258,6 +267,12 @@ class FamilyGroup:
         self.doc.end_table()
 
     def dump_child_event(self,text,name,event):
+        if event:
+            date = event.getDate()
+            place = event.getPlace()
+        else:
+            date = ""
+            place = ""
         self.doc.start_row()
         self.doc.start_cell(text)
         self.doc.start_paragraph('Normal')
@@ -270,12 +285,12 @@ class FamilyGroup:
         self.doc.end_cell()
         self.doc.start_cell('TextContents')
         self.doc.start_paragraph('Normal')
-        self.doc.write_text(event.getDate())
+        self.doc.write_text(date)
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.start_cell('TextContentsEnd')
         self.doc.start_paragraph('Normal')
-        self.doc.write_text(event.getPlace())
+        self.doc.write_text(place)
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
@@ -307,6 +322,7 @@ class FamilyGroup:
             
         index = 1
         for family in person.getFamilyList():
+            m = family.getMarriage()
             if person == family.getFather():
                 spouse =family.getMother()
             else:
@@ -318,7 +334,7 @@ class FamilyGroup:
             self.doc.end_cell()
             self.doc.start_cell('TextContents')
             self.doc.start_paragraph('Normal')
-            self.doc.write_text("Spouse")
+            self.doc.write_text(_("Spouse"))
             self.doc.end_paragraph()
             self.doc.end_cell()
             self.doc.start_cell('TextContentsEnd',2)
@@ -328,11 +344,10 @@ class FamilyGroup:
             self.doc.end_cell()
             self.doc.end_row()
 
-            m = family.getMarriage()
             if index == families:
-                self.dump_child_event('TextChild2','Married',m)
+                self.dump_child_event('TextChild2',_("Married"),m)
             else:
-                self.dump_child_event('TextChild1','Death',m)
+                self.dump_child_event('TextChild1',_("Married"),m)
             
     #--------------------------------------------------------------------
     #
@@ -353,7 +368,7 @@ class FamilyGroup:
             self.doc.start_row()
             self.doc.start_cell('ParentHead',4)
             self.doc.start_paragraph('ParentName')
-            self.doc.write_text('Children')
+            self.doc.write_text(_("Children"))
             self.doc.end_paragraph()
             self.doc.end_cell()
             self.doc.end_row()
@@ -388,7 +403,10 @@ def report(database,person):
     family_list = person.getFamilyList()
     label = topDialog.get_widget("labelTitle")
     
-    label.set_text("Family Group chart for " + name)
+    if no_pdf == 1:
+        topDialog.get_widget("pdf").set_sensitive(0)
+    
+    label.set_text(_("Family Group chart for %s") % name)
     topDialog.signal_autoconnect({
         "destroy_passed_object" : utils.destroy_passed_object,
         "on_save_clicked" : on_save_clicked,
@@ -400,7 +418,7 @@ def report(database,person):
 
     frame = topDialog.get_widget("spouse")
     option_menu = topDialog.get_widget("spouse_menu")
-    
+
     if len(family_list) > 1:
         frame.show()
     else:
@@ -449,8 +467,10 @@ def on_save_clicked(obj):
     if topDialog.get_widget("html").get_active():
         template = topDialog.get_widget("htmlfile").get_text()
         doc = HtmlDoc(template)
-    else:
+    elif topDialog.get_widget("openoffice").get_active():
         doc = OpenOfficeDoc(paper,orien)
+    else:
+        doc = PdfDoc(paper,orien)
 
     MyReport = FamilyGroup(db,family,outputName,doc)
 
@@ -465,9 +485,10 @@ def on_save_clicked(obj):
 #
 #------------------------------------------------------------------------
 def get_description():
-    return "Creates a family group report, showing information on "\
-           "a set of parents and their children."
+    return _("Creates a family group report, showing information on a set of parents and their children.")
 
+def get_name():
+    return _("Generate files/Family Group Report")
 
 
 

@@ -28,6 +28,9 @@ from libglade import *
 
 import RelLib
 import sort
+import intl
+
+_ = intl.gettext
 
 topDialog = None
 other_person = None
@@ -257,6 +260,7 @@ def runTool(database,person,callback):
 #
 #-------------------------------------------------------------------------
 def get_description():
-    return "Calculates the relationship between two people"
+    return _("Calculates the relationship between two people")
     
-
+def get_name():
+    return _("Utilities/Relationship calculator")

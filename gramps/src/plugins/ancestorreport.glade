@@ -227,6 +227,21 @@
 	  </widget>
 
 	  <widget>
+	    <class>GtkRadioButton</class>
+	    <name>pdf</name>
+	    <can_focus>True</can_focus>
+	    <label>PDF</label>
+	    <active>False</active>
+	    <draw_indicator>True</draw_indicator>
+	    <group>format</group>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+	  </widget>
+
+	  <widget>
 	    <class>GtkHBox</class>
 	    <name>hbox5</name>
 	    <homogeneous>False</homogeneous>

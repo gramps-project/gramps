@@ -22,6 +22,8 @@
 
 import os
 import re
+import intl
+_ = intl.gettext
 
 from gnome.ui import *
 
@@ -62,15 +64,14 @@ def runTool(database,active_person,callback):
             nick_count = nick_count + 1
 
     if nick_count == 1:
-        msg = "1 nickname was extracted\n"
+        msg = _("1 nickname was extracted")
     else:
-        msg = "%d nicknames were extracted\n" % nick_count
+        msg = _("%d nicknames were extracted\n") % nick_count
 
     if title_count == 1:
-        msg = msg + "1 title was extracted"
+        msg = msg + "\n" + _("1 title was extracted")
     else:
-        msg = msg + "%d titles were extracted" % title_count
-
+        msg = msg + "\n" + _("%d titles were extracted") % title_count
 
     if nick_count > 0 or title_count > 0:
         utils.modified()
@@ -85,9 +86,10 @@ def runTool(database,active_person,callback):
 #
 #-------------------------------------------------------------------------
 def get_description():
-    return "Searches the entire database and attempts to extract titles "\
-           "and nicknames that may be embedded in a person's given name field."
+    return _("Searches the entire database and attempts to extract titles and nicknames that may be embedded in a person's given name field.")
 
+def get_name():
+    return _("Database Processing/Extract information from names")
 
 
 
