@@ -649,7 +649,10 @@ def write_book_item(database,person,doc,options,newpage=0):
         max_gen = int(options[1])
         disp_format = options[2]
         compress = int(options[3])
-        title = options[4]
+        if options[4] is not None:
+            title = options[4]
+        else:
+            title = ""
         return AncestorChart(database, person, max_gen,
                                    disp_format, doc, None, 
                                    1, compress, title, newpage )
