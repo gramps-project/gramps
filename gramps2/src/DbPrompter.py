@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+import time
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -51,6 +52,7 @@ import GrampsBSDDB
 import GrampsXMLDB
 import GrampsGEDDB
 import GrampsGconfKeys
+import RecentFiles
 
 #-------------------------------------------------------------------------
 #
@@ -178,6 +180,7 @@ class ExistingDbPrompter:
             (the_path,the_file) = os.path.split(filename)
             GrampsGconfKeys.save_last_import_dir(the_path)
 
+            ret = False
             if filetype == const.app_gramps:
                 choose.destroy()
                 self.parent.db = GrampsBSDDB.GrampsBSDDB()
@@ -185,16 +188,28 @@ class ExistingDbPrompter:
                 msg_top = msgxml.get_widget('load_message')
                 self.parent.read_file(filename)
                 msg_top.destroy()
-                return True
+                ret = True
             elif filetype == const.app_gramps_xml:
                 choose.destroy()
                 self.parent.db = GrampsXMLDB.GrampsXMLDB()
                 self.parent.read_file(filename)
-                return True
+                ret = True
             elif filetype == const.app_gedcom:
                 choose.destroy()
                 self.parent.db = GrampsGEDDB.GrampsGEDDB()
                 self.parent.read_file(filename)
+                ret = True
+            
+            if ret:
+                rf = RecentFiles.RecentFiles()
+                item = RecentFiles.RecentItem(
+                            u='file://%s' % filename,
+                            m=filetype,
+                            t=int(time.time()),
+                            p=False,
+                            g=['Gramps'])
+                rf.add(item)
+                rf.save()
                 return True
 
             # The above native formats did not work, so we need to 

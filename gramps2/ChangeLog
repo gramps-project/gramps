@@ -1,3 +1,9 @@
+2004-11-24 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/RecentFiles.py: Add to CVS. Support for recent-files API.
+	* src/Makefile.am: Ship RecentFiles.py.
+	* src/DbPrompter.py: Support for recent-files.
+	* src/ArgHandler.py: Support for recent-files.
+
 2004-11-24  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsDbBase.py: always use external thumbnails
 	* src/GrampsBSDDB.py: always use external thumbnails
