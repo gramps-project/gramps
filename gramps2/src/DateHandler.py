@@ -37,7 +37,6 @@ import locale
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import GrampsGconfKeys
 import DateParser
 import DateDisplay
 
@@ -124,9 +123,14 @@ except:
     parser = DateParser.DateParser()
 
 try:
+    import GrampsGconfKeys
     val = GrampsGconfKeys.get_date_format(_lang_to_display[_lang].formats)
+except:
+    val = 0
+
+try:
     displayer = _lang_to_display[_lang](val)
 except:
     print "Date displayer for",_lang,"not available, using default"
-    displayer = DateDisplay.DateDisplay(3)
+    displayer = DateDisplay.DateDisplay(val)
 
