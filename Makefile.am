@@ -11,14 +11,3 @@ gramps: gramps.sh
 
 dist-hook: gramps.spec
 	cp gramps.spec $(distdir)
-
-# Build/rebuild the catalog
-install-data-hook:
-	$(mkinstalldirs) $(DESTDIR)$(localstatedir)/log
-
-# Remove generated files
-uninstall-local:
-	-rm -rf $(DESTDIR)$(gramps_localstate_dir)
-	-rm -f $(DESTDIR)$(localstatedir)/log/gramps.log
-	-rm -f $(DESTDIR)$(localstatedir)/log/gramps.log.1
-
