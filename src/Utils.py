@@ -419,24 +419,19 @@ def search_for(name):
 #
 #-------------------------------------------------------------------------
 def roman(num):
-    "Simple-and-dirty way to get roman numerals for small numbers."
-
-    romans = {
-        1 : 'I', 2 : 'II', 3 : 'III', 4 : 'IV', 5 : 'V', 
-        6 : 'VI', 7 : 'VII', 8 : 'VIII', 9 : 'IX', 10 : 'X', 
-        11 : 'XI', 12 : 'XII', 13 : 'XIII', 14 : 'XIV', 15 : 'XV', 
-        16 : 'XVI', 17 : 'XVII', 18 : 'XVIII', 19 : 'XIX', 20 : 'XX', 
-        21 : 'XXI', 22 : 'XXII', 23 : 'XXIII', 24 : 'XXIV', 25 : 'XXV', 
-        26 : 'XXVI', 27 : 'XXVII', 28 : 'XXVIII', 29 : 'XXIX', 30 : 'XXX', 
-        31 : 'XXXI', 32 : 'XXXII', 33 : 'XXXIII', 34 : 'XXXIV', 35 : 'XXXV', 
-        36 : 'XXXVI', 37 : 'XXXVII', 38 : 'XXXVIII', 39 : 'XXXIX', 40 : 'XV' 
-    }
-    
-    if isinstance(num,type(1)) and num<=41:
-        rnum = romans[num]
-        return rnum
-    else:
-        return '?'
+    """ Integer to Roman numeral converter for 0 < num < 4000 """
+    if type(num) != type(0):
+        return "?"
+    if not 0 < num < 4000:
+        return "?"
+    vals = (1000, 900, 500, 400, 100,  90,  50,  40,  10,   9,   5,   4,   1)
+    nums = ( 'M','CM', 'D','CD', 'C','XC', 'L','XL', 'X','IX', 'V','IV', 'I')
+    retval = ""
+    for i in range(len(vals)):
+        amount  = int(num / vals[i])
+        retval += nums[i] * amount
+        num    -= vals[i] * amount
+    return retval
 
 #-------------------------------------------------------------------------
 #

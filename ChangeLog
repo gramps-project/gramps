@@ -1,3 +1,6 @@
+2005-01-05 Douglas S. Blank  <dblank@brynmawr.edu>
+	* src/Utils.py (roman): Proper implementation.
+
 2005-01-05  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EditSource.py: Patch to fix the list of References of a 
 	Source, because currently the Source for a Person and Sources 
