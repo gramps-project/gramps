@@ -1029,6 +1029,7 @@ class BookReportDialog(Report.ReportDialog):
 
         self.doc.init()
         for item in self.rptlist:
+            item.begin_report()
             item.write_report()
         self.doc.close()
 
