@@ -283,7 +283,7 @@ class MediaView:
     def on_add_clicked(self,obj):
         """Add a new media object to the media list"""
         import AddMedia
-        am = AddMedia.AddMediaObject(self.db,self.load_media)
+        am = AddMedia.AddMediaObject(self.db,self.build_tree)
         am.run()
 
     def on_edit_clicked(self,obj):
