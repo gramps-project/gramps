@@ -64,12 +64,12 @@ def importData(database, filename, callback):
 
     if sax == 1:
         parser = xml.sax.saxexts.make_parser()
-        parser.setDocumentHandler(GrampsParser(database,callback,basefile,1))
+        parser.setDocumentHandler(GrampsImportParser(database,callback,basefile))
         parser.setErrorHandler(xml.sax.saxutils.ErrorRaiser())
          
     else:
         parser = xml.sax.make_parser()
-        parser.setContentHandler(GrampsParser(database,callback,basefile,1))
+        parser.setContentHandler(GrampsImportParser(database,callback,basefile))
          
     try:
         xml_file = gzip.open(filename,"rb")
@@ -120,11 +120,11 @@ def loadData(database, filename, callback):
 
     if sax == 1:
         parser = xml.sax.saxexts.make_parser()
-        parser.setDocumentHandler(GrampsParser(database,callback,basefile,0))
+        parser.setDocumentHandler(GrampsParser(database,callback,basefile))
         parser.setErrorHandler(xml.sax.saxutils.ErrorRaiser())
     else:
         parser = xml.sax.make_parser()
-        parser.setContentHandler(GrampsParser(database,callback,basefile,0))
+        parser.setContentHandler(GrampsParser(database,callback,basefile))
 
     try:
         xml_file = gzip.open(filename,"rb")
@@ -177,9 +177,6 @@ if __name__ == "__main__":
     profile.run('loadData(db,file,lcb)')
     t2 = time.time()
     print t2 - t1
-
-    for person in db.getPersonMap().values():
-        print person.getPrimaryName().getName()
 
 
 
