@@ -70,7 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f gramps.lang
 %defattr(-, root, root)
 
-%doc AUTHORS COPYING COPYING-DOCS ChangeLog INSTALL NEWS README TODO 
+%doc AUTHORS COPYING COPYING-DOCS ChangeLog FAQ INSTALL NEWS README TODO 
 %doc %{_mandir}/man1/*
 
 %{prefix}/bin/gramps
