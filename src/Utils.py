@@ -590,7 +590,7 @@ def gformat(val):
 def search_for(name):
     for i in os.environ['PATH'].split(':'):
         fname = os.path.join(i,name)
-        if os.access(fname,os.X_OK):
+        if os.access(fname,os.X_OK) and not os.path.isdir(fname):
             return 1
     return 0
                   
