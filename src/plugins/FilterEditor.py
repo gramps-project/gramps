@@ -278,7 +278,7 @@ class FilterEditor:
 
     def add_itself_to_menu(self):
         self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(_("Custom Filter Editor tool"))
+        self.parent_menu_item = gtk.MenuItem(_("Filter Editor tool"))
         self.parent_menu_item.set_submenu(gtk.Menu())
         self.parent_menu_item.show()
         self.parent.winsmenu.append(self.parent_menu_item)
