@@ -477,7 +477,7 @@ def on_choose_parents_clicked(obj):
     family_window = libglade.GladeXML(const.gladeFile,"familyDialog")
     familyDialog = family_window.get_widget("familyDialog")
 	
-    if active_parents == active_person.getMainFamily():
+    if active_parents and active_parents == active_person.getMainFamily():
         family_window.get_widget("mrel").set_text(_("Birth"))
         family_window.get_widget("frel").set_text(_("Birth"))
     else:
@@ -506,7 +506,8 @@ def on_choose_parents_clicked(obj):
 
     text = _("Choose the Parents of %s") % Config.nameof(active_person)
     family_window.get_widget("chooseTitle").set_text(text)
-    prel.set_text(active_parents.getRelationship())
+    if active_parents:
+        prel.set_text(active_parents.getRelationship())
     familyDialog.show()
     
 #-------------------------------------------------------------------------
