@@ -691,10 +691,10 @@ class MediaRef:
         """Returns the privacy level of the data"""
         return self.private
 
-    def set_reference(self,obj):
-        self.ref = obj
+    def set_reference_id(self,obj_id):
+        self.ref = obj_id
 
-    def get_reference(self):
+    def get_reference_id(self):
         return self.ref
 
     def set_note(self,text):
@@ -2258,6 +2258,10 @@ try:    # First try python2.3 and later: this is the future
 except ImportError: # try python2.2
     from bsddb3 import dbshelve, db
 
+
+def find_surname(key,data):
+    return str(data[2].get_surname())
+
 class GrampsDB:
     """GRAMPS database object. This object is a base class for other
     objects."""
@@ -2265,14 +2269,24 @@ class GrampsDB:
     def __init__(self):
         """creates a new GrampsDB"""
 
-        self.person_map = dbshelve.open('person.db', dbname="people", filetype=db.DB_BTREE)
-        self.family_map = dbshelve.open('family.db', dbname="family", filetype=db.DB_BTREE)
-        self.place_map  = dbshelve.open('place.db',  dbname="places", filetype=db.DB_BTREE)
-        self.source_map = dbshelve.open('source.db', dbname="sources",filetype=db.DB_BTREE)
-        self.media_map  = dbshelve.open('media.db',  dbname="media",  filetype=db.DB_BTREE)
-        self.event_map  = dbshelve.open('event.db',  dbname="events", filetype=db.DB_BTREE)
+        self.env = db.DBEnv()
+        flags = db.DB_CREATE|db.DB_INIT_MPOOL
+        
+        self.env.open(".", flags)
+        
+        self.person_map = dbshelve.open('person.db', dbname="person", dbenv=self.env)
+        self.family_map = dbshelve.open('person.db', dbname="family", dbenv=self.env)
+        self.place_map  = dbshelve.open('person.db', dbname="places", dbenv=self.env)
+        self.source_map = dbshelve.open('person.db', dbname="sources",dbenv=self.env)
+        self.media_map  = dbshelve.open('person.db', dbname="media",  dbenv=self.env)
+        self.event_map  = dbshelve.open('person.db', dbname="events", dbenv=self.env)
 
-        self.surnames = []
+        self.surnames = db.DB(self.env)
+        self.surnames.set_flags(db.DB_DUP)
+        self.surnames.open("person.db", "surnames", db.DB_HASH, flags=db.DB_CREATE)
+
+        self.person_map.associate(self.surnames, find_surname, db.DB_CREATE)
+
         self.iprefix = "I%04d"
         self.sprefix = "S%04d"
         self.oprefix = "O%04d"
@@ -2283,6 +2297,15 @@ class GrampsDB:
         self.added_files = []
         self.genderStats = GenderStats ()
 
+    def close(self):
+        self.person_map.close()
+        self.family_map.close()
+        self.place_map.close()
+        self.source_map.close()
+        self.media_map.close()
+        self.event_map.close()
+        self.surnames.close()
+
     def get_added_media_objects(self):
         return self.added_files
 
@@ -2292,9 +2315,6 @@ class GrampsDB:
     def get_type(self):
         return 'GrampsDB'
 
-    def close(self):
-        pass
-    
     def get_base(self):
         return ""
 
@@ -2431,7 +2451,6 @@ class GrampsDB:
     def new(self):
         """initializes the GrampsDB to empty values"""
 
-        self.surnames = []
         self.smap_index = 0
         self.emap_index = 0
         self.pmap_index = 0
@@ -2448,15 +2467,17 @@ class GrampsDB:
     #EARNEY, may eventually be able to use secondary indexes for this
     #that way we will not have to track these with code.
     def get_surnames(self):
-        return self.surnames
+        return []
+#        return self.surnames.keys()
 
     #this function may eventually become obsolete.. if we use
     #secondary indexes.
     def add_surname(self,name):
-        if name and name not in self.surnames:
-            self.surnames.append(name)
-            self.surnames.sort()
-    
+        pass
+#         if name and name not in self.surnames:
+#             self.surnames.append(name)
+#             self.surnames.sort()
+
     def get_bookmarks(self):
         """returns the list of Person instances in the bookmarks"""
         return self.bookmarks
@@ -2820,12 +2841,11 @@ class GrampsDB:
         """finds an Object in the database from the passed gramps' ID.
         If no such Source exists, a new Source is added to the database."""
 
-        val = str(idVal)
         object = MediaObject()
-        if self.media_map.get(str(val)):
-            object.unserialize(self.media_map.get(str(val)))
+        if self.media_map.get(str(idVal)):
+            object.unserialize(self.media_map.get(str(idVal)))
         else:
-            self.add_object_no_map(object,val)
+            self.add_object_no_map(object,idVal)
         return object
 
     def add_place(self,place):

@@ -118,35 +118,34 @@ class CheckIntegrity:
         #-------------------------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
-            mobj = ObjectMap[ObjectId]
             for p in self.db.get_family_id_map().values():
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference() == mobj:
+                    if o.get_reference_id() == ObjectId:
                         nl.remove(o) 
                 p.set_media_list(nl)
             for key in self.db.get_person_keys():
                 p = self.db.get_person(key)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference() == mobj:
+                    if o.get_reference_id() == ObjectId:
                         nl.remove(o) 
                 p.set_media_list(nl)
             for key in self.db.get_source_keys():
                 p = self.db.get_source(key)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference() == mobj:
+                    if o.get_reference_id() == ObjectId:
                         nl.remove(o) 
                 p.set_media_list(nl)
             for key in self.db.get_place_id_keys():
                 p = self.db.get_place_id(key)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference() == mobj:
+                    if o.get_reference_id() == ObjectId:
                         nl.remove(o) 
                 p.set_media_list(nl)
-            self.removed_photo.append(ObjectMap[ObjectId])
+            self.removed_photo.append(ObjectId)
             self.db.remove_object(ObjectId) 
             Utils.modified()
     

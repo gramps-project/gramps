@@ -35,6 +35,7 @@ import locale
 #
 #-------------------------------------------------------------------------
 import gtk
+import gnome.vfs
 import grampslib
 
 #-------------------------------------------------------------------------
@@ -427,13 +428,13 @@ def find_icon(mtype):
         return const.icon
 
 def get_mime_type(file):
-    type = grampslib.gnome_vfs_mime_type_from_name(file)
+    type = gnome.vfs.get_mime_type(file)
     if type:
         return type
     return "unknown"
 
 def get_mime_description(type):
-    value = grampslib.gnome_vfs_mime_get_description(type)
+    value = gnome.vfs.mime_get_description(type)
     if value:
         return value
     return ""
