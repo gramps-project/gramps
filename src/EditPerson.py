@@ -1620,14 +1620,16 @@ class EditPerson:
 
         if not self.person.get_handle():
             self.db.add_person(self.person, trans)
+            call_value = 0
         else:
             if not self.person.get_gramps_id():
                 self.person.set_gramps_id(self.db.find_next_person_gramps_id())
+            call_value = 1
             self.db.commit_person(self.person, trans)
         n = self.person.get_primary_name().get_regular_name()
         self.db.transaction_commit(trans,_("Edit Person (%s)") % n)
         if self.callback:
-            self.callback(self,1)
+            self.callback(self,call_value)
         self.close()
 
     def get_place(self,field,makenew=0):

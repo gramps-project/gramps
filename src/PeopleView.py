@@ -121,7 +121,7 @@ class PeopleView:
         #self.sort_model = self.person_model.filter_new()
         self.sort_model = self.person_model
         self.person_tree.set_model(self.sort_model)
-
+        
     def blist(self, store, path, iter, id_list):
         id_list.append(self.sort_model.get_value(iter,PeopleModel.COLUMN_INT_ID))
 
@@ -202,9 +202,6 @@ class PeopleView:
         self.parent.load_person(self.parent.active_person)
 
     def apply_filter(self,current_model=None):
-        self.build_tree()
-        return
-    
         self.person_model.rebuild_data()
         self.parent.status_text(_('Updating display...'))
         keys = self.DataFilter.apply(self.parent.db,
@@ -261,5 +258,33 @@ class PeopleView:
         menu.popup(None,None,None,event.button,event.time)
         
     def redisplay_person_list(self,person):
-        self.build_tree()
+        self.person_model.rebuild_data()
+        self.add_person(person)
+
+    def add_person(self,person):
+        node = person.get_handle()
+        top = person.get_primary_name().get_group_name()
+        if len(self.person_model.sname_sub[top]) == 1:
+            path = self.person_model.on_get_path(top)
+            iter = self.person_model.get_iter(path)
+            self.person_model.row_inserted(path,iter)
+        path = self.person_model.on_get_path(node)
+        iter = self.person_model.get_iter(path)
+        self.person_model.row_inserted(path,iter)
+
+    def delete_person(self,person):
+        node = person.get_handle()
+        top = person.get_primary_name().get_group_name()
+        if len(self.person_model.sname_sub[top]) == 1:
+            path = self.person_model.on_get_path(top)
+            self.person_model.row_deleted(path)
+        path = self.person_model.on_get_path(node)
+        self.person_model.row_deleted(path)
+
+    def update_person_list(self,person):
+        self.delete_person(person)
+        self.person_model.rebuild_data()
+        self.add_person(person)
+        self.parent.change_active_person(person)
+        self.goto_active_person()
         
