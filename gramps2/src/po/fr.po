@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr_new\n"
-"POT-Creation-Date: Fri Jan 23 14:46:54 2004\n"
-"PO-Revision-Date: 2004-01-23 14:50+0100\n"
+"POT-Creation-Date: Mon Jan 26 08:48:33 2004\n"
+"PO-Revision-Date: 2004-01-26 09:02+0100\n"
 "Last-Translator: Laurent Protois <laurent.protois@free.fr>\n"
 "Language-Team: Français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1652,7 +1652,7 @@ msgstr "Impossible de créer un album photos pour: %s"
 msgid "The file has been moved or deleted."
 msgstr "Le fichier a été déplacé ou détruit"
 
-#: Relationship.py:226 plugins/rel_de.py:345
+#: Relationship.py:258 plugins/rel_de.py:345
 msgid "Relationship loop detected"
 msgstr "Relation en boucle détectée"
 
@@ -2019,7 +2019,7 @@ msgid ""
 "empty."
 msgstr ""
 "Afin de constituer des fichiers GEDCOM valides, les informations suivantes "
-"sont nécessaires. Si vous ne projeter pas de générer de fichier GEDCOMVous "
+"sont nécessaires. Si vous ne prévoyez pas de générer de fichier GEDCOM, Vous "
 "pouvez ne pas remplir."
 
 #: StartupDialog.py:161 edit_person.glade:1271 edit_person.glade:2051
@@ -2254,7 +2254,10 @@ msgstr ""
 
 #: const.py:128
 msgid "TRANSLATORS: Translate this to your name in your native language"
-msgstr "TRADUCTEURS: Traduis ça en ton nom dans ta langue natale"
+msgstr ""
+"TRADUCTEURS:"
+"Michel Guitel        (Documentation)"
+"Laurent Protois    (Logiciel)"
 
 #: const.py:172 const.py:284 gramps.glade:4543 gramps.glade:4736
 #: gramps.glade:5176 gramps.glade:5356 gramps.glade:6979 gramps.glade:7225
@@ -3559,7 +3562,7 @@ msgstr "_Ouvrir une Base Exemple"
 
 #: gramps.glade:681
 msgid "_About"
-msgstr "_Vers"
+msgstr "_A propos"
 
 #: gramps.glade:730
 msgid "Open database"
@@ -4391,7 +4394,7 @@ msgstr "Ad_aptation à la page"
 
 #: plugins/AncestorChart2.py:817 plugins/AncestorChart2.py:828
 msgid "Ancestor Chart (Wall Chart)"
-msgstr "Arbre Généalogique Mural"
+msgstr "Arbre Généalogique (Grand Format)"
 
 #: plugins/AncestorReport.py:84 plugins/AncestorReport.py:242
 msgid "Ahnentafel Report for %s"
@@ -7297,9 +7300,9 @@ msgid ""
 "completed, this cannot be undone without abandoning all changes since the "
 "last database save."
 msgstr ""
-"This tool will rename all events of one type to a different type. Once "
-"completed, this cannot be undone without abandoning all changes since the "
-"last database save."
+"Cet outil changera le type d' évenement sur toute la base. "
+"Aucun retour en arrière ne sera alors possible excepté le retour "
+"à la dernière sauvegarde de la base."
 
 #: plugins/changetype.glade:245
 msgid "_Original event type:"
