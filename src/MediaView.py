@@ -253,7 +253,7 @@ class MediaView:
         object_keys = self.db.get_object_keys()
 
         for src_key in object_keys:
-            src = self.db.get_object(src_key)
+            src = self.db.find_object_from_id(src_key)
             title = src.get_description()
             id = src.get_id()
             type = Utils.get_mime_description(src.get_mime_type())
@@ -307,22 +307,22 @@ class MediaView:
     def is_object_used(self,mobj):
         for p in self.db.get_family_id_map().values():
             for o in p.get_media_list():
-                if o.get_reference() == mobj:
+                if o.get_reference_id() == mobj.get_id():
                     return 1
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)
             for o in p.get_media_list():
-                if o.get_reference() == mobj:
+                if o.get_reference_id() == mobj.get_id():
                     return 1
         for key in self.db.get_source_keys():
             p = self.db.get_source(key)
             for o in p.get_media_list():
-                if o.get_reference() == mobj:
+                if o.get_reference_id() == mobj.get_id():
                     return 1
         for key in self.db.get_place_id_keys():
             p = self.db.get_place_id(key)
             for o in p.get_media_list():
-                if o.get_reference() == mobj:
+                if o.get_reference_id() == mobj.get_id():
                     return 1
         return 0
 

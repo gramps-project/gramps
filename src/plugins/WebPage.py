@@ -312,7 +312,8 @@ class IndividualPage:
         # into the document.
         
         if self.photos and len(media_list) > 0:
-            object = media_list[0].get_reference()
+            object_id = media_list[0].get_reference_id()
+            object = self.database.find_object_from_id(object_id)
             if object.get_mime_type()[0:5] == "image":
                 file = object.get_path()
                 if os.path.isfile(file):
@@ -394,8 +395,9 @@ class IndividualPage:
         
         my_list = []
         index = 0
-        for object in self.person.get_media_list():
-            if object.get_reference().get_mime_type()[0:5] == "image":
+        for object_ref in self.person.get_media_list():
+            object = self.database.find_object_from_id(object_ref.get_ref())
+            if object.get_mime_type()[0:5] == "image":
                 if object.get_privacy() == 0 and index != 0:
                     my_list.append(object)
             index = 1
@@ -413,8 +415,9 @@ class IndividualPage:
         self.doc.end_paragraph()
 
         self.doc.start_table("gallery","IndTable")
-        for obj in my_list:
+        for obj_id in my_list:
             try:
+                obj = self.database.find_object_from_id(obj_id)
                 src = obj.get_reference().get_path()
                 junk,ext = os.path.splitext(src)
                 base = '%s%s' % (obj.get_reference().get_id(),ext)

@@ -504,7 +504,6 @@ class GedcomParser:
                 self.indi_count = self.indi_count + 1
                 id = matches[1]
                 id = id[1:-1]
-                print id
                 self.person = self.find_or_create_person(id)
                 self.added[self.person.get_id()] = self.person
                 self.parse_individual()
@@ -971,7 +970,7 @@ class GedcomParser:
                 photo.set_mime_type(Utils.get_mime_type(path))
                 self.db.add_object(photo)
                 oref = RelLib.MediaRef()
-                oref.set_reference(photo)
+                oref.set_reference_id(photo.get_id())
                 self.person.add_media_reference(oref)
 
     def parse_family_object(self,level):
@@ -1009,7 +1008,7 @@ class GedcomParser:
                 photo.set_mime_type(Utils.get_mime_type(path))
                 self.db.add_object(photo)
                 oref = RelLib.MediaRef()
-                oref.set_reference(photo)
+                oref.set_reference_id(photo.get_id())
                 self.family.add_media_reference(photo)
                 self.db.commit_family(self.family)
 

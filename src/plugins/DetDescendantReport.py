@@ -557,7 +557,8 @@ class DetDescendantReport(Report.Report):
 
         photos = person.get_media_list()
         for photo in photos :
-            object = photo.get_reference()
+            object_id = photo.get_reference_id()
+            object = self.find_object_from_id(object_id)
             if object.get_mime_type()[0:5] == "image":
                 file = object.get_path()
                 self.doc.add_media_object(file,"row",4.0,4.0)

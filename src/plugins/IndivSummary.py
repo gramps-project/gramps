@@ -220,7 +220,8 @@ class IndivSummary(Report.Report):
         self.d.end_paragraph()
 
         if len(media_list) > 0:
-            object = media_list[0].get_reference()
+            object_id = media_list[0].get_reference_id()
+            object = self.database.find_object_from_id(object_id)
             if object.get_mime_type()[0:5] == "image":
                 file = object.get_path()
                 self.d.start_paragraph("IVS-Normal")

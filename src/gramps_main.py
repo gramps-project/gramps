@@ -1084,32 +1084,32 @@ class Gramps:
         #-------------------------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
-            mobj = ObjectMap[ObjectId]
+            mobj = self.db.find_object_from_id(ObjectId)
             for p in self.db.get_family_id_map().values():
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference() == mobj:
+                    if o.get_reference_id() == ObjectId:
                         nl.remove(o) 
                 p.set_media_list(nl)
             for key in self.db.get_person_keys():
                 p = self.db.get_person(key)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference() == mobj:
+                    if o.get_reference_id() == ObjectId:
                         nl.remove(o) 
                 p.set_media_list(nl)
             for key in self.db.get_source_keys():
                 p = self.db.get_source(key)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference() == mobj:
+                    if o.get_reference_id() == ObjectId:
                         nl.remove(o) 
                 p.set_media_list(nl)
             for key in self.db.get_place_id_keys():
                 p = self.db.get_place_id(key)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference() == mobj:
+                    if o.get_reference_id() == ObjectId:
                         nl.remove(o) 
                 p.set_media_list(nl)
             self.db.remove_object(ObjectId) 
@@ -1127,7 +1127,8 @@ class Gramps:
                 name = fs_top.get_filename()
                 if os.path.isfile(name):
                     RelImage.import_media_object(name,filename,base)
-                    ObjectMap[ObjectId].set_path(newfile)
+                    object = self.db.find_object_from_id(ObjectId)
+                    object.set_path(newfile)
                 Utils.destroy_passed_object(fs_top)
 
             fs_top = gtk.FileSelection("%s - GRAMPS" % _("Select file"))
@@ -1138,13 +1139,13 @@ class Gramps:
             fs_top.run()
 
         #-------------------------------------------------------------------------
-        ObjectMap = self.db.get_object_map()
-        for ObjectId in ObjectMap.keys():
-            if ObjectMap[ObjectId].get_local():
-                oldfile = ObjectMap[ObjectId].get_path()
+        for ObjectId in self.db.get_object_keys():
+            object = self.db.find_object_from_id(ObjectId)
+            if object.get_local():
+                oldfile = object.get_path()
                 (base,ext) = os.path.splitext(os.path.basename(oldfile))
                 newfile = os.path.join(filename,os.path.basename(oldfile))
-                ObjectMap[ObjectId].set_path(newfile)
+                object.set_path(newfile)
                 if os.path.isfile(oldfile):
                     RelImage.import_media_object(oldfile,filename,base)
                 else:
