@@ -1049,12 +1049,14 @@ class FamilyView:
             val = self.parent.db.get_person_display(child.get_id())
             i += 1
             
-            event = self.parent.db.find_event_from_id(val[4])
+            event = self.parent.db.find_event_from_id(val[3])
+            print event.serialize()
             if event:
                 dval = event.get_date()
             else:
                 dval = u''
 
+            print i,val[0],val[1],val[2],dval,status,val[3],child.get_id()
             self.child_model.set(iter,0,i,1,val[0],2,val[1],3,val[2],
                                  4,dval,5,status,6,val[6],7,child.get_id())
 

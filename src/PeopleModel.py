@@ -69,11 +69,10 @@ _FAMILY_COL= 9
 #-------------------------------------------------------------------------
 class PeopleModel(gtk.GenericTreeModel):
 
-    def __init__(self,db,filter=None):
+    def __init__(self,db):
         gtk.GenericTreeModel.__init__(self)
 
         self.db = db
-        self.filter = filter
         self.visible = {}
         self.top_visible = {}
         
@@ -297,10 +296,7 @@ class PeopleModel(gtk.GenericTreeModel):
     def on_iter_has_child(self, node):
 	'''returns true if this node has children'''
         if node == None:
-            if len(self.top_iter2path) > 0:
-                return gtk.TRUE
-            else:
-                return gtk.FALSE
+            return len(self.top_iter2path)
         if self.sname_sub.has_key(node) and len(self.sname_sub[node]) > 0:
             return gtk.TRUE
         return gtk.FALSE

@@ -122,10 +122,7 @@ class PeopleView:
 
     def build_tree(self):
         self.person_model = PeopleModel.PeopleModel(self.parent.db)
-        if gtk.pygtk_version >= (2,3,92):
-            self.sort_model = gtk.TreeModelSort(self.person_model).filter_new()
-        else:
-            self.sort_model = gtk.TreeModelSort(self.person_model)
+        self.sort_model = gtk.TreeModelSort(self.person_model).filter_new()
         self.sort_model.set_visible_column(PeopleModel.COLUMN_VIEW)
         self.person_tree.set_model(self.sort_model)
 
@@ -217,8 +214,8 @@ class PeopleView:
         self.parent.load_person(self.parent.active_person)
 
     def apply_filter(self,current_model=None):
+        self.person_model.rebuild_data()
         self.parent.status_text(_('Updating display...'))
-
         keys = self.DataFilter.apply(self.parent.db,
                                      self.parent.db.get_person_keys())
         self.person_model.reset_visible()

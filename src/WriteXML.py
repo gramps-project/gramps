@@ -226,7 +226,7 @@ class XmlWriter:
             self.g.write("  <people")
             person = self.db.get_default_person()
             if person:
-                self.g.write(' default="%s"' % person.get_id())
+                self.g.write(' default="%s"' % person.get_gramps_id())
             self.g.write(">\n")
 
             keys = self.db.get_person_keys()
@@ -521,7 +521,7 @@ class XmlWriter:
 
     def write_id(self,label,person,index=1):
         if person:
-            self.g.write('%s<%s id="%s"' % ("  "*index,label,person.get_id()))
+            self.g.write('%s<%s id="%s"' % ("  "*index,label,person.get_gramps_id()))
             comp = person.get_complete()
             if comp:
                 self.g.write(' complete="1"')
@@ -780,8 +780,8 @@ class XmlWriter:
 #
 #-------------------------------------------------------------------------
 def sortById(first,second):
-    fid = first.get_id()
-    sid = second.get_id()
+    fid = first.get_gramps_id()
+    sid = second.get_gramps_id()
 
     if fid < sid:
         return -1

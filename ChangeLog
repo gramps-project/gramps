@@ -1,3 +1,6 @@
+2004-06-27  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: fix import problem
+
 2004-06-26  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: dropped New Database message. After all, it should
 	be incredibly obvious.
