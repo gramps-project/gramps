@@ -259,7 +259,7 @@ class Gallery(ImageSelect):
                 try:
                     tfile,headers = u.retrieve(d)
                 except IOError, msg:
-                    t = _("Counld not import %s") % d
+                    t = _("Could not import %s") % d
                     
                     GnomeErrorDialog("%s\n%s %d" % (t,msg[0],msg[1]))
                     return
@@ -269,15 +269,20 @@ class Gallery(ImageSelect):
                 photo.setDescription(d)
                 photo.setLocal(1)
                 photo.setPath(tfile)
-                self.savephoto(photo)
+                self.db.addObject(photo)
+                oref = ObjectRef()
+                oref.setReference(photo)
+                self.dataobj.addPhoto(oref)
                 try:
-                    name = RelImage.import_media_object(tfile,self.path,photo.getId())
+                    id = photo.getId()
+                    name = RelImage.import_media_object(tfile,self.path,id)
                     if name != None and name != "":
                         photo.setPath(name)
                 except:
                     photo.setPath(tfile)
                     w.drag_finish(context, TRUE, FALSE, time)
                     return
+                self.add_thumbnail(oref)
                 utils.modified()
             else:
                 if self.db.getObjectMap().has_key(data.data):
