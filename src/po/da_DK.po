@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 0.7.2\n"
 "POT-Creation-Date: Wed May  1 16:53:26 2002\n"
-"PO-Revision-Date: 2002-05-05 10:41+0200\n"
+"PO-Revision-Date: 2002-05-06 12:47+0200\n"
 "Last-Translator: Lars Kristian Lundin <gramps@lklundin.dk>\n"
 "Language-Team:  <dk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -681,7 +681,7 @@ msgstr "Ingen"
 
 #: EditPerson.py:418 EditSource.py:138
 msgid "%(father)s and %(mother)s"
-msgstr "%(father)s and %(mother)s"
+msgstr "%(father)s og %(mother)s"
 
 #: EditPerson.py:739 EditPerson.py:741 EditPerson.py:751 EditPerson.py:753
 #: Marriage.py:351 Marriage.py:354 gramps_main.py:411 gramps_main.py:415
@@ -3943,7 +3943,7 @@ msgstr ""
 
 #: plugins/RelCalc.py:108
 msgid "%(p1)s is the %(level)dth cousin %(removed)d times removed of %(p2)s."
-msgstr "%(p1)s er enten et næst-(%(level)d - 1)-søskendebarns tip-(%(removed)d - 3)-oldebarn af %(p2)s eller også er det omvendt."
+msgstr "%(p1)s er enten tip-(%(removed)d - 3)-oldebarn af et næst-(%(level)d - 1)-søskendebarn til %(p2)s eller også er det omvendt."
 
 #: plugins/RelCalc.py:113
 msgid "%(p1)s is the father of %(p2)s."
