@@ -86,8 +86,8 @@ def runtool(database,person,callback):
 
 register_tool(
     runtool,
-    "Python evaluation window",
-    category="Debug",
-    description="Provides a window that can evaluate python code"
+    _("Python evaluation window"),
+    category=_("Debug"),
+    description=_("Provides a window that can evaluate python code")
     )
         
