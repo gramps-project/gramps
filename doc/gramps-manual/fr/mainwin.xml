@@ -347,11 +347,11 @@
 	son nom. Deux lignes relient la personne à son père (ligne supérieure) et sa 
 	mère (ligne inférieure). Les lignes continues figurent les liens
 	de filiation tandis que les lignes pointillées représentent les autres liens
-	(adoption, beau-père ou belle-mère, toteurs). 
+	(adoption, beau-père ou belle-mère, tuteurs). 
 	Quand le pointeur de la souris passe sur une personne, son rectangle
 	s'agrandit pour afficher ses dates de naissance et de décès. 
 	Quand le pointeur de la souris passe sur une ligne de famille, celle-ci
-	clignote. Double-cliquer sur la ligne met alors le parent correspondant comme
+	est mise en évidence. Double-cliquer sur la ligne met alors le parent correspondant comme
 	personne active. Tout l'affichage change alors en conséquence. </para>
 	
         <!-- ==== Figure: Pedigree View ==== -->
