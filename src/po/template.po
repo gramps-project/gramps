@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: Wed Jul 17 18:55:58 2002\n"
+"POT-Creation-Date: Mon Aug  5 07:44:19 2002\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,13 +75,13 @@ msgstr ""
 msgid "Choose the Parents of %s"
 msgstr ""
 
-#: ChooseParents.py:212 ChooseParents.py:213 gramps_main.py:1460
-#: gramps_main.py:1461
+#: ChooseParents.py:212 ChooseParents.py:213 gramps_main.py:1461
+#: gramps_main.py:1462
 msgid "Parent"
 msgstr ""
 
 #: ChooseParents.py:215 gramps.glade:1900 gramps.glade:5325
-#: gramps_main.py:1464 mergedata.glade:518 mergedata.glade:1180
+#: gramps_main.py:1465 mergedata.glade:518 mergedata.glade:1180
 #: plugins/FamilyGroup.py:198 plugins/IndivComplete.py:198
 #: plugins/IndivComplete.py:200 plugins/IndivComplete.py:411
 #: plugins/IndivSummary.py:283 plugins/WebPage.py:263 plugins/WebPage.py:266
@@ -89,7 +89,7 @@ msgid "Mother"
 msgstr ""
 
 #: ChooseParents.py:216 gramps.glade:1809 gramps.glade:5065
-#: gramps_main.py:1463 mergedata.glade:766 mergedata.glade:1478
+#: gramps_main.py:1464 mergedata.glade:766 mergedata.glade:1478
 #: plugins/FamilyGroup.py:185 plugins/IndivComplete.py:190
 #: plugins/IndivComplete.py:192 plugins/IndivComplete.py:406
 #: plugins/IndivSummary.py:269 plugins/WebPage.py:262 plugins/WebPage.py:265
@@ -252,8 +252,8 @@ msgstr ""
 msgid "AFTER"
 msgstr ""
 
-#: DbPrompter.py:100 gramps_main.py:788 gramps_main.py:1163
-#: gramps_main.py:1175
+#: DbPrompter.py:100 gramps_main.py:788 gramps_main.py:1164
+#: gramps_main.py:1176
 msgid "No Comment Provided"
 msgstr ""
 
@@ -297,7 +297,7 @@ msgstr ""
 #: EditPerson.glade:269 EditPerson.glade:513 EditPerson.glade:2260
 #: EditPerson.glade:2851 EditPerson.glade:5058 EditPerson.glade:5330
 #: EditPerson.glade:5628 GenericFilter.py:274 GenericFilter.py:312
-#: GenericFilter.py:401 GenericFilter.py:433 ImageSelect.py:661
+#: GenericFilter.py:401 GenericFilter.py:433 ImageSelect.py:670
 #: dialog.glade:232 filters/EventPlace.py:70 marriage.glade:375
 #: marriage.glade:934 marriage.glade:1946 preferences.glade:2783
 msgid "Place"
@@ -380,7 +380,7 @@ msgstr ""
 msgid "Select source for this name information"
 msgstr ""
 
-#: EditPerson.glade:1004 ImageSelect.py:654 Utils.py:194 Utils.py:196
+#: EditPerson.glade:1004 ImageSelect.py:663 Utils.py:194 Utils.py:196
 #: places.glade:350 preferences.glade:2809
 msgid "Source"
 msgstr ""
@@ -714,7 +714,7 @@ msgstr ""
 
 #: EditPerson.py:742 EditPerson.py:744 EditPerson.py:754 EditPerson.py:756
 #: Marriage.py:355 Marriage.py:358 gramps_main.py:405 gramps_main.py:409
-#: gramps_main.py:1116
+#: gramps_main.py:1117
 msgid "Abandon Changes"
 msgstr ""
 
@@ -726,19 +726,19 @@ msgstr ""
 msgid "Continue Editing"
 msgstr ""
 
-#: EditPerson.py:1090
+#: EditPerson.py:1085
 msgid "Make the selected name the preferred name"
 msgstr ""
 
-#: EditPerson.py:1151 Marriage.py:378
+#: EditPerson.py:1146 Marriage.py:378
 msgid "GRAMPS ID value was not changed."
 msgstr ""
 
-#: EditPerson.py:1152
+#: EditPerson.py:1147
 msgid "%(grampsid)s is already used by %(person)s"
 msgstr ""
 
-#: EditPerson.py:1255
+#: EditPerson.py:1250
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
@@ -1085,41 +1085,37 @@ msgstr ""
 msgid "No default format"
 msgstr ""
 
-#: ImageSelect.py:133
+#: ImageSelect.py:140
 msgid "That is not a valid file name."
 msgstr ""
 
-#: ImageSelect.py:231
-msgid "Could not import %s - %s"
-msgstr ""
-
-#: ImageSelect.py:284 MediaView.py:293 plugins/ReadGedcom.py:838
-#: plugins/ReadGedcom.py:873 plugins/ReadGedcom.py:908
+#: ImageSelect.py:285 MediaView.py:293 plugins/ReadGedcom.py:864
+#: plugins/ReadGedcom.py:899 plugins/ReadGedcom.py:934
 msgid "Could not import %s"
 msgstr ""
 
-#: ImageSelect.py:384 MediaView.py:122
+#: ImageSelect.py:391 MediaView.py:122
 msgid "View in the default viewer"
 msgstr ""
 
-#: ImageSelect.py:388 MediaView.py:124
+#: ImageSelect.py:395 MediaView.py:124
 msgid "Edit with the GIMP"
 msgstr ""
 
-#: ImageSelect.py:390 MediaView.py:126
+#: ImageSelect.py:397 MediaView.py:126
 msgid "Edit Object Properties"
 msgstr ""
 
-#: ImageSelect.py:393 MediaView.py:129
+#: ImageSelect.py:400 MediaView.py:129
 msgid "Convert to local copy"
 msgstr ""
 
-#: ImageSelect.py:641 gramps.glade:1358 gramps.glade:1424
+#: ImageSelect.py:650 gramps.glade:1358 gramps.glade:1424
 #: plugins/EventCmp.py:286 preferences.glade:2731
 msgid "Person"
 msgstr ""
 
-#: ImageSelect.py:647 gramps.glade:626 gramps.glade:2722
+#: ImageSelect.py:656 gramps.glade:626 gramps.glade:2722
 #: preferences.glade:2757
 msgid "Family"
 msgstr ""
@@ -1181,27 +1177,27 @@ msgstr ""
 msgid "Double clicking will make %s the active person"
 msgstr ""
 
-#: PlaceView.py:126
+#: PlaceView.py:125
 msgid "Exactly two places must be selected to perform a merge"
 msgstr ""
 
-#: PlaceView.py:179
+#: PlaceView.py:178
 msgid "Currently, you can only delete one place at a time"
 msgstr ""
 
-#: PlaceView.py:199 PlaceView.py:201 gramps.glade:3648
+#: PlaceView.py:209 PlaceView.py:211 gramps.glade:3648
 msgid "Delete Place"
 msgstr ""
 
-#: PlaceView.py:200
+#: PlaceView.py:210
 msgid "This place is currently being used. Delete anyway?"
 msgstr ""
 
-#: PlaceView.py:202
+#: PlaceView.py:212
 msgid "Keep Place"
 msgstr ""
 
-#: PlaceView.py:211
+#: PlaceView.py:221
 msgid "You requested too many places to edit at the same time"
 msgstr ""
 
@@ -1231,22 +1227,21 @@ msgstr ""
 
 #: Plugins.py:378 Plugins.py:389 const.py:127 const.py:402 const.py:410
 #: gramps.glade:5294 gramps.glade:5553 gramps.glade:5969 gramps.glade:6034
-#: gramps.glade:7011 gramps.glade:7058 gramps_main.py:1350 gramps_main.py:1553
+#: gramps.glade:7011 gramps.glade:7058 gramps_main.py:1351 gramps_main.py:1554
 msgid "Unknown"
 msgstr ""
 
-#: ReadXML.py:89 ReadXML.py:92 ReadXML.py:145 ReadXML.py:149
+#: ReadXML.py:89 ReadXML.py:92 ReadXML.py:144 ReadXML.py:148
 #: plugins/ReadGedcom.py:131 plugins/ReadGedcom.py:135
 msgid ""
 "%s could not be opened\n"
 msgstr ""
 
-#: ReadXML.py:98 ReadXML.py:103 ReadXML.py:155 ReadXML.py:161 ReadXML.py:189
-#: ReadXML.py:195
+#: ReadXML.py:98 ReadXML.py:154 ReadXML.py:160 ReadXML.py:188
 msgid "Error reading %s"
 msgstr ""
 
-#: ReadXML.py:184
+#: ReadXML.py:183
 msgid "%s (revision %s)"
 msgstr ""
 
@@ -2011,7 +2006,7 @@ msgid ""
 "Using the default template"
 msgstr ""
 
-#: docgen/HtmlDoc.py:395 plugins/eventcmp.glade:195
+#: docgen/HtmlDoc.py:395 docgen/HtmlDrawDoc.py:153 plugins/eventcmp.glade:195
 msgid "HTML"
 msgstr ""
 
@@ -2039,7 +2034,7 @@ msgstr ""
 msgid "PDF"
 msgstr ""
 
-#: docgen/RTFDoc.py:517
+#: docgen/RTFDoc.py:516
 msgid "Rich Text Format (RTF)"
 msgstr ""
 
@@ -2369,8 +2364,8 @@ msgstr ""
 msgid "Exchange active person and displayed spouse"
 msgstr ""
 
-#: gramps.glade:1517 gramps_main.py:1408 gramps_main.py:1433
-#: gramps_main.py:1794
+#: gramps.glade:1517 gramps_main.py:1409 gramps_main.py:1434
+#: gramps_main.py:1795
 msgid "Relationship"
 msgstr ""
 
@@ -2765,75 +2760,75 @@ msgstr ""
 msgid "Currently, you can only delete one person at a time"
 msgstr ""
 
-#: gramps_main.py:1065
+#: gramps_main.py:1066
 msgid "Invalid move. Children must be ordered by birth date."
 msgstr ""
 
-#: gramps_main.py:1113
+#: gramps_main.py:1114
 msgid "Do you wish to abandon your changes and revert to the last saved database?"
 msgstr ""
 
-#: gramps_main.py:1117
+#: gramps_main.py:1118
 msgid "Revert to Last Database"
 msgstr ""
 
-#: gramps_main.py:1118
+#: gramps_main.py:1119
 msgid "Continue with Current Database"
 msgstr ""
 
-#: gramps_main.py:1120
+#: gramps_main.py:1121
 msgid "Cannot revert to a previous database, since one does not exist"
 msgstr ""
 
-#: gramps_main.py:1406 gramps_main.py:1792
+#: gramps_main.py:1407 gramps_main.py:1793
 msgid "Preferred Relationship"
 msgstr ""
 
-#: gramps_main.py:1442
+#: gramps_main.py:1443
 msgid "No Relationship"
 msgstr ""
 
-#: gramps_main.py:1472
+#: gramps_main.py:1473
 msgid "Preferred Parents (%d of %d)"
 msgstr ""
 
-#: gramps_main.py:1474
+#: gramps_main.py:1475
 msgid "Preferred Parents"
 msgstr ""
 
-#: gramps_main.py:1477
+#: gramps_main.py:1478
 msgid "Alternate Parents (%d of %d)"
 msgstr ""
 
-#: gramps_main.py:1480
+#: gramps_main.py:1481
 msgid "No Parents"
 msgstr ""
 
-#: gramps_main.py:1728
+#: gramps_main.py:1729
 msgid "No default/home person has been set"
 msgstr ""
 
-#: gramps_main.py:1734
+#: gramps_main.py:1735
 msgid "%s has been bookmarked"
 msgstr ""
 
-#: gramps_main.py:1737
+#: gramps_main.py:1738
 msgid "Bookmark could not be set because no one was selected"
 msgstr ""
 
-#: gramps_main.py:1749
+#: gramps_main.py:1750
 msgid "Do you wish to set %s as the home person?"
 msgstr ""
 
-#: gramps_main.py:1751
+#: gramps_main.py:1752
 msgid "Set Home Person"
 msgstr ""
 
-#: gramps_main.py:1752
+#: gramps_main.py:1753
 msgid "Set as Home Person"
 msgstr ""
 
-#: gramps_main.py:1753
+#: gramps_main.py:1754
 msgid "Do not change Home Person"
 msgstr ""
 
@@ -3852,15 +3847,15 @@ msgstr ""
 msgid "Searches the entire database and attempts to extract titles and nicknames that may be embedded in a person's given name field."
 msgstr ""
 
-#: plugins/ReadGedcom.py:279 plugins/ReadGedcom.py:290
+#: plugins/ReadGedcom.py:284 plugins/ReadGedcom.py:295
 msgid "Warning: line %d was not understood, so it was ignored."
 msgstr ""
 
-#: plugins/ReadGedcom.py:324
+#: plugins/ReadGedcom.py:329
 msgid "Import Complete: %d seconds"
 msgstr ""
 
-#: plugins/ReadGedcom.py:1633 plugins/ReadGedcom.py:1663
+#: plugins/ReadGedcom.py:1659 plugins/ReadGedcom.py:1689
 msgid "Import from GEDCOM"
 msgstr ""
 
