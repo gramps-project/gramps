@@ -442,7 +442,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_uid(self,tag):
-        self.person.setPafUid(tag)
+        self.person.setPafUid(u2l(tag))
 
     #---------------------------------------------------------------------
     #
@@ -452,9 +452,9 @@ class GrampsParser(handler.ContentHandler):
     def stop_date(self,tag):
         if tag:
             if self.address:
-                self.address.setDate(tag)
+                self.address.setDate(u2l(tag))
             else:
-                self.event.date.quick_set(tag)
+                self.event.date.quick_set(u2l(tag))
 
     #---------------------------------------------------------------------
     #
