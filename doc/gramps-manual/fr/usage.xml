@@ -68,7 +68,7 @@
     <sect2 id="save-db"> 
       <title>Enregistrement d'une base de données</title> 
       <para>Pour enregistrer votre travail dans la base de données, utilisez 
-      le choix <guimenu>Fichier</guimenu>
+      le choix <menuchoice><guimenu>Fichier</guimenu>
       <guimenuitem>Enregistrer</guimenuitem></menuchoice> ou cliquez sur le bouton
       <guibutton>Enregistrer</guibutton> de la barre d'outils. La barre de status
       affichera alors le message <guilabel>Enregistre <replaceable>nom de la 
@@ -468,7 +468,7 @@
 	Cliquez alors sur le bouton <guibutton>Ajouter</guibutton> dans la barre d'outils pour
 	ajouter une image. 
 	Si vous avez déjà ajouté des images dans n'importe quelle Galerie, vous les trouverez
-	listées dans la vue des Médias. 
+	listées dans la vue des Médias. </para>
 
 	<para>Dans toutes les Galeries, vous pouvez utiliser les boutons <guibutton>Afficher...</guibutton> 
 	et <guibutton>Supprimer</guibutton> pour modifier les informations sur les images
@@ -996,7 +996,8 @@
 	la base de données. Si des modificatiàons avaient été faites, 
 	une fenêtre d'avertissement proposera le choix entre fermer
 	sans écrire les données dans la base, annuler la commande de fermeture
-	ou écrire les données dans la base. 
+	ou écrire les données dans la base. </para>
+
 	<para>
 	Les étiquettes des onglets signalent la présence d'information
 	dans l'onglet : une étiquette écrite en caractères gras marque
@@ -1041,7 +1042,7 @@
 	<variablelist>
 		<varlistentry><term><guilabel>Attributs</guilabel></term>
 		<listitem>
-	<para>
+
 	<para>L'onglet <guilabel>Attributs</guilabel> affiche les valeurs
 	des attributs de la relation et permet leur modification. 
 	Un attribut est en fait n'inmporte quelle couple Paramètre-Valeur.
@@ -1397,6 +1398,7 @@
 	des objets de la base de données vers les lieux dans ce dialogue. Il faut
 	ouvrir l'objet citant le lieu (par exemple un évènement de naissance) 
 	puis modifier la référence de lieu. </para>
+		</listitem></varlistentry>
 	</variablelist>
 
       </sect3>
@@ -1603,7 +1605,7 @@
 	modifier et supprimer un témoin pour l'évènement. 
 	Notez que les boutons <guibutton>Afficher...</guibutton> et 
 	<guibutton>Supprimer</guibutton> ne sont disponibles qu'après avoir
-	sélectionné une référence à un témoin dans la liste.
+	sélectionné une référence à un témoin dans la liste.</para>
 
 		</listitem></varlistentry>
 	</variablelist>
@@ -1760,7 +1762,8 @@
 	la base de données. Si des modificatiàons avaient été faites, 
 	une fenêtre d'avertissement proposera le choix entre fermer
 	sans écrire les données dans la base, annuler la commande de fermeture
-	ou écrire les données dans la base. 
+	ou écrire les données dans la base. </para>
+	
 	<para>
 	Les étiquettes des onglets signalent la présence d'information
 	dans l'onglet : une étiquette écrite en caractères gras marque
@@ -1883,7 +1886,7 @@
 	<guibutton>Supprimer</guibutton> ne sont disponibles qu'après avoir
 	sélectionné une source dans la liste.
 	</para>
-
+		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
