@@ -1,3 +1,8 @@
+2003-06-03  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/VersionControl.py
+	Brought revision selection dialog up to date. Was dependant on
+	the old CList.
+
 2003-06-03  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/FtmStyleAncestor.py (print_more_about,print_notes):
 	Change to regular name instead of formal name.
