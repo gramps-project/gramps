@@ -1,3 +1,6 @@
+2003-06-26  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/Makefile.am: Added BookReport.py
+
 2003-06-26  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py: Include notes for principal names.
 	Briefly list children from other marriages.  Make extra table
