@@ -5,615 +5,788 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 0.1.3b2\n"
-"POT-Creation-Date: 2001-05-10 08:06-0600\n"
-"PO-Revision-Date: 2001-05-12 21:19+0200\n"
+"POT-Creation-Date: 2001-05-15 19:39-0600\n"
+"PO-Revision-Date: 2001-05-16 14:45+0200\n"
 "Last-Translator: Bo Rosén <bo.rosen@home.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: template.strings:12
+#: glade.c:807
+msgid " as the home person?"
+msgstr " som proband?"
+
+#: glade.c:780 glade.c:781
+msgid " could not be opened\n"
+msgstr " kunde inte öppnas\n"
+
+#: glade.c:782
+msgid " is a corrupt file"
+msgstr " är en skadad fil"
+
+#: glade.c:794 glade.c:798
+msgid " is not a directory"
+msgstr " är inte en katalog"
+
+#: glade.c:766
+msgid " is not a valid date format, and has been\n"
+msgstr " är inte ett korrekt datumformat, och har\n"
+
+#: glade.c:783
+msgid " is not a valid gramps file\n"
+msgstr " är inte en korrekt grampsfil\n"
+
+#: glade.c:703
+msgid "(and|to)"
+msgstr "(och|till)"
+
+#: glade.c:702
+msgid "(from|between|bet)"
+msgstr "(från|mellan)"
+
+#: glade.c:751 glade.c:757 glade.c:759 glade.c:761 glade.c:763 glade.c:765
+msgid "AFTER"
+msgstr "EFTER"
+
+#: glade.c:12
 msgid "Add"
 msgstr "Lägg till"
 
-#: template.strings:15
+#: glade.c:15
 msgid "Add Bookmark"
 msgstr "Lägg till bokmärke"
 
-#: template.strings:18
+#: glade.c:18
 msgid "Add Child"
 msgstr "Lägg till barn"
 
-#: template.strings:21
+#: glade.c:21
 msgid "Add Existing Child"
 msgstr "Lägg till existerande barn"
 
-#: template.strings:24
+#: glade.c:24
 msgid "Add New Child"
 msgstr "Lägg till nytt barn"
 
-#: template.strings:27
+#: glade.c:27
 msgid "Add Person"
 msgstr "Lägg till person"
 
-#: template.strings:30
+#: glade.c:30
 msgid "Add Photo"
 msgstr "Lägg till foto"
 
-#: template.strings:33
+#: glade.c:33
 msgid "Add a new spouse"
 msgstr "Lägg till nytt gifte"
 
-#: template.strings:36
+#: glade.c:36
 msgid "Address :"
 msgstr "Adress:"
 
-#: template.strings:39
+#: glade.c:39
 msgid "Address : "
 msgstr "Adress: "
 
-#: template.strings:42
+#: glade.c:42
 msgid "Addresses"
 msgstr "Adresser"
 
-#: template.strings:45
+#: glade.c:45
 msgid "Adopted"
 msgstr "Adopterad"
 
-#: template.strings:48
+#: glade.c:48
 msgid "Alternate Names"
 msgstr "Alternativa namn"
 
-#: template.strings:51
+#: glade.c:51
 msgid "Appearance"
 msgstr "Utseende"
 
-#: template.strings:54
+#: glade.c:711
+msgid "April"
+msgstr "april"
+
+#: glade.c:54
 msgid "Attribute"
 msgstr "Egenskap"
 
-#: template.strings:57
+#: glade.c:57
 msgid "Attribute :"
 msgstr "Egenskap:"
 
-#: template.strings:60
+#: glade.c:60
 msgid "Attributes"
 msgstr "Egenskaper"
 
-#: template.strings:63
+#: glade.c:715
+msgid "August"
+msgstr "augusti"
+
+#: glade.c:63
 msgid "Author"
 msgstr "Författare"
 
-#: template.strings:66
+#: glade.c:66
 msgid "Author :"
 msgstr "Författare:"
 
-#: template.strings:69
+#: glade.c:69
 msgid "Author : "
 msgstr "Författare: "
 
-#: template.strings:72
+#: glade.c:72
 msgid "Automatically load last database"
 msgstr "Läs in förra databasen automatiskt"
 
-#: template.strings:75
+#: glade.c:750 glade.c:756 glade.c:758 glade.c:760 glade.c:762 glade.c:764
+msgid "BEFORE"
+msgstr "FÖRE"
+
+#: glade.c:75
 msgid "Biological"
 msgstr "Biologisk"
 
-#: template.strings:78
+#: glade.c:78
 msgid "Birth"
 msgstr "Födelse"
 
-#: template.strings:81
+#: glade.c:81
 msgid "Birth Date"
 msgstr "Födelsedatum"
 
-#: template.strings:84
+#: glade.c:84
 msgid "Birth Date "
 msgstr "Födelsedatum "
 
-#: template.strings:87
+#: glade.c:87
 msgid "Birthdate"
 msgstr "Födelsedatum"
 
-#: template.strings:90
+#: glade.c:90
 msgid "Call Number :"
 msgstr "Referensnummer:"
 
-#: template.strings:93
+#: glade.c:93
 msgid "Call Number : "
 msgstr "Referensnummer: "
 
-#: template.strings:96
+#: glade.c:96
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: template.strings:99
+#: glade.c:804
+msgid "Cannot revert to a previous database, since one does not exist"
+msgstr "Kan inte återgå till tidigare databas eftersom ingen finns"
+
+#: glade.c:99
 msgid "Change Photo Description"
 msgstr "Ändra fotobeskrivning"
 
-#: template.strings:102
+#: glade.c:768
+msgid "Changing the gender caused problems with marriage information."
+msgstr "Ändring av kön skapade problem med äktenskapsinformationen"
+
+#: glade.c:102
 msgid "Children"
 msgstr "Barn"
 
-#: template.strings:105
+#: glade.c:105
 msgid "Choose Parents"
 msgstr "Välj föräldrar"
 
-#: template.strings:108
+#: glade.c:108
 msgid "Choose Spouse"
 msgstr "Välj gifte"
 
-#: template.strings:111
+#: glade.c:111
 msgid "Choose source information"
 msgstr "Välj information om källan"
 
-#: template.strings:114
+#: glade.c:114
 msgid "City :"
 msgstr "Stad:"
 
-#: template.strings:117
+#: glade.c:117
 msgid "City/County : "
 msgstr "Stad/län: "
 
-#: template.strings:120
+#: glade.c:120
 msgid "Comments :"
 msgstr "Kommentarer:"
 
-#: template.strings:123
+#: glade.c:123
 msgid "Complete"
 msgstr "Fullständig"
 
-#: template.strings:126
+#: glade.c:126
 msgid "Contents"
 msgstr "Innehåll"
 
-#: template.strings:129
+#: glade.c:773
+msgid "Convert to private copy"
+msgstr "Översätt till privat kopia"
+
+#: glade.c:799 glade.c:800 glade.c:801
+msgid "Could not create "
+msgstr "Kunde inte skapa "
+
+#: glade.c:784
+msgid "Could not read "
+msgstr "Kunde inte läsa "
+
+#: glade.c:129
 msgid "Country  :"
 msgstr "Land:"
 
-#: template.strings:132
+#: glade.c:132
 msgid "Country :"
 msgstr "Land:"
 
-#: template.strings:135
+#: glade.c:135
 msgid "Creates a new event from the above data"
 msgstr "Skapar ny händelse utifrån ovanstående data"
 
-#: template.strings:138
+#: glade.c:785
+msgid "Currently only JPEG files are supported"
+msgstr "För närvarande stöds bara JPEG-filer"
+
+#: glade.c:138
 msgid "Custom Colors"
 msgstr "Anpassade färger"
 
-#: template.strings:141
+#: glade.c:141
 msgid "Date"
 msgstr "Datum"
 
-#: template.strings:145
+#: glade.c:145
 msgid "Date :"
 msgstr "Datum:"
 
-#: template.strings:148
+#: glade.c:148
 msgid "Date : "
 msgstr "Datum: "
 
-#: template.strings:151
+#: glade.c:151
 msgid "Date Format : "
 msgstr "Datumformat: "
 
-#: template.strings:154
+#: glade.c:154
 msgid "Death"
 msgstr "Död"
 
-#: template.strings:157
+#: glade.c:157
 msgid "Death Date "
 msgstr "Dödsdatum "
 
-#: template.strings:162
+#: glade.c:719
+msgid "December"
+msgstr "december"
+
+#: glade.c:162
 msgid "Delete"
 msgstr "Ta bort"
 
-#: template.strings:165
+#: glade.c:165
 msgid "Delete Person"
 msgstr "Ta bort person"
 
-#: template.strings:168
+#: glade.c:168
 msgid "Delete Photo"
 msgstr "Ta bort foto"
 
-#: template.strings:171
+#: glade.c:171
 msgid "Delete the selected event"
 msgstr "Ta bort den valda händelsen"
 
-#: template.strings:174
+#: glade.c:174
 msgid "Description"
 msgstr "Beskrivning"
 
-#: template.strings:177
+#: glade.c:177
 msgid "Description :"
 msgstr "Beskrivning:"
 
-#: template.strings:180
+#: glade.c:180
 msgid "Description : "
 msgstr "Beskrivning: "
 
-#: template.strings:183
+#: glade.c:183
 msgid "Display Formats"
 msgstr "Visningsformat"
 
-#: template.strings:186
+#: glade.c:186
 msgid "Display active person's family relationships"
 msgstr "Visa den aktiva personens familjeband"
 
-#: template.strings:189
+#: glade.c:189
 msgid "Display list of people"
 msgstr "Visa lista över personer"
 
-#: template.strings:192
+#: glade.c:192
 msgid "Do not display alternate names in person list"
 msgstr "Visa inte alternativa namn i personlista"
 
-#: template.strings:195
+#: glade.c:195
 msgid "Do not make a private copy"
 msgstr "Skapa inte en privat kopia"
 
-#: template.strings:198
+#: glade.c:802
+msgid "Do you really wish to delete "
+msgstr "Vill du verkligen ta bort "
+
+#: glade.c:803
+msgid ""
+"Do you wish to abandon your changes and revert to the last saved database?"
+msgstr "Vill du ignorera dina ändringar och återgå till den senast sparade databasen?"
+
+#: glade.c:793
+msgid "Do you wish to delete all entries and create a new database?"
+msgstr "Vill du ta bort all information och skapa en ny databas?"
+
+#: glade.c:792
+msgid "Do you wish to save the changes?"
+msgstr "Vill du spara ändringarna?"
+
+#: glade.c:806
+msgid "Do you wish to set "
+msgstr "Vill du ställa in "
+
+#: glade.c:198
 msgid "Edit Bookmarks"
 msgstr "Redigera bokmärken"
 
-#: template.strings:201
+#: glade.c:772 glade.c:776
+msgid "Edit Description"
+msgstr "Redigera beskrivning"
+
+#: glade.c:201
 msgid "Edit Marriage"
 msgstr "Redigera äktenskap"
 
-#: template.strings:204
+#: glade.c:204
 msgid "Edit Person"
 msgstr "Redigera person"
 
-#: template.strings:207
+#: glade.c:771 glade.c:775
+msgid "Edit Photo"
+msgstr "Redigera foto"
+
+#: glade.c:207
 msgid "Edit marriage information"
 msgstr "Redigera äktenskapsinformation"
 
-#: template.strings:210
+#: glade.c:210
 msgid "Edit the active person's marriages"
 msgstr "Redigera den aktiva personens äktenskap"
 
-#: template.strings:213
+#: glade.c:213
 msgid "Enable Custom Colors"
 msgstr "Använd anpassade färger"
 
-#: template.strings:216
+#: glade.c:216
 msgid "Entry Formats"
 msgstr "Format för inmatning"
 
-#: template.strings:219
+#: glade.c:219
 msgid "Even Row Background : "
 msgstr "Bakgrund för jämna rader: "
 
-#: template.strings:222
+#: glade.c:222
 msgid "Even Row Foreground : "
 msgstr "Förgrund för jämna rader: "
 
-#: template.strings:225
+#: glade.c:225
 msgid "Event"
 msgstr "Händelse"
 
-#: template.strings:228
+#: glade.c:228
 msgid "Event Type :"
 msgstr "Typ av händelse:"
 
-#: template.strings:231
+#: glade.c:231
 msgid "Event Type : "
 msgstr "Typ av händelse: "
 
-#: template.strings:234
+#: glade.c:234
 msgid "Events"
 msgstr "Händelser"
 
-#: template.strings:237
+#: glade.c:237
 msgid "Exchange active person and displayed spouse"
 msgstr "Byt aktuell person och visat gifte"
 
-#: template.strings:240
+#: glade.c:240
 msgid "Export"
 msgstr "Exportera"
 
-#: template.strings:243
+#: glade.c:796
+msgid "Failure reading "
+msgstr "Kunde in läsa in "
+
+#: glade.c:243
 msgid "Family"
 msgstr "Familj"
 
-#: template.strings:246
+#: glade.c:246
 msgid "Father :"
 msgstr "Fader:"
 
-#: template.strings:249
+#: glade.c:249
 msgid "Father : "
-msgstr "Fader:"
+msgstr "Fader: "
 
-#: template.strings:252
+#: glade.c:709
+msgid "February"
+msgstr "februari"
+
+#: glade.c:252
 msgid "File : "
 msgstr "Fil: "
 
-#: template.strings:255
+#: glade.c:255
 msgid "Filter :"
 msgstr "Filter:"
 
-#: template.strings:258
+#: glade.c:698
+msgid "Firstname Surname"
+msgstr "Förnamn Efternamn"
+
+#: glade.c:258
 msgid "Formats"
 msgstr "Format"
 
-#: template.strings:261
+#: glade.c:261
 msgid "From"
 msgstr "Från"
 
-#: template.strings:264
+#: glade.c:264
 msgid "From : "
 msgstr "Från: "
 
-#: template.strings:267
+#: glade.c:267
 msgid "Gallery"
 msgstr "Fotoalbum"
 
-#: template.strings:270
+#: glade.c:270
 msgid "Gender"
 msgstr "Kön"
 
-#: template.strings:273
+#: glade.c:273
 msgid "Gender : "
 msgstr "Kön: "
 
-#: template.strings:276
+#: glade.c:276
 msgid "General"
 msgstr "Allmänt"
 
-#: template.strings:279
+#: glade.c:279
 msgid "Generate reports"
 msgstr "Skapa rapporter"
 
-#: template.strings:282
+#: glade.c:282
 msgid "Given Name :"
 msgstr "Förnamn:"
 
-#: template.strings:285
+#: glade.c:285
 msgid "Given Name : "
 msgstr "Förnamn: "
 
-#: template.strings:288
+#: glade.c:288
 msgid "Go"
 msgstr "Gå"
 
-#: template.strings:291
+#: glade.c:291
 msgid "Go to Bookmark"
 msgstr "Gå till bokmärke"
 
-#: template.strings:294
+#: glade.c:294
 msgid "Gramps"
 msgstr "Gramps"
 
-#: template.strings:297
+#: glade.c:786
+msgid "Gramps (Genealogical Research and Analysis Management "
+msgstr "Gramps (Genealogical Research and Analysis Managment "
+
+#: glade.c:297
 msgid "Gramps - Add Child"
 msgstr "Gramps - Lägg till barn"
 
-#: template.strings:300
+#: glade.c:300
 msgid "Gramps - Add New Child"
-msgstr "Gramps - lägg till nytt barn"
+msgstr "Gramps - Lägg till nytt barn"
 
-#: template.strings:303
+#: glade.c:303
 msgid "Gramps - Choose Parents"
 msgstr "Gramps - Välj föräldrar"
 
-#: template.strings:306
+#: glade.c:306
 msgid "Gramps - Choose Spouse"
 msgstr "Gramps - Välj gifte"
 
-#: template.strings:309
+#: glade.c:309
 msgid "Gramps - Edit Bookmarks"
 msgstr "Gramps - Redigera bokmärken"
 
-#: template.strings:312
+#: glade.c:312
 msgid "Gramps - Edit Person"
 msgstr "Gramps - Redigera person"
 
-#: template.strings:315
+#: glade.c:315
 msgid "Gramps - Getting Started"
 msgstr "Gramps - Komma igång"
 
-#: template.strings:318
+#: glade.c:318
 msgid "Gramps - Marriage Editor"
 msgstr "Gramps - Äktenskapsredigeraren"
 
-#: template.strings:321
+#: glade.c:321
 msgid "Gramps - Plugin Selection"
-msgstr "Gramps - Välj insticksmodul"
+msgstr "Gramps - Val av insticksmodul"
 
-#: template.strings:324
+#: glade.c:324
 msgid "Gramps - Preferences"
 msgstr "Gramps - Inställningar"
 
-#: template.strings:327
+#: glade.c:327
 msgid "Gramps - Report Selection"
-msgstr "Gramps - Välj rapporter"
+msgstr "Gramps - Val av rapporter"
 
-#: template.strings:330
+#: glade.c:330
 msgid "Gramps - Select File"
 msgstr "Gramps - Välj fil"
 
-#: template.strings:333
+#: glade.c:333
 msgid "Gramps - Select a picture"
 msgstr "Gramps - Välj en bild"
 
-#: template.strings:336
+#: glade.c:336
 msgid "Gramps - Source Editor"
 msgstr "Gramps - Källredigerare"
 
-#: template.strings:339
+#: glade.c:339
 msgid "Gramps Startup Druid"
 msgstr "Gramps uppstartsguide"
 
-#: template.strings:342
+#: glade.c:342
 msgid "Home"
 msgstr "Hem"
 
-#: template.strings:345
+#: glade.c:701
+msgid "Illegal Date"
+msgstr "Ogiltigt datum "
+
+#: glade.c:345
 msgid "Internet"
 msgstr "Internet"
 
-#: template.strings:348
+#: glade.c:348
 msgid "Invert"
 msgstr "Invertera"
 
-#: template.strings:351
+#: glade.c:708
+msgid "January"
+msgstr "januari"
+
+#: glade.c:714
+msgid "July"
+msgstr "juli"
+
+#: glade.c:713
+msgid "June"
+msgstr "juni"
+
+#: glade.c:778
+msgid "Landscape"
+msgstr "Liggande"
+
+#: glade.c:795
+msgid "Loading "
+msgstr "Laddar "
+
+#: glade.c:351
 msgid "Location"
 msgstr "Plats"
 
-#: template.strings:354
+#: glade.c:354
 msgid "Make Primary"
-msgstr "Gör till primär"
+msgstr "Gör till primärt"
 
-#: template.strings:357
+#: glade.c:357
 msgid "Make the active person the default person"
 msgstr "Gör den aktuella personen proband"
 
-#: template.strings:360
+#: glade.c:360
 msgid "Make the current father the active person"
-msgstr "Gör den aktuella fadern proband"
+msgstr "Gör fadern aktuell person"
 
-#: template.strings:363
+#: glade.c:363
 msgid "Make the current mother the active person"
-msgstr "Gör den aktuella modern proband"
+msgstr "Gör modern aktiv person"
 
-#: template.strings:366
+#: glade.c:366
 msgid "Make the default person the active person"
-msgstr "Gå till probanden"
+msgstr "Gör probanden aktiv person"
 
-#: template.strings:369
+#: glade.c:369
 msgid "Make the selected child the active person"
-msgstr "Gör det valda barnet proband"
+msgstr "Gör det valda barnet aktiv person"
 
-#: template.strings:372
+#: glade.c:710
+msgid "March"
+msgstr "mars"
+
+#: glade.c:372
 msgid "Marriage Editor"
 msgstr "Äktenskapsredigeraren"
 
-#: template.strings:375
+#: glade.c:375
 msgid "Marriage/Family Editor"
 msgstr "Äktenskaps-/Familjeredigeraren"
 
-#: template.strings:378
+#: glade.c:712
+msgid "May"
+msgstr "maj"
+
+#: glade.c:378
 msgid "Mother :"
 msgstr "Moder:"
 
-#: template.strings:381
+#: glade.c:381
 msgid "Mother : "
 msgstr "Moder: "
 
-#: template.strings:386
+#: glade.c:386
 msgid "Name"
 msgstr "Namn"
 
-#: template.strings:389
+#: glade.c:389
 msgid "Name :"
 msgstr "Namn:"
 
-#: template.strings:392
+#: glade.c:392
 msgid "Name Format : "
 msgstr "Namnformat: "
 
-#: template.strings:395
+#: glade.c:395
 msgid "Names"
 msgstr "Namn"
 
-#: template.strings:398
+#: glade.c:398
 msgid "Natural"
 msgstr "Äkta"
 
-#: template.strings:401
+#: glade.c:401
 msgid "New Person"
-msgstr "Ny Person"
+msgstr "Ny person"
 
-#: template.strings:404
+#: glade.c:404
 msgid "Nick Name :"
 msgstr "Smeknamn:"
 
-#: template.strings:407
+#: glade.c:805
+msgid "No default/home person has been set"
+msgstr "Ingen proband är vald"
+
+#: glade.c:779
+msgid "No description was provided"
+msgstr "Det finns ingen beskrivning"
+
+#: glade.c:407
 msgid "Notes"
 msgstr "Anteckningar"
 
-#: template.strings:410
+#: glade.c:718
+msgid "November"
+msgstr "november"
+
+#: glade.c:410
 msgid "OK"
 msgstr "OK"
 
-#: template.strings:413
+#: glade.c:717
+msgid "October"
+msgstr "oktober"
+
+#: glade.c:413
 msgid "Odd Row Background : "
 msgstr "Bakgrund för ojämna rader:"
 
-#: template.strings:416
+#: glade.c:416
 msgid "Odd Row Foreground : "
 msgstr "Förgrund för jämna rader:"
 
-#: template.strings:419
+#: glade.c:419
 msgid "Open"
 msgstr "Öppna"
 
-#: template.strings:422
+#: glade.c:422
 msgid "Open File"
 msgstr "Öppna fil"
 
-#: template.strings:425
+#: glade.c:425
 msgid "Other"
 msgstr "Annat"
 
-#: template.strings:428
+#: glade.c:428
 msgid "Pedegree"
 msgstr "Anor"
 
-#: template.strings:431
+#: glade.c:431
 msgid "People"
 msgstr "Personer"
 
-#: template.strings:434
+#: glade.c:434
 msgid "Person"
 msgstr "Person"
 
-#: template.strings:437
+#: glade.c:437
 msgid "Person : "
 msgstr "Person: "
 
-#: template.strings:440
+#: glade.c:440
 msgid "Person _List"
 msgstr "Person_lista"
 
-#: template.strings:443
+#: glade.c:443
 msgid "Phone :"
 msgstr "Telefonnummer:"
 
-#: template.strings:446
+#: glade.c:446
 msgid "Photo"
 msgstr "Foto"
 
-#: template.strings:449
+#: glade.c:449
 msgid "Photos"
 msgstr "Foton"
 
-#: template.strings:452
+#: glade.c:452
 msgid "Pick a color"
 msgstr "Välj en färg"
 
-#: template.strings:455
+#: glade.c:455
 msgid "Place"
 msgstr "Plats"
 
-#: template.strings:458
+#: glade.c:458
 msgid "Place :"
 msgstr "Plats:"
 
-#: template.strings:461
+#: glade.c:461
 msgid "Place : "
 msgstr "Plats: "
 
-#: template.strings:464
-msgid "Please enjoy using Gramps."
-msgstr "Hoppas du tycker om Gramps"
+#: glade.c:769
+msgid "Please check the person's marriage relationships"
+msgstr "Var vänlig kontrollera personens familjeband"
 
-#: template.strings:467
+#: glade.c:464
+msgid "Please enjoy using Gramps."
+msgstr "Hoppas du tycker om Gramps."
+
+#: glade.c:467
 msgid ""
 "Please enter following information.  You can change it at \n"
 "anytime in the program's preference settings"
@@ -621,223 +794,255 @@ msgstr ""
 "Var vänlig och ange följande information. Du kan ändra det\n"
 "när som helst i programmets inställningar"
 
-#: template.strings:472
+#: glade.c:777
+msgid "Portrait"
+msgstr "Stående"
+
+#: glade.c:472
 msgid "Preview"
 msgstr "Förhandsvisa"
 
-#: template.strings:475
+#: glade.c:787
+msgid "Programming System) is a personal genealogy program that "
+msgstr "Programming System) är ett genealogiprogram för privatpersoner, som  "
+
+#: glade.c:475
 msgid "Publication Info : "
 msgstr "Publikationsinformation:"
 
-#: template.strings:478
+#: glade.c:478
 msgid "Publication Information :"
 msgstr "Publikationsinformation:"
 
-#: template.strings:481
+#: glade.c:481
 msgid "Qualifier : "
 msgstr "Sökvillkor:"
 
-#: template.strings:484
+#: glade.c:484
 msgid "Relationship Type : "
 msgstr "Typ av släktskap:"
 
-#: template.strings:487
+#: glade.c:487
 msgid "Reletivity - Source Information"
 msgstr "Släktskap - Källinformation"
 
-#: template.strings:490
+#: glade.c:490
 msgid "Remove Child"
 msgstr "Ta bort barn"
 
-#: template.strings:493
+#: glade.c:493
 msgid "Remove current spouse"
 msgstr "Ta bort aktuellt gifte"
 
-#: template.strings:496
+#: glade.c:496
 msgid "Report Selection"
 msgstr "Val av rapport"
 
-#: template.strings:499
+#: glade.c:499
 msgid "Reports"
 msgstr "Rapporter"
 
-#: template.strings:502
+#: glade.c:502
 msgid "Researcher"
 msgstr "Forskare"
 
-#: template.strings:505
+#: glade.c:505
 msgid "Researcher Information"
 msgstr "Forskarinformation"
 
-#: template.strings:508
+#: glade.c:508
 msgid "Revert to last saved database"
 msgstr "Återgå till senast sparade databas"
 
-#: template.strings:511
+#: glade.c:511
 msgid "Run a tool"
 msgstr "Använd ett verktyg"
 
-#: template.strings:514
+#: glade.c:514
 msgid "Save"
 msgstr "Spara"
 
-#: template.strings:517
+#: glade.c:517
 msgid "Save File"
 msgstr "Spara fil"
 
-#: template.strings:520
+#: glade.c:797
+msgid "Saving "
+msgstr "Sparar"
+
+#: glade.c:520
 msgid "Select File"
 msgstr "Välj fil"
 
-#: template.strings:523
+#: glade.c:523
 msgid "Select Source"
 msgstr "Välj källa"
 
-#: template.strings:526
+#: glade.c:526
 msgid "Select a photo"
 msgstr "Välj ett foto"
 
-#: template.strings:529
+#: glade.c:529
 msgid "Select a picture"
 msgstr "Välj en bild"
 
-#: template.strings:532
+#: glade.c:532
 msgid "Select a report from those available on the left."
-msgstr "Välj en rapport från de som finns till vänster."
+msgstr "Välj en rapport till vänster."
 
-#: template.strings:535
+#: glade.c:535
 msgid "Select a tool from those available on the left."
-msgstr "Välj ett verktyg från de som finns till vänster."
+msgstr "Välj ett verktyg till vänster."
 
-#: template.strings:538
+#: glade.c:538
 msgid "Select information source"
 msgstr "Välj källa till informationen"
 
-#: template.strings:541
+#: glade.c:541
 msgid "Select the active person's parents"
 msgstr "Välj den aktiva personens föräldrar"
 
-#: template.strings:544
+#: glade.c:544
 msgid "Select the source of the information"
 msgstr "Välj källa till informationen"
 
-#: template.strings:547
+#: glade.c:716
+msgid "September"
+msgstr "september"
+
+#: glade.c:547
 msgid "Show active person's anscestors"
 msgstr "Visa den aktiva personens anor"
 
-#: template.strings:550
+#: glade.c:550
 msgid "Show only those not currently a child in a family"
 msgstr "Visa enbart de som inte är barn i en familj"
 
-#: template.strings:554
+#: glade.c:554
 msgid "Source"
 msgstr "Källa"
 
-#: template.strings:557
+#: glade.c:557
 msgid "Source Editor"
 msgstr "Källredigerare"
 
-#: template.strings:560
+#: glade.c:560
 msgid "Source Information"
 msgstr "Källinformation"
 
-#: template.strings:563
+#: glade.c:563
 msgid "Spouse : "
 msgstr "Gifte: "
 
-#: template.strings:566
+#: glade.c:566
 msgid "State/Province :"
 msgstr "Stat/Provins:"
 
-#: template.strings:569
+#: glade.c:569
 msgid "State/Province : "
 msgstr "Stat/Provins: "
 
-#: template.strings:572
+#: glade.c:572
 msgid "Status"
 msgstr "Status"
 
-#: template.strings:575
+#: glade.c:575
 msgid "Status : "
 msgstr "Status: "
 
-#: template.strings:578
+#: glade.c:578
 msgid "Suffix :"
 msgstr "Suffix:"
 
-#: template.strings:581
+#: glade.c:581
 msgid "Surname :"
 msgstr "Efternamn:"
 
-#: template.strings:584
+#: glade.c:584
 msgid "Surname : "
 msgstr "Efternamn: "
 
-#: template.strings:587
+#: glade.c:699
+msgid "Surname, Firstname"
+msgstr "Efternamn, Förnamn"
+
+#: glade.c:587
 msgid "Text :"
 msgstr "Text:"
 
-#: template.strings:590
+#: glade.c:590
 msgid "Title"
 msgstr "Titel"
 
-#: template.strings:593
+#: glade.c:593
 msgid "Title :"
 msgstr "Titel:"
 
-#: template.strings:596
+#: glade.c:596
 msgid "Title : "
 msgstr "Titel: "
 
-#: template.strings:599
+#: glade.c:599
 msgid "To"
 msgstr "Till"
 
-#: template.strings:602
+#: glade.c:602
 msgid "To : "
 msgstr "Till: "
 
-#: template.strings:605
+#: glade.c:605
 msgid "Tool Selection"
 msgstr "Val av verktyg"
 
-#: template.strings:608
+#: glade.c:608
 msgid "Tools"
 msgstr "Verktyg"
 
-#: template.strings:613
+#: glade.c:700
+msgid "Unknown Format"
+msgstr "Okänt format"
+
+#: glade.c:791
+msgid "Unsaved changes exist in the current database\n"
+msgstr "Osparade ändringar finns i den aktuella databasen\n"
+
+#: glade.c:613
 msgid "Update"
 msgstr "Uppdatera"
 
-#: template.strings:616
+#: glade.c:616
 msgid "Updates the selected event with the above data"
 msgstr "Uppdatera den valda händelsen med ovanstående data"
 
-#: template.strings:619
+#: glade.c:619
 msgid "Use tabbed pages"
 msgstr "Använd sidor med flikar"
 
-#: template.strings:622
+#: glade.c:622
 msgid "Value"
 msgstr "Värde"
 
-#: template.strings:625
+#: glade.c:625
 msgid "Value :"
 msgstr "Värde:"
 
-#: template.strings:628
+#: glade.c:770 glade.c:774
+msgid "View Photo"
+msgstr "Titta på foto"
+
+#: glade.c:628
 msgid "Volume/Film/Page :"
 msgstr "Volym/Film/Sida:"
 
-#: template.strings:631
+#: glade.c:631
 msgid "Web Address"
 msgstr "Webbadress"
 
-#: template.strings:634
+#: glade.c:634
 msgid "Web Address : "
 msgstr "Webbadress: "
 
-#: template.strings:637
+#: glade.c:637
 msgid ""
 "Welcome to Gramps, the Genealogical Research\n"
 "and Analysis Management Programming System.\n"
@@ -861,66 +1066,166 @@ msgstr ""
 "välja att inte svara på något av, eller endast\n"
 "en del av, den information som efterfrågas."
 
-#: template.strings:650
+#: glade.c:650
 msgid "ZIP/Postal Code :"
 msgstr "Postnummer:"
 
-#: template.strings:653
+#: glade.c:653
 msgid "Zip/Postal Code :"
 msgstr "Postnummer:"
 
-#: template.strings:656
+#: glade.c:656
 msgid "Zip/Postal Code : "
 msgstr "Postnummer: "
 
-#: template.strings:659
+#: glade.c:659
 msgid "_Bookmarks"
 msgstr "_Bokmärken"
 
-#: template.strings:662
+#: glade.c:662
 msgid "_Default Person"
 msgstr "_Proband"
 
-#: template.strings:665
+#: glade.c:665
 msgid "_Family"
 msgstr "_Familj"
 
-#: template.strings:668
+#: glade.c:668
 msgid "_Import"
 msgstr "_Importera"
 
-#: template.strings:671
+#: glade.c:671
 msgid "_New File"
 msgstr "_Ny fil"
 
-#: template.strings:674
+#: glade.c:674
 msgid "_Pedegree"
 msgstr "_Anor"
 
-#: template.strings:677
+#: glade.c:677
 msgid "_Revert"
 msgstr "_Återgå"
 
-#: template.strings:680
+#: glade.c:733 glade.c:742 glade.c:752 glade.c:753
+msgid "about"
+msgstr "om"
+
+#: glade.c:732 glade.c:741
+msgid "abt"
+msgstr "om"
+
+#: glade.c:740 glade.c:748
+msgid "aft"
+msgstr "efter"
+
+#: glade.c:739 glade.c:747 glade.c:755
+msgid "after"
+msgstr "efter"
+
+#: glade.c:723
+msgid "apr"
+msgstr "apr"
+
+#: glade.c:736 glade.c:745
+msgid "around"
+msgstr "omkring"
+
+#: glade.c:727
+msgid "aug"
+msgstr "aug"
+
+#: glade.c:738 glade.c:749
+msgid "bef"
+msgstr "före"
+
+#: glade.c:737 glade.c:746 glade.c:754
+msgid "before"
+msgstr "före"
+
+#: glade.c:788
+msgid "can be extended by using the Python programming language."
+msgstr "kan utökas med hjälp av programmeringsspråket Python."
+
+#: glade.c:735 glade.c:744
+msgid "circa"
+msgstr "cirka"
+
+#: glade.c:731
+msgid "dec"
+msgstr "dec"
+
+#: glade.c:680
 msgid "email :"
 msgstr "e-post:"
 
-#: template.strings:683
+#: glade.c:734 glade.c:743
+msgid "est"
+msgstr "uppstattad"
+
+#: glade.c:721
+msgid "feb"
+msgstr "feb"
+
+#: glade.c:683 glade.c:790
 msgid "female"
 msgstr "kvinna"
 
-#: template.strings:686
+#: glade.c:704 glade.c:706
+msgid "from"
+msgstr "från"
+
+#: glade.c:767
+msgid "ignored as the date of the event."
+msgstr "ignoreras som datum för händelsen."
+
+#: glade.c:720
+msgid "jan"
+msgstr "jan"
+
+#: glade.c:726
+msgid "jul"
+msgstr "jul"
+
+#: glade.c:725
+msgid "jun"
+msgstr "jun"
+
+#: glade.c:686
 msgid "label199"
 msgstr "label199"
 
-#: template.strings:689
+#: glade.c:689
 msgid "label2"
 msgstr "label2"
 
-#: template.strings:692
+#: glade.c:692
 msgid "label200"
 msgstr "label200"
 
-#: template.strings:695
+#: glade.c:695 glade.c:789
 msgid "male"
 msgstr "man"
+
+#: glade.c:722
+msgid "mar"
+msgstr "mar"
+
+#: glade.c:724
+msgid "may"
+msgstr "maj"
+
+#: glade.c:730
+msgid "nov"
+msgstr "nov"
+
+#: glade.c:729
+msgid "oct"
+msgstr "okt"
+
+#: glade.c:728
+msgid "sep"
+msgstr "sep"
+
+#: glade.c:705 glade.c:707
+msgid "to"
+msgstr "till"
