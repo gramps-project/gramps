@@ -33,6 +33,7 @@ import GenericFilter
 import AutoComp
 import ListModel
 import Utils
+import SelectPerson
 from intl import gettext as _
 
 _name2list = {
@@ -98,18 +99,63 @@ class MyFilters(gtk.Combo):
 #
 #
 #-------------------------------------------------------------------------
-class MyPlaces(gtk.Combo):
+class MyPlaces(gtk.Entry):
     
     def __init__(self,places):
-        gtk.Combo.__init__(self)
+        gtk.Entry.__init__(self)
         
-        AutoComp.AutoCombo(self,places)
+        AutoComp.AutoEntry(self,places)
         self.show()
         
     def get_text(self):
         return self.entry.get_text()
 
     def set_text(self,val):
+        self.entry.set_text(val)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+class MyID(gtk.HBox):
+    
+    def __init__(self,db):
+        gtk.HBox.__init__(self,gtk.FALSE,6)
+        self.db = db
+
+        self.entry = gtk.Entry()
+        self.entry.show()
+        self.button = gtk.Button()
+        self.button.set_label(_('Select...'))
+        self.button.connect('clicked',self.button_press)
+        self.button.show()
+        self.pack_start(self.entry)
+        self.add(self.button)
+        self.tooltips = gtk.Tooltips()
+        self.tooltips.set_tip(self.button,_('Select person from a list'))
+        self.tooltips.enable()
+        self.show()
+        self.set_text('')
+
+    def button_press(self,obj):
+        inst = SelectPerson.SelectPerson(self.db,_('Select Person'))
+        val = inst.run()
+        if val == None:
+            self.set_text('')
+        else:
+            self.set_text(val.getId())
+        
+    def get_text(self):
+        return self.entry.get_text()
+
+    def set_text(self,val):
+        try:
+            p = self.db.getPerson(val)
+            n = p.getPrimaryName().getName()
+            self.tooltips.set_tip(self.entry,n)
+        except:
+            self.tooltips.set_tip(self.entry,_('Not a valid person'))
         self.entry.set_text(val)
 
 #-------------------------------------------------------------------------
@@ -229,8 +275,9 @@ class FilterEditor:
         self.filter = filter
         self.glade = gtk.glade.XML(const.filterFile,'define_filter')
         self.top = self.glade.get_widget('define_filter')
+        self.define_title = self.glade.get_widget('title')
 
-        Utils.set_titles(self.top,self.glade.get_widget('title'),_('Define filter'))
+        Utils.set_titles(self.top,self.define_title,_('Define filter'))
         
         self.rule_list = self.glade.get_widget('rule_list')
         self.rlist = ListModel.ListModel(self.rule_list,
@@ -379,6 +426,8 @@ class FilterEditor:
                     t = MyPlaces(self.pmap.keys())
                 elif v == 'Number of generations:':
                     t = MyInteger(1,32)
+                elif v == 'ID:':
+                    t = MyID(self.db)
                 elif v == 'Filter name:':
                     t = MyFilters(self.filterdb.get_filters())
                 elif _name2list.has_key(v1):
