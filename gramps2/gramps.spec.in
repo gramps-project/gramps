@@ -57,8 +57,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{prefix}/bin/gramps
 
-%{_datadir}/gramps/gnome/help/gramps.xml
-%{_datadir}/gramps/gnome/help/figures/*
+%{_datadir}/gramps/gnome/help/gramps/C/*
+%{_datadir}/gramps/gnome/help/gramps/C/figures/*
 
 %{_datadir}/gnome/apps/Applications/gramps.desktop
 %{_datadir}/pixmaps/gramps.png
