@@ -69,4 +69,5 @@ class EventPlace(Filter.Filter):
 #------------------------------------------------------------------------
 Filter.register_filter(EventPlace,
                        description=_("People with an event location of ..."),
+                       label=_("Place"),
                        qualifier=1)

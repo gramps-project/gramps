@@ -70,17 +70,19 @@ class Filter:
 #
 #-------------------------------------------------------------------------
 
-_filter_list = [(Filter, _("All people"), 0)]
+_filter_list = [(Filter, _("All people"), 0, _("Qualifier"))]
 _filter2class = {}
 _filter2descr = {}
 
-def register_filter(class_name, description=None, qualifier=0):
+def register_filter(class_name, description=None, qualifier=0, label=None):
     name = str(class_name)
+    if label == None:
+        label = _("Qualifier")
     if description == None:
         description = _("No description")
     _filter2class[name] = class_name
     _filter2descr[name] = description
-    _filter_list.append((class_name,description,qualifier))
+    _filter_list.append((class_name,description,qualifier,label))
 
 def get_filter_description(name):
     if _filter2descr.has_key(name):
@@ -132,6 +134,7 @@ def build_filter_menu(callback,fw):
         menuitem.set_data("name",filter[1])
         menuitem.set_data("function",filter[0])
         menuitem.set_data("qual",filter[2])
+        menuitem.set_data("label",filter[3])
         menuitem.connect("activate",callback)
         menuitem.show()
     return myMenu

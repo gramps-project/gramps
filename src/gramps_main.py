@@ -1323,7 +1323,17 @@ def on_apply_filter_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_filter_name_changed(obj):
+    qlabel = gtop.get_widget("qual")
     filter = obj.get_data("filter")
+    if obj.get_data("qual"):
+        qlabel.show()
+        qlabel.set_sensitive(1)
+        qlabel.set_text(obj.get_data("label"))
+        filter.show()
+    else:
+        qlabel.hide()
+        filter.hide()
+        
     filter.set_sensitive(obj.get_data("qual"))
 
 #-------------------------------------------------------------------------

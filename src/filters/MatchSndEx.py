@@ -43,4 +43,5 @@ class MatchSndEx(Filter.Filter):
 #------------------------------------------------------------------------
 Filter.register_filter(MatchSndEx,
                        description=_("Names with same SoundEx code as ..."),
+                       label=_("Surname"),
                        qualifier=1)

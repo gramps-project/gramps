@@ -39,5 +39,6 @@ class SubString(Filter.Filter):
 #------------------------------------------------------------------------
 Filter.register_filter(SubString,
                        description=_("Names that contain a substring"),
+                       label=_("Text"),
                        qualifier=1)
 

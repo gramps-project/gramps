@@ -50,6 +50,7 @@ class RegExMatch(Filter.Filter):
 #------------------------------------------------------------------------
 Filter.register_filter(RegExMatch,
                        description=_("Names that match a regular expression"),
+                       label=_("Text"),
                        qualifier=1)
 
 
