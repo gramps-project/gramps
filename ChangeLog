@@ -1,4 +1,6 @@
 2004-02-14  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Marriage.py: fix title and places
+	* src/FamilyView.py: fix child relations and spouse's parents
 	* src/RelLib.py: fix syntax error
 	* src/EditPerson.py: fix reordering of children
 
