@@ -616,7 +616,7 @@ class GedcomParser:
 	    elif matches[1] == "BIRT":
                 event = Event()
                 if self.person.getBirth().getDate() != "" or \
-                   self.person.getBirth().getPlace().get_title() != "":
+                   self.person.getBirth().getPlace() != None:
                     event.setName("Alternate Birth")
                     self.person.addEvent(event)
                 else:
@@ -631,7 +631,7 @@ class GedcomParser:
 	    elif matches[1] == "DEAT":
                 event = Event()
                 if self.person.getDeath().getDate() != "" or \
-                   self.person.getDeath().getPlace().get_title() != "":
+                   self.person.getDeath().getPlace() != None:
                     event.setName("Alternate Death")
                     self.person.addEvent(event)
                 else:
@@ -922,10 +922,16 @@ class GedcomParser:
                     self.person.addAltFamily(family,type,type)
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "PLAC":
-                event.setPlace(matches[2])
+	        place = Place()
+		place.set_title(matches[2])
+                event.setPlace(place)
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "NOTE":
                 note = matches[2] + self.parse_continue_data(level+1)
+	    elif matches[1] == "CONC":
+	        event.setDescription( "%s %s" % (event.getDescription(), matches[2]))
+	    elif matches[1] == "CONT":
+	        event.setDescription("%s\n%s" % (event.getDescription(),matches[2]))
             else:
 	        self.barf(level+1)
 
@@ -979,7 +985,9 @@ class GedcomParser:
                     self.parse_source_reference(source_ref,level+1)
                 event.setSourceRef(source_ref)
             elif matches[1] == "PLAC":
-                event.setPlace(matches[2])
+	        place = Place()
+		place.set_title(matches[2])
+                event.setPlace(place)
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "NOTE":
                 if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
@@ -1094,9 +1102,9 @@ class GedcomParser:
                 source_ref.setBase(self.db.findSource(matches[2],self.smap))
                 name.setSourceRef(source_ref)
                 self.parse_source_reference(source_ref,level+1)
-            elif matches[2][0:4] == "NOTE":
+            elif matches[1][0:4] == "NOTE":
                 if matches[2] and matches[2][0] != "@":
-                    note = matches[1] + self.parse_continue_data(1)
+                    note = matches[2] + self.parse_continue_data(1)
                     name.setNote(note)
                     self.ignore_sub_junk(2)
                 else:
