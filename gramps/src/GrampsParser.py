@@ -411,6 +411,7 @@ class GrampsParser:
 
         d.get_start_date().setIsoDate(attrs['start'])
         d.get_stop_date().setIsoDate(attrs['stop'])
+        d.range = 1
         
     def start_dateval(self,attrs):
         if self.ord:

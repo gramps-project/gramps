@@ -101,8 +101,10 @@ class Date:
     range = 1
     normal = 0
 
-    from_str = _("(from|between|bet|bet.)")
-    to_str = _("(and|to|-)")
+    # The last part of these two strings must remain untranslated.  It
+    # is required to read saved data from XML.
+    from_str = _("(from|between|bet|bet.") + "|FROM)" 
+    to_str = _("(and|to|-") + "|TO)"
     
     fmt = compile(r"\s*" + from_str + r"\s+(.+)\s+" + to_str + r"\s+(.+)\s*$",
                      IGNORECASE)
@@ -333,8 +335,9 @@ class SingleDate:
             _("after")  : after,
             _("aft.")   : after,
             _("aft")    : after,
-            # And the untranslated versions for backward compatability
+            # And the untranslated versions for reading saved data from XML.
             "abt"	: about,
+            "about"	: about,
             "after"	: after,
             "before"	: before }
 
@@ -350,6 +353,8 @@ class SingleDate:
                 _("bef\.?") + '|' + \
                 "abt" + '|' + \
                 "aft" + '|' + \
+                "after" + '|' + \
+                "before" + '|' + \
                 "bef" + ')'
     
     start = "^\s*" + modifiers + "?\s*"
