@@ -30,6 +30,7 @@ import TarFile
 import const
 import Errors
 import BaseDoc
+import QuestionDialog
 
 from gettext import gettext as _
 
@@ -190,14 +191,13 @@ class HtmlDoc(BaseDoc.BaseDoc):
             except IOError,msg:
                 mymsg = _("Could not open %s\nUsing the default template") % \
                         self.template
-                mymsg = "%s\n%s" % (mymsg,msg)
-                gnome.ui.GnomeWarningDialog(mymsg)
+                QuestionDialog.WarningDialog(mymsg,msg)
                 self.bottom = _bottom
                 self.top = _top
             except:
                 mymsg = _("Could not open %s\nUsing the default template") % \
                         self.template
-                gnome.ui.GnomeWarningDialog(mymsg)
+                QuestionDialog.WarningDialog(mymsg)
                 self.bottom = _bottom
                 self.top = _top
         else:
