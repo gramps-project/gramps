@@ -1,3 +1,6 @@
+2003-12-05  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/po/ru.po: Update Russian translation for 0.98.
+
 2003-12-04  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/gramps-manual/C/getstart.xml: Remove ZODB support section. 
 	* doc/gramps-manual/C/usage.xml: Remove ZODB support section.
