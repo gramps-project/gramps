@@ -1,3 +1,6 @@
+2003-07-21  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Sources.py: sort sources by title
+
 2003-07-21  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/MergeData.py: Various merge fixes.
 
