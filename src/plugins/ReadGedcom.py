@@ -795,6 +795,11 @@ class GedcomParser:
                 addr.setStreet(matches[2] + self.parse_continue_data(1))
                 self.parse_address(addr,2)
                 self.person.addAddress(addr)
+            elif matches[1] == "PHON":
+                addr = RelLib.Address()
+                addr.setStreet("Unknown")
+                addr.setPhone(matches[2])
+                self.person.addAddress(addr)
 	    elif matches[1] == "BIRT":
                 event = RelLib.Event()
                 if self.person.getBirth().getDate() != "" or \
@@ -1054,6 +1059,9 @@ class GedcomParser:
             elif matches[1] == "PLAC":
                 address.setStreet(matches[2])
                 self.parse_address(address,level+1)
+            elif matches[1] == "PHON":
+                address.setStreet("Unknown")
+                address.setPhone(matches[2])
             elif matches[1] == "NOTE":
                 note = self.parse_note(matches,address,level+1,note)
             else:
