@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ from gettext import gettext as _
 
 class EditSource:
 
-    def __init__(self,source,db,func=None):
+    def __init__(self,source,db,parent_window=None,func=None):
         self.source = source
         self.db = db
         self.callback = func
@@ -61,7 +61,7 @@ class EditSource:
                          _('Source Editor'))
         
         plwidget = self.top_window.get_widget("iconlist")
-        self.gallery = ImageSelect.Gallery(source, self.path, plwidget, db, self)
+        self.gallery = ImageSelect.Gallery(source, self.path, plwidget, db, self, self.top)
         self.author = self.top_window.get_widget("author")
         self.pubinfo = self.top_window.get_widget("pubinfo")
         self.note = self.top_window.get_widget("source_note")
@@ -77,18 +77,24 @@ class EditSource:
         self.notes_buffer.set_text(source.getNote())
 
         self.top_window.signal_autoconnect({
-            "destroy_passed_object" : self.close,
             "on_switch_page" : self.on_switch_page,
             "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
             "on_deletephoto_clicked" : self.gallery.on_delete_photo_clicked,
             "on_edit_properties_clicked": self.gallery.popup_change_description,
-            "on_sourceapply_clicked" : self.on_source_apply_clicked
             })
-
 
         if self.source.getId() == "":
             self.top_window.get_widget("edit_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
+
+        if parent_window:
+            self.top.set_transient_for(parent_window)
+
+        self.top.show()
+        val = self.top.run()
+        if val == gtk.RESPONSE_OK:
+            self.on_source_apply_clicked()
+        self.top.destroy()
 
     def close(self,obj):
         self.gallery.close()
@@ -184,7 +190,7 @@ class EditSource:
             for p in p_list:
                 self.model.add([_("Places"),p,''])
 
-    def on_source_apply_clicked(self,obj):
+    def on_source_apply_clicked(self):
 
         title = self.title.get_text()
         author = self.author.get_text()
@@ -271,6 +277,3 @@ class DelSrcQuery:
             self.delete_source(self.db.getPlace(key))
 
         self.update(0)
-
-
-

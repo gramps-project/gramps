@@ -1,3 +1,37 @@
+2003-09-14  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/SourceView.py (button_press,on_add_clicked,on_delete_clicked,
+	on_edit_clicked): Pass parent window to the child dialog. 
+	* src/Sources.py (add_src_clicked): Likewise. 
+	* src/EditSource.py (__init__): Add optional parent_window argument.
+	Make dialog modal and transient for its parent. 
+	* src/gramps.glade (sourceEditor dialog): Delete unneeded handlers 
+	for buttons. 
+	* src/QuestionDialog.py (SaveDialog,QuestionDialog,OptionDialog,
+	ErrorDialog,WarningDialog,MissingMediaDialog): Set transient status 
+	if parent is given. 
+	* src/EventEdit.py (__init__): Make dialog modal and transient for 
+	its parent. 
+	* src/Witness.py: Make WittnessEditor dialog modal and transient for 
+	its parent. Call SelectPerson with itself as a parent. 
+	* src/SelectPerson.py (__init__): Make dialog transient for its parent.
+	* src/imagesel.glade: Define proper responses and delete unneeded handlers 
+	for buttons. Make gtkFileEntry modal. 
+	* src/dialog.glade (all dialogs): Define proper responses for buttons. 
+	* src/EditPerson.py (on_add_aka_clicked, on_aka_update_clicked): 
+	Call NameEdit with itself as a parent; (on_add_attr_clicked,
+	on_update_attr_clicked): Call AttributeEditor with itself as a parent; 
+	(on_add_addr_clicked,on_update_addr_clicked): Call AddressEditor with
+	itself as a parent; (on_add_url_clicked,on_update_url_clicked): Call 
+	UrlEditor with itself as a parent; (on_name_note_clicked,
+	on_ldsbap_note_clicked,on_ldsendow_note_clicked,
+	on_ldsseal_note_clicked): Call NoteEditor with itself as a parent. 
+	* src/NameEdit.py (__init__): Make dialog modal and transient for 
+	its parent. 
+	* src/AttrEdit.py (__init__): Likewise.
+	* src/AddrEdit.py (__init__): Likewise.
+	* src/UrlEdit.py (__init__): Likewise.
+	* src/NoteEdit.py (__init__): Likewise.
+
 2003-09-14  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/TimeLine.py: call doc.init routine to build header
 	* src/FontScale.py: try to handle non-ASCII characters

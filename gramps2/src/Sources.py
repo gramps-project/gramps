@@ -380,7 +380,7 @@ class SourceEditor:
     def add_src_clicked(self,obj):
         import EditSource
         import RelLib
-        EditSource.EditSource(RelLib.Source(),self.db, self.update_display)
+        EditSource.EditSource(RelLib.Source(),self.db, self.sourceDisplay, self.update_display)
 
         
 def by_title(first,second):

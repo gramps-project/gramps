@@ -44,11 +44,12 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 class WitnessTab:
-    def __init__(self,srclist,parent,top,clist,add_btn,edit_btn,del_btn):
+    def __init__(self,srclist,parent,top,window,clist,add_btn,edit_btn,del_btn):
         self.db = parent.db
         self.parent = parent
         self.list = srclist
         self.top = top
+        self.window = window
         self.slist = clist
         self.selection = clist.get_selection()
         titles = [ (_('Witness'),0,300),(_('ID'),1,100)]
@@ -85,7 +86,7 @@ class WitnessTab:
             WitnessEditor(src,self.db,self.update_clist,self)
 
     def add_clicked(self,obj):
-        WitnessEditor(None,self.db,self.update_clist,self)
+        WitnessEditor(None,self.db,self.update_clist,self,self.window)
 
     def add_ref(self,inst,ref):
         self.parent.lists_changed = 1
@@ -106,7 +107,7 @@ class WitnessTab:
 #-------------------------------------------------------------------------
 class WitnessEditor:
 
-    def __init__(self,ref,database,update=None,parent=None):
+    def __init__(self,ref,database,update=None,parent=None,parent_window=None):
 
         self.db = database
         self.parent = parent
@@ -114,11 +115,10 @@ class WitnessEditor:
         self.ref = ref
         self.show_witness = gtk.glade.XML(const.dialogFile, "witness_edit","gramps")
         self.show_witness.signal_autoconnect({
-            "ok_clicked"   : self.ok_clicked,
             "on_toggled"   : self.on_toggled,
-            "cancel_clicked" : self.cancel_clicked,
             })
 
+        self.window = self.show_witness.get_widget('witness_edit')
         self.name = self.show_witness.get_widget("name")
         self.select = self.show_witness.get_widget("select")
         self.select.connect('clicked',self.choose)
@@ -142,9 +142,16 @@ class WitnessEditor:
                          self.show_witness.get_widget('title'),
                          _('Witness Editor'))
 
+        if parent_window:
+            self.window.set_transient_for(parent_window)
+        val = self.window.run()
+        if val == gtk.RESPONSE_OK:
+            self.ok_clicked()
+        self.window.destroy()
+
     def choose(self,obj):
         import SelectPerson
-        sel_person = SelectPerson.SelectPerson(self.db,'Select Person')
+        sel_person = SelectPerson.SelectPerson(self.db,'Select Person',parent_window=self.window)
         new_person = sel_person.run()
         if new_person:
             self.new_person = new_person
@@ -153,7 +160,6 @@ class WitnessEditor:
 	    if new_name:
                 self.name.set_text(new_name)
         
-
     def on_toggled(self,obj):
         if self.in_db.get_active():
             self.name.set_editable(0)
@@ -164,10 +170,7 @@ class WitnessEditor:
             self.name.set_sensitive(1)
             self.select.set_sensitive(0)
         
-    def cancel_clicked(self,obj):
-        self.show_witness.get_widget('witness_edit').destroy()
-        
-    def ok_clicked(self,obj):
+    def ok_clicked(self):
         if not self.ref:
             if self.in_db.get_active():
                 self.ref = RelLib.Witness(RelLib.Event.ID)
@@ -184,7 +187,3 @@ class WitnessEditor:
         self.ref.set_comment(c.get_text(c.get_start_iter(),c.get_end_iter(),gtk.FALSE))
         if self.update:
             self.update()
-        self.cancel_clicked(obj)
-        
-
-        

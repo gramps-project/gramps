@@ -36,7 +36,6 @@
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">-6</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="imageSelect"/>
 	    </widget>
 	  </child>
 
@@ -50,7 +49,6 @@
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">-5</property>
-	      <signal name="clicked" handler="on_savephoto_clicked" object="imageSelect"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -286,7 +284,7 @@
 		  <property name="max_saved">10</property>
 		  <property name="browse_dialog_title" translatable="yes">Select an image</property>
 		  <property name="directory_entry">False</property>
-		  <property name="modal">False</property>
+		  <property name="modal">True</property>
 
 		  <child internal-child="entry">
 		    <widget class="GtkEntry" id="fname">

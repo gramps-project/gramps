@@ -45,7 +45,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 class NameEditor:
 
-    def __init__(self,parent,name,callback):
+    def __init__(self,parent,name,callback,parent_window=None):
         self.parent = parent
         self.name = name
         self.callback = callback
@@ -100,12 +100,14 @@ class NameEditor:
             self.priv.set_active(name.getPrivacy())
             self.note_buffer.set_text(name.getNote())
 
-        self.top.signal_autoconnect({
-            "destroy_passed_object"   : Utils.destroy_passed_object,
-            "on_name_edit_ok_clicked" : self.on_name_edit_ok_clicked,
-            })
+        if parent_window:
+            self.window.set_transient_for(parent_window)
+        val = self.window.run()
+        if val == gtk.RESPONSE_OK:
+            self.on_name_edit_ok_clicked()
+        self.window.destroy()
 
-    def on_name_edit_ok_clicked(self,obj):
+    def on_name_edit_ok_clicked(self):
         first = self.given_field.get_text()
         last = self.surname_field.get_text()
         title = self.title_field.get_text()
@@ -131,7 +133,6 @@ class NameEditor:
         self.parent.lists_changed = 1
 
         self.callback(self.name)
-        Utils.destroy_passed_object(obj)
 
     def update_name(self,first,last,suffix,title,type,note,priv):
         
