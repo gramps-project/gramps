@@ -30,6 +30,7 @@ Class handling language-specific selection for date parser and displayer.
 #
 #-------------------------------------------------------------------------
 import os
+import locale
 
 #-------------------------------------------------------------------------
 #
@@ -45,11 +46,11 @@ import DateDisplay
 # Constants 
 #
 #-------------------------------------------------------------------------
-_lang = os.environ.get('LANG','C').split('.')[0]
-    
+_lang = locale.getlocale(locale.LC_TIME)[0]
 
 _lang_to_parser = {
     'C'      : DateParser.DateParser,
+    'fr_FR'  : DateParser.DateParserFR,
     'en_US'  : DateParser.DateParser,
     'en_GB'  : DateParser.DateParser,
     'en_AU'  : DateParser.DateParser,
@@ -60,6 +61,7 @@ _lang_to_parser = {
 
 _lang_to_display = {
     'C'      : DateDisplay.DateDisplay,
+    'fr_FR'  : DateDisplay.DateDisplayFR,
     'en_US'  : DateDisplay.DateDisplay,
     'en_GB'  : DateDisplay.DateDisplay,
     'en_AU'  : DateDisplay.DateDisplay,
