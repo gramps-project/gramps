@@ -324,7 +324,9 @@ class SingleDate:
     #
     #--------------------------------------------------------------------
     def __cmp__(self,other):
-        if self.year != other.year:
+        if other == None:
+            return 0
+        elif self.year != other.year:
             return cmp(self.year,other.year)
         elif self.month != other.month:
             return cmp(self.month,other.month)
