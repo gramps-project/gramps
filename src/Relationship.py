@@ -218,8 +218,11 @@ def get_relationship(orig_person,other_person):
     if is_spouse(orig_person,other_person):
         return ("spouse",[])
 
-    apply_filter(orig_person,0,firstList,firstMap)
-    apply_filter(other_person,0,secondList,secondMap)
+    try:
+        apply_filter(orig_person,0,firstList,firstMap)
+        apply_filter(other_person,0,secondList,secondMap)
+    except RuntimeError,msg:
+        return (_("Relationship loop detected"),None)
     
     for person in firstList:
         if person in secondList:

@@ -42,6 +42,9 @@ import gtk.glade
 import gnome
 import gnome.ui
 
+#
+# SUSE calls the gconf module "gnome.gconf"
+#
 try:
     import gconf
 except ImportError:

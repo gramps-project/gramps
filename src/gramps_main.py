@@ -1366,8 +1366,11 @@ class Gramps:
                                              self.active_person)
 
             if name:
-                return _("%(relationship)s of %(person)s") % {
-                    'relationship' : name, 'person' : pname }
+                if plist == None:
+                    return name
+                else:
+                    return _("%(relationship)s of %(person)s") % {
+                        'relationship' : name, 'person' : pname }
             else:
                 return ""
         except:
