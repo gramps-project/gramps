@@ -1,3 +1,7 @@
+2005-03-16  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+    * src/EditPerson.py (EditPerson.ev_drag_data_received): Fixed
+	drag and drop of events.
+
 2005-03-15  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib.py (Source.get_text_data_child_list,
 	Family.get_text_data_child_list): Add missing lists.
