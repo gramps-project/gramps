@@ -134,7 +134,7 @@ class ReadPkg:
         self.callback(1)
 
     def progress(self,val):
-        self.progress_bar.set_value(val*100.0)
+        self.progress_bar.set_fraction(val)
         while gtk.events_pending():
             gtk.mainiteration()
         

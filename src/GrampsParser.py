@@ -988,12 +988,11 @@ class GrampsImportParser(GrampsParser):
         src = attrs["src"]
         if src:
             if src[0] != '/':
-                self.object.setPath("%s/%s" % (self.base,src))
+                self.object.setPath("%s/%s" % (self.db.getSavePath(),src))
                 self.object.setLocal(1)
             else:
                 self.object.setPath(src)
                 self.object.setLocal(0)
-
 
 def append_value(orig,val):
     if orig:

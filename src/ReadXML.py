@@ -121,7 +121,7 @@ def importData(database, filename, callback):
         oldfile = ObjectMap[NewMediaID].getPath()
         oldpath = os.path.dirname(oldfile)
         (junk,oldext) = os.path.splitext(os.path.basename(oldfile))
-        ObjectMap[NewMediaID].setPath(NewMediaID + oldext)
+        ObjectMap[NewMediaID].setLocal(1)
 	if NewMediaID != OldMediaID:
             newfile = os.path.join( basefile, NewMediaID + oldext )
             os.rename(oldfile,newfile)
