@@ -1,5 +1,5 @@
 %define ver      0.9.1
-%define rel      pre1
+%define rel      rc1
 %define prefix   /usr
 
 Summary: Genealogical Research and Analysis Management Programming System.
@@ -57,8 +57,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{prefix}/bin/gramps
 
-%{_datadir}/gramps/doc/gramps-manual/C/*
-
+%{_datadir}/gramps/gnome/help/gramps/C/*
 %{_datadir}/gnome/apps/Applications/gramps.desktop
 %{_datadir}/pixmaps/gramps.png
 %{_datadir}/locale/*/LC_MESSAGES/gramps.mo
@@ -81,10 +80,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gramps/data/gedcom.xml
 %{_datadir}/gramps/data/templates/*.tpkg
 %{_datadir}/gramps/data/templates/*.xml
+%{_datadir}/gramps/example/*
+%{_datadir}/omf/gramps
 
 %{prefix}/man/man1/gramps.1*
 
-%{_datadir}/omf/gramps
 
 %post
 if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update -q -o %{_datadir}/omf/gramps; fi
