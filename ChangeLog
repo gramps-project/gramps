@@ -16,6 +16,11 @@
 	* src/StartupDialog.py: Attempt to seed the researcher name from the
 	name entry in the passwd file
 	* src/DrawDoc.py: support centered text
+	* src/EditPerson.py: Support for keeping track of names, addresses,
+	and urls after they are edited
+	* src/NameEdit.py: Support for keeping track of names after they are edited
+	* src/AddrEdit.py: Support for keeping track of names after they are edited
+	* src/UrlEdit.py: Support for keeping track of names after they are edited
 	
 2003-06-10  Tim Waugh  <twaugh@redhat.com>
 	* gramps.spec.in: Add gramps icon to correct location on install
