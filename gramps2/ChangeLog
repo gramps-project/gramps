@@ -1,5 +1,9 @@
 2003-07-15  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/CustomBookText.py: Add to CVS. 
+	* src/plugins/ReadPkg.py: Enable "..." in the menu item.
+	* src/plugins/ReadNative.py: Likewise.
+	* src/plugins/ReadGedcom.py: Likewise.
+	* src/Report.py: Put "Style" label in singular form (was plural).
 
 2003-07-14  Donald Peterson  <dpeterson@sigmaxi.org>
 	* src/docgen/LaTeXDoc.py: Regress UNICODE support to be only a

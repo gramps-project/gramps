@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,6 +31,8 @@ import gtk
 import const
 import os
 
+_title_string = _("Import from GRAMPS database")
+
 #-------------------------------------------------------------------------
 #
 #
@@ -49,7 +51,7 @@ class ReadNative:
         self.db = database
         self.callback = cb
         
-        self.top = gtk.FileSelection("%s - GRAMPS" % _("Import from GRAMPS database"))
+        self.top = gtk.FileSelection("%s - GRAMPS" % _title_string)
         self.top.hide_fileop_buttons()
         self.top.ok_button.connect('clicked', self.on_ok_clicked)
         self.top.cancel_button.connect('clicked', self.close_window)
@@ -60,10 +62,10 @@ class ReadNative:
         
     def show_display(self):
         self.window = gtk.Window()
-        self.window.set_title(_("Import from GRAMPS database"))
+        self.window.set_title(_title_string)
         vbox = gtk.VBox()
         self.window.add(vbox)
-        label = gtk.Label(_("Import from GRAMPS database"))
+        label = gtk.Label(_title_string)
         vbox.add(label)
         adj = gtk.Adjustment(lower=0,upper=100)
         self.progress_bar = gtk.ProgressBar(adj)
@@ -102,4 +104,4 @@ class ReadNative:
 #------------------------------------------------------------------------
 from Plugins import register_import
 
-register_import(readData,_("Import from GRAMPS database"))
+register_import(readData,"%s..." % _title_string)
