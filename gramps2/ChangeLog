@@ -1,6 +1,17 @@
 2003-09-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/AncestorChart.py (AncestorChart.__init__): Call calc()
 	after self.standalone is defined. 
+	* src/srcsel.glade: Define proper responses for OK and Cancel buttons
+	in both SourceSelector and SourceEditor windows. 
+	* src/Sources.py: Make both SourceSelector and SourceEditor modal and
+	transients for their parent window. Add SourceTab window argument to
+	SourceTab to pass to the SourceEditor. 
+	* src/AddrEdit.py: Pass window widget to the SourceTab.
+	* src/AttrEdit.py: Likewise. 
+	* src/EditPlace.py: Likewise.
+	* src/EventEdit.py: Likewise.
+	* src/NameEdit.py: Likewise.
+	* src/Marriage.py: Rename top_window to self.window.
 
 2003-09-12  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/BaseDoc.py: add init function to BaseDoc to be called after

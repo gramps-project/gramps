@@ -78,9 +78,9 @@ class Marriage:
             self.pmap[p[0]] = key
 
         self.top = gtk.glade.XML(const.marriageFile,"marriageEditor","gramps")
-        top_window = self.get_widget("marriageEditor")
+        self.window = self.get_widget("marriageEditor")
 
-        Utils.set_titles(top_window, self.top.get_widget('title'),
+        Utils.set_titles(self.window, self.top.get_widget('title'),
                          _('Marriage/Relationship Editor'))
         
         self.icon_list = self.get_widget('iconlist')
@@ -200,7 +200,7 @@ class Marriage:
 
         self.redraw_event_list()
         self.redraw_attr_list()
-        top_window.show()
+        self.window.show()
 
     def ev_drag_begin(self, context, a):
         return

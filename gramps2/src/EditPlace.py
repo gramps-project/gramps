@@ -157,7 +157,7 @@ class EditPlace:
             })
 
         self.sourcetab = Sources.SourceTab(self.srcreflist,self,
-                                           self.top_window,self.slist,
+                                           self.top_window,self.top,self.slist,
                                            self.top_window.get_widget('add_src'),
                                            self.top_window.get_widget('edit_src'),
                                            self.top_window.get_widget('del_src'))
