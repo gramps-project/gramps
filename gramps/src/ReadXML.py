@@ -67,7 +67,6 @@ def importData(database, filename, callback):
         parser = xml.sax.make_parser()
         parser.setContentHandler(GrampsParser(database,callback,basefile,1))
         xml_file = gzip.open(filename,"rb")
-#        xml_file = EncodedFile(gzip.open(filename,"rb"),'utf-8','latin-1')
         parser.parse(xml_file)
         
     xml_file.close()
@@ -96,10 +95,7 @@ def loadData(database, filename, callback):
         parser.setContentHandler(GrampsParser(database,callback,basefile,0))
 
     try:
-        if sax == 1:
-            xml_file = gzip.open(filename,"rb")
-        else:
-            xml_file = EncodedFile(gzip.open(filename,"rb"),'utf-8','latin-1')
+        xml_file = gzip.open(filename,"rb")
     except IOError,msg:
         GnomeErrorDialog(_("%s could not be opened\n") % filename + str(msg))
         return 0
