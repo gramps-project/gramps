@@ -39,7 +39,7 @@ else:
             try:
                 return y.encode("iso-8859-1")
             except:
-                return y.encode("<Invalid UNICODE>")
+                return s
 
         def latin_to_utf8(s):
             buff = cStringIO.StringIO()
