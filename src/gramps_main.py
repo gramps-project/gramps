@@ -186,7 +186,7 @@ def on_exit_activate(obj):
     if utils.wasModified():
         question = _("Unsaved changes exist in the current database\n") + \
                    _("Do you wish to save the changes?")
-        topWindow.question(question,save_query)
+        GnomeQuestionDialog(question,save_query)
     else:    
         mainquit(obj)
 
@@ -366,7 +366,7 @@ def on_choose_parents_clicked(obj):
 def on_new_clicked(obj):
     """Prompt for permission to close the current database"""
     msg = _("Do you want to close the current database and create a new one?")
-    topWindow.question(msg,new_database_response)
+    GnomeQuestionDialog(msg,new_database_response)
 
 def new_database_response(val):
     """Clear out the database if permission was granted"""
@@ -632,9 +632,9 @@ def load_new_person(obj):
 def on_delete_person_clicked(obj):
     if len(person_list.selection) == 1:
         msg = _("Do you really wish to delete %s?") % Config.nameof(active_person)
-        topWindow.question( msg, delete_person_response)
+        GnomeQuestionDialog( msg, delete_person_response)
     elif len(person_list.selection) > 1:
-        topWindow.error(_("Currently, you can only delete one person at a time"))
+        GnomeErrorDialog(_("Currently, you can only delete one person at a time"))
 
 def delete_person_response(val):
     if val == 1:
@@ -1048,10 +1048,10 @@ def on_open_activate(obj):
 def on_revert_activate(obj):
     if database.getSavePath() != "":
         msg = _("Do you wish to abandon your changes and revert to the last saved database?")
-        topWindow.question(msg,revert_query)
+        GnomeQuestionDialog(msg,revert_query)
     else:
         msg = _("Cannot revert to a previous database, since one does not exist")
-        topWindow.warning(msg)
+        GnomeWarningDialog(msg)
 
 #-------------------------------------------------------------------------
 #
@@ -1658,7 +1658,7 @@ def setup_bookmarks():
 #
 #-------------------------------------------------------------------------
 def displayError(msg):
-    topWindow.error(msg)
+    GnomeErrorDialog(msg)
     statusbar.set_status("")
 
 #-------------------------------------------------------------------------
@@ -1742,7 +1742,7 @@ def on_home_clicked(obj):
         change_active_person(temp)
         update_display(0)
     else:
-        topWindow.error(_("No default/home person has been set"))
+        GnomeErrorDialog(_("No default/home person has been set"))
 
 #-------------------------------------------------------------------------
 #
@@ -1768,7 +1768,7 @@ def on_default_person_activate(obj):
     if active_person:
         name = active_person.getPrimaryName().getRegularName()
         msg = _("Do you wish to set %s as the home person?") % name
-        topWindow.question(msg,set_person)
+        GnomeQuestionDialog(msg,set_person)
 
 #-------------------------------------------------------------------------
 #
