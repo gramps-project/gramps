@@ -1,3 +1,6 @@
+2004-05-27  Don Allingham  <dallingham@users.sourceforge.net>
+	* various: installation fixes
+
 2004-05-26  Don Allingham  <dallingham@users.sourceforge.net>
 	* Makefiles: updated for installation
 	* src/data/gnome-mime-application-x-gramps.png: new icon

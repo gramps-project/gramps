@@ -58,6 +58,7 @@ import FamilyView
 import SourceView
 import PeopleView
 import GenericFilter
+import GrampsMime
 import DisplayTrace
 import const
 import Plugins
@@ -135,12 +136,20 @@ class Gramps:
         GrampsCfg.loadConfig(self.pref_callback)
         self.RelClass = Plugins.relationship_class
         self.relationship = self.RelClass(self.db)
+        self.gtop = gtk.glade.XML(const.gladeFile, "gramps", "gramps")
         self.init_interface()
 
         if GrampsCfg.usetips:
             TipOfDay.TipOfDay()
 
-        if args:
+        if args and len(args)==1:
+            if GrampsMime.get_type(args[0]) == "application/x-gramps":
+                if self.auto_save_load(args[0]) == 0:
+                    DbPrompter.DbPrompter(self,0,self.topWindow)
+            else:
+                import ArgHandler
+                ArgHandler.ArgHandler(self,args)
+        elif args:
             import ArgHandler
             ArgHandler.ArgHandler(self,args)
         elif GrampsCfg.lastfile and GrampsCfg.autoload:
@@ -163,7 +172,6 @@ class Gramps:
         widgets that it will need.
         """
 
-        self.gtop = gtk.glade.XML(const.gladeFile, "gramps", "gramps")
         self.topWindow   = self.gtop.get_widget("gramps")
 
         self.report_button = self.gtop.get_widget("reports")
