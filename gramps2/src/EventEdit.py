@@ -229,7 +229,6 @@ class EventEditor:
         self.update_event(ename,self.date,eplace_obj,edesc,enote,epriv,ecause)
         self.parent.redraw_event_list()
         self.callback(self.event)
-        Utils.destroy_passed_object(self.window)
 
     def update_event(self,name,date,place,desc,note,priv,cause):
         if self.event.getPlace() != place:
