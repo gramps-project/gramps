@@ -175,11 +175,11 @@ class OpenOfficeDoc(TextDoc):
         import GdkImlib
 
         image = GdkImlib.Image(name)
-        scale = float(y)/float(image.rgb_height)
-        act_width = int(image.rgb_width * scale)
-        act_height = int(image.rgb_height * scale)
+        scale = float(image.rgb_width)/float(image.rgb_height)
+        act_width = x * scale
+        act_height = y * scale
 
-        self.photo_list.append((name,act_width,act_height))
+        self.photo_list.append((name,int(act_width)*40,int(act_height)*40))
 
         base = os.path.basename(name)
         tag = string.replace(base,'.','_')
@@ -188,8 +188,8 @@ class OpenOfficeDoc(TextDoc):
         self.f.write('draw:name="')
         self.f.write(tag)
         self.f.write('" text:anchor-type="paragraph" ')
-        self.f.write('svg:width="%scm" ' % cnv("%.3f",float(act_width)/72.0))
-        self.f.write('svg:height="%scm" ' % cnv("%.3f",(float(act_height)/72.0)))
+        self.f.write('svg:width="%scm" ' % cnv("%.3f",act_width))
+        self.f.write('svg:height="%scm" ' % cnv("%.3f",act_height))
         self.f.write('draw:z-index="0" ')
         self.f.write('xlink:href="#Pictures/')
         self.f.write(base)
@@ -298,8 +298,10 @@ class OpenOfficeDoc(TextDoc):
         self.f.write('<style:style style:name="photo" style:family="graphics">\n')
         self.f.write('<style:properties text:anchor-type="paragraph" ')
         self.f.write('svg:x="0cm" svg:y="0cm" style:wrap="none" ')
-        self.f.write('style:vertical-pos="top" style:vertical-rel="paragraph" ')
-        self.f.write('style:horizontal-pos="center" style:horizontal-rel="paragraph"/>\n')
+        self.f.write('style:vertical-pos="top" ')
+        self.f.write('style:vertical-rel="paragraph-content" ')
+        self.f.write('style:horizontal-pos="center" ')
+        self.f.write('style:horizontal-rel="paragraph-content"/>\n')
         self.f.write('</style:style>\n')
         
         for key in self.style_list.keys():
@@ -445,7 +447,7 @@ class OpenOfficeDoc(TextDoc):
             else:
                 im = PIL.Image.open(file)
                 im.thumbnail((width,height))
-                im.save(name,"JPEG")
+                im.save(image_name,"JPEG")
 
     def _write_manifest(self):
 	file = self.tempdir + os.sep + "META-INF" + os.sep + "manifest.xml"

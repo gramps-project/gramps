@@ -18,26 +18,53 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#------------------------------------------------------------------------
+#
+# Load the base TextDoc class
+#
+#------------------------------------------------------------------------
 from TextDoc import *
-from latin_utf8 import latin_to_utf8
 
+#------------------------------------------------------------------------
+#
+# Attempt to load the Python Imaging Library for the handling of photos.
+#
+#------------------------------------------------------------------------
 try:
     import PIL.Image
     no_pil = 0
 except:
     no_pil = 1
 
-
+#------------------------------------------------------------------------
+#
+# RTF uses a unit called "twips" for its measurements. According to the 
+# RTF specification, 1 point is 20 twips. This routines converts 
+# centimeters to twips
+#
+# 2.54 cm/inch 72pts/inch, 20twips/pt
+#
+#------------------------------------------------------------------------
 def twips(cm):
     return int(((cm/2.54)*72)+0.5)*20
 
 #------------------------------------------------------------------------
 #
-# 
+# Rich Text Format Document interface. The current inteface does not
+# use style sheets. Instead it writes raw formatting.
 #
 #------------------------------------------------------------------------
 class RTFDoc(TextDoc):
 
+    #--------------------------------------------------------------------
+    #
+    # Opens the file, and writes the header. Builds the color and font
+    # tables.  Fonts are chosen using the MS TrueType fonts, since it
+    # is assumed that if you are generating RTF, you are probably 
+    # targeting Word.  This generator assumes a Western Europe character
+    # set.
+    #
+    #--------------------------------------------------------------------
     def open(self,filename):
         if filename[-4:] != ".rtf":
             self.filename = filename + ".rtf"
@@ -75,20 +102,39 @@ class RTFDoc(TextDoc):
         self.f.write('\\margt%d' % twips(self.tmargin))
         self.f.write('\\margb%d' % twips(self.bmargin))
         self.f.write('\\widowctl\n')
+	self.in_table = 0
+	self.text = ""
 
+    #--------------------------------------------------------------------
+    #
+    # Write the closing brace, and close the file.
+    #
+    #--------------------------------------------------------------------
     def close(self):
         self.f.write('}\n')
         self.f.close()
 
-    def start_page(self,orientation=None):
-        pass
-
+    #--------------------------------------------------------------------
+    #
+    # Force a section page break
+    #
+    #--------------------------------------------------------------------
     def end_page(self):
-        pass
+        self.f.write('\\sbkpage\n')
 
+    #--------------------------------------------------------------------
+    #
+    # Starts a paragraph. Instead of using a style sheet, generate the
+    # the style for each paragraph on the fly. Not the ideal, but it 
+    # does work.
+    #
+    #--------------------------------------------------------------------
     def start_paragraph(self,style_name,leader=None):
         self.open = 0
         p = self.style_list[style_name]
+
+	# build font information
+
         f = p.get_font()
         size = f.get_size()*2
         bgindex = self.color_map[p.get_background_color()]
@@ -104,7 +150,10 @@ class RTFDoc(TextDoc):
         if f.get_italic():
             self.font_type = self.font_type + "\\i"
 
-        self.f.write('\\pard')
+	# build paragraph information
+
+	if not self.in_table:
+            self.f.write('\\pard')
         if p.get_alignment() == PARA_ALIGN_RIGHT:
             self.f.write('\\qr')
         elif p.get_alignment() == PARA_ALIGN_CENTER:
@@ -136,57 +185,186 @@ class RTFDoc(TextDoc):
             self.f.write('\\tab}')
             self.open = 0
     
+    #--------------------------------------------------------------------
+    #
+    # Ends a paragraph. Care has to be taken to make sure that the 
+    # braces are closed properly. The self.open flag is used to indicate
+    # if braces are currently open. If the last write was the end of 
+    # a bold-faced phrase, braces may already be closed.
+    #
+    #--------------------------------------------------------------------
     def end_paragraph(self):
-        if self.open:
-            self.f.write('}')
-            self.open  = 0
-        self.f.write('\n\\par')
-        pass
+	if not self.in_table:
+            self.f.write(self.text)
+            if self.open:
+                self.f.write('}')
+                self.text = ""
+                self.open = 0
+            self.f.write('\n\\par')
+        else:
+            self.text = self.text + '}'
 
+    #--------------------------------------------------------------------
+    #
+    # Starts boldfaced text, enclosed the braces
+    #
+    #--------------------------------------------------------------------
     def start_bold(self):
         if self.open:
             self.f.write('}')
         self.f.write('{%s\\b ' % self.font_type)
         self.open = 1
-        pass
 
+    #--------------------------------------------------------------------
+    #
+    # Ends boldfaced text, closing the braces
+    #
+    #--------------------------------------------------------------------
     def end_bold(self):
         self.open = 0
         self.f.write('}')
 
+    #--------------------------------------------------------------------
+    #
+    # Start a table. Grab the table style, and store it. Keep a flag to
+    # indicate that we are in a table. This helps us deal with paragraphs
+    # internal to a table. RTF does not require anything to start a 
+    # table, since a table is treated as a bunch of rows.
+    #
+    #--------------------------------------------------------------------
     def start_table(self,name,style_name):
-        pass
+	self.in_table = 1
+	self.tbl_style = self.table_styles[style_name]
 
+    #--------------------------------------------------------------------
+    #
+    # End a table. Turn off the table flag
+    #
+    #--------------------------------------------------------------------
     def end_table(self):
-        pass
+	self.in_table = 0
 
+    #--------------------------------------------------------------------
+    #
+    # Start a row. RTF uses the \trowd to start a row. RTF also specifies
+    # all the cell data after it has specified the cell definitions for
+    # the row. Therefore it is necessary to keep a list of cell contents
+    # that is to be written after all the cells are defined.
+    #
+    #--------------------------------------------------------------------
     def start_row(self):
-        pass
+        self.contents = []
+	self.cell = 0
+	self.prev = 0
+	self.f.write('\\trowd ')
 
+    #--------------------------------------------------------------------
+    #
+    # End a row. Write the cell contents, separated by the \cell marker,
+    # then terminate the row
+    #
+    #--------------------------------------------------------------------
     def end_row(self):
-        pass
+	self.f.write('{')
+	for line in self.contents:
+	    self.f.write(line)
+            self.f.write('\\cell ')
+	self.f.write('}\\pard\\intbl\\row ')
 
+    #--------------------------------------------------------------------
+    #
+    # Start a cell. Dump out the cell specifics, such as borders. Cell
+    # widths are kind of interesting. RTF doesn't specify how wide a cell
+    # is, but rather where it's right edge is in relationship to the 
+    # left margin. This means that each cell is the cumlative of the 
+    # previous cells plus its own width.
+    #
+    #--------------------------------------------------------------------
     def start_cell(self,style_name,span=1):
-        pass
+	s = self.cell_styles[style_name]
+	self.remain = span -1
+	if s.get_top_border():
+	    self.f.write('\\clbrdrt\\brdrs\\brdrw10 ')
+	if s.get_bottom_border():
+	    self.f.write('\\clbrdrb\\brdrs\\brdrw10 ')
+	if s.get_left_border():
+	    self.f.write('\\clbrdrl\\brdrs\\brdrw10 ')
+	if s.get_right_border():
+	    self.f.write('\\clbrdrr\\brdrs\\brdrw10 ')
+	table_width = float(self.get_usable_width())
+	cell_percent = 0
+	for cell in range(self.cell,self.cell+span):
+	    cell_percent = cell_percent + float(self.tbl_style.get_column_width(cell))
+	cell_percent = cell_percent/100.0
+	cell_width = twips(table_width * cell_percent)
+	self.prev = self.prev + cell_width
+	self.f.write('\\cellx%d\\pard\intbl' % self.prev)
+	self.cell = self.cell+1
 
+    #--------------------------------------------------------------------
+    #
+    # End a cell. Save the current text in the content lists, since data
+    # must be saved until all cells are defined.
+    #
+    #--------------------------------------------------------------------
     def end_cell(self):
-        pass
+        self.contents.append(self.text)
+        self.text = ""
 
+    #--------------------------------------------------------------------
+    #
+    # Add a photo. Embed the photo in the document. Use the Python 
+    # imaging library to load and scale the photo. The image is converted
+    # to JPEG, since it is smaller, and supported by RTF. The data is
+    # dumped as a string of HEX numbers.
+    #
+    # If the PIL library is not loaded, ignore the request to load the 
+    # photo.
+    #
+    #--------------------------------------------------------------------
     def add_photo(self,name,x,y):
-        pass
-    
-    def horizontal_line(self):
-        pass
+	if no_pil:
+	    return
 
+	im = PIL.Image.open(name)
+        nx,ny = im.size
+        buf = im.tostring("jpeg","RGB")
+
+        scale = float(ny)/float(nx)
+        if scale > 1:
+            scale = 1.0/scale
+        act_width = twips(x * scale)
+        act_height = twips(y * scale)
+        im.thumbnail((int(act_width*40),int(act_height*40)))
+
+	self.f.write('{\*\shppict{\\pict\\jpegblip\\picwgoal%d\\pichgoal%d\n' % (x,y))
+	index = 1
+	for i in buf:
+	    self.f.write('%02x' % ord(i))
+	    if index%32==0:
+	        self.f.write('\n')
+	    index = index+1
+	self.f.write('}}\\par\n')
+    
+    #--------------------------------------------------------------------
+    #
+    # Writes text. If braces are not currently open, open them. Loop 
+    # character by character (terribly inefficient, but it works). If a
+    # character is 8 bit (>127), convert it to a hex representation in 
+    # the form of \`XX. Make sure to escape braces.
+    #
+    #--------------------------------------------------------------------
     def write_text(self,text):
         if self.open == 0:
             self.open = 1
-            self.f.write('{%s ' % self.font_type)
+            self.text = self.text + '{%s ' % self.font_type
         for i in text:
             if ord(i) > 127:
-                self.f.write('\\\'%2x' % ord(i))
+                self.text = self.text + '\\\'%2x' % ord(i)
+            elif i == '{' or i == '}' :
+                self.text = self.text + '\\%s' % i
             else:
-                self.f.write(i)
+                self.text = self.text + i
 
 
 if __name__ == "__main__":
@@ -228,7 +406,67 @@ if __name__ == "__main__":
     styles.add_style("Box",para)
 
     doc = RTFDoc(styles,paper,PAPER_PORTRAIT)
-    doc.open("/home/dona/test")
+
+    cell = TableCellStyle()
+    cell.set_padding(0.2)
+    cell.set_top_border(1)
+    cell.set_bottom_border(1)
+    cell.set_right_border(1)
+    cell.set_left_border(1)
+    doc.add_cell_style('ParentHead',cell)
+
+    cell = TableCellStyle()
+    cell.set_padding(0.1)
+    cell.set_bottom_border(1)
+    cell.set_left_border(1)
+    doc.add_cell_style('TextContents',cell)
+
+    cell = TableCellStyle()
+    cell.set_padding(0.1)
+    cell.set_bottom_border(0)
+    cell.set_left_border(1)
+    cell.set_padding(0.1)
+    doc.add_cell_style('TextChild1',cell)
+
+    cell = TableCellStyle()
+    cell.set_padding(0.1)
+    cell.set_bottom_border(1)
+    cell.set_left_border(1)
+    cell.set_padding(0.1)
+    doc.add_cell_style('TextChild2',cell)
+
+    cell = TableCellStyle()
+    cell.set_padding(0.1)
+    cell.set_bottom_border(1)
+    cell.set_right_border(1)
+    cell.set_left_border(1)
+    doc.add_cell_style('TextContentsEnd',cell)
+
+    cell = TableCellStyle()
+    cell.set_padding(0.2)
+    cell.set_bottom_border(1)
+    cell.set_right_border(1)
+    cell.set_left_border(1)
+    doc.add_cell_style('ChildName',cell)
+
+    table = TableStyle()
+    table.set_width(100)
+    table.set_columns(3)
+    table.set_column_width(0,20)
+    table.set_column_width(1,40)
+    table.set_column_width(2,40)
+    doc.add_table_style('ParentTable',table)
+
+    table = TableStyle()
+    table.set_width(100)
+    table.set_columns(4)
+    table.set_column_width(0,5)
+    table.set_column_width(1,15)
+    table.set_column_width(2,40)
+    table.set_column_width(3,40)
+    doc.add_table_style('ChildTable',table)
+
+    doc.open("test")
 
     doc.start_paragraph("Title")
     doc.write_text("My Title")
@@ -243,7 +481,36 @@ if __name__ == "__main__":
     doc.end_paragraph()
 
     doc.start_paragraph("Normal")
-    doc.add_photo("/home/dona/dad.jpg",200,200)
+    doc.add_photo("foo.png",200,200)
     doc.end_paragraph()
+
+    doc.start_table(id,'ParentTable')
+    doc.start_row()
+    doc.start_cell('ParentHead',3)
+    doc.start_paragraph('Normal')
+    doc.write_text('Banana : Smith ')
+    doc.end_paragraph()
+    doc.end_cell()
+    doc.end_row()
+
+    doc.start_row()
+    doc.start_cell("TextContents")
+    doc.start_paragraph('Normal')
+    doc.write_text("some event")
+    doc.end_paragraph()
+    doc.end_cell()
+    doc.start_cell("TextContents")
+    doc.start_paragraph('Normal')
+    doc.write_text("someday")
+    doc.end_paragraph()
+    doc.end_cell()
+    doc.start_cell("TextContentsEnd")
+    doc.start_paragraph('Normal')
+    doc.write_text("somewhere")
+    doc.end_paragraph()
+    doc.end_cell()
+    doc.end_row()
+
+    doc.end_table()
 
     doc.close()
