@@ -1381,7 +1381,7 @@ class Gramps:
         mymap = {}
         mynmap = {}
         list = []
-        sel = 0
+        sel = None
         for f in self.active_person.getFamilyList():
             if self.active_person == f.getFather():
                 if f.getMother() == None:
@@ -1401,7 +1401,7 @@ class Gramps:
             c.set_data('d',f)
             c.show()
             list.append(c)
-            if f == self.active_family:
+            if f == self.active_family or sel == None:
                 sel = c
             mymap[f] = c
             mynmap[f] = sname
