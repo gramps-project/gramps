@@ -56,7 +56,7 @@ class ReorderIds:
         if possible. Otherwise, blindly renumber those that can't."""
         
         dups = []
-        newids = []
+        newids = {}
         key_list = []
 
         # search all ids in the map
@@ -79,14 +79,15 @@ class ReorderIds:
                     index = match.groups()[0]
                     newid = prefix % int(index)
                     if newid == id:
+                        newids[newid] = id
                         continue
                     elif data_map.has_key(newid):
                         dups.append(id)
                     else:
-                        newids.append(id)
                         data = data_map[id]
-                        data.setId(newid)
                         data_map[newid] = data
+                        newids[newid] = id
+                        data.setId(newid)
                         del data_map[id]
                         if update:
                             update(newid,id)
@@ -102,10 +103,10 @@ class ReorderIds:
         for id in dups:
             while 1:
                 newid = prefix % index
-                if newid not in newids:
+                if not newids.has_key(newid):
                     break
                 index = index + 1
-            newids.append(newid)
+            newids[newid] = newid
             data = data_map[id]
             data.setId(newid)
             data_map[newid] = data
