@@ -1,3 +1,8 @@
+2004-07-01  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: disable find old "find" function
+	* src/gramps.glade: enable TreeView find function
+	* src/PeopleView.py: don't unselect a row if it isn't a valid person.
+
 2004-06-30  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps_main.py (on_export_activate): Delegate work
 	to DbPrompter.
