@@ -1,10 +1,14 @@
 Version 0.3.2
 * Fixed Style Editor on WebPage.py, to allow styles to be edited.
-* May have ironed out the PyXML/Python/SAX issues once and for all.
+* WebPage generator now lists more information, including sources.
+* May have ironed out the PyXML/Python/SAX issues once and for all,
+  cleaning up the python 1.5/2.X problems.
 * Added the ability to set default directories for reports and
   databases.
 * Fixed major bug that added a marriage and divorce to every record
   that was viewed in the family viewer.
+* Fixed bug that was dropping images
+* Many, many other bug fixes.
 * Improved many of the translations.
 
 Version 0.3.1
