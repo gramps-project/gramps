@@ -1,3 +1,13 @@
+2004-09-24 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/data/gnome-mime-application-x-geneweb.png: Add to CVS.
+	* src/data/Makefile.am, src/plugins/Makefile.am: Ship new files.
+
+2004-09-24  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/ImportGeneWeb.py, src/plugins/WriteGeneWeb.py, 
+	src/plugins/genewebexport.glade: Add to CVS.
+	* src/data/gramps.applications, src/data/gramps.keys,
+	src/data/gramps.mime, src/data/gramps.xml: Add GeneWeb format.
+
 2004-09-24  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DateDisplay.py: use LC_TIME and D_FMT to determine
 	the locale date format

@@ -9,3 +9,6 @@ application/x-gramps-package
 
 application/x-gedcom
 	ext: ged gedcom GED GEDCOM
+
+application/x-geneweb
+	ext: gw GW

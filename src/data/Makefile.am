@@ -10,6 +10,7 @@ dist_pkgdata_DATA = \
 	gnome-mime-application-x-gedcom.png \
 	gnome-mime-application-x-gramps-package.png \
 	gnome-mime-application-x-gramps-xml.png \
+	gnome-mime-application-x-geneweb.png \
 	gramps.applications \
 	gramps.desktop \
 	gramps.svg \
