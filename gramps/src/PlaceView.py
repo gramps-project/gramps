@@ -27,7 +27,6 @@ Handles the place view for GRAMPS.
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import GTK
 import GDK
 import gnome.ui
 
@@ -110,7 +109,7 @@ class PlaceView:
             self.place_list.select_row(current_row,0)
             self.place_list.moveto(current_row)
             id = self.place_list.get_row_data(current_row)
-            self.active = self.db.getPlaceMap()[id]
+            self.active = self.db.getPlace(id)
         else:
             self.active = None
 
@@ -119,7 +118,7 @@ class PlaceView:
     def select_row(self,obj,row,b,c):
         if row == obj.selection[0]:
             id = self.place_list.get_row_data(row)
-            self.active = self.db.getPlaceMap()[id]
+            self.active = self.db.getPlace(id)
             
     def merge(self):
         if len(self.place_list.selection) != 2:
@@ -129,8 +128,8 @@ class PlaceView:
             import MergeData
             p1 = self.place_list.get_row_data(self.place_list.selection[0])
             p2 = self.place_list.get_row_data(self.place_list.selection[1])
-            p1 = self.db.getPlaceMap()[p1]
-            p2 = self.db.getPlaceMap()[p2]
+            p1 = self.db.getPlace(p1)
+            p2 = self.db.getPlace(p2)
             MergeData.MergePlaces(self.db,p1,p2,self.load_places)
 
     def on_button_press_event(self,obj,event):
@@ -183,14 +182,25 @@ class PlaceView:
             index = obj.selection[0]
 
         used = 0
-        place = self.db.getPlaceMap()[obj.get_row_data(index)]
+        place = self.db.getPlace(obj.get_row_data(index))
         for key in self.db.getPersonKeys():
-            p = self.db.getPersonMap()[key]
-            for event in [p.getBirth(), p.getDeath()] + p.getEventList():
+            p = self.db.getPerson[key]
+            event_list = [p.getBirth(), p.getDeath()] + p.getEventList()
+            if p.getLdsBaptism():
+                event_list.append(p.getLdsBaptism())
+            if p.getLdsEndowment():
+                event_list.append(p.getLdsEndowment())
+            if p.getLdsSeal():
+                event_list.append(p.getLdsSeal())
+            for event in event_list:
                 if event.getPlace() == place:
                     used = 1
+
         for f in self.db.getFamilyMap().values():
-            for event in f.getEventList():
+            event_list = f.getEventList()
+            if f.getLdsSeal():
+                event_list.append(f.getLdsSeal())
+            for event in event_list:
                 if event.getPlace() == place:
                     used = 1
 
@@ -212,7 +222,7 @@ class PlaceView:
             gnome.ui.GnomeErrorDialog(msg)
         else:
             for p in obj.selection:
-                place = self.db.getPlaceMap()[obj.get_row_data(p)]
+                place = self.db.getPlace(obj.get_row_data(p))
                 EditPlace.EditPlace(place,self.db,
                                     self.update_display_after_edit)
 
