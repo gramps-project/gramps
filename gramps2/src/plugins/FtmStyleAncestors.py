@@ -837,7 +837,7 @@ _style_name = "default"
 _person_id = ""
 _max_gen = 10
 _pg_brk = 0
-_options = [ _person_id, _max_gen, _pg_brk ]
+_options = ( _person_id, _max_gen, _pg_brk )
 
 #------------------------------------------------------------------------
 #

@@ -90,16 +90,10 @@ class BookItem:
                 from the book item registry using name for lookup
         """
 
-        self.name = ""
-        self.category = ""
-        self.dialog = None
-        self.write_item = None
-        self.options = []
-        self.style_file = ""
-        self.style_name = "default"
-        self.make_default_style = None
         if name:
             self.get_registered_item(name)
+        else:
+            self.clear()
         
     def clear(self):
         """
@@ -130,7 +124,7 @@ class BookItem:
                 self.category = item[1]
                 self.dialog = item[2]
                 self.write_item = item[3]
-                self.options = item[4]
+                self.options = list(item[4])
                 self.style_name = item[5]
                 self.style_file = item[6]
                 self.make_default_style = item[7]
