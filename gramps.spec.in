@@ -48,7 +48,7 @@ else
   CFLAGS="$MYCFLAGS" %configure
 fi
 
-make
+CFLAGS="$RPM_OPT_FLAGS" make
 
 %install
 rm -rf $RPM_BUILD_ROOT
