@@ -70,12 +70,11 @@ class AddMediaObject:
     a media object from the file system, while providing a description.
     """
     
-    def __init__(self,db,update=None):
+    def __init__(self,db):
         """
         Creates and displays the dialog box
 
         db - the database in which the new object is to be stored
-        update - a function to call to update the display
         """
         self.db = db
         self.glade = gtk.glade.XML(const.imageselFile,"imageSelect","gramps")
@@ -85,7 +84,6 @@ class AddMediaObject:
         self.file_text = self.glade.get_widget("fname")
         self.internal = self.glade.get_widget('internal')
         self.internal.connect('toggled',self.internal_toggled)
-        self.update = update
         self.temp_name = ""
         self.object = None
 
@@ -145,8 +143,6 @@ class AddMediaObject:
         self.object = mobj
         self.db.commit_media_object(mobj,trans)
         self.db.transaction_commit(trans,_("Add Media Object"))
-        if self.update:
-            self.update(mobj.get_handle())
         
     def on_name_changed(self,*obj):
         """

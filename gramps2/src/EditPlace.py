@@ -497,7 +497,6 @@ class EditPlace:
     def display_references(self):
         pevent = []
         fevent = []
-        mlist = []
         msg = ""
         for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
@@ -511,10 +510,6 @@ class EditPlace:
                 event = self.db.get_event_from_handle(event_handle)
                 if event and event.get_place_handle() == self.place.get_handle():
                     fevent.append((f,event))
-        for media_handle in self.db.get_media_object_handles():
-            obj = self.db.get_object_from_handle(media_handle)
-            if obj and obj.get_place_handle() == self.place.get_handle():
-                mlist.append(object)
 
         any = 0
         if len(pevent) > 0:
@@ -545,15 +540,6 @@ class EditPlace:
                     fname = self.name_display( self.db.get_person_from_handle( mother))
 
                 msg = msg + ( t % (fname,e[0].get_gramps_id(),_(e[1].get_name())))
-
-        if len(mlist) > 0:
-            any = 1
-            msg = msg + "\n%s\n" % _("Media Objects")
-            msg = msg + "_________________________\n\n"
-            t = _("%s [%s]\n")
-
-            for o in mlist:
-                msg = msg + ( t % (o.get_description(),o.get_gramps_id()))
 
         self.refinfo.get_buffer().set_text(msg)
         if any:
@@ -591,23 +577,26 @@ class DeletePlaceQuery:
     def query_response(self):
         trans = self.db.transaction_begin()
         
-        self.db.remove_place(self.place.get_handle(),trans)
+        place_handle = self.place.get_handle()
+        self.db.remove_place(place_handle,trans)
 
-        for key in self.db.get_person_handles(sort_handles=False):
-            p = self.db.get_person_from_handle(key)
-            for event_handle in [p.get_birth_handle(), p.get_death_handle()] + p.get_event_list():
-                event = self.db.get_event_from_handle(event_handle)
-                if event and event.get_place_handle() == self.place.get_handle():
-                    event.set_place_handle(None)
-                    self.db.commit_event(event,trans)
+        for handle in self.db.get_person_handles(sort_handles=False):
+            person = self.db.get_person_from_handle(handle)
+            if person.has_handle_reference('Place',place_handle):
+                person.remove_handle_references('Place',place_handle)
+                self.db.commit_person(person,trans)
 
-        for fid in self.db.get_family_handles():
-            f = self.db.get_family_from_handle(fid)
-            for event_handle in f.get_event_list():
-                event = self.db.get_event_from_handle(event_handle)
-                if event and event.get_place_handle() == self.place.get_handle():
-                    event.set_place_handle(None)
-                    self.db.commit_event(event,trans)
+        for handle in self.db.get_family_handles():
+            family = self.db.get_family_from_handle(handle)
+            if family.has_handle_reference('Place',place_handle):
+                family.remove_handle_references('Place',place_handle)
+                self.db.commit_family(family,trans)
+
+        for handle in self.db.get_event_handles():
+            event = self.db.get_event_from_handle(handle)
+            if event.has_handle_reference('Place',place_handle):
+                event.remove_handle_references('Place',place_handle)
+                self.db.commit_event(event,trans)
 
         self.db.transaction_commit(trans,
                                    _("Delete Place (%s)") % self.place.get_title())

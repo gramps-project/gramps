@@ -484,7 +484,7 @@ class Gallery(ImageSelect):
                     photo.set_path(name)
                 self.parent.lists_changed = 1
                 if GrampsKeys.get_media_global():
-                    GlobalMediaProperties(self.db,photo,None,
+                    GlobalMediaProperties(self.db,photo,
                                                 self,self.parent_window)
             elif protocol != "":
                 import urllib
@@ -512,7 +512,7 @@ class Gallery(ImageSelect):
                 self.add_thumbnail(oref)
                 self.parent.lists_changed = 1
                 if GrampsKeys.get_media_global():
-                    GlobalMediaProperties(self.db,photo,None,
+                    GlobalMediaProperties(self.db,photo,
                                                 self,self.parent_window)
             else:
                 if self.db.has_object_handle(data.data):
@@ -873,7 +873,7 @@ class LocalMediaProperties:
 #-------------------------------------------------------------------------
 class GlobalMediaProperties:
 
-    def __init__(self,db,obj,update,parent,parent_window=None):
+    def __init__(self,db,obj,parent,parent_window=None):
         self.parent = parent
         self.dp = DateHandler.parser
         self.dd = DateHandler.displayer
@@ -890,7 +890,6 @@ class GlobalMediaProperties:
         self.alist = self.obj.get_attribute_list()[:]
         self.lists_changed = 0
         self.db = db
-        self.update = update
         self.refs = 0
         if obj:
             self.date_object = Date.Date(self.obj.get_date_object())
@@ -923,11 +922,6 @@ class GlobalMediaProperties:
         build_dropdown(self.place,self.place_list)
 
         if self.obj:
-            handle = self.obj.get_place_handle()
-            pobj = self.db.get_place_from_handle(handle)
-            if pobj:
-                self.place.set_text(pobj.get_title())
-
             self.date_entry.set_text(self.dd.display(self.date_object))
         
         Utils.set_titles(self.window,
@@ -1207,8 +1201,6 @@ class GlobalMediaProperties:
         trans = self.db.transaction_begin()
         self.db.commit_media_object(self.obj,trans)
         self.db.transaction_commit(trans,_("Edit Media Object"))
-        if self.update != None:
-            self.update(self.obj)
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -1256,11 +1248,10 @@ class GlobalMediaProperties:
 
 class DeleteMediaQuery:
 
-    def __init__(self,media_handle,db,the_lists,update):
+    def __init__(self,media_handle,db,the_lists):
         self.db = db
         self.media_handle = media_handle
         self.the_lists = the_lists
-        self.update = update
         
     def query_response(self):
         trans = self.db.transaction_begin()
@@ -1305,8 +1296,6 @@ class DeleteMediaQuery:
 
         self.db.remove_object(self.media_handle,trans)
         self.db.transaction_commit(trans,_("Remove Media Object"))
-        if self.update:
-            self.update(self.media_handle)
 
 def build_dropdown(entry,strings):
     store = gtk.ListStore(str)

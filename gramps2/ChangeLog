@@ -1,3 +1,25 @@
+2005-04-03  Alex Roitman  <shura@gramps-project.org>
+	* src/AddMedia.py: Remove unneeded update argument.
+	* src/ArgHandler.py (auto_save_load): Mysterious workaround :-).
+	* src/EditPlace.py (display_references): Drop media objects;
+	(DeletePlaceQuery.query_response): use proper handle removal.
+	* src/GrampsBSDDB.py (remove_object): emit media signal.
+	* src/GrampsDbBase.py (GrampsDbBase): Add media-related signals;
+	(commit_media_object,transaction_commit,undo): emit media signals.
+	* src/ImageSelect.py (GlobalMediaProperties,DeleteMediaQuery):
+	Remove unneeded update argument.
+	* src/MediaView.py (media_add,media_update,media_delete): Add
+	callbacks; (change_db): connect callbacks to signals;
+	(popup_change_description): Call property editor without callback param;
+	(on_add_clicked): Call AddMedia without callback param;
+	(add_object,update_display,add_to_display): Remove unneeded methods;
+	(on_edit_clicked): call property editor without callback param;
+	(on_delete_clicked): call deleter without callback param;
+	(on_drag_data_received): Call property editor without callback param.
+	* src/PlaceView.py (new_place_after_edit): Remove unneeded method;
+	(delete_place): Remove unneeded tree update; (is_used) Add method;
+	(on_delete_clicked): Use new detection method.
+
 2005-04-02  Don Allingham  <don@gramps-project.org>
 	* src/ReadGedcom.py: emit proper signals to notify of a database 
 	rebuild, handle parent/child relationships better - eliminate
