@@ -245,7 +245,8 @@ class FtmAncestorReport(Report.Report):
         if not note.strip():
             return
         self.doc.start_paragraph('SubEntry')
-        self.doc.write_text(_('Notes for %(person)s:') % { 'person' : person.getPrimaryName().getName()} )
+        self.doc.write_text(_('Notes for %(person)s:') % { 
+        	'person' : person.getPrimaryName().getRegularName()} )
         self.doc.end_paragraph()
         for line in note.split('\n'):
             self.doc.start_paragraph('Details')
@@ -259,7 +260,8 @@ class FtmAncestorReport(Report.Report):
         for name in person.getAlternateNames():
             if first:
                 self.doc.start_paragraph('SubEntry')
-                self.doc.write_text(_('More about %(person_name)s:') % { 'person_name' : name })
+                self.doc.write_text(_('More about %(person_name)s:') % { 
+                	'person_name' : person.getPrimaryName().getRegularName() })
                 self.doc.end_paragraph()
                 first = 0
             self.doc.start_paragraph('Details')
@@ -278,8 +280,9 @@ class FtmAncestorReport(Report.Report):
                 continue
             if first:
                 self.doc.start_paragraph('SubEntry')
-                name = person.getPrimaryName().getName()
-                self.doc.write_text(_('More about %(person_name)s:') % { 'person_name' : name })
+                name = person.getPrimaryName().getRegularName()
+                self.doc.write_text(_('More about %(person_name)s:') % { 
+                	'person_name' : name })
                 self.doc.end_paragraph()
                 first = 0
 
