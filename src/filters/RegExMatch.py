@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-"Names that match a regular expression"
+"Names that match a regular expression of ..."
 
 import Filter
 import re
@@ -26,7 +26,7 @@ import Utils
 from gettext import gettext as _
 
 class RegExMatch(Filter.Filter):
-    "Names that match a regular expression"
+    "Names that match a regular expression of ..."
 
     def __init__(self,text):
         self.ok = 1
@@ -48,7 +48,7 @@ class RegExMatch(Filter.Filter):
 #
 #------------------------------------------------------------------------
 Filter.register_filter(RegExMatch,
-                       description=_("Names that match a regular expression"),
+                       description=_("Names that match a regular expression of ..."),
                        label=_("Text"),
                        qualifier=1)
 

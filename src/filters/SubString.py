@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-"Names that contain a substring"
+"Names that contain a substring of ..."
 
 import Filter
 import string
@@ -26,7 +26,7 @@ import Utils
 from gettext import gettext as _
 
 class SubString(Filter.Filter):
-    "Names that contain a substring"
+    "Names that contain a substring of ..."
 
     def match(self,person):
         s1 = string.lower(Utils.phonebook_name(person))
@@ -39,7 +39,7 @@ class SubString(Filter.Filter):
 #
 #------------------------------------------------------------------------
 Filter.register_filter(SubString,
-                       description=_("Names that contain a substring"),
+                       description=_("Names that contain a substring of ..."),
                        label=_("Text"),
                        qualifier=1)
 
