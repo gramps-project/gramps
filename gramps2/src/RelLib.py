@@ -67,8 +67,8 @@ CONF_VERY_LOW  = 0
 # Class definitions
 #
 #-------------------------------------------------------------------------
-_display = DateHandler.create_display()
-_parser  = DateHandler.create_parser()
+display = DateHandler.create_display()
+parser  = DateHandler.create_parser()
 
 #-------------------------------------------------------------------------
 #
@@ -991,12 +991,12 @@ class Event(PrimaryObject,DataObj):
 
     def set_date(self, date) :
         """attempts to sets the date of the Event instance"""
-        self.date = _parser.parse(date)
+        self.date = parser.parse(date)
 
     def get_date(self) :
         """returns a string representation of the date of the Event instance"""
         if self.date:
-            return _display.display(self.date)
+            return display.display(self.date)
         return u""
 
     def get_preferred_date(self) :
@@ -1007,7 +1007,7 @@ class Event(PrimaryObject,DataObj):
         """returns a string representation of the date of the Event instance,
         enclosing the results in quotes if it is not a valid date"""
         if self.date:
-            return _display.quote_display(self.date)
+            return display.quote_display(self.date)
         return u""
 
     def get_date_object(self):
@@ -1408,12 +1408,12 @@ class LdsOrd(SourceNote):
         """attempts to sets the date of the ordinance"""
         if not self.date:
             self.date = Date.Date()
-        _parser.set_date(self.date,date)
+        parser.set_date(self.date,date)
 
     def get_date(self) :
         """returns a string representation of the date of the ordinance"""
         if self.date:
-            return _display.display(self.date)
+            return display.display(self.date)
         return u""
 
     def get_date_object(self):
@@ -1748,13 +1748,13 @@ class Address(DataObj):
     def set_date(self,text):
         """attempts to sets the date that the person lived at the address
         from the passed string"""
-        self.date = _parser.parse(text)
+        self.date = parser.parse(text)
 
     def get_date(self):
         """returns a string representation of the date that the person
         lived at the address"""
         if self.date:
-            return _display.display(self.date)
+            return display.display(self.date)
         return u""
 
     def get_preferred_date(self):
