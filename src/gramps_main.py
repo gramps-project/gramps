@@ -769,8 +769,6 @@ class Gramps:
         Plugins.load_plugins(os.path.expanduser("~/.gramps/docgen"))
         Plugins.load_plugins(const.pluginsDir)
         Plugins.load_plugins(os.path.expanduser("~/.gramps/plugins"))
-        Plugins.load_plugins(const.calendarDir)
-        Plugins.load_plugins(os.path.expanduser("~/.gramps/calendars"))
 
         Plugins.build_report_menu(self.report_menu,self.menu_report)
         Plugins.build_tools_menu(self.tools_menu,self.menu_tools)

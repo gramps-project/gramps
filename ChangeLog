@@ -1,3 +1,8 @@
+2004-09-25  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/const.py.in: remove calendar directory
+	* src/gramps_main.py: remove calendar directory
+	* configure.in: remove calendar directory
+
 2004-09-24 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/data/gnome-mime-application-x-geneweb.png: Add to CVS.
 	* src/data/Makefile.am, src/plugins/Makefile.am: Ship new files.
