@@ -232,9 +232,11 @@ class AbiWordDoc(BaseDoc.BaseDoc):
         elif format == 0:
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
+                self.f.write('<c props="font-family:Courier">')
                 line = line.replace('\n',' ')
                 line = string.join(string.split(line))
                 self.write_text(line)
+                self.f.write('</c>')
                 self.end_paragraph()
 
     def write_text(self,text):
@@ -295,4 +297,4 @@ class AbiWordDoc(BaseDoc.BaseDoc):
     def end_cell(self):
         self.f.write('</cell>\n')
 
-Plugins.register_text_doc(_("AbiWord (version 1.9 or greater)"),AbiWordDoc,1,1,1,".abw")
+Plugins.register_text_doc(_("AbiWord"),AbiWordDoc,1,1,1,".abw")
