@@ -72,12 +72,29 @@ fmt6 = re.compile(_start+"(\S+)\s*$", re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
+# 
+#
+#-------------------------------------------------------------------------
+def set_format_code(code):
+    Calendar.FORMATCODE = code
+    
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def get_format_code():
+    return Calendar.FORMATCODE
+
+#-------------------------------------------------------------------------
+#
 # Calendar - base calendar
 #
 #-------------------------------------------------------------------------
 class Calendar:
 
-    entryCode = 0
+    ENTRYCODE = 0
+    FORMATCODE = 0
 
     MONTHS = [
         _("January"),   _("February"),  _("March"),    _("April"),
@@ -143,6 +160,9 @@ class Calendar:
     def quote_display(self,year,month,day,mode):
         return "%s (%s)" % (text,Calendar.NAME)
 
+    def display(self,year,month,day,mode):
+        return _FMT_FUNC[Calendar.FORMATCODE](self,year,month,day,mode)
+
     def format_yymmdd(self,year,month,day,mode):
         if month == UNDEF and day == UNDEF and year == UNDEF :
             return ""
@@ -160,13 +180,62 @@ class Calendar:
                 retval = "????-%02d-%02d" % (month,day)
             else:
                 retval = "%04d-%02d-%02d" % (year,month,day)
+        return self.fmt_mode(retval,mode)
 
-        if Calendar.MODE.has_key(mode):
-            return "%s %s" % (Calendar.MODE[mode],retval)
+    def format_mon_dd_year(self,year,month,day,mode):
+        """
+        Formats the date in the form of DD Month Year, such as
+        January 20, 2000
+        """
+        if month == UNDEF and day == UNDEF and year == UNDEF:
+            return ""
+        elif day == UNDEF:
+            if month == UNDEF:
+                retval = str(year)
+            elif year == UNDEF:
+                retval = self.month(month)
+            else:
+                retval = "%s %d" % (self.month(month),year)
+        elif month == UNDEF:
+            retval = str(year)
         else:
-            return retval
+            if year == UNDEF:
+                retval = "%s %d, ????" % (self.month(month),day)
+            else:
+                retval = "%s %d, %d" % (self.month(month),day,year)
 
-    def display(self,year,month,day,mode):
+        return self.fmt_mode(retval,mode)
+
+
+    def format_MON_dd_year(self,year,month,day,mode):
+        """
+        Formats the date in the form of DD Month Year, such as
+        January 20, 2000
+        """
+        if month == UNDEF and day == UNDEF and year == UNDEF:
+            return ""
+        elif day == UNDEF:
+            if month == UNDEF:
+                retval = str(year)
+            elif year == UNDEF:
+                retval = self.month(month).upper()[0:3]
+            else:
+                retval = "%s %d" % (self.month(month).upper()[0:3],year)
+        elif month == UNDEF:
+            retval = str(year)
+        else:
+            if year == UNDEF:
+                retval = "%s %d, ????" % (self.month(month).upper()[0:3],day)
+            else:
+                retval = "%s %d, %d" % (self.month(month).upper()[0:3],day,year)
+
+        return self.fmt_mode(retval,mode)
+
+    def format_dd_mon_year(self,year,month,day,mode):
+        """
+        Formats the date in the form of DD Month Year, such as
+        20 January 2000
+        """
         if year==UNDEF:
             if month == UNDEF:
                 d = ""
@@ -181,10 +250,154 @@ class Calendar:
         else:
             d = "%02d %s %d" % (day,self.month(month),year)
 
-        if Calendar.MODE.has_key(mode):
-            return "%s %s" % (Calendar.MODE[mode],d)
+        return self.fmt_mode(d,mode)
+
+    def format_dd_MON_year(self,year,month,day,mode):
+        """
+        Formats the date in the form of DD. Month Year, such as
+        20. January 2000
+        """
+        if month == UNDEF and day == UNDEF and year == UNDEF :
+            return ""
+        elif day == UNDEF:
+            if month == UNDEF:
+                retval = str(year)
+            elif year == UNDEF:
+                retval = self.month(month).upper()[0:3]
+            else:
+                retval = "%s %d" % (self.month(month).upper()[0:3],year)
+        elif month == UNDEF:
+            retval = str(year)
         else:
-            return d
+            month_str = self.month(month).upper()[0:3]
+            if self.year == UNDEF:
+                retval = "%d %s ????" % (day,month_str)
+            else:
+                retval = "%d %s %d" % (day,month_str,year)
+
+        return self.fmt_mode(retval,mode)
+
+    def format_dd_dot_MON_year(self,year,month,day,mode):
+        """
+        Formats the date in the form of DD. Month Year, such as
+        20. January 2000
+        """
+        if month == UNDEF and day == UNDEF and year == UNDEF :
+            return ""
+        elif day == UNDEF:
+            if month == UNDEF:
+                retval = str(year)
+            elif year == UNDEF:
+                retval = self.month(month).upper()[0:3]
+            else:
+                retval = "%s %d" % (self.month(month).upper()[0:3],year)
+        elif month == UNDEF:
+            retval = str(year)
+        else:
+            month_str = self.month(month).upper()[0:3]
+            if self.year == UNDEF:
+                retval = "%d. %s ????" % (day,month_str)
+            else:
+                retval = "%d. %s %d" % (day,month_str,year)
+
+        return self.fmt_mode(retval,mode)
+
+    def format4(self,year,month,day,mode):
+        return self._get_mmddyyyy(year,month,day,mode,"/")
+
+    def format5(self,year,month,day,mode):
+        return self._get_mmddyyyy(year,month,day,mode,"-")
+
+    def format6(self,year,month,day,mode):
+        return self._get_ddmmyyyy(year,month,day,mode,"/")
+
+    def format7(self,year,month,day,mode):
+        return self._get_ddmmyyyy(year,month,day,mode,"-")
+
+    def format8(self,year,month,day,mode):
+        return self._get_mmddyyyy(year,month,day,mode,".")
+
+    def format9(self,year,month,day,mode):
+        return self._get_ddmmyyyy(year,month,day,mode,".")
+
+    def format11(self,year,month,day,mode):
+        return self._get_yyyymmdd(year,month,day,mode,"/")
+
+    def format12(self,year,month,day,mode):
+        return self._get_yyyymmdd(year,month,day,mode,"-")
+
+    def format13(self,year,month,day,mode):
+        return self._get_yyyymmdd(year,month,day,mode,".")
+
+    def _get_mmddyyyy(self,year,month,day,mode,sep):
+        if month == UNDEF and day == UNDEF and year == UNDEF :
+            return ""
+        elif day == UNDEF:
+            if month == UNDEF:
+                retval = str(year)
+            elif year == UNDEF:
+                retval = "%02d%s??%s??" % (month+1,sep,sep)
+            else:
+                retval = "%02d%s??%s%04d" % (month+1,sep,sep,year)
+        elif month == UNDEF:
+            retval = "??%s%02d%s%04d" % (sep,day,sep,year)
+        else:
+            if year == UNDEF:
+                retval = "%02d%s%02d%s????" % (month+1,sep,day,sep)
+            else:
+                retval = "%02d%s%02d%s%04d" % (month+1,sep,day,sep,year)
+
+        return self.fmt_mode(retval,mode)
+
+    def _get_yyyymmdd(self,year,month,day,mode,sep):
+        retval = ""
+        
+        if month == UNDEF and day == UNDEF and year == UNDEF :
+            pass
+        elif day == UNDEF:
+            if month == UNDEF:
+                retval = str(self.year)
+            elif year == UNDEF:
+                retval = "????%s%02d%s??" % (sep,month+1,sep)
+            else:
+                retval = "%04d%s%02d" % (year,sep,month+1)
+        elif month == UNDEF:
+            retval = "%04d%s??%s%02d" % (year,sep,sep,day)
+        else:
+            if year == UNDEF:
+                retval = "????%s%02d%s%02d" % (sep,month+1,sep,day)
+            else:
+                retval = "%02d%s%02d%s%02d" % (year,sep,month+1,sep,day)
+
+        return self.fmt_mode(retval,mode)
+
+    def _get_ddmmyyyy(self,year,month,day,mode,sep):
+        retval = ""
+        
+        if month == UNDEF and day == UNDEF and year == UNDEF :
+            pass
+        elif day == UNDEF:
+            if month == UNDEF:
+                retval = str(year)
+            elif year == UNDEF:
+                retval = "??%s%02d%s??" % (sep,month+1,sep)
+            else:
+                retval = "??%s%02d%s%04d" % (sep,month+1,sep,year)
+        elif month == UNDEF:
+            retval = "%02d%s??%s%04d" % (day,sep,sep,year)
+        else:
+            if year == UNDEF:
+                retval = "%02d%s%02d%s????" % (day,sep,month+1,sep)
+            else:
+                retval = "%02d%s%02d%s%04d" % (day,sep,month+1,sep,year)
+
+        return self.fmt_mode(retval,mode)
+
+    def fmt_mode(self,val,mode):
+        if Calendar.MODE.has_key(mode):
+            return "%s %s" % (Calendar.MODE[mode],val)
+        else:
+            return val
 
     def get_ymd(self,val):
         return (0,0,0)
@@ -1024,6 +1237,21 @@ class Islamic(Calendar):
         day = int((sdn - self.get_sdn(year,month,1)) + 1)
         return (year,month,day)
 
+_FMT_FUNC = [
+    Calendar.format_mon_dd_year,
+    Calendar.format_MON_dd_year,
+    Calendar.format_dd_MON_year,
+    Calendar.format4,
+    Calendar.format5,
+    Calendar.format6,
+    Calendar.format7,
+    Calendar.format9,
+    Calendar.format_dd_dot_MON_year,
+    Calendar.format11,
+    Calendar.format12,
+    Calendar.format13,
+    ]
+
 #-------------------------------------------------------------------------
 #
 # Calendar registration
@@ -1055,25 +1283,3 @@ register(Persian)
 register(Hebrew)
 register(Islamic)
 
-if __name__ == "__main__":
-
-    e = Gregorian()
-    print e.get_ymd(e.get_sdn(1992,12,2)), e.display(1992,12,2,EXACT)
-
-    a = Julian()
-    print a.get_ymd(a.get_sdn(2002,1,28)), a.display(2002,1,28,ABOUT)
-
-    f = Hebrew()
-    print f.get_ymd(f.get_sdn(1992,12,2)), f.display(1992,12,2,EXACT)
-
-    e = Gregorian()
-    print e.get_ymd(e.get_sdn(1992,12,2)), e.display(1992,12,2,EXACT)
-
-    g = Islamic()
-    print g.get_ymd(g.get_sdn(1992,12,2)), g.display(1992,12,2,EXACT)
-
-    h = Persian()
-    print h.get_ymd(h.get_sdn(1992,12,2)), h.display(1992,12,2,EXACT)
-
-    i = FrenchRepublic()
-    print i.get_ymd(i.get_sdn(1992,12,2)), i.display(1992,12,2,EXACT)
