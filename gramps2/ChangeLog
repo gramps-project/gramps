@@ -19,6 +19,11 @@
 	* src/plugins/FtmStyleDescendants.py: New date handling.
 	* src/plugins/FtmStyleAncestors.py: New date handling.
 
+	* src/Report.py (Report.__init__): Proper use of output;
+	(report): Typo; (cl_report): Use begin_report and finish_report.
+	* src/plugins/BookReport.py (BookReportDialog.make_report):
+	Use begin_report for each item.
+
 2004-12-28  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DateEdit.py: use global date displayer/parser
 	* src/DateHandler.py: provide global date displayer/parser 
