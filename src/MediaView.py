@@ -32,45 +32,37 @@ import os
 import GrampsCfg
 import const
 import RelImage
+import Sorter
 
 from intl import gettext
 _ = gettext
 
 class MediaView:
-    def __init__(self,db,glade,update):
+    def __init__(self,db,glade,update,top_window):
         self.db = db
-        self.media_list  = glade.get_widget("media_list")
-        self.mid         = glade.get_widget("mid")
-        self.mtype       = glade.get_widget("mtype")
-        self.mdesc       = glade.get_widget("mdesc")
-        self.mpath       = glade.get_widget("mpath")
-        self.mdetails    = glade.get_widget("mdetails")
-        self.mid_arrow   = glade.get_widget("mid_arrow")
-        self.mdescr_arrow= glade.get_widget("mdescr_arrow")
-        self.mtype_arrow = glade.get_widget("mtype_arrow")
-        self.mpath_arrow = glade.get_widget("mpath_arrow")
-        self.preview     = glade.get_widget("preview")
+        self.top_window = top_window
+        self.media_list = glade.get_widget("media_list")
+        self.mid        = glade.get_widget("mid")
+        self.mtype      = glade.get_widget("mtype")
+        self.mdesc      = glade.get_widget("mdesc")
+        self.mpath      = glade.get_widget("mpath")
+        self.mdetails   = glade.get_widget("mdetails")
+        self.preview    = glade.get_widget("preview")
 
-        self.sort_arrow = [self.mdescr_arrow, self.mid_arrow, 
-                           self.mtype_arrow, self.mpath_arrow]
-        self.sort_map   = [5,1,2,3,-1]
-        self.media_list.connect('click-column',self.click_column)
+        arrow_map   = [ (5, glade.get_widget("mdescr_arrow")),
+                        (1, glade.get_widget("mid_arrow")),
+                        (2, glade.get_widget("mtype_arrow")),
+                        (3, glade.get_widget("mpath_arrow"))]
 
-        self.mid_arrow.hide()
-        self.mtype_arrow.hide()
-        self.mpath_arrow.hide()
-        
         t = [ ('STRING', 0, 0),
               ('text/plain',0,0),
               ('text/uri-list',0,2),
               ('application/x-rootwin-drop',0,1)]
 
         self.media_list.drag_source_set(GDK.BUTTON1_MASK|GDK.BUTTON3_MASK,
-                                        t,
-                                        GDK.ACTION_COPY)
+                                        t,GDK.ACTION_COPY)
         self.media_list.drag_dest_set(GTK.DEST_DEFAULT_ALL,
-                                      t,
-                                      GDK.ACTION_COPY|GDK.ACTION_MOVE)
+                                      t,GDK.ACTION_COPY|GDK.ACTION_MOVE)
 
         self.update = update
         self.media_list.set_column_visibility(4,GrampsCfg.show_detail)
@@ -79,11 +71,8 @@ class MediaView:
 
         # Restore the previous sort column
         
-        self.sort_col,self.sort_dir = GrampsCfg.get_sort_cols("media",0,GTK.SORT_ASCENDING)
-        self.media_list.set_sort_type(self.sort_dir)
-        self.media_list.set_sort_column(self.sort_map[self.sort_col])
-        self.set_arrow(self.sort_col)
-
+        self.media_sort = Sorter.Sorter(self.media_list, arrow_map, 'media', self.top_window)
+        
     def change_db(self,db):
         self.db = db
 
@@ -92,48 +81,6 @@ class MediaView:
         self.media_list.select_row(row,0)
         self.media_list.moveto(row)
         
-    def set_arrow(self,column):
-        for a in self.sort_arrow:
-            a.hide()
-
-        a = self.sort_arrow[column]
-        a.show()
-        if self.sort_dir == GTK.SORT_ASCENDING:
-            a.set(GTK.ARROW_DOWN,2)
-        else:
-            a.set(GTK.ARROW_UP,2)
-        
-    def click_column(self,obj,column):
-
-        new_col = self.sort_map[column]
-        if new_col == -1:
-            return
-
-        data = None
-        if len(obj.selection) == 1:
-            data = obj.get_row_data(obj.selection[0])
-        
-        obj.freeze()
-        if new_col == self.sort_col:
-            if self.sort_dir == GTK.SORT_ASCENDING:
-                self.sort_dir = GTK.SORT_DESCENDING
-            else:
-                self.sort_dir = GTK.SORT_ASCENDING
-        else:
-            self.sort_dir = GTK.SORT_ASCENDING
-
-        self.set_arrow(column)
-        
-        obj.set_sort_type(self.sort_dir)
-        obj.set_sort_column(new_col)
-        self.sort_col = column
-        GrampsCfg.save_sort_cols("media",self.sort_col,self.sort_dir)
-        obj.sort()
-        if data:
-            row = obj.find_row_from_data(data)
-            obj.moveto(row)
-        obj.thaw()
-
     def on_select_row(self,obj,row,b,c):
         fexists = 1
         
@@ -231,7 +178,7 @@ class MediaView:
             self.media_list.set_row_data(index,src)
             index = index + 1
 
-        self.media_list.sort()
+        self.media_sort.sort_list()
 
         if index > 0:
             self.media_list.select_row(current_row,0)
