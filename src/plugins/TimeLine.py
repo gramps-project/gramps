@@ -95,9 +95,7 @@ class TimeLine(Report.Report):
         sort_functions = options_class.get_sort_functions(Sort.Sort(database))
         self.sort_func = sort_functions[sort_func_num][1]
 
-        self.setup()
-
-    def setup(self):
+    def define_graphics_styles(self):
         """
         Define the graphics styles used by the report. Paragraph definitions
         have already been defined in the document. The styles used are:

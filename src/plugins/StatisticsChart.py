@@ -409,8 +409,6 @@ class StatisticsChart(Report.Report):
 	    print heading
 	    print table[1]
 	
-        self.setup()
-
         
     def index_items(self, data, sort, reverse):
         """creates & stores a sorted index for the items"""
@@ -434,7 +432,7 @@ class StatisticsChart(Report.Report):
         return index
 
     
-    def setup(self):
+    def define_graphics_styles(self):
         """
         Define the graphics styles used by the report. Paragraph definitions
         have already been defined in the document. The styles used are:
@@ -466,7 +464,7 @@ class StatisticsChart(Report.Report):
         g.set_width(self.doc.get_usable_width())
         self.doc.add_draw_style("SC-title",g)
 
-    
+
     def write_report(self):
         "output the selected statistics..."
 

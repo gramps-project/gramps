@@ -54,7 +54,6 @@ from ReportUtils import pt2cm
 class FanChart(Report.Report):
 
     def __init__(self,database,person,options_class):
-        #database,person,display,doc,output,newpage=0):
         """
         Creates the FanChart object that produces the report.
         
@@ -78,9 +77,7 @@ class FanChart(Report.Report):
         self.text= {}
         self.box_width = 0
 
-        self.setup()
-
-    def setup(self):
+    def define_graphics_styles(self):
         g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style('FC-Title')
         g.set_line_width(0)

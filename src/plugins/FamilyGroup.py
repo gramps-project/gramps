@@ -89,9 +89,7 @@ class FamilyGroup(Report.Report):
                     self.family = family
                     break
 
-        self.setup()
-
-    def setup(self):
+    def define_table_styles(self):
         """
         Define the table  styles used by the report. 
         """
