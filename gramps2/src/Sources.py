@@ -53,8 +53,10 @@ class SourceSelector:
             self.list.append(RelLib.SourceRef(s))
         self.update=update
         self.top = gtk.glade.XML(const.srcselFile,"sourcesel")
+        self.sourcesel = self.top.get_widget("sourcesel")
 
-        Utils.set_title_label(self.top,_('Source Reference Selection'))
+        Utils.set_titles(self.sourcesel, self.top.get_widget('title'),
+                         _('Source Reference Selection'))
         
         self.top.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
@@ -64,7 +66,6 @@ class SourceSelector:
             "on_src_ok_clicked"     : self.src_ok_clicked,
             })
 
-        self.sourcesel = self.top.get_widget("sourcesel")
         self.slist = self.top.get_widget("slist")
         self.selection = self.slist.get_selection()
         self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
@@ -211,15 +212,16 @@ class SourceEditor:
         self.update = update
         self.source_ref = srcref
         self.showSource = gtk.glade.XML(const.srcselFile, "sourceDisplay")
+        self.sourceDisplay = self.get_widget("sourceDisplay")
 
-        Utils.set_title_label(self.showSource,_('Source Information'))
+        Utils.set_titles(self.sourceDisplay, self.showSource.get_widget('title'),
+                         _('Source Information'))
         
         self.showSource.signal_autoconnect({
             "on_sourceok_clicked"   : self.on_sourceok_clicked,
             "on_source_changed"     : self.on_source_changed,
             "destroy_passed_object" : Utils.destroy_passed_object
             })
-        self.sourceDisplay = self.get_widget("sourceDisplay")
         self.source_field = self.get_widget("sourceList")
         self.title_menu = self.get_widget("source_title")
         self.title_menu.set_data("o",self)

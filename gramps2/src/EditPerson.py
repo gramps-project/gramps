@@ -108,6 +108,8 @@ class EditPerson:
         self.addr_edit_btn = self.top.get_widget('addr_edit_btn')
 
         self.window = self.get_widget("editPerson")
+        self.window.set_title("%s - GRAMPS" % _('Edit Person'))
+        
         self.notes_field = self.get_widget("personNotes")
         self.event_name_field  = self.get_widget("eventName")
         self.event_place_field = self.get_widget("eventPlace")
@@ -1041,7 +1043,6 @@ class EditPerson:
         store,iter = self.ptree.get_selected()
         if iter:
             addr = self.ptree.get_object(iter)
-            label = "%s %s %s" % (addr.getCity(),addr.getState(),addr.getCountry())
             self.addr_start.set_text(addr.getDate())
             self.addr_street.set_text(addr.getStreet())
             self.addr_city.set_text(addr.getCity())

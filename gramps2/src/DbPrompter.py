@@ -59,14 +59,17 @@ class DbPrompter:
 
     def show(self):
         opendb = gtk.glade.XML(const.gladeFile, "opendb")
+        top = opendb.get_widget('opendb')
+        title = opendb.get_widget('title')
 
-        Utils.set_title_label(opendb,_('Open a database'))
+        Utils.set_titles(top,title,_('Open a database'))
         
         opendb.signal_autoconnect({
             "on_open_ok_clicked" : self.open_ok_clicked,
             "on_open_cancel_clicked" : self.open_cancel_clicked,
             "on_opendb_delete_event": self.open_delete_event,
             })
+        
         self.new = opendb.get_widget("new")
         self.zodb = opendb.get_widget("zodb")
         if self.want_new:
@@ -108,8 +111,10 @@ class DbPrompter:
             "destroy_passed_object": self.cancel_button_clicked,
             })
 
-        Utils.set_title_label(wFs,_('Open a database'))
         self.fileSelector = wFs.get_widget("dbopen")
+        Utils.set_titles(self.fileSelector,wFs.get_widget('title'),
+                         _('Open a database'))
+
         self.dbname = wFs.get_widget("dbname")
         self.getoldrev = wFs.get_widget("getoldrev")
         self.dbname.set_default_path(GrampsCfg.db_dir)

@@ -982,6 +982,10 @@ class Gramps:
             })
 
         fileSelector = wFs.get_widget("dbopen")
+
+        Utils.set_titles(fileSelector, wFs.get_widget('title'),
+                         _('Open a database'))
+        
         dbname = wFs.get_widget("dbname")
         getoldrev = wFs.get_widget("getoldrev")
         fileSelector.set_data("dbname",dbname)

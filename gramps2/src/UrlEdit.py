@@ -50,11 +50,11 @@ class UrlEditor:
         self.des  = self.top.get_widget("url_des")
         self.addr = self.top.get_widget("url_addr")
         self.priv = self.top.get_widget("priv")
-
         title_label = self.top.get_widget("title")
-        title_label.set_text(Utils.title(_('Internet Address Editor for %s') % name))
-        title_label.set_use_markup(gtk.TRUE)
 
+        Utils.set_titles(self.window,title_label,
+                         _('Internet Address Editor for %s') % name,
+                         _('Internet Address Editor'))
         if url != None:
             self.des.set_text(url.get_description())
             self.addr.set_text(url.get_path())

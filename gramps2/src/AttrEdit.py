@@ -67,7 +67,6 @@ class AttributeEditor:
         self.parent = parent
         self.attrib = attrib
         self.top = gtk.glade.XML(const.dialogFile, "attr_edit")
-        self.window = self.top.get_widget("attr_edit")
         self.type_field  = self.top.get_widget("attr_type")
         self.slist  = self.top.get_widget("slist")
         self.value_field = self.top.get_widget("attr_value")
@@ -75,6 +74,8 @@ class AttributeEditor:
         self.attrib_menu = self.top.get_widget("attr_menu")
         self.source_field = self.top.get_widget("attr_source")
         self.priv = self.top.get_widget("priv")
+
+        self.window = self.top.get_widget("attr_edit")
         
         if attrib:
             self.srcreflist = self.attrib.getSourceRefList()
@@ -89,8 +90,7 @@ class AttributeEditor:
 
         title = _("Attribute Editor for %s") % title
         l = self.top.get_widget("title")
-        l.set_text(Utils.title(title))
-        l.set_use_markup(gtk.TRUE)
+        Utils.set_titles(self.window,l,title,_('Attribute Editor'))
 
         AutoComp.AutoEntry(self.attrib_menu.entry,list)
 

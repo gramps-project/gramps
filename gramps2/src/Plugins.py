@@ -117,6 +117,11 @@ class PluginDialog:
             })
 
         self.tree = self.dialog.get_widget("tree")
+        self.top = self.dialog.get_widget("report")
+        self.title = self.dialog.get_widget("title")
+
+        Utils.set_titles(self.top, self.title, msg )
+
         self.store = gtk.TreeStore(gobject.TYPE_STRING)
         self.selection = self.tree.get_selection()
         self.selection.connect('changed', self.on_node_selected)
@@ -124,21 +129,18 @@ class PluginDialog:
         self.tree.append_column(col)
         self.tree.set_model(self.store)
         
-        self.top = self.dialog.get_widget("report")
         self.img = self.dialog.get_widget("image")
         self.description = self.dialog.get_widget("description")
         self.status = self.dialog.get_widget("report_status")
 
         Utils.set_title_label(self.dialog,msg)
         
-        self.title = self.dialog.get_widget("title")
         self.author_name = self.dialog.get_widget("author_name")
         self.author_email = self.dialog.get_widget("author_email")
         self.statbox = self.dialog.get_widget("statbox")
         
         self.run_tool = None
         self.build_tree(list)
-        self.title.set_text(msg)
 
     def on_apply_clicked(self,obj):
         """Execute the selected report"""
@@ -268,6 +270,7 @@ class PluginStatus:
         
         self.glade = gtk.glade.XML(const.pluginsFile,"plugstat")
         self.top = self.glade.get_widget("plugstat")
+        self.top.set_title("%s - GRAMPS" % _('Plugin status'))
         window = self.glade.get_widget("text")
         self.glade.signal_autoconnect({
             'on_close_clicked' : self.close

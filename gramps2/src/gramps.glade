@@ -2555,7 +2555,7 @@
 
 <widget class="GtkDialog" id="spouseDialog">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Choose Spouse - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">True</property>
@@ -2876,7 +2876,7 @@
 
 <widget class="GtkDialog" id="familyDialog">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Choose Parents - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -3766,7 +3766,7 @@
 
 <widget class="GtkDialog" id="select_child">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Add Children - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">True</property>
@@ -4405,7 +4405,7 @@
 
 <widget class="GtkDialog" id="sourceEditor">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Source Editor - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -4961,7 +4961,7 @@
 
 <widget class="GtkDialog" id="addperson">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Add Person - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">True</property>
@@ -5297,7 +5297,7 @@
 
 <widget class="GtkDialog" id="opendb">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Open a Database - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -5453,7 +5453,7 @@
 
 <widget class="GtkDialog" id="modparents">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Modify Parents - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>

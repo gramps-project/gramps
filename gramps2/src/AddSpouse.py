@@ -78,8 +78,6 @@ class AddSpouse:
 
         self.glade = gtk.glade.XML(const.gladeFile, "spouseDialog")
 
-        Utils.set_title_label(self.glade,_('Choose Spouse/Partner'))
-        
         self.rel_combo = self.glade.get_widget("rel_combo")
         self.relation_type = self.glade.get_widget("rel_type")
         self.spouse_list = self.glade.get_widget("spouse_list")
@@ -87,7 +85,8 @@ class AddSpouse:
         titles = [ (_('Name'),3,200), (_('ID'),1,50), (_('Birth date'),4,50),
                    ('',0,50), ('',0,0)]
         
-        self.slist = ListModel.ListModel(self.spouse_list, titles, self.select_row )
+        self.slist = ListModel.ListModel(self.spouse_list, titles,
+                                         self.select_row )
         
         self.relation_def = self.glade.get_widget("reldef")
         self.ok = self.glade.get_widget('spouse_ok')
@@ -95,7 +94,10 @@ class AddSpouse:
                      
         self.rel_combo.set_popdown_strings(const.familyRelations)
         title = _("Choose Spouse/Partner of %s") % GrampsCfg.nameof(person)
-        Utils.set_title_label(self.glade,title)
+
+        Utils.set_titles(self.glade.get_widget('spouseDialog'),
+                         self.glade.get_widget('title'),title,
+                         _('Choose Spouse/Partner'))
 
         self.glade.signal_autoconnect({
             "on_select_spouse_clicked" : self.select_spouse_clicked,

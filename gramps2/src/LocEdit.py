@@ -55,7 +55,8 @@ class LocationEditor:
         self.county = self.top.get_widget("county")
         self.country = self.top.get_widget("country")
 
-        self.top.get_widget("title").set_text(_('Location Editor'))
+        Utils.set_titles(self.window, self.top.get_widget('title'),
+                         _('Location Editor'))
 
         if location != None:
             self.city.set_text(location.get_city())

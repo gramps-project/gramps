@@ -5,7 +5,7 @@
 
 <widget class="GtkDialog" id="sourceDisplay">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Source Information - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">True</property>
@@ -679,7 +679,7 @@
 
 <widget class="GtkDialog" id="sourcesel">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Source Reference Selection - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>

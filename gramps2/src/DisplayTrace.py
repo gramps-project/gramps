@@ -89,7 +89,7 @@ class DisplayTrace:
         self.glade = gtk.glade.XML(const.pluginsFile,"plugstat")
         self.top = self.glade.get_widget("plugstat")
         window = self.glade.get_widget("text")
-        self.top.set_title(_('Internal Error - GRAMPS'))
+        self.top.set_title("%s - GRAMPS" % _('Internal Error'))
 
         window.get_buffer().set_text(msg.getvalue())
         self.glade.signal_autoconnect({'on_close_clicked':self.close})

@@ -66,10 +66,9 @@ class SelectChild:
 
         self.select_child_list = {}
         self.top = self.xml.get_widget("select_child")
-
         title_label = self.xml.get_widget('title')
-        title_label.set_text(Utils.title(_('Add Children')))
-        title_label.set_use_markup(gtk.TRUE)
+
+        Utils.set_titles(self.top,title_label,_('Add Children'))
         
         self.add_child = self.xml.get_widget("childlist")
 
