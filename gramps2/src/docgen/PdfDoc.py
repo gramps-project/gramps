@@ -141,8 +141,8 @@ class PdfDoc(TextDoc.TextDoc):
 		pdf_style.alignment = TA_CENTER
             else:
 		pdf_style.alignment = TA_JUSTIFY
-            pdf_style.spaceBefore = style.get_padding()
-            pdf_style.spaceAfter = style.get_padding()
+            pdf_style.spaceBefore = style.get_padding()*cm
+            pdf_style.spaceAfter = style.get_padding()*cm
             pdf_style.textColor = make_color(font.get_color())
 	    self.pdfstyles[style_name] = pdf_style
 
@@ -158,6 +158,7 @@ class PdfDoc(TextDoc.TextDoc):
     def start_paragraph(self,style_name,leader=None):
         self.current_para = self.pdfstyles[style_name]
         self.my_para = self.style_list[style_name]
+        self.super = "<font size=%d><super>" % (self.my_para.get_font().get_size()-2)
         if leader==None:
             self.text = ''
         else:
@@ -167,7 +168,6 @@ class PdfDoc(TextDoc.TextDoc):
     def end_paragraph(self):
         if self.in_table == 0 and self.image == 0:
 	    self.story.append(Paragraph(self.text,self.current_para))
-	    self.story.append(Spacer(1,0.5*cm))
         else:
             self.image = 0
 
@@ -178,10 +178,11 @@ class PdfDoc(TextDoc.TextDoc):
         self.text = self.text + '</b>'
 
     def start_superscript(self):
-        self.text = self.text + '<super>'
+        fsize = self.my_para.get_font().get_size()
+        self.text = self.text + '<font size=%d><super>' % (fsize-2)
 
     def end_superscript(self):
-        self.text = self.text + '</super>'
+        self.text = self.text + '</super></font>'
 
     def start_table(self,name,style_name):
         self.in_table = 1
@@ -283,12 +284,12 @@ class PdfDoc(TextDoc.TextDoc):
         self.image = 1
 
     def write_text(self,text):
-        text = text.replace('&','&amp;');       # Must be first
-        text = text.replace('<','&lt;');
-        text = text.replace('>','&gt;');
-        text = text.replace('&lt;super&gt;','<super>');
-        text = text.replace('&lt;/super&gt;','</super>');
-        self.text =  self.text + text.replace('\n','<br>');
+        text = text.replace('&','&amp;')       # Must be first
+        text = text.replace('<','&lt;')
+        text = text.replace('>','&gt;')
+        text = text.replace('&lt;super&gt;',self.super)
+        text = text.replace('&lt;/super&gt;','</super></font>')
+        self.text =  self.text + text.replace('\n','<br>')
 
 #------------------------------------------------------------------------
 #

@@ -7,10 +7,6 @@
 * Provide an "import" of a gramps package. Not too difficult to do this,
   since there is already a ReadTarFile class which will unpackage the
   file. Needs have an interface built around it.
-* Catch uncaught exceptions at the top level, notifiy the user, and 
-  store the results in a file that can be emailed. Have the start of
-  this with the gramps.err file, but most users don't realize that 
-  this file has been created. Some type of notification is needed.
 * Speed up the reading of the database. The python XML routines are not
   as fast as I would like, and it can take a minute or so to read a
   large database. This is way too slow.
@@ -22,10 +18,5 @@
 * Disable the save buttons if gramps database is marked read-only. Disable 
   the adding of media objects as well, since this will cause gramps to
   try to create a thumbnail in a readonly database.
-* OpenOffice zip file is not handled very gracefully.  Uses the "system"
-  call to generate the zip file using the hard coded path of /usr/bin/zip. 
-  Python 2.0 provides a zip interface, so this may need to hold off until 
-  the move is made to Python 2.0.
-* Sort all lists
 * Startup tips.
 * And a whole lot more....
