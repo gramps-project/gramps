@@ -58,6 +58,8 @@ import latin_utf8
 u2l = latin_utf8.utf8_to_latin
 _ = intl.gettext
 
+from QuesionDialog import  ErrorDialog
+
 #-------------------------------------------------------------------------
 #
 # Import XML libraries
@@ -813,7 +815,7 @@ class ReportDialog:
             return None
 
         if not self.get_target_is_directory() and os.path.isdir(self.target_path):
-            gnome.ui.GnomeErrorDialog(_("The filename that you gave is a directory.\n"
+            GnomeErrorDialog(_("The filename that you gave is a directory.\n"
                                "You need to provide a valid filename."))
             return None
         
@@ -942,7 +944,7 @@ class ReportDialog:
             try:
                 self.make_report()
             except (IOError,OSError),msg:
-                gnome.ui.GnomeErrorDialog(str(msg))
+                ErrorDialog(str(msg))
 
             # Clean up the dialog object
             self.window.destroy()

@@ -53,6 +53,7 @@ import Marriage
 import EditPlace
 import EditSource
 
+from QuestionDialog import ErrorDialog
 from intl import gettext as _
 
 _IMAGEX = 140
@@ -137,7 +138,7 @@ class ImageSelect:
         description = self.description.get_text()
 
         if os.path.exists(filename) == 0:
-            gnome.ui.GnomeErrorDialog(_("That is not a valid file name."));
+            ErrorDialog(_("That is not a valid file name."));
             return
 
         already_imported = None
@@ -325,7 +326,7 @@ class Gallery(ImageSelect):
                 except IOError, msg:
                     t = _("Could not import %s") % d
                     
-                    gnome.ui.GnomeErrorDialog("%s\n%s %d" % (t,msg[0],msg[1]))
+                    ErrorDialog("%s\n%s %d" % (t,msg[0],msg[1]))
                     return
                 mime = Utils.get_mime_type(tfile)
                 photo = Photo()

@@ -31,7 +31,7 @@ import os
 # Gnome/GTK
 #
 #-------------------------------------------------------------------------
-import gnome.ui #import GnomeErrorDialog
+import gnome.ui
 
 #-------------------------------------------------------------------------
 #
@@ -40,8 +40,8 @@ import gnome.ui #import GnomeErrorDialog
 #-------------------------------------------------------------------------
 from RelLib import *
 from GrampsParser import GrampsParser, GrampsImportParser
-from intl import gettext
-_ = gettext
+from QuestionDialog import ErrorDialog
+from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -86,16 +86,16 @@ def importData(database, filename, callback):
         else:
             xml_file = open(filename,"r")
     except IOError,msg:
-        GnomeErrorDialog(_("%s could not be opened\n") % filename + str(msg))
+        ErrorDialog(_("%s could not be opened\n") % filename + str(msg))
         return 0
     except:
-        GnomeErrorDialog(_("%s could not be opened\n") % filename)
+        ErrorDialog(_("%s could not be opened\n") % filename)
         return 0
         
     try:
         parser.parse(xml_file)
     except IOError,msg:
-        GnomeErrorDialog(_("Error reading %s") % filename + "\n" + str(msg))
+        ErrorDialog(_("Error reading %s") % filename + "\n" + str(msg))
         import traceback
         traceback.print_exc()
         return 0
@@ -142,22 +142,22 @@ def loadData(database, filename, callback=None):
             xml_file = open(filename,"r")
     except IOError,msg:
         filemsg = _("%s could not be opened\n") % filename
-        GnomeErrorDialog(filemsg + str(msg))
+        ErrorDialog(filemsg + str(msg))
         return 0
     except:
-        GnomeErrorDialog(_("%s could not be opened\n") % filename)
+        ErrorDialog(_("%s could not be opened\n") % filename)
         return 0
 
     try:
         parser.parse(xml_file)
     except IOError,msg:
         errmsg = "%s\n%s" % (_("Error reading %s") % filename,str(msg))
-        GnomeErrorDialog(errmsg)
+        ErrorDialog(errmsg)
         import traceback
         traceback.print_exc()
         return 0
     except:
-        GnomeErrorDialog(_("Error reading %s") % filename)
+        ErrorDialog(_("Error reading %s") % filename)
         import traceback
         traceback.print_exc()
         return 0
@@ -186,7 +186,7 @@ def loadRevision(database, file, filename, revision, callback=None):
         parser.parse(file)
     except IOError,msg:
         errmsg = "%s\n%s" % (_("Error reading %s") % filename, str(msg))
-        GnomeErrorDialog(errmsg)
+        ErrorDialog(errmsg)
         import traceback
         traceback.print_exc()
         return 0

@@ -1248,7 +1248,7 @@ class EditPerson:
             msg = _("Changing the gender caused problems "
                     "with marriage information.\nPlease check "
                     "the person's marriages.")
-            GnomeErrorDialog(msg)
+            ErrorDialog(msg)
 
         text = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                           self.notes_buffer.get_end_iter(),gtk.FALSE)

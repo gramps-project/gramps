@@ -1890,35 +1890,50 @@ class GrampsDB(Persistent):
         self.placeTable[nkey] = self.placeMap[nkey].getDisplayInfo()
         
     def set_iprefix(self,val):
-        if _id_reg.search(val):
-            self.iprefix = val
+        if val:
+            if _id_reg.search(val):
+                self.iprefix = val
+            else:
+                self.iprefix = val + "%d"
         else:
-            self.iprefix = val + "%d"
-
+            self.iprefix = "I%d"
+            
     def set_sprefix(self,val):
-        if _id_reg.search(val):
-            self.sprefix = val
+        if val:
+            if _id_reg.search(val):
+                self.sprefix = val
+            else:
+                self.sprefix = val + "%d"
         else:
-            self.sprefix = val + "%d"
-
+            self.sprefix = "S%d"
+            
     def set_oprefix(self,val):
-        if _id_reg.search(val):
-            self.oprefix = val
+        if val:
+            if _id_reg.search(val):
+                self.oprefix = val
+            else:
+                self.oprefix = val + "%d"
         else:
-            self.oprefix = val + "%d"
+            self.oprefix = "O%d"
 
     def set_pprefix(self,val):
-        if _id_reg.search(val):
-            self.pprefix = val
+        if val:
+            if _id_reg.search(val):
+                self.pprefix = val
+            else:
+                self.pprefix = val + "%d"
         else:
-            self.pprefix = val + "%d"
+            self.pprefix = "P%d"
 
     def set_fprefix(self,val):
-        if _id_reg.search(val):
-            self.fprefix = val
+        if val:
+            if _id_reg.search(val):
+                self.fprefix = val
+            else:
+                self.fprefix = val + "%d"
         else:
-            self.fprefix = val + "%d"
-
+            self.fprefix = "F%d"
+            
     def new(self):
         """initializes the GrampsDB to empty values"""
 
