@@ -1,4 +1,3 @@
-# translation of hu.po to 
 # translation of hu.po to Hungarian
 # Hungarian translation for GRAMPS
 # Copyright (C) 2003 the Gramps Project
@@ -8,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu\n"
 "POT-Creation-Date: Thu Jan 15 19:45:56 2004\n"
-"PO-Revision-Date: 2004-01-15 22:15+0100\n"
+"PO-Revision-Date: 2004-01-17 12:54+0100\n"
 "Last-Translator: Egyeki Gergely <egeri@elte.hu>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -772,7 +771,7 @@ msgstr "Minden nő megvizsgálása"
 #: GenericFilter.py:325 GenericFilter.py:374 GenericFilter.py:589
 #: GenericFilter.py:645 plugins/FilterEditor.py:466
 msgid "Inclusive:"
-msgstr "Benne foglalva:"
+msgstr "Hozzávétel:"
 
 #: GenericFilter.py:336 GenericFilter.py:383 GenericFilter.py:426
 #: GenericFilter.py:475 GenericFilter.py:550
@@ -985,35 +984,35 @@ msgstr "Mindenki"
 
 #: GenericFilter.py:1422
 msgid "Has the Id"
-msgstr "id -vel"
+msgstr "A következő Id-vel"
 
 #: GenericFilter.py:1423
 msgid "Has a name"
-msgstr "a neve"
+msgstr "Neve"
 
 #: GenericFilter.py:1424
 msgid "Has the relationships"
-msgstr "a kapcsolatai"
+msgstr "Kapcsolatai"
 
 #: GenericFilter.py:1425
 msgid "Has the death"
-msgstr "a halála"
+msgstr "Halála"
 
 #: GenericFilter.py:1426
 msgid "Has the birth"
-msgstr "a születése"
+msgstr "Születése"
 
 #: GenericFilter.py:1427
 msgid "Is a descendant of"
-msgstr "Az ősei :"
+msgstr "Az ősei"
 
 #: GenericFilter.py:1428
 msgid "Is a descendant family member of"
-msgstr "A személy akinek az utódaihoz tartozik:"
+msgstr "A személy akinek az utódaihoz tartozik"
 
 #: GenericFilter.py:1429
 msgid "Is a descendant of filter match"
-msgstr "Szűréi eredményből következő leszármazott"
+msgstr "Szűrő által megadott személy leszármazottai"
 
 #: GenericFilter.py:1430
 msgid "Is a descendant of person not more than N generations away"
@@ -1029,11 +1028,11 @@ msgstr "Szűréi eredményből következő gyermek"
 
 #: GenericFilter.py:1435
 msgid "Is an ancestor of"
-msgstr "Utódai :"
+msgstr "Utódai"
 
 #: GenericFilter.py:1436
 msgid "Is an ancestor of filter match"
-msgstr "Egy szűrő által megadott ős."
+msgstr "Szűrő által megadott ős"
 
 #: GenericFilter.py:1437
 msgid "Is an ancestor of person not more than N generations away"
@@ -1057,11 +1056,11 @@ msgstr "A szűrő által megadottak közös ősök"
 
 #: GenericFilter.py:1445
 msgid "Is a female"
-msgstr "egy nő"
+msgstr "Nő"
 
 #: GenericFilter.py:1446
 msgid "Is a male"
-msgstr "egy férfi"
+msgstr "Férfi"
 
 #: GenericFilter.py:1447
 msgid "Has complete record"
@@ -1069,19 +1068,19 @@ msgstr "Teljes információ mező bejelölve"
 
 #: GenericFilter.py:1448
 msgid "Has the personal event"
-msgstr "a személyes eseménye"
+msgstr "A személyes eseménye"
 
 #: GenericFilter.py:1449
 msgid "Has the family event"
-msgstr "a családi eseménye"
+msgstr "A családi eseménye"
 
 #: GenericFilter.py:1450
 msgid "Has the personal attribute"
-msgstr "a személyes tulajdonsága"
+msgstr "A személyes tulajdonsága"
 
 #: GenericFilter.py:1451
 msgid "Has the family attribute"
-msgstr "a családi tulajdonsága"
+msgstr "A családi tulajdonsága"
 
 #: GenericFilter.py:1452
 msgid "Matches the filter named"
@@ -2315,7 +2314,7 @@ msgstr "Házasság törlése"
 
 #: const.py:212 const.py:306
 msgid "Divorce Filing"
-msgstr "válási kérelem"
+msgstr "Válási kérelem"
 
 #: const.py:213
 msgid "Divorce"
