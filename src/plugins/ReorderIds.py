@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,7 +50,6 @@ class ReorderIds:
         self.reorder(db.get_object_map(),db.oprefix,None)
         self.reorder(db.get_source_map(),db.sprefix,db.build_source_display)
         self.reorder(db.get_place_id_map(),db.pprefix,db.build_place_display)
-        Utils.modified()
         Utils.history_broken()
         callback(1)
         

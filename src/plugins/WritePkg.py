@@ -138,7 +138,6 @@ class PackageWriter:
                         nl.remove(o) 
                 p.set_media_list(nl)
             self.db.remove_object(ObjectId)
-            Utils.modified() 
 
         def leave_clicked():
             # File is lost => do nothing, leave as is
