@@ -89,42 +89,37 @@
 
     <!-- ================ Getting Started Subsection  -->
       <sect2 id="choose-db-start">
-      <title>Choosing a database on startup</title> 
-      <para>If &app; is started without any
-      database  to open, the following window will appear prompting you to 
-      choose what database to open. </para>
+      <title>Выбор базы данных при запуске</title> 
+      <para>Если при запуске &app; не открывает базу данных, следующий диалог
+      приглашает Вас выбрать базу данных. </para>
       
 	<!-- ==== Figure: Open existing/new database window ==== -->
 	<figure id="first-open"> 
-	<title>Open Database Window</title> 
+	<title>Окно Открыть Базу Данных</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/first-open.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Open Database Window.  </phrase>
+	<phrase>Показывает Окно Открыть Базу Данных.</phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
       
-      <para>If you would like to open an existing database, check the top radio
-      button and click the <guibutton>OK</guibutton> button. You will then be asked to 
-      specify the name of your existing database. If you would like to start
-      creating your brand new database from scratch right away, choose new XML
-      database. </para> 
+      <para>Если Вы хотите открыть существующую базу данных, выберите верхнюю кнопку
+      и нажмите OK. После этого Вам будет предложено указать имя Вашей базы данных.
+      Если Вы хотите начать новую базу данных, выберите новую базу даных XML.</para> 
 
-      <para>NOTE: when starting new database, you should 
-      select an empty <replaceable>DIRECTORY</replaceable> 
-      and <replaceable>NOT a FILE</replaceable>. Create empty directory if 
-      needed. The directory you specify will be used by &app; to store 
-      database file <replaceable>data.gramps</replaceable> as well as any 
-      possible copies of media objects. This directory will be updated by &app; 
-      each time the database is saved. </para> 
+      <para>ВНИМАНИЕ: при начале новой базы данных, Вы должны выбрать пустой 
+      <replaceable>КАТАЛОГ</replaceable>, а <replaceable>НЕ ФАЙЛ</replaceable>. 
+      Создайте пустой каталог, если необходимо. Каталог, который Вы укажете, будет
+      использован &app; для хранения файла базы данных, 
+      <replaceable>data.gramps</replaceable>, а также возможных копий медиа-объектов.
+      &app; будет обновлять этот каталог при каждом сохранении базы данных. </para> 
       
-      <para>NOTE: when opening an existing database, you should 
-      open a <replaceable>DIRECTORY</replaceable> and 
-      <replaceable>NOT a FILE</replaceable>. The directory you need to open 
-      should contain the  database file <replaceable>data.gramps</replaceable> 
-      as well as any possible copies of media objects. Such a directory is 
-      created by &app; when you start a new database and is updated each time 
-      the database is saved. </para> 
+      <para>ВНИМАНИЕ: при открытии существующей базы данных, Вы должны открыть  
+      <replaceable>КАТАЛОГ</replaceable>, а <replaceable>НЕ ФАЙЛ</replaceable>. 
+      Каталог, который Вы должны открыть, должен содержать файл базы данных, 
+      <replaceable>data.gramps</replaceable>, а также возможные копии медиа-объектов.
+      &app; создает этот каталог при начале новой базы данных и обновляет его 
+      при каждом сохранении базы данных. </para> 
 
       </sect2>
       
@@ -160,46 +155,46 @@
 
     <!-- ================ Getting Started Subsection ==== -->
     <sect2 id="get-help">
-      <title>Obtaining Help</title>
-    <para> At any time, the following items are available for immediate aid
-    from the <menuchoice><guimenu>Help</guimenu></menuchoice> menu: </para>
+      <title>Получение Справки</title>
+    <para> В любое момент, помощь может быть получена из следующих пунктов меню
+    <menuchoice><guimenu>Справка</guimenu></menuchoice>: </para>
     
 	<variablelist>
 
-	<varlistentry><term>User manual</term>
-	<listitem><para> Choose this item to read the text of this manual 
-	in the help browser.  </para></listitem>
+	<varlistentry><term>Руководство Пользователя</term>
+	<listitem><para> Выберите этот пункт для просмотра настоящего руководства
+	в справочнике.  </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term>FAQ</term>
-	<listitem><para> Use this item to read Frequently Asked Questions
-	about &app; in the browser. </para></listitem>
+	<varlistentry><term>ЧАВО</term>
+	<listitem><para> Используйте этот пункт для просмотра ЧАсто задаваемых
+	ВОпросов, касающихса &app;, в справочнике. </para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>GRAMPS home page</term>
-	<listitem><para> Select this item to open home page of &app; in your
-	default web browser. </para></listitem>
+	<varlistentry><term>Домашняя страница &app;</term>
+	<listitem><para> Выбор этого пункта открывает домашнюю страницу &app;
+	в Вашем веб-браузере по умолчанию. </para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>GRAMPS mailing lists</term>
-	<listitem><para> Choose this item to direct your web browser 
-	to the &app; mailing list archives. </para></listitem>
+	<varlistentry><term>Списки рассылки &app;</term>
+	<listitem><para> Выберите этот пункт, чтобы направить Ваш веб-браузер 
+	на сайт списков рассылки &app;. </para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>Report a bug</term>
-	<listitem><para> Use this item to file a bug report against &app; 
-	with the bug tracking system.  </para></listitem>
+	<varlistentry><term>Сообщить об ошибке</term>
+	<listitem><para> Используйте этот пункт, чтобы заполнить сообщение об ошибке 
+	&app; в системе отслеживания ошибок. </para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>Show plugin status</term>
-	<listitem><para> Use this item to display the status of loaded 
-	plugins. </para></listitem>
+	<varlistentry><term>Показать статус расширений</term>
+	<listitem><para> Выбор этого пункта показывает стасус загрузки расширений.
+	</para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>Open example database</term>
-	<listitem><para> Select this item to load the example database shipped
-	with &app;. This database is composed of fictitious people and serves as
-	a useful example for learning how to work with &app;. </para></listitem>
+	<varlistentry><term>Открыть пример базы данных</term>
+	<listitem><para> Выберите этот пункт, чтобы загрузить пример базы данных,
+	распространяемый с &app;. Этот пример состоит из вымышленных лиц и служит
+	полезным примером при тренировке работы с &app;. </para></listitem>
 	</varlistentry>
     
 	</variablelist>
