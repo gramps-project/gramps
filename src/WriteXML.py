@@ -408,7 +408,7 @@ def write_place_obj(g,place):
         return
     
     if long or lat:
-        g.write('      <coord long="%s" lat=%s"/>\n' % (fix(long),fix(lat)))
+        g.write('      <coord long="%s" lat="%s"/>\n' % (fix(long),fix(lat)))
 
     dump_location(g,main_loc)
     for loc in place.get_alternate_locations():
@@ -488,6 +488,14 @@ def exportData(database, filename, callback):
         GnomeErrorDialog(_("Failure writing %s, original file restored") % filename)
         shutil.copy(filename + ".bak", filename)
 
+def quick_write(database, filename):
+    global fileroot
+
+    fileroot = os.path.dirname(filename)
+    g = gzip.open(filename,"wb")
+    write_xml_data(database, g, None, 0)
+    g.close()
+
 def write_xml_data(database, g, callback, sp):
 
     global strip_photo
@@ -540,7 +548,7 @@ def write_xml_data(database, g, callback, sp):
 
         count = 0
         for person in personList:
-            if count % delta == 0:
+            if callback and count % delta == 0:
                 callback(float(count)/float(total))
             count = count + 1
             
@@ -614,7 +622,7 @@ def write_xml_data(database, g, callback, sp):
         g.write("  <families>\n")
             
         for family in familyList:
-            if count % delta == 0:
+            if callback and count % delta == 0:
                 callback(float(count)/float(total))
             count = count + 1
             
