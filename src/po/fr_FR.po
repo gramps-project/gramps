@@ -396,7 +396,8 @@ msgstr "Enregistrer sous %s?"
 
 #: EditPerson.py:965 EditPerson.py:982 Marriage.py:482
 msgid "If you close without saving, the changes you have made will be lost"
-msgstr "Si vous fermer la session sans sauvegarder, vous perdrez vos modifications"
+msgstr ""
+"Si vous fermer la session sans sauvegarder, vous perdrez vos modifications"
 
 #: EditPerson.py:981
 msgid "Save Changes to %s?"
@@ -873,8 +874,10 @@ msgid "Matches people that have a common ancestor with a specified person"
 msgstr "Assortir les individus ayant des ascendants commun à un individu"
 
 #: GenericFilter.py:869
-msgid "Matches people that have a common ancestor with someone matched by a filter"
-msgstr "Assortir les individus ayant des ascendants commun aux résultats du filtrage"
+msgid ""
+"Matches people that have a common ancestor with someone matched by a filter"
+msgstr ""
+"Assortir les individus ayant des ascendants commun aux résultats du filtrage"
 
 #: GenericFilter.py:903
 msgid "Matches all males"
@@ -1326,7 +1329,8 @@ msgid "Save Changes?"
 msgstr "Enregistrer les modifications?"
 
 #: Marriage.py:508
-msgid "The GRAMPS ID that you chose for this relationship is already being used."
+msgid ""
+"The GRAMPS ID that you chose for this relationship is already being used."
 msgstr "L'identifiant GRAMPS choisi pour cette relation est déjà utilisé."
 
 #: MediaView.py:77 SelectObject.py:86 SourceView.py:70 Sources.py:79
@@ -1570,7 +1574,8 @@ msgstr "Erreur de lecture de %s"
 
 #: ReadXML.py:128
 msgid "The file is probably either corrupt or not a valid GRAMPS database."
-msgstr "Ce fichier est probablement corrompu ou n'est pas une base GRAMPS valide."
+msgstr ""
+"Ce fichier est probablement corrompu ou n'est pas une base GRAMPS valide."
 
 #: ReadXML.py:197 gramps_main.py:1126 plugins/Check.py:174
 #: plugins/WriteCD.py:232 plugins/WritePkg.py:159
@@ -1922,7 +1927,8 @@ msgid "File already exists"
 msgstr "Fichier existant"
 
 #: Report.py:1170
-msgid "You can choose to either overwrite the file, or change the selected filename."
+msgid ""
+"You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 "Vous pouvez choisir soit d'écraser le fichier ou de changer de nom de "
 "fichier."
@@ -2526,7 +2532,8 @@ msgstr "Nombre d'enfants"
 
 #: const.py:424
 msgid "A legal or common-law relationship between a husband and wife"
-msgstr "Une relation légalisée par le droit coutumier entre un homme et une femme"
+msgstr ""
+"Une relation légalisée par le droit coutumier entre un homme et une femme"
 
 #: const.py:425
 msgid "No legal or common-law relationship between man and woman"
@@ -3199,7 +3206,8 @@ msgstr "_A partir d'un fichier..."
 msgid ""
 "Select an existing media object from the database and place it in this "
 "gallery"
-msgstr "Choisir un média déjà existant dans la base et le placer dans la galerie"
+msgstr ""
+"Choisir un média déjà existant dans la base et le placer dans la galerie"
 
 #: edit_person.glade:3850 gramps.glade:6090 marriage.glade:1601
 #: places.glade:1568
@@ -3692,7 +3700,8 @@ msgid "Adds a new person to the database and to a new relationship"
 msgstr "Ajouter un nouvel individu à la base et à une nouvelle relation"
 
 #: gramps.glade:1607 gramps.glade:2758
-msgid "Selects an existing person from the database and adds to a new relationship"
+msgid ""
+"Selects an existing person from the database and adds to a new relationship"
 msgstr "Ajouter une personne existante et lui créer une nouvelle relation"
 
 #: gramps.glade:1633 gramps.glade:2784
@@ -3771,7 +3780,8 @@ msgstr "Ajouter un nouvel enfant à la base et à la famille en cours"
 msgid ""
 "Selects an existing person from the database and adds as a child to the "
 "current family"
-msgstr "Sélectionner un individu et l'ajouter comme enfant de la famille en cours"
+msgstr ""
+"Sélectionner un individu et l'ajouter comme enfant de la famille en cours"
 
 #: gramps.glade:2216 gramps.glade:2546
 msgid "Deletes the selected child from the selected family"
@@ -4937,8 +4947,10 @@ msgid "Check and repair database"
 msgstr "Vérifie et répare la Base"
 
 #: plugins/Check.py:374
-msgid "Checks the database for integrity problems, fixing the problems that it can"
-msgstr "Vérifie l'intégrité de la base de données, corrigeant les problèmes éventuels"
+msgid ""
+"Checks the database for integrity problems, fixing the problems that it can"
+msgstr ""
+"Vérifie l'intégrité de la base de données, corrigeant les problèmes éventuels"
 
 #: plugins/CustomBookText.py:95
 msgid "The style used for the first portion of the custom text."
@@ -5695,7 +5707,8 @@ msgstr ""
 
 #: plugins/FtmStyleAncestors.py:234 plugins/FtmStyleDescendants.py:265
 #: plugins/FtmStyleDescendants.py:769 plugins/FtmStyleDescendants.py:1119
-msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgid ""
+"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr "%(male_name)s%(endnotes)s est né à %(birth_place)s%(birth_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:243 plugins/FtmStyleAncestors.py:730
@@ -5712,13 +5725,15 @@ msgstr ""
 #: plugins/FtmStyleDescendants.py:281 plugins/FtmStyleDescendants.py:783
 #: plugins/FtmStyleDescendants.py:1135
 msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s est décédé le %(death_date)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s est décédé le %(death_date)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:258 plugins/FtmStyleAncestors.py:744
 #: plugins/FtmStyleDescendants.py:289 plugins/FtmStyleDescendants.py:790
 #: plugins/FtmStyleDescendants.py:1143
 msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s est décédé à %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s est décédé à %(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:269 plugins/FtmStyleAncestors.py:754
 #: plugins/FtmStyleDescendants.py:300 plugins/FtmStyleDescendants.py:803
@@ -5794,7 +5809,8 @@ msgstr ""
 #: plugins/FtmStyleAncestors.py:337 plugins/FtmStyleDescendants.py:368
 #: plugins/FtmStyleDescendants.py:863 plugins/FtmStyleDescendants.py:1222
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s%(birth_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s est née le %(birth_date)s%(birth_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:347 plugins/FtmStyleAncestors.py:831
 #: plugins/FtmStyleDescendants.py:378 plugins/FtmStyleDescendants.py:871
@@ -5828,8 +5844,10 @@ msgstr ""
 
 #: plugins/FtmStyleAncestors.py:372 plugins/FtmStyleDescendants.py:403
 #: plugins/FtmStyleDescendants.py:897 plugins/FtmStyleDescendants.py:1257
-msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s est née à %(birth_place)s%(birth_endnotes)s."
+msgid ""
+"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s est née à %(birth_place)s%(birth_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:381 plugins/FtmStyleAncestors.py:864
 #: plugins/FtmStyleDescendants.py:412 plugins/FtmStyleDescendants.py:905
@@ -5851,7 +5869,8 @@ msgstr "%(female_name)s%(endnotes)s décédée %(death_date)s%(death_endnotes)s."
 #: plugins/FtmStyleDescendants.py:427 plugins/FtmStyleDescendants.py:918
 #: plugins/FtmStyleDescendants.py:1281
 msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s décédée à %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s décédée à %(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:423 plugins/FtmStyleDescendants.py:457
 msgid "Endnotes"
@@ -5943,7 +5962,8 @@ msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
 msgstr "%(male_name)s%(endnotes)s est né le %(birth_date)s%(birth_endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:722
-msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
+msgid ""
+"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
 msgstr "%(male_name)s%(endnotes)s est né à %(birth_place)s%(birth_endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:786
@@ -5956,11 +5976,14 @@ msgstr ""
 
 #: plugins/FtmStyleAncestors.py:822
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
-msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s%(birth_endnotes)s. "
+msgstr ""
+"%(female_name)s%(endnotes)s est née le %(birth_date)s%(birth_endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:856
-msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
-msgstr "%(female_name)s%(endnotes)s est née à %(birth_place)s%(birth_endnotes)s. "
+msgid ""
+"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
+msgstr ""
+"%(female_name)s%(endnotes)s est née à %(birth_place)s%(birth_endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:896 plugins/FtmStyleDescendants.py:1300
 msgid "He was the son of %(father)s and %(mother)s."
@@ -6183,7 +6206,8 @@ msgstr "Indiquer les relations autres que la Naissance avec des hachures"
 
 #: plugins/GraphViz.py:218 plugins/RelGraph.py:280
 msgid "Non-birth relationships will show up as dashed lines in the graph."
-msgstr "Les relations autres que la Naissance seront en pointillé sur le graphique."
+msgstr ""
+"Les relations autres que la Naissance seront en pointillé sur le graphique."
 
 #: plugins/GraphViz.py:221 plugins/RelGraph.py:215
 msgid "Show family nodes"
@@ -6191,7 +6215,8 @@ msgstr "Affiche les noeuds familiaux"
 
 #: plugins/GraphViz.py:226 plugins/RelGraph.py:220
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr "Les Familles seront affichées en cercles, reliées aux parents et aux enfants."
+msgstr ""
+"Les Familles seront affichées en cercles, reliées aux parents et aux enfants."
 
 #: plugins/GraphViz.py:237 plugins/GraphViz.py:240 plugins/GraphViz.py:250
 #: plugins/GraphViz.py:257 plugins/RelGraph.py:291 plugins/RelGraph.py:294
@@ -6544,7 +6569,8 @@ msgstr "Affiche la famille sous forme de pile"
 
 #: plugins/RelGraph.py:212
 msgid "The main individual is shown along with their spouses in a stack."
-msgstr "L'individu principal est présenté avec ses époux(se) sous forme de pile."
+msgstr ""
+"L'individu principal est présenté avec ses époux(se) sous forme de pile."
 
 #: plugins/RelGraph.py:222
 msgid "Include IDs"
@@ -6742,7 +6768,8 @@ msgid "Database Verify"
 msgstr "Vérification de la Base de données"
 
 #: plugins/Verify.py:128
-msgid "Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
+msgid ""
+"Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
 msgstr ""
 "Baptisé avant la naissance : %(male_name)s né %(byear)d, baptisé %(bapyear)"
 "d.\n"
@@ -6757,27 +6784,32 @@ msgstr ""
 
 #: plugins/Verify.py:135
 msgid "Baptized late: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
-msgstr "Baptisé tardivement : %(male_name)s né %(byear)d, baptisé %(bapyear)d.\n"
+msgstr ""
+"Baptisé tardivement : %(male_name)s né %(byear)d, baptisé %(bapyear)d.\n"
 
 #: plugins/Verify.py:138
 msgid "Baptized late: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n"
-msgstr "Baptisée tardivement : %(female_name)s née %(byear)d, baptisée %(bapyear)d.\n"
+msgstr ""
+"Baptisée tardivement : %(female_name)s née %(byear)d, baptisée %(bapyear)d.\n"
 
 #: plugins/Verify.py:143
-msgid "Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
+msgid ""
+"Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
 msgstr ""
 "Enterré avant la mort : %(male_name)s décédé %(dyear)d, enterré %(buryear)"
 "d.\n"
 
 #: plugins/Verify.py:146
-msgid "Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
+msgid ""
+"Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
 msgstr ""
 "Enterrée avant la mort : %(female_name)s décédée %(dyear)d, enterrée %"
 "(buryear)d.\n"
 
 #: plugins/Verify.py:150
 msgid "Buried late: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr "Enterré tardivement : %(male_name)s décédé %(dyear)d, enterré %(buryear)d.\n"
+msgstr ""
+"Enterré tardivement : %(male_name)s décédé %(dyear)d, enterré %(buryear)d.\n"
 
 #: plugins/Verify.py:153
 msgid "Buried late: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
@@ -6787,7 +6819,8 @@ msgstr ""
 
 #: plugins/Verify.py:157
 msgid "Died before birth: %(male_name)s born %(byear)d, died %(dyear)d.\n"
-msgstr "Mort avant la naissance : %(male_name)s né %(byear)d, décédé %(dyear)d.\n"
+msgstr ""
+"Mort avant la naissance : %(male_name)s né %(byear)d, décédé %(dyear)d.\n"
 
 #: plugins/Verify.py:160
 msgid "Died before birth: %(female_name)s born %(byear)d, died %(dyear)d.\n"
@@ -6796,25 +6829,29 @@ msgstr ""
 "d.\n"
 
 #: plugins/Verify.py:164
-msgid "Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
+msgid ""
+"Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
 msgstr ""
 "Décédé avant le baptême : %(male_name)s baptisé %(bapyear)d, décédé %(dyear)"
 "d.\n"
 
 #: plugins/Verify.py:167
-msgid "Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)d.\n"
+msgid ""
+"Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)d.\n"
 msgstr ""
 "Décédée avant le baptême : %(female_name)s baptisée %(bapyear)d, décédée %"
 "(dyear)d.\n"
 
 #: plugins/Verify.py:171
-msgid "Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
+msgid ""
+"Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
 msgstr ""
 "Enterré avant la naissance : %(male_name)s né %(byear)d, enterré %(buryear)"
 "d.\n"
 
 #: plugins/Verify.py:174
-msgid "Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n"
+msgid ""
+"Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n"
 msgstr ""
 "Enterrée avant la naissance : %(female_name)s née %(byear)d, enterrée %"
 "(buryear)d.\n"
@@ -6920,19 +6957,25 @@ msgstr ""
 "(maryear)d à %(spouse)s.\n"
 
 #: plugins/Verify.py:290
-msgid "Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Jeune mariage : %(male_name)s marié à l'âge de %(marage)d à %(spouse)s.\n"
+msgid ""
+"Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr ""
+"Jeune mariage : %(male_name)s marié à l'âge de %(marage)d à %(spouse)s.\n"
 
 #: plugins/Verify.py:293
-msgid "Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Jeune mariage : %(female_name)s mariée à l'âge de %(marage)d à %(spouse)s.\n"
+msgid ""
+"Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr ""
+"Jeune mariage : %(female_name)s mariée à l'âge de %(marage)d à %(spouse)s.\n"
 
 #: plugins/Verify.py:297
 msgid "Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Vieux mariage : %(male_name)s marié(e) à l'âge de %(marage)d à %(spouse)s.\n"
+msgstr ""
+"Vieux mariage : %(male_name)s marié(e) à l'âge de %(marage)d à %(spouse)s.\n"
 
 #: plugins/Verify.py:300
-msgid "Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
+msgid ""
+"Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
 msgstr ""
 "Vieux mariage : %(female_name)s marié(e) à l'âge de %(marage)d à %(spouse)"
 "s.\n"
@@ -7232,7 +7275,8 @@ msgstr "Style utilisé pour une note d'information."
 
 #: plugins/WebPage.py:1402
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
-msgstr "Constitution des pages internet (HTML) pour tout ou partie des individus."
+msgstr ""
+"Constitution des pages internet (HTML) pour tout ou partie des individus."
 
 #: plugins/WriteCD.py:56
 msgid "Export to CD"
@@ -8243,4 +8287,3 @@ msgstr "<b>Alignement</b>"
 #: styles.glade:1336
 msgid "<b>Paragraph options</b>"
 msgstr "<b>Options de paragraphe</b>"
-
