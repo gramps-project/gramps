@@ -3,7 +3,11 @@
 	* src/GrampsCfg.py: Handle new callback for preferences dialog
 	* src/gramps_main.py: Pass update_display instead of full_update to
 	loadConfig to prevent the displaying of multiple entries on the display.
-
+	* src/Utils.py: provide a locale independant floating point conversion
+	utility
+	* src/TextDoc.py: call new gfloat utility instead of float
+	* src/PaperMenu.py: call new gfloat utility instead of float
+	
 2003-06-14  Tim Waugh  <twaugh@redhat.com>
 	* Ancestors.py (AncestorsReport.__init__): Define Photo and
 	Entry cell styles.
