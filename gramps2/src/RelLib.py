@@ -540,6 +540,7 @@ class Note:
     def __init__(self,text = ""):
         """create a new Note object from the passed string"""
         self.text = text
+        self.format = 0
 
     def set(self,text):
         """set the note contents to the passed string"""
@@ -552,6 +553,14 @@ class Note:
     def append(self,text):
         """adds the text to the note's contents"""
         self.text = self.text + text
+
+    def setFormat(self,format):
+        """set the format to the passed value"""
+        self.format = format
+
+    def getFormat(self):
+        """return the note's format"""
+        return self.format
 
 class Photo(SourceNote):
     """Containter for information about an image file, including location,
