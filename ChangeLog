@@ -4,6 +4,8 @@
 	(LdsOrd.isEmpty): Add function. 
 
 2003-07-31  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: handle status bar message with autosave
+	* src/FamilyView.py: add right-context menus in the family view
 	* src/Plugins.py: fixed call in _textdoc.append (typo)
 	* src/plugins/Makefile.am: Add WriteFtree.py
 
