@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Pubilc License as published by
@@ -44,9 +44,8 @@ import gnome.ui
 # GRAMPS module
 #
 #------------------------------------------------------------------------
+import os
 import RelLib
-import HtmlDoc
-import BaseDoc
 import const
 import GrampsKeys
 import GenericFilter
@@ -57,44 +56,9 @@ import Errors
 import Utils
 from QuestionDialog import ErrorDialog
 import ReportOptions
-
-#------------------------------------------------------------------------
-#
-# constants
-#
-#------------------------------------------------------------------------
-_month = [
-    "",    "JAN", "FEB", "MAR", "APR", "MAY", "JUN",
-    "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ]
-
-_hline = " "    # Everything is underlined, so use blank
-_BORN = _('b.')
-
-_ext = ['.html','.htm','.php','.php3','.cgi']
-
-#------------------------------------------------------------------------
-#
-# HtmlLinkDoc
-#
-#------------------------------------------------------------------------
-class HtmlLinkDoc(HtmlDoc.HtmlDoc):
-    """
-    Version of the HtmlDoc class that provides the ability to create a link
-    """
-    def write_linktarget(self,path):
-        self.f.write('<A NAME="%s"></A>' % path)
-
-    def start_link(self,path):
-        self.f.write('<A HREF="%s">' % path)
-
-    def end_link(self):
-        self.f.write('</A>')
-
-    def newline(self):
-        self.f.write('<BR>\n')
-
-    def write_raw(self,text):
-        self.f.write(text)
+import BaseDoc
+import NameDisplay
+import ReportUtils
 
 #------------------------------------------------------------------------
 #
@@ -103,631 +67,318 @@ class HtmlLinkDoc(HtmlDoc.HtmlDoc):
 #------------------------------------------------------------------------
 class IndividualPage:
 
-    def __init__(self,db,person,photos,restrict,private,uc,link,places,mini_tree,map,
-                 dir_name,imgdir,doc,id,idlink,ext,depth):
+    gender_map = {
+        RelLib.Person.MALE    : const.male,
+        RelLib.Person.FEMALE  : const.female,
+        RelLib.Person.UNKNOWN : const.unknown,
+        }
+    
+    def __init__(self, db, person, dirpath, ind_list):
         self.person = person
         self.db = db
-        self.ext = ext
-        self.doc = doc
-        self.use_id = id
-        self.id_link = idlink
-        self.list = map
-        self.private = private
-        self.alive = Utils.probably_alive(person,db) and restrict
-        self.photos = (photos == 2) or (photos == 1 and not self.alive)
-        self.usecomments = not uc
-        self.dir = dir_name
-        self.link = link
-        self.places = places
-        self.mini_tree = mini_tree
-        self.slist = []
-        self.scnt = 1
-        self.image_dir = imgdir
-        self.depth = depth
+        self.ind_list = ind_list
 
-        name = person.get_primary_name().get_regular_name()
-        self.doc.set_title(_("Summary of %s") % name)
-        self.doc.fix_title()
-        self.sort = Sort.Sort(self.db)
+        gramps_id = self.person.get_gramps_id()
+        author = db.get_researcher().get_name()
+        sort_name = NameDisplay.displayer.sorted(self.person)
         
-    #------------------------------------------------------------------------
-    #
-    # 
-    #
-    #------------------------------------------------------------------------
-    def write_flexible_row(self,label,data,sreflist=None):
-        self.doc.start_row()
-        self.doc.start_cell("NormalCell")
-        self.doc.start_paragraph("Label")
-        self.doc.write_text(label)
-        self.doc.end_paragraph()
-        self.doc.end_cell()
+        self.f = open(os.path.join(dirpath,"%s.html" % gramps_id), "w")
+        self.f.write('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">\n')
+        self.f.write('<html>\n')
+        self.f.write('<head>\n')
+	self.f.write('<title>My Family Tree</title>\n')
+	self.f.write('<meta http-equiv="Content-Type" content="text/html; ')
+        self.f.write('charset=ISO-8859-1">\n')
+	self.f.write('<link href="main1.css" rel="stylesheet" type="text/css">\n')
+	self.f.write('<link href="favicon.png" rel="Shortcut Icon">\n')
+        self.f.write('</head>\n')
+        self.f.write('<body>\n')
+	self.f.write('<div class="navheader">\n')
+        self.f.write('  <div class="navbyline">By: %s</div>\n' % author)
+        self.f.write('  <h1 class="navtitle">My Family Tree</h1>\n')
+        self.f.write('  <hr>\n')
+        self.f.write('    <div class="nav">\n')
+        self.f.write('    <a href="index.html">Home</a> &nbsp;\n')
+        self.f.write('    <a href="introduction.html">Introduction</a> &nbsp;\n')
+        self.f.write('    <a href="surnames.html">Surnames</a> &nbsp;\n')
+        self.f.write('    <a href="individuals.html">Individuals</a> &nbsp;\n')
+        self.f.write('    <a href="sources.html">Sources</a> &nbsp;\n')
+        self.f.write('    <a href="download.html">Download</a> &nbsp;\n')
+        self.f.write('    <a href="contact.html">Contact</a> &nbsp;\n')
+        self.f.write('    </div>\n')
+	self.f.write('  </div>\n')
+        self.f.write('\n')
+        self.f.write('\n')
 
-        self.doc.start_cell("NormalCell")
-        self.doc.start_paragraph("Data")
-        if len(data) > 0:
-            for part in data:
-                if part[1] != "":
-                    self.doc.start_link(part[1])
-                    self.doc.write_text(part[0])
-                    self.doc.end_link()
-                else:
-                    self.doc.write_text(part[0])
-        if sreflist:
-            first = 1
-            for sref in sreflist:
-                self.doc.write_raw('<SUP>')
-                if first:
-                    first = 0
-                else:
-                    self.doc.write_text(', ')
-                self.doc.start_link("#s%d" % self.scnt)
-                self.doc.write_text('%d' % self.scnt)
-                self.doc.end_link()
-                self.doc.write_raw('</SUP>')
-                self.scnt = self.scnt + 1
-                self.slist.append(sref)
-        self.doc.end_paragraph()
-        self.doc.end_cell()
-        self.doc.end_row()
+	self.f.write('<div class="snapshot">\n')
+        self.f.write('<a href="portrait.html">')
+        self.f.write('<img class="thumbnail" src="portrait.jpg" ')
+        self.f.write('alt="portrait" height="100">')
+        self.f.write('</a>\n')
+	self.f.write('</div>\n')
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_normal_row(self,label,data,sreflist):
-        val = []
-        val.append((data,""))
-        self.write_flexible_row(label,val,sreflist)
+	self.f.write('<div class="summaryarea">\n')
+        self.f.write('<h3>%s</h3>\n' % sort_name)
+        self.f.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
+        self.f.write('border="0">\n')
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_id_row(self,label,data):
-        val = []
-        val.append((data,""))
-        self.write_flexible_row(label,val)
+        # Gender
+        self.f.write('<tr><td class="field">Gender</td>\n')
+        self.f.write('<td class="data">%s</td>\n' % self.gender_map[person.get_gender()])
+        self.f.write('</tr>\n')
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_marriage_row(self,list):
-        val = []
-        val.append((list[1],""))
-        self.write_flexible_row(list[0],val)
+        # Birth
+        handle = self.person.get_birth_handle()
+        if handle:
+            event = self.db.get_event_from_handle(handle)
+            self.f.write('<tr><td class="field">%s</td>\n' % _('Birth'))
+            self.f.write('<td class="data">%s</td>\n' % self.format_event(event))
+            self.f.write('</tr>\n')
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_link_row(self,title,person_handle):
-        val = []
-        if person_handle:
-            person = self.db.get_person_from_handle(person_handle)
-            if self.list.has_key(person_handle):
-                val.append((person.get_primary_name().get_regular_name(),"%s.%s" % (person.get_gramps_id(),self.ext)))
+        # Death
+        handle = self.person.get_death_handle()
+        if handle:
+            event = self.db.get_event_from_handle(handle)
+            self.f.write('<tr><td class="field">%s</td>\n' % _('Death'))
+            self.f.write('<td class="data">%s</td>\n' % self.format_event(event))
+            self.f.write('</tr>\n')
+
+        self.f.write('\n')
+        self.f.write('</table>\n')
+	self.f.write('</div>\n')
+        self.f.write('\n')
+
+        # Events
+	self.f.write('<h4>Events</h4>\n')
+	self.f.write('<hr>\n')
+	self.f.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
+        self.f.write('border="0">\n')
+
+        for event_id in self.person.get_event_list():
+            event = db.get_event_from_handle(event_id)
+
+            self.f.write('<tr><td class="field">%s</td>\n' % event.get_name())
+            self.f.write('<td class="data">\n')
+            self.f.write(self.format_event(event))
+            self.f.write('</td>\n')
+            self.f.write('</tr>\n')
+
+	self.f.write('</table>\n')
+        self.f.write('\n')
+
+        # Relationships
+
+        self.display_relationships(self.person)
+
+	self.f.write('<h4>Narrative</h4>\n')
+	self.f.write('<hr>\n')
+
+        noteobj = self.person.get_note_object()
+        if noteobj:
+            format = noteobj.get_format()
+            text = noteobj.get()
+
+            if format:
+                text = "<pre>" + "<br>".join(text.split("\n"))
             else:
-                val.append((person.get_primary_name().get_regular_name(),""))
+                text = "</p><p>".join(text.split("\n"))
+            self.f.write('<p>%s</p>\n' % text)
 
-        self.write_flexible_row(title,val)
+	self.f.write('<h4>Sources</h4>\n')
+	self.f.write('<hr>\n')
+	self.f.write('<table class="infolist" cellpadding="0" cellspacing="0" border="0">\n')
+	self.f.write('<tr><td class="field">1. Author, Title, Publisher, Date.</td></tr>\n')
+	self.f.write('<tr><td class="field">2. Author, Title, Publisher, Date.</td></tr>\n')
+	self.f.write('<tr><td class="field">3. Author, Title, Publisher, Date.</td></tr>\n')
+	self.f.write('<tr><td class="field">4. Author, Title, Publisher, Date.</td></tr>\n')
+	self.f.write('<tr><td class="field">5. Author, Title, Publisher, Date.</td></tr>\n')
+	self.f.write('</table>\n')
+        self.f.write('\n')
+	self.f.write('<h4>Pedigree</h4>\n')
+	self.f.write('<hr>\n')
+        self.f.write('\n')
+	self.f.write('<br>\n')
+        self.f.write('\n')
+	self.f.write('<table class="pedigree">\n')
+        self.f.write('<tr><td>\n')
+        self.f.write('<blockquote class="pedigreeind">\n')
+        self.f.write('| <a href="lastfirstmiddle-father.html">Father</a><br>\n')
+        self.f.write('| Mother<br>\n')
+        self.f.write('<blockquote class="pedigreeind">\n')
+        self.f.write('| Sybling, Older<br>\n')
+        self.f.write('| <b>Individual</b><br>\n')
+        self.f.write('&bull; Spouse 1<br>\n')
+        self.f.write('<blockquote class="pedigreeind">\n')
+        self.f.write('| Child<br>\n')
+        self.f.write('| Child<br>\n')
+        self.f.write('</blockquote>\n')
+        self.f.write('&bull; Spouse 2<br>\n')
+        self.f.write('<blockquote class="pedigreeind">\n')
+        self.f.write('| Child<br>\n')
+        self.f.write('| Child<br>\n')
+        self.f.write('</blockquote>\n')
+        self.f.write('| Sybling, Younger<br>\n')
+        self.f.write('| Sybling, Younger<br>\n')
+        self.f.write('</blockquote>\n')
+        self.f.write('</blockquote>\n')
+        self.f.write('</td>\n')
+        self.f.write('</tr>\n')
+	self.f.write('</table>\n')
+        self.f.write('\n')
+        self.f.write('\n')
+        self.f.write('\n')
+	self.f.write('<br>\n')
+	self.f.write('<br>\n')
+	self.f.write('<hr>\n')
+	self.f.write('<div class="footer">This page generated from <a href="http://gramps.sourceforge.net">GRAMPS</a> on 13 December 2004.</div>\n')
+        self.f.write('\n')
+        self.f.write('\n')
+        self.f.write('</body>\n')
+        self.f.write('</html>\n')
+        self.f.close()
 
-    def write_sources(self):
-        self.doc.start_paragraph("SourcesTitle")
-        self.doc.write_text(_("Sources"))
-        self.doc.end_paragraph()
+    def display_father(self,handle):
+        use_link = handle in self.ind_list
+        person = self.db.get_person_from_handle(handle)
+        self.f.write('<td class="field">%s</td>\n' % _("Father"))
+        self.f.write('<td class="data">')
+        if use_link:
+            self.f.write('<a href="%s.html">' % person.get_gramps_id())
+        self.f.write(NameDisplay.displayer.display(person))
+        if use_link:
+            self.f.write('</a>\n')
+        self.f.write('</td>\n')
 
-        index = 1
-        for sref in self.slist:
-            self.doc.start_paragraph("SourceParagraph")
-            self.doc.write_linktarget("s%d" % index)
-            self.doc.write_text('%d. ' % index)
-            index = index + 1
-            base_handle = sref.get_base_handle()
-            base = self.db.get_source_from_handle(base_handle)
-            self.write_info(base.get_title())
-            self.write_info(base.get_author())
-            self.write_info(base.get_publication_info())
-            self.write_info(DateHandler.displayer.display(sref.get_date()))
-            self.write_info(sref.get_page())
-            if self.usecomments:
-                self.write_info(sref.get_text())
-                self.write_info(sref.get_comments())
-            self.doc.end_paragraph()
+    def display_mother(self,handle):
+        use_link = handle in self.ind_list
+        person = self.db.get_person_from_handle(handle)
+        self.f.write('<td class="field">%s</td>\n' % _("Mother"))
+        self.f.write('<td class="data">')
+        if use_link:
+            self.f.write('<a href="%s.html">' % person.get_gramps_id())
+        self.f.write(NameDisplay.displayer.display(person))
+        if use_link:
+            self.f.write('</a>\n')
+        self.f.write('</td>\n')
 
-    def write_info(self,info):
-        """Writes a line of text, after stripping leading and trailing
-           spaces. If the last character is not a period, the period is
-           appended to produce a sentance"""
-        
-        info = info.strip()
-        if info != "":
-            if info[-1] == '.':
-                self.doc.write_text("%s " % info)
-            else:
-                self.doc.write_text("%s. " % info)
-                
-    def write_tree(self,ind_list):
-        if not self.mini_tree or not self.person.get_main_parents_family_handle():
+    def display_relationships(self,person):
+        parent_list = person.get_parent_family_handle_list()
+        family_list = person.get_family_handle_list()
+
+        if not parent_list and not family_list:
             return
-        self.doc.start_paragraph("FamilyTitle")
-        self.doc.end_paragraph()
-
-        self.doc.start_paragraph("Data")
-        self.doc.write_raw('<PRE>\n')
-        tree = MiniTree(self.db,self.person,self.doc,ind_list,self.depth)
-        for line in tree.lines:
-            if line: self.doc.write_raw(line + '\n')
-        self.doc.write_raw('</PRE>\n')
-        self.doc.end_paragraph()
-
-    def create_page(self,ind_list):
-        """Generate the HTML page for the specific person"""
         
-        filebase = "%s.%s" % (self.person.get_gramps_id(),self.ext)
-        self.doc.open("%s/%s" % (self.dir,filebase))
+	self.f.write('<h4>%s</h4>\n' % _("Relationships"))
+	self.f.write('<hr>\n')
+	self.f.write('<table class="infolist" cellpadding="0" cellspacing="0" border="0">\n')
 
-        media_list = self.person.get_media_list()
-        name_obj = self.person.get_primary_name()
-        name = name_obj.get_regular_name()
+        if parent_list:
+            for (family_handle,mrel,frel) in parent_list:
+                family = self.db.get_family_from_handle(family_handle)
+                
+                self.f.write('<tr><td colspan="3">&nbsp;</td></tr>\n')
+                self.f.write('<tr><td class="category">%s</td>\n' % _("Parents"))
 
-        # Write out the title line.
-        
-        self.doc.start_paragraph("Title")
-        self.doc.write_text(_("Summary of %s") % name)
-        self.doc.end_paragraph()
+                father_handle = family.get_father_handle()
+                if father_handle:
+                    self.display_father(father_handle)
+                self.f.write('</tr><tr><td>&nbsp;</td>\n')
+                mother_handle = family.get_mother_handle()
+                if mother_handle:
+                    self.display_mother(mother_handle)
+                self.f.write('</tr>\n')
+            self.f.write('<tr><td colspan="3">&nbsp;</td></tr>\n')
 
-        # blank line for spacing
+        if family_list:
+            self.f.write('<tr><td class="category">%s</td>\n' % _("Spouses"))
+            for family_handle in family_list:
+                family = self.db.get_family_from_handle(family_handle)
+                self.display_spouse(family)
+                childlist = family.get_child_handle_list()
+                if childlist:
+                    self.f.write('<tr><td>&nbsp;</td>\n')
+                    self.f.write('<td class="field">%s</td>\n' % _("Children"))
+                    self.f.write('<td class="data">\n')
+                    for child_handle in childlist:
+                        use_link = child_handle in self.ind_list
+                        child = self.db.get_person_from_handle(child_handle)
+                        if use_link:
+                            self.f.write('<a href="%s.html">' % person.get_gramps_id())
+                        self.f.write(NameDisplay.displayer.display(child))
+                        if use_link:
+                            self.f.write('</a>\n')
+                        self.f.write("<br>\n")
+                    self.f.write('</td>\n')
+                    self.f.write('</tr>\n')
+                    self.f.write('\n')
+	self.f.write('</table>\n')
+        self.f.write('\n')
 
-        self.doc.start_paragraph("Data")
-        self.doc.end_paragraph()
+    def display_spouse(self,family):
+        gender = self.person.get_gender()
+        reltype = family.get_relationship()
 
-        # look for the primary media object if photos have been requested.
-        # make sure that the media object is an image. If so, insert it
-        # into the document.
-        
-        if self.photos and len(media_list) > 0:
-            object_handle = media_list[0].get_reference_handle()
-            object = self.db.get_object_from_handle(object_handle)
-            if object.get_mime_type()[0:5] == "image":
-                src = object.get_path()
-                junk,ext = os.path.splitext(src)
-                base = '%s%s' % (object.get_gramps_id(),ext)
-
-                if os.path.isfile(src):
-                    self.doc.start_paragraph("Data")
-                    if self.image_dir:
-                        self.doc.start_link("%s/%s" % (self.image_dir,base))
-                    else:
-                        self.doc.start_link("%s" % base)
-                    description = object.get_description()
-                    self.doc.add_media_object(src,"row",4.0,4.0,description)
-                    self.doc.end_link()
-                    self.doc.end_paragraph()
-
-        # Start the first table, which consists of basic information, including
-        # name, gender, and parents
-        
-        self.doc.start_table("one","IndTable")
-        self.write_normal_row("%s:" % _("Name"), name, name_obj.get_source_references())
-        if self.use_id:
-            if self.id_link:
-                val = '<a href="%s">%s</a>' % (self.id_link,self.person.get_gramps_id())
-                val = val.replace('*',self.person.get_gramps_id())
+        if reltype == RelLib.Family.MARRIED:
+            if gender == RelLib.Person.FEMALE:
+                relstr = _("Husband")
+            elif gender == RelLib.Person.MALE:
+                relstr = _("Wife")
             else:
-                val = self.person.get_gramps_id()
-            self.write_id_row("%s:" % _("ID Number"),val)
-            
-        if self.person.get_gender() == RelLib.Person.MALE:
-            self.write_normal_row("%s:" % _("Gender"), _("Male"),None)
-        elif self.person.get_gender() == RelLib.Person.FEMALE:
-            self.write_normal_row("%s:" % _("Gender"), _("Female"),None)
+                relstr = _("Partner")
         else:
-            self.write_normal_row("%s:" % _("Gender"), _("Unknown"),None)
+            relstr = _("Partner")
 
-        family_handle = self.person.get_main_parents_family_handle()
-        if family_handle:
-            family = self.db.get_family_from_handle(family_handle)
-            self.write_link_row("%s:" % _("Father"), family.get_father_handle())
-            self.write_link_row("%s:" % _("Mother"), family.get_mother_handle())
+        spouse_id = ReportUtils.find_spouse(self.person,family)
+        if spouse_id:
+            spouse = self.db.get_person_from_handle(spouse_id)
+            name = NameDisplay.displayer.display(spouse)
         else:
-            self.write_link_row("%s:" % _("Father"), None)
-            self.write_link_row("%s:" % _("Mother"), None)
-        self.doc.end_table()
-
-        # Another blank line between the tables
+            name = _("unknown")
+        self.f.write('<td class="field">%s</td>\n' % relstr)
+        self.f.write('<td class="data">')
+        use_link = spouse_id in self.ind_list
+        if use_link:
+            self.f.write('<a href="%s.html">' % spouse.get_gramps_id())
+        self.f.write(name)
+        if use_link:
+            self.f.write('</a>')
         
-        self.doc.start_paragraph("Data")
-        self.doc.end_paragraph()
-        
-        self.write_urls()
-        self.write_facts()
-        self.write_notes()
-        self.write_families()
-        self.write_sibling()
+        self.f.write('</td>\n')
+        self.f.write('</tr>\n')
 
-        # if inclusion of photos has been enabled, write the photo
-        # gallery.
+        for event_id in family.get_event_list():
+            event = self.db.get_event_from_handle(event_id)
 
-        if self.photos:
-            self.write_gallery()
+            self.f.write('<tr><td>&nbsp;</td>\n')
+            self.f.write('<td class="field">%s</td>\n' % event.get_name())
+            self.f.write('<td class="data">\n')
+            self.f.write(self.format_event(event))
+            self.f.write('</td>\n')
+            self.f.write('</tr>\n')
 
-        # write source information
-        
-        if self.scnt > 1:
-            self.write_sources()
-
-        # draw mini-tree
-        self.write_tree(ind_list)
-
-        if self.link:
-            self.doc.start_paragraph("Data")
-            self.doc.start_link("index.%s" % self.ext)
-            self.doc.write_text(_("Return to the index of people"))
-            self.doc.end_link()
-            if self.places:
-                self.doc.newline()
-                self.doc.start_link("loc.%s" % self.ext)
-                self.doc.write_text(_("Return to the index of places"))
-                self.doc.end_link()
-            self.doc.end_paragraph()
-
-    def close(self):
-        """Close the document"""
-        self.doc.close()
-
-    def write_gallery(self):
-        """Write the image gallery. Add images that are not marked
-           as private, creating a thumbnail and copying the original
-           image to the directory."""
-
-        index = 0
-        for object_ref in self.person.get_media_list():
-            obj_id = object_ref.get_reference_handle()
-            obj = self.db.get_object_from_handle(obj_id)
-            if obj.get_mime_type()[0:5] != "image":
-                continue
-            if object_ref.get_privacy():
-                continue
-
-            try:
-                src = obj.get_path()
-                junk,ext = os.path.splitext(src)
-                base = '%s%s' % (obj.get_gramps_id(),ext)
-                
-                if self.image_dir:
-                    shutil.copyfile(src,"%s/%s/%s" % (self.dir,self.image_dir,base))
-                    try:
-                        shutil.copystat(src,"%s/%s/%s" % (self.dir,self.image_dir,base))
-                    except:
-                        pass
-                else:
-                    shutil.copyfile(src,"%s/%s" % (self.dir,base))
-                    try:
-                        shutil.copystat(src,"%s/%s" % (self.dir,base))
-                    except:
-                        pass
-
-                # First image should not appear in the gallery, but needs
-                # the source to be linked to, hence the copy-only.
-                if index == 0: 
-                    index = 1
-                    continue
-                elif index == 1:
-                    # If there's a second image then we need to start out
-                    # Gallery section and the table
-                    self.doc.start_paragraph("Data")
-                    self.doc.end_paragraph()
-
-                    self.doc.start_paragraph("GalleryTitle")
-                    self.doc.write_text(_("Gallery"))
-                    self.doc.end_paragraph()
-
-                    self.doc.start_table("gallery","IndTable")
-                    index = 2
-
-                description = obj.get_description()
-
-                self.doc.start_row()
-                self.doc.start_cell("ImageCell")
-                self.doc.start_paragraph("Data")
-                if self.image_dir:
-                    self.doc.start_link("%s/%s" % (self.image_dir,base))
-                else:
-                    self.doc.start_link("%s" % base)
-                self.doc.add_media_object(src,"row",1.5,1.5,description)
-                self.doc.end_link()
-                
-                self.doc.end_paragraph()
-                self.doc.end_cell()
-                self.doc.start_cell("NoteCell")
-                if description:
-                    self.doc.start_paragraph("PhotoDescription")
-                    self.doc.write_text(description)
-                    self.doc.end_paragraph()
-                if obj.get_note():
-                    self.doc.write_note(obj.get_note(),obj.get_note_format(),"PhotoNote")
-                elif object_ref.get_note():
-                    self.doc.write_note(object_ref.get_note(),object_ref.get_note_format(),"PhotoNote")
-                self.doc.end_cell()
-                self.doc.end_row()
-            except IOError:
-                pass
-        if index == 2:
-            self.doc.end_table()
-        
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_urls(self):
-
-        first = 1
-
-        for url in self.person.get_url_list():
-            if url.get_privacy() and self.private:
-                continue
-
-            if first:
-                first = 0    
-                self.doc.start_paragraph("UrlTitle")
-                self.doc.write_text(_("Links"))
-                self.doc.end_paragraph()
-                self.doc.start_paragraph("UrlList")
-
-            self.doc.start_link(url.get_path())
-            self.doc.write_text(url.get_description())
-            self.doc.end_link()
-            self.doc.newline()
-
-        if not first:
-            self.doc.end_paragraph()
-
-    def write_facts(self):
-
-        if self.alive:
-            return
-        count = 0
-        
-        event_handle_list = [ self.person.get_birth_handle(), self.person.get_death_handle() ]
-        event_handle_list = event_handle_list + self.person.get_event_list()
-        event_handle_list.sort(self.sort.by_date)
-        for event_handle in event_handle_list:
-            if not event_handle:
-                continue
-            event = self.db.get_event_from_handle(event_handle)
-            if event.get_privacy():
-                continue
-            name = _(event.get_name())
-            date_text = event.get_date()
-            descr = event.get_description()
-            place_handle = event.get_place_handle()
-            place_url = ""
-            if place_handle:
-                place = self.db.get_place_from_handle(place_handle).get_title()
-                if self.places:
-                    place_gramps_id = self.db.get_place_from_handle(place_handle).get_gramps_id()
-                    place_url = "loc.%s#%s" % (self.ext, place_gramps_id)
-            else:
-                place = ""
-            srcref = event.get_source_references()
-
-            if date_text == "" and descr == "" and place == "" and len(srcref) == 0:
-                continue
-
-            if count == 0:
-                self.doc.start_paragraph("EventsTitle")
-                self.doc.write_text(_("Facts and Events"))
-                self.doc.end_paragraph()
-                self.doc.start_table("two","IndTable")
-                count = 1
-
-            if place != "" and place[-1] == ".":
-                place = place[0:-1]
-            if descr != "" and descr[-1] == ".":
-                descr = descr[0:-1]
-
-            val = []
-            
-            if date_text != "":
-                if place != "":
-                    val.append(("%s, " % date_text,""))
-                    val.append((place,place_url))
-                    val.append((".",""))
-                else:
-                    val.append(("%s." % date_text,""))
-            elif place != "":
-                val.append((place,place_url))
-                val.append((".",""))
-                
-            if descr != "":
-                val.append(("%s." % descr,""))
-
-            self.write_flexible_row(name, val, srcref)
-
-        if count != 0:
-            self.doc.end_table()
-
-    def write_notes(self):
-
-        if self.person.get_note() == "" or self.alive:
-            return
-        
-        self.doc.start_paragraph("NotesTitle")
-        self.doc.write_text(_("Notes"))
-        self.doc.end_paragraph()
-
-        self.doc.write_note(self.person.get_note(),self.person.get_note_format(),"NotesParagraph")
-
-    def write_fam_fact(self,event):
-
-        if event == None:
-            return
-        name = _(event.get_name())
-        date_text = event.get_date()
-        place_handle = event.get_place_handle()
-        place_url = ""
-        if place_handle:
-            place = self.db.get_place_from_handle(place_handle).get_title()
-            if self.places:
-                place_gramps_id = self.db.get_place_from_handle(place_handle).get_gramps_id()
-                place_url = "loc.%s#%s" % (self.ext, place_gramps_id)
-        else:
-            place = ""
+    def format_event(self,event):
         descr = event.get_description()
-        if descr != "" and descr[-1] == ".":
-            descr = descr[0:-1]
-        if place != "" and place[-1] == ".":
-            place = place[0:-1]
+        place = ReportUtils.place_name(self.db,event.get_place_handle())
+        date = DateHandler.displayer.display(event.get_date_object())
 
-        if date_text == "" and place == "" and descr == "":
-            return
+        tmap = {'description' : descr, 'date' : date, 'place' : place}
         
-        val = []
-        if date_text == "":
-            if place == "":
-                if descr != "":
-                    val.append(("%s." % descr,""))
-            else:
-                if descr == "":
-                    val.append((place,place_url))
-                    val.append((".",""))
-                else:
-                    val.append((place,place_url))
-                    val.append((".",""))
-                    val.append(("%s." % descr,""))
+        if descr and date and place:
+            text = _('%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; at &nbsp&nbsp; %(place)s') % tmap
+        elif descr and date:
+            text = _('%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp;') % tmap
+        elif descr:
+            text = descr
+        elif date and place:
+            text = _('%(date)s &nbsp;&nbsp; at &nbsp&nbsp; %(place)s') % tmap
+        elif date:
+            text = date
+        elif place:
+            text = place
         else:
-            if place == "":
-                if descr == "":
-                    val.append(("%s." % date_text,""))
-                else:
-                    val.append(("%s. %s." % (date_text,descr),""))
-            else:
-                if descr == "":
-                    val.append(("%s, " % date_text,""))
-                    val.append((place,place_url))
-                    val.append((".",""))
-                else:
-                    val.append(("%s, " % date_text,""))
-                    val.append((place,place_url))
-                    val.append((".",""))
-                    val.append(("%s." % descr,""))
-
-        self.write_flexible_row(name, val)
-
-    def write_families(self):
-        if len(self.person.get_family_handle_list()) == 0:
-            return
-        
-        self.doc.start_paragraph("FamilyTitle")
-        self.doc.write_text(_("Marriages/Children"))
-        self.doc.end_paragraph()
-
-        self.doc.start_table("three","IndTable")
-        
-        for family_handle in self.person.get_family_handle_list():
-            family = self.db.get_family_from_handle(family_handle)
-            if self.person.get_handle() == family.get_father_handle():
-                spouse_id = family.get_mother_handle()
-            else:
-                spouse_id = family.get_father_handle()
-            self.doc.start_row()
-            self.doc.start_cell("NormalCell",2)
-            self.doc.start_paragraph("Spouse")
-            if spouse_id:
-                spouse = self.db.get_person_from_handle(spouse_id)
-                if self.list.has_key(spouse_id):
-                    self.doc.start_link("%s.%s" % (spouse.get_gramps_id(),self.ext))
-                    self.doc.write_text(spouse.get_primary_name().get_regular_name())
-                    self.doc.end_link()
-                else:
-                    self.doc.write_text(spouse.get_primary_name().get_regular_name())
-            else:
-                self.doc.write_text(_("unknown"))
-            self.doc.end_paragraph()
-            self.doc.end_cell()
-            self.doc.end_row()
+            text = '\n'
+        return text
             
-            if not self.alive:
-                for event_handle in family.get_event_list():
-                    if event_handle:
-                        event = self.db.get_event_from_handle(event_handle)
-                        if event.get_privacy() == 0:
-                            self.write_fam_fact(event)
-
-            child_list = family.get_child_handle_list()
-            if len(child_list) > 0:
-                
-                self.doc.start_row()
-                self.doc.start_cell("NormalCell")
-                self.doc.start_paragraph("Label")
-                self.doc.write_text(_("Children"))
-                self.doc.end_paragraph()
-                self.doc.end_cell()
-                
-                self.doc.start_cell("NormalCell")
-                self.doc.start_paragraph("Data")
-                
-                first = 1
-                for child_handle in family.get_child_handle_list():
-                    child = self.db.get_person_from_handle(child_handle)
-                    name = child.get_primary_name().get_regular_name()
-                    if first == 1:
-                        first = 0
-                    else:
-                        self.doc.write_text('\n')
-                    if self.list.has_key(child_handle):
-                        self.doc.start_link("%s.%s" % (child.get_gramps_id(),self.ext))
-                        self.doc.write_text(name)
-                        self.doc.end_link()
-                    else:
-                        self.doc.write_text(name)
-                self.doc.end_paragraph()
-                self.doc.end_cell()
-                self.doc.end_row()
-        self.doc.end_table()
-
-    def write_sibling(self):
-        if len(self.person.get_parent_family_handle_list()) == 0:
-            return
-        
-        """collect all siblings into an array"""
-        all_sisters = []
-        for (family_handle,mrel,frel) in self.person.get_parent_family_handle_list():
-            family = self.db.get_family_from_handle(family_handle)
-            if len( family.get_child_handle_list() ) > 0:
-                for child_handle in family.get_child_handle_list():
-                    all_sisters.append(child_handle)
-        
-        """if more than one person_handle exists, the person has siblings"""
-        if len(all_sisters) > 1:
-            self.doc.start_paragraph("SiblingsTitle")
-            self.doc.write_text(_("Siblings"))
-            self.doc.end_paragraph()
-    
-            self.doc.start_table("three","IndTable")
-        
-            for child_handle in all_sisters:
-                child = self.db.get_person_from_handle(child_handle)
-                self.doc.start_paragraph("Data")
-                name = child.get_primary_name().get_regular_name()
-                if self.person.get_handle() == child_handle:
-                    self.doc.write_text(name)
-                elif self.list.has_key(child_handle):
-                    self.doc.start_link("%s.%s" % (child.get_gramps_id(),self.ext))
-                    self.doc.write_text(name)
-                    self.doc.end_link()
-                else:
-                    self.doc.write_text(name)
-                self.doc.end_paragraph()
-                
-
 #------------------------------------------------------------------------
 #
 # WebReport
@@ -931,6 +582,8 @@ class WebReport(Report.Report):
 
     def dump_index(self,person_handle_list,styles,template,html_dir):
         """Writes an index file, listing all people in the person list."""
+
+        return
     
         doc = HtmlLinkDoc(self.selected_style,None,template,None)
         doc.set_extension(self.ext)
@@ -1134,52 +787,31 @@ class WebReport(Report.Report):
         if self.use_places == 1:
             progress_steps = progress_steps+1
         self.progress_bar_setup(float(progress_steps))
-        
-        doc = HtmlLinkDoc(self.selected_style,None,self.template_name,None)
-        doc.set_extension(self.ext)
-        doc.set_image_dir(self.image_dir)
-        
-        self.add_styles(doc)
-        doc.build_style_declaration()
 
-        my_map = {}
-        for l in ind_list:
-            my_map[l] = l
         for person_handle in ind_list:
             person = self.database.get_person_from_handle(person_handle)
-            tdoc = HtmlLinkDoc(self.selected_style,None,None,None,doc)
-            tdoc.set_extension(self.ext)
-            tdoc.set_keywords([person.get_primary_name().get_surname(),
-                               person.get_primary_name().get_regular_name()])
-            idoc = IndividualPage(self.database,person, self.photos, self.restrict,
-                                  self.private, self.srccomments,
-                                  self.include_link, self.use_places,
-                                  self.include_mini_tree, my_map, dir_name,
-                                  self.image_dir, tdoc, self.use_id,
-                                  self.id_link, self.ext, self.depth)
-            idoc.create_page(my_map)
-            idoc.close()
+            idoc = IndividualPage(self.database,person, dir_name, ind_list)
             self.progress_bar_step()
             while gtk.events_pending():
-                gtk.mainiteration()
+                gtk.main_iteration()
             
         if len(ind_list) > 1:
             self.dump_index(ind_list,self.selected_style,
                             self.ind_template_name,dir_name)
             self.progress_bar_step()
             while gtk.events_pending():
-                gtk.mainiteration()
+                gtk.main_iteration()
         if self.use_gendex == 1:
             self.dump_gendex(ind_list,dir_name)
             self.progress_bar_step()
             while gtk.events_pending():
-                gtk.mainiteration()
-        if self.use_places == 1:
+                gtk.main_iteration()
+        if 0:
             self.dump_places(ind_list,self.selected_style,
                             self.ind_template_name,dir_name)
             self.progress_bar_step()
             while gtk.events_pending():
-                gtk.mainiteration()
+                gtk.main_iteration()
         self.progress_bar_done()
 
     def add_styles(self,doc):
@@ -1348,17 +980,11 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.linkpath.set_text(self.options_dict['HTMLidurl'])
 
         self.include_id.connect('toggled',self.show_link)
-
-        the_ext = self.options_dict['HTMLext']
         self.ext = gtk.combo_box_new_text()
-        index = 0
-        active_index = 0
-        for item in _ext:
-            self.ext.append_text(item)
-            if item == the_ext:
-                active_index = index
-            index = index + 1
-        self.ext.set_active(active_index)
+        for text in ['.html','.htm','.php','.php3','.cgi']:
+            self.ext.append_text(text)
+        
+        #self.ext.set_active(self.options_dict['HTMLext'])
 
         self.use_alpha_links = gtk.CheckButton(alpha_links_msg)
         self.use_alpha_links.set_active(self.options_dict['HTMLlnktoalphabet'])
@@ -1374,35 +1000,18 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.use_n_cols.set_numeric(gtk.TRUE)
         self.use_n_cols.set_value(self.options_dict['HTMLidxcol'])
 
+        self.ind_template = gtk.Combo()
+        template_list = [ Report._default_template ]
         tlist = Report._template_map.keys()
         tlist.sort()
-        
-        ind_template_name = self.options_dict['HTMLidxt']
-        self.ind_template = gtk.combo_box_new_text()
-        self.ind_template.append_text(Report._default_template)
-        template_index = 1
-        active_index = 0
         for template in tlist:
             if template != Report._user_template:
-                self.ind_template.append_text(template)
-                if Report._template_map[template] == ind_template_name:
-                    active_index = template_index
-                template_index = template_index + 1
-        self.ind_template.append_text(Report._user_template)
-
+                template_list.append(template)
+        template_list.append(Report._user_template)
+        self.ind_template.set_popdown_strings(template_list)
+        self.ind_template.entry.set_editable(0)
         self.ind_user_template = gnome.ui.FileEntry("HTML_Template",_("Choose File"))
-        if ind_template_name and not active_index:
-            active_index = template_index
-            user_template = ind_template_name
-            self.ind_user_template.set_sensitive(1)
-        else:
-            user_template = ''
-            self.ind_user_template.set_sensitive(0)
-
-        if os.path.isfile(user_template):
-            self.ind_user_template.set_filename(user_template)
-        self.ind_user_template.set_modal(True)
-        self.ind_template.set_active(active_index)
+        self.ind_user_template.set_sensitive(0)
 
         self.add_birth_date = gtk.CheckButton(birth_date_msg)
         self.add_birth_date.set_active(self.options_dict['HTMLidxbirth'])
@@ -1421,7 +1030,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.mini_tree.connect('toggled',self.on_mini_tree_toggled)
 
         self.use_alpha_links.connect('toggled',self.on_use_alpha_links_toggled)
-        self.ind_template.connect('changed',self.ind_template_changed)
+        self.ind_template.entry.connect('changed',self.ind_template_changed)
 
         title = _("Privacy")
         dialog.add_frame_option(title,None,self.no_private)
@@ -1459,7 +1068,8 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.options_dict['HTMLtreed'] = self.depth.get_value_as_int()
         self.options_dict['HTMLlinktidx'] = int(self.use_link.get_active())
 
-        html_ext = _ext[self.ext.get_active()]
+        #html_ext = unicode(self.ext.entry.get_text().strip())
+        html_ext = ".html"
         if html_ext[0] == '.':
             html_ext = html_ext[1:]
         self.options_dict['HTMLext'] = html_ext
@@ -1478,15 +1088,14 @@ class WebReportOptions(ReportOptions.ReportOptions):
             photos = 2
         self.options_dict['HTMLimg'] = photos
 
-        active = self.ind_template.get_active()
-        text = unicode(self.ind_template.get_model()[active][0])
+        text = unicode(self.ind_template.entry.get_text())
         if Report._template_map.has_key(text):
             if text == Report._user_template:
-                ind_template_name = self.ind_user_template.get_full_path(0)
+                ind_template_name = dialog.ind_user_template.get_full_path(0)
             else:
                 ind_template_name = "%s/%s" % (const.template_dir,Report._template_map[text])
         else:
-            ind_template_name = ""
+            ind_template_name = None
         self.options_dict['HTMLidxt'] = ind_template_name
 
         self.options_dict['HTMLlnktoalphabet'] = int(self.use_alpha_links.get_active())
@@ -1531,8 +1140,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.depth.set_sensitive(obj.get_active())
 
     def ind_template_changed(self,obj):
-        active = obj.get_active()
-        text = unicode(obj.get_model()[active][0])
+        text = unicode(obj.get_text())
         if Report._template_map.has_key(text):
             if Report._template_map[text]:
                 self.ind_user_template.set_sensitive(0)
@@ -1702,7 +1310,7 @@ class WebReportDialog(Report.ReportDialog):
                                     name,translated_name)
 
         response = self.window.run()
-        if response == True:
+        if response == gtk.RESPONSE_OK:
             try:
                 self.make_report()
             except (IOError,OSError),msg:
@@ -1899,7 +1507,7 @@ register_report(
     report_class = WebReportDialog,
     options_class = cl_report,
     modes = Report.MODE_GUI | Report.MODE_CLI,
-    translated_name = _("Generate Web Site"),
+    translated_name = _("Narrative Web Site"),
     status=(_("Beta")),
     description=_("Generates web (HTML) pages for individuals, or a set of individuals."),
     )

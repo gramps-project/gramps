@@ -159,7 +159,7 @@ class FamilyGroup(Report.Report):
         
         person = self.database.get_person_from_handle(person_handle)
         
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
             the_id = _("Husband")
         else:
             the_id = _("Wife")
@@ -307,7 +307,7 @@ class FamilyGroup(Report.Report):
         self.doc.start_row()
         self.doc.start_cell('FGR-TextChild1')
         self.doc.start_paragraph('FGR-ChildText')
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
             self.doc.write_text("%dM" % index)
         else:
             self.doc.write_text("%dF" % index)

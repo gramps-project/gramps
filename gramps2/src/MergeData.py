@@ -185,7 +185,7 @@ class MergePeople:
 
         widget.clear()
         for fam in person.get_family_handle_list():
-            if person.get_gender() == RelLib.Person.male:
+            if person.get_gender() == RelLib.Person.MALE:
                 spouse = fam.get_mother_handle()
             else:
                 spouse = fam.get_father_handle()
@@ -366,7 +366,7 @@ class MergePeople:
         Utils.destroy_passed_object(self.top)
         
     def find_family(self,family):
-        if self.p1.get_gender() == RelLib.Person.male:
+        if self.p1.get_gender() == RelLib.Person.MALE:
             mother = family.get_mother_handle()
             father = self.p1.get_handle()
         else:
@@ -471,7 +471,7 @@ class MergePeople:
             else:
                 if src_family not in self.p1.get_family_handle_list():
                     self.p1.add_family_handle(src_family)
-                    if self.p1.get_gender() == RelLib.Person.male:
+                    if self.p1.get_gender() == RelLib.Person.MALE:
                         src_family.set_father_handle(self.p1)
                     else:
                         src_family.set_mother_handle(self.p1)
@@ -587,7 +587,7 @@ def compare_people(p1,p2):
 
     for f1 in p1.get_family_handle_list():
         for f2 in p2.get_family_handle_list():
-            if p1.get_gender() == RelLib.Person.female:
+            if p1.get_gender() == RelLib.Person.FEMALE:
                 father1 = f1.get_father_handle()
                 father2 = f2.get_father_handle()
                 if father1 and father2:

@@ -257,6 +257,5 @@ doc/gramps-manual/ru/Makefile
 example/Makefile
 example/gramps/Makefile
 gramps.spec
-gramps-mdk.spec
 gramps.sh])
 AC_OUTPUT

@@ -191,14 +191,14 @@ class AddSpouse:
 
         relation = self.rel_combo.get_active()
         if relation == RelLib.Family.CIVIL_UNION:
-            if self.person.get_gender() == RelLib.Person.male:
-                gen = RelLib.Person.male
+            if self.person.get_gender() == RelLib.Person.MALE:
+                gen = RelLib.Person.MALE
             else:
-                gen = RelLib.Person.female
-        elif self.person.get_gender() == RelLib.Person.male:
-            gen = RelLib.Person.female
+                gen = RelLib.Person.FEMALE
+        elif self.person.get_gender() == RelLib.Person.MALE:
+            gen = RelLib.Person.FEMALE
         else:
-            gen = RelLib.Person.male
+            gen = RelLib.Person.MALE
 
         person = RelLib.Person()
         person.set_gender(gen)
@@ -262,7 +262,7 @@ class AddSpouse:
         spouse.add_family_handle(self.active_family.get_handle())
         self.db.commit_person(spouse,trans)
 
-        if self.person.get_gender() == RelLib.Person.male:
+        if self.person.get_gender() == RelLib.Person.MALE:
             self.active_family.set_mother_handle(spouse.get_handle())
             self.active_family.set_father_handle(self.person.get_handle())
         else:	
@@ -337,15 +337,15 @@ class AddSpouse:
 
     def set_gender(self):
         if self.rel_combo.get_active() == RelLib.Family.CIVIL_UNION:
-            if self.gender == RelLib.Person.male:
-                self.sgender = RelLib.Person.female
+            if self.gender == RelLib.Person.MALE:
+                self.sgender = RelLib.Person.FEMALE
             else:
-                self.sgender = RelLib.Person.male
+                self.sgender = RelLib.Person.MALE
         else:
-            if self.gender == RelLib.Person.male:
-                self.sgender = RelLib.Person.male
+            if self.gender == RelLib.Person.MALE:
+                self.sgender = RelLib.Person.MALE
             else:
-                self.sgender = RelLib.Person.female
+                self.sgender = RelLib.Person.FEMALE
 
     def update_data(self,person = None):
         """

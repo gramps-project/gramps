@@ -242,7 +242,7 @@ class IndivSummary(Report.Report):
 
         self.doc.start_cell("IVS-NormalCell")
         self.doc.start_paragraph("IVS-Normal")
-        if self.start_person.get_gender() == RelLib.Person.male:
+        if self.start_person.get_gender() == RelLib.Person.MALE:
             self.doc.write_text(_("Male"))
         else:
             self.doc.write_text(_("Female"))

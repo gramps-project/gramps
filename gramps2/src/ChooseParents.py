@@ -241,20 +241,20 @@ class ChooseParents:
         gnome.help_display('gramps-manual','gramps-edit-quick')
 
     def all_males_filter(self,person):
-        return (person.get_gender() == RelLib.Person.male)
+        return (person.get_gender() == RelLib.Person.MALE)
 
     def all_females_filter(self,person):
-        return (person.get_gender() == RelLib.Person.female)
+        return (person.get_gender() == RelLib.Person.FEMALE)
 
     def likely_father_filter(self,person):
-        if person.get_gender() != RelLib.Person.male:
+        if person.get_gender() != RelLib.Person.MALE:
             return 0
         if self.exclude.has_key(person.get_handle()):
             return 0
         return self.likely_filter(person)
 
     def likely_mother_filter(self,person):
-        if person.get_gender() != RelLib.Person.female:
+        if person.get_gender() != RelLib.Person.FEMALE:
             return 0
         if self.exclude.has_key(person.get_handle()):
             return 0
@@ -504,7 +504,7 @@ class ChooseParents:
         trans = self.db.transaction_begin()
         if self.father or self.mother:
             if self.mother and not self.father:
-                if self.mother.get_gender() == RelLib.Person.male:
+                if self.mother.get_gender() == RelLib.Person.MALE:
                     self.father = self.mother
                     father_handle = self.father.get_handle()
                     self.mother = None
@@ -513,7 +513,7 @@ class ChooseParents:
                     mother_handle = self.mother.get_handle()
                     father_handle = None
             elif self.father and not self.mother: 
-                if self.father.get_gender() == RelLib.Person.female:
+                if self.father.get_gender() == RelLib.Person.FEMALE:
                     self.mother = self.father
                     self.father = None
                     mother_handle = self.mother.get_handle()
@@ -524,7 +524,7 @@ class ChooseParents:
             elif self.mother.get_gender() != self.father.get_gender():
                 if self.type == "Partners":
                     self.type = "Unknown"
-                if self.father.get_gender() == RelLib.Person.female:
+                if self.father.get_gender() == RelLib.Person.FEMALE:
                     self.father, self.mother = self.mother, self.father
                 father_handle = self.father.get_handle()
                 mother_handle = self.mother.get_handle()
@@ -561,7 +561,7 @@ class ChooseParents:
 
         if self.type == RelLib.Family.CIVIL_UNION:
             self.parent_relation_changed(self.prel)
-        elif person.get_gender() == RelLib.Person.male:
+        elif person.get_gender() == RelLib.Person.MALE:
             self.redrawf()
             path = self.father_nsort.on_get_path(handle)
             top_path = self.father_nsort.on_get_path(name)
@@ -582,7 +582,7 @@ class ChooseParents:
         class to create a new person."""
         
         person = RelLib.Person()
-        person.set_gender(RelLib.Person.male)
+        person.set_gender(RelLib.Person.MALE)
         
         try:
             import EditPerson

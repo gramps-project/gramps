@@ -186,7 +186,7 @@ class Merge:
         for p1_id in self.person_list:
             p1 = self.db.get_person_from_handle(p1_id)
             key = self.gen_key(p1.get_primary_name().get_surname())
-            if p1.get_gender() == RelLib.Person.male:
+            if p1.get_gender() == RelLib.Person.MALE:
                 if males.has_key(key):
                     males[key].append(p1_id)
                 else:
@@ -207,7 +207,7 @@ class Merge:
             num = num + 1
 
             key = self.gen_key(p1.get_primary_name().get_surname())
-            if p1.get_gender() == RelLib.Person.male:
+            if p1.get_gender() == RelLib.Person.MALE:
                 remaining = males[key]
             else:
                 remaining = females[key]
@@ -577,7 +577,7 @@ class Merge:
             f1 = self.db.get_family_from_handle(f1_id)
             for f2_id in p2.get_family_handle_list():
                 f2 = self.db.get_family_from_handle(f2_id)
-                if p1.get_gender() == RelLib.Person.female:
+                if p1.get_gender() == RelLib.Person.FEMALE:
                     father1_id = f1.get_father_handle()
                     father2_id = f2.get_father_handle()
                     if father1_id and father2_id:

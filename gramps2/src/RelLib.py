@@ -340,7 +340,7 @@ class Person(PrimaryObject,SourceNote):
         self.media_list = []
         self.nickname = ""
         self.alternate_names = []
-        self.gender = Person.unknown
+        self.gender = Person.UNKNOWN
         self.death_handle = None
         self.birth_handle = None
         self.address_list = []
@@ -521,9 +521,9 @@ class Person(PrimaryObject,SourceNote):
 
         @param gender: Assigns the Person's gender to one of the
             following constants::
-                Person.male
-                Person.female
-                Person.unknown
+                Person.MALE
+                Person.FEMALE
+                Person.UNKNOWN
         @type gender: int
         """
         # if the db object has been assigned, update the
@@ -539,9 +539,9 @@ class Person(PrimaryObject,SourceNote):
         Returns the gender of the Person
 
         @returns: Returns one of the following constants::
-            Person.male
-            Person.female
-            Person.unknown
+            Person.MALE
+            Person.FEMALE
+            Person.UNKNOWN
         @rtype: int
         """
         return self.gender
@@ -3112,11 +3112,11 @@ class GenderStats:
         else:
             increment = -1
 
-        if gender == Person.male:
+        if gender == Person.MALE:
             male += increment
-        elif gender == Person.female:
+        elif gender == Person.FEMALE:
             female += increment
-        elif gender == Person.unknown:
+        elif gender == Person.UNKNOWN:
             unknown += increment
 
         self.stats[name] = (male, female, unknown)
@@ -3128,20 +3128,20 @@ class GenderStats:
     def guess_gender (self, name):
         name = self._get_key_from_name (name)
         if not name or not self.stats.has_key (name):
-            return Person.unknown
+            return Person.UNKNOWN
 
         (male, female, unknown) = self.stats[name]
         if unknown == 0:
             if male and not female:
-                return Person.male
+                return Person.MALE
             if female and not male:
-                return Person.female
+                return Person.FEMALE
 
         if male > (2 * female):
-            return Person.male
+            return Person.MALE
 
         if female > (2 * male):
-            return Person.female
+            return Person.FEMALE
 
-        return Person.unknown
+        return Person.UNKNOWN
 

@@ -260,12 +260,12 @@ class CheckIntegrity:
             if not father_handle and not mother_handle:
                 continue
             elif not father_handle:
-                if mother.get_gender() == RelLib.Person.male:
+                if mother.get_gender() == RelLib.Person.MALE:
                     family.set_father_handle(mother_handle)
                     family.set_mother_handle(None)
                     self.db.commit_family(family,self.trans)
             elif not mother_handle:
-                if father.get_gender() == RelLib.Person.female:
+                if father.get_gender() == RelLib.Person.FEMALE:
                     family.set_mother_handle(father_handle)
                     family.set_father_handle(None)
                     self.db.commit_family(family,self.trans)
@@ -273,11 +273,11 @@ class CheckIntegrity:
                 fgender = father.get_gender()
                 mgender = mother.get_gender()
                 if type != RelLib.Family.CIVIL_UNION:
-                    if fgender == mgender and fgender != RelLib.Person.unknown:
+                    if fgender == mgender and fgender != RelLib.Person.UNKNOWN:
                         family.set_relationship(RelLib.Family.CIVIL_UNION)
                         self.fam_rel.append(family_handle)
                         self.db.commit_family(family,self.trans)
-                    elif fgender == RelLib.Person.female or mgender == RelLib.Person.male:
+                    elif fgender == RelLib.Person.FEMALE or mgender == RelLib.Person.MALE:
                         family.set_father_handle(mother_handle)
                         family.set_mother_handle(father_handle)
                         self.fam_rel.append(family_handle)
@@ -285,7 +285,7 @@ class CheckIntegrity:
                 elif fgender != mgender:
                     family.set_relationship(RelLib.Family.UNKNOWN)
                     self.fam_rel.append(family_handle)
-                    if fgender == RelLib.Person.female or mgender == RelLib.Person.male:
+                    if fgender == RelLib.Person.FEMALE or mgender == RelLib.Person.MALE:
                         family.set_father_handle(mother_handle)
                         family.set_mother_handle(father_handle)
                     self.db.commit_family(family,self.trans)

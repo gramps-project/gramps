@@ -174,7 +174,7 @@ class GeneWebParser:
         idx = 1;
         
         print "\nHusband:"
-        (idx,husband) = self.parse_person(fields,idx,RelLib.Person.male,None)
+        (idx,husband) = self.parse_person(fields,idx,RelLib.Person.MALE,None)
         if husband:
             self.current_husband_handle = husband.get_handle()
             self.current_family.set_father_handle(husband.get_handle())
@@ -184,7 +184,7 @@ class GeneWebParser:
         print "Marriage:"
         idx = self.parse_marriage(fields,idx)
         print "Wife:"
-        (idx,wife) = self.parse_person(fields,idx,RelLib.Person.female,None)
+        (idx,wife) = self.parse_person(fields,idx,RelLib.Person.FEMALE,None)
         if wife:
             self.current_family.set_mother_handle(wife.get_handle())
             self.db.commit_family(self.current_family,self.trans)
@@ -204,9 +204,9 @@ class GeneWebParser:
     def read_witness_line(self,line,fields):
         print "Witness:"
         if fields[1] == "m:":
-            self.parse_person(fields,2,RelLib.Person.male,None)
+            self.parse_person(fields,2,RelLib.Person.MALE,None)
         elif fields[1] == "f:":
-            self.parse_person(fields,2,RelLib.Person.female,None)
+            self.parse_person(fields,2,RelLib.Person.FEMALE,None)
         else:
             self.parse_person(fields,1,None,None)
         return None
@@ -233,9 +233,9 @@ class GeneWebParser:
                 print "Child:"
                 child = None
                 if fields[1] == "h":
-                    (idx,child) = self.parse_person(fields,2,RelLib.Person.male,father_surname)
+                    (idx,child) = self.parse_person(fields,2,RelLib.Person.MALE,father_surname)
                 elif fields[1] == "f":
-                    (idx,child) = self.parse_person(fields,2,RelLib.Person.female,father_surname)
+                    (idx,child) = self.parse_person(fields,2,RelLib.Person.FEMALE,father_surname)
                 else:
                     (idx,child) = self.parse_person(fields,1,None,father_surname)
                     

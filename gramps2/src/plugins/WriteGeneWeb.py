@@ -265,9 +265,9 @@ class GeneWebWriter:
                             person = self.db.get_person_from_handle(witness.get_value())
                             if person:
                                 gender = ""
-                                if person.get_gender() == RelLib.Person.male:
+                                if person.get_gender() == RelLib.Person.MALE:
                                     gender = "h"
-                                elif person.get_gender() == RelLib.Person.female:
+                                elif person.get_gender() == RelLib.Person.FEMALE:
                                     gender = "f"
                                 self.writeln("wit %s %s %s" % (gender, self.get_ref_name(person), self.get_full_person_info_fam(person)))
                             
@@ -293,9 +293,9 @@ class GeneWebWriter:
                 child = self.db.get_person_from_handle(child_handle)
                 if child:
                     gender = ""
-                    if child.get_gender() == RelLib.Person.male:
+                    if child.get_gender() == RelLib.Person.MALE:
                         gender = "h"
-                    elif child.get_gender() == RelLib.Person.female:
+                    elif child.get_gender() == RelLib.Person.FEMALE:
                         gender = "f"
                     self.writeln("- %s %s %s" % (gender, self.get_child_ref_name(child, father_lastname), self.get_full_person_info_child(child)))
             self.writeln("end")

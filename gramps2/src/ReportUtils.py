@@ -354,6 +354,17 @@ def roman(num):
 
 #-------------------------------------------------------------------------
 #
+# 
+#
+#-------------------------------------------------------------------------
+def place_name(db,place_handle):
+    if place_handle:
+        place = db.get_place_from_handle(place_handle).get_title()
+    else:
+        place = ""
+    
+#-------------------------------------------------------------------------
+#
 # Functions commonly used in reports
 #
 #-------------------------------------------------------------------------
@@ -448,14 +459,14 @@ def born_died_str(database,person,endnotes=None,name_object=None,person_name=Non
     if person_name == None:
         person_name = _nd.display_name(name_object)
     elif person_name == 0:
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
             person_name = _('He')
         else:
             person_name = _('She')
 
     bdate,bplace,ddate,dplace = get_birth_death_strings(database,person)
 
-    if person.get_gender() == RelLib.Person.male:
+    if person.get_gender() == RelLib.Person.MALE:
         if bdate:
             if bplace:
                 if ddate:
@@ -754,7 +765,7 @@ def married_str(database,person,spouse,event,endnotes=None):
 
     text = ""
     if date and place:
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
                 text = _('He married %(spouse)s %(date)s in %(place)s%(endnotes)s.') % {
                     'spouse' : spouse_name,
                     'endnotes' : endnotes(event),
@@ -767,7 +778,7 @@ def married_str(database,person,spouse,event,endnotes=None):
                     'endnotes' : endnotes(event),
                     'place' : place}
     elif date:
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
                 text = _('He married %(spouse)s %(date)s%(endnotes)s.') % {
                     'spouse' : spouse_name,
                     'endnotes' : endnotes(event),
@@ -778,7 +789,7 @@ def married_str(database,person,spouse,event,endnotes=None):
                     'endnotes' : endnotes(event),
                     'place' : place,}
     elif place:
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
                 text = _('He married %(spouse)s in %(place)s%(endnotes)s.') % {
                     'spouse' : spouse_name,
                     'endnotes' : endnotes(event),
@@ -789,7 +800,7 @@ def married_str(database,person,spouse,event,endnotes=None):
                     'endnotes' : endnotes(event),
                     'place' : place}
     else:
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
                 text = _('He married %(spouse)s%(endnotes)s.') % {
                     'spouse' : spouse_name,
                     'endnotes' : endnotes(event) }
@@ -809,8 +820,8 @@ def child_str(person,person_name=0,father_name="",mother_name="",dead=0):
         "He/She is/was the son/daughter of father_name and mother_name"
     Missing information will be omitted without loss of readability.
     
-    @param person_gender: Person.male, Person.female, or Person.unknown
-    @type person: Person.male, Person.female, or Person.unknown
+    @param person_gender: Person.MALE, Person.FEMALE, or Person.UNKNOWN
+    @type person: Person.MALE, Person.FEMALE, or Person.UNKNOWN~
     @param father_name: String to use for father's name
     @type father_name: unicode
     @param mother_name: String to use for mother's name
@@ -824,14 +835,14 @@ def child_str(person,person_name=0,father_name="",mother_name="",dead=0):
     if person_name == None:
         person_name = _nd.display_name(person.get_primary_name())
     elif person_name == 0:
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
             person_name = _('He')
         else:
             person_name = _('She')
 
     text = ""
 
-    if person.get_gender() == RelLib.Person.male:
+    if person.get_gender() == RelLib.Person.MALE:
         if mother_name and father_name:
             if dead:
                 text = _("He was the son of %(father)s and %(mother)s.") % {
@@ -879,7 +890,14 @@ def child_str(person,person_name=0,father_name="",mother_name="",dead=0):
             else:
                 text = _("She is the daughter of %(father)s.") % {
                     'father' : father_name, }
+    return text
 
+def find_spouse(person,family):
+    if person.get_handle() == family.get_father_handle():
+        spouse_id = family.get_mother_handle()
+    else:
+        spouse_id = family.get_mother_handle()
+    return spouse_id
     if text:
         text = text + " "
     return text
@@ -900,7 +918,7 @@ def born_str(database,person,person_name=None,empty_date="",empty_place=""):
     if person_name == None:
         person_name = _nd.display_name(person.get_primary_name())
     elif person_name == 0:
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
             person_name = _('He')
         else:
             person_name = _('She')
@@ -910,7 +928,7 @@ def born_str(database,person,person_name=None,empty_date="",empty_place=""):
     bdate,bplace,bdate_full,ddate,dplace,ddate_full = \
                 get_birth_death_strings(database,person,empty_date,empty_place)
 
-    if person.get_gender() == RelLib.Person.male:
+    if person.get_gender() == RelLib.Person.MALE:
         if bdate and bdate_full:
             if bplace: #male, date, place
                 text = _("%(male_name)s "
@@ -998,7 +1016,7 @@ def died_str(database,person,person_name=None,empty_date="",empty_place="",
     if person_name == None:
         person_name = _nd.display_name(person.get_primary_name())
     elif person_name == 0:
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
             person_name = _('He')
         else:
             person_name = _('She')
@@ -1008,7 +1026,7 @@ def died_str(database,person,person_name=None,empty_date="",empty_place="",
     bdate,bplace,bdate_full,ddate,dplace,ddate_full = \
                 get_birth_death_strings(database,person,empty_date,empty_place)
 
-    if person.get_gender() == RelLib.Person.male:
+    if person.get_gender() == RelLib.Person.MALE:
         if ddate and ddate_full:
             if dplace: 
                 if not age_units: #male, date, place, no age
@@ -1289,7 +1307,7 @@ def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
     if person_name == None:
         person_name = _nd.display_name(person.get_primary_name())
     elif person_name == 0:
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
             person_name = _('He')
         else:
             person_name = _('She')
@@ -1317,7 +1335,7 @@ def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
     else:
         return text
 
-    if person.get_gender() == RelLib.Person.male:
+    if person.get_gender() == RelLib.Person.MALE:
         if bdate and bdate_full:
             if bplace: #male, date, place
                 text = _("%(male_name)s "
@@ -1374,69 +1392,13 @@ def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
         text = text + " "
     return text
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-if __name__ == "__main__":
-    import BaseDoc
-    import OpenOfficeDoc
+_rtyle = {
+    RelLib.Family.MARRIED : _("Married"),
+    RelLib.Family.UNMARRIED : _("Unmarried"),
+    RelLib.Family.CIVIL_UNION : _("Civil Union"),
+    RelLib.Family.UNKNOWN : _("Unknown"),
+    RelLib.Family.OTHER : _("Other"),
+    }
 
-    sheet = BaseDoc.StyleSheet()
-    paper = BaseDoc.PaperStyle("Letter",27.94,21.59)
-    doc = OpenOfficeDoc.OpenOfficeDoc(sheet,paper,None)
-
-    font = BaseDoc.FontStyle()
-    font.set_size(10)
-
-    para = BaseDoc.ParagraphStyle()
-    para.set_font(font)
-    sheet.add_style('Normal', para)
-
-    g = BaseDoc.GraphicsStyle()
-    g.set_fill_color((0,255,0))
-    g.set_paragraph_style('Normal')
-    g.set_line_width(1)
-    doc.add_draw_style("green",g)
-
-    g = BaseDoc.GraphicsStyle()
-    g.set_fill_color((255,0,0))
-    g.set_paragraph_style('Normal')
-    g.set_line_width(1)
-    doc.add_draw_style("red",g)
-
-    g = BaseDoc.GraphicsStyle()
-    g.set_fill_color((0,0,255))
-    g.set_paragraph_style('Normal')
-    g.set_line_width(1)
-    doc.add_draw_style("blue",g)
-
-    g = BaseDoc.GraphicsStyle()
-    g.set_fill_color((255,255,0))
-    g.set_paragraph_style('Normal')
-    g.set_line_width(1)
-    doc.add_draw_style("yellow",g)
-
-    g = BaseDoc.GraphicsStyle()
-    g.set_fill_color((0,0,0))
-    g.set_paragraph_style('Normal')
-    g.set_line_width(1)
-    doc.add_draw_style("black",g)
-
-
-    doc.open("foo.sxw")
-    doc.init()
-    chart_data = [
-        ('red',250,'red label'),
-        ('green',35,'green label'),
-        ('blue', 158, 'blue label'),
-        ('yellow', 100, 'yellow label'),
-        ]
-    
-    draw_pie_chart(doc, 4, 4, 3, chart_data)
-    draw_legend(doc, 7.5, 2, chart_data)
-
-    draw_vertical_bar_graph(doc, "black", 2, 10, 8, 12, chart_data)
-    
-    doc.close()
+def relationship_name(type):
+    return _rtype.get(type)

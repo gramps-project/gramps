@@ -415,7 +415,7 @@ class IndivCompleteReport(Report.Report):
 
         self.doc.start_row()
         self.normal_cell("%s:" % _("Gender"))
-        if self.start_person.get_gender() == RelLib.Person.male:
+        if self.start_person.get_gender() == RelLib.Person.MALE:
             self.normal_cell(_("Male"))
         else:
             self.normal_cell(_("Female"))

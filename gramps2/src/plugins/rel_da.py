@@ -99,7 +99,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('sønne')
             else:
                 result.append('datter')
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
             result.append('søn')
         else:
             result.append('datter')
@@ -122,12 +122,12 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     result.append('sønne')
                 else:
                     result.append('datter')
-            if person.get_gender() == RelLib.Person.male:
+            if person.get_gender() == RelLib.Person.MALE:
                 result.append('søn')
             else:
                 result.append('datter')
         else:
-            if person.get_gender() == RelLib.Person.male:
+            if person.get_gender() == RelLib.Person.MALE:
                 result.append('bror')
             else:
                 result.append('søster')
@@ -148,7 +148,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return ('', [])
 
         if self.is_spouse(orig_person,other_person):
-            if other_person.get_gender() == RelLib.Person.male:
+            if other_person.get_gender() == RelLib.Person.MALE:
                 return ("ægtefælle",[])
             else:
                 return ("hustru",[])

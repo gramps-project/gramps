@@ -577,21 +577,21 @@ class ComprehensiveAncestorsReport (Report.Report):
             if not mother_handle and not father_handle:
                 pass
             elif not father_handle:
-                if gender == RelLib.Person.female:
+                if gender == RelLib.Person.FEMALE:
                     ret += _("She is the daughter of %(mother)s.") % \
                            {'mother': mothername}
                 else:
                     ret += _("He is the son of %(mother)s.") % \
                            {'mother': mothername}
             elif not mother_handle:
-                if gender == RelLib.Person.female:
+                if gender == RelLib.Person.FEMALE:
                     ret += _("She is the daughter of %(father)s.") % \
                            {'father': fathername}
                 else:
                     ret += _("He is the son of %(father)s.") % \
                            {'father': fathername}
             else:
-                if gender == RelLib.Person.female:
+                if gender == RelLib.Person.FEMALE:
                     ret += \
                         _("She is the daughter of %(father)s and %(mother)s.")%\
                         {'father': fathername,
@@ -618,12 +618,12 @@ class ComprehensiveAncestorsReport (Report.Report):
             return t
 
         gender = person.get_gender ()
-        if gender == RelLib.Person.female:
+        if gender == RelLib.Person.FEMALE:
             if name.get_type () == 'Married Name':
                 return _('Mrs.')
 
             return _('Miss')
-        elif gender == RelLib.Person.male:
+        elif gender == RelLib.Person.MALE:
             return _('Mr.')
         else:
             return _('(gender unknown)')
@@ -756,7 +756,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                                 break
 
                     if not first_rel:
-                        if gender == RelLib.Person.female:
+                        if gender == RelLib.Person.FEMALE:
                             ret += _('  She later married %(name)s') % \
                                    {'name': self.person_name (spouse_handle)}
                         else:
@@ -766,7 +766,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     elif (listing_children or
                           spouse == mother or
                           family != from_family):
-                        if gender == RelLib.Person.female:
+                        if gender == RelLib.Person.FEMALE:
                             ret += _('  She married %(name)s') % \
                                    {'name': self.person_name (spouse_handle)}
                         else:
@@ -777,14 +777,14 @@ class ComprehensiveAncestorsReport (Report.Report):
                         ret += self.event_info (marriage)
                 else: # Not a marriage
                     if not first_rel:
-                        if gender == RelLib.Person.female:
+                        if gender == RelLib.Person.FEMALE:
                             ret += _('  She later had a relationship with %(name)s') % \
                                    {'name': self.person_name (spouse_handle)}
                         else:
                             ret += _('  He later had a relationship with %(name)s') % \
                                    {'name': self.person_name (spouse_handle)}
                     else:
-                        if gender == RelLib.Person.female:
+                        if gender == RelLib.Person.FEMALE:
                             ret += _('  She had a relationship with %(name)s') % \
                                    {'name': self.person_name (spouse_handle)}
                         else:
