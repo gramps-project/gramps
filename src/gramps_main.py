@@ -431,7 +431,7 @@ class Gramps:
     def on_find_activate(self,obj):
         """Display the find box"""
         if self.notebook.get_current_page() == 4:
-            Find.FindPlace(self.place_view.place_list,self.find_goto_place,self.db)
+            Find.FindPlace(self.active_person.getId(),self.find_goto_place,self.db)
         elif self.notebook.get_current_page() == 3:
             Find.FindSource(self.source_view.source_list,self.find_goto_source,self.db)
         elif self.notebook.get_current_page() == 5:
@@ -443,10 +443,9 @@ class Gramps:
         """Display the find box"""
         pass
 
-    def find_goto_to(self,row):
+    def find_goto_to(self,id):
         """Find callback to jump to the selected person"""
-        id = self.person_list.get_row_data(row)
-        self.change_active_person(self.db.getPerson(id))
+        self.change_active_person(id)
         self.goto_active_person()
         self.update_display(0)
 

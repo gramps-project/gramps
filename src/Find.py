@@ -36,15 +36,17 @@ import string
 #
 #-------------------------------------------------------------------------
 import gtk
-from gnome.ui import *
+import gtk.glade
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import const
 import GrampsCfg
 import AutoComp
+import Utils
 from intl import gettext as _
 
 #-------------------------------------------------------------------------
@@ -66,23 +68,15 @@ class FindBase:
         self.clist = clist
         self.nlist = []
         self.task = task
-        title = "%s - GRAMPS" % name
-        self.top = GnomeDialog(title,STOCK_BUTTON_PREV,
-                               STOCK_BUTTON_NEXT,STOCK_BUTTON_CLOSE)
-        self.top.set_policy(0,1,0)
-        self.top.vbox.set_spacing(5)
-        self.top.vbox.pack_start(gtk.GtkLabel(name),0,0,5)
-        self.top.vbox.pack_start(gtk.GtkHSeparator(),0,0,0)
-        self.entry = gtk.GtkEntry()
-        self.top.vbox.pack_start(self.entry,0,0,25)
-        self.top.button_connect(0,self.on_prev_clicked)
-        self.top.button_connect(1,self.on_next_clicked)
-        self.top.button_connect(2,self.on_close_clicked)
-        self.top.set_usize(350,175)
-        self.top.set_default(1)
-        self.top.show_all()
-        self.top.editable_enters(self.entry)
-        self.entry.grab_focus()
+        self.glade = gtk.glade.XML(const.gladeFile,"find")
+        self.glade.signal_autoconnect({
+            'on_next_clicked' : self.on_next_clicked,
+            'on_back_clicked' : self.on_prev_clicked,
+            'on_close_clicked' : self.on_close_clicked,
+            })
+        self.top = self.glade.get_widget('find')
+        self.entry = self.glade.get_widget('entry')
+        Utils.set_titles(self.top, self.glade.get_widget('title'), name)
 
     def get_value(self,id):
         return None
@@ -92,17 +86,7 @@ class FindBase:
             self.comp = AutoComp.AutoEntry(self.entry,self.nlist)
         
     def advance(self,func):
-        try:
-            self.row = self.clist.selection[0]
-        except IndexError:
-            gtk.gdk_beep()
-            return
-
         text = self.entry.get_text()
-        if self.row == None or text == "":
-            gtk.gdk_beep()
-            return
-        orow = self.row
         func()
         while self.row != orow:
             id = self.clist.get_row_data(self.row)
@@ -145,14 +129,14 @@ class FindBase:
 class FindPerson(FindBase):
     """Opens a Find Person dialog for GRAMPS"""
     
-    def __init__(self,clist,task,db):
+    def __init__(self,id,task,db):
         """Opens a dialog box instance that allows users to
         search for a person.
 
         clist - GtkCList containing the people information
         task - function to call to change the active person"""
         
-        FindBase.__init__(self,clist,task,_("Find Person"),db)
+        FindBase.__init__(self,id,task,_("Find Person"),db)
         for n in self.db.getPersonKeys():
             val = self.db.getPersonDisplay(n)
             self.nlist.append(val[0])

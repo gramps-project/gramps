@@ -225,6 +225,9 @@ class ReportDialog:
 
         # Allow for post processing of the format frame, since the
         # show_all task calls events that may reset values
+
+        menu = self.format_menu.get_menu()
+        self.doc_type_changed(menu.get_active())
         self.setup_post_process()
 
 
