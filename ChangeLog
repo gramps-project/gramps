@@ -1,3 +1,9 @@
+2004-10-13 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/Makefile.am: Ship rel_es.py plugin.
+
+2004-10-13 Julio Sanchez <julio.sanchez@gmail.com>
+	* src/plugins/rel_es.py: Add to CVS.
+
 2004-10-12  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DisplayModels.py: fix source display
 	* src/GrampsBSDDB.py: add abort_changes task
