@@ -224,9 +224,8 @@
     <sect2 id="run-1st-time">
       <title>Running &app; for the first time</title>
     <para> 
- <!--
-[ FIXME: NEED TO RUN DRUID ] 
--->
+	[ FIXME: NEED TO RUN Getting Started DRUID to document this section ] 
+
     The first time you run the program, GRAMPS will display its 
     Getting Started screens. </para>
     
@@ -240,9 +239,6 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
- <!--
-[ FIXME: NEED TO RUN DRUID ] 
--->
 
     <!-- ================ Getting Started Sub-subsection  -->
       <sect3 id="choose-db-start">
@@ -318,8 +314,6 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-    <!-- Include any descriptions of the GUI immediately after the screenshot of the main UI, -->
-    <!-- for example, the items on the menubar and on the toolbar. This section is optional. -->
     <para>The &app; window contains the following elements: </para>
       <variablelist>
       <varlistentry><term>Menubar. </term>
@@ -384,11 +378,11 @@
 	<varlistentry><term>To switch the View while in a Sidebar mode, 
 	click on the desired sidebar icon.</term>
 	  <listitem>
-	  <!-- ==== Figure: Sidebar Notebook Mode ==== -->
+	  <!-- ==== Figure: Sidebar Mode ==== -->
 	  <figure id="side-nofilt-fig"> 
 	  <title>Sidebar Viewing Mode</title> 
 	  <screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/side-nofilt.png" format="PNG"/></imageobject>
+		fileref="figures/mainwin.png" format="PNG"/></imageobject>
 	  <textobject> 
 	  <phrase>Shows sidebar viewing mode.  </phrase>
 	  </textobject></mediaobject></screenshot></figure>
@@ -563,6 +557,17 @@
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="pedigree-view">
         <title>Pedigree View</title>
+
+	<!-- ==== Figure: Pedigree View ==== -->
+	<figure id="pedigree-fig"> 
+	<title>Pedigree View</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/pedigree.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Pedigree View.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
 	<para>Pedigree View helps to visualize the place of the Active 
 	person in the tree of its ancestors. Pedigree View shows four 
 	generations, going back in time from the Active person
@@ -598,6 +603,17 @@
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="sources-view">
         <title>Sources View</title>
+
+	<!-- ==== Figure: Sources View ==== -->
+	<figure id="sources-fig"> 
+	<title>Sources View</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/sources.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Sources View.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
 	<para>Sources View lists the sources of information stored in the 
 	database. This can include various documents (birth, death, and 
 	marriage certificates, etc.), books, films, journals, private diaries, 
@@ -613,6 +629,17 @@
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="places-view">
         <title>Places View</title>
+
+	<!-- ==== Figure: Places View ==== -->
+	<figure id="places-fig"> 
+	<title>Places View</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/places.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Places View.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
 	<para>Places View lists the geographical places in which the events 
 	of the database took place. These could be places of birth, death, 
 	marriages of people, as well as their home, employment, education 
@@ -627,6 +654,17 @@
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="media-view">
         <title>Media View</title>
+
+	<!-- ==== Figure: Media View ==== -->
+	<figure id="media-fig"> 
+	<title>Media View</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/media.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Media View.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
 	<para>Media View is a list of Media Objects used in the database. 
 	Media Objects are any files that relate somehow to the stored 
 	genealogical data. Technically, any file can be stored as a Media 
@@ -1790,9 +1828,9 @@
 	displays the source information. The bottom part has 
 	<guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons.  
 	Clicking <guibutton>OK</guibutton> at any time will apply all the 
-	changes made in all tabs and close the dialog window. Clicking 
+	changes made and close the dialog window. Clicking 
 	<guibutton>Cancel</guibutton> at any time will close the window without 
-	applying any changes. If any of the data in any tab was modified, 
+	applying any changes. If any of the data was modified, 
 	the alert window will appear with the choices of closing the dialog 
 	without saving changes, canceling the initial cancel request, or saving 
 	the changes. </para> 
@@ -2043,15 +2081,73 @@
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-wit"> 
         <title>Edit Witnesses</title> 
-	<para> </para>
-<!--
-[ FIXME: STOPPED HERE ] 
--->
+	<para> Witnesses are edited through the following 
+	<guilabel>Witness Editor</guilabel> dialog: </para>
+
+ 	<!-- ==== Figure: Witness Editor dialog ==== -->
+	<figure id="edit-wi-fig"> 
+	<title>Witness Editor dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/edit-wi.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Witness Editor dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+	
+	<para> The top of the window shows the dialog title. The central part 
+	of the window displays information about the witness. The bottom part 
+	has <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. 
+	Clicking <guibutton>OK</guibutton> at any time will apply all the 
+	changes made and close the dialog window. Clicking 
+	<guibutton>Cancel</guibutton> at any time will close the window 
+	without applying any changes. If any of the data was 
+	modified, the alert window will appear with the choices of closing 
+	the dialog without saving changes, canceling the initial cancel 
+	request, or saving the changes. </para> 
+	
+	<para>The witness name can be entered in two ways, depending on 
+	whether the witness is a person already stored in the database or 
+	not (unrelated person). </para> 
+	
+	<variablelist>
+		<varlistentry><term>Person from the database</term>
+		<listitem><para> 
+	If the person's data are stored in a database, click <guilabel>Person 
+	is in the database</guilabel> box. Then ...
+
+[ FIXME: Need Don to decide which way this will eventually be implemented. ]
+
+	</para>
+		</listitem></varlistentry>
+	</variablelist>
+	
+	<variablelist>
+		<varlistentry><term>Unrelated person</term>
+		<listitem><para> 
+	If the person is not in the database, make sure that 
+	<guilabel>Person is in the database</guilabel> box is unchecked. 
+	Then enter the name or any description of a person into the
+	<guilabel>Person</guilabel> text entry field. This information 
+	is stored as entered, and this is the only place it is stored in.
+	In other words, there is no reference to that person in the entire 
+	database except for this witness reference. If the person is in fact
+	a member of the database, it is advised to user the former method.
+	</para>
+		</listitem></varlistentry>
+	</variablelist>
+	
+	<para> The <guilabel>Comment</guilabel> text area allows to enter 
+	any comments concerning the witness. To add a comment or to modify 
+	existing comments simply edit the text in the text area.
+	</para>
+
       </sect3>
       
     </sect2>
 
-
+<!--
+[ FIXME: STOPPED HERE ] 
+-->
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-nav"> 
        <title>Navigation</title> 
