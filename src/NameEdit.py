@@ -65,6 +65,9 @@ class NameEditor:
         self.top = gtk.glade.XML(const.dialogFile, "name_edit","gramps")
         self.window = self.top.get_widget("name_edit")
         self.given_field  = self.top.get_widget("alt_given")
+        self.sort_as  = self.top.get_widget("sort_as")
+        self.display_as  = self.top.get_widget("display_as")
+        self.group_as  = self.top.get_widget("group_as")
         self.title_field  = self.top.get_widget("alt_title")
         self.suffix_field = self.top.get_widget("alt_suffix")
         self.combo = self.top.get_widget("alt_surname_list")
@@ -80,6 +83,7 @@ class NameEditor:
         self.notes_label = self.top.get_widget("noteName")
         self.flowed = self.top.get_widget("alt_flowed")
         self.preform = self.top.get_widget("alt_preform")
+        self.group_over = self.top.get_widget('group_over')
 
         types = const.NameTypesMap.get_values()
         types.sort()
@@ -96,11 +100,11 @@ class NameEditor:
         alt_title = self.top.get_widget("title")
 
         if full_name == ", ":
-            tmsg = _("Alternate Name Editor")
+            tmsg = _("Name Editor")
         else:
-            tmsg = _("Alternate Name Editor for %s") % full_name
+            tmsg = _("Name Editor for %s") % full_name
 
-        Utils.set_titles(self.window, alt_title, tmsg, _('Alternate Name Editor'))
+        Utils.set_titles(self.window, alt_title, tmsg, _('Name Editor'))
 
         self.sourcetab = Sources.SourceTab(self.srcreflist, self,
                                            self.top, self.window, self.slist,
@@ -111,11 +115,12 @@ class NameEditor:
         self.note_buffer = self.note_field.get_buffer()
         
         self.top.signal_autoconnect({
-            "on_help_name_clicked" : self.on_help_clicked,
-            "on_name_edit_ok_clicked" : self.on_name_edit_ok_clicked,
+            "on_help_name_clicked"        : self.on_help_clicked,
+            "on_name_edit_ok_clicked"     : self.on_name_edit_ok_clicked,
             "on_name_edit_cancel_clicked" : self.close, 
-            "on_name_edit_delete_event" : self.on_delete_event,
-            "on_switch_page" : self.on_switch_page
+            "on_name_edit_delete_event"   : self.on_delete_event,
+            "on_group_over_toggled"       : self.on_group_over_toggled,
+            "on_switch_page"              : self.on_switch_page
             })
 
         if name != None:
@@ -132,12 +137,32 @@ class NameEditor:
                     self.preform.set_active(1)
                 else:
                     self.flowed.set_active(1)
+            self.display_as.set_active(name.get_display_as())
+            self.sort_as.set_active(name.get_display_as())
+            self.group_as.set_text(name.get_group_as())
+        else:
+            self.display_as.set_active(0)
+            self.sort_as.set_active(0)
 
         if parent_window:
             self.window.set_transient_for(parent_window)
         self.add_itself_to_menu()
+        self.surname_field.connect('changed',self.on_family_changed)
         self.window.show()
 
+    def on_group_over_toggled(self,obj):
+        if obj.get_active():
+            self.group_as.set_sensitive(gtk.TRUE)
+            self.group_as.set_editable(gtk.TRUE)
+        else:
+            self.group_as.set_text(self.surname_field.get_text())
+            self.group_as.set_sensitive(gtk.FALSE)
+            self.group_as.set_editable(gtk.FALSE)
+
+    def on_family_changed(self,obj):
+        if self.group_over.get_active() == gtk.FALSE:
+            self.group_as.set_text(self.surname_field.get_text())
+            
     def on_delete_event(self,*obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
@@ -206,6 +231,22 @@ class NameEditor:
             self.parent.nlist.append(self.name)
         
         self.name.set_source_reference_list(self.srcreflist)
+
+        if self.name.get_display_as() != self.display_as.get_active():
+            self.name.set_display_as(self.display_as.get_active())
+            self.parent.lists_changed = 1
+            
+        if self.name.get_sort_as() != self.sort_as.get_active():
+            self.name.set_sort_as(self.sort_as.get_active())
+            self.parent.lists_changed = 1
+
+        if self.group_over.get_active() == gtk.FALSE:
+            if self.name.get_group_as() != self.surname_field.get_text():
+                self.name.set_group_as("")
+                self.parent.lists_changed = 1
+        elif self.name.set_group_as() != self.group_as.get_text():
+            self.name.set_group_as(self.group_as.get_text())
+            self.parent.lists_changed = 1
         
         self.update_name(first,last,suffix,title,mtype,note,format,priv)
         self.parent.lists_changed = 1

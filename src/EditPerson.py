@@ -414,14 +414,13 @@ class EditPerson:
             "on_event_add_clicked"      : self.on_event_add_clicked,
             "on_event_delete_clicked"   : self.on_event_delete_clicked,
             "on_event_update_clicked"   : self.on_event_update_clicked,
-            "on_name_note_clicked"      : self.on_name_note_clicked,
+            "on_edit_name_clicked"      : self.on_edit_name_clicked,
             "on_ldsbap_note_clicked"    : self.on_ldsbap_note_clicked,
             "on_ldsendow_note_clicked"  : self.on_ldsendow_note_clicked,
             "on_ldsseal_note_clicked"   : self.on_ldsseal_note_clicked,
             "on_ldsbap_src_clicked"     : self.on_ldsbap_source_clicked,
             "on_ldsendow_src_clicked"   : self.on_ldsendow_source_clicked,
             "on_ldsseal_src_clicked"    : self.on_ldsseal_source_clicked,
-            "on_name_source_clicked"    : self.on_primary_name_source_clicked,
             "on_update_address_clicked" : self.on_update_addr_clicked,
             "on_update_attr_clicked"    : self.on_update_attr_clicked,
             "on_update_url_clicked"     : self.on_update_url_clicked,
@@ -941,7 +940,7 @@ class EditPerson:
     def on_add_aka_clicked(self,obj):
         """Invokes the name editor to add a new name"""
         import NameEdit
-        NameEdit.NameEditor(self,None,self.name_edit_callback,self.window)
+        NameEdit.NameEdit(self,None,self.name_edit_callback,self.window)
 
     def on_add_url_clicked(self,obj):
         """Invokes the url editor to add a new name"""
@@ -1648,18 +1647,13 @@ class EditPerson:
         else:
             return None
 
-    def on_primary_name_source_clicked(self,obj):
-        Sources.SourceSelector(self.pname.get_source_references(),self,
-                               self.update_primary_name)
+    def on_edit_name_clicked(self,obj):
+        import NameEdit
+        NameEdit.NameEditor(self,self.pname,self.update_name,self.window)
 
-    def update_primary_name(self,list):
-        self.pname.set_source_reference_list(list)
-        self.lists_changed = True
-
-    def on_name_note_clicked(self,obj):
-        import NoteEdit
-        NoteEdit.NoteEditor(self.pname,self,self.window)
-
+    def update_name(self,name):
+        self.write_primary_name()
+        
     def on_ldsbap_source_clicked(self,obj):
         Sources.SourceSelector(self.lds_baptism.get_source_references(),
                                self,self.update_ldsbap_list)
