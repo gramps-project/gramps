@@ -30,9 +30,7 @@
     <comment xml:lang="en">GeneWeb source file</comment>
     <glob pattern="*.gw"/>
     <magic priority="80">
-      <match type="string" value="fam" offset="0:64"/>
-      <match type="string" value="beg" offset="0:64"/>
-      <match type="string" value="end" offset="0:64"/>
+      <match type="string" value="fam " offset="0:64"/>
     </magic>
   </mime-type>
 </mime-info>
