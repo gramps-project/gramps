@@ -262,9 +262,10 @@ class EventEditor:
 
         if self.event == None:
             self.event = RelLib.Event()
+            self.db.add_event(self.event)
             self.event.set_source_reference_list(self.srcreflist)
             self.event.set_witness_list(self.witnesslist)
-            self.parent.elist.append(self.event)
+            self.parent.elist.append(self.event.get_id())
         
         self.update_event(ename,self.date,eplace_obj,edesc,enote,eformat,epriv,ecause)
         self.parent.redraw_event_list()
