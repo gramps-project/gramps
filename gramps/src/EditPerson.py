@@ -1183,7 +1183,7 @@ def save_person(obj):
 def on_savephoto_clicked(obj):
     epo = obj.get_data(EDITPERSON)
     image_select = epo.isel
-    
+
     filename = image_select.get_widget("photosel").get_full_path(0)
     description = image_select.get_widget("photoDescription").get_text()
 

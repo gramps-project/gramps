@@ -3024,7 +3024,6 @@
 	<widget>
 	  <class>GnomeCanvas</class>
 	  <name>canvas1</name>
-	  <border_width>5</border_width>
 	  <can_focus>True</can_focus>
 	  <signal>
 	    <name>check_resize</name>

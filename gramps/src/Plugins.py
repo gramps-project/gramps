@@ -91,7 +91,7 @@ class ReportPlugins:
         top.set_data(OBJECT,self)
         tree = self.dialog.get_widget("tree1")
         self.run_tool = None
-        build_tree(tree,_reports,on_report_node_selected)
+        build_tree(tree,_reports,on_report_node_selected,self)
                    
 #-------------------------------------------------------------------------
 #
@@ -115,19 +115,19 @@ class ToolPlugins:
         top.set_data(OBJECT,self)
         tree = self.dialog.get_widget("tree")
         self.run_tool = None
-        build_tree(tree,_tools,on_node_selected)
+        build_tree(tree,_tools,on_node_selected,self)
 
 #-------------------------------------------------------------------------
 #
 # 
 #
 #-------------------------------------------------------------------------
-def build_tree(tree,list,task):
+def build_tree(tree,list,task,obj):
     item_hash = {}
     for report in list:
         item = GtkTreeItem(report[2])
         item.connect("select",task)
-        item.set_data(OBJECT,self)
+        item.set_data(OBJECT,obj)
         item.set_data(TASK,report[0])
         item.set_data(TITLE,report[2])
         item.set_data(DOCSTRING,report[3])
