@@ -321,9 +321,9 @@ class Person(PrimaryObject,SourceNote):
     @sort: serialize, unserialize, get_*, set_*, add_*, remove_*
     """
     
-    unknown = 2
-    male = 1
-    female = 0
+    UNKNOWN = 2
+    MALE = 1
+    FEMALE = 0
 
     def __init__(self):
         """
