@@ -165,7 +165,27 @@ class FamilyView:
             ('gtk-home',self.parent.on_home_clicked,1),
             (_("Add Bookmark"),self.parent.on_add_bookmark_activate,1),
         ]
+        menu = gtk.Menu()
+        menu.set_title(_('People Menu'))
+        for stock_id,callback,sensitivity in entries:
+            item = gtk.ImageMenuItem(stock_id)
+            if callback:
+                item.connect("activate",callback)
+            item.set_sensitive(sensitivity)
+            item.show()
+            menu.append(item)
+        menu.popup(None,None,None,0,0)
 
+    def build_nav_menu(self):
+        """Builds the menu with navigation (no bookmark)"""
+        
+        back_sensitivity = self.parent.hindex > 0 
+        fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
+        entries = [
+            ('gtk-go-back',self.parent.back_clicked,back_sensitivity),
+            ('gtk-go-forward',self.parent.fwd_clicked,fwd_sensitivity),
+            ('gtk-home',self.parent.on_home_clicked,1),
+        ]
         menu = gtk.Menu()
         menu.set_title(_('People Menu'))
         for stock_id,callback,sensitivity in entries:
@@ -180,6 +200,8 @@ class FamilyView:
     def on_child_list_button_press(self,obj,event):
         model, iter = self.child_selection.get_selected()
         if not iter:
+            if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+                self.build_nav_menu()
             return
         id = self.child_model.get_value(iter,2)
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
@@ -199,7 +221,6 @@ class FamilyView:
             ('gtk-go-back',self.parent.back_clicked,back_sensitivity),
             ('gtk-go-forward',self.parent.fwd_clicked,fwd_sensitivity),
             ('gtk-home',self.parent.on_home_clicked,1),
-            (_("Add Bookmark"),self.parent.on_add_bookmark_activate,1),
             (None,None,0),
         ]
         for stock_id,callback,sensitivity in nav_entries:
@@ -252,7 +273,6 @@ class FamilyView:
             ('gtk-go-back',self.parent.back_clicked,back_sensitivity),
             ('gtk-go-forward',self.parent.fwd_clicked,fwd_sensitivity),
             ('gtk-home',self.parent.on_home_clicked,1),
-            (_("Add Bookmark"),self.parent.on_add_bookmark_activate,1),
             (None,None,0),
         ]
         for stock_id,callback,sensitivity in nav_entries:
@@ -298,6 +318,8 @@ class FamilyView:
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             if self.selected_spouse:
                 self.build_spouse_menu()
+            else:
+                self.build_nav_menu()
         elif event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
            if self.person:
                try:
@@ -700,7 +722,6 @@ class FamilyView:
             ('gtk-go-back',self.parent.back_clicked,back_sensitivity),
             ('gtk-go-forward',self.parent.fwd_clicked,fwd_sensitivity),
             ('gtk-home',self.parent.on_home_clicked,1),
-            (_("Add Bookmark"),self.parent.on_add_bookmark_activate,1),
             (None,None,0),
         ]
         for stock_id,callback,sensitivity in nav_entries:
@@ -730,7 +751,6 @@ class FamilyView:
             ('gtk-go-back',self.parent.back_clicked,back_sensitivity),
             ('gtk-go-forward',self.parent.fwd_clicked,fwd_sensitivity),
             ('gtk-home',self.parent.on_home_clicked,1),
-            (_("Add Bookmark"),self.parent.on_add_bookmark_activate,1),
             (None,None,0),
         ]
         for stock_id,callback,sensitivity in nav_entries:
@@ -762,7 +782,7 @@ class FamilyView:
             plist = self.person.getParentList()
 
             if len(plist) == 0:
-                self.build_ap_menu()
+                self.build_nav_menu()
                 return
             elif len(plist) == 1:
                 family,m,r = plist[0]
@@ -775,14 +795,14 @@ class FamilyView:
     def edit_sp_parents(self,obj,event):
         if self.selected_spouse == None:
             if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-                self.build_ap_menu()
-                return
+                self.build_nav_menu()
+            return
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1: 
             self.parent_editor(self.selected_spouse,self.sp_selection)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             plist = self.selected_spouse.getParentList()
             if len(plist) == 0:
-                self.build_ap_menu()
+                self.build_nav_menu()
                 return
             elif len(plist) == 1:
                 family,m,r = plist[0]
