@@ -173,6 +173,60 @@ class TestcaseGenerator:
         #self.db.commit_person(person2,self.trans)
 
 
+        # Creates a family where the child does not link back to the family
+        person1_h = self.generate_person(RelLib.Person.MALE,"Broken8",None)
+        person2_h = self.generate_person(RelLib.Person.FEMALE,"Broken8",None)
+        child_h = self.generate_person(None,"Broken8",None)
+        fam = RelLib.Family()
+        fam.set_father_handle(person1_h)
+        fam.set_mother_handle(person2_h)
+        fam.set_relationship(RelLib.Family.MARRIED)
+        fam.add_child_handle(child_h)
+        fam_h = self.db.add_family(fam,self.trans)
+        person1 = self.db.get_person_from_handle(person1_h)
+        person1.add_family_handle(fam_h)
+        self.db.commit_person(person1,self.trans)
+        person2 = self.db.get_person_from_handle(person2_h)
+        person2.add_family_handle(fam_h)
+        self.db.commit_person(person2,self.trans)
+        #child = self.db.get_person_from_handle(child_h)
+        #person2.add_parent_family_handle(fam_h)
+        #self.db.commit_person(child,self.trans)
+
+        # Creates a family where the child is not linked, but the child links to the family
+        person1_h = self.generate_person(RelLib.Person.MALE,"Broken9",None)
+        person2_h = self.generate_person(RelLib.Person.FEMALE,"Broken9",None)
+        child_h = self.generate_person(None,"Broken9",None)
+        fam = RelLib.Family()
+        fam.set_father_handle(person1_h)
+        fam.set_mother_handle(person2_h)
+        fam.set_relationship(RelLib.Family.MARRIED)
+        #fam.add_child_handle(child_h)
+        fam_h = self.db.add_family(fam,self.trans)
+        person1 = self.db.get_person_from_handle(person1_h)
+        person1.add_family_handle(fam_h)
+        self.db.commit_person(person1,self.trans)
+        person2 = self.db.get_person_from_handle(person2_h)
+        person2.add_family_handle(fam_h)
+        self.db.commit_person(person2,self.trans)
+        child = self.db.get_person_from_handle(child_h)
+        person2.add_parent_family_handle(fam_h,RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
+        self.db.commit_person(child,self.trans)
+
+        # Creates a person with an event having a witness reference to a nonexisting person
+        person_h = self.generate_person(None,"Broken10",None)
+        witness = RelLib.Witness()
+        witness.set_type(RelLib.Event.ID)
+        witness.set_value("InvalidHandle3")
+        witness.set_comment("Pointing to non existing person");
+        event = RelLib.Event()
+        event.add_witness(witness)
+        event.set_name("Christening")
+        event_h = self.db.add_event(event,self.trans)
+        person = self.db.get_person_from_handle(person_h)
+        person.add_event_handle(event_h)
+        self.db.commit_person(person,self.trans)
+
     
     def generate_person(self,gender=None,lastname=None,note=None):
         print "generate_person"
