@@ -43,6 +43,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 
 import Utils
+import GrampsCfg
 import ListModel
 import Plugins
 from gettext import gettext as _
@@ -136,8 +137,8 @@ class RelCalc:
             commontext = ""
 
         text1 = self.glade.get_widget("text1").get_buffer()
-        p1 = self.person.getPrimaryName().getName()
-        p2 = other_person.getPrimaryName().getName()
+        p1 = GrampsCfg.nameof(self.person)
+        p2 = GrampsCfg.nameof(other_person)
 
         if rel_string == "":
             rstr = _("%(person)s and %(active_person)s are not related.") % {
