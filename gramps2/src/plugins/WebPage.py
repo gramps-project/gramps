@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Pubilc License as published by
@@ -69,6 +69,8 @@ _month = [
 
 _hline = " "    # Everything is underlined, so use blank
 _BORN = _('b.')
+
+_ext = ['.html','.htm','.php','.php3','.cgi']
 
 #------------------------------------------------------------------------
 #
@@ -1346,10 +1348,17 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.linkpath.set_text(self.options_dict['HTMLidurl'])
 
         self.include_id.connect('toggled',self.show_link)
-        self.ext = gtk.Combo()
-        self.ext.set_popdown_strings(['.html','.htm','.php','.php3',
-                                      '.cgi'])
-        #self.ext.set_active(self.options_dict['HTMLext'])
+
+        the_ext = self.options_dict['HTMLext']
+        self.ext = gtk.combo_box_new_text()
+        index = 0
+        active_index = 0
+        for item in _ext:
+            self.ext.append_text(item)
+            if item == the_ext:
+                active_index = index
+            index = index + 1
+        self.ext.set_active(active_index)
 
         self.use_alpha_links = gtk.CheckButton(alpha_links_msg)
         self.use_alpha_links.set_active(self.options_dict['HTMLlnktoalphabet'])
@@ -1365,18 +1374,35 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.use_n_cols.set_numeric(gtk.TRUE)
         self.use_n_cols.set_value(self.options_dict['HTMLidxcol'])
 
-        self.ind_template = gtk.Combo()
-        template_list = [ Report._default_template ]
         tlist = Report._template_map.keys()
         tlist.sort()
+        
+        ind_template_name = self.options_dict['HTMLidxt']
+        self.ind_template = gtk.combo_box_new_text()
+        self.ind_template.append_text(Report._default_template)
+        template_index = 1
+        active_index = 0
         for template in tlist:
             if template != Report._user_template:
-                template_list.append(template)
-        template_list.append(Report._user_template)
-        self.ind_template.set_popdown_strings(template_list)
-        self.ind_template.entry.set_editable(0)
+                self.ind_template.append_text(template)
+                if Report._template_map[template] == ind_template_name:
+                    active_index = template_index
+                template_idex = templatex_index + 1
+        self.ind_template.append_text(Report._user_template)
+
         self.ind_user_template = gnome.ui.FileEntry("HTML_Template",_("Choose File"))
-        self.ind_user_template.set_sensitive(0)
+        if ind_template_name and not active_index:
+            active_index = template_index
+            user_template = ind_template_name
+            self.ind_user_template.set_sensitive(1)
+        else:
+            user_template = ''
+            self.ind_user_template.set_sensitive(0)
+
+        if os.path.isfile(user_template):
+            self.ind_user_template.set_filename(user_template)
+        self.ind_user_template.set_modal(True)
+        self.ind_template.set_active(active_index)
 
         self.add_birth_date = gtk.CheckButton(birth_date_msg)
         self.add_birth_date.set_active(self.options_dict['HTMLidxbirth'])
@@ -1395,7 +1421,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.mini_tree.connect('toggled',self.on_mini_tree_toggled)
 
         self.use_alpha_links.connect('toggled',self.on_use_alpha_links_toggled)
-        self.ind_template.entry.connect('changed',self.ind_template_changed)
+        self.ind_template.connect('changed',self.ind_template_changed)
 
         title = _("Privacy")
         dialog.add_frame_option(title,None,self.no_private)
@@ -1433,7 +1459,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.options_dict['HTMLtreed'] = self.depth.get_value_as_int()
         self.options_dict['HTMLlinktidx'] = int(self.use_link.get_active())
 
-        html_ext = unicode(self.ext.entry.get_text().strip())
+        html_ext = _ext[self.ext.get_active()]
         if html_ext[0] == '.':
             html_ext = html_ext[1:]
         self.options_dict['HTMLext'] = html_ext
@@ -1452,14 +1478,15 @@ class WebReportOptions(ReportOptions.ReportOptions):
             photos = 2
         self.options_dict['HTMLimg'] = photos
 
-        text = unicode(self.ind_template.entry.get_text())
+        active = self.ind_template.get_active()
+        text = unicode(self.ind_template.get_model()[active][0])
         if Report._template_map.has_key(text):
             if text == Report._user_template:
-                ind_template_name = dialog.ind_user_template.get_full_path(0)
+                ind_template_name = self.ind_user_template.get_full_path(0)
             else:
                 ind_template_name = "%s/%s" % (const.template_dir,Report._template_map[text])
         else:
-            ind_template_name = None
+            ind_template_name = ""
         self.options_dict['HTMLidxt'] = ind_template_name
 
         self.options_dict['HTMLlnktoalphabet'] = int(self.use_alpha_links.get_active())
@@ -1504,7 +1531,8 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.depth.set_sensitive(obj.get_active())
 
     def ind_template_changed(self,obj):
-        text = unicode(obj.get_text())
+        active = obj.get_active()
+        text = unicode(obj.get_model()[active][0])
         if Report._template_map.has_key(text):
             if Report._template_map[text]:
                 self.ind_user_template.set_sensitive(0)
