@@ -278,7 +278,7 @@ class FamilyView:
 
         self.family.addChild(epo.person)
         epo.person.addAltFamily(self.family,"Birth","Birth")
-        self.load_family()
+        self.load_family(self.family)
 
     def select_child_clicked(self,obj):
         if not self.person:
