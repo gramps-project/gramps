@@ -1702,8 +1702,10 @@ def post_load(name):
 
     database.setSavePath(name)
     res = database.getResearcher()
-    if res.getName() == "" and Config.owner.getName() != "":
-        database.setResearcher(Config.owner)
+    owner = Config.get_researcher()
+    
+    if res.getName() == "" and owner.getName() != "":
+        database.setResearcher(owner)
         utils.modified()
 
     setup_bookmarks()
@@ -2168,8 +2170,7 @@ def main(arg):
     if Config.autosave_int != 0:
         utils.enable_autosave(autosave_database,Config.autosave_int)
 
-    database.setResearcher(Config.owner)
-    gtk.mainloop()
+    database.setResearcher(Config.get_researcher())
 
 #-------------------------------------------------------------------------
 #
@@ -2262,4 +2263,4 @@ class DbPrompter:
 #-------------------------------------------------------------------------
 if __name__ == '__main__':
     main(None)
-
+    gtk.mainloop()

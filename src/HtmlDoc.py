@@ -145,8 +145,6 @@ class HtmlDoc(TextDoc):
             self.top = _top
 
     def open(self,filename):
-        
-
         if filename[-5:] == ".html" or filename[-4:0] == ".htm":
             self.filename = filename
         else:
