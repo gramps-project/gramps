@@ -18,154 +18,145 @@
 
 <!-- ================ Usage ================================ -->
   <sect1 id="gramps-usage"> 
-    <title>Usage</title> 
-    <para>As commonly encountered in everyday life, in
-    &app; there is usually more than one way to
-    accomplish something. The alternatives to some actions will therefore 
-    be listed as appropriate.</para> 
+    <title>Использование</title> 
+    <para>Как и в каждодневной жизни, в &app; обычно существует более одного 
+    способа совершить какое-либо действие. Поэтому, альтернативы будут описаны
+    по мере изложения.</para> 
 
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="new-db"> 
-      <title>Starting a New Database</title> 
-      <para>To start a new database, choose <menuchoice><guimenu>File</guimenu>
-      <guimenuitem>New</guimenuitem></menuchoice>. You will then be 
-      prompted with the <guilabel>Save Database</guilabel> dialog asking 
-      to specify the name under which the new database will be stored. 
-      Choose an <replaceable>empty directory</replaceable> for your new 
-      database (create one if necessary). </para> 
+      <title>Начать новую базу данных</title> 
+      <para>Чтобы начать новую базу данных, выберите 
+      <menuchoice><guimenu>Файл</guimenu>
+      <guimenuitem>Новый</guimenuitem></menuchoice>. Вам будет предложен диалог
+      <guilabel>Сохранить базу данных</guilabel> для указания имени, под которым будет 
+      храниться новая база. Выберите <replaceable>пустой каталог</replaceable> для Вашей 
+      новой базы данных (создайте его, если небходимо).</para> 
     </sect2>
 
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="open-db"> 
-      <title>Opening a Database</title> 
-      <para>To open a database, either choose <menuchoice>
-      <guimenu>File</guimenu><guimenuitem>Open</guimenuitem></menuchoice>
-      or click the <guibutton>Open</guibutton> button on the Toolbar. 
-      The <guilabel>Open Database</guilabel> dialog will appear. 
-      Either type the full path into the <guilabel>Database</guilabel> text 
-      entry field, or click the <guibutton>Browse...</guibutton> button to get 
-      the <guilabel>Open File</guilabel> dialog in which you can select the 
-      database that you want to open. After you have selected the database, 
-      click the <guibutton>OK</guibutton> button to open it. </para>
+      <title>Открыть базу данных</title> 
+      <para>Чтобы открыть базу данных, либо выберите <menuchoice>
+      <guimenu>Файл</guimenu><guimenuitem>Открыть</guimenuitem></menuchoice>,
+      либо щёлкните пиктограмму <guibutton>Открыть</guibutton> на панели инструментов.
+      Появится диалог <guilabel>Открыть базу данных</guilabel>. Введите полный путь 
+      в текстовое поле <guilabel>База данных</guilabel>, или щёлкните кнопку 
+      <guibutton>Просмотреть...</guibutton> для вызова диалога 
+      <guilabel>Открыть Файл</guilabel>, в котором Вы можете выбрать базу данных, 
+      которую Вы хотите открыть. После выбора базы, щёлкните <guibutton>OK</guibutton>,
+      чтобы открыть её. </para>
       
-      <para>If you have previously opened databases with &app; you can 
-      retrieve your past selections from the drop-down menu by clicking the 
-      down arrow button. Finally, if the Revision Control System (RCS) is 
-      enabled in the <guilabel>Preferences</guilabel> dialog, the check box 
-      <guilabel>Revert to an older version from RCS</guilabel> will be 
-      available. Check it to revert your database to an older RCS 
-      version. </para>
+      <para>Если Вы уже открывали базы данных в &app;, Вы можете извлечь свои 
+      предыдущие варианты выбора из меню посредством щелчка по кнопке со стрелкой 
+      вниз. Наконец, если система контроля версий (RCS) установлена  в диалоге 
+      <guilabel>Настройки</guilabel>,  check-кнопка 
+      <guilabel>Откатить к более старой версии из RCS</guilabel> будет доступна. 
+      Отметьте её, чтобы откатить Вашу базу данных к более старой версии из RCS. </para>
       
-      <para>NOTE: you should open a <replaceable>DIRECTORY</replaceable> and 
-      <replaceable>NOT a FILE</replaceable> when opening 
-      &app; database. The directory you need to open should contain the 
-      database file <replaceable>data.gramps</replaceable> as well as any 
-      possible copies 
-      of media objects. Such a directory is created by &app; when you start 
-      a new database and is updated each time the database is saved. </para> 
+      <para>Внимание: Вы должны открыть <replaceable>КАТАЛОГ</replaceable>, а  
+      <replaceable>НЕ ФАЙЛ</replaceable>, при открытии базы данных &app;. Каталог, 
+      который Вам следует открыть, должен содержать файл базы данных 
+      <replaceable>data.gramps</replaceable> и все возможные копии медиа-объектов.
+      Такой каталог созаётся &app;, когда Вы начинаете новую базу данных, и обновляется
+      при каждом сохранении базы данных. </para> 
     </sect2>
 
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="save-db"> 
-      <title>Saving a Database</title> 
-      <para>To save changes made to your database, choose <menuchoice>
-      <guimenu>File</guimenu>
-      <guimenuitem>Save</guimenuitem></menuchoice> or click the 
-      <guibutton>Save</guibutton> button on the Toolbar. The statusbar will then 
-      display the <guilabel>Saving <replaceable>databasename</replaceable>...</guilabel> 
-      message, and the progressbar will advance as the saving progresses.</para>
+      <title>Сохранить базу данных.</title> 
+      <para>Чтобы сохранить именения, сделанные в Вашей базе данных, выберите
+      <menuchoice><guimenu>Файл</guimenu>
+      <guimenuitem>Сохранить</guimenuitem></menuchoice> или щёлкните на пиктограмму
+      <guibutton>Сохранить</guibutton> на панели ниструментов. При этом, панель статуса 
+      покажет сообщение <guilabel>Сохранаю <replaceable>базу данных</replaceable>...</guilabel> 
+      и индикатор прогресса будет продвигаться по мере сохранения. </para>
     </sect2>
 
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="import-data"> 
-      <title>Importing Data</title> 
-      <para>Importing allows you to incorporate the data from other 
-      databases into your currently open &app; database. Currently, 
-      &app; can import data from three different 
-      formats: GEDCOM, &app; database, and &app; package. All of these are
-      available as items of <menuchoice><guimenu>File</guimenu>
-      <guisubmenu>Import</guisubmenu></menuchoice> submenu.</para>
+      <title>Импорт данных</title> 
+      <para>Импорт позволяет Вам ввести данные из другой базы данных в открытую в 
+      данный момент базу данных &app;. В настоящий момент, &app; может импортировать
+      данные из трёх различных форматов: GEDCOM, база данных &app; и пакет &app;. 
+      Все возможности импорта доступны через элементы меню 
+      <menuchoice><guimenu>Файл</guimenu>
+      <guisubmenu>Импорт</guisubmenu></menuchoice>. </para>
       
-      <para>Both &app; database, and &app; package are native &app; 
-      formats. The package is a compressed archive containing the database 
-      file and all media objects (images, sound files, etc.) that the 
-      database refers to. The package is created by exporting data to 
-      the &app; package, see <xref linkend="export-data"/>. 
-      The &app; database is a directory containing the database file and 
-      the local media objects. The database may also have references 
-      to non-local (external) media objects, therefore it is not guaranteed 
-      to be completely portable. The &app; database is created by saving 
-      the data in a usual way, see <xref linkend="save-db"/>.
+      <para>Как база данных &app;, так и пакет &app;, являются родными форматами
+      &app;. Пакет -- это сжатый архив, содержащий файл базы данных и все 
+      медиа-объекты (изображения, звукозаписи, и т.д.), на которые ссылается 
+      база данных. Пакет создается экспортом данных в пакет &app;, см. 
+      <xref linkend="export-data"/>. База данных &app; -- это каталог, содержащий  
+      файл базы данных и локальные медиа-объекты. База данных может также содержать
+      ссылки на нелокальные (внешние) медиа-объекты, поэтому нет гарантии, что она 
+      абсолютно портативна. База данных &app; создается сохранением данных 
+      обычным путём, см. <xref linkend="save-db"/>.
       </para>
 
-      <para>Note that the difference between opening &app; database and 
-      importing from &app; database is that importing incorporates all the 
-      data into your currently open database, if any. </para>
+      <para>Обратите внимение на разницу между открытием базы данных &app; и 
+      импортом из базы данных &app;: импорт встраивает все данные в открытую 
+      в настоящий момент базу данных. </para>
 
-      <para>After choosing an import format, you will be prompted with the
-      <guilabel>Open File</guilabel> dialog asking you to specify the 
-      file name from which to import. For GEDCOM and 
-      &app; package, select an appropriate file. 
-      For &app; database, select a directory which stores 
-      the database and all media files (if any).</para> 
+      <para>После выбора формата для импорта, Вам будет предложен диалог 
+      <guilabel>Открыть файл</guilabel> для указания имени импортируемого файла. 
+      Для GEDCOM и пакета &app;, выберете соответствующий файл. Для базы данных 
+      &app;, выберите каталог, содержащий файл базы данных и все медиа файлы (если 
+      есть). </para> 
 
-      <para>Upon starting the GEDCOM import, &app; 
-      will display the following GEDCOM import dialog with the summary of the 
-      information about the data. The information is updated as the import
-      progresses. </para>
+      <para>После запуска импорта из GEDCOM, &app; покажет следующий диалог 
+      GEDCOM-импорта с итоговой информацией о данных. Информация обновляется по 
+      мере продвижения импорта. </para>
 
 	<!-- ==== Figure: GEDCOM Import ==== -->
 	<figure id="gedcom-import-fig"> 
-	<title>GEDCOM Import</title> 
+	<title>GEDCOM-импорт</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/gedcom-import.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows GEDCOM Import Window. </phrase>
+	<phrase>Показано окно GEDCOM-импорта. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-      <para>Upon starting the &app; database or &app; package import, 
-      &app; will display the progress in the 
-      progressbar of its main window.</para>
+      <para>После запуска импорта из пакета или базы данных &app;, продвижение 
+      импорта будет показано индикатором прогресса в главном окне.</para>
 
-      <para>If a media file is not found during import, the following dialog
-      will prompt you for the possible actions:</para>
+      <para>Если при импорте не найден медиа файл, следующий диалог предложит
+      Вам возможные действия:</para>
 
 	<!-- ==== Figure: Missing media window  ==== -->
 	<figure id="missing-media-im"> 
-	<title>Missing Media dialog</title> 
+	<title>Диалог отсутствующего медиа объекта</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/missing-media.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Missing Media dialog.  </phrase>
+	<phrase>Показан диалог отсутствующего медиа объекта. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
      <itemizedlist>	
      <listitem>
-     <para>To remove the object corresponding to the missing file as well as
-      all the references to that object from various database records, click the 
-      <guibutton>Remove Object</guibutton> button. This will alter your 
-      database so that it will be in a consistent state, but all the 
-      references to the missing file will be gone. Use this option if the 
-      file is irrevocably lost and there is no possibility of ever replacing 
-      it. </para>
+     <para>Чтобы удалить как объект, соответствующий отсутствующему файлу, так
+     и все ссылки на этот объект из различных записей базы данных, щёлкните
+     кнопку <guibutton>Удалить объект</guibutton>. Это изменит Вашу базу данных
+     так, что она будет в корректном состоянии, но все ссылки на отсутствующий файл
+     пропадут. Используйте этот вариант, если файл потерян безвозвратно и нет
+     возможности когда-либо его заменить. </para>
       </listitem>
 
      <listitem>
-     <para>To keep the reference to the object corresponding to the missing 
-     file, click the <guibutton>Keep Reference</guibutton> button. 
-     This will leave things as is, i.e. in an inconsistent state.
-     You could supply the missing file later, in which case you will have
-     to copy it into your database directory. Choose this option if the
-     replacement is possible, but not available right now. </para></listitem>
+     <para>Чтобы сохранить ссылки на объект, соответствующий отсутствующему файлу, 
+     щёлкните кнопку <guibutton>Сохранить ссылку</guibutton>. Это оставит все как есть,
+     т.е. в некорректном состоянии. Вы можете заменить отсутствующий файл позднее --
+     в этом случае Вам нужно будет скопировать его в каталог базы данных. Используйте
+     этот вариант, если замена файла возможна, но не сию минуту. </para></listitem>
 
      <listitem>
-     <para>To supply the missing file during import, click the 
-     <guibutton>Select File</guibutton> button. This will copy the file you
-     select in place of the missing file. No references will be altered
-     in the database, and it will be in the consistent state. Use this option
-     if the replacement is readily available. 
+     <para>Чтобы заменить отсутствующий файл в момент импорта, щёлкните кнопку 
+     <guibutton>Выбрать файл</guibutton>. Это скопирует выбранный Вами файл 
+     на место отсутствующего. Никакие ссылки в базе данных не будут изменены и она
+     будет находится в корректном состоянии. Используйте этот вариант, если замена 
+     доступна сразу.
      </para></listitem>
     
      </itemizedlist>	
@@ -174,7 +165,7 @@
 
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="export-data"> 
-      <title>Exporting Data</title> 
+      <title>Экспорт данных</title> 
       
       <para>Exporting allows you to share any portion of your &app; database 
       with other researchers as well as to make your database completely 
