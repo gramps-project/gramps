@@ -463,21 +463,15 @@ class TimeLineOptions(ReportOptions.ReportOptions):
         the user to select the sort method.
         """
         
-        sort_style = gtk.OptionMenu()
-        self.sort_menu = gtk.Menu()
+        self.sort_menu = gtk.combo_box_new_text()
 
         sort_functions = self.get_sort_functions(Sort.Sort(dialog.db))
-        for item_index in range(len(sort_functions)):
-            item = sort_functions[item_index]
-            menuitem = gtk.MenuItem(item[0])
-            menuitem.set_data('index',item_index)
-            menuitem.show()
-            self.sort_menu.append(menuitem)
+        for item in sort_functions:
+            self.sort_menu.append_text(item[0])
 
-        sort_style.set_menu(self.sort_menu)
-        sort_style.set_history(self.options_dict['sortby'])
+        self.sort_menu.set_active(self.options_dict['sortby'])
 
-        dialog.add_option(_('Sort by'),sort_style)
+        dialog.add_option(_('Sort by'),self.sort_menu)
 
         self.title_box = gtk.Entry()
         if self.options_dict['title']:
@@ -492,7 +486,7 @@ class TimeLineOptions(ReportOptions.ReportOptions):
         Parses the custom options that we have added.
         """
         self.options_dict['title'] = unicode(self.title_box.get_text())
-        self.options_dict['sortby'] = self.sort_menu.get_active().get_data('index')
+        self.options_dict['sortby'] = self.sort_menu.get_active()
 
 #------------------------------------------------------------------------
 #

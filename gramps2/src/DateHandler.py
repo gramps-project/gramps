@@ -147,6 +147,5 @@ def register_datehandler(locales,parse_class,display_class):
 #-------------------------------------------------------------------------
 from Plugins import load_plugins
 from const import datesDir
-print "loading",datesDir
 load_plugins(datesDir)
 

@@ -1,4 +1,4 @@
-
+#
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001  David R. Hampton
@@ -106,6 +106,69 @@ def run_print_dialog (filename):
     ask which one etc."""
     os.environ["FILE"] = filename
     return os.system ('cat "$FILE" | %s &' % get_print_dialog_app ())
+
+
+#-------------------------------------------------------------------------
+#
+# GrampsStyleComboBox
+#
+#-------------------------------------------------------------------------
+class GrampsStyleComboBox(gtk.ComboBox):
+    """
+    Derived from the ComboBox, this widget provides handling of Report
+    Styles.
+    """
+
+    def __init__(self,model=None):
+        """
+        Initializes the combobox, building the display column.
+        """
+        gtk.ComboBox.__init__(self,model)
+        cell = gtk.CellRendererText()
+        self.pack_start(cell,True)
+        self.add_attribute(cell,'text',0)
+        
+    def set(self,style_map,default):
+        """
+        Sets the options for the ComboBox, using the passed style
+        map as the data.
+
+        @param style_map: dictionary of style names and the corresponding
+            style sheet
+        @type style_map: dictionary
+        @param default: Default selection in the ComboBox
+        @type default: str
+        """
+        self.store = gtk.ListStore(str)
+        self.set_model(self.store)
+        self.style_map = style_map
+        keys = style_map.keys()
+        keys.sort()
+        index = 0
+        start_index = 0
+        for key in keys:
+            if key == "default":
+                self.store.append(row=[_('default')])
+            else:
+                self.store.append(row=[key])
+            if key == default:
+                start_index = index
+            index += 1
+            
+        self.set_active(start_index)
+
+    def get_value(self):
+        """
+        Returns the selected key (style sheet name).
+
+        @returns: Returns the name of the selected style sheet
+        @rtype: str
+        """
+        active = self.get_active()
+        if active < 0:
+            return None
+        key = self.store[active][0]
+        return (key,self.style_map[key])
 
 #-------------------------------------------------------------------------
 #
@@ -390,16 +453,6 @@ class BareReportDialog:
     # Functions to create a default output style.
     #
     #------------------------------------------------------------------------
-#    def make_default_style(self):
-#        """Create the default style to be used by the associated report.  This
-#        routine is a default implementation and should be overridden."""
-#        font = BaseDoc.FontStyle()
-#        font.set(face=BaseDoc.FONT_SANS_SERIF,size=16,bold=1)
-#        para = BaseDoc.ParagraphStyle()
-#        para.set_font(font)
-#        para.set_header_level(1)
-#        para.set(pad=0.5)
-#        self.default_style.add_style("Title",para)
 
     def build_style_menu(self,default=None):
         """Build a menu of style sets that are available for use in
@@ -414,8 +467,7 @@ class BareReportDialog:
             default = self.style_name
             
         style_sheet_map = self.style_sheet_list.get_style_sheet_map()
-        myMenu = Utils.build_string_optmenu(style_sheet_map, default)
-        self.style_menu.set_menu(myMenu)
+        self.style_menu.set(style_sheet_map,default)
 
     #------------------------------------------------------------------------
     #
@@ -439,7 +491,8 @@ class BareReportDialog:
         title = self.get_header(self.name)
         label = gtk.Label('<span size="larger" weight="bold">%s</span>' % title)
         label.set_use_markup(gtk.TRUE)
-        self.window.vbox.pack_start(label,gtk.TRUE,gtk.TRUE,ReportDialog.border_pad)
+        self.window.vbox.pack_start(label, gtk.TRUE, gtk.TRUE,
+                                    ReportDialog.border_pad)
         
     def setup_target_frame(self):
         """Bare report dialog only uses Doc Options header."""
@@ -483,7 +536,7 @@ class BareReportDialog:
         label = gtk.Label("%s:" % _("Style"))
         label.set_alignment(0.0,0.5)
 
-        self.style_menu = gtk.OptionMenu()
+        self.style_menu = GrampsStyleComboBox()
         self.style_button = gtk.Button("%s..." % _("Style Editor"))
         self.style_button.connect('clicked',self.on_style_edit_clicked)
 
@@ -559,16 +612,16 @@ class BareReportDialog:
         row += 1
 
         if len(self.local_filters):
-            self.filter_combo = gtk.OptionMenu()
-            l = gtk.Label("%s:" % _("Filter"))
-            l.set_alignment(0.0,0.5)
-            table.attach(l,1,2,row,row+1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
-            table.attach(self.filter_combo,2,3,row,row+1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
-            menu = GenericFilter.build_filter_menu(self.local_filters)
+            self.filter_combo = GenericFilter.GrampsFilterComboBox()
+            label = gtk.Label("%s:" % _("Filter"))
+            label.set_alignment(0.0,0.5)
+            table.attach(label, 1, 2, row, row+1, gtk.SHRINK|gtk.FILL,
+                         gtk.SHRINK|gtk.FILL)
+            table.attach(self.filter_combo, 2, 3, row, row+1,
+                         gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
 
-            self.filter_combo.set_menu(menu)
-            self.filter_combo.set_history(self.options.handler.get_filter_number())
-            self.filter_menu = menu
+            self.filter_combo.set(self.local_filters)
+            self.filter_combo.set_active(self.options.handler.get_filter_number())
             row += 1
             
         # Set up the generations spin and page break checkbox
@@ -578,10 +631,12 @@ class BareReportDialog:
             adjustment = gtk.Adjustment(self.max_gen,1,31,1,0)
             self.generations_spinbox.set_adjustment(adjustment)
             adjustment.value_changed()
-            l = gtk.Label("%s:" % _("Generations"))
-            l.set_alignment(0.0,0.5)
-            table.attach(l,1,2,row,row+1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
-            table.attach(self.generations_spinbox,2,3,row,row+1,gtk.EXPAND|gtk.FILL,gtk.SHRINK|gtk.FILL)
+            label = gtk.Label("%s:" % _("Generations"))
+            label.set_alignment(0.0,0.5)
+            table.attach(label, 1, 2, row, row+1,
+                         gtk.SHRINK|gtk.FILL, gtk.SHRINK|gtk.FILL)
+            table.attach(self.generations_spinbox, 2, 3, row, row+1,
+                         gtk.EXPAND|gtk.FILL,gtk.SHRINK|gtk.FILL)
             row += 1
 
             #if self.page_breaks:
@@ -600,7 +655,8 @@ class BareReportDialog:
             self.extra_menu.set_menu(myMenu)
             self.extra_menu.set_sensitive(len(extra_map) > 1)
             self.add_tooltip(self.extra_menu,em_tip)
-            table.attach(self.extra_menu_label,1,2,row,row+1,gtk.SHRINK|gtk.FILL)
+            table.attach(self.extra_menu_label, 1, 2, row, row+1,
+                         gtk.SHRINK|gtk.FILL)
             table.attach(self.extra_menu,2,3,row,row+1)
             row += 1
             
@@ -621,7 +677,8 @@ class BareReportDialog:
 
             self.extra_textbox.set_editable(1)
             self.add_tooltip(self.extra_textbox,et_tip)
-            table.attach(self.extra_textbox_label,1,2,row,row+1,gtk.SHRINK|gtk.FILL)
+            table.attach(self.extra_textbox_label, 1, 2, row, row+1,
+                         gtk.SHRINK|gtk.FILL)
             table.attach(swin,2,3,row,row+1)
             row += 1
 
@@ -690,9 +747,7 @@ class BareReportDialog:
         retrieves a value whether or not the menu is displayed on the
         screen.  The subclass will know whether this menu was enabled.
         This is for simplicity of programming."""
-        item = self.style_menu.get_menu().get_active()
-        self.selected_style = item.get_data("d")
-        style_name = item.get_data('l')
+        (style_name,self.selected_style) = self.style_menu.get_value()
         self.options.handler.set_default_stylesheet_name(style_name)
 
     def parse_report_options_frame(self):
@@ -717,8 +772,9 @@ class BareReportDialog:
             self.options.handler.set_report_generations(self.max_gen,self.pg_brk)
 
         if self.filter_combo:
-            self.filter = self.filter_menu.get_active().get_data("filter")
-            self.options.handler.set_filter_number(self.filter_combo.get_history())
+            self.filter = self.filter_combo.get_value()
+            active = self.filter_combo.get_active()
+            self.options.handler.set_filter_number(active)
         else:
             self.filter = None
 
@@ -819,7 +875,8 @@ class ReportDialog(BareReportDialog):
         for a basic *stand-alone* report."""
         
         self.style_name = "default"
-        BareReportDialog.__init__(self,database,person,option_class,name,translated_name)
+        BareReportDialog.__init__(self,database,person,option_class,
+                                  name,translated_name)
 
         # Allow for post processing of the format frame, since the
         # show_all task calls events that may reset values
@@ -827,11 +884,8 @@ class ReportDialog(BareReportDialog):
     def init_interface(self):
         BareReportDialog.init_interface(self)
         if self.format_menu:
-            self.doc_type_changed(self.format_menu.get_menu().get_active())
+            self.doc_type_changed(self.format_menu)
         self.setup_post_process()
-
-#    def on_cancel(self,*obj):
-#        self.window.destroy()
 
     def setup_post_process(self):
         pass
@@ -912,7 +966,7 @@ class ReportDialog(BareReportDialog):
         this report.  This menu will be generated based upon the type
         of document (text, draw, graph, etc. - a subclass), whether or
         not the document requires table support, etc."""
-        pass
+        return None
 
     def make_document(self):
         """Create a document of the type requested by the user."""
@@ -931,7 +985,7 @@ class ReportDialog(BareReportDialog):
         paper size/orientation options, but it does need a template
         file.  Those chances are made here."""
 
-        label = obj.get_data("printable")
+        label = obj.get_printable()
         if label:
             self.print_report.set_label (label)
             self.print_report.set_sensitive (gtk.TRUE)
@@ -942,7 +996,7 @@ class ReportDialog(BareReportDialog):
         # Is this to be a printed report or an electronic report
         # (i.e. a set of web pages)
 
-        if obj.get_data("paper") == 1:
+        if obj.get_paper() == 1:
             self.notebook_page = 0
         else:
             self.notebook_page = 1
@@ -956,15 +1010,15 @@ class ReportDialog(BareReportDialog):
             fname = self.target_fileentry.get_full_path(0)
             (spath,ext) = os.path.splitext(fname)
 
-            ext_val = obj.get_data('ext')
+            ext_val = obj.get_ext()
             if ext_val:
                 fname = spath + ext_val
             self.target_fileentry.set_filename(fname)
 
         # Does this report format use styles?
         if self.style_button:
-            self.style_button.set_sensitive(obj.get_data("styles"))
-            self.style_menu.set_sensitive(obj.get_data("styles"))
+            self.style_button.set_sensitive(obj.get_styles())
+            self.style_menu.set_sensitive(obj.get_styles())
 
     #------------------------------------------------------------------------
     #
@@ -1019,19 +1073,18 @@ class ReportDialog(BareReportDialog):
         self.tbl.attach(self.print_report,2,4,self.col,self.col+1)
         self.col += 1
 
-        self.format_menu = gtk.OptionMenu()
         self.make_doc_menu(self.options.handler.get_format_name())
+        self.format_menu.connect('changed',self.doc_type_changed)
         label = gtk.Label("%s:" % _("Output Format"))
         label.set_alignment(0.0,0.5)
         self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
         self.tbl.attach(self.format_menu,2,4,self.col,self.col+1)
         self.col += 1
 
-        mtype = self.format_menu.get_menu().get_active()
-        ext = mtype.get_data('ext')
+        ext = self.format_menu.get_ext()
         if ext == None:
             ext = ""
-        if mtype:
+        else:
             spath = self.get_default_directory()
             if self.get_target_is_directory():
                 self.target_fileentry.set_filename(spath)
@@ -1039,7 +1092,6 @@ class ReportDialog(BareReportDialog):
                 base = self.get_default_basename()
                 spath = os.path.normpath("%s/%s%s" % (spath,base,ext))
                 self.target_fileentry.set_filename(spath)
-
 
     def setup_output_notebook(self):
         """Set up the output notebook of the dialog.  This sole
@@ -1054,7 +1106,7 @@ class ReportDialog(BareReportDialog):
         self.window.vbox.add(self.output_notebook)
 
     def size_changed(self,obj):
-        paper = self.papersize_menu.get_menu().get_active().get_data('i')
+        (paper,name) = self.papersize_menu.get_value()
         if paper.get_width() <= 0:
             self.pwidth.set_sensitive(1)
             self.pheight.set_sensitive(1)
@@ -1064,7 +1116,6 @@ class ReportDialog(BareReportDialog):
             self.pwidth.set_text("%.2f" % paper.get_width())
             self.pheight.set_text("%.2f" % paper.get_height())
         
-
     def setup_paper_frame(self):
         """Set up the paper selection frame of the dialog.  This
         function relies on a paper_xxx() customization functions to
@@ -1087,10 +1138,10 @@ class ReportDialog(BareReportDialog):
         paper_label.set_alignment(0.0,0.5)
         self.paper_table.attach(paper_label,0,6,0,1,gtk.SHRINK|gtk.FILL)
 
-        self.papersize_menu = gtk.OptionMenu()
+        self.papersize_menu = PaperMenu.GrampsPaperComboBox()
         self.papersize_menu.connect('changed',self.size_changed)
         
-        self.orientation_menu = gtk.OptionMenu()
+        self.orientation_menu = PaperMenu.GrampsOrientationComboBox()
         l = gtk.Label("%s:" % _("Size"))
         l.set_alignment(0.0,0.5)
         
@@ -1124,12 +1175,9 @@ class ReportDialog(BareReportDialog):
         l.set_alignment(0.0,0.5)
         self.paper_table.attach(l,5,6,2,3,gtk.SHRINK|gtk.FILL)
 
-        PaperMenu.make_paper_menu(self.papersize_menu,
-                                    self.options.handler.get_paper_name()
-                                    )
-        PaperMenu.make_orientation_menu(self.orientation_menu,
-                                    self.options.handler.get_orientation()
-                                    )
+        self.papersize_menu.set(PaperMenu.paper_sizes,
+                                self.options.handler.get_paper_name())
+        self.orientation_menu.set(self.options.handler.get_orientation())
 
         # The optional pagecount stuff.
         if pagecount_map:
@@ -1141,9 +1189,9 @@ class ReportDialog(BareReportDialog):
             self.paper_table.attach(l,1,2,3,4,gtk.SHRINK|gtk.FILL)
             self.paper_table.attach(self.pagecount_menu,2,3,3,4)
 
-
     def html_file_enable(self,obj):
-        text = unicode(obj.get_text())
+        active = obj.get_active()
+        text = unicode(obj.get_model()[active][0])
         if _template_map.has_key(text):
             if _template_map[text]:
                 self.html_fileentry.set_sensitive(0)
@@ -1167,35 +1215,32 @@ class ReportDialog(BareReportDialog):
         html_label.set_use_markup(gtk.TRUE)
         self.html_table.attach(html_label,0,3,0,1)
 
-        self.output_notebook.append_page(self.html_table,gtk.Label(_("HTML Options")))
+        label = gtk.Label(_("HTML Options"))
+        self.output_notebook.append_page(self.html_table,label)
 
-        l = gtk.Label("%s:" % _("Template"))
-        l.set_alignment(0.0,0.5)
-        self.html_table.attach(l,1,2,1,2,gtk.SHRINK|gtk.FILL)
+        label = gtk.Label("%s:" % _("Template"))
+        label.set_alignment(0.0,0.5)
+        self.html_table.attach(label, 1, 2, 1, 2, gtk.SHRINK|gtk.FILL)
 
-        self.template_combo = gtk.Combo()
-        template_list = [ _default_template ]
+        self.template_combo = gtk.combo_box_new_text()
         tlist = _template_map.keys()
         tlist.sort()
-        
+
+        self.template_combo.append_text(_default_template)
         for template in tlist:
             if template != _user_template:
-                template_list.append(template)
-        template_list.append(_user_template)
+                self.template_combo.append_text(template)
+        self.template_combo.append_text(_user_template)
         
-        self.template_combo.set_popdown_strings(template_list)
-        self.template_combo.entry.set_editable(0)
-
-        def_template = ''
-        if def_template in template_list:
-            self.template_combo.entry.set_text(def_template)
-        self.template_combo.entry.connect('changed',self.html_file_enable)
+        self.template_combo.set_active(0)
+        self.template_combo.connect('changed',self.html_file_enable)
         
         self.html_table.attach(self.template_combo,2,3,1,2)
-        l = gtk.Label("%s:" % _("User Template"))
-        l.set_alignment(0.0,0.5)
-        self.html_table.attach(l,1,2,2,3,gtk.SHRINK|gtk.FILL)
-        self.html_fileentry = gnome.ui.FileEntry("HTML_Template",_("Choose File"))
+        label = gtk.Label("%s:" % _("User Template"))
+        label.set_alignment(0.0,0.5)
+        self.html_table.attach(label, 1, 2, 2, 3, gtk.SHRINK|gtk.FILL)
+        self.html_fileentry = gnome.ui.FileEntry("HTML_Template",
+                                                 _("Choose File"))
         self.html_fileentry.set_modal(True)
         self.html_fileentry.set_sensitive(0)
         user_template = ''
@@ -1242,8 +1287,8 @@ class ReportDialog(BareReportDialog):
     def parse_format_frame(self):
         """Parse the format frame of the dialog.  Save the user
         selected output format for later use."""
-        self.format = self.format_menu.get_menu().get_active().get_data("name")
-        format_name = self.format_menu.get_menu().get_active().get_data("label")
+        self.format = self.format_menu.get_reference()
+        format_name = self.format_menu.get_label()
         self.options.handler.set_format_name(format_name)
 
     def parse_paper_frame(self):
@@ -1252,8 +1297,9 @@ class ReportDialog(BareReportDialog):
         retrieves a value from the pagecount menu, whether or not it
         is displayed on the screen.  The subclass will know which ones
         it has enabled.  This is for simplicity of programming."""
-        self.paper = self.papersize_menu.get_menu().get_active().get_data("i")
-        paper_name = self.papersize_menu.get_menu().get_active().get_data("label")
+
+        (self.paper,paper_name) = self.papersize_menu.get_value()
+
         self.options.handler.set_paper_name(paper_name)
 
         if self.paper.get_height() <= 0 or self.paper.get_width() <= 0:
@@ -1271,7 +1317,7 @@ class ReportDialog(BareReportDialog):
                 self.paper.set_height(29.7)
                 self.paper.set_width(21.0)
         
-        self.orien = self.orientation_menu.get_menu().get_active().get_data("i")
+        self.orien = self.orientation_menu.get_value()
         self.options.handler.set_orientation(self.orien)
 
         if self.pagecount_menu == None:
@@ -1286,7 +1332,10 @@ class ReportDialog(BareReportDialog):
         displayed on the screen.  The subclass will know whether this
         entry was enabled.  This is for simplicity of programming."""
 
-        text = unicode(self.template_combo.entry.get_text())
+        model = self.template_combo.get_model()
+        text = unicode(model[self.template_combo.get_active()][0])
+        #text = unicode(self.template_combo.entry.get_text())
+
         if _template_map.has_key(text):
             if text == _user_template:
                 self.template_name = self.html_fileentry.get_full_path(0)
@@ -1361,8 +1410,9 @@ class TextReportDialog(ReportDialog):
         """Build a menu of document types that are appropriate for
         this text report.  This menu will be generated based upon
         whether the document requires table support, etc."""
-        Plugins.get_text_doc_menu(self.format_menu, self.doc_uses_tables(),
-                                  self.doc_type_changed, None, active)
+        self.format_menu = Plugins.GrampsDocFormatComboBox()
+        self.format_menu.set(self.doc_uses_tables(),
+                             self.doc_type_changed, None, active)
 
     #------------------------------------------------------------------------
     #
@@ -1395,8 +1445,9 @@ class DrawReportDialog(ReportDialog):
     def make_doc_menu(self,active=None):
         """Build a menu of document types that are appropriate for
         this drawing report."""
-        Plugins.get_draw_doc_menu(self.format_menu,self.doc_type_changed, 
-                                    None, active)
+        self.format_menu = Plugins.GrampsDrawFormatComboBox()
+        self.format_menu.set(False,self.doc_type_changed, None, active)
+
 
 class TemplateParser(handler.ContentHandler):
     """

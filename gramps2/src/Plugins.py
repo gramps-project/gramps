@@ -116,7 +116,8 @@ class PluginDialog:
     """Displays the dialog box that allows the user to select the
     report that is desired."""
 
-    def __init__(self,parent,db,active,item_list,msg,label=None,button_label=None,tool_tip=None):
+    def __init__(self,parent,db,active,item_list,msg,label=None,
+                 button_label=None,tool_tip=None):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
@@ -844,44 +845,96 @@ def build_tools_menu(top_menu,callback):
 # get_text_doc_menu
 #
 #-------------------------------------------------------------------------
-def get_text_doc_menu(main_menu,tables,callback,obj=None,active=None):
-    index = 0
-    myMenu = gtk.Menu()
-    _textdoc.sort()
-    active_found = False
-    other_active = None
-    for item in _textdoc:
-        if tables and item[2] == 0:
-            continue
-        name = item[0]
-        menuitem = gtk.MenuItem(name)
-        menuitem.set_data("name",item[1])
-        menuitem.set_data("label",name)
-        menuitem.set_data("styles",item[4])
-        menuitem.set_data("paper",item[3])
-        menuitem.set_data("ext",item[5])
-        menuitem.set_data("obj",obj)
-        menuitem.set_data("printable",item[6])
-        if callback:
-            menuitem.connect("activate",callback)
-        menuitem.show()
-        myMenu.append(menuitem)
-        if name == active:
-            myMenu.set_active(index)
-            if callback:
-                callback(menuitem)
-            active_found = True
-        elif name == GrampsGconfKeys.get_output_preference():
-            other_active = index
-            other_item = menuitem
-        index = index + 1
 
-    if other_active and not active_found:
-        myMenu.set_active(index)
-        if callback:
-            callback(other_item)
+class GrampsDocFormatComboBox(gtk.ComboBox):
 
-    main_menu.set_menu(myMenu)
+    def set(self,tables,callback,obj=None,active=None):
+        self.store = gtk.ListStore(str)
+        self.set_model(self.store)
+        cell = gtk.CellRendererText()
+        self.pack_start(cell,True)
+        self.add_attribute(cell,'text',0)
+
+        out_pref = GrampsGconfKeys.get_output_preference()
+        index = 0
+        _textdoc.sort()
+        active_index = 0
+        for item in _textdoc:
+            if tables and item[2] == 0:
+                continue
+            name = item[0]
+            self.store.append(row=[name])
+            #if callback:
+            #    menuitem.connect("activate",callback)
+            if name == active:
+                active_index = index
+            elif not active and name == out_pref:
+                active_index = index
+            index = index + 1
+        self.set_active(active_index)
+
+    def get_label(self):
+        return _textdoc[self.get_active()][0]
+
+    def get_reference(self):
+        return _textdoc[self.get_active()][1]
+
+    def get_paper(self):
+        return _textdoc[self.get_active()][3]
+
+    def get_styles(self):
+        return _textdoc[self.get_active()][4]
+
+    def get_ext(self):
+        return _textdoc[self.get_active()][5]
+
+    def get_printable(self):
+        return _textdoc[self.get_active()][6]
+
+class GrampsDrawFormatComboBox(gtk.ComboBox):
+
+    def set(self,tables,callback,obj=None,active=None):
+        self.store = gtk.ListStore(str)
+        self.set_model(self.store)
+        cell = gtk.CellRendererText()
+        self.pack_start(cell,True)
+        self.add_attribute(cell,'text',0)
+
+        out_pref = GrampsGconfKeys.get_output_preference()
+        index = 0
+        _drawdoc.sort()
+        active_index = 0
+        for item in _drawdoc:
+            if tables and item[2] == 0:
+                continue
+            name = item[0]
+            self.store.append(row=[name])
+            #if callback:
+            #    menuitem.connect("activate",callback)
+            if name == active:
+                active_index = index
+            elif not active and name == out_pref:
+                active_index = index
+            index = index + 1
+        self.set_active(active_index)
+
+    def get_reference(self):
+        return _drawdoc[self.get_active()][1]
+
+    def get_label(self):
+        return _drawdoc[self.get_active()][0]
+
+    def get_paper(self):
+        return _drawdoc[self.get_active()][2]
+
+    def get_styles(self):
+        return _drawdoc[self.get_active()][3]
+
+    def get_ext(self):
+        return _drawdoc[self.get_active()][4]
+
+    def get_printable(self):
+        return _drawdoc[self.get_active()][5]
 
 #-------------------------------------------------------------------------
 #
@@ -963,45 +1016,6 @@ def get_draw_doc_list():
         l.append(item[0])
     return l
 
-#-------------------------------------------------------------------------
-#
-# get_draw_doc_menu
-#
-#-------------------------------------------------------------------------
-def get_draw_doc_menu(main_menu,callback=None,obj=None,active=None):
-
-    index = 0
-    myMenu = gtk.Menu()
-    active_found = False
-    other_active = None
-    for (name,classref,paper,styles,ext,printable,clname) in _drawdoc:
-        menuitem = gtk.MenuItem(name)
-        menuitem.set_data("name",classref)
-        menuitem.set_data("label",name)
-        menuitem.set_data("styles",styles)
-        menuitem.set_data("paper",paper)
-        menuitem.set_data("ext",ext)
-        menuitem.set_data("obj",obj)
-        menuitem.set_data("printable",printable)
-        if callback:
-            menuitem.connect("activate",callback)
-        menuitem.show()
-        myMenu.append(menuitem)
-        if name == active:
-            myMenu.set_active(index)
-            if callback:
-                callback(menuitem)
-            active_found = True
-        elif name == GrampsGconfKeys.get_goutput_preference():
-            other_active = index
-            other_item = menuitem
-        index = index + 1
-
-    if other_active and not active_found:
-        myMenu.set_active(index)
-        if callback:
-            callback(other_item)
-    main_menu.set_menu(myMenu)
 
 #-------------------------------------------------------------------------
 #
