@@ -290,7 +290,7 @@ class PrimaryObject(BaseObject):
             self._replace_handle_reference(classname,old_handle,new_handle)
 
     def _has_handle_reference(self,classname,handle):
-        pass
+        return False
 
     def _remove_handle_references(self,classname,handle_list):
         pass
