@@ -1,4 +1,6 @@
 2004-08-23  Tim Waugh  <twaugh@redhat.com>
+	* install-sh: Removed this generated file.
+
 	* src/WriteGedcom.py (GedcomWriter.write_sources): Write sources
 	in ID order for easier change tracking.
 
