@@ -56,7 +56,9 @@ class MergePeople:
             "destroy_passed_object" : Utils.destroy_passed_object,
             })
 
-        label_text = "Merge %s and %s" % (GrampsCfg.nameof(person1),GrampsCfg.nameof(person2))
+        fname = GrampsCfg.nameof(person1)
+        mname = GrampsCfg.nameof(person2)
+        label_text = "Merge %s and %s" % (fname,mname)
         self.glade.get_widget("progress").set_text(label_text)
         f1 = person1.getMainParents()
         f2 = person2.getMainParents()
@@ -92,24 +94,18 @@ class MergePeople:
             father2 = ""
             mother2 = ""
 
-        self.glade.get_widget("id1_text").set_text(person1.getId())
-        self.glade.get_widget("id2_text").set_text(person2.getId())
-        self.glade.get_widget("name1_text").set_text(name1)
-        self.glade.get_widget("name1_text").set_position(0)
-        self.glade.get_widget("name2_text").set_text(name2)
-        self.glade.get_widget("name2_text").set_position(0)
+        self.set_field(self.glade.get_widget("id1_text"),person1.getId())
+        self.set_field(self.glade.get_widget("id2_text"),person2.getId())
+        self.set_field(self.glade.get_widget("name1_text"),name1)
+        self.set_field(self.glade.get_widget("name2_text"),name2)
 
         self.bname1 = self.glade.get_widget("bname1")
         self.bname1.set_active(1)
 
-        self.glade.get_widget("birth1_text").set_text(birth1)
-        self.glade.get_widget("birth1_text").set_position(0)
-        self.glade.get_widget("birth2_text").set_text(birth2)
-        self.glade.get_widget("birth2_text").set_position(0)
-        self.glade.get_widget("bplace1_text").set_text(bplace1)
-        self.glade.get_widget("bplace1_text").set_position(0)
-        self.glade.get_widget("bplace2_text").set_text(bplace2)
-        self.glade.get_widget("bplace2_text").set_position(0)
+        self.set_field(self.glade.get_widget("birth1_text"),birth1)
+        self.set_field(self.glade.get_widget("birth2_text"),birth2)
+        self.set_field(self.glade.get_widget("bplace1_text"),bplace1)
+        self.set_field(self.glade.get_widget("bplace2_text"),bplace2)
 
         if ((not birth1 and not bplace1) and (birth2 or bplace2) or
             (not birth1 or not bplace1) and (birth2 and bplace2)):
@@ -123,57 +119,18 @@ class MergePeople:
         else:
             self.glade.get_widget('death1').set_active(1)
 
-        self.glade.get_widget("death1_text").set_text(death1)
-        self.glade.get_widget("death1_text").set_position(0)
-        self.glade.get_widget("dplace1_text").set_text(dplace1)
-        self.glade.get_widget("dplace1_text").set_position(0)
+        self.set_field(self.glade.get_widget("death1_text"),death1)
+        self.set_field(self.glade.get_widget("dplace1_text"),dplace1)
+        self.set_field(self.glade.get_widget("death2_text"),death2)
+        self.set_field(self.glade.get_widget("dplace2_text"),dplace2)
 
-        self.glade.get_widget("death2_text").set_text(death2)
-        self.glade.get_widget("death2_text").set_position(0)
-        self.glade.get_widget("dplace2_text").set_text(dplace2)
-        self.glade.get_widget("dplace2_text").set_position(0)
+        self.set_field(self.glade.get_widget("father1"),father1)
+        self.set_field(self.glade.get_widget("father2"),father2)
+        self.set_field(self.glade.get_widget("mother1"),mother1)
+        self.set_field(self.glade.get_widget("mother2"),mother2)
 
-        self.glade.get_widget("father1").set_text(father1)
-        self.glade.get_widget("father1").set_position(0)
-        self.glade.get_widget("father2").set_text(father2)
-        self.glade.get_widget("father2").set_position(0)
-        self.glade.get_widget("mother1").set_text(mother1)
-        self.glade.get_widget("mother1").set_position(0)
-        self.glade.get_widget("mother2").set_text(mother2)
-        self.glade.get_widget("mother2").set_position(0)
-
-        p1list = person1.getFamilyList()
-        p2list = person2.getFamilyList()
-        
-        length = min(len(p1list),3)
-        self.glade.get_widget("spouse1").clear()
-        for index in range(0,3):
-            if index < length and p1list[index]:
-                if person1.getGender() == RelLib.Person.male:
-                    spouse = p1list[index].getMother()
-                else:
-                    spouse = p1list[index].getFather()
-
-                if spouse == None:
-                    name = "unknown"
-                else:
-                    name = "%s (%s)" % (GrampsCfg.nameof(spouse),spouse.getId())
-                self.glade.get_widget("spouse1").append([name])
-
-        length = min(len(p2list),3)
-        self.glade.get_widget("spouse2").clear()
-        for index in range(0,3):
-            if index < length and p2list[index]:
-                if person2.getGender() == RelLib.Person.male:
-                    spouse = p2list[index].getMother()
-                else:
-                    spouse = p2list[index].getFather()
-
-                if spouse == None:
-                    name = "unknown"
-                else:
-                    name = "%s (%s)" % (GrampsCfg.nameof(spouse),spouse.getId())
-                self.glade.get_widget("spouse2").append([name])
+        self.build_spouse_list(person1,self.glade.get_widget('spouse1'))
+        self.build_spouse_list(person2,self.glade.get_widget('spouse2'))
 
         if name1 != name2:
             self.altname.set_sensitive(1)
@@ -195,6 +152,30 @@ class MergePeople:
             self.altdeath.set_active(1)
         else:
             self.altdeath.set_active(0)
+
+    def build_spouse_list(self,person,widget):
+        plist = person.getFamilyList()
+        
+        length = min(len(plist),3)
+        widget.clear()
+        for index in range(0,3):
+            if index < length and plist[index]:
+                if person.getGender() == RelLib.Person.male:
+                    spouse = plist[index].getMother()
+                else:
+                    spouse = plist[index].getFather()
+
+                if spouse == None:
+                    name = "unknown"
+                else:
+                    sname = GrampsCfg.nameof(spouse)
+                    name = "%s (%s)" % (sname,spouse.getId())
+                widget.append([name])
+
+    def set_field(self,widget,value):
+        """Sets the string of the entry field at positions it a space 0"""
+        widget.set_text(value)
+        widget.set_position(0)
 
     def place_name(self,event):
         place = event.getPlace()
@@ -225,11 +206,6 @@ class MergePeople:
             else:
                 one.addSourceRef(xsrc)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def on_merge_clicked(self,obj):
         Utils.modified()
 
@@ -336,6 +312,7 @@ class MergePeople:
 
         if self.p1.getNickName() == "":
             self.p1.setNickName(self.p2.getNickName())
+            
         if self.p2.getNote() != "":
             old_note = self.p1.getNote()
             if old_note:
@@ -349,11 +326,6 @@ class MergePeople:
         self.update(self.p1,self.p2)
         Utils.destroy_passed_object(self.top)
         
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def find_family(self,family):
         if self.p1.getGender() == RelLib.Person.male:
             mother = family.getMother()
@@ -366,14 +338,8 @@ class MergePeople:
             if myfamily.getFather() == father and \
                myfamily.getMother() == mother:
                 return myfamily
-
         return None
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def merge_families(self):
         
         family_num = 0
@@ -388,7 +354,6 @@ class MergePeople:
                 continue
 
             tgt_family = self.find_family(src_family)
-
 
             #
             # This is the case where a new family to be added to the
@@ -409,25 +374,23 @@ class MergePeople:
 
                 for child in src_family.getChildList():
                     if child not in tgt_family.getChildList():
+                        parents = child.getParentList()
                         tgt_family.addChild(child)
                         if child.getMainParents() == src_family:
                             child.setMainParents(tgt_family)
-                        else:
-                            index = 0
-                            for fam in child.getParentList()[:]:
-                                if fam[0] == src_family:
-                                    child.getParentList()[index] = (tgt_family,fam[1],fam[2])
-                                index = index + 1
+                        i = 0
+                        for fam in parents[:]:
+                            if fam[0] == src_family:
+                                parents[i] = (tgt_family,fam[1],fam[2])
+                            i = i + 1
                         
                 # delete the old source family
                 del self.db.getFamilyMap()[src_family.getId()]
 
                 continue
             
-            #
             # This is the case where a new family to be added 
             # and it is not already in the list.
-            #
 
             if tgt_family:
 
@@ -440,15 +403,15 @@ class MergePeople:
                 
                 for child in src_family.getChildList():
                     if child not in tgt_family.getChildList():
+                        parents = child.getParentList()
                         tgt_family.addChild(child)
                         if child.getMainParents() == src_family:
                             child.setMainParents(tgt_family)
-                        else:
-                            index = 0
-                            for fam in child.getParentList()[:]:
-                                if fam[0] == src_family:
-                                    child.getParentList()[index] = (tgt_family,fam[1],fam[2])
-                                index = index + 1
+                        i = 0
+                        for fam in parents[:]:
+                            if fam[0] == src_family:
+                                parents[i] = (tgt_family,fam[1],fam[2])
+                            i = i + 1
 
                 # add family events from the old to the new
                 for event in src_family.getEventList():
@@ -611,7 +574,6 @@ def compare_people(p1,p2):
 
     return chance
 
-
 #-----------------------------------------------------------------
 #
 #
@@ -653,31 +615,35 @@ def date_match(date1,date2):
 #
 #-----------------------------------------------------------------
 def range_compare(date1,date2):
+    d1_start = date1.get_start_date()
+    d2_start = date2.get_start_date()
+    d1_stop  = date1.get_stop_date()
+    d2_stop  = date2.get_stop_date()
+
     if date1.isRange() and date2.isRange():
-        if date1.get_start_date() >= date2.get_start_date() and \
-           date1.get_start_date() <= date2.get_stop_date() or \
-           date2.get_start_date() >= date1.get_start_date() and \
-           date2.get_start_date() <= date1.get_stop_date() or \
-           date1.get_stop_date() >= date2.get_start_date() and \
-           date1.get_stop_date() <= date2.get_stop_date() or \
-           date2.get_stop_date() >= date1.get_start_date() and \
-           date2.get_stop_date() <= date1.get_stop_date():
+        if d1_start >= d2_start and d1_start <= d2_stop or \
+           d2_start >= d1_start and d2_start <= d1_stop or \
+           d1_stop >= d2_start and d1_stop <= d2_stop or \
+           d2_stop >= d1_start and d2_stop <= d1_stop:
             return 0.5
         else:
             return -1.0
     elif date2.isRange():
-        if date1.get_start_date() >= date2.get_start_date() and \
-           date1.get_start_date() <= date2.get_stop_date():
+        if d1_start >= d2_start and d1_start <= d2_stop:
             return 0.5
         else:
             return -1.0
     else:
-        if date2.get_start_date() >= date1.get_start_date() and \
-           date2.get_start_date() <= date1.get_stop_date():
+        if d2_start >= d1_start and d2_start <= d1_stop:
             return 0.5
         else:
             return -1.0
 
+#---------------------------------------------------------------------
+#
+#
+#
+#---------------------------------------------------------------------
 def name_match(name,name1):
 
     if not name1 or not name:
@@ -786,6 +752,11 @@ def is_initial(name):
     else:
         return name[0] in string.uppercase
 
+#---------------------------------------------------------------------
+#
+#
+#
+#---------------------------------------------------------------------
 def ancestors_of(p1,list):
     if p1 == None:
         return
@@ -795,10 +766,15 @@ def ancestors_of(p1,list):
         ancestors_of(f1.getFather(),list)
         ancestors_of(f1.getMother(),list)
 
+#---------------------------------------------------------------------
+#
+#
+#
+#---------------------------------------------------------------------
 def name_of(p):
     if not p:
         return ""
-    return "%s (%s)" % ( GrampsCfg.nameof(p),p.getId())
+    return "%s (%s)" % (GrampsCfg.nameof(p),p.getId())
 
 #-------------------------------------------------------------------------
 #
