@@ -499,6 +499,7 @@ class GrampsParser:
         if self.placeobj.get_title() == "":
             loc = self.placeobj.get_main_location()
             self.placeobj.set_title(build_place_title(loc))
+        self.db.buildPlaceDisplay(self.placeobj.getId())
         self.palceobj = None
         
     def stop_event(self,tag):
@@ -579,6 +580,7 @@ class GrampsParser:
         self.source_ref = None
 
     def stop_source(self,tag):
+        self.db.buildSourceDisplay(self.source.getId())
         self.source = None
 
     def stop_sauthor(self,tag):

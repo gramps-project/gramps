@@ -230,7 +230,7 @@ class GrampsZODB(GrampsDB):
     def setDefaultPerson(self,person):
         """sets the default Person to the passed instance"""
         GrampsDB.setDefaultPerson(self,person)
-        self.root()['default'] = person
+        self.root['default'] = person
         
 
 
