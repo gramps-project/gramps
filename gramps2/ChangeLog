@@ -1,3 +1,10 @@
+2003-11-26  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: handle update_after edit properly, so that
+	name changes will put entry in the correct category
+	* src/PeopleView.py: cleanup
+	* src/PeopleStore.py: delete stale iter from dictionary when no
+	longer used.
+
 2003-11-25  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* FAQ: Several minor corrections. New question about bug reports.
 	* Makefile.am, Makefile.in: Add FAQ to EXTRA_DIST.
