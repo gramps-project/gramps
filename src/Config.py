@@ -134,6 +134,7 @@ ODDFGCOLOR    = "oddForeground"
 ODDBGCOLOR    = "oddBackground"
 EVENFGCOLOR   = "evenForeground"
 EVENBGCOLOR   = "evenBackground"
+ANCESTORFGCOLOR = "ancestorForeground"
 INDEX         = "i"
 OBJECT        = "o"
 DATA          = "d"
@@ -251,6 +252,7 @@ def loadConfig(call):
     ListColors.oddbg = get_config_color(ODDBGCOLOR,(0xffff,0xffff,0xffff))
     ListColors.evenfg = get_config_color(EVENFGCOLOR,(0,0,0))
     ListColors.evenbg = get_config_color(EVENBGCOLOR,(0xffff,0xffff,0xffff))
+    ListColors.ancestorfg = get_config_color(ANCESTORFGCOLOR,(0,0,0))
 
     if paper_preference == None:
         paper_preference = "Letter"
@@ -531,11 +533,13 @@ def on_propertybox_apply(obj,page):
     ListColors.oddbg = prefsTop.get_widget(ODDBGCOLOR).get_i16()
     ListColors.evenfg = prefsTop.get_widget(EVENFGCOLOR).get_i16()
     ListColors.evenbg = prefsTop.get_widget(EVENBGCOLOR).get_i16()
+    ListColors.ancestorfg = prefsTop.get_widget(ANCESTORFGCOLOR).get_i16()
 
     save_config_color(ODDFGCOLOR,ListColors.oddfg)
     save_config_color(ODDBGCOLOR,ListColors.oddbg)
     save_config_color(EVENFGCOLOR,ListColors.evenfg)
     save_config_color(EVENBGCOLOR,ListColors.evenbg)
+    save_config_color(ANCESTORFGCOLOR,ListColors.ancestorfg)
 
     owner.set(name,addr,city,state,country,postal,phone,email)
     store_researcher(owner)
@@ -592,6 +596,7 @@ def on_color_toggled(obj):
     prefsTop.get_widget(ODDBGCOLOR).set_sensitive(active)
     prefsTop.get_widget(EVENFGCOLOR).set_sensitive(active)
     prefsTop.get_widget(EVENBGCOLOR).set_sensitive(active)
+    prefsTop.get_widget(ANCESTORFGCOLOR).set_sensitive(active)
     obj.changed()
 
 #-------------------------------------------------------------------------
@@ -759,11 +764,16 @@ def display_preferences_box(db):
     cwidget.set_i16(ListColors.evenbg[0],ListColors.evenbg[1],\
                     ListColors.evenbg[2],0xffff)
 
+    cwidget = prefsTop.get_widget(ANCESTORFGCOLOR)
+    cwidget.set_i16(ListColors.ancestorfg[0],ListColors.ancestorfg[1],\
+                    ListColors.ancestorfg[2],0xffff)
+
     prefsTop.get_widget("enableColors").set_active(ListColors.get_enable())
     prefsTop.get_widget(ODDFGCOLOR).set_sensitive(ListColors.get_enable())
     prefsTop.get_widget(ODDBGCOLOR).set_sensitive(ListColors.get_enable())
     prefsTop.get_widget(EVENBGCOLOR).set_sensitive(ListColors.get_enable())
     prefsTop.get_widget(EVENFGCOLOR).set_sensitive(ListColors.get_enable())
+    prefsTop.get_widget(ANCESTORFGCOLOR).set_sensitive(ListColors.get_enable())
 
     prefsTop.get_widget("dbdir").gtk_entry().set_text(db_dir)
     prefsTop.get_widget("repdir").gtk_entry().set_text(report_dir)

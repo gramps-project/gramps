@@ -773,6 +773,7 @@ class Person:
         self.note = None
         self.paf_uid = ""
         self.position = None
+        self.ancestor = None
 
     def setPrimaryName(self,name):
         """sets the primary name of the Person to the specified Name instance"""
@@ -1009,6 +1010,19 @@ class Person:
         """returns a graphical location pointer for graphic display (x,y)"""
         return self.position
 
+    def setAncestor(self, value):
+        """set ancestor flag and recurse"""
+        self.ancestor = value
+        family = self.MainFamily
+        if family:
+            if family.Father:
+                family.Father.setAncestor(value)
+            if (family.Mother):
+                family.Mother.setAncestor(value)
+
+    def getAncestor(self):
+        return self.ancestor
+
 class Event(DataObj):
     """Event record, recording the event type, description, place, and date
     of a particular event"""
@@ -1219,7 +1233,12 @@ class Family:
     
     def setFather(self,person):
         """sets the father of the Family to the specfied Person"""
-       	self.Father = person
+        update = self.someChildIsAncestor()
+        if update and self.Father:
+            self.Father.setAncestor(0)
+        self.Father = person
+        if update and self.Father:
+            self.Father.setAncestor(1)
 
     def getFather(self):
         """returns the father of the Family"""
@@ -1227,7 +1246,12 @@ class Family:
 
     def setMother(self,person):
         """sets the mother of the Family to the specfied Person"""
-       	self.Mother = person
+        update = self.someChildIsAncestor()
+        if self.Mother and update:
+            self.Mother.setAncestor(0)
+        self.Mother = person
+        if update and self.Mother:
+            self.Mother.setAncestor(1)
 
     def getMother(self):
         """returns the mother of the Family"""
@@ -1238,15 +1262,21 @@ class Family:
         to the child list"""
         if person not in self.Children:
             self.Children.append(person)
+        if person.ancestor:
+            if self.Father:
+                self.Father.setAncestor(1)
+            if (self.Mother):
+                self.Mother.setAncestor(1)
+            
 
     def removeChild(self,person):
         """removes the specified Person from the child list"""
-       	index = 0
-       	for child in self.Children:
-            if child == person:
-                del self.Children[index]
-                return
-            index = index + 1
+        self.Children.remove(person)
+        if person.ancestor:
+            if self.Father:
+                self.Father.setAncestor(0)
+            if (self.Mother):
+                self.Mother.setAncestor(0)
 
     def getChildList(self):
         """returns the list of children"""
@@ -1293,6 +1323,12 @@ class Family:
     def setPhotoList(self,list):
         """Sets the list of Photo objects"""
         self.photoList = list
+
+    def someChildIsAncestor(self):
+        for child in self.Children:
+            if (child.ancestor):
+                return 1
+        return None
 
 class Source:
     """A record of a source of information"""
@@ -1558,7 +1594,10 @@ class RelDataBase:
 
     def setDefaultPerson(self,person):
         """sets the default Person to the passed instance"""
+        if (self.default):
+            self.default.setAncestor(0)
         self.default = person
+        self.default.setAncestor(1)
     
     def getDefaultPerson(self):
         """returns the default Person of the database"""

@@ -938,13 +938,15 @@ def sort_child_list(clist):
             oddfg = GdkColor(ListColors.oddfg[0],ListColors.oddfg[1],ListColors.oddfg[2])
             evenbg = GdkColor(ListColors.evenbg[0],ListColors.evenbg[1],ListColors.evenbg[2])
             evenfg = GdkColor(ListColors.evenfg[0],ListColors.evenfg[1],ListColors.evenfg[2])
+            ancestorfg = GdkColor(ListColors.ancestorfg[0],ListColors.ancestorfg[1],ListColors.ancestorfg[2])
             rows = clist.rows
-            for i in range(0,rows,2):
-                clist.set_background(i,oddbg)
-                clist.set_foreground(i,oddfg)
-                if i != rows:
-                    clist.set_background(i+1,evenbg)
-                    clist.set_foreground(i+1,evenfg)
+            for i in range(0,rows):
+                clist.set_background(i,(evenbg,oddbg)[i%2])
+                person = clist.get_row_data(i)
+                if (person.getAncestor()):
+                    clist.set_foreground(i,ancestorfg)
+                else:
+                    clist.set_foreground(i,(evenfg,oddfg)[i%2])
         except OverflowError:
             pass
     clist.thaw()
