@@ -305,6 +305,52 @@ class TestcaseGenerator:
         person.add_event_handle(event_h)
         self.db.commit_person(person,self.trans)
 
+        # Creates a person having a non existing birth event handle set
+        person_h = self.generate_person(None,"Broken11",None)
+        person = self.db.get_person_from_handle(person_h)
+        person.set_birth_handle("InvalidHandle4")
+        self.db.commit_person(person,self.trans)
+
+        # Creates a person having a non existing death event handle set
+        person_h = self.generate_person(None,"Broken12",None)
+        person = self.db.get_person_from_handle(person_h)
+        person.set_death_handle("InvalidHandle5")
+        self.db.commit_person(person,self.trans)
+
+        # Creates a person having a non existing event handle set
+        person_h = self.generate_person(None,"Broken13",None)
+        person = self.db.get_person_from_handle(person_h)
+        person.add_event_handle("InvalidHandle6")
+        self.db.commit_person(person,self.trans)
+
+        # Creates a person with a birth event having an empty type
+        person_h = self.generate_person(None,"Broken14",None)
+        event = RelLib.Event()
+        event.set_description("Test for Broken14")
+        event_h = self.db.add_event(event,self.trans)
+        person = self.db.get_person_from_handle(person_h)
+        person.set_birth_handle(event_h)
+        self.db.commit_person(person,self.trans)
+
+        # Creates a person with a death event having an empty type
+        person_h = self.generate_person(None,"Broken15",None)
+        event = RelLib.Event()
+        event.set_description("Test for Broken15")
+        event_h = self.db.add_event(event,self.trans)
+        person = self.db.get_person_from_handle(person_h)
+        person.set_death_handle(event_h)
+        self.db.commit_person(person,self.trans)
+
+        # Creates a person with an event having an empty type
+        person_h = self.generate_person(None,"Broken16",None)
+        event = RelLib.Event()
+        event.set_description("Test for Broken16")
+        event_h = self.db.add_event(event,self.trans)
+        person = self.db.get_person_from_handle(person_h)
+        person.add_event_handle(event_h)
+        self.db.commit_person(person,self.trans)
+
+
     
     def generate_person(self,gender=None,lastname=None,note=None):
         self.progress.set_fraction(min(1.0,max(0.0, 1.0*self.person_count/self.max_person_count)))
@@ -331,7 +377,7 @@ class TestcaseGenerator:
         name = RelLib.Name()
         firstname = ""
         for i in range(0,randint(1,5)):
-            for i in range(0,randint(2,5)):
+            for j in range(0,randint(2,5)):
                 firstname = firstname + choice(syllables2)
             if gender == RelLib.Person.FEMALE:
                 firstname = firstname + choice(("a","e","i","o","u"))
