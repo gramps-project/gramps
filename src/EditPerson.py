@@ -118,7 +118,6 @@ class EditPerson:
         self.addr_edit_btn = self.top.get_widget('addr_edit_btn')
 
         self.notes_field = self.get_widget("personNotes")
-        self.notes_label = self.get_widget("notes_label")
         self.event_name_field  = self.get_widget("eventName")
         self.event_place_field = self.get_widget("eventPlace")
         self.event_cause_field = self.get_widget("eventCause")
@@ -181,6 +180,17 @@ class EditPerson:
         self.gid = self.get_widget("gid")
         self.slist = self.get_widget("slist")
 
+        self.general_label = self.get_widget("general_label")
+        self.names_label = self.get_widget("names_label")
+        self.events_label = self.get_widget("events_label")
+        self.attr_label = self.get_widget("attr_label")
+        self.addr_label = self.get_widget("addr_label")
+        self.notes_label = self.get_widget("notes_label")
+        self.sources_label = self.get_widget("sources_label")
+        self.inet_label = self.get_widget("inet_label")
+        self.gallery_label = self.get_widget("gallery_label")
+        self.lds_tab = self.get_widget("lds_tab")
+
         self.death = RelLib.Event(person.getDeath())
         self.birth = RelLib.Event(person.getBirth())
         self.pname = RelLib.Name(person.getPrimaryName())
@@ -195,6 +205,22 @@ class EditPerson:
             self.srcreflist = person.getSourceRefList()
         else:
             self.srcreflist = []
+
+        self.bold_label(self.general_label)
+        if self.srcreflist:
+            self.bold_label(self.sources_label)
+        if self.elist:
+            self.bold_label(self.events_label)
+        if self.nlist:
+            self.bold_label(self.names_label)
+        if self.alist:
+            self.bold_label(self.attr_label)
+        if self.ulist:
+            self.bold_label(self.inet_label)
+        if self.plist:
+            self.bold_label(self.addr_label)
+        if self.icon_list:
+            self.bold_label(self.gallery_label)
 
         # event display
         etitles = [(_('Event'),-1,150),(_('Description'),-1,150),
@@ -241,9 +267,16 @@ class EditPerson:
         self.lds_endowment = RelLib.LdsOrd(self.person.getLdsEndowment())
         self.lds_sealing = RelLib.LdsOrd(self.person.getLdsSeal())
 
-        if GrampsCfg.uselds or self.lds_baptism or self.lds_endowment or self.lds_sealing:
+        if GrampsCfg.uselds \
+                        or (not self.lds_baptism.isEmpty()) \
+                        or (not self.lds_endowment.isEmpty()) \
+                        or (not self.lds_sealing.isEmpty()):
             self.get_widget("lds_tab").show()
             self.get_widget("lds_page").show()
+            if (not self.lds_baptism.isEmpty()) \
+                        or (not self.lds_endowment.isEmpty()) \
+                        or (not self.lds_sealing.isEmpty()):
+                self.bold_label(self.lds_tab)
 
         types = const.NameTypesMap.keys()
         types.sort()
@@ -265,7 +298,7 @@ class EditPerson:
         self.notes_buffer = self.notes_field.get_buffer()
         self.notes_buffer.set_text(person.getNote())
         if person.getNote():
-            self.change_notes()
+            self.bold_label(self.notes_label)
 
         self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
         self.event_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
@@ -671,6 +704,9 @@ class EditPerson:
             self.nmap[str(name)] = iter
         if self.ntree:
             self.ntree.select_row(0)
+            self.bold_label(self.names_label)
+        else:
+            self.unbold_label(self.names_label)
 
     def redraw_url_list(self):
         """redraws the url list, disabling the go button if no url
@@ -684,10 +720,12 @@ class EditPerson:
         if len(self.ulist) > 0:
             self.web_go.set_sensitive(0)
             self.wtree.select_row(0)
+            self.bold_label(self.inet_label)
         else:
             self.web_go.set_sensitive(0)
             self.web_url.set_text("")
             self.web_description.set_text("")
+            self.unbold_label(self.inet_label)
 
     def redraw_addr_list(self):
         """Redraws the address list"""
@@ -700,6 +738,9 @@ class EditPerson:
             self.pmap[str(addr)] = iter
         if self.plist:
             self.ptree.select_row(0)
+            self.bold_label(self.addr_label)
+        else:
+            self.unbold_label(self.addr_label)
 
     def redraw_attr_list(self):
         """redraws the attribute list for the person"""
@@ -710,6 +751,9 @@ class EditPerson:
             self.amap[str(attr)] = iter
         if self.alist:
             self.atree.select_row(0)
+            self.bold_label(self.attr_label)
+        else:
+            self.unbold_label(self.attr_label)
 
     def name_edit_callback(self,name):
         self.redraw_name_list()
@@ -751,6 +795,9 @@ class EditPerson:
             self.emap[str(event)] = iter
         if self.elist:
             self.etree.select_row(0)
+            self.bold_label(self.events_label)
+        else:
+            self.unbold_label(self.events_label)
 
         # Remember old combo list input
 
@@ -1585,9 +1632,17 @@ class EditPerson:
         self.ntype_field.entry.set_text(_(self.pname.getType()))
         self.title.set_text(self.pname.getTitle())
 
-    def change_notes(self):
-        self.notes_label.set_text("<b><big><u>%s</u></big></b>" % _("Notes"))
-        self.notes_label.set_use_markup(1)
+    def bold_label(self,label):
+        text = label.get_text()
+        label.set_text("<b>%s</b>" % text )
+        label.set_use_markup(1)
+
+    def unbold_label(self,label):
+        text = label.get_text()
+        text = string.replace(text,'<b>','')
+        text = string.replace(text,'</b>','')
+        label.set_text(text)
+        label.set_use_markup(0)
 
 #-------------------------------------------------------------------------
 # 
