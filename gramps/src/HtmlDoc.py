@@ -168,12 +168,11 @@ class HtmlDoc(TextDoc):
             self.file_header = top
 
     def build_style_declaration(self):
-        fl2txt = utils.fl2txt
         text = ['<style type="text/css">\n<!--']
         for key in self.cell_styles.keys():
             style = self.cell_styles[key]
             
-            pad = fl2txt("%.3fcm ",style.get_padding())
+            pad = "%.3fcm"  % style.get_padding()
             top = bottom = left = right = 'none'
             if style.get_top_border():
                 top = 'thin solid #000000'

@@ -361,8 +361,8 @@ def on_add_new_child_clicked(obj):
     """Create a new child to add to the existing family"""
     import SelectChild
     if active_person:
-        SelectChild.NewChild(database,active_family,active_person,update_after_newchild)
-
+        SelectChild.NewChild(database,active_family,active_person,
+                             update_after_newchild,Config.lastnamegen)
 
 #-------------------------------------------------------------------------
 #

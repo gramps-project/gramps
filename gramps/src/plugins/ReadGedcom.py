@@ -1364,7 +1364,7 @@ class GedcomParser:
                     name = Name()
                     name.setSurname(lname[-1])
                     name.setFirstName(string.join(lname[0:l-1]))
-                self.person.addAlternateName(name)
+                    self.person.addAlternateName(name)
             elif matches[1] == "SOUR":
                 source_ref = SourceRef()
                 source_ref.setBase(self.db.findSource(matches[2],self.smap))

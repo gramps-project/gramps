@@ -26,8 +26,6 @@ from TextDoc import *
 from latin_utf8 import latin_to_utf8
 import const
 import utils
-cnv = utils.fl2txt
-
 
 try:
     import PIL.Image
@@ -115,7 +113,7 @@ class OpenOfficeDoc(TextDoc):
             self.f.write('<style:style style:name="' + style_name + '" ')
 	    self.f.write('style:family="table">\n')
             table_width = float(self.get_usable_width())
-            table_width_str = cnv("%.4f",table_width)
+            table_width_str = "%.4f" % table_width
 	    self.f.write('<style:properties style:width="%scm" '%table_width_str)
             self.f.write('/>\n')
             self.f.write('</style:style>\n')
