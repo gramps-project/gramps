@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 0.7.3\n"
 "POT-Creation-Date: Wed May  2 12:30:26 2002\n"
-"PO-Revision-Date: 2002-05-06 08:43-0500\n"
+"PO-Revision-Date: 2002-05-06 10:37-0500\n"
 "Last-Translator: Alexander Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -708,7 +708,7 @@ msgstr "Значение GRAMPS ID не было изменено."
 
 #: EditPerson.py:1125
 msgid "%(grampsid)s is already used by %(person)s"
-msgstr " %(лицо)s уже использует %(GRAMPS ID)s "
+msgstr " %(person)s уже использует %(grampsid)s "
 
 #: EditPerson.py:1229
 msgid ""
