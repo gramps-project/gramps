@@ -26,6 +26,7 @@ import Config
 import time
 import shutil
 import os
+from Date import SingleDate
 
 try:
     import gzip
@@ -116,7 +117,7 @@ def dump_my_event(g,name,event,index=1):
 
     sp = "  " * index
     g.write('%s<event type="%s"%s>\n' % (sp,fix(name),conf_priv(event)))
-    write_line(g,"date",date,index+1)
+    write_date(g,event.getDateObj(),index+1)
     write_ref(g,"place",place,index+1)
     write_line(g,"cause",cause,index+1)
     write_line(g,"description",description,index+1)
@@ -194,6 +195,53 @@ def write_family_id(g,family,index=1):
 def write_line(g,label,value,indent=1):
     if value:
         g.write('%s<%s>%s</%s>\n' % ('  '*indent,label,fix(value),label))
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def write_line(g,label,value,indent=1):
+    if value:
+        g.write('%s<%s>%s</%s>\n' % ('  '*indent,label,fix(value),label))
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def write_date(g,date,indent=1):
+    sp = '  '*indent
+    if date.isEmpty():
+        return
+
+    cal = date.get_calendar()
+    if cal != 0:
+        calstr = 'dpref="%s"' % fix(str(cal))
+    else:
+        calstr = ''
+
+    if date.isRange():
+        d1 = date.get_start_date().getIsoDate()
+        d2 = date.get_stop_date().getIsoDate()
+        g.write('%s<daterange start="%s" stop="%s"%s/>\n' % (sp,d1,d2,calstr))
+    elif date.isValid():
+        d1 = date.get_start_date()
+        mode = d1.getModeVal()
+        dstr = d1.getIsoDate()
+
+        if mode == SingleDate.before:
+            pref = ' type="before"'
+        elif mode == SingleDate.after:
+            pref = ' type="after"'
+        elif mode == SingleDate.about:
+            pref = ' type="about"'
+        else:
+            pref = ""
+            
+        g.write('%s<dateval val="%s"%s%s/>\n' % (sp,dstr,pref,calstr))
+    else:
+        g.write('%s<datestr val="%s"/>\n' %(sp,date.getText()))
 
 #-------------------------------------------------------------------------
 #
@@ -318,23 +366,38 @@ def write_url_list(g, list):
         g.write('/>\n')
 
 def write_place_obj(g,place):
-    title = place.get_title()
+    title = fix(place.get_title())
+    long = place.get_longitude()
+    lat = place.get_latitude()
+    id = place.getId()
+    main_loc = place.get_main_location()
+    llen = len(place.get_alternate_locations()) + len(place.getUrlList()) + \
+           len(place.getPhotoList()) + len(place.getSourceRefList())
+                                                      
+    ml_empty = main_loc.is_empty()
+    note = place.getNote()
 
     if title == "":
-        title = build_place_title(place.get_main_location())
+        title = fix(build_place_title(place.get_main_location()))
     
-    g.write('    <placeobj id="%s" title="%s">\n' % \
-            (place.getId(),fix(title)))
-    if place.get_longitude() != "" or place.get_latitude() != "":
-        g.write('      <coord long="%s" lat=%s"/>\n' % \
-                (fix(place.get_longitude()),fix(place.get_latitude())))
-    dump_location(g,place.get_main_location())
+    g.write('    <placeobj id="%s" title="%s"' % (id,title))
+
+    if long or lat or not ml_empty or llen > 0 or note:
+        g.write('>\n')
+    else:
+        g.write('/>\n')
+        return
+    
+    if long or lat:
+        g.write('      <coord long="%s" lat=%s"/>\n' % (fix(long),fix(lat)))
+
+    dump_location(g,main_loc)
     for loc in place.get_alternate_locations():
         dump_location(g,loc)
     write_photo_list(g,place.getPhotoList())
     write_url_list(g, place.getUrlList())
-    if place.getNote() != "":
-        write_note(g,"note",place.getNote(),3)
+    if note != "":
+        write_note(g,"note",note,3)
     for s in place.getSourceRefList():
         dump_source_ref(g,s,3)
     g.write("    </placeobj>\n")
@@ -472,7 +535,8 @@ def write_xml_data(database, g, callback, sp):
             if len(person.getAddressList()) > 0:
                 for address in person.getAddressList():
                     g.write('      <address%s>\n' % conf_priv(address))
-                    write_line(g,"date",address.getDateObj().getSaveDate(),4)
+                    write_date(g,address.getDateObj(),4)
+#                    write_line(g,"date",address.getDateObj().getSaveDate(),4)
                     write_line(g,"street",address.getStreet(),4)
                     write_line(g,"city",address.getCity(),4)
                     write_line(g,"state",address.getState(),4)

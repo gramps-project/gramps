@@ -19,6 +19,7 @@
 #
 
 from RelLib import *
+from Date import SingleDate
 
 import string
 import utils
@@ -50,12 +51,6 @@ def fix_spaces(text_list):
 #
 #-------------------------------------------------------------------------
 class GrampsParser:
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
 
     def __init__(self,database,callback,base):
         self.stext_list = []
@@ -115,6 +110,7 @@ class GrampsParser:
         p.EndElementHandler = self.endElement
         p.CharacterDataHandler = self.characters
         p.ParseFile(file)
+            
         self.db.setResearcher(self.owner)
         if self.tempDefault != None:
             id = self.tempDefault
@@ -151,22 +147,12 @@ class GrampsParser:
             self.placeobj.set_main_location(loc)
         self.locations = self.locations + 1
         
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_coord(self,attrs):
         if attrs.has_key('lat'):
             self.placeobj.set_latitude(u2l(attrs['lat']))
         if attrs.has_key('long'):
             self.placeobj.set_longitude(u2l(attrs['long']))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_event(self,attrs):
         self.event = Event()
         self.event_type = u2l(attrs["type"])
@@ -177,11 +163,6 @@ class GrampsParser:
         if attrs.has_key("priv"):
             self.event.private = int(attrs["priv"])
         
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_attribute(self,attrs):
         self.attribute = Attribute()
         if attrs.has_key("conf"):
@@ -205,11 +186,6 @@ class GrampsParser:
         elif self.family:
             self.family.addAttribute(self.attribute)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_address(self,attrs):
         self.address = Address()
         self.person.addAddress(self.address)
@@ -220,64 +196,29 @@ class GrampsParser:
         if attrs.has_key("priv"):
             self.address.private = int(attrs["priv"])
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_bmark(self,attrs):
         person = self.db.findPersonNoMap(u2l(attrs["ref"]))
         self.db.bookmarks.append(person)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_person(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
         self.person = self.db.findPersonNoMap(u2l(attrs["id"]))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_people(self,attrs):
         if attrs.has_key("default"):
             self.tempDefault = u2l(attrs["default"])
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_father(self,attrs):
         self.family.Father = self.db.findPersonNoMap(u2l(attrs["ref"]))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_mother(self,attrs):
         self.family.Mother = self.db.findPersonNoMap(u2l(attrs["ref"]))
     
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_child(self,attrs):
         self.family.Children.append(self.db.findPersonNoMap(u2l(attrs["ref"])))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_url(self,attrs):
 
         if not attrs.has_key("href"):
@@ -300,11 +241,6 @@ class GrampsParser:
         except KeyError:
             return
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_family(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
@@ -315,11 +251,6 @@ class GrampsParser:
         else:
             self.family.setRelationship("")
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_childof(self,attrs):
         family = self.db.findFamilyNoMap(u2l(attrs["ref"]))
         if len(attrs) == 1:
@@ -340,19 +271,9 @@ class GrampsParser:
                     type = u2l(attrs["type"])
                     self.person.AltFamilyList.append((family,type,type))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_parentin(self,attrs):
         self.person.FamilyList.append(self.db.findFamilyNoMap(u2l(attrs["ref"])))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_name(self,attrs):
         self.name = Name()
         if attrs.has_key("conf"):
@@ -362,19 +283,9 @@ class GrampsParser:
         if attrs.has_key("priv"):
             self.name.private = int(attrs["priv"])
         
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_note(self,attrs):
         self.in_note = 1
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_sourceref(self,attrs):
         self.source_ref = SourceRef()
         source = self.db.findSourceNoMap(u2l(attrs["ref"]))
@@ -398,11 +309,6 @@ class GrampsParser:
         elif self.placeobj:
             self.placeobj.addSourceRef(self.source_ref)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_source(self,attrs):
         self.source = self.db.findSourceNoMap(u2l(attrs["id"]))
 
@@ -438,11 +344,6 @@ class GrampsParser:
     def stop_objref(self,tag):
         self.objref = None
         
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_photo(self,attrs):
         self.photo = Photo()
         self.pref = ObjectRef()
@@ -477,51 +378,55 @@ class GrampsParser:
         elif self.placeobj:
             self.placeobj.addPhoto(self.pref)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
+    def start_daterange(self,attrs):
+        if self.address:
+            d = self.address.getDateObj()
+        else:
+            d = self.event.getDateObj()
+        d.get_start_date().setIsoDate(attrs['start'])
+        d.get_stop_date().setIsoDate(attrs['stop'])
+        if attrs.has_key("dpref"):
+            d.set_calendar(int(attrs['dpref']))
+        
+    def start_dateval(self,attrs):
+        if self.address:
+            d = self.address.getDateObj()
+        else:
+            d = self.event.getDateObj()
+
+        d.get_start_date().setIsoDate(attrs['val'])
+        
+        if attrs.has_key("type"):
+            d.get_start_date().getMode(attrs['type'])
+        else:
+            d.get_start_date().getMode(None)
+            
+        if attrs.has_key("dpref"):
+            d.set_calendar(int(attrs['dpref']))
+
+    def start_datestr(self,attrs):
+        if self.address:
+            d = self.address.getDateObj()
+        else:
+            d = self.event.getDateObj()
+
+        d.set(attrs['val'])
+
     def start_created(self,attrs):
         self.entries = int(attrs["people"]) + int(attrs["families"])
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_pos(self,attrs):
         self.person.position = (int(attrs["x"]), int(attrs["y"]))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_attribute(self,tag):
         self.attribute = None
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_attr_type(self,tag):
         self.attribute.setType(u2l(tag))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_attr_value(self,tag):
         self.attribute.setValue(u2l(tag))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_address(self,tag):
         self.address = None
         
@@ -537,11 +442,6 @@ class GrampsParser:
             self.placeobj.set_title(build_place_title(loc))
         self.palceobj = None
         
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_event(self,tag):
         self.event.name = self.event_type
 
@@ -556,20 +456,10 @@ class GrampsParser:
                 self.person.EventList.append(self.event)
         self.event = None
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_name(self,tag):
         self.person.PrimaryName = self.name
         self.name = None
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_place(self,tag):
         if self.placeobj == None:
             if self.place_map.has_key(u2l(tag)):
@@ -581,19 +471,9 @@ class GrampsParser:
                 self.place_map[u2l(tag)] = self.placeobj
         self.event.place = self.placeobj
             
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_uid(self,tag):
         self.person.setPafUid(u2l(tag))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_date(self,tag):
         if tag:
             if self.address:
@@ -601,51 +481,21 @@ class GrampsParser:
             else:
                 self.event.setDate(u2l(tag))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_first(self,tag):
         self.name.FirstName = u2l(tag)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_families(self,tag):
         self.family = None
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_people(self,tag):
         self.person = None
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_description(self,tag):
         self.event.setDescription(u2l(tag))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_cause(self,tag):
         self.event.setCause(u2l(tag))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_gender(self,tag):
         t = u2l(tag)
         if t == "M":
@@ -655,43 +505,18 @@ class GrampsParser:
         else:
             self.person.gender = Person.unknown
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_stitle(self,tag):
         self.source.setTitle(u2l(tag))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_sourceref(self,tag):
         self.source_ref = None
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_source(self,tag):
         self.source = None
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_sauthor(self,tag):
         self.source.setAuthor(u2l(tag))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_sdate(self,tag):
         date = Date()
         date.quick_set(u2l(tag))
@@ -712,35 +537,15 @@ class GrampsParser:
     def stop_postal(self,tag):
         self.address.setPostal(u2l(tag))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_spage(self,tag):
         self.source_ref.setPage(u2l(tag))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_spubinfo(self,tag):
         self.source.setPubInfo(u2l(tag))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_scallno(self,tag):
         self.source.setCallNumber(u2l(tag))
         
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_stext(self,tag):
         if self.use_p:
             self.use_p = 0
@@ -749,11 +554,6 @@ class GrampsParser:
             note = u2l(tag)
         self.source_ref.setText(note)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_scomments(self,tag):
         if self.use_p:
             self.use_p = 0
@@ -762,47 +562,22 @@ class GrampsParser:
             note = u2l(tag)
         self.source_ref.setComments(note)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_last(self,tag):
         if self.name:
             self.name.Surname = u2l(tag)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_suffix(self,tag):
         if self.name:
             self.name.Suffix = u2l(tag)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_title(self,tag):
         if self.name:
             self.name.Title = u2l(tag)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_nick(self,tag):
         if self.person:
             self.person.setNickName(u2l(tag))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_note(self,tag):
         self.in_note = 0
         if self.use_p:
@@ -835,84 +610,34 @@ class GrampsParser:
             self.placeobj.setNote(note)
         self.note_list = []
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_research(self,tag):
         self.owner.set(self.resname, self.resaddr, self.rescity, self.resstate,
                        self.rescon, self.respos, self.resphone, self.resemail)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_resname(self,tag):
         self.resname = u2l(tag)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_resaddr(self,tag):
         self.resaddr = u2l(tag)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_rescity(self,tag):
         self.rescity = u2l(tag)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_resstate(self,tag):
         self.resstate = u2l(tag)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_rescountry(self,tag):
         self.rescon = u2l(tag)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_respostal(self,tag):
         self.respos = u2l(tag)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_resphone(self,tag):
         self.resphone = u2l(tag)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_resemail(self,tag):
         self.resemail = u2l(tag)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_ptag(self,tag):
         self.use_p = 1
         if self.in_note:
@@ -922,11 +647,6 @@ class GrampsParser:
         elif self.in_scomments:
             self.scomments_list.append(u2l(tag))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_aka(self,tag):
         self.person.addAlternateName(self.name)
         self.name = None
@@ -970,6 +690,9 @@ class GrampsParser:
         "objref"     : (start_objref, stop_objref),
         "object"     : (start_object, stop_object),
         "place"      : (start_place, stop_place),
+        "dateval"    : (start_dateval, None),
+        "daterange"  : (start_daterange, None),
+        "datestr"    : (start_datestr, None),
         "places"     : (None, stop_places),
         "placeobj"   : (start_placeobj,stop_placeobj),
         "location"   : (start_location,None),
@@ -1004,11 +727,6 @@ class GrampsParser:
         "url"        : (start_url, None)
         }
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def startElement(self,tag,attrs):
 
         self.func_list[self.func_index] = (self.func,self.tlist)
@@ -1022,12 +740,6 @@ class GrampsParser:
         except KeyError:
             GrampsParser.func_map[tag] = (None,None)
             self.func = None
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
 
     def endElement(self,tag):
 
@@ -1047,58 +759,28 @@ class GrampsParser:
 #-------------------------------------------------------------------------
 class GrampsImportParser(GrampsParser):
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_bmark(self,attrs):
         person = self.db.findPerson("x%s" % u2l(attrs["ref"]),self.pmap)
         self.db.bookmarks.append(person)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_person(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
         self.person = self.db.findPerson("x%s" % u2l(attrs["id"]),self.pmap)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_father(self,attrs):
         father = self.db.findPerson("x%s" % u2l(attrs["ref"]),self.pmap)
         self.family.setFather(father)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_mother(self,attrs):
         mother = self.db.findPerson("x%s" % u2l(attrs["ref"]),self.pmap)
         self.family.setMother(mother)
     
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_child(self,attrs):
         child = self.db.findPerson("x%s" % u2l(attrs["ref"]),self.pmap)
         self.family.addChild(child)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_family(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
@@ -1107,11 +789,6 @@ class GrampsImportParser(GrampsParser):
         if attrs.has_key("type"):
             self.family.setRelationship(u2l(attrs["type"]))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_childof(self,attrs):
         family = self.db.findFamily(u2l(attrs["ref"]),self.fmap)
         if attrs.has_key("type"):
@@ -1120,11 +797,6 @@ class GrampsImportParser(GrampsParser):
         else:
             self.person.setMainFamily(family)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_sourceref(self,attrs):
         self.source_ref = SourceRef()
         self.source = self.db.findSource(u2l(attrs["ref"]),self.smap)
@@ -1142,11 +814,6 @@ class GrampsImportParser(GrampsParser):
         else: 
             print "Sorry, I'm lost"
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_source(self,attrs):
         self.source = self.db.findSource(u2l(attrs["id"]),self.smap)
 

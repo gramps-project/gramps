@@ -40,6 +40,7 @@ from gnome.ui import GnomeErrorDialog
 #-------------------------------------------------------------------------
 from RelLib import *
 from GrampsParser import GrampsParser, GrampsImportParser
+from xml.parsers.expat import ExpatError
 from intl import gettext
 _ = gettext
 
@@ -95,6 +96,9 @@ def importData(database, filename, callback):
         
     try:
         parser.parse(xml_file)
+    except ExpatError,msg:
+        errmsg = "%s\n%s" % (_("Error reading %s") % filename,str(msg))
+        GnomeErrorDialog(errmsg)
     except IOError,msg:
         GnomeErrorDialog(_("Error reading %s") % filename + "\n" + str(msg))
         import traceback
@@ -152,6 +156,9 @@ def loadData(database, filename, callback=None):
 
     try:
         parser.parse(xml_file)
+    except ExpatError,msg:
+        errmsg = "%s\n%s" % (_("Error reading %s") % filename,str(msg))
+        GnomeErrorDialog(errmsg)
     except IOError,msg:
         errmsg = "%s\n%s" % (_("Error reading %s") % filename,str(msg))
         GnomeErrorDialog(errmsg)

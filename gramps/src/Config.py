@@ -105,6 +105,7 @@ nameof        = utils.normal_name
 display_attr  = 0
 attr_name     = ""
 status_bar    = 0
+calendar      = 0
 paper_preference = None
 output_preference = None
 report_dir    = "./"
@@ -157,6 +158,7 @@ def loadConfig(call):
     global autoload
     global owner
     global usetabs
+    global calendar
     global usevc
     global iprefix
     global fprefix
@@ -187,6 +189,7 @@ def loadConfig(call):
     _callback = call
     lastfile = get_string("/gramps/data/LastFile")
     usetabs = get_bool("/gramps/config/UseTabs")
+    calendar = get_bool("/gramps/config/ShowCalendar")
     usevc = get_bool("/gramps/config/UseVersionControl")
     vc_comment = get_bool("/gramps/config/UseComment")
     uncompress = get_bool("/gramps/config/DontCompressXML")
@@ -279,6 +282,8 @@ def loadConfig(call):
         autoload = 1
     if usetabs == None:
         usetabs = 0
+    if calendar == None:
+        calendar = 0
     if usevc == None:
         usevc = 0
     if vc_comment == None:
@@ -390,6 +395,7 @@ def on_propertybox_apply(obj,page):
     global nameof
     global owner
     global usetabs
+    global calendar
     global usevc
     global iprefix
     global fprefix
@@ -420,6 +426,7 @@ def on_propertybox_apply(obj,page):
     display_attr = prefsTop.get_widget("attr_display").get_active()
     attr_name = string.strip(prefsTop.get_widget("attr_name").get_text())
     usetabs = prefsTop.get_widget("usetabs").get_active()
+    calendar = prefsTop.get_widget("calendar").get_active()
     usevc = prefsTop.get_widget("use_vc").get_active()
     vc_comment = prefsTop.get_widget("vc_comment").get_active()
     uncompress = prefsTop.get_widget("uncompress").get_active()
@@ -469,6 +476,7 @@ def on_propertybox_apply(obj,page):
     output_preference = output_obj.get_data(DATA)
     
     set_bool("/gramps/config/UseTabs",usetabs)
+    set_bool("/gramps/config/ShowCalendar",calendar)
     set_bool("/gramps/config/UseVersionControl",usevc)
     set_bool("/gramps/config/UseComment",vc_comment)
     set_bool("/gramps/config/DontCompressXML",uncompress)
@@ -631,6 +639,7 @@ def display_preferences_box(db):
     idedit = prefsTop.get_widget("gid_edit")
     index_vis = prefsTop.get_widget("show_child_id")
     tabs = prefsTop.get_widget("usetabs")
+    cal = prefsTop.get_widget("calendar")
     vc = prefsTop.get_widget("use_vc")
     vcom = prefsTop.get_widget("vc_comment")
     compress = prefsTop.get_widget("uncompress")
@@ -640,6 +649,7 @@ def display_preferences_box(db):
     auto.set_active(autoload)
     detail.set_active(show_detail)
     tabs.set_active(usetabs)
+    cal.set_active(calendar)
     vc.set_active(usevc)
     vcom.set_active(vc_comment)
     compress.set_active(uncompress)

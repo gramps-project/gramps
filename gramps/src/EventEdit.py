@@ -35,6 +35,7 @@ import libglade
 import Sources
 import const
 import utils
+import Config
 from RelLib import *
 
 #-------------------------------------------------------------------------
@@ -64,7 +65,13 @@ class EventEditor:
         self.note_field = self.top.get_widget("eventNote")
         self.event_menu = self.top.get_widget("personalEvents")
         self.priv = self.top.get_widget("priv")
+        self.calendar = self.top.get_widget("calendar")
 
+        if Config.calendar:
+            self.calendar.show()
+        else:
+            self.calendar.hide()
+        
         self.top.get_widget("eventTitle").set_text(name) 
         self.event_menu.set_popdown_strings(list)
         if read_only:
