@@ -32,7 +32,7 @@ import libglade
 #-------------------------------------------------------------------------
 import const
 import utils
-from RelLib import *
+import Date
 
 from intl import gettext
 _ = gettext
@@ -43,13 +43,20 @@ _ = gettext
 #
 #-------------------------------------------------------------------------
 class AddressEditor:
-
+    """
+    Displays a dialog that allows the user to edit a address.
+    """
     def __init__(self,parent,addr):
-        self.parent = parent
-        self.addr = addr
+        """
+        Displays the dialog box.
+
+        parent - The class that called the Address editor.
+        addr - The address that is to be edited
+        """
+        # Get the important widgets from the glade description
         self.top = libglade.GladeXML(const.editPersonFile, "addr_edit")
         self.window = self.top.get_widget("addr_edit")
-        self.addr_start  = self.top.get_widget("address_start")
+        self.addr_start = self.top.get_widget("address_start")
         self.street = self.top.get_widget("street")
         self.city = self.top.get_widget("city")
         self.state = self.top.get_widget("state")
@@ -58,10 +65,8 @@ class AddressEditor:
         self.note_field = self.top.get_widget("addr_note")
         self.priv = self.top.get_widget("priv")
 
-        if self.addr:
-            self.srcreflist = self.addr.getSourceRefList()
-        else:
-            self.srcreflist = []
+        self.parent = parent
+        self.addr = addr
 
         name = parent.person.getPrimaryName().getName()
         text = _("Address Editor for %s") % name
@@ -76,30 +81,37 @@ class AddressEditor:
         self.window.editable_enters(self.postal);
         self.window.editable_enters(self.note_field);
         
-        if self.addr != None:
+        if self.addr:
+            self.srcreflist = self.addr.getSourceRefList()
             self.addr_start.set_text(self.addr.getDate())
             self.street.set_text(self.addr.getStreet())
             self.city.set_text(self.addr.getCity())
             self.state.set_text(self.addr.getState())
             self.country.set_text(self.addr.getCountry())
             self.postal.set_text(self.addr.getPostal())
-                 
             self.priv.set_active(self.addr.getPrivacy())
             self.note_field.set_point(0)
             self.note_field.insert_defaults(self.addr.getNote())
             self.note_field.set_word_wrap(1)
+        else:
+            self.srcreflist = []
 
         self.top.signal_autoconnect({
             "destroy_passed_object"   : utils.destroy_passed_object,
-            "on_addr_edit_ok_clicked" : self.on_addr_edit_ok_clicked,
-            "on_source_clicked"       : self.on_addr_source_clicked
+            "on_addr_edit_ok_clicked" : self.ok_clicked,
+            "on_source_clicked"       : self.source_clicked
             })
 
-    def on_addr_source_clicked(self,obj):
+    def source_clicked(self,obj):
+        """Displays the SourceSelector, allowing sources to be edited"""
         import Sources
         Sources.SourceSelector(self.srcreflist,self.parent,src_changed)
 
-    def on_addr_edit_ok_clicked(self,obj):
+    def ok_clicked(self,obj):
+        """
+        Called when the OK button is pressed. Gets data from the
+        form and updates the Address data structure
+        """
         date = self.addr_start.get_text()
         street = self.street.get_text()
         city = self.city.get_text()
@@ -114,45 +126,55 @@ class AddressEditor:
             self.addr.setSourceRefList(self.srcreflist)
             self.parent.plist.append(self.addr)
             
-        self.update_address(date,street,city,state,country,postal,note,priv)
+        self.update(date,street,city,state,country,postal,note,priv)
         self.parent.redraw_addr_list()
         utils.destroy_passed_object(obj)
 
-    def update_address(self,date,street,city,state,country,postal,note,priv):
-        d = Date()
+    def check(self,get,set,data):
+        """Compares a data item, updates if necessary, and sets the
+        parents lists_changed flag"""
+        if get() != data:
+            set(data)
+            self.parent.lists_changed = 1
+            
+    def update(self,date,street,city,state,country,postal,note,priv):
+        """Compares the data items, and updates if necessary"""
+        d = Date.Date()
         d.set(date)
 
         if self.addr.getDate() != d.getDate():
             self.addr.setDate(date)
             self.parent.lists_changed = 1
         
-        if self.addr.getState() != state:
-            self.addr.setState(state)
-            self.parent.lists_changed = 1
+        self.check(self.addr.getDate,self.addr.setDate,state)
+        self.check(self.addr.getStreet,self.addr.setStreet,street)
+        self.check(self.addr.getCountry,self.addr.setCountry,country)
+        self.check(self.addr.getCity,self.addr.setCity,city)
+        self.check(self.addr.getPostal,self.addr.setPostal,postal)
+        self.check(self.addr.getNote,self.addr.setNote,note)
+        self.check(self.addr.getPrivacy,self.addr.setPrivacy,priv)
 
-        if self.addr.getStreet() != street:
-            self.addr.setStreet(street)
-            self.parent.lists_changed = 1
-
-        if self.addr.getCountry() != country:
-            self.addr.setCountry(country)
-            self.parent.lists_changed = 1
-
-        if self.addr.getCity() != city:
-            self.addr.setCity(city)
-            self.parent.lists_changed = 1
-
-        if self.addr.getPostal() != postal:
-            self.addr.setPostal(postal)
-            self.parent.lists_changed = 1
-
-        if self.addr.getNote() != note:
-            self.addr.setNote(note)
-            self.parent.lists_changed = 1
-
-        if self.addr.getPrivacy() != priv:
-            self.addr.setPrivacy(priv)
-            self.parent.lists_changed = 1
+#        if self.addr.getState() != state:
+#            self.addr.setState(state)
+#            self.parent.lists_changed = 1
+#        if self.addr.getStreet() != street:
+#            self.addr.setStreet(street)
+#            self.parent.lists_changed = 1
+#        if self.addr.getCountry() != country:
+#            self.addr.setCountry(country)
+#            self.parent.lists_changed = 1
+#        if self.addr.getCity() != city:
+#            self.addr.setCity(city)
+#            self.parent.lists_changed = 1
+#        if self.addr.getPostal() != postal:
+#            self.addr.setPostal(postal)
+#            self.parent.lists_changed = 1
+#        if self.addr.getNote() != note:
+#            self.addr.setNote(note)
+#            self.parent.lists_changed = 1
+#        if self.addr.getPrivacy() != priv:
+#            self.addr.setPrivacy(priv)
+#            self.parent.lists_changed = 1
 
 def src_changed(parent):
     parent.lists_changed = 1

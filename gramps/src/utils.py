@@ -103,34 +103,25 @@ def phonebook_name(person):
         return ""
 
 def family_name(family):
+    """Builds a name for the family from the parents names"""
     father = family.getFather()
     mother = family.getMother()
     if father and mother:
-        name = _("%s and %s") % (father.getPrimaryName().getName(),mother.getPrimaryName().getName())
+        fname = father.getPrimaryName().getName()
+        mname = mother.getPrimaryName().getName()
+        name = _("%s and %s") % (fname,mname)
     elif father:
         name = father.getPrimaryName().getName()
     else:
         name = mother.getPrimaryName().getName()
     return name
         
-#-------------------------------------------------------------------------
-#
-# Short hand function to return either the person's name, or an empty
-# string if the person is None
-#
-#-------------------------------------------------------------------------
 def phonebook_from_name(name,alt):
     if alt:
         return "%s *" % name.getName()
     else:
         return name.getName()
 
-#-------------------------------------------------------------------------
-#
-# Short hand function to return either the person's name, or an empty
-# string if the person is None
-#
-#-------------------------------------------------------------------------
 def normal_name(person):
     if person:
         return person.getPrimaryName().getRegularName()
@@ -155,33 +146,15 @@ def destroy_passed_object(obj):
 #-------------------------------------------------------------------------
 
 if string.find("%.3f" % 1.2, ",") == -1:
-    _use_comma = 0
-else:
-    _use_comma = 1
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-if _use_comma:
-    def txt2fl(st):
-        return string.atof(string.replace(st,'.',','))
-else:
     def txt2fl(st):
         return string.atof(string.replace(st,',','.'))
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-if _use_comma:
-    def fl2txt(fmt,val):
-        return string.replace(fmt % val, ',', '.')
-else:
     def fl2txt(fmt,val):
         return fmt % val
+else:
+    def txt2fl(st):
+        return string.atof(string.replace(st,'.',','))
+    def fl2txt(fmt,val):
+        return string.replace(fmt % val, ',', '.')
 
 #-------------------------------------------------------------------------
 #
@@ -478,7 +451,6 @@ def combo_insert_text(combo,new_text,new_text_len,i_dont_care):
     timer = gtk.timeout_add(5, combo_timer_callback, combo)
     combo.set_data("timer", timer);
 
-
 #-------------------------------------------------------------------------
 #
 # The combo box entry field lost focus.  Go clear any selection.  Why
@@ -488,7 +460,6 @@ def combo_insert_text(combo,new_text,new_text_len,i_dont_care):
 #-------------------------------------------------------------------------
 def combo_lost_focus(entry,a,b):
     entry.select_region(0, 0)
-
 
 #-------------------------------------------------------------------------
 #

@@ -43,19 +43,22 @@ FRENCH = 3
 #
 #-------------------------------------------------------------------------
 _fmonth = [
-    "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse",
-    "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor",
-    "Fructidor", "Extra", ]
+    "Vendémiaire", "Brumaire",  "Frimaire", "Nivôse",   "Pluviôse",
+    "Ventôse",     "Germinal",  "Floréal",  "Prairial", "Messidor",
+    "Thermidor",   "Fructidor", "Extra",
+    ]
 
 _fmonth2num = {
     "vend" : 0, "brum" : 1, "frim" : 2, "nivo" : 3, "pluv" : 4,
     "vent" : 5, "germ" : 6, "flor" : 7, "prai" : 8, "mess" : 9,
-    "ther" :10, "fruc" :11, "extr" : 12,"comp" :12, "nivô" : 3 }
+    "ther" :10, "fruc" :11, "extr" : 12,"comp" :12, "nivô" : 3
+    }
 
 _hmonth = [
     "Tishri", "Heshvan", "Kislev", "Tevet",  "Shevat", "AdarI",
-    "AdarII", "Nisan",  "Iyyar",   "Sivan",  "Tammuz", "Av",     "Elul"
-]
+    "AdarII", "Nisan",  "Iyyar",   "Sivan",  "Tammuz", "Av",
+    "Elul",
+    ]
 
 _hmonth2num = {
     "tishri" : 0, "heshvan" : 1, "kislev" : 2, "tevet" : 3,
@@ -67,23 +70,20 @@ _hmonth2num = {
     "aav"    :11, "ell"     :12,
     }
 
-_mname = [ _("January"),   _("February"),  _("March"),    _("April"),
-           _("May"),       _("June"),      _("July"),     _("August"),
-           _("September"), _("October"),   _("November"), _("December") ]
+_mname = [
+    _("January"),   _("February"),  _("March"),    _("April"),
+    _("May"),       _("June"),      _("July"),     _("August"),
+    _("September"), _("October"),   _("November"), _("December")
+    ]
 
-_m2num = { string.lower(_mname[0][0:3]) : 0,
-           string.lower(_mname[1][0:3]) : 1,
-           string.lower(_mname[2][0:3]) : 2,
-           string.lower(_mname[3][0:3]) : 3,
-           string.lower(_mname[4][0:3]) : 4,
-           string.lower(_mname[5][0:3]) : 5,
-           string.lower(_mname[6][0:3]) : 6,
-           string.lower(_mname[7][0:3]) : 7,
-           string.lower(_mname[8][0:3]) : 8,
-           string.lower(_mname[9][0:3]) : 9,
-           string.lower(_mname[10][0:3]) : 10,
-           string.lower(_mname[11][0:3]) : 11 }
-
+_m2num = {
+    string.lower(_mname[0][0:3]): 0,   string.lower(_mname[1][0:3]): 1,
+    string.lower(_mname[2][0:3]): 2,   string.lower(_mname[3][0:3]): 3,
+    string.lower(_mname[4][0:3]): 4,   string.lower(_mname[5][0:3]): 5,
+    string.lower(_mname[6][0:3]): 6,   string.lower(_mname[7][0:3]): 7,
+    string.lower(_mname[8][0:3]): 8,   string.lower(_mname[9][0:3]): 9,
+    string.lower(_mname[10][0:3]): 10, string.lower(_mname[11][0:3]): 11
+    }
 
 UNDEF = -999999
 
@@ -97,9 +97,6 @@ class Date:
     entryCode = 0
     
     Error = "Illegal Date"
-
-    range = 1
-    normal = 0
 
     # The last part of these two strings must remain untranslated.  It
     # is required to read saved data from XML.
@@ -146,15 +143,6 @@ class Date:
 
     def getYear(self):
         return self.start.year
-
-    def getHighYear(self):
-        if self.stop == None:
-            return self.start.year
-        else:
-            return self.stop.year
-
-    def getLowYear(self):
-        return self.start.getYear()
 
     def getMonth(self):
         if self.start.month == UNDEF:
@@ -264,16 +252,6 @@ class Date:
             d2 = self.stop.display_calendar(month_map)
             return "%s %s %s %s (%s)" % ( _("from"),d1,_("to"), d2,cal_str)
 
-    def getSaveDate(self):
-	if self.range == 1:
-            d1 = self.start.getSaveDate()
-            d2 = self.stop.getSaveDate()
-	    return "FROM %s TO %s" % (d1,d2)
-        elif self.range == -1:
-            return self.text
-	else:
-            return self.start.getSaveDate()
-
     def isEmpty(self):
         s = self.start
         return s.year==UNDEF and s.month==UNDEF and s.day==UNDEF
@@ -315,31 +293,29 @@ class SingleDate:
     before = 2
     after = 3
     
-    emname =[ 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
-              'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC' ]
+    emname =[
+        'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
+        'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'
+        ]
 
-    em2num ={ "jan" : 0, "feb" : 1, "mar" : 2, "apr" : 3,
-              "may" : 4, "jun" : 5, "jul" : 6, "aug" : 7,
-              "sep" : 8, "oct" : 9, "nov" : 10,"dec" : 11 }
+    em2num ={
+        "jan" : 0, "feb" : 1, "mar" : 2, "apr" : 3,
+        "may" : 4, "jun" : 5, "jul" : 6, "aug" : 7,
+        "sep" : 8, "oct" : 9, "nov" : 10,"dec" : 11
+        }
 
-    m2v = { _("abt")    : about ,
-            _("about")  : about,
-            _("abt.")   : about,
-            _("est")    : about ,
-            _("est.")   : about ,
-            _("circa")  : about,
-            _("around") : about,
-            _("before") : before,
-            _("bef")    : before,
-            _("bef.")   : before,
-            _("after")  : after,
-            _("aft.")   : after,
-            _("aft")    : after,
+    m2v = {
+        _("abt")    : about ,  _("about")  : about,
+        _("abt.")   : about,   _("est")    : about ,
+        _("est.")   : about ,  _("circa")  : about,
+        _("around") : about,   _("before") : before,
+        _("bef")    : before,  _("bef.")   : before,
+        _("after")  : after,   _("aft.")   : after,
+        _("aft")    : after,
             # And the untranslated versions for reading saved data from XML.
-            "abt"	: about,
-            "about"	: about,
-            "after"	: after,
-            "before"	: before }
+        "abt"	: about,        "about"	: about,
+        "after"	: after,        "before": before
+        }
 
     modifiers = '(' + \
                 _("abt\.?") + '|' + \
@@ -355,15 +331,14 @@ class SingleDate:
     
     start = "^\s*" + modifiers + "?\s*"
     
-    fmt1 = compile(start + "(\S+)(\s+\d+\s*,)?\s*(\d+)?\s*$", IGNORECASE)
-    fmt2 = compile(start + "(\d+)\.?\s+(\S+)(\s+\d+)?\s*$", IGNORECASE)
-    quick= compile(start + "(\d+)?\s(\S\S\S)?\s(\d+)?", IGNORECASE)
-    fmt3 = compile(start + r"([?\d]+)\s*[./-]\s*([?\d]+)\s*[./-]\s*([?\d]+)\s*$",
+    fmt1 = compile(start+"(\S+)(\s+\d+\s*,)?\s*(\d+)?\s*$", IGNORECASE)
+    fmt2 = compile(start+"(\d+)\.?\s+(\S+)(\s+\d+)?\s*$", IGNORECASE)
+    fmt3 = compile(start+r"([?\d]+)\s*[./-]\s*([?\d]+)\s*[./-]\s*([?\d]+)\s*$",
                       IGNORECASE)
-    fmt7 = compile(start + r"([?\d]+)\s*[./-]\s*([?\d]+)\s*$", IGNORECASE)
-    fmt4 = compile(start + "(\S+)\s+(\d+)\s*$", IGNORECASE)
-    fmt5 = compile(start + "(\d+)\s*$", IGNORECASE)
-    fmt6 = compile(start + "(\S+)\s*$", IGNORECASE)
+    fmt7 = compile(start+r"([?\d]+)\s*[./-]\s*([?\d]+)\s*$", IGNORECASE)
+    fmt4 = compile(start+"(\S+)\s+(\d+)\s*$", IGNORECASE)
+    fmt5 = compile(start+"(\d+)\s*$", IGNORECASE)
+    fmt6 = compile(start+"(\S+)\s*$", IGNORECASE)
 
     def __init__(self,source=None):
         if source:
@@ -383,8 +358,7 @@ class SingleDate:
         if val == None:
             self.mode = SingleDate.exact
         else:
-            val = string.lower(val)
-            self.mode = SingleDate.m2v[val]
+            self.mode = SingleDate.m2v[string.lower(val)]
 
     def setMonth(self,val):
         if val > 12 or val < 0:
@@ -435,6 +409,7 @@ class SingleDate:
             self.month = _m2num[string.lower(text[0:3])]
         except KeyError:
             self.setMonthStrEng(text)
+            raise Date.Error,text
 
     def setMonthStrEng(self,text):
         try:
@@ -463,33 +438,6 @@ class SingleDate:
             d = "-%02d" % self.day
         return "%s%s%s" % (y,m,d)
         
-    def getSaveDate(self):
-        if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
-            return ""
-        elif self.day == UNDEF:
-            if self.month == UNDEF:
-                retval = str(self.year)
-            elif self.year == UNDEF:
-                retval = SingleDate.emname[self.month]
-            else:	
-                retval = "%s %d" % (SingleDate.emname[self.month],self.year)
-        elif self.month == UNDEF:
-            retval = str(self.year)
-        else:
-            month = SingleDate.emname[self.month]
-            if self.year == UNDEF:
-                retval = "%d %s ????" % (self.day,month)
-            else:
-                retval = "%d %s %d" % (self.day,month,self.year)
-
-        if self.mode == SingleDate.about:
-            retval = "ABOUT %s"  % retval
-        elif self.mode == SingleDate.before:
-            retval = "BEFORE" + " " + retval
-        elif self.mode == SingleDate.after:
-            retval = "AFTER" + " " + retval
-        return retval
-
     def get_fmt1(self):
         if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
             return ""
@@ -841,8 +789,6 @@ class SingleDate:
             matches = match.groups()
             self.setMode(matches[0])
             self.setMonthStr(matches[2])
-            if self.month == UNDEF:
-                raise Date.Error,text
             self.day = int(matches[1])
             if len(matches) == 4 and matches[3] != None:
                 self.setYearVal(matches[3])
@@ -891,21 +837,14 @@ class SingleDate:
 
         match = SingleDate.fmt1.match(text)
         if match != None:
-            matches = match.groups()
-            self.setMode(matches[0])
-            self.setMonthStr(matches[1])
-            if self.month == UNDEF:
-                raise Date.Error,text
-            val = matches[2]
-            if val:
-                self.day = int(string.replace(val,',',''))
+            (mode,mon,day,year) = match.groups()
+            self.setMode(mode)
+            self.setMonthStr(mon)
+            if day:
+                self.setDayVal(int(string.replace(day,',','')))
             else:
                 self.day = UNDEF
-            val = matches[3]
-            if val:
-                self.setYearVal(matches[3])
-            else:
-                self.setYearVal(UNDEF)
+            self.setYearVal(year)
             return 1
 
         match = SingleDate.fmt4.match(text)
@@ -913,8 +852,6 @@ class SingleDate:
             matches = match.groups()
             self.setMode(matches[0])
             self.setMonthStr(matches[1])
-            if self.month == UNDEF:
-                raise Date.Error,text
             self.day = UNDEF
             if len(matches) == 4:
                 self.setYearVal(matches[3])
@@ -1006,38 +943,6 @@ def compare_dates(f,s):
             return cmp(first.month,second.month)
         else:
             return cmp(first.day,second.day)
-
             
 _func = SingleDate.fmtFunc[0]
 
-if __name__ == "__main__":
-
-    def checkit(s):
-        d = Date()
-        d.set(s)
-        print s, ':', d.getDate(), ':', d.getQuoteDate()
-
-    for code in range(0,7):
-        Date.formatCode = code
-        Date.entryCode = 0
-        print "\nFormat Code = %d\n" % code
-        checkit("June 11")
-        checkit("1923")
-        checkit("11/12/1293")
-        checkit("11 JAN 1923")
-        checkit("11-1-1929")
-        checkit("4/3/1203")
-        checkit("3/1203")
-        checkit("?/3/1203")
-        checkit("January 4, 1923")
-        checkit("before 3/3/1239")
-        checkit("est 2-3-1023")
-        checkit("between January 4, 1234 and NOV 4, 1245")
-        checkit("from 3-2-1234 to 5-4-2345")
-        Date.entryCode = 1
-        checkit("1/12/1999")
-        checkit("12/11/1999")
-        checkit("summer")
-
-    print "----------"
-    checkit("BET. 1994 - 1999")

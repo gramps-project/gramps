@@ -79,6 +79,7 @@ revisionFile   = "%s/revision.glade" % rootDir
 srcselFile     = "%s/srcsel.glade" % rootDir
 findFile       = "%s/find.glade" % rootDir
 mergeFile      = "%s/mergedata.glade" % rootDir
+traceFile      = "%s/trace.glade" % rootDir
 pluginsDir     = "%s/plugins" % rootDir
 filtersDir     = "%s/filters" % rootDir
 dataDir        = "%s/data" % rootDir

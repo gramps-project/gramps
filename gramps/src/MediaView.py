@@ -277,18 +277,15 @@ class MediaView:
     def on_drag_data_get(self,w, context, selection_data, info, time):
         if info == 1:
             return
-        if len(w.selection) > 0:
-            row = w.selection[0]
-            d = w.get_row_data(row)
-            id = d.getId()
-            selection_data.set(selection_data.target, 8, id)	
+        d = w.get_row_data(w.focus_row)
+        id = d.getId()
+        selection_data.set(selection_data.target, 8, id)	
 
     def on_drag_data_received(self,w, context, x, y, data, info, time):
         import urlparse
         if data and data.format == 8:
             d = string.strip(string.replace(data.data,'\0',' '))
             protocol,site,file, j,k,l = urlparse.urlparse(d)
-            print protocol,site,file,j,k,l
             if protocol == "file":
                 name = file
                 mime = utils.get_mime_type(name)

@@ -43,26 +43,19 @@ def soundex(str):
     "Return the soundex value to a string argument."
 
     str = string.strip(string.upper(str))
-
     if not str:
 	return "Z000"
-
     str2 = str[0]
-
     str = string.translate(str, TABLE, IGNORE)
-
     if not str:
         return "Z000"
-    
     prev = str[0]
     for x in str[1:]:
 	if x != prev and x != "0":
 	    	str2 = str2 + x
 	prev = x
-
     # pad with zeros
     str2 = str2+"0000"
-
     return str2[:4]
 
 #-------------------------------------------------------------------------
@@ -72,5 +65,4 @@ def soundex(str):
 #-------------------------------------------------------------------------
 def compare(str1, str2):
     "1 if strings are close. 0 otherwise."
-
     return soundex(str1) == soundex(str2)

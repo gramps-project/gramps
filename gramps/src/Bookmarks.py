@@ -53,28 +53,21 @@ _NAMEINST = "namelist"
 class Bookmarks :
     "Handle the bookmarks interface for Gramps"
     
-    #---------------------------------------------------------------------
-    #
-    # __init__ - Creates a the bookmark editor
-    #
-    # arguments are:
-    #    bookmarks - list of People
-    #    menu - parent menu to attach users
-    #    callback - task to connect to the menu item as a callback
-    #
-    #---------------------------------------------------------------------
     def __init__(self,bookmarks,menu,callback):
+        """
+        Creates a the bookmark editor
+
+        bookmarks - list of People
+        menu - parent menu to attach users
+        callback - task to connect to the menu item as a callback
+        """
         self.menu = menu
         self.bookmarks = bookmarks
         self.callback = callback
         self.redraw()
 
-    #---------------------------------------------------------------------
-    #
-    # redraw - (re)create the pulldown menu
-    #
-    #---------------------------------------------------------------------
     def redraw(self):
+        """Create the pulldown menu"""
         if len(self.bookmarks) > 0:
             self.myMenu = gtk.GtkMenu()
             for person in self.bookmarks:
@@ -85,39 +78,30 @@ class Bookmarks :
             self.menu.remove_submenu()
             self.menu.set_sensitive(0)
 
-    #---------------------------------------------------------------------
-    #
-    # add - adds the person to the bookmarks, appended to the botom
-    #
-    #---------------------------------------------------------------------
     def add(self,person):
+        """appends the person to the bottom of the bookmarks"""
         if person not in self.bookmarks:
             utils.modified()
             self.bookmarks.append(person)
             self.redraw()
 
-    #---------------------------------------------------------------------
-    #
-    # add_to_menu - adds a person's name to the drop down menu
-    #
-    #---------------------------------------------------------------------
     def add_to_menu(self,person):
+        """adds a person's name to the drop down menu"""
         item = gtk.GtkMenuItem(person.getPrimaryName().getName())
         item.connect("activate", self.callback, person)
         item.show()
         self.myMenu.append(item)
         
-    #---------------------------------------------------------------------
-    #
-    # edit - display the bookmark editor.
-    #
-    # The current bookmarked people are inserted into the namelist,
-    # attaching the person object to the corresponding row. The currently
-    # selected row is attached to the name list. This is either 0 if the
-    # list is not empty, or -1 if it is.
-    #
-    #---------------------------------------------------------------------
     def edit(self):
+        """
+        display the bookmark editor.
+
+        The current bookmarked people are inserted into the namelist,
+        attaching the person object to the corresponding row. The currently
+        selected row is attached to the name list. This is either 0 if the
+        list is not empty, or -1 if it is.
+        """
+        
         top = libglade.GladeXML(const.bookFile,_TOPINST)
         self.namelist = top.get_widget(_NAMEINST)
         index = 0
@@ -127,41 +111,43 @@ class Bookmarks :
             index = index + 1
 
         top.signal_autoconnect({
-            "on_ok_clicked"     : self.on_ok_clicked,
-            "on_down_clicked"   : self.on_down_clicked,
-            "on_up_clicked"     : self.on_up_clicked,
-            "on_delete_clicked" : self.on_delete_clicked,
-            "on_cancel_clicked" : self.on_cancel_clicked
+            "on_ok_clicked"     : self.ok_clicked,
+            "on_down_clicked"   : self.down_clicked,
+            "on_up_clicked"     : self.up_clicked,
+            "on_delete_clicked" : self.delete_clicked,
+            "on_cancel_clicked" : self.cancel_clicked
             })
 
-    def on_delete_clicked(self,obj):
+    def delete_clicked(self,obj):
+        """Removes the current selection from the list"""
         if len(obj.selection) > 0:
-            index = obj.selection[0]
-            obj.remove(index)
+            obj.remove(obj.selection[0])
 
-    def on_up_clicked(self,obj):
+    def up_clicked(self,obj):
+        """Moves the current selection up one row"""
         if len(obj.selection) > 0:
             index = obj.selection[0]
             obj.swap_rows(index-1,index)
 
-    def on_down_clicked(self,obj):
+    def down_clicked(self,obj):
+        """Moves the current selection down one row"""
         if len(obj.selection) > 0:
             index = obj.selection[0]
             if index != obj.rows-1:
                 obj.swap_rows(index+1,index)
 
-    def on_ok_clicked(self,obj):
+    def ok_clicked(self,obj):
+        """Saves the current bookmarks from the list"""
         del self.bookmarks[0:]
-    
         for index in range(0,self.namelist.rows):
             person = self.namelist.get_row_data(index)
             if person:
                 self.bookmarks.append(person)
-
         self.redraw()
         obj.destroy()
     
-    def on_cancel_clicked(self,obj):
+    def cancel_clicked(self,obj):
+        """Closes the current window"""
         obj.destroy()
 
 

@@ -18,13 +18,13 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------
 #
 # The original algorithms for this module came from Scott E. Lee's
 # C implementation. The original C source can be found at Scott's
 # web site at http://www.scottlee.com
 #
-
-
+#-------------------------------------------------------------------
 
 _FR_SDN_OFFSET         = 2375474
 _FR_DAYS_PER_4_YEARS   = 1461
@@ -59,8 +59,14 @@ _NOON = (18 * _HALAKIM_PER_HOUR)
 _AM3_11_20 = ((9 * _HALAKIM_PER_HOUR) + 204)
 _AM9_32_43 = ((15 * _HALAKIM_PER_HOUR) + 589)
 
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
 monthsPerYear = [
-    12, 12, 13, 12, 12, 13, 12, 13, 12, 12, 13, 12, 12, 13, 12, 12, 13, 12, 13
+    12, 12, 13, 12, 12, 13, 12, 13, 12,
+    12, 13, 12, 12, 13, 12, 12, 13, 12, 13
 ]
 
 yearOffset = [
@@ -68,21 +74,27 @@ yearOffset = [
     136, 148, 160, 173, 185, 197, 210, 222
 ]
 
-def french_to_sdn(year,month,day):
-    if (year < 1 or year > 14 or month < 1 or month > 13 or day < 1 or day > 30):
-	return 0
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
 
-    return (year*_FR_DAYS_PER_4_YEARS)/4 + (month-1)*_FR_DAYS_PER_MONTH + day +_FR_SDN_OFFSET
+def french_to_sdn(y,m,d):
+    """Converts a French Republican Calendar date to an SDN number"""
+    if (y < 1 or y > 14 or m < 1 or m > 13 or d < 1 or d > 30):
+	return 0
+    return (y*_FR_DAYS_PER_4_YEARS)/4+(m-1)*_FR_DAYS_PER_MONTH+d+_FR_SDN_OFFSET
 
 def sdn_to_french(sdn):
+    """Converts an SDN number to a French Republican Calendar date"""
     if (sdn < _FR_FIRST_VALID or sdn > _FR_LAST_VALID) :
 	return (0,0,0)
-
-    temp = (sdn - _FR_SDN_OFFSET) * 4 - 1
-    year = temp / _FR_DAYS_PER_4_YEARS
-    dayOfYear = (temp % _FR_DAYS_PER_4_YEARS) / 4
-    month = dayOfYear / _FR_DAYS_PER_MONTH + 1
-    day = dayOfYear % _FR_DAYS_PER_MONTH + 1
+    temp = (sdn-_FR_SDN_OFFSET)*4 - 1
+    year = temp/_FR_DAYS_PER_4_YEARS
+    dayOfYear = (temp%_FR_DAYS_PER_4_YEARS)/4
+    month = (dayOfYear/_FR_DAYS_PER_MONTH)+1
+    day = (dayOfYear%_FR_DAYS_PER_MONTH)+1
     return (year,month,day)
 
 

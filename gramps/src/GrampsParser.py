@@ -401,7 +401,11 @@ class GrampsParser:
             self.placeobj.addPhoto(self.pref)
 
     def start_daterange(self,attrs):
-        if self.address:
+        if self.source_ref:
+            d = self.source_ref.getDate()
+        elif self.ord:
+            d = self.ord.getDateObj()
+        elif self.address:
             d = self.address.getDateObj()
         else:
             d = self.event.getDateObj()
@@ -414,7 +418,9 @@ class GrampsParser:
         d.range = 1
         
     def start_dateval(self,attrs):
-        if self.ord:
+        if self.source_ref:
+            d = self.source_ref.getDate()
+        elif self.ord:
             d = self.ord.getDateObj()
         elif self.address:
             d = self.address.getDateObj()
@@ -432,7 +438,9 @@ class GrampsParser:
             d.get_start_date().setMode(None)
 
     def start_datestr(self,attrs):
-        if self.ord:
+        if self.source_ref:
+            d = self.source_ref.getDate()
+        elif self.ord:
             d = self.ord.getDateObj()
         elif self.address:
             d = self.address.getDateObj()
