@@ -158,7 +158,6 @@ class AncestorChart:
     #
     #--------------------------------------------------------------------
     def calc(self):
-	width = 0
         self.filter(self.start,1)
 
 	self.height = self.lines*pt2cm((125.0*self.font.get_size())/100.0)

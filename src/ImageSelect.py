@@ -183,13 +183,9 @@ class ImageSelect:
         Utils.destroy_passed_object(obj)
         self.load_images()
 
-    #-------------------------------------------------------------------------
-    #
-    # savephoto - Save the photo in the dataobj object.  (Placeholder)
-    #
-    #-------------------------------------------------------------------------
     def savephoto(self, photo):
-    	assert 0, "The savephoto function must be subclassed"
+        """Save the photo in the dataobj object - must be overridden"""
+    	pass
 
 #-------------------------------------------------------------------------
 #

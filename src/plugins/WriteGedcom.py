@@ -416,27 +416,28 @@ class GedcomWriter:
         
         filter_obj = self.topDialog.get_widget("filter")
         myMenu = gtk.GtkMenu()
-        menuitem = gtk.GtkMenuItem(_("Entire Database"))
-        myMenu.append(menuitem)
-        menuitem.set_data("filter",entire_database)
-        menuitem.show()
-        name = person.getPrimaryName().getRegularName()
-        menuitem = gtk.GtkMenuItem(_("Ancestors of %s") % name)
-        myMenu.append(menuitem)
-        menuitem.set_data("filter",active_person_ancestors)
-        menuitem.show()
-        menuitem = gtk.GtkMenuItem(_("Descendants of %s") % name)
-        myMenu.append(menuitem)
-        menuitem.set_data("filter",active_person_descendants)
-        menuitem.show()
-        menuitem = gtk.GtkMenuItem(_("Ancestors and Descendants of %s") % name)
-        myMenu.append(menuitem)
-        menuitem.set_data("filter",active_person_ancestors_and_descendants)
-        menuitem.show()
-        menuitem = gtk.GtkMenuItem(_("People somehow connected to %s") % name)
-        myMenu.append(menuitem)
-        menuitem.set_data("filter",interconnected)
-        menuitem.show()
+
+        import GenericFilter
+
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("Entire Database"))
+        all.add_rule(GenericFilter.Everyone([]))
+
+        des = GenericFilter.GenericFilter()
+        des.set_name(_("Descendants of %s") % person.getPrimaryName().getName())
+        des.add_rule(GenericFilter.IsDescendantOf([person.getId()]))
+
+        ans = GenericFilter.GenericFilter()
+        ans.set_name(_("Ancestors of %s") % person.getPrimaryName().getName())
+        ans.add_rule(GenericFilter.IsAncestorOf([person.getId()]))
+
+        flist = GenericFilter.GenericFilterList(const.custom_filters)
+        flist.load()
+        for f in [all,des,ans] + flist.get_filters():
+            menuitem = gtk.GtkMenuItem(_(f.get_name()))
+            myMenu.append(menuitem)
+            menuitem.set_data("filter",f)
+            menuitem.show()
         filter_obj.set_menu(myMenu)
         self.filter_menu = myMenu
 
@@ -461,7 +462,7 @@ class GedcomWriter:
         self.restrict = self.topDialog.get_widget("restrict").get_active()
         self.private = self.topDialog.get_widget("private").get_active()
 
-        filter = self.filter_menu.get_active().get_data("filter")
+        cfilter = self.filter_menu.get_active().get_data("filter")
         act_tgt = self.target_menu.get_active()
 
         self.target_ged =  act_tgt.get_data("data")
@@ -482,8 +483,19 @@ class GedcomWriter:
 
         name = self.topDialog.get_widget("filename").get_text()
 
-        (self.plist,self.flist,self.slist) = filter(self.db,self.person,self.private)
-    
+        if cfilter == None:
+            self.plist = self.db.getPersonMap().values()
+        else:
+            self.plist = cfilter.apply(self.db.getPersonMap().values())
+        
+        self.flist = []
+        self.slist = []
+        for p in self.plist[:]:
+            add_persons_sources(p,self.slist,self.private)
+            for family in p.getFamilyList():
+                add_familys_sources(family,self.slist,self.private)
+                self.flist.append(family)
+                
         Utils.destroy_passed_object(obj)
 
         glade_file = "%s/gedcomexport.glade" % os.path.dirname(__file__)
@@ -592,12 +604,12 @@ class GedcomWriter:
             father_alive = mother_alive = 0
             self.g.write("0 @%s@ FAM\n" % self.fid(family.getId()))
             person = family.getFather()
-            if person != None:
+            if person != None and person in self.plist:
                 self.g.write("1 HUSB @%s@\n" % self.pid(person.getId()))
                 father_alive = person.probablyAlive()
 
             person = family.getMother()
-            if person != None:
+            if person != None and person in self.plist:
                 self.g.write("1 WIFE @%s@\n" % self.pid(person.getId()))
                 mother_alive = person.probablyAlive()
 
@@ -624,6 +636,8 @@ class GedcomWriter:
                     self.dump_event_stats(event)
 
             for person in family.getChildList():
+                if person not in self.plist:
+                    continue
                 self.g.write("1 CHIL @%s@\n" % self.pid(person.getId()))
                 if self.adopt == ADOPT_FTW:
                     if person.getMainParents() == family:
