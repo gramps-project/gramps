@@ -1,3 +1,7 @@
+2004-11-12 Tim Waugh  <twaugh@redhat.com>
+	* src/plugins/Ancestors.py (person_name): Handle surname prefix (patch
+	from Julio Sanchez).
+
 2004-11-11 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/DateDisplay.py: Add Russian displayer.
 

@@ -665,6 +665,10 @@ class ComprehensiveAncestorsReport (Report.Report):
                 nick = nick[:-1]
                 name += ' ("%s")' % nick
 
+        spfx = primary.getSurnamePrefix ()
+        if spfx:
+            name += ' ' + spfx
+
         if last.replace ('?', '') == '':
             if first_replaced == '':
                 name += _(' (unknown)')
