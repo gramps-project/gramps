@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 # Contributions by Lorenzo Cappelletti <lorenzo.cappelletti@email.it>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -381,6 +381,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
             'marglr'    : 0.5,
             'pagesh'    : 1,
             'pagesv'    : 1,
+            'gvof'      : 'png',
         }
 
         self.options_help = {
@@ -426,6 +427,9 @@ class GraphVizOptions(ReportOptions.ReportOptions):
                             "Integer values"),
             'pagesv'    : ("=num","Number of pages in vertical direction.",
                             "Integer values"),
+            'gvof'      : ("=str","Output format to convert dot file into.",
+                            [ "%s\t%s" % (item[1],item[0]) for item in _formats ],
+                            False),
         }
 
     def enable_options(self):
@@ -461,14 +465,13 @@ class GraphVizOptions(ReportOptions.ReportOptions):
 
         return [all,des,ans,com]
 
-    def make_doc_menu(self,dialog,active=None):
-        pass
+    def make_doc_menu(self,dialog,active=None): pass
 
     def add_user_options(self,dialog):
-        if dot_found:
+        if self.handler.report_name == "rel_graph2":
             dialog.make_doc_menu = self.make_doc_menu
             dialog.format_menu = GraphicsFormatComboBox()
-            dialog.format_menu.set()
+            dialog.format_menu.set(self.options_dict['gvof'])
 
         self.arrowstyles = (
             (_("Descendants <- Ancestors"),     'd'),
@@ -573,7 +576,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
                               _("Families will show up as ellipses, linked "
                                 "to parents and children."))
 
-        self.includeid_cb = gtk.CheckButton(msg)
+        self.includeid_cb = gtk.CheckButton(_("Include IDs"))
         self.includeid_cb.set_active(self.options_dict['incid'])
         dialog.add_frame_option(_("GraphViz Options"), '',
                               self.includeid_cb,
@@ -636,8 +639,8 @@ class GraphVizOptions(ReportOptions.ReportOptions):
         self.options_dict['incid'] = int(self.includeid_cb.get_active())
         self.options_dict['font'] = \
                 self.font_options[self.font_box.get_active()][1]
-        if dot_found:
-            self.handler.dot_format_str = dialog.format_menu.get_format_str()
+        if self.handler.report_name == "rel_graph2":
+            self.options_dict['gvof'] = dialog.format_menu.get_format_str()
 
 #------------------------------------------------------------------------
 #
@@ -726,6 +729,8 @@ class FormatComboBox(gtk.ComboBox):
     def get_printable(self):
         return _("Generate print output")
 
+    def get_clname(self):
+        return 'dot'
 
 class GraphicsFormatComboBox(gtk.ComboBox):
     """
@@ -738,9 +743,14 @@ class GraphicsFormatComboBox(gtk.ComboBox):
         cell = gtk.CellRendererText()
         self.pack_start(cell,True)
         self.add_attribute(cell,'text',0)
+        active_index = 0
+        index = 0
         for item in _formats:
             self.store.append(row=[item[0]])
-        self.set_active(0)
+            if active == item[1]:
+                active_index = index
+            index = index + 1
+        self.set_active(active_index)
 
     def get_label(self):
         return _formats[self.get_active()][0]
@@ -762,6 +772,9 @@ class GraphicsFormatComboBox(gtk.ComboBox):
 
     def get_printable(self):
         return _("Generate print output")
+
+    def get_clname(self):
+        return 'print'
 
 #------------------------------------------------------------------------
 #
@@ -804,7 +817,7 @@ class GraphVizGraphics(Report.Report):
 
         self.user_output = options_class.get_output()
         self.junk_output = os.path.expanduser("~/.gramps/junk")
-        self.the_format = options_class.handler.dot_format_str
+        self.the_format = self.options_class.handler.options_dict['gvof']
         self.the_font = self.options_class.handler.options_dict['font']
 
     def begin_report(self):

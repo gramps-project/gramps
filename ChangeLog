@@ -2,6 +2,10 @@
 	* src/Report.py: Typos.
 	* src/plugins/WebPage.py: Typos.
 
+	* src/plugins/BookReport.py: Switch to saving/restoring/registering
+	items by the non-localized name.
+	* src/plugins/GraphViz.py: Many various fixes.
+
 2005-01-13  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/Check.py: Typos.
 
