@@ -106,7 +106,7 @@ def report(database,person):
     text = text + "%s : %d\n" % (_("Individuals with media objects"),with_photos)
     text = text + "%s : %d\n" % (_("Total number of media object references"),total_photos)
     text = text + "%s : %d\n" % (_("Number of unique media objects"),pobjects)
-    text = text + "%s : %d %s\n" % (_("Total size of images"),bytes,\
+    text = text + "%s : %d %s\n" % (_("Total size of media objects"),bytes,\
                                     _("bytes"))
 
     if len(notfound) > 0:
