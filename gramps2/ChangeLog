@@ -1,3 +1,10 @@
+2003-06-14  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps.glade: added select/edit buttions to family view
+	* src/SelectChild.py: change title from Add Children to Add Child
+	to Family
+	* src/FamilyView: add support for adding spouse/child with full
+	Edit Person window, along with old method of adding via selectors
+
 2003-06-14  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/IndivComplete.py (write_fact): Enable translation
 	for the event name; 
