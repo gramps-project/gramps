@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 "Generate files/Descendant Report"
 
@@ -36,7 +38,8 @@ import sort
 import Report
 import BaseDoc
 import Errors
-
+import Date
+from Utils import get_xpm_image
 from QuestionDialog import ErrorDialog
 from gettext import gettext as _
 
@@ -58,6 +61,7 @@ _DIED = _('d.')
 class DescendantReport:
 
     def __init__(self,database,person,max,pgbrk,doc,output,newpage=0):
+        self.database = database
         self.creator = database.get_researcher().get_name()
         self.name = output
         self.person = person
@@ -73,16 +77,28 @@ class DescendantReport:
             self.standalone = 0
         
     def dump_dates(self, person):
-        birth = person.get_birth().get_date_object().get_start_date()
-        death = person.get_death().get_date_object().get_start_date()
-        if birth.getYearValid() or death.getYearValid():
+        birth_id = person.get_birth_id()
+        if birth_id:
+            birth = self.database.find_event_from_id(birth_id).get_date_object().get_start_date()
+            birth_year_valid = birth.get_year_valid()
+        else:
+            birth_year_valid = 0
+
+        death_id = person.get_death_id()
+        if death_id:
+            death = self.database.find_event_from_id(death_id).get_date_object().get_start_date()
+            death_year_valid = death.get_year_valid()
+        else:
+            death_year_valid = 0
+
+        if birth_year_valid or death_year_valid:
             self.doc.write_text(' (')
-            if birth.getYearValid():
-                self.doc.write_text("%s %d" % (_BORN,birth.getYear()))
-            if death.getYearValid():
-                if birth.getYearValid():
+            if birth_year_valid:
+                self.doc.write_text("%s %d" % (_BORN,birth.get_year()))
+            if death_year_valid:
+                if birth_year_valid:
                     self.doc.write_text(', ')
-                self.doc.write_text("%s %d" % (_DIED,death.getYear()))
+                self.doc.write_text("%s %d" % (_DIED,death.get_year()))
             self.doc.write_text(')')
         
     def write_report(self):
@@ -110,13 +126,37 @@ class DescendantReport:
             return
         
         childlist = []
-        for family in person.get_family_id_list():
-            for child in family.get_child_id_list():
-                childlist.append(child)
+        for family_id in person.get_family_id_list():
+            family = self.database.find_family_from_id(family_id)
+            for child_id in family.get_child_id_list():
+                childlist.append(child_id)
 
-        childlist.sort(sort.by_birthdate)
-        for child in childlist:
+        childlist.sort(self.by_birthdate)
+        for child_id in childlist:
+            child = self.database.find_person_from_id(child_id)
             self.dump(level+1,child)
+
+    def by_birthdate(self, first_id, second_id) :
+        """Sort routine for comparing two people by birth dates. 
+        If the birth dates are equal, sorts by name"""
+        first = self.database.find_person_from_id(first_id)
+        second = self.database.find_person_from_id(second_id)
+        birth1_id = first.get_birth_id()
+        if birth1_id:
+            date1 = self.database.find_event_from_id(birth1_id).get_date_object()
+        else:
+            date1 = Date.Date()
+        
+        birth2_id = second.get_birth_id()
+        if birth2_id:
+            date2 = self.database.find_event_from_id(birth2_id).get_date_object()
+        else:
+            date2 = Date.Date()
+
+        val = Date.compare_dates(date1,date2)
+        if val == 0:
+            return sort.by_last_name(first,second)
+        return val
 
 #------------------------------------------------------------------------
 #
@@ -300,96 +340,6 @@ def _make_default_style(default_style):
         p.set_left_margin(min(10.0,float(i-1)))
         p.set_description(_("The style used for the level %d display.") % i)
         default_style.add_style("DR-Level%d" % i,p)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def get_xpm_image():
-    return [
-        "48 48 33 1",
-        " 	c None",
-        ".	c #1A1A1A",
-        "+	c #6A665E",
-        "@	c #A6A6A6",
-        "#	c #BABAB6",
-        "$	c #E9D9C0",
-        "%	c #E6E6E6",
-        "&	c #7A7262",
-        "*	c #867A6E",
-        "=	c #C2C2BE",
-        "-	c #5C5854",
-        ";	c #898783",
-        ">	c #EEEEEC",
-        ",	c #B2966E",
-        "'	c #4E4E4E",
-        ")	c #BCA076",
-        "!	c #FAFAFA",
-        "~	c #CECBC1",
-        "{	c #E2CBA5",
-        "]	c #DAD6D1",
-        "^	c #D2D1D0",
-        "/	c #9E9286",
-        "(	c #ECE1D1",
-        "_	c #423E3E",
-        ":	c #A29E96",
-        "<	c #B7AC9A",
-        "[	c #DAD2C6",
-        "}	c #E6E2E2",
-        "|	c #E1DFDC",
-        "1	c #322E2A",
-        "2	c #E6D2B6",
-        "3	c #F5F2EF",
-        "4	c #F1EADE",
-        "                                                ",
-        "                                                ",
-        "             ;*;*****&&&+&++++---+&             ",
-        "             *##############<#<:;--&            ",
-        "             *#!!!!!!!!!!!!!!4}^#;;/'           ",
-        "             ;#!!!!!!!!!!!!!!!3}^@&~/_          ",
-        "             *#!!!!!!!!!!!!!!!!3}^-%~;1         ",
-        "             *#!!!!@@@@@@@@@@@@@@@'!}~;1        ",
-        "             *#!!!!!!!!!!!!!!!!3!3'!!}~;1       ",
-        "             *#!!!!!!!!!!!!!!!!!!!'4!!|~;_      ",
-        "             *#!!!!3!!!!!!!!!!!!!!'}4!!}~/'     ",
-        "             &#!!!!@@:@:@:@:@@@!!3'~}3!!}#/+    ",
-        "             &#!!!!!!!!!!!!!!!!!!!'..1_'-&*+&   ",
-        "             *#!!!!!!!!@@@@@:@@@@%!3#@:;*+-_+   ",
-        "             &#!!!!!!!!!!!!!!!!!!!!>|~=:;;*'_   ",
-        "             &#!!!!!!!!@:@@@@:@@@^|>%^~#::;+_   ",
-        "             &#!!!!!!!!!!!!!!!!!!!!3%>^~#@:&1   ",
-        "             &#!!!!!!!!@@@@@@@@@@%>3%|~^~#@*1   ",
-        "             &<!!!!!!!!!!!!!!!!!!33!3>>]=~<;1   ",
-        "             +#!!!!@@@@@:@@@:@]%33>>>>>[~~~;1   ",
-        "             +#!!!!!!!!!!!!!!!!!33333>}^[=#;1   ",
-        "             +#!!!!!!!!@@@@@@:@@@]>>>44]2{[/1   ",
-        "             +#!!!!!!!!!!!!!!!33333444}(([~/1   ",
-        "             +#!!!!33!3@@@@@@:@::]}|}||[2^{:1   ",
-        "             +#!!!!!!!!!!!!!!>3333>4}44$[2~,1   ",
-        "             +#!!!!!!!!33!>@@@@@@@@@@^}|${[/1   ",
-        "             +#!!!!!!!!!!!!33334444(((44$2[,1   ",
-        "             -#!!!!3333333%:::::::::/]||$2^,1   ",
-        "             +#!!!!!!!!!3333>>44|(((((4($2{:1   ",
-        "             -#!!!!!!!!:@@:::::::~]}}|$$$22,1   ",
-        "             +#!!!!!!!!33333(44}44(44((($22/1   ",
-        "             -#!!!!@@@:@::::::]}|||$||$]222)1   ",
-        "             -#!!!!!33333(>4}444((($$$22222,1   ",
-        "             -#!!!!!!!!::::::/://]$$$$($2{2,1   ",
-        "             -#!!!333333444|((((($$$$[2$22{)1   ",
-        "             -#!!!33334::/:::////[[]$2$22{{)1   ",
-        "             '#!33333334}(((((($$$2222$22{{,1   ",
-        "             -#33333333:::///////{2[{2[{{{{)1   ",
-        "             '#3333%44}4((4(($$$$2222222{{{,1   ",
-        "             '#33334444(((((2$$222222{{{{{{,1   ",
-        "             '<334444((((($$$2$222{{2{{{{{{,1   ",
-        "             -@3444444((($4$$$$2222{{{{{{{{,1   ",
-        "             '#4444(((4$($$$$2$2${2{{{{{{{{,1   ",
-        "             '<##<<<<<<<)))<)))))),,,,,,,,,,1   ",
-        "             11111111111111111111111111.11111   ",
-        "                                                ",
-        "                                                ",
-        "                                                "]
 
 #------------------------------------------------------------------------
 #
