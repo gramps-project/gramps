@@ -50,7 +50,7 @@
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
   <articleinfo> 
-    <title>&app; Manuel V&manrevision;</title>       
+    <title>gramps Manuel V&manrevision;</title>       
 
     <copyright> <year>2001</year> <holder>Donald N. Allingham</holder> </copyright>
     <copyright> <year>2003-2004</year> <holder>Alex Roitman</holder> </copyright> 
@@ -232,7 +232,7 @@
     mais il offre en plus des possibilités qui lui sont uniques. </para> 
 
     <sect2 id="why-gramps">
-      <title>Pourquoi &app;? </title>
+      <title>Pourquoi gramps? </title>
       <para> &app; a été pensé avec l'idée que la plupart des logiciels
       de généalogie permettent de saisir des données. Ils suivent en général
       le modèle de données standard Gedcom. Habituellement, on peut afficher
@@ -292,7 +292,7 @@
       manual, this is the place to put it. 
       Alternatively, you can put this information in the title page.-->
   <sect1 id="gramps-about"> 
-    <title>A propos de &app;</title> 
+    <title>A propos de gramps</title> 
     <para> &app; est écrit par Donald N. Allingham
       (<email>dallingham@users.sourceforge.net</email>). 
       Si vous cherchez plus d'information sur &app;, allez à l'URL de la 

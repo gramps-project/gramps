@@ -22,7 +22,7 @@
 
     <!-- ================ Getting Started Subsection ====== -->
     <sect2 id="gramps-start">
-    <title>Pour lancer &app;</title>
+    <title>Pour lancer gramps</title>
     <para>Vous pouvez lancer &app; comme suit :</para> 
     <variablelist>
     <varlistentry>
@@ -53,7 +53,7 @@
 
     <!-- ================ Getting Started Subsection ==== -->
     <sect2 id="run-1st-time">
-      <title>La première utilisation de &app;</title>
+      <title>La première utilisation de gramps</title>
     <para> 
     La première fois que vous l'utilisez, GRAMPS affiche un
     dialogue de premier lancement. Suivez les directives qui vous guident

@@ -337,7 +337,7 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-id"> 
-        <title>Внутренние &app; ID</title> 
+        <title>Внутренние GRAMPS ID</title> 
 
 	<variablelist>
 

@@ -359,7 +359,7 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-id"> 
-        <title>Identifiants internes &app;</title> 
+        <title>Identifiants internes gramps</title> 
 
 	<variablelist>
 

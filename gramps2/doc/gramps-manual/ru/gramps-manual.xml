@@ -50,7 +50,7 @@
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
   <articleinfo> 
-    <title>Руководство пользователя &app;, версия &manrevision;</title>       
+    <title>Руководство пользователя GRAMPS, версия &manrevision;</title>       
 
     <copyright> <year>2001</year> <holder>Donald N. Allingham</holder> </copyright>
     <copyright> <year>2003-2004</year> <holder>Alex Roitman</holder> </copyright> 
@@ -227,7 +227,7 @@
     предлагает некоторые уникальные возможности.</para> 
 
     <sect2 id="why-gramps">
-      <title>Почему &app;?</title>
+      <title>Почему GRAMPS?</title>
       <para> &app; была задумана с пониманием того, что большинство генеалогических
       программ спроектированы, чтобы предоставить исследователю возможности ввода 
       информации, относящейся к определённому семейному дереву. Большинство этих
@@ -291,7 +291,7 @@
       manual, this is the place to put it. 
       Alternatively, you can put this information in the title page.-->
   <sect1 id="gramps-about"> 
-    <title>О программе &app;</title> 
+    <title>О программе GRAMPS</title> 
     <para> &app; написал Donald N. Allingham
       (<email>dallingham@users.sourceforge.net</email>). 
       Для более подробной информации о &app;, пожалуйста посетите 
