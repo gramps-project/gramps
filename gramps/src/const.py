@@ -519,114 +519,221 @@ familyRelations = initialize_family_relation_list()
 places = []
 surnames = []
 
+#
+#Updated LDS Temple Codes from:
+#http://www.geocities.com/rgpassey/temple/abclist.htm
+#Confirmed against Temple Codes list recieved from Raliegh Temple
+#Last update: 1/12/02
+#
+
 lds_temple_codes = {
-    "Cardston, Alberta"        : "ALBER",
-    "Apia, Samoa"              : "APIA",
-    "Mesa, Arizona"            : "ARIZO",
-    "Atlanta Georgia"          : "ATLAN",
-    "Bogota Columbia"          : "BOGOT", 
-    "Boise Idaho"              : "BOISE",
-    "Bountiful Utah"           : "BOUNT",
-    "Buenos Aires, Argentina"  : "BAIRE",
-    "Chicago, Illinois"        : "CHICA",
-    "Cochabamba, Boliva"       : "COCHA",
-    "Dallas, Texas"            : "DALLA",
-    "Denver, Colorado"         : "DENVE",
-    "Endowment House"          : "EHOUS",
-    "Frankfurt, Germany"       : "FRANK",
-    "Freiberg, Germany"        : "FREIB",
-    "Guatamala City, Guatamala": "GUATE",
-    "Guayaquil, Ecuador"       : "GUAYA",
-    "Hartford, Connecticut"    : "HARTF",
-    "Laie, Hawaii"             : "HAWAI",
-    "Hong Kong, China"         : "HKONG",
-    "Idaho Falls, Idaho"       : "IFALL",
-    "Johannesburg, South Africa" : "JOHAN",
-    "Sourth Jordan, Utah"      : "JRIVE",
-    "Las Vegas, Nevada"        : "LVEGA",
-    "Lima, Peru"               : "LIMA" ,
-    "Logan, Utah"              : "LOGAN",
-    "London, England"          : "LONDO",
-    "Los Angeles, California"  : "LANGE",
-    "Madrid, Spain"            : "MADRI",
-    "Manila, Philippines"      : "MANIL",
-    "Manti, Utah"              : "MANTI",
-    "Mexico City, Mexico"      : "MEXIC",
-    "American Fork, Utah"      : "MTIMP",
-    "Nashville, Tennessee"     : "NASHV",
-    "Nauvoo, Illinois"         : "NAUVO",
-    "Hamilton, New Zealand"    : "NZEAL",
-    "Nuku'alofa, Tonga"        : "NUKUA",
-    "Oakland, California"      : "OAKLA",
-    "Ogden, Utah"              : "OGDEN",
-    "Orlando, Florida"         : "ORLAN",
-    "Papeete, Tahiti"          : "PAPEE",
-    "Portland, Oregon"         : "PORTL",
-    "President's Office"       : "POFFI",
-    "Preston, England"         : "PREST",
-    "Provo, Utah"              : "PROVO",
-    "Recife, Brazil"           : "RECIF",
-    "Salt Lake City, Utah"     : "SLAKE",
-    "San Diego, California"    : "SDIEG",
-    "Santiago, Chile"          : "SANTI",
-    "Santo Domingo, Dominican Republic" : "SDOMI",
-    "Sao Paulo, Brazil"        : "SPAUL",
-    "Seattle, Washington"      : "SEATT",
-    "Seoul, South Korea"       : "SEOUL",
-    "St. George, Utah"         : "SGEOR",
-    "St. Louis, Missouri"      : "SLOUI",
-    "Stockholm, Sweden"        : "STOCK",
-    "Bern, Switzerland"        : "SWISS",
-    "Sydney, Australia"        : "SYDNE",
-    "Taipei, Taiwan"           : "TAIPE",
-    "Tokyo, Japan"             : "TOKYO",
-    "Toronto, Ontario"         : "TORNO",
-    "Vernal, Utah"             : "VERNA",
-    "Washington, D.C."         : "WASHI",
+    "Aba, Nigeria"               : "ABA",   #1 Added
+    "Accra, Ghana"               : "ACCRA", #2 Added
+    "Adelaide, Australia"        : "ADELA", #3 Added
+    "Albuquerque, New Mexico"    : "ALBUQ", #4 Added
+    "Anchorage, Alaska"          : "ANCHO", #6 Added
+    "Apia, Samoa"                : "APIA",  #7
+    "Asuncion, Paraguay"         : "ASUNC", #8 Added
+    "Atlanta, Georgia"           : "ATLAN", #9
+    "Baton Rouge, Louisiana"     : "BROUG", #10 Added
+    "Bern, Switzerland"          : "SWISS", #11
+    "Billings, Montana"          : "BILLI", #12 Added
+    "Birmingham, Alabama"        : "BIRMI", #13 Added
+    "Bismarck, North Dakota"     : "BISMA", #14 Added
+    "Bogota, Columbia"           : "BOGOT", #15
+    "Boise, Idaho"               : "BOISE", #16
+    "Boston, Massachusetts"      : "BOSTO", #17 Added
+    "Bountiful, Utah"            : "BOUNT", #18
+    "Brisban, Australia"         : "BRISB", #19 Added
+    "Buenos Aires, Argentina"    : "BAIRE", #20
+    "Campinas, Brazil"           : "CAMPI", #21 Added
+    "Caracas, Venezuela"         : "CARAC", #22 Added
+    "Cardston, Alberta"          : "ALBER", #23
+    "Chicago, Illinois"          : "CHICA", #24
+    "Ciudad Juarez, Chihuahua"   : "CIUJU", #25 Added
+    "Cochabamba, Boliva"         : "COCHA", #26
+    "Colonia Juarez, Chihuahua"  : "COLJU", #27 Added
+    "Columbia, South Carolina"   : "COLSC", #28 Added
+    "Columbia River, Washington" : "CRIVE", #121 Added
+    "Columbus, Ohio"             : "COLUM", #29 Added
+    "Copenhagen, Denmark"        : "COPEN", #30 Added
+    "Dallas, Texas"              : "DALLA", #31
+    "Denver, Colorado"           : "DENVE", #32
+    "Detroit, Michigan"          : "DETRO", #33 Added
+    "Edmonton, Alberta"          : "EDMON", #34 Added
+    "Frankfurt, Germany"         : "FRANK", #35
+    "Fresno, California"         : "FRESN", #36 Added
+    "Freiberg, Germany"          : "FREIB", #37
+    "Fukuoka, Japan"             : "FUKUO", #38 Added
+    "Guadalajara, Jalisco"       : "GUADA", #39 Added
+    "Guatamala City, Guatamala"  : "GUATE", #40
+    "Guayaquil, Ecuador"         : "GUAYA", #41
+    "Halifax, Noca Scotia"       : "HALIF", #42 Added
+    "Hamilton, New Zealand"      : "NZEAL", #43
+    "Harrison, New York"         : "NYORK", #44 Added
+    "Hartford, Connecticut"      : "HARTF", #Can not find in list used. ?
+    "Helsinki, Finland"          : "HELSI", #45 Added
+    "Hermosillo, Sonora"         : "HERMO", #46 Added
+    "Hong Kong, China"           : "HKONG", #47
+    "Houston, Texas"             : "HOUST", #48 Added
+    "Idaho Falls, Idaho"         : "IFALL", #49
+    "Johannesburg, South Africa" : "JOHAN", #50
+    "Jordan River (South Jordan), Utah" : "JRIVE", #111
+    "Kialua Kona, Hawaii"        : "KONA",  #51 Added
+    "Kiev, Ukraine"              : "KIEV",  #52 Added
+    "Laie, Hawaii"               : "HAWAI", #54
+    "Las Vegas, Nevada"          : "LVEGA", #55
+    "Lima, Peru"                 : "LIMA" , #56
+    "Logan, Utah"                : "LOGAN", #57
+    "London, England"            : "LONDO", #58
+    "Los Angeles, California"    : "LANGE", #59
+    "Louisville, Kentucky"       : "LOUIS", #60 Added
+    "Lubbock, Texas"             : "LUBBO", #61 Added
+    "Madrid, Spain"              : "MADRI", #62
+    "Manila, Philippines"        : "MANIL", #63
+    "Manti, Utah"                : "MANTI", #64
+    "Medford, Oregon"            : "MEDFO", #65 Added
+    "Melbourne, Australia"       : "MELBO", #66 Added
+    "Melphis, Tennessee"         : "MEMPH", #67 Added
+    "Merida, Yucatan"            : "MERID", #68 Added
+    "Mesa, Arizona"              : "ARIZO", #69
+    "Mexico City, Mexico"        : "MEXIC", #70
+    "Monterrey, Nuevo Leon"      : "MONTE", #71 Added
+    "Montevideo, Uruguay"        : "MNTVD", #72
+    "Monticello, Utah"           : "MONTI", #73 Added
+    "Montreal, Quebec"           : "MONTR", #74 Added
+    "Mt. Timpanogos (American Fork), Utah" : "MTIMP", #5
+    "Nashville, Tennessee"       : "NASHV", #75
+    "Nauvoo, Illinois"           : "NAUVO", #76
+    "Nauvoo, Illinois (New)"     : "NAUV2", #Rebuilt Added
+    "Newport Beach, California"  : "NBEAC", #77 Added
+    "Nuku'alofa, Tonga"          : "NUKUA", #78
+    "Oakland, California"        : "OAKLA", #79
+    "Oaxaca, Oaxaca"             : "OAKAC", #80 Added
+    "Ogden, Utah"                : "OGDEN", #81
+    "Oklahoma City, Oklahoma"    : "OKLAH", #82 Added
+    "Orlando, Florida"           : "ORLAN", #84
+    "Palmayra, New York"         : "PALMY", #85 Added
+    "Papeete, Tahiti"            : "PAPEE", #86
+    "Perth, Australia"           : "PERTH", #87 Added
+    "Portland, Oregon"           : "PORTL", #88
+    "Porto Alegre, Brazil"       : "PALEG", #89 Added
+    "Preston, England"           : "PREST", #90
+    "Provo, Utah"                : "PROVO", #91
+    "Raleigh, North Carolina"    : "RALEI", #92 Added
+    "Recife, Brazil"             : "RECIF", #93
+    "Redlands, California"       : "REDLA", #94 Added
+    "Regina, Saskatchewan"       : "REGIN", #95 Added
+    "Reno, Nevada"               : "RENO",  #96 Added
+    "Sacramento, California"     : "SACRA", #97 Added
+    "St. George, Utah"           : "SGEOR", #98
+    "St. Louis, Missouri"        : "SLOUI", #99
+    "St. Paul, Minnesota"        : "SPMIN", #100 Added
+    "Salt Lake City, Utah"       : "SLAKE", #101
+    "San Diego, California"      : "SDIEG", #102
+    "San Antonio, Texas"         : "ANTON", #103 Added
+    "San Jose, Costa Rica"       : "SJOSE", #104 Added
+    "Santiago, Chile"            : "SANTI", #105
+    "Santo Domingo, Dominican Republic" : "SDOMI", #106
+    "Sao Paulo, Brazil"          : "SPAUL", #107
+    "Seattle, Washington"        : "SEATT", #108
+    "Seoul, South Korea"         : "SEOUL", #109
+    "Snowflake, Arizona"         : "SNOWF", #110 Added
+    "Spokane, Washington"        : "SPOKA", #112
+    "Stockholm, Sweden"          : "STOCK", #113
+    "Suva, Fiji"                 : "SUVA",  #114 Added
+    "Sydney, Australia"          : "SYDNE", #115
+    "Taipei, Taiwan"             : "TAIPE", #116
+    "Tampico, Tamaulipas"        : "TAMPI", #117 Added
+    "The Hague, Netherlands"     : "HAGUE", #118 Added
+    "Tokyo, Japan"               : "TOKYO", #119
+    "Toronto, Ontario"           : "TORNO", #120
+    "Tuxtla Gutierrez, Chiapas"  : "TGUTI", #122 Added
+    "Vera Cruz, Vera Cruz"       : "VERAC", #123 Added
+    "Vernal, Utah"               : "VERNA", #124
+    "Villahermosa, Tabasco"      : "VILLA", #125 Added
+    "Washington, D.C."           : "WASHI", #126
+    "Winter Quarters (Omaha), Nebraska" : "WINTE", #83 Added
+#Other Places
+    "Endowment House"            : "EHOUS", #Not a temple per se
+    "President's Office"         : "POFFI", #Not a temple per se
+
+
 }
 
 lds_temple_to_abrev = {
-    "ALBER": "Cardston, Alberta",
+    "ABA"  : "Aba, Nigeria",
+    "ACCRA": "Accra, Ghana",
+    "ADELA": "Adelaide, Australia",
+    "ALBUQ": "Albuquerque, New Mexico",
+    "ANCHO": "Anchorage, Alaska",
     "APIA" : "Apia, Samoa",            
     "AP"   : "Apia, Samoa",            
-    "ARIZO": "Mesa, Arizona",
-    "AZ"   : "Mesa, Arizona",
+    "ASUNC": "Asuncion, Paraguay",
     "ATLAN": "Atlanta, Georgia",          
     "AT"   : "Atlanta, Georgia",          
+    "BROUG": "Baton Rouge, Louisiana",
+    "SWISS": "Bern, Switzerland",               
+    "SW"   : "Bern, Switzerland",               
+    "BILLI": "Billings, Montana",
+    "BIRMI": "Birmingham, Alabama",
+    "BISMA": "Bismarck, North Dakota",
     "BOGOT": "Bogota, Columbia",         
     "BG"   : "Bogota, Columbia",         
     "BOISE": "Boise Idaho",            
     "BO"   : "Boise Idaho",            
+    "BOSTO": "Boston, Massachusetts",
     "BOUNT": "Bountiful, Utah",        
+    "BRISB": "Brisban, Australia",
     "BAIRE": "Buenos Aires, Argentina",        
     "BA"   : "Buenos Aires, Argentina",        
+    "CAMPI": "Campinas, Brazil",
+    "CARAC": "Caracas, Venezuela",
+    "ALBER": "Cardston, Alberta",
     "CHICA": "Chicago, Illinois",          
     "CH"   : "Chicago, Illinois",          
+    "CIUJU": "Ciudad Juarez, Chihuahua",
     "COCHA": "Cochabamba, Boliva",  
+    "COLJU": "Colonia Juarez, Chihuahua",
+    "COLSC": "Columbia, South Carolina",
+    "CRIVE": "Columbia River, Washington",
+    "COLUM": "Columbus, Ohio",
+    "COPEN": "Copenhagen, Denmark",
     "DALLA": "Dallas, Texas",          
     "DA"   : "Dallas, Texas",          
     "DENVE": "Denver, Colorado",          
     "DV"   : "Denver, Colorado",          
-    "EHOUS": "Endowment House",     
-    "EH"   : "Endowment House",     
+    "DETRO": "Detroit, Michigan",
+    "EDMON": "Edmonton, Alberta",
     "FRANK": "Frankfurt, Germany",           
     "FR"   : "Frankfurt, Germany",           
+    "FRESN": "Fresno, California",
     "FREIB": "Freiberg, Germany",            
     "FD"   : "Freiberg, Germany",            
+    "FUKUO": "Fukuoka, Japan",
+    "GUADA": "Guadalajara, Jalisco",
     "GUATE": "Guatamala City, Guatamala",           
     "GA"   : "Guatamala City, Guatamala",           
     "GUAYA": "Guayaquil, Ecuador",  
     "GY"   : "Guayaquil, Ecuador",  
+    "HALIF": "Halifax, Noca Scotia",
+    "NZEAL": "Hamilton, New Zealand",         
+    "NZ"   : "Hamilton, New Zealand",         
+    "NYORK": "Harrison, New York",
     "HARTF": "Hartford, Connecticut",      
-    "HAWAI": "Laie, Hawaii",              
-    "HA"   : "Laie, Hawaii",              
+    "HELSI": "Helsinki, Finland",
+    "HERMO": "Hermosillo, Sonora",
     "HKONG": "Hong Kong, China",           
-    "IFALL": "Idaho Falls, Idaho",     
-    "IF"   : "Idaho Falls, Idaho",     
+    "HOUST": "Houston, Texas",
+    "IFALL": "Idaho Falls, Idaho", 
     "JOHAN": "Johannesburg, South Africa",  
     "JO"   : "Johannesburg, South Africa",  
-    "JRIVE": "South Jordan, Utah",    
-    "JR"   : "South Jorhan, Utah",    
+    "JRIVE": "Jordan River (South Jordan), Utah",    
+    "JR"   : "Jordan River (South Jorhan), Utah",    
+    "KONA" : "Kialua Kona, Hawaii",
+    "KIEV" : "Kiev, Ukraine",
+    "HAWAI": "Laie, Hawaii",              
+    "HA"   : "Laie, Hawaii",              
     "LVEGA": "Las Vegas, Nevada",       
     "LV"   : "Las Vegas, Nevada",       
     "LIMA" : "Lima, Peru",          
@@ -637,38 +744,65 @@ lds_temple_to_abrev = {
     "LD"   : "London, England",              
     "LANGE": "Los Angeles, California",     
     "LA"   : "Los Angeles, California",     
+    "LOUIS": "Louisville, Kentucky",
+    "LUBBO": "Lubbock, Texas",
     "MADRI": "Madrid, Spain",       
     "MANIL": "Manila, Philippines", 
     "MA"   : "Manila, Philippines", 
     "MANTI": "Manti, Utah",           
     "MT"   : "Manti, Utah",           
+    "MEDFO": "Medford, Oregon",
+    "MELBO": "Melbourne, Australia",
+    "MEMPH": "Melphis, Tennessee",
+    "MERID": "Merida, Yucatan",
+    "ARIZO": "Mesa, Arizona",
+    "AZ"   : "Mesa, Arizona",
     "MEXIC": "Mexico City, Mexico",         
     "MX"   : "Mexico City, Mexico",         
-    "MTIMP": "American Fork, Utah",  
+    "MONTE": "Monterrey, Nuevo Leon, Mexico",
+    "MNTVD": "Montevideo, Uruguay",
+    "MONTI": "Monticello, Utah",
+    "MONTR": "Montreal, Quebec",
+    "MTIMP": "Mt. Timpanogos (American Fork), Utah",  
     "NASHV": "Nashville, Tennessee",     
-    "NAUVO": "Nauvoo, Illinois",              
-    "NZEAL": "Hamilton, New Zealand",         
-    "NZ"   : "Hamilton, New Zealand",         
+    "NAUVO": "Nauvoo, Illinois",
+    "NAUV2": "Nauvoo, Illinois (New)",
+    "NBEAC": "Newport Beach, California",
     "NUKUA": "Nuku'alofa, Tonga",   
     "TG"   : "Nuku'alofa, Tonga",   
     "OAKLA": "Oakland, California",         
     "OK"   : "Oakland, California",         
+    "OAKAC": "Oaxaca, Oaxaca",
     "OGDEN": "Ogden, Utah",           
     "OG"   : "Ogden, Utah",           
+    "OKLAH": "Oklahoma City, Oklahoma",
     "ORLAN": "Orlando, Florida",         
+    "PALMY": "Palmayra, New York",
     "PAPEE": "Papeete, Tahiti",     
     "TA"   : "Papeete, Tahiti",     
+    "PERTH": "Perth, Australia",
     "PORTL": "Portland, Oregon",        
     "PT"   : "Portland, Oregon",        
-    "POFFI": "President's Office",  
+    "PALEG": "Porto Alegre, Brazil",
     "PREST": "Preston, England",        
     "PROVO": "Provo, Utah",           
     "PV"   : "Provo, Utah",           
+    "RALEI": "Raleigh, North Carolina",
     "RECIF": "Recife, Brazil",      
+    "REDLA": "Redlands, California",
+    "REGIN": "Regina, Saskatchewan",
+    "RENO" : "Reno, Nevada",
+    "SACRA": "Sacramento, California",
+    "SGEOR": "St. George, Utah",      
+    "SG"   : "St. George, Utah",      
+    "SLOUI": "St. Louis, Missouri", 
+    "SPMIN": "St. Paul, Minnesota",
     "SLAKE": "Salt Lake City, Utah",       
     "SL"   : "Salt Lake City, Utah",       
     "SDIEG": "San Diego, California",       
     "SA"   : "San Diego, California",       
+    "ANTON": "San Antonio, Texas",
+    "SJOSE": "San Jose, Costa Rica",
     "SANTI": "Santiago, Chile",     
     "SN"   : "Santiago, Chile",     
     "SDOMI": "Santo Domingo, Dominican Republic", 
@@ -678,24 +812,32 @@ lds_temple_to_abrev = {
     "SE"   : "Seattle, Washington",         
     "SEOUL": "Seoul, South Korea",        
     "SO"   : "Seoul, South Korea",        
-    "SGEOR": "St. George, Utah",      
-    "SG"   : "St. George, Utah",      
-    "SLOUI": "St. Louis, Missouri", 
+    "SNOWF": "Snowflake, Arizona",
+    "SPOKA": "Spokane, Washington",
     "STOCK": "Stockholm, Sweden",     
     "ST"   : "Stockholm, Sweden",     
-    "SWISS": "Bern, Switzerland",               
-    "SW"   : "Bern, Switzerland",               
+    "SUVA" : "Suva, Fiji",
     "SYDNE": "Sydney, Australia",        
     "SD"   : "Sydney, Australia",        
     "TAIPE": "Taipei, Taiwan",      
     "TP"   : "Taipei, Taiwan",      
+    "TAMPI": "Tampico, Tamaulipas",
+    "HAGUE": "The Hague, Netherlands",
     "TOKYO": "Tokyo, Japan",        
     "TK"   : "Tokyo, Japan",        
     "TORNO": "Toronto, Ontario",       
     "TR"   : "Toronto, Ontario",       
+    "TGUTI": "Tuxtla Gutierrez, Chiapas",
+    "VERAC": "Vera Cruz, Vera Cruz",
     "VERNA": "Vernal, Utah",         
+    "VILLA": "Villahermosa, Tabasco",
     "WASHI": "Washington, D.C.",      
     "WA"   : "Washington, D.C.",      
+    "WINTE": "Winter Quarters (Omaha), Nebraska",
+#Other Places
+    "EHOUS": "Endowment House",     
+    "EH"   : "Endowment House",     
+    "POFFI": "President's Office",  
 }
 
 lds_status = {

@@ -45,7 +45,13 @@ import sort
 import utils
 import Config
 import string
+import AutoComp
 
+#-------------------------------------------------------------------------
+#
+# SelectChild
+#
+#-------------------------------------------------------------------------
 class SelectChild:
 
     def __init__(self,db,family,person,redraw):
@@ -235,9 +241,10 @@ class NewChild:
         self.mrel = self.xml.get_widget("mrel")
         self.frel = self.xml.get_widget("frel")
         self.top  = self.xml.get_widget("addChild")
-        self.surname = self.xml.get_widget("childSurname")
+        self.surname = self.xml.get_widget("surname")
         self.given = self.xml.get_widget("childGiven")
-        utils.attach_surnames(self.xml.get_widget("surname_combo"))
+        if Config.autocomp:
+            self.comp = AutoComp.AutoComp(self.surname,const.surnames)
 
         self.surname.set_text(self.update_surname(2))
 
