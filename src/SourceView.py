@@ -73,7 +73,7 @@ class SourceView:
 
         self.renderer = gtk.CellRendererText()
 
-        self.model = DisplayModels.SourceModel(self.db)
+        self.model = gtk.TreeModelSort(DisplayModels.SourceModel(self.db))
         self.list.set_model(self.model)
         self.topWindow = self.glade.get_widget("gramps")
 
@@ -92,9 +92,9 @@ class SourceView:
             
         column = gtk.TreeViewColumn(_('Title'), self.renderer,text=0)
         column.set_resizable(gtk.TRUE)        
-        #column.set_clickable(gtk.TRUE)
+        column.set_clickable(gtk.TRUE)
         column.set_min_width(225)
-        #column.set_sort_column_id(0)
+        column.set_sort_column_id(0)
         self.list.append_column(column)
         self.columns = [column]
 
@@ -107,7 +107,7 @@ class SourceView:
             column.set_resizable(gtk.TRUE)
             column.set_clickable(gtk.TRUE)
             column.set_min_width(75)
-            column.set_sort_column_id(0)
+            column.set_sort_column_id(index)
             self.columns.append(column)
             self.list.append_column(column)
             index += 1
@@ -125,21 +125,20 @@ class SourceView:
 
     def build_tree(self):
         self.list.set_model(None)
-        self.model = DisplayModels.SourceModel(self.parent.db)
+        self.model = gtk.TreeModelSort(DisplayModels.SourceModel(self.parent.db))
 
         self.list.set_model(self.model)
 
         self.selection = self.list.get_selection()
-        #self.selection.connect('changed',self.row_changed)
-        #self.list.connect('row_activated', self.alpha_event)
-        #self.model.connect('button-press-event',self.on_plist_button_press)        
+        self.list.connect('button-press-event',self.button_press)        
 
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             store,iter = self.selection.get_selected()
             id = store.get_value(iter,1)
             source = self.db.get_source(id)
-            EditSource.EditSource(source,self.db,self.parent,self.topWindow,self.update_display)
+            EditSource.EditSource(source,self.db,self.parent,
+                                  self.topWindow,self.update_display)
             return 1
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_context_menu(event)
@@ -179,7 +178,8 @@ class SourceView:
         menu.popup(None,None,None,event.button,event.time)
 
     def on_add_clicked(self,obj):
-        EditSource.EditSource(RelLib.Source(),self.db,self.parent,self.topWindow,self.new_after_edit)
+        EditSource.EditSource(RelLib.Source(),self.db,self.parent,
+                              self.topWindow,self.new_after_edit)
 
     def on_delete_clicked(self,obj):
         
@@ -253,7 +253,8 @@ class SourceView:
         if iter:
             id = list_store.get_value(iter,1)
             source = self.db.get_source(id)
-            EditSource.EditSource(source, self.db, self.parent, self.topWindow, self.update_display)
+            EditSource.EditSource(source, self.db, self.parent,
+                                  self.topWindow, self.update_display)
 
     def new_after_edit(self,source):
         self.db.add_source(source)

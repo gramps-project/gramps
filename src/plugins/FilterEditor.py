@@ -465,8 +465,7 @@ class FilterEditor:
                     t = MyFilters(self.filterdb.get_filters())
                 elif _name2list.has_key(v1):
                     data =_name2list[v1]
-                    print data, data.get_values()
-                    t = MySelect(data.get_values(),data)
+                    t = MySelect(data)
                 elif v == _('Inclusive:'):
                     t = MyBoolean(_('Include original person'))
                 else:

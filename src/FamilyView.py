@@ -718,7 +718,7 @@ class FamilyView:
         child = self.parent.db.get_person(id)
 
         self.family.remove_child_id(child.get_id())
-        child.remove_parent_family_id(self.family)
+        child.remove_parent_family_id(self.family.get_id())
         
         if len(self.family.get_child_id_list()) == 0:
             if self.family.get_father_id() == None:

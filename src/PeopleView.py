@@ -86,7 +86,7 @@ class PeopleView:
         column.set_resizable(gtk.TRUE)        
         column.set_clickable(gtk.TRUE)
         column.set_min_width(225)
-        column.set_sort_column_id(0)
+        column.set_sort_column_id(PeopleModel.COLUMN_NAME_SORT)
         self.person_tree.append_column(column)
         self.columns = [column]
 
@@ -99,7 +99,7 @@ class PeopleView:
             column.set_resizable(gtk.TRUE)
             #column.set_clickable(gtk.TRUE)
             column.set_min_width(60)
-            column.set_sort_column_id(0)
+            column.set_sort_column_id(index)
             self.columns.append(column)
             self.person_tree.append_column(column)
             index += 1
@@ -108,10 +108,10 @@ class PeopleView:
         self.person_tree.set_model(None)
         self.person_model = PeopleModel.PeopleModel(self.parent.db)
 
-        #self.sort_model = gtk.TreeModelSort(self.person_model)
-        #self.person_tree.set_model(self.sort_model)
+        self.sort_model = gtk.TreeModelSort(self.person_model)
+        self.person_tree.set_model(self.sort_model)
 
-        self.person_tree.set_model(self.person_model)
+        #self.person_tree.set_model(self.person_model)
 
         self.person_selection = self.person_tree.get_selection()
         self.person_selection.connect('changed',self.row_changed)
@@ -119,7 +119,8 @@ class PeopleView:
         self.person_tree.connect('button-press-event',self.on_plist_button_press)        
 
     def blist(self,store,path,iter,id_list):
-        id_list.append(self.person_model.get_value(iter,1))
+        #id_list.append(self.person_model.get_value(iter,1))
+        id_list.append(self.sort_model.get_value(iter,1))
 
     def get_selected_objects(self):
         mlist = []
@@ -151,7 +152,7 @@ class PeopleView:
         """Remove the selected person from the list. A person object is expected,
         not an ID"""
         if old_id == None or person.get_id() == old_id:
-            path = self.person_model.find_path(person.get_id())
+            path = self.person_model.on_get_path(person.get_id())
             self.person_model.row_deleted(path)
         else:
             self.person_model.rebuild_data()
@@ -194,8 +195,8 @@ class PeopleView:
             return
         p = self.parent.active_person
         id = p.get_id()
-        path = self.person_model.find_path(id)
-        top_path = self.person_model.find_path(p.get_primary_name().get_surname())
+        path = self.person_model.on_get_path(id)
+        top_path = self.person_model.on_get_path(p.get_primary_name().get_surname())
         self.person_tree.expand_row(top_path,0)
         self.person_selection.select_path(path)
         self.person_tree.scroll_to_cell(path,None,1,0.5,0)

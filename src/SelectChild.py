@@ -44,7 +44,7 @@ import gnome
 import RelLib
 import const
 import Utils
-import ListModel
+import PeopleModel
 import GrampsCfg
 from RelLib import Person
 
@@ -62,6 +62,7 @@ class SelectChild:
         self.family = family
         self.redraw = redraw
         self.add_person = add_person
+        self.renderer = gtk.CellRendererText()
         self.xml = gtk.glade.XML(const.gladeFile,"select_child","gramps")
     
         if person:
@@ -119,13 +120,28 @@ class SelectChild:
 
         self.frel.set_text(_("Birth"))
 
-        titles = [(_('Name'),3,150),(_('ID'),1,50), (_('Birth date'),4,100),
-                  ('',-1,0),('',-1,0)]
-        
-        self.refmodel = ListModel.ListModel(self.add_child,titles)
+        self.refmodel = PeopleModel.PeopleModel(self.db)
+        self.add_child.set_model(self.refmodel) 
         self.redraw_child_list(2)
         self.add_itself_to_menu()
+        self.add_columns(self.add_child)
         self.top.show()
+
+    def add_columns(self,tree):
+        column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
+        column.set_resizable(gtk.TRUE)        
+        #column.set_clickable(gtk.TRUE)
+        column.set_min_width(225)
+        tree.append_column(column)
+        column = gtk.TreeViewColumn(_('ID'), self.renderer,text=1)
+        column.set_resizable(gtk.TRUE)        
+        #column.set_clickable(gtk.TRUE)
+        column.set_min_width(75)
+        tree.append_column(column)
+        column = gtk.TreeViewColumn(_('Birth date'), self.renderer,text=3)
+        #column.set_resizable(gtk.TRUE)        
+        column.set_clickable(gtk.TRUE)
+        tree.append_column(column)
 
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()
@@ -153,8 +169,8 @@ class SelectChild:
         gnome.help_display('gramps-manual','gramps-edit-quick')
 
     def redraw_child_list(self,filter):
-        self.refmodel.clear()
-        self.refmodel.new_model()
+        return
+    
         birth = self.db.find_event_from_id(self.person.get_birth_id())
         death = self.db.find_event_from_id(self.person.get_death_id())
         if birth:
@@ -243,14 +259,22 @@ class SelectChild:
             col = self.add_child.get_column(0)
             self.add_child.scroll_to_cell(path,col,1,0.5,0.0)
 
+    def select_function(self,store,path,iter,id_list):
+        id_list.append(self.refmodel.get_value(iter,1))
+
+    def get_selected_ids(self):
+        mlist = []
+        self.add_child.get_selection().selected_foreach(self.select_function,mlist)
+        return mlist
 
     def on_save_child_clicked(self,obj):
-        store,iter = self.refmodel.selection.get_selected()
 
-        if not iter:
+        idlist = self.get_selected_ids()
+
+        if not idlist or not idlist[0]:
             return
 
-        id = self.refmodel.model.get_value(iter,1)
+        id = idlist[0]
         select_child = self.db.get_person(id)
         if self.family == None:
             self.family = self.db.new_family()

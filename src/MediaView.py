@@ -85,7 +85,7 @@ class MediaView:
         self.preview = glade.get_widget("preview")
         self.renderer = gtk.CellRendererText()
 
-        self.model = DisplayModels.MediaModel(self.db)
+        self.model = gtk.TreeModelSort(DisplayModels.MediaModel(self.db))
         self.selection = self.list.get_selection()
 
         self.list.set_model(self.model)
@@ -125,9 +125,9 @@ class MediaView:
             
         column = gtk.TreeViewColumn(_('Title'), self.renderer,text=0)
         column.set_resizable(gtk.TRUE)        
-        #column.set_clickable(gtk.TRUE)
+        column.set_clickable(gtk.TRUE)
         column.set_min_width(225)
-        #column.set_sort_column_id(0)
+        column.set_sort_column_id(0)
         self.list.append_column(column)
         self.columns = [column]
 
@@ -140,7 +140,7 @@ class MediaView:
             column.set_resizable(gtk.TRUE)
             column.set_clickable(gtk.TRUE)
             column.set_min_width(75)
-            column.set_sort_column_id(0)
+            column.set_sort_column_id(index)
             self.columns.append(column)
             self.list.append_column(column)
             index += 1
@@ -160,13 +160,9 @@ class MediaView:
 
     def build_tree(self):
         self.list.set_model(None)
-        self.model = DisplayModels.MediaModel(self.parent.db)
-
+        self.model = gtk.TreeModelSort(DisplayModels.MediaModel(self.parent.db))
         self.list.set_model(self.model)
         self.selection = self.list.get_selection()
-        #self.selection.connect('changed',self.row_changed)
-        #self.list.connect('row_activated', self.alpha_event)
-        #self.model.connect('button-press-event',self.on_plist_button_press)        
 
     def on_select_row(self,obj):
         fexists = 1
