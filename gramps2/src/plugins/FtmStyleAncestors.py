@@ -107,82 +107,301 @@ class FtmAncestorReport(Report.Report):
             self.doc.write_text(name)
             self.doc.end_bold()
 
-            # add source information here
-
-            self.doc.write_text(self.endnotes(pri_name))
-                    
             # Check birth record
         
             birth = person.getBirth()
-            death = person.getDeath()
+            bplace = birth.getPlaceName()
+            bdate = birth.getDate()
 
-            birth_valid = birth.getDate() != "" or birth.getPlaceName() != ""
-            death_valid = death.getDate() != "" or death.getPlaceName() != ""
+            death = person.getDeath()
+            dplace = death.getPlaceName()
+            ddate = death.getDate()
+
+            birth_valid = bdate != "" or bplace != ""
+            death_valid = ddate != "" or dplace != ""
 
             if birth_valid or death_valid:
-                self.doc.write_text(', ')
+                if person.getGender() == RelLib.Person.male:
+                    if bdate:
+                        if bplace:
+                            if ddate:
+                                if dplace:
+                                    self.doc.write_text(_("%(male_name)s%(endnotes)s was born %(birth_date)s "
+                                                "in %(birth_place)s%(birth_endnotes)s, "
+                                                "and died %(death_date)s in %(death_place)s"
+                                                "%(death_endnotes)s.") % {
+                                        'male_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_date' : bdate, 'birth_place' : bplace,
+                                        'death_date' : ddate,'death_place' : dplace,
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'death_endnotes' : self.endnotes(death),
+                                        })
+                                else:
+                                    self.doc.write_text(_("%(male_name)s%(endnotes)s was born %(birth_date)s "
+                                                "in %(birth_place)s%(birth_endnotes)s, "
+                                                "and died %(death_date)s%(death_endnotes)s.") % {
+                                        'male_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_date' : bdate, 'birth_place' : bplace,
+                                        'death_date' : ddate,
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'death_endnotes' : self.endnotes(death),                                    
+                                        })
+                            else:
+                                if dplace:
+                                    self.doc.write_text(_("%(male_name)s%(endnotes)s was born %(birth_date)s "
+                                            "in %(birth_place)s %(birth_endnotes)s, "
+                                            "and died in %(death_place)s%(death_endnotes)s.") % {
+                                        'male_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_date' : bdate, 'birth_place' : bplace,
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'death_endnotes' : self.endnotes(death),
+                                        'death_place' : dplace,
+                                        })
+                                else:
+                                    self.doc.write_text(_("%(male_name)s%(endnotes)s was born %(birth_date)s in "
+                                                        "%(birth_place)s%(birth_endnotes)s.") % {
+                                        'male_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_date' : bdate, 'birth_place' : bplace,
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        })
+                        else:
+                            if ddate:
+                                if dplace:
+                                    self.doc.write_text(_("%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
+                                                        "and died %(death_date)s in %(death_place)s"
+                                                        "%(death_endnotes)s.") % {
+                                        'male_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_date' : bdate, 'death_date' : ddate,
+                                        'death_place' : dplace,
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'death_endnotes' : self.endnotes(death),
+                                        })
+                                else:
+                                    self.doc.write_text(_("%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
+                                                        "and died %(death_date)s%(death_endnotes)s.") % {
+                                        'male_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_date' : bdate, 'death_date' : ddate,
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'death_endnotes' : self.endnotes(death),
+                                        })
+                            else:
+                                if dplace:
+                                    self.doc.write_text(_("%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
+                                                        "and died in %(death_place)s%(death_endnotes)s.") % {
+                                        'male_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_date' : bdate, 'death_place' : dplace,
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'death_endnotes' : self.endnotes(death),
+                                        })
+                                else:
+                                    self.doc.write_text(_("%(male_name)s%(endnotes)s was born "
+                                            "%(birth_date)s%(birth_endnotes)s.") % {
+                                        'male_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_date' : bdate,
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        })
+                    else:
+                        if bplace:
+                            if ddate:
+                                if dplace:
+                                    self.doc.write_text(_("%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
+                                                        "and died %(death_date)s in %(death_place)s"
+                                                        "%(death_endnotes)s.") % {
+                                        'male_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_place' : bplace, 'death_date' : ddate, 'death_place' : dplace,
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'death_endnotes' : self.endnotes(death),
+                                        })
+                                else:
+                                    self.doc.write_text(_("%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
+                                                        "and died %(death_date)s%(death_endnotes)s.") % {
+                                        'male_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'death_endnotes' : self.endnotes(death),
+                                        'birth_place' : bplace, 'death_date' : ddate,
+                                        })
+                            else:
+                                if dplace:
+                                   self.doc.write_text(_("%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
+                                                        "and died in %(death_place)s%(death_endnotes)s.") % {
+                                        'male_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_place' : bplace,'death_place' : dplace,
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'death_endnotes' : self.endnotes(death),
+                                        })
+                                else:
+                                    self.doc.write_text(_("%(male_name)s%(endnotes)s was born "
+                                                "in %(birth_place)s%(birth_endnotes)s.") % {
+                                        'male_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_place' : bplace,
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        })
+                        else:
+                            if ddate:
+                                if dplace:
+                                    self.doc.write_text(_("%(male_name)s%(endnotes)s died %(death_date)s in "
+                                                        "%(death_place)s%(death_endnotes)s.") % {
+                                        'male_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'death_date' : ddate, 'death_place' : dplace,
+                                        'death_endnotes' : self.endnotes(death),
+                                        })
+                                else:
+                                    self.doc.write_text(_("%(male_name)s%(endnotes)s "
+                                            "died %(death_date)s%(death_endnotes)s.") % {
+                                        'male_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'death_date' : ddate,
+                                        'death_endnotes' : self.endnotes(death),
+                                        })
+                            else:
+                                if dplace:
+                                    self.doc.write_text(_("%(male_name)s%(endnotes)s died "
+                                                "in %(death_place)s%(death_endnotes)s.") % {
+                                        'male_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'death_endnotes' : self.endnotes(death),
+                                        'death_place' : dplace,
+                                        })
+                else:
+                    if bdate:
+                        if bplace:
+                            if ddate:
+                                if dplace:
+                                    self.doc.write_text(_("%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
+                                                        "%(birth_endnotes)s, "
+                                                        "and died %(death_date)s in %(death_place)s"
+                                                        "%(death_endnotes)s.") % {
+                                        'female_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_date' : bdate, 'birth_place' : bplace,
+                                        'death_date' : ddate,'death_place' : dplace,
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'death_endnotes' : self.endnotes(death),
+                                        })
+                                else:
+                                    self.doc.write_text(_("%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
+                                                        "%(birth_endnotes)s, "
+                                                        "and died %(death_date)s%(death_endnotes)s.") % {
+                                        'female_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_date' : bdate, 'birth_place' : bplace,
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'death_endnotes' : self.endnotes(death),
+                                        'death_date' : ddate,
+                                        })
+                            else:
+                                if dplace:
+                                    self.doc.write_text(_("%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
+                                                        "%(birth_endnotes)s, "
+                                                        "and died in %(death_place)s%(death_endnotes)s.") % {
+                                        'female_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_date' : bdate, 'birth_place' : bplace,
+                                        'death_place' : dplace,
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'death_endnotes' : self.endnotes(death),
+                                        })
+                                else:
+                                    self.doc.write_text(_("%(female_name)s%(endnotes)s was born %(birth_date)s "
+                                                    "in %(birth_place)s %(birth_endnotes)s.") % {
+                                        'female_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'birth_date' : bdate, 'birth_place' : bplace,
+                                        })
+                        else:
+                            if ddate:
+                                if dplace:
+                                    self.doc.write_text(_("%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
+                                                        "and died %(death_date)s in %(death_place)s"
+                                                        "%(death_endnotes)s.") % {
+                                        'female_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_date' : bdate, 'death_date' : ddate,
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'death_endnotes' : self.endnotes(death),
+                                        'death_place' : dplace,
+                                        })
+                                else:
+                                    self.doc.write_text(_("%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
+                                                        "and died %(death_date)s%(death_endnotes)s.") % {
+                                        'female_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'death_endnotes' : self.endnotes(death),
+                                        'birth_date' : bdate, 'death_date' : ddate,
+                                        })
+                            else:
+                                if dplace:
+                                    self.doc.write_text(_("%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
+                                                        "and died in %(death_place)s%(death_endnotes)s.") % {
+                                        'female_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'death_endnotes' : self.endnotes(death),
+                                        'birth_date' : bdate, 'death_place' : dplace,
+                                        })
+                                else:
+                                    self.doc.write_text(_("%(female_name)s%(endnotes)s was "
+                                                "born %(birth_date)s%(birth_endnotes)s.") % {
+                                        'female_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'birth_date' : bdate,
+                                        })
+                    else:
+                        if bplace:
+                            if ddate:
+                                if dplace:
+                                    self.doc.write_text(_("%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
+                                                        "and died %(death_date)s in %(death_place)s%(death_endnotes)s.") % {
+                                        'female_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'death_endnotes' : self.endnotes(death),
+                                        'birth_place' : bplace, 'death_date' : ddate, 'death_place' : dplace,
+                                        })
+                                else:
+                                    self.doc.write_text(_("%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
+                                                        "and died %(death_date)s%(death_endnotes)s.") % {
+                                        'female_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'death_endnotes' : self.endnotes(death),
+                                        'birth_place' : bplace, 'death_date' : ddate,
+                                        })
+                            else:
+                                if dplace:
+                                    self.doc.write_text(_("%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
+                                                        "and died in %(death_place)s%(death_endnotes)s.") % {
+                                        'female_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'death_endnotes' : self.endnotes(death),
+                                        'birth_place' : bplace,'death_place' : dplace,
+                                        })
+                                else:
+                                    self.doc.write_text(_("%(female_name)s%(endnotes)s was born "
+                                                "in %(birth_place)s%(birth_endnotes)s.") % {
+                                        'female_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'birth_endnotes' : self.endnotes(birth),
+                                        'birth_place' : bplace,
+                                        })
+                        else:
+                            if ddate:
+                                if dplace:
+                                    self.doc.write_text(_("%(female_name)s%(endnotes)s died %(death_date)s in "
+                                                        "%(death_place)s%(death_endnotes)s.") % {
+                                        'female_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'death_endnotes' : self.endnotes(death),
+                                        'death_date' : ddate, 'death_place' : dplace,
+                                        })
+                                else:
+                                    self.doc.write_text(_("%(female_name)s%(endnotes)s "
+                                                    "died %(death_date)s%(death_endnotes)s.") % {
+                                        'female_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'death_endnotes' : self.endnotes(death),
+                                        'death_date' : ddate,
+                                        })
+                            else:
+                                if dplace:
+                                    self.doc.write_text(_("%(female_name)s%(endnotes)s died "
+                                                "in %(death_place)s%(death_endnotes)s.") % {
+                                        'female_name' : '', 'endnotes' : self.endnotes(pri_name),
+                                        'death_endnotes' : self.endnotes(death),
+                                        'birth_date' : bdate, 'death_place' : dplace,
+                                        })
             else:
-                self.doc.write_text('. ')
-            
-            if birth_valid:
-                date = birth.getDateObj().get_start_date()
-                place = birth.getPlaceName()
-                if place[-1:] == '.':
-                    place = place[:-1]
-                if date.getDate() != "":
-                    if place != "":
-                        t = _("born %(date)s in %(place)s%(endnotes)s") % {
-                            'date' : date.getDate(),
-                            'place' : place,
-                            'endnotes' : self.endnotes(birth),
-                            }
-                    else:
-                        t = _("born %(date)s%(endnotes)s") % {
-                            'date' : date.getDate(),
-                            'endnotes' : self.endnotes(birth),
-                            }
-                else:
-                    if place != "":
-                        t = _("born in %(place)s%(endnotes)s") % {
-                            'place' : place,
-                            'endnotes' : self.endnotes(birth),
-                            }
-                    else:
-                        t = ''
-
-                self.doc.write_text(t)
-                if death_valid:
-                    self.doc.write_text('; ')
-                else:
-                    self.doc.write_text('. ')
+                self.doc.write_text( "%s." % self.endnotes(pri_name) )
                     
-            if death_valid:
-                date = death.getDateObj().get_start_date()
-                place = death.getPlaceName()
-                if place[-1:] == '.':
-                    place = place[:-1]
-                if date.getDate() != "":
-                    if place != "":
-                        t = _("died %(date)s in %(place)s%(endnotes)s.") % {
-                            'date' : date.getDate(),
-                            'place' : place,
-                            'endnotes' : self.endnotes(death),
-                            }
-                    else:
-                        t = _("died %(date)s%(endnotes)s.") % {
-                            'date' : date.getDate(),
-                            'endnotes' : self.endnotes(death),
-                            }
-                else:
-                    if place != "":
-                        t = _("died in %(place)s%(endnotes)s.") % {
-                            'place' : place,
-                            'endnotes' : self.endnotes(death),
-                            }
-                    else:
-                        t = '.'
-                self.doc.write_text(t + ' ')
-
+            self.doc.write_text(' ')
             self.print_parents(person,death_valid)
             self.print_spouse(person)
             self.doc.end_paragraph()
