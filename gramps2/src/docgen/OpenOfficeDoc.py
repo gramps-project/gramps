@@ -416,9 +416,9 @@ class OpenOfficeDoc(TextDoc.TextDoc):
 
             align = style.get_alignment()
 	    if align == TextDoc.PARA_ALIGN_LEFT:
-	       self.f.write('fo:text-align="left" ')
+	       self.f.write('fo:text-align="start" ')
             elif align == TextDoc.PARA_ALIGN_RIGHT:
-               self.f.write('fo:text-align="right" ')
+               self.f.write('fo:text-align="end" ')
             elif align == TextDoc.PARA_ALIGN_CENTER:
                self.f.write('fo:text-align="center" ')
                self.f.write('style:justify-single-word="false" ')

@@ -80,7 +80,7 @@ class FtmAncestorReport(Report.Report):
         self.apply_filter(self.start,1)
         
         name = self.start.getPrimaryName().getRegularName()
-        self.doc.start_paragraph("FTA:Title")
+        self.doc.start_paragraph("FTA-Title")
         title = _("Ancestors of %s") % name
         self.doc.write_text(title)
         self.doc.end_paragraph()
@@ -93,14 +93,14 @@ class FtmAncestorReport(Report.Report):
             if old_gen != generation:
                 if self.pgbrk and generation > 1:
                     self.doc.page_break()
-                self.doc.start_paragraph("FTA:Generation")
+                self.doc.start_paragraph("FTA-Generation")
                 t = _("Generation No. %d") % generation
                 self.doc.write_text(t)
                 self.doc.end_paragraph()
                 old_gen = generation
 
             pri_name = person.getPrimaryName()
-            self.doc.start_paragraph("FTA:Entry","%d." % key)
+            self.doc.start_paragraph("FTA-Entry","%d." % key)
             name = pri_name.getRegularName()
             self.doc.start_bold()
             self.doc.write_text(name)
@@ -198,7 +198,7 @@ class FtmAncestorReport(Report.Report):
         if not keys:
             return
 
-        self.doc.start_paragraph('FTA:Generation')
+        self.doc.start_paragraph('FTA-Generation')
         self.doc.write_text(_('Endnotes'))
         self.doc.end_paragraph()
         
@@ -207,7 +207,7 @@ class FtmAncestorReport(Report.Report):
             srcref = self.sref_map[key]
             base = srcref.getBase()
             
-            self.doc.start_paragraph('FTA:Endnotes',"%d." % key)
+            self.doc.start_paragraph('FTA-Endnotes',"%d." % key)
             self.doc.write_text(base.getTitle())
 
             for item in [ base.getAuthor(), base.getPubInfo(), base.getCallNumber(),
@@ -254,12 +254,12 @@ class FtmAncestorReport(Report.Report):
         note = person.getNote()
         if not note.strip():
             return
-        self.doc.start_paragraph('FTA:SubEntry')
+        self.doc.start_paragraph('FTA-SubEntry')
         self.doc.write_text(_('Notes for %(person)s:') % { 
         	'person' : person.getPrimaryName().getRegularName()} )
         self.doc.end_paragraph()
         for line in note.split('\n'):
-            self.doc.start_paragraph('FTA:Details')
+            self.doc.start_paragraph('FTA-Details')
             self.doc.write_text(line.strip())
             self.doc.end_paragraph()
         
@@ -269,12 +269,12 @@ class FtmAncestorReport(Report.Report):
         ncount = 0
         for name in person.getAlternateNames():
             if first:
-                self.doc.start_paragraph('FTA:SubEntry')
+                self.doc.start_paragraph('FTA-SubEntry')
                 self.doc.write_text(_('More about %(person_name)s:') % { 
                 	'person_name' : person.getPrimaryName().getRegularName() })
                 self.doc.end_paragraph()
                 first = 0
-            self.doc.start_paragraph('FTA:Details')
+            self.doc.start_paragraph('FTA-Details')
             self.doc.write_text(_('Name %(count)d: %(name)s%(endnotes)s') % {
                 'count' : ncount, 'name' : name.getRegularName(),
                 'endnotes' : self.endnotes(name),
@@ -289,14 +289,14 @@ class FtmAncestorReport(Report.Report):
             if not date and not place:
                 continue
             if first:
-                self.doc.start_paragraph('FTA:SubEntry')
+                self.doc.start_paragraph('FTA-SubEntry')
                 name = person.getPrimaryName().getRegularName()
                 self.doc.write_text(_('More about %(person_name)s:') % { 
                 	'person_name' : name })
                 self.doc.end_paragraph()
                 first = 0
 
-            self.doc.start_paragraph('FTA:Details')
+            self.doc.start_paragraph('FTA-Details')
             if date and place:
                 self.doc.write_text(_('%(event_name)s: %(date)s, %(place)s%(endnotes)s') % {
                     'event_name' : event.getName(),
@@ -731,7 +731,7 @@ def _make_default_style(default_style):
     para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
     para.set(pad=0.5)
     para.set_description(_('The style used for the title of the page.'))
-    default_style.add_style("FTA:Title",para)
+    default_style.add_style("FTA-Title",para)
     
     font = TextDoc.FontStyle()
     font.set(face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
@@ -741,27 +741,27 @@ def _make_default_style(default_style):
     para.set(pad=0.5)
     para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
     para.set_description(_('The style used for the generation header.'))
-    default_style.add_style("FTA:Generation",para)
+    default_style.add_style("FTA-Generation",para)
     
     para = TextDoc.ParagraphStyle()
     para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
     para.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("FTA:Entry",para)
+    default_style.add_style("FTA-Entry",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(lmargin=1.0,pad=0.05)
     para.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("FTA:Details",para)
+    default_style.add_style("FTA-Details",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(lmargin=1.0,pad=0.25)
     para.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("FTA:SubEntry",para)
+    default_style.add_style("FTA-SubEntry",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(pad=0.05)
     para.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("FTA:Endnotes",para)
+    default_style.add_style("FTA-Endnotes",para)
 
 
 #------------------------------------------------------------------------

@@ -115,7 +115,7 @@ class DetDescendantReport(Report.Report):
 
         num_children= len(family.getChildList())
         if num_children > 0:
-            self.doc.start_paragraph("DDR:ChildTitle")
+            self.doc.start_paragraph("DDR-ChildTitle")
             if family.getMother() != None:
                 mother= family.getMother().getPrimaryName().getRegularName()
             else: mother= "unknown"
@@ -130,7 +130,7 @@ class DetDescendantReport(Report.Report):
             self.doc.end_paragraph()
 
             for child in family.getChildList():
-                self.doc.start_paragraph("DDR:ChildList")
+                self.doc.start_paragraph("DDR-ChildList")
                 name= child.getPrimaryName().getRegularName()
                 birth= child.getBirth()
                 death= child.getDeath()
@@ -204,7 +204,7 @@ class DetDescendantReport(Report.Report):
     def write_person(self, key, rptOptions):
         """Output birth, death, parentage, marriage and notes information """
 
-        self.doc.start_paragraph("DDR:Entry","%s." % str(key))
+        self.doc.start_paragraph("DDR-Entry","%s." % str(key))
 
         person = self.map[key]
         if rptOptions.addImages == reportOptions.Yes:
@@ -246,12 +246,12 @@ class DetDescendantReport(Report.Report):
         self.write_mate(person, rptOptions)
 
         if person.getNote() != "" and rptOptions.includeNotes == reportOptions.Yes:
-            self.doc.start_paragraph("DDR:NoteHeader")
+            self.doc.start_paragraph("DDR-NoteHeader")
             self.doc.start_bold()
             self.doc.write_text(_("Notes for %s" % name))
             self.doc.end_bold()
             self.doc.end_paragraph()
-            self.doc.start_paragraph("DDR:Entry")
+            self.doc.start_paragraph("DDR-Entry")
             self.doc.write_text(person.getNote())
             self.doc.end_paragraph()
 
@@ -531,7 +531,7 @@ class DetDescendantReport(Report.Report):
                     mateFirstName = mate.getPrimaryName().getFirstName()
 
             if mate:
-                self.doc.start_paragraph("DDR:Entry")
+                self.doc.start_paragraph("DDR-Entry")
 
                 if rptOptions.addImages == reportOptions.Yes:
                     self.insert_images(mate, rptOptions.imageAttrTag)
@@ -586,7 +586,7 @@ class DetDescendantReport(Report.Report):
 
                         numPhotos= numPhotos + 1
                         if numPhotos == 1:
-                            self.doc.start_paragraph("DDR:Entry")
+                            self.doc.start_paragraph("DDR-Entry")
                         self.doc.add_photo(photo.ref.getPath(), vlist[0], \
 							float(vlist[1]), float(vlist[2]))
 						#self.doc.end_paragraph()
@@ -594,7 +594,7 @@ class DetDescendantReport(Report.Report):
                     elif vlist[0] == 'row':
                         numPhotos= numPhotos + 1
                         if numPhotos == 1:
-                            self.doc.start_paragraph("DDR:Entry")
+                            self.doc.start_paragraph("DDR-Entry")
                         self.doc.add_photo(photo.ref.getPath(), vlist[0], \
 							float(vlist[1]), float(vlist[2]))
 
@@ -629,7 +629,7 @@ class DetDescendantReport(Report.Report):
                     if fam.getFather() != None:
                         spouseName= fam.getFather().getPrimaryName().getFirstName()
 
-        self.doc.start_paragraph("DDR:Title")
+        self.doc.start_paragraph("DDR-Title")
         if spouseName != "":
             name = spouseName + " and " + name
 
@@ -645,7 +645,7 @@ class DetDescendantReport(Report.Report):
         for generation in xrange(len(self.genKeys)):
             if self.pgbrk and generation > 0:
                 self.doc.page_break()
-            self.doc.start_paragraph("DDR:Generation")
+            self.doc.start_paragraph("DDR-Generation")
             t = _("%s Generation") % DetDescendantReport.gen[generation+1]
             self.doc.write_text(t)
             self.doc.end_paragraph()
@@ -683,7 +683,7 @@ def _make_default_style(default_style):
     para.set_font(font)
     para.set_header_level(1)
     para.set(pad=0.5)
-    default_style.add_style("DDR:Title",para)
+    default_style.add_style("DDR-Title",para)
 
     font = TextDoc.FontStyle()
     font.set(face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
@@ -691,7 +691,7 @@ def _make_default_style(default_style):
     para.set_font(font)
     para.set_header_level(2)
     para.set(pad=0.5)
-    default_style.add_style("DDR:Generation",para)
+    default_style.add_style("DDR-Generation",para)
 
     font = TextDoc.FontStyle()
     font.set(face=TextDoc.FONT_SANS_SERIF,size=10,italic=0, bold=0)
@@ -700,22 +700,22 @@ def _make_default_style(default_style):
     #para.set_header_level(3)
     para.set_left_margin(0.0)   # in centimeters
     para.set(pad=0.5)
-    default_style.add_style("DDR:ChildTitle",para)
+    default_style.add_style("DDR-ChildTitle",para)
 
     font = TextDoc.FontStyle()
     font.set(face=TextDoc.FONT_SANS_SERIF,size=9)
     para = TextDoc.ParagraphStyle()
     para.set_font(font)
     para.set(first_indent=0.0,lmargin=0.0,pad=0.25)
-    default_style.add_style("DDR:ChildList",para)
+    default_style.add_style("DDR-ChildList",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(first_indent=0.0,lmargin=0.0,pad=0.25)
-    default_style.add_style("DDR:NoteHeader",para)
+    default_style.add_style("DDR-NoteHeader",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(first_indent=0.5,lmargin=0.0,pad=0.25)
-    default_style.add_style("DDR:Entry",para)
+    default_style.add_style("DDR-Entry",para)
 
     table = TextDoc.TableStyle()
     table.set_width(1000)
