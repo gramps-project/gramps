@@ -1805,6 +1805,9 @@ class SourceRef(Persistent):
             return 1
         else:
             return 0
+        
+    def unique_note(self):
+        self.comments = Note(self.comments.get())
 
 #-------------------------------------------------------------------------
 #
