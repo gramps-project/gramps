@@ -219,6 +219,7 @@ class BareReportDialog:
         self.tbl.set_border_width(6)
         self.col = 0
         self.window.vbox.add(self.tbl)
+        self.setup_center_person()
         self.setup_target_frame()
         self.setup_format_frame()
         self.setup_style_frame()
@@ -227,22 +228,8 @@ class BareReportDialog:
         self.setup_html_frame()
         self.setup_report_options_frame()
         self.setup_other_frames()
-        self.setup_center_person()
         self.window.show_all()
 
-    #------------------------------------------------------------------------
-    #
-    # Customization hooks for stand-alone reports (subclass ReportDialog)
-    #
-    #------------------------------------------------------------------------
-    def setup_target_frame(self): pass
-    def setup_format_frame(self): pass
-    def setup_style_frame(self): pass
-    def setup_paper_frame(self): pass
-    def setup_html_frame(self): pass
-    def setup_paper_frame(self): pass
-    def setup_output_notebook(self): pass
-    
     #------------------------------------------------------------------------
     #
     # Customization hooks for subclasses
@@ -395,7 +382,70 @@ class BareReportDialog:
         label.set_use_markup(gtk.TRUE)
         self.window.vbox.pack_start(label,gtk.TRUE,gtk.TRUE,ReportDialog.border_pad)
         
-            
+    def setup_target_frame(self):
+        """Bare report dialog only uses Doc Options header."""
+
+        label = gtk.Label("<b>%s</b>" % _('Document Options'))
+        label.set_use_markup(1)
+        label.set_alignment(0.0,0.5)
+        self.tbl.set_border_width(12)
+        self.tbl.attach(label,0,4,self.col,self.col+1)
+        self.col += 1
+
+    def setup_center_person(self): 
+        """Set up center person labels and change button. 
+        Should be overwritten by standalone report dialogs. """
+
+        center_label = gtk.Label("<b>%s</b>" % _("Center Person"))
+        center_label.set_use_markup(gtk.TRUE)
+        center_label.set_alignment(0.0,0.5)
+        self.tbl.set_border_width(12)
+        self.tbl.attach(center_label,0,4,self.col,self.col+1)
+        self.col += 1
+
+        name = self.person.getPrimaryName().getRegularName()
+        self.person_label = gtk.Label( "%s" % name )
+        self.person_label.set_alignment(0.0,0.5)
+        self.tbl.attach(self.person_label,2,3,self.col,self.col+1)
+        
+        change_button = gtk.Button("%s..." % _('C_hange') )
+        change_button.connect('clicked',self.on_center_person_change_clicked)
+        self.tbl.attach(change_button,3,4,self.col,self.col+1,gtk.SHRINK|gtk.SHRINK)
+        self.col += 1
+
+    def setup_style_frame(self):
+        """Set up the style frame of the dialog.  This function relies
+        on other routines create the default style for this report,
+        and to read in any user defined styles for this report.  It
+        the builds a menu of all the available styles for the user to
+        choose from."""
+
+        # Styles Frame
+        label = gtk.Label("%s:" % _("Styles"))
+        label.set_alignment(0.0,0.5)
+
+        self.style_menu = gtk.OptionMenu()
+        self.style_button = gtk.Button("%s..." % _("Style Editor"))
+        self.style_button.connect('clicked',self.on_style_edit_clicked)
+
+        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(self.style_menu,2,3,self.col,self.col+1)
+        self.tbl.attach(self.style_button,3,4,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
+        self.col += 1
+        
+        # Build the default style set for this report.
+        self.default_style = TextDoc.StyleSheet()
+        self.make_default_style()
+
+        # Build the initial list of available styles sets.  This
+        # includes the default style set and any style sets saved from
+        # previous invocations of gramps.
+        self.style_sheet_list = TextDoc.StyleSheetList(self.get_stylesheet_savefile(),
+                                                       self.default_style)
+
+        # Now build the actual menu.
+        self.build_style_menu()
+
     def setup_report_options_frame(self):
         """Set up the report options frame of the dialog.  This
         function relies on several report_xxx() customization
@@ -545,57 +595,31 @@ class BareReportDialog:
                     table.attach(widget,2,3,row,row+1)
                 row = row + 1
 
-    def setup_style_frame(self):
-        """Set up the style frame of the dialog.  This function relies
-        on other routines create the default style for this report,
-        and to read in any user defined styles for this report.  It
-        the builds a menu of all the available styles for the user to
-        choose from."""
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks for stand-alone reports (subclass ReportDialog)
+    #
+    #------------------------------------------------------------------------
+    def setup_format_frame(self): 
+        """Not used in bare report dialogs. Override in the subclass."""
+        pass
 
-        # Styles Frame
-        label = gtk.Label("%s:" % _("Styles"))
-        label.set_alignment(0.0,0.5)
+    def setup_paper_frame(self):
+        """Not used in bare report dialogs. Override in the subclass."""
+        pass
 
-        self.style_menu = gtk.OptionMenu()
-        self.style_button = gtk.Button("%s..." % _("Style Editor"))
-        self.style_button.connect('clicked',self.on_style_edit_clicked)
+    def setup_html_frame(self):
+        """Not used in bare report dialogs. Override in the subclass."""
+        pass
 
-        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
-        self.tbl.attach(self.style_menu,2,3,self.col,self.col+1)
-        self.tbl.attach(self.style_button,3,4,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
-        self.col += 1
-        
-        # Build the default style set for this report.
-        self.default_style = TextDoc.StyleSheet()
-        self.make_default_style()
+    def setup_paper_frame(self):
+        """Not used in bare report dialogs. Override in the subclass."""
+        pass
 
-        # Build the initial list of available styles sets.  This
-        # includes the default style set and any style sets saved from
-        # previous invocations of gramps.
-        self.style_sheet_list = TextDoc.StyleSheetList(self.get_stylesheet_savefile(),
-                                                       self.default_style)
-
-        # Now build the actual menu.
-        self.build_style_menu()
-
-    def setup_center_person(self): 
-        center_label = gtk.Label("<b>%s</b>" % _("Center Person"))
-        center_label.set_use_markup(gtk.TRUE)
-        center_label.set_alignment(0.0,0.5)
-        self.tbl.set_border_width(12)
-        self.tbl.attach(center_label,0,4,1,2,gtk.SHRINK|gtk.FILL)
-        
-        name = self.person.getPrimaryName().getRegularName()
-        self.person_label = gtk.Label( "<i>%s</i>" % name )
-        self.person_label.set_use_markup(gtk.TRUE)
-        self.person_label.set_alignment(0.0,0.5)
-        self.tbl.attach(self.person_label,2,3,2,3)
-        
-        change_button = gtk.Button("%s..." % _('_Change') )
-        change_button.connect('clicked',self.on_center_person_change_clicked)
-        self.tbl.attach(change_button,3,4,2,3,gtk.SHRINK|gtk.SHRINK)
-
-
+    def setup_output_notebook(self):
+        """Not used in bare report dialogs. Override in the subclass."""
+        pass
+    
     #------------------------------------------------------------------------
     #
     # Functions related to retrieving data from the dialog window

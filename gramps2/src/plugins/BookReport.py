@@ -107,7 +107,8 @@ class BookReportSelector:
         self.max_key = 0
 
         av_titles = [(_('Name'),2,150),(_('Type'),1,50)]
-        bk_titles = [(_('Item name'),-1,150),(_('Type'),1,50),('',-1,0)] #,('',-1,0)
+        bk_titles = [(_('Item name'),-1,150),(_('Type'),1,50),
+            (_('Center person'),1,50),('',-1,0)] 
 	
 	self.av_ncols = len(av_titles)
 	self.bk_ncols = len(bk_titles)
@@ -142,6 +143,7 @@ class BookReportSelector:
         if not iter:
             return
 	data = self.av_model.get_data(iter,range(self.av_ncols))
+        data.append(self.person.getPrimaryName().getRegularName())
         self.max_key = self.max_key + 1
         newkey = str(self.max_key)
         data.append(newkey)
@@ -155,7 +157,7 @@ class BookReportSelector:
         if not iter:
             return
 	data = self.bk_model.get_data(iter,range(self.bk_ncols))
-        key = data[2]
+        key = data[self.bk_ncols-1]
         del self.item_storage[key]
         self.bk_model.remove(iter)
 
@@ -186,17 +188,18 @@ class BookReportSelector:
         if not iter:
             return
 	data = self.bk_model.get_data(iter,range(self.bk_ncols))
-        key = data[2]
+        key = data[self.bk_ncols-1]
         book_item = self.item_storage[key]
         options_dialog =  book_item[2]
         get_opt = book_item[4]
         get_stl = book_item[5] 
         opt_dlg = options_dialog(self.db,self.person,get_opt,get_stl)
+        if opt_dlg.person:
+            self.bk_model.model.set_value(iter,2,
+                opt_dlg.person.getPrimaryName().getRegularName())
         book_item[4] = opt_dlg.get_options
         book_item[5] = opt_dlg.get_style
         self.item_storage[key] = book_item
-        self.person = opt_dlg.person
-        #print opt_dlg.person.getPrimaryName().getRegularName()
 
     def bk_double_click(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
@@ -213,7 +216,7 @@ class BookReportSelector:
                 self.bk_model.select_row(row)
                 store,iter = self.bk_model.get_selected()
                 data = self.bk_model.get_data(iter,range(self.bk_ncols))
-                key = data[2]
+                key = data[self.bk_ncols-1]
                 book_item = self.item_storage[key]
                 item_list.append(book_item)
             BookReportDialog(self.db,self.person,item_list)
@@ -264,9 +267,8 @@ class BookReportDialog(Report.ReportDialog):
         self.doc.open(self.target_path)
 
     def make_report(self):
-        """Create the contents of the report.  This is a simple
-        default implementation suitable for testing.  Is should be
-        overridden to produce a real report."""
+        """The actual book report. Start it out, then go through the item list 
+        and call each item's write_book_item method."""
         self.doc.start_paragraph("Title")
         title = _("Book Report")
         self.doc.write_text(title)
