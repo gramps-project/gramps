@@ -20,7 +20,7 @@ Requires: gnome-python2-canvas >= 1.99
 Requires: pygtk2 >= 1.99
 Requires: pygtk2-libglade >= 1.99
 
-BuildRequires: scrollkeeper >= 0.1.4
+BuildRequires: scrollkeeper >= 0.3.5
 BuildRequires: automake >= 1.6
 BuildRequires: autoconf >= 2.52
 
@@ -53,12 +53,11 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-, root, root)
 
-%doc README COPYING TODO INSTALL
+%doc README COPYING TODO INSTALL COPYING-DOCS
 
 %{prefix}/bin/gramps
 
-%{_datadir}/gnome/help/gramps-manual/C/*
-%{_datadir}/gnome/help/extending-gramps/C/*
+%{_datadir}/gramps/doc/gramps-manual/C/*
 
 %{_datadir}/gnome/apps/Applications/gramps.desktop
 %{_datadir}/pixmaps/gramps.png
@@ -86,7 +85,15 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/man/man1/gramps.1*
 
 %{_datadir}/omf/gramps
+
+%post
+if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update -q -o %{_datadir}/omf/gramps; fi
+
+%postun
+if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update -q; fi
  
 %changelog
+* Mon Mar 24 2003 Alex Roitman <shura@alex.neuro.umn.edu>
+- update scrollkeeper dependencies and add post and postun to enable install on a machine without scrollkeeper
 * Fri Jun 14 2002 Donald Peterson <dpeterso@engr.ors.edu>
 - add scrollkeeper dependencies and some file cleanup
