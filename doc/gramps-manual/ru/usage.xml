@@ -299,7 +299,7 @@
 	</para>
     
     <para>Этот раздел в основном ссылается на элементы меню и кнопки, как главный
-    способ всзаимодействия с &app;. В дополнение к этому, &app; предоставляет широкий
+    способ взаимодействия с &app;. В дополнение к этому, &app; предоставляет широкий
     набор клавишных назначений. Для подробной справки по назначениям клавиш 
     см. <xref linkend="append-keybind"/>.
     </para>
@@ -315,173 +315,151 @@
 	данных, выберите запись, которую Вы хотите просмотреть/править, и щёлкните кнопку
 	<guibutton>Правка</guibutton> на панели инструментов. </para> 
         
-        <para>You can also use <guilabel>Add...</guilabel> and 
-        <guilabel>Edit...</guilabel> menu items available under 
-        the <guimenu>Edit</guimenu>. Or you can right-click on the person
-        and select <guilabel>Add...</guilabel> or <guilabel>Edit...</guilabel>
-        from the invoked context menu. 
+        <para>Также Вы можете использовать элементы меню <guilabel>Добавить...</guilabel> и 
+        <guilabel>Правка...</guilabel> иэ меню <guimenu>Правка</guimenu>. Наконец, Вы можете
+        щёлкнуть првой кнопкой желаемое лицо и выбрать <guilabel>Добавить...</guilabel> или 
+        <guilabel>Правка...</guilabel> из вызванного контекстного меню.
         </para>
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-spec-rel"> 
-        <title>To Specify a Relationship</title> 
-	<para>To specify a relationship, first switch to the Family View 
-	(<xref linkend="family-fig"/>). Then click one of the two top buttons on 
-        the right of the spouse box. The topmost button adds a new person to the 
-        database and to the relationship, while the second top button adds a person 
-        that is already in a database to the relationship. </para>
+        <title>Обозначить отношение</title> 
+	<para>Чтобы обозначить семейное/партнёрское отношение, вначале переключитесь в Вид Семьи
+	(<xref linkend="family-fig"/>). Затем, щёлкните одну из двух верхних кнопок справа от окошка
+    супруга. Самая верхняя кнопка добавляет новое лицо в базу данных и в отношение, тогда как 
+    вторая сверху кнопка добавляет лицо, уже находящееся в базе, в отношение. </para>
 
-	<para> If using the second button, select the spouse/partner from the list 
-        and specify the relationship using the menu at the bottom. If necessary, you 
-        can add a person to the list by clicking the <guibutton>Add...</guibutton> 
-        button. &app; will filter the displayed list of people based on the 
-        relationship type as follows. The relationships Married, Unmarried, Unknown, 
-        and Other will only display people of the sex opposite to that of an active 
-        person. The relationships Partners will only display people of the same sex 
-        as that of an active person. Also, by default, &app; will limit the lists 
-        to people who could possibly be the spouse/partner (judged by the dates of 
-        birth and death) of the active person. To override this, check 
-        the <guilabel>Show all</guilabel> box. 
+	<para> При использовании второй кнопки, выберите супруга/партнёра из списка и укажите
+    отношение, используя нижнее меню. Если необходимо, Вы можете добавить лицо к списку 
+    нажатием кнопки <guibutton>Добавить...</guibutton>. &app; отсеивает список показанных лиц
+    на основании типа отношения следующим образом. Отношения Женаты, Не женаты, Нет данных и Другое
+    покажут только лиц противоположного активному лицу пола. Отношение Партнёры покажет только
+    лиц того же пола. Также, по умолчанию, &app; ограничит списки людьми, которые потенциально
+    могут быть супругом/партнёром (исходя из дат рождения и смерти) активного лица. Чтобы отменить 
+    это ограничение, отметьте опцию <guilabel>Показать всех</guilabel>. 
 	</para>
 
-	<para>
-	To edit information about a relationship already present in the database, 
-        move the mouse over the <guilabel>Spouse</guilabel> box and double-click. 
-        If the relationship lists has more than one person, you can specify the 
-        preferred spouse/partner by selecting an appropriate item from the context 
-        menu available upon right-clicking into the spouse box. Also, most of the 
-        above function are available from the items of this context menu. 
+	<para>Чтобы редактировать информацию об отношении, уже содержащемся в базе данных, 
+    поставьте мышь поверх окошка <guilabel>Супруг/Партнёр</guilabel> и сделайте двойной
+    щелчок. Если окошко содержит более одного лица, Вы можете указать предпочитаемого
+    супруга/партнёра выбором соответствующего элемента из контекстного меню (правый щелчок).
+    Также, большинство описанных операций доступно в качестве элементов контекстного меню. 
 	</para>
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-spec-par"> 
-        <title>To Specify Parents</title> 
-	<para>To specify parents of an active person, first switch to the 
-	Family View (<xref linkend="family-fig"/>). Then click the 
-	<guibutton>+</guibutton> button on the right of the active person's
-	parents list box. Select the parents from two lists and specify the
-	parents' relationships to the active person using menus at the bottom. 
-	You can also specify parents' relationship to each other. 
-	If necessary, you can add a person to the list by clicking the 
-	<guibutton>Add...</guibutton> button. </para>
+        <title>Указать родителей</title> 
+	<para>Чтобы указать родителей активного лица, вначале переключитесь в Вид Семьи
+	(<xref linkend="family-fig"/>). Затем, щёлкните кнопку <guibutton>+</guibutton> 
+    справа от окошка родителей активного лица. Выберите родителей из двух списков
+    и укажите отношение родителей к активному лицу, используя меню внизу диалога.
+    Также Вы можете указать отношение родителей друг к другу. Если необходимо добавить 
+    лицо к списку, щёлкните кнопку <guibutton>Добавить...</guibutton>. </para>
 	
-	<para> The top and bottom lists contain males and females, 
-	respectively. By default, &app; will
-	limit both lists to people who could possibly be the parents (judged
-	by the date of birth) of the active person. To override this, check
-	the <guilabel>Show all</guilabel> box for each list. 
+	<para> Верхний и нижний списки содержат мужчин и женщин, соответственно. 
+    По умолчанию, &app; ограничит оба списка людьми, которые потенциально
+    могут быть родителями (исходя из дат рождения и смерти) активного лица. 
+    Чтобы отменить это ограничение, отметьте опцию <guilabel>Показать всех</guilabel> 
+    для каждого списка. 
 	</para>
 	
-	<para>To specify parents of the active person's spouse, switch to the 
-	Family View and then click the <guibutton>+</guibutton> button on the 
-	right of the spouse's parents list box. To edit information about 
-	parents already present in the database, move the mouse over 
-	the corresponding parents' box and double-click. All these functions can
-        also be performed by right-clicking on the parents' box and selecting
-        an appropriate item from the context menu. </para>
+	<para>Чтобы указать родителей супруга активного лица, переключитесь в Вид Семьи
+	и щёлкните кнопку <guibutton>+</guibutton> справа от окошка родителей супруга 
+    активного лица. Для правки информации о родителях, уже содержащихся в базе данных, 
+    поставьте мышь поверх соответствующего окошка родителей и сделайте двойной
+    щелчок. Все эти операции доступны в качестве элементов контекстного меню, вызываемого
+    правым щелчком. </para>
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-spec-ch"> 
-        <title>To Specify Children</title> 
-	<para>To specify children of an active person, switch to the 
-	Family View (<xref linkend="family-fig"/>) and then click either the 
-        second of the third button from the top on the right of the children list 
-        box. The second button adds a child to the database and to the family, while
-        the third button adds a child already present in the database to the family.
+        <title>Указать детей</title> 
+	<para>Чтобы указать детей активного лица, переключитесь в Вид Семьи
+    и щёлкните вторую или третью сверху кнопку справа от окошка детей. Вторая кнопка 
+    добавляет ребёнка в базу данных и в семью, тогда как третья кнопка добавляет 
+    ребёнка, уже находящегося в базе, в семью.
 	</para>
 
-	<para> If using the third button, select a child from the list and 
-	specify	the child's relationship with father and mother using menus 
-	at the bottom. If necessary, you can add a person to the list by 
-	clicking the <guibutton>Add...</guibutton> button. By default, &app; will
-	limit the lists to people who could possibly be the child (judged
-	by the date of birth) of the active person. To override this, check
-	the <guilabel>Show all</guilabel> box. 
+	<para> При использовании третей кнопки, выберите ребёнка из списка и укажите 
+    отношение ребёнка к отцу и матери, используя меню внизу диалога. Если необходимо, 
+    Вы можете добавить лицо к списку нажатием кнопки <guibutton>Добавить...</guibutton>. 
+    По умолчанию, &app; ограничит списки людьми, которые потенциально
+    могут быть ребёнком (исходя из дат рождения и смерти) активного лица. Чтобы отменить 
+    это ограничение, отметьте опцию <guilabel>Показать всех</guilabel>. 
 	</para>
         
-	<para>
-        The relationship of the child to the parents can be modified by selecting 
-        an appropriate item from the context menu available upon right-clicking 
-        into the children box. Also, most of the above function are available from 
-        the items of this context menu.
+	<para> Отношение ребёнка к родителям может быть изменено выбором соответствующего
+    элемента из контекстного меню, вызываемого правым щелчком в окошке детей. 
+    Также, большинство описанных операций доступно в качестве элементов контекстного меню. 
 	</para>
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-add-img"> 
-        <title>To Add Images</title> 
-	<para>You can add images (as well as other media objects) to 
-	individual people, events, sources, places, as well as images 
-	generally related to the database (e.g. group family photos). </para>
+        <title>Добавить изображения</title> 
+	<para>Вы можете добавлять изображения (также как и другие документы) к личным записям,
+    событиям, источникам, местам, а также изображения, относящиеся в общем к базе данных
+    (напр. групповые семейные фотографии).</para>
 	
-	<para> To add images related to a single person, switch to the 
-	People View (<xref linkend="side-nofilt-fig"/>), select a person, and 
-	then click the <guibutton>Edit</guibutton> icon on the toolbar to 
-        invoke the <guilabel>Edit Person</guilabel> Dialog 
-	(<xref linkend="edit-pers-fig"/>). Then, select the 
-	<guilabel>Gallery</guilabel> tab, and click the 
-	<guibutton>Add...</guibutton> button to invoke the <guilabel>Select a media 
-	object</guilabel> dialog. Type the filename or select a file with the 
-	image, then provide a title for that image. To prevent the file from
-	being copied into your database directory, check the <guilabel>Do not
-	make a local copy</guilabel> box. Keep adding images until you are 
-	done. </para>
+	<para> Чтобы добавить изображения, относящиеся к отдельному лицу, переключитесь в Вид 
+    Людей (<xref linkend="side-nofilt-fig"/>), выберите лицо, а затем щёлкните кнопку 
+    <guibutton>Правка</guibutton> на панели инструментов, чтобы вызвать диалог <guilabel>Правка
+    личной информации</guilabel> (<xref linkend="edit-pers-fig"/>). Затем, выберите закладку
+    <guilabel>Галерея</guilabel> и щёлкните кнопку <guibutton>Добавить...</guibutton>
+    для вызова диалога <guilabel>Выбрать документ</guilabel>. Введите имя файла или выберите
+    файл с изображением, затем укажите название этого изображения. Чтобы отменить копирование
+    файла в каталог Вашей базы данных, отметьте опцию <guilabel>Не делать локальной 
+    копии</guilabel>. Продолжайте добавлять изображения по мере надобности. 
+    </para>
 
-	<para> To add images related to a relationship (e.g. marriage), 
-	switch to the Family View (<xref linkend="family-fig"/>) and then
-	double-click on the Spouse box invoke the <guilabel>Marriage/Relationship 
-	editor</guilabel> dialog. Select the <guilabel>Gallery</guilabel> 
-	tab and click the <guibutton>Add...</guibutton> button to add 
-        an image. </para>
+	<para> Чтобы добавить изображения, касающиеся отношений (напр. брака), переключитесь 
+    в Вид Семьи (<xref linkend="family-fig"/>), а затем сделайте двойной щелчок в окошке
+    супруга для вызова диялога <guilabel>Правка семейной информации</guilabel>.
+    Выберите закладку <guilabel>Галерея</guilabel> и щёлкните кнопку 
+    <guibutton>Добавить...</guibutton>, чтобы добавить изображение.
+    </para>
 
-	<para> To add images related to a source or a place, first switch to 
-	the Sources View (<xref linkend="sources-fig"/>) or Places 
-	View (<xref linkend="places-fig"/>), respectively. Then select the 
-	appropriate source or place and then either double-click on it 
-	or click the <guibutton>Edit</guibutton> icon on the toolbar to invoke the 
-	<guilabel>Source Editor</guilabel> (or <guilabel>Place 
-	Editor</guilabel>) dialog. Select the <guilabel>Gallery</guilabel> 
-	tab and click the <guibutton>Add...</guibutton> button to add 
-        an image. </para>
+	<para> Чтобы добавить изображения, относящиеся к источнику или месту, вначале переключитесь 
+    в Вид Источников (<xref linkend="sources-fig"/>) или Вид Мест (<xref linkend="places-fig"/>), 
+    соответственно. respectively. Затем выберите нужный источник или место и либо сделайте
+    двойной щелчок, либо щёлкните кнопку <guibutton>Правка</guibutton> на панели инструментов
+    для вызова диалога <guilabel>Редактор источников</guilabel> (или <guilabel>Редактор 
+	мест</guilabel>). Выберите закладку <guilabel>Галерея</guilabel> и щёлкните 
+    кнопку <guibutton>Добавить...</guibutton>, чтобы добавить изображение.
+    </para>
 
-	<para> Finally, to add images that are generally related to the 
-	database but not limited to any person, relationship, source, or place 
-	in particular, switch to the Media View (<xref linkend="media-fig"/>). 
-	Then click the <guibutton>Add</guibutton> icon on the toolbar to 
-        add an image. 
-	If you have already added any images to any individual galleries, 
-	you will also find them listed in the Media View. </para>
+	<para> Наконец, чтобы добавить изображения, относящиеся в общем к базе данных, но
+    не ограничивающиеся отдельным лицом, отношением, источником или местом, переключитесь 
+    в Вид Альбома (<xref linkend="media-fig"/>). Затем щёлкните кнопку 
+    <guibutton>Добавить...</guibutton> на панели инструментов, чтобы добавить изображение.
+    Если Вы уже добавляли изображения в какие-либо индивидуальные галереи, Вы найдёте их
+    в списке Альбома. </para>
 
-	<para> In any gallery, you can also use the <guibutton>Edit...</guibutton> 
-	and <guibutton>Remove</guibutton> buttons to edit image information
-	and to remove the image reference from that gallery. Note that in all
-	galleries removing the reference to the image does not remove the image
-	from the database. To completely remove the image from the database, 
-	delete it from Media View by first selecting it and then 
-	clicking the <guibutton>Remove</guibutton> icon on the toolbar. </para>
-
+	<para> В любой галерее вы можете использовать кнопки <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> для правки данных об изображении и удаления ссылки на
+    изображение из этой галереи. Заметьте, что удаление ссылки на изображение не удаляет его
+    из базы данных. Чтобы полностью удалить изображение из базы данных, удалите его из Альбома
+    путём выбора из списка и нажатия кнопки <guibutton>Удалить</guibutton> на панели инструментов
+    </para>
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-edit-src-plc"> 
-        <title>To Edit Sources and Places</title> 
+        <title>Правка источников и мест</title> 
 
-	<para> To add a source or a place to the database, switch to 
-	the appropriate Sources View (<xref linkend="sources-fig"/>) or 
-	Places View (<xref linkend="places-fig"/>). 
-	Then click the <guibutton>Add</guibutton> icon on the toolbar to add a
-	source/place. Enter the information into the <guilabel>Source 
-	Editor</guilabel> (or <guilabel>Place Editor</guilabel>) dialog. 
+	<para> Чтобы добавить источник или место в базу данных, переключитесь соответственно в 
+    Вид Источников (<xref linkend="sources-fig"/>) или Вид Мест (<xref linkend="places-fig"/>). 
+    Затем щёлкните кнопку <guibutton>Добавить...</guibutton> на панели инструментов, чтобы
+    добавить источник/место. Введите информацию в диалоге <guilabel>Редактор источников</guilabel> 
+    (или <guilabel>Редактор мест</guilabel>).
 	</para>
 
-	<para> To edit information about sources and places already present
-	in the database, switch to the appropriate view, select an entry
-	you would like to view/modify, and then click the 
-	<guibutton>Edit</guibutton> icon on the toolbar. Alternatively, you 
-        may double-click on the entry to edit it. 
+	<para> Для правки информации об источниках и местах, уже содежащихся в базе
+    данных переключитесь в соответствующий вид, выберите запись, которую Вы хотите править,
+    а затем щёлкните кнопку <guibutton>Правка</guibutton> на панели инструментов. 
+    Также, вы можете сделать двойной щелчок по записи для её правки.
 	</para>
 
       </sect3>
@@ -489,367 +467,336 @@
       
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-edit-complete"> 
-      <title>Editing Data: Complete Description</title> 
-      <para> This section provides a complete description of all editing 
-      options for all pieces of data in the &app; database. It refers mainly 
-      to the menu items and buttons as the main way of interacting with &app;. 
-      In addition to this, &app; provides an extensive set of keybindings. 
-      The detailed reference to the keybindings is found in 
-      the <xref linkend="append-keybind"/>.</para>
+      <title>Правка данных: полное описание</title> 
+      <para> Этот раздел предоставляет полное описание всех возможностей правки
+      для любой части данных из базы данных &app;. В основном, он ссылается на 
+      элементы меню и кнопки, как главный способ взаимодействия с &app;. 
+      В дополнение к этому, &app; предоставляет широкий набор клавишных назначений. 
+      Для подробной справки по назначениям клавиш см. <xref linkend="append-keybind"/>.
+      </para>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-pers"> 
-        <title>Edit Personal Information</title> 
-	<para> Editing of personal data can be performed in the 
-	following ways: </para>
+        <title>Правка личной информации</title> 
+	<para> Правка личной информации может быть произведена следующими способами:
+    </para>
+
 	<variablelist>
-	<varlistentry><term>From the People View:</term><listitem><para> 
-	  Double-click the name of the person whose data you would like 
-	  to edit, or select the name by single click and then click the 
-	  <guibutton>Edit</guibutton> icon on the toolbar. You may also select 
-      the name and then press <keycap>Return</keycap>. Finally, you may select 
-      <guimenuitem>Edit...</guimenuitem> from the <guisubmenu>Edit</guisubmenu>
-      menu of &app; or choose <guimenuitem>Edit</guimenuitem> from the context 
-      menu that appears upon right-click on the name.
+	<varlistentry><term>Из Вида Людей:</term><listitem><para> 
+	  Сделайте двойной щелчок по имени лица, чьи данные вы хотите править, или
+      выберите имя одиночным щелчком, а затем щёлкните кнопку 
+      <guibutton>Правка</guibutton> на панели инструментов. Также, Вы можете
+      выбрать имя и нажать <keycap>Return</keycap>. Наконец, Вы можете выбрать
+      <guimenuitem>Правка...</guimenuitem> из меню <guisubmenu>Правка</guisubmenu>
+      в главном меню &app; или выбрать <guimenuitem>Правка</guimenuitem> из контекстного
+      меню, вызываемого правым щелчком по имени.
 	  </para></listitem></varlistentry>
-	<varlistentry><term>From the Family View:</term><listitem><para>
-	  Move the mouse into the <guilabel>Active person</guilabel> box, 
-	  then double-click, or use any of the menu items described above.
+
+	<varlistentry><term>Из Вида Семьи:</term><listitem><para>
+	  Поставьте мышь поверх окошка <guilabel>Активное лицо</guilabel>, затем сделайте 
+      двойной щелчок или используйте элементы меню, описанные выше.
 	  </para></listitem></varlistentry>
 	</variablelist>
 	
-	<para> With either method, the following <guilabel>Edit 
-	Person</guilabel> dialog will appear: </para>
+	<para> При использовании любого способа появится следующий диалог <guilabel>Правка 
+    личной информации</guilabel>: </para>
 
 	<!-- ==== Figure: Edit Person dialog ==== -->
 	<figure id="edit-pers-fig"> 
-	<title>Edit Person dialog</title> 
+	<title>Диалог Правка личной информации</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-person.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Edit Person dialog. </phrase>
+	<phrase>Показан диалог Правка личной информации. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 	
-	<para> The top of the window shows the name of the person whose 
-	data is being edited. The main part of the window displays ten 
-	notebook tabs containing different categories of available 
-	information. You can bring any tab to the top for viewing
-	or editing by clicking on the appropriate tab heading. 
-	The bottom part has <guibutton>OK</guibutton> and
-	<guibutton>Cancel</guibutton> buttons. Clicking the 
-        <guibutton>OK</guibutton> button 
-	at any time will apply all the changes made in all tabs and close the
-	dialog window. Clicking the <guibutton>Cancel</guibutton> button at any time will 
-	close the window without applying any changes. If any of the data
-	in any tab were modified, the alert window will appear with the 
-	choices of closing the dialog without saving changes, canceling the
-	initial cancel request, or saving the changes. 
+	<para> В верхней части окна показано имя лица, данные которго редактируются. Главная часть
+    окна показывает десять закладок, содержащих различные категории доступной информации.
+    Вы можете вытащить любую закладку наверх для просмотра или редактирования путём
+    нажатия на заголовок соответствующей закладки. Нижняя часть содержит кнопки 
+    <guibutton>OK</guibutton> и <guibutton>Отменить</guibutton>. Щелчок кнопки
+    <guibutton>OK</guibutton> в любой момент применит все изменения, сделанные во всех
+    закладках, и закроет окно диалога. Щелчок кнопки <guibutton>Отменить</guibutton>
+    в любой момент закроет окно диалога без применения сделанных изменений. 
+    Если какая-либо часть данных была изменена, появится предупреждающий диалог с возможностями
+    закрытия без сохранения изменений, отмены первоначального действия отмены изменений
+    или сохранения изменений. 
 	</para>
 
-	<para>
-    The tab labels reflect the presence of corresponding information: if the 
-    tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-	The tabs provide the following information categories of 
-	personal data:
+	<para>Заголовки закладок отражают присутствие соответстующей информации:
+    если закладка содержит данные, шрифт её заголовка жирный; если закладка не 
+    содержит данных, шрифт её заголовка обычный (не жирный). Закладки предоставляют 
+    следующие категории личной информации:
 	</para>
 
 	<variablelist>
-		<varlistentry><term><guilabel>General</guilabel></term>
+		<varlistentry><term><guilabel>Общее</guilabel></term>
 		<listitem><para> 
-	The <guilabel>General</guilabel> tab allows editing of 
-	general information about the person. This includes the text 
-	entry fields of <guilabel>Given name</guilabel>, 
-	<guilabel>Family name</guilabel>, <guilabel>Family prefix</guilabel> 
-	(such as de or van), <guilabel>Suffix</guilabel> (e.g. Jr. or III), 
-	<guilabel>Title</guilabel> (e.g. Dr. or Rev.), 
-	<guilabel>Nickname</guilabel> (Bob for Robert), 
-	<guilabel>Type</guilabel> of the name (birth name, married name, etc.)
-	and <guilabel>Date</guilabel> and <guilabel>Place</guilabel> of birth 
-	and death. Some of these (<guilabel>Family name</guilabel>,
-	<guilabel>Type</guilabel>, and both <guilabel>Place</guilabel> fields), 
-	also allow you to choose the corresponding
-	contents from the drop-down menus by clicking on the down arrow button
-	located immediately to the right of the text entry field. The 
-	available menu choices are formed from the information already stored 
-	in the database. Also, when you start to type within these fields, 
-	&app; will try to guess the remainder of 
-	the text by using the same choices that are available from the
-	corresponding menu. To accept the highlighted guess and move to 
-	the next field, press the <keycap>Tab</keycap>. </para>
+	Закладка <guilabel>Общее</guilabel> позволяет правку общей информации о человеке.
+    Это включает поля ввода текста для <guilabel>Имени</guilabel>, 
+	<guilabel>Фамилии</guilabel>, <guilabel>Фамильной приставки</guilabel> 
+	(как то де или ван), <guilabel>Суффикса</guilabel> (напр. Млад. или III), 
+	<guilabel>Титула</guilabel> (напр. Г-н или Преп.), 
+	<guilabel>Прозвища</guilabel> (Шурик для Александр), 
+	<guilabel>Типа</guilabel> имени (имя, данно при рождении; фамилия в браке; и т.д.)
+	и <guilabel>Даты</guilabel> и <guilabel>Места</guilabel> рождения и смерти.
+    Некоторые из них (поля <guilabel>Фамилии</guilabel>, <guilabel>Типа</guilabel>, и обоих
+    <guilabel>Мест</guilabel>), также позволяют Вам выбрать соответствующее содержание из
+    выпадающих меню путём щелчка на кнопку со стрелкой вниз, расположенной справа от поля 
+    ввода текста. Доступные выборы меню формируются из данных, уже хранимых в базе. Также,
+    когда Вы начинаете вводить текст, &app; пытается угадать остаток текста, используя те же
+    варианты, доступные из меню. Для принятия выделенного предложения и перехода к следующему 
+    полю, нажмите <keycap>Tab</keycap>. </para>
 	
 	<para>
-	The <guilabel>Gender</guilabel> radio buttons offer
-	the choice of person's gender between <guilabel>male</guilabel>,
-	<guilabel>female</guilabel>, and <guilabel>unknown</guilabel>. 
-	The buttons <guibutton>Source...</guibutton> and 
-	<guibutton>Note...</guibutton> allow adding or modifying the data about 
-	the sources of the name information and any relevant notes. 
-	Clicking either <guibutton>Edit...</guibutton> button located next to 
-        the birth and death Date fields will bring up a dialog allowing you to 
-        edit the corresponding event (birth or death) details.
-	The field <guilabel>ID</guilabel> displays an internal 
-	&app; ID number which identifies the user in the
-	database. The <guilabel>Image</guilabel> area shows the first
-	image available in the <guilabel>Gallery</guilabel> of this 
-        person (if any exist).
+	Радио-кнопки <guilabel>Пол</guilabel> предлагают выбор пола лица из вариатнов 
+    <guilabel>мужчина</guilabel>, <guilabel>женщина</guilabel>, и <guilabel>неизвестно</guilabel>. 
+	Кнопки <guibutton>Источник...</guibutton> и	<guibutton>Комментарий...</guibutton> 
+    позволяют добавить или редактировать данные, касающиеся источника информации об имени и любых,
+    связанных с этим, комментариев. Щелчок любой из кнопок <guibutton>Правка...</guibutton>, 
+    расположенных около полей дат рождения и смерти, вызывает диалог, позволяющий Вам редактировать 
+    подробности соответствующих событий (рождения и смерти). Поле <guilabel>ID</guilabel> 
+    показывает внутренний ID номер &app;, который идетнифицирует лицо в базе данных. Область 
+	<guilabel>Изображение</guilabel> показывает первое изображение, из <guilabel>Галереи</guilabel> 
+    данного лица (если таковое существует).
 	</para>
 	
-	<para>Finally, the <guilabel>Information is complete</guilabel> check
-	button provides the way to mark whether this person's record is 
-	complete or 
-	not. </para>
+	<para>Наконец, опция <guilabel>Информация полна</guilabel> предоставляет способ пометить 
+    личную запись как полную или нет. </para>
 		</listitem></varlistentry>
 	</variablelist>
 	
 	<variablelist>
-		<varlistentry><term><guilabel>Names</guilabel></term>
+		<varlistentry><term><guilabel>Имена</guilabel></term>
 		<listitem>
 
 	<!-- ==== Figure: Edit Person dialog - Names ==== -->
 	<figure id="edit-pers-names-fig"> 
-	<title>Edit Person dialog - Names</title> 
+	<title>Диалог Правка личной информации - Имена</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-person-names.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Names Tab of Edit Person dialog. </phrase>
+	<phrase>Показана закладка Имена диалога Правка личной информации. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para> The <guilabel>Names</guilabel> tab displays information concerning 
-	alternate names of the person and the controls allowing their
-	modification. The bottom part displays the list of all alternate names
-	of the person stored in the database. The top part shows the details 
-	of the currently selected name in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow the addition, 
-	modification, and removal of an alternate name record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
-	an alternate name is selected from the list.  
+	<para> Закладка <guilabel>Имена</guilabel> показывает информацию, касающуюся 
+    альтернативных имён лица, и управление, позвляющее её правку. Нижняя часть показывает
+    список альтернативных имён лица, хранимых в базе данных. Верхняя часть показывает
+    подробности выделенного имени из списка (если таковое существует). Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять записи об имени
+    из базы данных. Заметьте, что кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда альтернативное
+    имя выбрано из списка.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
 	
 	<variablelist>
-		<varlistentry><term><guilabel>Events</guilabel></term>
+		<varlistentry><term><guilabel>События</guilabel></term>
 		<listitem>
 
 	<!-- ==== Figure: Edit Person dialog - Events ==== -->
 	<figure id="edit-pers-events-fig"> 
-	<title>Edit Person dialog - Events</title> 
+	<title>Диалог Правка личной информации - События</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-person-events.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Events Tab of Edit Person dialog. </phrase>
+	<phrase>Показана закладка События диалога Правка личной информации. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>The <guilabel>Events</guilabel> tab displays information about 
-	the events relevant to the person and controls allowing its
-	modification. The bottom part displays the list of all such events 
-	stored in the database. The top part shows the details 
-	of the currently selected event in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow you to correspondingly add, 
-	modify, and remove an event record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
-	an event is selected from the list.  
+	<para>Закладка <guilabel>События</guilabel> показывает информацию, касающуюся
+	событий, относящихся к лицу, и управление, позвляющее её правку. Нижняя часть показывает
+    список всех таких событий, хранимых в базе данных. Верхняя часть показывает
+    подробности выделенного события из списка (если таковое существует). Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять записи о событии
+    из базы данных. Заметьте, что кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда событие 
+    выбрано из списка.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Attributes</guilabel></term>
+		<varlistentry><term><guilabel>Атрибуты</guilabel></term>
 		<listitem>
 
 	<!-- ==== Figure: Edit Person dialog - Attributes ==== -->
 	<figure id="edit-pers-attributes-fig"> 
-	<title>Edit Person dialog - Attributes</title> 
+	<title>Диалог Правка личной информации - Атрибуты</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-person-attributes.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Attributes Tab of Edit Person dialog. </phrase>
+	<phrase>Показана закладка Атрибуты диалога Правка личной информации. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>The <guilabel>Attributes</guilabel> tab displays information about 
-	the attributes of the person and controls allowing their
-	modification. These could be any personal attributes of a person whose
-	description naturally fits into Parameter-Value pairs (e.g. enormous
-	generosity can be stored as the parameter "Generosity" with the 
-	value "Enormous", etc.). The bottom part displays the list of all  
-	attributes stored in the database. The top part shows the details 
-	of the currently selected attribute in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow you to correspondingly add, 
-	modify, and remove an attribute record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
-	an attribute is selected from the list.  
+	<para>Закладка <guilabel>Атрибуты</guilabel> показывает информацию, касающуюся 
+    атрибутов лица, и управление, позвляющее её правку. Ими могут любые личные атрибуты,
+    описание которых естественно вписывается в схему Параметр-Значение (напр. огромная щедрость
+    может быть записана как параметр "Щедрость" со значением "Огромная", и т.д.).
+    Нижняя часть показывает список всех атрибутов лица, хранимых в базе данных. Верхняя часть показывает
+    подробности выделенного атрибутов из списка (если таковой существует). Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять записи об атрибуте
+    из базы данных. Заметьте, что кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда атрибут
+    выбран из списка.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Addresses</guilabel></term>
+		<varlistentry><term><guilabel>Адреса</guilabel></term>
 		<listitem>
 
 	<!-- ==== Figure: Edit Person dialog - Addresses ==== -->
 	<figure id="edit-pers-addresses-fig"> 
-	<title>Edit Person dialog - Addresses</title> 
+	<title>Диалог Правка личной информации - Адреса</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-person-addresses.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Addresses Tab of Edit Person dialog. </phrase>
+	<phrase>Показана закладка Адреса диалога Правка личной информации.</phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>The <guilabel>Addresses</guilabel> tab displays information about 
-	the addresses of the person and the controls allowing their
-	modification. The bottom part displays the list of all 
-	addresses stored in the database. The top part shows the details 
-	of the currently selected address in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow you to correspondingly add, 
-	modify, and remove an address record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
-	an address is selected from the list.  
+	<para>Закладка <guilabel>Адреса</guilabel> показывает информацию, касающуюся 
+    адресов лица, и управление, позвляющее её правку. Нижняя часть показывает
+    список всех адресов, хранимых в базе данных. Верхняя часть показывает
+    подробности выделенного адреса из списка (если таковой существует). Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять записи об адресе
+    из базы данных. Заметьте, что кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда адрес
 	</para>
 
-        <para>Some reports allow you to restrict data on living people. 
-        In particular, that option will omit the addresses of people who 
-        are currently alive.</para>
+        <para>Некоторые отчёты позволяют Вам ограничить данные о живущих людях.
+        В частности, эта опция опустит адреса людей, живущих в настоящий момент.
+        </para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Notes</guilabel></term>
+		<varlistentry><term><guilabel>Комментарии</guilabel></term>
 		<listitem>
 
 	<!-- ==== Figure: Edit Person dialog - Notes ==== -->
 	<figure id="edit-pers-notes-fig"> 
-	<title>Edit Person dialog - Notes</title> 
+	<title>Диалог Правка личной информации - Комментарии</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-person-notes.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Notes Tab of Edit Person dialog. </phrase>
+	<phrase>Показана закладка Комментарии диалога Правка личной информации. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>The <guilabel>Notes</guilabel> tab displays information about 
-	the notes concerning the person. These could be any notes which do not
-	naturally fit into the Parameter-Value pairs available to Attributes. 
-	To add a note or modify existing notes simply edit the text in the 
-	text entry field.
+	<para>Закладка <guilabel>Комментарии</guilabel> показывает информацию о комментариях,
+    касающихся лица. Ими могут быть любые записи, не вписывающиеся в пары Параметр-Значение
+    доступные а Атрибутах. Чтобы добавить комментарий, просто введите текст в поле ввода текста.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Sources</guilabel></term>
+		<varlistentry><term><guilabel>Источники</guilabel></term>
 		<listitem>
 
 	<!-- ==== Figure: Edit Person dialog - Sources ==== -->
 	<figure id="edit-pers-sources-fig"> 
-	<title>Edit Person dialog - Sources</title> 
+	<title>Диалог Правка личной информации - Источники</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-person-sources.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Sources Tab of Edit Person dialog. </phrase>
+	<phrase>Показана закладка Источники диалога Правка личной информации. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>The <guilabel>Sources</guilabel> tab displays information about 
-	the sources related to the person and controls allowing its modification. 
-    These could be any general sources which refer to the person but do not 
-    describe specifically any event.
-    For example, Aunt Martha's memoirs may mention her great grandson Paul,
-    so the researcher may assume that this person (Paul) existed and cite 
-    the memoirs as the source for this assumption. NOTE: sources documenting
-    specific events are better filed in relation to those events, under the
-    <guilabel>Events</guilabel> tab.
+	<para>Закладка <guilabel>Источники</guilabel> показывает информацию об источниках, 
+    касающихся лица, и управление, позвляющее её правку. Ими могут быть любые общие источники,
+    относящиеся к лицу, но не описывающие какое-либо конкретное событие. Например, мемуары
+    тёти Маши могут упоминать её правнука Павла, из чего исследователь может предположить, что 
+    данное лицо (Павел) существовало, и привести мемуары в качесте источника. ЗАМЕТЬТЕ: 
+    источники, документирующие конкретные события лучше вводить в связи с этими событиями,
+    под закладкой <guilabel>Events</guilabel>.
 	</para>
-    <para>The central part displays the list of all source references stored 
-    in the database in relation to the person. The 
-    buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
-	allow you to correspondingly add, modify, and remove a source reference  
-	to this person. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
-	a source reference is selected from the list. </para>
+    
+    <para> Центральная часть показывает список ссылок на источники, хранимых в базе данных
+    относительно данного лица. Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять 
+    ссылки на источники относительно лица.
+    из базы данных. Заметьте, что кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда ссылка на источник
+    выбрана из списка.
+	</para>
+
 
 		</listitem></varlistentry>
 	</variablelist>
 
 
 	<variablelist>
-		<varlistentry><term><guilabel>Gallery</guilabel></term>
+		<varlistentry><term><guilabel>Галерея</guilabel></term>
 		<listitem>
 
 	<!-- ==== Figure: Edit Person dialog - Gallery ==== -->
 	<figure id="edit-pers-gallery-fig"> 
-	<title>Edit Person dialog - Gallery</title> 
+	<title>Диалог Правка личной информации - Галерея</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-person-gallery.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Gallery Tab of Edit Person dialog. </phrase>
+	<phrase>Показана закладка Галерея диалога Правка личной информации. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>The <guilabel>Gallery</guilabel> tab displays information about 
-	media objects associated with the person and controls allowing subsequent 
-	modification. The central part shows the list of all such media objects. 
-	For media object which are valid image files, previews of images are 
-	displayed. For other objects such as audio files, movie files, etc., a 
-	generic &app; icon is displayed instead. Note that the first available
-	image in the gallery will be also displayed in the
-	<guilabel>Image</guilabel> area in the <guilabel>General</guilabel> 
-	tab. The buttons <guibutton>Add...</guibutton>,
-	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
-	you to correspondingly add, modify, and remove a media object reference 
-	to this person. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Remove</guibutton> buttons become available only when 
-	a media object is selected from the list. 
+	<para>Закладка <guilabel>Галерея</guilabel> показывает информацию о документах, связанных
+    с лицом, и управление, позвляющее её правку. Центральная часть показывает
+    список всех таких документов, хранимых в базе данных. Для документов, являющихся 
+    изображениями, показан предварительный просмотр. Для других документов, таких как
+    звукозаписи, фильмы, и т.д., вместо этого показана стандартная пиктограмма &app;.
+    Заметьте, что первое доступное изображение будет также показано в области 
+    <guilabel>Изображение</guilabel> закладки <guilabel>Общее</guilabel>. Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять ссылки 
+    на документы для данного лица. Заметьте, что кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда документ
+    выбран из списка.
 	</para>
 
-	<para>Note: removing a media object from a person's gallery does not 
-        remove it from the database. It only removes the reference to that 
-        object from this person's record. 
+	<para>Заметьте: удаление документа из личной галереи не удаляет его из базы данных. 
+    Удаляется только ссылка на этот документ из записи данного лица.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Internet</guilabel></term>
+		<varlistentry><term><guilabel>Интернет</guilabel></term>
 		<listitem>
 
 	<!-- ==== Figure: Edit Person dialog - Internet ==== -->
 	<figure id="edit-pers-internet-fig"> 
-	<title>Edit Person dialog - Internet</title> 
+	<title>Диалог Правка личной информации - Интернет</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-person-internet.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Internet Tab of Edit Person dialog. </phrase>
+	<phrase>Показана закладка Интернет диалога Правка личной информации. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>The <guilabel>Internet</guilabel> tab displays information about 
-	Internet addresses relevant to the person and the controls
-	allowing data modification. The bottom part displays the list of all 
-	such Internet addresses stored in the database. The top part shows the
-	details of the currently selected addresses in the list (if any). 
-	The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>,  and <guibutton>Delete</guibutton> 
-	allow you to correspondingly add, modify, and remove an Internet address 
-	record from the database. The button <guibutton>Go</guibutton> allows
-	opening a web-page with the corresponding address with your default 
-	browser. Note that the <guibutton>Edit...</guibutton>, 
-	<guibutton>Delete</guibutton>, and <guibutton>Go</guibutton> buttons 
-	become available only when an address is selected from the list.  
+	<para>Закладка <guilabel>Интернет</guilabel> показывает информацию об адресах
+    Интернета, касающихся лица, и управление, позвляющее её правку. Нижняя часть показывает
+    список всех таких адресов, хранимых в базе данных. Верхняя часть показывает
+    подробности выделенного адреса из списка (если таковой существует). Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять записи об адресе
+    из базы данных. Кнопка <guibutton>Иди</guibutton> позволяет открыть веб-страницу, 
+    соответствующую выбранному адресу, в базовом веб-браузере.
+    Заметьте, что кнопки <guibutton>Правка...</guibutton>, <guibutton>Удалить</guibutton> 
+    и <guibutton>Иди</guibutton> становятся доступными только когда адрес выбран из списка.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -860,27 +807,24 @@
 
 	<!-- ==== Figure: Edit Person dialog - LDS ==== -->
 	<figure id="edit-pers-lds-fig"> 
-	<title>Edit Person dialog - LDS</title> 
+	<title>Диалог Правка личной информации - LDS</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-person-lds.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows LDS Tab of Edit Person dialog. </phrase>
+	<phrase>Показана закладка LDS диалога Правка личной информации. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>The <guilabel>LDS</guilabel> tab displays information 
-	about LDS ordinances of the person and controls allowing 
-	modification. These are <guilabel>LDS baptism</guilabel>, 
-	<guilabel>Endowment</guilabel>, and <guilabel>Sealed to 
-	parents</guilabel> ordinances, as labeled inside the tab. 
-	Each ordinance is described by its date, LDS temple, and Place where 
-	it happened. An additional pop-up menu <guilabel>Parents</guilabel> is
-	available for the <guilabel>Sealed to parents</guilabel> ordinance.
-	Each ordinance can further be described by its status through the 
-	selections available in the <guilabel>Status</guilabel> pop-up 
-	menu and can also be referenced by sources and notes via corresponding 
-	<guibutton>Sources...</guibutton> and <guibutton>Note</guibutton>
-	buttons. 
+	<para>Закладка <guilabel>LDS</guilabel> показывает информацию о ритуалах
+	LDS, касающихся лица, и управление, позвляющее её правку. Ими являются ритуалы 
+    <guilabel>LDS baptism</guilabel>, <guilabel>Endowment</guilabel> и <guilabel>Sealed to 
+	parents</guilabel>, согласно меткам внатри закладки. Каждый ритуал описывается 
+	датой, храмом LDS, и местом проведения ритуала. Дополнительное ниспадающее меню 
+    <guilabel>Родители</guilabel> доступно для ритуала <guilabel>Sealed to parents</guilabel>.
+	Каждый ритуал может подробнее описываться статусом путём выбора из меню 
+    <guilabel>Статус</guilabel>, а также может быть дополнен ссылками на источники
+    и комментарием путём нажатия на соответствующие кнопки <guibutton>Источники...</guibutton> 
+    и <guibutton>Комментарий</guibutton>. 
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -889,33 +833,32 @@
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-dates"> 
-        <title>Edit Dates</title> 
-	<para> Anywhere in &app; where the date 
-        is entered or edited, the following rules apply:</para> 
+        <title>Правка дат</title> 
+	<para> В любом месте в &app;, в котором вводится или редактируется дата,
+    применяются следующие правила:</para> 
 
       <variablelist>
-      <varlistentry><term>Date validity indicators</term>
-	<listitem><para>&app; uses color 
-        circles to indicate the validity of the entered date. </para>
+      <varlistentry><term>Индикаторы корректности даты</term>
+	<listitem><para>&app; использует цветные кружки для обозначения корректности
+        введённой даты. </para>
 
         <itemizedlist>
         
-        <listitem><para> Green circle means that the date is valid and 
-        complete (e.g. May 24, 1961). </para></listitem>
+        <listitem><para> Зелёный кружок означает, что дата корректна и полна (напр. 
+        24 Мая 1961). </para></listitem>
 
-        <listitem><para> Yellow circle means that the date is valid but is
-        partial (i.e. not complete). Examples of partial dates are: 1961, 
-        about 1961, from 1960 to 1962, before 1963. While partial dates do 
-        not exactly define the date, they allow at least for some type of
-        comparisons between the dates. </para></listitem>
+        <listitem><para> Жёлтый кружок означает, что дата корректна, но не полна (неполная дата).
+        Примеры неполных дат: 1961, около 1961, с 1960 по 1962, до 1963. Хотя неполные даты
+        не определяют дату точно, они по-крайней мере позволяют определённого рода 
+        сравнение дат между собой.</para></listitem>
 
-        <listitem><para> Red circle means that the date is not recognized as 
-        a valid date (e.g. Christmas week of 61). In that case the date will 
-        be stored as a text string. Therefore, no comparison with other dates 
-        will be available. It is best to avoid such date entries. Same 
-        information can be entered as a note for the event of interest instead
-        of a date. In the example considered, a better things to do is to
-        enter December 1961 as a date and Christmas week of 61 as a note.
+        <listitem><para> Красный кружок означает, что дата не распознана как корректная
+        (напр. Рождественская неделя 61). В этом случае дата будет храниться в качестве
+        текстовой строки. Поэтому, сравнение её с другими датами невозможно. Лучше всего
+        избегать ввода дат такого типа. Та же самая информация может быть введена в поле
+        комментария для соответствующего события вместо поля даты. В приведённом примере,
+        лучше ввести Декабрь 1961 в качестве даты и Рождественская неделя 61 в качестве
+        комментария.
         </para></listitem> 
 
         </itemizedlist>
@@ -923,29 +866,27 @@
       </variablelist>
 
       <variablelist>
-      <varlistentry><term>Acceptable date entries</term>
-	<listitem><para>&app; recognizes many 
-        formats of exact dates. The only problematic formats are XX/XX/XX or
-        XX-XX-XX because of the ambiguity between the day and the month.
-        The interpretation for this type of formats is configured 
-        in <guilabel>Getting Started</guilabel> dialog and can also be changed
-        from the <guilabel>Preferences</guilabel> dialog. </para> </listitem>
+      <varlistentry><term>Допустимые форматы ввода дат</term>
+	<listitem><para>&app; распознаёт многочисленные форматы точных дат. Единственными
+    проблематичными форматами являются XX/XX/XX и XX-XX-XX, из-за неопределённости между
+    днём и месяцем. Инетрпретация для форматов такого типа настраивается в диалоге 
+        <guilabel>Первые шаги</guilabel> и может быть изменена в диалоге 
+        <guilabel>Настройки</guilabel>. </para> </listitem>
 
-	<listitem><para>Besides exact dates, &app; 
-        recognizes and supports partial dates, date ranges, and alternate
-        calendars. </para>
+	<listitem><para>Помимо точных дат, &app; распознаёт и поддерживает неполные даты,
+    интервалы дат и альтернативные календари.</para>
         
         <itemizedlist>
         
-        <listitem><para> Partial dates define some portions of the date such 
-        as a year or a year and a month. </para></listitem>
+        <listitem><para> Неполные даты определяют какую-либо порцию даты, например год или
+        год и месяц.</para></listitem>
 
-        <listitem><para> Date ranges define the boundaries containing the 
-        date such as from January 1961 to March 1963. </para></listitem>
+        <listitem><para> Интервалы дат определяют границы интервала, содержащего дату,
+        например с Январь 1961 по Март 1963. </para></listitem>
 
-        <listitem><para> Alternate calendars are calendars other than Gregorian
-        calendar. Currently, &app; supports Hebrew,
-        French Republican, Julian, Islamic, and Persian alternate calendars. 
+        <listitem><para> Альтернативные календари - это календари, отличные от Григорианского.
+        В настоящий момент &app; поддерживает Еврейский, Французской республики, Юлианский, 
+        Исламский и Персидский альтернативные календари.
         </para></listitem>
 
         </itemizedlist>
@@ -955,149 +896,132 @@
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-rel"> 
-        <title>Edit Relationship Data</title> 
-	<para> Editing of relationship data is performed in the following 
-	<guilabel>Marriage/Relationship Editor</guilabel> dialog which appears 
-	after double-clicking on the spouse box in the Family View.</para>
+        <title>Правка информации об отношениях</title> 
+	<para> Правка информации об отношениях производится в следующем диалоге 
+	<guilabel>Редактор браков/отношений</guilabel>, который вызывается двойным щелчком
+    в окошке супруга в Виде Семьи.</para>
 
  	<!-- ==== Figure: Edit Relationship dialog ==== -->
 	<figure id="edit-rel-fig"> 
-	<title>Marriage/Relationship Editor dialog</title> 
+	<title>Диалог Редактор браков/отношений</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-rel.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Marriage/Relationship Editor dialog. </phrase>
+	<phrase>Показан диалог Редактор браков/отношений. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 	
-	<para> The top of the window shows the names of the people whose 
-	relationship is being edited. The main part of the window displays 
-	seven notebook tabs containing different categories of available 
-	information. You can bring any tab to the top for viewing
-	or editing by clicking on the appropriate tab heading. 
-	The bottom part has <guibutton>OK</guibutton> and
-	<guibutton>Cancel</guibutton> buttons. Clicking the 
-        <guibutton>OK</guibutton> button 
-	at any time will apply all the changes made in all tabs and close the
-	dialog window. Clicking the <guibutton>Cancel</guibutton> button at any time will 
-	close the window without applying any changes. If any of the data
-	in any tab were modified, the alert window will appear with the 
-	choices of closing the dialog without saving changes, canceling the
-	initial cancel request, or saving the changes. </para> 
+	<para> В верхней части окна показаны имена лиц, отношение которых редактируется. Главная часть
+    окна показывает семь закладок, содержащих различные категории доступной информации.
+    Вы можете вытащить любую закладку наверх для просмотра или редактирования путём
+    нажатия на заголовок соответствующей закладки. Нижняя часть содержит кнопки 
+    <guibutton>OK</guibutton> и <guibutton>Отменить</guibutton>. Щелчок кнопки
+    <guibutton>OK</guibutton> в любой момент применит все изменения, сделанные во всех
+    закладках, и закроет окно диалога. Щелчок кнопки <guibutton>Отменить</guibutton>
+    в любой момент закроет окно диалога без применения сделанных изменений. 
+    Если какая-либо часть данных была изменена, появится предупреждающий диалог с возможностями
+    закрытия без сохранения изменений, отмены первоначального действия отмены изменений
+    или сохранения изменений.</para> 
 
-	<para>
-    The tab labels reflect the presence of corresponding information: if the 
-    tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-	The tabs provide the following information categories of 
-	relationship data:
+	<para>Заголовки закладок отражают присутствие соответстующей информации:
+    если закладка содержит данные, шрифт её заголовка жирный; если закладка не 
+    содержит данных, шрифт её заголовка обычный (не жирный). Закладки предоставляют 
+    следующие категории личной информации:
 	</para>
 
 	<variablelist>
-		<varlistentry><term><guilabel>General</guilabel></term>
+		<varlistentry><term><guilabel>Общее</guilabel></term>
 		<listitem><para> 
-	The <guilabel>General</guilabel> tab allows editing of the most general
-	information about the relationship: the relationship type. 
-	The available types (such as married, partners, etc.) can be chosen 
-	from the drop-down <guilabel>Relationship type</guilabel> menu. 
-	The non-editable field <guilabel>ID</guilabel> displays an 
-	internal &app; ID number which identifies this relationship in 
-	the database. 
-	Finally, the <guilabel>Information is complete</guilabel> check
-	button provides the way to mark whether this relationship's record is 
-	complete or not. </para>
+        Закладка <guilabel>Общее</guilabel> позволяет правку наиболее общей информации 
+        об отношении: тип отношения. Доступные типы (такие, как женаты, партнёры, и т.д.)
+        могут быть выбраны из ниспадающего меню <guilabel>Тип отношения</guilabel>. 
+        Недоступное для правки поле <guilabel>ID</guilabel> показывает внутренний ID 
+        номер &app;, который идетнифицирует отношение в базе данных. Наконец, 
+        опция <guilabel>Информация полна</guilabel> предоставляет способ пометить 
+        данную запись об отношении как полную или нет. </para>
 		</listitem></varlistentry>
 	</variablelist>
 	
 	<variablelist>
-		<varlistentry><term><guilabel>Events</guilabel></term>
+		<varlistentry><term><guilabel>События</guilabel></term>
 		<listitem>
-	<para>The <guilabel>Events</guilabel> tab displays information about 
-	the events relevant to the relationship and the controls allowing 
-	modification. The bottom part displays the list of all such events 
-	stored in the database. The top part shows the details 
-	of the currently selected event in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow you to correspondingly add, 
-	modify, and remove an event record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
-	an event is selected from the list.  
+	<para>Закладка <guilabel>События</guilabel> показывает информацию, касающуюся
+	событий, относящихся к отношению, и управление, позвляющее её правку. Нижняя часть показывает
+    список всех таких событий, хранимых в базе данных. Верхняя часть показывает
+    подробности выделенного события из списка (если таковое существует). Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять записи о событии
+    из базы данных. Заметьте, что кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда событие 
+    выбрано из списка.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Attributes</guilabel></term>
+		<varlistentry><term><guilabel>Атрибуты</guilabel></term>
 		<listitem>
-	<para>The <guilabel>Attributes</guilabel> tab displays information about 
-	the attributes of the relationship and the controls allowing
-	modification. The bottom part displays the list of all such 
-	attributes stored in the database. The top part shows the details 
-	of the currently selected attribute in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow you to correspondingly add, 
-	modify, and remove an attribute record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
-	an attribute is selected from the list.  
+	<para>Закладка <guilabel>Атрибуты</guilabel> показывает информацию, касающуюся 
+    атрибутов отношения, и управление, позвляющее её правку. Нижняя часть показывает 
+    список всех таких атрибутов, хранимых в базе данных. Верхняя часть показывает
+    подробности выделенного атрибутов из списка (если таковой существует). Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять записи об атрибуте
+    из базы данных. Заметьте, что кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда атрибут
+    выбран из списка.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Notes</guilabel></term>
+		<varlistentry><term><guilabel>Комментарии</guilabel></term>
 		<listitem>
-	<para>The <guilabel>Notes</guilabel> tab displays information about the 
-	notes concerning the relationship. These could be any notes which do 
-	not naturally fit into the Parameter-Value pairs available to 
-	Attributes. To add a note or modify existing notes simply edit the 
-	text in the text entry field.
+	<para>Закладка <guilabel>Комментарии</guilabel> показывает информацию о комментариях,
+    касающихся отношения. Ими могут быть любые записи, не вписывающиеся в пары Параметр-Значение
+    доступные а Атрибутах. Чтобы добавить комментарий, просто введите текст в поле ввода текста.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Sources</guilabel></term>
+		<varlistentry><term><guilabel>Источники</guilabel></term>
 		<listitem>
-	<para>The <guilabel>Sources</guilabel> tab displays information about 
-	the sources related to the relationship and controls allowing its 
-    modification. These could be any general sources which refer to the 
-    relationship but do not describe specifically any event.
-    For example, Aunt Martha's memoirs may mention that her great grandson Paul 
-    was married, so the researcher may assume that this relationship (between 
-    Paul and his wife) existed and cite the memoirs as the source for this 
-    assumption. NOTE: sources documenting specific events such as marriages 
-    or divorces are better filed in relation to those events, under the 
-    <guilabel>Events</guilabel> tab.
+	<para>Закладка <guilabel>Источники</guilabel> показывает информацию об источниках, 
+    касающихся отношения, и управление, позвляющее её правку. Ими могут быть любые общие источники,
+    относящиеся к отношению, но не описывающие какое-либо конкретное событие. Например, мемуары
+    тёти Маши могут упоминать, что её правнук Павел был женат, из чего исследователь может 
+    предположить, что данное отношение (брак между Павлом и его женой) существовало, 
+    и привести мемуары в качесте источника. ЗАМЕТЬТЕ: источники, документирующие конкретные 
+    события (напр. свадьба) лучше вводить в связи с этими событиями,
+    под закладкой <guilabel>Events</guilabel>.
 	</para>
-    <para>The central part displays the list of all source references stored 
-    in the database for this relationship. The 
-    buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
-	allow you to correspondingly add, modify, and remove a source reference  
-	to this relationship. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
-	a source reference is selected from the list. </para>
+
+    <para>Центральная часть показывает список ссылок на источники, хранимых в базе данных
+    касательно данного отношения. Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять 
+    ссылки на источники относительно лица.
+    из базы данных. Заметьте, что кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда ссылка на источник
+    выбрана из списка.</para>
 
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Gallery</guilabel></term>
+		<varlistentry><term><guilabel>Галерея</guilabel></term>
 		<listitem>
-	<para>The <guilabel>Gallery</guilabel> tab displays information about 
-	media objects associated with the relationship and the controls allowing 
-	modification of such. The central part shows the list of all such media objects. 
-	For media object which are valid image files previews of images are 
-	displayed. For other objects such as audio files, movie files, etc., a 
-	generic &app; icon is displayed instead. The buttons 
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Remove</guibutton> allow	you to correspondingly add, modify, 
-	and remove a media object reference to this relationship. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Remove</guibutton> buttons become available only when 
-	a media object is selected from the list. 
+	<para>Закладка <guilabel>Галерея</guilabel> показывает информацию о документах, связанных
+    с отношением, и управление, позвляющее её правку. Центральная часть показывает
+    список всех таких документов, хранимых в базе данных. Для документов, являющихся 
+    изображениями, показан предварительный просмотр. Для других документов, таких как
+    звукозаписи, фильмы, и т.д., вместо этого показана стандартная пиктограмма &app;.
+    Кнопки <guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять ссылки 
+    на документы для данного отношения. Заметьте, что кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда документ
+    выбран из списка.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1105,15 +1029,13 @@
 	<variablelist>
 		<varlistentry><term><guilabel>LDS</guilabel></term>
 		<listitem>
-	<para>The <guilabel>LDS</guilabel> tab displays information 
-	about the LDS <guilabel>Sealed to spouse</guilabel> ordinance
-	  of the person and the controls allowing 
-	modification. The data can include date, LDS temple, and Place where 
-	it happened. The ordinance can further be described by its status 
-	through the selections available in the <guilabel>Status</guilabel> 
-	pop-up menu and can also be referenced by sources and notes via 
-	corresponding <guibutton>Sources...</guibutton> and 
-	<guibutton>Note</guibutton> buttons. </para>
+	<para>Закладка <guilabel>LDS</guilabel> показывает информацию о ритуале 
+	LDS, <guilabel>Sealed to spouse</guilabel>, касающемся отношения, и управление, 
+    позвляющее её правку. Ритуал описывается датой, храмом LDS, и местом проведения ритуала. 
+	Он может подробнее описываться статусом путём выбора из меню 
+    <guilabel>Статус</guilabel>, а также быть дополнен ссылками на источники
+    и комментарием путём нажатия на соответствующие кнопки <guibutton>Источники...</guibutton> 
+    и <guibutton>Комментарий</guibutton>. </para>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1121,98 +1043,86 @@
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-src"> 
-        <title>Edit Source Data</title> 
-	<para> To edit source data, switch to the Sources View and select the
-	desired entry in the list of sources. Double-click on that entry or
-	click the <guibutton>Edit</guibutton> icon on the toolbar to invoke the 
-	following <guilabel>Source Editor</guilabel> dialog: </para>
+        <title>Правка информации об источнике</title> 
+	<para> Для правки информации об источнике, переключитесь в Вид Источников
+    и выберите желаемую запись из списка источников. Сделайте двойной щелчок
+    по этой записи, или нажмите кнопку <guibutton>Правка</guibutton> на панели инструментов
+    для вызова следующего диалога <guilabel>Редактор источников</guilabel>:</para>
 
  	<!-- ==== Figure: Source Editor dialog ==== -->
 	<figure id="edit-src-fig"> 
-	<title>Source Editor dialog</title> 
+	<title>Диалог Редактор источников</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-src.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Source Editor dialog. </phrase>
+	<phrase>Показан диалог Редактор источников. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 	
-	<para> The top of the window shows the <guilabel>Source
-	Editor</guilabel> 
-	title of the dialog. The main part of the window displays four notebook 
-	tabs containing different categories of available information. You can 
-	bring any tab to the top for viewing or editing by clicking on the 
-	appropriate tab heading. The bottom part has <guibutton>OK</guibutton> 
-	and <guibutton>Cancel</guibutton> buttons. Clicking the 
-	<guibutton>OK</guibutton> button at any time will apply all the changes made 
-	in all tabs and close the dialog window. Clicking the 
-	<guibutton>Cancel</guibutton> button at any time will close the window without 
-	applying any changes. If any of the data in any tab were modified, 
-	the alert window will appear with the choices of closing the dialog 
-	without saving changes, canceling the initial cancel request, or saving 
-	the changes. </para> 
+	<para> В верхней части окна показано название диалога <guilabel>Редактор 
+    источников</guilabel>. Главная часть окна показывает четыре закладки, 
+    содержащие различные категории доступной информации. Вы можете вытащить любую 
+    закладку наверх для просмотра или редактирования путём
+    нажатия на заголовок соответствующей закладки. Нижняя часть содержит кнопки 
+    <guibutton>OK</guibutton> и <guibutton>Отменить</guibutton>. Щелчок кнопки
+    <guibutton>OK</guibutton> в любой момент применит все изменения, сделанные во всех
+    закладках, и закроет окно диалога. Щелчок кнопки <guibutton>Отменить</guibutton>
+    в любой момент закроет окно диалога без применения сделанных изменений. 
+    </para> 
 	
-	<para>
-    The tab labels reflect the presence of corresponding information: if the 
-    tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-	The tabs provide the following information categories of 
-	source data:
+	<para>Заголовки закладок отражают присутствие соответстующей информации:
+    если закладка содержит данные, шрифт её заголовка жирный; если закладка не 
+    содержит данных, шрифт её заголовка обычный (не жирный). Закладки предоставляют 
+    следующие категории информации об источнике:
 	</para>
 
 	<variablelist>
-		<varlistentry><term><guilabel>General</guilabel></term>
-		<listitem><para>The  
-	<guilabel>General</guilabel> tab allows editing of the most general
-	information about the source: its title, author, and publication
-	information. This information can be typed in the appropriate 
-	text entry fields. 
+		<varlistentry><term><guilabel>Общее</guilabel></term>
+		<listitem><para>Закладка <guilabel>Общее</guilabel> позволяет правку 
+        наиболее общей информации об источнике. Эта информация может быть
+        введена в соответствующие поля ввода текста.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Note</guilabel></term>
+		<varlistentry><term><guilabel>Комментарий</guilabel></term>
 		<listitem>
-	<para>The <guilabel>Note</guilabel> tab displays any notes concerning 
-	the source. To add a note or modify existing notes simply edit the 
-	text in the text entry field.
+	<para>Закладка <guilabel>Комментарий</guilabel> показывает информацию о комментариях,
+    касающихся источника. Чтобы добавить комментарий, просто введите текст в поле ввода текста.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Gallery</guilabel></term>
+		<varlistentry><term><guilabel>Галерея</guilabel></term>
 		<listitem>
-	<para>The <guilabel>Gallery</guilabel> tab displays information about 
-	media objects associated with the given source and controls 
-	allowing its modification. The central part shows the list of all 
-	such media objects. For media object which are valid image files 
-	previews of images are displayed. For other objects such as audio 
-	files, movie files, etc., a generic &app; icon is displayed instead. 
-	The buttons <guibutton>Add...</guibutton>,
-	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
-	you to correspondingly add, modify, and remove a media object reference 
-	to this source. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Remove</guibutton> buttons become available only when 
-	a media object is selected from the list. 
+	<para>Закладка <guilabel>Галерея</guilabel> показывает информацию о документах, связанных
+    с данным источником, и управление, позвляющее её правку. Центральная часть показывает
+    список всех таких документов, хранимых в базе данных. Для документов, являющихся 
+    изображениями, показан предварительный просмотр. Для других документов, таких как
+    звукозаписи, фильмы, и т.д., вместо этого показана стандартная пиктограмма &app;.
+    Кнопки <guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять ссылки 
+    на документы для данного источника. Заметьте, что кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда документ
+    выбран из списка.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>References</guilabel></term>
+		<varlistentry><term><guilabel>Ссылки</guilabel></term>
 		<listitem>
-	<para>The <guilabel>References</guilabel> tab displays information about 
-	database records that refer to this source. If the source is not 
-	referenced from any database record, the tab shows an empty list. 
-	If the source is referenced from many records, the tab will list 
-	all of them. The list can be ordered by any of its column headers:
-	<guilabel>Source type</guilabel>, <guilabel>Object</guilabel>, or
-	<guilabel>Value</guilabel>. This information cannot be modified from
-	the <guilabel>Source Editor</guilabel> dialog. Instead, the
-	corresponding database record (e.g. birth event) has to be brought
-	up and its source reference edited. </para>
+	<para>Закладка <guilabel>Ссылки</guilabel> показывает информацию о 
+    записях базы данных, ссылающихся на данный источник. Если на источник
+    не ссылается ни одна запись, список ссылок будет пуст. Если многочисленные 
+    записи ссылаются на источник, все они окажутся в списке. Список может 
+    быть упорядочен по любой колонке: <guilabel>Тип источника</guilabel>, 
+    <guilabel>Объект</guilabel> или <guilabel>Значение</guilabel>. 
+    Эта информация не подлежит правке в диалоге <guilabel>Редактор источников</guilabel>.
+    Вместо этого, нужно вызвать соответствующую запись базы данных (напр. событие рождения)
+    для правки и изменить ссылку этой записи на источник. </para>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1221,147 +1131,134 @@
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-plc"> 
-        <title>Edit Place Data</title> 
-	<para> To edit place data, switch to the Places View and select the
-	desired entry in the list of places. Double-click on that entry or
-	click the <guibutton>Edit</guibutton> icon on the toolbar to invoke the 
-	following <guilabel>Place Editor</guilabel> dialog: </para>
+        <title>Правка информации о месте</title> 
+	<para> Для правка информации о месте, переключитесь в Вид Мест
+    и выберите желаемую запись из списка мест. Сделайте двойной щелчок
+    по этой записи, или нажмите кнопку <guibutton>Правка</guibutton> на панели инструментов
+    для вызова следующего диалога <guilabel>Редактор мест</guilabel>: </para>
 
 	<!-- ==== Figure: Place Editor dialog ==== -->
 	<figure id="edit-plc-fig"> 
-	<title>Place Editor dialog</title> 
+	<title>Диалог Редактор мест</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-plc.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Place Editor dialog. </phrase>
+	<phrase>Показан диалог Редактор мест. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para> The top of the window shows the <guilabel>Place Editor</guilabel> 
-	title of the dialog. The main part of the window displays seven 
-	notebook tabs containing different categories of available information. 
-	You can bring any tab to the top for viewing or editing by clicking on 
-	the appropriate tab heading. The bottom part has 
-	<guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. 
-	Clicking the <guibutton>OK</guibutton> button at any time will apply all the 
-	changes made in all tabs and close the dialog window. Clicking the 
-	<guibutton>Cancel</guibutton> button at any time will close the window without 
-	applying any changes. If any of the data in any tab were modified, 
-	the alert window will appear with the choices of closing the dialog 
-	without saving changes, canceling the initial cancel request, or saving 
-	the changes. </para> 
+	<para> В верхней части окна показано название диалога <guilabel>Редактор 
+    мест</guilabel>. Главная часть окна показывает семь закладок, 
+    содержащих различные категории доступной информации. Вы можете вытащить любую 
+    закладку наверх для просмотра или редактирования путём
+    нажатия на заголовок соответствующей закладки. Нижняя часть содержит кнопки 
+    <guibutton>OK</guibutton> и <guibutton>Отменить</guibutton>. Щелчок кнопки
+    <guibutton>OK</guibutton> в любой момент применит все изменения, сделанные во всех
+    закладках, и закроет окно диалога. Щелчок кнопки <guibutton>Отменить</guibutton>
+    в любой момент закроет окно диалога без применения сделанных изменений. 
+    </para> 
 	
-	<para>
-    The tab labels reflect the presence of corresponding information: if the 
-    tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-	The tabs provide the following information categories of 
-	place data:
+	<para>Заголовки закладок отражают присутствие соответстующей информации:
+    если закладка содержит данные, шрифт её заголовка жирный; если закладка не 
+    содержит данных, шрифт её заголовка обычный (не жирный). Закладки предоставляют 
+    следующие категории информации об источнике:
 	</para>
 
 	<variablelist>
-		<varlistentry><term><guilabel>General</guilabel></term>
-		<listitem><para>The  
-	<guilabel>General</guilabel> tab allows editing of the most general
-	information about the place: the title which labels it in the database, 
-	city, church parish, county, state, country, longitude, and latitude. 
-	This information can be typed in the appropriate text entry fields. 
-	</para>
+		<varlistentry><term><guilabel>Общее</guilabel></term>
+		<listitem><para>Закладка <guilabel>Общее</guilabel> позволяет правку 
+        наиболее общей информации о месте: название, обозначающее это место в записях
+        базы данных, город, церковный приход, область/район/уезд, распублика, 
+        страна, долгота и широта. Эта информация может быть
+        введена в соответствующие поля ввода текста. </para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Other names</guilabel></term>
-		<listitem><para> 
-	The <guilabel>Other names</guilabel> tab displays information concerning 
-	other names by which the place might be known and the controls 
-	allowing their modification. The bottom part displays the list of all 
-	other names of the place stored in the database. The top part shows 
-	the details of the currently selected name in the list (if any). 
-	The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> allow 
-	you to correspondingly add, modify, and remove a name record 
-	from the database. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
-	a name is selected from the list. </para>
+		<varlistentry><term><guilabel>Другие имена</guilabel></term>
+		<listitem><para> Закладка <guilabel>Другие имена</guilabel> показывает 
+        информацию, касающуюся других имён, под которыми это место может быть 
+        известно, и управление, позвляющее её правку. Нижняя часть показывает
+    список других имён места, хранимых в базе данных. Верхняя часть показывает
+    подробности выделенного имени из списка (если таковое существует). Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять записи об имени
+    из базы данных. Заметьте, что кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда альтернативное
+    имя выбрано из списка. </para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Note</guilabel></term>
+		<varlistentry><term><guilabel>Комментарий</guilabel></term>
 		<listitem>
-	<para>The <guilabel>Note</guilabel> tab displays any notes concerning 
-	the place. To add a note or modify existing notes simply edit the 
-	text in the text entry field.
+	<para>Закладка <guilabel>Комментариq</guilabel> показывает информацию о комментариях,
+    касающихся места. Чтобы добавить комментарий, просто введите текст в поле ввода текста.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Sources</guilabel></term>
-		<listitem><para> 
-	The <guilabel>Sources</guilabel> tab displays information about sources 
-	relevant to this place and controls allowing its modification. 
-	The central part displays the list of all such source references 
-	stored in the database. The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> allow 
-	you to correspondingly add, modify, and remove a source reference  
-	to this place. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
-	a source reference is selected from the list. </para>
+		<varlistentry><term><guilabel>Источники</guilabel></term>
+		<listitem><para> Закладка <guilabel>Источники</guilabel> показывает 
+        информацию об источниках, касающихся места, и управление, позвляющее её правку. 
+        Центральная часть показывает список ссылок на источники, хранимых в базе данных
+    относительно данного места. Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять 
+    ссылки на источники относительно места.
+    из базы данных. Заметьте, что кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда ссылка на источник
+    выбрана из списка. </para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Gallery</guilabel></term>
+		<varlistentry><term><guilabel>Галерея</guilabel></term>
 		<listitem>
-	<para>The <guilabel>Gallery</guilabel> tab displays information about 
-	media objects associated with the given place and the controls 
-	allowing its modification. The central part shows the list of all 
-	such media objects. For media objects which are valid image files 
-	previews of images are displayed. For other objects such as audio 
-	files, movie files, etc., a generic &app; icon is displayed instead. 
-	The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
-	you to correspondingly add, modify, and remove a media object reference 
-	to this source. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Remove</guibutton> buttons become available only when 
-	a media object is selected from the list. 
+	<para>Закладка <guilabel>Галерея</guilabel> показывает информацию о документах, связанных
+    с местом, и управление, позвляющее её правку. Центральная часть показывает
+    список всех таких документов, хранимых в базе данных. Для документов, являющихся 
+    изображениями, показан предварительный просмотр. Для других документов, таких как
+    звукозаписи, фильмы, и т.д., вместо этого показана стандартная пиктограмма &app;.
+    Заметьте, что первое доступное изображение будет также показано в области 
+    <guilabel>Изображение</guilabel> закладки <guilabel>Общее</guilabel>. Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять ссылки 
+    на документы для данного места. Заметьте, что кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда документ
+    выбран из списка.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Internet</guilabel></term>
+		<varlistentry><term><guilabel>Интернет</guilabel></term>
 		<listitem>
-	<para>The <guilabel>Internet</guilabel> tab displays information about 
-	Internet addresses relevant to the place and controls
-	allowing its modification. The bottom part displays the list of all 
-	such Internet addresses stored in the database. The top part shows the
-	details of the currently selected addresses in the list (if any). 
-	The buttons <guibutton>Add...</guibutton>,
-	<guibutton>Edit...</guibutton>,  and <guibutton>Delete</guibutton> 
-	allow you to correspondingly add, modify, and remove an Internet address 
-	record from the database. The button <guibutton>Go</guibutton> allows
-	you to open a web-page with the corresponding address with your default 
-	browser. Note that the <guibutton>Edit...</guibutton>, 
-	<guibutton>Delete</guibutton>, and <guibutton>Go</guibutton> buttons 
-	become available only when an address is selected from the list.
+	<para>Закладка <guilabel>Интернет</guilabel> показывает информацию об адресах
+    Интернета, касающихся места, и управление, позвляющее её правку. Нижняя часть показывает
+    список всех таких адресов, хранимых в базе данных. Верхняя часть показывает
+    подробности выделенного адреса из списка (если таковой существует). Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять записи об адресе
+    из базы данных. Кнопка <guibutton>Иди</guibutton> позволяет открыть веб-страницу, 
+    соответствующую выбранному адресу, в базовом веб-браузере.
+    Заметьте, что кнопки <guibutton>Правка...</guibutton>, <guibutton>Удалить</guibutton> 
+    и <guibutton>Иди</guibutton> становятся доступными только когда адрес выбран из списка.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>References</guilabel></term>
+		<varlistentry><term><guilabel>Ссылки</guilabel></term>
 		<listitem>
-	<para>The <guilabel>References</guilabel> tab displays information about 
-	database records that refer to this place. If the place is not 
-	referenced from any database record, the tab shows an empty list. 
-	If the place is referenced from many records, the tab will list 
-	all of them. This information cannot be modified from 
-	the <guilabel>Place Editor</guilabel> dialog. Instead, the
-	corresponding database record (e.g. birth event) has to be brought
-	up and its place reference edited. </para>
+	<para>Закладка <guilabel>Ссылки</guilabel> показывает информацию о 
+    записях базы данных, ссылающихся на данное место. Если на место
+    не ссылается ни одна запись, список ссылок будет пуст. Если многочисленные 
+    записи ссылаются на место, все они окажутся в списке. Эта информация не подлежит 
+    правке в диалоге <guilabel>Редактор мест</guilabel>. Вместо этого, нужно 
+    вызвать соответствующую запись базы данных (напр. событие рождения)
+    для правки и изменить ссылку этой записи на место. </para>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1369,102 +1266,91 @@
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-media"> 
-        <title>Edit Media Data</title> 
-	<para> To edit media data, switch to the Media View and select the
-	desired entry in the list of sources. Double-click on that entry or
-	click <guibutton>Edit</guibutton> on the toolbar to invoke the 
-	following <guilabel>Edit Media Properties</guilabel> dialog: </para>
+        <title>Правка документов альбома</title> 
+	<para> Для правка информации о месте, переключитесь в Вид Альбома
+    и выберите желаемую запись из списка документов. Сделайте двойной щелчок
+    по этой записи, или нажмите кнопку <guibutton>Правка</guibutton> на панели инструментов
+    для вызова следующего диалога <guilabel>Редактор документов</guilabel>: </para>
 
  	<!-- ==== Figure: Edit Media Properties dialog ==== -->
 	<figure id="edit-media-fig"> 
-	<title>Edit Media Properties dialog</title> 
+	<title>Диалог Редактор документов</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-media.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Edit Media Properties dialog. </phrase>
+	<phrase>Показан диалог Редактор документов. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 	
-	<para> The top of the window shows the dialog title. Below the title  
-	is the preview of an object and the summary of its properties (ID, 
-	path, and object type). The central part of the window displays four 
-	notebook tabs containing different categories of available information. 
-	You can bring any tab to the top for viewing or editing by clicking on 
-	the appropriate tab heading. The bottom part has 
-	<guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. 
-	Clicking the <guibutton>OK</guibutton> button at any time will apply all the 
-	changes made in all tabs and close the dialog window. Clicking the 
-	<guibutton>Cancel</guibutton> button at any time will close the window without 
-	applying any changes. If any of the data in any tab were modified, 
-	the alert window will appear with the choices of closing the dialog 
-	without saving changes, canceling the initial cancel request, or saving 
-	the changes. </para> 
+	<para> В верхней части окна показано название диалога <guilabel>Редактор 
+    документов</guilabel>. Под названием находится область предварительного просмотра 
+    документа и сводка его свойств (ID, путь к файлу, и тип документа). 
+    Центральная часть окна показывает четыре закладки, 
+    содержащие различные категории доступной информации. Вы можете вытащить любую 
+    закладку наверх для просмотра или редактирования путём
+    нажатия на заголовок соответствующей закладки. Нижняя часть содержит кнопки 
+    <guibutton>OK</guibutton> и <guibutton>Отменить</guibutton>. Щелчок кнопки
+    <guibutton>OK</guibutton> в любой момент применит все изменения, сделанные во всех
+    закладках, и закроет окно диалога. Щелчок кнопки <guibutton>Отменить</guibutton>
+    в любой момент закроет окно диалога без применения сделанных изменений. </para> 
 	
-	<para>
-    The tab labels reflect the presence of corresponding information: if the 
-    tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-	The tabs provide the following information categories of 
-	media object data:
+	<para>Заголовки закладок отражают присутствие соответстующей информации:
+    если закладка содержит данные, шрифт её заголовка жирный; если закладка не 
+    содержит данных, шрифт её заголовка обычный (не жирный). Закладки предоставляют 
+    следующие категории информации о документе:
 	</para>
 
 	<variablelist>
-		<varlistentry><term><guilabel>General</guilabel></term>
-		<listitem><para>The  
-	<guilabel>General</guilabel> tab allows editing the title which labels 
-	this object in the database. The title can be typed in the appropriate 
-	text entry field. If the object is not local (i.e. the corresponding
-	file does not reside under &app; database directory), the
-	<guibutton>Make a local copy</guibutton> button is available. 
-	Click it to copy the media into the &app; database directory. This will 
-	increase the amount of disk space consumed by the &app; database. However, 
-	if the external file is deleted or removed, &app; will still be able 
-	to use the local copy.  </para>
+		<varlistentry><term><guilabel>Общее</guilabel></term>
+		<listitem><para>Закладка <guilabel>Общее</guilabel> позволяет правку 
+        названия, обозначающее этот документ в записях базы данных. 
+        Название может быть введено в соответствующие поля ввода текста.
+        Если документ не локальный (т.е. соответствующий файл не находится в каталоге
+        базы данных &app;), кнопка  <guibutton>Сделать локальную копию</guibutton>
+        будет доступной. Нажмите её для копирования файла документа в каталог
+        базы данных &app;. Это увеличит количество места на диске, занимаемого
+        базой данных. Однако, если внешний файл будет удалён или перемещён, базаы данных 
+        всё равно сможет использовать локальную копию. </para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Attributes</guilabel></term>
+		<varlistentry><term><guilabel>Атрибуты</guilabel></term>
 		<listitem>
-	<para>The <guilabel>Attributes</guilabel> tab displays information about 
-	the attributes of the media object and controls allowing its
-	modification. The bottom part displays the list of all such 
-	attributes stored in the database. The top part shows the details 
-	of the currently selected attribute in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow you to correspondingly add, 
-	modify, and remove an attribute record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
-	an attribute is selected from the list. </para>
+	<para>Закладка <guilabel>Атрибуты</guilabel> показывает информацию, касающуюся 
+    атрибутов документа, и управление, позвляющее её правку. Нижняя часть показывает 
+    список всех таких атрибутов, хранимых в базе данных. Верхняя часть показывает
+    подробности выделенного атрибутов из списка (если таковой существует). Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять записи об атрибуте
+    из базы данных. Заметьте, что кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда атрибут
+    выбран из списка. </para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Notes</guilabel></term>
+		<varlistentry><term><guilabel>Комментарии</guilabel></term>
 		<listitem>
-	<para>The <guilabel>Notes</guilabel> tab displays information about the 
-	notes concerning the media object. These could be any notes which do 
-	not naturally fit into the Parameter-Value pairs available to 
-	Attributes. To add a note or modify existing notes simply edit the 
-	text in the text entry field. </para>
+	<para>Закладка <guilabel>Комментарии</guilabel> показывает информацию о комментариях,
+    касающихся документа. Ими могут быть любые записи, не вписывающиеся в пары Параметр-Значение
+    доступные а Атрибутах. Чтобы добавить комментарий, просто введите текст в поле ввода текста.
+     </para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>References</guilabel></term>
+		<varlistentry><term><guilabel>Ссылки</guilabel></term>
 		<listitem>
-	<para>The <guilabel>References</guilabel> tab displays information about 
-	database records that refer to this media object. If the object is not 
-	referenced from any database record, the tab shows an empty list. 
-	If the object is referenced from many records, the tab will list 
-	all of them. The list can be ordered by any of its column headers:
-	<guilabel>Type</guilabel>, <guilabel>Object</guilabel>, or
-	<guilabel>Value</guilabel>. This information cannot be modified from
-	the <guilabel>Media Object Properties Editor</guilabel> dialog. 
-	Instead, the corresponding database record (e.g. birth event) has to 
-	be brought up and its media object reference edited in the gallery 
-	tab. </para>
+	<para>Закладка <guilabel>Ссылки</guilabel> показывает информацию о 
+    записях базы данных, ссылающихся на данный документ. Если на документ
+    не ссылается ни одна запись, список ссылок будет пуст. Если многочисленные 
+    записи ссылаются на документ, все они окажутся в списке. Список может 
+    быть упорядочен по любой колонке: <guilabel>Тип</guilabel>, 
+    <guilabel>Объект</guilabel> или <guilabel>Значение</guilabel>. 
+    Эта информация не подлежит правке в диалоге <guilabel>Редактор документов</guilabel>.
+    Вместо этого, нужно вызвать соответствующую запись базы данных (напр. событие рождения)
+    для правки и изменить ссылку этой записи на документ. </para>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1472,93 +1358,83 @@
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-ev"> 
-        <title>Edit Events</title> 
-	<para> Events are edited through the following <guilabel>Event
-	Editor</guilabel> dialog: </para> 
+        <title>Правка событий</title> 
+	<para> Правка событий производится в следующем диалоге 
+    <guilabel>Редактор событий</guilabel> : </para> 
 
  	<!-- ==== Figure: Event Editor dialog ==== -->
 	<figure id="edit-ev-fig"> 
-	<title>Event Editor dialog</title> 
+	<title>Диалог Редактор событий</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-ev.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Event Editor dialog. </phrase>
+	<phrase>Показан диалог Редактор событий. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para> The top of the window shows the dialog title including the name
-	of the person whose event is being edited. The central part of the 
-	window displays four notebook tabs containing different categories of 
-	available information. You can bring any tab to the top for viewing or 
-	editing by clicking on the appropriate tab heading. The bottom part has 
-	<guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. 
-	Clicking the <guibutton>OK</guibutton> button at any time will apply all the 
-	changes made in all tabs and close the dialog window. Clicking the 
-	<guibutton>Cancel</guibutton> button at any time will close the window without 
-	applying any changes. If any of the data in any tab were modified, 
-	the alert window will appear with the choices of closing the dialog 
-	without saving changes, canceling the initial cancel request, or saving 
-	the changes. </para> 
+	<para> В верхней части окна показано название диалога, включающее имена лиц,
+    события которых редактируются. Центральная часть окна показывает четыре закладки, 
+    содержащие различные категории доступной информации. Вы можете вытащить любую 
+    закладку наверх для просмотра или редактирования путём
+    нажатия на заголовок соответствующей закладки. Нижняя часть содержит кнопки 
+    <guibutton>OK</guibutton> и <guibutton>Отменить</guibutton>. Щелчок кнопки
+    <guibutton>OK</guibutton> в любой момент применит все изменения, сделанные во всех
+    закладках, и закроет окно диалога. Щелчок кнопки <guibutton>Отменить</guibutton>
+    в любой момент закроет окно диалога без применения сделанных изменений. </para> 
 	
-	<para>
-    The tab labels reflect the presence of corresponding information: if the 
-    tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-    The tabs provide the following information categories of 
-	the event data: </para>
+	<para>Заголовки закладок отражают присутствие соответстующей информации:
+    если закладка содержит данные, шрифт её заголовка жирный; если закладка не 
+    содержит данных, шрифт её заголовка обычный (не жирный). Закладки предоставляют 
+    следующие категории информации о событии: </para>
 
 	<variablelist>
-		<varlistentry><term><guilabel>General</guilabel></term>
-		<listitem><para>The  
-	<guilabel>General</guilabel> tab allows editing of the most general
-	information about the event: its type, date, place, cause, and
-	description. The type can be selected from available types listed 
-	in the <guilabel>Event type </guilabel> drop-down menu. The rest 
-	of the information can be typed in the appropriate text entry fields. 
-	Check the <guilabel>Private record</guilabel> box to mark this event
-	record as private. This will give you a chance to omit this event from
-	being included in reports, if you choose so among the report 
-	generation options. </para>
+		<varlistentry><term><guilabel>Общее</guilabel></term>
+		<listitem><para>Закладка <guilabel>Общее</guilabel> позволяет правку 
+        наиболее общей информации о событии: его тип, дату, место, причину и описание.
+        Тип может быть выбран из ниспадающего меню <guilabel>Тип события</guilabel>. 
+        Остальная информация может быть
+        введена в соответствующие поля ввода текста.
+        Отметьте опцию <guilabel>Личная запись</guilabel>, чтобы пометить
+        эту запись как личную. Это даст Вам возможность пропустить это событие
+        при создании отчётов, если Вы выберете такую возможность в настройках 
+        отчёта. </para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Sources</guilabel></term>
-		<listitem><para>The  
-	<guilabel>Sources</guilabel> tab displays information about sources 
-	relevant to this event and controls allowing its modification. 
-	The central part displays the list of all such sources references 
-	stored in the database. The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
-	allow you to correspondingly add, modify, and remove a source reference  
-	to this event. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
-	a source reference is selected from the list. </para>
+		<varlistentry><term><guilabel>Источники</guilabel></term>
+		<listitem><para>Закладка <guilabel>Источники</guilabel> показывает 
+        информацию об источниках, касающихся события, и управление, позвляющее её правку. 
+        Центральная часть показывает список ссылок на источники, хранимых в базе данных
+    относительно данного места. Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять 
+    ссылки на источники относительно события.
+    из базы данных. Заметьте, что кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда ссылка на источник
+    выбрана из списка. </para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Note</guilabel></term>
+		<varlistentry><term><guilabel>Комментарий</guilabel></term>
 		<listitem>
-	<para>The <guilabel>Note</guilabel> tab displays any notes concerning 
-	the event. To add a note or modify existing notes simply edit the 
-	text in the text entry field.
+	<para>Закладка <guilabel>Комментарий</guilabel> показывает информацию о комментариях,
+    касающихся события. Чтобы добавить комментарий, просто введите текст в поле ввода текста.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Witnesses</guilabel></term>
-		<listitem><para>The 
-	<guilabel>Witnesses</guilabel> tab displays information about witnesses 
-	relevant to this event and controls allowing its modification. 
-	The central part displays the list of all such witnesses 
-	stored in the database. The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
-	allow you to correspondingly add, modify, and remove a witness reference  
-	to this event. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
-	a witness reference is selected from the list. </para>
+		<varlistentry><term><guilabel>Свидетели</guilabel></term>
+		<listitem><para>Закладка <guilabel>Свидетели</guilabel> показывает информацию о 
+    свидетелях данного события, и управление, позвляющее её правку. Центральная часть 
+    показывает список всех таких свидетелей, хранимых в базе данных. Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять 
+    ссылки на свидетелей данного события. Заметьте, что кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда свидетель
+    выбран из списка. </para>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1566,121 +1442,104 @@
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-si"> 
-        <title>Edit Source Information</title> 
-	<para> When adding source references to events, places, etc., 
-	the following dialog appears: </para>
+        <title>Правка ссылок на источники</title> 
+	<para> При добавлении ссылок на источники к событиям, местам, и т.д., появляется
+    следующий диалог: </para>
 
  	<!-- ==== Figure: Source Information dialog ==== -->
 	<figure id="edit-si-fig"> 
-	<title>Source Information dialog</title> 
+	<title>Диалог Информация об источнике</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-si.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Source Information dialog. </phrase>
+	<phrase>Показан диалог Информация об источнике. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para> The top of the window shows the dialog title. The central part 
-	displays the source information. The bottom part has 
-	<guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons.  
-	Clicking the <guibutton>OK</guibutton> button at any time will apply all the 
-	changes made and close the dialog window. Clicking the 
-	<guibutton>Cancel</guibutton> button at any time will close the window without 
-	applying any changes. If any of the data were modified, 
-	the alert window will appear with the choices of closing the dialog 
-	without saving changes, canceling the initial cancel request, or saving 
-	the changes. </para> 
+	<para> В верхней части окна показано название диалога. <guilabel>Информация об 
+    источнике</guilabel>. Центральная часть окна показывает информацию об 
+    источнике. Нижняя часть содержит кнопки 
+    <guibutton>OK</guibutton> и <guibutton>Отменить</guibutton>. Щелчок кнопки
+    <guibutton>OK</guibutton> в любой момент применит все изменения, сделанные во всех
+    закладках, и закроет окно диалога. Щелчок кнопки <guibutton>Отменить</guibutton>
+    в любой момент закроет окно диалога без применения сделанных изменений. </para> 
 
-	<para> The source can be selected from available sources listed in the
-	<guilabel>Title</guilabel> drop-down menu. If the source you are
-	referencing is not present in the database yet, you can enter it into
-	the database. To do this, click the <guibutton>New...</guibutton> button 
-	and enter source information into the invoked <guilabel>Source 
-	Editor</guilabel> dialog. You can also set the details specific for 
-	this particular reference: confidence, volume/file/page. date, text, 
-	and comments. Choose the confidence 
-	level from the <guilabel>Confidence</guilabel> drop-down menu. 
-	The rest of the details can be typed in the appropriate text entry
-	fields. </para>
+	<para> Источник может быть выбран из доступных источников, перечисленных в 
+    ниспадающем меню <guilabel>Титул</guilabel>. Если источника, на который вы ссылаетесь,
+    ещё нет в базе данных, вы можете добавить его в базу. Чтобы это сделать, 
+    щёлкните кнопку <guibutton>Новый...</guibutton> и введите данные источника
+    в вызванный диалог <guilabel>Редактор источников</guilabel>. Также Вы можете ввести
+    подробности, касающиеся данной ссылки: достоверность, том/папку/страницу, дату,
+    текст и комментарии. Выберите достоверность из ниспадающего меню 
+    <guilabel>Достоверность</guilabel>. Остальная информация может быть
+        введена в соответствующие поля ввода текста.</para>
 
       </sect3>
       
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-an"> 
-        <title>Edit Alternate Names</title> 
-	<para> Alternate names are edited through the following 
-	<guilabel>Alternate Names Editor</guilabel> dialog: </para>
+        <title>Правка альтернативных имён</title> 
+	<para> Правка альтернативных имён производится в следующеи диалоге 
+	<guilabel>Редактор альтернативных имён</guilabel>: </para>
 
  	<!-- ==== Figure: Alternate Names Editor dialog ==== -->
 	<figure id="edit-an-fig"> 
-	<title>Alternate Names Editor dialog</title> 
+	<title>Диалог Редактор альтернативных имён</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-an.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Alternate Names Editor dialog. </phrase>
+	<phrase>Показан диалог Редактор альтернативных имён. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 	
-	<para> The top of the window shows the dialog title including the name
-	of the person whose alternate name is being edited. The central part 
-	of the window displays three notebook tabs containing different 
-	categories of available information. You can bring any tab to the 
-	top for viewing or editing by clicking on the appropriate tab heading. 
-	The bottom part has <guibutton>OK</guibutton> and 
-	<guibutton>Cancel</guibutton> buttons. Clicking the 
-	<guibutton>OK</guibutton> button at any time will apply all the 
-	changes made in all tabs and close the dialog window. Clicking the 
-	<guibutton>Cancel</guibutton> button at any time will close the window without 
-	applying any changes. If any of the data in any tab were modified, 
-	the alert window will appear with the choices of closing the dialog 
-	without saving changes, canceling the initial cancel request, or saving 
-	the changes. </para> 
+	<para> В верхней части окна показано название диалога, включаещее имя лица, чьё
+    альтернативное имя редактируется. Центральная часть окна показывает три закладки, 
+    содержащие различные категории доступной информации. Вы можете вытащить любую 
+    закладку наверх для просмотра или редактирования путём
+    нажатия на заголовок соответствующей закладки. Нижняя часть содержит кнопки 
+    <guibutton>OK</guibutton> и <guibutton>Отменить</guibutton>. Щелчок кнопки
+    <guibutton>OK</guibutton> в любой момент применит все изменения, сделанные во всех
+    закладках, и закроет окно диалога. Щелчок кнопки <guibutton>Отменить</guibutton>
+    в любой момент закроет окно диалога без применения сделанных изменений. </para> 
 	
-	<para>
-    The tab labels reflect the presence of corresponding information: if the 
-    tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-    The tabs provide the following information categories of 
-	the alternate name data: </para>
+	<para>Заголовки закладок отражают присутствие соответстующей информации:
+    если закладка содержит данные, шрифт её заголовка жирный; если закладка не 
+    содержит данных, шрифт её заголовка обычный (не жирный). Закладки предоставляют 
+    следующие категории информации об альтернативном имени:</para>
 
  	<variablelist>
-		<varlistentry><term><guilabel>General</guilabel></term>
-		<listitem><para>The 
-	<guilabel>General</guilabel> tab allows editing of general
-	information about the alternate name: given name, family name, family 
-	prefix, suffix, title, and type of the name. The information can be 
-	typed in the appropriate text entry fields. The family name and the 
-	type can be also selected from available choices listed in the 
-	appropriate drop-down menus. 
-	Check the <guilabel>Private record</guilabel> box to mark this name
-	record as private. This will give you a chance to omit this name from
-	being included in reports, if you choose so among the report 
-	generation options. </para>
+		<varlistentry><term><guilabel>Общее</guilabel></term>
+		<listitem><para>Закладка <guilabel>Общее</guilabel> позволяет правку 
+        общей информации об альтернативном имени: имя, фамилия, фамильная приставка, суффикс,
+        титул, и тип имени. Эта информация может быть введена в соответствующие поля 
+        ввода текста. Фамилия и тип также могут быть выбраны из ниспадающих меню.
+        Отметьте опцию <guilabel>Личная запись</guilabel>, чтобы пометить
+        эту запись как личную. Это даст Вам возможность пропустить это имя 
+        при создании отчётов, если Вы выберете такую возможность в настройках 
+        отчёта. </para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Sources</guilabel></term>
-		<listitem><para>The 
-	<guilabel>Sources</guilabel> tab displays information about sources 
-	relevant to this name and controls allowing its modification. 
-	The central part displays the list of all such sources' references 
-	stored in the database. The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
-	allow you to correspondingly add, modify, and remove a source reference  
-	to this name. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
-	a source reference is selected from the list. </para>
+		<varlistentry><term><guilabel>Источники</guilabel></term>
+		<listitem><para>Закладка <guilabel>Источники</guilabel> показывает 
+        информацию об источниках, касающихся данного имени, и управление, позвляющее её правку. 
+        Центральная часть показывает список ссылок на источники, хранимых в базе данных
+    относительно данного имени. Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять 
+    ссылки на источники относительно имени.
+    из базы данных. Заметьте, что кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда ссылка на источник
+    выбрана из списка. </para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Note</guilabel></term>
+		<varlistentry><term><guilabel>Комментарий</guilabel></term>
 		<listitem>
-	<para>The <guilabel>Note</guilabel> tab displays any notes concerning 
-	the name. To add a note or modify existing notes simply edit the 
-	text in the text entry field.
-	</para>
+	<para>Закладка <guilabel>Комментарий</guilabel> показывает информацию о комментариях,
+    касающихся имени. Чтобы добавить комментарий, просто введите текст в поле ввода текста.</para>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1688,78 +1547,69 @@
       
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-at"> 
-        <title>Edit Attributes</title> 
-	<para> Attributes are edited through the following 
-	<guilabel>Attribute Editor</guilabel> dialog: </para>
+        <title>Правка атрибутов</title> 
+	<para> Правка атрибутов производится в следующеи диалоге 
+	<guilabel>Редактор атрибутов</guilabel>: </para>
 
  	<!-- ==== Figure: Attribute Editor dialog ==== -->
 	<figure id="edit-at-fig"> 
-	<title>Attribute Editor dialog</title> 
+	<title>Диалог Редактор атрибутов</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-at.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Attribute Editor dialog. </phrase>
+	<phrase>Показан диалог Редактор атрибутов. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para> The top of the window shows the dialog title including the name
-	of the person whose attribute is being edited. The central part 
-	of the window displays three notebook tabs containing different 
-	categories of available information. You can bring any tab to the 
-	top for viewing or editing by clicking on the appropriate tab heading. 
-	The bottom part has <guibutton>OK</guibutton> and 
-	<guibutton>Cancel</guibutton> buttons. Clicking the 
-	<guibutton>OK</guibutton> button at any time will apply all the 
-	changes made in all tabs and close the dialog window. Clicking the 
-	<guibutton>Cancel</guibutton> button at any time will close the window without 
-	applying any changes. If any of the data in any tab were modified, 
-	the alert window will appear with the choices of closing the dialog 
-	without saving changes, canceling the initial cancel request, or saving 
-	the changes. </para> 
+	<para> В верхней части окна показано название диалога, включаещее имя лица, чей
+    атрибут редактируется. Центральная часть окна показывает три закладки, 
+    содержащие различные категории доступной информации. Вы можете вытащить любую 
+    закладку наверх для просмотра или редактирования путём
+    нажатия на заголовок соответствующей закладки. Нижняя часть содержит кнопки 
+    <guibutton>OK</guibutton> и <guibutton>Отменить</guibutton>. Щелчок кнопки
+    <guibutton>OK</guibutton> в любой момент применит все изменения, сделанные во всех
+    закладках, и закроет окно диалога. Щелчок кнопки <guibutton>Отменить</guibutton>
+    в любой момент закроет окно диалога без применения сделанных изменений.</para> 
 	
-	<para>
-    The tab labels reflect the presence of corresponding information: if the 
-    tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-    The tabs provide the following information categories of 
-	the attribute data: </para>
+	<para>Заголовки закладок отражают присутствие соответстующей информации:
+    если закладка содержит данные, шрифт её заголовка жирный; если закладка не 
+    содержит данных, шрифт её заголовка обычный (не жирный). Закладки предоставляют 
+    следующие категории информации об атрибуте: </para>
 
  	<variablelist>
-		<varlistentry><term><guilabel>General</guilabel></term>
-		<listitem><para>The 
-	<guilabel>General</guilabel> tab allows editing of the most general
-	information about the attribute: name of the attribute and its value. 
-	The information can be typed in the appropriate text entry fields. 
-	The attribute name can also be selected from available choices (if any) 
-	listed in the <guilabel>Attribute </guilabel> drop-down menu. 
-	Check the <guilabel>Private record</guilabel> box to mark this 
-	attribute record as private. This will give you a chance to omit 
-	this attribute from being included in the reports, if you choose 
-	so among the report generation options. </para>
+		<varlistentry><term><guilabel>Общее</guilabel></term>
+		<listitem><para>Закладка <guilabel>Общее</guilabel> позволяет правку наиболее 
+        общей информации об альтернативном имени: название атрибута и его значение.
+        Эта информация может быть введена в соответствующие поля ввода текста. 
+        Название атрибута также может быть выбрано из вариантов, доступных 
+        в ниспадающем меню <guilabel>Атрибут</guilabel> (если таковые есть).
+        Отметьте опцию <guilabel>Личная запись</guilabel>, чтобы пометить
+        эту запись как личную. Это даст Вам возможность пропустить этот атрибут 
+        при создании отчётов, если Вы выберете такую возможность в настройках 
+        отчёта. </para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Sources</guilabel></term>
-		<listitem><para>The 
-	<guilabel>Sources</guilabel> tab displays information about sources 
-	relevant to this attribute and controls allowing its modification. 
-	The central part displays the list of all such sources references 
-	stored in the database. The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
-	allow you to correspondingly add, modify, and remove a source reference  
-	to this attribute . Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
-	a source reference is selected from the list. </para>
+		<varlistentry><term><guilabel>Источники</guilabel></term>
+		<listitem><para>Закладка <guilabel>Источники</guilabel> показывает 
+        информацию об источниках, касающихся данного атрибута, и управление, позвляющее её правку. 
+        Центральная часть показывает список ссылок на источники, хранимых в базе данных
+    относительно данного атрибута. Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять 
+    ссылки на источники относительно атрибута. Заметьте, что 
+    кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда ссылка на источник
+    выбрана из списка. </para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Note</guilabel></term>
+		<varlistentry><term><guilabel>Комментарий</guilabel></term>
 		<listitem>
-	<para>The <guilabel>Note</guilabel> tab displays any notes concerning 
-	the attribute . To add a note or modify existing notes simply edit the 
-	text in the text entry field.
+	<para>Закладка <guilabel>Комментарий</guilabel> показывает информацию о комментариях,
+    касающихся атрибута. Чтобы добавить комментарий, просто введите текст в поле ввода текста.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1767,77 +1617,69 @@
       
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-ad"> 
-        <title>Edit Addresses</title> 
-	<para> Addresses are edited through the following 
-	<guilabel>Address Editor</guilabel> dialog: </para>
+        <title>Правка адресов</title> 
+	<para> Правка адресов производится в следующеи диалоге 
+	<guilabel>Редактор адресов</guilabel>: </para>
 
  	<!-- ==== Figure: Address Editor dialog ==== -->
 	<figure id="edit-ad-fig"> 
-	<title>Address Editor dialog</title> 
+	<title>Диалог Редактор адресов</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-ad.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Address Editor dialog. </phrase>
+	<phrase>Показан диалог Редактор адресов. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 	
-	<para> The top of the window shows the dialog title including the name
-	of the person whose address is being edited. The central part 
-	of the window displays three notebook tabs containing different 
-	categories of available information. You can bring any tab to the 
-	top for viewing or editing by clicking on the appropriate tab heading. 
-	The bottom part has <guibutton>OK</guibutton> and 
-	<guibutton>Cancel</guibutton> buttons. Clicking the 
-	<guibutton>OK</guibutton> button at any time will apply all the 
-	changes made in all tabs and close the dialog window. Clicking the 
-	<guibutton>Cancel</guibutton> button at any time will close the window without 
-	applying any changes. If any of the data in any tab were modified, 
-	the alert window will appear with the choices of closing the dialog 
-	without saving changes, canceling the initial cancel request, or saving 
-	the changes. </para> 
+	<para> В верхней части окна показано название диалога, включаещее имя лица, чей
+    адрес редактируется. Центральная часть окна показывает три закладки, 
+    содержащие различные категории доступной информации. Вы можете вытащить любую 
+    закладку наверх для просмотра или редактирования путём
+    нажатия на заголовок соответствующей закладки. Нижняя часть содержит кнопки 
+    <guibutton>OK</guibutton> и <guibutton>Отменить</guibutton>. Щелчок кнопки
+    <guibutton>OK</guibutton> в любой момент применит все изменения, сделанные во всех
+    закладках, и закроет окно диалога. Щелчок кнопки <guibutton>Отменить</guibutton>
+    в любой момент закроет окно диалога без применения сделанных изменений. </para> 
 	
-	<para>
-    The tab labels reflect the presence of corresponding information: if the 
-    tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-    The tabs provide the following information categories of 
-	the address data: </para>
+	<para>Заголовки закладок отражают присутствие соответстующей информации:
+    если закладка содержит данные, шрифт её заголовка жирный; если закладка не 
+    содержит данных, шрифт её заголовка обычный (не жирный). Закладки предоставляют 
+    следующие категории информации об адресе: </para>
 
  	<variablelist>
-		<varlistentry><term><guilabel>General</guilabel></term>
-		<listitem><para>The 
-	<guilabel>General</guilabel> tab allows editing of the most general
-	information about the address: date, street address, city or county, 
-	state or province, country, and the postal code. The information can 
-	be typed in the appropriate text entry fields. 
-	Check the <guilabel>Private record</guilabel> box to mark this address 
-	record as private. This will give you a chance to omit this address 
-	from being included in reports, if you choose so among the report 
-	generation options. </para>
+		<varlistentry><term><guilabel>Общее</guilabel></term>
+		<listitem><para>Закладка <guilabel>Общее</guilabel> позволяет правку наиболее 
+        общей информации об адресе: дату, адрес (дом и улица), город/область, штат/провинцию,
+        страну, и почтовый код (индекс). 
+        Эта информация может быть введена в соответствующие поля ввода текста. 
+        Отметьте опцию <guilabel>Личная запись</guilabel>, чтобы пометить
+        эту запись как личную. Это даст Вам возможность пропустить этот адрес 
+        при создании отчётов, если Вы выберете такую возможность в настройках 
+        отчёта. </para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Sources</guilabel></term>
-		<listitem><para>The 
-	<guilabel>Sources</guilabel> tab displays information about sources 
-	relevant to this address and controls allowing its modification. 
-	The central part displays the list of all such sources references 
-	stored in the database. The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
-	allow you to correspondingly add, modify, and remove a source reference  
-	to this address. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
-	a source reference is selected from the list. </para>
+		<varlistentry><term><guilabel>Источники</guilabel></term>
+		<listitem><para>Закладка <guilabel>Источники</guilabel> показывает 
+        информацию об источниках, касающихся данного адреса, и управление, позвляющее её правку. 
+        Центральная часть показывает список ссылок на источники, хранимых в базе данных
+    относительно данного атрибута. Кнопки 
+	<guibutton>Добавить...</guibutton>, <guibutton>Правка...</guibutton> 
+	и <guibutton>Удалить</guibutton> позволяют добавлять, править и удалять 
+    ссылки на источники относительно адреса. Заметьте, что 
+    кнопки <guibutton>Правка...</guibutton> и 
+    <guibutton>Удалить</guibutton> становятся доступными только когда ссылка на источник
+    выбрана из списка. 
+      </para>
 		</listitem></varlistentry>
 	</variablelist>
 
 	<variablelist>
-		<varlistentry><term><guilabel>Note</guilabel></term>
+		<varlistentry><term><guilabel>Комментарий</guilabel></term>
 		<listitem>
-	<para>The <guilabel>Note</guilabel> tab displays any notes concerning 
-	the address. To add a note or modify existing notes simply edit the 
-	text in the text entry field.
+	<para>Закладка <guilabel>Комментарий</guilabel> показывает информацию о комментариях,
+    касающихся атрибута. Чтобы добавить комментарий, просто введите текст в поле ввода текста.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1846,68 +1688,60 @@
       
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-wit"> 
-        <title>Edit Witnesses</title> 
-	<para> Witnesses are edited through the following 
-	<guilabel>Witness Editor</guilabel> dialog: </para>
+        <title>Правка свидетелей</title> 
+	<para> Правка адресов производится в следующеи диалоге 
+	<guilabel>Редактор свидетелей</guilabel>: </para>
 
  	<!-- ==== Figure: Witness Editor dialog ==== -->
 	<figure id="edit-wi-fig"> 
-	<title>Witness Editor dialog</title> 
+	<title>Диалог Редактор свидетелей</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-wi.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Witness Editor dialog. </phrase>
+	<phrase>Показан диалог Редактор свидетелей. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 	
-	<para> The top of the window shows the dialog title. The central part 
-	of the window displays information about the witness. The bottom part 
-	has <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. 
-	Clicking the <guibutton>OK</guibutton> button at any time will apply all the 
-	changes made and close the dialog window. Clicking the 
-	<guibutton>Cancel</guibutton> button at any time will close the window 
-	without applying any changes. If any of the data were 
-	modified, the alert window will appear with the choices of closing 
-	the dialog without saving changes, canceling the initial cancel 
-	request, or saving the changes. </para> 
+	<para> В верхней части окна показано название диалога. 
+    Центральная часть окна показывает информацию о свидетеле. Нижняя часть содержит кнопки 
+    <guibutton>OK</guibutton> и <guibutton>Отменить</guibutton>. Щелчок кнопки
+    <guibutton>OK</guibutton> в любой момент применит все изменения и закроет 
+    окно диалога. Щелчок кнопки <guibutton>Отменить</guibutton>
+    в любой момент закроет окно диалога без применения сделанных изменений. </para> 
 	
-	<para>The witness name can be entered in two ways, depending upon 
-	whether the witness is a person already stored in the database or 
-	not (unrelated person). </para> 
+	<para>Имя свидетеля может быть введено одним из двух способов, в зависимости 
+    от того, является ли свидетель лицом, содержащися в базе данных, или нет 
+    (постороннее лицо). </para> 
 	
 	<variablelist>
-		<varlistentry><term>Person from the database</term>
-		<listitem><para> 
-	If the person's data are stored in a database, check <guilabel>Person 
-	is in the database</guilabel> box. Then click the 
-        <guibutton>Select</guibutton> button to evoke <guilabel>Select
-        Person</guilabel> dialog. Choose the person from that dialog and 
-        click the <guibutton>OK</guibutton> button. The <guilabel>Person</guilabel> 
-        text field will display the name of the person you selected. 
-        Note: even though the person's name is displayed in the 
-        <guilabel>Person</guilabel> field, it is not available for direct
-        editing. 
+		<varlistentry><term>Лицо из базы данных</term>
+		<listitem><para> Если информация о лице содержится в базе данных, отметьте
+        опцию <guilabel>Лицо из базы данных</guilabel>. Затем щёлкните кнопку
+        <guibutton>Выбрать</guibutton> для вызова диалога <guibutton>Выбрать 
+        лицо</guibutton>. Выберите лицо из этого диалога и нажмите кнопку 
+        <guibutton>OK</guibutton>. Поле ввода текста <guilabel>Лицо</guilabel>
+        покажет имя выбранного лица. Заметьте: хотя имя лица показано в поле
+        <guilabel>Лицо</guilabel>, оно не подлежит непосредственной правке. 
 	</para></listitem></varlistentry>
 	</variablelist>
 	
 	<variablelist>
-		<varlistentry><term>Unrelated person</term>
-		<listitem><para> 
-	If the person is not in the database, make sure that 
-	<guilabel>Person is in the database</guilabel> box is unchecked. 
-	Then enter the name or any description of a person into the
-	<guilabel>Person</guilabel> text entry field. This information 
-	is stored as entered, and this is the only place it is stored.
-	In other words, there is no reference to that person in the entire 
-	database except for this witness reference. If the person is in fact
-	a member of the database, it is advised to use the former method.
+		<varlistentry><term>Постороннее лицо</term>
+		<listitem><para> Если лицо не содержится в базе данных, убедитесь в том,
+        что опция <guilabel>Лицо из базы данных</guilabel> не отмечена. Затем 
+        введите имя или любое описание свидетеля в поле ввода текста 
+        <guilabel>Лицо</guilabel>. Эта информация хранится так, как введена,
+        и это - единстенное место, в котором она хранится. Другими словами, 
+        во всей базе данных нет ни одной ссылки на это лицо, кроме данной ссылки
+        на свидетеля. Если лицо на самом деле находится в базе данных, рекемендуется
+        использовать предыдущий метод ссылки.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
 	
-	<para> The <guilabel>Comment</guilabel> text area allows you to enter 
-	any comments concerning the witness. To add a comment or to modify 
-	existing comments simply edit the text in the text area.
+	<para> Поле ввода текста <guilabel>Комментарий</guilabel> позволяет ввести любые
+    комментарии, касающихся свидетеля. Чтобы добавить комментарий, просто введите 
+    текст в поле ввода текста.
 	</para>
 
       </sect3>
