@@ -2,6 +2,16 @@
 	* src/docgen/LPRDoc.py: Table support correction: transferring
 	row to the next page.
 
+	* configure.in, configure: Typo.
+	* src/plugins/FtmStyleAncestors.py (endnotes): Do not add
+	redundant references.
+	* src/plugins/FtmStyleDescendants.py (endnotes): Do not add
+	redundant references.
+	* src/plugins/DetAncestralReport.py (_make_default_style): 
+	Remove unused table definition.
+	* src/plugins/DetDescendantReport.py (_make_default_style): 
+	Remove unused table definition.
+
 2004-02-29  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: remove local media concept
 	* src/RelLib.py: remove local media concept
