@@ -1,3 +1,9 @@
+2003-09-27  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* doc/gramps-manual/C/filtref.xml: Manual corrections. 
+	* doc/gramps-manual/C/cmdline.xml: Likewise.
+	* doc/gramps-manual/C/mainwin.xml: Likewise.
+	* doc/gramps-manual/C/figures/pedigree.png: Update figure.
+
 2003-09-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/docgen/RTFDoc.py: Fixed double printing of lines
 
