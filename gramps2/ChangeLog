@@ -3,7 +3,7 @@
 	the tips, enable random sequence of tips on each startup.
 	* src/data/tips.xml: Merge with old tips.
 
-2004-03-10  Leonid Mamtchenkov  <leonid@leonid.maks.net>
+2004-09-29  Leonid Mamtchenkov  <leonid@leonid.maks.net>
 	* src/data/tips.xml: Format the tips collection.
 
 2004-09-29 Frederick Noronha  <fred@bytesforall.org>
