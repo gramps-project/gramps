@@ -178,7 +178,7 @@
 
           <para> The rule returns a match if and only if 
           all non-empty values are (partially) matched by a person's 
-          birth. To use just one value, leave the other values empty. 
+          relationship. To use just one value, leave the other values empty. 
           </para></listitem>
           </varlistentry>
 
