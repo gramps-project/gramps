@@ -153,7 +153,7 @@ class FtmAncestorReport(Report.Report):
             self.doc.write_text(base.get_title())
 
             for item in [ base.get_author(), base.get_publication_info(), base.get_abbreviation(),
-                          dd.display(srcref.get_date()),]:
+                          dd.display(srcref.get_date_object()),]:
                 if item:
                     self.doc.write_text('; %s' % item)
 

@@ -233,7 +233,7 @@ class IndividualPage:
             self.write_info(base.get_title())
             self.write_info(base.get_author())
             self.write_info(base.get_publication_info())
-            self.write_info(DateHandler.displayer.display(sref.get_date()))
+            self.write_info(DateHandler.displayer.display(sref.get_date_object()))
             self.write_info(sref.get_page())
             if self.usecomments:
                 self.write_info(sref.get_text())

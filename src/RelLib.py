@@ -480,7 +480,7 @@ class SourceNote(BaseObject):
         """Creates a unique instance of the current note"""
         self.note = Note(self.note.get())
 
-class MediaBase(BaseObject):
+class MediaBase:
     """
     Base class for storing media references
     """
@@ -563,6 +563,85 @@ class MediaBase(BaseObject):
         while old_handle in self.media_list:
             ix = self.media_list.index(old_handle)
             self.media_list[ix] = new_handle
+
+class DateBase:
+    """
+    Base class for storing date information.
+    """
+
+    def __init__(self,source=None):
+        """
+        Create a new DateBase, copying from source if not None
+        
+        @param source: Object used to initialize the new object
+        @type source: DateBase
+        """
+        if source:
+            self.date = Date.Date(source.date)
+        else:
+            self.date = None
+
+    def set_date(self, date) :
+        """
+        Sets the date of the DateBase instance.
+	
+	The date is parsed into a L{Date} instance.
+
+        @param date: String representation of a date. The locale specific
+            L{DateParser} is used to parse the string into a GRAMPS L{Date}
+            object.
+        @type date: str
+        """
+        self.date = DateHandler.parser.parse(date)
+
+    def get_date(self) :
+        """
+        Returns a string representation of the date of the DateBase instance.
+	
+	This representation is based off the default date display format
+	determined by the locale's L{DateDisplay} instance.
+
+        @return: Returns a string representing the DateBase date
+        @rtype: str
+        """
+        if self.date:
+            return DateHandler.displayer.display(self.date)
+        return u""
+
+    def get_quote_date(self) :
+        """
+        Returns a string representation of the date of the DateBase instance.
+	
+	This representation is based off the default date display format
+	determined by the locale's L{DateDisplay} instance. The date is
+	enclosed in quotes if the L{Date} is not a valid date.
+
+        @return: Returns a string representing the DateBase date
+        @rtype: str
+        """
+        if self.date:
+            return DateHandler.displayer.quote_display(self.date)
+        return u""
+
+    def get_date_object(self):
+        """
+        Returns the L{Date} object associated with the DateBase.
+
+        @return: Returns a DateBase L{Date} instance.
+        @rtype: L{Date}
+        """
+        if not self.date:
+            self.date = Date.Date()
+        return self.date
+
+    def set_date_object(self,date):
+        """
+        Sets the L{Date} object associated with the DateBase.
+
+        @param date: L{Date} instance to be assigned to the DateBase
+        @type date: L{Date}
+        """
+        self.date = date
 
 class PrivateObject(SourceNote):
     """
@@ -1798,7 +1877,7 @@ class Family(PrimaryObject,SourceNote,MediaBase):
         """
         self.event_list = event_list
 
-class Event(PrimaryObject,PrivateObject,MediaBase):
+class Event(PrimaryObject,PrivateObject,MediaBase,DateBase):
     """
     Introduction
     ============
@@ -1821,10 +1900,10 @@ class Event(PrimaryObject,PrivateObject,MediaBase):
         PrimaryObject.__init__(self,source)
         PrivateObject.__init__(self,source)
         MediaBase.__init__(self,source)
+        DateBase.__init__(self,source)
 
         if source:
             self.place = source.place
-            self.date = Date.Date(source.date)
             self.description = source.description
             self.name = source.name
             self.cause = source.cause
@@ -1834,7 +1913,6 @@ class Event(PrimaryObject,PrivateObject,MediaBase):
                 self.witness = None
         else:
             self.place = ""
-            self.date = None
             self.description = ""
             self.name = ""
             self.cause = ""
@@ -2100,65 +2178,6 @@ class Event(PrimaryObject,PrivateObject,MediaBase):
         """
         return self.description 
 
-    def set_date(self, date) :
-        """
-        Sets the date of the Event instance. The date is parsed into
-        a L{Date} instance.
-
-        @param date: String representation of a date. The locale specific
-            L{DateParser} is used to parse the string into a GRAMPS L{Date}
-            object.
-        @type date: str
-        """
-        self.date = DateHandler.parser.parse(date)
-
-    def get_date(self) :
-        """
-        Returns a string representation of the date of the Event instance
-        based off the default date display format determined by the
-        locale's L{DateDisplay} instance.
-
-        @return: Returns a string representing the Event's date
-        @rtype: str
-        """
-        if self.date:
-            return DateHandler.displayer.display(self.date)
-        return u""
-
-    def get_quote_date(self) :
-        """
-        Returns a string representation of the date of the Event instance
-        based off the default date display format determined by the
-        locale's L{DateDisplay} instance. The date is enclosed in
-        quotes if the L{Date} is not a valid date.
-
-        @return: Returns a string representing the Event's date
-        @rtype: str
-        """
-        if self.date:
-            return DateHandler.displayer.quote_display(self.date)
-        return u""
-
-    def get_date_object(self):
-        """
-        Returns the L{Date} object associated with the Event.
-
-        @return: Returns a Event's L{Date} instance.
-        @rtype: L{Date}
-        """
-        if not self.date:
-            self.date = Date.Date()
-        return self.date
-
-    def set_date_object(self,date):
-        """
-        Sets the L{Date} object associated with the Event.
-
-        @param date: L{Date} instance to be assigned to the Event
-        @type date: L{Date}
-        """
-        self.date = date
-
 class Place(PrimaryObject,SourceNote,MediaBase):
     """
     Contains information related to a place, including multiple address
@@ -2415,7 +2434,7 @@ class Place(PrimaryObject,SourceNote,MediaBase):
             return [self.title,self.gramps_id,'','','','','',
                     self.title.upper(), '','','','','']
         
-class MediaObject(PrimaryObject,SourceNote):
+class MediaObject(PrimaryObject,SourceNote,DateBase):
     """
     Containter for information about an image file, including location,
     description and privacy
@@ -2431,6 +2450,7 @@ class MediaObject(PrimaryObject,SourceNote):
         """
         PrimaryObject.__init__(self,source)
         SourceNote.__init__(self,source)
+        DateBase.__init__(self,source)
 
         self.attrlist = []
         if source:
@@ -2438,7 +2458,6 @@ class MediaObject(PrimaryObject,SourceNote):
             self.mime = source.mime
             self.desc = source.desc
             self.thumb = source.thumb
-            self.date = Date.Date(source.date)
             self.place = source.place
             for attr in source.attrlist:
                 self.attrlist.append(Attribute(attr))
@@ -2446,7 +2465,6 @@ class MediaObject(PrimaryObject,SourceNote):
             self.path = ""
             self.mime = ""
             self.desc = ""
-            self.date = None
             self.place = ""
             self.thumb = None
 
@@ -2544,50 +2562,6 @@ class MediaObject(PrimaryObject,SourceNote):
         @rtype: str
         """
         return self.place 
-
-    def get_date(self) :
-        """
-        Returns a string representation of the date of the instance
-        based off the default date display format determined by the
-        locale's L{DateDisplay} instance.
-
-        @return: Returns a string representing the object's date
-        @rtype: str
-        """
-        if self.date:
-            return DateHandler.displayer.display(self.date)
-        return u""
-
-    def get_date_object(self):
-        """
-        Returns the L{Date} instance associated with the object.
-
-        @return: Returns the object's L{Date} instance.
-        @rtype: L{Date}
-        """
-        if not self.date:
-            self.date = Date.Date()
-        return self.date
-
-    def set_date(self, date) :
-        """
-        Sets the date of the object. The date is parsed into a L{Date} instance.
-
-        @param date: String representation of a date. The locale specific
-            L{DateParser} is used to parse the string into a GRAMPS L{Date}
-            object.
-        @type date: str
-        """
-        self.date = DateHandler.parser.parse(date)
-
-    def set_date_object(self,date):
-        """
-        Sets the L{Date} instance associated with the object.
-
-        @param date: L{Date} instance to be assigned to the object
-        @type date: L{Date}
-        """
-        self.date = date
 
     def set_mime_type(self,type):
         """
@@ -2804,7 +2778,7 @@ class Source(PrimaryObject,MediaBase):
         """returns the title abbreviation of the Source"""
         return self.abbrev
 
-class LdsOrd(SourceNote):
+class LdsOrd(SourceNote,DateBase):
     """
     Class that contains information about LDS Ordinances. LDS
     ordinances are similar to events, but have very specific additional
@@ -2815,16 +2789,15 @@ class LdsOrd(SourceNote):
     def __init__(self,source=None):
         """Creates a LDS Ordinance instance"""
         SourceNote.__init__(self,source)
+        DateBase.__init__(self,source)
         
         if source:
             self.famc = source.famc
-            self.date = Date.Date(source.date)
             self.temple = source.temple
             self.status = source.status
             self.place = source.place
         else:
             self.famc = None
-            self.date = None
             self.temple = ""
             self.status = 0
             self.place = None
@@ -2875,52 +2848,6 @@ class LdsOrd(SourceNote):
     def get_status(self):
         """Gets the status of the LDS ordinance"""
         return self.status
-
-    def set_date(self, date) :
-        """
-        Sets the date of the object. The date is parsed into a L{Date} instance.
-
-        @param date: String representation of a date. The locale specific
-            L{DateParser} is used to parse the string into a GRAMPS L{Date}
-            object.
-        @type date: str
-        """
-        if not self.date:
-            self.date = Date.Date()
-        DateHandler.parser.set_date(self.date,date)
-
-    def get_date(self) :
-        """
-        Returns a string representation of the date of the instance
-        based off the default date display format determined by the
-        locale's L{DateDisplay} instance.
-
-        @return: Returns a string representing the object's date
-        @rtype: str
-        """
-        if self.date:
-            return DateHandler.displayer.display(self.date)
-        return u""
-
-    def get_date_object(self):
-        """
-        Returns the L{Date} instance associated with the object.
-
-        @return: Returns the object's L{Date} instance.
-        @rtype: L{Date}
-        """
-        if not self.date:
-            self.date = Date.Date()
-        return self.date
-
-    def set_date_object(self,date):
-        """
-        Sets the L{Date} instance associated with the object.
-
-        @param date: L{Date} instance to be assigned to the object
-        @type date: L{Date}
-        """
-        self.date = date
 
     def set_temple(self,temple):
         """Sets the temple assocated with the ordinance"""
@@ -3332,21 +3259,21 @@ class Attribute(PrivateObject):
         """returns the value of the Attribute instance"""
         return self.value
 
-class Address(PrivateObject):
+class Address(PrivateObject,DateBase):
     """Provides address information for a person"""
 
     def __init__(self,source=None):
         """Creates a new Address instance, copying from the source
         if provided"""
         PrivateObject.__init__(self,source)
-        
+        DateBase.__init__(self,source)
+
         if source:
             self.street = source.street
             self.city = source.city
             self.state = source.state
             self.country = source.country
             self.postal = source.postal
-            self.date = Date.Date(source.date)
             self.phone = source.phone
         else:
             self.street = ""
@@ -3354,7 +3281,6 @@ class Address(PrivateObject):
             self.state = ""
             self.country = ""
             self.postal = ""
-            self.date = Date.Date()
             self.phone = ""
 
     def get_text_data_list(self):
@@ -3378,48 +3304,6 @@ class Address(PrivateObject):
         if self.note:
             check_list.append(self.note)
         return check_list
-
-    def set_date(self,date):
-        """
-        Sets the date of the object. The date is parsed into a L{Date} instance.
-
-        @param date: String representation of a date. The locale specific
-            L{DateParser} is used to parse the string into a GRAMPS L{Date}
-            object.
-        @type date: str
-        """
-        self.date = DateHandler.parser.parse(date)
-
-    def get_date(self):
-        """
-        Returns a string representation of the date of the instance
-        based off the default date display format determined by the
-        locale's L{DateDisplay} instance.
-
-        @return: Returns a string representing the object's date
-        @rtype: str
-        """
-        if self.date:
-            return DateHandler.displayer.display(self.date)
-        return u""
-
-    def get_date_object(self):
-        """
-        Returns the L{Date} instance associated with the object.
-
-        @return: Returns the object's L{Date} instance.
-        @rtype: L{Date}
-        """
-        return self.date
-
-    def set_date_object(self,date):
-        """
-        Sets the L{Date} instance associated with the object.
-
-        @param date: L{Date} instance to be assigned to the object
-        @type date: L{Date}
-        """
-        self.date = date
 
     def set_street(self,val):
         """sets the street portion of the Address"""
@@ -3469,7 +3353,7 @@ class Address(PrivateObject):
         """returns the postal code of the Address"""
         return self.postal
 
-class Name(PrivateObject):
+class Name(PrivateObject,DateBase):
     """Provides name information about a person. A person may have more
     that one name throughout his or her life."""
 
@@ -3480,7 +3364,8 @@ class Name(PrivateObject):
     def __init__(self,source=None):
         """creates a new Name instance, copying from the source if provided"""
         PrivateObject.__init__(self,source)
-        
+        DateBase.__init__(self,source)
+
         if source:
             self.first_name = source.first_name
             self.surname = source.surname
@@ -3493,10 +3378,6 @@ class Name(PrivateObject):
             self.group_as = source.group_as
             self.sort_as = source.sort_as
             self.display_as = source.display_as
-            if source.date:
-                self.date = Date.Date(source.date)
-            else:
-                self.date = None
         else:
             self.first_name = ""
             self.surname = ""
@@ -3509,7 +3390,6 @@ class Name(PrivateObject):
             self.group_as = ""
             self.sort_as = self.DEF
             self.display_as = self.DEF
-            self.date = None
 
     def get_text_data_list(self):
         """
@@ -3767,6 +3647,10 @@ class Name(PrivateObject):
             return False
         if self.get_note() != other.get_note():
             return False
+        if (self.date and other.date and not self.date.is_equal(other.date)) \
+                        or (self.date and not other.date) \
+                        or (not self.date and other.date):
+            return False
         if len(self.get_source_references()) != len(other.get_source_references()):
             return False
         index = 0
@@ -3776,65 +3660,6 @@ class Name(PrivateObject):
                 return True
             index += 1
         return True
-
-    def set_date(self, date) :
-        """
-        Sets the date of the L{Name} instance. The date is parsed into
-        a L{Date} instance.
-
-        @param date: String representation of a date. The locale specific
-            L{DateParser} is used to parse the string into a GRAMPS L{Date}
-            object.
-        @type date: str
-        """
-        self.date = DateHandler.parser.parse(date)
-
-    def get_date(self) :
-        """
-        Returns a string representation of the date of the L{Name} instance
-        based off the default date display format determined by the
-        locale's L{DateDisplay} instance.
-
-        @return: Returns a string representing the L{Name}'s date
-        @rtype: str
-        """
-        if self.date:
-            return DateHandler.displayer.display(self.date)
-        return u""
-
-    def get_quote_date(self) :
-        """
-        Returns a string representation of the date of the L{Name} instance
-        based off the default date display format determined by the
-        locale's L{DateDisplay} instance. The date is enclosed in
-        quotes if the L{Date} is not a valid date.
-
-        @return: Returns a string representing the L{Name}'s date
-        @rtype: str
-        """
-        if self.date:
-            return DateHandler.displayer.quote_display(self.date)
-        return u""
-
-    def get_date_object(self):
-        """
-        Returns the L{Date} object associated with the L{Name}.
-
-        @return: Returns a L{Name}'s L{Date} instance.
-        @rtype: L{Date}
-        """
-        if not self.date:
-            self.date = Date.Date()
-        return self.date
-
-    def set_date_object(self,date):
-        """
-        Sets the L{Date} object associated with the L{Name}.
-
-        @param date: L{Date} instance to be assigned to the L{Name}
-        @type date: L{Date}
-        """
-        self.date = date
 
 class Url(BaseObject):
     """Contains information related to internet Uniform Resource Locators,
@@ -3966,17 +3791,17 @@ class Witness(BaseObject):
     def get_comment(self):
         return self.comment
 
-class SourceRef(BaseObject):
+class SourceRef(BaseObject,DateBase):
     """Source reference, containing detailed information about how a
     referenced source relates to it"""
     
     def __init__(self,source=None):
         """creates a new SourceRef, copying from the source if present"""
+        DateBase.__init__(self,source)
         if source:
             self.confidence = source.confidence
             self.ref = source.ref
             self.page = source.page
-            self.date = Date.Date(source.date)
             self.comments = Note(source.comments.get())
             self.text = source.text
             self.private = source.private
@@ -3984,7 +3809,6 @@ class SourceRef(BaseObject):
             self.confidence = CONF_NORMAL
             self.ref = None
             self.page = ""
-            self.date = Date.Date()
             self.comments = Note()
             self.text = ""
             self.private = False
@@ -4042,14 +3866,6 @@ class SourceRef(BaseObject):
         """returns the Source instance to which the SourceRef refers"""
         return self.ref
     
-    def set_date(self,date):
-        """sets the Date instance of the SourceRef"""
-        self.date = date
-
-    def get_date(self):
-        """returns the Date instance of the SourceRef"""
-        return self.date
-
     def set_page(self,page):
         """sets the page indicator of the SourceRef"""
         self.page = page
@@ -4083,7 +3899,10 @@ class SourceRef(BaseObject):
         if self.ref and other.ref:
             if self.page != other.page:
                 return False
-            if self.date != other.date:
+            if (self.date and other.date and \
+                                        not self.date.is_equal(other.date)) \
+                        or (self.date and not other.date) \
+                        or (not self.date and other.date):
                 return False
             if self.get_text() != other.get_text():
                 return False

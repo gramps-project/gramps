@@ -1161,12 +1161,12 @@ class GedcomWriter:
                 self.write_long_text("PAGE",level+1,self.cnvtxt(ref.get_page()))
  
             ref_text = ref.get_text()
-            if ref_text != "" or not ref.get_date().is_empty():
+            if ref_text != "" or not ref.get_date_object().is_empty():
                 self.writeln('%d DATA' % (level+1))
                 if ref_text != "":
                     self.write_long_text("TEXT",level+2,self.cnvtxt(ref_text))
                 pfx = "%d DATE" % (level+2)
-                self.print_date(pfx,ref.get_date())
+                self.print_date(pfx,ref.get_date_object())
         else:
             # We put title, page, and date on the SOUR line.
             # Not using CONC and CONT because GeneWeb does not support these.
@@ -1181,8 +1181,8 @@ class GedcomWriter:
             if ref.get_page():
                 txt = txt + ref.get_page() + ".  "
             self.g.write("%d SOUR %s" % (level,self.cnvtxt(txt)))
-            if not ref.get_date().is_empty():
-                self.print_date("", ref.get_date())
+            if not ref.get_date_object().is_empty():
+                self.print_date("", ref.get_date_object())
             else:
                  self.writeln("")
             if ref.get_text():

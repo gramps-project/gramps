@@ -11,6 +11,18 @@
 	Rename DataObj to PrivateObject; (People,Family,Event,MediaObject):
 	remove get_handleholder_list, add low-level handle reference detector.
 
+	* src/Sources.py: Use get_date_object (not get_date) for source refs.
+	* src/ReadXML.py: Use get_date_object for source refs.
+	* src/WriteXML.py: Use get_date_object for source refs.
+	* src/WriteGedcom.py: Use get_date_object for sourcerefs.
+	* src/plugins/FtmStyleAncestors.py: Use get_date_object for sourcerefs.
+	* src/plugins/FtmStyleDescendants.py: Use get_date_object for sourcerefs.
+	* src/plugins/NavWebPage.py: Use get_date_object for sourcerefs.
+	* src/plugins/WebPage.py: Use get_date_object for sourcerefs.
+	* src/RelLib.py (DateBase): Add base class for keeping Date; 
+	(MediaBase): Do not inherit from BaseObject; (Event,MediaObject,LdsOrd,
+	Address,Name,SourceRef): Inherit all date-related methods from DateBase.
+
 2005-03-21  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/MergeData.py: further changes to adapt to new API
 
