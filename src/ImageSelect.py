@@ -285,7 +285,7 @@ class Gallery(ImageSelect):
         self.in_event = 1
         if self.button and event.type == gtk.gdk.MOTION_NOTIFY :
             if widget.drag_check_threshold(self.remember_x,self.remember_y,
-                                           event.x,event.y):
+                                           int(event.x),int(event.y)):
                 self.drag_item = widget.get_item_at(self.remember_x,
                                                     self.remember_y)
                 icon_index = self.get_index(widget,event.x,event.y)-1
