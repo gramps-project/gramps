@@ -1,3 +1,9 @@
+2005-03-17  Alex Roitman  <shura@gramps-project.org>
+	* acinclude.m4: Add macro for defining SHARED_MIME_DIR.
+	* configure.in: Use AM_SHARED_MIME macro.
+	* src/data/Makefile.am: Use defined GCONF_SCHEMA_FILE_DIR and
+	SHARED_MIME_DIR, not the hardcoded paths.
+
 2005-03-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/Exporter.py (build_info_page): proofreading; (build_format_page):
 	shrink the size of the window by using tooltips to display the

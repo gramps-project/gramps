@@ -22,8 +22,8 @@ EXTRA_DIST = \
 	gramps.schemas
 
 install-schemas:
-	$(INSTALL) -d $(DESTDIR)$(sysconfdir)/gconf/schemas
-	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.schemas $(DESTDIR)$(sysconfdir)/gconf/schemas
+	$(INSTALL) -d $(DESTDIR)$(GCONF_SCHEMA_FILE_DIR)
+	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.schemas $(DESTDIR)$(GCONF_SCHEMA_FILE_DIR)
 	-GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
 		gconftool-2 --makefile-install-rule $(top_srcdir)/src/data/gramps.schemas
 	-pkill gconfd
@@ -35,12 +35,12 @@ install-data-local:    install-schemas
 	$(INSTALL_DATA) $(top_srcdir)/src/data/gnome-mime-application-x-*.png $(DESTDIR)$(prefix)/share/icons/gnome/48x48/mimetypes/
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/application-registry
 	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.applications $(DESTDIR)$(prefix)/share/application-registry
-	$(INSTALL) -d $(DESTDIR)$(prefix)/share/mime/packages
-	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.xml $(DESTDIR)$(prefix)/share/mime/packages
+	$(INSTALL) -d $(DESTDIR)$(SHARED_MIME_DIR)/packages
+	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.xml $(DESTDIR)$(SHARED_MIME_DIR)/packages
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/mime-info
 	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.keys $(DESTDIR)$(prefix)/share/mime-info
 	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.mime $(DESTDIR)$(prefix)/share/mime-info
-	update-mime-database $(DESTDIR)$(prefix)/share/mime
+	update-mime-database $(DESTDIR)$(SHARED_MIME_DIR)
 
 uninstall-local:
 	-rm $(DESTDIR)$(prefix)/share/applications/gramps.desktop
@@ -48,8 +48,8 @@ uninstall-local:
 	-rm $(DESTDIR)$(prefix)/share/mime-info/gramps.keys
 	-rm $(DESTDIR)$(prefix)/share/mime-info/gramps.mime
 	-rm $(DESTDIR)$(prefix)/share/application-registry/gramps.applications
-	-rm $(DESTDIR)$(prefix)/share/mime/packages/gramps.xml
-	-rm $(DESTDIR)$(sysconfdir)/gconf/schemas/gramps.schemas
-	update-mime-database $(DESTDIR)$(prefix)/share/mime
+	-rm $(DESTDIR)$(SHARED_MIME_DIR)/packages/gramps.xml
+	-rm $(DESTDIR)$(GCONF_SCHEMA_FILE_DIR)/gramps.schemas
+	update-mime-database $(DESTDIR)$(SHARED_MIME_DIR)
 	-GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
 		gconftool-2 --makefile-uninstall-rule $(top_srcdir)/src/data/gramps.schemas
