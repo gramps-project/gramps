@@ -122,8 +122,12 @@ class Marriage:
             "on_switch_page" : self.on_switch_page
             })
 
-        title = _("%s and %s") % (GrampsCfg.nameof(family.get_father_id()),
-                                  GrampsCfg.nameof(family.get_mother_id()))
+
+        father = self.db.find_person_from_id(family.get_father_id())
+        mother = self.db.find_person_from_id(family.get_mother_id())
+        
+        title = _("%s and %s") % (GrampsCfg.nameof(father),
+                                  GrampsCfg.nameof(mother))
 
         Utils.set_title_label(self.top,title)
         
@@ -410,7 +414,13 @@ class Marriage:
         self.etree.clear()
         self.emap = {}
         for data in self.elist:
-            iter = self.etree.add([const.display_fevent(data.get_name()),data.get_quote_date(),data.get_place_name()],data)
+            place_id = data.get_place_id()
+            if place_id:
+                place_name = self.db.find_place_from_id(place_id).get_title()
+            else:
+                place_name = ""
+            iter = self.etree.add([const.display_fevent(data.get_name()),
+                                   data.get_quote_date(),place_name],data)
             self.emap[str(data)] = iter
         if self.elist:
             self.etree.select_row(0)
@@ -464,7 +474,7 @@ class Marriage:
             d.set(date)
             if Date.compare_dates(d,ord.get_date_object()) != 0 or \
                ord.get_temple() != temple or \
-               ord.get_place_id() != place or \
+               ord.get_place_id() != place.get_id() or \
                ord.get_status() != self.seal_stat:
                 changed = 1
 
@@ -573,8 +583,8 @@ class Marriage:
             if ord.get_status() != self.seal_stat:
                 ord.set_status(self.seal_stat)
                 Utils.modified()
-            if ord.get_place_id() != place:
-                ord.set_place_id(place)
+            if ord.get_place_id() != place.get_id():
+                ord.set_place_id(place.get_id())
                 Utils.modified()
 
         self.gallery.close(1)
@@ -627,7 +637,12 @@ class Marriage:
         event = self.etree.get_object(iter)
     
         self.date_field.set_text(event.get_date())
-        self.place_field.set_text(event.get_place_name())
+        place_id = event.get_place_id()
+        if place_id:
+            place_name = self.db.find_place_from_id(place_id).get_title()
+        else:
+            place_name = u""
+        self.place_field.set_text(place_name)
         self.cause_field.set_text(event.get_cause())
         self.name_field.set_label(const.display_fevent(event.get_name()))
         if len(event.get_source_references()) > 0:
