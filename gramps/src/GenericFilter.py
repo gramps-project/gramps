@@ -198,27 +198,26 @@ class IsDescendantFamilyOf(Rule):
         return "Is a descendant family member of"
 
     def apply(self,p):
-        return self.search(p)
+        return self.search(p,1)
 
-    def search(self,p):
+    def search(self,p,val):
         if p.getId() == self.list[0]:
             return 1
         for (f,r1,r2) in p.getParentList():
             for p1 in [f.getMother(),f.getFather()]:
                 if p1:
-                    if self.search(p1):
+                    if self.search(p1,0):
                         return 1
-        for fm in p.getFamilyList():
-            if p == fm.getFather():
-                s = fm.getMother()
-            else:
-                s = fm.getFather()
-            if s:
-                for (f,r1,r2) in s.getParentList():
-                    for p1 in [f.getMother(),f.getFather()]:
-                        if p1:
-                            if self.search(p1):
-                                return 1
+        if val:
+            for fm in p.getFamilyList():
+                if p == fm.getFather():
+                    s = fm.getMother()
+                else:
+                    s = fm.getFather()
+                if s:
+                    if self.search(s,0):
+                        return 1
+            
         return 0
 
 #-------------------------------------------------------------------------
