@@ -137,7 +137,6 @@ class XmlWriter:
         """
         Write the database to the specified file.
         """
-
         base = os.path.dirname(filename)
         if os.path.isdir(base):
             if not os.access(base,os.W_OK) or not os.access(base,os.R_OK):

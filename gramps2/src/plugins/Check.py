@@ -29,7 +29,6 @@
 #-------------------------------------------------------------------------
 import os
 import cStringIO
-import shutil
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -186,6 +185,8 @@ class CheckIntegrity:
                 self.bad_photo.append(ObjectId)
 
             def fs_ok_clicked(obj):
+                import shutil
+                
                 name = fs_top.get_filename()
                 if os.path.isfile(name):
                     shutil.copyfile(name,photo_name)

@@ -41,14 +41,15 @@ class GrampsGEDDB(GrampsInMemDB):
 
     def load(self,name,callback):
         self.filename = name
-        ReadGedcom.importData(self,name)
-        
+        ReadGedcom.importData(self,name,use_trans=False)
+
         self.bookmarks = self.metadata.get('bookmarks')
         if self.bookmarks == None:
             self.bookmarks = []
         return 1
 
     def close(self):
-        writer = WriteGedcom.GedcomWriter(self,self.get_default_person())
-        writer.export_data(self.filename)
+        if len(self.undodb) > 0:
+            writer = WriteGedcom.GedcomWriter(self,self.get_default_person())
+            writer.export_data(self.filename)
 

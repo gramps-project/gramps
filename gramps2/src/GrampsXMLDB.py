@@ -40,9 +40,10 @@ class GrampsXMLDB(GrampsInMemDB):
         GrampsInMemDB.__init__(self)
 
     def load(self,name,callback):
+        self.filename = name
         self.id_trans = {}
 
-        ReadXML.importData(self,name)
+        ReadXML.importData(self,name,use_trans=False)
         
         self.bookmarks = self.metadata.get('bookmarks')
         if self.bookmarks == None:
@@ -50,5 +51,6 @@ class GrampsXMLDB(GrampsInMemDB):
         return 1
 
     def close(self):
-        WriteXML.quick_write(self,self.filename)
+        if len(self.undodb) > 0:
+            WriteXML.quick_write(self,self.filename)
 

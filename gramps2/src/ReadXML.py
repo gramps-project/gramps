@@ -67,7 +67,7 @@ _FAMILY_TRANS = {
 # Must takes care of renaming media files according to their new IDs.
 #
 #-------------------------------------------------------------------------
-def importData(database, filename, callback=None,cl=0):
+def importData(database, filename, callback=None,cl=0,use_trans=True):
 
     filename = os.path.normpath(filename)
     basefile = os.path.dirname(filename)
@@ -112,7 +112,7 @@ def importData(database, filename, callback=None,cl=0):
             ErrorDialog(_("%s could not be opened") % filename)
             return
     try:
-        parser.parse(xml_file)
+        parser.parse(xml_file,use_trans)
     except IOError,msg:
         if cl:
             print "Error reading %s" % filename
@@ -435,7 +435,7 @@ class GrampsParser:
             person = RelLib.Person()
             person.set_handle(intid)
             person.set_gramps_id(gramps_id)
-            self.db.add_person(person,self.trans)
+            self.db.add_person(person,None)
             self.gid2id[gramps_id] = intid
         return person
 
@@ -448,7 +448,7 @@ class GrampsParser:
             family = RelLib.Family()
             family.set_handle(intid)
             family.set_gramps_id(gramps_id)
-            self.db.add_family(family,self.trans)
+            self.db.add_family(family,None)
             self.gid2fid[gramps_id] = intid
         return family
 
@@ -461,7 +461,7 @@ class GrampsParser:
             place = RelLib.Place()
             place.set_handle(intid)
             place.set_gramps_id(gramps_id)
-            self.db.add_place(place,self.trans)
+            self.db.add_place(place,None)
             self.gid2pid[gramps_id] = intid
         return place
 
@@ -474,7 +474,7 @@ class GrampsParser:
             source = RelLib.Source()
             source.set_handle(intid)
             source.set_gramps_id(gramps_id)
-            self.db.add_source(source,self.trans)
+            self.db.add_source(source,None)
             self.gid2sid[gramps_id] = intid
         return source
 
@@ -487,7 +487,7 @@ class GrampsParser:
             obj = RelLib.MediaObject()
             obj.set_handle(intid)
             obj.set_gramps_id(gramps_id)
-            self.db.add_object(obj,self.trans)
+            self.db.add_object(obj,None)
             self.gid2oid[gramps_id] = intid
         return obj
 
@@ -531,8 +531,11 @@ class GrampsParser:
                 self.oidswap[handle] = handle
         return self.oidswap[handle]
 
-    def parse(self,file):
-        self.trans = self.db.transaction_begin()
+    def parse(self,file,use_trans=True):
+        if use_trans:
+            self.trans = self.db.transaction_begin()
+        else:
+            self.trans = None
         p = xml.parsers.expat.ParserCreate()
         p.StartElementHandler = self.startElement
         p.EndElementHandler = self.endElement
@@ -554,7 +557,8 @@ class GrampsParser:
         del self.func_map
         del self.func_list
         del p
-        self.db.transaction_commit(self.trans,_("GRAMPS XML import"))
+        if use_trans:
+            self.db.transaction_commit(self.trans,_("GRAMPS XML import"))
 
     def start_lds_ord(self,attrs):
         atype = attrs['type']
@@ -702,17 +706,13 @@ class GrampsParser:
         self.db.bookmarks.append(person.get_handle())
 
     def start_person(self,attrs):
-        if self.callback != None and self.count % self.increment == 0:
-            self.callback(float(self.count)/float(self.entries))
-        self.count = self.count + 1
-
         new_id = self.map_gid(attrs['id'])
         try:
             self.person = self.db.find_person_from_handle(attrs['handle'],self.trans)
             self.person.set_gramps_id(new_id)
         except KeyError:
             self.person = self.find_person_by_gramps_id(new_id)
-        
+
         try:
             self.person.set_complete_flag(int(attrs['complete']))
         except KeyError:

@@ -121,7 +121,7 @@ spanRegexp = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)
 #
 #
 #-------------------------------------------------------------------------
-def importData(database, filename, cb=None):
+def importData(database, filename, cb=None, use_trans=True):
 
     global callback
 
@@ -131,6 +131,8 @@ def importData(database, filename, cb=None):
     gramps = False
     for index in range(0,50):
         line = f.readline().split()
+        if len(line) == 0:
+            break
         if line[1] == 'CHAR' and line[2] == "ANSEL":
             ansel = True
         if line[1] == 'SOUR' and line[2] == "GRAMPS":
@@ -148,10 +150,10 @@ def importData(database, filename, cb=None):
         dialog.destroy()
     else:
         codeset = None
-    import2(database, filename, cb, codeset)
+    import2(database, filename, cb, codeset, use_trans)
         
 
-def import2(database, filename, cb, codeset):
+def import2(database, filename, cb, codeset, use_trans):
     # add some checking here
 
     glade_file = "%s/gedcomimport.glade" % os.path.dirname(__file__)
@@ -181,7 +183,7 @@ def import2(database, filename, cb, codeset):
         return
 
     try:
-        close = g.parse_gedcom_file()
+        close = g.parse_gedcom_file(use_trans)
         g.resolve_refns()
     except IOError,msg:
         Utils.destroy_passed_object(statusWindow)
@@ -422,9 +424,12 @@ class GedcomParser:
     def backup(self):
         self.backoff = 1
 
-    def parse_gedcom_file(self):
-        
-        self.trans = self.db.transaction_begin()
+    def parse_gedcom_file(self,use_trans=True):
+
+        if use_trans:
+            self.trans = self.db.transaction_begin()
+        else:
+            self.trans = None
         t = time.time()
         self.index = 0
         self.fam_count = 0
@@ -445,7 +450,8 @@ class GedcomParser:
         t = time.time() - t
         msg = _('Import Complete: %d seconds') % t
 
-        self.db.transaction_commit(self.trans,_("GEDCOM import"))
+        if use_trans:
+            self.db.transaction_commit(self.trans,_("GEDCOM import"))
         
         if self.window:
             self.infomsg("\n%s" % msg)
