@@ -1573,28 +1573,41 @@ if not SystemFilters:
 if not CustomFilters:
     reload_custom_filters()
 
-def build_filter_menu(local_filters = []):
+def build_filter_menu(local_filters = [], default=""):
     menu = gtk.Menu()
 
+    active = 0
+    cnt = 0
     for filter in local_filters:
         menuitem = gtk.MenuItem(filter.get_name())
         menuitem.show()
         menu.append(menuitem)
         menuitem.set_data("filter", filter)
-
+        if default != "" and default == filter.get_name():
+            active = cnt
+        cnt += 1
+        
     for filter in SystemFilters.get_filters():
         menuitem = gtk.MenuItem(_(filter.get_name()))
         menuitem.show()
         menu.append(menuitem)
         menuitem.set_data("filter", filter)
+        if default != "" and default == filter.get_name():
+            active = cnt
+        cnt += 1
 
     for filter in CustomFilters.get_filters():
         menuitem = gtk.MenuItem(_(filter.get_name()))
         menuitem.show()
         menu.append(menuitem)
         menuitem.set_data("filter", filter)
+        if default != "" and default == filter.get_name():
+            active = cnt
+        cnt += 1
 
-    if len(local_filters):
+    if active:
+        menu.set_active(active)
+    elif len(local_filters):
         menu.set_active(2)
     elif len(SystemFilters.get_filters()):
         menu.set_active(4 + len(local_filters))
