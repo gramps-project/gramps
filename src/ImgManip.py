@@ -28,11 +28,6 @@ import string
 #
 #-------------------------------------------------------------------------
 try:
-    import pygtk; pygtk.require('2.0')
-except ImportError: # not set up for parallel install
-    pass 
-
-try:
     import PIL.Image
     import StringIO
     PIL.Image.init()

@@ -32,11 +32,6 @@ import urlparse
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-try:
-    import pygtk; pygtk.require('2.0')
-except ImportError: # not set up for parallel install
-    pass 
-
 import gobject
 import gtk
 import gnome.ui
@@ -223,6 +218,7 @@ class Gallery(ImageSelect):
             icon_list.connect("drag_data_get",
                               self.on_photolist_drag_data_get)
 
+        icon_list.connect('destroy',self.unmap)
         # Remember arguments
         self.path      = path;
         self.dataobj   = dataobj;
@@ -239,6 +235,11 @@ class Gallery(ImageSelect):
         self.sel = None
         self.photo = None
 
+    def unmap(self,obj):
+        for i in self.item_map.keys():
+            print i
+            i.destroy()
+        
     def on_canvas1_event(self,obj,event):
         """Handle resize events over the canvas, redrawing if the size changes"""
 

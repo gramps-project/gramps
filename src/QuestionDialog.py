@@ -18,11 +18,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-try:
-    import pygtk; pygtk.require('2.0')
-except ImportError: # not set up for parallel install
-    pass 
-
 import gtk
 import gnome.ui
 from intl import gettext as _
