@@ -135,8 +135,8 @@ class Marriage:
         # set initial data
         self.gallery.load_images()
 
-        etitles = [(_('Event'),0,150),(_('Date'),1,150),(_('Place'),2,150)]
-        atitles = [(_('Attribute'),0,150),(_('Value'),1,150)]
+        etitles = [(_('Event'),-1,150),(_('Date'),-1,150),(_('Place'),-1,150)]
+        atitles = [(_('Attribute'),-1,150),(_('Value'),-1,150)]
 
         self.etree = ListModel.ListModel(self.event_list, etitles,
                                          self.on_select_row,
@@ -171,21 +171,17 @@ class Marriage:
 
         self.build_seal_menu()
         
-        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                      pycode_tgts,gtk.gdk.ACTION_COPY)
-        self.event_list.drag_source_set(gtk.gdk.BUTTON1_MASK,
-                                        pycode_tgts, gtk.gdk.ACTION_COPY)
+        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,gtk.gdk.ACTION_COPY)
+        self.event_list.drag_source_set(gtk.gdk.BUTTON1_MASK,pycode_tgts, gtk.gdk.ACTION_COPY)
         self.event_list.connect('drag_data_get', self.ev_source_drag_data_get)
-        self.event_list.connect('drag_data_received',
-                                self.ev_dest_drag_data_received)
+        self.event_list.connect('drag_data_received',self.ev_dest_drag_data_received)
+        self.event_list.connect('drag_begin', self.ev_drag_begin)
 
-        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,
-                                     gtk.gdk.ACTION_COPY)
-        self.attr_list.drag_source_set(gtk.gdk.BUTTON1_MASK, pycode_tgts,
-                                       gtk.gdk.ACTION_COPY)
+        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,gtk.gdk.ACTION_COPY)
+        self.attr_list.drag_source_set(gtk.gdk.BUTTON1_MASK, pycode_tgts,gtk.gdk.ACTION_COPY)
         self.attr_list.connect('drag_data_get', self.at_source_drag_data_get)
-        self.attr_list.connect('drag_data_received',
-                               self.at_dest_drag_data_received)
+        self.attr_list.connect('drag_data_received',self.at_dest_drag_data_received)
+        self.attr_list.connect('drag_begin', self.at_drag_begin)
 
         # set notes data
         self.notes_buffer = self.notes_field.get_buffer()
@@ -194,6 +190,12 @@ class Marriage:
         self.redraw_event_list()
         self.redraw_attr_list()
         top_window.show()
+
+    def ev_drag_begin(self, context, a):
+        return
+
+    def at_drag_begin(self, context, a):
+        return
 
     def build_seal_menu(self):
         menu = gtk.Menu()
@@ -262,52 +264,63 @@ class Marriage:
         self.atree.select_row(row+1)
 
     def ev_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
+        row = self.etree.get_row_at(x,y)
         if selection_data and selection_data.data:
             exec 'data = %s' % selection_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'family = "%s"' % data[1]
-            if family == self.family.getId() or mytype != 'fevent':
+            if mytype != 'fevent':
                 return
-            foo = pickle.loads(data[2]);
-            for src in foo.getSourceRefList():
-                base = src.getBase()
-                newbase = self.db.findSourceNoMap(base.getId())
-                src.setBase(newbase)
-            place = foo.getPlace()
-            if place:
-                foo.setPlace(self.db.findPlaceNoMap(place.getId()))
-            self.elist.append(foo)
+            elif family == self.family.getId():
+                self.move_element(self.elist,self.etree.get_selected_row(),row)
+            else:
+                foo = pickle.loads(data[2]);
+                for src in foo.getSourceRefList():
+                    base = src.getBase()
+                    newbase = self.db.findSourceNoMap(base.getId())
+                    src.setBase(newbase)
+                place = foo.getPlace()
+                if place:
+                    foo.setPlace(self.db.findPlaceNoMap(place.getId()))
+                self.elist.insert(row,foo)
+
             self.lists_changed = 1
             self.redraw_event_list()
 
     def ev_source_drag_data_get(self,widget, context, selection_data, info, time):
-        ev = widget.get_row_data(widget.focus_row)
+        ev = self.etree.get_selected_objects()
         
         bits_per = 8; # we're going to pass a string
-        pickled = pickle.dumps(ev);
+        pickled = pickle.dumps(ev[0]);
         data = str(('fevent',self.family.getId(),pickled));
         selection_data.set(selection_data.target, bits_per, data)
 
     def at_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
+        row = self.atree.get_row_at(x,y)
         if selection_data and selection_data.data:
             exec 'data = %s' % selection_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'family = "%s"' % data[1]
-            if family == self.family.getId() or mytype != 'fattr':
+            if mytype != 'fevent':
                 return
-            foo = pickle.loads(data[2]);
-            for src in foo.getSourceRefList():
-                base = src.getBase()
-                newbase = self.db.findSourceNoMap(base.getId())
-                src.setBase(newbase)
-            self.alist.append(foo)
+            elif family == self.family.getId():
+                self.move_element(self.elist,self.etree.get_selected_row(),row)
+            else:
+                foo = pickle.loads(data[2]);
+                for src in foo.getSourceRefList():
+                    base = src.getBase()
+                    newbase = self.db.findSourceNoMap(base.getId())
+                    src.setBase(newbase)
+                self.alist.insert(row,foo)
+
             self.lists_changed = 1
             self.redraw_attr_list()
 
     def at_source_drag_data_get(self,widget, context, selection_data, info, time):
-        ev = widget.get_row_data(widget.focus_row)
+        ev = self.atree.get_selected_objects()
+
         bits_per = 8; # we're going to pass a string
-        pickled = pickle.dumps(ev);
+        pickled = pickle.dumps(ev[0]);
         data = str(('fattr',self.family.getId(),pickled));
         selection_data.set(selection_data.target, bits_per, data)
 
@@ -565,4 +578,11 @@ class Marriage:
         else:
             name = mother.getPrimaryName().getName()
         AttrEdit.AttributeEditor(self,None,name,const.familyAttributes)
+
+    def move_element(self,list,src,dest):
+        if src == -1:
+            return
+        obj = list[src]
+        list.remove(obj)
+        list.insert(dest,obj)
 

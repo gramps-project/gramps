@@ -136,9 +136,9 @@ class FamilyView:
         self.child_selection = self.child_list.get_selection()
 
         Utils.build_columns(self.child_list,
-                            [ (_(''),30,0), (_('Name'),250,1), (_('ID'),50,2),
-                              (_('Gender'),100,3), (_('Birth Date'),150,4),
-                              (_('Status'),150,5), ('',0,6) ])
+                            [ (_(''),30,-1), (_('Name'),250,-1), (_('ID'),50,-1),
+                              (_('Gender'),100,-1), (_('Birth Date'),150,-1),
+                              (_('Status'),150,-1), ('',0,-1) ])
 
     def on_child_list_button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
@@ -524,76 +524,12 @@ class FamilyView:
         Utils.modified()
         self.load_family()
 
-    def child_list_reordered(self,path,iter):
-        print path,iter
-
-    def on_child_list_row_move(self,clist,fm,to):
-        """Validate whether or not this child can be moved within the clist.
-        This routine is called in the middle of the clist's callbacks, so
-        the state can be confusing.  If the code is being debugged, the
-        display at this point shows that the list has been reordered when in
-        actuality it hasn't.  All accesses to the clist data structure
-        reference the state just prior to the move.
-        
-        This routine must keep/compute its own list indices as the functions
-        list.remove(), list.insert(), list.reverse() etc. do not affect the
-        values returned from the list.index() routine."""
-
-        family = clist.get_data("f")
-
-        # Create a list based upon the current order of the clist
-        clist_order = []
-        for i in range(clist.rows):
-            clist_order = clist_order + [clist.get_row_data(i)]
-        child = clist_order[fm]
-
-        # This function deals with ascending order lists.  Convert if
-        # necessary.
-        if (self.child_sort.sort_direction() == GTK.SORT_DESCENDING):
-            clist_order.reverse()
-            max_index = len(clist_order) - 1
-            fm = max_index - fm
-            to = max_index - to
-        
-        # Create a new list to match the requested order
-        desired_order = clist_order[:fm] + clist_order[fm+1:]
-        desired_order = desired_order[:to] + [child] + desired_order[to:]
-
-        # Check birth date order in the new list
-        if (EditPerson.birth_dates_in_order(desired_order) == 0):
-            clist.emit_stop_by_name("row_move")
-            msg = _("Invalid move. Children must be ordered by birth date.")
-            WarningDialog(msg)
-            return
-           
-        # OK, this birth order works too.  Update the family data structures.
-        family.setChildList(desired_order)
-
-        # Build a mapping of child item to list position.  This would not
-        # be necessary if indices worked properly
-        i = 0
-        new_order = {}
-        for tmp in desired_order:
-            new_order[tmp] = i
-            i = i + 1
-
-        # Convert the original list back to whatever ordering is being
-        # used by the clist itself.
-        if self.child_sort.sort_direction() == GTK.SORT_DESCENDING:
-            clist_order.reverse()
-
-        # Update the clist indices so any change of sorting works
-        i = 0
-        for tmp in clist_order:
-            clist.set_text(i,0,"%2d"%(new_order[tmp]+1))
-            i = i + 1
-
-        # Need to save the changed order
-        Utils.modified()
-
-        
     def drag_data_received(self,widget,context,x,y,sel_data,info,time):
-        row = self.child_list.get_row_at(x,y)
+        path = self.child_list.get_path_at_pos(x,y)
+        if path == None:
+            row = len(self.family.getChildList())
+        else:
+            row = path[0][0] -1
         
         if sel_data and sel_data.data:
             exec 'data = %s' % sel_data.data
@@ -601,17 +537,58 @@ class FamilyView:
             exec 'person = "%s"' % data[1]
             if mytype != 'child':
                 return
-            elif person == self.person.getId():
-                print row
-                # self.move_element(self.elist,self.etree.get_selected_row(),row)
 
+            s,i = self.child_selection.get_selected()
+            if not i:
+                return
+            spath = s.get_path(i)
+            src = spath[0] 
+            list = self.family.getChildList()
+            obj = list[src]
+            list.remove(obj)
+            list.insert(row,obj)
+
+            if (birth_dates_in_order(list) == 0):
+                msg = _("Invalid move. Children must be ordered by birth date.")
+                WarningDialog(msg)
+                return
+            self.family.setChildList(list)
+            self.load_family()
+            Utils.modified()
+            
     def drag_data_get(self,widget, context, sel_data, info, time):
-        ev = self.child_list.get_selected_objects()
-
+        store,iter = self.child_selection.get_selected()
+        if not iter:
+            return
+        id = self.child_model.get_value(iter,2)
+        person = self.parent.db.getPerson(id)
         bits_per = 8; # we're going to pass a string
-        pickled = pickle.dumps(ev[0]);
-        data = str(('child',self.person.getId(),pickled));
+        pickled = pickle.dumps(person);
+        data = str(('child',id,pickled));
         sel_data.set(sel_data.target, bits_per, data)
 
     def drag_begin(self, context, a):
         return
+
+#-------------------------------------------------------------------------
+# 
+# birth_dates_in_order
+# 
+# Check any *valid* birthdates in the list to insure that they are in
+# numerically increasing order.
+# 
+#-------------------------------------------------------------------------
+def birth_dates_in_order(list):
+    inorder = 1
+    prev_date = "00000000"
+    for i in range(len(list)):
+        child = list[i]
+        bday = child.getBirth().getDateObj()
+        child_date = sort.build_sort_date(bday)
+        if (child_date == "99999999"):
+            continue
+        if (prev_date <= child_date):	# <= allows for twins
+            prev_date = child_date
+        else:
+            inorder = 0
+    return inorder
