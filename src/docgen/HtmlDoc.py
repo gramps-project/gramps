@@ -311,6 +311,7 @@ class HtmlDoc(TextDoc.TextDoc):
         for line in self.bottom:
             self.f.write(self.process_line(line))
         self.f.close()
+        self.write_support_files()
 
     def write_support_files(self):
         if self.map:
