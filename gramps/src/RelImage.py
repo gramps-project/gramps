@@ -31,7 +31,7 @@ from gnome.ui import *
 _ = intl.gettext
 
 try:
-    import Image
+    import PIL.Image
     no_pil = 0
 except:
     no_pil = 1
@@ -72,7 +72,7 @@ def import_photo(filename,path,prefix):
                 cmd = "%s '%s' '%s'" % (const.convert,filename,name)
                 os.system(cmd)
             else:
-                Image.open(filename).save(name)
+                PIL.Image.open(filename).save(name)
     except:
         return None
 
@@ -116,7 +116,7 @@ def mk_thumb(source,dest,size):
         os.system(cmd)
     else:
         try:
-            im = Image.open(source)
+            im = PIL.Image.open(source)
             im.thumbnail((size,size))
             im.save(dest,"JPEG")
         except:
