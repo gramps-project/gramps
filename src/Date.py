@@ -357,7 +357,8 @@ class SingleDate:
         "bef"   : before,       "bef."  : before,
         "aft."  : after,        "abt."  : about,
         "est."  : about,        "est"   : about,
-        "after"	: after,        "before": before
+        "after"	: after,        "before": before,
+        "aft"   : after,
         }
 
     modifiers = '(' + \
@@ -398,7 +399,7 @@ class SingleDate:
             self.calendar = GREGORIAN
 
     def setMode(self,val):
-        if val == None:
+        if not val:
             self.mode = SingleDate.exact
         else:
             try:
