@@ -167,7 +167,7 @@ shortopts = "i:o:f:a:?"
 #
 #-------------------------------------------------------------------------
 
-childRelations = {
+child_relations = TransTable( {
     _("Birth")     : "Birth",
     _("Adopted")   : "Adopted",
     _("Stepchild") : "Stepchild",
@@ -176,7 +176,7 @@ childRelations = {
     _("None")      : "None",
     _("Unknown")   : "Unknown",
     _("Other")     : "Other",
-    }
+    })
 
 #-------------------------------------------------------------------------
 #

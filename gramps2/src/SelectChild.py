@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -223,13 +223,13 @@ class SelectChild:
                 
         self.family.add_child_id(select_child)
 		
-        mrel = const.child_relations(self.mrel.get_text())
+        mrel = const.child_relations.find_value(self.mrel.get_text())
         mother = self.family.get_mother_id()
         if mother and mother.get_gender() != RelLib.Person.female:
             if mrel == "Birth":
                 mrel = "Unknown"
                 
-        frel = const.child_relations(self.frel.get_text())
+        frel = const.child_relations.find_value(self.frel.get_text())
         father = self.family.get_father_id()
         if father and father.get_gender() !=RelLib. Person.male:
             if frel == "Birth":
@@ -353,13 +353,13 @@ class EditRel:
         self.top.destroy()
 
     def on_ok_clicked(self,obj):
-        mrel = const.child_relations(self.mentry.get_text())
+        mrel = const.child_relations.find_value(self.mentry.get_text())
         mother = self.family.get_mother_id()
         if mother and mother.get_gender() != RelLib.Person.female:
             if mrel == "Birth":
                 mrel = "Unknown"
                 
-        frel = const.child_relations(self.fentry.get_text())
+        frel = const.child_relations.find_value(self.fentry.get_text())
         father = self.family.get_father_id()
         if father and father.get_gender() !=RelLib. Person.male:
             if frel == "Birth":

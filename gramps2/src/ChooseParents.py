@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -101,8 +101,8 @@ class ChooseParents:
         Utils.set_titles(self.top,self.glade.get_widget('title'),
                          text,_('Choose Parents'))
         
-	self.mother_rel = self.glade.get_widget("mrel")
-	self.father_rel = self.glade.get_widget("frel")
+        self.mother_rel = self.glade.get_widget("mrel")
+        self.father_rel = self.glade.get_widget("frel")
         self.fcombo = self.glade.get_widget("prel_combo")
         self.prel = self.glade.get_widget("prel")
         self.title = self.glade.get_widget("chooseTitle")
@@ -384,14 +384,14 @@ class ChooseParents:
         of the main perosn.
         """
         try:
-            mother_rel = const.child_relations(self.mother_rel.get_text())
+            mother_rel = const.child_relations.find_value(self.mother_rel.get_text())
         except KeyError:
-            mother_rel = const.child_relations("Birth")
+            mother_rel = const.child_relations.find_value("Birth")
 
         try:
-            father_rel = const.child_relations(self.father_rel.get_text())
+            father_rel = const.child_relations.find_value(self.father_rel.get_text())
         except KeyError:
-            father_rel = const.childRelations("Birth")
+            father_rel = const.child_relations.find_value("Birth")
 
         if self.father or self.mother:
             if self.mother and not self.father:
@@ -512,8 +512,8 @@ class ModifyParents:
         title = _("Modify the Parents of %s") % GrampsCfg.nameof(self.person)
         Utils.set_titles(self.top, self.title, title, _("Modify Parents"))
         
-	self.mother_rel = self.glade.get_widget("mrel")
-	self.father_rel = self.glade.get_widget("frel")
+        self.mother_rel = self.glade.get_widget("mrel")
+        self.father_rel = self.glade.get_widget("frel")
         self.flabel = self.glade.get_widget("flabel")
         self.mlabel = self.glade.get_widget("mlabel")
 
@@ -580,8 +580,8 @@ class ModifyParents:
         Called with the OK button nis pressed. Saves the selected people as parents
         of the main perosn.
         """
-        mother_rel = const.childRelations(self.mother_rel.get_text())
-        father_rel = const.childRelations(self.father_rel.get_text())
+        mother_rel = const.child_relations.find_value(self.mother_rel.get_text())
+        father_rel = const.child_relations.find_value(self.father_rel.get_text())
         mod = 0
 
         if mother_rel != self.orig_mrel or father_rel != self.orig_frel:
