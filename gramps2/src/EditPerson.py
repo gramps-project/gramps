@@ -985,6 +985,7 @@ class EditPerson:
             self.redraw_event_list()
 
     def update_birth_death(self):
+        print "update"
         self.bdate.set_text(self.birth.getDate())
         self.bplace.set_text(self.birth.getPlaceName())
         self.bdate_check.set_calendar(self.birth.getDateObj().get_calendar())
@@ -992,10 +993,6 @@ class EditPerson:
         self.ddate_check.set_calendar(self.death.getDateObj().get_calendar())
         self.dplace.set_text(self.death.getPlaceName())
         self.dplace.set_text(self.death.getPlaceName())
-#        self.bdate.set_position(0)
-#        self.ddate.set_position(0)
-#        self.bplace.set_position(0)
-#        self.dplace.set_position(0)
 
     def on_update_attr_clicked(self,obj):
         import AttrEdit
@@ -1481,8 +1478,6 @@ class EditPerson:
     def on_switch_page(self,obj,a,page):
         if page == 0:
             self.load_person_image()
-            self.update_death_info()
-            self.update_birth_info()
         elif page == 2:
             self.redraw_event_list()
         elif page == 6 and self.not_loaded:
