@@ -1,3 +1,10 @@
+2003-10-17  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/RelLib.py: Add a "sortbynames" to presort keys before adding to
+	the tables
+	* src/PeopleView.py: Presort names before adding, delay enabling of
+	autosorting until data has been added
+	* src/PeopleStore.py: Add enable sort task
+
 2003-10-16  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/FamilyView.py: fixed paths to redisplay_person_list
 	* src/ListModel.py: convert indices to strings. Sometimes a object just
