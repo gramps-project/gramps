@@ -273,6 +273,17 @@ def dump_event_stats(g,event):
     if event.getSourceRef() != None:
         write_source_ref(g,2,event.getSourceRef())
         
+def fmtline(text,limit,level):
+    new_text = []
+    text = cnvtxt(text)
+    while len(text) > limit:
+        new_text.append(text[0:limit-1])
+        text = text[limit:]
+    if len(text) > 0:
+        new_text.append(text)
+    app = "\n%d CONC " % (level+1)
+    return string.join(new_text,app)
+    
 #-------------------------------------------------------------------------
 #
 #
@@ -543,10 +554,9 @@ def exportData(database, filename):
             g.write("1 CHIL @I%s@\n" % person.getId())
 
     for source in source_list:
-        print source
         g.write("0 @S%s@ SOUR\n" % source.getId())
         if source.getTitle() != "":
-            g.write("1 TITL %s\n" % cnvtxt(source.getTitle()))
+            g.write("1 TITL %s\n" % fmtline(source.getTitle(),248,1))
         if source.getAuthor() != "":
             g.write("1 AUTH %s\n" % cnvtxt(source.getAuthor()))
         if source.getPubInfo() != "":
