@@ -1,3 +1,6 @@
+2004-10-10 Eero Tamminen <eerot@sf>
+	* TestPlan.txt: Add test for reports like in stable version
+
 2004-10-09 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/data/tips.xml: Typo.
 

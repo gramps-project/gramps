@@ -135,6 +135,8 @@
 
 * Reports
 
+  - Select a book report that contains all possible reports and save it
+
 * Tools
 
 * Settings
