@@ -1,4 +1,4 @@
-2003-11-12  Alex Roitman  <shura@alex.neuro.umn.edu>
+2003-11-19  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/NameEdit.py (on_help_clicked): Add function.
 	* src/UrlEdit.py (on_help_clicked): Add function.
 	* src/gramps.glade: Add hot keys to the family view list labels.
