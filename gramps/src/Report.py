@@ -1019,6 +1019,10 @@ class DrawReportDialog(ReportDialog):
         """Create a document of the type requested by the user."""
         self.doc = self.format(self.selected_style,self.paper,self.orien)
 
+import latin_utf8
+
+u2l = latin_utf8.utf8_to_latin
+
 class TemplateParser(handler.ContentHandler):
     def __init__(self,data,fpath):
         handler.ContentHandler.__init__(self)
@@ -1030,7 +1034,7 @@ class TemplateParser(handler.ContentHandler):
 
     def startElement(self,tag,attrs):
         if tag == "template":
-            self.data[attrs['title']] = attrs['file']
+            self.data[u2l(attrs['title'])] = u2l(attrs['file'])
             
     def characters(self, data):
         pass
