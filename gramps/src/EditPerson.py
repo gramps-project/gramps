@@ -143,6 +143,8 @@ class EditPerson:
         self.dplace = self.get_widget("deathPlace")
         self.is_male = self.get_widget("genderMale")
         self.is_female = self.get_widget("genderFemale")
+        self.is_unknown = self.get_widget("genderUnknown")
+        self.addr_note = self.get_widget("addr_note")
         self.addr_note = self.get_widget("addr_note")
         self.addr_source = self.get_widget("addr_source")
         self.attr_note = self.get_widget("attr_note")
@@ -246,8 +248,10 @@ class EditPerson:
 
         if person.getGender() == Person.male:
             self.is_male.set_active(1)
-        else:
+        elif person.getGender() == Person.male:
             self.is_female.set_active(1)
+        else:
+            self.is_unknown.set_active(1)
 
         self.nick.set_text(person.getNickName())
         self.title.set_text(self.pname.getTitle())
@@ -399,7 +403,6 @@ class EditPerson:
             self.person.setAddressList(self.plist)
             utils.modified()
 
-
 #-------------------------------------------------------------------------
 #
 # PersonImageSelect class
@@ -491,7 +494,9 @@ def did_data_change(obj):
     bplace = string.strip(epo.bplace.get_text())
     ddate  = epo.ddate.get_text()
     dplace = epo.dplace.get_text()
-    gender = epo.is_male.get_active()
+    male = epo.is_male.get_active()
+    female = epo.is_female.get_active()
+    unknown = epo.is_unknown.get_active()
     text = epo.notes_field.get_chars(0,-1)
     idval = epo.gid.get_text()
 
@@ -508,8 +513,6 @@ def did_data_change(obj):
         changed = 1
     if epo.pname.getNote() != name.getNote():
         changed = 1
-    if not epo.pname.getSourceRef().are_equal(name.getSourceRef()):
-        changed = 1
 
     if not epo.birth.are_equal(epo.person.getBirth()):
         changed = 1
@@ -517,9 +520,11 @@ def did_data_change(obj):
     if not epo.death.are_equal(epo.person.getDeath()):
         changed = 1
 
-    if gender and person.getGender() == Person.female:
+    if male and person.getGender() != Person.male:
         changed = 1
-    if not gender and person.getGender() == Person.male:
+    elif female and person.getGender() != Person.female:
+        changed = 1
+    elif unknown and person.getGender() != Person.unknown:
         changed = 1
     if text != person.getNote() or epo.lists_changed:
         changed = 1
@@ -1162,9 +1167,11 @@ def save_person(obj):
     if not person.getDeath().are_equal(epo.death):
         person.setDeath(epo.death)
 
-    gender = epo.is_male.get_active()
+    male = epo.is_male.get_active()
+    female = epo.is_female.get_active()
+    unknown = epo.is_unknown.get_active()
     error = 0
-    if gender and person.getGender() == Person.female:
+    if male and person.getGender() != Person.male:
         person.setGender(Person.male)
         for temp_family in person.getFamilyList():
             if person == temp_family.getMother():
@@ -1174,7 +1181,7 @@ def save_person(obj):
                     temp_family.setMother(None)
                     temp_family.setFather(person)
         utils.modified()
-    elif not gender and person.getGender() == Person.male:
+    elif female and person.getGender() != Person.female:
         person.setGender(Person.female)
         for temp_family in person.getFamilyList():
             if person == temp_family.getFather():
@@ -1184,6 +1191,23 @@ def save_person(obj):
                     temp_family.setFather(None)
                     temp_family.setMother(person)
         utils.modified()
+    elif unknown and person.getGender() != Person.unknown:
+        person.setGender(Person.unknown)
+        for temp_family in person.getFamilyList():
+            if person == temp_family.getFather():
+                if temp_family.getMother() != None:
+                    error = 1
+                else:
+                    temp_family.setFather(None)
+                    temp_family.setMother(person)
+            if person == temp_family.getMother():
+                if temp_family.getFather() != None:
+                    error = 1
+                else:
+                    temp_family.setMother(None)
+                    temp_family.setFather(person)
+        utils.modified()
+
 
     if error == 1:
         msg = _("Changing the gender caused problems with marriage information.")
@@ -1270,7 +1294,7 @@ def on_death_note_clicked(obj):
 #-------------------------------------------------------------------------
 def on_death_source_clicked(obj):
     epo = obj.get_data(EDITPERSON)
-    Sources.SourceEditor(epo.death.getSourceRef(),epo.db)
+    Sources.SourceSelector(epo.death.getSourceRefList(),epo,src_changed)
 
 #-------------------------------------------------------------------------
 #
@@ -1279,7 +1303,7 @@ def on_death_source_clicked(obj):
 #-------------------------------------------------------------------------
 def on_primary_name_source_clicked(obj):
     epo = obj.get_data(EDITPERSON)
-    Sources.SourceEditor(epo.pname.getSourceRef(),epo.db)
+    Sources.SourceSelector(epo.pname.getSourceRefList(),epo,src_changed)
 
 #-------------------------------------------------------------------------
 #
@@ -1288,7 +1312,7 @@ def on_primary_name_source_clicked(obj):
 #-------------------------------------------------------------------------
 def on_birth_source_clicked(obj):
     epo = obj.get_data(EDITPERSON)
-    Sources.SourceEditor(epo.birth.getSourceRef(),epo.db)
+    Sources.SourceSelector(epo.birth.getSourceRefList(),epo,src_changed)
 
 #-------------------------------------------------------------------------
 #
@@ -1409,10 +1433,10 @@ class EventEditor:
     def __init__(self,parent,event):
         self.parent = parent
         self.event = event
-        if self.event:
-            self.srcref = SourceRef(self.event.getSourceRef())
+        if event:
+            self.srcreflist = self.event.getSourceRefList()
         else:
-            self.srcref = SourceRef()
+            self.srcreflist = []
         self.top = libglade.GladeXML(const.dialogFile, "event_edit")
         self.window = self.top.get_widget("event_edit")
         self.name_field  = self.top.get_widget("eventName")
@@ -1423,7 +1447,6 @@ class EventEditor:
         self.descr_field = self.top.get_widget("eventDescription")
         self.note_field = self.top.get_widget("eventNote")
         self.event_menu = self.top.get_widget("personalEvents")
-        self.source_field = self.top.get_widget("event_source")
         self.priv = self.top.get_widget("priv")
         
         name = parent.person.getPrimaryName().getName()
@@ -1449,12 +1472,6 @@ class EventEditor:
             self.descr_field.set_text(event.getDescription())
             self.priv.set_active(event.getPrivacy())
             
-            srcref_base = self.event.getSourceRef().getBase()
-            if srcref_base:
-                self.source_field.set_text(srcref_base.getTitle())
-            else:
-                self.source_field.set_text("")
-                 
             self.note_field.set_point(0)
             self.note_field.insert_defaults(event.getNote())
             self.note_field.set_word_wrap(1)
@@ -1475,7 +1492,7 @@ class EventEditor:
 #-------------------------------------------------------------------------
 def on_edit_source_clicked(obj):
     ee = obj.get_data(OBJECT)
-    Sources.SourceEditor(ee.srcref,ee.parent.db,ee.source_field)
+    Sources.SourceSelector(ee.srcreflist,ee.parent,src_changed)
             
 #-------------------------------------------------------------------------
 #
@@ -1497,6 +1514,7 @@ def on_event_edit_ok_clicked(obj):
 
     if event == None:
         event = Event()
+        event.setSourceRefList(ee.srcreflist)
         ee.parent.elist.append(event)
 
     if eplace_obj == None and eplace != "":
@@ -1505,10 +1523,6 @@ def on_event_edit_ok_clicked(obj):
         ee.parent.db.addPlace(eplace_obj)
         
     if update_event(event,ename,edate,eplace_obj,edesc,enote,epriv,ecause):
-        ee.parent.lists_changed = 1
-        
-    if not event.getSourceRef().are_equal(ee.srcref):
-        event.setSourceRef(ee.srcref)
         ee.parent.lists_changed = 1
         
     ee.parent.redraw_event_list()
@@ -1531,12 +1545,11 @@ class AttributeEditor:
         self.value_field = self.top.get_widget("attr_value")
         self.note_field = self.top.get_widget("attr_note")
         self.attrib_menu = self.top.get_widget("attr_menu")
-        self.source_field = self.top.get_widget("attr_source")
         self.priv = self.top.get_widget("priv")
         if self.attrib:
-            self.srcref = SourceRef(self.attrib.getSourceRef())
+            self.srcreflist = self.attrib.getSourceRefList()
         else:
-            self.srcref = SourceRef()
+            self.srcreflist = []
 
         # Typing CR selects OK button
         self.window.editable_enters(self.type_field);
@@ -1550,11 +1563,6 @@ class AttributeEditor:
         if attrib != None:
             self.type_field.set_text(attrib.getType())
             self.value_field.set_text(attrib.getValue())
-            srcref_base = self.attrib.getSourceRef().getBase()
-            if srcref_base:
-                self.source_field.set_text(srcref_base.getTitle())
-            else:
-                self.source_field.set_text("")
             self.priv.set_active(attrib.getPrivacy())
 
             self.note_field.set_point(0)
@@ -1575,7 +1583,7 @@ class AttributeEditor:
 #-------------------------------------------------------------------------
 def on_attrib_source_clicked(obj):
     ee = obj.get_data(OBJECT)
-    Sources.SourceEditor(ee.srcref,ee.parent.db,ee.source_field)
+    Sources.SourceSelector(ee.srcreflist,ee.parent,src_changed)
             
 #-------------------------------------------------------------------------
 #
@@ -1593,15 +1601,12 @@ def on_attrib_edit_ok_clicked(obj):
 
     if attrib == None:
         attrib = Attribute()
+        attrib.setSourceRefList(ee.srcreflist)
         ee.parent.alist.append(attrib)
         
     if update_attrib(attrib,type,value,note,priv):
         ee.parent.lists_changed = 1
         
-    if not attrib.getSourceRef().are_equal(ee.srcref):
-        attrib.setSourceRef(ee.srcref)
-        ee.parent.lists_changed = 1
-
     ee.parent.redraw_attr_list()
     utils.destroy_passed_object(obj)
 
@@ -1621,13 +1626,13 @@ class NameEditor:
         self.surname_field = self.top.get_widget("alt_last")
         self.suffix_field = self.top.get_widget("alt_suffix")
         self.note_field = self.top.get_widget("alt_note")
-        self.source_field = self.top.get_widget("alt_source")
         self.top.get_widget("alt_surname_list").set_popdown_strings(const.surnames)
         self.priv = self.top.get_widget("priv")
+
         if self.name:
-            self.srcref = SourceRef(self.name.getSourceRef())
+            self.srcreflist = self.name.getSourceRefList()
         else:
-            self.srcref = SourceRef()
+            self.srcreflist = []
 
         full_name = parent.person.getPrimaryName().getName()
         
@@ -1643,11 +1648,6 @@ class NameEditor:
             self.given_field.set_text(name.getFirstName())
             self.surname_field.set_text(name.getSurname())
             self.suffix_field.set_text(name.getSuffix())
-            srcref_base = self.name.getSourceRef().getBase()
-            if srcref_base:
-                self.source_field.set_text(srcref_base.getTitle())
-            else:
-                self.source_field.set_text("")
             self.priv.set_active(name.getPrivacy())
             self.note_field.set_point(0)
             self.note_field.insert_defaults(name.getNote())
@@ -1667,7 +1667,7 @@ class NameEditor:
 #-------------------------------------------------------------------------
 def on_name_source_clicked(obj):
     ee = obj.get_data(OBJECT)
-    Sources.SourceEditor(ee.srcref,ee.parent.db,ee.source_field)
+    Sources.SourceSelector(ee.srcreflist,ee.parent,src_changed)
             
 #-------------------------------------------------------------------------
 #
@@ -1686,13 +1686,10 @@ def on_name_edit_ok_clicked(obj):
 
     if name == None:
         name = Name()
+        name.setSourceRefList(ee.srcreflist)
         ee.parent.nlist.append(name)
         
     if update_name(name,first,last,suffix,note,priv):
-        ee.parent.lists_changed = 1
-
-    if not name.getSourceRef().are_equal(ee.srcref):
-        name.setSourceRef(ee.srcref)
         ee.parent.lists_changed = 1
 
     ee.parent.redraw_name_list()
@@ -1717,12 +1714,12 @@ class AddressEditor:
         self.country = self.top.get_widget("country")
         self.postal = self.top.get_widget("postal")
         self.note_field = self.top.get_widget("addr_note")
-        self.source_field = self.top.get_widget("addr_source")
         self.priv = self.top.get_widget("priv")
+
         if self.addr:
-            self.srcref = SourceRef(self.addr.getSourceRef())
+            self.srcreflist = self.addr.getSourceRefList()
         else:
-            self.srcref = SourceRef()
+            self.srcreflist = []
 
         name = parent.person.getPrimaryName().getName()
         text = _("Address Editor for %s") % name
@@ -1735,7 +1732,6 @@ class AddressEditor:
         self.window.editable_enters(self.state);
         self.window.editable_enters(self.country);
         self.window.editable_enters(self.postal);
-        self.window.editable_enters(self.source_field);
         self.window.editable_enters(self.note_field);
         
         if addr != None:
@@ -1744,11 +1740,6 @@ class AddressEditor:
             self.state.set_text(addr.getState())
             self.country.set_text(addr.getCountry())
             self.postal.set_text(addr.getPostal())
-            srcref_base = self.addr.getSourceRef().getBase()
-            if srcref_base:
-                self.source_field.set_text(srcref_base.getTitle())
-            else:
-                self.source_field.set_text("")
                  
             self.priv.set_active(addr.getPrivacy())
             self.note_field.set_point(0)
@@ -1769,8 +1760,11 @@ class AddressEditor:
 #-------------------------------------------------------------------------
 def on_addr_source_clicked(obj):
     ee = obj.get_data(OBJECT)
-    Sources.SourceEditor(ee.srcref,ee.parent.db,ee.source_field)
-            
+    Sources.SourceSelector(ee.srcreflist,ee.parent,src_changed)
+
+def src_changed(parent):
+    parent.list_changed = 1
+    
 #-------------------------------------------------------------------------
 #
 #
@@ -1791,15 +1785,12 @@ def on_addr_edit_ok_clicked(obj):
 
     if addr == None:
         addr = Address()
+        addr.setSourceRefList(ee.srcreflist)
         ee.parent.plist.append(addr)
         
     if update_address(addr,date,street,city,state,country,postal,note,priv):
         ee.parent.lists_changed = 1
         
-    if not addr.getSourceRef().are_equal(ee.srcref):
-        addr.setSourceRef(ee.srcref)
-        ee.parent.lists_changed = 1
-
     ee.parent.redraw_addr_list()
     utils.destroy_passed_object(obj)
 

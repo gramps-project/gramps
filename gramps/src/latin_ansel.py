@@ -78,11 +78,22 @@ _t0 = {
 def ansel_to_latin(s):
     buff = cStringIO.StringIO()
     while s:
-        try:
-            head,s = ansel_to_code(s)
-        except Exception:
+        c0 = ord(s[0])
+        if c0 > 127:
+            try:
+                if c0 >= 0xE0:
+                    c1 = ord(s[1])
+                    head = chr(_s1[c0][c1])
+                    s = s[2:]
+                else:
+                    head = chr(_s0[c0])
+                    s = s[1:]
+            except Exception:
+                head = s[0]
+                s = s[1:]
+        else:
             head = s[0]
-            s = s[1:0]
+            s = s[1:]
         buff.write(head)
     ans = buff.getvalue()
     buff.close()
@@ -114,24 +125,4 @@ def latin_to_ansel(s):
     ans = buff.getvalue()
     buff.close()
     return ans
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def ansel_to_code(s):
-    if s == "":
-        return ""
-    if ord(s[0]) < 128:
-        return s[0],s[1:]
-    c0 = ord(s[0])
-    c1 = ord(s[1])
-    if c0 >= 0xE0:
-        return chr(_s1[c0][c1]),s[2:]
-    else:
-        try:
-            return chr(_s0[c0]), s[1:]
-        except:
-            return s[0], s[1:]
 

@@ -37,28 +37,30 @@ class SourceNote:
     def __init__(self,source=None):
         """Create a new SourceNote, copying from source if not None"""
         
+        self.source_list = []
+
         if source:
-            if source.source_ref:
-                self.source_ref = SourceRef(source.source_ref)
-            else:
-                self.source_ref = None
+            if len(source.source_list) > 0:
+                for sref in source.source_list:
+                    self.source_list.append(SourceRef(sref))
             if source.note:
                 self.note = Note(source.note.get())
             else:
                 self.note = None
         else:
-            self.source_ref = None
             self.note = None
 
-    def setSourceRef(self,id) :
+    def addSourceRef(self,id) :
         """Set the source reference"""
-        self.source_ref = id
+        self.source_list.append(id)
 
-    def getSourceRef(self) :
+    def getSourceRefList(self) :
         """Return the source reference"""
-        if not self.source_ref:
-            self.source_ref = SourceRef()
-        return self.source_ref
+        return self.source_list
+
+    def setSourceRefList(self,list) :
+        """Replaces the source reference"""
+        self.source_list = list
 
     def setNote(self,text):
         """Set the note to the given text"""
@@ -583,8 +585,15 @@ class Name(DataObj):
             return 0
         if self.getNote() != other.getNote():
             return 0
-        if not self.getSourceRef().are_equal(other.getSourceRef()):
+        if len(self.getSourceRefList()) != len(other.getSourceRefList()):
             return 0
+        index = 0
+        olist = other.getSourceRefList()
+        for a in self.getSourceRefList():
+            if not a.are_equal(olist[index]):
+                return 0
+            index = index + 1
+            
         return 1
 
 class Url:
@@ -629,6 +638,7 @@ class Url:
 class Person:
     """Represents an individual person in the gramps database"""
     
+    unknown = 2
     male = 1
     female = 0
 
@@ -644,7 +654,7 @@ class Person:
         self.photoList = []
         self.nickname = ""
         self.alternateNames = []
-        self.gender = 0
+        self.gender = 2
         self.death = None
         self.birth = None
         self.addressList = []
@@ -930,8 +940,16 @@ class Event(DataObj):
             return 0
         if self.private != other.private:
             return 0
-        if not self.getSourceRef().are_equal(other.getSourceRef()):
+
+        if len(self.getSourceRefList()) != len(other.getSourceRefList()):
             return 0
+        index = 0
+        olist = other.getSourceRefList()
+        for a in self.getSourceRefList():
+            if not a.are_equal(olist[index]):
+                return 0
+            index = index + 1
+
         return 1
         
     def setName(self,name):

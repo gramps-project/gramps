@@ -48,6 +48,78 @@ ACTIVESRC  = "a"
 INDEX      = "i"
 MENUVAL    = "a"
 
+class SourceSelector:
+
+    def __init__(self,srclist,parent,update=None):
+        self.db = parent.db
+        self.parent = parent
+        self.orig = srclist
+        self.list = []
+        for s in self.orig:
+            self.list.append(SourceRef(s))
+        self.update=update
+        self.top = libglade.GladeXML(const.gladeFile,"sourcesel")
+        self.top.signal_autoconnect({
+            "destroy_passed_object" : utils.destroy_passed_object,
+            "on_add_src_clicked"    : on_add_src_clicked,
+            "on_del_src_clicked"    : on_del_src_clicked,
+            "on_edit_src_clicked"   : on_edit_src_clicked,
+            "on_src_ok_clicked"     : on_src_ok_clicked,
+            })
+        self.sourcesel = self.top.get_widget("sourcesel")
+        self.slist = self.top.get_widget("slist")
+        self.slist.set_data("o",self)
+        self.redraw()
+        self.sourcesel.show()
+
+    def redraw(self):
+        index = 0
+        self.slist.freeze()
+        self.slist.clear()
+        for s in self.list:
+            base = s.getBase()
+            self.slist.append([base.getId(),base.getTitle()])
+            self.slist.set_row_data(index,s)
+            index = index + 1
+        self.slist.thaw()
+
+def on_src_ok_clicked(obj):
+    top = obj.get_data("o")
+    del top.orig[:]
+    for s in top.list:
+        top.orig.append(s)
+    top.update(top.parent)
+    utils.destroy_passed_object(top.sourcesel)
+    
+def on_edit_src_clicked(obj):
+    sel = obj.selection
+    if len(sel) > 0:
+        row = sel[0]
+        src = obj.get_row_data(row)
+        inst = obj.get_data("o")
+        SourceEditor(src,inst.db,update_clist,inst)
+
+def update_clist(inst,ref):
+    inst.redraw()
+
+def on_add_src_clicked(obj):
+    inst = obj.get_data("o")
+    src = SourceRef()
+    SourceEditor(src,inst.db,add_ref,inst)
+
+def add_ref(inst,ref):
+    inst.list.append(ref)
+    inst.redraw()
+
+def on_del_src_clicked(obj):
+    inst = obj.get_data("o")
+    
+    sel = obj.selection
+    if len(sel) > 0:
+        row = sel[0]
+        del inst.list[row]
+        inst.redraw()
+        
 #-------------------------------------------------------------------------
 #
 # SourceEditor
@@ -60,9 +132,10 @@ class SourceEditor:
     # __init__ - Creates a source editor window associated with an event
     #
     #---------------------------------------------------------------------
-    def __init__(self,srcref,database,update=None):
+    def __init__(self,srcref,database,update=None,parent=None):
 
         self.db = database
+        self.parent = parent
         self.update = update
         self.source_ref = srcref
         self.showSource = libglade.GladeXML(const.gladeFile, "sourceDisplay")
@@ -134,23 +207,11 @@ class SourceEditor:
             self.author_field.set_text("")
             self.pub_field.set_text("")
 
-        if self.active_source:
-            active = 1
-        else:
-            active = 0
-
         values = self.db.getSourceMap().values()
         values.sort(by_title)
-        l = GtkLabel("-- No Source --")
-        l.show()
-        l.set_alignment(0,0.5)
-        c = GtkListItem()
-        c.add(l)
-        c.set_data("s",None)
-        c.show()
-        sel_child = c
-        list = [c]
 
+        sel_child = None
+        list = []
         for src in values:
             l = GtkLabel("%s [%s]" % (src.getTitle(),src.getId()))
             l.show()
@@ -160,15 +221,13 @@ class SourceEditor:
             c.set_data("s",src)
             c.show()
             list.append(c)
-            if src == self.active_source:
+            if self.active_source == None:
+                self.active_source = src
                 sel_child = c
 
         self.title_menu.list.append_items(list)
-        self.title_menu.list.select_child(sel_child)
-        self.get_widget("spage").set_sensitive(active)
-        self.get_widget("sdate").set_sensitive(active)
-        self.get_widget("stext").set_sensitive(active)
-        self.get_widget("scomment").set_sensitive(active)
+        if sel_child != None:
+            self.title_menu.list.select_child(sel_child)
 
 #-------------------------------------------------------------------------
 #
@@ -203,11 +262,7 @@ def on_sourceok_clicked(obj):
     src_edit.source_ref.setConfidence(conf)
 
     if src_edit.update:
-        if src_edit.source_ref.getBase():
-            val = src_edit.source_ref.getBase().getTitle()
-        else:
-            val = ""
-        src_edit.update.set_text(val)
+        src_edit.update(src_edit.parent,src_edit.source_ref)
         
     utils.modified()
     utils.destroy_passed_object(obj)
@@ -223,16 +278,5 @@ def on_source_changed(obj):
     src_entry.active_source = obj.list.get_selection()[0].get_data("s")
 
     if src_entry.active_source == None:
-        active = 0
-        src_entry.author_field.set_text("")
-        src_entry.pub_field.set_text("")
-    else:
-        active = 1
         src_entry.author_field.set_text(src_entry.active_source.getAuthor())
         src_entry.pub_field.set_text(src_entry.active_source.getPubInfo())
-
-    src_entry.get_widget("spage").set_sensitive(active)
-    src_entry.get_widget("sdate").set_sensitive(active)
-    src_entry.get_widget("stext").set_sensitive(active)
-    src_entry.get_widget("scomment").set_sensitive(active)
-    src_entry.get_widget("conf").set_sensitive(active)

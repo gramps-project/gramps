@@ -682,10 +682,7 @@ class EventEditor:
     def __init__(self,parent,event):
         self.parent = parent
         self.event = event
-        if self.event:
-            self.srcref = SourceRef(self.event.getSourceRef())
-        else:
-            self.srcref = SourceRef()
+        self.srcreflist = self.event.getSourceRefList()
         self.top = libglade.GladeXML(const.dialogFile, "event_edit")
         self.window = self.top.get_widget("event_edit")
         self.name_field  = self.top.get_widget("eventName")
@@ -697,7 +694,6 @@ class EventEditor:
         self.descr_field = self.top.get_widget("eventDescription")
         self.note_field = self.top.get_widget("eventNote")
         self.event_menu = self.top.get_widget("personalEvents")
-        self.source_field = self.top.get_widget("event_source")
         self.priv = self.top.get_widget("priv")
 
         father = parent.family.getFather()
@@ -731,12 +727,6 @@ class EventEditor:
             self.descr_field.set_text(event.getDescription())
             self.priv.set_active(event.getPrivacy())
             
-            srcref_base = self.event.getSourceRef().getBase()
-            if srcref_base:
-                self.source_field.set_text(srcref_base.getTitle())
-            else:
-                self.source_field.set_text("")
-                 
             self.note_field.set_point(0)
             self.note_field.insert_defaults(event.getNote())
             self.note_field.set_word_wrap(1)
@@ -757,7 +747,10 @@ class EventEditor:
 #-------------------------------------------------------------------------
 def on_edit_source_clicked(obj):
     ee = obj.get_data("o")
-    Sources.SourceEditor(ee.srcref,ee.parent.db,ee.source_field)
+    Sources.SourceSelector(ee.srcreflist,ee.parent,src_changed)
+
+def src_changed(parent):
+    parent.list_changed = 1
             
 #-------------------------------------------------------------------------
 #
@@ -779,6 +772,7 @@ def on_event_edit_ok_clicked(obj):
 
     if event == None:
         event = Event()
+        event.setSourceRefList(ee.srcreflist)
         ee.parent.elist.append(event)
         
     if eplace_obj == None and eplace != "":
@@ -789,10 +783,6 @@ def on_event_edit_ok_clicked(obj):
     if update_event(event,ename,edate,eplace_obj,edesc,enote,epriv,ecause):
         ee.parent.lists_changed = 1
         
-    if not source_refs_equal(event.getSourceRef(),ee.srcref):
-        event.setSourceRef(ee.srcref)
-        ee.parent.lists_changed = 1
-
     ee.parent.redraw_events()
     utils.destroy_passed_object(obj)
 
@@ -814,11 +804,12 @@ class AttributeEditor:
         self.attrib_menu = self.top.get_widget("attr_menu")
         self.source_field = self.top.get_widget("attr_source")
         self.priv = self.top.get_widget("priv")
-        if self.attrib:
-            self.srcref = SourceRef(self.attrib.getSourceRef())
-        else:
-            self.srcref = SourceRef()
         
+        if attrib:
+            self.srcreflist = self.attrib.getSourceRefList()
+        else:
+            self.srcreflist = []
+
         # Typing CR selects OK button
         self.window.editable_enters(self.type_field);
         self.window.editable_enters(self.value_field);
@@ -841,12 +832,6 @@ class AttributeEditor:
         if attrib != None:
             self.type_field.set_text(attrib.getType())
             self.value_field.set_text(attrib.getValue())
-            srcref_base = self.attrib.getSourceRef().getBase()
-            if srcref_base:
-                self.source_field.set_text(srcref_base.getTitle())
-            else:
-                self.source_field.set_text("")
-                 
             self.priv.set_active(attrib.getPrivacy())
 
             self.note_field.set_point(0)
@@ -867,7 +852,7 @@ class AttributeEditor:
 #-------------------------------------------------------------------------
 def on_attrib_source_clicked(obj):
     ee = obj.get_data("o")
-    Sources.SourceEditor(ee.srcref,ee.parent.db,ee.source_field)
+    Sources.SourceSelector(ee.srcreflist,ee.parent,src_changed)
             
 #-------------------------------------------------------------------------
 #
@@ -885,37 +870,14 @@ def on_attrib_edit_ok_clicked(obj):
 
     if attrib == None:
         attrib = Attribute()
+        attrib.setSourceRefList(ee.srcreflist)
         ee.parent.alist.append(attrib)
         
     if update_attrib(attrib,type,value,note,priv):
         ee.parent.lists_changed = 1
         
-    if not source_refs_equal(attrib.getSourceRef(),ee.srcref):
-        attrib.setSourceRef(ee.srcref)
-        ee.parent.lists_changed = 1
-
     ee.parent.redraw_attr_list()
     utils.destroy_passed_object(obj)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def source_refs_equal(one,two):
-    if not one or not two:
-        return 0
-    if one.ref != two.ref:
-        return 0
-    if one.page != two.page:
-        return 0
-    if one.date != two.date:
-        return 0
-    if one.comments != two.comments:
-        return 0
-    if one.text != two.text:
-        return 0
-    return 1
 
 #-------------------------------------------------------------------------
 #

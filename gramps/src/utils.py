@@ -150,7 +150,7 @@ def get_detail_flags(obj):
     if Config.show_detail:
         if obj.getNote() != "":
             detail = "N"
-        if obj.getSourceRef().getBase():
+        if len(obj.getSourceRefList()) > 0:
             detail = detail + "S"
         if obj.getPrivacy():
             detail = detail + "P"
@@ -166,7 +166,7 @@ def get_detail_text(obj):
         details = "%s" % _("Note")
     else:
         details = ""
-    if obj.getSourceRef().getBase() != None:
+    if len(obj.getSourceRefList()) > 0:
         if details == "":
             details = _("Source")
         else:

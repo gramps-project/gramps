@@ -48,6 +48,11 @@ glade_file = None
 clear_data = 0
 is_ftw = 0
 
+def nocnv(s):
+    return s
+
+_cnv = nocnv
+
 photo_types = [ "jpeg", "bmp", "pict", "pntg", "tpic", "png", "gif",
                 "tiff", "pcx" ]
 
@@ -68,6 +73,8 @@ for val in const.familyConstantEvents.keys():
 lineRE = re.compile(r"\s*(\d+)\s+(\S+)\s*(.*)$")
 headRE = re.compile(r"\s*(\d+)\s+HEAD")
 nameRegexp = re.compile(r"([\S\s]*\S)?\s*/([^/]+)?/\s*,?\s*([\S]+)?")
+
+placemap = {}
 
 #-------------------------------------------------------------------------
 #
@@ -96,7 +103,9 @@ def find_file(fullname,altpath):
 #
 #
 #-------------------------------------------------------------------------
+
 def importData(database, filename):
+
     global callback
     global topDialog
     global glade_file
@@ -125,12 +134,17 @@ def importData(database, filename):
         GnomeErrorDialog(_("%s could not be opened\n") % filename)
         return
 
+    import time
+    t1 = time.time()
     g.parse_gedcom_file()
+    t2 = time.time()
+    print t2-t1
 
     statusTop.get_widget("close").set_sensitive(1)
 
     utils.modified()
-    callback(1)
+    if callback:
+        callback(1)
 
 #-------------------------------------------------------------------------
 #
@@ -183,9 +197,9 @@ class GedcomParser:
         self.dir_path = os.path.dirname(file)
         self.localref = 0
 
-        f = open(file,"r")
-        self.lines = f.readlines()
-        f.close()
+        self.f = open(file,"r")
+        self.index = 0
+        self.backoff = 0
 
         self.file_obj = window.get_widget("file")
         self.encoding_obj = window.get_widget("encoding")
@@ -200,8 +214,6 @@ class GedcomParser:
         self.error_text_obj.set_word_wrap(0)
         
         self.update(self.file_obj,file)
-        
-	self.index = 0
         self.code = 0
 
     #---------------------------------------------------------------------
@@ -220,24 +232,27 @@ class GedcomParser:
     #
     #---------------------------------------------------------------------
     def get_next(self):
-        line = string.replace(self.lines[self.index],'\r','')
-        if self.code == ANSEL:
-            line = latin_ansel.ansel_to_latin(line)
-        elif self.code == UNICODE:
-            line = latin_utf8.utf8_to_latin(line)
-	match = lineRE.match(line)
-        if not match:
-            msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
-            self.error_text_obj.insert_defaults(msg)
-            msg = "\n\t%s\n" % self.lines[self.index-1]
-            self.error_text_obj.insert_defaults(msg)
-            self.error_count = self.error_count + 1
-            self.update(self.errors_obj,str(self.error_count))
-            match = lineRE.match("999 XXX XXX")
-        
-        self.index = self.index + 1
-    	return match.groups()
-
+        if self.backoff == 0:
+            self.text = _cnv(string.strip(self.f.readline()))
+            self.index = self.index + 1
+            l = string.split(self.text, None, 2)
+            ln = len(l)
+            try:
+                if ln == 2:
+                    self.groups = (int(l[0]),l[1],"")
+                else:
+                    self.groups = (int(l[0]),l[1],l[2])
+            except:
+                msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
+                self.error_text_obj.insert_defaults(msg)
+                msg = "\n\t%s\n" % self.text
+                self.error_text_obj.insert_defaults(msg)
+                self.error_count = self.error_count + 1
+                self.update(self.errors_obj,str(self.error_count))
+                self.groups = (999, "XXX", "XXX")
+        self.backoff = 0
+        return self.groups
+            
     #---------------------------------------------------------------------
     #
     #
@@ -246,7 +261,7 @@ class GedcomParser:
     def barf(self,level):
         msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
         self.error_text_obj.insert_defaults(msg)
-        msg = "\n\t%s\n" % self.lines[self.index-1]
+        msg = "\n\t%s\n" % self.text
         self.error_text_obj.insert_defaults(msg)
         self.error_count = self.error_count + 1
         self.update(self.errors_obj,str(self.error_count))
@@ -268,7 +283,7 @@ class GedcomParser:
     #
     #---------------------------------------------------------------------
     def backup(self):
-        self.index = self.index - 1
+        self.backoff = 1
 
     #---------------------------------------------------------------------
     #
@@ -296,7 +311,8 @@ class GedcomParser:
 
         if matches[1] != "TRLR":
 	    self.barf(0)
-
+        self.f.close()
+        
     #---------------------------------------------------------------------
     #
     #
@@ -325,7 +341,7 @@ class GedcomParser:
     def parse_submitter(self):
 	matches = self.get_next()
 
-        if matches[2] != "SUBN":
+        if matches[2] != "SUBM":
             self.backup()
 	    return
         else:
@@ -414,7 +430,6 @@ class GedcomParser:
                     noteobj.set(text + self.parse_continue_data(1))
                 self.parse_note_data(1)
             elif matches[2] == "OBJE":
-                print "OBJE",matches[1]
                 self.ignore_sub_junk(1)
 	    elif matches[1] == "TRLR":
                 self.backup()
@@ -505,6 +520,11 @@ class GedcomParser:
                         child.setMainFamily(None)
                     child.addAltFamily(self.family,mrel,frel)
 	    elif matches[1] == "NCHI" or matches[1] == "RIN" or matches[1] == "SUBM":  
+                a = Attribute()
+                a.setType("Number of Children")
+                a.setValue(matches[2])
+                self.family.addAttribute(a)
+	    elif matches[1] == "RIN" or matches[1] == "SUBM":  
                 pass
             elif matches[1] == "REFN" or matches[1] == "CHAN":
                 self.ignore_sub_junk(2)
@@ -601,7 +621,9 @@ class GedcomParser:
                         self.nmap[matches[2]] = noteobj
                         self.person.setNoteObj(noteobj)
 	    elif matches[1] == "SEX":
-                if matches[2][0] == "M":
+                if matches[2] == '':
+                    self.person.setGender(Person.unknown)
+                elif matches[2][0] == "M":
                     self.person.setGender(Person.male)
                 else:
                     self.person.setGender(Person.female)
@@ -838,7 +860,7 @@ class GedcomParser:
             elif matches[1] == "SOUR":
                 source_ref = SourceRef()
                 source_ref.setBase(self.db.findSource(matches[2],self.smap))
-                address.setSourceRef(source_ref)
+                address.addSourceRef(source_ref)
                 self.parse_source_reference(source_ref,level+1)
             elif matches[1] == "PLAC":
                 address.setStreet(matches[2])
@@ -937,7 +959,7 @@ class GedcomParser:
                 else:
                     source_ref.setBase(self.db.findSource(matches[2],self.smap))
                     self.parse_source_reference(source_ref,level+1)
-                event.setSourceRef(source_ref)
+                event.addSourceRef(source_ref)
             elif matches[1] == "FAMC":
                 family = self.db.findFamily(matches[2],self.fmap)
                 if event.getName() == "Birth":
@@ -953,11 +975,8 @@ class GedcomParser:
                     event.setDescription(val)
                     self.ignore_sub_junk(level+1)
                 else:
-                    place = None
-                    for p in self.db.getPlaceMap().values():
-                        if val == p.get_title():
-                            place = p
-                            break
+                    if placemap.has_key(val):
+                        place = placemap[val]
                     else:
                         place = Place()
                         place.set_title(matches[2])
@@ -1028,14 +1047,11 @@ class GedcomParser:
                 else:
                     source_ref.setBase(self.db.findSource(matches[2],self.smap))
                     self.parse_source_reference(source_ref,level+1)
-                event.setSourceRef(source_ref)
+                event.addSourceRef(source_ref)
             elif matches[1] == "PLAC":
                 val = matches[2]
-                place = None
-                for p in self.db.getPlaceMap().values():
-                    if val == p.get_title():
-                        place = p
-                        break
+                if placemap.has_key(val):
+                    place = placemap[val]
                 else:
                     place = Place()
                     place.set_title(matches[2])
@@ -1145,7 +1161,7 @@ class GedcomParser:
             elif matches[1] == "SOUR":
                 source_ref = SourceRef()
                 source_ref.setBase(self.db.findSource(matches[2],self.smap))
-                name.setSourceRef(source_ref)
+                name.addSourceRef(source_ref)
                 self.parse_source_reference(source_ref,level+1)
             elif matches[1][0:4] == "NOTE":
                 if matches[2] and matches[2][0] != "@":
@@ -1164,10 +1180,10 @@ class GedcomParser:
 
     def parse_header_head(self):
         """validiates that this is a valid GEDCOM file"""
-        line = string.replace(self.lines[self.index],'\r','')
+        line = string.replace(self.f.readline(),'\r','')
 	match = headRE.search(line)
         if not match:
-	    raise GedcomParser.BadFile, self.lines[self.index]
+	    raise GedcomParser.BadFile, line
         self.index = self.index + 1
 
     #---------------------------------------------------------------------
@@ -1177,6 +1193,7 @@ class GedcomParser:
     #---------------------------------------------------------------------
     def parse_header_source(self):
         global is_ftw
+        global _cnv
         
         while 1:
 	    matches = self.get_next()
@@ -1211,8 +1228,10 @@ class GedcomParser:
                 if matches[2] == "UNICODE" or matches[2] == "UTF-8" or \
                    matches[2] == "UTF8":
                     self.code = UNICODE
+                    _cnv = latin_utf8.utf8_to_latin
                 elif matches[2] == "ANSEL":
                     self.code = ANSEL
+                    _cnv = latin_ansel.ansel_to_latin
                 self.ignore_sub_junk(2)
                 self.update(self.encoding_obj,matches[2])
    	    elif matches[1] == "GEDC":
@@ -1598,3 +1617,13 @@ def readData(database,active_person,cb):
 from Plugins import register_import
 
 register_import(readData,_("Import from GEDCOM"))
+
+if __name__ == "__main__":
+    import profile
+    import sys
+    global db
+
+    glade_file = "plugins/gedcomimport.glade"
+    
+    db = RelDataBase()
+    profile.run('importData(db,sys.argv[1])')
