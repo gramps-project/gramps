@@ -1,3 +1,5 @@
+include @top_srcdir@/Makefile.comm
+
 prefix		= @prefix@
 exec_prefix	= @exec_prefix@
 bindir 		= @bindir@
@@ -7,10 +9,13 @@ docgen          = ${datadir}/docgen
 srcdir		= @top_srcdir@
 pycomp		= ${srcdir}/py-compile
 
-@SET_MAKE@
+# Use GNU make's ':=' syntax for nice wildcard use.
+# If not using GNU make, then list all .py files individually
+PYSRCS := ${wildcard *.py}
 
-all:
-	${pycomp} *.py
+PYOBJS = ${PYSRCS:.py=.pyo}
+
+all: ${PYOBJS}
 
 install:
 	${INSTALL} -d ${docgen}
@@ -22,3 +27,11 @@ uninstall:
 
 clean:
 	-rm -f core *.pyo *.pyc *.bak *~	
+
+# Add PYTHON suffix rules to make's vocabulary
+.SUFFIXES: .py .pyo
+
+# How do we properly compile a python module?
+.py.pyo:
+	chmod +x ${pycomp}
+	${pycomp} $<

@@ -1,8 +1,5 @@
-prefix		= @prefix@
-exec_prefix	= @exec_prefix@
-bindir 		= @bindir@
-datadir		= @datadir@/@PACKAGE@
-INSTALL		= @INSTALL@
+include @top_srcdir@/Makefile.comm
+
 srcdir		= @top_srcdir@
 intl_libs       = @INTLLIBS@
 p15_inc         = @P15_INCLUDES@
@@ -14,11 +11,13 @@ CFLAGS          = -fPIC -shared -O @CFLAGS@ @CPPFLAGS@ -I@includedir@
 LDFLAGS         = @LDFLAGS@ -L@libdir@ @LIBS@
 LANG            = sv de fr es it pt_BR
 
-@SET_MAKE@
+# Use GNU make's ':=' syntax for nice wildcard use.
+# If not using GNU make, then list all .py files individually
+PYSRCS := ${wildcard *.py}
 
-all:    ${intl_libs}
-	chmod +x ${pycomp}
-	${pycomp} *.py
+PYOBJS = ${PYSRCS:.py=.pyo}
+
+all:    ${intl_libs} ${PYOBJS}
 
 intl15.so: intl.c
 	$(CC) $(CFLAGS) $(LDFLAGS) $(p15_inc) -DVER15 -o $@ intl.c
@@ -57,3 +56,12 @@ po/template.po: *.py *.glade */*.py */*.glade
 
 clean:
 	-rm -f core *.pyo *.pyc *.bak *~	
+
+# Add PYTHON suffix rules to make's vocabulary
+.SUFFIXES: .py .pyo
+
+# How do we properly compile a python module?
+.py.pyo:
+	chmod +x ${pycomp}
+	${pycomp} $<
+

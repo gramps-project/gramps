@@ -1,24 +1,36 @@
+include @top_srcdir@/Makefile.comm
+
 prefix		= @prefix@
 exec_prefix	= @exec_prefix@
 bindir 		= @bindir@
 datadir		= @datadir@/@PACKAGE@
 INSTALL		= @INSTALL@
-filters		= ${datadir}/filters
+plugins         = ${datadir}/plugins
 srcdir		= @top_srcdir@
 pycomp		= ${srcdir}/py-compile
 
-@SET_MAKE@
+# Use GNU make's ':=' syntax for nice wildcard use.
+# If not using GNU make, then list all .py files individually
+PYSRCS := ${wildcard *.py}
 
-all:
-	${pycomp} *.py
+PYOBJS = ${PYSRCS:.py=.pyo}
+
+all: ${PYOBJS}
 
 install:
-	${INSTALL} -d ${filters}
-	${INSTALL} *.py *.pyo ${datadir}/filters
+	${INSTALL} -d ${plugins}
+	${INSTALL} *.py *.pyo *.glade ${plugins}
 
 uninstall:
-	rm ${filters}/*.py ${filters}/*.pyo
-	-rmdir ${filters}
+	rm ${plugins}/*.py ${plugins}/*.pyo ${plugins}/*.glade
+	-rmdir ${plugins}
 
 clean:
 	-rm -f core *.pyo *.pyc *.bak *~	
+
+# Add PYTHON suffix rules to make's vocabulary
+.SUFFIXES: .py .pyo
+
+# How do we properly compile a python module?
+.py.pyo:
+	${pycomp} $<
