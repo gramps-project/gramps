@@ -541,7 +541,7 @@ class Gramps:
 
     def edit_button_clicked(self,obj):
         cpage = self.views.get_current_page()
-        if cpage == PERSON_VIEW:
+        if cpage == PERSON_VIEW or cpage == FAMILY_VIEW2 or cpage == FAMILY_VIEW1:
             self.load_selected_people(obj)
         elif cpage == SOURCE_VIEW:
             self.source_view.on_edit_clicked(obj)
@@ -552,7 +552,7 @@ class Gramps:
 
     def add_button_clicked(self,obj):
         cpage = self.views.get_current_page()
-        if cpage == PERSON_VIEW:
+        if cpage == PERSON_VIEW or cpage == FAMILY_VIEW2 or cpage == FAMILY_VIEW1:
             self.load_new_person(obj)
         elif cpage == SOURCE_VIEW:
             self.source_view.on_add_clicked(obj)
@@ -563,7 +563,7 @@ class Gramps:
 
     def remove_button_clicked(self,obj):
         cpage = self.views.get_current_page()
-        if cpage == PERSON_VIEW:
+        if cpage == PERSON_VIEW or cpage == FAMILY_VIEW2 or cpage == FAMILY_VIEW1:
             self.delete_person_clicked(obj)
         elif cpage == SOURCE_VIEW:
             self.source_view.on_delete_clicked(obj)
@@ -1264,8 +1264,11 @@ class Gramps:
         self.people_view.remove_from_person_list(self.active_person)
         self.people_view.person_model.sort_column_changed()
 
-        self.change_active_person(None)
-        self.redraw_histmenu()
+        if self.hindex > 0:
+            self.back_clicked(None)
+        else:
+            self.change_active_person(None)
+            self.redraw_histmenu()
         self.update_display(0)
         Utils.modified()
 
@@ -1492,7 +1495,7 @@ class Gramps:
             self.people_view.goto_active_person()
             self.merge_button.set_sensitive(1)
         elif page == FAMILY_VIEW1 or page == FAMILY_VIEW2:
-            self.enable_buttons(0)
+            self.enable_buttons(1)
             self.merge_button.set_sensitive(0)
             self.family_view.load_family()
         elif page == PEDIGREE_VIEW:
