@@ -433,16 +433,20 @@ class Gramps:
 	url = gnome.help.file_find_file("gramps-manual","gramps-manual.sgml")
         if url:
             url = "gnome-help:"+url
-            gnome.help.goto(url)
+	    print "I found the manual at:"
+	    print url
+            gnome.help.display(url,"gramps-manual")
 
     def on_writing_extensions_activate(self,obj):
         """Display the Extending GRAMPS manual"""
         import gnome.help
         url = gnome.help.file_find_file("extending-gramps","extending-gramps.sgml")
+	print "I found the extension guide at:"
+	print url
         if url:
+            gnome.help.display(url,"extending-gramps")
             url = "gnome-help:"+url
-            gnome.help.goto(url)
-    
+   
     def on_remove_child_clicked(self,obj):
         if not self.active_family or not self.active_child or not self.active_person:
             return
