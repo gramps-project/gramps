@@ -547,7 +547,7 @@ class FtmAncestorReport(Report.Report):
             return
         self.doc.start_paragraph('FTA-SubEntry')
         self.doc.write_text(_('Notes for %(person)s:') % { 
-        	'person' : person.get_primary_name().get_regular_name()} )
+                'person' : person.get_primary_name().get_regular_name()} )
         self.doc.end_paragraph()
         format = person.get_note_format()
         self.doc.write_note(note,format,'FTA-Details')
@@ -560,7 +560,7 @@ class FtmAncestorReport(Report.Report):
             if first:
                 self.doc.start_paragraph('FTA-SubEntry')
                 self.doc.write_text(_('More about %(person_name)s:') % { 
-                	'person_name' : person.get_primary_name().get_regular_name() })
+                        'person_name' : person.get_primary_name().get_regular_name() })
                 self.doc.end_paragraph()
                 first = 0
             self.doc.start_paragraph('FTA-Details')
@@ -586,7 +586,7 @@ class FtmAncestorReport(Report.Report):
                 self.doc.start_paragraph('FTA-SubEntry')
                 name = person.get_primary_name().get_regular_name()
                 self.doc.write_text(_('More about %(person_name)s:') % { 
-                	'person_name' : name })
+                        'person_name' : name })
                 self.doc.end_paragraph()
                 first = 0
 

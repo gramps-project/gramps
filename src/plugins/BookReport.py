@@ -1013,7 +1013,7 @@ class BookReportDialog(Report.ReportDialog):
         newpage = 0
         for item in self.book.get_item_list():
             item.option_class.set_document(self.doc)
-	    item.option_class.set_newpage(newpage)
+            item.option_class.set_newpage(newpage)
             report_class = item.get_write_item()
             obj = Report.write_book_item(self.database,self.person,
                             report_class,item.option_class)
