@@ -1,3 +1,6 @@
+2003-07-01  Tim Waugh  <twaugh@redhat.com>
+	* src/EditPerson.py: Don't guess gender if it has already been set.
+
 2003-06-30  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Makefile.am: Ship FanChart.py.
 	* src/plugins/Ancestors.py (generation): Report on the correct

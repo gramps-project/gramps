@@ -86,7 +86,9 @@ class EditPerson:
         self.update_death = 0
         self.pdmap = {}
         self.add_places = []
-        self.should_guess_gender = (self.original_id == '')
+        self.should_guess_gender = (self.original_id == '' and
+                                    person.getGender () ==
+                                    RelLib.Person.unknown)
 
         for key in db.getPlaceKeys():
             p = db.getPlaceDisplay(key)
