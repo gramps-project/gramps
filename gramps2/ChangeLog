@@ -1,6 +1,9 @@
 2003-11-23  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ChooseParents.py (ChooseParents.__init__): Revert the dialog 
 	back to being non-modal (otherwise adding new people is impossible).
+	* src/FamilyView.py: Do not pass the window to the ChooseParents class.
+	* src/WriteXML.py (write_witness): Fix the name string before writing
+	(fixes #847600).
 
 2003-11-21  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/po/fr.po: Fix format line. 
