@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ import gtk.glade
 #------------------------------------------------------------------------
 import GenericFilter
 import ListModel
-import sort
+import Sort
 import Utils
 import BaseDoc
 import OpenSpreadSheet
@@ -139,7 +139,7 @@ class EventComparison:
             "destroy_passed_object"  : Utils.destroy_passed_object
             })
     
-        top =self.filterDialog.get_widget("filters")
+        top = self.filterDialog.get_widget("filters")
         self.filters = self.filterDialog.get_widget("filter_list")
 
         Utils.set_titles(top,self.filterDialog.get_widget('title'),
@@ -165,12 +165,12 @@ class EventComparison:
     def on_apply_clicked(self,obj):
         cfilter = self.filter_menu.get_active().get_data("filter")
 
-        plist = cfilter.apply(self.db,self.db.get_person_id_map().values())
+        plist = cfilter.apply(self.db,self.db.get_person_keys())
 
         if len(plist) == 0:
             WarningDialog(_("No matches were found"))
         else:
-            DisplayChart(plist)
+            DisplayChart(self.db,plist)
 
 #------------------------------------------------------------------------
 #
@@ -203,7 +203,8 @@ def fix(line):
 #
 #-------------------------------------------------------------------------
 class DisplayChart:
-    def __init__(self,people_list):
+    def __init__(self,database,people_list):
+        self.db = database
         self.my_list = people_list
         self.row_data = []
         
@@ -222,7 +223,8 @@ class DisplayChart:
         Utils.set_titles(self.top, self.topDialog.get_widget('title'),
                          _('Event Comparison'))
     
-        self.my_list.sort(sort.by_last_name)
+        self.sort = Sort.Sort(self.db)
+        self.my_list.sort(self.sort.by_last_name)
 
         self.event_titles = self.make_event_titles()
         self.build_row_data()
@@ -242,33 +244,61 @@ class DisplayChart:
             self.list.add(data)
 
     def build_row_data(self):
-        for individual in self.my_list:
+        for individual_id in self.my_list:
+            individual = self.db.find_person_from_id(individual_id)
             name = individual.get_primary_name().get_name()
-            birth = individual.get_birth()
-            death = individual.get_death()
+            birth_id = individual.get_birth_id()
+            bdate = ""
+            bplace = ""
+            if birth_id:
+                birth = self.db.find_event_from_id(birth_id)
+                bdate = birth.get_date()
+                bplace_id = birth.get_place_id()
+                if bplace_id:
+                    bplace = self.db.find_place_from_id(bplace_id).get_title()
+            death_id = individual.get_death_id()
+            ddate = ""
+            dplace = ""
+            if death_id:
+                death = self.db.find_event_from_id(death_id)
+                ddate = death.get_date()
+                dplace_id = death.get_place_id()
+                if dplace_id:
+                    dplace = self.db.find_place_from_id(dplace_id).get_title()
             map = {}
             elist = individual.get_event_list()[:]
-            for ievent in elist:
+            for ievent_id in elist:
+                if not ievent_id:
+                    continue
+                ievent = self.db.find_event_from_id(ievent_id)
                 event_name = ievent.get_name()
                 if map.has_key(event_name):
-                    map[event_name].append(ievent)
+                    map[event_name].append(ievent_id)
                 else:
-                    map[event_name] = [ievent]
+                    map[event_name] = [ievent_id]
 
             first = 1
             done = 0
             while done == 0:
                 added = 0
                 if first:
-                    tlist = [name,"%s\n%s" % (birth.get_date(),birth.get_place_name()),
-                             "%s\n%s" % (death.get_date(),death.get_place_name())]
+                    tlist = [name,"%s\n%s" % (bdate,bplace),
+                             "%s\n%s" % (ddate,dplace)]
                 else:
                     tlist = ["","",""]
                 for ename in self.event_titles[3:]:
                     if map.has_key(ename) and len(map[ename]) > 0:
-                        event = map[ename][0]
+                        event_id = map[ename][0]
                         del map[ename][0]
-                        tlist.append("%s\n%s" % (event.get_date(), event.get_place_name()))
+                        date = ""
+                        place = ""
+                        if event_id:
+                            event = self.db.find_event_from_id(event_id)
+                            date = event.get_date()
+                            place_id = event.get_place_id()
+                            if place_id:
+                                place = self.db.find_place_from_id(place_id).get_title()
+                        tlist.append("%s\n%s" % (date, place))
                         added = 1
                     else:
                         tlist.append("")
@@ -285,9 +315,13 @@ class DisplayChart:
         """Creates the list of unique event types, along with the person's
         name, birth, and death. This should be the column titles of the report"""
         map = {}
-        for individual in self.my_list:
+        for individual_id in self.my_list:
+            individual = self.db.find_person_from_id(individual_id)
             elist = individual.get_event_list()
-            for event in elist:
+            for event_id in elist:
+                if not event_id:
+                    continue
+                event = self.db.find_event_from_id(event_id)
                 name = event.get_name()
                 if not name:
                     break
@@ -296,14 +330,9 @@ class DisplayChart:
                 else:
                     map[name] = 1
 
-        unsort_list = []
-        for item in map.keys():
-            unsort_list.append((map[item],item))
+        unsort_list = [ (map[item],item) for item in map.keys() ]
         unsort_list.sort(by_value)
-
-        sort_list = []
-        for item in unsort_list:
-            sort_list.append(item[1])
+        sort_list = [ item[1] for item in unsort_list ]
 
         return [_("Person"),_("Birth"),_("Death")] + sort_list
 
@@ -315,7 +344,7 @@ class DisplayChart:
             "destroy_passed_object" : Utils.destroy_passed_object
             })
         self.save_form = self.form.get_widget("dialog1")
-        self.save_form.show()
+        self.save_form.show_all()
 
     def on_html_toggled(self,obj):
         active = self.form.get_widget("html").get_active()
@@ -356,4 +385,3 @@ register_tool(
                   "development of custom filters that can be applied "
                   "to the database to find similar events")
     )
-
