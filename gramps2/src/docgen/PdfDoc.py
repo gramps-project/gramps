@@ -23,7 +23,7 @@
 # gramps modules
 #
 #------------------------------------------------------------------------
-import TextDoc
+import BaseDoc
 import Plugins
 import Errors
 import ImgManip
@@ -64,7 +64,7 @@ class GrampsDocTemplate(BaseDocTemplate):
 # 
 #
 #------------------------------------------------------------------------
-class PdfDoc(TextDoc.TextDoc):
+class PdfDoc(BaseDoc.BaseDoc):
 
     def open(self,filename):
         if filename[-4:] != ".pdf":
@@ -99,7 +99,7 @@ class PdfDoc(TextDoc.TextDoc):
             pdf_style.fontSize = font.get_size()
             pdf_style.bulletFontSize = font.get_size()
             
-            if font.get_type_face() == TextDoc.FONT_SERIF:
+            if font.get_type_face() == BaseDoc.FONT_SERIF:
                 if font.get_bold():
                     if font.get_italic():
                         pdf_style.fontName = "Times-BoldItalic"
@@ -133,11 +133,11 @@ class PdfDoc(TextDoc.TextDoc):
             pdf_style.bulletIndent = first
 
 	    align = style.get_alignment()
-            if align == TextDoc.PARA_ALIGN_RIGHT:
+            if align == BaseDoc.PARA_ALIGN_RIGHT:
 		pdf_style.alignment = TA_RIGHT
-            elif align == TextDoc.PARA_ALIGN_LEFT:
+            elif align == BaseDoc.PARA_ALIGN_LEFT:
 		pdf_style.alignment = TA_LEFT
-            elif align == TextDoc.PARA_ALIGN_CENTER:
+            elif align == BaseDoc.PARA_ALIGN_CENTER:
 		pdf_style.alignment = TA_CENTER
             else:
 		pdf_style.alignment = TA_JUSTIFY
@@ -239,7 +239,7 @@ class PdfDoc(TextDoc.TextDoc):
 
 	p = self.my_para
         f = p.get_font()
-        if f.get_type_face() == TextDoc.FONT_SANS_SERIF:
+        if f.get_type_face() == BaseDoc.FONT_SANS_SERIF:
             if f.get_bold():
                 fn = 'Helvetica-Bold'
             else:
@@ -265,9 +265,9 @@ class PdfDoc(TextDoc.TextDoc):
                 self.tblstyle.append(('LINEABOVE', loc, loc, 1, black))
             if self.my_table_style.get_bottom_border():
                 self.tblstyle.append(('LINEBELOW', loc, loc, 1, black))
-            if p.get_alignment() == TextDoc.PARA_ALIGN_LEFT:
+            if p.get_alignment() == BaseDoc.PARA_ALIGN_LEFT:
                 self.tblstyle.append(('ALIGN', loc, loc, 'LEFT'))
-            elif p.get_alignment() == TextDoc.PARA_ALIGN_RIGHT:
+            elif p.get_alignment() == BaseDoc.PARA_ALIGN_RIGHT:
                 self.tblstyle.append(('ALIGN', loc, loc, 'RIGHT'))
             else:
                 self.tblstyle.append(('ALIGN', loc, loc, 'CENTER'))
