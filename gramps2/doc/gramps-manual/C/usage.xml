@@ -179,7 +179,7 @@
       <para>Exporting allows you to share any portion of your &app; database 
       with other researchers as well as to make your database completely 
       portable to another computer. Currently, &app; 
-      can export data  to three different formats: CD, GEDCOM, &app; package, 
+      can export data  to four different formats: CD, GEDCOM, &app; package, 
       and Web Family Tree. All of these are available as items of
       <menuchoice><guimenu>File</guimenu>  
       <guisubmenu>Export</guisubmenu></menuchoice> submenu.</para>
