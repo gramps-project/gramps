@@ -104,8 +104,7 @@ class AddressEditor:
         else:
             self.srcreflist = []
 
-        self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,self.top,
-                                           self.slist,src_changed)
+        self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,self.top,self.slist)
 
         date_stat = self.top.get_widget("date_stat")
         self.date_check = DateEdit(self.addr_start,date_stat)
@@ -162,7 +161,3 @@ class AddressEditor:
         self.check(self.addr.getNote,self.addr.setNote,note)
         self.check(self.addr.getPrivacy,self.addr.setPrivacy,priv)
 
-def src_changed(parent):
-    """Sets the lists_changed flag of the parent object. Used as a callback
-    to the source editor, so the source editor can indicate a change."""
-    parent.lists_changed = 1

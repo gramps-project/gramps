@@ -20,21 +20,47 @@
 
 "Report Generation Framework"
 
-import RelLib
-import const
+__author__ =  "David R. Hampton, Donald N. Allingham"
+__version__ = "$Revision$"
+
+#-------------------------------------------------------------------------
+#
+# standard python modules
+#
+#-------------------------------------------------------------------------
 import os
 import string
+
+#-------------------------------------------------------------------------
+#
+# GNOME/GTK modules
+#
+#-------------------------------------------------------------------------
+import gtk
+import gnome.ui
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+import const
 import Utils
 import Plugins
 import GenericFilter
-
+import TextDoc
+import StyleEditor
+import GrampsCfg
+import PaperMenu
 import intl
+import latin_utf8
 
+u2l = latin_utf8.utf8_to_latin
 _ = intl.gettext
 
 #-------------------------------------------------------------------------
 #
-# 
+# Import XML libraries
 #
 #-------------------------------------------------------------------------
 try:
@@ -42,16 +68,11 @@ try:
 except:
     from _xmlplus.sax import make_parser,handler,SAXParseException
 
-from TextDoc import *
-from StyleEditor import *
-
-import GrampsCfg
-import PaperMenu
-
-from gtk import *
-from gnome.ui import *
-import libglade
-
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
 _default_template = _("Default Template")
 _user_template = _("User Defined Template")
 
@@ -59,14 +80,12 @@ _template_map = {
     _user_template : None
     }
 
-#------------------------------------------------------------------------
-#
-# The Report base class.  This is a base class for generating
-# customized reports.  It cannot be used as is, but it can be easily
-# sub-classed to create a functional report generator.
-#
-#------------------------------------------------------------------------
 class Report:
+    """
+    The Report base class.  This is a base class for generating
+    customized reports.  It cannot be used as is, but it can be easily
+    sub-classed to create a functional report generator.
+    """
 
     # Ordinal generation names.  Used by multiple reports.
     gen = {
@@ -116,12 +135,12 @@ class Report:
         
         # Customize the dialog for this report
         (title, header) = self.get_progressbar_data()
-        self.ptop = GnomeDialog()
+        self.ptop = gnome.ui.GnomeDialog()
         self.ptop.set_title(title)
-        self.ptop.vbox.add(GtkLabel(header))
-        self.ptop.vbox.add(GtkHSeparator())
+        self.ptop.vbox.add(gtk.GtkLabel(header))
+        self.ptop.vbox.add(gtk.GtkHSeparator())
         self.ptop.vbox.set_spacing(10)
-        self.pbar = GtkProgressBar()
+        self.pbar = gtk.GtkProgressBar()
         self.pbar.set_format_string(_("%v of %u (%P%%)"))
         self.pbar.configure(0.0,0.0,total)
         self.pbar.set_show_text(1)
@@ -131,8 +150,6 @@ class Report:
 
         self.ptop.vbox.add(self.pbar)
         self.ptop.show_all()
-
-    # Setup the progress bar limits
 
     def progress_bar_step(self):
         """Click the progress bar over to the next value.  Be paranoid
@@ -147,15 +164,13 @@ class Report:
         Utils.destroy_passed_object(self.ptop)
 
 
-#------------------------------------------------------------------------
-#
-# The ReportDialog base class.  This is a base class for generating
-# customized dialogs to solicit options for a report.  It cannot be
-# used as is, but it can be easily sub-classed to create a functional
-# dialog.
-#
-#------------------------------------------------------------------------
 class ReportDialog:
+    """
+    The ReportDialog base class.  This is a base class for generating
+    customized dialogs to solicit options for a report.  It cannot be
+    used as is, but it can be easily sub-classed to create a functional
+    dialog.
+    """
 
     frame_pad = 5
     border_pad = 2
@@ -179,7 +194,8 @@ class ReportDialog:
         self.frame_names = []
         self.frames = {}
         
-        self.window = GnomeDialog('GRAMPS',STOCK_BUTTON_OK,STOCK_BUTTON_CANCEL)
+        self.window = gnome.ui.GnomeDialog('GRAMPS',gnome.ui.STOCK_BUTTON_OK,
+                                           gnome.ui.STOCK_BUTTON_CANCEL)
         self.window.set_default(0)
         self.window.button_connect(0,self.on_ok_clicked)
         self.window.button_connect(1,self.on_cancel)
@@ -364,15 +380,15 @@ class ReportDialog:
     def make_default_style(self):
         """Create the default style to be used by the associated report.  This
         routine is a default implementation and should be overridden."""
-        font = FontStyle()
-        font.set(face=FONT_SANS_SERIF,size=16,bold=1)
-        para = ParagraphStyle()
+        font = TextDoc.FontStyle()
+        font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1)
+        para = TextDoc.ParagraphStyle()
         para.set_font(font)
         para.set_header_level(1)
         para.set(pad=0.5)
         self.default_style.add_style("Title",para)
 
-    def build_style_menu(self,dummy):
+    def build_style_menu(self):
         """Build a menu of style sets that are available for use in
         this report.  This menu will always have a default style
         available, and will have any other style set name that the
@@ -394,11 +410,11 @@ class ReportDialog:
         this report.  This menu will be generated based upon the type
         of document (text, draw, graph, etc. - a subclass), whether or
         not the document requires table support, etc."""
-        assert 0, "The make_doc_menu function must be overridden."
+        pass
 
     def make_document(self):
         """Create a document of the type selected by the user."""
-        assert 0, "The make_document function must be overridden."
+        pass
 
     def doc_type_changed(self, obj):
         """This routine is called when the user selects a new file
@@ -444,10 +460,10 @@ class ReportDialog:
         of the currently selected person."""
 
         title = self.get_header(self.name)
-        label = GtkLabel(title)
+        label = gtk.GtkLabel(title)
         label.set_usize(450,10)
-        self.window.vbox.pack_start(label,TRUE,TRUE,ReportDialog.border_pad)
-        self.window.vbox.add(GtkHSeparator())
+        self.window.vbox.pack_start(label,gtk.TRUE,gtk.TRUE,ReportDialog.border_pad)
+        self.window.vbox.add(gtk.GtkHSeparator())
         
     def setup_target_frame(self):
         """Set up the target frame of the dialog.  This function
@@ -457,21 +473,21 @@ class ReportDialog:
         directory should be used."""
 
         # Save Frame
-        frame = GtkFrame(_("Save As"))
+        frame = gtk.GtkFrame(_("Save As"))
         frame.set_border_width(ReportDialog.frame_pad)
         hid = self.get_stylesheet_savefile()
         if hid[-4:]==".xml":
             hid = hid[0:-4]
-        self.target_fileentry = GnomeFileEntry(hid,_("Save As"))
+        self.target_fileentry = gnome.ui.GnomeFileEntry(hid,_("Save As"))
 
-        hbox = GtkHBox()
+        hbox = gtk.GtkHBox()
         hbox.set_border_width(ReportDialog.border_pad)
         if (self.get_target_is_directory()):
             import _gnomeui
             _gnomeui.gnome_file_entry_set_directory(self.target_fileentry._o, 1)
-            label = GtkLabel(_("Directory"))
+            label = gtk.GtkLabel(_("Directory"))
         else:
-            label = GtkLabel(_("Filename"))
+            label = gtk.GtkLabel(_("Filename"))
         hbox.pack_start(label,0,0,5)
             
         hbox.add(self.target_fileentry)
@@ -502,9 +518,9 @@ class ReportDialog:
         relies on the make_doc_menu() function to do all the hard
         work."""
 
-        self.format_menu = GtkOptionMenu()
+        self.format_menu = gtk.GtkOptionMenu()
         self.make_doc_menu()
-        frame = GtkFrame(_("Output Format"))
+        frame = gtk.GtkFrame(_("Output Format"))
         frame.add(self.format_menu)
         frame.set_border_width(ReportDialog.frame_pad)        
         self.window.vbox.add(frame)
@@ -517,12 +533,12 @@ class ReportDialog:
         choose from."""
 
         # Styles Frame
-        self.style_frame = GtkFrame(_("Styles"))
-        hbox = GtkHBox()
+        self.style_frame = gtk.GtkFrame(_("Styles"))
+        hbox = gtk.GtkHBox()
         hbox.set_border_width(ReportDialog.border_pad)
-        self.style_menu = GtkOptionMenu()
-        hbox.pack_start(self.style_menu,TRUE,TRUE,2)
-        style_button = GtkButton(_("Style Editor"))
+        self.style_menu = gtk.GtkOptionMenu()
+        hbox.pack_start(self.style_menu,gtk.TRUE,gtk.TRUE,2)
+        style_button = gtk.GtkButton(_("Style Editor"))
         style_button.connect('clicked',self.on_style_edit_clicked)
         hbox.pack_end(style_button,0,0,2)
         self.style_frame.add(hbox)
@@ -530,30 +546,30 @@ class ReportDialog:
         self.window.vbox.add(self.style_frame)
         
         # Build the default style set for this report.
-        self.default_style = StyleSheet()
+        self.default_style = TextDoc.StyleSheet()
         self.make_default_style()
 
         # Build the initial list of available styles sets.  This
         # includes the default style set and any style sets saved from
         # previous invocations of gramps.
-        self.style_sheet_list = StyleSheetList(self.get_stylesheet_savefile(),
-                                               self.default_style)
+        self.style_sheet_list = TextDoc.StyleSheetList(self.get_stylesheet_savefile(),
+                                                       self.default_style)
 
         # Now build the actual menu.
-        self.build_style_menu(None)
+        self.build_style_menu()
 
     def setup_output_notebook(self):
         """Set up the output notebook of the dialog.  This sole
         purpose of this function is to grab a pointer for later use in
         the callback from when the file format is changed."""
 
-        self.output_notebook = GtkNotebook()
-        self.paper_frame = GtkFrame(_("Paper Options"))
+        self.output_notebook = gtk.GtkNotebook()
+        self.paper_frame = gtk.GtkFrame(_("Paper Options"))
         self.paper_frame.set_border_width(ReportDialog.frame_pad)
-        self.output_notebook.append_page(self.paper_frame,GtkLabel(_("Paper Options")))
-        self.html_frame = GtkFrame(_("HTML Options"))
+        self.output_notebook.append_page(self.paper_frame,gtk.GtkLabel(_("Paper Options")))
+        self.html_frame = gtk.GtkFrame(_("HTML Options"))
         self.html_frame.set_border_width(ReportDialog.frame_pad)
-        self.output_notebook.append_page(self.html_frame,GtkLabel(_("HTML Options")))
+        self.output_notebook.append_page(self.html_frame,gtk.GtkLabel(_("HTML Options")))
         self.output_notebook.set_show_tabs(0)
         self.output_notebook.set_show_border(0)
         self.output_notebook.set_page(self.notebook_page)
@@ -566,28 +582,28 @@ class ReportDialog:
         its strings should be."""
 
         (pagecount_map, start_text) = self.get_print_pagecount_map()
-        table = GtkTable(2,4)
+        table = gtk.GtkTable(2,4)
         self.paper_frame.add(table)
-        self.papersize_menu = GtkOptionMenu()
-        self.orientation_menu = GtkOptionMenu()
-        l = GtkLabel(_("Size"))
+        self.papersize_menu = gtk.GtkOptionMenu()
+        self.orientation_menu = gtk.GtkOptionMenu()
+        l = gtk.GtkLabel(_("Size"))
         pad = ReportDialog.border_pad
         l.set_alignment(1.0,0.5)
-        table.attach(l,0,1,0,1,FILL,FILL,pad,pad)
+        table.attach(l,0,1,0,1,gtk.FILL,gtk.FILL,pad,pad)
         table.attach(self.papersize_menu,1,2,0,1,xpadding=pad,ypadding=pad)
-        l = GtkLabel(_("Orientation"))
+        l = gtk.GtkLabel(_("Orientation"))
         l.set_alignment(1.0,0.5)
-        table.attach(l,2,3,0,1,FILL,FILL,pad,pad)
+        table.attach(l,2,3,0,1,gtk.FILL,gtk.FILL,pad,pad)
         table.attach(self.orientation_menu,3,4,0,1,xpadding=pad,ypadding=pad)
         PaperMenu.make_paper_menu(self.papersize_menu)
         PaperMenu.make_orientation_menu(self.orientation_menu)
 
         # The optional pagecount stuff.
         if pagecount_map:
-            self.pagecount_menu = GtkOptionMenu()
+            self.pagecount_menu = gtk.GtkOptionMenu()
             myMenu = Utils.build_string_optmenu(pagecount_map, start_text)
             self.pagecount_menu.set_menu(myMenu)
-            table.attach(GtkLabel(_("Page Count")),0,1,1,2,FILL,FILL,pad,pad)
+            table.attach(gtk.GtkLabel(_("Page Count")),0,1,1,2,gtk.FILL,gtk.FILL,pad,pad)
             table.attach(self.pagecount_menu,1,2,1,2,xpadding=pad,ypadding=pad)
             
     def html_file_enable(self,obj):
@@ -605,13 +621,13 @@ class ReportDialog:
         this function is to grab a pointer for later use in the parse
         html frame function."""
 
-        table = GtkTable(2,2)
+        table = gtk.GtkTable(2,2)
         self.html_frame.add(table)
-        l = GtkLabel(_("Template"))
+        l = gtk.GtkLabel(_("Template"))
         pad = ReportDialog.border_pad
         l.set_alignment(1.0,0.5)
-        table.attach(l,0,1,0,1,FILL,FILL,pad,pad)
-        self.template_combo = GtkCombo()
+        table.attach(l,0,1,0,1,gtk.FILL,gtk.FILL,pad,pad)
+        self.template_combo = gtk.GtkCombo()
 
         template_list = [ _default_template ]
         tlist = _template_map.keys()
@@ -627,14 +643,14 @@ class ReportDialog:
         self.template_combo.entry.connect('changed',self.html_file_enable)
         
         table.attach(self.template_combo,1,2,0,1,
-                     FILL|EXPAND,FILL|EXPAND,pad,pad)
-        table.attach(GtkLabel(_("User Template")),0,1,1,2,
-                     FILL,FILL,pad,pad)
-        self.html_fileentry = GnomeFileEntry(_("HTML Template"),
+                     gtk.FILL|gtk.EXPAND,gtk.FILL|gtk.EXPAND,pad,pad)
+        table.attach(gtk.GtkLabel(_("User Template")),0,1,1,2,
+                     gtk.FILL,gtk.FILL,pad,pad)
+        self.html_fileentry = gnome.ui.GnomeFileEntry(_("HTML Template"),
                                              _("Choose File"))
         self.html_fileentry.set_sensitive(0)
         table.attach(self.html_fileentry,1,2,1,2,
-                     FILL|EXPAND,FILL|EXPAND,pad,pad)
+                     gtk.FILL|gtk.EXPAND,gtk.FILL|gtk.EXPAND,pad,pad)
 
     def setup_report_options_frame(self):
         """Set up the report options frame of the dialog.  This
@@ -667,25 +683,25 @@ class ReportDialog:
         if max_rows == 0:
             return
 
-        table = GtkTable(2,max_rows)
+        table = gtk.GtkTable(2,max_rows)
 
         if len(self.frame_names) == 0:
-            frame = GtkFrame(_("Report Options"))
+            frame = gtk.GtkFrame(_("Report Options"))
             frame.set_border_width(ReportDialog.frame_pad)
             self.window.vbox.add(frame)
             frame.add(table)
         else:
-            self.notebook = GtkNotebook()
+            self.notebook = gtk.GtkNotebook()
             self.window.vbox.pack_start(self.notebook,padding=ReportDialog.frame_pad)
-            self.notebook.append_page(table,GtkLabel(_("Report Options")))
+            self.notebook.append_page(table,gtk.GtkLabel(_("Report Options")))
             self.notebook.set_border_width(ReportDialog.frame_pad)
 
         pad = ReportDialog.border_pad
         if len(local_filters):
-            self.filter_combo = GtkOptionMenu()
-            l = GtkLabel(_("Filter"))
+            self.filter_combo = gtk.GtkOptionMenu()
+            l = gtk.GtkLabel(_("Filter"))
             l.set_alignment(1.0,0.5)
-            table.attach(l,0,1,row,row+1,xoptions=FILL,yoptions=0,
+            table.attach(l,0,1,row,row+1,xoptions=gtk.FILL,yoptions=0,
                          xpadding=pad,ypadding=pad)
             table.attach(self.filter_combo,1,2,row,row+1,yoptions=0,
                          xpadding=pad,ypadding=pad)
@@ -698,14 +714,14 @@ class ReportDialog:
             
         # Set up the generations spin and page break checkbox
         if use_gen:
-            self.generations_spinbox = GtkSpinButton(digits=0)
+            self.generations_spinbox = gtk.GtkSpinButton(digits=0)
             self.generations_spinbox.set_numeric(1)
-            adjustment = GtkAdjustment(use_gen,1,31,1,0)
+            adjustment = gtk.GtkAdjustment(use_gen,1,31,1,0)
             self.generations_spinbox.set_adjustment(adjustment)
             adjustment.value_changed()
-            l = GtkLabel(_("Generations"))
+            l = gtk.GtkLabel(_("Generations"))
             l.set_alignment(1.0,0.5)
-            table.attach(l,0,1,row,row+1,xoptions=FILL,yoptions=0,
+            table.attach(l,0,1,row,row+1,xoptions=gtk.FILL,yoptions=0,
                          xpadding=pad,ypadding=pad)
             table.attach(self.generations_spinbox,1,2,row,row+1,
                          yoptions=0, xpadding=pad,ypadding=pad)
@@ -713,35 +729,35 @@ class ReportDialog:
 
             if use_break:
                 msg = _("Page break between generations")
-                self.pagebreak_checkbox = GtkCheckButton(msg)
+                self.pagebreak_checkbox = gtk.GtkCheckButton(msg)
                 table.attach(self.pagebreak_checkbox,1,2,row,row+1,
                              xpadding=pad,ypadding=pad)
                 row = row + 1
 
         # Now the "extra" option menu
         if extra_map:
-            self.extra_menu_label = GtkLabel(em_label)
+            self.extra_menu_label = gtk.GtkLabel(em_label)
             self.extra_menu_label.set_alignment(1.0,0.5)
-            self.extra_menu = GtkOptionMenu()
+            self.extra_menu = gtk.GtkOptionMenu()
             myMenu = Utils.build_string_optmenu(extra_map, preset)
             self.extra_menu.set_menu(myMenu)
             self.extra_menu.set_sensitive(len(extra_map) > 1)
             self.add_tooltip(self.extra_menu,em_tip)
             table.attach(self.extra_menu_label,0,1,row,row+1,
-                         xoptions=FILL,yoptions=0,xpadding=pad,ypadding=pad)
+                         xoptions=gtk.FILL,yoptions=0,xpadding=pad,ypadding=pad)
             table.attach(self.extra_menu,1,2,row,row+1,yoptions=0,
                          xpadding=pad,ypadding=pad)
             row = row + 1
             
         # Now the "extra" text box
         if string:
-            self.extra_textbox_label = GtkLabel(et_label)
+            self.extra_textbox_label = gtk.GtkLabel(et_label)
             self.extra_textbox_label.set_alignment(1.0,0)
-            self.extra_textbox = GtkText()
+            self.extra_textbox = gtk.GtkText()
             self.extra_textbox.insert_defaults(string)
             self.extra_textbox.set_editable(1)
             self.add_tooltip(self.extra_textbox,et_tip)
-            table.attach(self.extra_textbox_label,0,1,row,row+1,xoptions=FILL,
+            table.attach(self.extra_textbox_label,0,1,row,row+1,xoptions=gtk.FILL,
                          yoptions=0,xpadding=pad,ypadding=pad)
             table.attach(self.extra_textbox,1,2,row,row+1,
                          yoptions=0,xpadding=pad,ypadding=pad)
@@ -752,7 +768,7 @@ class ReportDialog:
             if text == None:
                 table.attach(widget,0,2,row,row+1,yoptions=0,xpadding=pad,ypadding=pad)
             else:
-                text_widget = GtkLabel(text)
+                text_widget = gtk.GtkLabel(text)
                 text_widget.set_alignment(1.0,0)
                 table.attach(text_widget,0,1,row,row+1,yoptions=0,xpadding=pad,ypadding=pad)
                 table.attach(widget,1,2,row,row+1,yoptions=0,xpadding=pad,ypadding=pad)
@@ -763,8 +779,8 @@ class ReportDialog:
         pad = ReportDialog.border_pad
         for key in self.frame_names:
             list = self.frames[key]
-            table = GtkTable(2,len(list))
-            self.notebook.append_page(table,GtkLabel(_(key)))
+            table = gtk.GtkTable(2,len(list))
+            self.notebook.append_page(table,gtk.GtkLabel(_(key)))
 
             row = 0
             for (text,widget) in list:
@@ -772,9 +788,9 @@ class ReportDialog:
                     table.attach(widget,0,2,row,row+1,
                                  xpadding=pad,ypadding=pad)
                 else:
-                    text_widget = GtkLabel(text)
+                    text_widget = gtk.GtkLabel(text)
                     text_widget.set_alignment(1.0,0)
-                    table.attach(text_widget,0,1,row,row+1,FILL,FILL,pad,pad)
+                    table.attach(text_widget,0,1,row,row+1,gtk.FILL,gtk.FILL,pad,pad)
                     table.attach(widget,1,2,row,row+1,yoptions=0,
                                  xpadding=pad,ypadding=pad)
                 row = row + 1
@@ -795,7 +811,7 @@ class ReportDialog:
             return None
 
         if not self.get_target_is_directory() and os.path.isdir(self.target_path):
-            GnomeErrorDialog(_("The filename that you gave is a directory.\n"
+            gnome.ui.GnomeErrorDialog(_("The filename that you gave is a directory.\n"
                                "You need to provide a valid filename."))
             return None
         
@@ -893,7 +909,7 @@ class ReportDialog:
         style sheet editor object and let them play.  When they are
         done, the previous routine will be called to update the dialog
         menu for selecting a style."""
-        StyleListDisplay(self.style_sheet_list,self.build_style_menu,None)
+        StyleEditor.StyleListDisplay(self.style_sheet_list,self.build_style_menu)
 
     def on_cancel(self, obj):
         self.window.destroy()
@@ -922,7 +938,7 @@ class ReportDialog:
         try:
             self.make_report()
         except (IOError,OSError),msg:
-            GnomeErrorDialog(str(msg))
+            gnome.ui.GnomeErrorDialog(str(msg))
 
         # Clean up the dialog object
         self.window.destroy()
@@ -939,7 +955,7 @@ class ReportDialog:
         routine should either write the data directly to the file, or
         better yet, should create a subclass of a Report that will
         write the data to a file."""
-        assert 0, "The make_report function must be overridden."
+        pass
 
     #------------------------------------------------------------------------
     #
@@ -947,18 +963,16 @@ class ReportDialog:
     #
     #------------------------------------------------------------------------
     def add_tooltip(self,widget,string):
+        """Adds a tooltip to the specified widget"""
         if not widget or not string:
             return
         tip = gtk.GtkTooltips()
         tip.set_tip(widget,string)
 
-#------------------------------------------------------------------------
-#
-# TextReportDialog - A class of ReportDialog customized for text based
-# reports.
-#
-#------------------------------------------------------------------------
+
 class TextReportDialog(ReportDialog):
+    """A class of ReportDialog customized for text based reports."""
+
     def __init__(self,database,person):
         """Initialize a dialog to request that the user select options
         for a basic text report.  See the ReportDialog class for more
@@ -1007,13 +1021,8 @@ class TextReportDialog(ReportDialog):
         self.doc.write_text(title)
         self.doc.end_paragraph()
 
-#------------------------------------------------------------------------
-#
-# DrawReportDialog - A class of ReportDialog customized for drawing based
-# reports.
-#
-#------------------------------------------------------------------------
 class DrawReportDialog(ReportDialog):
+    """A class of ReportDialog customized for drawing based reports."""
     def __init__(self,database,person):
         """Initialize a dialog to request that the user select options
         for a basic drawing report.  See the ReportDialog class for
@@ -1034,26 +1043,36 @@ class DrawReportDialog(ReportDialog):
         """Create a document of the type requested by the user."""
         self.doc = self.format(self.selected_style,self.paper,self.orien)
 
-import latin_utf8
-
-u2l = latin_utf8.utf8_to_latin
 
 class TemplateParser(handler.ContentHandler):
+    """
+    Interface to the document template file
+    """
     def __init__(self,data,fpath):
+        """
+        Creates a template parser. The parser loads map of tempate names
+        to the file containing the tempate.
+
+        data - dictionary that holds the name to path mappings
+        fpath - filename of the XML file
+        """
         handler.ContentHandler.__init__(self)
         self.data = data
         self.path = fpath
     
     def setDocumentLocator(self,locator):
+        """Sets the XML document locator"""
         self.locator = locator
 
     def startElement(self,tag,attrs):
+        """
+        Loads the dictionary when an XML tag of 'template' is found. The format
+        XML tag is <template title=\"name\" file=\"path\">
+        """
+        
         if tag == "template":
             self.data[u2l(attrs['title'])] = u2l(attrs['file'])
             
-    def characters(self, data):
-        pass
-
 try:
     parser = make_parser()
     path = const.template_dir

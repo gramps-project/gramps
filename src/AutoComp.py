@@ -59,9 +59,7 @@ class AutoCompBase:
         else:
             cnv = string.lower
             self.nlist = []
-            for n in plist:
-                self.nlist.append((cnv(n),n))
-#            self.nlist = map((lambda n: (cnv(n),n)),plist)
+            self.nlist = map((lambda n: (cnv(n),n)),plist)
             self.nlist.sort()
         self.nl = "xzsdkdjecsc"
         self.l = 0

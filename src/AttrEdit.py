@@ -77,8 +77,7 @@ class AttributeEditor(Sources.SourceTab):
         else:
             self.srcreflist = []
 
-        self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,self.top,
-                                           self.slist,src_changed)
+        self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,self.top,self.slist)
 
         # Typing CR selects OK button
         self.window.editable_enters(self.type_field);
@@ -140,7 +139,3 @@ class AttributeEditor(Sources.SourceTab):
         self.check(self.attrib.getNote,self.attrib.setNote,note)
         self.check(self.attrib.getPrivacy,self.attrib.setPrivacy,priv)
 
-def src_changed(parent):
-    """Sets the lists_changed flag of the parent object. Used as a callback
-    to the source editor, so the source editor can indicate a change."""
-    parent.lists_changed = 1

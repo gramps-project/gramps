@@ -29,7 +29,6 @@ import os
 import sort
 import Utils
 import string
-import ListColors
 import const
 import GenericFilter
 from TextDoc import *
@@ -208,11 +207,10 @@ class DisplayChart:
         eventlist = gtk.GtkCList(len(self.event_titles),self.event_titles)
         self.table.add(eventlist)
         eventlist.show()
-        color_clist = ListColors.ColorList(eventlist,2)
 
         for (top,bottom) in self.row_data:
-            color_clist.add(top)
-            color_clist.add(bottom)
+            eventlist.append(top)
+            eventlist.append(bottom)
 
         for index in range(0,len(self.event_titles)):
             width = min(150,eventlist.optimal_column_width(index))

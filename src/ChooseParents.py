@@ -280,21 +280,22 @@ class ChooseParents:
         self.family_update(None)
 
     def add_new_parent(self,person):
+        id = person.getId()
         self.type = const.save_frel(self.prel.get_text())
-        rdata = [Utils.phonebook_name(person),Utils.birthday(person),
-                 sort.build_sort_name(person.getPrimaryName())]
+        dinfo = self.db.getPersonDisplay(id)
+        rdata = [dinfo[0],dinfo[3],dinfo[5],dinfo[6]]
 
         if self.type == "Partners":
             self.parent_relation_changed(self.prel)
         elif person.getGender() == RelLib.Person.male:
             self.father_list.insert(0,rdata)
-            self.father_list.set_row_data(0,person)
+            self.father_list.set_row_data(0,id)
             self.father_list.select_row(0,0)
             self.father_list.sort()
             self.father_list.moveto(self.father_list.selection[0],0)
         else:
             self.mother_list.insert(0,rdata)
-            self.mother_list.set_row_data(0,person)
+            self.mother_list.set_row_data(0,id)
             self.mother_list.select_row(0,0)
             self.mother_list.moveto(0,0)
             self.mother_list.sort()

@@ -28,6 +28,7 @@ import intl
 _ = intl.gettext
 
 from Report import *
+from TextDoc import *
 
 import gtk
 import gnome.ui

@@ -35,6 +35,7 @@ import string
 #
 #------------------------------------------------------------------------
 from Report import *
+from TextDoc import *
 import intl
 
 _ = intl.gettext

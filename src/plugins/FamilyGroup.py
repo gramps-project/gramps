@@ -26,6 +26,7 @@ import intl
 _ = intl.gettext
 
 from Report import *
+from TextDoc import *
 
 #------------------------------------------------------------------------
 #

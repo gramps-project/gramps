@@ -1167,7 +1167,7 @@ class EditPerson:
             
         if surname != name.getSurname():
             name.setSurname(surname)
-            self.db.addSurname(name)
+            self.db.addSurname(surname)
 
         if given != name.getFirstName():
             name.setFirstName(given)
@@ -1346,7 +1346,7 @@ class EditPerson:
 
     def on_primary_name_source_clicked(self,obj):
         import Sources
-        Sources.SourceSelector(self.pname.getSourceRefList(),self,src_changed)
+        Sources.SourceSelector(self.pname.getSourceRefList(),self)
 
     def on_name_note_clicked(self,obj):
         import NoteEdit
@@ -1358,7 +1358,7 @@ class EditPerson:
         if ord == None:
             ord = LdsOrd()
             self.person.setLdsBaptism(ord)
-        Sources.SourceSelector(self.pname.getSourceRefList(),self,src_changed)
+        Sources.SourceSelector(self.pname.getSourceRefList(),self)
 
     def on_ldsbap_note_clicked(self,obj):
         import NoteEdit
@@ -1374,7 +1374,7 @@ class EditPerson:
         if ord == None:
             ord = LdsOrd()
             self.person.setLdsEndowment(ord)
-        Sources.SourceSelector(self.pname.getSourceRefList(),self,src_changed)
+        Sources.SourceSelector(self.pname.getSourceRefList(),self)
 
     def on_ldsendow_note_clicked(self,obj):
         import NoteEdit
@@ -1390,7 +1390,7 @@ class EditPerson:
         if ord == None:
             ord = LdsOrd()
             self.person.setLdsSeal(ord)
-        Sources.SourceSelector(self.pname.getSourceRefList(),self,src_changed)
+        Sources.SourceSelector(self.pname.getSourceRefList(),self)
 
     def on_ldsseal_note_clicked(self,obj):
         import NoteEdit
@@ -1533,14 +1533,6 @@ def disp_event(event):
     return [const.display_pevent(event.getName()),event.getDescription(),
             event.getQuoteDate(),event.getPlaceName(),attr]
 
-#-------------------------------------------------------------------------
-#
-# src_changed
-#
-#-------------------------------------------------------------------------
-def src_changed(parent):
-    parent.lists_changed = 1
-    
 #-------------------------------------------------------------------------
 # 
 # birth_dates_in_order

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2002  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -93,23 +93,22 @@ class Sorter:
         self.clist.sort()
         if _enable:
             try:
-                loddbg = oddbg
-                loddfg = oddfg
-                levenbg = evenbg
-                levenfg = evenfg
-
                 cmap = self.clist.get_colormap()
-                toddbg = cmap.alloc(loddbg[0],loddbg[1],loddbg[2])
-                toddfg = cmap.alloc(loddfg[0],loddfg[1],loddfg[2])
-                tevenbg = cmap.alloc(levenbg[0],levenbg[1],levenbg[2])
-                tevenfg = cmap.alloc(levenfg[0],levenfg[1],levenfg[2])
+                loddbg  = cmap.alloc(to_signed(oddbg[0]),to_signed(oddbg[1]),
+                                     to_signed(oddbg[2]))
+                loddfg  = cmap.alloc(to_signed(oddfg[0]),to_signed(oddfg[1]),
+                                     to_signed(oddfg[2]))
+                levenbg = cmap.alloc(to_signed(evenbg[0]),to_signed(evenbg[1]),
+                                     to_signed(evenbg[2]))
+                levenfg = cmap.alloc(to_signed(evenfg[0]),to_signed(evenfg[1]),
+                                     to_signed(evenfg[2]))
                 rows = self.clist.rows
                 for i in range(0,rows,2):
-                    self.clist.set_background(i,toddbg)
-                    self.clist.set_foreground(i,toddfg)
+                    self.clist.set_background(i,loddbg)
+                    self.clist.set_foreground(i,loddfg)
                     if i != rows:
-                        self.clist.set_background(i+1,tevenbg)
-                        self.clist.set_foreground(i+1,tevenfg)
+                        self.clist.set_background(i+1,levenbg)
+                        self.clist.set_foreground(i+1,levenfg)
             except OverflowError:
                 pass
         self.clist.thaw()
