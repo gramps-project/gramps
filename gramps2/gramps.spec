@@ -1,5 +1,5 @@
 %define ver      0.9.3
-%define rel      rc1
+%define rel      1
 %define prefix   /usr
 %define localstatedir /var/lib
 # Ensure that internal RPM macros for configure & makeinstall 

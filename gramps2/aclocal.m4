@@ -1,6 +1,6 @@
-# generated automatically by aclocal 1.7.4 -*- Autoconf -*-
+# aclocal.m4 generated automatically by aclocal 1.6.3 -*- Autoconf -*-
 
-# Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2002
+# Copyright 1996, 1997, 1998, 1999, 2000, 2001, 2002
 # Free Software Foundation, Inc.
 # This file is free software; the Free Software Foundation
 # gives unlimited permission to copy and/or distribute it,
@@ -16,7 +16,7 @@
 # This macro actually does too much some checks are only needed if
 # your package does certain things.  But this isn't really a big deal.
 
-# Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003
+# Copyright 1996, 1997, 1998, 1999, 2000, 2001, 2002
 # Free Software Foundation, Inc.
 
 # This program is free software; you can redistribute it and/or modify
@@ -34,9 +34,16 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 # 02111-1307, USA.
 
-# serial 10
+# serial 8
 
-AC_PREREQ([2.54])
+# There are a few dirty hacks below to avoid letting `AC_PROG_CC' be
+# written in clear, in which case automake, when reading aclocal.m4,
+# will think it sees a *use*, and therefore will trigger all it's
+# C support machinery.  Also note that it means that autoscan, seeing
+# CC etc. in the Makefile, will ask for an AC_PROG_CC use...
+
+
+AC_PREREQ([2.52])
 
 # Autoconf 2.50 wants to disallow AM_ names.  We explicitly allow
 # the ones we care about.
@@ -62,16 +69,6 @@ if test "`cd $srcdir && pwd`" != "`pwd`" &&
   AC_MSG_ERROR([source directory already configured; run "make distclean" there first])
 fi
 
-# test whether we have cygpath
-if test -z "$CYGPATH_W"; then
-  if (cygpath --version) >/dev/null 2>/dev/null; then
-    CYGPATH_W='cygpath -w'
-  else
-    CYGPATH_W=echo
-  fi
-fi
-AC_SUBST([CYGPATH_W])
-
 # Define the identity of the package.
 dnl Distinguish between old-style and new-style calls.
 m4_ifval([$2],
@@ -79,8 +76,8 @@ m4_ifval([$2],
  AC_SUBST([PACKAGE], [$1])dnl
  AC_SUBST([VERSION], [$2])],
 [_AM_SET_OPTIONS([$1])dnl
- AC_SUBST([PACKAGE], ['AC_PACKAGE_TARNAME'])dnl
- AC_SUBST([VERSION], ['AC_PACKAGE_VERSION'])])dnl
+ AC_SUBST([PACKAGE], [AC_PACKAGE_TARNAME])dnl
+ AC_SUBST([VERSION], [AC_PACKAGE_VERSION])])dnl
 
 _AM_IF_OPTION([no-define],,
 [AC_DEFINE_UNQUOTED(PACKAGE, "$PACKAGE", [Name of package])
@@ -101,40 +98,18 @@ AM_PROG_INSTALL_STRIP
 # some platforms.
 AC_REQUIRE([AC_PROG_AWK])dnl
 AC_REQUIRE([AC_PROG_MAKE_SET])dnl
-AC_REQUIRE([AM_SET_LEADING_DOT])dnl
 
 _AM_IF_OPTION([no-dependencies],,
-[AC_PROVIDE_IFELSE([AC_PROG_CC],
+[AC_PROVIDE_IFELSE([AC_PROG_][CC],
                   [_AM_DEPENDENCIES(CC)],
-                  [define([AC_PROG_CC],
-                          defn([AC_PROG_CC])[_AM_DEPENDENCIES(CC)])])dnl
-AC_PROVIDE_IFELSE([AC_PROG_CXX],
+                  [define([AC_PROG_][CC],
+                          defn([AC_PROG_][CC])[_AM_DEPENDENCIES(CC)])])dnl
+AC_PROVIDE_IFELSE([AC_PROG_][CXX],
                   [_AM_DEPENDENCIES(CXX)],
-                  [define([AC_PROG_CXX],
-                          defn([AC_PROG_CXX])[_AM_DEPENDENCIES(CXX)])])dnl
+                  [define([AC_PROG_][CXX],
+                          defn([AC_PROG_][CXX])[_AM_DEPENDENCIES(CXX)])])dnl
 ])
 ])
-
-
-# When config.status generates a header, we must update the stamp-h file.
-# This file resides in the same directory as the config header
-# that is generated.  The stamp files are numbered to have different names.
-
-# Autoconf calls _AC_AM_CONFIG_HEADER_HOOK (when defined) in the
-# loop where config.status creates the headers, so we can generate
-# our stamp files there.
-AC_DEFUN([_AC_AM_CONFIG_HEADER_HOOK],
-[# Compute $1's index in $config_headers.
-_am_stamp_count=1
-for _am_header in $config_headers :; do
-  case $_am_header in
-    $1 | $1:* )
-      break ;;
-    * )
-      _am_stamp_count=`expr $_am_stamp_count + 1` ;;
-  esac
-done
-echo "timestamp for $1" >`AS_DIRNAME([$1])`/stamp-h[]$_am_stamp_count])
 
 # Copyright 2002  Free Software Foundation, Inc.
 
@@ -156,14 +131,14 @@ echo "timestamp for $1" >`AS_DIRNAME([$1])`/stamp-h[]$_am_stamp_count])
 # ----------------------------
 # Automake X.Y traces this macro to ensure aclocal.m4 has been
 # generated from the m4 files accompanying Automake X.Y.
-AC_DEFUN([AM_AUTOMAKE_VERSION],[am__api_version="1.7"])
+AC_DEFUN([AM_AUTOMAKE_VERSION],[am__api_version="1.6"])
 
 # AM_SET_CURRENT_AUTOMAKE_VERSION
 # -------------------------------
 # Call AM_AUTOMAKE_VERSION so it can be traced.
 # This function is AC_REQUIREd by AC_INIT_AUTOMAKE.
 AC_DEFUN([AM_SET_CURRENT_AUTOMAKE_VERSION],
-	 [AM_AUTOMAKE_VERSION([1.7.4])])
+	 [AM_AUTOMAKE_VERSION([1.6.3])])
 
 # Helper functions for option handling.                    -*- Autoconf -*-
 
@@ -449,42 +424,9 @@ fi
 INSTALL_STRIP_PROGRAM="\${SHELL} \$(install_sh) -c -s"
 AC_SUBST([INSTALL_STRIP_PROGRAM])])
 
-#                                                          -*- Autoconf -*-
-# Copyright (C) 2003  Free Software Foundation, Inc.
+# serial 4						-*- Autoconf -*-
 
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2, or (at your option)
-# any later version.
-
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
-# 02111-1307, USA.
-
-# serial 1
-
-# Check whether the underlying file-system supports filenames
-# with a leading dot.  For instance MS-DOS doesn't.
-AC_DEFUN([AM_SET_LEADING_DOT],
-[rm -rf .tst 2>/dev/null
-mkdir .tst 2>/dev/null
-if test -d .tst; then
-  am__leading_dot=.
-else
-  am__leading_dot=_
-fi
-rmdir .tst 2>/dev/null
-AC_SUBST([am__leading_dot])])
-
-# serial 5						-*- Autoconf -*-
-
-# Copyright (C) 1999, 2000, 2001, 2002, 2003  Free Software Foundation, Inc.
+# Copyright 1999, 2000, 2001 Free Software Foundation, Inc.
 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -576,17 +518,11 @@ AC_CACHE_CHECK([dependency style of $depcc],
     if depmode=$depmode \
        source=conftest.c object=conftest.o \
        depfile=conftest.Po tmpdepfile=conftest.TPo \
-       $SHELL ./depcomp $depcc -c -o conftest.o conftest.c \
-         >/dev/null 2>conftest.err &&
+       $SHELL ./depcomp $depcc -c conftest.c -o conftest.o >/dev/null 2>&1 &&
        grep conftest.h conftest.Po > /dev/null 2>&1 &&
        ${MAKE-make} -s -f confmf > /dev/null 2>&1; then
-      # icc doesn't choke on unknown options, it will just issue warnings
-      # (even with -Werror).  So we grep stderr for any message
-      # that says an option was ignored.
-      if grep 'ignoring option' conftest.err >/dev/null 2>&1; then :; else
-        am_cv_$1_dependencies_compiler_type=$depmode
-        break
-      fi
+      am_cv_$1_dependencies_compiler_type=$depmode
+      break
     fi
   done
 
@@ -597,9 +533,6 @@ else
 fi
 ])
 AC_SUBST([$1DEPMODE], [depmode=$am_cv_$1_dependencies_compiler_type])
-AM_CONDITIONAL([am__fastdep$1], [
-  test "x$enable_dependency_tracking" != xno \
-  && test "$am_cv_$1_dependencies_compiler_type" = gcc3])
 ])
 
 
@@ -608,8 +541,16 @@ AM_CONDITIONAL([am__fastdep$1], [
 # Choose a directory name for dependency files.
 # This macro is AC_REQUIREd in _AM_DEPENDENCIES
 AC_DEFUN([AM_SET_DEPDIR],
-[AC_REQUIRE([AM_SET_LEADING_DOT])dnl
-AC_SUBST([DEPDIR], ["${am__leading_dot}deps"])dnl
+[rm -f .deps 2>/dev/null
+mkdir .deps 2>/dev/null
+if test -d .deps; then
+  DEPDIR=.deps
+else
+  # MS-DOS does not allow filenames that begin with a dot.
+  DEPDIR=_deps
+fi
+rmdir .deps 2>/dev/null
+AC_SUBST([DEPDIR])
 ])
 
 
@@ -711,9 +652,7 @@ AC_DEFUN([AM_OUTPUT_DEPENDENCY_COMMANDS],
      [AMDEP_TRUE="$AMDEP_TRUE" ac_aux_dir="$ac_aux_dir"])
 ])
 
-# Check to see how 'make' treats includes.	-*- Autoconf -*-
-
-# Copyright (C) 2001, 2002 Free Software Foundation, Inc.
+# Copyright 2001 Free Software Foundation, Inc.             -*- Autoconf -*-
 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -753,7 +692,7 @@ echo "include confinc" > confmf
 # In particular we don't look at `^make:' because GNU make might
 # be invoked under some other name (usually "gmake"), in which
 # case it prints its new name instead of `make'.
-if test "`$am_make -s -f confmf 2> /dev/null | grep -v 'ing directory'`" = "done"; then
+if test "`$am_make -s -f confmf 2> /dev/null | fgrep -v 'ing directory'`" = "done"; then
    am__include=include
    am__quote=
    _am_result=GNU
@@ -813,7 +752,7 @@ else
 fi
 AC_CONFIG_COMMANDS_PRE(
 [if test -z "${$1_TRUE}" && test -z "${$1_FALSE}"; then
-  AC_MSG_ERROR([conditional "$1" was never defined.
+  AC_MSG_ERROR([conditional \"$1\" was never defined.
 Usually this means the macro was only invoked conditionally.])
 fi])])
 
@@ -865,14 +804,12 @@ AC_DEFUN([AM_PATH_PYTHON],
   dnl $prefix/lib/site-python in 1.4 to $prefix/lib/python1.5/site-packages
   dnl in 1.5.
   m4_define([_AM_PYTHON_INTERPRETER_LIST],
-	    [python python2 python2.3 python2.2 python2.1 python2.0 python1.6 python1.5])
+	    [python python2 python2.2 python2.1 python2.0 python1.6 python1.5])
 
   m4_if([$1],[],[
     dnl No version check is needed.
     # Find any Python interpreter.
-    AC_PATH_PROG([PYTHON], _AM_PYTHON_INTERPRETER_LIST)
-    am_display_PYTHON=python
-  ], [
+    AC_PATH_PROG([PYTHON], _AM_PYTHON_INTERPRETER_LIST)],[
     dnl A version check is needed.
     if test -n "$PYTHON"; then
       # If the user set $PYTHON, use it and don't search something else.
@@ -893,7 +830,6 @@ AC_DEFUN([AM_PATH_PYTHON],
         done])
       # Set $PYTHON to the absolute path of $am_cv_pathless_PYTHON.
       AC_PATH_PROG([PYTHON], [$am_cv_pathless_PYTHON])
-      am_display_PYTHON=$am_cv_pathless_PYTHON
     fi
   ])
 
@@ -901,7 +837,7 @@ AC_DEFUN([AM_PATH_PYTHON],
   dnl the best way to do this; it's what "site.py" does in the standard
   dnl library.
 
-  AC_CACHE_CHECK([for $am_display_PYTHON version], [am_cv_python_version],
+  AC_CACHE_CHECK([for $am_cv_pathless_PYTHON version], [am_cv_python_version],
     [am_cv_python_version=`$PYTHON -c "import sys; print sys.version[[:3]]"`])
   AC_SUBST([PYTHON_VERSION], [$am_cv_python_version])
 
@@ -916,7 +852,8 @@ AC_DEFUN([AM_PATH_PYTHON],
   dnl At times (like when building shared libraries) you may want
   dnl to know which OS platform Python thinks this is.
 
-  AC_CACHE_CHECK([for $am_display_PYTHON platform], [am_cv_python_platform],
+  AC_CACHE_CHECK([for $am_cv_pathless_PYTHON platform],
+	         [am_cv_python_platform],
     [am_cv_python_platform=`$PYTHON -c "import sys; print sys.platform"`])
   AC_SUBST([PYTHON_PLATFORM], [$am_cv_python_platform])
 
@@ -927,6 +864,7 @@ AC_DEFUN([AM_PATH_PYTHON],
   dnl   site-packages directory, not the python standard library
   dnl   directory like in previous automake betas.  This behaviour
   dnl   is more consistent with lispdir.m4 for example.
+
   dnl Query distutils for this directory.  distutils does not exist in
   dnl Python 1.5, so we fall back to the hardcoded directory if it
   dnl doesn't work.
