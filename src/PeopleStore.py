@@ -199,7 +199,11 @@ class PeopleStore:
         iter_parent = self.model.iter_parent (iter)
         self.model.remove(iter)
         if iter_parent and not self.model.iter_has_child (iter_parent):
+            name = self.model.get_value(iter_parent,0)
             self.model.remove (iter_parent)
+            del self.tree_roots[name]
+            del self.tree_open[name]
+            del self.tree_list[name]
         self.count = self.count - 1
         
     def get_row(self,iter):

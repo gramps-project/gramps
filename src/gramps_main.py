@@ -1585,16 +1585,16 @@ class Gramps:
 
     def update_after_edit(self,epo,plist):
         if epo:
-            self.db.buildPersonDisplay(epo.person.getId(),epo.original_id)
-            self.people_view.update_person_list(epo.person,epo.original_id)
+            self.people_view.remove_from_person_list(epo.person,epo.original_id)
+            self.people_view.redisplay_person_list(epo.person)
         for p in plist:
             self.place_view.new_place_after_edit(p)
         self.update_display(0)
 
     def update_after_merge(self,person,old_id):
         if person:
-            self.people_view.remove_from_person_list(person,old_id)
-            self.people_view.redisplay_person_list(person)
+            self.people_view.remove_from_person_list(epo.person.getId(),old_id)
+            self.people_view.redisplay_person_list(epo.person)
         self.update_display(0)
 
     def load_person(self,person):
