@@ -6,6 +6,8 @@
 	* src/GrampsParser.py: use findFamilyNoConflicts
 	* src/RelLib.py: remove findFamilyNoConflict
 	* src/docgen/LaTeXDoc.py: Fixed typo in latex generated comment
+	* src/docgen/OpenOfficeDoc.py: Header paragraphs have the keep-with-next
+	property set
 
 2003-07-20  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py: Include source notes.  Adjusted default
