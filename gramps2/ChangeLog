@@ -1,3 +1,11 @@
+2005-03-15  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/Makefile.am : Added TreeTip.py to list of installed modules.
+	* src/TreeTip.py: New module that implements tooltips on TreeView rows.
+	* src/plugins/Makefile.am: Added ScratchPad.py and scratchpad.glade.
+	* src/plugins/ScratchPad.py: New module to implement a scratch pad for
+	temporary storage of drag and drop objects.
+	* src/plugins/scratchpad.glade: New glade file for ScratchPad window.
+	
 2005-03-15  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GenericFilter.py (FullTextSearch): Added new filter thad provides
 	a full-text search thru (nearly) all attributes and linked objexts of a person.
