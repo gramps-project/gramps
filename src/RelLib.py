@@ -399,6 +399,9 @@ class Person:
     def getEventList(self) :
         return self.EventList
 
+    def setEventList(self,list) :
+        self.EventList = list
+
     def addFamily(self,family) :
         self.FamilyList.append(family)
 
@@ -490,13 +493,27 @@ class Person:
 #-------------------------------------------------------------------------
 class Event:
 	
-    def __init__(self):
-        self.place = ""
-        self.date = Date()
-        self.description = ""
-        self.name = ""
-        self.source_ref = None
-        self.note = None
+    def __init__(self,source=None):
+        if source:
+            self.place = source.place
+            self.date = Date(source.date)
+            self.description = source.description
+            self.name = source.name
+            if source.source_ref:
+                self.source_ref = SourceRef(source.source_ref)
+            else:
+                self.source_ref = None
+            if source.note:
+                self.note = Note(source.note)
+            else:
+                self.source_ref = None
+        else:
+            self.place = ""
+            self.date = Date()
+            self.description = ""
+            self.name = ""
+            self.source_ref = None
+            self.note = None
 
     def set(self,name,date,place,description):
         self.name = name
@@ -754,12 +771,19 @@ class Source:
 #
 #-------------------------------------------------------------------------
 class SourceRef:
-    def __init__(self):
-        self.ref = None
-        self.page = ""
-        self.date = Date()
-        self.comments = Note()
-        self.text = ""
+    def __init__(self,source=None):
+        if source:
+            self.ref = source.ref
+            self.page = source.page
+            self.date = Date(source.date)
+            self.comments = Note(source.comments.get())
+            self.text = source.text
+        else:
+            self.ref = None
+            self.page = ""
+            self.date = Date()
+            self.comments = Note()
+            self.text = ""
 
     def setBase(self,ref):
         self.ref = ref

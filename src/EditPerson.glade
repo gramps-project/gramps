@@ -1334,7 +1334,7 @@
 	    <can_focus>True</can_focus>
 	    <signal>
 	      <name>select_row</name>
-	      <handler>on_nameList_select_row</handler>
+	      <handler>on_name_list_select_row</handler>
 	      <last_modification_time>Mon, 18 Dec 2000 22:29:26 GMT</last_modification_time>
 	    </signal>
 	    <columns>2</columns>
@@ -1715,7 +1715,7 @@
 	      <can_focus>True</can_focus>
 	      <signal>
 		<name>select_row</name>
-		<handler>on_eventList_select_row</handler>
+		<handler>on_event_select_row</handler>
 		<last_modification_time>Fri, 01 Dec 2000 02:58:20 GMT</last_modification_time>
 	      </signal>
 	      <columns>4</columns>
@@ -1801,7 +1801,7 @@
 	      <can_focus>True</can_focus>
 	      <signal>
 		<name>clicked</name>
-		<handler>on_eventAddBtn_clicked</handler>
+		<handler>on_event_add_clicked</handler>
 		<object>eventList</object>
 		<last_modification_time>Fri, 01 Dec 2000 00:29:52 GMT</last_modification_time>
 	      </signal>
@@ -1817,7 +1817,7 @@
 	      <can_focus>True</can_focus>
 	      <signal>
 		<name>clicked</name>
-		<handler>on_eventUpdateBtn_clicked</handler>
+		<handler>on_event_update_clicked</handler>
 		<object>eventList</object>
 		<last_modification_time>Fri, 01 Dec 2000 02:58:32 GMT</last_modification_time>
 	      </signal>
@@ -1833,7 +1833,7 @@
 	      <can_focus>True</can_focus>
 	      <signal>
 		<name>clicked</name>
-		<handler>on_eventDeleteBtn_clicked</handler>
+		<handler>on_event_delete_clicked</handler>
 		<object>eventList</object>
 		<last_modification_time>Thu, 25 Jan 2001 19:57:23 GMT</last_modification_time>
 	      </signal>
@@ -3217,7 +3217,7 @@
 	  <object>editPerson</object>
 	  <last_modification_time>Thu, 19 Oct 2000 19:25:50 GMT</last_modification_time>
 	</signal>
-	<stock_button>GNOME_STOCK_BUTTON_CLOSE</stock_button>
+	<stock_button>GNOME_STOCK_BUTTON_CANCEL</stock_button>
 	<relief>GTK_RELIEF_NORMAL</relief>
       </widget>
     </widget>
