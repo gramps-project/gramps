@@ -1005,7 +1005,7 @@ register_report(
     _("Book Report"),
     category=_("Books"),
     status=(_("Unstable")),
-    description=_("Creates a book containg several reports."),
+    description=_("Creates a book containing several reports."),
     xpm=get_xpm_image(),
     author_name="Alex Roitman",
     author_email="shura@alex.neuro.umn.edu"
