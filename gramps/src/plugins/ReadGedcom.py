@@ -83,14 +83,14 @@ placemap = {}
 #-------------------------------------------------------------------------
 def find_file(fullname,altpath):
     if os.path.isfile(fullname):
-        type = gnome.mime.type(fullname)
+        type = utils.get_mime_type(fullname)
         if type[0:6] != "image/":
             return ""
         else:
             return fullname
     other = altpath + os.sep + os.path.basename(fullname)
     if os.path.isfile(other):
-        type = gnome.mime.type(other)
+        type = utils.get_mime_type(other)
         if type[0:6] != "image/":
             return ""
         else:
@@ -783,7 +783,7 @@ class GedcomParser:
                 photo = Photo()
                 photo.setPath(path)
                 photo.setDescription(title)
-                photo.setMimeType(gnome.mime.type_or_default_of_file(name,"unknown"))
+                photo.setMimeType(utils.get_mime_type(path))
                 db.addObject(photo)
                 oref = ObjectRef()
                 oref.setReference(photo)
