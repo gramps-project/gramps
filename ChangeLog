@@ -14,6 +14,9 @@
 	* doc/xmldocs.make: Switch Makefile from CLEANFILES to DISTCLEANFILES.
 	* src/Makefile.am: Add const.pyc and const.pyo to CLEANFILES.
 
+	* src/EditPerson.py: Readonly fix.
+	* src/gramps.glade: Typo.
+
 2005-02-18  Eero Tamminen <eerot@sf>
 	* src/plugins/StatisticsChart.py: fix date object checking
 

@@ -146,7 +146,7 @@ class EditPerson:
         self.name_edit_btn = self.top.get_widget('aka_edit')
         self.web_delete_btn = self.top.get_widget('delete_url')
         self.web_edit_btn = self.top.get_widget('edit_url')
-        self.event_delete_btn = self.top.get_widget('event_delete_btn')
+        self.event_delete_btn = self.top.get_widget('event_del')
         self.event_edit_btn = self.top.get_widget('event_edit_btn')
         self.attr_delete_btn = self.top.get_widget('attr_delete_btn')
         self.attr_edit_btn = self.top.get_widget('attr_edit_btn')
@@ -1420,8 +1420,9 @@ class EditPerson:
             else:
                 self.event_src_field.set_text('')
                 self.event_conf_field.set_text('')
-            self.event_delete_btn.set_sensitive(1)
-            self.event_edit_btn.set_sensitive(1)
+            if not self.db.readonly:
+            	self.event_delete_btn.set_sensitive(1)
+                self.event_edit_btn.set_sensitive(1)
         else:
             self.event_date_field.set_text('')
             self.event_place_field.set_text('')
