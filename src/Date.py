@@ -364,23 +364,20 @@ class SingleDate:
                 retval = "%s %d" % (SingleDate.mname[self.month],self.year)
         elif self.month == -1:
             retval = "%d" % self.year
-        elif self.mode == SingleDate.exact:
+        else:
             month = SingleDate.mname[self.month]
             if self.year == -1:
                 retval = "%s %d, ????" % (month,self.day)
             else:
                 retval = "%s %d, %d" % (month,self.day,self.year)
-        elif self.mode == SingleDate.about:
-            month = SingleDate.mname[self.month]
-            if self.year == -1:
-                retval = _("about") + " %s %d, ????" % (month,self.day)
-            else:
-                retval = _("about") + " %s %d, %d" % (month,self.day,self.year)
-            
+
+        if self.mode == SingleDate.about:
+	    retval = _("about") + ' ' + retval
+
         if self.mode == SingleDate.before:
-            retval = _("before") +" " + retval
+            retval = _("before") + ' ' + retval
         elif self.mode == SingleDate.after:
-            retval = _("after") + " " + retval
+            retval = _("after") + ' ' + retval
 
         return retval
 
@@ -405,18 +402,15 @@ class SingleDate:
                 retval = "%s %d" % (string.upper(month[0:3]),self.year)
         elif self.month == -1:
             retval =  "%d" % self.year
-        elif self.mode == SingleDate.exact:
+        else:
             month = SingleDate.mname[self.month]
             if self.year == -1:
                 retval = "%s %d, ????" % (string.upper(month[0:3]),self.day)
             else:
                 retval = "%s %d, %d" % (string.upper(month[0:3]),self.day,self.year)
-        elif self.mode == SingleDate.about:
-            month = SingleDate.mname[self.month]
-            if self.year == -1:
-                retval = "ABT %s %s, ????" % (string.upper(month[0:3]),self.day)
-            else:
-                retval = "ABT %s %s, ????" % (string.upper(month[0:3]),self.day,self.year)
+
+	if self.mode == SingleDate.about:
+            retval = "ABT" + ' ' + retval
             
         if self.mode == SingleDate.before:
             retval = _("BEFORE") + " " + retval
@@ -455,7 +449,8 @@ class SingleDate:
 
         if self.mode == SingleDate.about:
             retval = "ABT " + retval
-        elif self.mode == SingleDate.before:
+
+        if self.mode == SingleDate.before:
             retval = _("BEFORE") + " " + retval
         elif self.mode == SingleDate.after:
             retval = _("AFTER") + " " + retval
@@ -477,16 +472,14 @@ class SingleDate:
                 retval = "%d" % self.year
         elif self.month == -1:
             retval = "%d" % self.year
-        elif self.mode == SingleDate.exact:
+        else:
             if year == -1:
                 retval = "%d/%d/????" % (self.month+1,self.day)
             else:
                 retval = "%d/%d/%d" % (self.month+1,self.day,self.year)
-        elif self.mode == SingleDate.about:
-            if year == -1:
-                retval = "ABT %d/%d/????" % (self.month+1,self.day,self.year)
-            else:
-                retval = "ABT %d/%d/%d" % (self.month+1,self.day,self.year)
+
+        if self.mode == SingleDate.about:
+            retval = "ABT" + ' ' + retval
 
         if self.mode == SingleDate.before:
             retval = "BEFORE " + retval
@@ -510,16 +503,14 @@ class SingleDate:
                 retval = "%d" % self.year
         elif self.month == -1:
             retval = "%d" % self.year
-        elif self.mode == SingleDate.exact:
+        else:
             if self.year == -1:
                 retval = "%d-%d-????" % (self.month+1,self.day)
             else:
                 retval = "%d-%d-%d" % (self.month+1,self.day,self.year)
-        elif self.mode == SingleDate.about:
-            if self.year == -1:
-                retval = "ABT %d-%d-????" % (self.month+1,self.day,self.year)
-            else:
-                retval = "ABT %d-%d-%d" % (self.month+1,self.day,self.year)
+
+        if self.mode == SingleDate.about:
+            retval = "ABT" + ' ' + retval
 
         if self.mode == SingleDate.before:
             retval = _("BEFORE") + " " + retval
@@ -543,16 +534,14 @@ class SingleDate:
                 retval = "%d" % self.year
         elif self.month == -1:
             retval = "%d" % self.year
-        elif self.mode == SingleDate.exact:
+        else:
             if self.year == -1:
                 retval = "%d/%d/????" % (self.day,self.month+1)
             else:
                 retval = "%d/%d/%d" % (self.day,self.month+1,self.year)
-        elif self.mode == SingleDate.about:
-            if self.year == -1:
-                retval = "ABT %d/%d/????" % (self.day,self.month+1)
-            else:
-                retval = "ABT %d/%d/%d" % (self.day,self.month+1,self.year)
+
+        if self.mode == SingleDate.about:
+            retval = "ABT" + ' ' + retval
 
         if self.mode == SingleDate.before:
             retval = _("BEFORE") + " " + retval
@@ -576,16 +565,14 @@ class SingleDate:
                 retval = "%d" % self.year
         elif self.month == -1:
             retval = "%d" % self.year
-        elif self.mode == SingleDate.exact:
+        else:
             if self.year == -1:
                 retval = "%d-%d-????" % (self.day,self.month+1)
             else:
                 retval = "%d-%d-%d" % (self.day,self.month+1,self.year)
-        elif self.mode == SingleDate.about:
-            if self.year == -1:
-                retval = "ABT %d-%d-????" % (self.day,self.month+1)
-            else:
-                retval = "ABT %d-%d-%d" % (self.day,self.month+1,self.year)
+
+        if self.mode == SingleDate.about:
+            retval = "ABT" + ' ' + retval
 
         if self.mode == SingleDate.before:
             retval = _("BEFORE") + " " + retval
@@ -656,26 +643,6 @@ class SingleDate:
             self.setYear(string.atoi(matches[1]))
             return 1
 
-        match = SingleDate.fmt1.match(text)
-        if match != None:
-            matches = match.groups()
-            self.getMode(matches[0])
-            self.setMonthStr(matches[1])
-            val = matches[2]
-            if val:
-                self.setDay(string.atoi(string.replace(val,',','')))
-            else:
-                self.setDay(-1)
-            if len(matches) == 4:
-                val = matches[3]
-                if val == None or val[0] == '?':
-                    self.setYear(-1)
-                else:
-                    self.setYear(string.atoi(val))
-            else:
-                self.setYear(-1)
-            return 1
-
         match = SingleDate.fmt3.match(text)
         if match != None:
             matches = match.groups()
@@ -686,14 +653,28 @@ class SingleDate:
             else:
                 self.setMonth(string.atoi(matches[2]))
                 self.setDay(string.atoi(matches[1]))
-            if len(matches) == 3:
-                val = matches[3]
-                if val == None or val[0] == '?':
-                    self.setYear(-1)
-                else:
-                    self.setYear(string.atoi(val))
-            else:
+            val = matches[3]
+            if val == None or val[0] == '?':
                 self.setYear(-1)
+            else:
+                self.setYear(string.atoi(val))
+            return 1
+
+        match = SingleDate.fmt1.match(text)
+        if match != None:
+            matches = match.groups()
+            self.getMode(matches[0])
+            self.setMonthStr(matches[1])
+            val = matches[2]
+            if val:
+                self.setDay(string.atoi(string.replace(val,',','')))
+            else:
+                self.setDay(-1)
+	    val = matches[3]
+            if val == None or val[0] == '?':
+                self.setYear(-1)
+            else:
+                self.setYear(string.atoi(val))
             return 1
 
         match = SingleDate.fmt4.match(text)
@@ -761,3 +742,26 @@ def compare_dates(f,s):
         return cmp(first.month,second.month)
     else:
         return cmp(first.day,second.day)
+
+if __name__ == "__main__":
+
+    def checkit(s):
+        d = Date()
+        d.set(s)
+        print s, ':', d.getDate(), ':', d.getQuoteDate(),'\n'
+
+    checkit("June 11")
+    checkit("1923")
+    checkit("11/12/1293")
+    checkit("11 JAN 1923")
+    checkit("11-1-1929")
+    checkit("4/3/1203")
+    checkit("January 4, 1923")
+    checkit("before 3/3/1239")
+    checkit("est 2-3-1023")
+    checkit("between January 4, 1234 and NOV 4, 1245")
+    checkit("from 3-2-1234 to 5-4-2345")
+
+
+		
+
