@@ -19,7 +19,22 @@ pkgpython_PYTHON = ${wildcard *.py}
 # Use GNU make's ':=' syntax for nice wildcard use.
 # If not using GNU make, then list all files individually
 GLADEFILES := ${wildcard *.glade}
-GRAPHICS := ${wildcard *.xpm} ${wildcard *.png} ${wildcard *.jpg}
+GRAPHICS = \
+	bad.png\
+	caution.png\
+	edit.png\
+	family48.png\
+	good.png\
+	gramps.png\
+	gramps.xpm\
+	logo.png\
+	media.png\
+	pedigree.xpm\
+	people48.png\
+	people.xpm\
+	place.png\
+	sources.png\
+	splash.jpg
 
 # Other stuff that we need to install
 pkgdata_DATA = ${INTLLIBS} ${GLADEFILES} ${GRAPHICS} gramps.desktop grampslib.so
