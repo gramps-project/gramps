@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- $Id$ -->
+
 <!-- ================ Customization ================================ -->
 
   <sect1 id="gramps-prefs"> 
     <title>Settings</title> 
     <para>To configure &app;, choose 
-      <menuchoice><guimenu>Settings</guimenu>
+      <menuchoice><guimenu>Edit</guimenu>
       <guimenuitem>Preferences...</guimenuitem></menuchoice>. 
       The <guilabel>Preferences</guilabel> dialog contains the following 
       categories: </para>

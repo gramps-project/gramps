@@ -1,3 +1,9 @@
+2003-12-01  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* doc/gramps-manual/C/keybind.xml: Update.
+	* doc/gramps-manual/C/usage.xml: Update.
+	* doc/gramps-manual/C/custom.xml: Update.
+	* NEWS: typo.
+
 2003-12-01  Tim Waugh  <twaugh@redhat.com>
 	* doc/xmldocs.make: Clean copied XML files.  Now 'make distcheck' works
 	again.
@@ -8,8 +14,8 @@
 	callback on Shift+click; (sp_key_press, child_key_press): Replace 
 	Ctrl+Insert with Shift+Insert for adding new people.
 	* src/PedView.py (on_show_child_menu): Markup children with children.
-	* doc/gramps-manual/C/keybind.xml: Update.
 	* doc/gramps-manual/C/faq.xml: Update.
+	* doc/gramps-manual/C/keybind.xml: Update.
 	* doc/gramps-manual/C/filtref.xml: Update.
 
 2003-11-29  Don Allingham  <dallingham@users.sourceforge.net>

@@ -15,7 +15,7 @@ Version 0.98.0 -- the "Round me off" release
   within the session.
 * Substantial speedups in updating display in tree views. 
 * Children are enumerated in Family View.
-* ZODB backend is removed. Reald database backend is being worked on and will
+* ZODB backend is removed. Real database backend is being worked on and will
   appear in post-1.0 releases.
 * Tab labels in tabbed dialogs reflect the presence of data (bold).
 * Help button available in most dialogs.
