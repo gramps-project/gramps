@@ -32,8 +32,8 @@
 #-------------------------------------------------------------------------
 
 import RelLib
-import GrampsCfg
 import Relationship
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -224,7 +224,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             self.apply_filter(orig_person.get_id(),0,firstList,firstMap)
             self.apply_filter(other_person.get_id(),0,secondList,secondMap)
         except RuntimeError,msg:
-            return ("Relationship loop detected",None)
+            return (_("Relationship loop detected"),None)
 
         for person_id in firstList:
             if person_id in secondList:
@@ -281,7 +281,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
 #-------------------------------------------------------------------------
 #
-# Register this function with the Plugins system 
+# Register this class with the Plugins system 
 #
 #-------------------------------------------------------------------------
 from Plugins import register_relcalc
