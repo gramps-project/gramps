@@ -1,3 +1,7 @@
+2005-03-09  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GenericFilter.py (IsDefaultPerson,IsSiblingOfFilterMatch):
+	Add filter rules.
+
 2005-03-09  Don Allingham  <don@gramps-project.org>
 	* srcNameEdit.py: assign date on close
 

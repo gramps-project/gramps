@@ -290,6 +290,31 @@ class HasIdOf(Rule):
 
 #-------------------------------------------------------------------------
 #
+# HasIdOf
+#
+#-------------------------------------------------------------------------
+class IsDefaultPerson(Rule):
+    """Rule that checks for a default person in the database"""
+
+    labels = []
+    
+    def name(self):
+        return 'Is default person'
+
+    def description(self):
+        return _("Matches the default person")
+
+    def category(self):
+        return _('General filters')
+
+    def apply(self,db,p_id):
+        person = db.get_default_person()
+        if person:
+            return p_id == person.get_handle()
+        return false
+
+#-------------------------------------------------------------------------
+#
 # HasCompleteRecord
 #
 #-------------------------------------------------------------------------
@@ -562,6 +587,51 @@ class IsChildOfFilterMatch(Rule):
         p = self.db.get_person_from_handle(p_id)
         for fam_id in p.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
+            for child_handle in fam.get_child_handle_list():
+                self.map[child_handle] = 1
+
+#-------------------------------------------------------------------------
+#
+# IsSiblingOfFilterMatch
+#
+#-------------------------------------------------------------------------
+class IsSiblingOfFilterMatch(Rule):
+    """Rule that checks for a person that is a sibling
+    of someone matched by a filter"""
+
+    labels = [ _('Filter name:') ]
+
+    def __init__(self,list):
+        Rule.__init__(self,list)
+        self.init = 0
+        self.map = {}
+
+    def name(self):
+        return 'Is a sibling of filter match'
+
+    def description(self):
+        return _("Matches the person that is a sibling of someone matched by a filter")
+
+    def category(self):
+        return _('Family filters')
+
+    def apply(self,db,p_id):
+        self.orig_id = p_id
+        self.db = db
+
+        if not self.init:
+            self.init = 1
+            filt = MatchesFilter(self.list)
+            for person_handle in db.get_person_handles(sort_handles=False):
+                if filt.apply (db, person_handle):
+                    self.init_list (person_handle)
+        return self.map.has_key(p_id)
+
+    def init_list(self,p_id):
+        p = self.db.get_person_from_handle(p_id)
+        fam_id = p.get_main_parents_family_handle()
+        fam = self.db.get_family_from_handle(fam_id)
+        if fam:
             for child_handle in fam.get_child_handle_list():
                 self.map[child_handle] = 1
 
@@ -1531,6 +1601,7 @@ class GenericFilter:
 #-------------------------------------------------------------------------
 tasks = {
     unicode(_("Everyone"))                             : Everyone,
+    unicode(_("Is default person"))                    : IsDefaultPerson,
     unicode(_("Has the Id"))                           : HasIdOf,
     unicode(_("Has a name"))                           : HasNameOf,
     unicode(_("Has the relationships"))                : HasRelationship,
@@ -1563,6 +1634,7 @@ tasks = {
     unicode(_("Has the family attribute"))             : HasFamilyAttribute,
     unicode(_("Matches the filter named"))             : MatchesFilter,
     unicode(_("Is spouse of filter match"))            : IsSpouseOfFilterMatch,
+    unicode(_("Is a sibling of filter match"))         : IsSiblingOfFilterMatch,
     unicode(_("Relationship path between two people")) : RelationshipPathBetween,
     }
 
