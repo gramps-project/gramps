@@ -1,3 +1,10 @@
+2005-03-15  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GenericFilter.py (FullTextSearch): Added new filter thad provides
+	a full-text search thru (nearly) all attributes and linked objexts of a person.
+	* src/gramps_main.py: add the new filter to the menu.
+	* src/RelLib.py (Event,Source): fix get_text_data_child_list() to correct
+	attributes of the class; (Family): fix get_sourcref_child_list().
+
 2005-03-14  Alex Roitman  <shura@gramps-project.org>
 	* src/AddSpouse.py (select_spouse_clicked): Prevent adding oneself
 	and oneself's parents as a spouse; When aborting, do not close dialog.

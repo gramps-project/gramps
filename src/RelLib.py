@@ -1316,7 +1316,7 @@ class Family(PrimaryObject,SourceNote):
         @return: Returns the list of child secondary child objects that may refer sources.
         @rtype: list
         """
-        check_list = self.media_list + self.attribute_list + self.source_list
+        check_list = self.media_list + self.attribute_list
         if self.lds_seal:
             check_list.append(self.lds_seal)
         return check_list
@@ -1689,7 +1689,7 @@ class Event(PrimaryObject,DataObj):
         if self.witness:
             check_list = check_list + self.witness
         if self.note:
-            check_list.append(note)
+            check_list.append(self.note)
         return check_list
 
     def get_sourcref_child_list(self):
@@ -2501,7 +2501,7 @@ class Source(PrimaryObject):
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        check_list = self.attrlist + self.source_list
+        check_list = []
         if self.note:
             check_list.append(self.note)
         return check_list

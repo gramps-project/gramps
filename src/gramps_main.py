@@ -947,6 +947,11 @@ class Gramps:
         all.add_rule(GenericFilter.IsWitness([]))
         filter_list.append(all)
 
+        all = GenericFilter.ParamFilter()
+        all.set_name(_("Full-text search ..."))
+        all.add_rule(GenericFilter.FullTextSearch([]))
+        filter_list.append(all)
+
         self.filter_model = GenericFilter.FilterStore(filter_list)
         self.filter_list.set_model(self.filter_model)
         self.filter_list.set_active(self.filter_model.default_index())
