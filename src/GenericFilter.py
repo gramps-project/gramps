@@ -60,7 +60,7 @@ from Utils import for_each_ancestor
 def date_cmp(rule,value):
     sd = rule.get_start_date()
     s = sd.get_modifier()
-    val = s.get_start_date()
+    value = s.get_start_date()
     if s == Date.MOD_BEFORE:
         return rule > value
     elif s == Date.MOD_AFTER:

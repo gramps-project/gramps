@@ -196,7 +196,7 @@ class AttributeEditor:
         Called when the OK button is pressed. Gets data from the
         form and updates the Attribute data structure.
         """
-        type = unicode(self.type_field.get_text())
+        attr = unicode(self.type_field.get_text())
         value = unicode(self.value_field.get_text())
 
         buf = self.note_field.get_buffer()
@@ -204,11 +204,11 @@ class AttributeEditor:
         format = self.preform.get_active()
         priv = self.priv.get_active()
 
-        if not type in self.alist:
+        if not attr in self.alist:
             WarningDialog(_('New attribute type created'),
                           _('The "%s" attribute type has been added to this database.\n'
-                            'It will now appear in the attribute menus for this database') % type)
-            self.alist.append(type)
+                            'It will now appear in the attribute menus for this database') % attr)
+            self.alist.append(attr)
             self.alist.sort()
 
         if self.attrib == None:
@@ -216,7 +216,7 @@ class AttributeEditor:
             self.parent.alist.append(self.attrib)
 
         self.attrib.set_source_reference_list(self.srcreflist)
-        self.update(type,value,note,format,priv)
+        self.update(attr,value,note,format,priv)
         self.callback(self.attrib)
         self.close(obj)
 
@@ -227,9 +227,9 @@ class AttributeEditor:
             set(data)
             self.parent.lists_changed = 1
             
-    def update(self,type,value,note,format,priv):
+    def update(self,attr,value,note,format,priv):
         """Compares the data items, and updates if necessary"""
-        ntype = const.save_pattr(type)
+        ntype = const.save_pattr(attr)
         self.check(self.attrib.get_type,self.attrib.set_type,ntype)
         self.check(self.attrib.get_value,self.attrib.set_value,value)
         self.check(self.attrib.get_note,self.attrib.set_note,note)

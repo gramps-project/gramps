@@ -1,3 +1,33 @@
+2004-10-05  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/docgen/PdfDoc.py: fixed register_book_doc call
+	* src/AddrEdit.py: pychecker fixes
+	* src/AttrEdit.py: pychecker fixes
+	* src/AutoComp.py: pychecker fixes
+	* src/ChooseParents.py: pychecker fixes
+	* src/DbPrompter.py: pychecker fixes
+	* src/DisplayModels.py: pychecker fixes
+	* src/EventEdit.py: pychecker fixes
+	* src/FamilyView.py: pychecker fixes
+	* src/Filter.py: pychecker fixes
+	* src/GenericFilter.py: pychecker fixes
+	* src/GrampsCfg.py: pychecker fixes
+	* src/GrampsGconfKeys.py: pychecker fixes
+	* src/ImgManip.py: pychecker fixes
+	* src/PlaceView.py: pychecker fixes
+	* src/Plugins.py: pychecker fixes
+	* src/ReadGedcom.py: pychecker fixes
+	* src/ReadXML.py: pychecker fixes
+	* src/SelectChild.py: pychecker fixes
+	* src/SelectObject.py: pychecker fixes
+	* src/SelectPerson.py: pychecker fixes
+	* src/Sort.py: pychecker fixes
+	* src/SourceView.py: pychecker fixes
+	* src/Utils.py: pychecker fixes
+	* src/Witness.py: pychecker fixes
+	* src/WriteGedcom.py: pychecker fixes
+	* src/WriteXML.py: pychecker fixes
+	* src/gramps_main.py: pychecker fixes
+	
 2004-10-03 Frederick Noronha  <fred@bytesforall.org>
 	* src/data/tips.xml: Add more tips.
 

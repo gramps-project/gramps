@@ -72,9 +72,6 @@ class ImgManip:
     def png_thumbnail(self,dest,width,height):
         self.fmt_thumbnail(dest,width,height,"png")
 
-    def eps_thumbnail(self,dest,width,height):
-        self.fmt_thumbnail(dest,width,height,"eps")
-
     def jpg_convert(self,dest):
         self.fmt_convert(dest,"jpeg")
 
@@ -90,17 +87,11 @@ class ImgManip:
     def png_data(self):
         return self.fmt_data("png")
 
-    def eps_data(self):
-        return self.fmt_data("eps")
-
     def jpg_scale_data(self,x,y):
         return self.fmt_scale_data(x,y,"jpeg")
 
     def png_scale_data(self,x,y):
         return self.fmt_scale_data(x,y,"png")
-
-    def eps_scale_data(self,x,y):
-        return self.fmt_scale_data(x,y,"eps")
 
 
 

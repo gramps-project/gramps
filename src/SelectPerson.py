@@ -41,7 +41,6 @@ import gtk.glade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import RelLib
 import const
 import Utils
 import PeopleModel

@@ -50,7 +50,6 @@ import Utils
 import Date
 import RelLib
 import Sources
-import Date
 import DateEdit
 
 #-------------------------------------------------------------------------

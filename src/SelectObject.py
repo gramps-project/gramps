@@ -30,7 +30,6 @@
 # general modules
 #
 #-------------------------------------------------------------------------
-import string
 import os
 
 #-------------------------------------------------------------------------
@@ -55,7 +54,6 @@ import gtk.gdk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import RelLib
 import const
 import Utils
 import ListModel
@@ -101,7 +99,6 @@ class SelectObject:
         for key in self.db.get_media_object_handles():
             obj = self.db.get_object_from_handle(key)
             title = obj.get_description()
-            handle = obj.get_handle()
             the_type = Utils.get_mime_description(obj.get_mime_type())
             path = obj.get_path()
             self.object_model.add([title,obj.get_gramps_id(),the_type,path],key)

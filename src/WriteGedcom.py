@@ -38,7 +38,6 @@ import re
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -48,15 +47,12 @@ import gnome
 import RelLib
 import GenericFilter
 import const
-import Utils
 import Date
 import GedcomInfo
 import Errors
 import ansel_utf8
 from gettext import gettext as _
 from QuestionDialog import ErrorDialog
-
-_title_string = _("Export to GEDCOM")
 
 def keep_utf8(s):
     return s
@@ -614,35 +610,23 @@ class GedcomWriter:
         sorted = []
         for key in pkeys:
             person = self.db.get_person_from_handle (key)
-            tuple = (person.get_gramps_id (), person)
-            sorted.append (tuple)
+            data = (person.get_gramps_id (), person)
+            sorted.append (data)
         sorted.sort()
-        nump = float(len(self.plist))
         index = 0.0
         for (gramps_id, person) in sorted:
             self.write_person(person)
             index = index + 1
-            #if index%100 == 0 and not self.cl:
-            #    self.pbar.set_fraction(index/nump)
-            #    while(gtk.events_pending()):
-            #        gtk.mainiteration()
-#        if not self.cl:
-#            self.pbar.set_fraction(1.0)
 
         self.write_families()
         if self.source_refs:
             self.write_sources()
-        #else:
-        #    if not self.cl:
-        #        self.sbar.set_fraction(1.0)
 
         self.writeln("0 TRLR")
         self.g.close()
         return 1
 
     def write_copy(self):
-        import time
-
         t = time.localtime(time.time())
         y = t[0]
 
@@ -654,8 +638,6 @@ class GedcomWriter:
             self.writeln('1 COPR Copyright (c) %d %s. See additional copyright NOTE below.' % (y,o))
 
     def gnu_fdl(self):
-        import time
-
         if self.copy != 1:
             return
 
@@ -673,13 +655,11 @@ class GedcomWriter:
             pass
 
     def write_families(self):
-        nump = float(len(self.flist))
-        index = 0.0
         sorted = []
         for family_handle in self.flist.keys ():
             family = self.db.get_family_from_handle(family_handle)
-            tuple = (self.fid (family_handle), family_handle, family)
-            sorted.append (tuple)
+            data = (self.fid (family_handle), family_handle, family)
+            sorted.append (data)
         sorted.sort ()
         for (gramps_id, family_handle, family) in sorted:
             father_alive = mother_alive = 0
@@ -745,22 +725,13 @@ class GedcomWriter:
 
             self.write_change(1,family.get_change_time())
             
-#            index = index + 1
-#            if index % 100 == 0 and not self.cl:
-#                self.fbar.set_fraction(index/nump)
-#                while(gtk.events_pending()):
-#                    gtk.mainiteration()
-        #if not self.cl:
-        #    self.fbar.set_fraction(1.0)
-
     def write_sources(self):
-        nump = float(len(self.slist))
         index = 0.0
         sorted = []
         for key in self.slist.keys():
             source = self.db.get_source_from_handle(key)
-            tuple = (self.sid (source.get_gramps_id ()), source)
-            sorted.append (tuple)
+            data = (self.sid (source.get_gramps_id ()), source)
+            sorted.append (data)
         sorted.sort ()
         for (source_id, source) in sorted:
             self.writeln("0 @%s@ SOUR" % source_id)
@@ -777,13 +748,6 @@ class GedcomWriter:
             index = index + 1
             self.write_change(1,source.get_change_time())
             
-#            if index % 100 == 0 and not self.cl:
-#                self.sbar.set_fraction(index/nump)
-#                while(gtk.events_pending()):
-#                    gtk.mainiteration()
-#        if not self.cl:
-#            self.sbar.set_fraction(1.0)
-
     def write_person(self,person):
         self.writeln("0 @%s@ INDI" % person.get_gramps_id())
         restricted = self.restrict and person.probably_alive (self.db)
@@ -975,7 +939,7 @@ class GedcomWriter:
                     dest = os.path.join (dirname, basename)
                     try:
                         os.link (path, dest)
-                    except OSError, e:
+                    except OSError:
                         file (dest,
                               "wb").writelines (file (path,
                                                       "rb").xreadlines ())
@@ -1009,7 +973,6 @@ class GedcomWriter:
 
 
     def write_change(self,level,timeval):
-        tval = time.localtime(timeval)
         self.writeln('%d CHAN' % level)
         time_val = time.localtime(timeval)
         self.writeln('%d DATE %d %s %d' % (level + 1,time_val[2],
