@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 0.9.1\n"
-"POT-Creation-Date: Mon Mar 31 21:01:56 2003\n"
-"PO-Revision-Date: 2003-04-01 22:10-0600\n"
+"POT-Creation-Date: Thu Apr  3 22:44:57 2003\n"
+"PO-Revision-Date: 2003-04-04 07:05-0600\n"
 "Last-Translator: Alexander Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -207,8 +207,8 @@ msgstr "Выбрать Родителей"
 
 #: ChooseParents.py:127 ChooseParents.py:128 ChooseParents.py:378
 #: ChooseParents.py:379 SelectChild.py:101 SelectChild.py:103 const.py:153
-#: gramps.glade:3526 gramps.glade:3719 gramps.glade:4163 gramps.glade:4343
-#: gramps.glade:5799 gramps.glade:6045 plugins/EventCmp.py:306
+#: gramps.glade:3547 gramps.glade:3740 gramps.glade:4184 gramps.glade:4364
+#: gramps.glade:5818 gramps.glade:6064 plugins/EventCmp.py:306
 #: plugins/FamilyGroup.py:149 plugins/GraphViz.py:335 plugins/GraphViz.py:336
 msgid "Birth"
 msgstr "Рождение"
@@ -252,16 +252,16 @@ msgstr "(и|до|-)"
 msgid "from %(start_date)s to %(stop_date)s"
 msgstr "с %(start_date)s по %(stop_date)s"
 
-#: DbPrompter.py:65 DbPrompter.py:117 gramps_main.py:1024 revision.glade:131
+#: DbPrompter.py:65 DbPrompter.py:117 gramps_main.py:1026 revision.glade:131
 msgid "Open a database"
 msgstr "Открыть базу данных"
 
-#: DbPrompter.py:97 gramps_main.py:1072
+#: DbPrompter.py:97 gramps_main.py:1074
 msgid "Save database"
 msgstr "Сохранить базу данных"
 
-#: DbPrompter.py:106 gramps_main.py:783 gramps_main.py:1084
-#: gramps_main.py:1096
+#: DbPrompter.py:106 gramps_main.py:784 gramps_main.py:1086
+#: gramps_main.py:1098
 msgid "No Comment Provided"
 msgstr "Комментарий Отсутствует"
 
@@ -328,9 +328,9 @@ msgstr "Тип"
 msgid "Path"
 msgstr "Путь"
 
-#: EditPerson.py:399 GrampsCfg.py:62 const.py:158 gramps.glade:3614
-#: gramps.glade:3807 gramps.glade:4229 gramps.glade:4409 gramps.glade:5887
-#: gramps.glade:6133
+#: EditPerson.py:399 GrampsCfg.py:62 const.py:158 gramps.glade:3635
+#: gramps.glade:3828 gramps.glade:4250 gramps.glade:4430 gramps.glade:5906
+#: gramps.glade:6152
 msgid "None"
 msgstr "Нет"
 
@@ -344,25 +344,25 @@ msgstr "%(father)s и %(mother)s"
 msgid "unknown"
 msgstr "неизвестно"
 
-#: EditPerson.py:815 EditPerson.py:832
+#: EditPerson.py:830 EditPerson.py:847
 msgid "Save Changes to %s?"
 msgstr "Сохранить Изменения в %s?"
 
-#: EditPerson.py:816 EditPerson.py:833 Marriage.py:404
+#: EditPerson.py:831 EditPerson.py:848 Marriage.py:404
 msgid "If you close without saving, the changes you have made will be lost"
 msgstr ""
 "Если вы закроете без сохранения, изменения, которые вы сделали, будут "
 "потеряны"
 
-#: EditPerson.py:1159
+#: EditPerson.py:1174
 msgid "Make the selected name the preferred name"
 msgstr "Сделать выделенное имя предпочитаемым именем"
 
-#: EditPerson.py:1222 Marriage.py:429
+#: EditPerson.py:1237 Marriage.py:429
 msgid "GRAMPS ID value was not changed."
 msgstr "Значение GRAMPS ID не было изменено."
 
-#: EditPerson.py:1223
+#: EditPerson.py:1238
 msgid ""
 "You have attempted to change the GRAMPS ID to a value of %(grampsid)s. This "
 "value is already used by %(person)s."
@@ -370,11 +370,11 @@ msgstr ""
 "Вы попытались изменить GRAMPS ID на значение %(grampsid)s. Это значение уже "
 "используется лицом %(person)s."
 
-#: EditPerson.py:1337
+#: EditPerson.py:1352
 msgid "Problem changing the gender"
 msgstr "Проблема при изменении пола"
 
-#: EditPerson.py:1338
+#: EditPerson.py:1353
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
@@ -410,7 +410,7 @@ msgstr "Редактор Интернет-Адресов для %s"
 msgid "Internet Address Editor"
 msgstr "Редактор Интернет-Адресов"
 
-#: EditPlace.py:357 gramps.glade:762
+#: EditPlace.py:357 gramps.glade:781
 msgid "People"
 msgstr "Люди"
 
@@ -458,7 +458,7 @@ msgstr "Семейные Атрибуты"
 msgid "Media Objects"
 msgstr "Медиа-Объекты"
 
-#: EditSource.py:186 gramps.glade:946
+#: EditSource.py:186 gramps.glade:969
 msgid "Places"
 msgstr "Места"
 
@@ -510,9 +510,9 @@ msgstr "%s: неизвестно"
 
 #: FamilyView.py:423 Plugins.py:417 Plugins.py:418 Plugins.py:419
 #: Plugins.py:431 Plugins.py:432 Plugins.py:433 Witness.py:71 const.py:159
-#: const.py:434 const.py:442 gramps.glade:3636 gramps.glade:3829
-#: gramps.glade:4251 gramps.glade:4431 gramps.glade:5909 gramps.glade:6155
-#: gramps_main.py:1267 plugins/WebPage.py:288
+#: const.py:434 const.py:442 gramps.glade:3657 gramps.glade:3850
+#: gramps.glade:4272 gramps.glade:4452 gramps.glade:5928 gramps.glade:6174
+#: gramps_main.py:1269 plugins/WebPage.py:288
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -557,7 +557,7 @@ msgstr "Нет описания"
 msgid "Failed to load the module: %s"
 msgstr "Не смогла загрузить модуль: %s"
 
-#: Find.py:139
+#: Find.py:143
 msgid "Find Person"
 msgstr "Найти Лицо"
 
@@ -565,11 +565,11 @@ msgstr "Найти Лицо"
 msgid "Find Place"
 msgstr "Найти Место"
 
-#: Find.py:187
+#: Find.py:182
 msgid "Find Source"
 msgstr "Найти Источник"
 
-#: Find.py:210
+#: Find.py:200
 msgid "Find Media Object"
 msgstr "Найти Медиа-Объект"
 
@@ -578,7 +578,7 @@ msgid "French Republican"
 msgstr "Французский Республиканский"
 
 #: GenericFilter.py:134 GenericFilter.py:167 GenericFilter.py:194
-#: GenericFilter.py:230 GenericFilter.py:257 gramps.glade:2421
+#: GenericFilter.py:230 GenericFilter.py:257 gramps.glade:2442
 #: imagesel.glade:529 imagesel.glade:1275 mergedata.glade:468
 #: mergedata.glade:1060
 msgid "ID:"
@@ -649,7 +649,7 @@ msgstr "Фамилия:"
 msgid "Given name:"
 msgstr "Имя:"
 
-#: GenericFilter.py:558 edit_person.glade:1377 gramps.glade:2515
+#: GenericFilter.py:558 edit_person.glade:1377 gramps.glade:2536
 #: imagesel.glade:695
 msgid "Title:"
 msgstr "Титул:"
@@ -882,7 +882,7 @@ msgstr "Пиктограмма %s не найдена"
 msgid "Could not import %s"
 msgstr "Не смогла импортировать %s"
 
-#: ImageSelect.py:543 MediaView.py:166
+#: ImageSelect.py:543 MediaView.py:170
 msgid "Media Object"
 msgstr "Медиа-Объекты"
 
@@ -890,15 +890,15 @@ msgstr "Медиа-Объекты"
 msgid "Open in %s"
 msgstr "Открыто в %s."
 
-#: ImageSelect.py:551 MediaView.py:170
+#: ImageSelect.py:551 MediaView.py:174
 msgid "Edit with the GIMP"
 msgstr "Правка в GIMP"
 
-#: ImageSelect.py:553 MediaView.py:172
+#: ImageSelect.py:553 MediaView.py:176
 msgid "Edit Object Properties"
 msgstr "Правка Свойств Объекта"
 
-#: ImageSelect.py:556 MediaView.py:175
+#: ImageSelect.py:556 MediaView.py:179
 msgid "Convert to local copy"
 msgstr "Преобразовать в локальную копию"
 
@@ -914,11 +914,11 @@ msgstr "Изменить глобальные свойства медиа-объекта"
 msgid "Person"
 msgstr "Лицо"
 
-#: ImageSelect.py:835 gramps.glade:808
+#: ImageSelect.py:835 gramps.glade:828
 msgid "Family"
 msgstr "Семья"
 
-#: ImageSelect.py:840 Utils.py:181 Utils.py:183
+#: ImageSelect.py:840 Utils.py:194 Utils.py:196
 msgid "Source"
 msgstr "Источник"
 
@@ -934,7 +934,7 @@ msgstr "Редактор Местоположений"
 msgid "Marriage/Relationship Editor"
 msgstr "Редактор Браков/Отношений"
 
-#: Marriage.py:107 Marriage.py:565 Marriage.py:583 Utils.py:132
+#: Marriage.py:107 Marriage.py:565 Marriage.py:583 Utils.py:145
 #: plugins/Check.py:162 plugins/Check.py:181
 msgid "%s and %s"
 msgstr "%s и %s"
@@ -953,19 +953,19 @@ msgstr "GRAMPS ID, который вы выбрали для этого отношения, уже используется"
 msgid "Title"
 msgstr "Титул"
 
-#: MediaView.py:148
+#: MediaView.py:152
 msgid "The file no longer exists"
 msgstr "Этого файла уже не существует"
 
-#: MediaView.py:168
+#: MediaView.py:172
 msgid "View in the default viewer"
 msgstr "Просмотр в устройстве просмотра по умолчанию"
 
-#: MediaView.py:258
+#: MediaView.py:245
 msgid "Delete Media Object?"
 msgstr "Уничтожить Медиа-Объект?"
 
-#: MediaView.py:259
+#: MediaView.py:246
 msgid ""
 "This media object is currently being used. If you delete this object, it will "
 "be removed from the database and from all records that reference it."
@@ -973,11 +973,11 @@ msgstr ""
 "Этот медиа-объект в настоящий момент используется. Если вы сотрете этот "
 "объект, он будет удален из базы данных и из всех записей ссылающихся на него."
 
-#: MediaView.py:263
+#: MediaView.py:250
 msgid "_Delete Media Object?"
 msgstr "Уничтожить Медиа-Объект?"
 
-#: MediaView.py:332
+#: MediaView.py:319
 msgid "Image import failed"
 msgstr "Импорт изображения не удался"
 
@@ -1021,7 +1021,7 @@ msgstr "Горизонтально"
 msgid "Custom Size"
 msgstr "Размер По Заказу"
 
-#: PedView.py:370
+#: PedView.py:371
 msgid "Double clicking will make %s the active person"
 msgstr "Двойной щелчок сделает %s активным лицом"
 
@@ -1033,19 +1033,19 @@ msgstr "Церковный Приход"
 msgid "Place Name"
 msgstr "Название Места"
 
-#: PlaceView.py:133 gramps_main.py:486
+#: PlaceView.py:137 gramps_main.py:490
 msgid "Cannot merge people."
 msgstr "Не могу слить людей."
 
-#: PlaceView.py:134
+#: PlaceView.py:138
 msgid "Exactly two people must be selected to perform a merge."
 msgstr "Ровно два лица должны быть выделены чтобы произвести слияние."
 
-#: PlaceView.py:189
+#: PlaceView.py:193
 msgid "Delete %s"
 msgstr "Уничтожить %s"
 
-#: PlaceView.py:190
+#: PlaceView.py:194
 msgid ""
 "This place is currently being used at least one record in the database. "
 "Deleting it will remove it from the database and remove it from all records "
@@ -1055,7 +1055,7 @@ msgstr ""
 "данных. Стирание удалит его из базы данных и изо всех записей, которые на "
 "него ссылаются."
 
-#: PlaceView.py:194
+#: PlaceView.py:198
 msgid "_Delete Place"
 msgstr "Уничтожить Место"
 
@@ -1134,7 +1134,7 @@ msgid "The file has been moved or deleted"
 msgstr "Файл был перемещен или уничтожен"
 
 #: RelImage.py:71 RelImage.py:74 RelImage.py:139 RelImage.py:142
-#: gramps_main.py:808 gramps_main.py:813 gramps_main.py:822
+#: gramps_main.py:809 gramps_main.py:814 gramps_main.py:823
 #: plugins/AncestorChart.py:113 plugins/DesGraph.py:210
 #: plugins/DesGraph.py:219 plugins/WriteGedcom.py:495
 #: plugins/WriteGedcom.py:500
@@ -1422,11 +1422,11 @@ msgstr "Отношение к %s"
 msgid "Author"
 msgstr "Автор"
 
-#: SourceView.py:130 gramps_main.py:889
+#: SourceView.py:134 gramps_main.py:890
 msgid "Delete %s?"
 msgstr "Уничтожить %s?"
 
-#: SourceView.py:131
+#: SourceView.py:135
 msgid ""
 "This source is currently being used. Deleting it will remove it from the "
 "database and from all records that reference it."
@@ -1434,7 +1434,7 @@ msgstr ""
 "Этот источник в настоящий момент используется. Стирание удалит его из базы "
 "данных и изо всех записей, которые на него ссылаются."
 
-#: SourceView.py:134
+#: SourceView.py:138
 msgid "_Delete Source"
 msgstr "Уничтожить Источник"
 
@@ -1466,15 +1466,15 @@ msgstr "Абзац"
 msgid "No description available"
 msgstr "Нет определения"
 
-#: Utils.py:176
+#: Utils.py:189
 msgid "Note"
 msgstr "Записка"
 
-#: Utils.py:186 Utils.py:188
+#: Utils.py:199 Utils.py:201
 msgid "Private"
 msgstr "Личное"
 
-#: Utils.py:429
+#: Utils.py:442
 msgid "default"
 msgstr "по умолчанию"
 
@@ -1559,7 +1559,7 @@ msgstr ""
 
 #: config.glade:103 config.glade:946 edit_person.glade:1233
 #: edit_person.glade:2013 edit_person.glade:2497 edit_person.glade:2903
-#: gramps.glade:5692 gramps.glade:5960 marriage.glade:434 marriage.glade:901
+#: gramps.glade:5711 gramps.glade:5979 marriage.glade:434 marriage.glade:901
 #: mergedata.glade:402 mergedata.glade:1036 plugins/soundex.glade:89
 #: rule.glade:601
 msgid "Name:"
@@ -1735,13 +1735,13 @@ msgstr "мужчина"
 msgid "female"
 msgstr "женщина"
 
-#: const.py:154 const.py:273 gramps.glade:3548 gramps.glade:3741
-#: gramps.glade:4185 gramps.glade:4365 gramps.glade:5821 gramps.glade:6067
+#: const.py:154 const.py:273 gramps.glade:3569 gramps.glade:3762
+#: gramps.glade:4206 gramps.glade:4386 gramps.glade:5840 gramps.glade:6086
 msgid "Adopted"
 msgstr "Приемный"
 
-#: const.py:155 gramps.glade:3570 gramps.glade:3763 gramps.glade:4207
-#: gramps.glade:4387 gramps.glade:5843 gramps.glade:6089
+#: const.py:155 gramps.glade:3591 gramps.glade:3784 gramps.glade:4228
+#: gramps.glade:4408 gramps.glade:5862 gramps.glade:6108
 msgid "Stepchild"
 msgstr "Пасынок/падчерица"
 
@@ -1749,12 +1749,12 @@ msgstr "Пасынок/падчерица"
 msgid "Sponsored"
 msgstr "Спонсируемый"
 
-#: const.py:157 gramps.glade:3592 gramps.glade:3785 gramps.glade:5865
-#: gramps.glade:6111
+#: const.py:157 gramps.glade:3613 gramps.glade:3806 gramps.glade:5884
+#: gramps.glade:6130
 msgid "Foster"
 msgstr "Воспитанник"
 
-#: const.py:160 const.py:435 const.py:443 gramps.glade:1304
+#: const.py:160 const.py:435 const.py:443 gramps.glade:1325
 #: mergedata.glade:218
 msgid "Other"
 msgstr "Другое"
@@ -2050,7 +2050,7 @@ msgid "_Private record"
 msgstr "Личная запись"
 
 #: dialog.glade:504 dialog.glade:1164 dialog.glade:2258 dialog.glade:3296
-#: edit_person.glade:1192 gramps.glade:4809 imagesel.glade:1560
+#: edit_person.glade:1192 gramps.glade:4828 imagesel.glade:1560
 #: marriage.glade:279 mergedata.glade:378 mergedata.glade:1228
 #: places.glade:513 places.glade:543 plugins/verify.glade:553
 msgid "<b>General</b>"
@@ -2059,8 +2059,8 @@ msgstr "<b>Общее</b>"
 #: dialog.glade:570 dialog.glade:773 dialog.glade:1230 dialog.glade:2324
 #: dialog.glade:3363 edit_person.glade:1728 edit_person.glade:2277
 #: edit_person.glade:2689 edit_person.glade:3319 edit_person.glade:3525
-#: edit_person.glade:3803 gramps.glade:2821 gramps.glade:3231
-#: gramps.glade:4041 gramps.glade:4930 imagesel.glade:981 imagesel.glade:1763
+#: edit_person.glade:3803 gramps.glade:2842 gramps.glade:3252
+#: gramps.glade:4062 gramps.glade:4949 imagesel.glade:981 imagesel.glade:1763
 #: marriage.glade:746 marriage.glade:1140 marriage.glade:1327 places.glade:899
 #: places.glade:1100 places.glade:1251 places.glade:1537 rule.glade:193
 #: rule.glade:880 srcsel.glade:831 styles.glade:138
@@ -2070,7 +2070,7 @@ msgstr "Добавить..."
 #: dialog.glade:585 dialog.glade:788 dialog.glade:1245 dialog.glade:2339
 #: dialog.glade:3378 edit_person.glade:1746 edit_person.glade:2295
 #: edit_person.glade:2707 edit_person.glade:3337 edit_person.glade:3542
-#: edit_person.glade:3820 gramps.glade:4946 imagesel.glade:997
+#: edit_person.glade:3820 gramps.glade:4965 imagesel.glade:997
 #: imagesel.glade:1779 marriage.glade:762 marriage.glade:1156
 #: marriage.glade:1343 places.glade:915 places.glade:1115 places.glade:1267
 #: places.glade:1553 rule.glade:211 rule.glade:899 srcsel.glade:847
@@ -2081,7 +2081,7 @@ msgstr "Правка..."
 #: dialog.glade:601 dialog.glade:804 dialog.glade:1261 dialog.glade:2355
 #: dialog.glade:3394 edit_person.glade:1765 edit_person.glade:2314
 #: edit_person.glade:2726 edit_person.glade:3356 edit_person.glade:3910
-#: gramps.glade:4966 imagesel.glade:1015 imagesel.glade:1797
+#: gramps.glade:4985 imagesel.glade:1015 imagesel.glade:1797
 #: marriage.glade:779 marriage.glade:1173 marriage.glade:1360 places.glade:931
 #: places.glade:1131 places.glade:1283 places.glade:1639 rule.glade:229
 #: rule.glade:934 srcsel.glade:864 styles.glade:162
@@ -2089,12 +2089,12 @@ msgid "_Delete"
 msgstr "Уничтожить"
 
 #: dialog.glade:652 dialog.glade:1312 dialog.glade:2406 dialog.glade:3445
-#: gramps.glade:2155 places.glade:1182
+#: gramps.glade:2176 places.glade:1182
 msgid "<b>Sources</b>"
 msgstr "<b>Источники</b>"
 
 #: dialog.glade:706 dialog.glade:1364 dialog.glade:2459 dialog.glade:3498
-#: gramps.glade:4860 places.glade:1034
+#: gramps.glade:4879 places.glade:1034
 msgid "<b>Note</b>"
 msgstr "<b>Записка</b>"
 
@@ -2130,7 +2130,7 @@ msgstr "Государство/Республика:"
 msgid "Church _parish:"
 msgstr "Церковный приход:"
 
-#: dialog.glade:1794 dialog.glade:2531 dialog.glade:2778 gramps.glade:4581
+#: dialog.glade:1794 dialog.glade:2531 dialog.glade:2778 gramps.glade:4602
 #: marriage.glade:48
 msgid "Accept and close"
 msgstr "Принять и закрыть"
@@ -2155,7 +2155,7 @@ msgstr "Web адрес:"
 msgid "_Description:"
 msgstr "Описание:"
 
-#: dialog.glade:2764 gramps.glade:4567 marriage.glade:34
+#: dialog.glade:2764 gramps.glade:4588 marriage.glade:34
 msgid "Reject changes and close"
 msgstr "Отвергнуть измемения и закрыть"
 
@@ -2175,7 +2175,7 @@ msgstr "Суффикс:"
 msgid "T_ype:"
 msgstr "Тип:"
 
-#: dialog.glade:2962 edit_person.glade:229 gramps.glade:4655
+#: dialog.glade:2962 edit_person.glade:229 gramps.glade:4674
 #: imagesel.glade:235 imagesel.glade:1434 places.glade:119 srcsel.glade:296
 msgid "_Title:"
 msgstr "Титул:"
@@ -2343,7 +2343,7 @@ msgstr "<b>Пол</b>"
 msgid "<b>Preferred name</b>"
 msgstr "<b>Предпочитаемое имя</b>"
 
-#: edit_person.glade:721 gramps.glade:5279
+#: edit_person.glade:721 gramps.glade:5298
 msgid "_male"
 msgstr "мужчина"
 
@@ -2397,7 +2397,7 @@ msgid "Family prefix:"
 msgstr "Фамильная приставка:"
 
 #: edit_person.glade:1401 edit_person.glade:1941 edit_person.glade:2425
-#: gramps.glade:2396 imagesel.glade:812 imagesel.glade:1642 marriage.glade:338
+#: gramps.glade:2417 imagesel.glade:812 imagesel.glade:1642 marriage.glade:338
 #: marriage.glade:925
 msgid "Type:"
 msgstr "Тип:"
@@ -2499,7 +2499,7 @@ msgstr "Редактировать различные связянные данные и документацию"
 msgid "<b>Notes</b>"
 msgstr "<b>Записки</b>"
 
-#: edit_person.glade:3522 gramps.glade:4927 marriage.glade:1324
+#: edit_person.glade:3522 gramps.glade:4946 marriage.glade:1324
 msgid "Place new media object in this gallery"
 msgstr "Поместить новый медиа-объект в данную галерею"
 
@@ -2507,7 +2507,7 @@ msgstr "Поместить новый медиа-объект в данную галерею"
 msgid "Edit the properties of the selected object"
 msgstr "Изменить свойства выделенного объекта"
 
-#: edit_person.glade:3557 gramps.glade:4963 marriage.glade:1357
+#: edit_person.glade:3557 gramps.glade:4982 marriage.glade:1357
 msgid "Remove selected object from this gallery only"
 msgstr "Удалить выделенный объект только из данной галереи"
 
@@ -2515,7 +2515,7 @@ msgstr "Удалить выделенный объект только из данной галереи"
 msgid "_Remove"
 msgstr "Удалить"
 
-#: edit_person.glade:3599 gramps.glade:5018 marriage.glade:1392
+#: edit_person.glade:3599 gramps.glade:5037 marriage.glade:1392
 #: places.glade:1335
 msgid "<b>Gallery</b>"
 msgstr "<b>Галерея</b>"
@@ -2593,17 +2593,17 @@ msgstr "<b>Приписан к родителям</b>"
 msgid "<b>LDS</b>"
 msgstr "<b>LDS</b>"
 
-#: errdialogs.glade:61 errdialogs.glade:216 errdialogs.glade:357
-#: errdialogs.glade:498 errdialogs.glade:628 errdialogs.glade:758
+#: errdialogs.glade:60 errdialogs.glade:214 errdialogs.glade:354
+#: errdialogs.glade:494 errdialogs.glade:623 errdialogs.glade:752
 msgid "label2"
 msgstr "label2"
 
-#: errdialogs.glade:105 errdialogs.glade:260 errdialogs.glade:401
-#: errdialogs.glade:542 errdialogs.glade:672 errdialogs.glade:802
+#: errdialogs.glade:104 errdialogs.glade:258 errdialogs.glade:398
+#: errdialogs.glade:538 errdialogs.glade:667 errdialogs.glade:796
 msgid "label1"
 msgstr "label1"
 
-#: errdialogs.glade:162
+#: errdialogs.glade:160
 msgid "Close _without saving"
 msgstr "Закрыть без сохранения"
 
@@ -2711,431 +2711,431 @@ msgstr "Открыть..."
 msgid "_Save"
 msgstr "Сохранить"
 
-#: gramps.glade:114 gramps_main.py:1041
-msgid "_Revert"
-msgstr "Откатить"
-
-#: gramps.glade:135
-msgid "_Import"
-msgstr "Импорт"
-
-#: gramps.glade:143
+#: gramps.glade:114
 msgid "Save _As..."
 msgstr "Сохранить Как..."
 
-#: gramps.glade:164
+#: gramps.glade:141
+msgid "_Import"
+msgstr "Импорт"
+
+#: gramps.glade:149
 msgid "_Export"
 msgstr "Экспорт"
 
-#: gramps.glade:184
+#: gramps.glade:169 gramps_main.py:1043
+msgid "_Revert"
+msgstr "Откатить"
+
+#: gramps.glade:190
 msgid "Re_load plugins"
 msgstr "Перезагрузить добавления"
 
-#: gramps.glade:211
+#: gramps.glade:217
 msgid "_Quit"
 msgstr "Выход"
 
-#: gramps.glade:236
+#: gramps.glade:242
 msgid "_Edit"
 msgstr "Правка"
 
-#: gramps.glade:245
+#: gramps.glade:251
 msgid "_Find..."
 msgstr "Найти..."
 
-#: gramps.glade:266 plugins/merge.glade:126
+#: gramps.glade:273 plugins/merge.glade:126
 msgid "_Merge"
 msgstr "Слияние"
 
-#: gramps.glade:291
+#: gramps.glade:298
 msgid "_View"
 msgstr "Просмотр"
 
-#: gramps.glade:300
+#: gramps.glade:307
 msgid "_Sidebar"
 msgstr "Боковая панель"
 
-#: gramps.glade:310
+#: gramps.glade:317
 msgid "_Filter"
 msgstr "Фильтр"
 
-#: gramps.glade:324
+#: gramps.glade:331
 msgid "_Bookmarks"
 msgstr "Закладки"
 
-#: gramps.glade:333
+#: gramps.glade:340
 msgid "_Add bookmark"
 msgstr "Добавить закладку"
 
-#: gramps.glade:355
+#: gramps.glade:362
 msgid "_Edit bookmarks"
 msgstr "Правка закладок"
 
-#: gramps.glade:383
+#: gramps.glade:390
 msgid "_Go to bookmark"
 msgstr "Пойти к закладке"
 
-#: gramps.glade:395
+#: gramps.glade:402
 msgid "_Reports"
 msgstr "Отчеты"
 
-#: gramps.glade:403
+#: gramps.glade:410
 msgid "_Tools"
 msgstr "Инструменты"
 
-#: gramps.glade:411
+#: gramps.glade:418
 msgid "_Settings"
 msgstr "Установки"
 
-#: gramps.glade:420
+#: gramps.glade:427
 msgid "Prefere_nces"
 msgstr "Настройки"
 
-#: gramps.glade:441
+#: gramps.glade:448
 msgid "_Default Person"
 msgstr "Лицо По Умолчанию"
 
-#: gramps.glade:466
+#: gramps.glade:473
 msgid "_Help"
 msgstr "Справка"
 
-#: gramps.glade:475
-msgid "_User's manual"
+#: gramps.glade:482
+msgid "_User manual"
 msgstr "Руководство пользователя"
 
-#: gramps.glade:496
+#: gramps.glade:509
 msgid "GRAMPS _home page"
 msgstr "Домашняя страница GRAMPS"
 
-#: gramps.glade:517
+#: gramps.glade:530
 msgid "GRAMPS _mailing lists"
 msgstr "Списки рассылки GRAMPS"
 
-#: gramps.glade:538
+#: gramps.glade:551
 msgid "_Report a bug"
 msgstr "Сообщить об Ошибке"
 
-#: gramps.glade:547
+#: gramps.glade:566
 msgid "_Show plugin status"
 msgstr "Показать стасус добавлений"
 
-#: gramps.glade:556
+#: gramps.glade:575
 msgid "_Open example database"
 msgstr "Открыть пример базы данных"
 
-#: gramps.glade:565
+#: gramps.glade:584
 msgid "_About"
 msgstr "О программе"
 
-#: gramps.glade:615
+#: gramps.glade:634
 msgid "Open file"
 msgstr "Открыть файл"
 
-#: gramps.glade:616
+#: gramps.glade:635
 msgid "Open"
 msgstr "Открыть"
 
-#: gramps.glade:626
+#: gramps.glade:645
 msgid "Save file"
 msgstr "Сохранить файл"
 
-#: gramps.glade:627
+#: gramps.glade:646
 msgid "Save"
 msgstr "Сохранить"
 
-#: gramps.glade:637
+#: gramps.glade:656
 msgid "Make the home person the active person"
 msgstr "Сделать лицо по умолчанию активным лицом"
 
-#: gramps.glade:638
+#: gramps.glade:657
 msgid "Home"
 msgstr "Домой"
 
-#: gramps.glade:648
+#: gramps.glade:667
 msgid "Generate reports"
 msgstr "Генерировать Отчеты"
 
-#: gramps.glade:649
+#: gramps.glade:668
 msgid "Reports"
 msgstr "Отчеты"
 
-#: gramps.glade:662
+#: gramps.glade:681
 msgid "Run a tool"
 msgstr "Запустить инструмент"
 
-#: gramps.glade:663
+#: gramps.glade:682
 msgid "Tools"
 msgstr "Инструменты"
 
-#: gramps.glade:673
+#: gramps.glade:692
 msgid "Add a new item"
 msgstr "Добавить новое"
 
-#: gramps.glade:674
+#: gramps.glade:693
 msgid "Add"
 msgstr "Добавить"
 
-#: gramps.glade:687
+#: gramps.glade:706
 msgid "Remove the currently selected item"
 msgstr "Удалить выделенное в настоящий момент"
 
-#: gramps.glade:688
+#: gramps.glade:707
 msgid "Remove"
 msgstr "Удалить"
 
-#: gramps.glade:698
+#: gramps.glade:717
 msgid "Edit the selected item"
 msgstr "Изменить выделенное"
 
-#: gramps.glade:699
+#: gramps.glade:718
 msgid "Edit"
 msgstr "Правка"
 
-#: gramps.glade:854
+#: gramps.glade:875
 msgid "Pedigree"
 msgstr "Родословная"
 
-#: gramps.glade:900 plugins/IndivComplete.py:299 plugins/WebPage.py:204
+#: gramps.glade:922 plugins/IndivComplete.py:299 plugins/WebPage.py:204
 msgid "Sources"
 msgstr "Источники"
 
-#: gramps.glade:992
+#: gramps.glade:1016
 msgid "Media"
 msgstr "Медиа"
 
-#: gramps.glade:1055
+#: gramps.glade:1078
 msgid "Filter:"
 msgstr "Фильтр:"
 
-#: gramps.glade:1108
+#: gramps.glade:1131
 msgid "Qualifier:"
 msgstr "Критерий:"
 
-#: gramps.glade:1161
+#: gramps.glade:1184
 msgid "Show persons that do not match the filtering rule"
 msgstr "Показать лица не удовлетворяющие правилу фильтра"
 
-#: gramps.glade:1163
+#: gramps.glade:1186
 msgid "Invert"
 msgstr "Обратить"
 
-#: gramps.glade:1218
+#: gramps.glade:1241
 msgid "_Apply"
 msgstr "Применить"
 
-#: gramps.glade:1336
+#: gramps.glade:1357
 msgid "<b>People</b>"
 msgstr "<b>Люди</b>"
 
-#: gramps.glade:1365
+#: gramps.glade:1386
 msgid "Exchange the current spouse with the active person"
 msgstr "Поменять текущего супруга с активным лицом"
 
-#: gramps.glade:1430
+#: gramps.glade:1451
 msgid "Adds a spouse"
 msgstr "Добавить супруга"
 
-#: gramps.glade:1456
+#: gramps.glade:1477
 msgid "Removes the currently selected spouse"
 msgstr "Удаляет выделенного в настоящий момент супруга"
 
-#: gramps.glade:1498
+#: gramps.glade:1519
 msgid "Make the active person's family the active family"
 msgstr "Сделать семью активного лица активной семьей"
 
-#: gramps.glade:1524
+#: gramps.glade:1545
 msgid "Adds a new set of parents to the active person"
 msgstr "Добавляет активному лицу новый набор родителей"
 
-#: gramps.glade:1550
+#: gramps.glade:1571
 msgid "Deletes the selected parents from the active person"
 msgstr "Удаляет выделенных родителей от активного лица"
 
-#: gramps.glade:1595 gramps.glade:1869
+#: gramps.glade:1616 gramps.glade:1890
 msgid "Double-click to edit the selected parents"
 msgstr "Двойной щелчок редактирует выделенных родителей"
 
-#: gramps.glade:1622
+#: gramps.glade:1643
 msgid "Make the selected spouse's family the active family"
 msgstr "Сделать семью выделенного супруга активной семьей"
 
-#: gramps.glade:1648
+#: gramps.glade:1669
 msgid "Adds a new set of parents to the selected spouse"
 msgstr "Добавляет новый набор родителей к выделенному супругу"
 
-#: gramps.glade:1674
+#: gramps.glade:1695
 msgid "Deletes the selected parents from the selected spouse"
 msgstr "Удаляет выделенных родителей от выделенного супруга"
 
-#: gramps.glade:1710
+#: gramps.glade:1731
 msgid "<b>Children</b>"
 msgstr "<b>Дети</b>"
 
-#: gramps.glade:1734
+#: gramps.glade:1755
 msgid "<b>Active person</b>"
 msgstr "<b>Активное лицо</b>"
 
-#: gramps.glade:1758
+#: gramps.glade:1779
 msgid "<b>Active person's parents</b>"
 msgstr "<b>Родители активного лица</b>"
 
-#: gramps.glade:1782
+#: gramps.glade:1803
 msgid "<b>Spouse</b>"
 msgstr "<b>Супруг</b>"
 
-#: gramps.glade:1806
+#: gramps.glade:1827
 msgid "<b>Spouse's parents</b>"
 msgstr "<b>Родители супруга</b>"
 
-#: gramps.glade:1899
+#: gramps.glade:1920
 msgid "Double-click to edit the active person"
 msgstr "Двойной щелчок редактирует активное лицо"
 
-#: gramps.glade:1929
+#: gramps.glade:1950
 msgid "Double-click to edit the relationship information"
 msgstr "Двойной щелчок редактирует информацию об отношении"
 
-#: gramps.glade:1956
+#: gramps.glade:1977
 msgid "Make the selected child the active person"
 msgstr "Сделать выделенного ребенка активным лицом"
 
-#: gramps.glade:1982
+#: gramps.glade:2003
 msgid "Adds a new child to the selected family"
 msgstr "Добавляет нового ребенка к выделенной семье"
 
-#: gramps.glade:2008
+#: gramps.glade:2029
 msgid "Deletes the selected child from the selected family"
 msgstr "Удаляет выделенного ребенка от выделенной семьи"
 
-#: gramps.glade:2050
+#: gramps.glade:2071
 msgid "<b>Family</b>"
 msgstr "<b>Семья</b>"
 
-#: gramps.glade:2097
+#: gramps.glade:2118
 msgid "<b>Pedigree</b>"
 msgstr "<b>Родословная</b>"
 
-#: gramps.glade:2213
+#: gramps.glade:2234
 msgid "<b>Places</b>"
 msgstr "<b>Места</b>"
 
-#: gramps.glade:2264 imagesel.glade:142 imagesel.glade:469 imagesel.glade:1215
+#: gramps.glade:2285 imagesel.glade:142 imagesel.glade:469 imagesel.glade:1215
 msgid "<b>Preview</b>"
 msgstr "<b>Предварительный Просмотр</b>"
 
-#: gramps.glade:2300
+#: gramps.glade:2321
 msgid "Details:"
 msgstr "Подробности:"
 
-#: gramps.glade:2371 imagesel.glade:505 imagesel.glade:1251
+#: gramps.glade:2392 imagesel.glade:505 imagesel.glade:1251
 msgid "Path:"
 msgstr "Путь:"
 
-#: gramps.glade:2540 plugins/gedcomimport.glade:209
+#: gramps.glade:2561 plugins/gedcomimport.glade:209
 msgid "<b>Information</b>"
 msgstr "<b>Информация</b>"
 
-#: gramps.glade:2612
+#: gramps.glade:2633
 msgid "<b>Media</b>"
 msgstr "<b>Медиа</b>"
 
-#: gramps.glade:2868 marriage.glade:127
+#: gramps.glade:2889 marriage.glade:127
 msgid "_Relationship type:"
 msgstr "Тип отношений:"
 
-#: gramps.glade:2959
+#: gramps.glade:2980
 msgid "Relationship definition\n"
 msgstr "Определение отношений\n"
 
-#: gramps.glade:3116
+#: gramps.glade:3137
 msgid "_Father's relationship to child:"
 msgstr "Отношение отца к ребенку:"
 
-#: gramps.glade:3144
+#: gramps.glade:3165
 msgid "_Mother's relationship to child:"
 msgstr "Отношение матери к ребенку:"
 
-#: gramps.glade:3172
+#: gramps.glade:3193
 msgid "_Parents' relationship to each other:"
 msgstr "Отношение родителей между собой:"
 
-#: gramps.glade:3200 gramps.glade:6230
+#: gramps.glade:3221 gramps.glade:6249
 msgid "<b>Father</b>"
 msgstr "<b>Отец</b>"
 
-#: gramps.glade:3247 gramps.glade:4057
+#: gramps.glade:3268 gramps.glade:4078
 msgid "_Show all"
 msgstr "Показать всех"
 
-#: gramps.glade:3282 gramps.glade:6254
+#: gramps.glade:3303 gramps.glade:6273
 msgid "<b>Mother</b>"
 msgstr "<b>Мать</b>"
 
-#: gramps.glade:3306
+#: gramps.glade:3327
 msgid "<b>Relationships</b>"
 msgstr "<b>Отношения</b>"
 
-#: gramps.glade:3400
+#: gramps.glade:3421
 msgid "Show _all"
 msgstr "Показать всех"
 
-#: gramps.glade:4484
+#: gramps.glade:4505
 msgid "Relationship to father:"
 msgstr "Отношение к отцу:"
 
-#: gramps.glade:4508
+#: gramps.glade:4529
 msgid "Relationship to mother:"
 msgstr "Отношение к матери:"
 
-#: gramps.glade:4683
+#: gramps.glade:4702
 msgid "_Author:"
 msgstr "Автор:"
 
-#: gramps.glade:4711
+#: gramps.glade:4730
 msgid "_Publication information:"
 msgstr "Информация о публикациях:"
 
-#: gramps.glade:5063 imagesel.glade:1944 places.glade:1742
+#: gramps.glade:5082 imagesel.glade:1944 places.glade:1742
 msgid "<b>References</b>"
 msgstr "<b>Ссылки</b>"
 
-#: gramps.glade:5193
+#: gramps.glade:5212
 msgid "_Surname:"
 msgstr "Фамилия:"
 
-#: gramps.glade:5223
+#: gramps.glade:5242
 msgid "Gender:"
 msgstr "Пол:"
 
-#: gramps.glade:5297
+#: gramps.glade:5316
 msgid "_female"
 msgstr "женщина"
 
-#: gramps.glade:5326
+#: gramps.glade:5345
 msgid "_Given:"
 msgstr "Имя:"
 
-#: gramps.glade:5525
+#: gramps.glade:5544
 msgid "_Open an existing database"
 msgstr "Открыть существующую базу данных"
 
-#: gramps.glade:5544
+#: gramps.glade:5563
 msgid "Create a new _XML database"
 msgstr "Создать новую базу данных XML"
 
-#: gramps.glade:5563
+#: gramps.glade:5582
 msgid "Create a new _ZODB database"
 msgstr "Создать новую базу данных ZODB"
 
-#: gramps.glade:5739
+#: gramps.glade:5758
 msgid "_Relationship:"
 msgstr "Отношение:"
 
-#: gramps.glade:5984
+#: gramps.glade:6003
 msgid "Relation_ship:"
 msgstr "Отношение:"
 
-#: gramps.glade:6419
+#: gramps.glade:6438
 msgid "_Text:"
 msgstr "Текст:"
 
@@ -3157,7 +3157,7 @@ msgstr ""
 "пользовательских программ с административного счета редко является разумной "
 "идеей и может открыть потенциальный риск безопасности. "
 
-#: gramps_main.py:487
+#: gramps_main.py:491
 msgid ""
 "Exactly two people must be selected to perform a merge. A second person can "
 "be selected by holding down the control key while clicking on a the desired "
@@ -3167,11 +3167,11 @@ msgstr ""
 "может быть выбрано посредством нажатия и удерживания контрольной клавиши в "
 "момент щелчка по имени желаемого лица."
 
-#: gramps_main.py:510
+#: gramps_main.py:513
 msgid "Save Changes Made to the Database?"
 msgstr "Сохранить изменения сделанные в базе данных?"
 
-#: gramps_main.py:511
+#: gramps_main.py:514
 msgid ""
 "Unsaved changes exist in the current database. If you close without saving, "
 "the changes you have made will be lost."
@@ -3179,11 +3179,11 @@ msgstr ""
 "В используемой базе данных существуют несохраненные изменения. Если вы "
 "закроете без сохранения, ваши изменения будут потеряны."
 
-#: gramps_main.py:550
+#: gramps_main.py:553
 msgid "Create a New Database"
 msgstr "Создать Новую Базу Данных"
 
-#: gramps_main.py:551
+#: gramps_main.py:554
 msgid ""
 "Creating a new database will close the existing database, discarding any "
 "unsaved changes. You will then be prompted to create a new database"
@@ -3192,20 +3192,20 @@ msgstr ""
 "несохраненные изменения. Затем вам будет предложено создать новую базу "
 "данных."
 
-#: gramps_main.py:554
+#: gramps_main.py:557
 msgid "_Create New Database"
 msgstr "Создать Новую Базу Данных"
 
-#: gramps_main.py:634 gramps_main.py:661 gramps_main.py:1123
+#: gramps_main.py:637 gramps_main.py:664 gramps_main.py:1125
 msgid "Updating display - this may take a few seconds..."
 msgstr "Обновляю экран - это может занять несколько секунд..."
 
-#: gramps_main.py:636 gramps_main.py:663 gramps_main.py:1125
-#: gramps_main.py:1386
+#: gramps_main.py:639 gramps_main.py:666 gramps_main.py:1127
+#: gramps_main.py:1388
 msgid "Updating display..."
 msgstr "Обновляю экран..."
 
-#: gramps_main.py:711
+#: gramps_main.py:712
 msgid ""
 "An autosave file exists for %s.\n"
 "Should this be loaded instead of the last saved version?"
@@ -3213,11 +3213,11 @@ msgstr ""
 "Существует авто-сохраненный файл для %s.\n"
 "Использовать его вместо последней сохраненной версии?"
 
-#: gramps_main.py:716
+#: gramps_main.py:717
 msgid "An autosave file was detected"
 msgstr "Обнаружен автоматически сохраненный файл"
 
-#: gramps_main.py:717
+#: gramps_main.py:718
 msgid ""
 "GRAMPS has detected an autosave file for the selected database. This file is "
 "more recent than the last saved database. This typically happens when GRAMPS "
@@ -3230,23 +3230,23 @@ msgstr ""
 "закрывается до сохранения данных. Вы можете загрузить этот файл, чтобы "
 "попытаться восстановить какие-либо потерянные данные."
 
-#: gramps_main.py:723
+#: gramps_main.py:724
 msgid "_Load autosave file"
 msgstr "Загрузить автоматически сохраненный файл"
 
-#: gramps_main.py:725
+#: gramps_main.py:726
 msgid "Load _saved database"
 msgstr "Загрузить сохраненную базу данных"
 
-#: gramps_main.py:759 gramps_main.py:798
+#: gramps_main.py:760 gramps_main.py:799
 msgid "Database could not be opened"
 msgstr "База данных не смогла быть открыта"
 
-#: gramps_main.py:760 gramps_main.py:799
+#: gramps_main.py:761 gramps_main.py:800
 msgid "%s is not a directory."
 msgstr "%s не является каталогом."
 
-#: gramps_main.py:761 gramps_main.py:800
+#: gramps_main.py:762 gramps_main.py:801
 msgid ""
 "The file you should attempt to open should be a directory that contains a "
 "data.gramps file or a gramps.zodb file."
@@ -3254,11 +3254,11 @@ msgstr ""
 "Файл, который вы должны пытаться открыть, должен быть каталогом, содержащим "
 "файл data.gramps или файл gramps.zodb."
 
-#: gramps_main.py:791
+#: gramps_main.py:792
 msgid "Saving %s ..."
 msgstr "Сохраняю %s ..."
 
-#: gramps_main.py:809
+#: gramps_main.py:810
 msgid ""
 "An was detected while attempting to create the file. The operating system "
 "reported \"%s\""
@@ -3266,23 +3266,23 @@ msgstr ""
 "Обнаружена ошибка при попытке создать файл. Опреационная система выдала "
 "\"%s\""
 
-#: gramps_main.py:814 gramps_main.py:823
+#: gramps_main.py:815 gramps_main.py:824
 msgid "An error was detected while trying to create the file"
 msgstr "Обнаружена ошибка при попытке создать файл."
 
-#: gramps_main.py:856
+#: gramps_main.py:857
 msgid "autosaving..."
 msgstr "автоматически сохраняю..."
 
-#: gramps_main.py:859
+#: gramps_main.py:860
 msgid "autosave complete"
 msgstr "автоматическое сохранение завершено"
 
-#: gramps_main.py:861
+#: gramps_main.py:862
 msgid "autosave failed"
 msgstr "автоматическое сохранение не удалось"
 
-#: gramps_main.py:890
+#: gramps_main.py:891
 msgid ""
 "Deleting the person will remove the person from from the database. The data "
 "can only be recovered by closing the database without saving changes. This "
@@ -3292,15 +3292,15 @@ msgstr ""
 "восстановлены только закрытием базы данных без сохранения изменений. Это "
 "изменение станет постоянным после того, как вы сохраните базу данных."
 
-#: gramps_main.py:895
+#: gramps_main.py:896
 msgid "_Delete Person"
 msgstr "Уничтожить Лицо"
 
-#: gramps_main.py:1037
+#: gramps_main.py:1039
 msgid "Revert to last saved database?"
 msgstr "Откатить к последней сохраненной базе данных?"
 
-#: gramps_main.py:1038
+#: gramps_main.py:1040
 msgid ""
 "Reverting to the last saved database will cause all unsaved changes to be "
 "lost, and the last saved database will be loaded."
@@ -3309,47 +3309,43 @@ msgstr ""
 "несохраненных изменений и последующей загрузке последней сохраненной базы "
 "данных."
 
-#: gramps_main.py:1044
+#: gramps_main.py:1046
 msgid "Could Not Revert to the Previous Database."
 msgstr "Не смогла откатить к Предыдущей Базе Данных"
 
-#: gramps_main.py:1045
+#: gramps_main.py:1047
 msgid "GRAMPS could not find a previous version of the database"
 msgstr "GRAMPS не смогла найти предыдущую версию базы данных."
 
-#: gramps_main.py:1352
-msgid "Loading %s ..."
-msgstr "Загружаю  %s ..."
-
-#: gramps_main.py:1361
+#: gramps_main.py:1354 gramps_main.py:1363
 msgid "Loading %s..."
 msgstr "Загружаю %s..."
 
-#: gramps_main.py:1463
+#: gramps_main.py:1465
 msgid "No home person has been set."
 msgstr "Лицо по умолчанию не было выбрано."
 
-#: gramps_main.py:1464
+#: gramps_main.py:1466
 msgid "The home person may be set from the Settings menu."
 msgstr "Лицо По Умолчанию может быть установлено в меню Установок."
 
-#: gramps_main.py:1470
+#: gramps_main.py:1472
 msgid "%s has been bookmarked"
 msgstr "%s помечено закладкой"
 
-#: gramps_main.py:1473
+#: gramps_main.py:1475
 msgid "Could Not Set a Bookmark."
 msgstr "Не смогла установить Закладку."
 
-#: gramps_main.py:1474
+#: gramps_main.py:1476
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Нельзя поставить закладку, поскольку никто не выделен."
 
-#: gramps_main.py:1486
+#: gramps_main.py:1488
 msgid "Set %s as the Home Person"
 msgstr "Установить %s в качестве Лица По Умолчанию"
 
-#: gramps_main.py:1487
+#: gramps_main.py:1489
 msgid ""
 "Once a Home Person is defined, pressing the Home button on the toolbar will "
 "make the home person the active person."
@@ -3357,23 +3353,23 @@ msgstr ""
 "После того, как Лицо По Умолчанию определено, нажатие кнопки Домой на панели "
 "инструментов сделает Лицо По Умолчанию активным лицом."
 
-#: gramps_main.py:1490
+#: gramps_main.py:1492
 msgid "_Set Home Person"
 msgstr "Установить Лицо По Умолчанию"
 
-#: gramps_main.py:1535 gramps_main.py:1539 gramps_main.py:1543
+#: gramps_main.py:1537 gramps_main.py:1541 gramps_main.py:1545
 msgid "Could not create database"
 msgstr "Не смогла создать базу данных"
 
-#: gramps_main.py:1536 gramps_main.py:1540
+#: gramps_main.py:1538 gramps_main.py:1542
 msgid "The directgory ~/.gramps/example could not be created.\n"
 msgstr "Каталог ~/.gramps/example не смог быть создан.\n"
 
-#: gramps_main.py:1544
+#: gramps_main.py:1546
 msgid "The directgory ~/.gramps/example could not be created."
 msgstr "Каталог ~/.gramps/example не смог быть создан."
 
-#: gramps_main.py:1552 gramps_main.py:1554
+#: gramps_main.py:1554 gramps_main.py:1556
 msgid "Example database not created"
 msgstr "Пример базы данных не создан"
 
@@ -6167,6 +6163,9 @@ msgstr "<b>Выравнивание</b>"
 #: styles.glade:1336
 msgid "<b>Paragraph options</b>"
 msgstr "<b>Параметры абзаца</b>"
+
+#~ msgid "Loading %s ..."
+#~ msgstr "Загружаю  %s ..."
 
 #~ msgid "%s is not a valid file name or does not exist."
 #~ msgstr "%s не является правильным именем файла, или не существует."
