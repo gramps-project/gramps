@@ -1680,7 +1680,7 @@ class EditPerson:
                 self.event_src_field.set_text('')
                 self.event_conf_field.set_text('')
             if not self.db.readonly:
-            	self.event_delete_btn.set_sensitive(1)
+                self.event_delete_btn.set_sensitive(1)
                 self.event_edit_btn.set_sensitive(1)
         else:
             self.event_date_field.set_text('')
