@@ -1588,8 +1588,8 @@ class CommandLineReport:
             person = self.database.get_person_from_handle(person_handle)
             id_list.append("%s\t%s" % (
                 person.get_gramps_id(),
-                NameDisplay.display.displayer(person)))
-            self.options_help['id'].append(id_list)
+                NameDisplay.displayer.display(person)))
+        self.options_help['id'].append(id_list)
         self.options_help['id'].append(False)
 
         if self.options_dict.has_key('filter'):
