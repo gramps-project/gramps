@@ -841,6 +841,12 @@ class WebReportDialog(ReportDialog):
         p = ParagraphStyle()
         p.set(font=font,bborder=1)
         self.default_style.add_style("NotesTitle",p)
+
+        font = FontStyle()
+        font.set(face=FONT_SANS_SERIF,size=10)
+        p = ParagraphStyle()
+        p.set(font=font,align=PARA_ALIGN_CENTER)
+        self.default_style.add_style("Copyright",p)
     
         font = FontStyle()
         font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)

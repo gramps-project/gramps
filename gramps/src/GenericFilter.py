@@ -37,7 +37,6 @@ except:
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-import types
 import os
 from string import find,join,strip,replace
 import gtk
@@ -329,7 +328,6 @@ class HasRelationship(Rule):
             cnt = cnt + len(f.getChildList())
             if self.list[1] and f.getRelationship() == self.list[1]:
                 rel_type = 1
-        rval = 0
 
         # if number of relations specified
         if self.list[0]:
@@ -536,12 +534,6 @@ class GenericFilter:
             self.comment = ''
             self.logical_op = 'and'
             self.invert = 0
-
-    def set_logical_or(self,val):
-        self.logical_op = 'or'
-
-    def get_logical_or(self):
-        return self.logical_op == 'or'
 
     def set_logical_op(self,val):
         if val in const.logical_functions:

@@ -42,8 +42,6 @@ from RelLib import *
 #
 #-------------------------------------------------------------------------
 
-_MENUVAL    = "a"
-
 class SourceSelector:
 
     def __init__(self,srclist,parent,update=None):
@@ -206,7 +204,8 @@ class SourceEditor:
         page = self.get_widget("spage").get_text()
         date = self.get_widget("sdate").get_text()
         text = self.get_widget("stext").get_chars(0,-1)
-        conf = self.get_widget("conf").get_menu().get_active().get_data(_MENUVAL)
+        conf = self.get_widget("conf").get_menu().get_active().get_data('a')
+
         comments = self.get_widget("scomment").get_chars(0,-1)
 
         self.source_ref.setPage(page)

@@ -591,6 +591,7 @@ class TextDoc:
         self.lmargin = 2.54
         self.rmargin = 2.54
         self.title = ""
+        self.owner = ''
                 
         self.font = FontStyle()
         self.style_list = styles.get_styles()
@@ -599,6 +600,9 @@ class TextDoc:
         self.name = ""
         self.photo_list = []
 
+    def set_owner(self,owner):
+        self.owner = owner
+        
     def add_photo(self,name,align,w_cm,h_cm):
         """adds a photo of the specified width (in centimeters)"""
         pass

@@ -38,12 +38,13 @@ import Date
 #
 #-------------------------------------------------------------------------
 
+su = string.upper
+
 def build_sort_name(n):
     """Builds a name from a RelLib.Name instance that is suitable for
     use as a sort key in a GtkCList. The name is converted to upper case
     to provide for case-insenstive sorting"""
-    return "%-25s%-30s%s" % \
-           (string.upper(n.Surname),string.upper(n.FirstName),string.upper(n.Suffix))
+    return "%-25s%-30s%s" % (su(n.Surname),su(n.FirstName),su(n.Suffix))
 
 def build_sort_date(n):
     """Builds a date from a Date.Date instance that is suitable for
@@ -64,18 +65,17 @@ def build_sort_date(n):
 def by_last_name(first, second):
     """Sort routine for comparing two last names. If last names are equal,
     uses the given name and suffix"""
-    u = string.upper
     name1 = first.PrimaryName
     name2 = second.PrimaryName
 
-    fsn = u(name1.Surname)
-    ssn = u(name2.Surname)
+    fsn = su(name1.Surname)
+    ssn = su(name2.Surname)
 
     if fsn == ssn :
-        ffn = u(name1.FirstName)
-        sfn = u(name2.FirstName)
+        ffn = su(name1.FirstName)
+        sfn = su(name2.FirstName)
         if ffn == sfn :
-            return cmp(u(name1.Suffix), u(name2.Suffix))
+            return cmp(su(name1.Suffix), su(name2.Suffix))
         else :
             return cmp(ffn, sfn)
     else :

@@ -78,7 +78,7 @@ class EditPlace:
             
         self.top_window = libglade.GladeXML(const.placesFile,"placeEditor")
         plwidget = self.top_window.get_widget("photolist")
-        self.gallery = ImageSelect.Gallery(place, self.path, plwidget, db)
+        self.glry = ImageSelect.Gallery(place, self.path, plwidget, db)
         self.title = self.top_window.get_widget("place_title")
         self.city = self.top_window.get_widget("city")
         self.parish = self.top_window.get_widget("parish")
@@ -121,24 +121,24 @@ class EditPlace:
         self.note.set_word_wrap(1)
 
         self.top_window.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
-            "on_source_clicked" : self.on_source_clicked,
-            "on_photolist_select_icon" : self.gallery.on_photo_select_icon,
-            "on_photolist_button_press_event" : self.gallery.on_button_press_event,
-            "on_switch_page" : self.on_switch_page,
-            "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
-            "on_deletephoto_clicked" : self.gallery.on_delete_photo_clicked,
-            "on_edit_properties_clicked": self.gallery.popup_change_description,
-            "on_add_url_clicked" : self.on_add_url_clicked,
-            "on_delete_url_clicked" : self.on_delete_url_clicked,
-            "on_update_url_clicked" : self.on_update_url_clicked,
-            "on_add_loc_clicked" : self.on_add_loc_clicked,
-            "on_delete_loc_clicked" : self.on_delete_loc_clicked,
-            "on_update_loc_clicked" : self.on_update_loc_clicked,
-            "on_web_list_select_row" : self.on_web_list_select_row,
-            "on_web_go_clicked": self.on_web_go_clicked,
-            "on_loc_list_select_row" : self.on_loc_list_select_row,
-            "on_apply_clicked" : self.on_place_apply_clicked
+            "destroy_passed_object"     : Utils.destroy_passed_object,
+            "on_source_clicked"         : self.on_source_clicked,
+            "on_photolist_select_icon"  : self.glry.on_photo_select_icon,
+            "on_photolist_button_press" : self.glry.on_button_press_event,
+            "on_switch_page"            : self.on_switch_page,
+            "on_addphoto_clicked"       : self.glry.on_add_photo_clicked,
+            "on_deletephoto_clicked"    : self.glry.on_delete_photo_clicked,
+            "on_edit_properties_clicked": self.glry.popup_change_description,
+            "on_add_url_clicked"        : self.on_add_url_clicked,
+            "on_delete_url_clicked"     : self.on_delete_url_clicked,
+            "on_update_url_clicked"     : self.on_update_url_clicked,
+            "on_add_loc_clicked"        : self.on_add_loc_clicked,
+            "on_delete_loc_clicked"     : self.on_delete_loc_clicked,
+            "on_update_loc_clicked"     : self.on_update_loc_clicked,
+            "on_web_list_select_row"    : self.on_web_list_select_row,
+            "on_web_go_clicked"         : self.on_web_go_clicked,
+            "on_loc_list_select_row"    : self.on_loc_list_select_row,
+            "on_apply_clicked"          : self.on_place_apply_clicked
             })
 
         self.top = self.top_window.get_widget("placeEditor")
@@ -254,7 +254,7 @@ class EditPlace:
     def on_switch_page(self,obj,a,page):
         if page == 3 and self.not_loaded:
             self.not_loaded = 0
-            self.gallery.load_images()
+            self.glry.load_images()
         elif page == 5 and self.ref_not_loaded:
             self.ref_not_loaded = 0
             self.display_references()

@@ -630,7 +630,8 @@ class ReportDialog:
                      FILL|EXPAND,FILL|EXPAND,pad,pad)
         table.attach(GtkLabel(_("User Template")),0,1,1,2,
                      FILL,FILL,pad,pad)
-        self.html_fileentry = GnomeFileEntry(_("HTML Template"),_("Choose File"))
+        self.html_fileentry = GnomeFileEntry(_("HTML Template"),
+                                             _("Choose File"))
         self.html_fileentry.set_sensitive(0)
         table.attach(self.html_fileentry,1,2,1,2,
                      FILL|EXPAND,FILL|EXPAND,pad,pad)

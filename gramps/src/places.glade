@@ -1293,7 +1293,7 @@
 		</signal>
 		<signal>
 		  <name>button_press_event</name>
-		  <handler>on_photolist_button_press_event</handler>
+		  <handler>on_photolist_button_press</handler>
 		  <object>placeEditor</object>
 		  <last_modification_time>Thu, 31 May 2001 14:40:04 GMT</last_modification_time>
 		</signal>
