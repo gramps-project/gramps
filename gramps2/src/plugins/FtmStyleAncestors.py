@@ -70,16 +70,8 @@ class FtmAncestorReport(Report.Report):
         This report needs the following parameters (class variables)
         that come in the options class.
         
-        max_gen   - Maximum number of generations to include.
-        pg_breaks - Whether to include page breaks between generations.
-        document  - BaseDoc instance for the output file. Any class derived
-                    from BaseDoc may be used
-        output    - name of the output file. 
-                    None if report is not a standalone, in which case
-                    somebody must take care of opening and initializing report
-                    prior to writing.
-        newpage   - if True, newpage is made before writing a report
-
+        gen     - Maximum number of generations to include.
+        pagebgg - Whether to include page breaks between generations.
         """
         Report.Report.__init__(self,database,person,options_class)
 
@@ -1057,8 +1049,8 @@ class FtmAncestorOptions(ReportOptions.ReportOptions):
     def enable_options(self):
         # Semi-common options that should be enabled for this report
         self.enable_dict = {
-            'max_gen'       : 10,
-            'page_breaks'    : 0,
+            'gen'       : 10,
+            'pagebbg'   : 0,
         }
 
     def make_default_style(self,default_style):

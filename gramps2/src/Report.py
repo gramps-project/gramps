@@ -56,7 +56,7 @@ import StyleEditor
 import GrampsGconfKeys
 import PaperMenu
 import Errors
-
+import GenericFilter
 from QuestionDialog import  ErrorDialog, OptionDialog
 
 #-------------------------------------------------------------------------
@@ -433,19 +433,13 @@ class BareReportDialog:
         It is called immediately before the window is displayed. All
         calls to add_option or add_frame_option should be called in
         this task."""
-        try:
-            self.options.add_user_options(self)
-        except AttributeError:
-            pass
+        self.options.add_user_options(self)
 
     def parse_user_options(self):
         """Called to allow parsing of added widgets.
         It is called when OK is pressed in a dialog. 
         All custom widgets should provide a parsing code here."""
-        try:
-            self.options.parse_user_options(self)
-        except AttributeError:
-            pass
+        self.options.parse_user_options(self)
 
     def add_option(self,label_text,widget,tooltip=None):
         """Takes a text string and a Gtk Widget, and stores them to be
@@ -596,8 +590,6 @@ class BareReportDialog:
         this box.  *All* of these items are optional, although the
         generations fields and the filter combo box are used in most
         (but not all) dialog boxes."""
-
-        import GenericFilter
 
         (em_label, extra_map, preset, em_tip) = self.get_report_extra_menu_info()
         (et_label, string, et_tip) = self.get_report_extra_textbox_info()
@@ -1002,7 +994,7 @@ class ReportDialog(BareReportDialog):
 
         self.doc = self.format(self.selected_style,self.paper,
                                self.template_name,self.orien)
-        self.options.handler.doc = self.doc
+        self.options.set_document(self.doc)
         if self.print_report.get_active ():
             self.doc.print_requested ()
 
@@ -1565,8 +1557,8 @@ class CommandLineReport:
             'template'  : ["=name","Template name (HTML only)."],
             'id'        : ["=ID","Gramps ID of a central person. MANDATORY"],
             'filter'    : ["=num","Filter number."],
-            'max_gen'   : ["=num","Number generations to follow."],
-            'page_breaks': ["=0/1","Page break between generations."],
+            'gen'       : ["=num","Number of generations to follow."],
+            'pagebbg'   : ["=0/1","Page break between generations."],
             }
 
         # Add report-specific options
@@ -1580,8 +1572,6 @@ class CommandLineReport:
                 self.options_help[key] = self.option_class.options_help[key]
 
     def parse_option_str(self):
-        import GenericFilter
-        
         for opt in self.options_str_dict.keys():
             if opt in self.options_dict.keys():
                 converter = Utils.get_type_converter(self.options_dict[opt])
@@ -1612,13 +1602,13 @@ class CommandLineReport:
             self.options_help['filter'].append(filt_list)
             self.options_help['filter'].append(True)
 
-        if self.options_dict.has_key('max_gen'):
-            max_gen = self.options_dict['max_gen']
-            page_breaks = self.options_dict['page_breaks']
+        if self.options_dict.has_key('gen'):
+            max_gen = self.options_dict['gen']
+            page_breaks = self.options_dict['pagebbg']
             self.option_class.handler.set_report_generations(max_gen,page_breaks)
             
-            self.options_help['max_gen'].append("Whatever Number You Wish")
-            self.options_help['page_breaks'].append([
+            self.options_help['gen'].append("Whatever Number You Wish")
+            self.options_help['pagebbg'].append([
                 "No page break","Page break"])
             self.options_help['page_breaks'].append(True)
 

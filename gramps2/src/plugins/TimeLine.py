@@ -83,20 +83,13 @@ class TimeLine(Report.Report):
                     when given two personal handles (like cmp).
                     The option class carries its number, and the function
                     returning the list of sort functions.
-        document  - BaseDoc instance for the output file. Any class derived
-                    from BaseDoc may be used
-        output    - name of the output file. 
-                    None if report is not a standalone, in which case
-                    somebody must take care of opening and initializing report
-                    prior to writing.
-        newpage   - if True, newpage is made before writing a report
-
         """
 
         Report.Report.__init__(self,database,person,options_class)
 
         filter_num = options_class.get_filter_number()
         filters = options_class.get_report_filters(person)
+        filters.extend(GenericFilter.CustomFilters.get_filters())
         self.filter = filters[filter_num]
 
         self.title = options_class.handler.options_dict['title']

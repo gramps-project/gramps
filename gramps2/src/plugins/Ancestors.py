@@ -46,11 +46,10 @@ import BaseDoc
 import RelLib
 import Errors
 import Plugins
-import DateHandler
 from QuestionDialog import ErrorDialog
 import ReportOptions
+from DateHandler import displayer as _dd
 
-_dd = DateHandler.displayer
 #------------------------------------------------------------------------
 #
 # ComprehensiveAncestorsReport
@@ -59,7 +58,22 @@ _dd = DateHandler.displayer
 class ComprehensiveAncestorsReport (Report.Report):
 
     def __init__(self,database,person,options_class):
-        #,max,pgbrk,cite,doc,output,newpage=0):
+        """
+        Creates ComprehensiveAncestorsReport object that produces the report.
+        
+        The arguments are:
+
+        database        - the GRAMPS database instance
+        person          - currently selected person
+        options_class   - instance of the Options class for this report
+
+        This report needs the following parameters (class variables)
+        that come in the options class.
+        
+        gen       - Maximum number of generations to include.
+        pagebbg   - Whether to include page breaks between generations.
+        cites     - Whether or not to include source informaiton.
+        """
 
         Report.Report.__init__(self,database,person,options_class)
 
@@ -67,7 +81,6 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         (self.max_generations,self.pgbrk) \
                         = options_class.get_report_generations()
-        #self.opt_cite = cite
         self.opt_cite = options_class.handler.options_dict['cites']
 
         self.output = options_class.get_output()
@@ -900,8 +913,8 @@ class ComprehensiveAncestorsOptions(ReportOptions.ReportOptions):
     def enable_options(self):
         # Semi-common options that should be enabled for this report
         self.enable_dict = {
-            'max_gen'       : 10,
-            'page_breaks'    : 0,
+            'gen'       : 10,
+            'pagebbg'   : 0,
         }
 
     def make_default_style(self,default_style):
@@ -966,14 +979,14 @@ class ComprehensiveAncestorsOptions(ReportOptions.ReportOptions):
         """
         
         self.cb_cite = gtk.CheckButton (_("Cite sources"))
-        self.cb_cite.set_active (gtk.TRUE)
+        self.cb_cite.set_active (self.options_dict['cites'])
         dialog.add_option ('', self.cb_cite)
 
     def parse_user_options(self,dialog):
         """
         Parses the custom options that we have added.
         """
-        self.options_dict['cites'] = self.cb_cite.get_active ()
+        self.options_dict['cites'] = int(self.cb_cite.get_active ())
 
 
 #------------------------------------------------------------------------

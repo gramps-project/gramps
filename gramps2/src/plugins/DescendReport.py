@@ -165,8 +165,8 @@ class DescendantOptions(ReportOptions.ReportOptions):
     def enable_options(self):
         # Semi-common options that should be enabled for this report
         self.enable_dict = {
-            'max_gen'       : 10,
-            'page_breaks'    : 0,
+            'gen'       : 10,
+            'pagebbg'   : 0,
         }
 
     def make_default_style(self,default_style):

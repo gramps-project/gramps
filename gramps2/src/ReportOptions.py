@@ -541,18 +541,18 @@ class OptionHandler:
         self.option_list_collection.save()
 
     def get_report_generations(self):
-        if self.default_options_dict.has_key('max_gen'):
-            max_gen = self.options_dict.get('max_gen',
-                        self.default_options_dict['max_gen'])
-            page_breaks = self.options_dict.get('page_breaks',
-                        self.default_options_dict['page_breaks'])
+        if self.default_options_dict.has_key('gen'):
+            max_gen = self.options_dict.get('gen',
+                        self.default_options_dict['gen'])
+            page_breaks = self.options_dict.get('pagebbg',
+                        self.default_options_dict['pagebbg'])
             return (max_gen,page_breaks)
         else:
             return (0,0)
 
     def set_report_generations(self,max_gen,page_breaks):
-        self.options_dict['max_gen'] = max_gen
-        self.options_dict['page_breaks'] = page_breaks
+        self.options_dict['gen'] = max_gen
+        self.options_dict['pagebbg'] = page_breaks
 
     def get_stylesheet_savefile(self):
         """Where to save user defined styles for this report."""
@@ -667,13 +667,13 @@ class ReportOptions:
         but not common enough to be present in all reports. Here's the list
         of possible keys for semi-commons:
         
-            'filter'      - Filter number, selected among filters
-                            available for this report. If defined,
-                            get_report_filters() method must be defined
-                            which returns the list of available filters.
+            'filter'    - Filter number, selected among filters
+                          available for this report. If defined,
+                          get_report_filters() method must be defined
+                          which returns the list of available filters.
 
-            'max_gen'     - Maximum number of generations to consider.
-            'page_breaks' - Whether or not make page breaks between generations.
+            'gen'       - Maximum number of generations to consider.
+            'pagebbg'   - Whether or not make page breaks between generations.
         
 
         A self.enable_dict dictionary MUST be defined here, whose keys

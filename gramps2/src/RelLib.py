@@ -1256,7 +1256,7 @@ class Family(PrimaryObject,SourceNote):
         @param person_handle: L{Person} database handle
         @type person_handle: str
         """
-        self.mother_handle = person
+        self.mother_handle = person_handle
 
     def get_mother_handle(self):
         """

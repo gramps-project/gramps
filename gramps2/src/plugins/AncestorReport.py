@@ -40,12 +40,10 @@ import Report
 import BaseDoc
 import RelLib
 import Errors
-import DateHandler
+from DateHandler import displayer as _dd
 from QuestionDialog import ErrorDialog
 import ReportOptions
 import const
-
-_dd = DateHandler.displayer
 
 #------------------------------------------------------------------------
 #
@@ -270,8 +268,8 @@ class AncestorOptions(ReportOptions.ReportOptions):
     def enable_options(self):
         # Semi-common options that should be enabled for this report
         self.enable_dict = {
-            'max_gen'       : 10,
-            'page_breaks'    : 0,
+            'gen'       : 10,
+            'pagebbg'   : 0,
         }
 
     def make_default_style(self,default_style):
