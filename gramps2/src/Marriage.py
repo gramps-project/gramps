@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modiy
 # it under the terms of the GNU General Public License as published by
@@ -147,7 +147,7 @@ class Marriage:
 
         self.etree = ListModel.ListModel(self.event_list, etitles,
                                          self.on_select_row,
-                                         self.on_update_clicked)
+                                         self.on_event_update_clicked)
         self.atree = ListModel.ListModel(self.attr_list, atitles,
                                          self.on_attr_list_select_row,
                                          self.on_update_attr_clicked)

@@ -677,7 +677,8 @@ class Gramps:
     def tool_callback(self,val):
         if val:
             Utils.modified()
-            self.complete_rebuild()
+            self.clear_person_tabs()
+            self.full_update()
             
     def full_update(self):
         """Brute force display update, updating all the pages"""

@@ -113,6 +113,7 @@ def importData(database, filename, callback):
         return 0
 
     xml_file.close()
+    del parser
     
     # Rename media files if they were conflicting with existing ones
     ObjectMap = database.getObjectMap()
@@ -218,6 +219,7 @@ def loadData(database, filename, callback=None):
         return 0
 
     xml_file.close()
+    del parser
     return 1
 
 #-------------------------------------------------------------------------
