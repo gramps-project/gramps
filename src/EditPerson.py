@@ -118,6 +118,7 @@ class EditPerson:
         self.addr_edit_btn = self.top.get_widget('addr_edit_btn')
 
         self.notes_field = self.get_widget("personNotes")
+        self.notes_label = self.get_widget("notes_label")
         self.event_name_field  = self.get_widget("eventName")
         self.event_place_field = self.get_widget("eventPlace")
         self.event_cause_field = self.get_widget("eventCause")
@@ -263,6 +264,8 @@ class EditPerson:
         # set notes data
         self.notes_buffer = self.notes_field.get_buffer()
         self.notes_buffer.set_text(person.getNote())
+        if person.getNote():
+            self.change_notes()
 
         self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
         self.event_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
@@ -1581,6 +1584,10 @@ class EditPerson:
 
         self.ntype_field.entry.set_text(_(self.pname.getType()))
         self.title.set_text(self.pname.getTitle())
+
+    def change_notes(self):
+        self.notes_label.set_text("<b><big><u>%s</u></big></b>" % _("Notes"))
+        self.notes_label.set_use_markup(1)
 
 #-------------------------------------------------------------------------
 # 
