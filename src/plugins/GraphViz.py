@@ -284,7 +284,7 @@ from Plugins import register_report
 register_report(
     report,
     _("Relationship graph"),
-    category=_("Generate Files"),
+    category=_("Graphical Reports"),
     description=get_description()
     )
 

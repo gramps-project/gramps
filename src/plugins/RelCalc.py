@@ -100,9 +100,9 @@ def get_father(f,s,level):
     elif level == 3:
         return _("%s is the great grandfather of %s.") % (s,f)
     elif level == 4:
-        return _("%s is the 2nd great grandfather of %s.") % (s,f)
+        return _("%s is the second great grandfather of %s.") % (s,f)
     elif level == 5:
-        return _("%s is the 3rd great grandfather of %s.") % (s,f)
+        return _("%s is the third great grandfather of %s.") % (s,f)
     else:
         return _("%s is the %dth great grandfather of %s.") % (s,level-2,f)
 
@@ -114,9 +114,9 @@ def get_son(f,s,level):
     elif level == 3:
         return _("%s is the great grandson of %s.") % (s,f)
     elif level == 4:
-        return _("%s is the 2nd great grandson of %s.") % (s,f)
+        return _("%s is the second great grandson of %s.") % (s,f)
     elif level == 5:
-        return _("%s is the 3rd great grandson of %s.") % (s,f)
+        return _("%s is the third great grandson of %s.") % (s,f)
     else:
         return _("%s is the %dth great grandson of %s.") % (s,level-2,f)
 
@@ -128,9 +128,9 @@ def get_mother(f,s,level):
     elif level == 3:
         return _("%s is the great grandmother of %s.") % (s,f)
     elif level == 4:
-        return _("%s is the 2nd great grandmother of %s.") % (s,f)
+        return _("%s is the second great grandmother of %s.") % (s,f)
     elif level == 5:
-        return _("%s is the 3rd great grandmother of %s.") % (s,f)
+        return _("%s is the third great grandmother of %s.") % (s,f)
     else:
         return _("%s is the %dth great grandmother of %s.") % (s,level-2,f)
 
@@ -142,9 +142,9 @@ def get_daughter(f,s,level):
     elif level == 3:
         return _("%s is the great granddaughter of %s.") % (s,f)
     elif level == 4:
-        return _("%s is the 2nd great granddaughter of %s.") % (s,f)
+        return _("%s is the second great granddaughter of %s.") % (s,f)
     elif level == 5:
-        return _("%s is the 3rd great granddaughter of %s.") % (s,f)
+        return _("%s is the third great granddaughter of %s.") % (s,f)
     else:
         return _("%s is the %dth great granddaughter of %s.") % (s,level-2,f)
 
@@ -158,9 +158,9 @@ def get_aunt(f,s,level):
     elif level == 4:
         return _("%s is the great grandaunt of %s.") % (s,f)
     elif level == 5:
-        return _("%s is the 2nd great grandaunt of %s.") % (s,f)
+        return _("%s is the second great grandaunt of %s.") % (s,f)
     elif level == 6:
-        return _("%s is the 3rd great grandaunt of %s.") % (s,f)
+        return _("%s is the third great grandaunt of %s.") % (s,f)
     else:
         return _("%s is the %dth great grandaunt of %s.") % (s,level-3,f)
 
@@ -174,9 +174,9 @@ def get_uncle(f,s,level):
     elif level == 4:
         return _("%s is the great granduncle of %s.") % (s,f)
     elif level == 5:
-        return _("%s is the 2nd great granduncle of %s.") % (s,f)
+        return _("%s is the second great granduncle of %s.") % (s,f)
     elif level == 6:
-        return _("%s is the 3rd great granduncle of %s.") % (s,f)
+        return _("%s is the third great granduncle of %s.") % (s,f)
     else:
         return _("%s is the %dth great granduncle of %s.") % (s,level-3,f)
 
@@ -188,9 +188,9 @@ def get_nephew(f,s,level):
     elif level == 3:
         return _("%s is the great grandnephew of %s.") % (s,f)
     elif level == 4:
-        return _("%s is the 2nd great grandnephew of %s.") % (s,f)
+        return _("%s is the second great grandnephew of %s.") % (s,f)
     elif level == 5:
-        return _("%s is the 3rd great grandnephew of %s.") % (s,f)
+        return _("%s is the third great grandnephew of %s.") % (s,f)
     else:
         return _("%s is the %dth great grandnephew of %s.") % (s,level-2,f)
 
@@ -202,9 +202,9 @@ def get_niece(f,s,level):
     elif level == 3:
         return _("%s is the great grandniece of %s.") % (s,f)
     elif level == 4:
-        return _("%s is the 2nd great grandniece of %s.") % (s,f)
+        return _("%s is the second great grandniece of %s.") % (s,f)
     elif level == 5:
-        return _("%s is the 3rd great grandniece of %s.") % (s,f)
+        return _("%s is the third great grandniece of %s.") % (s,f)
     else:
         return _("%s is the %dth great grandniece of %s.") % (s,level-2,f)
 

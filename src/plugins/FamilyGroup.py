@@ -456,7 +456,7 @@ from Plugins import register_report
 register_report(
     report,
     _("Family Group Report"),
-    category=_("Generate Files"),
+    category=_("Text Reports"),
     description=_("Creates a family group report, showing information on a set of parents and their children.")
     )
 

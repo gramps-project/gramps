@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-"Generate files/Ahnentafel Report"
+"Text Reports/Ahnentafel Report"
 
 import RelLib
 import os
@@ -371,7 +371,7 @@ from Plugins import register_report
 register_report(
     report,
     _("Ahnentafel Report"),
-    category=_("Generate Files"),
+    category=_("Text Reports"),
     description= _("Produces a textual ancestral report"),
     xpm=get_xpm_image()
     )
