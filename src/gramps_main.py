@@ -1367,34 +1367,38 @@ def load_family(family=None):
         number_of_families = len(active_person.getFamilyList())
         if number_of_families > 1:
             myMenu = GtkMenu()
-            if active_person != None:
-                for family in active_person.getFamilyList():
-                    person = None
-                    if family.getMother() == active_person:
-                        if family.getFather() != None:
-                            person = family.getFather()
-                    else:		
-                        if family.getMother() != None:
-                            person = family.getMother()
+            index = 0
+            opt_index = 0
+            for f in active_person.getFamilyList():
+                person = None
+                if f.getMother() == active_person:
+                    if f.getFather() != None:
+                        person = f.getFather()
+                else:		
+                    if f.getMother() != None:
+                        person = f.getMother()
 
-                    menuitem = GtkMenuItem(Config.nameof(person))
-                    myMenu.append(menuitem)
-                    menuitem.set_data("person",person)
-                    menuitem.set_data("family",family)
-                    menuitem.connect("activate",on_spouselist_changed)
-                    menuitem.show()
-
-                gtop.get_widget("fv_spouse").set_menu(myMenu)
+                menuitem = GtkMenuItem(Config.nameof(person))
+                myMenu.append(menuitem)
+                menuitem.set_data("person",person)
+                menuitem.set_data("family",f)
+                menuitem.connect("activate",on_spouselist_changed)
+                menuitem.show()
+                if family and f == family:
+                    opt_index = index
+                index = index + 1
+            gtop.get_widget("fv_spouse").set_menu(myMenu)
+            gtop.get_widget("fv_spouse").set_history(opt_index)
             gtop.get_widget("lab_or_list").set_page(1)
             gtop.get_widget("edit_sp").set_sensitive(1)
             gtop.get_widget("delete_sp").set_sensitive(1)
         elif number_of_families == 1:
             gtop.get_widget("lab_or_list").set_page(0)
-            family = active_person.getFamilyList()[0]
-            if active_person != family.getFather():
-                spouse = family.getFather()
+            f = active_person.getFamilyList()[0]
+            if active_person != f.getFather():
+                spouse = f.getFather()
             else:
-                spouse = family.getMother()
+                spouse = f.getMother()
             active_spouse = spouse
             fv_spouse1 = gtop.get_widget("fv_spouse1")
             fv_spouse1.set_text(Config.nameof(spouse))
@@ -1414,7 +1418,10 @@ def load_family(family=None):
             gtop.get_widget("delete_sp").set_sensitive(0)
 
         if number_of_families > 0:
-            display_marriage(active_person.getFamilyList()[0])
+            if family:
+                display_marriage(family)
+            else:
+                display_marriage(active_person.getFamilyList()[0])
         else:
             display_marriage(None)
     else:

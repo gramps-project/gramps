@@ -97,7 +97,7 @@ gtkrcFile      = "%s/gtkrc" % rootDir
 #
 #-------------------------------------------------------------------------
 progName     = "gramps"
-version      = "0.6.2pre"
+version      = "0.6.2"
 copyright    = "© 2001 Donald N. Allingham"
 authors      = ["Donald N. Allingham", "David Hampton"]
 comments     = _("Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program.")
