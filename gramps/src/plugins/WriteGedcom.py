@@ -173,8 +173,10 @@ def walk(person):
         return
     people_list.append(person)
     add_persons_sources(person)
-    families = person.getFamilyList() + person.getAltFamilyList()
+    families = person.getFamilyList()
     families.append(person.getMainFamily())
+    for f in person.getAltFamilyList():
+        families.append(f[0])
     for family in families:
         if family == None or family in family_list:
             continue
@@ -336,10 +338,12 @@ def write_source_ref(g,level,ref):
     g.write("%d SOUR @S%s@\n" % (level,ref.getBase().getId()))
     if ref.getPage() != "":
         g.write("%d PAGE %s\n" % (level+1,ref.getPage()))
-    if ref.getText() != "" or ref.getDate().getDate() != "":
-        g.write('%d DATA\n' % level+1)
-        if ref.getText():
-            write_long_text(g,"TEXT",level+1,ref.get_text())
+
+    ref_text = ref.getText()
+    if ref_text != "" or ref.getDate().getDate() != "":
+        g.write('%d DATA\n' % (level+1))
+        if ref_text != "":
+            write_long_text(g,"TEXT",level+1,ref_text)
         if ref.getDate().getDate():
             g.write("%d DATE %s\n",ref.getDate().getSaveDate())
     if ref.getComments() != "":
@@ -414,8 +418,8 @@ def write_person(g,person):
                 g.write("2 CITY %s\n" % addr.getCity())
             if addr.getState() != "":
                 g.write("2 STAE %s\n" % addr.getState())
-            if addr.getPostalCode() != "":
-                g.write("2 POST %s\n" % addr.getPostalCode())
+            if addr.getPostal() != "":
+                g.write("2 POST %s\n" % addr.getPostal())
             if addr.getCountry() != "":
                 g.write("2 CTRY %s\n" % addr.getCountry())
             if addr.getNote() != "":
