@@ -324,8 +324,7 @@ class EditPerson:
         for address in self.person.getAddressList():
             location = address.getCity() + " " + address.getState() + " " + \
                        address.getCountry()
-            self.address_list.append([address.getStartDate(),\
-                                      address.getStopDate(),location])
+            self.address_list.append([address.getDate(),location])
             self.address_list.set_row_data(self.address_index,address)
             self.address_index = self.address_index + 1
 
@@ -478,8 +477,7 @@ def on_address_list_select_row(obj,row,b,c):
     edit_person_obj = obj.get_data(EDITPERSON)
     address = obj.get_row_data(row)
 
-    edit_person_obj.address_start.set_text(address.getStartDate())
-    edit_person_obj.address_stop.set_text(address.getStopDate())
+    edit_person_obj.address_start.set_text(address.getDate())
     edit_person_obj.address_street.set_text(address.getStreet())
     edit_person_obj.address_city.set_text(address.getCity())
     edit_person_obj.address_state.set_text(address.getState())
@@ -553,8 +551,7 @@ def on_update_address_clicked(obj):
     edit_person_obj = obj.get_data(EDITPERSON)
 
     address = obj.get_row_data(row)
-    address.setStartDate(edit_person_obj.address_start.get_text())
-    address.setStopDate(edit_person_obj.address_stop.get_text())
+    address.setDate(edit_person_obj.address_start.get_text())
     address.setStreet(edit_person_obj.address_street.get_text())
     address.setCity(edit_person_obj.address_city.get_text())
     address.setState(edit_person_obj.address_state.get_text())
@@ -703,8 +700,7 @@ def on_add_address_clicked(obj):
     edit_person_obj = obj.get_data(EDITPERSON)
 
     address = Address()
-    address.setStartDate(edit_person_obj.address_start.get_text())
-    address.setStopDate(edit_person_obj.address_stop.get_text())
+    address.setDate(edit_person_obj.address_start.get_text())
     address.setStreet(edit_person_obj.address_street.get_text())
     address.setCity(edit_person_obj.address_city.get_text())
     address.setState(edit_person_obj.address_state.get_text())
@@ -1018,7 +1014,7 @@ def on_apply_person_clicked(obj):
 
     if error == 1:
         msg = _("Changing the gender caused problems with marriage information.")
-        msg2 = _("Please check the person's marriage relationships.")
+        msg2 = _("Please check the person's marriages.")
         GnomeErrorDialog(msg + msg2)
         
     text = edit_person_obj.notes_field.get_chars(0,-1)
