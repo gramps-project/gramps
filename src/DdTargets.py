@@ -103,6 +103,7 @@ class _DdTargets(object):
         self.ADDRESS   = _DdType(self,'paddr')
         self.SOURCEREF = _DdType(self,'srcref')
         self.NAME      = _DdType(self,'name')
+        self.MEDIAOBJ  = _DdType(self,'mediaobj')
 
         self.FAMILY_EVENT     = _DdType(self,'fevent')
         self.FAMILY_ATTRIBUTE = _DdType(self,'fattr')
@@ -156,7 +157,8 @@ class _DdTargets(object):
         """return a list of all the type names that are internal
         to gramps."""
         
-        return (self.URL.drag_type,
+        return (self.MEDIAOBJ.drag_type,
+                self.URL.drag_type,
                 self.EVENT.drag_type,
                 self.ATTRIBUTE.drag_type,
                 self.ADDRESS.drag_type,
@@ -179,7 +181,8 @@ class _DdTargets(object):
     def all_gramps_targets(self):
         """return a list off the internal gramps targets."""
         
-        return (self.URL.target(),
+        return (self.MEDIAOBJ.target(),
+                self.URL.target(),
                 self.EVENT.target(),
                 self.ATTRIBUTE.target(),
                 self.ADDRESS.target(),
