@@ -2687,6 +2687,8 @@ class GrampsDB:
         return Transaction(msg,self.undodb)
 
     def add_transaction(self,transaction,msg):
+        if not len(transaction):
+            return
         transaction.set_description(msg)
         self.undoindex += 1
         if self.undoindex == UNDO_SIZE:
@@ -3600,7 +3602,6 @@ class GrampsDB:
 class Transaction:
 
     def __init__(self,msg,db):
-        self.data = []
         self.db = db
         self.first = None
         self.last = None
@@ -3623,7 +3624,9 @@ class Transaction:
         return cPickle.loads(self.db[id])
 
     def __len__(self):
-        return len(self.data)
+        if self.last and self.first:
+            return self.last - self.first + 1
+        return 0
 
     def display(self):
         for record in self.get_recnos():
