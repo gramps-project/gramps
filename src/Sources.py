@@ -296,7 +296,8 @@ class SourceEditor:
             self.pub_field.set_text("")
 
         values = self.db.getSourceMap().values()
-
+        values.sort(by_title)
+        
         sel_child = None
         self.list = []
         self.active_source = sel
@@ -373,3 +374,5 @@ class SourceEditor:
         EditSource.EditSource(RelLib.Source(),self.db, self.update_display)
 
         
+def by_title(first,second):
+    return cmp(first.getTitle(),second.getTitle())
