@@ -456,11 +456,54 @@ HREF="#gramps-nav-bookmk"
 HREF="#gen-reports"
 >Generating Reports</A
 ></DT
+><DD
+><DL
+><DT
+>4.10.1. <A
+HREF="#rep-graph"
+>Graphical Reports</A
+></DT
+><DT
+>4.10.2. <A
+HREF="#rep-text"
+>Text Reports</A
+></DT
+><DT
+>4.10.3. <A
+HREF="#rep-view"
+>View</A
+></DT
+><DT
+>4.10.4. <A
+HREF="#rep-web"
+>Web Page</A
+></DT
+></DL
+></DD
 ><DT
 >4.11. <A
 HREF="#gramps-tools"
 >Running Tools</A
 ></DT
+><DD
+><DL
+><DT
+>4.11.1. <A
+HREF="#tools-ae"
+>Analysis and Exploration</A
+></DT
+><DT
+>4.11.2. <A
+HREF="#tools-db"
+>Database Processing</A
+></DT
+><DT
+>4.11.3. <A
+HREF="#tools-util"
+>Utilities</A
+></DT
+></DL
+></DD
 ></DL
 ></DD
 ><DT
@@ -4943,7 +4986,7 @@ CLASS="application"
 > is focused on a 
 	single person usually referred to as an Active person. This 
 	allows you to view or modify the data concerning this person, 
-	his or her immediate family, etc. Navigating in the databse (i.e. 
+	his or her immediate family, etc. Navigating in the database (i.e. 
 	moving from person to person) is in fact nothing else but changing 
 	the Active person. This section describes many alternative ways
 	to navigate through the database using complex and convenient 
@@ -5079,9 +5122,9 @@ NAME="gramps-nav-default"
 >4.9.4. Setting Default Person</A
 ></H4
 ><P
-> One and only one person in the databse can be selected as the 
+> One and only one person in the database can be selected as the 
 	default person. Once the default person is selected, moving to that
-	person becomes a matter of a signle click, regardless of which view 
+	person becomes a matter of a single click, regardless of which view 
 	you are using at the moment. </P
 ><P
 > To set the default person, first navigate to that person using 
@@ -5113,7 +5156,7 @@ NAME="gramps-nav-bookmk"
 	from the database to simplify further navigation. To bookmark a person,
 	first navigate to that person, then choose 
 	<SPAN
-CLASS="guisubmenu"
+CLASS="guimenu"
 >Bookmarks</SPAN
 >-&gt;<SPAN
 CLASS="guimenuitem"
@@ -5136,7 +5179,7 @@ CLASS="replaceable"
 ><P
 > You can manage your bookmarks by choosing 
 	<SPAN
-CLASS="guisubmenu"
+CLASS="guimenu"
 >Bookmarks</SPAN
 >-&gt;<SPAN
 CLASS="guimenuitem"
@@ -5174,7 +5217,290 @@ NAME="gen-reports"
 >4.10. Generating Reports</A
 ></H3
 ><P
+> Reports are the most common form of the output produced by
+	genealogical research. Majority of genealogical software puts a lot
+	of emphasis on developing nicely looking reports. <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> is no 
+	exception in this regard: it offers a variety of reports to choose 
+	from. <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> can generate reports in a multitude of open formats, both 
+	text based and graphical. <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> can also produce screen based reports 
+	that are convenient for viewing the summary of your database. 
+	Finally, <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> can generate a web-site suitable for immediate 
+	posting on the Internet. All these are almost infinitely flexible: 
+	you get to design and choose the style for your reports. </P
+><P
+> All reports can be accessed through the menu by choosing
+	<SPAN
+CLASS="guimenu"
+>Reports</SPAN
+>-&gt;<SPAN
+CLASS="guisubmenu"
+><VAR
+CLASS="replaceable"
+>Report Type</VAR
+></SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+><VAR
+CLASS="replaceable"
+>Particular 
+	Report</VAR
+></SPAN
+>. Alternatively, 
+	you can browse the complete selection of available reports along 
+	with their brief descriptions in a <SPAN
+CLASS="guilabel"
+>Report 
+	Selection</SPAN
+> dialog evoked by clicking 
+	<SPAN
+CLASS="guibutton"
+>Reports</SPAN
+> on the toolbar. 
+	</P
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="rep-graph"
+>4.10.1. Graphical Reports</A
+></H4
+><P
+> Graphical reports represent information in forms of charts 
+	and graphs. The following graphical reports are currently 
+	available in <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+>: </P
+><P
+></P
+><UL
+><LI
+><P
+>Timeline Graph</P
+></LI
+><LI
+><P
+>Relationship Graph</P
+></LI
+><LI
+><P
+>Descendant Graph</P
+></LI
+><LI
+><P
+>Ancestor Chart</P
+></LI
+></UL
+><P
+>Most of the options are common among graphical reports, 
+	therefore they will be described only once, at the end of this 
+	section. Few options specific to the given report will be 
+	described directly in that report's entry. </P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+>Timeline Graph</DT
+><DD
+><P
+>This report outputs the list of people with their
+	lifetimes represented by intervals on a common chronological scale. 
+	Specific options include filter, sorting method, and the title of 
+	the report. </P
+></DD
+><DT
+>Relationship Graph</DT
+><DD
+><P
+>This report creates complex relationship graph in 
+	GraphViz format. The GraphViz <B
+CLASS="command"
+>dot</B
+> tool can 
+	transform the graph into postscript, jpeg, png, vrml, svg, and many
+	other formats. GraphViz tools are freely available from 
+	<A
+HREF="http://www.graphviz.org"
+TARGET="_top"
+>GraphViz 
+	site</A
+>. Specific options include filter for this report 
+	include filter and number of generations considered, as well as 
+	several GraphViz specific options related to pagination, color, 
+	and details of the graph. </P
+></DD
+><DT
+>Descendant Graph</DT
+><DD
+><P
+>This report generates the graph of people who are
+	descendants of a currently active person. Specific options include 
+	the format of the displayed entries. </P
+></DD
+><DT
+>Ancestor Chart</DT
+><DD
+><P
+>This report generates the chart of people who are
+	ancestors of a currently active person. Specific options include 
+	the number of generations considered and the format of the displayed 
+	entries. </P
+></DD
+></DL
+></DIV
+><P
+>Common options for graphical reports are the filename of the
+	output, the format of the output, selected style, and page size and 
+	orientation. </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="rep-text"
+>4.10.2. Text Reports</A
+></H4
+><P
+> Text reports represent the desired information as formatted 
+	text. The following text reports are currently available 
+	in <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+>:</P
+><P
+></P
+><UL
+><LI
+><P
+>Individual Summary</P
+></LI
+><LI
+><P
+>Family Group Report</P
+></LI
+><LI
+><P
+>Detailed Descendant Report</P
+></LI
+><LI
+><P
+>Detailed Ancestral Report</P
+></LI
+><LI
+><P
+>Descendant Report</P
+></LI
+><LI
+><P
+>Complete Individual Report</P
+></LI
+><LI
+><P
+>Ahnentafel Report</P
+></LI
+></UL
+><P
+>Most of the options are common among text reports, 
+	therefore they will be described only once, at the end of this 
+	section. Few options specific to the given report will be 
+	described directly in that report's entry. </P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+>Individual Summary</DT
+><DD
+><P
+></P
+></DD
+><DT
+>Family Group Report</DT
+><DD
+><P
+></P
+></DD
+><DT
+>Detailed Descendant Report</DT
+><DD
+><P
+></P
+></DD
+><DT
+>Detailed Ancestral Report</DT
+><DD
+><P
+></P
+></DD
+><DT
+>Descendant Report</DT
+><DD
+><P
+></P
+></DD
+><DT
+>Complete Individual Report</DT
+><DD
+><P
+></P
+></DD
+><DT
+>Ahnentafel Report</DT
+><DD
+><P
+></P
+></DD
+></DL
+></DIV
+><P
+>Common options for text reports are the filename of the
+	output, the format of the output, selected style, and page size and 
+	orientation. For HTML reports, there is no page information. 
+	Instead, HTML options includes the choice of the HTML template, 
+	either available in <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> or custom template defined by you. </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="rep-view"
+>4.10.3. View</A
+></H4
+><P
 > </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="rep-web"
+>4.10.4. Web Page</A
+></H4
+><P
+> </P
+></DIV
 ></DIV
 ><DIV
 CLASS="sect2"
@@ -5186,6 +5512,39 @@ NAME="gramps-tools"
 ></H3
 ><P
 > </P
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="tools-ae"
+>4.11.1. Analysis and Exploration</A
+></H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="tools-db"
+>4.11.2. Database Processing</A
+></H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="tools-util"
+>4.11.3. Utilities</A
+></H4
+><P
+> </P
+></DIV
 ></DIV
 ></DIV
 ><DIV
@@ -5210,37 +5569,7 @@ CLASS="guimenu"
 >-&gt;<SPAN
 CLASS="guimenuitem"
 >Preferences</SPAN
->. 
-      The <SPAN
-CLASS="guilabel"
->Preferences</SPAN
-> dialog contains the 
-      following sections seen as the corresponding tree elements:</P
-><P
-></P
-><UL
-><LI
-><P
-><A
-HREF="#gramps-prefs-usage"
->Section 5.1</A
-></P
-></LI
-><LI
-><P
-><A
-HREF="#gramps-prefs-display"
->Section 5.2</A
-></P
-></LI
-><LI
-><P
-><A
-HREF="#gramps-prefs-db"
->Section 5.3</A
-></P
-></LI
-></UL
+>. </P
 ><DIV
 CLASS="sect2"
 ><HR><H3
