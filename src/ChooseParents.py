@@ -43,6 +43,7 @@ import const
 import sort
 import Utils
 import GrampsCfg
+import Sorter
 
 #-------------------------------------------------------------------------
 #
@@ -83,8 +84,16 @@ class ChooseParents:
         self.mlabel = self.glade.get_widget("mlabel")
         self.fcombo.set_popdown_strings(const.familyRelations)
 
+        fmap = [(2,self.glade.get_widget('fname_arrow')),
+                (3,self.glade.get_widget('fbirth_arrow'))]
+        self.fsort = Sorter.Sorter(self.father_list,fmap,'flist')
+        mmap = [(2,self.glade.get_widget('mname_arrow')),
+                (3,self.glade.get_widget('mbirth_arrow'))]
+        self.msort = Sorter.Sorter(self.mother_list,mmap,'mlist')
         self.mother_list.set_column_visibility(2,0)
         self.father_list.set_column_visibility(2,0)
+        self.mother_list.set_column_visibility(3,0)
+        self.father_list.set_column_visibility(3,0)
         self.mother_list.set_sort_column(2)
         self.father_list.set_sort_column(2)
         
@@ -125,43 +134,52 @@ class ChooseParents:
         self.father_list.clear()
         self.mother_list.clear()
 
-        self.father_list.append(["Unknown","",""])
+        self.father_list.append(["Unknown","","",""])
         self.father_list.set_row_data(0,None)
 
-        self.mother_list.append(["Unknown","",""])
+        self.mother_list.append(["Unknown","","",""])
         self.mother_list.set_row_data(0,None)
 
         father_index = 1
         mother_index = 1
         fsel = 0
         msel = 0
+        pkey = self.person.getId()
+        gender = self.person.getGender()
+        if self.father:
+            fid = self.father.getId()
+        else:
+            fid = None
+        if self.mother:
+            mid = self.mother.getId()
+        else:
+            mid = None
+            
         for key in self.db.getPersonKeys():
-            person = self.db.getPerson(key)
-            if person == self.person:
+            if pkey == key:
                 continue
-            if person.getGender() == RelLib.Person.unknown:
+            if gender == const.unknown:
                 continue
-            if self.father == person:
+            if fid == key:
                 fsel = father_index
-            if self.mother == person:
+            if mid == key:
                 msel = mother_index
-            name = person.getPrimaryName()
-            rdata = [Utils.phonebook_name(person),Utils.birthday(person),
-                     sort.build_sort_name(name)]
+            dinfo = self.db.getPersonDisplay(key)
+            rdata = [dinfo[0],dinfo[3],dinfo[5],dinfo[6]]
             if self.type == "Partners":
                 self.father_list.append(rdata)
-                self.father_list.set_row_data(father_index,person)
+                self.father_list.set_row_data(father_index,dinfo[1])
                 father_index = father_index + 1
                 self.mother_list.append(rdata)
-                self.mother_list.set_row_data(mother_index,person)
+                self.mother_list.set_row_data(mother_index,dinfo[1])
                 mother_index = mother_index + 1
-            elif person.getGender() == RelLib.Person.male:
+            elif dinfo[2] == const.male:
                 self.father_list.append(rdata)
-                self.father_list.set_row_data(father_index,person)
+                self.father_list.set_row_data(father_index,dinfo[1])
                 father_index = father_index + 1
             else:
                 self.mother_list.append(rdata)
-                self.mother_list.set_row_data(mother_index,person)
+                self.mother_list.set_row_data(mother_index,dinfo[1])
                 mother_index = mother_index + 1
 
         self.mother_list.select_row(msel,0)
@@ -213,10 +231,18 @@ class ChooseParents:
         return family
 
     def mother_list_select_row(self,obj,a,b,c):
-        self.mother = obj.get_row_data(a)
+        id = obj.get_row_data(a)
+        if id:
+            self.mother = self.db.getPerson(id)
+        else:
+            self.mother = None
 
     def father_list_select_row(self,obj,a,b,c):
-        self.father = obj.get_row_data(a)
+        id = obj.get_row_data(a)
+        if id:
+            self.father = self.db.getPerson(id)
+        else:
+            self.father = None
 
     def save_parents_clicked(self,obj):
         mother_rel = const.childRelations[self.mother_rel.get_text()]

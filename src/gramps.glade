@@ -5101,42 +5101,142 @@
 		<name>select_row</name>
 		<handler>on_fatherList_select_row</handler>
 	      </signal>
-	      <columns>3</columns>
-	      <column_widths>200,190,10</column_widths>
+	      <columns>4</columns>
+	      <column_widths>200,190,5,5</column_widths>
 	      <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	      <show_titles>True</show_titles>
 	      <shadow_type>GTK_SHADOW_IN</shadow_type>
 
 	      <widget>
-		<class>GtkLabel</class>
+		<class>GtkHBox</class>
 		<child_name>CList:title</child_name>
-		<name>label81</name>
-		<label>Name</label>
-		<justify>GTK_JUSTIFY_CENTER</justify>
-		<wrap>False</wrap>
-		<xalign>0.5</xalign>
-		<yalign>0.5</yalign>
-		<xpad>0</xpad>
-		<ypad>0</ypad>
+		<name>hbox84</name>
+		<homogeneous>True</homogeneous>
+		<spacing>0</spacing>
+
+		<widget>
+		  <class>GtkHBox</class>
+		  <name>hbox85</name>
+		  <homogeneous>False</homogeneous>
+		  <spacing>0</spacing>
+		  <child>
+		    <padding>0</padding>
+		    <expand>False</expand>
+		    <fill>False</fill>
+		  </child>
+
+		  <widget>
+		    <class>GtkLabel</class>
+		    <child_name>CList:title</child_name>
+		    <name>label320</name>
+		    <label>Name</label>
+		    <justify>GTK_JUSTIFY_CENTER</justify>
+		    <wrap>False</wrap>
+		    <xalign>0.5</xalign>
+		    <yalign>0.5</yalign>
+		    <xpad>0</xpad>
+		    <ypad>0</ypad>
+		    <child>
+		      <padding>0</padding>
+		      <expand>False</expand>
+		      <fill>False</fill>
+		    </child>
+		  </widget>
+
+		  <widget>
+		    <class>GtkArrow</class>
+		    <name>fname_arrow</name>
+		    <width>10</width>
+		    <height>10</height>
+		    <arrow_type>GTK_ARROW_DOWN</arrow_type>
+		    <shadow_type>GTK_SHADOW_OUT</shadow_type>
+		    <xalign>0.5</xalign>
+		    <yalign>0.5</yalign>
+		    <xpad>0</xpad>
+		    <ypad>0</ypad>
+		    <child>
+		      <padding>5</padding>
+		      <expand>False</expand>
+		      <fill>True</fill>
+		    </child>
+		  </widget>
+		</widget>
 	      </widget>
 
 	      <widget>
-		<class>GtkLabel</class>
+		<class>GtkHBox</class>
 		<child_name>CList:title</child_name>
-		<name>label82</name>
-		<label>Birth Date</label>
-		<justify>GTK_JUSTIFY_CENTER</justify>
-		<wrap>False</wrap>
-		<xalign>0.5</xalign>
-		<yalign>0.5</yalign>
-		<xpad>0</xpad>
-		<ypad>0</ypad>
+		<name>hbox88</name>
+		<homogeneous>True</homogeneous>
+		<spacing>0</spacing>
+
+		<widget>
+		  <class>GtkHBox</class>
+		  <name>hbox89</name>
+		  <homogeneous>False</homogeneous>
+		  <spacing>0</spacing>
+		  <child>
+		    <padding>0</padding>
+		    <expand>False</expand>
+		    <fill>False</fill>
+		  </child>
+
+		  <widget>
+		    <class>GtkLabel</class>
+		    <child_name>CList:title</child_name>
+		    <name>label322</name>
+		    <label>Birth Date</label>
+		    <justify>GTK_JUSTIFY_CENTER</justify>
+		    <wrap>False</wrap>
+		    <xalign>0.5</xalign>
+		    <yalign>0.5</yalign>
+		    <xpad>0</xpad>
+		    <ypad>0</ypad>
+		    <child>
+		      <padding>0</padding>
+		      <expand>False</expand>
+		      <fill>False</fill>
+		    </child>
+		  </widget>
+
+		  <widget>
+		    <class>GtkArrow</class>
+		    <name>fbirth_arrow</name>
+		    <width>10</width>
+		    <height>10</height>
+		    <visible>False</visible>
+		    <arrow_type>GTK_ARROW_DOWN</arrow_type>
+		    <shadow_type>GTK_SHADOW_OUT</shadow_type>
+		    <xalign>0.5</xalign>
+		    <yalign>0.5</yalign>
+		    <xpad>0</xpad>
+		    <ypad>0</ypad>
+		    <child>
+		      <padding>0</padding>
+		      <expand>False</expand>
+		      <fill>False</fill>
+		    </child>
+		  </widget>
+		</widget>
 	      </widget>
 
 	      <widget>
 		<class>GtkLabel</class>
 		<child_name>CList:title</child_name>
 		<name>label82a</name>
+		<label></label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>0.5</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<child_name>CList:title</child_name>
+		<name>label82b</name>
 		<label></label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
@@ -5260,42 +5360,142 @@ Unknown
 		<name>select_row</name>
 		<handler>on_motherList_select_row</handler>
 	      </signal>
-	      <columns>3</columns>
-	      <column_widths>200,190,10</column_widths>
+	      <columns>4</columns>
+	      <column_widths>200,190,5,5</column_widths>
 	      <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	      <show_titles>True</show_titles>
 	      <shadow_type>GTK_SHADOW_IN</shadow_type>
 
 	      <widget>
-		<class>GtkLabel</class>
+		<class>GtkHBox</class>
 		<child_name>CList:title</child_name>
-		<name>label84</name>
-		<label>Name</label>
-		<justify>GTK_JUSTIFY_CENTER</justify>
-		<wrap>False</wrap>
-		<xalign>0.5</xalign>
-		<yalign>0.5</yalign>
-		<xpad>0</xpad>
-		<ypad>0</ypad>
+		<name>hbox86</name>
+		<homogeneous>True</homogeneous>
+		<spacing>0</spacing>
+
+		<widget>
+		  <class>GtkHBox</class>
+		  <name>hbox87</name>
+		  <homogeneous>False</homogeneous>
+		  <spacing>0</spacing>
+		  <child>
+		    <padding>0</padding>
+		    <expand>False</expand>
+		    <fill>False</fill>
+		  </child>
+
+		  <widget>
+		    <class>GtkLabel</class>
+		    <child_name>CList:title</child_name>
+		    <name>label321</name>
+		    <label>Name</label>
+		    <justify>GTK_JUSTIFY_CENTER</justify>
+		    <wrap>False</wrap>
+		    <xalign>0.5</xalign>
+		    <yalign>0.5</yalign>
+		    <xpad>0</xpad>
+		    <ypad>0</ypad>
+		    <child>
+		      <padding>0</padding>
+		      <expand>False</expand>
+		      <fill>False</fill>
+		    </child>
+		  </widget>
+
+		  <widget>
+		    <class>GtkArrow</class>
+		    <name>mname_arrow</name>
+		    <width>10</width>
+		    <height>10</height>
+		    <arrow_type>GTK_ARROW_DOWN</arrow_type>
+		    <shadow_type>GTK_SHADOW_OUT</shadow_type>
+		    <xalign>0.5</xalign>
+		    <yalign>0.5</yalign>
+		    <xpad>0</xpad>
+		    <ypad>0</ypad>
+		    <child>
+		      <padding>5</padding>
+		      <expand>False</expand>
+		      <fill>True</fill>
+		    </child>
+		  </widget>
+		</widget>
 	      </widget>
 
 	      <widget>
-		<class>GtkLabel</class>
+		<class>GtkHBox</class>
 		<child_name>CList:title</child_name>
-		<name>label85</name>
-		<label>Birth Date</label>
-		<justify>GTK_JUSTIFY_CENTER</justify>
-		<wrap>False</wrap>
-		<xalign>0.5</xalign>
-		<yalign>0.5</yalign>
-		<xpad>0</xpad>
-		<ypad>0</ypad>
+		<name>hbox90</name>
+		<homogeneous>True</homogeneous>
+		<spacing>0</spacing>
+
+		<widget>
+		  <class>GtkHBox</class>
+		  <name>hbox91</name>
+		  <homogeneous>False</homogeneous>
+		  <spacing>0</spacing>
+		  <child>
+		    <padding>0</padding>
+		    <expand>False</expand>
+		    <fill>False</fill>
+		  </child>
+
+		  <widget>
+		    <class>GtkLabel</class>
+		    <child_name>CList:title</child_name>
+		    <name>label323</name>
+		    <label>Birth Date</label>
+		    <justify>GTK_JUSTIFY_CENTER</justify>
+		    <wrap>False</wrap>
+		    <xalign>0.5</xalign>
+		    <yalign>0.5</yalign>
+		    <xpad>0</xpad>
+		    <ypad>0</ypad>
+		    <child>
+		      <padding>0</padding>
+		      <expand>False</expand>
+		      <fill>False</fill>
+		    </child>
+		  </widget>
+
+		  <widget>
+		    <class>GtkArrow</class>
+		    <name>mbirth_arrow</name>
+		    <width>10</width>
+		    <height>10</height>
+		    <visible>False</visible>
+		    <arrow_type>GTK_ARROW_DOWN</arrow_type>
+		    <shadow_type>GTK_SHADOW_OUT</shadow_type>
+		    <xalign>0.5</xalign>
+		    <yalign>0.5</yalign>
+		    <xpad>0</xpad>
+		    <ypad>0</ypad>
+		    <child>
+		      <padding>0</padding>
+		      <expand>False</expand>
+		      <fill>False</fill>
+		    </child>
+		  </widget>
+		</widget>
 	      </widget>
 
 	      <widget>
 		<class>GtkLabel</class>
 		<child_name>CList:title</child_name>
 		<name>label85a</name>
+		<label></label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>0.5</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<child_name>CList:title</child_name>
+		<name>label85b</name>
 		<label></label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
@@ -5370,7 +5570,7 @@ Unknown
 		<editable>True</editable>
 		<text_visible>True</text_visible>
 		<text_max_length>0</text_max_length>
-		<text></text>
+		<text>Birth</text>
 	      </widget>
 	    </widget>
 	  </widget>
@@ -5479,7 +5679,7 @@ Unknown
 	    <editable>False</editable>
 	    <text_visible>True</text_visible>
 	    <text_max_length>0</text_max_length>
-	    <text>Birth</text>
+	    <text></text>
 	  </widget>
 	</widget>
       </widget>
