@@ -128,20 +128,22 @@ class AddSpouse:
         Called when the spouse to be added does not exist, and needs
         to be created and added to the database
         """
-        import QuickAdd
+        import EditPerson
 
         relation = const.save_frel(self.relation_type.get_text())
         if relation == "Partners":
             if self.person.getGender() == RelLib.Person.male:
-                gen = "male"
+                gen = RelLib.Person.male
             else:
-                gen = "female"
+                gen = RelLib.Person.female
         elif self.person.getGender() == RelLib.Person.male:
-            gen = "female"
+            gen = RelLib.Person.female
         else:
-            gen = "male"
+            gen = RelLib.Person.male
 
-        QuickAdd.QuickAdd(self.db,gen,self.update_list)
+        person = RelLib.Person()
+        person.setGender(gen)
+        EditPerson.EditPerson(person,self.db,self.update_list)
 
     def update_list(self,person):
         """

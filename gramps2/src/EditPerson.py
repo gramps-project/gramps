@@ -72,7 +72,7 @@ pycode_tgts = [('url', 0, 0),
 #-------------------------------------------------------------------------
 class EditPerson:
 
-    def __init__(self,person,db,callback=None):
+    def __init__(self,person,db,callback=None,gender=RelLib.Person.female):
         """Creates an edit window.  Associates a person with the window."""
         self.person = person
         self.original_id = person.getId()
@@ -985,7 +985,6 @@ class EditPerson:
             self.redraw_event_list()
 
     def update_birth_death(self):
-        print "update"
         self.bdate.set_text(self.birth.getDate())
         self.bplace.set_text(self.birth.getPlaceName())
         self.bdate_check.set_calendar(self.birth.getDateObj().get_calendar())
