@@ -21,6 +21,7 @@
 	* src/Makefile.am: Ship SelectPerson.py and choose.glade.
 	* src/plugins/Makefile.am: Ship SimpleBookTitle.py and book.glade.
 	* NEWS: Some updates for upcoming release.
+	* doc/gramps-manual/C/gramps-manual.xml: Update manual. 
 
 2003-07-07  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/WriteGedcom.py: Fix GEDCOM export.  Fixed date

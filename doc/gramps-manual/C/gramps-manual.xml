@@ -2,9 +2,9 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY appversion "0.9.2">
-  <!ENTITY manrevision "2.1">
-  <!ENTITY date "May 2003">
+  <!ENTITY appversion "0.9.3">
+  <!ENTITY manrevision "2.2">
+  <!ENTITY date "July 2003">
   <!ENTITY app "<application>GRAMPS</application>">
   <!-- Information about the entities
        The legal.xml file contains legal information, there is no need to edit the file. 
@@ -98,6 +98,16 @@
       <revision> 
 		<revnumber>GRAMPS Manual V&manrevision;</revnumber> 
 		<date>&date;</date> 
+		<revdescription> 
+	  		<para role="author">Alex Roitman
+	    	<email>shura@alex.neuro.umn.edu</email>
+	  		</para>
+	  		<para role="publisher">GRAMPS Project</para>
+		</revdescription> 
+      </revision> 
+      <revision> 
+		<revnumber>GRAMPS Manual V2.1</revnumber> 
+		<date>May 2003</date> 
 		<revdescription> 
 	  		<para role="author">Alex Roitman
 	    	<email>shura@alex.neuro.umn.edu</email>
@@ -1506,6 +1516,72 @@
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="adv-dates"> 
+        <title>Edit Dates</title> 
+	<para> Anywhere in <application>&app;</application> where the date 
+        is entered or edited, the following rules apply:</para> 
+
+      <variablelist>
+      <varlistentry><term>Date validity indicators</term>
+	<listitem><para><application>&app;</application> uses color 
+        circles to indicate the validity of the entered date. </para>
+
+        <itemizedlist>
+        
+        <listitem><para> Green circle means that the date is valid and 
+        complete (e.g. May 24, 1961). </para></listitem>
+
+        <listitem><para> Yellow circle means that the date is valid but is
+        partial (i.e. not complete). Examples of partial dates are: 1961, 
+        about 1961, from 1960 to 1962, before 1963. While partial dates do 
+        not exactly define the date, they allow at least for some type of
+        comparisons between the dates. </para></listitem>
+
+        <listitem><para> Red circle means that the date is not recognized as 
+        a valid date (e.g. Christmas week of 61). In that case the date will 
+        be stored as a text string. Therefore, no comparison with other dates 
+        will be available. It is best to avoid such date entries. Same 
+        information can be entered as a note for the event of interest instead
+        of a date. In the example considered, a better things to do is to
+        enter December 1961 as a date and Christmas week of 61 as a note.
+        </para></listitem> 
+
+        </itemizedlist>
+      </listitem></varlistentry>
+      </variablelist>
+
+      <variablelist>
+      <varlistentry><term>Acceptable date entries</term>
+	<listitem><para><application>&app;</application> recognizes many 
+        formats of exact dates. The only problematic formats are XX/XX/XX or
+        XX-XX-XX because of the ambiguity between the day and the month.
+        The interpretation for this type of formats is configured 
+        in <guilabel>Getting Started</guilabel> dialog and can also be changed
+        from the <guilabel>Preferences</guilabel> dialog. </para> </listitem>
+
+	<listitem><para>Besides exact dates, <application>&app;</application> 
+        recognizes and supports partial dates, date ranges, and alternate
+        calendars. </para>
+        
+        <itemizedlist>
+        
+        <listitem><para> Parital dates define some portions of the date such 
+        as a year or a year and a month. </para></listitem>
+
+        <listitem><para> Date ranges define the boundaries containing the 
+        date such as from January 1961 to March 1963. </para></listitem>
+
+        <listitem><para> Alternate calendars are calendars other than Gregorian
+        calendar. Currently, <application>&app;</application> supports Hebrew,
+        French Republican, Julian, Islamic, and Persian alternate calendars. 
+        </para></listitem>
+
+        </itemizedlist>
+      </listitem></varlistentry>
+      </variablelist>
+      </sect3>
+
+      <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-rel"> 
         <title>Edit Relationship Data</title> 
 	<para> Editing of relationship data is performed in the following 
@@ -2404,7 +2480,29 @@
 
       </sect3>
       
-    </sect2>
+       <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="adv-merge"> 
+        <title>Merge People</title> 
+	<para> Sometime two people entries in the database turn out to be 
+        describing the same person. When this happens, merging people is 
+        a useful useful way of correcting the situation. </para>
+        
+        <para> To make a merge, exactly two people have to be selected in the
+        People View. This is accomplished by selecting one person and then
+        selecting another person while holding down <keycap>Ctrl</keycap> key.
+        </para>
+        
+        <para> When exactly two people are selected, choose
+        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Merge</guimenuitem></menuchoice>
+        to evoke <guilabel>Merge</guilabel> dialog. The dialog allows you to
+        retain the data from either person as the primary data for the new
+        (merged) person. The data from the other person can be kept as alternate
+        data if you so choose. If you would like to continue editing data of 
+        a newly merged person, click <guibutton>Merge and edit</guibutton>
+        button. </para>
+      </sect3>
+
+   </sect2>
 
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-nav"> 
@@ -2546,6 +2644,50 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
+      </sect3>
+
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="gramps-nav-find-people"> 
+        <title>Finding People</title> 
+	<para> To find a person in a database, choose 
+        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
+        when in People View, Family View, or Pedigree View. This opens a 
+        <guilabel>Find Person</guilabel> dialog which can be used for searching
+        forward and backward. </para>
+	
+	<para> If the search is successful, the found person becomes an active
+        person and the display adjust according to the new active person and the
+        current view. </para>
+      </sect3>
+
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="gramps-nav-find-sources"> 
+        <title>Finding Sources</title> 
+	<para> To find a source in a database, choose 
+        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
+        when in Sources View. This opens a <guilabel>Find Source</guilabel>
+        dialog which can be used for searching forward and backward. If the
+        search is successful, the found source becomes highlighted. </para> 
+      </sect3>
+
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="gramps-nav-find-places"> 
+        <title>Finding Places</title> 
+	<para> To find a place in a database, choose 
+        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
+        when in Places View. This opens a <guilabel>Find Place</guilabel> 
+        dialog which can be used for searching forward and backward. If the 
+        search is successful, the found place becomes highlighted. </para> 
+      </sect3>
+
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="gramps-nav-find-media"> 
+        <title>Finding Media Objects</title> 
+	<para> To find a media object in a database, choose 
+        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
+        when in Media View. This opens a <guilabel>Find Media Objects</guilabel> 
+        dialog which can be used for searching forward and backward. If the 
+        search is successful, the found media object becomes highlighted. </para> 
       </sect3>
 
    </sect2>
