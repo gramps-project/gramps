@@ -297,8 +297,6 @@ class GrampsParser:
         else:
             frel = "Birth"
         self.person.AltFamilyList.append((family,mrel,frel))
-        if attrs.has_key('pref'):
-            self.person.setMainFamily(family)
 
     def start_parentin(self,attrs):
         self.person.FamilyList.append(self.db.findFamilyNoMap(u2l(attrs["ref"])))

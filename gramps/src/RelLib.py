@@ -1079,12 +1079,15 @@ class Person:
     def addAltFamily(self,family,mrel,frel):
         """adds a Family to the alternate family list, indicating the relationship
         to the mother (mrel) and the father (frel)"""
+        assert(family==None)
         self.AltFamilyList.append((family,mrel,frel))
 
     def removeAltFamily(self,family):
         """removes a Family instance from the alternate family list"""
         for f in self.AltFamilyList[:]:
+            print "+",f[0],family
             if f[0] == family:
+                print f, family
                 self.AltFamilyList.remove(f)
                 return f
         else:
@@ -1101,9 +1104,9 @@ class Person:
         """sets the main Family of the Person, the Family in which the
         Person is a natural born child"""
         assert(family in self.AltFamilyList)
-        
-        f = self.removeFamily(family)
-        self.AltFamilyList = [f] + self.AltFamilyList
+        f = self.removeAltFamily(family)
+        if f:
+            self.AltFamilyList = [f] + self.AltFamilyList
         
     def getMainFamily(self):
         """returns the main Family of the Person, the Family in which the

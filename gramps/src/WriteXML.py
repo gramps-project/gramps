@@ -250,13 +250,12 @@ class XmlWriter:
                 self.write_attribute_list(person.getAttributeList())
                 self.write_url_list(person.getUrlList())
 
-                self.write_ref("childof",person.getMainFamily(),3)
                 for alt in person.getAltFamilyList():
-                    if alt[1] != "":
+                    if alt[1] != "Birth":
                         mrel=' mrel="%s"' % alt[1]
                     else:
                         mrel=''
-                    if alt[2] != "":
+                    if alt[2] != "Birth":
                         frel=' frel="%s"' % alt[2]
                     else:
                         frel=''
