@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -85,11 +85,12 @@ class Bookmarks :
     def add_to_menu(self,person_id):
         """adds a person's name to the drop down menu"""
         data = self.db.person_map.get(str(person_id))
-        name = data[2].get_name()
-        item = gtk.MenuItem(name)
-        item.connect("activate", self.callback, person_id)
-        item.show()
-        self.myMenu.append(item)
+        if data:
+            name = data[2].get_name()
+            item = gtk.MenuItem(name)
+            item.connect("activate", self.callback, person_id)
+            item.show()
+            self.myMenu.append(item)
 
     def draw_window(self):
         """Draws the bookmark dialog box"""
