@@ -35,9 +35,9 @@ import gtk
 import Utils
 import const
 import GrampsCfg
-import intl
 import VersionControl
-_ = intl.gettext
+from intl import gettext
+_ = gettext
 
 #-------------------------------------------------------------------------
 #

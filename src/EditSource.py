@@ -151,42 +151,32 @@ class EditSource:
                     if sref.getBase() == self.source:
                         f_attr_list.append((name,v.getType()))
 
-        add = self.refinfo.insert_defaults
+        slist = self.top_window.get_widget('slist')
         if len(p_event_list) > 0:
-            add(_("Individual Events"))
-            add("\n-----------------------------\n")
             for p in p_event_list:
-                add("%s: %s\n" % (p[0],const.display_pevent(p[1])))
+                slist.append([_("Individual Events"),p[0],
+                              const.display_pevent(p[1])])
         if len(p_attr_list) > 0:
-            add(_("Individual Attributes"))
-            add("\n-----------------------------\n")
             for p in p_attr_list:
-                add("%s: %s\n" % (p[0],const.display_pattr(p[1])))
+                slist.append([_("Individual Attributes"),p[0],
+                              const.display_pattr(p[1])])
         if len(p_name_list) > 0:
-            add(_("Individual Names"))
-            add("\n-----------------------------\n")
             for p in p_name_list:
-                add("%s: %s\n" % p)
+                slist.append([_("Individual Names"),p[0],p[1]])
         if len(f_event_list) > 0:
-            add(_("Family Events"))
-            add("\n-----------------------------\n")
             for p in f_event_list:
-                add("%s: %s\n" % (p[0],const.display_fevent(p[1])))
+                slist.append([_("Family Events"),p[0],
+                              const.display_fevent(p[1])])
         if len(f_attr_list) > 0:
-            add(_("Family Attributes"))
-            add("\n-----------------------------\n")
             for p in f_event_list:
-                add("%s: %s\n" % (p[0],const.display_fattr(p[1])))
+                slist.append([_("Family Attributes"),p[0],
+                              const.display_fattr(p[1])])
         if len(m_list) > 0:
-            add(_("Media Objects"))
-            add("\n-----------------------------\n")
             for p in m_list:
-                add("%s\n" % m)
-        if len(m_list) > 0:
-            add(_("Places"))
-            add("\n-----------------------------\n")
+                slist.append([_("Media Objects"),p,''])
+        if len(p_list) > 0:
             for p in p_list:
-                add("%s\n" % m)
+                slist.append([_("Places"),p,''])
 
     def on_source_apply_clicked(self,obj):
 

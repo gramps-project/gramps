@@ -21,10 +21,13 @@
 import os
 import string
 import re
+import time
+
 import gnome.ui
 import Plugins
 import ImgManip
 import TarFile
+import const
 
 from TextDoc import *
 
@@ -73,7 +76,9 @@ class HtmlDoc(TextDoc):
 
     def __init__(self,styles,type,template,orientation,source=None):
         TextDoc.__init__(self,styles,PaperStyle("",0,0),template,None)
+        self.year = time.localtime(time.time())[0]
         if source == None:
+            self.copyright = 'Copyright &copy; %d' % (self.year)
             self.map = None
             self.f = None
             self.filename = None
@@ -85,6 +90,8 @@ class HtmlDoc(TextDoc):
             self.build_style_declaration()
             self.image_dir = "images"
         else:
+            self.owner = source.owner
+            self.copyright = 'Copyright &copy; %d %s' % (self.year,self.owner)
             self.map = source.map
             self.f = None
             self.filename = source.filename
@@ -97,7 +104,11 @@ class HtmlDoc(TextDoc):
             self.table_styles = source.table_styles;
             self.cell_styles = source.cell_styles;
             self.image_dir = source.image_dir
-            
+ 
+    def set_owner(self,owner):
+        HtmlDoc.set_owner(self,owner)
+        self.copyright = 'Copyright &copy; %d %s' % (self.year,self.owner)
+        
     def set_image_dir(self,dirname):
         self.image_dir = dirname
 
@@ -180,6 +191,10 @@ class HtmlDoc(TextDoc):
             self.bottom = _bottom
             self.top = _top
 
+    def process_line(self,line):
+        l = string.replace(line,'$VERSION',const.version)
+        return string.replace(l,'$COPYRIGHT',self.copyright)
+        
     def open(self,filename):
         if filename[-5:] == ".html" or filename[-4:0] == ".htm":
             self.filename = filename
@@ -200,6 +215,7 @@ class HtmlDoc(TextDoc):
             self.file_header = '%s<TITLE>%s</TITLE>%s\n' % (m[0],m[1],m[2])
         else:
             self.file_header = top
+        self.file_header = self.process_line(self.file_header)
 
     def build_style_declaration(self):
         text = ['<style type="text/css">\n<!--']
@@ -270,7 +286,7 @@ class HtmlDoc(TextDoc):
 
     def close(self):
         for line in self.bottom:
-            self.f.write(line)
+            self.f.write(self.process_line(line))
         self.f.close()
 
     def write_support_files(self):
