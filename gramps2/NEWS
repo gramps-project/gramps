@@ -1,4 +1,5 @@
-Version 1.1.4 -- the "" release
+Version 1.1.4 -- the "Successful encyclopedia salesman" release
+* Import from native GRDB format.
 * GnomePrint backend supports shadows for the boxes.
 * Bug fixes.
 
