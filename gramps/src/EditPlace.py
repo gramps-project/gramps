@@ -23,8 +23,8 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import os
 import string
+import Config
 
 #-------------------------------------------------------------------------
 #
@@ -55,8 +55,6 @@ _ = intl.gettext
 # Constants
 #
 #-------------------------------------------------------------------------
-_PLACE  = "p"
-
 class EditPlace:
 
     def __init__(self,place,db,func):
@@ -314,3 +312,60 @@ def disp_loc(loc):
 
 def src_changed(parent):
     parent.lists_changed = 1
+
+
+class DeletePlaceQuery:
+
+    def __init__(self,db,place,update,pevent,fevent):
+        self.db = db
+        self.place = place
+        self.update = update
+        self.pevent = pevent
+        self.fevent = fevent
+        
+        msg = []
+        self.xml = libglade.GladeXML(const.gladeFile,"place_query")
+        self.xml.signal_autoconnect({
+            'on_force_delete_clicked': self.on_force_delete_clicked,
+            'destroy_passed_object' : utils.destroy_passed_object}) 
+        
+        textbox = self.xml.get_widget("text")
+        textbox.set_point(0)
+        textbox.set_word_wrap(1)
+
+        if len(pevent) > 0:
+            textbox.insert_defaults(_("People") + "\n")
+            textbox.insert_defaults("_________________________\n\n")
+            t = _("%s [%s]: event %s\n")
+
+            for e in pevent:
+                msg = t % (Config.nameof(e[0]),e[0].getId(),e[1].getName())
+                textbox.insert_defaults(msg)
+
+        if len(fevent) > 0:
+            textbox.insert_defaults("\n%s\n" % _("Families"))
+            textbox.insert_defaults("_________________________\n\n")
+            t = _("%s [%s]: event %s\n")
+
+            for e in fevent:
+                father = e[0].getFather()
+                mother = e[0].getMother()
+                if father and mother:
+                    fname = "%s and %s" % (Config.nameof(father),Config.nameof(mother))
+                elif father:
+                    fname = "%s" % Config.nameof(father)
+                else:
+                    fname = "%s" % Config.nameof(mother)
+
+                msg = t % (fname,e[0].getId(),e[1].getName())
+                textbox.insert_defaults(msg)
+        
+    def on_force_delete_clicked(self,obj):
+        for event in self.pevent + self.fevent:
+            event[1].setPlace(None)
+        map = self.db.getPlaceMap()
+        del map[self.place.getId()]
+        utils.modified()
+        utils.destroy_passed_object(obj)
+        self.update(0)
+    
