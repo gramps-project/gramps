@@ -225,7 +225,11 @@ class PlaceView:
             used = 0
             for key in self.db.get_person_keys():
                 p = self.db.get_person(key)
-                event_list = [p.get_birth(), p.get_death()] + p.get_event_list()[:]
+                event_list = []
+                for e in [p.get_birth_id(),p.get_death_id()] + p.get_event_list():
+                    event = self.db.find_event_from_id(e)
+                    if event:
+                        event_list.append(event)
                 if p.get_lds_baptism():
                     event_list.append(p.get_lds_baptism())
                 if p.get_lds_endowment():
@@ -236,8 +240,13 @@ class PlaceView:
                     if event.get_place_id() == place:
                         used = 1
 
-            for f in self.db.get_family_id_map().values():
-                event_list = f.get_event_list()[:]
+            for fid in self.db.get_family_keys():
+                f = self.db.find_family_from_id(fid)
+                event_list = []
+                for e in f.get_event_list():
+                    event = self.db.find_event_from_id(e)
+                    if event:
+                        event_list.append(event)
                 if f.get_lds_sealing():
                     event_list.append(f.get_lds_sealing())
                 for event in event_list:

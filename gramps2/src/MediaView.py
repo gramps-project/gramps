@@ -200,9 +200,10 @@ class MediaView:
             id = store.get_value(iter,1)
             object = self.db.find_object_from_id(id)
             self.obj = object
-            Utils.add_menuitem(menu,_("View in the default viewer"),None,self.popup_view_photo)
+            Utils.add_menuitem(menu,_("View in the default viewer"),None,
+                               self.popup_view_photo)
             if object.get_mime_type()[0:5] == "image":
-                Utils.add_menuitem(menu,_("Edit with the GIMP"),\
+                Utils.add_menuitem(menu,_("Edit with the GIMP"),
                                    None,self.popup_edit_photo)
             if object.get_local() == 0:
                 Utils.add_menuitem(menu,_("Convert to local copy"),None,
@@ -268,7 +269,6 @@ class MediaView:
             self.id2col[id] = iter
             self.model.set(iter, 0, title, 1, id, 2, type, 3, path, 4, stitle)
 
-
     def on_add_clicked(self,obj):
         """Add a new media object to the media list"""
         import AddMedia
@@ -290,7 +290,7 @@ class MediaView:
             return
 
         id = store.get_value(iter,1)
-        mobj = self.db.get_object(id)
+        mobj = self.db.find_object_from_id(id)
         if self.is_object_used(mobj):
             ans = ImageSelect.DeleteMediaQuery(mobj,self.db,self.update)
             QuestionDialog(_('Delete Media Object?'),
@@ -306,7 +306,8 @@ class MediaView:
             self.update(0)
 
     def is_object_used(self,mobj):
-        for p in self.db.get_family_id_map().values():
+        for family_id in self.db.get_family_keys():
+            p = self.db.find_family_from_id(family_id)
             for o in p.get_media_list():
                 if o.get_reference_id() == mobj.get_id():
                     return 1
