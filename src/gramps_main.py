@@ -296,9 +296,74 @@ def redraw_child_list(filter):
     addChildList.freeze()
     addChildList.clear()
     index = 0
+
+    bday = active_person.getBirth().getDateObj()
+    if  bday.getYear() != -1:
+        bday_valid = 1
+    else:
+        bday_valid = 0
+    dday = active_person.getDeath().getDateObj()
+    if  dday.getYear() != -1:
+        dday_valid = 1
+    else:
+        dday_valid = 0
+    
+    slist = []
+    f = active_person.getMainFamily()
+    if f:
+        if f.getFather():
+            slist.append(f.getFather())
+        if f.getMother():
+            slist.append(f.getFather())
+            
+    for f in active_person.getFamilyList():
+        slist.append(f.getFather())
+        slist.append(f.getMother())
+        for c in f.getChildList():
+            slist.append(c)
+            
     for person in person_list:
-        if filter and person.getMainFamily() != None:
+        if person.getMainFamily() == active_person.getMainFamily():
             continue
+        if person in slist:
+            continue
+        if filter:
+            if person.getMainFamily() != None:
+                continue
+            
+            pdday = person.getDeath().getDateObj()
+            pbday = person.getBirth().getDateObj()
+
+            if bday_valid:
+                if pbday.getYear() != -1:
+
+                    # reject if child birthdate < parents birthdate + 10
+                    if pbday.getLowYear() < bday.getHighYear()+10:
+                        continue
+
+                    # reject if child birthdate > parents birthdate + 90
+                    if pbday.getLowYear() > bday.getHighYear()+90:
+                        continue
+
+                if pdday.getYear() != -1:
+                    # reject if child deathdate < parents birthdate+ 10
+                    if pdday.getLowYear() < limit.getHighYear()+10:
+                        continue
+                
+            if dday_valid:
+
+                if pbday.getYear() != -1:
+                    
+                    # reject if childs birth date > parents deathday + 3
+                    if pdday.getLowYear() > dday.getHighYear()+3:
+                        continue
+
+                if pdday.getYear() != -1:
+
+                    # reject if childs death date > parents deathday + 150
+                    if pbday.getLowYear() > dday.getHighYear() + 150:
+                        continue
+        
         addChildList.append([utils.phonebook_name(person),birthday(person),\
                              person.getId()])
         addChildList.set_row_data(index,person)
@@ -977,6 +1042,8 @@ def on_save_parents_clicked(obj):
     global active_father
     global active_mother
     global active_family
+    global select_mother
+    global select_father
 
     mrel = family_window.get_widget("mrel").get_text()
     frel = family_window.get_widget("frel").get_text()
@@ -1227,36 +1294,33 @@ def on_delete_parents_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def delete_spouse():
+    import Check
     global active_family
 
     if active_person == active_family.getFather():
         person = active_family.getMother()
-        if person:
-            person.removeFamily(active_family)
-        if len(active_family.getChildList()) == 0:
-            active_person.removeFamily(active_family)
-            database.deleteFamily(active_family)
-            if len(active_person.getFamilyList()) > 0:
-                active_family = active_person.getFamilyIndex(0)
-            else:
-                active_family = None
-        else:	
-            active_family.setMother(None)
     else:
         person = active_family.getFather()
-        if person:
-            person.removeFamily(active_family)
-        if len(active_family.getChildList()) == 0:
-            active_person.removeFamily(active_family)
-            database.deleteFamily(active_family)
-            if len(active_person.getFamilyList()) > 0:
-                active_family = active_person.getFamilyIndex(0)
-            else:
-                active_family = None
+
+    if person:
+        person.removeFamily(active_family)
+        
+    if len(active_family.getChildList()) == 0:
+        active_person.removeFamily(active_family)
+        database.deleteFamily(active_family)
+        if len(active_person.getFamilyList()) > 0:
+            active_family = active_person.getFamilyIndex(0)
         else:
-            active_family.setFather(None)
+            active_family = None
+    else:	
+        active_family.setMother(None)
+
     load_family()
     utils.modified()
+
+    checker = Check.CheckIntegrity(database)
+    checker.cleanup_empty_families(1)
+    checker.check_for_broken_family_links()
     
 #-------------------------------------------------------------------------
 #
