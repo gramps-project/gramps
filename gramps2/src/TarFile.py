@@ -92,7 +92,7 @@ class ReadTarFile:
         self.pos = 0
 
     def extract_files(self):
-        map = {}
+        data = {}
 	while 1:
 	    buf = self.f.read(100)
             if buf == '':
@@ -103,11 +103,11 @@ class ReadTarFile:
 		    index = index + 1
 	        else:
 		    if index == 0:
-                        return map
+                        return data
 		    continue
 	    filename = buf[0:index]
             if filename == None:
-                return map
+                return data
 	    self.f.read(24) # modes
             l = string.replace(self.f.read(12),chr(0),' ')
             length = int(l,8) 
@@ -118,10 +118,11 @@ class ReadTarFile:
 	    self.f.read(64)
 	    self.f.read(183)
             foo = cStringIO.StringIO()
-            map[filename] = foo
+            data[filename] = foo
 	    foo.write(self.f.read(length))
 	    foo.reset()
 	    self.f.read(_BLKSIZE-(length%_BLKSIZE))
+        return data
     
     def extract(self):
 	while 1:

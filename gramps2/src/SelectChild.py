@@ -241,27 +241,27 @@ class SelectChild:
         
             person_list.append(person.get_handle())
 
-        iter = None
+        node = None
         for idval in person_list:
             dinfo = self.db.get_person_from_handle(idval).get_display_info()
             rdata = [dinfo[0],dinfo[1],dinfo[3],dinfo[5],dinfo[6]]
-            new_iter = self.refmodel.add(rdata)
+            new_node = self.refmodel.add(rdata)
             names = dinfo[0].split(',')
             if len(names):
                 ln = names[0].upper()
-                if self.default_name and ln == self.default_name and not iter:
-                    iter = new_iter
+                if self.default_name and ln == self.default_name and not node:
+                    node = new_node
 
         self.refmodel.connect_model()
 
-        if iter:
-            self.refmodel.selection.select_iter(iter)
-            path = self.refmodel.model.get_path(iter)
+        if node:
+            self.refmodel.selection.select_iter(node)
+            path = self.refmodel.model.get_path(node)
             col = self.add_child.get_column(0)
             self.add_child.scroll_to_cell(path,col,1,0.5,0.0)
 
-    def select_function(self,store,path,iter,id_list):
-        id_list.append(self.refmodel.get_value(iter,PeopleModel.COLUMN_INT_ID))
+    def select_function(self,store,path,node,id_list):
+        id_list.append(self.refmodel.get_value(node,PeopleModel.COLUMN_INT_ID))
 
     def get_selected_ids(self):
         mlist = []

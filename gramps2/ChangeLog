@@ -1,3 +1,16 @@
+2004-08-22  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Marriage.py: pychecker fixes
+	* src/RelLib.py: pychecker fixes
+	* src/SelectChild.py: pychecker fixes
+	* src/SelectObject: pychecker fixes
+	* src/SourceView.py: pychecker fixes
+	* src/Sources.py: pychecker fixes
+	* src/StyleEditor.py: pychecker fixes
+	* src/TarFile.py: pychecker fixes
+	* src/TipOfDay.py: pychecker fixes
+	* src/Utils.py: pychecker fixes
+	* src/WriteXML.py: pychecker fixes
+
 2004-08-23  Tim Waugh  <twaugh@redhat.com>
 
 	* src/WriteGedcom.py (GedcomWriter.write_families): Write families

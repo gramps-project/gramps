@@ -63,14 +63,14 @@ class TipParser:
         """
 
         self.mylist = []
-        file = open(const.tipdata)
+        xml_file = open(const.tipdata)
         self.tlist = []
         p = xml.parsers.expat.ParserCreate()
         p.StartElementHandler = self.startElement
         p.EndElementHandler = self.endElement
         p.CharacterDataHandler = self.characters
-        p.ParseFile(file)
-        file.close()
+        p.ParseFile(xml_file)
+        xml_file.close()
 
     def get(self):
         return self.mylist

@@ -338,15 +338,14 @@ class XmlWriter:
                 count = count + 1
             
                 self.write_family_handle(family,2)
-                fh = family.get_father_handle()
-                mh = family.get_mother_handle()
-                if fh:
-                    fid = self.db.get_person_from_handle (fh).get_gramps_id ()
+                fhandle = family.get_father_handle()
+                mhandle = family.get_mother_handle()
+                if fhandle:
+                    fid = self.db.get_person_from_handle (fhandle).get_gramps_id ()
                     self.write_ref("father",fid,3)
-                if mh:
-                    mid = self.db.get_person_from_handle (mh).get_gramps_id ()
+                if mhandle:
+                    mid = self.db.get_person_from_handle (mhandle).get_gramps_id ()
                     self.write_ref("mother",mid,3)
-
                 for event_handle in family.get_event_list():
                     event = self.db.get_event_from_handle(event_handle)
                     self.dump_event(event,3)
@@ -406,13 +405,13 @@ class XmlWriter:
             keys = self.db.get_media_object_handles()
             sorted_keys = []
             for key in keys:
-                object = self.db.get_object_from_handle (key)
-                tuple = (object.get_gramps_id (), object)
+                obj = self.db.get_object_from_handle (key)
+                tuple = (obj.get_gramps_id (), obj)
                 sorted_keys.append (tuple)
 
             sorted_keys.sort ()
-            for (gramps_id, object) in sorted_keys:
-                self.write_object(object)
+            for (gramps_id, obj) in sorted_keys:
+                self.write_object(obj)
             self.g.write("  </objects>\n")
 
         if len(self.db.get_bookmarks()) > 0:
@@ -548,8 +547,8 @@ class XmlWriter:
                 self.write_date(d,index+1)
                 self.g.write("%s</sourceref>\n" % ("  " * index))
 
-    def write_ref(self,label,id,index=1):
-        if id:
+    def write_ref(self,label,gid,index=1):
+        if gid:
             self.g.write('%s<%s ref="%s"/>\n' % ("  "*index,label,id))
 
     def write_id(self,label,person,index=1):
@@ -624,9 +623,9 @@ class XmlWriter:
 
     def dump_name(self,label,name,index=1):
         sp = "  "*index
-        type = name.get_type()
-        if type:
-            self.g.write('%s<%s type="%s"%s>\n' % (sp,label,type,conf_priv(name)))
+        name_type = name.get_type()
+        if name_type:
+            self.g.write('%s<%s type="%s"%s>\n' % (sp,label,name_type,conf_priv(name)))
         else:
             self.g.write('%s<%s%s>\n' % (sp,label,conf_priv(name)))
         self.write_line("first",name.get_first_name(),index+1)
@@ -777,10 +776,10 @@ class XmlWriter:
             self.dump_source_ref(s,3)
         self.g.write("    </placeobj>\n")
 
-    def write_object(self,object):
-        id = object.get_gramps_id()
-        type = object.get_mime_type()
-        path = object.get_path()
+    def write_object(self,obj):
+        handle = obj.get_gramps_id()
+        mime_type = obj.get_mime_type()
+        path = obj.get_path()
         if self.strip_photos:
             path = os.path.basename(path)
         else:
@@ -788,18 +787,18 @@ class XmlWriter:
             if len(path) >= l:
                 if self.fileroot == path[0:l]:
                     path = path[l+1:]
-        self.g.write('    <object id="%s" src="%s" mime="%s"' % (id,path,type))
-        self.g.write(' description="%s"' % self.fix(object.get_description()))
-        alist = object.get_attribute_list()
-        note = object.get_note()
-        slist = object.get_source_references()
+        self.g.write('    <object id="%s" src="%s" mime="%s"' % (handle,path,mime_type))
+        self.g.write(' description="%s"' % self.fix(obj.get_description()))
+        alist = obj.get_attribute_list()
+        note = obj.get_note()
+        slist = obj.get_source_references()
         if len(alist) == 0 and len(slist) == 0 and note == "":
             self.g.write('/>\n')
         else:
             self.g.write('>\n')
             self.write_attribute_list(alist)
             if note != "":
-                self.write_note("note",object.get_note_object(),3)
+                self.write_note("note",obj.get_note_object(),3)
             for s in slist:
                 self.dump_source_ref(s,3)
             self.g.write("    </object>\n")
