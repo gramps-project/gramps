@@ -3,6 +3,8 @@
 	options. 
 	* src/gramps_main.py: Enable context menus with back and forward
 	portions of history upon right-clicking on Back and Forward buttons.
+	Enable context menu upon right-click in the People View with Back,
+        Forward, Add, Remove, and Edit items. 
 	* src/gramps.glade: Add handlers for the context menus. 
 
 2003-08-17  Alex Roitman  <shura@alex.neuro.umn.edu>

@@ -446,6 +446,7 @@ class Gramps:
             "on_open_example" : self.open_example,
             })	
 
+
         self.enable_filter(self.use_filter)
         self.enable_sidebar(self.use_sidebar)
         self.find_place = None
@@ -589,6 +590,36 @@ class Gramps:
             self.backbtn.set_sensitive(1)
             self.back.set_sensitive(1)
 
+    def on_plist_button_press(self,obj,event):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            self.build_people_context_menu()
+
+    def build_people_context_menu(self):
+        """Builds the menu with navigation and 
+        editing operations on the people's list"""
+        
+        back_sensitivity = self.hindex > 0 
+        fwd_sensitivity = self.hindex + 1 < len(self.history)
+        entries = [
+            ('gtk-go-back',self.back_clicked,back_sensitivity),
+            ('gtk-go-forward',self.fwd_clicked,fwd_sensitivity),
+            (None,None,0),
+            ('gtk-add', self.add_button_clicked,1),
+            ('gtk-remove', self.remove_button_clicked,1),
+            (_("Edit"), self.edit_button_clicked,1),
+        ]
+
+        menu = gtk.Menu()
+        menu.set_title(_('People Menu'))
+        for stock_id,callback,sensitivity in entries:
+            item = gtk.ImageMenuItem(stock_id)
+            if callback:
+                item.connect("activate",callback)
+            item.set_sensitive(sensitivity)
+            item.show()
+            menu.append(item)
+        menu.popup(None,None,None,0,0)
+        
     def change_alpha_page(self,obj,junk,page):
         """Change the page. Be careful not to take action while the pages
         are begin removed. If clearing_tabs is set, then we don't do anything"""
@@ -597,6 +628,7 @@ class Gramps:
             return
 	self.person_tree = self.pl_page[page]
         self.person_list = self.pl_page[page].tree
+        self.person_list.connect('button-press-event',self.on_plist_button_press)
         self.person_model = self.pl_page[page].model
         if not self.model_used.has_key(self.person_tree) or self.model_used[self.person_tree] == 0:
             self.model_used[self.person_tree] = 1
@@ -1540,6 +1572,7 @@ class Gramps:
                 page = self.ptabs.get_current_page()
             self.person_tree = self.pl_page[page]
             self.person_list = self.pl_page[page].tree
+            self.person_list.connect('button-press-event',self.on_plist_button_press)
             self.person_model = self.pl_page[page].model
             self.ptabs.set_current_page(page)
             return
