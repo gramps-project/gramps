@@ -34,7 +34,6 @@ import string
 import GDK
 import GTK
 import gtk
-import GdkImlib
 import gnome.ui
 import libglade
 
@@ -340,7 +339,7 @@ class Gallery(ImageSelect):
                     self.add_thumbnail(oref)
                     self.parent.lists_changed = 1
                     if GrampsCfg.globalprop:
-                        LocalMediaProperties(oref,self.path)
+                        LocalMediaProperties(oref,self.path,self)
                     Utils.modified()
             w.drag_finish(context, 1, 0, time)
 	else:
@@ -428,7 +427,7 @@ class Gallery(ImageSelect):
         of a picture."""
         if self.selectedIcon >=0:
             photo = self.dataobj.getPhotoList()[self.selectedIcon]
-            LocalMediaProperties(photo,self.path)
+            LocalMediaProperties(photo,self.path,self)
 
 #-------------------------------------------------------------------------
 #
@@ -437,11 +436,12 @@ class Gallery(ImageSelect):
 #-------------------------------------------------------------------------
 class LocalMediaProperties:
 
-    def __init__(self,photo,path):
+    def __init__(self,photo,path,parent):
         self.photo = photo
         self.object = photo.getReference()
         self.alist = photo.getAttributeList()[:]
         self.lists_changed = 0
+        self.parent = parent
         
         fname = self.object.getPath()
         self.change_dialog = libglade.GladeXML(const.imageselFile,
@@ -682,11 +682,9 @@ class GlobalMediaProperties:
         if text != note or desc != self.object.getDescription():
             self.object.setNote(text)
             self.object.setDescription(desc)
-            self.parent.lists_changed = 1
             Utils.modified()
         if self.lists_changed:
             self.object.setAttributeList(self.alist)
-            self.parent.lists_changed = 1
             Utils.modified()
         if self.update != None:
             self.update()
@@ -742,7 +740,7 @@ class DeleteMediaQuery:
         Utils.modified()
 
         for key in self.db.getPersonKeys():
-            key = self.db.getPerson(key)
+            p = self.db.getPerson(key)
             nl = []
             change = 0
             for photo in p.getPhotoList():
