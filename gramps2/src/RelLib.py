@@ -1307,7 +1307,8 @@ class Family(PrimaryObject,SourceNote):
         """
         check_list = [self.lds_seal,self.note]
         add_list = [item for item in check_list if item]
-        return self.media_list + self.attribute_list + add_list
+        return self.media_list + self.attribute_list + \
+	    	self.source_list + add_list
 
     def get_sourcref_child_list(self):
         """
@@ -2501,7 +2502,7 @@ class Source(PrimaryObject):
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        check_list = []
+        check_list = self.media_list
         if self.note:
             check_list.append(self.note)
         return check_list
