@@ -711,7 +711,7 @@ class LocalMediaProperties:
             self.pixmap.set_from_pixbuf(self.pix)
 
         self.change_dialog.get_widget("private").set_active(photo.get_privacy())
-        self.change_dialog.get_widget("gid").set_text(self.obj.get_handle())
+        self.change_dialog.get_widget("gid").set_text(self.obj.get_gramps_id())
 
         self.change_dialog.get_widget("path").set_text(fname)
 

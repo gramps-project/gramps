@@ -102,7 +102,7 @@ class HtmlLinkDoc(HtmlDoc.HtmlDoc):
 #------------------------------------------------------------------------
 class IndividualPage:
 
-    def __init__(self,db,person,photos,restrict,private,uc,link,mini_tree,map,
+    def __init__(self,db,person,photos,restrict,private,uc,link,places,mini_tree,map,
                  dir_name,imgdir,doc,id,idlink,ext,depth):
         self.person = person
         self.db = db
@@ -117,6 +117,7 @@ class IndividualPage:
         self.usecomments = not uc
         self.dir = dir_name
         self.link = link
+        self.places = places
         self.mini_tree = mini_tree
         self.slist = []
         self.scnt = 1
@@ -133,13 +134,7 @@ class IndividualPage:
     # 
     #
     #------------------------------------------------------------------------
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_normal_row(self,label,data,sreflist):
+    def write_flexible_row(self,label,data,sreflist=None):
         self.doc.start_row()
         self.doc.start_cell("NormalCell")
         self.doc.start_paragraph("Label")
@@ -149,7 +144,14 @@ class IndividualPage:
 
         self.doc.start_cell("NormalCell")
         self.doc.start_paragraph("Data")
-        self.doc.write_text(data)
+        if len(data) > 0:
+            for part in data:
+                if part[1] != "":
+                    self.doc.start_link(part[1])
+                    self.doc.write_text(part[0])
+                    self.doc.end_link()
+                else:
+                    self.doc.write_text(part[0])
         if sreflist:
             first = 1
             for sref in sreflist:
@@ -173,20 +175,20 @@ class IndividualPage:
     # 
     #
     #--------------------------------------------------------------------
-    def write_id_row(self,label,data):
-        self.doc.start_row()
-        self.doc.start_cell("NormalCell")
-        self.doc.start_paragraph("Label")
-        self.doc.write_text(label)
-        self.doc.end_paragraph()
-        self.doc.end_cell()
+    def write_normal_row(self,label,data,sreflist):
+        val = []
+        val.append((data,""))
+        self.write_flexible_row(label,val,sreflist)
 
-        self.doc.start_cell("NormalCell")
-        self.doc.start_paragraph("Data")
-        self.doc.write_raw(data)
-        self.doc.end_paragraph()
-        self.doc.end_cell()
-        self.doc.end_row()
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
+    def write_id_row(self,label,data):
+        val = []
+        val.append((data,""))
+        self.write_flexible_row(label,val)
 
     #--------------------------------------------------------------------
     #
@@ -194,21 +196,9 @@ class IndividualPage:
     #
     #--------------------------------------------------------------------
     def write_marriage_row(self,list):
-        self.doc.start_row()
-
-        self.doc.start_cell("NormalCell")
-        self.doc.start_paragraph("Label")
-        self.doc.write_text(list[0])
-        self.doc.end_paragraph()
-        self.doc.end_cell()
-
-        self.doc.start_cell("NormalCell")
-        self.doc.start_paragraph("Data")
-        self.doc.write_text(list[1])
-        self.doc.end_paragraph()
-        self.doc.end_cell()
-
-        self.doc.end_row()
+        val = []
+        val.append((list[1],""))
+        self.write_flexible_row(list[0],val)
 
     #--------------------------------------------------------------------
     #
@@ -216,27 +206,15 @@ class IndividualPage:
     #
     #--------------------------------------------------------------------
     def write_link_row(self,title,person_handle):
-        self.doc.start_row()
-        self.doc.start_cell("NormalCell")
-        self.doc.start_paragraph("Label")
-        self.doc.write_text(title)
-        self.doc.end_paragraph()
-        self.doc.end_cell()
-
-        self.doc.start_cell("NormalCell")
-        self.doc.start_paragraph("Data")
+        val = []
         if person_handle:
             person = self.db.get_person_from_handle(person_handle)
             if self.list.has_key(person_handle):
-                self.doc.start_link("%s.%s" % (person.get_gramps_id(),self.ext))
-                self.doc.write_text(person.get_primary_name().get_regular_name())
-                self.doc.end_link()
+                val.append((person.get_primary_name().get_regular_name(),"%s.%s" % (person.get_gramps_id(),self.ext)))
             else:
-                self.doc.write_text(person.get_primary_name().get_regular_name())
+                val.append((person.get_primary_name().get_regular_name(),""))
 
-        self.doc.end_paragraph()
-        self.doc.end_cell()
-        self.doc.end_row()
+        self.write_flexible_row(title,val)
 
     def write_sources(self):
         self.doc.start_paragraph("SourcesTitle")
@@ -370,6 +348,7 @@ class IndividualPage:
         self.write_facts()
         self.write_notes()
         self.write_families()
+        self.write_sibling()
 
         # if inclusion of photos has been enabled, write the photo
         # gallery.
@@ -390,6 +369,11 @@ class IndividualPage:
             self.doc.start_link("index.%s" % self.ext)
             self.doc.write_text(_("Return to the index of people"))
             self.doc.end_link()
+            if self.places:
+                self.doc.newline()
+                self.doc.start_link("loc.%s" % self.ext)
+                self.doc.write_text(_("Return to the index of places"))
+                self.doc.end_link()
             self.doc.end_paragraph()
 
     def close(self):
@@ -523,8 +507,12 @@ class IndividualPage:
             date = event.get_date()
             descr = event.get_description()
             place_handle = event.get_place_handle()
+            place_url = ""
             if place_handle:
                 place = self.db.get_place_from_handle(place_handle).get_title()
+                if self.places:
+                    place_gramps_id = self.db.get_place_from_handle(place_handle).get_gramps_id()
+                    place_url = "loc.%s#%s" % (self.ext, place_gramps_id)
             else:
                 place = ""
             srcref = event.get_source_references()
@@ -544,20 +532,23 @@ class IndividualPage:
             if descr != "" and descr[-1] == ".":
                 descr = descr[0:-1]
 
+            val = []
+            
             if date != "":
                 if place != "":
-                    val = "%s, %s." % (date,place)
+                    val.append(("%s, " % date,""))
+                    val.append((place,place_url))
+                    val.append((".",""))
                 else:
-                    val = "%s." % date
+                    val.append(("%s." % date,""))
             elif place != "":
-                val = "%s." % place
-            else:
-                val = ""
+                val.append((place,place_url))
+                val.append((".",""))
                 
             if descr != "":
-                val = val + ("%s." % descr)
+                val.append(("%s." % descr,""))
 
-            self.write_normal_row(name, val, srcref)
+            self.write_flexible_row(name, val, srcref)
 
         if count != 0:
             self.doc.end_table()
@@ -580,8 +571,12 @@ class IndividualPage:
         name = _(event.get_name())
         date = event.get_date()
         place_handle = event.get_place_handle()
+        place_url = ""
         if place_handle:
             place = self.db.get_place_from_handle(place_handle).get_title()
+            if self.places:
+                place_gramps_id = self.db.get_place_from_handle(place_handle).get_gramps_id()
+                place_url = "loc.%s#%s" % (self.ext, place_gramps_id)
         else:
             place = ""
         descr = event.get_description()
@@ -593,30 +588,37 @@ class IndividualPage:
         if date == "" and place == "" and descr == "":
             return
         
+        val = []
         if date == "":
             if place == "":
-                if descr == "":
-                    val = ""
-                else:
-                    val = "%s." % descr
+                if descr != "":
+                    val.append(("%s." % descr,""))
             else:
                 if descr == "":
-                    val = "%s." % place
+                    val.append((place,place_url))
+                    val.append((".",""))
                 else:
-                    val = "%s. %s." % (place,descr)
+                    val.append((place,place_url))
+                    val.append((".",""))
+                    val.append(("%s." % descr,""))
         else:
             if place == "":
                 if descr == "":
-                    val = "%s." % date
+                    val.append(("%s." % date,""))
                 else:
-                    val = "%s. %s." % (date,descr)
+                    val.append(("%s. %s." % (date,descr),""))
             else:
                 if descr == "":
-                    val = "%s, %s." % (date,place)
+                    val.append(("%s, " %date,""))
+                    val.append((place,place_url))
+                    val.append((".",""))
                 else:
-                    val = "%s, %s. %s." % (date,place,descr)
+                    val.append(("%s, " %date,""))
+                    val.append((place,place_url))
+                    val.append((".",""))
+                    val.append(("%s." % descr,""))
 
-        self.write_marriage_row([name, val])
+        self.write_flexible_row(name, val)
 
     def write_families(self):
         if len(self.person.get_family_handle_list()) == 0:
@@ -690,6 +692,41 @@ class IndividualPage:
                 self.doc.end_row()
         self.doc.end_table()
 
+    def write_sibling(self):
+        if len(self.person.get_parent_family_handle_list()) == 0:
+            return
+        
+        """collect all siblings into an array"""
+        all_sisters = []
+        for (family_handle,mrel,frel) in self.person.get_parent_family_handle_list():
+            family = self.db.get_family_from_handle(family_handle)
+            if len( family.get_child_handle_list() ) > 0:
+                for child_handle in family.get_child_handle_list():
+                    all_sisters.append(child_handle)
+        
+        """if more than one person_handle exists, the person has siblings"""
+        if len(all_sisters) > 1:
+            self.doc.start_paragraph("SiblingsTitle")
+            self.doc.write_text(_("Siblings"))
+            self.doc.end_paragraph()
+    
+            self.doc.start_table("three","IndTable")
+        
+            for child_handle in all_sisters:
+                child = self.db.get_person_from_handle(child_handle)
+                self.doc.start_paragraph("Data")
+                name = child.get_primary_name().get_regular_name()
+                if self.person.get_handle() == child_handle:
+                    self.doc.write_text(name)
+                elif self.list.has_key(child_handle):
+                    self.doc.start_link("%s.%s" % (child.get_gramps_id(),self.ext))
+                    self.doc.write_text(name)
+                    self.doc.end_link()
+                else:
+                    self.doc.write_text(name)
+                self.doc.end_paragraph()
+                
+
 #------------------------------------------------------------------------
 #
 # WebReport
@@ -698,7 +735,7 @@ class IndividualPage:
 class WebReport(Report.Report):
     def __init__(self,db,person,target_path,max_gen,photos,filter,restrict,
                  private, srccomments, include_link, include_mini_tree,
-                 style, image_dir, template_name,use_id,id_link,gendex,ext,
+                 style, image_dir, template_name,use_id,id_link,gendex,places,ext,
                  include_alpha_links,separate_alpha,n_cols,ind_template_name,
                  depth,birth_dates,year_only):
         self.db = db
@@ -718,6 +755,7 @@ class WebReport(Report.Report):
         self.selected_style = style
         self.image_dir = image_dir
         self.use_gendex = gendex
+        self.use_places = places
         self.template_name = template_name
         self.include_alpha_links = include_alpha_links
         self.separate_alpha = separate_alpha
@@ -818,6 +856,81 @@ class WebReport(Report.Report):
             f.write('\n')
         f.close()
 
+    def dump_places(self,person_handle_list,styles,template,html_dir):
+        """Writes an index file, listing all places and the referenced persons."""
+
+        doc = HtmlLinkDoc(self.selected_style,None,template,None)
+        doc.set_extension(self.ext)
+        doc.set_title(_("Place Index"))
+    
+        doc.open("%s/loc.%s" % (html_dir,self.ext))
+        doc.start_paragraph("Title")
+        doc.write_text(_("Place Index"))
+        doc.end_paragraph()
+
+        used_places = {}
+        for person_handle in person_handle_list:
+            person = self.db.get_person_from_handle(person_handle)
+            for event_handle in [person.get_birth_handle(), person.get_death_handle()] + person.get_event_list():
+                event = self.db.get_event_from_handle(event_handle)
+                if event:
+                    if event.get_place_handle() not in used_places:
+                        used_places[event.get_place_handle()] = []
+                    used_places[event.get_place_handle()].append((person_handle, event.get_name()))
+            for family_handle in person.get_family_handle_list():
+                family = self.db.get_family_from_handle(family_handle)
+                for event_handle in family.get_event_list():
+                    event = self.db.get_event_from_handle(event_handle)
+                    if event:
+                        if event.get_place_handle() not in used_places:
+                            used_places[event.get_place_handle()] = []
+                        used_places[event.get_place_handle()].append((person_handle, event.get_name()))
+        
+        for key in self.db.get_place_handles():
+            if key in used_places:
+                myplace = self.db.get_place_from_handle(key)
+                doc.start_paragraph("IndexLabel")
+                doc.write_linktarget(myplace.get_gramps_id())
+                doc.write_text(myplace.get_title())
+                doc.end_paragraph()
+
+                for match in used_places[key]:
+                    person_handle = match[0]
+                    event_name = match[1]
+                    person = self.db.get_person_from_handle(person_handle)
+                    name = person.get_primary_name().get_name()
+
+                    if self.birth_dates:
+                        birth_handle = self.db.get_person_from_handle(person_handle).get_birth_handle()
+                        if birth_handle:
+                            birth_event = self.db.get_event_from_handle(birth_handle)
+                            if self.year_only:
+                                birth_dobj = birth_event.get_date_object()
+                                if birth_dobj.get_year_valid():
+                                    birth_date = birth_dobj.get_year()
+                                else:
+                                    birth_date = ""
+                            else:
+                                birth_date = birth_event.get_date()
+                        else:
+                            birth_date = ""
+                    doc.start_link("%s.%s" % (person.get_gramps_id(),self.ext))
+                    doc.write_text(name)
+                    if self.birth_dates and birth_date:
+                        doc.write_text(' (%s %s)' % (_BORN,birth_date))
+                    doc.end_link()
+                    doc.write_text(' (%s)' % _(event_name))
+                    doc.newline()
+
+
+        if self.include_link:
+            doc.start_paragraph("Data")
+            doc.start_link("index.%s" % self.ext)
+            doc.write_text(_("Return to the index of people"))
+            doc.end_link()
+            doc.end_paragraph()
+        doc.close()
+
     def dump_index(self,person_handle_list,styles,template,html_dir):
         """Writes an index file, listing all people in the person list."""
     
@@ -915,7 +1028,6 @@ class WebReport(Report.Report):
                         doc.newline()
                     col_len = col_len - 1
                 doc.write_raw('</td></tr></table>')
-                doc.close()
         else:
             n_rows = len(person_handle_list) + len(link_keys)
             n_rows = n_rows/self.n_cols
@@ -969,7 +1081,13 @@ class WebReport(Report.Report):
                         doc.newline()
                     col_len = col_len - 1
             doc.write_raw('</td></tr></table>')
-            doc.close()
+        if self.include_link and self.use_places:
+            doc.start_paragraph("Data")
+            doc.start_link("loc.%s" % self.ext)
+            doc.write_text(_("Return to the index of places"))
+            doc.end_link()
+            doc.end_paragraph()
+        doc.close()
         
     def write_report(self):
         dir_name = self.target_path
@@ -1010,7 +1128,14 @@ class WebReport(Report.Report):
                 return
     
         ind_list = self.filter.apply(self.db,self.db.get_person_handles(sort_handles=False))
-        self.progress_bar_setup(float(len(ind_list)))
+        progress_steps = len(ind_list)
+        if len(ind_list) > 1:
+            progress_steps = progress_steps+1
+        if self.use_gendex == 1:
+            progress_steps = progress_steps+1
+        if self.use_places == 1:
+            progress_steps = progress_steps+1
+        self.progress_bar_setup(float(progress_steps))
         
         doc = HtmlLinkDoc(self.selected_style,None,self.template_name,None)
         doc.set_extension(self.ext)
@@ -1030,9 +1155,10 @@ class WebReport(Report.Report):
                                person.get_primary_name().get_regular_name()])
             idoc = IndividualPage(self.db,person, self.photos, self.restrict,
                                   self.private, self.srccomments,
-                                  self.include_link, self.include_mini_tree,
-                                  my_map, dir_name, self.image_dir, tdoc,
-                                  self.use_id,self.id_link,self.ext,self.depth)
+                                  self.include_link, self.use_places,
+                                  self.include_mini_tree, my_map, dir_name,
+                                  self.image_dir, tdoc, self.use_id,
+                                  self.id_link, self.ext, self.depth)
             idoc.create_page(my_map)
             idoc.close()
             self.progress_bar_step()
@@ -1042,8 +1168,20 @@ class WebReport(Report.Report):
         if len(ind_list) > 1:
             self.dump_index(ind_list,self.selected_style,
                             self.ind_template_name,dir_name)
+            self.progress_bar_step()
+            while gtk.events_pending():
+                gtk.mainiteration()
         if self.use_gendex == 1:
             self.dump_gendex(ind_list,dir_name)
+            self.progress_bar_step()
+            while gtk.events_pending():
+                gtk.mainiteration()
+        if self.use_places == 1:
+            self.dump_places(ind_list,self.selected_style,
+                            self.ind_template_name,dir_name)
+            self.progress_bar_step()
+            while gtk.events_pending():
+                gtk.mainiteration()
         self.progress_bar_done()
 
     def add_styles(self,doc):
@@ -1085,6 +1223,7 @@ class WebReportDialog(Report.ReportDialog):
         no_com_msg = _("Do not include comments and text in source information")
         include_id_msg = _("Include the GRAMPS ID in the report")
         gendex_msg = _("Create a GENDEX index")
+        places_msg = _("Create an index of all Places")
         imgdir_msg = _("Image subdirectory")
         depth_msg = _("Ancestor tree depth")
         ext_msg = _("File extension")
@@ -1113,6 +1252,7 @@ class WebReportDialog(Report.ReportDialog):
         self.no_comments = gtk.CheckButton(no_com_msg)
         self.include_id = gtk.CheckButton(include_id_msg)
         self.gendex = gtk.CheckButton(gendex_msg)
+        self.places = gtk.CheckButton(places_msg)
         self.imgdir = gtk.Entry()
         self.imgdir.set_text("images")
         self.linkpath = gtk.Entry()
@@ -1180,6 +1320,7 @@ class WebReportDialog(Report.ReportDialog):
         self.add_frame_option(title,'',self.include_id)
         self.add_frame_option(title,_('GRAMPS ID link URL'),self.linkpath)
         self.add_frame_option(title,'',self.gendex)
+        self.add_frame_option(title,'',self.places)
         self.add_frame_option(title,ext_msg,self.ext)
 
         self.no_images.connect('toggled',self.on_nophotos_toggled)
@@ -1310,6 +1451,13 @@ class WebReportDialog(Report.ReportDialog):
         font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
         p = BaseDoc.ParagraphStyle()
         p.set(font=font,bborder=1)
+        p.set_description(_("The style used for the header for the siblings section."))
+        self.default_style.add_style("SiblingsTitle",p)
+
+        font = BaseDoc.FontStyle()
+        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
+        p = BaseDoc.ParagraphStyle()
+        p.set(font=font,bborder=1)
         p.set_description(_("The style used for the header for the marriages "
                             "and children section."))
         self.default_style.add_style("FamilyTitle",p)
@@ -1433,6 +1581,7 @@ class WebReportDialog(Report.ReportDialog):
             self.html_ext = self.html_ext[1:]
         self.use_id = self.include_id.get_active()
         self.use_gendex = self.gendex.get_active()
+        self.use_places = self.places.get_active()
         self.id_link = unicode(self.linkpath.get_text().strip())
         self.srccomments = self.no_comments.get_active()
         if self.no_images.get_active() == 1:
@@ -1527,7 +1676,7 @@ class WebReportDialog(Report.ReportDialog):
                                  self.include_link, self.include_mini_tree,
                                  self.selected_style,
                                  self.img_dir_text,self.template_name,
-                                 self.use_id,self.id_link,self.use_gendex,
+                                 self.use_id,self.id_link,self.use_gendex,self.use_places,
                                  self.html_ext,self.include_alpha_links,
                                  self.separate_alpha,self.n_cols,
                                  self.ind_template_name,self.depth_value,
