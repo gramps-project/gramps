@@ -45,12 +45,11 @@ import gtk
 #
 #------------------------------------------------------------------------
 import Report
-from BaseDoc import PAPER_LANDSCAPE
-import GenericFilter
-import Errors
-from latin_utf8 import utf8_to_latin
-import const
 import ReportOptions
+import GenericFilter
+import const
+from BaseDoc import PAPER_LANDSCAPE
+from latin_utf8 import utf8_to_latin
 from QuestionDialog import ErrorDialog
 
 #------------------------------------------------------------------------
