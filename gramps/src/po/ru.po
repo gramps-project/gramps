@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 0.7.3-snap20020406\n"
 "POT-Creation-Date: Wed Apr 10 10:02:15 2002\n"
-"PO-Revision-Date: 2002-04-10 10:37-0500\n"
+"PO-Revision-Date: 2002-04-10 11:08-0500\n"
 "Last-Translator: Alex Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1489,7 +1489,7 @@ msgstr "Ориентация"
 
 #: Report.py:590
 msgid "Page Count"
-msgstr "Счет Страниц"
+msgstr "Нумерация Страниц"
 
 #: Report.py:610 plugins/eventcmp.glade:225
 msgid "Template"
@@ -3457,7 +3457,7 @@ msgstr "Не найдено соответствий"
 
 #: plugins/EventCmp.py:333
 msgid "Compare individual events"
-msgstr "Сравнить инливилуальные события"
+msgstr "Сравнить индивидуальные события"
 
 #: plugins/EventCmp.py:335
 msgid ""
@@ -3536,15 +3536,15 @@ msgstr "Выход"
 
 #: plugins/GraphViz.py:39 plugins/GraphViz.py:70
 msgid "Single (scaled)"
-msgstr "Одинокий(ая) (масштабированный)"
+msgstr "Единая (масштабированная)"
 
 #: plugins/GraphViz.py:40
 msgid "Single"
-msgstr "Одинокий(ая)"
+msgstr "Единая"
 
 #: plugins/GraphViz.py:41
 msgid "Multiple"
-msgstr "Множественный"
+msgstr "Множественная"
 
 #: plugins/GraphViz.py:60 plugins/GraphViz.py:389
 msgid "Relationship Graph"
