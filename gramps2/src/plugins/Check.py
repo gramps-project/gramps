@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 "Database Processing/Check and repair database"
 
@@ -112,6 +114,7 @@ class CheckIntegrity:
                     self.broken_links.append((child,family))
 
     def cleanup_missing_photos(self,cl=0):
+        missmedia_action = 0
         #-------------------------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
@@ -185,13 +188,21 @@ class CheckIntegrity:
                         % os.path.basename(photo_name)
                     self.bad_photo.append(ObjectMap[ObjectId])
                 else:
-                    MissingMediaDialog(_("Media object could not be found"),
+                    if missmedia_action == 0:
+                        mmd = MissingMediaDialog(_("Media object could not be found"),
                         _("%(file_name)s is referenced in the database, but no longer exists. " 
                         "The file may have been deleted or moved to a different location. " 
                         "You may choose to either remove the reference from the database, " 
                         "keep the reference to the missing file, or select a new file." 
                         ) % { 'file_name' : photo_name },
-                    remove_clicked, leave_clicked, select_clicked)
+                            remove_clicked, leave_clicked, select_clicked)
+                        missmedia_action = mmd.default_action
+                    elif missmedia_action == 1:
+                        remove_clicked()
+                    elif missmedia_action == 2:
+                        leave_clicked()
+                    elif missmedia_action == 3:
+                        select_clicked()
 
     def cleanup_empty_families(self,automatic):
         for key in self.db.getFamilyMap().keys():

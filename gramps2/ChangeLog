@@ -10,6 +10,12 @@
 	* src/plugins/WebPage.py (write_gallery): Use object ID as a file name
 	- prevents collision between identical names coming from different dirs.
 
+	* src/gramps_main.py (save_media): Add support for default action.
+	* src/plugins/Check.py (cleanup_missing_photos): Add support for default action.
+	* src/plugins/WriteCD.py (on_ok_clicked): Add support for default action.
+	* src/plugins/WritePkg.py (export): Add support for default action.
+	* src/plugins/WriteFtree.py: Do not import unused dialog.
+	
 2004-01-16  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/AncestorChart2.py: first pass at multipage output
 
