@@ -1622,7 +1622,7 @@ class EditPerson:
         self.db.transaction_commit(trans,_("Edit Person (%s)") % n)
         self.update_lists()
         if self.callback:
-            self.callback(self,0)
+            self.callback(self,1)
         self.close()
 
     def get_place(self,field,makenew=0):

@@ -173,12 +173,12 @@ class Gramps:
         GrampsCfg.client.notify_add("/apps/gramps/preferences/date-entry",
                                     self.date_entry_key_update)
         self.topWindow.show()
-
+        
         if GrampsCfg.get_usetips():
             TipOfDay.TipOfDay()
 
         self.db.set_researcher(GrampsCfg.get_researcher())
-        self.update_display(0)
+        #self.update_display(0)
 
     def date_format_key_update(self,client,cnxn_id,entry,data):
         GrampsCfg.set_calendar_date_format()
@@ -1090,7 +1090,7 @@ class Gramps:
             return 0
         
         self.topWindow.set_resizable(gtk.TRUE)
-        self.people_view.apply_filter()
+        #self.people_view.apply_filter()
         self.goto_active_person()
         return 1
 
@@ -1532,7 +1532,6 @@ class Gramps:
         self.place_view.change_db(self.db)
         self.source_view.change_db(self.db)
         self.media_view.change_db(self.db)
-        #self.full_update()
 
         self.change_active_person(self.find_initial_person())
         self.statusbar.set_progress_percentage(0.0)

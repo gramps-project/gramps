@@ -76,12 +76,15 @@ class DbPrompter:
         new.set_active(want_new)
 
         while 1:
+            top.show()
             response = top.run()
+            top.hide()
             if response == gtk.RESPONSE_OK:
                 if new.get_active():
                     prompter = NewNativeDbPrompter(self.parent,self.parent_window)
                 else:
                     prompter = ExistingDbPrompter(self.parent,self.parent_window)
+                
                 if prompter.chooser():
                     break
             elif response == gtk.RESPONSE_CANCEL:
@@ -179,7 +182,10 @@ class ExistingDbPrompter:
             if filetype == const.app_gramps:
                 choose.destroy()
                 self.parent.db = GrampsBSDDB.GrampsBSDDB()
+                msgxml = gtk.glade.XML(const.gladeFile, "load_message","gramps")
+                msg_top = msgxml.get_widget('load_message')
                 self.parent.read_file(filename)
+                msg_top.destroy()
                 return 1
             elif filetype == const.app_gramps_xml:
                 choose.destroy()

@@ -75,7 +75,7 @@ class PeopleModel(gtk.GenericTreeModel):
         self.top_visible = {}
         
         maps = self.db.get_people_view_maps()
-        if maps[0] != None and len(maps[0]) != 0:
+        if maps[1] != None and len(maps[1]) != 0:
             self.top_path2iter = maps[1]
             self.iter2path = maps[2]
             self.path2iter = maps[3]
@@ -87,6 +87,11 @@ class PeopleModel(gtk.GenericTreeModel):
 #        self.connect('row-inserted',self.on_row_inserted)
     
     def rebuild_data(self):
+
+        import traceback
+
+        print traceback.print_stack()
+
         self.top_path2iter = []
         self.iter2path = {}
         self.path2iter = {}
@@ -230,7 +235,7 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def on_iter_nth_child(self,node,n):
         if node == None:
-            return self.top_path2iter.get(n)
+            return self.top_path2iter[n]
         try:
             path = self.top_path2iter.index(node)
             return self.path2iter[(node,n)]
