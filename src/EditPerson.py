@@ -83,7 +83,7 @@ class EditPerson:
         self.parent = parent
         if self.parent.wins_dict.has_key(self.original_id):
             self.parent.wins_dict[self.original_id].present(None)
-	    return
+            return
         self.db = db
         self.callback = callback
         self.child_windows = []
@@ -412,14 +412,15 @@ class EditPerson:
         self.window.show()
 
     def close_child_windows(self):
-	for child_window in self.child_windows:
-	    child_window.close(None)
+        for child_window in self.child_windows:
+            child_window.close(None)
+        self.child_windows = []
 
     def close(self,ok=0):
-	self.gallery.close(ok)
-	self.close_child_windows()
-    	self.remove_itself_from_winsmenu()
-	self.window.destroy()
+        self.gallery.close(ok)
+        self.close_child_windows()
+        self.remove_itself_from_winsmenu()
+        self.window.destroy()
 
     def add_itself_to_winsmenu(self):
         self.parent.wins_dict[self.original_id] = self
@@ -427,11 +428,11 @@ class EditPerson:
         if not win_menu_label.strip():
             win_menu_label = _("New Person")
         self.win_menu_item = gtk.MenuItem(win_menu_label)
-	self.win_menu_item.set_submenu(gtk.Menu())
+        self.win_menu_item.set_submenu(gtk.Menu())
         self.win_menu_item.show()
         self.parent.winsmenu.append(self.win_menu_item)
-	self.menu = self.win_menu_item.get_submenu()
-	self.menu_item = gtk.MenuItem(_('Edit Person'))
+        self.menu = self.win_menu_item.get_submenu()
+        self.menu_item = gtk.MenuItem(_('Edit Person'))
         self.menu_item.connect("activate",self.present)
         self.menu_item.show()
         self.menu.append(self.menu_item)
@@ -439,8 +440,8 @@ class EditPerson:
     def remove_itself_from_winsmenu(self):
         del self.parent.wins_dict[self.original_id]
         self.menu_item.destroy()
-	self.menu.destroy()
-	self.win_menu_item.destroy()
+        self.menu.destroy()
+        self.win_menu_item.destroy()
 
     def present(self,obj):
         self.window.present()
@@ -1749,7 +1750,7 @@ class EditPerson:
                 child_date = sort.build_sort_date(bday)
             else:
                 continue
-            if (prev_date <= child_date):	# <= allows for twins
+            if (prev_date <= child_date):   # <= allows for twins
                 prev_date = child_date
             else:
                 inorder = 0
