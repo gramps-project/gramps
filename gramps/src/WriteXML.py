@@ -361,9 +361,9 @@ class XmlWriter:
         sp = "  " * index
         self.g.write('%s<event type="%s"%s>\n' % (sp,self.fix(name),conf_priv(event)))
         self.write_date(event.getDateObj(),index+1)
-        self.write_ref("place",place,index+1)
+        self.write_ref("place",event.getPlace(),index+1)
         self.write_line("cause",event.getCause(),index+1)
-        self.write_line("description",description,index+1)
+        self.write_line("description",event.getDescription(),index+1)
         if event.getNote():
             self.write_note("note",event.getNote(),index+1)
             
