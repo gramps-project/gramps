@@ -42,30 +42,22 @@ class DateParser:
     # determine the code set returned by nl_langinfo
     _codeset = locale.nl_langinfo(locale.CODESET)
 
-    _rfc_mons = (
-        unicode(locale.nl_langinfo(locale.ABMON_1),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_2),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_3),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_4),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_5),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_6),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_7),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_8),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_9),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_10),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_11),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_12),_codeset),
-        )
-
-    _rfc_days = (
-        unicode(locale.nl_langinfo(locale.ABDAY_1),_codeset),
-        unicode(locale.nl_langinfo(locale.ABDAY_2),_codeset),
-        unicode(locale.nl_langinfo(locale.ABDAY_3),_codeset),
-        unicode(locale.nl_langinfo(locale.ABDAY_4),_codeset),
-        unicode(locale.nl_langinfo(locale.ABDAY_5),_codeset),
-        unicode(locale.nl_langinfo(locale.ABDAY_6),_codeset),
-        unicode(locale.nl_langinfo(locale.ABDAY_7),_codeset),
-        )
+    # RFC-2822 only uses capitalized English abbreviated names, no locales.
+    _rfc_days = ('Sun','Mon','Tue','Wed','Thu','Fri','Sat')
+    _rfc_mons_to_int = {
+        'Jan' : 1,
+        'Feb' : 2, 
+        'Mar' : 3,
+        'Apr' : 4,
+        'May' : 5,
+        'Jun' : 6,
+        'Jul' : 7,
+        'Aug' : 8,
+        'Sep' : 9,
+        'Oct' : 10,
+        'Nov' : 11,
+        'Dec' : 12,
+        }
 
     month_to_int = {
         unicode(locale.nl_langinfo(locale.MON_1),_codeset).lower()   : 1,
@@ -174,7 +166,7 @@ class DateParser:
         'calculated' : Date.QUAL_CALCULATED,
         }
     
-    _rfc_mon_str  = '(' + '|'.join(_rfc_mons) + ')'
+    _rfc_mon_str  = '(' + '|'.join(_rfc_mons_to_int.keys()) + ')'
     _rfc_day_str  = '(' + '|'.join(_rfc_days) + ')'
         
     _qual_str = '(' + '|'.join(
@@ -334,7 +326,7 @@ class DateParser:
         if match:
             groups = match.groups()
             d = self._get_int(groups[1])
-            m = self.month_to_int[groups[2].lower()]
+            m = self._rfc_mons_to_int[groups[2]]
             y = self._get_int(groups[3])
             return (d,m,y,False)
 
