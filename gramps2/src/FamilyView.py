@@ -219,6 +219,8 @@ class FamilyView:
             QuestionDialog(_('Delete Spouse'),
                            _('Do you wish to remove %s as a spouse?') % name,
                            self.really_remove_spouse)
+        elif self.family and not self.family.getChildList():
+            self.really_remove_spouse()
                        
     def really_remove_spouse(self):
         """Delete the currently selected spouse from the family"""
