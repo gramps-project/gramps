@@ -2064,7 +2064,10 @@ def on_spouselist_changed(obj):
 #
 #-------------------------------------------------------------------------
 def new_after_edit(epo):
-    database.addPerson(epo.person)
+    if epo.person.getId() == "":
+        database.addPerson(epo.person)
+    else:
+        database.addPersonNoMap(epo.person,epo.person.getId())
     change_active_person(epo.person)
     redisplay_person_list(epo.person)
 
