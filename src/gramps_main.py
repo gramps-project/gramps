@@ -1265,18 +1265,21 @@ def change_active_person(person):
 #
 #-------------------------------------------------------------------------
 def modify_statusbar():
-    pname = Config.nameof(active_person)
-    if Config.status_bar == 1:
-        name = "[%s] %s" % (str(active_person.getId()),pname)
-    elif Config.status_bar == 2:
-        name = pname
-        for attr in active_person.getAttributeList():
-            if attr.getType() == Config.attr_name:
-                name = "[%s] %s" % (attr.getValue(),pname)
-                break
+    if active_person == None:
+        statusbar.set_status("")
     else:
-        name = pname
-    statusbar.set_status(name)
+        pname = Config.nameof(active_person)
+        if Config.status_bar == 1:
+            name = "[%s] %s" % (str(active_person.getId()),pname)
+        elif Config.status_bar == 2:
+            name = pname
+            for attr in active_person.getAttributeList():
+                if attr.getType() == Config.attr_name:
+                    name = "[%s] %s" % (attr.getValue(),pname)
+                    break
+        else:
+            name = pname
+        statusbar.set_status(name)
 	
 #-------------------------------------------------------------------------
 #
