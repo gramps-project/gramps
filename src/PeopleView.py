@@ -19,6 +19,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # internationalization
@@ -353,9 +355,9 @@ class PeopleView:
         
     def on_plist_button_press(self,obj,event):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_people_context_menu()
+            self.build_people_context_menu(event)
 
-    def build_people_context_menu(self):
+    def build_people_context_menu(self,event):
         """Builds the menu with navigation and 
         editing operations on the people's list"""
         
@@ -386,7 +388,7 @@ class PeopleView:
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
-        menu.popup(None,None,None,0,0)
+        menu.popup(None,None,None,event.button,event.time)
         
     def redisplay_person_list(self,person):
         self.add_to_person_list(person,1)

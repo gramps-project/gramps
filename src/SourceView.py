@@ -123,11 +123,11 @@ class SourceView:
             EditSource.EditSource(source,self.db,self.topWindow,self.update_display)
             return 1
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_context_menu()
+            self.build_context_menu(event)
             return 1
         return 0
 
-    def build_context_menu(self):
+    def build_context_menu(self,event):
         """Builds the menu with editing operations on the source's list"""
         
         store,iter = self.selection.get_selected()
@@ -150,7 +150,7 @@ class SourceView:
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
-        menu.popup(None,None,None,0,0)
+        menu.popup(None,None,None,event.button,event.time)
 
     def on_add_clicked(self,obj):
         EditSource.EditSource(RelLib.Source(),self.db,self.topWindow,self.new_after_edit)

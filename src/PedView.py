@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 _PAD       = 3
 _CANVASPAD = 3
 _PERSON    = "p"
@@ -427,9 +429,9 @@ class PedigreeView:
 
     def on_canvas_press(self,obj,event):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_nav_menu()
+            self.build_nav_menu(event)
 
-    def build_nav_menu(self):
+    def build_nav_menu(self,event):
         """Builds the menu with navigation."""
         
         back_sensitivity = self.parent.hindex > 0 
@@ -448,4 +450,4 @@ class PedigreeView:
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
-        menu.popup(None,None,None,0,0)
+        menu.popup(None,None,None,event.button,event.time)

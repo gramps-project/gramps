@@ -156,11 +156,11 @@ class PlaceView:
                 EditPlace.EditPlace(self,mlist[0],self.update_display)
             return 1
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_context_menu()
+            self.build_context_menu(event)
             return 1
         return 0
 
-    def build_context_menu(self):
+    def build_context_menu(self,event):
         """Builds the menu with editing operations on the place's list"""
         
         mlist = []
@@ -184,7 +184,7 @@ class PlaceView:
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
-        menu.popup(None,None,None,0,0)
+        menu.popup(None,None,None,event.button,event.time)
 
     def new_place_after_edit(self,place):
         #self.db.addPlace(place)
