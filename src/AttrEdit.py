@@ -88,7 +88,10 @@ class AttributeEditor:
                                            self.top.get_widget('edit_src'),
                                            self.top.get_widget('del_src'))
 
-        title = _("Attribute Editor for %s") % title
+        if title == ", ":
+            title = _("Attribute Editor")
+        else:
+            title = _("Attribute Editor for %s") % title
         l = self.top.get_widget("title")
         Utils.set_titles(self.window,l,title,_('Attribute Editor'))
 

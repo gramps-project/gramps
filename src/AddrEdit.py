@@ -76,7 +76,11 @@ class AddressEditor:
         self.addr = addr
 
         name = parent.person.getPrimaryName().getName()
-        text = _("Address Editor for %s") % name
+        print "'%s'" % name
+        if name == ", ":
+            text = _("Address Editor")
+        else:
+            text = _("Address Editor for %s") % name
         
         title_label = self.top.get_widget("title")
 

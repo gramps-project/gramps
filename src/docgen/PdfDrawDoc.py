@@ -152,31 +152,65 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
         else:
             self.f.drawPath(p,stroke=1,fill=0)
 
-    def draw_half_circle(self,style,x,y,radius):
+    def draw_wedge(self, style, centerx, centery, radius, start_angle, end_angle, short_radius=0):
 
+        centerx += self.lmargin
+        centery += self.bmargin
+        from math import sin, cos, pi
+
+        def rnd(val):
+            return val*cm
+
+        while end_angle < start_angle:
+            end_angle += 360
+        
         stype = self.draw_styles[style]
         if stype.get_line_style() == DrawDoc.SOLID:
             self.f.setDash([],0)
         else:
             self.f.setDash([2,4],0)
 
-        self.f.setLineWidth(stype.get_line_width())
+        degreestoradians = pi/180.0
+        radiansdelta = degreestoradians
+        sangle = start_angle*degreestoradians
+        eangle = end_angle*degreestoradians
+        while eangle<sangle:
+            eangle = eangle+2*pi
+        angle = sangle
+
         color = stype.get_fill_color()
         self.f.setFillColor((float(color[0])/255.0,float(color[1])/255.0,float(color[2])/255.0))
 
-        x0 = (x+self.lmargin)*cm
-        y0 = (y+self.tmargin)*cm
-        r = radius*cm
-
         p = self.f.beginPath()
-        p.moveTo(x0-r,y0)
-        p.arcTo(x0-r,y0-(r/2),x0+r,y0+(r/2))
-        p.lineTo(x0-r,y0)
-        self.f.drawPath(p,fill=1,stroke=1)
+        if short_radius == 0:
+            p.moveTo(rnd(centerx),rnd(centery))
+        else:
+            origx = rnd(centerx + cos(angle)*short_radius)
+            origy = rnd(centery + sin(angle)*short_radius)
+            p.moveTo(origx, origy)
+            
+        while angle<eangle:
+            x = centerx + cos(angle)*radius
+            y = centery + sin(angle)*radius
+            p.lineTo(rnd(x),rnd(y))
+            angle = angle+radiansdelta
+        x = centerx + cos(eangle)*radius
+        y = centery + sin(eangle)*radius
+        p.lineTo(rnd(x),rnd(y))
 
-#         self.f.arc(x0-r,y0-r,x0+r,y0+r,180,180)
-#         self.f.line(x0-r,y0,x0+r,y0)
-        fill = stype.get_color()
+        if short_radius:
+            x = centerx + cos(eangle)*short_radius
+            y = centery + sin(eangle)*short_radius
+            p.lineTo(rnd(x),rnd(y))
+
+            angle = eangle
+            while angle>=sangle:
+                x = centerx + cos(angle)*short_radius
+                y = centery + sin(angle)*short_radius
+                p.lineTo(rnd(x),rnd(y))
+                angle = angle-radiansdelta
+        p.close()
+        self.f.drawPath(p,stroke=1,fill=1)
 
     def draw_box(self,style,text,x,y):
         x = x + self.lmargin

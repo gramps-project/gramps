@@ -182,6 +182,9 @@ class DrawDoc:
     def draw_line(self,style,x1,y1,x2,y2):
 	pass
 
+    def draw_wedge(self, style, centerx, centery, radius, start_angle, end_angle):
+        pass
+    
     def start_path(self,style,x,y):
         pass
 
