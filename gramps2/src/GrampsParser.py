@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 import const
 import RelLib
 import Date
@@ -335,6 +337,10 @@ class GrampsParser:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
         self.person = self.db.findPersonNoMap(attrs["id"])
+        if attrs.has_key("complete"):
+            self.person.setComplete(int(attrs['complete']))
+        else:
+            self.person.setComplete(0)
 
     def start_people(self,attrs):
         if attrs.has_key("default"):
@@ -942,6 +948,10 @@ class GrampsImportParser(GrampsParser):
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
         self.person = self.db.findPersonNoConflicts(attrs["id"],self.pmap)
+        if attrs.has_key("complete"):
+            self.person.setComplete(int(attrs['complete']))
+        else:
+            self.person.setComplete(0)
 
     def start_father(self,attrs):
         self.family.Father = self.db.findPersonNoConflicts(attrs["ref"],self.pmap)
@@ -959,6 +969,10 @@ class GrampsImportParser(GrampsParser):
         self.family = self.db.findFamilyNoConflicts(attrs["id"],self.fmap)
         if attrs.has_key("type"):
             self.family.setRelationship(const.save_frel(attrs["type"]))
+        if attrs.has_key("complete"):
+            self.family.setComplete(int(attrs['complete']))
+        else:
+            self.family.setComplete(0)
 
     def start_source(self,attrs):
         self.source = self.db.findSourceNoConflicts(attrs["id"],self.smap)

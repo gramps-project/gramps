@@ -13,6 +13,13 @@
 	doc/gramps-manual/C/mainwin.xml,
 	doc/gramps-manual/C/getstart.xml, 
 	doc/gramps-manual/C/usage.xml: Add copyright info to header.
+	* src/edit_person.glade: Add completeness check button.
+	* src/RelLib.py (Person.setComplete, Person.getComplete): Add functions.
+	* src/WriteXML.py (write_id): Save completeness info.
+	* src/GrampsParser.py (GrampsParser.start_person, 
+	GrampsImportParser.start_person, GrampsImportParser.start_family): 
+	Parse completeness.
+	* src/EditPerson.py: Add support for completeness.
 
 2003-12-02  Tim Waugh  <twaugh@redhat.com>
 	* gramps.spec.in: Add more docs.

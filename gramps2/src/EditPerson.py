@@ -106,6 +106,7 @@ class EditPerson:
         self.gallery = ImageSelect.Gallery(person, self.path, self.icon_list,
                                            self.db,self,self.window)
 
+        self.complete = self.get_widget('complete')
         self.name_delete_btn = self.top.get_widget('aka_delete')
         self.name_edit_btn = self.top.get_widget('aka_edit')
         self.web_delete_btn = self.top.get_widget('delete_url')
@@ -381,6 +382,9 @@ class EditPerson:
                                            self.top.get_widget('add_src'),
                                            self.top.get_widget('edit_src'),
                                            self.top.get_widget('del_src'))
+
+        if self.person.getComplete():
+            self.complete.set_active(1)
 
         self.redraw_event_list()
         self.redraw_attr_list()
@@ -1016,6 +1020,9 @@ class EditPerson:
         changed = 0
         name = self.person.getPrimaryName()
 
+        if self.complete.get_active() != self.person.getComplete():
+            changed = 1
+
         if self.person.getId() != idval:
             changed = 1
         if suffix != name.getSuffix():
@@ -1484,6 +1491,10 @@ class EditPerson:
 
         if text != self.person.getNote():
             self.person.setNote(text)
+            Utils.modified()
+
+        if self.complete.get_active() != self.person.getComplete():
+            self.person.setComplete(self.complete.get_active())
             Utils.modified()
 
         if self.lds_not_loaded == 0:
