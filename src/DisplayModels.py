@@ -81,7 +81,10 @@ class BaseModel(gtk.GenericTreeModel):
             return None
 
     def on_get_value(self,iter,col):
-        return self.fmap[col](self.map[str(iter)])
+        try:
+            return self.fmap[col](self.map[str(iter)])
+        except:
+            return u''
 
     def on_iter_next(self, node):
 	'''returns the next node at this level of the tree'''

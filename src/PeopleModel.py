@@ -204,8 +204,10 @@ class PeopleModel(gtk.GenericTreeModel):
             else:
                 return u''            
         else:
-            val = self.fmap[col](self.db.person_map[str(iter)])
-            return val
+            try:
+                return self.fmap[col](self.db.person_map[str(iter)])
+            except:
+                return u''
 
     def reset_visible(self):
         self.visible = {}
