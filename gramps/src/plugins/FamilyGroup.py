@@ -164,7 +164,10 @@ class FamilyGroup:
         self.doc.end_cell()
         self.doc.start_cell("TextContentsEnd")
         self.doc.start_paragraph('Normal')
-        self.doc.write_text(birth.getPlace().get_title())
+	if birth.getPlace() != None:
+            self.doc.write_text(birth.getPlace().get_title())
+	else:
+	    self.doc.write_text("")
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
@@ -182,7 +185,10 @@ class FamilyGroup:
         self.doc.end_cell()
         self.doc.start_cell("TextContentsEnd")
         self.doc.start_paragraph('Normal')
-        self.doc.write_text(death.getPlace().get_title())
+	if death.getPlace() != None:
+            self.doc.write_text(death.getPlace().get_title())
+	else:
+	    self.doc.write_text("")
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
@@ -228,7 +234,10 @@ class FamilyGroup:
     def dump_child_event(self,text,name,event):
         if event:
             date = event.getDate()
-            place = event.getPlace().get_title()
+	    if event.getPlace() != None:
+                place = event.getPlace().get_title()
+            else:
+	        place = ""
         else:
             date = ""
             place = ""
