@@ -1,3 +1,7 @@
+2004-02-05  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/Merge.py (gen_key,name_compare): 
+	Fall back to not using soundex if the charset can't be latin-1 encoded.
+
 2004-02-05  Michel Guitel  <michel.guitel@free.fr>
 	* doc/gramps-manual/fr/cmdline.xml: Update.
 	* doc/gramps-manual/fr/filtref.xml: Update.
