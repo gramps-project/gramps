@@ -87,6 +87,10 @@ class RecentItem:
     def get_groups(self):
         return self.groups[:]
 
+    def add_group(self,group):
+        if group not in self.groups:
+            self.groups.append(group)
+
 #-------------------------------------------------------------------------
 #
 # RecentFiles
@@ -102,13 +106,31 @@ class RecentFiles:
         self.recent_files = parser.get()
 
     def add(self,item2add):
+        # First we need to walk the existing items to see 
+        # if our item is already there
         for item in self.recent_files:
             if item.get_uri() == item2add.get_uri():
+                # Found it -- modify timestamp and add all groups 
+                # to the item's groups
                 item.set_time(item2add.get_time())
+                for group in item2add.get_groups():
+                    item.add_group(group)
                 return
+        # At this point we walked the items and not found one,
+        # so simply inserting a new item in the beginning
         self.recent_files.insert(0,item2add)
 
     def save(self):
+        """
+        Attempt saving into XML.
+        The trick is not to fail under any circumstances.
+        """
+        try:
+            self.do_save()
+        except:
+            pass
+
+    def do_save(self):
         """
         Saves the current RecentFiles collection to the associated file.
         """
@@ -146,33 +168,29 @@ class RecentParser:
     """
     
     def __init__(self):
-        xml_file = file(os.path.expanduser(FILENAME))
-        fcntl.lockf(xml_file,fcntl.LOCK_SH)
+        self.recent_files = []
 
-        self.recent_files = None
+        try:
+            xml_file = open(os.path.expanduser(FILENAME))
+            fcntl.lockf(xml_file,fcntl.LOCK_SH)
 
-        p = xml.parsers.expat.ParserCreate()
-        p.StartElementHandler = self.startElement
-        p.EndElementHandler = self.endElement
-        p.CharacterDataHandler = self.characters
-        p.ParseFile(xml_file)
+            p = xml.parsers.expat.ParserCreate()
+            p.StartElementHandler = self.startElement
+            p.EndElementHandler = self.endElement
+            p.CharacterDataHandler = self.characters
+            p.ParseFile(xml_file)
 
-        fcntl.lockf(xml_file,fcntl.LOCK_UN)
-        xml_file.close()
+            fcntl.lockf(xml_file,fcntl.LOCK_UN)
+            xml_file.close()
+        except:
+            pass
 
     def get(self):
         return self.recent_files
 
     def startElement(self,tag,attrs):
-        """
-        Loads the dictionary when an XML tag of 'template' is found. The format
-        XML tag is <template title=\"name\" file=\"path\">
-        """
-
         self.tlist = []
-        if tag == "RecentFiles":
-            self.recent_files = []
-        elif tag == "RecentItem":
+        if tag == "RecentItem":
             self.item = RecentItem()
         elif tag == "Groups":
             self.groups = []

@@ -180,7 +180,7 @@ class ExistingDbPrompter:
             (the_path,the_file) = os.path.split(filename)
             GrampsGconfKeys.save_last_import_dir(the_path)
 
-            ret = False
+            success = False
             if filetype == const.app_gramps:
                 choose.destroy()
                 self.parent.db = GrampsBSDDB.GrampsBSDDB()
@@ -188,19 +188,20 @@ class ExistingDbPrompter:
                 msg_top = msgxml.get_widget('load_message')
                 self.parent.read_file(filename)
                 msg_top.destroy()
-                ret = True
+                success = True
             elif filetype == const.app_gramps_xml:
                 choose.destroy()
                 self.parent.db = GrampsXMLDB.GrampsXMLDB()
                 self.parent.read_file(filename)
-                ret = True
+                success = True
             elif filetype == const.app_gedcom:
                 choose.destroy()
                 self.parent.db = GrampsGEDDB.GrampsGEDDB()
                 self.parent.read_file(filename)
-                ret = True
+                success = True
             
-            if ret:
+            if success:
+                # Add the file to the recent items
                 rf = RecentFiles.RecentFiles()
                 item = RecentFiles.RecentItem(
                             u='file://%s' % filename,
@@ -388,6 +389,16 @@ class NewNativeDbPrompter:
                     filename = filename + ".grdb"
                 choose.destroy()
                 self.parent.read_file(filename)
+                # Add the file to the recent items
+                rf = RecentFiles.RecentFiles()
+                item = RecentFiles.RecentItem(
+                            u='file://%s' % filename,
+                            m=const.app_gramps,
+                            t=int(time.time()),
+                            p=False,
+                            g=['Gramps'])
+                rf.add(item)
+                rf.save()
                 return True
             else:
                 choose.destroy()
