@@ -58,13 +58,19 @@ _lang_to_parser = {
     }
 
 _lang_to_display = {
-    'C'      : DateDisplay.DateDisplay,
-    'en_US'  : DateDisplay.DateDisplay,
-    'en_GB'  : DateDisplay.DateDisplay,
-    'en_AU'  : DateDisplay.DateDisplay,
-    'en_CA'  : DateDisplay.DateDisplay,
-    'en_SE'  : DateDisplay.DateDisplay,
-    'en'     : DateDisplay.DateDisplay,
+    'C'      : DateDisplay.DateDisplayEn,
+    'en_US'  : DateDisplay.DateDisplayEn,
+    'en_GB'  : DateDisplay.DateDisplayEn,
+    'en_AU'  : DateDisplay.DateDisplayEn,
+    'en_CA'  : DateDisplay.DateDisplayEn,
+    'en_SE'  : DateDisplay.DateDisplayEn,
+    'en'     : DateDisplay.DateDisplayEn,
+    'zh_CN'  : DateDisplay.DateDisplay,
+    'zh_TW'  : DateDisplay.DateDisplay,
+    'zh_SG'  : DateDisplay.DateDisplay,
+    'zh_HK'  : DateDisplay.DateDisplay,
+    'ja_JP'  : DateDisplay.DateDisplay,
+    'ko_KR'  : DateDisplay.DateDisplay,
     }
 
 def get_date_formats():
@@ -78,7 +84,7 @@ def get_date_formats():
 
 def set_format(value):
     try:
-        _lang_to_display[_lang].set_format(value)
+        displayer.set_format(value)
     except:
         pass
 
