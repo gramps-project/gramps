@@ -523,6 +523,8 @@ class Marriage:
             changed = 1
 
         idval = unicode(self.gid.get_text())
+        if idval == "":
+            idval = None
         if self.family.get_handle() != idval:
             changed = 1
 

@@ -358,14 +358,17 @@ class NewNativeDbPrompter:
         choose.set_current_folder(default_dir)
         choose.set_current_name(os.path.split(new_filename)[1])
 
-        response = choose.run()
-        if response == gtk.RESPONSE_OK:
-            filename = choose.get_filename()
-            if os.path.splitext(filename)[1] != ".grdb":
-                filename = filename + ".grdb"
-            choose.destroy()
-            self.parent.read_file(filename)
-            return 1
-        else:
-            choose.destroy()
-            return 0
+        while (True):
+            response = choose.run()
+            if response == gtk.RESPONSE_OK:
+                filename = choose.get_filename()
+                if filename == None:
+                    continue
+                if os.path.splitext(filename)[1] != ".grdb":
+                    filename = filename + ".grdb"
+                choose.destroy()
+                self.parent.read_file(filename)
+                return 1
+            else:
+                choose.destroy()
+                return 0

@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 import time
+import locale
 
 #-------------------------------------------------------------------------
 #
@@ -130,7 +131,7 @@ class PeopleModel(gtk.GenericTreeModel):
     def byname(self,f,s):
         n1 = self.db.person_map.get(str(f))[_NAME_COL].get_sort_name()
         n2 = self.db.person_map.get(str(s))[_NAME_COL].get_sort_name()
-        return cmp(n1,n2)
+        return locale.strcoll(n1,n2)
 
     def on_get_flags(self):
 	'''returns the GtkTreeModelFlags for this particular type of model'''
