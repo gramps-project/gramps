@@ -941,13 +941,15 @@ class Gramps:
             self.import_tool_callback()
 
     def import_tool_callback(self):
+        self.people_view.build_tree()
         if Utils.wasHistory_broken():
             self.clear_history()
 	    Utils.clearHistory_broken()
-        self.full_update()
-        self.goto_active_person()
+        self.people_view.apply_filter()
         if not self.active_person:
             self.change_active_person(self.find_initial_person())
+        else:
+            self.goto_active_person()
             
     def full_update(self):
         """Brute force display update, updating all the pages"""

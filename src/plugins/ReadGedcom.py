@@ -1768,15 +1768,17 @@ def readData(database,active_person,cb):
     choose.add_filter(filter)
 
     response = choose.run()
-    choose.destroy()
     if response == gtk.RESPONSE_OK:
         filename = choose.get_filename()
+        choose.destroy()
         try:
             importData(db,filename)
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()
-
+    else:
+        choose.destroy()
+        
 #-------------------------------------------------------------------------
 #
 #
