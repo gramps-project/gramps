@@ -1,3 +1,9 @@
+2005-01-07 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Plugins.py: Use doc lists from PluginMgr.
+	* src/Exporter.py: Use exports list from PluginMgr.
+	* src/plugins/BookReport.py: Import Plugins module.
+	* src/NameEdit.py (NameEditor.__init__): Typos.
+
 2005-01-07 Eero Tamminen <eerot@sf>
 	* src/Makefile.am: Added GrampsKeys.py and GrampsIniKeys.py so
 	  that Gramps starts up after installation

@@ -63,6 +63,7 @@ import Report
 import BaseDoc
 from QuestionDialog import WarningDialog
 import ReportOptions
+import Plugins
 
 #------------------------------------------------------------------------
 #

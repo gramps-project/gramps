@@ -90,14 +90,14 @@ class NameEditor:
         types = const.NameTypesMap.get_values()
         types.sort()
         AutoComp.fill_combo(self.type_combo,types)
-	self.type_field = self.type_combo.get_child()
+        self.type_field = self.type_combo.get_child()
 
         if self.name:
             self.srcreflist = self.name.get_source_references()
         else:
             self.srcreflist = []
 
-        full_name = NameDisplay.displayer.display(parent)
+        full_name = NameDisplay.displayer.display_name(name)
 
         alt_title = self.top.get_widget("title")
 
