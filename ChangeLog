@@ -1,4 +1,7 @@
 2004-08-26  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DisplayModels.py: fix place and source lists
+	* src/PlaceView.py: fix place lists
+	* src/SourceView.py: fix source lists
 	* src/Sort.py: use locale.strcoll for sorting
 	* src/RelLib.py: don't use accent for sort name
 	* src/EditPerson.py: compare edited ID value properly

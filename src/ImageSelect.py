@@ -240,7 +240,7 @@ class Gallery(ImageSelect):
         self.iconlist = icon_list;
         self.root = self.iconlist.root()
         self.old_media_list = [RelLib.MediaRef(ref) for ref in dataobj.get_media_list()]
-        
+
         # Local object variables
         self.y = 0
         self.remember_x = -1

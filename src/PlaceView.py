@@ -127,7 +127,9 @@ class PlaceView:
             mlist = []
             self.selection.selected_foreach(self.blist,mlist)
             if mlist:
-                EditPlace.EditPlace(self.parent,mlist[0],self.update_display,self.topWindow)
+                place = self.parent.db.get_place_from_handle(mlist[0])
+                EditPlace.EditPlace(self.parent,place,self.update_display,
+                                    self.topWindow)
             return 1
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_context_menu(event)
@@ -238,8 +240,7 @@ class PlaceView:
             EditPlace.EditPlace(self.parent, place, self.update_display)
 
     def blist(self,store,path,iter,list):
-        print iter, _HANDLE_COL
-        handle = self.parent.db.get_place_from_handle(store.get_value(iter,_HANDLE_COL))
+        handle = store.get_value(iter,_HANDLE_COL)
         list.append(handle)
 
     def merge(self):

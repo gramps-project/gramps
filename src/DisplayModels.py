@@ -64,7 +64,7 @@ class BaseModel(gtk.GenericTreeModel):
 	return gtk.TREE_MODEL_LIST_ONLY | gtk.TREE_MODEL_ITERS_PERSIST
 
     def on_get_n_columns(self):
-        return 10
+        return 1
 
     def on_get_path(self, node):
 	'''returns the tree path (a tuple of indices at the various
@@ -136,11 +136,18 @@ class SourceModel(BaseModel):
             self.column_abbrev,
             self.column_pubinfo,
             self.column_change,
+            self.column_handle,
             ]
         BaseModel.__init__(self,db)
 
+    def on_get_n_columns(self):
+        return len(self.fmap)+1
+
     def column_title(self,data):
         return unicode(data[2])
+
+    def column_handle(self,data):
+        return unicode(data[0])
 
     def column_author(self,data):
         return unicode(data[3])
@@ -181,6 +188,9 @@ class PlaceModel(BaseModel):
             self.column_handle,
             ]
         BaseModel.__init__(self,db)
+
+    def on_get_n_columns(self):
+        return len(self.fmap)+1
 
     def column_handle(self,data):
         return unicode(data[0])
@@ -250,6 +260,9 @@ class MediaModel(BaseModel):
             self.column_handle,
             ]
         BaseModel.__init__(self,db)
+
+    def on_get_n_columns(self):
+        return len(self.fmap)+1
 
     def column_description(self,data):
         return unicode(data[4])
