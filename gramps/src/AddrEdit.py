@@ -38,6 +38,7 @@ import const
 import Utils
 import Date
 import RelLib
+import Sources
 
 from DateEdit import DateEdit
 from intl import gettext
@@ -70,6 +71,7 @@ class AddressEditor:
         self.postal = self.top.get_widget("postal")
         self.note_field = self.top.get_widget("addr_note")
         self.priv = self.top.get_widget("priv")
+        self.slist = self.top.get_widget("slist")
 
         self.parent = parent
         self.addr = addr
@@ -102,19 +104,16 @@ class AddressEditor:
         else:
             self.srcreflist = []
 
+        self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,self.top,
+                                           self.slist,src_changed)
+
         date_stat = self.top.get_widget("date_stat")
         self.date_check = DateEdit(self.addr_start,date_stat)
 
         self.top.signal_autoconnect({
             "destroy_passed_object"   : Utils.destroy_passed_object,
             "on_addr_edit_ok_clicked" : self.ok_clicked,
-            "on_source_clicked"       : self.source_clicked
             })
-
-    def source_clicked(self,obj):
-        """Displays the SourceSelector, allowing sources to be edited"""
-        import Sources
-        Sources.SourceSelector(self.srcreflist,self.parent,src_changed)
 
     def ok_clicked(self,obj):
         """
@@ -132,8 +131,8 @@ class AddressEditor:
         
         if self.addr == None:
             self.addr = RelLib.Address()
-            self.addr.setSourceRefList(self.srcreflist)
             self.parent.plist.append(self.addr)
+        self.addr.setSourceRefList(self.srcreflist)
             
         self.update(date,street,city,state,country,postal,note,priv)
         self.parent.redraw_addr_list()

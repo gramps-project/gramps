@@ -106,6 +106,60 @@ class SourceSelector:
 
 #-------------------------------------------------------------------------
 #
+# SourceTab
+#
+#-------------------------------------------------------------------------
+class SourceTab:
+    def __init__(self,srclist,parent,top,clist,update=None):
+        self.db = parent.db
+        self.parent = parent
+        self.list = srclist
+        self.update=update
+        self.top = top
+        self.slist = clist
+        self.top.signal_autoconnect({
+            "destroy_passed_object" : Utils.destroy_passed_object,
+            "on_add_src_clicked"    : self.on_add_src_clicked,
+            "on_del_src_clicked"    : self.on_del_src_clicked,
+            "on_edit_src_clicked"   : self.on_edit_src_clicked,
+            })
+        slist_map = [ (0, self.top.get_widget('arrow1')),
+                      (1, self.top.get_widget('arrow2'))]
+        
+        self.srcsort = Sorter.Sorter(self.slist, slist_map, 'source')
+        self.redraw()
+
+    def redraw(self):
+        index = 0
+        self.slist.freeze()
+        self.slist.clear()
+        for s in self.list:
+            base = s.getBase()
+            self.slist.append([base.getId(),base.getTitle()])
+            self.slist.set_row_data(index,s)
+            index = index + 1
+        self.slist.thaw()
+
+    def on_edit_src_clicked(self,obj):
+        sel = obj.selection
+        if len(sel) > 0:
+            row = sel[0]
+            src = obj.get_row_data(row)
+            SourceEditor(src,self.db,update_clist,self)
+
+    def on_add_src_clicked(self,obj):
+        src = SourceRef()
+        SourceEditor(src,self.db,add_ref,self)
+
+    def on_del_src_clicked(self,obj):
+        sel = obj.selection
+        if len(sel) > 0:
+            row = sel[0]
+            del self.list[row]
+            self.redraw()
+
+#-------------------------------------------------------------------------
+#
 # SourceEditor
 #
 #-------------------------------------------------------------------------
