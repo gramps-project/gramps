@@ -806,7 +806,8 @@ msgstr "Filternavn:"
 
 #: GenericFilter.py:373
 msgid "Matches people that are descendants of someone matched by a filter"
-msgstr "Gjelder de som er etterkommere av noen som er funnet ved hjelp av et filter."
+msgstr ""
+"Gjelder de som er etterkommere av noen som er funnet ved hjelp av et filter."
 
 #: GenericFilter.py:402 GenericFilter.py:447 GenericFilter.py:674
 #: GenericFilter.py:726 plugins/FilterEditor.py:459
@@ -825,11 +826,13 @@ msgstr ""
 msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
-msgstr "Gjelder de som er etterkommere av en bestemt person minst N generasjoner unna"
+msgstr ""
+"Gjelder de som er etterkommere av en bestemt person minst N generasjoner unna"
 
 #: GenericFilter.py:501
 msgid "Matches the person that is a child of someone matched by a filter"
-msgstr "Gjelder personen som er barn av noen som er funnet ved hjelp av et filter"
+msgstr ""
+"Gjelder personen som er barn av noen som er funnet ved hjelp av et filter"
 
 #: GenericFilter.py:504 GenericFilter.py:790 GenericFilter.py:1020
 #: GenericFilter.py:1264
@@ -855,7 +858,8 @@ msgstr "Forfedre-filtre"
 
 #: GenericFilter.py:641
 msgid "Matches people that are ancestors of someone matched by a filter"
-msgstr "Gjelder de som er forfedre av noen som er funnet ved hjelp av et filter"
+msgstr ""
+"Gjelder de som er forfedre av noen som er funnet ved hjelp av et filter"
 
 #: GenericFilter.py:685
 msgid ""
@@ -869,7 +873,8 @@ msgstr ""
 msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
-msgstr "Gjelder de som er forfedre av en bestemt person minst N generasjoner unna"
+msgstr ""
+"Gjelder de som er forfedre av en bestemt person minst N generasjoner unna"
 
 #: GenericFilter.py:787
 msgid "Matches the person that is a parent of someone matched by a filter"
@@ -880,7 +885,8 @@ msgid "Matches people that have a common ancestor with a specified person"
 msgstr "Gjelder de som har en felles forfar med en bestemt person"
 
 #: GenericFilter.py:869
-msgid "Matches people that have a common ancestor with someone matched by a filter"
+msgid ""
+"Matches people that have a common ancestor with someone matched by a filter"
 msgstr ""
 "Gjelder de som har en felles forfar med noen som er funnet ved hjelp av et "
 "filter"
@@ -990,7 +996,8 @@ msgstr "Gjelder personen med et bestemt (del av et) navn"
 
 #: GenericFilter.py:1261
 msgid "Matches the person married to someone matching a filter"
-msgstr "Gjelderen person som er gift med en som er funnet ved hjelp av et filter"
+msgstr ""
+"Gjelderen person som er gift med en som er funnet ved hjelp av et filter"
 
 #: GenericFilter.py:1408
 msgid "Everyone"
@@ -1336,7 +1343,8 @@ msgid "Save Changes?"
 msgstr "Lagre endringer?"
 
 #: Marriage.py:508
-msgid "The GRAMPS ID that you chose for this relationship is already being used."
+msgid ""
+"The GRAMPS ID that you chose for this relationship is already being used."
 msgstr "GRAMPS ID-en du har valgt for denne relasjonen er allerede i bruk."
 
 #: MediaView.py:77 SelectObject.py:86 SourceView.py:70 Sources.py:79
@@ -1578,7 +1586,8 @@ msgstr "Feil ved lesing av %s"
 
 #: ReadXML.py:128
 msgid "The file is probably either corrupt or not a valid GRAMPS database."
-msgstr "Fila er sannsynligvis enten ødelagt eller ikke en gyldig GRAMPS database."
+msgstr ""
+"Fila er sannsynligvis enten ødelagt eller ikke en gyldig GRAMPS database."
 
 #: ReadXML.py:197 gramps_main.py:1126 plugins/Check.py:174
 #: plugins/WriteCD.py:232 plugins/WritePkg.py:159
@@ -1928,8 +1937,10 @@ msgid "File already exists"
 msgstr "Fila finnes allerede"
 
 #: Report.py:1170
-msgid "You can choose to either overwrite the file, or change the selected filename."
-msgstr "Du kan enten velge å overskrive fila, eller å endre det valgte filnavnet."
+msgid ""
+"You can choose to either overwrite the file, or change the selected filename."
+msgstr ""
+"Du kan enten velge å overskrive fila, eller å endre det valgte filnavnet."
 
 #: Report.py:1172
 msgid "_Overwrite"
@@ -2529,7 +2540,8 @@ msgstr "En registrert eller ekteskapslignende relasjon mellom mann og kvinne"
 
 #: const.py:425
 msgid "No legal or common-law relationship between man and woman"
-msgstr "Ingen registrert eller ekteskapslignende relasjon mellom mann og kvinne"
+msgstr ""
+"Ingen registrert eller ekteskapslignende relasjon mellom mann og kvinne"
 
 #: const.py:425 const.py:433
 msgid "Unmarried"
@@ -3191,7 +3203,8 @@ msgstr "_Slett..."
 #: edit_person.glade:3829 gramps.glade:6069 marriage.glade:1580
 #: places.glade:1547
 msgid "Add a new media object to the database and place it in this gallery"
-msgstr "Legg til et nytt mediaobjekt i databasen og legg det til dette galleriet"
+msgstr ""
+"Legg til et nytt mediaobjekt i databasen og legg det til dette galleriet"
 
 #: edit_person.glade:3832 gramps.glade:6072 marriage.glade:1583
 #: places.glade:1550
@@ -3698,7 +3711,8 @@ msgid "Adds a new person to the database and to a new relationship"
 msgstr "Legg til en ny person i databasen med en ny relasjon"
 
 #: gramps.glade:1607 gramps.glade:2758
-msgid "Selects an existing person from the database and adds to a new relationship"
+msgid ""
+"Selects an existing person from the database and adds to a new relationship"
 msgstr "Velger en eksisterende person fra databasen og legg til en ny relasjon"
 
 #: gramps.glade:1633 gramps.glade:2784
@@ -4158,7 +4172,8 @@ msgstr "Du må ha valgt en person som skal eksporteres"
 msgid ""
 "Exporting requires that an active person be selected. Please select a person "
 "and try again."
-msgstr "Eksport krever at en aktiv person er valgt. Velg en person og prøv igjen."
+msgstr ""
+"Eksport krever at en aktiv person er valgt. Velg en person og prøv igjen."
 
 #: gramps_main.py:1866 gramps_main.py:1870 gramps_main.py:1874
 msgid "Could not create database"
@@ -4943,7 +4958,8 @@ msgid "Check and repair database"
 msgstr "Kontroller og reparer database"
 
 #: plugins/Check.py:374
-msgid "Checks the database for integrity problems, fixing the problems that it can"
+msgid ""
+"Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Kontrollerer databasen for integritetsproblemer og retter det den kan"
 
 #: plugins/CustomBookText.py:95
@@ -5704,8 +5720,10 @@ msgstr ""
 
 #: plugins/FtmStyleAncestors.py:234 plugins/FtmStyleDescendants.py:265
 #: plugins/FtmStyleDescendants.py:769 plugins/FtmStyleDescendants.py:1119
-msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s."
+msgid ""
+"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:243 plugins/FtmStyleAncestors.py:730
 #: plugins/FtmStyleDescendants.py:274 plugins/FtmStyleDescendants.py:777
@@ -5837,8 +5855,10 @@ msgstr ""
 
 #: plugins/FtmStyleAncestors.py:372 plugins/FtmStyleDescendants.py:403
 #: plugins/FtmStyleDescendants.py:897 plugins/FtmStyleDescendants.py:1257
-msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s."
+msgid ""
+"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:381 plugins/FtmStyleAncestors.py:864
 #: plugins/FtmStyleDescendants.py:412 plugins/FtmStyleDescendants.py:905
@@ -5952,8 +5972,10 @@ msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
 msgstr "%(male_name)s%(endnotes)s ble født %(birth_date)s%(birth_endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:722
-msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
-msgstr "%(male_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s. "
+msgid ""
+"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
+msgstr ""
+"%(male_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:786
 msgid ""
@@ -5965,11 +5987,14 @@ msgstr ""
 
 #: plugins/FtmStyleAncestors.py:822
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
-msgstr "%(female_name)s%(endnotes)s ble født %(birth_date)s%(birth_endnotes)s. "
+msgstr ""
+"%(female_name)s%(endnotes)s ble født %(birth_date)s%(birth_endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:856
-msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
-msgstr "%(female_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s. "
+msgid ""
+"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
+msgstr ""
+"%(female_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:896 plugins/FtmStyleDescendants.py:1300
 msgid "He was the son of %(father)s and %(mother)s."
@@ -6753,7 +6778,8 @@ msgid "Database Verify"
 msgstr "Kontrollere database"
 
 #: plugins/Verify.py:128
-msgid "Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
+msgid ""
+"Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
 msgstr "Døpt før fødselen: %(male_name)s født %(byear)d, døpt %(bapyear)d.\n"
 
 #: plugins/Verify.py:131
@@ -6771,12 +6797,16 @@ msgid "Baptized late: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n"
 msgstr "Døpt sent: %(female_name)s født %(byear)d, døpt %(bapyear)d.\n"
 
 #: plugins/Verify.py:143
-msgid "Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr "Begravet før døden: %(male_name)s død %(dyear)d, begravet %(buryear)d.\n"
+msgid ""
+"Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
+msgstr ""
+"Begravet før døden: %(male_name)s død %(dyear)d, begravet %(buryear)d.\n"
 
 #: plugins/Verify.py:146
-msgid "Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr "Begravet før døden: %(female_name)s død %(dyear)d, begravet %(buryear)d.\n"
+msgid ""
+"Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
+msgstr ""
+"Begravet før døden: %(female_name)s død %(dyear)d, begravet %(buryear)d.\n"
 
 #: plugins/Verify.py:150
 msgid "Buried late: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
@@ -6795,19 +6825,24 @@ msgid "Died before birth: %(female_name)s born %(byear)d, died %(dyear)d.\n"
 msgstr "Død før fødselen: %(female_name)s født %(byear)d, død %(dyear)d.\n"
 
 #: plugins/Verify.py:164
-msgid "Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
+msgid ""
+"Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
 msgstr "Død før dåpen: %(male_name)s døpt %(bapyear)d, død %(dyear)d.\n"
 
 #: plugins/Verify.py:167
-msgid "Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)d.\n"
+msgid ""
+"Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)d.\n"
 msgstr "Død før dåpen: %(female_name)s døpt %(bapyear)d, død %(dyear)d.\n"
 
 #: plugins/Verify.py:171
-msgid "Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
-msgstr "Begravet før fødselen: %(male_name)s født %(byear)d, begravet %(buryear)d.\n"
+msgid ""
+"Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
+msgstr ""
+"Begravet før fødselen: %(male_name)s født %(byear)d, begravet %(buryear)d.\n"
 
 #: plugins/Verify.py:174
-msgid "Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n"
+msgid ""
+"Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n"
 msgstr ""
 "Begravet før fødselen: %(female_name)s født %(byear)d, begravet %(buryear)"
 "d.\n"
@@ -6816,13 +6851,15 @@ msgstr ""
 msgid ""
 "Buried before baptism: %(male_name)s baptized %(bapyear)d, buried %(buryear)"
 "d.\n"
-msgstr "Begravet før dåpen: %(male_name)s døpt %(bapyear)d, begravet %(buryear)d.\n"
+msgstr ""
+"Begravet før dåpen: %(male_name)s døpt %(bapyear)d, begravet %(buryear)d.\n"
 
 #: plugins/Verify.py:181
 msgid ""
 "Buried before baptism: %(female_name)s baptized %(bapyear)d, buried %"
 "(buryear)d.\n"
-msgstr "Begravet før dåpen: %(female_name)s døpt %(bapyear)d, begravet %(buryear)d.\n"
+msgstr ""
+"Begravet før dåpen: %(female_name)s døpt %(bapyear)d, begravet %(buryear)d.\n"
 
 #: plugins/Verify.py:193
 msgid ""
@@ -6864,7 +6901,8 @@ msgstr "Gift ofte: %(female_name)s gift %(nfam)d ganger.\n"
 msgid ""
 "Old and unmarried: %(male_name)s died unmarried, at the age of %(ageatdeath)"
 "d years.\n"
-msgstr "Gammel og ugift: %(male_name)s døde ugift, i en alder av %(ageatdeath)d år.\n"
+msgstr ""
+"Gammel og ugift: %(male_name)s døde ugift, i en alder av %(ageatdeath)d år.\n"
 
 #: plugins/Verify.py:235
 msgid ""
@@ -6907,20 +6945,26 @@ msgstr ""
 "(spouse)s.\n"
 
 #: plugins/Verify.py:290
-msgid "Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
+msgid ""
+"Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
 msgstr "Ung vielse: %(male_name)s viet som %(marage)d-åring med %(spouse)s.\n"
 
 #: plugins/Verify.py:293
-msgid "Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Ung vielse: %(female_name)s viet som %(marage)d-åring med %(spouse)s.\n"
+msgid ""
+"Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr ""
+"Ung vielse: %(female_name)s viet som %(marage)d-åring med %(spouse)s.\n"
 
 #: plugins/Verify.py:297
 msgid "Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Gammel vielse: %(male_name)s viet som %(marage)d-åring med %(spouse)s.\n"
+msgstr ""
+"Gammel vielse: %(male_name)s viet som %(marage)d-åring med %(spouse)s.\n"
 
 #: plugins/Verify.py:300
-msgid "Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Gammel vielse: %(female_name)s viet som %(marage)d-åring med %(spouse)s.\n"
+msgid ""
+"Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr ""
+"Gammel vielse: %(female_name)s viet som %(marage)d-åring med %(spouse)s.\n"
 
 #: plugins/Verify.py:304
 msgid ""
@@ -7048,7 +7092,8 @@ msgstr "Bekreft databasen"
 
 #: plugins/Verify.py:419
 msgid "Lists exceptions to assertions or checks about the database"
-msgstr "Liste over unntak for forutsetninger eller kontrollregler for databasen"
+msgstr ""
+"Liste over unntak for forutsetninger eller kontrollregler for databasen"
 
 #: plugins/WebPage.py:329
 msgid "ID Number"
@@ -8369,4 +8414,3 @@ msgstr "<b>Avsnittsalternativer</b>"
 
 #~ msgid "_Active person's name only"
 #~ msgstr "Kun den _aktive personens navn"
-
