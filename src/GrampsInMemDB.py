@@ -144,6 +144,7 @@ class GrampsInMemDB(GrampsDbBase):
             transaction.add(PERSON_KEY,handle,old_data)
         del self.id_trans[person.get_gramps_id()]
         del self.person_map[handle]
+        self.run_person_delete_callbacks(handle)
 
     def remove_source(self,handle,transaction):
         if self.readonly:

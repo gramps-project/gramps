@@ -1625,10 +1625,6 @@ class Gramps:
 
     def new_after_edit(self,epo,val):
         self.active_person = epo.person
-        pn = self.active_person.get_primary_name()
-
-        mapname = self.db.get_name_group_mapping(pn.get_group_name())
-
         self.people_view.build_tree()
         self.family_view.load_family()
         self.place_view.build_tree()

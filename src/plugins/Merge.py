@@ -49,7 +49,7 @@ import Utils
 import soundex
 import NameDisplay
 import ListModel
-import MergeData
+import MergePeople
 
 #-------------------------------------------------------------------------
 #
@@ -170,8 +170,9 @@ class Merge:
         self.find_potentials(active)
         if len(self.map) == 0:
             import QuestionDialog
-            QuestionDialog.ErrorDialog(_("No matches found"),
-                                       _("No potential duplicate people were found"))
+            QuestionDialog.ErrorDialog(
+                _("No matches found"),
+                _("No potential duplicate people were found"))
         else:
             self.show()
     
@@ -287,8 +288,12 @@ class Merge:
         for (c,p1key,p2key) in list:
             c1 = "%5.2f" % c
             c2 = "%5.2f" % (100-c)
-            pn1 = self.db.get_person_from_handle(p1key).get_primary_name().get_name()
-            pn2 = self.db.get_person_from_handle(p2key).get_primary_name().get_name()
+            p1 = self.db.get_person_from_handle(p1key)
+            p2 = self.db.get_person_from_handle(p2key)
+            if not p1 or not p2:
+                continue
+            pn1 = NameDisplay.displayer.display(p1)
+            pn2 = NameDisplay.displayer.display(p2)
             self.list.add([c, pn1, pn2,c2],(p1key,p2key))
 
     def on_do_merge_clicked(self,obj):
@@ -296,16 +301,18 @@ class Merge:
         if not iter:
             return
 
-        (p1,p2) = self.list.get_object(iter)
-        pn1 = self.db.get_person_from_handle(p1)
-        pn2 = self.db.get_person_from_handle(p2)
-        MergeData.MergePeople(self.parent,self.db,pn1,pn2,self.on_update)
+        (self.p1,self.p2) = self.list.get_object(iter)
+        pn1 = self.db.get_person_from_handle(self.p1)
+        pn2 = self.db.get_person_from_handle(self.p2)
 
-    def on_update(self,p1_id,p2_id,old_id):
-        self.dellist[p2_id] = p1_id
+        MergePeople.Compare(self.db,pn1,pn2,self.on_update)
+
+    def on_update(self):
+        self.dellist[self.p2] = self.p1
         for key in self.dellist.keys():
-            if self.dellist[key] == p2_id:
-                self.dellist[key] = p1_id
+            if self.dellist[key] == self.p2:
+                self.dellist[key] = self.p1
+        self.update(None,None)
         self.redraw()
         
     def update_and_destroy(self,obj):

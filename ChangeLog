@@ -1,3 +1,11 @@
+2005-03-30  Don Allingham  <don@gramps-project.org>
+	* src/MergePeople.py: provide more date in compare window, fix event
+	merging for families. Copy alternate names.
+	* src/plugins/Merge.py: support for new merge technique
+	* src/PeopleView.py: divide rebuild_data into two functions
+	* src/PeopleModel.py: clean up insertion functions
+	* src/gramps_main.py: remove unused code
+
 2005-03-30  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* plugins/TestcaseGenerator.py: Added some more testcases of invalid relations
 	* plugins/Check.py: Added some comments an handling for some more invalid references
