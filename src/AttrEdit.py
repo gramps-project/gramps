@@ -80,6 +80,7 @@ class AttributeEditor:
         self.top.get_widget("attrTitle").set_text(title)
         if len(list) > 0:
             self.attrib_menu.set_popdown_strings(list)
+            self.type_field.select_region(0, -1)
 
         if attrib != None:
             self.type_field.set_text(attrib.getType())
