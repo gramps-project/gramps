@@ -1171,11 +1171,12 @@ class GedcomWriter:
             # Not using CONC and CONT because GeneWeb does not support these.
             # TEXT and NOTE will be ignored by GeneWeb, but we can't
             # output paragaphs in SOUR without CONT.
-            sbase = ref.get_base_handle()
-            if sbase and sbase.get_title():
-                txt = sbase.get_title() + ".  "
-            else:
-                txt = ""
+            txt = ""
+            sbase_handle = ref.get_base_handle()
+            if sbase_handle:
+                sbase = self.db.get_source_from_handle(sbase_handle)
+                if sbase and sbase.get_title():
+                    txt = sbase.get_title() + ".  "
             if ref.get_page():
                 txt = txt + ref.get_page() + ".  "
             self.g.write("%d SOUR %s" % (level,self.cnvtxt(txt)))

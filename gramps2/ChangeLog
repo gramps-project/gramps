@@ -4,6 +4,8 @@
 	* src/ImageSelect.py (GlobalMediaProperties.display_refs):
 	Add references for personal and family events.
 
+	* src/WriteGedcom.py (write_source_ref): Use source, not handle.
+
 2005-01-10 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/StatisticsChart.py: Misc fixes.
 	* src/PluginMgr.py (reload_plugins): Remove function.
