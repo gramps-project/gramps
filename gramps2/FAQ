@@ -188,12 +188,7 @@ We have found that on a typical system, GRAMPS tends to bog down after around
 15,000 users. Again, this is dependant on how much memory you have. 
 
 
-17. How fast is GRAMPS?
-
-No idea.
-
-
-18. My database is really big. 
+17. My database is really big. 
     Is there a way around loading all the data into memory?
 
 Currently, there is no way around it. However, this is our biggest priority
@@ -202,7 +197,7 @@ in the next stable release (1.2) which will dramatically improve performance
 in both speed and memory usage.
 
 
-19. Can I create custom reports/filters/whatever?
+18. Can I create custom reports/filters/whatever?
 
 Yes. There are many levels of customization. One is creating or modifying 
 the templates used for the reports. This gives you some control over 
@@ -216,7 +211,7 @@ reports, research tools, import/export filters, etc. This assumes some
 knowledge of programming in Python. 
 
 
-20. Why is GRAMPS running so slowly?
+19. Why is GRAMPS running so slowly?
 
 If GRAMPS seems too slow to you, it is most likely that you have a large
 database. Currently, GRAMPS loads all the database into memory, therefore 
@@ -230,7 +225,7 @@ with the implementation of the real database backend, please don't hesitate
 to email us at gramps-devel@lists.sourceforge.net
 
 
-21. Why are non-latin characters displayed as garbage in PDF/PS reports?
+20. Why are non-latin characters displayed as garbage in PDF/PS reports?
 
 This is a known problem -- PS (and PDF) have builtin fonts which pretty much 
 reflect the latin-1 charset. Any font in principle could be used with PS/PDF 
