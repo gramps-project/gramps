@@ -217,7 +217,7 @@ def write_date(g,date,indent=1):
 
     cal = date.get_calendar()
     if cal != 0:
-        calstr = 'dpref="%s"' % fix(str(cal))
+        calstr = ' calendar="%s"' % fix(str(cal))
     else:
         calstr = ''
 

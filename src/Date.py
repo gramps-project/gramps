@@ -21,9 +21,9 @@
 "Support for the dates"
 
 from re import IGNORECASE, compile
-
 import string
 
+from Calendar import *
 from intl import gettext
 _ = gettext
 
@@ -42,6 +42,21 @@ _cal2index = { _("Gregorian") : 0,
                _("Julian") : 1,
                _("Hebrew") : 2,
                _("French Republican"): 3 }
+
+_fmonth = [
+    "Vendemiaire", "Brumaire", "Frimaire", "Nivose", "Pluviose",
+    "Ventose", "Germinal", "Floreal", "Prairial", "Messidor", "Thermidor",
+    "Fructidor", "Extra", ]
+
+_fmonth2num = {
+    "VEND" : 1, "BRUM" : 2, "FRIM" : 3, "NIVO" : 4, "PLUV" : 5,
+    "VENT" : 6, "GERM" : 7, "FLOR" : 8, "PRAI" : 8, "MESS" : 10,
+    "THER" :11, "FRUC" :12, "EXTR" : 13 }
+
+_hmonth = [
+    "",       "Tishri", "Heshvan", "Kislev", "Tevet",  "Shevat", "AdarI",
+    "AdarII", "Nisan",  "Iyyar",   "Sivan",  "Tammuz", "Av",     "Elul"
+]
 
 #-------------------------------------------------------------------------
 #
@@ -69,7 +84,7 @@ class Date:
     def __init__(self,source=None):
         if source:
             self.start = SingleDate(source.start)
-            if source.start:
+            if source.stop:
                 self.stop = SingleDate(source.stop)
             else:
                 self.stop = None
@@ -88,6 +103,9 @@ class Date:
 
     def set_calendar(self,val):
         self.calendar = val
+        self.start.convert_to(val)
+        if self.stop:
+            self.stop.convert_to(val)
 
     def get_start_date(self):
         return self.start
@@ -95,6 +113,7 @@ class Date:
     def get_stop_date(self):
         if self.stop == None:
             self.stop = SingleDate()
+            self.stop.calendar = self.calendar
         return self.stop
 
     def getYear(self):
@@ -118,16 +137,19 @@ class Date:
     def getStopYear(self):
         if self.stop == None:
             self.stop = SingleDate()
+            self.stop.calendar = self.calendar
         return self.get_stop_date().getYear()
 
     def getStopMonth(self):
         if self.stop == None:
             self.stop = SingleDate()
+            self.stop.calendar = self.calendar
         return self.get_stop_date().getMonth()
 
     def getStopDay(self):
         if self.stop == None:
             self.stop = SingleDate()
+            self.stop.calendar = self.calendar
         return self.get_stop_date().getDay()
 
     def getText(self):
@@ -150,6 +172,7 @@ class Date:
                 self.start.set(matches[1])
                 if self.stop == None:
                     self.stop = SingleDate()
+                self.stop.calendar = self.calendar
                 self.stop.set(matches[3])
                 self.range = 1
             else:
@@ -164,26 +187,105 @@ class Date:
 
     def getDate(self):
 	if self.range == 0:
-	    return _func(self.start)
+	    return self.start.getDate()
         elif self.range == -1:
             return self.text
 	else:
-            d1 = _func(self.start)
-            d2 = _func(self.stop)
+            d1 = self.start.getDate()
+            d2 = self.stop.getDate()
+	    return "%s %s %s %s" % ( _("from"),d1,_("to"),d2 )
+
+    def getFrench(self):
+	if self.range == 0:
+	    return self.start.getFrench()
+        elif self.range == -1:
+            return self.text
+	else:
+            d1 = self.start.displayFrench(self.start)
+            d2 = self.start.displayFrench(self.stop)
+	    return "%s %s %s %s" % ( _("from"),d1,_("to"),d2 )
+
+    def getHebrew(self):
+	if self.range == 0:
+	    return self.start.displayHebrew()
+        elif self.range == -1:
+            return self.text
+	else:
+            d1 = self.start.displayHebrew(self.start)
+            d2 = self.start.displayHebrew(self.stop)
+	    return "%s %s %s %s" % ( _("from"),d1,_("to"),d2 )
+
+    def getJulian(self):
+	if self.range == 0:
+	    return self.start.displayJulian()
+        elif self.range == -1:
+            return self.text
+	else:
+            d1 = self.start.displayJulian(self.start)
+            d2 = self.start.displayJulian(self.stop)
 	    return "%s %s %s %s" % ( _("from"),d1,_("to"),d2 )
 
     def getQuoteDate(self):
-	if self.range == 0:
-	    return _func(self.start)
+        if self.calendar == GREGORIAN:
+            return self.getGregorianQuoteDate()
+        elif self.calendar == JULIAN:
+            return self.getJulianQuoteDate()
+        elif self.calendar == HEBREW:
+            return self.getHebrewQuoteDate()
+        else:
+            return self.getFrenchQuoteDate()
+
+    def getGregorianQuoteDate(self):
+        if self.range == 0:
+            return _func(self.start)
         elif self.range == -1:
             if self.text:
                 return '"%s"' % self.text
             else:
                 return ''
-	else:
+        else:
             d1 = _func(self.start)
             d2 = _func(self.stop)
-	    return "%s %s %s %s" % ( _("from"),d1,_("to"), d2)
+            return "%s %s %s %s" % ( _("from"),d1,_("to"), d2)
+
+    def getFrenchQuoteDate(self):
+        if self.range == 0:
+            return "%s (%s)" % (self.start.displayFrench(),_("French"))
+        elif self.range == -1:
+            if self.text:
+                return '"%s (%s)"' % (self.text,_("French"))
+            else:
+                return '%s' % _("French")
+        else:
+            d1 = self.start.getFrench()
+            d2 = self.stop.getFrench()
+            return "%s %s %s %s (%s)" % ( _("from"),d1,_("to"), d2,_("French"))
+
+    def getJulianQuoteDate(self):
+        if self.range == 0:
+            return "%s (%s)" % (self.start.displayJulian(),_("Julian"))
+        elif self.range == -1:
+            if self.text:
+                return '"%s (%s)"' % (self.text,_("Julian"))
+            else:
+                return '%s' % _("Julian")
+        else:
+            d1 = self.start.getJulian()
+            d2 = self.stop.getJulian()
+            return "%s %s %s %s (%s)" % ( _("from"),d1,_("to"), d2,_("Julian"))
+
+    def getHebrewQuoteDate(self):
+        if self.range == 0:
+            return "%s (%s)" % (self.start.displayHebrew(),_("Hebrew"))
+        elif self.range == -1:
+            if self.text:
+                return '"%s (%s)"' % (self.text,_("Hebrew"))
+            else:
+                return '%s' % _("Hebrew")
+        else:
+            d1 = self.start.getHebrew()
+            d2 = self.stop.getHebrew()
+            return "%s %s %s %s (%s)" % ( _("from"),d1,_("to"), d2,_("Hebrew"))
 
     def getSaveDate(self):
 	if self.range == 1:
@@ -213,27 +315,6 @@ class Date:
         else:
             return 0
         
-    def quick_set(self,text):
-        try:
-            match = Date.efmt.match(text)
-            if match:
-                matches = match.groups()
-                self.start.set(matches[1])
-                if self.stop == None:
-                    self.stop = SingleDate()
-                self.stop.set(matches[3])
-                self.range = 1
-            else:
-                try:
-                    self.start.quick_set(text)
-                    self.range = 0
-                except:
-                    self.start.set(text)
-                    self.range = 0
-        except:
-            self.range = -1
-            self.text = text
-
 #-------------------------------------------------------------------------
 #
 # 
@@ -342,50 +423,20 @@ class SingleDate:
     fmt5 = compile(start + "(\d+)\s*$", IGNORECASE)
     fmt6 = compile(start + "(\S+)\s*$", IGNORECASE)
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def __init__(self,source=None):
         if source:
             self.month = source.month
             self.day = source.day
             self.year = source.year
             self.mode = source.mode
+            self.calendar = source.calendar
         else:
             self.month = -1
             self.day = -1
             self.year = -1
             self.mode = SingleDate.exact
+            self.calendar = GREGORIAN
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def my__cmp__(self,other):
-        if other == None:
-            return 0
-        elif self.year != other.year:
-            return cmp(self.year,other.year)
-        elif self.month != other.month:
-            return cmp(self.month,other.month)
-        elif self.day != other.day:
-            return cmp(self.day,other.day)
-        elif self.mode != other.mode:
-            if self.mode == SingleDate.exact:
-                return -1
-            else:
-                return 1
-        else:
-            return 0
-        
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def setMode(self,val):
         if val == None:
             self.mode = SingleDate.exact
@@ -393,73 +444,33 @@ class SingleDate:
             val = string.lower(val)
             self.mode = SingleDate.m2v[val]
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def setMonth(self,val):
         if val > 12:
             self.month = -1
         else:
             self.month = val - 1
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getMonth(self):
         return self.month + 1
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def setDay(self,val):
         self.day = val
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getDay(self):
 	return self.day
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def setYear(self,val):
         self.year = val
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getYear(self):
         return self.year
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def setMonthStr(self,text):
         try:
             self.month = SingleDate.m2num[string.lower(text[0:3])]
         except KeyError:
             self.setMonthStrEng(text)
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def setMonthStrEng(self,text):
         try:
             self.month = SingleDate.em2num[string.lower(text[0:3])]
@@ -487,11 +498,6 @@ class SingleDate:
             d = "-%02d" % self.day
         return "%s%s%s" % (y,m,d)
         
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getSaveDate(self):
         retval = ""
         
@@ -553,11 +559,6 @@ class SingleDate:
 
         return retval
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getFmt2(self):
         if self.month == -1 and self.day == -1 and self.year == -1 :
             return ""
@@ -588,11 +589,6 @@ class SingleDate:
 
         return retval
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getFmt3(self):
         retval = ""
         
@@ -625,11 +621,6 @@ class SingleDate:
 
         return retval
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getFmt10(self):
         retval = ""
         
@@ -661,11 +652,6 @@ class SingleDate:
 
         return retval
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def get_mmddyyyy(self,sep):
         retval = ""
         
@@ -696,11 +682,6 @@ class SingleDate:
 
         return retval
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def get_yyyymmdd(self,sep):
         retval = ""
         
@@ -731,35 +712,15 @@ class SingleDate:
 
         return retval
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getFmt4(self):
         return self.get_mmddyyyy("/")
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getFmt5(self):
         return self.get_mmddyyyy("-")
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getFmt8(self):
         return self.get_mmddyyyy(".")
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def get_ddmmyyyy(self,sep):
         retval = ""
         
@@ -788,52 +749,22 @@ class SingleDate:
             retval = "%s %s" % (_("AFTER"),retval)
 
         return retval
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
+
     def getFmt6(self):
         return self.get_ddmmyyyy("/")
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getFmt7(self):
         return self.get_ddmmyyyy("-")
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getFmt9(self):
         return self.get_ddmmyyyy(".")
 
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getFmt11(self):
         return self.get_yyyymmdd("/")
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getFmt12(self):
         return self.get_yyyymmdd("-")
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getFmt13(self):
         return self.get_yyyymmdd(".")
 
@@ -846,14 +777,60 @@ class SingleDate:
                 getFmt7, getFmt8, getFmt9, getFmt10, getFmt11, getFmt12,
                 getFmt13]
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
+    def displayFrench(self):
+        if self.year==-1:
+            if self.month == -1:
+                return ""
+            elif self.day == -1:
+                return _fmonth[self.month]
+            else:
+                return "%02 %s" % (self.day,_fmonth[self.month])
+        elif self.month == -1:
+            return "%d" % self.year
+        elif self.day == -1:
+            return "%s %d" % (_fmonth[self.month],self.year)
+        else:
+            return "%02d %s %d" % (self.day,_fmonth[self.month],self.year)
+
+    def displayHebrew(self):
+        if self.year==-1:
+            if self.month == -1:
+                return ""
+            elif self.day == -1:
+                return _hmonth[self.month]
+            else:
+                return "%02 %s" % (self.day,_hmonth[self.month])
+        elif self.month == -1:
+            return "%d" % self.year
+        elif self.day == -1:
+            return "%s %d" % (_hmonth[self.month],self.year)
+        else:
+            return "%02d %s %d" % (self.day,_hmonth[self.month],self.year)
+
+    def displayJulian(self):
+        if self.year==-1:
+            if self.month == -1:
+                return ""
+            elif self.day == -1:
+                return self.mname[self.month]
+            else:
+                return "%02 %s" % (self.day,self.mname[self.month])
+        elif self.month == -1:
+            return "%d" % self.year
+        elif self.day == -1:
+            return "%s %d" % (self.mname[self.month],self.year)
+        else:
+            return "%02d %s %d" % (self.day,self.mname[self.month],self.year)
+
     def getDate(self):
-        function = SingleDate.fmtFunc[Date.formatCode]
-        return function(self)
+        if self.calendar == GREGORIAN:
+            return _func(self)
+        elif self.calendar == JULIAN:
+            return self.displayJulian()
+        elif self.calendar == HEBREW:
+            return self.displayHebrew()
+        else:
+            return self.displayFrench()
     
     def setIsoDate(self,v):
         data = string.split(v)
@@ -875,18 +852,12 @@ class SingleDate:
         else:
             self.day = -1
         
-
     def getModeVal(self):
         return self.mode
 
     def setModeVal(self,val):
         self.mode = val
     
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getMode(self,val):
         if val == None:
             self.mode = SingleDate.exact
@@ -899,12 +870,72 @@ class SingleDate:
         else:
             self.mode = SingleDate.exact
         
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def set(self,text):
+        if self.calendar == GREGORIAN:
+            self.set_gregorian(text)
+        elif self.calendar == JULIAN:
+            self.set_julian(text)
+        elif self.calendar == HEBREW:
+            self.set_hebrew(text)
+        else:
+            self.set_french(text)
+
+    def set_french(self,text):
+        match = SingleDate.fmt2.match(text)
+        if match:
+            matches = match.groups()
+            mon = string.upper(matches[2])[0:4]
+            if _fmonth2num.has_key(mon):
+                self.setYear(int(matches[3]))
+                self.setMonth(_fmonth2num[mon])
+                self.setDay(int(matches[1]))
+                return
+            else:
+                self.setYear(int(matches[3]))
+                self.setMonth(-1)
+                self.setDay(-1)
+                return
+        match = SingleDate.fmt3.match(text)
+        if match:
+            matches = match.groups()
+            self.setYear(int(matches[3]))
+            self.setMonth(int(matches[2]))
+            self.setDay(int(matches[1]))
+        else:
+            self.setYear(-1)
+            self.setMonth(-1)
+            self.setDay(-1)
+
+    def set_hebrew(self,text):
+        pass
+
+    def set_julian(self,text):
+        match = SingleDate.fmt2.match(text)
+        if match:
+            matches = match.groups()
+            mon = string.lower(matches[2])[0:3]
+            if SingleDate.m2num.has_key(mon):
+                self.setYear(int(matches[3]))
+                self.setMonth(SingleDate.m2num[mon]+1)
+                self.setDay(int(matches[1]))
+                return
+            else:
+                self.setYear(int(matches[3]))
+                self.setMonth(-1)
+                self.setDay(-1)
+                return
+        match = SingleDate.fmt3.match(text)
+        if match:
+            matches = match.groups()
+            self.setYear(int(matches[3]))
+            self.setMonth(int(matches[2]))
+            self.setDay(int(matches[1]))
+        else:
+            self.setYear(-1)
+            self.setMonth(-1)
+            self.setDay(-1)
+
+    def set_gregorian(self,text):
         match = SingleDate.fmt2.match(text)
         if match != None:
             matches = match.groups()
@@ -1063,40 +1094,98 @@ class SingleDate:
 
         raise Date.Error,text
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def quick_set(self,text):
-        match = SingleDate.quick.match(text)
-        if match != None:
-            matches = match.groups()
-            self.setMode(matches[0])
-            self.setMonthStrEng(matches[2])
-            if self.month == -1:
-                raise Date.Error,text
-            self.day = int(matches[1])
-            if len(matches) == 4:
-                val = matches[3]
-                if val == None or val[0] == '?':
-                    self.year = -1
-                else:
-                    self.year = int(val)
-            else:
-                self.year = -1
+    def get_sdn(self):
+        if self.year == -1:
+            return 0
+        if self.month == -1:
+            month = 1
         else:
+            month = self.month + 1
+        if self.day == -1:
+            day = 1
+        else:
+            day = self.day
+            
+        if self.calendar == GREGORIAN:
+            sdn = gregorian_to_sdn(self.year,month,day)
+        elif self.calendar == FRENCH:
+            sdn = french_to_sdn(self.year,month,day)
+        if self.calendar == HEBREW:
+            sdn = jewish_to_sdn(self.year,month,day)
+        if self.calendar == JULIAN:
+            sdn = julian_to_sdn(self.year,month,day)
+        return sdn
+
+    def convert_to(self,val):
+        if val == GREGORIAN:
+            self.convertGregorian()
+        elif val == JULIAN:
+            self.convertJulian()
+        elif val == HEBREW:
+            self.convertHebrew()
+        else:
+            self.convertFrench()
+
+    def convertFrench(self):
+        sdn = self.get_sdn()
+        (y,m,d) = sdn_to_french(sdn)
+        self.calendar = FRENCH
+        if y == 0 and m == 0 and d == 0:
             self.year = -1
             self.month = -1
             self.day = -1
-            raise Date.Error,text
+        else:
+            self.year = y
+            self.month = m-1
+            self.day = d
         
+    def convertHebrew(self):
+        sdn = self.get_sdn()
+        (y,m,d) = sdn_to_jewish(sdn)
+        self.calendar = HEBREW
+        if y == 0 and m == 0 and d == 0:
+            self.year = -1
+            self.month = -1
+            self.day = -1
+        else:
+            self.year = y
+            self.month = m-1
+            self.day = d
+
+    def convertJulian(self):
+        sdn = self.get_sdn()
+        self.calendar = JULIAN
+        (y,m,d) = sdn_to_julian(sdn)
+        if y == 0 and m == 0 and d == 0:
+            self.year = -1
+            self.month = -1
+            self.day = -1
+        else:
+            self.year = y
+            self.month = m-1
+            self.day = d
+
+    def convertGregorian(self):
+        sdn = self.get_sdn()
+        self.calendar = GREGORIAN
+        (y,m,d) = sdn_to_gregorian(sdn)
+        if y == 0 and m == 0 and d == 0:
+            self.year = -1
+            self.month = -1
+            self.day = -1
+        else:
+            self.year = y
+            self.month = m-1
+            self.day = d
+
 #-------------------------------------------------------------------------
 #
 # 
 #
 #-------------------------------------------------------------------------
 def compare_dates(f,s):
+    if f.calendar != s.calendar:
+        return 1
     if f.range == -1 and s.range == -1:
         return cmp(f.text,s.text)
     if f.range == -1 or s.range == -1:
@@ -1108,10 +1197,19 @@ def compare_dates(f,s):
         return cmp(first.year,second.year)
     elif first.month != second.month:
         return cmp(first.month,second.month)
-    else:
+    elif f.range != 1:
         return cmp(first.day,second.day)
+    else:
+        first = f.get_stop_date()
+        second = s.get_stop_date()
+        if first.year != second.year:
+            return cmp(first.year,second.year)
+        elif first.month != second.month:
+            return cmp(first.month,second.month)
+        else:
+            return cmp(first.day,second.day)
 
-
+            
 _func = SingleDate.fmtFunc[0]
 
 if __name__ == "__main__":
@@ -1145,4 +1243,11 @@ if __name__ == "__main__":
 
     print "----------"
     checkit("BET. 1994 - 1999")
+    sdn = french_to_sdn(1,1,1)
+    print sdn_to_gregorian(sdn)
 
+    d = Date()
+    d.get_start_date().setMonth(9)
+    d.get_start_date().setYear(1792)
+    d.get_start_date().setDay(22)
+    print d.get_start_date().getFrench()
