@@ -2,8 +2,7 @@
 
 The questions below frequently come up in mailing list discussions and forums.
 This list is by no means complete. If you would like to add questions/answers 
-to this list, please email your suggestions 
-to gramps-devel@lists.sourceforge.net
+to this list, please email your suggestions to gramps-devel@lists.sf.net
 
 
 *** Index ***
@@ -17,9 +16,9 @@ to gramps-devel@lists.sourceforge.net
 
  4. Does it work with the Mac?
 
- 5. Do I really have to have GNOME installed?
+ 5. Does it work with KDE?
 
- 6. Does it work with KDE?
+ 6. Do I really have to have GNOME installed?
 
  7. What version of GNOME do I need?
 
@@ -55,6 +54,7 @@ to gramps-devel@lists.sourceforge.net
 
 22. I found a bug and I want it fixed right now! What do I do?
 
+
 *** Questions and answers ***
 
 
@@ -87,7 +87,7 @@ distributions satisfy the requirements for GRAMPS.
 4. Does it work with the Mac?
 
 A port of GRAMPS to Mac OS X exists from the Fink project
-(http://fink.sourceforge.net/pdb/package.php/gramps). It is not unusual 
+(http://fink.sf.net/pdb/package.php/gramps). It is not unusual 
 for this version to lag behind the Linux version. The port is not supported 
 by the GRAMPS project (since few if any of us have Macs), but we try to 
 help out where we can. 
@@ -97,14 +97,14 @@ the Fink project. If you encounter a run time bug or have issues not
 specifically related to the Mac, contact the GRAMPS project. 
 
 
-5. Do I really have to have GNOME installed?
-
-Yes, but you do not have to be running the GNOME desktop.
-
-
-6. Does it work with KDE?
+5. Does it work with KDE?
 
 Yes, as long as the required GNOME libraries are installed.
+
+
+6. Do I really have to have GNOME installed?
+
+Yes, but you do not have to be running the GNOME desktop.
 
 
 7. What version of GNOME do I need?
@@ -216,7 +216,7 @@ This will be addressed in the next stable release following version 1.0.
 Temporarily, adding more memory could make a huge difference, but we realize
 that this is a poor way of treating the problem. If you would like to help 
 with the implementation of the real database backend, please don't hesitate 
-to email us at gramps-devel@lists.sourceforge.net
+to email us at gramps-devel@lists.sf.net
 
 
 19. My database is really big. 
