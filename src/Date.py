@@ -361,7 +361,7 @@ class SingleDate:
     
     start = "^\s*" + modifiers + "?\s*"
     
-    fmt1 = compile(start+"(\S+)(\s+\d+\s*,)?\s*(\d+)?\s*$", IGNORECASE)
+    fmt1 = compile(start+"(\S+)(\s+\d+\s*,)?\s*([?\d]+)?\s*$", IGNORECASE)
     fmt2 = compile(start+"(\d+)\.?\s+(\S+)(\s+\d+)?\s*$", IGNORECASE)
     fmt3 = compile(start+r"([?\d]+)\s*[./-]\s*([?\d]+)\s*[./-]\s*([?\d]+)\s*$",
                       IGNORECASE)
@@ -648,7 +648,7 @@ class SingleDate:
             retval = "%04d%s??%s%02d" % (self.year,sep,sep,self.day)
         else:
             if self.year == UNDEF:
-                retval = "????%02d%s%02d%s" % (self.month+1,sep,self.day,sep)
+                retval = "????%s%02d%s%02d" % (sep,self.month+1,sep,self.day)
             else:
                 retval = "%02d%s%02d%s%02d" % (self.year,sep,self.month+1,sep,self.day)
 
