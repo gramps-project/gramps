@@ -2,9 +2,9 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY appversion "0.9.1">
+  <!ENTITY appversion "0.9.2">
   <!ENTITY manrevision "2.0">
-  <!ENTITY date "April 2003">
+  <!ENTITY date "May 2003">
   <!ENTITY app "<application>GRAMPS</application>">
   <!-- Information about the entities
        The legal.xml file contains legal information, there is no need to edit the file. 
@@ -886,9 +886,21 @@
       
       <para>To import data from such a package into your &app; database, choose 
       <menuchoice><guimenu>File</guimenu><guisubmenu>Import</guisubmenu> 
-      <guimenuitem>Import from GRAMPS</guimenuitem></menuchoice>, then select 
-      a package to be imported from the <guilabel>Import from GRAMPS</guilabel> 
-      dialog. </para> 
+      <guimenuitem>Import from GRAMPS package</guimenuitem></menuchoice>, 
+      then select a package to be imported from the <guilabel>Import from 
+      GRAMPS package</guilabel> dialog. </para> 
+
+      <para>To import data from existing &app; database into your currently 
+      open &app; database, choose <menuchoice><guimenu>File</guimenu>
+      <guisubmenu>Import</guisubmenu><guimenuitem>Import from GRAMPS 
+      database</guimenuitem></menuchoice>, then select a directory which 
+      contains the database to be imported from the <guilabel>Import from 
+      GRAMPS database</guilabel> dialog. </para> 
+
+      <para>Note that the difference between opening &app; database and 
+      importing from &app; database is that importing incorporates all the 
+      data into your currently open database, if any. </para>
+
     </sect2>
 
     <!-- ================ Usage Subsection ================================ -->
