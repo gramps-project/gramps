@@ -140,6 +140,9 @@ class DateDisplay:
             self._display_islamic,
             ]
 
+    def set_format(self,format):
+        self.format = format
+
     def verify_format(self,format):
         """
         Verifies that the format value is within the correct range.

@@ -118,6 +118,7 @@ def get_toolbar_style():
 def set_calendar_date_format():
     format_list = DateHandler.get_date_formats()
     DateHandler.set_format(GrampsGconfKeys.get_date_format(format_list))
+    RelLib.display.set_format(GrampsGconfKeys.get_date_format(format_list))
 
 #-------------------------------------------------------------------------
 #

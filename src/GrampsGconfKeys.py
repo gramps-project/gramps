@@ -37,6 +37,8 @@ except ImportError:
     gconf = gnome.gconf
 
 
+import os
+
 client = gconf.client_get_default()
 client.add_dir("/apps/gramps",gconf.CLIENT_PRELOAD_NONE)
 

@@ -1,4 +1,8 @@
 2004-09-25  Don Allingham  <dallingham@users.sourceforge.net>
+        * src/DateDisplay.py: add set_format function
+	* src/GrampsCfg.py: update RelLib display
+	* src/GrampsGconfKeys.py: import os
+	* src/RelLib.py: change _parser to parser and _display to display
 	* src/const.py.in: remove calendar directory
 	* src/gramps_main.py: remove calendar directory
 	* configure.in: remove calendar directory
