@@ -127,8 +127,7 @@ class SourceView:
 
             QuestionDialog(_('Delete Source'),
                            _("This source is currently being used. Delete anyway?"),
-                           _('Delete Source'),ans.query_response,
-                           _('Keep Source'))
+                           ans.query_response)
         else:
             self.db.removeSource(source.getId())
             Utils.modified()

@@ -23,7 +23,7 @@ import gnome.ui
 from intl import gettext as _
 
 class QuestionDialog:
-    def __init__(self,title,msg,blabel1,task1,blabel2,task2=None):
+    def __init__(self,title,msg,task1,task2=None):
         title = '%s - GRAMPS' % title
         
         self.top = gtk.Dialog()
@@ -71,6 +71,28 @@ class ErrorDialog:
         hbox = gtk.HBox()
         image = gtk.Image()
         image.set_from_stock(gtk.STOCK_DIALOG_ERROR,gtk.ICON_SIZE_DIALOG)
+        hbox.set_spacing(10)
+        hbox.pack_start(image)
+        hbox.add(label)
+        self.top.vbox.pack_start(hbox)
+        self.top.set_default_size(300,150)
+        self.top.add_button(gtk.STOCK_OK,0)
+        self.top.set_response_sensitive(0,gtk.TRUE)
+        self.top.show_all()
+        self.top.run()
+        self.top.destroy()
+
+class WarningDialog:
+    def __init__(self,msg):
+        title = '%s - GRAMPS' % _('Warning')
+        
+        self.top = gtk.Dialog()
+        self.top.set_title(title)
+        label = gtk.Label(msg)
+        label.show()
+        hbox = gtk.HBox()
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_DIALOG_WARNING,gtk.ICON_SIZE_DIALOG)
         hbox.set_spacing(10)
         hbox.pack_start(image)
         hbox.add(label)

@@ -256,8 +256,7 @@ class MediaView:
             QuestionDialog(_('Delete Object'),
                            _("This media object is currently being used. "
                              "Delete anyway?"),
-                           _('Delete Object'),ans.query_response,
-                           _('Keep Object'))
+                           ans.query_response)
         else:
             map = self.db.getObjectMap()
             del map[mobj.getId()]

@@ -109,7 +109,7 @@ class Gramps:
         if os.getuid() == 0:
             msg = _("You are running GRAMPS as the 'root' user.\n"
                     "This account is not meant for normal application use.")
-            gnome.ui.GnomeWarningDialog(msg)
+            WarningDialog(msg)
 
         # This will never contain data - It will be replaced by either
         # a GrampsXML or GrampsZODB
@@ -486,8 +486,7 @@ class Gramps:
             QuestionDialog(_('Abandon Changes'),
                            _("Unsaved changes exist in the current database\n"
                              "Do you wish to save the changes?"),
-                           _("Save Changes"), self.save_query,
-                           _("Abandon Changes"),self.quit)
+                           self.save_query,self.quit)
         else:
             self.db.close()
             gtk.mainquit()
@@ -563,9 +562,7 @@ class Gramps:
         """Prompt for permission to close the current database"""
         
         msg = _("Do you want to close the current database and create a new one?")
-        QuestionDialog(_('New Database'),msg,
-                       _('Close Current Database'),self.new_database_response,
-                       _('Return to Current Database'))
+        QuestionDialog(_('New Database'),msg, self.new_database_response)
                        
     def new_database_response(self):
         import DbPrompter
@@ -692,9 +689,8 @@ class Gramps:
             self.yname = autosave
             self.nname = filename
 
-            QuestionDialog(_('Autosave File'),q,
-                           _('Load Autosave File'),self.autosave_query,
-                           _('Load Last Saved File'),self.loadsaved_file)
+            QuestionDialog(_('Autosave File'),q,self.autosave_query,
+                           self.loadsaved_file)
         else:
             self.read_file(filename)
 
@@ -845,9 +841,7 @@ class Gramps:
             name = GrampsCfg.nameof(self.active_person) 
             msg = _("Do you really wish to delete %s?") % name
 
-            QuestionDialog(_('Delete Person'), msg,
-                           _('Delete Person'),self.delete_person_response,
-                           _('Keep Person'))
+            QuestionDialog(_('Delete Person'), msg, self.delete_person_response)
 
     def delete_person_response(self):
         for family in self.active_person.getFamilyList():
@@ -973,7 +967,7 @@ class Gramps:
         if (EditPerson.birth_dates_in_order(desired_order) == 0):
             clist.emit_stop_by_name("row_move")
             msg = _("Invalid move. Children must be ordered by birth date.")
-            gnome.ui.GnomeWarningDialog(msg)
+            WarningDialog(msg)
             return
            
         # OK, this birth order works too.  Update the family data structures.
@@ -1023,13 +1017,11 @@ class Gramps:
             msg = _("Do you wish to abandon your changes and "
                     "revert to the last saved database?")
 
-            QuestionDialog(_('Abandon Changes'),msg,
-                           _('Revert to Last Database'),self.revert_query,
-                           _('Continue with Current Database'))
+            QuestionDialog(_('Abandon Changes'),msg, self.revert_query)
         else:
             msg = _("Cannot revert to a previous database, since "
                     "one does not exist")
-            gnome.ui.GnomeWarningDialog(msg)
+            WarningDialog(msg)
 
     def revert_query(self):
         const.personalEvents = const.init_personal_event_list()
@@ -1356,7 +1348,7 @@ class Gramps:
 
     def apply_filter(self):
         datacomp = self.DataFilter.compare
-        
+
         for key in self.db.getPersonKeys():
             person = self.db.getPerson(key)
             if datacomp(person):
@@ -1372,7 +1364,6 @@ class Gramps:
             else:
                 if self.id2col.has_key(key):
                     self.person_model.remove(self.id2col[key])
-        self.person_model.sort_column_changed()
 
     def on_home_clicked(self,obj):
         temp = self.db.getDefaultPerson()
@@ -1389,7 +1380,7 @@ class Gramps:
             self.statusbar.set_status(_("%s has been bookmarked") % name)
             gtk.timeout_add(5000,self.modify_statusbar)
         else:
-            gnome.ui.GnomeWarningDialog(_("Bookmark could not be set because no one was selected"))
+            WarningDialog(_("Bookmark could not be set because no one was selected"))
 
     def on_edit_bookmarks_activate(self,obj):
         self.bookmarks.edit()
@@ -1403,9 +1394,7 @@ class Gramps:
             name = self.active_person.getPrimaryName().getRegularName()
             msg = _("Do you wish to set %s as the home person?") % name
 
-            QuestionDialog(_('Set Home Person'),msg,
-                           _('Set as Home Person'),self.set_person,
-                           _('Do not change Home Person'))
+            QuestionDialog(_('Set Home Person'),msg,self.set_person)
             
     def set_person(self):
         self.db.setDefaultPerson(self.active_person)
