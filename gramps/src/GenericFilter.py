@@ -213,6 +213,7 @@ class IsDescendantFamilyOf(Rule):
                 s = fm.getMother()
             else:
                 s = fm.getFather()
+            if s:
                 for (f,r1,r2) in s.getParentList():
                     for p1 in [f.getMother(),f.getFather()]:
                         if p1:
