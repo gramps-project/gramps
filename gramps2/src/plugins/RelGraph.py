@@ -1,8 +1,9 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 # Contributions by Lorenzo Cappelletti <lorenzo.cappelletti@email.it>
+# Modified by Alex Roitman: convert to database interface, change coding style.
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -52,7 +53,6 @@ import BaseDoc
 import GenericFilter
 import Errors
 
-from RelLib import Event
 from gettext import gettext as _
 from latin_utf8 import utf8_to_latin
 
@@ -70,6 +70,9 @@ _pagecount_map = {
     _("Single") : _single,
     _("Multiple") : _multiple,
     }
+
+_PS_FONT = 'Helvetica'
+_TT_FONT = 'FreeSans'
 
 #------------------------------------------------------------------------
 #
@@ -89,7 +92,7 @@ class RelGraphDialog(Report.ReportDialog):
     IncludeUrl      = 1
     IncludeId       = 0
     Colorize        = 1
-    FontStyle       = 'Arial'
+    FontStyle       = _TT_FONT
     ArrowHeadStyle  = 'none'
     ArrowTailStyle  = 'normal'
     AdoptionsDashed = 1
@@ -182,12 +185,12 @@ class RelGraphDialog(Report.ReportDialog):
         menu = gtk.Menu()
 
         menuitem = gtk.MenuItem(_("TrueType"))
-        menuitem.set_data('t', 'Arial')
+        menuitem.set_data('t', _TT_FONT)
         menuitem.show()
         menu.append(menuitem)
 
         menuitem = gtk.MenuItem(_("PostScript"))
-        menuitem.set_data('t', 'Helvetica')
+        menuitem.set_data('t', _PS_FONT)
         menuitem.show()
         menu.append(menuitem)
 
@@ -391,9 +394,9 @@ class RelGraphDialog(Report.ReportDialog):
         self.File = open(self.target_path,"w")
 
         try:
-            self.IndividualSet =\
-                Set(self.filter.apply(self.db, self.db.get_person_id_map().values()))
-            self.IndividualSet.add(self.person)
+            self.individual_set =\
+                Set(self.filter.apply(self.db, self.db.get_person_keys()))
+            self.individual_set.add(self.person.get_id())
         except Errors.FilterError, msg:
             from QuestionDialog import ErrorDialog
             (m1,m2) = msg.messages()
@@ -403,8 +406,7 @@ class RelGraphDialog(Report.ReportDialog):
 
         if self.print_report.get_active ():
             os.environ["DOT"] = self.target_path
-            os.system ('dot -Tps "$DOT" | %s &' %
-                       Report.get_print_dialog_app ())
+            os.system ('dot -Tps "$DOT" | %s &' % Report.get_print_dialog_app ())
 
 #------------------------------------------------------------------------
 #
@@ -458,109 +460,107 @@ def _writeDot(self):
                        ((self.VPages - 1)*1.0)))
     self.File.write("page=\"%3.1f,%3.1f\";\n" % (self.Width, self.Height))
 
-    if len(self.IndividualSet) > 1:
+    if len(self.individual_set) > 1:
         if self.ShowAsStack:
-            _writeGraphRecord(self)
+            _write_graph_record(self)
         else:
-            _writeGraphBox(self)
+            _write_graph_box(self)
 
     self.File.write("}\n// File end")
     self.File.close()
 
 #------------------------------------------------------------------------
 #
-# _writeGraphBox
+# _write_graph_box
 #
 #------------------------------------------------------------------------
-def _writeGraphBox (self):
+def _write_graph_box (self):
     """Write out a graph body where all individuals are separated boxes"""
-    individualNodes = Set()  # list of individual graph nodes
-    familyNodes = Set()      # list of family graph nodes
+    individual_nodes = Set()  # list of individual graph nodes
+    family_nodes = Set()      # list of family graph nodes
     # Writes out a not for each individual
     self.File.write('\n// Individual nodes (box graph)\n')
-    _writeNode(self.File, shape='box', color='black', fontname=self.FontStyle)
-    for individual in self.IndividualSet:
-        individualNodes.add(individual)
-        individualId = _getIndividualId(individual)
-        (color, url) = _getIndividualData(self, individual)
-        label = _getIndividualLabel(self, individual)
-        _writeNode(self.File, individualId, label, color, url)
+    _write_node(self.File, shape='box', color='black', fontname=self.FontStyle)
+    for individual_id in self.individual_set:
+        individual_nodes.add(individual_id)
+        (color, url) = _get_individual_data(self, individual_id)
+        label = _get_individual_label(self, individual_id)
+        _write_node(self.File, individual_id, label, color, url, 
+                fontname=self.FontStyle)
     # Writes out a node for each family
     if self.ShowFamilies:
         self.File.write('\n// Family nodes (box graph)\n')
-        _writeNode(self.File, shape='ellipse', color='black',
+        _write_node(self.File, shape='ellipse', color='black',
                    fontname=self.FontStyle)
-        for individual in individualNodes:
-            for family in individual.get_family_id_list():
-                if family not in familyNodes:
-                    familyNodes.add(family)
-                    familyId = _get_family_idId(family)
-                    label = _get_family_idLabel(self, family)
-                    _writeNode(self.File, familyId, label)
+        for individual_id in individual_nodes:
+            individual = self.db.find_person_from_id(individual_id)
+            for family_id in individual.get_family_id_list():
+                if family_id not in family_nodes:
+                    family_nodes.add(family_id)
+                    label = _get_family_id_label(self, family_id)
+                    _write_node(self.File, family_id, label, 
+                            fontname=self.FontStyle)
     # Links each individual to their parents/family
     self.File.write('\n// Individual edges\n')
-    _writeEdge(self.File, style="solid", arrowHead=self.ArrowHeadStyle,
-               arrowTail=self.ArrowTailStyle)
-    for individual in individualNodes:
-        individualId = _getIndividualId(individual)
-        for family, motherRelShip, fatherRelShip\
+    _write_edge(self.File, style="solid", 
+                    arrowHead=self.ArrowHeadStyle,arrowTail=self.ArrowTailStyle)
+    for individual_id in individual_nodes:
+        individual = self.db.find_person_from_id(individual_id)
+        for family_id, mother_rel_ship, father_rel_ship\
                 in individual.get_parent_family_id_list():
-            father = family.get_father_id()
-            mother = family.get_mother_id()
-            if self.ShowFamilies and family in familyNodes:
+            family =  self.db.find_family_from_id(family_id)
+            father_id = family.get_father_id()
+            mother_id = family.get_mother_id()
+            if self.ShowFamilies and family_id in family_nodes:
                 # edge from an individual to their family
-                familyId = _get_family_idId(family)
-                style = _getEdgeStyle(self, fatherRelShip, motherRelShip)
-                _writeEdge(self.File, individualId, familyId, style)
+                style = _get_edge_style(self, father_rel_ship, mother_rel_ship)
+                _write_edge(self.File, individual_id, family_id, style)
             else:
                 # edge from an individual to their parents
-                if father and father in individualNodes:
-                    fatherId = _getIndividualId(father)
-                    _writeEdge(self.File, individualId, fatherId,
-                               _getEdgeStyle(self, fatherRelShip))
-                if mother and mother in individualNodes:
-                    motherId = _getIndividualId(mother)
-                    _writeEdge(self.File, individualId, motherId,
-                               _getEdgeStyle(self, motherRelShip))
+                if father_id and father_id in individual_nodes:
+                    _write_edge(self.File, individual_id, father_id,
+                               _get_edge_style(self, father_rel_ship))
+                if mother_id and mother_id in individual_nodes:
+                    _write_edge(self.File, individual_id, mother_id,
+                               _get_edge_style(self, mother_rel_ship))
     # Links each family to its components
     if self.ShowFamilies:
         self.File.write('\n// Family edges (box graph)\n')
-        _writeEdge(self.File, style="solid", arrowHead=self.ArrowHeadStyle,
-                   arrowTail=self.ArrowTailStyle)
-        for family in familyNodes:
-            familyId = _get_family_idId(family)
-            father = family.get_father_id()
-            if father and father in individualNodes:
-                fatherId = _getIndividualId(father)
-                _writeEdge(self.File, familyId, fatherId)
-            mother = family.get_mother_id()
-            if mother and mother in individualNodes:
-                motherId = _getIndividualId(mother)
-                _writeEdge(self.File, familyId, motherId)
+        _write_edge(self.File, style="solid", 
+                    arrowHead=self.ArrowHeadStyle,arrowTail=self.ArrowTailStyle)
+        for family_id in family_nodes:
+            family = self.db.find_family_from_id(family_id)
+            father_id = family.get_father_id()
+            if father_id and father_id in individual_nodes:
+                _write_edge(self.File, family_id, father_id)
+            mother_id = family.get_mother_id()
+            if mother_id and mother_id in individual_nodes:
+                _write_edge(self.File, family_id, mother_id)
     # Statistics
     males = 0
     females = 0
     unknowns = 0
-    for individual in individualNodes:
+    for individual_id in individual_nodes:
+        individual = self.db.find_person_from_id(individual_id)
         if individual.get_gender() == individual.male:
             males = males + 1
         elif individual.get_gender() == individual.female:
             females = females + 1
         else:
             unknowns = unknowns + 1
-    _writeStats(self.File, males, females, unknowns, len(familyNodes))
+    _write_stats(self.File, males, females, unknowns, len(family_nodes))
 
 #------------------------------------------------------------------------
 #
 # _writeGraphRecord
 #
 #------------------------------------------------------------------------
-def _writeGraphRecord (self):
+def _write_graph_record (self):
     """Write out a graph body where families are rendered as records"""
     # Builds a dictionary of family records.
     # Each record is made of an individual married with zero or
     # more individuals.
-    familyNodes = {}
+    family_nodes = {}
     if isinstance(self.filter.get_rules()[0],
                   GenericFilter.IsDescendantFamilyOf):
         # With the IsDescendantFamilyOf filter, the IndividualSet
@@ -572,121 +572,113 @@ def _writeGraphRecord (self):
         # subset (in-law relatives).
         filter = GenericFilter.GenericFilter()
         filter.add_rule(GenericFilter.IsDescendantOf([self.person.get_id()]))
-        naturalRelatives =\
-            Set(filter.apply(self.db, self.db.get_person_id_map().values()))
-        naturalRelatives.add(self.person)
+        natural_relatives =\
+            Set(filter.apply(self.db, self.db.get_person_keys()))
+        natural_relatives.add(self.person.get_id())
     else:
-        naturalRelatives = self.IndividualSet
+        natural_relatives = self.individual_set
     self.File.write('\n// Family nodes (record graph)\n')
-    _writeNode(self.File, shape='record', color='black',
+    _write_node(self.File, shape='record', color='black',
                fontname=self.FontStyle)
-    for individual in naturalRelatives:
-        familyId = _getIndividualId(individual)
+    for individual_id in natural_relatives:
         # If both husband and wife are members of the IndividualSet,
         # only one record, with the husband first, is displayed.
+        individual = self.db.find_person_from_id(individual_id)
         if individual.get_gender() == individual.female:
             # There are exactly three cases where a female node is added:
             family = None       # no family
             husbands = []       # filtered-in husbands (naturalRelatives)
-            unknownHusbands = 0 # filtered-out/unknown husbands
-            for family in individual.get_family_id_list():
-                husband = family.get_father_id()
-                if husband and husband in self.IndividualSet:
-                    if  husband not in naturalRelatives:
-                        husbands.append(husband)
+            unknown_husbands = 0 # filtered-out/unknown husbands
+            for family_id in individual.get_family_id_list():
+                family = self.db.find_family_from_id(family_id)
+                husband_id = family.get_father_id()
+                if husband_id and husband_id in self.individual_set:
+                    if husband_id not in natural_relatives:
+                        husbands.append(husband_id)
                 else:
-                    unknownHusbands = 1
-            if not family or len(husbands) or unknownHusbands:
-                familyNodes[familyId] = [individual] + husbands
+                    unknown_husbands = 1
+            if not family_id or len(husbands) or unknown_husbands:
+                family_nodes[individual_id] = [individual_id] + husbands
         else:
-            familyNodes[familyId] = [individual]
-            for family in individual.get_family_id_list():
-                wife = family.get_mother_id()
-                if wife in self.IndividualSet:
-                    familyNodes[familyId].append(wife)
+            family_nodes[individual_id] = [individual_id]
+            for family_id in individual.get_family_id_list():
+                family = self.db.find_family_from_id(family_id)
+                wife_id = family.get_mother_id()
+                if wife_id in self.individual_set:
+                    family_nodes[individual_id].append(wife_id)
     # Writes out all family records
-    for familyId, family in familyNodes.items():
-        (color, url) = _getIndividualData(self, familyNodes[familyId][0])
-        label = _get_family_idRecordLabel(self, familyNodes[familyId])
-        _writeNode(self.File, familyId, label, color, url)
+    for individual_id, family_id in family_nodes.items():
+        (color, url) = _get_individual_data(self, family_nodes[individual_id][0])
+        label = _get_family_id_record_label(self, family_nodes[individual_id])
+        _write_node(self.File, individual_id, label, color, url, 
+                fontname=self.FontStyle)
     # Links individual's record to their parents' record
     # The arrow goes from the individual port of a family record
     # to the parent port of the parent's family record.
     self.File.write('\n// Individual edges\n')
-    _writeEdge(self.File, style="solid", arrowHead=self.ArrowHeadStyle,
-               arrowTail=self.ArrowTailStyle)
-    for familyFromId, familyFrom in familyNodes.items():
-        for individualFrom in familyFrom:
-            individualFromId = _getIndividualId(individualFrom)
-            for family, motherRelShip, fatherRelShip\
-                    in individualFrom.get_parent_family_id_list():
-                father = family.get_father_id()
-                mother = family.get_mother_id()
+    _write_edge(self.File, style="solid", 
+                arrowHead=self.ArrowHeadStyle,arrowTail=self.ArrowTailStyle)
+    for family_from_id, family_from_id2 in family_nodes.items():
+        for individual_from_id in family_from_id:
+            individual_from = self.db.find_person_from_id(individual_from_id)
+            for family_id, mother_rel_ship, father_rel_ship\
+                    in individual_from.get_parent_family_id_list():
+                father_id = family.get_father_id()
+                mother_id = family.get_mother_id()
                 # Things are complicated here because a parent may or
                 # or may not exist.
-                if father:
-                    fatherId = _getIndividualId(father)
-                else:
-                    fatherId = ""
-                if mother:
-                    motherId = _getIndividualId(mother)
-                else:
-                    motherId = ""
-                if familyNodes.has_key(fatherId):
-                    if mother in familyNodes[fatherId]:
-                        _writeEdge(self.File, familyFromId, fatherId,
-                                   _getEdgeStyle(self, motherRelShip),
-                                   portFrom=individualFromId, portTo=motherId)
+                if not father_id:
+                    father_id = ""
+                if not mother_id:
+                    mother_id = ""
+                if family_nodes.has_key(father_id):
+                    if mother_id in family_nodes[father_id]:
+                        _write_edge(self.File, family_from_id, father_id,
+                                   _get_edge_style(self, mother_rel_ship),
+                                   port_from=individual_from_id, port_to=mother_id)
                     else:
-                        _writeEdge(self.File, familyFromId, fatherId,
-                                   _getEdgeStyle(self, fatherRelShip),
-                                   portFrom=individualFromId)
-                if familyNodes.has_key(motherId):
-                    if father in familyNodes[motherId]:
-                        _writeEdge(self.File, familyFromId, motherId,
-                                   _getEdgeStyle(self, fatherRelShip),
-                                   portFrom=individualFromId, portTo=fatherId)
+                        _write_edge(self.File, family_from_id, father_id,
+                                   _get_edge_style(self, mother_rel_ship),
+                                   portFrom=individual_from_id)
+                if family_nodes.has_key(mother_id):
+                    if father_id in family_nodes[mother_id]:
+                        _write_edge(self.File, family_from_id, mother_id,
+                                   _get_edge_style(self, father_rel_ship),
+                                   portFrom=individual_from_id, portTo=father_id)
                     else:
-                        _writeEdge(self.File, familyFromId, motherId,
-                                   _getEdgeStyle(self, motherRelShip),
-                                   portFrom=individualFromId)
+                        _write_edge(self.File, family_from_id, mother_id,
+                                   _get_edge_style(self, mother_rel_ship),
+                                   portFrom=individual_from_id)
     # Stats (unique individuals)
     males = Set()
     females = Set()
     unknowns = Set()
     marriages = 0
-    for familyId, family in familyNodes.items():
-        marriages = marriages + (len(family) - 1)
-        for individual in family:
+    for family_id, family_id2 in family_nodes.items():
+        marriages = marriages + (len(family_id2) - 1)
+        for individual_id in family_id:
+            individual = self.db.find_person_from_id(individual_id)
             if individual.get_gender() == individual.male\
-                   and individual not in males:
-                males.add(individual)
+                   and individual_id not in males:
+                males.add(individual_id)
             elif individual.get_gender() == individual.female\
-                     and individual not in females:
-                females.add(individual)
+                     and individual_id not in females:
+                females.add(individual_id)
             elif individual.get_gender() == individual.unknown\
-                     and individual not in unknowns:
-                unknowns.add(individual)
-    _writeStats(self.File, len(males), len(females), len(unknowns), marriages)
+                     and individual_id not in unknowns:
+                unknowns.add(individual_id)
+    _write_stats(self.File, len(males), len(females), len(unknowns), marriages)
 
 #------------------------------------------------------------------------
 #
-# _getIndividualId
+# _get_individual_data
 #
 #------------------------------------------------------------------------
-def _getIndividualId (individual):
-    """Returns an individual id suitable for dot"""
-    return individual.get_id()
-
-#------------------------------------------------------------------------
-#
-# _getIndividualData
-#
-#------------------------------------------------------------------------
-def _getIndividualData (self, individual):
+def _get_individual_data (self, individual_id):
     """Returns a tuple of individual data"""
     # color
     color = ''
+    individual = self.db.find_person_from_id(individual_id)
     if self.Colorize:
         gender = individual.get_gender()
         if gender == individual.male:
@@ -696,37 +688,40 @@ def _getIndividualData (self, individual):
     # url
     url = ''
     if self.IncludeUrl:
-        url = "%s.html" % _getIndividualId(individual)
+        url = "%s.html" % individual_id
 
     return (color, url)
 
 #------------------------------------------------------------------------
 #
-# _getEventLabel
+# _get_event_label
 #
 #------------------------------------------------------------------------
-def _getEventLabel (self, event):
+def _get_event_label (self, event_id):
     """Returns a formatted string of event data suitable for a label"""
-    if self.IncludeDates and event:
-        dateObj = event.get_date_object()
-        if dateObj.getYearValid():
+    if self.IncludeDates and event_id:
+        event = self.db.find_event_from_id(event_id)
+        date_obj = event.get_date_object()
+        if date_obj.get_year_valid():
             if self.JustYear:
-                return "%i" % dateObj.getYear()
+                return "%i" % date_obj.get_year_valid()
             else:
-                return dateObj.get_date()
+                return date_obj.get_date()
         elif self.PlaceCause:
-            if event.get_place_name():
-                return event.get_place_name()
+            place_id = event.get_place_id()
+            if place_id:
+                place = self.db.find_place_from_id(place_id)
+                return place.get_title()
             else:
                 return event.get_cause()
     return ''
 
 #------------------------------------------------------------------------
 #
-# _getIndividualLabel
+# _get_individual_label
 #
 #------------------------------------------------------------------------
-def _getIndividualLabel (self, individual, marriageEvent=None, family=None):
+def _get_individual_label (self, individual_id, marriage_event_id=None, family_id=None):
     """Returns a formatted string of individual data suitable for a label
 
     Returned string always includes individual's name and optionally
@@ -734,24 +729,23 @@ def _getIndividualLabel (self, individual, marriageEvent=None, family=None):
     individual's and family's IDs.
     """
     # Get data ready
-    individualId = individual.get_id()
+    individual = self.db.find_person_from_id(individual_id)
     name = individual.get_primary_name().get_name()
     if self.IncludeDates:
-        birth = _getEventLabel(self, individual.get_birth())
-        death = _getEventLabel(self, individual.get_death())
-        if marriageEvent != None:
-            familyId = family.get_id()
-            marriage = _getEventLabel(self, marriageEvent)
+        birth = _get_event_label(self, individual.get_birth_id())
+        death = _get_event_label(self, individual.get_death_id())
+        if marriage_event_id:
+            marriage = _get_event_label(self, marriage_event_id)
     # Id
     if self.IncludeId:
-        if marriageEvent != None:
-            label = "%s (%s)\\n" % (familyId, individualId)
+        if marriage_event_id:
+            label = "%s (%s)\\n" % (family_id, individual_id)
         else:
-            label = "%s\\n" % individualId
+            label = "%s\\n" % individual_id
     else:
         label = ""
     # Marriage date
-    if self.IncludeDates and (marriageEvent != None and marriage):
+    if self.IncludeDates and (marriage_event_id and marriage):
         label = label + "%s\\n" % marriage
     # Individual's name
     label = label + name
@@ -762,78 +756,90 @@ def _getIndividualLabel (self, individual, marriageEvent=None, family=None):
 
 #------------------------------------------------------------------------
 #
-# _getEdgeStyle
+# _get_edge_style
 #
 #------------------------------------------------------------------------
-def _getEdgeStyle (self, fatherRelShip, motherRelShip="Birth"):
+def _get_edge_style (self, father_rel_ship, mother_rel_ship="Birth"):
     """Returns a edge style that depends on the relationships with parents"""
     if self.AdoptionsDashed and \
-           (fatherRelShip != "Birth" or motherRelShip != "Birth"):
+           (father_rel_ship != "Birth" or mother_rel_ship != "Birth"):
         return "dashed"
 
-#------------------------------------------------------------------------
-#
-# _get_family_idId
-#
-#------------------------------------------------------------------------
-def _get_family_idId (family):
-    """Returns a family id suitable for dot"""
-    return family.get_id()
 
 #------------------------------------------------------------------------
 #
-# _get_family_idLabel
+# _get_family_id_label
 #
 #------------------------------------------------------------------------
-def _get_family_idLabel (self, family):
+def _get_family_id_label (self, family_id):
     """Returns a formatted string of family data suitable for a label"""
-    marriage = _getEventLabel(self, family.get_marriage())
+
+    fam = self.db.find_family_from_id(family_id)
+    for event_id in fam.get_event_list():
+        if event_id:
+            event = self.db.find_event_from_id(event_id)
+            if event.get_name() == "Marriage":
+                marriage_event_id = event_id
+                break
+    else:
+        marriage_event_id = None
+
+    marriage = _get_event_label(self, marriage_event_id)
     if self.IncludeId:
-        return "%s\\n%s" % (family.get_id(), marriage)
+        return "%s\\n%s" % (family_id, marriage)
     else:
         return marriage
 
 #------------------------------------------------------------------------
 #
-# _get_family_idRecordLabel
+# _get_family_id_record_label
 #
 #------------------------------------------------------------------------
-def _get_family_idRecordLabel (self, record):
+def _get_family_id_record_label (self, record):
     """Returns a formatted string of a family record suitable for a label"""
     labels = []
-    spouse = record[0]
-    for individual in record:
-        individualId = _getIndividualId(individual)
-        if spouse == individual:
-            label = _getIndividualLabel(self, individual)
+    spouse_id = record[0]
+    spouse = self.db.find_person_from_id(spouse_id)
+    for individual_id in record:
+        individual = self.db.find_person_from_id(individual_id)
+        if spouse_id == individual_id:
+            label = _get_individual_label(self, individual_id)
         else:
-            marriageEvent = Event()
-            for individualFamily in individual.get_family_id_list():
-                if individualFamily in spouse.get_family_id_list():
-                    marriageEvent = individualFamily.get_marriage()
-                    if not marriageEvent:
-                        marriageEvent = Event()
-                    break
-            label = _getIndividualLabel(self, individual, marriageEvent,
-                                        individualFamily)
+            marriage_event_id = None
+            for individual_family_id in individual.get_family_id_list():
+                if individual_family_id in spouse.get_family_id_list():
+                    individual_family = self.db.find_family_from_id(individual_family_id)
+                    for event_id in individual_family.get_event_list():
+                        if event_id:
+                            event = self.db.find_event_from_id(event_id)
+                            if event.get_name() == "Marriage":
+                                marriage_event_id = event_id
+                                break
+
+            label = _get_individual_label(self, individual_id, 
+                        marriage_event_id,individual_family_id)
         label = string.replace(label, "|", r"\|")
         label = string.replace(label, "<", r"\<")
         label = string.replace(label, ">", r"\>")
-        labels.append("<%s>%s" % (individualId, label))
+        labels.append("<%s>%s" % (individual_id, label))
     return string.join(labels, "|")
 
 #------------------------------------------------------------------------
 #
-# _writeNode
+# _write_node
 #
 #------------------------------------------------------------------------
-def _writeNode (file, node="node", label="", color="", url="", shape="",
+def _write_node (file, node="node", label="", color="", url="", shape="",
                fontname=""):
     """Writes out an individual node"""
     file.write('%s [' % node)
     if label:
-        file.write('label="%s" ' %
-                   utf8_to_latin(string.replace(label, '"', r'\"')))
+        if fontname == _TT_FONT:
+            file.write('label="%s" ' % label.replace('"', r'\"'))
+        else:
+            file.write('label="%s" ' %
+                   utf8_to_latin(label.replace('"', r'\"')))
+
     if color:
         file.write('color=%s ' % color)
     if url:
@@ -846,10 +852,10 @@ def _writeNode (file, node="node", label="", color="", url="", shape="",
 
 #------------------------------------------------------------------------
 #
-# _writeEdge
+# _write_edge
 #
 #------------------------------------------------------------------------
-def _writeEdge (file, nodeFrom="", nodeTo="", style="",
+def _write_edge (file, nodeFrom="", nodeTo="", style="",
                arrowHead="", arrowTail="", portFrom="", portTo=""):
     """Writes out an edge"""
     if nodeFrom and nodeTo:
@@ -877,7 +883,7 @@ def _writeEdge (file, nodeFrom="", nodeTo="", style="",
 # _writeStats
 #
 #------------------------------------------------------------------------
-def _writeStats (file, males, females, unknowns, marriages):
+def _write_stats (file, males, females, unknowns, marriages):
     file.write('\n/* Statistics\n')
     file.write(' *   individuals male    : % 4d\n' % males)
     file.write(' *               female  : % 4d\n' % females)
