@@ -877,9 +877,9 @@ class GedcomWriter:
                     if text:
                         self.g.write("2 PLAC %s\n" % string.replace(self.cnvtxt(text),'\r',' '))
                 if addr.getNote():
-                    self.write_long_text("NOTE",3,self.cnvtxt(addr.getNote()))
+                    self.write_long_text("NOTE",2,self.cnvtxt(addr.getNote()))
                 for srcref in addr.getSourceRefList():
-                    self.write_source_ref(3,srcref)
+                    self.write_source_ref(2,srcref)
 
         for family in person.getParentList():
             if self.flist.has_key(family[0].getId()):
