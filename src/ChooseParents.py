@@ -416,13 +416,13 @@ class ModifyParents:
             fname = self.father.getPrimaryName().getName()
             self.glade.get_widget("fname").set_text(fname)
         else:
-            self.father_rel.set_senstive(0)
+            self.father_rel.set_sensitive(0)
             
         if self.mother:
             mname = self.mother.getPrimaryName().getName()
             self.glade.get_widget("mname").set_text(mname)
         else:
-            self.mother_rel.set_senstive(0)
+            self.mother_rel.set_sensitive(0)
 
     def quit(self,obj):
         self.top.destroy()
