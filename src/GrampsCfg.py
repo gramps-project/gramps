@@ -128,11 +128,11 @@ panellist = [
 #
 #-------------------------------------------------------------------------
 
-iprefix       = "I"
-oprefix       = "O"
-sprefix       = "S"
-pprefix       = "P"
-fprefix       = "F"
+iprefix       = "I%04d"
+oprefix       = "O%04d"
+sprefix       = "S%04d"
+pprefix       = "P%04d"
+fprefix       = "F%04d"
 autoload      = 0
 autosave_int  = 0
 uselds        = 0
