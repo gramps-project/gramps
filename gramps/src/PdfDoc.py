@@ -30,7 +30,7 @@ import reportlab.lib.styles
 from latin_utf8 import latin_to_utf8
 
 try:
-    import PIL.Image
+    import Image
     no_pil = 0
 except:
     no_pil = 1
@@ -215,7 +215,7 @@ class PdfDoc(TextDoc):
 
     def add_photo(self,name,x,y):
         if no_pil == 0:
-            im = PIL.Image.open(name)
+            im = Image.open(name)
 
             nx,ny = im.size
             scale = float(y)/float(nx)

@@ -70,7 +70,6 @@ class Marriage:
         self.path = db.getSavePath()
 
         self.selectedIcon = 0
-        self.currentImages = []
 
         self.top = libglade.GladeXML(const.marriageFile,"marriageEditor")
         self.top.signal_autoconnect({
@@ -149,10 +148,13 @@ class Marriage:
     #-------------------------------------------------------------------------
     def add_thumbnail(self,photo):
 
-        image2 = RelImage.scale_image(photo.getPath(),const.thumbScale)
+        src = photo.getPath()
+        thumb = self.db.getSavePath() + os.sep + ".thumb" + os.sep + \
+                os.path.basename(src)
 
-        self.currentImages.append(image2)
-        self.photo_list.append_imlib(image2,photo.getDescription())
+        RelImage.check_thumb(src,thumb,const.thumbScale)
+
+        self.photo_list.append(thumb,photo.getDescription())
 
     #-------------------------------------------------------------------------
     #
@@ -165,9 +167,6 @@ class Marriage:
 
         if len(self.family.getPhotoList()) == 0:
             return
-
-        self.currentImages = []
-    
         self.photo_list.freeze()
         self.photo_list.clear()
         for photo in self.family.getPhotoList():

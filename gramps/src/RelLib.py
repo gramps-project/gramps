@@ -620,12 +620,20 @@ class Source:
         self.pubinfo = ""
         self.callno = ""
         self.note = Note()
+        self.photoList = []
+        self.id = -1
         
     def setId(self,newId):
         self.id = newId
 
     def getId(self):
         return self.id
+
+    def addPhoto(self,photo):
+        self.photoList.append(photo)
+
+    def getPhotoList(self):
+        return self.photoList
 
     def setTitle(self,title):
         self.title = title

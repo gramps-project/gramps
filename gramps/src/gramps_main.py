@@ -65,7 +65,9 @@ import utils
 import Bookmarks
 import ListColors
 import Config
-
+import EditSource
+import EditPerson
+import Marriage
 
 #-------------------------------------------------------------------------
 #
@@ -579,8 +581,6 @@ def new_database_response(val):
 #
 #-------------------------------------------------------------------------
 def marriage_edit(family):
-    import Marriage
-
     Marriage.Marriage(family,database)
 
 #-------------------------------------------------------------------------
@@ -669,8 +669,6 @@ def on_source_list_select_row(obj,a,b,c):
 #
 #-------------------------------------------------------------------------
 def on_add_source_clicked(obj):
-    import EditSource
-
     EditSource.EditSource(Source(),database,new_source_after_edit)
 
 #-------------------------------------------------------------------------
@@ -687,8 +685,6 @@ def on_delete_source_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_edit_source_clicked(obj):
-    import EditSource
-    
     index = obj.get_data("i")
     if index == -1:
         return
@@ -1603,8 +1599,6 @@ def update_after_edit(person):
 #
 #-------------------------------------------------------------------------
 def load_person(person):
-    import EditPerson
-    
     if person == None:
         EditPerson.EditPerson(Person(),database,surnameList,\
                               new_after_edit)

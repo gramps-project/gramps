@@ -27,7 +27,7 @@ import const
 import string
 
 try:
-    import PIL
+    import Image
     no_pil = 0
 except:
     no_pil = 1
@@ -79,10 +79,10 @@ class AbiWordDoc(TextDoc):
                 tag = string.replace(base,'.','_')
 
                 if no_pil:
-                    cmd = "%s -size %dx%d %s %s" % (const.convert,width,height,file,base)
+                    cmd = "%s -geometry %dx%d '%s' '%s'" % (const.convert,width,height,file,base)
                     os.system(cmd)
                 else:
-                    im = PIL.Image.open(file)
+                    im = Image.open(file)
                     im.thumbnail((width,height))
                     im.save(base,"PNG")
 

@@ -106,7 +106,11 @@ class SourceEditor:
         typeMenu.append(menuitem)
         index = 1
         save = 0
-        self.base = self.source_ref.getBase()
+        if self.source_ref:
+            self.base = self.source_ref.getBase()
+        else:
+            self.base = None
+
         for src in self.db.getSourceMap().values():
             if src == self.base:
                 save = index
@@ -155,6 +159,10 @@ def on_sourceok_clicked(obj):
     src_edit = obj.get_data(SOURCEDISP)
     
     current_source_ref = src_edit.active_entry.getSourceRef()
+    if current_source_ref == None:
+        current_source_ref = SourceRef()
+        src_edit.active_entry.setSourceRef(current_source_ref)
+        
     if src_edit.active_source != current_source_ref.getBase():
         src_edit.active_entry.getSourceRef().setBase(src_edit.active_source)
         utils.modified()
