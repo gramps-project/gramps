@@ -1,3 +1,7 @@
+2003-11-16  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditPerson.py: handle LDS status setting properly
+	* src/RelLib.py: use LDS status for equality comparison
+
 2003-11-15  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/dialog.glade: fixed sizes of dialog windows.
 
