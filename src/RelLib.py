@@ -2029,7 +2029,6 @@ class GrampsDB(Persistent):
         """returns a map of gramps's IDs to Source instances"""
         return extmap(self.sourceMap)
 
-
     def getObjectMap(self):
         """returns a map of gramps's IDs to Object instances"""
         return self.objectMap
