@@ -563,7 +563,7 @@ class Marriage:
         idval = unicode(self.gid.get_text())
         if idval == "":
             idval = None
-        if self.family.get_handle() != idval:
+        if self.family.get_gramps_id() != idval:
             changed = 1
 
         date = unicode(self.lds_date.get_text())
