@@ -1,3 +1,7 @@
+2004-10-11 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/DateDisplay.py (_display_gregorian): Prepend month and
+	day with zeros if needed for the ISO format.
+
 2004-10-10  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DateParser.py: try to detect illegal numerical dates
 	* src/GrampsInMemDB.py: handle null handle
