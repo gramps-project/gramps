@@ -9,6 +9,11 @@ Version 1.1.90 -- the "Successful encyclopedia salesman" release
   only).
 * Import from into native GRDB format.
 * GnomePrint backend supports shadows for the boxes.
+* GraphViz Relationship report has more options for finetuning the report
+  looks, options for report content and looks are moved to separate tabs.
+* StatisticsChart report supports more statistics types, it can generate
+  several statistics at the same time, statistics can be presented either
+  with barcharts or piecharts.
 * Bug fixes.
 
 Version 1.1.3 -- the "Splunge: this is a great idea, but possibly lousy,
