@@ -115,7 +115,10 @@ def importData(database, filename, callback):
     
     # Rename media files if they were conflicting with existing ones
     ObjectMap = parser.db.getObjectMap()
-    for OldMediaID in parser.MediaFileMap.keys():
+    MediaFileMapKeys = parser.MediaFileMap.keys()
+    MediaFileMapKeys.sort()
+    MediaFileMapKeys.reverse()
+    for OldMediaID in MediaFileMapKeys:
         NewMediaID = parser.MediaFileMap[OldMediaID]
         if NewMediaID != OldMediaID:
             oldfile = ObjectMap[NewMediaID].getPath()
