@@ -25,7 +25,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import pickle
+import cPickle as pickle
 import os
 import locale
 from gettext import gettext as _
