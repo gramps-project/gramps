@@ -162,7 +162,7 @@ def draw_vertical_bar_graph(doc, format, start_x, start_y, height, width, data):
         doc.draw_bar(data[index][0],start,bottom-size,start+box_width,bottom)
         start += box_width * 1.5
 
-def estimate_age(db, person):
+def estimate_age(db, person, end_handle=None, start_handle=None):
     """
     Estimates the age of a person based off the birth and death
     dates of the person. A tuple containing the estimated upper
@@ -173,12 +173,27 @@ def estimate_age(db, person):
     @type db: GrampsDbBase
     @param person: Person object to calculate the age of
     @type person: Person
+    @param end_handle: Determines the event handle that determines
+       the upper limit of the age. If None, the death event is used
+    @type end_handle: str
+    @param start_handle: Determines the event handle that determines
+       the lower limit of the event. If None, the birth event is
+       used
+    @type start_handle: str
     @returns: tuple containing the lower and upper bounds of the
        person's age, or (-1,-1) if it could not be determined.
     @rtype: tuple
     """
-    bhandle = person.get_birth_handle()
-    dhandle = person.get_death_handle()
+
+    if start_handle:
+        bhandle = start_handle
+    else:
+        bhandle = person.get_birth_handle()
+
+    if end_handle:
+        dhandle = end_handle
+    else:
+        dhandle = person.get_death_handle()
 
     # if either of the events is not defined, return an error message
     if not bhandle or not dhandle:

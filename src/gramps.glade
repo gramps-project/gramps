@@ -31250,7 +31250,7 @@ Family name Given name
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
-	    <widget class="GtkButton" id="button1">
+	    <widget class="GtkButton" id="next">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
@@ -31321,7 +31321,7 @@ Family name Given name
 	  </child>
 
 	  <child>
-	    <widget class="GtkButton" id="button2">
+	    <widget class="GtkButton" id="close">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
@@ -31330,6 +31330,7 @@ Family name Given name
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">-7</property>
+	      <signal name="clicked" handler="gtk_widget_destroy" last_modification_time="Wed, 26 Jan 2005 02:18:57 GMT"/>
 	    </widget>
 	  </child>
 	</widget>
