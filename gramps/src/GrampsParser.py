@@ -651,29 +651,18 @@ class GrampsParser(handler.ContentHandler):
 
         if self.address:
             self.address.setNote(note)
-            print "Address"
         elif self.attribute:
             self.attribute.setNote(note)
-            print "Attribute"
         elif self.name:
             self.name.setNote(note)
-            print "Name"
         elif self.source:
             self.source.setNote(note)
-            print "source"
         elif self.event:
             self.event.setNote(note)
-            print "event"
         elif self.person:
-            print self.person.getPrimaryName().getName()
-            print "-------------------------------------"
-            print note
             self.person.setNote(note)
         elif self.family:
             self.family.setNote(note)
-            print "Family"
-        else:
-            print "Ignored"
         self.note_list = []
 
     #---------------------------------------------------------------------
