@@ -9,6 +9,7 @@
 	when parsing XML. This should take care of prior data with standard 
 	events and attributes recorded in $LANG. 
 	* src/FamilyView.py (nameof): Translate parent's relation to a child. 
+	* NEWS: More new items. 
 
 2003-08-11  Alexandre Duret-Lutz  <adl@gnu.org>
 	* configure.in: Modernize calls to AC_INIT, AM_INIT_AUTOMAKE and
