@@ -1724,7 +1724,14 @@ class FamilyWithIncompleteEvent(Rule):
 class ProbablyAlive(Rule):
     """People probably alive"""
 
-    labels = ["On year"]
+    labels = [_("On year:")]
+
+    def prepare(self,db):
+        try:
+            self.current_year = int(self.list[0])
+        except:
+            self.current_year = None
+        print self.current_year
 
     def name(self):
         return 'People probably alive'
@@ -1737,12 +1744,8 @@ class ProbablyAlive(Rule):
 
 
     def apply(self,db,p_id):
-        if len(self.list) == 0:
-            current_year = None
-        else:
-            current_year = int(self.list[0])
         p = db.get_person_from_handle(p_id)
-        return probably_alive(p,db,current_year)
+        return probably_alive(p,db,self.current_year)
 
 #-------------------------------------------------------------------------
 # "People marked private"
@@ -1988,7 +1991,7 @@ class HasSourceOf(Rule):
     labels = [ _('Source ID:') ]
     
     def prepare(self,db):
-        self.db = db
+        self.source_handle = db.get_source_from_gramps_id(self.list[0]).get_handle()
 
     def name(self):
         return 'Has source of'
@@ -2000,23 +2003,9 @@ class HasSourceOf(Rule):
         return _('Matches people who have a particular source')
 
     def apply(self,db,p_id):
-        if not self.list[0]:
-            return False
-        
         p = self.db.get_person_from_handle(p_id)
 
-        return p.has_source_reference(
-            self.db.get_source_from_gramps_id(self.list[0]).get_handle())
-    
-##        if len(p.get_source_references()) > 0:
-##            for src in p.get_source_references():
-                
-##                if self.list[0] == \
-##                   self.db.get_source_from_handle(
-##                    src.get_base_handle()).get_gramps_id():
-##                    return True
-        
-##        return False
+        return p.has_source_reference( self.source_handle)
 
 
 #-------------------------------------------------------------------------
