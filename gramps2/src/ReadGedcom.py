@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -397,6 +397,18 @@ class GedcomParser:
     def get_next(self):
         if self.backoff == 0:
             next_line = self.f.readline()
+            
+            # EOF ?
+            if next_line == "":
+                self.index += 1
+                self.text = "";
+                self.backoff = 0
+		msg = _("Warning: Premature end of file at line %d.\n") % self.index
+                self.errmsg(msg)
+                self.error_count = self.error_count + 1
+                self.groups = (-1, "END OF FILE", "")
+                return self.groups
+
             try:
                 self.text = string.translate(next_line.strip(),self.transtable,self.delc)
             except:
@@ -624,7 +636,7 @@ class GedcomParser:
 #                noteobj.append(text + self.parse_continue_data(1))
                 noteobj.append(text + self.parse_note_continue(1))
                 self.parse_note_data(1)
-            elif matches[1] == "TRLR":
+            elif matches[0] < 1 or matches[1] == "TRLR":
                 self.backup()
                 return
             else:
@@ -638,7 +650,7 @@ class GedcomParser:
             return self.idswap[gid]
         else:
             if self.db.id_trans.get(str(gid)):
-                self.idswap[gid] = self.db.find_next_gid()
+                self.idswap[gid] = self.db.find_next_person_gramps_id()
             else:
                 self.idswap[gid] = gid
             return self.idswap[gid]
@@ -767,7 +779,7 @@ class GedcomParser:
         while 1:
             matches = self.get_next()
 
-            if int(matches[0]) == 0:
+            if int(matches[0]) < 1:
                 self.backup()
                 return
             elif matches[1] == "HUSB":
@@ -869,7 +881,7 @@ class GedcomParser:
         while 1:
             matches = self.get_next()
 
-            if int(matches[0]) == 0:
+            if int(matches[0]) < 1:
                 self.backup()
                 return
             elif matches[1] == "NAME":
@@ -1105,7 +1117,7 @@ class GedcomParser:
         while 1:
             matches = self.get_next()
             if matches[1] == "FORM":
-                form = string.lower(matches[2])
+                form = matches[2].lower()
             elif matches[1] == "TITL":
                 title = matches[2]
             elif matches[1] == "FILE":
@@ -1130,7 +1142,7 @@ class GedcomParser:
             if not ok:
                 self.warn(_("Warning: could not import %s") % filename + "\n")
                 self.warn(_("\tThe following paths were tried:\n\t\t"))
-                self.warn(string.join(path,"\n\t\t"))
+                self.warn("\n\t\t".join(path))
                 self.warn('\n')
             else:
                 photo_handle = self.media_map.get(path)
@@ -1156,7 +1168,7 @@ class GedcomParser:
         while 1:
             matches = self.get_next()
             if matches[1] == "FORM":
-                form = string.lower(matches[2])
+                form = matches[2].lower()
             elif matches[1] == "TITL":
                 title = matches[2]
             elif matches[1] == "FILE":
@@ -1174,7 +1186,7 @@ class GedcomParser:
             if not ok:
                 self.warn(_("Warning: could not import %s") % filename + "\n")
                 self.warn(_("\tThe following paths were tried:\n\t\t"))
-                self.warn(string.join(path,"\n\t\t"))
+                self.warn("\n\t\t".join(path))
                 self.warn('\n')
             else:
                 photo = RelLib.MediaObject()
@@ -1588,14 +1600,14 @@ class GedcomParser:
             elif matches[1] == "NICK":
                 self.person.set_nick_name(matches[2])
             elif matches[1] == "_AKA":
-                lname = string.split(matches[2])
+                lname = matches[2].split()
                 l = len(lname)
                 if l == 1:
                     self.person.set_nick_name(matches[2])
                 else:
                     name = RelLib.Name()
                     name.set_surname(lname[-1])
-                    name.set_first_name(string.join(lname[0:l-1]))
+                    name.set_first_name(' '.join(lname[0:l-1]))
                     self.person.add_alternate_name(name)
             elif matches[1] == "SOUR":
                 name.add_source_reference(self.handle_source(matches,level+1))
@@ -1614,13 +1626,13 @@ class GedcomParser:
         elif len(data) > 1:
             name = RelLib.Name()
             name.set_surname(data[-1])
-            name.set_first_name(string.join(data[0:-1],' '))
+            name.set_first_name(' '.join(data[0:-1]))
             name.set_type('Married Name')
             person.add_alternate_name(name)
 
     def parse_header_head(self):
         """validiates that this is a valid GEDCOM file"""
-        line = string.replace(self.f.readline(),'\r','')
+        line = self.f.readline().replace('\r','')
         match = headRE.search(line)
         if not match:
             raise Errors.GedcomError("%s is not a GEDCOM file" % self.filename)
@@ -1630,8 +1642,7 @@ class GedcomParser:
         genby = ""
         while 1:
             matches = self.get_next()
-
-            if int(matches[0]) == 0:
+            if int(matches[0]) < 1:
                 self.backup()
                 return
             elif matches[1] == "SOUR":
