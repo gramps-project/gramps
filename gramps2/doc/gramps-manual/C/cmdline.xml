@@ -2,7 +2,7 @@
       <!-- =============== Appendices Subsection ================ -->
   <sect2 id="append-cmdline">
   <title>Command line reference</title>
-  <para>This appendix provide the reference to the command line 
+  <para>This appendix provides the reference to the command line 
   capabilities available when launching &app; from the terminal. </para>
   
   <para>Let us note here that &app; was designed to be an interactive 
@@ -10,8 +10,8 @@
   true non-graphical console. It would take an enormous amount of effort 
   to enable it to run in a text-only terminal. This is why the set of 
   command line options does not aim to completely get rid of dependency
-  on graphical display It merely makes certain (typical) tasks more 
-  convenient. It also allows one to execute these tasks from the scripts. 
+  on the graphical display. Rather, it merely makes certain (typical) tasks 
+  more convenient. It also allows one to execute these tasks from the scripts. 
   However, the graphical display must be accessible at all times! 
   </para>
 
@@ -33,37 +33,38 @@
           <listitem><para> The format of any file destined for import or export
           can be specified with the 
           	<command>-f</command> <replaceable>format</replaceable>
-          option. The format can be one of the following:
+          option. The <replaceable>format</replaceable> can be one of the 
+          following:
           
           	<variablelist>
 
           	<varlistentry><term>gramps</term>
           	<listitem><para> &app; database. This format is available 
-                for both import and export. When not specified, can be guessed 
-                if the filename represents a directory. 
+                for both import and export. When not specified, it can be 
+                guessed if the filename represents a directory. 
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>gedcom</term>
           	<listitem><para> GEDCOM file. This format is available 
-                for both import and export. When not specified, can be guessed 
-                if the filename ends with .ged
+                for both import and export. When not specified, it can be 
+                guessed if the filename ends with .ged
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>gramps-pkg</term>
           	<listitem><para> &app; package. This format is available 
-                for both import and export. When not specified, can be guessed 
-                if the filename ends with .tgz
+                for both import and export. When not specified, it can be 
+                guessed if the filename ends with .tgz
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>wft</term>
           	<listitem><para> Web Family Tree. This format is available 
-                for export only. When not specified, can be guessed 
+                for export only. When not specified, it can be guessed 
                 if the filename ends with .wft
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>iso</term>
           	<listitem><para> CD image. This format is available 
-                for export only. Never guessed, always specify explicitly. 
+                for export only. It must always be specified explicitly. 
                 </para></listitem></varlistentry>
 
           	</variablelist>
@@ -115,7 +116,7 @@
           </para>
 
           <para> When more than one output file is given, each has to be 
-          preceded by <command>-i</command> flag. The files are written one 
+          preceded by <command>-o</command> flag. The files are written one 
           by one, in the specified order.
           </para></listitem>
           </varlistentry>
@@ -148,10 +149,10 @@
       <sect3 id="cmdline-operation">
       <title>Operation</title>
       
-       <para>The order  of  <command>-i</command>, <command>-o</command>, 
-       or <command>-a</command> options does not matter. The actual order
-       always is: all imports (if any) -> all exports (if any) -> all actions
-       (if any).</para>
+       <para>The order of <command>-i</command>, <command>-o</command>, 
+       or <command>-a</command> options with respect to each does not matter. 
+       The actual execution order always is: all imports (if any) -> all 
+       exports (if any) -> all actions (if any).</para>
                                                                                 
        <para>If no <command>-i</command> option is given, gramps will launch 
        its main window and start the usual interactive session with the empty 
@@ -163,7 +164,7 @@
        This database resides under 
        <replaceable>~/.gramps/import</replaceable> directory.</para>
                                                                                 
-       <para>The  error encountered during import, export, or action, will 
+       <para>Any errors encountered during import, export, or action, will 
        be either dumped to stdout (if these are exceptions handled by gramps) 
        or or to stderr (if these are not handled). Use usual shell redirections 
        of stdout and stderr to save messages and errors in files.</para>
@@ -203,8 +204,18 @@
         <command>-o</command> <replaceable>~/new-package</replaceable> 
           <command>-f</command> <replaceable>gramps-pkg</replaceable> 
         </para>
-
                                                                                 
+       <para>To save any error messages of the above example into files
+       <replaceable>outfile</replaceable> and 
+       <replaceable>errfile</replaceable>, run:</para>
+        <para><command>gramps -i</command> <replaceable>file1.ged</replaceable> 
+        <command>-i</command> <replaceable>file2.tgz</replaceable> 
+        <command>-o</command> <replaceable>~/new-package</replaceable> 
+        <command>-f</command> <replaceable>gramps-pkg</replaceable> 
+        &gt;<replaceable>outfile</replaceable> 
+        2&gt;<replaceable>errfile</replaceable> 
+        </para>
+
        <para>To import three databases and start interactive gramps 
        session with the result:</para>
         <para><command>gramps -i</command> <replaceable>file1.ged</replaceable> 

@@ -262,7 +262,9 @@
 	Current spouse, respectively. Clicking the right arrow button
 	makes the family in the corresponding list box an active family. 
 	That is, it makes the selected Father the Active person, and the 
-	selected Mother the Current spouse. </para>
+	selected Mother the Current spouse. Most of these
+        functions are also available by right-clicking into the parent box and
+        selecting an appropriate items from the context menu. </para>
 	
 	<para>The bottom list box displays children of the Active person and 
 	the Current  Spouse. The Children's list can be ordered by the Birth date 
@@ -279,7 +281,28 @@
         and to the family, the lower one just adds a person existing in the
         database to the family. Finally, the lowest <guibutton>-</guibutton> 
         button removes the selected child from the family. Note that removing 
-        a child from the family does not remove the person from the database.</para> 
+        a child from the family does not remove the person from the 
+        database. Most of these functions are also available by right-clicking 
+        into the children box and selecting an appropriate items from the 
+        context menu.</para> 
+
+	<para>The layout of the Family View can be switched from the 
+        left-to-right arrangement (shown above) to the top-to-bottom 
+        arrangement (shown below). This can be done in the 
+        <guilabel>Display</guilabel> section of the 
+        <guilabel>Preferences</guilabel> dialog. The top-to-bottom view 
+        has the same functionality as the left-to-right view. </para>
+
+	<!-- ==== Figure: Family View ==== -->
+	<figure id="family-alt-fig"> 
+	<title>Alternative Family View</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/family-alt.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Alternative Family View.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
       </sect3>
 
     <!-- ================ Main Window Sub-subsection  -->

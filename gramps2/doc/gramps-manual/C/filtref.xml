@@ -2,10 +2,9 @@
       <!-- =============== Appendices Subsection ================ -->
       <sect2 id="append-filtref">
       <title>Filter rules reference</title>
-      <para>This appendix provides the list of all the filter rules 
-      which are currently defined in &app;. All these rules are available 
-      for use when creating custom filters. The rules are listed by their 
-      categories. 
+      <para>This appendix lists of all the filter rules currently defined 
+      in &app;. Each of these rules is available for use when creating custom 
+      filters. The rules are listed by their categories. 
       </para>
 
         <!-- =============== Appendices Sub-subsection ================ -->
@@ -24,8 +23,7 @@
 
           <varlistentry><term>Has a name</term>
           <listitem><para> This rule matches any person whose name 
-          matches the specified value. The rule returns a match even if 
-          the person's name matches the value partially. For example, 
+          matches the specified value in full or in part. For example, 
           Marta Ericsdotter will be matched by the rule using the 
           value "eric" for the family name. 
           </para>
@@ -74,9 +72,10 @@
           <varlistentry><term>Has the birth</term>
           <listitem><para> This rule matches people whose birth event 
           matches specified values for Date, Place, and Description. 
-          The rule returns a match even if the person's birth event 
-          matches the value partially. For example, anyone born in Sweden
-          will be matched by the rule using the value "sw" for the Place.
+          The rule returns a match even if the person's birth event matches 
+          the value partially. The matching rules are case-insensitive. 
+          For example, anyone born in Sweden will be matched by the rule 
+          using the value "sw" for the Place. 
           </para>
 
           <para> The rule returns a match if and only if 
@@ -89,7 +88,8 @@
           <listitem><para> This rule matches people whose death event 
           matches specified values for Date, Place, and Description. 
           The rule returns a match even if the person's death event 
-          matches the value partially. For example, anyone who died in Sweden
+          matches the value partially. The matching rules are case-insensitive. 
+          For example, anyone who died in Sweden
           will be matched by the rule using the value "sw" for the Place.
           </para>
 
@@ -103,7 +103,8 @@
           <listitem><para> This rule matches people that have a personal 
           event matching specified values for the Event type, Date, Place, 
           and Description. The rule returns a match even if the person's 
-          event matches the value partially. For example, anyone who graduated 
+          event matches the value partially. The matching rules are 
+          case-insensitive. For example, anyone who graduated 
           in Sweden will be matched by the rule using the Graduation event 
           and the value "sw" for the Place.
           </para>
@@ -119,9 +120,10 @@
           <listitem><para> This rule matches people that have a family 
           event matching specified values for the Event type, Date, Place, 
           and Description. The rule returns a match even if the person's 
-          event matches the value partially. For example, anyone who was 
-          married in Sweden will be matched by the rule using the Marriage 
-          event and the value "sw" for the Place.
+          event matches the value partially. The matching rules are 
+          case-insensitive. For example, anyone who was married in Sweden 
+          will be matched by the rule using the Marriage event and the 
+          value "sw" for the Place. 
           </para>
 
           <para> The family events should be selected from a pull-down menu. 
@@ -157,21 +159,21 @@
 
           <varlistentry><term>Is spouse of filter match</term>
           <listitem><para> This rule matches people married to someone 
-          who is in turn matched by the specified filter. 
+          who is matched by the specified filter. 
           The specified filter name should be selected from the menu. 
           </para></listitem>
           </varlistentry>
 
           <varlistentry><term>Is a child of filter match</term>
-          <listitem><para> This rule matches people whose either parent  
-          is in turn matched by the specified filter. 
+          <listitem><para> This rule matches people for whom either parent  
+          is matched by the specified filter. 
           The specified filter name should be selected from the menu. 
           </para></listitem>
           </varlistentry>
 
           <varlistentry><term>Is a parent of filter match</term>
           <listitem><para> This rule matches people whose child  
-          is in turn matched by the specified filter. 
+          is matched by the specified filter. 
           The specified filter name should be selected from the menu. 
           </para></listitem>
           </varlistentry>
@@ -183,7 +185,7 @@
     	<sect3 id="filtref-ancestral">
         <title>Ancestral filters</title>
         <para>This category includes the following rules that match people 
-        based on their being ancestors of other people:</para>
+        based on their ancestral relations to other people:</para>
           <variablelist>
 
           <varlistentry><term>Is an ancestor of</term>
@@ -205,20 +207,20 @@
           <listitem><para> This rule matches people who are ancestors of the 
           specified person and are at least N generations away from that person 
           in their lineage. For example, using this rule with the value of 2 
-          for the number of generations will match grandparents, great 
-          grandparents, etc., of the specified person, but not the parents of 
-          that person. 
+          for the number of generations will match grandparents, 
+          great-grandparents, etc., but not the parents of the specified 
+          person. 
           </para></listitem>
           </varlistentry>
 
           <varlistentry><term>Is an ancestor of person not more 
           than N generations away</term>
           <listitem><para> This rule matches people who are ancestors of the 
-          specified person and are no more N generations away from that person 
-          in their lineage. For example, using this rule with the value of 2 
-          for the number of generations will match parents of the specified 
-          person, but not grandparents, great grandparents, etc., 
-          of that person. 
+          specified person and are no more than N generations away from that 
+          person in their lineage. For example, using this rule with the value 
+          of 2 for the number of generations will match parents and 
+          grandparents, but not great-grandparents, etc., of the specified 
+          person. 
           </para></listitem>
           </varlistentry>
 
@@ -230,14 +232,14 @@
 
           <varlistentry><term>Has a common ancestor with filter match</term>
           <listitem><para> This rule matches people who have common ancestors 
-          with someone who is in turn matched by the specified filter.
+          with someone who is matched by the specified filter.
           The specified filter name should be selected from the menu. 
           </para></listitem>
           </varlistentry>
 
           <varlistentry><term>Is an ancestor of filter match</term>
           <listitem><para> This rule matches people who are ancestors 
-          of someone who is in turn matched by the specified filter.
+          of someone who is matched by the specified filter.
           The specified filter name should be selected from the menu. 
           </para></listitem>
           </varlistentry>
@@ -249,7 +251,7 @@
     	<sect3 id="filtref-descendant">
         <title>Descendant filters</title>
         <para>This category includes the following rules that match people 
-        based on their being descendants of other people:</para>
+        based on their descendant relations to other people:</para>
           <variablelist>
 
           <varlistentry><term>Is a descendant of</term>
@@ -271,33 +273,34 @@
           <listitem><para> This rule matches people who are descendants of the 
           specified person and are at least N generations away from that person 
           in their lineage. For example, using this rule with the value of 2 
-          for the number of generations will match grandchildren, great 
-          grandchildren, etc., of the specified person, but not the children of 
-          that person. 
+          for the number of generations will match grandchildren, 
+          great-grandchildren, etc., but not the children of the specified 
+          person.
           </para></listitem>
           </varlistentry>
 
           <varlistentry><term>Is a descendant of person not more 
           than N generations away</term>
           <listitem><para> This rule matches people who are descendants of the 
-          specified person and are no more N generations away from that person 
-          in their lineage. For example, using this rule with the value of 2 
-          for the number of generations will match children of the specified 
-          person, but not grandchildren, great grandchildren, etc., 
-          of that person. 
+          specified person and are no more than N generations away from that 
+          person in their lineage. For example, using this rule with the value 
+          of 2 for the number of generations will match children and 
+          grandchildren, but not great-grandchildren, etc., of the specified 
+          person. 
           </para></listitem>
           </varlistentry>
 
           <varlistentry><term>Is a descendant of filter match</term>
           <listitem><para> This rule matches people who are descendants 
-          of someone who is in turn matched by the specified filter.
+          of someone who is matched by the specified filter.
           The specified filter name should be selected from the menu. 
           </para></listitem>
           </varlistentry>
 
           <varlistentry><term>Is a descendant family member of</term>
-          <listitem><para> This rule matches people who are descendants 
-          or the spouse of a descendant of the specified person.
+          <listitem><para> This rule not only matches people who are 
+          descendants of the specified person, but also those descendants' 
+          spouses.
           </para></listitem>
           </varlistentry>
 
@@ -307,15 +310,15 @@
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-misc">
         <title>Miscellaneous filters</title>
-        <para>This category includes the following rules which did not
+        <para>This category includes the following rules which do not
         naturally fit into any of the above categories:</para>
           <variablelist>
 
           <varlistentry><term>Has the personal attribute</term>
           <listitem><para> This rule matches people who have the personal 
           attribute of the specified value. The specified personal attribute
-          should be selected from the menu. The specified value should be 
-          typed into the text entry field. 
+          name should be selected from the menu. The specified value should 
+          be typed into the text entry field. 
           </para></listitem>
           </varlistentry>
 
