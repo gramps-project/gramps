@@ -74,11 +74,7 @@ class AddSpouse:
         self.surname_combo = self.glade.get_widget("surname_combo")
 
         self.rel_combo.set_popdown_strings(const.familyRelations)
-        if len(const.surnames) > 0:
-            const.surnames.sort()
-            self.surname_combo.set_popdown_strings(const.surnames)
-            self.surname_combo.disable_activate()
-        self.surname.set_text("")
+        utils.attach_surnames(self.surname_combo)
 
         # Typing CR selects 'Add Existing' button
         self.top.editable_enters(self.given)

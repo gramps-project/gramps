@@ -233,6 +233,7 @@ class NewChild:
         self.top  = self.xml.get_widget("addChild")
         self.surname = self.xml.get_widget("childSurname")
         self.given = self.xml.get_widget("childGiven")
+        utils.attach_surnames(self.xml.get_widget("surname_combo"))
 
         surname = ""
         if self.person.getGender() == Person.male:
