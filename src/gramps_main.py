@@ -361,7 +361,7 @@ def on_add_new_child_clicked(obj):
 def on_choose_parents_clicked(obj):
     import ChooseParents
     if active_person:
-        ChooseParents.ChooseParents(database,active_person,active_parents,load_family)
+        ChooseParents.ChooseParents(database,active_person,active_parents,load_family,full_update)
     
 #-------------------------------------------------------------------------
 #
