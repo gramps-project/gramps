@@ -53,6 +53,7 @@ import sort
 import AutoComp
 import ListModel
 import RelLib
+import Sources
 from DateEdit import DateEdit
 from QuestionDialog import QuestionDialog, WarningDialog, ErrorDialog, SaveDialog
 
@@ -102,7 +103,8 @@ class EditPerson:
         self.window.set_title("%s - GRAMPS" % _('Edit Person'))
         
         self.icon_list = self.top.get_widget("iconlist")
-        self.gallery = ImageSelect.Gallery(person, self.path, self.icon_list,self.db,self,self.window)
+        self.gallery = ImageSelect.Gallery(person, self.path, self.icon_list,
+                                           self.db,self,self.window)
 
         self.name_delete_btn = self.top.get_widget('aka_delete')
         self.name_edit_btn = self.top.get_widget('aka_edit')
@@ -176,6 +178,7 @@ class EditPerson:
         self.name_note = self.get_widget("name_note")
         self.name_source = self.get_widget("name_source")
         self.gid = self.get_widget("gid")
+        self.slist = self.get_widget("slist")
 
         self.death = RelLib.Event(person.getDeath())
         self.birth = RelLib.Event(person.getBirth())
@@ -186,6 +189,11 @@ class EditPerson:
         self.alist = person.getAttributeList()[:]
         self.ulist = person.getUrlList()[:]
         self.plist = person.getAddressList()[:]
+
+        if person:
+            self.srcreflist = person.getSourceRefList()
+        else:
+            self.srcreflist = []
 
         # event display
         etitles = [(_('Event'),-1,150),(_('Description'),-1,150),
@@ -328,6 +336,12 @@ class EditPerson:
             })
 
         self.update_birth_death()
+
+        self.sourcetab = Sources.SourceTab(self.srcreflist,self,
+                                           self.top,self.window,self.slist,
+                                           self.top.get_widget('add_src'),
+                                           self.top.get_widget('edit_src'),
+                                           self.top.get_widget('del_src'))
 
         self.redraw_event_list()
         self.redraw_attr_list()
@@ -1428,6 +1442,10 @@ class EditPerson:
             if not self.lds_sealing.are_equal(ord):
                 self.person.setLdsSeal(self.lds_sealing)
                 Utils.modified()
+
+        if self.lists_changed:
+            self.person.setSourceRefList(self.srcreflist)
+            Utils.modified()
 
         self.update_lists()
         if self.callback:

@@ -127,7 +127,7 @@ class GrampsParser:
             "description": (None, self.stop_description),
             "event"      : (self.start_event, self.stop_event),
             "families"   : (None, self.stop_families),
-            "family"     : (self.start_family, None),
+            "family"     : (self.start_family, self.stop_family),
             "father"     : (self.start_father, None),
             "first"      : (None, self.stop_first),
             "gender"     : (None, self.stop_gender),
@@ -139,7 +139,7 @@ class GrampsParser:
             "note"       : (self.start_note, self.stop_note),
             "p"          : (None, self.stop_ptag),
             "parentin"   : (self.start_parentin,None),
-            "people"     : (self.start_people, self.stop_people),
+            "people"     : (self.start_people, None),
             "person"     : (self.start_person, self.stop_person),
             "img"        : (self.start_photo, self.stop_photo),
             "objref"     : (self.start_objref, self.stop_objref),
@@ -248,7 +248,7 @@ class GrampsParser:
             if self.callback != None and self.count % self.increment == 0:
                 self.callback(float(self.count)/float(self.entries))
             self.count = self.count + 1
-
+            
     def start_location(self,attrs):
         """Bypass the function calls for this one, since it appears to
         take up quite a bit of time"""
@@ -380,6 +380,10 @@ class GrampsParser:
             self.family.setRelationship(const.save_frel(attrs["type"]))
         else:
             self.family.setRelationship("")
+        if attrs.has_key("complete"):
+            self.family.setComplete(int(attrs['complete']))
+        else:
+            self.family.setComplete(0)
 
     def start_childof(self,attrs):
         family = self.db.findFamilyNoMap(attrs["ref"])
@@ -439,6 +443,10 @@ class GrampsParser:
             self.attribute.addSourceRef(self.source_ref)
         elif self.placeobj:
             self.placeobj.addSourceRef(self.source_ref)
+        elif self.family:
+            self.family.addSourceRef(self.source_ref)
+        elif self.person:
+            self.person.addSourceRef(self.source_ref)
 
     def start_source(self,attrs):
         if self.num_srcs > 0:
@@ -623,7 +631,10 @@ class GrampsParser:
             loc = self.placeobj.get_main_location()
             self.placeobj.set_title(build_place_title(loc))
         self.db.buildPlaceDisplay(self.placeobj.getId())
-        self.palceobj = None
+        self.placeobj = None
+
+    def stop_family(self,tag):
+        self.family = None
         
     def stop_event(self,tag):
         self.event.name = self.event_type
@@ -664,7 +675,8 @@ class GrampsParser:
             self.ord.setPlace(self.placeobj)
         else:
             self.event.place = self.placeobj
-            
+        self.placeobj = None
+        
     def stop_uid(self,tag):
         self.person.setPafUid(tag)
 
@@ -681,11 +693,9 @@ class GrampsParser:
     def stop_families(self,tag):
         self.family = None
 
-    def stop_people(self,tag):
-        self.person = None
-
     def stop_person(self,tag):
         self.db.buildPersonDisplay(self.person.getId())
+        self.person = None
 
     def stop_description(self,tag):
         self.event.setDescription(tag)
@@ -897,7 +907,7 @@ class GrampsImportParser(GrampsParser):
         self.func_map["family"]   = (self.start_family, None)
         self.func_map["father"]   = (self.start_father, None)
         self.func_map["mother"]   = (self.start_mother,None)
-        self.func_map["people"]   = (self.start_people, self.stop_people)
+        self.func_map["people"]   = (self.start_people, None)
         self.func_map["person"]   = (self.start_person, self.stop_person)
         self.func_map["objref"]   = (self.start_objref, self.stop_objref)
         self.func_map["object"]   = (self.start_object, self.stop_object)
@@ -950,23 +960,6 @@ class GrampsImportParser(GrampsParser):
         if attrs.has_key("type"):
             self.family.setRelationship(const.save_frel(attrs["type"]))
 
-    def start_sourceref(self,attrs):
-        self.source_ref = RelLib.SourceRef()
-        self.source = self.db.findSourceNoConflicts(attrs["ref"],self.smap)
-        self.source_ref.setBase(self.source)
-        if self.address:
-            self.address.addSourceRef(self.source_ref)
-        elif self.name:
-            self.name.addSourceRef(self.source_ref)
-        elif self.event:
-            self.event.addSourceRef(self.source_ref)
-        elif self.attribute:
-            self.attribute.addSourceRef(self.source_ref)
-        elif self.placeobj:
-            self.placeobj.addSourceRef(self.source_ref)
-        else: 
-            print "Sorry, I'm lost"
-
     def start_source(self,attrs):
         self.source = self.db.findSourceNoConflicts(attrs["id"],self.smap)
 
@@ -994,6 +987,8 @@ class GrampsImportParser(GrampsParser):
             self.attribute.addSourceRef(self.source_ref)
         elif self.placeobj:
             self.placeobj.addSourceRef(self.source_ref)
+        elif self.family:
+            self.family.addSourceRef(self.source_ref)
 
     def start_place(self,attrs):
         self.placeobj = self.db.findPlaceNoConflicts(attrs['ref'],self.lmap)

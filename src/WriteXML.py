@@ -272,6 +272,8 @@ class XmlWriter:
                     self.write_ref("parentin",family,3)
 
                 self.write_note("note",person.getNote(),3)
+                for s in person.getSourceRefList():
+                    self.dump_source_ref(s,4)
 
                 self.g.write("    </person>\n")
             self.g.write("  </people>\n")
@@ -304,6 +306,8 @@ class XmlWriter:
                         self.write_ref("child",person,3)
                 self.write_attribute_list(family.getAttributeList())
                 self.write_note("note",family.getNote(),3)
+                for s in family.getSourceRefList():
+                    self.dump_source_ref(s,3)
                 self.g.write("    </family>\n")
             self.g.write("  </families>\n")
 
@@ -475,8 +479,11 @@ class XmlWriter:
     def write_family_id(self,family,index=1):
         if family:
             rel = family.getRelationship()
+            comp = family.getComplete()
             sp = "  " * index
             self.g.write('%s<family id="%s"' % (sp,family.getId()))
+            if comp:
+                self.g.write(' complete="1"')
             if rel != "":
                 self.g.write(' type="%s">\n' % const.save_frel(rel))
             else:

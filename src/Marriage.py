@@ -42,6 +42,7 @@ import ListModel
 import RelLib
 import ImageSelect
 import Date
+import Sources
 
 from QuestionDialog import QuestionDialog, WarningDialog, SaveDialog
 from gettext import gettext as _
@@ -72,6 +73,11 @@ class Marriage:
         self.cb = callback
         self.update_fv = update
         self.pmap = {}
+
+        if family:
+            self.srcreflist = family.getSourceRefList()
+        else:
+            self.srcreflist = []
 
         for key in db.getPlaceKeys():
             p = db.getPlaceDisplay(key)
@@ -116,6 +122,7 @@ class Marriage:
         self.event_list = self.get_widget("marriageEventList")
 
         # widgets
+        self.complete = self.get_widget('complete')
         self.date_field  = self.get_widget("marriageDate")
         self.place_field = self.get_widget("marriagePlace")
         self.cause_field = self.get_widget("marriageCause")
@@ -135,6 +142,7 @@ class Marriage:
         self.lds_temple = self.get_widget("lds_temple")
         self.lds_status = self.get_widget("lds_status")
         self.lds_place = self.get_widget("lds_place")
+        self.slist = self.get_widget("slist")
         
         self.elist = family.getEventList()[:]
         self.alist = family.getAttributeList()[:]
@@ -176,6 +184,9 @@ class Marriage:
             self.lds_temple.entry.set_text("")
             self.seal_stat = 0
 
+        if self.family.getComplete():
+            self.complete.set_active(1)
+
         place_list = self.pmap.keys()
         place_list.sort()
         self.autoplace = AutoComp.AutoCombo(self.lds_place, place_list)
@@ -197,6 +208,12 @@ class Marriage:
         # set notes data
         self.notes_buffer = self.notes_field.get_buffer()
         self.notes_buffer.set_text(family.getNote())
+
+        self.sourcetab = Sources.SourceTab(self.srcreflist,self,
+                                           self.top,self.window,self.slist,
+                                           self.top.get_widget('add_src'),
+                                           self.top.get_widget('edit_src'),
+                                           self.top.get_widget('del_src'))
 
         self.redraw_event_list()
         self.redraw_attr_list()
@@ -371,6 +388,9 @@ class Marriage:
         if const.save_frel(relation) != self.family.getRelationship():
             changed = 1
 
+        if self.complete.get_active() != self.family.getComplete():
+            changed = 1
+
         text = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                           self.notes_buffer.get_end_iter(),gtk.FALSE)
         if text != self.family.getNote():
@@ -469,6 +489,10 @@ class Marriage:
             self.family.setNote(text)
             Utils.modified()
 
+        if self.complete.get_active() != self.family.getComplete():
+            self.family.setComplete(self.complete.get_active())
+            Utils.modified()
+
         date = self.lds_date.get_text()
         temple = self.lds_temple.entry.get_text()
         if const.lds_temple_codes.has_key(temple):
@@ -504,6 +528,10 @@ class Marriage:
                 Utils.modified()
 
         Utils.destroy_passed_object(self.get_widget("marriageEditor"))
+
+        if self.lists_changed:
+            self.family.setSourceRefList(self.srcreflist)
+            Utils.modified()
 
         self.update_lists()
         if self.lists_changed:
