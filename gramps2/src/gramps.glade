@@ -1294,6 +1294,7 @@
 
 			  <child>
 			    <widget class="GtkCheckButton" id="invert">
+			      <property name="border_width">6</property>
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Show people that do not match the filtering rule</property>
 			      <property name="can_focus">True</property>
