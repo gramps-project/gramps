@@ -230,9 +230,8 @@ class SourceSelector:
 #-------------------------------------------------------------------------
 class SourceTab:
     def __init__(self, srclist, parent, top, window, clist, add_btn,
-                 edit_btn, del_btn, readonly=False, main_update=None ):
+                 edit_btn, del_btn, readonly=False):
 
-        self.main_update = main_update
         self.db = parent.db
         self.parent = parent
         self.list = srclist
@@ -334,11 +333,11 @@ class SourceTab:
         if node:
             col = store.get_path(node)
             src = self.list[col[0]]
-            SourceEditor(src,self.db,self.update_clist,self, self.main_update)
+            SourceEditor(src,self.db,self.update_clist,self)
 
     def add_src_clicked(self,obj):
         src = RelLib.SourceRef()
-        SourceEditor(src,self.db,self.add_ref,self, self.main_update)
+        SourceEditor(src,self.db,self.add_ref,self)
 
     def del_src_clicked(self,obj):
         (store,node) = self.selection.get_selected()
@@ -355,9 +354,8 @@ class SourceTab:
 #-------------------------------------------------------------------------
 class SourceEditor:
 
-    def __init__(self, srcref, database, update, parent, main_update=None):
+    def __init__(self, srcref, database, update, parent):
 
-        self.main_update = main_update
         self.db = database
         self.parent = parent
         if self.parent.__dict__.has_key('child_windows'):
@@ -573,11 +571,8 @@ class SourceEditor:
 
     def update_display(self,source):
         self.draw(source,fresh=False)
-        if self.main_update:
-            self.main_update()
 
     def add_src_clicked(self,obj):
         import EditSource
-        EditSource.EditSource(RelLib.Source(),self.db, self,
-                              self.sourceDisplay, self.update_display)
+        EditSource.EditSource(RelLib.Source(),self.db, self)
 

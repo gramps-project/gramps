@@ -59,7 +59,7 @@ from DdTargets import DdTargets
 #-------------------------------------------------------------------------
 class EditPlace:
 
-    def __init__(self,parent,place,func=None,parent_window=None):
+    def __init__(self,parent,place,parent_window=None):
         self.parent = parent
         if place.get_handle():
             if self.parent.child_windows.has_key(place.get_handle()):
@@ -73,7 +73,6 @@ class EditPlace:
         self.place = place
         self.db = parent.db
         self.child_windows = {}
-        self.callback = func
         self.path = parent.db.get_save_path()
         self.not_loaded = 1
         self.ref_not_loaded = 1
@@ -394,11 +393,9 @@ class EditPlace:
             self.db.commit_place(self.place,trans)
         else:
             self.db.add_place(self.place,trans)
-        self.db.transaction_commit(trans,_("Edit Place (%s)") % self.place.get_title())
+        self.db.transaction_commit(trans,
+                                   _("Edit Place (%s)") % self.place.get_title())
         
-        if self.callback:
-            self.callback(self.place)
-
         self.close(obj)
 
     def on_switch_page(self,obj,a,page):
@@ -587,10 +584,9 @@ def disp_loc(loc):
 #-------------------------------------------------------------------------
 class DeletePlaceQuery:
 
-    def __init__(self,place,db,update):
+    def __init__(self,place,db):
         self.db = db
         self.place = place
-        self.update = update
         
     def query_response(self):
         trans = self.db.transaction_begin()
@@ -613,5 +609,5 @@ class DeletePlaceQuery:
                     event.set_place_handle(None)
                     self.db.commit_event(event,trans)
 
-        self.db.transaction_commit(trans,_("Delete Place (%s)") % self.place.get_title())
-        self.update(self.place.get_handle())
+        self.db.transaction_commit(trans,
+                                   _("Delete Place (%s)") % self.place.get_title())

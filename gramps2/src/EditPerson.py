@@ -496,19 +496,10 @@ class EditPerson:
             "on_help_person_clicked"    : self.on_help_clicked,
             })
 
-        if self.parent:
-            try:
-                self.update_sources = self.parent.source_view.build_tree
-            except AttributeError:
-                self.update_sources = None
-        else:
-            self.update_sources = None
-        
         self.sourcetab = Sources.SourceTab(
             self.srcreflist, self, self.top, self.window, self.slist,
             self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
-            self.top.get_widget('del_src'), self.db.readonly,
-            self.update_sources)
+            self.top.get_widget('del_src'), self.db.readonly)
 
         self.complete.set_active(self.person.get_complete_flag())
         self.private.set_active(self.person.get_privacy())
@@ -1108,15 +1099,12 @@ class EditPerson:
     def on_add_addr_clicked(self,obj):
         """Invokes the address editor to add a new address"""
         import AddrEdit
-        AddrEdit.AddressEditor(self,None,self.addr_edit_callback,self.window,
-                               self.update_sources)
+        AddrEdit.AddressEditor(self,None,self.addr_edit_callback,self.window)
 
     def on_add_aka_clicked(self,obj):
         """Invokes the name editor to add a new name"""
         import NameEdit
-        NameEdit.NameEditor(
-            self, None, self.name_edit_callback, self.window,
-            self.update_sources)
+        NameEdit.NameEditor(self, None, self.name_edit_callback, self.window)
 
     def on_add_url_clicked(self,obj):
         """Invokes the url editor to add a new name"""
@@ -1129,8 +1117,7 @@ class EditPerson:
         import AttrEdit
         pname = self.name_display.display(self.person)
         AttrEdit.AttributeEditor(self,None,pname,const.personalAttributes,
-                                 self.attr_edit_callback,self.window,
-                                 self.update_sources)
+                                 self.attr_edit_callback,self.window)
 
     def on_up_clicked(self,obj):
         sel = obj.get_selection()
@@ -1154,8 +1141,7 @@ class EditPerson:
             self,pname,const.personalEvents,
             const.personal_events,None,None,0,
             self.event_edit_callback,
-            noedit=self.db.readonly,
-            redraw_main_source_list=self.update_sources)
+            noedit=self.db.readonly)
 
     def on_edit_birth_clicked(self,obj):
         """Brings up the EventEditor for the birth record, event

@@ -55,8 +55,7 @@ import NameDisplay
 
 class EditSource:
 
-    def __init__(self,source,db,parent,parent_window=None,
-                 func=None,readonly=False):
+    def __init__(self,source,db,parent,parent_window=None,readonly=False):
         if source:
             self.source = source
         else:
@@ -73,7 +72,6 @@ class EditSource:
         else:
             self.win_key = self
         self.child_windows = {}
-        self.callback = func
         self.path = db.get_save_path()
         self.not_loaded = 1
         self.ref_not_loaded = 1
@@ -359,9 +357,6 @@ class EditSource:
         else:
             self.db.commit_source(self.source,trans)
         self.db.transaction_commit(trans,_("Edit Source (%s)") % title)
-        
-        if self.callback:
-            self.callback(self.source)
         self.close(obj)
 
     def on_switch_page(self,obj,a,page):

@@ -64,10 +64,9 @@ _HANDLE_COL = len(column_names)
 #
 #-------------------------------------------------------------------------
 class SourceView:
-    def __init__(self,parent,db,glade,update):
+    def __init__(self,parent,db,glade):
         self.parent = parent
         self.glade = glade
-        self.update = update
         self.list = glade.get_widget("source_list")
         #self.list.set_property('fixed-height-mode',True)
         self.list.connect('button-press-event',self.button_press)        
@@ -81,7 +80,7 @@ class SourceView:
         self.topWindow = self.glade.get_widget("gramps")
 
         self.columns = []
-        self.build_columns()
+        self.change_db(db)
 
     def build_columns(self):
         for column in self.columns:
@@ -107,6 +106,9 @@ class SourceView:
         self.click_col = column
 
     def change_db(self,db):
+        db.add_source_callbacks(
+            'source_view', self.source_add, self.source_update,
+            self.source_delete, self.build_tree)
         self.build_columns()
         self.build_tree()
 
@@ -124,7 +126,7 @@ class SourceView:
             handle = mlist[0]
             source = self.parent.db.get_source_from_handle(handle)
             EditSource.EditSource(source,self.parent.db,self.parent,
-                                  self.topWindow,self.update_display)
+                                  self.topWindow)
             return True
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_context_menu(event)
@@ -165,7 +167,7 @@ class SourceView:
 
     def on_add_clicked(self,obj):
         EditSource.EditSource(RelLib.Source(),self.parent.db,self.parent,
-                              self.topWindow,self.new_after_edit)
+                              self.topWindow)
 
     def on_delete_clicked(self,obj):
         store,node = self.selection.get_selected()
@@ -196,13 +198,19 @@ class SourceView:
             handle = list_store.get_value(node,_HANDLE_COL)
             source = self.parent.db.get_source_from_handle(handle)
             EditSource.EditSource(source, self.parent.db, self.parent,
-                                  self.topWindow, self.update_display)
+                                  self.topWindow)
 
-    def new_after_edit(self,source):
-        self.model.add_row_by_handle(source.get_handle())
+    def source_add(self,handle_list):
+        for handle in handle_list:
+            self.model.add_row_by_handle(handle)
 
-    def update_display(self,source):
-        self.model.update_row_by_handle(source.get_handle())
+    def source_update(self,handle_list):
+        for handle in handle_list:
+            self.model.update_row_by_handle(handle)
+
+    def source_delete(self,handle_list):
+        for handle in handle_list:
+            self.model.delete_row_by_handle(handle)
 
     def blist(self,store,path,iter,sel_list):
         handle = store.get_value(iter,_HANDLE_COL)

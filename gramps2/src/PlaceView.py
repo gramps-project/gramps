@@ -67,7 +67,7 @@ _HANDLE_COL = len(column_names)
 #-------------------------------------------------------------------------
 class PlaceView:
     
-    def __init__(self,parent,db,glade,update):
+    def __init__(self,parent,db,glade):
         self.parent = parent
         self.glade  = glade
         self.list   = glade.get_widget("place_list")
@@ -84,7 +84,7 @@ class PlaceView:
         self.topWindow = self.glade.get_widget("gramps")
 
         self.columns = []
-        self.build_columns()
+        self.change_db(db)
 
     def build_columns(self):
         for column in self.columns:
@@ -107,7 +107,22 @@ class PlaceView:
             self.columns.append(column)
             self.list.append_column(column)
 
+    def place_add(self,handle_list):
+        for handle in handle_list:
+            self.model.add_row_by_handle(handle)
+
+    def place_update(self,handle_list):
+        for handle in handle_list:
+            self.model.update_row_by_handle(handle)
+
+    def place_delete(self,handle_list):
+        for handle in handle_list:
+            self.model.delete_row_by_handle(handle)
+
     def change_db(self,db):
+        db.add_place_callbacks(
+            'place_view', self.place_add, self.place_update,
+            self.place_delete, self.build_tree)
         self.build_columns()
         self.build_tree()
 
@@ -123,8 +138,7 @@ class PlaceView:
             self.selection.selected_foreach(self.blist,mlist)
             if mlist:
                 place = self.parent.db.get_place_from_handle(mlist[0])
-                EditPlace.EditPlace(self.parent,place,self.update_display,
-                                    self.topWindow)
+                EditPlace.EditPlace(self.parent,place,self.topWindow)
             return 1
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_context_menu(event)
@@ -165,13 +179,10 @@ class PlaceView:
         menu.popup(None,None,None,event.button,event.time)
 
     def on_add_place_clicked(self,obj):
-        EditPlace.EditPlace(self.parent,RelLib.Place(),self.new_place_after_edit)
+        EditPlace.EditPlace(self.parent,RelLib.Place())
 
     def new_place_after_edit(self,place):
         self.model.add_row_by_handle(place.get_handle())
-
-    def update_display(self,place):
-        self.model.update_row_by_handle(place.get_handle())
 
     def delete_place(self,place):
         trans = self.parent.db.transaction_begin()
@@ -220,15 +231,15 @@ class PlaceView:
 
             place = self.parent.db.get_place_from_handle(place_handle)
             if used == 1:
-                ans = EditPlace.DeletePlaceQuery(place,self.parent.db,
-                                                 self.model.delete_row_by_handle)
-                QuestionDialog(_('Delete %s?') %  place.get_title(),
-                               _('This place is currently being used by at least one '
-                                 'record in the database. Deleting it will remove it '
-                                 'from the database and remove it from all records '
-                                 'that reference it.'),
-                               _('_Delete Place'),
-                               ans.query_response)
+                ans = EditPlace.DeletePlaceQuery(place,self.parent.db)
+                QuestionDialog(
+                    _('Delete %s?') %  place.get_title(),
+                    _('This place is currently being used by at least one '
+                      'record in the database. Deleting it will remove it '
+                      'from the database and remove it from all records '
+                      'that reference it.'),
+                    _('_Delete Place'),
+                    ans.query_response)
             else:
                 self.delete_place(place)
                 
@@ -239,7 +250,7 @@ class PlaceView:
 
         for place_handle in mlist:
             place = self.parent.db.get_place_from_handle(place_handle)
-            EditPlace.EditPlace(self.parent, place, self.update_display)
+            EditPlace.EditPlace(self.parent, place,self.topWindow)
 
     def blist(self,store,path,iter,list):
         handle = store.get_value(iter,_HANDLE_COL)

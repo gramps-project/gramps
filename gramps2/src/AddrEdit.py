@@ -61,8 +61,7 @@ class AddressEditor:
     """
     Displays a dialog that allows the user to edit an address.
     """
-    def __init__(self,parent,addr,callback,parent_window=None,
-                 update_sources=None):
+    def __init__(self,parent,addr,callback,parent_window=None):
         """
         Displays the dialog box.
 
@@ -70,7 +69,6 @@ class AddressEditor:
         addr - The address that is to be edited
         """
 
-        self.update_sources = update_sources
         self.parent = parent
         if addr:
             if self.parent.child_windows.has_key(addr):
@@ -132,8 +130,7 @@ class AddressEditor:
         self.sourcetab = Sources.SourceTab(
             self.srcreflist, self, self.top, self.window, self.slist,
             self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
-            self.top.get_widget('del_src'), self.db.readonly,
-            self.update_sources)
+            self.top.get_widget('del_src'), self.db.readonly)
 
         date_stat = self.top.get_widget("date_stat")
         self.date_check = DateEdit.DateEdit(

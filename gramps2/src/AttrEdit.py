@@ -65,7 +65,7 @@ class AttributeEditor:
     Displays a dialog that allows the user to edit an attribute.
     """
     def __init__(self, parent, attrib, title, list, callback,
-                 parent_window=None, update_sources=None):
+                 parent_window=None):
         """
         Displays the dialog box.
 
@@ -75,7 +75,6 @@ class AttributeEditor:
         list - list of options for the pop down menu
         """
 
-        self.update_sources = update_sources
         self.parent = parent
         if attrib:
             if self.parent.child_windows.has_key(attrib):
@@ -114,9 +113,7 @@ class AttributeEditor:
         self.sourcetab = Sources.SourceTab(
             self.srcreflist, self, self.top, self.window, self.slist,
             self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
-            self.top.get_widget('del_src'), self.db.readonly,
-            self.update_sources
-            )
+            self.top.get_widget('del_src'), self.db.readonly)
 
         if title == ", ":
             title = _("Attribute Editor")

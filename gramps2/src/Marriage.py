@@ -77,7 +77,7 @@ _temple_names = [""] + _temple_names
 #-------------------------------------------------------------------------
 class Marriage:
 
-    def __init__(self,parent,family,db,callback,update,source_update):
+    def __init__(self,parent,family,db):
         """Initializes the Marriage class, and displays the window"""
         self.family = family
         self.parent = parent
@@ -87,11 +87,8 @@ class Marriage:
         self.child_windows = {}
         self.db = db
         self.path = db.get_save_path()
-        self.cb = callback
-        self.update_fv = update
         self.pmap = {}
         self.dp = DateHandler.parser
-        self.update_sources = source_update
 
         if family:
             self.srcreflist = family.get_source_references()
@@ -302,8 +299,7 @@ class Marriage:
         self.sourcetab = Sources.SourceTab(
             self.srcreflist, self, self.top, self.window, self.slist,
             self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
-            self.top.get_widget('del_src'), self.db.readonly,
-            self.update_sources)
+            self.top.get_widget('del_src'), self.db.readonly)
 
         self.redraw_event_list()
         self.redraw_attr_list()
@@ -703,7 +699,6 @@ class Marriage:
         self.update_lists()
         self.db.commit_family(self.family,trans)
         self.db.transaction_commit(trans,_("Edit Marriage"))
-        self.update_fv(self.family)
 
         self.close(1)
 
@@ -718,12 +713,10 @@ class Marriage:
     def on_add_clicked(self,*obj):
         import EventEdit
         name = Utils.family_name(self.family,self.db)
-        EventEdit.EventEditor(self,name,const.marriageEvents,
-                              const.family_events,None,None,
-                              0,self.event_edit_callback,
-                              const.defaultMarriageEvent,
-                              self.db.readonly,
-                              self.update_sources)
+        EventEdit.EventEditor(
+            self,name, const.marriageEvents, const.family_events,
+            None, None, 0, self.event_edit_callback,
+            const.defaultMarriageEvent, self.db.readonly)
 
     def on_event_update_clicked(self,obj):
         import EventEdit
@@ -732,11 +725,9 @@ class Marriage:
             return
         event = self.etree.get_object(node)
         name = Utils.family_name(self.family,self.db)
-        EventEdit.EventEditor(self,name,const.marriageEvents,
-                              const.family_events,event,None,
-                              0,self.event_edit_callback,None,
-                              self.db.readonly,
-                              self.update_sources)                              
+        EventEdit.EventEditor(
+            self, name, const.marriageEvents, const.family_events,event,
+            None, 0,self.event_edit_callback, None, self.db.readonly)
 
     def on_delete_clicked(self,obj):
         if Utils.delete_selected(obj,self.elist):
