@@ -1,3 +1,7 @@
+2003-12-18  Don Allingham  <dallingham@users.sourceforge.net>
+	* gramps.spec: added gnome-python2-gnomevfs as a dependency
+	* src/DisplayTrace.py: detect /etc/fedora-release, /etc/slackware-version
+
 2003-12-18  Michel Guitel  <michel.guitel@free.fr>
 	* doc/gramps-manual/fr/cmdline.xml: Update translation.
 	* doc/gramps-manual/fr/custom.xml: Update translation.
