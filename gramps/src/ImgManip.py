@@ -76,12 +76,6 @@ class ImgManip:
             w.close()
             return buf
 
-        def eps_data(self):
-            return self.fmt_data("eps")
-
-        def eps_scale_data(self,x,y):
-            return self.fmt_scale_data("eps")
-
     else:
 
         def size(self):
@@ -122,34 +116,6 @@ class ImgManip:
                 im = im.convert("RGB")
             return im.tostring(string.upper(pil),"RGB")
 
-        def eps_data(self):
-            g = StringIO.StringIO()
-            im = PIL.Image.open(self.src)
-            if im.mode != 'RGB':
-                im.draft('RGB',im.size)
-                im = im.convert("RGB")
-            im.save(g,"eps")
-            g.seek(0)
-            buf = g.read()
-            g.close()
-            return buf
-
-        def eps_scale_data(self,x,y):
-
-            # need to write to a file-like object, otherwise
-            # PIL won't generate the header information
-            g = StringIO.StringIO()
-            im = PIL.Image.open(self.src)
-            im.thumbnail((x,y))
-            if im.mode != 'RGB':
-                im.draft('RGB',im.size)
-                im = im.convert("RGB")
-            im.save(g,"eps")
-            g.seek(0)
-            buf = g.read()
-            g.close()
-            return buf
-
     def jpg_thumbnail(self,dest,width,height):
         self.fmt_thumbnail(dest,width,height,"jpeg")
 
@@ -174,11 +140,17 @@ class ImgManip:
     def png_data(self):
         return self.fmt_data("png")
 
+    def eps_data(self):
+        return self.fmt_data("eps")
+
     def jpg_scale_data(self,x,y):
         return self.fmt_scale_data(x,y,"jpeg")
 
     def png_scale_data(self,x,y):
         return self.fmt_scale_data(x,y,"png")
+
+    def eps_scale_data(self,x,y):
+        return self.fmt_scale_data(x,y,"eps")
 
 
 if __name__ == "__main__":
