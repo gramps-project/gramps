@@ -22,6 +22,13 @@
 
 #------------------------------------------------------------------------
 #
+# python modules
+#
+#------------------------------------------------------------------------
+from gettext import gettext as _
+
+#------------------------------------------------------------------------
+#
 # gnome/gtk
 #
 #------------------------------------------------------------------------
@@ -34,47 +41,46 @@ import gtk
 #------------------------------------------------------------------------
 import BaseDoc
 import Report
-import Errors
-import Date
-
-from QuestionDialog import ErrorDialog
+import ReportOptions
+import const
 from SubstKeywords import SubstKeywords
-from gettext import gettext as _
-
-#------------------------------------------------------------------------
-#
-# pt2cm - convert points to centimeters
-#
-#------------------------------------------------------------------------
-def pt2cm(pt):
-    return (float(pt)/72.0)*(254.0/100.0)
+from Utils import pt2cm
 
 #------------------------------------------------------------------------
 #
 # FanChart
 #
 #------------------------------------------------------------------------
-class FanChart:
+class FanChart(Report.Report):
 
-    def __init__(self,database,person,display,doc,output,newpage=0):
-        self.database = database
-        self.doc = doc
-        self.doc.creator(database.get_researcher().get_name())
-        self.map = {}
-        self.text = {}
-        self.start = person
-        self.output = output
-        self.box_width = 0
+    def __init__(self,database,person,options_class):
+        #database,person,display,doc,output,newpage=0):
+        """
+        Creates the FanChart object that produces the report.
+        
+        The arguments are:
+
+        database        - the GRAMPS database instance
+        person          - currently selected person
+        options_class   - instance of the Options class for this report
+
+        This report needs the following parameters (class variables)
+        that come in the options class.
+        
+        display   - 
+        """
+        Report.Report.__init__(self,database,person,options_class)
+
         self.height = 0
         self.lines = 0
-        self.display = display
-        self.newpage = newpage
-        if output:
-            self.standalone = 1
-            self.doc.open(output)
-        else:
-            self.standalone = 0
+        self.display = "%n"
+        self.map = [None] * 32
+        self.text= {}
+        self.box_width = 0
 
+        self.setup()
+
+    def setup(self):
         g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style('FC-Title')
         g.set_line_width(0)
@@ -135,13 +141,7 @@ class FanChart:
         g.set_line_width(0)
         self.doc.add_draw_style("FC-c5n",g)
 
-        self.map = [None] * 32
-        self.text= {}
-        self.box_width = 0
-        if self.standalone:
-            self.doc.init()
-
-    def filter(self,person_handle,index):
+    def apply_filter(self,person_handle,index):
         """traverse the ancestors recursively until either the end
         of a line is found, or until we reach the maximum number of 
         generations that we want to deal with"""
@@ -167,17 +167,14 @@ class FanChart:
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
             family = self.database.get_family_from_handle(family_handle)
-            self.filter(family.get_father_handle(),index*2)
-            self.filter(family.get_mother_handle(),(index*2)+1)
+            self.apply_filter(family.get_father_handle(),index*2)
+            self.apply_filter(family.get_mother_handle(),(index*2)+1)
 
     def write_report(self):
 
-        self.filter(self.start.get_handle(),1)
+        self.apply_filter(self.start_person.get_handle(),1)
 
         block_size = self.doc.get_usable_width()/14.0
-
-        if self.newpage:
-            self.doc.page_break()
 
         size = min(self.doc.get_usable_width(),self.doc.get_usable_height()*2.0)/2.0
         y = self.doc.get_usable_height()
@@ -186,7 +183,7 @@ class FanChart:
 
         self.doc.start_page()
         
-        n = self.start.get_primary_name().get_regular_name()
+        n = self.start_person.get_primary_name().get_regular_name()
         self.doc.center_text('t', _('Five Generation Fan Chart for %s') % n, center, 0)
 
         self.circle_5(center,y,block_size)
@@ -196,8 +193,6 @@ class FanChart:
         self.circle_1(center,y,block_size)
 
         self.doc.end_page()
-        if self.standalone:
-            self.doc.close()
 
     def get_info(self,person_handle):
         person = self.database.get_person_from_handle(person_handle)
@@ -286,206 +281,52 @@ class FanChart:
 # 
 #
 #------------------------------------------------------------------------
-def _make_default_style(default_style):
-    """Make the default output style for the Fan Chart report."""
-    f = BaseDoc.FontStyle()
-    f.set_size(8)
-    f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-    p = BaseDoc.ParagraphStyle()
-    p.set_font(f)
-    p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
-    p.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("FC-Normal",p)
+class FanChartOptions(ReportOptions.ReportOptions):
 
-    f = BaseDoc.FontStyle()
-    f.set_size(20)
-    f.set_bold(1)
-    f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-    p = BaseDoc.ParagraphStyle()
-    p.set_font(f)
-    p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
-    p.set_description(_('The style used for the title.'))
-    default_style.add_style("FC-Title",p)
+    """
+    Defines options and provides handling interface.
+    """
 
-#------------------------------------------------------------------------
-#
-# FanChartDialog 
-#
-#------------------------------------------------------------------------
-class FanChartDialog(Report.DrawReportDialog):
+    def __init__(self,name,person_id=None):
+        ReportOptions.ReportOptions.__init__(self,name,person_id)
 
-    report_options = {}
-    
-    def __init__(self,database,person):
-        Report.DrawReportDialog.__init__(self,database,person,self.report_options)
 
-    def get_title(self):
-        """The window title for this dialog"""
-        return "%s - %s - GRAMPS" % (_("Fan Chart"),_("Graphical Reports"))
+    def make_default_style(self,default_style):
+        """Make the default output style for the Fan Chart report."""
+        f = BaseDoc.FontStyle()
+        f.set_size(8)
+        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        p = BaseDoc.ParagraphStyle()
+        p.set_font(f)
+        p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        p.set_description(_('The basic style used for the text display.'))
+        default_style.add_style("FC-Normal",p)
 
-    def get_header(self, name):
-        """The header line at the top of the dialog contents."""
-        return _("Fan Chart for %s") % name
-
-    def get_target_browser_title(self):
-        """The title of the window created when the 'browse' button is
-        clicked in the 'Save As' frame."""
-        return _("Save Fan Chart")
-
-    def get_stylesheet_savefile(self):
-        """Where to save user defined styles for this report."""
-        return _style_file
-    
-    def get_report_generations(self):
-        """Default to 10 generations, no page breaks."""
-        return (0, 0)
-
-    def make_default_style(self):
-        _make_default_style(self.default_style)
-
-    def make_report(self):
-        """Create the object that will produce the Fan Chart.
-        All user dialog has already been handled and the output file
-        opened."""
-
-        try:
-            MyReport = FanChart(self.db, self.person,
-                        "%n", self.doc, self.target_path)
-            MyReport.write_report()
-        except Errors.FilterError, msg:
-            (m1,m2) = msg.messages()
-            ErrorDialog(m1,m2)
-        except:
-            import DisplayTrace
-            DisplayTrace.DisplayTrace()
+        f = BaseDoc.FontStyle()
+        f.set_size(20)
+        f.set_bold(1)
+        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        p = BaseDoc.ParagraphStyle()
+        p.set_font(f)
+        p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        p.set_description(_('The style used for the title.'))
+        default_style.add_style("FC-Title",p)
 
 #------------------------------------------------------------------------
 #
-# Entry point of the report. Takes the database and the active person
-# as its arguments.
+#
 #
 #------------------------------------------------------------------------
-def report(database,person):
-    FanChartDialog(database,person)
-
-#------------------------------------------------------------------------
-#
-# Set up sane defaults for the book_item
-#
-#------------------------------------------------------------------------
-_style_file = "fan_chart.xml"
-_style_name = "default" 
-
-_person_handle = ""
-_options = ( _person_handle, )
-
-#------------------------------------------------------------------------
-#
-# Book Item Options dialog
-#
-#------------------------------------------------------------------------
-class FanChartBareDialog(Report.BareReportDialog):
-
-    def __init__(self,database,person,opt,stl):
-
-        self.options = opt
-        self.db = database
-        if self.options[0]:
-            self.person = self.db.get_person_from_handle(self.options[0])
-        else:
-            self.person = person
-        self.style_name = stl
-
-        Report.BareReportDialog.__init__(self,database,self.person)
-        self.new_person = None
-        self.window.run()
-
-    #------------------------------------------------------------------------
-    #
-    # Customization hooks
-    #
-    #------------------------------------------------------------------------
-    def get_title(self):
-        """The window title for this dialog"""
-        return "%s - GRAMPS Book" % (_("Fan Chart"))
-
-    def get_header(self, name):
-        """The header line at the top of the dialog contents"""
-        return _("Fan Chart for GRAMPS Book") 
-
-    def get_stylesheet_savefile(self):
-        """Where to save styles for this report."""
-        return _style_file
-    
-    def get_report_generations(self):
-        """No generations, no page breaks."""
-        return (0, 0)
-    
-    def make_default_style(self):
-        _make_default_style(self.default_style)
-
-    def on_cancel(self, obj):
-        pass
-
-    def on_ok_clicked(self, obj):
-        """The user is satisfied with the dialog choices. Parse all options
-        and close the window."""
-
-        # Preparation
-        self.parse_style_frame()
-        
-        if self.new_person:
-            self.person = self.new_person
-        self.options = ( self.person.get_handle(), )
-        self.style_name = self.selected_style.get_name()
-
-#------------------------------------------------------------------------
-#
-# Function to write Book Item 
-#
-#------------------------------------------------------------------------
-def write_book_item(database,person,doc,options,newpage=0):
-    """Write the Fan Chart using options set.
-    All user dialog has already been handled and the output file opened."""
-    try:
-        if options[0]:
-            person = database.get_person_from_handle(options[0])
-        return FanChart(database, person, 
-                                   "%n", doc, None, newpage )
-    except Errors.ReportError, msg:
-        (m1,m2) = msg.messages()
-        ErrorDialog(m1,m2)
-    except Errors.FilterError, msg:
-        (m1,m2) = msg.messages()
-        ErrorDialog(m1,m2)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
-
-#------------------------------------------------------------------------
-#
-# Register the report with the plugin system. If this is not done, then
-# GRAMPS will not know that the report exists.
-#
-#------------------------------------------------------------------------
-from Plugins import register_report, register_book_item
-
+from Plugins import register_report
 register_report(
-    report,
-    _("Fan Chart"),
-    category=_("Graphical Reports"),
-    status=(_("Alpha")),
-    description=_("Produces a five generation fan chart")
-    )
-
-# (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)
-register_book_item( 
-    _("Fan Chart"), 
-    _("Graphics"),
-    FanChartBareDialog,
-    write_book_item,
-    _options,
-    _style_name,
-    _style_file,
-    _make_default_style
+    name = 'fan_chart',
+    category = const.CATEGORY_DRAW,
+    report_class = FanChart,
+    options_class = FanChartOptions,
+    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    translated_name = _("Fan Chart"),
+    status = _("Alpha"),
+    author_name = "Donald N. Allingham",
+    author_email = "dallingham@users.sourceforge.net",
+    description = _("Produces a five generation fan chart")
     )

@@ -44,9 +44,7 @@ import const
 import Report
 import BaseDoc
 import RelLib
-import Errors
 import Plugins
-from QuestionDialog import ErrorDialog
 import ReportOptions
 from DateHandler import displayer as _dd
 
@@ -82,9 +80,6 @@ class ComprehensiveAncestorsReport (Report.Report):
         (self.max_generations,self.pgbrk) \
                         = options_class.get_report_generations()
         self.opt_cite = options_class.handler.options_dict['cites']
-
-        self.output = options_class.get_output()
-        self.newpage = options_class.get_newpage()
 
         self.sources = []
         self.sourcerefs = []
@@ -987,7 +982,6 @@ class ComprehensiveAncestorsOptions(ReportOptions.ReportOptions):
         Parses the custom options that we have added.
         """
         self.options_dict['cites'] = int(self.cb_cite.get_active ())
-
 
 #------------------------------------------------------------------------
 #

@@ -44,9 +44,6 @@ import gtk
 import RelLib
 import Report
 import BaseDoc
-import Errors
-import Utils
-from QuestionDialog import ErrorDialog
 import ReportOptions
 import const
 from DateHandler import displayer as _dd
