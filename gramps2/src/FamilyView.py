@@ -42,6 +42,8 @@ import SelectChild
 import DisplayTrace
 import Marriage
 import ChooseParents
+import RelLib
+import EditPerson
 
 from intl import gettext as _
 from QuestionDialog import QuestionDialog,WarningDialog
@@ -70,6 +72,7 @@ class FamilyView:
 
         self.swap_btn = self.top.get_widget('swap_spouse_btn')
         self.add_spouse_btn = self.top.get_widget('add_spouse')
+        self.select_spouse_btn = self.top.get_widget('select_spouse')
         self.remove_spouse_btn = self.top.get_widget('remove_spouse')
 
         self.ap_parents = self.top.get_widget('ap_parents')
@@ -102,6 +105,7 @@ class FamilyView:
         self.top.get_widget('fam_back').connect('clicked',self.child_back)
         self.top.get_widget('del_child_btn').connect('clicked',self.remove_child_clicked)
         self.top.get_widget('add_child_btn').connect('clicked',self.add_child_clicked)
+        self.top.get_widget('select_child').connect('clicked',self.select_child_clicked)
         
         column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
         self.spouse_list.append_column(column)
@@ -130,6 +134,7 @@ class FamilyView:
         self.swap_btn.connect('clicked',self.spouse_swap)
         self.remove_spouse_btn.connect('clicked',self.remove_spouse)
         self.add_spouse_btn.connect('clicked',self.add_spouse)
+        self.select_spouse_btn.connect('clicked',self.select_spouse)
 
         self.child_list.set_model(self.child_model)
         self.child_list.set_search_column(0)
@@ -181,7 +186,7 @@ class FamilyView:
                except:
                    DisplayTrace.DisplayTrace()
         
-    def add_spouse(self,obj):
+    def select_spouse(self,obj):
         if not self.person:
             return
         try:
@@ -191,7 +196,79 @@ class FamilyView:
         except:
             DisplayTrace.DisplayTrace()
 
+    def add_spouse(self,obj):
+        person = RelLib.Person()
+        if self.person.getGender() == RelLib.Person.male:
+            person.setGender(RelLib.Person.female)
+        else:
+            person.setGender(RelLib.Person.male)
+        try:
+            EditPerson.EditPerson(person, self.parent.db, self.spouse_after_edit)
+        except:
+            DisplayTrace.DisplayTrace()
+
+    def spouse_after_edit(self,epo,plist):
+        if epo.person.getId() == "":
+            self.parent.db.addPerson(epo.person)
+        else:
+            self.parent.db.addPersonNoMap(epo.person,epo.person.getId())
+        self.parent.db.buildPersonDisplay(epo.person.getId())
+        self.parent.add_to_person_list(epo.person,0)
+
+        self.family = self.parent.db.newFamily()
+        self.person.addFamily(self.family)
+        epo.person.addFamily(self.family)
+
+        if self.person.getGender() == RelLib.Person.male:
+            self.family.setMother(epo.person)
+            self.family.setFather(self.person)
+        else:	
+            self.family.setFather(epo.person)
+            self.family.setMother(self.person)
+        
+        self.load_family(self.family)
+        
+        Marriage.Marriage(self.family,self.parent.db,
+                          self.parent.new_after_edit,
+                          self.load_family)
+
     def add_child_clicked(self,obj):
+        if not self.person:
+            return
+
+        person = RelLib.Person()
+        person.setGender(RelLib.Person.female)
+
+        autoname = GrampsCfg.lastnamegen
+        
+        if autoname == 0:
+            name = self.north_american(0)
+        elif autoname == 2:
+            name = self.latin_american(0)
+        elif autoname == 3:
+            name = self.icelandic(0)
+        else:
+            name = ""
+        person.getPrimaryName().setSurname(name)
+
+        try:
+            EditPerson.EditPerson(person, self.parent.db, self.child_after_edit)
+        except:
+            DisplayTrace.DisplayTrace()
+
+    def child_after_edit(self,epo,plist):
+        if epo.person.getId() == "":
+            self.parent.db.addPerson(epo.person)
+        else:
+            self.parent.db.addPersonNoMap(epo.person,epo.person.getId())
+        self.parent.db.buildPersonDisplay(epo.person.getId())
+        self.parent.add_to_person_list(epo.person,0)
+
+        self.family.addChild(epo.person)
+        epo.person.addAltFamily(self.family,"Birth","Birth")
+        self.load_family()
+
+    def select_child_clicked(self,obj):
         if not self.person:
             return
         try:
@@ -610,6 +687,52 @@ class FamilyView:
         bits_per = 8; # we're going to pass a string
         data = str(('child',id));
         sel_data.set(sel_data.target, bits_per, data)
+
+    def north_american(self,val):
+        if self.person.getGender() == Person.male:
+            return self.person.getPrimaryName().getSurname()
+        elif self.family:
+            f = self.family.getFather()
+            if f:
+                return f.getPrimaryName().getSurname()
+        return ""
+
+    def no_name(self,val):
+        return ""
+
+    def latin_american(self,val):
+        if self.family:
+            father = self.family.getFather()
+            mother = self.family.getMother()
+            if not father or not mother:
+                return ""
+            fsn = father.getPrimaryName().getSurname()
+            msn = mother.getPrimaryName().getSurname()
+            if not father or not mother:
+                return ""
+            try:
+                return "%s %s" % (fsn.split()[0],msn.split()[0])
+            except:
+                return ""
+        else:
+            return ""
+
+    def icelandic(self,val):
+        fname = ""
+        if self.person.getGender() == Person.male:
+            fname = self.person.getPrimaryName().getFirstName()
+        elif self.family:
+            f = self.family.getFather()
+            if f:
+                fname = f.getPrimaryName().getFirstName()
+        if fname:
+            fname = string.split(fname)[0]
+        if val == 0:
+            return "%ssson" % fname
+        elif val == 1:
+            return "%sdóttir" % fname
+        else:
+            return ""
 
     def drag_begin(self, obj, context):
         return 
