@@ -74,6 +74,7 @@ class NameEditor:
 
         AutoComp.fill_combo(self.combo,self.parent.db.get_surname_list())
         self.surname_field = self.combo.get_child()
+        self.prefix_field = self.top.get_widget("alt_prefix")
 
         self.type_combo = self.top.get_widget("name_type")
         self.note_field = self.top.get_widget("alt_note")
@@ -128,6 +129,7 @@ class NameEditor:
             self.surname_field.set_text(name.get_surname())
             self.title_field.set_text(name.get_title())
             self.suffix_field.set_text(name.get_suffix())
+            self.prefix_field.set_text(name.get_surname_prefix())
             self.type_field.set_text(_(name.get_type()))
             self.priv.set_active(name.get_privacy())
             if name.get_note():
@@ -221,6 +223,7 @@ class NameEditor:
         first = unicode(self.given_field.get_text())
         last = unicode(self.surname_field.get_text())
         title = unicode(self.title_field.get_text())
+        prefix = unicode(self.prefix_field.get_text())
         suffix = unicode(self.suffix_field.get_text())
         note = unicode(self.note_buffer.get_text(self.note_buffer.get_start_iter(),
                                  self.note_buffer.get_end_iter(),gtk.FALSE))
@@ -246,7 +249,12 @@ class NameEditor:
         if self.name.get_display_as() != self.display_as.get_active():
             self.name.set_display_as(self.display_as.get_active())
             self.parent.lists_changed = 1
-            
+
+        prefix = unicode(self.prefix_field.get_text())
+        if self.name.get_surname_prefix() != prefix:
+            self.name.set_surname_prefix(prefix)
+            self.parent.lists_changed = 1
+ 
         if self.name.get_sort_as() != self.sort_as.get_active():
             self.name.set_sort_as(self.sort_as.get_active())
             self.parent.lists_changed = 1

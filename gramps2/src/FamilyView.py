@@ -624,21 +624,23 @@ class FamilyView:
         except:
             DisplayTrace.DisplayTrace()
 
-    def spouse_after_edit(self,epo,trans):
+    def spouse_after_edit(self,epo,val):
         ap = self.parent.active_person
         if epo:
-            self.parent.db.commit_person(epo.person,trans)
-            n = epo.person.get_primary_name().get_regular_name()
-            self.parent.db.transaction_commit(trans,_("Add Person (%s)") % n)
+            #trans = self.parent.db.transaction_begin()
+            #self.parent.db.commit_person(epo.person,trans)
+            #n = epo.person.get_primary_name().get_regular_name()
+            #self.parent.db.transaction_commit(trans,_("Add Spouse (%s)") % n)
             self.parent.people_view.remove_from_person_list(epo.person)
             self.parent.people_view.redisplay_person_list(epo.person)
 
         self.parent.active_person = ap
         self.load_family(self.family)
         
-    def new_spouse_after_edit(self,epo,trans):
+    def new_spouse_after_edit(self,epo,val):
 
-        self.parent.db.add_person(epo.person,trans)
+        #self.parent.db.add_person(epo.person,trans)
+        trans = self.parent.db.transaction_begin()
         self.family = RelLib.Family()
         self.parent.db.add_family(self.family,trans)
 
@@ -658,7 +660,8 @@ class FamilyView:
 
         self.parent.db.commit_family(self.family,trans)
         self.load_family(self.family)
-        
+
+        self.parent.db.transaction_commit(trans,_("Add Spouse"))
         m = Marriage.Marriage(self.parent,self.family,self.parent.db,
                               self.parent.new_after_edit,
                               self.load_family)
@@ -708,11 +711,8 @@ class FamilyView:
         self.parent.db.commit_family(self.family,trans)
         self.parent.db.transaction_commit(trans,_("Modify family"))
             
-    def new_child_after_edit(self,epo,trans):
-        
-        self.parent.db.add_person(epo.person,trans)
-        self.parent.people_view.add_to_person_list(epo.person,0)
-
+    def new_child_after_edit(self,epo,value):
+        trans = self.parent.db.transaction_begin()
         if not self.family:
             self.family = RelLib.Family()
             self.parent.db.add_family(self.family,trans)
@@ -726,6 +726,7 @@ class FamilyView:
         epo.person.add_parent_family_handle(self.family.get_handle(),"Birth","Birth")
         self.parent.db.commit_person(epo.person,trans)
         self.parent.db.commit_family(self.family,trans)
+        self.parent.db.transaction_commit(trans,_("Add Child to Family"))
         self.display_marriage(self.family)
 
     def select_child_clicked(self,obj):
