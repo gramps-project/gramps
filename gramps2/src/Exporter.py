@@ -93,6 +93,7 @@ class Exporter:
 
         self.d = Druid()
         self.w.add(self.d)
+        self.w.set_title(_('GRAMPS: Export'))
         self.d.add(self.build_info_page())
         self.d.add(self.build_format_page())
         self.file_sel_page = self.build_file_sel_page()
@@ -314,6 +315,7 @@ class Exporter:
         p.set_logo(self.logo)
 
         self.chooser = gtk.FileChooserWidget(gtk.FILE_CHOOSER_ACTION_SAVE)
+        self.chooser.set_local_only(gtk.FALSE)
         p.append_item("",self.chooser,"")
         # Dirty hack to enable proper EXPAND and FILL properties of the chooser
         parent = self.chooser.get_parent()
@@ -339,6 +341,8 @@ class Exporter:
 
         if ext == 'gramps':
             new_filename = os.path.expanduser(default_dir + 'data.gramps')
+        elif ext == 'burn':
+            new_filename = os.path.basename(self.parent.db.get_save_path())
         else:
             new_filename = Utils.get_new_filename(ext,default_dir)
         self.chooser.set_current_folder(default_dir)

@@ -1235,10 +1235,9 @@ def exportData(database,filename,person,option_box):
 #
 #
 #-------------------------------------------------------------------------
-_title = _('GE_DCOM 5.5')
+_title = _('GE_DCOM')
 _description = _('GEDCOM is used to transfer data between genealogy programs. '
         'Most genealogy software will accept a GEDCOM file as input. ')
-#option_box = GedcomWriterOptionBox()
 _config = (_('GEDCOM export options'),GedcomWriterOptionBox)
 _filename = 'ged'
 

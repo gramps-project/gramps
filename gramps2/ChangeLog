@@ -16,6 +16,17 @@
 	* src/plugins/ImportGeneWeb.py: Comment out debugging messages.
 	* src/plugins/WriteGeneWeb.py: Support for command-line export.
 
+	* doc/gramps-manual/C/usage.xml: Update.
+	* doc/gramps-manual/C/gramps-manual.xml: Chunk to depth 3.
+	* doc/gramps-manual/C/figures/gedcom-export.png: Update.
+	* doc/gramps-manual/C/figures/export-druid.png: Add figure.
+	* src/Exporter.py: Change labels, support CD export (lame).
+	* src/WriteGedcom.py: Correct label.
+	* src/WriteXML.py: Return status on success.
+	* src/plugins/WriteCD.py: Support for wizard (lame).
+	* src/plugins/WritePkg.py: Correct label.
+	* src/ArgHandler.py: Re-enable CD export.
+
 2005-02-18  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: more readonly patches
 	* src/EventEdit.py: more readonly patches

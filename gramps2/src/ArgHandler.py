@@ -521,13 +521,13 @@ class ArgHandler:
                 print "Error creating %s" % filename
                 os._exit(1)
         elif format == 'iso':
-            print "\tISO format is temporarily disabled."
-            #import WriteCD
-            #try:
-            #    WriteCD.PackageWriter(self.parent.db,1,filename)
-            #except:
-            #    print "Error exporting %s" % filename
-            #    os._exit(1)
+            import WriteCD
+            try:
+                writer = WriteCD.PackageWriter(self.parent.db,filename,1)
+                ret = writer.export()
+            except:
+                print "Error exporting %s" % filename
+                os._exit(1)
         elif format == 'wft':
             import WriteFtree
             try:

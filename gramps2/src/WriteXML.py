@@ -192,6 +192,7 @@ class XmlWriter:
 
         self.write_xml_data()
         g.close()
+        return 1
             
     def write_xml_data(self):
 
