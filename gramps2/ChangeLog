@@ -1,3 +1,13 @@
+2003-11-30  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* NEWS: Update.
+	* src/FamilyView.py (on_child_list_button_press): Add edit person
+	callback on Shift+click; (sp_key_press, child_key_press): Replace 
+	Ctrl+Insert with Shift+Insert for adding new people.
+	* src/PedView.py (on_show_child_menu): Markup children with children.
+	* doc/gramps-manual/C/keybind.xml: Update.
+	* doc/gramps-manual/C/faq.xml: Update.
+	* doc/gramps-manual/C/filtref.xml: Update.
+
 2003-11-29  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/PedView.py (PedigreeView.find_children): used italics instead of
 	'*' to indicate children in popup menu

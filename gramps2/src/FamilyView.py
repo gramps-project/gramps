@@ -239,7 +239,7 @@ class FamilyView:
         elif event.keyval == gtk.gdk.keyval_from_name("Insert") and not event.state:
             self.select_spouse(obj)
         elif event.keyval == gtk.gdk.keyval_from_name("Insert") \
-                                    and event.state == gtk.gdk.CONTROL_MASK:
+                                    and event.state == gtk.gdk.SHIFT_MASK:
             self.add_spouse(obj)
 
     def ap_par_key_press(self,obj,event):
@@ -286,7 +286,7 @@ class FamilyView:
         elif event.keyval == gtk.gdk.keyval_from_name("Insert") and not event.state:
             self.select_child_clicked(obj)
         elif event.keyval == gtk.gdk.keyval_from_name("Insert") \
-                                    and event.state == gtk.gdk.CONTROL_MASK:
+                                    and event.state == gtk.gdk.SHIFT_MASK:
             self.add_child_clicked(obj)
 
     def build_ap_menu(self,event):
@@ -387,6 +387,10 @@ class FamilyView:
         id = self.child_model.get_value(iter,2)
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.child_rel_by_id(id)
+        elif event.state == gtk.gdk.SHIFT_MASK and \
+                    event.type == gtk.gdk.BUTTON_PRESS and \
+                    event.button == 1:
+            self.edit_child_callback(obj)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_child_menu(id,event)
 

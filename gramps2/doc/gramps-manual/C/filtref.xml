@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!-- $Id$ -->
+
       <!-- =============== Appendices Subsection ================ -->
       <sect2 id="append-filtref">
       <title>Filter rules reference</title>
@@ -307,6 +310,32 @@
           </variablelist>
         </sect3> 
 
+        <!-- =============== Appendices Sub-subsection ================ -->
+    	<sect3 id="filtref-relat">
+        <title>Relationship filters</title>
+        <para>This category includes the following rules that match people
+        based on their mutual relationship:</para>
+          <variablelist>
+
+          <varlistentry><term>Relationship path between two people</term>
+          <listitem><para> This rule matches all ancestors of both people
+          back to their common ancestors (if exist). This produces the 
+          &quot;relationship path&quot; between these two people, through
+          their common ancestors. 
+          </para>
+          
+          <para> You can either enter the ID of each person into the 
+          appropriate text entry fields, or select people from the list by 
+          clicking their <guibutton>Select...</guibutton> buttons. In the 
+          latter case, the ID will appear in the text field after the 
+          selection was made.
+          </para>
+          </listitem>
+          </varlistentry>
+
+          </variablelist>
+        </sect3>
+        
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-misc">
         <title>Miscellaneous filters</title>
