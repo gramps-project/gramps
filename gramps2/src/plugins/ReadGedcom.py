@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 "Import from GEDCOM"
 
 #-------------------------------------------------------------------------
@@ -230,7 +232,7 @@ class GedcomParser:
         self.trans = string.maketrans('','')
         self.delc = self.trans[0:31]
 
-        self.trans2 = self.trans[0:127] + ('?' * 128)
+        self.trans2 = self.trans[0:128] + ('?' * 128)
         
         self.window = window
         if window:
