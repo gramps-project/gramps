@@ -3,7 +3,7 @@
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
   <!ENTITY appversion "0.9.3">
-  <!ENTITY manrevision "2.2">
+  <!ENTITY manrevision "2.3">
   <!ENTITY date "July 2003">
   <!ENTITY app "<application>GRAMPS</application>">
   <!-- Information about the entities
@@ -98,6 +98,16 @@
       <revision> 
 		<revnumber>GRAMPS Manual V&manrevision;</revnumber> 
 		<date>&date;</date> 
+		<revdescription> 
+	  		<para role="author">Donald Peterson
+	    	<email>dpeterson@sigmaxi.org</email>
+	  		</para>
+	  		<para role="publisher">GRAMPS Project</para>
+		</revdescription> 
+      </revision> 
+      <revision> 
+		<revnumber>GRAMPS Manual V2.2;</revnumber> 
+		<date>July 2003</date> 
 		<revdescription> 
 	  		<para role="author">Alex Roitman
 	    	<email>shura@alex.neuro.umn.edu</email>
@@ -1575,7 +1585,7 @@
         
         <itemizedlist>
         
-        <listitem><para> Parital dates define some portions of the date such 
+        <listitem><para> Partial dates define some portions of the date such 
         as a year or a year and a month. </para></listitem>
 
         <listitem><para> Date ranges define the boundaries containing the 
@@ -2757,7 +2767,7 @@
 
 	<para> The <guilabel>Book name</guilabel> text entry field is used to
         save the book (a set of configured selections) for future use.
-        The pane on the left side lists the items avilable for inclusion in the 
+        The pane on the left side lists the items available for inclusion in the 
         book. The pane on the right side lists the currently selected items in
         the order they will appear in the book. </para>
         
