@@ -1260,10 +1260,8 @@ class FtmDescendantBareReportDialog(Report.BareReportDialog):
             self.person = self.db.getPerson(self.options[0])
         else:
             self.person = person
-        Report.BareReportDialog.__init__(self,database,self.person)
 
-        def make_default_style(self):
-            _make_default_style(self.default_style)
+        Report.BareReportDialog.__init__(self,database,self.person)
 
         self.max_gen = int(self.options[1])
         self.pg_brk = int(self.options[2])
@@ -1292,6 +1290,9 @@ class FtmDescendantBareReportDialog(Report.BareReportDialog):
         """Where to save styles for this report."""
         return _style_file
     
+    def make_default_style(self):
+        _make_default_style(self.default_style)
+
     def on_cancel(self, obj):
         pass
 
@@ -1305,7 +1306,7 @@ class FtmDescendantBareReportDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = [ self.person.getId(), self.max_gen, self.pg_brk ]
+        self.options = ( self.person.getId(), self.max_gen, self.pg_brk )
         self.style_name = self.selected_style.get_name()
 
 #------------------------------------------------------------------------

@@ -606,7 +606,7 @@ class IndivCompleteBareReportDialog(Report.BareReportDialog):
         if self.new_person:
             self.person = self.new_person
         self.filter_num = self.filter_combo.get_history()
-        self.options = [ self.person.getId(), self.max_gen, self.pg_brk, self.filter_num]
+        self.options = ( self.person.getId(), self.max_gen, self.pg_brk, self.filter_num )
         self.style_name = self.selected_style.get_name()
 
 

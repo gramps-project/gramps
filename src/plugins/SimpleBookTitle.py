@@ -139,9 +139,6 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
             self.person = person
         Report.BareReportDialog.__init__(self,database,self.person)
 
-        def make_default_style(self):
-            _make_default_style(self.default_style)
-
         if self.options[1]:
             self.title_string = self.options[1]
         else:
@@ -168,6 +165,9 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
     # Customization hooks
     #
     #------------------------------------------------------------------------
+    def make_default_style(self):
+        _make_default_style(self.default_style)
+
     def get_title(self):
         """The window title for this dialog"""
         return "%s - GRAMPS Book" % (_("Simple Book Title"))
@@ -218,7 +218,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = [ self.person.getId() , self.title_string, self.copyright_string ]
+        self.options = ( self.person.getId() , self.title_string, self.copyright_string )
         self.style_name = self.selected_style.get_name() 
    
 
