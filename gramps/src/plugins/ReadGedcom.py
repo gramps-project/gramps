@@ -505,7 +505,7 @@ class GedcomParser:
                     else:
                         if child.getMainParents() == self.family:
                             child.setMainParents(None)
-                        child.addAltFamily(self.family,mrel,frel)
+                    child.addAltFamily(self.family,mrel,frel)
 	    elif matches[1] == "NCHI":
                 a = Attribute()
                 a.setType("Number of Children")
