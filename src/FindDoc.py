@@ -39,12 +39,17 @@ _OpenOffice = _("OpenOffice")
 _AbiWord    = _("AbiWord")
 _PDF        = _("PDF")
 _HTML       = _("HTML")
+_LATEX      = _("LaTeX")
+_KWord      = _("KWord")
 
 _has_tables = 1
 _no_tables  = 0
 
 _paper      = 1
 _template   = 0
+
+_styles     = 1
+_no_styles  = 0
 
 #-------------------------------------------------------------------------
 #
@@ -56,7 +61,7 @@ _drawdoc = []
 
 try:
     import OpenOfficeDoc
-    _textdoc.append((_OpenOffice, _has_tables, _paper))
+    _textdoc.append((_OpenOffice, _has_tables, _paper, _styles))
 except:
     pass
 
@@ -68,13 +73,13 @@ except:
 
 try:
     import AbiWordDoc
-    _textdoc.append((_AbiWord, _no_tables, _paper))
+    _textdoc.append((_AbiWord, _no_tables, _paper, _styles))
 except:
     pass
 
 try:
     import PdfDoc
-    _textdoc.append((_PDF, _has_tables, _paper))
+    _textdoc.append((_PDF, _has_tables, _paper, _styles))
 except:
     pass
 
@@ -86,9 +91,22 @@ except:
 
 try:
     import HtmlDoc
-    _textdoc.append((_HTML, _has_tables, _template))
+    _textdoc.append((_HTML, _has_tables, _template, _styles))
 except:
     pass
+
+try:
+    import KwordDoc
+    _textdoc.append((_KWord, _no_tables, _paper, _styles))
+except:
+    pass
+
+try:
+    import LaTeXDoc
+    _textdoc.append((_LATEX, _no_tables, _paper, _no_styles))
+except:
+    pass
+
 
 #-------------------------------------------------------------------------
 #
@@ -105,6 +123,7 @@ def get_text_doc_menu(main_menu,tables,callback,obj=None):
         name = item[0]
         menuitem = gtk.GtkMenuItem(name)
         menuitem.set_data("name",name)
+        menuitem.set_data("styles",item[3])
         menuitem.set_data("paper",item[2])
         menuitem.set_data("obj",obj)
         if callback:
@@ -155,6 +174,10 @@ def make_text_doc(styles,name,paper,orien,template):
         return AbiWordDoc.AbiWordDoc(styles,paper,orien)
     elif name == _PDF:
         return PdfDoc.PdfDoc(styles,paper,orien)
+    elif name == _LATEX:
+        return LaTeXDoc.LaTeXDoc(styles,paper,orien)
+    elif name == _KWord:
+        return KwordDoc.KwordDoc(styles,paper,orien)
     else:
         return HtmlDoc.HtmlDoc(styles,template)
 
