@@ -163,9 +163,7 @@ class MediaView:
             ImageSelect.GlobalMediaProperties(self.db,object,self.load_media)
         elif event.button == 3:
             menu = gtk.Menu()
-            item = gtk.TearoffMenuItem()
-            item.show()
-            menu.append(item)
+            menu.set_title(_("Media Object"))
             self.obj = object
             Utils.add_menuitem(menu,_("View in the default viewer"),None,self.popup_view_photo)
             if object.getMimeType()[0:5] == "image":

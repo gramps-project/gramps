@@ -161,6 +161,7 @@ class ImageSelect:
                 description = os.path.basename(filename)
             mobj.setDescription(description)
             mobj.setMimeType(type)
+            self.savephoto(mobj)
 
             if type[0:5] == "image":
                 if self.external.get_active() == 0:
@@ -177,7 +178,6 @@ class ImageSelect:
                                                         mobj.getId())
                     mobj.setLocal(1)
             mobj.setPath(name)
-            self.savephoto(mobj)
             
         self.parent.lists_changed = 1
         Utils.destroy_passed_object(obj)
@@ -316,7 +316,6 @@ class Gallery(ImageSelect):
         oref = RelLib.ObjectRef()
         oref.setReference(photo)
         self.dataobj.addPhoto(oref)
-        self.add_thumbnail(oref)
 
     def add_thumbnail(self, photo):
         """Scale the image and add it to the IconList."""
@@ -331,6 +330,7 @@ class Gallery(ImageSelect):
             import gobject
             
             name = Utils.thumb_path(self.db.getSavePath(),object)
+
             description = object.getDescription()
             if len(description) > 20:
                 description = "%s..." % description[0:20]
@@ -527,9 +527,7 @@ class Gallery(ImageSelect):
         menu of the available actions."""
         
         menu = gtk.Menu()
-        item = gtk.TearoffMenuItem()
-        item.show()
-        menu.append(item)
+        menu.set_title(_("Media Object"))
         object = photo.getReference()
         mtype = object.getMimeType()
         progname = grampslib.default_application_name(mtype)
