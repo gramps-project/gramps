@@ -21,7 +21,7 @@
 from TextDoc import *
 
 import reportlab.platypus.tables
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Image
+from reportlab.platypus import *
 from reportlab.lib.units import cm
 from reportlab.lib.colors import Color
 from reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER, TA_JUSTIFY
@@ -34,6 +34,17 @@ try:
     no_pil = 0
 except:
     no_pil = 1
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class GrampsDocTemplate(BaseDocTemplate):
+
+    def build(self,flowables):
+        self._calc()	#in case we changed margins sizes etc
+        BaseDocTemplate.build(self,flowables)
 
 #------------------------------------------------------------------------
 #
@@ -65,8 +76,20 @@ class PdfDoc(TextDoc):
             self.filename = filename + ".pdf"
         else:
             self.filename = filename
-        self.doc = SimpleDocTemplate(self.filename, 
-	                             pagesize=(self.width*cm,self.height*cm))
+            
+        self.pagesize = (self.width*cm,self.height*cm)
+
+        self.doc = GrampsDocTemplate(self.filename, 
+	                             pagesize=self.pagesize,
+                                     leftMargin=self.lmargin*cm,
+                                     rightMargin=self.rmargin*cm,
+                                     topMargin=self.tmargin*cm,
+                                     bottomMargin=self.bmargin*cm)
+        frameT = Frame(self.doc.leftMargin, self.doc.bottomMargin, \
+                       self.doc.width, self.doc.height, id='normal')
+        ptemp = PageTemplate(frames=frameT,pagesize=self.pagesize)
+        self.doc.addPageTemplates([ptemp])
+
         self.pdfstyles = {}
 
         for style_name in self.style_list.keys():
@@ -79,14 +102,26 @@ class PdfDoc(TextDoc):
             
             if font.get_type_face() == FONT_SERIF:
                 if font.get_bold():
-	            pdf_style.fontName = "Times-Bold"
+                    if font.get_italic():
+                        pdf_style.fontName = "Times-BoldItalic"
+                    else:
+                        pdf_style.fontName = "Times-Bold"
                 else:
-	            pdf_style.fontName = "Times-Roman"
+                    if font.get_italic():
+                        pdf_style.fontName = "Times-Italic"
+                    else:
+                        pdf_style.fontName = "Times-Roman"
             else:
                 if font.get_bold():
-	            pdf_style.fontName = "Helvetica-Bold"
+                    if font.get_italic():
+                        pdf_style.fontName = "Helvetica-BoldOblique"
+                    else:
+                        pdf_style.fontName = "Helvetica-Bold"
                 else:
-	            pdf_style.fontName = "Helvetica"
+                    if font.get_italic():
+                        pdf_style.fontName = "Helvetica-Oblique"
+                    else:
+                        pdf_style.fontName = "Helvetica"
             pdf_style.bulletFontName = pdf_style.fontName
 
 
@@ -117,10 +152,7 @@ class PdfDoc(TextDoc):
 	self.in_table = 0
 
     def close(self):
-        self.doc.build(self.story,onLaterPages=page_def)
-
-    def start_page(self,orientation=None):
-        pass
+        self.doc.build(self.story)
 
     def end_page(self):
         self.story.append(PageBreak())
@@ -168,7 +200,7 @@ class PdfDoc(TextDoc):
                                               colWidths=self.cur_table_cols,
                                               style=ts)
 	self.story.append(tbl)
-	self.story.append(Spacer(1,0.5*cm))
+#	self.story.append(Spacer(1,0.5*cm))
         self.in_table = 0
 
     def start_row(self):
