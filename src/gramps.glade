@@ -3668,11 +3668,21 @@
 		      <property name="can_default">True</property>
 		      <property name="has_default">True</property>
 		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">_Add...</property>
-		      <property name="use_underline">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
 		      <signal name="clicked" handler="on_new_spouse_clicked" object="spouseDialog"/>
+
+		      <child>
+			<widget class="GtkImage" id="image2309">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-add</property>
+			  <property name="icon_size">4</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>
@@ -4068,11 +4078,21 @@ Other</property>
 			<widget class="GtkButton" id="button123">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">_Add...</property>
-			  <property name="use_underline">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
 			  <signal name="clicked" handler="on_add_parent_clicked" object="prel"/>
+
+			  <child>
+			    <widget class="GtkImage" id="image2310">
+			      <property name="visible">True</property>
+			      <property name="stock">gtk-add</property>
+			      <property name="icon_size">4</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
@@ -14010,13 +14030,22 @@ Other</property>
 			    <widget class="GtkButton" id="marriageAddBtn">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Add new event for this marriage</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Add...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_marriageAddBtn_clicked" object="marriageEventList"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2296">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-add</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -14029,11 +14058,20 @@ Other</property>
 			    <widget class="GtkButton" id="button116">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Edit...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_event_update_clicked" last_modification_time="Thu, 08 May 2003 17:11:05 GMT"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2297">
+				  <property name="visible">True</property>
+				  <property name="pixbuf">edit_sm.png</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -14046,13 +14084,22 @@ Other</property>
 			    <widget class="GtkButton" id="marriageDeleteBtn">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Delete selected event</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Delete</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_marriageDeleteBtn_clicked" object="marriageEventList"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2298">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-remove</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -14408,13 +14455,22 @@ Other</property>
 			    <widget class="GtkButton" id="button103">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Create a new attribute for this marriage</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Add...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_add_attr_clicked" object="attr_list"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2299">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-add</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -14427,11 +14483,20 @@ Other</property>
 			    <widget class="GtkButton" id="button118">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Edit...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_attr_update_clicked" last_modification_time="Thu, 08 May 2003 17:12:07 GMT"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2300">
+				  <property name="visible">True</property>
+				  <property name="pixbuf">edit_sm.png</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -14444,13 +14509,22 @@ Other</property>
 			    <widget class="GtkButton" id="button105">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Delete the selected attribute</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Delete</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_delete_attr_clicked" object="attr_list"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2301">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-remove</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -14698,12 +14772,21 @@ Other</property>
 		      <child>
 			<widget class="GtkButton" id="add_src">
 			  <property name="visible">True</property>
-			  <property name="can_default">True</property>
 			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">_Add...</property>
-			  <property name="use_underline">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
+
+			  <child>
+			    <widget class="GtkImage" id="image2302">
+			      <property name="visible">True</property>
+			      <property name="stock">gtk-add</property>
+			      <property name="icon_size">4</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
@@ -14716,10 +14799,19 @@ Other</property>
 			<widget class="GtkButton" id="edit_src">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">_Edit...</property>
-			  <property name="use_underline">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
+
+			  <child>
+			    <widget class="GtkImage" id="image2303">
+			      <property name="visible">True</property>
+			      <property name="pixbuf">edit_sm.png</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
@@ -14732,10 +14824,20 @@ Other</property>
 			<widget class="GtkButton" id="del_src">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">_Delete...</property>
-			  <property name="use_underline">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
+
+			  <child>
+			    <widget class="GtkImage" id="image2304">
+			      <property name="visible">True</property>
+			      <property name="stock">gtk-remove</property>
+			      <property name="icon_size">4</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
@@ -14826,13 +14928,22 @@ Other</property>
 			<widget class="GtkButton" id="button100">
 			  <property name="visible">True</property>
 			  <property name="tooltip" translatable="yes">Add a new media object to the database and place it in this gallery</property>
-			  <property name="can_default">True</property>
 			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">_Add from file...</property>
-			  <property name="use_underline">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
 			  <signal name="clicked" handler="on_addphoto_clicked" object="marriageEditor"/>
+
+			  <child>
+			    <widget class="GtkImage" id="image2305">
+			      <property name="visible">True</property>
+			      <property name="stock">gtk-add</property>
+			      <property name="icon_size">4</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
@@ -14845,13 +14956,22 @@ Other</property>
 			<widget class="GtkButton" id="button120">
 			  <property name="visible">True</property>
 			  <property name="tooltip" translatable="yes">Select an existing media object from the database and place it in this gallery</property>
-			  <property name="can_default">True</property>
 			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Add from _database...</property>
-			  <property name="use_underline">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
 			  <signal name="clicked" handler="on_selectphoto_clicked" object="marriageEditor" last_modification_time="Fri, 12 Dec 2003 04:57:01 GMT"/>
+
+			  <child>
+			    <widget class="GtkImage" id="image2306">
+			      <property name="visible">True</property>
+			      <property name="stock">gtk-index</property>
+			      <property name="icon_size">4</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
@@ -14865,11 +14985,20 @@ Other</property>
 			  <property name="visible">True</property>
 			  <property name="tooltip" translatable="yes">Edit the properties of the selected objects</property>
 			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">_Edit...</property>
-			  <property name="use_underline">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
 			  <signal name="clicked" handler="on_edit_photo_clicked" last_modification_time="Thu, 08 May 2003 17:13:52 GMT"/>
+
+			  <child>
+			    <widget class="GtkImage" id="image2307">
+			      <property name="visible">True</property>
+			      <property name="pixbuf">edit_sm.png</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
@@ -14882,13 +15011,22 @@ Other</property>
 			<widget class="GtkButton" id="button101">
 			  <property name="visible">True</property>
 			  <property name="tooltip" translatable="yes">Remove selected object from this gallery only</property>
-			  <property name="can_default">True</property>
 			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">_Remove</property>
-			  <property name="use_underline">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
 			  <signal name="clicked" handler="on_deletephoto_clicked" object="marriageEditor"/>
+
+			  <child>
+			    <widget class="GtkImage" id="image2308">
+			      <property name="visible">True</property>
+			      <property name="stock">gtk-remove</property>
+			      <property name="icon_size">4</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
@@ -16345,13 +16483,22 @@ Other</property>
 			  <child>
 			    <widget class="GtkButton" id="button129">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Add...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_add_loc_clicked" object="loc_list"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2311">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-add</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -16364,11 +16511,20 @@ Other</property>
 			    <widget class="GtkButton" id="loc_edit">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Edit...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_update_loc_clicked" last_modification_time="Thu, 08 May 2003 17:20:46 GMT"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2312">
+				  <property name="visible">True</property>
+				  <property name="pixbuf">edit_sm.png</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -16380,13 +16536,22 @@ Other</property>
 			  <child>
 			    <widget class="GtkButton" id="button131">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Delete</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_delete_loc_clicked" object="loc_list"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2313">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-remove</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -16653,12 +16818,21 @@ Other</property>
 			  <child>
 			    <widget class="GtkButton" id="add_src">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Add...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2314">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-add</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -16671,10 +16845,19 @@ Other</property>
 			    <widget class="GtkButton" id="edit_src">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Edit...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2315">
+				  <property name="visible">True</property>
+				  <property name="pixbuf">edit_sm.png</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -16686,12 +16869,21 @@ Other</property>
 			  <child>
 			    <widget class="GtkButton" id="del_src">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Delete</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2316">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-remove</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -16808,13 +17000,22 @@ Other</property>
 			    <widget class="GtkButton" id="add_photo">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Add a new media object to the database and place it in this gallery</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Add from file...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_addphoto_clicked" object="placeEditor"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2317">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-add</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -16827,13 +17028,22 @@ Other</property>
 			    <widget class="GtkButton" id="button136">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Select an existing media object from the database and place it in this gallery</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Add from _database...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_selectphoto_clicked" object="placeEditor" last_modification_time="Fri, 12 Dec 2003 05:12:18 GMT"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2318">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-index</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -16847,11 +17057,20 @@ Other</property>
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Edit the properties of the selected object</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Edit...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_edit_photo_clicked" last_modification_time="Thu, 08 May 2003 17:23:49 GMT"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2319">
+				  <property name="visible">True</property>
+				  <property name="pixbuf">edit_sm.png</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -16864,13 +17083,22 @@ Other</property>
 			    <widget class="GtkButton" id="delete_photo">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Remove selected object from this gallery only</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Remove</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_deletephoto_clicked" object="placeEditor"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2320">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-remove</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -17115,13 +17343,22 @@ Other</property>
 			  <child>
 			    <widget class="GtkButton" id="button123">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Add...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_add_url_clicked" object="web_list"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2321">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-add</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -17134,11 +17371,20 @@ Other</property>
 			    <widget class="GtkButton" id="web_edit">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Edit...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_update_url_clicked" last_modification_time="Thu, 08 May 2003 17:24:09 GMT"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2322">
+				  <property name="visible">True</property>
+				  <property name="pixbuf">edit_sm.png</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -17156,62 +17402,14 @@ Other</property>
 			      <signal name="clicked" handler="on_web_go_clicked" object="web_url"/>
 
 			      <child>
-				<widget class="GtkAlignment" id="alignment1">
+				<widget class="GtkImage" id="image2323">
 				  <property name="visible">True</property>
+				  <property name="stock">gtk-jump-to</property>
+				  <property name="icon_size">4</property>
 				  <property name="xalign">0.5</property>
 				  <property name="yalign">0.5</property>
-				  <property name="xscale">0</property>
-				  <property name="yscale">0</property>
-				  <property name="top_padding">0</property>
-				  <property name="bottom_padding">0</property>
-				  <property name="left_padding">0</property>
-				  <property name="right_padding">0</property>
-
-				  <child>
-				    <widget class="GtkHBox" id="hbox6">
-				      <property name="visible">True</property>
-				      <property name="homogeneous">False</property>
-				      <property name="spacing">2</property>
-
-				      <child>
-					<widget class="GtkImage" id="image1">
-					  <property name="visible">True</property>
-					  <property name="stock">gtk-jump-to</property>
-					  <property name="icon_size">4</property>
-					  <property name="xalign">0.5</property>
-					  <property name="yalign">0.5</property>
-					  <property name="xpad">0</property>
-					  <property name="ypad">0</property>
-					</widget>
-					<packing>
-					  <property name="padding">0</property>
-					  <property name="expand">False</property>
-					  <property name="fill">False</property>
-					</packing>
-				      </child>
-
-				      <child>
-					<widget class="GtkLabel" id="label288">
-					  <property name="visible">True</property>
-					  <property name="label" translatable="yes">_Go</property>
-					  <property name="use_underline">True</property>
-					  <property name="use_markup">False</property>
-					  <property name="justify">GTK_JUSTIFY_LEFT</property>
-					  <property name="wrap">False</property>
-					  <property name="selectable">False</property>
-					  <property name="xalign">0.5</property>
-					  <property name="yalign">0.5</property>
-					  <property name="xpad">0</property>
-					  <property name="ypad">0</property>
-					</widget>
-					<packing>
-					  <property name="padding">0</property>
-					  <property name="expand">False</property>
-					  <property name="fill">False</property>
-					</packing>
-				      </child>
-				    </widget>
-				  </child>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -17225,13 +17423,22 @@ Other</property>
 			  <child>
 			    <widget class="GtkButton" id="button125">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Delete</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_delete_url_clicked" object="web_list"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2324">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-remove</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -19265,8 +19472,8 @@ Other</property>
 		<widget class="GtkTable" id="table19">
 		  <property name="border_width">12</property>
 		  <property name="visible">True</property>
-		  <property name="n_rows">11</property>
-		  <property name="n_columns">5</property>
+		  <property name="n_rows">12</property>
+		  <property name="n_columns">4</property>
 		  <property name="homogeneous">False</property>
 		  <property name="row_spacing">6</property>
 		  <property name="column_spacing">12</property>
@@ -19643,27 +19850,6 @@ Other</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkEntry" id="sdate">
-		      <property name="visible">True</property>
-		      <property name="can_focus">True</property>
-		      <property name="editable">True</property>
-		      <property name="visibility">True</property>
-		      <property name="max_length">0</property>
-		      <property name="text" translatable="yes"></property>
-		      <property name="has_frame">True</property>
-		      <property name="invisible_char" translatable="yes">*</property>
-		      <property name="activates_default">False</property>
-		    </widget>
-		    <packing>
-		      <property name="left_attach">2</property>
-		      <property name="right_attach">4</property>
-		      <property name="top_attach">8</property>
-		      <property name="bottom_attach">9</property>
-		      <property name="y_options"></property>
-		    </packing>
-		  </child>
-
-		  <child>
 		    <widget class="GtkScrolledWindow" id="scrolledwindow31">
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
@@ -19694,7 +19880,7 @@ Other</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
-		      <property name="right_attach">5</property>
+		      <property name="right_attach">4</property>
 		      <property name="top_attach">7</property>
 		      <property name="bottom_attach">8</property>
 		      <property name="x_options">fill</property>
@@ -19756,7 +19942,7 @@ Other</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
-		      <property name="right_attach">5</property>
+		      <property name="right_attach">4</property>
 		      <property name="top_attach">6</property>
 		      <property name="bottom_attach">7</property>
 		      <property name="x_options">fill</property>
@@ -19794,7 +19980,7 @@ Other</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
-		      <property name="right_attach">5</property>
+		      <property name="right_attach">4</property>
 		      <property name="top_attach">9</property>
 		      <property name="bottom_attach">10</property>
 		      <property name="x_options">fill</property>
@@ -19832,7 +20018,7 @@ Other</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
-		      <property name="right_attach">5</property>
+		      <property name="right_attach">4</property>
 		      <property name="top_attach">10</property>
 		      <property name="bottom_attach">11</property>
 		      <property name="x_options">fill</property>
@@ -19853,7 +20039,7 @@ Other</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">3</property>
-		      <property name="right_attach">5</property>
+		      <property name="right_attach">4</property>
 		      <property name="top_attach">1</property>
 		      <property name="bottom_attach">2</property>
 		      <property name="x_options">fill</property>
@@ -19862,14 +20048,59 @@ Other</property>
 		  </child>
 
 		  <child>
+		    <widget class="GtkCheckButton" id="priv">
+		      <property name="visible">True</property>
+		      <property name="can_focus">True</property>
+		      <property name="label" translatable="yes">_Private record</property>
+		      <property name="use_underline">True</property>
+		      <property name="relief">GTK_RELIEF_NORMAL</property>
+		      <property name="focus_on_click">True</property>
+		      <property name="active">False</property>
+		      <property name="inconsistent">False</property>
+		      <property name="draw_indicator">True</property>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">2</property>
+		      <property name="right_attach">3</property>
+		      <property name="top_attach">11</property>
+		      <property name="bottom_attach">12</property>
+		      <property name="x_options">fill</property>
+		      <property name="y_options"></property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkEntry" id="sdate">
+		      <property name="visible">True</property>
+		      <property name="can_focus">True</property>
+		      <property name="editable">True</property>
+		      <property name="visibility">True</property>
+		      <property name="max_length">0</property>
+		      <property name="text" translatable="yes"></property>
+		      <property name="has_frame">True</property>
+		      <property name="invisible_char" translatable="yes">*</property>
+		      <property name="activates_default">False</property>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">2</property>
+		      <property name="right_attach">3</property>
+		      <property name="top_attach">8</property>
+		      <property name="bottom_attach">9</property>
+		      <property name="y_options"></property>
+		    </packing>
+		  </child>
+
+		  <child>
 		    <widget class="GtkButton" id="date_stat">
 		      <property name="visible">True</property>
+		      <property name="tooltip" translatable="yes">Invoke date editor</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NONE</property>
 		      <property name="focus_on_click">True</property>
+		      <signal name="clicked" handler="on_edit_date_death_clicked" last_modification_time="Sat, 18 Sep 2004 02:30:11 GMT"/>
 
 		      <child>
-			<widget class="GtkImage" id="date_stat_child">
+			<widget class="GtkImage" id="image2362">
 			  <property name="visible">True</property>
 			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
@@ -19879,12 +20110,12 @@ Other</property>
 		      </child>
 		    </widget>
 		    <packing>
-		      <property name="left_attach">4</property>
-		      <property name="right_attach">5</property>
+		      <property name="left_attach">3</property>
+		      <property name="right_attach">4</property>
 		      <property name="top_attach">8</property>
 		      <property name="bottom_attach">9</property>
 		      <property name="x_options">fill</property>
-		      <property name="y_options">fill</property>
+		      <property name="y_options"></property>
 		    </packing>
 		  </child>
 		</widget>
@@ -20062,13 +20293,22 @@ Other</property>
 		  <child>
 		    <widget class="GtkButton" id="add">
 		      <property name="visible">True</property>
-		      <property name="can_default">True</property>
 		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">_Add...</property>
-		      <property name="use_underline">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
 		      <signal name="clicked" handler="on_add_src_clicked" object="slist"/>
+
+		      <child>
+			<widget class="GtkImage" id="image2325">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-add</property>
+			  <property name="icon_size">4</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>
@@ -20081,11 +20321,20 @@ Other</property>
 		    <widget class="GtkButton" id="edit">
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">_Edit...</property>
-		      <property name="use_underline">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
 		      <signal name="clicked" handler="on_edit_src_clicked" last_modification_time="Mon, 03 Mar 2003 04:20:04 GMT"/>
+
+		      <child>
+			<widget class="GtkImage" id="image2326">
+			  <property name="visible">True</property>
+			  <property name="pixbuf">edit_sm.png</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>
@@ -20097,13 +20346,22 @@ Other</property>
 		  <child>
 		    <widget class="GtkButton" id="delete">
 		      <property name="visible">True</property>
-		      <property name="can_default">True</property>
 		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">_Delete</property>
-		      <property name="use_underline">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
 		      <signal name="clicked" handler="on_del_src_clicked" object="slist"/>
+
+		      <child>
+			<widget class="GtkImage" id="image2327">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-remove</property>
+			  <property name="icon_size">4</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>
@@ -20900,46 +21158,72 @@ Other</property>
 		  <child>
 		    <widget class="GtkButton" id="button3">
 		      <property name="visible">True</property>
-		      <property name="can_default">True</property>
 		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">_Add...</property>
-		      <property name="use_underline">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
 		      <signal name="clicked" handler="on_add_clicked" object="styles"/>
+
+		      <child>
+			<widget class="GtkImage" id="image2328">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-add</property>
+			  <property name="icon_size">4</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 
 		  <child>
 		    <widget class="GtkButton" id="button4">
 		      <property name="visible">True</property>
-		      <property name="can_default">True</property>
 		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">_Edit...</property>
-		      <property name="use_underline">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
 		      <signal name="clicked" handler="on_edit_clicked" object="styles"/>
+
+		      <child>
+			<widget class="GtkImage" id="image2329">
+			  <property name="visible">True</property>
+			  <property name="pixbuf">edit_sm.png</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 
 		  <child>
 		    <widget class="GtkButton" id="button5">
 		      <property name="visible">True</property>
-		      <property name="can_default">True</property>
 		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">_Delete</property>
-		      <property name="use_underline">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
 		      <signal name="clicked" handler="on_delete_clicked" object="styles"/>
+
+		      <child>
+			<widget class="GtkImage" id="image2330">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-remove</property>
+			  <property name="icon_size">4</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
 		  <property name="expand">False</property>
-		  <property name="fill">True</property>
+		  <property name="fill">False</property>
 		</packing>
 	      </child>
 	    </widget>
@@ -23576,13 +23860,22 @@ Other</property>
 			    <widget class="GtkButton" id="button86">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Creates a new object attribute from the above data</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Add...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_add_attr_clicked" object="attr_list"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2331">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-add</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -23595,11 +23888,20 @@ Other</property>
 			    <widget class="GtkButton" id="button100">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Edit...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_update_attr_clicked" last_modification_time="Sat, 01 Mar 2003 22:46:32 GMT"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2332">
+				  <property name="visible">True</property>
+				  <property name="pixbuf">edit_sm.png</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -23612,13 +23914,22 @@ Other</property>
 			    <widget class="GtkButton" id="button88">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Delete the selected attribute</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Delete</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_delete_attr_clicked" object="attr_list"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2333">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-remove</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -23731,12 +24042,21 @@ Other</property>
 			  <child>
 			    <widget class="GtkButton" id="add_src">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Add...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2334">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-add</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -23749,10 +24069,19 @@ Other</property>
 			    <widget class="GtkButton" id="edit_src">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Edit...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2335">
+				  <property name="visible">True</property>
+				  <property name="pixbuf">edit_sm.png</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -23764,12 +24093,21 @@ Other</property>
 			  <child>
 			    <widget class="GtkButton" id="del_src">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Delete</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2336">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-remove</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -24598,13 +24936,22 @@ Other</property>
 			    <widget class="GtkButton" id="button93">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Creates a new attribute from the above data</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Add...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_add_attr_clicked" object="attr_list"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2337">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-add</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -24617,11 +24964,20 @@ Other</property>
 			    <widget class="GtkButton" id="button101">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Edit...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_update_attr_clicked" last_modification_time="Sat, 01 Mar 2003 23:08:06 GMT"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2338">
+				  <property name="visible">True</property>
+				  <property name="pixbuf">edit_sm.png</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -24636,11 +24992,21 @@ Other</property>
 			      <property name="tooltip" translatable="yes">Delete the selected attribute</property>
 			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Delete</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_delete_attr_clicked" object="attr_list"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2339">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-remove</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -24951,12 +25317,21 @@ Other</property>
 			  <child>
 			    <widget class="GtkButton" id="gl_add_src">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Add...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2340">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-add</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -24969,10 +25344,19 @@ Other</property>
 			    <widget class="GtkButton" id="gl_edit_src">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Edit...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2341">
+				  <property name="visible">True</property>
+				  <property name="pixbuf">edit_sm.png</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -24984,12 +25368,21 @@ Other</property>
 			  <child>
 			    <widget class="GtkButton" id="gl_del_src">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Delete</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2342">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-remove</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -26747,12 +27140,21 @@ Other</property>
 			  <child>
 			    <widget class="GtkButton" id="add_src">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Add...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2343">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-add</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -26765,10 +27167,19 @@ Other</property>
 			    <widget class="GtkButton" id="edit_src">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Edit...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2344">
+				  <property name="visible">True</property>
+				  <property name="pixbuf">edit_sm.png</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -26780,12 +27191,21 @@ Other</property>
 			  <child>
 			    <widget class="GtkButton" id="del_src">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Delete</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2345">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-remove</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -27056,12 +27476,21 @@ Other</property>
 			  <child>
 			    <widget class="GtkButton" id="add_witness">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Add...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2346">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-add</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -27074,10 +27503,19 @@ Other</property>
 			    <widget class="GtkButton" id="edit_witness">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Edit...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2347">
+				  <property name="visible">True</property>
+				  <property name="pixbuf">edit_sm.png</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -27089,12 +27527,21 @@ Other</property>
 			  <child>
 			    <widget class="GtkButton" id="del_witness">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Delete</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2348">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-remove</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -27211,13 +27658,22 @@ Other</property>
 			    <widget class="GtkButton" id="button170">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Add a new media object to the database and place it in this gallery</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Add from file...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_addphoto_clicked" object="sourceEditor"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2349">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-add</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -27230,13 +27686,22 @@ Other</property>
 			    <widget class="GtkButton" id="button171">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Select an existing media object from the database and place it in this gallery</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Add from _database...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_selectphoto_clicked" object="sourceEditor" last_modification_time="Fri, 12 Dec 2003 05:21:39 GMT"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2350">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-index</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -27250,11 +27715,20 @@ Other</property>
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Edit the properties of the selected object</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Edit...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_editphoto_clicked" object="sourceEditor" last_modification_time="Fri, 06 Feb 2004 20:06:09 GMT"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2351">
+				  <property name="visible">True</property>
+				  <property name="pixbuf">edit_sm.png</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -27267,13 +27741,22 @@ Other</property>
 			    <widget class="GtkButton" id="button173">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Remove selected object from this gallery only</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Remove</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <signal name="clicked" handler="on_deletephoto_clicked" object="sourceEditor"/>
+
+			      <child>
+				<widget class="GtkImage" id="image2352">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-remove</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -27661,12 +28144,21 @@ Other</property>
 			  <child>
 			    <widget class="GtkButton" id="add_src">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Add...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2353">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-add</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -27679,10 +28171,19 @@ Other</property>
 			    <widget class="GtkButton" id="edit_src">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Edit...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2354">
+				  <property name="visible">True</property>
+				  <property name="pixbuf">edit_sm.png</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -27694,12 +28195,21 @@ Other</property>
 			  <child>
 			    <widget class="GtkButton" id="del_src">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Delete</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2355">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-remove</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -28203,7 +28713,7 @@ Other</property>
 		  <property name="editable">True</property>
 		  <property name="visibility">True</property>
 		  <property name="max_length">0</property>
-		  <property name="text" translatable="yes">:</property>
+		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
 		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
@@ -29002,12 +29512,21 @@ Other</property>
 			  <child>
 			    <widget class="GtkButton" id="add_src">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Add...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2356">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-add</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -29020,10 +29539,19 @@ Other</property>
 			    <widget class="GtkButton" id="edit_src">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Edit...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2357">
+				  <property name="visible">True</property>
+				  <property name="pixbuf">edit_sm.png</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -29035,12 +29563,21 @@ Other</property>
 			  <child>
 			    <widget class="GtkButton" id="del_src">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Delete</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2358">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-remove</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -30314,12 +30851,21 @@ Family name Given name
 			  <child>
 			    <widget class="GtkButton" id="add_src">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Add...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2359">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-add</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -30332,10 +30878,19 @@ Family name Given name
 			    <widget class="GtkButton" id="edit_src">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Edit...</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2360">
+				  <property name="visible">True</property>
+				  <property name="pixbuf">edit_sm.png</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -30347,12 +30902,21 @@ Family name Given name
 			  <child>
 			    <widget class="GtkButton" id="del_src">
 			      <property name="visible">True</property>
-			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Delete</property>
-			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+
+			      <child>
+				<widget class="GtkImage" id="image2361">
+				  <property name="visible">True</property>
+				  <property name="stock">gtk-remove</property>
+				  <property name="icon_size">4</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -30700,7 +31264,7 @@ Family name Given name
 	    <widget class="GtkTable" id="table28">
 	      <property name="border_width">12</property>
 	      <property name="visible">True</property>
-	      <property name="n_rows">3</property>
+	      <property name="n_rows">4</property>
 	      <property name="n_columns">3</property>
 	      <property name="homogeneous">False</property>
 	      <property name="row_spacing">6</property>
@@ -30873,6 +31437,28 @@ Family name Given name
 		  <property name="y_options"></property>
 		</packing>
 	      </child>
+
+	      <child>
+		<widget class="GtkCheckButton" id="priv">
+		  <property name="visible">True</property>
+		  <property name="can_focus">True</property>
+		  <property name="label" translatable="yes">_Private record</property>
+		  <property name="use_underline">True</property>
+		  <property name="relief">GTK_RELIEF_NORMAL</property>
+		  <property name="focus_on_click">True</property>
+		  <property name="active">False</property>
+		  <property name="inconsistent">False</property>
+		  <property name="draw_indicator">True</property>
+		</widget>
+		<packing>
+		  <property name="left_attach">1</property>
+		  <property name="right_attach">2</property>
+		  <property name="top_attach">3</property>
+		  <property name="bottom_attach">4</property>
+		  <property name="x_options">fill</property>
+		  <property name="y_options"></property>
+		</packing>
+	      </child>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -30906,7 +31492,7 @@ Family name Given name
   <property name="skip_pager_hint">False</property>
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
-  <property name="has_separator">True</property>
+  <property name="has_separator">False</property>
 
   <child internal-child="vbox">
     <widget class="GtkVBox" id="dialog-vbox1">

@@ -1,3 +1,10 @@
+2004-11-27  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps.glade: add privacy fields and fix add/edit/remove
+	buttons
+	* src/Sources.py: add support for privacy flags
+	* src/Witness.py: add support for privacy flags
+	* src/RelLib.py: add support for privacy flags
+
 2004-11-26  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DisplayModels.py: fix Source column display
 	* src/GrampsDbBase.py: change default display columns
