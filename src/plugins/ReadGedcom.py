@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -113,7 +113,7 @@ intRE = re.compile(r"\s*(\d+)\s*$")
 lineRE = re.compile(r"\s*(\d+)\s+(\S+)\s*(.*)$")
 headRE = re.compile(r"\s*(\d+)\s+HEAD")
 nameRegexp= re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
-snameRegexp= re.compile(r"/([^/]*)/")
+snameRegexp= re.compile(r"/([^/]*)/([^/]*)")
 calRegexp = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
 fromtoRegexp = re.compile(r"\s*(FROM|BET)\s+@#D([^@]+)@\s*(.*)\s+(AND|TO)\s+@#D([^@]+)@\s*(.*)$")
 
@@ -707,7 +707,8 @@ class GedcomParser:
                 m = snameRegexp.match(matches[2])
                 if m:
                     n = m.groups()[0]
-                    names = ('','',n,'','')
+                    n2 = m.groups()[1]
+                    names = (n2,'',n,'','')
                 else:
                     try:
                         names = nameRegexp.match(matches[2]).groups()

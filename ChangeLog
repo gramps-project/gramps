@@ -4,6 +4,7 @@
 	* src/plugins/book.glade: Reduce minimum window height to 600 pixels.
 	* src/plugins/WriteCD.py (on_ok_clicked): Correct indentation.
 	* src/GrampsCfg.py (loadConfig, save_data): Correctly parse gconf key.
+	* src/plugins/ReadGedcom.py (parse_individual): add /Surname/ Firstname.
 
 2004-01-17  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/AncestorChart2.py: more multipage improvements
