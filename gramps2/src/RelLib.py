@@ -1797,7 +1797,7 @@ class Family(SourceNote):
 
     def get_father_id(self):
         """returns the father of the Family"""
-       	return father_id
+       	return self.father_id
 
     def set_mother_id(self,person):
         """sets the mother of the Family to the specfied Person"""
@@ -2190,7 +2190,7 @@ class GrampsDB:
     def get_number_of_people(self):
         return len(self.person_map)
 
-v    def get_person_keys(self):
+    def get_person_keys(self):
         return self.person_map.keys()
 
     def sort_by_name(self,f,s):

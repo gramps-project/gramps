@@ -1438,11 +1438,11 @@ class EditPerson:
         family = self.person.get_main_parents_family_id()
         if (family):
             f = self.db.find_family_no_map(family)
-            new_order = reorder_child_list(self.person,f.get_child_id_list())
+            new_order = self.reorder_child_list(self.person,f.get_child_id_list())
             f.set_child_id_list(new_order)
         for (family, rel1, rel2) in self.person.get_parent_family_id_list():
             f = self.db.find_family_no_map(family)
-            new_order = reorder_child_list(self.person,f.get_child_id_list())
+            new_order = self.reorder_child_list(self.person,f.get_child_id_list())
             f.set_child_id_list(new_order)
     
         self.death.set_date(unicode(self.ddate.get_text()))
@@ -1683,70 +1683,61 @@ class EditPerson:
         self.ntype_field.entry.set_text(_(self.pname.get_type()))
         self.title.set_text(self.pname.get_title())
 
-#-------------------------------------------------------------------------
-# 
-# birth_dates_in_order
-# 
-# Check any *valid* birthdates in the list to insure that they are in
-# numerically increasing order.
-# 
-#-------------------------------------------------------------------------
-def birth_dates_in_order(list):
-    inorder = 1
-    prev_date = "00000000"
-    for i in range(len(list)):
-        child = list[i]
-        bday = child.get_birth().get_date_object()
-        child_date = sort.build_sort_date(bday)
-        if (child_date == "99999999"):
-            continue
-        if (prev_date <= child_date):	# <= allows for twins
-            prev_date = child_date
-        else:
-            inorder = 0
-    return inorder
+    def birth_dates_in_order(self,list):
+        """Check any *valid* birthdates in the list to insure that they are in
+        numerically increasing order."""
+        inorder = 1
+        prev_date = "00000000"
+        for i in range(len(list)):
+            child_id = list[i]
+            child = self.db.find_person_from_id(child_id)
+            bday = child.get_birth().get_date_object()
+            child_date = sort.build_sort_date(bday)
+            if (child_date == "99999999"):
+                continue
+            if (prev_date <= child_date):	# <= allows for twins
+                prev_date = child_date
+            else:
+                inorder = 0
+        return inorder
 
+    def reorder_child_list(self, person, list):
+        """Reorder the child list to put the specified person in his/her
+        correct birth order.  Only check *valid* birthdates.  Move the person
+        as short a distance as possible."""
+        
+        if (self.birth_dates_in_order(list)):
+            return(list)
 
-#-------------------------------------------------------------------------
-# 
-# reorder_child_list
-# 
-# Reorder the child list to put the specified person in his/her
-# correct birth order.  Only check *valid* birthdates.  Move the person
-# as short a distance as possible.
-# 
-#-------------------------------------------------------------------------
-def reorder_child_list(person, list):
-    if (birth_dates_in_order(list)):
-        return(list)
+        # Build the person's date string once
+        person_bday = sort.build_sort_date(person.get_birth().get_date_object())
 
-    # Build the person's date string once
-    person_bday = sort.build_sort_date(person.get_birth().get_date_object())
-
-    # First, see if the person needs to be moved forward in the list
-    index = list.index(person)
-    target = index
-    for i in range(index-1, -1, -1):
-        other_bday = sort.build_sort_date(list[i].get_birth().get_date_object())
-        if (other_bday == "99999999"):
-            continue;
-        if (person_bday < other_bday):
-            target = i
-
-    # Now try moving to a later position in the list
-    if (target == index):
-        for i in range(index, len(list)):
-            other_bday = sort.build_sort_date(list[i].get_birth().get_date_object())
+        # First, see if the person needs to be moved forward in the list
+        index = list.index(person)
+        target = index
+        for i in range(index-1, -1, -1):
+            other = self.db.find_person_from_id(list[i])
+            other_bday = sort.build_sort_date(other.get_birth().get_date_object())
             if (other_bday == "99999999"):
                 continue;
-            if (person_bday > other_bday):
+            if (person_bday < other_bday):
                 target = i
 
-    # Actually need to move?  Do it now.
-    if (target != index):
-        list.remove(person)
-        list.insert(target,person)
-    return list
+        # Now try moving to a later position in the list
+        if (target == index):
+            for i in range(index, len(list)):
+                other = self.db.find_person_from_id(list[i])
+                other_bday = sort.build_sort_date(other.get_birth().get_date_object())
+                if (other_bday == "99999999"):
+                    continue;
+                if (person_bday > other_bday):
+                    target = i
+
+        # Actually need to move?  Do it now.
+        if (target != index):
+            list.remove(person.get_id())
+            list.insert(target,person.get_id())
+        return list
 
 
 def short(val,size=60):
