@@ -457,7 +457,8 @@ class PdfDoc(BaseDoc.BaseDoc):
         start_x = (x + w/2.0)
 
         for text in lines:
-            s = String(startx, start_y,
+            s = String(start_x*cm,
+                       start_y*cm,
                        str(line),
                        fontName=self.pdf_set_font(font),
                        fontSize=font.get_size(),
@@ -470,10 +471,11 @@ class PdfDoc(BaseDoc.BaseDoc):
     def left_print(self,lines,font,x,y):
         l = len(lines)
         size = font.get_size()
-        start_y = self.get_usable_height() - (y*cm)
-        start_x = x * cm
+        start_y = y
+        start_x = x 
 
         for text in lines:
+            print text, start_x, start_y
             s = String(start_x,
                        start_y,
                        str(text),
