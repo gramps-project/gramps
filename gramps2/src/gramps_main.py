@@ -846,6 +846,11 @@ class Gramps:
         all.add_rule(GenericFilter.IsMale([]))
         filter_list.append(all)
 
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("Disconnected individuals"))
+        all.add_rule(GenericFilter.Disconnected([]))
+        filter_list.append(all)
+
         all = GenericFilter.ParamFilter()
         all.set_name(_("Name contains..."))
         all.add_rule(GenericFilter.SearchName([]))

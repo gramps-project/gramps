@@ -129,6 +129,7 @@ GRAPHICS = \
 	home.png\
 	logo.png\
 	gramps.png \
+	gramps.desktop \
 	media.png\
 	people48.png\
 	place.png\

@@ -27,6 +27,27 @@ import os
 import md5
 import gtk
 
+
+class GrampsCursor:
+
+    def __init__(self,src_map):
+        self.src_map = src_map
+        self.current = iter(src_map)
+        
+    def first(self):
+        self.current = iter(self.src_map)
+        return self.next()
+
+    def next(self):
+        try:
+            index = self.current.next()
+            return (index,self.src_map[index])
+        except StopIteration:
+            return None
+
+    def close(self):
+        pass
+        
 #-------------------------------------------------------------------------
 #
 # GrampsInMemDB
@@ -59,6 +80,9 @@ class GrampsInMemDB(GrampsDbBase):
     def load(self,name,callback):
         pass
 
+    def get_person_cursor(self):
+        return GrampsCursor(self.person_map)
+
     def close(self):
         pass
 
@@ -73,7 +97,7 @@ class GrampsInMemDB(GrampsDbBase):
 
     def get_surname_list(self):
         a = {}
-        for person_id in self.get_person_handles(sort_handles=False):
+        for person_id in iter(self.person_map):
             p = self.get_person_from_handle(person_id)
             a[p.get_primary_name().get_group_as()] = 1
         vals = a.keys()

@@ -60,6 +60,9 @@ class GrampsBSDDB(GrampsDbBase):
         dbmap.open(name, dbname, db.DB_HASH, db.DB_CREATE, 0666)
         return dbmap
     
+    def get_person_cursor(self):
+        return self.person_map.cursor()
+
     def load(self,name,callback):
         if self.person_map:
             self.close()

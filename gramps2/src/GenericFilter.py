@@ -141,6 +141,30 @@ class Everyone(Rule):
 
 #-------------------------------------------------------------------------
 #
+# Disconnected
+#
+#-------------------------------------------------------------------------
+class Disconnected(Rule):
+    """Matches disconnected individuals"""
+
+    labels = []
+    
+    def name(self):
+        return 'Disconnected individuals'
+
+    def category(self): 
+        return _('General filters')
+    
+    def description(self):
+        return _('Matches individuals that have no relationships')
+
+    def apply(self,db,p_id):
+        person = db.get_person_from_handle(p_id)
+        return (not person.get_main_parents_family_handle() and
+                not len(person.get_family_handle_list()))
+
+#-------------------------------------------------------------------------
+#
 # RelationshipPathBetween
 #
 #-------------------------------------------------------------------------

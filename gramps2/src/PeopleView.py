@@ -116,13 +116,15 @@ class PeopleView:
 
     def build_tree(self):
         self.person_model = PeopleModel.PeopleModel(self.parent.db)
-        #self.sort_model = self.person_model.filter_new()
-        self.sort_model = self.person_model
+        #self.sort_model = self.person_model
+        self.sort_model = self.person_model.filter_new()
+        self.sort_model.set_visible_column(PeopleModel.COLUMN_VIEW)
         self.person_tree.set_model(self.sort_model)
         
     def blist(self, store, path, node, id_list):
-        id_list.append(self.sort_model.get_value(node,
-                                                 PeopleModel.COLUMN_INT_ID))
+        id_list.append(self.sort_model.get_value(
+            node,
+            PeopleModel.COLUMN_INT_ID))
 
     def get_selected_objects(self):
         mlist = []
@@ -146,8 +148,10 @@ class PeopleView:
     def change_db(self,db):
         self.build_columns()
         self.person_model = PeopleModel.PeopleModel(db)
-        #self.sort_model = self.person_model.filter_new()
-        self.sort_model = self.person_model
+        #self.sort_model = self.person_model
+        self.sort_model = self.person_model.filter_new()
+        self.sort_model.set_visible_column(PeopleModel.COLUMN_VIEW)
+        self.apply_filter()
         self.person_tree.set_model(self.sort_model)
 
     def remove_from_person_list(self,person):
@@ -203,14 +207,18 @@ class PeopleView:
     def apply_filter(self,current_model=None):
         self.person_model.rebuild_data()
         self.parent.status_text(_('Updating display...'))
-        keys = self.DataFilter.apply(self.parent.db,
-                                     self.parent.db.get_person_handles(sort_handles=False))
+        keys = self.DataFilter.apply(
+            self.parent.db,
+            self.parent.db.get_person_handles(sort_handles=False))
         self.person_model.reset_visible()
         for person_handle in keys:
-            self.person_model.set_visible(person_handle,1)
+            self.person_model.set_visible(person_handle,True)
 
-        #self.sort_model.refilter()
+        print "Applying filter"
+        self.sort_model.refilter()
+        print "Done"
         self.parent.modify_statusbar()
+        print "exit"
         
     def on_plist_button_press(self,obj,event):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:

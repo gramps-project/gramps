@@ -313,16 +313,19 @@ class ChooseParents:
 
     def redrawf(self):
         """Redraws the potential father list"""
-        self.father_nsort = PeopleModel.PeopleModel(self.db)
-        self.father_nsort.rebuild_data()
-        self.father_nsort.reset_visible()
         self.build_exclude_list()
+        self.father_nsort = PeopleModel.PeopleModel(self.db)
         
-        for pid in self.db.get_person_handles(sort_handles=False):
-            person = self.db.get_person_from_handle(pid)
+        cursor = self.db.get_person_cursor()
+        data = cursor.first()
+        while data:
+            person = RelLib.Person()
+            person.unserialize(data[1])
             visible = self.father_filter(person)
             if visible:
-                self.father_nsort.set_visible(pid,visible)
+                self.father_nsort.set_visible(data[0],visible)
+            data = cursor.next()
+        cursor.close()
 
         self.father_model = gtk.TreeModelSort(self.father_nsort).filter_new()
         self.father_model.set_visible_column(PeopleModel.COLUMN_VIEW)
@@ -337,15 +340,18 @@ class ChooseParents:
     def redrawm(self):
         """Redraws the potential mother list"""
         self.mother_nsort = PeopleModel.PeopleModel(self.db)
-        self.mother_nsort.rebuild_data()
-        self.mother_nsort.reset_visible()
         self.build_exclude_list()
         
-        for pid in self.db.get_person_handles(sort_handles=False):
-            person = self.db.get_person_from_handle(pid)
+        cursor = self.db.get_person_cursor()
+        data = cursor.first()
+        while data:
+            person = RelLib.Person()
+            person.unserialize(data[1])
             visible = self.mother_filter(person)
             if visible:
-                self.mother_nsort.set_visible(pid,visible)
+                self.mother_nsort.set_visible(data[0],visible)
+            data = cursor.next()
+        cursor.close()
 
         self.mother_model = gtk.TreeModelSort(self.mother_nsort).filter_new()
         self.mother_model.set_visible_column(PeopleModel.COLUMN_VIEW)

@@ -1,3 +1,18 @@
+2004-12-04  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/ChooseParents.py: use new cursor for interation
+	* src/DbPrompter.py: reformat
+	* src/GenericFilter.py: add disconnected rule
+	* src/GrampsBSDDB.py: provide cursor access for iteration
+	* src/GrampsDbBase.py: provide cursor access for iteration
+	* src/GrampsInMemDB.py: provide cursor access for iteration
+	* src/Makefile.am: add gramps.desktop to install list
+	* src/PeopleModel.py: use new cursor for faster iteration
+	* src/PeopleView.py: reimplement filtering
+	* src/ReadGedcom.py: removed used source counting
+	* src/gedcomimport.glade: remove source field
+	* src/gramps.glade: fixed spacing in message
+	* src/gramps_main.py: add disconnected filter
+
 2004-12-02  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: hide window while closing updating info
 	* src/FamilyView.py: Fix deleting of spouses and children
