@@ -128,6 +128,9 @@ class GrampsZODB(GrampsDB):
         self.conn = None
         GrampsDB.__init__(self)
 
+    def get_type(self):
+        return 'GrampsZODB'
+
     def close(self):
         self.db.close()
 

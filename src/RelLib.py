@@ -1859,6 +1859,9 @@ class GrampsDB(Persistent):
         self.placeMap = {}
         self.new()
 
+    def get_type(self):
+        return 'GrampsDB'
+
     def close(self):
         pass
     
