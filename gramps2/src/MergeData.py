@@ -75,9 +75,6 @@ class MergePeople:
 
     def build_interface(self):
 
-        self.confirm_label = gtk.Label()
-        self.extra_pages = []
-
         self.w = gtk.Window()
 
         self.fg_color = gtk.gdk.color_parse('#7d684a')
@@ -91,6 +88,14 @@ class MergePeople:
         self.d.add(self.build_info_page())
         self.d.add(self.build_name_page())
         self.d.add(self.build_id_page())
+        if self.need_birth:
+            self.d.add(self.build_birth_page())
+        if self.need_death:
+            self.d.add(self.build_death_page())
+        if self.need_parents:
+            self.d.add(self.build_parents_page())
+        if self.need_spouse:
+            self.d.add(self.build_spouse_page())
         self.last_page = self.build_last_page()
         self.d.add(self.last_page)
 
@@ -207,21 +212,9 @@ class MergePeople:
         
         box.add(table)
         box.show_all()
-        if self.need_birth:
-            print "birth"
-            p.connect('next',self.build_birth_page)
-        elif self.need_death:
-            print "death"
-            p.connect('next',self.build_death_page)
-        elif self.need_parents:
-            print "parents"
-            p.connect('next',self.build_parents_page)
-        elif self.need_spouse:
-            print "spouse"
-            p.connect('next',self.build_spouse_page)
         return p
 
-    def build_birth_page(self,obj1,obj2):
+    def build_birth_page(self):
         """
         Build a page with the table of format radio buttons and 
         their descriptions.
@@ -245,7 +238,8 @@ class MergePeople:
 
         self.birth1 = gtk.RadioButton(None,bstr1)
         self.birth2 = gtk.RadioButton(self.birth1,bstr2)
-        self.keepbirth = gtk.CheckButton(_('Add unselected birth event as an Alternate Birth event'))
+        self.keepbirth = gtk.CheckButton(_('Add unselected birth event as '
+                                           'an Alternate Birth event'))
         
         table = gtk.Table(6,2)
         table.set_row_spacings(6)
@@ -267,15 +261,9 @@ class MergePeople:
         
         box.add(table)
         box.show_all()
-        if self.need_death:
-            p.connect('next',self.build_death_page)
-        elif self.need_parents:
-            p.connect('next',self.build_parents_page)
-        elif self.need_spouse:
-            p.connect('next',self.build_spouse_page)
         return p
 
-    def build_death_page(self,obj1,obj2):
+    def build_death_page(self):
         """
         Build a page with the table of format radio buttons and 
         their descriptions.
@@ -299,7 +287,8 @@ class MergePeople:
 
         self.death1 = gtk.RadioButton(None,bstr1)
         self.death2 = gtk.RadioButton(self.death1,bstr2)
-        self.keepdeath = gtk.CheckButton(_('Add unselected death event as an Alternate Death event'))
+        self.keepdeath = gtk.CheckButton(_('Add unselected death event as '
+                                           'an Alternate Death event'))
         
         table = gtk.Table(6,2)
         table.set_row_spacings(6)
@@ -321,13 +310,9 @@ class MergePeople:
         
         box.add(table)
         box.show_all()
-        if self.need_parents:
-            p.connect('next',self.build_parents_page)
-        elif self.need_spouse:
-            p.connect('next',self.build_spouse_page)
         return p
 
-    def build_spouse_page(self,obj1,obj2):
+    def build_spouse_page(self):
         """
         Build a page with the table of format radio buttons and 
         their descriptions.
@@ -342,88 +327,74 @@ class MergePeople:
         box.set_spacing(12)
         p.append_item("",box,"")
 
-        f1_list = self.p1.get_family_handle_list()
-        f2_list = self.p2.get_family_handle_list()
+        import ReportUtils
 
-        if len(f1_list) > 0 and len(f2_list) > 0:
-            import ReportUtils
+        table = gtk.Table(3,3)
+        table.set_row_spacings(6)
+        table.set_col_spacings(6)
 
-            f1 = self.db.get_family_from_handle(f1_list[0])
-            f2 = self.db.get_family_from_handle(f2_list[0])
-            
-            sp1_id = ReportUtils.find_spouse(self.p1,f1)
-            sp2_id = ReportUtils.find_spouse(self.p2,f2)
-
-            sp1 = self.db.get_person_from_handle(sp1_id)
-            sp2 = self.db.get_person_from_handle(sp2_id)
-
-            bstr1 = NameDisplay.displayer.display(sp1)
-            bstr2 = NameDisplay.displayer.display(sp2)
-
-            self.spouse1 = gtk.RadioButton(None,bstr1)
-            self.spouse2 = gtk.RadioButton(self.spouse1,bstr2)
-            self.keepspouse = gtk.CheckButton(_('Keep unselected spouse'))
+        label = gtk.Label('<b>%s</b>' %
+                          _('Select spouse relationships'))
+        label.set_use_markup(True)
+        label.set_alignment(0.0,0.5)
+        table.attach(label,0,3,0,1,xoptions=gtk.EXPAND|gtk.FILL)
         
-            table = gtk.Table(8,2)
-            table.set_row_spacings(6)
-            table.set_col_spacings(6)
+        self.spouse_view = gtk.TreeView()
+        self.spouse_list = gtk.ListStore(bool,str,str,str,str,str)
+        self.spouse_view.set_model(self.spouse_list)
+        self.spouse_view.set_reorderable(True)
+        scroll = gtk.ScrolledWindow()
+        scroll.set_policy(gtk.POLICY_AUTOMATIC,
+                          gtk.POLICY_AUTOMATIC)
+        scroll.add(self.spouse_view)
+        table.attach(scroll,0,3,2,3,xoptions=gtk.EXPAND|gtk.FILL,
+                     yoptions=gtk.EXPAND|gtk.FILL)
+        
+        celltoggle = gtk.CellRendererToggle()
+        celltoggle.set_property('activatable',True)
+        celltoggle.connect('toggled',self.parent_toggle,
+                           (self.spouse_list,0))
+        celltext = gtk.CellRendererText()
+        col0 = gtk.TreeViewColumn(_('Select'),celltoggle,active=0)
+        col1 = gtk.TreeViewColumn(_('ID'),celltext,text=1)
+        col2 = gtk.TreeViewColumn(_('Spouse'),celltext,text=2)
+        col3 = gtk.TreeViewColumn(_('Children'),celltext,text=3)
+        col4 = gtk.TreeViewColumn(_('From'),celltext,text=4)
+        self.spouse_view.append_column(col0)
+        self.spouse_view.append_column(col1)
+        self.spouse_view.append_column(col2)
+        self.spouse_view.append_column(col3)
+        self.spouse_view.append_column(col4)
 
-            label = gtk.Label('<b>%s</b>' % _('Spouses'))
-            label.set_use_markup(True)
-            label.set_alignment(0.0,0.5)
-            table.attach(label,0,5,0,1,xoptions=gtk.EXPAND|gtk.FILL)
+        for fid in self.p1.get_family_handle_list():
+            family = self.db.get_family_from_handle(fid)
+            fgid = family.get_gramps_id()
+            spouse_id = ReportUtils.find_spouse(self.p1,family)
+            sname = name_of(self.db.get_person_from_handle(spouse_id))
+            children = str(len(family.get_child_handle_list()))
+            self.spouse_list.append(row=[True,fgid,sname,
+                                         children,self.p1.get_gramps_id(),fid])
 
-            label = gtk.Label('<b>%s</b>' % _('Options'))
-            label.set_use_markup(True)
-            label.set_alignment(0.0,0.5)
-            table.attach(label,0,5,3,4,xoptions=gtk.EXPAND|gtk.FILL)
-            
-            table.attach(self.spouse1,1,2,1,2)
-            table.attach(self.spouse2,1,2,2,3)
-            table.attach(self.keepspouse,1,2,4,5)
-
-            expand = []
-            if len(f1_list) > 1:
-                expand += f1_list[1:]
-            if len(f2_list) > 1:
-                expand += f2_list[1:]
-
-            if len(expand) > 0:
-                label = gtk.Label('<b>%s</b>' %
-                                  _('Select spouse relationships'))
-                label.set_use_markup(True)
-                label.set_alignment(0.0,0.5)
-                table.attach(label,0,5,6,7,xoptions=gtk.EXPAND|gtk.FILL)
-
-                self.spouse_view = gtk.TreeView()
-                self.spouse_list = gtk.ListStore(bool,str,str)
-                self.spouse_view.set_model(self.spouse_list)
-                scroll = gtk.ScrolledWindow()
-                scroll.set_policy(gtk.POLICY_AUTOMATIC,
-                                  gtk.POLICY_AUTOMATIC)
-                scroll.add(self.parent_view)
-                table.attach(scroll,1,5,7,8)
-
-                celltoggle = gtk.CellRendererToggle()
-                celltext = gtk.CellRendererText()
-                col0 = gtk.TreeViewColumn(_('Select'),celltoggle,active=0)
-                col1 = gtk.TreeViewColumn(_('Spouse'),celltext,text=1)
-                self.parent_view.append_column(col0)
-                self.parent_view.append_column(col1)
-
-                self.parent_list.append(row=[True,'Joe Smith'])
-            box.add(table)
+        for fid in self.p2.get_family_handle_list():
+            family = self.db.get_family_from_handle(fid)
+            fgid = family.get_gramps_id()
+            spouse_id = ReportUtils.find_spouse(self.p1,family)
+            sname = name_of(self.db.get_person_from_handle(spouse_id))
+            children = str(len(family.get_child_handle_list()))
+            self.spouse_list.append(row=[True,fgid,sname,
+                                         children,self.p2.get_gramps_id(),fid])
+        box.add(table)
+        
         box.show_all()
-#        p.connect('next',self.build_options)
         return p
 
-    def build_parents_page(self,obj1,obj2):
+    def build_parents_page(self):
         """
         Build a page with the table of format radio buttons and 
         their descriptions.
         """
         p = DruidPageStandard()
-        p.set_title(_('Select Parents'))
+        p.set_title(_('Select parents'))
         p.set_title_foreground(self.fg_color)
         p.set_background(self.bg_color)
         p.set_logo(self.logo)
@@ -432,104 +403,96 @@ class MergePeople:
         box.set_spacing(12)
         p.append_item("",box,"")
 
-        f1_handle = self.p1.get_main_parents_family_handle()
-        f2_handle = self.p2.get_main_parents_family_handle()
-
-        fname1 = ""
-        fname2 = ""
-        mname1 = ""
-        mname2 = ""
-        if f1_handle:
-            family1 = self.db.get_family_from_handle(f1_handle)
-            father1_handle = family1.get_father_handle()
-            if father1_handle:
-                father1 = self.db.get_person_from_handle(father1_handle)
-                fname1 = NameDisplay.displayer.display(father1)
-            mother1_handle = family1.get_mother_handle()
-            if mother1_handle:
-                mother1 = self.db.get_person_from_handle(mother1_handle)
-                mname1 = NameDisplay.displayer.display(mother1)
-        if f2_handle:
-            family2 = self.db.get_family_from_handle(f2_handle)
-            father2_handle = family2.get_father_handle()
-            if father2_handle:
-                father2 = self.db.get_person_from_handle(father2_handle)
-                fname2 = NameDisplay.displayer.display(father2)
-            mother2_handle = family2.get_mother_handle()
-            if mother2_handle:
-                mother2 = self.db.get_person_from_handle(mother2_handle)
-                mname2 = NameDisplay.displayer.display(mother2)
-            
-        f2 = self.db.get_family_from_handle(f1_handle)
-
-        bstr1 = ", ".join([fname1,mname1])
-        bstr2 = ", ".join([fname2,mname2])
-
-        self.family1 = gtk.RadioButton(None,bstr1)
-        self.family2 = gtk.RadioButton(self.family1,bstr2)
-        self.keepparents = gtk.CheckButton(_('Keep unselected parents in the parent list'))
-        
-        table = gtk.Table(8,2)
+        table = gtk.Table(3,3)
         table.set_row_spacings(6)
         table.set_col_spacings(6)
 
-        label = gtk.Label('<b>%s</b>' % _('Parents'))
+        label = gtk.Label('<b>%s</b>' %
+                          _('Select parent relationships'))
         label.set_use_markup(True)
         label.set_alignment(0.0,0.5)
-        table.attach(label,0,5,0,1,xoptions=gtk.EXPAND|gtk.FILL)
+        table.attach(label,0,3,0,1,xoptions=gtk.EXPAND|gtk.FILL)
 
-        label = gtk.Label('<b>%s</b>' % _('Options'))
+        label = gtk.Label(_('You can choose which sets of parents '
+                            'are included in the merged person by selecting '
+                            'the checkboxes. You can order the sets of parents '
+                            'by dragging and dropping the rows. The first '
+                            'set of parents in the list is considered to be '
+                            'the primary set of parents used for reporting.'))
         label.set_use_markup(True)
+        label.set_line_wrap(True)
+        label.set_justify(gtk.JUSTIFY_LEFT)
         label.set_alignment(0.0,0.5)
-        table.attach(label,0,5,3,4,xoptions=gtk.EXPAND|gtk.FILL)
+        table.attach(label,1,3,1,2,xoptions=gtk.EXPAND|gtk.FILL)
 
-        table.attach(self.family1,1,2,1,2)
-        table.attach(self.family2,1,2,2,3)
-        table.attach(self.keepparents,1,2,4,5)
+        self.parent_view = gtk.TreeView()
+        self.parent_view.set_reorderable(True)
+        self.parent_list = gtk.ListStore(bool,str,str,str,str,str)
+        self.parent_view.set_model(self.parent_list)
+        scroll = gtk.ScrolledWindow()
+        scroll.set_policy(gtk.POLICY_AUTOMATIC,
+                          gtk.POLICY_AUTOMATIC)
+        scroll.add(self.parent_view)
 
-        alt_parents = self.p1.get_parent_family_handle_list() + \
-                      self.p2.get_parent_family_handle_list()
+        table.attach(scroll,0,3,2,3,xoptions=gtk.EXPAND|gtk.FILL,
+                     yoptions=gtk.EXPAND|gtk.FILL)
 
-        if len(alt_parents) > 0:
-            label = gtk.Label('<b>%s</b>' %
-                              _('Select parent relationships'))
-            label.set_use_markup(True)
-            label.set_alignment(0.0,0.5)
-            table.attach(label,0,5,6,7,xoptions=gtk.EXPAND|gtk.FILL)
+        celltoggle = gtk.CellRendererToggle()
+        celltoggle.set_property('activatable',True)
+        celltoggle.connect('toggled',self.parent_toggle,
+                           (self.parent_list,0))
 
-            self.parent_view = gtk.TreeView()
-            self.parent_list = gtk.ListStore(bool,str,str)
-            self.parent_view.set_model(self.parent_list)
-            scroll = gtk.ScrolledWindow()
-            scroll.set_policy(gtk.POLICY_AUTOMATIC,
-                              gtk.POLICY_AUTOMATIC)
-            scroll.add(self.parent_view)
-            table.attach(scroll,1,5,7,8)
+        celltext = gtk.CellRendererText()
+        col0 = gtk.TreeViewColumn(_('Select'),celltoggle,active=0)
+        col1 = gtk.TreeViewColumn(_('ID'),celltext,text=1)
+        col2 = gtk.TreeViewColumn(_('Father'),celltext,text=2)
+        col3 = gtk.TreeViewColumn(_('Mother'),celltext,text=3)
+        col4 = gtk.TreeViewColumn(_('From'),celltext,text=4)
 
-            celltoggle = gtk.CellRendererToggle()
-            celltoggle.set_property('activatable',True)
-            celltoggle.connect('toggled',self.parent_toggle,
-                               (self.parent_list,0))
-            celltext = gtk.CellRendererText()
-            col0 = gtk.TreeViewColumn(_('Select'),celltoggle,active=0)
-            col1 = gtk.TreeViewColumn(_('Father'),celltext,text=1)
-            col2 = gtk.TreeViewColumn(_('Mother'),celltext,text=2)
-            self.parent_view.append_column(col0)
-            self.parent_view.append_column(col1)
-            self.parent_view.append_column(col2)
+        self.parent_view.append_column(col0)
+        self.parent_view.append_column(col1)
+        self.parent_view.append_column(col2)
+        self.parent_view.append_column(col3)
+        self.parent_view.append_column(col4)
 
-            self.parent_list.append(row=[True,
-                                         'Joe Smith','Mary Jones'])
+        for fid in self.p1.get_parent_family_handle_list():
+            fname,mname,fgid = self.get_parent_info(fid[0])
+            self.parent_list.append(row=[True, fgid, fname, mname,
+                                         self.p1.get_gramps_id(), fid[0]])
+
+        for fid in self.p2.get_parent_family_handle_list():
+            fname,mname,fgid = self.get_parent_info(fid[0])
+            self.parent_list.append(row=[True, fgid, fname, mname,
+                                         self.p2.get_gramps_id(), fid[0]])
+
         box.add(table)
         box.show_all()
-        if self.need_spouse:
-            p.connect('next',self.build_spouse_page)
         return p
+
+    def get_parent_info(self,fid):
+        family = self.db.get_family_from_handle(fid)
+        father_id = family.get_father_handle()
+        mother_id = family.get_mother_handle()
+        if father_id:
+            father = self.db.get_person_from_handle(father_id)
+            fname = name_of(father)
+        else:
+            fname = u""
+        if mother_id:
+            mother = self.db.get_person_from_handle(mother_id)
+            mname = name_of(mother)
+        else:
+            mname = u""
+        return (fname,mname,family.get_gramps_id())
 
     def parent_toggle(self,celltoggle,path,data):
         model, column = data
-        model[path][column] = not model[path][column]
-        return
+        if column == 0:
+            model[path][column] = not model[path][column]
+        else:
+            if not model[path][column]:
+                for index in range(0,len(model)):
+                    model[index][column] = int(path)==int(index)
 
     def build_info_page(self):
         """
@@ -545,156 +508,6 @@ class MergePeople:
         p.set_text(_('This document will help you through the '
                      'the process of merging two people.'))
         return p
-
-    def build_extra(self):
-
-        fname = NameDisplay.displayer.display(self.p1)
-        mname = NameDisplay.displayer.display(self.p2)
-
-        self.name1 = self.glade.get_widget('name1')
-        self.name2 = self.glade.get_widget('name2')
-        self.altnames = self.glade.get_widget('altnames')
-
-        self.name1.set_label(fname)
-        self.name1.set_active(True)
-        self.name2.set_label(mname)
-        self.altnames.set_active(True)
-
-        self.grampsid1 = self.glade.get_widget('grampsid1')
-        self.grampsid2 = self.glade.get_widget('grampsid2')
-        self.grampsid1.set_label(self.p1.get_gramps_id())
-        self.grampsid2.set_label(self.p2.get_gramps_id())
-        self.grampsid1.set_active(True)
-
-        self.birth1 = self.glade.get_widget('birth1')
-        self.birth2 = self.glade.get_widget('birth2')
-        self.altbirth = self.glade.get_widget('altbirth')
-
-        (birth1,bplace1) = self.get_event_info(self.p1,
-                                               self.p1.get_birth_handle())
-        (birth2,bplace2) = self.get_event_info(self.p2,
-                                               self.p2.get_birth_handle())
-        self.birth1.set_label(", ".join([birth1,bplace1]))
-        self.birth1.set_active(True)
-        self.birth1.set_label(", ".join([birth2,bplace2]))
-
-        self.birth1 = self.glade.get_widget('birth1')
-        self.birth2 = self.glade.get_widget('birth2')
-        self.altbirth = self.glade.get_widget('altbirth')
-
-        (death1,dplace1) = self.get_event_info(self.p1,
-                                               self.p1.get_death_handle())
-        (death2,dplace2) = self.get_event_info(self.p2,
-                                               self.p2.get_death_handle())
-        
-#         f1_handle = person1.get_main_parents_family_handle()
-#         f2_handle = person2.get_main_parents_family_handle()
-        
-#         name1 = NameDisplay.displayer.display(person1)
-#         name2 = NameDisplay.displayer.display(person2)
-
-#         (death1,dplace1) = self.get_event_info(person1,
-#                                                person1.get_death_handle())
-#         (birth1,bplace1) = self.get_event_info(person1,
-#                                                person1.get_birth_handle())
-#         (death2,dplace2) = self.get_event_info(person2,
-#                                                person2.get_death_handle())
-#         (birth2,bplace2) = self.get_event_info(person2,
-#                                                person2.get_birth_handle())
-
-#         if f2_handle and not f1_handle:
-#             self.glade.get_widget("bfather2").set_active(True)
-#         else:
-#             self.glade.get_widget("bfather1").set_active(True)
-            
-#         father1 = ""
-#         mother1 = ""
-#         if f1_handle:
-#             f1 = self.db.get_family_from_handle(f1_handle)
-#             father_id = f1.get_father_handle()
-#             mother_id = f1.get_mother_handle()
-#             if father_id:
-#                 father1 = name_of(self.db.get_person_from_handle(father_id))
-#             if mother_id:
-#                 mother1 = name_of(self.db.get_person_from_handle(mother_id))
-
-#         father2 = ""
-#         mother2 = ""
-#         if f2_handle:
-#             f2 = self.db.get_family_from_handle(f2_handle)
-#             father_id = f2.get_father_handle()
-#             mother_id = f2.get_mother_handle()
-#             if father_id:
-#                 father2 = name_of(self.db.get_person_from_handle(father_id))
-#             if mother_id:
-#                 mother2 = name_of(self.db.get_person_from_handle(mother_id))
-
-#         self.set_field(self.glade.get_widget("id1_text"),
-#                        person1.get_gramps_id())
-#         self.set_field(self.glade.get_widget("id2_text"),
-#                        person2.get_gramps_id())
-#         self.set_field(self.glade.get_widget("name1_text"),name1)
-#         self.set_field(self.glade.get_widget("name2_text"),name2)
-
-#         self.bname1 = self.glade.get_widget("bname1")
-#         self.bname1.set_active(1)
-
-#         self.set_field(self.glade.get_widget("birth1_text"),birth1)
-#         self.set_field(self.glade.get_widget("birth2_text"),birth2)
-#         self.set_field(self.glade.get_widget("bplace1_text"),bplace1)
-#         self.set_field(self.glade.get_widget("bplace2_text"),bplace2)
-
-#         if ((not birth1 and not bplace1) and (birth2 or bplace2) or
-#             (not birth1 or not bplace1) and (birth2 and bplace2)):
-#             self.glade.get_widget('bbirth2').set_active(1)
-#         else:
-#             self.glade.get_widget('bbirth1').set_active(1)
-
-#         if ((not death1 and not dplace1) and (death2 or dplace2) or
-#             (not death1 or not dplace1) and (death2 and dplace2)):
-#             self.glade.get_widget('death2').set_active(1)
-#         else:
-#             self.glade.get_widget('death1').set_active(1)
-
-#         self.set_field(self.glade.get_widget("death1_text"),death1)
-#         self.set_field(self.glade.get_widget("dplace1_text"),dplace1)
-#         self.set_field(self.glade.get_widget("death2_text"),death2)
-#         self.set_field(self.glade.get_widget("dplace2_text"),dplace2)
-
-#         self.set_field(self.glade.get_widget("father1"),father1)
-#         self.set_field(self.glade.get_widget("father2"),father2)
-#         self.set_field(self.glade.get_widget("mother1"),mother1)
-#         self.set_field(self.glade.get_widget("mother2"),mother2)
-
-#         sp1_list = [('-',0,100)]
-#         self.sp1 = ListModel.ListModel(self.glade.get_widget('spouse1'),
-#                                        sp1_list)
-#         self.sp2 = ListModel.ListModel(self.glade.get_widget('spouse2'),
-#                                        sp1_list)
-        
-#         self.build_spouse_list(person1,self.sp1)
-#         self.build_spouse_list(person2,self.sp2)
-
-#         if name1 != name2:
-#             self.altname.set_sensitive(True)
-#             self.altname.set_active(True)
-#         else:
-#             self.altname.set_sensitive(False)
-#             self.altname.set_active(False)
-
-#         if birth1 and birth2 and birth1 != birth2:
-#             self.altbirth.set_active(True)
-#         if bplace1 and bplace2 or bplace1 != bplace2:
-#             self.altbirth.set_active(True)
-#         else:
-#             self.altbirth.set_active(False)
-
-#         if death1 and death2 and death1 != death2:
-#             self.altdeath.set_active(True)
-#         if dplace1 and dplace2 or dplace1 != dplace2:
-#             self.altdeath.set_active(True)
-#         else:
-#             self.altdeath.set_active(False)
 
     def get_event_info(self,person,handle):
         date = ""
@@ -758,99 +571,21 @@ class MergePeople:
             else:
                 one.add_source_reference(xsrc)
 
-    def on_merge_clicked(self,obj):
-
-        trans = self.db.transaction_begin()
-        old_handle = self.p2.get_handle()
-        new_handle = self.p1.get_handle()
+    def merge_person_information(self,new,trans):
+        self.old_handle = self.p2.get_handle()
+        self.new_handle = self.p1.get_handle()
         
-        new = RelLib.Person()
-
-        # set internal handle
         new.set_handle(new_handle)
-        
-        # set gender
         new.set_gender(self.p1.get_gender())
-
-        # set GRAMPS ID
-        if self.glade.get_widget("gramps_btn1").get_active():
-            new.set_gramps_id(self.p1.get_gramps_id())
-        else:
-            new.set_gramps_id(self.p2.get_gramps_id())
-        
-        # copy names
-        if self.bname.get_active():
-            new.set_primary_name(self.p1.get_primary_name())
-            new.add_alternate_name(self.p2.get_primary_name())
-        else:
-            new.set_primary_name(self.p2.get_primary_name())
-            new.add_alternate_name(self.p1.get_primary_name())
-
-        # copy alternate names
-        for name in self.p1.get_alternate_names():
-            new.add_alternate_name(name)
-        for name in self.p2.get_alternate_names():
-            new.add_alternate_name(name)
-
-        # copy birth
-        bhandle1 = self.p1.get_birth_handle()
-        birth1   = self.db.get_event_from_handle(bhandle1)
-
-        bhandle2 = self.p2.get_birth_handle()
-        birth2   = self.db.get_event_from_handle(bhandle2)
-
-        if bhandle1 and bhandle2 and (bhandle1 == bhandle2 or birth2.are_equal(birth1)):
-            new.set_birth_handle(bhandle1)
-        else:
-            if self.glade.get_widget("bbirth1").get_active():
-                new.set_birth_handle(bhandle1)
-                event = self.db.get_event_from_handle(bhandle1)
-                event.set_handle(None)
-                event.set_name('Alternate Birth')
-                self.add_event(event,trans)
-                new.add_event_handle(event.get_handle())
-            else:
-                new.set_birth_handle(bhandle2)
-                event = self.db.get_event_from_handle(bhandle2)
-                event.set_handle(None)
-                event.set_name('Alternate Birth')
-                self.add_event(event,trans)
-                new.add_event_handle(event.get_handle())
-
-        # copy death
-        dhandle1 = self.p1.get_death_handle()
-        death1   = self.db.get_event_from_handle(dhandle1)
-
-        dhandle2 = self.p2.get_death_handle()
-        death2   = self.db.get_event_from_handle(dhandle2)
-
-        if dhandle1 and dhandle2 and (dhandle1 == dhandle2 or death2.are_equal(death1)):
-            new.set_death_handle(dhandle1)
-        else:
-            if self.glade.get_widget("death1").get_active():
-                new.set_death_handle(bhandle1)
-                event = self.db.get_event_from_handle(dhandle1)
-                event.set_handle(None)
-                event.set_name('Alternate Death')
-                self.add_event(event,trans)
-                new.add_event_handle(event.get_handle())
-            else:
-                new.set_birth_handle(dhandle2)
-                event = self.db.get_event_from_handle(dhandle2)
-                event.set_handle(None)
-                event.set_name('Alternate Death')
-                self.add_event(event,trans)
-                new.add_event_handle(event.get_handle())
-
-        # copy events
-        data_list = self.p1.get_event_list()
-        for handle in self.p2.get_event_list():
-            if handle not in data_list:
-                events.append(handle)
-        new.set_event_list(data_list)
+        self.merge_gramps_ids(new)
+        self.merge_names(new)
+        self.merge_birth(new)
+        self.merge_death(new)
+        self.merge_event_lists(new)
 
         # copy attributes
-        new.set_attribute_list(self.p1.get_attribute_list() + self.p2.get_attribute_list())
+        new.set_attribute_list(self.p1.get_attribute_list() +
+                               self.p2.get_attribute_list())
 
         # copy addresses
         new.set_address_list(self.p1.get_address_list() + self.p2.get_address_list())
@@ -868,18 +603,76 @@ class MergePeople:
         # note
         note1 = self.p1.get_note_object()
         note2 = self.p2.get_note_object()
-
-        if note1 and not note2:
-            new.set_note_object(note1)
-        elif not note1 and note2:
-            new.set_note_object(note2)
-        elif note1 and note2:
-            note1.append("\n" + note2.get())
-            note1.set_format(note1.get_format() or note2.get_format())
-            new.set_note_object(note1)
-
-        ######################################################################
+        new.set_note_object(self.merge_notes(note1,note2))
         
+    def on_merge_clicked(self,obj):
+
+        new = RelLib.Person()
+        trans = self.db.transaction_begin()
+
+        self.merge_person_information(new,trans)
+        self.merge_family_information(new,trans)
+
+    def convert_child_ids(self, family_id, id1, id2, trans):
+        new_list = []
+        change = False
+        family = self.db.get_family_from_handle(family_id)
+        for child_id in family.get_child_handle_list():
+            if child_id == id2:
+                new_list.append(id1)
+                change = True
+            else:
+                new_list.append(id2)
+        if change:
+            family.set_child_handle_list(new_list)
+            self.db.commit_family(family,trans)
+    
+    def merge_parents(self, new, trans):
+        """
+        Process for merging parents:
+
+        Case 1: Person 1 has parents, Person 2 doesn't
+                - Assign Person 1 list to new person
+                - Assign Person 1 al
+        Case 2: Person 2 has parents, Person 2 doesn't
+                - Assign Person 2 list to new person
+                - Loop through family list of Person 2, replacing ID2
+                  with ID2 and recommitting the data
+        Case 3: Person 1 and Person 2 have parents, One select, the
+                other is not.
+                - Assign selected to list, changed ID references
+                - Remove ID from other family
+        Case 4: Person 1 and Person 2 have parents, one selected, other kept
+                - Assign selected to list, change IDs
+                - Assign second to list, change IDs
+        """
+        f1_list = self.p1.get_parent_family_handle_list()
+        f2_list = self.p2.get_parent_family_handle_list()
+
+        if self.need_parents: # cases 1 and 2
+            if len(f1_list) == 0 and len(f2_list) > 0:
+                new.add_parent_family_handle(f2_list[0])
+                self.convert_child_ids(f2_list[0],self.new_handle,
+                                       self.old_handle, trans)
+            el
+                
+        else: # cases 3 and 4
+            if len(f1_list) > 0:
+                new.set_parent_family_handle_list(f1_list)
+            elif len(f2_list) > 0:
+                new.set_parent_family_handle_list(f2_list)
+                for fid in f2:
+                    family = self.db.get_family_from_id(fid)
+                    if family.get_father_handle() == self.old_handle:
+                        family.set_father_handle(self.new_handle)
+                    if family.get_mother_handle() == self.old_handle:
+                        family.set_mother_handle(self.new_handle)
+                    self.db.commit_family(family, trans)
+                    
+    def merge_family_information(self, new, trans):
+        self.merge_parents(new, trans)
+        return
+    
         if self.glade.get_widget("bfather2").get_active():
             orig_family_handle = self.p1.get_main_parents_family_handle()
             if orig_family_handle:
@@ -890,8 +683,8 @@ class MergePeople:
             (src_handle,mrel,frel) = self.p2.get_main_parents_family_handle()
             if src_handle:
                 source_family = self.db.get_family_from_handle(src_handle)
-                if old_handle in source_family.get_child_handle_list():
-                    source_family.remove_child_handle(old_handle)
+                if self.old_handle in source_family.get_child_handle_list():
+                    source_family.remove_child_handle(self.old_handle)
                     self.p2.remove_parent_family_handle(src_handle)
                 if new_handle not in source_family.get_child_handle_list():
                     source_family.add_child_handle(new_handle)
@@ -1117,6 +910,102 @@ class MergePeople:
                 child.remove_parent_family_handle(family_handle)
             self.db.commit_person(child,trans)
         self.db.remove_family(family_handle,trans)
+
+    def merge_gramps_ids(self,new):
+        if self.id1.get_active():
+            new.set_gramps_id(self.p1.get_gramps_id())
+            other_id = self.p2.get_gramps_id()
+        else:
+            new.set_gramps_id(self.p2.get_gramps_id())
+            other_id = self.p1.get_gramps_id()
+
+        if self.keepid:
+            attr = RelLib.Attribute()
+            attr.set_type('Merged GRAMPS ID')
+            attr.set_value(other_id)
+            new.add_attribute(attr)
+
+    def merge_notes(self, note1, note2):
+        if note1 and not note2:
+            return note1
+        elif not note1 and note2:
+            return note2
+        elif note1 and note2:
+            note1.append("\n" + note2.get())
+            note1.set_format(note1.get_format() or note2.get_format())
+            return note1
+        return None
+
+    def merge_names(self, new):
+        if self.name1.get_active():
+            new.set_primary_name(self.p1.get_primary_name())
+            alt = self.p2.get_primary_name()
+        else:
+            new.set_primary_name(self.p2.get_primary_name())
+            alt = self.p1.get_primary_name()
+
+        if self.altnames.get_active():
+            new.add_alternate_name(alt)
+
+        for name in self.p1.get_alternate_names():
+            new.add_alternate_name(name)
+        for name in self.p2.get_alternate_names():
+            new.add_alternate_name(name)
+
+    def merge_death(self, new):
+        handle1 = self.p1.get_death_handle()
+        handle2 = self.p2.get_death_handle()
+
+        if not self.need_death:
+            if handle1:
+                new.set_death_handle(handle1)
+            if handle2:
+                new.set_death_handle(handle2)
+        else:
+            if self.death1.get_active():
+                new.set_death_handle(handle1)
+                alt_handle = handle2
+            else:
+                new.set_death_handle(handle2)
+                alt_handle = handle1
+
+            if self.keepdeath:
+                event = self.db.get_event_from_handle(alt_handle)
+                event.set_handle(None)
+                event.db.set_name('Alternate Death')
+                self.db.add_event(event,trans)
+                new.add_event_handle(event.get_handle())
+
+    def merge_birth(self, new):
+        handle1 = self.p1.get_birth_handle()
+        handle2 = self.p2.get_birth_handle()
+
+        if not self.need_birth:
+            if handle1:
+                new.set_birth_handle(handle1)
+            if handle2:
+                new.set_birth_handle(handle2)
+        else:
+            if self.birth1.get_active():
+                new.set_birth_handle(handle1)
+                alt_handle = handle2
+            else:
+                new.set_birth_handle(handle2)
+                alt_handle = handle1
+
+            if self.keepbirth:
+                event = self.db.get_event_from_handle(alt_handle)
+                event.set_handle(None)
+                event.set_name('Alternate Birth')
+                self.db.add_event(event,trans)
+                new.add_event_handle(event.get_handle())
+
+    def merge_event_lists(self, new):
+        data_list = self.p1.get_event_list()
+        for handle in self.p2.get_event_list():
+            if handle not in data_list:
+                events.append(handle)
+        new.set_event_list(data_list)
 
 def compare_people(p1,p2):
 

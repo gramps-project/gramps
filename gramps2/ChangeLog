@@ -1,3 +1,6 @@
+2005-03-26  Don Allingham  <don@gramps-project.org>
+	* src/MergeData.py: Add interface support for parents/family merging
+
 2005-03-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/Check.py: Add check for child handle in family, that
 	does no longer exist in database
