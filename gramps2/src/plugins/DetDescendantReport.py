@@ -304,7 +304,8 @@ class DetDescendantReport(Report.Report):
         birth_handle = person.get_birth_handle()
         if birth_handle:
             birth = self.database.get_event_from_handle(birth_handle)
-            date = birth.get_date_object().get_start_date()
+            date_obj = birth.get_date_object()
+	    date_txt = birth.get_date()
             if birth.get_place_handle():
                 place = self.database.get_place_from_handle(birth.get_place_handle()).get_title()
                 if place[-1:] == '.':
@@ -314,18 +315,18 @@ class DetDescendantReport(Report.Report):
             else:
                 place = ""
 
-            if date.get_date():
-                if date.get_day_valid() and date.get_month_valid() and \
+            if date_txt:
+                if date_obj.get_day_valid() and date_obj.get_month_valid() and \
                         rptOptions.fullDate == reportOptions.Yes:
                     if place:
-                        self.doc.write_text(_(" was born on %s in %s.") % (date.get_date(), place))
+                        self.doc.write_text(_(" was born on %s in %s.") % (date_txt, place))
                     else:
-                        self.doc.write_text(_(" was born on %s.") % date.get_date())
+                        self.doc.write_text(_(" was born on %s.") % date_txt )
                 elif place:
                     self.doc.write_text(_(" was born in the year %s in %s.") % \
-                          (date.get_year(), place))
+                          (date_obj.get_year(), place))
                 else:
-                    self.doc.write_text(_(" was born in the year %s.") % date.get_year())
+                    self.doc.write_text(_(" was born in the year %s.") % date_obj.get_year())
             elif place:
                 self.doc.write_text(_(" was born in %s.") % place)
             else:
@@ -360,7 +361,8 @@ class DetDescendantReport(Report.Report):
         death_handle = person.get_death_handle()
         if death_handle:
             death = self.database.get_event_from_handle(death_handle)
-            date = death.get_date_object().get_start_date()
+            date_obj = death.get_date_object()
+            date_txt = death.get_date()
             place_handle = death.get_place_handle()
             if place_handle:
                 place = self.database.get_place_from_handle(place_handle).get_title()
@@ -371,12 +373,12 @@ class DetDescendantReport(Report.Report):
             else:
                 place = ""
 
-            if date.get_date():
-                if date.get_day() and date.get_month() and \
+            if date_txt:
+                if date_obj.get_day() and date_obj.get_month() and \
                             rptOptions.fullDate == reportOptions.Yes:
-                    fulldate = date.get_date()
-                elif date.get_month() and rptOptions.fullDate == reportOptions.Yes:
-                    fulldate = "%s %s" % (date.get_month(), date.get_year())
+                    fulldate = date_txt
+                elif date_obj.get_month() and rptOptions.fullDate == reportOptions.Yes:
+                    fulldate = "%s %s" % (date_obj.get_month(), date_obj.get_year())
                 else:
                     fulldate = ""
             elif rptOptions.blankDate == reportOptions.Yes:
@@ -389,11 +391,11 @@ class DetDescendantReport(Report.Report):
                     t = _("  %s died on %s in %s") % (firstName, fulldate, place)
                 else:
                     t = _("  %s died on %s") % (firstName, fulldate)
-            elif date.get_year() > 0:
+            elif date_obj.get_year() > 0:
                 if place:
-                    t = _("  %s died in %s in %s") % (firstName, date.get_year(), place)
+                    t = _("  %s died in %s in %s") % (firstName, date_obj.get_year(), place)
                 else:
-                    t = _("  %s died in %s") % (firstName, date.get_year())
+                    t = _("  %s died in %s") % (firstName, date_obj.get_year())
             elif place:
                 t = _("  %s died in %s") % (firstName, place)
 
@@ -410,15 +412,16 @@ class DetDescendantReport(Report.Report):
                 fam = self.database.get_family_from_handle(fam_id)
                 buried = None
                 if buried:
-                    date = buried.get_date_object().get_start_date()
+                    date_obj = buried.get_date_object()
+                    date_txt = buried.get_date()
                     place = buried.get_place_name()
                     if place[-1:] == '.':
                         place = place[:-1]
                     fulldate= ""
-                    if date.get_date() != "":
-                        if date.get_day_valid() and date.get_month_valid() and \
+                    if date_txt:
+                        if date_obj.get_day_valid() and date_obj.get_month_valid() and \
                                         rptOptions.fullDate == reportOptions.Yes:
-                            fulldate= date.get_date()
+                            fulldate= date_txt
                     elif rptOptions.blankDate == reportOptions.Yes:
                             fulldate= "___________"
 
@@ -537,12 +540,12 @@ class DetDescendantReport(Report.Report):
                     elif rptOptions.blankPlace == reportOptions.Yes:
                         place= "____________"
 
-                    date = marriage.get_date_object()
-                    if date:
-                        if date.get_year_valid():
-                            if date.get_day_valid() and date.get_month_valid() and \
+                    date_obj = marriage.get_date_object()
+                    if date_obj:
+                        if date_obj.get_year_valid():
+                            if date_obj.get_day_valid() and date_obj.get_month_valid() and \
                                     rptOptions.fullDate == reportOptions.Yes:
-                                fulldate = date.get_date()
+                                fulldate = marriage.get_date()
                             elif rptOptions.blankDate == reportOptions.Yes:
                                 fulldate = "__________"
 
@@ -1323,13 +1326,13 @@ class reportOptions:
 
         birth_handle = ind.get_birth_handle()
         if birth_handle:
-            birth = self.database.get_event_from_handle(birth_handle).get_date_object().get_start_date()
+            birth = self.database.get_event_from_handle(birth_handle).get_date_object()
             birth_year_valid = birth.get_year_valid()
         else:
             birth_year_valid = None
         death_handle = ind.get_death_handle()
         if death_handle:
-            death = self.database.get_event_from_handle(death_handle).get_date_object().get_start_date()
+            death = self.database.get_event_from_handle(death_handle).get_date_object()
             death_year_valid = death.get_year_valid()
         else:
             death_year_valid = None

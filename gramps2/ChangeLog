@@ -1,3 +1,6 @@
+2004-10-28 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/DetDescendantReport.py: New Date usage.
+
 2004-10-27  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py: Fixed typo spotted by Eero Tamminen.
 
