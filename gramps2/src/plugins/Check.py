@@ -30,6 +30,7 @@
 import os
 import cStringIO
 import shutil
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -41,13 +42,12 @@ import gtk.glade
 
 #-------------------------------------------------------------------------
 #
-# gtk modules
+# GRAMPS modules
 #
 #-------------------------------------------------------------------------
 import RelLib
 import Utils
-
-from gettext import gettext as _
+import const
 from QuestionDialog import OkDialog, MissingMediaDialog
 
 #-------------------------------------------------------------------------

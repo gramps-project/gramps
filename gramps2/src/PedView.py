@@ -484,6 +484,7 @@ class PedigreeView:
 
         if depth > 5 or person == None:
             return
+        lst[index] = (person,val)
 
         parent_families = person.get_parent_family_handle_list()
         if parent_families:
@@ -495,7 +496,6 @@ class PedigreeView:
             frel = (f != "Birth")
 
         family = self.parent.db.get_family_from_handle(family_handle)
-        lst[index] = (person,val)
         if family != None:
             father_handle = family.get_father_handle()
             if father_handle != None:
