@@ -845,8 +845,7 @@ class GlobalMediaProperties:
 #
 #-------------------------------------------------------------------------
 def disp_attr(attr):
-    detail = Utils.get_detail_flags(attr)
-    return [const.display_pattr(attr.getType()),attr.getValue(),detail]
+    return [const.display_pattr(attr.getType()),attr.getValue(),'']
 
 
 class DeleteMediaQuery:

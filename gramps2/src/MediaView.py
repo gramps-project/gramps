@@ -209,7 +209,6 @@ class MediaView:
                 path = "<local copy>"
             else:
                 path = src.getPath()
-            details = Utils.get_detail_flags(src,0)
             stitle = string.upper(title)
 
             iter = self.model.append()

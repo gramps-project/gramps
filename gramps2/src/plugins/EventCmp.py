@@ -118,7 +118,7 @@ class EventComparison:
         self.glade_file = base + os.sep + "eventcmp.glade"
         self.qual = 0
 
-        self.filterDialog = libglade.GladeXML(self.glade_file,"filters")
+        self.filterDialog = gtk.glade.XML(self.glade_file,"filters")
         self.filterDialog.signal_autoconnect({
             "on_apply_clicked"       : self.on_apply_clicked,
             "destroy_passed_object"  : Utils.destroy_passed_object
@@ -186,7 +186,7 @@ class DisplayChart:
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "eventcmp.glade"
 
-        self.topDialog = libglade.GladeXML(self.glade_file,"view")
+        self.topDialog = gtk.glade.XML(self.glade_file,"view")
         self.topDialog.signal_autoconnect({
             "on_write_table"        : self.on_write_table,
             "destroy_passed_object" : Utils.destroy_passed_object
@@ -286,7 +286,7 @@ class DisplayChart:
         return [_("Person"),_("Birth"),_("Death")] + sort_list
 
     def on_write_table(self,obj):
-        self.form = libglade.GladeXML(self.glade_file,"dialog1")
+        self.form = gtk.glade.XML(self.glade_file,"dialog1")
         self.form.signal_autoconnect({
             "on_save_clicked"       : self.on_save_clicked,
             "on_html_toggled"       : self.on_html_toggled,
