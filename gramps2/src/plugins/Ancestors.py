@@ -83,7 +83,7 @@ class AncestorsReport (Report.Report):
         doc.add_cell_style ("PaddedCell", cell)
 
         cell = TextDoc.TableCellStyle ()
-        cell.set_padding (1) # each side makes 2cm, the size of the photo
+        cell.set_padding (0.1)
         cell.set_left_border (1)
         cell.set_top_border (1)
         cell.set_right_border (1)

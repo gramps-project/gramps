@@ -1,3 +1,6 @@
+2003-07-04  Tim Waugh  <twaugh@redhat.com>
+	* src/plugins/Ancestors.py: Really fixed text style for '(no photo)'.
+
 2003-07-02  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/ReadGedcocm.py: Fix callback parameters
 	* src/AddSpouse.py: handle adding of new person callback correctly
