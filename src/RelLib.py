@@ -1833,7 +1833,7 @@ class Event(PrimaryObject,PrivateObject,MediaBase):
             else:
                 self.witness = None
         else:
-            self.place = u''
+            self.place = ""
             self.date = None
             self.description = ""
             self.name = ""
@@ -1889,7 +1889,7 @@ class Event(PrimaryObject,PrivateObject,MediaBase):
                                         witness.val not in handle_list ]
             self.witness = new_list
         elif classname == 'Place' and self.place in handle_list:
-                self.place = u''
+                self.place = ""
 
     def _replace_handle_reference(self,classname,old_handle,new_handle):
         if classname == 'Person' and self.witness:
@@ -2447,7 +2447,7 @@ class MediaObject(PrimaryObject,SourceNote):
             self.mime = ""
             self.desc = ""
             self.date = None
-            self.place = u""
+            self.place = ""
             self.thumb = None
 
     def serialize(self):
@@ -2490,7 +2490,7 @@ class MediaObject(PrimaryObject,SourceNote):
 
     def _remove_handle_references(self,classname,handle_list):
         if classname == 'Place' and self.place in handle_list:
-            self.place = u''
+            self.place = ""
 
     def _replace_handle_reference(self,classname,old_handle,new_handle):
         if classname == 'Place' and self.place == old_handle:
