@@ -356,7 +356,7 @@ class GrampsDbBase:
             self.smap_index = self.smap_index + 1
         return source
 
-    def find_event_from_handle(self,val):
+    def find_event_from_handle(self,val,transaction):
         """
         Finds a Event in the database from the passed GRAMPS ID.
         If no such Event exists, a new Event is added to the database.
