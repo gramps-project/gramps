@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 1.0.0\n"
 "POT-Creation-Date: Thu Jan 22 23:56:16 2004\n"
-"PO-Revision-Date: 2004-02-01 23:14-0600\n"
-"Last-Translator: Alex Roitman <shura@alex.neuro.umn.edu>\n"
+"PO-Revision-Date: 2004-02-05 23:43-0500\n"
+"Last-Translator: Alexander Bogdashevsky <sanderb@kezomba.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1755,7 +1755,7 @@ msgstr "Не могу слить места."
 
 #: PlaceView.py:153
 msgid "Exactly two places must be selected to perform a merge. A second place can be selected by holding down the control key while clicking on the desired place."
-msgstr "Ровно два места должны быть выделены для осуществления слияния. Второе место может быть выбрано нажатием и удерживанием клавиши Control в момент щелчка по названию желаемого места."
+msgstr "Ровно два места должны быть выделены для слияния. Второе место может быть выбрано нажатием и удержанием клавиши Control в момент щелчка по названию желаемого места."
 
 #: PlaceView.py:189
 #: SourceView.py:153
@@ -1808,7 +1808,7 @@ msgstr "Выбор инструментов"
 
 #: Plugins.py:298
 msgid "Select a tool from those available on the left."
-msgstr "Выбрать инструмент из доступных слева."
+msgstr "Выберите инструмент."
 
 #: Plugins.py:299
 msgid "Run selected tool"
@@ -2669,6 +2669,7 @@ msgstr "Спонсируемый"
 msgid "Foster"
 msgstr "Воспитанник"
 
+# !!!FIXME!!! В закладке людей должно быть как минимум Другие (а что в остальных местах?)
 #: const.py:178
 #: const.py:428
 #: const.py:436
@@ -4569,7 +4570,7 @@ msgstr "Ошибка слияния."
 
 #: gramps_main.py:739
 msgid "Exactly two people must be selected to perform a merge. A second person can be selected by holding down the control key while clicking on the desired person."
-msgstr "Ровно два лица должны быть выделены для осуществления слияния. Второе лицо может быть выбрано нажатием и удержанием клавиши Control в момент щелчка по имени желаемого лица."
+msgstr "Ровно два лица должны быть выделены для слияния. Второе лицо может быть выбрано нажатием и удержанием клавиши Control в момент щелчка по имени желаемого лица."
 
 #: gramps_main.py:761
 #: gramps_main.py:1412
@@ -5720,7 +5721,7 @@ msgstr "Анализ и исследование"
 
 #: plugins/Desbrowser.py:122
 msgid "Provides a browsable hierarchy based on the active person"
-msgstr "Позволяет просматривать иерархию потомков активного лица"
+msgstr "Позволяет просматривать иерархию потомков активного лица в интерактивном режиме"
 
 #: plugins/DescendReport.py:93
 #: plugins/FtmStyleDescendants.py:115
@@ -6279,7 +6280,7 @@ msgstr "Сравнить индивидуальные события"
 
 #: plugins/EventCmp.py:355
 msgid "Aids in the analysis of data by allowing the development of custom filters that can be applied to the database to find similar events"
-msgstr "Позволяет создавать собственные фильтры, которые могут быть использованы для поиска сходных событий"
+msgstr "Позволяет находить сходные события используя фильтры пользователя."
 
 #: plugins/FamilyGroup.py:135
 msgid "Husband"
@@ -6992,7 +6993,7 @@ msgstr "Выбрать направление стрелок."
 #: plugins/GraphViz.py:174
 #: plugins/RelGraph.py:229
 msgid "Include Birth, Marriage and Death Dates"
-msgstr "Включить даты рождения, женитьбы и смерти"
+msgstr "Включать даты рождения, женитьбы и смерти"
 
 #: plugins/GraphViz.py:179
 #: plugins/RelGraph.py:234
@@ -7839,10 +7840,9 @@ msgstr "ПРЕДУПРЕЖДЕНИЯ:\n"
 msgid "Verify the database"
 msgstr "Проверить базу данных"
 
-# !!!FIXME!!!
 #: plugins/Verify.py:419
 msgid "Lists exceptions to assertions or checks about the database"
-msgstr "Перечислить исключения в проверках базы данных"
+msgstr "Позволяет найти отклонения от заданных пользователем норм"
 
 #: plugins/WebPage.py:329
 msgid "ID Number"
@@ -7892,7 +7892,7 @@ msgstr "Включать ссылки на главную страницу"
 #: plugins/WebPage.py:903
 #: plugins/pafexport.glade:276
 msgid "Do not include records marked private"
-msgstr "Не включать записи, помеченные как личные"
+msgstr "Не включать личные записи"
 
 #: plugins/WebPage.py:904
 #: plugins/pafexport.glade:292
@@ -7903,10 +7903,9 @@ msgstr "Ограничить информацию о живых людях"
 msgid "Do not use images"
 msgstr "Не включать изображения"
 
-# !!!FIXME!!!
 #: plugins/WebPage.py:906
 msgid "Do not use images for living people"
-msgstr "Не включать изображения живущих лиц"
+msgstr "Не включать изображения живых людей"
 
 #: plugins/WebPage.py:907
 msgid "Do not include comments and text in source information"
@@ -7934,12 +7933,11 @@ msgstr "Включить краткое дерево предков"
 
 #: plugins/WebPage.py:940
 msgid "Privacy"
-msgstr "Секретность"
+msgstr "Личная информация"
 
-# !!!FIXME!!!
 #: plugins/WebPage.py:947
 msgid "Advanced"
-msgstr "Продвинутый"
+msgstr "Специальные настройки"
 
 #: plugins/WebPage.py:949
 msgid "GRAMPS ID link URL"
@@ -8105,7 +8103,7 @@ msgid ""
 msgstr ""
 "Экспорт на CD не записывает CD непосредственно. Вместо этого он подготавливает Nautilus CD-Burner так, чтобы вы смогли записать его из Nautilus.\n"
 "\n"
-"По окончании экспорта, в Nautilus перейдите в  каталог <b>burn:///</b> и нажмите кнопку 'Записать CD'."
+"По окончании экспорта, в Nautilus, перейдите в  каталог <b>burn:///</b> и нажмите кнопку 'Записать CD'."
 
 #: plugins/changetype.glade:92
 msgid "This tool will rename all events of one type to a different type. Once completed, this cannot be undone without abandoning all changes since the last database save."
@@ -8143,10 +8141,9 @@ msgstr "Число предков"
 msgid "Counts number of ancestors of selected person"
 msgstr "Определяет число предков выделенного лица"
 
-# !!!FIXME!!!
 #: plugins/eval.glade:130
 msgid "<b>Evaluation Window</b>"
-msgstr "<b>Окно оценки</b>"
+msgstr "<b>Python</b>"
 
 #: plugins/eval.glade:154
 msgid "<b>Output Window</b>"
@@ -8156,15 +8153,13 @@ msgstr "<b>Окно вывода</b>"
 msgid "<b>Error Window</b>"
 msgstr "<b>Окно ошибок</b>"
 
-# !!!FIXME!!!
 #: plugins/eval.py:55
 msgid "Python Evaluation Window"
-msgstr "Окно оценки Python"
+msgstr "Python"
 
-# !!!FIXME!!!
 #: plugins/eval.py:92
 msgid "Python evaluation window"
-msgstr "Окно оценки"
+msgstr "Python"
 
 #: plugins/eval.py:93
 #: plugins/leak.py:79
@@ -8263,11 +8258,10 @@ msgstr "<b>Параметры</b>"
 msgid "_Do not include records marked private"
 msgstr "_Не включать записи помеченные как личные"
 
-# !!!FIXME!!!
 #: plugins/gedcomexport.glade:428
 #: plugins/writeftree.glade:197
 msgid "_Restrict data on living people"
-msgstr "О_граничить данные о живущих лицах"
+msgstr "О_граничить данные о живых людях"
 
 #: plugins/gedcomexport.glade:451
 msgid "_ANSEL"
@@ -8281,7 +8275,6 @@ msgstr "_Unicode"
 msgid "AN_SI (ISO-8859-1)"
 msgstr "AN_SI (ISO-8859-1)"
 
-# !!!FIXME!!!
 #: plugins/gedcomexport.glade:527
 msgid "Use _Living as first name"
 msgstr "Использовать _Живой в качестве имени"
@@ -8354,7 +8347,7 @@ msgstr "Неуничтоженные объекты"
 # !!!FIXME!!!
 #: plugins/leak.py:80
 msgid "Provide a window listing all uncollected objects"
-msgstr "Открыть окно со списком всех неуничтоженных объектов"
+msgstr "Открывает окно со списком всех неуничтоженных объектов"
 
 #: plugins/merge.glade:46
 msgid "Please be patient. This may take a while."
@@ -8366,7 +8359,7 @@ msgstr "_Слияние"
 
 #: plugins/merge.glade:316
 msgid "<b>Match Threshold</b>"
-msgstr "<b>Порог соответствия</b>"
+msgstr "<b>Граница соответствия</b>"
 
 #: plugins/merge.glade:365
 msgid "Use soundex codes"
@@ -8456,7 +8449,7 @@ msgstr "Максимальное число супругов у одного л�
 
 #: plugins/verify.glade:306
 msgid "Maximum number of consecutive years of widowhood"
-msgstr "Максимальное число лет подряд во вдовстве"
+msgstr "Максимальная продолжительность вдовства"
 
 #: plugins/verify.glade:330
 msgid "Maximum number of years between children"
@@ -9053,3 +9046,4 @@ msgstr "<b>Выравнивание</b>"
 #: styles.glade:1336
 msgid "<b>Paragraph options</b>"
 msgstr "<b>Параметры абзаца</b>"
+
