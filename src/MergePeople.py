@@ -382,7 +382,7 @@ class MergePeople:
         elist = tgt_family.get_event_list()[:]
         for event_id in src_family.get_event_list():
             if event_id not in elist:
-                tgt_family.add_event(event_id)
+                tgt_family.add_event_handle(event_id)
 
         # merge family attributes
 
