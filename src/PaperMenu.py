@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,6 +22,13 @@
 
 #-------------------------------------------------------------------------
 #
+# Python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GNOME modules
 #
 #-------------------------------------------------------------------------
@@ -35,7 +42,6 @@ import gtk
 import BaseDoc
 import const
 import Utils
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -72,7 +78,7 @@ class GrampsPaperComboBox(gtk.ComboBox):
         for key in mapping:
             self.mapping[key.get_name()]  = key
             self.store.append(row=[key.get_name()])
-            if key == default:
+            if key.get_name() == default:
                 start_index = index
             index += 1
             

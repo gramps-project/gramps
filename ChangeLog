@@ -27,6 +27,8 @@
 	* src/plugins/WritePkg.py: Correct label.
 	* src/ArgHandler.py: Re-enable CD export.
 
+	* src/PaperMenu.py (GrampsPaperComboBox.set): Compare paper names.
+
 2005-02-18  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: more readonly patches
 	* src/EventEdit.py: more readonly patches
