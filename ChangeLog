@@ -1,3 +1,9 @@
+2005-03-24  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/DdTargets.py: new module to manage drag and drop target data.
+	* src/Makefile.am: added DdTargets.py
+	* src/ScratchPad.py: modified to use DdTargets.py. This is the first
+	stage. I will look at modifying EditPersons.py to use DdTargets.py next.
+	
 2005-03-23  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/RelLib.py: Added self.get_date() to get_text_data_child_list().
 	This way the date is searchable in the full-text search filter.
