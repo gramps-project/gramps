@@ -1,3 +1,7 @@
+2003-08-01  Lorenzo Cappelletti  <lorenzo.cappelletti@email.it>
+	* src/plugins/GraphViz.py: Added option to limit dates to just years,
+	fixed bug to prevent family nodes from being listed more than once
+
 2003-08-01  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/WriteFtree.py: add filter and data restriction support
 	* src/plugins/writeftree.glade: interface description for Web Family
