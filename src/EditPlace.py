@@ -174,9 +174,9 @@ class EditPlace:
         self.redraw_url_list()
         self.redraw_location_list()
 
-    def close(self):
+    def close(self,obj):
         self.glry.close()
-        self.top.close()
+        self.top.destroy()
         
     def build_columns(self,tree,list):
         cnum = 0
