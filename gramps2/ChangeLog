@@ -1,3 +1,7 @@
+2004-10-18 Julio Sanchez <julio.sanchez@gmail.com>
+	* src/plugins/IndivComplete.py: Bring book item options in sync
+	with the standalone options.
+
 2004-10-18 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/OpenSpreadSheet.py (write_text): Escape special
 	XML characters.
