@@ -192,6 +192,8 @@ class Name:
         self.Surname = ""
         self.Suffix = ""
         self.Title = ""
+        self.source_ref = SourceRef()
+        self.note = Note()
         
     def setName(self,first,last,suffix):
         self.FirstName = first
@@ -233,6 +235,24 @@ class Name:
             return "%s %s" % (self.FirstName, self.Surname)
         else:
             return "%s %s, %s" % (self.FirstName, self.Surname, self.Suffix)
+
+    def setNote(self,text):
+        self.note.set(text)
+
+    def getNote(self):
+        return self.note.get()
+
+    def setNoteObj(self,obj):
+        self.note = obj
+
+    def getNoteObj(self,obj):
+        return self.note
+
+    def setSourceRef(self,id) :
+        self.source_ref = id
+
+    def getSourceRef(self) :
+        return self.source_ref
 
 #-------------------------------------------------------------------------
 #

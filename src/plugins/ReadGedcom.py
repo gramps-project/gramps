@@ -113,7 +113,17 @@ def importData(database, filename):
         "destroy_passed_object" : utils.destroy_passed_object
         })
 
-    g = GedcomParser(database,filename,statusTop)
+    try:
+        g = GedcomParser(database,filename,statusTop)
+    except IOError,msg:
+        utils.destroy_passed_object(statusWindow)
+        GnomeErrorDialog(_("%s could not be opened\n") % filename + str(msg))
+        return
+    except:
+        utils.destroy_passed_object(statusWindow)
+        GnomeErrorDialog(_("%s could not be opened\n") % filename)
+        return
+
     g.parse_gedcom_file()
 
     statusTop.get_widget("close").set_sensitive(1)
@@ -169,6 +179,7 @@ class GedcomParser:
         self.smap = {}
         self.nmap = {}
         self.dir_path = os.path.dirname(file)
+
         f = open(file,"r")
         self.lines = f.readlines()
         f.close()
@@ -1017,9 +1028,22 @@ class GedcomParser:
 	    elif matches[1] == "NICK":
                 self.person.setNickName(matches[2])
             elif matches[1] == "SOUR":
-                self.ignore_sub_junk(level+1)
-            elif matches[1] == "NOTE":
-                self.ignore_sub_junk(level+1)
+                source_ref = SourceRef()
+                source_ref.setBase(self.db.findSource(matches[2],self.smap))
+                name.setSourceRef(source_ref)
+                self.parse_source_reference(source_ref,level+1)
+            elif matches[2][0:4] == "NOTE":
+                if matches[2] and matches[2][0] != "@":
+                    note = matches[1] + self.parse_continue_data(1)
+                    name.setNote(note)
+                    self.ignore_sub_junk(2)
+                else:
+                    if self.nmap.has_key(matches[2]):
+                        name.setNoteObj(self.nmap[matches[2]])
+                    else:
+                        noteobj = Note()
+                        self.nmap[matches[2]] = noteobj
+                        name.setNoteObj(noteobj)
             else:
 	        self.barf(level+1)
 
@@ -1468,3 +1492,15 @@ if __name__ == "__main__":
     else:
         g = GedcomParser(db,sys.argv[1])
     g.parse_gedcom_file()
+
+
+
+
+
+
+
+
+
+
+
+
