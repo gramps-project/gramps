@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	  User Manual for Gramps - a GTK+/GNOME based genealogy program
+
+	  Copyright (C) 2003  Alexander Roitman
+
+	  Permission is granted to copy, distribute and/or modify this
+	  document under the terms of the GNU Free Documentation
+	  License (GFDL), Version 1.1 or any later version published
+	  by the Free Software Foundation with no Invariant Sections,
+	  no Front-Cover Texts, and no Back-Cover Texts. 
+          A copy of the license is included in the file COPYING-DOCS 
+          distributed with this manual.
+-->
+
+<!-- $Id$ -->
+
+      <!-- =============== Appendices Subsection ================ -->
+      <sect2 id="faq">
+      <title>Gyakran Intézett Kérdések (FAQ)</title>
+      <para>Ez a fejezet olyan kérdéseket tartalmaz melyek gyakran jelennek meg 
+      a levelezőlistán és a fórumokon. Ez a fejezet nem teljes. 
+      Ha kérdéseket vagy válaszokat szeretnél hozzáadni, akkor 
+      légyszíves küldj egy e-mailt a következő címre 
+       <ulink url="mailto:gramps-devel@lists.sf.net" 
+       type="mailto">gramps-devel@lists.sf.net</ulink>
+      </para>
+      
+      <variablelist>
+
+
+      <varlistentry><term>Mi is a &app;?</term>
+      <listitem><para> &app; egy leszármazáskutató és elemző programrendszer 
+      (Genealogical Research and Analysis Management Program System). 
+      Más szóval, ez a program emberek közötti leszármazást tudja 
+      tárolni, szerkeszteni; és különféle elemzéseket képes készíteni 
+      a számítógép lehetőségeit kihasználva. 
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Honnan tudom megszerezni, és mennyibe kerül?</term>
+      <listitem><para> 
+&app; szabadon letölthető az alábbi címről: <ulink url="http://sf.net/projects/gramps" 
+type="http">http://sf.net/projects/gramps</ulink>. 
+&app; egy Szabad Forrásu projekt (Open Source) GNU licenszeléssel (GNU General Public License). 
+Teljes hozzáférésed van a forráskódhoz. Szabadon terjesztheted a programot és 
+a forráskódot is. 
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Windowson is használható?</term>
+      <listitem><para> 
+Nem. &app; a GTK és GNOME könyvtárakat használja. És ezek közül csak a GTK könyvtárak 
+lettek Windowsra átültetve de a GNOME könyvtárak nem. 
+Ez a helyzet talán a jövőben meg fog változni. 
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Mac-en használható?</term>
+      <listitem><para> 
+A Fink project (<ulink url="http://fink.sf.net" 
+type="http">http://fink.sf.net</ulink>) átültette egy régebbi verzióját OS X-re a  
+&app;-nek (0.8.0). A Mac OS-X verzió nincsen közvetlenűl támogatva a &app; fejlesztői 
+által, főleg mert a  &app; fejlesztők közül senkinek sincsen Mac OS-X-hez 
+hozzáférése.</para>
+
+<para>A GNOME 2-es verziója a &app;nek (0.9.x) úgy látszik, hogy nem lett átültetve 
+a Fink project által. További információkért forduljon a Fink project-hez.
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>KDE alatt működik?</term>
+      <listitem><para> 
+Igen, de csak akkor ha a szűkséges GNOME könyvtárak is fel vannak telepítve.
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Muszály feltelepítenem a GNOME-ot?</term>
+      <listitem><para> Igen, de nem kell a GNOME-ot használnod.
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Milyen verziószámu GNOME-ot használjak?</term>
+      <listitem><para> 
+A &app; legutóbbi verziói (0.9.0 és későbbiek) GNOME 2.0-t vagy későbbit igényli. 
+A korábbi verziók GNOME 1.X alatt futtathatóak. 
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>&app; kompatibilis a többi örökléskutató programmal? (GenApps)?</term>
+      <listitem><para> 
+&app; mindent megtesz, hogy kompatibilis legyen a GEDCOM formátummal, ez az általánosan 
+használt formátum az adatok tárolására. Importálást és exportálást végző 
+szűrők segítségével a &app; képes írni és olvasni a GEDCOM fájlokat. </para>
+
+<para>
+Fontos, hogy megértsd, hogy a GEDCOM formátum nem pontosan definiált -- 
+így mindegyik örökléskutató program a maga módján értelmezi a GEDCOM fájlokat. 
+Megérteni az alapformátumot és írni egy import/export szűrőt viszonylag könnyű, 
+de kitalálni, hogy melyik program hogyan használja fel fájlokat nehéz. Ezért 
+ehhez a felhasználók visszajelzéseire van szűkségünk.  
+Kérlek szólj nekünk ha olyan GEDCOM "mezőt" talál amit a &app; nem támogat!
+És mi pótoljuk a hiányosságot! 
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>&app; képes olvasni a GenProg X által létrehozott fájlt?</term>
+      <listitem><para> Lásd feljebb.
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>&app; képes írni a GenProg X által létrehozott fájlt?</term>
+      <listitem><para> Lásd feljebb.
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>&app; képes családfát készíteni a családomnak?</term>
+      <listitem><para> 
+Igen. Ahány ember annyi féle képpen értelmezik mi is az a családfa. 
+Néhányan úgy gondolják, hogy ez egy lista ami a legrégebbi ősökből az utódokon 
+keresztül vezet mindenkit felsorolva a családban. Mások úgy gondolják, hogy ez 
+egy olyan lista ami egy személytől megy vissza az időben, felsorolva az összes őst. 
+Mások szerint ez egy táblázat, egy egyszerű leírás, stb.
+</para>
+
+<para>
+&app; mindegyik fentebb felsorolt formát el tudja készíteni, számos kevésbé ismert 
+összesítővel együtt. Ráadásul, a bővítményes rendszerfelépítése lehetővé teszi 
+a felhasználóknak (neked), hogy saját ízlése szerinti bővítményét elkészítse amivel 
+új összesítőket, új táblázatokat, új listákat és új eszközöket hozhat létre. 
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Milyen formátumokban készíti el a &app; az összesítőket?</term>
+      <listitem><para> 
+Szöveges összesítő formátumokból rendelkezésre állnak az alábbiak: HTML, PDF, AbiWord, 
+KWord, LaTeX, RTF és OpenOffice. 
+Grafikus összesítőkből (táblázatok, diagrammok) pedig: 
+PostScript, PDF, SVG, OpenOffice és GraphViz. 
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>A &app; kompatibilis az Internettel?</term>
+      <listitem><para> 
+&app; képes webcímeket tárolni és a böngészővel megnyitni ezeket. Az Internetről 
+letöltött anyagokat importálni lehet. Tovább lehet küldeni az Interneten keresztűl a  
+kiválasztott fájlokat. &app; felismeri az összes Interneten használt fájlformátumot 
+(pl.: JPEG, PNG és GIF képek, MP3, OGG és WAV hang fájlok, QuickTime, MPEG és AVI 
+film fájlok, stb.). Egy kicsivel több mint amit egy csaláfakutató programtól 
+el lehet várni. :-) 
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Can I create custom reports/filters/whatever?</term>
+      <listitem><para> 
+Yes. There are many levels of customization. One is creating or modifying 
+the templates used for the reports. This gives you some control over 
+the fonts, colors, and some layout of the reports. You can also use &app; 
+controls in the report dialogs to tell what contents should be used for a 
+particular report. In addition to this, you have an ability to create your 
+own filters -- this is useful in selecting people based on criteria set 
+by you. You can combine these filters to create new, more complex filters. 
+Finally, you have an option to create your own plugins. These may be new 
+reports, research tools, import/export filters, etc. This assumes some 
+knowledge of programming in Python. 
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>What standards does &app; support?</term>
+      <listitem><para> 
+The nice thing about the standards is that there never is a shortage of 
+them :-). &app; is tested to support the following flavors of GEDCOM: 
+GEDCOM5.5, Brother's Keeper, Family Origins, Familty Tree Maker, Ftree, 
+GeneWeb, Legacy, Personal Ancestral File, Pro-Gen, Reunion, and 
+Visual Genealogie. 
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Mi a legnagyobb adatbázisméret (bytes) amit 
+a &app; még kezelni tud?</term>
+      <listitem><para> 
+&app;-nek nincsen szigorú felső korlátja az adatbázis méretére vonatkozóan. 
+Gyakorlatilag azonban létezik felső korlát mivel jelenleg a &app; minden adatot a 
+memóriában tárol. Így a korlátozó tényező egyedül a szabad memória mérete. 
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Hány embert tud a &app; tárolni?</term>
+      <listitem><para> 
+Úgy találtuk, hogy egy átlagos gépen a &app; erősen lelassul ha az adatbázis
+körülbelül 15,000 embert tartalmaz. De ismételten; a rendelkezésre álló 
+memória függvénye a kezelhető adatbázis mérete.
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Miért fut a &app; olyan lassan?</term>
+      <listitem><para> 
+If &app; seems too slow to you, it is most likely that you have a large
+database. Currently, &app; loads all the database into memory, therefore 
+large databases tend to be less than responsive. Specifically, the system 
+can be virtually brought to its knees if swapping is needed for &app;' data.
+</para> <para>
+This will be addressed in the next stable release following version 1.0. 
+Temporarily, adding more memory could make a huge difference, but we realize
+that this is a poor way of treating the problem. If you would like to help 
+with the implementation of the real database backend, please don't hesitate 
+to email us at <ulink url="mailto:gramps-devel@lists.sf.net" 
+type="mailto">gramps-devel@lists.sf.net</ulink>
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Az adatbázisom tényleg óriási. 
+      Van valami megoldás arra, hogy ne kerüljön az egész betöltésre a memóriába?</term>
+      <listitem><para> 
+Jelenleg nincsen. Ez a legégetőbb probléma amit meg szeretnénk oldani 
+az 1.0. verzió kiadása után. Egy igazi adatbázison alapuló tárolás fog megjelenni a 
+következő stabil (1.2) verzióban, s így jelentősen javulni fog a program 
+mind sebesség, mind memória használat területén.
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>A nem latin karakterek miért nem jelennek meg 
+      helyesen a PDF/PS összesítőkben?</term>
+      <listitem><para> 
+Ez egy ismert probléma -- PS (és PDF) bépített betükészletet használnak ami 
+elég jól tükrözi a latin-1 karakterkészletet. Elméletileg bármilyen karakterkészlet 
+használható a PS/PDF dokumentumokban, de ezeket a karakterkészleteket a fájlba 
+mellékelni kell. Ez eléggé problémás, hiszen minden rendszernek különböző elképzelése 
+van a karakterkészletek elérhetőségéről és beállításairól.</para>
+
+<para>
+Ez a probléma hamarosan eltűnik mivel a gnome-print rendszer használatára fogunk áttérni. 
+Addig is a probléma megoldható ha OpenOffice.org formátumban hozza létre az összesítőket 
+és utána PDF-ként menti az OpenOffice.org programból.
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Why can I not add/remove/edit columns to the lists 
+      in People View and Family View?</term>
+      <listitem><para> 
+This will be addressed after the TreeModelSort bug is fixed in pygtk,
+see <ulink url="http://bugzilla.gnome.org/show_bug.cgi?id=125172" 
+type="http">http://bugzilla.gnome.org/show_bug.cgi?id=125172</ulink>
+ for the details.
+Once the patch is committed and incorporated into pygtk, we will add the 
+ability to add/remove/edit sortable columns.
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Szeretnék közreműködni a &app; program készítésében. 
+      Készítenék egy bővítményt. Hogyan tudom ezt megcsinálni?</term>
+      <listitem><para> 
+A legegyszerűbb módszer az, hogy ha felhasználod a már jelenleg is működő 
+&app; jelentés- és szűrőmodulokat. Ha a forrás módosításával meg tudod valósítani 
+az elképzeléseidet akkor az csodálatos! Ha az ötleteid nem igazodnak egyik létező 
+&app; modulhoz sem, akkor a <ulink 
+url="http://gramps.sourceforge.net/phpwiki/index.php/GrampsDevelopersPage" 
+type="http">következő oldal</ulink> segítséget nyújthat, hogyan is indulj el.
+
+Ha több segítségre van szűkséged vagy meg szeretnéd beszélni velünk az ötleteidet, 
+akkor ne habozz felvenni velünk a kapcsolatot a <ulink 
+url="mailto:gramps-devel@lists.sf.net" 
+type="mailto">gramps-devel@lists.sf.net</ulink> címre írt levéllel.
+</para>
+
+<para>
+A teszteléshez a bővítményt a 
+<replaceable>$HOME/.gramps/plugins</replaceable> könyvtárba kell elmenteni, hogy 
+a program indulásakor be tudjon tőltődni. 
+A helyesen megírt bővítőmodul önmagát regisztrálja a &app;ben.</para>
+
+<para>
+If you are happy with your plugin and would like to contribute your code 
+back to the &app; project, you are very welcome to do so by contacting us 
+at <ulink url="mailto:gramps-devel@lists.sf.net" 
+type="mailto">gramps-devel@lists.sf.net</ulink>
+      </para></listitem>
+      </varlistentry>
+
+
+      <varlistentry><term>I found a bug and I want it fixed right now! 
+      What do I do?</term>
+      <listitem><para> 
+The best thing you can do is to fix the bug and send the patch to
+<ulink url="mailto:gramps-devel@lists.sf.net" 
+type="mailto">gramps-devel@lists.sf.net</ulink> :-)</para>
+
+<para>
+The next best thing would be to submit a good bug report. This can be done in
+one of the two ways: (1) send your report to 
+<ulink url="mailto:gramps-bugs@lists.sf.net" 
+type="mailto">gramps-bugs@lists.sf.net</ulink>
+or (2) file your report with the bug tracker system at 
+<ulink url="http://sf.net/tracker/?group_id=25770" type="http">
+http://sf.net/tracker/?group_id=25770&amp;atid=385137</ulink>
+(this function is also available by selecting 
+<menuchoice><guisubmenu>Help</guisubmenu><guimenuitem>Report a 
+bug</guimenuitem></menuchoice> from gramps main menu). </para>
+
+<para>Egy jó hibajelentés a következőket tartalmazza: </para>
+
+<itemizedlist>
+
+<listitem><para>   
+Version of gramps you were using when you encountered the bug 
+(available through <menuchoice><guisubmenu>Help</guisubmenu>
+<guimenuitem>About</guimenuitem></menuchoice> menu item).
+</para></listitem>
+
+<listitem><para>
+Language under which gramps was run
+(available by executing </para>
+   <para><command>echo $LANG</command></para>
+<para>in your terminal).
+</para></listitem>
+
+<listitem><para>
+Symptoms indicating that this is indeed a bug.
+</para></listitem>
+
+<listitem><para>
+Any Traceback messages, error messages, warnings, etc, 
+that showed up in your terminal or a in separate traceback window.
+</para></listitem>
+
+</itemizedlist>
+
+<para>Most problems can be fixed quickly provided there is enough information. 
+To ensure this, please follow up on your bug reports. In particular, if you 
+file a bug report with sf.net bug tracker, PLEASE log in to sf.net before 
+filing 
+(register your free account if you don't have one). Then we will have a way 
+of contacting you should we need more information. If you choose to file your 
+report anonymously, at least check every so often whether your report page 
+has something new posted, as it probably would.</para>
+
+<para>If the above explanations seem vague, please follow 
+<ulink url="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html" 
+type="http">this link.</ulink>
+
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>It is obvious that &app; absolutely needs to 
+      become a (client-server/web-based/PHP/weblog/Javascript/C++/distributed/KDE/Motif/Tcl/Win32/C#/You-name-it) 
+      application. When is this going to happen?</term>
+      <listitem><para> 
+The surest way to see it happen is to get it done by yourself. Since
+&app; is free/open source, nobody prevents you from taking all of the
+code and continuing its development in whatever direction you see fit.
+In doing so, you may consider giving your new project another name to
+avoid confusion with the continuing &app; development. If you would
+like the &app; project to provide advice, expertise, filters, etc., 
+we will gladly cooperate with your new project, to ensure compatability 
+or import/export options to your new format of a project.</para>
+
+<para>                                                                                
+If, however, you would like the &app; project to to adopt your strategy,
+you would need to convince &app; developers that your strategy is good
+for &app; and superior to the present development strategy.</para>
+
+<para>                                                                                
+HINT: if &app; developers are still not convinced after about three
+messages sent to gramps-devel, maybe you are better off on your own
+rather than with a company of retards who can't fully realize the
+potential of your great idea :-)
+
+      </para></listitem>
+      </varlistentry>
+
+      </variablelist>
+
+      </sect2>
