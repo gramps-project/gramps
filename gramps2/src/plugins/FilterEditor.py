@@ -337,9 +337,9 @@ class FilterEditor:
             value_list.append(x.get_text())
         new_rule = c(value_list)
         store,iter = self.rlist.get_selected()
-#        if iter:
-#            rule = self.rlist.get_object(iter)
-#            self.filter.delete_rule(rule)
+        if iter:
+            rule = self.rlist.get_object(iter)
+            self.filter.delete_rule(rule)
         self.filter.add_rule(new_rule)
         self.draw_rules()
         self.rule_top.destroy()
