@@ -5,6 +5,7 @@
 pkgpython_PYTHON = \
 	AncestorChart.py\
 	AncestorReport.py\
+	Ancestors.py\
 	ChangeTypes.py\
 	Check.py\
 	count_anc.py\
