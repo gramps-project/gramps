@@ -520,7 +520,7 @@ class Gramps:
         if val == 1:
             return
         self.clear_database()
-        DbPrompter.DbPrompter(self.database,1)
+        DbPrompter.DbPrompter(self,1)
     
     def clear_database(self):
         """Clear out the database if permission was granted"""
@@ -1146,6 +1146,14 @@ class Gramps:
 
             file = self.database.getSavePath()
             self.database.new()
+            self.active_person = None
+            self.active_father = None
+            self.active_family = None
+            self.active_mother = None
+            self.active_child  = None
+            self.active_spouse = None
+            self.id2col        = {}
+            self.alt2col       = {}
             self.read_file(file)
             Utils.clearModified()
             Utils.clear_timer()

@@ -34,6 +34,7 @@ intl22.so: intl.c
 
 install:
 	${INSTALL} -d ${datadir}
+	(cd ${datadir} ;rm -f *.py *.pyo *.pyc *.glade *.xpm *.so)
 	${INSTALL} *.py *.jpg *.pyo *.png *.glade *.xpm *.so ${datadir}
 	${INSTALL} -d ${prefix}/share/pixmaps
 	${INSTALL} gramps.png ${prefix}/share/pixmaps

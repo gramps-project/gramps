@@ -67,6 +67,7 @@ for val in const.familyConstantEvents.keys():
     if key != "":
         ged2fam[key] = val
 
+intRE = re.compile(r"\s*(\d+)\s*$")
 lineRE = re.compile(r"\s*(\d+)\s+(\S+)\s*(.*)$")
 headRE = re.compile(r"\s*(\d+)\s+HEAD")
 nameRegexp= re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
@@ -108,6 +109,7 @@ def importData(database, filename):
         return
 
     g.parse_gedcom_file()
+    g.resolve_refns()
 
     statusTop.get_widget("close").set_sensitive(1)
 
@@ -142,6 +144,8 @@ class GedcomParser:
         self.fmap = {}
         self.smap = {}
         self.nmap = {}
+        self.refn = {}
+        self.added = []
         self.gedmap = GedcomInfoDB()
         self.gedsource = None
         self.dir_path = os.path.dirname(file)
@@ -367,6 +371,7 @@ class GedcomParser:
                     self.update(self.people_obj,str(self.indi_count))
                 self.indi_count = self.indi_count + 1
                 self.person = self.db.findPerson(matches[1],self.pmap)
+                self.added.append(self.person)
                 self.parse_individual()
             elif matches[2] in ["SUBM","SUBN"]:
                 self.ignore_sub_junk(1)
@@ -701,10 +706,8 @@ class GedcomParser:
                     self.parse_source_reference(source_ref,2)
                 self.person.getPrimaryName().addSourceRef(source_ref)
 	    elif matches[1] == "REFN":
-                attr = Attribute()
-                attr.setType("Reference Number")
-                attr.setValue(matches[2])
-                self.person.addAttribute(attr)
+                if intRE.match(matches[2]):
+                    self.refn[self.person] = int(matches[2])
 	    elif matches[1] in ["AFN","CHAN","REFN","ASSO"]:
                 self.ignore_sub_junk(2)
 	    elif matches[1] in ["ANCI","DESI","RIN","RFN"]:
@@ -1634,6 +1637,42 @@ class GedcomParser:
             dateobj.set(text)
 
         return dateobj
+
+    def resolve_refns(self):
+        prefix = self.db.iprefix
+        pmap = self.db.getPersonMap()
+        renamed = []
+        new_pmax = self.db.pmapIndex
+        for person in self.added:
+            if self.refn.has_key(person):
+                val = self.refn[person]
+                new_key = prefix % val
+                new_pmax = max(new_pmax,val)
+
+                # new ID is not used
+                if not pmap.has_key(new_key):
+                   del pmap[person.getId()]
+                   pmap[new_key] = person
+                   person.setId(new_key)
+                else:
+                    tp = pmap[new_key]
+                    # same person, just change it
+                    if person == tp:
+                        del pmap[person.getId()]
+                        pmap[new_key] = person
+                        person.setId(new_key)
+                    # person currently using it was just added, change it
+                    elif tp in self.added:
+                        if not self.refn.has_key(tp):
+                            renamed.append(tp)
+                        del pmap[person.getId()]
+                        pmap[new_key] = person
+                        person.setId(new_key)
+
+        self.db.pmapIndex = new_pmax
+        for person in renamed:
+            del pmap[person]
+            self.db.addPerson(person)
 
 #-------------------------------------------------------------------------
 #
