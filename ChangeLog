@@ -2,6 +2,8 @@
 	* src/data/tips.xml: Add more tips.
 
 2004-10-03  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/ReadXML.py: name enhancements 
+	* src/WriteXML.py: name enhancements 
 	* src/Date.py: fix get_month_valid call
 	* src/DateDisplay.py: pychecker fixes
 	* src/EditPerson.py: pychecker fixes

@@ -423,6 +423,13 @@ class XmlWriter:
                 self.g.write('    <bookmark hlink="%s"/>\n' % person_handle)
             self.g.write("  </bookmarks>\n")
 
+        if len(self.db.name_group) > 0:
+            self.g.write('  <groups>\n')
+            for key in self.db.name_group.keys():
+                self.g.write('    <group_map name="%s" group="%s"/>\n' %
+                             (key,self.db.name_group[key]))
+            self.g.write('  </groups>\n')
+
         self.g.write("</database>\n")
 
     def fix(self,line):
@@ -581,10 +588,13 @@ class XmlWriter:
     def write_last(self,name,indent=1):
         p = name.get_surname_prefix()
         n = name.get_surname()
+        g = name.get_group_as()
+        self.g.write('%s<last' % ('  '*indent))
         if p:
-            self.g.write('%s<last prefix="%s">%s</last>\n' % ('  '*indent,p,self.fix(n)))
-        else:
-            self.g.write('%s<last>%s</last>\n' % ('  '*indent,self.fix(n)))
+            self.g.write(' prefix="%s"' % p)
+        if g:
+            self.g.write(' group="%s"' % g)
+        self.g.write('>%s</last>\n' % self.fix(n))
 
     def write_line(self,label,value,indent=1):
         if value:
@@ -647,13 +657,20 @@ class XmlWriter:
     def dump_name(self,label,name,index=1):
         sp = "  "*index
         name_type = name.get_type()
+        self.g.write('%s<%s' % (sp,label))
         if name_type:
-            self.g.write('%s<%s type="%s"%s>\n' % (sp,label,name_type,conf_priv(name)))
-        else:
-            self.g.write('%s<%s%s>\n' % (sp,label,conf_priv(name)))
+            self.g.write(' type="%s"' % name_type)
+        if name.get_privacy() != 0:
+            self.g.write(' priv="%d"' % name.get_privacy())
+        if name.get_sort_as() != 0:
+            self.g.write(' sort="%d"' % name.get_sort_as())
+        if name.get_display_as() != 0:
+            self.g.write(' display="%d"' % name.get_display_as())
+        self.g.write('>\n')
         self.write_line("first",name.get_first_name(),index+1)
         self.write_last(name,index+1)
         self.write_line("suffix",name.get_suffix(),index+1)
+        self.write_line("patronymic",name.get_patronymic(),index+1)
         self.write_line("title",name.get_title(),index+1)
         if name.get_note() != "":
             self.write_note("note",name.get_note_object(),index+1)

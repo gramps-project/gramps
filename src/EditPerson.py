@@ -1654,6 +1654,7 @@ class EditPerson:
         ntype = unicode(self.ntype_field.child.get_text())
         self.pname.set_type(const.NameTypesMap.find_value(ntype))
         self.pname.set_suffix(unicode(self.suffix.get_text()))
+        self.pname.set_surname(unicode(self.surname.get_text()))
         self.pname.set_surname_prefix(unicode(self.prefix.get_text()))
         self.pname.set_first_name(unicode(self.given.get_text()))
         self.pname.set_title(unicode(self.title.get_text()))

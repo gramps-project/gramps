@@ -1949,6 +1949,11 @@ class Name(DataObj):
         self.first_name = name
         self.build_sort_name()
 
+    def set_patronymic(self,name):
+        """sets the patronymic name for the Name instance"""
+        self.patronymic = name
+        self.build_sort_name()
+
     def set_surname(self,name):
         """sets the surname (or last name) for the Name instance"""
         self.surname = name
@@ -1965,6 +1970,10 @@ class Name(DataObj):
     def get_first_name(self):
         """returns the given name for the Name instance"""
         return self.first_name
+
+    def get_patronymic(self):
+        """returns the patronymic name for the Name instance"""
+        return self.patronymic
 
     def get_surname(self):
         """returns the surname (or last name) for the Name instance"""
