@@ -87,8 +87,8 @@ class DispBox:
                                     y1=0,
                                     x2=w,
                                     y2=h,
-                                    outline_color_gdk=style.bg[gtk.STATE_NORMAL],
-                                    fill_color_gdk=style.white)
+                                    outline_color_gdk=style.fg[gtk.STATE_NORMAL],
+                                    fill_color_gdk=style.base[gtk.STATE_NORMAL])
 
         font = gtk.gdk.font_from_description(style.font_desc)
         self.textbox = self.group.add(gnome.canvas.CanvasText,
@@ -358,7 +358,7 @@ class PedigreeView:
         pts = [startx,y1, startx,y2+(h/2.0), x2,y2+(h/2.0)]
         item = self.root.add(gnome.canvas.CanvasLine, width_pixels=2,
                              points=pts, line_style=ls,
-                             fill_color_gdk=style.black)
+                             fill_color_gdk=style.fg[gtk.STATE_NORMAL])
         item.set_data(_PERSON,data)
         item.connect("event",self.line_event)
         self.canvas_items.append(item)
@@ -393,7 +393,7 @@ class PedigreeView:
             msg = _("Double clicking will make %s the active person") % name
             self.sb.set_status(msg)
         elif event.type == gtk.gdk.LEAVE_NOTIFY:
-            obj.set(fill_color_gdk=style.black, width_pixels=2)
+            obj.set(fill_color_gdk=style.fg[gtk.STATE_NORMAL], width_pixels=2)
             self.update()
 
     def find_tree(self,person,index,depth,list,val=0):
