@@ -2152,7 +2152,7 @@
 	<application>&app;</application> is focused on a 
 	single person usually referred to as an Active person. This 
 	allows you to view or modify the data concerning this person, 
-	his or her immediate family, etc. Navigating in the databse (i.e. 
+	his or her immediate family, etc. Navigating in the database (i.e. 
 	moving from person to person) is in fact nothing else but changing 
 	the Active person. This section describes many alternative ways
 	to navigate through the database using complex and convenient 
@@ -2240,9 +2240,9 @@
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-default"> 
         <title>Setting Default Person</title> 
-	<para> One and only one person in the databse can be selected as the 
+	<para> One and only one person in the database can be selected as the 
 	default person. Once the default person is selected, moving to that
-	person becomes a matter of a signle click, regardless of which view 
+	person becomes a matter of a single click, regardless of which view 
 	you are using at the moment. </para>
 
 	<para> To set the default person, first navigate to that person using 
@@ -2261,7 +2261,7 @@
 	<para> Similarly to the default person, you can bookmark other people 
 	from the database to simplify further navigation. To bookmark a person,
 	first navigate to that person, then choose 
-	<menuchoice><guisubmenu>Bookmarks</guisubmenu>
+	<menuchoice><guimenu>Bookmarks</guimenu>
 	<guimenuitem>Add bookmark</guimenuitem></menuchoice>. To move to that
 	person from anywhere in the database, choose 
 	<menuchoice><guimenu>Bookmarks</guimenu>
@@ -2270,7 +2270,7 @@
 	</menuchoice>. </para>
 	
 	<para> You can manage your bookmarks by choosing 
-	<menuchoice><guisubmenu>Bookmarks</guisubmenu>
+	<menuchoice><guimenu>Bookmarks</guimenu>
 	<guimenuitem>Edit bookmarks</guimenuitem></menuchoice>. This opens
 	the following<guilabel>Edit Bookmarks</guilabel> dialog with the 
 	list of	bookmarks and the controls to modify this list. </para>
@@ -2289,18 +2289,199 @@
 
    </sect2>
    
-<!--
-[ FIXME: STOPPED HERE ] 
--->
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gen-reports"> 
         <title>Generating Reports</title> 
+	<para> Reports are the most common form of the output produced by
+	genealogical research. Majority of genealogical software puts a lot
+	of emphasis on developing nicely looking reports. &app; is no 
+	exception in this regard: it offers a variety of reports to choose 
+	from. &app; can generate reports in a multitude of open formats, both 
+	text based and graphical. &app; can also produce screen based reports 
+	that are convenient for viewing the summary of your database. 
+	Finally, &app; can generate a web-site suitable for immediate 
+	posting on the Internet. All these are almost infinitely flexible: 
+	you get to design and choose the style for your reports. </para>
+
+	<para> All reports can be accessed through the menu by choosing
+	<menuchoice><guimenu>Reports</guimenu>
+	<guisubmenu><replaceable>Report Type</replaceable></guisubmenu>
+	<guimenuitem><replaceable>Particular 
+	Report</replaceable></guimenuitem></menuchoice>. Alternatively, 
+	you can browse the complete selection of available reports along 
+	with their brief descriptions in a <guilabel>Report 
+	Selection</guilabel> dialog evoked by clicking 
+	<guibutton>Reports</guibutton> on the toolbar. 
+	</para>
+
+      <!-- =============== Usage Sub-subsection ================ -->
+      <sect3 id="rep-graph"> 
+	<title>Graphical Reports</title> 
+	<para> Graphical reports represent information in forms of charts 
+	and graphs. The following graphical reports are currently 
+	available in &app;: </para>
+	
+	<itemizedlist>
+	<listitem><para>Timeline Graph</para></listitem>
+	<listitem><para>Relationship Graph</para></listitem>
+	<listitem><para>Descendant Graph</para></listitem>
+	<listitem><para>Ancestor Chart</para></listitem>
+	</itemizedlist>
+	
+	<para>Most of the options are common among graphical reports, 
+	therefore they will be described only once, at the end of this 
+	section. Few options specific to the given report will be 
+	described directly in that report's entry. </para>
+
+	<variablelist>
+
+	<varlistentry><term>Timeline Graph</term>
+	<listitem><para>This report outputs the list of people with their
+	lifetimes represented by intervals on a common chronological scale. 
+	Specific options include filter, sorting method, and the title of 
+	the report. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Relationship Graph</term>
+	<listitem><para>This report creates complex relationship graph in 
+	GraphViz format. The GraphViz <command>dot</command> tool can 
+	transform the graph into postscript, jpeg, png, vrml, svg, and many
+	other formats. GraphViz tools are freely available from 
+	<ulink url="http://www.graphviz.org" type="http">GraphViz 
+	site</ulink>. Specific options include filter for this report 
+	include filter and number of generations considered, as well as 
+	several GraphViz specific options related to pagination, color, 
+	and details of the graph. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Descendant Graph</term>
+	<listitem><para>This report generates the graph of people who are
+	descendants of a currently active person. Specific options include 
+	the format of the displayed entries. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Ancestor Chart</term>
+	<listitem><para>This report generates the chart of people who are
+	ancestors of a currently active person. Specific options include 
+	the number of generations considered and the format of the displayed 
+	entries. </para></listitem>
+	</varlistentry>
+
+	</variablelist>
+
+	<para>Common options for graphical reports are the filename of the
+	output, the format of the output, selected style, and page size and 
+	orientation. </para>
+
+      </sect3>
+
+      <!-- =============== Usage Sub-subsection ================ -->
+      <sect3 id="rep-text"> 
+	<title>Text Reports</title> 
+	<para> Text reports represent the desired information as formatted 
+	text. The following text reports are currently available 
+	in &app;:</para>
+
+	<itemizedlist>
+	<listitem><para>Individual Summary</para></listitem>
+	<listitem><para>Family Group Report</para></listitem>
+	<listitem><para>Detailed Descendant Report</para></listitem>
+	<listitem><para>Detailed Ancestral Report</para></listitem>
+	<listitem><para>Descendant Report</para></listitem>
+	<listitem><para>Complete Individual Report</para></listitem>
+	<listitem><para>Ahnentafel Report</para></listitem>
+	</itemizedlist>
+	
+	<para>Most of the options are common among text reports, 
+	therefore they will be described only once, at the end of this 
+	section. Few options specific to the given report will be 
+	described directly in that report's entry. </para>
+	
+	<variablelist>
+
+	<varlistentry><term>Individual Summary</term>
+	<listitem><para></para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Family Group Report</term>
+	<listitem><para></para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Detailed Descendant Report</term>
+	<listitem><para></para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Detailed Ancestral Report</term>
+	<listitem><para></para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Descendant Report</term>
+	<listitem><para></para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Complete Individual Report</term>
+	<listitem><para></para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Ahnentafel Report</term>
+	<listitem><para></para></listitem>
+	</varlistentry>
+
+	</variablelist>
+
+	<para>Common options for text reports are the filename of the
+	output, the format of the output, selected style, and page size and 
+	orientation. For HTML reports, there is no page information. 
+	Instead, HTML options includes the choice of the HTML template, 
+	either available in &app; or custom template defined by you. </para>
+
+<!--
+[ FIXME: STOPPED HERE ] 
+-->
+      </sect3>
+
+      <!-- =============== Usage Sub-subsection ================ -->
+      <sect3 id="rep-view"> 
+	<title>View</title> 
 	<para> </para>
+
+      </sect3>
+
+      <!-- =============== Usage Sub-subsection ================ -->
+      <sect3 id="rep-web"> 
+	<title>Web Page</title> 
+	<para> </para>
+
+      </sect3>
+
    </sect2>
+
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-tools"> 
         <title>Running Tools</title> 
 	<para> </para>
+
+      <!-- =============== Usage Sub-subsection ================ -->
+      <sect3 id="tools-ae"> 
+	<title>Analysis and Exploration</title> 
+	<para> </para>
+
+      </sect3>
+
+      <!-- =============== Usage Sub-subsection ================ -->
+      <sect3 id="tools-db"> 
+	<title>Database Processing</title> 
+	<para> </para>
+
+      </sect3>
+
+      <!-- =============== Usage Sub-subsection ================ -->
+      <sect3 id="tools-util"> 
+	<title>Utilities</title> 
+	<para> </para>
+
+      </sect3>
+
     </sect2>
 
   </sect1> <!-- ================ End Usage ============== -->
@@ -2311,14 +2492,7 @@
     <title>Settings</title> 
     <para>To configure <application>&app;</application>, choose 
       <menuchoice><guimenu>Settings</guimenu>
-      <guimenuitem>Preferences</guimenuitem></menuchoice>. 
-      The <guilabel>Preferences</guilabel> dialog contains the 
-      following sections seen as the corresponding tree elements:</para> 
-    <itemizedlist> 
-      <listitem><para><xref linkend="gramps-prefs-usage"/></para></listitem> 
-      <listitem><para><xref linkend="gramps-prefs-display"/></para></listitem> 
-      <listitem><para><xref linkend="gramps-prefs-db"/></para></listitem> 
-    </itemizedlist>
+      <guimenuitem>Preferences</guimenuitem></menuchoice>. </para>
     
 <!-- =============== Customization Subsection ================ -->
     <sect2 id="gramps-prefs-usage"> 
