@@ -301,15 +301,14 @@ def load_plugins(dir):
             import traceback
             traceback.print_exc()
             continue
-        for task in plugin.__dict__.keys():
-            if task == "report":
-                reports.append(plugin)
-            elif task == "writeData":
-                exports.append(plugin)
-            elif task == "runTool":
-                tools.append(plugin)
-            elif task == "readData":
-                imports.append(plugin)
+        if plugin.__dict__.has_key("report"):
+            reports.append(plugin)
+        elif plugin.__dict__.has_key("writeData"):
+            exports.append(plugin)
+        elif plugin.__dict__.has_key("runTool"):
+            tools.append(plugin)
+        elif plugin.__dict__.has_key("readData"):
+            imports.append(plugin)
 
     tools.sort(by_doc)
     imports.sort(by_doc)
