@@ -64,6 +64,17 @@ import WriteGedcom
 
 #-------------------------------------------------------------------------
 #
+# Constants
+#
+#-------------------------------------------------------------------------
+_KNOWN_FORMATS = { 
+    const.app_gramps        : _('GRAMPS (grdb)'),
+    const.app_gramps_xml    : _('GRAMPS XML'),
+    const.app_gedcom        : _('GEDCOM'),
+}
+        
+#-------------------------------------------------------------------------
+#
 # DbPrompter
 #
 #-------------------------------------------------------------------------
@@ -381,7 +392,7 @@ class NewNativeDbPrompter:
                 self.parent.read_file(filename)
                 # Add the file to the recent items
                 RecentFiles.recent_files(filename,const.app_gramps)
-            	self.parent.build_recent_menu()
+                self.parent.build_recent_menu()
                 return True
             else:
                 choose.destroy()
@@ -417,6 +428,11 @@ class NewSaveasDbPrompter:
                                             gtk.STOCK_SAVE,
                                             gtk.RESPONSE_OK))
         choose.set_local_only(False)
+        (box,type_selector) = format_maker([const.app_gramps,
+                                    const.app_gramps_xml,
+                                    const.app_gedcom])
+        box.show_all()
+        choose.set_extra_widget(box)
 
         # Always add automatic (macth all files) filter
         mime_filter = gtk.FileFilter()
@@ -463,10 +479,18 @@ class NewSaveasDbPrompter:
                 filename = choose.get_filename()
                 if filename == None:
                     continue
-                os.system('touch %s' % filename)
-                filetype = get_mime_type(filename)
+                filetype = type_selector.get_value()
+                if filetype == 'auto':
+                    os.system('touch %s' % filename)
+                    filetype = get_mime_type(filename)
                 (the_path,the_file) = os.path.split(filename)
                 choose.destroy()
+                if filetype not in [const.app_gramps,const.app_gramps_xml,
+                                    const.app_gedcom]:
+                    QuestionDialog.ErrorDialog(_('Could not save file'),
+                        _('Unknown file type: %(file_type)s') % {
+                                'file_type' : filetype }  )
+                    return False
                 if filetype == const.app_gramps:
                     WriteGrdb.exportData(self.parent.db,filename,None,None)
                     self.parent.db.close()
@@ -482,7 +506,7 @@ class NewSaveasDbPrompter:
                 self.parent.read_file(filename)
                 # Add the file to the recent items
                 RecentFiles.recent_files(filename,const.app_gramps)
-            	self.parent.build_recent_menu()
+                self.parent.build_recent_menu()
                 return True
             else:
                 choose.destroy()
@@ -534,3 +558,49 @@ def open_native(parent,filename,filetype):
         parent.build_recent_menu()
 
     return success
+
+
+class GrampsFormatWidget(gtk.ComboBox):
+
+    def __init__(self):
+        gtk.ComboBox.__init__(self,model=None)
+
+    def set(self,format_list):
+        self.store = gtk.ListStore(str)
+        self.set_model(self.store)
+        cell = gtk.CellRendererText()
+        self.pack_start(cell,True)
+        self.add_attribute(cell,'text',0)
+        self.format_list = format_list
+        
+        for format,label in format_list:
+            self.store.append(row=[label])
+        self.set_active(0)
+
+    def get_value(self):
+        active = self.get_active()
+        if active < 0:
+            return None
+        return self.format_list[active][0]
+
+def format_maker(formats):
+    """
+    A factory function making format selection widgets.
+    
+    Accepts a list of formats to include into selector.
+    The auto selection is always added as the first one.
+    The returned box contains both the label and the selector.
+    """
+    format_list = [ ('auto',_('Automatically detected')) ]
+    for format in formats:
+        if _KNOWN_FORMATS.has_key(format):
+            format_list.append( (format,_KNOWN_FORMATS[format]) )
+
+    type_selector = GrampsFormatWidget()
+    type_selector.set(format_list)
+
+    box = gtk.HBox()
+    label = gtk.Label(_('Select file type:'))
+    box.pack_start(label,expand=False,fill=False,padding=6)
+    box.add(type_selector)
+    return (box,type_selector)
