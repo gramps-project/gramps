@@ -92,7 +92,10 @@ class ChooseParents:
             self.mother_rel.set_text(_("Birth"))
             self.father_rel.set_text(_("Birth"))
 
-        self.type = self.family.getRelationship()
+        if self.family:
+            self.type = self.family.getRelationship()
+        else:
+            self.type = "Married"
         self.prel.set_text(_(self.type))
         self.redraw()
         
