@@ -716,9 +716,12 @@ class MediaObject(SourceNote):
 # MediaRef
 #
 #-------------------------------------------------------------------------
-class MediaRef:
-    """Object reference class"""
+class MediaRef(SourceNote):
+    """Media reference class"""
     def __init__(self,source=None):
+
+        SourceNote.__init__(self,source)
+
         self.attrlist = []
         if source:
             self.private = source.private
@@ -745,43 +748,6 @@ class MediaRef:
     def get_reference_id(self):
         return self.ref
 
-    def set_note(self,text):
-        """Set the note to the given text"""
-        if self.note == None:
-            self.note = Note()
-        self.note.set(text)
-
-    def get_note(self):
-        """Return the current note"""
-        if self.note == None:
-            return ""
-        else:
-            return self.note.get() 
-
-    def set_note_format(self,val):
-        """Set the note's format to the given value"""
-        if self.note:
-            self.note.set_format(val)
-
-    def get_note_format(self):
-        """Return the current note's format"""
-        if self.note == None:
-            return 0
-        else:
-            return self.note.get_format()
-
-    def set_note_object(self,obj):
-        """Change the note object instance to obj"""
-        self.note = obj
-
-    def get_note_object(self):
-        """Return in note instance, not just the text"""
-        return self.note
-
-    def unique_note(self):
-        """Creates a unique instance of the current note"""
-        self.note = Note(self.note.get())
-    
     def add_attribute(self,attr):
         """Adds a propery to the MediaObject object. This is not used by gramps,
         but provides a means for XML users to attach other properties to
@@ -1684,6 +1650,7 @@ class Event(DataObj):
             self.name = source.name
             self.cause = source.cause
             self.id = source.id
+            self.media_list = [MediaRef(media_id) for media_id in source.media_list]
             try:
                 if source.witness:
                     self.witness = source.witness[:]
@@ -1699,6 +1666,7 @@ class Event(DataObj):
             self.cause = ""
             self.witness = None
             self.id = None
+            self.media_list = []
 
     def clone(self,source):
         self.place = source.place
@@ -1710,6 +1678,7 @@ class Event(DataObj):
         self.private = source.private
         self.source_list = source.source_list[:]
         self.note = source.note
+        self.media_list = [MediaRef(media_id) for media_id in source.media_list]
         try:
             if source.witness:
                 self.witness = source.witness[:]
@@ -1727,6 +1696,18 @@ class Event(DataObj):
         (self.id, self.name, self.date, self.description,
          self.place, self.cause, self.private, self.source_list,
          self.note, self.witness) = data
+
+    def add_media_reference(self,media_id):
+        """Adds a Photo object to the Event object's image list"""
+        self.media_list.append(media_id)
+
+    def get_media_list(self):
+        """Returns the list of Photo objects"""
+        return self.media_list
+
+    def set_media_list(self,mlist):
+        """Sets the list of Photo objects"""
+        self.media_list = mlist
 
     def set_id(self,gid):
         """Sets the gramps ID for the place object"""
@@ -2881,6 +2862,16 @@ class GrampsDB:
 #            for event_id in family.get_event_list():
 #                event = self.event_map[event_id]
 #                map[event.get_name()] = 1
+        return map.keys()
+
+    def get_media_attribute_types(self):
+        """returns a list of all Attribute types assocated with Media
+        instances in the database"""
+        map = {}
+#        for media_id in self.media_map.keys():
+#            mobject = self.find_object_from_id(media_id)
+#            for attr in mobject.get_attribute_list():
+#                map[attr.get_type()] = 1
         return map.keys()
 
     def get_place_ids(self):

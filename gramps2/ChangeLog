@@ -1,3 +1,20 @@
+2004-06-02  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/MediaView.py: Pass parent to GlobalMediaProperties; typos. 
+	* src/SelectObject.py: Typos. 
+	* src/ImageSelect.py (LocalMediaProperties.__init__,
+	GlobalMediaProperties.__init__): Handle source tab. 
+	* src/EventEdit.py: Handle gallery tab.
+	* src/WriteXML.py (dump_my_event): Write object references; 
+        (write_photo_list): Write source references.
+	* src/gramps.glade: Add gallery tab to Event Editor; add source 
+	tab to media property editor.
+	* src/RelLib.py (Event): Add media_list and related methods;
+	(ObjectRef): Inherit from SourceNote, remove unnecessary functions;
+	(GrampsDB.get_media_attribute_types): Add method.
+	* src/ReadXML.py (start_sourceref): Check for attribute before
+	the object. Objects may have attributes; (start_objref): Parse media 
+	object references for Event records. 
+
 2004-06-02  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DisplayModels.py: support for Spouse column
 	* src/MediaView.py: fix try_to_find_object_from_id

@@ -45,6 +45,7 @@ import AutoComp
 import Calendar
 import RelLib
 import Date
+import ImageSelect
 
 from DateEdit import DateEdit
 from gettext import gettext as _
@@ -73,6 +74,7 @@ class EventEditor:
         self.child_windows = {}
         self.trans = trans
         self.callback = cb
+        self.path = self.db.get_save_path()
         self.plist = []
         self.pmap = {}
 
@@ -137,6 +139,7 @@ class EventEditor:
         self.notes_label = self.top.get_widget("notesEvent")
         self.flowed = self.top.get_widget("eventflowed")
         self.preform = self.top.get_widget("eventpreform")
+        self.gallery_label = self.top.get_widget("galleryEvent")
         self.witnesses_label = self.top.get_widget("witnessesEvent")
 
         if GrampsCfg.calendar:
@@ -188,6 +191,8 @@ class EventEditor:
                     self.preform.set_active(1)
             	else:
                     self.flowed.set_active(1)
+            if event.get_media_list():
+                Utils.bold_label(self.gallery_label)
         else:
             if def_event:
                 self.name_field.set_text(def_event)
@@ -195,12 +200,23 @@ class EventEditor:
                 self.place_field.set_text(def_placename)
         self.date_check = DateEdit(self.date_field,self.top.get_widget("date_stat"))
 
+        if not event:
+            event = RelLib.Event()
+        self.icon_list = self.top.get_widget("iconlist")
+        self.gallery = ImageSelect.Gallery(event, self.db.commit_event, self.path, self.icon_list,
+                                           self.db,self,self.window)
+
         self.top.signal_autoconnect({
             "on_switch_page" : self.on_switch_page,
             "on_help_event_clicked" : self.on_help_clicked,
             "on_ok_event_clicked" : self.on_event_edit_ok_clicked,
             "on_cancel_event_clicked" : self.close,
             "on_event_edit_delete_event" : self.on_delete_event,
+            "on_addphoto_clicked"       : self.gallery.on_add_media_clicked,
+            "on_selectphoto_clicked"    : self.gallery.on_select_media_clicked,
+            "on_deletephoto_clicked"    : self.gallery.on_delete_media_clicked,
+            "on_edit_properties_clicked": self.gallery.popup_change_description,
+            "on_editphoto_clicked"      : self.gallery.on_edit_media_clicked,
             })
 
         menu = gtk.Menu()
@@ -222,10 +238,12 @@ class EventEditor:
         self.window.show()
 
     def on_delete_event(self,obj,b):
+        self.gallery.close(0)
         self.close_child_windows()
         self.remove_itself_from_menu()
 
-    def close(self,obj):
+    def close(self,obj,ok=0):
+        self.gallery.close(ok)
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.window.destroy()
@@ -318,7 +336,7 @@ class EventEditor:
         self.db.add_transaction(trans,_("Edit Event"))
         self.parent.redraw_event_list()
         self.callback(self.event)
-        self.close(obj)
+        self.close(obj,1)
 
     def update_event(self,name,date,place,desc,note,format,priv,cause,trans):
         if place:
