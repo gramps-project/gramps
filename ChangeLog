@@ -1,3 +1,9 @@
+2004-02-26  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/AddMedia.py: media reference fixes
+	* src/MediaView.py: media reference fixes
+	* src/FamilyView.py: commit child changes
+	* src/PlaceView.py: ID fixes
+
 2004-02-24  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/WebPage.py: media reference fixes
 	* src/plugins/ReadGedcom.py: media reference fixes
