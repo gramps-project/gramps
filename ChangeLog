@@ -1,3 +1,8 @@
+2005-03-18  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/plugins/ScratchPad.py: Tidy up of drag target type handling. 
+	* src/EditPerson.py (x_drag_data_received): fixed problem with 
+	drag and drop of objects that have srcrefs.
+
 2005-03-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GrampsGconfKeys.py (get_bool,get_int,get_string): Raise
 	exception when default value could not be get from gconf schema

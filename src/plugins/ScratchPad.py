@@ -60,6 +60,12 @@ text_targets =  ['text/plain',
                  'COMPOUND_TEXT',
                  'UTF8_STRING']
 
+text_tgts = [('text/plain',0,0),
+             ('TEXT', 0, 1),
+             ('STRING', 0, 2),
+             ('COMPOUND_TEXT', 0, 3),
+             ('UTF8_STRING', 0, 4)]
+
 gramps_targets = ['url',
                   'pevent',
                   'pattr',
@@ -70,21 +76,17 @@ pycode_tgts = [('url', 0, 0),
                ('pevent', 0, 1),
                ('pattr', 0, 2),
                ('paddr', 0, 3),
-               ('srcref', 0, 4),
-               ('text/plain',0,0),
-               ('TEXT', 0, 1),
-               ('STRING', 0, 2),
-               ('COMPOUND_TEXT', 0, 3),
-               ('UTF8_STRING', 0, 4)]
+               ('srcref', 0, 4)] + text_tgts
+               
 
 TEXT_TARGET = 'TEXT'
 
-target_map = {'url':('url', 0, 0),
-              'pevent': ('pevent', 0, 1),
-              'pattr': ('pattr', 0, 2),
-              'paddr': ('paddr', 0, 3),
-              'srcref': ('srcref', 0, 4),
-              TEXT_TARGET: ('TEXT', 0, 1)}
+target_map = {'url':[('url', 0, 0)],
+              'pevent': [('pevent', 0, 1)],
+              'pattr': [('pattr', 0, 2)],
+              'paddr': [('paddr', 0, 3)],
+              'srcref': [('srcref', 0, 4)],
+              TEXT_TARGET: text_tgts}
 
 
 
@@ -281,7 +283,7 @@ class ScratchPadWindow:
                 target = target_map[TEXT_TARGET]
 
             self.object_list.drag_source_unset()
-            self.object_list.drag_source_set(BUTTON1_MASK, [target], ACTION_COPY)
+            self.object_list.drag_source_set(BUTTON1_MASK, target, ACTION_COPY)
 
         
     def on_update_object_clicked(self, obj):

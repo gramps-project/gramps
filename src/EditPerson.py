@@ -807,7 +807,7 @@ class EditPerson:
                 for src in foo.get_source_references():
                     base_handle = src.get_base_handle()
                     newbase = self.db.get_source_from_handle(base_handle)
-                    src.set_base_handle(newbase)
+                    src.set_base_handle(newbase.get_handle())
                 place = foo.get_place_handle()
                 if place:
                     foo.set_place_handle(place.get_handle())
@@ -885,7 +885,7 @@ class EditPerson:
                 for src in foo.get_source_references():
                     base_handle = src.get_base_handle()
                     newbase = self.db.get_source_from_handle(base_handle)
-                    src.set_base_handle(newbase)
+                    src.set_base_handle(newbase.get_handle())
                 self.alist.append(foo)
             self.lists_changed = True
             self.redraw_attr_list()
@@ -918,7 +918,7 @@ class EditPerson:
                 for src in foo.get_source_references():
                     base_handle = src.get_base_handle()
                     newbase = self.db.get_source_from_handle(base_handle)
-                    src.set_base_handle(newbase)
+                    src.set_base_handle(newbase.get_handle())
                 self.plist.insert(row,foo)
                 
             self.lists_changed = True
