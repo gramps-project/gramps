@@ -2,6 +2,7 @@
 	* src/plugins/ReadGedcocm.py: Fix callback parameters
 	* src/AddSpouse.py: handle adding of new person callback correctly
 	* src/plugins/WriteGedcom.py: handle surnames containing a slash
+	* src/SourceView.py: Speed up redraw performance
 
 2003-07-01  Tim Waugh  <twaugh@redhat.com>
 	* src/EditPerson.py: Don't guess gender if it has already been set.
