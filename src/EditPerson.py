@@ -215,8 +215,8 @@ class EditPerson:
         self.window.editable_enters(self.ddate);
         self.window.editable_enters(self.dplace);
         
-        a = AutoComp.AutoComp(self.bplace,self.pmap.keys())
-        AutoComp.AutoComp(self.dplace,self.pmap.keys(),a)
+        self.autoplace = AutoComp.AutoComp(self.bplace,self.pmap.keys())
+        AutoComp.AutoComp(self.dplace,self.pmap.keys(),self.autoplace)
         if Config.autocomp:
             self.comp = AutoComp.AutoComp(self.surname_field,const.surnames)
             
@@ -243,7 +243,11 @@ class EditPerson:
             self.get_widget("user_colon").hide()
             self.get_widget("user_data").hide()
 
-        if Config.uselds:
+        self.lds_baptism = self.person.getLdsBaptism()
+        self.lds_endowment = self.person.getLdsEndowment()
+        self.lds_sealing = self.person.getLdsSeal()
+        
+        if Config.uselds or self.lds_baptism or self.lds_endowment or self.lds_sealing:
             self.get_widget("lds_tab").show()
             self.get_widget("lds_page").show()
         
@@ -298,7 +302,29 @@ class EditPerson:
         self.redraw_name_list()
         self.redraw_url_list()
 
+
+    def set_lds_field(self,ord,combo,date,place):
+        combo.set_popdown_strings(_temple_names)
+        if ord:
+            stat = ord.getStatus()
+            date.set_text(ord.getDate())
+            if ord.getTemple() != "":
+                name = const.lds_temple_to_abrev[ord.getTemple()]
+            else:
+                name = ""
+            combo.entry.set_text(name)
+        else:
+            stat = 0
+            combo.entry.set_text("")
+
+        AutoComp.AutoComp(place,None,self.autoplace)
+        if ord and ord.getPlace():
+            place.set_text(ord.getPlace().get_title())
+        return stat
+
     def draw_lds(self):
+        """Draws the LDS window. This window is not always drawn, and in may cases
+        is hidden."""
 
         self.ldsbap_date = self.get_widget("ldsbapdate")
         self.ldsbap_temple = self.get_widget("ldsbaptemple")
@@ -310,57 +336,27 @@ class EditPerson:
         self.ldsbapstat = self.get_widget("ldsbapstat")
         self.ldssealstat = self.get_widget("sealstat")
         self.ldsendowstat = self.get_widget("endowstat")
-        self.ldsbapplace = self.get_widget("ldsbapplace")
-        self.ldssealplace = self.get_widget("sealplace")
-        self.ldsendowplace = self.get_widget("endowplace")
+        self.ldsbapplace = self.get_widget("lds_bap_place")
+        self.ldssealplace = self.get_widget("lds_seal_place")
+        self.ldsendowplace = self.get_widget("lds_end_place")
 
-        self.build_bap_menu()
-        self.build_seal_menu()
-        self.build_endow_menu()
+        self.bap_stat = self.set_lds_field(self.person.getLdsBaptism(),
+                                           self.ldsbap_temple, self.ldsbap_date,
+                                           self.ldsbapplace)
         
-        ord = person.getLdsBaptism()
-        self.ldsbap_temple.set_popdown_strings(_temple_names)
-        if ord:
-            self.bap_stat = ord.getStatus()
-            self.ldsbap_date.set_text(ord.getDate())
-            if ord.getTemple() != "":
-                name = const.lds_temple_to_abrev[ord.getTemple()]
-            else:
-                name = ""
-            self.ldsbap_temple.entry.set_text(name)
-        else:
-            self.bap_stat = 0
-            self.ldsbap_temple.entry.set_text("")
+        self.end_stat = self.set_lds_field(self.person.getLdsEndowment(),
+                                           self.ldsend_temple, self.ldsend_date,
+                                           self.ldsendowplace)
 
-        ord = person.getLdsEndowment()
-        self.ldsend_temple.set_popdown_strings(_temple_names)
+        ord = self.person.getLdsSeal()
+        self.seal_stat = self.set_lds_field(self.person.getLdsSeal(),
+                                            self.ldsseal_temple, self.ldsseal_date,
+                                            self.ldssealplace)
         if ord:
-            self.end_stat = ord.getStatus()
-            self.ldsend_date.set_text(ord.getDate())
-            if ord.getTemple() != "":
-                name = const.lds_temple_to_abrev[ord.getTemple()]
-            else:
-                name = ""
-            self.ldsend_temple.entry.set_text(name)
-        else:
-            self.end_stat = 0
-            self.ldsend_temple.entry.set_text("")
-
-        ord = person.getLdsSeal()
-        self.ldsseal_temple.set_popdown_strings(_temple_names)
-        if ord:
-            self.seal_stat = ord.getStatus()
-            self.ldsseal_date.set_text(ord.getDate())
             self.ldsfam = ord.getFamily()
-            if ord.getTemple() != "":
-                name = const.lds_temple_to_abrev[ord.getTemple()]
-            else:
-                name = ""
-            self.ldsseal_temple.entry.set_text(name)
         else:
-            self.seal_stat = 0
-            self.ldsseal_temple.entry.set_text("")
             self.ldsfam = None
+
 
         myMenu = gtk.GtkMenu()
         item = gtk.GtkMenuItem(_("None"))
@@ -371,8 +367,8 @@ class EditPerson:
         
         index = 0
         hist = 0
-        flist = [person.getMainFamily()]
-        for (fam,mrel,frel) in person.getAltFamilyList():
+        flist = [self.person.getMainFamily()]
+        for (fam,mrel,frel) in self.person.getAltFamilyList():
             flist.append(fam)
         for fam in flist:
             if fam == None:
@@ -400,25 +396,9 @@ class EditPerson:
         self.ldsseal_fam.set_menu(myMenu)
         self.ldsseal_fam.set_history(hist)
 
-        plist = self.db.getPlaceMap().values()
-        ord = self.person.getLdsBaptism()
-        if ord :
-            place = ord.getPlace()
-        else:
-            place = None
-        utils.attach_places(plist,self.ldsbapplace,place)
-        ord = self.person.getLdsSeal()
-        if ord :
-            place = ord.getPlace()
-        else:
-            place = None
-        utils.attach_places(plist,self.ldssealplace,place)
-        ord = self.person.getLdsEndowment()
-        if ord :
-            place = ord.getPlace()
-        else:
-            place = None
-        utils.attach_places(plist,self.ldsendowplace,place)
+        self.build_bap_menu()
+        self.build_seal_menu()
+        self.build_endow_menu()
         
     def build_bap_menu(self):
         menu = gtk.GtkMenu()
@@ -673,12 +653,9 @@ class EditPerson:
         event = self.birth
         event.setDate(self.bdate.get_text())
         def_placename = self.bplace.get_text()
-        if self.pmap.has_key(def_placename):
-            p = self.pmap[def_placename]
-        else:
-            def_placename = None
-            if p != None:
-                event.setPlace(p)
+        p = self.get_place(self.bplace)
+        if p != None:
+            event.setPlace(p)
         EventEdit.EventEditor(self,pname,const.personalEvents,
                               const.save_fevent,event,def_placename,1)
 
@@ -692,12 +669,9 @@ class EditPerson:
         event = self.death
         event.setDate(self.ddate.get_text())
         def_placename = self.dplace.get_text()
-        if self.pmap.has_key(def_placename):
-            p = self.pmap[def_placename]
-        else:
-            def_placename = None
-            if p != None:
-                event.setPlace(p)
+        p = self.get_place(self.dplace)
+        if p != None:
+            event.setPlace(p)
         EventEdit.EventEditor(self,pname,const.personalEvents,\
                               const.save_fevent,event,def_placename,1)
 
@@ -832,7 +806,7 @@ class EditPerson:
     def check_lds(self):
         date = self.ldsbap_date.get_text()
         temple = self.ldsbap_temple.entry.get_text()
-        place = utils.get_place_from_list(self.ldsbapplace)
+        place = self.get_place(self.ldsbapplace)
 
         if const.lds_temple_codes.has_key(temple):
             temple = const.lds_temple_codes[temple]
@@ -854,7 +828,7 @@ class EditPerson:
 
         date = self.ldsend_date.get_text()
         temple = self.ldsend_temple.entry.get_text()
-        place = utils.get_place_from_list(self.ldsendowplace)
+        place = self.get_place(self.ldsendowplace)
         
         if const.lds_temple_codes.has_key(temple):
             temple = const.lds_temple_codes[temple]
@@ -876,7 +850,7 @@ class EditPerson:
 
         date = self.ldsseal_date.get_text()
         temple = self.ldsseal_temple.entry.get_text()
-        place = utils.get_place_from_list(self.ldssealplace)
+        place = self.get_place(self.ldssealplace)
         if const.lds_temple_codes.has_key(temple):
             temple = const.lds_temple_codes[temple]
         else:
@@ -1100,16 +1074,7 @@ class EditPerson:
 
         self.birth.setDate(self.bdate.get_text())
         bplace = string.strip(self.bplace.get_text())
-        if self.pmap.has_key(bplace):
-            bplace_obj = self.pmap[bplace]
-        else:
-            bplace_obj = None
-        if bplace_obj == None and bplace != "":
-            bplace_obj = Place()
-            bplace_obj.set_title(bplace)
-            self.db.addPlace(bplace_obj)
-            utils.modified()
-        self.birth.setPlace(bplace_obj)
+        self.birth.setPlace(self.get_place(self.bplace,1))
 
         if not self.person.getBirth().are_equal(self.birth):
             self.person.setBirth(self.birth)
@@ -1125,17 +1090,7 @@ class EditPerson:
             family.setChildList(new_order)
     
         self.death.setDate(self.ddate.get_text())
-        dplace = string.strip(self.dplace.get_text())
-        if self.pmap.has_key(dplace):
-            dplace_obj = self.pmap[dplace]
-        else:
-            dplace_obj = None
-        if dplace_obj == None and dplace != "":
-            dplace_obj = Place()
-            dplace_obj.set_title(dplace)
-            self.db.addPlace(dplace_obj)
-            utils.modified()
-        self.death.setPlace(dplace_obj)
+        self.death.setPlace(self.get_place(self.dplace,1))
 
         if not self.person.getDeath().are_equal(self.death):
             self.person.setDeath(self.death)
@@ -1199,7 +1154,7 @@ class EditPerson:
             else:
                 temple = ""
             ord = self.person.getLdsBaptism()
-            place = utils.get_place_from_list(self.ldsbapplace)
+            place = self.get_place(self.ldsbapplace,1)
             update_ord(self.person.setLdsBaptism,ord,date,temple,self.bap_stat,place)
 
             date = self.ldsend_date.get_text()
@@ -1209,7 +1164,8 @@ class EditPerson:
             else:
                 temple = ""
             ord = self.person.getLdsEndowment()
-            place = utils.get_place_from_list(self.ldsendowplace)
+            place = self.get_place(self.ldsendowplace,1)
+            print place
             update_ord(self.person.setLdsEndowment,ord,date,temple,self.end_stat,place)
 
             date = self.ldsseal_date.get_text()
@@ -1219,7 +1175,7 @@ class EditPerson:
             else:
                 temple = ""
             ord = self.person.getLdsSeal()
-            place = utils.get_place_from_list(self.ldssealplace)
+            place = self.get_place(self.ldssealplace,1)
             if not ord:
                 if self.ldsfam or date or temple:
                     ord = LdsOrd()
@@ -1252,6 +1208,23 @@ class EditPerson:
         if self.callback:
             self.callback(self)
         utils.destroy_passed_object(obj)
+
+    def get_place(self,field,makenew=0):
+        text = string.strip(field.get_text())
+        if text != "":
+            if self.pmap.has_key(text):
+                return self.pmap[text]
+            elif makenew:
+                place = Place()
+                place.set_title(text)
+                self.pmap[text] = place
+                self.db.addPlace(place)
+                utils.modified()
+                return place
+            else:
+                return None
+        else:
+            return None
 
     def on_primary_name_source_clicked(self,obj):
         import Sources
@@ -1334,7 +1307,7 @@ class EditPerson:
 
 def update_ord(func,ord,date,temple,stat,place):
     if not ord:
-        if (date or temple):
+        if (date or temple or place):
             ord = LdsOrd()
             ord.setDate(date)
             ord.setTemple(temple)

@@ -37,6 +37,8 @@ import Sources
 import const
 import utils
 import Config
+import AutoComp
+
 from Date import compare_dates
 from RelLib import *
 from intl import gettext
@@ -53,6 +55,11 @@ class EventEditor:
         self.parent = parent
         self.event = event
         self.trans = trans
+
+        self.pmap = {}
+        for p in self.parent.db.getPlaces():
+            self.pmap[p.get_title()] = p
+
         if event:
             self.srcreflist = self.event.getSourceRefList()
             self.date = Date(self.event.getDateObj())
@@ -91,14 +98,15 @@ class EventEditor:
         self.window.editable_enters(self.cause_field);
         self.window.editable_enters(self.descr_field);
 
-        values = self.parent.db.getPlaceMap().values()
+        AutoComp.AutoComp(self.place_field,self.pmap.keys())
+        
         if event != None:
             self.name_field.set_text(event.getName())
-
-            utils.attach_places(values,self.place_combo,event.getPlace())
-            self.place_field.set_text(event.getPlaceName())
             if (def_placename):
                 self.place_field.set_text(def_placename)
+            else:
+                self.place_field.set_text(event.getPlaceName())
+
             self.date_field.set_text(self.date.getDate())
             self.cause_field.set_text(event.getCause())
             self.descr_field.set_text(event.getDescription())
@@ -108,7 +116,6 @@ class EventEditor:
             self.note_field.insert_defaults(event.getNote())
             self.note_field.set_word_wrap(1)
         else:
-            utils.attach_places(values,self.place_combo,None)
             if (def_placename):
                 self.place_field.set_text(def_placename)
 
@@ -118,7 +125,6 @@ class EventEditor:
         self.window.set_data("o",self)
         self.top.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
-            "on_combo_insert_text"     : utils.combo_insert_text,
             "on_event_edit_ok_clicked" : self.on_event_edit_ok_clicked,
             "on_source_clicked" : self.on_edit_source_clicked
             })
@@ -141,6 +147,23 @@ class EventEditor:
     def on_edit_source_clicked(self,obj):
         Sources.SourceSelector(self.srcreflist,self.parent,src_changed)
 
+    def get_place(self,field,makenew=0):
+        text = strip(field.get_text())
+        if text != "":
+            if self.pmap.has_key(text):
+                return self.pmap[text]
+            elif makenew:
+                place = Place()
+                place.set_title(text)
+                self.pmap[text] = place
+                self.parent.db.addPlace(place)
+                utils.modified()
+                return place
+            else:
+                return None
+        else:
+            return None
+
     def on_event_edit_ok_clicked(self,obj):
 
         ename = self.name_field.get_text()
@@ -148,7 +171,8 @@ class EventEditor:
 
         ecause = self.cause_field.get_text()
         eplace = strip(self.place_field.get_text())
-        eplace_obj = utils.get_place_from_list(self.place_combo)
+        
+        eplace_obj = self.get_place(self.place_field,1)
         enote = self.note_field.get_chars(0,-1)
         edesc = self.descr_field.get_text()
         epriv = self.priv.get_active()
@@ -158,11 +182,6 @@ class EventEditor:
             self.event.setSourceRefList(self.srcreflist)
             self.parent.elist.append(self.event)
         
-        if eplace_obj == None and eplace != "":
-            eplace_obj = Place()
-            eplace_obj.set_title(eplace)
-            self.parent.db.addPlace(eplace_obj)
-
         self.update_event(ename,self.date,eplace_obj,edesc,enote,epriv,ecause)
         self.parent.redraw_event_list()
         utils.destroy_passed_object(obj)
