@@ -1348,7 +1348,7 @@ class MatchesFilter(Rule):
         return 'Matches the filter named'
 
     def apply(self,db,p_id):
-        for filt in SystemFilters.get_filters():
+        for filt in SystemFilters.get_filter():
             if filt.get_name() == self.list[0]:
                 return filt.check(p_id)
         for filt in CustomFilters.get_filters():
@@ -1771,6 +1771,37 @@ class GrampsFilterComboBox(gtk.ComboBox):
         return self.map[key]
 
 
+class FilterStore(gtk.ListStore):
+
+    def __init__(self,local_filters=[], default=""):
+        gtk.ListStore.__init__(self,str)
+        self.list_map = []
+        self.def_index = 0
+
+        cnt = 0
+        for filt in local_filters:
+            name = filt.get_name()
+            self.append(row=[name])
+            self.list_map.append(filt)
+            if default != "" and default == name:
+                self.def_index = cnt
+            cnt += 1
+
+        for filt in SystemFilters.get_filters() + CustomFilters.get_filters():
+            name = _(filt.get_name())
+            self.append(row=[name])
+            self.list_map.append(filt)
+            if default != "" and default == name:
+                self.def_index = cnt
+            cnt += 1
+
+    def default_index(self):
+        return self.def_index
+
+    def get_filter(self,index):
+        return self.list_map[index]
+    
+            
 def build_filter_menu(local_filters = [], default=""):
     menu = gtk.Menu()
 

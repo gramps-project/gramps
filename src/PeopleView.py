@@ -170,8 +170,8 @@ class PeopleView:
             self.parent.mhistory.remove(del_id)
 
     def apply_filter_clicked(self):
-        mi = self.parent.filter_list.get_menu().get_active()
-        self.DataFilter = mi.get_data("filter")
+        index = self.parent.filter_list.get_active()
+        self.DataFilter = self.parent.filter_model.get_filter(index)
         if self.DataFilter.need_param:
             qual = unicode(self.parent.filter_text.get_text())
             self.DataFilter.set_parameter(qual)

@@ -642,20 +642,23 @@ class EditPerson:
         else:
             self.ldsfam = None
 
-        myMenu = gtk.Menu()
-        item = gtk.MenuItem(_("None"))
-        item.set_data("f",None)
-        item.connect("activate",self.menu_changed)
-        item.show()
-        myMenu.append(item)
+        cell = gtk.CellRendererText()
+        self.ldsseal_fam.pack_start(cell,True)
+        self.ldsseal_fam.add_attribute(cell,'text',0)
+
+        store = gtk.ListStore(str)
+        store.append(row=[_("None")])
         
         index = 0
         hist = 0
+        self.lds_fam_list = [None]
         flist = [self.person.get_main_parents_family_handle()]
         for (fam,mrel,frel) in self.person.get_parent_family_handle_list():
             if fam not in flist:
                 flist.append(fam)
+
         for fam_id in flist:
+            index += 1
             fam = self.db.get_family_from_handle(fam_id)
             if fam == None:
                 continue
@@ -673,16 +676,13 @@ class EditPerson:
                 name = self.name_display.display(m)
             else:
                 name = _("unknown")
-            item = gtk.MenuItem(name)
-            item.set_data("f",fam)
-            item.connect("activate",self.menu_changed)
-            item.show()
-            myMenu.append(item)
-            index = index + 1
-            if fam == self.ldsfam:
+            store.append(row=[name])
+            self.lds_fam_list.append(fam_id)
+            if fam_id == self.ldsfam:
                 hist = index
-        self.ldsseal_fam.set_menu(myMenu)
-        self.ldsseal_fam.set_history(hist)
+        self.ldsseal_fam.set_model(store)
+        self.ldsseal_fam.set_active(hist)
+        self.ldsseal_fam.connect("changed",self.menu_changed)
 
         self.build_bap_menu()
         self.build_seal_menu()
@@ -704,17 +704,16 @@ class EditPerson:
             self.is_female.set_active(True)
 
     def build_menu(self,list,task,opt_menu,type):
-        menu = gtk.Menu()
-        index = 0
+        cell = gtk.CellRendererText()
+        opt_menu.pack_start(cell,True)
+        opt_menu.add_attribute(cell,'text',0)
+
+        store = gtk.ListStore(str)
         for val in list:
-            menuitem = gtk.MenuItem(val)
-            menuitem.set_data("val",index)
-            menuitem.connect('activate',task)
-            menuitem.show()
-            menu.append(menuitem)
-            index = index + 1
-        opt_menu.set_menu(menu)
-        opt_menu.set_history(type)
+            store.append(row=[val])
+        opt_menu.set_model(store)
+        opt_menu.connect('changed',task)
+        opt_menu.set_active(type)
                    
     def build_bap_menu(self):
         self.build_menu(const.lds_baptism,self.set_lds_bap,self.ldsbapstat,
@@ -729,13 +728,13 @@ class EditPerson:
                         self.seal_stat)
 
     def set_lds_bap(self,obj):
-        self.lds_baptism.set_status(obj.get_data("val"))
+        self.lds_baptism.set_status(obj.get_active())
 
     def set_lds_endow(self,obj):
-        self.lds_endowment.set_status(obj.get_data("val"))
+        self.lds_endowment.set_status(obj.get_active())
 
     def set_lds_seal(self,obj):
-        self.lds_sealing.set_status(obj.get_data("val"))
+        self.lds_sealing.set_status(obj.get_active())
     
     def ev_drag_data_received(self,widget,context,x,y,sel_data,info,time):
         row = self.etree.get_row_at(x,y)
@@ -883,7 +882,7 @@ class EditPerson:
         return
 
     def menu_changed(self,obj):
-        self.ldsfam = obj.get_data("f")
+        self.ldsfam = self.lds_fam_list[obj.get_active()]
         
     def get_widget(self,str):
         """returns the widget related to the passed string"""

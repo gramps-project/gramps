@@ -331,20 +331,19 @@ class Marriage:
         return
 
     def build_seal_menu(self):
-        menu = gtk.Menu()
-        index = 0
+        cell = gtk.CellRendererText()
+        self.lds_status.pack_start(cell,True)
+        self.lds_status.add_attribute(cell,'text',0)
+
+        store = gtk.ListStore(str)
         for val in const.lds_ssealing:
-            menuitem = gtk.MenuItem(val)
-            menuitem.set_data("val",index)
-            menuitem.connect('activate',self.set_lds_seal)
-            menuitem.show()
-            menu.append(menuitem)
-            index = index + 1
-        self.lds_status.set_menu(menu)
-        self.lds_status.set_history(self.seal_stat)
+            store.append(row=[val])
+        self.lds_status.set_model(store)
+        self.lds_status.connect('changed',self.set_lds_seal)
+        self.lds_status.set_active(self.seal_stat)
 
     def set_lds_seal(self,obj):
-        self.seal_stat = obj.get_data("val")
+        self.seal_stat = obj.get_active()
 
     def lds_src_clicked(self,obj):
         lds_ord = self.family.get_lds_sealing()
