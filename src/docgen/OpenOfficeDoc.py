@@ -319,14 +319,14 @@ class OpenOfficeDoc(TextDoc.TextDoc):
     def _write_zip(self):
         
         file = zipfile.ZipFile(self.filename,"w",zipfile.ZIP_DEFLATED)
-        file.write(self.manifest_xml,"META-INF/manifest.xml")
-        file.write(self.content_xml,"content.xml")
-        file.write(self.meta_xml,"meta.xml")
-        file.write(self.styles_xml,"styles.xml")
+        file.write(self.manifest_xml,str("META-INF/manifest.xml"))
+        file.write(self.content_xml,str("content.xml"))
+        file.write(self.meta_xml,str("meta.xml"))
+        file.write(self.styles_xml,str("styles.xml"))
         
         for image in self.photo_list:
             base = os.path.basename(image[0])
-            file.write(image[0],"Pictures/%s" % base)
+            file.write(image[0], str("Pictures/%s" % base))
         file.close()
 
         os.unlink(self.manifest_xml)
@@ -595,4 +595,4 @@ class OpenOfficeDoc(TextDoc.TextDoc):
 	self.f.write('</office:document-meta>\n')
 	self.f.close()
 
-Plugins.register_text_doc(_("OpenOffice.org/StarOffice 6"),OpenOfficeDoc,1,1,1,".sxw")
+Plugins.register_text_doc(_("OpenOffice.org Writer"),OpenOfficeDoc,1,1,1,".sxw")

@@ -1121,6 +1121,26 @@ class Person(Persistent):
             self.death.name = "Death"
         return self.death
 
+    def getValidDeath(self):
+        e = self.death
+        if e == None:
+            return None
+        if e.place == None and (e.date == None or not e.date.getValid()) and \
+           e.description == "" and e.cause == "" and e.witness == None:
+            return None
+        else:
+            return e
+
+    def getValidBirth(self):
+        e = self.birth
+        if e == None:
+            return None
+        if e.place == None and (e.date == None or not e.date.getValid()) and \
+           e.description == "" and e.cause == "" and e.witness == None:
+            return None
+        else:
+            return e
+
     def addPhoto(self,photo):
         """adds a Photo instance to the image list"""
         self.photoList.append(photo)
