@@ -221,7 +221,7 @@ class IndivSummary:
         if len(photo_list) > 0:
             file = photo_list[0].getPath()
             self.d.start_paragraph("Normal")
-            self.d.add_photo(file,300,300)
+            self.d.add_photo(file,4.0,4.0)
             self.d.end_paragraph()
 
         self.d.start_table("one","IndTable")
