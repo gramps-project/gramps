@@ -100,9 +100,8 @@ def importData(database, filename, callback):
         traceback.print_exc()
         return 0
     except:
-        GnomeErrorDialog(_("Error reading %s") % filename)
-        import traceback
-        traceback.print_exc()
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
         return 0
 
     xml_file.close()
@@ -192,9 +191,8 @@ def loadRevision(database, file, filename, revision, callback=None):
         traceback.print_exc()
         return 0
     except:
-        GnomeErrorDialog(_("Error reading %s") % filename)
-        import traceback
-        traceback.print_exc()
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
         return 0
 
     file.close()
