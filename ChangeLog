@@ -7,6 +7,8 @@
 	* configure.in, configure: Don't ship German manual (unfinished).
 	* doc/gramps-manual/Makefile.am, doc/gramps-manual/Makefile.in:
 	Don't ship German manual.
+	* doc/gramps-manual/C/filtref.xml: Typo.
+	* doc/gramps-manual/ru/filtref.xml: Update.
 
 2004-02-02  Egyeki Gergely  <egeri@elte.hu>
 	* src/plugins/rel_hu.py: New relations added.

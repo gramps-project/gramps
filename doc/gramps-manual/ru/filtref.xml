@@ -32,21 +32,21 @@
           <variablelist>
 
           <varlistentry><term>Каждый</term>
-          <listitem><para> Это правило выявляет каждое лицо в базе данных. Как 
+          <listitem><para> Это правило выбирает каждое лицо в базе данных. Как 
           таковое, оно не очень полезно само по себе. Однако, оно может быть 
           полезно в комбинации с другими правилами.
           </para></listitem>
           </varlistentry>
 
           <varlistentry><term>С именем</term>
-          <listitem><para>Это правило выявляет лица, чьи именя соответствуют 
+          <listitem><para>Это правило выбирает лица, чьи именя соответствуют 
           указанному значению, полностью или частично. Например, Мария Рыкова 
-          будет выявлена этим правилом, использующим "рык" в качестве значения
+          будет выбрана этим правилом, использующим "рык" в качестве значения
           для фамилии.
           </para>
 
           <para> Различные значения могут быть использованы для Имени, Фамилии, 
-          Суффикса, и Титула. Правило выявляет лицо в том и только том случае, если 
+          Суффикса, и Титула. Правило выбирает лицо в том и только том случае, если 
           все не пустые значения (частично) соответствуют имени лица. Чтобы 
           использовать только одно значение, оставьте оставьте остальные значения 
           пустыми. 
@@ -54,8 +54,8 @@
           </varlistentry>
 
           <varlistentry><term>Имеет Id</term>
-          <listitem><para> Это правило выявляет лицо с указанным 
-          &app; ID. Правило выявляет лицо только в случае точного 
+          <listitem><para> Это правило выбирает лицо с указанным 
+          &app; ID. Правило выбирает лицо только в случае точного 
           соответствия ID. 
           </para>
 
@@ -67,12 +67,12 @@
           </varlistentry>
 
           <varlistentry><term>Является женщиной</term>
-          <listitem><para> Это правило выявляет всех лиц женского пола.
+          <listitem><para> Это правило выбирает всех лиц женского пола.
           </para></listitem>
           </varlistentry>
 
           <varlistentry><term>Является мужчиной</term>
-          <listitem><para> Это правило выявляет всех лиц мужского пола.
+          <listitem><para> Это правило выбирает всех лиц мужского пола.
           </para></listitem>
           </varlistentry>
 
@@ -83,72 +83,69 @@
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-event">
         <title>Фильтры событий</title>
-        <para>Эта категория включает правила, выявляющая лиц на основании их 
+        <para>Эта категория включает правила, выбирающие лиц на основании их 
         событий:</para>
           <variablelist>
 
-          <varlistentry><term>С рождением</term>
-          <listitem><para> Это правило выявляет тех людей, у кого событие рождения
-          This rule matches people whose birth event 
-          matches specified values for Date, Place, and Description. 
-          The rule returns a match even if the person's birth event matches 
-          the value partially. The matching rules are case-insensitive. 
-          For example, anyone born in Sweden will be matched by the rule 
-          using the value "sw" for the Place. 
+          <varlistentry><term>С информацией о рождении</term>
+          <listitem><para> Это правило выбирает людей, у которых событие рождения
+          соответствует введённым значениям для Даты, Места и Описания. Правило
+          выбирает лицо, даже если соответствие частичное. Соответствие не зависит
+          от регистра. Например, люди, родившиеся в России, будут выбраны этим 
+          правилом со значением "рос" для Места.
           </para>
 
-          <para> The rule returns a match if and only if 
-          all non-empty values are (partially) matched by a person's 
-          birth. To use just one value, leave the other values empty. 
+          <para> Правило выбирает лицо в том и только том случае, если 
+          все не пустые значения (частично) соответствуют рождению лица. Чтобы 
+          использовать только одно значение, оставьте оставьте остальные значения 
+          пустыми. 
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has the death</term>
-          <listitem><para> This rule matches people whose death event 
-          matches specified values for Date, Place, and Description. 
-          The rule returns a match even if the person's death event 
-          matches the value partially. The matching rules are case-insensitive. 
-          For example, anyone who died in Sweden
-          will be matched by the rule using the value "sw" for the Place.
+          <varlistentry><term>С информацией о смерти</term>
+          <listitem><para> Это правило выбирает людей, у которых событие смерти
+          соответствует введённым значениям для Даты, Места и Описания. Правило
+          выбирает лицо, даже если соответствие частичное. Соответствие не зависит
+          от регистра. Например, люди, умершие в России, будут выбраны этим 
+          правилом со значением "рос" для Места.
           </para>
 
-          <para> The rule returns a match if and only if 
-          all non-empty values are (partially) matched by a person's 
-          death. To use just one value, leave the other values empty. 
+          <para> Правило выбирает лицо в том и только том случае, если 
+          все не пустые значения (частично) соответствуют смерти лица. Чтобы 
+          использовать только одно значение, оставьте оставьте остальные значения 
+          пустыми. 
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has the personal event</term>
-          <listitem><para> This rule matches people that have a personal 
-          event matching specified values for the Event type, Date, Place, 
-          and Description. The rule returns a match even if the person's 
-          event matches the value partially. The matching rules are 
-          case-insensitive. For example, anyone who graduated 
-          in Sweden will be matched by the rule using the Graduation event 
-          and the value "sw" for the Place.
+          <varlistentry><term>С личными событиями</term>
+          <listitem><para> Это правило выбирает людей, у которых есть личное событие,
+          соответствуещее введённым значениям для Типа, Даты, Места и Описания. 
+          Правило выбирает лицо, даже если соответствие частичное. Соответствие не зависит
+          от регистра. Например, люди, учившиеся в России, будут выбраны этим 
+          правилом со значением "рос" для Места.
           </para>
 
-          <para> The personal events should be selected from a pull-down menu. 
-          The rule returns a match if and only if all non-empty values 
-          are (partially) matched by the personal event. 
-          To use just one value, leave the other values empty. 
+          <para> Личные события могут быть выбраны из меню. 
+          Правило выбирает лицо в том и только том случае, если 
+          все не пустые значения (частично) соответствуют личному событию лица. Чтобы 
+          использовать только одно значение, оставьте оставьте остальные значения 
+          пустыми. 
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has the family event</term>
-          <listitem><para> This rule matches people that have a family 
-          event matching specified values for the Event type, Date, Place, 
-          and Description. The rule returns a match even if the person's 
-          event matches the value partially. The matching rules are 
-          case-insensitive. For example, anyone who was married in Sweden 
-          will be matched by the rule using the Marriage event and the 
-          value "sw" for the Place. 
+          <varlistentry><term>С семейными событиями</term>
+          <listitem><para> Это правило выбирает людей, у которых есть семейное событие,
+          соответствуещее введённым значениям для Типа, Даты, Места и Описания. 
+          Правило выбирает лицо, даже если соответствие частичное. Соответствие не зависит
+          от регистра. Например, люди, женившиеся в России, будут выбраны этим 
+          правилом со значением "рос" для Места.
           </para>
 
-          <para> The family events should be selected from a pull-down menu. 
-          The rule returns a match if and only if all non-empty values 
-          are (partially) matched by the personal event. 
-          To use just one value, leave the other values empty. 
+          <para> Семейные события могут быть выбраны из меню. 
+          Правило выбирает лицо в том и только том случае, если 
+          все не пустые значения (частично) соответствуют семейному событию лица. Чтобы 
+          использовать только одно значение, оставьте оставьте остальные значения 
+          пустыми. 
           </para></listitem>
           </varlistentry>
 
@@ -158,42 +155,43 @@
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-family">
-        <title>Family filters</title>
-        <para>This category includes the following rules that match people 
-        based on their family relationships:</para>
+        <title>Семейные фильтры</title>
+        <para>Эта категория включает следующие правила, выбирающие лиц 
+        на основании их семейных отношений:</para>
           <variablelist>
 
-          <varlistentry><term>Has the relationships</term>
-          <listitem><para> This rule matches people with a particular 
-          relationship. The relationship must match the type selected from 
-          the menu. Optionally, the number of relationships and the number 
-          of children can be specified. 
+          <varlistentry><term>С информацией о родственных отношениях</term>
+          <listitem><para> Это правило выбирает людей, состоящих в данном 
+          родственном отношении. Отношения должно соответствовать типу, 
+          выбранному из меню. По желанию, могут быть указаны число отношений 
+          и число детей.
           </para>
 
-          <para> The rule returns a match if and only if 
-          all non-empty values are (partially) matched by a person's 
-          birth. To use just one value, leave the other values empty. 
+          <para> Правило выбирает лицо в том и только том случае, если 
+          все не пустые значения (частично) соответствуют отношению лица. Чтобы 
+          использовать только одно значение, оставьте оставьте остальные значения 
+          пустыми.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is spouse of filter match</term>
-          <listitem><para> This rule matches people married to someone 
-          who is matched by the specified filter. 
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>Супруг одного из соответствующих фильтру лиц</term>
+          <listitem><para> Это правило выбирает людей, состоящих в браке с 
+          соответствующими указанному фильтру лицами. Желаемый фильтр должен 
+          быть выбран из меню.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a child of filter match</term>
-          <listitem><para> This rule matches people for whom either parent  
-          is matched by the specified filter. 
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>Является ребёнком одного из соответствующих фильтру лиц</term>
+          <listitem><para> Это правило выбирает людей, являющихся детьми 
+          соответствующим указанному фильтру лицам. Желаемый фильтр должен 
+          быть выбран из меню.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a parent of filter match</term>
-          <listitem><para> This rule matches people whose child  
-          is matched by the specified filter. 
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>Является родителем одного из соответствующих фильтру лиц</term>
+          <listitem><para> Это правило выбирает людей, являющихся родителями 
+          соответствующим указанному фильтру лицам. Желаемый фильтр должен 
+          быть выбран из меню.
           </para></listitem>
           </varlistentry>
 
@@ -202,64 +200,62 @@
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-ancestral">
-        <title>Ancestral filters</title>
-        <para>This category includes the following rules that match people 
-        based on their ancestral relations to other people:</para>
+        <title>Фильтры предков</title>
+        <para>Эта категория включает следующие правила, выбирающие лиц 
+        на основании их родственных отношений как предков:</para>
           <variablelist>
 
-          <varlistentry><term>Is an ancestor of</term>
-          <listitem><para> This rule matches people who are ancestors of the 
-          specified person. The Inclusive option determines whether the 
-          specified person should be considered his/her own ancestor (useful 
-          for building reports). 
+          <varlistentry><term>Является предком</term>
+          <listitem><para> Это правило выбирает людей, являющихся предками 
+          указанного лица. Опция Включая определяет включается ли указанное
+          лицо в качестве своего предка (полезно при создании отчётов).
           </para>
 
-          <para> You can either enter the ID into a text entry field, or 
-          select a person from the list by clicking 
-          <guibutton>Select...</guibutton> button. In the latter case, the 
-          ID will appear in the text field after the selection was made.
+          <para> Вы можете либо ввести ID в поле ввода текста, либо выбрать
+          лицо путём щелчка по кнопке <guibutton>Выбрать...</guibutton>. 
+          В последнем случае, ID появится в текстовом поле после того, как 
+          выбор сделан.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is an ancestor of person at 
-          least N generations away</term>
-          <listitem><para> This rule matches people who are ancestors of the 
-          specified person and are at least N generations away from that person 
-          in their lineage. For example, using this rule with the value of 2 
-          for the number of generations will match grandparents, 
-          great-grandparents, etc., but not the parents of the specified 
-          person. 
+          <varlistentry><term>Является предком лица, отстоящим от него по крайней
+          мере на N поколений</term>
+          <listitem><para> Это правило выбирает людей, являющихся предками 
+          указанного лица и отстоящих от него по крайней мере на N поколений 
+          в своей родословной. Например, использование этого правила со значением 2 
+          для числа поколений приведёт к выбору дедушек и бабушек, прадедушек 
+          и прабабушек, и т.д., но не родителей указанного лица. 
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is an ancestor of person not more 
-          than N generations away</term>
-          <listitem><para> This rule matches people who are ancestors of the 
-          specified person and are no more than N generations away from that 
-          person in their lineage. For example, using this rule with the value 
-          of 2 for the number of generations will match parents and 
-          grandparents, but not great-grandparents, etc., of the specified 
-          person. 
+          <varlistentry><term>Является предком лица, отстоящим от него не более 
+          чем на N поколений</term>
+          <listitem><para> Это правило выбирает людей, являющихся предками 
+          указанного лица и отстоящих от него него не более чем на N поколений 
+          в своей родословной. Например, использование этого правила со значением 2 
+          для числа поколений приведёт к выбору родителей, а также дедушек и 
+          бабушек, но не прадедушек и прабабушек указанного лица. 
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has a common ancestor with</term>
-          <listitem><para> This rule matches people who have common ancestors 
-          with the specified person. 
+          <varlistentry><term>Имеет общего предка с</term>
+          <listitem><para> Это правило выбирает людей, имеющих общего предка с 
+          указанным лицом.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has a common ancestor with filter match</term>
-          <listitem><para> This rule matches people who have common ancestors 
-          with someone who is matched by the specified filter.
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>Имеет общего предка с одним из соответствующих 
+          фильтру лиц</term>
+          <listitem><para> Это правило выбирает людей, имеющих общего предка с 
+          одним из соответствующих указанному фильтру лиц. Желаемый фильтр должен 
+          быть выбран из меню.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is an ancestor of filter match</term>
-          <listitem><para> This rule matches people who are ancestors 
-          of someone who is matched by the specified filter.
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>Является предком одного из соответствующих фильтру лиц</term>
+          <listitem><para> Это правило выбирает людей, являющихся предками одного 
+          из соответствующих указанному фильтру лиц. Желаемый фильтр должен 
+          быть выбран из меню.
           </para></listitem>
           </varlistentry>
 
@@ -268,58 +264,54 @@
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-descendant">
-        <title>Descendant filters</title>
-        <para>This category includes the following rules that match people 
-        based on their descendant relations to other people:</para>
+        <title>Фильтры потомков</title>
+        <para>Эта категория включает следующие правила, выбирающие лиц 
+        на основании их родственных отношений как потомков:</para>
           <variablelist>
 
-          <varlistentry><term>Is a descendant of</term>
-          <listitem><para> This rule matches people who are descendants of the 
-          specified person. The Inclusive option determines whether the 
-          specified person should be considered his/her own descendant (useful 
-          for building reports). 
+          <varlistentry><term>Является потомком</term>
+          <listitem><para> Это правило выбирает людей, являющихся потомками 
+          указанного лица. Опция Включая определяет включается ли указанное
+          лицо в качестве своего потомка (полезно при создании отчётов).
           </para>
 
-          <para> You can either enter the ID into a text entry field, or 
-          select a person from the list by clicking 
-          <guibutton>Select...</guibutton> button. In the latter case, the 
-          ID will appear in the text field after the selection was made.
+          <para> Вы можете либо ввести ID в поле ввода текста, либо выбрать
+          лицо путём щелчка по кнопке <guibutton>Выбрать...</guibutton>. 
+          В последнем случае, ID появится в текстовом поле после того, как 
+          выбор сделан.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a descendant of person at 
-          least N generations away</term>
-          <listitem><para> This rule matches people who are descendants of the 
-          specified person and are at least N generations away from that person 
-          in their lineage. For example, using this rule with the value of 2 
-          for the number of generations will match grandchildren, 
-          great-grandchildren, etc., but not the children of the specified 
-          person.
+          <varlistentry><term>Является потомком лица, отстоящим от него по крайней
+          мере на N поколений</term>
+          <listitem><para> Это правило выбирает людей, являющихся потомками 
+          указанного лица и отстоящих от него по крайней мере на N поколений 
+          в своей родословной. Например, использование этого правила со значением 2 
+          для числа поколений приведёт к выбору внуков, правнуков и т.д., 
+          но не детей указанного лица. 
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a descendant of person not more 
-          than N generations away</term>
-          <listitem><para> This rule matches people who are descendants of the 
-          specified person and are no more than N generations away from that 
-          person in their lineage. For example, using this rule with the value 
-          of 2 for the number of generations will match children and 
-          grandchildren, but not great-grandchildren, etc., of the specified 
-          person. 
+          <varlistentry><term>Является потомком лица, отстоящим от него не более 
+          чем на N поколений</term>
+          <listitem><para> Это правило выбирает людей, являющихся потомками 
+          указанного лица и отстоящих от него не более чем на N поколений 
+          в своей родословной. Например, использование этого правила со значением 2 
+          для числа поколений приведёт к выбору детей и внуков, но не правнуков 
+          указанного лица.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a descendant of filter match</term>
-          <listitem><para> This rule matches people who are descendants 
-          of someone who is matched by the specified filter.
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>Является потомком одного из соответствующих фильтру лиц</term>
+          <listitem><para> Это правило выбирает людей, являющихся потомками одного 
+          из соответствующих указанному фильтру лиц. Желаемый фильтр должен 
+          быть выбран из меню. 
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a descendant family member of</term>
-          <listitem><para> This rule not only matches people who are 
-          descendants of the specified person, but also those descendants' 
-          spouses.
+          <varlistentry><term>Является членом семьи потомка</term>
+          <listitem><para> Это правило выбирает не только людей, являющихся потомками
+          указанного лица, но и супругов этих потомков.
           </para></listitem>
           </varlistentry>
 
@@ -328,23 +320,21 @@
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-relat">
-        <title>Relationship filters</title>
-        <para>This category includes the following rules that match people
-        based on their mutual relationship:</para>
+        <title>Фильтры родственных отношений</title>
+        <para>Эта категория включает следующие правила, выбирающие лиц 
+        на основании их взаимных родственных отношений: </para>
           <variablelist>
 
-          <varlistentry><term>Relationship path between two people</term>
-          <listitem><para> This rule matches all ancestors of both people
-          back to their common ancestors (if exist). This produces the 
-          &quot;relationship path&quot; between these two people, through
-          their common ancestors. 
+          <varlistentry><term>Путь отношения между двумя лицами</term>
+          <listitem><para> Это правило выбирает всех предков обоих указанных 
+          людей, вплоть до их общего предка (если есть). Это создаёт 
+          "путь отношения" между этими лицами через их общего предка.
           </para>
           
-          <para> You can either enter the ID of each person into the 
-          appropriate text entry fields, or select people from the list by 
-          clicking their <guibutton>Select...</guibutton> buttons. In the 
-          latter case, the ID will appear in the text field after the 
-          selection was made.
+          <para> Вы можете либо ввести ID каждого лица в поле ввода текста, 
+          либо выбрать лица путём щелчка по их кнопкам <guibutton>Выбрать...</guibutton>. 
+          В последнем случае, ID появится в текстовом поле после того, как 
+          выбор сделан.
           </para>
           </listitem>
           </varlistentry>
@@ -354,31 +344,28 @@
         
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-misc">
-        <title>Miscellaneous filters</title>
-        <para>This category includes the following rules which do not
-        naturally fit into any of the above categories:</para>
+        <title>Разные фильтры</title>
+        <para>Эта категория включает следующие правила, не вписывающиеся
+        ни в какую из категорий, рассмотренных выше:</para>
           <variablelist>
 
-          <varlistentry><term>Has the personal attribute</term>
-          <listitem><para> This rule matches people who have the personal 
-          attribute of the specified value. The specified personal attribute
-          name should be selected from the menu. The specified value should 
-          be typed into the text entry field. 
+          <varlistentry><term>С личными атрибутами</term>
+          <listitem><para> Это правило выбирает людей, у которых есть указанный
+          личный атрибут. Название атрибута должно быть выбрано из меню. 
+          Указанное значение должно быть введено в поле ввода текста.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has the family attribute</term>
-          <listitem><para> This rule matches people who have the family 
-          attribute of the specified value. The specified family attribute
-          should be selected from the menu. The specified value should be 
-          typed into the text entry field. 
+          <varlistentry><term>С семейными атрибутами</term>
+          <listitem><para> Это правило выбирает людей, у которых есть указанный
+          семейный атрибут. Название атрибута должно быть выбрано из меню. 
+          Указанное значение должно быть введено в поле ввода текста.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Matches the filter named</term>
-          <listitem><para> This rule matches people who are matched 
-          by the specified filter. 
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>Соответствует фильтру</term>
+          <listitem><para> Это правило выбирает людей, соответствующих указанному 
+          фильтру. Желаемый фильтр должен быть выбран из меню.
           </para></listitem>
           </varlistentry>
 
