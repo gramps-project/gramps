@@ -1,3 +1,9 @@
+2003-09-13  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/docgen/SvgDrawDoc.py: use proper init parameters for BaseDoc
+	* src/docgen/PSDrawDoc.py: use proper init parameters for BaseDoc
+	* src/docgen/OpenOfficeDoc.py: handle rotation of text better
+	* src/Report.py: Proper init sequence for BaseDoc derived reports
+
 2003-09-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/AncestorChart.py (AncestorChart.__init__): Call calc()
 	after self.standalone is defined. 
