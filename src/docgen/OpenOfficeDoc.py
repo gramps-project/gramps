@@ -686,16 +686,16 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             text = text.replace('&lt;/super&gt;','</text:span>')
 
             self.start_paragraph(style_name)
+            self.f.write('<text:span text:style-name="GRAMPS-preformat">')
             self.f.write(text)
+            self.f.write('</text:span>')
             self.end_paragraph()
         elif format == 0:
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
-                self.f.write('<text:span test:style-name="GRAMPS-preformat">')
                 line = line.replace('\n',' ')
                 line = string.join(string.split(line))
                 self.write_text(line)
-                self.f.write('</text:span>')
                 self.end_paragraph()
 
     def write_text(self,text):
