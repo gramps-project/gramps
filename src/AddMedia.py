@@ -43,7 +43,6 @@ _ = gettext
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-#from gtk import *
 from gnome.ui import GnomeErrorDialog
 import libglade
 
@@ -57,6 +56,11 @@ import Utils
 import RelImage
 import RelLib
 
+#-------------------------------------------------------------------------
+#
+# AddMediaObject
+#
+#-------------------------------------------------------------------------
 class AddMediaObject:
     """
     Displays the Add Media Dialog window, allowing the user to select

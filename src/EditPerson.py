@@ -277,17 +277,15 @@ class EditPerson:
         self.lds_endowment = self.person.getLdsEndowment()
         self.lds_sealing = self.person.getLdsSeal()
         
-        if GrampsCfg.uselds or self.lds_baptism or self.lds_endowment or self.lds_sealing:
-            self.get_widget("lds_tab").show()
-            self.get_widget("lds_page").show()
-
+        if GrampsCfg.uselds:
+            if self.lds_baptism or self.lds_endowment or self.lds_sealing:
+                self.get_widget("lds_tab").show()
+                self.get_widget("lds_page").show()
 
         types = const.NameTypesMap.keys()
         types.sort()
         self.ntype_field.set_popdown_strings(types)
-        print types
         self.autotype = AutoComp.AutoEntry(self.ntype_field.entry,types)
-        print self.ntype_field.entry.get_text()
         self.write_primary_name()
         
         if person.getGender() == Person.male:
@@ -341,8 +339,7 @@ class EditPerson:
         self.redraw_name_list()
         self.redraw_url_list()
 
-
-    def set_lds_field(self,ord,combo,date,place):
+    def lds_field(self,ord,combo,date,place):
         combo.set_popdown_strings(_temple_names)
         if ord:
             stat = ord.getStatus()
@@ -362,8 +359,8 @@ class EditPerson:
         return stat
 
     def draw_lds(self):
-        """Draws the LDS window. This window is not always drawn, and in may cases
-        is hidden."""
+        """Draws the LDS window. This window is not always drawn, and in
+        may cases is hidden."""
 
         self.ldsbap_date = self.get_widget("ldsbapdate")
         self.ldsbap_temple = self.get_widget("ldsbaptemple")
@@ -379,23 +376,25 @@ class EditPerson:
         self.ldssealplace = self.get_widget("lds_seal_place")
         self.ldsendowplace = self.get_widget("lds_end_place")
 
-        self.bap_stat = self.set_lds_field(self.person.getLdsBaptism(),
-                                           self.ldsbap_temple, self.ldsbap_date,
-                                           self.ldsbapplace)
+        self.bstat = self.lds_field(self.person.getLdsBaptism(),
+                                    self.ldsbap_temple,
+                                    self.ldsbap_date,
+                                    self.ldsbapplace)
         
-        self.end_stat = self.set_lds_field(self.person.getLdsEndowment(),
-                                           self.ldsend_temple, self.ldsend_date,
-                                           self.ldsendowplace)
+        self.estat = self.lds_field(self.person.getLdsEndowment(),
+                                    self.ldsend_temple,
+                                    self.ldsend_date,
+                                    self.ldsendowplace)
 
         ord = self.person.getLdsSeal()
-        self.seal_stat = self.set_lds_field(self.person.getLdsSeal(),
-                                            self.ldsseal_temple, self.ldsseal_date,
-                                            self.ldssealplace)
+        self.seal_stat = self.lds_field(self.person.getLdsSeal(),
+                                        self.ldsseal_temple,
+                                        self.ldsseal_date,
+                                        self.ldssealplace)
         if ord:
             self.ldsfam = ord.getFamily()
         else:
             self.ldsfam = None
-
 
         myMenu = gtk.GtkMenu()
         item = gtk.GtkMenuItem(_("None"))
@@ -438,51 +437,34 @@ class EditPerson:
         self.build_bap_menu()
         self.build_seal_menu()
         self.build_endow_menu()
-        
-    def build_bap_menu(self):
+
+    def build_menu(self,list,task,opt_menu):
         menu = gtk.GtkMenu()
         index = 0
-        for val in const.lds_baptism:
+        for val in list:
             menuitem = gtk.GtkMenuItem(val)
             menuitem.set_data("val",index)
-            menuitem.connect('activate',self.set_lds_bap)
+            menuitem.connect('activate',task)
             menuitem.show()
             menu.append(menuitem)
             index = index + 1
-        self.ldsbapstat.set_menu(menu)
-        self.ldsbapstat.set_history(self.bap_stat)
+        opt_menu.set_menu(menu)
+        opt_menu.set_history(self.bstat)
+                   
+    def build_bap_menu(self):
+        self.build_menu(const.lds_baptism,self.set_lds_bap,self.ldsbapstat)
 
     def build_endow_menu(self):
-        menu = gtk.GtkMenu()
-        index = 0
-        for val in const.lds_baptism:
-            menuitem = gtk.GtkMenuItem(val)
-            menuitem.set_data("val",index)
-            menuitem.connect('activate',self.set_lds_endow)
-            menuitem.show()
-            menu.append(menuitem)
-            index = index + 1
-        self.ldsendowstat.set_menu(menu)
-        self.ldsendowstat.set_history(self.end_stat)
+        self.build_menu(const.lds_baptism,self.set_lds_endow,self.ldsendowstat)
 
     def build_seal_menu(self):
-        menu = gtk.GtkMenu()
-        index = 0
-        for val in const.lds_csealing:
-            menuitem = gtk.GtkMenuItem(val)
-            menuitem.set_data("val",index)
-            menuitem.connect('activate',self.set_lds_seal)
-            menuitem.show()
-            menu.append(menuitem)
-            index = index + 1
-        self.ldssealstat.set_menu(menu)
-        self.ldssealstat.set_history(self.seal_stat)
+        self.build_menu(const.lds_csealing,self.set_lds_seal,self.ldssealstat)
 
     def set_lds_bap(self,obj):
-        self.bap_stat = obj.get_data("val")
+        self.bstat = obj.get_data("val")
 
     def set_lds_endow(self,obj):
-        self.end_stat = obj.get_data("val")
+        self.estat = obj.get_data("val")
 
     def set_lds_seal(self,obj):
         self.seal_stat = obj.get_data("val")
@@ -594,7 +576,8 @@ class EditPerson:
         Utils.redraw_list(self.nlist,self.name_list,disp_name)
 
     def redraw_url_list(self):
-        """redraws the url list, disabling the go button if no url is selected"""
+        """redraws the url list, disabling the go button if no url
+        is selected"""
         length = Utils.redraw_list(self.ulist,self.web_list,disp_url)
         if length > 0:
             self.web_go.set_sensitive(1)
@@ -626,7 +609,7 @@ class EditPerson:
         prev_dtext = Utils.strip_id(self.dplace.get_text())
 
         # Update birth with new values, make sure death values don't change
-        if (self.update_birth):
+        if self.update_birth:
             self.update_birth = 0
             self.bdate.set_text(self.birth.getDate())
             self.bplace.set_text(self.birth.getPlaceName())
@@ -634,7 +617,7 @@ class EditPerson:
         self.bdate_check = DateEdit(self.bdate,self.get_widget("birth_stat"))
 
         # Update death with new values, make sure birth values don't change
-        if (self.update_death):
+        if self.update_death:
             self.update_death = 0
             self.ddate.set_text(self.death.getDate())
             self.dplace.set_text(self.death.getPlaceName())
@@ -664,18 +647,16 @@ class EditPerson:
         AttrEdit.AttributeEditor(self,None,pname,const.personalAttributes)
 
     def on_up_clicked(self,obj):
-        if len(obj.selection) == 0:
-            return
-        row = obj.selection[0]
-        if row != 0:
-            obj.select_row(row-1,0)
+        if obj.selection:
+            row = obj.selection[0]
+            if row != 0:
+                obj.select_row(row-1,0)
 
     def on_down_clicked(self,obj):
-        if len(obj.selection) == 0:
-            return
-        row = obj.selection[0]
-        if row != obj.rows-1:
-            obj.select_row(row+1,0)
+        if obj.selection:
+            row = obj.selection[0]
+            if row != obj.rows-1:
+                obj.select_row(row+1,0)
 
     def on_event_add_clicked(self,obj):
         """Brings up the EventEditor for a new event"""
@@ -695,7 +676,7 @@ class EditPerson:
         event.setDate(self.bdate.get_text())
         def_placename = self.bplace.get_text()
         p = self.get_place(self.bplace)
-        if p != None:
+        if p:
             event.setPlace(p)
         EventEdit.EventEditor(self,pname,const.personalEvents,
                               const.save_fevent,event,def_placename,1,
@@ -712,7 +693,7 @@ class EditPerson:
         event.setDate(self.ddate.get_text())
         def_placename = self.dplace.get_text()
         p = self.get_place(self.dplace)
-        if p != None:
+        if p:
             event.setPlace(p)
         EventEdit.EventEditor(self,pname,const.personalEvents,\
                               const.save_fevent,event,def_placename,1,
@@ -747,7 +728,7 @@ class EditPerson:
         import gnome.url
 
         text = obj.get()
-        if text != "":
+        if text:
             gnome.url.show(text)
         
     def on_cancel_edit(self,obj):
@@ -776,7 +757,8 @@ class EditPerson:
             Utils.destroy_passed_object(self.window)
 
     def did_data_change(self):
-        """Check to see if any of the data has changed from the original record"""
+        """Check to see if any of the data has changed from the
+        original record"""
         surname = self.surname_field.get_text()
         ntype = self.ntype_field.entry.get_text()
         suffix = self.suffix.get_text()
@@ -861,14 +843,14 @@ class EditPerson:
         ord = self.person.getLdsBaptism()
 
         if not ord:
-            if date or temple or place or self.bap_stat:
+            if date or temple or place or self.bstat:
                 return 1
         else:
             d = Date()
             d.set(date)
             if compare_dates(d,ord.getDateObj()) != 0 or \
                ord.getPlace() != place or \
-               ord.getStatus() != self.bap_stat or \
+               ord.getStatus() != self.bstat or \
                ord.getTemple() != temple:
                 return 1
 
@@ -883,14 +865,14 @@ class EditPerson:
         ord = self.person.getLdsEndowment()
 
         if not ord:
-            if date or temple or place or self.end_stat:
+            if date or temple or place or self.estat:
                 return 1
         else:
             d = Date()
             d.set(date)
             if compare_dates(d,ord.getDateObj()) != 0 or \
                ord.getPlace() != place or \
-               ord.getStatus() != self.end_stat or \
+               ord.getStatus() != self.estat or \
                ord.getTemple() != temple:
                 return 1
 
@@ -941,11 +923,10 @@ class EditPerson:
 
     def on_update_attr_clicked(self,obj):
         import AttrEdit
-        if len(obj.selection) <= 0:
-            return
-        attr = obj.get_row_data(obj.selection[0])
-        pname = self.person.getPrimaryName().getName()
-        AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes)
+        if obj.selection:
+            attr = obj.get_row_data(obj.selection[0])
+            pname = self.person.getPrimaryName().getName()
+            AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes)
 
     def addr_double_click(self,obj,event):
         if event.button == 1 and event.type == _2BUTTON_PRESS:
@@ -953,7 +934,7 @@ class EditPerson:
 
     def on_update_addr_clicked(self,obj):
         import AddrEdit
-        if len(obj.selection) > 0:
+        if obj.selection:
             AddrEdit.AddressEditor(self,obj.get_row_data(obj.selection[0]))
 
     def url_double_click(self,obj,event):
@@ -962,11 +943,10 @@ class EditPerson:
 
     def on_update_url_clicked(self,obj):
         import UrlEdit
-        if len(obj.selection) <= 0:
-            return
-        pname = self.person.getPrimaryName().getName()
-        url = obj.get_row_data(obj.selection[0])
-        UrlEdit.UrlEditor(self,pname,url)
+        if obj.selection:
+            pname = self.person.getPrimaryName().getName()
+            url = obj.get_row_data(obj.selection[0])
+            UrlEdit.UrlEditor(self,pname,url)
 
     def event_double_click(self,obj,event):
         if event.button == 1 and event.type == _2BUTTON_PRESS:
@@ -974,13 +954,12 @@ class EditPerson:
         
     def on_event_update_clicked(self,obj):
         import EventEdit
-        if len(obj.selection) <= 0:
-            return
-        pname = self.person.getPrimaryName().getName()
-        event = obj.get_row_data(obj.selection[0])
-        EventEdit.EventEditor(self,pname,const.personalEvents,
-                              const.save_fevent,event,None,0,
-                              self.callback)
+        if obj.selection:
+            pname = self.person.getPrimaryName().getName()
+            event = obj.get_row_data(obj.selection[0])
+            EventEdit.EventEditor(self,pname,const.personalEvents,
+                                  const.save_fevent,event,None,0,
+                                  self.callback)
         
     def on_event_select_row(self,obj,row,b,c):
         self.event_edit_btn.set_sensitive(1)
@@ -1081,7 +1060,7 @@ class EditPerson:
 
     def on_aka_update_clicked(self,obj):
         import NameEdit
-        if len(obj.selection) > 0:
+        if obj.selection:
             NameEdit.NameEditor(self,obj.get_row_data(obj.selection[0]))
 
     def load_photo(self,photo):
@@ -1261,7 +1240,7 @@ class EditPerson:
             ord = self.person.getLdsBaptism()
             place = self.get_place(self.ldsbapplace,1)
             update_ord(self.person.setLdsBaptism,ord,date,
-                       temple,self.bap_stat,place)
+                       temple,self.bstat,place)
 
             date = self.ldsend_date.get_text()
             temple = self.ldsend_temple.entry.get_text()
@@ -1272,7 +1251,7 @@ class EditPerson:
             ord = self.person.getLdsEndowment()
             place = self.get_place(self.ldsendowplace,1)
             update_ord(self.person.setLdsEndowment,ord,date,
-                       temple,self.end_stat,place)
+                       temple,self.estat,place)
 
             date = self.ldsseal_date.get_text()
             temple = self.ldsseal_temple.entry.get_text()
@@ -1317,7 +1296,7 @@ class EditPerson:
 
     def get_place(self,field,makenew=0):
         text = string.strip(field.get_text())
-        if text != "":
+        if text:
             if self.pmap.has_key(text):
                 return self.pmap[text]
             elif makenew:
@@ -1391,7 +1370,7 @@ class EditPerson:
 
     def load_person_image(self):
         photo_list = self.person.getPhotoList()
-        if len(photo_list) != 0:
+        if photo_list:
             ph = photo_list[0]
             object = ph.getReference()
             if self.load_obj != object.getPath():
@@ -1413,7 +1392,7 @@ class EditPerson:
             self.draw_lds()
 
     def change_name(self,obj):
-        if len(self.name_list.selection) == 1:
+        if self.name_list.selection:
             old = self.pname
             row = self.name_list.selection[0]
             new = self.name_list.get_row_data(row)
@@ -1436,6 +1415,11 @@ class EditPerson:
         self.ntype_field.entry.set_text(_(self.pname.getType()))
         self.title.set_text(self.pname.getTitle())
 
+#-------------------------------------------------------------------------
+#
+# update_ord
+#
+#-------------------------------------------------------------------------
 def update_ord(func,ord,date,temple,stat,place):
     if not ord:
         if (date or temple or place):
@@ -1463,7 +1447,7 @@ def update_ord(func,ord,date,temple,stat,place):
 
 #-------------------------------------------------------------------------
 #
-# 
+# disp_name
 #
 #-------------------------------------------------------------------------
 def disp_name(name):
@@ -1471,7 +1455,7 @@ def disp_name(name):
 
 #-------------------------------------------------------------------------
 #
-# 
+# disp_url
 #
 #-------------------------------------------------------------------------
 def disp_url(url):
@@ -1479,7 +1463,7 @@ def disp_url(url):
 
 #-------------------------------------------------------------------------
 #
-# 
+# disp_attr
 #
 #-------------------------------------------------------------------------
 def disp_attr(attr):
@@ -1488,7 +1472,7 @@ def disp_attr(attr):
 
 #-------------------------------------------------------------------------
 #
-# 
+# disp_addr
 #
 #-------------------------------------------------------------------------
 def disp_addr(addr):
@@ -1497,7 +1481,7 @@ def disp_addr(addr):
 
 #-------------------------------------------------------------------------
 #
-# 
+# disp_event
 #
 #-------------------------------------------------------------------------
 def disp_event(event):
@@ -1505,6 +1489,11 @@ def disp_event(event):
     return [const.display_pevent(event.getName()),event.getDescription(),
             event.getQuoteDate(),event.getPlaceName(),attr]
 
+#-------------------------------------------------------------------------
+#
+# src_changed
+#
+#-------------------------------------------------------------------------
 def src_changed(parent):
     parent.lists_changed = 1
     

@@ -47,6 +47,11 @@ import sort
 import Utils
 import GrampsCfg
 
+#-------------------------------------------------------------------------
+#
+# AddSpouse
+#
+#-------------------------------------------------------------------------
 class AddSpouse:
     """
     Displays the AddSpouse dialog, allowing the user to create a new
@@ -189,7 +194,11 @@ class AddSpouse:
             index = index + 1
         self.spouse_list.thaw()
 
-
+#-------------------------------------------------------------------------
+#
+# SetSpouse
+#
+#-------------------------------------------------------------------------
 class SetSpouse:
     """
     Displays the AddSpouse dialog, allowing the user to create a new
@@ -284,7 +293,8 @@ class SetSpouse:
             
         spouse.addFamily(self.family)
 
-        self.family.setRelationship(const.save_frel(self.relation_type.get_text()))
+        reltype = self.relation_type.get_text()
+        self.family.setRelationship(const.save_frel(reltype))
         Utils.destroy_passed_object(obj)
         self.update(self.family)
 
@@ -317,4 +327,3 @@ class SetSpouse:
             self.spouse_list.set_row_data(index,person)
             index = index + 1
         self.spouse_list.thaw()
-

@@ -23,11 +23,27 @@ Adds autocompletion to a GtkEntry box, using the passed list of
 strings as the possible completions.
 """
 
+#-------------------------------------------------------------------------
+#
+# python modules
+#
+#-------------------------------------------------------------------------
 import string
+
+#-------------------------------------------------------------------------
+#
+# GNOME modules
+#
+#-------------------------------------------------------------------------
 import gtk
 
 cnv = string.lower
 
+#-------------------------------------------------------------------------
+#
+# AutoCompBase
+#
+#-------------------------------------------------------------------------
 class AutoCompBase:
 
     def __init__(self,widget,plist,source=None):
@@ -76,6 +92,11 @@ class AutoCompBase:
     def timer_callback(self,entry):
         pass
 
+#-------------------------------------------------------------------------
+#
+# AutoCombo
+#
+#-------------------------------------------------------------------------
 class AutoCombo(AutoCompBase):
     """
     Allows allow completion of the GtkEntry widget with the entries
@@ -152,6 +173,11 @@ class AutoCombo(AutoCompBase):
         else:
             self.vals = [""]
 
+#-------------------------------------------------------------------------
+#
+# AutoEntry
+#
+#-------------------------------------------------------------------------
 class AutoEntry(AutoCompBase):
     """
     Allows allow completion of the GtkEntry widget with the entries

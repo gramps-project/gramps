@@ -18,6 +18,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# python modules
+#
+#-------------------------------------------------------------------------
 import pickle
 
 #-------------------------------------------------------------------------
@@ -44,11 +49,16 @@ import ImageSelect
 from intl import gettext
 _ = gettext
 
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
 pycode_tgts = [('url', 0, 0)]
 
 #-------------------------------------------------------------------------
 #
-# Constants
+# EditPlace
 #
 #-------------------------------------------------------------------------
 class EditPlace:
@@ -147,17 +157,21 @@ class EditPlace:
             self.top_window.get_widget("add_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
-        self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,GDK.ACTION_COPY)
-        self.web_list.drag_source_set(GDK.BUTTON1_MASK, pycode_tgts, GDK.ACTION_COPY)
-        self.web_list.connect('drag_data_get', self.url_source_drag_data_get)
-        self.web_list.connect('drag_data_received', self.url_dest_drag_data_received)
+        self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                    pycode_tgts,GDK.ACTION_COPY)
+        self.web_list.drag_source_set(GDK.BUTTON1_MASK,
+                                      pycode_tgts, GDK.ACTION_COPY)
+        self.web_list.connect('drag_data_get',
+                              self.url_source_drag_data_get)
+        self.web_list.connect('drag_data_received',
+                              self.url_dest_drag_data_received)
 
         self.redraw_url_list()
         self.redraw_location_list()
         
-    def url_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
-        if selection_data and selection_data.data:
-            exec 'data = %s' % selection_data.data
+    def url_dest_drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        if sel_data and sel_data.data:
+            exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'place = "%s"' % data[1]
             if place == self.place.getId() or mytype != 'url':
@@ -167,13 +181,13 @@ class EditPlace:
             self.lists_changed = 1
             self.redraw_url_list()
 
-    def url_source_drag_data_get(self,widget, context, selection_data, info, time):
+    def url_source_drag_data_get(self,widget, context, sel_data, info, time):
         ev = widget.get_row_data(widget.focus_row)
         
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev);
         data = str(('url',self.place.getId(),pickled));
-        selection_data.set(selection_data.target, bits_per, data)
+        sel_data.set(sel_data.target, bits_per, data)
 
     def update_lists(self):
         self.place.setUrlList(self.ulist)
@@ -201,53 +215,30 @@ class EditPlace:
         if text != "":
             gnome.url.show(text)
 
+    def set(self,field,getf,setf):
+        text = field.get_text()
+        if text != getf():
+            setf(text)
+            Utils.modified()
+    
     def on_place_apply_clicked(self,obj):
 
-        title = self.title.get_text()
-        city = self.city.get_text()
-        county = self.county.get_text()
-        state = self.state.get_text()
-        parish = self.parish.get_text()
-        country = self.country.get_text()
-        longitude = self.longitude.get_text()
-        latitude = self.latitude.get_text()
         note = self.note.get_chars(0,-1)
-
         mloc = self.place.get_main_location()
-        if city != mloc.get_city():
-            mloc.set_city(city)
-            Utils.modified()
 
-        if parish != mloc.get_parish():
-            mloc.set_parish(parish)
-            Utils.modified()
+        self.set(self.city,mloc.get_city,mloc.set_city)
+        self.set(self.parish,mloc.get_parish,mloc.set_parish)
+        self.set(self.state,mloc.get_state,mloc.set_state)
+        self.set(self.county,mloc.get_county,mloc.set_county)
+        self.set(self.country,mloc.get_country,mloc.set_country)
+        self.set(self.title,self.place.get_title,self.place.set_title)
+        self.set(self.longitude,self.place.get_longitude,
+                 self.place.set_longitude)
+        self.set(self.latitude,self.place.get_latitude,
+                 self.place.set_latitude)
 
         if self.lists_changed:
             self.place.setSourceRefList(self.srcreflist)
-            Utils.modified()
-
-        if state != mloc.get_state():
-            mloc.set_state(state)
-            Utils.modified()
-
-        if county != mloc.get_county():
-            mloc.set_county(county)
-            Utils.modified()
-
-        if country != mloc.get_country():
-            mloc.set_country(country)
-            Utils.modified()
-
-        if title != self.place.get_title():
-            self.place.set_title(title)
-            Utils.modified()
-        
-        if longitude != self.place.get_longitude():
-            self.place.set_longitude(longitude)
-            Utils.modified()
-
-        if latitude != self.place.get_latitude():
-            self.place.set_latitude(latitude)
             Utils.modified()
         
         if note != self.place.getNote():
@@ -280,7 +271,7 @@ class EditPlace:
 
     def on_update_loc_clicked(self,obj):
         import LocEdit
-        if len(obj.selection) > 0:
+        if obj.selection:
             row = obj.selection[0]
             LocEdit.LocationEditor(self,obj.get_row_data(row))
 
@@ -374,7 +365,7 @@ class EditPlace:
         
 #-------------------------------------------------------------------------
 #
-# 
+# disp_url
 #
 #-------------------------------------------------------------------------
 def disp_url(url):
@@ -382,7 +373,7 @@ def disp_url(url):
 
 #-------------------------------------------------------------------------
 #
-# 
+# disp_loc
 #
 #-------------------------------------------------------------------------
 def disp_loc(loc):
@@ -390,7 +381,7 @@ def disp_loc(loc):
 
 #-------------------------------------------------------------------------
 #
-# 
+# src_changed
 #
 #-------------------------------------------------------------------------
 def src_changed(parent):
@@ -398,7 +389,7 @@ def src_changed(parent):
 
 #-------------------------------------------------------------------------
 #
-# 
+# DeletePlaceQuery
 #
 #-------------------------------------------------------------------------
 class DeletePlaceQuery:

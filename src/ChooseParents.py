@@ -44,6 +44,11 @@ import sort
 import Utils
 import GrampsCfg
 
+#-------------------------------------------------------------------------
+#
+# ChooseParents
+#
+#-------------------------------------------------------------------------
 class ChooseParents:
     """
     Displays the Choose Parents dialog box, allowing the parents

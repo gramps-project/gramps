@@ -23,14 +23,36 @@
 
 __author__ = 'Don Allingham'
 
-import GrampsCfg
+#-------------------------------------------------------------------------
+#
+# python modules
+#
+#-------------------------------------------------------------------------
 import string
+
+#-------------------------------------------------------------------------
+#
+# Gnome modules
+#
+#-------------------------------------------------------------------------
 import gtk
 from gnome.ui import *
+
+#-------------------------------------------------------------------------
+#
+# gramps modules
+#
+#-------------------------------------------------------------------------
+import GrampsCfg
 import AutoComp
 from intl import gettext
 _ = gettext
 
+#-------------------------------------------------------------------------
+#
+# FindBase
+#
+#-------------------------------------------------------------------------
 class FindBase:
     """Opens find person dialog for gramps"""
     
@@ -80,6 +102,7 @@ class FindBase:
             self.row =  self.clist.rows
 
     def on_close_clicked(self,obj):
+        """Destroys the window in response to a close window button press"""
         self.top.destroy()
 
     def on_next_clicked(self,obj):
@@ -90,8 +113,11 @@ class FindBase:
         """Advances to the previous person that matches the dialog text"""
         self.advance(self.backward)
 
-
-
+#-------------------------------------------------------------------------
+#
+# FindPerson
+#
+#-------------------------------------------------------------------------
 class FindPerson(FindBase):
     """Opens a Find Person dialog for GRAMPS"""
     
@@ -135,6 +161,11 @@ class FindPerson(FindBase):
             func()
         gtk.gdk_beep()
 
+#-------------------------------------------------------------------------
+#
+# FindPlace
+#
+#-------------------------------------------------------------------------
 class FindPlace(FindBase):
     """Opens a Find Place dialog for GRAMPS"""
     
@@ -175,6 +206,11 @@ class FindPlace(FindBase):
             func()
         gtk.gdk_beep()
 
+#-------------------------------------------------------------------------
+#
+# FindSource
+#
+#-------------------------------------------------------------------------
 class FindSource(FindBase):
     """Opens a Find Place dialog for GRAMPS"""
     
@@ -215,6 +251,11 @@ class FindSource(FindBase):
             func()
         gtk.gdk_beep()
 
+#-------------------------------------------------------------------------
+#
+# FindMedia
+#
+#-------------------------------------------------------------------------
 class FindMedia(FindBase):
     """Opens a Find Media Object dialog for GRAMPS"""
     
@@ -254,13 +295,3 @@ class FindMedia(FindBase):
                 return
             func()
         gtk.gdk_beep()
-
-
-
-
-
-
-
-
-
-
