@@ -549,8 +549,7 @@ class GedcomParser:
                 try:
                     names = nameRegexp.match(matches[2]).groups()
                 except:
-                    print matches
-                    print self.index
+                    names = (matches[2],"","")
                 if names[0]:
                     name.setFirstName(names[0])
                 if names[1]:
