@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # Standard Python Modules 
@@ -25,8 +27,8 @@
 #-------------------------------------------------------------------------
 import os
 import tempfile
-import string
 import zipfile
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -39,7 +41,6 @@ from SpreadSheetDoc import *
 from latin_utf8 import latin_to_utf8
 import const
 
-from gettext import gettext as _
 import Errors
 
 #-------------------------------------------------------------------------
@@ -387,8 +388,11 @@ class OpenSpreadSheet(SpreadSheetDoc):
         if self.content == 0:
             self.f.write('<text:p>')
             self.content = 1
-        text = string.replace(text,'\t','<text:tab-stop/>')
-        text = string.replace(text,'\n','<text:line-break/>')
+        text = text.replace('&','&amp;')       # Must be first
+        text = text.replace('<','&lt;')
+        text = text.replace('>','&gt;')
+        text = text.replace('\t','<text:tab-stop/>')
+        text = text.replace('\n','<text:line-break/>')
 	self.f.write(latin_to_utf8(text))
 
     def _write_manifest(self):
@@ -471,4 +475,3 @@ class OpenSpreadSheet(SpreadSheetDoc):
 	self.f.write('</office:meta>\n')
 	self.f.write('</office:document-meta>\n')
 	self.f.close()
-
