@@ -482,7 +482,7 @@ def write_person(g,person):
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database, filename):
+def exportData(database, filename, pbar, fbar, sbar):
 
     g = open(filename,"w")
 
@@ -520,9 +520,18 @@ def exportData(database, filename):
             g.write("1 PHON " + cnvtxt(owner.getPhone()) + "\n")
 
     people_list.sort(sortById)
+    nump = float(len(people_list))
+    index = 0.0
     for person in people_list:
         write_person(g,person)
-            
+        index = index + 1
+        pbar.set_value((100*index)/nump)
+        while(events_pending()):
+            mainiteration()
+    pbar.set_value(100.0)
+
+    nump = float(len(family_list))
+    index = 0.0
     for family in family_list:
         g.write("0 @F%s@ FAM\n" % family.getId())
         person = family.getFather()
@@ -555,7 +564,14 @@ def exportData(database, filename):
 
         for person in family.getChildList():
             g.write("1 CHIL @I%s@\n" % person.getId())
+        index = index + 1
+        fbar.set_value((100*index)/nump)
+        while(events_pending()):
+            mainiteration()
+    fbar.set_value(100.0)
 
+    nump = float(len(source_list))
+    index = 0.0
     for source in source_list:
         g.write("0 @S%s@ SOUR\n" % source.getId())
         if source.getTitle() != "":
@@ -570,6 +586,11 @@ def exportData(database, filename):
             g.write("1 CALN %s\n" % cnvtxt(source.getCallNumber()))
         if source.getNote() != "":
             write_long_text(g,"NOTE",1,source.getNote())
+        index = index + 1
+        sbar.set_value((100*index)/nump)
+        while(events_pending()):
+            mainiteration()
+    sbar.set_value(100.0)
             
         
     g.write("0 TRLR\n")
@@ -650,8 +671,20 @@ def on_ok_clicked(obj):
     name = topDialog.get_widget("filename").get_text()
     filter()
     
-    exportData(db,name)
     utils.destroy_passed_object(obj)
+
+    base = os.path.dirname(__file__)
+    glade_file = base + os.sep + "gedcomexport.glade"
+    progress = GladeXML(glade_file,"exportprogress")
+    progress.signal_autoconnect({"on_close_clicked":utils.destroy_passed_object})
+    fbar = progress.get_widget("fbar")
+    pbar = progress.get_widget("pbar")
+    sbar = progress.get_widget("sbar")
+    closebtn = progress.get_widget("close")
+    closebtn.connect("clicked",utils.destroy_passed_object)
+    closebtn.set_sensitive(0)
+    exportData(db,name,pbar,fbar,sbar)
+    closebtn.set_sensitive(1)
     
 #-------------------------------------------------------------------------
 #
