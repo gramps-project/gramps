@@ -95,7 +95,6 @@ PYTHON_PLATFORM = @PYTHON_PLATFORM@
 PYTHON_PREFIX = @PYTHON_PREFIX@
 PYTHON_VERSION = @PYTHON_VERSION@
 RELEASE = @RELEASE@
-SCROLLKEEPER_CONFIG = @SCROLLKEEPER_CONFIG@
 SCROLLKEEPER_REQUIRED = @SCROLLKEEPER_REQUIRED@
 STRIP = @STRIP@
 SWIG = @SWIG@
@@ -133,7 +132,7 @@ GLADEFILES := ${wildcard *.glade}
 GRAPHICS := ${wildcard *.xpm} ${wildcard *.png} ${wildcard *.jpg}
 
 # Other stuff that we need to install
-pkgdata_DATA = ${INTLLIBS} ${GLADEFILES} ${GRAPHICS} gramps.desktop
+pkgdata_DATA = ${INTLLIBS} ${GLADEFILES} ${GRAPHICS} gramps.desktop grampslib.so
 
 EXTRA_DIST = grampslib.i
 

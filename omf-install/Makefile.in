@@ -95,7 +95,6 @@ PYTHON_PLATFORM = @PYTHON_PLATFORM@
 PYTHON_PREFIX = @PYTHON_PREFIX@
 PYTHON_VERSION = @PYTHON_VERSION@
 RELEASE = @RELEASE@
-SCROLLKEEPER_CONFIG = @SCROLLKEEPER_CONFIG@
 SCROLLKEEPER_REQUIRED = @SCROLLKEEPER_REQUIRED@
 STRIP = @STRIP@
 SWIG = @SWIG@
@@ -234,14 +233,14 @@ install-data-local:
 	-for file in $(srcdir)/*.omf; do \
 		$(INSTALL_DATA) $(srcdir)/$$file $(DESTDIR)$(omf_dest_dir); \
 	done
-	-scrollkeeper-update -p $(localstatedir)/scrollkeeper
+#	-scrollkeeper-update -p $(localstatedir)/scrollkeeper
 
 uninstall-local:
 	-for file in $(srcdir)/*.omf; do \
 		basefile=`basename $$file`; \
 		rm -f $(omf_dest_dir)/$$basefile; \
         done
-	-scrollkeeper-update -p $(localstatedir)/scrollkeeper
+#	-scrollkeeper-update -p $(localstatedir)/scrollkeeper
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

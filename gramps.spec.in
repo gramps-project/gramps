@@ -64,6 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_datadir}/gramps/*.xpm
 %{_datadir}/gramps/*.jpg
+%{_datadir}/gramps/gramps.desktop
 %{_datadir}/gramps/*.png
 %{_datadir}/gramps/*.py
 %{_datadir}/gramps/*.pyo
@@ -84,12 +85,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_datadir}/omf/gramps
  
-%post
-if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
-
-%postun
-if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
-
 %changelog
 * Fri Jun 14 2002 Donald Peterson <dpeterso@engr.ors.edu>
 - add scrollkeeper dependencies and some file cleanup

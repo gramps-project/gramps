@@ -231,12 +231,15 @@ SCROLLKEEPER_REQUIRED=0.1.4
 AC_SUBST(SCROLLKEEPER_REQUIRED)
 
 dnl First see that *some* version of scrollkeeper is installed
-AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config, no)
-if test x$SCROLLKEEPER_CONFIG = xno; then
-  AC_MSG_ERROR(Couldn't find scrollkeeper-config.  Please install the scrollkeeper package.)
-  DISABLE_SCROLLKEEPER=1
-  AC_SUBST(DISABLE_SCROLLKEEPER)
-fi
+dnl AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config, no)
+dnl if test x$SCROLLKEEPER_CONFIG = xno; then
+dnl  AC_MSG_ERROR(Couldn't find scrollkeeper-config.  Please install the scrollkeeper package.)
+dnl  DISABLE_SCROLLKEEPER=1
+dnl  AC_SUBST(DISABLE_SCROLLKEEPER)
+dnl fi
+
+DISABLE_SCROLLKEEPER=1
+AC_SUBST(DISABLE_SCROLLKEEPER)
 
 dnl ======================================================
 dnl == GNOME modified DTD's need jw, not db2html

@@ -20,7 +20,7 @@ install-data-hook:
 	rm -rf $(DESTDIR)$(scrollkeeper_localstate_dir)
 	$(mkinstalldirs) $(DESTDIR)$(scrollkeeper_localstate_dir)
 	$(mkinstalldirs) $(DESTDIR)$(localstatedir)/log
-	scrollkeeper-rebuilddb -p $(DESTDIR)$(scrollkeeper_localstate_dir)
+#	scrollkeeper-rebuilddb -p $(DESTDIR)$(scrollkeeper_localstate_dir)
 
 # Remove generated files
 uninstall-local:
