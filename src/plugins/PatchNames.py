@@ -121,7 +121,8 @@ class PatchNames:
 
             self.top.get_widget("textwindow").get_buffer().set_text(msg)
         else:
-            OkDialog(_("No titles or nicknames were found"))
+            OkDialog(_('No modifications made'),
+                     _("No titles or nicknames were found"))
             self.cb(0)
 
     def on_ok_clicked(self,obj):

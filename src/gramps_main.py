@@ -26,6 +26,7 @@
 #-------------------------------------------------------------------------
 import string
 import os
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -103,8 +104,6 @@ class Gramps:
 
     def __init__(self,arg):
 
-        import sys
-        
         self.program = gnome.program_init("gramps",const.version)
         
         self.DataFilter = Filter.Filter("")

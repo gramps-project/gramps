@@ -80,6 +80,11 @@ class PackageWriter:
             }
         
         self.top = gtk.glade.XML(glade_file,"packageExport")
+
+        Utils.set_titles(self.top.get_widget('packageExport'),
+                         self.top.get_widget('title'),
+                         _('Package export'))
+        
         self.top.signal_autoconnect(dic)
         self.top.get_widget("packageExport").show()
 

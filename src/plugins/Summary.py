@@ -54,12 +54,16 @@ from gnome.ui import *
 def report(database,person):
     
     base = os.path.dirname(__file__)
-    glade_file = base + os.sep + "summary.glade"
+    glade_file = "%s/summary.glade" % base
 
     topDialog = gtk.glade.XML(glade_file,"summary")
     topDialog.signal_autoconnect({
         "destroy_passed_object" : Utils.destroy_passed_object,
     })
+
+    Utils.set_titles(topDialog.get_widget('summary'),
+                     topDialog.get_widget('title'),
+                     _('Database summary'))
 
     personList = database.getPersonMap().values()
     familyList = database.getFamilyMap().values()
@@ -104,22 +108,22 @@ def report(database,person):
             
     text = _("Individuals") + "\n"
     text = text + "----------------------------\n"
-    text = text + "%s : %d\n" % (_("Number of individuals"),len(personList))
-    text = text + "%s : %d\n" % (_("Males"),males)
-    text = text + "%s : %d\n" % (_("Females"),females)
-    text = text + "%s : %d\n" % (_("Individuals with incomplete names"),incomp_names)
-    text = text + "%s : %d\n" % (_("Individuals missing birth dates"),missing_bday)
-    text = text + "%s : %d\n" % (_("Disconnected individuals"),disconnected)
+    text = text + "%s: %d\n" % (_("Number of individuals"),len(personList))
+    text = text + "%s: %d\n" % (_("Males"),males)
+    text = text + "%s: %d\n" % (_("Females"),females)
+    text = text + "%s: %d\n" % (_("Individuals with incomplete names"),incomp_names)
+    text = text + "%s: %d\n" % (_("Individuals missing birth dates"),missing_bday)
+    text = text + "%s: %d\n" % (_("Disconnected individuals"),disconnected)
     text = text + "\n%s\n" % _("Family Information")
     text = text + "----------------------------\n"
-    text = text + "%s : %d\n" % (_("Number of families"),len(familyList))
-    text = text + "%s : %d\n" % (_("Unique surnames"),len(namelist))
+    text = text + "%s: %d\n" % (_("Number of families"),len(familyList))
+    text = text + "%s: %d\n" % (_("Unique surnames"),len(namelist))
     text = text + "\n%s\n" % _("Media Objects")
     text = text + "----------------------------\n"
-    text = text + "%s : %d\n" % (_("Individuals with media objects"),with_photos)
-    text = text + "%s : %d\n" % (_("Total number of media object references"),total_photos)
-    text = text + "%s : %d\n" % (_("Number of unique media objects"),pobjects)
-    text = text + "%s : %d %s\n" % (_("Total size of media objects"),bytes,\
+    text = text + "%s: %d\n" % (_("Individuals with media objects"),with_photos)
+    text = text + "%s: %d\n" % (_("Total number of media object references"),total_photos)
+    text = text + "%s: %d\n" % (_("Number of unique media objects"),pobjects)
+    text = text + "%s: %d %s\n" % (_("Total size of media objects"),bytes,\
                                     _("bytes"))
 
     if len(notfound) > 0:

@@ -144,7 +144,8 @@ class CheckIntegrity:
         errors = blink + efam + photos + rel
         
         if errors == 0:
-            OkDialog(_("No errors were found"))
+            OkDialog(_("No errors were found"),
+                     _('The database has passed internal checks'))
             return
 
         text = ""
