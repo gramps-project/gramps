@@ -812,16 +812,10 @@ class SingleDate:
                 mon = string.lower(matches[2])
             else:
                 mon = string.lower(matches[2])[0:l]
-            if month_map.has_key(mon):
-                self.setYear(int(matches[3]))
-                self.setMonth(month_map[mon]+1)
-                self.setDay(int(matches[1]))
-                return
-            else:
-                self.setYear(int(matches[3]))
-                self.setMonth(UNDEF)
-                self.setDay(UNDEF)
-                return
+            self.setYear(int(matches[3]))
+            self.setMonthStr(mon)
+            self.setDay(int(matches[1]))
+            return
         match = SingleDate.fmt3.match(text)
         if match:
             matches = match.groups()
@@ -840,7 +834,7 @@ class SingleDate:
             else:
                 mon = string.lower(matches[1])[0:l]
             self.setYearVal(matches[2])
-            self.setMonth(month_map[mon]+1)
+            self.setMonthStr(mon)
             self.day = UNDEF
             return
 
