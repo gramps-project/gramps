@@ -179,7 +179,6 @@ def on_sourceok_clicked(obj):
 
     src_edit = obj.get_data(SOURCEDISP)
 
-    
     if src_edit.active_source != src_edit.source_ref.getBase():
         src_edit.source_ref.setBase(src_edit.active_source)
         
