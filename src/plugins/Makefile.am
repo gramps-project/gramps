@@ -66,7 +66,8 @@ GLADEFILES = \
 	cdexport.glade\
 	eval.glade\
 	leak.glade\
-        book.glade
+	book.glade\
+	writeftree.glade
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins
 
