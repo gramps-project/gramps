@@ -1,4 +1,7 @@
 2003-12-09  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/FamilyView.py (FamilyView.new_child_after_edit): 
+	call display_marriage instead of load_family. Prevents the 
+	active person from being changed.
 	* src/Plugins.py (PluginDialog.__init__): catch the attribute
 	error that is thown if gtk does not support gtk_tooltips_data.get
 
