@@ -223,7 +223,7 @@ class Date:
         if self.range == 0:
             return self.start.getDate()
         elif self.range == -1:
-            return "%s" % self.text
+            return self.text
         else:
             return _("from %(start_date)s to %(stop_date)s") % {
                 'start_date' : self.start.getDate(),

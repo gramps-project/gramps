@@ -54,7 +54,7 @@ class DispBox:
         self.person = person
         self.root = root
 
-        self.name = person.getPrimaryName().getName()
+        self.name = GrampsCfg.nameof(person)
         self.exp = "%s\nb. %s\nd. %s" % (self.name,person.getBirth().getDate(),
                                          person.getDeath().getDate())
         
@@ -178,7 +178,7 @@ class PedigreeView:
         
         for t in list:
             if t:
-                for n in [t[0].getPrimaryName().getName(),
+                for n in [GrampsCfg.nameof(t[0]),
                           "b. %s" % t[0].getBirth().getDate(),
                           "d. %s" % t[0].getDeath().getDate()]:
                     a.set_text(n,len(n))

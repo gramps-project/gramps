@@ -49,7 +49,6 @@ import RelLib
 import Julian
 import FrenchRepublic
 import Hebrew
-
 import Date
 from ansel_utf8 import ansel_to_utf8
 import latin_utf8 
@@ -58,8 +57,14 @@ from GedcomInfo import *
 from QuestionDialog import ErrorDialog
 from intl import gettext as _
 
+#-------------------------------------------------------------------------
+#
+# constants
+#
+#-------------------------------------------------------------------------
 ANSEL = 1
 UNICODE = 2
+UPDATE = 25
 
 db = None
 callback = None
@@ -211,16 +216,18 @@ class GedcomParser:
 
         self.trans2 = self.trans[0:127] + ('?' * 128)
         
-        self.file_obj = window.get_widget("file")
-        self.encoding_obj = window.get_widget("encoding")
-        self.created_obj = window.get_widget("created")
-        self.version_obj = window.get_widget("version")
-        self.families_obj = window.get_widget("families")
-        self.people_obj = window.get_widget("people")
-        self.errors_obj = window.get_widget("errors")
-        self.close_done = window.get_widget('close_done')
-        self.error_text_obj = window.get_widget("error_text")
         self.window = window
+        if window:
+            self.file_obj = window.get_widget("file")
+            self.encoding_obj = window.get_widget("encoding")
+            self.created_obj = window.get_widget("created")
+            self.version_obj = window.get_widget("version")
+            self.families_obj = window.get_widget("families")
+            self.people_obj = window.get_widget("people")
+            self.errors_obj = window.get_widget("errors")
+            self.close_done = window.get_widget('close_done')
+            self.error_text_obj = window.get_widget("error_text")
+            
         self.error_count = 0
 
         map = const.personalConstantAttributes
@@ -228,8 +235,10 @@ class GedcomParser:
         self.gedattr = {}
         for val in map.keys():
             self.gedattr[map[val]] = val
-        
-        self.update(self.file_obj,file)
+
+        if self.window:
+            self.update(self.file_obj,file)
+            
         self.code = 0
         self.search_paths = []
 
@@ -243,7 +252,7 @@ class GedcomParser:
                 first = string.strip(paths[0])
                 if first[0] == '#':
                     continue
-                if string.upper(paths[2]) in ["VFAT","FAT","NTFS"]:
+                if paths[2].upper() in ["VFAT","FAT","NTFS"]:
                     self.search_paths.append(paths[1])
             f.close()
         except:
@@ -274,10 +283,11 @@ class GedcomParser:
 
     def get_next(self):
         if self.backoff == 0:
-            next_line = string.strip(self.f.readline())
-            self.text = string.translate(next_line,self.trans,self.delc)
+            next_line = self.f.readline()
+            self.text = string.translate(next_line.strip(),self.trans,self.delc)
             if self.text == '':
                 raise Errors.GedcomError(_("GEDCOM file ended unexpectedly"))
+
             try:
                 self.text = self.cnv(self.text)
             except:
@@ -297,24 +307,35 @@ class GedcomParser:
                 msg = "\n\t%s\n" % self.text
                 self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
                 self.error_count = self.error_count + 1
-                self.update(self.errors_obj,str(self.error_count))
+                if self.window:
+                    self.update(self.errors_obj,str(self.error_count))
                 self.groups = (999, "XXX", "XXX")
         self.backoff = 0
         return self.groups
             
     def barf(self,level):
         msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
-        self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
+        if self.window:
+            self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
+        else:
+            print msg
         msg = "\n\t%s\n" % self.text
-        self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
-        self.error_count = self.error_count + 1
-        self.update(self.errors_obj,str(self.error_count))
+
+        if self.window:
+            self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
+            self.error_count = self.error_count + 1
+            self.update(self.errors_obj,str(self.error_count))
+        else:
+            print msg
         self.ignore_sub_junk(level)
 
     def warn(self,msg):
-        self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
-        self.error_count = self.error_count + 1
-        self.update(self.errors_obj,str(self.error_count))
+        if self.window:
+            self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
+            self.error_count = self.error_count + 1
+            self.update(self.errors_obj,str(self.error_count))
+        else:
+            print msg
 
     def backup(self):
         self.backoff = 1
@@ -333,13 +354,19 @@ class GedcomParser:
             msg = str(err)
             self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
             
-        self.update(self.families_obj,str(self.fam_count))
-        self.update(self.people_obj,str(self.indi_count))
+        if self.window:
+            self.update(self.families_obj,str(self.fam_count))
+            self.update(self.people_obj,str(self.indi_count))
+            
         self.break_note_links()
         t = time.time() - t
         msg = _('Import Complete: %d seconds') % t
-        self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
-        return self.close_done.get_active()
+        if self.window:
+            self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
+            return self.close_done.get_active()
+        else:
+            print msg
+            return None
 
     def break_note_links(self):
         for o in self.share_note:
@@ -415,7 +442,7 @@ class GedcomParser:
         while 1:
 	    matches = self.get_next()
             if matches[2] == "FAM":
-                if self.fam_count % 10 == 0:
+                if self.fam_count % UPDATE == 0 and self.window:
                     self.update(self.families_obj,str(self.fam_count))
                 self.fam_count = self.fam_count + 1
                 self.family = self.db.findFamily(matches[1],self.fmap)
@@ -430,7 +457,7 @@ class GedcomParser:
                     for child in self.family.getChildList():
                         child.addAddress(self.addr)
             elif matches[2] == "INDI":
-                if self.indi_count % 10 == 0:
+                if self.indi_count % UPDATE == 0 and self.window:
                     self.update(self.people_obj,str(self.indi_count))
                 self.indi_count = self.indi_count + 1
                 id = matches[1]
@@ -439,14 +466,12 @@ class GedcomParser:
                 self.added[self.person.getId()] = self.person
                 self.parse_individual()
                 self.db.buildPersonDisplay(self.person.getId())
-            elif matches[2] in ["SUBM","SUBN"]:
+            elif matches[2] in ["SUBM","SUBN","REPO"]:
                 self.ignore_sub_junk(1)
-            elif matches[1] in ["SUBM","SUBN"]:
+            elif matches[1] in ["SUBM","SUBN","OBJE"]:
                 self.ignore_sub_junk(1)
             elif matches[2] == "SOUR":
                 self.parse_source(matches[1],1)
-            elif matches[2] == "REPO":
-                self.ignore_sub_junk(1)
             elif matches[2][0:4] == "NOTE":
                 if self.nmap.has_key(matches[1]):
                     noteobj = self.nmap[matches[1]]
@@ -456,24 +481,20 @@ class GedcomParser:
                 text =  matches[2][4:]
                 noteobj.append(text + self.parse_continue_data(1))
                 self.parse_note_data(1)
-            elif matches[2] == "OBJE":
-                self.ignore_sub_junk(1)
 	    elif matches[1] == "TRLR":
                 self.backup()
                 return
             else:
 	        self.barf(1)
 
-    def find_or_create_person(self,id):
-        
+    def find_or_create_person(self,id):        
         if self.pmap.has_key(id):
             person = self.db.findPersonNoMap(self.pmap[id])
         elif self.db.getPersonMap().has_key(id):
             person = RelLib.Person()
             self.pmap[id] = self.db.addPerson(person)
         else:
-            person = RelLib.Person()
-            person.setId(id)
+            person = RelLib.Person(id)
             self.db.addPersonAs(person)
             self.pmap[id] = id
         return person
@@ -1056,7 +1077,7 @@ class GedcomParser:
         while 1:
             matches = self.get_next()
             if int(matches[0]) < level:
-                if note != "":
+                if note:
                     event.setNote(note)
                 self.backup()
                 break
@@ -1073,8 +1094,6 @@ class GedcomParser:
                     event.setName(name)
             elif matches[1] == "DATE":
                 event.setDateObj(self.extract_date(matches[2]))
-            elif matches[1] in ["TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
-                self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
                 event.addSourceRef(self.handle_source(matches,level))
             elif matches[1] == "PLAC":
@@ -1111,7 +1130,7 @@ class GedcomParser:
                     event.setDescription("%s%s" % (d, matches[2]))
 	    elif matches[1] == "CONT":
 	        event.setDescription("%s\n%s" % (event.getDescription(),matches[2]))
-	    elif matches[1] == "RELI":
+            elif matches[1] in ["RELI", "TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
                 self.ignore_sub_junk(level+1)
             else:
 	        self.barf(level+1)
@@ -1406,16 +1425,16 @@ class GedcomParser:
                 self.backup()
                 return
 	    elif matches[1] == "SOUR":
-                if self.created_obj.get_text() == "":
+                if self.window and self.created_obj.get_text():
                     self.update(self.created_obj,matches[2])
                 self.gedsource = self.gedmap.get_from_source_tag(matches[2])
                 self.broken_conc = self.gedsource.get_conc()
                 if matches[2] == "FTW":
                     self.is_ftw = 1
                 genby = matches[2]
-   	    elif matches[1] == "NAME":
+   	    elif matches[1] == "NAME" and self.window:
                 self.update(self.created_obj,matches[2])
-   	    elif matches[1] == "VERS":
+   	    elif matches[1] == "VERS" and self.window:
                 self.update(self.version_obj,matches[2])
    	    elif matches[1] in ["CORP","DATA","SUBM","SUBN","COPR","FILE","LANG"]:
                 self.ignore_sub_junk(2)
@@ -1433,7 +1452,8 @@ class GedcomParser:
                 else:
                     self.cnv = latin_utf8.latin_to_utf8
                 self.ignore_sub_junk(2)
-                self.update(self.encoding_obj,matches[2])
+                if self.window:
+                    self.update(self.encoding_obj,matches[2])
    	    elif matches[1] == "GEDC":
                 self.ignore_sub_junk(2)
    	    elif matches[1] == "_SCHEMA":
@@ -1699,7 +1719,21 @@ def on_ok_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
-from Plugins import register_import
 
-register_import(readData,_("Import from GEDCOM"))
+if __name__ == "__main__":
+    import sys
+    import GrampsXML
+    import profile
+    
+    print "Reading %s" % sys.argv[1]
 
+    db = GrampsXML.GrampsXML()
+    g = GedcomParser(db,sys.argv[1],None)
+    profile.run('g.parse_gedcom_file()')
+    g.resolve_refns()
+    
+else:
+    from Plugins import register_import
+    register_import(readData,_("Import from GEDCOM"))
+
+    

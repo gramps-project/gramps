@@ -215,7 +215,7 @@ class FamilyView:
 
     def remove_spouse(self,obj):
         if self.selected_spouse:
-            name = self.selected_spouse.getPrimaryName().getRegularName()
+            name = GrampsCfg.nameof(self.selected_spouse)
             QuestionDialog(_('Delete Spouse'),
                            _('Do you wish to remove %s as a spouse?') % name,
                            self.really_remove_spouse)
@@ -285,7 +285,7 @@ class FamilyView:
         if not self.person:
             return
 
-        n = "%s\n\tb. %s\n\td. %s " % (self.person.getPrimaryName().getName(),
+        n = "%s\n\tb. %s\n\td. %s " % (GrampsCfg.nameof(self.person),
                                       self.person.getBirth().getDate(),
                                       self.person.getDeath().getDate())
         self.ap_data.set_text(n,len(n))
@@ -325,7 +325,7 @@ class FamilyView:
                     mdate = " - %s" % f.getMarriage().getDate()
                 else:
                     mdate = ""
-                v = "%s\n\t%s%s" % (sp.getPrimaryName().getName(),
+                v = "%s\n\t%s%s" % (GrampsCfg.nameof(sp),
                                     f.getRelationship(),mdate)
                 self.spouse_model.set(iter,0,v)
             else:
@@ -361,7 +361,7 @@ class FamilyView:
             
     def nameof(self,l,p,mode):
         if p:
-            n = p.getPrimaryName().getName()
+            n = GrampsCfg.nameof(p)
             return _("%s: %s\n\tRelationship: %s") % (l,n,mode)
         else:
             return _("%s: unknown") % (l)

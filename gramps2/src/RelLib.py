@@ -386,11 +386,11 @@ class Place(SourceNote):
         if self.main_loc:
             return [self.title,self.id,self.main_loc.parish,self.main_loc.city,
                     self.main_loc.county,self.main_loc.state,self.main_loc.country,
-                    upper(self.title), upper(self.main_loc.parish),
-                    upper(self.main_loc.city), upper(self.main_loc.county),
-                    upper(self.main_loc.state), upper(self.main_loc.country)]
+                    self.title.upper(), self.main_loc.parish.upper(),
+                    self.main_loc.city.upper(), self.main_loc.county.upper(),
+                    self.main_loc.state.upper(), self.main_loc.country.upper()]
         else:
-            return [self.title,self.id,'','','','','',upper(self.title), '','','','','']
+            return [self.title,self.id,'','','','','',self.title.upper(), '','','','','']
         
 class Researcher(Persistent):
     """Contains the information about the owner of the database"""
@@ -983,10 +983,10 @@ class Person(Persistent):
     male = 1
     female = 0
 
-    def __init__(self):
+    def __init__(self,id=""):
         """creates a new Person instance"""
         
-        self.id = ""
+        self.id = id
         self.PrimaryName = None
         self.EventList = []
         self.FamilyList = []
