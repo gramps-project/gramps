@@ -9,7 +9,7 @@ p22_inc         = @P22_INCLUDES@
 pycomp		= ${srcdir}/py-compile
 CFLAGS          = -fPIC -shared -O @CFLAGS@ @CPPFLAGS@ -I@includedir@
 LDFLAGS         = @LDFLAGS@ -L@libdir@ @LIBS@
-LANG            = sv de fr es it pt_BR ru
+TRANSLATIONS    = sv de fr es it pt_BR ru
 
 # Use GNU make's ':=' syntax for nice wildcard use.
 # If not using GNU make, then list all .py files individually
@@ -49,7 +49,7 @@ install:
 	${INSTALL} -m 644 gramps.png ${prefix}/share/pixmaps
 	${INSTALL} -d ${prefix}/share/gnome/apps/Applications
 	${INSTALL} -m 644 gramps.desktop ${prefix}/share/gnome/apps/Applications
-	for i in ${LANG}; do\
+	for i in ${TRANSLATIONS}; do\
 		${INSTALL} -d ${prefix}/share/locale/$$i; \
 		${INSTALL} -d ${prefix}/share/locale/$$i/LC_MESSAGES; \
 		${INSTALL} -m 644 locale/$$i/LC_MESSAGES/gramps.mo ${prefix}/share/locale/$$i/LC_MESSAGES; \
