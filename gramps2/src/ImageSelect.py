@@ -209,9 +209,10 @@ _drag_targets = [
 #
 #-------------------------------------------------------------------------
 class Gallery(ImageSelect):
-    def __init__(self, dataobj, path, icon_list, db, parent, parent_window=None):
+    def __init__(self, dataobj, commit, path, icon_list, db, parent, parent_window=None):
         ImageSelect.__init__(self, path, db, parent, parent_window)
 
+        self.commit = commit
         if path:
             icon_list.drag_dest_set(gtk.DEST_DEFAULT_ALL, _drag_targets,
                                     gtk.gdk.ACTION_COPY | gtk.gdk.ACTION_MOVE)
@@ -255,6 +256,9 @@ class Gallery(ImageSelect):
         if not ok:
             if self.old_media_list is not None:
                 self.dataobj.set_media_list(self.old_media_list)
+                trans = self.db.start_transaction()
+                self.commit(self.dataobj,trans)
+                self.db.add_transaction(trans)
         
     def on_canvas1_event(self,obj,event):
         """
@@ -471,7 +475,6 @@ class Gallery(ImageSelect):
                 if GrampsCfg.mediaref == 0:
                     name = RelImage.import_media_object(name,self.path,photo.get_id())
                     photo.set_path(name)
-                    photo.setLocal(1)
                 self.parent.lists_changed = 1
                 if GrampsCfg.globalprop:
                     GlobalMediaProperties(self.db,photo,None)
@@ -488,7 +491,6 @@ class Gallery(ImageSelect):
                 photo = RelLib.MediaObject()
                 photo.set_mime_type(mime)
                 photo.set_description(d)
-                photo.setLocal(1)
                 photo.set_path(tfile)
                 self.db.add_object(photo)
                 oref = RelLib.MediaRef()
@@ -497,7 +499,6 @@ class Gallery(ImageSelect):
                 try:
                     id = photo.get_id()
                     name = RelImage.import_media_object(tfile,self.path,id)
-                    photo.setLocal(1)
                     photo.set_path(name)
                 except:
                     photo.set_path(tfile)
@@ -529,7 +530,7 @@ class Gallery(ImageSelect):
                                 return
                         index = index + 1
                     oref = RelLib.MediaRef()
-                    oref.set_reference(data.data)
+                    oref.set_reference_id(data.data)
                     self.dataobj.add_media_reference(oref)
                     self.add_thumbnail(oref)
                     self.parent.lists_changed = 1
@@ -599,8 +600,9 @@ class Gallery(ImageSelect):
         mtype = object.get_mime_type()
         progname = GrampsMime.get_application(mtype)
         
-        Utils.add_menuitem(menu,_("Open in %s") % progname[1],
-                           photo,self.popup_view_photo)
+        if progname and len(progname) > 1:
+            Utils.add_menuitem(menu,_("Open in %s") % progname[1],
+                               photo,self.popup_view_photo)
         if mtype[0:5] == "image":
             Utils.add_menuitem(menu,_("Edit with the GIMP"),
                                photo,self.popup_edit_photo)
@@ -628,7 +630,6 @@ class Gallery(ImageSelect):
         name = RelImage.import_media_object(object.get_path(),self.path,
                                             object.get_id())
         object.set_path(name)
-        object.setLocal(1)
 
     def popup_change_description(self, obj):
         """Bring up a window allowing the user to edit the description

@@ -270,7 +270,6 @@ class MediaView:
         name = RelImage.import_media_object(self.obj.get_path(),path,id)
         if name:
             self.obj.set_path(name)
-            self.obj.setLocal(1)
             self.load_media()
 
     def popup_change_description(self, obj):
@@ -344,7 +343,7 @@ class MediaView:
         if not iter:
             return
         if (const.dnd_images):
-            object = self.db.get_object(store.get_value(iter,1))
+            object = self.db.find_object_from_id(store.get_value(iter,1))
             mtype = object.get_mime_type()
             name = Utils.thumb_path(self.db.get_save_path(),object)
             pix = gtk.gdk.pixbuf_new_from_file(name)
@@ -361,6 +360,7 @@ class MediaView:
         selection_data.set(selection_data.target, 8, id)	
 
     def on_drag_data_received(self,w, context, x, y, data, info, time):
+        print "on_drag_data_received"
         import urlparse
         if data and data.format == 8:
             d = string.strip(string.replace(data.data,'\0',' '))
@@ -371,8 +371,6 @@ class MediaView:
                 photo = RelLib.MediaObject()
                 photo.set_path(name)
                 photo.set_mime_type(mime)
-                if mime[0:5] == "image":
-                    photo.set_thumbnail(RelImage.build_thumbnail(name))
                 description = os.path.basename(name)
                 photo.set_description(description)
                 trans = self.db.start_transaction()
@@ -384,7 +382,6 @@ class MediaView:
                                                         photo.get_id())
                     if name:
                         photo.set_path(name)
-                        photo.setLocal(1)
 
                 self.db.commit_media_object(photo,trans)
                 self.db.add_transaction(trans)
@@ -402,21 +399,17 @@ class MediaView:
                 mime = GrampsMime.get_type(tfile)
                 photo = RelLib.MediaObject()
                 photo.set_mime_type(mime)
-                if mime[0:5] == "image":
-                    photo.set_thumbnail(RelImage.build_thumbnail(name))
                 photo.set_description(d)
-                photo.setLocal(1)
                 photo.set_path(tfile)
                 trans = self.db.start_transaction()
                 self.db.add_object(photo,trans)
                 oref = RelLib.MediaRef()
-                oref.set_reference(photo)
+                oref.set_reference_id(photo.get_id())
                 try:
                     id = photo.get_id()
                     path = self.db.get_save_path()
                     name = RelImage.import_media_object(tfile,path,id)
                     if name:
-                        photo.setLocal(1)
                         photo.set_path(name)
                 except:
                     photo.set_path(tfile)

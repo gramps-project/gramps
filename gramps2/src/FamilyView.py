@@ -254,7 +254,7 @@ class FamilyView:
                                     and event.state == gtk.gdk.CONTROL_MASK:
             self.spouse_swap(obj)
         elif event.keyval == gtk.gdk.keyval_from_name("Delete") and not event.state:
-            self.remove_spouse(obj,trans)
+            self.remove_spouse(obj)
         elif event.keyval == gtk.gdk.keyval_from_name("Insert") and not event.state:
             self.select_spouse(obj)
         elif event.keyval == gtk.gdk.keyval_from_name("Insert") \

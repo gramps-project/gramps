@@ -39,19 +39,19 @@ TABLE  = string.maketrans('ABCDEFGIJKLMNOPQRSTUVXYZ',
 # soundex - returns the soundex value for the specified string
 #
 #-------------------------------------------------------------------------
-def soundex(str):
+def soundex(strval):
     "Return the soundex value to a string argument."
 
-    str = str.upper().strip()
-    if not str:
+    strval = strval.upper().strip()
+    if not strval:
 	return "Z000"
-    str = str.encode('iso-8859-1')
-    str2 = str[0]
-    str = str.translate(TABLE, IGNORE)
-    if not str:
+    strval = strval.encode('iso-8859-1')
+    str2 = strval[0]
+    strval = strval.translate(TABLE, IGNORE)
+    if not strval:
         return "Z000"
-    prev = str[0]
-    for x in str[1:]:
+    prev = strval[0]
+    for x in strval[1:]:
 	if x != prev and x != "0":
 	    	str2 = str2 + x
 	prev = x

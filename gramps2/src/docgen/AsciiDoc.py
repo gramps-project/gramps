@@ -359,15 +359,15 @@ print_label = None
 try:
     import Utils
 
-    prog = GrampsMime.get_application("text/plain")
-    type = GrampsMime.get_description('text/plain')
+    mprog = GrampsMime.get_application("text/plain")
+    mtype = GrampsMime.get_description('text/plain')
 
-    if Utils.search_for(prog[0]):
-        print_label=_("Open in %s" % prog[1])
+    if Utils.search_for(mprog[0]):
+        print_label=_("Open in %s" % mprog[1])
     else:
         print_label=None
 
-    Plugins.register_text_doc(type,AsciiDoc,1,1,1,".txt", print_label)
+    Plugins.register_text_doc(mtype,AsciiDoc,1,1,1,".txt", print_label)
 except:
     Plugins.register_text_doc("Plain Text",AsciiDoc,1,1,1,".txt", None)
 

@@ -51,7 +51,6 @@ import gtk.glade
 #------------------------------------------------------------------------
 import RelLib
 import Utils
-import Date
 import Gregorian
 
 from gettext import gettext as _

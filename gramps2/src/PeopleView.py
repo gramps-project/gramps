@@ -27,7 +27,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -39,8 +38,6 @@ import gtk.glade
 
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 
-_sel_mode = gtk.SELECTION_SINGLE
-
 #-------------------------------------------------------------------------
 #
 # gtk
@@ -48,7 +45,6 @@ _sel_mode = gtk.SELECTION_SINGLE
 #-------------------------------------------------------------------------
 import PeopleModel
 import GenericFilter
-import const
 
 column_names = [
     _('Name'),
@@ -131,7 +127,7 @@ class PeopleView:
         self.sort_model.set_visible_column(PeopleModel.COLUMN_VIEW)
         self.person_tree.set_model(self.sort_model)
 
-    def blist(self,store,path,iter,id_list):
+    def blist(self, store, path, iter, id_list):
         id_list.append(self.sort_model.get_value(iter,1))
 
     def get_selected_objects(self):
@@ -192,11 +188,11 @@ class PeopleView:
             self.parent.mhistory.remove(del_id)
 
     def apply_filter_clicked(self):
-        qualifer = unicode(self.parent.filter_text.get_text())
         mi = self.parent.filter_list.get_menu().get_active()
         self.DataFilter = mi.get_data("filter")
         if self.DataFilter.need_param:
-            self.DataFilter.set_parameter(unicode(self.parent.filter_text.get_text()))
+            qual = unicode(self.parent.filter_text.get_text())
+            self.DataFilter.set_parameter(qual)
         self.apply_filter()
         self.goto_active_person()
 
@@ -207,14 +203,13 @@ class PeopleView:
         if not self.parent.active_person:
             return
         p = self.parent.active_person
-        id = p.get_id()
-        path = self.person_model.on_get_path(id)
+        path = self.person_model.on_get_path(p.get_id())
         top_path = self.person_model.on_get_path(p.get_primary_name().get_surname())
         self.person_tree.expand_row(top_path,0)
         self.person_selection.select_path(path)
         self.person_tree.scroll_to_cell(path,None,1,0.5,0)
 
-    def alpha_event(self,obj,a,b):
+    def alpha_event(self,*obj):
         self.parent.load_person(self.parent.active_person)
 
     def apply_filter(self,current_model=None):

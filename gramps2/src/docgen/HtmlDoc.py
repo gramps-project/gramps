@@ -481,12 +481,12 @@ try:
     import Utils
 
     prog = GrampsMime.get_application("text/html")
-    type = GrampsMime.get_description("text/html")
+    mtype = GrampsMime.get_description("text/html")
     
     if Utils.search_for(prog[0]):
         print_label=_("Open in %s") % prog[1]
     else:
         print_label=None
-    Plugins.register_text_doc(type,HtmlDoc,1,0,1,".html", print_label)
+    Plugins.register_text_doc(mtype,HtmlDoc,1,0,1,".html", print_label)
 except:
     Plugins.register_text_doc('HTML',HtmlDoc,1,0,1,".html", None)

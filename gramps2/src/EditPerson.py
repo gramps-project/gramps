@@ -111,8 +111,8 @@ class EditPerson:
         self.window.set_title("%s - GRAMPS" % _('Edit Person'))
         
         self.icon_list = self.top.get_widget("iconlist")
-        self.gallery = ImageSelect.Gallery(person, self.path, self.icon_list,
-                                           self.db,self,self.window)
+        self.gallery = ImageSelect.Gallery(person, self.db.commit_person, self.path,
+                                           self.icon_list, self.db, self,self.window)
 
         self.complete = self.get_widget('complete')
         self.name_delete_btn = self.top.get_widget('aka_delete')

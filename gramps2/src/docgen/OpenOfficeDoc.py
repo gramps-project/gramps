@@ -971,16 +971,16 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 try:
     import Utils
     
-    prog = GrampsMime.get_application(_apptype)
-    type = GrampsMime.get_description(_apptype)
+    mprog = GrampsMime.get_application(_apptype)
+    mtype = GrampsMime.get_description(_apptype)
 
-    if Utils.search_for(prog[0]):
+    if Utils.search_for(mprog[0]):
         print_label = _("Open in OpenOffice.org")
     else:
         print_label = None
 
-    Plugins.register_text_doc(type,OpenOfficeDoc,1,1,1,".sxw", print_label)
-    Plugins.register_book_doc(type,OpenOfficeDoc,1,1,1,".sxw")
+    Plugins.register_text_doc(mtype,OpenOfficeDoc,1,1,1,".sxw", print_label)
+    Plugins.register_book_doc(mtype,OpenOfficeDoc,1,1,1,".sxw")
 except:
     Plugins.register_text_doc('OpenOffice.org Writer', OpenOfficeDoc,1,1,1,".sxw", None)
     Plugins.register_book_doc("OpenOffice.org Writer", OpenOfficeDoc,1,1,1,".sxw")

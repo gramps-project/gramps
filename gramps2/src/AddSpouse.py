@@ -54,6 +54,7 @@ import Utils
 import GrampsCfg
 import PeopleModel
 import Date
+import Marriage
 
 #-------------------------------------------------------------------------
 #

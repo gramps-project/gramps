@@ -42,7 +42,6 @@ import Calendar
 import Date
 import GrampsMime
 import RelLib
-import Utils
 import const
 
 #-------------------------------------------------------------------------
@@ -69,7 +68,6 @@ def importData(database, filename, callback,cl=0):
     database.smap = {}
     database.pmap = {}
     database.fmap = {}
-    missmedia_action = 0
 
     parser = GrampsParser(database,callback,basefile)
 
@@ -145,84 +143,84 @@ def importData(database, filename, callback,cl=0):
     xml_file.close()
     
 #-------------------------------------------------------------------------
-    def remove_clicked():
-        # File is lost => remove all references and the object itself
-        mobj = database.find_object_from_id(NewMediaID)
-        for fid in database.get_family_keys():
-            p = database.find_family_from_id(fid)
-            nl = p.get_media_list()
-            for o in nl:
-                if o.get_reference() == mobj:
-                    nl.remove(o) 
-            p.set_media_list(nl)
-        for key in database.get_person_keys():
-            p = database.find_person_from_id(key)
-            nl = p.get_media_list()
-            for o in nl:
-                if o.get_reference_id() == mobj.get_id():
-                    nl.remove(o) 
-            p.set_media_list(nl)
-        for key in database.get_source_keys():
-            p = database.find_source_from_id(key)
-            nl = p.get_media_list()
-            for o in nl:
-                if o.get_reference_id() == mobj.get_id():
-                    nl.remove(o) 
-            p.set_media_list(nl)
-        for key in database.get_place_id_keys():
-            p = database.find_place_from_id(key)
-            nl = p.get_media_list()
-            for o in nl:
-                if o.get_reference() == mobj:
-                    nl.remove(o) 
-            p.set_media_list(nl)
-        database.remove_object(NewMediaID) 
+#     def remove_clicked():
+#         # File is lost => remove all references and the object itself
+#         mobj = database.find_object_from_id(NewMediaID)
+#         for fid in database.get_family_keys():
+#             p = database.find_family_from_id(fid)
+#             nl = p.get_media_list()
+#             for o in nl:
+#                 if o.get_reference() == mobj:
+#                     nl.remove(o) 
+#             p.set_media_list(nl)
+#         for key in database.get_person_keys():
+#             p = database.find_person_from_id(key)
+#             nl = p.get_media_list()
+#             for o in nl:
+#                 if o.get_reference_id() == mobj.get_id():
+#                     nl.remove(o) 
+#             p.set_media_list(nl)
+#         for key in database.get_source_keys():
+#             p = database.find_source_from_id(key)
+#             nl = p.get_media_list()
+#             for o in nl:
+#                 if o.get_reference_id() == mobj.get_id():
+#                     nl.remove(o) 
+#             p.set_media_list(nl)
+#         for key in database.get_place_id_keys():
+#             p = database.find_place_from_id(key)
+#             nl = p.get_media_list()
+#             for o in nl:
+#                 if o.get_reference() == mobj:
+#                     nl.remove(o) 
+#             p.set_media_list(nl)
+#         database.remove_object(NewMediaID) 
 
 
-    def leave_clicked():
-        # File is lost => do nothing, leave as is
-        pass
+#     def leave_clicked():
+#         # File is lost => do nothing, leave as is
+#         pass
 
-    def select_clicked():
-        # File is lost => select a file to replace the lost one
-        def fs_close_window(obj):
-            pass
+#     def select_clicked():
+#         # File is lost => select a file to replace the lost one
+#         def fs_close_window(obj):
+#             pass
 
-        def fs_ok_clicked(obj):
-            name = fs_top.get_filename()
-            if os.path.isfile(name):
-                shutil.copyfile(name,newfile)
-                try:
-                    shutil.copystat(name,newfile)
-                except:
-                    pass
+#         def fs_ok_clicked(obj):
+#             name = fs_top.get_filename()
+#             if os.path.isfile(name):
+#                 shutil.copyfile(name,newfile)
+#                 try:
+#                     shutil.copystat(name,newfile)
+#                 except:
+#                     pass
 
-        choose = gtk.FileChooserDialog('Select file',
-                                       None,
-                                       gtk.FILE_CHOOSER_ACTION_OPEN,
-                                       (gtk.STOCK_CANCEL,
-                                        gtk.RESPONSE_CANCEL,
-                                        gtk.STOCK_OPEN,
-                                        gtk.RESPONSE_OK))
+#         choose = gtk.FileChooserDialog('Select file',
+#                                        None,
+#                                        gtk.FILE_CHOOSER_ACTION_OPEN,
+#                                        (gtk.STOCK_CANCEL,
+#                                         gtk.RESPONSE_CANCEL,
+#                                         gtk.STOCK_OPEN,
+#                                         gtk.RESPONSE_OK))
             
-        filter = gtk.FileFilter()
-        filter.set_name(_('All files'))
-        filter.add_pattern('*')
-        choose.add_filter(filter)
+#         filter = gtk.FileFilter()
+#         filter.set_name(_('All files'))
+#         filter.add_pattern('*')
+#         choose.add_filter(filter)
         
-        response = choose.run()
-        if response == gtk.RESPONSE_OK:
-            name = fs_top.get_filename()
-            if os.path.isfile(name):
-                shutil.copyfile(name,newfile)
-                try:
-                    shutil.copystat(name,newfile)
-                except:
-                    pass
-        choose.destroy()
+#         response = choose.run()
+#         if response == gtk.RESPONSE_OK:
+#             name = fs_top.get_filename()
+#             if os.path.isfile(name):
+#                 shutil.copyfile(name,newfile)
+#                 try:
+#                     shutil.copystat(name,newfile)
+#                 except:
+#                     pass
+#         choose.destroy()
 
-    del parser
-    return 1
+#     del parser
+#     return 1
 
 #-------------------------------------------------------------------------
 #
@@ -678,14 +676,14 @@ class GrampsParser:
             else:
                 self.object.set_path(src)
 
-    def stop_people(self,tag):
+    def stop_people(self,*tag):
         pass
 
-    def stop_object(self,tag):
+    def stop_object(self,*tag):
         self.db.commit_media_object(self.object)
         self.object = None
 
-    def stop_objref(self,tag):
+    def stop_objref(self,*tag):
         self.objref = None
         
     def start_photo(self,attrs):
@@ -790,7 +788,7 @@ class GrampsParser:
     def start_pos(self,attrs):
         self.person.position = (int(attrs["x"]), int(attrs["y"]))
 
-    def stop_attribute(self,tag):
+    def stop_attribute(self,*tag):
         self.attribute = None
 
     def stop_comment(self,tag):
@@ -815,27 +813,27 @@ class GrampsParser:
     def stop_attr_value(self,tag):
         self.attribute.set_value(tag)
 
-    def stop_address(self,tag):
+    def stop_address(self,*tag):
         self.address = None
         
-    def stop_places(self,tag):
+    def stop_places(self,*tag):
         self.placeobj = None
 
-    def stop_photo(self,tag):
+    def stop_photo(self,*tag):
         self.photo = None
 
-    def stop_placeobj(self,tag):
+    def stop_placeobj(self,*tag):
         if self.placeobj.get_title() == "":
             loc = self.placeobj.get_main_location()
             self.placeobj.set_title(build_place_title(loc))
         self.db.commit_place(self.placeobj)
         self.placeobj = None
 
-    def stop_family(self,tag):
+    def stop_family(self,*tag):
         self.db.commit_family(self.family)
         self.family = None
         
-    def stop_event(self,tag):
+    def stop_event(self,*tag):
         self.event.name = self.event_type
 
         if self.family:
@@ -887,10 +885,10 @@ class GrampsParser:
     def stop_first(self,tag):
         self.name.set_first_name(tag)
 
-    def stop_families(self,tag):
+    def stop_families(self,*tag):
         self.family = None
 
-    def stop_person(self,tag):
+    def stop_person(self,*tag):
         self.db.commit_person(self.person)
         self.person = None
 
@@ -912,10 +910,10 @@ class GrampsParser:
     def stop_stitle(self,tag):
         self.source.set_title(tag)
 
-    def stop_sourceref(self,tag):
+    def stop_sourceref(self,*tag):
         self.source_ref = None
 
-    def stop_source(self,tag):
+    def stop_source(self,*tag):
         self.db.commit_source(self.source)
         self.source = None
 
@@ -948,7 +946,7 @@ class GrampsParser:
     def stop_spage(self,tag):
         self.source_ref.set_page(tag)
 
-    def stop_lds_ord(self,tag):
+    def stop_lds_ord(self,*tag):
         self.ord = None
 
     def stop_spubinfo(self,tag):

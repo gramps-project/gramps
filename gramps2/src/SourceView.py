@@ -42,6 +42,14 @@ import const
 
 from QuestionDialog import QuestionDialog
 
+#-------------------------------------------------------------------------
+#
+# internationalization
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
+
 column_names = [
     _('Title'),
     _('ID'),
@@ -49,13 +57,6 @@ column_names = [
     _('Abbreviation'),
     _('Publication Information'),
     ]
-
-#-------------------------------------------------------------------------
-#
-# internationalization
-#
-#-------------------------------------------------------------------------
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
