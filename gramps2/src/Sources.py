@@ -161,10 +161,10 @@ class SourceSelector:
     def redraw(self):
         self.model.clear()
         for s in self.list:
-            base_id = s.get_base_id()
-            base = self.db.try_to_find_source_from_id(base_id)
+            base_handle = s.get_base_handle()
+            base = self.db.try_to_find_source_from_handle(base_handle)
             iter = self.model.append()
-            self.model.set(iter,0,base_id,1,base.get_title())
+            self.model.set(iter,0,base_handle,1,base.get_title())
 
     def src_ok_clicked(self,obj):
         del self.orig[:]
@@ -242,10 +242,10 @@ class SourceTab:
     def redraw(self):
         self.model.clear()
         for s in self.list:
-            base_id = s.get_base_id()
+            base_handle = s.get_base_handle()
             iter = self.model.append()
-            base = self.db.try_to_find_source_from_id(base_id)
-            self.model.set(iter,0,base_id,1,base.get_title())
+            base = self.db.try_to_find_source_from_handle(base_handle)
+            self.model.set(iter,0,base_handle,1,base.get_title())
         if self.list:
             Utils.bold_label(self.parent.sources_label)
         else:
@@ -335,7 +335,7 @@ class SourceEditor:
         self.pub_field = self.get_widget("spubinfo")
 
         if self.source_ref:
-            self.active_source = self.db.try_to_find_source_from_id(self.source_ref.get_base_id())
+            self.active_source = self.db.try_to_find_source_from_handle(self.source_ref.get_base_handle())
         else:
             self.active_source = None
 
@@ -416,7 +416,7 @@ class SourceEditor:
 
             scom = self.get_widget("scomment")
             scom.get_buffer().set_text(self.source_ref.get_comments())
-            src = self.db.try_to_find_source_from_id(self.source_ref.get_base_id())
+            src = self.db.try_to_find_source_from_handle(self.source_ref.get_base_handle())
             self.active_source = src
             if src:
                 self.author_field.set_text(src.get_author())
@@ -432,8 +432,8 @@ class SourceEditor:
         self.list = []
         self.active_source = sel
         for src_id in keys:
-            src = self.db.try_to_find_source_from_id(src_id)
-            l = gtk.Label("%s [%s]" % (src.get_title(),src.get_id()))
+            src = self.db.try_to_find_source_from_handle(src_id)
+            l = gtk.Label("%s [%s]" % (src.get_title(),src.get_handle()))
             l.show()
             l.set_alignment(0,0.5)
             c = gtk.ListItem()
@@ -454,8 +454,8 @@ class SourceEditor:
 
     def on_sourceok_clicked(self,obj):
 
-        if self.active_source != self.db.try_to_find_source_from_id(self.source_ref.get_base_id()):
-            self.source_ref.set_base_id(self.active_source.get_id())
+        if self.active_source != self.db.try_to_find_source_from_handle(self.source_ref.get_base_handle()):
+            self.source_ref.set_base_handle(self.active_source.get_handle())
         
         date = unicode(self.get_widget("sdate").get_text())
         conf = self.get_widget("conf").get_menu().get_active().get_data('a')

@@ -74,7 +74,7 @@ class SelectObject:
         self.top = self.glade.get_widget('select_object')
         title_label = self.glade.get_widget('object_title')
         self.object_tree = self.glade.get_widget('object_tree')
-        self.object_id = self.glade.get_widget('object_id')
+        self.object_handle = self.glade.get_widget('object_handle')
         self.object_type = self.glade.get_widget('object_type')
         self.object_desc = self.glade.get_widget('object_desc')
         self.object_path = self.glade.get_widget('object_path')
@@ -99,9 +99,9 @@ class SelectObject:
         self.object_model.new_model()
 
         for key in self.db.get_object_keys():
-            object = self.db.try_to_find_object_from_id(key)
+            object = self.db.try_to_find_object_from_handle(key)
             title = object.get_description()
-            the_id = object.get_id()
+            the_id = object.get_handle()
             the_type = Utils.get_mime_description(object.get_mime_type())
             path = object.get_path()
             self.object_model.add([title,the_id,the_type,path],key)
@@ -116,7 +116,7 @@ class SelectObject:
             return
         data = self.object_model.get_data(iter,range(self.ncols))
         the_id = data[4]
-        object = self.db.try_to_find_object_from_id(the_id)
+        object = self.db.try_to_find_object_from_handle(the_id)
         the_type = Utils.get_mime_description(object.get_mime_type())
         path = object.get_path()
 
@@ -130,7 +130,7 @@ class SelectObject:
             if not pexists:
                 fexists = 0
         
-        self.object_id.set_text(object.get_id())
+        self.object_handle.set_text(object.get_handle())
         self.object_type.set_text(the_type)
         self.object_desc.set_text(object.get_description())
         if len(path) == 0 or fexists == 0:
@@ -149,7 +149,7 @@ class SelectObject:
             if iter:
                 data = self.object_model.get_data(iter,range(self.ncols))
                 the_id = data[4]
-                return_value = self.db.try_to_find_object_from_id(the_id)
+                return_value = self.db.try_to_find_object_from_handle(the_id)
             else:
                 return_value = None
             self.top.destroy()

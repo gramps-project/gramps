@@ -50,7 +50,7 @@ class CountAncestors:
             })
         thisgen = []
         allgen = []
-        thisgen.append(person.get_id())
+        thisgen.append(person.get_handle())
         title = _("Number of ancestors of \"%s\" by generation") % person.get_primary_name().get_name()
         text = text + title + ':\n'
         thisgensize = 1
@@ -66,17 +66,17 @@ class CountAncestors:
                     text = text + _("Generation %d has %d individuals.\n") % (gen, thisgensize)
             temp = thisgen
             thisgen = []
-            for person_id in temp:
-                person = database.try_to_find_person_from_id(person_id)
-                family_id = person.get_main_parents_family_id()
-                if family_id:
-                    family = database.find_family_from_id(family_id)
-                    father_id = family.get_father_id()
-                    mother_id = family.get_mother_id()
-                    if father_id:
-                        thisgen.append(father_id)
-                    if mother_id:
-                        thisgen.append(mother_id)
+            for person_handle in temp:
+                person = database.try_to_find_person_from_handle(person_handle)
+                family_handle = person.get_main_parents_family_handle()
+                if family_handle:
+                    family = database.find_family_from_handle(family_handle)
+                    father_handle = family.get_father_handle()
+                    mother_handle = family.get_mother_handle()
+                    if father_handle:
+                        thisgen.append(father_handle)
+                    if mother_handle:
+                        thisgen.append(mother_handle)
             allgen = allgen + thisgen
 	  
         text = text + _("Total ancestors in generations %d to -1 is %d.\n") % (gen, len(allgen))

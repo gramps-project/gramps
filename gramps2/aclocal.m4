@@ -11,6 +11,49 @@
 # even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.
 
+dnl AM_GCONF_SOURCE_2
+dnl Defines GCONF_SCHEMA_CONFIG_SOURCE which is where you should install schemas
+dnl  (i.e. pass to gconftool-2
+dnl Defines GCONF_SCHEMA_FILE_DIR which is a filesystem directory where
+dnl  you should install foo.schemas files
+dnl
+
+AC_DEFUN(AM_GCONF_SOURCE_2,
+[
+  if test "x$GCONF_SCHEMA_INSTALL_SOURCE" = "x"; then
+    GCONF_SCHEMA_CONFIG_SOURCE=`gconftool-2 --get-default-source`
+  else
+    GCONF_SCHEMA_CONFIG_SOURCE=$GCONF_SCHEMA_INSTALL_SOURCE
+  fi
+
+  AC_ARG_WITH(gconf-source, 
+  [  --with-gconf-source=sourceaddress      Config database for installing schema files.],GCONF_SCHEMA_CONFIG_SOURCE="$withval",)
+
+  AC_SUBST(GCONF_SCHEMA_CONFIG_SOURCE)
+  AC_MSG_RESULT([Using config source $GCONF_SCHEMA_CONFIG_SOURCE for schema installation])
+
+  if test "x$GCONF_SCHEMA_FILE_DIR" = "x"; then
+    GCONF_SCHEMA_FILE_DIR='$(sysconfdir)/gconf/schemas/'
+  else
+    GCONF_SCHEMA_FILE_DIR=$GCONF_SCHEMA_FILE_DIR
+  fi
+
+  AC_ARG_WITH(gconf-schema-file-dir, 
+  [  --with-gconf-schema-file-dir=dir        Directory for installing schema files.],GCONF_SCHEMA_FILE_DIR="$withval",)
+
+  AC_SUBST(GCONF_SCHEMA_FILE_DIR)
+  AC_MSG_RESULT([Using $GCONF_SCHEMA_FILE_DIR as install directory for schema files])
+
+  AC_ARG_ENABLE(schemas-install,
+     [  --disable-schemas-install	Disable the schemas installation],
+     [case "${enableval}" in
+       yes) schemas_install=true ;;
+       no)  schemas_install=false ;;
+       *) AC_MSG_ERROR(bad value ${enableval} for --disable-schemas-install) ;;
+     esac],[schemas_install=true])
+     AM_CONDITIONAL(GCONF_SCHEMAS_INSTALL, test x$schemas_install = xtrue)
+])
+
 
 dnl PKG_CHECK_MODULES(GSTUFF, gtk+-2.0 >= 1.3 glib = 1.3.4, action-if, action-not)
 dnl defines GSTUFF_LIBS, GSTUFF_CFLAGS, see pkg-config man page
@@ -163,6 +206,49 @@ AC_PREREQ([2.50])dnl
 # expand $ac_aux_dir to an absolute path
 am_aux_dir=`cd $ac_aux_dir && pwd`
 ])
+
+# AM_CONDITIONAL                                              -*- Autoconf -*-
+
+# Copyright (C) 1997, 2000, 2001, 2003 Free Software Foundation, Inc.
+
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+
+# serial 6
+
+# AM_CONDITIONAL(NAME, SHELL-CONDITION)
+# -------------------------------------
+# Define a conditional.
+AC_DEFUN([AM_CONDITIONAL],
+[AC_PREREQ(2.52)dnl
+ ifelse([$1], [TRUE],  [AC_FATAL([$0: invalid condition: $1])],
+	[$1], [FALSE], [AC_FATAL([$0: invalid condition: $1])])dnl
+AC_SUBST([$1_TRUE])
+AC_SUBST([$1_FALSE])
+if $2; then
+  $1_TRUE=
+  $1_FALSE='#'
+else
+  $1_TRUE='#'
+  $1_FALSE=
+fi
+AC_CONFIG_COMMANDS_PRE(
+[if test -z "${$1_TRUE}" && test -z "${$1_FALSE}"; then
+  AC_MSG_ERROR([conditional "$1" was never defined.
+Usually this means the macro was only invoked conditionally.])
+fi])])
 
 # Do all the work for Automake.                            -*- Autoconf -*-
 

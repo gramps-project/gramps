@@ -190,10 +190,10 @@ class PlaceView:
         for place in mlist:
             used = 0
             for key in self.db.get_person_keys():
-                p = self.db.try_to_find_person_from_id(key)
+                p = self.db.try_to_find_person_from_handle(key)
                 event_list = []
-                for e in [p.get_birth_id(),p.get_death_id()] + p.get_event_list():
-                    event = self.db.find_event_from_id(e)
+                for e in [p.get_birth_handle(),p.get_death_handle()] + p.get_event_list():
+                    event = self.db.find_event_from_handle(e)
                     if event:
                         event_list.append(event)
                 if p.get_lds_baptism():
@@ -203,20 +203,20 @@ class PlaceView:
                 if p.get_lds_sealing():
                     event_list.append(p.get_lds_sealing())
                 for event in event_list:
-                    if event.get_place_id() == place.get_id():
+                    if event.get_place_handle() == place.get_handle():
                         used = 1
 
             for fid in self.db.get_family_keys():
-                f = self.db.find_family_from_id(fid)
+                f = self.db.find_family_from_handle(fid)
                 event_list = []
                 for e in f.get_event_list():
-                    event = self.db.find_event_from_id(e)
+                    event = self.db.find_event_from_handle(e)
                     if event:
                         event_list.append(event)
                 if f.get_lds_sealing():
                     event_list.append(f.get_lds_sealing())
                 for event in event_list:
-                    if event.get_place_id() == place.get_id():
+                    if event.get_place_handle() == place.get_handle():
                         used = 1
 
             if used == 1:
@@ -230,7 +230,7 @@ class PlaceView:
                                ans.query_response)
             else:
                 trans = self.db.start_transaction()
-                self.db.remove_place(place.get_id(),trans)
+                self.db.remove_place(place.get_handle(),trans)
                 self.db.add_transaction(trans,_("Delete Place (%s)") % place.title())
                 self.build_tree()
 
@@ -243,7 +243,7 @@ class PlaceView:
             EditPlace.EditPlace(self.parent, place, self.update_display)
 
     def blist(self,store,path,iter,list):
-        id = self.db.get_place_id(store.get_value(iter,1))
+        id = self.db.get_place_handle(store.get_value(iter,1))
         list.append(id)
 
     def merge(self):

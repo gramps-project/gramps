@@ -65,10 +65,10 @@ class SubstKeywords:
     $M -> Place of preferred marriage
     """
     
-    def __init__(self,database,person_id):
+    def __init__(self,database,person_handle):
         """Creates a new object and associates a person with it."""
 
-        person = database.try_to_find_person_from_id(person_id)
+        person = database.try_to_find_person_from_handle(person_handle)
         self.n = person.get_primary_name().get_regular_name()
         self.N = person.get_primary_name().get_name()
         self.b = ""
@@ -80,46 +80,46 @@ class SubstKeywords:
         self.m = ""
         self.M = ""
         
-        birth_id = person.get_birth_id()
-        if birth_id:
-            birth = database.find_event_from_id(birth_id)
+        birth_handle = person.get_birth_handle()
+        if birth_handle:
+            birth = database.find_event_from_handle(birth_handle)
             self.b = birth.get_date()
-            bplace_id = birth.get_place_id()
-            if bplace_id:
-                self.B = database.try_to_find_place_from_id(bplace_id).get_title()
-        death_id = person.get_death_id()
-        if death_id:
-            death = database.find_event_from_id(death_id)
+            bplace_handle = birth.get_place_handle()
+            if bplace_handle:
+                self.B = database.try_to_find_place_from_handle(bplace_handle).get_title()
+        death_handle = person.get_death_handle()
+        if death_handle:
+            death = database.find_event_from_handle(death_handle)
             self.d = death.get_date()
-            dplace_id = death.get_place_id()
-            if dplace_id:
-                self.D = database.try_to_find_place_from_id(dplace_id).get_title()
-        self.i = str(person_id)
+            dplace_handle = death.get_place_handle()
+            if dplace_handle:
+                self.D = database.try_to_find_place_from_handle(dplace_handle).get_title()
+        self.i = str(person_handle)
 
-        if person.get_family_id_list():
-            f_id = person.get_family_id_list()[0]
-            f = database.find_family_from_id(f_id)
-            father_id = f.get_father_id()
-            mother_id = f.get_mother_id()
-            if father_id == person_id:
-                if mother_id:
-                    mother = database.try_to_find_person_from_id(mother_id)
+        if person.get_family_handle_list():
+            f_id = person.get_family_handle_list()[0]
+            f = database.find_family_from_handle(f_id)
+            father_handle = f.get_father_handle()
+            mother_handle = f.get_mother_handle()
+            if father_handle == person_handle:
+                if mother_handle:
+                    mother = database.try_to_find_person_from_handle(mother_handle)
                     self.s = mother.get_primary_name().get_regular_name()
                     self.S = mother.get_primary_name().get_name()
             else:
-                if father_id:
-                    father = database.try_to_find_person_from_id(father_id)
+                if father_handle:
+                    father = database.try_to_find_person_from_handle(father_handle)
                     self.s = father.get_primary_name().get_regular_name()
                     self.S = father.get_primary_name().get_name()
             for e_id in f.get_event_list():
                 if not e_id:
                     continue
-                e = database.find_event_from_id(e_id)
+                e = database.find_event_from_handle(e_id)
                 if e.get_name() == 'Marriage':
                     self.m = e.get_date()
-                    mplace_id = e.get_place_id()
-                    if mplace_id:
-                        self.M = database.try_to_find_place_from_id(mplace_id).get_title()
+                    mplace_handle = e.get_place_handle()
+                    if mplace_handle:
+                        self.M = database.try_to_find_place_from_handle(mplace_handle).get_title()
 
     def replace(self,line):
         """Returns a new line of text with the substitutions performed."""

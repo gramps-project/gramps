@@ -274,7 +274,7 @@ PACKAGE_STRING='gramps 1.1.1'
 PACKAGE_BUGREPORT='gramps-bugs@lists.sourceforge.net'
 
 ac_unique_file="src/gramps.py"
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO AMTAR install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot RELEASE VERSIONSTRING MSGFMT MSGCONV ICONV LANGUAGES POFILES MOFILES PYTHON PYTHON_VERSION PYTHON_PREFIX PYTHON_EXEC_PREFIX PYTHON_PLATFORM pythondir pkgpythondir pyexecdir pkgpyexecdir BINSH PKG_CONFIG PYGTK_CFLAGS PYGTK_LIBS SK_CONFIG SCROLLKEEPER_BUILD_REQUIRED GNOMEHELP GPREFIX LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO AMTAR install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot GCONF_SCHEMA_CONFIG_SOURCE GCONF_SCHEMA_FILE_DIR GCONF_SCHEMAS_INSTALL_TRUE GCONF_SCHEMAS_INSTALL_FALSE RELEASE VERSIONSTRING MSGFMT MSGCONV ICONV LANGUAGES POFILES MOFILES PYTHON PYTHON_VERSION PYTHON_PREFIX PYTHON_EXEC_PREFIX PYTHON_PLATFORM pythondir pkgpythondir pyexecdir pkgpyexecdir BINSH PKG_CONFIG PYGTK_CFLAGS PYGTK_LIBS SK_CONFIG SCROLLKEEPER_BUILD_REQUIRED GNOMEHELP GPREFIX LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -788,6 +788,17 @@ if test -n "$ac_init_help"; then
      short | recursive ) echo "Configuration of gramps 1.1.1:";;
    esac
   cat <<\_ACEOF
+
+Optional Features:
+  --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
+  --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
+  --disable-schemas-install	Disable the schemas installation
+
+Optional Packages:
+  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-gconf-source=sourceaddress      Config database for installing schema files.
+  --with-gconf-schema-file-dir=dir        Directory for installing schema files.
 
 Report bugs to <gramps-bugs@lists.sourceforge.net>.
 _ACEOF
@@ -1670,6 +1681,65 @@ then
 fi
 
 
+  if test "x$GCONF_SCHEMA_INSTALL_SOURCE" = "x"; then
+    GCONF_SCHEMA_CONFIG_SOURCE=`gconftool-2 --get-default-source`
+  else
+    GCONF_SCHEMA_CONFIG_SOURCE=$GCONF_SCHEMA_INSTALL_SOURCE
+  fi
+
+
+# Check whether --with-gconf-source or --without-gconf-source was given.
+if test "${with_gconf_source+set}" = set; then
+  withval="$with_gconf_source"
+  GCONF_SCHEMA_CONFIG_SOURCE="$withval"
+fi;
+
+
+  echo "$as_me:$LINENO: result: Using config source $GCONF_SCHEMA_CONFIG_SOURCE for schema installation" >&5
+echo "${ECHO_T}Using config source $GCONF_SCHEMA_CONFIG_SOURCE for schema installation" >&6
+
+  if test "x$GCONF_SCHEMA_FILE_DIR" = "x"; then
+    GCONF_SCHEMA_FILE_DIR='$(sysconfdir)/gconf/schemas/'
+  else
+    GCONF_SCHEMA_FILE_DIR=$GCONF_SCHEMA_FILE_DIR
+  fi
+
+
+# Check whether --with-gconf-schema-file-dir or --without-gconf-schema-file-dir was given.
+if test "${with_gconf_schema_file_dir+set}" = set; then
+  withval="$with_gconf_schema_file_dir"
+  GCONF_SCHEMA_FILE_DIR="$withval"
+fi;
+
+
+  echo "$as_me:$LINENO: result: Using $GCONF_SCHEMA_FILE_DIR as install directory for schema files" >&5
+echo "${ECHO_T}Using $GCONF_SCHEMA_FILE_DIR as install directory for schema files" >&6
+
+  # Check whether --enable-schemas-install or --disable-schemas-install was given.
+if test "${enable_schemas_install+set}" = set; then
+  enableval="$enable_schemas_install"
+  case "${enableval}" in
+       yes) schemas_install=true ;;
+       no)  schemas_install=false ;;
+       *) { { echo "$as_me:$LINENO: error: bad value ${enableval} for --disable-schemas-install" >&5
+echo "$as_me: error: bad value ${enableval} for --disable-schemas-install" >&2;}
+   { (exit 1); exit 1; }; } ;;
+     esac
+else
+  schemas_install=true
+fi;
+
+
+if test x$schemas_install = xtrue; then
+  GCONF_SCHEMAS_INSTALL_TRUE=
+  GCONF_SCHEMAS_INSTALL_FALSE='#'
+else
+  GCONF_SCHEMAS_INSTALL_TRUE='#'
+  GCONF_SCHEMAS_INSTALL_FALSE=
+fi
+
+
+
 
 
 # Extract the first word of "msgfmt", so it can be a program name with args.
@@ -2465,6 +2535,13 @@ LIBOBJS=$ac_libobjs
 LTLIBOBJS=$ac_ltlibobjs
 
 
+if test -z "${GCONF_SCHEMAS_INSTALL_TRUE}" && test -z "${GCONF_SCHEMAS_INSTALL_FALSE}"; then
+  { { echo "$as_me:$LINENO: error: conditional \"GCONF_SCHEMAS_INSTALL\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+echo "$as_me: error: conditional \"GCONF_SCHEMAS_INSTALL\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
 
 : ${CONFIG_STATUS=./config.status}
 ac_clean_files_save=$ac_clean_files
@@ -3016,6 +3093,10 @@ s,@mkdir_p@,$mkdir_p,;t t
 s,@AWK@,$AWK,;t t
 s,@SET_MAKE@,$SET_MAKE,;t t
 s,@am__leading_dot@,$am__leading_dot,;t t
+s,@GCONF_SCHEMA_CONFIG_SOURCE@,$GCONF_SCHEMA_CONFIG_SOURCE,;t t
+s,@GCONF_SCHEMA_FILE_DIR@,$GCONF_SCHEMA_FILE_DIR,;t t
+s,@GCONF_SCHEMAS_INSTALL_TRUE@,$GCONF_SCHEMAS_INSTALL_TRUE,;t t
+s,@GCONF_SCHEMAS_INSTALL_FALSE@,$GCONF_SCHEMAS_INSTALL_FALSE,;t t
 s,@RELEASE@,$RELEASE,;t t
 s,@VERSIONSTRING@,$VERSIONSTRING,;t t
 s,@MSGFMT@,$MSGFMT,;t t

@@ -71,15 +71,15 @@ class DispBox:
         self.root = root
 
         self.name = GrampsCfg.get_nameof()(person)
-        birth_id = self.person.get_birth_id()
-        death_id = self.person.get_death_id()
-        if birth_id:
-            bd = db.find_event_from_id(birth_id).get_date()
+        birth_handle = self.person.get_birth_handle()
+        death_handle = self.person.get_death_handle()
+        if birth_handle:
+            bd = db.find_event_from_handle(birth_handle).get_date()
         else:
             bd = ""
 
-        if death_id:
-            dd = db.find_event_from_id(death_id).get_date()
+        if death_handle:
+            dd = db.find_event_from_handle(death_handle).get_date()
         else:
             dd = ""
             
@@ -119,7 +119,7 @@ class DispBox:
                                       fill_color_gdk=style.text[gtk.STATE_NORMAL],
                                       font=font, anchor=gtk.ANCHOR_WEST)
         self.group.connect('event',self.group_event)
-        self.group.set_data(_PERSON,person.get_id())
+        self.group.set_data(_PERSON,person.get_handle())
 
     def cleanup(self):
         self.shadow.destroy()
@@ -219,14 +219,14 @@ class PedigreeView:
         
         for t in list:
             if t:
-                birth_id = t[0].get_birth_id()
-                death_id = t[0].get_death_id()
-                if birth_id:
-                    birth = self.parent.db.find_event_from_id(birth_id).get_date()
+                birth_handle = t[0].get_birth_handle()
+                death_handle = t[0].get_death_handle()
+                if birth_handle:
+                    birth = self.parent.db.find_event_from_handle(birth_handle).get_date()
                 else:
                     birth = u""
-                if death_id:
-                    death = self.parent.db.find_event_from_id(death_id).get_date()
+                if death_handle:
+                    death = self.parent.db.find_event_from_handle(death_handle).get_date()
                 else:
                     death = u""
                     
@@ -267,9 +267,9 @@ class PedigreeView:
                                         anchor=gtk.ANCHOR_WEST)
         self.canvas_items.append(self.anchor_txt)
 
-        for family_id in self.active_person.get_family_id_list():
-            family = self.parent.db.find_family_from_id(family_id)
-            if len(family.get_child_id_list()) > 0:
+        for family_handle in self.active_person.get_family_handle_list():
+            family = self.parent.db.find_family_from_handle(family_handle)
+            if len(family.get_child_handle_list()) > 0:
                 button,arrow = self.make_arrow_button(gtk.ARROW_LEFT,
                                                       self.on_show_child_menu)
                 item = self.root.add(gnome.canvas.CanvasWidget, widget=button,
@@ -373,13 +373,13 @@ class PedigreeView:
 
             childlist = find_children(self.parent.db,self.active_person)
             if len(childlist) == 1:
-                child = self.parent.db.try_to_find_person_from_id(childlist[0])
+                child = self.parent.db.try_to_find_person_from_handle(childlist[0])
                 if child:
                     self.load_canvas(child)
             elif len(childlist) > 1:
                 myMenu = gtk.Menu()
-                for child_id in childlist:
-                    child = self.parent.db.try_to_find_person_from_id(child_id)
+                for child_handle in childlist:
+                    child = self.parent.db.try_to_find_person_from_handle(child_handle)
                     cname = GrampsCfg.get_nameof()(child)
                     menuitem = gtk.MenuItem(None)
                     if find_children(self.parent.db,child):
@@ -391,7 +391,7 @@ class PedigreeView:
                     label.set_alignment(0,0)
                     menuitem.add(label)
                     myMenu.append(menuitem)
-                    menuitem.set_data(_PERSON,child_id)
+                    menuitem.set_data(_PERSON,child_handle)
                     menuitem.connect("activate",self.on_childmenu_changed)
                     menuitem.show()
                 myMenu.popup(None,None,None,0,0)
@@ -401,8 +401,8 @@ class PedigreeView:
         """Callback for the pulldown menu selection, changing to the person
            attached with menu item."""
 
-        person_id = obj.get_data(_PERSON)
-        person = self.parent.db.try_to_find_person_from_id(person_id)
+        person_handle = obj.get_data(_PERSON)
+        person = self.parent.db.try_to_find_person_from_handle(person_handle)
         if person:
             self.load_canvas(person)
         return 1
@@ -413,7 +413,7 @@ class PedigreeView:
            to the button."""
 
         button,arrow = self.make_arrow_button(gtk.ARROW_RIGHT,self.change_to_parent)
-        button.set_data(_PERSON,parent.get_id())
+        button.set_data(_PERSON,parent.get_handle())
 
         item = self.root.add(gnome.canvas.CanvasWidget, widget=button, x=x, y=y+(h/2),
                              height=h, width=h, size_pixels=1,
@@ -426,8 +426,8 @@ class PedigreeView:
         """Callback to right pointing arrow button. Gets the person
            attached to the button and change the root person to that
            person, redrawing the view."""
-        person_id = obj.get_data(_PERSON)
-        person = self.parent.db.try_to_find_person_from_id(person_id)
+        person_handle = obj.get_data(_PERSON)
+        person = self.parent.db.try_to_find_person_from_handle(person_handle)
         if self.active_person:
             self.active_person = person
         self.load_canvas(person)
@@ -441,7 +441,7 @@ class PedigreeView:
         item = self.root.add(gnome.canvas.CanvasLine, width_pixels=2,
                              points=pts, line_style=ls,
                              fill_color_gdk=style.fg[gtk.STATE_NORMAL])
-        item.set_data(_PERSON,data.get_id())
+        item.set_data(_PERSON,data.get_handle())
         item.connect("event",self.line_event)
         self.canvas_items.append(item)
 
@@ -462,8 +462,8 @@ class PedigreeView:
     def line_event(self,obj,event):
         """Catch X events over a line and respond to the ones we care about"""
 
-        person_id = obj.get_data(_PERSON)
-        person = self.parent.db.try_to_find_person_from_id(person_id)
+        person_handle = obj.get_data(_PERSON)
+        person = self.parent.db.try_to_find_person_from_handle(person_handle)
         style = self.canvas.get_style()
 
         if event.type == gtk.gdk._2BUTTON_PRESS:
@@ -485,21 +485,21 @@ class PedigreeView:
         if depth > 5 or person == None:
             return
 
-        (family_id,m,f) = person.get_main_parents_family_idRel()
-        if family_id:
+        (family_handle,m,f) = person.get_main_parents_family_handleRel()
+        if family_handle:
             mrel = (m != "Birth")
             frel = (f != "Birth")
 
-        family = self.parent.db.find_family_from_id(family_id)
+        family = self.parent.db.find_family_from_handle(family_handle)
         list[index] = (person,val)
         if family != None:
-            father_id = family.get_father_id()
-            if father_id != None:
-                father = self.parent.db.try_to_find_person_from_id(father_id)
+            father_handle = family.get_father_handle()
+            if father_handle != None:
+                father = self.parent.db.try_to_find_person_from_handle(father_handle)
                 self.find_tree(father,(2*index)+1,depth+1,list,frel)
-            mother_id = family.get_mother_id()
-            if mother_id != None:
-                mother = self.parent.db.try_to_find_person_from_id(mother_id)
+            mother_handle = family.get_mother_handle()
+            if mother_handle != None:
+                mother = self.parent.db.try_to_find_person_from_handle(mother_handle)
                 self.find_tree(mother,(2*index)+2,depth+1,list,mrel)
 
     def on_canvas1_event(self,obj,event):
@@ -570,15 +570,15 @@ class PedigreeView:
 
         # Go over spouses and build their menu
         item = gtk.MenuItem(_("Spouses"))
-        fam_list = person.get_family_id_list()
+        fam_list = person.get_family_handle_list()
         no_spouses = 1
         for fam_id in fam_list:
-            family = self.parent.db.find_family_from_id(fam_id)
-            if family.get_father_id() == person.get_id():
-                sp_id = family.get_mother_id()
+            family = self.parent.db.find_family_from_handle(fam_id)
+            if family.get_father_handle() == person.get_handle():
+                sp_id = family.get_mother_handle()
             else:
-                sp_id = family.get_father_id()
-            spouse = self.parent.db.try_to_find_person_from_id(sp_id)
+                sp_id = family.get_father_handle()
+            spouse = self.parent.db.try_to_find_person_from_handle(sp_id)
             if not spouse:
                 continue
 
@@ -601,15 +601,15 @@ class PedigreeView:
         
         # Go over siblings and build their menu
         item = gtk.MenuItem(_("Siblings"))
-        pfam_list = person.get_parent_family_id_list()
+        pfam_list = person.get_parent_family_handle_list()
         no_siblings = 1
         for (f,mrel,frel) in pfam_list:
-            fam = self.parent.db.find_family_from_id(f)
-            sib_list = fam.get_child_id_list()
+            fam = self.parent.db.find_family_from_handle(f)
+            sib_list = fam.get_child_handle_list()
             for sib_id in sib_list:
-                if sib_id == person.get_id():
+                if sib_id == person.get_handle():
                     continue
-                sib = self.parent.db.try_to_find_person_from_id(sib_id)
+                sib = self.parent.db.try_to_find_person_from_handle(sib_id)
                 if not sib:
                     continue
 
@@ -633,8 +633,8 @@ class PedigreeView:
         item = gtk.MenuItem(_("Children"))
         no_children = 1
         childlist = find_children(self.parent.db,person)
-        for child_id in childlist:
-            child = self.parent.db.try_to_find_person_from_id(child_id)
+        for child_handle in childlist:
+            child = self.parent.db.try_to_find_person_from_handle(child_handle)
             if not child:
                 continue
         
@@ -653,7 +653,7 @@ class PedigreeView:
             label.show()
             label.set_alignment(0,0)
             child_item.add(label)
-            child_item.set_data(_PERSON,child_id)
+            child_item.set_data(_PERSON,child_handle)
             child_item.connect("activate",self.on_childmenu_changed)
             child_item.show()
             child_menu.append(child_item)
@@ -668,7 +668,7 @@ class PedigreeView:
         no_parents = 1
         par_list = find_parents(self.parent.db,person)
         for par_id in par_list:
-            par = self.parent.db.try_to_find_person_from_id(par_id)
+            par = self.parent.db.try_to_find_person_from_handle(par_id)
             if not par:
                 continue
 
@@ -741,14 +741,14 @@ def get_distance(db,orig_person,other_person):
     except RuntimeError,msg:
         return None
     
-    for person_id in firstList:
-        if person_id in secondList:
-            new_rank = firstMap[person_id]
+    for person_handle in firstList:
+        if person_handle in secondList:
+            new_rank = firstMap[person_handle]
             if new_rank < rank:
                 rank = new_rank
-                common = [ person_id ]
+                common = [ person_handle ]
             elif new_rank == rank:
-                common.append(person_id)
+                common.append(person_handle)
 
     if not common:
         return None
@@ -756,9 +756,9 @@ def get_distance(db,orig_person,other_person):
     firstRel = None
     secondRel = None
 
-    person_id = common[0]
-    secondRel = secondMap[person_id]
-    firstRel = firstMap[person_id]
+    person_handle = common[0]
+    secondRel = secondMap[person_handle]
+    firstRel = firstMap[person_handle]
     if firstRel == None or secondRel == None:
         return None
     return firstRel-secondRel
@@ -773,10 +773,10 @@ def find_children(db,p):
     Returns the list of all children's IDs for a person.
     """
     childlist = []
-    for family_id in p.get_family_id_list():
-        family = db.find_family_from_id(family_id)
-        for child_id in family.get_child_id_list():
-            childlist.append(child_id)
+    for family_handle in p.get_family_handle_list():
+        family = db.find_family_from_handle(family_handle)
+        for child_handle in family.get_child_handle_list():
+            childlist.append(child_handle)
     return childlist
 
 #-------------------------------------------------------------------------
@@ -789,12 +789,12 @@ def find_parents(db,p):
     Returns the unique list of all parents' IDs for a person.
     """
     parentlist = []
-    for (f,mrel,frel) in p.get_parent_family_id_list():
-        family = db.find_family_from_id(f)
-        father_id = family.get_father_id()
-        mother_id = family.get_mother_id()
-        if father_id not in parentlist:
-            parentlist.append(father_id)
-        if mother_id not in parentlist:
-            parentlist.append(mother_id)
+    for (f,mrel,frel) in p.get_parent_family_handle_list():
+        family = db.find_family_from_handle(f)
+        father_handle = family.get_father_handle()
+        mother_handle = family.get_mother_handle()
+        if father_handle not in parentlist:
+            parentlist.append(father_handle)
+        if mother_handle not in parentlist:
+            parentlist.append(mother_handle)
     return parentlist

@@ -197,53 +197,53 @@ class SourceView:
                            ans.query_response,self.topWindow)
         else:
             trans = self.db.start_transaction()
-            self.db.remove_source_id(source.get_id(),trans)
+            self.db.remove_source_handle(source.get_handle(),trans)
             n = source.get_title()
             self.db.add_transaction(trans,_("Delete Source (%s)") % n)
             self.build_tree()
 
     def is_used(self,source):
-        for key in self.db.get_place_id_keys():
-            p = self.db.get_place_id(key)
+        for key in self.db.get_place_handle_keys():
+            p = self.db.get_place_handle(key)
             for sref in p.get_source_references():
-                if sref.get_base_id() == source.get_id():
+                if sref.get_base_handle() == source.get_handle():
                     return 1
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)
-            for v_id in p.get_event_list() + [p.get_birth_id(), p.get_death_id()]:
-                v = self.db.find_event_from_id(v_id)
+            for v_id in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
+                v = self.db.find_event_from_handle(v_id)
                 if v:
                     for sref in v.get_source_references():
-                        if sref.get_base_id() == source.get_id():
+                        if sref.get_base_handle() == source.get_handle():
                             return 1
             for v in p.get_attribute_list():
                 for sref in v.get_source_references():
-                    if sref.get_base_id() == source.get_id():
+                    if sref.get_base_handle() == source.get_handle():
                         return 1
             for v in p.get_alternate_names() + [p.get_primary_name()]:
                 for sref in v.get_source_references():
-                    if sref.get_base_id() == source.get_id():
+                    if sref.get_base_handle() == source.get_handle():
                         return 1
             for v in p.get_address_list():
                 for sref in v.get_source_references():
-                    if sref.get_base_id() == source.get_id():
+                    if sref.get_base_handle() == source.get_handle():
                         return 1
         for p_id in self.db.get_object_keys():
-            p = self.db.try_to_find_object_from_id(p_id)
+            p = self.db.try_to_find_object_from_handle(p_id)
             for sref in p.get_source_references():
-                if sref.get_base_id() == source.get_id():
+                if sref.get_base_handle() == source.get_handle():
                     return 1
         for p_id in self.db.get_family_keys():
-            p = self.db.find_family_from_id(p_id)
+            p = self.db.find_family_from_handle(p_id)
             for v_id in p.get_event_list():
-                v = self.db.find_event_from_id(v_id)
+                v = self.db.find_event_from_handle(v_id)
                 if v:
                     for sref in v.get_source_references():
-                        if sref.get_base_id() == source.get_id():
+                        if sref.get_base_handle() == source.get_handle():
                             return 1
             for v in p.get_attribute_list():
                 for sref in v.get_source_references():
-                    if sref.get_base_id() == source.get_id():
+                    if sref.get_base_handle() == source.get_handle():
                         return 1
         return 0
 

@@ -121,12 +121,12 @@ def _make_default_style(default_style):
 _style_file = "custom_text.xml"
 _style_name = "default" 
 
-_person_id = ""
+_person_handle = ""
 _top_text = ""
 _middle_text = ""
 _bottom_text = ""
 
-_options = ( _person_id, _top_text, _middle_text, _bottom_text )
+_options = ( _person_handle, _top_text, _middle_text, _bottom_text )
 
 
 #------------------------------------------------------------------------
@@ -245,7 +245,7 @@ class CustomTextDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.get_id(), 
+        self.options = ( self.person.get_handle(), 
             self.top_text, self.middle_text, self.bottom_text )
         self.style_name = self.selected_style.get_name() 
 

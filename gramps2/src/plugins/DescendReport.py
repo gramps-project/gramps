@@ -77,16 +77,16 @@ class DescendantReport:
         self.by_birthdate = sort.by_birthdate
         
     def dump_dates(self, person):
-        birth_id = person.get_birth_id()
-        if birth_id:
-            birth = self.database.find_event_from_id(birth_id).get_date_object().get_start_date()
+        birth_handle = person.get_birth_handle()
+        if birth_handle:
+            birth = self.database.find_event_from_handle(birth_handle).get_date_object().get_start_date()
             birth_year_valid = birth.get_year_valid()
         else:
             birth_year_valid = 0
 
-        death_id = person.get_death_id()
-        if death_id:
-            death = self.database.find_event_from_id(death_id).get_date_object().get_start_date()
+        death_handle = person.get_death_handle()
+        if death_handle:
+            death = self.database.find_event_from_handle(death_handle).get_date_object().get_start_date()
             death_year_valid = death.get_year_valid()
         else:
             death_year_valid = 0
@@ -126,14 +126,14 @@ class DescendantReport:
             return
         
         childlist = []
-        for family_id in person.get_family_id_list():
-            family = self.database.find_family_from_id(family_id)
-            for child_id in family.get_child_id_list():
-                childlist.append(child_id)
+        for family_handle in person.get_family_handle_list():
+            family = self.database.find_family_from_handle(family_handle)
+            for child_handle in family.get_child_handle_list():
+                childlist.append(child_handle)
 
         childlist.sort(self.by_birthdate)
-        for child_id in childlist:
-            child = self.database.try_to_find_person_from_id(child_id)
+        for child_handle in childlist:
+            child = self.database.try_to_find_person_from_handle(child_handle)
             self.dump(level+1,child)
 
 #------------------------------------------------------------------------
@@ -199,10 +199,10 @@ def report(database,person):
 _style_file = "descend_report.xml"
 _style_name = "default" 
 
-_person_id = ""
+_person_handle = ""
 _max_gen = 1
 _pg_brk = 0
-_options = ( _person_id, _max_gen, _pg_brk )
+_options = ( _person_handle, _max_gen, _pg_brk )
 
 #------------------------------------------------------------------------
 #
@@ -266,7 +266,7 @@ class DescendantBareReportDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.get_id(), self.max_gen, self.pg_brk )
+        self.options = ( self.person.get_handle(), self.max_gen, self.pg_brk )
         self.style_name = self.selected_style.get_name()
 
 #------------------------------------------------------------------------

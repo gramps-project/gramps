@@ -178,7 +178,7 @@ class MediaView:
         
         id = store.get_value(iter,1)
         
-        mobj = self.db.try_to_find_object_from_id(id)
+        mobj = self.db.try_to_find_object_from_handle(id)
         type = mobj.get_mime_type()
         type_name = Utils.get_mime_description(type)
         path = mobj.get_path()
@@ -192,7 +192,7 @@ class MediaView:
             if not pexists:
                 fexists = 0
         
-        self.mid.set_text(mobj.get_id())
+        self.mid.set_text(mobj.get_handle())
         self.mtype.set_text(type_name)
         self.mdesc.set_text(mobj.get_description())
         if len(path) == 0 or fexists == 0:
@@ -226,7 +226,7 @@ class MediaView:
         store,iter = self.selection.get_selected()
         if iter:
             id = store.get_value(iter,1)
-            object = self.db.try_to_find_object_from_id(id)
+            object = self.db.try_to_find_object_from_handle(id)
             self.obj = object
             mime_type = object.get_mime_type()
             
@@ -267,7 +267,7 @@ class MediaView:
     
     def popup_convert_to_private(self, obj):
         path = self.db.get_save_path()
-        id = self.obj.get_id()
+        id = self.obj.get_handle()
         name = RelImage.import_media_object(self.obj.get_path(),path,id)
         if name:
             self.obj.set_path(name)
@@ -292,7 +292,7 @@ class MediaView:
         list_store, iter = self.selection.get_selected()
         if iter:
             id = list_store.get_value(iter,1)
-            object = self.db.try_to_find_object_from_id(id)
+            object = self.db.try_to_find_object_from_handle(id)
             ImageSelect.GlobalMediaProperties(self.db,object,self.load_media,
                                                 self,self.topWindow)
 
@@ -302,7 +302,7 @@ class MediaView:
             return
 
         id = store.get_value(iter,1)
-        mobj = self.db.try_to_find_object_from_id(id)
+        mobj = self.db.try_to_find_object_from_handle(id)
         if self.is_object_used(mobj):
             ans = ImageSelect.DeleteMediaQuery(mobj,self.db,self.build_tree)
             QuestionDialog(_('Delete Media Object?'),
@@ -314,30 +314,30 @@ class MediaView:
                            ans.query_response)
         else:
             trans = self.db.start_transaction()
-            self.db.remove_object(mobj.get_id(),trans)
+            self.db.remove_object(mobj.get_handle(),trans)
             self.db.add_transaction(trans,_("Remove Media Object"))
             self.build_tree()
 
     def is_object_used(self,mobj):
-        for family_id in self.db.get_family_keys():
-            p = self.db.find_family_from_id(family_id)
+        for family_handle in self.db.get_family_keys():
+            p = self.db.find_family_from_handle(family_handle)
             for o in p.get_media_list():
-                if o.get_reference_id() == mobj.get_id():
+                if o.get_reference_handle() == mobj.get_handle():
                     return 1
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)
             for o in p.get_media_list():
-                if o.get_reference_id() == mobj.get_id():
+                if o.get_reference_handle() == mobj.get_handle():
                     return 1
         for key in self.db.get_source_keys():
             p = self.db.get_source(key)
             for o in p.get_media_list():
-                if o.get_reference_id() == mobj.get_id():
+                if o.get_reference_handle() == mobj.get_handle():
                     return 1
-        for key in self.db.get_place_id_keys():
-            p = self.db.get_place_id(key)
+        for key in self.db.get_place_handle_keys():
+            p = self.db.get_place_handle(key)
             for o in p.get_media_list():
-                if o.get_reference_id() == mobj.get_id():
+                if o.get_reference_handle() == mobj.get_handle():
                     return 1
         return 0
 
@@ -346,7 +346,7 @@ class MediaView:
         if not iter:
             return
         if (const.dnd_images):
-            object = self.db.try_to_find_object_from_id(store.get_value(iter,1))
+            object = self.db.try_to_find_object_from_handle(store.get_value(iter,1))
             mtype = object.get_mime_type()
             name = Utils.thumb_path(self.db.get_save_path(),object)
             pix = gtk.gdk.pixbuf_new_from_file(name)
@@ -382,7 +382,7 @@ class MediaView:
                 if GrampsCfg.get_media_reference() == 0:
                     name = RelImage.import_media_object(name,
                                                         self.db.get_save_path(),
-                                                        photo.get_id())
+                                                        photo.get_handle())
                     if name:
                         photo.set_path(name)
 
@@ -408,9 +408,9 @@ class MediaView:
                 trans = self.db.start_transaction()
                 self.db.add_object(photo,trans)
                 oref = RelLib.MediaRef()
-                oref.set_reference_id(photo.get_id())
+                oref.set_reference_handle(photo.get_handle())
                 try:
-                    id = photo.get_id()
+                    id = photo.get_handle()
                     path = self.db.get_save_path()
                     name = RelImage.import_media_object(tfile,path,id)
                     if name:

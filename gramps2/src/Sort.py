@@ -79,8 +79,8 @@ class Sort:
     def by_last_name(self,first_id,second_id):
         """Sort routine for comparing two last names. If last names are equal,
         uses the given name and suffix"""
-        first = self.database.try_to_find_person_from_id(first_id)
-        second = self.database.try_to_find_person_from_id(second_id)
+        first = self.database.try_to_find_person_from_handle(first_id)
+        second = self.database.try_to_find_person_from_handle(second_id)
         
         name1 = first.get_primary_name()
         name2 = second.get_primary_name()
@@ -101,18 +101,18 @@ class Sort:
     def by_birthdate(self,first_id,second_id):
         """Sort routine for comparing two people by birth dates. If the birth dates
         are equal, sorts by name"""
-        first = self.database.try_to_find_person_from_id(first_id)
-        second = self.database.try_to_find_person_from_id(second_id)
+        first = self.database.try_to_find_person_from_handle(first_id)
+        second = self.database.try_to_find_person_from_handle(second_id)
 
-        birth_id1 = first.get_birth_id()
-        if birth_id1:
-            date1 = self.database.find_event_from_id(birth_id1).get_date_object()
+        birth_handle1 = first.get_birth_handle()
+        if birth_handle1:
+            date1 = self.database.find_event_from_handle(birth_handle1).get_date_object()
         else:
             date1 = Date.Date()
 
-        birth_id2 = second.get_birth_id()
-        if birth_id2:
-            date2 = self.database.find_event_from_id(birth_id2).get_date_object()
+        birth_handle2 = second.get_birth_handle()
+        if birth_handle2:
+            date2 = self.database.find_event_from_handle(birth_handle2).get_date_object()
         else:
             date2 = Date.Date()
 
@@ -125,6 +125,6 @@ class Sort:
         """Sort routine for comparing two events by their dates. """
         if not (a_id and b_id):
             return 0
-        a = self.database.find_event_from_id(a_id)
-        b = self.database.find_event_from_id(b_id)
+        a = self.database.find_event_from_handle(a_id)
+        b = self.database.find_event_from_handle(b_id)
         return Date.compare_dates(a.get_date_object(),b.get_date_object())

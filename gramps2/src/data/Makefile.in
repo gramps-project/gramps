@@ -70,6 +70,10 @@ DEFS = @DEFS@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
+GCONF_SCHEMAS_INSTALL_FALSE = @GCONF_SCHEMAS_INSTALL_FALSE@
+GCONF_SCHEMAS_INSTALL_TRUE = @GCONF_SCHEMAS_INSTALL_TRUE@
+GCONF_SCHEMA_CONFIG_SOURCE = @GCONF_SCHEMA_CONFIG_SOURCE@
+GCONF_SCHEMA_FILE_DIR = @GCONF_SCHEMA_FILE_DIR@
 GNOMEHELP = @GNOMEHELP@
 GPREFIX = @GPREFIX@
 ICONV = @ICONV@
@@ -142,13 +146,13 @@ dist_pkgdata_DATA = gedcom.xml \
 	       papersize.xml \
 	       tips.xml \
 	       gnome-mime-application-x-gramps.png \
-               gnome-mime-application-x-gedcom.png \
+           gnome-mime-application-x-gedcom.png \
 	       gnome-mime-application-x-gramps-package.png \
 	       gramps.applications \
 	       gramps.desktop \
 	       gramps.svg \
 	       gramps.keys \
-               gramps.mime
+           gramps.mime
 
 EXTRA_DIST = $(dist_pkgdata_DATA)
 all: all-recursive
@@ -458,7 +462,12 @@ uninstall-info: uninstall-info-recursive
 	uninstall-info-am uninstall-local
 
 
-install-data-local:
+install-schemas:
+	$(INSTALL_DATA) gramps.schemas $(DESTDIR)/etc/gconf/schemas
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
+		gconftool-2 --makefile-install-rule gramps.schemas
+
+install-data-local:    install-schemas
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/gnome/apps/Applications
 	$(INSTALL_DATA) gramps.desktop $(DESTDIR)$(prefix)/share/applications
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/icons/gnome/48x48/mimetypes/
@@ -477,6 +486,9 @@ uninstall-local:
 	-rm $(DESTDIR)$(prefix)/share/mime-info/gramps.keys
 	-rm $(DESTDIR)$(prefix)/share/mime-info/gramps.mime
 	-rm $(DESTDIR)$(prefix)/share/mime/packages/gramps.xml
+	-rm $(DESTDIR)/etc/gconf/schemas/gramps.schemas
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
+		gconftool-2 --makefile-uninstall-rule gramps.schemas
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

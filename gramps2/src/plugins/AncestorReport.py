@@ -64,24 +64,24 @@ class AncestorReport(Report.Report):
         else:
             self.standalone = 0
         
-    def filter(self,person_id,index,generation=1):
-        if not person_id or generation >= self.max_generations:
+    def filter(self,person_handle,index,generation=1):
+        if not person_handle or generation >= self.max_generations:
             return
-        self.map[index] = person_id
+        self.map[index] = person_handle
 
-        person = self.database.try_to_find_person_from_id(person_id)
-        family_id = person.get_main_parents_family_id()
-        if family_id:
-            family = self.database.find_family_from_id(family_id)
-            self.filter(family.get_father_id(),index*2,generation+1)
-            self.filter(family.get_mother_id(),(index*2)+1,generation+1)
+        person = self.database.try_to_find_person_from_handle(person_handle)
+        family_handle = person.get_main_parents_family_handle()
+        if family_handle:
+            family = self.database.find_family_from_handle(family_handle)
+            self.filter(family.get_father_handle(),index*2,generation+1)
+            self.filter(family.get_mother_handle(),(index*2)+1,generation+1)
 
     def write_report(self):
 
         if self.newpage:
             self.doc.page_break()
 
-        self.filter(self.start.get_id(),1)
+        self.filter(self.start.get_handle(),1)
 
         name = self.start.get_primary_name().get_regular_name()
         self.doc.start_paragraph("AHN-Title")
@@ -104,8 +104,8 @@ class AncestorReport(Report.Report):
                 generation = generation + 1
 
             self.doc.start_paragraph("AHN-Entry","%s." % str(key))
-            person_id = self.map[key]
-            person = self.database.try_to_find_person_from_id(person_id)
+            person_handle = self.map[key]
+            person = self.database.try_to_find_person_from_handle(person_handle)
             name = person.get_primary_name().get_regular_name()
         
             self.doc.start_bold()
@@ -118,18 +118,18 @@ class AncestorReport(Report.Report):
 
             # Check birth record
         
-            birth_id = person.get_birth_id()
-            if birth_id:
-                birth = self.database.find_event_from_id(birth_id)
+            birth_handle = person.get_birth_handle()
+            if birth_handle:
+                birth = self.database.find_event_from_handle(birth_handle)
                 date = birth.get_date_object().get_start_date()
-                place_id = birth.get_place_id()
-                if place_id:
-                    place = self.database.try_to_find_place_from_id(place_id).get_title()
+                place_handle = birth.get_place_handle()
+                if place_handle:
+                    place = self.database.try_to_find_place_from_handle(place_handle).get_title()
                 else:
                     place = u''
                 if place[-1:] == '.':
                     place = place[:-1]
-                if date.get_date() != "" or place_id:
+                if date.get_date() != "" or place_handle:
                     if date.get_date() != "":
                         if date.get_day_valid() and date.get_month_valid():
                             if place != "":
@@ -148,23 +148,23 @@ class AncestorReport(Report.Report):
                         self.doc.write_text(t)
 
             buried = None
-            for event_id in person.get_event_list():
-                event = self.database.find_event_from_id(event_id)
+            for event_handle in person.get_event_list():
+                event = self.database.find_event_from_handle(event_handle)
                 if string.lower(event.get_name()) == "burial":
                     buried = event
         
-            death_id = person.get_death_id()
-            if death_id:
-                death = self.database.find_event_from_id(death_id)
+            death_handle = person.get_death_handle()
+            if death_handle:
+                death = self.database.find_event_from_handle(death_handle)
                 date = death.get_date_object().get_start_date()
-                place_id = death.get_place_id()
-                if place_id:
-                    place = self.database.try_to_find_place_from_id(place_id).get_title()
+                place_handle = death.get_place_handle()
+                if place_handle:
+                    place = self.database.try_to_find_place_from_handle(place_handle).get_title()
                 else:
                     place = u''
                 if place[-1:] == '.':
                     place = place[:-1]
-                if date.get_date() != "" or place_id:
+                if date.get_date() != "" or place_handle:
                     if person.get_gender() == RelLib.Person.male:
                         male = 1
                     else:
@@ -202,14 +202,14 @@ class AncestorReport(Report.Report):
 
                     if buried:
                         date = buried.get_date_object().get_start_date()
-                        place_id = buried.get_place_id()
-                        if place_id:
-                            place = self.database.try_to_find_place_from_id(place_id).get_title()
+                        place_handle = buried.get_place_handle()
+                        if place_handle:
+                            place = self.database.try_to_find_place_from_handle(place_handle).get_title()
                         else:
                             place = u''
                         if place[-1:] == '.':
                             place = place[:-1]
-                        if date.get_date() != "" or place_id:
+                        if date.get_date() != "" or place_handle:
                             if date.get_date() != "":
                                 if date.get_day_valid() and date.get_month_valid():
                                     if place != "":
@@ -308,10 +308,10 @@ def report(database,person):
 _style_file = "ancestor_report.xml"
 _style_name = "default" 
 
-_person_id = ""
+_person_handle = ""
 _max_gen = 10
 _pg_brk = 0
-_options = ( _person_id, _max_gen, _pg_brk )
+_options = ( _person_handle, _max_gen, _pg_brk )
 
 #------------------------------------------------------------------------
 #
@@ -374,7 +374,7 @@ class AncestorBareReportDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.get_id(), self.max_gen, self.pg_brk )
+        self.options = ( self.person.get_handle(), self.max_gen, self.pg_brk )
         self.style_name = self.selected_style.get_name() 
 
 #------------------------------------------------------------------------

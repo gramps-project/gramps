@@ -670,7 +670,7 @@ class BookReportSelector:
             item = BookItem(name)
             options = saved_item.get_options()
             if not same_db or not options[0]:
-                options[0] = self.person.get_id()
+                options[0] = self.person.get_handle()
             item.set_options(options)
             item.set_style_name(saved_item.get_style_name())
             self.book.append_item(item)
@@ -679,7 +679,7 @@ class BookReportSelector:
             if data[1] == _("Title"):
                 data.append(_("Not Applicable"))
             else:
-                pname = self.db.try_to_find_person_from_id(options[0])
+                pname = self.db.try_to_find_person_from_handle(options[0])
                 data.append(pname.get_primary_name().get_regular_name())
             self.bk_model.add(data)
 
@@ -701,7 +701,7 @@ class BookReportSelector:
         item = BookItem(data[0])
         options = item.get_options()
         if not options[0]:
-            options[0] = self.person.get_id()
+            options[0] = self.person.get_handle()
             item.set_options(options)
         self.book.append_item(item)
 

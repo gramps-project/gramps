@@ -117,10 +117,10 @@ class PeopleModel(gtk.GenericTreeModel):
         val = 0
         entries = self.sname_sub[surname]
         entries.sort(self.byname)
-        for person_id in entries:
+        for person_handle in entries:
             tpl = (surname,val)
-            self.iter2path[person_id] = tpl
-            self.path2iter[tpl] = person_id
+            self.iter2path[person_handle] = tpl
+            self.path2iter[tpl] = person_handle
             val += 1
         return 0
     
@@ -136,15 +136,15 @@ class PeopleModel(gtk.GenericTreeModel):
         if not self.db.is_open():
             return
 
-        for person_id in self.db.get_person_keys():
+        for person_handle in self.db.get_person_keys():
             
-            person = self.db.try_to_find_person_from_id(person_id)
+            person = self.db.try_to_find_person_from_handle(person_handle)
             surname = unicode(person.get_primary_name().get_surname())
 
             if self.sname_sub.has_key(surname):
-                self.sname_sub[surname].append(person_id)
+                self.sname_sub[surname].append(person_handle)
             else:
-                self.sname_sub[surname] = [person_id]
+                self.sname_sub[surname] = [person_handle]
 
         sval = 0
         name_list = self.db.get_surnames()
@@ -155,10 +155,10 @@ class PeopleModel(gtk.GenericTreeModel):
                 val = 0
                 entries = self.sname_sub[name]
                 entries.sort(self.byname)
-                for person_id in entries:
+                for person_handle in entries:
                     tpl = (name,val)
-                    self.iter2path[person_id] = tpl
-                    self.path2iter[tpl] = person_id
+                    self.iter2path[person_handle] = tpl
+                    self.path2iter[tpl] = person_handle
                     val += 1
                 sval += 1
         self.db.set_people_view_maps(self.get_maps())
@@ -171,7 +171,7 @@ class PeopleModel(gtk.GenericTreeModel):
                 self.sname_sub)
 
     def add_person(self,person):
-        pid = person.get_id()
+        pid = person.get_handle()
         need = 0
         surname = person.get_primary_name().get_surname()
         if self.sname_sub.has_key(surname):
@@ -195,11 +195,11 @@ class PeopleModel(gtk.GenericTreeModel):
         val = 0
         entries = self.sname_sub[surname]
         entries.sort(self.byname)
-        for person_id in entries:
+        for person_handle in entries:
             tpl = (surname,val)
-            self.iter2path[person_id] = tpl
-            self.path2iter[tpl] = person_id
-            if person_id == pid:
+            self.iter2path[person_handle] = tpl
+            self.path2iter[tpl] = person_handle
+            if person_handle == pid:
                 column = val
             val += 1
 
@@ -361,32 +361,32 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_birth_day(self,data):
         if data[_BIRTH_COL]:
-            return self.db.find_event_from_id(data[_BIRTH_COL]).get_date()
+            return self.db.find_event_from_handle(data[_BIRTH_COL]).get_date()
         else:
             return u""
 
     def column_death_day(self,data):
         if data[_DEATH_COL]:
-            return self.db.find_event_from_id(data[_DEATH_COL]).get_date()
+            return self.db.find_event_from_handle(data[_DEATH_COL]).get_date()
         else:
             return u""
         
     def column_birth_place(self,data):
         if data[_BIRTH_COL]:
-            event = self.db.find_event_from_id(data[_BIRTH_COL])
+            event = self.db.find_event_from_handle(data[_BIRTH_COL])
             if event:
-                place_id = event.get_place_id()
-                if place_id:
-                    return self.db.try_to_find_place_from_id(place_id).get_title()
+                place_handle = event.get_place_handle()
+                if place_handle:
+                    return self.db.try_to_find_place_from_handle(place_handle).get_title()
         return u""
 
     def column_death_place(self,data):
         if data[_DEATH_COL]:
-            event = self.db.find_event_from_id(data[_DEATH_COL])
+            event = self.db.find_event_from_handle(data[_DEATH_COL])
             if event:
-                place_id = event.get_place_id()
-                if place_id:
-                    return self.db.try_to_find_place_from_id(place_id).get_title()
+                place_handle = event.get_place_handle()
+                if place_handle:
+                    return self.db.try_to_find_place_from_handle(place_handle).get_title()
         return u""
 
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]

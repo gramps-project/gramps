@@ -88,7 +88,7 @@ class DesBrowse:
         self.tree.set_rules_hint(gtk.TRUE)
         self.tree.set_headers_visible(gtk.FALSE)
         
-        self.add_to_tree(None,None,self.active.get_id())
+        self.add_to_tree(None,None,self.active.get_handle())
         self.tree.expand_all()
         self.tree.connect('event',self.button_press_event)
 
@@ -116,16 +116,16 @@ class DesBrowse:
     def present(self,obj):
         self.window.present()
 
-    def add_to_tree(self,parent_id,sib_id,person_id):
+    def add_to_tree(self,parent_id,sib_id,person_handle):
         item_id = self.model.insert_after(parent_id,sib_id)
-        person = self.db.try_to_find_person_from_id(person_id)
+        person = self.db.try_to_find_person_from_handle(person_handle)
         self.model.set(item_id,0,GrampsCfg.get_nameof()(person))
-        self.model.set(item_id,1,person_id)
+        self.model.set(item_id,1,person_handle)
         prev_id = None
-        for family_id in person.get_family_id_list():
-            family = self.db.find_family_from_id(family_id)
-            for child_id in family.get_child_id_list():
-                prev_id = self.add_to_tree(item_id,prev_id,child_id)
+        for family_handle in person.get_family_handle_list():
+            family = self.db.find_family_from_handle(family_handle)
+            for child_handle in family.get_child_handle_list():
+                prev_id = self.add_to_tree(item_id,prev_id,child_handle)
         return item_id
     
     def button_press_event(self,obj,event):
@@ -134,8 +134,8 @@ class DesBrowse:
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             store,iter = self.tree.get_selection().get_selected()
             if iter:
-                person_id = store.get_value(iter,1)
-                person = self.db.try_to_find_person_from_id(person_id)
+                person_handle = store.get_value(iter,1)
+                person = self.db.try_to_find_person_from_handle(person_handle)
                 EditPerson.EditPerson(self.parent,person,self.db,self.callback)
 
 #------------------------------------------------------------------------

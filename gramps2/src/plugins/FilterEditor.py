@@ -174,7 +174,7 @@ class MyID(gtk.HBox):
         if val == None:
             self.set_text('')
         else:
-            self.set_text(val.get_id())
+            self.set_text(val.get_handle())
         
     def get_text(self):
         return unicode(self.entry.get_text())
@@ -533,8 +533,8 @@ class EditRule:
         self.pmap = {}
         self.add_places = []
 
-        for p_id in self.db.get_place_ids():
-            p = self.db.try_to_find_place_from_id(p_id)
+        for p_id in self.db.get_place_handles():
+            p = self.db.try_to_find_place_from_handle(p_id)
             self.pmap[p.get_title()] = p_id
 
         self.active_rule = val
@@ -764,8 +764,8 @@ class ShowResults:
 
         n = []
         for p_id in id_list:
-            p = db.try_to_find_person_from_id(p_id)
-            n.append ("%s [%s]\n" % (p.get_primary_name().get_name(),p.get_id()))
+            p = db.try_to_find_person_from_handle(p_id)
+            n.append ("%s [%s]\n" % (p.get_primary_name().get_name(),p.get_handle()))
 
         n.sort ()
         text.get_buffer().set_text(string.join (n, ''))

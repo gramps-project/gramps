@@ -160,7 +160,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if type(common) == types.StringType or type(common) == types.UnicodeType:
             return (common,[])
         elif common:
-            person_id = common[0]
+            person_handle = common[0]
         else:
             return ("",[])
 

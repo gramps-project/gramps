@@ -80,9 +80,9 @@ class ChooseParents:
         self.parent = parent
         self.db = db
         self.child_windows = {}
-        self.person = self.db.try_to_find_person_from_id(person.get_id())
+        self.person = self.db.try_to_find_person_from_handle(person.get_handle())
         if family:
-            self.family = self.db.find_family_from_id(family.get_id())
+            self.family = self.db.find_family_from_handle(family.get_handle())
         else:
             self.family = None
         self.family_update = family_update
@@ -96,21 +96,21 @@ class ChooseParents:
         self.father_filter = self.likely_father_filter
         self.mother_filter = self.likely_mother_filter
 
-        birth_event = self.db.find_event_from_id(self.person.get_birth_id())
+        birth_event = self.db.find_event_from_handle(self.person.get_birth_handle())
         if birth_event:
             self.bday = birth_event.get_date_object()
         else:
             self.bday = None
 
-        death_event = self.db.find_event_from_id(self.person.get_death_id())
+        death_event = self.db.find_event_from_handle(self.person.get_death_handle())
         if death_event:
             self.dday = death_event.get_date_object()
         else:
             self.dday = None
 
         if self.family:
-            self.father = self.family.get_father_id()
-            self.mother = self.family.get_mother_id()
+            self.father = self.family.get_father_handle()
+            self.mother = self.family.get_mother_handle()
         else:
             self.mother = None
             self.father = None
@@ -139,7 +139,7 @@ class ChooseParents:
         self.build_father_list()
         self.build_mother_list()
 
-        for (f,mr,fr) in self.person.get_parent_family_id_list():
+        for (f,mr,fr) in self.person.get_parent_family_handle_list():
             if f == self.family:
                 self.mother_rel.set_text(_(mr))
                 self.father_rel.set_text(_(fr))
@@ -250,27 +250,27 @@ class ChooseParents:
     def likely_father_filter(self,person):
         if person.get_gender() != RelLib.Person.male:
             return 0
-        if self.exclude.has_key(person.get_id()):
+        if self.exclude.has_key(person.get_handle()):
             return 0
         return self.likely_filter(person)
 
     def likely_mother_filter(self,person):
         if person.get_gender() != RelLib.Person.female:
             return 0
-        if self.exclude.has_key(person.get_id()):
+        if self.exclude.has_key(person.get_handle()):
             return 0
         return self.likely_filter(person)
 
     def likely_filter(self,person):
-        if person.get_id() == self.person.get_id():
+        if person.get_handle() == self.person.get_handle():
             return 0
-        birth_event = self.db.find_event_from_id(person.get_birth_id())
+        birth_event = self.db.find_event_from_handle(person.get_birth_handle())
         if birth_event:
             pbday = birth_event.get_date_object()
         else:
             pbday = None
                 
-        death_event = self.db.find_event_from_id(person.get_death_id())
+        death_event = self.db.find_event_from_handle(person.get_death_handle())
         if death_event:
             pdday = death_event.get_date_object()
         else:
@@ -304,13 +304,13 @@ class ChooseParents:
         return 1
 
     def build_exclude_list(self):
-        self.exclude = { self.person.get_id() : 1 }
-        for family_id in self.person.get_family_id_list():
-            fam = self.db.find_family_from_id(family_id)
-            for id in [fam.get_father_id(), fam.get_mother_id()] + \
-                    fam.get_child_id_list():
+        self.exclude = { self.person.get_handle() : 1 }
+        for family_handle in self.person.get_family_handle_list():
+            fam = self.db.find_family_from_handle(family_handle)
+            for handle in [fam.get_father_handle(), fam.get_mother_handle()] + \
+                    fam.get_child_handle_list():
                 if id:
-                    self.exclude[id] = 1
+                    self.exclude[handle] = 1
 
     def redrawf(self):
         """Redraws the potential father list"""
@@ -320,7 +320,7 @@ class ChooseParents:
         self.build_exclude_list()
         
         for pid in self.db.get_person_keys():
-            person = self.db.try_to_find_person_from_id(pid)
+            person = self.db.try_to_find_person_from_handle(pid)
             visible = self.father_filter(person)
             if visible:
                 self.father_nsort.set_visible(pid,visible)
@@ -343,7 +343,7 @@ class ChooseParents:
         self.build_exclude_list()
         
         for pid in self.db.get_person_keys():
-            person = self.db.try_to_find_person_from_id(pid)
+            person = self.db.try_to_find_person_from_handle(pid)
             visible = self.mother_filter(person)
             if visible:
                 self.mother_nsort.set_visible(pid,visible)
@@ -380,37 +380,37 @@ class ChooseParents:
             self.mother_filter = self.likely_mother_filter
         self.redrawm()
         
-    def find_family(self,father_id,mother_id,trans):
+    def find_family(self,father_handle,mother_handle,trans):
         """
         Finds the family associated with the father and mother.
         If one does not exist, it is created.
         """
-        if not father_id and not mother_id:
+        if not father_handle and not mother_handle:
             return None
 	
-        for family_id in self.db.get_family_keys():
-            family = self.db.find_family_from_id(family_id)
-            if family.get_father_id() == father_id and family.get_mother_id() == mother_id:
-                family.add_child_id(self.person.get_id())
+        for family_handle in self.db.get_family_keys():
+            family = self.db.find_family_from_handle(family_handle)
+            if family.get_father_handle() == father_handle and family.get_mother_handle() == mother_handle:
+                family.add_child_handle(self.person.get_handle())
                 self.db.commit_family(family,trans)
                 return family
-            elif family.get_father_id() == mother_id and family.get_mother_id() == father_id:
-                family.add_child_id(self.person.get_id())
+            elif family.get_father_handle() == mother_handle and family.get_mother_handle() == father_handle:
+                family.add_child_handle(self.person.get_handle())
                 self.db.commit_family(family,trans)
                 return family
 
         family = self.db.new_family(trans)
-        family.set_father_id(father_id)
-        family.set_mother_id(mother_id)
-        family.add_child_id(self.person.get_id())
+        family.set_father_handle(father_handle)
+        family.set_mother_handle(mother_handle)
+        family.add_child_handle(self.person.get_handle())
 
-        if father_id:
-            self.father = self.db.try_to_find_person_from_id(father_id)
-            self.father.add_family_id(family.get_id())
+        if father_handle:
+            self.father = self.db.try_to_find_person_from_handle(father_handle)
+            self.father.add_family_handle(family.get_handle())
             self.db.commit_person(self.father,trans)
-        if mother_id:
-            self.mother = self.db.try_to_find_person_from_id(mother_id)
-            self.mother.add_family_id(family.get_id())
+        if mother_handle:
+            self.mother = self.db.try_to_find_person_from_handle(mother_handle)
+            self.mother.add_family_handle(family.get_handle())
             self.db.commit_person(self.mother,trans)
 
         self.db.commit_family(family,trans)
@@ -420,7 +420,7 @@ class ChooseParents:
         """Called when a row is selected in the mother list. Sets the
         active mother based off the id associated with the row."""
         
-        idlist = self.get_selected_mother_ids()
+        idlist = self.get_selected_mother_handles()
         if idlist and idlist[0]:
             self.mother = self.db.get_person(idlist[0])
         else:
@@ -428,11 +428,11 @@ class ChooseParents:
 
         if not self.parent_selected and self.mother:
             self.parent_selected = 1
-            family_id_list = self.mother.get_family_id_list()
-            if len(family_id_list) >= 1:
-                family = self.db.find_family_from_id(family_id_list[0])
-                father_id = family.get_father_id()
-                self.father_selection.select(father_id)
+            family_handle_list = self.mother.get_family_handle_list()
+            if len(family_handle_list) >= 1:
+                family = self.db.find_family_from_handle(family_handle_list[0])
+                father_handle = family.get_father_handle()
+                self.father_selection.select(father_handle)
                 #self.father_model.center_selected()
 
     def father_select_function(self,store,path,iter,id_list):
@@ -445,12 +445,12 @@ class ChooseParents:
             val = self.mother_model.get_value(iter,PeopleModel.COLUMN_INT_ID)
             id_list.append(val)
 
-    def get_selected_father_ids(self):
+    def get_selected_father_handles(self):
         mlist = []
         self.father_selection.selected_foreach(self.father_select_function,mlist)
         return mlist
 
-    def get_selected_mother_ids(self):
+    def get_selected_mother_handles(self):
         mlist = []
         self.mother_selection.selected_foreach(self.mother_select_function,mlist)
         return mlist
@@ -459,7 +459,7 @@ class ChooseParents:
         """Called when a row is selected in the father list. Sets the
         active father based off the id associated with the row."""
 
-        idlist = self.get_selected_father_ids()
+        idlist = self.get_selected_father_handles()
         if idlist and idlist[0]:
             self.father = self.db.get_person(idlist[0])
         else:
@@ -467,15 +467,15 @@ class ChooseParents:
 
         if not self.parent_selected and self.father:
             self.parent_selected = 1
-            family_id_list = self.father.get_family_id_list()
-            if len(family_id_list) >= 1:
-                family = self.db.find_family_from_id(family_id_list[0])
-                mother_id = family.get_mother_id()
-                mother = self.db.try_to_find_person_from_id(mother_id)
+            family_handle_list = self.father.get_family_handle_list()
+            if len(family_handle_list) >= 1:
+                family = self.db.find_family_from_handle(family_handle_list[0])
+                mother_handle = family.get_mother_handle()
+                mother = self.db.try_to_find_person_from_handle(mother_handle)
                 sname = mother.get_primary_name().get_surname()
                 tpath = self.mother_nsort.on_get_path(sname)
                 self.mother_list.expand_row(tpath,0)
-                path = self.mother_nsort.on_get_path(mother_id)
+                path = self.mother_nsort.on_get_path(mother_handle)
                 self.mother_selection.select_path(path)
                 self.mother_list.scroll_to_cell(path,None,1,0.5,0)
 
@@ -483,7 +483,7 @@ class ChooseParents:
         """Called when a row is selected in the father list. Sets the
         active father based off the id associated with the row."""
 
-        idlist = self.get_selected_mother_ids()
+        idlist = self.get_selected_mother_handles()
         if idlist and idlist[0]:
             self.mother = self.db.get_person(idlist[0])
         else:
@@ -491,15 +491,15 @@ class ChooseParents:
 
         if not self.parent_selected and self.mother:
             self.parent_selected = 1
-            family_id_list = self.mother.get_family_id_list()
-            if len(family_id_list) >= 1:
-                family = self.db.find_family_from_id(family_id_list[0])
-                father_id = family.get_mother_id()
-                father = self.db.try_to_find_person_from_id(father_id)
+            family_handle_list = self.mother.get_family_handle_list()
+            if len(family_handle_list) >= 1:
+                family = self.db.find_family_from_handle(family_handle_list[0])
+                father_handle = family.get_mother_handle()
+                father = self.db.try_to_find_person_from_handle(father_handle)
                 sname = father.get_primary_name().get_surname()
                 tpath = self.father_nsort.on_get_path(sname)
                 self.father_list.expand_row(tpath,0)
-                path = self.father_nsort.on_get_path(father_id)
+                path = self.father_nsort.on_get_path(father_handle)
                 self.father_selection.select_path(path)
                 self.father_list.scroll_to_cell(path,None,1,0.5,0)
 
@@ -523,43 +523,43 @@ class ChooseParents:
             if self.mother and not self.father:
                 if self.mother.get_gender() == RelLib.Person.male:
                     self.father = self.mother
-                    father_id = self.father.get_id()
+                    father_handle = self.father.get_handle()
                     self.mother = None
-                    mother_id = None
+                    mother_handle = None
                 else:
-                    mother_id = self.mother.get_id()
-                    father_id = None
+                    mother_handle = self.mother.get_handle()
+                    father_handle = None
             elif self.father and not self.mother: 
                 if self.father.get_gender() == RelLib.Person.female:
                     self.mother = self.father
                     self.father = None
-                    mother_id = self.mother.get_id()
-                    father_id = None
+                    mother_handle = self.mother.get_handle()
+                    father_handle = None
                 else:
-                    father_id = self.father.get_id()
-                    mother_id = None
+                    father_handle = self.father.get_handle()
+                    mother_handle = None
             elif self.mother.get_gender() != self.father.get_gender():
                 if self.type == "Partners":
                     self.type = "Unknown"
                 if self.father.get_gender() == RelLib.Person.female:
                     self.father, self.mother = self.mother, self.father
-                father_id = self.father.get_id()
-                mother_id = self.mother.get_id()
+                father_handle = self.father.get_handle()
+                mother_handle = self.mother.get_handle()
             else:
                 self.type = "Partners"
-                father_id = self.father.get_id()
-                mother_id = self.mother.get_id()
-            self.family = self.find_family(father_id,mother_id,trans)
+                father_handle = self.father.get_handle()
+                mother_handle = self.mother.get_handle()
+            self.family = self.find_family(father_handle,mother_handle,trans)
         else:    
             self.family = None
 
         if self.family:
-            if self.person.get_id() in (father_id,mother_id):
+            if self.person.get_handle() in (father_handle,mother_handle):
                 ErrorDialog(_("Error selecting a child"),
                             _("A person cannot be linked as his/her own parent"),
                             self.top)
                 return
-            self.family.add_child_id(self.person.get_id())
+            self.family.add_child_handle(self.person.get_handle())
             self.family.set_relationship(self.type)
             self.change_family_type(self.family,mother_rel,father_rel)
             self.db.commit_family(self.family,trans)
@@ -572,7 +572,8 @@ class ChooseParents:
         depending on the gender of the person."""
 
         person = epo.person
-        id = person.get_id()
+        id = person.get_handle()
+        name = person.get_primary_name().get_surname()
 
         if id == "":
             id = self.db.add_person(person,trans)
@@ -585,15 +586,15 @@ class ChooseParents:
             self.parent_relation_changed(self.prel)
         elif person.get_gender() == RelLib.Person.male:
             self.redrawf()
-            path = self.father_model.on_get_path(id)
-            top_path = self.father_model.on_get_path(person.get_primary_name().get_surname())
+            path = self.father_nsort.on_get_path(id)
+            top_path = self.father_nsort.on_get_path(name)
             self.father_list.expand_row(top_path,0)
             self.father_selection.select_path(path)
             self.father_list.scroll_to_cell(path,None,1,0.5,0)
         else:
             self.redrawm()
-            path = self.mother_model.on_get_path(id)
-            top_path = self.mother_model.on_get_path(person.get_primary_name().get_surname())
+            path = self.mother_nsort.on_get_path(id)
+            top_path = self.mother_nsort.on_get_path(name)
             self.mother_list.expand_row(top_path,0)
             self.mother_selection.select_path(path)
             self.mother_list.scroll_to_cell(path,None,1,0.5,0)
@@ -618,19 +619,19 @@ class ChooseParents:
         Changes the family type of the specified family. If the family
         is None, the the relationship type shoud be deleted.
         """
-        family_id = family.get_id()
-        if self.person.get_id() not in family.get_child_id_list():
-            family.add_child_id(self.person.get_id())
-        for fam in self.person.get_parent_family_id_list():
-            if family_id == fam[0]:
+        family_handle = family.get_handle()
+        if self.person.get_handle() not in family.get_child_handle_list():
+            family.add_child_handle(self.person.get_handle())
+        for fam in self.person.get_parent_family_handle_list():
+            if family_handle == fam[0]:
                 if mother_rel == fam[1] and father_rel == fam[2]:
                     return
                 if mother_rel != fam[1] or father_rel != fam[2]:
-                    self.person.remove_parent_family_id(family.get_id())
-                    self.person.add_parent_family_id(family.get_id(),mother_rel,father_rel)
+                    self.person.remove_parent_family_handle(family.get_handle())
+                    self.person.add_parent_family_handle(family.get_handle(),mother_rel,father_rel)
                     break
         else:
-            self.person.add_parent_family_id(family.get_id(),mother_rel,father_rel)
+            self.person.add_parent_family_handle(family.get_handle(),mother_rel,father_rel)
 
         trans = self.db.start_transaction()
         self.db.commit_person(self.person,trans)
@@ -642,7 +643,7 @@ class ChooseParents:
         self.db.add_transaction(trans,_("Choose Parents"))
 
 class ModifyParents:
-    def __init__(self,db,person,family_id,family_update,full_update,parent_window=None):
+    def __init__(self,db,person,family_handle,family_update,full_update,parent_window=None):
         """
         Creates a ChoosePerson dialog box.
 
@@ -654,12 +655,12 @@ class ModifyParents:
         """
         self.db = db
         self.person = person
-        self.family = self.db.find_family_from_id(family_id)
+        self.family = self.db.find_family_from_handle(family_handle)
         self.family_update = family_update
         self.full_update = full_update
         
-        self.father = self.db.try_to_find_person_from_id(self.family.get_father_id())
-        self.mother = self.db.try_to_find_person_from_id(self.family.get_mother_id())
+        self.father = self.db.try_to_find_person_from_handle(self.family.get_father_handle())
+        self.mother = self.db.try_to_find_person_from_handle(self.family.get_mother_handle())
 
         self.glade = gtk.glade.XML(const.gladeFile,"modparents","gramps")
         self.top = self.glade.get_widget("modparents")
@@ -675,8 +676,8 @@ class ModifyParents:
 
         self.orig_mrel = _("Birth")
         self.orig_frel = _("Birth")
-        for (f,mr,fr) in self.person.get_parent_family_id_list():
-            if f == self.family.get_id():
+        for (f,mr,fr) in self.person.get_parent_family_handle_list():
+            if f == self.family.get_handle():
                 self.orig_mrel = _(mr)
                 self.orig_frel = _(fr)
 
@@ -710,10 +711,10 @@ class ModifyParents:
             self.mother_rel.set_sensitive(0)
 
         self.pref = self.glade.get_widget('preferred')
-        if len(self.person.get_parent_family_id_list()) > 1:
+        if len(self.person.get_parent_family_handle_list()) > 1:
             self.glade.get_widget('pref_label').show()
             self.pref.show()
-            if self.family == self.person.get_parent_family_id_list()[0]:
+            if self.family == self.person.get_parent_family_handle_list()[0]:
                 self.pref.set_active(1)
             else:
                 self.pref.set_active(0)
@@ -741,21 +742,21 @@ class ModifyParents:
         mod = 0
 
         if mother_rel != self.orig_mrel or father_rel != self.orig_frel:
-            self.person.remove_parent_family_id(self.family.get_id())
-            self.person.add_parent_family_id(self.family.get_id(),mother_rel,father_rel)
+            self.person.remove_parent_family_handle(self.family.get_handle())
+            self.person.add_parent_family_handle(self.family.get_handle(),mother_rel,father_rel)
             mod = 1
 
-        if len(self.person.get_parent_family_id_list()):
+        if len(self.person.get_parent_family_handle_list()):
             make_pref = self.pref.get_active()
 
-            plist = self.person.get_parent_family_id_list()
+            plist = self.person.get_parent_family_handle_list()
             if make_pref:
                 if self.family != plist[0]:
-                    self.person.set_main_parent_family_id(self.family.get_id())
+                    self.person.set_main_parent_family_handle(self.family.get_handle())
                     mod = 1
             else:
                 if self.family == plist[0]:
-                    self.person.set_main_parent_family_id(plist[0])
+                    self.person.set_main_parent_family_handle(plist[0])
                     mod = 1
 
         if mod:

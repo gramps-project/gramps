@@ -66,12 +66,12 @@ class EditPlace:
 
     def __init__(self,parent,place,func=None,parent_window=None):
         self.parent = parent
-        if place.get_id():
-            if self.parent.child_windows.has_key(place.get_id()):
-                self.parent.child_windows[place.get_id()].present(None)
+        if place.get_handle():
+            if self.parent.child_windows.has_key(place.get_handle()):
+                self.parent.child_windows[place.get_handle()].present(None)
                 return
             else:
-                self.win_key = place.get_id()
+                self.win_key = place.get_handle()
         else:
             self.win_key = self
         self.place = place
@@ -202,7 +202,7 @@ class EditPlace:
                                            self.top_window.get_widget('edit_src'),
                                            self.top_window.get_widget('del_src'))
         
-        if self.place.get_id() == "":
+        if self.place.get_handle() == "":
             self.top_window.get_widget("add_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
@@ -285,7 +285,7 @@ class EditPlace:
             exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'place = "%s"' % data[1]
-            if place == self.place.get_id() or mytype != 'url':
+            if place == self.place.get_handle() or mytype != 'url':
                 return
             foo = pickle.loads(data[2]);
             self.ulist.append(foo)
@@ -297,7 +297,7 @@ class EditPlace:
         ev = self.web_model.get_selected_objects()[0]
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev);
-        data = str(('url',self.place.get_id(),pickled));
+        data = str(('url',self.place.get_handle(),pickled));
         sel_data.set(sel_data.target, bits_per, data)
 
     def update_lists(self):
@@ -481,15 +481,15 @@ class EditPlace:
         msg = ""
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)
-            for event_id in [p.get_birth_id(), p.get_death_id()] + p.get_event_list():
-                event = self.db.find_event_from_id(event_id)
-                if event and event.get_place_id() == self.place:
+            for event_handle in [p.get_birth_handle(), p.get_death_handle()] + p.get_event_list():
+                event = self.db.find_event_from_handle(event_handle)
+                if event and event.get_place_handle() == self.place:
                     pevent.append((p,event))
-        for family_id in self.db.get_family_keys():
-            f = self.db.find_family_from_id(family_id)
-            for event_id in f.get_event_list():
-                event = self.db.find_event_from_id(event_id)
-                if event and event.get_place_id() == self.place:
+        for family_handle in self.db.get_family_keys():
+            f = self.db.find_family_from_handle(family_handle)
+            for event_handle in f.get_event_list():
+                event = self.db.find_event_from_handle(event_handle)
+                if event and event.get_place_handle() == self.place:
                     fevent.append((f,event))
                     
         any = 0
@@ -500,7 +500,7 @@ class EditPlace:
             t = _("%s [%s]: event %s\n")
 
             for e in pevent:
-                msg = msg + ( t % (GrampsCfg.get_nameof()(e[0]),e[0].get_id(),_(e[1].get_name())))
+                msg = msg + ( t % (GrampsCfg.get_nameof()(e[0]),e[0].get_handle(),_(e[1].get_name())))
 
         if len(fevent) > 0:
             any = 1
@@ -509,8 +509,8 @@ class EditPlace:
             t = _("%s [%s]: event %s\n")
 
             for e in fevent:
-                father = e[0].get_father_id()
-                mother = e[0].get_mother_id()
+                father = e[0].get_father_handle()
+                mother = e[0].get_mother_handle()
                 if father and mother:
                     fname = _("%(father)s and %(mother)s")  % {
                                 "father" : GrampsCfg.get_nameof()(father),
@@ -520,7 +520,7 @@ class EditPlace:
                 else:
                     fname = "%s" % GrampsCfg.get_nameof()(mother)
 
-                msg = msg + ( t % (fname,e[0].get_id(),_(e[1].get_name())))
+                msg = msg + ( t % (fname,e[0].get_handle(),_(e[1].get_name())))
 
         self.refinfo.get_buffer().set_text(msg)
         if any:
@@ -559,22 +559,22 @@ class DeletePlaceQuery:
     def query_response(self):
         trans = self.db.start_transaction()
         
-        self.db.remove_place(self.place.get_id(),trans)
+        self.db.remove_place(self.place.get_handle(),trans)
 
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)
-            for event_id in [p.get_birth_id(), p.get_death_id()] + p.get_event_list():
-                event = self.db.find_event_from_id(event_id)
-                if event and event.get_place_id() == self.place.get_id():
-                    event.set_place_id(None)
+            for event_handle in [p.get_birth_handle(), p.get_death_handle()] + p.get_event_list():
+                event = self.db.find_event_from_handle(event_handle)
+                if event and event.get_place_handle() == self.place.get_handle():
+                    event.set_place_handle(None)
                     self.db.commit_event(event,trans)
 
         for fid in self.db.get_family_keys():
-            f = self.db.find_family_from_id(fid)
-            for event_id in f.get_event_list():
-                event = self.db.find_event_from_id(event_id)
-                if event and event.get_place_id() == self.place.get_id():
-                    event.set_place_id(None)
+            f = self.db.find_family_from_handle(fid)
+            for event_handle in f.get_event_list():
+                event = self.db.find_event_from_handle(event_handle)
+                if event and event.get_place_handle() == self.place.get_handle():
+                    event.set_place_handle(None)
                     self.db.commit_event(event,trans)
 
         self.db.add_transaction(trans,_("Delete Place (%s)") % self.place.get_title())

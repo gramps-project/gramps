@@ -1,3 +1,6 @@
+2004-07-27  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/RelLib.py, etc.: convert get_id to get_handle
+
 2004-07-26  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/data/Makefile.am: Use HUP instead of default SIGTERM. 
 

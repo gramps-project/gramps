@@ -109,16 +109,16 @@ class FtreeWriter:
         
             des = GenericFilter.GenericFilter()
             des.set_name(_("Descendants of %s") % person.get_primary_name().get_name())
-            des.add_rule(GenericFilter.IsDescendantOf([person.get_id()]))
+            des.add_rule(GenericFilter.IsDescendantOf([person.get_handle()]))
         
             ans = GenericFilter.GenericFilter()
             ans.set_name(_("Ancestors of %s") % person.get_primary_name().get_name())
-            ans.add_rule(GenericFilter.IsAncestorOf([person.get_id()]))
+            ans.add_rule(GenericFilter.IsAncestorOf([person.get_handle()]))
         
             com = GenericFilter.GenericFilter()
             com.set_name(_("People with common ancestor with %s") %
                      person.get_primary_name().get_name())
-            com.add_rule(GenericFilter.HasCommonAncestorWith([person.get_id()]))
+            com.add_rule(GenericFilter.HasCommonAncestorWith([person.get_handle()]))
         
             self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])
             self.filter.set_menu(self.filter_menu)
@@ -153,8 +153,8 @@ class FtreeWriter:
                 self.plist[p] = 1
         else:
             try:
-                for p in cfilter.apply(self.db, self.db.get_person_id_map().values()):
-                    self.plist[p.get_id()] = 1
+                for p in cfilter.apply(self.db, self.db.get_person_handle_map().values()):
+                    self.plist[p.get_handle()] = 1
             except Errors.FilterError, msg:
                 (m1,m2) = msg.messages()
                 ErrorDialog(m1,m2)
@@ -198,12 +198,12 @@ class FtreeWriter:
             email = ""
             web = ""
 
-            family = p.get_main_parents_family_id()
+            family = p.get_main_parents_family_handle()
             if family:
-                if family.get_father_id() and id_map.has_key(family.get_father_id().get_id()):
-                    father = id_map[family.get_father_id().get_id()]
-                if family.get_mother_id() and id_map.has_key(family.get_mother_id().get_id()):
-                    mother = id_map[family.get_mother_id().get_id()]
+                if family.get_father_handle() and id_map.has_key(family.get_father_handle().get_handle()):
+                    father = id_map[family.get_father_handle().get_handle()]
+                if family.get_mother_handle() and id_map.has_key(family.get_mother_handle().get_handle()):
+                    mother = id_map[family.get_mother_handle().get_handle()]
 
             #
             # Calculate Date

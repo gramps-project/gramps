@@ -78,12 +78,12 @@ class ChangeTypes:
         original = unicode(self.glade.get_widget("original_text").get_text())
         new = unicode(self.glade.get_widget("new_text").get_text())
 
-        for person_id in self.db.get_person_keys():
-            person = self.db.try_to_find_person_from_id(person_id)
-            for event_id in person.get_event_list():
-                if not event_id:
+        for person_handle in self.db.get_person_keys():
+            person = self.db.try_to_find_person_from_handle(person_handle)
+            for event_handle in person.get_event_list():
+                if not event_handle:
                     continue
-                event = self.db.find_event_from_id(event_id)
+                event = self.db.find_event_from_handle(event_handle)
                 if event.get_name() == original:
                     event.set_name(new)
                     modified = modified + 1

@@ -52,11 +52,11 @@ class ReorderIds:
 
         self.db = db
 
-        self.reorder(db.get_person_id_map(),db.iprefix,db.build_person_display)
-        self.reorder(db.get_family_id_map(),db.fprefix,None)
+        self.reorder(db.get_person_handle_map(),db.iprefix,db.build_person_display)
+        self.reorder(db.get_family_handle_map(),db.fprefix,None)
         self.reorder(db.get_object_map(),db.oprefix,None)
         self.reorder(db.get_source_map(),db.sprefix,db.build_source_display)
-        self.reorder(db.get_place_id_map(),db.pprefix,db.build_place_display)
+        self.reorder(db.get_place_handle_map(),db.pprefix,db.build_place_display)
         Utils.history_broken()
         callback(1)
         
@@ -96,7 +96,7 @@ class ReorderIds:
                         data = data_map[id]
                         data_map[newid] = data
                         newids[newid] = id
-                        data.set_id(newid)
+                        data.set_handle(newid)
                         del data_map[id]
                         if update:
                             update(newid,id)
@@ -117,7 +117,7 @@ class ReorderIds:
                 index = index + 1
             newids[newid] = newid
             data = data_map[id]
-            data.set_id(newid)
+            data.set_handle(newid)
             data_map[newid] = data
             if update:
                 update(newid,id)

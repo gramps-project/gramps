@@ -34,6 +34,7 @@ Module responsible for handling the command line arguments for GRAMPS.
 #
 #-------------------------------------------------------------------------
 import os
+import os.path
 import getopt
 
 #-------------------------------------------------------------------------
@@ -178,6 +179,11 @@ class ArgHandler:
                     continue
                 self.actions.append(action)
             
+    def auto_save_load(self,filename):
+        filename = os.path.normpath(os.path.abspath(filename))
+        self.parent.active_person = None
+        return self.parent.read_file(filename)
+
     #-------------------------------------------------------------------------
     #
     # Overall argument handler: 
@@ -197,7 +203,7 @@ class ArgHandler:
             filetype = GrampsMime.get_type(filename) 
             if filetype == "application/x-gramps":
                 print "Type: GRAMPS database"
-                if self.parent.auto_save_load(filename):
+                if self.auto_save_load(filename):
                     print "Opened successfully!"
                 else:
                     print "Cannot open %s. Exiting..."
@@ -284,7 +290,7 @@ class ArgHandler:
         if self.imports:
             self.parent.import_tool_callback()
         elif GrampsCfg.get_lastfile() and GrampsCfg.get_autoload():
-            if self.parent.auto_save_load(GrampsCfg.get_lastfile()) == 0:
+            if self.auto_save_load(GrampsCfg.get_lastfile()) == 0:
                 DbPrompter.DbPrompter(self.parent,0)
         else:
 	    DbPrompter.DbPrompter(self.parent,0)
@@ -408,7 +414,7 @@ class ArgHandler:
                 # Write media files first, since the database may be modified 
                 # during the process (i.e. when removing object)
                 for m_id in self.parent.db.get_object_keys():
-                    mobject = self.parent.db.try_to_find_object_from_id(m_id)
+                    mobject = self.parent.db.try_to_find_object_from_handle(m_id)
                     oldfile = mobject.get_path()
                     base = os.path.basename(oldfile)
                     if os.path.isfile(oldfile):

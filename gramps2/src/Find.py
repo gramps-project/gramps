@@ -214,6 +214,6 @@ class FindMedia(FindBase):
         FindBase.__init__(self,task,_("Find Media Object"),db)
         self.list = []
         for n in self.db.get_object_map().values():
-            self.list.append((n.get_description(),n.get_id()))
+            self.list.append((n.get_description(),n.get_handle()))
         self.list.sort()
         

@@ -160,16 +160,16 @@ class PeopleView:
     def remove_from_person_list(self,person):
         """Remove the selected person from the list. A person object is
         expected, not an ID"""
-        path = self.person_model.on_get_path(person.get_id())
+        path = self.person_model.on_get_path(person.get_handle())
         self.person_model.row_deleted(path)
     
-    def remove_from_history(self,person_id,old_id=None):
+    def remove_from_history(self,person_handle,old_id=None):
         """Removes a person from the history list"""
         
         if old_id:
             del_id = old_id
         else:
-            del_id = person_id
+            del_id = person_handle
 
         hc = self.parent.history.count(del_id)
         for c in range(hc):
@@ -197,7 +197,7 @@ class PeopleView:
         if not self.parent.active_person:
             return
         p = self.parent.active_person
-        path = self.person_model.on_get_path(p.get_id())
+        path = self.person_model.on_get_path(p.get_handle())
         top_path = self.person_model.on_get_path(p.get_primary_name().get_surname())
         self.person_tree.expand_row(top_path,0)
         self.person_selection.select_path(path)
@@ -212,8 +212,8 @@ class PeopleView:
         keys = self.DataFilter.apply(self.parent.db,
                                      self.parent.db.get_person_keys())
         self.person_model.reset_visible()
-        for person_id in keys:
-            self.person_model.set_visible(person_id,1)
+        for person_handle in keys:
+            self.person_model.set_visible(person_handle,1)
 
         self.sort_model.refilter()
         self.parent.modify_statusbar()

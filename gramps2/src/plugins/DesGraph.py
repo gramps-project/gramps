@@ -96,7 +96,7 @@ class DescendantReport:
             self.standalone = 0
 
         plist = self.database.get_person_keys()
-        self.layout = GraphLayout.DescendLine(self.database,plist,person.get_id())
+        self.layout = GraphLayout.DescendLine(self.database,plist,person.get_handle())
         (self.v,self.e) = self.layout.layout()
         
         self.text = {}
@@ -386,9 +386,9 @@ def report(database,person):
 _style_file = "descendant_graph.xml"
 _style_name = "default" 
 
-_person_id = ""
+_person_handle = ""
 _disp_format = [ "$n", "%s $b" % _BORN, "%s $d" % _DIED ]
-_options = ( _person_id, _disp_format )
+_options = ( _person_handle, _disp_format )
 
 #------------------------------------------------------------------------
 #
@@ -459,7 +459,7 @@ class DescendantGraphBareDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.get_id(), self.report_text )
+        self.options = ( self.person.get_handle(), self.report_text )
         self.style_name = self.selected_style.get_name()
 
 #------------------------------------------------------------------------

@@ -110,15 +110,15 @@ _get_int = re.compile('([0-9]+)')
 #
 #
 #-------------------------------------------------------------------------
-def add_familys_sources(db,family_id,slist,private):
-    family = db.find_family_from_id(family_id)
-    for event_id in family.get_event_list():
-        if event_id:
-            event = db.find_event_from_id(event_id)
+def add_familys_sources(db,family_handle,slist,private):
+    family = db.find_family_from_handle(family_handle)
+    for event_handle in family.get_event_list():
+        if event_handle:
+            event = db.find_event_from_handle(event_handle)
             if private and event.get_privacy():
                 continue
             for source_ref in event.get_source_references():
-                sbase = source_ref.get_base_id()
+                sbase = source_ref.get_base_handle()
                 if sbase != None and not slist.has_key(sbase):
                     slist[sbase] = 1
 
@@ -126,9 +126,9 @@ def add_familys_sources(db,family_id,slist,private):
         if private and attr.get_privacy():
             continue
         for source_ref in attr.get_source_references():
-            sbase = source_ref.get_base_id()
-            if sbase != None and not slist.has_key(sbase.get_id()):
-                slist[sbase.get_id()] = 1
+            sbase = source_ref.get_base_handle()
+            if sbase != None and not slist.has_key(sbase.get_handle()):
+                slist[sbase.get_handle()] = 1
 
 #-------------------------------------------------------------------------
 #
@@ -138,15 +138,15 @@ def add_familys_sources(db,family_id,slist,private):
 def add_persons_sources(db,person,slist,private):
     elist = person.get_event_list()[:]
 
-    elist.append(person.get_birth_id())
-    elist.append(person.get_death_id())
-    for event_id in elist:
-        if event_id:
-            event = db.find_event_from_id(event_id)
+    elist.append(person.get_birth_handle())
+    elist.append(person.get_death_handle())
+    for event_handle in elist:
+        if event_handle:
+            event = db.find_event_from_handle(event_handle)
             if private and event.get_privacy():
                 continue
             for source_ref in event.get_source_references():
-                sbase = source_ref.get_base_id()
+                sbase = source_ref.get_base_handle()
                 if sbase != None and not slist.has_key(sbase):
                     slist[sbase] = 1
 
@@ -154,23 +154,23 @@ def add_persons_sources(db,person,slist,private):
         if private and event.get_privacy():
             continue
         for source_ref in event.get_source_references():
-            sbase = source_ref.get_base_id()
-            if sbase != None and not slist.has_key(sbase.get_id()):
-                slist[sbase.get_id()] = 1
+            sbase = source_ref.get_base_handle()
+            if sbase != None and not slist.has_key(sbase.get_handle()):
+                slist[sbase.get_handle()] = 1
 
     for event in person.get_attribute_list():
         if private and event.get_privacy():
             continue
         for source_ref in event.get_source_references():
-            sbase = source_ref.get_base_id()
-            if sbase != None and not slist.has_key(sbase.get_id()):
-                slist[sbase.get_id()] = 1
+            sbase = source_ref.get_base_handle()
+            if sbase != None and not slist.has_key(sbase.get_handle()):
+                slist[sbase.get_handle()] = 1
 
     for name in person.get_alternate_names() + [person.get_primary_name()]:
         if private and name.get_privacy():
             continue
         for source_ref in name.get_source_references():
-            sbase = source_ref.get_base_id()
+            sbase = source_ref.get_base_handle()
             if sbase != None and not slist.has_key(sbase):
                 slist[sbase] = 1
                 
@@ -191,8 +191,8 @@ def addr_append(text,data):
 #
 #-------------------------------------------------------------------------
 def sortById(first,second):
-    fid = first.get_id()
-    sid = second.get_id()
+    fid = first.get_handle()
+    sid = second.get_handle()
     
     if fid == sid:
         return 0
@@ -394,16 +394,16 @@ class GedcomWriterOptionBox:
 
         des = GenericFilter.GenericFilter()
         des.set_name(_("Descendants of %s") % self.person.get_primary_name().get_name())
-        des.add_rule(GenericFilter.IsDescendantOf([self.person.get_id()]))
+        des.add_rule(GenericFilter.IsDescendantOf([self.person.get_handle()]))
 
         ans = GenericFilter.GenericFilter()
         ans.set_name(_("Ancestors of %s") % self.person.get_primary_name().get_name())
-        ans.add_rule(GenericFilter.IsAncestorOf([self.person.get_id()]))
+        ans.add_rule(GenericFilter.IsAncestorOf([self.person.get_handle()]))
 
         com = GenericFilter.GenericFilter()
         com.set_name(_("People with common ancestor with %s") %
                          self.person.get_primary_name().get_name())
-        com.add_rule(GenericFilter.HasCommonAncestorWith([self.person.get_id()]))
+        com.add_rule(GenericFilter.HasCommonAncestorWith([self.person.get_handle()]))
 
         self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])
         filter_obj.set_menu(self.filter_menu)
@@ -569,9 +569,9 @@ class GedcomWriter:
             for key in self.plist.keys():
                 p = self.db.get_person(key)
                 add_persons_sources(self.db,p,self.slist,self.option_box.private)
-                for family_id in p.get_family_id_list():
-                    add_familys_sources(self.db,family_id,self.slist,self.option_box.private)
-                    self.flist[family_id] = 1
+                for family_handle in p.get_family_handle_list():
+                    add_familys_sources(self.db,family_handle,self.slist,self.option_box.private)
+                    self.flist[family_handle] = 1
     
     def cl_setup(self):
         self.restrict = 0
@@ -604,9 +604,9 @@ class GedcomWriter:
         for key in self.plist.keys():
             p = self.db.get_person(key)
             add_persons_sources(self.db,p,self.slist,self.private)
-            for family_id in p.get_family_id_list():
-                add_familys_sources(self.db,family_id,self.slist,self.private)
-                self.flist[family_id] = 1
+            for family_handle in p.get_family_handle_list():
+                add_familys_sources(self.db,family_handle,self.slist,self.private)
+                self.flist[family_handle] = 1
 
     def writeln(self,text):
         self.g.write('%s%s' % (text,self.nl))
@@ -738,21 +738,21 @@ class GedcomWriter:
     def write_families(self):
         nump = float(len(self.flist))
         index = 0.0
-        for family_id in self.flist.keys():
-            family = self.db.find_family_from_id(family_id)
+        for family_handle in self.flist.keys():
+            family = self.db.find_family_from_handle(family_handle)
             father_alive = mother_alive = 0
-            self.writeln("0 @%s@ FAM" % self.fid(family_id))
-            self.frefn(family_id)
-            person_id = family.get_father_id()
-            if person_id != None and self.plist.has_key(person_id):
-                person = self.db.try_to_find_person_from_id(person_id)
+            self.writeln("0 @%s@ FAM" % self.fid(family_handle))
+            self.frefn(family_handle)
+            person_handle = family.get_father_handle()
+            if person_handle != None and self.plist.has_key(person_handle):
+                person = self.db.try_to_find_person_from_handle(person_handle)
                 gramps_id = person.get_gramps_id()
                 self.writeln("1 HUSB @%s@" % gramps_id)
                 father_alive = person.probably_alive(self.db)
 
-            person_id = family.get_mother_id()
-            if person_id != None and self.plist.has_key(person_id):
-                person = self.db.try_to_find_person_from_id(person_id)
+            person_handle = family.get_mother_handle()
+            if person_handle != None and self.plist.has_key(person_handle):
+                person = self.db.try_to_find_person_from_handle(person_handle)
                 gramps_id = person.get_gramps_id()
                 self.writeln("1 WIFE @%s@" % gramps_id)
                 mother_alive = person.probably_alive(self.db)
@@ -760,8 +760,8 @@ class GedcomWriter:
             if not self.restrict or ( not father_alive and not mother_alive ):
                 self.write_ord("SLGS",family.get_lds_sealing(),1,const.lds_ssealing)
 
-                for event_id in family.get_event_list():
-                    event = self.db.find_event_from_id(event_id)
+                for event_handle in family.get_event_list():
+                    event = self.db.find_event_from_handle(event_handle)
                     if self.private and event.get_privacy():
                         continue
                     name = event.get_name()
@@ -780,24 +780,24 @@ class GedcomWriter:
 
                     self.dump_event_stats(event)
 
-            for person_id in family.get_child_id_list():
-                if not self.plist.has_key(person_id):
+            for person_handle in family.get_child_handle_list():
+                if not self.plist.has_key(person_handle):
                     continue
-                person = self.db.try_to_find_person_from_id(person_id)
+                person = self.db.try_to_find_person_from_handle(person_handle)
                 self.writeln("1 CHIL @%s@" % person.get_gramps_id())
                 if self.adopt == GedcomInfo.ADOPT_FTW:
-                    if person.get_main_parents_family_id() == family.get_id():
+                    if person.get_main_parents_family_handle() == family.get_handle():
                         self.writeln('2 _FREL Natural')
                         self.writeln('2 _MREL Natural')
                     else:
-                        for f in person.get_parent_family_id_list():
-                            if f[0] == family.get_id():
+                        for f in person.get_parent_family_handle_list():
+                            if f[0] == family.get_handle():
                                 self.writeln('2 _FREL %s' % f[2])
                                 self.writeln('2 _MREL %s' % f[1])
                                 break
                 if self.adopt == GedcomInfo.ADOPT_LEGACY:
-                    for f in person.get_parent_family_id_list():
-                       if f[0] == family.get_id():
+                    for f in person.get_parent_family_handle_list():
+                       if f[0] == family.get_handle():
                            self.writeln('2 _STAT %s' % f[2])
                            break
 
@@ -813,8 +813,8 @@ class GedcomWriter:
         nump = float(len(self.slist))
         index = 0.0
         for key in self.slist.keys():
-            source = self.db.try_to_find_source_from_id(key)
-            self.writeln("0 @%s@ SOUR" % self.sid(source.get_id()))
+            source = self.db.try_to_find_source_from_handle(key)
+            self.writeln("0 @%s@ SOUR" % self.sid(source.get_handle()))
             if source.get_title():
                 self.writeln("1 TITL %s" % fmtline(self.cnvtxt(source.get_title()),248,1,self.nl))
             if source.get_author():
@@ -867,17 +867,17 @@ class GedcomWriter:
             self.writeln("1 SEX F")
 
         if not restricted:
-            birth_id = person.get_birth_id()
-            birth = self.db.find_event_from_id(birth_id)
-            if birth_id and not (self.private and birth.get_privacy()):
-                if not birth.get_date_object().is_empty() or birth.get_place_id():
+            birth_handle = person.get_birth_handle()
+            birth = self.db.find_event_from_handle(birth_handle)
+            if birth_handle and not (self.private and birth.get_privacy()):
+                if not birth.get_date_object().is_empty() or birth.get_place_handle():
                     self.writeln("1 BIRT")
                     self.dump_event_stats(birth)
 
-            death_id = person.get_death_id()
-            death = self.db.find_event_from_id(death_id)
-            if death_id and not (self.private and death.get_privacy()):
-                if not death.get_date_object().is_empty() or death.get_place_id():
+            death_handle = person.get_death_handle()
+            death = self.db.find_event_from_handle(death_handle)
+            if death_handle and not (self.private and death.get_privacy()):
+                if not death.get_date_object().is_empty() or death.get_place_handle():
                     self.writeln("1 DEAT")
                     self.dump_event_stats(death)
 
@@ -887,8 +887,8 @@ class GedcomWriter:
             self.write_ord("ENDL",person.get_lds_endowment(),1,const.lds_baptism)
             self.write_ord("SLGC",person.get_lds_sealing(),1,const.lds_csealing)
             
-            for event_id in person.get_event_list():
-                event = self.db.find_event_from_id(event_id)
+            for event_handle in person.get_event_list():
+                event = self.db.find_event_from_handle(event_handle)
                 if self.private and event.get_privacy():
                     continue
                 name = event.get_name()
@@ -902,14 +902,14 @@ class GedcomWriter:
                     ad = 1
                     self.writeln('1 ADOP')
                     fam = None
-                    for f in person.get_parent_family_id_list():
+                    for f in person.get_parent_family_handle_list():
                         mrel = f[1].lower()
                         frel = f[2].lower()
                         if mrel=="adopted" or frel=="adopted":
                             fam = f[0]
                             break
                     if fam:
-                        self.writeln('2 FAMC @%s@' % self.fid(fam.get_id()))
+                        self.writeln('2 FAMC @%s@' % self.fid(fam.get_handle()))
                         if mrel == frel:
                             self.writeln('3 ADOP BOTH')
                         elif mrel == "adopted":
@@ -925,17 +925,17 @@ class GedcomWriter:
  
                 self.dump_event_stats(event)
 
-            if self.adopt == GedcomInfo.ADOPT_EVENT and ad == 0 and len(person.get_parent_family_id_list()) != 0:
+            if self.adopt == GedcomInfo.ADOPT_EVENT and ad == 0 and len(person.get_parent_family_handle_list()) != 0:
                 self.writeln('1 ADOP')
                 fam = None
-                for f in person.get_parent_family_id_list():
+                for f in person.get_parent_family_handle_list():
                     mrel = f[1].lower()
                     frel = f[2].lower()
                     if mrel=="adopted" or frel=="adopted":
                         fam = f[0]
                         break
                 if fam:
-                    self.writeln('2 FAMC @%s@' % self.fid(fam.get_id()))
+                    self.writeln('2 FAMC @%s@' % self.fid(fam.get_handle()))
                     if mrel == frel:
                         self.writeln('3 ADOP BOTH')
                     elif mrel == "adopted":
@@ -1004,8 +1004,8 @@ class GedcomWriter:
                 photos = []
 
             for photo in photos:
-                photo_obj_id = photo.get_reference_id()
-                photo_obj = self.db.try_to_find_object_from_id(photo_obj_id)
+                photo_obj_id = photo.get_reference_handle()
+                photo_obj = self.db.try_to_find_object_from_handle(photo_obj_id)
                 if photo_obj and photo_obj.get_mime_type() == "image/jpeg":
                     self.writeln('1 OBJE')
                     self.writeln('2 FORM jpeg')
@@ -1026,16 +1026,16 @@ class GedcomWriter:
                               "wb").writelines (file (path,
                                                       "rb").xreadlines ())
 
-        for family in person.get_parent_family_id_list():
+        for family in person.get_parent_family_handle_list():
             if self.flist.has_key(family[0]):
                 self.writeln("1 FAMC @%s@" % self.fid(family[0]))
                 if self.adopt == GedcomInfo.ADOPT_PEDI:
                     if family[1].lower() == "adopted":
                         self.writeln("2 PEDI Adopted")
         
-        for family_id in person.get_family_id_list():
-            if family_id != None and self.flist.has_key(family_id):
-                self.writeln("1 FAMS @%s@" % self.fid(family_id))
+        for family_handle in person.get_family_handle_list():
+            if family_handle != None and self.flist.has_key(family_handle):
+                self.writeln("1 FAMS @%s@" % self.fid(family_handle))
 
         if not restricted:
             if self.obje:
@@ -1118,8 +1118,8 @@ class GedcomWriter:
     def dump_event_stats(self,event):
         dateobj = event.get_date_object()
         self.print_date("2 DATE",dateobj)
-        if event.get_place_id():
-            place_name = self.db.try_to_find_place_from_id(event.get_place_id()).get_title()
+        if event.get_place_handle():
+            place_name = self.db.try_to_find_place_from_handle(event.get_place_handle()).get_title()
             self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(place_name),'\r',' '))
         if event.get_cause():
             self.writeln("2 CAUS %s" % self.cnvtxt(event.get_cause()))
@@ -1133,12 +1133,12 @@ class GedcomWriter:
             return
         self.writeln('%d %s' % (index,name))
         self.print_date("%d DATE" % (index + 1), ord.get_date_object())
-        if ord.get_family_id():
-            self.writeln('%d FAMC @%s@' % (index+1,self.fid(ord.get_family_id().get_id())))
+        if ord.get_family_handle():
+            self.writeln('%d FAMC @%s@' % (index+1,self.fid(ord.get_family_handle().get_handle())))
         if ord.get_temple():
             self.writeln('%d TEMP %s' % (index+1,ord.get_temple()))
-        if ord.get_place_id():
-            place_name = self.db.try_to_find_place_from_id(ord.get_place_id()).get_title()
+        if ord.get_place_handle():
+            place_name = self.db.try_to_find_place_from_handle(ord.get_place_handle()).get_title()
             self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(place_name),'\r',' '))
         if ord.get_status() != 0:
             self.writeln("2 STAT %s" % self.cnvtxt(statlist[ord.get_status()]))
@@ -1204,12 +1204,12 @@ class GedcomWriter:
             self.write_source_ref(2,srcref)
 
     def write_source_ref(self,level,ref):
-        if ref.get_base_id() == None:
+        if ref.get_base_handle() == None:
             return
 
         if self.source_refs:
             self.writeln("%d SOUR @%s@" %
-                         (level,self.sid(ref.get_base_id())))
+                         (level,self.sid(ref.get_base_handle())))
             if ref.get_page() != "":
                 self.write_long_text("PAGE",level+1,self.cnvtxt(ref.get_page()))
  
@@ -1225,7 +1225,7 @@ class GedcomWriter:
             # Not using CONC and CONT because GeneWeb does not support these.
             # TEXT and NOTE will be ignored by GeneWeb, but we can't
             # output paragaphs in SOUR without CONT.
-            sbase = ref.get_base_id()
+            sbase = ref.get_base_handle()
             if sbase and sbase.get_title():
                 txt = sbase.get_title() + ".  "
             else:
@@ -1252,8 +1252,8 @@ class GedcomWriter:
         if match:
             self.writeln('1 REFN %d' % int(match.groups()[0]))
 
-    def frefn(self,family_id):
-        match = _get_int.search(family_id)
+    def frefn(self,family_handle):
+        match = _get_int.search(family_handle)
         if match:
             self.writeln('1 REFN %d' % int(match.groups()[0]))
     

@@ -148,7 +148,7 @@ def importData(database, filename, callback=None,cl=0):
     first = not os.path.exists(img_dir)
     
     for m_id in database.get_object_keys():
-        mobject = database.try_to_find_object_from_id(m_id)
+        mobject = database.try_to_find_object_from_handle(m_id)
         oldfile = mobject.get_path()
         if oldfile[0] != '/':
             if first:
@@ -170,30 +170,30 @@ def importData(database, filename, callback=None,cl=0):
 #-------------------------------------------------------------------------
 #     def remove_clicked():
 #         # File is lost => remove all references and the object itself
-#         mobj = database.find_object_from_id(NewMediaID)
+#         mobj = database.find_object_from_handle(NewMediaID)
 #         for fid in database.get_family_keys():
-#             p = database.find_family_from_id(fid)
+#             p = database.find_family_from_handle(fid)
 #             nl = p.get_media_list()
 #             for o in nl:
 #                 if o.get_reference() == mobj:
 #                     nl.remove(o) 
 #             p.set_media_list(nl)
 #         for key in database.get_person_keys():
-#             p = database.find_person_from_id(key)
+#             p = database.find_person_from_handle(key)
 #             nl = p.get_media_list()
 #             for o in nl:
-#                 if o.get_reference_id() == mobj.get_id():
+#                 if o.get_reference_handle() == mobj.get_handle():
 #                     nl.remove(o) 
 #             p.set_media_list(nl)
 #         for key in database.get_source_keys():
-#             p = database.find_source_from_id(key)
+#             p = database.find_source_from_handle(key)
 #             nl = p.get_media_list()
 #             for o in nl:
-#                 if o.get_reference_id() == mobj.get_id():
+#                 if o.get_reference_handle() == mobj.get_handle():
 #                     nl.remove(o) 
 #             p.set_media_list(nl)
-#         for key in database.get_place_id_keys():
-#             p = database.find_place_from_id(key)
+#         for key in database.get_place_handle_keys():
+#             p = database.find_place_from_handle(key)
 #             nl = p.get_media_list()
 #             for o in nl:
 #                 if o.get_reference() == mobj:
@@ -415,7 +415,7 @@ class GrampsParser:
             person.unserialize(self.db.person_map.get(intid))
         else:
             intid = Utils.create_id()
-            person.set_id(intid)
+            person.set_handle(intid)
             person.set_gramps_id(gramps_id)
             self.db.add_person_as(person,self.trans)
             self.gid2id[gramps_id] = intid
@@ -426,7 +426,7 @@ class GrampsParser:
             return self.idswap[id]
         else:
             if self.db.idtrans.get(str(id)):
-                self.idswap[id] = self.db.find_next_gid()
+                self.idswap[id] = self.db.find_next_gramps_id()
             else:
                 self.idswap[id] = id
             return self.idswap[id]
@@ -444,7 +444,7 @@ class GrampsParser:
             id = self.tempDefault
             person = self.db.find_person_from_gramps_id(id,self.trans)
             if person:
-                self.db.set_default_person_id(person.get_id())
+                self.db.set_default_person_handle(person.get_handle())
 
         for key in self.func_map.keys():
             del self.func_map[key]
@@ -475,7 +475,7 @@ class GrampsParser:
 
     def start_sealed_to(self,attrs):
         id = self.map_gid(attrs['ref'])
-        self.ord.set_family_id(self.db.find_family_no_map(id,self.trans))
+        self.ord.set_family_handle(self.db.find_family_no_map(id,self.trans))
         
     def start_place(self,attrs):
         self.placeobj = self.db.find_place_no_conflicts(attrs['ref'],
@@ -578,7 +578,7 @@ class GrampsParser:
 
     def start_bmark(self,attrs):
         person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
-        self.db.bookmarks.append(person.get_id())
+        self.db.bookmarks.append(person.get_handle())
 
     def start_person(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
@@ -598,15 +598,15 @@ class GrampsParser:
 
     def start_father(self,attrs):
         person = self.db.find_person_from_gramps_id(self.map_gid(attrs["ref"]),self.trans)
-        self.family.set_father_id(person.get_id())
+        self.family.set_father_handle(person.get_handle())
 
     def start_mother(self,attrs):
         person = self.db.find_person_from_gramps_id(self.map_gid(attrs["ref"]),self.trans)
-        self.family.set_mother_id(person.get_id())
+        self.family.set_mother_handle(person.get_handle())
     
     def start_child(self,attrs):
         person = self.db.find_person_from_gramps_id(self.map_gid(attrs["ref"]),self.trans)
-        self.family.add_child_id(person.get_id())
+        self.family.add_child_handle(person.get_handle())
 
     def start_url(self,attrs):
         if not attrs.has_key("href"):
@@ -653,10 +653,10 @@ class GrampsParser:
             frel = attrs["frel"]
         else:
             frel = "Birth"
-        self.person.add_parent_family_id(family.get_id(),mrel,frel)
+        self.person.add_parent_family_handle(family.get_handle(),mrel,frel)
 
     def start_parentin(self,attrs):
-        self.person.add_family_id(attrs["ref"])
+        self.person.add_family_handle(attrs["ref"])
 
     def start_name(self,attrs):
         if not self.in_witness:
@@ -688,7 +688,7 @@ class GrampsParser:
             self.source_ref.confidence = int(attrs["conf"])
         else:
             self.source_ref.confidence = self.conf
-        self.source_ref.set_base_id(source.get_id())
+        self.source_ref.set_base_handle(source.get_handle())
         if self.photo:
             self.photo.add_source_reference(self.source_ref)
         elif self.ord:
@@ -719,8 +719,8 @@ class GrampsParser:
     def start_objref(self,attrs):
         self.objref = RelLib.MediaRef()
         id = self.db.find_object_no_conflicts(attrs['ref'],
-                                              self.media_file_map,self.trans).get_id()
-        self.objref.set_reference_id(id)
+                                              self.media_file_map,self.trans).get_handle()
+        self.objref.set_reference_handle(id)
         if attrs.has_key('priv'):
             self.objref.set_privacy(int(attrs['priv']))
         if self.event:
@@ -757,7 +757,7 @@ class GrampsParser:
     def start_photo(self,attrs):
         self.photo = RelLib.MediaObject()
         self.pref = RelLib.MediaRef()
-        self.pref.set_reference_id(self.photo.get_id())
+        self.pref.set_reference_handle(self.photo.get_handle())
         
         for key in attrs.keys():
             if key == "descrip" or key == "description":
@@ -905,14 +905,14 @@ class GrampsParser:
         self.event.name = self.event_type
 
         if self.family:
-            self.family.add_event_id(self.event.get_id())
+            self.family.add_event_handle(self.event.get_handle())
         else:
             if self.event_type == "Birth":
-                self.person.set_birth_id(self.event.get_id())
+                self.person.set_birth_handle(self.event.get_handle())
             elif self.event_type == "Death":
-                self.person.set_death_id(self.event.get_id())
+                self.person.set_death_handle(self.event.get_handle())
             else:
-                self.person.add_event_id(self.event.get_id())
+                self.person.add_event_handle(self.event.get_handle())
         self.db.commit_event(self.event,self.trans)
         self.event = None
 
@@ -937,9 +937,9 @@ class GrampsParser:
                 self.placeobj = RelLib.Place()
                 self.placeobj.set_title(tag)
         if self.ord:
-            self.ord.set_place_id(self.placeobj.get_id())
+            self.ord.set_place_handle(self.placeobj.get_handle())
         else:
-            self.event.set_place_id(self.placeobj.get_id())
+            self.event.set_place_handle(self.placeobj.get_handle())
         self.db.commit_place(self.placeobj,self.trans)
         self.placeobj = None
         

@@ -121,10 +121,10 @@ def upper_name(person):
 
 def family_name(family,db):
     """Builds a name for the family from the parents names"""
-    father_id = family.get_father_id()
-    mother_id = family.get_mother_id()
-    father = db.try_to_find_person_from_id(father_id)
-    mother = db.try_to_find_person_from_id(mother_id)
+    father_handle = family.get_father_handle()
+    mother_handle = family.get_mother_handle()
+    father = db.try_to_find_person_from_handle(father_handle)
+    mother = db.try_to_find_person_from_handle(mother_handle)
     if father and mother:
         fname = father.get_primary_name().get_name()
         mname = mother.get_primary_name().get_name()
@@ -137,10 +137,10 @@ def family_name(family,db):
 
 def family_upper_name(family,db):
     """Builds a name for the family from the parents names"""
-    father_id = family.get_father_id()
-    mother_id = family.get_mother_id()
-    father = db.try_to_find_person_from_id(father_id)
-    mother = db.try_to_find_person_from_id(mother_id)
+    father_handle = family.get_father_handle()
+    mother_handle = family.get_mother_handle()
+    father = db.try_to_find_person_from_handle(father_handle)
+    mother = db.try_to_find_person_from_handle(mother_handle)
     if father and mother:
         fname = father.get_primary_name().get_upper_name()
         mname = mother.get_primary_name().get_upper_name()
@@ -341,7 +341,7 @@ def thumb_path(dir,mobj):
     type = mobj.get_mime_type()
 
     if type[0:5] == "image":
-        thumb = "%s/.thumb/%s.jpg" % (os.path.dirname(dir),mobj.get_id())
+        thumb = "%s/.thumb/%s.jpg" % (os.path.dirname(dir),mobj.get_handle())
         try:
             if RelImage.check_thumb(mobj.get_path(),thumb,const.thumbScale):
                 return thumb
@@ -419,7 +419,7 @@ def for_each_ancestor(start, func, data):
     doneIds = {}
     while len(todo):
         p = todo.pop()
-        pid = p.get_id()
+        pid = p.get_handle()
         # Don't process the same Id twice.  This can happen
         # if there is a cycle in the database, or if the
         # initial list contains X and some of X's ancestors.
@@ -428,9 +428,9 @@ def for_each_ancestor(start, func, data):
         doneIds[pid] = 1
         if func(data,pid):
             return 1
-        for fam, mrel, frel in p.get_parent_family_id_list():
-            f = fam.get_father_id()
-            m = fam.get_mother_id()
+        for fam, mrel, frel in p.get_parent_family_handle_list():
+            f = fam.get_father_handle()
+            m = fam.get_mother_handle()
             if f: todo.append(f)
             if m: todo.append(m)
     return 0
