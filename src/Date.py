@@ -455,13 +455,13 @@ class SingleDate:
             self.month = _m2num[string.lower(text[0:3])]
         except KeyError:
             self.setMonthStrEng(text)
-            raise Date.Error,text
 
     def setMonthStrEng(self,text):
         try:
             self.month = SingleDate.em2num[string.lower(text[0:3])]
         except KeyError:
             self.month = UNDEF
+            raise Date.Error,text
 
     def getMonthStr(self):
 	return _mname[self.month]
