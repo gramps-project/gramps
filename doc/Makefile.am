@@ -10,4 +10,4 @@ EXTRA_DIST = $(man_MANS) $(man_IN_FILES) xmldocs.make omf.make
 gramps.1: $(top_builddir)/config.status gramps.1.in
 	cd $(top_builddir) && CONFIG_FILES=doc/$@ $(SHELL) ./config.status
 
-CLEANFILES=$(man_MANS) $(SUBDIRS)/*/*.out $(SUBDIRS)/*/omf_timestamp
+CLEANFILES=$(man_MANS)

@@ -5,20 +5,21 @@ pkgdatadir = $(datadir)/@PACKAGE@/data
 dist_pkgdata_DATA = \
 	gedcom.xml \
 	papersize.xml \
-	tips.xml \
+	tips.xml
+
+dist_data_DATA = \
+	gramps.desktop \
 	gnome-mime-application-x-gramps.png \
 	gnome-mime-application-x-gedcom.png \
 	gnome-mime-application-x-gramps-package.png \
 	gnome-mime-application-x-gramps-xml.png \
 	gnome-mime-application-x-geneweb.png \
-	gramps.applications \
 	gramps.svg \
+	gramps.xml \
+	gramps.applications \
 	gramps.keys \
 	gramps.mime \
-	gramps.xml \
 	gramps.schemas
-
-EXTRA_DIST = $(dist_pkgdata_DATA)
 
 install-schemas:
 	$(INSTALL) -d $(DESTDIR)$(sysconfdir)/gconf/schemas

@@ -1,3 +1,13 @@
+2004-12-05  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* doc/Makefile.am: Remove unneeded CLEANFILES, they're defined below.
+	* doc/xmldocs.make: Add Makefile to CLEANFILES; Explictly clean 
+	stuff in distclean-hook.
+	* src/Makefile.am: Remove gramps.desktop from GRAPHICS.
+	* src/data/Makefile.am: Remove EXTRA_DIST; split files that do not
+	need to be in $PREFIX/share/gramps into dist_data_DATA: they're
+	installed explicitly to the proper locations anyway, and this is
+	only needed for distribution.
+
 2004-12-05  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DateParser.py: documenation enhancements
 	* src/GrampsBSDDB.py: Add cursor class

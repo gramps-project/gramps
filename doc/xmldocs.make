@@ -43,7 +43,7 @@ xml_files = $(entities) $(docname).xml
 omf_dir=$(top_srcdir)/omf-install
 
 EXTRA_DIST = $(xml_files) $(omffile)
-CLEANFILES = omf_timestamp
+CLEANFILES = omf_timestamp Makefile
 
 include $(top_srcdir)/doc/omf.make
 
@@ -61,6 +61,7 @@ distclean-hook:
 	then \
 	  rm -f $(entities); \
 	fi
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 app-dist-hook:
 	if test "$(figdir)"; then \
