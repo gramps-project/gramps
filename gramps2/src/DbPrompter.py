@@ -51,14 +51,16 @@ except:
 class DbPrompter:
     """Make sure a database is opened"""
     
-    def __init__(self,db,want_new):
+    def __init__(self,db,want_new,parent=None):
         self.db = db
         self.want_new = want_new
+        self.parent = parent
         self.show()
 
     def show(self):
         opendb = gtk.glade.XML(const.gladeFile, "opendb","gramps")
         top = opendb.get_widget('opendb')
+        top.set_transient_for(self.parent)
         title = opendb.get_widget('title')
 
         Utils.set_titles(top,title,_('Open a database'))

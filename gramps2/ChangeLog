@@ -1,3 +1,10 @@
+2003-09-07  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps_main.py (new_database_response,read_file,save_file): 
+	Pass parent window to DbPrompter.
+	* src/DbPrompter.py (__init__): Accept optional parent argument;
+	(show): Make the window the transient for the main window. 
+	* src/gramps.glade: Make Opendb dialog modal. 
+
 2003-09-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: re-present the open dialog box on
 	a failure to open a file.

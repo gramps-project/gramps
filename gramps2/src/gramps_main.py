@@ -967,7 +967,7 @@ class Gramps:
                        
     def new_database_response(self):
         import DbPrompter
-        DbPrompter.DbPrompter(self,1)
+        DbPrompter.DbPrompter(self,1,self.topWindow)
 
     def clear_person_tabs(self):
 
@@ -1173,7 +1173,7 @@ class Gramps:
             filename = os.path.dirname(filename)
         elif not os.path.isdir(filename):
             import DbPrompter
-            DbPrompter.DbPrompter(self,0)
+            DbPrompter.DbPrompter(self,0,self.topWindow)
             self.displayError(_("Database could not be opened"),
                               _("%s is not a directory.") % filename + ' ' + \
                               _("You should select a directory that contains a "
@@ -1451,7 +1451,7 @@ class Gramps:
         if os.path.exists(filename):
             if not os.path.isdir(filename):
                 import DbPrompter
-                DbPrompter.DbPrompter(self,0)
+                DbPrompter.DbPrompter(self,0,self.topWindow)
                 self.displayError(_("Database could not be opened"),
                                   _("%s is not a directory.") % filename + ' ' + \
                                   _("You should select a directory that contains a "
