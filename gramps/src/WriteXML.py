@@ -285,10 +285,13 @@ def write_attribute_list(g, list):
 def write_photo_list(g,list):
     for photo in list:
         path = photo.getPath()
-        l = len(fileroot)
-        if len(path) >= l:
-            if fileroot == path[0:l]:
-                path = path[l+1:]
+        if strip_photo:
+            path = os.path.basename(path)
+        else:
+            l = len(fileroot)
+            if len(path) >= l:
+                if fileroot == path[0:l]:
+                    path = path[l+1:]
         g.write('      <img src="%s"' % fix(path) )
         g.write(' description="%s"' % fix(photo.getDescription()))
         proplist = photo.getPropertyList()
@@ -335,21 +338,9 @@ def write_place_obj(g,place):
 #-------------------------------------------------------------------------
 
 def exportData(database, filename, callback):
-    
     global fileroot
-    date = string.split(time.ctime(time.time()))
+
     fileroot = os.path.dirname(filename)
-    owner = database.getResearcher()
-    personList = database.getPersonMap().values()
-    personList.sort(sortById)
-    familyList = database.getFamilyMap().values()
-    familyList.sort(sortById)
-    sourceList = database.getSourceMap().values()
-    placeList = database.getPlaceMap().values()
-    placeList.sort(sortById)
-
-    total = len(personList) + len(familyList)
-
     if os.path.isfile(filename):
         shutil.copy(filename, filename + ".bak")
 
@@ -360,6 +351,27 @@ def exportData(database, filename, callback):
             g = open(filename,"w")
     else:
         g = open(filename,"w")
+
+    write_xml_data(database, g, callback, 0)
+    g.close()
+
+def write_xml_data(database, g, callback, sp):
+
+    global strip_photo
+
+    strip_photo = sp
+    
+    date = string.split(time.ctime(time.time()))
+    owner = database.getResearcher()
+    personList = database.getPersonMap().values()
+    personList.sort(sortById)
+    familyList = database.getFamilyMap().values()
+    familyList.sort(sortById)
+    sourceList = database.getSourceMap().values()
+    placeList = database.getPlaceMap().values()
+    placeList.sort(sortById)
+
+    total = len(personList) + len(familyList)
 
     g.write('<?xml version="1.0" encoding="iso-8859-1"?>\n')
     g.write('<!DOCTYPE database SYSTEM "gramps.dtd" []>\n')
@@ -511,5 +523,4 @@ def exportData(database, filename, callback):
         g.write("  </bookmarks>\n")
 
     g.write("</database>\n")
-    g.close()
 
