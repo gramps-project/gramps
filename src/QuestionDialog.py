@@ -21,6 +21,7 @@
 import gtk
 import gtk.glade
 import const
+import GrampsGconfKeys
 
 from gettext import gettext as _
 
@@ -28,6 +29,7 @@ class SaveDialog:
     def __init__(self,msg1,msg2,task1,task2,parent=None):
         self.xml = gtk.glade.XML(const.errdialogsFile,"savedialog","gramps")
         self.top = self.xml.get_widget('savedialog')
+        self.dontask = self.xml.get_widget('dontask')
         self.task1 = task1
         self.task2 = task2
         
@@ -47,6 +49,8 @@ class SaveDialog:
             self.task1()
         elif response == gtk.RESPONSE_YES:
             self.task2()
+
+        GrampsGconfKeys.save_dont_ask(self.dontask.get_active())
         self.top.destroy()
 
 class QuestionDialog:
