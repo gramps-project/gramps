@@ -280,6 +280,7 @@ def write_attribute_list(g, list, indent=3):
         if note == "" and len(slist) == 0:
             g.write('/>\n')
         else:
+            g.write('>\n')
             for s in attr.getSourceRefList():
                 dump_source_ref(g,s,indent+1)
             write_note(g,"note",attr.getNote(),4)
