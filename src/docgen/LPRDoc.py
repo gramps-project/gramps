@@ -54,8 +54,15 @@ newpath = [
     '/usr/local/lib/python2.3/site-packages/gtk-2.0'
     ]
 sys.path = newpath + sys.path
-### FIXME ###
+### end FIXME ###
 import gnomeprint, gnomeprint.ui
+if gnomeprint.Context.__dict__.has_key('grestore'):
+    support_photos = 1
+else:
+    support_photos = 0
+    print "LPRDoc: Photos and rotated text (used in TimeChart)"
+    print "are not supported for direct priting."
+    print "Get gnome-python from CVS or wait for the next gnome-python release."
 
 #------------------------------------------------------------------------
 #
@@ -427,6 +434,11 @@ class GnomePrintPhoto:
 class LPRDoc(BaseDoc.BaseDoc):
     """Gnome-print document interface class. Derived from BaseDoc"""
     
+    #------------------------------------------------------------------------
+    #
+    # General methods
+    #
+    #------------------------------------------------------------------------
     def open(self,filename):
         """Sets up initialization"""
         #set up variables needed to keep track of which state we are in
@@ -463,22 +475,6 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.__job.close()
         self.__show_print_dialog()
 
-    def line_break(self):
-        "Forces a line break within a paragraph"
-        # Add previously held text to the paragraph, 
-        # then add line break directive, 
-        # then start accumulating further text 
-        append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
-        self.paragraph.add_piece(_LINE_BREAK,"")
-        self.__paragraph_text = ""
-
-    def page_break(self):
-        "Forces a page break, creating a new page"
-        # If we're already at the very top, relax and do nothing
-        if self.__y != self.top_margin:
-            self.end_page()
-            self.start_page()
-                                                                                
     def start_page(self,orientation=None):
         """Create a new page"""
         #reset variables dealing with opening a page
@@ -498,6 +494,29 @@ class LPRDoc(BaseDoc.BaseDoc):
         if (self.__page_open):
             self.__page_open = 0
             self.__pc.showpage()
+            self.__y -= self.top_margin + _LINE_SPACING
+
+    def page_break(self):
+        "Forces a page break, creating a new page"
+        # If we're already at the very top, relax and do nothing
+        if self.__y != self.top_margin:
+            self.end_page()
+            self.start_page()
+                                                                                
+    #------------------------------------------------------------------------
+    #
+    # Text methods
+    #
+    #------------------------------------------------------------------------
+
+    def line_break(self):
+        "Forces a line break within a paragraph"
+        # Add previously held text to the paragraph, 
+        # then add line break directive, 
+        # then start accumulating further text 
+        append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
+        self.paragraph.add_piece(_LINE_BREAK,"")
+        self.__paragraph_text = ""
 
     def start_paragraph(self,style_name,leader=None):
         """Paragraphs handling - A Gramps paragraph is any 
@@ -547,17 +566,6 @@ class LPRDoc(BaseDoc.BaseDoc):
         append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
         self.__paragraph_directive = ""
         self.__paragraph_text = ""
-                                                                                
-    def start_listing(self,style_name):
-        """
-        Starts a new listing block, using the specified style name.
-                                                                                
-        style_name - name of the ParagraphStyle to use for the block.
-        """
-        pass
-                                                                                
-    def end_listing(self):
-        pass
                                                                                 
     def start_table(self,name,style_name):
         """Begin new table"""
@@ -639,6 +647,11 @@ class LPRDoc(BaseDoc.BaseDoc):
         width       - allocated width
         """
 
+        # FIXME -- remove when gnome-python is released and hits every distro
+        if not support_photos:
+            return (x,y)
+        # end FIXME
+
         width = photo.get_width()
         height = photo.get_height()
 
@@ -666,90 +679,6 @@ class LPRDoc(BaseDoc.BaseDoc):
         x = x
         y = y - height
         return (x,y)
-                                                                                
-    def horizontal_line(self):
-        self.__pc.moveto(self.__x, self.__y)
-        self.__pc.lineto(self.right_margin, self.__y)
-
-    def write_cmdstr(self,text):
-        """
-        Writes the text in the current paragraph. Should only be used after a
-        start_paragraph and before an end_paragraph.
-                                                                                
-        text - text to write.
-        """
-        pass
-#        if not self.paragraph:
-#           self.start_paragraph()
-#       
-#        self.write(text)    
-                                                                                
-    def draw_arc(self,style,x1,y1,x2,y2,angle,extent):
-        pass
-                                                                                
-    def draw_path(self,style,path):
-        pass
-                                                                                
-    def draw_box(self,style,text,x,y):
-        box_style = self.draw_styles[style]
-        para_style = box_style.get_paragraph_style()
-        fontstyle = para_style.get_font()
-        
-        #assuming that we start drawing box from current position
-        __width=x-self.__x
-        __height=y-self.__y
-        self.__pc.rect_stroked(self.__x, self.__y) 
-
-        if text != None:
-           __text_width=self.__get_text_width(text,fontstyle)
-           #try to center text in box
-           self.__pc.setfont(find_font_from_fontstyle(fontstyle))
-           self.__pc.moveto(self.__x+(__width/2)-(__text_width/2),
-                            self.__y+(__height/2))
-           self.__pc.show(text)                                                                       
-
-    def write_at (self, style, text, x, y):
-        box_style = self.draw_styles[style]
-        para_style = box_style.get_paragraph_style()
-        fontstyle = para_style.get_font()
-
-        self.__pc.setfont(find_font_from_fontstyle(fontstyle))
-        self.__pc.moveto(x, y)
-        self.__pc.show(text)
-
-    def draw_bar(self, style, x1, y1, x2, y2):
-        self.__pc.moveto(x1, y1)
-        self.__pc.lineto(x2, y2)
-
-    def draw_text(self,style,text,x1,y1):
-        box_style = self.draw_styles[style]
-        para_style = box_style.get_paragraph_style()
-        fontstyle = para_style.get_font()
-
-        self.__pc.setfont(find_font_from_fontstyle(fontstyle))
-        self.__pc.moveto(x1,y1)
-        self.__pc.show(text)
-                                                                                
-    def center_text(self,style,text,x1,y1):
-        box_style = self.draw_styles[style]
-        para_style = box_style.get_paragraph_style()
-        fontstyle = para_style.get_font()
-
-        #not sure how x1, y1 fit into this
-        #should we assume x1 y1 is the starting location
-        #and that the right margin is the right edge?
-        __width=self.get_text_width(text)
-        __center=self.right_margin-self.left_margin
-        __center-=__width/2
-        self.__pc.setfont(find_font_from_fontstyle(fontstyle))
-        self.__pc.moveto(__center, self.__y)
-        self.__pc.show(text)
-                                                                                
-    def rotate_text(self,style,text,x,y,angle):
-        pass
-                                                                                
-    def draw_line(self,style,x1,y1,x2,y2):
-        self.__pc.line_stroked(x1,y1,x2,y2)
                                                                                 
     def write_text(self,text):
         """Add the text to the paragraph"""
@@ -966,6 +895,155 @@ class LPRDoc(BaseDoc.BaseDoc):
                 __x = __x + self.__cell_widths[__row_num][__col]    # set up margin for this row
             self.__y = col_y - __max_vspace[__row_num]
 
+    #------------------------------------------------------------------------
+    #
+    # Graphic methods
+    #
+    #------------------------------------------------------------------------
+
+    def horizontal_line(self):
+        self.__pc.moveto(self.left_margin, self.__y)
+        self.__pc.lineto(self.right_margin, self.__y)
+
+    def draw_path(self,style,path):
+        stype = self.draw_styles[style]
+        color = [ val/255.0 for val in stype.get_fill_color()]
+
+        point = path[0]
+        x = cm2u(point[0]) + self.left_margin
+        y = self.top_margin - cm2u(point[1])
+        self.__pc.moveto(x,y)
+
+        for point in path[1:]:
+            x = cm2u(point[0]) + self.left_margin
+            y = self.top_margin - cm2u(point[1])
+            self.__pc.lineto(x,y)
+        self.__pc.closepath()
+        self.__pc.stroke()
+
+        point = path[0]
+        x = cm2u(point[0]) + self.left_margin
+        y = self.top_margin - cm2u(point[1])
+        self.__pc.moveto(x,y)
+
+        for point in path[1:]:
+            x = cm2u(point[0]) + self.left_margin
+            y = self.top_margin - cm2u(point[1])
+            self.__pc.lineto(x,y)
+        self.__pc.closepath()
+
+        self.__pc.setrgbcolor(color[0],color[1],color[2])
+        self.__pc.fill()
+        self.__pc.setrgbcolor(0,0,0)
+        
+    def draw_box(self,style,text,x,y):
+        #assuming that we start drawing box from current position
+
+        x = self.left_margin + cm2u(x)
+        y = self.top_margin - cm2u(y)
+
+        box_style = self.draw_styles[style]
+        para_name = box_style.get_paragraph_style()
+        para_style = self.style_list[para_name]
+        fontstyle = para_style.get_font()
+        bh = cm2u(box_style.get_height())
+        bw = cm2u(box_style.get_width())
+
+        self.__pc.rect_stroked(x,y,bw,-bh) 
+
+        if text:
+            lines = text.split('\n')
+            start_x = x + 0.5 * fontstyle.get_size()
+            start_y = y - fontstyle.get_size()
+            for line in lines:
+                if not line.split():
+                    continue
+                self.__pc.setfont(find_font_from_fontstyle(fontstyle))
+                self.__pc.moveto(start_x,start_y)
+                self.__pc.show(line)
+                start_y -= fontstyle.get_size()
+
+    def write_at (self, style, text, x, y):
+        para_style = self.style_list[style]
+        fontstyle = para_style.get_font()
+
+        self.__pc.setfont(find_font_from_fontstyle(fontstyle))
+        self.__pc.moveto(cm2u(x), cm2u(y))
+        self.__pc.show(text)
+
+    def draw_bar(self, style, x1, y1, x2, y2):
+        self.__pc.moveto(x1, y1)
+        self.__pc.lineto(x2, y2)
+
+    def draw_text(self,style,text,x,y):
+        box_style = self.draw_styles[style]
+        para_name = box_style.get_paragraph_style()
+        para_style = self.style_list[para_name]
+        fontstyle = para_style.get_font()
+
+        start_x = self.left_margin + cm2u(x)
+        start_y = self.top_margin - cm2u(y) - fontstyle.get_size()
+        
+        self.__pc.setfont(find_font_from_fontstyle(fontstyle))
+        self.__pc.moveto(start_x,start_y)
+        self.__pc.show(text)
+                                                                                
+    def center_text(self,style,text,x,y):
+        box_style = self.draw_styles[style]
+        para_name = box_style.get_paragraph_style()
+        para_style = self.style_list[para_name]
+        fontstyle = para_style.get_font()
+
+        width = get_text_width(text,fontstyle)
+        start_x = self.left_margin + cm2u(x) - 0.5 * width
+        self.__pc.setfont(find_font_from_fontstyle(fontstyle))
+        self.__pc.moveto(start_x, self.top_margin - cm2u(y) - fontstyle.get_size())
+        self.__pc.show(text)
+                                                                                
+    def rotate_text(self,style,text,x,y,angle):
+        # FIXME - remove when new gnome-python is in all distros
+        if not support_photos:
+            return
+        # end FIXME
+        box_style = self.draw_styles[style]
+        para_name = box_style.get_paragraph_style()
+        para_style = self.style_list[para_name]
+        fontstyle = para_style.get_font()
+        
+        y_start = self.top_margin - cm2u(y)
+        x_start = self.left_margin + cm2u(x)
+        size = fontstyle.get_size()
+
+        self.__pc.gsave()
+        self.__pc.translate(x_start,y_start)
+        self.__pc.rotate(-angle)
+
+        this_y = 0
+        for line in text:
+            if not line.split():
+                continue
+            width = get_text_width(line,fontstyle)
+            this_x = -0.5 * width
+            self.__pc.setfont(find_font_from_fontstyle(fontstyle))
+            self.__pc.moveto(this_x,this_y)
+            self.__pc.show(line)
+            this_y -= size
+
+        self.__pc.grestore()
+                                                                                
+    def draw_line(self,style,x1,y1,x2,y2):
+        x1 = cm2u(x1) + self.left_margin
+        x2 = cm2u(x2) + self.left_margin
+        y1 = self.top_margin - cm2u(y1)
+        y2 = self.top_margin - cm2u(y2)
+        self.__pc.line_stroked(x1,y1,x2,y2)
+
+    #------------------------------------------------------------------------
+    #
+    # Print job methods
+    #
+    #------------------------------------------------------------------------
+
     #function to print text to a printer
     def __do_print(self,dialog, job):
         __pc = gnomeprint.Context(dialog.get_config())
@@ -1019,3 +1097,10 @@ Plugins.register_book_doc(
     1,
     1,
     "")
+
+Plugins.register_draw_doc(
+    _("Print..."),
+    LPRDoc,
+    1,
+    1,
+    "");

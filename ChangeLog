@@ -1,3 +1,6 @@
+2004-03-07  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/docgen/LPRDoc.py: Support for graphic reports.
+
 2004-03-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/PeopleModel.py: New GenericTreeView based model
 	* src/RelLib.py: metadata/people model support
