@@ -13,6 +13,10 @@ Version 0.9.2
   and Show uncollected objects.
 * Option to fix missing media files during Check and Repair.
 * Long-awaited Export to CD.
+* Save confirmation on Help->Open Example and File->New.
+* Command-line options (-i -o -f -a) support is added in its experimental stage.
+  Please try hard to break it and report to gramps-devel.
+* Man page is updated.
 
 Version 0.9.1
 * Custom paper sizes may be set for reports
