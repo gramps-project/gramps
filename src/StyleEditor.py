@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,6 +42,7 @@ import Utils
 import const
 import TextDoc
 import ListModel
+import locale
 from intl import gettext as _
 
 class StyleListDisplay:
@@ -223,9 +224,9 @@ class StyleEditor:
             self.top.get_widget("calign").set_active(1)
         else:
             self.top.get_widget("jalign").set_active(1)
-        self.top.get_widget("rmargin").set_text(str(p.get_right_margin()))
-        self.top.get_widget("lmargin").set_text(str(p.get_left_margin()))
-        self.top.get_widget("pad").set_text(str(p.get_padding()))
+        self.top.get_widget("rmargin").set_text(locale.str(p.get_right_margin()))
+        self.top.get_widget("lmargin").set_text(locale.str(p.get_left_margin()))
+        self.top.get_widget("pad").set_text(locale.str(p.get_padding()))
         self.top.get_widget("tborder").set_active(p.get_top_border())
         self.top.get_widget("lborder").set_active(p.get_left_border())
         self.top.get_widget("rborder").set_active(p.get_right_border())
