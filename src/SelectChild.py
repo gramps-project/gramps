@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -334,7 +334,7 @@ class EditRel:
 
         if father:
             fname = father.getPrimaryName().getName()
-            val = _("Relationship to %{father}s") % {
+            val = _("Relationship to %(father)s") % {
                 'father' : fname }
             self.fdesc.set_text('<b>%s</b>' % val)
             self.fcombo.set_sensitive(1)
@@ -345,7 +345,7 @@ class EditRel:
 
         if mother:
             mname = mother.getPrimaryName().getName()
-            val = _("Relationship to %{mother}s") % {
+            val = _("Relationship to %(mother)s") % {
                 'mother' : mname }
             self.mdesc.set_text('<b>%s</b>' % val)
             self.mcombo.set_sensitive(1)
