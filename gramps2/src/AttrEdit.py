@@ -84,10 +84,13 @@ class AttributeEditor:
         self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,self.top,
                                            self.slist,
                                            self.top.get_widget('add_src'),
+                                           self.top.get_widget('edit_src'),
                                            self.top.get_widget('del_src'))
 
         title = _("Attribute Editor for %s") % title
-        self.top.get_widget("attrTitle").set_text(title)
+        l = self.top.get_widget("attrTitle")
+        l.set_text('<span weight="bold" size="larger">%s</span>' % title)
+        l.set_use_markup(gtk.TRUE)
 
         AutoComp.AutoEntry(self.attrib_menu.entry,list)
 

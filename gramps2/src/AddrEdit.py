@@ -95,6 +95,7 @@ class AddressEditor:
         self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,
                                            self.top, self.slist,
                                            self.top.get_widget('add_src'),
+                                           self.top.get_widget('edit_src'),
                                            self.top.get_widget('del_src'))
 
         date_stat = self.top.get_widget("date_stat")

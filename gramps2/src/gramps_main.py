@@ -89,7 +89,7 @@ _MAILLIST = "http://sourceforge.net/mail/?group_id=25770"
 _BUGREPORT = "http://sourceforge.net/tracker/?group_id=25770&atid=385137"
 
 pl_titles = [ (_('Name'),5,250), (_('ID'),1,50),(_('Gender'),2,70),
-              (_('Birth Date'),6,150),(_('Death Date'),7,150), ('',5,0),
+              (_('Birth date'),6,150),(_('Death date'),7,150), ('',5,0),
               ('',6,0), ('',7,0) ]
 
 _sel_mode = gtk.SELECTION_MULTIPLE
@@ -483,7 +483,7 @@ class Gramps:
             else:
                 import MergeData
                 p1 = self.db.getPerson(mlist[0])
-                p2 = self.db.getPerson(mlist[2])
+                p2 = self.db.getPerson(mlist[1])
                 MergeData.MergePeople(self.db,p1,p2,self.merge_update,
                                       self.update_after_edit)
         elif page == 4:

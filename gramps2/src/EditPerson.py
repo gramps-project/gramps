@@ -33,6 +33,7 @@ import pickle
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
+import gnome
 
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK, INTERP_BILINEAR, pixbuf_new_from_file
 
@@ -98,9 +99,13 @@ class EditPerson:
         self.name_delete_btn = self.top.get_widget('aka_delete')
         self.name_edit_btn = self.top.get_widget('aka_edit')
         self.web_delete_btn = self.top.get_widget('delete_url')
+        self.web_edit_btn = self.top.get_widget('edit_url')
         self.event_delete_btn = self.top.get_widget('event_delete_btn')
+        self.event_edit_btn = self.top.get_widget('event_edit_btn')
         self.attr_delete_btn = self.top.get_widget('attr_delete_btn')
+        self.attr_edit_btn = self.top.get_widget('attr_edit_btn')
         self.addr_delete_btn = self.top.get_widget('addr_delete_btn')
+        self.addr_edit_btn = self.top.get_widget('addr_edit_btn')
 
         self.window = self.get_widget("editPerson")
         self.notes_field = self.get_widget("personNotes")
@@ -124,7 +129,6 @@ class EditPerson:
         self.web_url = self.get_widget("web_url")
         self.web_go = self.get_widget("web_go")
         self.web_description = self.get_widget("url_des")
-        self.addr_label = self.get_widget("address_label")
         self.addr_list = self.get_widget("address_list")
         self.addr_start = self.get_widget("address_start")
         self.addr_street = self.get_widget("street")
@@ -294,6 +298,7 @@ class EditPerson:
             "on_delete_url_clicked"     : self.on_delete_url_clicked,
             "on_deletephoto_clicked"    : self.gallery.on_delete_photo_clicked,
             "on_edit_properties_clicked": self.gallery.popup_change_description,
+            "on_editphoto_clicked"      : self.gallery.on_edit_photo_clicked,
             "on_editperson_switch_page" : self.on_switch_page,
             "on_event_add_clicked"      : self.on_event_add_clicked,
             "on_event_delete_clicked"   : self.on_event_delete_clicked,
@@ -790,10 +795,9 @@ class EditPerson:
 
     def on_web_go_clicked(self,obj):
         """Attempts to display the selected URL in a web browser"""
-        import gnome.url
         text = obj.get()
         if text:
-            gnome.url.show(text)
+            gnome.url_show(text)
         
     def on_cancel_edit(self,obj):
         """If the data has changed, give the user a chance to cancel
@@ -981,11 +985,12 @@ class EditPerson:
         import AddrEdit
         store,iter = self.ptree.get_selected()
         if iter:
-            AddrEdit.AddressEditor(self.ptree.get_object(iter))
+            AddrEdit.AddressEditor(self,self.ptree.get_object(iter))
 
     def on_update_url_clicked(self,obj):
         import UrlEdit
-        if obj.selection:
+        store,iter = self.wtree.get_selected()
+        if iter:
             pname = self.person.getPrimaryName().getName()
             url = obj.get_row_data(obj.selection[0])
             UrlEdit.UrlEditor(self,pname,url)
@@ -1009,7 +1014,7 @@ class EditPerson:
             event = self.elist[row[0]]
             self.event_date_field.set_text(event.getDate())
             self.event_place_field.set_text(event.getPlaceName())
-            self.event_name_field.set_label(const.display_pevent(event.getName()))
+            self.event_name_field.set_text(const.display_pevent(event.getName()))
             self.event_cause_field.set_text(event.getCause())
             self.event_descr_field.set_text(event.getDescription())
             if len(event.getSourceRefList()) > 0:
@@ -1020,22 +1025,23 @@ class EditPerson:
                 self.event_src_field.set_text('')
                 self.event_conf_field.set_text('')
             self.event_delete_btn.set_sensitive(1)
+            self.event_edit_btn.set_sensitive(1)
         else:
             self.event_date_field.set_text('')
             self.event_place_field.set_text('')
-            self.event_name_field.set_label('')
+            self.event_name_field.set_text('')
             self.event_cause_field.set_text('')
             self.event_descr_field.set_text('')
             self.event_src_field.set_text('')
             self.event_conf_field.set_text('')
             self.event_delete_btn.set_sensitive(0)
+            self.event_edit_btn.set_sensitive(0)
 
     def on_addr_select_row(self,obj):
         store,iter = self.ptree.get_selected()
         if iter:
             addr = self.ptree.get_object(iter)
             label = "%s %s %s" % (addr.getCity(),addr.getState(),addr.getCountry())
-            self.addr_label.set_label(label)
             self.addr_start.set_text(addr.getDate())
             self.addr_street.set_text(addr.getStreet())
             self.addr_city.set_text(addr.getCity())
@@ -1050,8 +1056,8 @@ class EditPerson:
                 self.addr_src_field.set_text('')
                 self.addr_conf_field.set_text('')
             self.addr_delete_btn.set_sensitive(1)
+            self.addr_edit_btn.set_sensitive(1)
         else:
-            self.addr_label.set_label('')
             self.addr_start.set_text('')
             self.addr_street.set_text('')
             self.addr_city.set_text('')
@@ -1061,6 +1067,7 @@ class EditPerson:
             self.addr_conf_field.set_text('')
             self.addr_src_field.set_text('')
             self.addr_delete_btn.set_sensitive(0)
+            self.addr_edit_btn.set_sensitive(0)
 
     def on_name_select_row(self,obj):
         store,iter = self.ntree.get_selected()
@@ -1101,19 +1108,21 @@ class EditPerson:
             self.web_url.set_text(path)
             self.web_description.set_text(url.get_description())
             self.web_go.set_sensitive(0)
-            #self.web_go.set_sensitive(1)
+            self.web_go.set_sensitive(1)
             self.web_delete_btn.set_sensitive(1)
+            self.web_edit_btn.set_sensitive(1)
         else:
             self.web_url.set_text('')
             self.web_description.set_text('')
             self.web_go.set_sensitive(0)
             self.web_delete_btn.set_sensitive(0)
+            self.web_edit_btn.set_sensitive(0)
             
     def on_attr_select_row(self,obj):
         store,iter = self.atree.get_selected()
         if iter:
             attr = self.atree.get_object(iter)
-            self.attr_type.set_label(const.display_pattr(attr.getType()))
+            self.attr_type.set_text(const.display_pattr(attr.getType()))
             self.attr_value.set_text(attr.getValue())
             if len(attr.getSourceRefList()) > 0:
                 psrc = attr.getSourceRefList()[0]
@@ -1123,12 +1132,14 @@ class EditPerson:
                 self.attr_src_field.set_text('')
                 self.attr_conf_field.set_text('')
             self.attr_delete_btn.set_sensitive(1)
+            self.attr_edit_btn.set_sensitive(1)
         else:
-            self.attr_type.set_label('')
+            self.attr_type.set_text('')
             self.attr_value.set_text('')
             self.attr_src_field.set_text('')
             self.attr_conf_field.set_text('')
             self.attr_delete_btn.set_sensitive(0)
+            self.attr_edit_btn.set_sensitive(0)
 
     def aka_double_click(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:

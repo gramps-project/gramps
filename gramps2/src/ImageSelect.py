@@ -522,6 +522,14 @@ class Gallery(ImageSelect):
             self.dataobj.setPhotoList(l)
             self.parent.lists_changed = 1
             self.load_images()
+
+    def on_edit_photo_clicked(self, obj):
+        """User wants to delete a new photo. Remove it from the displayed
+        thumbnails, and remove it from the dataobj photo list."""
+
+        if self.sel:
+            (i,t,b,photo,oid) = self.p_map[self.sel]
+            LocalMediaProperties(photo,self.path,self)
         
     def show_popup(self, photo):
         """Look for right-clicks on a picture and create a popup
@@ -625,28 +633,13 @@ class LocalMediaProperties:
         self.change_dialog.get_widget("notes").get_buffer().set_text(self.photo.getNote())
         self.change_dialog.signal_autoconnect({
             "on_cancel_clicked" : Utils.destroy_passed_object,
-            "on_up_clicked" : self.on_up_clicked,
-            "on_down_clicked" : self.on_down_clicked,
             "on_ok_clicked" : self.on_ok_clicked,
             "on_apply_clicked" : self.on_apply_clicked,
             "on_add_attr_clicked": self.on_add_attr_clicked,
+            "on_update_attr_clicked": self.on_update_attr_clicked,
             "on_delete_attr_clicked" : self.on_delete_attr_clicked,
             })
         self.redraw_attr_list()
-
-    def on_up_clicked(self,obj):
-        store,iter = self.atree.get_selected()
-        if iter:
-            row = self.atree.get_row(iter)
-            if row != 0:
-                self.atree.select_row(row-1)
-
-    def on_down_clicked(self,obj):
-        model,iter = self.atree.get_selected()
-        if not iter:
-            return
-        row = self.atree.get_row(iter)
-        self.atree.select_row(row+1)
 
     def redraw_attr_list(self):
         self.atree.clear()
@@ -859,7 +852,7 @@ class GlobalMediaProperties:
         self.on_apply_clicked(obj)
         Utils.destroy_passed_object(obj)
         
-    def on_attr_list_select_row(self,obj,row,b,c):
+    def on_attr_list_select_row(self,obj):
         store,iter = self.atree.get_selected()
         if iter:
             attr = self.atree.get_object(iter)

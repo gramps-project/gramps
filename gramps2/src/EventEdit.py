@@ -97,7 +97,6 @@ class EventEditor:
         else:
             self.calendar.hide()
         
-        self.top.get_widget("eventTitle").set_text(name) 
         if read_only:
             self.event_menu.set_sensitive(0)
             self.date_field.grab_focus()
@@ -105,11 +104,13 @@ class EventEditor:
         self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,
                                            self.top,self.slist,
                                            self.top.get_widget('add_src'),
+                                           self.top.get_widget('edit_src'),
                                            self.top.get_widget('del_src'))
 
         self.witnesstab = Witness.WitnessTab(self.witnesslist,self.parent,
                                            self.top,self.wlist,
                                            self.top.get_widget('add_witness'),
+                                           self.top.get_widget('edit_witness'),
                                            self.top.get_widget('del_witness'))
 
         AutoComp.AutoCombo(self.event_menu,list)

@@ -82,7 +82,7 @@ class AddSpouse:
         self.relation_type = self.glade.get_widget("rel_type")
         self.spouse_list = self.glade.get_widget("spouse_list")
 
-        titles = [ (_('Name'),3,200), (_('ID'),1,50), (_('Birth Date'),4,50),
+        titles = [ (_('Name'),3,200), (_('ID'),1,50), (_('Birth date'),4,50),
                    ('',0,50), ('',0,0)]
         
         self.slist = ListModel.ListModel(self.spouse_list, titles, self.select_row )
@@ -93,7 +93,9 @@ class AddSpouse:
                      
         self.rel_combo.set_popdown_strings(const.familyRelations)
         title = _("Choose Spouse/Partner of %s") % GrampsCfg.nameof(person)
-        self.glade.get_widget("spouseTitle").set_text(title)
+        spouse_title = self.glade.get_widget("spouseTitle")
+        spouse_title.set_text('<span weight="bold" size="larger">%s</span>' % title)
+        spouse_title.set_use_markup(gtk.TRUE)
 
         self.glade.signal_autoconnect({
             "on_select_spouse_clicked" : self.select_spouse_clicked,

@@ -57,6 +57,7 @@ class SourceSelector:
             "destroy_passed_object" : Utils.destroy_passed_object,
             "on_add_src_clicked"    : self.add_src_clicked,
             "on_del_src_clicked"    : self.del_src_clicked,
+            "on_edit_src_clicked"   : self.edit_src_clicked,
             "on_src_ok_clicked"     : self.src_ok_clicked,
             })
 
@@ -127,7 +128,7 @@ class SourceSelector:
 #
 #-------------------------------------------------------------------------
 class SourceTab:
-    def __init__(self,srclist,parent,top,clist,add_btn,del_btn):
+    def __init__(self,srclist,parent,top,clist,add_btn,edit_btn,del_btn):
         self.db = parent.db
         self.parent = parent
         self.list = srclist
@@ -150,6 +151,7 @@ class SourceTab:
         self.slist.set_model(self.model)
 
         add_btn.connect('clicked', self.add_src_clicked)
+        edit_btn.connect('clicked', self.edit_src_clicked)
         del_btn.connect('clicked', self.del_src_clicked)
         self.slist.connect('button-press-event',self.double_click)
         self.redraw()

@@ -72,13 +72,18 @@ class NameEditor:
             self.srcreflist = []
 
         full_name = parent.person.getPrimaryName().getName()
+
+        alt_title = self.top.get_widget("altTitle")
+
+        tmsg = _("Alternate Name Editor for %s") % full_name
         
-        self.top.get_widget("altTitle").set_text(
-            _("Alternate Name Editor for %s") % full_name)
+        alt_title.set_text('<span weight="bold" size="larger">%s</span>' % tmsg)
+        alt_title.set_use_markup(gtk.TRUE)
 
         self.sourcetab = Sources.SourceTab(self.srcreflist, self.parent,
                                            self.top, self.slist,
                                            self.top.get_widget('add_src'),
+                                           self.top.get_widget('edit_src'),
                                            self.top.get_widget('del_src'))
         
         self.note_buffer = self.note_field.get_buffer()
