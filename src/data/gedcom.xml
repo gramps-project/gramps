@@ -50,7 +50,7 @@
   </target>
   <target name="GeneWeb">
     <dest val=""/>
-    <adopt val="event_extended"/>
+    <adopt val="event"/>
     <conc val="standard"/>
     <alternate_names val="none"/>
     <calendar val="yes"/>
@@ -115,4 +115,3 @@
     <residence val="address"/>
   </target>
 </targets>
-

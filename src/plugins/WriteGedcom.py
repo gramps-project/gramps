@@ -961,6 +961,3 @@ class GedcomWriter:
 from Plugins import register_export
 
 register_export(writeData,_("Export to GEDCOM"))
-
-    
-    
