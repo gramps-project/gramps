@@ -191,7 +191,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
             except IOError,msg:
                 mymsg = _("Could not open %s\nUsing the default template") % \
                         self.template
-                QuestionDialog.WarningDialog(mymsg,msg)
+                QuestionDialog.WarningDialog(mymsg,str(msg))
                 self.bottom = _bottom
                 self.top = _top
             except:
