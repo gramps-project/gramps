@@ -31735,36 +31735,16 @@ Family name Given name
     <widget class="GtkTable" id="table47">
       <property name="border_width">12</property>
       <property name="visible">True</property>
-      <property name="n_rows">2</property>
+      <property name="n_rows">3</property>
       <property name="n_columns">2</property>
       <property name="homogeneous">False</property>
-      <property name="row_spacing">0</property>
-      <property name="column_spacing">0</property>
-
-      <child>
-	<widget class="GtkImage" id="image2223">
-	  <property name="visible">True</property>
-	  <property name="stock">gtk-dialog-info</property>
-	  <property name="icon_size">6</property>
-	  <property name="xalign">0.5</property>
-	  <property name="yalign">0</property>
-	  <property name="xpad">0</property>
-	  <property name="ypad">0</property>
-	</widget>
-	<packing>
-	  <property name="left_attach">0</property>
-	  <property name="right_attach">1</property>
-	  <property name="top_attach">0</property>
-	  <property name="bottom_attach">2</property>
-	  <property name="x_options">fill</property>
-	  <property name="y_options">fill</property>
-	</packing>
-      </child>
+      <property name="row_spacing">6</property>
+      <property name="column_spacing">6</property>
 
       <child>
 	<widget class="GtkLabel" id="label401">
 	  <property name="visible">True</property>
-	  <property name="label" translatable="yes">&lt;span size=&quot;larger&quot; weight=&quot;bold&quot;&gt;Loading Database&lt;/span&gt;</property>
+	  <property name="label" translatable="yes">&lt;span size=&quot;larger&quot; weight=&quot;bold&quot;&gt;Loading database&lt;/span&gt;</property>
 	  <property name="use_underline">False</property>
 	  <property name="use_markup">True</property>
 	  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -31806,6 +31786,49 @@ Family name Given name
 	  <property name="bottom_attach">2</property>
 	  <property name="x_options">fill</property>
 	  <property name="y_options"></property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkLabel" id="message">
+	  <property name="visible">True</property>
+	  <property name="label" translatable="yes"></property>
+	  <property name="use_underline">False</property>
+	  <property name="use_markup">False</property>
+	  <property name="justify">GTK_JUSTIFY_CENTER</property>
+	  <property name="wrap">False</property>
+	  <property name="selectable">False</property>
+	  <property name="xalign">0.5</property>
+	  <property name="yalign">0.5</property>
+	  <property name="xpad">0</property>
+	  <property name="ypad">0</property>
+	</widget>
+	<packing>
+	  <property name="left_attach">1</property>
+	  <property name="right_attach">2</property>
+	  <property name="top_attach">2</property>
+	  <property name="bottom_attach">3</property>
+	  <property name="x_options">fill</property>
+	  <property name="y_options"></property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkImage" id="image2223">
+	  <property name="visible">True</property>
+	  <property name="pixbuf">gramps.png</property>
+	  <property name="xalign">0.5</property>
+	  <property name="yalign">0</property>
+	  <property name="xpad">0</property>
+	  <property name="ypad">0</property>
+	</widget>
+	<packing>
+	  <property name="left_attach">0</property>
+	  <property name="right_attach">1</property>
+	  <property name="top_attach">0</property>
+	  <property name="bottom_attach">3</property>
+	  <property name="x_options">fill</property>
+	  <property name="y_options">fill</property>
 	</packing>
       </child>
     </widget>

@@ -676,10 +676,18 @@ class GrampsDbBase:
         the database. If sort_handles is True, the list is sorted by surnames
         """
         if self.person_map:
-            handle_list = self.person_map.keys()
             if sort_handles:
-                handle_list.sort(self._sortbyname)
-            return handle_list
+                slist = []
+                cursor = self.get_person_cursor()
+                data = cursor.first()
+                while data:
+                    slist.append((data[1][3].sname,data[0]))
+                    data = cursor.next()
+                cursor.close()
+                slist.sort()
+                return map(lambda x: x[1], slist)
+            else:
+                return self.person_map.keys()
         return []
 
     def get_place_handles(self,sort_handles=True):
@@ -689,10 +697,19 @@ class GrampsDbBase:
         Place title.
         """
         if self.place_map:
-            handle_list = self.place_map.keys()
             if sort_handles:
-                handle_list.sort(self._sortbyplace)
-            return handle_list
+                slist = []
+                cursor = self.get_place_cursor()
+                data = cursor.first()
+                while data:
+                    slist.append((data[1][2],data[0]))
+                    data = cursor.next()
+                cursor.close()
+                slist.sort()
+                val = map(lambda x: x[1], slist)
+                return val
+            else:
+                return self.place_map.keys()
         return []
 
     def get_source_handles(self,sort_handles=True):

@@ -72,7 +72,7 @@ class PeopleView:
         all.set_name(_("Entire Database"))
         all.add_rule(GenericFilter.Everyone([]))
 
-        self.DataFilter = all
+        self.DataFilter = None
         self.pscroll = self.parent.gtop.get_widget("pscroll")
         self.person_tree = self.parent.gtop.get_widget("person_tree")
         self.person_tree.set_rules_hint(gtk.TRUE)
@@ -86,9 +86,6 @@ class PeopleView:
         self.person_tree.connect('row_activated', self.alpha_event)
         self.person_tree.connect('button-press-event',
                                  self.on_plist_button_press)
-
-    def get_maps(self):
-        return self.person_model.get_maps()
 
     def build_columns(self):
         for column in self.columns:
@@ -147,9 +144,6 @@ class PeopleView:
         self.build_columns()
         self.person_model = PeopleModel.PeopleModel(db,self.DataFilter)
         self.sort_model = self.person_model
-        #self.sort_model = self.person_model.filter_new()
-        #self.sort_model.set_visible_column(PeopleModel.COLUMN_VIEW)
-        self.apply_filter()
         self.person_tree.set_model(self.sort_model)
 
     def remove_from_person_list(self,person):

@@ -86,7 +86,9 @@ class PeopleModel(gtk.GenericTreeModel):
             return
 
         if data_filter:
-            keys = self.data_filter.apply(self.db,self.db.get_person_handles(sort_handles=False))
+            handle_list = self.db.get_person_handles(sort_handles=False)
+            keys = data_filter.apply(self.db,handle_list)
+            del handle_list
         else:
             keys = self.db.get_person_handles(sort_handles=False)
             
@@ -107,9 +109,14 @@ class PeopleModel(gtk.GenericTreeModel):
         temp_top_path2iter = self.sname_sub.keys()
         temp_top_path2iter.sort(locale.strcoll)
         for name in temp_top_path2iter:
+
+            slist = []
+            for handle in self.sname_sub[name]:
+                n = self.db.person_map.get(handle)[_NAME_COL].get_sort_name()
+                slist.append((n,handle))
+            slist.sort(self.byname)
+            entries = map(lambda x: x[1], slist)
             val = 0
-            entries = self.sname_sub[name]
-            entries.sort(self.byname)
             for person_handle in entries:
                 tpl = (name,val)
                 temp_iter2path[person_handle] = tpl
@@ -120,18 +127,8 @@ class PeopleModel(gtk.GenericTreeModel):
         self.iter2path = temp_iter2path
         self.path2iter = temp_path2iter
 
-        self.db.set_people_view_maps(self.get_maps())
-
-    def get_maps(self):
-        return (self.top_path2iter,
-                self.iter2path,
-                self.path2iter,
-                self.sname_sub)
-
     def byname(self,f,s):
-        n1 = self.db.person_map.get(str(f))[_NAME_COL].get_sort_name()
-        n2 = self.db.person_map.get(str(s))[_NAME_COL].get_sort_name()
-        return locale.strcoll(n1,n2)
+        return locale.strcoll(f[0],s[0])
 
     def on_get_flags(self):
 	'''returns the GtkTreeModelFlags for this particular type of model'''

@@ -1142,6 +1142,8 @@ class GrampsParser:
     def stop_family(self,*tag):
         self.db.commit_family(self.family,self.trans,self.change)
         self.family = None
+        while gtk.events_pending():
+            gtk.main_iteration()
         
     def stop_event(self,*tag):
         self.event.name = self.event_type
@@ -1186,6 +1188,8 @@ class GrampsParser:
             self.event.set_place_handle(self.placeobj.get_handle())
         self.db.commit_place(self.placeobj,self.trans,self.change)
         self.placeobj = None
+        while gtk.events_pending():
+            gtk.main_iteration()
         
     def stop_date(self,tag):
         if tag:
@@ -1203,6 +1207,8 @@ class GrampsParser:
     def stop_person(self,*tag):
         self.db.commit_person(self.person,self.trans,self.change)
         self.person = None
+        while gtk.events_pending():
+            gtk.main_iteration()
 
     def stop_description(self,tag):
         self.event.set_description(tag)

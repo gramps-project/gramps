@@ -10,10 +10,6 @@
   see http://sourceforge.net/mailarchive/forum.php?thread_id=3066997&forum_id=1993 
   and http://sourceforge.net/mailarchive/forum.php?thread_id=3134931&forum_id=1993
   for the details.
-* Make Date parsing locale dependent, like relationship calculator
-* Add Confession as a standard event
-* Now that the completeness flag exists, create filters that are using it
-  (both individual and family). 
 * Add autofill feature for City, Church parish, County, State and Country? 
 * Move LDS temple info out of const.py and into an XML file
 * Enhanced web page generator
@@ -23,5 +19,4 @@
   3 entries per page.
 * Add slideshow generation ability to web page generator
 * Enhance privacy handling
-* Better name handling, especially of non-European style names
 * And a whole lot more....
