@@ -1849,7 +1849,7 @@ class AddressEditor:
         self.priv = self.top.get_widget("priv")
 
         name = parent.person.getPrimaryName().getName()
-        text = _("Address Name Editor for %s") % name
+        text = _("Address Editor for %s") % name
         self.top.get_widget("addrTitle").set_text(text)
 
         myMenu = GtkMenu()
@@ -1864,7 +1864,7 @@ class AddressEditor:
         self.conf_menu.set_menu(myMenu)
 
         if addr != None:
-            self.given_field.set_text(addr.getFirstAddr())
+            self.street.set_text(addr.getFirstAddr())
             self.suraddr_field.set_text(addr.getSuraddr())
             self.suffix_field.set_text(addr.getSuffix())
             srcref_base = self.addr.getSourceRef().getBase()
