@@ -2,7 +2,6 @@
 SUBDIRS = docgen filters plugins data po calendars
 
 # For intl. support, how do we compile?
-GVFSINC = @GPREF@
 CFLAGS = -fPIC -shared -O @GNOMEINC@ @CFLAGS@ @CPPFLAGS@ -I@includedir@
 LDFLAGS = @GNOMELIB@ @LDFLAGS@ -L@libdir@ @LIBS@
 CLEANFILES = $(INTLLIBS) grampslib.so
@@ -142,10 +141,10 @@ all-local: $(INTLLIBS) grampslib.so
 # These can probably be done in a better or more elegant/generic way 
 # eventually (libtool?), but this works.
 intl22.so: $(srcdir)/intl.c
-	$(CC) $(CFLAGS) $(LDFLAGS) @P22_INCLUDES@ -DVER22 -o $@ $(srcdir)/intl.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $(PYTHON_CPPFLAGS) -DVER22 -o $@ $(srcdir)/intl.c
 
 grampslib.so: $(srcdir)/grampslib_wrap.c
-	$(CC) $(CFLAGS) @P22_INCLUDES@ -o $@ $(srcdir)/grampslib_wrap.c $(LDFLAGS) 
+	$(CC) $(CFLAGS) $(PYTHON_CPPFLAGS) -o $@ $(srcdir)/grampslib_wrap.c $(LDFLAGS) 
 
 # In principle the following rule slightly  violates the automake/autoconf 
 # spirit of keeping each subdirectory as a separate entity unto itself. 
@@ -161,7 +160,7 @@ pycheck:
           (cd $$d; make pycheck); \
 	done;
 	pychecker $(pkgpython_PYTHON)
-	
+
 install-data-local:
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/pixmaps
 	$(INSTALL_DATA) $(srcdir)/gramps.png $(DESTDIR)$(prefix)/share/pixmaps

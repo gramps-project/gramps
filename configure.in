@@ -44,13 +44,6 @@ pkgpyexecdir=\${prefix}/share/\${PACKAGE}
 AC_PATH_PROG(BINSH, sh)
 AC_PATH_PROG(SWIG, swig)
 
-if test "$PYTHON_VERSION" != "2.2" 
-then
-	AC_PATH_PROG(PYTHON22, python2.2)
-else
-	PYTHON22=$PYTHON
-fi
-
 AC_PATH_PROG(ZIP, zip)
 
 AC_PROG_CC
@@ -195,22 +188,10 @@ dnl Checks for libraries.
 
 dnl Checks for header files.
 
-AC_MSG_CHECKING(for headers required to compile python extensions)
-
-if test "$PYTHON22" != ""; then
-  py_prefix=`$PYTHON22 -c "import sys; print sys.prefix"`
-  py_exec_prefix=`$PYTHON22 -c "import sys; print sys.exec_prefix"`
-  P22_INCLUDES="-I${py_prefix}/include/python2.2"
-  if test "$py_prefix" != "$py_exec_prefix"; then
-    P22_INCLUDES="$P22_INCLUDES -I${py_exec_prefix}/include/python2.2" 
-  fi
-  if test -f "${py_exec_prefix}/include/python2.2/Python.h"
-  then
-    INTLLIBS="${INTLLIBS}intl22.so "
-  fi
-fi
-
-AC_MSG_RESULT(ok)
+AC_CACHE_CHECK([for Python include directory],
+ [gramps_cv_python_inc],
+ [gramps_cv_python_inc=`$PYTHON -c "from distutils import sysconfig; print sysconfig.get_python_inc()" 2>/dev/null`])
+AC_SUBST([PYTHON_CPPFLAGS], ["-I$gramps_cv_python_inc"])
 
 dnl ====================================
 dnl = Begin tests for scrollkeeper
@@ -244,7 +225,6 @@ AC_SUBST(SCROLLKEEPER_BUILD_REQUIRED)
 AC_SUBST(GNOMEHELP)
 AC_SUBST(GPREFIX)
 
-AC_SUBST(P22_INCLUDES)
 AC_SUBST(GNOMEINC)
 AC_SUBST(GNOMELIB)
 AC_SUBST(INTLLIBS)
