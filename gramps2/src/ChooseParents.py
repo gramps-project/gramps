@@ -414,8 +414,10 @@ class ChooseParents:
             self.parent_relation_changed(self.prel)
         elif person.getGender() == RelLib.Person.male:
             self.fmodel.add(rdata,None,1)
+            self.fmodel.center_selected()
         else:
             self.mmodel.add(rdata,None,1)
+            self.mmodel.center_selected()
         self.full_update()
         
     def add_parent_clicked(self,obj):
