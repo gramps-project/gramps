@@ -558,6 +558,8 @@ class GedcomParser:
                 self.parse_name(name,2)
 	    elif matches[1] == "RIN" or matches[1] == "RFN":
                 pass
+            elif matches[1] == "_UID":
+                self.person.setPafUid(matches[2])
 	    elif matches[1] == "AFN" or matches[1] == "CHAN":
                 self.ignore_sub_junk(2)
 	    elif matches[1] == "ALIA":

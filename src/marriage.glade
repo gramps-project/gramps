@@ -85,7 +85,7 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>marriageTitle</name>
-	<label>Marriage/Family Editor</label>
+	<label>Marriage/Relationship Editor</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>0.5</xalign>
@@ -379,7 +379,7 @@
 
 	    <widget>
 	      <class>GtkButton</class>
-	      <name>marriageSource</name>
+	      <name>event_source</name>
 	      <tooltip>Select the source of the information</tooltip>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -408,7 +408,7 @@
 
 	    <widget>
 	      <class>GtkButton</class>
-	      <name>button107</name>
+	      <name>event_note</name>
 	      <can_focus>True</can_focus>
 	      <signal>
 		<name>clicked</name>
@@ -766,7 +766,7 @@
 
 	    <widget>
 	      <class>GtkButton</class>
-	      <name>button102</name>
+	      <name>attr_source</name>
 	      <tooltip>Select the source of the information</tooltip>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -795,7 +795,7 @@
 
 	    <widget>
 	      <class>GtkButton</class>
-	      <name>button106</name>
+	      <name>attr_note</name>
 	      <can_focus>True</can_focus>
 	      <signal>
 		<name>clicked</name>
