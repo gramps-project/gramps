@@ -55,14 +55,16 @@ CFLAGS="$RPM_OPT_FLAGS" make
 rm -rf $RPM_BUILD_ROOT
 
 %makeinstall
-mkdir $RPM_BUILD_ROOT%{_datadir}/applications
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 desktop-file-install --vendor gramps --delete-original \
 	--dir $RPM_BUILD_ROOT%{_datadir}/applications  \
 	--add-category Application                     \
 	--add-category Utility                         \
-	$RPM_BUILD_ROOT%{_datadir}/gnome/apps/Applications/gramps.desktop
+	src/data/gramps.desktop
 %find_lang gramps
 rm -rf $RPM_BUILD_ROOT/%{_localstatedir}/scrollkeeper/
+rm -rf $RPM_BUILD_ROOT/%{_datadir}/mime/application
+rm -rf $RPM_BUILD_ROOT/%{_datadir}/mime/{globs,magic,XMLnamespaces}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -76,13 +78,19 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/bin/gramps
 
 %{_datadir}/applications/*
-%{_datadir}/pixmaps/gramps.png
 
-%{_libdir}/gramps
 %{_datadir}/gramps
 %{_datadir}/omf/gramps
+%{_datadir}/mime-info/*
+%{_datadir}/icons/gnome/48x48/mimetypes/*
+%{_sysconfdir}/gconf/schemas/gramps.schemas
+%{_datadir}/application-registry/gramps.applications
+%{_datadir}/mime/packages/gramps.xml
 
 %post
+GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source` \
+  gconftool-2 --makefile-install-rule \
+	%{_sysconfdir}/gconf/schemas/gramps.schemas > /dev/null
 if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
 
 %postun
