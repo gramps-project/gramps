@@ -1,3 +1,25 @@
+2003-10-30  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/WebPage.py: support for keeping track of options
+	* src/plugins/TimeLine.py: support for keeping track of options
+	* src/plugins/RelGraph.py: support for keeping track of options
+	* src/plugins/IndivSummary.py: support for keeping track of options
+	* src/plugins/IndivComplete.py: support for keeping track of options
+	* src/plugins/GraphViz.py: support for keeping track of options
+	* src/plugins/FtmStyleDescendants.py: support for keeping track of options
+	* src/plugins/FtmStyleAncestors.py: support for keeping track of options
+	* src/plugins/FanChart.py: support for keeping track of options
+	* src/plugins/FamilyGroup.py: support for keeping track of options
+	* src/plugins/DetAncestralReport.py: support for keeping track of options
+	* src/plugins/Ancestors.py: support for keeping track of options
+	* src/plugins/AncestorReport.py: support for keeping track of options
+	* src/plugins/AncestorChart.py: support for keeping track of options
+	* src/plugins/AncestorChart.py: support for keeping track of options
+	* src/Utils.py: save key on style mappings
+	* src/GenericFilter.py: allow setting of default value for filter menu
+	* src/PaperMenu.py: allow setting of perferred paper and orientation, GrampsCfg
+	no longer needed
+	* src/Report.py: keep track of options across reports
+	
 2003-10-29  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: pychecker cleanup
 	* src/PeopleView.py: pychecker cleanup
