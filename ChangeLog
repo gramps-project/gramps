@@ -1,3 +1,7 @@
+2003-11-12  Tim Waugh  <twaugh@redhat.com>
+	* src/WriteXML.py: Fix ID sorting so that RCS versioning is useful
+	again (broken in last WriteXML change).
+
 2003-11-10  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/edit_person.glade: Set meaningful ids for all tab labels.
 	* src/EditPerson.py (__init__): Find labels from XML, call
