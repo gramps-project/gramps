@@ -102,8 +102,8 @@ class AncestorReport:
         N = person.getPrimaryName().getName()
         b = person.getBirth().getDate()
         d = person.getDeath().getDate()
-        B = person.getBirth().getPlace().get_title()
-        D = person.getDeath().getPlace().get_title()
+        B = person.getBirth().getPlaceName()
+        D = person.getDeath().getPlaceName()
         i = "%s" % person.getId()
         A = Config.attr_name
         a = ""

@@ -1054,10 +1054,62 @@ then
 fi
 echo "$ac_t""ok" 1>&6
 
+echo $ac_n "checking Python/libglade bindings""... $ac_c" 1>&6
+echo "configure:1059: checking Python/libglade bindings" >&5
+
+cat > conftest.py <<EOF
+try:
+    import libglade
+    f = open("conftest.out", "w")
+    f.write("YES")
+    f.close()
+except ImportError:
+    f = open("conftest.out", "w")
+    f.write("NO")
+    f.close()
+EOF
+
+$PYTHON conftest.py
+has_pygtk=`cat conftest.out`
+rm -f conftest.out conftest.py
+if test "YES" != $has_pygtk
+then
+   { echo "configure: error: 
+
+**** The python interpreter can't find the python bindings for libglade." 1>&2; exit 1; }
+fi
+echo "$ac_t""ok" 1>&6
+
+echo $ac_n "checking Python/GNOME bindings for libglade""... $ac_c" 1>&6
+echo "configure:1085: checking Python/GNOME bindings for libglade" >&5
+
+cat > conftest.py <<EOF
+try:
+    import _gladegnome
+    f = open("conftest.out", "w")
+    f.write("YES")
+    f.close()
+except ImportError:
+    f = open("conftest.out", "w")
+    f.write("NO")
+    f.close()
+EOF
+
+$PYTHON conftest.py
+has_pygtk=`cat conftest.out`
+rm -f conftest.out conftest.py
+if test "YES" != $has_pygtk
+then
+   { echo "configure: error: 
+
+**** The python interpreter can't find the GNOME bindings for libglade." 1>&2; exit 1; }
+fi
+echo "$ac_t""ok" 1>&6
+
 
 
 echo $ac_n "checking for headers required to compile python extensions""... $ac_c" 1>&6
-echo "configure:1061: checking for headers required to compile python extensions" >&5
+echo "configure:1113: checking for headers required to compile python extensions" >&5
 py_prefix=`$PYTHON -c "import sys; print sys.prefix"`
 py_exec_prefix=`$PYTHON -c "import sys; print sys.exec_prefix"`
 PYTHON_INCLUDES="-I${py_prefix}/include/python${PYTHON_VERSION}"

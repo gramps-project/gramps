@@ -113,7 +113,7 @@ class IndivSummary:
             return
         name = event.getName()
         date = event.getDate()
-        place = event.getPlace().get_title()
+        place = event.getPlaceName()
         description = event.getDescription()
         if date == "":
             if place == "":

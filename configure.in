@@ -109,6 +109,56 @@ then
 fi
 AC_MSG_RESULT(ok)
 
+AC_MSG_CHECKING(Python/libglade bindings)
+changequote(,)
+cat > conftest.py <<EOF
+try:
+    import libglade
+    f = open("conftest.out", "w")
+    f.write("YES")
+    f.close()
+except ImportError:
+    f = open("conftest.out", "w")
+    f.write("NO")
+    f.close()
+EOF
+changequote([, ])
+$PYTHON conftest.py
+has_pygtk=`cat conftest.out`
+rm -f conftest.out conftest.py
+if test "YES" != $has_pygtk
+then
+   AC_MSG_ERROR([
+
+**** The python interpreter can't find the python bindings for libglade.])
+fi
+AC_MSG_RESULT(ok)
+
+AC_MSG_CHECKING(Python/GNOME bindings for libglade)
+changequote(,)
+cat > conftest.py <<EOF
+try:
+    import _gladegnome
+    f = open("conftest.out", "w")
+    f.write("YES")
+    f.close()
+except ImportError:
+    f = open("conftest.out", "w")
+    f.write("NO")
+    f.close()
+EOF
+changequote([, ])
+$PYTHON conftest.py
+has_pygtk=`cat conftest.out`
+rm -f conftest.out conftest.py
+if test "YES" != $has_pygtk
+then
+   AC_MSG_ERROR([
+
+**** The python interpreter can't find the GNOME bindings for libglade.])
+fi
+AC_MSG_RESULT(ok)
+
 dnl Checks for libraries.
 
 dnl Checks for header files.
