@@ -1,3 +1,7 @@
+2003-07-11  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/IndivSummary.py (IndivSummary.__init__):
+	Provide default value of 0 to newpage argument. 
+
 2003-07-11  Donald Peterson  <dpeterson@sigmaxi.org>
 	* src/docgen/LaTeXDoc.py: Added UNICODE support and '&' handling
 
