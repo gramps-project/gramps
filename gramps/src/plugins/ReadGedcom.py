@@ -518,6 +518,8 @@ class GedcomParser:
                     event.setName(ged2fam[matches[1]])
                 except:
                     event.setName(matches[1])
+                if event.getName() == "Marriage":
+                    self.setRelationship("Married")
                 self.family.addEvent(event)
 	        self.parse_family_event(event,2)
 

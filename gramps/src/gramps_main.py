@@ -1054,6 +1054,10 @@ def on_save_parents_clicked(obj):
     frel = family_window.get_widget("frel").get_text()
     type = family_window.get_widget("prel").get_text()
 
+    mrel = const.childRelations[mrel]
+    frel = const.childRelations[frel]
+    type = save_frel(type)
+    
     if select_father or select_mother:
         if select_mother.getGender() == Person.male and \
            select_father.getGender() == Person.female:
@@ -1073,7 +1077,6 @@ def on_save_parents_clicked(obj):
     else:    
         family = None
 
-    print type,family
     family.setRelationship(type)
 
     change_family_type(family,mrel,frel)
