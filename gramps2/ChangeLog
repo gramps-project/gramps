@@ -21,6 +21,8 @@
 	the center person.
 	* src/plugins/SimpleBookTitle.py: Correct window title. 
 	* doc/gramps-manual/C/mainwin.xml: Correction.
+	* src/po/ru.po: Typo.
+	* doc/gramps-manual/ru/usage.xml: Update.
 
 2004-01-31  Egyeki Gergely  <egeri@elte.hu>
 	* src/po/hu.po: Updating translation for 1.0-RC
