@@ -18,6 +18,15 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+class DateError(Exception):
+    """Error used to report Date errors"""
+    def __init__(self,value=""):
+        Exception.__init__(self)
+        self.value = value
+
+    def __str__(self):
+        return self.value
+
 class ReportError(Exception):
     """Error used to report Report errors"""
     def __init__(self,value,value2=""):

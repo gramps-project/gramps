@@ -30,6 +30,7 @@ __version__ = "$Revision$"
 
 from intl import gettext as _
 import re
+import Errors
 
 #-------------------------------------------------------------------------
 #
@@ -66,7 +67,6 @@ fmt3 = re.compile(_start+r"([?\d]+)\s*[./-]\s*([?\d]+)\s*[./-]\s*([?\d]+)\s*$",
 fmt7 = re.compile(_start+r"([?\d]+)\s*[./-]\s*([?\d]+)\s*$", re.IGNORECASE)
 fmt4 = re.compile(_start+"(\S+)\s+(\d+)\s*$", re.IGNORECASE)
 fmt5 = re.compile(_start+"(\d+)\s*$", re.IGNORECASE)
-fmt6 = re.compile(_start+"(\S+)\s*$", re.IGNORECASE)
 
 
 #-------------------------------------------------------------------------
@@ -440,10 +440,11 @@ class Calendar:
             matches = match.groups()
             mode = self.set_mode_value(matches[0])
             month = self.set_month_string(matches[2])
-            day = self.set_value(matches[1])
-            if len(matches) == 4 and matches[3] != None:
-                year = self.set_value(matches[3])
-            return (year,month,day,mode)
+            if month != UNDEF:
+                day = self.set_value(matches[1])
+                if len(matches) == 4 and matches[3] != None:
+                    year = self.set_value(matches[3])
+                return (year,month,day,mode)
         
         match = fmt5.match(text)
         if match != None:
@@ -487,28 +488,24 @@ class Calendar:
             matches = match.groups()
             mode = self.set_mode_value(matches[0])
             month = self.set_month_string(unicode(matches[1]))
-            if matches[2]:
-                val = matches[2].replace(',','')
-                day = self.set_value(val)
-            year = self.set_value(matches[3])
-            return (year,month,day,mode)
+            if month != UNDEF:
+                if matches[2]:
+                    val = matches[2].replace(',','')
+                    day = self.set_value(val)
+                year = self.set_value(matches[3])
+                return (year,month,day,mode)
 
         match = fmt4.match(text)
         if match != None:
             matches = match.groups()
             mode = self.set_mode_value(matches[0])
             month = self.set_month_string(unicode(matches[1]))
-            if len(matches) == 4:
-                year = self.set_value(matches[3])
-            return (year,month,day,mode)
+            if month != UNDEF:
+                if len(matches) == 4:
+                    year = self.set_value(matches[3])
+                return (year,month,day,mode)
 
-        match = fmt6.match(text)
-        if match != None:
-            matches = match.groups()
-            mode = self.set_mode_value(matches[0])
-            month = self.set_value(matches[1])
-
-        return (year,month,day,mode)
+        raise Errors.DateError
 
 
 _FMT_FUNC = [
@@ -550,5 +547,3 @@ def calendar_names():
         list.append(n)
     list.sort()
     return list
-
-

@@ -42,6 +42,7 @@ import Gregorian
 import Julian
 import Hebrew
 import FrenchRepublic
+import Errors
 
 from intl import gettext as _
 
@@ -71,8 +72,6 @@ class Date:
     """
     formatCode = 0
     
-    Error = "Illegal Date"
-
     fstr = _("(from|between|bet|bet.)")
     tstr = _("(and|to|-)")
     
@@ -207,7 +206,7 @@ class Date:
             else:
                 self.start.set(text)
                 self.range = 0
-        except Date.Error:
+        except Errors.DateError:
             if text != "":
                 self.range = -1
             self.text = text
