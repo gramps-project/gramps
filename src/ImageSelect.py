@@ -329,10 +329,12 @@ class Gallery(ImageSelect):
             item.show()
             menu.append(item)
             utils.add_menuitem(menu,_("View in the default viewer"),None,self.popup_view_photo)
-            utils.add_menuitem(menu,_("Edit in the default editor"),None,self.popup_edit_photo)
+            object = photo.getReference()
+            if object.getMimeType()[0:5] == "image":
+                utils.add_menuitem(menu,_("Edit with the GIMP"),\
+                                   None,self.popup_edit_photo)
             utils.add_menuitem(menu,_("Edit Object Properties"),None,
                                self.popup_change_description)
-            object = photo.getReference()
             if object.getLocal() == 0:
                 utils.add_menuitem(menu,_("Convert to local copy"),None,
                                    self.popup_convert_to_private)
