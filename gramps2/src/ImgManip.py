@@ -28,16 +28,18 @@ import string
 #
 #-------------------------------------------------------------------------
 try:
+    import pygtk; pygtk.require('2.0')
+except ImportError: # not set up for parallel install
+    pass 
+
+try:
     import PIL.Image
     import StringIO
     PIL.Image.init()
     no_pil = 0
 except:
     import popen2
-#    import GDK
-#    import GTK
     import gtk
-#    import GdkImlib
     no_pil = 1
 
 class ImgManip:

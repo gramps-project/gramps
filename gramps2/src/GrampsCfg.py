@@ -35,6 +35,11 @@ import Plugins
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+try:
+    import pygtk; pygtk.require('2.0')
+except ImportError: # not set up for parallel install
+    pass 
+
 import gobject
 import gconf
 import gtk

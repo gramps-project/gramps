@@ -2,11 +2,28 @@
 
 #-------------------------------------------------------------------------
 #
+# Cope with versioned pygtk installation.
+#
+#-------------------------------------------------------------------------
+try:
+    import pygtk
+    pygtk.require('2.0')
+except ImportError:
+    pass
+
+#-------------------------------------------------------------------------
+#
 # Load internationalization setup
 #
 #-------------------------------------------------------------------------
 import os
 import locale
+
+try:
+    import pygtk; pygtk.require('2.0')
+except ImportError: # not set up for parallel install
+    pass 
+
 import gtk.glade
 import intl
 
@@ -33,6 +50,11 @@ import sys
 # GNOME/GTK libraries
 #
 #-------------------------------------------------------------------------
+try:
+    import pygtk; pygtk.require('2.0')
+except ImportError: # not set up for parallel install
+    pass 
+
 import gtk
 import gnome.ui
 
@@ -60,4 +82,3 @@ except:
     DisplayTrace.DisplayTrace()
         
 gtk.mainloop()
-

@@ -44,10 +44,6 @@ pkgpyexecdir=\${prefix}/share/\${PACKAGE}
 AC_PATH_PROG(BINSH, sh)
 AC_PATH_PROG(SWIG, swig)
 
-changequote(<<, >>)dnl
-PYTHON_VERSION=`$PYTHON -c "import sys; print sys.version[:3]"`
-changequote([, ])dnl
-
 if test "$PYTHON_VERSION" != "2.2" 
 then
 	AC_PATH_PROG(PYTHON22, python2.2)
@@ -76,11 +72,18 @@ AC_CHECK_PROG(HAVE_PKG_CONFIG, pkg-config, "YES", "NO")
 GNOMEINC=`pkg-config --cflags gnome-vfs-module-2.0`
 GNOMELIB=`pkg-config --libs gnome-vfs-module-2.0`
 
+pygtk_require="try:
+    import pygtk
+    pygtk.require('2.0')
+except ImportError:
+    pass
+"
+
 dnl Check if python bindings for gtk are installed
 
 AC_MSG_CHECKING(Python bindings for gtk)
-changequote(,)
 cat > conftest.py <<EOF
+$pygtk_require
 try:
     import gobject
     f = open("conftest.out", "w")
@@ -91,7 +94,6 @@ except ImportError:
     f.write("NO")
     f.close()
 EOF
-changequote([, ])
 $PYTHON conftest.py
 has_pygtk=`cat conftest.out`
 rm -f conftest.out conftest.py
@@ -104,7 +106,6 @@ fi
 AC_MSG_RESULT(ok)
 
 AC_MSG_CHECKING(Python bindings for GNOME)
-changequote(,)
 cat > conftest.py <<EOF
 try:
     import gnome, gnome.ui
@@ -116,7 +117,6 @@ except ImportError:
     f.write("NO")
     f.close()
 EOF
-changequote([, ])
 $PYTHON conftest.py
 has_pygnome=`cat conftest.out`
 rm -f conftest.out conftest.py
@@ -128,8 +128,8 @@ fi
 AC_MSG_RESULT(ok)
 
 AC_MSG_CHECKING(Python bindings for gconf)
-changequote(,)
 cat > conftest.py <<EOF
+$pygtk_require
 try:
     import gconf
     f = open("conftest.out", "w")
@@ -140,7 +140,6 @@ except ImportError:
     f.write("NO")
     f.close()
 EOF
-changequote([, ])
 $PYTHON conftest.py
 has_gconf=`cat conftest.out`
 rm -f conftest.out conftest.py
@@ -152,8 +151,8 @@ fi
 AC_MSG_RESULT(ok)
 
 AC_MSG_CHECKING(Python bindings for GNOME canvas)
-changequote(,)
 cat > conftest.py <<EOF
+$pygtk_require
 try:
     import gnome.canvas
     f = open("conftest.out", "w")
@@ -164,7 +163,6 @@ except ImportError:
     f.write("NO")
     f.close()
 EOF
-changequote([, ])
 $PYTHON conftest.py
 has_canvas=`cat conftest.out`
 rm -f conftest.out conftest.py
@@ -176,8 +174,8 @@ fi
 AC_MSG_RESULT(ok)
 
 AC_MSG_CHECKING(Python bindin for glade)
-changequote(,)
 cat > conftest.py <<EOF
+$pygtk_require
 try:
     import gtk.glade
     f = open("conftest.out", "w")
@@ -188,7 +186,6 @@ except ImportError:
     f.write("NO")
     f.close()
 EOF
-changequote([, ])
 $PYTHON conftest.py
 has_pygtk=`cat conftest.out`
 rm -f conftest.out conftest.py

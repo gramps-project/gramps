@@ -46,6 +46,9 @@ try:
 
         def bindtextdomain(s,x):
             return
+
+        def bind_textdomain_codeset(s,x):
+            return
 except:
     import traceback
     traceback.print_exc()
@@ -57,4 +60,7 @@ except:
         return
     
     def bindtextdomain(s,x):
+        return
+
+    def bind_textdomain_codeset(s,x):
         return

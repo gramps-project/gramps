@@ -76,7 +76,7 @@ GPREF = @GPREF@
 HAVE_JW = @HAVE_JW@
 HAVE_PKG_CONFIG = @HAVE_PKG_CONFIG@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
-INTLLIBS = @INTLLIBS@
+INTLLIBS = intl22.so
 JW = @JW@
 LANGUAGES = @LANGUAGES@
 LIBS = @LIBS@
@@ -455,8 +455,7 @@ all: ${INTLLIBS} grampslib.so
 intl22.so: intl.c
 	$(CC) $(CFLAGS) $(LDFLAGS) @P22_INCLUDES@ -DVER22 -o $@ intl.c
 
-grampslib.so: grampslib.i
-	$(SWIG) -python grampslib.i 
+grampslib.so: grampslib_wrap.c
 	$(CC) $(CFLAGS) @P22_INCLUDES@ -o $@ grampslib_wrap.c $(LDFLAGS) 
 
 # In principle the following rule slightly  violates the automake/autoconf 
