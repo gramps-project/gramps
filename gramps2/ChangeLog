@@ -1,3 +1,9 @@
+2005-01-07  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps.glade: removal of more OptionMenus in favor
+	of ComboBoxes
+	* src/GrampsCfg.py: use new ComboBoxes
+	* src/DateHandler.py: fix set_format vs. formats bug
+
 2005-01-07 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Plugins.py: Use doc lists from PluginMgr.
 	* src/Exporter.py: Use exports list from PluginMgr.

@@ -267,13 +267,13 @@ def get_use_tips():
 def save_use_tips(val):
     set_bool("/apps/gramps/preferences/use-tips",val)
 
-def get_date_format(_date_format_list=[]):
+def get_date_format(date_format_list):
     return get_int("/apps/gramps/preferences/date-format",
-                        range(len(_date_format_list)))
+                        range(len(date_format_list)))
 
-def save_date_format(val,_date_format_list=[]):
+def save_date_format(val,date_format_list):
     set_int("/apps/gramps/preferences/date-format",val,
-                        range(len(_date_format_list)))
+                        range(len(date_format_list)))
 
 def get_name_format(_name_format_list):
     return get_int("/apps/gramps/preferences/name-format",

@@ -17830,28 +17830,6 @@ Other</property>
 			      </child>
 
 			      <child>
-				<widget class="GtkOptionMenu" id="lastnamegen">
-				  <property name="visible">True</property>
-				  <property name="can_focus">True</property>
-				  <property name="history">-1</property>
-
-				  <child internal-child="menu">
-				    <widget class="GtkMenu" id="convertwidget13">
-				      <property name="visible">True</property>
-				    </widget>
-				  </child>
-				</widget>
-				<packing>
-				  <property name="left_attach">1</property>
-				  <property name="right_attach">2</property>
-				  <property name="top_attach">4</property>
-				  <property name="bottom_attach">5</property>
-				  <property name="x_options">fill</property>
-				  <property name="y_options"></property>
-				</packing>
-			      </child>
-
-			      <child>
 				<widget class="GtkLabel" id="label38">
 				  <property name="visible">True</property>
 				  <property name="label" translatable="yes">&lt;b&gt;Family name guessing&lt;/b&gt;</property>
@@ -17873,6 +17851,20 @@ Other</property>
 				  <property name="bottom_attach">4</property>
 				  <property name="x_options">fill</property>
 				  <property name="y_options"></property>
+				</packing>
+			      </child>
+
+			      <child>
+				<widget class="GtkComboBox" id="lastnamegen">
+				  <property name="visible">True</property>
+				</widget>
+				<packing>
+				  <property name="left_attach">1</property>
+				  <property name="right_attach">2</property>
+				  <property name="top_attach">4</property>
+				  <property name="bottom_attach">5</property>
+				  <property name="x_options">fill</property>
+				  <property name="y_options">fill</property>
 				</packing>
 			      </child>
 			    </widget>
@@ -18395,16 +18387,8 @@ GNOME Settings</property>
 			      </child>
 
 			      <child>
-				<widget class="GtkOptionMenu" id="date_format">
+				<widget class="GtkComboBox" id="date_format">
 				  <property name="visible">True</property>
-				  <property name="can_focus">True</property>
-				  <property name="history">-1</property>
-
-				  <child internal-child="menu">
-				    <widget class="GtkMenu" id="convertwidget5">
-				      <property name="visible">True</property>
-				    </widget>
-				  </child>
 				</widget>
 				<packing>
 				  <property name="left_attach">2</property>
@@ -18412,7 +18396,7 @@ GNOME Settings</property>
 				  <property name="top_attach">1</property>
 				  <property name="bottom_attach">2</property>
 				  <property name="x_options">fill</property>
-				  <property name="y_options"></property>
+				  <property name="y_options">fill</property>
 				</packing>
 			      </child>
 			    </widget>

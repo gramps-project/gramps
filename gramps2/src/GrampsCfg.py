@@ -70,7 +70,7 @@ _surname_styles = [
 panellist = [
     (_("Display"),
      [( _("General"), 3),
-      ( _("Dates and Names"), 4),
+      ( _("Dates"), 4),
       ( _("Toolbar and Statusbar"), 2)]),
     (_("Database"),
      [( _("General"), 1),
@@ -235,7 +235,6 @@ class GrampsPreferences:
 
         toolbarmenu = self.top.get_widget("tooloptmenu")
         toolbarmenu.set_active(GrampsKeys.get_toolbar()-1)
-        print GrampsKeys.get_toolbar()
         toolbarmenu.connect('changed',
                 lambda obj: GrampsKeys.save_toolbar(obj.get_active()+1))
 
@@ -263,40 +262,42 @@ class GrampsPreferences:
                 lambda obj: GrampsKeys.save_usetips(obj.get_active()))
 
         lastnamegen_obj = self.top.get_widget("lastnamegen")
-        menu = gtk.Menu()
-        for index in range(0,len(_surname_styles)):
-            name = _surname_styles[index]
-            item = gtk.MenuItem(name)
-            item.set_data(DATA,index)
-            item.show()
-            menu.append(item)
-        menu.set_active(GrampsKeys.get_lastnamegen(_surname_styles))
-        lastnamegen_obj.set_menu(menu)
+        cell = gtk.CellRendererText()
+        lastnamegen_obj.pack_start(cell,True)
+        lastnamegen_obj.add_attribute(cell,'text',0)
+
+        store = gtk.ListStore(str)
+        for name in _surname_styles:
+            store.append(row=[name])
+        lastnamegen_obj.set_model(store)
+        lastnamegen_obj.set_active(GrampsKeys.get_lastnamegen(_surname_styles))
         lastnamegen_obj.connect("changed", 
                 lambda obj: 
-                GrampsKeys.save_lastnamegen(obj.get_menu().get_active().get_data(DATA),_surname_styles)
+                GrampsKeys.save_lastnamegen(obj.get_active(),_surname_styles)
                 )
 
         date_option = self.top.get_widget("date_format")
-        date_menu = gtk.Menu()
         dlist = DateHandler.get_date_formats()
-        for index in range(0,len(dlist)):
-            item = gtk.MenuItem(dlist[index])
-            item.set_data(INDEX,index)
-            item.show()
-            date_menu.append(item)
-        try:
-            # Technically, a selected format might be out of range
-            # for this locale's format list. 
-            date_menu.set_active(GrampsKeys.get_date_format(dlist))
-        except:
-            pass
+        date_option.pack_start(cell,True)
+        date_option.add_attribute(cell,'text',0)
 
-        date_option.set_menu(date_menu)
+        store = gtk.ListStore(str)
+        for item in dlist:
+            store.append(row=[item])
+
+        date_option.set_model(store)
         date_option.connect("changed",
                 lambda obj: 
-                GrampsKeys.save_date_format(obj.get_menu().get_active().get_data(INDEX),dlist)
+                GrampsKeys.save_date_format(obj.get_active(),dlist)
                 )
+
+        try:
+            # Technically, a selected format might be out of range
+            # for this locale's format list.
+            date_option.set_active(GrampsKeys.get_date_format(dlist))
+        except:
+            date_option.set_active(0)
+
 
         resname = self.top.get_widget("resname")
         resname.set_text(GrampsKeys.get_researcher_name())
