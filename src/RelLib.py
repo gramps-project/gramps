@@ -2356,7 +2356,9 @@ class GrampsDB:
 
     def sort_person_keys(self):
         if self.person_map:
-            return self.person_map.keys()
+            keys = self.person_map.keys()
+            keys.sort(self.sort_by_name)
+            return keys
         else:
             return []
 #         keys = self.person_map.keys()

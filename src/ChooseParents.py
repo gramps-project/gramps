@@ -646,7 +646,7 @@ class ModifyParents:
         if len(self.person.get_parent_family_id_list()) > 1:
             self.glade.get_widget('pref_label').show()
             self.pref.show()
-            if family == self.person.get_parent_family_id_list()[0]:
+            if self.family == self.person.get_parent_family_id_list()[0]:
                 self.pref.set_active(1)
             else:
                 self.pref.set_active(0)

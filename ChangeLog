@@ -10,6 +10,10 @@
 	* src/Marriage.py: Corrections.
 
 2004-02-28  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/ChooseParents.py: fix typo
+	* src/PedView.py: build child menu with IDs
+	* src/ReadGedcom.py: save birth/death events, handle FTM's broken
+	"_primary" junk
 	* src/gramps_main.py: switch to DB as default, remove save option
 	* src/RelLib.py: setup DB environment better
 	* src/DbPrompter.py: handle save/open with new DBs
