@@ -412,7 +412,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         y = (self.get_usable_height()*cm)-(y*cm)
         sc = make_color(font.get_color())
         fc = make_color(font.get_color())
-        fnt = self.pdf_set_font(font),
+        fnt = self.pdf_set_font(font)
         s = reportlab.graphics.shapes.String(x*cm,
                                              y,
                                              str(text),

@@ -1,3 +1,6 @@
+2003-12-11  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/docgen/PdfDoc.py (draw_text): Remove extra ",".
+
 2003-12-10  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsCfg.py: Make sure to return "BOTH" if the gnome
 	toolbar gconf entry is not set. Appears that this can happen
