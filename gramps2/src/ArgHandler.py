@@ -283,8 +283,8 @@ class ArgHandler:
 
         if self.imports:
             self.parent.import_tool_callback()
-        elif GrampsCfg.lastfile and GrampsCfg.autoload:
-            if self.parent.auto_save_load(GrampsCfg.lastfile) == 0:
+        elif GrampsCfg.get_lastfile() and GrampsCfg.get_autoload():
+            if self.parent.auto_save_load(GrampsCfg.get_lastfile()) == 0:
                 DbPrompter.DbPrompter(self.parent,0)
         else:
 	    DbPrompter.DbPrompter(self.parent,0)

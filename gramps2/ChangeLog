@@ -32,6 +32,8 @@
 	* src/plugins/Merge.py: Convert to new gconf usage.
 	* src/plugins/RelCalc.py: Convert to new gconf usage.
 	* src/plugins/WebPage.py: Convert to new gconf usage.
+	* src/ArgHandler.py: Convert to new gconf usage.
+	* src/Report.py: Convert to new gconf usage.
 
 2004-07-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Exporter.py: Fix EXPAND/FILL state of the chooser widget.
