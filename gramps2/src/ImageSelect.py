@@ -64,6 +64,9 @@ _IMAGEX = 140
 _IMAGEY = 150
 _PAD = 5
 
+
+_iconlist_refs = []
+
 #-------------------------------------------------------------------------
 #
 # ImageSelect class
@@ -217,6 +220,8 @@ class Gallery(ImageSelect):
             icon_list.connect("drag_data_get",
                               self.on_photolist_drag_data_get)
 
+        _iconlist_refs.append(icon_list)
+        
         # Remember arguments
         self.path      = path;
         self.dataobj   = dataobj;
@@ -235,9 +240,13 @@ class Gallery(ImageSelect):
 
     def close(self):
         self.iconlist.hide()
-        self.canvas_list = None
+        for a in self.canvas_list:
+            a[0].destroy()
+            a[1].destroy()
+            a[2].destroy()
+            
         self.p_map = None
-#        gc.collect()
+        self.canvas_list = None
         self.iconlist.destroy()
         
     def on_canvas1_event(self,obj,event):
