@@ -1642,7 +1642,7 @@ INSTALL_STRIP_PROGRAM="\${SHELL} \$(install_sh) -c -s"
 
 
 
-RELEASE=pre1
+RELEASE=rc1
 
 VERSIONSTRING=$VERSION
 if test x"$RELEASE" != "x"
@@ -4188,7 +4188,7 @@ SCROLLKEEPER_BUILD_REQUIRED=0.3.5
 
 
 
-                                                                                                                                                                                                        ac_config_files="$ac_config_files Makefile src/Makefile src/const.py src/docgen/Makefile src/filters/Makefile src/plugins/Makefile src/calendars/Makefile src/data/Makefile src/data/templates/Makefile src/po/Makefile doc/Makefile doc/gramps-manual/Makefile doc/gramps-manual/C/Makefile doc/extending-gramps/Makefile doc/extending-gramps/C/Makefile example/Makefile example/gramps/Makefile omf-install/Makefile gramps.spec gramps.sh"
+                                                                                                                                                                                    ac_config_files="$ac_config_files Makefile src/Makefile src/const.py src/docgen/Makefile src/filters/Makefile src/plugins/Makefile src/calendars/Makefile src/data/Makefile src/data/templates/Makefile src/po/Makefile doc/Makefile doc/gramps-manual/Makefile doc/gramps-manual/C/Makefile example/Makefile example/gramps/Makefile omf-install/Makefile gramps.spec gramps.sh"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
@@ -4769,8 +4769,6 @@ do
   "doc/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/Makefile" ;;
   "doc/gramps-manual/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/gramps-manual/Makefile" ;;
   "doc/gramps-manual/C/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/gramps-manual/C/Makefile" ;;
-  "doc/extending-gramps/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/extending-gramps/Makefile" ;;
-  "doc/extending-gramps/C/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/extending-gramps/C/Makefile" ;;
   "example/Makefile" ) CONFIG_FILES="$CONFIG_FILES example/Makefile" ;;
   "example/gramps/Makefile" ) CONFIG_FILES="$CONFIG_FILES example/gramps/Makefile" ;;
   "omf-install/Makefile" ) CONFIG_FILES="$CONFIG_FILES omf-install/Makefile" ;;
