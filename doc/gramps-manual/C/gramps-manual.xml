@@ -363,9 +363,9 @@
 	</varlistentry>
     
 	<varlistentry><term>Open example database</term>
-	<listitem><para> Select this item to load an example database shipped
+	<listitem><para> Select this item to load the example database shipped
 	with &app;. This database is composed of fictitious people and serves as
-	a useful example when learning how to work with &app;. </para></listitem>
+	a useful example for learning how to work with &app;. </para></listitem>
 	</varlistentry>
     
 	</variablelist>
@@ -386,7 +386,7 @@
 		fileref="figures/mainwin.png" format="PNG"/></imageobject>
 	<textobject> 
 	<phrase>Shows &app; main window. Contains titlebar, menubar, 
-	      toolbar, sidebar, display area, statusbar, progress bar, and
+	      toolbar, sidebar, display area, statusbar, progressbar, and
 	      scrollbars. Menubar contains File, Edit, View, Bookmarks, 
 	      Reports, Tools, Settings, and Help menus.  </phrase>
 	</textobject></mediaobject></screenshot></figure>
@@ -395,25 +395,27 @@
     <para>The &app; window contains the following elements: </para>
       <variablelist>
       <varlistentry><term>Menubar</term>
-	<listitem><para>The menubar provides access to all features of
+	<listitem><para>The menubar is located at the very top of the window
+        (right below the window title) and provides access to all features of
 	<application>&app;</application> through its menus.</para></listitem>
       </varlistentry>
       <varlistentry><term>Toolbar</term>
-	<listitem><para> The toolbar provides access to the most frequently 
-	used functions of <application>&app;</application>. The appearance of 
-	the toolbar can be adjusted in the <guilabel>Preferences</guilabel> 
+	<listitem><para> The toolbar is located immediately below the menubar. 
+        The toolbar provides access to the most frequently used functions 
+        of <application>&app;</application>. The appearance of the toolbar 
+        can be adjusted in the <guilabel>Preferences</guilabel> 
 	dialog. </para></listitem>
       </varlistentry>
-      <varlistentry><term>Progress bar</term>
-	<listitem><para>The progress bar is located in the lower left corner 
+      <varlistentry><term>Progressbar</term>
+	<listitem><para>The progressbar is located in the lower left corner 
 	of the &app; window. It displays the 
 	progress of time consuming operations, such as opening and saving 
 	large data bases, importing and exporting to other formats, generating 
 	web sites, etc. </para></listitem>
       </varlistentry>
       <varlistentry><term>Statusbar</term>
-	<listitem><para>The statusbar is located to the right of the progress
-	bar, on the very bottom of the &app; window. 
+	<listitem><para>The statusbar is located to the right of the 
+        progressbar, on the very bottom of the &app; window. 
 	It displays information about current <application>&app;</application> 
 	activity and contextual information about the menu items. 
 	The behavior of the Status line can be adjusted in 
@@ -501,10 +503,11 @@
         <title>People View</title>
 	<para>When <application>&app;</application> opens a database, 
 	the View is set to the People View (<xref linkend="side-nofilt-fig"/> 
-	and <xref linkend="noside-nofilt-fig"/>). People View lists individuals 
-	whose data is stored in the database. People View displays people's 
-	<guilabel>Names</guilabel>, &app; <guilabel>ID</guilabel> numbers, 
-	<guilabel>Gender</guilabel>, and 
+	and <xref linkend="noside-nofilt-fig"/>). The People View lists 
+        individuals whose data is stored in the database. The People View 
+        displays people's <guilabel>Names</guilabel>, 
+        &app; <guilabel>ID</guilabel> numbers, 
+        <guilabel>Gender</guilabel>, and 
 	their <guilabel>Birth</guilabel> and <guilabel>Death dates</guilabel>. 
 	The list can be ordered by any field.</para> 
 
@@ -519,8 +522,8 @@
 	  <para>Genealogical databases may contain huge numbers of people. 
 	  Since the long lists are hard for humans to handle,
 	  <application>&app;</application> provides a convenient way to limit 
-	  the scope of browsing by using the Filter. To save screen space, 
-	  Filter controls may be hidden, depending on the state of 
+	  the scope of browsing by using the filter. To save screen space, 
+	  filter controls may be hidden, depending on the state of 
 	  <menuchoice> <guimenu>View</guimenu> 
 	  <guimenuitem>Filter</guimenuitem> </menuchoice> menu item.</para> 
 	  
@@ -535,10 +538,10 @@
 	<!-- ==== End of Figure ==== -->
 
 	  <para>When <application>&app;</application> opens a database, the 
-	  Filter is set to the trivial filter called <guilabel>All
+	  filter is set to the trivial filter called <guilabel>All
 	  people</guilabel>, i.e. no filtering is in effect. To choose a 
 	  filter, use the pop-up <guilabel>Filter</guilabel> menu above the 
-	  people's list. Once the Filter is chosen, click
+	  people's list. Once the filter is chosen, click
 	  <guibutton>Apply</guibutton> in the upper right corner of the 
 	  window. The filtering will take effect upon clicking
 	  <guibutton>Apply</guibutton>. To invert the filtering rule, check 
@@ -552,14 +555,14 @@
 	  the filter to <guilabel>All people</guilabel>  
 	  and then click <guibutton>Apply</guibutton>. </para>
 	  
-	  <para>Note: even if the Filter controls are not displayed 
+	  <para>Note: even if the filter controls are not displayed 
 	  (<menuchoice> <guimenu>View</guimenu> 
 	  <guimenuitem>Filter</guimenuitem> </menuchoice> menu item is
 	  unchecked), the filtering might still be in place. In other words, 
-	  the visibility of the Filter controls is not related to the actual 
+	  the visibility of the filter controls is not related to the actual 
 	  filtering imposed on the list. This may be a cause of confusion, when
 	  you enable the filtering and then remove the controls from the
-	  display. If in doubt, enable the display of Filter controls by 
+	  display. If in doubt, enable the display of filter controls by 
 	  checking <menuchoice> <guimenu>View</guimenu> 
 	  <guimenuitem>Filter</guimenuitem> </menuchoice> menu item and check 
 	  what kind of filtering is currently set.</para> 
@@ -571,7 +574,7 @@
 	  <para><application>&app;</application> offers another way of 
 	  managing long lists of people -- alphabetical tabs. Upon loading a 
 	  database, <application>&app;</application> checks for the stored 
-	  Family names and breaks the people list into sublists based on the 
+	  family names and breaks the people list into sublists based on the 
 	  first letter of their name. The alphabetical tabs are displayed in 
 	  the bottom part of the &app; window. 
 	  The last tab, <guilabel>Other</guilabel>, stands for unidentified 
@@ -585,7 +588,7 @@
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="family-view">
         <title>Family View</title>
-	<para>Family View displays the Family information of a currently 
+	<para>Family View displays the family information of a currently 
 	selected (or Active) person. Specifically, this view shows the 
 	relationships (e.g marriages, partnerships, etc.) of the active 
 	person, his/her parents (or step parents, or guardians, etc), and 
@@ -602,10 +605,10 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>The Active person's data is in the list-box in the upper left 
+	<para>The Active person's data is in the list box in the upper left 
 	corner of the window. Directly below it, another box lists the Spouse's
 	data, for each relationship of Active person (can be more than one). 
-	The double-arrow button to the right of the Active person list-box 
+	The double-arrow button to the right of the Active person list box 
 	allows you to exchange the currently selected spouse (Current spouse) 
 	with the Active person. Double-clicking on the Active person allows the 
 	editing of Active person's data. Double-clicking on the Current spouse 
@@ -622,31 +625,31 @@
         relationship does not remove the person from the database. </para>
 	
 	<para>The parents of both the Active person and the Current spouse 
-	are listed in the corresponding list-boxes in the right-hand part of 
+	are listed in the corresponding list boxes in the right-hand part of 
 	the window (Active person's parents on top, Current spouse parents 
-	on the bottom). Both list-boxes have a set of three buttons on their 
+	on the bottom). Both list boxes have a set of three buttons on their 
 	right side. The <guibutton>+</guibutton> and <guibutton>-</guibutton>
 	buttons allow you to add and remove parents of the Active person and the 
 	Current spouse, respectively. Clicking <guibutton>-></guibutton> 
-	makes the family in the corresponding list-box an active family. 
+	makes the family in the corresponding list box an active family. 
 	That is, it makes the selected Father the Active person, and the 
 	selected Mother the Current spouse. </para>
 	
-	<para>The bottom list-box displays children of the Active person and 
-	the Current  Spouse. The Children's list can be order by the Birth date, 
-	by the usual way of clicking on the <guilabel>Birth date</guilabel> column 
+	<para>The bottom list box displays children of the Active person and 
+	the Current  Spouse. The Children's list can be ordered by the Birth date 
+	in the usual way of clicking on the <guilabel>Birth date</guilabel> column 
 	header. In addition to the <guilabel>Name</guilabel>,
 	<guilabel>ID</guilabel>, <guilabel>Gender</guilabel>, and
 	<guilabel>Birth date</guilabel> columns, the list includes a  
 	<guilabel>Status</guilabel> column. The pair of status words reflect the
 	relationship between the child and his Father/Mother (such as Birth, Adoption, 
 	etc.) Four buttons are available on the right side of the 
-	children list-box. The top (left arrow) button makes 
+	children list box. The top (left arrow) button makes 
 	the selected child the Active person. The next two buttons add a new
         child to the family: the upper one adds a new person to the database 
         and to the family, the lower one just adds a person existing in the
         database to the family. Finally, the lowest <guibutton>-</guibutton> 
-        button removes of the selected child from the family. Note that removing 
+        button removes the selected child from the family. Note that removing 
         a child from the family does not remove the person from the database.</para> 
       </sect3>
 
@@ -680,7 +683,7 @@
 	placed over the family line, the line changes color to indicate an 
 	active link: double-clicking on the line makes the corresponding 
 	ancestor the Active person. The display in that case is re-adjusted 
-	to show four generations, starting from a newly selected Active 
+	to show four generations, starting from the newly selected Active 
 	person. </para>
 	
 	<para>The left-hand side of the window shows the left arrow button. 
@@ -714,10 +717,10 @@
 	database. This can include various documents (birth, death, and 
 	marriage certificates, etc.), books, films, journals, private diaries, 
 	i.e. virtually anything that can be classified as a source of 
-	information. The sources can be used as the reference for any event 
+	information. The sources can be used as a reference for any event 
 	stored in the database. The Source View lists the 
 	<guilabel>Title</guilabel>, <guilabel>ID</guilabel>, and the 
-	<guilabel>Author</guilabel> of the source. All the columns can be 
+	<guilabel>Author</guilabel> of the source. Any column can be 
 	used for sorting the list. The usual rules apply: one click for 
 	ascending order, another click for descending order.</para> 
       </sect3>
@@ -765,7 +768,7 @@
 	Media Objects are any files that relate somehow to the stored 
 	genealogical data. Technically, any file can be stored as a Media 
 	Object. Most frequently, these are images, audio files, animation 
-	files, etc. The list-box on the bottom lists the Name, ID, Type, and 
+	files, etc. The list box on the bottom lists the Name, ID, Type, and 
 	Path to the Media Object. The top part of the GRAMPS window shows 
 	a preview (if available) and information about the Media 
 	Object. </para> 
@@ -800,7 +803,7 @@
       <application>&app;</application> you can retrieve your past selections 
       from the drop-down menu by clicking the down arrow button. Finally, if 
       the Revision Control System (RCS) is enabled in the 
-      <guilabel>Preferences</guilabel> dialog, the check-box 
+      <guilabel>Preferences</guilabel> dialog, the check box 
       <guilabel>Revert to an older version from RCS</guilabel> 
       will be available. Check it to revert your database to an older RCS 
       version. </para>
@@ -829,7 +832,7 @@
       <guimenuitem>Save</guimenuitem></menuchoice> or click
       <guibutton>Save</guibutton> on the Toolbar. The Status line will then 
       display the <guilabel>Saving <replaceable>filename</replaceable>...</guilabel> 
-      message, and the progress bar will advance as the saving progresses.</para>
+      message, and the progressbar will advance as the saving progresses.</para>
     </sect2>
 
     <!-- ================ Usage Subsection ================================ -->
@@ -870,7 +873,7 @@
 
       <para>Upon starting the &app; database or &app; package import, 
       <application>&app;</application> will display the progress in the 
-      progress bar of its main window.</para>
+      progressbar of its main window.</para>
 
       <para>If a media file is not found during import, the following dialog
       will prompt you for the possible actions:</para>
@@ -957,8 +960,8 @@
       </para>
 
       <para>Upon starting the export, <application>&app;</application> will 
-      display the following GEDCOM export progress window with the progress 
-      bars reflecting the current state of exporting. </para>
+      display the following GEDCOM export progress window with the 
+      progressbars reflecting the current state of exporting. </para>
 
 	<!-- ==== Figure: GEDCOM Export ==== -->
 	<figure id="gedcom-export-progress-fig"> 
@@ -1078,7 +1081,7 @@
 	<para>To specify parents of an active person, first switch to the 
 	Family View (<xref linkend="family-fig"/>). Then click the 
 	<guibutton>+</guibutton> button on the right of the active person's
-	parents list-box. Select the parents from two lists and specify the
+	parents list box. Select the parents from two lists and specify the
 	parents' relationships to the active person using menus at the bottom. 
 	You can also specify parents' relationship to each other. 
 	If necessary, you can add a person to the list by clicking the 
@@ -1093,7 +1096,7 @@
 	
 	<para>To specify parents of the active person's spouse, switch to the 
 	Family View and then click the <guibutton>+</guibutton> button on the 
-	right of the spouse's parents list-box. To edit information about 
+	right of the spouse's parents list box. To edit information about 
 	parents already present in the database, move the mouse over 
 	the corresponding parents' box and double-click.</para>
       </sect3>
@@ -1104,7 +1107,7 @@
 	<para>To specify children of an active person, switch to the 
 	Family View (<xref linkend="family-fig"/>) and then 
 	click the <guibutton>+</guibutton> button on the 
-	right of the children list-box. Select a child from the list and 
+	right of the children list box. Select a child from the list and 
 	specify	the child's relationship with father and mother using menus 
 	at the bottom. If necessary, you can add a person to the list by 
 	clicking the <guibutton>Add...</guibutton> button.</para>
@@ -3355,7 +3358,7 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-display-bars"> 
-        <title>Tool and Status Bars</title> 
+        <title>Toolbar and Statusbar</title> 
 	<variablelist>
 	
 	<varlistentry><term><guilabel>Toolbar</guilabel></term>
