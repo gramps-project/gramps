@@ -1,3 +1,12 @@
+Version 0.4.1
+* Tool/Report menus added to top level menu bar
+* Extract Titles and Nicknames plugin improved to provide more
+  information
+* Several bug fixes, including the problem of confusing father/
+  mother relationships in families
+* Significant improvements in speed for updating displays after
+  adding, editing, or deleting people, and for applying filters.
+
 Version 0.4.0
 * Redesigned Family page. More complex family relationships can be
   handled.

@@ -263,7 +263,7 @@ def on_add_sp_clicked(obj):
         "destroy_passed_object" : utils.destroy_passed_object
         })
 
-    rel_type.set_text(_("Unknown"))
+    rel_type.set_text(_("Married"))
 
 #-------------------------------------------------------------------------
 #
@@ -1134,21 +1134,23 @@ def on_save_parents_clicked(obj):
     type = const.save_frel(type)
     
     if select_father or select_mother:
-        if select_mother.getGender() == Person.male and \
-           select_father.getGender() == Person.female:
+        if select_mother and not select_father:
+            if select_mother.getGender() == Person.male:
+                select_father = select_mother
+                select_mother = None
             family = find_family(select_father,select_mother)
-            family.setFather(select_mother)
-            family.setMother(select_father)
-            x = select_father
-            select_father = select_mother
-            select_mother = x
-        elif select_mother and not select_father:
-            family = find_family(None,select_mother)
         elif select_father and not select_mother: 
-            family = find_family(select_father)
+            if select_father.getGender() == Person.female:
+                select_mother = select_father
+                select_father = None
+            family = find_family(select_father,select_mother)
         elif select_mother.getGender() != select_father.getGender():
             if type == "Partners":
                 type = "Unknown"
+            if select_father.getGender() == Person.female:
+                x = select_father
+                select_father = select_mother
+                select_mother = x
             family = find_family(select_father,select_mother)
         else:
             type = "Partners"
@@ -1194,7 +1196,7 @@ def on_select_spouse_clicked(obj):
     active_person.addFamily(family)
     select_spouse.addFamily(family)
 
-    if active_person == Person.male:
+    if active_person.getGender() == Person.male:
         family.setMother(select_spouse)
         family.setFather(active_person)
     else:	
