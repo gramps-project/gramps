@@ -97,22 +97,25 @@ class Report:
         i.e. the maximum number of times this routine will be
         called."""
         
-        # Load the glade file
-        base = os.path.dirname(__file__)
-        self.glade_file = os.path.join(base, "plugins", "basicreport.glade")
-        self.pxml = libglade.GladeXML(self.glade_file,"progress_dialog")
-
         # Customize the dialog for this report
         (title, header) = self.get_progressbar_data()
-        self.ptop = self.pxml.get_widget("progress_dialog")
+        self.ptop = GnomeDialog()
         self.ptop.set_title(title)
-        self.pxml.get_widget("header_label").set_text(header)
-
-        # Setup the progress bar limits
-        self.pbar = self.pxml.get_widget("progressbar")
+        self.ptop.vbox.add(GtkLabel(header))
+        self.ptop.vbox.add(GtkHSeparator())
+        self.ptop.vbox.set_spacing(10)
+        self.pbar = GtkProgressBar()
+        self.pbar.set_format_string(_("%v of %u (%P%%)"))
         self.pbar.configure(0.0,0.0,total)
+        self.pbar.set_show_text(1)
+        self.pbar.set_usize(350,20)
         self.pbar_max = total
         self.pbar_index = 0.0
+
+        self.ptop.vbox.add(self.pbar)
+        self.ptop.show_all()
+
+    # Setup the progress bar limits
 
     def progress_bar_step(self):
         """Click the progress bar over to the next value.  Be paranoid
@@ -159,16 +162,20 @@ class ReportDialog:
         self.frame_names = []
         self.frames = {}
         
-        self.window = GnomeDialog('My Window',STOCK_BUTTON_OK,STOCK_BUTTON_CANCEL)
+        self.window = GnomeDialog('Gramps',STOCK_BUTTON_OK,STOCK_BUTTON_CANCEL)
         self.window.set_default(0)
         self.window.button_connect(0,self.on_ok_clicked)
         self.window.button_connect(1,self.on_cancel)
         self.window.set_resize_mode(0)
 
+        # Build the list of widgets that are used to extend the Options
+        # frame and to create other frames
+        
+        self.add_user_options()
+
         # Set up and run the dialog.  These calls are not in top down
         # order when looking at the dialog box as there is some
         # interaction between the various frames.
-        self.add_user_options()
         self.setup_title()
         self.setup_header()
         self.setup_target_frame()
@@ -179,10 +186,11 @@ class ReportDialog:
         self.setup_report_options_frame()
         self.setup_other_frames()
         self.window.show_all()
-        self.setup_format_frame()
 
-    def add_user_options(self):
-        pass
+        # Allow for post processing of the format frame, since the
+        # show_all task calls events that may reset values
+        
+        self.setup_format_frame()
 
     #------------------------------------------------------------------------
     #
@@ -291,10 +299,33 @@ class ReportDialog:
     # Functions related to extending the options
     #
     #------------------------------------------------------------------------
+    def add_user_options(self):
+        """Called to allow subclasses add widgets to the dialog form.
+        It is called immediately before the window is displayed. All
+        calls to add_option or add_frame_option should be called in
+        this task."""
+        pass
+
     def add_option(self,label_text,widget):
+        """Takes a text string and a Gtk Widget, and stores them to be
+        appended to the Options section of the dialog. The text string
+        is used to create a label for the passed widget. This allows the
+        subclass to extend the Options section with its own widgets. The
+        subclass is reponsible for all managing of the widgets, including
+        extracting the final value before the report executes. This task
+        should only be called in the add_user_options task."""
         self.widgets.append((label_text,widget))
 
     def add_frame_option(self,frame_name,label_text,widget):
+        """Similar to add_option this method takes a frame_name, a
+        text string and a Gtk Widget. When the interface is built,
+        all widgets with the same frame_name are grouped into a
+        GtkFrame. This allows the subclass to create its own sections,
+        filling them with its own widgets. The subclass is reponsible for
+        all managing of the widgets, including extracting the final value
+        before the report executes. This task should only be called in
+        the add_user_options task."""
+        
         if self.frames.has_key(frame_name):
             self.frames[frame_name].append((label_text,widget))
         else:
@@ -546,7 +577,8 @@ class ReportDialog:
         html frame function."""
 
         hbox = GtkHBox()
-        hbox.pack_start(GtkLabel("Template"))
+        hbox.set_border_width(ReportDialog.border_pad)
+        hbox.pack_start(GtkLabel("Template"),0,0,5)
         self.html_fileentry = GnomeFileEntry(_("HTML Template"),_("Choose File"))
         hbox.add(self.html_fileentry)
         self.html_frame.add(hbox)
@@ -886,8 +918,6 @@ class TextReportDialog(ReportDialog):
         title = "Basic Report for %s" % self.name
         self.doc.write_text(title)
         self.doc.end_paragraph()
-            
-
 
 #------------------------------------------------------------------------
 #
@@ -896,11 +926,11 @@ class TextReportDialog(ReportDialog):
 #
 #------------------------------------------------------------------------
 class DrawReportDialog(ReportDialog):
-    def __init__(self,database,person,filename="basicreport.glade"):
+    def __init__(self,database,person):
         """Initialize a dialog to request that the user select options
         for a basic drawing report.  See the ReportDialog class for
         more information."""
-        ReportDialog.__init__(self,database,person,filename)
+        ReportDialog.__init__(self,database,person)
 
     #------------------------------------------------------------------------
     #

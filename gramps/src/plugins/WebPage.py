@@ -780,22 +780,29 @@ class WebReportDialog(ReportDialog):
         ReportDialog.__init__(self,database,person)
 
     def add_user_options(self):
+        lnk_msg = _("Include a link to the index page")
+        priv_msg = _("Do not include records marked private")
+        restrict_msg = _("Restrict information on living people")
+        no_img_msg = _("Do not use images")
+        no_limg_msg = _("Do not use images for living people")
+        no_com_msg = _("Do not include comments and text in source information")
 
-        self.use_link = GtkCheckButton(_("Include a link to the index page"))
+        self.use_link = GtkCheckButton(lnk_msg)
         self.use_link.set_active(1) 
-        self.no_private = GtkCheckButton(_("Do not include records marked private"))
+        self.no_private = GtkCheckButton(priv_msg)
         self.no_private.set_active(1)
-        self.restrict_living = GtkCheckButton(_("Restrict information on living people"))
-        self.no_images = GtkCheckButton(_("Do not use images"))
-        self.no_living_images = GtkCheckButton(_("Do not use images for living people"))
-        self.no_comments = GtkCheckButton(_("Do not include comments and text in source information"))
+        self.restrict_living = GtkCheckButton(restrict_msg)
+        self.no_images = GtkCheckButton(no_img_msg)
+        self.no_living_images = GtkCheckButton(no_limg_msg)
+        self.no_comments = GtkCheckButton(no_com_msg)
 
         self.add_option('',self.use_link)
-        self.add_option('',self.no_private)
-        self.add_option('',self.restrict_living)
-        self.add_option('',self.no_images)
-        self.add_option('',self.no_living_images)
-        self.add_option('',self.no_comments)
+        title = _("Privacy Options")
+        self.add_frame_option(title,None,self.no_private)
+        self.add_frame_option(title,None,self.restrict_living)
+        self.add_frame_option(title,None,self.no_images)
+        self.add_frame_option(title,None,self.no_living_images)
+        self.add_frame_option(title,None,self.no_comments)
 
         self.no_images.connect('toggled',self.on_nophotos_toggled)
         
@@ -1019,11 +1026,8 @@ class WebReportDialog(ReportDialog):
 # 
 #
 #------------------------------------------------------------------------
-
 def report(database,person):
     WebReportDialog(database,person)
-    
-    
 
 #-------------------------------------------------------------------------
 #
