@@ -446,6 +446,9 @@ class Event:
     def getDate(self) :
        	return self.date.getDate()
 
+    def getQuoteDate(self) :
+       	return self.date.getQuoteDate()
+
     def getDateObj(self) :
        	return self.date
 

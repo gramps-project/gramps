@@ -353,7 +353,7 @@ class EditPerson:
 
         self.event_index = 0
         for event in self.person.getEventList():
-            self.event_list.append([event.getName(),event.getDate(),\
+            self.event_list.append([event.getName(),event.getQuoteDate(),\
                                     event.getPlace()])
             self.event_list.set_row_data(self.event_index,event)
             self.event_index = self.event_index + 1
@@ -898,12 +898,7 @@ def update_event(event,name,date,place,desc):
         utils.modified()
 
     if event.getDate() != date:
-        try:
-            event.setDate(date)
-        except Date.BadFormat,msg:
-            msg1 = _(" is not a valid date format, and has been\n")
-            msg2 = _("ignored as the date of the event.")
-            GnomeWarningDialog(str(msg) + msg1 + msg2)
+        event.setDate(date)
         utils.modified()
     
 #-------------------------------------------------------------------------
@@ -989,12 +984,7 @@ def on_apply_person_clicked(obj):
     dplace = edit_person_obj.dplace.get_text()
 
     newBirth = Event()
-    try:
-        newBirth.set("Birth",bdate,bplace,"")
-    except Date.BadFormat,msg:
-        msg1 = _(" is not a valid date format, and has been\n")
-        msg2 = _("ignored as the date of the event.")
-        GnomeWarningDialog(str(msg) + msg1 + msg2)
+    newBirth.set("Birth",bdate,bplace,"")
     
     if newBirth.compare(birth):
         person.setBirth(newBirth)
@@ -1002,12 +992,7 @@ def on_apply_person_clicked(obj):
 
     newDeath = Event()
 
-    try:
-        newDeath.set("Death",ddate,dplace,"")
-    except Date.BadFormat,msg:
-        msg1 = _(" is not a valid date format, and has been\n")
-        msg2 = _("ignored as the date of the event.")
-        GnomeWarningDialog(str(msg) + msg1 + msg2)
+    newDeath.set("Death",ddate,dplace,"")
 
     if newDeath.compare(death):
         person.setDeath(newDeath)

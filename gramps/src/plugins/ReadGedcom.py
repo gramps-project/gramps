@@ -139,7 +139,7 @@ def importData(database, filename):
     familyTree = 0
     in_change = 0
     photo = None
-    ansel = 0
+    encoding = 0
 
     # add some checking here
 
@@ -174,8 +174,10 @@ def importData(database, filename):
     for line in allLines:
 
         line = string.replace(line, '\r', "")
-        if ansel == 1:
+        if encoding == 1:
             line = latin_ansel.ansel_to_latin(line)
+        elif encoding == 2:
+            line = latin_utf8.utf8_to_latin(line)
             
         if currentLine == value and index <= 20:
             index = index + 1
@@ -187,12 +189,13 @@ def importData(database, filename):
 
         currentLine = currentLine + 1
 
-		
         regex_match = charRegexp.match(line)
         if regex_match:
             id = regex_match.groups()
             if id[0] == "ANSEL":
-                ansel = 1
+                encoding = 1
+            elif id[0] == "UNICODE" or id[0] == "UTF-8" or id[0] == "UTF8":
+                encoding = 2
             continue
 
         regex_match = changeRegexp.match(line)

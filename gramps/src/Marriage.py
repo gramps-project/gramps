@@ -124,7 +124,7 @@ class Marriage:
     def add_event(self,text,event):
         if not event:
             return
-        self.event_list.append([text,event.getDate(),event.getPlace()])
+        self.event_list.append([text,event.getQuoteDate(),event.getPlace()])
         self.event_list.set_row_data(self.lines,event)
         self.lines = self.lines + 1
 

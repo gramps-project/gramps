@@ -26,9 +26,11 @@ import os
 import re
 import sort
 import string
-import tempfile
-import OpenOffice
 import utils
+
+from TextDoc import *
+from OpenOfficeDoc import *
+from HtmlDoc import *
 
 from gtk import *
 from gnome.ui import *
@@ -49,58 +51,174 @@ db = None
 #------------------------------------------------------------------------
 class FamilyGroup:
 
-    def __init__(self,database,family,output,template):
-        pass
-    
+    def __init__(self,database,family,output,doc):
+        self.db = database
+        self.family = family
+        self.output = output
+        self.doc = doc
+
+        para = ParagraphStyle()
+        font = FontStyle()
+        font.set_size(4)
+        para.set_font(font)
+        self.doc.add_style('blank',para)
+        
+        font = FontStyle()
+        font.set_type_face(FONT_SANS_SERIF)
+        font.set_size(16)
+        font.set_bold(1)
+        para = ParagraphStyle()
+        para.set_font(font)
+        self.doc.add_style('Title',para)
+
+        font = FontStyle()
+        font.set_type_face(FONT_SERIF)
+        font.set_size(10)
+        font.set_bold(0)
+        para = ParagraphStyle()
+        para.set_font(font)
+        self.doc.add_style('Normal',para)
+
+        font = FontStyle()
+        font.set_type_face(FONT_SANS_SERIF)
+        font.set_size(10)
+        font.set_bold(1)
+        para = ParagraphStyle()
+        para.set_font(font)
+        self.doc.add_style('ChildText',para)
+
+        font = FontStyle()
+        font.set_type_face(FONT_SANS_SERIF)
+        font.set_size(12)
+        font.set_bold(1)
+        para = ParagraphStyle()
+        para.set_font(font)
+        self.doc.add_style('ParentName',para)
+
+        cell = TableCellStyle()
+        cell.set_padding(0.2)
+        cell.set_top_border(1)
+        cell.set_bottom_border(1)
+        cell.set_right_border(1)
+        cell.set_left_border(1)
+        self.doc.add_cell_style('ParentHead',cell)
+
+        cell = TableCellStyle()
+        cell.set_padding(0.1)
+        cell.set_bottom_border(1)
+        cell.set_left_border(1)
+        self.doc.add_cell_style('TextContents',cell)
+
+        cell = TableCellStyle()
+        cell.set_padding(0.1)
+        cell.set_bottom_border(0)
+        cell.set_left_border(1)
+        cell.set_padding(0.1)
+        self.doc.add_cell_style('TextChild1',cell)
+
+        cell = TableCellStyle()
+        cell.set_padding(0.1)
+        cell.set_bottom_border(1)
+        cell.set_left_border(1)
+        cell.set_padding(0.1)
+        self.doc.add_cell_style('TextChild2',cell)
+
+        cell = TableCellStyle()
+        cell.set_padding(0.1)
+        cell.set_bottom_border(1)
+        cell.set_right_border(1)
+        cell.set_left_border(1)
+        self.doc.add_cell_style('TextContentsEnd',cell)
+
+        cell = TableCellStyle()
+        cell.set_padding(0.2)
+        cell.set_bottom_border(1)
+        cell.set_right_border(1)
+        cell.set_left_border(1)
+        self.doc.add_cell_style('ChildName',cell)
+
+        table = TableStyle()
+        table.set_width(100)
+        table.set_columns(3)
+        table.set_column_width(0,20)
+        table.set_column_width(1,40)
+        table.set_column_width(2,40)
+        self.doc.add_table_style('ParentTable',table)
+
+        table = TableStyle()
+        table.set_width(100)
+        table.set_columns(4)
+        table.set_column_width(0,5)
+        table.set_column_width(1,15)
+        table.set_column_width(2,40)
+        table.set_column_width(3,40)
+        self.doc.add_table_style('ChildTable',table)
+
     def setup(self):
-        pass
+        self.doc.open(self.output)
+        self.doc.start_paragraph('Title')
+        self.doc.write_text("Family Group Record")
+        self.doc.end_paragraph()
     
     def end(self):
-        pass
-    
-    def write_header(self):
-        pass
-    
-    def write_parent(self,type,name):
-        pass
-    
-    def start_parent_stats(self):
-        pass
-    
-    def end_parent_stats(self):
-        pass
-    
-    def write_parent_stats(self,str1,str2,str3):
-        pass
-    
-    def write_parent_parent(self,str1,str2):
-        pass
-    
-    def start_child_stats(self):
-        pass
-    
-    def end_child_stats(self):
-        pass
-        
-    def write_child_stats(self,str1,str2,str3,str4,last):
-        pass
-    
-    def write_child_name(self,index,child):
-        pass
-    
-    def write_child_spouse(self,spouse):
-        pass
+        self.doc.close()
     
     def dump_parent(self,person):
-        self.start_parent_stats();
+
         if person.getGender() == RelLib.Person.male:
-            self.write_parent("Husband:",person)
+            id = "Husband"
         else:
-            self.write_parent("Wife:",person)
+            id = "Wife"
+        
+        self.doc.start_table(id,'ParentTable')
+        self.doc.start_row()
+        self.doc.start_cell('ParentHead',3)
+        self.doc.start_paragraph('ParentName')
+        self.doc.write_text(id + ': ')
+        self.doc.write_text(person.getPrimaryName().getRegularName())
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
+        
         birth = person.getBirth()
         death = person.getDeath()
-        self.write_parent_stats("Birth",birth.getDate(),birth.getPlace())
-        self.write_parent_stats("Death",death.getDate(),death.getPlace())
+
+        self.doc.start_row()
+        self.doc.start_cell("TextContents")
+        self.doc.start_paragraph('Normal')
+        self.doc.write_text("Birth")
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.start_cell("TextContents")
+        self.doc.start_paragraph('Normal')
+        self.doc.write_text(birth.getDate())
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.start_cell("TextContentsEnd")
+        self.doc.start_paragraph('Normal')
+        self.doc.write_text(birth.getPlace())
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
+
+        self.doc.start_row()
+        self.doc.start_cell("TextContents")
+        self.doc.start_paragraph('Normal')
+        self.doc.write_text("Death")
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.start_cell("TextContents")
+        self.doc.start_paragraph('Normal')
+        self.doc.write_text(death.getDate())
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.start_cell("TextContentsEnd")
+        self.doc.start_paragraph('Normal')
+        self.doc.write_text(death.getPlace())
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
+
         family = person.getMainFamily()
         if family == None or family.getFather() == None:
             father_name = ""
@@ -110,528 +228,140 @@ class FamilyGroup:
             mother_name = ""
         else:
             mother_name = family.getMother().getPrimaryName().getRegularName()
-        self.write_parent_parent("Father",father_name)
-        self.write_parent_parent("Mother",mother_name)
-        self.end_parent_stats();
-    
+
+        self.doc.start_row()
+        self.doc.start_cell("TextContents")
+        self.doc.start_paragraph('Normal')
+        self.doc.write_text("Father")
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.start_cell("TextContentsEnd",2)
+        self.doc.start_paragraph('Normal')
+        self.doc.write_text(father_name)
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
+
+        self.doc.start_row()
+        self.doc.start_cell("TextContents")
+        self.doc.start_paragraph('Normal')
+        self.doc.write_text("Mother")
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.start_cell("TextContentsEnd",2)
+        self.doc.start_paragraph('Normal')
+        self.doc.write_text(mother_name)
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
+
+        self.doc.end_table()
+
+    def dump_child_event(self,text,name,event):
+        self.doc.start_row()
+        self.doc.start_cell(text)
+        self.doc.start_paragraph('Normal')
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.start_cell('TextContents')
+        self.doc.start_paragraph('Normal')
+        self.doc.write_text(name)
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.start_cell('TextContents')
+        self.doc.start_paragraph('Normal')
+        self.doc.write_text(event.getDate())
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.start_cell('TextContentsEnd')
+        self.doc.start_paragraph('Normal')
+        self.doc.write_text(event.getPlace())
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
+        
     def dump_child(self,index,person):
-        self.start_child_stats();
-        birth = person.getBirth()
-        death = person.getDeath()
-        self.write_child_name(index,person)
+
+        self.doc.start_row()
+        self.doc.start_cell('TextChild1')
+        self.doc.start_paragraph('ChildText')
+        if person.getGender() == RelLib.Person.male:
+            self.doc.write_text("%dM" % index)
+        else:
+            self.doc.write_text("%dF" % index)
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.start_cell('ChildName',3)
+        self.doc.start_paragraph('ChildText')
+        self.doc.write_text(person.getPrimaryName().getRegularName())
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
 
         families = len(person.getFamilyList())
-        self.write_child_stats("","Birth",birth.getDate(),\
-                               birth.getPlace(),0)
+        self.dump_child_event('TextChild1','Birth',person.getBirth())
         if families == 0:
-            last = 1
+            self.dump_child_event('TextChild2','Death',person.getDeath())
         else:
-            last = 0
-        self.write_child_stats("","Death",death.getDate(),\
-                               death.getPlace(),last)
-
+            self.dump_child_event('TextChild1','Death',person.getDeath())
+            
         index = 1
         for family in person.getFamilyList():
             if person == family.getFather():
-                self.write_child_spouse(family.getMother())
+                spouse =family.getMother()
             else:
-                self.write_child_spouse(family.getFather())
+                spouse = family.getFather()
+            self.doc.start_row()
+            self.doc.start_cell('TextChild1')
+            self.doc.start_paragraph('Normal')
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+            self.doc.start_cell('TextContents')
+            self.doc.start_paragraph('Normal')
+            self.doc.write_text("Spouse")
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+            self.doc.start_cell('TextContentsEnd',2)
+            self.doc.start_paragraph('Normal')
+            self.doc.write_text(spouse.getPrimaryName().getRegularName())
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+            self.doc.end_row()
+
             m = family.getMarriage()
-            if families == index:
-                last = 1
+            if index == families:
+                self.dump_child_event('TextChild2','Married',m)
             else:
-                last = 0
-            self.write_child_stats("","Married",m.getDate(),m.getPlace(),last)
+                self.dump_child_event('TextChild1','Death',m)
             
-        self.end_child_stats();
-
-    def write_report(self):
-        pass
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-class OpenOfficeFamilyGroup(FamilyGroup):
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def __init__(self,database,family,output,template):
-        self.map = {}
-        self.database = database
-        self.family = family
-        creator = db.getResearcher().getName()
-        self.open_office = OpenOffice.OpenOfficeCore(output,template,".sxw",creator)
-        
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def setup(self):
-        self.file = self.open_office.setup()
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def end(self):
-        self.open_office.end()
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_header(self):
-        self.file.write('<text:h text:style-name="Heading 1" ')
-        self.file.write('text:level="1">')
-        self.file.write('Family Group Record')
-        self.file.write('</text:h>\n')
-        
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_parent(self,type,name):
-        self.file.write("<table:table-row>\n")
-        self.file.write("<table:table-cell ")
-        self.file.write("table:style-name=\"Table1.A3\" ")
-        self.file.write("table:number-columns-spanned=\"3\" ")
-        self.file.write("table:value-type=\"string\">\n")
-        self.file.write("<text:p text:style-name=\"ParentHead\">")
-        self.file.write(type)
-        self.file.write("<text:tab-stop/>")
-        self.file.write(name.getPrimaryName().getRegularName())
-        self.file.write("</text:p>\n")
-        self.file.write("</table:table-cell>\n")
-        self.file.write("<table:covered-table-cell>\n")
-        self.file.write("</table:covered-table-cell>\n")
-        self.file.write("<table:covered-table-cell>\n")
-        self.file.write("</table:covered-table-cell>\n")
-        self.file.write("</table:table-row>\n")
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def start_parent_stats(self):
-        self.file.write("<table:table table:name=\"Table1\""\
-                        " table:style-name=\"Table1\">\n")
-        self.file.write("<table:table-column table:style-name=\""\
-                        "Table1.A\"/>\n")
-        self.file.write("<table:table-column table:style-name=\""\
-                        "Table1.B\"/>\n")
-        self.file.write("<table:table-column table:style-name=\""
-                        "Table1.C\"/>\n")
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def end_parent_stats(self):
-        self.file.write("</table:table>\n")
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_parent_stats(self,str1,str2,str3):
-        self.file.write("<table:table-row>\n")
-        self.file.write("<table:table-cell table:style-name=\""\
-                        "Table1.A1\" table:value-type=\"string\">\n")
-        self.file.write("<text:p text:style-name=\"P4\">" + str1 + \
-                        "</text:p>\n")
-        self.file.write("</table:table-cell>\n")
-        self.file.write("<table:table-cell table:style-name=\""\
-                        "Table1.A1\" table:value-type=\"string\">\n")
-        self.file.write("<text:p text:style-name=\"P4\">" + str2 + \
-                        "</text:p>\n")
-        self.file.write("</table:table-cell>\n")
-        self.file.write("<table:table-cell table:style-name=\""\
-                        "Table1.A2\" table:value-type=\"string\">\n");
-        self.file.write("<text:p text:style-name=\"P4\">" + str3 +
-                        "</text:p>\n")
-        self.file.write("</table:table-cell>\n")
-        self.file.write("</table:table-row>\n")
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_parent_parent(self,str1,str2):
-        self.file.write("<table:table-row>\n")
-        self.file.write("<table:table-cell table:style-name=\""\
-                        "Table1.A1\" table:value-type=\"string\">\n")
-        self.file.write("<text:p text:style-name=\"P4\">" + str1 + \
-                        "</text:p>\n")
-        self.file.write("</table:table-cell>\n")
-        self.file.write("<table:table-cell ")
-        self.file.write("table:style-name=\"Table1.A1\" ")
-        self.file.write("table:number-columns-spanned=\"2\" ")
-        self.file.write("table:value-type=\"string\">\n")
-        self.file.write("<text:p text:style-name=\"P4\">")
-        self.file.write(str2)
-        self.file.write("</text:p>\n")
-        self.file.write("</table:table-cell>\n")
-        self.file.write("<table:covered-table-cell>\n")
-        self.file.write("</table:covered-table-cell>\n")
-        self.file.write("</table:table-row>\n")
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def start_child_stats(self):
-        self.file.write("<table:table table:name=\"Table3\" "
-                        "table:style-name=\"Table3\">\n")
-        self.file.write("<table:table-column table:style-name=\""\
-                        "Table3.A\"/>\n")
-        self.file.write("<table:table-column table:style-name=\""\
-                        "Table3.B\"/>\n")
-        self.file.write("<table:table-column table:style-name=\""\
-                        "Table3.C\"/>\n")
-        self.file.write("<table:table-column table:style-name=\""\
-                        "Table3.D\"/>\n")
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def end_child_stats(self):
-        self.file.write("</table:table>\n")
-        
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_child_stats(self,str1,str2,str3,str4,last):
-        self.file.write("<table:table-row>\n")
-        if last == 1:
-            self.file.write("<table:table-cell table:style-name=\""\
-                            "Table3.A2\" table:value-type=\"string\">\n")
-        else:
-            self.file.write("<table:table-cell table:style-name=\""\
-                            "Table3.A1\" table:value-type=\"string\">\n")
-        self.file.write("<text:p text:style-name=\"P4\">" + str1 +\
-                        "</text:p>\n")
-        self.file.write("</table:table-cell>\n")
-        self.file.write("<table:table-cell table:style-name=\""\
-                        "Table3.A4\" table:value-type=\"string\">\n")
-        self.file.write("<text:p text:style-name=\"P4\">" + str2 +
-                        "</text:p>\n")
-        self.file.write("</table:table-cell>\n")
-        self.file.write("<table:table-cell table:style-name=\""\
-                        "Table3.A4\" table:value-type=\"string\">\n");
-        self.file.write("<text:p text:style-name=\"P4\">" + str3 +
-                        "</text:p>\n")
-        self.file.write("</table:table-cell>\n")
-        self.file.write("<table:table-cell table:style-name=\""\
-                        "Table3.A4\" table:value-type=\"string\">\n");
-        self.file.write("<text:p text:style-name=\"P4\">" + str4 +
-                        "</text:p>\n")
-        self.file.write("</table:table-cell>\n")
-        self.file.write("</table:table-row>\n")
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_child_name(self,index,child):
-        self.file.write("<table:table-row>\n")
-        self.file.write("<table:table-cell table:style-name=\""\
-                        "Table3.A3\" table:value-type=\"string\">\n")
-        self.file.write("<text:p text:style-name=\"P4\">" + str(index))
-        if child.getGender() == RelLib.Person.male:
-            self.file.write("M")
-        else:
-            self.file.write("F")
-        self.file.write("</text:p>\n")
-        self.file.write("</table:table-cell>\n")
-        self.file.write("<table:table-cell table:number-columns-spanned"\
-                        "=\"3\" table:style-name=\""\
-                        "Table3.A5\" table:value-type=\"string\">\n")
-        self.file.write("<text:p text:style-name=\"P2\">")
-        self.file.write(child.getPrimaryName().getRegularName())
-        self.file.write("</text:p>\n")
-        self.file.write("</table:table-cell>\n")
-        self.file.write("<table:covered-table-cell>\n")
-        self.file.write("</table:covered-table-cell>\n")
-        self.file.write("<table:covered-table-cell>\n")
-        self.file.write("</table:covered-table-cell>\n")
-        self.file.write("</table:table-row>\n")
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_child_spouse(self,spouse):
-        self.file.write("<table:table-row>\n")
-        self.file.write("<table:table-cell table:style-name=\""\
-                        "Table3.A1\" table:value-type=\"string\">\n")
-        self.file.write("</table:table-cell>\n")
-        self.file.write("<table:table-cell table:style-name=\""\
-                        "Table3.A4\" table:value-type=\"string\">\n")
-        self.file.write("<text:p text:style-name=\"P4\">")
-        self.file.write("Spouse")
-        self.file.write("</text:p>\n")
-        self.file.write("</table:table-cell>\n")
-        self.file.write("<table:table-cell table:number-columns-spanned"\
-                        "=\"2\" table:style-name=\""\
-                        "Table3.A4\" table:value-type=\"string\">\n")
-        self.file.write("<text:p text:style-name=\"P4\">")
-        self.file.write(spouse.getPrimaryName().getRegularName())
-        self.file.write("</text:p>\n")
-        self.file.write("</table:table-cell>\n")
-        self.file.write("<table:covered-table-cell>\n")
-        self.file.write("</table:covered-table-cell>\n")
-        self.file.write("</table:table-row>\n")
-
     #--------------------------------------------------------------------
     #
     # 
     #
     #--------------------------------------------------------------------
     def write_report(self):
-        self.write_header()
         self.dump_parent(self.family.getFather())
+        self.doc.start_paragraph("blank")
+        self.doc.end_paragraph()
         self.dump_parent(self.family.getMother())
-        if len(self.family.getChildList()) > 0:
-            self.file.write("<text:p text:style-name=\"ParentHead\">")
-            self.file.write("Children")
-            self.file.write("<text:tab-stop/>")
-            self.file.write("</text:p>\n")
+
+        length = len(self.family.getChildList())
+        if length > 0:
+            self.doc.start_paragraph("blank")
+            self.doc.end_paragraph()
+            self.doc.start_table('Children','ChildTable')
+            self.doc.start_row()
+            self.doc.start_cell('ParentHead',4)
+            self.doc.start_paragraph('ParentName')
+            self.doc.write_text('Children')
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+            self.doc.end_row()
             index = 1
             for child in self.family.getChildList():
                 self.dump_child(index,child)
                 index = index + 1
-            
-        self.end()
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-class HtmlFamilyGroup(FamilyGroup):
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def __init__(self,database,family,output,template):
-        self.map = {}
-        self.database = database
-        self.family = family
-        self.output = output
-        self.first = []
-        self.last = []
-        if template == "":
-            template = const.dataDir + os.sep + "family.html"
-        self.template = template
-        
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def fix(self,str):
-        if str=="":
-            return "&nbsp;"
-        else:
-            return str
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def setup(self):
-        templateFile = open(self.template,"r")
-        lines = templateFile.readlines()
-        templateFile.close()
-    
-        in_last = 0
-        for line in lines:
-            if line[0:14] == "<!-- START -->":
-                in_last = 1
-                self.last.append(line);
-            elif in_last == 0:
-                self.first.append(line)
-            else:
-                self.last.append(line);
-
-        self.file = open(self.output,"w")
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_header(self):
-        for line in self.first:
-            self.file.write(line)
-        self.file.write("<H1>")
-        self.file.write("Family Group Record")
-        self.file.write("</H1>\n")
-        
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def end(self):
-        for line in self.last:
-            self.file.write(line)
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_parent(self,type,name):
-        self.file.write('<tr>\n')
-        self.file.write('<td colspan="3" class="parent_name">')
-        self.file.write(type)
-        self.file.write(' ')
-        self.file.write(name.getPrimaryName().getRegularName())
-        self.file.write('</td>\n')
-        self.file.write('</tr>\n')
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def start_parent_stats(self):
-        self.file.write('<table cellspacing="1" width="100%" border="1">\n')
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def end_parent_stats(self):
-        self.file.write("</table>\n")
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_parent_stats(self,str1,str2,str3):
-        self.file.write('<tr>\n')
-        self.file.write('<td width="20%">' + self.fix(str1) + '</td>\n')
-        self.file.write('<td width="30%">' + self.fix(str2) + '</td>\n')
-        self.file.write('<td>' + self.fix(str3) + '</td>\n')
-        self.file.write('</tr>\n')
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_parent_parent(self,str1,str2):
-        self.file.write('<tr>\n')
-        self.file.write('<td>' + self.fix(str1) + '</td>\n')
-        self.file.write('<td colspan="2" class="child_name">' + self.fix(str2) + '</td>\n')
-        self.file.write('</tr>\n')
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def start_child_stats(self):
-        self.file.write('<table cellspacing="1" width="100%" border="1">\n')
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def end_child_stats(self):
-        self.file.write("</table>\n")
-        
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_child_stats(self,str1,str2,str3,str4,last):
-        self.file.write('<tr>\n')
-        self.file.write('<td width="10%">' + self.fix(str1) + '</td>\n')
-        self.file.write('<td width="20%">' + self.fix(str2) + '</td>\n')
-        self.file.write('<td width="30%">' + self.fix(str3) + '</td>\n')
-        self.file.write('<td>' + self.fix(str4) + '</td>\n')
-        self.file.write('</tr>\n')
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_child_name(self,index,child):
-        self.file.write("<tr>\n")
-        self.file.write("<td>" + str(index))
-        if child.getGender() == RelLib.Person.male:
-            self.file.write("M")
-        else:
-            self.file.write("F")
-        self.file.write("</td>\n")
-        self.file.write("<td colspan=\"3\">")
-        self.file.write(child.getPrimaryName().getRegularName())
-        self.file.write("</td>\n")
-        self.file.write("</tr>\n")
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_child_spouse(self,spouse):
-        self.file.write("<tr>\n")
-        self.file.write("<td>&nbsp;</td>\n")
-        self.file.write("<td>Spouse</td>\n")
-        self.file.write("<td colspan=\"2\">")
-        self.file.write(spouse.getPrimaryName().getRegularName())
-        self.file.write("</td>\n")
-        self.file.write("</tr>\n")
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_report(self):
-        self.write_header()
-        self.dump_parent(self.family.getFather())
-        self.dump_parent(self.family.getMother())
-        if len(self.family.getChildList()) > 0:
-            self.file.write("<H2>")
-            self.file.write("Children")
-            self.file.write("</H2>\n")
-            index = 1
-            for child in self.family.getChildList():
-                self.dump_child(index,child)
-                index = index + 1
-            
+            self.doc.end_table()
         self.end()
 
 #------------------------------------------------------------------------
@@ -640,7 +370,8 @@ class HtmlFamilyGroup(FamilyGroup):
 #
 #------------------------------------------------------------------------
 def report(database,person):
-
+    import PaperMenu
+    
     global active_person
     global topDialog
     global glade_file
@@ -663,6 +394,9 @@ def report(database,person):
         "on_save_clicked" : on_save_clicked,
         "on_html_toggled" : on_html_toggled
         })
+
+    PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
+    PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
 
     frame = topDialog.get_widget("spouse")
     option_menu = topDialog.get_widget("spouse_menu")
@@ -707,13 +441,18 @@ def on_save_clicked(obj):
 
     menu = topDialog.get_widget("spouse_menu").get_menu()
     family = menu.get_active().get_data("f")
+    paper_obj = topDialog.get_widget("papersize")
+    paper = paper_obj.get_menu().get_active().get_data("i")
+    orien_obj = topDialog.get_widget("orientation")
+    orien = orien_obj.get_menu().get_active().get_data("i")
 
     if topDialog.get_widget("html").get_active():
         template = topDialog.get_widget("htmlfile").get_text()
-        MyReport = HtmlFamilyGroup(db,family,outputName,template)
+        doc = HtmlDoc(template)
     else:
-        template = const.dataDir + os.sep + "familygrp.sxw"
-        MyReport = OpenOfficeFamilyGroup(db,family,outputName,template)
+        doc = OpenOfficeDoc(paper,orien)
+
+    MyReport = FamilyGroup(db,family,outputName,doc)
 
     MyReport.setup()
     MyReport.write_report()

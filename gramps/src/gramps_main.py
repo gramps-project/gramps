@@ -131,7 +131,7 @@ EVENBGCOLOR= "evenBackground"
 #-------------------------------------------------------------------------
 def birthday(person):
     if person:
-        return person.getBirth().getDate()
+        return person.getBirth().getQuoteDate()
     else:
         return ""
 
@@ -143,7 +143,7 @@ def birthday(person):
 #-------------------------------------------------------------------------
 def deathday(person):
     if person:
-        return person.getDeath().getDate()
+        return person.getDeath().getQuoteDate()
     else:
         return ""
 
@@ -154,7 +154,7 @@ def deathday(person):
 #-------------------------------------------------------------------------
 def on_exit_activate(obj):
     if utils.wasModified():
-        question = _("Unsaved changes exist in the current datbase\n") + \
+        question = _("Unsaved changes exist in the current database\n") + \
                    _("Do you wish to save the changes?")
         topWindow.question(question,save_query)
     else:    
@@ -646,14 +646,20 @@ def read_file(filename):
     statusbar.set_status(_("Loading ") +\
                          filename + "...")
 
-    try:
-        if load_database(filename) == 1:
-            topWindow.set_title("Gramps - " + filename)
-        else:
-            statusbar.set_status("")
-            Config.save_last_file("")
-    except:
-        displayError(_("Failure reading ") + filename)
+    if load_database(filename) == 1:
+        topWindow.set_title("Gramps - " + filename)
+    else:
+        statusbar.set_status("")
+        Config.save_last_file("")
+
+#    try:
+#        if load_database(filename) == 1:
+#            topWindow.set_title("Gramps - " + filename)
+#        else:
+#            statusbar.set_status("")
+#            Config.save_last_file("")
+#    except:
+#        displayError(_("Failure reading ") + filename)
 
     statusbar.set_progress(0.0)
 
@@ -1490,6 +1496,8 @@ def load_family():
     global active_father
     global active_family
     global active_parents
+    global active_spouse
+    
     family_types = []
     main_family = None
 
@@ -1557,6 +1565,7 @@ def load_family():
                 spouse = family.getFather()
             else:
                 spouse = family.getMother()
+            active_spouse = spouse
             fv_spouse1 = Main.get_widget("fv_spouse1")
             fv_spouse1.set_text(Config.nameof(spouse))
             fv_spouse1.set_data("person",spouse)

@@ -28,7 +28,9 @@ import sort
 import string
 import utils
 
-import OpenOffice
+from TextDoc import *
+from DrawDoc import *
+from OpenDrawDoc import *
 
 from gtk import *
 from gnome.ui import *
@@ -49,38 +51,54 @@ db = None
 #------------------------------------------------------------------------
 class AncestorChart:
 
-    points = [
-        # X    , Y         , Xold+3,Yold(+1.4),       Y+.7
-        ( "1.5", "13.2700" ,     ""         "",        ""),
-        ( "5.5",  "6.6600" ,  "4.5", "13.2700",  "7.3600"),
-        ( "5.5", "19.8800" ,  "4.5", "14.6700", "20.5800"),
-        ( "9.5",  "3.3550" ,  "8.5",  "6.6600",  "4.0550"),
-        ( "9.5",  "9.9650" ,  "8.5",  "8.0600", "10.6650"),
-        ( "9.5", "16.5750" ,  "8.5", "19.8800", "17.2750"),
-        ( "9.5", "23.1850" ,  "8.5", "21.2800", "23.8850"),
-        ("13.5",  "1.7025" , "12.5",  "3.3550",  "2.4025"),
-        ("13.5",  "5.0075" , "12.5",  "4.7550",  "5.7075"),
-        ("13.5",  "8.3125" , "12.5",  "9.9650",  "9.0125"),
-        ("13.5", "11.6175" , "12.5", "11.3650", "12.3175"),
-        ("13.5", "14.9225" , "12.5", "16.5750", "15.6225"),
-        ("13.5", "18.2275" , "12.5", "17.9750", "18.9275"),
-        ("13.5", "21.5325" , "12.5", "23.1850", "22.2325"),
-        ("13.5", "24.8375" , "12.5", "24.5850", "25.5375")
-        ]
-    
-    def __init__(self,database,person,output,template, max):
-        creator = database.getResearcher().getName()
-        self.open_office = OpenOffice.OpenOfficeCore(output,template,".sxd",creator)
+    def __init__(self,database,person,output,doc, max):
+        self.doc = doc
+        self.doc.creator(database.getResearcher().getName())
         self.map = {}
         self.database = database
         self.start = person
         self.max_generations = max
-        
+        self.output = output
+        self.width = 4.5
+        self.height = 1.25
+
+        start = self.doc.get_right_margin()
+        delta = self.doc.get_usable_width() - (self.width + 0.5)
+        delta = delta/3.0
+        uh = self.doc.get_usable_height()
+        ystart = self.doc.get_top_margin() - ((self.height+0.3)/2.0)
+        self.x = [start, start + delta, start + (2*delta), start + (3*delta)]
+        self.y = [ ystart + (uh/2.0),   ystart + (uh/4.0),
+                   ystart + 3*(uh/4.0), ystart + (uh/8.0),
+                   ystart + 3*(uh/8.0), ystart + 5*(uh/8.0),
+                   ystart + 7*(uh/8.0), 
+                   ystart + (uh/16.0),   ystart + 3*(uh/16.0),
+                   ystart + 5*(uh/16.0), ystart + 7*(uh/16.0),
+                   ystart + 9*(uh/16.0), ystart + 11*(uh/16.0),
+                   ystart + 13*(uh/16.0), ystart + 15*(uh/16.0)]
+
     def setup(self):
-        self.file = self.open_office.setup()
+        f = FontStyle()
+        f.set_size(9)
+        f.set_type_face(FONT_SANS_SERIF)
+        p = ParagraphStyle()
+        p.set_font(f)
+        self.doc.add_paragraph_style("Normal",p)
+        
+        g = GraphicsStyle()
+        g.set_height(self.height)
+        g.set_width(self.width)
+        g.set_paragraph_style("Normal")
+        g.set_shadow(1)
+        self.doc.add_draw_style("box",g)
+
+        g = GraphicsStyle()
+        self.doc.add_draw_style("line",g)
+
+        self.doc.open(self.output)
         
     def end(self):
-        self.open_office.end()
+        self.doc.close()
 
     def filter(self,person,index):
         if person == None or index >= 2**self.max_generations:
@@ -123,57 +141,35 @@ class AncestorChart:
         self.get_numbers((start*2)+1,index+1,vals)
 
     def print_page(self,start,generation, page):
-        self.file.write("<draw:page draw:name=\"")
-        self.file.write("Generation %d, page %d\" " % (generation, page))
-        self.file.write("draw:style-name=\"P0\" draw:master-page-name=\"Home\">")
-
+        self.doc.start_page()
         self.draw_graph(1,start,0)
-
-        self.file.write("</draw:page>\n")
+        self.doc.end_page()
 
     def draw_graph(self,index,start,level):
         if self.map.has_key(start) and index <= 15:
             person = self.map[start]
-            myPoints = AncestorChart.points[index-1]
-            self.file.write("<draw:rect draw:style-name=\"gr1\" svg:x=\"" + myPoints[0])
-            self.file.write("cm\" svg:y=\"" + myPoints[1] + "cm\" svg:width=\"5.5cm\"")
-            self.file.write(" svg:height=\"1.4cm\">\n")
-
-            self.file.write("<text:p text:style-name=\"P1\">")
-            self.file.write("<text:span text:style-name=\"T1\">")
-            self.file.write(person.getPrimaryName().getRegularName())
-            self.file.write("</text:span></text:p>\n");
+            name = person.getPrimaryName().getRegularName()
 
             birth = person.getBirth()
             if birth and birth.getDate() != "":
-                self.file.write("<text:p text:style-name=\"P1\">")
-                self.file.write("<text:span text:style-name=\"T1\">b. ")
-                self.file.write(birth.getDate())
-                self.file.write("</text:span></text:p>\n");
+                name = name + "\nb. " + birth.getDate()
 
             death = person.getDeath()
             if death and death.getDate() != "":
-                self.file.write("<text:p text:style-name=\"P1\">")
-                self.file.write("<text:span text:style-name=\"T1\">d. ")
-                self.file.write(death.getDate())
-                self.file.write("</text:span></text:p>\n");
-                    
-            self.file.write("</draw:rect>\n")
-            if myPoints[2] != "":
-                self.file.write("<draw:line draw:style-name=\"gr3\" ")
-                self.file.write("svg:x1=\"" + myPoints[2] + "cm\" svg:y1=\"")
-                self.file.write(myPoints[3] + "cm\" svg:x2=\"")
-                self.file.write(myPoints[2] + "cm\" svg:y2=\"" + myPoints[4] + "cm\">\n")
-                self.file.write("<text:p text:style-name=\"P2\"/>\n")
-                self.file.write("</draw:line>\n");
+                name = name + "\nd. " + death.getDate()
 
-                self.file.write("<draw:line draw:style-name=\"gr3\" ")
-                self.file.write("svg:x1=\"" + myPoints[2] + "cm\" svg:y1=\"")
-                self.file.write(myPoints[4] + "cm\" svg:x2=\"")
-                self.file.write(myPoints[0] + "cm\" svg:y2=\"" + myPoints[4] + "cm\">\n")
-                self.file.write("<text:p text:style-name=\"P2\"/>\n")
-                self.file.write("</draw:line>\n");
-
+            self.doc.draw_box("box",name,self.x[level],self.y[index-1])
+            if index > 1:
+                old_index = int(index/2)-1
+                x1 = self.x[level-1]+(self.width/2.0)
+                x2 = self.x[level]
+                if index % 2 == 1:
+                    y1 = self.y[old_index]+self.height
+                else:
+                    y1 = self.y[old_index]
+                y2 = self.y[index-1]+(self.height/2.0)
+                self.doc.draw_line("line",x1,y1,x1,y2)
+                self.doc.draw_line("line",x1,y2,x2,y2)
             self.draw_graph(index*2,start*2,level+1)
             self.draw_graph((index*2)+1,(start*2)+1,level+1)
         
@@ -183,6 +179,7 @@ class AncestorChart:
 #
 #------------------------------------------------------------------------
 def report(database,person):
+    import PaperMenu
 
     global active_person
     global topDialog
@@ -197,7 +194,10 @@ def report(database,person):
     topDialog = GladeXML(glade_file,"dialog1")
 
     name = person.getPrimaryName().getRegularName()
-    
+
+    PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
+    PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
+
     topDialog.get_widget("labelTitle").set_text("Ancestor chart for " + name)
     topDialog.signal_autoconnect({
         "destroy_passed_object" : utils.destroy_passed_object,
@@ -217,13 +217,16 @@ def on_save_clicked(obj):
     if outputName == "":
         return
     
-    if outputName[-4:] != ".sxd":
-        outputName = outputName + ".sxd"
+    paper_obj = topDialog.get_widget("papersize").get_menu().get_active()
+    paper = paper_obj.get_data("i")
+    orien_obj = topDialog.get_widget("orientation").get_menu().get_active()
+    orien = orien_obj.get_data("i")
         
     max_gen = topDialog.get_widget("generations").get_value_as_int()
-    
-    template = const.dataDir + os.sep + "chart.sxd"
-    MyReport = AncestorChart(db,active_person,outputName,template, max_gen)
+
+    document = OpenDrawDoc(paper,orien)
+
+    MyReport = AncestorChart(db,active_person,outputName,document, max_gen)
 
     MyReport.setup()
     MyReport.write_report()

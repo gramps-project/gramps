@@ -34,6 +34,11 @@ _ = intl.gettext
 class Date:
     formatCode = 0
     BadFormat = _("Unknown Format")
+    Error = _("Illegal Date")
+
+    range = 1
+    normal = 0
+    invalid = -1
 
     from_str = _("(from|between|bet)")
     to_str = _("(and|to)")
@@ -45,6 +50,7 @@ class Date:
 	self.start = SingleDate()
 	self.stop = SingleDate()
         self.range = 0
+        self.text = ""
 
     def get_start_date(self):
         return self.start
@@ -59,14 +65,18 @@ class Date:
     #--------------------------------------------------------------------
     def set(self,text):
         match = Date.fmt.match(text)
-        if match:
-            matches = match.groups()
-            self.start.set(matches[1])
-            self.stop.set(matches[3])
-            self.range = 1
-        else:
-            self.start.set(text)
-            self.range = 0
+        try:
+            if match:
+                matches = match.groups()
+                self.start.set(matches[1])
+                self.stop.set(matches[3])
+                self.range = 1
+            else:
+                self.start.set(text)
+                self.range = 0
+        except:
+            self.range = -1
+            self.text = text
 
     #--------------------------------------------------------------------
     #
@@ -76,9 +86,27 @@ class Date:
     def getDate(self):
         function = SingleDate.fmtFunc[Date.formatCode]
 
-	if self.range:
+	if self.range == 1:
 	    return _("from") + " " + function(self.start) + " " + \
                    _("to") + " " + function(self.stop)
+        elif self.range == -1:
+            return self.text
+	else:
+	    return function(self.start)
+
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
+    def getQuoteDate(self):
+        function = SingleDate.fmtFunc[Date.formatCode]
+
+	if self.range == 1:
+	    return _("from") + " " + function(self.start) + " " + \
+                   _("to") + " " + function(self.stop)
+        elif self.range == -1 and self.text:
+            return '"' + self.text + '"'
 	else:
 	    return function(self.start)
 
@@ -88,8 +116,10 @@ class Date:
     #
     #--------------------------------------------------------------------
     def getSaveDate(self):
-	if self.range:
+	if self.range == 1:
 	    return "FROM " + self.start.getFmt3() + " TO " + self.stop.getFmt3()
+        elif self.range == -1:
+            return self.text
 	else:
             return self.start.getFmt3()
 
@@ -99,15 +129,27 @@ class Date:
     #
     #--------------------------------------------------------------------
     def quick_set(self,text):
-        match = Date.fmt.match(text)
-        if match:
-            matches = match.groups()
-            self.start.set(matches[1])
-            self.stop.set(matches[3])
-            self.range = 1
-        else:
-            self.start.quick_set(text)
-            self.range = 0
+        try:
+            if text[0:2] == "FR":
+                match = Date.fmt.match(text)
+                if match:
+                    matches = match.groups()
+                    self.start.set(matches[1])
+                    self.stop.set(matches[3])
+                    self.range = 1
+                else:
+                    self.range = -1
+                    self.text = text
+            else:
+                try:
+                    self.start.quick_set(text)
+                    self.range = 0
+                except:
+                    self.start.set(text)
+                    self.range = 0
+        except:
+            self.range = -1
+            self.text = text
 
 #-------------------------------------------------------------------------
 #
@@ -159,7 +201,7 @@ class SingleDate:
                       re.IGNORECASE)
     fmt2 = re.compile(start + "(\d+)\s+(\S+)(\s+\d+)?\s*$",
                       re.IGNORECASE)
-    quick= re.compile(start + "(\d+)\s(\S\S\S)\s(\d+)",
+    quick= re.compile(start + "(\d+)?\s(\S\S\S)?\s(\d+)?",
                       re.IGNORECASE)
     fmt3 = re.compile(start + "(\d+)\s*[./-]\s*(\d+)\s*[./-]\s*(\d+)\s*$",
                       re.IGNORECASE)
@@ -604,6 +646,15 @@ class SingleDate:
             else:
                 self.setYear(-1)
             return 1
+        
+        match = SingleDate.fmt5.match(text)
+        if match != None:
+            matches = match.groups()
+            self.getMode(matches[0])
+            self.setMonth(-1)
+            self.setDay(-1)
+            self.setYear(string.atoi(matches[1]))
+            return 1
 
         match = SingleDate.fmt1.match(text)
         if match != None:
@@ -645,15 +696,6 @@ class SingleDate:
                 self.setYear(-1)
             return 1
 
-        match = SingleDate.fmt5.match(text)
-        if match != None:
-            matches = match.groups()
-            self.getMode(matches[0])
-            self.setMonth(-1)
-            self.setDay(-1)
-            self.setYear(string.atoi(matches[1]))
-            return 1
-
         match = SingleDate.fmt4.match(text)
         if match != None:
             matches = match.groups()
@@ -677,7 +719,7 @@ class SingleDate:
             self.setYear(-1)
             return 1
 
-        raise Date.BadFormat,text
+        raise Date.Error,text
 
     #--------------------------------------------------------------------
     #
@@ -699,7 +741,12 @@ class SingleDate:
                     self.setYear(string.atoi(val))
             else:
                 self.setYear(-1)
-
+        else:
+            self.setYear(-1)
+            self.setMonth(-1)
+            self.setDay(-1)
+            raise Date.Error,text
+        
 #-------------------------------------------------------------------------
 #
 # 

@@ -44,7 +44,6 @@ _ = intl.gettext
 def importData(database, filename, callback):
 
     parser = xml.sax.saxexts.make_parser()
-
     basefile = os.path.dirname(filename)
     database.smap = {}
     database.pmap = {}
@@ -101,7 +100,6 @@ def loadData(database, filename, callback):
         
     xml_file.close()
     return 1
-
 
 
 
