@@ -104,4 +104,4 @@ class ReadNative:
 #------------------------------------------------------------------------
 from Plugins import register_import
 
-register_import(readData,"%s..." % _title_string)
+register_import(readData,_title_string)

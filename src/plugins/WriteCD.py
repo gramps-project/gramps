@@ -266,4 +266,4 @@ class PackageWriter:
 #-------------------------------------------------------------------------
 from Plugins import register_export
 
-register_export(writeData, "%s (nautilus)..." % _title_string )
+register_export(writeData,_title_string)
