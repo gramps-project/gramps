@@ -315,7 +315,7 @@ class PeopleModel(gtk.GenericTreeModel):
         return node
 
     def column_header_bold(self,node):
-        return pango.WEIGHT_BOLD
+        return pango.WEIGHT_NORMAL #BOLD
 
     def column_header_view(self,node):
         return self.top_visible.has_key(node)

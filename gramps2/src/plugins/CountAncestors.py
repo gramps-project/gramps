@@ -30,6 +30,7 @@ from gettext import gettext as _
 from gnome.ui import *
 import gtk
 import gtk.glade
+from sets import Set
 
 def report(database,person):
     try:
@@ -48,24 +49,25 @@ class CountAncestors:
         topDialog.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
             })
-        thisgen = []
-        allgen = []
-        thisgen.append(person.get_handle())
+        thisgen = Set()
+        allgen = 0
+        thisgen.add(person.get_handle())
+        
         title = _("Number of ancestors of \"%s\" by generation") % person.get_primary_name().get_name()
-        text = text + title + ':\n'
+        text += title + ':\n'
         thisgensize = 1
         gen = 1
         while thisgensize > 0:
             thisgensize = 0
             if thisgen:
                 thisgensize = len( thisgen )
-                gen = gen - 1
+                gen -= 1
                 if thisgensize == 1 :
-                    text = text + _("Generation %d has 1 individual.\n") % (gen)
+                    text += _("Generation %d has 1 individual.\n") % (gen)
                 else:
-                    text = text + _("Generation %d has %d individuals.\n") % (gen, thisgensize)
+                    text += _("Generation %d has %d individuals.\n") % (gen, thisgensize)
             temp = thisgen
-            thisgen = []
+            thisgen = Set()
             for person_handle in temp:
                 person = database.get_person_from_handle(person_handle)
                 family_handle = person.get_main_parents_family_handle()
@@ -74,12 +76,12 @@ class CountAncestors:
                     father_handle = family.get_father_handle()
                     mother_handle = family.get_mother_handle()
                     if father_handle:
-                        thisgen.append(father_handle)
+                        thisgen.add(father_handle)
                     if mother_handle:
-                        thisgen.append(mother_handle)
-            allgen = allgen + thisgen
+                        thisgen.add(mother_handle)
+            allgen += len(thisgen)
 	  
-        text = text + _("Total ancestors in generations %d to -1 is %d.\n") % (gen, len(allgen))
+        text += _("Total ancestors in generations %d to -1 is %d.\n") % (gen, allgen)
 
         top = topDialog.get_widget("summary")
         textwindow = topDialog.get_widget("textwindow")
