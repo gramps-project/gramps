@@ -709,6 +709,7 @@ class StyleSheetList:
         file - XML file that contains style definitions
         defstyle - default style
         """
+        defstyle.set_name('default')
         self.map = { "default" : defstyle }
         self.file = os.path.expanduser("~/.gramps/" + file)
         self.parse()
@@ -748,6 +749,7 @@ class StyleSheetList:
         name - name assocated with the StyleSheet to add or replace.
         style - definition of the StyleSheet
         """
+        style.set_name(name)
         if name != "default":
             self.map[name] = style
 
@@ -822,10 +824,17 @@ class StyleSheet:
               obj, instead of creating an empty StyleSheet
         """
         self.style_list = {}
+        self.name = ""
         if obj != None:
             for style_name in obj.style_list.keys():
                 style = obj.style_list[style_name]
                 self.style_list[style_name] = ParagraphStyle(style)
+
+    def set_name(self,name):
+        self.name = name
+
+    def get_name(self):
+        return self.name
 
     def clear(self):
         "Removes all paragraph styles from the StyleSheet"

@@ -595,4 +595,4 @@ class OpenOfficeDoc(TextDoc.TextDoc):
 	self.f.write('</office:document-meta>\n')
 	self.f.close()
 
-Plugins.register_text_doc(_("OpenOffice/StarOffice 6"),OpenOfficeDoc,1,1,1,".sxw")
+Plugins.register_text_doc(_("OpenOffice.org/StarOffice 6"),OpenOfficeDoc,1,1,1,".sxw")

@@ -1360,13 +1360,13 @@ class Event(DataObj):
             self.description = source.description
             self.name = source.name
             self.cause = source.cause
-            if source.witness:
-                # old ZODB database may not have this element
-                try:
+            # old ZODB database may not have this element
+            try:
+                if source.witness:
                     self.witness = source.witness[:]
-                except:
+                else:
                     self.witness = None
-            else:
+            except:
                 self.witness = None
         else:
             self.place = None

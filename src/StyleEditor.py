@@ -289,6 +289,7 @@ class StyleEditor:
         name = self.top.get_widget("style_name").get_text()
 
         self.save_paragraph(p)
+        self.style.set_name(name)
         self.parent.sheetlist.set_style_sheet(name,self.style)
         self.parent.redraw()
         Utils.destroy_passed_object(obj)
