@@ -206,7 +206,7 @@ class PeopleView:
             if change:
                 self.parent.change_active_person(person)
                 self.goto_active_person()
-            model.sort()
+            model.enable_sort()
 
     def goto_active_person(self,first=0):
         if not self.parent.active_person:
@@ -269,7 +269,7 @@ class PeopleView:
         if current_model == None:
             self.id2col = {}
 
-        for key in self.parent.db.getPersonKeys():
+        for key in self.parent.db.sortPersonKeys():
             person = self.parent.db.getPerson(key)
             val = self.parent.db.getPersonDisplay(key)
             pg = val[5]

@@ -2197,7 +2197,15 @@ class GrampsDB(Persistent):
 
     def getPersonKeys(self):
         return self.personTable.keys()
-    
+
+    def sortbyname(self,f,s):
+        return cmp(self.personTable[f][5],self.personTable[s][5])
+
+    def sortPersonKeys(self):
+        keys = self.personTable.keys()
+        keys.sort(self.sortbyname)
+        return keys
+
     def getPersonDisplay(self,key):
         return self.personTable[key]
 
