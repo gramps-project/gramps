@@ -92,7 +92,7 @@ startup        = 1
 #
 #-------------------------------------------------------------------------
 progName     = "GRAMPS"
-version      = "0.8.0-pre"
+version      = "@VERSIONSTRING@"
 copyright    = "© 2001-2002 Donald N. Allingham"
 authors      = ["Donald N. Allingham", "David Hampton","Donald A. Peterson"]
 comments     = _("GRAMPS (Genealogical Research and Analysis "
@@ -106,7 +106,8 @@ comments     = _("GRAMPS (Genealogical Research and Analysis "
 #-------------------------------------------------------------------------
 picWidth     = 275.0
 thumbScale   = 96.0
-indexFile    = "data.gramps"
+xmlFile      = "data.gramps"
+zodbFile     = "gramps.zodb"
 male         = _("male")
 female       = _("female")
 unknown      = _("unknown")

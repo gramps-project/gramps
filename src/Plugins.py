@@ -67,6 +67,7 @@ _imports = []
 _exports = []
 _success = []
 _failed  = []
+_expect  = []
 _attempt = []
 _loaddir = []
 _textdoc = []
@@ -74,6 +75,13 @@ _drawdoc = []
 _failmsg = []
 
 _unavailable = _("No description was provided"),
+#-------------------------------------------------------------------------
+#
+# Exception Strings
+#
+#-------------------------------------------------------------------------
+MissingLibraries = _("Missing Libraries")
+
 #-------------------------------------------------------------------------
 #
 # Constants
@@ -243,11 +251,14 @@ class PluginStatus:
         info.write(_("The following modules could not be loaded:"))
         info.write("\n\n")
         
+        for (file,msg) in _expect:
+            info.write("%s: %s\n\n" % (file,msg))
+
         for (file,msgs) in _failmsg:
             error = str(msgs[0])
             if error[0:11] == "exceptions.":
                 error = error[11:]
-            info.write("%s\t%s\n" % (file,error) )
+            info.write("%s: %s\n" % (file,error) )
             traceback.print_exception(msgs[0],msgs[1],msgs[2],None,info)
             info.write('\n')
         info.seek(0)
@@ -298,6 +309,8 @@ def load_plugins(direct):
         try: 
             a = __import__(plugin)
             _success.append(a)
+        except MissingLibraries,msg:
+            _expect.append((file,msg))
         except:
             _failmsg.append((file,sys.exc_info()))
 

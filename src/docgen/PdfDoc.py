@@ -43,7 +43,7 @@ try:
     from reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER, TA_JUSTIFY
     import reportlab.lib.styles
 except:
-    raise _("Missing Libraries"), _("The ReportLab modules are not installed")
+    raise Plugins.MissingLibraries, _("The ReportLab modules are not installed")
 
 #------------------------------------------------------------------------
 #

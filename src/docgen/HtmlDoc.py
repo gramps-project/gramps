@@ -77,6 +77,7 @@ class HtmlDoc(TextDoc):
     def __init__(self,styles,type,template,orientation,source=None):
         TextDoc.__init__(self,styles,PaperStyle("",0,0),template,None)
         self.year = time.localtime(time.time())[0]
+        self.ext = '.html'
         if source == None:
             self.copyright = 'Copyright &copy; %d' % (self.year)
             self.map = None
@@ -104,7 +105,6 @@ class HtmlDoc(TextDoc):
             self.table_styles = source.table_styles;
             self.cell_styles = source.cell_styles;
             self.image_dir = source.image_dir
-            self.ext = '.html'
 
     def set_extension(self,val):
         if val[0] != '.':

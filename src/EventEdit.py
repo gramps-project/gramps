@@ -50,7 +50,7 @@ _ = gettext
 # EventEditor class
 #
 #-------------------------------------------------------------------------
-class EventEditor(Sources.SourceTab):
+class EventEditor:
 
     def __init__(self,parent,name,list,trans,event,def_placename,read_only,cb):
         self.parent = parent
