@@ -133,7 +133,7 @@ translators  =  u'Radek Malcic - Czech\n' \
 # Constants
 #
 #-------------------------------------------------------------------------
-picWidth     = 275.0
+picWidth     = 200.0
 thumbScale   = 96.0
 xmlFile      = "data.gramps"
 zodbFile     = "gramps.zodb"

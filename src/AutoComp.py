@@ -156,7 +156,6 @@ class AutoCombo(AutoCompBase):
         """
         self.inb = 1
         
-        print text
         if self.vals[0] == "":
             self.entry.set_popdown_strings([self.entry.entry.get_text()])
         else:
