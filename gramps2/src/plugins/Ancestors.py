@@ -585,7 +585,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         return name
 
     def married_whom (self, person, from_family, listing_children = 0):
-        pronoun = '  ' + self.Pronoun (person)
+        gender = person.getGender ()
         first_marriage = 1
         ret = ''
         for family in person.getFamilyList ():
@@ -620,16 +620,26 @@ class ComprehensiveAncestorsReport (Report.Report):
 
                 marriage = family.getMarriage ()
                 if not first_marriage:
-                    ret += pronoun + ' later married '
-                    ret += self.person_name (spouse)
+                    if gender == RelLib.Person.female:
+                        ret += _('  She later married %(name)s') % \
+                               {'name': self.person_name (spouse)}
+                    else:
+                        ret += _('  He later married %(name)s') % \
+                               {'name': self.person_name (spouse)}
+
                     if marriage:
                         ret += self.event_info (marriage)
                     ret += children + '.'
                 elif (listing_children or
                       spouse == mother or
                       family != from_family):
-                    ret += pronoun + ' married '
-                    ret += self.person_name (spouse)
+                    if gender == RelLib.Person.female:
+                        ret += _('  She married %(name)s') % \
+                               {'name': self.person_name (spouse)}
+                    else:
+                        ret += _('  He married %(name)s') % \
+                               {'name': self.person_name (spouse)}
+
                     if marriage:
                         ret += self.event_info (marriage)
                     ret += children + '.'
@@ -674,7 +684,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         if (len (events) + len (addresses) + len (names)) > 0:
             paras.append ((self.doc.start_paragraph, ['AR-SubEntry']))
             paras.append ((self.doc.write_text,
-                           [_("More about %(name):") %
+                           [_("More about %(name)s:") %
                             {'name': self.first_name_or_nick (person)}]))
             paras.append ((self.doc.end_paragraph, []))
 
