@@ -653,8 +653,6 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         if family.get_handle() == None:
             family.set_handle(self.create_id())
         self.commit_family(family,transaction)
-        if transaction and not transaction.batch:
-            self.emit('family-add',([str(family.handle),]))
         return family.get_handle()
 
     def add_source(self,source,transaction):
@@ -667,8 +665,6 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         if source.get_gramps_id() == None:
             source.set_gramps_id(self.find_next_source_gramps_id())
         self.commit_source(source,transaction)
-        if transaction and not transaction.batch:
-            self.emit('source-add',([source.handle],))
         return source.get_handle()
 
     def add_event(self,event,transaction):

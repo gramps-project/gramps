@@ -191,7 +191,8 @@ class SourceView:
             
         msg = "%s %s" % (msg,Utils.data_recover_msg)
         QuestionDialog(_('Delete %s?') % source.get_title(), msg,
-                       _('_Delete Source'),ans.query_response,self.topWindow)
+                       _('_Delete Source'),ans.query_response,
+                       self.topWindow)
 
     def on_edit_clicked(self,obj):
         list_store, node = self.selection.get_selected()
@@ -229,4 +230,5 @@ class SourceView:
             ErrorDialog(msg,msg2)
         else:
             import MergeData
-            MergeData.MergeSources(self.parent.db,mlist[0],mlist[1],self.build_tree)
+            MergeData.MergeSources(self.parent.db,mlist[0],mlist[1],
+                                   self.build_tree)

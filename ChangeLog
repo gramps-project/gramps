@@ -1,3 +1,9 @@
+2005-04-01  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: removed unused callback functions
+	* src/GrampsDbBase.py: remove duplicate signal emissions
+	* src/SourceView.py: reformat code
+	* src/Sources.py: catch source-add signal and redraw menu
+
 2005-04-01  Alex Roitman  <shura@gramps-project.org>
 	* src/EditPerson.py (on_edit_name_clicked): Remove unneeded argument.
 
