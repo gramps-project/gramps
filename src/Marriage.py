@@ -199,7 +199,7 @@ class Marriage:
 
         frel = family.get_relationship()
         self.type_field.set_active(frel)
-        self.gid.set_text(family.get_handle())
+        self.gid.set_text(family.get_gramps_id())
         self.gid.set_editable(1)
 
         AutoComp.fill_combo(self.lds_temple,_temple_names)
@@ -556,6 +556,9 @@ class Marriage:
         else:
             self.close(0)
 
+    def save(self):
+        self.on_close_marriage_editor(None)
+
     def on_delete_event(self,obj,b):
         self.on_cancel_edit(obj)
 
@@ -565,11 +568,9 @@ class Marriage:
 
         idval = unicode(self.gid.get_text())
         family = self.family
-        if idval != family.get_handle():
-            if not self.db.has_family_handle(idval):
-                if self.db.has_family_handle(family.get_handle()):
-                    self.db.remove_family_handle(family.get_handle(),trans)
-                family.set_handle(idval)
+        if idval != family.get_gramps_id():
+            if not self.db.get_family_from_gramps_id(idval):
+                family.set_gramps_id(idval)
             else:
                 WarningDialog(_("GRAMPS ID value was not changed."),
                               _('The GRAMPS ID that you chose for this '

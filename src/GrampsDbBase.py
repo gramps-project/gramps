@@ -106,14 +106,14 @@ class GrampsDbBase:
         Opens the specified database. The method needs to be overridden
         in the derived class.
         """
-        assert(0,"Needs to be overridden in the derived class")
+        assert(False,"Needs to be overridden in the derived class")
 
     def close(self):
         """
         Closes the specified database. The method needs to be overridden
         in the derived class.
         """
-        assert(0,"Needs to be overridden in the derived class")
+        assert(False,"Needs to be overridden in the derived class")
         
     def is_open(self):
         """
@@ -126,7 +126,7 @@ class GrampsDbBase:
         Commits the specified Person to the database, storing the changes
         as part of the transaction.
         """
-        handle = person.get_handle()
+        handle = str(person.get_handle())
         if transaction != None:
             old_data = self.person_map.get(handle)
             transaction.add(PERSON_KEY,handle,old_data)
@@ -141,7 +141,7 @@ class GrampsDbBase:
         if transaction != None:
             old_data = self.media_map.get(handle)
             transaction.add(MEDIA_KEY,handle,old_data)
-        self.media_map[str(obj.get_handle())] = obj.serialize()
+        self.media_map[handle] = obj.serialize()
 
     def commit_source(self,source,transaction):
         """
@@ -152,7 +152,7 @@ class GrampsDbBase:
         if transaction != None:
             old_data = self.source_map.get(handle)
             transaction.add(SOURCE_KEY,handle,old_data)
-        self.source_map[str(source.get_handle())] =  source.serialize()
+        self.source_map[handle] =  source.serialize()
 
     def commit_place(self,place,transaction):
         """
@@ -163,7 +163,7 @@ class GrampsDbBase:
         if transaction != None:
             old_data = self.place_map.get(handle)
             transaction.add(PLACE_KEY,handle,old_data)
-        self.place_map[str(place.get_handle())] = place.serialize()
+        self.place_map[handle] = place.serialize()
 
     def commit_event(self,event,transaction):
         """
@@ -174,7 +174,7 @@ class GrampsDbBase:
         if transaction != None:
             old_data = self.event_map.get(handle)
             transaction.add(EVENT_KEY,handle,old_data)
-        self.event_map[str(event.get_handle())] = event.serialize()
+        self.event_map[handle] = event.serialize()
 
     def commit_family(self,family,transaction):
         """
@@ -185,7 +185,7 @@ class GrampsDbBase:
         if transaction != None:
             old_data = self.family_map.get(handle)
             transaction.add(FAMILY_KEY,handle,old_data)
-        self.family_map[str(family.get_handle())] = family.serialize()
+        self.family_map[handle] = family.serialize()
 
     def find_next_person_gramps_id(self):
         """
@@ -263,7 +263,7 @@ class GrampsDbBase:
         """finds a Person in the database from the passed gramps' ID.
         If no such Person exists, a new Person is added to the database."""
 
-        data = self.person_map.get(val)
+        data = self.person_map.get(str(val))
         if data:
             person = Person()
             person.unserialize(data)
@@ -336,7 +336,7 @@ class GrampsDbBase:
             person.set_handle(val)
             if transaction != None:
                 transaction.add(PERSON_KEY, val, None)
-            self.person_map[val] = person.serialize()
+            self.person_map[str(val)] = person.serialize()
             self.genderStats.count_person (person, self)
         return person
 
@@ -390,7 +390,7 @@ class GrampsDbBase:
         data = self.place_map.get(str(handle))
         place = Place()
         if not data:
-            place.handle = handle
+            place.set_handle(handle)
             if transaction != None:
                 transaction.add(PLACE_KEY,handle,None)
             self.place_map[str(handle)] = place.serialize()
@@ -408,12 +408,36 @@ class GrampsDbBase:
         if data:
             family.unserialize(data)
         else:
-            family.handle = val
+            family.set_handle(val)
             if transaction:
                 transaction.add(FAMILY_KEY,val,None)
             self.family_map[str(val)] = family.serialize()
             self.fmap_index = self.fmap_index + 1
         return family
+
+    def get_person_from_gramps_id(self,val):
+        """
+        Finds a Person in the database from the passed GRAMPS ID.
+        If no such Person exists, None is returned.
+
+        Needs to be overridden by the derrived class.
+        """
+        data = self.id_trans.get(str(val))
+        if data:
+            person = Person()
+            person.unserialize(cPickle.loads(data))
+            return person
+        else:
+            return None
+
+    def get_family_from_gramps_id(self,val):
+        """
+        Finds a Family in the database from the passed GRAMPS ID.
+        If no such Family exists, None is returned.
+
+        Needs to be overridden by the derrived class.
+        """
+        assert(False,"Needs to be overridden in the derived class")
 
     def add_person(self,person,transaction):
         """
@@ -906,49 +930,23 @@ class GrampsDbBase:
         """
         return self.media_map.has_key(str(handle)) != None
 
-    def get_person_from_gramps_id(self,val):
-        """finds a Person in the database from the passed gramps' ID.
-        If no such Person exists, a new Person is added to the database."""
-
-        data = self.id_trans.get(str(val))
-        if data:
-            person = Person()
-            person.unserialize(cPickle.loads(data))
-            return person
-        else:
-            return None
-
-    def find_person_from_gramps_id(self,val,transaction):
-        """finds a Person in the database from the passed gramps' ID.
-        If no such Person exists, a new Person is added to the database."""
-
-        person = Person()
-        data = self.id_trans.get(str(val))
-        if data:
-            person.unserialize(cPickle.loads(data))
-        else:
-            intid = Utils.create_id()
-            person.set_handle(intid)
-            person.set_gramps_id(val)
-            self.add_person(person,transaction)
-        return person
-
     def _sortbyname(self,f,s):
-        n1 = self.person_map.get(f)[2].sname
-        n2 = self.person_map.get(s)[2].sname
+        n1 = self.person_map.get(str(f))[2].sname
+        n2 = self.person_map.get(str(s))[2].sname
         return cmp(n1,n2)
 
     def _sortbyplace(self,f,s):
-        return cmp(self.place_map.get(f)[2].upper(), self.place_map.get(s)[2].upper())
+        return cmp(self.place_map.get(str(f))[2].upper(),
+                   self.place_map.get(str(s))[2].upper())
 
     def _sortbysource(self,f,s):
-        fp = self.source_map[f][2].upper()
-        sp = self.source_map[s][2].upper()
+        fp = self.source_map[str(f)][2].upper()
+        sp = self.source_map[str(s)][2].upper()
         return cmp(fp,sp)
 
     def _sortbymedia(self,f,s):
-        fp = self.media_map[f][4].upper()
-        sp = self.media_map[s][4].upper()
+        fp = self.media_map[str(f)][4].upper()
+        sp = self.media_map[str(s)][4].upper()
         return cmp(fp,sp)
 
     def set_person_column_order(self,list):

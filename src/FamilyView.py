@@ -907,8 +907,6 @@ class FamilyView:
         flist = {}
 
         for f in splist:
-            if not f:
-                continue
             fm = self.parent.db.get_family_from_handle(f)
             
             if fm.get_father_handle() == self.person.get_handle():
