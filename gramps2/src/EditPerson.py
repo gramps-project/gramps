@@ -84,12 +84,12 @@ class EditPerson:
         self.lists_changed = 0
         self.update_birth = 0
         self.update_death = 0
-        self.pmap = {}
+        self.pdmap = {}
         self.add_places = []
 
         for key in db.getPlaceKeys():
             p = db.getPlaceDisplay(key)
-            self.pmap[p[0]] = key
+            self.pdmap[p[0]] = key
             
         self.load_obj = None
         self.top = gtk.glade.XML(const.editPersonFile, "editPerson")
@@ -214,7 +214,7 @@ class EditPerson:
                                          self.on_web_select_row,
                                          self.on_update_url_clicked)
 
-        place_list = self.pmap.keys()
+        place_list = self.pdmap.keys()
         place_list.sort()
         self.autoplace = AutoComp.AutoCombo(self.bpcombo, place_list)
         self.autodeath = AutoComp.AutoCombo(self.dpcombo, place_list, self.autoplace)
@@ -946,16 +946,16 @@ class EditPerson:
         bplace = string.strip(self.bplace.get_text())
         dplace = string.strip(self.dplace.get_text())
 
-        if self.pmap.has_key(bplace):
-            p1 = self.db.getPlaceMap()[self.pmap[bplace]]
+        if self.pdmap.has_key(bplace):
+            p1 = self.db.getPlaceMap()[self.pdmap[bplace]]
         else:
             p1 = None
             if bplace != "":
                 changed = 1
         self.birth.setPlace(p1)
 
-        if self.pmap.has_key(dplace):
-            p1 = self.db.getPlaceMap()[self.pmap[dplace]]
+        if self.pdmap.has_key(dplace):
+            p1 = self.db.getPlaceMap()[self.pdmap[dplace]]
         else:
             p1 = None
             if dplace != "":
@@ -1312,10 +1312,10 @@ class EditPerson:
             self.person.setNickName(nick)
             Utils.modified()
 
-        self.pmap.clear()
+        self.pdmap.clear()
         for key in self.db.getPlaceKeys():
             p = self.db.getPlaceDisplay(key)
-            self.pmap[p[0]] = key
+            self.pdmap[p[0]] = key
 
         self.birth.setDate(self.bdate.get_text())
         self.birth.setPlace(self.get_place(self.bplace,1))
@@ -1425,13 +1425,13 @@ class EditPerson:
         if type(text) != type(u' '):
             text = unicode(text)
         if text:
-            if self.pmap.has_key(text):
-                return self.db.getPlaceMap()[self.pmap[text]]
+            if self.pdmap.has_key(text):
+                return self.db.getPlaceMap()[self.pdmap[text]]
             elif makenew:
                 place = RelLib.Place()
                 place.set_title(text)
                 self.db.addPlace(place)
-                self.pmap[text] = place.getId()
+                self.pdmap[text] = place.getId()
                 self.add_places.append(place)
                 Utils.modified()
                 return place
