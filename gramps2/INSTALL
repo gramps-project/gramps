@@ -18,14 +18,6 @@ Execute:
 aclocal
 automake --add-missing --gnu && autoconf && make
 
-HTML documentation is built from SGML sources via jw.  It is known to work
-with docbook-utils-0.6.9.  There is a problem with 0.6.10, which seems to
-have some messed up dsl files. If you have difficulty building the HTML
-documentation with your version of jw, then remove "doc" from the SUBDIRS
-list in the top-level Makefile and send a report of where the failure was to
-the gramps-devel list.  This distribution is tested with the style sheets
-and PNG support from the gnome-doc-tools-2-1 package.
-
 MORE INFO: Version and package info is now set in configure.in through a
 call to the AM_INIT_AUTOMAKE macro.  The results are stored in variables
 PACKAGE and VERSION, which then get substituted wherever necessary. 
@@ -40,8 +32,8 @@ documentation make rules (sgmldocs.make) have their own rule, but automake
 generates its own rule and this introduces a conflict.
 
 "make (un)install" now runs scrollkeeper-update to ensure
-documentation database is up to date. Scrollkeeper v. > 0.1.4 should in
-principle work, v. > 0.2 should see no problems.  
+documentation database is up to date. Scrollkeeper v. > 0.3 is required
+to properly register documentation.
 
 VERBOSE, UGLY DETAILS FOR DEVELOPERS:
 Using automake/autoconf adds many, MANY build targets to the makefiles.

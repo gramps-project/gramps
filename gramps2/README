@@ -8,6 +8,7 @@ The following packages *MUST* be installed in order for Gramps to work:
    Python 2.2 or greater
    Gnome 2.0 or greater
    PyGTK2 1.99.14 or greater
+   Gnome-python 1.99.14 or greater
    PyXML 0.7.1 or greater
 
 Many distributions already provide PyXML, but if your
@@ -21,6 +22,12 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
    Python Imaging Library (PIL)
                     Enable generation of thumbnails for images
                     http://www.pythonware.com/products/pil
+
+If, for some reason, you can't/don't want to install PIL, at least make sure
+that ImageMagick is available on your system: http://www.imagemagick.org
+
+WITHOUT eithr PIL or ImageMagick *YOU WILL NOT BE ABLE TO USE THUMBNAILS*
+for any of your images. 
 
 Documentation
 ---------------------------------
