@@ -41,9 +41,23 @@ import gtk.gdk
 import RelLib
 import EditPlace
 import Utils
+import DisplayModels
+import ColumnOrder
 
 from QuestionDialog import QuestionDialog, ErrorDialog
 from gettext import gettext as _
+
+column_names = [
+    _('Place Name'),
+    _('ID'),
+    _('Church Parish'),
+    _('City'),
+    _('County'),
+    _('State'),
+    _('Country'),
+    _('Longitude'),
+    _('Latitude'),
+    ]
 
 #-------------------------------------------------------------------------
 #
@@ -59,84 +73,71 @@ class PlaceView:
         self.list   = glade.get_widget("place_list")
         self.update = update
 
-        self.column_headers = [
-            (_('Place Name'),7,200), (_('ID'),1,50), (_('Church Parish'),8,75),
-            (_('City'),9,75), (_('County'),10,75), (_('State'),11,75),
-            (_('Country'),12,75), ('',7,0), ('',8,0), ('',9,0), ('',10,0),
-            ('',11,0), ('',12,0)]
+        self.renderer = gtk.CellRendererText()
 
         self.active = None
 
-        self.id2col = {}
-        self.selection = self.list.get_selection()
-        self.selection.set_mode(gtk.SELECTION_MULTIPLE)
-        colno = 0
-        for title in self.column_headers:
-            renderer = gtk.CellRendererText ()
-            renderer.set_fixed_height_from_font(1)
-            column = gtk.TreeViewColumn (title[0], renderer, text=colno)
-            colno = colno + 1
-            column.set_clickable (gtk.TRUE)
-            if title[0] == '':
-                column.set_visible(gtk.FALSE)
-            else:
-                column.set_resizable(gtk.TRUE)
-                column.set_visible(gtk.TRUE)
-            column.set_sort_column_id(title[1])
-            column.set_min_width(title[2])
-            column.connect('clicked',self.on_click)
-            self.list.append_column(column)
-
-        self.click_col = None
-
-        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING)
+        self.model = DisplayModels.PlaceModel(self.db)
         self.list.set_model(self.model)
         self.selection = self.list.get_selection()
+        self.selection.set_mode(gtk.SELECTION_MULTIPLE)
         self.list.connect('button-press-event',self.button_press)
         self.list.connect('key-press-event',self.key_press)
         self.topWindow = self.glade.get_widget("gramps")
+
+        self.columns = []
+        self.build_columns()
+
+    def build_columns(self):
+        for column in self.columns:
+            self.list.remove_column(column)
+            
+        column = gtk.TreeViewColumn(_('Place Name'), self.renderer,text=0)
+        column.set_resizable(gtk.TRUE)        
+        #column.set_clickable(gtk.TRUE)
+        column.set_min_width(225)
+        #column.set_sort_column_id(0)
+        self.list.append_column(column)
+        self.columns = [column]
+
+        index = 1
+        for pair in self.parent.db.get_place_column_order():
+            if not pair[0]:
+                continue
+            name = column_names[pair[1]]
+            column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
+            column.set_resizable(gtk.TRUE)
+            column.set_clickable(gtk.TRUE)
+            column.set_min_width(75)
+            column.set_sort_column_id(0)
+            self.columns.append(column)
+            self.list.append_column(column)
+            index += 1
 
     def on_click(self,column):
         self.click_col = column
 
     def change_db(self,db):
-        self.db = db
+        self.build_columns()
+        self.build_tree()
+
+    def build_tree(self):
+        self.list.set_model(None)
+        self.model = DisplayModels.PlaceModel(self.parent.db)
+
+        self.list.set_model(self.model)
+
+        self.selection = self.list.get_selection()
+        #self.selection.connect('changed',self.row_changed)
+        #self.list.connect('row_activated', self.alpha_event)
+        #self.model.connect('button-press-event',self.on_plist_button_press)        
 
     def load_places(self,id=None):
         """Rebuilds the entire place view. This can be very time consuming
         on large databases, and should only be called when absolutely
         necessary"""
-
-        del self.model
-        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING)
-        self.id2col = {}
-
-        for key in self.db.sort_place_keys():
-            val = self.db.get_place_display(key)
-                
-            iter = self.model.append()
-            self.id2col[key] = iter
-            self.model.set(iter,
-                           0,   val[0], 1, val[1], 2,   val[2],  3,  val[3],
-                           4,   val[4], 5, val[5], 6,   val[6],  7,  val[7],
-                           8,   val[8], 9, val[9], 10, val[10], 11,  val[11],
-                           12, val[12]
-                           )
-        self.list.set_model(self.model)
-        if self.click_col:
-            self.click_col.clicked()
+        pass
+        #self.build_tree()
         
     def goto(self,id):
         self.selection.unselect_all()

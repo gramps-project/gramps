@@ -606,7 +606,7 @@ class FamilyView:
         self.parent.active_person = ap
         self.load_family(self.family)
         
-    def new_spouse_after_edit(self,epo):
+    def new_spouse_after_edit(self,epo,change):
 
         if epo.person.get_id() == "":
             self.parent.db.add_person(epo.person)

@@ -22,12 +22,6 @@
 
 #-------------------------------------------------------------------------
 #
-# standard python modules
-#
-#-------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------
-#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -43,8 +37,17 @@ import gtk.gdk
 import RelLib
 import EditSource
 import Utils
+import DisplayModels
 
 from QuestionDialog import QuestionDialog
+
+column_names = [
+    _('Title'),
+    _('ID'),
+    _('Author'),
+    _('Abbreviation'),
+    _('Publication Information'),
+    ]
 
 #-------------------------------------------------------------------------
 #
@@ -68,38 +71,50 @@ class SourceView:
         self.selection = self.list.get_selection()
         colno = 0
 
-        self.column_headers = [(_('Title'),3,350),(_('ID'),1,50),
-                               (_('Author'),4,70),('',3,0),('',4,0) ]
+        self.renderer = gtk.CellRendererText()
 
-        for title in self.column_headers:
-            renderer = gtk.CellRendererText ()
-            renderer.set_fixed_height_from_font(1)
-            column = gtk.TreeViewColumn (title[0], renderer, text=colno)
-            colno = colno + 1
-            column.set_clickable (gtk.TRUE)
-            if title[0] == '':
-                column.set_visible(gtk.FALSE)
-            else:
-                column.set_resizable(gtk.TRUE)
-                column.set_visible(gtk.TRUE)
-            column.set_sort_column_id(title[1])
-            column.set_min_width(title[2])
-            column.connect('clicked',self.on_click)
-            self.list.append_column(column)
-
-        self.click_col = None
-
-        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING)
+        self.model = DisplayModels.SourceModel(self.db)
         self.list.set_model(self.model)
         self.topWindow = self.glade.get_widget("gramps")
+
+        self.columns = []
+        self.build_columns()
+
+    def load_sources(self,id=None):
+        pass
 
     def on_click(self,column):
         self.click_col = column
 
+    def build_columns(self):
+        for column in self.columns:
+            self.list.remove_column(column)
+            
+        column = gtk.TreeViewColumn(_('Title'), self.renderer,text=0)
+        column.set_resizable(gtk.TRUE)        
+        #column.set_clickable(gtk.TRUE)
+        column.set_min_width(225)
+        #column.set_sort_column_id(0)
+        self.list.append_column(column)
+        self.columns = [column]
+
+        index = 1
+        for pair in self.parent.db.get_source_column_order():
+            if not pair[0]:
+                continue
+            name = column_names[pair[1]]
+            column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
+            column.set_resizable(gtk.TRUE)
+            column.set_clickable(gtk.TRUE)
+            column.set_min_width(75)
+            column.set_sort_column_id(0)
+            self.columns.append(column)
+            self.list.append_column(column)
+            index += 1
+
     def change_db(self,db):
-        self.db = db
+        self.build_columns()
+        self.build_tree()
 
     def goto(self,id):
         iter = self.map[id]
@@ -108,23 +123,17 @@ class SourceView:
         col = self.list.get_column (0)
         self.list.scroll_to_cell (itpath, col, gtk.TRUE, 0.5, 0)
 
-    def load_sources(self):
-        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING)
-        self.map = {}
-        
-        for key in self.db.get_source_keys():
-            val = self.db.get_source_display(key)
-                
-            iter = self.model.append()
-            self.map[val[1]] = iter
-            self.model.set(iter, 0, val[0], 1, val[1], 2, val[2],
-                           3, val[3], 4, val[4])
-            self.list.connect('button-press-event',self.button_press)
-            self.list.connect('key-press-event',self.key_press)
+    def build_tree(self):
+        self.list.set_model(None)
+        self.model = DisplayModels.SourceModel(self.parent.db)
+
         self.list.set_model(self.model)
-                
+
+        self.selection = self.list.get_selection()
+        #self.selection.connect('changed',self.row_changed)
+        #self.list.connect('row_activated', self.alpha_event)
+        #self.model.connect('button-press-event',self.on_plist_button_press)        
+
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             store,iter = self.selection.get_selected()

@@ -77,9 +77,9 @@ class DateEdit:
 
         text = unicode(self.text_obj.get_text())
         self.checkval.set(text)
-        if not self.checkval.isValid():
+        if not self.checkval.is_valid():
             self.pixmap_obj.set_from_pixbuf(DateEdit.bad)
-        elif self.checkval.getIncomplete():
+        elif self.checkval.get_incomplete():
             self.pixmap_obj.set_from_pixbuf(DateEdit.caution)
         else:
             self.pixmap_obj.set_from_pixbuf(DateEdit.good)
