@@ -2,6 +2,26 @@
 	* src/data/gnome-mime-application-x-geneweb.png: Add to CVS.
 	* src/data/Makefile.am, src/plugins/Makefile.am: Ship new files.
 
+	* src/GrampsGconfKeys.py: Add to CVS -- split off key names.
+	* src/Makefile.am: Ship GrampsGconfKeys.
+	* src/ArgHandler.py: Use GrampsGconfKeys.
+	* src/DbPrompter.py: Use GrampsGconfKeys.
+	* src/EditPerson.py: Use GrampsGconfKeys.
+	* src/Exporter.py: Use GrampsGconfKeys.
+	* src/FamilyView.py: Use GrampsGconfKeys.
+	* src/GrampsDbBase.py: Use GrampsGconfKeys.
+	* src/ImageSelect.py: Use GrampsGconfKeys.
+	* src/MediaView.py: Use GrampsGconfKeys.
+	* src/Plugins.py: Use GrampsGconfKeys.
+	* src/Report.py: Use GrampsGconfKeys.
+	* src/StartupDialog.py: Use GrampsGconfKeys.
+	* src/TipOfDay.py: Use GrampsGconfKeys.
+	* src/Utils.py: Use GrampsGconfKeys.
+	* src/DateDisplay.py: Proper capitalization for _MONS.
+	* src/DateHandler.py: Use GrampsGconfKeys.
+	* src/GrampsCfg.py: Use GrampsGconfKeys.
+	* src/gramps_main.py: Use GrampsGconfKeys.
+
 2004-09-24  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/ImportGeneWeb.py, src/plugins/WriteGeneWeb.py, 
 	src/plugins/genewebexport.glade: Add to CVS.

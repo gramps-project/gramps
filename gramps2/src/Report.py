@@ -53,7 +53,7 @@ import Plugins
 import GenericFilter
 import BaseDoc
 import StyleEditor
-import GrampsCfg
+import GrampsGconfKeys
 import PaperMenu
 
 from gettext import gettext as _
@@ -839,7 +839,7 @@ class ReportDialog(BareReportDialog):
         """Get the name of the directory to which the target dialog
         box should default.  This value can be set in the preferences
         panel."""
-        return GrampsCfg.get_report_dir()
+        return GrampsGconfKeys.get_report_dir()
 
     def set_default_directory(self, value):
         """Save the name of the current directory, so that any future
@@ -849,7 +849,7 @@ class ReportDialog(BareReportDialog):
         This means that the last directory used will only be
         remembered for this session of gramps unless the user saves
         his/her preferences."""
-        GrampsCfg.save_report_dir(value)
+        GrampsGconfKeys.save_report_dir(value)
 
     #------------------------------------------------------------------------
     #
@@ -1068,7 +1068,7 @@ class ReportDialog(BareReportDialog):
         self.paper_table.attach(l,5,6,2,3,gtk.SHRINK|gtk.FILL)
 
         PaperMenu.make_paper_menu(self.papersize_menu,
-                                  self.option_store.get('paper',GrampsCfg.get_paper_preference()))
+                                  self.option_store.get('paper',GrampsGconfKeys.get_paper_preference()))
         PaperMenu.make_orientation_menu(self.orientation_menu,
                                         self.option_store.get('orientation',BaseDoc.PAPER_PORTRAIT))
 

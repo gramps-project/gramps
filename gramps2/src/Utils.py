@@ -275,9 +275,9 @@ def strip_id(text):
     return text
 
 def nautilus_icon(icon,mime_type):
-    import GrampsCfg
+    import GrampsGconfKeys
     
-    theme = GrampsCfg.client.get_string("/desktop/gnome/file_views/icon_theme")
+    theme = GrampsGconfKeys.client.get_string("/desktop/gnome/file_views/icon_theme")
 
     if icon :
         newicon = "%s/%s/%s.png" % (const.nautdir,theme,icon)

@@ -76,18 +76,18 @@ class DateDisplay:
 
     _MONS = (
         "",
-        unicode(locale.nl_langinfo(locale.ABMON_1),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_2),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_3),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_4),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_5),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_6),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_7),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_8),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_9),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_10),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_11),_codeset),
-        unicode(locale.nl_langinfo(locale.ABMON_12),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_1),_codeset).upper(),
+        unicode(locale.nl_langinfo(locale.ABMON_2),_codeset).upper(),
+        unicode(locale.nl_langinfo(locale.ABMON_3),_codeset).upper(),
+        unicode(locale.nl_langinfo(locale.ABMON_4),_codeset).upper(),
+        unicode(locale.nl_langinfo(locale.ABMON_5),_codeset).upper(),
+        unicode(locale.nl_langinfo(locale.ABMON_6),_codeset).upper(),
+        unicode(locale.nl_langinfo(locale.ABMON_7),_codeset).upper(),
+        unicode(locale.nl_langinfo(locale.ABMON_8),_codeset).upper(),
+        unicode(locale.nl_langinfo(locale.ABMON_9),_codeset).upper(),
+        unicode(locale.nl_langinfo(locale.ABMON_10),_codeset).upper(),
+        unicode(locale.nl_langinfo(locale.ABMON_11),_codeset).upper(),
+        unicode(locale.nl_langinfo(locale.ABMON_12),_codeset).upper(),
         )
 
     _tformat = locale.nl_langinfo(locale.D_FMT)

@@ -67,6 +67,7 @@ import const
 import Plugins
 import Utils
 import Bookmarks
+import GrampsGconfKeys
 import GrampsCfg
 import EditPerson
 import DbPrompter
@@ -133,13 +134,13 @@ class Gramps:
 
         GrampsCfg.loadConfig()
 
-        if GrampsCfg.get_betawarn() == 0:
+        if GrampsGconfKeys.get_betawarn() == 0:
             WarningDialog(_("Use at your own risk"),
                           _("This is an unstable development version of GRAMPS. "
                             "It is intended as a technology preview. Do not trust your "
                             "family database to this development version. This version may "
                             "contain bugs which could corrupt your database."))
-            GrampsCfg.save_betawarn(1)
+            GrampsGconfKeys.save_betawarn(1)
 
         self.RelClass = Plugins.relationship_class
         self.relationship = self.RelClass(self.db)
@@ -151,29 +152,27 @@ class Gramps:
         # Don't show main window until ArgHandler is done.
         # This prevents a window from annoyingly popping up when
         # the command line args are sufficient to operate without it.
-        GrampsCfg.client.notify_add("/apps/gramps/researcher",
+        GrampsGconfKeys.client.notify_add("/apps/gramps/researcher",
                                     self.researcher_key_update)
-        GrampsCfg.client.notify_add("/apps/gramps/interface/statusbar",
+        GrampsGconfKeys.client.notify_add("/apps/gramps/interface/statusbar",
                                     self.statusbar_key_update)
-        GrampsCfg.client.notify_add("/apps/gramps/interface/toolbar",
+        GrampsGconfKeys.client.notify_add("/apps/gramps/interface/toolbar",
                                     self.toolbar_key_update)
-        GrampsCfg.client.notify_add("/apps/gramps/interface/toolbar-on",
+        GrampsGconfKeys.client.notify_add("/apps/gramps/interface/toolbar-on",
                                     self.toolbar_on_key_update)
-        GrampsCfg.client.notify_add("/apps/gramps/interface/filter",
+        GrampsGconfKeys.client.notify_add("/apps/gramps/interface/filter",
                                     self.filter_key_update)
-        GrampsCfg.client.notify_add("/apps/gramps/interface/view",
+        GrampsGconfKeys.client.notify_add("/apps/gramps/interface/view",
                                     self.sidebar_key_update)
-        GrampsCfg.client.notify_add("/apps/gramps/interface/familyview",
+        GrampsGconfKeys.client.notify_add("/apps/gramps/interface/familyview",
                                     self.familyview_key_update)
-        GrampsCfg.client.notify_add("/apps/gramps/preferences/name-format",
+        GrampsGconfKeys.client.notify_add("/apps/gramps/preferences/name-format",
                                     self.familyview_key_update)
-        GrampsCfg.client.notify_add("/apps/gramps/preferences/date-format",
+        GrampsGconfKeys.client.notify_add("/apps/gramps/preferences/date-format",
                                     self.date_format_key_update)
-        GrampsCfg.client.notify_add("/apps/gramps/preferences/date-entry",
-                                    self.date_entry_key_update)
         self.topWindow.show()
         
-        if GrampsCfg.get_usetips():
+        if GrampsGconfKeys.get_usetips():
             TipOfDay.TipOfDay()
 
         self.db.set_researcher(GrampsCfg.get_researcher())
@@ -183,16 +182,13 @@ class Gramps:
         GrampsCfg.set_calendar_date_format()
         self.familyview_key_update(client,cnxn_id,entry,data)
 
-    def date_entry_key_update(self,client,cnxn_id,entry,data):
-        GrampsCfg.set_calendar_date_entry()
-
     def researcher_key_update(self,client,cnxn_id,entry,data):
-        self.db.set_person_id_prefix(GrampsCfg.get_person_id_prefix())
-        self.db.set_family_id_prefix(GrampsCfg.get_family_id_prefix())
-        self.db.set_source_id_prefix(GrampsCfg.get_source_id_prefix())
-        self.db.set_object_id_prefix(GrampsCfg.get_object_id_prefix())
-        self.db.set_place_id_prefix(GrampsCfg.get_place_id_prefix())
-        self.db.set_event_id_prefix(GrampsCfg.get_event_id_prefix())
+        self.db.set_person_id_prefix(GrampsGconfKeys.get_person_id_prefix())
+        self.db.set_family_id_prefix(GrampsGconfKeys.get_family_id_prefix())
+        self.db.set_source_id_prefix(GrampsGconfKeys.get_source_id_prefix())
+        self.db.set_object_id_prefix(GrampsGconfKeys.get_object_id_prefix())
+        self.db.set_place_id_prefix(GrampsGconfKeys.get_place_id_prefix())
+        self.db.set_event_id_prefix(GrampsGconfKeys.get_event_id_prefix())
 
     def statusbar_key_update(self,client,cnxn_id,entry,data):
         self.modify_statusbar()
@@ -201,17 +197,17 @@ class Gramps:
         self.toolbar.set_style(GrampsCfg.get_toolbar_style())
 
     def toolbar_on_key_update(self,client,cnxn_id,entry,data):
-        is_on = GrampsCfg.get_toolbar_on()
+        is_on = GrampsGconfKeys.get_toolbar_on()
         self.toolbar_btn.set_active(is_on)
         self.enable_toolbar(is_on)
 
     def filter_key_update(self,client,cnxn_id,entry,data):
-        is_on = GrampsCfg.get_filter()
+        is_on = GrampsGconfKeys.get_filter()
         self.filter_btn.set_active(is_on)
         self.enable_filter(is_on)
 
     def sidebar_key_update(self,client,cnxn_id,entry,data):
-        is_on = GrampsCfg.get_view()
+        is_on = GrampsGconfKeys.get_view()
         self.sidebar_btn.set_active(is_on)
         self.enable_sidebar(is_on)
 
@@ -382,25 +378,25 @@ class Gramps:
             "on_open_example" : self.open_example,
             })
 
-        self.filter_btn.set_active(GrampsCfg.get_filter())
-        self.enable_filter(GrampsCfg.get_filter())
-        self.toolbar_btn.set_active(GrampsCfg.get_toolbar_on())
-        self.enable_toolbar(GrampsCfg.get_toolbar_on())
+        self.filter_btn.set_active(GrampsGconfKeys.get_filter())
+        self.enable_filter(GrampsGconfKeys.get_filter())
+        self.toolbar_btn.set_active(GrampsGconfKeys.get_toolbar_on())
+        self.enable_toolbar(GrampsGconfKeys.get_toolbar_on())
 
-        if not GrampsCfg.get_screen_size_checked():
-            GrampsCfg.save_screen_size_checked(1)
+        if not GrampsGconfKeys.get_screen_size_checked():
+            GrampsGconfKeys.save_screen_size_checked(1)
             if gtk.gdk.screen_width() <= 900:
-                GrampsCfg.save_view(0)
-        self.sidebar_btn.set_active(GrampsCfg.get_view())
-        self.enable_sidebar(GrampsCfg.get_view())
+                GrampsGconfKeys.save_view(0)
+        self.sidebar_btn.set_active(GrampsGconfKeys.get_view())
+        self.enable_sidebar(GrampsGconfKeys.get_view())
 
         self.find_place = None
         self.find_source = None
         self.find_media = None
 
-        if GrampsCfg.get_default_view() == 0:
+        if GrampsGconfKeys.get_default_view() == 0:
             self.views.set_current_page(PERSON_VIEW)
-        elif GrampsCfg.get_family_view() == 0:
+        elif GrampsGconfKeys.get_family_view() == 0:
             self.views.set_current_page(FAMILY_VIEW1)
         else:
             self.views.set_current_page(FAMILY_VIEW2)
@@ -732,7 +728,7 @@ class Gramps:
 
     def on_sidebar_activate(self,obj):
         self.enable_sidebar(obj.get_active())
-        GrampsCfg.save_view(obj.get_active())
+        GrampsGconfKeys.save_view(obj.get_active())
 
     def enable_sidebar(self,val):
         if val:
@@ -749,10 +745,10 @@ class Gramps:
             self.filterbar.hide()
         
     def on_filter_activate(self,obj):
-        GrampsCfg.save_filter(obj.get_active())
+        GrampsGconfKeys.save_filter(obj.get_active())
 
     def on_toolbar_activate(self,obj):
-        GrampsCfg.save_toolbar_on(obj.get_active())
+        GrampsGconfKeys.save_toolbar_on(obj.get_active())
 
     def enable_toolbar(self,val):
         if val:
@@ -1079,7 +1075,7 @@ class Gramps:
                 name = os.path.basename(filename)
                 self.topWindow.set_title("%s - GRAMPS" % name)
             else:
-                GrampsCfg.save_last_file("")
+                GrampsGconfKeys.save_last_file("")
                 ErrorDialog(_('Cannot open database'),
                             _('The database file specified could not be opened file.'))
                 return 0
@@ -1337,7 +1333,7 @@ class Gramps:
         if self.active_person == None:
             self.status_text("")
         else:
-            if GrampsCfg.get_statusbar() <= 1:
+            if GrampsGconfKeys.get_statusbar() <= 1:
                 pname = GrampsCfg.get_nameof()(self.active_person)
                 name = "[%s] %s" % (self.active_person.get_gramps_id(),pname)
             else:
@@ -1385,7 +1381,7 @@ class Gramps:
 
     def on_family_activate(self,obj):
         """Switches to the family view"""
-        if GrampsCfg.get_family_view() == 0:
+        if GrampsGconfKeys.get_family_view() == 0:
             self.on_family1_activate(obj)
         else:
             self.on_family2_activate(obj)
@@ -1522,7 +1518,7 @@ class Gramps:
 
         self.setup_bookmarks()
 
-        GrampsCfg.save_last_file(name)
+        GrampsGconfKeys.save_last_file(name)
         self.gtop.get_widget("filter").set_text("")
     
         self.statusbar.set_progress_percentage(1.0)

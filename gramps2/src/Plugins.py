@@ -55,7 +55,7 @@ from re import compile
 #-------------------------------------------------------------------------
 import const
 import Utils
-import GrampsCfg
+import GrampsGconfKeys
 import Errors
 
 import gettext
@@ -665,7 +665,7 @@ def get_text_doc_menu(main_menu,tables,callback,obj=None):
             menuitem.connect("activate",callback)
         menuitem.show()
         myMenu.append(menuitem)
-        if name == GrampsCfg.get_output_preference():
+        if name == GrampsGconfKeys.get_output_preference():
             myMenu.set_active(index)
             callback(menuitem)
         index = index + 1
@@ -695,7 +695,7 @@ def get_book_menu(main_menu,tables,callback,obj=None):
             menuitem.connect("activate",callback)
         menuitem.show()
         myMenu.append(menuitem)
-        if name == GrampsCfg.get_output_preference():
+        if name == GrampsGconfKeys.get_output_preference():
             myMenu.set_active(index)
             callback(menuitem)
         index = index + 1
@@ -759,7 +759,7 @@ def get_draw_doc_menu(main_menu,callback=None,obj=None):
             menuitem.connect("activate",callback)
         menuitem.show()
         myMenu.append(menuitem)
-        if name == GrampsCfg.get_goutput_preference():
+        if name == GrampsGconfKeys.get_goutput_preference():
             myMenu.set_active(index)
         if callback:
             callback(menuitem)

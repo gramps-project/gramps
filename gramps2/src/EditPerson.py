@@ -47,6 +47,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK, INTERP_BILINEAR, pixbuf_new_from_
 #-------------------------------------------------------------------------
 import const
 import Utils
+import GrampsGconfKeys
 import GrampsCfg
 import ImageSelect
 import AutoComp
@@ -310,7 +311,7 @@ class EditPerson:
         self.lds_endowment = RelLib.LdsOrd(self.person.get_lds_endowment())
         self.lds_sealing = RelLib.LdsOrd(self.person.get_lds_sealing())
 
-        if GrampsCfg.get_uselds() \
+        if GrampsGconfKeys.get_uselds() \
                         or (not self.lds_baptism.is_empty()) \
                         or (not self.lds_endowment.is_empty()) \
                         or (not self.lds_sealing.is_empty()):

@@ -23,7 +23,7 @@ import string
 import gtk
 import gtk.glade
 import const
-import GrampsCfg
+import GrampsGconfKeys
 
 class TipOfDay:
     def __init__(self):
@@ -34,7 +34,7 @@ class TipOfDay:
         
         tp = TipParser()
         tip_list = tp.get()
-        use.set_active(GrampsCfg.get_usetips())
+        use.set_active(GrampsGconfKeys.get_usetips())
 
         index = 0
         rval = 0
@@ -46,7 +46,7 @@ class TipOfDay:
             else:
                 index += 1
         
-        GrampsCfg.save_usetips(use.get_active())
+        GrampsGconfKeys.save_usetips(use.get_active())
         top.destroy()
 
 class TipParser:
