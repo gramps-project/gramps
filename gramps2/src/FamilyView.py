@@ -505,7 +505,9 @@ class FamilyView:
             self.display_marriage(None)
         else:
             row = model.get_path(iter)
-            id = self.person.get_family_handle_list()[row[0]]
+            family_handle = self.person.get_family_handle_list()[row[0]]
+            fam = self.parent.db.get_family_from_handle(family_handle)
+            self.display_marriage(fam)
 
 
     def build_spouse_menu(self,event):

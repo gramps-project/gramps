@@ -1,3 +1,6 @@
+2004-08-17  Tim Waugh  <twaugh@redhat.com>
+	* src/FamilyView.py (spouse_changed): Update display.
+
 2004-08-16  Tim Waugh  <twaugh@redhat.com>
 	* src/gramps_main.py (__init__): Update display after initialization.
 	This fixes a display problem when family view is the default.
