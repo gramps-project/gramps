@@ -466,11 +466,14 @@ class Gramps:
         self.find_person = None
         self.find_source = None
         self.find_media = None
+
         if GrampsCfg.defaultview == 0:
-            self.views.set_current_page(0)
+            self.views.set_current_page(PERSON_VIEW)
+        elif GrampsCfg.familyview == 0:
+            self.views.set_current_page(FAMILY_VIEW1)
         else:
-            self.views.set_current_page(2)
-            
+            self.views.set_current_page(FAMILY_VIEW2)
+      
         self.topWindow.show()
 
     def set_buttons(self,val):
@@ -478,7 +481,7 @@ class Gramps:
         self.tools_menu.set_sensitive(val)
         self.report_button.set_sensitive(val)
         self.tool_button.set_sensitive(val)
-        if self.views.get_current_page() == 0:
+        if self.views.get_current_page() == PERSON_VIEW:
             self.remove_button.set_sensitive(val)
             self.edit_button.set_sensitive(val)
         
@@ -1907,7 +1910,7 @@ class Gramps:
             self.db.buildPersonDisplay(epo.person.getId())
             self.change_active_person(epo.person)
             self.redisplay_person_list(epo.person)
-        if self.views.get_current_page() == 1:
+        if self.views.get_current_page() in [FAMILY_VIEW1,FAMILY_VIEW2]:
             self.family_view.load_family()
         for p in plist:
             self.place_view.new_place_after_edit(p)
