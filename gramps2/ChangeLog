@@ -1,3 +1,10 @@
+2004-09-27 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* configure.in: Bump up the version number.
+
+2004-09-27  Don Allingham  <dallingham@users.sourceforge.net>
+	* Release: Version 1.1.1 "Rat cake, rat sorbet, rat pudding, 
+	or strawberry tart" released.
+
 2004-09-26 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/DateDisplay.py: Now proper capitalization for _MONS.
 	* src/DateParser.py: Support for the RFC-2822 dates (email standard).
