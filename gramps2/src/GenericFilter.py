@@ -311,7 +311,7 @@ class IsDefaultPerson(Rule):
         person = db.get_default_person()
         if person:
             return p_id == person.get_handle()
-        return false
+        return 0
 
 #-------------------------------------------------------------------------
 #
