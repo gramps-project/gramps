@@ -33,12 +33,14 @@ class ListModel:
         self.mylist = [TYPE_STRING]*l + [TYPE_PYOBJECT]
 
         self.tree.set_rules_hint(gtk.TRUE)
+        self.model = None
         self.new_model()
         self.selection = self.tree.get_selection()
         self.selection.set_mode(mode)
         self.mode = mode
         self.data_index = l
         self.count = 0
+        self.cid = None
         self.cids = []
         
         cnum = 0
@@ -78,11 +80,15 @@ class ListModel:
         self.tree.set_reorderable(order)
         
     def new_model(self):
+        if self.model:
+            self.cid = self.model.get_sort_column_id()
         self.count = 0
         self.model = gtk.ListStore(*self.mylist)
 
     def connect_model(self):
         self.tree.set_model(self.model)
+        if self.cid:
+            self.model.set_sort_column_id(self.cid[0],self.cid[1])
         self.sort()
 
     def sort(self):
