@@ -46,7 +46,6 @@ nautdir = "/usr/share/pixmaps/nautilus"
 
 prefixdir = "/usr/local"
 
-
 #-------------------------------------------------------------------------
 #
 # Paths to files - assumes that files reside in the same directory as

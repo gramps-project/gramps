@@ -3807,23 +3807,16 @@ fi
 echo "$as_me:$LINENO: result: ok" >&5
 echo "${ECHO_T}ok" >&6
 
-SCROLLKEEPER_REQUIRED=0.1.4
-
-
-
-DISABLE_SCROLLKEEPER=1
-
-
-# Extract the first word of "jw", so it can be a program name with args.
-set dummy jw; ac_word=$2
+# Extract the first word of "scrollkeeper-config", so it can be a program name with args.
+set dummy scrollkeeper-config; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_path_JW+set}" = set; then
+if test "${ac_cv_path_SK_CONFIG+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
-  case $JW in
+  case $SK_CONFIG in
   [\\/]* | ?:[\\/]*)
-  ac_cv_path_JW="$JW" # Let the user override the test with a path.
+  ac_cv_path_SK_CONFIG="$SK_CONFIG" # Let the user override the test with a path.
   ;;
   *)
   as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
@@ -3833,33 +3826,42 @@ do
   test -z "$as_dir" && as_dir=.
   for ac_exec_ext in '' $ac_executable_extensions; do
   if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_path_JW="$as_dir/$ac_word$ac_exec_ext"
+    ac_cv_path_SK_CONFIG="$as_dir/$ac_word$ac_exec_ext"
     echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
     break 2
   fi
 done
 done
 
-  test -z "$ac_cv_path_JW" && ac_cv_path_JW="no"
+  test -z "$ac_cv_path_SK_CONFIG" && ac_cv_path_SK_CONFIG="no"
   ;;
 esac
 fi
-JW=$ac_cv_path_JW
+SK_CONFIG=$ac_cv_path_SK_CONFIG
 
-if test -n "$JW"; then
-  echo "$as_me:$LINENO: result: $JW" >&5
-echo "${ECHO_T}$JW" >&6
+if test -n "$SK_CONFIG"; then
+  echo "$as_me:$LINENO: result: $SK_CONFIG" >&5
+echo "${ECHO_T}$SK_CONFIG" >&6
 else
   echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6
 fi
 
-if test x$JW = xno; then
-  HAVE_JW="no"
-else
-  HAVE_JW="yes"
+if test x$SK_CONFIG = xno; then
+  { { echo "$as_me:$LINENO: error: Couldn't find scrollkeeper-config. Please install the scrollkeeper package: http://scrollkeeper.sourceforge.net" >&5
+echo "$as_me: error: Couldn't find scrollkeeper-config. Please install the scrollkeeper package: http://scrollkeeper.sourceforge.net" >&2;}
+   { (exit 1); exit 1; }; }
 fi
 
+localstatedir=/var/lib
+
+if test ${prefix} = "NONE" ; then
+   GPREFIX="/usr/local"
+else
+   GPREFIX="${prefix}"
+fi
+
+SCROLLKEEPER_BUILD_REQUIRED=0.3.5
 
 
 
@@ -3878,7 +3880,8 @@ fi
 
 
 
-ac_config_files="$ac_config_files Makefile src/Makefile src/const.py src/docgen/Makefile src/filters/Makefile src/plugins/Makefile src/calendars/Makefile src/data/Makefile src/data/templates/Makefile src/po/Makefile doc/Makefile doc/gramps-manual/Makefile doc/gramps-manual/C/Makefile doc/extending-gramps/Makefile doc/extending-gramps/C/Makefile omf-install/Makefile gramps.spec gramps.sh"
+
+ac_config_files="$ac_config_files Makefile src/Makefile src/const.py src/docgen/Makefile src/filters/Makefile src/plugins/Makefile src/calendars/Makefile src/data/Makefile src/data/templates/Makefile src/po/Makefile doc/Makefile doc/gramps-manual/Makefile doc/gramps-manual/C/Makefile doc/extending-gramps/Makefile doc/extending-gramps/C/Makefile example/Makefile example/gramps/Makefile omf-install/Makefile gramps.spec gramps.sh"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
@@ -4408,6 +4411,8 @@ do
   "doc/gramps-manual/C/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/gramps-manual/C/Makefile" ;;
   "doc/extending-gramps/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/extending-gramps/Makefile" ;;
   "doc/extending-gramps/C/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/extending-gramps/C/Makefile" ;;
+  "example/Makefile" ) CONFIG_FILES="$CONFIG_FILES example/Makefile" ;;
+  "example/gramps/Makefile" ) CONFIG_FILES="$CONFIG_FILES example/gramps/Makefile" ;;
   "omf-install/Makefile" ) CONFIG_FILES="$CONFIG_FILES omf-install/Makefile" ;;
   "gramps.spec" ) CONFIG_FILES="$CONFIG_FILES gramps.spec" ;;
   "gramps.sh" ) CONFIG_FILES="$CONFIG_FILES gramps.sh" ;;
@@ -4545,11 +4550,10 @@ s,@AMDEPBACKSLASH@,$AMDEPBACKSLASH,;t t
 s,@CCDEPMODE@,$CCDEPMODE,;t t
 s,@CPP@,$CPP,;t t
 s,@HAVE_PKG_CONFIG@,$HAVE_PKG_CONFIG,;t t
-s,@SCROLLKEEPER_REQUIRED@,$SCROLLKEEPER_REQUIRED,;t t
-s,@DISABLE_SCROLLKEEPER@,$DISABLE_SCROLLKEEPER,;t t
-s,@JW@,$JW,;t t
-s,@HAVE_JW@,$HAVE_JW,;t t
+s,@SK_CONFIG@,$SK_CONFIG,;t t
+s,@SCROLLKEEPER_BUILD_REQUIRED@,$SCROLLKEEPER_BUILD_REQUIRED,;t t
 s,@GNOMEHELP@,$GNOMEHELP,;t t
+s,@GPREFIX@,$GPREFIX,;t t
 s,@P15_INCLUDES@,$P15_INCLUDES,;t t
 s,@P20_INCLUDES@,$P20_INCLUDES,;t t
 s,@P21_INCLUDES@,$P21_INCLUDES,;t t

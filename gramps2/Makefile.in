@@ -70,16 +70,14 @@ AWK = @AWK@
 BINSH = @BINSH@
 CC = @CC@
 DEPDIR = @DEPDIR@
-DISABLE_SCROLLKEEPER = @DISABLE_SCROLLKEEPER@
 GNOMEHELP = @GNOMEHELP@
 GNOMEINC = @GNOMEINC@
 GNOMELIB = @GNOMELIB@
 GPREF = @GPREF@
-HAVE_JW = @HAVE_JW@
+GPREFIX = @GPREFIX@
 HAVE_PKG_CONFIG = @HAVE_PKG_CONFIG@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 INTLLIBS = @INTLLIBS@
-JW = @JW@
 LANGUAGES = @LANGUAGES@
 LIBS = @LIBS@
 MOFILES = @MOFILES@
@@ -97,7 +95,8 @@ PYTHON_PLATFORM = @PYTHON_PLATFORM@
 PYTHON_PREFIX = @PYTHON_PREFIX@
 PYTHON_VERSION = @PYTHON_VERSION@
 RELEASE = @RELEASE@
-SCROLLKEEPER_REQUIRED = @SCROLLKEEPER_REQUIRED@
+SCROLLKEEPER_BUILD_REQUIRED = @SCROLLKEEPER_BUILD_REQUIRED@
+SK_CONFIG = @SK_CONFIG@
 STRIP = @STRIP@
 SWIG = @SWIG@
 VERSION = @VERSION@
@@ -111,14 +110,13 @@ pkgpythondir = @pkgpythondir@
 pyexecdir = @pyexecdir@
 pythondir = @pythondir@
 
-SUBDIRS = src doc omf-install
+SUBDIRS = src doc omf-install example
 
-EXTRA_DIST = autogen.sh gramps.spec.in 
+EXTRA_DIST = autogen.sh gramps.spec.in COPYING-DOCS
 
 bin_SCRIPTS = gramps
 
 grampsdocdir = $(datadir)/doc/gramps-$(VERSION)
-scrollkeeper_localstate_dir = $(localstatedir)/lib/scrollkeeper
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
@@ -478,10 +476,7 @@ dist-hook: gramps.spec
 
 # Build/rebuild the catalog
 install-data-hook:
-	rm -rf $(DESTDIR)$(scrollkeeper_localstate_dir)
-	$(mkinstalldirs) $(DESTDIR)$(scrollkeeper_localstate_dir)
 	$(mkinstalldirs) $(DESTDIR)$(localstatedir)/log
-#	scrollkeeper-rebuilddb -p $(DESTDIR)$(scrollkeeper_localstate_dir)
 
 # Remove generated files
 uninstall-local:

@@ -70,6 +70,10 @@
 1 _DEG
 2 DATE 1984
 2 PLAC B.S.E.E.
+1 OBJE
+2 FORM jpg
+2 FILE C:\Images\MyImages\test.jpg
+2 TITL Random title
 1 FAMS @F01@
 1 FAMC @F02@
 0 @I02@ INDI
