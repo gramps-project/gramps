@@ -1,3 +1,5 @@
+# translation of hu.po to 
+# translation of hu.po to
 # translation of hu.po to Hungarian
 # Hungarian translation for GRAMPS
 # Copyright (C) 2003 the Gramps Project
@@ -7,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu\n"
 "POT-Creation-Date: Thu Jan 15 19:45:56 2004\n"
-"PO-Revision-Date: 2004-01-17 12:54+0100\n"
+"PO-Revision-Date: 2004-01-18 14:18+0100\n"
 "Last-Translator: Egyeki Gergely <egeri@elte.hu>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -2955,7 +2957,7 @@ msgstr "A személy keresztneve"
 
 #: edit_person.glade:477
 msgid "The surname or last name"
-msgstr "Családnév vagy Keresztnév"
+msgstr "Családnév vagy vezetéknév"
 
 #: edit_person.glade:508
 msgid ""
@@ -7086,7 +7088,7 @@ msgstr "Nem lehet létrehozni a könyvtárat : %s"
 
 #: plugins/WebPage.py:901
 msgid "Include a link to the index page"
-msgstr "Index oldali hivatkozás hozzáadása"
+msgstr "Index oldalra hivatkozás hozzáadása"
 
 #: plugins/WebPage.py:902 plugins/pafexport.glade:276
 msgid "Do not include records marked private"
@@ -7810,11 +7812,11 @@ msgstr "<b>Alapértelmezett nézet</b>"
 
 #: preferences.glade:1029
 msgid "_Person view"
-msgstr "Személy nézet"
+msgstr "_Személynézet"
 
 #: preferences.glade:1051
 msgid "_Family view"
-msgstr "_Család nézet"
+msgstr "_Családnézet"
 
 #: preferences.glade:1072
 msgid "<b>Family view style</b>"
@@ -7842,7 +7844,7 @@ msgstr "_Dátum formátum:"
 
 #: preferences.glade:1309
 msgid "_Show calendar format selection menu"
-msgstr "_Naptárválasztó megjelenítése"
+msgstr "_Naptárválasztó engedélyezése"
 
 #: preferences.glade:1330
 msgid "<b>Display formats</b>"
@@ -7926,19 +7928,19 @@ msgstr "<b>Összeítő Tulajdonságai</b>"
 
 #: preferences.glade:2252
 msgid "Make a _reference to the object when the object is dropped"
-msgstr "Egy hivatkozás létrehozása az új objektum használatakor"
+msgstr "Egy hivatkozás létrehozása az új objektum használatba vételekor"
 
 #: preferences.glade:2274
 msgid "Make a local _copy when the object is dropped"
-msgstr "_Egy helyi másolat készítése az új objektum használatakor"
+msgstr "_Egy helyi másolat készítése az új objektum használatba vételekor"
 
 #: preferences.glade:2297
 msgid "Display _global properties editor when object is dropped"
-msgstr "_Globális tulajdonságszerkesztő megnyitása az új objektum használatakor"
+msgstr "_Globális tulajdonságszerkesztő megnyitása az új objektum használatba vételekor"
 
 #: preferences.glade:2319
 msgid "Display _local properties editor when object is dropped"
-msgstr "_Helyi tulajdonságszerkesztő megnyitása az új objektum használatakor"
+msgstr "_Helyi tulajdonságszerkesztő megnyitása az új objektum használatba vételekor"
 
 #: preferences.glade:2339
 msgid "<b>Drag and drop from an external source</b>"
