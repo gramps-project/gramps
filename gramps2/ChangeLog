@@ -6,6 +6,8 @@
 	* src/plugins/IndivComplete.py (write_note): Typo.
 	* src/plugins/DetDescendantReport.py: Correct image insertion.
 	* src/plugins/DetAncestralReport.py: Correct image insertion.
+	* src/plugins/rel_de.py: Add to CVS.
+	* src/plugins/Makefile.am: Ship rel_de.py.
 
 2004-01-06  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/gramps-manual/ru/mainwin.xml: Update translation.
