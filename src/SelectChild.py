@@ -262,7 +262,7 @@ class SelectChild:
             self.add_child.scroll_to_cell(path,col,1,0.5,0.0)
 
     def select_function(self,store,path,iter,id_list):
-        id_list.append(self.refmodel.get_value(iter,1))
+        id_list.append(self.refmodel.get_value(iter,PeopleModel.COLUMN_INT_ID))
 
     def get_selected_ids(self):
         mlist = []
@@ -425,8 +425,9 @@ class EditRel:
             })
 
         f = self.child.has_family(self.family.get_id())
-        self.fentry.set_text(_(f[2]))
-        self.mentry.set_text(_(f[1]))
+        if f:
+            self.fentry.set_text(_(f[2]))
+            self.mentry.set_text(_(f[1]))
         
         self.fdesc.set_use_markup(gtk.TRUE)
         self.mdesc.set_use_markup(gtk.TRUE)

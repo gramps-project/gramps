@@ -45,6 +45,7 @@ import cPickle
 from Date import Date, SingleDate, compare_dates, not_too_old
 import GrampsCfg
 import const
+import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -359,7 +360,7 @@ class Place(SourceNote):
     def get_id(self):
         """Returns the gramps ID for the place object"""
         return self.id
-    
+
     def set_title(self,name):
         """Sets the title of the place object"""
         self.title = name
@@ -1145,6 +1146,7 @@ class Person(SourceNote):
         """creates a new Person instance"""
         SourceNote.__init__(self)
         self.id = gid
+        self.gid = ""
         self.primary_name = Name()
         self.event_list = []
         self.family_list = []
@@ -1170,7 +1172,7 @@ class Person(SourceNote):
         self.db = None
         
     def serialize(self):
-        return (self.id, self.gender, 
+        return (self.id, self.gid, self.gender, 
                 self.primary_name, self.alternate_names, self.nickname, 
                 self.death_id, self.birth_id, self.event_list,
                 self.family_list, self.parent_family_list,
@@ -1184,7 +1186,7 @@ class Person(SourceNote):
                 self.note)
 
     def unserialize(self,data):
-        (self.id, self.gender, 
+        (self.id, self.gid, self.gender, 
          self.primary_name, self.alternate_names, self.nickname, 
          self.death_id, self.birth_id, self.event_list,
          self.family_list, self.parent_family_list,
@@ -1211,7 +1213,7 @@ class Person(SourceNote):
         bday = self.birth_id
         dday = self.death_id
         return [ GrampsCfg.display_name(self),
-                 self.id,
+                 self.gid,
                  gender,
                  bday,
                  dday,
@@ -1261,6 +1263,14 @@ class Person(SourceNote):
         """adds a URL instance to the list"""
         self.urls.append(url)
     
+    def set_gramps_id(self,gid):
+        """sets the gramps ID for the Person"""
+        self.gid = str(gid)
+
+    def get_gramps_id(self):
+        """returns the gramps ID for the Person"""
+        return self.gid
+
     def set_id(self,gid):
         """sets the gramps ID for the Person"""
         self.id = str(gid)
@@ -2350,7 +2360,10 @@ except ImportError: # try python2.2
 
 
 def find_surname(key,data):
-    return str(data[2].get_surname())
+    return str(data[3].get_surname())
+
+def find_idmap(key,data):
+    return str(data[1])
 
 def find_eventname(key,data):
     return str(data[1])
@@ -2424,11 +2437,15 @@ class GrampsDB:
         self.surnames.set_flags(db.DB_DUP)
         self.surnames.open(name, "surnames", db.DB_HASH, flags=db.DB_CREATE)
 
+        self.idtrans = db.DB(self.env)
+        self.idtrans.set_flags(db.DB_DUP)
+        self.idtrans.open(name, "idtrans", db.DB_HASH, flags=db.DB_CREATE)
+
         self.eventnames = db.DB(self.env)
         self.eventnames.set_flags(db.DB_DUP)
         self.eventnames.open(name, "eventnames", db.DB_HASH, flags=db.DB_CREATE)
-
         self.person_map.associate(self.surnames, find_surname, db.DB_CREATE)
+        self.person_map.associate(self.idtrans, find_idmap, db.DB_CREATE)
         self.event_map.associate(self.eventnames, find_eventname, db.DB_CREATE)
 
         self.undodb = db.DB()
@@ -2438,6 +2455,14 @@ class GrampsDB:
         if self.bookmarks == None:
             self.bookmarks = []
         return 1
+
+    def find_next_gid(self):
+        index = self.iprefix % self.pmap_index
+        while self.idtrans.get(str(index)):
+            self.pmap_index += 1
+            index = self.iprefix % self.pmap_index
+        self.pmap_index += 1
+        return index
 
     def get_people_view_maps(self):
         if self.metadata:
@@ -2468,6 +2493,7 @@ class GrampsDB:
         self.metadata.close()
         self.surnames.close()
         self.eventnames.close()
+        self.idtrans.close()
         self.env.close()
         self.undodb.close()
 
@@ -2532,22 +2558,22 @@ class GrampsDB:
     def get_person_display(self,key):
         data = self.person_map.get(str(key))
 
-        if data[1] == Person.male:
+        if data[2] == Person.male:
             gender = const.male
-        elif data[1] == Person.female:
+        elif data[2] == Person.female:
             gender = const.female
         else:
             gender = const.unknown
-            
-        return [ data[2].get_name(),
-                 data[0],
+
+        return [ data[3].get_name(),
+                 data[1],
                  gender,
+                 data[7],
                  data[6],
-                 data[5],
-                 data[2].get_sort_name(),
+                 data[3].get_sort_name(),
+                 data[7],
                  data[6],
-                 data[5],
-                 GrampsCfg.display_surname(data[2])]
+                 GrampsCfg.display_surname(data[3])]
 
     def commit_person(self,person,transaction):
         gid = str(person.get_id())
@@ -2913,17 +2939,13 @@ class GrampsDB:
     
     def add_person(self,person,trans):
         """adds a Person to the database, assigning a gramps' ID"""
-        index = self.iprefix % self.pmap_index
-        while self.person_map.get(str(index)):
-            self.pmap_index = self.pmap_index + 1
-            index = self.iprefix % self.pmap_index
-        person.set_id(index)
+        person.set_gramps_id(self.find_next_gid())
+        person.set_id(Utils.create_id())
         if trans != None:
             trans.add(PERSON_KEY, person.get_id(),None)
-        self.person_map.put(str(index),person.serialize())
-        self.pmap_index = self.pmap_index + 1
+        self.person_map.put(str(person.get_id()),person.serialize())
         self.genderStats.count_person (person, self)
-        return index
+        return person.get_id()
 
     def find_person(self,gid,map,trans):
         """finds a Person in the database using the gid and map
@@ -2955,10 +2977,21 @@ class GrampsDB:
         If no such Person exists, a new Person is added to the database."""
 
         data = self.person_map.get(str(val))
-
         if data:
             person = Person()
             person.unserialize(data)
+            return person
+        else:
+            return None
+
+    def try_to_find_person_from_gramps_id(self,val):
+        """finds a Person in the database from the passed gramps' ID.
+        If no such Person exists, a new Person is added to the database."""
+
+        data = self.idtrans.get(str(val))
+        if data:
+            person = Person()
+            person.unserialize(cPickle.loads(data))
             return person
         else:
             return None
@@ -2976,7 +3009,6 @@ class GrampsDB:
             if trans != None:
                 trans.add(PERSON_KEY, val, None)
             self.person_map.put(str(val), person.serialize())
-            self.pmap_index = self.pmap_index+1
 #            self.genderStats.count_person (person, self)
         return person
 
@@ -2988,7 +3020,6 @@ class GrampsDB:
         if trans != None:
             trans.add(PERSON_KEY, gid, None)
         self.person_map.set(str(gid),person.serialize())
-        self.pmap_index = self.pmap_index+1
 #        self.genderStats.count_person (person, self)
         return gid
 
@@ -3032,7 +3063,6 @@ class GrampsDB:
 
     def add_event_no_map(self,event,index,trans):
         """adds a Source to the database if the gramps' ID is known"""
-        return
         event.set_id(index)
         if trans != None:
             trans.add(EVENT_KEY,index,None)
@@ -3475,26 +3505,6 @@ class GrampsDB:
                 old_data = self.family_map.get(str(family_id))
                 trans.add(FAMILY_KEY,family_id,old_data)
             self.family_map.delete(str(family_id))
-
-    def find_person_no_conflicts(self,gid,map,trans):
-        """finds a Person in the database using the gid and map
-        variables to translate between the external ID and gramps'
-        internal ID. If no such Person exists, a new Person instance
-        is created.
-
-        gid - external ID number
-        map - map build by findPerson of external to gramp's IDs"""
-
-        person = Person()
-        if map.has_key(gid):
-            person.unserialize(self.person_map.get(str(map[gid])))
-        else:
-            if self.person_map.get(str(gid)):
-                map[gid] = self.add_person(person,trans)
-            else:
-                person.set_id(gid)
-                map[gid] = self.add_person_as(person,trans)
-        return person
 
     def find_family_no_conflicts(self,gid,map,trans):
         """finds a Family in the database using the gid and map

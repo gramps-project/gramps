@@ -1,3 +1,17 @@
+2004-06-26  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: dropped New Database message. After all, it should
+	be incredibly obvious.
+	* src/Utils.py: create_id to generate random internal ID
+	* src/RelLib.py: new internal ID support
+	* src/AddSpouse.py: bug fixes
+	* src/ChooseParents.py: bug fixes
+	* src/PeopleModel.py: bug fixes
+	* src/PeopleView.py: bug fixes
+	* src/FamilyView.py: bug fixes
+	* src/Bookmarks.py: support for new internal IDs
+	* src/EditPerson.py: support for new internal IDs
+	* src/plugins/ReadGedcom.py: handle new internal IDs
+
 2004-06-24  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps_main.py (on_import_activate,on_export_activate):
 	Add methods.

@@ -130,7 +130,7 @@ class PeopleView:
         self.person_tree.set_model(self.sort_model)
 
     def blist(self, store, path, iter, id_list):
-        id_list.append(self.sort_model.get_value(iter,1))
+        id_list.append(self.sort_model.get_value(iter,PeopleModel.COLUMN_INT_ID))
 
     def get_selected_objects(self):
         mlist = []

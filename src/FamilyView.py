@@ -25,10 +25,10 @@
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
 import gtk.glade
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK
+from gobject import TYPE_STRING, TYPE_INT
 
 #-------------------------------------------------------------------------
 #
@@ -158,7 +158,7 @@ class FamilyView:
 
         already_init = self.cadded[fv]
         
-        self.ap_model = gtk.ListStore(gobject.TYPE_STRING)
+        self.ap_model = gtk.ListStore(TYPE_STRING)
         self.ap_data.set_model(self.ap_model)
         if not already_init:
             column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
@@ -166,7 +166,7 @@ class FamilyView:
             self.ap_data.connect('button-press-event',self.ap_button_press)
             self.ap_data.connect('key-press-event',self.ap_key_press)
 
-        self.ap_parents_model = gtk.ListStore(gobject.TYPE_STRING)
+        self.ap_parents_model = gtk.ListStore(TYPE_STRING)
         self.ap_parents.set_model(self.ap_parents_model)
         self.ap_selection = self.ap_parents.get_selection()
         if not already_init:
@@ -175,7 +175,7 @@ class FamilyView:
             self.ap_parents.connect('button-press-event',self.ap_par_button_press)
             self.ap_parents.connect('key-press-event',self.ap_par_key_press)
 
-        self.sp_parents_model = gtk.ListStore(gobject.TYPE_STRING)
+        self.sp_parents_model = gtk.ListStore(TYPE_STRING)
         self.sp_parents.set_model(self.sp_parents_model)
         self.sp_selection = self.sp_parents.get_selection()
         if not already_init:
@@ -184,7 +184,7 @@ class FamilyView:
             self.sp_parents.connect('button-press-event',self.sp_par_button_press)
             self.sp_parents.connect('key-press-event',self.sp_par_key_press)
 
-        self.spouse_model = gtk.ListStore(gobject.TYPE_STRING)
+        self.spouse_model = gtk.ListStore(TYPE_STRING)
         self.spouse_list.set_model(self.spouse_model)
         self.spouse_selection = self.spouse_list.get_selection()
         if not already_init:
@@ -202,15 +202,16 @@ class FamilyView:
         self.child_list.connect('drag_data_get', self.drag_data_get)
         self.child_list.connect('drag_data_received',self.drag_data_received)
         
-        self.child_model = gtk.ListStore(gobject.TYPE_INT,   gobject.TYPE_STRING,
-                                         gobject.TYPE_STRING,gobject.TYPE_STRING,
-                                         gobject.TYPE_STRING,gobject.TYPE_STRING, 
-                                         gobject.TYPE_STRING)
+        self.child_model = gtk.ListStore(TYPE_INT,   TYPE_STRING,
+                                         TYPE_STRING,TYPE_STRING,
+                                         TYPE_STRING,TYPE_STRING, 
+                                         TYPE_STRING,TYPE_STRING)
 
         self.child_selection = self.child_list.get_selection()
 
         if not already_init:
-            self.child_list.connect('button-press-event',self.on_child_list_button_press)
+            self.child_list.connect('button-press-event',
+                                    self.on_child_list_button_press)
             self.child_list.connect('key-press-event',self.child_key_press)
 
             self.swap_btn.connect('clicked',self.spouse_swap)
@@ -291,7 +292,7 @@ class FamilyView:
         model, iter = self.child_selection.get_selected()
         if not iter:
             return
-        id = self.child_model.get_value(iter,2)
+        id = self.child_model.get_value(iter,7)
         if event.keyval == gtk.gdk.keyval_from_name("Return") and not event.state:
             self.child_rel_by_id(id)
         elif event.keyval == gtk.gdk.keyval_from_name("Return") \
@@ -431,7 +432,7 @@ class FamilyView:
             if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
                 self.build_nav_menu(event)
             return
-        id = self.child_model.get_value(iter,2)
+        id = self.child_model.get_value(iter,7)
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.child_rel_by_id(id)
         elif event.state == gtk.gdk.SHIFT_MASK and \
@@ -484,7 +485,7 @@ class FamilyView:
         model, iter = self.child_selection.get_selected()
         if not iter:
             return
-        child = self.parent.db.get_person(self.child_model.get_value(iter,2))
+        child = self.parent.db.get_person(self.child_model.get_value(iter,7))
         try:
             EditPerson.EditPerson(self.parent, child, self.parent.db, self.spouse_after_edit)
         except:
@@ -616,10 +617,9 @@ class FamilyView:
         except:
             DisplayTrace.DisplayTrace()
 
-    def spouse_after_edit(self,epo):
+    def spouse_after_edit(self,ep,trans):
         ap = self.parent.active_person
         if epo:
-            trans = self.parent.db.start_transaction()
             self.parent.db.commit_person(epo.person,trans)
             n = epo.person.get_primary_name().get_regular_name()
             self.parent.db.add_transaction(trans,_("Add Person (%s)") % n)
@@ -738,7 +738,7 @@ class FamilyView:
         if not iter:
             return
 
-        id = self.child_model.get_value(iter,2)
+        id = self.child_model.get_value(iter,7)
         child = self.parent.db.get_person(id)
 
         trans = self.parent.db.start_transaction()
@@ -785,13 +785,13 @@ class FamilyView:
         trans = self.parent.db.start_transaction()
         
         if self.selected_spouse:
-            self.selected_spouse.remove_family_id(self.family.get_id(),trans)
+            self.selected_spouse.remove_family_id(self.family.get_id())
             self.parent.db.commit_person(self.selected_spouse,trans)
 
         self.parent.db.commit_family(self.family,trans)
 
         if len(self.family.get_child_id_list()) == 0:
-            self.person.remove_family_id(self.family.get_id(),trans)
+            self.person.remove_family_id(self.family.get_id())
             self.parent.db.commit_person(self.person,trans)
             self.parent.db.delete_family(self.family.get_id(),trans)
             if len(self.person.get_family_id_list()) > 0:
@@ -868,20 +868,20 @@ class FamilyView:
 
         if bd and dd:
             n = "%s [%s]\n\t%s %s\n\t%s %s " % (GrampsCfg.nameof(self.person),
-                                                self.person.get_id(),
+                                                self.person.get_gramps_id(),
                                                 _BORN,bd.get_date(),
                                                 _DIED,dd.get_date())
         elif bd:
             n = "%s [%s]\n\t%s %s" % (GrampsCfg.nameof(self.person),
-                                      self.person.get_id(),
+                                      self.person.get_gramps_id(),
                                       _BORN,bd.get_date())
         elif dd:
             n = "%s [%s]\n\t%s %s" % (GrampsCfg.nameof(self.person),
-                                      self.person.get_id(),
+                                      self.person.get_gramps_id(),
                                       _DIED,dd.get_date())
         else:
             n = "%s [%s]" % (GrampsCfg.nameof(self.person),
-                             self.person.get_id())
+                             self.person.get_gramps_id())
 
         self.ap_model.clear()
         self.ap_data.get_selection().set_mode(gtk.SELECTION_NONE)
@@ -923,7 +923,7 @@ class FamilyView:
                 else:
                     mdate = ""
                 v = "%s [%s]\n\t%s%s" % (GrampsCfg.nameof(sp),
-                                         sp.get_id(),
+                                         sp.get_gramps_id(),
                                          const.display_frel(fm.get_relationship()),
                                          mdate)
                 self.spouse_model.set(iter,0,v)
@@ -982,7 +982,7 @@ class FamilyView:
     def nameof(self,l,p,mode):
         if p:
             n = GrampsCfg.nameof(p)
-            pid = p.get_id()
+            pid = p.get_gramps_id()
             return _("%s: %s [%s]\n\tRelationship: %s") % (l,n,pid,_(mode))
         else:
             return _("%s: unknown") % (l)
@@ -1049,14 +1049,14 @@ class FamilyView:
             val = self.parent.db.get_person_display(child.get_id())
             i += 1
             
-            event = self.parent.db.find_event_from_id(val[3])
+            event = self.parent.db.find_event_from_id(val[4])
             if event:
                 dval = event.get_date()
             else:
                 dval = u''
-            
+
             self.child_model.set(iter,0,i,1,val[0],2,val[1],3,val[2],
-                                 4,dval,5,status,6,val[6])
+                                 4,dval,5,status,6,val[6],7,child.get_id())
 
     def build_parents_menu(self,family,event):
         """Builds the menu that allows editing operations on the child list"""
@@ -1340,7 +1340,8 @@ class FamilyView:
             pname = self.person.get_primary_name()
             return (pname.get_surname_prefix(),pname.get_surname())
         elif self.family:
-            f = self.family.get_father_id()
+            fid = self.family.get_father_id()
+            f = self.parent.db.get_family_from_id(fid)
             if f:
                 pname = f.get_primary_name()
                 return (pname.get_surname_prefix(),pname.get_surname())
