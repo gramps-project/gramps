@@ -529,6 +529,7 @@ class GedcomParser:
     #
     #---------------------------------------------------------------------
     def parse_individual(self):
+        name_cnt = 0
         while 1:
 	    matches = self.get_next()
 
@@ -547,7 +548,11 @@ class GedcomParser:
                     name.setSurname(names[1])
                 if names[2]:
                     name.setSuffix(names[2])
-                self.person.setPrimaryName(name)
+                if name_cnt == 0:
+                    self.person.setPrimaryName(name)
+                else:
+                    self.person.addAlternateName(name)
+                name_cnt = name_cnt + 1
                 self.parse_name(name,2)
 	    elif matches[1] == "RIN" or matches[1] == "RFN":
                 pass
