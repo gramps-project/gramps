@@ -155,7 +155,7 @@
 	  <width>350</width>
 	  <history_id>family_group</history_id>
 	  <max_saved>10</max_saved>
-	  <title>Save Family Group Report</title>
+	  <title>Save Individual Summary</title>
 	  <directory>False</directory>
 	  <modal>False</modal>
 	  <child>

@@ -177,7 +177,7 @@ class EventComparison:
                 my_list.append(person)
 
         if len(my_list) == 0:
-            gnome.ui.GnomeWarningDialog("No matches were found")
+            gnome.ui.GnomeWarningDialog(_("No matches were found"))
         else:
             DisplayChart(my_list)
 

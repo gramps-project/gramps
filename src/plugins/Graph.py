@@ -206,7 +206,7 @@ def report(database,person):
 				GDK.POINTER_MOTION_MASK |
 				GDK.POINTER_MOTION_HINT_MASK)
 
-	button = GtkButton("Quit")
+	button = GtkButton(_("Quit"))
 	hbox = GtkHBox(spacing=3)
 	vbox.pack_start(button, expand=FALSE, fill=FALSE)
 	button.connect("clicked", win.destroy)

@@ -132,9 +132,9 @@ class FamilyGroup:
     def dump_parent(self,person):
 
         if person.getGender() == RelLib.Person.male:
-            id = "Husband"
+            id = _("Husband")
         else:
-            id = "Wife"
+            id = _("Wife")
         
         self.doc.start_table(id,'ParentTable')
         self.doc.start_row()

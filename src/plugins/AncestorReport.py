@@ -319,7 +319,7 @@ def report(database,person):
     style_sheet_list = StyleSheetList("ancestor_report.xml",styles)
     build_menu(None)
 
-    topDialog.get_widget("labelTitle").set_text("Ahnentafel Report for " + name)
+    topDialog.get_widget("labelTitle").set_text(_("Ahnentafel Report for %s") % name)
     topDialog.signal_autoconnect({
         "destroy_passed_object" : utils.destroy_passed_object,
         "on_style_edit_clicked" : on_style_edit_clicked,
