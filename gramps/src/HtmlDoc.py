@@ -263,7 +263,11 @@ class HtmlDoc(TextDoc):
 	    return
 
         self.empty = 0
-	im = PIL.Image.open(name)
+        try:
+            im = PIL.Image.open(name)
+        except:
+            return
+        
         nx,ny = im.size
 
         scale = float(nx)/float(ny)

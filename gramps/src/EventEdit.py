@@ -26,6 +26,7 @@ from string import strip
 #
 #-------------------------------------------------------------------------
 import libglade
+import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -36,7 +37,10 @@ import Sources
 import const
 import utils
 import Config
+from Date import compare_dates
 from RelLib import *
+from intl import gettext
+_ = gettext
 
 #-------------------------------------------------------------------------
 #
@@ -48,6 +52,7 @@ class EventEditor:
     def __init__(self,parent,name,list,trans,event,def_placename,read_only):
         self.parent = parent
         self.event = event
+        self.date = Date(event.getDateObj())
         self.trans = trans
         if event:
             self.srcreflist = self.event.getSourceRefList()
@@ -93,7 +98,7 @@ class EventEditor:
             self.place_field.set_text(event.getPlaceName())
             if (def_placename):
                 self.place_field.set_text(def_placename)
-            self.date_field.set_text(event.getDate())
+            self.date_field.set_text(event.getPrefDate())
             self.cause_field.set_text(event.getCause())
             self.descr_field.set_text(event.getDescription())
             self.priv.set_active(event.getPrivacy())
@@ -106,8 +111,9 @@ class EventEditor:
             if (def_placename):
                 self.place_field.set_text(def_placename)
 
-        if (not read_only):
+        if not read_only:
             self.name_field.select_region(0, -1)
+
         self.window.set_data("o",self)
         self.top.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
@@ -116,13 +122,29 @@ class EventEditor:
             "on_source_clicked" : self.on_edit_source_clicked
             })
 
+        menu = gtk.GtkMenu()
+        names = [ _("Gregorian"), _("Julian"), _("Hebrew"), ("French") ]
+        for index in range(0,len(names)):
+            item = gtk.GtkMenuItem(names[index])
+            item.set_data("d",index)
+            item.connect("activate",self.on_menu_changed)
+            item.show()
+            menu.append(item)
+        menu.set_active(self.date.get_calendar())
+        self.calendar.set_menu(menu)
+
+    def on_menu_changed(self,obj):
+        self.date.set_calendar(obj.get_data("d"))
+        self.date_field.set_text(self.date.getDate())
+        
     def on_edit_source_clicked(self,obj):
         Sources.SourceSelector(self.srcreflist,self.parent,src_changed)
 
     def on_event_edit_ok_clicked(self,obj):
 
         ename = self.name_field.get_text()
-        edate = self.date_field.get_text()
+        self.date.set(self.date_field.get_text())
+
         ecause = self.cause_field.get_text()
         eplace = strip(self.place_field.get_text())
         eplace_obj = utils.get_place_from_list(self.place_combo)
@@ -140,7 +162,7 @@ class EventEditor:
             eplace_obj.set_title(eplace)
             self.parent.db.addPlace(eplace_obj)
 
-        self.update_event(ename,edate,eplace_obj,edesc,enote,epriv,ecause)
+        self.update_event(ename,self.date,eplace_obj,edesc,enote,epriv,ecause)
         self.parent.redraw_event_list()
         utils.destroy_passed_object(obj)
 
@@ -161,8 +183,10 @@ class EventEditor:
             self.event.setNote(note)
             self.parent.lists_changed = 1
 
-        if self.event.getDate() != date:
-            self.event.setDate(date)
+        dobj = self.event.getDateObj()
+
+        if compare_dates(dobj,date) != 0:
+            self.event.setDateObj(date)
             self.parent.lists_changed = 1
 
         if self.event.getCause() != cause:

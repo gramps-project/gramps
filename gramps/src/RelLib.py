@@ -561,6 +561,11 @@ class Address(DataObj):
         lived at the address"""
         return self.date.getDate()
 
+    def getPrefDate(self):
+        """returns a string representation of the date that the person
+        lived at the address"""
+        return self.date.getPrefDate()
+
     def getDateObj(self):
         """returns the Date object associated with the Address"""
         return self.date
@@ -1128,6 +1133,12 @@ class Event(DataObj):
             return self.date.getDate()
         return ""
 
+    def getPrefDate(self) :
+        """returns a string representation of the date of the Event instance"""
+        if self.date:
+            return self.date.getDate()
+        return ""
+
     def getQuoteDate(self) :
         """returns a string representation of the date of the Event instance,
         enclosing the results in quotes if it is not a valid date"""
@@ -1140,6 +1151,10 @@ class Event(DataObj):
         if not self.date:
             self.date = Date()
        	return self.date
+
+    def setDateObj(self,date):
+        """sets the Date object associated with the Event"""
+        self.date = date
 
     def getSaveDate(self) :
         """returns the date of the Event in the form wanted by gramps XML save"""

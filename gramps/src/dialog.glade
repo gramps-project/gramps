@@ -569,6 +569,11 @@
 	    <visible>False</visible>
 	    <tooltip>Selects the calendar format for display</tooltip>
 	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>clicked</name>
+	      <handler>on_calendar_clicked</handler>
+	      <last_modification_time>Wed, 21 Nov 2001 15:24:48 GMT</last_modification_time>
+	    </signal>
 	    <items>Gregorian
 Julian
 Hebrew
