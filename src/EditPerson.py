@@ -949,7 +949,7 @@ class EditPerson:
         EventEdit.EventEditor(self,pname,const.personalEvents,
                               const.save_fevent,event,None,0,
                               self.callback)
-
+        
     def on_event_select_row(self,obj,row,b,c):
         event = obj.get_row_data(row)
         self.event_date_field.set_text(event.getDate())

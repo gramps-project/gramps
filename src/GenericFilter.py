@@ -47,7 +47,24 @@ from string import find,join
 #
 #-------------------------------------------------------------------------
 from RelLib import *
-from Date import Date
+import Date
+
+#-------------------------------------------------------------------------
+#
+# date_cmp
+#
+#-------------------------------------------------------------------------
+def date_cmp(rule,value):
+    sd = rule.get_start_date()
+    s = sd.mode
+    if s == Date.SingleDate.before:
+        return Date.compare_dates(rule,value) == 1
+    elif s == Date.SingleDate.after:
+        return Date.compare_dates(rule,value) == -1
+    elif sd.month == Date.UNDEF and sd.year != Date.UNDEF:
+        return sd.year == value.get_start_date().year
+    else:
+        return Date.compare_dates(rule,value) == 0
 
 #-------------------------------------------------------------------------
 #
@@ -79,7 +96,7 @@ class Rule:
         v = []
         for i in range(0,len(self.list)):
             if self.list[i]:
-                v.append('%s="%s"' % (self.labels[i],self.list[i]))
+                v.append('%s="%s"' % (_(self.labels[i]),self.list[i]))
         return join(v,'; ')
 
 #-------------------------------------------------------------------------
@@ -136,7 +153,8 @@ class IsFemale(Rule):
 #
 #-------------------------------------------------------------------------
 class IsDescendantOf(Rule):
-    """Rule that checks for a person that is a descendant of a specified person"""
+    """Rule that checks for a person that is a descendant
+    of a specified person"""
 
     labels = ['ID']
     
@@ -149,7 +167,6 @@ class IsDescendantOf(Rule):
     def search(self,p):
         if p.getId() == self.list[0]:
             return 1
-
         for (f,r1,r2) in p.getParentList():
             for p1 in [f.getMother(),f.getFather()]:
                 if p1:
@@ -210,24 +227,89 @@ class HasEvent(Rule):
 
     labels = [ 'Event', 'Date', 'Place', 'Description' ]
     
+    def __init__(self,list):
+        Rule.__init__(self,list)
+        if self.list[0]:
+            self.date = Date.Date()
+            self.date.set(self.list[0])
+        else:
+            self.date = None
+
     def name(self):
         return 'Has the event'
 
     def apply(self,p):
-        for event in [p.getBirth(),p.getDeath()] + p.getEventList():
+        for event in p.getEventList():
             if self.list[0] and event.getName() != self.list[0]:
                 return 0
             if self.list[3] and find(event.getDescription(),self.list[3])==-1:
                 return 0
-            if self.list[1]:
-                try:
-                    d = Date.Date(self.list[1])
-                except:
-                    return 0
-                if Date.compare_dates(d,event.getDateObj()):
-                    return 0
+            if self.date:
+                return date_cmp(self.date,event.getDateObj())
             if self.list[2] and find(p.getPlaceName(),self.list[2]) == -1:
                 return 0
+        return 1
+
+#-------------------------------------------------------------------------
+#
+# HasBirth
+#
+#-------------------------------------------------------------------------
+class HasBirth(Rule):
+    """Rule that checks for a person with a birth of a particular value"""
+
+    labels = [ 'Date', 'Place', 'Description' ]
+    
+    def __init__(self,list):
+        Rule.__init__(self,list)
+        if self.list[0]:
+            self.date = Date.Date()
+            self.date.set(self.list[0])
+        else:
+            self.date = None
+        
+    def name(self):
+        return 'Has the birth'
+
+    def apply(self,p):
+        event = p.getBirth()
+        if self.list[2] and find(event.getDescription(),self.list[2])==-1:
+            return 0
+        if self.date:
+            return date_cmp(self.date,event.getDateObj())
+        if self.list[1] and find(p.getPlaceName(),self.list[1]) == -1:
+            return 0
+        return 1
+
+#-------------------------------------------------------------------------
+#
+# HasDeath
+#
+#-------------------------------------------------------------------------
+class HasDeath(Rule):
+    """Rule that checks for a person with a death of a particular value"""
+
+    labels = [ 'Date', 'Place', 'Description' ]
+    
+    def __init__(self,list):
+        Rule.__init__(self,list)
+        if self.list[0]:
+            self.date = Date.Date()
+            self.date.set(self.list[0])
+        else:
+            self.date = None
+
+    def name(self):
+        return 'Has the death'
+
+    def apply(self,p):
+        event = p.getDeath()
+        if self.list[2] and find(event.getDescription(),self.list[2])==-1:
+            return 0
+        if self.date:
+            date_cmp(self.date,event.getDateObj())
+        if self.list[1] and find(p.getPlaceName(),self.list[1]) == -1:
+            return 0
         return 1
 
 #-------------------------------------------------------------------------
@@ -338,6 +420,8 @@ tasks = {
     "Everyone"             : Everyone,
     "Has the Id"           : HasIdOf,
     "Has a name"           : HasNameOf,
+    "Has the death"        : HasDeath,
+    "Has the birth"        : HasBirth,
     "Is the descendant of" : IsDescendantOf,
     "Is an ancestor of"    : IsAncestorOf,
     "Is a female"          : IsFemale,
@@ -374,7 +458,11 @@ class GenericFilterList:
             pass
 
     def save(self):
-        f = open(self.file,'w')
+        try:
+            f = open(self.file,'w')
+        except:
+            return
+        
         f.write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n")
         f.write('<filters>\n')
         for i in self.filter_list:
@@ -433,15 +521,4 @@ class FilterParser(handler.ContentHandler):
     def characters(self, data):
         pass
 
-if __name__ == '__main__':
-
-    g = GenericFilter()
-    g.set_name("Everyone")
-    rule = Everyone([])
-    g.add_rule(rule)
-
-    l = GenericFilterList('/home/dona/.gramps/custom_filters.xml')
-    l.load()
-    l.add(g)
-    l.save()
 
