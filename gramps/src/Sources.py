@@ -191,11 +191,11 @@ class SourceEditor:
             c.set_data("s",src)
             c.show()
             list.append(c)
-            if self.active_source == None:
-                self.active_source = src
+            if self.active_source == src:
                 sel_child = c
 
         self.title_menu.list.append_items(list)
+        
         if sel_child != None:
             self.title_menu.list.select_child(sel_child)
 
