@@ -25,7 +25,6 @@
 * Add Confession as a standard event
 * Now that the completeness flag exists, create filters that are using it
   (both individual and family). 
-* Introduce abbreviation attribute for the sources (ABBR in GEDCOM).
 * Introduce format attribute for the notes (Flowed or Preformatted).
 * Add ZIP/Postal code to Places
 * Add Phone as an attribute for Addresses and Places
