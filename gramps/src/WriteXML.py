@@ -174,6 +174,10 @@ def dump_name(g,label,name):
     write_line(g,"last",name.getSurname())
     write_line(g,"suffix",name.getSuffix())
     write_line(g,"title",name.getTitle())
+    if name.getNote() != "":
+        writeNote(g,"note",name.getNote())
+    dump_source_ref(g,name.getSourceRef())
+    
     g.write('</%s>\n' % label)
 
 #-------------------------------------------------------------------------
