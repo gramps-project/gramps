@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Tue Jul 15 17:03:14 2003\n"
+"POT-Creation-Date: Tue Jul 15 19:54:41 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -469,11 +469,13 @@ msgstr ""
 msgid "Event Editor for %s"
 msgstr ""
 
-#: FamilyView.py:51 PedView.py:43
+#: FamilyView.py:51 PedView.py:43 plugins/AncestorChart.py:53
+#: plugins/DesGraph.py:53
 msgid "b."
 msgstr ""
 
-#: FamilyView.py:52 PedView.py:44
+#: FamilyView.py:52 PedView.py:44 plugins/AncestorChart.py:54
+#: plugins/DesGraph.py:54
 msgid "d."
 msgstr ""
 
@@ -1142,8 +1144,8 @@ msgstr ""
 #: docgen/PdfDoc.py:159 docgen/PdfDrawDoc.py:90 docgen/PdfDrawDoc.py:92
 #: docgen/RTFDoc.py:71 docgen/RTFDoc.py:74 docgen/SvgDrawDoc.py:84
 #: docgen/SvgDrawDoc.py:86 gramps_main.py:1225 gramps_main.py:1230
-#: gramps_main.py:1240 plugins/AncestorChart.py:113 plugins/DesGraph.py:210
-#: plugins/DesGraph.py:219 plugins/WriteGedcom.py:551
+#: gramps_main.py:1240 plugins/AncestorChart.py:116 plugins/DesGraph.py:213
+#: plugins/DesGraph.py:222 plugins/WriteGedcom.py:551
 #: plugins/WriteGedcom.py:556
 msgid "Could not create %s"
 msgstr ""
@@ -1739,24 +1741,24 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: const.py:182 srcsel.glade:418
-msgid "Very Low"
+#: const.py:182 srcsel.glade:450
+msgid "Very High"
 msgstr ""
 
-#: const.py:183 plugins/Merge.py:107 srcsel.glade:426
-msgid "Low"
+#: const.py:183 plugins/Merge.py:115 srcsel.glade:442
+msgid "High"
 msgstr ""
 
 #: const.py:184 srcsel.glade:434
 msgid "Normal"
 msgstr ""
 
-#: const.py:185 plugins/Merge.py:115 srcsel.glade:442
-msgid "High"
+#: const.py:185 plugins/Merge.py:107 srcsel.glade:426
+msgid "Low"
 msgstr ""
 
-#: const.py:186 srcsel.glade:450
-msgid "Very High"
+#: const.py:186 srcsel.glade:418
+msgid "Very Low"
 msgstr ""
 
 #: const.py:206
@@ -2686,8 +2688,8 @@ msgstr ""
 #: plugins/AncestorReport.py:521 plugins/Ancestors.py:968
 #: plugins/CustomBookText.py:389 plugins/DescendReport.py:412
 #: plugins/DetAncestralReport.py:1253 plugins/DetDescendantReport.py:1262
-#: plugins/FamilyGroup.py:766 plugins/FtmStyleAncestors.py:1039
-#: plugins/FtmStyleDescendants.py:1448 plugins/IndivComplete.py:825
+#: plugins/FamilyGroup.py:766 plugins/FtmStyleAncestors.py:1040
+#: plugins/FtmStyleDescendants.py:1449 plugins/IndivComplete.py:825
 #: plugins/IndivSummary.py:638
 msgid "Text"
 msgstr ""
@@ -2748,8 +2750,8 @@ msgstr ""
 msgid "_Find..."
 msgstr ""
 
-#: gramps.glade:274 plugins/merge.glade:126
-msgid "_Merge"
+#: gramps.glade:274
+msgid "_Merge..."
 msgstr ""
 
 #: gramps.glade:299
@@ -2773,7 +2775,7 @@ msgid "_Add bookmark"
 msgstr ""
 
 #: gramps.glade:363
-msgid "_Edit bookmarks"
+msgid "_Edit bookmarks..."
 msgstr ""
 
 #: gramps.glade:391
@@ -2793,7 +2795,7 @@ msgid "_Settings"
 msgstr ""
 
 #: gramps.glade:428
-msgid "Prefere_nces"
+msgid "Prefere_nces..."
 msgstr ""
 
 #: gramps.glade:449
@@ -2821,7 +2823,7 @@ msgid "_Report a bug"
 msgstr ""
 
 #: gramps.glade:567
-msgid "_Show plugin status"
+msgid "_Show plugin status..."
 msgstr ""
 
 #: gramps.glade:576
@@ -3496,55 +3498,55 @@ msgstr ""
 msgid "Author's email:"
 msgstr ""
 
-#: plugins/AncestorChart.py:214 plugins/AncestorChart.py:426
+#: plugins/AncestorChart.py:217 plugins/AncestorChart.py:429
 msgid "Ancestor Chart"
 msgstr ""
 
-#: plugins/AncestorChart.py:214 plugins/AncestorChart.py:427
-#: plugins/DesGraph.py:308 plugins/DesGraph.py:464 plugins/FanChart.py:280
+#: plugins/AncestorChart.py:217 plugins/AncestorChart.py:430
+#: plugins/DesGraph.py:311 plugins/DesGraph.py:467 plugins/FanChart.py:280
 #: plugins/FanChart.py:353 plugins/GraphViz.py:80 plugins/GraphViz.py:455
 #: plugins/TimeLine.py:316 plugins/TimeLine.py:465
 msgid "Graphical Reports"
 msgstr ""
 
-#: plugins/AncestorChart.py:218
+#: plugins/AncestorChart.py:221
 msgid "Ancestor Chart for %s"
 msgstr ""
 
-#: plugins/AncestorChart.py:223
+#: plugins/AncestorChart.py:226
 msgid "Save Ancestor Chart"
 msgstr ""
 
-#: plugins/AncestorChart.py:235 plugins/DesGraph.py:325
+#: plugins/AncestorChart.py:238 plugins/DesGraph.py:328
 msgid "Display Format"
 msgstr ""
 
-#: plugins/AncestorChart.py:236 plugins/DesGraph.py:326
+#: plugins/AncestorChart.py:239 plugins/DesGraph.py:329
 msgid "Allows you to customize the data in the boxes in the report"
 msgstr ""
 
-#: plugins/AncestorChart.py:245 plugins/AncestorReport.py:407
+#: plugins/AncestorChart.py:248 plugins/AncestorReport.py:407
 #: plugins/Ancestors.py:636 plugins/Ancestors.py:652 plugins/Ancestors.py:657
-#: plugins/DesGraph.py:335 plugins/FamilyGroup.py:617
-#: plugins/FtmStyleAncestors.py:747 plugins/FtmStyleAncestors.py:752
-#: plugins/FtmStyleAncestors.py:757 plugins/FtmStyleAncestors.py:762
-#: plugins/FtmStyleDescendants.py:1156 plugins/FtmStyleDescendants.py:1161
-#: plugins/FtmStyleDescendants.py:1166 plugins/FtmStyleDescendants.py:1171
+#: plugins/DesGraph.py:338 plugins/FamilyGroup.py:617
+#: plugins/FtmStyleAncestors.py:748 plugins/FtmStyleAncestors.py:753
+#: plugins/FtmStyleAncestors.py:758 plugins/FtmStyleAncestors.py:763
+#: plugins/FtmStyleDescendants.py:1157 plugins/FtmStyleDescendants.py:1162
+#: plugins/FtmStyleDescendants.py:1167 plugins/FtmStyleDescendants.py:1172
 #: plugins/IndivComplete.py:685 plugins/IndivSummary.py:614
 msgid "The basic style used for the text display."
 msgstr ""
 
-#: plugins/AncestorChart.py:428 plugins/AncestorReport.py:511
+#: plugins/AncestorChart.py:431 plugins/AncestorReport.py:511
 #: plugins/Ancestors.py:958 plugins/DescendReport.py:402
 #: plugins/DetAncestralReport.py:1242 plugins/DetDescendantReport.py:1251
-#: plugins/FamilyGroup.py:758 plugins/FtmStyleAncestors.py:1029
-#: plugins/FtmStyleDescendants.py:1438 plugins/GraphViz.py:454
+#: plugins/FamilyGroup.py:758 plugins/FtmStyleAncestors.py:1030
+#: plugins/FtmStyleDescendants.py:1439 plugins/GraphViz.py:454
 #: plugins/IndivComplete.py:817 plugins/IndivSummary.py:627
 #: plugins/Summary.py:162 plugins/TimeLine.py:464 plugins/WebPage.py:1284
 msgid "Beta"
 msgstr ""
 
-#: plugins/AncestorChart.py:429
+#: plugins/AncestorChart.py:432
 msgid "Produces a graphical ancestral tree graph"
 msgstr ""
 
@@ -3635,8 +3637,8 @@ msgstr ""
 #: plugins/DescendReport.py:129 plugins/DescendReport.py:401
 #: plugins/DetAncestralReport.py:1243 plugins/DetDescendantReport.py:1252
 #: plugins/FamilyGroup.py:356 plugins/FamilyGroup.py:757
-#: plugins/FtmStyleAncestors.py:782 plugins/FtmStyleAncestors.py:1028
-#: plugins/FtmStyleDescendants.py:1191 plugins/FtmStyleDescendants.py:1437
+#: plugins/FtmStyleAncestors.py:783 plugins/FtmStyleAncestors.py:1029
+#: plugins/FtmStyleDescendants.py:1192 plugins/FtmStyleDescendants.py:1438
 #: plugins/IndivComplete.py:471 plugins/IndivComplete.py:818
 #: plugins/IndivSummary.py:338 plugins/IndivSummary.py:628
 msgid "Text Reports"
@@ -3652,7 +3654,7 @@ msgstr ""
 
 #: plugins/AncestorReport.py:393 plugins/Ancestors.py:621
 #: plugins/DescendReport.py:290 plugins/FamilyGroup.py:608
-#: plugins/FtmStyleAncestors.py:732 plugins/FtmStyleDescendants.py:1141
+#: plugins/FtmStyleAncestors.py:733 plugins/FtmStyleDescendants.py:1142
 #: plugins/IndivComplete.py:659 plugins/IndivSummary.py:588
 #: plugins/SimpleBookTitle.py:97 plugins/TimeLine.py:399
 #: plugins/WebPage.py:971
@@ -3660,7 +3662,7 @@ msgid "The style used for the title of the page."
 msgstr ""
 
 #: plugins/AncestorReport.py:402 plugins/Ancestors.py:631
-#: plugins/FtmStyleAncestors.py:742 plugins/FtmStyleDescendants.py:1151
+#: plugins/FtmStyleAncestors.py:743 plugins/FtmStyleDescendants.py:1152
 msgid "The style used for the generation header."
 msgstr ""
 
@@ -3696,7 +3698,7 @@ msgid "Ancestors for %s"
 msgstr ""
 
 #: plugins/Ancestors.py:694 plugins/DetAncestralReport.py:743
-#: plugins/FtmStyleAncestors.py:791
+#: plugins/FtmStyleAncestors.py:792
 msgid "Save Ancestor Report"
 msgstr ""
 
@@ -3949,23 +3951,23 @@ msgstr ""
 msgid "Final Text"
 msgstr ""
 
-#: plugins/DesGraph.py:308 plugins/DesGraph.py:463
+#: plugins/DesGraph.py:311 plugins/DesGraph.py:466
 msgid "Descendant Graph"
 msgstr ""
 
-#: plugins/DesGraph.py:311
+#: plugins/DesGraph.py:314
 msgid "Descendant Graph for %s"
 msgstr ""
 
-#: plugins/DesGraph.py:314
+#: plugins/DesGraph.py:317
 msgid "Save Descendant Graph"
 msgstr ""
 
-#: plugins/DesGraph.py:465 plugins/DescendReport.py:403
+#: plugins/DesGraph.py:468 plugins/DescendReport.py:403
 msgid "Generates a list of descendants of the active person"
 msgstr ""
 
-#: plugins/DesGraph.py:466 plugins/FanChart.py:354
+#: plugins/DesGraph.py:469 plugins/FanChart.py:354
 msgid "Alpha"
 msgstr ""
 
@@ -4066,42 +4068,42 @@ msgstr ""
 #: plugins/DetAncestralReport.py:211 plugins/DetAncestralReport.py:458
 #: plugins/DetAncestralReport.py:530 plugins/DetDescendantReport.py:218
 #: plugins/DetDescendantReport.py:460 plugins/DetDescendantReport.py:527
-#: plugins/FtmStyleAncestors.py:403 plugins/FtmStyleAncestors.py:413
-#: plugins/FtmStyleAncestors.py:424 plugins/FtmStyleAncestors.py:433
-#: plugins/FtmStyleAncestors.py:443 plugins/FtmStyleAncestors.py:452
-#: plugins/FtmStyleAncestors.py:461 plugins/FtmStyleAncestors.py:468
-#: plugins/FtmStyleAncestors.py:479 plugins/FtmStyleAncestors.py:487
-#: plugins/FtmStyleAncestors.py:496 plugins/FtmStyleAncestors.py:503
-#: plugins/FtmStyleAncestors.py:512 plugins/FtmStyleAncestors.py:518
-#: plugins/FtmStyleAncestors.py:525 plugins/FtmStyleDescendants.py:798
-#: plugins/FtmStyleDescendants.py:808 plugins/FtmStyleDescendants.py:819
-#: plugins/FtmStyleDescendants.py:828 plugins/FtmStyleDescendants.py:838
-#: plugins/FtmStyleDescendants.py:847 plugins/FtmStyleDescendants.py:856
-#: plugins/FtmStyleDescendants.py:864 plugins/FtmStyleDescendants.py:875
-#: plugins/FtmStyleDescendants.py:883 plugins/FtmStyleDescendants.py:892
-#: plugins/FtmStyleDescendants.py:900 plugins/FtmStyleDescendants.py:909
-#: plugins/FtmStyleDescendants.py:916 plugins/FtmStyleDescendants.py:924
+#: plugins/FtmStyleAncestors.py:404 plugins/FtmStyleAncestors.py:414
+#: plugins/FtmStyleAncestors.py:425 plugins/FtmStyleAncestors.py:434
+#: plugins/FtmStyleAncestors.py:444 plugins/FtmStyleAncestors.py:453
+#: plugins/FtmStyleAncestors.py:462 plugins/FtmStyleAncestors.py:469
+#: plugins/FtmStyleAncestors.py:480 plugins/FtmStyleAncestors.py:488
+#: plugins/FtmStyleAncestors.py:497 plugins/FtmStyleAncestors.py:504
+#: plugins/FtmStyleAncestors.py:513 plugins/FtmStyleAncestors.py:519
+#: plugins/FtmStyleAncestors.py:526 plugins/FtmStyleDescendants.py:799
+#: plugins/FtmStyleDescendants.py:809 plugins/FtmStyleDescendants.py:820
+#: plugins/FtmStyleDescendants.py:829 plugins/FtmStyleDescendants.py:839
+#: plugins/FtmStyleDescendants.py:848 plugins/FtmStyleDescendants.py:857
+#: plugins/FtmStyleDescendants.py:865 plugins/FtmStyleDescendants.py:876
+#: plugins/FtmStyleDescendants.py:884 plugins/FtmStyleDescendants.py:893
+#: plugins/FtmStyleDescendants.py:901 plugins/FtmStyleDescendants.py:910
+#: plugins/FtmStyleDescendants.py:917 plugins/FtmStyleDescendants.py:925
 msgid "He"
 msgstr ""
 
 #: plugins/DetAncestralReport.py:213 plugins/DetAncestralReport.py:464
 #: plugins/DetAncestralReport.py:528 plugins/DetDescendantReport.py:220
 #: plugins/DetDescendantReport.py:466 plugins/DetDescendantReport.py:521
-#: plugins/FtmStyleAncestors.py:538 plugins/FtmStyleAncestors.py:548
-#: plugins/FtmStyleAncestors.py:559 plugins/FtmStyleAncestors.py:577
-#: plugins/FtmStyleAncestors.py:586 plugins/FtmStyleAncestors.py:595
-#: plugins/FtmStyleAncestors.py:602 plugins/FtmStyleAncestors.py:612
-#: plugins/FtmStyleAncestors.py:620 plugins/FtmStyleAncestors.py:629
-#: plugins/FtmStyleAncestors.py:636 plugins/FtmStyleAncestors.py:645
-#: plugins/FtmStyleAncestors.py:651 plugins/FtmStyleAncestors.py:658
-#: plugins/FtmStyleDescendants.py:937 plugins/FtmStyleDescendants.py:947
-#: plugins/FtmStyleDescendants.py:958 plugins/FtmStyleDescendants.py:967
-#: plugins/FtmStyleDescendants.py:977 plugins/FtmStyleDescendants.py:986
-#: plugins/FtmStyleDescendants.py:995 plugins/FtmStyleDescendants.py:1003
-#: plugins/FtmStyleDescendants.py:1013 plugins/FtmStyleDescendants.py:1021
-#: plugins/FtmStyleDescendants.py:1030 plugins/FtmStyleDescendants.py:1038
-#: plugins/FtmStyleDescendants.py:1047 plugins/FtmStyleDescendants.py:1054
-#: plugins/FtmStyleDescendants.py:1062
+#: plugins/FtmStyleAncestors.py:539 plugins/FtmStyleAncestors.py:549
+#: plugins/FtmStyleAncestors.py:560 plugins/FtmStyleAncestors.py:578
+#: plugins/FtmStyleAncestors.py:587 plugins/FtmStyleAncestors.py:596
+#: plugins/FtmStyleAncestors.py:603 plugins/FtmStyleAncestors.py:613
+#: plugins/FtmStyleAncestors.py:621 plugins/FtmStyleAncestors.py:630
+#: plugins/FtmStyleAncestors.py:637 plugins/FtmStyleAncestors.py:646
+#: plugins/FtmStyleAncestors.py:652 plugins/FtmStyleAncestors.py:659
+#: plugins/FtmStyleDescendants.py:938 plugins/FtmStyleDescendants.py:948
+#: plugins/FtmStyleDescendants.py:959 plugins/FtmStyleDescendants.py:968
+#: plugins/FtmStyleDescendants.py:978 plugins/FtmStyleDescendants.py:987
+#: plugins/FtmStyleDescendants.py:996 plugins/FtmStyleDescendants.py:1004
+#: plugins/FtmStyleDescendants.py:1014 plugins/FtmStyleDescendants.py:1022
+#: plugins/FtmStyleDescendants.py:1031 plugins/FtmStyleDescendants.py:1039
+#: plugins/FtmStyleDescendants.py:1048 plugins/FtmStyleDescendants.py:1055
+#: plugins/FtmStyleDescendants.py:1063
 msgid "She"
 msgstr ""
 
@@ -4509,6 +4511,10 @@ msgstr ""
 msgid "died in %(place)s%(endnotes)s."
 msgstr ""
 
+#: plugins/FtmStyleAncestors.py:202 plugins/FtmStyleDescendants.py:235
+msgid "Endnotes"
+msgstr ""
+
 #: plugins/FtmStyleAncestors.py:221 plugins/FtmStyleDescendants.py:254
 msgid "Text:"
 msgstr ""
@@ -4517,271 +4523,271 @@ msgstr ""
 msgid "Comments:"
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:257 plugins/FtmStyleDescendants.py:290
+#: plugins/FtmStyleAncestors.py:258 plugins/FtmStyleDescendants.py:291
 msgid "Notes for %(person)s:"
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:272 plugins/FtmStyleAncestors.py:293
-#: plugins/FtmStyleDescendants.py:305 plugins/FtmStyleDescendants.py:326
+#: plugins/FtmStyleAncestors.py:273 plugins/FtmStyleAncestors.py:294
+#: plugins/FtmStyleDescendants.py:306 plugins/FtmStyleDescendants.py:327
 msgid "More about %(person_name)s:"
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:277 plugins/FtmStyleDescendants.py:310
+#: plugins/FtmStyleAncestors.py:278 plugins/FtmStyleDescendants.py:311
 msgid "Name %(count)d: %(name)s%(endnotes)s"
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:300 plugins/FtmStyleDescendants.py:332
-#: plugins/FtmStyleDescendants.py:375
+#: plugins/FtmStyleAncestors.py:301 plugins/FtmStyleDescendants.py:333
+#: plugins/FtmStyleDescendants.py:376
 msgid "%(event_name)s: %(date)s, %(place)s%(endnotes)s"
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:306 plugins/FtmStyleDescendants.py:338
-#: plugins/FtmStyleDescendants.py:381
+#: plugins/FtmStyleAncestors.py:307 plugins/FtmStyleDescendants.py:339
+#: plugins/FtmStyleDescendants.py:382
 msgid "%(event_name)s: %(date)s%(endnotes)s"
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:311 plugins/FtmStyleDescendants.py:343
-#: plugins/FtmStyleDescendants.py:386
+#: plugins/FtmStyleAncestors.py:312 plugins/FtmStyleDescendants.py:344
+#: plugins/FtmStyleDescendants.py:387
 msgid "%(event_name)s: %(place)s%(endnotes)s"
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:336 plugins/FtmStyleDescendants.py:733
+#: plugins/FtmStyleAncestors.py:337 plugins/FtmStyleDescendants.py:734
 msgid "He married %(spouse)s %(date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:342 plugins/FtmStyleDescendants.py:739
+#: plugins/FtmStyleAncestors.py:343 plugins/FtmStyleDescendants.py:740
 msgid "She married %(spouse)s %(date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:349 plugins/FtmStyleDescendants.py:746
+#: plugins/FtmStyleAncestors.py:350 plugins/FtmStyleDescendants.py:747
 msgid "He married %(spouse)s %(date)s%(endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:354 plugins/FtmStyleAncestors.py:365
-#: plugins/FtmStyleDescendants.py:751 plugins/FtmStyleDescendants.py:762
+#: plugins/FtmStyleAncestors.py:355 plugins/FtmStyleAncestors.py:366
+#: plugins/FtmStyleDescendants.py:752 plugins/FtmStyleDescendants.py:763
 msgid "She married %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:360 plugins/FtmStyleDescendants.py:757
+#: plugins/FtmStyleAncestors.py:361 plugins/FtmStyleDescendants.py:758
 msgid "He married %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:371 plugins/FtmStyleDescendants.py:768
+#: plugins/FtmStyleAncestors.py:372 plugins/FtmStyleDescendants.py:769
 msgid "He married %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:376 plugins/FtmStyleDescendants.py:772
+#: plugins/FtmStyleAncestors.py:377 plugins/FtmStyleDescendants.py:773
 msgid "She married %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:399 plugins/FtmStyleDescendants.py:454
-#: plugins/FtmStyleDescendants.py:794
+#: plugins/FtmStyleAncestors.py:400 plugins/FtmStyleDescendants.py:455
+#: plugins/FtmStyleDescendants.py:795
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:410 plugins/FtmStyleDescendants.py:463
-#: plugins/FtmStyleDescendants.py:805
+#: plugins/FtmStyleAncestors.py:411 plugins/FtmStyleDescendants.py:464
+#: plugins/FtmStyleDescendants.py:806
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:421 plugins/FtmStyleDescendants.py:472
+#: plugins/FtmStyleAncestors.py:422 plugins/FtmStyleDescendants.py:473
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:431
+#: plugins/FtmStyleAncestors.py:432
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s. "
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:440 plugins/FtmStyleDescendants.py:488
-#: plugins/FtmStyleDescendants.py:835
+#: plugins/FtmStyleAncestors.py:441 plugins/FtmStyleDescendants.py:489
+#: plugins/FtmStyleDescendants.py:836
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:450 plugins/FtmStyleDescendants.py:497
-#: plugins/FtmStyleDescendants.py:845
+#: plugins/FtmStyleAncestors.py:451 plugins/FtmStyleDescendants.py:498
+#: plugins/FtmStyleDescendants.py:846
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:459 plugins/FtmStyleDescendants.py:506
-#: plugins/FtmStyleDescendants.py:854
+#: plugins/FtmStyleAncestors.py:460 plugins/FtmStyleDescendants.py:507
+#: plugins/FtmStyleDescendants.py:855
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:467
+#: plugins/FtmStyleAncestors.py:468
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:476 plugins/FtmStyleDescendants.py:522
-#: plugins/FtmStyleDescendants.py:872
+#: plugins/FtmStyleAncestors.py:477 plugins/FtmStyleDescendants.py:523
+#: plugins/FtmStyleDescendants.py:873
 msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:485 plugins/FtmStyleDescendants.py:531
-#: plugins/FtmStyleDescendants.py:881
+#: plugins/FtmStyleAncestors.py:486 plugins/FtmStyleDescendants.py:532
+#: plugins/FtmStyleDescendants.py:882
 msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:494 plugins/FtmStyleDescendants.py:540
-#: plugins/FtmStyleDescendants.py:890
+#: plugins/FtmStyleAncestors.py:495 plugins/FtmStyleDescendants.py:541
+#: plugins/FtmStyleDescendants.py:891
 msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:502
+#: plugins/FtmStyleAncestors.py:503
 msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:510 plugins/FtmStyleDescendants.py:556
-#: plugins/FtmStyleDescendants.py:907
+#: plugins/FtmStyleAncestors.py:511 plugins/FtmStyleDescendants.py:557
+#: plugins/FtmStyleDescendants.py:908
 msgid "%(male_name)s%(endnotes)s died %(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:517 plugins/FtmStyleDescendants.py:562
-#: plugins/FtmStyleDescendants.py:914
+#: plugins/FtmStyleAncestors.py:518 plugins/FtmStyleDescendants.py:563
+#: plugins/FtmStyleDescendants.py:915
 msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:524 plugins/FtmStyleDescendants.py:569
-#: plugins/FtmStyleDescendants.py:922
+#: plugins/FtmStyleAncestors.py:525 plugins/FtmStyleDescendants.py:570
+#: plugins/FtmStyleDescendants.py:923
 msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:534 plugins/FtmStyleDescendants.py:582
-#: plugins/FtmStyleDescendants.py:933
+#: plugins/FtmStyleAncestors.py:535 plugins/FtmStyleDescendants.py:583
+#: plugins/FtmStyleDescendants.py:934
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:545 plugins/FtmStyleDescendants.py:591
-#: plugins/FtmStyleDescendants.py:944
+#: plugins/FtmStyleAncestors.py:546 plugins/FtmStyleDescendants.py:592
+#: plugins/FtmStyleDescendants.py:945
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:556 plugins/FtmStyleDescendants.py:600
-#: plugins/FtmStyleDescendants.py:955
+#: plugins/FtmStyleAncestors.py:557 plugins/FtmStyleDescendants.py:601
+#: plugins/FtmStyleDescendants.py:956
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:566
+#: plugins/FtmStyleAncestors.py:567
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s. "
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:574 plugins/FtmStyleDescendants.py:616
-#: plugins/FtmStyleDescendants.py:974
+#: plugins/FtmStyleAncestors.py:575 plugins/FtmStyleDescendants.py:617
+#: plugins/FtmStyleDescendants.py:975
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:584 plugins/FtmStyleDescendants.py:625
-#: plugins/FtmStyleDescendants.py:984
+#: plugins/FtmStyleAncestors.py:585 plugins/FtmStyleDescendants.py:626
+#: plugins/FtmStyleDescendants.py:985
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:593 plugins/FtmStyleDescendants.py:634
-#: plugins/FtmStyleDescendants.py:993
+#: plugins/FtmStyleAncestors.py:594 plugins/FtmStyleDescendants.py:635
+#: plugins/FtmStyleDescendants.py:994
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:601
+#: plugins/FtmStyleAncestors.py:602
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:610 plugins/FtmStyleDescendants.py:650
-#: plugins/FtmStyleDescendants.py:1011
+#: plugins/FtmStyleAncestors.py:611 plugins/FtmStyleDescendants.py:651
+#: plugins/FtmStyleDescendants.py:1012
 msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:618 plugins/FtmStyleDescendants.py:659
-#: plugins/FtmStyleDescendants.py:1019
+#: plugins/FtmStyleAncestors.py:619 plugins/FtmStyleDescendants.py:660
+#: plugins/FtmStyleDescendants.py:1020
 msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:627 plugins/FtmStyleDescendants.py:668
-#: plugins/FtmStyleDescendants.py:1028
+#: plugins/FtmStyleAncestors.py:628 plugins/FtmStyleDescendants.py:669
+#: plugins/FtmStyleDescendants.py:1029
 msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:635
+#: plugins/FtmStyleAncestors.py:636
 msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:643 plugins/FtmStyleDescendants.py:684
-#: plugins/FtmStyleDescendants.py:1045
+#: plugins/FtmStyleAncestors.py:644 plugins/FtmStyleDescendants.py:685
+#: plugins/FtmStyleDescendants.py:1046
 msgid "%(female_name)s%(endnotes)s died %(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:650 plugins/FtmStyleDescendants.py:1052
+#: plugins/FtmStyleAncestors.py:651 plugins/FtmStyleDescendants.py:1053
 msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:657 plugins/FtmStyleDescendants.py:697
-#: plugins/FtmStyleDescendants.py:1060
+#: plugins/FtmStyleAncestors.py:658 plugins/FtmStyleDescendants.py:698
+#: plugins/FtmStyleDescendants.py:1061
 msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:675 plugins/FtmStyleDescendants.py:1079
+#: plugins/FtmStyleAncestors.py:676 plugins/FtmStyleDescendants.py:1080
 msgid "He was the son of %(father)s and %(mother)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:679 plugins/FtmStyleDescendants.py:1083
+#: plugins/FtmStyleAncestors.py:680 plugins/FtmStyleDescendants.py:1084
 msgid "He is the son of %(father)s and %(mother)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:684 plugins/FtmStyleDescendants.py:1088
+#: plugins/FtmStyleAncestors.py:685 plugins/FtmStyleDescendants.py:1089
 msgid "He was the son of %(mother)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:687 plugins/FtmStyleDescendants.py:1091
+#: plugins/FtmStyleAncestors.py:688 plugins/FtmStyleDescendants.py:1092
 msgid "He is the son of %(mother)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:691 plugins/FtmStyleDescendants.py:1095
+#: plugins/FtmStyleAncestors.py:692 plugins/FtmStyleDescendants.py:1096
 msgid "He was the son of %(father)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:694 plugins/FtmStyleDescendants.py:1098
+#: plugins/FtmStyleAncestors.py:695 plugins/FtmStyleDescendants.py:1099
 msgid "He is the son of %(father)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:699 plugins/FtmStyleDescendants.py:1103
+#: plugins/FtmStyleAncestors.py:700 plugins/FtmStyleDescendants.py:1104
 msgid "She was the daughter of %(father)s and %(mother)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:703 plugins/FtmStyleDescendants.py:1107
+#: plugins/FtmStyleAncestors.py:704 plugins/FtmStyleDescendants.py:1108
 msgid "She is the daughter of %(father)s and %(mother)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:708 plugins/FtmStyleDescendants.py:1112
+#: plugins/FtmStyleAncestors.py:709 plugins/FtmStyleDescendants.py:1113
 msgid "She was the daughter of %(mother)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:711 plugins/FtmStyleDescendants.py:1115
+#: plugins/FtmStyleAncestors.py:712 plugins/FtmStyleDescendants.py:1116
 msgid "She is the daughter of %(mother)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:715 plugins/FtmStyleDescendants.py:1119
+#: plugins/FtmStyleAncestors.py:716 plugins/FtmStyleDescendants.py:1120
 msgid "She was the daughter of %(father)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:718 plugins/FtmStyleDescendants.py:1122
+#: plugins/FtmStyleAncestors.py:719 plugins/FtmStyleDescendants.py:1123
 msgid "She is the daughter of %(father)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:782
+#: plugins/FtmStyleAncestors.py:783
 msgid "FTM Style Ancestral Report"
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:786
+#: plugins/FtmStyleAncestors.py:787
 msgid "FTM Style Ancestral Report for %s"
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:877 plugins/FtmStyleAncestors.py:1027
-#: plugins/FtmStyleAncestors.py:1038
+#: plugins/FtmStyleAncestors.py:878 plugins/FtmStyleAncestors.py:1028
+#: plugins/FtmStyleAncestors.py:1039
 msgid "FTM Style Ancestor Report"
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:881
+#: plugins/FtmStyleAncestors.py:882
 msgid "FTM Style Ancestor Report for GRAMPS Book"
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:1030
+#: plugins/FtmStyleAncestors.py:1031
 msgid "Produces a textual ancestral report similar to Family Tree Maker."
 msgstr ""
 
@@ -4809,80 +4815,80 @@ msgstr ""
 msgid "and died in %(place)s%(endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:369
+#: plugins/FtmStyleDescendants.py:370
 msgid "More about %(husband)s and %(wife)s:"
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:418
+#: plugins/FtmStyleDescendants.py:419
 msgid "Children of %(person_name)s and %(spouse_name)s are:"
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:421
+#: plugins/FtmStyleDescendants.py:422
 msgid "Children of %(person_name)s are:"
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:480 plugins/FtmStyleDescendants.py:826
+#: plugins/FtmStyleDescendants.py:481 plugins/FtmStyleDescendants.py:827
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:514 plugins/FtmStyleDescendants.py:862
+#: plugins/FtmStyleDescendants.py:515 plugins/FtmStyleDescendants.py:863
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:548 plugins/FtmStyleDescendants.py:898
+#: plugins/FtmStyleDescendants.py:549 plugins/FtmStyleDescendants.py:899
 msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:575
+#: plugins/FtmStyleDescendants.py:576
 msgid "%(male_name)s%(endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:608
+#: plugins/FtmStyleDescendants.py:609
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:642 plugins/FtmStyleDescendants.py:1001
+#: plugins/FtmStyleDescendants.py:643 plugins/FtmStyleDescendants.py:1002
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:676 plugins/FtmStyleDescendants.py:1036
+#: plugins/FtmStyleDescendants.py:677 plugins/FtmStyleDescendants.py:1037
 msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:690
+#: plugins/FtmStyleDescendants.py:691
 msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:703
+#: plugins/FtmStyleDescendants.py:704
 msgid "%(female_name)s%(endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:816
+#: plugins/FtmStyleDescendants.py:817
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s %(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:965
+#: plugins/FtmStyleDescendants.py:966
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s %(birth_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:1191 plugins/FtmStyleDescendants.py:1283
-#: plugins/FtmStyleDescendants.py:1436 plugins/FtmStyleDescendants.py:1447
+#: plugins/FtmStyleDescendants.py:1192 plugins/FtmStyleDescendants.py:1284
+#: plugins/FtmStyleDescendants.py:1437 plugins/FtmStyleDescendants.py:1448
 msgid "FTM Style Descendant Report"
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:1195
+#: plugins/FtmStyleDescendants.py:1196
 msgid "FTM Style Descendant Report for %s"
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:1200
+#: plugins/FtmStyleDescendants.py:1201
 msgid "Save FTM Style Descendant Report"
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:1287
+#: plugins/FtmStyleDescendants.py:1288
 msgid "FTM Style Descendant Report for GRAMPS Book"
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:1439
+#: plugins/FtmStyleDescendants.py:1440
 msgid "Produces a textual descendant report similar to Family Tree Maker."
 msgstr ""
 
@@ -6155,6 +6161,10 @@ msgstr ""
 
 #: plugins/merge.glade:46
 msgid "Please be patient. This may take a while."
+msgstr ""
+
+#: plugins/merge.glade:126
+msgid "_Merge"
 msgstr ""
 
 #: plugins/merge.glade:316
