@@ -1,4 +1,9 @@
 2003-06-03  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/summary.glade, src/plugins/desbrowse.glade: 
+	Removed unnecessary buttonbox in the action area of a dialog -- this
+	gets rid of annoying GTK warnings. 
+
+2003-06-03  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ReadXML.py (import_data), src/WriteXML.py (export_data), 
 	src/RelImage.py (import_media_object), src/gramps_main.py 
 	(open_example), src/plugins/Check.py (cleanup_missing_photos), 
