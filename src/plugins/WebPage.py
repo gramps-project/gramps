@@ -98,16 +98,13 @@ class IndividualPage:
         self.photos = (photos == 2) or (photos == 1 and not self.alive)
         self.dir = dir_name
         self.link = link
+        self.slist = []
+        self.scnt = 1
 
         tbl = TableStyle()
         tbl.set_width(100)
         tbl.set_column_widths([15,85])
         self.doc.add_table_style("IndTable",tbl)
-
-        tbl = TableStyle()
-        tbl.set_width(100)
-        tbl.set_column_widths([15,15,70])
-        self.doc.add_table_style("FamTable",tbl)
 
         cell = TableCellStyle()
         self.doc.add_cell_style("NormalCell",cell)
@@ -120,19 +117,25 @@ class IndividualPage:
     # 
     #
     #--------------------------------------------------------------------
-    def write_normal_row(self,list):
+    def write_normal_row(self,label,data,sref):
         self.doc.start_row()
-        first = 1
-        for i in list:
-            self.doc.start_cell("NormalCell")
-            if first == 1:
-                self.doc.start_paragraph("Label")
-            else:
-                self.doc.start_paragraph("Data")
-            first = 0
-            self.doc.write_text(i)
-            self.doc.end_paragraph()
-            self.doc.end_cell()
+        self.doc.start_cell("NormalCell")
+        self.doc.start_paragraph("Label")
+        self.doc.write_text(label)
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.start_cell("NormalCell")
+        self.doc.start_paragraph("Data")
+        self.doc.write_text(data)
+        if sref != None and sref.getBase() != None :
+            self.doc.start_link("#s%d" % self.scnt)
+            self.doc.write_text("<SUP>%d</SUP>" % self.scnt)
+            self.doc.end_link()
+            self.scnt = self.scnt + 1
+            self.slist.append(sref)
+        self.doc.end_paragraph()
+        self.doc.end_cell()
         self.doc.end_row()
 
     #--------------------------------------------------------------------
@@ -145,18 +148,13 @@ class IndividualPage:
 
         self.doc.start_cell("NormalCell")
         self.doc.start_paragraph("Label")
-        self.doc.end_paragraph()
-        self.doc.end_cell()
-
-        self.doc.start_cell("NormalCell")
-        self.doc.start_paragraph("Label")
-        self.doc.write_text(list[1])
+        self.doc.write_text(list[0])
         self.doc.end_paragraph()
         self.doc.end_cell()
 
         self.doc.start_cell("NormalCell")
         self.doc.start_paragraph("Data")
-        self.doc.write_text(list[2])
+        self.doc.write_text(list[1])
         self.doc.end_paragraph()
         self.doc.end_cell()
 
@@ -187,6 +185,30 @@ class IndividualPage:
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
+
+    def write_sources(self):
+        self.doc.start_paragraph("SourcesTitle")
+        self.doc.write_text(_("Sources"))
+        self.doc.end_paragraph()
+
+        index = 0
+        for sref in self.slist:
+            self.doc.start_paragraph("Data")
+            self.doc.write_text('<A NAME="#s%d">%d. ' % (index,index))
+            index = index + 1
+            self.doc.write_text("%s. " % sref.getBase().getTitle())
+            author = sref.getBase().getAuthor()
+            if author != "":
+                self.doc.write_text("%s. " % author)
+            pubinfo = sref.getBase().getPubInfo()
+            if pubinfo != "":
+                self.doc.write_text("%s. " % pubinfo)
+            if sref.getDate() != "":
+                self.doc.write_text("%s. " % sref.getDate())
+            if sref.getPage() != "":
+                self.doc.write_text("%s. " % sref.getPage())
+            self.doc.end_paragraph()
+
     #--------------------------------------------------------------------
     #
     # 
@@ -197,7 +219,8 @@ class IndividualPage:
         self.doc.open("%s%s%s" % (self.dir,os.sep,filebase))
 
         photo_list = self.person.getPhotoList()
-        name = self.person.getPrimaryName().getRegularName()
+        name_obj = self.person.getPrimaryName()
+        name = name_obj.getRegularName()
 
         self.doc.start_paragraph("Title")
         self.doc.write_text(_("Summary of %s") % name)
@@ -213,11 +236,11 @@ class IndividualPage:
             self.doc.end_paragraph()
 
         self.doc.start_table("one","IndTable")
-        self.write_normal_row([ "%s:" % _("Name"), name])
+        self.write_normal_row("%s:" % _("Name"), name, name_obj.getSourceRef())
         if self.person.getGender() == Person.male:
-            self.write_normal_row([ "%s:" % _("Gender"), _("Male")])
+            self.write_normal_row("%s:" % _("Gender"), _("Male"),None)
         else:
-            self.write_normal_row([ "%s:" % _("Gender"), _("Female")])
+            self.write_normal_row("%s:" % _("Gender"), _("Female"),None)
 
         family = self.person.getMainFamily()
         if family:
@@ -234,6 +257,8 @@ class IndividualPage:
         self.write_facts()
         self.write_notes()
         self.write_families()
+        if self.scnt > 1:
+            self.write_sources()
 
         if self.link:
             self.doc.start_paragraph("Data")
@@ -280,9 +305,9 @@ class IndividualPage:
                 if place == "":
                     val = "%s. %s" % (date,description)
                 else:
-                    val = _("%s in %s. %s") % (date,place,description)
+                    val = "%s, %s. %s" % (date,place,description)
 
-            self.write_normal_row([name, val])
+            self.write_normal_row(name, val, event.getSourceRef())
 
         self.doc.end_table()
 
@@ -328,7 +353,7 @@ class IndividualPage:
             else:
                 val = "%s, %s. %s" % (date,place,description)
 
-        self.write_marriage_row(["",name, val])
+        self.write_marriage_row([name, val])
 
     #--------------------------------------------------------------------
     #
@@ -340,7 +365,7 @@ class IndividualPage:
         self.doc.write_text(_("Marriages/Children"))
         self.doc.end_paragraph()
 
-        self.doc.start_table("three","FamTable")
+        self.doc.start_table("three","IndTable")
         
         for family in self.person.getFamilyList():
             if self.person == family.getFather():
@@ -348,7 +373,7 @@ class IndividualPage:
             else:
                 spouse = family.getFather()
             self.doc.start_row()
-            self.doc.start_cell("NormalCell",3)
+            self.doc.start_cell("NormalCell",2)
             self.doc.start_paragraph("Spouse")
             if spouse:
                 self.doc.start_link("i%s.html" % str(spouse.getId()))
@@ -552,6 +577,12 @@ def report(database,person):
     p = ParagraphStyle()
     p.set(font=font,bborder=1)
     styles.add_style("NotesTitle",p)
+
+    font = FontStyle()
+    font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
+    p = ParagraphStyle()
+    p.set(font=font,bborder=1)
+    styles.add_style("SourcesTitle",p)
 
     font = FontStyle()
     font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
