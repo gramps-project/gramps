@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 0.7.3\n"
-"POT-Creation-Date: Fri Jun 21 17:07:47 2002\n"
-"PO-Revision-Date: 2002-07-06 08:52-0500\n"
+"POT-Creation-Date: Mon Aug  5 07:44:19 2002\n"
+"PO-Revision-Date: 2002-08-18 22:31-0500\n"
 "Last-Translator: Alexander Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,16 +17,16 @@ msgstr ""
 msgid "%s is not a valid file name or does not exist."
 msgstr "%s не является правильным именем файла, или не существует."
 
-#: AddSpouse.py:91 AddSpouse.py:256
+#: AddSpouse.py:95 AddSpouse.py:260
 msgid "Choose Spouse/Partner of %s"
 msgstr "Выбрать Супруга/Партнера для %s"
 
-#: AddSpouse.py:104 AddSpouse.py:267 const.py:399 const.py:407
-#: plugins/FamilyGroup.py:286 plugins/FamilyGroup.py:288
+#: AddSpouse.py:108 AddSpouse.py:271 const.py:399 const.py:407
+#: plugins/FamilyGroup.py:289 plugins/FamilyGroup.py:291
 msgid "Married"
 msgstr "Женаты"
 
-#: AddSpouse.py:197 AddSpouse.py:333 const.py:401 const.py:409
+#: AddSpouse.py:201 AddSpouse.py:337 const.py:401 const.py:409
 msgid "Partners"
 msgstr "Партнеры"
 
@@ -34,23 +34,23 @@ msgstr "Партнеры"
 msgid "Address Editor for %s"
 msgstr "Редактор Адресов для %s"
 
-#: AttrEdit.py:86
+#: AttrEdit.py:90
 msgid "Attribute Editor for %s"
 msgstr "Редактор Атрибутов для %s"
 
-#: Bookmarks.py:90 Bookmarks.py:94
+#: Bookmarks.py:93 Bookmarks.py:98
 msgid "Edit Bookmarks"
 msgstr "Правка Закладок"
 
-#: Bookmarks.py:106
+#: Bookmarks.py:110
 msgid "Up"
 msgstr "Наверх"
 
-#: Bookmarks.py:107
+#: Bookmarks.py:111
 msgid "Down"
 msgstr "Вниз"
 
-#: Bookmarks.py:108 EditPerson.glade:2162 EditPerson.glade:2936
+#: Bookmarks.py:112 EditPerson.glade:2162 EditPerson.glade:2936
 #: EditPerson.glade:3449 EditPerson.glade:4352 EditPerson.glade:4954
 #: dialog.glade:733 dialog.glade:1311 dialog.glade:2491 dialog.glade:3499
 #: gramps.glade:1758 gramps.glade:2254 imagesel.glade:1285 imagesel.glade:2286
@@ -59,199 +59,199 @@ msgstr "Вниз"
 msgid "Delete"
 msgstr "Уничтожить"
 
-#: ChooseParents.py:106 ChooseParents.py:107 EditPerson.glade:161
+#: ChooseParents.py:123 ChooseParents.py:124 EditPerson.glade:161
 #: SelectChild.py:101 SelectChild.py:102 SelectChild.py:276 SelectChild.py:277
 #: const.py:122 gramps.glade:5294 gramps.glade:5314 gramps.glade:5553
 #: gramps.glade:5573 gramps.glade:5969 gramps.glade:5990 gramps.glade:6034
 #: gramps.glade:6064 gramps.glade:7011 gramps.glade:7041 gramps.glade:7058
-#: gramps.glade:7088 plugins/EventCmp.py:286 plugins/FamilyGroup.py:136
+#: gramps.glade:7088 plugins/EventCmp.py:286 plugins/FamilyGroup.py:139
 #: plugins/GraphViz.py:323 plugins/GraphViz.py:333
 msgid "Birth"
 msgstr "Рождение"
 
-#: ChooseParents.py:126
+#: ChooseParents.py:143
 msgid "Choose the Parents of %s"
 msgstr "Выбрать Родителей для %s"
 
-#: ChooseParents.py:195 ChooseParents.py:196 gramps_main.py:1435
-#: gramps_main.py:1436
+#: ChooseParents.py:212 ChooseParents.py:213 gramps_main.py:1461
+#: gramps_main.py:1462
 msgid "Parent"
 msgstr "Родитель"
 
-#: ChooseParents.py:198 gramps.glade:1900 gramps.glade:5325
-#: gramps_main.py:1439 mergedata.glade:518 mergedata.glade:1180
-#: plugins/FamilyGroup.py:195 plugins/IndivComplete.py:198
+#: ChooseParents.py:215 gramps.glade:1900 gramps.glade:5325
+#: gramps_main.py:1465 mergedata.glade:518 mergedata.glade:1180
+#: plugins/FamilyGroup.py:198 plugins/IndivComplete.py:198
 #: plugins/IndivComplete.py:200 plugins/IndivComplete.py:411
-#: plugins/IndivSummary.py:283 plugins/WebPage.py:262 plugins/WebPage.py:265
+#: plugins/IndivSummary.py:283 plugins/WebPage.py:263 plugins/WebPage.py:266
 msgid "Mother"
 msgstr "Мать"
 
-#: ChooseParents.py:199 gramps.glade:1809 gramps.glade:5065
-#: gramps_main.py:1438 mergedata.glade:766 mergedata.glade:1478
-#: plugins/FamilyGroup.py:182 plugins/IndivComplete.py:190
+#: ChooseParents.py:216 gramps.glade:1809 gramps.glade:5065
+#: gramps_main.py:1464 mergedata.glade:766 mergedata.glade:1478
+#: plugins/FamilyGroup.py:185 plugins/IndivComplete.py:190
 #: plugins/IndivComplete.py:192 plugins/IndivComplete.py:406
-#: plugins/IndivSummary.py:269 plugins/WebPage.py:261 plugins/WebPage.py:264
+#: plugins/IndivSummary.py:269 plugins/WebPage.py:262 plugins/WebPage.py:265
 msgid "Father"
 msgstr "Отец"
 
-#: Date.py:85
+#: Date.py:88
 msgid "April"
 msgstr "Апрель"
 
-#: Date.py:85
+#: Date.py:88
 msgid "February"
 msgstr "Февраль"
 
-#: Date.py:85
+#: Date.py:88
 msgid "January"
 msgstr "Январь"
 
-#: Date.py:85
+#: Date.py:88
 msgid "March"
 msgstr "Март"
 
-#: Date.py:86
+#: Date.py:89
 msgid "August"
 msgstr "Август"
 
-#: Date.py:86
+#: Date.py:89
 msgid "July"
 msgstr "Июль"
 
-#: Date.py:86
+#: Date.py:89
 msgid "June"
 msgstr "Июнь"
 
-#: Date.py:86
+#: Date.py:89
 msgid "May"
 msgstr "Май"
 
-#: Date.py:87
+#: Date.py:90
 msgid "December"
 msgstr "Декабрь"
 
-#: Date.py:87
+#: Date.py:90
 msgid "November"
 msgstr "Ноябрь"
 
-#: Date.py:87
+#: Date.py:90
 msgid "October"
 msgstr "Октябрь"
 
-#: Date.py:87
+#: Date.py:90
 msgid "September"
 msgstr "Сентябрь"
 
-#: Date.py:116
+#: Date.py:119
 msgid "(from|between|bet|bet.)"
 msgstr "(с|между|меж.|меж.)"
 
-#: Date.py:117
+#: Date.py:120
 msgid "(and|to|-)"
 msgstr "(и|до|-)"
 
-#: Date.py:254 Date.py:280 Date.py:293
+#: Date.py:261 Date.py:287 Date.py:300
 msgid "from"
 msgstr "с"
 
-#: Date.py:254 Date.py:280 Date.py:293 plugins/changetype.glade:152
+#: Date.py:261 Date.py:287 Date.py:300 plugins/changetype.glade:152
 msgid "to"
 msgstr "на"
 
-#: Date.py:263 EventEdit.py:141 dialog.glade:409 dialog.glade:2215
+#: Date.py:270 EventEdit.py:141 dialog.glade:409 dialog.glade:2215
 msgid "Julian"
 msgstr "Юлианский"
 
-#: Date.py:265 EventEdit.py:141 dialog.glade:409 dialog.glade:2215
+#: Date.py:272 EventEdit.py:141 dialog.glade:409 dialog.glade:2215
 msgid "Hebrew"
 msgstr "Еврейский"
 
-#: Date.py:267 dialog.glade:409 dialog.glade:2215
+#: Date.py:274 dialog.glade:409 dialog.glade:2215
 msgid "French"
 msgstr "Французский"
 
-#: Date.py:348 Date.py:366 Date.py:527 Date.py:760
+#: Date.py:355 Date.py:373 Date.py:534 Date.py:767
 msgid "about"
 msgstr "около"
 
-#: Date.py:348 Date.py:556
+#: Date.py:355 Date.py:563
 msgid "abt"
 msgstr "ок"
 
-#: Date.py:349
+#: Date.py:356
 msgid "abt."
 msgstr "ок."
 
-#: Date.py:349
+#: Date.py:356
 msgid "est"
 msgstr "прим"
 
-#: Date.py:350
+#: Date.py:357
 msgid "est."
 msgstr "прим."
 
-#: Date.py:350 Date.py:368
+#: Date.py:357 Date.py:375
 msgid "circa"
 msgstr "около"
 
-#: Date.py:351 Date.py:369
+#: Date.py:358 Date.py:376
 msgid "around"
 msgstr "около"
 
-#: Date.py:351 Date.py:370 Date.py:529 Date.py:558 Date.py:762
+#: Date.py:358 Date.py:377 Date.py:536 Date.py:565 Date.py:769
 msgid "before"
 msgstr "до"
 
-#: Date.py:352
+#: Date.py:359
 msgid "bef"
 msgstr "до"
 
-#: Date.py:352
+#: Date.py:359
 msgid "bef."
 msgstr "до"
 
-#: Date.py:353
+#: Date.py:360
 msgid "aft."
 msgstr "после"
 
-#: Date.py:353 Date.py:371 Date.py:531 Date.py:560 Date.py:764
+#: Date.py:360 Date.py:378 Date.py:538 Date.py:567 Date.py:771
 msgid "after"
 msgstr "после"
 
-#: Date.py:354
+#: Date.py:361
 msgid "aft"
 msgstr "после"
 
-#: Date.py:365
+#: Date.py:372
 msgid "abt\\.?"
 msgstr "ок\\.?"
 
-#: Date.py:367
+#: Date.py:374
 msgid "est\\.?"
 msgstr "ок\\.?"
 
-#: Date.py:372
+#: Date.py:379
 msgid "aft\\.?"
 msgstr "после\\,?"
 
-#: Date.py:373
+#: Date.py:380
 msgid "bef\\.?"
 msgstr "до\\.?"
 
-#: Date.py:586 Date.py:614 Date.py:641 Date.py:670 Date.py:709
+#: Date.py:593 Date.py:621 Date.py:648 Date.py:677 Date.py:716
 msgid "ABOUT"
 msgstr "ОКОЛО"
 
-#: Date.py:588 Date.py:616 Date.py:643 Date.py:673 Date.py:711
+#: Date.py:595 Date.py:623 Date.py:650 Date.py:680 Date.py:718
 msgid "BEFORE"
 msgstr "ДО"
 
-#: Date.py:590 Date.py:618 Date.py:645 Date.py:675 Date.py:713
+#: Date.py:597 Date.py:625 Date.py:652 Date.py:682 Date.py:720
 msgid "AFTER"
 msgstr "ПОСЛЕ"
 
-#: DbPrompter.py:100 gramps_main.py:769 gramps_main.py:1141
-#: gramps_main.py:1153
+#: DbPrompter.py:100 gramps_main.py:788 gramps_main.py:1164
+#: gramps_main.py:1176
 msgid "No Comment Provided"
 msgstr "Комментарий Отсутствует"
 
@@ -301,7 +301,7 @@ msgstr "Дата"
 #: EditPerson.glade:269 EditPerson.glade:513 EditPerson.glade:2260
 #: EditPerson.glade:2851 EditPerson.glade:5058 EditPerson.glade:5330
 #: EditPerson.glade:5628 GenericFilter.py:274 GenericFilter.py:312
-#: GenericFilter.py:401 GenericFilter.py:433 ImageSelect.py:659
+#: GenericFilter.py:401 GenericFilter.py:433 ImageSelect.py:670
 #: dialog.glade:232 filters/EventPlace.py:70 marriage.glade:375
 #: marriage.glade:934 marriage.glade:1946 preferences.glade:2783
 msgid "Place"
@@ -320,7 +320,7 @@ msgstr "Вызвать редактор событий рождения"
 msgid "Edit"
 msgstr "Правка"
 
-#: EditPerson.glade:407 plugins/EventCmp.py:286 plugins/FamilyGroup.py:154
+#: EditPerson.glade:407 plugins/EventCmp.py:286 plugins/FamilyGroup.py:157
 msgid "Death"
 msgstr "Смерть"
 
@@ -330,7 +330,7 @@ msgstr "Вызвать редактор событий смерти"
 
 #: EditPerson.glade:653 gramps.glade:1104 gramps.glade:2536 gramps.glade:7228
 #: gramps.glade:7434 plugins/IndivComplete.py:382 plugins/IndivSummary.py:236
-#: plugins/WebPage.py:255 plugins/WebPage.py:257
+#: plugins/WebPage.py:256 plugins/WebPage.py:258
 msgid "Gender"
 msgstr "Пол"
 
@@ -343,8 +343,8 @@ msgid "female"
 msgstr "женщина"
 
 #: EditPerson.glade:711 EditPerson.py:431 const.py:113 gramps.glade:7161
-#: plugins/FamilyGroup.py:377 plugins/IndivComplete.py:260
-#: plugins/IndivSummary.py:161 plugins/WebPage.py:521
+#: plugins/FamilyGroup.py:380 plugins/IndivComplete.py:260
+#: plugins/IndivSummary.py:161 plugins/WebPage.py:522
 msgid "unknown"
 msgstr "неизвестно"
 
@@ -384,7 +384,7 @@ msgstr "Фамилия"
 msgid "Select source for this name information"
 msgstr "Выбрать источник для данной информации об имени"
 
-#: EditPerson.glade:1004 ImageSelect.py:652 Utils.py:194 Utils.py:196
+#: EditPerson.glade:1004 ImageSelect.py:663 Utils.py:194 Utils.py:196
 #: places.glade:350 preferences.glade:2809
 msgid "Source"
 msgstr "Источник"
@@ -441,7 +441,7 @@ msgstr "Достоверность"
 #: EditPerson.glade:2064 config.glade:130 gramps.glade:966 gramps.glade:2422
 #: gramps.glade:4719 gramps.glade:5132 gramps.glade:5391 gramps.glade:5839
 #: mergedata.glade:544 mergedata.glade:1699 plugins/IndivComplete.py:371
-#: plugins/IndivSummary.py:222 plugins/WebPage.py:245
+#: plugins/IndivSummary.py:222 plugins/WebPage.py:246
 #: plugins/relcalc.glade:157 plugins/soundex.glade:143 preferences.glade:1763
 #: rule.glade:140 rule.glade:772
 msgid "Name"
@@ -604,7 +604,7 @@ msgid "Enter miscellaneous relevant data and documentation"
 msgstr "Редактировать различные связянные данные и документацию"
 
 #: EditPerson.glade:4394 imagesel.glade:882 imagesel.glade:2326
-#: marriage.glade:1546 plugins/IndivComplete.py:150 plugins/WebPage.py:437
+#: marriage.glade:1546 plugins/IndivComplete.py:150 plugins/WebPage.py:438
 msgid "Notes"
 msgstr "Записки"
 
@@ -636,7 +636,7 @@ msgid "Edit Properties"
 msgstr "Редактировать Свойства"
 
 #: EditPerson.glade:4522 gramps.glade:6695 marriage.glade:1675
-#: places.glade:1382 plugins/WebPage.py:324
+#: places.glade:1382 plugins/WebPage.py:325
 msgid "Gallery"
 msgstr "Галерея"
 
@@ -717,8 +717,8 @@ msgid "%(father)s and %(mother)s"
 msgstr "%(father)s и %(mother)s"
 
 #: EditPerson.py:742 EditPerson.py:744 EditPerson.py:754 EditPerson.py:756
-#: Marriage.py:355 Marriage.py:358 gramps_main.py:402 gramps_main.py:406
-#: gramps_main.py:1094
+#: Marriage.py:355 Marriage.py:358 gramps_main.py:405 gramps_main.py:409
+#: gramps_main.py:1117
 msgid "Abandon Changes"
 msgstr "Оставить Изменения"
 
@@ -730,19 +730,19 @@ msgstr "Вы уверены что вы хотите потерять ваши изменения?"
 msgid "Continue Editing"
 msgstr "Продолжить Правку"
 
-#: EditPerson.py:1090
+#: EditPerson.py:1085
 msgid "Make the selected name the preferred name"
 msgstr "Сделать выделенное имя предпочитаемым именем"
 
-#: EditPerson.py:1151 Marriage.py:378
+#: EditPerson.py:1146 Marriage.py:378
 msgid "GRAMPS ID value was not changed."
 msgstr "Значение GRAMPS ID не было изменено."
 
-#: EditPerson.py:1152
+#: EditPerson.py:1147
 msgid "%(grampsid)s is already used by %(person)s"
 msgstr " %(person)s уже использует %(grampsid)s "
 
-#: EditPerson.py:1255
+#: EditPerson.py:1250
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
@@ -1090,41 +1090,37 @@ msgstr "Угадывание Данных"
 msgid "No default format"
 msgstr "Нет формата по умолчанию"
 
-#: ImageSelect.py:133
+#: ImageSelect.py:140
 msgid "That is not a valid file name."
 msgstr "Это не является правильным именем файла."
 
-#: ImageSelect.py:229
-msgid "Could not import %s - %s"
-msgstr "Не смогла импортировать %s - %s"
-
-#: ImageSelect.py:282 MediaView.py:293 plugins/ReadGedcom.py:831
-#: plugins/ReadGedcom.py:866 plugins/ReadGedcom.py:901
+#: ImageSelect.py:285 MediaView.py:293 plugins/ReadGedcom.py:864
+#: plugins/ReadGedcom.py:899 plugins/ReadGedcom.py:934
 msgid "Could not import %s"
 msgstr "Не смогла импортировать %s"
 
-#: ImageSelect.py:382 MediaView.py:122
+#: ImageSelect.py:391 MediaView.py:122
 msgid "View in the default viewer"
 msgstr "Просмотр в устройстве просмотра по умолчанию"
 
-#: ImageSelect.py:386 MediaView.py:124
+#: ImageSelect.py:395 MediaView.py:124
 msgid "Edit with the GIMP"
 msgstr "Правка в GIMP"
 
-#: ImageSelect.py:388 MediaView.py:126
+#: ImageSelect.py:397 MediaView.py:126
 msgid "Edit Object Properties"
 msgstr "Правка Свойств Объекта"
 
-#: ImageSelect.py:391 MediaView.py:129
+#: ImageSelect.py:400 MediaView.py:129
 msgid "Convert to local copy"
 msgstr "Преобразовать в локальную копию"
 
-#: ImageSelect.py:639 gramps.glade:1358 gramps.glade:1424
+#: ImageSelect.py:650 gramps.glade:1358 gramps.glade:1424
 #: plugins/EventCmp.py:286 preferences.glade:2731
 msgid "Person"
 msgstr "Лицо"
 
-#: ImageSelect.py:645 gramps.glade:626 gramps.glade:2722
+#: ImageSelect.py:656 gramps.glade:626 gramps.glade:2722
 #: preferences.glade:2757
 msgid "Family"
 msgstr "Семья"
@@ -1138,7 +1134,7 @@ msgid "Location Editor"
 msgstr "Редактор Местоположений"
 
 #: Marriage.py:105 Marriage.py:502 Marriage.py:520 Utils.py:135
-#: plugins/Check.py:159 plugins/Check.py:178
+#: plugins/Check.py:161 plugins/Check.py:180
 msgid "%s and %s"
 msgstr "%s и %s"
 
@@ -1188,67 +1184,70 @@ msgstr "Двойной щелчок - правка, Shift-двойной щелчок - сделать активным лицом"
 msgid "Double clicking will make %s the active person"
 msgstr "Двойной щелчок сделает %s активным лицом"
 
-#: PlaceView.py:122
+#: PlaceView.py:125
 msgid "Exactly two places must be selected to perform a merge"
 msgstr "Ровно два места должны быть выделены чтобы произвести слияние"
 
-#: PlaceView.py:175
+#: PlaceView.py:178
 msgid "Currently, you can only delete one place at a time"
 msgstr "В настоящий момент вы можете уничтожить только одно место за один раз"
 
-#: PlaceView.py:195 PlaceView.py:197 gramps.glade:3648
+#: PlaceView.py:209 PlaceView.py:211 gramps.glade:3648
 msgid "Delete Place"
 msgstr "Уничтожить Место"
 
-#: PlaceView.py:196
+#: PlaceView.py:210
 msgid "This place is currently being used. Delete anyway?"
 msgstr "Это место в настоящий момент используется. Все равно уничтожить?"
 
-#: PlaceView.py:198
+#: PlaceView.py:212
 msgid "Keep Place"
 msgstr "Удержать Место"
 
-#: PlaceView.py:207
+#: PlaceView.py:221
 msgid "You requested too many places to edit at the same time"
 msgstr "Вы затребовали слишком много мест для одновременной правки"
 
-#: Plugins.py:76
+#: Plugins.py:77
 msgid "No description was provided"
 msgstr "Не было предоставлено описания"
 
-#: Plugins.py:208 plugins.glade:193
+#: Plugins.py:83
+msgid "Missing Libraries"
+msgstr "Отсутствующие Библиотеки"
+
+#: Plugins.py:216 plugins.glade:193
 msgid "Report Selection"
 msgstr "Выбор Отчетов"
 
-#: Plugins.py:224
+#: Plugins.py:232
 msgid "Tool Selection"
 msgstr "Выбор Инструментов"
 
-#: Plugins.py:243
+#: Plugins.py:251
 msgid "The following modules could not be loaded:"
 msgstr "Следующие модули не могли быть загружены:"
 
-#: Plugins.py:362 Plugins.py:373
+#: Plugins.py:375 Plugins.py:386
 msgid "Uncategorized"
 msgstr "Не отнесено к категории"
 
-#: Plugins.py:365 Plugins.py:376 const.py:127 const.py:402 const.py:410
+#: Plugins.py:378 Plugins.py:389 const.py:127 const.py:402 const.py:410
 #: gramps.glade:5294 gramps.glade:5553 gramps.glade:5969 gramps.glade:6034
-#: gramps.glade:7011 gramps.glade:7058 gramps_main.py:1325 gramps_main.py:1528
+#: gramps.glade:7011 gramps.glade:7058 gramps_main.py:1351 gramps_main.py:1554
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: ReadXML.py:89 ReadXML.py:92 ReadXML.py:145 ReadXML.py:149
-#: plugins/ReadGedcom.py:127 plugins/ReadGedcom.py:131
+#: ReadXML.py:89 ReadXML.py:92 ReadXML.py:144 ReadXML.py:148
+#: plugins/ReadGedcom.py:131 plugins/ReadGedcom.py:135
 msgid "%s could not be opened\n"
 msgstr "%s не мог быть открыт\n"
 
-#: ReadXML.py:98 ReadXML.py:103 ReadXML.py:155 ReadXML.py:161 ReadXML.py:189
-#: ReadXML.py:195
+#: ReadXML.py:98 ReadXML.py:154 ReadXML.py:160 ReadXML.py:188
 msgid "Error reading %s"
 msgstr "Ошибка при чтении %s"
 
-#: ReadXML.py:184
+#: ReadXML.py:183
 msgid "%s (revision %s)"
 msgstr "%s (ревизия %s)"
 
@@ -1261,8 +1260,8 @@ msgstr ""
 "Файл был перемещен или уничтожен"
 
 #: RelImage.py:74 RelImage.py:77 RelImage.py:142 RelImage.py:145
-#: gramps_main.py:790 gramps_main.py:794 gramps_main.py:802
-#: plugins/WriteGedcom.py:422 plugins/WriteGedcom.py:427
+#: gramps_main.py:809 gramps_main.py:813 gramps_main.py:821
+#: plugins/WriteGedcom.py:428 plugins/WriteGedcom.py:433
 msgid "Could not create %s"
 msgstr "Не смогла создать %s"
 
@@ -2066,7 +2065,7 @@ msgstr ""
 "Не смогла открыть %s\n"
 "Использую образец по умолчанию"
 
-#: docgen/HtmlDoc.py:395 plugins/eventcmp.glade:195
+#: docgen/HtmlDoc.py:395 docgen/HtmlDrawDoc.py:153 plugins/eventcmp.glade:195
 msgid "HTML"
 msgstr "HTML"
 
@@ -2087,10 +2086,6 @@ msgid "PostScript"
 msgstr "PostScript"
 
 #: docgen/PdfDoc.py:46 docgen/PdfDrawDoc.py:35
-msgid "Missing Libraries"
-msgstr "Отсутствующие Библиотеки"
-
-#: docgen/PdfDoc.py:46 docgen/PdfDrawDoc.py:35
 msgid "The ReportLab modules are not installed"
 msgstr "Модули ReportLab не установлены"
 
@@ -2098,7 +2093,7 @@ msgstr "Модули ReportLab не установлены"
 msgid "PDF"
 msgstr "PDF"
 
-#: docgen/RTFDoc.py:517
+#: docgen/RTFDoc.py:516
 msgid "Rich Text Format (RTF)"
 msgstr "Rich Text Format (RTF)"
 
@@ -2178,11 +2173,11 @@ msgstr "Лица с детьми"
 msgid "Names that match a regular expression"
 msgstr "Имена удлвлетворяющие регулярному выражению"
 
-#: filters/RegExMatch.py:53 filters/SubString.py:42 srcsel.glade:533
+#: filters/RegExMatch.py:53 filters/SubString.py:44 srcsel.glade:533
 msgid "Text"
 msgstr "Текст"
 
-#: filters/SubString.py:41
+#: filters/SubString.py:43
 msgid "Names that contain a substring"
 msgstr "Имена содержащие подстроку"
 
@@ -2416,7 +2411,7 @@ msgstr "Добавить Лицо"
 msgid "Edit/View Person"
 msgstr "Правка/Просмотр Лица"
 
-#: gramps.glade:1348 gramps_main.py:883 gramps_main.py:884
+#: gramps.glade:1348 gramps_main.py:905 gramps_main.py:906
 msgid "Delete Person"
 msgstr "Уничтожить Лицо"
 
@@ -2428,12 +2423,12 @@ msgstr "Активное Лицо"
 msgid "Exchange active person and displayed spouse"
 msgstr "Поменять активное лицо с показанным супругом"
 
-#: gramps.glade:1517 gramps_main.py:1383 gramps_main.py:1408
-#: gramps_main.py:1769
+#: gramps.glade:1517 gramps_main.py:1409 gramps_main.py:1434
+#: gramps_main.py:1795
 msgid "Relationship"
 msgstr "Отношения"
 
-#: gramps.glade:1556 plugins/FamilyGroup.py:275 plugins/FamilyGroup.py:379
+#: gramps.glade:1556 plugins/FamilyGroup.py:278 plugins/FamilyGroup.py:382
 msgid "Spouse"
 msgstr "Супруг"
 
@@ -2473,8 +2468,8 @@ msgstr "Сделать предпочитаемыми родителями"
 msgid "Add/Edit/View"
 msgstr "Добавить/Правка/Просмотр"
 
-#: gramps.glade:2265 plugins/FamilyGroup.py:309 plugins/IndivComplete.py:272
-#: plugins/IndivSummary.py:174 plugins/WebPage.py:537
+#: gramps.glade:2265 plugins/FamilyGroup.py:312 plugins/IndivComplete.py:272
+#: plugins/IndivSummary.py:174 plugins/WebPage.py:538
 msgid "Children"
 msgstr "Дети"
 
@@ -2742,7 +2737,7 @@ msgstr ""
 "Вы можете либо определить супруга в текущем отношении,\n"
 "либо создать новое отношение."
 
-#: gramps_main.py:109
+#: gramps_main.py:112
 msgid ""
 "You are running GRAMPS as the 'root' user.\n"
 "This account is not meant for normal application use."
@@ -2750,11 +2745,11 @@ msgstr ""
 "Вы запустили GRAMPS будучи администратором системы (root).\n"
 "Эта роль не предназначена для запуска обычных пользовательских программ."
 
-#: gramps_main.py:380
+#: gramps_main.py:383
 msgid "Exactly two people must be selected to perform a merge"
 msgstr "Ровно два лица должны быть выделены чтобы произвести слияние"
 
-#: gramps_main.py:403
+#: gramps_main.py:406
 msgid ""
 "Unsaved changes exist in the current database\n"
 "Do you wish to save the changes?"
@@ -2762,27 +2757,27 @@ msgstr ""
 "В используемой базе данных существуют несохраненные изменения\n"
 "Вы хотите сохранить изменения?"
 
-#: gramps_main.py:405
+#: gramps_main.py:408
 msgid "Save Changes"
 msgstr "Сохранить Изменения"
 
-#: gramps_main.py:587
+#: gramps_main.py:603
 msgid "Do you want to close the current database and create a new one?"
 msgstr "Вы хотите закрыть текущую базу данных и создать новую?"
 
-#: gramps_main.py:588
+#: gramps_main.py:604
 msgid "New Database"
 msgstr "Новая База Данных"
 
-#: gramps_main.py:589
+#: gramps_main.py:605
 msgid "Close Current Database"
 msgstr "Закрыть Новую Базу Данных"
 
-#: gramps_main.py:590
+#: gramps_main.py:606
 msgid "Return to Current Database"
 msgstr "Вернуться к Текущей Базе Данных"
 
-#: gramps_main.py:717
+#: gramps_main.py:733
 msgid ""
 "An autosave file exists for %s.\n"
 "Should this be loaded instead of the last saved version?"
@@ -2790,130 +2785,130 @@ msgstr ""
 "Существует авто-сохраненный файл для %s.\n"
 "Использовать его вместо последней сохраненной версии?"
 
-#: gramps_main.py:722
+#: gramps_main.py:738
 msgid "Autosave File"
 msgstr "Автоматически Сохранить Файл"
 
-#: gramps_main.py:723
+#: gramps_main.py:739
 msgid "Load Autosave File"
 msgstr "Загрузить Автоматически Сохраненный Файл"
 
-#: gramps_main.py:724
+#: gramps_main.py:740
 msgid "Load Last Saved File"
 msgstr "Загрузить Последний Сохраненный Файл"
 
-#: gramps_main.py:748 gramps_main.py:784
+#: gramps_main.py:767 gramps_main.py:803
 msgid "%s is not a directory"
 msgstr "%s не является каталогом"
 
-#: gramps_main.py:751
+#: gramps_main.py:770
 msgid "Loading %s ..."
 msgstr "Загружаю  %s ..."
 
-#: gramps_main.py:777
+#: gramps_main.py:796
 msgid "Saving %s ..."
 msgstr "Сохраняю %s ..."
 
-#: gramps_main.py:837
+#: gramps_main.py:856
 msgid "autosaving..."
 msgstr "автоматически сохраняю..."
 
-#: gramps_main.py:840
+#: gramps_main.py:859
 msgid "autosave complete"
 msgstr "автоматическое сохранение завершено"
 
-#: gramps_main.py:842
+#: gramps_main.py:861
 msgid "autosave failed"
 msgstr "автоматическое сохранение не удалось"
 
-#: gramps_main.py:851
+#: gramps_main.py:870
 msgid "You requested too many people to edit at the same time"
 msgstr "Вы затребовали слишком много лиц для одновременной правки"
 
-#: gramps_main.py:881
+#: gramps_main.py:903
 msgid "Do you really wish to delete %s?"
 msgstr "Вы действительно хотите уничтожить %s?"
 
-#: gramps_main.py:885
+#: gramps_main.py:907
 msgid "Keep Person"
 msgstr "Удержать Лицо"
 
-#: gramps_main.py:887
+#: gramps_main.py:909
 msgid "Currently, you can only delete one person at a time"
 msgstr "В настоящий момент вы можете уничтожить только одно лицо за один раз"
 
-#: gramps_main.py:1043
+#: gramps_main.py:1066
 msgid "Invalid move. Children must be ordered by birth date."
 msgstr "Невозможная операция. Дети должны быть упорядочены по дате рождения."
 
-#: gramps_main.py:1091
+#: gramps_main.py:1114
 msgid ""
 "Do you wish to abandon your changes and revert to the last saved database?"
 msgstr ""
 "Вы хотите потерять ваши изменения и откатить к последней сохраненной базе "
 "данных?"
 
-#: gramps_main.py:1095
+#: gramps_main.py:1118
 msgid "Revert to Last Database"
 msgstr "Откатить к Последней Сохраненной Базе Данных"
 
-#: gramps_main.py:1096
+#: gramps_main.py:1119
 msgid "Continue with Current Database"
 msgstr "Продожить с Текущей Базой Данных"
 
-#: gramps_main.py:1098
+#: gramps_main.py:1121
 msgid "Cannot revert to a previous database, since one does not exist"
 msgstr "Не могу откатить к предыдущей базе данных так как ее не существует"
 
-#: gramps_main.py:1381 gramps_main.py:1767
+#: gramps_main.py:1407 gramps_main.py:1793
 msgid "Preferred Relationship"
 msgstr "Предпочитаемое Отношение"
 
-#: gramps_main.py:1417
+#: gramps_main.py:1443
 msgid "No Relationship"
 msgstr "Нет Отношений"
 
-#: gramps_main.py:1447
+#: gramps_main.py:1473
 msgid "Preferred Parents (%d of %d)"
 msgstr "Предпочитаемые родители (%d из %d)"
 
-#: gramps_main.py:1449
+#: gramps_main.py:1475
 msgid "Preferred Parents"
 msgstr "Предпочитаемые Родители"
 
-#: gramps_main.py:1452
+#: gramps_main.py:1478
 msgid "Alternate Parents (%d of %d)"
 msgstr "Альтернативные Родители (%d из %d)"
 
-#: gramps_main.py:1455
+#: gramps_main.py:1481
 msgid "No Parents"
 msgstr "Нет Родителей"
 
-#: gramps_main.py:1703
+#: gramps_main.py:1729
 msgid "No default/home person has been set"
 msgstr "Лицо по умолчанию не было выбрано"
 
-#: gramps_main.py:1709
+#: gramps_main.py:1735
 msgid "%s has been bookmarked"
 msgstr "%s помечено закладкой"
 
-#: gramps_main.py:1712
+#: gramps_main.py:1738
 msgid "Bookmark could not be set because no one was selected"
 msgstr "Невозможно поставить закладку поскольку никто не выбран"
 
-#: gramps_main.py:1724
+#: gramps_main.py:1750
 msgid "Do you wish to set %s as the home person?"
 msgstr "Вы хотите выбрать %s в качестве лица по умолчанию?"
 
-#: gramps_main.py:1726
+#: gramps_main.py:1752
 msgid "Set Home Person"
 msgstr "Установить Лицо По Умолчанию"
 
-#: gramps_main.py:1727
+#: gramps_main.py:1753
 msgid "Set as Home Person"
 msgstr "Установить в качестве Лица По Умолчанию"
 
-#: gramps_main.py:1728
+#: gramps_main.py:1754
 msgid "Do not change Home Person"
 msgstr "Не изменять Лицо По Умолчанию"
 
@@ -3155,9 +3150,9 @@ msgstr "Позволяет вам настроить данные в рамках в отчете"
 
 #: plugins/AncestorChart.py:445 plugins/AncestorReport.py:383
 #: plugins/DescendReport.py:285 plugins/DetAncestralReport.py:822
-#: plugins/DetDescendantReport.py:895 plugins/FamilyGroup.py:548
+#: plugins/DetDescendantReport.py:895 plugins/FamilyGroup.py:551
 #: plugins/GraphViz.py:393 plugins/IndivComplete.py:657
-#: plugins/IndivSummary.py:521 plugins/Summary.py:147 plugins/WebPage.py:1248
+#: plugins/IndivSummary.py:521 plugins/Summary.py:147 plugins/WebPage.py:1249
 msgid "Beta"
 msgstr "Бета"
 
@@ -3175,7 +3170,7 @@ msgid "Ahnentafel Report for %s"
 msgstr "Таблица Предков для %s"
 
 #: plugins/AncestorReport.py:86 plugins/DetAncestralReport.py:623
-#: plugins/DetDescendantReport.py:651
+#: plugins/DetDescendantReport.py:652
 msgid "%s Generation"
 msgstr "%s Поколение"
 
@@ -3254,7 +3249,7 @@ msgstr "Таблица Предков"
 #: plugins/AncestorReport.py:223 plugins/AncestorReport.py:382
 #: plugins/DescendReport.py:129 plugins/DescendReport.py:284
 #: plugins/DetAncestralReport.py:823 plugins/DetDescendantReport.py:896
-#: plugins/FamilyGroup.py:336 plugins/FamilyGroup.py:547
+#: plugins/FamilyGroup.py:339 plugins/FamilyGroup.py:550
 #: plugins/IndivComplete.py:447 plugins/IndivComplete.py:658
 #: plugins/IndivSummary.py:332 plugins/IndivSummary.py:522
 msgid "Text Reports"
@@ -3268,89 +3263,89 @@ msgstr "Сохранить Отчеты о Предках"
 msgid "Produces a textual ancestral report"
 msgstr "Производит текстовый отчет о предках"
 
-#: plugins/ChangeTypes.py:80
+#: plugins/ChangeTypes.py:77
 msgid "1 event record was modified"
 msgstr "Была изменена 1 событийная запись"
 
-#: plugins/ChangeTypes.py:82
+#: plugins/ChangeTypes.py:79
 msgid "%d event records were modified"
 msgstr "Было изменено %d событийных записей"
 
-#: plugins/ChangeTypes.py:96
+#: plugins/ChangeTypes.py:93
 msgid "Rename personal event types"
 msgstr "Переименовать типы личных событий"
 
-#: plugins/ChangeTypes.py:97 plugins/Check.py:223 plugins/Merge.py:528
+#: plugins/ChangeTypes.py:94 plugins/Check.py:225 plugins/Merge.py:528
 #: plugins/PatchNames.py:128 plugins/ReorderIds.py:124
 msgid "Database Processing"
 msgstr "Обработка Базы Данных"
 
-#: plugins/ChangeTypes.py:98
+#: plugins/ChangeTypes.py:95
 msgid "Allows all the events of a certain name to be renamed to a new name"
 msgstr ""
 "Разрешить переименование всех событий с определенным именем в другое имя"
 
-#: plugins/Check.py:145
+#: plugins/Check.py:147
 msgid "No errors were found"
 msgstr "Ошибки не найдены"
 
-#: plugins/Check.py:151
+#: plugins/Check.py:153
 msgid "1 broken child/family link was fixed\n"
 msgstr "Была восстановлена 1 нарушенная семейная связь\n"
 
-#: plugins/Check.py:153
+#: plugins/Check.py:155
 msgid "%d broken child/family links were found\n"
 msgstr "Было найдено %d нарушенных семейных связей\n"
 
-#: plugins/Check.py:166
+#: plugins/Check.py:168
 msgid "%s was removed from the family of %s\n"
 msgstr "%s был(а) удален(а) из семьи %s\n"
 
-#: plugins/Check.py:170
+#: plugins/Check.py:172
 msgid "1 broken spouse/family link was fixed\n"
 msgstr "Была восстановлена 1 нарушенная семейная связь\n"
 
-#: plugins/Check.py:172
+#: plugins/Check.py:174
 msgid "%d broken spouse/family links were found\n"
 msgstr "Было найдено %d нарушенных семейных связей\n"
 
-#: plugins/Check.py:185
+#: plugins/Check.py:187
 msgid "%s was restored to the family of %s\n"
 msgstr "%s был(а) восстановлен(а) в семье %s\n"
 
-#: plugins/Check.py:188
+#: plugins/Check.py:190
 msgid "1 empty family was found\n"
 msgstr "Была найдена 1 пустая семья\n"
 
-#: plugins/Check.py:190
+#: plugins/Check.py:192
 msgid "%d empty families were found\n"
 msgstr "Было найдено %d пустых семей\n"
 
-#: plugins/Check.py:192
+#: plugins/Check.py:194
 msgid "1 corrupted family relationship fixed\n"
 msgstr "Поправлено 1 нарушенное семейное отношение\n"
 
-#: plugins/Check.py:194
+#: plugins/Check.py:196
 msgid "%d corrupted family relationship fixed\n"
 msgstr "Поправлено %d нарушенных семейных отношений\n"
 
-#: plugins/Check.py:196
+#: plugins/Check.py:198
 msgid "1 media object was referenced, but not found\n"
 msgstr "Не найден 1 из медиа-объектов с актовной ссылкой\n"
 
-#: plugins/Check.py:198
+#: plugins/Check.py:200
 msgid "%d media objects were referenced, but not found\n"
 msgstr "Не найдено %d медиа-объектов с активными ссылками\n"
 
-#: plugins/Check.py:206
+#: plugins/Check.py:208
 msgid "Check Integrity"
 msgstr "Проверить Целостность"
 
-#: plugins/Check.py:222
+#: plugins/Check.py:224
 msgid "Check and repair database"
 msgstr "Проверить и починить базу данных"
 
-#: plugins/Check.py:224
+#: plugins/Check.py:226
 msgid ""
 "Checks the database for integrity problems, fixing the problems that it can"
 msgstr ""
@@ -3390,7 +3385,7 @@ msgid "Provides a browsable hierarchy based on the active person"
 msgstr "Предоставляет просматриваемую иерархию основанную на активном лице"
 
 #: plugins/DescendReport.py:87 plugins/GraphViz.py:89
-#: plugins/IndivComplete.py:476 plugins/WriteGedcom.py:332
+#: plugins/IndivComplete.py:476 plugins/WriteGedcom.py:336
 #: plugins/WritePafPalm.py:570
 msgid "Descendants of %s"
 msgstr "Потомки %s"
@@ -3420,8 +3415,8 @@ msgid "- %s Born: %s %s Died: %s %s"
 msgstr "- %s Родился(ась): %s %s Умер(ла): %s %s"
 
 #: plugins/DetAncestralReport.py:137 plugins/DetAncestralReport.py:141
-#: plugins/DetAncestralReport.py:171 plugins/DetDescendantReport.py:148
-#: plugins/DetDescendantReport.py:152 plugins/DetDescendantReport.py:182
+#: plugins/DetDescendantReport.py:148 plugins/DetDescendantReport.py:152
+#: plugins/DetDescendantReport.py:182
 msgid "- %s Born: %s %s Died: %s"
 msgstr "- %s Родился(ась): %s %s Умер(ла): %s"
 
@@ -3435,8 +3430,9 @@ msgid "- %s Born: %s Died: %s %s"
 msgstr "- %s Родился(ась): %s Умер(ла): %s %s"
 
 #: plugins/DetAncestralReport.py:153 plugins/DetAncestralReport.py:156
-#: plugins/DetAncestralReport.py:168 plugins/DetDescendantReport.py:164
-#: plugins/DetDescendantReport.py:167 plugins/DetDescendantReport.py:179
+#: plugins/DetAncestralReport.py:168 plugins/DetAncestralReport.py:171
+#: plugins/DetDescendantReport.py:164 plugins/DetDescendantReport.py:167
+#: plugins/DetDescendantReport.py:179
 msgid "- %s Born: %s Died: %s"
 msgstr "- %s Родился(ась): %s Умер(ла): %s"
 
@@ -3640,7 +3636,7 @@ msgid "Produces a detailed descendant report"
 msgstr "Производит подробный отчет о потомках"
 
 #: plugins/EventCmp.py:131 plugins/GraphViz.py:85 plugins/IndivComplete.py:484
-#: plugins/WebPage.py:909 plugins/WriteGedcom.py:328
+#: plugins/WebPage.py:910 plugins/WriteGedcom.py:332
 #: plugins/WritePafPalm.py:561
 msgid "Entire Database"
 msgstr "Вся база данных"
@@ -3661,28 +3657,28 @@ msgstr ""
 "Помогает в анализе данных путем обеспечения разработки специальных фильтров "
 "которые могут быть применены к базе данных для поиска сходных событий"
 
-#: plugins/FamilyGroup.py:107 plugins/FamilyGroup.py:336
-#: plugins/FamilyGroup.py:546
+#: plugins/FamilyGroup.py:107 plugins/FamilyGroup.py:339
+#: plugins/FamilyGroup.py:549
 msgid "Family Group Report"
 msgstr "Отчет о Семейной Группе"
 
-#: plugins/FamilyGroup.py:116
+#: plugins/FamilyGroup.py:119
 msgid "Husband"
 msgstr "Муж"
 
-#: plugins/FamilyGroup.py:118
+#: plugins/FamilyGroup.py:121
 msgid "Wife"
 msgstr "Жена"
 
-#: plugins/FamilyGroup.py:340
+#: plugins/FamilyGroup.py:343
 msgid "Family Group Report for %s"
 msgstr "Отчет о Семейной Группе для %s"
 
-#: plugins/FamilyGroup.py:345
+#: plugins/FamilyGroup.py:348
 msgid "Save Family Group Report"
 msgstr "Сохранить Отчет о Семейной Группе"
 
-#: plugins/FamilyGroup.py:549
+#: plugins/FamilyGroup.py:552
 msgid ""
 "Creates a family group report, showing information on a set of parents and "
 "their children."
@@ -3746,8 +3742,8 @@ msgstr "Граф Отношений"
 msgid "Graphviz File"
 msgstr "Graphviz Файл"
 
-#: plugins/GraphViz.py:93 plugins/IndivComplete.py:480 plugins/WebPage.py:921
-#: plugins/WriteGedcom.py:336 plugins/WritePafPalm.py:566
+#: plugins/GraphViz.py:93 plugins/IndivComplete.py:480 plugins/WebPage.py:922
+#: plugins/WriteGedcom.py:340 plugins/WritePafPalm.py:566
 msgid "Ancestors of %s"
 msgstr "Предки %s"
 
@@ -3884,7 +3880,7 @@ msgid "Alternate Names"
 msgstr "Поменять Имена"
 
 #: plugins/IndivComplete.py:244 plugins/IndivSummary.py:145
-#: plugins/WebPage.py:500
+#: plugins/WebPage.py:501
 msgid "Marriages/Children"
 msgstr "Браки/Дети"
 
@@ -3898,12 +3894,12 @@ msgid "Summary of %s"
 msgstr "Итоги для %s"
 
 #: plugins/IndivComplete.py:384 plugins/IndivSummary.py:243
-#: plugins/WebPage.py:255
+#: plugins/WebPage.py:256
 msgid "Male"
 msgstr "Мужчина"
 
 #: plugins/IndivComplete.py:386 plugins/IndivSummary.py:245
-#: plugins/WebPage.py:257
+#: plugins/WebPage.py:258
 msgid "Female"
 msgstr "Женщина"
 
@@ -3980,16 +3976,16 @@ msgstr ""
 "Просматривает всю базу данных и пытается выделить титулы и краткие имена, "
 "возможно содержащиеся в имени лица."
 
-#: plugins/ReadGedcom.py:272 plugins/ReadGedcom.py:283
+#: plugins/ReadGedcom.py:284 plugins/ReadGedcom.py:295
 msgid "Warning: line %d was not understood, so it was ignored."
 msgstr ""
 "Предупреждение: строка %d не была распознана, поэтому она игнорируется."
 
-#: plugins/ReadGedcom.py:317
+#: plugins/ReadGedcom.py:329
 msgid "Import Complete: %d seconds"
 msgstr "Имопрт Завершен: %d секунд"
 
-#: plugins/ReadGedcom.py:1622 plugins/ReadGedcom.py:1652
+#: plugins/ReadGedcom.py:1659 plugins/ReadGedcom.py:1689
 msgid "Import from GEDCOM"
 msgstr "Импорт из GEDCOM"
 
@@ -4396,121 +4392,121 @@ msgstr "Проверить базу данных"
 msgid "List exceptions to assertions or checks about the database"
 msgstr "Перечислить исключения в проверках базы данных"
 
-#: plugins/WebPage.py:252
+#: plugins/WebPage.py:253
 msgid "ID Number"
 msgstr "ID номер"
 
-#: plugins/WebPage.py:291
+#: plugins/WebPage.py:292
 msgid "Return to the index of people"
 msgstr "Вернуться к индексу лиц"
 
-#: plugins/WebPage.py:398
+#: plugins/WebPage.py:399
 msgid "Facts and Events"
 msgstr "Факты и События"
 
-#: plugins/WebPage.py:590
+#: plugins/WebPage.py:591
 msgid "Creating Web Pages"
 msgstr "Создаю Web Страницы"
 
-#: plugins/WebPage.py:590
+#: plugins/WebPage.py:591
 msgid "Generate HTML reports - GRAMPS"
 msgstr "Создать HTML отчеты - GRAMPS"
 
-#: plugins/WebPage.py:679 plugins/WebPage.py:683
+#: plugins/WebPage.py:680 plugins/WebPage.py:684
 msgid "Family Tree Index"
 msgstr "Индкс Семейного Дерева"
 
-#: plugins/WebPage.py:717
+#: plugins/WebPage.py:718
 msgid "%s (continued)"
 msgstr "%s (продолжается)"
 
-#: plugins/WebPage.py:734
+#: plugins/WebPage.py:735
 msgid "Neither %s nor %s are directories"
 msgstr "Ни %s ни %s не являются каталогами"
 
-#: plugins/WebPage.py:741 plugins/WebPage.py:745 plugins/WebPage.py:757
-#: plugins/WebPage.py:761
+#: plugins/WebPage.py:742 plugins/WebPage.py:746 plugins/WebPage.py:758
+#: plugins/WebPage.py:762
 msgid "Could not create the directory : %s"
 msgstr "Не смогла создать каталог : %s"
 
-#: plugins/WebPage.py:826
+#: plugins/WebPage.py:827
 msgid "Include a link to the index page"
 msgstr "Поставить линк к главной странице"
 
-#: plugins/WebPage.py:827 plugins/gedcomexport.glade:295
+#: plugins/WebPage.py:828 plugins/gedcomexport.glade:295
 #: plugins/pafexport.glade:296
 msgid "Do not include records marked private"
 msgstr "Не включать записи помеченные как личные"
 
-#: plugins/WebPage.py:828
+#: plugins/WebPage.py:829
 msgid "Restrict information on living people"
 msgstr "Ограничить информацию о живущих лицах"
 
-#: plugins/WebPage.py:829
+#: plugins/WebPage.py:830
 msgid "Do not use images"
 msgstr "Не использовать изображения"
 
-#: plugins/WebPage.py:830
+#: plugins/WebPage.py:831
 msgid "Do not use images for living people"
 msgstr "Не использовать изображения живущих лиц"
 
-#: plugins/WebPage.py:831
+#: plugins/WebPage.py:832
 msgid "Do not include comments and text in source information"
 msgstr "Не включать комментарии и текст в информацию об источнике"
 
-#: plugins/WebPage.py:832
+#: plugins/WebPage.py:833
 msgid "Include the GRAMPS ID in the report"
 msgstr "Включить ID номер в отчет"
 
-#: plugins/WebPage.py:833
+#: plugins/WebPage.py:834
 msgid "Create a GENDEX index"
 msgstr "Создать индекс GENDEX"
 
-#: plugins/WebPage.py:834
+#: plugins/WebPage.py:835
 msgid "Image subdirectory"
 msgstr "Каталог изображений"
 
-#: plugins/WebPage.py:835
+#: plugins/WebPage.py:836
 msgid "File extension"
 msgstr "Расширение файла"
 
-#: plugins/WebPage.py:859
+#: plugins/WebPage.py:860
 msgid "Privacy"
 msgstr "Секретность"
 
-#: plugins/WebPage.py:866
+#: plugins/WebPage.py:867
 msgid "Advanced"
 msgstr "Продвинутый"
 
-#: plugins/WebPage.py:868
+#: plugins/WebPage.py:869
 msgid "GRAMPS ID link URL"
 msgstr "URL номера GRAMPS ID"
 
-#: plugins/WebPage.py:884 plugins/WebPage.py:1246
+#: plugins/WebPage.py:885 plugins/WebPage.py:1247
 msgid "Generate Web Site"
 msgstr "Генерировать Web сайт"
 
-#: plugins/WebPage.py:884 plugins/WebPage.py:1247
+#: plugins/WebPage.py:885 plugins/WebPage.py:1248
 msgid "Web Page"
 msgstr "Web Страница"
 
-#: plugins/WebPage.py:889
+#: plugins/WebPage.py:890
 msgid "Target Directory"
 msgstr "Каталог Назначения"
 
-#: plugins/WebPage.py:913
+#: plugins/WebPage.py:914
 msgid "Direct Descendants of %s"
 msgstr "Прямые Потомки %s"
 
-#: plugins/WebPage.py:917
+#: plugins/WebPage.py:918
 msgid "Descendant Families of %s"
 msgstr "Семьи Потомков %s"
 
-#: plugins/WebPage.py:1249
+#: plugins/WebPage.py:1250
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr "Создает web (HTML) страницы дла отдельных лиц или для групп лиц."
 
-#: plugins/WriteGedcom.py:951
+#: plugins/WriteGedcom.py:963
 msgid "Export to GEDCOM"
 msgstr "Экспорт в GEDCOM"
 
@@ -5449,6 +5445,9 @@ msgstr "верх"
 #: styles.glade:1327
 msgid "bottom"
 msgstr "низ"
+
+#~ msgid "Could not import %s - %s"
+#~ msgstr "Не смогла импортировать %s - %s"
 
 #~ msgid "class"
 #~ msgstr "класс"
