@@ -98,7 +98,10 @@ class PeopleStore:
             self.selection.connect('changed',select_func)
         if event_func:
             self.double_click = event_func
-            self.tree.connect('event',self.button_press)
+            self.tree.connect('row_activated', self.row_activated)
+
+    def row_activated (self, treeview, path, column):
+        self.double_click (treeview)
 
     def enable_sort(self):
         if self.cids[0] != -1:
@@ -306,10 +309,3 @@ class PeopleStore:
         if iter:
             path = model.get_path(iter)
             self.tree.scroll_to_cell(path,None,gtk.TRUE,0.5,0.5)
-        
-    def button_press(self,obj,event):
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            self.double_click(obj)
-            return 1
-        return 0
-
