@@ -35,7 +35,7 @@
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="report"/>
+	      <signal name="clicked" handler="on_close_clicked" last_modification_time="Thu, 12 Sep 2002 03:21:32 GMT"/>
 	    </widget>
 	  </child>
 	</widget>
