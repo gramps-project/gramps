@@ -1,18 +1,3 @@
-* Add support for storing reliability (confidence) of the marriage information; 
-  see http://sourceforge.net/mailarchive/forum.php?thread_id=3066997&forum_id=1993 
-  and http://sourceforge.net/mailarchive/forum.php?thread_id=3134931&forum_id=1993
-  for the details.
-
-* Work out the model and the interface for the completeness of a person,
-  see http://sourceforge.net/mailarchive/forum.php?thread_id=3127454&forum_id=1993
-  and http://sourceforge.net/mailarchive/forum.php?thread_id=3134932&forum_id=1993
-  for the details.
-
-* Presense of Notes for a person/event/whatever_else. RFE 747527 suggested 
-  either a column in the People View or something like boldfaces "Notes" 
-  tab title. I like the latter because it can be uniformly applied to 
-  any notes, not only people's. Not so hard to implement. 
-
 * Allow for multiple notes. A tabbed interface would be really useful,
   since there are no titles for notes. Not all objects would necessarily
   need multiple notes. Determine which ones should and shouldn't.
@@ -26,7 +11,22 @@
   try to create a thumbnail in a readonly database.
 * Startup tips.
 * Add sequence number to childlist in family view
-* Add completeness level to person/family
 * Add string substitutions for web page generation (name, report name,
   date, etc).
+* Add support for sources of the parent/child relation
+* Add support for storing reliability (confidence) of the marriage information; 
+  see http://sourceforge.net/mailarchive/forum.php?thread_id=3066997&forum_id=1993 
+  and http://sourceforge.net/mailarchive/forum.php?thread_id=3134931&forum_id=1993
+  for the details.
+* Work out the model and the interface for the completeness of a person,
+  see http://sourceforge.net/mailarchive/forum.php?thread_id=3127454&forum_id=1993
+  and http://sourceforge.net/mailarchive/forum.php?thread_id=3134932&forum_id=1993
+  for the details.
+* Presense of Notes for a person/event/whatever_else. RFE 747527 suggested 
+  either a column in the People View or something like boldfaces "Notes" 
+  tab title. I like the latter because it can be uniformly applied to 
+  any notes, not only people's. Not so hard to implement. 
+* Replace ListModel with the TreeModel
+* Work out BookReport dialog so that resize is not necessary
+* Work out name capitalization options
 * And a whole lot more....
