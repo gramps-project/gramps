@@ -1,5 +1,5 @@
-%define ver      0.8.0
-%define rel      pl4
+%define ver      0.8.1
+%define rel      pl1
 %define prefix   /usr
 
 Summary: Genealogical Research and Analysis Management Programming System.
@@ -61,6 +61,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gnome/apps/Applications/gramps.desktop
 %{_datadir}/pixmaps/gramps.png
 %{_datadir}/locale/*/LC_MESSAGES/gramps.mo
+
+%dir %{_datadir}/gramps
+%dir %{_datadir}/gramps/plugins
+%dir %{_datadir}/gramps/docgen
+%dir %{_datadir}/gramps/filters
+%dir %{_datadir}/gramps/data
+%dir %{_datadir}/gramps/data/templates
 
 %{_datadir}/gramps/*.xpm
 %{_datadir}/gramps/*.jpg

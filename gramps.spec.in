@@ -62,6 +62,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/gramps.png
 %{_datadir}/locale/*/LC_MESSAGES/gramps.mo
 
+%dir %{_datadir}/gramps
+%dir %{_datadir}/gramps/plugins
+%dir %{_datadir}/gramps/docgen
+%dir %{_datadir}/gramps/filters
+%dir %{_datadir}/gramps/data
+%dir %{_datadir}/gramps/data/templates
+
 %{_datadir}/gramps/*.xpm
 %{_datadir}/gramps/*.jpg
 %{_datadir}/gramps/*.png
