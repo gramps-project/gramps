@@ -65,6 +65,8 @@ _ = gettext
 #-------------------------------------------------------------------------
 class ImageSelect:
 
+    last_path = ""
+
     def __init__(self, path, db, parent):
         """Creates an edit window.  Associates a person with the window."""
         self.path       = path;
@@ -102,6 +104,8 @@ class ImageSelect:
             "destroy_passed_object" : Utils.destroy_passed_object
             })
 
+        if ImageSelect.last_path != "":
+            self.glade.get_widget("photosel").set_default_path(ImageSelect.last_path)
         window.editable_enters(self.description)
         window.show()
 
@@ -128,6 +132,8 @@ class ImageSelect:
     def on_savephoto_clicked(self, obj):
         """Save the photo in the dataobj object.  (Required function)"""
         filename = self.glade.get_widget("photosel").get_full_path(0)
+        ImageSelect.last_path = os.path.dirname(filename)
+        
         description = self.description.get_text()
 
         if os.path.exists(filename) == 0:
