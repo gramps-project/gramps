@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 """
 Handles the place view for GRAMPS.
 """
@@ -96,15 +98,6 @@ class PlaceView:
         self.selection = self.list.get_selection()
         self.list.connect('button-press-event',self.button_press)
 
-    def button_press(self,obj,event):
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            store,iter = self.selection.get_selected()
-            id = store.get_value(iter,1)
-            source = self.db.getPlace(id)
-            EditPlace.EditPlace(self, place, self.update_display)
-            return 1
-        return 0
-
     def change_db(self,db):
         self.db = db
 
@@ -162,7 +155,36 @@ class PlaceView:
             if mlist:
                 EditPlace.EditPlace(self,mlist[0],self.update_display)
             return 1
+        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            self.build_context_menu()
+            return 1
         return 0
+
+    def build_context_menu(self):
+        """Builds the menu with editing operations on the place's list"""
+        
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
+        if mlist:
+            sel_sensitivity = 1
+        else:
+            sel_sensitivity = 0
+        entries = [
+            (gtk.STOCK_ADD, self.on_add_place_clicked,1),
+            (gtk.STOCK_REMOVE, self.on_delete_clicked,sel_sensitivity),
+            (_("Edit"), self.on_edit_clicked,sel_sensitivity),
+        ]
+
+        menu = gtk.Menu()
+        menu.set_title(_('Source Menu'))
+        for stock_id,callback,sensitivity in entries:
+            item = gtk.ImageMenuItem(stock_id)
+            if callback:
+                item.connect("activate",callback)
+            item.set_sensitive(sensitivity)
+            item.show()
+            menu.append(item)
+        menu.popup(None,None,None,0,0)
 
     def new_place_after_edit(self,place):
         #self.db.addPlace(place)

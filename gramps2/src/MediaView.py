@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # standard python modules
@@ -168,28 +170,51 @@ class MediaView:
         self.mdetails.set_text(Utils.get_detail_text(mobj,0))
 
     def on_button_press_event(self,obj,event):
-        store,iter = self.selection.get_selected()
-        if not iter:
-            return
-        id = store.get_value(iter,1)
-        
-        object = self.db.findObjectNoMap(id)
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            ImageSelect.GlobalMediaProperties(self.db,object,self.load_media)
+            self.on_edit_clicked(obj)
+            return 1
         elif event.button == 3:
-            menu = gtk.Menu()
-            menu.set_title(_("Media Object"))
+            self.build_context_menu()
+            return 1
+        return 0
+
+    def build_context_menu(self):
+        menu = gtk.Menu()
+        menu.set_title(_("Media Object"))
+
+        store,iter = self.selection.get_selected()
+        if iter:
+            id = store.get_value(iter,1)
+            object = self.db.findObjectNoMap(id)
             self.obj = object
             Utils.add_menuitem(menu,_("View in the default viewer"),None,self.popup_view_photo)
             if object.getMimeType()[0:5] == "image":
                 Utils.add_menuitem(menu,_("Edit with the GIMP"),\
                                    None,self.popup_edit_photo)
-            Utils.add_menuitem(menu,_("Edit Object Properties"),None,
-                               self.popup_change_description)
             if object.getLocal() == 0:
                 Utils.add_menuitem(menu,_("Convert to local copy"),None,
                                    self.popup_convert_to_private)
-            menu.popup(None,None,None,0,0)
+            item = gtk.MenuItem()
+            item.show()
+            menu.append(item)
+            sel_sensitivity = 1
+        else:
+            sel_sensitivity = 0
+        
+        entries = [
+            (gtk.STOCK_ADD, self.on_add_clicked,1),
+            (gtk.STOCK_REMOVE, self.on_delete_clicked,sel_sensitivity),
+            (_("Edit properties"), self.on_edit_clicked,sel_sensitivity),
+        ]
+
+        for stock_id,callback,sensitivity in entries:
+            item = gtk.ImageMenuItem(stock_id)
+            if callback:
+                item.connect("activate",callback)
+            item.set_sensitive(sensitivity)
+            item.show()
+            menu.append(item)
+        menu.popup(None,None,None,0,0)
 
     def popup_view_photo(self, obj):
         Utils.view_photo(self.obj)
