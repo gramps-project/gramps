@@ -58,7 +58,7 @@ _DIED = _('d.')
 # DescendantReport
 #
 #------------------------------------------------------------------------
-class DescendantReport:
+class DescendantReport(Report.Report):
 
     def __init__(self,database,person,options_class):
         """
@@ -84,24 +84,11 @@ class DescendantReport:
         newpage   - if True, newpage is made before writing a report
 
         """
-        self.database = database
-        self.creator = database.get_researcher().get_name()
-        self.person = person
-        self.options_class = options_class
+
+        Report.Report.__init__(self,database,person,options_class)
 
         (self.max_generations,self.pgbrk) \
                         = options_class.get_report_generations()
-
-        self.doc = options_class.get_document()
-        output = options_class.get_output()
-        self.newpage = options_class.get_newpage()
-
-        if output:
-            self.standalone = 1
-            self.doc.open(output)
-            self.doc.init()
-        else:
-            self.standalone = 0
         sort = Sort.Sort(self.database)
         self.by_birthdate = sort.by_birthdate
         
@@ -131,16 +118,12 @@ class DescendantReport:
             self.doc.write_text(')')
         
     def write_report(self):
-        if self.newpage:
-            self.doc.page_break()
         self.doc.start_paragraph("DR-Title")
-        name = self.person.get_primary_name().get_regular_name()
+        name = self.start_person.get_primary_name().get_regular_name()
         self.doc.write_text(_("Descendants of %s") % name)
-        self.dump_dates(self.person)
+        self.dump_dates(self.start_person)
         self.doc.end_paragraph()
-        self.dump(0,self.person)
-        if self.standalone:
-            self.doc.close()
+        self.dump(0,self.start_person)
 
     def dump(self,level,person):
 

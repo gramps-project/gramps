@@ -913,7 +913,8 @@ class BookItemDialog(Report.BareReportDialog):
         self.option_class = option_class
         self.person = self.database.get_person_from_gramps_id(self.option_class.handler.get_person_id())
         self.new_person = None
-        Report.BareReportDialog.__init__(self,database,self.person,option_class,name,translated_name)
+        Report.BareReportDialog.__init__(self,database,self.person,
+                                         option_class,name,translated_name)
 
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices. Parse all options
@@ -1001,8 +1002,9 @@ class BookReportDialog(Report.ReportDialog):
         """Build a menu of document types that are appropriate for
         this text report.  This menu will be generated based upon
         whether the document requires table support, etc."""
-        Plugins.get_book_menu(self.format_menu, self.doc_uses_tables(),
-                              self.doc_type_changed,None,active)
+        self.format_menu = Plugins.GrampsBookFormatComboBox()
+        self.format_menu.set(self.doc_uses_tables(),
+                             self.doc_type_changed, None, active)
 
     def make_document(self):
         """Create a document of the type requested by the user."""

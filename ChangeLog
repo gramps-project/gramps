@@ -1,3 +1,17 @@
+2004-12-29  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Plugins.py: add GrampsBookFormatComboBox class
+	* src/Report.py: Roll common functions into Report class
+	* src/plugins/AncestorReport.py: Bring up to date with Report
+	* src/plugins/Ancestors.py: Bring up to date with Report
+	* src/plugins/BookReport.py: Bring up to date with Report, 
+	incorporate new ComboBox
+	* src/plugins/DescendReport.py: Bring up to date with Report
+	* src/pulgins/FtmStyleAncestors.py: Bring up to date with Report
+	* src/pulgins/FtmStyleDescendants.py: Bring up to date 
+	with Report
+	* src/plugins/IndivSummary.py: Bring up to date with Report
+	* src/plugins/TimeLine.py: Bring up to date with Report
+
 2004-12-29 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/DisplayTrace.py: Typo in the debian version filename.
 	* src/plugins/Ancestors.py: Convert to new scheme.

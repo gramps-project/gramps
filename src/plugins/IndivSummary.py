@@ -81,25 +81,11 @@ class IndivSummary(Report.Report):
         newpage   - if True, newpage is made before writing a report
 
         """
-        self.database = database
-        self.person = person
-        self.options_class = options_class
 
+        Report.Report.__init__(self,database,person,options_class)
 
-        self.d = options_class.get_document()
-        self.output = options_class.get_output()
-        self.newpage = options_class.get_newpage()
-
-        c = database.get_researcher().get_name()
-        self.d.creator(c)
         self.map = {}
         self.setup()
-        if self.output:
-            self.standalone = 1
-            self.d.open(self.output)
-            self.d.init()
-        else:
-            self.standalone = 0
         
     def setup(self):
         tbl = BaseDoc.TableStyle()
@@ -107,23 +93,19 @@ class IndivSummary(Report.Report):
         tbl.set_columns(2)
         tbl.set_column_width(0,20)
         tbl.set_column_width(1,80)
-        self.d.add_table_style("IVS-IndTable",tbl)
+        self.doc.add_table_style("IVS-IndTable",tbl)
 
         cell = BaseDoc.TableCellStyle()
         cell.set_top_border(1)
         cell.set_bottom_border(1)
-        self.d.add_cell_style("IVS-TableHead",cell)
+        self.doc.add_cell_style("IVS-TableHead",cell)
 
         cell = BaseDoc.TableCellStyle()
-        self.d.add_cell_style("IVS-NormalCell",cell)
+        self.doc.add_cell_style("IVS-NormalCell",cell)
 
         cell = BaseDoc.TableCellStyle()
         cell.set_longlist(1)
-        self.d.add_cell_style("IVS-ListCell",cell)
-
-    def end(self):
-        if self.standalone:
-            self.d.close()
+        self.doc.add_cell_style("IVS-ListCell",cell)
 
     def write_fact(self,event):
         if event == None:
@@ -151,19 +133,19 @@ class IndivSummary(Report.Report):
                                                       'place' : place }
                 text = '%s %s' % (text,description)
 
-        self.d.start_row()
-        self.d.start_cell("IVS-NormalCell")
-        self.d.start_paragraph("IVS-Normal")
-        self.d.write_text(name)
-        self.d.end_paragraph()
-        self.d.end_cell()
+        self.doc.start_row()
+        self.doc.start_cell("IVS-NormalCell")
+        self.doc.start_paragraph("IVS-Normal")
+        self.doc.write_text(name)
+        self.doc.end_paragraph()
+        self.doc.end_cell()
 
-        self.d.start_cell("IVS-NormalCell")
-        self.d.start_paragraph("IVS-Normal")
-        self.d.write_text(text)
-        self.d.end_paragraph()
-        self.d.end_cell()
-        self.d.end_row()
+        self.doc.start_cell("IVS-NormalCell")
+        self.doc.start_paragraph("IVS-Normal")
+        self.doc.write_text(text)
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
         
     #--------------------------------------------------------------------
     #
@@ -172,35 +154,35 @@ class IndivSummary(Report.Report):
     #--------------------------------------------------------------------
     def write_families(self):
 
-        self.d.start_paragraph("IVS-Normal")
-        self.d.end_paragraph()
-        self.d.start_table("three","IVS-IndTable")
-        self.d.start_row()
-        self.d.start_cell("IVS-TableHead",2)
-        self.d.start_paragraph("IVS-TableTitle")
-        self.d.write_text(_("Marriages/Children"))
-        self.d.end_paragraph()
-        self.d.end_cell()
-        self.d.end_row()
+        self.doc.start_paragraph("IVS-Normal")
+        self.doc.end_paragraph()
+        self.doc.start_table("three","IVS-IndTable")
+        self.doc.start_row()
+        self.doc.start_cell("IVS-TableHead",2)
+        self.doc.start_paragraph("IVS-TableTitle")
+        self.doc.write_text(_("Marriages/Children"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
         
-        for family_handle in self.person.get_family_handle_list():
+        for family_handle in self.start_person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
-            if self.person.get_handle() == family.get_father_handle():
+            if self.start_person.get_handle() == family.get_father_handle():
                 spouse_id = family.get_mother_handle()
             else:
                 spouse_id = family.get_father_handle()
                 
-            self.d.start_row()
-            self.d.start_cell("IVS-NormalCell",2)
-            self.d.start_paragraph("IVS-Spouse")
+            self.doc.start_row()
+            self.doc.start_cell("IVS-NormalCell",2)
+            self.doc.start_paragraph("IVS-Spouse")
             if spouse_id:
                 spouse = self.database.get_person_from_handle(spouse_id)
-                self.d.write_text(spouse.get_primary_name().get_regular_name())
+                self.doc.write_text(spouse.get_primary_name().get_regular_name())
             else:
-                self.d.write_text(_("unknown"))
-            self.d.end_paragraph()
-            self.d.end_cell()
-            self.d.end_row()
+                self.doc.write_text(_("unknown"))
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+            self.doc.end_row()
             
             for event_handle in family.get_event_list():
                 event = self.database.get_event_from_handle(event_handle)
@@ -208,87 +190,84 @@ class IndivSummary(Report.Report):
 
             child_list = family.get_child_handle_list()
             if len(child_list):
-                self.d.start_row()
-                self.d.start_cell("IVS-NormalCell")
-                self.d.start_paragraph("IVS-Normal")
-                self.d.write_text(_("Children"))
-                self.d.end_paragraph()
-                self.d.end_cell()
+                self.doc.start_row()
+                self.doc.start_cell("IVS-NormalCell")
+                self.doc.start_paragraph("IVS-Normal")
+                self.doc.write_text(_("Children"))
+                self.doc.end_paragraph()
+                self.doc.end_cell()
 
-                self.d.start_cell("IVS-ListCell")
-                self.d.start_paragraph("IVS-Normal")
+                self.doc.start_cell("IVS-ListCell")
+                self.doc.start_paragraph("IVS-Normal")
                 
                 first = 1
                 for child_handle in child_list:
                     if first == 1:
                         first = 0
                     else:
-                        self.d.write_text('\n')
+                        self.doc.write_text('\n')
                     child = self.database.get_person_from_handle(child_handle)
-                    self.d.write_text(child.get_primary_name().get_regular_name())
-                self.d.end_paragraph()
-                self.d.end_cell()
-                self.d.end_row()
-        self.d.end_table()
+                    self.doc.write_text(child.get_primary_name().get_regular_name())
+                self.doc.end_paragraph()
+                self.doc.end_cell()
+                self.doc.end_row()
+        self.doc.end_table()
 
     def write_report(self):
 
-        if self.newpage:
-            self.d.page_break()
+        media_list = self.start_person.get_media_list()
 
-        media_list = self.person.get_media_list()
+        name = self.start_person.get_primary_name().get_regular_name()
+        self.doc.start_paragraph("IVS-Title")
+        self.doc.write_text(_("Summary of %s") % name)
+        self.doc.end_paragraph()
 
-        name = self.person.get_primary_name().get_regular_name()
-        self.d.start_paragraph("IVS-Title")
-        self.d.write_text(_("Summary of %s") % name)
-        self.d.end_paragraph()
-
-        self.d.start_paragraph("IVS-Normal")
-        self.d.end_paragraph()
+        self.doc.start_paragraph("IVS-Normal")
+        self.doc.end_paragraph()
 
         if len(media_list) > 0:
             object_handle = media_list[0].get_reference_handle()
             object = self.database.get_object_from_handle(object_handle)
             if object.get_mime_type()[0:5] == "image":
                 file = object.get_path()
-                self.d.start_paragraph("IVS-Normal")
-                self.d.add_media_object(file,"row",4.0,4.0)
-                self.d.end_paragraph()
+                self.doc.start_paragraph("IVS-Normal")
+                self.doc.add_media_object(file,"row",4.0,4.0)
+                self.doc.end_paragraph()
 
-        self.d.start_table("one","IVS-IndTable")
+        self.doc.start_table("one","IVS-IndTable")
 
-        self.d.start_row()
-        self.d.start_cell("IVS-NormalCell")
-        self.d.start_paragraph("IVS-Normal")
-        self.d.write_text("%s:" % _("Name"))
-        self.d.end_paragraph()
-        self.d.end_cell()
+        self.doc.start_row()
+        self.doc.start_cell("IVS-NormalCell")
+        self.doc.start_paragraph("IVS-Normal")
+        self.doc.write_text("%s:" % _("Name"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
 
-        self.d.start_cell("IVS-NormalCell")
-        self.d.start_paragraph("IVS-Normal")
-        self.d.write_text(self.person.get_primary_name().get_regular_name())
-        self.d.end_paragraph()
-        self.d.end_cell()
-        self.d.end_row()
+        self.doc.start_cell("IVS-NormalCell")
+        self.doc.start_paragraph("IVS-Normal")
+        self.doc.write_text(self.start_person.get_primary_name().get_regular_name())
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
 
-        self.d.start_row()
-        self.d.start_cell("IVS-NormalCell")
-        self.d.start_paragraph("IVS-Normal")
-        self.d.write_text("%s:" % _("Gender"))
-        self.d.end_paragraph()
-        self.d.end_cell()
+        self.doc.start_row()
+        self.doc.start_cell("IVS-NormalCell")
+        self.doc.start_paragraph("IVS-Normal")
+        self.doc.write_text("%s:" % _("Gender"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
 
-        self.d.start_cell("IVS-NormalCell")
-        self.d.start_paragraph("IVS-Normal")
-        if self.person.get_gender() == RelLib.Person.male:
-            self.d.write_text(_("Male"))
+        self.doc.start_cell("IVS-NormalCell")
+        self.doc.start_paragraph("IVS-Normal")
+        if self.start_person.get_gender() == RelLib.Person.male:
+            self.doc.write_text(_("Male"))
         else:
-            self.d.write_text(_("Female"))
-        self.d.end_paragraph()
-        self.d.end_cell()
-        self.d.end_row()
+            self.doc.write_text(_("Female"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
 
-        fam_id = self.person.get_main_parents_family_handle()
+        fam_id = self.start_person.get_main_parents_family_handle()
         if fam_id:
             family = self.database.get_family_from_handle(fam_id)
             father_handle = family.get_father_handle()
@@ -307,57 +286,57 @@ class IndivSummary(Report.Report):
             father = ""
             mother = ""
 
-        self.d.start_row()
-        self.d.start_cell("IVS-NormalCell")
-        self.d.start_paragraph("IVS-Normal")
-        self.d.write_text("%s:" % _("Father"))
-        self.d.end_paragraph()
-        self.d.end_cell()
+        self.doc.start_row()
+        self.doc.start_cell("IVS-NormalCell")
+        self.doc.start_paragraph("IVS-Normal")
+        self.doc.write_text("%s:" % _("Father"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
 
-        self.d.start_cell("IVS-NormalCell")
-        self.d.start_paragraph("IVS-Normal")
-        self.d.write_text(father)
-        self.d.end_paragraph()
-        self.d.end_cell()
-        self.d.end_row()
+        self.doc.start_cell("IVS-NormalCell")
+        self.doc.start_paragraph("IVS-Normal")
+        self.doc.write_text(father)
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
 
-        self.d.start_row()
-        self.d.start_cell("IVS-NormalCell")
-        self.d.start_paragraph("IVS-Normal")
-        self.d.write_text("%s:" % _("Mother"))
-        self.d.end_paragraph()
-        self.d.end_cell()
+        self.doc.start_row()
+        self.doc.start_cell("IVS-NormalCell")
+        self.doc.start_paragraph("IVS-Normal")
+        self.doc.write_text("%s:" % _("Mother"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
 
-        self.d.start_cell("IVS-NormalCell")
-        self.d.start_paragraph("IVS-Normal")
-        self.d.write_text(mother)
-        self.d.end_paragraph()
-        self.d.end_cell()
-        self.d.end_row()
-        self.d.end_table()
+        self.doc.start_cell("IVS-NormalCell")
+        self.doc.start_paragraph("IVS-Normal")
+        self.doc.write_text(mother)
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
+        self.doc.end_table()
 
-        self.d.start_paragraph("IVS-Normal")
-        self.d.end_paragraph()
+        self.doc.start_paragraph("IVS-Normal")
+        self.doc.end_paragraph()
         
-        self.d.start_table("two","IVS-IndTable")
-        self.d.start_row()
-        self.d.start_cell("IVS-TableHead",2)
-        self.d.start_paragraph("IVS-TableTitle")
-        self.d.write_text(_("Individual Facts"))
-        self.d.end_paragraph()
-        self.d.end_cell()
-        self.d.end_row()
+        self.doc.start_table("two","IVS-IndTable")
+        self.doc.start_row()
+        self.doc.start_cell("IVS-TableHead",2)
+        self.doc.start_paragraph("IVS-TableTitle")
+        self.doc.write_text(_("Individual Facts"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
 
-        event_list = [ self.person.get_birth_handle(), self.person.get_death_handle() ]
-        event_list = event_list + self.person.get_event_list()
+        event_list = [ self.start_person.get_birth_handle(),
+                       self.start_person.get_death_handle() ]
+        event_list = event_list + self.start_person.get_event_list()
         for event_handle in event_list:
             if event_handle:
                 event = self.database.get_event_from_handle(event_handle)
                 self.write_fact(event)
-        self.d.end_table()
+        self.doc.end_table()
 
         self.write_families()
-        self.end()
 
 #------------------------------------------------------------------------
 #

@@ -936,48 +936,47 @@ class GrampsDrawFormatComboBox(gtk.ComboBox):
     def get_printable(self):
         return _drawdoc[self.get_active()][5]
 
-#-------------------------------------------------------------------------
-#
-# get_book_menu
-#
-#-------------------------------------------------------------------------
-def get_book_menu(main_menu,tables,callback,obj=None,active=None):
+class GrampsBookFormatComboBox(gtk.ComboBox):
 
-    index = 0
-    myMenu = gtk.Menu()
-    _bookdoc.sort()
-    active_found = False
-    other_active = None
-    for item in _bookdoc:
-        if tables and item[2] == 0:
-            continue
-        name = item[0]
-        menuitem = gtk.MenuItem(name)
-        menuitem.set_data("name",item[1])
-        menuitem.set_data("label",name)
-        menuitem.set_data("styles",item[4])
-        menuitem.set_data("paper",item[3])
-        menuitem.set_data("ext",item[5])
-        menuitem.set_data("obj",obj)
-        if callback:
-            menuitem.connect("activate",callback)
-        menuitem.show()
-        myMenu.append(menuitem)
-        if name == active:
-            myMenu.set_active(index)
-            if callback:
-                callback(menuitem)
-            active_found = True
-        elif name == GrampsGconfKeys.get_output_preference():
-            other_active = index
-            other_item = menuitem
-        index = index + 1
+    def set(self,tables,callback,obj=None,active=None):
+        self.store = gtk.ListStore(str)
+        self.set_model(self.store)
+        cell = gtk.CellRendererText()
+        self.pack_start(cell,True)
+        self.add_attribute(cell,'text',0)
 
-    if other_active and not active_found:
-        myMenu.set_active(index)
-        if callback:
-            callback(other_item)
-    main_menu.set_menu(myMenu)
+        out_pref = GrampsGconfKeys.get_output_preference()
+        index = 0
+        _drawdoc.sort()
+        active_index = 0
+        self.data = []
+        for item in _bookdoc:
+            if tables and item[2] == 0:
+                continue
+            self.data.append(item)
+            name = item[0]
+            self.store.append(row=[name])
+            if name == active:
+                active_index = index
+            elif not active and name == out_pref:
+                active_index = index
+            index += 1
+        self.set_active(active_index)
+
+    def get_reference(self):
+        return self.data[self.get_active()][1]
+
+    def get_label(self):
+        return self.data[self.get_active()][0]
+
+    def get_paper(self):
+        return self.data[self.get_active()][3]
+
+    def get_ext(self):
+        return self.data[self.get_active()][5]
+
+    def get_printable(self):
+        return self.data[self.get_active()][6]
 
 #-------------------------------------------------------------------------
 #
