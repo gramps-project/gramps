@@ -1,3 +1,8 @@
+2003-12-30  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* doc/gramps-manual/ru/faq.xml: Update translation.
+	* doc/gramps-manual/ru/keybind.xml: Update translation.
+	* doc/gramps-manual/ru/filtref.xml: Update translation.
+
 2003-12-29  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/WriteXML.py (XmlWriter.write_note): Don't use format=0,
 	since it is the default.
