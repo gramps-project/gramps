@@ -15,7 +15,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>pluginsel</name>
-  <title>Gramps - Plugin Selection</title>
+  <title>Tool Selection - GRAMPS</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -231,7 +231,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>report</name>
-  <title>Gramps - Report Selection</title>
+  <title>Report Selection - GRAMPS</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

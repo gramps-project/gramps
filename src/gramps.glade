@@ -32,7 +32,7 @@
     <handler>on_gramps_configure_event</handler>
     <last_modification_time>Sat, 25 Aug 2001 22:08:28 GMT</last_modification_time>
   </signal>
-  <title>Gramps</title>
+  <title>GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -4236,7 +4236,7 @@
   <class>GtkFileSelection</class>
   <name>fileselection</name>
   <border_width>10</border_width>
-  <title>Gramps - Select File</title>
+  <title>Select File - GRAMPS</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>True</modal>
@@ -4281,7 +4281,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>spouseDialog</name>
-  <title>Gramps - Choose Spouse</title>
+  <title>Choose Spouse - GRAMPS</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>True</modal>
@@ -4690,7 +4690,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>familyDialog</name>
-  <title>Gramps - Choose Parents</title>
+  <title>Choose Parents - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -5264,7 +5264,7 @@ Unknown
 <widget>
   <class>GnomeDialog</class>
   <name>selectChild</name>
-  <title>Gramps - Add Child</title>
+  <title>Add Child - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>True</modal>
@@ -5645,12 +5645,13 @@ Unknown
 <widget>
   <class>GnomeDialog</class>
   <name>marriageQuery</name>
-  <title>Gramps - Marriage Editor</title>
+  <width>280</width>
+  <title>Marriage Editor - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>True</modal>
   <allow_shrink>False</allow_shrink>
-  <allow_grow>False</allow_grow>
+  <allow_grow>True</allow_grow>
   <auto_shrink>False</auto_shrink>
   <auto_close>False</auto_close>
   <hide_on_close>False</hide_on_close>
@@ -5803,7 +5804,7 @@ Unknown
 <widget>
   <class>GnomeDialog</class>
   <name>sourceEditor</name>
-  <title>Gramps - Source Editor</title>
+  <title>Source Editor - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -6306,7 +6307,7 @@ Unknown
 <widget>
   <class>GnomeDialog</class>
   <name>addChild</name>
-  <title>Gramps - Add New Child</title>
+  <title>Add New Child - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>True</modal>
@@ -6807,7 +6808,7 @@ Unknown
 <widget>
   <class>GnomeDialog</class>
   <name>addperson</name>
-  <title>Gramps - Edit Person</title>
+  <title>Edit Person - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>True</modal>
@@ -7137,7 +7138,7 @@ Unknown
     <handler>on_opendb_delete_event</handler>
     <last_modification_time>Mon, 24 Dec 2001 16:08:13 GMT</last_modification_time>
   </signal>
-  <title>Gramps - Open a Database</title>
+  <title>Open a Database - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>True</modal>

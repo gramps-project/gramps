@@ -17,7 +17,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>dbopen</name>
-  <title>Gramps - Open a database</title>
+  <title>Open a database - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>True</modal>
@@ -200,7 +200,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>revselect</name>
-  <title>Gramps - Select an older revision</title>
+  <title>Select an older revision - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -391,7 +391,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>revcom</name>
-  <title>Gramps - Revison Control Comment</title>
+  <title>Revison Control Comment - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

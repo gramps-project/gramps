@@ -21,7 +21,7 @@
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
   <allow_shrink>False</allow_shrink>
-  <allow_grow>False</allow_grow>
+  <allow_grow>True</allow_grow>
   <auto_shrink>False</auto_shrink>
   <auto_close>False</auto_close>
   <hide_on_close>False</hide_on_close>
@@ -196,7 +196,7 @@
 	    <class>GtkNotebook</class>
 	    <child_name>GnomePropertyBox:notebook</child_name>
 	    <name>panel</name>
-	    <width>450</width>
+	    <width>490</width>
 	    <height>350</height>
 	    <show_tabs>False</show_tabs>
 	    <show_border>False</show_border>

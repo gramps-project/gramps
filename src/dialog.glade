@@ -15,7 +15,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>event_edit</name>
-  <title>Gramps - Event Editor</title>
+  <title>Event Editor - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -581,7 +581,7 @@ French
 <widget>
   <class>GnomeDialog</class>
   <name>attr_edit</name>
-  <title>Gramps - Attribute Editor</title>
+  <title>Attribute Editor - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -943,7 +943,7 @@ French
 <widget>
   <class>GnomeDialog</class>
   <name>loc_edit</name>
-  <title>Gramps - Event Editor</title>
+  <title>Event Editor - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

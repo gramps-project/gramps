@@ -17,7 +17,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>find</name>
-  <title>Gramps - Find Person</title>
+  <title>Find Person - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

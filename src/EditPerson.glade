@@ -21,7 +21,7 @@
     <handler>on_delete_event</handler>
     <last_modification_time>Fri, 03 Aug 2001 01:42:42 GMT</last_modification_time>
   </signal>
-  <title>Gramps - Edit Person</title>
+  <title>Edit Person - GRAMPS</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -287,36 +287,6 @@
 	      </widget>
 
 	      <widget>
-		<class>GtkButton</class>
-		<name>button99</name>
-		<border_width>1</border_width>
-		<tooltip>Invoke birth event editor</tooltip>
-		<can_focus>True</can_focus>
-		<signal>
-		  <name>clicked</name>
-		  <handler>on_edit_birth_clicked</handler>
-		  <object>editPerson</object>
-		  <last_modification_time>Tue, 02 Oct 2001 22:28:32 GMT</last_modification_time>
-		</signal>
-		<label>Edit</label>
-		<relief>GTK_RELIEF_NORMAL</relief>
-		<child>
-		  <left_attach>2</left_attach>
-		  <right_attach>3</right_attach>
-		  <top_attach>2</top_attach>
-		  <bottom_attach>3</bottom_attach>
-		  <xpad>0</xpad>
-		  <ypad>0</ypad>
-		  <xexpand>False</xexpand>
-		  <yexpand>False</yexpand>
-		  <xshrink>False</xshrink>
-		  <yshrink>False</yshrink>
-		  <xfill>False</xfill>
-		  <yfill>False</yfill>
-		</child>
-	      </widget>
-
-	      <widget>
 		<class>GtkCombo</class>
 		<name>bpcombo</name>
 		<value_in_list>False</value_in_list>
@@ -379,6 +349,36 @@
 		  <xshrink>False</xshrink>
 		  <yshrink>False</yshrink>
 		  <xfill>True</xfill>
+		  <yfill>False</yfill>
+		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkButton</class>
+		<name>button99</name>
+		<border_width>1</border_width>
+		<tooltip>Invoke birth event editor</tooltip>
+		<can_focus>True</can_focus>
+		<signal>
+		  <name>clicked</name>
+		  <handler>on_edit_birth_clicked</handler>
+		  <object>editPerson</object>
+		  <last_modification_time>Tue, 02 Oct 2001 22:28:32 GMT</last_modification_time>
+		</signal>
+		<label>Edit</label>
+		<relief>GTK_RELIEF_NORMAL</relief>
+		<child>
+		  <left_attach>0</left_attach>
+		  <right_attach>3</right_attach>
+		  <top_attach>2</top_attach>
+		  <bottom_attach>3</bottom_attach>
+		  <xpad>0</xpad>
+		  <ypad>0</ypad>
+		  <xexpand>False</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>False</xfill>
 		  <yfill>False</yfill>
 		</child>
 	      </widget>
@@ -545,36 +545,6 @@
 	      </widget>
 
 	      <widget>
-		<class>GtkButton</class>
-		<name>button126</name>
-		<border_width>1</border_width>
-		<tooltip>Invoke death event editor</tooltip>
-		<can_focus>True</can_focus>
-		<signal>
-		  <name>clicked</name>
-		  <handler>on_edit_death_clicked</handler>
-		  <object>editPerson</object>
-		  <last_modification_time>Tue, 02 Oct 2001 22:28:47 GMT</last_modification_time>
-		</signal>
-		<label>Edit</label>
-		<relief>GTK_RELIEF_NORMAL</relief>
-		<child>
-		  <left_attach>2</left_attach>
-		  <right_attach>3</right_attach>
-		  <top_attach>2</top_attach>
-		  <bottom_attach>3</bottom_attach>
-		  <xpad>0</xpad>
-		  <ypad>0</ypad>
-		  <xexpand>False</xexpand>
-		  <yexpand>False</yexpand>
-		  <xshrink>False</xshrink>
-		  <yshrink>False</yshrink>
-		  <xfill>False</xfill>
-		  <yfill>False</yfill>
-		</child>
-	      </widget>
-
-	      <widget>
 		<class>GtkCombo</class>
 		<name>dpcombo</name>
 		<value_in_list>False</value_in_list>
@@ -614,6 +584,36 @@
 		  <text_max_length>0</text_max_length>
 		  <text></text>
 		</widget>
+	      </widget>
+
+	      <widget>
+		<class>GtkButton</class>
+		<name>button126</name>
+		<border_width>1</border_width>
+		<tooltip>Invoke death event editor</tooltip>
+		<can_focus>True</can_focus>
+		<signal>
+		  <name>clicked</name>
+		  <handler>on_edit_death_clicked</handler>
+		  <object>editPerson</object>
+		  <last_modification_time>Tue, 02 Oct 2001 22:28:47 GMT</last_modification_time>
+		</signal>
+		<label>Edit</label>
+		<relief>GTK_RELIEF_NORMAL</relief>
+		<child>
+		  <left_attach>0</left_attach>
+		  <right_attach>3</right_attach>
+		  <top_attach>2</top_attach>
+		  <bottom_attach>3</bottom_attach>
+		  <xpad>0</xpad>
+		  <ypad>0</ypad>
+		  <xexpand>False</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>False</xfill>
+		  <yfill>False</yfill>
+		</child>
 	      </widget>
 	    </widget>
 	  </widget>
@@ -5318,7 +5318,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>name_edit</name>
-  <title>Gramps - Alternate Name Editor</title>
+  <title>Alternate Name Editor - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -5732,7 +5732,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>addr_edit</name>
-  <title>Gramps - Address Editor</title>
+  <title>Address Editor - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -6308,7 +6308,7 @@ French
 <widget>
   <class>GnomeDialog</class>
   <name>url_edit</name>
-  <title>Gramps - Internet Address Editor</title>
+  <title>Internet Address Editor - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

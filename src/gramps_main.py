@@ -407,7 +407,7 @@ def clear_database():
     const.familyRelations = const.initialize_family_relation_list()
     
     database.new()
-    topWindow.set_title("Gramps")
+    topWindow.set_title("GRAMPS")
     active_person = None
     active_father = None
     active_family = None
@@ -567,7 +567,8 @@ def read_file(filename):
     statusbar.set_status(_("Loading %s ...") % filename)
 
     if load_database(filename) == 1:
-        topWindow.set_title("%s - %s" % (_("Gramps"),filename))
+        name = os.path.basename(filename[:-1])
+        topWindow.set_title("%s - %s" % (name,_("GRAMPS")))
     else:
         statusbar.set_status("")
         Config.save_last_file("")

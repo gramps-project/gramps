@@ -15,7 +15,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>editnote</name>
-  <title>Gramps - Edit Note</title>
+  <title>Edit Note - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
