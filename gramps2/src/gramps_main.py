@@ -147,8 +147,9 @@ class Gramps:
             if leftargs:
                 print "Unrecognized option: %s" % leftargs[0]
                 return
-            outfile = ''
+            outfname = ''
             action = ''
+	    imports = []
             for opt_ix in range(len(options)):
                 o = options[opt_ix][0][1]
                 if o == '-':
@@ -169,7 +170,7 @@ class Gramps:
                     else:
                         print "Unrecognized format for input file %s" % fname
                         return
-                    self.cl_import(fname,format)
+		    imports.append((fname,format))
                 elif o == 'o':
                     outfname = options[opt_ix][1]
                     if opt_ix<len(options)-1 and options[opt_ix+1][0][1]=='f': 
@@ -189,7 +190,25 @@ class Gramps:
                 elif o == 'a':
                     action = options[opt_ix][1]
             
-            if outfname:
+            if imports:
+                # Create dir for imported database(s)
+                self.impdir_path = os.path.expanduser("~/.gramps/import" )
+                if not os.path.isdir(self.impdir_path):
+                    try:
+                        os.mkdir(self.impdir_path,0700)
+                    except:
+                        print "Could not create import directory %s" % impdir_path 
+                        return
+                elif not os.access(self.impdir_path,os.W_OK):
+                    print "Import directory %s is not writable" % self.impdir_path 
+                    return
+
+                self.clear_database(0)
+                self.db.setSavePath(self.impdir_path)
+                for imp in imports:
+                    self.cl_import(imp[0],imp[1])
+
+	    if outfname:
                 self.cl_export(outfname,outformat)
                 self.cl = 1
 
@@ -888,7 +907,63 @@ class Gramps:
         self.topWindow.set_resizable(gtk.TRUE)
         
     def cl_import(self,filename,format):
-        pass
+        if format == 'gedcom':
+            import ReadGedcom
+            filename = os.path.normpath(os.path.abspath(filename))
+            try:
+                ReadGedcom.importData(self.db,filename)
+            except:
+                pass
+        elif format == 'gramps':
+            try:
+                dbname = os.path.join(filename,const.xmlFile)
+                ReadXML.importData(self.db,dbname,None)
+            except:
+                pass
+        elif format == 'gramps-pkg':
+            # Create tempdir, if it does not exist, then check for writability
+            tmpdir_path = os.path.expanduser("~/.gramps/tmp" )
+            if not os.path.isdir(tmpdir_path):
+                try:
+                    os.mkdir(tmpdir_path,0700)
+                except:
+                    print "Could not create temporary directory %s" % tmpdir_path 
+                    return
+            elif not os.access(tmpdir_path,os.W_OK):
+                print "Temporary directory %s is not writable" % tmpdir_path 
+                return
+            else:    # tempdir exists and writable -- clean it up if not empty
+	        files = os.listdir(tmpdir_path) ;
+                for fn in files:
+                    os.remove( os.path.join(tmpdir_path,fn) )
+
+            try:
+                import TarFile
+                t = TarFile.ReadTarFile(filename,tmpdir_path)
+	        t.extract()
+	        t.close()
+            except:
+                print "Error extracting into %s" % tmpdir_path 
+                return
+
+            dbname = os.path.join(tmpdir_path,const.xmlFile)  
+
+            try:
+                ReadXML.importData(self.db,dbname,None)
+            except:
+                pass
+            # Clean up tempdir after ourselves
+            files = os.listdir(tmpdir_path) 
+            for fn in files:
+                os.remove(os.path.join(tmpdir_path,fn))
+
+            os.rmdir(tmpdir_path)
+
+        else:
+            print "Invalid format:  %s" % format
+            return
+
+        return self.post_load(self.impdir_path)
 
     def cl_export(self,filename,format):
         pass
@@ -999,7 +1074,7 @@ class Gramps:
         Utils.clear_timer()
 
         if os.path.exists(filename):
-            if os.path.isdir(filename) == 0:
+            if not os.path.isdir(filename):
                 self.displayError(_("Database could not be opened"),
                                   _("%s is not a directory.") % filename + ' ' + \
                                   _("The file you should attempt to open should be "
