@@ -402,8 +402,8 @@ class Gramps:
                 import MergeData
                 p1 = self.person_list.get_row_data(self.person_list.selection[0])
                 p2 = self.person_list.get_row_data(self.person_list.selection[1])
-                p1 = self.db.getPersonMap()[p1]
-                p2 = self.db.getPersonMap()[p2]
+                p1 = self.db.getPerson(p1)
+                p2 = self.db.getPerson(p2)
                 MergeData.MergePeople(self.db,p1,p2,self.merge_update,
                                       self.update_after_edit)
         elif page == 4:
@@ -867,7 +867,7 @@ class Gramps:
         else:
             for p in self.person_list.selection:
                 person = self.person_list.get_row_data(p)
-                self.load_person(self.db.getPersonMap()[person])
+                self.load_person(self.db.getPerson(person))
 
     def load_active_person(self,obj):
         self.load_person(self.active_person)
@@ -945,7 +945,7 @@ class Gramps:
 
             if row > self.person_list.rows:
                 p = self.person_list.get_row_data(row)
-                self.active_person = self.db.getPersonMap()[p]
+                self.active_person = self.db.getPerson(p)
         self.person_list.thaw()
     
     def merge_update(self,p1,p2):
@@ -963,7 +963,7 @@ class Gramps:
     
     def on_person_list_select_row(self,obj,row,b,c):
         if row == obj.selection[0]:
-            person = self.db.getPersonMap()[obj.get_row_data(row)]
+            person = self.db.getPerson(obj.get_row_data(row))
             self.change_active_person(person)
 
     def on_person_list_click_column(self,obj,column):
@@ -1065,7 +1065,7 @@ class Gramps:
                     self.person_list.select_row(0,0)
                     self.person_list.moveto(0)
                     pid = self.person_list.get_row_data(0)
-                    person = self.db.getPersonMap()[pid]
+                    person = self.db.getPerson(pid)
                     self.change_active_person(person)	
     
     def change_active_person(self,person):
@@ -1092,7 +1092,7 @@ class Gramps:
 	
     def on_child_list_select_row(self,obj,row,b,c):
         id = obj.get_row_data(row)
-        self.active_child = id #self.db.getPersonMap()[id]
+        self.active_child = id 
 
     def on_child_list_click_column(self,clist,column):
         """Called when the user selects a column header on the self.person_list
@@ -1160,7 +1160,7 @@ class Gramps:
                 for i in range(0,rows):
                     clist.set_background(i,(evenbg,oddbg)[i%2])
                     id = clist.get_row_data(i)
-                    person = self.db.getPersonMap()[id]
+                    person = self.db.getPerson(id)
                     if (person.getAncestor()):
                         clist.set_foreground(i,ancestorfg)
                     else:
@@ -1829,11 +1829,9 @@ class Gramps:
         datacomp = self.DataFilter.compare
         
         self.person_list.set_column_visibility(1,GrampsCfg.id_visible)
-    
-        i = 0
+
         for key in self.db.getPersonKeys():
-            i = i + 1
-            person = self.db.getPersonMap()[key]
+            person = self.db.getPerson(key)
             if datacomp(person):
                 if self.id2col.has_key(key):
                     continue

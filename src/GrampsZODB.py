@@ -186,11 +186,11 @@ class GrampsZODB(GrampsDB):
 
         self.familyMap = self.get_object('familyMap')
 
-        if self.root.has_key('pm'):
+        if self.root.has_key('personMap'):
             self.personMap = self.root['personMap']
         else:
             self.personMap = PersonMap()
-            self.root['pm'] = self.personMap
+            self.root['personMap'] = self.personMap
             self.need_commit = 1
 
         self.personTable = self.get_display_table(self.personMap,'personTable')
