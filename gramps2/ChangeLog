@@ -1,4 +1,4 @@
-2003-07-11  Alex Roitman  <shura@alex.neuro.umn.edu>
+2003-07-18  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps_main.py (open_example): Fix destination name when copying
 	files (was directory name).
 	* doc/gramps-manual/C/gramps-manual.xml: Reflect name change for
