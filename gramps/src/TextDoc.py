@@ -22,6 +22,7 @@ import string
 import os
 import xml.sax
 import xml.sax.saxutils
+import utils
 
 #-------------------------------------------------------------------------
 #
@@ -424,10 +425,11 @@ class StyleSheetList:
                 f.write('bold="%d" ' % font.get_bold())
                 f.write('underline="%d" ' % font.get_bold())
                 f.write('color="#%02x%02x%02x"/>\n' % font.get_color())
-                f.write('<para rmargin="%.3f" ' % p.get_right_margin())
-                f.write('lmargin="%.3f" ' % p.get_left_margin())
-                f.write('first="%.3f" ' % p.get_first_indent())
-                f.write('pad="%.3f" ' % p.get_padding())
+                f.write('<para ')
+                f.write('rmargin="%s" ' % utils.fl2txt("%.3f",p.get_right_margin()))
+                f.write('lmargin="%.3f" ' % utils.fl2txt("%.3f",p.get_left_margin()))
+                f.write('first="%.3f" ' % utils.fl2txt("%.3f",p.get_first_indent()))
+                f.write('pad="%.3f" ' % utils.fl2txt("%.3f",p.get_padding()))
                 f.write('bgcolor="#%02x%02x%02x" ' % p.get_background_color())
                 f.write('align="%d" ' % p.get_alignment())
                 f.write('tborder="%d" ' % p.get_top_border())
@@ -517,10 +519,10 @@ class SheetParser(xml.sax.handler.ContentHandler):
             self.f.set_underline(int(attrs['underline']))
             self.f.set_color(cnv2color(attrs['color']))
         elif tag == "para":
-            self.p.set_right_margin(float(attrs['rmargin']))
-            self.p.set_left_margin(float(attrs['lmargin']))
-            self.p.set_first_indent(float(attrs['first']))
-            self.p.set_padding(float(attrs['pad']))
+            self.p.set_right_margin(utils.txt2fl(attrs['rmargin']))
+            self.p.set_left_margin(utils.txt2fl(attrs['lmargin']))
+            self.p.set_first_indent(utils.txt2fl(attrs['first']))
+            self.p.set_padding(utils.txt2fl(attrs['pad']))
             self.p.set_alignment(int(attrs['align']))
             self.p.set_right_border(int(attrs['rborder']))
             self.p.set_left_border(int(attrs['lborder']))

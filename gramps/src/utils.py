@@ -97,3 +97,34 @@ def destroy_passed_object(obj):
     while gtk.events_pending():
         gtk.mainiteration()
 
+#-------------------------------------------------------------------------
+#
+# Get around python's interpretation of commas/periods in floating
+# point numbers
+#
+#-------------------------------------------------------------------------
+import string
+
+if string.find("%.3f" % 1.2, ",") == -1:
+    _use_comma = 0
+else:
+    _use_comma = 1
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def txt2fl(st):
+    if _use_comma:
+        return string.atof(string.replace(st,'.',','))
+    else:
+        return string.atof(string.replace(st,',','.'))
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def fl2txt(fmt,val):
+    return string.replace(fmt % val, ',', '.')

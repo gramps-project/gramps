@@ -205,7 +205,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label6</name>
-	      <label>Maximum  Generations </label>
+	      <label>Maximum Generations</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>0.5</xalign>

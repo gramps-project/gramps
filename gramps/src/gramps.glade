@@ -221,7 +221,7 @@
 		<handler>on_sources_activate</handler>
 		<last_modification_time>Wed, 30 May 2001 01:59:42 GMT</last_modification_time>
 	      </signal>
-	      <label>Sources</label>
+	      <label>_Sources</label>
 	      <right_justify>False</right_justify>
 	    </widget>
 	  </widget>
@@ -1288,7 +1288,7 @@
 	      <class>GtkLabel</class>
 	      <child_name>Notebook:tab</child_name>
 	      <name>label199</name>
-	      <label>label199</label>
+	      <label></label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>0.5</xalign>
@@ -1309,7 +1309,7 @@
 	      <class>GtkLabel</class>
 	      <child_name>Notebook:tab</child_name>
 	      <name>label200</name>
-	      <label>label200</label>
+	      <label></label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>0.5</xalign>

@@ -79,13 +79,13 @@ class HtmlDoc(TextDoc):
                     if top_add == 1:
                         self.top.append(line)
                         match = start.search(line)
-                        if match != None:
+                        if match:
                             top_add = 0
-                        elif bottom_add == 0:
-                            match = stop.search(line)
-                            if match != None:
-                                bottom_add = 1
-                                self.bottom.append(line)
+                    elif bottom_add == 0:
+                        match = stop.search(line)
+                        if match != None:
+                            bottom_add = 1
+                            self.bottom.append(line)
                     else:
                         self.bottom.append(line)
                 templateFile.close()

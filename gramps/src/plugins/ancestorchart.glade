@@ -199,7 +199,7 @@
 	    <class>GtkRadioButton</class>
 	    <name>openoffice</name>
 	    <can_focus>True</can_focus>
-	    <label>OpenOffice </label>
+	    <label>OpenOffice</label>
 	    <active>True</active>
 	    <draw_indicator>True</draw_indicator>
 	    <group>format</group>

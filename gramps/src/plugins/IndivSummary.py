@@ -333,6 +333,9 @@ def report(database,person):
     global glade_file
     global db
     global style_sheet_list
+
+    if person == None:
+        return
     
     active_person = person
     db = database

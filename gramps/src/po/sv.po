@@ -4,160 +4,162 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps 0.1.3b2\n"
-"POT-Creation-Date: 2001-06-02 16:57-0600\n"
-"PO-Revision-Date: 2001-05-24 19:45+0200\n"
+"Project-Id-Version: Gramps 0.2.0\n"
+"POT-Creation-Date: 2001-06-06 18:58-0600\n"
+"PO-Revision-Date: 2001-06-04 12:00+0200\n"
 "Last-Translator: Bo Rosén <bo.rosen@home.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: glade.c:1322
+#: glade.c:1424
 msgid "\n"
-msgstr ""
+msgstr "\n"
 
 #: glade.c:10
 msgid "%P %%"
 msgstr "%P %%"
 
-#: glade.c:1233
+#: glade.c:1335
 #, c-format
 msgid "%d broken family links were found\n"
 msgstr "%d brutna familjelänkar funna\n"
 
-#: glade.c:1237
+#: glade.c:1339
 #, c-format
 msgid "%d broken family photos were found\n"
 msgstr "%d brutna länkar till familjefoton funna\n"
 
-#: glade.c:1239
+#: glade.c:1341
 #, c-format
 msgid "%d broken personal photos were found\n"
 msgstr "%d brutna länkar till personliga foton funna\n"
 
-#: glade.c:1235
+#: glade.c:1337
 #, c-format
 msgid "%d empty families were found\n"
 msgstr "%d tomma familjer funna\n"
 
-#: glade.c:1316
+#: glade.c:1418
 #, c-format
 msgid "%d nicknames were extracted\n"
 msgstr "%d smeknamn hämtades\n"
 
-#: glade.c:1318
+#: glade.c:1420
 #, c-format
 msgid "%d titles were extracted"
 msgstr "%d titlar hämtades"
 
-#: glade.c:1210
+#: glade.c:1312
 #, c-format
 msgid "%s Generation"
 msgstr "%s Generationen"
 
-#: glade.c:1143 glade.c:1144
+#: glade.c:1245 glade.c:1246
 #, c-format
 msgid "%s could not be opened\n"
 msgstr "%s kunde inte öppnas\n"
 
-#: glade.c:1145
+#: glade.c:1247
 #, c-format
 msgid "%s is a corrupt file"
 msgstr "%s är en skadad fil"
 
-#: glade.c:1161 glade.c:1165
+#: glade.c:1263 glade.c:1267
 #, c-format
 msgid "%s is not a directory"
 msgstr "%s är inte en katalog"
 
-#: glade.c:1311
+#: glade.c:1413
 #, c-format
 msgid "%s is not a valid GEDCOM file"
 msgstr "%s är inte en korrekt GEDCOM-fil"
 
-#: glade.c:1213
+#: glade.c:1315
 #, c-format
 msgid "%s was born in the year %s in %s. "
 msgstr "%s föddes år %s i %s. "
 
-#: glade.c:1214
+#: glade.c:1316
 #, c-format
 msgid "%s was born in the year %s. "
 msgstr "%s föddes år %s. "
 
-#: glade.c:1211
+#: glade.c:1313
 #, c-format
 msgid "%s was born on %s in %s. "
-msgstr "%s föddes den %s i %s."
+msgstr "%s föddes den %s i %s. "
 
-#: glade.c:1212
+#: glade.c:1314
 #, c-format
 msgid "%s was born on %s. "
-msgstr "%s föddes den %s."
+msgstr "%s föddes den %s. "
 
 #: glade.c:13
 msgid "(Recommended only for English)"
 msgstr "(Rekommenderas endast för engelska)"
 
-#: glade.c:1069
-msgid "(and|to)"
+#: glade.c:1159
+#, fuzzy
+msgid "(and|to|-)"
 msgstr "(och|till)"
 
-#: glade.c:1068
-msgid "(from|between|bet)"
+#: glade.c:1158
+#, fuzzy
+msgid "(from|between|bet|bet.)"
 msgstr "(från|mellan)"
 
-#: glade.c:1225
+#: glade.c:1327
 #, c-format
 msgid ", and was buried in the year %s in %s."
 msgstr ", och begravdes år %s i %s."
 
-#: glade.c:1226
+#: glade.c:1328
 #, c-format
 msgid ", and was buried in the year %s."
 msgstr ", och begravdes år %s."
 
-#: glade.c:1223
+#: glade.c:1325
 #, c-format
 msgid ", and was buried on %s in %s."
-msgstr ", och bagravdes den %s i %s."
+msgstr ", och begravdes den %s i %s."
 
-#: glade.c:1224
+#: glade.c:1326
 #, c-format
 msgid ", and was buried on %s."
 msgstr ", och begravdes den %s."
 
-#: glade.c:1232
+#: glade.c:1334
 msgid "1 broken family link was found\n"
 msgstr "En trasig familjelänk upptäcktes\n"
 
-#: glade.c:1236
+#: glade.c:1338
 msgid "1 broken family photo was found\n"
 msgstr "En trasig länk till familjefoto upptäcktes\n"
 
-#: glade.c:1238
+#: glade.c:1340
 msgid "1 broken personal photo was found\n"
 msgstr "En trasig länk till personligt foto upptäcktes\n"
 
-#: glade.c:1234
+#: glade.c:1336
 msgid "1 empty family was found\n"
 msgstr "En tom familj upptäcktes\n"
 
-#: glade.c:1315
+#: glade.c:1417
 msgid "1 nickname was extracted"
 msgstr "Ett smeknamn hämtades"
 
-#: glade.c:1317
+#: glade.c:1419
 msgid "1 title was extracted"
 msgstr "En titel hämtades"
 
 #: glade.c:16
 msgid "A4"
-msgstr ""
+msgstr "A4"
 
-#: glade.c:1105 glade.c:1110 glade.c:1112 glade.c:1114 glade.c:1116
-#: glade.c:1118
+#: glade.c:1203 glade.c:1208 glade.c:1210 glade.c:1212 glade.c:1214
+#: glade.c:1216
 msgid "AFTER"
 msgstr "EFTER"
 
@@ -165,345 +167,362 @@ msgstr "EFTER"
 msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
 msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvXxYyZzÅåÄäÖö"
 
-#: glade.c:23
+#: glade.c:22 glade.c:1231
 msgid "AbiWord"
 msgstr "AbiWord"
 
-#: glade.c:26
+#: glade.c:25
 msgid "Active person's name and attribute"
-msgstr ""
+msgstr "Den aktiva personens namn och egenskaper"
 
-#: glade.c:29
+#: glade.c:28
 msgid "Active person's name and gramps ID"
-msgstr ""
+msgstr "Den aktiva personens namn och gramps-ID"
 
-#: glade.c:32
-#, fuzzy
+#: glade.c:31
 msgid "Active person's name only"
-msgstr "Visa den aktiva personens anor"
+msgstr "Visa endast den aktiva personens namn"
 
-#: glade.c:37
+#: glade.c:36
 msgid "Add"
 msgstr "Lägg till"
 
-#: glade.c:40
+#: glade.c:39
 msgid "Add Bookmark"
 msgstr "Lägg till bokmärke"
 
-#: glade.c:43
+#: glade.c:42
 msgid "Add Child"
 msgstr "Lägg till barn"
 
-#: glade.c:46
+#: glade.c:45
 msgid "Add Existing Child"
 msgstr "Lägg till existerande barn"
 
-#: glade.c:49
+#: glade.c:48
 msgid "Add New Child"
 msgstr "Lägg till nytt barn"
 
-#: glade.c:52
+#: glade.c:51
 msgid "Add Person"
 msgstr "Lägg till person"
 
-#: glade.c:55
+#: glade.c:54
 msgid "Add Photo"
 msgstr "Lägg till foto"
 
-#: glade.c:58
-#, fuzzy
+#: glade.c:57
 msgid "Add Source"
-msgstr "Källa"
+msgstr "Lägg till källa"
 
-#: glade.c:61
+#: glade.c:60
 msgid "Add a new spouse"
 msgstr "Lägg till nytt gifte"
 
-#: glade.c:64
-#, fuzzy
+#: glade.c:63
 msgid "Address"
 msgstr "Adress"
 
-#: glade.c:67
+#: glade.c:66
 msgid "Addresses"
 msgstr "Adresser"
 
-#: glade.c:70
+#: glade.c:69
 msgid "Adopted"
 msgstr "Adopterad"
 
-#: glade.c:73
+#: glade.c:72
 msgid "Ahnentafel Report"
 msgstr "Antavla"
 
-#: glade.c:1209
+#: glade.c:1311
 #, c-format
 msgid "Ahnentafel Report for %s"
 msgstr "Antavla för %s"
 
-#: glade.c:1247
+#: glade.c:1349
 msgid ""
 "Aids in the analysis of data by allowing the development of custom filters "
 "that can be applied to the database to find similar events"
 msgstr ""
-"Hjälper vid analys av data genom att man kan skapa egna filter\n"
-"som kan användas mot databasen för att hitta liknande händelser"
+"Hjälper vid analys av data genom att man kan skapa egna filtersom kan "
+"användas mot databasen för att hitta liknande händelser"
 
-#: glade.c:1129 glade.c:1130 glade.c:1131
+#: glade.c:75
+msgid "Alignment"
+msgstr ""
+
+#: glade.c:1227 glade.c:1228 glade.c:1229
 msgid "All people"
 msgstr "Alla personer"
 
-#: glade.c:1229
+#: glade.c:1331
 msgid "Allows all the events of a certain name to be renamed to a new name"
 msgstr "Ge alla händelser av en speciell typ ett nytt namn"
 
-#: glade.c:76
+#: glade.c:78
 msgid "Alternate Names"
 msgstr "Alternativa namn"
 
-#: glade.c:1248
+#: glade.c:1350
 msgid "Analysis and Exploration/Compare individual events"
 msgstr "Analys och undersökning/Jämför personliga händelser"
 
-#: glade.c:1242
+#: glade.c:1344
 msgid "Analysis and Exploration/Interactive descendant browser"
-msgstr "Analys och utforskning/Interaktiv bläddrare för ättlingar"
+msgstr "Analys och undersökning/Interaktiv bläddrare för ättlingar"
 
-#: glade.c:79
+#: glade.c:81
 msgid "Ancestor Chart"
 msgstr "Stamtavla"
 
-#: glade.c:1174
+#: glade.c:1276
 #, c-format
 msgid "Ancestor Chart for %s"
 msgstr "Stamtavla för %s"
 
-#: glade.c:82
+#: glade.c:84
 msgid "Ancestor Graph"
 msgstr "Stamtavla som tabell"
 
-#: glade.c:1266
+#: glade.c:1368
 msgid "Ancestors"
 msgstr "Anor"
 
-#: glade.c:1333
+#: glade.c:1435
 #, c-format
 msgid "Ancestors and Descendants of %s"
 msgstr "Anor och ättlingar för %s"
 
-#: glade.c:1268
+#: glade.c:1370
 msgid "Ancestors and descendants"
 msgstr "Anor och ättlingar"
 
-#: glade.c:1331
+#: glade.c:1433
 #, c-format
 msgid "Ancestors of %s"
 msgstr "Anor för %s"
 
-#: glade.c:85
+#: glade.c:87
 msgid "Appearance"
 msgstr "Utseende"
 
-#: glade.c:88
+#: glade.c:90
 msgid "Append to Current Database"
 msgstr "Lägg till nuvarande databas"
 
-#: glade.c:1077
+#: glade.c:1167
 msgid "April"
 msgstr "april"
 
-#: glade.c:92
+#: glade.c:94
 msgid "Attribute"
 msgstr "Egenskap"
 
-#: glade.c:95
+#: glade.c:97
 msgid "Attributes"
 msgstr "Egenskaper"
 
-#: glade.c:1081
+#: glade.c:1171
 msgid "August"
 msgstr "augusti"
 
-#: glade.c:98
+#: glade.c:100
 msgid "Author"
 msgstr "Författare"
 
-#: glade.c:101
+#: glade.c:103
 msgid "Automatically load last database"
 msgstr "Läs in förra databasen automatiskt"
 
-#: glade.c:1104 glade.c:1109 glade.c:1111 glade.c:1113 glade.c:1115
-#: glade.c:1117
+#: glade.c:1202 glade.c:1207 glade.c:1209 glade.c:1211 glade.c:1213
+#: glade.c:1215
 msgid "BEFORE"
 msgstr "FÖRE"
 
-#: glade.c:104
+#: glade.c:106
+#, fuzzy
+msgid "Background"
+msgstr "Bakgrundsfärg"
+
+#: glade.c:109
 msgid "Background Color"
 msgstr "Bakgrundsfärg"
 
-#: glade.c:107
+#: glade.c:112
 msgid "Basic"
 msgstr "Grundläggande"
 
-#: glade.c:110
+#: glade.c:115
 msgid "Biological"
 msgstr "Biologisk"
 
-#: glade.c:113 glade.c:1250 glade.c:1279
+#: glade.c:118 glade.c:1352 glade.c:1381
 msgid "Birth"
 msgstr "Födelse"
 
-#: glade.c:118
+#: glade.c:123
 msgid "Birth Date"
 msgstr "Födelsedatum"
 
-#: glade.c:121
-#, fuzzy
+#: glade.c:126
 msgid "Birth Place"
 msgstr "Födelseort"
 
-#: glade.c:124
+#: glade.c:129
 msgid "Birthdate"
 msgstr "Födelsedatum"
 
-#: glade.c:127
+#: glade.c:132
+msgid "Bold"
+msgstr ""
+
+#: glade.c:135
 msgid "Border Color"
 msgstr "Kantfärg"
 
-#: glade.c:130
+#: glade.c:138
+#, fuzzy
+msgid "Borders"
+msgstr "Kantfärg"
+
+#: glade.c:141
 msgid "Box Color"
 msgstr "Rutfärg"
 
-#: glade.c:133
+#: glade.c:144
 msgid "Calculate SoundEx code for the name"
 msgstr "Beräkna SoundEx-kod för namnet"
 
-#: glade.c:1326
+#: glade.c:1428
 msgid "Calculates the relationship between two people"
 msgstr "Beräknar släktskap mellan två personer"
 
-#: glade.c:136
+#: glade.c:147
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: glade.c:1171
+#: glade.c:1273
 msgid "Cannot revert to a previous database, since one does not exist"
 msgstr "Kan inte återgå till tidigare databas eftersom ingen finns"
 
-#: glade.c:139
-#, fuzzy
+#: glade.c:150
 msgid "Change Event Type of"
 msgstr "Ändra händelsetyp"
 
-#: glade.c:142
+#: glade.c:153
 msgid "Change Event Types"
 msgstr "Ändra typ av händelser"
 
-#: glade.c:145
+#: glade.c:156
 msgid "Change Photo Description"
 msgstr "Ändra fotobeskrivning"
 
-#: glade.c:1119
+#: glade.c:1217
 msgid "Changing the gender caused problems with marriage information."
 msgstr "Ändring av kön skapade problem med äktenskapsinformationen."
 
-#: glade.c:1240
+#: glade.c:1342
 msgid "Checks the database for any relationship errors"
 msgstr "Kontrollerar databasen för släktskapsfel"
 
-#: glade.c:148 glade.c:1257 glade.c:1289 glade.c:1296
+#: glade.c:159 glade.c:1359 glade.c:1391 glade.c:1398
 msgid "Children"
 msgstr "Barn"
 
-#: glade.c:151
+#: glade.c:162
 msgid "Choose Parents"
 msgstr "Välj föräldrar"
 
-#: glade.c:154
+#: glade.c:165
 msgid "Choose Spouse"
 msgstr "Välj gifte"
 
-#: glade.c:157
+#: glade.c:168
 msgid "Choose source information"
 msgstr "Välj information om källan"
 
-#: glade.c:162
+#: glade.c:173
 msgid "Choose the HTML template"
 msgstr "Välj HTML-mall"
 
-#: glade.c:165
-#, fuzzy
+#: glade.c:176
 msgid "City"
 msgstr "Stad"
 
-#: glade.c:168
-#, fuzzy
+#: glade.c:179
 msgid "City/County"
-msgstr "Stad/län "
+msgstr "Stad/län"
 
-#: glade.c:171
+#: glade.c:182
 msgid "Close"
 msgstr "Stäng"
 
-#: glade.c:174
+#: glade.c:185
 msgid "Close Window"
 msgstr "Stäng fönster"
 
-#: glade.c:177
+#: glade.c:188
 #, fuzzy
+msgid "Color"
+msgstr "Rutfärg"
+
+#: glade.c:191
 msgid "Comments"
 msgstr "Kommentarer"
 
-#: glade.c:180
+#: glade.c:194
 msgid "Complete"
 msgstr "Fullständig"
 
-#: glade.c:183
+#: glade.c:197
 msgid "Contents"
 msgstr "Innehåll"
 
-#: glade.c:1124 glade.c:1128
+#: glade.c:1222 glade.c:1226
 msgid "Convert to private copy"
 msgstr "Gör om till privat kopia"
 
-#: glade.c:1149
-#, fuzzy, c-format
+#: glade.c:1251
+#, c-format
 msgid "Could load load image file %s"
 msgstr "Kunde inte öppna %s"
 
-#: glade.c:1166 glade.c:1167 glade.c:1168
+#: glade.c:1268 glade.c:1269 glade.c:1270
 #, c-format
 msgid "Could not create %s"
 msgstr "Kunde inte skapa %s"
 
-#: glade.c:1272 glade.c:1273
+#: glade.c:1374 glade.c:1375
 #, c-format
 msgid "Could not create the directory : %s"
 msgstr "Kunde inte skapa katalog: %s"
 
-#: glade.c:1323
+#: glade.c:1425
 #, c-format
 msgid "Could not import %s: currently an unknown file type"
-msgstr ""
+msgstr "Kunde inte importera %s eftersom det är en för närvarande okänd filtyp"
 
-#: glade.c:1322
+#: glade.c:1424
 #, c-format
 msgid ""
 "Could not import %s: either the file could not be found, or it was not a "
 "valid image"
 msgstr ""
+"Kunde inte importera %s: antingen kunde filen inte hittas eller också är den "
+"inte en korrekt bild"
 
-#: glade.c:1312 glade.c:1313
+#: glade.c:1414 glade.c:1415
 #, c-format
 msgid "Could not load %s"
 msgstr "Kunde inte öppna %s"
 
-#: glade.c:1208
+#: glade.c:1310
 #, c-format
 msgid "Could not open %s"
 msgstr "Kunde inte öppna %s "
 
-#: glade.c:1133 glade.c:1134
+#: glade.c:1235 glade.c:1236
 #, c-format
 msgid ""
 "Could not open %s\n"
@@ -512,21 +531,20 @@ msgstr ""
 "Kunde inte öppna %s\n"
 "Använder standard-mall"
 
-#: glade.c:1274 glade.c:1275
+#: glade.c:1376 glade.c:1377
 #, c-format
 msgid "Could not open the template file (%s)"
 msgstr "Kunde inte öppna mallen (%s)"
 
-#: glade.c:186
-#, fuzzy
+#: glade.c:200
 msgid "Country"
 msgstr "Land"
 
-#: glade.c:189
+#: glade.c:203
 msgid "Created by"
-msgstr ""
+msgstr "Skapad av"
 
-#: glade.c:1259
+#: glade.c:1361
 msgid ""
 "Creates a family group report, showing information on a set of parents and "
 "their children."
@@ -534,1314 +552,1352 @@ msgstr ""
 "Skapar en familjerapport som visar information om ett föräldrapar och deras "
 "barn."
 
-#: glade.c:192
+#: glade.c:206
 msgid "Creates a new event from the above data"
 msgstr "Skapar ny händelse utifrån ovanstående data"
 
-#: glade.c:1148
+#: glade.c:1250
 msgid "Currently only image files are supported"
 msgstr "För närvarande stöds bara bildfiler"
 
-#: glade.c:195
+#: glade.c:209
 msgid "Custom Colors"
 msgstr "Anpassade färger"
 
-#: glade.c:1241
+#: glade.c:1343
 msgid "Database Processing/Check database integrity"
 msgstr "Databashantering/Kontrollera databasintegritet"
 
-#: glade.c:1320
+#: glade.c:1422
 msgid "Database Processing/Extract information from names"
 msgstr "Databashantering/Hämta information från namn"
 
-#: glade.c:1310
+#: glade.c:1412
 msgid "Database Processing/Merge people"
 msgstr "Databashantering/Slå ihop individer"
 
-#: glade.c:1230
+#: glade.c:1332
 msgid "Database Processing/Rename personal event types"
 msgstr "Databashantering/Ge nya namn till personliga händelser"
 
-#: glade.c:198
+#: glade.c:212
 msgid "Database Summary"
 msgstr "Sammanfattning av databasen"
 
-#: glade.c:203 glade.c:1276
+#: glade.c:217 glade.c:1378
 msgid "Date"
 msgstr "Datum"
 
-#: glade.c:206
-#, fuzzy
+#: glade.c:220
 msgid "Date Format"
 msgstr "Datumformat"
 
-#: glade.c:209 glade.c:1251 glade.c:1280
+#: glade.c:223 glade.c:1353 glade.c:1382
 msgid "Death"
 msgstr "Död"
 
-#: glade.c:212
-#, fuzzy
+#: glade.c:226
 msgid "Death Date"
 msgstr "Dödsdatum"
 
-#: glade.c:215
-#, fuzzy
+#: glade.c:229
 msgid "Death place"
 msgstr "Dödsort"
 
-#: glade.c:1085
+#: glade.c:1175
 msgid "December"
 msgstr "december"
 
-#: glade.c:220
+#: glade.c:235
 msgid "Delete"
 msgstr "Ta bort"
 
-#: glade.c:223
+#: glade.c:238
 msgid "Delete Person"
 msgstr "Ta bort person"
 
-#: glade.c:226
+#: glade.c:241
 msgid "Delete Photo"
 msgstr "Ta bort foto"
 
-#: glade.c:229
-#, fuzzy
+#: glade.c:244
 msgid "Delete Source"
-msgstr "Välj källa"
+msgstr "Ta bort källa"
 
-#: glade.c:232
+#: glade.c:247
 msgid "Delete the selected event"
 msgstr "Ta bort den valda händelsen"
 
-#: glade.c:235
+#: glade.c:250
 msgid "Descendant Browser"
 msgstr "Bläddrare för ättlingar"
 
-#: glade.c:238
+#: glade.c:253
 msgid "Descendant Report"
 msgstr "Rapport för ättlingar"
 
-#: glade.c:1267
+#: glade.c:1369
 msgid "Descendants"
 msgstr "Ättlingar"
 
-#: glade.c:1244 glade.c:1332
+#: glade.c:1346 glade.c:1434
 #, c-format
 msgid "Descendants of %s"
 msgstr "Ättlingar till %s"
 
-#: glade.c:242
+#: glade.c:257
 msgid "Description"
 msgstr "Beskrivning"
 
-#: glade.c:245
+#: glade.c:260
 msgid "Determining Possible Merges"
 msgstr "Kontrollerar möjliga hopslagningar"
 
-#: glade.c:1338
+#: glade.c:1441
 msgid "Disconnected individuals"
-msgstr "Personer utan länkar"
+msgstr "Personer utan familj"
 
-#: glade.c:248
+#: glade.c:263
 msgid "Display Formats"
 msgstr "Visningsformat"
 
-#: glade.c:251
+#: glade.c:266
 msgid "Display active person's family relationships"
 msgstr "Visa den aktiva personens familjeband"
 
-#: glade.c:254
+# Hitta på något bättre här
+#: glade.c:269
 msgid "Display attribute on Edit Person form"
-msgstr ""
+msgstr "Visa egenskaper på Redigera person-formuläret"
 
-#: glade.c:257
+#: glade.c:272
 msgid "Display list of people"
 msgstr "Visa lista över personer"
 
-#: glade.c:260
+#: glade.c:275
 msgid "Do Nothing"
 msgstr "Gör ingenting"
 
-#: glade.c:263
+#: glade.c:278
 msgid "Do not display alternate names in person list"
 msgstr "Visa inte alternativa namn i personlista"
 
-#: glade.c:266
+#: glade.c:281
 msgid "Do not make a private copy"
 msgstr "Skapa inte en privat kopia"
 
-#: glade.c:269
+#: glade.c:284
 msgid "Do not use photographs"
 msgstr "Använd inte foton"
 
-#: glade.c:272
+#: glade.c:287
 msgid "Do not use photographs for living people"
 msgstr "Använd inte foton för levande personer"
 
-#: glade.c:1169
+#: glade.c:1271
 #, c-format
 msgid "Do you really wish to delete %s?"
 msgstr "Vill du verkligen ta bort %s?"
 
-#: glade.c:1170
+#: glade.c:1272
 msgid ""
 "Do you wish to abandon your changes and revert to the last saved database?"
 msgstr ""
 "Vill du ignorera dina ändringar och återgå till den senast sparade databasen?"
 
-#: glade.c:1160
+#: glade.c:1262
 msgid "Do you wish to delete all entries and create a new database?"
 msgstr "Vill du ta bort all information och skapa en ny databas?"
 
-#: glade.c:1156 glade.c:1158
+#: glade.c:1258 glade.c:1260
 msgid "Do you wish to save the changes?"
 msgstr "Vill du spara ändringarna?"
 
-#: glade.c:1173
+#: glade.c:1275
 #, c-format
 msgid "Do you wish to set %s as the home person?"
 msgstr "vill du att %s ska vara proband?"
 
-#: glade.c:275
+#: glade.c:290
+msgid "Document Styles"
+msgstr ""
+
+#: glade.c:293
+#, fuzzy
+msgid "Edit"
+msgstr "Redigera anteckningar"
+
+#: glade.c:296
 msgid "Edit Bookmarks"
 msgstr "Redigera bokmärken"
 
-#: glade.c:1123 glade.c:1127 glade.c:1137
+#: glade.c:1221 glade.c:1225 glade.c:1239
 msgid "Edit Description"
 msgstr "Redigera beskrivning"
 
-#: glade.c:278
+#: glade.c:299
 msgid "Edit Marriage"
 msgstr "Redigera äktenskap"
 
-#: glade.c:281
-#, fuzzy
+#: glade.c:302
 msgid "Edit Note"
-msgstr "Redigera foto"
+msgstr "Redigera anteckningar"
 
-#: glade.c:284
+#: glade.c:305
 msgid "Edit Person"
 msgstr "Redigera person"
 
-#: glade.c:1122 glade.c:1126 glade.c:1136
+#: glade.c:1220 glade.c:1224 glade.c:1238
 msgid "Edit Photo"
 msgstr "Redigera foto"
 
-#: glade.c:287
-#, fuzzy
+#: glade.c:308
 msgid "Edit Source"
-msgstr "Källa"
+msgstr "Reigera källa"
 
-#: glade.c:290
+#: glade.c:311
 msgid "Edit marriage information"
 msgstr "Redigera äktenskapsinformation"
 
-#: glade.c:293
+#: glade.c:314
 msgid "Edit the active person's marriages"
 msgstr "Redigera den aktiva personens äktenskap"
 
-#: glade.c:1186
+#: glade.c:1288
 msgid "Eighth"
 msgstr "Åttonde"
 
-#: glade.c:1196
-msgid "Eigthteenth"
+#: glade.c:1298
+#, fuzzy
+msgid "Eightteenth"
 msgstr "Artonde"
 
-#: glade.c:1189
+#: glade.c:1291
 msgid "Eleventh"
 msgstr "Elfte"
 
-#: glade.c:296
+#: glade.c:317
 msgid "Enable Custom Colors"
 msgstr "Använd anpassade färger"
 
-#: glade.c:299
+#: glade.c:320
 msgid "Encoding"
-msgstr ""
+msgstr "Kodning"
 
-#: glade.c:1330
+#: glade.c:1432
 msgid "Entire Database"
 msgstr "Hela databasen"
 
-#: glade.c:1270
+#: glade.c:1372
 msgid "Entire database"
 msgstr "Hela databasen"
 
-#: glade.c:302
+#: glade.c:323
 msgid "Entry Formats"
 msgstr "Format för inmatning"
 
-#: glade.c:1146 glade.c:1147
+#: glade.c:1248 glade.c:1249
 #, c-format
 msgid "Error reading %s"
 msgstr "Fel vid läsning av %s"
 
-#: glade.c:305
-#, fuzzy
+#: glade.c:326
 msgid "Even Row Background"
 msgstr "Bakgrund för jämna rader"
 
-#: glade.c:308
-#, fuzzy
+#: glade.c:329
 msgid "Even Row Foreground"
 msgstr "Förgrund för jämna rader"
 
-#: glade.c:311
+#: glade.c:332
 msgid "Event"
 msgstr "Händelse"
 
-#: glade.c:314
+#: glade.c:335
 msgid "Event Comparison"
 msgstr "Jämförelse av händelser"
 
-#: glade.c:317
-#, fuzzy
+#: glade.c:338
 msgid "Event Type"
 msgstr "Typ av händelse"
 
-#: glade.c:320
+#: glade.c:341
 msgid "Events"
 msgstr "Händelser"
 
-#: glade.c:323
+#: glade.c:344
 msgid "Exchange active person and displayed spouse"
 msgstr "Byt aktuell person och visat gifte"
 
-#: glade.c:326
+#: glade.c:347
 msgid "Export"
 msgstr "Exportera"
 
-#: glade.c:329
+#: glade.c:350
 msgid "Export GEDCOM"
 msgstr "Exportera GEDCOM"
 
-#: glade.c:332
+#: glade.c:353
 msgid "Export GEDCOM file"
 msgstr "Exportera GEDCOM-fil"
 
-#: glade.c:1335
+#: glade.c:1437
 msgid "Export to GEDCOM"
 msgstr "Exportera till GEDCOM"
 
-#: glade.c:1141
+#: glade.c:1243
 #, c-format
 msgid "Failed to load the module: %s"
 msgstr "Kunde inte ladda modul: %s"
 
-#: glade.c:335
+#: glade.c:356
 msgid "Family"
 msgstr "Familj"
 
-#: glade.c:338 glade.c:1249
+#: glade.c:359 glade.c:1351
 msgid "Family Group Report"
 msgstr "Familjerapport"
 
-#: glade.c:1258
-#, fuzzy, c-format
+#: glade.c:1360
+#, c-format
 msgid "Family Group Report for %s"
 msgstr "Familjereapport för %s"
 
-#: glade.c:1278
+#: glade.c:1380
 msgid "Family Tree"
 msgstr "Släktträd"
 
-#: glade.c:1291
+#: glade.c:1393
 msgid "Family Tree - Index"
 msgstr "Släktträd - Innehåll"
 
-#: glade.c:1292
+#: glade.c:1394
 msgid "Family Tree Index"
 msgstr "Släktträd innehåll"
 
-#: glade.c:342 glade.c:1252 glade.c:1302
+#: glade.c:363 glade.c:1354 glade.c:1404
 msgid "Father"
 msgstr "Fader"
 
-#: glade.c:1075
+#: glade.c:1165
 msgid "February"
 msgstr "februari"
 
-#: glade.c:1301
+#: glade.c:1403
 msgid "Female"
 msgstr "Kvinna"
 
-#: glade.c:1341
+#: glade.c:1444
 msgid "Females"
 msgstr "Kvinnor"
 
-#: glade.c:1193
+#: glade.c:1295
 msgid "Fifteenth"
 msgstr "Femtonde"
 
-#: glade.c:1183
+#: glade.c:1285
 msgid "Fifth"
 msgstr "Femte"
 
-#: glade.c:345
-#, fuzzy
+#: glade.c:366
 msgid "File"
-msgstr "Filter"
+msgstr "Fil"
 
-#: glade.c:348
-#, fuzzy
+#: glade.c:369
 msgid "File Prefix"
 msgstr "Filprefix"
 
-#: glade.c:353
+#: glade.c:374
 msgid "Filter"
 msgstr "Filter"
 
-#: glade.c:1179
+#: glade.c:1281
 msgid "First"
 msgstr "Första"
 
-#: glade.c:356 glade.c:1307
+#: glade.c:377 glade.c:1409
 msgid "First Person"
 msgstr "Första personen"
 
-#: glade.c:1065
+#: glade.c:1155
 msgid "Firstname Surname"
 msgstr "Förnamn Efternamn"
 
-#: glade.c:359
+#: glade.c:380
 msgid "Font"
 msgstr "Typsnitt"
 
-#: glade.c:1263
+#: glade.c:383
+#, fuzzy
+msgid "Font Options"
+msgstr "Alternativ"
+
+#: glade.c:1365
 msgid ""
 "For more information or to get a copy of GraphViz, goto "
 "http://www.graphviz.org"
 msgstr ""
-"För mer informaton eller för att hämta GraphWiz gå till \n"
+"För mer informaton eller för att hämta GraphViz gå till "
 "http://www.graphwiz.org"
 
-#: glade.c:365
+#: glade.c:389
 msgid "Format"
 msgstr "Format"
 
-#: glade.c:368
+#: glade.c:392
 msgid "Formats"
 msgstr "Format"
 
-#: glade.c:1192
+#: glade.c:1294
 msgid "Fourteenth"
 msgstr "Fjortonde"
 
-#: glade.c:1182
+#: glade.c:1284
 msgid "Fourth"
 msgstr "Fjärde"
 
-#: glade.c:371
+#: glade.c:395
 msgid "GEDCOM Export"
 msgstr "GEDCOM exportera"
 
-#: glade.c:374
+#: glade.c:398
 msgid "GEDCOM Import"
 msgstr "GEDCOM importera"
 
-#: glade.c:377
+#: glade.c:401
 msgid "GEDCOM Import Progress"
 msgstr "GEDCOM importförlopp"
 
-#: glade.c:380
+#: glade.c:404
 msgid "GEDCOM Import Status"
 msgstr "GEDCOM importstatus"
 
-#: glade.c:383
+#: glade.c:407
 msgid "GEDCOM Read Progress"
 msgstr "GEDCOM inläsningsförlopp"
 
-#: glade.c:386
+#: glade.c:410
 msgid "GEDCOM file"
 msgstr "GEDCOM-fil"
 
-#: glade.c:389
+#: glade.c:413
 msgid "Gallery"
 msgstr "Fotoalbum"
 
-#: glade.c:393 glade.c:1299
+#: glade.c:417 glade.c:1401
 msgid "Gender"
 msgstr "Kön"
 
-#: glade.c:396
+#: glade.c:420
 msgid "General"
 msgstr "Allmänt"
 
-#: glade.c:399
+#: glade.c:423
 msgid "Generate HTML reports"
 msgstr "Skapa HTML-rapporter"
 
-#: glade.c:402
+#: glade.c:426
 msgid "Generate Relationship Graphs"
 msgstr "Skapa släktskapsgrafer"
 
-#: glade.c:405
+#: glade.c:429
 msgid "Generate an Ancestor Graph"
-msgstr "Skapa en graf för anor"
+msgstr "Skapa en grafisk antavla"
 
-#: glade.c:1228
+#: glade.c:1330
 msgid "Generate files/Ahnentafel Report"
-msgstr "Skapa filer/Ansedel"
+msgstr "Skapa filer/Antavla"
 
-#: glade.c:1176
+#: glade.c:1278
 msgid "Generate files/Ancestor Chart"
+msgstr "Skapa filer/Grafisk Stamtavla"
+
+#: glade.c:1348
+msgid "Generate files/Descendant Report"
 msgstr "Skapa filer/Stamtavla"
 
-#: glade.c:1246
-msgid "Generate files/Descendant Report"
-msgstr "Skapa filer/Rapport över ättlingar"
-
-#: glade.c:1260
+#: glade.c:1362
 msgid "Generate files/Family Group Report"
 msgstr "Skapa filer/Familjerapport"
 
-#: glade.c:1306
+#: glade.c:1408
 msgid "Generate files/Individual Summary"
-msgstr "Skapa filer/Personsammanfattning"
+msgstr "Skapa filer/Ansedel"
 
-#: glade.c:1294
+#: glade.c:1396
 msgid "Generate files/Individual web pages"
 msgstr "Skapa filer/Personliga webbsidor"
 
-#: glade.c:1264
+# singular eller plural?
+#: glade.c:1366
 msgid "Generate files/Relationship graph"
 msgstr "Skapa filer/Släktskapstavla"
 
-#: glade.c:408
+#: glade.c:432
 msgid "Generate reports"
 msgstr "Skapa rapporter"
 
-#: glade.c:1245
+#: glade.c:1347
 msgid "Generates a list of descendants of the active person"
 msgstr "Skapar en lista över den aktuella personens ättlingar"
 
-#: glade.c:1261
-#, fuzzy
+#: glade.c:1363
 msgid "Generates relationship graphs, currently only in GraphViz format."
 msgstr ""
-"Skapar släktskapstavlor, endast möjligt i Graphwiz-format för närvarande."
+"Skapar släktskapstavlor,  för närvarande endast möjligt i Graphwiz-format"
 
-#: glade.c:1293
+#: glade.c:1395
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr "Skapar webbsidor (HTML) för personer eller en grupp personer."
 
-#: glade.c:412
-#, fuzzy
+#: glade.c:436
 msgid "Generations"
 msgstr "Generationer"
 
-#: glade.c:415
-#, fuzzy
+#: glade.c:439
 msgid "Given Name"
 msgstr "Förnamn"
 
-#: glade.c:418
+#: glade.c:442
 msgid "Go"
 msgstr "Gå"
 
-#: glade.c:421
+#: glade.c:445
 msgid "Go to Bookmark"
 msgstr "Gå till bokmärke"
 
-#: glade.c:424 glade.c:1163
+#: glade.c:448 glade.c:1265
 msgid "Gramps"
 msgstr "Gramps"
 
-#: glade.c:1150
+#: glade.c:1252
 msgid "Gramps (Genealogical Research and Analysis Management "
 msgstr "Gramps (Genealogical Research and Analysis Managment "
 
-#: glade.c:427
+#: glade.c:451
 msgid "Gramps - Add Child"
 msgstr "Gramps - Lägg till barn"
 
-#: glade.c:430
+#: glade.c:454
 msgid "Gramps - Add New Child"
 msgstr "Gramps - Lägg till nytt barn"
 
-#: glade.c:433
+#: glade.c:457
 msgid "Gramps - Ahnentafel Report"
 msgstr "Gramps - Antavla"
 
-#: glade.c:436
+#: glade.c:460
 msgid "Gramps - Ancestor Chart"
-msgstr "Gramps - Stamtavla"
+msgstr "Gramps -  Grafisk stamtavla"
 
-#: glade.c:439
+#: glade.c:463
 msgid "Gramps - Choose Parents"
 msgstr "Gramps - Välj föräldrar"
 
-#: glade.c:442
+#: glade.c:466
 msgid "Gramps - Choose Spouse"
 msgstr "Gramps - Välj gifte"
 
-#: glade.c:445
+#: glade.c:469
 msgid "Gramps - Database Summary"
 msgstr "Gramps - Sammanfattning av databasen"
 
-#: glade.c:448
+#: glade.c:472
 msgid "Gramps - Descendant Browser"
 msgstr "Gramps - Bläddrare för ättlingar"
 
-#: glade.c:451
+#: glade.c:475
+#, fuzzy
+msgid "Gramps - Descendant Report"
+msgstr "Gramps - Bläddrare för ättlingar"
+
+#: glade.c:478
 msgid "Gramps - Edit Bookmarks"
 msgstr "Gramps - Redigera bokmärken"
 
-#: glade.c:454
-#, fuzzy
+#: glade.c:481
 msgid "Gramps - Edit Note"
-msgstr "Gramps - Redigera person"
+msgstr "Gramps - Redigera anteckningar"
 
-#: glade.c:457
+#: glade.c:484
 msgid "Gramps - Edit Person"
 msgstr "Gramps - Redigera person"
 
-#: glade.c:460
+#: glade.c:487
 msgid "Gramps - Event Comparison"
 msgstr "Gramps - Jämför händelser"
 
-#: glade.c:463
+#: glade.c:490
+#, fuzzy
+msgid "Gramps - Family Group Report"
+msgstr "Familjerapport"
+
+#: glade.c:493
 msgid "Gramps - GEDCOM Import"
 msgstr "Gramps - Import från GEDCOM"
 
-#: glade.c:466
+#: glade.c:496
 msgid "Gramps - Getting Started"
 msgstr "Gramps - Komma igång"
 
-#: glade.c:469
+#: glade.c:499
 msgid "Gramps - Gramps import"
 msgstr "Gramps - Import från Gramps"
 
-#: glade.c:472
+#: glade.c:502
+#, fuzzy
+msgid "Gramps - Individual Summary"
+msgstr "Personsammanfattning"
+
+#: glade.c:505
 msgid "Gramps - Marriage Editor"
 msgstr "Gramps - Äktenskapsredigeraren"
 
-#: glade.c:476
+#: glade.c:509
 msgid "Gramps - Merge People"
 msgstr "Gramps - Slå ihop individer"
 
-#: glade.c:479
+#: glade.c:512
 msgid "Gramps - Plugin Selection"
 msgstr "Gramps - Val av insticksmodul"
 
-#: glade.c:482
+#: glade.c:515
 msgid "Gramps - Preferences"
 msgstr "Gramps - Inställningar"
 
-#: glade.c:485
+#: glade.c:518
 msgid "Gramps - Relationship Calculator"
 msgstr "Gramps - Släktskapsberäkning"
 
-#: glade.c:488
+#: glade.c:521
 msgid "Gramps - Report Selection"
 msgstr "Gramps - Val av rapporter"
 
-#: glade.c:491
+#: glade.c:524
 msgid "Gramps - Select File"
 msgstr "Gramps - Välj fil"
 
-#: glade.c:494
+#: glade.c:527
 msgid "Gramps - Select a picture"
 msgstr "Gramps - Välj en bild"
 
-#: glade.c:497
+#: glade.c:530
 msgid "Gramps - SoundEx Code Generator"
 msgstr "Gramps - Skapa SoundEx-kod"
 
-#: glade.c:500
+#: glade.c:533
 msgid "Gramps - Source Editor"
 msgstr "Gramps - Källredigerare"
 
-#: glade.c:503
+#: glade.c:536
 msgid "Gramps - Source Information"
-msgstr "Källinformation"
+msgstr "Gramps - Källinformation"
 
-#: glade.c:506
+#: glade.c:539
+#, fuzzy
+msgid "Gramps - Style Editor"
+msgstr "Gramps - Källredigerare"
+
+#: glade.c:542
 msgid "Gramps Import"
 msgstr "Gramps importera"
 
-#: glade.c:509
+#: glade.c:545
 msgid "Gramps Startup Druid"
 msgstr "Gramps uppstartsguide"
 
-#: glade.c:512
+#: glade.c:548
 msgid "Gramps file"
 msgstr "Gramps-fil"
 
-#: glade.c:1269
+#: glade.c:551
+#, fuzzy
+msgid "Gramps- Document Styles"
+msgstr "Gramps - Välj fil"
+
+#: glade.c:1371
 msgid "Grandparent's ancestors and descendants"
 msgstr "Far- eller morföräldrars anor och ättlingar"
 
-#: glade.c:515
+#: glade.c:554
 msgid "GraphViz (dot)"
-msgstr "GraphWiz (punkt)"
+msgstr "GraphViz (dot)"
 
-#: glade.c:1262
+#: glade.c:1364
 msgid ""
 "GraphViz (dot) will transform the graph into postscript, jpeg, png, vrml, "
 "svg, and many other formats."
 msgstr ""
-"GraphWiz (punkt) kommer att göra om grafen till postscript, jpeg, png, vrlm, "
+"GraphViz (dot) kommer att göra om grafen till postscript, jpeg, png, vrlm, "
 "svg, och många andra format."
 
-#: glade.c:518
+#: glade.c:557
 msgid "GraphViz File"
-msgstr "GraphWiz-fil"
+msgstr "GraphViz-fil"
 
-#: glade.c:523
+#: glade.c:560 glade.c:1233
 msgid "HTML"
 msgstr "HTML"
 
-#: glade.c:526
+#: glade.c:563
 msgid "HTML Template"
 msgstr "HTML-mall"
 
-#: glade.c:1220
+#: glade.c:1322
 #, c-format
 msgid "He died in the year %s"
 msgstr "Han dog år %s"
 
-#: glade.c:1219
+#: glade.c:1321
 #, c-format
 msgid "He died in the year %s in %s"
 msgstr "Han dog år %s i %s"
 
-#: glade.c:1216
+#: glade.c:1318
 #, c-format
 msgid "He died on %s"
 msgstr "Han dog den %s"
 
-#: glade.c:1215
+# Den exakta betydelsen här?
+#: glade.c:1317
 #, c-format
 msgid "He died on %s in %s"
 msgstr "Han dog den %s i %s"
 
-#: glade.c:529
+#: glade.c:566
 msgid "Help is not implemented yet"
 msgstr "Hjälpen fungerar inte än"
 
-#: glade.c:532
+#: glade.c:569
 msgid "Home"
 msgstr "Hem"
 
-#: glade.c:1067
+#: glade.c:1157
 msgid "Illegal Date"
 msgstr "Ogiltigt datum "
 
-#: glade.c:1324
+#: glade.c:1426
 msgid "Import from GEDCOM"
 msgstr "Import från GEDCOM"
 
-#: glade.c:1314
-#, fuzzy
+#: glade.c:1416
 msgid "Import from GEDCOM (0.1.X)"
-msgstr "Import från GEDCOM"
+msgstr "Import från GEDCOM (0.1.X)"
 
-#: glade.c:1325
+#: glade.c:1427
 msgid "Import from Gramps"
 msgstr "Import från Gramps"
 
-#: glade.c:535
+# Huh!
+#: glade.c:572
 msgid "Indentification"
-msgstr ""
+msgstr "Indrag"
 
-#: glade.c:1265
+#: glade.c:1367
 msgid "Individual"
 msgstr "Person"
 
-#: glade.c:1304
+#: glade.c:1406
 msgid "Individual Facts"
 msgstr "Personfakta"
 
-#: glade.c:538
+#: glade.c:575
 msgid "Individual Summary"
 msgstr "Personsammanfattning"
 
-#: glade.c:541
+#: glade.c:578
 msgid "Internet"
 msgstr "Internet"
 
-#: glade.c:544
+#: glade.c:581
 msgid "Invert"
 msgstr "Invertera"
 
-#: glade.c:1074
+#: glade.c:584
+msgid "Italic"
+msgstr ""
+
+#: glade.c:1164
 msgid "January"
 msgstr "januari"
 
-#: glade.c:1080
+#: glade.c:1170
 msgid "July"
 msgstr "juli"
 
-#: glade.c:1079
+#: glade.c:1169
 msgid "June"
 msgstr "juni"
 
-#: glade.c:547
+#: glade.c:587
 msgid "Keep other name as an alternate name"
 msgstr "Behåll annat namn som alternativt namn"
 
-#: glade.c:550 glade.c:1139
+#: glade.c:590 glade.c:1241
 msgid "Landscape"
 msgstr "Liggande"
 
-#: glade.c:553
-msgid "Letter"
+#: glade.c:593
+msgid "Left Margin"
 msgstr ""
 
-#: glade.c:556
+#: glade.c:596
+msgid "Letter"
+msgstr "Letter"
+
+#: glade.c:599
 msgid "Load"
 msgstr "Ladda"
 
-#: glade.c:1162
+#: glade.c:1264
 #, c-format
 msgid "Loading %s ..."
 msgstr "Laddar %s ..."
 
-#: glade.c:559
+#: glade.c:602
 msgid "Location"
 msgstr "Plats"
 
-#: glade.c:562
+#: glade.c:605
 msgid "Make Primary"
 msgstr "Gör till primärt"
 
-#: glade.c:565
+#: glade.c:608
 msgid "Make the active person the default person"
 msgstr "Gör den aktuella personen proband"
 
-#: glade.c:568
+#: glade.c:611
 msgid "Make the current father the active person"
 msgstr "Gör fadern aktuell person"
 
-#: glade.c:571
+#: glade.c:614
 msgid "Make the current mother the active person"
 msgstr "Gör modern aktiv person"
 
-#: glade.c:574
+#: glade.c:617
 msgid "Make the default person the active person"
 msgstr "Gör probanden aktiv person"
 
-#: glade.c:577
+#: glade.c:620
 msgid "Make the selected child the active person"
 msgstr "Gör det valda barnet aktiv person"
 
-#: glade.c:1300
+#: glade.c:1402
 msgid "Male"
 msgstr "Man"
 
-#: glade.c:1076
+#: glade.c:1166
 msgid "March"
 msgstr "mars"
 
-#: glade.c:580
+#: glade.c:623
 msgid "Marriage Editor"
 msgstr "Äktenskapsredigeraren"
 
-#: glade.c:1285
+#: glade.c:1387
 msgid "Marriage date"
 msgstr "Vigseldatum"
 
-#: glade.c:1284
+#: glade.c:1386
 msgid "Marriage place"
 msgstr "Vigselort"
 
-#: glade.c:583
+#: glade.c:626
 msgid "Marriage/Family Editor"
 msgstr "Äktenskaps-/Familjeredigeraren"
 
-#: glade.c:1295
+#: glade.c:1397
 msgid "Marriages/Children"
 msgstr "Äktenskap/Barn"
 
-#: glade.c:1255 glade.c:1256
+#: glade.c:1357 glade.c:1358
 msgid "Married"
 msgstr "Gift"
 
-#: glade.c:586
+#: glade.c:629
 msgid "Match  Rating : "
 msgstr "Grad av överenstämmelse: "
 
-#: glade.c:589
-#, fuzzy
+#: glade.c:632
 msgid "Match Threshold"
 msgstr "Sökkänslighet"
 
-#: glade.c:592
-msgid "Maximum  Generations "
+#: glade.c:635
+#, fuzzy
+msgid "Maximum Generations"
 msgstr "Maximalt antal generationer"
 
-#: glade.c:1078
+#: glade.c:1168
 msgid "May"
 msgstr "maj"
 
-#: glade.c:595
+#: glade.c:638
 msgid "Merge"
 msgstr "Slå ihop"
 
-#: glade.c:598
+#: glade.c:641
 msgid "Merge People"
 msgstr "Slå ihop individer"
 
-#: glade.c:602 glade.c:1253 glade.c:1303
+#: glade.c:645 glade.c:1355 glade.c:1405
 msgid "Mother"
 msgstr "Moder"
 
-#: glade.c:605
+#: glade.c:648
 msgid "Multiple"
 msgstr "Flera"
 
-#: glade.c:612 glade.c:1298
+#: glade.c:655 glade.c:1400
 msgid "Name"
 msgstr "Namn"
 
-#: glade.c:615
-#, fuzzy
+#: glade.c:658
 msgid "Name Format"
 msgstr "Namnformat"
 
-#: glade.c:618
+#: glade.c:661
 msgid "Name used to generate SoundEx code"
 msgstr "Namn som använts för att skapa SoundEx-kod"
 
-#: glade.c:621
+#: glade.c:664
 msgid "Names"
 msgstr "Namn"
 
-#: glade.c:1351
+#: glade.c:1454
 msgid "Names that contain a substring"
 msgstr "Namn som innehåller en delsträng"
 
-#: glade.c:1350
+#: glade.c:1453
 msgid "Names that match a regular expression"
 msgstr "Namn som överenstämmer med ett reguljärt uttryck"
 
-#: glade.c:1344
+#: glade.c:1447
 msgid "Names with same SoundEx code as ..."
 msgstr "Namn med samma SoundEx-kod som ..."
 
-#: glade.c:1345
+#: glade.c:1448
 msgid "Names with the specified SoundEx code"
 msgstr "Namn med den angivna SoundEx-koden"
 
-#: glade.c:624
+#: glade.c:667
 msgid "Natural"
 msgstr "Äkta"
 
-#: glade.c:1271
+#: glade.c:1373
 #, c-format
 msgid "Neither %s nor %s are directories"
 msgstr "Varken %s eller %s är en katalog"
 
-#: glade.c:627
+#: glade.c:670
 msgid "New Database"
 msgstr "Ny databas"
 
-#: glade.c:630
+#: glade.c:673
 msgid "New Person"
 msgstr "Ny person"
 
-#: glade.c:633
-#, fuzzy
+#: glade.c:676
 msgid "Nick Name"
 msgstr "Smeknamn"
 
-#: glade.c:1197
+#: glade.c:1299
 msgid "Nineteenth"
 msgstr "Nittonde"
 
-#: glade.c:1187
+#: glade.c:1289
 msgid "Ninth"
 msgstr "Nionde"
 
-#: glade.c:1172
+#: glade.c:1274
 msgid "No default/home person has been set"
 msgstr "Ingen proband är vald"
 
-#: glade.c:1142
+#: glade.c:1244
 msgid "No description was provided"
 msgstr "Det finns ingen beskrivning"
 
-#: glade.c:1231
+#: glade.c:1333
 msgid "No errors were found"
 msgstr "Inga fel upptäcktes"
 
-#: glade.c:637
-#, fuzzy
+#: glade.c:681
 msgid "Note"
 msgstr "Anteckningar"
 
-#: glade.c:640 glade.c:1290
+#: glade.c:684 glade.c:1392
 msgid "Notes"
 msgstr "Anteckningar"
 
-#: glade.c:1084
+#: glade.c:1174
 msgid "November"
 msgstr "november"
 
-#: glade.c:643
+#: glade.c:687
 msgid "Number of Errors"
-msgstr ""
+msgstr "Antal fel"
 
-#: glade.c:646
+#: glade.c:690
 msgid "Number of Families"
-msgstr ""
+msgstr "Antal familjer"
 
-#: glade.c:649
-#, fuzzy
+#: glade.c:693
 msgid "Number of People"
-msgstr "Slå ihop individer"
+msgstr "Antal  personer"
 
-#: glade.c:652
+#: glade.c:696
 msgid "OK"
 msgstr "OK"
 
-#: glade.c:1083
+#: glade.c:1173
 msgid "October"
 msgstr "oktober"
 
-#: glade.c:655
-#, fuzzy
+#: glade.c:699
 msgid "Odd Row Background"
 msgstr "Bakgrund för ojämna rader"
 
-#: glade.c:658
-#, fuzzy
+#: glade.c:702
 msgid "Odd Row Foreground"
-msgstr "Förgrund för jämna rader"
+msgstr "Förgrund för ojämna rader"
 
-#: glade.c:661
+#: glade.c:705
 msgid "Open"
 msgstr "Öppna"
 
-#: glade.c:664
+#: glade.c:708
 msgid "Open File"
 msgstr "Öppna fil"
 
-#: glade.c:667
-#, fuzzy
+#: glade.c:711 glade.c:1230
 msgid "OpenOffice"
 msgstr "OpenOffice "
 
-#: glade.c:672
-msgid "OpenOffice "
-msgstr "OpenOffice "
-
-#: glade.c:675
+#: glade.c:714
 msgid "OpenOffice Spreadsheet"
 msgstr "OpenOffice kalkylblad"
 
-#: glade.c:680
+#: glade.c:720
 msgid "Options"
 msgstr "Alternativ"
 
-#: glade.c:685
-#, fuzzy
+#: glade.c:725
 msgid "Orientation"
 msgstr "Orientering"
 
-#: glade.c:688
+#: glade.c:728
 msgid "Other"
 msgstr "Annat"
 
-#: glade.c:691
-#, fuzzy
+#: glade.c:731
 msgid "Output File"
 msgstr "Utfil"
 
-#: glade.c:696
+#: glade.c:734 glade.c:1232
 msgid "PDF"
 msgstr "PDF"
 
-#: glade.c:699
+#: glade.c:737
+msgid "Padding"
+msgstr ""
+
+#: glade.c:740
 msgid "Page break between generations"
 msgstr "Sidbrytning mellan generationer"
 
-#: glade.c:702
-#, fuzzy
+#: glade.c:743
 msgid "Pages"
 msgstr "Sidor"
 
-#: glade.c:707
-#, fuzzy
+#: glade.c:750
 msgid "Paper"
 msgstr "Pappersformat"
 
-#: glade.c:710
-#, fuzzy
+#: glade.c:753
 msgid "Paper Orientation"
 msgstr "Orientering"
 
-#: glade.c:713
+#: glade.c:756
 msgid "Paper Size Selection"
 msgstr "Val av pappersformat"
 
-#: glade.c:1281
+#: glade.c:759
+#, fuzzy
+msgid "Paragraph Options"
+msgstr "Alternativ för personlig information"
+
+#: glade.c:762
+msgid "Paragraph Style"
+msgstr ""
+
+#: glade.c:1383
 msgid "Parents"
 msgstr "Föräldrar"
 
-#: glade.c:716
+#: glade.c:765
 msgid "Pedegree"
 msgstr "Anor"
 
-#: glade.c:719
+#: glade.c:768
 msgid "People"
 msgstr "Personer"
 
-#: glade.c:1334
+#: glade.c:1436
 #, c-format
 msgid "People somehow connected to %s"
 msgstr "Personer med koppling till %s"
 
-#: glade.c:1340
+#: glade.c:1443
 msgid "People who have an event type of ..."
 msgstr "Personer som har en händelse av denna typ ..."
 
-#: glade.c:1342
+#: glade.c:1445
 msgid "People who have photos"
 msgstr "Personer med foto"
 
-#: glade.c:1336
+#: glade.c:1439
+#, fuzzy
+msgid "People who were adopted"
+msgstr "Personer med foto"
+
+#: glade.c:1438
 msgid "People with an event after ..."
 msgstr "Personer med en händelse efter ..."
 
-#: glade.c:1337
+#: glade.c:1440
 msgid "People with an event before ..."
 msgstr "Personer med en händelse före ..."
 
-#: glade.c:1339
+#: glade.c:1442
 msgid "People with an event location of ..."
 msgstr "Personer med denna plats för en händelse ..."
 
-#: glade.c:1349
+#: glade.c:1452
 msgid "People with children"
 msgstr "Personer med barn"
 
-#: glade.c:1343
+#: glade.c:1446
 msgid "People with incomplete names"
 msgstr "Personer med ofullständiga namn"
 
-#: glade.c:1346
+#: glade.c:1449
 msgid "People with multiple marriage records"
 msgstr "Personer med flera giften"
 
-#: glade.c:1347
+#: glade.c:1450
 msgid "People with no marriage records"
 msgstr "Personer utan giften"
 
-#: glade.c:1348
+#: glade.c:1451
 msgid "People without a birth date"
-msgstr "Personer utan registrerat födelsedatum"
+msgstr "Personer utan födelsedatum"
 
-#: glade.c:723
+#: glade.c:772
 msgid "Person"
 msgstr "Person"
 
-#: glade.c:726
+#: glade.c:775
 msgid "Person _List"
 msgstr "Person_lista"
 
-#: glade.c:729
-#, fuzzy
+#: glade.c:778
 msgid "Phone"
 msgstr "Telefonnummer"
 
-#: glade.c:732
+#: glade.c:781
 msgid "Photo"
 msgstr "Foto"
 
-#: glade.c:735
+#: glade.c:784
 msgid "Photos"
 msgstr "Foton"
 
-#: glade.c:738
+#: glade.c:787
 msgid "Pick a Font"
 msgstr "Välj ett typsnitt"
 
-#: glade.c:743
+#: glade.c:793
 msgid "Pick a color"
 msgstr "Välj en färg"
 
-#: glade.c:747 glade.c:1277
+#: glade.c:797 glade.c:1379
 msgid "Place"
 msgstr "Plats"
 
-#: glade.c:750
+#: glade.c:800
 msgid "Please be patient. This may take a while."
 msgstr "Var vänlig och vänta, det här kan ta en stund."
 
-#: glade.c:1120
+#: glade.c:1218
 msgid "Please check the person's marriages."
 msgstr "Var vänlig kontrollera personens giften."
 
-#: glade.c:753
+#: glade.c:803
 msgid "Please enjoy using Gramps."
 msgstr "Hoppas du tycker om Gramps."
 
-#: glade.c:756
+#: glade.c:806
 msgid ""
 "Please enter the following information. You can change it at \n"
 "anytime in the program's preference settings"
 msgstr ""
-"Var vänlig och ange följande information. Du kan ändra det\n"
+"Var vänlig och ange följande information. Du kan ändra det \n"
 "när som helst i programmets inställningar"
 
-#: glade.c:761 glade.c:1138
+#: glade.c:811 glade.c:1240
 msgid "Portrait"
 msgstr "Stående"
 
-#: glade.c:764
+#: glade.c:814
 msgid "Preferred Output Format"
-msgstr ""
+msgstr "Föredraget format för utdata"
 
-#: glade.c:767
+#: glade.c:817
 msgid "Preferred Paper Size"
-msgstr ""
+msgstr "Föredraget pappersformat"
 
-#: glade.c:770
+#: glade.c:820
 msgid "Preview"
 msgstr "Förhandsvisa"
 
-#: glade.c:773
+#: glade.c:823
 msgid "Print"
 msgstr "Skriv ut"
 
-#: glade.c:776
+#: glade.c:826
 msgid "Privacy Options"
 msgstr "Alternativ för personlig information"
 
-#: glade.c:1305
+#: glade.c:1407
 msgid "Produces a detailed report on the selected person."
 msgstr "Skapar en detaljerad rapport om den valda personen."
 
-#: glade.c:1175 glade.c:1177
+#: glade.c:1277 glade.c:1279
 msgid "Produces a graphical ancestral tree graph"
-msgstr "Skapar ett grafisk släktträd"
+msgstr "Skapar en grafisk stamtavla"
 
-#: glade.c:1227
+#: glade.c:1329
 msgid "Produces a textual ancestral report"
-msgstr "Skapar en släkttavla i text"
+msgstr "Skapar en stamtavla i text"
 
-#: glade.c:1151
+#: glade.c:1253
 msgid "Programming System) is a personal genealogy program that "
 msgstr "Programming System) är ett genealogiprogram för privatpersoner, som  "
 
-#: glade.c:1243
+#: glade.c:1345
 msgid "Provides a browsable hierarchy based on the active person"
 msgstr "Skapar en bläddringsbar lista baserad på den aktiva personen"
 
-#: glade.c:1328
+#: glade.c:1430
 msgid "Provides a summary of the current database"
 msgstr "Ger en sammanfattning av den aktuella databasen"
 
-#: glade.c:779
-#, fuzzy
+#: glade.c:829
 msgid "Publication Info"
 msgstr "Publikationsinformation"
 
-#: glade.c:782
-#, fuzzy
+#: glade.c:832
 msgid "Publication Information"
 msgstr "Publikationsinformation"
 
-#: glade.c:785
+#: glade.c:835
 msgid "Qualifier"
 msgstr "Sökvillkor"
 
-#: glade.c:788
+#: glade.c:838
 #, fuzzy
 msgid "Relationship Type"
 msgstr "Typ av släktskap"
 
-#: glade.c:794
+#: glade.c:841
 msgid "Remove Child"
 msgstr "Ta bort barn"
 
-#: glade.c:797
+#: glade.c:844
 msgid "Remove current spouse"
 msgstr "Ta bort aktuellt gifte"
 
-#: glade.c:800
+#: glade.c:847
 msgid "Report Selection"
 msgstr "Val av rapport"
 
-#: glade.c:803
+#: glade.c:850
 msgid "Reports"
 msgstr "Rapporter"
 
-#: glade.c:806
+#: glade.c:853
 msgid "Researcher"
 msgstr "Forskare"
 
-#: glade.c:809
+#: glade.c:856
 msgid "Researcher Information"
 msgstr "Forskarinformation"
 
-#: glade.c:812
+#: glade.c:859
 msgid "Restrict data on living people"
 msgstr "Begränsa data om nu levande personer"
 
-#: glade.c:815
+#: glade.c:862
 msgid "Restrict information on living people"
-msgstr "Bergränsa informaton om nu levande personer"
+msgstr "Bergränsa information om nu levande personer"
 
-#: glade.c:818
+#: glade.c:865
 msgid "Revert to last saved database"
 msgstr "Återgå till senast sparade databas"
 
-#: glade.c:821
+#: glade.c:868
+msgid "Right Margin"
+msgstr ""
+
+#: glade.c:871
 msgid "Run a tool"
 msgstr "Använd ett verktyg"
 
-#: glade.c:824
+#: glade.c:874
 msgid "Save"
 msgstr "Spara"
 
-#: glade.c:827
+#: glade.c:877
 msgid "Save Ancestor Chart"
 msgstr "Spara antavla"
 
-#: glade.c:830
+#: glade.c:880
 msgid "Save Ancestor Report"
 msgstr "Spara antavla"
 
-#: glade.c:835
-#, fuzzy
+#: glade.c:885
 msgid "Save As"
 msgstr "Spara som"
 
-#: glade.c:838
+#: glade.c:888
 msgid "Save As..."
 msgstr "Spara som ..."
 
-#: glade.c:841
+#: glade.c:891
 msgid "Save Data"
 msgstr "Spara data"
 
-#: glade.c:844
+#: glade.c:894
 msgid "Save Descendant Report"
-msgstr "Spara rapport för ättlingar"
+msgstr "Spara stamtavla"
 
-#: glade.c:847
+#: glade.c:897
 msgid "Save Family Group Report"
 msgstr "Spara familjerapport"
 
-#: glade.c:850
+#: glade.c:900
 msgid "Save File"
 msgstr "Spara fil"
 
-#: glade.c:853
+#: glade.c:903
 msgid "Save data as a spreadsheet"
 msgstr "Spara som kalkylblad"
 
-#: glade.c:1164
+#: glade.c:1266
 #, c-format
 msgid "Saving %s ..."
 msgstr "Sparar %s ..."
 
-#: glade.c:1319
+#: glade.c:1421
 msgid ""
 "Searches the entire database and attempts to extract titles and nicknames "
 "that may be embedded in a person's given name field."
@@ -1849,7 +1905,7 @@ msgstr ""
 "Söker hela databasen för att försöka hitta titlar och smeknamn som kan "
 "finnas i fältet för en persons förnamn"
 
-#: glade.c:1309
+#: glade.c:1411
 msgid ""
 "Searches the entire database, looking for individual entries that may "
 "represent the same person"
@@ -1857,350 +1913,367 @@ msgstr ""
 "Söker hela databasen för att försöka hitta individer som kan vara samma "
 "person"
 
-#: glade.c:1180
+#: glade.c:1282
 msgid "Second"
 msgstr "Andra"
 
-#: glade.c:856 glade.c:1308
+#: glade.c:906 glade.c:1410
 msgid "Second Person"
 msgstr "Andra personen"
 
-#: glade.c:859
+#: glade.c:909
 msgid "Select File"
 msgstr "Välj fil"
 
-#: glade.c:862
+#: glade.c:912
 msgid "Select a photo"
 msgstr "Välj ett foto"
 
-#: glade.c:865
+#: glade.c:915
 msgid "Select a picture"
 msgstr "Välj en bild"
 
-#: glade.c:868
+#: glade.c:918
 msgid "Select a report from those available on the left."
 msgstr "Välj en rapport till vänster."
 
-#: glade.c:871
+#: glade.c:921
 msgid "Select a tool from those available on the left."
 msgstr "Välj ett verktyg till vänster."
 
-#: glade.c:874
+#: glade.c:924
 msgid "Select information source"
 msgstr "Välj källa till informationen"
 
-#: glade.c:877
+#: glade.c:927
 msgid "Select the active person's parents"
 msgstr "Välj den aktiva personens föräldrar"
 
-#: glade.c:880
+#: glade.c:930
 msgid "Select the source of the information"
 msgstr "Välj källa till informationen"
 
-#: glade.c:1082
+#: glade.c:1172
 msgid "September"
 msgstr "september"
 
-#: glade.c:1195
+#: glade.c:1297
 msgid "Seventeenth"
 msgstr "Sjuttonde"
 
-#: glade.c:1185
+#: glade.c:1287
 msgid "Seventh"
 msgstr "Sjunde"
 
-#: glade.c:1222
+#: glade.c:1324
 #, c-format
 msgid "She died in the year %s"
 msgstr "Hon dog år %s"
 
-#: glade.c:1221
+#: glade.c:1323
 #, c-format
 msgid "She died in the year %s in %s"
 msgstr "Hon dog år %s i %s"
 
-#: glade.c:1218
+#: glade.c:1320
 #, c-format
 msgid "She died on %s"
 msgstr "hon dog den %s"
 
-#: glade.c:1217
+#: glade.c:1319
 #, c-format
 msgid "She died on %s in %s"
 msgstr "Hon dog den %s i %s"
 
-#: glade.c:883
+#: glade.c:933
 msgid "Show active person's anscestors"
 msgstr "Visa den aktiva personens anor"
 
-#: glade.c:886
+#: glade.c:936
 msgid "Show only those not currently a child in a family"
 msgstr "Visa enbart de som inte är barn i en familj"
 
-#: glade.c:889
+#: glade.c:939
 msgid "Single"
 msgstr "En sida"
 
-#: glade.c:892
+#: glade.c:942
 msgid "Single (scaled)"
 msgstr "En sida (skalad)"
 
-#: glade.c:1194
+#: glade.c:1296
 msgid "Sixteenth"
 msgstr "Sextonde"
 
-#: glade.c:1184
+#: glade.c:1286
 msgid "Sixth"
 msgstr "Sjätte"
 
-#: glade.c:1159
+#: glade.c:945
+#, fuzzy
+msgid "Size"
+msgstr "En sida"
+
+#: glade.c:1261
 msgid ""
 "Sorry.  Online help for gramps is currently under development.\n"
 "Unfortunately, it is not yet ready."
 msgstr ""
+"On-line hjälpen för gramps är under utveckling,  \n"
+"men är tyvärr inte färdigt än"
 
-#: glade.c:895
-#, fuzzy
+#: glade.c:948
 msgid "SoundEx Code"
 msgstr "SoundEx-kod"
 
-#: glade.c:898
+#: glade.c:951
 msgid "SoundEx Code Generator"
 msgstr "SoundEx-kodkalkylator"
 
-#: glade.c:902
+#: glade.c:956
 msgid "Source"
 msgstr "Källa"
 
-#: glade.c:905
+#: glade.c:959
 msgid "Source Editor"
 msgstr "Källredigerare"
 
-#: glade.c:908
+#: glade.c:962
 msgid "Source Information"
 msgstr "Källinformation"
 
-#: glade.c:911
-#, fuzzy
+#: glade.c:965
 msgid "Sources"
-msgstr "Källa"
+msgstr "Källor"
 
-#: glade.c:914 glade.c:1254 glade.c:1282
+#: glade.c:968 glade.c:1356 glade.c:1384
 msgid "Spouse"
 msgstr "Gifte"
 
-#: glade.c:1287
+#: glade.c:1389
 #, c-format
 msgid "Spouse's father: %s"
 msgstr "Maken eller makans fader: %s"
 
-#: glade.c:1288
+#: glade.c:1390
 #, c-format
 msgid "Spouse's mother: %s"
 msgstr "Maken eller makans moder: %s"
 
-#: glade.c:1283
+#: glade.c:1385
 msgid "Spouse's name is not known"
 msgstr "Makans eller makens namn är okänt"
 
-#: glade.c:1286
+#: glade.c:1388
 #, c-format
 msgid "Spouse's parents: %s and %s"
 msgstr "Maken eller makans föräldrar: %s och %s"
 
-#: glade.c:917
-#, fuzzy
+#: glade.c:971
 msgid "Spouses"
-msgstr "Gifte"
+msgstr "Giften"
 
-#: glade.c:920
-#, fuzzy
+#: glade.c:974
 msgid "State/Province"
 msgstr "Stat/Provins"
 
-#: glade.c:923
+#: glade.c:977
 msgid "Status"
 msgstr "Status"
 
-#: glade.c:926
-#, fuzzy
+#: glade.c:980
 msgid "Status Bar"
-msgstr "Status"
+msgstr "Statusrad"
 
-#: glade.c:929
+#: glade.c:985
 #, fuzzy
+msgid "Style Editor"
+msgstr "Källredigerare"
+
+#: glade.c:988
+#, fuzzy
+msgid "Style Name"
+msgstr "Förnamn"
+
+#: glade.c:992
+msgid "Styles"
+msgstr ""
+
+#: glade.c:995
 msgid "Suffix"
 msgstr "Suffix"
 
-#: glade.c:1297
+#: glade.c:1399
 #, c-format
 msgid "Summary of %s"
-msgstr "Sammanfttning av %s"
+msgstr "Sammanfattning av %s"
 
-#: glade.c:932
-#, fuzzy
+#: glade.c:998
 msgid "Surname"
 msgstr "Efternamn"
 
-#: glade.c:1066
+#: glade.c:1156
 msgid "Surname, Firstname"
 msgstr "Efternamn, Förnamn"
 
-#: glade.c:935
+#: glade.c:1001
 msgid "Target Directory"
 msgstr "Välj katalog"
 
-#: glade.c:940
-#, fuzzy
+#: glade.c:1008
 msgid "Template"
 msgstr "Mall"
 
-#: glade.c:1188
+#: glade.c:1290
 msgid "Tenth"
 msgstr "Tionde"
 
-#: glade.c:943
-#, fuzzy
+#: glade.c:1011
 msgid "Text"
 msgstr "Text"
 
-#: glade.c:946
-#, fuzzy
+#: glade.c:1014
 msgid "Text Color"
 msgstr "Textfärg"
 
-#: glade.c:1132
+#: glade.c:1234
 msgid "The marker '<!-- START -->' was not in the template"
 msgstr "Markeringen '<!-- START -->' fanns inte i mallen"
 
-#: glade.c:1181
+#: glade.c:1283
 msgid "Third"
 msgstr "Tredje"
 
-#: glade.c:1191
+#: glade.c:1293
 msgid "Thirteenth"
 msgstr "Trettonde"
 
-#: glade.c:950
+#: glade.c:1018
 msgid "Title"
 msgstr "Titel"
 
-#: glade.c:953
+#: glade.c:1021
 msgid "Tool Selection"
 msgstr "Val av verktyg"
 
-#: glade.c:956
+#: glade.c:1024
 msgid "Tools"
 msgstr "Verktyg"
 
-#: glade.c:1190
+#: glade.c:1292
 msgid "Twelfth"
 msgstr "Tolfte"
 
-#: glade.c:1198
+#: glade.c:1300
 msgid "Twentieth"
 msgstr "Tjugonde"
 
-#: glade.c:1206
+#: glade.c:1308
 msgid "Twenty-eighth"
 msgstr "Tjugoåttonde"
 
-#: glade.c:1203
+#: glade.c:1305
 msgid "Twenty-fifth"
 msgstr "Tjugofemte"
 
-#: glade.c:1199
+#: glade.c:1301
 msgid "Twenty-first"
 msgstr "Tjugoförsta"
 
-#: glade.c:1202
+#: glade.c:1304
 msgid "Twenty-fourth"
 msgstr "Tjugofjärde"
 
-#: glade.c:1207
+#: glade.c:1309
 msgid "Twenty-ninth"
 msgstr "Tjugonionde"
 
-#: glade.c:1200
+#: glade.c:1302
 msgid "Twenty-second"
 msgstr "Tjugoandra"
 
-#: glade.c:1205
+#: glade.c:1307
 msgid "Twenty-seventh"
 msgstr "Tjugosjunde"
 
-#: glade.c:1204
+#: glade.c:1306
 msgid "Twenty-sixth"
 msgstr "Tjugosjätte"
 
-#: glade.c:1201
+#: glade.c:1303
 msgid "Twenty-third"
 msgstr "Tjugotredje"
 
-#: glade.c:1140
+#: glade.c:1027
+msgid "Type Face"
+msgstr ""
+
+#: glade.c:1242
 msgid "Uncategorized"
 msgstr "Okategoriserad"
 
-#: glade.c:1155 glade.c:1157
+#: glade.c:1030
+msgid "Underline"
+msgstr ""
+
+#: glade.c:1257 glade.c:1259
 msgid "Unsaved changes exist in the current database\n"
 msgstr "Osparade ändringar finns i den aktuella databasen\n"
 
-#: glade.c:961
+#: glade.c:1035
 msgid "Update"
 msgstr "Uppdatera"
 
-#: glade.c:964
+#: glade.c:1038
 msgid "Updates the selected event with the above data"
 msgstr "Uppdatera den valda händelsen med ovanstående data"
 
-#: glade.c:967
+#: glade.c:1041
 msgid "Use SoundEx codes for name matches"
 msgstr "Använd SoundEx-koder för att jämföra namn"
 
-#: glade.c:970
+#: glade.c:1044
 msgid "Use tabbed pages"
 msgstr "Använd sidor med flikar"
 
-#: glade.c:1327
+#: glade.c:1429
 msgid "Utilities/Relationship calculator"
 msgstr "Verktyg/Släktskapsberäkning"
 
-#: glade.c:974
+#: glade.c:1048
 msgid "Value"
 msgstr "Värde"
 
-#: glade.c:977
-#, fuzzy
+#: glade.c:1051
 msgid "Version"
-msgstr "Person"
+msgstr "Version"
 
-#: glade.c:1121 glade.c:1125 glade.c:1135
+#: glade.c:1219 glade.c:1223 glade.c:1237
 msgid "View Photo"
-msgstr "Titta på foto"
+msgstr "Visa foto"
 
-#: glade.c:1329
+#: glade.c:1431
 msgid "View/Summary of the database"
-msgstr "Visa/Visa en sammanfattning av datavasen"
+msgstr "Visa/Visa en sammanfattning av databasen"
 
-#: glade.c:1178
+#: glade.c:1280
 msgid "View/View an ancestor graph"
-msgstr "Visa/Visa ett släktträd"
+msgstr "Visa/Visa en grafisk antavla"
 
-#: glade.c:980
-#, fuzzy
+#: glade.c:1054
 msgid "Volume/Film/Page"
 msgstr "Volym/Film/Sida"
 
-#: glade.c:1321
+#: glade.c:1423
 #, c-format
 msgid "Warning: line %d was not understood, so it was ignored."
-msgstr ""
+msgstr "Varning! Eftersom rad %d inte kunde förstås ignorerades den."
 
-#: glade.c:983
+#: glade.c:1057
 msgid "Web Address"
 msgstr "Webbadress"
 
-#: glade.c:986
+#: glade.c:1060
 msgid ""
 "Welcome to Gramps, the Genealogical Research\n"
 "and Analysis Management Programming System.\n"
@@ -2224,138 +2297,222 @@ msgstr ""
 "välja att inte svara på något av, eller endast\n"
 "en del av, den information som efterfrågas."
 
-#: glade.c:999
-#, fuzzy
+#: glade.c:1073
 msgid "ZIP/Postal Code"
 msgstr "Postnummer"
 
-#: glade.c:1002
+#: glade.c:1076
 msgid "Zoom In"
 msgstr "Zomma in"
 
-#: glade.c:1005
+#: glade.c:1079
 msgid "Zoom Out"
 msgstr "Zomma ut"
 
-#: glade.c:1008
+#: glade.c:1082
 msgid "_Bookmarks"
 msgstr "_Bokmärken"
 
-#: glade.c:1011
+#: glade.c:1085
 msgid "_Default Person"
 msgstr "_Proband"
 
-#: glade.c:1014
+#: glade.c:1088
 msgid "_Family"
 msgstr "_Familj"
 
-#: glade.c:1017
+#: glade.c:1091
 msgid "_Import"
 msgstr "_Importera"
 
-#: glade.c:1020
+#: glade.c:1094
 msgid "_New File"
 msgstr "_Ny fil"
 
-#: glade.c:1023
+#: glade.c:1097
 msgid "_Pedegree"
 msgstr "_Anor"
 
-#: glade.c:1026
+#: glade.c:1100
 msgid "_Revert"
 msgstr "_Återgå"
 
-#: glade.c:1087 glade.c:1096 glade.c:1106
+#: glade.c:1177 glade.c:1191 glade.c:1204
 msgid "about"
 msgstr "om"
 
-#: glade.c:1086 glade.c:1095
+#: glade.c:1176 glade.c:1189
 msgid "abt"
 msgstr "om"
 
-#: glade.c:1094 glade.c:1102
+#: glade.c:1178
+#, fuzzy
+msgid "abt."
+msgstr "om"
+
+#: glade.c:1190
+#, fuzzy
+msgid "abt\\."
+msgstr "om"
+
+#: glade.c:1188 glade.c:1198
 msgid "aft"
 msgstr "efter"
 
-#: glade.c:1093 glade.c:1101 glade.c:1108
+#: glade.c:1187
+#, fuzzy
+msgid "aft."
+msgstr "efter"
+
+#: glade.c:1199
+#, fuzzy
+msgid "aft\\."
+msgstr "efter"
+
+#: glade.c:1186 glade.c:1197 glade.c:1206
 msgid "after"
 msgstr "efter"
 
-#: glade.c:1090 glade.c:1099
+#: glade.c:1182 glade.c:1195
 msgid "around"
 msgstr "omkring"
 
-#: glade.c:1092 glade.c:1103
+#: glade.c:1184 glade.c:1201
 msgid "bef"
 msgstr "före"
 
-#: glade.c:1091 glade.c:1100 glade.c:1107
+#: glade.c:1185
+#, fuzzy
+msgid "bef."
+msgstr "före"
+
+#: glade.c:1200
+#, fuzzy
+msgid "bef\\."
+msgstr "före"
+
+#: glade.c:1183 glade.c:1196 glade.c:1205
 msgid "before"
 msgstr "före"
 
-#: glade.c:1152
+#: glade.c:1103
+msgid "bottom"
+msgstr ""
+
+#: glade.c:1254
 msgid "can be extended by using the Python programming language."
 msgstr "kan utökas med hjälp av programmeringsspråket Python."
 
-#: glade.c:1089 glade.c:1098
+#: glade.c:1106
+#, fuzzy
+msgid "center"
+msgstr "Kön"
+
+#: glade.c:1181 glade.c:1194
 msgid "circa"
 msgstr "cirka"
 
-#: glade.c:1029
-#, fuzzy
+#: glade.c:1109
+msgid "cm"
+msgstr ""
+
+#: glade.c:1113
+msgid "default"
+msgstr ""
+
+#: glade.c:1116
 msgid "email"
 msgstr "e-post"
 
-#: glade.c:1088 glade.c:1097
+#: glade.c:1179 glade.c:1192
 msgid "est"
 msgstr "uppstattad"
 
-#: glade.c:1032 glade.c:1154
+#: glade.c:1180
+#, fuzzy
+msgid "est."
+msgstr "uppstattad"
+
+#: glade.c:1193
+#, fuzzy
+msgid "est\\."
+msgstr "uppstattad"
+
+#: glade.c:1119 glade.c:1256
 msgid "female"
 msgstr "kvinna"
 
-#: glade.c:1070 glade.c:1072
+#: glade.c:1160 glade.c:1162
 msgid "from"
 msgstr "från"
 
-#: glade.c:1035
-#, fuzzy
+#: glade.c:1122
 msgid "gramps ID"
-msgstr "Gramps"
+msgstr "gramps-ID"
 
-#: glade.c:1038
-msgid "ind"
-msgstr "ind"
+#: glade.c:1125
+msgid "justify"
+msgstr ""
 
-#: glade.c:1041
-msgid "label199"
-msgstr "label199"
+#: glade.c:1128
+#, fuzzy
+msgid "left"
+msgstr "Ta bort"
 
-#: glade.c:1044
-msgid "label2"
-msgstr "label2"
-
-#: glade.c:1047
-msgid "label200"
-msgstr "label200"
-
-#: glade.c:1050
-msgid "label48"
-msgstr "label48"
-
-#: glade.c:1053
-msgid "label51"
-msgstr "label51"
-
-#: glade.c:1056 glade.c:1153
+#: glade.c:1131 glade.c:1255
 msgid "male"
 msgstr "man"
 
-#: glade.c:1059
+#: glade.c:1134
 msgid "name"
 msgstr "namn"
 
-#: glade.c:1062 glade.c:1071 glade.c:1073
+#: glade.c:1137
+msgid "pt"
+msgstr ""
+
+#: glade.c:1140
+#, fuzzy
+msgid "right"
+msgstr "Åttonde"
+
+#: glade.c:1143
+msgid "roman (Times)"
+msgstr ""
+
+#: glade.c:1146
+msgid "swiss (Arial, Helvetica)"
+msgstr ""
+
+#: glade.c:1149 glade.c:1161 glade.c:1163
 msgid "to"
 msgstr "till"
 
+#: glade.c:1152
+#, fuzzy
+msgid "top"
+msgstr "till"
+
+#~ msgid "OpenOffice "
+#~ msgstr "OpenOffice "
+
+#~ msgid "Relationship Type : "
+#~ msgstr "Typ av släktskap: "
+
+#~ msgid "ind"
+#~ msgstr "ind"
+
+#~ msgid "label199"
+#~ msgstr "label199"
+
+#~ msgid "label2"
+#~ msgstr "label2"
+
+#~ msgid "label200"
+#~ msgstr "label200"
+
+#~ msgid "label48"
+#~ msgstr "label48"
+
+#~ msgid "label51"
+#~ msgstr "label51"

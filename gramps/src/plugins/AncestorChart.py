@@ -257,7 +257,7 @@ def on_save_clicked(obj):
 #
 #------------------------------------------------------------------------
 def get_description():
-    return _("Produces a graphical ancestral tree graph")
+    return _("Produces a graphical ancestral tree")
 
 
 #------------------------------------------------------------------------
