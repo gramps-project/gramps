@@ -40,7 +40,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 editor  = "gimp"
-zipcmd  = "zip -r -q"
 convert = "convert"
 
 pixdir = "/usr/share/pixmaps"

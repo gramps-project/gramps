@@ -333,11 +333,10 @@ class DisplayChart:
         spreadsheet.write_table_head(self.event_titles)
 
         index = 0
-        for (top,bottom) in self.row_data:
+        for top in self.row_data:
             spreadsheet.set_row(index%2)
             index = index + 1
             spreadsheet.write_table_data(top)
-            spreadsheet.write_table_data(bottom)
 
         spreadsheet.finalize()
         Utils.destroy_passed_object(obj)
