@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: gramps 0.9.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Sat Sep 13 17:25:35 2003\n"
-"PO-Revision-Date: 2003-09-14 12:36-0500\n"
+"PO-Revision-Date: 2003-09-22 10:51-0500\n"
 "Last-Translator: Alexander Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -691,7 +691,7 @@ msgstr "Общие фильтры"
 
 #: GenericFilter.py:134
 msgid "Matches everyone in the database"
-msgstr "Выявляет·каждого в базе данных"
+msgstr "Выявляет каждого в базе данных"
 
 #: GenericFilter.py:147 GenericFilter.py:192 GenericFilter.py:282
 #: GenericFilter.py:327 GenericFilter.py:411 GenericFilter.py:456
@@ -703,7 +703,7 @@ msgstr "ID:"
 
 #: GenericFilter.py:153
 msgid "Matches the person with a specified GRAMPS ID"
-msgstr "Вывляет·лицо·с указанным GRAMPS·ID"
+msgstr "Выявляет лицо с указанным GRAMPS ID"
 
 #: GenericFilter.py:178
 msgid "Matches all females"
@@ -721,7 +721,7 @@ msgstr "Фильтры потомков"
 
 #: GenericFilter.py:206
 msgid "Matches all descendants for the specified person"
-msgstr "Выявляет всех потомков·указанного лица"
+msgstr "Выявляет всех потомков указанного лица"
 
 #: GenericFilter.py:241 GenericFilter.py:370 GenericFilter.py:512
 #: GenericFilter.py:656 GenericFilter.py:746 GenericFilter.py:1115
@@ -748,11 +748,11 @@ msgstr "Выявляет людей, являющихся потомками у�
 msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
-msgstr "Выявляет·людей,·являющихся·потомками·указанного·лица·и·отстоящими·от·него·по крайней мере·на·N·поколений"
+msgstr "Выявляет людей, являющихся потомками указанного лица и отстоящими от него по крайней мере на N поколений"
 
 #: GenericFilter.py:381
 msgid "Matches the person that is a child of someone matched by a filter"
-msgstr "Выявляет·людей,·являющихся·детьми·лица, соответствующего фильтру"
+msgstr "Выявляет людей, являющихся детьми лица, соответствующего фильтру"
 
 #: GenericFilter.py:384 GenericFilter.py:670 GenericFilter.py:903
 #: GenericFilter.py:1147
@@ -763,7 +763,7 @@ msgstr "Семейные фильтры"
 msgid ""
 "Matches people that are descendants or the spouse of a descendant of a "
 "specified person"
-msgstr "Выявляет·людей,·являющихся·потомками·или супругами потомков указанного·лица"
+msgstr "Выявляет людей, являющихся потомками или супругами потомков указанного лица"
 
 #: GenericFilter.py:467
 msgid "Matches people that are ancestors of a specified person"
@@ -776,23 +776,23 @@ msgstr "Фильры предков"
 
 #: GenericFilter.py:521
 msgid "Matches people that are ancestors of of someone matched by a filter"
-msgstr "Выявляет·людей,·являющихся·предками·лица, соответствующего фильтру"
+msgstr "Выявляет людей, являющихся предками лица, соответствующего фильтру"
 
 #: GenericFilter.py:565
 msgid ""
 "Matches people that are ancestors of a specified person not more than N "
 "generations away"
-msgstr "Выявляет·людей,·являющихся·предками·указанного·лица·и·отстоящими·от·него·не·более·чем·на·N·поколений"
+msgstr "Выявляет людей, являющихся предками указанного лица и отстоящими от него не более чем на N поколений"
 
 #: GenericFilter.py:617
 msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
-msgstr "Выявляет·людей,·являющихся·потомками·указанного·лица·и·отстоящими·от·него·по крайней мере·на·N·поколений"
+msgstr "Выявляет людей, являющихся потомками указанного лица и отстоящими от него по крайней мере на N поколений"
 
 #: GenericFilter.py:667
 msgid "Matches the person that is a parent of someone matched by a filter"
-msgstr "Выявляет·людей,·являющихся·родителями·лица,·соответствующего фильтру"
+msgstr "Выявляет людей, являющихся родителями лица, соответствующего фильтру"
 
 #: GenericFilter.py:706
 msgid "Matches people that have a common ancestor with a specified person"
@@ -801,7 +801,7 @@ msgstr "Выявляет людей, имеющих общего предка с
 #: GenericFilter.py:752
 msgid ""
 "Matches people that have a common ancestor with someone matched by a filter"
-msgstr "Выявляет людей, имеющих общего предка с лицом, соответствующим·фильтру"
+msgstr "Выявляет людей, имеющих общего предка с лицом, соответствующим фильтру"
 
 #: GenericFilter.py:786
 msgid "Matches all males"
@@ -833,7 +833,7 @@ msgstr "Личное событие:"
 
 #: GenericFilter.py:813
 msgid "Matches the person with a personal event of a particular value"
-msgstr "Выявляет·людей с персональным событием определенного значения"
+msgstr "Выявляет людей с персональным событием определенного значения"
 
 #: GenericFilter.py:816 GenericFilter.py:863 GenericFilter.py:965
 #: GenericFilter.py:1005
@@ -846,7 +846,7 @@ msgstr "Семейное событие:"
 
 #: GenericFilter.py:860
 msgid "Matches the person with a family event of a particular value"
-msgstr "Выявляет людей·с·семейным·событием·определенного·значения"
+msgstr "Выявляет людей с семейным событием определенного значения"
 
 #: GenericFilter.py:892
 msgid "Number of relationships:"
@@ -862,15 +862,15 @@ msgstr "Количество детей:"
 
 #: GenericFilter.py:900
 msgid "Matches the person who has a particular relationship"
-msgstr "Выявляет·людей, состоящих в определенном отношении"
+msgstr "Выявляет людей, состоящих в определенном отношении"
 
 #: GenericFilter.py:962
 msgid "Matches the person with a birth of a particular value"
-msgstr "Выявляет людей·с·рождением·определенного·значения"
+msgstr "Выявляет людей с рождением определенного значения"
 
 #: GenericFilter.py:1002
 msgid "Matches the person with a death of a particular value"
-msgstr "Выявляет людей·со смертью·определенного·значения"
+msgstr "Выявляет людей со смертью определенного значения"
 
 #: GenericFilter.py:1028 GenericFilter.py:1050 edit_person.glade:2452
 #: imagesel.glade:834 imagesel.glade:1591
@@ -904,11 +904,11 @@ msgstr "Имя:"
 
 #: GenericFilter.py:1082
 msgid "Matches the person with a specified (partial) name"
-msgstr "Выявляет людей·с·указанным (частично)·именем"
+msgstr "Выявляет людей с указанным (частично) именем"
 
 #: GenericFilter.py:1144
 msgid "Matches the person married to someone matching a filter"
-msgstr "Выявляет·людей,·состоящих в браке·с·лицом,·соответствующим фильтру"
+msgstr "Выявляет людей, состоящих в браке с лицом, соответствующим фильтру"
 
 #: GenericFilter.py:1291
 msgid "Everyone"
@@ -952,7 +952,7 @@ msgstr "Является потомком лица, отстоящим от не
 
 #: GenericFilter.py:1302
 msgid "Is a descendant of person at least N generations away"
-msgstr "Является·потомком·лица,·отстоящим·от·него·по крайней мере·на·N·поколений"
+msgstr "Является потомком лица, отстоящим от него по крайней мере на N поколений"
 
 #: GenericFilter.py:1304
 msgid "Is a child of filter match"
@@ -968,11 +968,11 @@ msgstr "Является предком соответствующего фил�
 
 #: GenericFilter.py:1307
 msgid "Is an ancestor of person not more than N generations away"
-msgstr "Является·предком·лица,·отстоящим·от·него·не·более·чем·на·N·поколений"
+msgstr "Является предком лица, отстоящим от него не более чем на N поколений"
 
 #: GenericFilter.py:1309
 msgid "Is an ancestor of person at least N generations away"
-msgstr "Является·предком·лица,·отстоящим·от·него·по крайней мере·на·N·поколений"
+msgstr "Является предком лица, отстоящим от него по крайней мере на N поколений"
 
 #: GenericFilter.py:1311
 msgid "Is a parent of filter match"
@@ -7873,91 +7873,3 @@ msgstr "<b>Выравнивание</b>"
 msgid "<b>Paragraph options</b>"
 msgstr "<b>Параметры абзаца</b>"
 
-#~ msgid "Exactly two people must be selected to perform a merge."
-#~ msgstr "Ровно два лица должны быть выделены чтобы произвести слияние."
-
-#~ msgid "_Default Person"
-#~ msgstr "Лицо По _Умолчанию"
-
-#~ msgid "Open"
-#~ msgstr "Открыть"
-
-#~ msgid "Save"
-#~ msgstr "Сохранить"
-
-#~ msgid "Add"
-#~ msgstr "Добавить"
-
-#~ msgid "Remove"
-#~ msgstr "Удалить"
-
-#~ msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s умерла %(death_date)s%(death_endnotes)s."
-
-#~ msgid "Title String"
-#~ msgstr "Заглавная Строка"
-
-#~ msgid "Contents"
-#~ msgstr "Содержание"
-
-#~ msgid "Timeline"
-#~ msgstr "Временная Линия"
-
-#~ msgid "<b>Rule Modifiers</b>"
-#~ msgstr "<b>Дополнения к правилам</b>"
-
-#~ msgid "Relationship to %{father}s"
-#~ msgstr "Отношение %{father}s"
-
-#~ msgid "Relationship to %{mother}s"
-#~ msgstr "Отношение к %{mother}s"
-
-#~ msgid "Accept and close"
-#~ msgstr "Принять и закрыть"
-
-#~ msgid "Reject changes and close"
-#~ msgstr "Отвергнуть измемения и закрыть"
-
-#~ msgid "Accept changes and close dialog"
-#~ msgstr "Принять изменения и закрыть диалог"
-
-#~ msgid "Restrict data on living people"
-#~ msgstr "Ограничить данные о живущих лицах"
-
-#~ msgid "Delete %s"
-#~ msgstr "Уничтожить %s"
-
-#~ msgid "T_ype"
-#~ msgstr "Т_ип"
-
-#~ msgid ""
-#~ "The file you should attempt to open should be a directory that contains a "
-#~ "data.gramps file or a gramps.zodb file."
-#~ msgstr ""
-#~ "Файл, который вы должны пытаться открыть, должен быть каталогом, "
-#~ "содержащим файл data.gramps или файл gramps.zodb."
-
-#~ msgid "The directory ~/.gramps/example could not be created.\n"
-#~ msgstr "Каталог ~/.gramps/example не смог быть создан.\n"
-
-#~ msgid "Ancestors Report"
-#~ msgstr "Отчет о Предках"
-
-#~ msgid "Copyright String"
-#~ msgstr "Строка Копирайт"
-
-#~ msgid "Export to CD (nautilus)"
-#~ msgstr "Экспорт на CD (наутилус)"
-
-#, fuzzy
-#~ msgid "Full Family Chart"
-#~ msgstr "Веерная Карта"
-
-#, fuzzy
-#~ msgid "Full Family Chart for %s"
-#~ msgstr "Веерная Карта для %s"
-
-#, fuzzy
-#~ msgid "Save Full Family Chart"
-#~ msgstr "Сохранить Веерную Карту"
