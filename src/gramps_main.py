@@ -55,6 +55,7 @@ import MediaView
 import PlaceView
 import FamilyView
 import SourceView
+import PeopleView
 
 from QuestionDialog import QuestionDialog, ErrorDialog, WarningDialog, SaveDialog, OptionDialog, MissingMediaDialog
 
@@ -70,6 +71,7 @@ import Find
 import VersionControl
 import ReadXML
 import ListModel
+import TreeModel
 import GrampsXML
 
 try:
@@ -86,8 +88,6 @@ except:
 _HOMEPAGE  = "http://gramps.sourceforge.net"
 _MAILLIST  = "http://sourceforge.net/mail/?group_id=25770"
 _BUGREPORT = "http://sourceforge.net/tracker/?group_id=25770&atid=385137"
-
-_sel_mode = gtk.SELECTION_MULTIPLE
 
 PERSON_VIEW   = 0
 FAMILY_VIEW1  = 1
@@ -116,7 +116,6 @@ class Gramps:
         self.program.set_property('app-sysconfdir','%s/etc' % const.prefixdir)
         self.program.set_property('app-prefix', const.prefixdir)
 
-        self.DataFilter = Filter.Filter("")
         self.parents_index = 0
         self.active_person = None
         self.place_loaded = 0
@@ -147,7 +146,6 @@ class Gramps:
         self.db.set_fprefix(GrampsCfg.fprefix)
         self.db.set_sprefix(GrampsCfg.sprefix)
         self.db.set_pprefix(GrampsCfg.pprefix)
-        self.clearing_tabs = 0
 
         GrampsCfg.loadConfig(self.pref_callback)
         self.relationship = Plugins.relationship_function()
@@ -203,28 +201,6 @@ class Gramps:
         self.filter_btn  = self.gtop.get_widget("filter1")
         self.statusbar   = self.gtop.get_widget("statusbar")
 
-        self.ptabs       = self.gtop.get_widget("ptabs")
-        self.pl_other    = self.gtop.get_widget("pl_other")
-
-        self.ptabs.set_show_tabs(0)
-
-        self.pl_page = [
-            ListModel.ListModel(self.pl_other, self.pl_titles, self.row_changed,
-                                self.alpha_event, _sel_mode),
-            ]
-
-        self.person_tree = self.pl_page[0]
-        self.person_list = self.pl_page[0].tree
-        self.person_model = self.pl_page[0].model
-        self.person_list.connect('button-press-event',self.on_plist_button_press)        
-        
-        self.default_list = self.pl_page[-1]
-
-        self.alpha_page = {}
-        self.model2page = {}
-        self.model_used = {}
-        self.tab_list = []
-        
         self.filter_list = self.gtop.get_widget("filter_list")
         self.views    = self.gtop.get_widget("views")
         self.merge_button= self.gtop.get_widget("merge")
@@ -262,7 +238,8 @@ class Gramps:
         self.views.set_show_tabs(0)
 
         self.family_view = FamilyView.FamilyView(self)
-
+        self.people_view = PeopleView.PeopleView(self)
+        
         self.pedigree_view = PedView.PedigreeView(self,
             self.canvas, self.modify_statusbar, self.statusbar,
             self.change_active_person, self.load_person
@@ -288,7 +265,7 @@ class Gramps:
             "on_editbtn_clicked" : self.edit_button_clicked,
             "on_addbtn_clicked" : self.add_button_clicked,
             "on_removebtn_clicked" : self.remove_button_clicked,
-            "on_alpha_switch_page" : self.change_alpha_page,
+            "on_alpha_switch_page" : self.people_view.change_alpha_page,
             "delete_event" : self.delete_event,
             "destroy_passed_object" : Utils.destroy_passed_object,
             "on_about_activate" : self.on_about_activate,
@@ -363,15 +340,6 @@ class Gramps:
       
         self.topWindow.show()
 
-    def set_buttons(self,val):
-        self.report_menu.set_sensitive(val)
-        self.tools_menu.set_sensitive(val)
-        self.report_button.set_sensitive(val)
-        self.tool_button.set_sensitive(val)
-        if self.views.get_current_page() == PERSON_VIEW:
-            self.remove_button.set_sensitive(val)
-            self.edit_button.set_sensitive(val)
-        
     def redraw_histmenu(self):
         """Create the history submenu of the Go menu"""
         self.hist_gomenuitem.remove_submenu()
@@ -455,6 +423,15 @@ class Gramps:
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_fwdhistmenu()
 
+    def set_buttons(self,val):
+        self.report_menu.set_sensitive(val)
+        self.tools_menu.set_sensitive(val)
+        self.report_button.set_sensitive(val)
+        self.tool_button.set_sensitive(val)
+        if self.views.get_current_page() == PERSON_VIEW:
+            self.remove_button.set_sensitive(val)
+            self.edit_button.set_sensitive(val)
+        
     def back_clicked(self,obj,step=1):
         if self.hindex > 0:
             try:
@@ -509,62 +486,6 @@ class Gramps:
             self.backbtn.set_sensitive(1)
             self.back.set_sensitive(1)
 
-    def on_plist_button_press(self,obj,event):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_people_context_menu()
-
-    def build_people_context_menu(self):
-        """Builds the menu with navigation and 
-        editing operations on the people's list"""
-        
-        back_sensitivity = self.hindex > 0 
-        fwd_sensitivity = self.hindex + 1 < len(self.history)
-        mlist = self.person_tree.get_selected_objects()
-        if mlist:
-            sel_sensitivity = 1
-        else:
-            sel_sensitivity = 0
-        entries = [
-            (gtk.STOCK_GO_BACK,self.back_clicked,back_sensitivity),
-            (gtk.STOCK_GO_FORWARD,self.fwd_clicked,fwd_sensitivity),
-            (gtk.STOCK_HOME,self.on_home_clicked,1),
-            (_("Add Bookmark"),self.on_add_bookmark_activate,sel_sensitivity),
-            (None,None,0),
-            (gtk.STOCK_ADD, self.add_button_clicked,1),
-            (gtk.STOCK_REMOVE, self.remove_button_clicked,sel_sensitivity),
-            (_("Edit"), self.edit_button_clicked,sel_sensitivity),
-        ]
-
-        menu = gtk.Menu()
-        menu.set_title(_('People Menu'))
-        for stock_id,callback,sensitivity in entries:
-            item = gtk.ImageMenuItem(stock_id)
-            if callback:
-                item.connect("activate",callback)
-            item.set_sensitive(sensitivity)
-            item.show()
-            menu.append(item)
-        menu.popup(None,None,None,0,0)
-        
-    def change_alpha_page(self,obj,junk,page):
-        """Change the page. Be careful not to take action while the pages
-        are begin removed. If clearing_tabs is set, then we don't do anything"""
-        
-        if self.clearing_tabs:
-            return
-	self.person_tree = self.pl_page[page]
-        self.person_list = self.pl_page[page].tree
-        self.person_model = self.pl_page[page].model
-        if not self.model_used.has_key(self.person_tree) or self.model_used[self.person_tree] == 0:
-            self.model_used[self.person_tree] = 1
-            self.apply_filter(self.person_tree)
-            self.person_list.connect('button-press-event',self.on_plist_button_press)
-        mlist = self.person_tree.get_selected_objects()
-        if mlist:
-            self.set_buttons(1)
-        else:
-            self.set_buttons(0)
-
     def edit_button_clicked(self,obj):
         cpage = self.views.get_current_page()
         if cpage == PERSON_VIEW:
@@ -603,15 +524,6 @@ class Gramps:
         self.remove_button.set_sensitive(val)
         self.edit_button.set_sensitive(val)
             
-    def row_changed(self,obj):
-        mlist = self.person_tree.get_selected_objects()
-        if mlist:
-            try:
-                self.change_active_person(self.db.getPerson(mlist[0]))
-            except:
-                self.change_active_person(None)
-                self.person_tree.unselect()
-
     def on_show_plugin_status(self,obj):
         Plugins.PluginStatus()
 
@@ -856,35 +768,6 @@ class Gramps:
         import DbPrompter
         DbPrompter.DbPrompter(self,1,self.topWindow)
 
-    def clear_person_tabs(self):
-
-        self.clearing_tabs = 1
-        self.ptabs.hide()
-        for i in range(0,len(self.tab_list)):
-            self.ptabs.remove_page(0)
-        self.ptabs.set_show_tabs(0)
-        self.ptabs.show()
-        self.clearing_tabs = 0
-        self.id2col = {}
-        self.tab_list = []
-        self.alpha_page = {}
-        self.model2page = {}
-        self.model_used = {}
-
-        self.default_list.clear()
-
-        for page in self.pl_page[0:-1]:
-            page.cleanup()
-            del page
-        
-        self.pl_page = [
-            self.default_list
-            ]
-
-        self.person_tree = self.pl_page[-1]
-        self.person_list = self.pl_page[-1].tree
-        self.person_model = self.pl_page[-1].model
-    
     def clear_database(self,zodb=1):
         """Clear out the database if permission was granted"""
         const.personalEvents = const.init_personal_event_list()
@@ -897,7 +780,7 @@ class Gramps:
         self.mhistory = []
         self.hindex = -1
 
-        self.clear_person_tabs()
+        self.people_view.clear_person_tabs()
         
         if zodb == 1:
             self.db = GrampsZODB.GrampsZODB()
@@ -912,19 +795,18 @@ class Gramps:
         self.db.set_pprefix(GrampsCfg.pprefix)
 
         self.place_view.change_db(self.db)
+        self.people_view.change_db(self.db)
         self.source_view.change_db(self.db)
         self.media_view.change_db(self.db)
 
         if not self.cl:
             self.topWindow.set_title("GRAMPS")
             self.active_person = None
-            self.id2col = {}
 
             Utils.clearModified()
             Utils.clear_timer()
             self.change_active_person(None)
-            for model in self.pl_page:
-                model.clear()
+            self.people_view.clear()
             self.family_view.clear()
             self.family_view.load_family()
             self.pedigree_view.clear()
@@ -955,7 +837,7 @@ class Gramps:
         page = self.views.get_current_page()
         if page == PERSON_VIEW:
             if changed:
-                self.apply_filter()
+                self.people_view.apply_filter()
             else:
                 self.goto_active_person()
         elif page == FAMILY_VIEW1 or page == FAMILY_VIEW2:
@@ -1078,7 +960,7 @@ class Gramps:
         else:
             GrampsCfg.save_last_file("")
         self.topWindow.set_resizable(gtk.TRUE)
-        self.apply_filter()
+        self.people_view.apply_filter()
         self.goto_active_person(1)
         
     def handle_args(self,args):
@@ -1610,72 +1492,14 @@ class Gramps:
         self.update_display(0)
         Utils.modified()
 
-    def remove_from_person_list(self,person,old_id=None):
-        pid = person.getId()
-        if old_id:
-            del_id = old_id
-        else:
-            del_id = pid
-
-        if self.id2col.has_key(del_id):
-            (model,iter) = self.id2col[del_id]
-            model.remove(iter)
-            del self.id2col[del_id]
-            
-            if person == self.active_person:
-                self.active_person = None
-    
     def merge_update(self,p1,p2,old_id):
         self.remove_from_person_list(p1,old_id)
         self.remove_from_person_list(p2)
         self.redisplay_person_list(p1)
         self.update_display(0)
     
-    def alpha_event(self,obj):
-        self.load_person(self.active_person)
-
     def goto_active_person(self,first=0):
-        if not self.active_person:
-            if first:
-                page = 0
-            else:
-                page = self.ptabs.get_current_page()
-            self.person_tree = self.pl_page[page]
-            self.person_list = self.pl_page[page].tree
-            self.person_model = self.pl_page[page].model
-            self.ptabs.set_current_page(page)
-            return
-        
-        id = self.active_person.getId()
-        if self.id2col.has_key(id):
-            (model,iter) = self.id2col[id]
-        else:
-            val = self.db.getPersonDisplay(id)
-            pg = val[5]
-            if pg and pg != '@':
-                pg = pg[0]
-            else:
-                pg = ''
-            if not self.alpha_page.has_key(pg):
-                self.create_new_panel(pg)
-            model = self.alpha_page[pg]
-            iter = None
-
-        self.ptabs.set_current_page(self.model2page[model])
-
-        if not self.model_used.has_key(model) or self.model_used[model] == 0 or not iter:
-            self.model_used[model] = 1
-            self.apply_filter(model)
-            try:
-                (model,iter) = self.id2col[id]
-            except:
-                return
-            
-        model.selection.unselect_all()
-        model.selection.select_iter(iter);
-        itpath = model.model.get_path(iter)
-        col = model.tree.get_column(0)
-        model.tree.scroll_to_cell(itpath,col,1,0.5,0)
+        self.people_view.goto_active_person(first)
             
     def change_active_person(self,person):
         if person != self.active_person:
@@ -1886,7 +1710,7 @@ class Gramps:
         """Load the appropriate page after a notebook switch"""
         if page == PERSON_VIEW:
             self.enable_buttons(1)
-            self.goto_active_person()
+            self.people_view.goto_active_person()
             self.merge_button.set_sensitive(1)
         elif page == FAMILY_VIEW1 or page == FAMILY_VIEW2:
             self.enable_buttons(0)
@@ -1910,14 +1734,7 @@ class Gramps:
             self.media_view.load_media()
             
     def on_apply_filter_clicked(self,obj):
-        invert_filter = self.filter_inv.get_active()
-        qualifer = self.filter_text.get_text()
-        mi = self.filter_list.get_menu().get_active()
-        class_init = mi.get_data("function")
-        self.DataFilter = class_init(qualifer)
-        self.DataFilter.set_invert(invert_filter)
-        self.model_used = {}
-        self.apply_filter(self.person_tree)
+        self.people_view.apply_filter_clicked()
 
     def on_filter_name_changed(self,obj):
         filter = obj.get_data("filter")
@@ -1940,7 +1757,7 @@ class Gramps:
                 self.db.addPersonNoMap(epo.person,epo.person.getId())
             self.db.buildPersonDisplay(epo.person.getId())
             self.change_active_person(epo.person)
-            self.redisplay_person_list(epo.person)
+            self.people_view.redisplay_person_list(epo.person)
         if self.views.get_current_page() in [FAMILY_VIEW1,FAMILY_VIEW2]:
             self.family_view.load_family()
         for p in plist:
@@ -1948,51 +1765,28 @@ class Gramps:
 
     def update_after_newchild(self,family,person,plist):
         self.family_view.load_family(family)
-        self.redisplay_person_list(person)
+        self.people_view.redisplay_person_list(person)
         for p in plist:
             self.place_view.new_place_after_edit(p)
 
     def update_after_edit(self,epo,plist):
         if epo:
             self.db.buildPersonDisplay(epo.person.getId(),epo.original_id)
-            self.remove_from_person_list(epo.person,epo.original_id)
-            self.redisplay_person_list(epo.person)
+            self.people_view.remove_from_person_list(epo.person,epo.original_id)
+            self.people_view.redisplay_person_list(epo.person)
         for p in plist:
             self.place_view.new_place_after_edit(p)
         self.update_display(0)
 
     def update_after_merge(self,person,old_id):
         if person:
-            self.remove_from_person_list(person,old_id)
-            self.redisplay_person_list(person)
+            self.people_view.remove_from_person_list(person,old_id)
+            self.people_view.redisplay_person_list(person)
         self.update_display(0)
 
-    def add_to_person_list(self,person,change):
-        key = person.getId()
-        val = self.db.getPersonDisplay(person.getId())
-        pg = unicode(val[5])
-        pg = pg[0]
-        if self.DataFilter.compare(person):
-
-            if pg and pg != '@':
-                if not self.alpha_page.has_key(pg):
-                    self.create_new_panel(pg)
-                model = self.alpha_page[pg]
-            else:
-                model = self.default_list
-            
-            iter = model.add([val[0],val[1],val[2],val[3],val[4],val[5],
-                              val[6],val[7]],key)
-
-            self.id2col[key] = (model,iter)
-
-            if change:
-                self.change_active_person(person)
-                self.goto_active_person()
-            model.sort()
         
     def redisplay_person_list(self,person):
-        self.add_to_person_list(person,1)
+        self.people_view.add_to_person_list(person,1)
 
     def load_person(self,person):
         if person:
@@ -2131,97 +1925,9 @@ class Gramps:
         self.status_text("")
 
     def complete_rebuild(self):
-        self.apply_filter()
+        self.people_view.apply_filter()
         self.goto_active_person()
         self.modify_statusbar()
-
-    def apply_filter(self,current_model=None):
-        self.status_text(_('Updating display...'))
-
-        datacomp = self.DataFilter.compare
-        if current_model == None:
-            self.id2col = {}
-
-        for key in self.db.getPersonKeys():
-            person = self.db.getPerson(key)
-            val = self.db.getPersonDisplay(key)
-            pg = val[5]
-            if pg and pg != '@':
-                pg = pg[0]
-            else:
-                pg = ''
-
-            if datacomp(person):
-                if self.id2col.has_key(key):
-                    continue
-                if pg and pg != '@':
-                    if not self.alpha_page.has_key(pg):
-                        self.create_new_panel(pg)
-                    model = self.alpha_page[pg]
-                else:
-                    model = self.default_list
-
-                if current_model == model:
-                    iter = model.add([val[0],val[1],val[2],val[3],val[4],val[5],
-                                      val[6],val[7]],key)
-                    self.id2col[key] = (model,iter)
-            else:
-                if self.id2col.has_key(key):
-                    (model,iter) = self.id2col[key]
-                    model.remove(iter)
-                    del self.id2col[key]
-
-        for i in self.pl_page:
-            i.sort()
-
-        self.modify_statusbar()
-
-    def create_new_panel(self,pg):
-        
-        display = gtk.ScrolledWindow()
-        display.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
-        tree = gtk.TreeView()
-        tree.show()
-        display.add(tree)
-        display.show()
-        model = ListModel.ListModel(tree,self.pl_titles,self.row_changed,
-                                    self.alpha_event,_sel_mode)
-        self.alpha_page[pg] = model
-        for index in range(0,len(self.tab_list)):
-            try:
-                if pg < self.tab_list[index]:
-                    self.ptabs.insert_page(display,gtk.Label(pg),index)
-                    self.ptabs.set_show_tabs(1)
-                    self.tab_list.insert(index,pg)
-                    self.pl_page.insert(index,model)
-                    break
-            except:
-                print index
-        else:
-            #added by EARNEY on 5/5/2003
-            #modified the block below because sometimes certain
-            #letters under people panel
-            #will not load properly after a quick add
-            #(ie, adding a parent under the family panel)
-            index=len(self.tab_list)
-            self.ptabs.insert_page(display,gtk.Label(pg),index)
-            self.ptabs.set_show_tabs(1)
-            self.tab_list.insert(index,pg)
-            self.pl_page.insert(index,model)
-
-            #instead of the following..
-            #self.ptabs.insert_page(display,gtk.Label(pg),len(self.tab_list))
-            #self.ptabs.set_show_tabs(1)
-            #self.tab_list.append(pg)
-            #self.pl_page = self.pl_page[0:-1] + [model,self.default_list]
-
-
-        for index in range(0,len(self.tab_list)):
-            model = self.alpha_page[self.tab_list[index]]
-            self.model2page[model] = index
-            self.model_used[model] = 0
-        self.model2page[self.default_list] = len(self.tab_list)
-        self.model_used[self.default_list] = 0
 
     def on_home_clicked(self,obj):
         temp = self.db.getDefaultPerson()

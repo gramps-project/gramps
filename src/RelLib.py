@@ -1044,10 +1044,11 @@ class Person(Persistent):
             gender = const.unknown
         bday = self.getBirth().getDateObj()
         dday = self.getDeath().getDateObj()
-        return [self.getPrimaryName().getName(),self.id,gender,
-                bday.getQuoteDate(), dday.getQuoteDate(),
-                sort.build_sort_name(self.getPrimaryName()),
-                sort.build_sort_date(bday),sort.build_sort_date(dday)]
+        return [ self.getPrimaryName().getName(),self.id,gender,
+                 bday.getQuoteDate(), dday.getQuoteDate(),
+                 sort.build_sort_name(self.getPrimaryName()),
+                 sort.build_sort_date(bday),sort.build_sort_date(dday),
+                 self.getPrimaryName().getSurname()]
                                           
     def setPrimaryName(self,name):
         """sets the primary name of the Person to the specified
