@@ -452,9 +452,6 @@ class FamilyGroupBareDialog(Report.BareReportDialog):
             self.person = person
         Report.BareReportDialog.__init__(self,database,self.person)
 
-        def make_default_style(self):
-            _make_default_style(self.default_style)
-
         self.spouse_name = self.options[1]
 
         self.style_name = stl
@@ -473,6 +470,9 @@ class FamilyGroupBareDialog(Report.BareReportDialog):
     # Customization hooks
     #
     #------------------------------------------------------------------------
+    def make_default_style(self):
+        _make_default_style(self.default_style)
+
     def get_title(self):
         """The window title for this dialog"""
         return "%s - GRAMPS Book" % (_("Family Group Report"))
@@ -551,7 +551,7 @@ class FamilyGroupBareDialog(Report.BareReportDialog):
         else:
             self.spouse_name = ""
             
-        self.options = [ self.person.getId(), self.spouse_name ]
+        self.options = ( self.person.getId(), self.spouse_name )
         self.style_name = self.selected_style.get_name()
 
 #------------------------------------------------------------------------

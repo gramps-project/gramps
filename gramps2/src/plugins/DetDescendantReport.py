@@ -982,9 +982,6 @@ class DetDescendantBareReportDialog(Report.BareReportDialog):
 
         Report.BareReportDialog.__init__(self,database,self.person)
 
-        def make_default_style(self):
-            _make_default_style(self.default_style)
-
         self.style_name = stl
         self.new_person = None
 
@@ -995,6 +992,9 @@ class DetDescendantBareReportDialog(Report.BareReportDialog):
     # Customization hooks
     #
     #------------------------------------------------------------------------
+    def make_default_style(self):
+        _make_default_style(self.default_style)
+
     def get_title(self):
         """The window title for this dialog"""
         return "%s - GRAMPS Book" % (_("Detailed Descendant Report"))
@@ -1135,10 +1135,10 @@ class DetDescendantBareReportDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = [ self.person.getId(), self.max_gen, self.pg_brk, 
+        self.options = ( self.person.getId(), self.max_gen, self.pg_brk, 
             self.first_name, self.full_date, self.list_children, 
             self.include_notes, self.place, self.date, self.age, 
-            self.dup_persons, self.child_ref, self.images ]
+            self.dup_persons, self.child_ref, self.images )
         self.style_name = self.selected_style.get_name() 
 
 #------------------------------------------------------------------------

@@ -1,5 +1,16 @@
 2003-07-07  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/DetDescendantReport.py: Enable book functionality.
+	Fix styles in book. Switch to tuple of options. 
+	* src/plugins/AncestorReport.py: Fix styles in book. 
+	* src/plugins/Ancestors.py: Fix styles in book.
+	* src/plugins/DescendReport.py: Fix styles in book.
+	* src/plugins/FtmStyleAncestors.py: Fix styles in book.
+	* src/plugins/FtmStyleDescendants.py: Fix styles in book.
+	* src/plugins/IndivComplete.py: Switch to tuple of options.
+	* src/plugins/IndivSummary.py: Switch to tuple of options.
+	* src/plugins/SimpleBookTitle.py: Fix styles in book.
+	* src/plugins/FamilyGroup.py: Fix styles in book.
+	* src/plugins/DetAncestralReport.py: Fix styles in book.
 
 2003-07-07  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/WriteGedcom.py: Fix GEDCOM export.  Fixed date

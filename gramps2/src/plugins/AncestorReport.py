@@ -309,9 +309,6 @@ class AncestorBareReportDialog(Report.BareReportDialog):
             self.person = person
         Report.BareReportDialog.__init__(self,database,self.person)
 
-        def make_default_style(self):
-            _make_default_style(self.default_style)
-
         self.max_gen = int(self.options[1]) 
         self.pg_brk = int(self.options[2])
         self.style_name = stl
@@ -327,6 +324,9 @@ class AncestorBareReportDialog(Report.BareReportDialog):
     # Customization hooks
     #
     #------------------------------------------------------------------------
+    def make_default_style(self):
+        _make_default_style(self.default_style)
+
     def get_title(self):
         """The window title for this dialog"""
         return "%s - GRAMPS Book" % (_("Ahnentafel Report"))
@@ -352,7 +352,7 @@ class AncestorBareReportDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = [ self.person.getId(), self.max_gen, self.pg_brk ]
+        self.options = ( self.person.getId(), self.max_gen, self.pg_brk )
         self.style_name = self.selected_style.get_name() 
 
 #------------------------------------------------------------------------

@@ -540,7 +540,7 @@ class IndivSummaryBareReportDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = [ self.person.getId(), self.max_gen, self.pg_brk ]
+        self.options = ( self.person.getId(), self.max_gen, self.pg_brk )
         self.style_name = self.selected_style.get_name()
 
 
