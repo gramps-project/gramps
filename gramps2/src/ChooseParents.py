@@ -80,6 +80,7 @@ class ChooseParents:
         self.full_update = full_update
         self.old_type = ""
         self.type = ""
+        self.parent_selected = 0
 
         self.date = person.getBirth().getDateObj()
 
@@ -115,7 +116,6 @@ class ChooseParents:
                                           self.father_list_select_row)
         self.mmodel = ListModel.ListModel(self.mother_list, _titles,
                                           self.mother_list_select_row)
-        
 
         for (f,mr,fr) in self.person.getParentList():
             if f == self.family:
@@ -206,9 +206,9 @@ class ChooseParents:
             d = self.db.getPersonDisplay(idval)
             info = [d[0],d[1],d[3],d[5],d[6]]
             if self.type == "Partners":
-                self.fmodel.add(info,None,fid==d[1])
+                self.fmodel.add(info,d[1],fid==d[1])
             elif d[2] == const.male:
-                self.fmodel.add(info,None,fid==d[1])
+                self.fmodel.add(info,d[1],fid==d[1])
 
         if self.type == "Partners":
             self.flabel.set_label("<b>%s</b>" % _("Parent"))
@@ -282,17 +282,15 @@ class ChooseParents:
             d = self.db.getPersonDisplay(idval)
             info = [d[0],d[1],d[3],d[5],d[6]]
             if self.type == "Partners":
-                self.mmodel.add(info,None,mid==d[1])
+                self.mmodel.add(info,d[1],mid==d[1])
             elif d[2] == const.female:
-                self.mmodel.add(info,None,mid==d[1])
+                self.mmodel.add(info,d[1],mid==d[1])
 
         if self.type == "Partners":
             self.mlabel.set_label("<b>%s</b>" % _("Parent"))
         else:
             self.mlabel.set_label("<b>%s</b>" % _("Mother"))
-
         self.mmodel.connect_model()
-
 
     def parent_relation_changed(self,obj):
         """Called everytime the parent relationship information is changegd"""
@@ -345,6 +343,14 @@ class ChooseParents:
         else:
             self.mother = None
 
+        if not self.parent_selected and self.mother:
+            self.parent_selected = 1
+            list = self.mother.getFamilyList()
+            if len(list) >= 1:
+                father = list[0].getFather()
+                self.fmodel.find(father.getId())
+                self.fmodel.center_selected()
+
     def father_list_select_row(self,obj):
         """Called when a row is selected in the father list. Sets the
         active father based off the id associated with the row."""
@@ -354,6 +360,14 @@ class ChooseParents:
             self.father = self.db.getPerson(id)
         else:
             self.father = None
+
+        if not self.parent_selected and self.father:
+            self.parent_selected = 1
+            list = self.father.getFamilyList()
+            if len(list) >= 1:
+                mother = list[0].getMother()
+                self.mmodel.find(mother.getId())
+                self.mmodel.center_selected()
 
     def save_parents_clicked(self,obj):
         """

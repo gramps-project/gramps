@@ -4264,7 +4264,7 @@
 
 		      <child>
 			<widget class="GtkTreeView" id="father_list">
-			  <property name="height_request">60</property>
+			  <property name="height_request">150</property>
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
 			  <property name="headers_visible">True</property>
@@ -4293,7 +4293,7 @@
 
 		      <child>
 			<widget class="GtkTreeView" id="mother_list">
-			  <property name="height_request">60</property>
+			  <property name="height_request">150</property>
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
 			  <property name="headers_visible">True</property>

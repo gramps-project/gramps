@@ -41,7 +41,7 @@ class ListModel:
         self.count = 0
         self.cid = None
         self.cids = []
-        self.objects = []
+        self.idmap = {}
         
         cnum = 0
         for name in dlist:
@@ -50,9 +50,6 @@ class ListModel:
             column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
             column.set_min_width(name[2])
 
-            self.objects.append(renderer)
-            self.objects.append(column)
-            
             if name[0] == '':
                 column.set_visible(gtk.FALSE)
             else:
@@ -189,6 +186,8 @@ class ListModel:
             self.model.set_value(iter,col,object)
             col = col + 1
         self.model.set_value(iter,col,info)
+        if info:
+            self.idmap[info] = iter
         if select:
             self.selection.select_iter(iter)
         return iter
@@ -204,6 +203,8 @@ class ListModel:
             self.model.set_value(iter,col,object)
             col = col + 1
         self.model.set_value(iter,col,info)
+        if info:
+            self.idmap[info] = iter
         if select:
             self.sel_iter = iter
             self.selection.select_iter(self.sel_iter)
@@ -215,6 +216,8 @@ class ListModel:
             self.model.set_value(iter,col,object)
             col = col + 1
         self.model.set_value(iter,col,info)
+        if info:
+            self.idmap[info] = iter
         if select:
             self.sel_iter = iter
         return iter
@@ -226,6 +229,8 @@ class ListModel:
         for object in data:
             self.model.set_value(iter,col,object)
             col = col + 1
+        if info:
+            self.idmap[info] = iter
         self.model.set_value(iter,col,info)
         self.selection.select_iter(iter)
 
@@ -241,6 +246,9 @@ class ListModel:
             return 1
         return 0
 
+    def find(self,info):
+        iter = self.idmap[info]
+        self.selection.select_iter(iter)
+
     def cleanup(self):
-        for obj in self.objects:
-            del obj
+        pass
