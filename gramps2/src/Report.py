@@ -342,14 +342,12 @@ class BareReportDialog:
 
         self.window = gtk.Dialog('GRAMPS')
         self.window.set_has_separator(gtk.FALSE)
-        self.cancel = self.window.add_button(gtk.STOCK_CANCEL,False)
-        self.ok = self.window.add_button(gtk.STOCK_OK,True)
+        self.cancel = self.window.add_button(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL)
+        self.ok = self.window.add_button(gtk.STOCK_OK,gtk.RESPONSE_OK)
 
         self.ok.connect('clicked',self.on_ok_clicked)
         self.cancel.connect('clicked',self.on_cancel)
 
-#        self.window.set_response_sensitive(0,gtk.TRUE)
-#        self.window.set_response_sensitive(1,gtk.TRUE)
         self.window.set_resize_mode(0)
 
         # Set up and run the dialog.  These calls are not in top down
@@ -1387,7 +1385,6 @@ class ReportDialog(BareReportDialog):
 
         model = self.template_combo.get_model()
         text = unicode(model[self.template_combo.get_active()][0])
-        #text = unicode(self.template_combo.entry.get_text())
 
         if _template_map.has_key(text):
             if text == _user_template:
@@ -1419,19 +1416,14 @@ class ReportDialog(BareReportDialog):
         # Create the output document.
         self.make_document()
         
-#        # Create the report object and product the report.
-#        try:
-#            self.make_report()
-#        except (IOError,OSError),msg:
-#            ErrorDialog(str(msg))
-            
         # Save options
         self.options.handler.save_options()
 
-        # Clean up the dialog object
-        #self.window.destroy()
-
-
+#-----------------------------------------------------------------------
+#
+# Textual reports
+#
+#-----------------------------------------------------------------------
 class TextReportDialog(ReportDialog):
     """A class of ReportDialog customized for text based reports."""
 
@@ -1466,20 +1458,11 @@ class TextReportDialog(ReportDialog):
         self.format_menu.set(self.doc_uses_tables(),
                              self.doc_type_changed, None, active)
 
-    #------------------------------------------------------------------------
-    #
-    # Functions related to creating the actual report document.
-    #
-    #------------------------------------------------------------------------
-#    def make_report(self):
-#        """Create the contents of the report.  This is a simple
-#        default implementation suitable for testing.  Is should be
-#        overridden to produce a real report."""
-#        self.doc.start_paragraph("Title")
-#        title = "Basic Report for %s" % self.name
-#        self.doc.write_text(title)
-#        self.doc.end_paragraph()
-
+#-----------------------------------------------------------------------
+#
+# Drawing reports
+#
+#-----------------------------------------------------------------------
 class DrawReportDialog(ReportDialog):
     """A class of ReportDialog customized for drawing based reports."""
     def __init__(self,database,person,opt,name,translated_name):
@@ -1501,6 +1484,11 @@ class DrawReportDialog(ReportDialog):
         self.format_menu.set(False,self.doc_type_changed, None, active)
 
 
+#-----------------------------------------------------------------------
+#
+# Parser for templates file
+#
+#-----------------------------------------------------------------------
 class TemplateParser(handler.ContentHandler):
     """
     Interface to the document template file
@@ -1769,7 +1757,7 @@ def report(database,person,report_class,options_class,translated_name,name,categ
 
     dialog = dialog_class(database,person,options_class,name,translated_name)
     response = dialog.window.run()
-    if response:
+    if response == gtk.RESPONSE_OK:
         try:
             MyReport = report_class(dialog.db,dialog.person,dialog.options)
             MyReport.doc.init()
