@@ -57,6 +57,10 @@ _lang_to_parser = {
     'en_CA'  : DateParser.DateParser,
     'en_SE'  : DateParser.DateParser,
     'en'     : DateParser.DateParser,
+    'ru_RU'  : DateParser.DateParserRU,
+    'ru_RU.koi8r'  : DateParser.DateParserRU,
+    'ru_RU.utf8'  : DateParser.DateParserRU,
+    'russian'  : DateParser.DateParserRU,
     }
 
 _lang_to_display = {
