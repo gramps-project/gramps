@@ -26,7 +26,6 @@
 #-------------------------------------------------------------------------
 import string
 import os
-import sys
 
 #-------------------------------------------------------------------------
 #
@@ -855,10 +854,9 @@ class Gramps:
         if not path:
             return 1
         
-        filename = os.path.normpath(os.path.abspath(filename))
         Utils.clear_timer()
 
-        filename = "%s/autosave.gramps" % (self.db.getSavePath())
+        filename = "%s/autosave.gramps" % (path)
     
         self.status_text(_("autosaving..."));
         try:

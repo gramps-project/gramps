@@ -40,6 +40,7 @@ import gconf
 import gtk
 import gtk.glade
 import gnome
+import gnome.ui
 
 #-------------------------------------------------------------------------
 #
