@@ -115,8 +115,6 @@ SUBDIRS = src doc omf-install example
 EXTRA_DIST = autogen.sh gramps.spec.in COPYING-DOCS
 
 bin_SCRIPTS = gramps
-
-grampsdocdir = $(datadir)/doc/gramps-$(VERSION)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
@@ -467,6 +465,8 @@ uninstall-info: uninstall-info-recursive
 	uninstall-am uninstall-binSCRIPTS uninstall-info-am \
 	uninstall-info-recursive uninstall-local uninstall-recursive
 
+
+#grampsdocdir = $(datadir)/doc/gramps-$(VERSION)
 
 gramps: gramps.sh
 	cp gramps.sh gramps

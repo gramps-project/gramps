@@ -809,7 +809,9 @@ AC_DEFUN([AM_PATH_PYTHON],
   m4_if([$1],[],[
     dnl No version check is needed.
     # Find any Python interpreter.
-    AC_PATH_PROG([PYTHON], _AM_PYTHON_INTERPRETER_LIST)],[
+    AC_PATH_PROG([PYTHON], _AM_PYTHON_INTERPRETER_LIST)
+    am_display_PYTHON=python
+  ], [
     dnl A version check is needed.
     if test -n "$PYTHON"; then
       # If the user set $PYTHON, use it and don't search something else.
@@ -830,6 +832,7 @@ AC_DEFUN([AM_PATH_PYTHON],
         done])
       # Set $PYTHON to the absolute path of $am_cv_pathless_PYTHON.
       AC_PATH_PROG([PYTHON], [$am_cv_pathless_PYTHON])
+      am_display_PYTHON=$am_cv_pathless_PYTHON
     fi
   ])
 
@@ -837,7 +840,7 @@ AC_DEFUN([AM_PATH_PYTHON],
   dnl the best way to do this; it's what "site.py" does in the standard
   dnl library.
 
-  AC_CACHE_CHECK([for $am_cv_pathless_PYTHON version], [am_cv_python_version],
+  AC_CACHE_CHECK([for $am_display_PYTHON version], [am_cv_python_version],
     [am_cv_python_version=`$PYTHON -c "import sys; print sys.version[[:3]]"`])
   AC_SUBST([PYTHON_VERSION], [$am_cv_python_version])
 
@@ -852,8 +855,7 @@ AC_DEFUN([AM_PATH_PYTHON],
   dnl At times (like when building shared libraries) you may want
   dnl to know which OS platform Python thinks this is.
 
-  AC_CACHE_CHECK([for $am_cv_pathless_PYTHON platform],
-	         [am_cv_python_platform],
+  AC_CACHE_CHECK([for $am_display_PYTHON platform], [am_cv_python_platform],
     [am_cv_python_platform=`$PYTHON -c "import sys; print sys.platform"`])
   AC_SUBST([PYTHON_PLATFORM], [$am_cv_python_platform])
 
