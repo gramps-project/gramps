@@ -1,3 +1,9 @@
+2005-01-10  Eero Tamminen <eerot@sf>
+	* src/plugins/Makefile.am:
+	* src/plugins/StatisticsChart.py:
+	  Initial port of the StatisticsChart plugin to new report scheme
+	  (plugin loads and dialog/options work, report generation not yet)
+
 2005-01-08  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsDbBase.py: remove thumbnailing routines, add
 	id creation. Removes gtk and Utils dependencies, making the
