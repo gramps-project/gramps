@@ -13,30 +13,40 @@
 </project>
 
 <widget>
-  <class>GtkDialog</class>
+  <class>GnomeDialog</class>
   <name>relcalc</name>
   <title>Gramps - Relationship Calculator</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
-  <position>GTK_WIN_POS_CENTER</position>
-  <modal>True</modal>
-  <allow_shrink>True</allow_shrink>
+  <position>GTK_WIN_POS_NONE</position>
+  <modal>False</modal>
+  <allow_shrink>False</allow_shrink>
   <allow_grow>True</allow_grow>
   <auto_shrink>False</auto_shrink>
+  <auto_close>False</auto_close>
+  <hide_on_close>False</hide_on_close>
 
   <widget>
     <class>GtkVBox</class>
-    <child_name>Dialog:vbox</child_name>
-    <name>dialog-vbox1</name>
+    <child_name>GnomeDialog:vbox</child_name>
+    <name>dialog-vbox2</name>
     <homogeneous>False</homogeneous>
-    <spacing>0</spacing>
+    <spacing>8</spacing>
+    <child>
+      <padding>4</padding>
+      <expand>True</expand>
+      <fill>True</fill>
+    </child>
 
     <widget>
-      <class>GtkHBox</class>
-      <child_name>Dialog:action_area</child_name>
-      <name>dialog-action_area1</name>
-      <border_width>10</border_width>
-      <homogeneous>True</homogeneous>
-      <spacing>5</spacing>
+      <class>GtkHButtonBox</class>
+      <child_name>GnomeDialog:action_area</child_name>
+      <name>dialog-action_area2</name>
+      <layout_style>GTK_BUTTONBOX_END</layout_style>
+      <spacing>8</spacing>
+      <child_min_width>85</child_min_width>
+      <child_min_height>27</child_min_height>
+      <child_ipad_x>7</child_ipad_x>
+      <child_ipad_y>0</child_ipad_y>
       <child>
 	<padding>0</padding>
 	<expand>False</expand>
@@ -45,48 +55,30 @@
       </child>
 
       <widget>
-	<class>GtkHButtonBox</class>
-	<name>hbuttonbox1</name>
-	<layout_style>GTK_BUTTONBOX_END</layout_style>
-	<spacing>30</spacing>
-	<child_min_width>85</child_min_width>
-	<child_min_height>27</child_min_height>
-	<child_ipad_x>7</child_ipad_x>
-	<child_ipad_y>0</child_ipad_y>
-	<child>
-	  <padding>0</padding>
-	  <expand>True</expand>
-	  <fill>True</fill>
-	</child>
+	<class>GtkButton</class>
+	<name>button4</name>
+	<can_default>True</can_default>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>clicked</name>
+	  <handler>on_apply_clicked</handler>
+	  <last_modification_time>Sun, 16 Dec 2001 21:43:15 GMT</last_modification_time>
+	</signal>
+	<stock_button>GNOME_STOCK_BUTTON_APPLY</stock_button>
+      </widget>
 
-	<widget>
-	  <class>GtkButton</class>
-	  <name>button1</name>
-	  <can_default>True</can_default>
-	  <can_focus>True</can_focus>
-	  <signal>
-	    <name>clicked</name>
-	    <handler>on_apply_clicked</handler>
-	    <last_modification_time>Tue, 06 Feb 2001 23:47:29 GMT</last_modification_time>
-	  </signal>
-	  <stock_button>GNOME_STOCK_BUTTON_APPLY</stock_button>
-	  <relief>GTK_RELIEF_NORMAL</relief>
-	</widget>
-
-	<widget>
-	  <class>GtkButton</class>
-	  <name>button2</name>
-	  <can_default>True</can_default>
-	  <can_focus>True</can_focus>
-	  <signal>
-	    <name>clicked</name>
-	    <handler>on_close_clicked</handler>
-	    <object>relcalc</object>
-	    <last_modification_time>Tue, 06 Feb 2001 23:47:17 GMT</last_modification_time>
-	  </signal>
-	  <stock_button>GNOME_STOCK_BUTTON_CLOSE</stock_button>
-	  <relief>GTK_RELIEF_NORMAL</relief>
-	</widget>
+      <widget>
+	<class>GtkButton</class>
+	<name>button5</name>
+	<can_default>True</can_default>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>clicked</name>
+	  <handler>on_close_clicked</handler>
+	  <object>relcalc</object>
+	  <last_modification_time>Sun, 16 Dec 2001 21:43:37 GMT</last_modification_time>
+	</signal>
+	<stock_button>GNOME_STOCK_BUTTON_CLOSE</stock_button>
       </widget>
     </widget>
 
@@ -144,8 +136,8 @@
 	<widget>
 	  <class>GtkCList</class>
 	  <name>peopleList</name>
-	  <width>500</width>
-	  <height>150</height>
+	  <width>550</width>
+	  <height>200</height>
 	  <can_focus>True</can_focus>
 	  <signal>
 	    <name>select_row</name>
@@ -225,7 +217,7 @@
 	<widget>
 	  <class>GtkText</class>
 	  <name>text1</name>
-	  <height>75</height>
+	  <height>100</height>
 	  <can_focus>True</can_focus>
 	  <editable>False</editable>
 	  <text></text>
