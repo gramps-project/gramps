@@ -205,9 +205,6 @@ class MediaView:
             if object.get_mime_type()[0:5] == "image":
                 Utils.add_menuitem(menu,_("Edit with the GIMP"),
                                    None,self.popup_edit_photo)
-            if object.get_local() == 0:
-                Utils.add_menuitem(menu,_("Convert to local copy"),None,
-                                   self.popup_convert_to_private)
             item = gtk.MenuItem()
             item.show()
             menu.append(item)
@@ -259,10 +256,7 @@ class MediaView:
             title = src.get_description()
             id = src.get_id()
             type = Utils.get_mime_description(src.get_mime_type())
-            if src.get_local():
-                path = _("<local copy>")
-            else:
-                path = src.get_path()
+            path = src.get_path()
             stitle = string.upper(title)
 
             iter = self.model.append()
@@ -359,6 +353,8 @@ class MediaView:
                 photo = RelLib.MediaObject()
                 photo.set_path(name)
                 photo.set_mime_type(mime)
+                if mime[0:5] == "image":
+                    photo.set_thumbnail(RelImage.build_thumbnail(name))
                 description = os.path.basename(name)
                 photo.set_description(description)
                 self.db.add_object(photo)
@@ -384,6 +380,8 @@ class MediaView:
                 mime = Utils.get_mime_type(tfile)
                 photo = RelLib.MediaObject()
                 photo.set_mime_type(mime)
+                if mime[0:5] == "image":
+                    photo.set_thumbnail(RelImage.build_thumbnail(name))
                 photo.set_description(d)
                 photo.setLocal(1)
                 photo.set_path(tfile)
