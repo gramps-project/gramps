@@ -464,19 +464,39 @@ class Location:
             self.county = source.county
             self.state = source.state
             self.country = source.country
+            self.postal = source.postal
+            self.phone = source.phone
         else:
             self.city = ""
             self.parish = ""
             self.county = ""
             self.state = ""
             self.country = ""
+            self.postal = ""
+            self.phone = ""
 
     def is_empty(self):
-        return self.city=="" and self.county=="" and self.state=="" and self.country==""
+        return self.city=="" and self.county=="" and self.state=="" and self.country=="" and self.postal=="" and self.phone==""
         
     def set_city(self,data):
         """sets the city name of the Location object"""
         self.city = data
+
+    def get_postal_code(self):
+        """returns the postal code of the Location object"""
+        return self.postal
+
+    def set_postal_code(self,data):
+        """sets the postal code of the Location object"""
+        self.postal = data
+
+    def get_phone(self):
+        """returns the phone number of the Location object"""
+        return self.phone
+
+    def set_phone(self,data):
+        """sets the phone number of the Location object"""
+        self.phone = data
 
     def get_city(self):
         """returns the city name of the Location object"""
@@ -725,6 +745,7 @@ class Address(DataObj):
             self.country = source.country
             self.postal = source.postal
             self.date = Date(source.date)
+            self.phone = source.phone
         else:
             self.street = ""
             self.city = ""
@@ -732,6 +753,7 @@ class Address(DataObj):
             self.country = ""
             self.postal = ""
             self.date = Date()
+            self.phone = ""
 
     def setDate(self,text):
         """attempts to sets the date that the person lived at the address
@@ -763,6 +785,14 @@ class Address(DataObj):
     def getStreet(self):
         """returns the street portion of the Address"""
         return self.street
+
+    def setPhone(self,val):
+        """sets the phone number portion of the Address"""
+        self.phone = val
+
+    def getPhone(self):
+        """returns the phone number portion of the Address"""
+        return self.phone
 
     def setCity(self,val):
         """sets the city portion of the Address"""

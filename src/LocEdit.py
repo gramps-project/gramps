@@ -54,6 +54,8 @@ class LocationEditor:
         self.window = self.top.get_widget("loc_edit")
         self.city   = self.top.get_widget("city")
         self.state  = self.top.get_widget("state")
+        self.postal = self.top.get_widget("postal")
+        self.phone = self.top.get_widget("phone")
         self.parish = self.top.get_widget("parish")
         self.county = self.top.get_widget("county")
         self.country = self.top.get_widget("country")
@@ -66,6 +68,8 @@ class LocationEditor:
             self.county.set_text(location.get_county())
             self.country.set_text(location.get_country())
             self.state.set_text(location.get_state())
+            self.phone.set_text(location.get_phone())
+            self.postal.set_text(location.get_postal_code())
             self.parish.set_text(location.get_parish())
 
         self.window.set_data("o",self)
@@ -92,17 +96,19 @@ class LocationEditor:
         county = self.county.get_text()
         country = self.country.get_text()
         state = self.state.get_text()
+        phone = self.phone.get_text()
+        postal = self.postal.get_text()
         parish = self.parish.get_text()
         
         if self.location == None:
             self.location = RelLib.Location()
             self.parent.llist.append(self.location)
         
-        self.update_location(city,parish,county,state,country)
+        self.update_location(city,parish,county,state,phone,postal,country)
         
         self.parent.redraw_location_list()
 
-    def update_location(self,city,parish,county,state,country):
+    def update_location(self,city,parish,county,state,phone,postal,country):
         if self.location.get_city() != city:
             self.location.set_city(city)
             self.parent.lists_changed = 1
@@ -117,6 +123,14 @@ class LocationEditor:
 
         if self.location.get_state() != state:
             self.location.set_state(state)
+            self.parent.lists_changed = 1
+
+        if self.location.get_phone() != phone:
+            self.location.set_phone(phone)
+            self.parent.lists_changed = 1
+
+        if self.location.get_postal_code() != postal:
+            self.location.set_postal_code(postal)
             self.parent.lists_changed = 1
 
         if self.location.get_country() != country:
