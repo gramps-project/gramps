@@ -177,9 +177,9 @@ class IndividualPage:
         self.doc.start_table("one","IndTable")
         self.write_normal_row([ "%s:" % _("Name"), name])
         if self.person.getGender() == Person.male:
-            self.write_normal_row([ "%s:" % _("Gender"), "Male"])
+            self.write_normal_row([ "%s:" % _("Gender"), _("Male")])
         else:
-            self.write_normal_row([ "%s:" % _("Gender"), "Female"])
+            self.write_normal_row([ "%s:" % _("Gender"), _("Female")])
 
         family = self.person.getMainFamily()
         if family:
@@ -228,7 +228,7 @@ class IndividualPage:
         event_list = [ self.person.getBirth(), self.person.getDeath() ]
         event_list = event_list + self.person.getEventList()
         for event in event_list:
-            name = event.getName()
+            name = _(event.getName())
             date = event.getDate()
             place = event.getPlace()
             description = event.getDescription()
