@@ -411,15 +411,10 @@ class DisplayChart:
         self.form = gtk.glade.XML(self.glade_file,"dialog1","gramps")
         self.form.signal_autoconnect({
             "on_save_clicked"       : self.on_save_clicked,
-            "on_html_toggled"       : self.on_html_toggled,
             "destroy_passed_object" : Utils.destroy_passed_object
             })
         self.save_form = self.form.get_widget("dialog1")
         self.save_form.show_all()
-
-    def on_html_toggled(self,obj):
-        active = self.form.get_widget("html").get_active()
-        self.form.get_widget("htmltemplate").set_sensitive(active)
 
     def on_save_clicked(self,obj):
         
