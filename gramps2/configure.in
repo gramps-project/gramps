@@ -277,6 +277,8 @@ src/calendars/Makefile
 src/data/Makefile
 src/data/templates/Makefile
 src/po/Makefile
+doc/omf.make
+doc/xmldocs.make
 doc/Makefile
 doc/gramps-manual/Makefile
 doc/gramps-manual/C/Makefile	
