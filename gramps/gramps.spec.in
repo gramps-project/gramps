@@ -18,8 +18,9 @@ Requires: pygnome >= 1.0.53
 Requires: _gladegnomemodule.so
 Requires: pyexpat.so
 
-%define skreq 0.1.4
-BuildRequires: scrollkeeper >= %skreq
+BuildRequires: scrollkeeper >= 0.1.4
+BuildRequires: automake >= 1.6
+BuildRequires: autoconf >= 2.52
 
 %description
 gramps (Genealogical Research and Analysis Management Programming
