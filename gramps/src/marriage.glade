@@ -1262,6 +1262,11 @@
 		<object>marriageEditor</object>
 		<last_modification_time>Thu, 29 Mar 2001 13:59:27 GMT</last_modification_time>
 	      </signal>
+	      <signal>
+		<name>drag_data_received</name>
+		<handler>on_photolist_drag_data_received</handler>
+		<last_modification_time>Tue, 09 Oct 2001 21:29:08 GMT</last_modification_time>
+	      </signal>
 	      <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	      <icon_width>100</icon_width>
 	      <row_spacing>4</row_spacing>

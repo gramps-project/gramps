@@ -3260,6 +3260,15 @@ def on_main_key_release_event(obj,event):
     elif event.keyval == GDK.Insert:
         load_new_person(obj)
     
+def on_media_list_drag_data_get(w, context, selection_data, info, time):
+    if info == 1:
+        return
+    if len(w.selection) > 0:
+        row = w.selection[0]
+        d = w.get_row_data(row)
+        id = d.getId()
+        selection_data.set(selection_data.target, 8, id)	
+
 #-------------------------------------------------------------------------
 #
 # Main program
@@ -3307,6 +3316,8 @@ def main(arg):
     dateArrow   = gtop.get_widget("dateSort")
     deathArrow  = gtop.get_widget("deathSort")
 
+    t = [('STRING', 0, 0)]
+    media_list.drag_source_set(GDK.BUTTON1_MASK|GDK.BUTTON3_MASK,t,GDK.ACTION_COPY)
     person_list.set_column_visibility(5,0)
     person_list.set_column_visibility(6,0)
     person_list.set_column_visibility(7,0)
@@ -3375,6 +3386,7 @@ def main(arg):
         "on_main_key_release_event"         : on_main_key_release_event,
         "on_media_activate"                 : on_media_activate,
         "on_media_list_select_row"          : on_media_list_select_row,
+        "on_media_list_drag_data_get"       : on_media_list_drag_data_get,
         "on_places_activate"                : on_places_activate,
         "on_preferences_activate"           : on_preferences_activate,
         "on_remove_child_clicked"           : on_remove_child_clicked,
