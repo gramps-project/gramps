@@ -178,9 +178,11 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         x1 = x1 + self.lmargin
         y1 = y1 + self.tmargin + pt2cm(p.get_font().get_size())
 
+        (text,fdef) = self.encode_text(p,text)
+
         self.f.write('gsave\n')
         self.f.write('%f cm %f cm moveto\n' % self.translate(x1,y1))
-        self.f.write(self.fontdef(p))
+        self.f.write(fdef)
         self.f.write('(%s) show grestore\n' % text)
 
     def draw_wedge(self, style, centerx, centery, radius, start_angle,
@@ -319,9 +321,11 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         x = x + self.lmargin
         y = y + self.tmargin
 
+        (text,fdef) = self.encode_text(para_style,text)
+
         self.f.write('gsave\n')
         self.f.write('%f cm %f cm moveto\n' % self.translate(x,y))
-        self.f.write(self.fontdef(para_style))
+        self.f.write(fdef)
         self.f.write('(%s) show grestore\n' % text)
 
     def draw_bar(self,style,x1,y1,x2,y2):
@@ -352,7 +356,6 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         box_style = self.draw_styles[style]
         para_name = box_style.get_paragraph_style()
         p = self.style_list[para_name]
-        (junk,fdef) = self.encode_text(p,text)
         
         bh = box_style.get_height()
         bw = box_style.get_width()
