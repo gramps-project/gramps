@@ -81,6 +81,9 @@ class AddMediaObject:
         self.file_text = self.glade.get_widget("fname")
         self.update = update
         self.temp_name = ""
+
+        Utils.set_titles(self.window,self.glade.get_widget('title'),
+                         _('Select a media object'))
         
         self.glade.signal_autoconnect({
             "on_savephoto_clicked"  : self.on_savephoto_clicked,

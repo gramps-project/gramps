@@ -118,7 +118,11 @@ class DbPrompter:
 
         self.dbname = wFs.get_widget("dbname")
         self.getoldrev = wFs.get_widget("getoldrev")
-        self.dbname.set_default_path(GrampsCfg.db_dir)
+        if GrampsCfg.db_dir:
+            self.dbname.set_default_path(GrampsCfg.db_dir)
+            self.dbname.set_filename(GrampsCfg.db_dir)
+            self.photosel.gtk_entry().set_position(len(GrampsCfg.db_dir))
+
         self.getoldrev.set_sensitive(GrampsCfg.usevc)
 
     def cancel_button_clicked(self,obj):

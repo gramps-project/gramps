@@ -1494,6 +1494,9 @@ class Gramps:
             getoldrev = wFs.get_widget("getoldrev")
             fileSelector.set_data("dbname",dbname)
             dbname.set_default_path(GrampsCfg.db_dir)
+            dbname.set_filename(GrampsCfg.db_dir)
+            dbname.gtk_entry().set_position(len(GrampsCfg.db_dir))
+            
             fileSelector.set_data("getoldrev",getoldrev)
             getoldrev.set_sensitive(GrampsCfg.usevc)
             fileSelector.show()
