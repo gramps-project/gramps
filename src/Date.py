@@ -35,7 +35,7 @@ class Date:
     formatCode = 0
     entryCode = 0
     
-    Error = _("Illegal Date")
+    Error = "Illegal Date"
 
     range = 1
     normal = 0
@@ -357,7 +357,6 @@ class SingleDate:
     def setMonth(self,val):
         if val > 12:
             self.month = -1
-            print "Bad month index : %d" % val
         else:
             self.month = val - 1
 
@@ -777,11 +776,13 @@ class SingleDate:
             self.getMode(matches[0])
             try:
                 self.month = int(matches[1])-1
-            except:
+                if self.month > 11:
+                    raise Date.Error,text
+            except ValueError:
                 self.month = -1
             try:
                 self.year = int(matches[2])
-            except:
+            except ValueError:
                 self.year = -1
             return 1
 
@@ -792,20 +793,24 @@ class SingleDate:
             if Date.entryCode == 0:
                 try:
                     self.month = int(matches[1])-1
-                except:
+                    if self.month > 11:
+                        raise Date.Error,text
+                except ValueError:
                     self.month = -1
                 try:
                     self.day = int(matches[2])
-                except:
+                except ValueError:
                     self.day = -1
             else:
                 try:
                     self.month = int(matches[2])-1
-                except:
+                    if self.month > 11:
+                        raise Date.Error,text
+                except ValueError:
                     self.month = -1
                 try:
                     self.day = int(matches[1])
-                except:
+                except ValueError:
                     self.day = -1
             val = matches[3]
             if val == None or val[0] == '?':
@@ -850,6 +855,8 @@ class SingleDate:
             matches = match.groups()
             self.getMode(matches[0])
             self.month = int(matches[1])-1
+            if self.month > 11:
+                raise Date.Error,text
             self.day = -1
             self.year = -1
             return 1
