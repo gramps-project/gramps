@@ -1,3 +1,13 @@
+2003-06-12  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DrawDoc.py: support for drawing wedges and rotated text
+	* src/docgen/PSDrawDoc.py: postscipt support for wedges and rotated 
+	text
+	* src/docgen/PdfDrawDoc.py: PDF support for wedges and rotated text
+	* src/docgen/SvgDrawDoc.py: SVG support for wedges and rotated text
+	* src/docgen/OpenDrawDoc.py: OpenOffice support for wedges and rotated 
+	text
+	* src/plugins/FanChart.py: Fan chart report
+
 2003-06-12  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/KwordDoc.py (write_text): Replace & with &amp in text.
 	Closes gramps-bugs-649228, finally.
@@ -7,6 +17,14 @@
 2003-06-12  Tim Waugh  <twaugh@redhat.com>
 	* src/docgen/OpenOfficeDoc.py: Fix typo. Prevent images from being
 	copied more than once.
+
+2003-06-11  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GenericFilter.py: rewrote IsAncestorOf and IsDescendantOf rules
+	to be more efficient and to properly handle loop detection.
+	* src/RelLib.py: Added the getValidDeath and getValidBirth methods to
+	the Person class
+	* src/plugins/WebPage.py: Handle filter errors
+	* src/docgen/OpenOfficeDoc.py: pass non-unicode names to zipfile
 
 2003-06-11  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/EditPlace.py (on_switch_page): Fix page numbers to enable proper
