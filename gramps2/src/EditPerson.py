@@ -308,7 +308,7 @@ class EditPerson:
 
         types = const.NameTypesMap.get_values()
         types.sort()
-        self.autotype = AutoComp.AutoCombo(self.ntype_field,types)
+        AutoComp.fill_combo(self.ntype_field,types)
         self.write_primary_name()
         
         if person.get_gender() == RelLib.Person.male:
@@ -435,13 +435,13 @@ class EditPerson:
             child_window.close(None)
         self.child_windows = {}
 
-    def close(self,ok=0):
+    def close(self):
         event_list = []
         for col in self.event_list.get_columns():
             event_list.append(self.event_trans.find_key(col.get_title()))
         self.db.metadata['event_order'] = event_list
         
-        self.gallery.close(ok)
+        self.gallery.close()
         self.close_child_windows()
         self.remove_itself_from_winsmenu()
         self.window.destroy()
@@ -484,7 +484,7 @@ class EditPerson:
             tree.append_column(column)
 
     def lds_field(self,ord,combo,date,place):
-        combo.set_popdown_strings(_temple_names)
+        AutoComp.fill_combo(combo,_temple_names)
         if not ord.is_empty():
             stat = ord.get_status()
             date.set_text(ord.get_date())
@@ -492,10 +492,10 @@ class EditPerson:
                 name = const.lds_temple_to_abrev[ord.get_temple()]
             else:
                 name = ""
-            combo.entry.set_text(name)
+            combo.child.set_text(name)
         else:
             stat = 0
-            combo.entry.set_text("")
+            combo.child.set_text("")
 
         build_dropdown(place,self.place_list)
         if ord and ord.get_place_handle():
@@ -1042,7 +1042,7 @@ class EditPerson:
                        self.cancel_callback,
                        self.save)
         else:
-            self.close(0)
+            self.close()
 
     def save(self):
         self.on_apply_person_clicked(None)
@@ -1059,12 +1059,12 @@ class EditPerson:
                        self.save)
             return 1
         else:
-            self.close(0)
+            self.close()
             return 0
 
     def cancel_callback(self):
         """If the user answered yes to abandoning changes, close the window"""
-        self.close(0)
+        self.close()
 
     def did_data_change(self):
         """Check to see if any of the data has changed from the
@@ -1074,7 +1074,7 @@ class EditPerson:
         self.birth.set_date(unicode(self.bdate.get_text()))
         self.death.set_date(unicode(self.ddate.get_text()))
 
-        ntype = unicode(self.ntype_field.entry.get_text())
+        ntype = unicode(self.ntype_field.child.get_text())
         suffix = unicode(self.suffix.get_text())
         prefix = unicode(self.prefix.get_text())
         given = unicode(self.given.get_text())
@@ -1163,7 +1163,7 @@ class EditPerson:
 
     def check_lds(self):
         self.lds_baptism.set_date(unicode(self.ldsbap_date.get_text()))
-        temple = unicode(self.ldsbap_temple.entry.get_text())
+        temple = unicode(self.ldsbap_temple.child.get_text())
         if const.lds_temple_codes.has_key(temple):
             self.lds_baptism.set_temple(const.lds_temple_codes[temple])
         else:
@@ -1171,7 +1171,7 @@ class EditPerson:
         self.lds_baptism.set_place_handle(self.get_place(self.ldsbapplace,1))
 
         self.lds_endowment.set_date(unicode(self.ldsend_date.get_text()))
-        temple = unicode(self.ldsend_temple.entry.get_text())
+        temple = unicode(self.ldsend_temple.child.get_text())
         if const.lds_temple_codes.has_key(temple):
             self.lds_endowment.set_temple(const.lds_temple_codes[temple])
         else:
@@ -1179,7 +1179,7 @@ class EditPerson:
         self.lds_endowment.set_place_handle(self.get_place(self.ldsendowplace,1))
 
         self.lds_sealing.set_date(unicode(self.ldsseal_date.get_text()))
-        temple = unicode(self.ldsseal_temple.entry.get_text())
+        temple = unicode(self.ldsseal_temple.child.get_text())
         if const.lds_temple_codes.has_key(temple):
             self.lds_sealing.set_temple(const.lds_temple_codes[temple])
         else:
@@ -1438,7 +1438,7 @@ class EditPerson:
         surname = unicode(self.surname.get_text())
         suffix = unicode(self.suffix.get_text())
         prefix = unicode(self.prefix.get_text())
-        ntype = unicode(self.ntype_field.entry.get_text())
+        ntype = unicode(self.ntype_field.child.get_text())
         given = unicode(self.given.get_text())
         nick = unicode(self.nick.get_text())
         title = unicode(self.title.get_text())
@@ -1607,7 +1607,7 @@ class EditPerson:
         self.db.commit_person(self.person, trans)
         n = self.person.get_primary_name().get_regular_name()
         self.db.add_transaction(trans,_("Edit Person (%s)") % n)
-        self.close(1)
+        self.close()
 
     def get_place(self,field,makenew=0):
         text = unicode(string.strip(field.get_text()))
@@ -1747,7 +1747,7 @@ class EditPerson:
         self.surname.set_text(self.pname.get_surname())
         self.given.set_text(self.pname.get_first_name())
 
-        self.ntype_field.entry.set_text(_(self.pname.get_type()))
+        self.ntype_field.child.set_text(_(self.pname.get_type()))
         self.title.set_text(self.pname.get_title())
 
     def birth_dates_in_order(self,list):

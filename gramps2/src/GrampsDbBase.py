@@ -488,10 +488,10 @@ class GrampsDbBase:
         return person.get_handle()
 
     def has_person_handle(self,val):    
-        return self.person_map.get(val)
+        return self.person_map.has_key(str(val))
 
     def has_family_handle(self,val):            
-        return self.family_map.get(str(val))
+        return self.family_map.has_key(str(val))
 
     def try_to_find_person_from_handle(self,val):
         """finds a Person in the database from the passed gramps' ID.
@@ -1123,7 +1123,6 @@ class GrampsDbBase:
 class Transaction:
 
     def __init__(self,msg,db):
-        print db
         self.db = db
         self.first = None
         self.last = None

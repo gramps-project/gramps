@@ -250,7 +250,7 @@ class Gallery(ImageSelect):
         self.sel = None
         self.photo = None
 
-    def close(self,ok=0):
+    def close(self):
         self.iconlist.hide()
         if self.canvas_list:
             for a in self.canvas_list.values():
@@ -259,14 +259,6 @@ class Gallery(ImageSelect):
                 a[2].destroy()
         self.p_map = None
         self.canvas_list = None
-        # restore old photo list, in case we removed some and then 
-        # hit cancel button or closed the window
-        if not ok:
-            if self.old_media_list is not None:
-                self.dataobj.set_media_list(self.old_media_list)
-                trans = self.db.start_transaction()
-                self.commit(self.dataobj,trans)
-                self.db.add_transaction(trans,_("Edit Media Object"))
         
     def on_canvas1_event(self,obj,event):
         """

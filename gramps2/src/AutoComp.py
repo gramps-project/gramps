@@ -290,4 +290,29 @@ class AutoEntry(AutoCompBase):
                 gtk.Editable.select_region(entry,self.l, -1)
                 return
 
+def fill_combo(combo,data_list):
+        store = gtk.ListStore(gobject.TYPE_STRING)
+
+        for data in data_list:
+            store.append(row=[data])
+        
+        combo.set_model(store)
+        combo.set_text_column(0)
+        completion = gtk.EntryCompletion()
+        completion.set_model(store)
+        completion.set_minimum_key_length(1)
+        completion.set_text_column(0)
+        combo.child.set_completion(completion)
+
+def fill_entry(entry,data_list):
+        store = gtk.ListStore(gobject.TYPE_STRING)
+
+        for data in data_list:
+            store.append(row=[data])
+        
+        completion = gtk.EntryCompletion()
+        completion.set_model(store)
+        completion.set_minimum_key_length(1)
+        completion.set_text_column(0)
+        entry.set_completion(completion)
     

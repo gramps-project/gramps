@@ -204,11 +204,11 @@ class Marriage:
         self.gid.set_text(family.get_handle())
         self.gid.set_editable(1)
 
-        self.lds_temple.set_popdown_strings(_temple_names)
+        AutoComp.fill_combo(self.lds_temple,_temple_names)
 
         place_list = self.pmap.keys()
         place_list.sort()
-        self.autoplace = AutoComp.AutoCombo(self.lds_place, place_list)
+        self.autoplace = AutoComp.fill_combo(self.lds_place, place_list)
 
         ord = self.family.get_lds_sealing()
         if ord:
@@ -219,10 +219,10 @@ class Marriage:
                 name = const.lds_temple_to_abrev[ord.get_temple()]
             else:
                 name = ""
-            self.lds_temple.entry.set_text(name)
+            self.lds_temple.child.set_text(name)
             self.seal_stat = ord.get_status()
         else:
-            self.lds_temple.entry.set_text("")
+            self.lds_temple.child.set_text("")
             self.lds_place.entry.set_text("")
             self.seal_stat = 0
 
@@ -511,7 +511,7 @@ class Marriage:
             changed = 1
 
         date = unicode(self.lds_date.get_text())
-        temple = unicode(self.lds_temple.entry.get_text())
+        temple = unicode(self.lds_temple.child.get_text())
         if const.lds_temple_codes.has_key(temple):
             temple = const.lds_temple_codes[temple]
         else:
@@ -588,7 +588,7 @@ class Marriage:
             self.family.set_complete(self.complete.get_active())
 
         date = unicode(self.lds_date.get_text())
-        temple = unicode(self.lds_temple.entry.get_text())
+        temple = unicode(self.lds_temple.child.get_text())
         if const.lds_temple_codes.has_key(temple):
             temple = const.lds_temple_codes[temple]
         else:
@@ -760,7 +760,7 @@ class Marriage:
             Utils.unbold_label(self.notes_label)
 
         date = unicode(self.lds_date.get_text())
-        temple = unicode(self.lds_temple.entry.get_text())
+        temple = unicode(self.lds_temple.child.get_text())
         if const.lds_temple_codes.has_key(temple):
             temple = const.lds_temple_codes[temple]
         else:
