@@ -1,3 +1,6 @@
+2005-01-13  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/Check.py: Typos.
+
 2005-01-12  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DateDisplay.py: Make DateDisplayEn inherit from DateDisplay, make
 	DateDisplay handle only ISO dates
