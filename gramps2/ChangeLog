@@ -1,3 +1,10 @@
+2003-08-01  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/writeftree.glade: Swap OK and Cancel buttons (HIG).
+	* src/plugins/cdexport.glade: Likewise.
+	* src/plugins/gedcomexport.glade: Likewise.
+	* src/plugins/pkgexport.glade: Likewise.
+	* src/plugins/ReadGedcom.py: Fix Cancel button (was destroying itself).
+
 2003-08-01  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/GraphViz.py: toggle sensitivity on year button if based
 	of date button selection, add new tab for page options to reduce 
