@@ -429,6 +429,9 @@ class GrampsParser:
         
     def start_note(self,attrs):
         self.in_note = 1
+        self.note = RelLib.Note()
+        if attrs.has_key("format"):
+            self.note.setFormat(int(attrs['format']))
 
     def start_sourceref(self,attrs):
         self.source_ref = RelLib.SourceRef()
@@ -807,35 +810,35 @@ class GrampsParser:
         self.in_note = 0
         if self.use_p:
             self.use_p = 0
-            note = fix_spaces(self.note_list)
+            text = fix_spaces(self.note_list)
         else:
-            note = tag
+            text = tag
+        self.note.set(text)
 
         if self.address:
-            self.address.setNote(note)
+            self.address.setNoteObj(self.note)
         elif self.ord:
-            self.ord.setNote(note)
+            self.ord.setNoteObj(self.note)
         elif self.attribute:
-            self.attribute.setNote(note)
+            self.attribute.setNoteObj(self.note)
         elif self.object:
-            self.object.setNote(note)
+            self.object.setNoteObj(self.note)
         elif self.objref:
-            self.objref.setNote(note)
+            self.objref.setNoteObj(self.note)
         elif self.photo:
-            self.photo.setNote(note)
+            self.photo.setNoteObj(self.note)
         elif self.name:
-            self.name.setNote(note)
+            self.name.setNoteObj(self.note)
         elif self.source:
-            self.source.setNote(note)
+            self.source.setNoteObj(self.note)
         elif self.event:
-            self.event.setNote(note)
+            self.event.setNoteObj(self.note)
         elif self.person:
-            self.person.setNote(note)
+            self.person.setNoteObj(self.note)
         elif self.family:
-            self.family.setNote(note)
+            self.family.setNoteObj(self.note)
         elif self.placeobj:
-            self.placeobj.setNote(note)
-        self.note_list = []
+            self.placeobj.setNoteObj(self.note)
 
     def stop_research(self,tag):
         self.owner.set(self.resname, self.resaddr, self.rescity, self.resstate,

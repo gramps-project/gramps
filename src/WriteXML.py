@@ -257,7 +257,7 @@ class XmlWriter:
                         self.write_line("postal",address.getPostal(),4)
                         self.write_line("phone",address.getPhone(),4)
                         if address.getNote() != "":
-                            self.write_note("note",address.getNote(),4)
+                            self.write_note("note",address.getNoteObj(),4)
                         for s in address.getSourceRefList():
                             self.dump_source_ref(s,4)
                         self.g.write('      </address>\n')
@@ -280,7 +280,7 @@ class XmlWriter:
                 for family in person.getFamilyList():
                     self.write_ref("parentin",family,3)
 
-                self.write_note("note",person.getNote(),3)
+                self.write_note("note",person.getNoteObj(),3)
                 for s in person.getSourceRefList():
                     self.dump_source_ref(s,4)
 
@@ -314,7 +314,7 @@ class XmlWriter:
                     for person in family.getChildList():
                         self.write_ref("child",person,3)
                 self.write_attribute_list(family.getAttributeList())
-                self.write_note("note",family.getNote(),3)
+                self.write_note("note",family.getNoteObj(),3)
                 for s in family.getSourceRefList():
                     self.dump_source_ref(s,3)
                 self.g.write("    </family>\n")
@@ -335,7 +335,7 @@ class XmlWriter:
                 self.write_line("spubinfo",source.getPubInfo(),3)
                 self.write_line("sabbrev",source.getAbbrev(),3)
                 if source.getNote() != "":
-                    self.write_note("note",source.getNote(),3)
+                    self.write_note("note",source.getNoteObj(),3)
                 self.write_photo_list(source.getPhotoList())
                 self.g.write("    </source>\n")
             self.g.write("  </sources>\n")
@@ -379,14 +379,28 @@ class XmlWriter:
         l = l.replace('<','&lt;')
         return l.replace('"','&quot;')
 
-    def write_note(self,val,note,indent=0):
-        if not note:
+    def write_note(self,val,noteobj,indent=0):
+        if not noteobj:
+            return
+        text = noteobj.get()
+        if not text:
             return
         if indent != 0:
             self.g.write("  " * indent)
         
-        self.g.write("<%s>" % val)
-        self.g.write(self.fix(string.rstrip(note)))
+        format = noteobj.getFormat()
+        self.g.write('<%s format="%d">' % (val,format))
+        self.g.write(self.fix(string.rstrip(text)))
+        self.g.write("</%s>\n" % val)
+			
+    def write_text(self,val,text,indent=0):
+        if not text:
+            return
+        if indent != 0:
+            self.g.write("  " * indent)
+        
+        self.g.write('<%s>' % val)
+        self.g.write(self.fix(string.rstrip(text)))
         self.g.write("</%s>\n" % val)
 			
     def dump_event(self,event,index=1):
@@ -427,7 +441,7 @@ class XmlWriter:
         self.write_line("cause",event.getCause(),index+1)
         self.write_line("description",event.getDescription(),index+1)
         if event.getNote():
-            self.write_note("note",event.getNote(),index+1)
+            self.write_note("note",event.getNoteObj(),index+1)
             
         for s in event.getSourceRefList():
             self.dump_source_ref(s,index+1)
@@ -451,7 +465,7 @@ class XmlWriter:
         if ord.getFamily():
             self.g.write('%s<sealed_to ref="%s"/>\n' % (sp2,self.fix(ord.getFamily().getId())))
         if ord.getNote() != "":
-            self.write_note("note",ord.getNote(),index+1)
+            self.write_note("note",ord.getNoteObj(),index+1)
         for s in ord.getSourceRefList():
             self.dump_source_ref(s,index+1)
         self.g.write('%s</lds_ord>\n' % sp)
@@ -473,8 +487,8 @@ class XmlWriter:
                 else:
                     self.g.write('<sourceref ref="%s" conf="%d">\n' % (source.getId(),q))
                 self.write_line("spage",p,index+1)
-                self.write_note("scomments",c,index+1)
-                self.write_note("stext",t,index+1)
+                self.write_text("scomments",c,index+1)
+                self.write_text("stext",t,index+1)
                 self.write_date(d,index+1)
                 self.g.write("%s</sourceref>\n" % ("  " * index))
 
@@ -564,7 +578,7 @@ class XmlWriter:
         self.write_line("suffix",name.getSuffix(),index+1)
         self.write_line("title",name.getTitle(),index+1)
         if name.getNote() != "":
-            self.write_note("note",name.getNote(),index+1)
+            self.write_note("note",name.getNoteObj(),index+1)
         for s in name.getSourceRefList():
             self.dump_source_ref(s,index+1)
     
@@ -642,7 +656,7 @@ class XmlWriter:
                 self.g.write('>\n')
                 for s in attr.getSourceRefList():
                     self.dump_source_ref(s,indent+1)
-                self.write_note("note",attr.getNote(),4)
+                self.write_note("note",attr.getNoteObj(),4)
                 self.g.write('%s</attribute>\n' % sp)
 
     def write_photo_list(self,list,indent=3):
@@ -658,7 +672,7 @@ class XmlWriter:
             else:
                 self.g.write(">\n")
                 self.write_attribute_list(proplist,indent+1)
-                self.write_note("note",photo.getNote(),indent+1)
+                self.write_note("note",photo.getNoteObj(),indent+1)
                 self.g.write('%s</objref>\n' % sp)
 
     def write_url_list(self,list):
@@ -701,7 +715,7 @@ class XmlWriter:
         self.write_photo_list(place.getPhotoList())
         self.write_url_list(place.getUrlList())
         if note != "":
-            self.write_note("note",note,3)
+            self.write_note("note",place.getNoteObj(),3)
         for s in place.getSourceRefList():
             self.dump_source_ref(s,3)
         self.g.write("    </placeobj>\n")
@@ -728,7 +742,7 @@ class XmlWriter:
             self.g.write('>\n')
             self.write_attribute_list(alist)
             if note != "":
-                self.write_note("note",note,3)
+                self.write_note("note",object.getNoteObj(),3)
             for s in slist:
                 self.dump_source_ref(s,3)
             self.g.write("    </object>\n")

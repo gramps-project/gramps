@@ -10,6 +10,10 @@
 	it is taken care of by parse_address() now; 
 	(parse_address): Parse PHON field, provided it immediately follows
 	ADDR structure. 
+	* src/const.py.in: Add notes_formats list.
+	* src/RelLib.py: Support format for the notes.
+	* src/WriteXML.py: Support format for the notes.
+	* src/GrampsParser.py: Support format for the notes.
 
 2003-12-08  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py: Add phone to address, postal code and phone to
