@@ -18,10 +18,10 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-"""The core library of the gramps database"""
+"""The core library of the GRAMPS database"""
 
-__author__ = "Don Allingham"
-
+__author__ = "Donald N. Allingham"
+__version__ = "$Revision$"
 
 #-------------------------------------------------------------------------
 #
@@ -48,9 +48,9 @@ import const
 #-------------------------------------------------------------------------
 try:
     from ZODB import Persistent
-    
 except ImportError:
     class Persistent:
+        """Dummy class used if ZODB is not installed on the system"""
         pass
 
 #-------------------------------------------------------------------------
@@ -74,9 +74,11 @@ _id_reg = compile("%\d+d")
 
 
 def extlist(lst):
+    """Returns a copy of the passed list"""
     return lst[:]  # Make a copy.
 
 def extmap(map):
+    """Returns a map"""
     return map
 
 
@@ -134,11 +136,13 @@ class SourceNote(Persistent):
         return self.note
 
     def unique_note(self):
+        """Creates a unique instance of the current note"""
         self.note = Note(self.note.get())
 
 class LdsOrd(SourceNote):
     """LDS Ordinance support"""
     def __init__(self,source=None):
+        """Creates a LDS Ordinance instance"""
         SourceNote.__init__(self,source)
         if source:
             self.famc = source.famc
@@ -169,15 +173,19 @@ class LdsOrd(SourceNote):
         return self.place 
 
     def setFamily(self,family):
+        """Sets the family associated with the LDS ordinance"""
         self.famc = family
 
     def getFamily(self):
+        """Gets the family associated with the LDS ordinance"""
         return self.famc
 
     def setStatus(self,val):
+        """Sets the status of the LDS ordinance"""
         self.status = val
 
     def getStatus(self):
+        """Gets the status of the LDS ordinance"""
         return self.status
 
     def setDate(self, date) :
@@ -203,9 +211,11 @@ class LdsOrd(SourceNote):
         self.date = date
 
     def setTemple(self,temple):
+        """Sets the temple assocated with the LDS ordinance"""
         self.temple = temple
 
     def getTemple(self):
+        """Gets the temple assocated with the LDS ordinance"""
         return self.temple
 
     def are_equal(self,other):
@@ -258,7 +268,6 @@ class Place(SourceNote):
         source - Object to copy. If none supplied, create an empty place object"""
         
         SourceNote.__init__(self,source)
-        
         if source:
             self.long = source.log
             self.lat = source.lat
@@ -367,6 +376,13 @@ class Place(SourceNote):
         self.photoList = list
 
     def getDisplayInfo(self):
+        """Gets the display information associated with the object. This includes
+        the information that is used for display and for sorting. Returns a list
+        consisting of 13 strings. These are: Place Title, Place ID, Main Location
+        Parish, Main Location County, Main Location City, Main Location State/Province,
+        Main Location Country, upper case Place Title, upper case Parish, upper
+        case city, upper case county, upper case state, upper case country"""
+        
         if self.main_loc:
             return [self.title,self.id,self.main_loc.parish,self.main_loc.city,
                     self.main_loc.county,self.main_loc.state,self.main_loc.country,
@@ -374,8 +390,7 @@ class Place(SourceNote):
                     upper(self.main_loc.city), upper(self.main_loc.county),
                     upper(self.main_loc.state), upper(self.main_loc.country)]
         else:
-            return [self.title,self.id,'','','','','',
-                    upper(self.title), '','','','','']
+            return [self.title,self.id,'','','','','',upper(self.title), '','','','','']
         
 class Researcher(Persistent):
     """Contains the information about the owner of the database"""
@@ -654,6 +669,7 @@ class ObjectRef(Persistent):
         return self.note
 
     def unique_note(self):
+        """Creates a unique instance of the current note"""
         self.note = Note(self.note.get())
     
     def addAttribute(self,attr):
@@ -1253,6 +1269,7 @@ class Person(Persistent):
         return self.note
 
     def unique_note(self):
+        """Creates a unique instance of the current note"""
         self.note = Note(self.note.get())
 
     def setPosition(self,pos):
@@ -1505,6 +1522,7 @@ class Family(Persistent):
         return self.note
 
     def unique_note(self):
+        """Creates a unique instance of the current note"""
         self.note = Note(self.note.get())
 
     def setNoteObj(self,obj):
@@ -1695,6 +1713,7 @@ class Source(Persistent):
         return self.note
 
     def unique_note(self):
+        """Creates a unique instance of the current note"""
         self.note = Note(self.note.get())
 
     def setAuthor(self,author):
@@ -1816,6 +1835,7 @@ class SourceRef(Persistent):
             return 0
         
     def unique_note(self):
+        """Creates a unique instance of the current note"""
         self.comments = Note(self.comments.get())
 
 #-------------------------------------------------------------------------
@@ -1824,7 +1844,8 @@ class SourceRef(Persistent):
 #
 #-------------------------------------------------------------------------
 class GrampsDB(Persistent):
-    """Gramps database object"""
+    """GRAMPS database object. This object is a base class for other
+    objects."""
 
     def __init__(self):
         """creates a new GrampsDB"""

@@ -64,7 +64,7 @@ class SubstKeywords:
     """
     
     def __init__(self,person):
-        """Associates a person with the class"""
+        """Creates a new object and associates a person with it."""
 
         self.n = person.getPrimaryName().getRegularName()
         self.N = person.getPrimaryName().getName()
@@ -95,7 +95,7 @@ class SubstKeywords:
             self.M = ""
 
     def replace(self,line):
-        """Returns a new line of text with the substitutions performed"""
+        """Returns a new line of text with the substitutions performed."""
         
         line = string.replace(line,"$n",self.n)
         line = string.replace(line,"$N",self.N)
