@@ -169,15 +169,14 @@
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Always display the LDS ordinance tabs</guilabel></term>
-	<listitem><para> Check this box to have LDS ordinance tabs displayed. 
-	If you do not know what LDS is then you probably should not check it. 
+	<varlistentry><term><guilabel>Всегда показывать закладку СПД</guilabel></term>
+	<listitem><para> Отметьте, чтобы показывать закладки СПД. Если Вы не знаете,
+	что такое СПД, то скорее всего Вам не нужно отмечать эту опцию. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Show index numbers in child list</guilabel></term>
-	<listitem><para> 
-	This option is not currently implemented.
+	<varlistentry><term><guilabel>Показывать номер по порядку в списке детей</guilabel></term>
+	<listitem><para> Эта опция в данный момент не работает.
 	</para></listitem>
 	</varlistentry>
 
@@ -186,33 +185,29 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-display-date"> 
-        <title>Dates and Calendar</title> 
+        <title>Даты и календари</title> 
 
 	<variablelist>
 	
-	<varlistentry><term><guilabel>Display: Date format</guilabel></term>
-	<listitem><para> Select the display format for the dates
-	from the available formats listed in this menu. 
+	<varlistentry><term><guilabel>Отображение: формат дат</guilabel></term>
+	<listitem><para> Выберите формат отображения дат из перечисленных в меню.
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Name format</guilabel></term>
-	<listitem><para> Select the display format for the names  
-	from the available formats listed in this menu. 
+	<varlistentry><term><guilabel>Отображение: формат имён</guilabel></term>
+	<listitem><para> Выберите формат отображения имён из перечисленных в меню.
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Entry: Date format</guilabel></term>
-	<listitem><para> Select the entry format for the dates
-	from the available formats listed in this menu. 
+	<varlistentry><term><guilabel>Ввод: формат дат</guilabel></term>
+	<listitem><para> Выберите формат ввода дат из перечисленных в меню.
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Show calendar format selection menu</guilabel></term>
-	<listitem><para> Check this box to enable the calendar format selection 
-	menu when you are entering dates in the <guilabel>Event 
-	Editor</guilabel> dialog.  This will allow you to select different 
-	calendars when editing the dates. 
+	<varlistentry><term><guilabel>Показывать меню выбора календаря</guilabel></term>
+	<listitem><para> Отметьте для включения меню выбора календаря при вводе дат
+	в диалоге <guilabel>Редактор событий</guilabel>. Это позводит выбор различных 
+	календарей при вводе дат. 
 	</para></listitem>
 	</varlistentry>
 
@@ -221,19 +216,19 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-display-bars"> 
-        <title>Toolbar and Statusbar</title> 
+        <title>Панели инструментов и статуса</title> 
 	<variablelist>
 	
-	<varlistentry><term><guilabel>Toolbar</guilabel></term>
-	<listitem><para> Select the desired appearance of the toolbar icons
-	from the menu. Selecting <guilabel>GNOME Settings</guilabel> will use
-	the overall settings selected for your GNOME desktop. 
+	<varlistentry><term><guilabel>Панель инструментов</guilabel></term>
+	<listitem><para> Выберите желаемый стиль панели инструментов из меню.
+	Выбор <guilabel>Установки Gnome</guilabel> использует общие установки, 
+	выбранные для среды Gnome.
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Statusbar</guilabel></term>
-	<listitem><para> Select the desired contents displayed in the 
-	statusbar using the radio buttons. 
+	<varlistentry><term><guilabel>Панель статуса</guilabel></term>
+	<listitem><para> Выберите желаемое содержание панели статуса,
+	используя радио-кнопки.
 	</para></listitem>
 	</varlistentry>
 
@@ -244,41 +239,40 @@
 
 <!-- =============== Customization Subsection ================ -->
     <sect2 id="gramps-prefs-db"> 
-      <title>Database</title> 
-	<para> This category contains preferences relevant to the 
-	database itself. It has the following subcategories: </para>
+      <title>База данных</title> 
+	<para> Эта категория содержит настройки, относящиеся к самой 
+	базе. Она состоит из следующих подкатегорий: </para>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-gen"> 
-        <title>General</title> 
+        <title>Общее</title> 
 
 	<variablelist>
 	
-	<varlistentry><term><guilabel>Automatically load last database</guilabel></term>
-	<listitem><para> Check this box to automatically load the last open
-	database on startup. </para></listitem>
+	<varlistentry><term><guilabel>Автоматически загружать последнюю базу
+	данных. </guilabel></term>
+	<listitem><para> Отметьте, чтобы автоматически загружать последнюю базу
+	данных при запуске программы. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Do not compress XML data file</guilabel></term>
-	<listitem><para> Check this box to disable compression of the XML
-	data file. Compression significantly reduces the file size. While it 
-	creates an overhead in performance (some processor cycles must be spent
-	to decompress the file before use), this overhead is extremely small. 
-	Now that the compression-related bugs have long been fixed, there is 
-	virtually no reason to disable data file compression. 
+	<varlistentry><term><guilabel>Не сжимать XML файл данных</guilabel></term>
+	<listitem><para> Отметьте, чтобы выключить сжатие XML файла данных. Сжатие
+	существенно уменьшает размер файла. Дополнительные ресурсы, необходимые
+	для сжатия и распаковки файла, чрезвычайно малы. Так как ошибки, связанные 
+	с сжатием, давно исправлены, сейчас приактически нет причин не сжимать файл.
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Autosave interval</guilabel></term>
-	<listitem><para> Set the interval (in minutes) after which &app; will
-	automatically save your database. Setting the interval to zero (0) 
-	disables autosaving. </para></listitem>
+	<varlistentry><term><guilabel>Интервал автосохранения</guilabel></term>
+	<listitem><para> Установите интервал (в минутах), по прошествии которого &app; 
+	будет автоматически сохранять Вашу базу данных. Установка интервала на ноль
+	(0) выключает автосохранение. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Default database directory</guilabel></term>
-	<listitem><para> Choose the default directory in which &app; starts
-	looking when saving the database using the <guibutton>Browse...</guibutton> 
-	or type its path into the text entry field. </para></listitem>
+	<varlistentry><term><guilabel>Каталог базы данных по умолчанию</guilabel></term>
+	<listitem><para> Выберите каталог, в который &app; предлагает сохранить новые 
+	файлы, используя кнопку <guibutton>Просмотреть...</guibutton> или введите
+	имя каталога в поле ввода текста. </para></listitem>
 	</varlistentry>
 
 	</variablelist>
@@ -286,56 +280,55 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-media"> 
-        <title>Media Objects</title> 
+        <title>Документы</title> 
 
-	<para>Before describing preferences for media objects, let us
-	review the background on local and non-local objects. A local object 
-	is the object whose file is stored inside the same directory in which 
-	the &app; database file resides. A non-local object is stored 
-	elsewhere, so that the database has only the reference to the file's 
-	location and some records of the object's properties. </para>
+	<para>Перед описанием настроек для документов, давайте рассмотрим
+	подробности локальных и нелокальных документов. Локальный документ - 
+	это документ, файл которого хранится внутри того же каталога, который 
+	содержит базу данных &app;. Нелокальный документ хранится где-либо
+	ещё, так что база данных содержит только ссылку на расположение файла
+	и некоторые записи про свойства документа. </para>
 	
-	<para>You may choose to store your media objects either locally 
-	or externally. Making your objects local will increase the amount 
-	of disk space consumed by the &app; database directory. However, 
-	if the external file is deleted or removed, &app; will still be able 
-	to use the local copy. In contrast, leaving your objects non-local 
-	will decrease the disk space requirements. However, losing the 
-	original file will render your media object unusable.
+	<para>Вы можете выбрать место хранения Выших документов: локально
+	или внешне. Локальное хранение документов увеличивает количество
+	места на диске, занимаемого каталогом Вашей базы данных. Однако, 
+	если внешний файл удалён или перемещён, &app; сможет использовать
+	локальную копию. Напротив, нелокальное хранение документов уменьшает
+	занимаемый базой данных размер. Однако, потеря оригинального файла
+	сделает Ваш документ непригодным для использования.
 	</para>
 	
-	<para>Note that exporting your database to any format will compile
-	all medial objects, no matter whether they are local or not. 
-	Specifically, export to gramps package will include all the media 
-	object files in the package and change the references accordingly. 
-	Export to CD will copy all media object files to the directory under 
-	the <guilabel>burn:///</guilabel> location in Nautilus and change the 
-	references accordingly. Finally, export to GEDCOM will place all 
-	media object files next to the GEDCOM file with the appropriate 
-	changes in the path names. 
+	<para>Заметьте, что экспорт Вашей базы данных в любой формат собирает все
+	документы, как локальные так и нет. В частности, экспорт в пакет &app; включит
+	в пакет все файлы документов, с соответственной заменой ссылок в 
+	базе данных. Экспорт на CD скопирует все файлы документов в место 
+	<guilabel>burn:///</guilabel> в Наутилусе, с соответственной заменой ссылок в 
+	базе данных. Наконец, экспорт в GEDCOM поместит все файлы документов
+	рядом файлом GEDCOM,  с соответственной заменой ссылок в 
+	файле GEDCOM.
 	</para>
 	
 	<variablelist>
 
-	<varlistentry><term><guilabel>Drag and drop from an external 
-	source</guilabel></term>
-	<listitem><para> Choose between a reference and a local copy made when
-	the object is dropped into the gallery. The reference saves disk 
-	space as it does not copy the object. The local copy makes your 
-	database portable as it does not depend on an external file. Consult
-	your needs to make best choice.</para> 
+	<varlistentry><term><guilabel>Переноска мышью из внешнего 
+	источника</guilabel></term>
+	<listitem><para> Выберите между созданием ссылки и локальной копии
+	при переноске документа мышью в галерею. Ссылка сохраняет пространство
+	на диске, т.к. файл не копируется. Локальная копия делает базу данных 
+	портативной, т.к. она не зависит ит внешних файлов. Определите свои
+	нужды для оптимального выбора. </para> 
 	
-	<para>Check the <guilabel>Display global properties editor when 
-	object is dropped</guilabel> box to invoke the global properties 
-	editor after you drop an external object into the gallery. 
+	<para>Отметьте опцию <guilabel>Открывать редактор глобальных свойств 
+	когда объект отпущен</guilabel> для вызова  редактора глобальных свойств
+	после переноски документа в галерею.
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Drag and drop from an internal 
-	source</guilabel></term>
-	<listitem><para> Check the <guilabel>Display local properties editor 
-	when object is dropped</guilabel> box to invoke the local properties 
-	editor after you drop an internal object into the gallery. 
+	<varlistentry><term><guilabel>Переноска мышью из внутреннего 
+	источника</guilabel></term>
+	<listitem><para> Отметьте опцию <guilabel>Открывать редактор локальных свойств 
+	когда объект отпущен</guilabel> для вызова  редактора локальных свойств
+	после переноски документа в галерею.
 	</para></listitem>
 	</varlistentry>
 
@@ -344,20 +337,20 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-id"> 
-        <title>&app; internal IDs</title> 
+        <title>Внутренние &app; ID</title> 
 
 	<variablelist>
 
-	<varlistentry><term><guilabel> GRAMPS ID prefixes</guilabel></term>
-	<listitem><para> Enter ID prefixes for various kinds of database 
-	entries into the corresponding text entry fields. 
+	<varlistentry><term><guilabel> Префиксы GRAMPS ID</guilabel></term>
+	<listitem><para> Введите префиксы для GRAMPS ID для всех видов записей 
+	базы данных в соответствующие поля ввода текста.
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Allow internal GRAMPS ID numbers to be
-	edited</guilabel></term>
-	<listitem><para> Check this box to enable editing of the internal &app;
-	ID numbers. Unless you know what you are doing, leave it unchecked.
+	<varlistentry><term><guilabel>Разрешить правку внутренних 
+	GRAMPS ID</guilabel></term>
+	<listitem><para> Отметьте для разрешения правки внутренних GRAMPS ID.
+	Оставьте неотмеченным, если Вы не уверены в том, что делаете.
 	</para></listitem>
 	</varlistentry>
 
@@ -366,20 +359,22 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-rcs"> 
-        <title>Revision Control</title> 
+        <title>Контроль версий</title> 
 
 	<variablelist>
 
-	<varlistentry><term><guilabel>Use revision control</guilabel></term>
-	<listitem><para> Check this box to enable &app; to use the revision control
-	system for your database. If you choose this option, select the
-	particular revision control system from the menu. 
+	<varlistentry><term><guilabel>Использовать систему контроля 
+	версий</guilabel></term>
+	<listitem><para> Отметьте для включения использования системы контроля 
+	версий для Вашей базы данных. Если Вы выбрали эту опцию, выберите
+	конкретную систему контроля версий из меню.
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Prompt for comment on save</guilabel></term>
-	<listitem><para> Check this box to instruct &app; to prompt you to enter
-	the comment when you save the database. 
+	<varlistentry><term><guilabel>Запрашивать комментарий при 
+	сохраниении</guilabel></term>
+	<listitem><para> Отметьте, чтобы указать &app; запрашивать комментарий при 
+	сохраниении базы данных.
 	</para></listitem>
 	</varlistentry>
 
