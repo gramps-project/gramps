@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Sat Mar 22 20:32:19 2003\n"
+"POT-Creation-Date: Sun Mar 23 08:23:05 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2125,7 +2125,7 @@ msgid ""
 "Using the default template"
 msgstr ""
 
-#: docgen/HtmlDoc.py:414 plugins/eventcmp.glade:164
+#: docgen/HtmlDoc.py:415 plugins/eventcmp.glade:164
 msgid "HTML"
 msgstr ""
 
@@ -3369,7 +3369,7 @@ msgstr ""
 #: plugins/FtmStyleAncestors.py:358 plugins/FullFamily.py:171
 #: plugins/GraphViz.py:447 plugins/IndivComplete.py:667
 #: plugins/IndivSummary.py:500 plugins/Summary.py:150 plugins/TimeLine.py:456
-#: plugins/WebPage.py:1268
+#: plugins/WebPage.py:1267
 msgid "Beta"
 msgstr ""
 
@@ -3478,7 +3478,7 @@ msgstr ""
 #: plugins/AncestorReport.py:248 plugins/DescendReport.py:148
 #: plugins/FamilyGroup.py:408 plugins/FtmStyleAncestors.py:216
 #: plugins/IndivComplete.py:502 plugins/IndivSummary.py:345
-#: plugins/TimeLine.py:395 plugins/WebPage.py:961
+#: plugins/TimeLine.py:395 plugins/WebPage.py:960
 msgid "The style used for the title of the page."
 msgstr ""
 
@@ -3943,7 +3943,7 @@ msgid "Event comparison filter selection"
 msgstr ""
 
 #: plugins/EventCmp.py:147 plugins/GraphViz.py:99 plugins/IndivComplete.py:483
-#: plugins/TimeLine.py:355 plugins/WebPage.py:922 plugins/WriteGedcom.py:374
+#: plugins/TimeLine.py:355 plugins/WebPage.py:921 plugins/WriteGedcom.py:374
 msgid "Entire Database"
 msgstr ""
 
@@ -4071,7 +4071,7 @@ msgid "The System Filter Editor builds custom filters that can be used by anyone
 msgstr ""
 
 #: plugins/FtmStyleAncestors.py:73 plugins/GraphViz.py:107
-#: plugins/IndivComplete.py:479 plugins/TimeLine.py:363 plugins/WebPage.py:934
+#: plugins/IndivComplete.py:479 plugins/TimeLine.py:363 plugins/WebPage.py:933
 #: plugins/WriteGedcom.py:382
 msgid "Ancestors of %s"
 msgstr ""
@@ -4305,7 +4305,7 @@ msgid "The style used category labels."
 msgstr ""
 
 #: plugins/IndivComplete.py:521 plugins/IndivSummary.py:364
-#: plugins/WebPage.py:1019
+#: plugins/WebPage.py:1018
 msgid "The style used for the spouse's name."
 msgstr ""
 
@@ -4870,140 +4870,140 @@ msgstr ""
 msgid "%s (continued)"
 msgstr ""
 
-#: plugins/WebPage.py:750
+#: plugins/WebPage.py:749
 msgid "Neither %s nor %s are directories"
 msgstr ""
 
-#: plugins/WebPage.py:757 plugins/WebPage.py:761 plugins/WebPage.py:773
-#: plugins/WebPage.py:777
+#: plugins/WebPage.py:756 plugins/WebPage.py:760 plugins/WebPage.py:772
+#: plugins/WebPage.py:776
 msgid "Could not create the directory : %s"
 msgstr ""
 
-#: plugins/WebPage.py:844
+#: plugins/WebPage.py:843
 msgid "Include a link to the index page"
 msgstr ""
 
-#: plugins/WebPage.py:845 plugins/pafexport.glade:276
+#: plugins/WebPage.py:844 plugins/pafexport.glade:276
 msgid "Do not include records marked private"
 msgstr ""
 
-#: plugins/WebPage.py:846
+#: plugins/WebPage.py:845
 msgid "Restrict information on living people"
 msgstr ""
 
-#: plugins/WebPage.py:847
+#: plugins/WebPage.py:846
 msgid "Do not use images"
 msgstr ""
 
-#: plugins/WebPage.py:848
+#: plugins/WebPage.py:847
 msgid "Do not use images for living people"
 msgstr ""
 
-#: plugins/WebPage.py:849
+#: plugins/WebPage.py:848
 msgid "Do not include comments and text in source information"
 msgstr ""
 
-#: plugins/WebPage.py:850
+#: plugins/WebPage.py:849
 msgid "Include the GRAMPS ID in the report"
 msgstr ""
 
-#: plugins/WebPage.py:851
+#: plugins/WebPage.py:850
 msgid "Create a GENDEX index"
 msgstr ""
 
-#: plugins/WebPage.py:852
+#: plugins/WebPage.py:851
 msgid "Image subdirectory"
 msgstr ""
 
-#: plugins/WebPage.py:853
+#: plugins/WebPage.py:852
 msgid "File extension"
 msgstr ""
 
-#: plugins/WebPage.py:877
+#: plugins/WebPage.py:876
 msgid "Privacy"
 msgstr ""
 
-#: plugins/WebPage.py:884
+#: plugins/WebPage.py:883
 msgid "Advanced"
 msgstr ""
 
-#: plugins/WebPage.py:886
+#: plugins/WebPage.py:885
 msgid "GRAMPS ID link URL"
 msgstr ""
 
-#: plugins/WebPage.py:897 plugins/WebPage.py:1266
+#: plugins/WebPage.py:896 plugins/WebPage.py:1265
 msgid "Generate Web Site"
 msgstr ""
 
-#: plugins/WebPage.py:897 plugins/WebPage.py:1267
+#: plugins/WebPage.py:896 plugins/WebPage.py:1266
 msgid "Web Page"
 msgstr ""
 
-#: plugins/WebPage.py:902
+#: plugins/WebPage.py:901
 msgid "Target Directory"
 msgstr ""
 
-#: plugins/WebPage.py:926
+#: plugins/WebPage.py:925
 msgid "Direct Descendants of %s"
 msgstr ""
 
-#: plugins/WebPage.py:930
+#: plugins/WebPage.py:929
 msgid "Descendant Families of %s"
 msgstr ""
 
-#: plugins/WebPage.py:968
+#: plugins/WebPage.py:967
 msgid "The style used for the header that identifies facts and events."
 msgstr ""
 
-#: plugins/WebPage.py:976
+#: plugins/WebPage.py:975
 msgid "The style used for the header for the notes section."
 msgstr ""
 
-#: plugins/WebPage.py:983
+#: plugins/WebPage.py:982
 msgid "The style used for the copyright notice."
 msgstr ""
 
-#: plugins/WebPage.py:990
+#: plugins/WebPage.py:989
 msgid "The style used for the header for the sources section."
 msgstr ""
 
-#: plugins/WebPage.py:997
+#: plugins/WebPage.py:996
 msgid "The style used on the index page that labels each section."
 msgstr ""
 
-#: plugins/WebPage.py:1004
+#: plugins/WebPage.py:1003
 msgid "The style used for the header for the image section."
 msgstr ""
 
-#: plugins/WebPage.py:1011
+#: plugins/WebPage.py:1010
 msgid "The style used for the header for the marriages and children section."
 msgstr ""
 
-#: plugins/WebPage.py:1026
+#: plugins/WebPage.py:1025
 msgid "The style used for the general data labels."
 msgstr ""
 
-#: plugins/WebPage.py:1033
+#: plugins/WebPage.py:1032
 msgid "The style used for the general data."
 msgstr ""
 
-#: plugins/WebPage.py:1040
+#: plugins/WebPage.py:1039
 msgid "The style used for the description of images."
 msgstr ""
 
-#: plugins/WebPage.py:1047
+#: plugins/WebPage.py:1046
 msgid "The style used for the notes associated with images."
 msgstr ""
 
-#: plugins/WebPage.py:1054
+#: plugins/WebPage.py:1053
 msgid "The style used for the source information."
 msgstr ""
 
-#: plugins/WebPage.py:1061
+#: plugins/WebPage.py:1060
 msgid "The style used for the note information."
 msgstr ""
 
-#: plugins/WebPage.py:1269
+#: plugins/WebPage.py:1268
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr ""
 
@@ -5561,7 +5561,7 @@ msgid "Display _local properties editor when object is dropped"
 msgstr ""
 
 #: preferences.glade:2313
-msgid "<b>Drag and drop from and external source</b>"
+msgid "<b>Drag and drop from an external source</b>"
 msgstr ""
 
 #: preferences.glade:2337
