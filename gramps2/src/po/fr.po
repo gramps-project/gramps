@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Thu Jan 27 18:32:55 2005\n"
-"PO-Revision-Date: 2005-01-27 19:14-0500\n"
+"PO-Revision-Date: 2005-02-01 23:57-0500\n"
 "Last-Translator: Guillaume Pratte <guillaumep@soireevideo.org>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1979,7 +1979,7 @@ msgstr ""
 
 #: StartupDialog.py:153
 msgid "In order to create valid GEDCOM files, the following information needs to be entered. If you do not plan to generate GEDCOM files, you may leave this empty."
-msgstr "Les informations suivantes sont nécessaire pour la création de fichiers GEDCOM valides. Si vous ne prévoyez pas de générer de fichiers GEDCOM, vous pouvez opter de ne rentrer aucune information."
+msgstr "Les informations suivantes sont nécessaires pour la création de fichiers GEDCOM valides. Si vous ne prévoyez pas générer des fichiers GEDCOM, vous pouvez opter de n'entrer aucune information."
 
 #: StartupDialog.py:164 edit_person.glade:1271 edit_person.glade:2051
 #: edit_person.glade:2535 edit_person.glade:2941 gramps.glade:6848
@@ -2045,7 +2045,7 @@ msgstr "AAAA-MM-JJ (ISO)"
 
 #: StartupDialog.py:243
 msgid "Alternate calendar support"
-msgstr "Support des Autres Calendriers"
+msgstr "Support des autres calendriers"
 
 #: StartupDialog.py:252
 msgid ""
@@ -2055,10 +2055,10 @@ msgid ""
 "that you will need one or more of these alternate calendars, enable\n"
 "alternate calendar support\n"
 msgstr ""
-"Par défaut, toutes les dates enregistrées par GRAMPS utilise le \n"
+"Par défaut, toutes les dates enregistrées par GRAMPS utilisent le \n"
 "calendrier grégorien. Ceci-ci devrait convenir à la majorité des utilisateurs.\n"
 "Par contre, les calendriers julien, républicain et hébreux sont également\n"
-"disponibles si vous aimeriez les utiliser. Si c'est le cas, cochez l'option\n"
+"disponibles si vous souhaitez les utiliser. Si c'est le cas, cochez l'option\n"
 "\"Support des autres calendriers\" ci-bas.\n"
 
 #: StartupDialog.py:263
@@ -2078,7 +2078,7 @@ msgid ""
 "change this option in the future in the Preferences dialog."
 msgstr ""
 "GRAMPS supporte les Ordonnances Mormones, événements spéciaux \n"
-"relatifs à l'Église de Jésus Christ des Saints Derniers Jours \n"
+"relatifs à l'Église de Jésus-Christ des Saints Derniers Jours \n"
 "\n"
 "Vous pouvez choisir de cocher cette options ou non. Vous aurez\n"
 "toujours la possibilité de changez cela dans le menu Préférences."
@@ -3543,7 +3543,7 @@ msgstr "Remonter dans le temps"
 
 #: gramps.glade:753
 msgid "Back"
-msgstr "Remonter"
+msgstr "Précédent"
 
 #: gramps.glade:768
 msgid "Go forward in history"
@@ -3551,7 +3551,7 @@ msgstr "Avancer dans le temps"
 
 #: gramps.glade:769
 msgid "Forward"
-msgstr "Avancer"
+msgstr "Suivant"
 
 #: gramps.glade:780
 msgid "Make the Home Person the active person"
