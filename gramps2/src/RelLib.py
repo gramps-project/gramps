@@ -890,7 +890,7 @@ class Event(PrimaryObject,DataObj):
         cause = self.cause
         name = self.name
         return (not name or name == "Birth" or name == "Death") and \
-                   date.is_empty() and not place and not description and not cause)
+                   date.is_empty() and not place and not description and not cause
 
     def set(self,name,date,place,description):
         """sets the name, date, place, and description of an Event instance"""

@@ -1,4 +1,5 @@
 2004-08-16  Tim Waugh  <twaugh@redhat.com>
+	* src/RelLib.py: Fixed typo.
 	* gramps.spec.in, gramps-mdk.spec.in: Fixed.
 	* src/data/gramps.desktop: Fixed.
 	* src/data/Makefile.am: Fix 'distcheck' as much as possible.
