@@ -682,11 +682,16 @@ class GedcomWriter:
             self.writeln('2 CONT Not Provided')
 
         pkeys = self.plist.keys()
-        pkeys.sort()
+        sorted = []
+        for key in pkeys:
+            person = self.db.get_person_from_handle (key)
+            tuple = (person.get_gramps_id (), person)
+            sorted.append (tuple)
+        sorted.sort()
         nump = float(len(self.plist))
         index = 0.0
-        for key in pkeys:
-            self.write_person(self.db.get_person_from_handle(key))
+        for (gramps_id, person) in sorted:
+            self.write_person(person)
             index = index + 1
             #if index%100 == 0 and not self.cl:
             #    self.pbar.set_fraction(index/nump)
