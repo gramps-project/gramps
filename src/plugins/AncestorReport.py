@@ -119,7 +119,10 @@ class AncestorReport:
         para.set_first_indent(-0.75)
         para.set_left_margin(1.0)
         self.doc.add_style("ListEntry",para)
-        self.doc.open(output)
+        try:
+            self.doc.open(output)
+        except IOError,msg:
+            GnomeErrorDialog("Could not open %s\n%s",msg)
         
     #--------------------------------------------------------------------
     #
