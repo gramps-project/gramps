@@ -1,5 +1,5 @@
 2005-03-27  Alex Roitman  <shura@gramps-project.org>
-	* src/MergeData.py: Files for places and sources.
+	* src/MergeData.py: Fixes for places and sources.
 	* src/PlaceView.py (build_context_menu): Typo.
 	* src/SourceView.py (__init__,build_tree): Allow multiple,
 	selections; (merge): Add placeholder method (borrowed from places,
