@@ -1,3 +1,9 @@
+2005-03-23  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib.py (PrivacyBase): Add base class for privacy capabilities;
+	(PrivateSourceNote): Inherits from SourceNote and PrivacyBase;
+	(MediaRef,Url,Witness,SourceRef): Remove unneeded privacy methods.
+	* src/ImageSelect.py (GlobalMediaProperties.display_refs): Typos.
+
 2005-03-22  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib.py (MediaBase): Add base class for media references;
 	(BaseObject): Add has_handle_reference, remove_handle_references,

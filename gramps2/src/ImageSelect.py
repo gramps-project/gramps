@@ -1126,25 +1126,25 @@ class GlobalMediaProperties:
             family = self.db.get_family_from_handle(handle)
             name = Utils.family_name(family,self.db)
             gramps_id = family.get_gramps_id()
-            self.model.add([_("Family"),gramps_id,name])
+            self.refmodel.add([_("Family"),gramps_id,name])
 
         for handle in event_list:
             event = self.db.get_event_from_handle(handle)
             name = event.get_name()
             gramps_id = event.get_gramps_id()
-            self.model.add([_("Event"),gramps_id,name])
+            self.refmodel.add([_("Event"),gramps_id,name])
 
         for handle in place_list:
             place = self.db.get_place_from_handle(handle)
             name = place.get_title()
             gramps_id = place.get_gramps_id()
-            self.model.add([_("Place"),gramps_id,name])
+            self.refmodel.add([_("Place"),gramps_id,name])
 
         for handle in source_list:
             source = self.db.get_source_from_handle(handle)
             name = source.get_title()
             gramps_id = source.get_gramps_id()
-            self.model.add([_("Source"),gramps_id,name])
+            self.refmodel.add([_("Source"),gramps_id,name])
 
         if any:
             Utils.bold_label(self.refs_label)
