@@ -8,6 +8,14 @@
 	* src/dialog.glade: Add handler. 
 	* src/srcsel.glade: Add handlers.
 	* src/Sources.py: Make SourceInfo non-modal, use Windows menu.
+	* src/AttrEdit.py: Make non-modal, use Windows menu.
+	* src/AddrEdit.py: Make non-modal, use Windows menu.
+	* src/UrlEdit.py: Make non-modal, use Windows menu.
+	* src/EventEdit.py: Properly add new event, add its id to the list.
+	Make non-modal, use Windows menu.
+	* src/NoteEdit.py: Make non-modal, use Windows menu.
+	* src/ImageSelect.py: Make non-modal, use Windows menu.
+	* src/imagesel.glade: Add handler. 
 
 2004-02-16  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Relationship.py: Factor out relationship distance computation.
