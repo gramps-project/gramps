@@ -39,11 +39,11 @@ class TransTable:
         self.rmap[second] = first
 
     def find_value(self,key):
-        return self.map.setdefault(key,_(key))
+        return unicode(self.map.setdefault(key,_(key)))
 
     def find_key(self,value):
         value = unicode(value)
-        return self.rmap.setdefault(value,value)
+        return unicode(self.rmap.setdefault(value,value))
 
     def has_key(self,key):
         return self.map.has_key(key)
