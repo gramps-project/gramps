@@ -1,29 +1,21 @@
-%define fdr_release %(fdr_release="`rpm -q --queryformat='%{VERSION}' fedora-release | grep -v install 2>/dev/null`" ; if test $? != 0 ; then fdr_release="0" ; fi ; echo "$fdr_release")
-%define mdk_release %(mdk_release="`rpm -q --queryformat='%{VERSION}' mandrake-release | grep -v install 2>/dev/null`" ; if test $? != 0 ; then mdk_release="0" ; fi ; echo "$mdk_release")
-
 %define ver      @VERSION@
 %define rel      @RELEASE@
-
 %define prefix   /usr
 %define localstatedir /var/lib
-# Ensure that internal RPM macros for configure & makeinstall 
-# will expand properly
 %define _prefix   %prefix
 %define _localstatedir %localstatedir
 
 Summary: Genealogical Research and Analysis Management Programming System.
 Name: gramps
-Version: %ver
+Version: %{ver}
 License: GPL
 Group: Applications/Genealogy
 Source: http://download.sourceforge.net/gramps/gramps-%{ver}.tar.gz
 BuildRoot: /var/tmp/%{name}-%{version}-root
-
 URL: http://gramps.sourceforge.net/
+Release: %{rel}fdr3
+Distribution: Fedora Core 3
 
-%if %{fdr_release}
-Release:	%{rel}fdr%(dist_release="`echo "%{fdr_release} * 1" | bc 2>/dev/null`" ; echo "$dist_release")
-Distribution:	Fedora Core %{fdr_release}
 Requires: python >= 2.3
 Requires: gnome-python2 >= 2.6.0
 Requires: gnome-python2-gconf >= 2.6.0
@@ -31,17 +23,6 @@ Requires: gnome-python2-canvas >= 2.6.0
 Requires: gnome-python2-gnomevfs >= 2.6.0
 Requires: pygtk2 >= 2.4.0
 Requires: pygtk2-libglade >= 2.4.0
-%else
-Release: 	%{rel}mdk%(mdkver="`awk '{split($4,a,\".\");printf(\"%d%d\",a[1],a[2]);}' /etc/mandrake-release`"; echo "$mdkver")
-Distribution:	Mandrake Linux %{mdk_release}
-Requires: python >= 2.3
-Requires: gnome-python >= 2.6.0
-Requires: gnome-python-gconf >= 2.6.0
-Requires: gnome-python-canvas >= 2.6.0
-Requires: gnome-python-gnomevfs >= 2.6.0
-Requires: pygtk2.0 >= 2.4.0
-Requires: pygtk2.0-libglade >= 2.4.0
-%endif
 
 BuildRequires: scrollkeeper >= @SCROLLKEEPER_BUILD_REQUIRED@
 BuildRequires: automake >= 1.6
@@ -111,7 +92,7 @@ GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source` \
 /usr/bin/update-desktop-database %{_datadir}/applications &> /dev/null
 /usr/bin/update-mime-database %{_datadir}/mime &> /dev/null
 if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
-pkill gconfd
+/usr/bin/pkill gconfd || /bin/true
 
 %postun
 if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
