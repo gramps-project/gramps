@@ -7,6 +7,10 @@
 2004-11-30 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* NEWS: Update.
 
+	* src/gramps_main.py (init_interface): Work around gtk/libglade
+	bug by using horrible and ugly hack; (build_backhistmenu,
+	build_fwdhistmenu): Use gramps IDs instead of handles in menus.
+
 2004-11-29  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: simpler way of handling patronymic names
 	based of LANG
