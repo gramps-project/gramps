@@ -1,3 +1,15 @@
+2003-10-20  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps.glade: widen the ChildSelect window
+	* src/SelectPerson.py: sort people before adding to list
+	* src/SelectChild.py: sort people before adding to list
+	* src/ChooseParents.py: sort people before adding to list
+	* src/AddSpouse.py: sort people before adding to list
+
+2003-10-19  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/ListModel.py: sorting improvements
+	* src/PlaceView.py: use ListModel
+	* src/RelLib.py: sort places by name
+
 2003-10-19  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/SourceView.py: Correct behavior for right-click popup menu.
 	* src/EditPerson.py: Likewise.
