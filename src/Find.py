@@ -24,6 +24,7 @@
 __author__ = 'Don Allingham'
 
 import libglade
+import Config
 import const
 import utils
 import string
@@ -45,13 +46,15 @@ class Find:
         self.xml.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
             "on_next_clicked"       : self.on_next_clicked,
-            "on_combo_insert_text"  : utils.combo_insert_text,
             "on_prev_clicked"       : self.on_prev_clicked,
             })
+
         self.top = self.xml.get_widget("find")
         self.entry = self.xml.get_widget("entry1")
         self.combo = self.xml.get_widget("combo")
-        self.combo.disable_activate()
+        if Config.autocomp:
+            self.entry.connect_object("insert-text",utils.combo_insert_text,self.combo)
+            self.combo.disable_activate()
         self.next = self.xml.get_widget("next")
         nlist = [""]
         for n in plist:
