@@ -7,6 +7,9 @@
 	* src/docgen/HtmlDoc.py: change from TextDoc to BaseDoc
 	* src/docgen/AbiWordDoc.py: change from TextDoc to BaseDoc
 	* src/docgen/AbiWord2Doc.py: change from TextDoc to BaseDoc
+	* src/BaseDoc.py: support start_page and end_page for backwards
+	compatibility to older versions
+	* src/docgen/OpenOfficeDoc.py: support all graphics functionality
 
 2003-08-24  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/FamilyView.py (edit_active_person, build_ap_menu,
