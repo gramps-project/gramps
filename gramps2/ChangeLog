@@ -1,3 +1,8 @@
+2003-12-15  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GrampsCfg.py: change the default prefixes so that they
+	sort nicely numerically.
+	* src/plugins/ReadGedcom.py: handle eazytree oddities.
+
 2003-12-15  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/NameEdit.py: Add note format support. 
 	* src/AddrEdit.py: Add note format support.
