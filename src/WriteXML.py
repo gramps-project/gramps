@@ -271,36 +271,22 @@ def dump_location(g,loc):
 def write_attribute_list(g, list, indent=3):
     sp = '  ' * indent
     for attr in list:
-        if len(attr.getSourceRefList()) > 0 or attr.getNote():
-            g.write('%s<attribute%s>\n' % (sp,conf_priv(attr)))
-            write_line(g,"attr_type",attr.getType(),4)
-            write_line(g,"attr_value",attr.getValue(),4)
-            for s in attr.getSourceRefList():
-                dump_source_ref(g,s,index+1)
-            write_note(g,"note",attr.getNote(),4)
-            g.write('%s</attribute>\n' % sp)
-        else:
-            g.write('%s<attribute type="%s">' % (sp,attr.getType()))
-            g.write(fix(attr.getValue()))
-            g.write('</attribute>\n')
-
+        g.write('%s<attribute%s>\n' % (sp,conf_priv(attr)))
+        write_line(g,"attr_type",attr.getType(),4)
+        write_line(g,"attr_value",attr.getValue(),4)
+        for s in attr.getSourceRefList():
+            dump_source_ref(g,s,indent+1)
+        write_note(g,"note",attr.getNote(),4)
+        g.write('%s</attribute>\n' % sp)
 
 def write_photo_list(g,list,indent=3):
     sp = '  '*indent
     for photo in list:
-        path = photo.getPath()
-        if strip_photo:
-            path = os.path.basename(path)
-        else:
-            l = len(fileroot)
-            if len(path) >= l:
-                if fileroot == path[0:l]:
-                    path = path[l+1:]
-        g.write('%s<img src="%s"' % (sp,fix(path)) )
-        g.write(' description="%s"' % fix(photo.getDescription()))
+        g.write('%s<objref ref="%s"' % (sp,photo.getReference().getId()))
+        if photo.getPrivacy():
+            g.write(' priv="1"')
         proplist = photo.getAttributeList()
-        srclist = photo.getSourceRefList()
-        if len(proplist) == 0 and photo.getNote() == "" and len(srclist) == 0:
+        if len(proplist) == 0 and photo.getNote() == "":
             g.write("/>\n")
         else:
             g.write(">\n")
@@ -308,7 +294,7 @@ def write_photo_list(g,list,indent=3):
             write_note(g,"note",photo.getNote(),indent+1)
             for s in photo.getSourceRefList():
                 dump_source_ref(g,s,indent+1)
-            g.write('%s</img>\n' % sp)
+            g.write('%s</objref>\n' % sp)
 
 
 def write_url_list(g, list):
@@ -339,8 +325,32 @@ def write_place_obj(g,place):
     if place.getNote() != "":
         write_note(g,"note",place.getNote(),3)
     for s in place.getSourceRefList():
-        dump_source_ref(g,s,index+1)
+        dump_source_ref(g,s,3)
     g.write("    </placeobj>\n")
+
+def write_object(g,object):
+    id = object.getId()
+    type = object.getMimeType()
+    path = object.getPath()
+    l = len(fileroot)
+    if len(path) >= l:
+        if fileroot == path[0:l]:
+            path = path[l+1:]
+    g.write('    <object id="%s" src="%s" mime="%s"' % (id,path,type))
+    g.write(' description="%s"' % fix(object.getDescription()))
+    alist = object.getAttributeList()
+    note = object.getNote()
+    slist = object.getSourceRefList()
+    if len(alist) == 0 and len(slist) == 0 and note == "":
+        g.write('/>\n')
+    else:
+        g.write('>\n')
+        write_attribute_list(g,alist)
+        if note != "":
+            write_note(g,"note",note,3)
+        for s in slist:
+            dump_source_ref(g,s,3)
+        g.write("    </object>\n")
 
 #-------------------------------------------------------------------------
 #
@@ -381,6 +391,8 @@ def write_xml_data(database, g, callback, sp):
     sourceList = database.getSourceMap().values()
     placeList = database.getPlaceMap().values()
     placeList.sort(sortById)
+    objList = database.getObjectMap().values()
+    objList.sort(sortById)
 
     total = len(personList) + len(familyList)
 
@@ -455,7 +467,7 @@ def write_xml_data(database, g, callback, sp):
                     if address.getNote() != "":
                         write_note(g,"note",address.getNote(),4)
                     for s in address.getSourceRefList():
-                        dump_source_ref(g,s,index+1)
+                        dump_source_ref(g,s,4)
                     g.write('      </address>\n')
 
             write_attribute_list(g,person.getAttributeList())
@@ -529,6 +541,12 @@ def write_xml_data(database, g, callback, sp):
         for place in placeList:
             write_place_obj(g,place)
         g.write("  </places>\n")
+
+    if len(objList) > 0:
+        g.write("  <objects>\n")
+        for object in objList:
+            write_object(g,object)
+        g.write("  </objects>\n")
 
     if len(database.getBookmarks()) > 0:
         g.write("  <bookmarks>\n")

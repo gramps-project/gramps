@@ -97,6 +97,8 @@ class EditPerson:
 
         # widgets
         self.window = self.get_widget("editPerson")
+        self.gallery = PersonGallery(self, self.path, "i%s" % person.getId(), \
+                                     self.top.get_widget("photolist"), self.db)
         self.notes_field = self.get_widget("personNotes")
         self.event_name_field  = self.get_widget("eventName")
         self.event_place_field = self.get_widget("eventPlace")
@@ -107,7 +109,6 @@ class EditPerson:
         self.attr_details_field = self.get_widget("attr_details")
         self.name_details_field = self.get_widget("name_details")
         self.addr_details_field = self.get_widget("addr_details")
-        self.photo_list = self.get_widget("photolist")
         self.attr_list = self.get_widget("attr_list")
         self.attr_type = self.get_widget("attr_type")
         self.attr_value = self.get_widget("attr_value")
@@ -161,7 +162,6 @@ class EditPerson:
         self.death = Event(person.getDeath())
         self.birth = Event(person.getBirth())
         self.pname = Name(person.getPrimaryName())
-        self.selected_icon = -1
 
         # Typing CR selects OK button
         self.window.editable_enters(self.notes_field);
@@ -182,7 +182,7 @@ class EditPerson:
             "on_add_aka_clicked"        : on_add_aka_clicked,
             "on_add_attr_clicked"       : on_add_attr_clicked,
             "on_add_url_clicked"        : on_add_url_clicked,
-            "on_addphoto_clicked"       : on_add_photo_clicked,
+            "on_addphoto_clicked"       : self.gallery.on_add_photo_clicked,
             "on_address_list_select_row": on_addr_list_select_row,
             "on_aka_delete_clicked"     : on_aka_delete_clicked,
             "on_aka_update_clicked"     : on_aka_update_clicked,
@@ -194,18 +194,18 @@ class EditPerson:
             "on_delete_attr_clicked"    : on_delete_attr_clicked,
             "on_delete_event"           : on_delete_event,
             "on_delete_url_clicked"     : on_delete_url_clicked,
-            "on_deletephoto_clicked"    : on_delete_photo_clicked,
+            "on_deletephoto_clicked"    : self.gallery.on_delete_photo_clicked,
             "on_editperson_switch_page" : on_switch_page,
             "on_event_add_clicked"      : on_event_add_clicked,
             "on_event_delete_clicked"   : on_event_delete_clicked,
             "on_event_select_row"       : on_event_select_row,
             "on_event_update_clicked"   : on_event_update_clicked,
-            "on_makeprimary_clicked"    : on_primary_photo_clicked,
+            "on_makeprimary_clicked"    : self.gallery.on_primary_photo_clicked,
             "on_name_list_select_row"   : on_name_list_select_row,
             "on_name_note_clicked"      : on_name_note_clicked,
             "on_name_source_clicked"    : on_primary_name_source_clicked,
-            "on_photolist_button_press_event" : on_photolist_button_press,
-            "on_photolist_select_icon"  : on_photo_select_icon,
+            "on_photolist_button_press_event" : self.gallery.on_photolist_button_press_event,
+            "on_photolist_select_icon"  : self.gallery.on_photo_select_icon,
             "on_update_address_clicked" : on_update_addr_clicked,
             "on_update_attr_clicked"    : on_update_attr_clicked,
             "on_update_url_clicked"     : on_update_url_clicked,
@@ -259,7 +259,9 @@ class EditPerson:
         # load photos into the photo window
         photo_list = person.getPhotoList()
         if len(photo_list) != 0:
-            self.load_photo(photo_list[0].getPath())
+            ph = photo_list[0]
+            object = ph.getReference()
+            self.load_photo(object.getPath())
     
         # set notes data
         self.notes_field.set_point(0)
@@ -342,33 +344,6 @@ class EditPerson:
 
     #-------------------------------------------------------------------------
     #
-    # add_thumbnail - Scale the image and add it to the IconList. 
-    #
-    #-------------------------------------------------------------------------
-    def add_thumbnail(self,photo):
-        src = os.path.basename(photo.getPath())
-        if photo.getPrivate():
-            thumb = "%s%s.thumb%s%s" % (self.path,os.sep,os.sep,src)
-        else:
-            thumb = "%s%s.thumb%s%s.jpg" % (self.path,os.sep,os.sep,os.path.basename(src))
-        RelImage.check_thumb(photo.getPath(),thumb,const.thumbScale)
-        self.photo_list.append(thumb,photo.getDescription())
-        
-    #-------------------------------------------------------------------------
-    #
-    # load_images - add each photo in the person's list of photos to the 
-    # photolist window.
-    #
-    #-------------------------------------------------------------------------
-    def load_images(self):
-        self.photo_list.freeze()
-        self.photo_list.clear()
-        for photo in self.person.getPhotoList():
-            self.add_thumbnail(photo)
-        self.photo_list.thaw()
-
-    #-------------------------------------------------------------------------
-    #
     # load_photo - loads the specfied photo, scales it, and displays it 
     # as the person's main photo.  Imlib does not scale in place, so a second
     # copy must be made to get a scaled image.
@@ -399,31 +374,42 @@ class EditPerson:
 
 #-------------------------------------------------------------------------
 #
-# PersonImageSelect class
+# PersonGallery class
 #
 #-------------------------------------------------------------------------
-class PersonImageSelect(ImageSelect.ImageSelect):
+class PersonGallery(ImageSelect.Gallery):
     #---------------------------------------------------------------------
     #
-    # __init__ - Sub-class an ImageSelect window.  The only differences
-    # between the various subclasses are the initializer arguments, and
-    # the type of object for which an image is being selected.
+    # __init__ - Sub-class an ImageSelect.Gallery window.  This is
+    # necessary to add support for the 'Make Primary Image' button.
     #
     #---------------------------------------------------------------------
-    def __init__(self, epo):
-        ImageSelect.ImageSelect.__init__(self, epo.path, "i%s" % epo.person.getId())
-        self.epo = epo;
+    def __init__(self, epo, path, prefix, icon_list, db):
+        ImageSelect.Gallery.__init__(self, epo.person, path, prefix, icon_list, db)
+        self.epo = epo
         
     #---------------------------------------------------------------------
     #
-    # savephoto - Override the savephoto method to store the selected
-    # photo in a person object
+    # on_primary_photo_clicked - Make the currently selected photo the
+    # primary (literally the first) photo for this person.  This is the
+    # photo that shows up in the General tab of the "Edit Person" window.
     #
     #---------------------------------------------------------------------
-    def savephoto(self, photo):
-        self.epo.person.addPhoto(photo)
-        self.epo.add_thumbnail(photo)
-
+    def on_primary_photo_clicked(self, obj):
+        if self.selectedIcon == None or self.selectedIcon == 0:
+            return
+    
+        photolist = self.dataobj.getPhotoList()
+        selected_icon = self.selectedIcon
+        savePhoto = photolist[selected_icon]
+        for i in range(0,selected_icon):
+            photolist[selected_icon-i] = photolist[selected_icon-i-1]
+        photolist[0] = savePhoto
+    
+        self.epo.load_photo(savePhoto.getReference().getPath())
+        self.load_images()
+        utils.modified()
+    
 
 #-------------------------------------------------------------------------
 #
@@ -839,49 +825,8 @@ def on_switch_page(obj,a,page):
     edit_obj = obj.get_data(EDITPERSON)
     if page == 6 and edit_obj.not_loaded:
         edit_obj.not_loaded = 0
-        edit_obj.load_images()
+        edit_obj.gallery.load_images()
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_photo_select_icon(obj,iconNumber,event):
-    obj.get_data(EDITPERSON).selected_icon = iconNumber
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_delete_photo_clicked(obj):
-    epo = obj.get_data(EDITPERSON)
-    icon = epo.selected_icon
-
-    if icon != -1:
-        epo.photo_list.remove(icon)
-        del epo.person.getPhotoList()[icon]
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_primary_photo_clicked(obj):
-    epo = obj.get_data(EDITPERSON)
-    if epo.selected_icon == None or epo.selected_icon == 0:
-        return
-
-    photolist = epo.person.getPhotoList()
-    selected_icon = epo.selected_icon
-    savePhoto = photolist[selected_icon]
-    for i in range(0,selected_icon):
-        photolist[selected_icon-i] = photolist[selected_icon-i-1]
-    photolist[0] = savePhoto
-
-    epo.load_photo(savePhoto.getPath())
-    epo.load_images()
-    utils.modified()
 
 #-------------------------------------------------------------------------
 #
@@ -1065,14 +1010,6 @@ def update_name(name,first,last,suffix,note,priv):
         changed = 1
 
     return changed
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_add_photo_clicked(obj):
-    PersonImageSelect(obj.get_data(EDITPERSON))
 
 #-------------------------------------------------------------------------
 #
@@ -1297,115 +1234,6 @@ def on_primary_name_source_clicked(obj):
 def on_birth_source_clicked(obj):
     epo = obj.get_data(EDITPERSON)
     Sources.SourceSelector(epo.birth.getSourceRefList(),epo,src_changed)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_photolist_button_press(obj,event):
-    myobj = obj.get_data(EDITPERSON)
-    icon = myobj.selected_icon
-    if icon == -1:
-        return
-    
-    if event.button == 3:
-        photo = myobj.person.getPhotoList()[icon]
-        menu = GtkMenu()
-        item = GtkTearoffMenuItem()
-        item.show()
-        menu.append(item)
-        utils.add_menuitem(menu,_("View Image"),myobj,on_view_photo)
-        utils.add_menuitem(menu,_("Edit Image"),myobj,on_edit_photo)
-        utils.add_menuitem(menu,_("Edit Description"),myobj,
-                           on_change_description)
-        if photo.getPrivate() == 0:
-            utils.add_menuitem(menu,_("Convert to private copy"),
-                               myobj, on_convert_to_private)
-        menu.popup(None,None,None,0,0)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_convert_to_private(obj):
-    epo = obj.get_data(OBJECT)
-    photo = epo.person.getPhotoList()[epo.selected_icon]
-
-    prefix = "i%s" % epo.person.getId()
-    name = RelImage.import_photo(photo.getPath(),epo.path,prefix)
-
-    photo.setPath(name)
-    photo.setPrivate(1)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_view_photo(obj):
-    myobj = obj.get_data(OBJECT)
-    photo = myobj.person.getPhotoList()[myobj.selected_icon]
-    utils.view_photo(photo)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_edit_photo(obj):
-    myobj = obj.get_data(OBJECT)
-    photo = myobj.person.getPhotoList()[myobj.selected_icon]
-    if os.fork() == 0:
-        os.execvp(const.editor,[const.editor, photo.getPath()])
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_change_description(obj):
-    myobj = obj.get_data(OBJECT)
-    photo = myobj.person.getPhotoList()[myobj.selected_icon]
-    window = libglade.GladeXML(const.imageselFile,"dialog1")
-
-    text = window.get_widget("text")
-    text.set_text(photo.getDescription())
-
-    image2 = RelImage.scale_image(photo.getPath(),200.0)
-    window.get_widget("photo").load_imlib(image2)
-    window.get_widget("dialog1").set_data(PHOTO,photo)
-    window.get_widget("dialog1").set_data(TEXT,text)
-    window.get_widget("dialog1").set_data(OBJECT,obj.get_data(OBJECT))
-    window.get_widget("dialog1").editable_enters(text)
-    window.signal_autoconnect({
-        "on_cancel_clicked" : utils.destroy_passed_object,
-        "on_ok_clicked"     : on_ok_clicked,
-        "on_apply_clicked"  : on_apply_clicked
-        })
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_apply_clicked(obj):
-    photo = obj.get_data(PHOTO)
-    text = obj.get_data(TEXT).get_text()
-    if text != photo.getDescription():
-        photo.setDescription(text)
-        obj.get_data(OBJECT).load_images()
-        utils.modified()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_ok_clicked(obj):
-    on_apply_clicked(obj)
-    utils.destroy_passed_object(obj)
 
 #-------------------------------------------------------------------------
 #

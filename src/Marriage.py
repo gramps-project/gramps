@@ -70,35 +70,35 @@ class Marriage:
         self.db = db
         self.path = db.getSavePath()
 
-        self.selectedIcon = 0
-
         self.top = libglade.GladeXML(const.marriageFile,"marriageEditor")
+        top_window = self.get_widget("marriageEditor")
+        fid = "f%s" % family.getId()
+        plwidget = self.top.get_widget("photolist")
+        self.gallery = ImageSelect.Gallery(family, self.path, fid, plwidget, db)
         self.top.signal_autoconnect({
             "destroy_passed_object" : on_cancel_edit,
             "on_add_attr_clicked" : on_add_attr_clicked,
-            "on_addphoto_clicked" : on_add_photo_clicked,
+            "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
             "on_attr_list_select_row" : on_attr_list_select_row,
             "on_close_marriage_editor" : on_close_marriage_editor,
             "on_delete_attr_clicked" : on_delete_attr_clicked,
             "on_delete_event" : on_delete_event,
-            "on_deletephoto_clicked" : on_delete_photo_clicked,
+            "on_deletephoto_clicked" : self.gallery.on_delete_photo_clicked,
             "on_marriageAddBtn_clicked" : on_add_clicked,
             "on_marriageDeleteBtn_clicked" : on_delete_clicked,
             "on_marriageEventList_select_row" : on_select_row,
             "on_marriageUpdateBtn_clicked" : on_update_clicked,
-            "on_photolist_button_press_event" : on_photolist_button_press_event,
-            "on_photolist_select_icon" : on_photo_select_icon,
+            "on_photolist_button_press_event" : self.gallery.on_photolist_button_press_event,
+            "on_photolist_select_icon" : self.gallery.on_photo_select_icon,
             "on_update_attr_clicked" : on_update_attr_clicked,
             })
 
-        top_window = self.get_widget("marriageEditor")
         text_win = self.get_widget("marriageTitle")
         title = _("%s and %s") % (Config.nameof(family.getFather()),
                                   Config.nameof(family.getMother()))
         text_win.set_text(title)
         
         self.event_list = self.get_widget("marriageEventList")
-        self.photo_list = self.get_widget("photolist")
 
         # widgets
         self.date_field  = self.get_widget("marriageDate")
@@ -123,7 +123,7 @@ class Marriage:
         self.lists_changed = 0
 
         # set initial data
-        self.load_images()
+        self.gallery.load_images()
 
         self.type_field.set_popdown_strings(const.familyRelations)
         frel = const.display_frel(family.getRelationship())
@@ -168,37 +168,6 @@ class Marriage:
 
     #-------------------------------------------------------------------------
     #
-    # add_thumbnail - Scale the image and add it to the IconList.  Currently, 
-    # there seems to be a problem with either GdkImlib. A reference has to be
-    # kept to the image, or it gets lost.  This is supposed to be a known
-    # imlib problem
-    #
-    #-------------------------------------------------------------------------
-    def add_thumbnail(self,photo):
-        src = os.path.basename(photo.getPath())
-        if photo.getPrivate():
-            thumb = "%s%s.thumb%s%s" % (self.path,os.sep,os.sep,src)
-        else:
-            thumb = "%s%s.thumb%s%s.jpg" % (self.path,os.sep,os.sep,os.path.basename(src))
-        RelImage.check_thumb(photo.getPath(),thumb,const.thumbScale)
-        self.photo_list.append(thumb,photo.getDescription())
-
-    #-------------------------------------------------------------------------
-    #
-    # load_images - clears the currentImages list to free up any cached 
-    # Imlibs.  Then add each photo in the person's list of photos to the 
-    # photolist window.
-    #
-    #-------------------------------------------------------------------------
-    def load_images(self):
-        self.photo_list.freeze()
-        self.photo_list.clear()
-        for photo in self.family.getPhotoList():
-            self.add_thumbnail(photo)
-        self.photo_list.thaw()
-
-    #-------------------------------------------------------------------------
-    #
     # redraw_events - redraws the event list by deleting all the entries and
     # reconstructing the list
     #
@@ -213,34 +182,6 @@ class Marriage:
     #-------------------------------------------------------------------------
     def get_widget(self,name):
         return self.top.get_widget(name)
-
-
-#-------------------------------------------------------------------------
-#
-# MarriageImageSelect class
-#
-#-------------------------------------------------------------------------
-class MarriageImageSelect(ImageSelect.ImageSelect):
-    #---------------------------------------------------------------------
-    #
-    # __init__ - Sub-class an ImageSelect window.  The only differences
-    # between the various subclasses are the initializer arguments, and
-    # the type of object for which an image is being selected.
-    #
-    #---------------------------------------------------------------------
-    def __init__(self, efo):
-        ImageSelect.ImageSelect.__init__(self, efo.path, "f%s" % efo.family.getId())
-        self.efo = efo;
-        
-    #---------------------------------------------------------------------
-    #
-    # savephoto - Override the savephoto method to store the selected
-    # photo in a family object
-    #
-    #---------------------------------------------------------------------
-    def savephoto(self, photo):
-        self.efo.family.addPhoto(photo)
-        self.efo.add_thumbnail(photo)
 
 
 #-------------------------------------------------------------------------
@@ -481,146 +422,6 @@ def update_event(event,name,date,place,desc,note,priv,cause):
         changed = 1
 
     return changed
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_photolist_button_press_event(obj,event):
-    myobj = obj.get_data(MARRIAGE)
-    icon = myobj.selectedIcon
-    if icon == -1:
-        return
-
-    if event.button == 3:
-        photo = myobj.family.getPhotoList()[icon]
-        menu = GtkMenu()
-        item = GtkTearoffMenuItem()
-        item.show()
-        menu.append(item)
-        utils.add_menuitem(menu,_("View Image"),myobj,on_view_photo)
-        utils.add_menuitem(menu,_("Edit Image"),myobj,on_edit_photo)
-        utils.add_menuitem(menu,_("Edit Description"),myobj,
-                           on_change_description)
-        if photo.getPrivate() == 0:
-            utils.add_menuitem(menu,_("Convert to private copy"),myobj,
-                               on_convert_to_private)
-        menu.popup(None,None,None,0,0)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_convert_to_private(obj):
-    epo = obj.get_data(OBJECT)
-    photo = epo.family.getPhotoList()[epo.selected_icon]
-
-    prefix = "f%s" % epo.person.getId()
-    name = RelImage.import_photo(photo.getPath(),epo.path,prefix)
-
-    photo.setPath(name)
-    photo.setPrivate(1)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_view_photo(obj):
-    myobj = obj.get_data("m")
-    photo = myobj.family.getPhotoList()[myobj.selectedIcon]
-    utils.view_photo(photo)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_edit_photo(obj):
-    myobj = obj.get_data("m")
-    photo = myobj.family.getPhotoList()[myobj.selectedIcon]
-    if os.fork() == 0:
-        os.execvp(const.editor,[const.editor, photo.getPath()])
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_photo_select_icon(obj,iconNumber,event):
-    obj.get_data(MARRIAGE).selectedIcon = iconNumber
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_delete_photo_clicked(obj):
-    marriage_obj = obj.get_data(MARRIAGE)
-    icon = marriage_obj.selectedIcon
-
-    if icon != -1:
-        marriage_obj.photo_list.remove(icon)
-        del marriage_obj.family.getPhotoList()[icon]
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_add_photo_clicked(obj):
-    MarriageImageSelect(obj.get_data(MARRIAGE))
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_change_description(obj):
-    
-    myobj = obj.get_data("m")
-    photo = myobj.family.getPhotoList()[myobj.selectedIcon]
-    window = libglade.GladeXML(const.imageselFile,"dialog1")
-    text = window.get_widget("text")
-    text.set_text(photo.getDescription())
-
-    image2 = RelImage.scale_image(photo.getPath(),200.0)
-
-    window.get_widget("photo").load_imlib(image2)
-    window.get_widget("dialog1").set_data("p",photo)
-    window.get_widget("dialog1").set_data("t",text)
-    window.get_widget("dialog1").set_data("m",obj.get_data("m"))
-    window.get_widget("dialog1").editable_enters(text)
-    window.signal_autoconnect({
-        "on_cancel_clicked" : utils.destroy_passed_object,
-        "on_ok_clicked" : on_ok_clicked,
-        "on_apply_clicked" : on_apply_clicked
-        })
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_apply_clicked(obj):
-    photo = obj.get_data("p")
-    text = obj.get_data("t").get_text()
-    if text != photo.getDescription():
-        photo.setDescription(text)
-        edit_window = obj.get_data("m")
-        edit_window.load_images()
-        utils.modified()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_ok_clicked(obj):
-    on_apply_clicked(obj)
-    utils.destroy_passed_object(obj)
 
 #-------------------------------------------------------------------------
 #

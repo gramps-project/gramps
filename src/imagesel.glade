@@ -344,7 +344,6 @@
 	    <text></text>
 	  </widget>
 	</widget>
-
       </widget>
     </widget>
   </widget>
@@ -352,7 +351,7 @@
 
 <widget>
   <class>GnomeDialog</class>
-  <name>dialog1</name>
+  <name>change_description</name>
   <title>Gramps - Change image description</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
@@ -401,7 +400,7 @@
 	<signal>
 	  <name>clicked</name>
 	  <handler>on_ok_clicked</handler>
-	  <object>dialog1</object>
+	  <object>change_description</object>
 	  <last_modification_time>Thu, 19 Apr 2001 00:00:19 GMT</last_modification_time>
 	</signal>
 	<stock_button>GNOME_STOCK_BUTTON_OK</stock_button>
@@ -415,7 +414,7 @@
 	<signal>
 	  <name>clicked</name>
 	  <handler>on_apply_clicked</handler>
-	  <object>dialog1</object>
+	  <object>change_description</object>
 	  <last_modification_time>Thu, 19 Apr 2001 00:00:06 GMT</last_modification_time>
 	</signal>
 	<stock_button>GNOME_STOCK_BUTTON_APPLY</stock_button>
@@ -429,7 +428,7 @@
 	<signal>
 	  <name>clicked</name>
 	  <handler>on_cancel_clicked</handler>
-	  <object>dialog1</object>
+	  <object>change_description</object>
 	  <last_modification_time>Thu, 19 Apr 2001 00:00:43 GMT</last_modification_time>
 	</signal>
 	<stock_button>GNOME_STOCK_BUTTON_CANCEL</stock_button>
