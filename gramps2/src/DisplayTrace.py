@@ -67,7 +67,7 @@ class DisplayTrace:
         self.top.set_title(_('Internal Error - GRAMPS'))
 
         window.get_buffer().set_text(msg.getvalue())
-        self.glade.signal_autoconnect('on_close_clicked',self.close)
+        self.glade.signal_autoconnect({'on_close_clicked':self.close})
 
     def close(self,obj):
         self.top.destroy()

@@ -346,9 +346,9 @@ class GedcomWriter:
         gedmap = GedcomInfoDB()
         
         target_obj = self.topDialog.get_widget("target")
-        myMenu = gtk.GtkMenu()
+        myMenu = gtk.Menu()
         for name in gedmap.get_name_list():
-            menuitem = gtk.GtkMenuItem(name)
+            menuitem = gtk.MenuItem(name)
             myMenu.append(menuitem)
             data = gedmap.get_description(name)
             menuitem.set_data("data",data)
@@ -649,7 +649,7 @@ class GedcomWriter:
                     for f in person.getParentList():
                         mrel = string.lower(f[1])
                         frel = string.lower(f[2])
-                        if mrel=="adopted" or mrel=="adopted":
+                        if mrel=="adopted" or frel=="adopted":
                             fam = f[0]
                             break
                     if fam:
@@ -675,7 +675,7 @@ class GedcomWriter:
                 for f in person.getParentList():
                     mrel = string.lower(f[1])
                     frel = string.lower(f[2])
-                    if mrel=="adopted" or mrel=="adopted":
+                    if mrel=="adopted" or frel=="adopted":
                         fam = f[0]
                         break
                 if fam:
@@ -872,7 +872,7 @@ class GedcomWriter:
                     val = "FROM %s TO %s" % (make_date(start,mlist),
                                              make_date(stop,mlist))
                 else:
-                    val = make_date(start,_hmonth)
+                    val = make_date(start,mlist)
                 self.g.write("%s %s %s\n" % (prefix,cal,val))
             else:
                 mydate = Date.Date(date)

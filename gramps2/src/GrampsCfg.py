@@ -355,13 +355,6 @@ def set_bool(key,value):
 def set_string(key,value):
     client.set_string(key,value)
 
-def get_string(key):
-    val = client.get_string(key)
-    if val:
-        return val
-    else:
-        return ""
-
 def sync():
     client.suggest_sync()
     

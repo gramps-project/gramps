@@ -835,49 +835,49 @@ if not CustomFilters:
     reload_custom_filters()
 
 def build_filter_menu(local_filters = []):
-    menu = gtk.GtkMenu()
+    menu = gtk.Menu()
 
-    menuitem = gtk.GtkMenuItem(_("Local Filters"))
+    menuitem = gtk.MenuItem(_("Local Filters"))
     menu.append(menuitem)
     menuitem.show()
     menuitem.set_sensitive(0)
 
-    menuitem = gtk.GtkMenuItem()
+    menuitem = gtk.MenuItem()
     menuitem.show()
     menu.append(menuitem)
     
     for filter in local_filters:
-        menuitem = gtk.GtkMenuItem(filter.get_name())
+        menuitem = gtk.MenuItem(filter.get_name())
         menuitem.show()
         menu.append(menuitem)
         menuitem.set_data("filter", filter)
 
-    menuitem = gtk.GtkMenuItem(_("System Filters"))
+    menuitem = gtk.MenuItem(_("System Filters"))
     menuitem.show()
     menu.append(menuitem)
     menuitem.set_sensitive(0)
 
-    menuitem = gtk.GtkMenuItem()
+    menuitem = gtk.MenuItem()
     menuitem.show()
     menu.append(menuitem)
 
     for filter in SystemFilters.get_filters():
-        menuitem = gtk.GtkMenuItem(_(filter.get_name()))
+        menuitem = gtk.MenuItem(_(filter.get_name()))
         menuitem.show()
         menu.append(menuitem)
         menuitem.set_data("filter", filter)
 
-    menuitem = gtk.GtkMenuItem(_("Custom Filters"))
+    menuitem = gtk.MenuItem(_("Custom Filters"))
     menu.append(menuitem)
     menuitem.show()
     menuitem.set_sensitive(0)
 
-    menuitem = gtk.GtkMenuItem()
+    menuitem = gtk.MenuItem()
     menuitem.show()
     menu.append(menuitem)
 
     for filter in CustomFilters.get_filters():
-        menuitem = gtk.GtkMenuItem(_(filter.get_name()))
+        menuitem = gtk.MenuItem(_(filter.get_name()))
         menuitem.show()
         menu.append(menuitem)
         menuitem.set_data("filter", filter)

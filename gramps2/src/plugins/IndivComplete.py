@@ -432,7 +432,7 @@ class IndivSummaryDialog(TextReportDialog):
         TextReportDialog.__init__(self,database,person)
 
     def add_user_options(self):
-        self.use_srcs = gtk.GtkCheckButton(_('Include Source Information'))
+        self.use_srcs = gtk.CheckButton(_('Include Source Information'))
         self.use_srcs.show()
         self.add_option('',self.use_srcs)
 

@@ -204,7 +204,7 @@ class DisplayChart:
 
     def draw_clist_display(self):
 
-        eventlist = gtk.GtkCList(len(self.event_titles),self.event_titles)
+        eventlist = gtk.CList(len(self.event_titles),self.event_titles)
         self.table.add(eventlist)
         eventlist.show()
 

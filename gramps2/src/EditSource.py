@@ -228,7 +228,7 @@ class DelSrcQuery:
             object.setSourceRefList(l)
 
     def query_response(self):
-        del self.db.getSourceMap()[self.source.getId()]
+        self.db.removeSource(self.source.getId())
         Utils.modified()
 
         for key in self.db.getPersonKeys():

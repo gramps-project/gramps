@@ -87,6 +87,7 @@ class FamilyView:
         self.top.get_widget('add_spparents').connect('clicked',self.add_sp_parents)
         self.top.get_widget('del_spparents').connect('clicked',self.del_sp_parents)
         self.top.get_widget('fam_back').connect('clicked',self.child_back)
+        self.top.get_widget('del_child_btn').connect('clicked',self.remove_child_clicked)
         
         column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
         self.spouse_list.append_column(column)
@@ -152,6 +153,29 @@ class FamilyView:
                                 self.parent.redisplay_person_list)
         except:
             DisplayTrace.DisplayTrace()
+
+    def remove_child_clicked(self,obj):
+        if not self.family or not self.person:
+            return
+
+        model, iter = self.child_selection.get_selected()
+        if not iter:
+            return
+
+        id = self.child_model.get_value(iter,2)
+        child = self.parent.db.getPerson(id)
+
+        self.family.removeChild(child)
+        child.removeAltFamily(child)
+        
+        if len(self.family.getChildList()) == 0:
+            if self.family.getFather() == None:
+                self.parent.delete_family_from(self.family.getMother())
+            elif self.family.getMother() == None:
+                self.parent.delete_family_from(self.family.getFather())
+
+        Utils.modified()
+        self.load_family()
 
     def remove_spouse(self,obj):
         """Delete the currently selected spouse from the family"""

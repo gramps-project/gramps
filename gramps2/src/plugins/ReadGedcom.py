@@ -1655,7 +1655,7 @@ def readData(database,active_person,cb):
     db = database
     callback = cb
     
-    top = gtk.GtkFileSelection("%s - GRAMPS" % _("Import from GEDCOM"))
+    top = gtk.FileSelection("%s - GRAMPS" % _("Import from GEDCOM"))
     top.hide_fileop_buttons()
     top.ok_button.connect_object('clicked', on_ok_clicked,top)
     top.cancel_button.connect_object('clicked', Utils.destroy_passed_object,top)

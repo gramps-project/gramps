@@ -79,7 +79,7 @@ class DesBrowse:
         top.show()
 
     def add_to_tree(self,tree,person):
-        item = gtk.GtkTreeItem(GrampsCfg.nameof(person))
+        item = gtk.TreeItem(GrampsCfg.nameof(person))
         item.show()
         item.connect('button-press-event',self.button_press_event)
         item.set_data('d',person)
@@ -88,7 +88,7 @@ class DesBrowse:
         for family in person.getFamilyList():
             for child in family.getChildList():
                 if subtree == None:
-                    subtree = gtk.GtkTree()
+                    subtree = gtk.Tree()
                     subtree.show()
                     item.set_subtree(subtree)
                 self.add_to_tree(subtree,child)

@@ -771,15 +771,15 @@ class DetDescendantReportDialog(TextReportDialog):
     def add_user_options(self):
         
         # Create a GTK Checkbox widget for pronoun usage
-        self.first_name_option = gtk.GtkCheckButton(_("Use first names instead of pronouns"))
+        self.first_name_option = gtk.CheckButton(_("Use first names instead of pronouns"))
         self.first_name_option.set_active(0)
 
         # Create a GTK Checkbox widget for full date usage
-        self.full_date_option = gtk.GtkCheckButton(_("Use full dates instead of only the year"))
+        self.full_date_option = gtk.CheckButton(_("Use full dates instead of only the year"))
         self.full_date_option.set_active(1) 
 
         # Create a GTK Checkbox widget for full date usage
-        self.list_children_option = gtk.GtkCheckButton(_("List children"))
+        self.list_children_option = gtk.CheckButton(_("List children"))
         self.list_children_option.set_active(1) 
 
         # Add new options. The first argument is the tab name for grouping options.

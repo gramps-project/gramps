@@ -54,6 +54,7 @@ import Marriage
 import EditPlace
 import EditSource
 import ListModel
+import grampslib
 
 from QuestionDialog import ErrorDialog
 from intl import gettext as _
@@ -428,14 +429,17 @@ class Gallery(ImageSelect):
     
         if event.button == 3:
             photo = self.dataobj.getPhotoList()[icon]
-            menu = gtk.GtkMenu()
-            item = gtk.GtkTearoffMenuItem()
+            menu = gtk.Menu()
+            item = gtk.TearoffMenuItem()
             item.show()
             menu.append(item)
-            Utils.add_menuitem(menu,_("View in the default viewer"),
+            mtype = object.getMimeType()
+            progname = grampslib.default_application_name(mtype)
+
+            Utils.add_menuitem(menu,_("Open in %s") % progname,
                                None,self.popup_view_photo)
             object = photo.getReference()
-            if object.getMimeType()[0:5] == "image":
+            if mtype[0:5] == "image":
                 Utils.add_menuitem(menu,_("Edit with the GIMP"),
                                    None,self.popup_edit_photo)
             Utils.add_menuitem(menu,_("Edit Object Properties"),None,

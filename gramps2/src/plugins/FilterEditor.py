@@ -229,7 +229,7 @@ class FilterEditor:
         self.frame = self.rule.get_widget('values')
         self.rname = self.rule.get_widget('rule_name')
 
-        self.notebook = gtk.GtkNotebook()
+        self.notebook = gtk.Notebook()
         self.notebook.set_show_tabs(0)
         self.notebook.set_show_border(0)
         self.notebook.show()
@@ -247,13 +247,13 @@ class FilterEditor:
             vallist = []
             tlist = []
             self.page.append((name,cname,vallist,tlist))
-            table = gtk.GtkTable(2,len(arglist))
+            table = gtk.Table(2,len(arglist))
             table.show()
             pos = 0
-            l2 = gtk.GtkLabel(name)
+            l2 = gtk.Label(name)
             l2.set_alignment(0,0.5)
             l2.show()
-            c = gtk.GtkListItem()
+            c = gtk.ListItem()
             c.add(l2)
             c.set_data('d',pos)
             c.show()
@@ -261,27 +261,27 @@ class FilterEditor:
             map[name] = c
             for v in arglist:
                 v1 = _(v)
-                l = gtk.GtkLabel(v1)
+                l = gtk.Label(v1)
                 l.set_alignment(1,0.5)
                 l.show()
                 if v == 'Place':
-                    t = gtk.GtkCombo()
+                    t = gtk.Combo()
                     AutoComp.AutoCombo(t,self.pmap.keys())
                 elif _name2list.has_key(v1):
-                    t = gtk.GtkCombo()
+                    t = gtk.Combo()
                     _name2list[v1].sort()
                     t.set_popdown_strings(_name2list[v1])
                     t.set_value_in_list(1,0)
                     t.entry.set_editable(0)
                     tlist.append(t.entry)
                 else:
-                    t = gtk.GtkEntry()
+                    t = gtk.Entry()
                     tlist.append(t)
                 t.show()
                 table.attach(l,0,1,pos,pos+1,gtk.gdk.FILL,0,5,5)
                 table.attach(t,1,2,pos,pos+1,gtk.gdk.EXPAND|gtk.gdk.FILL,0,5,5)
                 pos = pos + 1
-            self.notebook.append_page(table,gtk.GtkLabel(name))
+            self.notebook.append_page(table,gtk.Label(name))
             self.name2page[name] = self.page_num
             self.page_num = self.page_num + 1
         self.page_num = 0
