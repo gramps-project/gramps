@@ -228,19 +228,23 @@ class MyEntry(gtk.Entry):
 #
 #-------------------------------------------------------------------------
 class FilterEditor:
-    def __init__(self,filterdb,db):
+    def __init__(self,filterdb,db,parent):
         self.db = db
         self.filterdb = GenericFilter.GenericFilterList(filterdb)
         self.filterdb.load()
 
+        self.parent = parent
+        self.win_key = self
+        self.child_windows = {}
+
         self.editor = gtk.glade.XML(const.filterFile,'filter_list',"gramps")
-        self.editor_top = self.editor.get_widget('filter_list')
+        self.window = self.editor.get_widget('filter_list')
         self.filter_list = self.editor.get_widget('filters')
         self.edit = self.editor.get_widget('edit')
         self.delete = self.editor.get_widget('delete')
         self.test = self.editor.get_widget('test')
 
-        Utils.set_titles(self.editor_top,self.editor.get_widget('title'),
+        Utils.set_titles(self.window,self.editor.get_widget('title'),
                          _('User defined filters'))
 
         self.editor.signal_autoconnect({
@@ -249,6 +253,7 @@ class FilterEditor:
             'on_test_clicked' : self.test_clicked,
             'on_close_clicked' : self.close_filter_editor,
             'on_delete_clicked' : self.delete_filter,
+            'on_filter_list_delete_event' : self.on_delete_event,
             })
 
         self.clist = ListModel.ListModel(self.filter_list,
@@ -256,6 +261,41 @@ class FilterEditor:
                                          self.filter_select_row,
                                          self.edit_filter)
         self.draw_filters()
+        self.add_itself_to_menu()
+        self.window.show()
+
+    def on_delete_event(self,obj,b):
+        self.filterdb.save()
+        self.close_child_windows()
+        self.remove_itself_from_menu()
+        GenericFilter.reload_custom_filters()
+        GenericFilter.reload_system_filters()
+
+    def close_child_windows(self):
+        for child_window in self.child_windows.values():
+            child_window.close(None)
+        self.child_windows = {}
+
+    def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
+        self.parent_menu_item = gtk.MenuItem(_("Custom Filter Editor tool"))
+        self.parent_menu_item.set_submenu(gtk.Menu())
+        self.parent_menu_item.show()
+        self.parent.winsmenu.append(self.parent_menu_item)
+        self.winsmenu = self.parent_menu_item.get_submenu()
+        self.menu_item = gtk.MenuItem(_('Filter List'))
+        self.menu_item.connect("activate",self.present)
+        self.menu_item.show()
+        self.winsmenu.append(self.menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
+        self.menu_item.destroy()
+        self.winsmenu.destroy()
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def filter_select_row(self,obj):
         store,iter = self.clist.get_selected()
@@ -270,7 +310,9 @@ class FilterEditor:
     
     def close_filter_editor(self,obj):
         self.filterdb.save()
-        self.editor_top.destroy()
+        self.close_child_windows()
+        self.remove_itself_from_menu()
+        self.window.destroy()
         GenericFilter.reload_custom_filters()
         GenericFilter.reload_system_filters()
         
@@ -281,13 +323,13 @@ class FilterEditor:
 
     def add_new_filter(self,obj):
         filter = GenericFilter.GenericFilter()
-        self.filter_editor(filter)
+        EditFilter(self,filter)
 
     def edit_filter(self,obj):
         store,iter = self.clist.get_selected()
         if iter:
             filter = self.clist.get_object(iter)
-            self.filter_editor(filter)
+            EditFilter(self,filter)
 
     def test_clicked(self,obj):
         store,iter = self.clist.get_selected()
@@ -303,13 +345,25 @@ class FilterEditor:
             self.filterdb.get_filters().remove(filter)
             self.draw_filters()
 
-    def filter_editor(self,filter):
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+class EditFilter:
+    def __init__(self,parent,filter):
         self.filter = filter
+        self.filterdb = parent.filterdb
+        
+        self.parent = parent
+        self.win_key = self
+        self.child_windows = {}
+
         self.glade = gtk.glade.XML(const.filterFile,'define_filter',"gramps")
-        self.top = self.glade.get_widget('define_filter')
+        self.window = self.glade.get_widget('define_filter')
         self.define_title = self.glade.get_widget('title')
 
-        Utils.set_titles(self.top,self.define_title,_('Define filter'))
+        Utils.set_titles(self.window,self.define_title,_('Define filter'))
         
         self.rule_list = self.glade.get_widget('rule_list')
         self.rlist = ListModel.ListModel(self.rule_list,
@@ -328,12 +382,12 @@ class FilterEditor:
         self.del_btn = self.glade.get_widget('delete')
         self.glade.signal_autoconnect({
             'on_ok_clicked' : self.on_ok_clicked,
-            'on_cancel_clicked' : self.on_cancel_clicked,
+            'on_cancel_clicked' : self.close,
             'on_filter_name_changed' : self.filter_name_changed,
             'on_delete_clicked' : self.on_delete_clicked,
             'on_add_clicked' : self.on_add_clicked,
             'on_edit_clicked' : self.on_edit_clicked,
-            'on_cancel_clicked' : self.on_cancel_clicked,
+            "on_edit_filter_delete_event" : self.on_delete_event,
             })
         if self.filter.get_invert():
             self.log_not.set_active(1)
@@ -347,6 +401,52 @@ class FilterEditor:
             self.fname.set_text(self.filter.get_name())
         self.comment.set_text(self.filter.get_comment())
         self.draw_rules()
+
+        self.window.set_transient_for(self.parent.window)
+        self.add_itself_to_menu()
+        self.window.show()
+
+    def on_delete_event(self,obj,b):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
+        self.window.destroy()
+
+    def close_child_windows(self):
+        for child_window in self.child_windows.values():
+            child_window.close(None)
+        self.child_windows = {}
+
+    def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
+        if not self.filter.get_name():
+            label = _("New Filter")
+        else:
+            label = self.filter.get_name()
+        if not label.strip():
+            label = _("New Filter")
+        label = "%s: %s" % (_('Filter'),label)
+        self.parent_menu_item = gtk.MenuItem(label)
+        self.parent_menu_item.set_submenu(gtk.Menu())
+        self.parent_menu_item.show()
+        self.parent.winsmenu.append(self.parent_menu_item)
+        self.winsmenu = self.parent_menu_item.get_submenu()
+        self.menu_item = gtk.MenuItem(_('Define Filter'))
+        self.menu_item.connect("activate",self.present)
+        self.menu_item.show()
+        self.winsmenu.append(self.menu_item)
+        
+    def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
+        self.menu_item.destroy()
+        self.winsmenu.destroy()
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def filter_name_changed(self,obj):
         name = unicode(self.fname.get_text())
@@ -366,9 +466,6 @@ class FilterEditor:
         for r in self.filter.get_rules():
             self.rlist.add([r.trans_name(),r.display_values()],r)
             
-    def on_cancel_clicked(self,obj):
-        self.top.destroy()
-
     def on_ok_clicked(self,obj):
         n = unicode(self.fname.get_text()).strip()
         if n == '':
@@ -389,20 +486,40 @@ class FilterEditor:
         self.filter.set_logical_op(op)
         self.filterdb.add(self.filter)
         self.draw_filters()
-        self.top.destroy()
+        self.close(obj)
         
     def on_add_clicked(self,obj):
-        self.edit_rule(None,_('Add Rule'))
+        EditRule(self,None,_('Add Rule'))
 
     def on_edit_clicked(self,obj):
         store,iter = self.rlist.get_selected()
         if iter:
             d = self.rlist.get_object(iter)
-            self.edit_rule(d,_('Edit Rule'))
+            EditRule(self,d,_('Edit Rule'))
 
-    def edit_rule(self,val,label):
+    def on_delete_clicked(self,obj):
+        store,iter = self.rlist.get_selected()
+        if iter:
+            filter = self.rlist.get_object(iter)
+            self.filter.delete_rule(filter)
+            self.draw_rules()
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+class EditRule:
+    def __init__(self,parent,val,label):
+        
         self.pmap = {}
         self.add_places = []
+        self.win_key = self
+        self.child_windows = {}
+        
+        self.parent = parent
+        self.db = parent.parent.db
+        self.filterdb = parent.filterdb
 
         for p_id in self.db.get_place_ids():
             p = self.db.find_place_from_id(p_id)
@@ -410,12 +527,12 @@ class FilterEditor:
 
         self.active_rule = val
         self.rule = gtk.glade.XML(const.filterFile,'rule_editor',"gramps")
-        self.rule_top = self.rule.get_widget('rule_editor')
+        self.window = self.rule.get_widget('rule_editor')
         self.valuebox = self.rule.get_widget('valuebox')
         self.rname = self.rule.get_widget('ruletree')
         self.rule_name = self.rule.get_widget('rulename')
 
-        Utils.set_titles(self.rule_top, self.rule.get_widget('title'),label)
+        Utils.set_titles(self.window, self.rule.get_widget('title'),label)
 
         self.notebook = gtk.Notebook()
         self.notebook.set_show_tabs(0)
@@ -495,9 +612,9 @@ class FilterEditor:
         #
         sel_node = None
         if self.active_rule:
-            sel_name = unicode(_(self.active_rule.name()))
+            self.sel_name = unicode(_(self.active_rule.name()))
         else:
-            sel_name = ""
+            self.sel_name = ""
             
         for v in map.keys():
             filter = GenericFilter.tasks[v]([None])
@@ -515,22 +632,54 @@ class FilterEditor:
 
             #
             # if this is an edit rule, save the node
-            if v == sel_name:
+            if v == self.sel_name:
                 sel_node = node
 
         if sel_node:
             self.selection.select_iter(sel_node)
-            page = self.name2page[sel_name]
+            page = self.name2page[self.sel_name]
             self.notebook.set_current_page(page)
-            self.display_values(sel_name)
+            self.display_values(self.sel_name)
             (n,c,v,t) = self.page[page]
             r = self.active_rule.values()
             for i in range(0,len(t)):
                 t[i].set_text(r[i])
             
         self.selection.connect('changed', self.on_node_selected)
-        self.rule.get_widget('ok').connect('clicked',self.rule_ok)
-        self.rule.get_widget('cancel').connect('clicked',self.rule_cancel)
+        self.rule.signal_autoconnect({
+            'rule_ok_clicked' : self.rule_ok,
+            "on_rule_edit_delete_event" : self.on_delete_event,
+            'rule_cancel_clicked' : self.close,
+            })
+
+        self.window.set_transient_for(self.parent.window)
+        self.add_itself_to_menu()
+        self.window.show()
+
+    def on_delete_event(self,obj,b):
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.remove_itself_from_menu()
+        self.window.destroy()
+
+    def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
+        label = self.sel_name
+        if not label.strip():
+            label = _("New Rule")
+        label = "%s: %s" % (_('Rule'),label)
+        self.parent_menu_item = gtk.MenuItem(label)
+        self.parent_menu_item.connect("activate",self.present)
+        self.parent_menu_item.show()
+        self.parent.winsmenu.append(self.parent_menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def on_node_selected(self,obj):
         """Updates the informational display on the right hand side of
@@ -553,13 +702,6 @@ class FilterEditor:
         filter = GenericFilter.tasks[key]([None])
         self.rule.get_widget('description').set_text(filter.description())
 
-    def on_delete_clicked(self,obj):
-        store,iter = self.rlist.get_selected()
-        if iter:
-            filter = self.rlist.get_object(iter)
-            self.filter.delete_rule(filter)
-            self.draw_rules()
-
     def rule_ok(self,obj):
         name = unicode(self.rule_name.get_text())
         class_def = GenericFilter.tasks[name]
@@ -577,16 +719,14 @@ class FilterEditor:
                 self.filter.delete_rule(rule)
             self.filter.add_rule(new_rule)
             self.draw_rules()
-            self.rule_top.destroy()
+            self.window.destroy()
         except KeyError:
             pass
         except:
             import DisplayTrace
-            self.rule_top.destroy()
+            self.window.destroy()
             DisplayTrace.DisplayTrace()
                                
-    def rule_cancel(self,obj):
-        self.rule_top.destroy()
 
 class ShowResults:
     def __init__(self,db,id_list):
@@ -615,16 +755,16 @@ class ShowResults:
 #
 #
 #-------------------------------------------------------------------------
-def CustomFilterEditor(database,person,callback):
-    FilterEditor(const.custom_filters,database)
+def CustomFilterEditor(database,person,callback,parent=None):
+    FilterEditor(const.custom_filters,database,parent)
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-def SystemFilterEditor(database,person,callback):
-    FilterEditor(const.system_filters,database)
+def SystemFilterEditor(database,person,callback,parent=None):
+    FilterEditor(const.system_filters,database,parent)
 
 #-------------------------------------------------------------------------
 #

@@ -124,8 +124,11 @@ class TableReport:
 #------------------------------------------------------------------------
 class EventComparison:
 
-    def __init__(self,database):
+    def __init__(self,database,parent):
         self.db = database
+        self.parent = parent
+        self.win_key = self
+        self.child_windows = {}
 
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "eventcmp.glade"
@@ -136,14 +139,16 @@ class EventComparison:
             "on_apply_clicked"       : self.on_apply_clicked,
             "on_editor_clicked"      : self.filter_editor_clicked,
             "on_filter_list_enter"   : self.filter_list_enter,
-            "destroy_passed_object"  : Utils.destroy_passed_object
+            "on_filters_delete_event": self.on_delete_event,
+            "destroy_passed_object"  : self.close
             })
     
-        top = self.filterDialog.get_widget("filters")
+        self.window = self.filterDialog.get_widget("filters")
         self.filters = self.filterDialog.get_widget("filter_list")
+        self.label = _('Event comparison filter selection')
 
-        Utils.set_titles(top,self.filterDialog.get_widget('title'),
-                         _('Event comparison filter selection'))
+        Utils.set_titles(self.window,self.filterDialog.get_widget('title'),
+                        self.label)
 
         self.all = GenericFilter.GenericFilter()
         self.all.set_name(_("Entire Database"))
@@ -151,12 +156,48 @@ class EventComparison:
 
         self.filter_menu = GenericFilter.build_filter_menu([self.all])
         self.filters.set_menu(self.filter_menu)
-        top.show()
+
+        self.add_itself_to_menu()
+        self.window.show()
+
+    def on_delete_event(self,obj,b):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
+        self.window.destroy()
+
+    def close_child_windows(self):
+        for child_window in self.child_windows.values():
+            child_window.close(None)
+        self.child_windows = {}
+
+    def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
+        self.parent_menu_item = gtk.MenuItem(_("Event Comparison tool"))
+        self.parent_menu_item.set_submenu(gtk.Menu())
+        self.parent_menu_item.show()
+        self.parent.winsmenu.append(self.parent_menu_item)
+        self.winsmenu = self.parent_menu_item.get_submenu()
+        self.menu_item = gtk.MenuItem(_('Filter Selection'))
+        self.menu_item.connect("activate",self.present)
+        self.menu_item.show()
+        self.winsmenu.append(self.menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
+        self.menu_item.destroy()
+        self.winsmenu.destroy()
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def filter_editor_clicked(self,obj):
         import FilterEditor
-
-        FilterEditor.FilterEditor(const.custom_filters,self.db)
+        FilterEditor.FilterEditor(const.custom_filters,self.db,self.parent)
 
     def filter_list_enter(self,obj):
         self.filter_menu = GenericFilter.build_filter_menu([self.all])
@@ -170,15 +211,15 @@ class EventComparison:
         if len(plist) == 0:
             WarningDialog(_("No matches were found"))
         else:
-            DisplayChart(self.db,plist)
+            DisplayChart(self.db,plist,self.parent)
 
 #------------------------------------------------------------------------
 #
 # 
 #
 #------------------------------------------------------------------------
-def runTool(database,person,callback):
-    EventComparison(database)
+def runTool(database,person,callback,parent=None):
+    EventComparison(database,parent)
     
 #-------------------------------------------------------------------------
 #
@@ -203,7 +244,7 @@ def fix(line):
 #
 #-------------------------------------------------------------------------
 class DisplayChart:
-    def __init__(self,database,people_list):
+    def __init__(self,database,people_list,parent):
         self.db = database
         self.my_list = people_list
         self.row_data = []
