@@ -35,7 +35,7 @@ import gtk
 from gnome.ui import GnomeErrorDialog, GnomeWarningDialog, GnomeQuestionDialog
 import libglade
 import GdkImlib
-import GDK
+from GDK import ACTION_COPY, BUTTON1_MASK, _2BUTTON_PRESS
 
 #-------------------------------------------------------------------------
 #
@@ -84,14 +84,15 @@ class EditPerson:
         self.lists_changed = 0
         self.update_birth = 0
         self.update_death = 0
-        pid = "i%s" % person.getId()
 
         self.load_obj = None
         self.top = libglade.GladeXML(const.editPersonFile, "editPerson")
-        self.gallery_widget = self.top.get_widget("photolist")
-        self.gallery = ImageSelect.Gallery(person, self.path, pid, self.gallery_widget, self.db)
+        gwidget = self.top.get_widget("photolist")
+        self.gallery = ImageSelect.Gallery(person, self.path, gwidget, self.db)
         self.top.signal_autoconnect({
             "destroy_passed_object"     : self.on_cancel_edit,
+            "on_up_clicked"             : self.on_up_clicked,
+            "on_down_clicked"           : self.on_down_clicked,
             "on_add_address_clicked"    : self.on_add_addr_clicked,
             "on_add_aka_clicked"        : self.on_add_aka_clicked,
             "on_add_attr_clicked"       : self.on_add_attr_clicked,
@@ -343,25 +344,25 @@ class EditPerson:
         self.ldsseal_fam.set_menu(myMenu)
         self.ldsseal_fam.set_history(hist)
 
-        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,GDK.ACTION_COPY)
-        self.event_list.drag_source_set(GDK.BUTTON1_MASK, pycode_tgts, GDK.ACTION_COPY)
-        self.event_list.connect('drag_data_get', self.ev_source_drag_data_get)
-        self.event_list.connect('drag_data_received', self.ev_dest_drag_data_received)
+        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
+        self.event_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
+        self.event_list.connect('drag_data_get', self.ev_drag_data_get)
+        self.event_list.connect('drag_data_received', self.ev_drag_data_received)
 
-        self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,GDK.ACTION_COPY)
-        self.web_list.drag_source_set(GDK.BUTTON1_MASK, pycode_tgts, GDK.ACTION_COPY)
-        self.web_list.connect('drag_data_get', self.url_source_drag_data_get)
-        self.web_list.connect('drag_data_received', self.url_dest_drag_data_received)
+        self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
+        self.web_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
+        self.web_list.connect('drag_data_get', self.url_drag_data_get)
+        self.web_list.connect('drag_data_received', self.url_drag_data_received)
         
-        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,GDK.ACTION_COPY)
-        self.attr_list.drag_source_set(GDK.BUTTON1_MASK, pycode_tgts, GDK.ACTION_COPY)
-        self.attr_list.connect('drag_data_get', self.at_source_drag_data_get)
-        self.attr_list.connect('drag_data_received', self.at_dest_drag_data_received)
+        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
+        self.attr_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
+        self.attr_list.connect('drag_data_get', self.at_drag_data_get)
+        self.attr_list.connect('drag_data_received', self.at_drag_data_received)
 
-        self.addr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,GDK.ACTION_COPY)
-        self.addr_list.drag_source_set(GDK.BUTTON1_MASK, pycode_tgts, GDK.ACTION_COPY)
-        self.addr_list.connect('drag_data_get', self.ad_source_drag_data_get)
-        self.addr_list.connect('drag_data_received', self.ad_dest_drag_data_received)
+        self.addr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
+        self.addr_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
+        self.addr_list.connect('drag_data_get', self.ad_drag_data_get)
+        self.addr_list.connect('drag_data_received', self.ad_drag_data_received)
 
         # draw lists
         self.redraw_event_list()
@@ -371,7 +372,7 @@ class EditPerson:
         self.redraw_url_list()
         self.window.show()
 
-    def ev_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
+    def ev_drag_data_received(self,widget,context,x,y,selection_data,info,time):
         if selection_data and selection_data.data:
             exec 'data = %s' % selection_data.data
             exec 'mytype = "%s"' % data[0]
@@ -390,7 +391,7 @@ class EditPerson:
             self.lists_changed = 1
             self.redraw_event_list()
 
-    def ev_source_drag_data_get(self,widget, context, selection_data, info, time):
+    def ev_drag_data_get(self,widget, context, selection_data, info, time):
         ev = widget.get_row_data(widget.focus_row)
         
         bits_per = 8; # we're going to pass a string
@@ -398,7 +399,7 @@ class EditPerson:
         data = str(('pevent',self.person.getId(),pickled));
         selection_data.set(selection_data.target, bits_per, data)
 
-    def url_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
+    def url_drag_data_received(self,widget,context,x,y,selection_data,info,time):
         if selection_data and selection_data.data:
             exec 'data = %s' % selection_data.data
             exec 'mytype = "%s"' % data[0]
@@ -410,7 +411,7 @@ class EditPerson:
             self.lists_changed = 1
             self.redraw_url_list()
 
-    def url_source_drag_data_get(self,widget, context, selection_data, info, time):
+    def url_drag_data_get(self,widget, context, selection_data, info, time):
         ev = widget.get_row_data(widget.focus_row)
         
         bits_per = 8; # we're going to pass a string
@@ -418,7 +419,7 @@ class EditPerson:
         data = str(('url',self.person.getId(),pickled));
         selection_data.set(selection_data.target, bits_per, data)
 
-    def at_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
+    def at_drag_data_received(self,widget,context,x,y,selection_data,info,time):
         if selection_data and selection_data.data:
             exec 'data = %s' % selection_data.data
             exec 'mytype = "%s"' % data[0]
@@ -434,7 +435,7 @@ class EditPerson:
             self.lists_changed = 1
             self.redraw_attr_list()
 
-    def at_source_drag_data_get(self,widget, context, selection_data, info, time):
+    def at_drag_data_get(self,widget, context, selection_data, info, time):
         ev = widget.get_row_data(widget.focus_row)
         
         bits_per = 8; # we're going to pass a string
@@ -442,7 +443,7 @@ class EditPerson:
         data = str(('pattr',self.person.getId(),pickled));
         selection_data.set(selection_data.target, bits_per, data)
 
-    def ad_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
+    def ad_drag_data_received(self,widget,context,x,y,selection_data,info,time):
         if selection_data and selection_data.data:
             exec 'data = %s' % selection_data.data
             exec 'mytype = "%s"' % data[0]
@@ -458,7 +459,7 @@ class EditPerson:
             self.lists_changed = 1
             self.redraw_addr_list()
 
-    def ad_source_drag_data_get(self,widget, context, selection_data, info, time):
+    def ad_drag_data_get(self,widget, context, selection_data, info, time):
         ev = widget.get_row_data(widget.focus_row)
         
         bits_per = 8; # we're going to pass a string
@@ -554,6 +555,20 @@ class EditPerson:
         import AttrEdit
         pname = self.person.getPrimaryName().getName()
         AttrEdit.AttributeEditor(self,None,pname,const.personalAttributes)
+
+    def on_up_clicked(self,obj):
+        if len(obj.selection) == 0:
+            return
+        row = obj.selection[0]
+        if row != 0:
+            obj.select_row(row-1,0)
+
+    def on_down_clicked(self,obj):
+        if len(obj.selection) == 0:
+            return
+        row = obj.selection[0]
+        if row != obj.rows-1:
+            obj.select_row(row+1,0)
 
     def on_event_add_clicked(self,obj):
         """Brings up the EventEditor for a new event"""
@@ -781,7 +796,7 @@ class EditPerson:
         self.dplace.set_position(0)
 
     def attr_double_click(self,obj,event):
-        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+        if event.button == 1 and event.type == _2BUTTON_PRESS:
             self.on_update_attr_clicked(obj)
 
     def on_update_attr_clicked(self,obj):
@@ -793,7 +808,7 @@ class EditPerson:
         AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes)
 
     def addr_double_click(self,obj,event):
-        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+        if event.button == 1 and event.type == _2BUTTON_PRESS:
             self.on_update_addr_clicked(obj)
 
     def on_update_addr_clicked(self,obj):
@@ -802,7 +817,7 @@ class EditPerson:
             AddrEdit.AddressEditor(self,obj.get_row_data(obj.selection[0]))
 
     def url_double_click(self,obj,event):
-        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+        if event.button == 1 and event.type == _2BUTTON_PRESS:
             self.on_update_url_clicked(obj)
 
     def on_update_url_clicked(self,obj):
@@ -814,7 +829,7 @@ class EditPerson:
         UrlEdit.UrlEditor(self,pname,url)
 
     def event_double_click(self,obj,event):
-        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+        if event.button == 1 and event.type == _2BUTTON_PRESS:
             self.on_event_update_clicked(obj)
         
     def on_event_update_clicked(self,obj):
@@ -878,7 +893,7 @@ class EditPerson:
         self.attr_details_field.set_text(utils.get_detail_text(attr))
 
     def aka_double_click(self,obj,event):
-        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+        if event.button == 1 and event.type == _2BUTTON_PRESS:
             self.on_aka_update_clicked(obj)
 
     def on_aka_update_clicked(self,obj):
@@ -1126,6 +1141,7 @@ class EditPerson:
         elif page == 6 and self.not_loaded:
             self.not_loaded = 0
             self.gallery.load_images()
+
 
 def update_ord(func,ord,date,temple):
     if not ord:

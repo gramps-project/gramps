@@ -67,11 +67,12 @@ class Marriage:
 
         self.top = libglade.GladeXML(const.marriageFile,"marriageEditor")
         top_window = self.get_widget("marriageEditor")
-        fid = family.getId()
         plwidget = self.top.get_widget("photolist")
-        self.gallery = ImageSelect.Gallery(family, self.path, fid, plwidget, db)
+        self.gallery = ImageSelect.Gallery(family, self.path, plwidget, db)
         self.top.signal_autoconnect({
             "destroy_passed_object" : self.on_cancel_edit,
+            "on_up_clicked"             : self.on_up_clicked,
+            "on_down_clicked"           : self.on_down_clicked,
             "on_add_attr_clicked" : self.on_add_attr_clicked,
             "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
             "on_attr_list_select_row" : self.on_attr_list_select_row,
@@ -164,6 +165,20 @@ class Marriage:
         self.redraw_event_list()
         self.redraw_attr_list()
         top_window.show()
+
+    def on_up_clicked(self,obj):
+        if len(obj.selection) == 0:
+            return
+        row = obj.selection[0]
+        if row != 0:
+            obj.select_row(row-1,0)
+
+    def on_down_clicked(self,obj):
+        if len(obj.selection) == 0:
+            return
+        row = obj.selection[0]
+        if row != obj.rows-1:
+            obj.select_row(row+1,0)
 
     def ev_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
         if selection_data and selection_data.data:
