@@ -70,8 +70,20 @@ class AttributeEditor:
         """
 
         self.parent = parent
+        if attrib:
+            if self.parent.child_windows.has_key(attrib):
+                self.parent.child_windows[attrib].present(None)
+                return
+            else:
+                self.win_key = attrib
+        else:
+            self.win_key = self
         self.db = self.parent.db
         self.attrib = attrib
+        self.callback = callback
+        self.child_windows = {}
+        self.alist = list
+
         self.top = gtk.glade.XML(const.dialogFile, "attr_edit","gramps")
         self.type_field  = self.top.get_widget("attr_type")
         self.slist  = self.top.get_widget("slist")
@@ -84,9 +96,6 @@ class AttributeEditor:
         self.notes_label = self.top.get_widget("noteAttr")
         self.flowed = self.top.get_widget("attr_flowed")
         self.preform = self.top.get_widget("attr_preform")
-        self.callback = callback
-        self.child_windows = []
-        self.alist = list
 
         self.window = self.top.get_widget("attr_edit")
         
@@ -133,27 +142,25 @@ class AttributeEditor:
 
         if parent_window:
             self.window.set_transient_for(parent_window)
-        self.parent.child_windows.append(self)
         self.add_itself_to_menu()
         self.window.show()
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
-        self.parent.child_windows.remove(self)
 
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
-        self.parent.child_windows.remove(self)
         self.window.destroy()
 
     def close_child_windows(self):
-        for child_window in self.child_windows:
+        for child_window in self.child_windows.values():
             child_window.close(None)
-        self.child_windows = []
+        self.child_windows = {}
 
     def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
         if not self.attrib:
             label = _("New Attribute")
         else:
@@ -172,6 +179,7 @@ class AttributeEditor:
         self.menu.append(self.menu_item)
 
     def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
         self.menu_item.destroy()
         self.menu.destroy()
         self.parent_menu_item.destroy()

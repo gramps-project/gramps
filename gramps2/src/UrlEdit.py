@@ -47,6 +47,14 @@ class UrlEditor:
 
     def __init__(self,parent,name,url,callback,parent_window=None):
         self.parent = parent
+        if url:
+            if self.parent.child_windows.has_key(url):
+                self.parent.child_windows[url].present(None)
+                return
+            else:
+                self.win_key = url
+        else:
+            self.win_key = self
         self.url = url
         self.callback = callback
         self.top = gtk.glade.XML(const.dialogFile, "url_edit","gramps")
@@ -78,20 +86,18 @@ class UrlEditor:
 
         if parent_window:
             self.window.set_transient_for(parent_window)
-        self.parent.child_windows.append(self)
         self.add_itself_to_menu()
         self.window.show()
 
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()
-        self.parent.child_windows.remove(self)
 
     def close(self,obj):
         self.remove_itself_from_menu()
-        self.parent.child_windows.remove(self)
         self.window.destroy()
 
     def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
         label = _('Internet Address Editor')
         self.parent_menu_item = gtk.MenuItem(label)
         self.parent_menu_item.connect("activate",self.present)
@@ -99,6 +105,7 @@ class UrlEditor:
         self.parent.menu.append(self.parent_menu_item)
 
     def remove_itself_from_menu(self):
+        self.parent.child_windows[self.win_key]
         self.parent_menu_item.destroy()
 
     def present(self,obj):

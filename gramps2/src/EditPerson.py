@@ -86,7 +86,7 @@ class EditPerson:
             return
         self.db = db
         self.callback = callback
-        self.child_windows = []
+        self.child_windows = {}
         self.path = db.get_save_path()
         self.not_loaded = 1
         self.lds_not_loaded = 1
@@ -412,9 +412,9 @@ class EditPerson:
         self.window.show()
 
     def close_child_windows(self):
-        for child_window in self.child_windows:
+        for child_window in self.child_windows.values():
             child_window.close(None)
-        self.child_windows = []
+        self.child_windows = {}
 
     def close(self,ok=0):
         self.gallery.close(ok)

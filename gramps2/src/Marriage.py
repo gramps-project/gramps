@@ -76,7 +76,7 @@ class Marriage:
         if self.parent.wins_dict.has_key(family.get_id()):
             self.parent.wins_dict[family.get_id()].present(None)
             return
-        self.child_windows = []
+        self.child_windows = {}
         self.db = db
         self.path = db.get_save_path()
         self.cb = callback
@@ -260,9 +260,9 @@ class Marriage:
         self.window.show()
 
     def close_child_windows(self):
-        for child_window in self.child_windows:
+        for child_window in self.child_windows.values():
             child_window.close(None)
-        self.child_windows = []
+        self.child_windows = {}
 
     def close(self,ok=0):
         self.gallery.close(ok)

@@ -50,9 +50,17 @@ class SourceSelector:
     def __init__(self,srclist,parent,update=None):
         self.db = parent.db
         self.parent = parent
+        if srclist:
+            if self.parent.child_windows.has_key(id(srclist)):
+                self.parent.child_windows[id(srclist)].present(None)
+                return
+            else:
+                self.win_key = id(srclist)
+        else:
+            self.win_key = self
         self.orig = srclist
         self.list = []
-        self.child_windows = []
+        self.child_windows = {}
         for s in self.orig:
             self.list.append(RelLib.SourceRef(s))
         self.update=update
@@ -98,27 +106,25 @@ class SourceSelector:
         self.redraw()
         if self.parent:
             self.window.set_transient_for(self.parent.window)
-        self.parent.child_windows.append(self)
         self.add_itself_to_menu()
         self.window.show()
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
-        self.parent.child_windows.remove(self)
 
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
-        self.parent.child_windows.remove(self)
         self.window.destroy()
 
     def close_child_windows(self):
-        for child_window in self.child_windows:
+        for child_window in self.child_windows.values():
             child_window.close(None)
-        self.child_windows = []
+        self.child_windows = {}
 
     def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
         label = _('Source Reference')
         self.parent_menu_item = gtk.MenuItem(label)
         self.parent_menu_item.set_submenu(gtk.Menu())
@@ -131,6 +137,7 @@ class SourceSelector:
         self.menu.append(self.menu_item)
 
     def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
         self.menu_item.destroy()
         self.menu.destroy()
         self.parent_menu_item.destroy()
@@ -282,13 +289,21 @@ class SourceEditor:
 
         self.db = database
         self.parent = parent
-        self.update = update
-        self.source_ref = srcref
-        self.child_windows = []
         if self.parent.__dict__.has_key('child_windows'):
             self.win_parent = self.parent
         else:
             self.win_parent = self.parent.parent
+        if srcref:
+            if self.win_parent.child_windows.has_key(srcref):
+                self.win_parent.child_windows[srcref].present(None)
+                return
+            else:
+                self.win_key = srcref
+        else:
+            self.win_key = self
+        self.update = update
+        self.source_ref = srcref
+        self.child_windows = {}
         self.showSource = gtk.glade.XML(const.srcselFile, "sourceDisplay","gramps")
         self.sourceDisplay = self.get_widget("sourceDisplay")
 
@@ -327,27 +342,25 @@ class SourceEditor:
         self.set_button()
         if self.parent:
             self.sourceDisplay.set_transient_for(self.parent.window)
-        self.win_parent.child_windows.append(self)
         self.add_itself_to_menu()
         self.sourceDisplay.show()
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
-        self.win_parent.child_windows.remove(self)
 
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
-        self.win_parent.child_windows.remove(self)
         self.sourceDisplay.destroy()
 
     def close_child_windows(self):
-        for child_window in self.child_windows:
+        for child_window in self.child_windows.values():
             child_window.close(None)
-        self.child_windows = []
+        self.child_windows = {}
 
     def add_itself_to_menu(self):
+        self.win_parent.child_windows[self.win_key] = self
         if self.active_source:
             label = self.active_source.get_title()
         else:
@@ -366,6 +379,7 @@ class SourceEditor:
         self.menu.append(self.menu_item)
 
     def remove_itself_from_menu(self):
+        del self.win_parent.child_windows[self.win_key]
         self.menu_item.destroy()
         self.menu.destroy()
         self.parent_menu_item.destroy()

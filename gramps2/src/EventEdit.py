@@ -61,8 +61,16 @@ class EventEditor:
                  def_event=None):
         self.parent = parent
         self.db = self.parent.db
+        if event:
+            if self.parent.child_windows.has_key(event.get_id()):
+                self.parent.child_windows[event.get_id()].present(None)
+                return
+            else:
+                self.win_key = event.get_id()
+        else:
+            self.win_key = self
         self.event = event
-        self.child_windows = []
+        self.child_windows = {}
         self.trans = trans
         self.callback = cb
         self.plist = []
@@ -201,27 +209,25 @@ class EventEditor:
         self.calendar.set_menu(menu)
 
         self.window.set_transient_for(self.parent.window)
-        self.parent.child_windows.append(self)
         self.add_itself_to_menu()
         self.window.show()
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
-        self.parent.child_windows.remove(self)
 
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
-        self.parent.child_windows.remove(self)
         self.window.destroy()
 
     def close_child_windows(self):
-        for child_window in self.child_windows:
+        for child_window in self.child_windows.values():
             child_window.close(None)
-        self.child_windows = []
+        self.child_windows = {}
 
     def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
         if not self.event:
             label = _("New Event")
         else:
@@ -240,6 +246,7 @@ class EventEditor:
         self.menu.append(self.menu_item)
 
     def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
         self.menu_item.destroy()
         self.menu.destroy()
         self.parent_menu_item.destroy()

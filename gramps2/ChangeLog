@@ -1,3 +1,11 @@
+2004-02-23  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/AddrEdit.py, src/AttrEdit.py, src/EditPerson.py, 
+	src/EditSource.py, src/EventEdit.py, src/ImageSelect.py, 
+	src/Marriage.py, src/NameEdit.py, src/NoteEdit.py, 
+	src/Sources.py, src/UrlEdit.py, src/Witness.py:
+	Register windows opened for existing objects. Prevent editing
+	same object twice.
+
 2004-02-22  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/DetAncestralReport.py: Translation corrections.
 	Change "was" to "is".
