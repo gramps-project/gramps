@@ -112,14 +112,14 @@ class GrampsDbBase:
         Opens the specified database. The method needs to be overridden
         in the derived class.
         """
-        assert(False,"Needs to be overridden in the derived class")
+        assert False, "Needs to be overridden in the derived class"
 
     def close(self):
         """
         Closes the specified database. The method needs to be overridden
         in the derived class.
         """
-        assert(False,"Needs to be overridden in the derived class")
+        assert False, "Needs to be overridden in the derived class"
         
     def is_open(self):
         """
@@ -440,7 +440,7 @@ class GrampsDbBase:
 
         Needs to be overridden by the derrived class.
         """
-        assert(False,"Needs to be overridden in the derived class")
+        assert False, "Needs to be overridden in the derived class"
 
     def get_family_from_gramps_id(self,val):
         """
@@ -449,7 +449,7 @@ class GrampsDbBase:
 
         Needs to be overridden by the derrived class.
         """
-        assert(False,"Needs to be overridden in the derived class")
+        assert False, "Needs to be overridden in the derived class"
 
     def get_place_from_gramps_id(self,val):
         """finds a Place in the database from the passed gramps' ID.
@@ -457,7 +457,7 @@ class GrampsDbBase:
 
         Needs to be overridden by the derrived class.
         """
-        assert(False,"Needs to be overridden in the derived class")
+        assert False, "Needs to be overridden in the derived class"
 
     def get_source_from_gramps_id(self,val):
         """finds a Source in the database from the passed gramps' ID.
@@ -465,7 +465,7 @@ class GrampsDbBase:
 
         Needs to be overridden by the derrived class.
         """
-        assert(False,"Needs to be overridden in the derived class")
+        assert False, "Needs to be overridden in the derived class" 
 
     def get_object_from_gramps_id(self,val):
         """finds a MediaObject in the database from the passed gramps' ID.
@@ -473,7 +473,7 @@ class GrampsDbBase:
 
         Needs to be overridden by the derrived class.
         """
-        assert(False,"Needs to be overridden in the derived class")
+        assert False, "Needs to be overridden in the derived class"
 
     def add_person(self,person,transaction):
         """
@@ -832,14 +832,14 @@ class GrampsDbBase:
         Returns the list of surnames contained within the database.
         The function must be overridden in the derived class.
         """
-        assert(False,"Needs to be overridden in the derived class")
+        assert False, "Needs to be overridden in the derived class"
 
     def get_person_event_type_list(self):
         """
         Returns the list of personal event types contained within the
         database. The function must be overridden in the derived class.
         """
-        assert(False,"Needs to be overridden in the derived class")
+        assert False, "Needs to be overridden in the derived class"
 
     def get_bookmarks(self):
         """returns the list of Person handles in the bookmarks"""
@@ -914,7 +914,7 @@ class GrampsDbBase:
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
-        assert(False,"Needs to be overridden in the derived class")
+        assert False, "Needs to be overridden in the derived class"
 
     def remove_source(self,handle,transaction):
         """
@@ -922,7 +922,7 @@ class GrampsDbBase:
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
-        assert(False,"Needs to be overridden in the derived class")
+        assert False, "Needs to be overridden in the derived class"
 
     def remove_event(self,handle,transaction):
         """
@@ -930,7 +930,7 @@ class GrampsDbBase:
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
-        assert(False,"Needs to be overridden in the derived class")
+        assert False, "Needs to be overridden in the derived class"
 
     def remove_object(self,handle,transaction):
         """
@@ -938,7 +938,7 @@ class GrampsDbBase:
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
-        assert(False,"Needs to be overridden in the derived class")
+        assert False, "Needs to be overridden in the derived class"
 
     def remove_place(self,handle,transaction):
         """
@@ -946,7 +946,7 @@ class GrampsDbBase:
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
-        assert(False,"Needs to be overridden in the derived class")
+        assert False, "Needs to be overridden in the derived class"
 
     def has_person_handle(self,handle):
         """
