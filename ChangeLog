@@ -1,3 +1,7 @@
+2005-04-05  Don Allingham  <don@gramps-project.org>
+	* src/DbPrompter.py: provide a better error message of DB open failure
+	* src/const.py.in: Add Martin Hawlisch and Richard Tayor to author list
+
 2005-04-05  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py: Show Baptism/Burial as fallback for birth/death; Moved text
 	generation for details view out of DispBox class so that PedigreeView can use the

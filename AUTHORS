@@ -8,4 +8,8 @@ Alex Roitman ** BookReport, command line, Gramps manual, bugfixes
 
 Tim Waugh ** Comprehensive Ancestor report, docgen, Makefiles, bugfixes
 
+Martin Hawlisch - Filters
+
+Richard Taylor - ScratchPad.py, GrampsDBCallback.py
+
 $Id$

@@ -62,6 +62,8 @@ import WriteGrdb
 import WriteXML
 import WriteGedcom
 
+from bsddb import db
+
 #-------------------------------------------------------------------------
 #
 # Constants
@@ -194,9 +196,13 @@ class ExistingDbPrompter:
             try:
                 if open_native(self.parent,filename,filetype):
                     return True
-            except:
+            except db.DBInvalidArgError, msg:
                 QuestionDialog.ErrorDialog(
-                    _("Could not open file: %s") % filename)
+                    _("Could not open file: %s") % filename, msg[1])
+                return False
+            except:
+                import DisplayTrace
+                DisplayTrace.DisplayTrace()
                 return False
 
             # The above native formats did not work, so we need to 
