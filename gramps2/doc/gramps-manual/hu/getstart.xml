@@ -19,12 +19,12 @@
 <!-- =========== Getting Started ============================== -->
 
   <sect1 id="gramps-getting-started"> 
-    <title>Getting Started</title> 
+    <title>A kezdetek</title> 
 
     <!-- ================ Getting Started Subsection ====== -->
     <sect2 id="gramps-start">
-    <title>To Start &app;</title>
-    <para>You can start &app; in the following ways:</para> 
+    <title>A &app; indítása</title>
+    <para>A &app; progrmamot a következő módokon indíthataja el:</para> 
     <variablelist>
     <varlistentry>
 	<term><guimenu>Applications</guimenu> menu</term>
@@ -77,7 +77,7 @@
 	<para>Enter your personal information in the corresponding
 	text entry fields. Although &app; requests information about you, 
 	this information is used only so that &app; can create valid GEDCOM 
-	output files. A valid GEDCOM file requires information about the file's 
+	output files. A valid GEDCOM file requires information about the file_s 
 	creator. If you choose, you may leave the information empty, however
 	all the GEDCOM files you export will not be valid. 
 	</para>
@@ -162,43 +162,43 @@
 
     <!-- ================ Getting Started Subsection ==== -->
     <sect2 id="get-help">
-      <title>Obtaining Help</title>
-    <para> At any time, the following items are available for immediate aid
-    from the <menuchoice><guimenu>Help</guimenu></menuchoice> menu: </para>
+      <title>Segítség</title>
+    <para> Minden esetben azonnali segítséget tud kapni a 
+    <menuchoice><guimenu>Súgó</guimenu></menuchoice> memüpont alatt: </para>
     
 	<variablelist>
 
-	<varlistentry><term>User manual</term>
-	<listitem><para> Choose this item to read the text of this manual 
-	in the help browser.  </para></listitem>
+	<varlistentry><term>Felhasználói kézikönyv</term>
+	<listitem><para> Ezt válassza ki ha ennek a segítségnek a szövegét 
+	Segítség böngészőben szeretné megtekinteni.  </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term>FAQ</term>
+	<varlistentry><term>GYIK (FAQ)</term>
 	<listitem><para> Use this item to read Frequently Asked Questions
 	about &app; in the browser. </para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>GRAMPS home page</term>
+	<varlistentry><term>GRAMPS honlap</term>
 	<listitem><para> Select this item to open home page of &app; in your
 	default web browser. </para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>GRAMPS mailing lists</term>
+	<varlistentry><term>GRAMPS levelezőlista</term>
 	<listitem><para> Choose this item to direct your web browser 
 	to the &app; mailing list archives. </para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>Report a bug</term>
+	<varlistentry><term>Hiba jelzése</term>
 	<listitem><para> Use this item to file a bug report against &app; 
 	with the bug tracking system.  </para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>Show plugin status</term>
+	<varlistentry><term>Modul állapot megjelenítése</term>
 	<listitem><para> Use this item to display the status of loaded 
 	plugins. </para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>Open example database</term>
+	<varlistentry><term>Példa adatbázis megnyitása</term>
 	<listitem><para> Select this item to load the example database shipped
 	with &app;. This database is composed of fictitious people and serves as
 	a useful example for learning how to work with &app;. </para></listitem>
