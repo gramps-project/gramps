@@ -1,3 +1,51 @@
+Version 1.1.0 -- the "And now for something completely different" release
+* Berkeley database backend!!! Many thanks to Billy Earney for db expertise!
+* Alphabetical tabs are gone. The entire People View is in a single tree now.
+  This allows to merge people with different first letters of their Surnames. 
+* Displayed columns can be re-arranged in the Tree Views. 
+* Events are the first-class objects and can be shared (there is 
+  no interface that supports it yet).
+* Save function is gone. The changes are committed when OK is pressed
+  in the editing dialog.
+* Undo support with named transactions. 
+* Dependence on grampslib is gone. GRAMPS is now 100% python!
+* Version control is gone, as it is obsoleted by the database backend. 
+* Support for the new GTK2.4 file selector. 
+* Most modal windows are gone. Closing a window automatically 
+  closes its children windows.
+* Windows menu presents all open windows in an ordered fashion, 
+  allowing easy control of numerous open dialogs. 
+* New icons for default person, as well as for the gramps database 
+  and gedcom file types (Steve Hall).
+* Obsolete ZODB backend removed. 
+* Local media objects are gone. All objects are now global, i.e. refer
+  to the existing files. To have a portable database, export into gramps
+  package, or track your files yourself. 
+* Report style improvements.
+* Improved error messages. 
+* Relationship calculators are re-using more common code. 
+* Support for Tip of the day. 
+* Proper mime type registration and application association. 
+  Double-cliking on a .grdb file should open it in gramps. 
+* Spouse column support in People View. 
+* GEDCOM import improvements.
+* Multiple web page generator improvements (Leonid Mamtchenkov).
+* Fix in the Wall Chart report. 
+* Plain text format available for text reports. 
+* Direct printing/previewing and internationalized PS/PDF creation
+  via gnome-print plugin. Full support for images and rotated text. 
+* Built-in filters are gone. Filtering in PeopleView is done 
+  using Custom/System filters. 
+* Proper unicode output in GraphViz plugin. 
+* Catch and disallow selecting self as a child/parent. 
+* User-added attributes are remembered for Media objects. 
+* Cancel in Edit Person and Edit Relationship properly reverts events, 
+  attributes, etc to their pre-edit values.
+* Gallery tab added to events. 
+* Sources added to media objects and their references.
+* XML parser fixes.
+* Numerous bugfixes.
+
 Version 1.0.0 -- the "Stable as a tombstone" release
 * Added Norwegian translation (Frode Jemtland).
 * New filter and custom filter rule based on the personal completeness flag.

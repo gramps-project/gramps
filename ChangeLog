@@ -1,3 +1,6 @@
+2004-06-14  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* NEWS: Update. 
+
 2004-06-11  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/filters/*: removed
 	* src/plugins/WritePkg.py: brought up to date
