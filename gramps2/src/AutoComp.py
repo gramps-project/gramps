@@ -257,7 +257,6 @@ class AutoEntry(AutoCompBase):
             if nl[0:self.l] == typed_lc:
                 self.nl = nl
                 entry.set_text(n)
-                print self.l
                 entry.set_position(self.l)
                 entry.select_region(self.l, -1)
                 return
