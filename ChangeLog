@@ -1,3 +1,9 @@
+2004-08-01  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/WriteGedcom.py: move up from plugins directory
+	* src/ReadGedcom.py: move up from plugins directory
+	* src/gedcomimport.glade: move up from plugins directory
+	* src/gedcomexport.glade: move up from plugins directory
+
 2004-07-31  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/AddSpouse.py: fix gender selection
 	* src/DbPrompter.py: support other DB formats

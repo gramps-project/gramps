@@ -68,6 +68,7 @@ gdir_PYTHON = \
 	PlaceView.py\
 	Plugins.py\
 	QuestionDialog.py\
+	ReadGedcom.py \
 	ReadXML.py\
 	Relationship.py\
 	RelImage.py\
@@ -89,6 +90,7 @@ gdir_PYTHON = \
 	UrlEdit.py\
 	Utils.py\
 	Witness.py\
+	WriteGedcom.py \
 	WriteXML.py\
 	SelectPerson.py\
 	ArgHandler.py\
@@ -100,6 +102,8 @@ gdir_PYTHON = \
 GLADEFILES = \
 	gramps.glade\
 	mergedata.glade\
+	gedcomexport.glade\
+	gedcomimport.glade\
 	plugins.glade\
 	rule.glade
 
