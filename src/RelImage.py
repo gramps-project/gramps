@@ -85,7 +85,7 @@ def import_media_object(filename,path,base):
         try:
             shutil.copy(filename,name)
         except IOError,msg:
-            GnomeErrorDialog(_("Error copying %s") + "\n" + msg)
+            GnomeErrorDialog(_("Error copying %s") % filename + "\n" + msg)
             return ""
 
     else:
@@ -129,6 +129,10 @@ def scale_image(path,size):
 #-------------------------------------------------------------------------
 def mk_thumb(source,dest,size):
     dir = os.path.dirname(dest)
+
+    source = os.path.normpath(source)
+    dest = os.path.normpath(dest)
+    
     try:
         if not os.path.exists(dir):
             os.mkdir(dir)
@@ -154,7 +158,9 @@ def mk_thumb(source,dest,size):
         img = ImgManip.ImgManip(source)
         img.jpg_thumbnail(dest,size,size)
     except:
-        GnomeErrorDialog(_("Could not create a thumbnail for %s") % source)
+        import sys
+        msg = "%s\n%s %s" % (source,sys.exc_type,sys.exc_value)
+        GnomeErrorDialog(_("Could not create a thumbnail for %s") % msg)
         return
 
 #-------------------------------------------------------------------------
