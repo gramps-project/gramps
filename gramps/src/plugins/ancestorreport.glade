@@ -15,7 +15,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>dialog1</name>
-  <title>GRAMPS - Ahnentalfel Report</title>
+  <title>Gramps - Ahnentafel Report</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -97,7 +97,7 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>labelTitle</name>
-	<label>Ahnentalfel Report</label>
+	<label>Ahnentafel Report</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>0.5</xalign>
@@ -215,7 +215,7 @@
 	    <class>GtkRadioButton</class>
 	    <name>abiword</name>
 	    <can_focus>True</can_focus>
-	    <label>Abiword</label>
+	    <label>AbiWord</label>
 	    <active>False</active>
 	    <draw_indicator>True</draw_indicator>
 	    <group>format</group>

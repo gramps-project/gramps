@@ -93,5 +93,5 @@ def get_name():
 #
 #-------------------------------------------------------------------------
 def get_description():
-    return _("Provides a browsable hierarchy of the active person")
+    return _("Provides a browsable hierarchy based on the active person")
 
