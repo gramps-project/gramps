@@ -118,7 +118,8 @@ pkgpython_PYTHON = \
 	PdfDoc.py\
 	PSDrawDoc.py\
 	RTFDoc.py\
-	SvgDrawDoc.py
+	SvgDrawDoc.py\
+	LPRDoc.py
 
 
 GRAMPS_PY_MODPATH = "../"

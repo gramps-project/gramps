@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 "Generate files/Relationship graph"
 
@@ -64,6 +66,9 @@ _pagecount_map = {
     _("Multiple") : _multiple,
     }
     
+_PS_FONT = 'Helvetica'
+_TT_FONT = 'FreeSans'
+
 #------------------------------------------------------------------------
 #
 # GraphVizDialog
@@ -150,12 +155,12 @@ class GraphVizDialog(Report.ReportDialog):
         menu = gtk.Menu()
 
         menuitem = gtk.MenuItem(_("TrueType"))
-        menuitem.set_data('t', 'Arial')
+        menuitem.set_data('t', _TT_FONT)
         menuitem.show()
         menu.append(menuitem)
 
         menuitem = gtk.MenuItem(_("PostScript"))
-        menuitem.set_data('t', 'Helvetica')
+        menuitem.set_data('t', _PS_FONT)
         menuitem.show()
         menu.append(menuitem)
 
@@ -474,7 +479,10 @@ def dump_index(person_list,file,includedates,includeurl,colorize,
                 file.write('color=deeppink, ')
             else:
                 file.write('color=black, ')
-        file.write('fontname="%s", label="%s"];\n' % (font,utf8_to_latin(label)))
+        if font == _TT_FONT:
+            file.write('fontname="%s", label="%s"];\n' % (font,label))
+        else:
+            file.write('fontname="%s", label="%s"];\n' % (font,utf8_to_latin(label)))
         # Output families's nodes.
         if show_families:
             family_list = person.get_family_id_list()
