@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Pubilc License as published by
@@ -49,7 +49,6 @@ import RelLib
 import const
 import GrampsKeys
 import GenericFilter
-import DateHandler
 import Sort
 import Report
 import Errors
@@ -57,7 +56,8 @@ import Utils
 from QuestionDialog import ErrorDialog
 import ReportOptions
 import BaseDoc
-import NameDisplay
+from NameDisplay import displayer as _nd
+from DateHandler import displayer as _dd
 import ReportUtils
 
 _css = [
@@ -284,8 +284,8 @@ class IndividualPage:
         self.dirpath = dirpath
 
         gramps_id = self.person.get_gramps_id()
-        self.sort_name = NameDisplay.displayer.sorted(self.person)
-        self.name = NameDisplay.displayer.sorted(self.person)
+        self.sort_name = _nd.sorted(self.person)
+        self.name = _nd.sorted(self.person)
         
         self.f = open(os.path.join(dirpath,"%s.html" % gramps_id), "w")
         self.f.write('<!DOCTYPE HTML PUBLIC ')
@@ -498,7 +498,7 @@ class IndividualPage:
         self.f.write('<td class="data">')
         if use_link:
             self.f.write('<a href="%s.html">' % person.get_gramps_id())
-        self.f.write(NameDisplay.displayer.display(person))
+        self.f.write(_nd.display(person))
         if use_link:
             self.f.write('</a>\n')
         self.f.write('</td>\n')
@@ -510,7 +510,7 @@ class IndividualPage:
         self.f.write('<td class="data">')
         if use_link:
             self.f.write('<a href="%s.html">' % person.get_gramps_id())
-        self.f.write(NameDisplay.displayer.display(person))
+        self.f.write(_nd.display(person))
         if use_link:
             self.f.write('</a>\n')
         self.f.write('</td>\n')
@@ -545,9 +545,11 @@ class IndividualPage:
 
         if family_list:
             self.f.write('<tr><td class="category">%s</td>\n' % _("Spouses"))
+            first = True
             for family_handle in family_list:
                 family = self.db.get_family_from_handle(family_handle)
-                self.display_spouse(family)
+                self.display_spouse(family,first)
+                first = False
                 childlist = family.get_child_handle_list()
                 if childlist:
                     self.f.write('<tr><td>&nbsp;</td>\n')
@@ -557,8 +559,8 @@ class IndividualPage:
                         use_link = child_handle in self.ind_list
                         child = self.db.get_person_from_handle(child_handle)
                         if use_link:
-                            self.f.write('<a href="%s.html">' % self.person.get_gramps_id())
-                        self.f.write(NameDisplay.displayer.display(child))
+                            self.f.write('<a href="%s.html">' % child.get_gramps_id())
+                        self.f.write(_nd.display(child))
                         if use_link:
                             self.f.write('</a>\n')
                         self.f.write("<br>\n")
@@ -568,7 +570,7 @@ class IndividualPage:
 	self.f.write('</table>\n')
         self.f.write('\n')
 
-    def display_spouse(self,family):
+    def display_spouse(self,family,first=True):
         gender = self.person.get_gender()
         reltype = family.get_relationship()
 
@@ -585,9 +587,12 @@ class IndividualPage:
         spouse_id = ReportUtils.find_spouse(self.person,family)
         if spouse_id:
             spouse = self.db.get_person_from_handle(spouse_id)
-            name = NameDisplay.displayer.display(spouse)
+            name = _nd.display(spouse)
         else:
             name = _("unknown")
+        if not first:
+            self.f.write('<tr><td>&nbsp;</td></tr>\n')
+            self.f.write('<td>&nbsp;</td>')
         self.f.write('<td class="field">%s</td>\n' % relstr)
         self.f.write('<td class="data">')
         use_link = spouse_id in self.ind_list
@@ -615,7 +620,7 @@ class IndividualPage:
         self.f.write('%s ' % bullet)
         if person_link:
             self.f.write('<a href="%s.html">' % person.gramps_id)
-        self.f.write(NameDisplay.displayer.display(person))
+        self.f.write(_nd.display(person))
         if person_link:
             self.f.write('</a>')
         self.f.write('<br>\n')
@@ -638,7 +643,7 @@ class IndividualPage:
     def format_event(self,event):
         descr = event.get_description()
         place = ReportUtils.place_name(self.db,event.get_place_handle())
-        date = DateHandler.displayer.display(event.get_date_object())
+        date = _dd.display(event.get_date_object())
 
         tmap = {'description' : descr, 'date' : date, 'place' : place}
         
@@ -1588,7 +1593,7 @@ class WebReportDialog(Report.ReportDialog):
     def __init__(self,database,person):
         self.database = database 
         self.person = person
-        name = "webpage"
+        name = "navwebpage"
         translated_name = _("Generate Web Site")
         self.options_class = WebReportOptions(name)
         self.category = const.CATEGORY_WEB
@@ -1788,7 +1793,7 @@ def cl_report(database,name,category,options_str_dict):
 #-------------------------------------------------------------------------
 from PluginMgr import register_report
 register_report(
-    name = 'webpage',
+    name = 'navwebpage',
     category = const.CATEGORY_WEB,
     report_class = WebReportDialog,
     options_class = cl_report,

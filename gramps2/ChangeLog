@@ -1,3 +1,9 @@
+2005-02-04 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/NavWebPage.py (display_relationships): Pass
+	another argument to display_spouse(); (display_spouse): Use spacers
+	for additional spouses. Use unique registration name
+	* src/ReportUtils.py (find_spouse): Typo.
+
 2005-02-03  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/NavWebPage.py: more progress
 
