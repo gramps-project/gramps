@@ -367,6 +367,19 @@ class Date:
         """
         return self._get_high_item(_POS_RDAY)
 
+    def get_high_year(self):
+        """
+        Returns the high year estimate. For compound dates with non-zero 
+        stop year, the stop year is returned. Otherwise, the start year 
+        is returned.
+        """
+        if self.is_compound():
+            ret = self.get_stop_year()
+            if ret:
+                return ret
+        else:
+            return self.get_year()
+
     def get_text(self):
         """
         Returns the text value associated with an invalid date.
