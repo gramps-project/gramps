@@ -581,11 +581,11 @@ class Gramps:
     
     def clear_database(self):
         """Clear out the database if permission was granted"""
-        const.personalEvents = const.initialize_personal_event_list()
-        const.personalAttributes = const.initialize_personal_attribute_list()
-        const.marriageEvents = const.initialize_marriage_event_list()
-        const.familyAttributes = const.initialize_family_attribute_list()
-        const.familyRelations = const.initialize_family_relation_list()
+        const.personalEvents = const.init_personal_event_list()
+        const.personalAttributes = const.init_personal_attribute_list()
+        const.marriageEvents = const.init_marriage_event_list()
+        const.familyAttributes = const.init_family_attribute_list()
+        const.familyRelations = const.init_family_relation_list()
     
         self.database.new()
         self.topWindow.set_title("GRAMPS")
@@ -685,7 +685,8 @@ class Gramps:
         autosave = "%s/autosave.gramps" % dirname
 
         if os.path.isfile(autosave):
-            q = _("An autosave file exists for %s.\nShould this be loaded instead of the last saved version?") % dirname
+            q = _("An autosave file exists for %s.\nShould this "
+                  "be loaded instead of the last saved version?") % dirname
             self.yname = autosave
             self.nname = filename
             gnome.ui.GnomeQuestionDialog(q,self.autosave_query)
@@ -707,7 +708,6 @@ class Gramps:
         elif not os.path.isdir(filename):
             self.displayError(_("%s is not a directory") % filename)
             return
-
 
         self.statusbar.set_status(_("Loading %s ...") % filename)
 
@@ -748,8 +748,8 @@ class Gramps:
             try:
                 os.mkdir(filename)
             except (OSError,IOError), msg:
-                gnome.ui.GnomeErrorDialog(_("Could not create %s") % filename +\
-                                          "\n" + str(msg))
+                emsg = _("Could not create %s") % filename + "\n" + str(msg)
+                gnome.ui.GnomeErrorDialog(emsg)
                 return
             except:
                 gnome.ui.GnomeErrorDialog(_("Could not create %s") % filename)
@@ -759,13 +759,9 @@ class Gramps:
         filename = filename + os.sep + const.indexFile
         try:
             WriteXML.exportData(self.database,filename,self.load_progress)
-        except IOError, msg:
-            gnome.ui.GnomeErrorDialog(_("Could not create %s") % filename +\
-                                      "\n" + str(msg))
-            return
-        except OSError, msg:
-            gnome.ui.GnomeErrorDialog(_("Could not create %s") % filename + \
-                                      "\n" + str(msg))
+        except (OSError,IOError), msg:
+            emsg = _("Could not create %s") % filename + "\n" + str(msg)
+            gnome.ui.GnomeErrorDialog(emsg)
             return
 
         self.database.setSavePath(old_file)
@@ -801,7 +797,7 @@ class Gramps:
             WriteXML.quick_write(self.database,filename,self.quick_progress)
             self.statusbar.set_status(_("autosave complete"));
         except (IOError,OSError),msg:
-            self.statusbar.set_status(_("autosave failed") + (" - %s" % msg));
+            self.statusbar.set_status("%s - %s" % (_("autosave failed"),msg))
         except:
             import traceback
             traceback.print_exc()
@@ -839,11 +835,12 @@ class Gramps:
 
     def on_delete_person_clicked(self,obj):
         if len(self.person_list.selection) == 1:
-            msg = _("Do you really wish to delete %s?") % \
-                  GrampsCfg.nameof(self.active_person)
-            gnome.ui.GnomeQuestionDialog( msg, self.delete_person_response)
+            name = GrampsCfg.nameof(self.active_person) 
+            msg = _("Do you really wish to delete %s?") % name
+            gnome.ui.GnomeQuestionDialog(msg, self.delete_person_response)
         elif len(self.person_list.selection) > 1:
-            gnome.ui.GnomeErrorDialog(_("Currently, you can only delete one person at a time"))
+            msg = _("Currently, you can only delete one person at a time")
+            gnome.ui.GnomeErrorDialog(msg)
 
     def delete_person_response(self,val):
         if val == 1:
@@ -1035,9 +1032,10 @@ class Gramps:
 
     def on_child_list_click_column(self,clist,column):
         """Called when the user selects a column header on the self.person_list
-        window. Change the sort function (column 0 is the name column, and column
-        2 is the birthdate column), set the arrows on the labels to the correct
-        orientation, and then call apply_filter to redraw the list"""
+        window. Change the sort function (column 0 is the name column, and
+        column 2 is the birthdate column), set the arrows on the labels to
+        the correct orientation, and then call apply_filter to redraw the
+        list"""
         if column == self.c_name:
             self.child_change_sort(clist,self.c_name,self.cNameArrow)
         elif column == self.c_gender:
@@ -1140,7 +1138,8 @@ class Gramps:
         # Check birth date order in the new list
         if (EditPerson.birth_dates_in_order(desired_order) == 0):
             clist.emit_stop_by_name("row_move")
-            gnome.ui.GnomeWarningDialog(_("Invalid move.  Children must be ordered by birth date."))
+            msg = _("Invalid move. Children must be ordered by birth date.")
+            gnome.ui.GnomeWarningDialog(msg)
             return
            
         # OK, this birth order works too.  Update the family data structures.
@@ -1162,7 +1161,7 @@ class Gramps:
         # Update the clist indices so any change of sorting works
         i = 0
         for tmp in clist_order:
-            clist.set_text(i, self.c_birth_order, "%2d"%(new_order[tmp]+1))
+            clist.set_text(i,self.c_birth_order,"%2d"%(new_order[tmp]+1))
             i = i + 1
 
         # Need to save the changed order
@@ -1186,19 +1185,21 @@ class Gramps:
 
     def on_revert_activate(self,obj):
         if self.database.getSavePath() != "":
-            msg = _("Do you wish to abandon your changes and revert to the last saved database?")
+            msg = _("Do you wish to abandon your changes and "
+                    "revert to the last saved database?")
             gnome.ui.GnomeQuestionDialog(msg,self.revert_query)
         else:
-            msg = _("Cannot revert to a previous database, since one does not exist")
+            msg = _("Cannot revert to a previous database, since "
+                    "one does not exist")
             gnome.ui.GnomeWarningDialog(msg)
 
     def revert_query(self,value):
         if value == 0:
-            const.personalEvents = const.initialize_personal_event_list()
-            const.personalAttributes = const.initialize_personal_attribute_list()
-            const.marriageEvents = const.initialize_marriage_event_list()
-            const.familyAttributes = const.initialize_family_attribute_list()
-            const.familyRelations = const.initialize_family_relation_list()
+            const.personalEvents = const.init_personal_event_list()
+            const.personalAttributes = const.init_personal_attribute_list()
+            const.marriageEvents = const.init_marriage_event_list()
+            const.familyAttributes = const.init_family_attribute_list()
+            const.familyRelations = const.init_family_relation_list()
 
             file = self.database.getSavePath()
             self.database.new()
@@ -1233,7 +1234,8 @@ class Gramps:
             if GrampsCfg.usevc and GrampsCfg.vc_comment:
                 self.display_comment_box(self.database.getSavePath())
             else:
-                self.save_file(self.database.getSavePath(),_("No Comment Provided"))
+                msg = _("No Comment Provided")
+                self.save_file(self.database.getSavePath(),msg)
 
     def on_save_activate_quit(self):
         """Saves the file, first prompting for a comment if revision
@@ -1244,7 +1246,8 @@ class Gramps:
             if GrampsCfg.usevc and GrampsCfg.vc_comment:
                 self.display_comment_box(self.database.getSavePath())
             else:
-                self.save_file(self.database.getSavePath(),_("No Comment Provided"))
+                msg = _("No Comment Provided")
+                self.save_file(self.database.getSavePath(),msg)
 
     def display_comment_box(self,filename):
         """Displays a dialog box, prompting for a revison control comment"""
@@ -1293,7 +1296,7 @@ class Gramps:
         elif page == 5:
             self.merge_button.set_sensitive(0)
             self.media_view.load_media()
-
+            
     def on_swap_clicked(self,obj):
         if not self.active_person:
             return
@@ -1305,14 +1308,16 @@ class Gramps:
     def on_apply_filter_clicked(self,obj):
         invert_filter = self.filter_inv.get_active()
         qualifer = self.filter_text.get_text()
-        class_init = self.filter_list.get_menu().get_active().get_data("function")
+        mi = self.filter_list.get_menu().get_active()
+        class_init = mi.get_data("function")
         self.DataFilter = class_init(qualifer)
         self.DataFilter.set_invert(invert_filter)
         self.apply_filter()
 
     def on_filter_name_changed(self,obj):
         filter = obj.get_data("filter")
-        if obj.get_data("qual"):
+        qual = obj.get_data('qual')
+        if qual:
             self.qual_label.show()
             self.qual_label.set_sensitive(1)
             self.qual_label.set_text(obj.get_data("label"))
@@ -1320,7 +1325,7 @@ class Gramps:
         else:
             self.qual_label.hide()
             filter.hide()
-        filter.set_sensitive(obj.get_data("qual"))
+        filter.set_sensitive(qual)
 
     def on_preferred_rel_toggled(self,obj):
         self.active_person.setPreferred(self.active_family)
@@ -1407,22 +1412,10 @@ class Gramps:
         sel = None
         for f in self.active_person.getFamilyList():
             if self.active_person == f.getFather():
-                if f.getMother() == None:
-                    sname = _("Unknown")
-                else:
-                    sname = GrampsCfg.nameof(f.getMother())
+                sname = self.parent_name(f.getMother())
             else:
-                if f.getFather() == None:
-                    sname = _("Unknown")
-                else:
-                    sname = GrampsCfg.nameof(f.getFather())
-            l = gtk.GtkLabel(sname)
-            l.show()
-            l.set_alignment(0,0.5)
-            c = gtk.GtkListItem()
-            c.add(l)
-            c.set_data('d',f)
-            c.show()
+                sname = self.parent_name(f.getFather())
+            c = self.list_item(sname,f)
             list.append(c)
             if f == self.active_family or sel == None:
                 sel = c
@@ -1436,6 +1429,22 @@ class Gramps:
             self.spouse_combo.set_item_string(mymap[v],mynmap[v])
         self.spouse_combo.list.select_child(sel)
 
+    def list_item(self,label,filter):
+        l = gtk.GtkLabel(label)
+        l.set_alignment(0,0.5)
+        l.show()
+        c = gtk.GtkListItem()
+        c.add(l)
+        c.set_data('d',filter)
+        c.show()
+        return c
+        
+    def parent_name(self,person):
+        if person == None:
+            return _("Unknown")
+        else:
+            return GrampsCfg.nameof(person)
+        
     def load_family(self,family=None):
         if family != None:
             self.active_family = family
@@ -1447,7 +1456,7 @@ class Gramps:
         if self.active_family:
             flist = self.active_person.getFamilyList()
             if self.active_person != self.active_family.getFather() and \
-               self.active_family != self.active_family.getMother():
+               self.active_person != self.active_family.getMother():
                 if len(flist) > 0:
                     self.active_family = flist[0]
                 else:
@@ -1515,7 +1524,8 @@ class Gramps:
                 self.spouse_text.set_text(GrampsCfg.nameof(spouse))
                 self.spouse_edit.set_sensitive(1)
                 self.spouse_del.set_sensitive(1)
-                self.gtop.get_widget('rel_frame').set_label(_("Relationship"))
+                msg = _("Relationship")
+                self.gtop.get_widget('rel_frame').set_label(msg)
             else:
                 self.pref_spouse.hide()
                 self.spouse_tab.set_page(0)
@@ -1523,13 +1533,13 @@ class Gramps:
                 self.active_spouse = None
                 self.spouse_edit.set_sensitive(0)
                 self.spouse_del.set_sensitive(0)
-                self.gtop.get_widget('rel_frame').set_label(_("No Relationship"))
+                msg = _("No Relationship")
+                self.gtop.get_widget('rel_frame').set_label()
 
             if number_of_families > 0:
-                if family:
-                    self.display_marriage(family)
-                else:
-                    self.display_marriage(self.active_person.getFamilyList()[0])
+                if not family:
+                    family = self.active_person.getFamilyList()[0]
+                self.display_marriage(family)
             else:
                 self.display_marriage(None)
         else:
@@ -1541,7 +1551,7 @@ class Gramps:
         """Switches to a different set of parents on the Family View"""
         
         if self.active_parents and self.active_parents.getRelationship() == "Partners":
-            fn = _("Parent")
+            fn = _("Parent") 
             mn = _("Parent")
         else:
             fn = _("Father")
@@ -1553,14 +1563,13 @@ class Gramps:
             if self.active_parents == self.active_person.getMainParents():
                 self.gtop.get_widget('preffam').set_sensitive(0)
                 if val > 1:
-                    pframe.set_label(_("Preferred Parents (%d of %d)") % \
-                                     (self.parents_index+1,val))
+                    msg = _("Preferred Parents (%d of %d)") % (self.parents_index+1,val)
                 else:
-                    pframe.set_label(_("Preferred Parents"))
+                    msg = _("Preferred Parents")
             else:
                 self.gtop.get_widget('preffam').set_sensitive(1)
-                pframe.set_label(_("Alternate Parents (%d of %d)") % \
-                                     (self.parents_index+1,val))
+                msg = _("Alternate Parents (%d of %d)") % (self.parents_index+1,val)
+            pframe.set_label(msg)
         else:
             self.gtop.get_widget('parent_frame').set_label(_("No Parents"))
             
@@ -1628,7 +1637,6 @@ class Gramps:
         self.child_list.set_reorderable(self.c_sort_col == self.c_birth_order)
 
         if family:
-            flist = self.active_person.getFamilyList()
             if self.active_person == family.getFather():
                 self.active_spouse = family.getMother()
             else:

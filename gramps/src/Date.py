@@ -103,13 +103,10 @@ class Date:
     
     Error = "Illegal Date"
 
-    # The last part of these two strings must remain untranslated.  It
-    # is required to read saved data from XML.
-    from_str = _("(from|between|bet|bet.") + "|FROM)" 
-    to_str = _("(and|to|-") + "|TO)"
+    fstr = _("(from|between|bet|bet.)")
+    tstr = _("(and|to|-)")
     
-    fmt = compile(r"\s*" + from_str + r"\s+(.+)\s+" + to_str + r"\s+(.+)\s*$",
-                     IGNORECASE)
+    fmt = compile("\s*%s\s+(.+)\s+%s\s+(.+)\s*$" % (fstr,tstr),IGNORECASE)
 
     def __init__(self,source=None):
         if source:
@@ -491,7 +488,7 @@ class SingleDate:
         return "%s%s%s" % (y,m,d)
         
     def _format1(self):
-        if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
+        if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF:
             return ""
         elif self.day == UNDEF:
             if self.month == UNDEF:
