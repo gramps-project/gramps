@@ -1,4 +1,7 @@
 2005-02-27  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/MergeData.py: partial set of changes to handle new API
+
+2005-02-27  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/MergeData.py: preserve most data while merging families
 	* src/PeopleView.py: allow multiple selection in people list
 	* src/ReadGedcom.py: keep source information in families
