@@ -860,7 +860,7 @@ class FtmAncestorBareReportDialog(Report.BareReportDialog):
         self.make_default_style = _make_default_style
         self.max_gen = self.options[1] 
         self.pg_brk = self.options[2]
-        self.selected_style = stl
+        self.style = stl
         self.new_person = None
 
         self.generations_spinbox.set_value(self.max_gen)
