@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps\n"
 "POT-Creation-Date: Fri Jun 21 17:07:47 2002\n"
-"PO-Revision-Date: 2002-06-23 17:33+0200\n"
+"PO-Revision-Date: 2002-06-24 20:04+0200\n"
 "Last-Translator: Bernd Schandl <schandl@gmx.net>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -906,9 +906,8 @@ msgid "Is a descendant of"
 msgstr "Ist Nachkomme von"
 
 #: GenericFilter.py:684
-#, fuzzy
 msgid "Is a descendant family member of"
-msgstr "Ist Nachkomme von"
+msgstr "Ist ein Familienmitglied eines Nachkommens von"
 
 #: GenericFilter.py:685
 msgid "Is an ancestor of"
@@ -4491,9 +4490,8 @@ msgid "Advanced"
 msgstr "Extras"
 
 #: plugins/WebPage.py:868
-#, fuzzy
 msgid "GRAMPS ID link URL"
-msgstr "GRAMPS ID"
+msgstr "GRAMPS ID abhängige URL"
 
 #: plugins/WebPage.py:884 plugins/WebPage.py:1246
 msgid "Generate Web Site"
@@ -4512,9 +4510,8 @@ msgid "Direct Descendants of %s"
 msgstr "Direkte Nachkommen von %s"
 
 #: plugins/WebPage.py:917
-#, fuzzy
 msgid "Descendant Families of %s"
-msgstr "Nachkommen von %s"
+msgstr "Familie eines Nachkommens von %s"
 
 #: plugins/WebPage.py:1249
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
