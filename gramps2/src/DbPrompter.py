@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,7 +27,6 @@
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -65,8 +64,8 @@ class DbPrompter:
         opendb.signal_autoconnect({
             "on_open_ok_clicked" : self.open_ok_clicked,
             "on_open_help_clicked" : self.open_help_clicked,
-            "on_open_cancel_clicked" : self.open_cancel_clicked,
-            "on_opendb_delete_event": self.open_delete_event,
+            "on_open_cancel_clicked" : gtk.main_quit,
+            "on_opendb_delete_event": gtk.main_quit,
             })
         
         self.new = opendb.get_widget("new")
@@ -83,101 +82,57 @@ class DbPrompter:
 
     def open_help_clicked(self,obj):
         """Display the GRAMPS manual"""
+        import gnome
         gnome.help_display('gramps-manual','choose-db-start')
 
     def save_as_activate(self):
-        if gtk.pygtk_version[1] >= 3:
-            choose = gtk.FileChooserDialog('Create GRAMPS database',
-                                           None,
-                                           gtk.FILE_CHOOSER_ACTION_SAVE,
-                                           (gtk.STOCK_CANCEL,
-                                            gtk.RESPONSE_CANCEL,
-                                            gtk.STOCK_OPEN,
-                                            gtk.RESPONSE_OK))
-            filter = gtk.FileFilter()
-            filter.set_name(_('GRAMPS databases'))
-            filter.add_pattern('*.grdb')
-            choose.add_filter(filter)
-
-            filter = gtk.FileFilter()
-            filter.set_name(_('All files'))
-            filter.add_pattern('*')
-            choose.add_filter(filter)
-
-            response = choose.run()
-            if response == gtk.RESPONSE_OK:
-                filename = choose.get_filename()
-                self.db.read_file(filename)
-            choose.destroy()
-        else:
-            wFs = gtk.glade.XML (const.gladeFile, "fileselection","gramps")
-            wFs.signal_autoconnect({
-                "on_ok_button1_clicked": self.save_ok_button_clicked,
-                "destroy_passed_object": self.cancel_button_clicked,
-                })
-            filesel = wFs.get_widget('fileselection')
-            filesel.set_title('%s - GRAMPS' % _('Create database'))
-
-    def save_ok_button_clicked(self,obj):
-        filename = obj.get_filename().encode('iso8859-1')
-        if filename:
-            if self.db.read_file(filename) == 1:
-                Utils.destroy_passed_object(obj)
+        choose = gtk.FileChooserDialog('Create GRAMPS database',
+                                       None,
+                                       gtk.FILE_CHOOSER_ACTION_SAVE,
+                                       (gtk.STOCK_CANCEL,
+                                        gtk.RESPONSE_CANCEL,
+                                        gtk.STOCK_OPEN,
+                                        gtk.RESPONSE_OK))
+        filter = gtk.FileFilter()
+        filter.set_name(_('GRAMPS databases'))
+        filter.add_pattern('*.grdb')
+        choose.add_filter(filter)
+        
+        filter = gtk.FileFilter()
+        filter.set_name(_('All files'))
+        filter.add_pattern('*')
+        choose.add_filter(filter)
+        
+        response = choose.run()
+        if response == gtk.RESPONSE_OK:
+            filename = choose.get_filename()
+            self.db.read_file(filename)
+        choose.destroy()
 
     def open_activate(self):
-        if gtk.pygtk_version[1] >= 3:
-            choose = gtk.FileChooserDialog('Open GRAMPS database',
-                                                None,
-                                                gtk.FILE_CHOOSER_ACTION_OPEN,
-                                                (gtk.STOCK_CANCEL,
-                                                 gtk.RESPONSE_CANCEL,
-                                                 gtk.STOCK_OPEN,
-                                                 gtk.RESPONSE_OK))
-            filter = gtk.FileFilter()
-            filter.set_name(_('GRAMPS databases'))
-            filter.add_pattern('*.grdb')
-            choose.add_filter(filter)
-
-            filter = gtk.FileFilter()
-            filter.set_name(_('All files'))
-            filter.add_pattern('*')
-            choose.add_filter(filter)
-
-            if GrampsCfg.lastfile:
-                choose.set_filename(GrampsCfg.lastfile)
-
-            response = choose.run()
-            if response == gtk.RESPONSE_OK:
-                filename = choose.get_filename()
-                self.db.read_file(filename)
-            choose.destroy()
-        else:
-            wFs = gtk.glade.XML (const.gladeFile, "fileselection","gramps")
-            wFs.signal_autoconnect({
-                "on_ok_button1_clicked": self.ok_button_clicked,
-                "destroy_passed_object": self.cancel_button_clicked,
-                })
-            self.filesel = wFs.get_widget('fileselection')
-            self.filesel.set_title('%s - GRAMPS' % _('Open database'))
-            if GrampsCfg.lastfile:
-                self.filesel.set_filename(GrampsCfg.lastfile)
-        return
-    
-    def cancel_button_clicked(self,obj):
-        Utils.destroy_passed_object(obj)
-        self.show()
+        choose = gtk.FileChooserDialog('Open GRAMPS database',
+                                       None,
+                                       gtk.FILE_CHOOSER_ACTION_OPEN,
+                                       (gtk.STOCK_CANCEL,
+                                        gtk.RESPONSE_CANCEL,
+                                        gtk.STOCK_OPEN,
+                                        gtk.RESPONSE_OK))
+        filter = gtk.FileFilter()
+        filter.set_name(_('GRAMPS databases'))
+        filter.add_pattern('*.grdb')
+        choose.add_filter(filter)
         
-    def ok_button_clicked(self,obj):
-        filename = self.filesel.get_filename()
-
-        if not filename:
-            return
-        if self.db.read_file(filename) == 1:
-            Utils.destroy_passed_object(obj)
-
-    def open_delete_event(self,obj,event):
-        gtk.main_quit()
-
-    def open_cancel_clicked(self,obj):
-        gtk.main_quit()
-
+        filter = gtk.FileFilter()
+        filter.set_name(_('All files'))
+        filter.add_pattern('*')
+        choose.add_filter(filter)
+        
+        if GrampsCfg.lastfile:
+            choose.set_filename(GrampsCfg.lastfile)
+            
+        response = choose.run()
+        if response == gtk.RESPONSE_OK:
+            filename = choose.get_filename()
+            self.db.read_file(filename)
+        choose.destroy()
+    
