@@ -194,9 +194,9 @@ class HtmlDoc(TextDoc):
             font_size = font.get_size()
             font_color = '#%02x%02x%02x' % font.get_color()
             align = style.get_alignment_text()
-            text_indent = fl2txt("%.2f",style.get_first_indent())
-            right_margin = fl2txt("%.2f",style.get_right_margin())
-            left_margin = fl2txt("%.2f",style.get_left_margin())
+            text_indent = "%.2f" % style.get_first_indent()
+            right_margin = "%.2f" % style.get_right_margin()
+            left_margin = "%.2f" % style.get_left_margin()
 
             top = bottom = left = right = 'none'
             if style.get_top_border():

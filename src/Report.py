@@ -140,12 +140,9 @@ class ReportDialog:
     frame_pad = 5
     border_pad = 5
 
-    def __init__(self,database,person,filename="basicreport.glade"):
+    def __init__(self,database,person):
         """Initialize a dialog to request that the user select options
-        for a basic report.  The glade filename is optional.  If
-        provided it must reference a glade file that is either be a
-        superset of the basic dialog, or the subclass must override
-        most of the setup_xxx and parse_xxx functions."""
+        for a basic report."""
 
         # Save info about who the report is about.
         self.db = database
@@ -169,10 +166,10 @@ class ReportDialog:
         # Set up and run the dialog.  These calls are not in top down
         # order when looking at the dialog box as there is some
         # interaction between the various frames.
+        self.add_user_options()
         self.setup_title()
         self.setup_header()
         self.setup_target_frame()
-        self.setup_format_frame()
         self.setup_style_frame()
         self.setup_output_notebook()
         self.setup_paper_frame()
@@ -180,6 +177,11 @@ class ReportDialog:
         self.setup_report_options_frame()
         self.setup_other_frames()
         self.window.show_all()
+        self.setup_format_frame()
+
+    def add_user_options(self):
+        pass
+
     #------------------------------------------------------------------------
     #
     # Customization hooks for subclasses
@@ -395,6 +397,9 @@ class ReportDialog:
         # Save Frame
         frame = GtkFrame(_("Save As"))
         frame.set_border_width(ReportDialog.frame_pad)
+        hid = self.get_stylesheet_savefile()
+        if hid[-4:]==".xml":
+            hid = hid[0:-4]
         self.target_fileentry = GnomeFileEntry(hid,_("Save As"))
 
         hbox = GtkHBox()
@@ -406,10 +411,6 @@ class ReportDialog:
         else:
             label = GtkLabel(_("Filename"))
         hbox.pack_start(label,0,0,5)
-
-        hid = self.get_stylesheet_savefile()
-        if hid[-4:]==".xml":
-            hid = hid[0:-4]
             
         hbox.add(self.target_fileentry)
         frame.add(hbox)
@@ -419,7 +420,6 @@ class ReportDialog:
         if (self.get_target_is_directory()):
             import _gnomeui
             _gnomeui.gnome_file_entry_set_directory(self.target_fileentry._o, 1)
-            self.topDialog.get_widget("saveas").set_text(_("Directory"))
 
         target_filename = self.target_fileentry.children()[0].entry
         target_filename.set_text(self.get_default_directory())
@@ -812,11 +812,11 @@ class ReportDialog:
 #
 #------------------------------------------------------------------------
 class TextReportDialog(ReportDialog):
-    def __init__(self,database,person,filename="basicreport.glade"):
+    def __init__(self,database,person):
         """Initialize a dialog to request that the user select options
         for a basic text report.  See the ReportDialog class for more
         information."""
-        ReportDialog.__init__(self,database,person,filename)
+        ReportDialog.__init__(self,database,person)
 
     #------------------------------------------------------------------------
     #
