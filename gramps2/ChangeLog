@@ -1,4 +1,9 @@
 2003-06-02  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/DetAncestralReport.py (write_death): Proper checks for valid day
+	and month of death.
+	* src/DetDescendantReport.py (write_death): Likewise.
+
+2003-06-02  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/FamilyView.py (load_family): Select the first spouse in the list.
 
 2003-06-02  Alex Roitman  <shura@alex.neuro.umn.edu>
