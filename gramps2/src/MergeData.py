@@ -84,27 +84,48 @@ class MergePeople:
                          _("Merge %s and %s") % (fname,mname),
                          _("Merge people"))
 
-        f1 = person1.get_main_parents_family_handle()
-        f2 = person2.get_main_parents_family_handle()
+        f1_handle = person1.get_main_parents_family_handle()
+        f2_handle = person2.get_main_parents_family_handle()
         
         name1 = NameDisplay.displayer.display(person1)
-        death1 = person1.get_death().get_date()
-        dplace1 = self.place_name(person1.get_death())
-        birth1 = person1.get_birth().get_date()
-        bplace1 = self.place_name(person1.get_birth())
-
+        death1_handle = person1.get_death_handle()
+        if death1_handle:
+            death1 = death1_handle.get_date()
+            dplace1 = self.place_name(death1_handle)
+        else:
+            death1 = ""
+            dplace1 = ""
+        birth1_handle = person1.get_birth_handle()
+        if birth1_handle:
+            birth1 = birth1_handle.get_date()
+            bplace1 = self.place_name(birth1_handle)
+        else:
+            birth1 = ""
+            bplace1 = ""
+           
         name2 = NameDisplay.displayer.display(person2)
-        death2 = person2.get_death().get_date()
-        dplace2 = self.place_name(person2.get_death())
-        birth2 = person2.get_birth().get_date()
-        bplace2 = self.place_name(person2.get_birth())
+        death2_handle = person2.get_death_handle()
+        if death2_handle:
+            death2 = death2_handle.get_date()
+            dplace2 = self.place_name(death2_handle)
+        else:
+            death2 = ""
+            dplace2 = ""
+        birth2_handle = person2.get_birth_handle()
+        if birth2_handle:
+            birth2 = birth2_handle.get_date()
+            bplace2 = self.place_name(birth2_handle)
+        else:
+            birth2 = ""
+            bplace2 = ""
 
-        if f2 and not f1:
+        if f2_handle and not f1_handle:
             self.glade.get_widget("bfather2").set_active(1)
         else:
             self.glade.get_widget("bfather1").set_active(1)
             
-        if f1:
+        if f1_handle:
+            f1 = self.db.get_person_from_handle(f1_handle)
             father1 = name_of(f1.get_father_handle())
             mother1 = name_of(f1.get_mother_handle())
         else:
@@ -112,14 +133,15 @@ class MergePeople:
             mother1 = ""
 
         if f2:
+            f2 = self.db.get_person_from_handle(f2_handle)
             father2 = name_of(f2.get_father_handle())
             mother2 = name_of(f2.get_mother_handle())
         else:
             father2 = ""
             mother2 = ""
 
-        self.set_field(self.glade.get_widget("id1_text"),person1.get_handle())
-        self.set_field(self.glade.get_widget("id2_text"),person2.get_handle())
+        self.set_field(self.glade.get_widget("id1_text"),person1.get_gramps_id())
+        self.set_field(self.glade.get_widget("id2_text"),person2.get_gramps_id())
         self.set_field(self.glade.get_widget("name1_text"),name1)
         self.set_field(self.glade.get_widget("name2_text"),name2)
 
@@ -184,17 +206,23 @@ class MergePeople:
     def build_spouse_list(self,person,widget):
 
         widget.clear()
-        for fam in person.get_family_handle_list():
+        for fam_handle in person.get_family_handle_list():
+            fam = self.db.get_family_from_handle(fam_handle)
             if person.get_gender() == RelLib.Person.MALE:
-                spouse = fam.get_mother_handle()
+                spouse_handle = fam.get_mother_handle()
             else:
-                spouse = fam.get_father_handle()
+                spouse_handle = fam.get_father_handle()
+
+            if spouse_handle:
+                spouse = self.db.get_person_from_handle(spouse_handle)
+            else:
+                spouse = None
 
             if spouse == None:
                 name = "unknown"
             else:
                 sname = NameDisplay.displayer.display(spouse)
-                name = "%s [%s]" % (sname,spouse.get_handle())
+                name = "%s [%s]" % (sname,spouse.get_gramps_id())
             widget.add([name])
 
     def set_field(self,widget,value):
@@ -296,26 +324,26 @@ class MergePeople:
         alt = self.glade.get_widget("altbirth").get_active()
         if self.glade.get_widget("bbirth2").get_active():
             if alt:
-                event = self.p1.get_birth()
+                event = self.p1.get_birth_handle()
                 event.set_name("Alternate Birth")
                 self.p1.add_event(event)
-            self.p1.set_birth(self.p2.get_birth())
+            self.p1.set_birth(self.p2.get_birth_handle())
         else:
             if alt:
-                event = self.p2.get_birth()
+                event = self.p2.get_birth_handle()
                 event.set_name("Alternate Birth")
                 self.p1.add_event(event)
 
         alt = self.glade.get_widget("altdeath").get_active()
         if self.glade.get_widget("bbirth2").get_active():
             if alt:
-                event = self.p1.get_death()
+                event = self.p1.get_death_handle()
                 event.set_name("Alternate Death")
                 self.p1.add_event(event)
-            self.p1.set_death(self.p2.get_death())
+            self.p1.set_death(self.p2.get_death_handle())
         else:
             if alt:
-                event = self.p2.get_death()
+                event = self.p2.get_death_handle()
                 event.set_name("Alternate Death")
                 self.p1.add_event(event)
 
@@ -546,10 +574,10 @@ def compare_people(p1,p2):
     if chance == -1.0  :
         return -1.0
 
-    birth1 = p1.get_birth()
-    death1 = p1.get_death()
-    birth2 = p2.get_birth()
-    death2 = p2.get_death()
+    birth1 = p1.get_birth_handle()
+    death1 = p1.get_death_handle()
+    birth2 = p2.get_birth_handle()
+    death2 = p2.get_death_handle()
 
     value = date_match(birth1.get_date_object(),birth2.get_date_object()) 
     if value == -1.0 :
@@ -933,7 +961,7 @@ class MergePlaces:
         # loop through people, changing event references to P2 to P1
         for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
-            for event in [p.get_birth(), p.get_death()] + p.get_event_list():
+            for event in [p.get_birth_handle(), p.get_death_handle()] + p.get_event_list():
                 if event.get_place_handle() == self.p2:
                     event.set_place_handle(self.p1)
 
