@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps 0.5.1\n"
+"Project-Id-Version: Gramps 0.6.1\n"
 "POT-Creation-Date: 2001-11-08 08:26-0700\n"
-"PO-Revision-Date: 2001-11-09 02:28GMT\n"
+"PO-Revision-Date: 2001-11-12 23:39GMT\n"
 "Last-Translator: Laurent Protois <laurent.protois@free.fr>\n"
 "Language-Team: français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -120,7 +120,7 @@ msgstr "%d évènements ont été modifiés"
 #: glade.c:2202
 #, c-format
 msgid "%d media objects were referenced, but not found\n"
-msgstr "%d photos ont été référencées, mais non trouvées\n"
+msgstr "%d Médias ont été référencés, mais non trouvés\n"
 
 #: glade.c:2105
 #, c-format
@@ -267,7 +267,7 @@ msgstr "1 évènement a été modifié"
 
 #: glade.c:2201
 msgid "1 media object was referenced, but not found\n"
-msgstr "1 photo a été référencée, mais non trouvée\n"
+msgstr "1 Média a été référencé, mais non trouvé\n"
 
 #: glade.c:28
 msgid "11"
@@ -385,7 +385,7 @@ msgstr "Ajouter un Filtre"
 
 #: glade.c:126
 msgid "Add Media Object"
-msgstr "Ajouter une photo"
+msgstr "Ajouter un Média"
 
 #: glade.c:129
 msgid "Add New Child"
@@ -728,11 +728,11 @@ msgstr "Changement du type d'évènement de"
 
 #: glade.c:277
 msgid "Change Global Media Object Properties"
-msgstr "Changer les propriétés globales d'une photo"
+msgstr "Changer les propriétés globales du Média"
 
 #: glade.c:280
 msgid "Change Local Media Object Properties"
-msgstr "Changer les propriétés locales d'une photo"
+msgstr "Changer les propriétés locales du Média"
 
 #: glade.c:283
 msgid "Changed by"
@@ -1048,7 +1048,7 @@ msgstr "Supprimer le filtre"
 
 #: glade.c:409
 msgid "Delete Media Object"
-msgstr "Supprimer un Objet"
+msgstr "Supprimer un Média"
 
 #: glade.c:412
 msgid "Delete Person"
@@ -1223,7 +1223,7 @@ msgstr "Afficher l'annuaire"
 
 #: glade.c:507
 msgid "Edit Media Object"
-msgstr "Afficher un Objet"
+msgstr "Afficher un Média"
 
 #: glade.c:510
 msgid "Edit Note"
@@ -1571,7 +1571,7 @@ msgid "GRAMPS ID value was not changed."
 msgstr "Les Identifiants Gramps sont inchangés"
 
 #: glade.c:658
-msgid "GRAMPS ID prefixes"
+msgid "GRAMPS id prefixes"
 msgstr "Préfixes d'Identifiants GRAMPS"
 
 #: glade.c:2093
@@ -1716,11 +1716,11 @@ msgstr "Gramps - Changer des types d'évènements"
 
 #: glade.c:730
 msgid "Gramps - Change Global Media Object Properties"
-msgstr "Gramps - Changer les Propriétés de l'Objet global"
+msgstr "Gramps - Changer les Propriétés du Média"
 
 #: glade.c:733
 msgid "Gramps - Change Local Media Object Properties"
-msgstr "Gramps - Changer les Propriétés de l'Objet local"
+msgstr "Gramps - Changer les Propriétés du Média"
 
 #: glade.c:736
 msgid "Gramps - Choose Parents"
@@ -1872,7 +1872,7 @@ msgstr "Gramps - Sélection d'un fichier"
 
 #: glade.c:847
 msgid "Gramps - Select a Media Object"
-msgstr "Gramps - Sélectionner un Objet"
+msgstr "Gramps - Sélectionner un Média"
 
 #: glade.c:850
 msgid "Gramps - Select an older revision"
@@ -2057,7 +2057,7 @@ msgstr "Nom d'individus incomplet"
 
 #: glade.c:2360
 msgid "Individuals with media objects"
-msgstr "Individus avec photos"
+msgstr "Individus avec Média"
 
 #: glade.c:925
 msgid "Information"
@@ -2271,7 +2271,7 @@ msgid "Married"
 msgstr "Marié(e)"
 
 #: glade.c:1006
-msgid "Match Threshold"
+msgid "Match Treshold"
 msgstr "Commence par"
 
 #: glade.c:1009
@@ -2324,15 +2324,15 @@ msgstr "Mai"
 
 #: glade.c:1042
 msgid "Media"
-msgstr "Support"
+msgstr "Médias"
 
 #: glade.c:1045
 msgid "Media Object"
-msgstr "Photo"
+msgstr "Médias"
 
 #: glade.c:2010 glade.c:2359
 msgid "Media Objects"
-msgstr "Photos"
+msgstr "Médias"
 
 #: glade.c:1897
 msgid "Medical Information"
@@ -2563,7 +2563,7 @@ msgstr "Nombre d'individus"
 
 #: glade.c:2362
 msgid "Number of unique media objects"
-msgstr "Nombre de photos uniques"
+msgstr "Nombre de Médias uniques"
 
 #: glade.c:1145
 msgid "O"
@@ -2986,7 +2986,7 @@ msgstr "Recharger le Plugins"
 
 #: glade.c:1383
 msgid "Remove Child"
-msgstr "Supprimer un enfant"
+msgstr "Supprimer une relation enfant"
 
 #: glade.c:1386
 msgid "Remove current spouse"
@@ -3161,7 +3161,7 @@ msgstr "Choisir un fichier"
 
 #: glade.c:1481
 msgid "Select a Media Object"
-msgstr "Choisir une photo"
+msgstr "Choisir un Média"
 
 #: glade.c:1484
 msgid "Select a report from those available on the left."
@@ -3416,7 +3416,7 @@ msgstr "Installation probablement incomplète de Python ou PyXML"
 
 #: glade.c:2073
 msgid "This media object is currently being used. Delete anyway?"
-msgstr "Cette photo est déjà utilisée. Supprimer tout de même ?"
+msgstr "Ce Média est déjà utilisé. Supprimer tout de même ?"
 
 #: glade.c:2083
 msgid "This place is currently being used. Delete anyway?"
@@ -3445,7 +3445,7 @@ msgstr "Le Nombre total d'ancêtres de la génération %d à -1 est de %d .\n"
 
 #: glade.c:2361
 msgid "Total number of media object references"
-msgstr "Nombre total de photos de références"
+msgstr "Nombre total de Médias de références"
 
 #: glade.c:2363
 msgid "Total size of images"
@@ -3706,7 +3706,7 @@ msgstr "_Importer"
 
 #: glade.c:1733
 msgid "_Media"
-msgstr "_Support"
+msgstr "_Médias"
 
 #: glade.c:1736
 msgid "_Merge"
