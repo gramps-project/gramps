@@ -81,6 +81,21 @@ class GrampsBSDDB(GrampsDbBase):
     def get_person_cursor(self):
         return GrampsBSDDBCursor(self.person_map)
 
+    def get_person_cursor(self):
+        return GrampsBSDDBCursor(self.person_map)
+
+    def get_family_cursor(self):
+        return GrampsBSDDBCursor(self.family_map)
+
+    def get_place_cursor(self):
+        return GrampsBSDDBCursor(self.place_map)
+
+    def get_source_cursor(self):
+        return GrampsBSDDBCursor(self.source_map)
+
+    def get_media_cursor(self):
+        return GrampsBSDDBCursor(self.media_map)
+
     def load(self,name,callback):
         if self.person_map:
             self.close()

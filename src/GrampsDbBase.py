@@ -162,6 +162,18 @@ class GrampsDbBase:
     def get_person_cursor(self):
         assert False, "Needs to be overridden in the derived class"
 
+    def get_family_cursor(self):
+        assert False, "Needs to be overridden in the derived class"
+
+    def get_place_cursor(self):
+        assert False, "Needs to be overridden in the derived class"
+
+    def get_source_cursor(self):
+        assert False, "Needs to be overridden in the derived class"
+
+    def get_media_cursor(self):
+        assert False, "Needs to be overridden in the derived class"
+
     def load(self,name,callback):
         """
         Opens the specified database. The method needs to be overridden

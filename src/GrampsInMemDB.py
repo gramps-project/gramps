@@ -92,6 +92,18 @@ class GrampsInMemDB(GrampsDbBase):
     def get_person_cursor(self):
         return GrampsInMemCursor(self.person_map)
 
+    def get_family_cursor(self):
+        return GrampsInMemCursor(self.family_map)
+
+    def get_place_cursor(self):
+        return GrampsInMemCursor(self.place_map)
+
+    def get_source_cursor(self):
+        return GrampsInMemCursor(self.source_map)
+
+    def get_media_cursor(self):
+        return GrampsInMemCursor(self.media_map)
+
     def close(self):
         pass
 
