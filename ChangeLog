@@ -6,6 +6,7 @@
 	* src/plugins/WriteGedcom.py: Rewrite to enable passing the 
 	options interface.
 	* src/Exporter.py: Use options if given by the plugin.
+	* src/plugins/gedcomexport.glade: Update to work with the druid.
 
 2004-07-09  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/AddMedia.py: Handle the new file selector
