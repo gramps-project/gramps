@@ -960,6 +960,7 @@ class DetAncestorBareReportDialog(Report.BareReportDialog):
             self.person = self.db.getPerson(self.options[0])
         else:
             self.person = person
+        self.style_name = stl
 
         self.max_gen = int(self.options[1]) 
         self.pg_brk = int(self.options[2])
@@ -976,7 +977,6 @@ class DetAncestorBareReportDialog(Report.BareReportDialog):
 
         Report.BareReportDialog.__init__(self,database,self.person)
 
-        self.style_name = stl
         self.new_person = None
 
         self.window.run()

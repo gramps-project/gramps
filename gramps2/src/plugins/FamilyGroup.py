@@ -450,11 +450,12 @@ class FamilyGroupBareDialog(Report.BareReportDialog):
             self.person = self.db.getPerson(self.options[0])
         else:
             self.person = person
+        self.style_name = stl
+
         Report.BareReportDialog.__init__(self,database,self.person)
 
         self.spouse_name = self.options[1]
 
-        self.style_name = stl
         self.new_person = None
 
         self.spouse_map = _build_spouse_map(self.person)

@@ -354,7 +354,7 @@ class BareReportDialog:
         frame, because it must be recreated to reflect any changes
         whenever the user closes the style editor dialog."""
         style_sheet_map = self.style_sheet_list.get_style_sheet_map()
-        myMenu = Utils.build_string_optmenu(style_sheet_map, "default")
+        myMenu = Utils.build_string_optmenu(style_sheet_map, self.style_name)
         self.style_menu.set_menu(myMenu)
 
     #------------------------------------------------------------------------
@@ -750,6 +750,7 @@ class ReportDialog(BareReportDialog):
         """Initialize a dialog to request that the user select options
         for a basic *stand-alone* report."""
         
+        self.style_name = "default"
         BareReportDialog.__init__(self,database,person)
 
         # Allow for post processing of the format frame, since the
@@ -869,7 +870,6 @@ class ReportDialog(BareReportDialog):
         if self.style_button:
             self.style_button.set_sensitive(obj.get_data("styles"))
             self.style_menu.set_sensitive(obj.get_data("styles"))
-
 
     #------------------------------------------------------------------------
     #
