@@ -98,11 +98,11 @@ class DateDisplay:
         )
     
     _french = (
-        u'',           u'Vend\xe9miaire', u'Brumaire',
-        u'Frimaire',   u'Niv\xf4se',      u'Pluvi\xf4se',
-        u'Vent\xf4se', u'Germinal',       u'Flor\xe9al',
-        u'Prairial',   u'Messidor',       u'Thermidor',
-        u'Fructidor',  u'Extra'
+        '',           'Vend\xc3\xa9miaire', 'Brumaire',
+        'Frimaire',   'Niv\xc3\xb4se',      'Pluvi\xc3\xb4se',
+        'Vent\xc3\xb4se', 'Germinal',       'Flor\xc3\xa9al',
+        'Prairial',   'Messidor',       'Thermidor',
+        'Fructidor',  'Extra'
         )
     
     _persian = (
@@ -180,7 +180,7 @@ class DateDisplay:
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
         elif start == Date.EMPTY:
-            return u""
+            return ""
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
