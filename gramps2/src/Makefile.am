@@ -108,8 +108,8 @@ GRAPHICS = \
 	family48.png\
 	good.png\
 	home.png\
-	gramps.png\
 	logo.png\
+	gramps.png \
 	media.png\
 	people48.png\
 	place.png\

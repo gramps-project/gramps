@@ -14,8 +14,6 @@
 
 @SET_MAKE@
 
-# copyright (C) 2000 Sun Microsystems, Inc.
-
 srcdir = @srcdir@
 top_srcdir = @top_srcdir@
 VPATH = @srcdir@
