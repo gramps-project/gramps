@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@
 #
 #------------------------------------------------------------------------
 import os
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -36,6 +37,7 @@ import os
 #------------------------------------------------------------------------
 import gtk
 import gtk.glade
+from gnome import help_display
 
 #------------------------------------------------------------------------
 #
@@ -49,9 +51,7 @@ import Utils
 import BaseDoc
 import OpenSpreadSheet
 import const
-
 from QuestionDialog import WarningDialog
-from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -127,8 +127,10 @@ class EventComparison:
     def __init__(self,database,parent):
         self.db = database
         self.parent = parent
-        self.win_key = self
-        self.child_windows = {}
+        if self.parent.child_windows.has_key(self.__class__):
+            self.parent.child_windows[self.__class__].present(None)
+            return
+        self.win_key = self.__class__
 
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "eventcmp.glade"
@@ -140,10 +142,12 @@ class EventComparison:
             "on_editor_clicked"      : self.filter_editor_clicked,
             "on_filter_list_enter"   : self.filter_list_enter,
             "on_filters_delete_event": self.on_delete_event,
+            "on_help_clicked"        : self.on_help_clicked,
             "destroy_passed_object"  : self.close
             })
     
         self.window = self.filterDialog.get_widget("filters")
+        self.window.set_icon(self.parent.topWindow.get_icon())
         self.filters = self.filterDialog.get_widget("filter_list")
         self.label = _('Event comparison filter selection')
 
@@ -160,36 +164,26 @@ class EventComparison:
         self.add_itself_to_menu()
         self.window.show()
 
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        help_display('gramps-manual','tools-util')
+
     def on_delete_event(self,obj,b):
-        self.close_child_windows()
         self.remove_itself_from_menu()
 
     def close(self,obj):
-        self.close_child_windows()
         self.remove_itself_from_menu()
         self.window.destroy()
-
-    def close_child_windows(self):
-        for child_window in self.child_windows.values():
-            child_window.close(None)
-        self.child_windows = {}
 
     def add_itself_to_menu(self):
         self.parent.child_windows[self.win_key] = self
         self.parent_menu_item = gtk.MenuItem(_("Event Comparison tool"))
-        self.parent_menu_item.set_submenu(gtk.Menu())
+        self.parent_menu_item.connect("activate",self.present)
         self.parent_menu_item.show()
         self.parent.winsmenu.append(self.parent_menu_item)
-        self.winsmenu = self.parent_menu_item.get_submenu()
-        self.menu_item = gtk.MenuItem(_('Filter Selection'))
-        self.menu_item.connect("activate",self.present)
-        self.menu_item.show()
-        self.winsmenu.append(self.menu_item)
 
     def remove_itself_from_menu(self):
         del self.parent.child_windows[self.win_key]
-        self.menu_item.destroy()
-        self.winsmenu.destroy()
         self.parent_menu_item.destroy()
 
     def present(self,obj):
@@ -211,7 +205,7 @@ class EventComparison:
         if len(plist) == 0:
             WarningDialog(_("No matches were found"))
         else:
-            DisplayChart(self.db,plist,self)
+            DisplayChart(self.db,plist,self.parent)
 
 #------------------------------------------------------------------------
 #
@@ -259,14 +253,16 @@ class DisplayChart:
         self.topDialog.signal_autoconnect({
             "on_write_table"        : self.on_write_table,
             "destroy_passed_object" : self.close,
+            "on_help_clicked"       : self.on_help_clicked,
             "on_view_delete_event"  : self.on_delete_event,
             })
 
         self.window = self.topDialog.get_widget("view")
+        self.window.set_icon(self.parent.topWindow.get_icon())
         self.eventlist = self.topDialog.get_widget('treeview')
 
         Utils.set_titles(self.window, self.topDialog.get_widget('title'),
-                         _('Event Comparison'))
+                         _('Event Comparison Results'))
     
         self.sort = Sort.Sort(self.db)
         self.my_list.sort(self.sort.by_last_name)
@@ -276,6 +272,10 @@ class DisplayChart:
         self.draw_clist_display()
         self.add_itself_to_menu()
         self.window.show()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        help_display('gramps-manual','tools-ae')
 
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()
@@ -290,7 +290,7 @@ class DisplayChart:
 
     def add_itself_to_menu(self):
         self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(_("Event Comparison"))
+        self.parent_menu_item = gtk.MenuItem(_("Event Comparison Results"))
         self.parent_menu_item.connect("activate",self.present)
         self.parent_menu_item.show()
         self.parent.winsmenu.append(self.parent_menu_item)

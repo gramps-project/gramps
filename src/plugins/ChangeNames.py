@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@
 #-------------------------------------------------------------------------
 import os
 import re
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -38,6 +39,7 @@ import re
 import gobject
 import gtk
 import gtk.glade
+from gnome import help_display
 
 #-------------------------------------------------------------------------
 #
@@ -46,7 +48,6 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import Utils
 from QuestionDialog import OkDialog
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -73,9 +74,11 @@ class ChangeNames:
         self.cb = callback
         self.db = db
         self.parent = parent
+        if self.parent.child_windows.has_key(self.__class__):
+            self.parent.child_windows[self.__class__].present(None)
+            return
+        self.win_key = self.__class__
         self.trans = db.transaction_begin()
-        self.win_key = self
-        self.child_windows = {}
         self.name_list = []
 
         for name in self.db.get_surname_list():
@@ -95,9 +98,11 @@ class ChangeNames:
         
         self.top = gtk.glade.XML(glade_file,"top","gramps")
         self.window = self.top.get_widget('top')
+        self.window.set_icon(self.parent.topWindow.get_icon())
         self.top.signal_autoconnect({
             "destroy_passed_object" : self.close,
             "on_ok_clicked" : self.on_ok_clicked,
+            "on_help_clicked"       : self.on_help_clicked,
             "on_delete_event" : self.on_delete_event
             })
         self.list = self.top.get_widget("list")
@@ -131,6 +136,10 @@ class ChangeNames:
             
         self.add_itself_to_menu()
         self.window.show()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        help_display('gramps-manual','tools-db')
 
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()
@@ -175,7 +184,7 @@ class ChangeNames:
         if anychange:
             self.db.transaction_commit(self.trans,_("Capitalization changes"))
         self.close(obj)
-        self.cb(1)
+        self.cb(None,1)
         
 #------------------------------------------------------------------------
 #

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@
 #
 #------------------------------------------------------------------------
 import os
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -35,7 +36,6 @@ import os
 #
 #------------------------------------------------------------------------
 import Utils
-from gettext import gettext as _
 import NameDisplay
 
 #------------------------------------------------------------------------
@@ -46,6 +46,7 @@ import NameDisplay
 import gobject
 import gtk
 import gtk.glade
+from gnome import help_display
 
 #------------------------------------------------------------------------
 #
@@ -73,27 +74,37 @@ class DesBrowse:
         self.glade = gtk.glade.XML(glade_file,"top","gramps")
         self.glade.signal_autoconnect({
             "destroy_passed_object" : self.close,
+            "on_help_clicked"       : self.on_help_clicked,
             "on_delete_event": self.on_delete_event,
             })
         self.window = self.glade.get_widget("top")
+        self.window.set_icon(self.parent.topWindow.get_icon())
 
+        self.active_name = _("Descendant Browser: %s") \
+                        % NameDisplay.displayer.display(self.active)
         Utils.set_titles(self.window,self.glade.get_widget('title'),
-                         _("Descendant Browser"))
+                         self.active_name)
         
         self.tree = self.glade.get_widget("tree1")
         col = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
         self.tree.append_column(col)
-        self.model = gtk.TreeStore(gobject.TYPE_STRING,gobject.TYPE_PYOBJECT)
-        self.tree.set_model(self.model)
         self.tree.set_rules_hint(True)
         self.tree.set_headers_visible(False)
-        
-        self.add_to_tree(None,None,self.active.get_handle())
-        self.tree.expand_all()
         self.tree.connect('event',self.button_press_event)
+        self.make_new_model()
 
         self.add_itself_to_menu()
         self.window.show()
+
+    def make_new_model(self):
+        self.model = gtk.TreeStore(gobject.TYPE_STRING,gobject.TYPE_PYOBJECT)
+        self.tree.set_model(self.model)
+        self.add_to_tree(None,None,self.active.get_handle())
+        self.tree.expand_all()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        help_display('gramps-manual','tools-ae')
 
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()
@@ -104,7 +115,7 @@ class DesBrowse:
 
     def add_itself_to_menu(self):
         self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(_("Descendant Browser tool"))
+        self.parent_menu_item = gtk.MenuItem(self.active_name)
         self.parent_menu_item.connect("activate",self.present)
         self.parent_menu_item.show()
         self.parent.winsmenu.append(self.parent_menu_item)
@@ -136,7 +147,11 @@ class DesBrowse:
             if iter:
                 person_handle = store.get_value(iter,1)
                 person = self.db.get_person_from_handle(person_handle)
-                EditPerson.EditPerson(self.parent,person,self.db,self.callback)
+                EditPerson.EditPerson(self.parent,person,self.db,self.this_callback)
+
+    def this_callback(self,epo,val):
+        self.callback(epo,val)
+        self.make_new_model()
 
 #------------------------------------------------------------------------
 #

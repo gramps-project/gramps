@@ -14,6 +14,18 @@
 	results; help for the settings window; single instance of the tool.
 	* src/plugins/verify.glade: HIG compliance, break things into tabs.
 
+	* src/gramps_main.py (tool_callback): Typo.
+	* src/QuestionDialog.py: Use gramps icon.
+	* src/plugins/EventCmp.py: HIG; single instance; help.
+	* src/plugins/eventcmp.glade: HIG; help.
+	* src/plugins/Desbrowser.py: HIG, help, rebuild model after edit.
+	* src/plugins/desbrowse.glade: help, info label.
+	* src/plugins/PatchNames.py: HIG, help, single instance.
+	* src/plugins/patchnames.glade: HIG, help.
+	* src/plugins/Merge.py: HIG, help, single instance.
+	* src/plugins/merge.glade: HIG, help.
+	* src/plugins/ChangeNames.py: HIG, help, single instance.
+
 2005-03-22  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib.py (MediaBase): Add base class for media references;
 	(BaseObject): Add has_handle_reference, remove_handle_references,
