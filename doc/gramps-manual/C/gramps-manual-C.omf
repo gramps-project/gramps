@@ -3,8 +3,8 @@
   <resource>
     <creator>Alex Roitman shura@alex.neuro.umn.edu</creator>
     <title>GRAMPS Manual</title>
-    <date>2003-10-06</date>
-    <version identifier="2.3" date="2003-10-06" description="GNOME2 Compliant GRAMPS Manual"/>
+    <date>2003-12-01</date>
+    <version identifier="2.4" date="2003-12-01" description="GNOME2 Compliant GRAMPS Manual"/>
     <subject category="GNOME|Applications"/>
     <description>User Manual for GRAMPS.</description>
     <type>User Manual</type>

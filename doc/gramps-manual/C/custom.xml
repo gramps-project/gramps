@@ -109,8 +109,22 @@
 
 	<variablelist>
 	
-	<varlistentry><term><guilabel>Surname guessing</guilabel></term>
-	<listitem><para> This option is not currently implemented. 
+	<varlistentry><term><guilabel>Family name guessing</guilabel></term>
+	<listitem><para> This option affects the initial family name of a 
+	child when he/she is added to the database. NOTE: this option only
+	affects the initial family name guessed by &app; when the 
+	<guilabel>Edit Person</guilabel> dialog is launched. You can modify
+	that name the way you see fit. Set this option to the value that you 
+	will most frequently use, as it will save you a lot of typing.</para>
+	
+	<para>If <guilabel>None</guilabel> is selected, no guessing will be 
+	attempted. Selecting <guilabel>Father's surname</guilabel> will use
+	the family name of the father. Selecting <guilabel>Combination of 
+	mother's and father's surname</guilabel> will use the father's name 
+	followed by the mother's name. Finally, <guilabel>Icelandic 
+	style</guilabel> will use the father's given name followed by the 
+	&quot;sson&quot; suffix (e.g. the son of Edwin will be guessed as 
+	Edwinsson).
 	</para></listitem>
 	</varlistentry>
 
@@ -189,7 +203,8 @@
 	<varlistentry><term><guilabel>Show calendar format selection menu</guilabel></term>
 	<listitem><para> Check this box to enable the calendar format selection 
 	menu when you are entering dates in the <guilabel>Event 
-	Editor</guilabel> dialog. 
+	Editor</guilabel> dialog.  This will allow you to select different 
+	calendars when editing the dates. 
 	</para></listitem>
 	</varlistentry>
 
@@ -203,7 +218,8 @@
 	
 	<varlistentry><term><guilabel>Toolbar</guilabel></term>
 	<listitem><para> Select the desired appearance of the toolbar icons
-	using the radio buttons. 
+	from the menu. Selecting <guilabel>GNOME Settings</guilabel> will use
+	the overall settings selected for your GNOME desktop. 
 	</para></listitem>
 	</varlistentry>
 
@@ -243,11 +259,6 @@
 	Now that the compression-related bugs have long been fixed, there is 
 	virtually no reason to disable data file compression. 
 	</para></listitem>
-	</varlistentry>
-
-	<varlistentry><term><guilabel>Capitalize surnames</guilabel></term>
-	<listitem><para> Check this box to capitalize surnames entered into the
-	database. </para></listitem>
 	</varlistentry>
 
 	<varlistentry><term><guilabel>Autosave interval</guilabel></term>
