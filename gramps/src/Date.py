@@ -43,8 +43,11 @@ class Date:
     from_str = _("(from|between|bet)")
     to_str = _("(and|to)")
     
-    fmt = re.compile("\s*" + from_str + "(.+)" + to_str + "(.+)\s*$",
+    efmt = re.compile(r"\s*(from|between|bet)\s+(.+)\s+(and|to)\s+(.+)\s*$",
                       re.IGNORECASE)
+
+    fmt = re.compile(r"\s*" + from_str + r"\s+(.+)\s+" + to_str + r"\s+(.+)\s*$",
+                     re.IGNORECASE)
 
     def __init__(self):
 	self.start = SingleDate()
@@ -130,16 +133,12 @@ class Date:
     #--------------------------------------------------------------------
     def quick_set(self,text):
         try:
-            if text[0:2] == "FR":
-                match = Date.fmt.match(text)
-                if match:
-                    matches = match.groups()
-                    self.start.set(matches[1])
-                    self.stop.set(matches[3])
-                    self.range = 1
-                else:
-                    self.range = -1
-                    self.text = text
+            match = Date.efmt.match(text)
+            if match:
+                matches = match.groups()
+                self.start.set(matches[1])
+                self.stop.set(matches[3])
+                self.range = 1
             else:
                 try:
                     self.start.quick_set(text)
