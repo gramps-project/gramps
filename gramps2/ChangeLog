@@ -1,3 +1,12 @@
+2003-10-13  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GrampsParser.py: handle new witness format in XML file
+	* src/WriteXML.py: handle new witness format in XML file
+	* src/dialog.glade: removed unused callbacks
+	* src/gramps.glade: adjust window size
+	* src/ListModel.py: add the ability to find an entry
+	* src/ChooseParents.py: Select the preferred spouse of the first
+	selected person.
+
 2003-10-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* configure.in, configure: Change version and release numbers.
 	* TODO: Remove completed items.
