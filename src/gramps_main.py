@@ -335,6 +335,11 @@ class Gramps:
         else:
             self.views.set_current_page(FAMILY_VIEW2)
       
+        self.accel_group = gtk.AccelGroup()
+        self.topWindow.add_accel_group(self.accel_group)
+        self.back = gtk.ImageMenuItem(gtk.STOCK_GO_BACK)
+        self.forward = gtk.ImageMenuItem(gtk.STOCK_GO_BACK)
+
         self.topWindow.show()
 
     def redraw_histmenu(self):
@@ -344,13 +349,22 @@ class Gramps:
         # back, forward, separator, home.
         gomenu = gtk.Menu()
 
+        self.back.destroy()
+        self.forward.destroy()
+
         self.back = gtk.ImageMenuItem(gtk.STOCK_GO_BACK)
         self.back.connect("activate",self.back_clicked)
+        self.back.add_accelerator("activate", self.accel_group, 
+                    gtk.gdk.keyval_from_name("Left"), 
+                    gtk.gdk.MOD1_MASK, gtk.ACCEL_VISIBLE)
         self.back.show()
         gomenu.append(self.back)
 
         self.forward = gtk.ImageMenuItem(gtk.STOCK_GO_FORWARD)
         self.forward.connect("activate",self.fwd_clicked)
+        self.forward.add_accelerator("activate", self.accel_group, 
+                    gtk.gdk.keyval_from_name("Right"), 
+                    gtk.gdk.MOD1_MASK, gtk.ACCEL_VISIBLE)
         self.forward.show()
         gomenu.append(self.forward)
 
@@ -360,6 +374,9 @@ class Gramps:
 
         item = gtk.ImageMenuItem(gtk.STOCK_HOME)
         item.connect("activate",self.on_home_clicked)
+        item.add_accelerator("activate", self.accel_group, 
+                    gtk.gdk.keyval_from_name("Home"), 
+                    gtk.gdk.MOD1_MASK, gtk.ACCEL_VISIBLE)
         item.show()
         gomenu.append(item)
 
