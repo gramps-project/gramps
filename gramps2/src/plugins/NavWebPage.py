@@ -60,216 +60,325 @@ from NameDisplay import displayer as _nd
 from DateHandler import displayer as _dd
 import ReportUtils
 
+_NARRATIVE = "narrative.css"
+
 _css = [
-    'BODY {',
-    'font-family: "Arial", "Helvetica", sans-serif;',
-    'letter-spacing: 0.05em;',
-    'background-color: #fafaff;',
-    'color: #003;',
-    '}',
-    '',
-    'P,BLOCKQUOTE {',
-    'font-size: 14px;',
-    '}',
-    '',
-    'DIV {',
-    'margin: 2px;',
-    'padding: 2px;',
-    '}',
-    '',
-    'TD {',
-    'vertical-align: top;',
-    '}',
-    '',
+    'BODY {\nfont-family: "Arial", "Helvetica", sans-serif;',
+    'letter-spacing: 0.05em;\nbackground-color: #fafaff;',
+    'color: #003;\n}',
+    'P,BLOCKQUOTE {\nfont-size: 14px;\n}',
+    'DIV {\nmargin: 2px;\npadding: 2px;\n}',
+    'TD {\nvertical-align: top;\n}',
     'H1 {',
     'font-family: "Verdana", "Bistream Vera Sans", "Arial", "Helvetica", sans-serif;',
-    'font-weight: bolder;',
-    'font-size:	160%;',
-    'margin: 2px;',
-    '}',
+    'font-weight: bolder;\nfont-size:	160%;\nmargin: 2px;\n}\n',
     'H2 {',
     'font-family: "Verdana", "Bistream Vera Sans", "Arial", "Helvetica", sans-serif;',
-    'font-weight: bolder;',
-    'font-style: italic;',
-    'font-size:	150%;',
-    '}',
-    'H3 {',
-    'font-weight: bold;',
-    'margin: 0;',
-    'padding-top: 10px;',
-    'padding-bottom: 10px;',
-    'color: #336;',
-    '}',
-    'H4 {',
-    'margin-top: 1em;',
-    'margin-bottom: 0.3em;',
-    'padding-left: 4px;',
-    'background-color: #667;',
-    'color: #fff;',
-    '}',
-    'H5 {',
-    'margin-bottom: 0.5em;',
-    '}',
-    'H6 {',
-    'font-weight: normal;',
-    'font-style: italic;',
-    'font-size:	100%;',
-    'margin-left: 1em;',
-    'margin-top: 1.3em;',
-    'margin-bottom: 0.8em;',
-    '}',
-    '',
-    'HR {',
-    'height: 0;',
-    'width: 0;',
-    'margin: 0;',
-    'margin-top: 1px;',
-    'margin-bottom: 1px;',
-    'padding: 0;',
-    'border-top: 0;	/* Hack: Mozilla work-around to eliminate "groove" */',
-    'border-color: #e0e0e9;',
-    '}',
-    '',
-    'A:link {',
-    'color: #006;',
-    'text-decoration: underline;',
-    '}',
-    'A:visited {',
-    'color: #669;',
-    'text-decoration: underline;',
-    '}',
-    'A:hover {',
-    'background-color: #eef;',
-    'color: #000;',
-    'text-decoration: underline;',
-    '}',
-    'A:active {',
-    'background-color: #eef;',
-    'color: #000;',
-    'text-decoration: none;',
-    '}',
-    '',
-    '/* Custom {{{1',
-    '*/',
-    '',
-    '.navheader {',
-    'padding: 4px;',
-    'background-color: #e0e0e9;',
-    'margin: 2px;',
-    '}',
-    '.navtitle {',
-    'font-size:	160%;',
-    'color: #669;',
-    'margin: 2px;',
-    '',
-    '}',
-    '.navbyline {',
-    'float: right;',
-    'font-size: 14px;',
-    'margin: 2px;',
-    'padding: 4px;',
-    '}',
-    '.nav {',
-    'margin: 0;',
-    'margin-bottom: 4px;',
-    'padding: 0;',
-    'font-size: 14px;',
-    'font-weight: bold;',
-    '',
-    '',
-    '',
-    '}',
-    '',
-    '',
+    'font-weight: bolder;\nfont-style: italic;\nfont-size: 150%;\n}',
+    'H3 {\nfont-weight: bold;\nmargin: 0;\npadding-top: 10px;',
+    'padding-bottom: 10px;\ncolor: #336;\n}',
+    'H4 {\nmargin-top: 1em;\nmargin-bottom: 0.3em;',
+    'padding-left: 4px;\nbackground-color: #667;\ncolor: #fff;\n}',
+    'H5 {\nmargin-bottom: 0.5em;\n}',
+    'H6 {\nfont-weight: normal;\nfont-style: italic;',
+    'font-size:	100%;\nmargin-left: 1em;\nmargin-top: 1.3em;',
+    'margin-bottom: 0.8em;\n}',
+    'HR {\nheight: 0;\nwidth: 0;\nmargin: 0;\nmargin-top: 1px;',
+    'margin-bottom: 1px;\npadding: 0;\nborder-top: 0;',
+    'border-color: #e0e0e9;\n}',
+    'A:link {\ncolor: #006;\ntext-decoration: underline;\n}',
+    'A:visited {\ncolor: #669;\ntext-decoration: underline;\n}',
+    'A:hover {\nbackground-color: #eef;\ncolor: #000;',
+    'text-decoration: underline;\n}',
+    'A:active {\nbackground-color: #eef;\ncolor: #000;\ntext-decoration: none;\n}',
+    '.navheader {\npadding: 4px;\nbackground-color: #e0e0e9;',
+    'margin: 2px;\n}',
+    '.navtitle {\nfont-size: 160%;\ncolor: #669;\nmargin: 2px;\n}',
+    '.navbyline {\nfloat: right;\nfont-size: 14px;\nmargin: 2px;',
+    'padding: 4px;\n}',
+    '.nav {\nmargin: 0;\nmargin-bottom: 4px;\npadding: 0;',
+    'font-size: 14px;\nfont-weight: bold;\n}',
     '.summaryarea {',
     'min-height: 100px;',
-    '/* Hack: IE Dynamic Expression to set the width */',
     'height: expression(document.body.clientHeight < 1 ? "100px" : "100px" );',
     '}',
-    '',
-    '.portrait {',
-    'justify: center;',
-    'margin: 5px;',
-    'margin-right: 20px;',
-    'padding: 3px;',
-    'border-color: #336;',
-    'border-width: 1px;',
-    '}',
-    '.snapshot {',
-    'float: right;',
-    'margin: 5px;',
-    'margin-right: 20px;',
-    'padding: 3px;',
-    '}',
-    '.thumbnail {',
-    'height: 100px;',
-    'border-color: #336;',
-    'border-width: 1px;',
-    '}',
-    '',
-    '.leftwrap {',
-    'float: left;',
-    'margin: 2px;',
-    'margin-right: 10px;',
-    '}',
-    '.rightwrap {',
-    'float: right;',
-    'margin: 2px;',
-    'margin-left: 10px;',
-    '}',
-    '',
-    'TABLE.infolist {',
-    'border: 0;',
-    '/*width: 100%;*/',
-    'font-size: 14px;',
-    '}',
-    'TD.category {',
-    'padding: 3px;	/* Defines spacing between rows */',
-    'padding-right: 3em;',
-    '/*width: 10%;*/',
-    'font-weight: bold;',
-    '}',
-    'TD.field {',
-    'padding: 3px;	/* Defines spacing between rows */',
-    'padding-right: 3em;',
-    '/*width: 15%;*/',
-    '',
-    '}',
-    'TD.data {',
-    'padding: 3px;	/* Defines spacing between rows */',
-    'padding-right: 3em;',
-    'font-weight: bold;',
-    '}',
-    '',
-    '',
-    '.pedigree {',
-    'margin: 0;',
-    'margin-left: 2em;',
-    'padding: 0;',
-    'background-color: #e0e0e9;',
-    'border: 1px;',
-    '}',
-    '.pedigreeind {',
-    'font-size: 14px;',
-    'margin: 0;',
-    'padding: 2em;',
-    'padding-top: 0.25em;',
-    'padding-bottom: 0.5em;',
-    '}',
-    '',
-    '',
-    '.footer {',
-    'margin: 1em;',
-    'font-size: 12px;',
-    'float: right;',
-    '}',
+    '.portrait {\njustify: center;\nmargin: 5px;\nmargin-right: 20px;',
+    'padding: 3px;\nborder-color: #336;\nborder-width: 1px;\n}',
+    '.snapshot {\nfloat: right;\nmargin: 5px;\nmargin-right: 20px;',
+    'padding: 3px;\n}',
+    '.thumbnail {\nheight: 100px;\nborder-color: #336;\nborder-width: 1px;\n}',
+    '.leftwrap {\nfloat: left;\nmargin: 2px;\nmargin-right: 10px;\n}',
+    '.rightwrap {\nfloat: right;\nmargin: 2px;\nmargin-left: 10px;\n}',
+    'TABLE.infolist {\nborder: 0;\nfont-size: 14px;\n}',
+    'TD.category {\npadding: 3px;\npadding-right: 3em;',
+    'font-weight: bold;\n}',
+    'TD.field {\npadding: 3px;\npadding-right: 3em;\n}',
+    'TD.data {\npadding: 3px;\npadding-right: 3em;',
+    'font-weight: bold;\n}',
+    '.pedigree {\nmargin: 0;\nmargin-left: 2em;\npadding: 0;',
+    'background-color: #e0e0e9;\nborder: 1px;\n}',
+    '.pedigreeind {\nfont-size: 14px;\nmargin: 0;\npadding: 2em;',
+    'padding-top: 0.25em;\npadding-bottom: 0.5em;\n}',
+    '.footer {\nmargin: 1em;\nfont-size: 12px;\nfloat: right;\n}',
     ]
+
+
+class BasePage:
+    def __init__(self):
+        pass
+
+    def lnkfmt(self,text):
+        return text.replace(' ','%20')
+
+    def display_footer(self,ofile):
+	ofile.write('<br>\n')
+	ofile.write('<br>\n')
+	ofile.write('<hr>\n')
+	ofile.write('<div class="footer">')
+        ofile.write('Generated by <a href="http://gramps.sourceforge.net">GRAMPS</a> on 13 December 2004.')
+        ofile.write('</div>\n')
+        ofile.write('</body>\n')
+        ofile.write('</html>\n')
+    
+    def display_header(self,ofile,title,author=""):
+        ofile.write('<!DOCTYPE HTML PUBLIC ')
+        ofile.write('"-//W3C//DTD HTML 4.01 Transitional//EN">\n')
+        ofile.write('<html>\n')
+        ofile.write('<head>\n')
+	ofile.write('<title>My Family Tree</title>\n')
+	ofile.write('<meta http-equiv="Content-Type" content="text/html; ')
+        ofile.write('charset=ISO-8859-1">\n')
+	ofile.write('<link href="%s" ' % _NARRATIVE)
+        ofile.write('rel="stylesheet" type="text/css">\n')
+	ofile.write('<link href="favicon.png" rel="Shortcut Icon">\n')
+        ofile.write('</head>\n')
+        ofile.write('<body>\n')
+	ofile.write('<div class="navheader">\n')
+        ofile.write('  <div class="navbyline">By: %s</div>\n' % author)
+        ofile.write('  <h1 class="navtitle">%s</h1>\n' % title)
+        ofile.write('  <hr>\n')
+        ofile.write('    <div class="nav">\n')
+        ofile.write('    <a href="index.html">Home</a> &nbsp;\n')
+        ofile.write('    <a href="introduction.html">Introduction</a> &nbsp;\n')
+        ofile.write('    <a href="surnames.html">Surnames</a> &nbsp;\n')
+        ofile.write('    <a href="individuals.html">Individuals</a> &nbsp;\n')
+        ofile.write('    <a href="sources.html">Sources</a> &nbsp;\n')
+        ofile.write('    <a href="download.html">Download</a> &nbsp;\n')
+        ofile.write('    <a href="contact.html">Contact</a> &nbsp;\n')
+        ofile.write('    </div>\n')
+	ofile.write('  </div>\n')
+
 #------------------------------------------------------------------------
 #
 # 
 #
 #------------------------------------------------------------------------
-class IndividualPage:
+class IndividualListPage(BasePage):
+
+    def __init__(self, db, person_handle_list, html_dir):
+        page_name = os.path.join(html_dir,"individuals.html")
+
+        ofile = open(page_name, "w")
+        self.display_header(ofile,_('Individuals'),
+                            db.get_researcher().get_name())
+
+	ofile.write('<h3>%s</h3>\n' % _('Individuals'))
+        ofile.write('<p>%s</p>\n' % _('Index of individuals, sorted by last name.'))
+	ofile.write('<blockquote>\n')
+	ofile.write('<table class="infolist" cellspacing="0" ')
+        ofile.write('cellpadding="0" border="0">\n')
+	ofile.write('<tr><td class="field"><u><b>Surname</b></u></td>\n')
+        ofile.write('<td class="field"><u><b>Name</b></u></td>\n')
+        ofile.write('</tr>\n')
+
+        self.sort = Sort.Sort(db)
+        person_handle_list.sort(self.sort.by_last_name)
+        last_surname = ""
+        
+        for person_handle in person_handle_list:
+            person = db.get_person_from_handle(person_handle)
+            n = person.get_primary_name().get_surname()
+            if n != last_surname:
+                ofile.write('<tr><td colspan="2">&nbsp;</td></tr>\n')
+            ofile.write('<tr><td class="category">')
+            if n != last_surname:
+                ofile.write('<a name="%s">%s</a>' % (self.lnkfmt(n),n))
+            else:
+                ofile.write('&nbsp')
+            ofile.write('</td><td class="data">')
+            ofile.write(person.get_primary_name().get_first_name())
+            ofile.write(' <a href="%s.html">' % person.gramps_id)
+            ofile.write("<sup>[%s]</sup>" % person.gramps_id)
+            ofile.write('</a></td></tr>\n')
+            last_surname = n
+            
+        ofile.write('</table>\n</blockquote>\n')
+        self.display_footer(ofile)
+        ofile.close()
+        return
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class SurnameListPage(BasePage):
+
+    def __init__(self, db, person_handle_list, html_dir):
+        page_name = os.path.join(html_dir,"surnames.html")
+
+        ofile = open(page_name, "w")
+        self.display_header(ofile,_('Surnames'),
+                            db.get_researcher().get_name())
+
+	ofile.write('<h3>%s</h3>\n' % _('Surnames'))
+        ofile.write('<p>%s</p>\n' % _('Index of all the surnames in the '
+                                      'project. The links lead to a list '
+                                      'of individuals in the database with '
+                                      'this same surname.'))
+
+	ofile.write('<blockquote>\n')
+	ofile.write('<table class="infolist" cellspacing="0" ')
+        ofile.write('cellpadding="0" border="0">\n')
+	ofile.write('<tr><td class="field"><u>')
+        ofile.write('<b>%s</b></u></td>\n' % _('Surname'))
+        ofile.write('<td class="field"><u>')
+        ofile.write('<b>%s</b></u></td>\n' % _('Name'))
+        ofile.write('</tr>\n')
+
+        self.sort = Sort.Sort(db)
+        person_handle_list.sort(self.sort.by_last_name)
+        last_surname = ""
+        last_letter = ''
+        
+        for person_handle in person_handle_list:
+            person = db.get_person_from_handle(person_handle)
+            n = person.get_primary_name().get_surname()
+
+            if len(n) == 0:
+                continue
+            
+            if n[0] != last_letter:
+                last_letter = n[0]
+                ofile.write('<tr><td class="category">%s</td>' % last_letter)
+                ofile.write('<td class="data">')
+                ofile.write('<a href="individuals.html#%s">' % self.lnkfmt(n))
+                ofile.write(n)
+                ofile.write('</a></td></tr>')
+            elif n != last_surname:
+                last_surname = n
+                ofile.write('<tr><td class="category">&nbsp;</td>')
+                ofile.write('<td class="data">')
+                ofile.write('<a href="individuals.html#%s">' % self.lnkfmt(n))
+                ofile.write(n)
+                ofile.write('</a></td></tr>')
+            
+        ofile.write('</table>\n</blockquote>\n')
+        self.display_footer(ofile)
+        ofile.close()
+        return
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class IntroductionPage(BasePage):
+
+    def __init__(self, db, html_dir):
+        page_name = os.path.join(html_dir,"introduction.html")
+
+        ofile = open(page_name, "w")
+        self.display_header(ofile,_('Introduction'),
+                            db.get_researcher().get_name())
+
+	ofile.write('<h3>%s</h3>\n' % _('Introduction'))
+
+        self.display_footer(ofile)
+        ofile.close()
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class HomePage(BasePage):
+
+    def __init__(self, db, html_dir):
+        page_name = os.path.join(html_dir,"index.html")
+
+        ofile = open(page_name, "w")
+        self.display_header(ofile,_('Home'),
+                            db.get_researcher().get_name())
+
+	ofile.write('<h3>%s</h3>\n' % _('Home'))
+
+        self.display_footer(ofile)
+        ofile.close()
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class SourcesPage(BasePage):
+
+    def __init__(self, db, html_dir):
+        page_name = os.path.join(html_dir,"sources.html")
+
+        ofile = open(page_name, "w")
+        self.display_header(ofile,_('Sources'),
+                            db.get_researcher().get_name())
+
+	ofile.write('<h3>%s</h3>\n' % _('Sources'))
+
+        self.display_footer(ofile)
+        ofile.close()
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class DownloadPage(BasePage):
+
+    def __init__(self, db, html_dir):
+        page_name = os.path.join(html_dir,"download.html")
+
+        ofile = open(page_name, "w")
+        self.display_header(ofile,_('Download'),
+                            db.get_researcher().get_name())
+
+	ofile.write('<h3>%s</h3>\n' % _('Download'))
+
+        self.display_footer(ofile)
+        ofile.close()
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class ContactPage(BasePage):
+
+    def __init__(self, db, html_dir):
+        page_name = os.path.join(html_dir,"contact.html")
+
+        ofile = open(page_name, "w")
+        self.display_header(ofile,_('Contact'),
+                            db.get_researcher().get_name())
+
+	ofile.write('<h3>%s</h3>\n' % _('Contact'))
+
+        self.display_footer(ofile)
+        ofile.close()
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class IndividualPage(BasePage):
 
     gender_map = {
         RelLib.Person.MALE    : const.male,
@@ -287,46 +396,49 @@ class IndividualPage:
         self.sort_name = _nd.sorted(self.person)
         self.name = _nd.sorted(self.person)
         
-        self.f = open(os.path.join(dirpath,"%s.html" % gramps_id), "w")
-        self.f.write('<!DOCTYPE HTML PUBLIC ')
-        self.f.write('"-//W3C//DTD HTML 4.01 Transitional//EN">\n')
-        self.f.write('<html>\n')
-        self.f.write('<head>\n')
-	self.f.write('<title>My Family Tree</title>\n')
-	self.f.write('<meta http-equiv="Content-Type" content="text/html; ')
-        self.f.write('charset=ISO-8859-1">\n')
-	self.f.write('<link href="navwebpage.css" ')
-        self.f.write('rel="stylesheet" type="text/css">\n')
-	self.f.write('<link href="favicon.png" rel="Shortcut Icon">\n')
-        self.f.write('</head>\n')
-        self.f.write('<body>\n')
+        ofile = open(os.path.join(dirpath,"%s.html" % gramps_id), "w")
+        self.display_header(ofile, 'My Family Tree',
+                            self.db.get_researcher().get_name())
+        self.display_ind_general(ofile)
+        self.display_ind_events(ofile)
+        self.display_ind_relationships(ofile)
+        self.display_ind_narrative(ofile)
+        self.display_ind_sources(ofile)
+        self.display_ind_pedigree(ofile)
+        self.display_footer(ofile)
+        ofile.close()
 
-        self.display_header()
-        self.display_general()
-        self.display_events()
-        self.display_relationships()
-        self.display_narrative()
-        self.display_sources()
-        self.display_pedigree()
-        self.display_footer()
+    def display_ind_sources(self,ofile):
+        sreflist = self.person.get_source_references()
+        if not sreflist:
+            return
+	ofile.write('<h4>%s</h4>\n' % _('Sources'))
+	ofile.write('<hr>\n')
+	ofile.write('<table class="infolist" cellpadding="0" ')
+        ofile.write('cellspacing="0" border="0">\n')
 
-        self.f.write('</body>\n')
-        self.f.write('</html>\n')
-        self.f.close()
+        index = 1
+        for sref in sreflist:
+            source = self.db.get_source_from_handle(sref.get_base_handle())
+            author = source.get_author()
+            title = source.get_title()
+            publisher = source.get_publication_info()
+            date = _dd.display(sref.get_date())
+            ofile.write('<tr><td class="field">%d. ' % index)
+            values = []
+            if author:
+                values.append(author)
+            if title:
+                values.append(title)
+            if publisher:
+                values.append(publisher)
+            if date:
+                values.append(date)
+            ofile.write(', '.join(values))
+            ofile.write('</td></tr>\n')
+	ofile.write('</table>\n')
 
-    def display_sources(self):
-	self.f.write('<h4>Sources</h4>\n')
-	self.f.write('<hr>\n')
-
-	self.f.write('<table class="infolist" cellpadding="0" cellspacing="0" border="0">\n')
-	self.f.write('<tr><td class="field">1. Author, Title, Publisher, Date.</td></tr>\n')
-	self.f.write('<tr><td class="field">2. Author, Title, Publisher, Date.</td></tr>\n')
-	self.f.write('<tr><td class="field">3. Author, Title, Publisher, Date.</td></tr>\n')
-	self.f.write('<tr><td class="field">4. Author, Title, Publisher, Date.</td></tr>\n')
-	self.f.write('<tr><td class="field">5. Author, Title, Publisher, Date.</td></tr>\n')
-	self.f.write('</table>\n')
-
-    def display_pedigree(self):
+    def display_ind_pedigree(self,ofile):
 
         parent_handle_list = self.person.get_parent_family_handle_list()
         if parent_handle_list:
@@ -341,72 +453,36 @@ class IndividualPage:
             father = None
             mother = None
         
-	self.f.write('<h4>Pedigree</h4>\n')
-	self.f.write('<hr>\n')
-        self.f.write('\n')
-	self.f.write('<br>\n')
-        self.f.write('\n')
-	self.f.write('<table class="pedigree">\n')
-        self.f.write('<tr><td>\n')
+        ofile.write('<h4>%s</h4>\n' % _('Pedigree'))
+	ofile.write('<hr>\n<br>\n')
+	ofile.write('<table class="pedigree">\n')
+        ofile.write('<tr><td>\n')
         if father or mother:
-            self.f.write('<blockquote class="pedigreeind">\n')
+            ofile.write('<blockquote class="pedigreeind">\n')
             if father:
-                self.pedigree_person(father)
+                self.pedigree_person(ofile,father)
             if mother:
-                self.pedigree_person(mother)
-        self.f.write('<blockquote class="pedigreeind">\n')
+                self.pedigree_person(ofile,mother)
+        ofile.write('<blockquote class="pedigreeind">\n')
         if family:
             for child_handle in family.get_child_handle_list():
                 if child_handle == self.person.handle:
-                    self.f.write('| <strong>%s</strong><br>\n' % self.name)
-                    self.pedigree_family()
+                    ofile.write('| <strong>%s</strong><br>\n' % self.name)
+                    self.pedigree_family(ofile)
                 else:
                     child = self.db.get_person_from_handle(child_handle)
-                    self.pedigree_person(child)
+                    self.pedigree_person(ofile,child)
         else:
-            self.f.write('| <strong>%s</strong><br>\n' % self.name)
-            self.pedigree_family()
+            ofile.write('| <strong>%s</strong><br>\n' % self.name)
+            self.pedigree_family(ofile)
 
-#         self.f.write('&bull; Spouse 1<br>\n')
-#         self.f.write('<blockquote class="pedigreeind">\n')
-#         self.f.write('| Child<br>\n')
-#         self.f.write('| Child<br>\n')
-#         self.f.write('</blockquote>\n')
-#         self.f.write('&bull; Spouse 2<br>\n')
-#         self.f.write('<blockquote class="pedigreeind">\n')
-#         self.f.write('| Child<br>\n')
-#         self.f.write('| Child<br>\n')
-#         self.f.write('</blockquote>\n')
-#         self.f.write('| Sybling, Younger<br>\n')
-#        self.f.write('| Sybling, Younger<br>\n')
-
-        self.f.write('</blockquote>\n')
+        ofile.write('</blockquote>\n')
         if father or mother:
-            self.f.write('</blockquote>\n')
-        self.f.write('</td>\n')
-        self.f.write('</tr>\n')
-	self.f.write('</table>\n')
+            ofile.write('</blockquote>\n')
+        ofile.write('</td>\n</tr>\n</table>\n')
 
-    def display_header(self):
-        author = self.db.get_researcher().get_name()
-	self.f.write('<div class="navheader">\n')
-        self.f.write('  <div class="navbyline">By: %s</div>\n' % author)
-        self.f.write('  <h1 class="navtitle">My Family Tree</h1>\n')
-        self.f.write('  <hr>\n')
-        self.f.write('    <div class="nav">\n')
-        self.f.write('    <a href="index.html">Home</a> &nbsp;\n')
-        self.f.write('    <a href="introduction.html">Introduction</a> &nbsp;\n')
-        self.f.write('    <a href="surnames.html">Surnames</a> &nbsp;\n')
-        self.f.write('    <a href="individuals.html">Individuals</a> &nbsp;\n')
-        self.f.write('    <a href="sources.html">Sources</a> &nbsp;\n')
-        self.f.write('    <a href="download.html">Download</a> &nbsp;\n')
-        self.f.write('    <a href="contact.html">Contact</a> &nbsp;\n')
-        self.f.write('    </div>\n')
-	self.f.write('  </div>\n')
-        self.f.write('\n')
-        self.f.write('\n')
 
-    def display_general(self):
+    def display_ind_general(self,ofile):
         photolist = self.person.get_media_list()
         if photolist:
             photo_handle = photolist[0].get_reference_handle()
@@ -414,65 +490,67 @@ class IndividualPage:
             
             newpath = self.person.gramps_id + os.path.splitext(photo.get_path())[1]
             shutil.copyfile(photo.get_path(),os.path.join(self.dirpath,newpath))
-            self.f.write('<div class="snapshot">\n')
-            self.f.write('<a href="%s">' % newpath)
-            self.f.write('<img class="thumbnail"  border="0" src="%s" ' % newpath)
-            self.f.write('height="100"></a>')
-            self.f.write('</div>\n')
+            ofile.write('<div class="snapshot">\n')
+            ofile.write('<a href="%s">' % newpath)
+            ofile.write('<img class="thumbnail"  border="0" src="%s" ' % newpath)
+            ofile.write('height="100"></a>')
+            ofile.write('</div>\n')
 
-	self.f.write('<div class="summaryarea">\n')
-        self.f.write('<h3>%s</h3>\n' % self.sort_name)
-        self.f.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
-        self.f.write('border="0">\n')
+	ofile.write('<div class="summaryarea">\n')
+        ofile.write('<h3>%s</h3>\n' % self.sort_name)
+        ofile.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
+        ofile.write('border="0">\n')
 
         # Gender
-        self.f.write('<tr><td class="field">Gender</td>\n')
+        ofile.write('<tr><td class="field">%s</td>\n' % _('Gender'))
         gender = self.gender_map[self.person.gender]
-        self.f.write('<td class="data">%s</td>\n' % gender)
-        self.f.write('</tr>\n')
+        ofile.write('<td class="data">%s</td>\n' % gender)
+        ofile.write('</tr>\n')
+
+        # Gramps ID
+        ofile.write('<tr><td class="field">%s</td>\n' % _('GRAMPS ID'))
+        ofile.write('<td class="data">%s</td>\n' % self.person.gramps_id)
+        ofile.write('</tr>\n')
 
         # Birth
         handle = self.person.get_birth_handle()
         if handle:
             event = self.db.get_event_from_handle(handle)
-            self.f.write('<tr><td class="field">%s</td>\n' % _('Birth'))
-            self.f.write('<td class="data">%s</td>\n' % self.format_event(event))
-            self.f.write('</tr>\n')
+            ofile.write('<tr><td class="field">%s</td>\n' % _('Birth'))
+            ofile.write('<td class="data">%s</td>\n' % self.format_event(event))
+            ofile.write('</tr>\n')
 
         # Death
         handle = self.person.get_death_handle()
         if handle:
             event = self.db.get_event_from_handle(handle)
-            self.f.write('<tr><td class="field">%s</td>\n' % _('Death'))
-            self.f.write('<td class="data">%s</td>\n' % self.format_event(event))
-            self.f.write('</tr>\n')
+            ofile.write('<tr><td class="field">%s</td>\n' % _('Death'))
+            ofile.write('<td class="data">%s</td>\n' % self.format_event(event))
+            ofile.write('</tr>\n')
 
-        self.f.write('\n')
-        self.f.write('</table>\n')
-	self.f.write('</div>\n')
-        self.f.write('\n')
+        ofile.write('</table>\n')
+	ofile.write('</div>\n')
 
-    def display_events(self):
-	self.f.write('<h4>Events</h4>\n')
-	self.f.write('<hr>\n')
-	self.f.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
-        self.f.write('border="0">\n')
+    def display_ind_events(self,ofile):
+	ofile.write('<h4>%s</h4>\n' % _('Events'))
+	ofile.write('<hr>\n')
+	ofile.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
+        ofile.write('border="0">\n')
 
         for event_id in self.person.get_event_list():
             event = self.db.get_event_from_handle(event_id)
 
-            self.f.write('<tr><td class="field">%s</td>\n' % event.get_name())
-            self.f.write('<td class="data">\n')
-            self.f.write(self.format_event(event))
-            self.f.write('</td>\n')
-            self.f.write('</tr>\n')
+            ofile.write('<tr><td class="field">%s</td>\n' % event.get_name())
+            ofile.write('<td class="data">\n')
+            ofile.write(self.format_event(event))
+            ofile.write('</td>\n')
+            ofile.write('</tr>\n')
 
-	self.f.write('</table>\n')
-        self.f.write('\n')
+	ofile.write('</table>\n')
 
-    def display_narrative(self):
-	self.f.write('<h4>Narrative</h4>\n')
-	self.f.write('<hr>\n')
+    def display_ind_narrative(self,ofile):
+	ofile.write('<h4>%s</h4>\n' % _('Narrative'))
+	ofile.write('<hr>\n')
 
         noteobj = self.person.get_note_object()
         if noteobj:
@@ -483,94 +561,73 @@ class IndividualPage:
                 text = "<pre>" + "<br>".join(text.split("\n"))
             else:
                 text = "</p><p>".join(text.split("\n"))
-            self.f.write('<p>%s</p>\n' % text)
+            ofile.write('<p>%s</p>\n' % text)
 
-    def display_footer(self):
-	self.f.write('<br>\n')
-	self.f.write('<br>\n')
-	self.f.write('<hr>\n')
-	self.f.write('<div class="footer">This page generated from <a href="http://gramps.sourceforge.net">GRAMPS</a> on 13 December 2004.</div>\n')
         
-    def display_father(self,handle):
+    def display_parent(self,ofile,handle,title):
         use_link = handle in self.ind_list
         person = self.db.get_person_from_handle(handle)
-        self.f.write('<td class="field">%s</td>\n' % _("Father"))
-        self.f.write('<td class="data">')
+        ofile.write('<td class="field">%s</td>\n' % title)
+        ofile.write('<td class="data">')
+        ofile.write(_nd.display(person))
         if use_link:
-            self.f.write('<a href="%s.html">' % person.get_gramps_id())
-        self.f.write(_nd.display(person))
-        if use_link:
-            self.f.write('</a>\n')
-        self.f.write('</td>\n')
+            val = person.gramps_id
+            ofile.write('&nbsp;<sup><a href="%s.html">[%s]</a></sup>' % (val,val))
+        ofile.write('</td>\n')
 
-    def display_mother(self,handle):
-        use_link = handle in self.ind_list
-        person = self.db.get_person_from_handle(handle)
-        self.f.write('<td class="field">%s</td>\n' % _("Mother"))
-        self.f.write('<td class="data">')
-        if use_link:
-            self.f.write('<a href="%s.html">' % person.get_gramps_id())
-        self.f.write(_nd.display(person))
-        if use_link:
-            self.f.write('</a>\n')
-        self.f.write('</td>\n')
-
-    def display_relationships(self):
+    def display_ind_relationships(self,ofile):
         parent_list = self.person.get_parent_family_handle_list()
         family_list = self.person.get_family_handle_list()
 
         if not parent_list and not family_list:
             return
         
-	self.f.write('<h4>%s</h4>\n' % _("Relationships"))
-	self.f.write('<hr>\n')
-	self.f.write('<table class="infolist" cellpadding="0" cellspacing="0" border="0">\n')
+	ofile.write('<h4>%s</h4>\n' % _("Relationships"))
+	ofile.write('<hr>\n')
+	ofile.write('<table class="infolist" cellpadding="0" cellspacing="0" border="0">\n')
 
         if parent_list:
             for (family_handle,mrel,frel) in parent_list:
                 family = self.db.get_family_from_handle(family_handle)
                 
-                self.f.write('<tr><td colspan="3">&nbsp;</td></tr>\n')
-                self.f.write('<tr><td class="category">%s</td>\n' % _("Parents"))
+                ofile.write('<tr><td colspan="3">&nbsp;</td></tr>\n')
+                ofile.write('<tr><td class="category">%s</td>\n' % _("Parents"))
 
                 father_handle = family.get_father_handle()
                 if father_handle:
-                    self.display_father(father_handle)
-                self.f.write('</tr><tr><td>&nbsp;</td>\n')
+                    self.display_parent(ofile,father_handle,_('Father'))
+                ofile.write('</tr><tr><td>&nbsp;</td>\n')
                 mother_handle = family.get_mother_handle()
                 if mother_handle:
-                    self.display_mother(mother_handle)
-                self.f.write('</tr>\n')
-            self.f.write('<tr><td colspan="3">&nbsp;</td></tr>\n')
+                    self.display_parent(ofile,mother_handle,_('Mother'))
+                ofile.write('</tr>\n')
+            ofile.write('<tr><td colspan="3">&nbsp;</td></tr>\n')
 
         if family_list:
-            self.f.write('<tr><td class="category">%s</td>\n' % _("Spouses"))
+            ofile.write('<tr><td class="category">%s</td>\n' % _("Spouses"))
             first = True
             for family_handle in family_list:
                 family = self.db.get_family_from_handle(family_handle)
-                self.display_spouse(family,first)
+                self.display_spouse(ofile,family,first)
                 first = False
                 childlist = family.get_child_handle_list()
                 if childlist:
-                    self.f.write('<tr><td>&nbsp;</td>\n')
-                    self.f.write('<td class="field">%s</td>\n' % _("Children"))
-                    self.f.write('<td class="data">\n')
+                    ofile.write('<tr><td>&nbsp;</td>\n')
+                    ofile.write('<td class="field">%s</td>\n' % _("Children"))
+                    ofile.write('<td class="data">\n')
                     for child_handle in childlist:
                         use_link = child_handle in self.ind_list
                         child = self.db.get_person_from_handle(child_handle)
                         if use_link:
-                            self.f.write('<a href="%s.html">' % child.get_gramps_id())
-                        self.f.write(_nd.display(child))
+                            ofile.write('<a href="%s.html">' % child.get_gramps_id())
+                        ofile.write(_nd.display(child))
                         if use_link:
-                            self.f.write('</a>\n')
-                        self.f.write("<br>\n")
-                    self.f.write('</td>\n')
-                    self.f.write('</tr>\n')
-                    self.f.write('\n')
-	self.f.write('</table>\n')
-        self.f.write('\n')
+                            ofile.write('</a>\n')
+                        ofile.write("<br>\n")
+                    ofile.write('</td>\n</tr>\n')
+	ofile.write('</table>\n')
 
-    def display_spouse(self,family,first=True):
+    def display_spouse(self,ofile,family,first=True):
         gender = self.person.get_gender()
         reltype = family.get_relationship()
 
@@ -591,54 +648,52 @@ class IndividualPage:
         else:
             name = _("unknown")
         if not first:
-            self.f.write('<tr><td>&nbsp;</td></tr>\n')
-            self.f.write('<td>&nbsp;</td>')
-        self.f.write('<td class="field">%s</td>\n' % relstr)
-        self.f.write('<td class="data">')
+            ofile.write('<tr><td>&nbsp;</td></tr>\n')
+            ofile.write('<td>&nbsp;</td>')
+        ofile.write('<td class="field">%s</td>\n' % relstr)
+        ofile.write('<td class="data">')
         use_link = spouse_id in self.ind_list
         if use_link:
-            self.f.write('<a href="%s.html">' % spouse.get_gramps_id())
-        self.f.write(name)
+            ofile.write('<a href="%s.html">' % spouse.get_gramps_id())
+        ofile.write(name)
         if use_link:
-            self.f.write('</a>')
+            ofile.write('</a>')
         
-        self.f.write('</td>\n')
-        self.f.write('</tr>\n')
+        ofile.write('</td>\n</tr>\n')
 
         for event_id in family.get_event_list():
             event = self.db.get_event_from_handle(event_id)
 
-            self.f.write('<tr><td>&nbsp;</td>\n')
-            self.f.write('<td class="field">%s</td>\n' % event.get_name())
-            self.f.write('<td class="data">\n')
-            self.f.write(self.format_event(event))
-            self.f.write('</td>\n')
-            self.f.write('</tr>\n')
+            ofile.write('<tr><td>&nbsp;</td>\n')
+            ofile.write('<td class="field">%s</td>\n' % event.get_name())
+            ofile.write('<td class="data">\n')
+            ofile.write(self.format_event(event))
+            ofile.write('</td>\n</tr>\n')
 
-    def pedigree_person(self,person,bullet='|'):
+    def pedigree_person(self,ofile,person,bullet='|'):
         person_link = person.handle in self.ind_list
-        self.f.write('%s ' % bullet)
+        ofile.write('%s ' % bullet)
         if person_link:
-            self.f.write('<a href="%s.html">' % person.gramps_id)
-        self.f.write(_nd.display(person))
+            ofile.write('<a href="%s.html">' % person.gramps_id)
+        ofile.write(_nd.display(person))
         if person_link:
-            self.f.write('</a>')
-        self.f.write('<br>\n')
+            ofile.write('</a>')
+        ofile.write('<br>\n')
 
-    def pedigree_family(self):
+    def pedigree_family(self,ofile):
         for family_handle in self.person.get_family_handle_list():
             rel_family = self.db.get_family_from_handle(family_handle)
             spouse_handle = ReportUtils.find_spouse(self.person,rel_family)
             if spouse_handle:
                 spouse = self.db.get_person_from_handle(spouse_handle)
-                self.pedigree_person(spouse,'&bull;')
+                self.pedigree_person(ofile,spouse,'&bull;')
             childlist = rel_family.get_child_handle_list()
             if childlist:
-                self.f.write('<blockquote class="pedigreeind">\n')
+                ofile.write('<blockquote class="pedigreeind">\n')
                 for child_handle in childlist:
                     child = self.db.get_person_from_handle(child_handle)
-                    self.pedigree_person(child)
-                self.f.write('</blockquote>\n')
+                    self.pedigree_person(ofile,child)
+                ofile.write('</blockquote>\n')
 
     def format_event(self,event):
         descr = event.get_description()
@@ -864,166 +919,6 @@ class WebReport(Report.Report):
             doc.end_paragraph()
         doc.close()
 
-    def dump_index(self,person_handle_list,styles,template,html_dir):
-        """Writes an index file, listing all people in the person list."""
-
-        return
-    
-        doc = HtmlLinkDoc(self.selected_style,None,template,None)
-        doc.set_extension(self.ext)
-        doc.set_title(_("Family Tree Index"))
-    
-        doc.open("%s/index.%s" % (html_dir,self.ext))
-        doc.start_paragraph("Title")
-        doc.write_text(_("Family Tree Index"))
-        doc.end_paragraph()
-    
-        person_handle_list.sort(self.sort.by_last_name)
-
-        a = {}
-        for person_handle in person_handle_list:
-            person = self.database.get_person_from_handle(person_handle)
-            n = person.get_primary_name().get_surname()
-            if n:
-                a[n[0]] = 1
-            else:
-                a[''] = 1
-
-        section_number = 1
-        link_keys = a.keys()
-        link_keys.sort()
-        for n in link_keys:
-            a[n] = section_number
-            section_number = section_number + 1
-
-        if self.include_alpha_links:
-            doc.start_paragraph('IndexLabelLinks')
-            if self.separate_alpha:
-                link_str = "index_%%03d.%s" % self.ext
-            else:
-                link_str = "#%03d"
-            for n in link_keys:
-                doc.start_link(link_str % a[n])
-                doc.write_text(n)
-                doc.end_link()
-                doc.write_text(' ')
-            doc.end_paragraph()
-        
-        if self.separate_alpha:
-            doc.close()
-            for n in link_keys:
-                p_id_list = [ p_id for p_id in person_handle_list if \
-                            (self.database.get_person_from_handle(p_id).get_primary_name().get_surname() \
-                            and (self.database.get_person_from_handle(p_id).get_primary_name().get_surname()[0] == n) ) ]
-                doc = HtmlLinkDoc(self.selected_style,None,template,None)
-                doc.set_extension(self.ext)
-                doc.set_title(_("Section %s") % n)
-
-                doc.open("%s/index_%03d.%s" % (html_dir,a[n],self.ext))
-                doc.start_paragraph("Title")
-                doc.write_text(_("Section %s") % n)
-                doc.end_paragraph()
-
-                n_rows = len(p_id_list)/self.n_cols
-                td_width = 100/self.n_cols
-
-                doc.write_raw('<table width="100%" border="0">')
-                doc.write_raw('<tr><td width="%d%%" valign="top">' % td_width)
-                col_len = n_rows
-
-                for person_handle in p_id_list:
-                    the_person = self.database.get_person_from_handle(person_handle)
-                    name = the_person.get_primary_name().get_name()
-
-                    if self.birth_dates:
-                        birth_handle = self.database.get_person_from_handle(person_handle).get_birth_handle()
-                        if birth_handle:
-                            birth_event = self.database.get_event_from_handle(birth_handle)
-                            if self.year_only:
-                                birth_dobj = birth_event.get_date_object()
-                                if birth_dobj.get_year_valid():
-                                    birth_date = birth_dobj.get_year()
-                                else:
-                                    birth_date = ""
-                            else:
-                                birth_date = birth_event.get_date()
-                        else:
-                            birth_date = ""
-
-                    doc.start_link("%s.%s" % (the_person.get_gramps_id(),self.ext))
-                    doc.write_text(name)
-                    if self.birth_dates and birth_date:
-                        doc.write_text(' (%s %s)' % (_BORN,birth_date))
-                    doc.end_link()
-
-                    if col_len <= 0:
-                        doc.write_raw('</td><td width="%d%%" valign="top">' % td_width)
-                        col_len = n_rows
-                    else:
-                        doc.newline()
-                    col_len = col_len - 1
-                doc.write_raw('</td></tr></table>')
-        else:
-            n_rows = len(person_handle_list) + len(link_keys)
-            n_rows = n_rows/self.n_cols
-            td_width = 100/self.n_cols
-
-            doc.write_raw('<table width="100%" border="0">')
-            doc.write_raw('<tr><td width="%d%%" valign="top">' % td_width)
-            col_len = n_rows
-            for n in link_keys:
-                p_id_list = [ p_id for p_id in person_handle_list if \
-                            (self.database.get_person_from_handle(p_id).get_primary_name().get_surname() \
-                            and (self.database.get_person_from_handle(p_id).get_primary_name().get_surname()[0] == n) ) ]
-                doc.start_paragraph('IndexLabel')
-                if self.include_alpha_links:
-                    doc.write_linktarget("%03d" % a[n])
-                doc.write_text(n)
-                doc.end_paragraph()
-                col_len = col_len - 1
-
-                for person_handle in p_id_list:
-                    the_person = self.database.get_person_from_handle(person_handle)
-                    name = the_person.get_primary_name().get_name()
-
-                    if self.birth_dates:
-                        birth_handle = self.database.get_person_from_handle(person_handle).get_birth_handle()
-                        if birth_handle:
-                            birth_event = self.database.get_event_from_handle(birth_handle)
-                            if self.year_only:
-                                birth_dobj = birth_event.get_date_object()
-                                if birth_dobj.get_year_valid():
-                                    birth_date = birth_dobj.get_year()
-                                else:
-                                    birth_date = ""
-                            else:
-                                birth_date = birth_event.get_date()
-                        else:
-                            birth_date = ""
-
-                    doc.start_link("%s.%s" % (the_person.get_gramps_id(),self.ext))
-                    doc.write_text(name)
-                    if self.birth_dates and birth_date:
-                        doc.write_text(' (%s %s)' % (_BORN,birth_date))
-                    doc.end_link()
-                    if col_len <= 0:
-                        doc.write_raw('</td><td width="%d%%" valign="top">' % td_width)
-                        doc.start_paragraph('IndexLabel')
-                        doc.write_text(_("%s (continued)") % n)
-                        doc.end_paragraph()
-                        col_len = n_rows
-                    else:
-                        doc.newline()
-                    col_len = col_len - 1
-            doc.write_raw('</td></tr></table>')
-        if self.include_link and self.use_places:
-            doc.start_paragraph("Data")
-            doc.start_link("loc.%s" % self.ext)
-            doc.write_text(_("Return to the index of places"))
-            doc.end_link()
-            doc.end_paragraph()
-        doc.close()
-        
     def write_report(self):
         dir_name = self.target_path
         if dir_name == None:
@@ -1074,6 +969,12 @@ class WebReport(Report.Report):
 
         self.write_css(dir_name)
 
+        HomePage(self.database,dir_name)
+        SourcesPage(self.database,dir_name)
+        ContactPage(self.database,dir_name)
+        DownloadPage(self.database,dir_name)
+        IntroductionPage(self.database,dir_name)
+        
         for person_handle in ind_list:
             person = self.database.get_person_from_handle(person_handle)
             idoc = IndividualPage(self.database,person, dir_name, ind_list)
@@ -1082,8 +983,8 @@ class WebReport(Report.Report):
                 gtk.main_iteration()
             
         if len(ind_list) > 1:
-            self.dump_index(ind_list,self.selected_style,
-                            self.ind_template_name,dir_name)
+            IndividualListPage(self.database, ind_list, dir_name)
+            SurnameListPage(self.database, ind_list, dir_name)
             self.progress_bar_step()
             while gtk.events_pending():
                 gtk.main_iteration()
@@ -1101,7 +1002,7 @@ class WebReport(Report.Report):
         self.progress_bar_done()
 
     def write_css(self,dir_name):
-        f = open(os.path.join(dir_name,"navwebpage.css"), "w")
+        f = open(os.path.join(dir_name,_NARRATIVE), "w")
         f.write('\n'.join(_css))
         f.close()
                  
