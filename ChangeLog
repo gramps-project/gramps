@@ -1,4 +1,23 @@
 2005-03-02  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/ChooseParents.py: use integers instead of strings for 
+	relationship types
+	* src/PedView.py: use integers instead of strings for 
+	relationship types
+	* src/ReadGedcom.py: use integers instead of strings for 
+	relationship types
+	* src/ReadXML.py: use integers instead of strings for 
+	relationship types
+	* src/RelLib.py: use integers instead of strings for 
+	relationship types
+	* src/SelectChild.py: use integers instead of strings for 
+	relationship types
+	* src/WriteXML.py: use integers instead of strings for 
+	relationship types
+	* src/const.py.in: use integers instead of strings for 
+	relationship types
+	* src/gramps_main.py: call database update function
+	* src/GrampsBSDDB.py: add database upgrade function
+	* src/GrampsDbBase.py: add database upgrade function
 	* src/Marriage.py: fix lds menu
 	* src/AddSpouse.py: use ComboBox instead of ComboBoxEntry for
 	handling child/parent relationships

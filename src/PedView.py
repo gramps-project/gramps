@@ -499,8 +499,8 @@ class PedigreeView:
         else:
             return
         if family_handle:
-            mrel = (m != "Birth")
-            frel = (f != "Birth")
+            mrel = m != RelLib.Person.CHILD_REL_BIRTH
+            frel = f != RelLib.Person.CHILD_REL_BIRTH
 
         family = self.parent.db.get_family_from_handle(family_handle)
         if family != None:

@@ -90,14 +90,8 @@ class SelectChild:
         self.mrel = self.xml.get_widget("mrel_combo")
         self.frel = self.xml.get_widget("frel_combo")
 
-        values = const.child_relations.get_values()
-        self.keys = []
-        for value in values:
-            self.keys.append(const.child_relations.find_key(value))
-        self.keys.sort()
-
-        self.build_list(self.mrel,"Birth")
-        self.build_list(self.frel,"Birth")
+        self.build_list(self.mrel,RelLib.Person.CHILD_REL_BIRTH)
+        self.build_list(self.frel,RelLib.Person.CHILD_REL_BIRTH)
 
         if self.family:
             father = self.db.get_person_from_handle(self.family.get_father_handle())
@@ -122,15 +116,10 @@ class SelectChild:
         opt_menu.add_attribute(cell,'text',0)
         
         store = gtk.ListStore(str)
-        sel_index = 0
-        index = 0
-        for val in self.keys:
-            if _(sel) == val:
-                sel_index = index
-            index += 1
+        for val in const.child_rel_list:
             store.append(row=[val])
         opt_menu.set_model(store)
-        opt_menu.set_active(sel_index)
+        opt_menu.set_active(sel)
 
     def add_columns(self,tree):
         column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
@@ -320,19 +309,20 @@ class SelectChild:
 
         self.family.add_child_handle(select_child.get_handle())
         
-        mrel = self.keys[self.mrel.get_active()]
+        mrel = self.mrel.get_active()
         mother = self.db.get_person_from_handle(self.family.get_mother_handle())
         if mother and mother.get_gender() != RelLib.Person.FEMALE:
-            if mrel == "Birth":
-                mrel = "Unknown"
+            if mrel == RelLib.Person.CHILD_REL_BIRTH:
+                mrel = RelLib.Person.CHILD_REL_UNKWN
                 
-        frel = self.keys[self.frel.get_active()]
+        frel = self.frel.get_active()
         father = self.db.get_person_from_handle(self.family.get_father_handle())
         if father and father.get_gender() !=RelLib.Person.MALE:
-            if frel == "Birth":
-                frel = "Unknown"
+            if frel == RelLib.Person.CHILD_REL_BIRTH:
+                frel = RelLib.Person.CHILD_REL_UNKWN
 
-        select_child.add_parent_family_handle(self.family.get_handle(),mrel,frel)
+        select_child.add_parent_family_handle(self.family.get_handle(),
+                                              mrel,frel)
 
         self.db.commit_person(select_child,trans)
         self.db.commit_family(self.family,trans)
@@ -392,87 +382,3 @@ class SelectChild:
         else:
             return ("","")
 
-class EditRel:
-
-    def __init__(self,db,child,family,update):
-        self.db = db
-        self.update = update
-        self.child = child
-        self.family = family
-
-        self.xml = gtk.glade.XML(const.gladeFile,"editrel","gramps")
-        self.top = self.xml.get_widget('editrel')
-        self.mdesc = self.xml.get_widget('mrel_desc')
-        self.fdesc = self.xml.get_widget('frel_desc')
-        self.mentry = self.xml.get_widget('mrel')
-        self.fentry = self.xml.get_widget('frel')
-        self.mcombo = self.xml.get_widget('mrel_combo')
-        self.fcombo = self.xml.get_widget('frel_combo')
-
-        name = NameDisplay.displayer.display(child)
-        Utils.set_titles(self.top,self.xml.get_widget('title'),
-                         _('Relationships of %s') % name)
-
-        father = self.db.get_person_from_handle(self.family.get_father_handle())
-        mother = self.db.get_person_from_handle(self.family.get_mother_handle())
-
-        if father:
-            fname = NameDisplay.displayer.display(father)
-            val = _("Relationship to %(father)s") % {
-                'father' : fname }
-            self.fdesc.set_text('<b>%s</b>' % val)
-            self.fcombo.set_sensitive(1)
-        else:
-            val = _("Relationship to father")
-            self.fdesc.set_text('<b>%s</b>' % val)
-            self.fcombo.set_sensitive(0)
-
-        if mother:
-            mname = NameDisplay.displayer.display(mother)
-            val = _("Relationship to %(mother)s") % {
-                'mother' : mname }
-            self.mdesc.set_text('<b>%s</b>' % val)
-            self.mcombo.set_sensitive(1)
-        else:
-            val = _("Relationship to mother")
-            self.mdesc.set_text('<b>%s</b>' % val)
-            self.mcombo.set_sensitive(0)
-
-        self.xml.signal_autoconnect({
-            "on_ok_clicked"    : self.on_ok_clicked,
-            "destroy_passed_object"    : self.close
-            })
-
-        f = self.child.get_parent_family(self.family.get_handle())
-        if f:
-            self.fentry.set_text(_(f[2]))
-            self.mentry.set_text(_(f[1]))
-        
-        self.fdesc.set_use_markup(True)
-        self.mdesc.set_use_markup(True)
-        self.top.show()
-
-    def close(self,obj):
-        self.top.destroy()
-
-    def on_ok_clicked(self,obj):
-        mrel = const.child_relations.find_value(self.mentry.get_text())
-        mother = self.db.get_person_from_handle(self.family.get_mother_handle())
-        if mother and mother.get_gender() != RelLib.Person.FEMALE:
-            if mrel == "Birth":
-                mrel = "Unknown"
-                
-        frel = const.child_relations.find_value(self.fentry.get_text())
-        father = self.db.get_person_from_handle(self.family.get_father_handle())
-        if father and father.get_gender() !=RelLib.Person.MALE:
-            if frel == "Birth":
-                frel = "Unknown"
-
-        self.child.change_parent_family_handle(self.family.get_handle(),mrel,frel)
-        trans = self.db.transaction_begin()
-        self.db.commit_person(self.child,trans)
-        n = self.child.get_primary_name().get_regular_name()
-        self.db.transaction_commit(trans,_("Parent Relationships (%s)") % n)
-        
-        self.update()
-        self.top.destroy()

@@ -33,7 +33,7 @@ from RelLib import *
 from GrampsDbBase import *
 from bsddb import dbshelve, db
 
-_DBVERSION = 1
+_DBVERSION = 2
 
 def find_surname(key,data):
     return str(data[3].get_surname())
@@ -97,6 +97,9 @@ class GrampsBSDDB(GrampsDbBase):
 
     def get_media_cursor(self):
         return GrampsBSDDBCursor(self.media_map)
+
+    def need_upgrade(self):
+        return self.metadata['version'] < _DBVERSION
 
     def load(self,name,callback,mode="w"):
         if self.person_map:
@@ -169,15 +172,20 @@ class GrampsBSDDB(GrampsDbBase):
             self.undodb = db.DB()
             self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
 
-        if not self.readonly and self.metadata.get('version') == None:
-            self.metadata['version'] = _DBVERSION
-            
         self.metadata   = self.dbopen(name, "meta")
         self.bookmarks = self.metadata.get('bookmarks')
+
+        gstats = self.metadata.get('gender_stats')
+
+        if not self.readonly and gstats == None:
+            self.metadata['version'] = _DBVERSION
+        elif not self.metadata.has_key('version'):
+            self.metadata['version'] = 0
+
         if self.bookmarks == None:
             self.bookmarks = []
 
-        self.genderStats = GenderStats(self.metadata.get('gender_stats'))
+        self.genderStats = GenderStats(gstats)
         return 1
 
     def abort_changes(self):
@@ -351,3 +359,35 @@ class GrampsBSDDB(GrampsDbBase):
             return obj
         else:
             return None
+
+    def upgrade(self):
+        child_rel_notrans = [
+            "None",      "Birth",  "Adopted", "Stepchild",
+            "Sponsored", "Foster", "Unknown", "Other", ]
+        
+        version = self.metadata['version']
+        if version < 2:
+            cursor = self.get_person_cursor()
+            data = cursor.first()
+            while data:
+                handle,info = data
+                person = Person()
+                person.unserialize(info)
+                    
+                plist = person.get_parent_family_handle_list()
+                new_list = []
+                for (f,mrel,frel) in plist:
+                    try:
+                        mrel = child_rel_notrans.index(mrel)
+                    except:
+                        mrel = Person.CHILD_REL_BIRTH
+                    try:
+                        frel = child_rel_notrans.index(frel)
+                    except:
+                        frel = Person.CHILD_REL_BIRTH
+                    new_list.append((f,mrel,frel))
+                person.parent_family_list = new_list
+                self.commit_person(person,None)
+                data = cursor.next()
+            cursor.close()
+        self.metadata['version'] = 2

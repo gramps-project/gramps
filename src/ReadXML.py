@@ -796,13 +796,19 @@ class GrampsParser:
             family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
             
         if attrs.has_key("mrel"):
-            mrel = attrs["mrel"]
+            try:
+                mrel = const.child_rel_notrans[attrs["mrel"]]
+            except:
+                mrel = RelLib.Person.CHILD_REL_NONE
         else:
-            mrel = "Birth"
+            mrel = RelLib.Person.CHILD_REL_BIRTH
         if attrs.has_key("frel"):
-            frel = attrs["frel"]
+            try:
+                frel = const.child_rel_notrans[attrs["frel"]]
+            except:
+                frel = RelLib.Person.CHILD_REL_NONE
         else:
-            frel = "Birth"
+            frel = RelLib.Person.CHILD_REL_BIRTH
         self.person.add_parent_family_handle(family.get_handle(),mrel,frel)
 
     def start_parentin(self,attrs):

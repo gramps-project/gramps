@@ -225,6 +225,14 @@ shortopts = "O:i:o:f:a:p:?"
 #
 #-------------------------------------------------------------------------
 
+child_rel_list = [
+    _("None"),      _("Birth"),   _("Adopted"), _("Stepchild"),
+    _("Sponsored"),  _("Foster"), _("Unknown"), _("Other"), ]
+
+child_rel_notrans = [
+    "None",      "Birth",  "Adopted", "Stepchild",
+    "Sponsored", "Foster", "Unknown", "Other", ]
+
 child_relations = TransTable( {
     _("Birth")     : "Birth",
     _("Adopted")   : "Adopted",
