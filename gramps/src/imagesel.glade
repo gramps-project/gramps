@@ -15,7 +15,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>imageSelect</name>
-  <title>Gramps - Select a Media Object</title>
+  <title>Select a Media Object - GRAMPS</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -352,7 +352,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>change_description</name>
-  <title>Gramps - Change Local Media Object Properties</title>
+  <title>Change Local Media Object Properties - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -1308,7 +1308,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>change_global</name>
-  <title>Gramps - Change Global Media Object Properties</title>
+  <title>Change Global Media Object Properties - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

@@ -36,6 +36,7 @@ import PaperMenu
 #-------------------------------------------------------------------------
 import GTK
 import gtk
+import gnome.ui
 import libglade
 from gnome.config import get_string, get_bool, get_int, set_string, sync, set_bool, set_int
 
@@ -463,7 +464,11 @@ def save_config_color(name,color):
 #-------------------------------------------------------------------------
 
 def get_config_text(panel,key):
-    return get_string("/gramps/%s/%s" % (panel,key))
+    val = get_string("/gramps/%s/%s" % (panel,key))
+    if val:
+        return val
+    else:
+        return ""
 
 def get_config_bool(panel,key):
     return get_bool("/gramps/%s/%s" % (panel,key))
@@ -506,17 +511,25 @@ class ConfigEntry(ConfigWidget):
 
 class ConfigInt(ConfigWidget):
 
+    def set_range(self,lower,upper):
+        self.lower = lower
+        self.upper = upper
+        
     def get_widgets(self):
         l = gtk.GtkLabel(self.l)
         l.show()
         self.w = gtk.GtkSpinButton(digits=0)
         self.w.show()
         
-        val = get_int(self.tag)
+        val = get_string(self.tag)
         if val == None:
-            self.w.set_value(int(self.d))
+            val = int(self.d)
         else:
-            self.w.set_value(val)
+            val = int(val)
+
+        adj = gtk.GtkAdjustment(val,self.lower,self.upper,1,1,1)
+        
+        self.w.set_adjustment(adj)
         return [l,self.w]
 
     def set(self):
@@ -539,11 +552,37 @@ class ConfigCheckbox(ConfigWidget):
         val = self.w.get_active()
         set_bool(self.tag,val)
         
+
+class ConfigFile(ConfigWidget):
+
+    def get_widgets(self):
+        self.w = gnome.ui.GnomeFileEntry(self.tag)
+        lbl = gtk.GtkLabel(self.l)
+        self.w.show()
+        lbl.show()
+        val = get_string(self.tag)
+        self.w.set_title("%s -- GRAMPS" % (self.l))
+        if val == None:
+            self.w.gtk_entry().set_text(self.d)
+        else:
+            self.w.gtk_entry().set_text(val)
+        return [lbl,self.w]
+
+    def set(self):
+        val = self.w.get_full_path(0)
+        set_string(self.tag,val)
+        
+
 def add_text(category,panel,frame,config_tag,label,default):
     ext_items.append(category,panel,frame,ConfigEntry(panel,config_tag,label,default))
 
-def add_int(category,panel,frame,config_tag,label,default):
-    ext_items.append(category,panel,frame,ConfigInt(panel,config_tag,label,default))
+def add_file_entry(category,panel,frame,config_tag,label,default):
+    ext_items.append(category,panel,frame,ConfigFile(panel,config_tag,label,default))
+
+def add_int(category,panel,frame,config_tag,label,default,range=(0,100)):
+    cfgint = ConfigInt(panel,config_tag,label,default)
+    cfgint.set_range(range[0],range[1])
+    ext_items.append(category,panel,frame,cfgint)
 
 def add_checkbox(category,panel,frame,config_tag,label,default):
     ext_items.append(category,panel,frame,ConfigCheckbox(panel,config_tag,label,default))

@@ -17,7 +17,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>placeEditor</name>
-  <title>Gramps - Place Editor</title>
+  <title>Place Editor - GRAMPS</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

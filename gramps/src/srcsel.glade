@@ -17,7 +17,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>sourceDisplay</name>
-  <title>Gramps - Source Information</title>
+  <title>Source Information - GRAMPS</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>True</modal>
@@ -640,7 +640,7 @@ Very High
 <widget>
   <class>GnomeDialog</class>
   <name>sourcesel</name>
-  <title>Gramps - Source Reference Selection</title>
+  <title>Source Reference Selection - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
