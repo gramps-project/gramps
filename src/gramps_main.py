@@ -112,6 +112,7 @@ nameArrow     = None
 deathArrow    = None
 dateArrow     = None
 canvas        = None
+merge_button  = None
 sort_column   = 5
 sort_direct   = SORT_ASCENDING
 DataFilter    = Filter.Filter("")
@@ -145,6 +146,34 @@ def find_goto_to(person):
     change_active_person(person)
     goto_active_person()
     update_display(0)
+
+#-------------------------------------------------------------------------
+#
+# Merge
+#
+#-------------------------------------------------------------------------
+def on_merge_activate(obj):
+    """Calls up the merge dialog for the selection"""
+
+    page = notebook.get_current_page()
+    if page == 0:
+        if len(person_list.selection) != 2:
+            msg = _("Exactly two people must be selected to perform a merge")
+            GnomeErrorDialog()
+        else:
+            import MergeData
+            p1 = person_list.get_row_data(person_list.selection[0])
+            p2 = person_list.get_row_data(person_list.selection[1])
+            MergeData.MergePeople(database,p1[0],p2[0],remove_from_person_list)
+    elif page == 4:
+        if len(place_list.selection) != 2:
+            msg = _("Exactly two places must be selected to perform a merge")
+            GnomeErrorDialog(msg)
+        else:
+            import MergeData
+            p1 = place_list.get_row_data(place_list.selection[0])
+            p2 = place_list.get_row_data(place_list.selection[1])
+            MergeData.MergePlaces(database,p1,p2,load_places)
 
 #-------------------------------------------------------------------------
 #
@@ -499,6 +528,10 @@ def on_add_place_clicked(obj):
 def on_delete_place_clicked(obj):
     if len(obj.selection) == 0:
         return
+    elif len(obj.selection) > 1:
+        msg = _("Currently, you can only delete on place at a time")
+        topWindow.error(msg)
+        return
     else:
         index = obj.selection[0]
 
@@ -589,7 +622,7 @@ def is_source_used(source):
 
 #-------------------------------------------------------------------------
 #
-#
+# Edit callbacks
 #
 #-------------------------------------------------------------------------
 def on_edit_source_clicked(obj):
@@ -598,40 +631,24 @@ def on_edit_source_clicked(obj):
         source = obj.get_row_data(index)
         EditSource.EditSource(source,database,update_display_after_edit)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def on_edit_place_clicked(obj):
-    if len(obj.selection) > 0:
-        index = obj.selection[0]
-        place = obj.get_row_data(index)
-        EditPlace.EditPlace(place,database,update_display_after_edit)
+    """Display the selected places in the EditPlace display"""
+    if len(obj.selection) > 5:
+        msg = _("You requested too many places to edit at the same time")
+        GnomeErrorDialog(msg)
+    else:
+        for p in obj.selection:
+            place = obj.get_row_data(p)
+            EditPlace.EditPlace(place,database,update_display_after_edit)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def new_source_after_edit(source):
     database.addSource(source)
     update_display(0)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def new_place_after_edit(place):
     database.addPlace(place)
     update_display(0)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def update_display_after_edit(place):
     update_display(0)
 
@@ -769,8 +786,14 @@ def save_file(filename,comment):
 #
 #-------------------------------------------------------------------------
 def load_active_person(obj):
-    """Display the active person in the EditPerson display"""
-    load_person(active_person)
+    """Display the selected people in the EditPerson display"""
+    if len(person_list.selection) > 5:
+        msg = _("You requested too many people to edit at the same time")
+        GnomeErrorDialog(msg)
+    else:
+        for p in person_list.selection:
+            person = person_list.get_row_data(p)
+            load_person(person[0])
 
 def on_edit_spouse_clicked(obj):
     """Display the active spouse in the EditPerson display"""
@@ -800,9 +823,11 @@ def load_new_person(obj):
 #
 #-------------------------------------------------------------------------
 def on_delete_person_clicked(obj):
-    if active_person:
+    if len(person_list.selection) == 1:
         msg = _("Do you really wish to delete %s?") % Config.nameof(active_person)
         topWindow.question( msg, delete_person_response)
+    elif len(person_list.selection) > 1:
+        topWindow.error(_("Currently, you can only delete one person at a time"))
 
 def delete_person_response(val):
     if val == 1:
@@ -879,10 +904,10 @@ def on_delete_parents_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
-def on_person_list_select_row(obj,a,b,c):
-    person,alt = obj.get_row_data(a)
-    obj.set_data("a",person)
-    change_active_person(person)
+def on_person_list_select_row(obj,row,b,c):
+    if row == obj.selection[0]:
+        person,alt = obj.get_row_data(row)
+        change_active_person(person)
 
 #-------------------------------------------------------------------------
 #
@@ -1260,26 +1285,32 @@ def display_comment_box(filename):
 def on_person_list1_activate(obj):
     """Switches to the person list view"""
     notebook.set_page(0)
+    merge_button.set_sensitive(1)
 
 def on_family1_activate(obj):
     """Switches to the family view"""
     notebook.set_page(1)
+    merge_button.set_sensitive(0)
 
 def on_pedegree1_activate(obj):
     """Switches to the pedigree view"""
     notebook.set_page(2)
+    merge_button.set_sensitive(0)
 
 def on_sources_activate(obj):
     """Switches to the sources view"""
     notebook.set_page(3)
+    merge_button.set_sensitive(0)
 
 def on_places_activate(obj):
     """Switches to the places view"""
     notebook.set_page(4)
+    merge_button.set_sensitive(1)
 
 def on_media_activate(obj):
     """Switches to the media view"""
     notebook.set_page(5)
+    merge_button.set_sensitive(0)
 
 #-------------------------------------------------------------------------
 #
@@ -2531,7 +2562,7 @@ def main(arg):
     global database, gtop
     global statusbar,notebook
     global person_list, source_list, place_list, canvas, media_list
-    global topWindow, preview
+    global topWindow, preview, merge_button
     global nameArrow, dateArrow, deathArrow
     global cNameArrow, cDateArrow
     global mid, mtype, mdesc, mpath, mdetails
@@ -2568,7 +2599,8 @@ def main(arg):
     nameArrow   = gtop.get_widget("nameSort")
     dateArrow   = gtop.get_widget("dateSort")
     deathArrow  = gtop.get_widget("deathSort")
-
+    merge_button= gtop.get_widget("merge")
+    
     t = [ ('STRING', 0, 0),
           ('text/plain',0,0),
           ('text/uri-list',0,2),
@@ -2652,6 +2684,7 @@ def main(arg):
         "on_media_list_select_row"          : on_media_list_select_row,
         "on_media_list_drag_data_get"       : on_media_list_drag_data_get,
         "on_media_list_drag_data_received"  : on_media_list_drag_data_received,
+        "on_merge_activate"                 : on_merge_activate,
         "on_places_activate"                : on_places_activate,
         "on_preferences_activate"           : on_preferences_activate,
         "on_remove_child_clicked"           : on_remove_child_clicked,

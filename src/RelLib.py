@@ -293,6 +293,9 @@ class Location:
             self.state = ""
             self.country = ""
 
+    def is_empty(self):
+        return self.city  == "" and self.county == "" and self.state == "" and self.country == ""
+        
     def set_city(self,data):
         """sets the city name of the Location object"""
         self.city = data
