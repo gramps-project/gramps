@@ -165,7 +165,7 @@ class PlaceView:
         obj.freeze()
         if len(obj.selection):
             id = obj.get_row_data(obj.selection[0])
-            sel = self.db.getPlaceMap()[id]
+            sel = id
         else:
             sel = None
         
@@ -191,7 +191,7 @@ class PlaceView:
 
     def insert_place(self,place):
         self.place_list.append(place.getDisplayInfo())
-        self.place_list.set_row_data(self.place_list.rows-1,place)
+        self.place_list.set_row_data(self.place_list.rows-1,place.getId())
         
     def new_place_after_edit(self,place):
         self.place_list.freeze()
@@ -202,7 +202,13 @@ class PlaceView:
 
     def update_display_after_edit(self,place):
         self.place_list.freeze()
-        index = self.place_list.find_row_from_data(place)
+        val = place.getId()
+        for index in range(0,self.place_list.rows):
+            if self.place_list.get_row_data(index) == val:
+                break
+        else:
+            index = -1
+
         self.place_list.remove(index)
         self.insert_place(place)
         self.place_list.sort()
@@ -256,8 +262,9 @@ class PlaceView:
             gnome.ui.GnomeErrorDialog(msg)
         else:
             for p in obj.selection:
-                place = obj.get_row_data(p)
-                EditPlace.EditPlace(place,self.db,self.update_display_after_edit)
+                place = self.db.getPlaceMap()[obj.get_row_data(p)]
+                EditPlace.EditPlace(place,self.db,
+                                    self.update_display_after_edit)
 
 
 

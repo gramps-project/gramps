@@ -992,8 +992,9 @@ class Person(Persistent):
             gender = const.unknown
         bday = self.getBirth().getDateObj()
         dday = self.getDeath().getDateObj()
-        return [self.PrimaryName.getName(),self.id,gender,bday.getQuoteDate(),
-                dday.getQuoteDate(),sort.build_sort_name(self.PrimaryName),
+        return [self.getPrimaryName().getName(),self.id,gender,
+                bday.getQuoteDate(), dday.getQuoteDate(),
+                sort.build_sort_name(self.getPrimaryName()),
                 sort.build_sort_date(bday),sort.build_sort_date(dday)]
                 
                                           
@@ -1834,6 +1835,9 @@ class GrampsDB(Persistent):
         self.placeMap = {}
         self.new()
 
+    def close(self):
+        pass
+    
     def get_base(self):
         return ""
 
@@ -1845,6 +1849,11 @@ class GrampsDB(Persistent):
     
     def getPersonDisplay(self,key):
         return self.personTable[key]
+
+    def buildPersonDisplay(self,nkey,okey=None):
+        if nkey != okey and okey != None:
+            del self.personTable[okey]
+        self.personTable[nkey] = self.personMap[nkey].getDisplayInfo()
         
     def set_iprefix(self,val):
         if _id_reg.search(val):
@@ -2038,9 +2047,15 @@ class GrampsDB(Persistent):
 
     def removePerson(self,id):
         del self.personMap[id]
+        del self.personTable[id]
+
+    def removeSource(self,id):
+        del self.sourceMap[id]
+        del self.sourceTable[id]
 
     def addPersonAs(self,person):
         self.personMap[person.getId()] = person
+        self.personTable[person.getId()] = person.getDisplayInfo()
         
     def addPerson(self,person):
         """adds a Person to the database, assigning a gramps' ID"""
@@ -2050,6 +2065,7 @@ class GrampsDB(Persistent):
             index = self.iprefix % self.pmapIndex
         person.setId(index)
         self.personMap[index] = person
+        self.personTable[index] = person.getDisplayInfo()
         self.pmapIndex = self.pmapIndex + 1
         return index
 
@@ -2068,6 +2084,7 @@ class GrampsDB(Persistent):
         else:
             person = Person()
             map[idVal] = self.addPerson(person)
+            self.personTable[map[idVal]] = person.getDisplayInfo()
         return person
 
     def addPersonNoMap(self,person,id):
@@ -2077,6 +2094,7 @@ class GrampsDB(Persistent):
         person.setId(id)
         self.personMap[id] = person
         self.pmapIndex = self.pmapIndex+1
+        self.personTable[id] = person.getDisplayInfo()
         return id
 
     def findPersonNoMap(self,val):
@@ -2089,6 +2107,7 @@ class GrampsDB(Persistent):
             person.id = val
             self.personMap[val] = person
             self.pmapIndex = self.pmapIndex+1
+            self.personTable[val] = person.getDisplayInfo()
         return person
 
     def addSource(self,source):
@@ -2101,6 +2120,7 @@ class GrampsDB(Persistent):
             index = self.sprefix % self.smapIndex
         source.setId(index)
         self.sourceMap[index] = source
+        self.sourceTable[index] = source.getDisplayInfo()
         self.smapIndex = self.smapIndex + 1
         return index
 
@@ -2118,6 +2138,7 @@ class GrampsDB(Persistent):
         else:
             source = Source()
             map[idVal] = self.addSource(source)
+        self.sourceTable[map[idVal]] = source.getDisplayInfo()
         return source
 
     def addSourceNoMap(self,source,index):
@@ -2125,6 +2146,7 @@ class GrampsDB(Persistent):
         source.setId(index)
         self.sourceMap[index] = source
         self.smapIndex = self.smapIndex + 1
+        self.sourceTable[index] = source.getDisplayInfo()
         return index
 
     def findSourceNoMap(self,val):
@@ -2136,6 +2158,7 @@ class GrampsDB(Persistent):
         else:
             source = Source()
             self.addSourceNoMap(source,val)
+            self.sourceTable[val] = source.getDisplayInfo()
         return source
 
     def addObject(self,object):
@@ -2199,13 +2222,16 @@ class GrampsDB(Persistent):
         place.setId(index)
         self.placeMap[index] = place
         self.lmapIndex = self.lmapIndex + 1
+        self.placeTable[index] = place.getDisplayInfo()
         return index
 
     def removePlace(self,id):
         del self.placeMap[id]
+        del self.placeTable[id]
 
     def addPlaceAs(self,place):
         self.placeMap[place.getId()] = place
+        self.placeTable[place.getId()] = place.getDisplayInfo()
         
     def findPlace(self,idVal,map):
         """finds a Place in the database using the idVal and map
@@ -2222,6 +2248,7 @@ class GrampsDB(Persistent):
         else:
             place = Place()
             map[idVal] = self.addPlace(place)
+            self.placeTable[map[idVal]] = p.getDisplayInfo()
         return place
 
     def addPlaceNoMap(self,place,index):
@@ -2231,6 +2258,7 @@ class GrampsDB(Persistent):
         place.setId(index)
         self.placeMap[index] = place
         self.lmapIndex = self.lmapIndex + 1
+        self.placeTable[index] = place.getDisplayInfo()
         return index
 
     def findPlaceNoMap(self,val):
@@ -2243,6 +2271,7 @@ class GrampsDB(Persistent):
             place.id = val
             self.placeMap[val] = place
             self.lmapIndex = self.lmapIndex + 1
+            self.placeTable[val] = place.getDisplayInfo()
         return place
 
     def getPlaceKeys(self):

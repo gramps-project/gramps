@@ -75,6 +75,7 @@ class EditPerson:
     def __init__(self,person,db,callback=None):
         """Creates an edit window.  Associates a person with the window."""
         self.person = person
+        self.original_id = person.getId()
         self.db = db
         self.callback = callback
         self.path = db.getSavePath()
@@ -697,7 +698,7 @@ class EditPerson:
         p = self.get_place(self.dplace)
         if p:
             event.setPlace(p)
-        EventEdit.EventEditor(self,pname,const.personalEvents,\
+        EventEdit.EventEditor(self,pname,const.personalEvents,
                               const.save_fevent,event,def_placename,1,
                               self.callback)
 
@@ -1159,8 +1160,8 @@ class EditPerson:
             Utils.modified()
 
         self.pmap = {}
-        for p in self.db.getPlaceKeys():
-            p = db.getPlaceDisplay(key)
+        for key in self.db.getPlaceKeys():
+            p = self.db.getPlaceDisplay(key)
             self.pmap[p[0]] = key
 
         self.birth.setDate(self.bdate.get_text())

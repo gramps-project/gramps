@@ -400,8 +400,8 @@ class Gramps:
                 gnome.ui.GnomeErrorDialog(msg)
             else:
                 import MergeData
-                (p1,x) = self.person_list.get_row_data(self.person_list.selection[0])
-                (p2,x) = self.person_list.get_row_data(self.person_list.selection[1])
+                p1 = self.person_list.get_row_data(self.person_list.selection[0])
+                p2 = self.person_list.get_row_data(self.person_list.selection[1])
                 p1 = self.db.getPersonMap()[p1]
                 p2 = self.db.getPersonMap()[p2]
                 MergeData.MergePeople(self.db,p1,p2,self.merge_update,
@@ -424,16 +424,19 @@ class Gramps:
                              "Do you wish to save the changes?"),
                            _("Save Changes"), self.save_query,
                            _("Abandon Changes"), self.quit)
-        else:    
+        else:
+            self.db.close()
             gtk.mainquit()
 
     def save_query(self):
         """Catch the reponse to the save on exit question"""
         self.on_save_activate_quit()
+        self.db.close()
         gtk.mainquit()
 
     def quit(self):
         """Catch the reponse to the save on exit question"""
+        self.db.close()
         gtk.mainquit()
         
     def on_about_activate(self,obj):
@@ -656,29 +659,17 @@ class Gramps:
         self.id2col = {}
         self.person_list.clear()
         self.notebook.set_show_tabs(GrampsCfg.usetabs)
-        self.child_list.set_column_visibility(self.c_details,GrampsCfg.show_detail)
+        self.child_list.set_column_visibility(self.c_details,
+                                              GrampsCfg.show_detail)
         self.child_list.set_column_visibility(self.c_id,GrampsCfg.id_visible)
-        self.child_list.set_column_visibility(self.c_birth_order,GrampsCfg.index_visible)
-        import time
-        t = time.time()
+        self.child_list.set_column_visibility(self.c_birth_order,
+                                              GrampsCfg.index_visible)
         self.apply_filter()
-        print 'people',time.time() - t
-        t = time.time()
         self.load_family()
-        print 'family',time.time() -t
-        t = time.time()
         self.source_view.load_sources()
-        print 'sources',time.time() -t
-        t = time.time()
         self.place_view.load_places()
-        print 'places',time.time() -t
-        t = time.time()
         self.pedigree_view.load_canvas(self.active_person)
-        print 'pedegree',time.time() -t
-        t = time.time()
         self.media_view.load_media()
-        print 'media',time.time() -t
-        t = time.time()
         self.toolbar.set_style(GrampsCfg.toolbar)
 
     def update_display(self,changed):
@@ -875,7 +866,7 @@ class Gramps:
             gnome.ui.GnomeErrorDialog(msg)
         else:
             for p in self.person_list.selection:
-                (person,x) = self.person_list.get_row_data(p)
+                person = self.person_list.get_row_data(p)
                 self.load_person(self.db.getPersonMap()[person])
 
     def load_active_person(self,obj):
@@ -937,19 +928,23 @@ class Gramps:
         self.update_display(0)
         Utils.modified()
 
-    def remove_from_person_list(self,person):
+    def remove_from_person_list(self,person,old_id=None):
     
         self.person_list.freeze()
         pid = person.getId()
-        if self.id2col.has_key(pid):
-            for id in self.id2col[pid]:
-                row = self.person_list.find_row_from_data(id)
-                self.person_list.remove(row)
 
-            del self.id2col[pid]
+        if old_id:
+            del_id = old_id
+        else:
+            del_id = pid
+            
+        if self.id2col.has_key(del_id):
+            row = self.person_list.find_row_from_data(del_id)
+            self.person_list.remove(row)
+            del self.id2col[del_id]
 
             if row > self.person_list.rows:
-                (p,x) = self.person_list.get_row_data(row)
+                p = self.person_list.get_row_data(row)
                 self.active_person = self.db.getPersonMap()[p]
         self.person_list.thaw()
     
@@ -968,8 +963,7 @@ class Gramps:
     
     def on_person_list_select_row(self,obj,row,b,c):
         if row == obj.selection[0]:
-            (id,x) = obj.get_row_data(row)
-            person = self.db.getPersonMap()[id]
+            person = self.db.getPersonMap()[obj.get_row_data(row)]
             self.change_active_person(person)
 
     def on_person_list_click_column(self,obj,column):
@@ -1060,8 +1054,7 @@ class Gramps:
             return
         id = self.active_person.getId()
         if self.id2col.has_key(id):
-            pos = self.id2col[id]
-            column = self.person_list.find_row_from_data(pos)
+            column = self.person_list.find_row_from_data(id)
             if column != -1:
                 self.person_list.unselect_all()
                 self.person_list.select_row(column,0)
@@ -1071,8 +1064,8 @@ class Gramps:
                     self.person_list.unselect_all()
                     self.person_list.select_row(0,0)
                     self.person_list.moveto(0)
-                    (person,x) = self.person_list.get_row_data(0)
-                    person = self.db.getPersonMap()[person]
+                    pid = self.person_list.get_row_data(0)
+                    person = self.db.getPersonMap()[pid]
                     self.change_active_person(person)	
     
     def change_active_person(self,person):
@@ -1418,6 +1411,7 @@ class Gramps:
                 self.db.addPerson(epo.person)
             else:
                 self.db.addPersonNoMap(epo.person,epo.person.getId())
+            self.db.buildPersonDisplay(epo.person.getId())
             self.change_active_person(epo.person)
             self.redisplay_person_list(epo.person)
         for p in plist:
@@ -1431,19 +1425,19 @@ class Gramps:
 
     def update_after_edit(self,epo,plist):
         if epo:
-            self.remove_from_person_list(epo.person)
+            self.db.buildPersonDisplay(epo.person.getId(),epo.original_id)
+            self.remove_from_person_list(epo.person,epo.original_id)
             self.redisplay_person_list(epo.person)
         for p in plist:
             self.place_view.new_place_after_edit(p)
         self.update_display(0)
 
     def redisplay_person_list(self,person):
-        pos = (person,0)
-        self.id2col[person.getId()] = pos
+        self.id2col[person.getId()] = 1
         
         if self.DataFilter.compare(person):
             self.person_list.insert(0,person.getDisplayInfo())
-            self.person_list.set_row_data(0,pos)
+            self.person_list.set_row_data(0,person.getId())
         self.sort_person_list()
 
     def load_person(self,person):
@@ -1843,11 +1837,10 @@ class Gramps:
             if datacomp(person):
                 if self.id2col.has_key(key):
                     continue
-                pos = (key,0)
-                self.id2col[key] = pos
+                self.id2col[key] = 1
 
                 self.person_list.insert(0,self.db.getPersonDisplay(key))
-                self.person_list.set_row_data(0,pos)
+                self.person_list.set_row_data(0,person.getId())
             else:
                 if self.id2col.has_key(key):
                     del self.id2col[key]

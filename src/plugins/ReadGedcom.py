@@ -425,6 +425,7 @@ class GedcomParser:
                 self.person = self.db.findPerson(matches[1],self.pmap)
                 self.added[self.person.getId()] = self.person
                 self.parse_individual()
+                self.db.buildPersonDisplay(self.person.getId())
             elif matches[2] in ["SUBM","SUBN"]:
                 self.ignore_sub_junk(1)
             elif matches[1] in ["SUBM","SUBN"]:
