@@ -348,7 +348,6 @@ class MergePeople:
         try:
             self.db.removePerson(self.p2.getId())
             self.db.personMap[self.p1.getId()] = self.p1
-            self.db.personTable[self.p1.getId()] = self.p1.getDisplayInfo()
             self.db.buildPersonDisplay(self.p1.getId(),old_id)
         except:
             print "%s is not in the person map!" % (GrampsCfg.nameof(self.p2))
