@@ -226,21 +226,26 @@ class ReportDialog:
         'page break between generations' check box"""
         return (10, 1)
     
-    def get_report_extra_menu_map(self):
+    def get_report_extra_menu_info(self):
         """Return the data used to fill out the 'extra' option menu in
         the report options box.  The first value is the string to be
         used as the label to the left of the menu.  The second value
         is a mapping of string:value pairs.  The strings will be used
         to label individual menu items, and the values are what will
-        be returned if a given menu item is selected.  The final value
-        is the name of menu item to pre-select."""
-        return (None, None, None)
+        be returned if a given menu item is selected.  The third value
+        is the name of menu item to pre-select, and the final value is
+        a string to use as the tooltip for the textbox."""
+        return (None, None, None, None)
     
-    def get_report_extra_textbox_string(self):
-        """Return the string to put into the 'extra' text box in
-        the report options box.  If None, then the text box will be
-        hidden."""
-        return (None, None)
+    def get_report_extra_textbox_info(self):
+        """Return the data used to fill out the 'extra' textbox in the
+        report options dialog.  The first value is the string to be
+        used as the label to the left of the textbox.  The second
+        value is the string to use as the default contents of the
+        textbox.  If None, then the text box will be hidden.  The
+        final value is a string to use as the tooltip for the
+        textbox."""
+        return (None, None, None)
     
     #------------------------------------------------------------------------
     #
@@ -473,23 +478,25 @@ class ReportDialog:
         # Now the "extra" option menu
         self.extra_menu_label = self.topDialog.get_widget("extra_menu_label")
         self.extra_menu = self.topDialog.get_widget("extra_menu")
-        (label, extra_map, preset) = self.get_report_extra_menu_map()
+        (label, extra_map, preset, tip) = self.get_report_extra_menu_info()
         if extra_map:
             self.extra_menu_label.set_text(label)
             self.extra_menu_label.show()
             myMenu = utils.build_string_optmenu(extra_map, preset)
             self.extra_menu.set_menu(myMenu)
             self.extra_menu.set_sensitive(len(extra_map) > 1)
+            self.add_tooltip(self.extra_menu,tip)
             self.extra_menu.show()
 
         # Now the "extra" text box
         self.extra_textbox_label = self.topDialog.get_widget("extra_textbox_label")
         self.extra_textbox = self.topDialog.get_widget("extra_textbox")
-        (label, string) = self.get_report_extra_textbox_string()
+        (label, string, tip) = self.get_report_extra_textbox_info()
         if string:
             self.extra_textbox_label.set_text(label)
             self.extra_textbox_label.show()
             self.extra_textbox.insert_defaults(string)
+            self.add_tooltip(self.extra_textbox,tip)
             self.topDialog.get_widget("extra_scrolledwindow").show()
         
     def setup_other_frames(self):
@@ -630,6 +637,17 @@ class ReportDialog:
         better yet, should create a subclass of a Report that will
         write the data to a file."""
         assert 0, _("The make_report function must be overridden.")
+
+    #------------------------------------------------------------------------
+    #
+    # Miscellaneous functions.
+    #
+    #------------------------------------------------------------------------
+    def add_tooltip(self,widget,string):
+        if not widget or not string:
+            return
+        tip = gtk.GtkTooltips()
+        tip.set_tip(widget,string)
 
 #------------------------------------------------------------------------
 #

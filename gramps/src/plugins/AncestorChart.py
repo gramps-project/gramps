@@ -274,9 +274,10 @@ class AncestorChartDialog(DrawReportDialog):
         """Default to 10 generations, no page breaks."""
         return (10, 0)
     
-    def get_report_extra_textbox_string(self):
+    def get_report_extra_textbox_info(self):
         """Label the textbox and provide the default contents."""
-        return (_("Display Format"), "$n\nb. $b\nd. $d")
+        return (_("Display Format"), "$n\nb. $b\nd. $d",
+                _("Allows you to customize the data in the boxes in the report"))
 
     #------------------------------------------------------------------------
     #
