@@ -31,8 +31,15 @@ from gettext import gettext as _
 
 _findint = re.compile('^[^\d]*(\d+)[^\d]*')
 
-def runTool(db,active_person,callback):
+def runTool(db,active_person,callback,parent):
     """Changed person, family, object, source, and place ids"""
+    # FIXME: Remove when plugin is properly implemented
+    from QuestionDialog import OkDialog
+    OkDialog(_("Plugin unavailable"),
+            _("This plugin is not implemented yet. Please check the next version."),
+            parent.topWindow)
+    return
+
     try:
         ReorderIds(db,callback)
     except:
