@@ -203,13 +203,14 @@ class SourceView:
     def update_display(self,source):
         self.model.update_row_by_handle(source.get_handle())
 
+    def blist(self,store,path,iter,list):
+        handle = store.get_value(iter,_HANDLE_COL)
+        list.append(handle)
+
     def merge(self):
-        ErrorDialog("NOT IMPLEMENTED",
-            "Need to correct SourceView.merge method.")
-        return
         mlist = []
         self.selection.selected_foreach(self.blist,mlist)
-        
+
         if len(mlist) != 2:
             msg = _("Cannot merge sources.")
             msg2 = _("Exactly two sources must be selected to perform a merge. "
