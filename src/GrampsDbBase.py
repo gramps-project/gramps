@@ -996,17 +996,17 @@ class GrampsDbBase:
         return locale.strcoll(n1,n2)
 
     def _sortbyplace(self,f,s):
-        return locale.strcoll(self.place_map.get(str(f))[2].upper(),
-                             self.place_map.get(str(s))[2].upper())
+        return locale.strcoll(self.place_map.get(str(f))[2],
+                              self.place_map.get(str(s))[2])
 
     def _sortbysource(self,f,s):
-        fp = self.source_map[str(f)][2].upper()
-        sp = self.source_map[str(s)][2].upper()
+        fp = self.source_map[str(f)][2]
+        sp = self.source_map[str(s)][2]
         return locale.strcoll(fp,sp)
 
     def _sortbymedia(self,f,s):
-        fp = self.media_map[str(f)][4].upper()
-        sp = self.media_map[str(s)][4].upper()
+        fp = self.media_map[str(f)][4]
+        sp = self.media_map[str(s)][4]
         return locale.strcoll(fp,sp)
 
     def set_person_column_order(self,list):
