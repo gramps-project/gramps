@@ -823,15 +823,25 @@ class BookReportDialog(Report.ReportDialog):
         self.book = book
         self.database = database 
         self.person = person
-        self.default_style = TextDoc.StyleSheet()
+        self.selected_style = TextDoc.StyleSheet()
 
         for item in self.book.get_item_list():
-            style_file = item.get_style_file()
+            # Set up default style
+            default_style = TextDoc.StyleSheet()
             make_default_style = item.get_make_default_style()
-            make_default_style(self.default_style)
-            style_list = TextDoc.StyleSheetList(style_file,self.default_style)
+            make_default_style(default_style)
+
+            # Read all style sheets available for this item
+            style_file = item.get_style_file()
+            style_list = TextDoc.StyleSheetList(style_file,default_style)
+
+            # Get the selected stylesheet
             style_name = item.get_style_name()
-            self.selected_style = style_list.get_style_sheet(style_name)
+            style_sheet = style_list.get_style_sheet(style_name)
+
+            for this_style_name in style_sheet.get_names():
+                self.selected_style.add_style(
+                    this_style_name,style_sheet.get_style(this_style_name))
 
     def setup_style_frame(self): pass
     def setup_report_options_frame(self): pass

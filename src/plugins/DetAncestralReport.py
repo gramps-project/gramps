@@ -110,7 +110,7 @@ class DetAncestorReport(Report.Report):
 
         num_children= len(family.getChildList())
         if num_children > 0:
-            self.doc.start_paragraph("ChildTitle")
+            self.doc.start_paragraph("DAR:ChildTitle")
             if family.getMother() != None:
                 mother= family.getMother().getPrimaryName().getRegularName()
             else: mother= "unknown"
@@ -125,7 +125,7 @@ class DetAncestorReport(Report.Report):
             self.doc.end_paragraph()
 
             for child in family.getChildList():
-                self.doc.start_paragraph("ChildList")
+                self.doc.start_paragraph("DAR:ChildList")
                 name= child.getPrimaryName().getRegularName()
                 birth= child.getBirth()
                 death= child.getDeath()
@@ -197,7 +197,7 @@ class DetAncestorReport(Report.Report):
     def write_person(self, key, rptOptions):
         """Output birth, death, parentage, marriage and notes information """
 
-        self.doc.start_paragraph("Entry","%s." % str(key))
+        self.doc.start_paragraph("DAR:Entry","%s." % str(key))
 
         person = self.map[key]
         if rptOptions.addImages == reportOptions.Yes:
@@ -239,12 +239,12 @@ class DetAncestorReport(Report.Report):
         if key == 1:  self.write_mate(person, rptOptions)
 
         if person.getNote() != "" and rptOptions.includeNotes == reportOptions.Yes:
-            self.doc.start_paragraph("NoteHeader")
+            self.doc.start_paragraph("DAR:NoteHeader")
             self.doc.start_bold()
             self.doc.write_text(_("Notes for %s" % name))
             self.doc.end_bold()
             self.doc.end_paragraph()
-            self.doc.start_paragraph("Entry")
+            self.doc.start_paragraph("DAR:Entry")
             self.doc.write_text(person.getNote())
             self.doc.end_paragraph()
 
@@ -534,7 +534,7 @@ class DetAncestorReport(Report.Report):
                         firstName= fam.getFather().getPrimaryName().getFirstName()
 
                 if person != "":
-                    self.doc.start_paragraph("Entry")
+                    self.doc.start_paragraph("DAR:Entry")
 
                     if rptOptions.addImages == reportOptions.Yes:
 						self.insert_images(ind, rptOptions.imageAttrTag)
@@ -593,7 +593,7 @@ class DetAncestorReport(Report.Report):
 
                         numPhotos= numPhotos + 1
                         if numPhotos == 1:
-                            self.doc.start_paragraph("Entry")
+                            self.doc.start_paragraph("DAR:Entry")
                         self.doc.add_photo(photo.ref.getPath(), vlist[0], \
 							float(vlist[1]), float(vlist[2]))
 						#self.doc.end_paragraph()
@@ -601,7 +601,7 @@ class DetAncestorReport(Report.Report):
                     elif vlist[0] == 'row':
                         numPhotos= numPhotos + 1
                         if numPhotos == 1:
-                            self.doc.start_paragraph("Entry")
+                            self.doc.start_paragraph("DAR:Entry")
                         self.doc.add_photo(photo.ref.getPath(), vlist[0], \
 							float(vlist[1]), float(vlist[2]))
 
@@ -623,7 +623,7 @@ class DetAncestorReport(Report.Report):
         rptOpt = self.rptOpt
 
         name = self.start.getPrimaryName().getRegularName()
-        self.doc.start_paragraph("Title")
+        self.doc.start_paragraph("DAR:Title")
         title = _("Detailed Ancestral Report for %s") % name
         self.doc.write_text(title)
         self.doc.end_paragraph()
@@ -637,7 +637,7 @@ class DetAncestorReport(Report.Report):
             if generation == 0 or key >= 2**generation:
                 if self.pgbrk and generation > 0:
                     self.doc.page_break()
-                self.doc.start_paragraph("Generation")
+                self.doc.start_paragraph("DAR:Generation")
                 t = _("%s Generation") % DetAncestorReport.gen[generation+1]
                 self.doc.write_text(t)
                 self.doc.end_paragraph()
@@ -675,7 +675,7 @@ def _make_default_style(default_style):
     para.set_font(font)
     para.set_header_level(1)
     para.set(pad=0.5)
-    default_style.add_style("Title",para)
+    default_style.add_style("DAR:Title",para)
 
     font = TextDoc.FontStyle()
     font.set(face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
@@ -683,7 +683,7 @@ def _make_default_style(default_style):
     para.set_font(font)
     para.set_header_level(2)
     para.set(pad=0.5)
-    default_style.add_style("Generation",para)
+    default_style.add_style("DAR:Generation",para)
 
     font = TextDoc.FontStyle()
     font.set(face=TextDoc.FONT_SANS_SERIF,size=10,italic=0, bold=0)
@@ -692,22 +692,22 @@ def _make_default_style(default_style):
     #para.set_header_level(3)
     para.set_left_margin(0.0)   # in centimeters
     para.set(pad=0.5)
-    default_style.add_style("ChildTitle",para)
+    default_style.add_style("DAR:ChildTitle",para)
 
     font = TextDoc.FontStyle()
     font.set(face=TextDoc.FONT_SANS_SERIF,size=9)
     para = TextDoc.ParagraphStyle()
     para.set_font(font)
     para.set(first_indent=0.0,lmargin=0.0,pad=0.25)
-    default_style.add_style("ChildList",para)
+    default_style.add_style("DAR:ChildList",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(first_indent=0.0,lmargin=0.0,pad=0.25)
-    default_style.add_style("NoteHeader",para)
+    default_style.add_style("DAR:NoteHeader",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(first_indent=0.5,lmargin=0.0,pad=0.25)
-    default_style.add_style("Entry",para)
+    default_style.add_style("DAR:Entry",para)
 
     table = TextDoc.TableStyle()
     table.set_width(1000)

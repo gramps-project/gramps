@@ -2016,9 +2016,11 @@ class Gramps:
                 try:
                     dir = "%s/share/gramps/example" % const.prefixdir
                     for file in os.listdir(dir):
-                        shutil.copyfile("%s/%s" % (dir,file), dest)
+                        shutil.copyfile("%s/%s" % (dir,file), 
+                            "%s/%s" % (dest,file) )
                         try:
-                            shutil.copystat("%s/%s" % (dir,file), dest)
+                            shutil.copystat("%s/%s" % (dir,file),
+                                "%s/%s" % (dest,file))
                         except:
                             pass
                 except IOError,msg:

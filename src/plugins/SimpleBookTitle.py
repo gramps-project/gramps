@@ -73,11 +73,11 @@ class SimpleBookTitle(Report.Report):
         if self.newpage:
             self.doc.page_break()
 
-        self.doc.start_paragraph('SBT-Title')
+        self.doc.start_paragraph('SBT:Title')
         self.doc.write_text(self.title_string)
         self.doc.end_paragraph()
 
-        self.doc.start_paragraph('SBT-Subtitle')
+        self.doc.start_paragraph('SBT:Subtitle')
         self.doc.write_text(self.copyright_string)
         self.doc.end_paragraph()
 
@@ -95,7 +95,7 @@ def _make_default_style(default_style):
     para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
     para.set(pad=0.5)
     para.set_description(_('The style used for the title of the page.'))
-    default_style.add_style("SBT-Title",para)
+    default_style.add_style("SBT:Title",para)
     
     font = TextDoc.FontStyle()
     font.set(face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
@@ -105,7 +105,7 @@ def _make_default_style(default_style):
     para.set(pad=0.5)
     para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
     para.set_description(_('The style used for the subtitle.'))
-    default_style.add_style("SBT-Subtitle",para)
+    default_style.add_style("SBT:Subtitle",para)
     
 #------------------------------------------------------------------------
 #
@@ -194,7 +194,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         self.copyright_entry = gtk.Entry()
 
         self.add_frame_option(_('Contents'),_('Title String'),self.title_entry)
-        self.add_frame_option(_('Contents'),_('Copyright String'),self.copyright_entry)
+        self.add_frame_option(_('Contents'),_('Subtitle String'),self.copyright_entry)
 
     def parse_report_options_frame(self):
         """Parse the report options frame of the dialog.  Save the user selected choices for later use."""
