@@ -3,6 +3,7 @@ Version 0.9.1
 * Witnesses may be added to an event. The witnesses do not have to be in
   the database, in which case only a string for a name is kept.
 * Improved Dialogs to be compliant with GNOME Human Interface Guidelines.
+* Added Romanian translation (Radu Bogdan Mare)
 
 Version 0.9.0
 * GNOME 2.0 support. Requires pygtk2 and gnome-python2.

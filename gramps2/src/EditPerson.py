@@ -96,6 +96,7 @@ class EditPerson:
         self.gallery = ImageSelect.Gallery(person, self.path, self.icon_list,self.db,self)
 
         self.name_delete_btn = self.top.get_widget('aka_delete')
+        self.name_edit_btn = self.top.get_widget('aka_edit')
         self.web_delete_btn = self.top.get_widget('delete_url')
         self.event_delete_btn = self.top.get_widget('event_delete_btn')
         self.attr_delete_btn = self.top.get_widget('attr_delete_btn')
@@ -134,7 +135,6 @@ class EditPerson:
         self.event_list = self.get_widget("eventList")
         self.edit_person = self.get_widget("editPerson")
         self.name_list = self.get_widget("nameList")
-        self.name_frame = self.get_widget("name_frame")
         self.alt_given_field = self.get_widget("alt_given")
         self.alt_last_field = self.get_widget("alt_last")
         self.alt_title_field = self.get_widget("alt_title")
@@ -816,6 +816,7 @@ class EditPerson:
         """If the data has changed, give the user a chance to cancel
         the close window"""
         if self.did_data_change():
+            n = "<i>%s</i>" % self.person.getPrimaryName().getRegularName()
             SaveDialog(_('Save Changes to %s?' % n),
                        _('If you close without saving, the changes you '
                          'have made will be lost'),
@@ -1065,7 +1066,6 @@ class EditPerson:
         store,iter = self.ntree.get_selected()
         if iter:
             name = self.ntree.get_object(iter)
-            self.name_frame.set_label(name.getName())
             self.alt_given_field.set_text(name.getFirstName())
             self.alt_title_field.set_text(name.getTitle())
             self.alt_last_field.set_text(name.getSurname())
@@ -1080,8 +1080,8 @@ class EditPerson:
                 self.name_src_field.set_text('')
                 self.name_conf_field.set_text('')
             self.name_delete_btn.set_sensitive(1)
+            self.name_edit_btn.set_sensitive(1)
         else:
-            self.name_frame.set_label('')
             self.alt_given_field.set_text('')
             self.alt_title_field.set_text('')
             self.alt_last_field.set_text('')
@@ -1091,6 +1091,7 @@ class EditPerson:
             self.name_src_field.set_text('')
             self.name_conf_field.set_text('')
             self.name_delete_btn.set_sensitive(0)
+            self.name_edit_btn.set_sensitive(0)
 
     def on_web_select_row(self,obj):
         store,iter = self.wtree.get_selected()
@@ -1466,8 +1467,9 @@ class EditPerson:
 
     def write_primary_name(self):
         # initial values
-        name = GrampsCfg.nameof(self.person)
+        name = '<span size="larger" weight="bold">%s</span>' % GrampsCfg.nameof(self.person)
         self.get_widget("activepersonTitle").set_text(name)
+        self.get_widget("activepersonTitle").set_use_markup(gtk.TRUE)
         self.suffix.set_text(self.pname.getSuffix())
         self.prefix.set_text(self.pname.getSurnamePrefix())
 
