@@ -1026,6 +1026,7 @@ def display_preferences_box(db):
     GrampsPreferences(db)
 
 _view_str = "/apps/gramps/view"
+_toolbar_str = "/apps/gramps/toolbar-on"
 
 def save_view(val):
     set_bool(_view_str, not val)
@@ -1040,4 +1041,9 @@ def save_filter(val):
 def get_filter():
     return get_bool("/apps/gramps/filter")
 
+def save_toolbar_on(val):
+    set_bool(_toolbar_str, not val)
+    sync()
 
+def get_toolbar_on():
+    return not client.get_bool(_toolbar_str)

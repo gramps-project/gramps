@@ -8,12 +8,13 @@
 	* src/GrampsCfg.py: Implement instant preferences (HIG).
 	* src/preferences.glade: Likewise.
 	* src/gramps_main.py (pref_callback): Update statusbar from prefs
-	(needed for Family View).
+	(needed for Family View). Enable switching Toolbar on/off.
 	* NEWS: Instant prefs.
 	* src/FamilyView.py (set_widgets): Do not connect buttons if this 
 	view is already initialized.
 	* src/GrampsCfg.py: Set GNOME toolbar prefs as the default. 
-	Correct existing gconf key detection.
+	Correct existing gconf key detection. Enable switching Toolbar on/off.
+	* src/gramps.glade: Enable switching Toolbar on/off. 
 
 2003-10-15  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps.glade: Correct tooltips. 
