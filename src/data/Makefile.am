@@ -25,7 +25,7 @@ install-schemas:
 	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.schemas $(DESTDIR)$(sysconfdir)/gconf/schemas
 	-GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
 		gconftool-2 --makefile-install-rule $(top_srcdir)/src/data/gramps.schemas
-	-pkill -HUP gconfd
+	-pkill gconfd
 
 install-data-local:    install-schemas
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/applications
