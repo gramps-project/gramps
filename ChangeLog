@@ -1,3 +1,7 @@
+2003-11-26  Donald Peterson  <dpeterson@sigmaxi.org>
+	* gramps.desktop: Add new file for implementation into GNOME 
+	menu system.  Still needs a place to be installed.
+
 2003-11-26  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps_main.py (on_faq_activate): Add function.
 	* src/gramps.glade: Add faq window.
