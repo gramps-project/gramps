@@ -209,7 +209,8 @@ class CheckIntegrity:
         title = _("Check Integrity")
         top = topDialog.get_widget("summary")
         textwindow = topDialog.get_widget("textwindow")
-        topDialog.get_widget("summaryTitle").set_text(title)
+
+        Utils.set_titles(top,topDialog.get_widget("title"),title)
         textwindow.get_buffer().set_text(text)
         top.show()
 

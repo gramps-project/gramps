@@ -2,11 +2,11 @@
 <!DOCTYPE database SYSTEM "gramps.dtd" []>
 <database>
   <header>
-    <created date="23 FEB 2003" version="0.9.0-rc5" people="42" families="15" sources="4" places="24"/>
+    <created date="21 MAR 2003" version="0.9.0-1" people="42" families="15" sources="4" places="24"/>
     <researcher>
       <resname>Joe Smith</resname>
       <resaddr>Over There</resaddr>
-      <rescity>Springfield</rescity>
+      <rescity>Somewhere</rescity>
       <resstate>New York</resstate>
       <rescountry>USA</rescountry>
       <respostal>12345</respostal>
@@ -311,18 +311,6 @@
       </event>
       <parentin ref="F1"/>
     </person>
-    <person id="I35">
-      <gender>M</gender>
-      <name type="Birth Name">
-        <first>Lars Peter</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1991-09-16"/>
-        <place ref="P21"/>
-      </event>
-      <childof ref="F10" mrel="Adopted" frel="Adopted"/>
-    </person>
     <person id="I34">
       <gender>F</gender>
       <name type="Birth Name">
@@ -556,6 +544,18 @@ Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corpo
       <childof ref="F9"/>
       <parentin ref="F8"/>
     </person>
+    <person id="I32">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Darcy</first>
+        <last>Horne</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1966-07-02"/>
+        <place ref="P20"/>
+      </event>
+      <parentin ref="F10"/>
+    </person>
     <person id="I25">
       <gender>F</gender>
       <name type="Birth Name">
@@ -597,17 +597,17 @@ Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corpo
       <childof ref="F12"/>
       <parentin ref="F13"/>
     </person>
-    <person id="I32">
-      <gender>F</gender>
+    <person id="I35">
+      <gender>M</gender>
       <name type="Birth Name">
-        <first>Darcy</first>
-        <last>Horne</last>
+        <first>Lars Peter</first>
+        <last>Smith</last>
       </name>
       <event type="Birth">
-        <dateval val="1966-07-02"/>
-        <place ref="P20"/>
+        <dateval val="1991-09-16"/>
+        <place ref="P21"/>
       </event>
-      <parentin ref="F10"/>
+      <childof ref="F10" mrel="Adopted" frel="Adopted"/>
     </person>
     <person id="I21">
       <gender>M</gender>
@@ -846,15 +846,15 @@ Martin was listed as being a Husman, (owning a house as opposed to a farm) in th
     <placeobj id="P24" title="UC Berkeley"/>
     <placeobj id="P12" title="Grostorp, Kristianstad Lan, Sweden"/>
     <placeobj id="P13" title="Copenhagen, Denmark"/>
-    <placeobj id="P21" title="Santa Rosa, Sonoma Co., CA"/>
-    <placeobj id="P15" title="Simrishamn, Kristianstad Lan, Sweden"/>
+    <placeobj id="P14" title="Hoya/Jona/Hoia, Sweden"/>
+    <placeobj id="P20" title="Sacramento, Sacramento Co., CA"/>
     <placeobj id="P16" title="Fremont, Alameda Co., CA"/>
     <placeobj id="P22" title="San Jose, Santa Clara Co., CA"/>
-    <placeobj id="P14" title="Hoya/Jona/Hoia, Sweden"/>
+    <placeobj id="P21" title="Santa Rosa, Sonoma Co., CA"/>
     <placeobj id="P30" title="San Ramon, Conta Costa Co., CA"/>
     <placeobj id="P29" title="Woodland, Yolo Co., CA"/>
     <placeobj id="P28" title="Ronne Bornholm, Denmark"/>
-    <placeobj id="P20" title="Sacramento, Sacramento Co., CA"/>
+    <placeobj id="P15" title="Simrishamn, Kristianstad Lan, Sweden"/>
   </places>
   <objects>
     <object id="O5" src="O5.jpg" mime="image/jpeg" description="Edwin &amp; Janice Smith"/>
@@ -864,4 +864,10 @@ Martin was listed as being a Husman, (owning a house as opposed to a farm) in th
     <object id="O1" src="O1.jpg" mime="image/jpeg" description="Arriving 1910"/>
     <object id="O0" src="O0.jpg" mime="image/jpeg" description="Keith Lloyd Smith"/>
   </objects>
+  <bookmarks>
+    <bookmark ref="I10"/>
+    <bookmark ref="I13"/>
+    <bookmark ref="I41"/>
+    <bookmark ref="I6"/>
+  </bookmarks>
 </database>

@@ -738,7 +738,7 @@
 			    <widget class="GtkTable" id="table15">
 			      <property name="border_width">12</property>
 			      <property name="visible">True</property>
-			      <property name="n_rows">7</property>
+			      <property name="n_rows">8</property>
 			      <property name="n_columns">3</property>
 			      <property name="homogeneous">False</property>
 			      <property name="row_spacing">6</property>
@@ -870,7 +870,6 @@
 				  <property name="active">True</property>
 				  <property name="inconsistent">False</property>
 				  <property name="draw_indicator">True</property>
-				  <property name="group">tool1</property>
 				  <signal name="toggled" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
@@ -893,7 +892,7 @@
 				  <property name="active">False</property>
 				  <property name="inconsistent">False</property>
 				  <property name="draw_indicator">True</property>
-				  <property name="group">tool1</property>
+				  <property name="group">stat1</property>
 				  <signal name="toggled" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
@@ -901,6 +900,29 @@
 				  <property name="right_attach">3</property>
 				  <property name="top_attach">6</property>
 				  <property name="bottom_attach">7</property>
+				  <property name="x_options">fill</property>
+				  <property name="y_options"></property>
+				</packing>
+			      </child>
+
+			      <child>
+				<widget class="GtkRadioButton" id="stat3">
+				  <property name="visible">True</property>
+				  <property name="can_focus">True</property>
+				  <property name="label" translatable="yes">Active person's _relationship to Home Person (English only)</property>
+				  <property name="use_underline">True</property>
+				  <property name="relief">GTK_RELIEF_NORMAL</property>
+				  <property name="active">True</property>
+				  <property name="inconsistent">False</property>
+				  <property name="draw_indicator">True</property>
+				  <property name="group">stat1</property>
+				  <signal name="toggled" handler="on_object_toggled" object="propertybox"/>
+				</widget>
+				<packing>
+				  <property name="left_attach">1</property>
+				  <property name="right_attach">3</property>
+				  <property name="top_attach">7</property>
+				  <property name="bottom_attach">8</property>
 				  <property name="x_options">fill</property>
 				  <property name="y_options"></property>
 				</packing>

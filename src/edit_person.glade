@@ -3417,6 +3417,7 @@
 
 	  <child>
 	    <widget class="GtkScrolledWindow" id="scrolledwindow5">
+	      <property name="border_width">6</property>
 	      <property name="visible">True</property>
 	      <property name="hscrollbar_policy">GTK_POLICY_NEVER</property>
 	      <property name="vscrollbar_policy">GTK_POLICY_ALWAYS</property>
@@ -3432,11 +3433,11 @@
 		  <property name="justification">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap_mode">GTK_WRAP_WORD</property>
 		  <property name="cursor_visible">True</property>
-		  <property name="pixels_above_lines">0</property>
-		  <property name="pixels_below_lines">0</property>
-		  <property name="pixels_inside_wrap">0</property>
-		  <property name="left_margin">0</property>
-		  <property name="right_margin">0</property>
+		  <property name="pixels_above_lines">12</property>
+		  <property name="pixels_below_lines">12</property>
+		  <property name="pixels_inside_wrap">12</property>
+		  <property name="left_margin">12</property>
+		  <property name="right_margin">12</property>
 		  <property name="indent">0</property>
 		  <property name="text" translatable="yes"></property>
 		</widget>

@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000  Donald N. Allinghamg
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -73,6 +73,7 @@ import VersionControl
 import ReadXML
 import ListModel
 import GrampsXML
+import Relationship
 
 try:
     import GrampsZODB
@@ -764,6 +765,7 @@ class Gramps:
         self.full_update()
 
     def read_file(self,filename):
+        self.topWindow.set_resizable(gtk.FALSE)
         filename = os.path.normpath(os.path.abspath(filename))
 
         base = os.path.basename(filename)
@@ -786,7 +788,8 @@ class Gramps:
             self.topWindow.set_title("%s - GRAMPS" % name)
         else:
             GrampsCfg.save_last_file("")
-
+        self.topWindow.set_resizable(gtk.TRUE)
+        
     def on_ok_button2_clicked(self,obj):
         filename = obj.get_filename()
         filename = os.path.normpath(os.path.abspath(filename))
@@ -1011,11 +1014,18 @@ class Gramps:
         self.edit_button.set_sensitive(val)
     
     def modify_statusbar(self):
+        
         if self.active_person == None:
             self.status_text("")
         else:
-            pname = GrampsCfg.nameof(self.active_person)
-            name = "[%s] %s" % (self.active_person.getId(),pname)
+            if GrampsCfg.status_bar == 0:
+                name = GrampsCfg.nameof(self.active_person)
+            elif GrampsCfg.status_bar == 1:
+                pname = GrampsCfg.nameof(self.active_person)
+                name = "[%s] %s" % (self.active_person.getId(),pname)
+            else:
+                name = Relationship.get_relationship(self.db.getDefaultPerson(),
+                                                     self.active_person)
             self.status_text(name)
         return 0
 	
@@ -1304,34 +1314,37 @@ class Gramps:
 
         self.setup_bookmarks()
 
-#        mylist = self.db.getPersonEventTypes()
-#        for type in mylist:
-#            ntype = const.display_pevent(type)
-#            if ntype not in const.personalEvents:
-#                const.personalEvents.append(ntype)
-#
-#        mylist = self.db.getFamilyEventTypes()
-#        for type in mylist:
-#            ntype = const.display_fevent(type)
-#            if ntype not in const.marriageEvents:
-#                const.marriageEvents.append(ntype)
-#
-#        mylist = self.db.getPersonAttributeTypes()
-#        for type in mylist:
-#            ntype = const.display_pattr(type)
-#            if ntype not in const.personalAttributes:
-#                const.personalAttributes.append(ntype)
-#
-#        mylist = self.db.getFamilyAttributeTypes()
-#        for type in mylist:
-#            if type not in const.familyAttributes:
-#                const.familyAttributes.append(type)
-#
-#        mylist = self.db.getFamilyRelationTypes()
-#        for type in mylist:
-#            if type not in const.familyRelations:
-#                const.familyRelations.append(type)
-#
+        try:
+            mylist = self.db.getPersonEventTypes()
+            for type in mylist:
+                ntype = const.display_pevent(type)
+                if ntype not in const.personalEvents:
+                    const.personalEvents.append(ntype)
+                    
+            mylist = self.db.getFamilyEventTypes()
+            for type in mylist:
+                ntype = const.display_fevent(type)
+                if ntype not in const.marriageEvents:
+                    const.marriageEvents.append(ntype)
+
+            mylist = self.db.getPersonAttributeTypes()
+            for type in mylist:
+                ntype = const.display_pattr(type)
+                if ntype not in const.personalAttributes:
+                    const.personalAttributes.append(ntype)
+
+            mylist = self.db.getFamilyAttributeTypes()
+            for type in mylist:
+                if type not in const.familyAttributes:
+                    const.familyAttributes.append(type)
+
+            mylist = self.db.getFamilyRelationTypes()
+            for type in mylist:
+                if type not in const.familyRelations:
+                    const.familyRelations.append(type)
+        except:
+            pass
+
         GrampsCfg.save_last_file(name)
         self.gtop.get_widget("filter").set_text("")
     

@@ -92,7 +92,7 @@ class AttributeEditor:
         l = self.top.get_widget("title")
         Utils.set_titles(self.window,l,title,_('Attribute Editor'))
 
-        AutoComp.AutoEntry(self.attrib_menu.entry,list)
+        AutoComp.AutoCombo(self.attrib_menu,list)
 
         if attrib != None:
             self.type_field.set_text(attrib.getType())
