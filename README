@@ -2,7 +2,8 @@ Please read the COPYING file first.
 
 Requirements
 --------------------------------
-Python 1.5.2
+Python 1.5.2 
+(I get some strange floating point errors when using this version: "Python 2.0 (#1, Jun 23 2001, 03:45:59)"  -- Jesper )
 
 Gnome 1.2 (included in Helix Gnome)
 PyGnome 1.0.53 (included in Helix Gnome)
