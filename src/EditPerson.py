@@ -914,6 +914,7 @@ def on_primary_photo_clicked(obj):
         return
 
     photolist = edit_person_obj.person.getPhotoList()
+    selectedIcon = edit_person_obj.selectedIcon
     savePhoto = photolist[selectedIcon]
     for i in range(0,selectedIcon):
         photolist[selectedIcon-i] = photolist[selectedIcon-i-1]
