@@ -1621,7 +1621,7 @@ fi
 
 
 
-LANGUAGES="sv de fr es it pt_BR ru da_DK cs po"
+LANGUAGES="sv de fr es it pt_BR ru da_DK cs pl"
 
 
 DISTLANGS=
