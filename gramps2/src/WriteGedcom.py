@@ -825,9 +825,14 @@ class GedcomWriter:
     def write_sources(self):
         nump = float(len(self.slist))
         index = 0.0
+        sorted = []
         for key in self.slist.keys():
             source = self.db.get_source_from_handle(key)
-            self.writeln("0 @%s@ SOUR" % self.sid(source.get_gramps_id()))
+            tuple = (self.sid (source.get_gramps_id ()), source)
+            sorted.append (tuple)
+        sorted.sort ()
+        for (source_id, source) in sorted:
+            self.writeln("0 @%s@ SOUR" % source_id)
             if source.get_title():
                 self.writeln("1 TITL %s" % fmtline(self.cnvtxt(source.get_title()),248,1,self.nl))
             if source.get_author():
