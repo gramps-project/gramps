@@ -1120,9 +1120,9 @@ class Person:
         """returns the main Family of the Person, the Family in which the
         Person is a natural born child"""
         if len(self.AltFamilyList) == 0:
-            return None
+            return (None,None,None)
         else:
-            return self.AltFamilyList
+            return self.AltFamilyList[0]
 
     def setNote(self,text):
         """sets the note attached to the Person to the passed text"""
