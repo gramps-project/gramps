@@ -1,3 +1,6 @@
+2003-09-25  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/DetAncestralReport.py: Fix translatable string.
+
 2003-09-24  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/WriteFTree.py: increment the count properly
 
@@ -3806,4 +3809,3 @@
 
 	* .cvsignore 1.1, COPYING 1.1, NEWS 1.1, README 1.1, TODO 1.1:
 	New file.
-
