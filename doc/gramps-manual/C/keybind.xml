@@ -3,7 +3,7 @@
 <!-- $Id$ -->
 
       <!-- =============== Appendices Subsection ================ -->
-      <sect2 id="keybind">
+      <sect2 id="append-keybind">
       <title>Keybindings reference</title>
       <para>This appendix contains the list of keybindings that are not 
       displayed in menus of &app;.
@@ -26,7 +26,7 @@
         </thead>
         <tbody> 
         <row valign="top"> 
-          <entry><para><guilabel>Enter</guilabel></para></entry> 
+          <entry><para><keycap>Enter</keycap></para></entry> 
           <entry><para>Invoke <guilabel>Edit Person</guilabel> dialog 
           with the selected person.</para></entry> 
         </row>  
@@ -61,16 +61,16 @@
           </thead>
           <tbody> 
           <row valign="top"> 
-            <entry><para><guilabel>Enter</guilabel></para></entry> 
+            <entry><para><keycap>Enter</keycap></para></entry> 
             <entry><para>Invoke <guilabel>Edit Person</guilabel> dialog with 
             the active person.</para></entry> 
           </row>  
           <row valign="top"> 
-            <entry><para><guilabel>Ctrl+Down</guilabel> 
-            or <guilabel>Ctrl+Right</guilabel></para></entry> 
+            <entry><para><keycap>Ctrl</keycap>+<keycap>Down</keycap> 
+            or <keycap>Ctrl</keycap>+<keycap>Right</keycap></para></entry> 
             <entry><para>Swap the Active Person and the selected spouse.
-            Use <guilabel>Ctrl+Down</guilabel> in standard Family View and
-            <guilabel>Ctrl+Right</guilabel> in alternative Family  
+            Use <keycap>Ctrl+Down</keycap> in standard Family View and
+            <keycap>Ctrl+Right</keycap> in alternative Family  
             View.</para></entry> 
           </row>  
           </tbody> 
@@ -96,36 +96,36 @@
           </thead>
           <tbody> 
           <row valign="top"> 
-            <entry><para><guilabel>Enter</guilabel></para></entry> 
+            <entry><para><keycap>Enter</keycap></para></entry> 
             <entry><para>Edit relationship between the Active Person and 
             the selected spouse.</para></entry> 
           </row>  
           <row valign="top"> 
-            <entry><para><guilabel>Shift+Enter</guilabel></para></entry> 
+            <entry><para><keycap>Shift+Enter</keycap></para></entry> 
             <entry><para>Edit the personal information for the selected
             spouse.</para></entry> 
           </row>  
           <row valign="top"> 
-            <entry><para><guilabel>Insert</guilabel></para></entry> 
+            <entry><para><keycap>Insert</keycap></para></entry> 
             <entry><para>Add a person from the database to the spouse 
             list.</para></entry> 
           </row>  
           <row valign="top"> 
-            <entry><para><guilabel>Shift+Insert</guilabel></para></entry> 
+            <entry><para><keycap>Shift+Insert</keycap></para></entry> 
             <entry><para>Add a new person to the database and to the spouse 
             list.</para></entry> 
           </row>  
           <row valign="top"> 
-            <entry><para><guilabel>Delete</guilabel></para></entry> 
+            <entry><para><keycap>Delete</keycap></para></entry> 
             <entry><para>Delete the selected spouse from the spouse 
             list. The spouse is not deleted from the database.</para></entry> 
           </row>  
           <row valign="top"> 
-            <entry><para><guilabel>Ctrl+Up</guilabel> 
-            or <guilabel>Ctrl+Left</guilabel></para></entry> 
+            <entry><para><keycap>Ctrl+Up</keycap> 
+            or <keycap>Ctrl+Left</keycap></para></entry> 
             <entry><para>Swap the selected spouse and the Active Person.
-            Use <guilabel>Ctrl+Down</guilabel> in standard Family View and
-            <guilabel>Ctrl+Right</guilabel> in alternative Family  
+            Use <keycap>Ctrl+Down</keycap> in standard Family View and
+            <keycap>Ctrl+Right</keycap> in alternative Family  
             View.</para></entry> 
           </row>  
           </tbody> 
@@ -151,32 +151,32 @@
           </thead>
           <tbody> 
           <row valign="top"> 
-            <entry><para><guilabel>Enter</guilabel></para></entry> 
+            <entry><para><keycap>Enter</keycap></para></entry> 
             <entry><para>Edit relationship between the parents and their 
             child (either the Active Person or the selected spouse, depending 
             which parents box the focus is in).</para></entry> 
           </row>  
           <row valign="top"> 
-            <entry><para><guilabel>Insert</guilabel></para></entry> 
+            <entry><para><keycap>Insert</keycap></para></entry> 
             <entry><para>Add a new set of parents from the database to the 
             list.</para></entry> 
           </row>  
           <row valign="top"> 
-            <entry><para><guilabel>Shift+Insert</guilabel></para></entry> 
+            <entry><para><keycap>Shift+Insert</keycap></para></entry> 
             <entry><para>Add a new set of parents to the database and to the 
             list.</para></entry> 
           </row>  
           <row valign="top"> 
-            <entry><para><guilabel>Delete</guilabel></para></entry> 
+            <entry><para><keycap>Delete</keycap></para></entry> 
             <entry><para>Delete the selected parents from the list. 
             The parents are not deleted from the database.</para></entry> 
           </row>  
           <row valign="top"> 
-            <entry><para><guilabel>Ctrl+Right</guilabel> 
-            or <guilabel>Ctrl+Down</guilabel></para></entry> 
+            <entry><para><keycap>Ctrl+Right</keycap> 
+            or <keycap>Ctrl+Down</keycap></para></entry> 
             <entry><para>Make the selected parents the active family.
-            Use <guilabel>Ctrl+Right</guilabel> in standard Family View and
-            <guilabel>Ctrl+Down</guilabel> in alternative Family  
+            Use <keycap>Ctrl+Right</keycap> in standard Family View and
+            <keycap>Ctrl+Down</keycap> in alternative Family  
             View.</para></entry> 
           </row>  
           </tbody> 
@@ -202,37 +202,37 @@
           </thead>
           <tbody> 
           <row valign="top"> 
-            <entry><para><guilabel>Enter</guilabel></para></entry> 
+            <entry><para><keycap>Enter</keycap></para></entry> 
             <entry><para>Edit relationship between the child and his/her  
             parents (the Active Person and the selected 
             spouse).</para></entry> 
           </row>  
           <row valign="top"> 
-            <entry><para><guilabel>Shift+Enter</guilabel></para></entry> 
+            <entry><para><keycap>Shift+Enter</keycap></para></entry> 
             <entry><para>Edit the personal information for the selected
             child.</para></entry> 
           </row>  
           <row valign="top"> 
-            <entry><para><guilabel>Insert</guilabel></para></entry> 
+            <entry><para><keycap>Insert</keycap></para></entry> 
             <entry><para>Add a new person from the database to the children 
             list.</para></entry> 
           </row>  
           <row valign="top"> 
-            <entry><para><guilabel>Shift+Insert</guilabel></para></entry> 
+            <entry><para><keycap>Shift+Insert</keycap></para></entry> 
             <entry><para>Add a new person to the database and to the children
             list.</para></entry> 
           </row>  
           <row valign="top"> 
-            <entry><para><guilabel>Delete</guilabel></para></entry> 
+            <entry><para><keycap>Delete</keycap></para></entry> 
             <entry><para>Delete the selected child from the list. 
             The child is not deleted from the database.</para></entry> 
           </row>  
           <row valign="top"> 
-            <entry><para><guilabel>Ctrl+Left</guilabel> 
-            or <guilabel>Ctrl+Up</guilabel></para></entry> 
+            <entry><para><keycap>Ctrl+Left</keycap> 
+            or <keycap>Ctrl+Up</keycap></para></entry> 
             <entry><para>Make the selected child the Active Person.
-            Use <guilabel>Ctrl+Left</guilabel> in standard Family View and
-            <guilabel>Ctrl+Up</guilabel> in alternative Family  
+            Use <keycap>Ctrl+Left</keycap> in standard Family View and
+            <keycap>Ctrl+Up</keycap> in alternative Family  
             View.</para></entry> 
           </row>  
           </tbody> 
