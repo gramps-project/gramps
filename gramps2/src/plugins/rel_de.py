@@ -40,16 +40,24 @@ from Relationship import apply_filter as getallancestors
 #
 #-------------------------------------------------------------------------
 
-_cousin_level = [ 
-  "", "", "Groß-", "Ur-Groß-", "Ur-Ur-Groß-", "Ur-Ur-Ur-Groß-", "Ur-Ur-Ur-Ur-Groß-",
-  "Ur-Ur-Ur-Ur-Ur-Groß-", "Ur-Ur-Ur-Ur-Ur-Ur-Groß-", "Ur-Ur-Ur-Ur-Ur-Ur-Ur-Groß-", 
-  "Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Groß-", "Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Groß-", 
-  "Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Groß-", "Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Groß-", 
-  "Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Groß-", "Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Groß-", 
-  "Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Groß-", 
-  "Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Groß-", 
-  "Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Groß-",
-  "Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Ur-Groß-" ]
+_cousin_level = [ "", "Cousin", 
+  "Großcousin", 
+  "Urgroßcousin", 
+  "Ururgroßcousin", 
+  "Urururgroßcousin", 
+  "Ururururgroßcousin",
+  "Ururururururoßcousin", 
+  "Ururururururgroßcousin", 
+  "Urururururururgroßcousin", 
+  "Ururururururururgroßcousin", 
+  "Urururururururururgroßcousin", 
+  "Ururururururururururgroßcousin", 
+  "Urururururururururururgroßcousin", 
+  "Ururururururururururururgroßcousin", 
+  "Urururururururururururururgroßcousin", 
+  "Ururururururururururururururgroßcousin", 
+  "Urururururururururururururururgroßcousin",
+  "Ururururururururururururururururgroßcousin" ]
 
 _removed_level = [ "", "ersten", "zweiten", "dritten", "vierten", "fünften",
   "sechsten", "siebten", "achten", "neunten", "zehnten", "elften", "zwölften", 
@@ -72,24 +80,151 @@ _mother_level = [ "", "Mutter (Ebene 1)", "Großmutter (Ebene 2)", "Urgroßmutte
     "Ahnenmutter (Ebene 13)", "Ahnengroßmutter (Ebene 14)", "Ahnenurgroßmutter (Ebene 15)", 
     "Urahnenmutter (Ebene 16)", "Urahnengroßmutter (Ebene 17)", "Urahnenurgroßmutter (Ebene 18)", 
     "Erzmutter (Ebene 19)", "Erzgroßmutter (Ebene 20)", "Erzurgroßmutter (Ebene 21)", 
-    "Erzahnenmutter (Ebene 22)", "Erzahnengroßmutter (Ebene 23)", "Erzahnenurgroßmutter (Ebene 24)" ]
+    "Erzahnenmutter (Ebene 22)", "Erzahnengroßmutter (Ebene 23)", 
+    "Erzahnenurgroßmutter (Ebene 24)" ]
 
-_son_level = [ "", "Sohn", "Enkel", "Urenkel", "Ururenkel", "Urururuenkel", "Urururururenkel" ]
+_son_level = [ "", "Sohn", 
+  "Enkel", 
+  "Urenkel", 
+  "Ururenkel", 
+  "Urururuenkel", 
+  "Urururururenkel",
+  "Ururururururenkel",
+  "Urururururururenkel",
+  "Ururururururururenkel",
+  "Urururururururururenkel",
+  "Ururururururururururenkel",
+  "Urururururururururururenkel",
+  "Ururururururururururururenkel",
+  "Urururururururururururururenkel",
+  "Ururururururururururururururenkel",
+  "Urururururururururururururururenkel",
+  "Ururururururururururururururururenkel",
+  "Urururururururururururururururururenkel",
+  "Ururururururururururururururururururenkel",
+  "Urururururururururururururururururururenkel",
+  "Ururururururururururururururururururururenkel",
+  "Urururururururururururururururururururururenkel",
+]
 
-_daughter_level = [ "", "Tochter", "Enkelin", "Urenkelin", "Ururenkelin", "Urururuenkelin", 
-      "Urururururenkelin" ]
+_daughter_level = [ "", "Tochter", 
+  "Enkelin", 
+  "Urenkelin", 
+  "Ururenkelin", 
+  "Urururuenkelin", 
+  "Urururururenkelin", 
+  "Ururururururenkelin", 
+  "Urururururururenkelin", 
+  "Ururururururururenkelin", 
+  "Urururururururururenkelin", 
+  "Ururururururururururenkelin", 
+  "Urururururururururururenkelin", 
+  "Ururururururururururururenkelin", 
+  "Urururururururururururururenkelin", 
+  "Ururururururururururururururenkelin", 
+  "Urururururururururururururururenkelin", 
+  "Ururururururururururururururururenkelin", 
+  "Urururururururururururururururururenkelin", 
+  "Ururururururururururururururururururenkelin", 
+  "Urururururururururururururururururururenkelin", 
+  "Ururururururururururururururururururururenkelin", 
+  "Urururururururururururururururururururururenkelin", 
+]
 
-_sister_level = [ "", "Schwester", "Tante", "Großtante", "Urgroßtante", "Ururgroßtante", 
-    "Urururgroßtante" ]
+_sister_level = [ "", "Schwester", "Tante", 
+  "Großtante", 
+  "Urgroßtante", 
+  "Ururgroßtante", 
+  "Urururgroßtante", 
+  "Ururururgroßtante", 
+  "Urururururgroßtante", 
+  "Ururururururgroßtante", 
+  "Urururururururgroßtante", 
+  "Ururururururururgroßtante", 
+  "Urururururururururgroßtante", 
+  "Ururururururururururgroßtante", 
+  "Urururururururururururgroßtante", 
+  "Ururururururururururururgroßtante", 
+  "Urururururururururururururgroßtante", 
+  "Ururururururururururururururgroßtante", 
+  "Urururururururururururururururgroßtante", 
+  "Ururururururururururururururururgroßtante", 
+  "Urururururururururururururururururgroßtante", 
+  "Ururururururururururururururururururgroßtante", 
+  "Urururururururururururururururururururgroßtante", 
+  "Ururururururururururururururururururururgroßtante", 
+]
 
-_brother_level = [ "", "Bruder", "Onkel", "Großonkel", "Urgroßonkel", "Ururgroßonkel",
-    "Urururgroßonkel" ]
+_brother_level = [ "", "Bruder", "Onkel", 
+  "Großonkel", 
+  "Urgroßonkel", 
+  "Ururgroßonkel",
+  "Urururgroßonkel", 
+  "Ururururgroßonkel", 
+  "Urururururgroßonkel", 
+  "Ururururururgroßonkel", 
+  "Urururururururgroßonkel", 
+  "Ururururururururgroßonkel", 
+  "Urururururururururgroßonkel", 
+  "Ururururururururururgroßonkel", 
+  "Urururururururururururgroßonkel", 
+  "Ururururururururururururgroßonkel", 
+  "Urururururururururururururgroßonkel", 
+  "Ururururururururururururururgroßonkel", 
+  "Urururururururururururururururgroßonkel", 
+  "Ururururururururururururururururgroßonkel", 
+  "Urururururururururururururururururgroßonkel", 
+  "Ururururururururururururururururururgroßonkel", 
+  "Urururururururururururururururururururgroßonkel", 
+  "Ururururururururururururururururururururgroßonkel", 
+]
 
-_nephew_level = [ "", "Neffe", "Großneffe", "Urgroßneffe", "Ururgroßneffe", 
-    "Urururgroßneffe", "Ururururgroßneffe" ]
+_nephew_level = [ "", "Neffe", 
+  "Großneffe", 
+  "Urgroßneffe", 
+  "Ururgroßneffe", 
+  "Urururgroßneffe", 
+  "Ururururgroßneffe", 
+  "Urururururgroßneffe", 
+  "Ururururururgroßneffe", 
+  "Urururururururgroßneffe", 
+  "Ururururururururgroßneffe", 
+  "Urururururururururgroßneffe", 
+  "Ururururururururururgroßneffe", 
+  "Urururururururururururgroßneffe", 
+  "Ururururururururururururgroßneffe", 
+  "Urururururururururururururgroßneffe", 
+  "Ururururururururururururururgroßneffe", 
+  "Urururururururururururururururgroßneffe", 
+  "Ururururururururururururururururgroßneffe", 
+  "Urururururururururururururururururgroßneffe", 
+  "Ururururururururururururururururururgroßneffe", 
+  "Urururururururururururururururururururgroßneffe", 
+  "Ururururururururururururururururururururgroßneffe", 
+]
 
-_niece_level = [ "", "Nichte", "Großnichte", "Urgroßnichte", "Ururgroßnichte", 
-    "Urururgroßnichte", "Ururururgroßnichte" ]
+_niece_level = [ "", "Nichte", 
+  "Großnichte", 
+  "Urgroßnichte", 
+  "Ururgroßnichte", 
+  "Urururgroßnichte", 
+  "Ururururgroßnichte", 
+  "Urururururgroßnichte", 
+  "Ururururururgroßnichte", 
+  "Urururururururgroßnichte", 
+  "Ururururururururgroßnichte", 
+  "Urururururururururgroßnichte", 
+  "Ururururururururururgroßnichte", 
+  "Urururururururururururgroßnichte", 
+  "Ururururururururururururgroßnichte", 
+  "Urururururururururururururgroßnichte", 
+  "Ururururururururururururururgroßnichte", 
+  "Urururururururururururururururgroßnichte", 
+  "Ururururururururururururururururgroßnichte", 
+  "Urururururururururururururururururgroßnichte", 
+  "Ururururururururururururururururururgroßnichte", 
+  "Urururururururururururururururururururgroßnichte", 
+]
 
 #-------------------------------------------------------------------------
 #
@@ -101,25 +236,25 @@ def get_junior_male_cousin(level,removed):
     if removed > len(_removed_level)-1 or level>len(_cousin_level)-1:
         return "remote relative"
     else:
-        return "%sCousin %s Grades" % (_cousin_level[level],_removed_level[removed])
+        return "%s %s Grades" % (_cousin_level[level],_removed_level[removed])
 
 def get_senior_male_cousin(level,removed):
-    if removed > len(_removed_level)-1 or level>len(_cousin_level)-1:
+    if removed > len(_removed_level)-1 or level>len(_brother_level)-1:
         return "remote relative"
     else:
-        return "%sOnkel %s Grades" % (_cousin_level[level],_removed_level[removed])
+        return "%s %s Grades" % (_brother_level[level],_removed_level[removed])
 
 def get_junior_female_cousin(level,removed):
     if removed > len(_removed_level)-1 or level>len(_cousin_level)-1:
         return "remote relative"
     else:
-        return "%sCousine %s Grades" % (_cousin_level[level],_removed_level[removed])
+        return "%se %s Grades" % (_cousin_level[level],_removed_level[removed])
 
 def get_senior_female_cousin(level,removed):
-    if removed > len(_removed_level)-1 or level>len(_cousin_level)-1:
+    if removed > len(_removed_level)-1 or level>len(_sister_level)-1:
         return "remote relative"
     else:
-        return "%sTante %s Grades" % (_cousin_level[level],_removed_level[removed])
+        return "%s %s Grades" % (_sister_level[level],_removed_level[removed])
 
 def get_father(level):
     if level>len(_father_level)-1:
@@ -250,9 +385,9 @@ def get_relationship(orig_person,other_person):
             return (get_niece(firstRel-1),common)
     elif secondRel > firstRel:
         if other_person.getGender() == RelLib.Person.male:
-            return (get_senior_male_cousin(secondRel-firstRel,secondRel-1),common)
+            return (get_senior_male_cousin(secondRel-firstRel+1,secondRel-1),common)
         else:
-            return (get_senior_female_cousin(secondRel-firstRel,secondRel-1),common)
+            return (get_senior_female_cousin(secondRel-firstRel+1,secondRel-1),common)
     else:
         if other_person.getGender() == RelLib.Person.male:
             return (get_junior_male_cousin(secondRel-1,firstRel-1),common)
