@@ -2,9 +2,9 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY appversion "0.9.3">
-  <!ENTITY manrevision "2.2">
-  <!ENTITY date "July 2003">
+  <!ENTITY appversion "0.9.4">
+  <!ENTITY manrevision "2.3">
+  <!ENTITY date "September 2003">
   <!ENTITY app "<application>GRAMPS</application>">
   <!-- Information about the entities
        The legal.xml file contains legal information, there is no need to edit the file. 
@@ -98,6 +98,15 @@
       <revision> 
 		<revnumber>GRAMPS Manual V&manrevision;</revnumber> 
 		<date>&date;</date> 
+		<revdescription> 
+	  		<para role="author">Alex Roitman
+	    	<email>shura@alex.neuro.umn.edu</email>
+	  		</para>
+		</revdescription> 
+      </revision> 
+      <revision> 
+		<revnumber>GRAMPS Manual V2.2</revnumber> 
+		<date>July 2003</date> 
 		<revdescription> 
 	  		<para role="author">Alex Roitman
 	    	<email>shura@alex.neuro.umn.edu</email>
@@ -942,10 +951,21 @@
       <para>Exporting allows you to share any portion of your &app; database 
       with other researchers as well as to make your database completely 
       portable to another computer. Currently, &app; 
-      can export data  to three different formats: GEDCOM, &app; package, 
-      and CD. All of these are available as items of
+      can export data  to three different formats: CD, GEDCOM, &app; package, 
+      and Web Family Tree. All of these are available as items of
       <menuchoice><guimenu>File</guimenu>  
       <guisubmenu>Export</guisubmenu></menuchoice> submenu.</para>
+
+      <para>Exporting to CD will prepare you database directory with all its
+      contents to be recorded to the CD. This is done through the 
+      <guilabel>burn:///</guilabel> location in Nautilus. After exporting to 
+      CD, go to the <guilabel>burn:///</guilabel> location by  
+      selecting <menuchoice><guimenu>Go</guimenu>  
+      <guisubmenu>CD Creator</guisubmenu></menuchoice> in Nautilus menu. Your
+      database directory will show up. To record it onto the CD, click the CD
+      icon on the Nautilus toolbar, or select <menuchoice><guimenu>File</guimenu>  
+      <guisubmenu>Write to CD</guisubmenu></menuchoice> in Nautilus menu.
+      </para>
 
       <para>Exporting to GEDCOM will create a GEDCOM file, according to the
       settings set in the following dialog:</para>
@@ -962,17 +982,20 @@
 
       <para>Type the desired GEDCOM filename into the text entry box or
       click the <guibutton>Browse...</guibutton> button to evoke the  
-      <guilabel>Save File</guilabel> dialog. Use the <guilabel>Filter</guilabel>
-      pop-up menu to limit the scope of the export according to the stated rule. 
+      <guilabel>Save File</guilabel> dialog. 
       Choose the desired <guilabel>Encoding</guilabel> of the exported file. 
-      Use the <guilabel>Target</guilabel> to select the desired GEDCOM 
+      Use the <guilabel>Filter</guilabel>
+      pop-up menu to limit the scope of the export according to the stated rule. 
+      Use the <guilabel>Target</guilabel> menu to select the desired GEDCOM 
       dialect. Select your copyright statement from the 
       <guilabel>Copyright</guilabel> menu. Check <guilabel>Do not include
       records marked private</guilabel> to disable the output of private
       records. Check <guilabel>Restrict data on living people</guilabel>
       to limit living people's data to family ties. With this option, 
       information concerning birth, death, addresses, various events, 
-      etc. will be omitted in the exported GEDCOM file.
+      etc. will be omitted in the exported GEDCOM file. If this option is selected, 
+      you can further choose whether to use the word "Living" as first name, exclude
+      notes, and exclude sources for the living people. 
       </para>
 
       <para>Upon starting the export, &app; will 
@@ -997,15 +1020,11 @@
       by &app;.
       </para>
       
-      <para>Exporting to CD will prepare you database directory with all its
-      contents to be recorded to the CD. This is done through the 
-      <guilabel>burn:///</guilabel> location in Nautilus. After exporting to 
-      CD, go to the <guilabel>burn:///</guilabel> location by  
-      selecting <menuchoice><guimenu>Go</guimenu>  
-      <guisubmenu>CD Creator</guisubmenu></menuchoice> in Nautilus menu. Your
-      database directory will show up. To record it onto the CD, click the CD
-      icon on the Nautilus toolbar, or select <menuchoice><guimenu>File</guimenu>  
-      <guisubmenu>Write to CD</guisubmenu></menuchoice> in Nautilus menu.
+      <para>Exporting to Web Family Tree will create the text file suitable 
+      as an input for the WFT program. Use the <guilabel>Filter</guilabel>
+      pop-up menu to limit the scope of the export according to the stated rule.
+      Check <guilabel>Restrict data on living people</guilabel> to limit living 
+      people's data to family ties.
       </para>
 
       <para>If a media file is not found during export, the following dialog
@@ -2936,9 +2955,8 @@
 
 	<para> The Book Report creates a single document (i.e. a Book) 
         containing a collection of graphical and textual reports.
-        However, as of version &appversion; the Text reports are available 
-        for inclusion in books. Nevertheless, this allows for a very rich set 
-        of documents that &app; can produce. 
+        Consequently, this allows for a very rich set of documents 
+        that &app; can produce. 
         </para>
 
 	<para> When Book Report is selected, the following book configuration
@@ -2956,8 +2974,8 @@
 
 	<para> The <guilabel>Book name</guilabel> text entry field is used to
         save the book (a set of configured selections) for future use.
-        The pane on the left side lists the items available for inclusion in the 
-        book. The pane on the right side lists the currently selected items in
+        The pane on the left-hand side lists the items available for inclusion in the 
+        book. The pane on the right-hand side lists the currently selected items in
         the order they will appear in the book. </para>
         
 	<para> The top set of buttons between the panes operates on the 
@@ -2988,6 +3006,33 @@
         items centered on different people (e.g. your mom's and dad's 
         ancestors as separate chapters). By default, the center person is set to
         the active person. </para> 
+
+	<para>Almost all items available for inclusion in the book are textual 
+        or graphical reports, and are therefore available in the form of standalone 
+        reports. The exception is the following items which are only available as 
+        book items:</para>
+
+	<variablelist>
+
+	<varlistentry><term>Title Page</term>
+	<listitem><para>This item produces a customized Title page. You can 
+        configure the text of title, subtitle, and the footer of the page. 
+        An image can be optionally placed between the subtitle and the footer. 
+        Because of its configurability, this item can be used to create 
+        title pages for the whole book, its chapter, or even a single item. 
+        </para>
+        </listitem>
+	</varlistentry>
+
+ 	<varlistentry><term>Custom Text</term>
+	<listitem><para>This item produces a page with three paragraphs, each 
+        containing custom text. The appearance of the text can be adjusted by 
+        using custom styles. This item was meant to be used for epigraphs, 
+        dedications, explanations, notes, and so forth. 
+        </para></listitem>
+	</varlistentry>
+
+	</variablelist>
 
       </sect3>
 
@@ -3022,11 +3067,12 @@
 	individual (active person) or a set of individuals. The options 
 	for this report are broken down into contents, privacy, and advanced 
 	options. The contents options include the filter (determine the 
-	scope of the database to consider), number of generations to consider, 
-	destination directory for the images, and a link to the index page.
+	scope of the database to consider), 
+	destination directory for the images, an optional short ancestor tree, 
+        and a link to the index page.
 	Privacy options allow you to omit private records, restrict 
-	information on living people, to skip images (either all or only 
-        those of living people), and to omit comments and text in source 
+	information on living people, skip images (either all or only 
+        those of living people), and omit comments and text in source 
         information. Finally, the advanced options allow you to include 
         the optional &app; ID, create a GENDEX index, and specify the 
         extension of the resulting files. </para>
