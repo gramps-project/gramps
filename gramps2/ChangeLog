@@ -1,4 +1,8 @@
 2003-06-11  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/EditPlace.py (on_switch_page): Fix page numbers to enable proper
+	loading of gallery and references. 
+
+2003-06-11  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/BookReport.py (Book.pop_item): Add missing return
 	statement. 
 	* src/plugins/BookReport.py (BookReportSelector.open_book): 
