@@ -132,13 +132,12 @@ class GrampsDbBase:
         Returns 1 if the database has been opened.
         """
         return self.person_map != None
-
+    
     def commit_person(self,person,transaction,change_time=None):
         """
         Commits the specified Person to the database, storing the changes
         as part of the transaction.
         """
-
         if change_time:
             person.change = int(change_time)
         else:
