@@ -191,10 +191,10 @@ class IndividualPage:
         self.doc.write_text(_("Sources"))
         self.doc.end_paragraph()
 
-        index = 0
+        index = 1
         for sref in self.slist:
             self.doc.start_paragraph("Data")
-            self.doc.write_text('<A NAME="#s%d">%d. ' % (index,index))
+            self.doc.write_text('<A NAME="s%d">%d. ' % (index,index))
             index = index + 1
             self.doc.write_text("%s. " % sref.getBase().getTitle())
             author = sref.getBase().getAuthor()
