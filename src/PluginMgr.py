@@ -67,7 +67,6 @@ cl_list = []
 
 _success_list = []
 
-status_up = None
 #-------------------------------------------------------------------------
 #
 # Default relationship calculator
@@ -135,74 +134,6 @@ def load_plugins(direct):
         return False
     else:
         return True
-
-#-------------------------------------------------------------------------
-#
-# reload_plugins
-#
-#-------------------------------------------------------------------------
-def reload_plugins(obj=None,junk1=None,junk2=None,junk3=None):
-    """Treated as a callback, causes all plugins to get reloaded. This is
-    useful when writing and debugging a plugin"""
-    
-    pymod = re.compile(r"^(.*)\.py$")
-
-    global _success_list,attempt_list,loaddir_list,failmsg_list
-
-    oldfailmsg = failmsg_list[:]
-    failmsg_list = []
-
-    # attempt to reload all plugins that have succeeded in the past
-    for plugin in _success_list:
-        filename = os.path.basename(plugin.__file__)
-        filename = filename.replace('pyc','py')
-        filename = filename.replace('pyo','py')
-        try: 
-            reload(plugin)
-        except:
-            failmsg_list.append((filename,sys.exc_info()))
-            
-    # attempt to load the plugins that have failed in the past
-    
-    for (filename,message) in oldfailmsg:
-        name = os.path.split(filename)
-        match = pymod.match(name[1])
-        if not match:
-            continue
-        attempt_list.append(filename)
-        plugin = match.groups()[0]
-        try: 
-            # For some strange reason second importing of a failed plugin
-            # results in success. Then reload reveals the actual error.
-            # Looks like a bug in Python.
-            a = __import__(plugin)
-            reload(a)
-            _success_list.append(a)
-        except:
-            failmsg_list.append((filename,sys.exc_info()))
-
-    # attempt to load any new files found
-    for directory in loaddir_list:
-        for filename in os.listdir(directory):
-            name = os.path.split(filename)
-            match = pymod.match(name[1])
-            if not match:
-                continue
-            if filename in attempt_list:
-                continue
-            attempt_list.append(filename)
-            plugin = match.groups()[0]
-            try: 
-                a = __import__(plugin)
-                if a not in _success_list:
-                    _success_list.append(a)
-            except:
-                failmsg_list.append((filename,sys.exc_info()))
-
-    global status_up
-    if not len(failmsg_list):
-        status_up.close(None)
-        status_up = None
 
 #-------------------------------------------------------------------------
 #
@@ -401,15 +332,3 @@ def register_image_attribute(name):
 
 def get_image_attributes():
     return _image_attributes
-
-#-------------------------------------------------------------------------
-#
-# Register the plugin reloading tool
-#
-#-------------------------------------------------------------------------
-register_tool(
-    reload_plugins,
-    _("Reload plugins"),
-    category=_("Debug"),
-    description=_("Attempt to reload plugins. Note: This tool itself is not reloaded!"),
-    )

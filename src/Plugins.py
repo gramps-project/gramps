@@ -47,7 +47,7 @@ import traceback
 import os
 import sys
 import string
-from re import compile
+import re
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -67,6 +67,7 @@ import PluginMgr
 # PluginDialog interface class
 #
 #-------------------------------------------------------------------------
+
 class PluginDialog:
     """Displays the dialog box that allows the user to select the
     report that is desired."""
@@ -346,13 +347,16 @@ class ToolPlugins(PluginDialog):
 # PluginStatus
 #
 #-------------------------------------------------------------------------
+status_up = None
+
 class PluginStatus:
     """Displays a dialog showing the status of loaded plugins"""
     
     def __init__(self):
-        if PluginMgr.status_up:
-            PluginMgr.status_up.close(None)
-        PluginMgr.status_up = self
+        global status_up
+        if status_up:
+            status_up.close(None)
+        status_up = self
 
         import cStringIO
         
@@ -361,10 +365,7 @@ class PluginStatus:
         self.top.set_title("%s - GRAMPS" % _('Plugin status'))
         window = self.glade.get_widget("text")
         self.pop_button = self.glade.get_widget("pop_button")
-        if GrampsKeys.get_pop_plugin_status():
-            self.pop_button.set_active(1)
-        else:
-            self.pop_button.set_active(0)
+        self.pop_button.set_active(GrampsKeys.get_pop_plugin_status())
         self.pop_button.connect('toggled',
             lambda obj: GrampsKeys.save_pop_plugin_status(self.pop_button.get_active()))
         GrampsKeys.client.notify_add("/apps/gramps/behavior/pop-plugin-status",
@@ -397,11 +398,11 @@ class PluginStatus:
             window.get_buffer().set_text(info.read())
 
     def on_delete(self,obj1,obj2):
-        PluginMgr.status_up = None
+        status_up = None
 
     def close(self,obj):
         self.top.destroy()
-        PluginMgr.status_up = None
+        status_up = None
 
     def help(self,obj):
         """Display the GRAMPS manual"""
@@ -631,3 +632,82 @@ class GrampsBookFormatComboBox(gtk.ComboBox):
 
     def get_printable(self):
         return self.data[self.get_active()][6]
+
+#-------------------------------------------------------------------------
+#
+# reload_plugins
+#
+#-------------------------------------------------------------------------
+def reload_plugins(obj=None,junk1=None,junk2=None,junk3=None):
+    """Treated as a callback, causes all plugins to get reloaded. This is
+    useful when writing and debugging a plugin"""
+    
+    pymod = re.compile(r"^(.*)\.py$")
+
+    oldfailmsg = PluginMgr.failmsg_list[:]
+    PluginMgr.failmsg_list = []
+
+    # attempt to reload all plugins that have succeeded in the past
+    for plugin in PluginMgr._success_list:
+        filename = os.path.basename(plugin.__file__)
+        filename = filename.replace('pyc','py')
+        filename = filename.replace('pyo','py')
+        try: 
+            reload(plugin)
+        except:
+            PluginMgr.failmsg_list.append((filename,sys.exc_info()))
+            
+    # attempt to load the plugins that have failed in the past
+    
+    for (filename,message) in oldfailmsg:
+        name = os.path.split(filename)
+        match = pymod.match(name[1])
+        if not match:
+            continue
+        PluginMgr.attempt_list.append(filename)
+        plugin = match.groups()[0]
+        try: 
+            # For some strange reason second importing of a failed plugin
+            # results in success. Then reload reveals the actual error.
+            # Looks like a bug in Python.
+            a = __import__(plugin)
+            reload(a)
+            PluginMgr._success_list.append(a)
+        except:
+            PluginMgr.failmsg_list.append((filename,sys.exc_info()))
+
+    # attempt to load any new files found
+    for directory in PluginMgr.loaddir_list:
+        for filename in os.listdir(directory):
+            name = os.path.split(filename)
+            match = pymod.match(name[1])
+            if not match:
+                continue
+            if filename in PluginMgr.attempt_list:
+                continue
+            PluginMgr.attempt_list.append(filename)
+            plugin = match.groups()[0]
+            try: 
+                a = __import__(plugin)
+                if a not in PluginMgr._success_list:
+                    PluginMgr._success_list.append(a)
+            except:
+                PluginMgr.failmsg_list.append((filename,sys.exc_info()))
+
+    if GrampsKeys.get_pop_plugin_status() and len(PluginMgr.failmsg_list):
+        PluginStatus()
+    else:
+        status_up.close(None)
+        status_up = None
+
+#-------------------------------------------------------------------------
+#
+# Register the plugin reloading tool
+#
+#-------------------------------------------------------------------------
+PluginMgr.register_tool(
+    reload_plugins,
+    _("Reload plugins"),
+    category=_("Debug"),
+    description=_("Attempt to reload plugins. Note: This tool itself is not reloaded!"),
+    )

@@ -1,5 +1,7 @@
 2005-01-10 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/StatisticsChart.py: Misc fixes.
+	* src/PluginMgr.py (reload_plugins): Remove function.
+	* src/Plugins.py (reload_plugins): Add function.
 
 2005-01-10  Eero Tamminen <eerot@sf>
 	* src/plugins/Makefile.am:
