@@ -578,7 +578,7 @@ class ReportDialog:
 
         hbox = GtkHBox()
         hbox.set_border_width(ReportDialog.border_pad)
-        hbox.pack_start(GtkLabel("Template"),0,0,5)
+        hbox.pack_start(GtkLabel(_("Template")),0,0,5)
         self.html_fileentry = GnomeFileEntry(_("HTML Template"),_("Choose File"))
         hbox.add(self.html_fileentry)
         self.html_frame.add(hbox)
