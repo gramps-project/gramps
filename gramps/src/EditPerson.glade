@@ -2639,7 +2639,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>button88</name>
-	      <tooltip>Creates a new event from the above data</tooltip>
+	      <tooltip>Creates a new attribute from the above data</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -2655,7 +2655,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>button89</name>
-	      <tooltip>Updates the selected event with the above data</tooltip>
+	      <tooltip>Updates the selected attribute with the above data</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -2671,7 +2671,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>button90</name>
-	      <tooltip>Delete the selected event</tooltip>
+	      <tooltip>Delete the selected attribute</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -3379,7 +3379,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>button92</name>
-	      <tooltip>Creates a new event from the above data</tooltip>
+	      <tooltip>Creates a new address from the above data</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -3395,7 +3395,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>button93</name>
-	      <tooltip>Updates the selected event with the above data</tooltip>
+	      <tooltip>Updates the selected address with the above data</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -3411,7 +3411,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>button94</name>
-	      <tooltip>Delete the selected event</tooltip>
+	      <tooltip>Delete the selected address</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
