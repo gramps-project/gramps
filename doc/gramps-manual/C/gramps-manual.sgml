@@ -154,20 +154,16 @@
       </screenshot>
     </figure>
     <para>
-    The second page of the start-up screens will prompt you for
-    some personal information. This information is optional, and
-    can be changed at any time. The information will be used to
-    establish your copyright on the information, and to provide
-    information needed for valid GEDCOM exporting.
+    <application>GRAMPS</application> will guide you through a few pages
+    that prompt you for some setup information. The information it requests
+    includes information about yourself and your preferences.
     </para>
-    <figure id="druidpg2">
-      <title>Getting Started screen, page 2</title>
-      <screenshot>
-	<screeninfo>Getting Started screen, page 2</screeninfo>
-	<graphic fileref="druidpg2" format="png" srccredit="Don Allingham">
-        </graphic>
-      </screenshot>
-    </figure>
+    <para>
+    Although <application>GRAMPS</application> requests information about
+    your, this information is used only so that it can create valid GEDCOM
+    output files. A valid GEDCOM file requires information about the file&quot;s
+    creator. If you chose, you may leave the information empty.
+    </para>
   </sect1>
 
   <sect1 id="gettingstarted">
@@ -175,7 +171,10 @@
     <para>
     Starting <application>GRAMPS</application> opens the
     <interface>Main window</interface>, shown in <xref
-    linkend="mainwindow-fig">. The window is at first empty.
+    linkend="mainwindow-fig">. You will be prompted to either open an
+    existing database, or to create a new
+    database. <application>GRAMPS</application> requires that a
+    database always be open.
     </para>
     <figure id="mainwindow-fig">
       <title>GRAMPS Main Window</title>
@@ -300,19 +299,29 @@
       <application>GRAMPS</application> allows you to apply filters to
       the People View. When a filter is applied, the People View will
       only display the entries matching the filter. All of the entries
-      remain in the database, but are temporarily hidden.
+      remain in the database, but some entries may be temporarily hidden.
       </para>
       <para>
-      There are three parts to a filter. The first part is the
+      There are up to three parts to a filter. The first part is the
       selection of the filter to be applied. A filter is selected from
-      the option menu directly above the People View.  The second part
-      is an option qualifier. This qualifier provides more specific
+      the option menu directly above the People View. The second part
+      is an optional argument. This qualifier provides more specific
       information for the filter. Many filters do not require the
-      qualifier, and it will be grayed out if not needed.  The third
-      part of the filter is the invert selection.  When this option is
-      selected, <application>GRAMPS</application> will display the
-      entries that do not match the filter.
+      argument, and it will not be displayed if it is not needed. If
+      the argument is required, a text box with a descriptive label
+      will appear.  The third part of the filter is the invert
+      selection.  When this option is selected,
+      <application>GRAMPS</application> will display the entries that
+      do not match the filter.
       </para>
+      <figure id="filter-fig">
+      <title>Filter that reqires an argument</title>
+      <screenshot>
+	<screeninfo>Filter that requires an argument</screeninfo>
+	<graphic fileref="filter" format="png" srccredit="Don Allingham">
+	</graphic>
+      </screenshot>
+      </figure>
       <para>
       A filter is not applied until the <guibutton>Apply</guibutton>
       button is pressed.  The filter will remain in effect until the
@@ -404,24 +413,6 @@
       "Education"), a date or date range on which the event occurred,
       the place where the event occurred, and a description of the
       event. A note or a source may also be attached to the event.
-      </para>
-      <para>
-      Events have the concept of privacy and confidence associated
-      with them. An event may be marked as "Private". When generating
-      reports or exporting to other formats, you will be allowed to
-      either include or exclude private records. This will allow you
-      to limit information provided to others.
-      </para>
-      <para>
-      <application>GRAMPS</application> allows you to specify your
-      confidence in the information you have. By default, a confidence
-      level of "Normal" is associated with each event. This can be
-      increased ("High" or "Very High") or decreased ("Low" or
-      "Very Low") to indicate the confidence you have in the
-      information. For example, if Aunt Martha thinks that her
-      grandmother was born in a particular year, you may wish to mark
-      this with a lower level of confidence than if you had a copy of
-      her grandmother's birth certificate.
       </para>
       <figure id="ep_event-fig">
         <title>Events Tab</title>
@@ -717,6 +708,23 @@
       <guibutton>Delete</guibutton> button allows you to delete the
       currently displayed internet address.
       </para>
+    </sect2>
+    <sect2 id="ldstab">
+      <title>LDS Tab</title>
+      <para>
+      If you have chosen to enable support for the LDS (Latter Day Saints)
+      ordinances, the <interface>LDS</interface> tab is visible, and can
+      be selected. This tab allows you to enter specific information used 
+      by the Church of Jesus Christ of Latter Day Saints.
+      </para>
+      <figure id="ep_lds-fig">
+        <title>LDS Tab</title>
+        <screenshot>
+	  <screeninfo>LDS Tab</screeninfo>
+	  <graphic fileref="ep_lds" format="png" srccredit="Don Allingham">
+          </graphic>
+        </screenshot>
+      </figure>
     </sect2>
   </sect1>
   <sect1 id="familyview">
@@ -1358,22 +1366,23 @@
       </variablelist>
     </sect2>    
     <sect2 id="prefs_tab1">
-      <title>Formats</title>
+      <title>Dates and Calendars</title>
       <figure id="prefs_fmt">
-        <title>Formats</title>
+        <title>Dates and Calendars</title>
         <screenshot>
-          <screeninfo>Formats Tab</screeninfo>
-          <graphic fileref="prefs_fmt" format="png" srccredit="Don Allingham">
+          <screeninfo>Dates and Calendars</screeninfo>
+          <graphic fileref="prefs_dates" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
       <para>
-      The <interface>Formats</interface> tab allows you to change the
-      display formats of several different types of data. This includes
-      dates and names.
+      The <interface>Dates and Calendars</interface> page allows you to change the
+      display and entry formats of dates. 
+      </para>
+      <para>
       </para>
       <variablelist>
-        <title>Formats Preferences options</title>
+        <title>Dates and Calendars options</title>
 	<varlistentry>
   	  <term>Display Formats</term>
           <listitem>
@@ -1396,6 +1405,19 @@
 	    prefer month, day, year (American style). Selecting the
 	    option here informs <application>GRAMPS</application> how
 	    it should interpret numerical dates.
+            </para>
+          </listitem>
+	</varlistentry>
+	<varlistentry>
+  	  <term>Calendars</term>
+          <listitem>
+            <para>
+	    <application>GRAMPS</application> can support calendars
+	    other than the typical Gregorian calendar. If enabled,
+	    <application>GRAMPS</application> will display a menu
+	    allowing you to specify the calendar that a date
+	    represents. Calendars currently supported are Gregorian,
+	    Hebrew, Julian, and French Republican.
             </para>
           </listitem>
 	</varlistentry>
