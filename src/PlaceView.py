@@ -132,8 +132,9 @@ class PlaceView:
         self.selection.selected_foreach(self.blist,mlist)
         
         if len(mlist) != 2:
-            msg = _("Exactly two places must be selected to perform a merge")
-            ErrorDialog(msg)
+            msg = _("Cannot merge people.")
+            msg2 = _("Exactly two people must be selected to perform a merge.")
+            ErrorDialog(msg,msg2)
         else:
             import MergeData
             MergeData.MergePlaces(self.db,mlist[0],mlist[1],self.load_places)
@@ -187,8 +188,12 @@ class PlaceView:
 
             if used == 1:
                 ans = EditPlace.DeletePlaceQuery(place,self.db,self.update_display)
-                QuestionDialog(_('Delete Place'),
-                               _("%s is currently being used.\nDelete anyway?" % place.get_title()),
+                QuestionDialog(_('Delete %s') %  place.get_title(),
+                               _('This place is currently being used at least one '
+                                 'record in the database. Deleting it will remove it '
+                                 'from the database and remove it from all records '
+                                 'the reference it.'),
+                               _('Delete Place'),
                                ans.query_response)
             else:
                 self.db.removePlace(place.getId())

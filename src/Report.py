@@ -142,7 +142,6 @@ class Report:
         self.ptop = gtk.Dialog()
         self.ptop.set_title(title)
         self.ptop.vbox.add(gtk.Label(header))
-        self.ptop.vbox.add(gtk.HSeparator())
         self.ptop.vbox.set_spacing(10)
         self.pbar = gtk.ProgressBar()
         self.pbar_max = total
@@ -174,7 +173,7 @@ class ReportDialog:
     """
 
     frame_pad = 5
-    border_pad = 2
+    border_pad = 6
 
     def __init__(self,database,person):
         """Initialize a dialog to request that the user select options
@@ -196,10 +195,12 @@ class ReportDialog:
         self.frames = {}
 
         self.window = gtk.Dialog('GRAMPS')
-        self.ok = self.window.add_button(gtk.STOCK_OK,0)
-        self.ok.connect('clicked',self.on_ok_clicked)
         self.cancel = self.window.add_button(gtk.STOCK_CANCEL,1)
+        self.ok = self.window.add_button(gtk.STOCK_OK,0)
+
+        self.ok.connect('clicked',self.on_ok_clicked)
         self.cancel.connect('clicked',self.on_cancel)
+
         self.window.set_response_sensitive(0,gtk.TRUE)
         self.window.set_response_sensitive(1,gtk.TRUE)
         self.window.set_resize_mode(0)
@@ -465,9 +466,10 @@ class ReportDialog:
 
         title = self.get_header(self.name)
         label = gtk.Label(title)
+        label.set_padding(12,12)
         label.set_size_request(450,10)
         self.window.vbox.pack_start(label,gtk.TRUE,gtk.TRUE,ReportDialog.border_pad)
-        self.window.vbox.add(gtk.HSeparator())
+        self.window.vbox.set_border_width(12)
         
     def setup_target_frame(self):
         """Set up the target frame of the dialog.  This function
@@ -498,7 +500,7 @@ class ReportDialog:
         self.window.vbox.add(frame)
 
         self.target_fileentry.set_default_path(self.get_default_directory())
-        if (self.get_target_is_directory()):
+        if self.get_target_is_directory():
             self.target_fileentry.set_directory_entry(1)
 
         self.target_fileentry.set_filename(self.get_default_directory())
@@ -575,6 +577,17 @@ class ReportDialog:
         self.output_notebook.set_show_border(0)
         self.output_notebook.set_current_page(self.notebook_page)
         self.window.vbox.add(self.output_notebook)
+
+    def size_changed(self,obj):
+        paper = self.papersize_menu.get_menu().get_active().get_data('i')
+        if paper.get_width() <= 0:
+            self.pwidth.set_sensitive(1)
+            self.pheight.set_sensitive(1)
+        else:
+            self.pwidth.set_sensitive(0)
+            self.pheight.set_sensitive(0)
+            self.pwidth.set_text("%.2f" % paper.get_width())
+            self.pheight.set_text("%.2f" % paper.get_height())
         
     def setup_paper_frame(self):
         """Set up the paper selection frame of the dialog.  This
@@ -583,19 +596,45 @@ class ReportDialog:
         its strings should be."""
 
         (pagecount_map, start_text) = self.get_print_pagecount_map()
-        table = gtk.Table(2,4)
+        table = gtk.Table(2,5)
         self.paper_frame.add(table)
         self.papersize_menu = gtk.OptionMenu()
+        self.papersize_menu.connect('changed',self.size_changed)
+        
         self.orientation_menu = gtk.OptionMenu()
         l = gtk.Label(_("Size"))
         pad = ReportDialog.border_pad
         l.set_alignment(1.0,0.5)
         table.attach(l,0,1,0,1,gtk.FILL,gtk.FILL,pad,pad)
         table.attach(self.papersize_menu,1,2,0,1,xpadding=pad,ypadding=pad)
+        l = gtk.Label(_("Height"))
+        l.set_alignment(1.0,0.5)
+        table.attach(l,2,3,0,1,xpadding=pad,ypadding=pad)
+
+        self.pheight = gtk.Entry()
+        self.pheight.set_sensitive(0)
+        table.attach(self.pheight,3,4,0,1,xpadding=pad,ypadding=pad)
+        
+        l = gtk.Label(_("cm"))
+        l.set_alignment(0.0,0.5)
+        table.attach(l,4,5,0,1,xpadding=pad,ypadding=pad)
+
         l = gtk.Label(_("Orientation"))
         l.set_alignment(1.0,0.5)
-        table.attach(l,2,3,0,1,gtk.FILL,gtk.FILL,pad,pad)
-        table.attach(self.orientation_menu,3,4,0,1,xpadding=pad,ypadding=pad)
+        table.attach(l,0,1,1,2,gtk.FILL,gtk.FILL,pad,pad)
+        table.attach(self.orientation_menu,1,2,1,2,xpadding=pad,ypadding=pad)
+        l = gtk.Label(_("Width"))
+        l.set_alignment(1.0,0.5)
+        table.attach(l,2,3,1,2,xpadding=pad,ypadding=pad)
+
+        self.pwidth = gtk.Entry()
+        self.pwidth.set_sensitive(0)
+        table.attach(self.pwidth,3,4,1,2,xpadding=pad,ypadding=pad)
+
+        l = gtk.Label(_("cm"))
+        l.set_alignment(0.0,0.5)
+        table.attach(l,4,5,1,2,xpadding=pad,ypadding=pad)
+
         PaperMenu.make_paper_menu(self.papersize_menu)
         PaperMenu.make_orientation_menu(self.orientation_menu)
 
@@ -754,8 +793,12 @@ class ReportDialog:
         if string:
             self.extra_textbox_label = gtk.Label(et_label)
             self.extra_textbox_label.set_alignment(1.0,0)
+            swin = gtk.ScrolledWindow()
+            swin.set_shadow_type(gtk.SHADOW_IN)
+            swin.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
             self.extra_textbox = gtk.TextView()
-
+            swin.add(self.extra_textbox)
+            
             try:
                 self.extra_textbox.get_buffer().set_text(string,len(string))
             except TypeError:
@@ -765,7 +808,7 @@ class ReportDialog:
             self.add_tooltip(self.extra_textbox,et_tip)
             table.attach(self.extra_textbox_label,0,1,row,row+1,xoptions=gtk.FILL,
                          yoptions=0,xpadding=pad,ypadding=pad)
-            table.attach(self.extra_textbox,1,2,row,row+1,
+            table.attach(swin,1,2,row,row+1,
                          yoptions=0,xpadding=pad,ypadding=pad)
             row = row + 1
 
@@ -817,7 +860,8 @@ class ReportDialog:
             return None
 
         if not self.get_target_is_directory() and os.path.isdir(self.target_path):
-            ErrorDialog(_("The filename that you gave is a directory.\n"
+            ErrorDialog(_("Invalid file name"),
+                        _("The filename that you gave is a directory.\n"
                           "You need to provide a valid filename."))
             return None
         
@@ -844,6 +888,21 @@ class ReportDialog:
         is displayed on the screen.  The subclass will know which ones
         it has enabled.  This is for simplicity of programming."""
         self.paper = self.papersize_menu.get_menu().get_active().get_data("i")
+        if self.paper.get_height() <= 0 or self.paper.get_width() <= 0:
+            try:
+                h = float(self.pheight.get_text())
+                w = float(self.pwidth.get_text())
+                
+                if h <= 1.0 or w <= 1.0:
+                    self.paper.set_height(29.7)
+                    self.paper.set_width(21.0)
+                else:
+                    self.paper.set_height(h)
+                    self.paper.set_width(w)
+            except:
+                self.paper.set_height(29.7)
+                self.paper.set_width(21.0)
+        
         self.orien = self.orientation_menu.get_menu().get_active().get_data("i")
         if self.pagecount_menu == None:
             self.pagecount = 0

@@ -25,6 +25,11 @@ import os
 _BLKSIZE=512
 nul = '\0'
 
+#------------------------------------------------------------------------
+#
+# TarFile
+#
+#------------------------------------------------------------------------
 class TarFile:
     def __init__(self,name):
         self.name = name
@@ -69,13 +74,17 @@ class TarFile:
             self.f.write('\0' * rem)
         self.pos = self.pos + rem
 
-
     def close(self):
         rem = (_BLKSIZE*20) - (self.pos % (_BLKSIZE*20))
         if rem != 0:
             self.f.write('\0' * rem)
         self.f.close()
 
+#------------------------------------------------------------------------
+#
+# ReadTarFile
+#
+#------------------------------------------------------------------------
 class ReadTarFile:
     def __init__(self,name,wd):
         self.name = name
@@ -91,7 +100,7 @@ class ReadTarFile:
 	        return
             index = 0
 	    for b in buf:
-	        if b != '\0':
+	        if b != nul:
 		    index = index + 1
 	        else:
 		    if index == 0:
@@ -122,7 +131,7 @@ class ReadTarFile:
 	        return
             index = 0
 	    for b in buf:
-	        if b != '\0':
+	        if b != nul:
 		    index = index + 1
 	        else:
 		    if index == 0:
@@ -131,7 +140,6 @@ class ReadTarFile:
 	    filename = buf[0:index]
 	    self.f.read(24) # modes
             l = self.f.read(12)
-            # length = int(l,8) 
             length_string = "";
             for char in l:
                 if ord(char) != 0:
@@ -143,7 +151,7 @@ class ReadTarFile:
 
 	    self.f.read(64)
 	    self.f.read(183)
-            foo = open(self.wd + os.sep + filename,"wb")
+            foo = open("%s/%s" % (self.wd,filename),"wb")
 	    foo.write(self.f.read(length))
 	    foo.close()
 	    self.f.read(_BLKSIZE-(length%_BLKSIZE))
@@ -151,7 +159,3 @@ class ReadTarFile:
     def close(self):
         self.f.close()
 
-if __name__ == "__main__":
-	a = ReadTarFile("out.gpkg",".")
-	a.extract()
-	a.close()

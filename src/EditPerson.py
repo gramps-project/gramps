@@ -51,7 +51,7 @@ import AutoComp
 import ListModel
 import RelLib
 from DateEdit import DateEdit
-from QuestionDialog import QuestionDialog, WarningDialog, ErrorDialog
+from QuestionDialog import QuestionDialog, WarningDialog, ErrorDialog, SaveDialog
 
 from intl import gettext as _
 
@@ -799,20 +799,28 @@ class EditPerson:
         """If the data has changed, give the user a chance to cancel
         the close window"""
         if self.did_data_change():
-            QuestionDialog(_('Abandon Changes'),
-                           _("Are you sure you want to abandon your changes?"),
-                           self.cancel_callback)
+            n = "<i>%s</i>" % self.person.getPrimaryName().getRegularName()
+            SaveDialog(_('Save Changes to %s?' % n),
+                       _('If you close without saving, the changes you '
+                         'have made will be lost'),
+                       self.cancel_callback,
+                       self.save)
         else:
             self.gallery.close()
             self.window.destroy()
+
+    def save(self):
+        self.on_apply_person_clicked(None)
 
     def on_delete_event(self,obj,b):
         """If the data has changed, give the user a chance to cancel
         the close window"""
         if self.did_data_change():
-            QuestionDialog(_('Abandon Changes'),
-                           _("Are you sure you want to abandon your changes?"),
-                           self.cancel_callback)
+            SaveDialog(_('Save Changes to %s?' % n),
+                       _('If you close without saving, the changes you '
+                         'have made will be lost'),
+                       self.cancel_callback,
+                       self.save)
             return 1
         else:
             self.gallery.close()
@@ -1306,6 +1314,7 @@ class EditPerson:
             Utils.modified()
 
         if error == 1:
+            msg2 = _("Problem changing the gender")
             msg = _("Changing the gender caused problems "
                     "with marriage information.\nPlease check "
                     "the person's marriages.")

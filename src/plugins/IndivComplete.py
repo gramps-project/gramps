@@ -335,7 +335,7 @@ class IndivComplete:
         self.d.end_cell()
 
     def write_report(self):
-        ind_list = self.filter.apply(self.database.getPersonMap().values())
+        ind_list = self.filter.apply(seld.database,self.database.getPersonMap().values())
         count = 0
         for self.person in ind_list:
             self.write_person(count)

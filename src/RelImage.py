@@ -53,7 +53,8 @@ def import_media_object(filename,path,base):
     import shutil
 
     if not os.path.exists(filename):
-        ErrorDialog(_("Could not import %s\nThe file has been moved or deleted") % filename)
+        ErrorDialog(_("Could not import %s") % filename,
+                    _("The file has been moved or deleted"))
         return ""
 
     ext = os.path.splitext(filename)[1]
@@ -67,7 +68,7 @@ def import_media_object(filename,path,base):
             if not os.path.exists(thumb):
                 os.mkdir(thumb)
         except IOError,msg:
-            ErrorDialog(_("Could not create %s") % thumb + "\n" + str(msg))
+            ErrorDialog(_("Could not create %s") % thumb,str(msg))
             return ""
         except:
             ErrorDialog(_("Could not create %s") % thumb)
@@ -77,13 +78,13 @@ def import_media_object(filename,path,base):
             path = "%s/%s.jpg" % (thumb,base)
             mk_thumb(filename,path,const.thumbScale)
         except:
-            ErrorDialog(_("Error creating the thumbnail : %s"))
+            ErrorDialog(_("Error creating the thumbnail: %s"))
             return ""
 
         try:
             shutil.copy(filename,name)
         except IOError,msg:
-            ErrorDialog(_("Error copying %s") % filename + "\n" + msg)
+            ErrorDialog(_("Error copying %s") % filename,str(msg))
             return ""
 
     else:
@@ -131,7 +132,7 @@ def mk_thumb(source,dest,size):
         if not os.path.exists(dir):
             os.mkdir(dir)
     except IOError,msg:
-        ErrorDialog(_("Could not create %s") % dir + "\n" + str(msg))
+        ErrorDialog(_("Could not create %s") % dir, str(msg))
         return
     except:
         ErrorDialog(_("Could not create %s") % dir)
@@ -142,19 +143,20 @@ def mk_thumb(source,dest,size):
             os.remove(dest)
         except IOError,msg:
             errmsg = _("Could not replace %s") % dir
-            ErrorDialog(errmsg + "\n" + msg)
+            ErrorDialog(errmsg,msg)
             return
 
     if not os.path.exists(source):
-        ErrorDialog(_("Could not create a thumbnail for %s\nThe file has been moved or deleted") % source)
-
+        ErrorDialog(_("Could not create a thumbnail for %s") % source,
+                    _("The file has been moved or deleted."))
+        
     try:
         img = ImgManip.ImgManip(source)
         img.jpg_thumbnail(dest,size,size)
     except:
         import sys
-        msg = "%s\n%s %s" % (source,sys.exc_type,sys.exc_value)
-        ErrorDialog(_("Could not create a thumbnail for %s") % msg)
+        ErrorDialog(_("Could not create a thumbnail for %s") % source,
+                    "%s %s" % (sys.exc_type,sys.exc_value))
         return
 
 #-------------------------------------------------------------------------

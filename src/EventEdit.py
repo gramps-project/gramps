@@ -34,6 +34,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import Sources
+import Witness
 import const
 import Utils
 import GrampsCfg
@@ -66,9 +67,13 @@ class EventEditor:
 
         if event:
             self.srcreflist = self.event.getSourceRefList()
+            self.witnesslist = self.event.get_witness_list()
+            if not self.witnesslist:
+                self.witnesslist = []
             self.date = Date.Date(self.event.getDateObj())
         else:
             self.srcreflist = []
+            self.witnesslist = []
             self.date = Date.Date(None)
 
         self.top = gtk.glade.XML(const.dialogFile, "event_edit")
@@ -77,6 +82,7 @@ class EventEditor:
         self.place_field = self.top.get_widget("eventPlace")
         self.cause_field = self.top.get_widget("eventCause")
         self.slist = self.top.get_widget("slist")
+        self.wlist = self.top.get_widget("wlist")
         self.place_combo = self.top.get_widget("eventPlace_combo")
         self.date_field  = self.top.get_widget("eventDate")
         self.cause_field  = self.top.get_widget("eventCause")
@@ -100,6 +106,11 @@ class EventEditor:
                                            self.top,self.slist,
                                            self.top.get_widget('add_src'),
                                            self.top.get_widget('del_src'))
+
+        self.witnesstab = Witness.WitnessTab(self.witnesslist,self.parent,
+                                           self.top,self.wlist,
+                                           self.top.get_widget('add_witness'),
+                                           self.top.get_widget('del_witness'))
 
         AutoComp.AutoCombo(self.event_menu,list)
         AutoComp.AutoEntry(self.place_field,self.pmap.keys())
@@ -192,6 +203,7 @@ class EventEditor:
         if self.event == None:
             self.event = RelLib.Event()
             self.event.setSourceRefList(self.srcreflist)
+            self.event.set_witness_list(self.witnesslist)
             self.parent.elist.append(self.event)
         
         self.update_event(ename,self.date,eplace_obj,edesc,enote,epriv,ecause)
@@ -219,6 +231,7 @@ class EventEditor:
         dobj = self.event.getDateObj()
 
         self.event.setSourceRefList(self.srcreflist)
+        self.event.set_witness_list(self.witnesslist)
         
         if Date.compare_dates(dobj,date) != 0:
             self.event.setDateObj(date)

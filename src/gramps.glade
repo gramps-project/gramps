@@ -77,7 +77,7 @@
 			  <signal name="activate" handler="on_revert_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image96">
+			    <widget class="GtkImage" id="image118">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-revert-to-saved</property>
 			      <property name="icon_size">1</property>
@@ -113,7 +113,7 @@
 			  <property name="use_underline">True</property>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image97">
+			    <widget class="GtkImage" id="image119">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-convert</property>
 			      <property name="icon_size">1</property>
@@ -134,7 +134,7 @@
 			  <signal name="activate" handler="on_reload_plugins_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image98">
+			    <widget class="GtkImage" id="image120">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-refresh</property>
 			      <property name="icon_size">1</property>
@@ -182,7 +182,7 @@
 			  <signal name="activate" handler="on_find_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image99">
+			    <widget class="GtkImage" id="image121">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-find</property>
 			      <property name="icon_size">1</property>
@@ -203,7 +203,7 @@
 			  <signal name="activate" handler="on_merge_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image100">
+			    <widget class="GtkImage" id="image122">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-convert</property>
 			      <property name="icon_size">1</property>
@@ -271,7 +271,7 @@
 			  <accelerator key="D" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image101">
+			    <widget class="GtkImage" id="image123">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-index</property>
 			      <property name="icon_size">1</property>
@@ -293,7 +293,7 @@
 			  <accelerator key="B" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image102">
+			    <widget class="GtkImage" id="image124">
 			      <property name="visible">True</property>
 			      <property name="stock">gnome-stock-book-open</property>
 			      <property name="icon_size">1</property>
@@ -350,10 +350,10 @@
 		    <widget class="GtkMenu" id="settings1_menu">
 
 		      <child>
-			<widget class="GtkImageMenuItem" id="preferences">
+			<widget class="GtkImageMenuItem" id="preferences1">
 			  <property name="visible">True</property>
-			  <property name="stock_item">GNOMEUIINFO_MENU_PROPERTIES_ITEM</property>
-			  <signal name="activate" handler="on_preferences_activate"/>
+			  <property name="stock_item">GNOMEUIINFO_MENU_PREFERENCES_ITEM</property>
+			  <signal name="activate" handler="on_preferences1_activate"/>
 			</widget>
 		      </child>
 
@@ -365,7 +365,7 @@
 			  <signal name="activate" handler="on_default_person_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image103">
+			    <widget class="GtkImage" id="image125">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-home</property>
 			      <property name="icon_size">1</property>
@@ -399,7 +399,7 @@
 			  <signal name="activate" handler="on_contents_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image104">
+			    <widget class="GtkImage" id="image126">
 			      <property name="visible">True</property>
 			      <property name="stock">gnome-stock-book-red</property>
 			      <property name="icon_size">1</property>
@@ -420,7 +420,7 @@
 			  <signal name="activate" handler="on_writing_extensions_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image105">
+			    <widget class="GtkImage" id="image127">
 			      <property name="visible">True</property>
 			      <property name="stock">gnome-stock-book-blue</property>
 			      <property name="icon_size">1</property>
@@ -441,7 +441,7 @@
 			  <signal name="activate" handler="on_gramps_home_page_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image106">
+			    <widget class="GtkImage" id="image128">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-jump-to</property>
 			      <property name="icon_size">1</property>
@@ -462,7 +462,7 @@
 			  <signal name="activate" handler="on_gramps_mailing_lists_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image107">
+			    <widget class="GtkImage" id="image129">
 			      <property name="visible">True</property>
 			      <property name="stock">gnome-stock-mail</property>
 			      <property name="icon_size">1</property>
@@ -1312,20 +1312,14 @@
 				  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 
 				  <child>
-				    <widget class="GtkTextView" id="ap_data">
+				    <widget class="GtkTreeView" id="ap_data">
 				      <property name="visible">True</property>
+				      <property name="tooltip" translatable="yes">Double-click to edit the active person</property>
 				      <property name="can_focus">True</property>
-				      <property name="editable">False</property>
-				      <property name="justification">GTK_JUSTIFY_LEFT</property>
-				      <property name="wrap_mode">GTK_WRAP_NONE</property>
-				      <property name="cursor_visible">False</property>
-				      <property name="pixels_above_lines">0</property>
-				      <property name="pixels_below_lines">0</property>
-				      <property name="pixels_inside_wrap">0</property>
-				      <property name="left_margin">0</property>
-				      <property name="right_margin">0</property>
-				      <property name="indent">0</property>
-				      <property name="text" translatable="yes"></property>
+				      <property name="headers_visible">False</property>
+				      <property name="rules_hint">True</property>
+				      <property name="reorderable">False</property>
+				      <property name="enable_search">False</property>
 				    </widget>
 				  </child>
 				</widget>
@@ -2791,19 +2785,6 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
-	    <widget class="GtkButton" id="spouse_ok">
-	      <property name="visible">True</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-ok</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="on_select_spouse_clicked" object="spouseDialog"/>
-	    </widget>
-	  </child>
-
-	  <child>
 	    <widget class="GtkButton" id="button117">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
@@ -2813,6 +2794,19 @@
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
 	      <signal name="clicked" handler="destroy_passed_object" object="spouseDialog"/>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkButton" id="spouse_ok">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-ok</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">0</property>
+	      <signal name="clicked" handler="on_select_spouse_clicked" object="spouseDialog"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -3075,6 +3069,19 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
+	    <widget class="GtkButton" id="button44">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-cancel</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">0</property>
+	      <signal name="clicked" handler="destroy_passed_object" object="familyDialog"/>
+	    </widget>
+	  </child>
+
+	  <child>
 	    <widget class="GtkButton" id="button42">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
@@ -3085,19 +3092,6 @@
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
 	      <signal name="clicked" handler="on_save_parents_clicked" object="familyDialog"/>
-	    </widget>
-	  </child>
-
-	  <child>
-	    <widget class="GtkButton" id="button44">
-	      <property name="visible">True</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-cancel</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="familyDialog"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -3966,6 +3960,19 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
+	    <widget class="GtkButton" id="button49">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-cancel</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">0</property>
+	      <signal name="clicked" handler="destroy_passed_object" object="selectChild"/>
+	    </widget>
+	  </child>
+
+	  <child>
 	    <widget class="GtkButton" id="button48">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
@@ -3976,19 +3983,6 @@
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
 	      <signal name="clicked" handler="on_save_child_clicked" object="selectChild"/>
-	    </widget>
-	  </child>
-
-	  <child>
-	    <widget class="GtkButton" id="button49">
-	      <property name="visible">True</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-cancel</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="selectChild"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -4569,6 +4563,19 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
+	    <widget class="GtkButton" id="button54">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-cancel</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">0</property>
+	      <signal name="clicked" handler="destroy_passed_object" object="marriageQuery"/>
+	    </widget>
+	  </child>
+
+	  <child>
 	    <widget class="GtkButton" id="button52">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
@@ -4579,19 +4586,6 @@
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
 	      <signal name="clicked" handler="on_marriageQuery_clicked" object="marriageQuery"/>
-	    </widget>
-	  </child>
-
-	  <child>
-	    <widget class="GtkButton" id="button54">
-	      <property name="visible">True</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-cancel</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="marriageQuery"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -4713,7 +4707,7 @@
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
-  <property name="default_width">450</property>
+  <property name="default_width">500</property>
   <property name="default_height">350</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
@@ -4732,6 +4726,20 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
+	    <widget class="GtkButton" id="button90">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Reject changes and close</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-cancel</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">0</property>
+	      <signal name="clicked" handler="destroy_passed_object" object="sourceEditor"/>
+	    </widget>
+	  </child>
+
+	  <child>
 	    <widget class="GtkButton" id="button88">
 	      <property name="visible">True</property>
 	      <property name="tooltip" translatable="yes">Accept and close</property>
@@ -4743,20 +4751,6 @@
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
 	      <signal name="clicked" handler="on_sourceapply_clicked" object="sourceEditor"/>
-	    </widget>
-	  </child>
-
-	  <child>
-	    <widget class="GtkButton" id="button90">
-	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Reject changes and close</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-cancel</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="sourceEditor"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -4800,7 +4794,7 @@
 	      <property name="visible">True</property>
 	    </widget>
 	    <packing>
-	      <property name="padding">0</property>
+	      <property name="padding">3</property>
 	      <property name="expand">False</property>
 	      <property name="fill">True</property>
 	    </packing>
@@ -4980,7 +4974,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label204">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;&lt;i&gt;General&lt;/i&gt;&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">&lt;b&gt;General&lt;/b&gt;</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">True</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -5031,7 +5025,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label205">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;&lt;i&gt;Note&lt;/i&gt;&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">&lt;b&gt;Note&lt;/b&gt;</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">True</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -5130,7 +5124,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label206">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;&lt;i&gt;Gallery&lt;/i&gt;&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">&lt;b&gt;Gallery&lt;/b&gt;</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">True</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -5150,8 +5144,8 @@
 		<widget class="GtkScrolledWindow" id="scrolledwindow38">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
-		  <property name="hscrollbar_policy">GTK_POLICY_ALWAYS</property>
-		  <property name="vscrollbar_policy">GTK_POLICY_ALWAYS</property>
+		  <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+		  <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
 		  <property name="shadow_type">GTK_SHADOW_NONE</property>
 		  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 
@@ -5175,7 +5169,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label274">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;&lt;i&gt;References&lt;/i&gt;&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">&lt;b&gt;References&lt;/b&gt;</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">True</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -5231,6 +5225,19 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
+	    <widget class="GtkButton" id="button122">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-cancel</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">0</property>
+	      <signal name="clicked" handler="destroy_passed_object" object="addperson"/>
+	    </widget>
+	  </child>
+
+	  <child>
 	    <widget class="GtkButton" id="button121">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
@@ -5241,19 +5248,6 @@
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
 	      <signal name="clicked" handler="on_addfather_close" object="addperson"/>
-	    </widget>
-	  </child>
-
-	  <child>
-	    <widget class="GtkButton" id="button122">
-	      <property name="visible">True</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-cancel</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="addperson"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -5572,6 +5566,19 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
+	    <widget class="GtkButton" id="open_cancel">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-cancel</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">0</property>
+	      <signal name="clicked" handler="on_open_cancel_clicked" object="opendb"/>
+	    </widget>
+	  </child>
+
+	  <child>
 	    <widget class="GtkButton" id="open_ok">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
@@ -5582,19 +5589,6 @@
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
 	      <signal name="clicked" handler="on_open_ok_clicked" object="opendb"/>
-	    </widget>
-	  </child>
-
-	  <child>
-	    <widget class="GtkButton" id="open_cancel">
-	      <property name="visible">True</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-cancel</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="on_open_cancel_clicked" object="opendb"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -5890,6 +5884,19 @@ or create a new relationship.</property>
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
+	    <widget class="GtkButton" id="button154">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-cancel</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">0</property>
+	      <signal name="clicked" handler="destroy_passed_object" object="familyDialog"/>
+	    </widget>
+	  </child>
+
+	  <child>
 	    <widget class="GtkButton" id="button153">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
@@ -5900,19 +5907,6 @@ or create a new relationship.</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
 	      <signal name="clicked" handler="on_save_parents_clicked" object="familyDialog"/>
-	    </widget>
-	  </child>
-
-	  <child>
-	    <widget class="GtkButton" id="button154">
-	      <property name="visible">True</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-cancel</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="familyDialog"/>
 	    </widget>
 	  </child>
 	</widget>

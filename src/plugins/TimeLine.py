@@ -364,7 +364,7 @@ class TimeLineDialog(Report.DrawReportDialog):
         return [all,des,ans,com]
 
     def make_default_style(self):
-        """Make the default output style for the Ancestor Chart report."""
+        """Make the default output style for the Timeline report."""
         f = TextDoc.FontStyle()
         f.set_size(10)
         f.set_type_face(TextDoc.FONT_SANS_SERIF)

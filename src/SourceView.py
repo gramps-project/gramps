@@ -125,8 +125,11 @@ class SourceView:
         if self.is_used(source):
             ans = EditSource.DelSrcQuery(source,self.db,self.update)
 
-            QuestionDialog(_('Delete Source'),
-                           _("This source is currently being used. Delete anyway?"),
+            QuestionDialog(_('Delete %s?') % source.getTitle(),
+                           _('This source is currently being used. Deleting it '
+                             'will remove it from the database and from all '
+                             'records that reference it.'),
+                           _('Delete Source'),
                            ans.query_response)
         else:
             self.db.removeSource(source.getId())

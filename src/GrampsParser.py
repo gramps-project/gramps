@@ -174,6 +174,12 @@ class GrampsParser:
         else:
             self.placeobj.set_main_location(loc)
             self.locations = self.locations + 1
+
+    def start_witness(self,attrs):
+        if attrs.has_key('ref'):
+            self.witness = RelLib.Witness(RelLib.Event.ID,attrs['ref'])
+        if attrs.has_key('name'):
+            self.witness = RelLib.Witness(RelLib.Event.NAME,attrs['name'])
         
     def start_coord(self,attrs):
         if attrs.has_key('lat'):
@@ -484,6 +490,10 @@ class GrampsParser:
     def stop_attribute(self,tag):
         self.attribute = None
 
+    def stop_witness(self,tag):
+        self.witness.set_comment(tag)
+        self.event.add_witness(self.witness)
+
     def stop_attr_type(self,tag):
         self.attribute.setType(tag)
 
@@ -740,6 +750,7 @@ class GrampsParser:
         "attr_type"  : (None,stop_attr_type),
         "attr_value" : (None,stop_attr_value),
         "bookmark"   : (start_bmark, None),
+        "witness"    : (start_witness,stop_witness),
         "bookmarks"  : (None, None),
         "child"      : (start_child,None),
         "childof"    : (start_childof,None),

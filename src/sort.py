@@ -29,7 +29,6 @@ to make sure these remain in sync with the rest of the design.
 # Imported Modules
 #
 #-------------------------------------------------------------------------
-import string
 import Date
 
 #-------------------------------------------------------------------------

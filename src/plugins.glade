@@ -9,8 +9,8 @@
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
-  <property name="default_width">550</property>
-  <property name="default_height">350</property>
+  <property name="default_width">600</property>
+  <property name="default_height">400</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
   <property name="icon">gramps.png</property>
@@ -28,15 +28,15 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
-	    <widget class="GtkButton" id="button104">
+	    <widget class="GtkButton" id="button106">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
-	      <property name="label">gtk-ok</property>
+	      <property name="label">gtk-cancel</property>
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="on_report_ok_clicked" object="report"/>
+	      <signal name="clicked" handler="destroy_passed_object" object="report"/>
 	    </widget>
 	  </child>
 
@@ -54,15 +54,15 @@
 	  </child>
 
 	  <child>
-	    <widget class="GtkButton" id="button106">
+	    <widget class="GtkButton" id="button104">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
-	      <property name="label">gtk-cancel</property>
+	      <property name="label">gtk-ok</property>
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="report"/>
+	      <signal name="clicked" handler="on_report_ok_clicked" object="report"/>
 	    </widget>
 	  </child>
 	</widget>

@@ -140,7 +140,9 @@ class ImageSelect:
         description = self.description.get_text()
 
         if os.path.exists(filename) == 0:
-            ErrorDialog(_("That is not a valid file name."));
+            msgstr = _("Cannot import %s")
+            msgstr2 = _("The filename supplied could not be found.")
+            ErrorDialog(msgstr,msgstr2)
             return
 
         already_imported = None
@@ -432,8 +434,7 @@ class Gallery(ImageSelect):
                     tfile,headers = u.retrieve(d)
                 except IOError, msg:
                     t = _("Could not import %s") % d
-                    
-                    ErrorDialog("%s\n%s %d" % (t,msg[0],msg[1]))
+                    ErrorDialog(t,str(msg))
                     return
                 mime = Utils.get_mime_type(tfile)
                 photo = RelLib.Photo()

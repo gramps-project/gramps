@@ -255,9 +255,12 @@ class MediaView:
         mobj = self.db.getObject(id)
         if self.is_object_used(mobj):
             ans = ImageSelect.DeleteMediaQuery(mobj,self.db,self.update)
-            QuestionDialog(_('Delete Object'),
-                           _("This media object is currently being used. "
-                             "Delete anyway?"),
+            QuestionDialog(_('Delete Media Object?'),
+                           _('This media object is currently being used. '
+                             'If you delete this object, it will be removed '
+                             'from the database and from all records that '
+                             'reference it.'),
+                           _('Delete Media Object?'),
                            ans.query_response)
         else:
             self.db.removeObject(mobj.getId())
@@ -326,9 +329,7 @@ class MediaView:
                 try:
                     tfile,headers = u.retrieve(d)
                 except IOError, msg:
-                    t = _("Could not import %s") % d
-                    
-                    ErrorDialog("%s\n%s %d" % (t,msg[0],msg[1]))
+                    ErrorDialog(t,str(msg))
                     return
                 mime = Utils.get_mime_type(tfile)
                 photo = RelLib.Photo()
