@@ -1,3 +1,9 @@
+2004-03-07  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/PeopleModel.py: New GenericTreeView based model
+	* src/RelLib.py: metadata/people model support
+	* src/gramps_main.py: PeopleModel support
+	* src/PeopleView.py: PeopleModel support
+
 2004-03-06  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/LPRDoc.py: Cell padding support. Images support 
 	(requires CVS version of gnome-python).
