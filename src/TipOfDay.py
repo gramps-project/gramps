@@ -42,7 +42,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-import GrampsGconfKeys
+import GrampsKeys
 
 #-------------------------------------------------------------------------
 #
@@ -58,7 +58,7 @@ class TipOfDay:
         
         tp = TipParser()
         tip_list = tp.get()
-        use.set_active(GrampsGconfKeys.get_usetips())
+        use.set_active(GrampsKeys.get_usetips())
 
         new_index = range(len(tip_list))
         Random().shuffle(new_index)
@@ -74,7 +74,7 @@ class TipOfDay:
             else:
                 index += 1
         
-        GrampsGconfKeys.save_usetips(use.get_active())
+        GrampsKeys.save_usetips(use.get_active())
         top.destroy()
 
 #-------------------------------------------------------------------------

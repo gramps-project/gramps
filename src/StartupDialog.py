@@ -26,12 +26,12 @@ import gtk.glade
 import gnome
 import gnome.ui
 
-import GrampsGconfKeys
+import GrampsKeys
 
 from gettext import gettext as _
 
 def need_to_run():
-    val = GrampsGconfKeys.get_startup()
+    val = GrampsKeys.get_startup()
     if val < const.startup:
         return 1
     return 0
@@ -95,18 +95,19 @@ class StartupDialog:
         return p
 
     def complete(self,obj,obj2):
-        GrampsGconfKeys.save_researcher_name(unicode(self.name.get_text()))
-        GrampsGconfKeys.save_researcher_addr(unicode(self.addr.get_text()))
-        GrampsGconfKeys.save_researcher_city(unicode(self.city.get_text()))
-        GrampsGconfKeys.save_researcher_state(unicode(self.state.get_text()))
-        GrampsGconfKeys.save_researcher_postal(unicode(self.postal.get_text()))
-        GrampsGconfKeys.save_researcher_country(unicode(self.country.get_text()))
-        GrampsGconfKeys.save_researcher_phone(unicode(self.phone.get_text()))
-        GrampsGconfKeys.save_researcher_email(unicode(self.email.get_text()))
+        GrampsKeys.save_researcher_name(unicode(self.name.get_text()))
+        GrampsKeys.save_researcher_addr(unicode(self.addr.get_text()))
+        GrampsKeys.save_researcher_city(unicode(self.city.get_text()))
+        GrampsKeys.save_researcher_state(unicode(self.state.get_text()))
+        GrampsKeys.save_researcher_postal(unicode(self.postal.get_text()))
+        GrampsKeys.save_researcher_country(unicode(self.country.get_text()))
+        GrampsKeys.save_researcher_phone(unicode(self.phone.get_text()))
+        GrampsKeys.save_researcher_email(unicode(self.email.get_text()))
 
-        GrampsGconfKeys.save_uselds(self.lds.get_active())
-        GrampsGconfKeys.save_startup(const.startup)
-        self.w.destroy()
+        GrampsKeys.save_uselds(self.lds.get_active())
+        GrampsKeys.save_startup(const.startup)
+        self.w.destroy()        
+        GrampsKeys.sync()
         self.task(self.args)
         
     def build_page2(self):
@@ -143,7 +144,7 @@ class StartupDialog:
         box.add(table)
         box.show_all()
 
-        name = GrampsGconfKeys.get_researcher_name()
+        name = GrampsKeys.get_researcher_name()
         if not name or name.strip() == "":
             import pwd
             import os
@@ -154,13 +155,13 @@ class StartupDialog:
                 name = ""
 
         self.name.set_text(name)
-        self.addr.set_text(GrampsGconfKeys.get_researcher_addr())
-        self.city.set_text(GrampsGconfKeys.get_researcher_city())
-        self.state.set_text(GrampsGconfKeys.get_researcher_state())
-        self.postal.set_text(GrampsGconfKeys.get_researcher_postal())
-        self.country.set_text(GrampsGconfKeys.get_researcher_country())
-        self.phone.set_text(GrampsGconfKeys.get_researcher_phone())
-        self.email.set_text(GrampsGconfKeys.get_researcher_email())
+        self.addr.set_text(GrampsKeys.get_researcher_addr())
+        self.city.set_text(GrampsKeys.get_researcher_city())
+        self.state.set_text(GrampsKeys.get_researcher_state())
+        self.postal.set_text(GrampsKeys.get_researcher_postal())
+        self.country.set_text(GrampsKeys.get_researcher_country())
+        self.phone.set_text(GrampsKeys.get_researcher_phone())
+        self.email.set_text(GrampsKeys.get_researcher_email())
 
         return p
 
@@ -188,7 +189,7 @@ class StartupDialog:
         
         self.lds = gtk.CheckButton(label=_("Enable LDS ordinance support"))
 
-        self.lds.set_active(GrampsGconfKeys.get_uselds())
+        self.lds.set_active(GrampsKeys.get_uselds())
 
         align.add(self.lds)
         

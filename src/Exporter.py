@@ -51,7 +51,7 @@ import const
 import Utils
 import Plugins
 import QuestionDialog
-import GrampsGconfKeys
+import GrampsKeys
 
 #-------------------------------------------------------------------------
 #
@@ -205,7 +205,7 @@ class Exporter:
         Depending on the success status, set the text for the final page.
         """
         filename = self.chooser.get_filename()
-        GrampsGconfKeys.save_last_export_dir(os.path.split(filename)[0])
+        GrampsKeys.save_last_export_dir(os.path.split(filename)[0])
         ix = self.get_selected_format_index()
         if self.exports[ix][3]:
             success = self.exports[ix][0](self.parent.db,filename,self.person,
@@ -334,9 +334,9 @@ class Exporter:
         ext = self.exports[ix][4]
         
         # Suggested folder: try last export, then last import, then home.
-        default_dir = GrampsGconfKeys.get_last_export_dir()
+        default_dir = GrampsKeys.get_last_export_dir()
         if len(default_dir)<=1:
-            default_dir = GrampsGconfKeys.get_last_import_dir()
+            default_dir = GrampsKeys.get_last_import_dir()
         if len(default_dir)<=1:
             default_dir = '~/'
 

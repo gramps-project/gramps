@@ -62,6 +62,14 @@ prefixdir = "@GPREFIX@"
 
 #-------------------------------------------------------------------------
 #
+# Configuration database options - True means drop down to .INI files
+#
+#-------------------------------------------------------------------------
+
+no_gconf = False
+
+#-------------------------------------------------------------------------
+#
 # Paths to files - assumes that files reside in the same directory as
 # this one, and that the plugins directory is in a directory below this.
 #

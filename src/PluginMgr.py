@@ -45,7 +45,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import const
-import GrampsGconfKeys
+import GrampsKeys
 import Errors
 
 #-------------------------------------------------------------------------
@@ -133,7 +133,7 @@ def load_plugins(direct):
         except:
             failmsg_list.append((filename,sys.exc_info()))
 
-    if GrampsGconfKeys.get_pop_plugin_status() and len(expect_list)+len(failmsg_list):
+    if GrampsKeys.get_pop_plugin_status() and len(expect_list)+len(failmsg_list):
         PluginStatus()
 
 #-------------------------------------------------------------------------
@@ -199,7 +199,7 @@ def reload_plugins(obj=None,junk1=None,junk2=None,junk3=None):
             except:
                 failmsg_list.append((filename,sys.exc_info()))
 
-    if GrampsGconfKeys.get_pop_plugin_status():
+    if GrampsKeys.get_pop_plugin_status():
         global status_up
         if len(failmsg_list):
             PluginStatus()

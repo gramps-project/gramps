@@ -47,7 +47,7 @@ import RelLib
 import ImageSelect
 import DateHandler
 import Sources
-import GrampsGconfKeys
+import GrampsKeys
 import NameDisplay
 
 from QuestionDialog import QuestionDialog, WarningDialog, SaveDialog
@@ -556,7 +556,7 @@ class Marriage:
         self.close(0)
 
     def on_cancel_edit(self,obj):
-        if self.did_data_change() and not GrampsGconfKeys.get_dont_ask():
+        if self.did_data_change() and not GrampsKeys.get_dont_ask():
             global quit
             self.quit = obj
             SaveDialog(_('Save Changes?'),

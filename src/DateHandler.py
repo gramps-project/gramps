@@ -123,8 +123,8 @@ except:
     parser = DateParser.DateParser()
 
 try:
-    import GrampsGconfKeys
-    val = GrampsGconfKeys.get_date_format(_lang_to_display[_lang].formats)
+    import GrampsKeys
+    val = GrampsKeys.get_date_format(_lang_to_display[_lang].formats)
 except:
     val = 0
 

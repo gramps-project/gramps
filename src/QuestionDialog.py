@@ -21,7 +21,7 @@
 import gtk
 import gtk.glade
 import const
-import GrampsGconfKeys
+import GrampsKeys
 
 from gettext import gettext as _
 
@@ -50,7 +50,7 @@ class SaveDialog:
         elif response == gtk.RESPONSE_YES:
             self.task2()
 
-        GrampsGconfKeys.save_dont_ask(self.dontask.get_active())
+        GrampsKeys.save_dont_ask(self.dontask.get_active())
         self.top.destroy()
 
 class QuestionDialog:
