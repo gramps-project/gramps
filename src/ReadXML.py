@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -64,6 +66,7 @@ def importData(database, filename, callback,cl=0):
     database.smap = {}
     database.pmap = {}
     database.fmap = {}
+    missmedia_action = 0
 
     parser = GrampsImportParser(database,callback,basefile)
 
@@ -206,7 +209,7 @@ def importData(database, filename, callback,cl=0):
     for OldMediaID in parser.MediaFileMap.keys():
         NewMediaID = parser.MediaFileMap[OldMediaID]
         oldfile = ObjectMap[NewMediaID].getPath()
-	(junk,oldext) = os.path.splitext(os.path.basename(oldfile))
+        (junk,oldext) = os.path.splitext(os.path.basename(oldfile))
         oldfile = os.path.join(basefile,OldMediaID+oldext)
         newfile = os.path.join(newpath,NewMediaID+oldext)
     	ObjectMap[NewMediaID].setPath(newfile)
@@ -222,14 +225,22 @@ def importData(database, filename, callback,cl=0):
                 print "Warning: media file %s was not found," \
                     % os.path.basename(oldfile), "so it was ignored."
             else:
-                # File is lost => ask what to do
-                MissingMediaDialog(_("Media object could not be found"),
-	            _("%(file_name)s is referenced in the database, but no longer exists. " 
-                        "The file may have been deleted or moved to a different location. " 
-                        "You may choose to either remove the reference from the database, " 
-                        "keep the reference to the missing file, or select a new file." 
-                        ) % { 'file_name' : oldfile },
-                    remove_clicked, leave_clicked, select_clicked)
+                # File is lost => ask what to do (if we were not told yet)
+                if missmedia_action == 0:
+                    mmd = MissingMediaDialog(_("Media object could not be found"),
+	                _("%(file_name)s is referenced in the database, but no longer exists. " 
+                            "The file may have been deleted or moved to a different location. " 
+                            "You may choose to either remove the reference from the database, " 
+                            "keep the reference to the missing file, or select a new file." 
+                            ) % { 'file_name' : oldfile },
+                        remove_clicked, leave_clicked, select_clicked)
+                    missmedia_action = mmd.default_action
+                elif missmedia_action == 1:
+                    remove_clicked()
+                elif missmedia_action == 2:
+                    leave_clicked()
+                elif missmedia_action == 3:
+                    select_clicked()
 
     del parser
     return 1
