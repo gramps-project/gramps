@@ -414,7 +414,7 @@
 	    <name>help1_menu</name>
 
 	    <widget>
-	      <class>GtkMenuItem</class>
+	      <class>GtkPixmapMenuItem</class>
 	      <name>contents</name>
 	      <signal>
 		<name>activate</name>
@@ -423,10 +423,11 @@
 	      </signal>
 	      <label>_User's Manual</label>
 	      <right_justify>False</right_justify>
+	      <stock_icon>GNOME_STOCK_MENU_BOOK_RED</stock_icon>
 	    </widget>
 
 	    <widget>
-	      <class>GtkMenuItem</class>
+	      <class>GtkPixmapMenuItem</class>
 	      <name>writing_extensions</name>
 	      <signal>
 		<name>activate</name>
@@ -435,6 +436,7 @@
 	      </signal>
 	      <label>_Writing Extensions</label>
 	      <right_justify>False</right_justify>
+	      <stock_icon>GNOME_STOCK_MENU_BOOK_BLUE</stock_icon>
 	    </widget>
 
 	    <widget>

@@ -335,7 +335,8 @@ class OpenSpreadSheet(SpreadSheetDoc):
 	self.f.write('<text:page-count>99</text:page-count></text:p>\n')
 	self.f.write('</style:footer>\n')
 	self.f.write('</style:master-page>\n')
-	self.f.write(' </office:master-styles>\n')
+	self.f.write('</office:master-styles>\n')
+	self.f.write('</office:styles>\n')
 	self.f.write('</office:document-styles>\n')
 	self.f.close()
 
