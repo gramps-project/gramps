@@ -33,6 +33,7 @@ import re
 # gnome/gtk
 #
 #-------------------------------------------------------------------------
+import gobject
 import gtk
 import gtk.glade
 
@@ -95,52 +96,102 @@ class PatchNames:
 
         msg = ""
 
+
         if len(self.nick_list) > 0 or len(self.title_list) > 0:
-            for (id,name,nick) in self.nick_list:
-                p = self.db.getPerson(id)
-                msg = msg + _("%s will be extracted as a nickname from %s\n") % \
-                      (nick,p.getPrimaryName().getName())
-
-            for (id,title,nick) in self.title_list:
-                p = self.db.getPerson(id)
-                msg = msg + _("%s will be extracted as a title from %s\n") % \
-                      (title,p.getPrimaryName().getName())
-
-            base = os.path.dirname(__file__)
-            glade_file = base + os.sep + "patchnames.glade"
-
-            self.top = gtk.glade.XML(glade_file,"summary")
-            self.top.signal_autoconnect({
-                "destroy_passed_object" : Utils.destroy_passed_object,
-                "on_ok_clicked" : self.on_ok_clicked
-                })
-
-            Utils.set_titles(self.top.get_widget('summary'),
-                             self.top.get_widget('title'),
-                             _('Name and title extraction tool'))
-
-            self.top.get_widget("textwindow").get_buffer().set_text(msg)
+            self.display()
         else:
             OkDialog(_('No modifications made'),
                      _("No titles or nicknames were found"))
             self.cb(0)
 
+    def toggled(self,cell,path_string):
+        path = tuple([int (i) for i in path_string.split(':')])
+        row = self.model[path]
+        row[0] = not row[0]
+        self.model.row_changed(path,row.iter)
+
+    def display(self):
+        base = os.path.dirname(__file__)
+        glade_file = base + os.sep + "patchnames.glade"
+        
+        self.top = gtk.glade.XML(glade_file,"top")
+        self.top.signal_autoconnect({
+            "destroy_passed_object" : Utils.destroy_passed_object,
+            "on_ok_clicked" : self.on_ok_clicked
+            })
+        self.list = self.top.get_widget("list")
+        Utils.set_titles(self.top.get_widget('top'),
+                         self.top.get_widget('title'),
+                         _('Name and title extraction tool'))
+
+        self.model = gtk.ListStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING,
+                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                   gobject.TYPE_STRING)
+
+        r = gtk.CellRendererToggle()
+        r.connect('toggled',self.toggled)
+        c = gtk.TreeViewColumn(_('Select'),r,active=0)
+        self.list.append_column(c)
+
+        c = gtk.TreeViewColumn(_('ID'),gtk.CellRendererText(),text=1)
+        self.list.append_column(c)
+
+        c = gtk.TreeViewColumn(_('Type'),gtk.CellRendererText(),text=2)
+        self.list.append_column(c)
+
+        c = gtk.TreeViewColumn(_('Value'),gtk.CellRendererText(),text=3)
+        self.list.append_column(c)
+
+        c = gtk.TreeViewColumn(_('Name'),gtk.CellRendererText(),text=4)
+        self.list.append_column(c)
+
+        self.list.set_model(self.model)
+
+        self.nick_hash = {}
+        self.title_hash = {}
+        
+        for (id,name,nick) in self.nick_list:
+            p = self.db.getPerson(id)
+            iter = self.model.append()
+            self.model.set_value(iter,0,1)
+            self.model.set_value(iter,1,id)
+            self.model.set_value(iter,2,_('Nickname'))
+            self.model.set_value(iter,3,nick)
+            self.model.set_value(iter,4,p.getPrimaryName().getName())
+            self.nick_hash[id] = iter
+            
+        for (id,title,nick) in self.title_list:
+            p = self.db.getPerson(id)
+            iter = self.model.append()
+            self.model.set_value(iter,0,1)
+            self.model.set_value(iter,1,id)
+            self.model.set_value(iter,2,_('Title'))
+            self.model.set_value(iter,3,nick)
+            self.model.set_value(iter,4,p.getPrimaryName().getName())
+            self.title_hash[id] = iter
+                
     def on_ok_clicked(self,obj):
         for grp in self.nick_list:
-            p = self.db.getPerson(grp[0])
-            name = p.getPrimaryName()
-            name.setFirstName(grp[1])
-            p.setNickName(grp[2])
-            self.db.buildPersonDisplay(grp[0])
-            Utils.modified()
+            iter = self.nick_hash[grp[0]]
+            val = self.model.get_value(iter,0)
+            if val:
+                p = self.db.getPerson(grp[0])
+                name = p.getPrimaryName()
+                name.setFirstName(grp[1])
+                p.setNickName(grp[2])
+                self.db.buildPersonDisplay(grp[0])
+                Utils.modified()
 
         for grp in self.title_list:
-            p = self.db.getPerson(grp[0])
-            name = p.getPrimaryName()
-            name.setFirstName(grp[2])
-            name.setTitle(grp[1])
-            self.db.buildPersonDisplay(grp[0])
-            Utils.modified()
+            iter = self.title_hash[grp[0]]
+            val = self.model.get_value(iter,0)
+            if val:
+                p = self.db.getPerson(grp[0])
+                name = p.getPrimaryName()
+                name.setFirstName(grp[2])
+                name.setTitle(grp[1])
+                self.db.buildPersonDisplay(grp[0])
+                Utils.modified()
 
         Utils.destroy_passed_object(obj)
         self.cb(1)

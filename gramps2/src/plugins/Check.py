@@ -25,7 +25,7 @@ import Utils
 from intl import gettext as _
 
 import os
-
+import cStringIO
 import gtk
 import gtk.glade
 from QuestionDialog import OkDialog
@@ -148,12 +148,12 @@ class CheckIntegrity:
                      _('The database has passed internal checks'))
             return
 
-        text = ""
+        text = cStringIO.StringIO;
         if blink > 0:
             if blink == 1:
-                text = text + _("1 broken child/family link was fixed\n")
+                text.write(_("1 broken child/family link was fixed\n"))
             else:
-                text = text + _("%d broken child/family links were found\n") % blink
+                text.write(_("%d broken child/family links were found\n") % blink)
             for c in self.broken_links:
                 cn = c[0].getPrimaryName().getName()
                 f = c[1].getFather()
@@ -165,14 +165,14 @@ class CheckIntegrity:
                     pn = f.getPrimaryName().getName()
                 else:
                     pn = m.getPrimaryName().getName()
-                text = text + '\t' + \
-                       _("%s was removed from the family of %s\n") % (cn,pn)
+                text.write('\t')
+                text.write('_("%s was removed from the family of %s\n") % (cn,pn)')
 
         if plink > 0:
             if plink == 1:
-                text = text + _("1 broken spouse/family link was fixed\n")
+                text.write(_("1 broken spouse/family link was fixed\n"))
             else:
-                text = text + _("%d broken spouse/family links were found\n") % plink
+                text.write(_("%d broken spouse/family links were found\n") % plink)
             for c in self.broken_parent_links:
                 cn = c[0].getPrimaryName().getName()
                 f = c[1].getFather()
@@ -184,21 +184,21 @@ class CheckIntegrity:
                     pn = f.getPrimaryName().getName()
                 else:
                     pn = m.getPrimaryName().getName()
-                text = text + '\t' + \
-                       _("%s was restored to the family of %s\n") % (cn,pn)
+                    text.write('\t')
+                    text.write(_("%s was restored to the family of %s\n") % (cn,pn))
 
         if efam == 1:
-            text = text + _("1 empty family was found\n")
+            text.write(_("1 empty family was found\n"))
         elif efam > 1:
-            text = text + _("%d empty families were found\n") % efam
+            text.write(_("%d empty families were found\n") % efam)
         if rel == 1:
-            text = text + _("1 corrupted family relationship fixed\n")
+            text.write(_("1 corrupted family relationship fixed\n"))
         elif rel > 1:
-            text = text + _("%d corrupted family relationship fixed\n") % rel
+            text.write(_("%d corrupted family relationship fixed\n") % rel)
         if photos == 1:
-            text = text + _("1 media object was referenced, but not found\n")
+            text.write(_("1 media object was referenced, but not found\n"))
         elif photos > 1:
-            text = text + _("%d media objects were referenced, but not found\n") % photos
+            text.write(_("%d media objects were referenced, but not found\n") % photos)
 
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "summary.glade"
@@ -211,7 +211,7 @@ class CheckIntegrity:
         textwindow = topDialog.get_widget("textwindow")
 
         Utils.set_titles(top,topDialog.get_widget("title"),title)
-        textwindow.get_buffer().set_text(text)
+        textwindow.get_buffer().set_text(text.get_value())
         top.show()
 
 #------------------------------------------------------------------------
