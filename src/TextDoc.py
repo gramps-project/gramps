@@ -454,16 +454,12 @@ class StyleSheetList:
 
     def parse(self):
         try:
-            f = open(self.file,"r")
+            parser = make_parser()
+            parser.setContentHandler(SheetParser(self))
+            parser.parse(self.file)
         except:
-            return
-
-        parser = make_parser()
-        parser.setContentHandler(SheetParser(self))
-        parser.parse(f)
+            print "could not parse file"
         
-        f.close()
-
 #------------------------------------------------------------------------
 #
 # 

@@ -98,7 +98,7 @@ class EventEditor:
             self.place_field.set_text(event.getPlaceName())
             if (def_placename):
                 self.place_field.set_text(def_placename)
-            self.date_field.set_text(event.getPrefDate())
+            self.date_field.set_text(self.date.getDate())
             self.cause_field.set_text(event.getCause())
             self.descr_field.set_text(event.getDescription())
             self.priv.set_active(event.getPrivacy())
