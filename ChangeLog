@@ -1,3 +1,6 @@
+2004-10-06  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/ReadGedcom.py: remove extra commits
+
 2004-10-06 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Makefile.am: Remove extra DESTDIR.
 	* src/docgen/Makefile.am: Remove extra DESTDIR, correct pycheck target.
