@@ -950,13 +950,18 @@ class WebReportDialog(ReportDialog):
         """Do Nothing.  This document will be created in the
         make_report routine."""
         pass
-        
+
+
+    def setup_format_frame(self):
+        """Do nothing, since we don't want a format frame (HTML only)"""
+        pass
+    
     #------------------------------------------------------------------------
     #
     # Functions related to setting up the dialog window
     #
     #------------------------------------------------------------------------
-    def setup_format_frame(self):
+    def setup_post_process(self):
         """The format frame is not used in this dialog.  Hide it, and
         set the output notebook to always display the html template
         page."""

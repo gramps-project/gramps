@@ -6380,6 +6380,12 @@ Unknown
 	<name>button147</name>
 	<can_default>True</can_default>
 	<can_focus>True</can_focus>
+	<signal>
+	  <name>clicked</name>
+	  <handler>destroy_passed_object</handler>
+	  <object>addChild</object>
+	  <last_modification_time>Tue, 15 Jan 2002 23:03:24 GMT</last_modification_time>
+	</signal>
 	<stock_button>GNOME_STOCK_BUTTON_CANCEL</stock_button>
       </widget>
     </widget>
@@ -6398,7 +6404,7 @@ Unknown
       <widget>
 	<class>GtkLabel</class>
 	<name>newTitle</name>
-	<width>450</width>
+	<width>500</width>
 	<label>Add New Child</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>

@@ -179,6 +179,7 @@ class ReportDialog:
         self.setup_title()
         self.setup_header()
         self.setup_target_frame()
+        self.setup_format_frame()
         self.setup_style_frame()
         self.setup_output_notebook()
         self.setup_paper_frame()
@@ -189,9 +190,10 @@ class ReportDialog:
 
         # Allow for post processing of the format frame, since the
         # show_all task calls events that may reset values
-        
-        self.setup_format_frame()
 
+    def setup_post_process(self):
+        pass
+    
     #------------------------------------------------------------------------
     #
     # Customization hooks for subclasses
