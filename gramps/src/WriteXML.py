@@ -133,6 +133,25 @@ class XmlWriter:
         self.write_xml_data()
         self.g.close()
 
+    def write_handle(self,handle):
+        """
+        Write the database to the specfied file handle.
+        """
+
+        use_g = 0
+        if self.compress:
+            try:
+                self.g = gzip.GzipFile(mode="wb",fileobj=handle)
+                use_g = 1
+            except:
+                self.g = handle
+        else:
+            self.g = handle
+
+        self.write_xml_data()
+        if use_g:
+            self.g.close()
+
     def write_xml_data(self):
 
         date = string.split(time.ctime(time.time()))

@@ -75,7 +75,9 @@ def exportData(database, filename):
 
     t = TarFile.TarFile(filename)
     g = StringIO()
-    WriteXML.write_xml_data(database,g,callback,1)
+
+    gfile = WriteXML.XmlWriter(database,None,1)
+    gfile.write_handle(g)
     mtime = time.time()
     t.add_file("data.gramps",mtime,g)
     g.close()
