@@ -659,12 +659,26 @@ class Gramps:
         self.child_list.set_column_visibility(self.c_details,GrampsCfg.show_detail)
         self.child_list.set_column_visibility(self.c_id,GrampsCfg.id_visible)
         self.child_list.set_column_visibility(self.c_birth_order,GrampsCfg.index_visible)
+        import time
+        t = time.time()
         self.apply_filter()
+        print 'people',time.time() - t
+        t = time.time()
         self.load_family()
+        print 'family',time.time() -t
+        t = time.time()
         self.source_view.load_sources()
+        print 'sources',time.time() -t
+        t = time.time()
         self.place_view.load_places()
+        print 'places',time.time() -t
+        t = time.time()
         self.pedigree_view.load_canvas(self.active_person)
+        print 'pedegree',time.time() -t
+        t = time.time()
         self.media_view.load_media()
+        print 'media',time.time() -t
+        t = time.time()
         self.toolbar.set_style(GrampsCfg.toolbar)
 
     def update_display(self,changed):

@@ -68,8 +68,10 @@ class Marriage:
         self.path = db.getSavePath()
         self.cb = callback
         self.pmap = {}
-        for p in db.getPlaces():
-            self.pmap[p.get_title()] = p
+
+        for key in db.getPlaceKeys():
+            p = db.getPlaceDisplay(key)
+            self.pmap[p[0]] = key
 
         self.top = libglade.GladeXML(const.marriageFile,"marriageEditor")
         top_window = self.get_widget("marriageEditor")

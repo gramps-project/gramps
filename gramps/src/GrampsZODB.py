@@ -153,11 +153,25 @@ class GrampsZODB(GrampsDB):
             self.load(name,callback)
 
     def load(self,name,callback):
+        import time
+        t = time.time()
+        print 'opening storage'
         s = FileStorage(name)
+        t1 = time.time()
+        print t1 - t
+        print 'getting DB'
         self.db = DB(s)
+        t = time.time()
+        print t - t1
+        print 'establishing connect'
         self.conn = self.db.open()
+        t1 = time.time()
+        print t1 -t
+        print 'getting root'
         root = self.conn.root()
-
+        t = time.time()
+        print t - t1
+        print 'family map'
         need_commit = 0
         if root.has_key('fm'):
             self.familyMap = root['fm']
@@ -165,14 +179,20 @@ class GrampsZODB(GrampsDB):
             self.familyMap = OOBTree()
             root['fm'] = self.familyMap
             need_commit = 1
-
+        t1 = time.time()
+        print t1 - t
+        
+        print 'person map'
         if root.has_key('pm'):
             self.personMap = root['pm']
         else:
             self.personMap = PersonMap()
             root['pm'] = self.personMap
             need_commit = 1
+        t = time.time()
+        print t - t1
 
+        print 'person index table'
         if root.has_key('pmt'):
             self.personTable = root['pmt']
         else:
@@ -181,7 +201,10 @@ class GrampsZODB(GrampsDB):
                 self.personTable[key] = person.getDisplayInfo()
             root['pmt'] = self.personTable
             need_commit = 1
+        t1 = time.time()
+        print t1 - t
 
+        print 'surnames'
         if root.has_key('surnames'):
             self.surnames = root['surnames']
         else:
@@ -190,14 +213,20 @@ class GrampsZODB(GrampsDB):
                 self.addSurname(person.getPrimaryName().getSurname())
             root['surnames'] = self.surnames
             need_commit = 1
+        t = time.time()
+        print t - t1
 
+        print 'source map'
         if root.has_key('sm'):
             self.sourceMap = root['sm']
         else:
             self.sourceMap = OOBTree()
             root['sm'] = self.sourceMap
             need_commit = 1
+        t1 = time.time()
+        print t1 - t
 
+        print 'source index table'
         if root.has_key('smt'):
             self.sourceTable = root['smt']
         else:
@@ -206,14 +235,20 @@ class GrampsZODB(GrampsDB):
                 self.sourceTable[key] = src.getDisplayInfo()
             root['smt'] = self.sourceTable
             need_commit = 1
+        t = time.time()
+        print t - t1
 
+        print 'place map'
         if root.has_key('plm'):
             self.placeMap = root['plm']
         else:
             self.placeMap = OOBTree()
             root['plm'] = self.placeMap
             need_commit = 1
+        t1 = time.time()
+        print t1 - t
 
+        print 'place index'
         if root.has_key('plmt'):
             self.placeTable = root['plmt']
         else:
@@ -222,23 +257,35 @@ class GrampsZODB(GrampsDB):
                 self.placeTable[key] = place.getDisplayInfo()
             root['plmt'] = self.placeTable
             need_commit = 1
+        t = time.time()
+        print t - t1
 
+        print 'default person'
         if root.has_key('default'):
             self.default = root['default']
         else:
             self.default = None
             root['default'] = self.default
             need_commit = 1
+        t1 = time.time()
+        print t1 - t
 
+        print 'bookmarks'
         if root.has_key('bookmarks'):
             self.bookmarks = root['bookmarks']
         else:
             self.bookmarks = []
             root['bookmarks'] = self.bookmarks
             need_commit = 1
+        t = time.time()
+        print t - t1
 
         if need_commit:
+            print 'committing'
             get_transaction().commit()
+        t1 = time.time()
+        print t1 - t
+        print 'done'
         return 1
 
     def setDefaultPerson(self,person):
