@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -280,10 +280,10 @@ class EditPlace:
             self.callback(self.place)
 
     def on_switch_page(self,obj,a,page):
-        if page == 3 and self.not_loaded:
+        if page == 4 and self.not_loaded:
             self.not_loaded = 0
             self.glry.load_images()
-        elif page == 5 and self.ref_not_loaded:
+        elif page == 6 and self.ref_not_loaded:
             self.ref_not_loaded = 0
             self.display_references()
 
