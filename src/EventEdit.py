@@ -298,11 +298,8 @@ class EventEditor:
 
     def get_place(self,field):
         text = unicode(field.get_text()).strip()
-        if text:
-            if self.pmap.has_key(text):
-                return self.parent.db.get_event_from_handle(self.pmap[text])
-            else:
-                return None
+        if text and self.pmap.has_key(text):
+            return self.parent.db.get_place_from_handle(self.pmap[text])
         else:
             return None
 
