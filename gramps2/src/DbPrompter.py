@@ -293,7 +293,7 @@ class NewNativeDbPrompter:
         filter.add_mime_type('application/x-gramps')
         choose.add_filter(filter)
 
-        new_filename = get_new_filename()
+        new_filename = get_new_filename('grdb')
         
         choose.set_filename(new_filename)
         choose.set_current_name(os.path.split(new_filename)[1])
@@ -344,25 +344,25 @@ class SaveAsDbPrompter:
                                             gtk.RESPONSE_OK))
         self.choose.set_local_only(gtk.FALSE)
         # Always add automatic (macth all files) filter
-        filter = gtk.FileFilter()
-        filter.set_name(_('By extension'))
-        filter.add_pattern('*')
-        self.choose.add_filter(filter)
+        all_filter = gtk.FileFilter()
+        all_filter.set_name(_('By extension'))
+        all_filter.add_pattern('*')
+        self.choose.add_filter(all_filter)
         
         # Always add native format filter
-        filter = gtk.FileFilter()
-        filter.set_name(_('GRAMPS databases'))
-        filter.add_mime_type('application/x-gramps')
-        self.choose.add_filter(filter)
+        native_filter = gtk.FileFilter()
+        native_filter.set_name(_('GRAMPS databases'))
+        native_filter.add_mime_type('application/x-gramps')
+        self.choose.add_filter(native_filter)
 
-    	chooser_default = self.choose.get_children()[0].get_children()[0].get_children()[0]
-	chooser_default.connect('notify::filter',self.change_suggested_name)
+        chooser_default = self.choose.get_children()[0].get_children()[0].get_children()[0]
+        chooser_default.connect('notify::filter',self.change_suggested_name)
 
-        # Add more data type selections if opening existing db
+        # Add more data type selections from export plugins
         for (exportData,filter,pattern_list) in Plugins._exports:
             self.choose.add_filter(filter)
         
-        new_filename = get_new_filename()
+        new_filename = get_new_filename('grdb')
         self.choose.set_filename(new_filename)
         self.choose.set_current_name(os.path.split(new_filename)[1])
 
@@ -372,8 +372,13 @@ class SaveAsDbPrompter:
             filename = os.path.normpath(os.path.abspath(filename))
             (junk,the_file) = os.path.split(filename)
             the_ext = os.path.splitext(filename)[1]
+            the_filter = self.choose.get_filter()
 
-            if the_ext in ('.grdb', '.GRDB'):
+            # Save as grdb if either explictly selected by the filter
+            # or the filter is ALL and the extension is grdb
+            if the_filter.get_name() == native_filter.get_name() \
+                        or (the_filter.get_name() == all_filter.get_name()
+                            and the_ext in ('.grdb', '.GRDB')):
                 self.choose.destroy()
                 try:
                     shutil.copyfile(self.parent.db.get_save_path(),filename)
@@ -384,7 +389,11 @@ class SaveAsDbPrompter:
                     return 0
 
             for (exportData,filter,pattern_list) in Plugins._exports:
-                if the_ext in pattern_list:
+                # Save as this type if either explictly selected by the filter
+                # or the filter is ALL and the extension is in this type's list
+                if the_filter.get_name() == filter.get_name() \
+                        or (the_filter.get_name() == all_filter.get_name()
+                            and the_ext in pattern_list):
                     self.choose.destroy()
                     exportData(self.parent.db,filename)
                     return 1
@@ -403,20 +412,24 @@ class SaveAsDbPrompter:
         """
         the_filter = self.choose.get_filter()
         if the_filter.get_name().find('XML') + 1:
-            self.choose.set_current_name('data.gramps')
+            new_filename = 'data.gramps'
+        elif the_filter.get_name() == _('GRAMPS packages'):
+            new_filename = get_new_filename('gpkg')
+            new_filename = os.path.split(new_filename)[1]
         else:
-            new_filename = get_new_filename()
-            self.choose.set_current_name(os.path.split(new_filename)[1])
+            new_filename = get_new_filename('grdb')
+            new_filename = os.path.split(new_filename)[1]
+        self.choose.set_current_name()
 
-    
 #-------------------------------------------------------------------------
 #
 # 
 #
 #-------------------------------------------------------------------------
-def get_new_filename():
-    ix = 1
-    while os.path.isfile(os.path.expanduser('~/Untitled_%d.grdb' % ix ) ):
-        ix = ix + 1
-    return os.path.expanduser('~/Untitled_%d.grdb' % ix )
+_NEW_NAME_PATTERN = '~/Untitled_%d.%s'
 
+def get_new_filename(ext):
+    ix = 1
+    while os.path.isfile(os.path.expanduser(_NEW_NAME_PATTERN % (ix,ext) )):
+        ix = ix + 1
+    return os.path.expanduser(_NEW_NAME_PATTERN % (ix,ext))
