@@ -1,3 +1,6 @@
+2004-12-30 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Report.py: Change finish_report to end_report.
+
 2004-12-30  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py: documentation
 	* src/Report.py: change finish_report to end_report

@@ -1742,7 +1742,7 @@ def report(database,person,report_class,options_class,translated_name,name,categ
             MyReport = report_class(dialog.db,dialog.person,dialog.options)
             MyReport.begin_report()
             MyReport.write_report()
-            MyReport.finish_report()
+            MyReport.end_report()
         except Errors.FilterError, msg:
             (m1,m2) = msg.messages()
             ErrorDialog(m1,m2)
@@ -1788,7 +1788,7 @@ def cl_report(database,name,category,report_class,options_class,options_str_dict
         MyReport = report_class(database, clr.person, clr.option_class)
         MyReport.begin_report()
         MyReport.write_report()
-        MyReport.finish_report()
+        MyReport.end_report()
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
