@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2004  Donald N. Allingham
+# Copyright (C) 2003-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,6 +22,13 @@
 
 #-------------------------------------------------------------------------
 #
+# Python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -39,7 +46,6 @@ import Utils
 import RelLib
 import ListModel
 import NameDisplay
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -151,10 +157,14 @@ class WitnessEditor:
 
         if self.ref:
             if self.ref.get_type():
-                self.in_db.set_active(1)
                 self.idval = self.ref.get_value()
-                person = self.db.get_person_from_handle(self.idval)
-                self.name.set_text(person.get_primary_name().get_regular_name())
+                if self.db.has_person_handle(self.idval):
+                    person = self.db.get_person_from_handle(self.idval)
+                    self.name.set_text(person.get_primary_name().get_regular_name())
+                    self.in_db.set_active(1)
+                else:
+                    self.name.set_text(_("Unknown"))
+                    self.in_db.set_active(0)
             else:
                 self.name.set_text(self.ref.get_value())
                 self.in_db.set_active(0)
