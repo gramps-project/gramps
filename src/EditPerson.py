@@ -919,7 +919,7 @@ class EditPerson:
     def did_data_change(self):
         """Check to see if any of the data has changed from the
         original record"""
-        surname = self.surname_field.get_text()
+        surname = unicode(self.surname_field.get_text())
         if GrampsCfg.capitalize:
             surname = surname.upper()
 
