@@ -452,9 +452,11 @@ class ComprehensiveAncestorsReport (Report.Report):
                     info += _(' in %(month_or_year)s') % \
                             {'month_or_year': dateobj.get_date ()}
 
-        placename = self.database.get_place_from_handle(event.get_place_handle()).get_title()
-        if placename:
-            info += _(' in %(place)s') % {'place': placename}
+        place = self.database.get_place_from_handle(event.get_place_handle())
+        if place:
+            placename = place.get_title()
+            if placename:
+                info += _(' in %(place)s') % {'place': placename}
         note = event.get_note ()
         note_format = event.get_note_format ()
         inline_note = note and (note_format == 0)
