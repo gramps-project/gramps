@@ -189,6 +189,7 @@ class PeopleView:
         val = self.parent.db.getPersonDisplay(person.getId())
         pg = unicode(val[5])
         pg = pg[0]
+        model = None
         if self.DataFilter.compare(person):
 
             if pg and pg != '@':
@@ -206,7 +207,8 @@ class PeopleView:
         if change:
             self.parent.change_active_person(person)
         self.goto_active_person()
-        model.enable_sort()
+        if model:
+            model.enable_sort()
 
     def goto_active_person(self,first=0):
         if not self.parent.active_person:
