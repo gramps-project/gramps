@@ -31,7 +31,7 @@
 	* src/QuickAdd.py: remove file
 	* src/SelectChild.py: Remove ability to add new person, since a separate
 	function for this already exists.
-	* src/gramps.glade: remvoe add button from select child dialog
+	* src/gramps.glade: remove add button from select child dialog
 	* src/Makefile.am: remove QuickAdd.py
 	* src/intl.py: remove
 	* src/intl.c: remove
