@@ -154,7 +154,7 @@ class NameEditor:
         if self.name.getPrivacy() != priv:
             self.name.setPrivacy(priv)
             self.parent.lists_changed = 1
-
+        
 def src_changed(parent):
     parent.lists_changed = 1
     
