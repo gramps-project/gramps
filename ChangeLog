@@ -7,6 +7,19 @@
 	* src/gramps_main.py (on_views_switch_page): Enable merge button;
 	(on_merge_activate): Call merge for sources.
 
+	* src/RelLib.py (NoteBase,PlaceBase): Add new classes.
+	* src/ReadGedcom.py: Use get_note for comments.
+	* src/ReadXML.py: Use get_note for comments.
+	* src/Sources.py: Use get_note for comments.
+	* src/WriteGedcom.py: Use get_note for comments.
+	* src/WriteXML.py: Use get_note for comments.
+	* src/plugins/Ancestors.py: Use get_note for comments.
+	* src/plugins/FtmStyleAncestors.py: Use get_note for comments.
+	* src/plugins/FtmStyleDescendants.py: Use get_note for comments.
+	* src/plugins/NavWebPage.py: Use get_note for comments.
+	* src/plugins/ScratchPad.py: Use get_note for comments.
+	* src/plugins/WebPage.py: Use get_note for comments.
+
 2005-03-26  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib.py (Source.replace_source_references): Add method.
 	* src/MergeData.py (MergeSources.merge): Use new handle replacement.

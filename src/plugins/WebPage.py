@@ -237,7 +237,7 @@ class IndividualPage:
             self.write_info(sref.get_page())
             if self.usecomments:
                 self.write_info(sref.get_text())
-                self.write_info(sref.get_comments())
+                self.write_info(sref.get_note())
             self.doc.end_paragraph()
 
     def write_info(self,info):

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,9 +27,9 @@
 #
 #-------------------------------------------------------------------------
 import os
-import string
 import time
 import re
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -53,8 +53,6 @@ import Errors
 import ansel_utf8
 import Utils
 import NameDisplay
-
-from gettext import gettext as _
 from QuestionDialog import ErrorDialog
 
 def keep_utf8(s):
@@ -274,7 +272,7 @@ def fmtline(text,limit,level,endl):
     if len(text) > 0:
         new_text.append(text)
     app = "%s%d CONC " % (endl,level+1)
-    return string.join(new_text,app)
+    return app.join(new_text)
 
 #-------------------------------------------------------------------------
 #
@@ -887,7 +885,7 @@ class GedcomWriter:
                 else:
                     self.writeln("1 EVEN")
                     self.writeln("2 TYPE %s" % self.cnvtxt(name))
-                self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(attr.get_value()),'\r',' '))
+                self.writeln("2 PLAC %s" % self.cnvtxt(attr.get_value()).replace('\r',' '))
                 if attr.get_note():
                     self.write_long_text("NOTE",2,self.cnvtxt(attr.get_note()))
                 for srcref in attr.get_source_references():
@@ -918,7 +916,7 @@ class GedcomWriter:
                     text = addr_append(text,addr.get_country())
                     text = addr_append(text,addr.get_phone())
                     if text:
-                        self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(text),'\r',' '))
+                        self.writeln("2 PLAC %s" % self.cnvtxt(text).replace('\r',' '))
                 if addr.get_note():
                     self.write_long_text("NOTE",2,self.cnvtxt(addr.get_note()))
                 for srcref in addr.get_source_references():
@@ -1009,7 +1007,7 @@ class GedcomWriter:
                 while ll > 0:
                     brkpt = 70
                     if ll > brkpt:
-                        while (ll > brkpt and line[brkpt] in string.whitespace):
+                        while (ll > brkpt and line[brkpt].isspace()):
                             brkpt = brkpt+1
                             if ll == brkpt:
                                 self.writeln("%s %s" % (prefix,line))
@@ -1038,7 +1036,7 @@ class GedcomWriter:
                 while ll > 0:
                     brkpt = 70
                     if ll > brkpt:
-                        while (ll > brkpt and line[brkpt] not in string.whitespace):
+                        while (ll > brkpt and not line[brkpt].isspace()):
                             brkpt = brkpt+1
                             if ll == brkpt:
                                 self.writeln("%s %s" % (prefix,line))
@@ -1061,7 +1059,7 @@ class GedcomWriter:
         self.print_date("2 DATE",dateobj)
         if event.get_place_handle():
             place_name = self.db.get_place_from_handle(event.get_place_handle()).get_title()
-            self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(place_name),'\r',' '))
+            self.writeln("2 PLAC %s" % self.cnvtxt(place_name).replace('\r',' '))
         if event.get_cause():
             self.writeln("2 CAUS %s" % self.cnvtxt(event.get_cause()))
         if event.get_note():
@@ -1081,7 +1079,7 @@ class GedcomWriter:
             self.writeln('%d TEMP %s' % (index+1,ord.get_temple()))
         if ord.get_place_handle():
             place_name = self.db.get_place_from_handle(ord.get_place_handle()).get_title()
-            self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(place_name),'\r',' '))
+            self.writeln("2 PLAC %s" % self.cnvtxt(place_name).replace('\r',' '))
         if ord.get_status() != 0:
             self.writeln("2 STAT %s" % self.cnvtxt(statlist[ord.get_status()]))
         if ord.get_note():
@@ -1189,8 +1187,8 @@ class GedcomWriter:
                 ref_text = ref.get_text()
                 self.write_long_text("TEXT",level+1,self.cnvtxt(ref_text))
  
-        if ref.get_comments():
-            self.write_long_text("NOTE",level+1,self.cnvtxt(ref.get_comments()))
+        if ref.get_note():
+            self.write_long_text("NOTE",level+1,self.cnvtxt(ref.get_note()))
         
     def fid(self,id):
         family = self.db.get_family_from_handle (id)
