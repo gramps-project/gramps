@@ -356,7 +356,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
                 except:
                     raise Errors.ReportError(_("Could not create %s") % fname)
             
-    def add_media_object(self,name,pos,x,y):
+    def add_media_object(self,name,pos,x,y,alt=''):
         self.empty = 0
         size = int(max(x,y) * float(150.0/2.54))
         refname = "is%s" % os.path.basename(name)
@@ -385,11 +385,18 @@ class HtmlDoc(BaseDoc.BaseDoc):
         else:
             xtra = ''
             
-        if self.image_dir:
-            self.f.write('<img src="%s/%s" border="0"%s>\n' % \
-                         (self.image_dir,refname,xtra))
+        imgsize = img.size()
+        if imgsize[0] > imgsize[1]:
+            size_str = "width"
         else:
-            self.f.write('<img src="%s" border="0"%s>\n' % (refname,xtra))
+            size_str = "height"
+
+        if self.image_dir:
+            self.f.write('<img src="%s/%s" border="0" %s="%d" alt="%s"%s>\n' % \
+                         (self.image_dir,refname,size_str,size,alt,xtra))
+        else:
+            self.f.write('<img src="%s" border="0" %s="%d" alt="%s"%s>\n' 
+                        % (refname,size_str,size,alt,xtra))
 
     def start_table(self,name,style):
         self.tbl = self.table_styles[style]
