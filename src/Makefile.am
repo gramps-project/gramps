@@ -28,7 +28,7 @@ pkgdata_DATA = ${INTLLIBS} ${GLADEFILES} ${GRAPHICS} gramps.desktop
 all: ${INTLLIBS}
 
 DIST_SOURCES = intl.c
-dist_pkgdata_DATA = ${pkgdata_DATA} 
+dist_pkgdata_DATA = ${GLADEFILES} ${GRAPHICS} gramps.desktop
 
 # These can prbably be done in a better or more elegant/generic way 
 # eventually (libtool?), but this works.
