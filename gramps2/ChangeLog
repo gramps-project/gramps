@@ -1,4 +1,5 @@
 2004-10-10  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DateParser.py: try to detect illegal numerical dates
 	* src/GrampsInMemDB.py: handle null handle
 	* src/GrampsXMLDB.py: disable undo during normal read of database
 	* src/ReadGedcom.py: handle lines shorter than 50 lines, disable undo during
@@ -6,6 +7,8 @@
 	* src/ReadXML.py: disable undo during normal read of databas
 	* src/RelLib.py: revert Name.__cmp__ to Name.is_equal
 	* src/docgen/HTMLDoc.py: drop deprecated gnome.ui dialogs
+	* src/Utils.py: not_too_old moved over from RelLib.py
+	* src/WriteGedcom.py: fix call to probably_alive
 	
 2004-10-10 Eero Tamminen <eerot@sf>
 	* TestPlan.txt: Add test for reports like in stable version

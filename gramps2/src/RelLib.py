@@ -2243,8 +2243,3 @@ class GenderStats:
 
         return Person.unknown
 
-def not_too_old(date):
-    time_struct = time.localtime(time.time())
-    current_year = time_struct[0]
-    year = date.get_year()
-    return not( year != 0 and current_year - year > 110)
