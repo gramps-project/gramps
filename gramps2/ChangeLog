@@ -1,3 +1,15 @@
+2004-10-25  Don Allingham  <dallingham@users.sourceforge.net>
+        * src/StartupDialog.py: handle delete event
+	* src/docgen/HtmlDoc.py: fix typo
+	* src/docgen/OpenOfficeDoc.py: don't use temporary files
+	* src/plugins/PatchNames.py: pychecker fixes
+	* src/plugins/RelCalc.py: pychecker fixes
+	* src/plugins/ReorderIds.py: pychecker fixes
+	* src/plugins/Verify.py: pychecker fixes
+	* src/plugins/WebPage.py: pychecker fixes
+	* src/plugins/WriteFtree.py: pychecker fixes
+	* src/plugins/WriteGeneWeb.py: pychecker fixes
+
 2004-10-24  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps.glade: change "Edit..." buttons to an image
 	* src/plugins/CountAncestors.py: handle duplicates across

@@ -165,7 +165,6 @@ class FtreeWriter:
         id_name = {}
         for key in self.plist:
             pn = self.db.get_person_from_handle(key).get_primary_name()
-            fn = ""
             sn = pn.get_surname()
             items = pn.get_first_name().split()
             if len(items) > 0:

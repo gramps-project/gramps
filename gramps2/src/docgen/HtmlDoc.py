@@ -181,7 +181,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
 
         if top_add == 1:
             mymsg = _("The marker '<!-- START -->' was not in the template")
-            QuestionDilaog.ErrorDialog(_("Template Error"),mymsg)
+            QuestionDialog.ErrorDialog(_("Template Error"),mymsg)
             
     def load_template(self):
         if self.template:

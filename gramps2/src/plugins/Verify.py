@@ -50,6 +50,7 @@ import gtk.glade
 #------------------------------------------------------------------------
 import RelLib
 import Utils
+import Date
 
 from gettext import gettext as _
 
