@@ -57,9 +57,7 @@ import Date
 import DateHandler
 import NameDisplay
 from TransTable import TransTable
-from Utils import for_each_ancestor
-from Utils import probably_alive
-from Utils import get_source_referents
+from Utils import for_each_ancestor,probably_alive,get_source_referents
 
 #-------------------------------------------------------------------------
 #
@@ -1828,12 +1826,12 @@ class IsWitness(Rule):
                             self.map.append(w.get_value())
 
 #-------------------------------------------------------------------------
-# "FullTextSearch"
+# "HasTextMatchingSubstringOf"
 #-------------------------------------------------------------------------
 
 
-class FullTextSearch(Rule):
-    """Full-text serach for ..."""
+class HasTextMatchingSubstringOf(Rule):
+    """Rule that checks for string matches in any textual information"""
 
     labels = [_('Substring:')]
 
@@ -1850,7 +1848,7 @@ class FullTextSearch(Rule):
         self.family_map = {}
 
     def name(self):
-        return 'Full-text serach for ...'
+        return 'Has text matching substring of'
     
     def description(self):
         return _("Matches persons whose records contain text matching a substring")
@@ -2119,7 +2117,7 @@ tasks = {
     unicode(_("People marked private"))                : PeoplePrivate,
     unicode(_("Witnesses"))                            : IsWitness,
 
-    unicode(_("Full-text search ..."))                 : FullTextSearch,
+    unicode(_("Has text matching substring"))          : HasTextMatchingSubstringOf,
 }
 
 #-------------------------------------------------------------------------
