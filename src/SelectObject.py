@@ -104,7 +104,7 @@ class SelectObject:
             handle = obj.get_handle()
             the_type = Utils.get_mime_description(obj.get_mime_type())
             path = obj.get_path()
-            self.object_model.add([title,handle,the_type,path],key)
+            self.object_model.add([title,obj.get_gramps_id(),the_type,path],key)
 
         self.object_model.connect_model()
         
