@@ -111,7 +111,7 @@ class LaTeXDoc(TextDoc.TextDoc):
         # that we should use Latin1 and unicode character encodings.
         self.f.write('\\documentclass[%s]{article}\n' % options)
         self.f.write('\\usepackage[T1]{fontenc}\n')
-	self.f.write('%\n% We use latin1 encoding at a minimum by default\n.')
+	self.f.write('%\n% We use latin1 encoding at a minimum by default.\n')
 	self.f.write('% GRAMPS uses unicode UTF-8 encoding for its\n')
 	self.f.write('% international support. LaTeX can deal gracefully\n')
 	self.f.write('% with unicode encoding by using the ucs style invoked\n')
