@@ -212,6 +212,7 @@ class Merge:
             "destroy_passed_object" : utils.destroy_passed_object,
             "on_do_merge_clicked" : self.on_do_merge_clicked,
             })
+        self.mlist.connect('button-press-event',self.button_press_event)
         self.redraw()
 
     def redraw(self):
@@ -237,6 +238,15 @@ class Merge:
             self.mlist.set_row_data(index,(p1,p2))
             index = index + 1
         self.mlist.thaw()
+
+    def button_press_event(self,obj,event):
+        if event.button != 1 or event.type != GDK._2BUTTON_PRESS:
+            return
+        if len(self.mlist.selection) <= 0:
+            return
+        row = self.mlist.selection[0]
+        (p1,p2) = self.mlist.get_row_data(row)
+        MergeData.MergePeople(self.db,p1,p2,self.on_update)
 
     def on_do_merge_clicked(self,obj):
         if len(self.mlist.selection) != 1:
