@@ -135,7 +135,10 @@ class Gramps:
         self.database.set_pprefix(GrampsCfg.pprefix)
         
         if arg != None:
-            self.read_file(arg)
+            if string.upper(arg[-3:]) == "GED":
+                self.read_gedcom(arg)
+            else:
+                self.read_file(arg)
         elif GrampsCfg.lastfile and GrampsCfg.autoload:
             self.auto_save_load(GrampsCfg.lastfile)
         else:
@@ -143,7 +146,8 @@ class Gramps:
             DbPrompter.DbPrompter(self,0)
 
         if GrampsCfg.autosave_int != 0:
-            Utils.enable_autosave(self.autosave_database,GrampsCfg.autosave_int)
+            Utils.enable_autosave(self.autosave_database,
+                                  GrampsCfg.autosave_int)
 
         self.database.setResearcher(GrampsCfg.get_researcher())
 
@@ -691,7 +695,7 @@ class Gramps:
             self.auto_save_load(filename)
 
     def auto_save_load(self,filename):
-    
+
         if os.path.isdir(filename):
             dirname = filename
         else:
@@ -715,6 +719,13 @@ class Gramps:
 
     def loadsaved_file(self):
         self.read_file(self.nname)
+
+    def read_gedcom(self,filename):
+        import ReadGedcom
+        
+        self.topWindow.set_title("%s - GRAMPS" % filename)
+        ReadGedcom.importData(self.database,filename)
+        self.full_update()
 
     def read_file(self,filename):
         base = os.path.basename(filename)
@@ -804,6 +815,9 @@ class Gramps:
     def autosave_database(self):
 
         path = self.database.getSavePath()
+        if not path:
+            return
+        
         filename = os.path.normpath(path)
         Utils.clear_timer()
 
@@ -1201,6 +1215,7 @@ class Gramps:
         fileSelector.show()
 
     def on_revert_activate(self,obj):
+        
         if self.database.getSavePath() != "":
             msg = _("Do you wish to abandon your changes and "
                     "revert to the last saved database?")

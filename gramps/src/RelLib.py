@@ -1083,8 +1083,8 @@ class Person:
         return self.AltFamilyList
 
     def addAltFamily(self,family,mrel,frel):
-        """adds a Family to the alternate family list, indicating the relationship
-        to the mother (mrel) and the father (frel)"""
+        """adds a Family to the alternate family list, indicating the
+        relationship to the mother (mrel) and the father (frel)"""
         self.AltFamilyList.append((family,mrel,frel))
 
     def removeAltFamily(self,family):

@@ -61,7 +61,7 @@ class ImgManip:
             os.system(cmd)
 
         def fmt_data(self,cnv):
-            cmd = "%s '%s' '%s:-'" % (const.convert,cnv,self.src)
+            cmd = "%s '%s' '%s:-'" % (const.convert,self.src,cnv)
             r,w = popen2.popen2(cmd)
             buf = r.read()
             r.close()
