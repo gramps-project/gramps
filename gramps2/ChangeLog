@@ -11,7 +11,7 @@
 	* src/data/tips.xml: Add huge collection of tips.
 
 2004-09-28 Alex Roitman  <shura@alex.neuro.umn.edu>
-	* src/NameEdit.py: Typo.
+	* src/EditPerson.py: Typo.
 
 2004-09-28  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py: Enhanced Name, adding patronymic name 
