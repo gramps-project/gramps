@@ -4,7 +4,8 @@
 	constructor. Connect to the handling function on button press over the
 	canvas to enable context menu; 
 	(on_canvas_press, build_nav_menu): Add functions to enable context menu.
-	* src/gramps_main.py (init_interface): Call PedView with self as parent.
+	* src/gramps_main.py (init_interface): Call PedView with self as parent;
+	(set_buttons,change_active_person): Fix enabling the buttons. 
 	* src/PlaceView.py (merge): Change error message from people to places.
 
 2003-08-24  Don Allingham  <dallingham@users.sourceforge.net>

@@ -463,8 +463,9 @@ class Gramps:
         self.tools_menu.set_sensitive(val)
         self.report_button.set_sensitive(val)
         self.tool_button.set_sensitive(val)
-        self.remove_button.set_sensitive(val)
-        self.edit_button.set_sensitive(val)
+        if self.views.get_current_page() == 0:
+            self.remove_button.set_sensitive(val)
+            self.edit_button.set_sensitive(val)
         
     def redraw_histmenu(self):
         """Create the history submenu of the Go menu"""
@@ -1644,11 +1645,10 @@ class Gramps:
                     self.backbtn.set_sensitive(0)
                     self.back.set_sensitive(0)
      
-        if self.views.get_current_page == 1:
-            if person:
-                self.set_buttons(1)
-            else:
-                self.set_buttons(0)
+        if person:
+            self.set_buttons(1)
+        else:
+            self.set_buttons(0)
         
     def modify_statusbar(self):
         
