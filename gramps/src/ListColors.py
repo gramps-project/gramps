@@ -22,16 +22,11 @@ from gtk import *
 
 import sys
 
-if sys.version[:3] == "1.5":
-    color_ok = 1
-else:
-    color_ok = 0
-
-enable  = 0
-oddbg   = (0xffff,0xffff,0xffff)
-evenbg  = (0xffff,0xffff,0xffff)
-oddfg   = (0,0,0)
-evenfg  = (0,0,0)
+_enable   = 0
+oddbg    = (0xffff,0xffff,0xffff)
+evenbg   = (0xffff,0xffff,0xffff)
+oddfg    = (0,0,0)
+evenfg   = (0,0,0)
 
 class ColorList:
     def __init__(self,clist,increment):
@@ -39,15 +34,18 @@ class ColorList:
         self.modval = 2*increment
         self.increment = increment
         self.clist = clist
-        if color_ok:
+        self.color_ok = 1
+        try:
             self.oddbg = GdkColor(oddbg[0],oddbg[1],oddbg[2])
             self.oddfg = GdkColor(oddfg[0],oddfg[1],oddfg[2])
             self.evenbg = GdkColor(evenbg[0],evenbg[1],evenbg[2])
             self.evenfg = GdkColor(evenfg[0],evenfg[1],evenfg[2])
+        except OverflowError:
+            self.color_ok = 0
         
     def add(self,list):
         self.clist.append(list)
-        if enable and color_ok:
+        if _enable and self.color_ok:
             if self.index % self.modval < self.increment:
                 self.clist.set_background(self.index,self.oddbg)
                 self.clist.set_foreground(self.index,self.oddfg)
@@ -61,12 +59,9 @@ class ColorList:
         self.clist.set_row_data(self.index-1,data)
 
 def set_enable(val):
-    global enable
+    global _enable
     
-    if color_ok:
-        enable = val
-    else:
-        enable = 0
+    _enable = val
 
 def get_enable():
-    return enable
+    return _enable

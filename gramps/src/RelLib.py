@@ -434,8 +434,8 @@ class Person:
     def getAltFamilyList(self) :
         return self.AltFamilyList
 
-    def addAltFamily(self,family,type) :
-        self.AltFamilyList.append((family,type))
+    def addAltFamily(self,family,mrel,frel) :
+        self.AltFamilyList.append((family,mrel,frel))
 
     def removeAltFamily(self,family):
         index = 0
@@ -886,6 +886,16 @@ class RelDataBase:
         for family in self.familyMap.values():
             for attr in family.getEventList():
                 map[attr.getName()] = 1
+        return map.keys()
+
+    def getPlaces(self):
+        map = {}
+        for family in self.familyMap.values():
+            for attr in family.getEventList():
+                map[attr.getPlace()] = 1
+        for person in self.personMap.values():
+            for attr in person.getEventList():
+                map[attr.getPlace()] = 1
         return map.keys()
 
     def getFamilyRelationTypes(self):

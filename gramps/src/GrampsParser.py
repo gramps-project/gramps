@@ -272,7 +272,11 @@ class GrampsParser(handler.ContentHandler):
         family = self.db.findFamilyNoMap(u2l(attrs["ref"]))
         if attrs.has_key("type"):
             type = u2l(attrs["type"])
-            self.person.AltFamilyList.append((family,type))
+            self.person.AltFamilyList.append((family,type,type))
+        elif attrs.has_key("mrel"):
+            mrel = u2l(attrs["mrel"])
+            frel = u2l(attrs["frel"])
+            self.person.AltFamilyList.append((family,mrel,frel))
         else:
             self.person.MainFamily = family
 

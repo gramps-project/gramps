@@ -188,6 +188,10 @@ class EditPerson:
         self.name_list.set_column_visibility(1,Config.show_detail)
         self.attr_list.set_column_visibility(2,Config.show_detail)
         self.address_list.set_column_visibility(2,Config.show_detail)
+        if len(const.places) > 0:
+            self.get_widget("dp_combo").set_popdown_strings(const.places)
+            self.get_widget("bp_combo").set_popdown_strings(const.places)
+            self.get_widget("eventPlace_combo").set_popdown_strings(const.places)
 
         if Config.display_attr:
             self.get_widget("user_label").set_text(Config.attr_name)
@@ -219,7 +223,7 @@ class EditPerson:
         self.bplace.set_text(birth.getPlace())
         self.ddate.set_text(death.getDate())
         self.dplace.set_text(death.getPlace())
-
+        
         # load photos into the photo window
         photo_list = person.getPhotoList()
         if len(photo_list) != 0:
@@ -734,7 +738,7 @@ def on_add_attr_clicked(obj):
 
     attr = Attribute()
     name = edit_person_obj.attr_type.get_text()
-    attr.setType(const.set_pattr(name))
+    attr.setType(const.save_pattr(name))
     attr.setValue(edit_person_obj.attr_value.get_text())
 
     if name not in const.personalAttributes:
@@ -791,6 +795,13 @@ def on_event_add_clicked(obj):
         const.personalEvents.append(name)
         menu = edit_person_obj.get_widget("personalEvents")
         menu.set_popdown_strings(const.personalEvents)
+
+    if place not in const.places:
+        const.places.append(place)
+        const.places.sort()
+        edit_person_obj.get_widget("dp_place").set_popdown_strings(const.places)
+        edit_person_obj.get_widget("bp_place").set_popdown_strings(const.places)
+        edit_person_obj.get_widget("eventPlace_combo").set_popdown_strings(const.places)
 
     edit_person_obj.person.addEvent(event)
     edit_person_obj.redraw_event_list()
@@ -1015,6 +1026,9 @@ def on_apply_person_clicked(obj):
 
     if surname != name.getSurname():
         name.setSurname(surname)
+        if surname not in edit_person_obj.surname_list:
+            edit_person_obj.surname_list.append(surname)
+            edit_person_obj.surname_list.sort()
         utils.modified()
 
     if given != name.getFirstName():
@@ -1036,6 +1050,11 @@ def on_apply_person_clicked(obj):
     death  = person.getDeath()
     ddate  = edit_person_obj.ddate.get_text()
     dplace = edit_person_obj.dplace.get_text()
+
+    for place in [ dplace, bplace ]:
+        if place not in const.places:
+            const.places.append(place)
+            const.places.sort()
 
     newBirth = Event()
     newBirth.set("Birth",bdate,bplace,"")

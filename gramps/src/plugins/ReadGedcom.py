@@ -52,7 +52,6 @@ photo_types = [ "jpeg", "bmp", "pict", "pntg", "tpic", "png", "gif",
 
 _ADDRX = [ "ADDR", "ADR1", "ADR2" ]
 
-
 ged2rel = {}
 for val in const.personalConstantEvents.keys():
     key = const.personalConstantEvents[val]
@@ -439,19 +438,20 @@ class GedcomParser:
     #
     #---------------------------------------------------------------------
     def parse_ftw_relations(self,level):
-        retval = ""
+        mrel = "Birth"
+        frel = "Birth"
         
         while 1:
             matches = self.get_next()
 	    if int(matches[0]) < level:
                 self.backup()
-                return retval
+                return (mrel,frel)
             elif matches[1] == "_FREL":
                 if string.lower(matches[2]) != "natural":
-                    retval = matches[2]
+                    frel = string.capitalize(matches[2])
             elif matches[1] == "_MREL":
                 if string.lower(matches[2]) != "natural":
-                    retval = matches[2]
+                    mrel = matches[2]
             else:
                 self.barf(level+1)
     
@@ -479,13 +479,13 @@ class GedcomParser:
                 self.addr.setStreet(matches[2] + self.parse_continue_data(2))
                 self.parse_address(self.addr,2)
 	    elif matches[1] == "CHIL":
-                type = self.parse_ftw_relations(2)
+                mrel,frel = self.parse_ftw_relations(2)
                 child = self.db.findPerson(matches[2],self.pmap)
                 self.family.addChild(child)
                 if type != "":
                     if child.getMainFamily() == self.family:
                         child.setMainFamily(None)
-                    child.addAltFamily(self.family,type)
+                    child.addAltFamily(self.family,mrel,frel)
 	    elif matches[1] == "NCHI" or matches[1] == "RIN" or matches[1] == "SUBM":  
                 pass
             elif matches[1] == "REFN" or matches[1] == "CHAN":
@@ -601,9 +601,9 @@ class GedcomParser:
                     if self.person.getMainFamily() == None:
                         self.person.setMainFamily(family)
                     else:
-                        self.person.addAltFamily(family,"unknown")
+                        self.person.addAltFamily(family,"Unknown","Unknown")
                 else:
-                    self.person.addAltFamily(family,type)
+                    self.person.addAltFamily(family,type,type)
 	    elif matches[1] == "RESI":
                 addr = Address()
                 self.person.addAddress(addr)
@@ -690,7 +690,7 @@ class GedcomParser:
                 self.backup()
                 return (string.capitalize(type),note)
             elif matches[1] == "PEDI":
-                type = matches[2]
+                type = string.capitalize(matches[2])
             elif matches[1] == "_PRIMARY":
                 type = matches[1]
             elif matches[1] == "NOTE":
@@ -734,7 +734,8 @@ class GedcomParser:
         elif form in photo_types:
             path = find_file(file,self.dir_path)
             if path == "":
-                self.warn(_("Could not import %s: either the file could not be found, or it was not a valid image") % file + "\n")
+                self.warn(_("Could not import %s: either the file could not be found, or it was not a valid image")\
+                          % file + "\n")
             else:
                 photo = Photo()
                 photo.setPath(path)
@@ -917,7 +918,8 @@ class GedcomParser:
                 if event.getName() == "Birth":
                     self.person.setMainFamily(family)
                 else:
-                    self.person.addAltFamily(family,event.getName())
+                    type = string.capitalize(event.getName())
+                    self.person.addAltFamily(family,type,type)
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "PLAC":
                 event.setPlace(matches[2])

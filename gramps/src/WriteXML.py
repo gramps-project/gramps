@@ -307,8 +307,8 @@ def exportData(database, filename, callback):
 
         write_ref(g,"childof",person.getMainFamily())
         for alt in person.getAltFamilyList():
-            g.write("<childof ref=\"" + str(alt[0].getId()))
-            g.write("\" type=\"" + alt[1] + "\"/>\n")
+            g.write("<childof ref=\"%s\" mrel=\"%s\" frel=\"%s\"/>\n" % \
+                    (str(alt[0].getId()), alt[1], alt[2]))
 
         for family in person.getFamilyList():
             write_ref(g,"parentin",family)
