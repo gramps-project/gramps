@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 0.7.3-snap20020414\n"
 "POT-Creation-Date: Sat Apr 13 16:30:41 2002\n"
-"PO-Revision-Date: 2002-04-14 23:37-0500\n"
+"PO-Revision-Date: 2002-04-15 09:18-0500\n"
 "Last-Translator: Alex Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1679,9 +1679,9 @@ msgid ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
 msgstr ""
-"GRAMPS (Генелаогическая Система Программироввания Исследований и Управления "
+"GRAMPS (Генеалогическая Система Программирования Исследований и Управления "
 "Анализом) является персональной генеалогической программой.\n"
-"\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\n"
 "Перевод: Александр Ройтман <shura@alex.neuro.umn.edu>"
 
 #: const.py:122 const.py:240 gramps.glade:5081 gramps.glade:5240
@@ -4075,7 +4075,7 @@ msgstr "Количество лиц"
 
 #: plugins/Summary.py:97
 msgid "Individuals with incomplete names"
-msgstr "Лища с неполными именами"
+msgstr "Лица с неполными именами"
 
 #: plugins/Summary.py:98
 msgid "Individuals missing birth dates"
