@@ -10,7 +10,7 @@ MOSTLYCLEANFILES =
 # In principle, this is handled by PYCFILES and PYOFILES, but
 # they don't seem to work so we edited the py-compile script instead
 
-gdirdir=$(DESTDIR)$(prefix)/share/gramps
+gdirdir=$(prefix)/share/gramps
 
 gdir_PYTHON = \
 	accent.py \

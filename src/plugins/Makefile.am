@@ -86,4 +86,4 @@ GRAMPS_PY_MODPATH = "../:../docgen"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgpython_PYTHON));
+	pychecker $(pkgdata_PYTHON));

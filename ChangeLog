@@ -1,3 +1,8 @@
+2004-10-06 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Makefile.am: Remove extra DESTDIR.
+	* src/docgen/Makefile.am: Remove extra DESTDIR, correct pycheck target.
+	* src/plugins/Makefile.am: Correct pycheck target.
+
 2004-10-05  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/docgen/PdfDoc.py: fixed register_book_doc call
 	* src/AddrEdit.py: pychecker fixes
