@@ -19,11 +19,11 @@ intl.so: intl.c
 
 install:
 	${INSTALL} -d ${datadir}
-	${INSTALL} -c *.py *.jpg *.pyo *.glade *.xpm *.so ${datadir}
+	${INSTALL} *.pyc *.py *.jpg *.pyo *.glade *.xpm *.so ${datadir}
 	${INSTALL} -d ${prefix}/share/pixmaps
-	${INSTALL} -c gramps.png ${prefix}/share/pixmaps
+	${INSTALL} gramps.png ${prefix}/share/pixmaps
 	${INSTALL} -d ${prefix}/share/gnome/apps/Applications
-	${INSTALL} -c gramps.desktop ${prefix}/share/gnome/apps/Applications
+	${INSTALL} gramps.desktop ${prefix}/share/gnome/apps/Applications
 	for i in ${LANG}; do\
 		${INSTALL} -d ${prefix}/share/locale/$$i; \
 		${INSTALL} -d ${prefix}/share/locale/$$i/LC_MESSAGES; \
