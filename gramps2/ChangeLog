@@ -1,3 +1,10 @@
+2003-10-05  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/SelectChild.py: handle surname prefixes
+	* src/FamilyView.py: handle surname prefixes
+	* src/QuickAdd.py: handle surname prefixes
+	* src/PeopleView.py: force a selection with a new person
+	* src/PeopleStore.py: select correct model
+
 2003-10-05  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/PeopleView.py: Correct references to history in gramps_main.
 	* src/gramps_main.py: Switch away from separate history submenu.
