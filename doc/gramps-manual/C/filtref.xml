@@ -3,7 +3,7 @@
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003  Alexander Roitman
+	  Copyright (C) 2003-2004  Alexander Roitman
 
 	  Permission is granted to copy, distribute and/or modify this
 	  document under the terms of the GNU Free Documentation
@@ -30,6 +30,14 @@
         <para>This category includes the following most general rules:</para>
         
           <variablelist>
+
+          <varlistentry><term>Has complete record</term>
+          <listitem><para> This rule matches all people whose records are 
+          marked as complete. Currently, the completeness of personal 
+          information is marked manually, in the <guilabel>Edit Person</guilabel> 
+          dialog. 
+          </para></listitem>
+          </varlistentry>
 
           <varlistentry><term>Everyone</term>
           <listitem><para> This rule matches any person in the database.
