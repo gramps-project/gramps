@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 0.7.2\n"
-"POT-Creation-Date: Tue Jul  8 15:47:21 2003\n"
+"POT-Creation-Date: Wed Jul  9 00:10:20 2003\n"
 "PO-Revision-Date: 2002-07-18 10:49+0200\n"
 "Last-Translator: Lars Kristian Lundin <gramps@lklundin.dk>\n"
 "Language-Team:  <dk@li.org>\n"
@@ -496,9 +496,8 @@ msgid "Status"
 msgstr "Status"
 
 #: FamilyView.py:166
-#, fuzzy
 msgid "Edit relationships"
-msgstr "Har slægtskaberne"
+msgstr "Ret slægtskaberne"
 
 #: FamilyView.py:344
 msgid "Remove %s as a spouse of %s?"
@@ -982,7 +981,6 @@ msgid "Thumbnails not available"
 msgstr "Miniaturer findes ikke"
 
 #: MediaView.py:124
-#, fuzzy
 msgid ""
 "There is no suitable tool to generate thumbnails for the images. If you "
 "would like to enable this feature, install Python Imaging Library (PIL), "
@@ -990,8 +988,8 @@ msgid ""
 "available at http://www.imagemagick.org/"
 msgstr ""
 "Der er ikke noget redskab til at danne miniaturer for billederne. Hvis du "
-"ønsker at anvende miniaturer, så installer Python Imaging Library (PIL), som "
-"kan fås på fra http://www.pythonware.com/products/pil/ eller ImageMagick, "
+"ønsker at anvende miniaturer, så installer Python Imaging Library (PIL), "
+"som kan fås på http://www.pythonware.com/products/pil/ eller ImageMagick, "
 "som kan fås på http://www.imagemagick.org/"
 
 #: MediaView.py:163
@@ -1227,19 +1225,6 @@ msgstr "Kunne ikke danne en miniature af %s"
 msgid "The file has been moved or deleted."
 msgstr "Filen er blevet flyttet eller slettet."
 
-#: ReorderIds.py:125 plugins/ReorderIds.py:126
-msgid "Reorder gramps IDs"
-msgstr "Sorter gramps ID'er"
-
-#: ReorderIds.py:126 plugins/ChangeTypes.py:104 plugins/Check.py:353
-#: plugins/Merge.py:554 plugins/PatchNames.py:209 plugins/ReorderIds.py:127
-msgid "Database Processing"
-msgstr "Database Behandling"
-
-#: ReorderIds.py:127 plugins/ReorderIds.py:128
-msgid "Reorders the gramps IDs according to gramps' default rules."
-msgstr "Sorter gramps ID'erne efter gramps standard regler."
-
 #: Report.py:75
 msgid "Default Template"
 msgstr "Standard Skabelon"
@@ -1377,14 +1362,12 @@ msgid "Document Options"
 msgstr "Dokumentvalgmuligheder"
 
 #: Report.py:398
-#, fuzzy
 msgid "Center Person"
-msgstr "Behold Person"
+msgstr "Centrer Person"
 
 #: Report.py:410
-#, fuzzy
 msgid "C_hange"
-msgstr "Ret typer"
+msgstr "Ret"
 
 #: Report.py:423
 msgid "Styles"
@@ -1507,46 +1490,39 @@ msgstr "Ret filnavn"
 
 #: SelectChild.py:78
 msgid "Add Child to Family"
-msgstr ""
+msgstr "Tilføj et Barn til Familien"
 
 #: SelectChild.py:88
-#, fuzzy
 msgid "Relationship to %(father)s"
-msgstr "Slægtskab til fader:"
+msgstr "Slægtskab med %(father)s"
 
 #: SelectChild.py:95
-#, fuzzy
 msgid "Relationship to %(mother)s"
-msgstr "Slægtskab til moder:"
+msgstr "Slægtskab med %(mother)s"
 
 #: SelectChild.py:101 plugins/RelCalc.py:82
 msgid "Relationship to %s"
 msgstr "Slægtskab med %s"
 
 #: SelectChild.py:330
-#, fuzzy
 msgid "Relationships of %s"
-msgstr "Slægtskab med %s"
+msgstr "Slægtskaber med %s"
 
 #: SelectChild.py:337
-#, fuzzy
-msgid "Relationship to %(father)sfather"
-msgstr "Slægtskab til fader:"
+msgid "Relationship to %{father}s"
+msgstr "Slægtskab med %{father}s"
 
-#: SelectChild.py:343
-#, fuzzy
+#: SelectChild.py:342
 msgid "Relationship to father"
-msgstr "Slægtskab til fader:"
+msgstr "Slægtskab med fader"
 
-#: SelectChild.py:349
-#, fuzzy
-msgid "Relationship to %(mother)smother"
-msgstr "Slægtskab til moder:"
+#: SelectChild.py:348
+msgid "Relationship to %{mother}s"
+msgstr "Slægtskab med %{mother}s"
 
-#: SelectChild.py:355
-#, fuzzy
+#: SelectChild.py:353
 msgid "Relationship to mother"
-msgstr "Slægtskab til moder:"
+msgstr "Slægtskab med moder"
 
 #: SourceView.py:69
 msgid "Author"
@@ -1599,7 +1575,6 @@ msgid "Complete"
 msgstr "Fuldstændig"
 
 #: StartupDialog.py:97
-#, fuzzy
 msgid ""
 "GRAMPS is an Open Source project. Its success depends on the users. User "
 "feedback is important. Please join the mailing lists, submit bug reports, "
@@ -1607,11 +1582,11 @@ msgid ""
 "\n"
 "Please enjoy using GRAMPS."
 msgstr ""
-"GRAMPS er et Open-Source projekt. Dets succes afhænger af brugerne. "
-"Brugernes tilbagemeldinger er vigtige. Tilmeld dig venligst e-mail-listerne, "
-"indsend fejlmeldinger, foreslå forbedringer, og se hvordan du kan bidrage.\n"
+"GRAMPS er et Open-Source projekt. Dets succes afhænger af brugerne. Brugernes "
+"tilbagemeldinger er vigtige. Tilmeld dig venligst e-mail-listerne, indsend "
+"fejlmeldinger, foreslå forbedringer, og se hvordan du kan bidrage.\n"
 "\n"
-"Hav god fornøjelse med GRAMPS."
+"God fornøjelse med GRAMPS."
 
 #: StartupDialog.py:145
 msgid ""
@@ -1772,9 +1747,8 @@ msgid "Select an older revision"
 msgstr "Vælg en ældre version"
 
 #: VersionControl.py:117
-#, fuzzy
 msgid "Changed by"
-msgstr "Ret typer"
+msgstr "Rettet af"
 
 #: VersionControl.py:117
 msgid "Revision"
@@ -1785,9 +1759,8 @@ msgid "Comment"
 msgstr "Kommentar"
 
 #: VersionControl.py:293
-#, fuzzy
 msgid "Could not retrieve version"
-msgstr "Kunne ikke danne %s"
+msgstr "Kunne ikke hente version"
 
 #: VersionControl.py:296 preferences.glade:587
 msgid "RCS"
@@ -1806,9 +1779,8 @@ msgid "Failure writing %s"
 msgstr "Fejl ved skrivning af %s"
 
 #: WriteXML.py:84
-#, fuzzy
 msgid "An attempt is being made to recover the original file"
-msgstr "Den original fil forsøges gendannet"
+msgstr "Den originale fil forsøges gendannet"
 
 #: calendars/Islamic.py:70
 msgid "Islamic"
@@ -2310,19 +2282,16 @@ msgid "Person is in the _database"
 msgstr "Personen er i _databasen"
 
 #: dialog.glade:3765
-#, fuzzy
 msgid "Choose a person from the database"
-msgstr "Vælg barn fra databasen"
+msgstr "Vælg en person fra databasen"
 
 #: dialog.glade:3767
-#, fuzzy
 msgid "_Select"
 msgstr "Vælg"
 
 #: docgen/AbiWord2Doc.py:277
-#, fuzzy
 msgid "AbiWord (version 1.9 or greater)"
-msgstr "AbiWord (version 1.0.x)"
+msgstr "AbiWord (version 1.9 eller bedre)"
 
 #: docgen/AbiWordDoc.py:339
 msgid "AbiWord (version 1.0.x)"
@@ -2358,14 +2327,12 @@ msgid "LaTeX"
 msgstr "LaTeX"
 
 #: docgen/OpenDrawDoc.py:600
-#, fuzzy
 msgid "OpenOffice.org Draw"
-msgstr "OpenOffice Spreadsheet"
+msgstr "OpenOffice.org Draw"
 
 #: docgen/OpenOfficeDoc.py:618 docgen/OpenOfficeDoc.py:619
-#, fuzzy
 msgid "OpenOffice.org Writer"
-msgstr "OpenOffice Spreadsheet"
+msgstr "OpenOffice.org Writer"
 
 #: docgen/PSDrawDoc.py:378
 msgid "PostScript"
@@ -2386,10 +2353,6 @@ msgstr "Rich Text Format (RTF)"
 #: docgen/SvgDrawDoc.py:270
 msgid "SVG (Scalable Vector Graphics)"
 msgstr "SVG (Scalable Vector Graphics)"
-
-#: docgen/TextBufDoc.py:169
-msgid "Text Buffer Preview"
-msgstr ""
 
 #: edit_person.glade:34
 msgid "Abandon changes and close window"
@@ -2458,7 +2421,6 @@ msgstr ""
 "En titel, som anvendes ved tiltale af personen, så som \"Dr.\" eller \"Rev.\""
 
 #: edit_person.glade:561
-#, fuzzy
 msgid "A name that the person was more commonly known by"
 msgstr "Et navn, som personen var mere almindeligt kendt under"
 
@@ -3085,15 +3047,13 @@ msgid "Exchange the current spouse with the active person"
 msgstr "Udskift den nuværende ægtefælle med den Aktuelle person"
 
 #: gramps.glade:1454
-#, fuzzy
 msgid "Adds a new person to the database and to a new relationship"
-msgstr "Tilføj en ny person til databasen (og denne familie)"
+msgstr "Tilføjer en ny person til databasen og til et nyt slægtskab"
 
 #: gramps.glade:1480
-#, fuzzy
 msgid ""
 "Selects an existing person from the database and adds to a new relationship"
-msgstr "Vælg en person for at bestemme slægtsskabet"
+msgstr "Vælger en eksisterende person fra databasen og føjer til et nyt slægtsskab"
 
 #: gramps.glade:1506
 msgid "Removes the currently selected spouse"
@@ -3164,15 +3124,15 @@ msgid "Make the selected child the active person"
 msgstr "Gør det valgte barn til den Aktuelle person"
 
 #: gramps.glade:2032
-#, fuzzy
 msgid "Adds a new child to the database and to the current family"
-msgstr "Tilføjer et nyt barn til den valgte familie"
+msgstr "Tilføjer et nyt barn til databasen og til den aktuelle familie"
 
 #: gramps.glade:2058
 msgid ""
 "Selects an existing person from the database and adds as a child to the "
 "current family"
-msgstr ""
+msgstr "Vælger en eksisterende person fra databasen og tilføjer som et "
+"barn til den aktuelle familie"
 
 #: gramps.glade:2084
 msgid "Deletes the selected child from the selected family"
@@ -3691,13 +3651,12 @@ msgid "<b>Other names</b>"
 msgstr "<b>Andre Navne</b>"
 
 #: plugins.glade:46
-#, fuzzy
 msgid "Perform selected action"
-msgstr "Valg af Rapport"
+msgstr "Udfør den valgte aktion"
 
 #: plugins.glade:60
 msgid "Perform selected action and close this dialog"
-msgstr ""
+msgstr "Udfør den valgte aktion og afslut denne dialog"
 
 #: plugins.glade:181
 msgid "Select a report from those available on the left."
@@ -3721,9 +3680,8 @@ msgstr "Anetavle"
 
 #: plugins/AncestorChart.py:214 plugins/AncestorChart.py:427
 #: plugins/DesGraph.py:308 plugins/DesGraph.py:464 plugins/FanChart.py:280
-#: plugins/FanChart.py:353 plugins/FullFamily.py:105 plugins/FullFamily.py:173
-#: plugins/GraphViz.py:80 plugins/GraphViz.py:455 plugins/TimeLine.py:316
-#: plugins/TimeLine.py:465
+#: plugins/FanChart.py:353 plugins/GraphViz.py:80 plugins/GraphViz.py:455
+#: plugins/TimeLine.py:316 plugins/TimeLine.py:465
 msgid "Graphical Reports"
 msgstr "Grafisk rapport"
 
@@ -3736,12 +3694,10 @@ msgid "Save Ancestor Chart"
 msgstr "Gem Anetavle"
 
 #: plugins/AncestorChart.py:235 plugins/DesGraph.py:325
-#: plugins/FullFamily.py:126
 msgid "Display Format"
 msgstr "Format for Fremvisning"
 
 #: plugins/AncestorChart.py:236 plugins/DesGraph.py:326
-#: plugins/FullFamily.py:127
 msgid "Allows you to customize the data in the boxes in the report"
 msgstr "Tillader dig at tilpasse oplysningerne i kasserne i rapporten"
 
@@ -3760,14 +3716,13 @@ msgstr "Den grundlæggende stil brugt til tekstvisning."
 #: plugins/Ancestors.py:960 plugins/DescendReport.py:403
 #: plugins/DetAncestralReport.py:1245 plugins/DetDescendantReport.py:1252
 #: plugins/FamilyGroup.py:760 plugins/FtmStyleAncestors.py:1031
-#: plugins/FtmStyleDescendants.py:1438 plugins/FullFamily.py:174
-#: plugins/GraphViz.py:454 plugins/IndivComplete.py:815
-#: plugins/IndivSummary.py:624 plugins/Summary.py:162 plugins/TimeLine.py:464
-#: plugins/WebPage.py:1284
+#: plugins/FtmStyleDescendants.py:1438 plugins/GraphViz.py:454
+#: plugins/IndivComplete.py:815 plugins/IndivSummary.py:624
+#: plugins/Summary.py:162 plugins/TimeLine.py:464 plugins/WebPage.py:1284
 msgid "Beta"
 msgstr "Beta"
 
-#: plugins/AncestorChart.py:429 plugins/FullFamily.py:175
+#: plugins/AncestorChart.py:429
 msgid "Produces a graphical ancestral tree graph"
 msgstr "Laver et grafisk stamtræ"
 
@@ -3866,14 +3821,12 @@ msgid "Text Reports"
 msgstr "Tekst Rapporter"
 
 #: plugins/AncestorReport.py:246
-#, fuzzy
 msgid "Save Ahnentafel Report"
-msgstr "Ahnentafel Rapport"
+msgstr "Gem Ahnentafel Rapport"
 
 #: plugins/AncestorReport.py:336
-#, fuzzy
 msgid "Ahnentafel Report for GRAMPS Book"
-msgstr "Ahnentafel Rapport for %s"
+msgstr "Ahnentafel Rapport til GRAMPS Bog"
 
 #: plugins/AncestorReport.py:395 plugins/Ancestors.py:624
 #: plugins/DescendReport.py:291 plugins/FamilyGroup.py:610
@@ -3901,24 +3854,22 @@ msgstr "Aner til %s"
 
 #: plugins/Ancestors.py:643
 msgid "Text style for missing photo."
-msgstr ""
+msgstr "Tekststil til manglende foto."
 
 #: plugins/Ancestors.py:650
 msgid "Style for details about a person."
-msgstr ""
+msgstr "Stil for persondetaljer."
 
 #: plugins/Ancestors.py:665
 msgid "Introduction to the children."
-msgstr ""
+msgstr "Introduktion til børnene."
 
 #: plugins/Ancestors.py:688 plugins/Ancestors.py:798 plugins/Ancestors.py:958
 #: plugins/Ancestors.py:969
-#, fuzzy
 msgid "Ancestors Report"
-msgstr "Gem Anerapport"
+msgstr "Anerapport"
 
 #: plugins/Ancestors.py:692
-#, fuzzy
 msgid "Ancestors for %s"
 msgstr "Aner til %s"
 
@@ -3928,60 +3879,53 @@ msgid "Save Ancestor Report"
 msgstr "Gem Anerapport"
 
 #: plugins/Ancestors.py:707 plugins/Ancestors.py:809
-#, fuzzy
 msgid "Cite sources"
-msgstr "Editer Kilde"
+msgstr "Citer kilder"
 
 #: plugins/Ancestors.py:802
-#, fuzzy
 msgid "Ancestors Report for GRAMPS Book"
-msgstr "Basis Rapport - GRAMPS"
+msgstr "Anerapport til GRAMPS Bog"
 
 #: plugins/Ancestors.py:961
-#, fuzzy
 msgid "Produces a detailed ancestral report."
-msgstr "Laver en detaljeret anerapport"
+msgstr "Laver en detaljeret anerapport."
 
 #: plugins/BookReport.py:478
 msgid "Available Books"
-msgstr ""
+msgstr "Bøger til rådighed"
 
 #: plugins/BookReport.py:491
 msgid "Book List"
-msgstr ""
+msgstr "Bogliste"
 
 #: plugins/BookReport.py:582 plugins/BookReport.py:849
 #: plugins/BookReport.py:999
-#, fuzzy
 msgid "Book Report"
-msgstr "Rapporter"
+msgstr "Bograpport"
 
 #: plugins/BookReport.py:585
 msgid "New Book"
-msgstr ""
+msgstr "Ny Bog"
 
 #: plugins/BookReport.py:588
 msgid "Available items"
-msgstr ""
+msgstr "Emner til rådighed"
 
 #: plugins/BookReport.py:591
 msgid "Current book"
-msgstr ""
+msgstr "Aktuel bog"
 
 #: plugins/BookReport.py:595
-#, fuzzy
 msgid "Item name"
-msgstr "Filter navn:"
+msgstr "Emne navn"
 
 #: plugins/BookReport.py:596
-#, fuzzy
 msgid "Center person"
-msgstr "Slet Person"
+msgstr "Centrer person"
 
 #: plugins/BookReport.py:642
-#, fuzzy
 msgid "Different database"
-msgstr "Hele databasen"
+msgstr "En anden database"
 
 #: plugins/BookReport.py:642
 msgid ""
@@ -3992,29 +3936,32 @@ msgid ""
 "Therefore, the central person for each item is being set to the active "
 "person of the currently opened database."
 msgstr ""
+"Denne bog blev dannet med referencerne til database %s.\n"
+"\n"
+"Dette gør referencerne til den centrale person gemt i bogen ugyldige.\n"
+"\n"
+"Derfor sættes den centrale person for hvert emne til den aktive person i "
+"den aktuelt åbne database."
 
 #: plugins/BookReport.py:677
 msgid "Not Applicable"
-msgstr ""
+msgstr "Ikke Anvendelig"
 
 #: plugins/BookReport.py:852
-#, fuzzy
 msgid "GRAMPS Book"
-msgstr "GRAMPS"
+msgstr "GRAMPS Bog"
 
 #: plugins/BookReport.py:1000
-#, fuzzy
 msgid "Books"
-msgstr "_Bogmærker"
+msgstr "Bøger"
 
 #: plugins/BookReport.py:1001
-#, fuzzy
 msgid "Unstable"
-msgstr "Brug"
+msgstr "Ustabil"
 
 #: plugins/BookReport.py:1002
 msgid "Creates a book containg several reports."
-msgstr ""
+msgstr "Danner en bog der indeholder flere rapporter."
 
 #: plugins/ChangeTypes.py:67
 msgid "Change event types"
@@ -4035,6 +3982,11 @@ msgstr "Ret typer"
 #: plugins/ChangeTypes.py:103
 msgid "Rename personal event types"
 msgstr "Omdøb personlige hændelsestyper"
+
+#: plugins/ChangeTypes.py:104 plugins/Check.py:353 plugins/Merge.py:554
+#: plugins/PatchNames.py:209 plugins/ReorderIds.py:127
+msgid "Database Processing"
+msgstr "Database Behandling"
 
 #: plugins/ChangeTypes.py:105
 msgid "Allows all the events of a certain name to be renamed to a new name"
@@ -4191,9 +4143,8 @@ msgid "Save Descendant Report"
 msgstr "Gem Efterkommerrapport"
 
 #: plugins/DescendReport.py:230
-#, fuzzy
 msgid "Descendant Report for GRAMPS Book"
-msgstr "Efterkommerrapport for %s"
+msgstr "Efterkommerrapport til GRAMPS Bog"
 
 #: plugins/DescendReport.py:299
 msgid "The style used for the level %d display."
@@ -4481,9 +4432,8 @@ msgid "Detailed Ancestral Report"
 msgstr "Detaljeret Anerapport"
 
 #: plugins/DetAncestralReport.py:998
-#, fuzzy
 msgid "Detailed Ancestral Report for GRAMPS Book"
-msgstr "Detaljeret Anerapport for %s"
+msgstr "Detaljeret Anerapport til GRAMPS Bog"
 
 #: plugins/DetAncestralReport.py:1247
 msgid "Produces a detailed ancestral report"
@@ -4518,9 +4468,8 @@ msgid "Detailed Descendant Report for %s"
 msgstr "Detaljeret Efterkommerrapport for %s"
 
 #: plugins/DetDescendantReport.py:824
-#, fuzzy
 msgid "Omit duplicate people"
-msgstr "Udelad dobbelte aner"
+msgstr "Udelad dobbelte personer"
 
 #: plugins/DetDescendantReport.py:1002 plugins/DetDescendantReport.py:1251
 #: plugins/DetDescendantReport.py:1262
@@ -4528,9 +4477,8 @@ msgid "Detailed Descendant Report"
 msgstr "Detaljeret Efterkommerrapport"
 
 #: plugins/DetDescendantReport.py:1006
-#, fuzzy
 msgid "Detailed Descendant Report for GRAMPS Book"
-msgstr "Detaljeret Efterkommerrapport for %s"
+msgstr "Detaljeret Efterkommerrapport til GRAMPS Bog"
 
 #: plugins/DetDescendantReport.py:1254
 msgid "Produces a detailed descendant report"
@@ -4603,9 +4551,8 @@ msgid "Save Family Group Report"
 msgstr "Gem Familierapport"
 
 #: plugins/FamilyGroup.py:482
-#, fuzzy
 msgid "Family Group Report for GRAMPS Book"
-msgstr "Familierapport for %s"
+msgstr "Familiegrupperapport til GRAMPS Bog"
 
 #: plugins/FamilyGroup.py:628
 msgid "The style used for the text related to the children."
@@ -4624,29 +4571,24 @@ msgstr ""
 "børn."
 
 #: plugins/FanChart.py:181
-#, fuzzy
 msgid "Five Generation Fan Chart for %s"
-msgstr "Anetavle for %s"
+msgstr "Fem Generationers Halvcirkel-Anetavle for %s"
 
 #: plugins/FanChart.py:280 plugins/FanChart.py:352
-#, fuzzy
 msgid "Fan Chart"
-msgstr "Anetavle"
+msgstr "Halvcirkel-Anetavle"
 
 #: plugins/FanChart.py:284
-#, fuzzy
 msgid "Fan Chart for %s"
-msgstr "Anetavle for %s"
+msgstr "Halvcirkel-Anetavle for %s"
 
 #: plugins/FanChart.py:289
-#, fuzzy
 msgid "Save Fan Chart"
-msgstr "Gem Anetavle"
+msgstr "Gem Halvcirkel-Anetavle"
 
 #: plugins/FanChart.py:355
-#, fuzzy
 msgid "Produces a five generation fan chart"
-msgstr "Laver en detaljeret efterkommerrapport"
+msgstr "Laver en fem generationers halvcirkel-anetavle"
 
 #: plugins/FilterEditor.py:59
 msgid "User defined filters"
@@ -5089,9 +5031,8 @@ msgid "FTM Style Ancestor Report"
 msgstr "Anerapport i FTM stil"
 
 #: plugins/FtmStyleAncestors.py:883
-#, fuzzy
 msgid "FTM Style Ancestor Report for GRAMPS Book"
-msgstr "Anerapport over %s i FTM stil"
+msgstr "Anerapport i FTM stil til GRAMPS Bog"
 
 #: plugins/FtmStyleAncestors.py:1032
 msgid "Produces a textual ancestral report similar to Family Tree Maker."
@@ -5212,27 +5153,12 @@ msgid "Save FTM Style Descendant Report"
 msgstr "Gem Efterkommerrapport i FTM stil"
 
 #: plugins/FtmStyleDescendants.py:1287
-#, fuzzy
 msgid "FTM Style Descendant Report for GRAMPS Book"
-msgstr "Efterkommerrapport over %s i FTM stil"
+msgstr "Efterkommerrapport i FTM stil til GRAMPS Bog"
 
 #: plugins/FtmStyleDescendants.py:1439
 msgid "Produces a textual descendant report similar to Family Tree Maker."
 msgstr "Danner en efterkommerrapport i tekst, som minder om Family Tree Maker."
-
-#: plugins/FullFamily.py:105 plugins/FullFamily.py:172
-msgid "Full Family Chart"
-msgstr ""
-
-#: plugins/FullFamily.py:109
-#, fuzzy
-msgid "Full Family Chart for %s"
-msgstr "Familierapport for %s"
-
-#: plugins/FullFamily.py:114
-#, fuzzy
-msgid "Save Full Family Chart"
-msgstr "Gem Familierapport"
 
 #: plugins/GraphViz.py:62 plugins/GraphViz.py:89
 msgid "Single (scaled)"
@@ -5443,13 +5369,12 @@ msgid "Save Complete Individual Report"
 msgstr "Gem Komplet Individuel Rapport"
 
 #: plugins/IndivComplete.py:585 plugins/IndivComplete.py:822
-#, fuzzy
 msgid "Individual Complete"
-msgstr "Individnavne"
+msgstr "Individ Komplet"
 
 #: plugins/IndivComplete.py:589
 msgid "Individual Complete Report for GRAMPS Book"
-msgstr ""
+msgstr "Individuel Komplet Rapport til GRAMPS Bog"
 
 #: plugins/IndivComplete.py:667 plugins/IndivSummary.py:595
 msgid "The style used for category labels."
@@ -5478,9 +5403,8 @@ msgid "Save Individual Summary"
 msgstr "Gem Individuel Opsummering"
 
 #: plugins/IndivSummary.py:524
-#, fuzzy
 msgid "Individual Summary Report for GRAMPS Book"
-msgstr "Individuel Opsummering for %s"
+msgstr "Individuel Opsummering til GRAMPS Bog"
 
 #: plugins/IndivSummary.py:626
 msgid "Produces a detailed report on the selected person."
@@ -5683,41 +5607,45 @@ msgstr "%(person)s er %(relationship)s af %(active_person)s."
 msgid "Calculates the relationship between two people"
 msgstr "Beregner slægtskabet mellem to personer"
 
+#: plugins/ReorderIds.py:126
+msgid "Reorder gramps IDs"
+msgstr "Sorter gramps ID'er"
+
+#: plugins/ReorderIds.py:128
+msgid "Reorders the gramps IDs according to gramps' default rules."
+msgstr "Sorter gramps ID'erne efter gramps standard regler."
+
 #: plugins/SimpleBookTitle.py:107
-#, fuzzy
 msgid "The style used for the subtitle."
-msgstr "Stilen, der bruges til sidens titel."
+msgstr "Stilen, der bruges til undertitlen."
 
 #: plugins/SimpleBookTitle.py:145 plugins/SimpleBookTitle.py:239
 msgid "Title of the Book"
-msgstr ""
+msgstr "Bogens Titel"
 
 #: plugins/SimpleBookTitle.py:153 plugins/SimpleBookTitle.py:246
-#, fuzzy
 msgid "Copyright %d %s"
-msgstr "Ophavsret:"
+msgstr "Ophavsret %d %s"
 
 #: plugins/SimpleBookTitle.py:173 plugins/SimpleBookTitle.py:357
 msgid "Simple Book Title"
-msgstr ""
+msgstr "Enkel Bog Titel"
 
 #: plugins/SimpleBookTitle.py:177
 msgid "Title Page for GRAMPS Book"
-msgstr ""
+msgstr "Titelside til GRAMPS Bog"
 
 #: plugins/SimpleBookTitle.py:195
 msgid "Title String"
-msgstr ""
+msgstr "Titel Streng"
 
 #: plugins/SimpleBookTitle.py:195 plugins/SimpleBookTitle.py:196
-#, fuzzy
 msgid "Contents"
-msgstr "Kommentarer:"
+msgstr "Indhold"
 
 #: plugins/SimpleBookTitle.py:196
-#, fuzzy
 msgid "Copyright String"
-msgstr "Ophavsret:"
+msgstr "Ophavsrets Streng"
 
 #: plugins/Summary.py:97
 msgid "Individuals"
@@ -6328,81 +6256,53 @@ msgstr "pakke eksport"
 msgid "Export to GRAMPS package"
 msgstr "Eksport til GRAMPS pakke"
 
-#: plugins/book.glade:10
-msgid "Book"
-msgstr ""
-
-#: plugins/book.glade:26
-#, fuzzy
-msgid "title"
-msgstr "Titel"
-
 #: plugins/book.glade:59
 msgid "Book _name: "
-msgstr ""
-
-#: plugins/book.glade:127
-msgid "avail_label"
-msgstr ""
-
-#: plugins/book.glade:151
-msgid "book_label"
-msgstr ""
+msgstr "Bog _navn: "
 
 #: plugins/book.glade:251
 msgid "Add an item to the book"
-msgstr ""
+msgstr "Tilføj til bogen"
 
 #: plugins/book.glade:264
-#, fuzzy
 msgid "Remove currently selected item from the book"
-msgstr "Slet det valgte eksemplar"
+msgstr "Slet det valgte eksemplar fra bogen"
 
 #: plugins/book.glade:277
 msgid "Move current selection one step up in the book"
-msgstr ""
+msgstr "Flyt det valgte et skridt op i bogen"
 
 #: plugins/book.glade:290
 msgid "Move current selection one step down in the book"
-msgstr ""
+msgstr "Flyt det valgte et skridt ned i bogen"
 
 #: plugins/book.glade:303
-#, fuzzy
 msgid "Configure currently selected item"
-msgstr "Slet det valgte eksemplar"
+msgstr "Indstil det valgte eksemplar"
 
 #: plugins/book.glade:343
 msgid "Se_tup"
-msgstr ""
+msgstr "Inds_tilling"
 
 #: plugins/book.glade:378
 msgid "Clear the book"
-msgstr ""
+msgstr "Ryd bogen"
 
 #: plugins/book.glade:391
 msgid "Save current set of configured selections"
-msgstr ""
+msgstr "Gem det aktuelle sæt af indstillede valgmuligheder"
 
 #: plugins/book.glade:404
 msgid "Open previously created book"
-msgstr ""
+msgstr "Åbn en tidligere dannet bog"
 
 #: plugins/book.glade:417
 msgid "Manage previously created books"
-msgstr ""
+msgstr "Håndter tidligere dannede bøger"
 
 #: plugins/book.glade:457
-#, fuzzy
 msgid "_Edit books"
-msgstr "R_et Bogmærker"
-
-#: plugins/book.glade:545
-msgid "dialog1"
-msgstr ""
-
-#: plugins/book.glade:620
-msgid "label6"
-msgstr ""
+msgstr "R_et bøger"
 
 #: plugins/cdexport.glade:73
 msgid "_Export to CD"
@@ -6590,7 +6490,7 @@ msgstr "_UNICODE"
 
 #: plugins/gedcomexport.glade:482
 msgid "AN_SI (ISO-8859-1)"
-msgstr ""
+msgstr "AN_SI (ISO-8859-1)"
 
 #: plugins/gedcomexport.glade:600
 msgid "Sources:"
@@ -6677,14 +6577,14 @@ msgid "Restrict data on living people"
 msgstr "Begræns data om nulevende personer"
 
 #: plugins/patchnames.glade:50
-#, fuzzy
 msgid ""
 "Below is a list of the nicknames and titles that GRAMPS can extract from "
 "the \n"
 "current database. If you accept the changes, GRAMPS will modify the entries\n"
 "that have been selected."
 msgstr ""
-"Nedenfor er en liste af kælenavne og titler som GRAMPS kan udtrække fra den "
+"Nedenfor er en liste af de kælenavne og titler som GRAMPS kan udtrække fra "
+"den \n"
 "aktuelle database. Hvis du godkender ændringerne vil GRAMPS\n"
 "ændre de valgte poster."
 
@@ -7295,6 +7195,26 @@ msgstr "<b>Retstilling</b>"
 #: styles.glade:1336
 msgid "<b>Paragraph options</b>"
 msgstr "<b>Sætningsvalgmuligheder</b>"
+
+#, fuzzy
+#~ msgid "Relationship to %(father)sfather"
+#~ msgstr "Slægtskab til fader:"
+
+#, fuzzy
+#~ msgid "Relationship to %(mother)smother"
+#~ msgstr "Slægtskab til moder:"
+
+#, fuzzy
+#~ msgid "Full Family Chart for %s"
+#~ msgstr "Familierapport for %s"
+
+#, fuzzy
+#~ msgid "Save Full Family Chart"
+#~ msgstr "Gem Familierapport"
+
+#, fuzzy
+#~ msgid "title"
+#~ msgstr "Titel"
 
 #~ msgid "Loop detected while applying filter"
 #~ msgstr "En løkke opdagedes ved anvendelsen af filter"
