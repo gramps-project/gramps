@@ -911,9 +911,12 @@ class FamilyView:
         list = person.get_parent_family_id_list()
 
         for (f,mrel,frel) in list:
+            print (f,mrel,frel)
             fam = self.parent.db.find_family_from_id(f)
             father_id = fam.get_father_id()
             mother_id = fam.get_mother_id()
+            print "father_id:", father_id
+            print "mother_id:", mother_id
             f = self.parent.db.find_person_from_id(father_id)
             m = self.parent.db.find_person_from_id(mother_id)
             father = self.nameof(_("Father"),f,frel)

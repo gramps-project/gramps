@@ -2677,7 +2677,7 @@ class GrampsDB:
         else:
             person.set_id(val)
             assert(person.get_id())
-            print person.get_id()
+            print "person.get_id():", person.get_id()
             assert(person.get_id()[0] == 'I')
             self.person_map.put(str(val), person.serialize())
             self.pmap_index = self.pmap_index+1
