@@ -57,7 +57,7 @@ import Report
 
 #-------------------------------------------------------------------------
 #
-# ReportBook
+# Book creation dialog class
 #
 #-------------------------------------------------------------------------
 class BookReportSelector:
@@ -103,10 +103,11 @@ class BookReportSelector:
         book_label.set_text("<b>%s</b>" % "Current book")
         book_label.set_use_markup(gtk.TRUE)
 
+        self.item_storage = {}
+        self.max_key = 0
 
-        av_titles = [(_('Name'),2,150),(_('Type'),1,50), ('',-1,0)]
-        bk_titles = [(_('Item name'),-1,150),(_('Type'),-1,50), 
-            ('',-1,0),('',-1,0)]
+        av_titles = [(_('Name'),2,150),(_('Type'),1,50)]
+        bk_titles = [(_('Item name'),-1,150),(_('Type'),1,50),('',-1,0)] #,('',-1,0)
 	
 	self.av_ncols = len(av_titles)
 	self.bk_ncols = len(bk_titles)
@@ -121,49 +122,46 @@ class BookReportSelector:
     def draw_avail_list(self):
         """Draw the list with the selections available for the book."""
 
-        data = [_('Title Page'),_('Cover'),self.titlepage]
-        iter = self.av_model.add(data)
+        if not Plugins._bkitems:
+            return
 
-        data = [_('Table of Contents'),_('TOC'),self.toc]
-        new_iter = self.av_model.add(data)
-
-    	reports = Plugins._reports
-        for report in reports:
-            if not self.ignore(report):
-                data = [report[2],string.split(report[1])[0],report[0]]
-                new_iter = self.av_model.add(data)
+        for book_item in Plugins._bkitems:
+            data = [ book_item[0], book_item[1] ] 
+            new_iter = self.av_model.add(data)
 
         self.av_model.connect_model()
 
-        if iter:
-            self.av_model.selection.select_iter(iter)
-            path = self.av_model.model.get_path(iter)
+        if new_iter:
+            self.av_model.selection.select_iter(new_iter)
+            path = self.av_model.model.get_path(new_iter)
             col = self.avail_tree.get_column(0)
             self.avail_tree.scroll_to_cell(path,col,1,1,0.0)
 
-    def ignore(self,report):
-        """Returns true if the report is to be ignored for the book."""
-
-        ignore_names = [_('Book Report')]
-        ignore_categories = [_('View'),_('Web Page')]
-        return (report[2] in ignore_names) or (report[1] in ignore_categories)
-    
     def on_add_clicked(self,obj):
         store,iter = self.av_model.get_selected()
         if not iter:
             return
 	data = self.av_model.get_data(iter,range(self.av_ncols))
-        data.append([])
+        self.max_key = self.max_key + 1
+        newkey = str(self.max_key)
+        data.append(newkey)
         self.bk_model.add(data)
+        for book_item in Plugins._bkitems:
+            if book_item[0] == data[0]:
+                self.item_storage[newkey] = list(book_item)
 
     def on_remove_clicked(self,obj):
         store,iter = self.bk_model.get_selected()
         if not iter:
             return
+	data = self.bk_model.get_data(iter,range(self.bk_ncols))
+        key = data[2]
+        del self.item_storage[key]
         self.bk_model.remove(iter)
 
     def on_clear_clicked(self,obj):
         self.bk_model.clear()
+        self.item_storage.clear()
 
     def on_up_clicked(self,obj):
         row = self.bk_model.get_selected_row()
@@ -188,7 +186,17 @@ class BookReportSelector:
         if not iter:
             return
 	data = self.bk_model.get_data(iter,range(self.bk_ncols))
-        ReportOptionsDialog(self.db,self.person,data[0])
+        key = data[2]
+        book_item = self.item_storage[key]
+        options_dialog =  book_item[2]
+        get_opt = book_item[4]
+        get_stl = book_item[5] 
+        opt_dlg = options_dialog(self.db,self.person,get_opt,get_stl)
+        book_item[4] = opt_dlg.get_options
+        book_item[5] = opt_dlg.get_style
+        self.item_storage[key] = book_item
+        self.person = opt_dlg.person
+        #print opt_dlg.person.getPrimaryName().getRegularName()
 
     def bk_double_click(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
@@ -198,62 +206,83 @@ class BookReportSelector:
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.on_add_clicked(obj)
 
-    def on_book_ok_clicked(self,obj): pass
-
-    def titlepage(self): pass
-
-    def toc(self): pass
-
+    def on_book_ok_clicked(self,obj): 
+        if self.bk_model.count:
+            item_list = []
+            for row in range(self.bk_model.count):
+                self.bk_model.select_row(row)
+                store,iter = self.bk_model.get_selected()
+                data = self.bk_model.get_data(iter,range(self.bk_ncols))
+                key = data[2]
+                book_item = self.item_storage[key]
+                item_list.append(book_item)
+            BookReportDialog(self.db,self.person,item_list)
+        self.top.destroy()
 
 #------------------------------------------------------------------------
 #
-# 
+# The final dialog - paper, format, target, etc. 
 #
 #------------------------------------------------------------------------
-class ReportOptionsDialog(Report.BareReportDialog):
-
-    def __init__(self,database,person,rep_title):
-        self.rep_title = rep_title
+class BookReportDialog(Report.ReportDialog):
+    def __init__(self,database,person,item_list):
         Report.BareReportDialog.__init__(self,database,person)
+        self.item_list = item_list
+        book_item = item_list[0]
+        get_style = book_item[5]
+        self.selected_style = get_style()
+        self.database = database 
+        self.person = person
+
+    def setup_style_frame(self): pass
+    def setup_report_options_frame(self): pass
+    def setup_other_frames(self): pass
+    def parse_style_frame(self): pass
+    def parse_report_options_frame(self): pass
+    def parse_other_frames(self): pass
+
+    def doc_uses_tables(self):
+        return 1
 
     def get_title(self):
-        """The window title for this dialog"""
-        return _("%s - GRAMPS Book") % self.rep_title
+        return _("Book Report")
 
-    def get_header(self, name):
-        """The header line at the top of the dialog contents"""
-        return _("%s for GRAMPS Book") % self.rep_title
+    def get_header(self,name):
+        return _("Book Report")
 
-    def setup_format_frame(self): 
-	center_label = gtk.Label("<b>%s</b>" % _("Center Person"))
-        center_label.set_use_markup(gtk.TRUE)
-	center_label.set_alignment(0.0,0.5)
-        self.tbl.set_border_width(12)
-        self.tbl.attach(center_label,0,4,1,2,gtk.SHRINK|gtk.FILL)
-	
-	name = self.person.getPrimaryName().getRegularName()
-        self.person_label = gtk.Label( "<i>%s</i>" % name )
-        self.person_label.set_use_markup(gtk.TRUE)
-	self.person_label.set_alignment(0.0,0.5)
-        self.tbl.attach(self.person_label,2,3,2,3)
-	
-        change_button = gtk.Button("%s..." % _('_Change') )
-	change_button.connect('clicked',self.on_change_clicked)
-        self.tbl.attach(change_button,3,4,2,3,gtk.SHRINK|gtk.SHRINK)
-    
-    def on_change_clicked(self,obj):
-    	import SelectPerson
-	sel_person = SelectPerson.SelectPerson(self.db,'Select Person')
-	new_person = sel_person.run()
-        if new_person:
-            new_name = new_person.getPrimaryName().getRegularName()
-	    if new_name:
-                self.person_label.set_text( "<i>%s</i>" % new_name )
-                self.person_label.set_use_markup(gtk.TRUE)
+    def make_doc_menu(self):
+        """Build a menu of document types that are appropriate for
+        this text report.  This menu will be generated based upon
+        whether the document requires table support, etc."""
+        Plugins.get_text_doc_menu(self.format_menu, self.doc_uses_tables(),
+                                  self.doc_type_changed)
+
+    def make_document(self):
+        """Create a document of the type requested by the user."""
+        self.doc = self.format(self.selected_style,self.paper,
+                               self.template_name,self.orien)
+        self.doc.open(self.target_path)
+
+    def make_report(self):
+        """Create the contents of the report.  This is a simple
+        default implementation suitable for testing.  Is should be
+        overridden to produce a real report."""
+        self.doc.start_paragraph("Title")
+        title = _("Book Report")
+        self.doc.write_text(title)
+        self.doc.end_paragraph()
+        for book_item in self.item_list:
+            write_book_item = book_item[3]
+            get_options = book_item[4]
+            item_options = get_options()
+            if write_book_item:
+                write_book_item(self.database,self.person,self.doc,item_options)
+
+        self.doc.close()
 
 #------------------------------------------------------------------------
 #
-# 
+# Function to register the overall book report
 #
 #------------------------------------------------------------------------
 def report(database,person):
