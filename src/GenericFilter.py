@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2004  Donald N. Allingham
+# Copyright (C) 2002-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,7 +37,13 @@ from xml.sax import make_parser,handler,SAXParseException
 #
 #-------------------------------------------------------------------------
 import os
-import string
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
+# gtk
+#
+#-------------------------------------------------------------------------
 import gtk
 
 #-------------------------------------------------------------------------
@@ -51,7 +57,6 @@ import Date
 import DateHandler
 import NameDisplay
 from TransTable import TransTable
-from gettext import gettext as _
 from Utils import for_each_ancestor
 
 #-------------------------------------------------------------------------
@@ -113,7 +118,7 @@ class Rule:
         for i in range(0,len(self.list)):
             if self.list[i]:
                 v.append('%s="%s"' % (_(self.labels[i]),_(self.list[i])))
-        return string.join(v,'; ')
+        return ';'.join(v)
 
 #-------------------------------------------------------------------------
 #
@@ -897,7 +902,7 @@ class HasCommonAncestorWith(Rule):
         p_id = self.list[0]
         if p_id:
             def init(self,pid): self.ancestor_cache[pid] = 1
-            for_each_ancestor([p_id],init,self)
+            for_each_ancestor(db,[p_id],init,self)
 
     def apply(self,db,p_id):
         # On the first call, we build the ancestor cache for the
@@ -905,7 +910,7 @@ class HasCommonAncestorWith(Rule):
         # we browse his ancestors until we found one in the cache.
         if len(self.ancestor_cache) == 0:
             self.init_ancestor_cache(db)
-        return for_each_ancestor([p_id],
+        return for_each_ancestor(db,[p_id],
                                  lambda self,p_id: self.ancestor_cache.has_key(p_id),
                                  self);
 
@@ -939,7 +944,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
         for p_id in db.get_person_handles(sort_handles=False):
             if (not self.ancestor_cache.has_key (p_id)
                 and filt.apply (db, p_id)):
-                for_each_ancestor([p_id],init,self)
+                for_each_ancestor(db,[p_id],init,self)
 
 #-------------------------------------------------------------------------
 #
@@ -998,7 +1003,7 @@ class HasEvent(Rule):
             val = 1
             if self.list[0] and event.get_name() != self.list[0]:
                 val = 0
-            if self.list[3] and string.find(event.get_description().upper(),
+            if self.list[3] and event.get_description().upper().find(
                                             self.list[3].upper())==-1:
                 val = 0
             if self.date:
@@ -1009,7 +1014,7 @@ class HasEvent(Rule):
                 if pl_id:
                     pl = db.get_place_from_handle(pl_id)
                     pn = pl.get_title()
-                    if string.find(pn.upper(),self.list[2].upper()) == -1:
+                    if pn.upper().find(self.list[2].upper()) == -1:
                         val = 0
                 if val == 1:
                     return 1
@@ -1054,7 +1059,7 @@ class HasFamilyEvent(Rule):
                 if self.list[0] and event.get_name() != self.list[0]:
                     val = 0
                 v = self.list[3]
-                if v and string.find(event.get_description().upper(),v.upper())==-1:
+                if v and event.get_description().upper().find(v.upper())==-1:
                     val = 0
                 if self.date:
                     if date_cmp(self.date,event.get_date_object()):
@@ -1063,7 +1068,7 @@ class HasFamilyEvent(Rule):
                 if pl_id:
                     pl = db.get_place_from_handle(pl_id)
                     pn = pl.get_title()
-                    if self.list[2] and string.find(pn,self.list[2].upper()) == -1:
+                    if self.list[2] and pn.find(self.list[2].upper()) == -1:
                         val = 0
                     if val == 1:
                         return 1
@@ -1160,7 +1165,7 @@ class HasBirth(Rule):
             return 0
         event = db.get_event_from_handle(event_handle)
         ed = event.get_description().upper()
-        if len(self.list) > 2 and string.find(ed,self.list[2].upper())==-1:
+        if len(self.list) > 2 and ed.find(self.list[2].upper())==-1:
             return 0
         if self.date:
             if date_cmp(self.date,event.get_date_object()) == 0:
@@ -1169,7 +1174,7 @@ class HasBirth(Rule):
         if pl_id:
             pl = db.get_place_from_handle(pl_id)
             pn = pl.get_title()
-            if len(self.list) > 1 and string.find(pn,self.list[1].upper()) == -1:
+            if len(self.list) > 1 and pn.find(self.list[1].upper()) == -1:
                 return 0
         return 1
 
@@ -1206,7 +1211,7 @@ class HasDeath(Rule):
             return 0
         event = db.get_event_from_handle(event_handle)
         ed = event.get_description().upper()
-        if self.list[2] and string.find(ed,self.list[2].upper())==-1:
+        if self.list[2] and ed.find(self.list[2].upper())==-1:
             return 0
         if self.date:
             if date_cmp(self.date,event.get_date_object()) == 0:
@@ -1215,7 +1220,7 @@ class HasDeath(Rule):
         if pl_id:
             pl = db.get_place_from_handle(pl_id)
             pn = pl.get_title()
-            if self.list[1] and string.find(pn,self.list[1].upper()) == -1:
+            if self.list[1] and pn.find(self.list[1].upper()) == -1:
                 return 0
         return 1
 
@@ -1238,7 +1243,7 @@ class HasAttribute(Rule):
             if self.list[0] and event.get_type() != self.list[0]:
                 return 0
             ev = event.get_value().upper()
-            if self.list[1] and string.find(ev,self.list[1].upper())==-1:
+            if self.list[1] and ev.find(self.list[1].upper())==-1:
                 return 0
         return 1
 
@@ -1264,7 +1269,7 @@ class HasFamilyAttribute(Rule):
                 if self.list[0] and event.get_type() != self.list[0]:
                     val = 0
                 ev = event.get_value().upper()
-                if self.list[1] and string.find(ev,self.list[1].upper())==-1:
+                if self.list[1] and ev.find(self.list[1].upper())==-1:
                     val = 0
                 if val == 1:
                     return 1
@@ -1297,13 +1302,13 @@ class HasNameOf(Rule):
         p = db.get_person_from_handle(p_id)
         for name in [p.get_primary_name()] + p.get_alternate_names():
             val = 1
-            if self.f and string.find(name.get_first_name().upper(),self.f.upper()) == -1:
+            if self.f and name.get_first_name().upper().find(self.f.upper()) == -1:
                 val = 0
-            if self.l and string.find(name.get_surname().upper(),self.l.upper()) == -1:
+            if self.l and name.get_surname().upper().find(self.l.upper()) == -1:
                 val = 0
-            if self.s and string.find(name.get_suffix().upper(),self.s.upper()) == -1:
+            if self.s and name.get_suffix().upper().find(self.s.upper()) == -1:
                 val = 0
-            if self.t and string.find(name.get_title().upper(),self.t.upper()) == -1:
+            if self.t and name.get_title().upper().find(self.t.upper()) == -1:
                 val = 0
             if val == 1:
                 return 1
@@ -1332,7 +1337,7 @@ class SearchName(Rule):
         self.f = self.list[0]
         p = db.get_person_from_handle(p_id)
         n = NameDisplay.displayer.display(p)
-        return self.f and string.find(n.upper(),self.f.upper()) != -1
+        return self.f and n.upper().find(self.f.upper()) != -1
     
 #-------------------------------------------------------------------------
 #
