@@ -1,4 +1,5 @@
 2004-09-14  Tim Waugh  <twaugh@redhat.com>
+	* src/plugins/Ancestors.py: Fixed SF bug #1009695.
 	* src/docgen/PSDrawDoc.py (PSDrawDoc.__init__): Fixed base method
 	call (missing parameter).
 	* src/docgen/SvgDrawDoc.py (SvgDrawDoc.__init__): Likewise.

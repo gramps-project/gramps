@@ -682,7 +682,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
     def married_whom (self, person, from_family, listing_children = 0):
         gender = person.get_gender ()
-        first_marriage = 1
+        first_rel = 1
         ret = ''
         for family_handle in person.get_family_handle_list ():
             family = self.database.get_family_from_handle(family_handle)
@@ -727,33 +727,45 @@ class ComprehensiveAncestorsReport (Report.Report):
                 else:
                     continue
 
-                #marriage = family.get_marriage ()
-                if not first_marriage:
-                    if gender == RelLib.Person.female:
-                        ret += _('  She later married %(name)s') % \
-                               {'name': self.person_name (spouse_id)}
+                if marriage:
+                    if not first_rel:
+                        if gender == RelLib.Person.female:
+                            ret += _('  She later married %(name)s') % \
+                                   {'name': self.person_name (spouse)}
+                        else:
+                            ret += _('  He later married %(name)s') % \
+                                   {'name': self.person_name (spouse)}
+
+                    elif (listing_children or
+                          spouse == mother or
+                          family != from_family):
+                        if gender == RelLib.Person.female:
+                            ret += _('  She married %(name)s') % \
+                                   {'name': self.person_name (spouse)}
+                        else:
+                            ret += _('  He married %(name)s') % \
+                                   {'name': self.person_name (spouse)}
+
+                    ret += self.event_info (marriage)
+                else: # Not a marriage
+                    if not first_rel:
+                        if gender == RelLib.Person.female:
+                            ret += _('  She later had a relationship with %(name)s') % \
+                                   {'name': self.person_name (spouse)}
+                        else:
+                            ret += _('  He later had a relationship with %(name)s') % \
+                                   {'name': self.person_name (spouse)}
                     else:
-                        ret += _('  He later married %(name)s') % \
-                               {'name': self.person_name (spouse_id)}
+                        if gender == RelLib.Person.female:
+                            ret += _('  She had a relationship with %(name)s') % \
+                                   {'name': self.person_name (spouse)}
+                        else:
+                            ret += _('  He had a relationship with %(name)s') % \
+                                   {'name': self.person_name (spouse)}
 
-                    if marriage:
-                        ret += self.event_info (marriage)
-                    ret += children + '.'
-                elif (listing_children or
-                      spouse_id == mother_handle or
-                      family_handle != from_family.get_handle()):
-                    if gender == RelLib.Person.female:
-                        ret += _('  She married %(name)s') % \
-                               {'name': self.person_name (spouse_id)}
-                    else:
-                        ret += _('  He married %(name)s') % \
-                               {'name': self.person_name (spouse_id)}
+                ret += children + '.'
 
-                    if marriage:
-                        ret += self.event_info (marriage)
-                    ret += children + '.'
-
-            first_marriage = 0
+            first_rel = 0
 
         return ret
 
