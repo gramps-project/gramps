@@ -1,3 +1,6 @@
+2003-09-14  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/FontScale.py: try to handle non-ASCII characters
+
 2003-09-13  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/docgen/SvgDrawDoc.py: use proper init parameters for BaseDoc
 	* src/docgen/PSDrawDoc.py: use proper init parameters for BaseDoc
