@@ -1,3 +1,10 @@
+2003-08-11  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: apply the filter after a load of the database,
+	allow default view to be set
+	* src/GrampsCfg.py: handle the defaultview key to allow the user to
+	choose Family or People view as the default
+	* src/preferences.glade: defaultview settings
+
 2003-08-11  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* TODO: Some nice features to implement, mostly from RFE at sf.net.
 
