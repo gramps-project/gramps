@@ -294,12 +294,8 @@ class IndividualPage:
 
         if self.alive:
             return
-        self.doc.start_paragraph("EventsTitle")
-        self.doc.write_text(_("Facts and Events"))
-        self.doc.end_paragraph()
-
-        self.doc.start_table("two","IndTable")
-
+        count = 0
+        
         event_list = [ self.person.getBirth(), self.person.getDeath() ]
         event_list = event_list + self.person.getEventList()
         event_list.sort(by_date)
@@ -308,25 +304,51 @@ class IndividualPage:
                 continue
             name = _(event.getName())
             date = event.getDate()
-            if event.getPlace():
-                place = event.getPlaceName()
+            descr = event.getDescription()
+            place = event.getPlaceName()
+            srcref = event.getSourceRef()
+
+            if date == "" and descr == "" and place == "" and srcref.getBase() == None:
+                continue
+
+            if count == 0:
+                self.doc.start_paragraph("EventsTitle")
+                self.doc.write_text(_("Facts and Events"))
+                self.doc.end_paragraph()
+                self.doc.start_table("two","IndTable")
+                count = 1
+
+            if place != "" and place[-1] == ".":
+                place = place[0:-1]
             else:
                 place = ""
-            description = event.getDescription()
+            if descr != "" and descr[-1] == ".":
+                descr = descr[0:-1]
+
             if date == "":
                 if place == "":
-                    continue
+                    if descr == "":
+                        val = ""
+                    else:
+                        val = "%s." % descr
                 else:
-                    val = "%s. %s" % (place,description)
+                    if descr == "":
+                        val = ""
+                    else:
+                        val = "%s. %s." % (place,descr)
             else:
                 if place == "":
-                    val = "%s. %s" % (date,description)
+                    if descr == "":
+                        val = "%s." % date
+                    else:
+                        val = "%s. %s." % (date,descr)
                 else:
-                    val = "%s, %s. %s" % (date,place,description)
+                    val = "%s, %s. %s." % (date,place,descr)
 
-            self.write_normal_row(name, val, event.getSourceRef())
+            self.write_normal_row(name, val, srcref)
 
-        self.doc.end_table()
+        if count != 0:
+            self.doc.end_table()
 
     #--------------------------------------------------------------------
     #
@@ -357,21 +379,38 @@ class IndividualPage:
             return
         name = event.getName()
         date = event.getDate()
-        if event.getPlace():
-            place = event.getPlaceName()
-        else:
-            place = ""
-        description = event.getDescription()
+        place = event.getPlaceName()
+        descr = event.getDescription()
+        if descr != "" and descr[-1] == ".":
+            descr = descr[0:-1]
+        if place != "" and place[-1] == ".":
+            place = place[0:-1]
+
+        if date == "" and place == "" and descr == "":
+            return
+        
         if date == "":
             if place == "":
-                return
+                if descr == "":
+                    val = ""
+                else:
+                    val = "%s." % descr
             else:
-                val = "%s. %s" % (place,description)
+                if descr == "":
+                    val = "%s." % place
+                else:
+                    val = "%s. %s." % (place,descr)
         else:
             if place == "":
-                val = "%s. %s" % (date,description)
+                if descr == "":
+                    val = "%s." % date
+                else:
+                    val = "%s. %s." % (date,descr)
             else:
-                val = "%s, %s. %s" % (date,place,description)
+                if descr == "":
+                    val = "%s, %s." % (date,place)
+                else:
+                    val = "%s, %s. %s." % (date,place,descr)
 
         self.write_marriage_row([name, val])
 
@@ -381,6 +420,9 @@ class IndividualPage:
     #
     #--------------------------------------------------------------------
     def write_families(self):
+        if len(self.person.getFamilyList()) == 0:
+            return
+        
         self.doc.start_paragraph("FamilyTitle")
         self.doc.write_text(_("Marriages/Children"))
         self.doc.end_paragraph()
