@@ -452,12 +452,35 @@ class Gramps:
         else:
             self.active_family = None
 
+    def add_new_cancel(self,obj):
+        Utils.destroy_passed_object(self.addornew)
+
+    def add_new_new_relationship(self,obj):
+        import AddSpouse
+        Utils.destroy_passed_object(self.addornew)
+        AddSpouse.AddSpouse(self.database,self.active_person,
+                            self.load_family,self.redisplay_person_list)
+        
     def on_add_sp_clicked(self,obj):
         """Add a new spouse to the current person"""
         import AddSpouse
         if self.active_person:
-            AddSpouse.AddSpouse(self.database,self.active_person,
-                                self.load_family,self.redisplay_person_list)
+            if self.active_family and not self.active_spouse:
+                top = libglade.GladeXML(const.gladeFile, "add_or_new")
+                top.signal_autoconnect({
+                    'on_cancel_clicked' : self.add_new_cancel,
+                    'on_add_clicked' : self.add_new_choose_spouse,
+                    'on_new_clicked' : self.add_new_new_relationship
+                    })
+                self.addornew = top.get_widget('add_or_new')
+            else:
+                AddSpouse.AddSpouse(self.database,self.active_person,
+                                    self.load_family,self.redisplay_person_list)
+    def add_new_choose_spouse(self,obj):
+        import AddSpouse
+        Utils.destroy_passed_object(self.addornew)
+        AddSpouse.SetSpouse(self.database,self.active_person,self.active_family,
+                            self.load_family, self.redisplay_person_list)
 
     def on_edit_sp_clicked(self,obj):
         """Edit the marriage information for the current family"""
