@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -442,7 +442,7 @@ class EditPlace:
             t = _("%s [%s]: event %s\n")
 
             for e in pevent:
-                msg = msg + ( t % (GrampsCfg.nameof(e[0]),e[0].getId(),e[1].getName()))
+                msg = msg + ( t % (GrampsCfg.nameof(e[0]),e[0].getId(),_(e[1].getName())))
 
         if len(fevent) > 0:
             any = 1
@@ -454,13 +454,15 @@ class EditPlace:
                 father = e[0].getFather()
                 mother = e[0].getMother()
                 if father and mother:
-                    fname = "%s and %s" % (GrampsCfg.nameof(father),GrampsCfg.nameof(mother))
+                    fname = _("%(father)s and %(mother)s")  % {
+		    	    "father" : GrampsCfg.nameof(father),
+			    "mother" : GrampsCfg.nameof(mother) }
                 elif father:
                     fname = "%s" % GrampsCfg.nameof(father)
                 else:
                     fname = "%s" % GrampsCfg.nameof(mother)
 
-                msg = msg + ( t % (fname,e[0].getId(),e[1].getName()))
+                msg = msg + ( t % (fname,e[0].getId(),_(e[1].getName())))
 
         self.refinfo.get_buffer().set_text(msg)
         if any:
