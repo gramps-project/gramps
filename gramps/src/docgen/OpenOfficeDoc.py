@@ -226,13 +226,17 @@ class OpenOfficeDoc(TextDoc):
         self._write_zip()
 
     def add_photo(self,name,pos,x_cm,y_cm):
-        import gtk
-        import GdkImlib
 
-        image = GdkImlib.Image(name)
-        scale = float(image.rgb_width)/float(image.rgb_height)
-        act_width = int(((x_cm * scale)*2.54)*72)
-        act_height = int(((y_cm * scale)*2.54)*72)
+        image = ImgManip.ImgManip(name)
+        (x,y) = image.size()
+        aspect_ratio = float(x)/float(y)
+
+        if aspect_ratio > x_cm/y_cm:
+            act_width = x_cm
+            act_height = y_cm/aspect_ratio
+        else:
+            act_height = y_cm
+            act_width = x_cm*aspect_ratio
 
         self.photo_list.append((name,act_width,act_height))
 
@@ -251,8 +255,8 @@ class OpenOfficeDoc(TextDoc):
         self.f.write('draw:name="')
         self.f.write(tag)
         self.f.write('" text:anchor-type="paragraph" ')
-        self.f.write('svg:width="%.3fcm" ' % (x_cm*scale))
-        self.f.write('svg:height="%.3fcm" ' % (y_cm*scale))
+        self.f.write('svg:width="%.3fcm" ' % act_width)
+        self.f.write('svg:height="%.3fcm" ' % act_height)
         self.f.write('draw:z-index="0" ')
         self.f.write('xlink:href="#Pictures/')
         self.f.write(base)

@@ -26,6 +26,7 @@ __author__ = "Don Allingham"
 from re import compile
 from Date import Date, compare_dates, not_too_old
 from string import strip
+import os
 
 CONF_VERY_HIGH = 4
 CONF_HIGH      = 3
@@ -498,7 +499,7 @@ class Photo(SourceNote):
     
     def setPath(self,path):
         """set the file path to the passed path"""
-        self.path = path
+        self.path = os.path.normpath(path)
 
     def getPath(self):
         """return the file path"""
