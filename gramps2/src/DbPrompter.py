@@ -40,6 +40,7 @@ import GrampsCfg
 import gnome
 import QuestionDialog
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -114,6 +115,8 @@ class DbPrompter:
         response = choose.run()
         if response == gtk.RESPONSE_OK:
             filename = choose.get_filename()
+            if save and os.path.splitext(filename)[1] != ".grdb":
+                filename = filename + ".grdb"
             self.db.read_file(filename)
             choose.destroy()
             return 1

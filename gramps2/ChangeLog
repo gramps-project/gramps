@@ -1,3 +1,6 @@
+2004-05-09  Don Allingham  <donaldallingham@users.sourceforge.net>
+	* src/DbPrompter.py: added a .grdb if not specified.
+
 2004-05-09  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/PatchNames.py: Clean up conversion to db. 
 	* src/plugins/patchnames.glade: HIGify dialog. 
