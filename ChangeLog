@@ -1,5 +1,6 @@
 2003-07-22  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py: Mark the easy translation strings.
+	Start tentative work on making the rest translatable.
 	* src/RelLib.py: Made Person.probablyAlive() take partners into
 	consideration if all else fails.
 	* src/plugins/WriteGedcom.py, src/plugins/gedcomexport.glade: New
