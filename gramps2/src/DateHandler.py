@@ -45,19 +45,27 @@ import DateDisplay
 # Constants 
 #
 #-------------------------------------------------------------------------
-_lang = os.environ.get('LANG','C')
+_lang = os.environ.get('LANG','C').split('.')[0]
     
 
 _lang_to_parser = {
-    'C'       : DateParser.DateParser,
-    'en_US'   : DateParser.DateParser,
-    'en_GB'   : DateParser.DateParser,
+    'C'      : DateParser.DateParser,
+    'en_US'  : DateParser.DateParser,
+    'en_GB'  : DateParser.DateParser,
+    'en_AU'  : DateParser.DateParser,
+    'en_CA'  : DateParser.DateParser,
+    'en_SE'  : DateParser.DateParser,
+    'en'     : DateParser.DateParser,
     }
 
 _lang_to_display = {
-    'C'       : DateDisplay.DateDisplay,
-    'en_US'   : DateDisplay.DateDisplay,
-    'en_GB'   : DateDisplay.DateDisplay,
+    'C'      : DateDisplay.DateDisplay,
+    'en_US'  : DateDisplay.DateDisplay,
+    'en_GB'  : DateDisplay.DateDisplay,
+    'en_AU'  : DateDisplay.DateDisplay,
+    'en_CA'  : DateDisplay.DateDisplay,
+    'en_SE'  : DateDisplay.DateDisplay,
+    'en'     : DateDisplay.DateDisplay,
     }
 
 #-------------------------------------------------------------------------
@@ -69,6 +77,7 @@ def create_parser():
     try:
         return _lang_to_parser[_lang]()
     except:
+        print "Date parser for",_lang,"not available"
         return DateParser.DateParser()
 
 def create_display():
@@ -76,6 +85,7 @@ def create_display():
         val = GrampsGconfKeys.get_date_format(_lang_to_display[_lang].formats)
         return _lang_to_display[_lang](val)
     except:
+        print "Date displayer for",_lang,"not available"
         return DateDisplay.DateDisplay(3)
 
 def get_date_formats():
