@@ -169,14 +169,14 @@ class XmlWriter:
         total = len(personList) + len(familyList) + len(placeList) + len(sourceList)
 
         self.g.write('<?xml version="1.0" encoding="iso-8859-1"?>\n')
-        self.g.write('<!DOCTYPE self.db SYSTEM "gramps.dtd" []>\n')
+        self.g.write('<!DOCTYPE database SYSTEM "gramps.dtd" []>\n')
         self.g.write("<database>\n")
         self.g.write("  <header>\n")
         self.g.write("    <created date=\"%s %s %s\"" % (date[2],string.upper(date[1]),date[4]))
         self.g.write(" version=\"" + const.version + "\"")
         self.g.write(" people=\"%d\"" % (len(self.db.getPersonMap().values())))
-        self.g.write(" families=\"%d\"\n" % len(self.db.getFamilyMap().values()))
-        self.g.write(" sources=\"%d\"\n" % len(self.db.getSourceMap().values()))
+        self.g.write(" families=\"%d\"" % len(self.db.getFamilyMap().values()))
+        self.g.write(" sources=\"%d\"" % len(self.db.getSourceMap().values()))
         self.g.write(" places=\"%d\"/>\n" % len(self.db.getPlaceMap().values()))
         self.g.write("    <researcher>\n")
         self.write_line("resname",owner.getName(),3)
@@ -492,7 +492,11 @@ class XmlWriter:
 
     def dump_name(self,label,name,index=1):
         sp = "  "*index
-        self.g.write('%s<%s%s>\n' % (sp,label,conf_priv(name)))
+        type = name.getType()
+        if type:
+            self.g.write('%s<%s type="%s"%s>\n' % (sp,label,type,conf_priv(name)))
+        else:
+            self.g.write('%s<%s%s>\n' % (sp,label,conf_priv(name)))
         self.write_line("first",name.getFirstName(),index+1)
         self.write_line("last",name.getSurname(),index+1)
         self.write_line("suffix",name.getSuffix(),index+1)

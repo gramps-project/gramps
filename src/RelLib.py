@@ -729,11 +729,21 @@ class Name(DataObj):
             self.Surname = source.Surname
             self.Suffix = source.Suffix
             self.Title = source.Title
+            self.type = source.type
         else:
             self.FirstName = ""
             self.Surname = ""
             self.Suffix = ""
             self.Title = ""
+            self.type = ""
+
+    def setType(self,type):
+        """sets the type of the Name instance"""
+        self.type = type
+
+    def getType(self):
+        """returns the type of the Name instance"""
+        return self.type
 
     def setFirstName(self,name):
         """sets the given name for the Name instance"""

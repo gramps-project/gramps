@@ -857,3 +857,7 @@ lds_ssealing = [
     ]
 
     
+NameTypesMap = {
+    _("Also Known As") : "Also Known As",
+    _("Married") : "Married",
+    }
