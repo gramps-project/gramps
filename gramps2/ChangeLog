@@ -2,6 +2,8 @@
 	* src/Plugins.py (reload_plugins): Check for status.
 	* src/Report.py: pychecker fixes
 	* src/plugins/FamilyGroup.py (dump_parent): Typo.
+	* src/ReportOptions.py (OptionHandler.set_options):
+        Ignore unknown options.
 
 2005-01-15  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: don't use quote date

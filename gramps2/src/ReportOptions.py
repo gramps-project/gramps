@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004  Donald N. Allingham
+# Copyright (C) 2004-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -488,12 +488,20 @@ class OptionHandler:
         """
         # First we set options_dict values based on the saved options
         options = self.saved_option_list.get_options()
+        bad_opts = []
         for option_name in options.keys():
+            if not self.options_dict.has_key(option_name):
+                print "Option %s is present in the ~/.gramps/report_options.xml but is not known to the report." % option_name
+                print "Ignoring..."
+                bad_opts.append(option_name)
+                continue
             try:
                 converter = Utils.get_type_converter(self.options_dict[option_name])
                 self.options_dict[option_name] = converter(options[option_name])
             except ValueError:
                 pass
+        for option_name in bad_opts:
+            options.pop(option_name)
 
         # Then we set common options from whatever was found
         if self.saved_option_list.get_style_name():
