@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -56,7 +56,6 @@ from DateHandler import displayer as _dd
 class FamilyGroup(Report.Report):
 
     def __init__(self,database,person,options_class):
-        #,family_handle,doc,output,newpage=0):
         """
         Creates the DetAncestorReport object that produces the report.
         
@@ -73,20 +72,22 @@ class FamilyGroup(Report.Report):
         """
         Report.Report.__init__(self,database,person,options_class)
 
+        self.family = None
+
         spouse_id = options_class.handler.options_dict['spouse_id']
         if spouse_id:
             family_list = person.get_family_handle_list()
             for family_handle in family_list:
                 family = database.get_family_from_handle(family_handle)
                 if person.get_handle() == family.get_father_handle():
-                    this_spouse_id = family.get_mother_handle()
+                    this_spouse_handle = family.get_mother_handle()
                 else:
-                    this_spouse_id = family.get_father_handle()
+                    this_spouse_handle = family.get_father_handle()
+                this_spouse = database.get_person_from_handle(this_spouse_handle)
+                this_spouse_id = this_spouse.get_gramps_id()
                 if spouse_id == this_spouse_id:
                     self.family = family
                     break
-        else:
-            self.family = None
 
         self.setup()
 
@@ -161,15 +162,15 @@ class FamilyGroup(Report.Report):
         person = self.database.get_person_from_handle(person_handle)
         
         if person.get_gender() == RelLib.Person.male:
-            id = _("Husband")
+            the_id = _("Husband")
         else:
-            id = _("Wife")
+            the_id = _("Wife")
         
         self.doc.start_table(id,'FGR-ParentTable')
         self.doc.start_row()
         self.doc.start_cell('FGR-ParentHead',3)
         self.doc.start_paragraph('FGR-ParentName')
-        self.doc.write_text(id + ': ')
+        self.doc.write_text(the_id + ': ')
         self.doc.write_text(person.get_primary_name().get_regular_name())
         self.doc.end_paragraph()
         self.doc.end_cell()
@@ -448,12 +449,13 @@ class FamilyGroupOptions(ReportOptions.ReportOptions):
         for family_handle in family_list:
             family = database.get_family_from_handle(family_handle)
             if person.get_handle() == family.get_father_handle():
-                spouse_id = family.get_mother_handle()
+                spouse_handle = family.get_mother_handle()
             else:
-                spouse_id = family.get_father_handle()
-            if spouse_id:
-                spouse = database.get_person_from_handle(spouse_id)
+                spouse_handle = family.get_father_handle()
+            if spouse_handle:
+                spouse = database.get_person_from_handle(spouse_handle)
                 name = spouse.get_primary_name().get_name()
+                spouse_id = spouse.get_gramps_id()
             else:
                 name = _("unknown")
             spouses.append((spouse_id,name))

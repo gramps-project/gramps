@@ -50,6 +50,7 @@ import gnome.ui
 import const
 import Utils
 import Plugins
+import PluginMgr
 import BaseDoc
 import StyleEditor
 import GrampsKeys
@@ -1624,27 +1625,27 @@ class CommandLineReport:
         self.options_help['of'].append(os.path.expanduser("~/whatever_name"))
                 
         if self.category == const.CATEGORY_TEXT:
-            for item in Plugins._textdoc:
+            for item in PluginMgr.textdoc_list:
                 if item[7] == self.options_dict['off']:
                     self.format = item[1]
             self.options_help['off'].append(
-                [ item[7] for item in Plugins._textdoc ]
+                [ item[7] for item in PluginMgr.textdoc_list ]
             )
             self.options_help['off'].append(False)
         elif self.category == const.CATEGORY_DRAW:
-            for item in Plugins._drawdoc:
+            for item in PluginMgr.drawdoc_list:
                 if item[6] == self.options_dict['off']:
                     self.format = item[1]
             self.options_help['off'].append(
-                [ item[6] for item in Plugins._drawdoc ]
+                [ item[6] for item in PluginMgr.drawdoc_list ]
             )
             self.options_help['off'].append(False)
         elif self.category == const.CATEGORY_BOOK:
-            for item in Plugins._bookdoc:
+            for item in PluginMgr.bookdoc_list:
                 if item[6] == self.options_dict['off']:
                     self.format = item[1]
             self.options_help['off'].append(
-                [ item[6] for item in Plugins._bookdoc ]
+                [ item[6] for item in PluginMgr.bookdoc_list ]
             )
             self.options_help['off'].append(False)
         else:
