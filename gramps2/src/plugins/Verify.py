@@ -208,7 +208,7 @@ def on_apply_clicked(obj):
 	    yngpar = yngdad
 #	    waswidstr = _(" was a widow ")
 	if (person.getGender() == RelLib.Person.female) and (person.getGender() == RelLib.Person.male):
-	    error.write( _("Ambigous gender for %s.\n") % idstr )
+	    error.write( _("Ambiguous gender for %s.\n") % idstr )
 #	    parstr = _("parent ")
 	    oldpar = olddad
 	    yngpar = yngdad
