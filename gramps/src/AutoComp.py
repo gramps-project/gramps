@@ -25,6 +25,7 @@ strings as the possible completions.
 
 import string
 import gtk
+import GDK
 
 cnv = string.lower
 
@@ -104,8 +105,7 @@ class AutoCombo(AutoCompBase):
 
     def timer_callback(self,entry):
         """
-        The workhors
-e routine of file completion.  This routine grabs the
+        The workhorse routine of file completion.  This routine grabs the
         current text of the entry box, and grubs through the list item
         looking for any case insensitive matches.  This routine relies on
         public knowledge of the GtkEntry data structure, not on any private
