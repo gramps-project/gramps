@@ -549,7 +549,6 @@ class Gallery(ImageSelect):
             return
         data = self.p_map[self.drag_item]
         selection_data.set(selection_data.target, 8, data[4])
-        print "dragging ", repr(data[4]), " with target ", repr(selection_data.target)
         self.drag_item = None
         
     def on_add_media_clicked(self, obj):
