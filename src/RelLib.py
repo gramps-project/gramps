@@ -854,7 +854,7 @@ class RelDataBase:
         return self.sourceMap
 
     def addPerson(self,person):
-        index = self.pmapIndex
+        index = str(self.pmapIndex)
         person.setId(index)
         self.personMap[index] = person
         self.pmapIndex = self.pmapIndex + 1
@@ -905,6 +905,7 @@ class RelDataBase:
         return map.keys()
 
     def findPerson(self,idVal,map):
+        idVal = str(idVal)
         if map.has_key(idVal):
             person = self.personMap[map[idVal]]
         else:
@@ -913,13 +914,18 @@ class RelDataBase:
         return person
 
     def addPersonNoMap(self,person,id):
+        id = str(id)
         person.setId(id)
         self.personMap[id] = person
-        self.pmapIndex = max(self.pmapIndex,id)+1
+        try:
+            val = int(id)
+            self.pmapIndex = max(self.pmapIndex,val)+1
+        except:
+            pass
         return id
 
     def findPersonNoMap(self,idVal):
-        val = int(idVal)
+        val = str(idVal)
         if self.personMap.has_key(val):
             person = self.personMap[val]
         else:
@@ -937,13 +943,14 @@ class RelDataBase:
         return self.smapIndex
 
     def addSource(self,source):
-        index = self.smapIndex
+        index = str(self.smapIndex)
         source.setId(index)
         self.sourceMap[index] = source
         self.smapIndex = self.smapIndex + 1
         return index
 
     def findSource(self,idVal,map):
+        idVal = str(idVal)
         if map.has_key(idVal):
             source = self.sourceMap[map[idVal]]
         else:
@@ -952,13 +959,18 @@ class RelDataBase:
         return source
 
     def addSourceNoMap(self,source,index):
+        index = str(index)
         source.setId(index)
         self.sourceMap[index] = source
-        self.smapIndex = max(self.smapIndex,index) + 1
+        try:
+            val = int(index)
+            self.smapIndex = max(self.smapIndex,val) + 1
+        except:
+            pass
         return index
 
     def findSourceNoMap(self,idVal):
-        val = int(idVal)
+        val = str(idVal)
         if self.sourceMap.has_key(val):
             source = self.sourceMap[val]
         else:
@@ -967,7 +979,7 @@ class RelDataBase:
         return source
 
     def newFamily(self):
-        id = self.fmapIndex
+        id = str(self.fmapIndex)
         self.fmapIndex = self.fmapIndex + 1
         family = Family()
         family.setId(id)
@@ -975,13 +987,19 @@ class RelDataBase:
         return family
 
     def newFamilyNoMap(self,id):
-        self.fmapIndex = max(self.fmapIndex,id) + 1
         family = Family()
+        id = str(id)
         family.setId(id)
         self.familyMap[id] = family
+        try:
+            val = int(id)
+            self.fmapIndex = max(self.fmapIndex,val) + 1
+        except:
+            pass
         return family
 
     def findFamily(self,idVal,map):
+        idVal = str(idVal)
         if map.has_key(idVal):
             family = self.familyMap[map[idVal]]
         else:
@@ -990,7 +1008,7 @@ class RelDataBase:
         return family
 
     def findFamilyNoMap(self,idVal):
-        val = int(idVal)
+        val = str(idVal)
         if self.familyMap.has_key(val):
             family = self.familyMap[val]
         else:
