@@ -117,6 +117,9 @@ import tokenize
 import operator
 import re
 
+from xml.sax import make_parser,handler,SAXParseException
+
+
 intRe = re.compile("^\d+$")
 
 _ignore = {
@@ -195,6 +198,29 @@ class TranslatableStringParser(xmllib.XMLParser):
         for item in string.split(self.data, '\n'):
             self.add_string(item)
 
+class XMLParser(handler.ContentHandler):
+    def __init__(self,name,msgs):
+        self.filename = name
+        self.strings = msgs
+        handler.ContentHandler.__init__(self)
+        
+    def startElement(self,tag,attrs):
+        if tag == "filter":
+            self.add_string(attrs['name'])
+
+    def setDocumentLocator(self,locator):
+        self.locator = locator
+
+    def add_string(self, string):
+        if string == "":
+            return
+        if _ignore.has_key(string):
+            return
+        entry = (self.filename, self.locator.getLineNumber())
+        if self.strings.has_key(string):
+            self.strings[string][entry] = 0
+        else:
+            self.strings[string] = {entry: 0}
 
 # The normal pot-file header. msgmerge and Emacs's po-mode work better if it's
 # there.
@@ -489,6 +515,15 @@ def main():
         if filename[-5:] == 'glade':
             print 'Working on %s' % filename
             p.read_file(filename)
+        elif filename[-3:] == 'xml':
+            print 'Working on %s' % filename
+            try:
+                parser = make_parser()
+                pxml = XMLParser(filename,eater.get_messages())
+                parser.setContentHandler(pxml)
+                parser.parse(filename)
+            except (IOError,OSError,SAXParseException):
+                print 'failed on %s' % filename
         else:
             print 'Working on %s' % filename
             fp = open(filename)

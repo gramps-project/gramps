@@ -1,5 +1,10 @@
 #! /usr/bin/python -O
 
+#-------------------------------------------------------------------------
+#
+# Load internationalization setup
+#
+#-------------------------------------------------------------------------
 import os
 import intl
 import locale
@@ -11,16 +16,32 @@ else:
     
 intl.textdomain("gramps")
 intl.bindtextdomain("gramps",loc)
-
 locale.setlocale(locale.LC_NUMERIC,"C")
 
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
 import traceback
+import sys
+
+#-------------------------------------------------------------------------
+#
+# GNOME/GTK libraries
+#
+#-------------------------------------------------------------------------
 import GdkImlib
 import gtk
 import gnome.ui
 import gnome.config
+
+#-------------------------------------------------------------------------
+#
+# gramps libraries
+#
+#-------------------------------------------------------------------------
 import gramps_main 
-import sys
 
 if len(sys.argv) > 1:
     arg = sys.argv[1]

@@ -351,7 +351,6 @@ class IndividualPage:
                 pass
         self.doc.end_table()
         
-
     #--------------------------------------------------------------------
     #
     # 
@@ -624,6 +623,7 @@ class WebReport(Report):
             col_len = col_len - 1
         doc.write_text('</td></tr></table>')
         doc.close()
+        doc.write_support_files()
         
     def write_report(self):
         dir_name = self.target_path

@@ -1562,3 +1562,18 @@ def reorder_child_list(person, list):
         list.insert(target,person)
     return list
     
+
+if __name__ == "__main__":
+    import RelLib
+    import os
+    import intl
+    import locale
+
+    intl.textdomain("gramps")
+    intl.bindtextdomain("gramps","locale")
+    locale.setlocale(locale.LC_NUMERIC,"C")
+
+    d = RelLib.GrampsDB()
+    p = RelLib.Person()
+    EditPerson(p,d)
+    gtk.mainloop()

@@ -1029,7 +1029,7 @@ class TemplateParser(handler.ContentHandler):
 
     def startElement(self,tag,attrs):
         if tag == "template":
-            self.data[attrs['title']] = "%s/%s" % (self.path,attrs['file'])
+            self.data[attrs['title']] = attrs['file']
             
     def characters(self, data):
         pass

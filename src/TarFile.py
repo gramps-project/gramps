@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 import gzip
+import cStringIO
+import string
 
 _BLKSIZE=512
 nul = '\0'
@@ -73,14 +75,45 @@ class TarFile:
             self.f.write('\0' * rem)
         self.f.close()
 
-
 class ReadTarFile:
     def __init__(self,name,wd):
         self.name = name
 	self.wd = wd
         self.f = gzip.open(name,"rb")
         self.pos = 0
-        
+
+    def extract_files(self):
+        map = {}
+	while 1:
+	    buf = self.f.read(100)
+            if buf == '':
+	        return
+            index = 0
+	    for b in buf:
+	        if b != '\0':
+		    index = index + 1
+	        else:
+		    if index == 0:
+                        return map
+		    continue
+	    filename = buf[0:index]
+            if filename == None:
+                return map
+	    self.f.read(24) # modes
+            l = string.replace(self.f.read(12),chr(0),' ')
+            length = string.atoi(l,8) 
+	    self.f.read(12)
+	    self.f.read(6)
+	    self.f.read(111)
+
+	    self.f.read(64)
+	    self.f.read(183)
+            foo = cStringIO.StringIO()
+            map[filename] = foo
+	    foo.write(self.f.read(length))
+	    foo.reset()
+	    self.f.read(_BLKSIZE-(length%_BLKSIZE))
+    
     def extract(self):
 	while 1:
 	    buf = self.f.read(100)

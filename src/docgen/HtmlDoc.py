@@ -24,13 +24,15 @@ import re
 import gnome.ui
 import Plugins
 import ImgManip
+import TarFile
+
 from TextDoc import *
 
 from intl import gettext
 _ = gettext
 
-
-t_header_line_re = re.compile(r"(.*)<TITLE>(.*)</TITLE>(.*)", re.DOTALL|re.IGNORECASE|re.MULTILINE)
+t_header_line_re = re.compile(r"(.*)<TITLE>(.*)</TITLE>(.*)",
+                              re.DOTALL|re.IGNORECASE|re.MULTILINE)
 
 #------------------------------------------------------------------------
 #
@@ -62,23 +64,28 @@ _bottom = [
     '</HTML>\n'
     ]
 
+#------------------------------------------------------------------------
+#
+# HtmlDoc
+#
+#------------------------------------------------------------------------
 class HtmlDoc(TextDoc):
 
     def __init__(self,styles,type,template,orientation,source=None):
         TextDoc.__init__(self,styles,PaperStyle("",0,0),template,None)
         if source == None:
+            self.map = None
             self.f = None
             self.filename = None
             self.top = []
             self.bottom = []
             self.base = ""
-            
             self.load_template()
             self.build_header()
             self.build_style_declaration()
             self.image_dir = "images"
-            
         else:
+            self.map = source.map
             self.f = None
             self.filename = source.filename
             self.template = None
@@ -90,38 +97,73 @@ class HtmlDoc(TextDoc):
             self.table_styles = source.table_styles;
             self.cell_styles = source.cell_styles;
             self.image_dir = source.image_dir
-
+            
     def set_image_dir(self,dirname):
         self.image_dir = dirname
-        
-    def load_template(self):
+
+    def load_tpkg(self):
         start = re.compile(r"<!--\s*START\s*-->")
         stop = re.compile(r"<!--\s*STOP\s*-->")
         top_add = 1
         bottom_add = 0
-        if self.template and self.template != "":
+        tf = TarFile.ReadTarFile(self.template,None)
+        self.map = tf.extract_files()
+        templateFile = self.map['template.html']
+        while 1:
+            line = templateFile.readline()
+            if line == '':
+                break
+            if top_add == 1:
+                self.top.append(line)
+                match = start.search(line)
+                if match:
+                    top_add = 0
+            elif bottom_add == 0:
+                match = stop.search(line)
+                if match != None:
+                    bottom_add = 1
+                    self.bottom.append(line)
+            else:
+                self.bottom.append(line)
+        templateFile.close()
+
+        if top_add == 1:
+            mymsg = _("The marker '<!-- START -->' was not in the template")
+            gnome.ui.GnomeErrorDialog(mymsg)
+
+    def load_html(self):
+        start = re.compile(r"<!--\s*START\s*-->")
+        stop = re.compile(r"<!--\s*STOP\s*-->")
+        top_add = 1
+        bottom_add = 0
+        templateFile = open(self.template,"r")
+        for line in templateFile.readlines():
+            if top_add == 1:
+                self.top.append(line)
+                match = start.search(line)
+                if match:
+                    top_add = 0
+            elif bottom_add == 0:
+                match = stop.search(line)
+                if match != None:
+                    bottom_add = 1
+                    self.bottom.append(line)
+            else:
+                self.bottom.append(line)
+        templateFile.close()
+
+        if top_add == 1:
+            mymsg = _("The marker '<!-- START -->' was not in the template")
+            gnome.ui.GnomeErrorDialog(mymsg)
+            
+    def load_template(self):
+        if self.template:
             try:
-                templateFile = open(self.template,"r")
-                for line in templateFile.readlines():
-                    if top_add == 1:
-                        self.top.append(line)
-                        match = start.search(line)
-                        if match:
-                            top_add = 0
-                    elif bottom_add == 0:
-                        match = stop.search(line)
-                        if match != None:
-                            bottom_add = 1
-                            self.bottom.append(line)
-                    else:
-                        self.bottom.append(line)
-                templateFile.close()
-
-                if top_add == 1:
-                    mymsg = _("The marker '<!-- START -->' was not in the template")
-                    gnome.ui.GnomeErrorDialog(mymsg)
+                if self.template[-4:] == 'tpkg':
+                    self.load_tpkg()
+                else:
+                    self.load_html()
             except IOError,msg:
-
                 mymsg = _("Could not open %s\nUsing the default template") % \
                         self.template
                 mymsg = "%s\n%s" % (mymsg,msg)
@@ -231,6 +273,16 @@ class HtmlDoc(TextDoc):
             self.f.write(line)
         self.f.close()
 
+    def write_support_files(self):
+        if self.map:
+            for name in self.map.keys():
+                if name == 'template.html':
+                    continue
+                fname = '%s/%s' % (self.base,name)
+                f = open(fname, 'wb')
+                f.write(self.map[name].read())
+                f.close()
+            
     def add_photo(self,name,pos,x,y):
         self.empty = 0
         size = int(max(x,y) * float(150.0/2.54))
