@@ -47,26 +47,37 @@ from intl import gettext as _
 #------------------------------------------------------------------------
 class AncestorReport(Report.Report):
 
-    def __init__(self,database,person,output,max,doc,pgbrk):
+    def __init__(self,database,person,max,pgbrk,doc,output,newpage=0):
         self.map = {}
         self.database = database
         self.start = person
         self.max_generations = max
         self.pgbrk = pgbrk
         self.doc = doc
-        self.doc.open(output)
+        self.newpage = newpage
+        if output:
+            self.standalone = 1
+            self.doc.open(output)
+        else:
+            self.standalone = 0
         
-    def filter(self,person,index):
-        if person == None or index >= (1 << 30):
+    def setup(self):
+        pass
+
+    def filter(self,person,index,generation=1):
+        if person == None or generation >= self.max_generations:
             return
         self.map[index] = person
     
         family = person.getMainParents()
         if family != None:
-            self.filter(family.getFather(),index*2)
-            self.filter(family.getMother(),(index*2)+1)
+            self.filter(family.getFather(),index*2,generation+1)
+            self.filter(family.getMother(),(index*2)+1,generation+1)
 
     def write_report(self):
+
+        if self.newpage:
+            self.doc.page_break()
 
         self.filter(self.start,1)
         
@@ -203,7 +214,8 @@ class AncestorReport(Report.Report):
                         self.doc.write_text(".")
                         
             self.doc.end_paragraph()
-        self.doc.close()
+        if self.standalone:
+            self.doc.close()
  
 
 #------------------------------------------------------------------------
@@ -231,44 +243,22 @@ class AncestorReportDialog(Report.TextReportDialog):
     def get_target_browser_title(self):
         """The title of the window created when the 'browse' button is
         clicked in the 'Save As' frame."""
-        return _("Save Ancestor Report")
+        return _("Save Ahnentafel Report")
 
     def get_stylesheet_savefile(self):
         """Where to save styles for this report."""
         return "ancestor_report.xml"
     
     def make_default_style(self):
-        """Make the default output style for the Ahnentafel report."""
-        font = TextDoc.FontStyle()
-        font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1)
-        para = TextDoc.ParagraphStyle()
-        para.set_font(font)
-        para.set_header_level(1)
-        para.set(pad=0.5)
-        para.set_description(_('The style used for the title of the page.'))
-        self.default_style.add_style("Title",para)
-    
-        font = TextDoc.FontStyle()
-        font.set(face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
-        para = TextDoc.ParagraphStyle()
-        para.set_font(font)
-        para.set_header_level(2)
-        para.set(pad=0.5)
-        para.set_description(_('The style used for the generation header.'))
-        self.default_style.add_style("Generation",para)
-    
-        para = TextDoc.ParagraphStyle()
-        para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
-        para.set_description(_('The basic style used for the text display.'))
-        self.default_style.add_style("Entry",para)
+        _make_default_style(self.default_style)
 
     def make_report(self):
         """Create the object that will produce the Ahnentafel Report.
         All user dialog has already been handled and the output file
         opened."""
         try:
-            MyReport = AncestorReport(self.db, self.person, self.target_path,
-                                      self.max_gen, self.doc, self.pg_brk)
+            MyReport = AncestorReport(self.db, self.person,
+                self.max_gen, self.pg_brk, self.doc, self.target_path)
             MyReport.write_report()
         except Errors.ReportError, msg:
             (m1,m2) = msg.messages()
@@ -282,12 +272,142 @@ class AncestorReportDialog(Report.TextReportDialog):
 
 #------------------------------------------------------------------------
 #
-# 
+# Standalone report function
 #
 #------------------------------------------------------------------------
 def report(database,person):
     AncestorReportDialog(database,person)
 
+
+#------------------------------------------------------------------------
+#
+# Set up sane defaults for the book_item
+#
+#------------------------------------------------------------------------
+_style_file = "ancestor_report.xml"
+_style_name = "default" 
+
+_person_id = ""
+_max_gen = 10
+_pg_brk = 0
+_options = [ _person_id, _max_gen, _pg_brk ]
+
+#------------------------------------------------------------------------
+#
+# Book Item Options dialog
+#
+#------------------------------------------------------------------------
+class AncestorBareReportDialog(Report.BareReportDialog):
+
+    def __init__(self,database,person,opt,stl):
+
+        self.options = opt
+        self.db = database
+        if self.options[0]:
+            self.person = self.db.getPerson(self.options[0])
+        else:
+            self.person = person
+        Report.BareReportDialog.__init__(self,database,self.person)
+
+        def make_default_style(self):
+            _make_default_style(self.default_style)
+
+        self.max_gen = int(self.options[1]) 
+        self.pg_brk = int(self.options[2])
+        self.style_name = stl
+        self.new_person = None
+
+        self.generations_spinbox.set_value(self.max_gen)
+        self.pagebreak_checkbox.set_active(self.pg_brk)
+        
+        self.window.run()
+
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks
+    #
+    #------------------------------------------------------------------------
+    def get_title(self):
+        """The window title for this dialog"""
+        return "%s - GRAMPS Book" % (_("Ahnentafel Report"))
+
+    def get_header(self, name):
+        """The header line at the top of the dialog contents"""
+        return _("Ahnentafel Report for GRAMPS Book") 
+
+    def get_stylesheet_savefile(self):
+        """Where to save styles for this report."""
+        return _style_file
+    
+    def on_cancel(self, obj):
+        pass
+
+    def on_ok_clicked(self, obj):
+        """The user is satisfied with the dialog choices. Parse all options
+        and close the window."""
+
+        # Preparation
+        self.parse_style_frame()
+        self.parse_report_options_frame()
+        
+        if self.new_person:
+            self.person = self.new_person
+        self.options = [ self.person.getId(), self.max_gen, self.pg_brk ]
+        self.style_name = self.selected_style.get_name() 
+
+#------------------------------------------------------------------------
+#
+# Function to write Book Item 
+#
+#------------------------------------------------------------------------
+def write_book_item(database,person,doc,options,newpage=0):
+    """Write the Ahnentafel Report using options set.
+    All user dialog has already been handled and the output file opened."""
+    try:
+        if options[0]:
+            person = database.getPerson(options[0])
+        max_gen = int(options[1])
+        pg_brk = int(options[2])
+        return AncestorReport(database, person, max_gen, pg_brk, doc, None, newpage )
+    except Errors.ReportError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except Errors.FilterError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+def _make_default_style(default_style):
+    """Make the default output style for the Ahnentafel report."""
+    font = TextDoc.FontStyle()
+    font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1)
+    para = TextDoc.ParagraphStyle()
+    para.set_font(font)
+    para.set_header_level(1)
+    para.set(pad=0.5)
+    para.set_description(_('The style used for the title of the page.'))
+    default_style.add_style("Title",para)
+    
+    font = TextDoc.FontStyle()
+    font.set(face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
+    para = TextDoc.ParagraphStyle()
+    para.set_font(font)
+    para.set_header_level(2)
+    para.set(pad=0.5)
+    para.set_description(_('The style used for the generation header.'))
+    default_style.add_style("Generation",para)
+    
+    para = TextDoc.ParagraphStyle()
+    para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
+    para.set_description(_('The basic style used for the text display.'))
+    default_style.add_style("Entry",para)
 
 #------------------------------------------------------------------------
 #
@@ -384,7 +504,7 @@ def get_xpm_image():
 # 
 #
 #------------------------------------------------------------------------
-from Plugins import register_report
+from Plugins import register_report, register_book_item
 
 register_report(
     report,
@@ -397,3 +517,14 @@ register_report(
     author_email="dallingham@users.sourceforge.net"
     )
 
+# (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)
+register_book_item( 
+    _("Ahnentafel Report"), 
+    _("Text"),
+    AncestorBareReportDialog,
+    write_book_item,
+    _options,
+    _style_name,
+    _style_file,
+    _make_default_style
+   )

@@ -56,8 +56,8 @@ import gtk
 _person_id = ""
 _max_gen = 0
 _pg_brk = 0
-_filter = None
-_options = [ _person_id, _max_gen, _pg_brk, _filter ]
+_filter_num = 0
+_options = [ _person_id, _max_gen, _pg_brk, _filter_num ]
 
 #------------------------------------------------------------------------
 #
@@ -485,26 +485,7 @@ class IndivCompleteDialog(Report.TextReportDialog):
 
     def get_report_filters(self):
         """Set up the list of possible content filters."""
-
-        name = self.person.getPrimaryName().getName()
-        
-        id = GenericFilter.GenericFilter()
-        id.set_name(name)
-        id.add_rule(GenericFilter.HasIdOf([self.person.getId()]))
-
-        des = GenericFilter.GenericFilter()
-        des.set_name(_("Descendants of %s") % name)
-        des.add_rule(GenericFilter.IsDescendantOf([self.person.getId()]))
-        
-        ans = GenericFilter.GenericFilter()
-        ans.set_name(_("Ancestors of %s") % name)
-        ans.add_rule(GenericFilter.IsAncestorOf([self.person.getId()]))
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(GenericFilter.Everyone([]))
-
-        return [id,des,ans,all]
+        return _get_report_filters(self.person)
 
     #------------------------------------------------------------------------
     #
@@ -566,7 +547,6 @@ class IndivCompleteBareReportDialog(Report.BareReportDialog):
     def __init__(self,database,person,opt,stl):
 
         self.options = opt
-        print self.options
         self.db = database
         if self.options[0]:
             self.person = self.db.getPerson(self.options[0])
@@ -576,39 +556,21 @@ class IndivCompleteBareReportDialog(Report.BareReportDialog):
 
         self.max_gen = int(self.options[1])
         self.pg_brk = int(self.options[2])
+        self.filter_num = int(self.options[3])
         self.style_name = stl
         self.new_person = None
 
         self.generations_spinbox.set_value(self.max_gen)
         self.pagebreak_checkbox.set_active(self.pg_brk)
-        
+        self.filter_combo.set_history(self.filter_num)
+
         self.window.run()
 
     def make_default_style(self):
         _make_default_style(self.default_style)
 
     def get_report_filters(self):
-        """Set up the list of possible content filters."""
-
-        name = self.person.getPrimaryName().getName()
-        
-        id = GenericFilter.GenericFilter()
-        id.set_name(name)
-        id.add_rule(GenericFilter.HasIdOf([self.person.getId()]))
-
-        des = GenericFilter.GenericFilter()
-        des.set_name(_("Descendants of %s") % name)
-        des.add_rule(GenericFilter.IsDescendantOf([self.person.getId()]))
-        
-        ans = GenericFilter.GenericFilter()
-        ans.set_name(_("Ancestors of %s") % name)
-        ans.add_rule(GenericFilter.IsAncestorOf([self.person.getId()]))
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(GenericFilter.Everyone([]))
-
-        return [id,des,ans,all]
+        return _get_report_filters(self.person)
 
     #------------------------------------------------------------------------
     #
@@ -640,7 +602,8 @@ class IndivCompleteBareReportDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = [ self.person.getId(), self.max_gen, self.pg_brk ]
+        self.filter_num = self.filter_combo.get_history()
+        self.options = [ self.person.getId(), self.max_gen, self.pg_brk, self.filter_num]
         self.style_name = self.selected_style.get_name()
 
 
@@ -650,16 +613,16 @@ class IndivCompleteBareReportDialog(Report.BareReportDialog):
 #
 #------------------------------------------------------------------------
 def write_book_item(database,person,doc,options,newpage=0):
-    """Write the FTM Style Descendant Report options set.
+    """Write the Individual Copmlete Report using the options set.
     All user dialog has already been handled and the output file opened."""
     try:
-        print options
         if options[0]:
             person = database.getPerson(options[0])
         max_gen = int(options[1])
         pg_brk = int(options[2])
-        filter = options[3]
-        
+        filter_num = int(options[3])
+        filters = _get_report_filters(person)
+        filter = filters[filter_num]
 #        act = self.use_srcs.get_active()
         
         return IndivComplete(database, person, None, doc, filter, 0, newpage)
@@ -717,6 +680,35 @@ def _make_default_style(default_style):
     p.set_description(_('The basic style used for the text display.'))
     default_style.add_style("IDS:Normal",p)
     
+
+#------------------------------------------------------------------------
+#
+# Builds filter list for this report
+#
+#------------------------------------------------------------------------
+def _get_report_filters(person):
+    """Set up the list of possible content filters."""
+
+    name = person.getPrimaryName().getName()
+        
+    filt_id = GenericFilter.GenericFilter()
+    filt_id.set_name(name)
+    filt_id.add_rule(GenericFilter.HasIdOf([person.getId()]))
+
+    des = GenericFilter.GenericFilter()
+    des.set_name(_("Descendants of %s") % name)
+    des.add_rule(GenericFilter.IsDescendantOf([person.getId()]))
+        
+    ans = GenericFilter.GenericFilter()
+    ans.set_name(_("Ancestors of %s") % name)
+    ans.add_rule(GenericFilter.IsAncestorOf([person.getId()]))
+
+    all = GenericFilter.GenericFilter()
+    all.set_name(_("Entire Database"))
+    all.add_rule(GenericFilter.Everyone([]))
+
+    return [filt_id,des,ans,all]
+
 #------------------------------------------------------------------------
 #
 # 
