@@ -254,7 +254,7 @@ class DateParser:
                            re.IGNORECASE)
         self._span     = re.compile("(from)\s+(.+)\s+(to)\s+(.+)",
                            re.IGNORECASE)
-        self._range    = re.compile("(bet.|between)\s+(.+)\s+(and)\s+(.+)",
+        self._range    = re.compile("(bet|bet.|between)\s+(.+)\s+(and)\s+(.+)",
                            re.IGNORECASE)
         self._modifier = re.compile('%s\s+(.*)' % self._mod_str,
                            re.IGNORECASE)
