@@ -590,6 +590,7 @@ class GlobalMediaProperties:
         self.lists_changed = 0
         self.db = db
         self.update = update
+        self.refs = 0
 
         self.path = self.db.getSavePath()
         self.change_dialog = libglade.GladeXML(const.imageselFile,"change_global")
@@ -672,6 +673,9 @@ class GlobalMediaProperties:
                 data[0](data[1],data[2])
         
     def display_refs(self):
+        if self.refs == 1:
+            return
+        self.refs = 1
         index = 0
         ref = self.change_dialog.get_widget("refinfo")
         ref.connect('button-press-event',self.button_press)
