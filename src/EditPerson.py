@@ -32,7 +32,7 @@ import pickle
 #
 #-------------------------------------------------------------------------
 import gtk
-from gnome.ui import GnomeErrorDialog, GnomeWarningDialog, GnomeQuestionDialog
+from gnome.ui import GnomeErrorDialog, GnomeWarningDialog
 import libglade
 import GdkImlib
 from GDK import ACTION_COPY, BUTTON1_MASK, _2BUTTON_PRESS
@@ -51,6 +51,7 @@ import ImageSelect
 import sort
 import AutoComp
 from DateEdit import DateEdit
+from QuestionDialog import QuestionDialog
 
 from intl import gettext
 _ = gettext
@@ -735,8 +736,11 @@ class EditPerson:
         """If the data has changed, give the user a chance to cancel
         the close window"""
         if self.did_data_change():
-            q = _("Are you sure you want to abandon your changes?")
-            GnomeQuestionDialog(q,self.cancel_callback)
+            QuestionDialog(_('Abandon Changes'),
+                           _("Are you sure you want to abandon your changes?"),
+                           _("Abandon Changes"),
+                           self.cancel_callback,
+                           _("Continue Editing"))
         else:
             Utils.destroy_passed_object(obj)
 
@@ -744,17 +748,19 @@ class EditPerson:
         """If the data has changed, give the user a chance to cancel
         the close window"""
         if self.did_data_change():
-            q = _("Are you sure you want to abandon your changes?")
-            GnomeQuestionDialog(q,self.cancel_callback)
+            QuestionDialog(_('Abandon Changes'),
+                           _("Are you sure you want to abandon your changes?"),
+                           _("Abandon Changes"),
+                           self.cancel_callback,
+                           _("Continue Editing"))
             return 1
         else:
             Utils.destroy_passed_object(obj)
             return 0
-    
-    def cancel_callback(self,a):
+
+    def cancel_callback(self):
         """If the user answered yes to abandoning changes, close the window"""
-        if a==0:
-            Utils.destroy_passed_object(self.window)
+        Utils.destroy_passed_object(self.window)
 
     def did_data_change(self):
         """Check to see if any of the data has changed from the
@@ -1561,3 +1567,4 @@ def reorder_child_list(person, list):
         list.remove(person)
         list.insert(target,person)
     return list
+

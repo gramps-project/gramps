@@ -40,6 +40,8 @@ import gnome.ui
 #
 #-------------------------------------------------------------------------
 from RelLib import *
+from QuestionDialog import QuestionDialog
+
 import EditSource
 import Utils
 import GrampsCfg
@@ -173,9 +175,12 @@ class SourceView:
         source = obj.get_row_data(index)
 
         if self.is_source_used(source):
-            msg = _("This source is currently being used. Delete anyway?")
             ans = EditSource.DelSrcQuery(source,self.db,self.update)
-            gnome.ui.GnomeQuestionDialog(msg,ans.query_response)
+
+            QuestionDialog(_('Delete Source'),
+                           _("This source is currently being used. Delete anyway?"),
+                           _('Delete Source'),ans.query_response,
+                           _('Keep Source'))
         else:
             map = self.db.getSourceMap()
             del map[source.getId()]

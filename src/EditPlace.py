@@ -399,9 +399,7 @@ class DeletePlaceQuery:
         self.place = place
         self.update = update
         
-    def query_response(self,ans):
-        if ans == 1:
-            return
+    def query_response(self):
         del self.db.getPlaceMap()[self.place.getId()]
         Utils.modified()
 

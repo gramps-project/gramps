@@ -26,6 +26,7 @@ import string
 import ImageSelect
 
 from RelLib import *
+from QuestionDialog import QuestionDialog
 import Utils
 import os
 import GrampsCfg
@@ -267,8 +268,11 @@ class MediaView:
         mobj = self.media_list.get_row_data(index)
         if self.is_media_object_used(mobj):
             ans = ImageSelect.DeleteMediaQuery(mobj,self.db,self.update)
-            msg = _("This media object is currently being used. Delete anyway?")
-            gnome.ui.GnomeQuestionDialog(msg,ans.query_response)
+            QuestionDialog(_('Delete Object'),
+                           _("This media object is currently being used. "
+                             "Delete anyway?"),
+                           _('Delete Object'),ans.query_response,
+                           _('Keep Object'))
         else:
             map = self.db.getObjectMap()
             del map[mobj.getId()]
