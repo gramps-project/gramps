@@ -209,6 +209,7 @@ personalConstantEvents = {
     "Baptism"             : "BAPM",
     "Bar Mitzvah"         : "BARM",
     "Bas Mitzvah"         : "BASM",
+    "Blessing"            : "BLES",
     "Burial"              : "BURI",
     "Cause Of Death"      : "CAUS",
     "Ordination"          : "ORID",
@@ -216,16 +217,18 @@ personalConstantEvents = {
     "Christening"         : "CHR" ,
     "Confirmation"        : "CONF",
     "Cremation"           : "CREM",
-    "Degree"              : "_DEG", 
+    "Degree"              : "", 
     "Divorce Filing"      : "DIVF",
     "Education"           : "EDUC",
-    "Elected"             : "_ELEC",
+    "Elected"             : "",
     "Emigration"          : "EMIG",
     "First Communion"     : "FCOM",
     "Graduation"          : "GRAD",
-    "Medical Information" : "_MDCL", 
-    "Military Service"    : "_MILT", 
+    "Medical Information" : "", 
+    "Military Service"    : "", 
     "Naturalization"      : "NATU",
+    "Nobility Title"      : "TITL",
+    "Number of Marriages" : "NMR",
     "Immigration"         : "IMMI",
     "Occupation"          : "OCCU",
     "Probate"             : "PROB",
@@ -244,6 +247,7 @@ _pe_e2l = {
     "Baptism"             : _("Baptism"),
     "Bar Mitzvah"         : _("Bar Mitzvah"),
     "Bas Mitzvah"         : _("Bas Mitzvah"),
+    "Blessing"            : _("Blessing"),
     "Burial"              : _("Burial"),
     "Cause Of Death"      : _("Cause Of Death"),
     "Census"              : _("Census"),
@@ -261,6 +265,8 @@ _pe_e2l = {
     "Medical Information" : _("Medical Information"),
     "Military Service"    : _("Military Service"), 
     "Naturalization"      : _("Naturalization"),
+    "Nobility Title"      : _("Nobility Title"),
+    "Number of Marriages" : _("Number of Marriages"),
     "Occupation"          : _("Occupation"),
     "Ordination"          : _("Ordination"),
     "Probate"             : _("Probate"),
@@ -273,7 +279,9 @@ _pe_e2l = {
 
 _pe_l2e = {}
 for a in _pe_e2l.keys():
-    _pe_l2e[_pe_e2l[a]] = a
+    val = _pe_e2l[a]
+    if val:
+        _pe_l2e[val] = a
 
 #-------------------------------------------------------------------------
 #

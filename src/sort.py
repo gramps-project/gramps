@@ -74,7 +74,7 @@ def reverse_name_sort(list):
 #
 #-------------------------------------------------------------------------
 def fast_birth_sort(list):
-    nlist = map(build_sort_birth,list)
+    nlist = map(build_sort_event,list)
     nlist.sort()
     return map(lambda(key,x): x, nlist)
 
@@ -84,7 +84,7 @@ def fast_birth_sort(list):
 #
 #-------------------------------------------------------------------------
 def reverse_birth_sort(list):
-    nlist = map(build_sort_birth,list)
+    nlist = map(build_sort_event,list)
     nlist.sort()
     nlist.reverse()
     return map(lambda(key,x): x, nlist)
@@ -95,7 +95,7 @@ def reverse_birth_sort(list):
 #
 #-------------------------------------------------------------------------
 def fast_death_sort(list):
-    nlist = map(build_sort_death,list)
+    nlist = map(build_sort_event,list)
     nlist.sort()
     return map(lambda(key,x): x, nlist)
 
@@ -105,7 +105,7 @@ def fast_death_sort(list):
 #
 #-------------------------------------------------------------------------
 def reverse_death_sort(list):
-    nlist = map(build_sort_death,list)
+    nlist = map(build_sort_event,list)
     nlist.sort()
     nlist.reverse()
     return map(lambda(key,x): x, nlist)

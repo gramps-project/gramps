@@ -25,6 +25,8 @@ import Date
 import latin_ansel
 import latin_utf8 
 import intl
+from GedcomInfo import *
+
 _ = intl.gettext
 
 import os
@@ -163,6 +165,8 @@ class GedcomParser:
         self.fmap = {}
         self.smap = {}
         self.nmap = {}
+        self.gedmap = GedcomInfoDB()
+        self.gedsource = None
         self.dir_path = os.path.dirname(file)
         self.localref = 0
         self.placemap = {}
@@ -634,7 +638,11 @@ class GedcomParser:
                     self.parse_person_attr(attr,2)
                     continue
                 else:
-                    event.setName(matches[1])
+                    val = self.gedsource.tag2gramps(matches[1])
+                    if val:
+                        event.setName(val)
+                    else:
+                        event.setName(matches[1])
                     
 	        self.parse_person_event(event,2)
                 if matches[2] != None:
@@ -899,7 +907,11 @@ class GedcomParser:
                     if ged2gramps.has_key(matches[2]):
                         name = ged2gramps[matches[2]]
                     else:
-                        name = matches[2]
+                        val = self.gedsource.tag2gramps(matches[2])
+                        if val:
+                            name = val
+                        else:
+                            name = matches[2]
                     event.setName(name)
             elif matches[1] == "DATE":
                 foo = self.extract_date(matches[2])
@@ -1054,7 +1066,11 @@ class GedcomParser:
                     if ged2gramps.has_key(matches[2]):
                         name = ged2gramps[matches[2]]
                     else:
-                        name = matches[2]
+                        val = self.gedsource.tag2gramps(matches[2])
+                        if val:
+                            name = val
+                        else:
+                            name = matches[2]
                     attr.setName(name)
             elif matches[1] == ["CAUS", "DATE","TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
                 self.ignore_sub_junk(level+1)
@@ -1098,9 +1114,6 @@ class GedcomParser:
             attr.setNote(note)
 
     def parse_family_event(self,event,level):
-        global ged2fam
-        global ged2gramps
-        
         while 1:
             matches = self.get_next()
             if int(matches[0]) < level:
@@ -1286,7 +1299,7 @@ class GedcomParser:
         self.index = self.index + 1
 
     def parse_header_source(self):
-        
+        genby = ""
         while 1:
 	    matches = self.get_next()
 
@@ -1296,12 +1309,11 @@ class GedcomParser:
 	    elif matches[1] == "SOUR":
                 if self.created_obj.get_text() == "":
                     self.update(self.created_obj,matches[2])
-                if matches[2] in self.broken_conc_list:
-                    self.broken_conc = 1
-                else:
-                    self.broken_conc = 0
+                self.gedsource = self.gedmap.get_from_source_tag(matches[2])
+                self.broken_conc = self.gedsource.get_conc()
                 if matches[2] == "FTW":
                     self.is_ftw = 1
+                genby = matches[2]
    	    elif matches[1] == "NAME":
                 self.update(self.created_obj,matches[2])
    	    elif matches[1] == "VERS":
@@ -1315,7 +1327,9 @@ class GedcomParser:
    	    elif matches[1] == "SUBN":
                 pass
    	    elif matches[1] == "DEST":
-                pass
+                if genby == "GRAMPS":
+                    self.gedsource = self.gedmap.get_from_source_tag(matches[2])
+                    self.broken_conc = self.gedsource.get_conc()
    	    elif matches[1] == "FILE":
                 self.ignore_sub_junk(2)
    	    elif matches[1] == "COPR":

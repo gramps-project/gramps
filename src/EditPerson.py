@@ -24,6 +24,7 @@
 #
 #-------------------------------------------------------------------------
 import string
+import pickle
 
 #-------------------------------------------------------------------------
 #
@@ -55,6 +56,11 @@ _ = gettext
 _temple_names = const.lds_temple_codes.keys()
 _temple_names.sort()
 _temple_names = [""] + _temple_names
+
+pycode_tgts = [('url', 0, 0),
+               ('pevent', 0, 1),
+               ('pattr', 0, 2),
+               ('paddr', 0, 3)]
 
 #-------------------------------------------------------------------------
 #
@@ -220,6 +226,8 @@ class EditPerson:
         self.attr_list.set_column_visibility(2,Config.show_detail)
         self.addr_list.set_column_visibility(2,Config.show_detail)
 
+        self.event_list = self.get_widget("eventList")
+
         if Config.display_attr:
             self.get_widget("user_label").set_text(Config.attr_name)
             val = ""
@@ -308,7 +316,10 @@ class EditPerson:
         
         index = 0
         hist = 0
-        for fam in [person.getMainFamily()] + person.getAltFamilyList():
+        flist = [person.getMainFamily()]
+        for (fam,mrel,frel) in person.getAltFamilyList():
+            flist.append(fam)
+        for fam in flist:
             if fam == None:
                 continue
             f = fam.getFather()
@@ -331,7 +342,27 @@ class EditPerson:
                 hist = index
         self.ldsseal_fam.set_menu(myMenu)
         self.ldsseal_fam.set_history(hist)
+
+        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,GDK.ACTION_COPY)
+        self.event_list.drag_source_set(GDK.BUTTON1_MASK, pycode_tgts, GDK.ACTION_COPY)
+        self.event_list.connect('drag_data_get', self.ev_source_drag_data_get)
+        self.event_list.connect('drag_data_received', self.ev_dest_drag_data_received)
+
+        self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,GDK.ACTION_COPY)
+        self.web_list.drag_source_set(GDK.BUTTON1_MASK, pycode_tgts, GDK.ACTION_COPY)
+        self.web_list.connect('drag_data_get', self.url_source_drag_data_get)
+        self.web_list.connect('drag_data_received', self.url_dest_drag_data_received)
         
+        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,GDK.ACTION_COPY)
+        self.attr_list.drag_source_set(GDK.BUTTON1_MASK, pycode_tgts, GDK.ACTION_COPY)
+        self.attr_list.connect('drag_data_get', self.at_source_drag_data_get)
+        self.attr_list.connect('drag_data_received', self.at_dest_drag_data_received)
+
+        self.addr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,GDK.ACTION_COPY)
+        self.addr_list.drag_source_set(GDK.BUTTON1_MASK, pycode_tgts, GDK.ACTION_COPY)
+        self.addr_list.connect('drag_data_get', self.ad_source_drag_data_get)
+        self.addr_list.connect('drag_data_received', self.ad_dest_drag_data_received)
+
         # draw lists
         self.redraw_event_list()
         self.redraw_attr_list()
@@ -339,6 +370,113 @@ class EditPerson:
         self.redraw_name_list()
         self.redraw_url_list()
         self.window.show()
+
+    def ev_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
+        if selection_data and selection_data.data:
+            exec 'data = %s' % selection_data.data
+            exec 'mytype = "%s"' % data[0]
+            exec 'person = "%s"' % data[1]
+            if person == self.person.getId() or mytype != 'pevent':
+                return
+            foo = pickle.loads(data[2]);
+            for src in foo.getSourceRefList():
+                base = src.getBase()
+                newbase = self.db.findSourceNoMap(base.getId())
+                src.setBase(newbase)
+            place = foo.getPlace()
+            if place:
+                foo.setPlace(self.db.findPlaceNoMap(place.getId()))
+            self.elist.append(foo)
+            self.lists_changed = 1
+            self.redraw_event_list()
+
+    def ev_source_drag_data_get(self,widget, context, selection_data, info, time):
+        if len(widget.selection) != 1:
+            return
+        row = widget.selection[0]
+        ev = widget.get_row_data(row)
+        
+        bits_per = 8; # we're going to pass a string
+        pickled = pickle.dumps(ev);
+        data = str(('pevent',self.person.getId(),pickled));
+        selection_data.set(selection_data.target, bits_per, data)
+
+    def url_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
+        if selection_data and selection_data.data:
+            exec 'data = %s' % selection_data.data
+            exec 'mytype = "%s"' % data[0]
+            exec 'person = "%s"' % data[1]
+            if person == self.person.getId() or mytype != 'url':
+                return
+            foo = pickle.loads(data[2]);
+            self.ulist.append(foo)
+            self.lists_changed = 1
+            self.redraw_url_list()
+
+    def url_source_drag_data_get(self,widget, context, selection_data, info, time):
+        if len(widget.selection) != 1:
+            return
+        row = widget.selection[0]
+        ev = widget.get_row_data(row)
+        
+        bits_per = 8; # we're going to pass a string
+        pickled = pickle.dumps(ev);
+        data = str(('url',self.person.getId(),pickled));
+        selection_data.set(selection_data.target, bits_per, data)
+
+    def at_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
+        if selection_data and selection_data.data:
+            exec 'data = %s' % selection_data.data
+            exec 'mytype = "%s"' % data[0]
+            exec 'person = "%s"' % data[1]
+            if person == self.person.getId() or mytype != 'pattr':
+                return
+            foo = pickle.loads(data[2]);
+            for src in foo.getSourceRefList():
+                base = src.getBase()
+                newbase = self.db.findSourceNoMap(base.getId())
+                src.setBase(newbase)
+            self.alist.append(foo)
+            self.lists_changed = 1
+            self.redraw_attr_list()
+
+    def at_source_drag_data_get(self,widget, context, selection_data, info, time):
+        if len(widget.selection) != 1:
+            return
+        row = widget.selection[0]
+        ev = widget.get_row_data(row)
+        
+        bits_per = 8; # we're going to pass a string
+        pickled = pickle.dumps(ev);
+        data = str(('pattr',self.person.getId(),pickled));
+        selection_data.set(selection_data.target, bits_per, data)
+
+    def ad_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
+        if selection_data and selection_data.data:
+            exec 'data = %s' % selection_data.data
+            exec 'mytype = "%s"' % data[0]
+            exec 'person = "%s"' % data[1]
+            if person == self.person.getId() or mytype != 'paddr':
+                return
+            foo = pickle.loads(data[2]);
+            for src in foo.getSourceRefList():
+                base = src.getBase()
+                newbase = self.db.findSourceNoMap(base.getId())
+                src.setBase(newbase)
+            self.plist.append(foo)
+            self.lists_changed = 1
+            self.redraw_addr_list()
+
+    def ad_source_drag_data_get(self,widget, context, selection_data, info, time):
+        if len(widget.selection) != 1:
+            return
+        row = widget.selection[0]
+        ev = widget.get_row_data(row)
+        
+        bits_per = 8; # we're going to pass a string
+        pickled = pickle.dumps(ev);
+        data = str(('paddr',self.person.getId(),pickled));
+        selection_data.set(selection_data.target, bits_per, data)
 
     def menu_changed(self,obj):
         self.ldsfam = obj.get_data("f")

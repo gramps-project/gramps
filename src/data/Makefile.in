@@ -3,7 +3,7 @@ exec_prefix	= @exec_prefix@
 bindir 		= @bindir@
 datadir		= @datadir@/@PACKAGE@
 INSTALL		= @INSTALL@
-data		= ${datadir}
+data		= ${datadir}/data
 pycomp		= ${srcdir}/py-compile
 
 @SET_MAKE@
@@ -11,6 +11,8 @@ pycomp		= ${srcdir}/py-compile
 all:
 
 install:
+	${INSTALL} -d ${data}
+	${INSTALL} gedcom.xml ${data}
 
 uninstall:
 
