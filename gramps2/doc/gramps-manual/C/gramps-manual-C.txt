@@ -1,0 +1,252 @@
+<Introduction
+
+<	<What is GRAMPS?
+
+GRAMPS is an acronym for the Genealogical Research and Analysis Management 
+Programming System. To put it shortly, it allows you to store, edit, and research 
+genealogical data using your computer. Its functionality is somewhat common to 
+other genealogical programs. However, it has some unique features. 
+
+<	<Why GRAMPS?
+
+GRAMPS was conceived under the concept that most genealogy programs 
+were designed to provide the researcher the capability to input information 
+related to a particular family tree.  Most of these programs have allowed for 
+the arranging and storing of information consistent with the GEDCOM standards.  
+They usually provide means for displaying descendant or ancestral relationships 
+by means of graphical displays, charts, or reports.  These may be augmented 
+with pictures or other media to enhance the data.  Most provide for inputting 
+data on unconnected individuals/families that may or may not have a relationship 
+to the primary surname being researched.  Various other enhancements may 
+also be provided in the genealogical program that allows for different degrees of 
+importing and exporting data from other programs and printing the data contained 
+in the various reports.  
+
+GRAMPS, on the other hand, attempts to provide all of the common capabilities 
+of these programs, but, more importantly, to provide an additional capability of 
+integration not common to these programs.  This is the ability to input any bits 
+and pieces of information directly into GRAMPS and rearrange/manipulate 
+any/all data events in the entire data base (in any order or sequence) to 
+assist the user in doing research, analysis and correlation with the potential 
+of filling relationship gaps.  In short, a tool that provides a way to input 
+all your research into one place and do your analysis and correlation using 
+the speed, power, and accuracy of your computer instead of pencils and 
+unmanageable reams of paper.
+
+
+<Getting Started
+	<Starting GRAMPS
+
+You can start GRAMPS either from Application menu or from Command line.
+
+<	<	<Applications Menu
+Choose Other->GRAMPS.
+
+<	<	<Command line
+Type gramps and press Return.
+
+<	Running GRAMPS for the first time.
+
+[ RE-WORK THIS WITH SCREENSHOTS BEGIN ]
+The first time you run the program, GRAMPS will display its Getting Started
+screens. GRAMPS will guide you through a few pages that prompt you for 
+some setup information. The information it requests includes information about 
+yourself and your preferences.
+
+Although GRAMPS requests information about your, this information is used 
+only so that it can create valid GEDCOM output files. A valid GEDCOM file 
+requires information about the file's creator. If you chose, you may leave the 
+information empty.
+[ RE-WORK THIS WITH SCREENSHOTS END ]
+
+<Main Window
+
+When you open a database (either existing or brand new), the following window is displayed:
+Figure 1, gramps - GRAMPS (example file loaded). The central area of the window shows
+certain aspects of genealogical information, depending on the current View setting. 
+When GRAMPS opens a database, the View is set to the People View. 
+
+<	<Views
+
+Views are the ways to display various aspects of genealogical information, as described below. 
+Since the relevant information is non-uniform and broad in both context and modality, it is best
+to break it's display into smaller uniform categories by context and modality. Before the detailed
+description of available Views, let us  guide you through the ways of switching between the Views.
+
+<	<	<Viewing Modes
+<	<	<	<Sidebar vs Tabbed Interface
+
+Depending on the state of the View->Sidebar menu item, the Views could be changed either in
+the Sidebar (Figure 2. Sidebar, no filter) or in the Notebook Tabs in the top part of the window
+(Figure 3. no sidebar, no filter). To switch the View, click on the desired Sidebar icon or the Notebook 
+tab. To Switch between Sidebar and Notebook interfaces, choose View->Sidebar from the 
+GRAMPS menu.
+
+<	<	<People View
+
+People View lists individuals whose data is stored in the database.  People View displays people's 
+names, GRAMPS ID numbers, gender, and their birth and death dates. 
+The list can be ordered by any field. Example: to order list by the birth date, click on the Birth date 
+column heading. To order list in reverse (descending) order, click one more time on the desired 
+column heading. 
+
+<	<	<	<Filters
+
+Genealogical databases may contain huge numbers of people. Since the long lists are hard 
+for humans to handle, GRAMPS provides a convenient way to limit the scope of browsing
+by using a Filter. To save screen space, Filter controls may be either displayed or not, depending
+on the state of View->Filter menu item. 
+
+When GRAMPS opens a database, the Filter is set to the trivial filter called "All people", i.e. no 
+filtering is in effect. To choose a filter, use a pop-up Filter menu above the people's 
+list (Figure 4, sidebar, filter). Once the Filter is chosen, press apply button in the upper right corner
+of the window. The filtering will take effect upon pressing Apply. To invert the filtering rule, check
+the Invert check-box on the left of Apply button. Example: To show people without children, 
+choose "People with children" Filter, check Invert check-box, and press Apply button. 
+To cancel any filtering, set the Filter to "All People" and press Apply button. 
+
+Note: even if the Filter controls are not displayed (View->Edit menu item is unchecked), the filtering
+might still be in place. In other words, the visibility of the Filter controls is not related to the actual 
+filtering imposed on the list. This may be a cause of confusion, when you enable the filtering and 
+then remove the controls from the display. If in doubt, enable the display of Filter controls and check
+what kind of filter is currently set.
+
+<	<	<	<Alphabetical Tabs
+
+GRAMPS offers another way of managing long lists of people -- alphabetical tabs. Upon loading 
+a database, GRAMPS checks for the stored Family names and breaks the people list into sublists
+based on the first letter of their name. The alphabetical tabs are displayed in the bottom part of 
+the GRAMPS window. The last tab, "Other," stands for unidentified characters -- all the entries 
+not assigned to any other tab end up in "Others."
+
+<	<	<Family View
+
+Family View displays the Family information of a currently selected (or Active) person. 
+Specifically, this view shows the relationships (e.g marriages, partnerships, etc.) of the active person, 
+his/her parents (or step parents, or guardians, etc), and his/her children (could be step children, 
+adopted children, etc.). 
+
+The Active person's data is in the list-box in the upper left corner of the window. Directly below it, 
+another box lists the Spouse's data, for each relationship of Active person (can be more than one).
+The double-arrow button to the right of the Active person list-box allows to exchange the currently selected
+spouse (Current spouse) with the Active person. Double-clicking on the Active person allows to edit 
+Active person's data. Double-clicking on the Current spouse allows to edit their relationship information. 
+To add a spouse, press "+" button to the right of the spouse box. To remove Current spouse,
+press "-" button to the right of the spouse box. 
+
+The parents of both the Active person and the Current spouse are listed in the corresponding list-boxes
+in the right-hand part of the window (Active person's parents on top, Current spouse parents on the 
+bottom). Both list-boxes have a set of three buttons on their right side. The "+" and "-" buttons allow
+to add and remove parents of the Active person and the Current spouse, respectively. Pressing
+the right arrow "->" button makes the family in the corresponding list-box and active family. That is, 
+it makes the selected Father the Active person, and the selected Mother the Current spouse. 
+
+The bottom list-box displays children of the Active person and the Current Spouse. Children's list
+can be order by the Birth date, by usual way of clicking on the Birth date column header. In addition 
+to the Name, ID, Gender, and Birth date columns, the list includes Status column. The pair of status 
+words reflect the relationship between the child and his Father/Mother (such as Birth, Adoption, etc.)
+The three buttons are available on the right side of the children list-box. The "+" and "-" buttons allow
+to add and remove children, respectively. Pressing the left arrow button "<-" makes the selected child 
+the Active person.
+
+<	<	<Pedigree View
+
+Pedigree View helps to visualize the place of the Active person in the tree of its ancestors. 
+Pedigree View shows four generations, going back in time from the Active person (1) to his/her 
+parents (2), to grandparents (3), to great-grandparents (4). Each person is denoted by a white box
+bearing the person's name. The two lines that converge on the box represent ties with the person's 
+Father (top line) and mother (bottom line). When the mouse moves over the white box, it expands 
+to display the corresponding person's dates of birth and death. When the mouse is placed over
+the family line, the line changes color to indicate an active link: double-clicking on the line makes
+the corresponding ancestor the Active person. The display in that case is re-adjusted to show 
+four generations, starting from a newly selected Active person.
+
+The left-hand side of the window shows the left arrow button. Upon clicking, the button expands 
+to the menu listing the children of the Active person. Selecting the menu item makes 
+the corresponding child the Active person. 
+
+The right-hand side of the window shows two right arrow buttons. When the top button is clicked,
+the Father of the Active person becomes Active person. Clicking the bottom button makes 
+the Mother of the Active person the Active person. Again, the display is re-adjusted to show 
+four generations, starting from a newly selected Active person.
+
+[ WHAT'S UP WITH THE DASHED LINES IN PEDIGREE VIEW ? - I FORGOT :-) ]
+
+<	<	<Sources View
+
+Sources View lists the sources of information stored in the database. This can include various
+documents (birth, death, and marriage certificates, etc.), books, films, journals, private diaries, 
+i.e. virtually anything that can be classified as a source of information. The sources can be used as the reference for any event stored in the database. 
+The Source View lists the title, ID, and the author of the source. All the columns can be used for 
+sorting the list. The usual rules apply: one click for ascending order, another click for descending order.
+
+<	<	<Places View
+
+Places View lists the geographical places in which the events of the database took place. These could
+be places of birth, death, marriages of people, as well as their home, employment, education addresses, 
+or any other conceivable reference to the geographical location. 
+
+The Places View lists places' Name, ID, Church Parish, City, County, State, and Country. All of these
+can be used for sorting by the usual sorting rules. 
+
+<	<	<Media View
+
+Media View is a list of Media Objects used in the database. These could be images, audio files, 
+animation files, etc. The list-box on the bottom lists the Name, ID, Type, and Path to the Media Object.
+The top part of the GRAMPS window shows the preview (if available) and the information about the
+Media Object. 
+
+<	<Menubar
+<	<Toolbar
+<	<Progress Bar
+<	<Status Line
+<Usage
+<	<Opening database
+<	<Starting new database
+<	<Saving database
+<	<Importing data
+<	<Exporting data
+<	<Editing
+<	<	Edit personal data
+<	<	Edit relationship data
+<	<	Edit children data
+<	<	Edit Sources
+<	<	Edit Places
+<	<	Edit Media
+<	<Navigation
+<	<	Setting Default Person
+<	<	Bookmarking People
+<	<	Using Family View
+<	<	Using Pedigree View
+<	<Generating Reports
+<	<	Graphical Reports
+<	<		...
+<	<	Text Reports
+<	<		...
+<	<	Window-View Reports
+<	<		...
+<	<	Web Site
+<	<Running Tools
+<	<	Analysis and Exploration Tools
+<	<		...
+<	<	Database Processing Tools
+<	<		...
+<	<	Utilities
+<	<		...
+<Preferences
+<	Usage
+<		Find
+<		Report Preferences
+<		Researcher Information
+<		Data Guessing
+<	Display
+<		General
+<		Dates and Calendars
+<		Tools and Status Bars
+<	Database
+<		General
+<		Media Objects
+<		GRAMPS Internal IDs
+<		Revision Control
+<Authors
+<License
