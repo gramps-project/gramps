@@ -118,17 +118,7 @@ documenters  = [
     'Alex Roitman',
     ]
 
-translators  =  u'Radek Malcic - Czech\n' \
-               u'Lars Kristian Lundin - Danish (Dansk)\n' \
-               u'Bernd Schandl - German (Deutsch)\n' \
-               u'Andr\xe9s Sep\xfalveda - Spanish (Espa\xf1ol)\n' \
-               u'Laurent Protois - French (Fran\xe7ais)\n' \
-               u'Marco Molteni - Italian (Italiano)\n' \
-               u'Marcos Bedinelli - Brazilian-Portuguese\n' \
-               u'Alex Roitman - Russian\n' \
-               u'Jens Arvidsson - Swedish (Svenska)\n' \
-               u'Radu Bogdan Mare - Romanian\n' \
-               u'Tino Meinen - Dutch' \
+translators = _('TRANSLATORS: Translate this to your name in your native language')
 
 #-------------------------------------------------------------------------
 #

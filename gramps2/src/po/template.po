@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Thu Apr  3 22:44:57 2003\n"
+"POT-Creation-Date: Sat Apr  5 16:23:51 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,12 +50,12 @@ msgstr ""
 msgid "Choose Spouse/Partner"
 msgstr ""
 
-#: AddSpouse.py:109 const.py:431 const.py:439 plugins/FamilyGroup.py:299
+#: AddSpouse.py:109 const.py:421 const.py:429 plugins/FamilyGroup.py:299
 #: plugins/FamilyGroup.py:301
 msgid "Married"
 msgstr ""
 
-#: AddSpouse.py:205 const.py:433 const.py:441
+#: AddSpouse.py:205 const.py:423 const.py:431
 msgid "Partners"
 msgstr ""
 
@@ -208,7 +208,7 @@ msgid "Choose Parents"
 msgstr ""
 
 #: ChooseParents.py:127 ChooseParents.py:128 ChooseParents.py:378
-#: ChooseParents.py:379 SelectChild.py:101 SelectChild.py:103 const.py:153
+#: ChooseParents.py:379 SelectChild.py:101 SelectChild.py:103 const.py:143
 #: gramps.glade:3547 gramps.glade:3740 gramps.glade:4184 gramps.glade:4364
 #: gramps.glade:5818 gramps.glade:6064 plugins/EventCmp.py:306
 #: plugins/FamilyGroup.py:149 plugins/GraphViz.py:335 plugins/GraphViz.py:336
@@ -254,16 +254,16 @@ msgstr ""
 msgid "from %(start_date)s to %(stop_date)s"
 msgstr ""
 
-#: DbPrompter.py:65 DbPrompter.py:117 gramps_main.py:1026 revision.glade:131
+#: DbPrompter.py:65 DbPrompter.py:117 gramps_main.py:1032 revision.glade:131
 msgid "Open a database"
 msgstr ""
 
-#: DbPrompter.py:97 gramps_main.py:1074
+#: DbPrompter.py:97 gramps_main.py:1080
 msgid "Save database"
 msgstr ""
 
-#: DbPrompter.py:106 gramps_main.py:784 gramps_main.py:1086
-#: gramps_main.py:1098
+#: DbPrompter.py:106 gramps_main.py:790 gramps_main.py:1092
+#: gramps_main.py:1104
 msgid "No Comment Provided"
 msgstr ""
 
@@ -284,7 +284,7 @@ msgstr ""
 msgid "Edit Person"
 msgstr ""
 
-#: EditPerson.py:186 EditPerson.py:212 EditPlace.py:103 const.py:353
+#: EditPerson.py:186 EditPerson.py:212 EditPlace.py:103 const.py:343
 #: plugins/pafexport.glade:217
 msgid "Description"
 msgstr ""
@@ -325,7 +325,7 @@ msgstr ""
 msgid "Path"
 msgstr ""
 
-#: EditPerson.py:399 GrampsCfg.py:62 const.py:158 gramps.glade:3635
+#: EditPerson.py:399 GrampsCfg.py:62 const.py:148 gramps.glade:3635
 #: gramps.glade:3828 gramps.glade:4250 gramps.glade:4430 gramps.glade:5906
 #: gramps.glade:6152
 msgid "None"
@@ -335,7 +335,7 @@ msgstr ""
 msgid "%(father)s and %(mother)s"
 msgstr ""
 
-#: EditPerson.py:424 const.py:144 plugins/FamilyGroup.py:385
+#: EditPerson.py:424 const.py:134 plugins/FamilyGroup.py:385
 #: plugins/IndivComplete.py:259 plugins/IndivSummary.py:155
 #: plugins/WebPage.py:537
 msgid "unknown"
@@ -493,10 +493,10 @@ msgid "%s: unknown"
 msgstr ""
 
 #: FamilyView.py:423 Plugins.py:417 Plugins.py:418 Plugins.py:419
-#: Plugins.py:431 Plugins.py:432 Plugins.py:433 Witness.py:71 const.py:159
-#: const.py:434 const.py:442 gramps.glade:3657 gramps.glade:3850
+#: Plugins.py:431 Plugins.py:432 Plugins.py:433 Witness.py:71 const.py:149
+#: const.py:424 const.py:432 gramps.glade:3657 gramps.glade:3850
 #: gramps.glade:4272 gramps.glade:4452 gramps.glade:5928 gramps.glade:6174
-#: gramps_main.py:1269 plugins/WebPage.py:288
+#: gramps_main.py:1275 plugins/WebPage.py:288
 msgid "Unknown"
 msgstr ""
 
@@ -1092,7 +1092,7 @@ msgid "The file has been moved or deleted"
 msgstr ""
 
 #: RelImage.py:71 RelImage.py:74 RelImage.py:139 RelImage.py:142
-#: gramps_main.py:809 gramps_main.py:814 gramps_main.py:823
+#: gramps_main.py:815 gramps_main.py:820 gramps_main.py:829
 #: plugins/AncestorChart.py:113 plugins/DesGraph.py:210
 #: plugins/DesGraph.py:219 plugins/WriteGedcom.py:495
 #: plugins/WriteGedcom.py:500
@@ -1374,7 +1374,7 @@ msgstr ""
 msgid "Author"
 msgstr ""
 
-#: SourceView.py:134 gramps_main.py:890
+#: SourceView.py:134 gramps_main.py:896
 msgid "Delete %s?"
 msgstr ""
 
@@ -1632,283 +1632,287 @@ msgstr ""
 msgid "GRAMPS (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
 msgstr ""
 
-#: const.py:142
+#: const.py:121
+msgid "TRANSLATORS: Translate this to your name in your native language"
+msgstr ""
+
+#: const.py:132
 msgid "male"
 msgstr ""
 
-#: const.py:143
+#: const.py:133
 msgid "female"
 msgstr ""
 
-#: const.py:154 const.py:273 gramps.glade:3569 gramps.glade:3762
+#: const.py:144 const.py:263 gramps.glade:3569 gramps.glade:3762
 #: gramps.glade:4206 gramps.glade:4386 gramps.glade:5840 gramps.glade:6086
 msgid "Adopted"
 msgstr ""
 
-#: const.py:155 gramps.glade:3591 gramps.glade:3784 gramps.glade:4228
+#: const.py:145 gramps.glade:3591 gramps.glade:3784 gramps.glade:4228
 #: gramps.glade:4408 gramps.glade:5862 gramps.glade:6108
 msgid "Stepchild"
 msgstr ""
 
-#: const.py:156
+#: const.py:146
 msgid "Sponsored"
 msgstr ""
 
-#: const.py:157 gramps.glade:3613 gramps.glade:3806 gramps.glade:5884
+#: const.py:147 gramps.glade:3613 gramps.glade:3806 gramps.glade:5884
 #: gramps.glade:6130
 msgid "Foster"
 msgstr ""
 
-#: const.py:160 const.py:435 const.py:443 gramps.glade:1325
+#: const.py:150 const.py:425 const.py:433 gramps.glade:1325
 #: mergedata.glade:218
 msgid "Other"
 msgstr ""
 
-#: const.py:169 srcsel.glade:418
+#: const.py:159 srcsel.glade:418
 msgid "Very Low"
 msgstr ""
 
-#: const.py:170 plugins/Merge.py:107 srcsel.glade:426
+#: const.py:160 plugins/Merge.py:107 srcsel.glade:426
 msgid "Low"
 msgstr ""
 
-#: const.py:171 srcsel.glade:434
+#: const.py:161 srcsel.glade:434
 msgid "Normal"
 msgstr ""
 
-#: const.py:172 plugins/Merge.py:115 srcsel.glade:442
+#: const.py:162 plugins/Merge.py:115 srcsel.glade:442
 msgid "High"
 msgstr ""
 
-#: const.py:173 srcsel.glade:450
+#: const.py:163 srcsel.glade:450
 msgid "Very High"
 msgstr ""
 
-#: const.py:193
+#: const.py:183
 msgid "Annulment"
 msgstr ""
 
-#: const.py:194 const.py:288
+#: const.py:184 const.py:278
 msgid "Divorce Filing"
 msgstr ""
 
-#: const.py:195
+#: const.py:185
 msgid "Divorce"
 msgstr ""
 
-#: const.py:196
+#: const.py:186
 msgid "Engagement"
 msgstr ""
 
-#: const.py:197
+#: const.py:187
 msgid "Marriage Contract"
 msgstr ""
 
-#: const.py:198
+#: const.py:188
 msgid "Marriage License"
 msgstr ""
 
-#: const.py:199
+#: const.py:189
 msgid "Marriage Settlement"
 msgstr ""
 
-#: const.py:200
+#: const.py:190
 msgid "Marriage"
 msgstr ""
 
-#: const.py:274
+#: const.py:264
 msgid "Alternate Birth"
 msgstr ""
 
-#: const.py:275
+#: const.py:265
 msgid "Alternate Death"
 msgstr ""
 
-#: const.py:276
+#: const.py:266
 msgid "Adult Christening"
 msgstr ""
 
-#: const.py:277
+#: const.py:267
 msgid "Baptism"
 msgstr ""
 
-#: const.py:278
+#: const.py:268
 msgid "Bar Mitzvah"
 msgstr ""
 
-#: const.py:279
+#: const.py:269
 msgid "Bas Mitzvah"
 msgstr ""
 
-#: const.py:280
+#: const.py:270
 msgid "Blessing"
 msgstr ""
 
-#: const.py:281
+#: const.py:271
 msgid "Burial"
 msgstr ""
 
-#: const.py:282
+#: const.py:272
 msgid "Cause Of Death"
 msgstr ""
 
-#: const.py:283
+#: const.py:273
 msgid "Census"
 msgstr ""
 
-#: const.py:284
+#: const.py:274
 msgid "Christening"
 msgstr ""
 
-#: const.py:285
+#: const.py:275
 msgid "Confirmation"
 msgstr ""
 
-#: const.py:286
+#: const.py:276
 msgid "Cremation"
 msgstr ""
 
-#: const.py:287
+#: const.py:277
 msgid "Degree"
 msgstr ""
 
-#: const.py:289
+#: const.py:279
 msgid "Education"
 msgstr ""
 
-#: const.py:290
+#: const.py:280
 msgid "Elected"
 msgstr ""
 
-#: const.py:291
+#: const.py:281
 msgid "Emigration"
 msgstr ""
 
-#: const.py:292
+#: const.py:282
 msgid "First Communion"
 msgstr ""
 
-#: const.py:293
+#: const.py:283
 msgid "Immigration"
 msgstr ""
 
-#: const.py:294
+#: const.py:284
 msgid "Graduation"
 msgstr ""
 
-#: const.py:295
+#: const.py:285
 msgid "Medical Information"
 msgstr ""
 
-#: const.py:296
+#: const.py:286
 msgid "Military Service"
 msgstr ""
 
-#: const.py:297
+#: const.py:287
 msgid "Naturalization"
 msgstr ""
 
-#: const.py:298
+#: const.py:288
 msgid "Nobility Title"
 msgstr ""
 
-#: const.py:299
+#: const.py:289
 msgid "Number of Marriages"
 msgstr ""
 
-#: const.py:300
+#: const.py:290
 msgid "Occupation"
 msgstr ""
 
-#: const.py:301
+#: const.py:291
 msgid "Ordination"
 msgstr ""
 
-#: const.py:302
+#: const.py:292
 msgid "Probate"
 msgstr ""
 
-#: const.py:303
+#: const.py:293
 msgid "Property"
 msgstr ""
 
-#: const.py:304
+#: const.py:294
 msgid "Religion"
 msgstr ""
 
-#: const.py:305
+#: const.py:295
 msgid "Residence"
 msgstr ""
 
-#: const.py:306
+#: const.py:296
 msgid "Retirement"
 msgstr ""
 
-#: const.py:307
+#: const.py:297
 msgid "Will"
 msgstr ""
 
-#: const.py:352
+#: const.py:342
 msgid "Caste"
 msgstr ""
 
-#: const.py:354
+#: const.py:344
 msgid "Identification Number"
 msgstr ""
 
-#: const.py:355
+#: const.py:345
 msgid "National Origin"
 msgstr ""
 
-#: const.py:356
+#: const.py:346
 msgid "Social Security Number"
 msgstr ""
 
-#: const.py:395
+#: const.py:385
 msgid "Number of Children"
 msgstr ""
 
-#: const.py:431
+#: const.py:421
 msgid "A legal or common-law relationship between a husband and wife"
 msgstr ""
 
-#: const.py:432
+#: const.py:422
 msgid "No legal or common-law relationship between man and woman"
 msgstr ""
 
-#: const.py:432 const.py:440
+#: const.py:422 const.py:430
 msgid "Unmarried"
 msgstr ""
 
-#: const.py:433
+#: const.py:423
 msgid "An established relationship between members of the same sex"
 msgstr ""
 
-#: const.py:434
+#: const.py:424
 msgid "Unknown relationship between a man and woman"
 msgstr ""
 
-#: const.py:435
+#: const.py:425
 msgid "An unspecified relationship between a man and woman"
 msgstr ""
 
-#: const.py:459
+#: const.py:449
 msgid "No definition available"
 msgstr ""
 
-#: const.py:900
+#: const.py:890
 msgid "Also Known As"
 msgstr ""
 
-#: const.py:901
+#: const.py:891
 msgid "Birth Name"
 msgstr ""
 
-#: const.py:902
+#: const.py:892
 msgid "Married Name"
 msgstr ""
 
-#: const.py:903
+#: const.py:893
 msgid "Other Name"
 msgstr ""
 
@@ -2621,7 +2625,7 @@ msgstr ""
 msgid "_Export"
 msgstr ""
 
-#: gramps.glade:169 gramps_main.py:1043
+#: gramps.glade:169 gramps_main.py:1049
 msgid "_Revert"
 msgstr ""
 
@@ -3062,159 +3066,159 @@ msgstr ""
 msgid "Unsaved changes exist in the current database. If you close without saving, the changes you have made will be lost."
 msgstr ""
 
-#: gramps_main.py:553
+#: gramps_main.py:559
 msgid "Create a New Database"
 msgstr ""
 
-#: gramps_main.py:554
+#: gramps_main.py:560
 msgid "Creating a new database will close the existing database, discarding any unsaved changes. You will then be prompted to create a new database"
 msgstr ""
 
-#: gramps_main.py:557
+#: gramps_main.py:563
 msgid "_Create New Database"
 msgstr ""
 
-#: gramps_main.py:637 gramps_main.py:664 gramps_main.py:1125
+#: gramps_main.py:643 gramps_main.py:670 gramps_main.py:1131
 msgid "Updating display - this may take a few seconds..."
 msgstr ""
 
-#: gramps_main.py:639 gramps_main.py:666 gramps_main.py:1127
-#: gramps_main.py:1388
+#: gramps_main.py:645 gramps_main.py:672 gramps_main.py:1133
+#: gramps_main.py:1394
 msgid "Updating display..."
 msgstr ""
 
-#: gramps_main.py:712
+#: gramps_main.py:718
 msgid ""
 "An autosave file exists for %s.\n"
 "Should this be loaded instead of the last saved version?"
 msgstr ""
 
-#: gramps_main.py:717
+#: gramps_main.py:723
 msgid "An autosave file was detected"
 msgstr ""
 
-#: gramps_main.py:718
+#: gramps_main.py:724
 msgid "GRAMPS has detected an autosave file for the selected database. This file is more recent than the last saved database. This typically happens when GRAMPS was unexpected shutdown before the data was saved. You may load this file to try to recover any missing data."
 msgstr ""
 
-#: gramps_main.py:724
+#: gramps_main.py:730
 msgid "_Load autosave file"
 msgstr ""
 
-#: gramps_main.py:726
+#: gramps_main.py:732
 msgid "Load _saved database"
 msgstr ""
 
-#: gramps_main.py:760 gramps_main.py:799
+#: gramps_main.py:766 gramps_main.py:805
 msgid "Database could not be opened"
 msgstr ""
 
-#: gramps_main.py:761 gramps_main.py:800
+#: gramps_main.py:767 gramps_main.py:806
 msgid "%s is not a directory."
 msgstr ""
 
-#: gramps_main.py:762 gramps_main.py:801
+#: gramps_main.py:768 gramps_main.py:807
 msgid "The file you should attempt to open should be a directory that contains a data.gramps file or a gramps.zodb file."
 msgstr ""
 
-#: gramps_main.py:792
+#: gramps_main.py:798
 msgid "Saving %s ..."
 msgstr ""
 
-#: gramps_main.py:810
-msgid "An was detected while attempting to create the file. The operating system reported \"%s\""
+#: gramps_main.py:816
+msgid "An error was detected while attempting to create the file. The operating system reported \"%s\""
 msgstr ""
 
-#: gramps_main.py:815 gramps_main.py:824
+#: gramps_main.py:821 gramps_main.py:830
 msgid "An error was detected while trying to create the file"
 msgstr ""
 
-#: gramps_main.py:857
+#: gramps_main.py:863
 msgid "autosaving..."
 msgstr ""
 
-#: gramps_main.py:860
+#: gramps_main.py:866
 msgid "autosave complete"
 msgstr ""
 
-#: gramps_main.py:862
+#: gramps_main.py:868
 msgid "autosave failed"
 msgstr ""
 
-#: gramps_main.py:891
+#: gramps_main.py:897
 msgid "Deleting the person will remove the person from from the database. The data can only be recovered by closing the database without saving changes. This change will become permanent after you save the database."
 msgstr ""
 
-#: gramps_main.py:896
+#: gramps_main.py:902
 msgid "_Delete Person"
 msgstr ""
 
-#: gramps_main.py:1039
+#: gramps_main.py:1045
 msgid "Revert to last saved database?"
 msgstr ""
 
-#: gramps_main.py:1040
+#: gramps_main.py:1046
 msgid "Reverting to the last saved database will cause all unsaved changes to be lost, and the last saved database will be loaded."
 msgstr ""
 
-#: gramps_main.py:1046
+#: gramps_main.py:1052
 msgid "Could Not Revert to the Previous Database."
 msgstr ""
 
-#: gramps_main.py:1047
+#: gramps_main.py:1053
 msgid "GRAMPS could not find a previous version of the database"
 msgstr ""
 
-#: gramps_main.py:1354 gramps_main.py:1363
+#: gramps_main.py:1360 gramps_main.py:1369
 msgid "Loading %s..."
 msgstr ""
 
-#: gramps_main.py:1465
+#: gramps_main.py:1471
 msgid "No home person has been set."
 msgstr ""
 
-#: gramps_main.py:1466
+#: gramps_main.py:1472
 msgid "The home person may be set from the Settings menu."
 msgstr ""
 
-#: gramps_main.py:1472
+#: gramps_main.py:1478
 msgid "%s has been bookmarked"
 msgstr ""
 
-#: gramps_main.py:1475
+#: gramps_main.py:1481
 msgid "Could Not Set a Bookmark."
 msgstr ""
 
-#: gramps_main.py:1476
+#: gramps_main.py:1482
 msgid "A bookmark could not be set because no one was selected."
 msgstr ""
 
-#: gramps_main.py:1488
+#: gramps_main.py:1494
 msgid "Set %s as the Home Person"
 msgstr ""
 
-#: gramps_main.py:1489
+#: gramps_main.py:1495
 msgid "Once a Home Person is defined, pressing the Home button on the toolbar will make the home person the active person."
 msgstr ""
 
-#: gramps_main.py:1492
+#: gramps_main.py:1498
 msgid "_Set Home Person"
 msgstr ""
 
-#: gramps_main.py:1537 gramps_main.py:1541 gramps_main.py:1545
+#: gramps_main.py:1543 gramps_main.py:1547 gramps_main.py:1551
 msgid "Could not create database"
 msgstr ""
 
-#: gramps_main.py:1538 gramps_main.py:1542
+#: gramps_main.py:1544 gramps_main.py:1548
 msgid ""
-"The directgory ~/.gramps/example could not be created.\n"
+"The directory ~/.gramps/example could not be created.\n"
 msgstr ""
 
-#: gramps_main.py:1546
-msgid "The directgory ~/.gramps/example could not be created."
+#: gramps_main.py:1552
+msgid "The directory ~/.gramps/example could not be created."
 msgstr ""
 
-#: gramps_main.py:1554 gramps_main.py:1556
+#: gramps_main.py:1560 gramps_main.py:1562
 msgid "Example database not created"
 msgstr ""
 
