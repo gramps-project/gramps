@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 0.7.2\n"
-"POT-Creation-Date: Mon Jan 19 14:10:17 2004\n"
-"PO-Revision-Date: 2004-01-21 16:53+0100\n"
+"POT-Creation-Date: Wed Feb  4 11:53:29 2004\n"
+"PO-Revision-Date: 2004-02-05 09:06+0100\n"
 "Last-Translator: Lars Kristian Lundin <gramps@lklundin.dk>\n"
 "Language-Team:  <dk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,9 +27,9 @@ msgstr "Det angivne filnavn kunne ikke findes."
 
 #: AddSpouse.py:90 ChooseParents.py:57 EditPerson.py:250 FamilyView.py:208
 #: PeopleStore.py:58 SelectChild.py:120 SelectPerson.py:74 gramps_main.py:103
-#: plugins/BookReport.py:612 plugins/FilterEditor.py:315
+#: plugins/BookReport.py:612 plugins/FilterEditor.py:316
 #: plugins/IndivComplete.py:394 plugins/IndivSummary.py:232
-#: plugins/PatchNames.py:145 plugins/RelCalc.py:86 plugins/TimeLine.py:378
+#: plugins/PatchNames.py:145 plugins/RelCalc.py:87 plugins/TimeLine.py:378
 #: plugins/WebPage.py:322
 msgid "Name"
 msgstr "Navn"
@@ -38,7 +38,7 @@ msgstr "Navn"
 #: MediaView.py:77 PeopleStore.py:58 PlaceView.py:62 SelectChild.py:120
 #: SelectObject.py:86 SelectPerson.py:74 SourceView.py:70 Sources.py:79
 #: Sources.py:175 Witness.py:57 gramps_main.py:103 plugins/PatchNames.py:136
-#: plugins/RelCalc.py:86
+#: plugins/RelCalc.py:87
 msgid "ID"
 msgstr "ID"
 
@@ -55,12 +55,12 @@ msgstr "Vælg ægtefælle/partner til %s"
 msgid "Choose Spouse/Partner"
 msgstr "Vælg Ægtefælle/Partner"
 
-#: AddSpouse.py:116 const.py:493 const.py:501 plugins/FamilyGroup.py:304
-#: plugins/FamilyGroup.py:306
+#: AddSpouse.py:116 const.py:424 const.py:432 plugins/FamilyGroup.py:306
+#: plugins/FamilyGroup.py:308
 msgid "Married"
 msgstr "Viet"
 
-#: AddSpouse.py:228 const.py:495 const.py:503
+#: AddSpouse.py:228 const.py:426 const.py:434
 msgid "Partners"
 msgstr "Partnere"
 
@@ -225,10 +225,10 @@ msgid "Choose Parents"
 msgstr "Vælg Forældre"
 
 #: ChooseParents.py:129 ChooseParents.py:130 ChooseParents.py:520
-#: ChooseParents.py:521 SelectChild.py:116 SelectChild.py:118 const.py:170
+#: ChooseParents.py:521 SelectChild.py:116 SelectChild.py:118 const.py:171
 #: gramps.glade:4521 gramps.glade:4714 gramps.glade:5154 gramps.glade:5334
 #: gramps.glade:6957 gramps.glade:7203 gramps.glade:7811 gramps.glade:7982
-#: plugins/EventCmp.py:308 plugins/FamilyGroup.py:153 plugins/GraphViz.py:398
+#: plugins/EventCmp.py:308 plugins/FamilyGroup.py:155 plugins/GraphViz.py:398
 #: plugins/GraphViz.py:399
 msgid "Birth"
 msgstr "Fødsel"
@@ -261,14 +261,14 @@ msgstr "Ret Forældre"
 msgid "Parent"
 msgstr "Forælder"
 
-#: ChooseParents.py:540 FamilyView.py:840 plugins/FamilyGroup.py:212
+#: ChooseParents.py:540 FamilyView.py:882 plugins/FamilyGroup.py:214
 #: plugins/IndivComplete.py:213 plugins/IndivComplete.py:215
 #: plugins/IndivComplete.py:434 plugins/IndivSummary.py:293
 #: plugins/WebPage.py:341 plugins/WebPage.py:344
 msgid "Mother"
 msgstr "Moder"
 
-#: ChooseParents.py:541 FamilyView.py:839 plugins/FamilyGroup.py:199
+#: ChooseParents.py:541 FamilyView.py:881 plugins/FamilyGroup.py:201
 #: plugins/IndivComplete.py:205 plugins/IndivComplete.py:207
 #: plugins/IndivComplete.py:429 plugins/IndivSummary.py:279
 #: plugins/WebPage.py:340 plugins/WebPage.py:343
@@ -326,7 +326,7 @@ msgstr "Intern Fejl"
 msgid "Edit Person"
 msgstr "Ret Person"
 
-#: EditPerson.py:230 EditPerson.py:256 EditPlace.py:109 const.py:393
+#: EditPerson.py:230 EditPerson.py:256 EditPlace.py:109 const.py:368
 #: plugins/pafexport.glade:217
 msgid "Description"
 msgstr "Beskrivelse"
@@ -335,7 +335,7 @@ msgstr "Beskrivelse"
 msgid "Event"
 msgstr "Hændelse"
 
-#: EditPerson.py:231 EditPerson.py:244 Marriage.py:172 VersionControl.py:117
+#: EditPerson.py:231 EditPerson.py:244 Marriage.py:172 VersionControl.py:118
 #: filters/After.py:55 filters/Before.py:55
 msgid "Date"
 msgstr "Dato"
@@ -347,7 +347,7 @@ msgstr "Sted"
 
 #: EditPerson.py:238 EditSource.py:191 ImageSelect.py:683 ImageSelect.py:855
 #: ImageSelect.py:951 Marriage.py:173 marriage.glade:888
-#: plugins/FilterEditor.py:315 plugins/PatchNames.py:142
+#: plugins/FilterEditor.py:316 plugins/PatchNames.py:142
 msgid "Value"
 msgstr "Værdi"
 
@@ -369,18 +369,18 @@ msgstr "Type"
 msgid "Path"
 msgstr "Sti"
 
-#: EditPerson.py:475 GrampsCfg.py:73 const.py:175 gramps.glade:4609
+#: EditPerson.py:475 GrampsCfg.py:73 const.py:176 gramps.glade:4609
 #: gramps.glade:4802 gramps.glade:5220 gramps.glade:5400 gramps.glade:7045
 #: gramps.glade:7291 gramps.glade:7877 gramps.glade:8048
 msgid "None"
 msgstr "Ingen"
 
-#: EditPerson.py:492 EditSource.py:173
+#: EditPerson.py:492 EditPlace.py:457 EditSource.py:173
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s og %(mother)s"
 
-#: EditPerson.py:500 choose.glade:218 const.py:140 plugins/Check.py:294
-#: plugins/FamilyGroup.py:657 plugins/IndivComplete.py:275
+#: EditPerson.py:500 choose.glade:218 const.py:141 plugins/Check.py:294
+#: plugins/FamilyGroup.py:659 plugins/IndivComplete.py:275
 #: plugins/IndivSummary.py:172 plugins/WebPage.py:591 select_person.glade:218
 msgid "unknown"
 msgstr "ukendt"
@@ -547,68 +547,77 @@ msgstr "Køn"
 msgid "Status"
 msgstr "Status"
 
-#: FamilyView.py:301 PeopleView.py:384
+#: FamilyView.py:302 FamilyView.py:310 FamilyView.py:331 FamilyView.py:338
+#: FamilyView.py:359 FamilyView.py:368 FamilyView.py:389 FamilyView.py:398
+#: FamilyView.py:438 FamilyView.py:444 FamilyView.py:502 FamilyView.py:508
+#: FamilyView.py:970 FamilyView.py:976 FamilyView.py:1008 FamilyView.py:1014
+#: PedView.py:493 PedView.py:503 PeopleView.py:380 PeopleView.py:393
+#: gramps.glade:781 gramps_main.py:399
+msgid "Home"
+msgstr "Hjem"
+
+#: FamilyView.py:303 PeopleView.py:381
 msgid "Add Bookmark"
 msgstr "Tilføj Bogmærke"
 
-#: FamilyView.py:304 FamilyView.py:325 FamilyView.py:348 FamilyView.py:371
-#: PedView.py:497 PeopleView.py:392
+#: FamilyView.py:306 FamilyView.py:334 FamilyView.py:364 FamilyView.py:394
+#: PedView.py:499 PeopleView.py:389
 msgid "People Menu"
 msgstr "Person Menu"
 
-#: FamilyView.py:345 FamilyView.py:368 FamilyView.py:940 FamilyView.py:971
+#: FamilyView.py:361 FamilyView.py:391 FamilyView.py:989 FamilyView.py:1027
 msgid "Add parents"
 msgstr "Tilføj forældre"
 
-#: FamilyView.py:401
+#: FamilyView.py:429
 msgid "Child Menu"
 msgstr "Børne Menu"
 
-#: FamilyView.py:420
+#: FamilyView.py:455
 msgid "Make the selected child an active person"
 msgstr "Gør det valgte barn til den aktuelle person"
 
-#: FamilyView.py:421 FamilyView.py:939 FamilyView.py:970
+#: FamilyView.py:456 FamilyView.py:988 FamilyView.py:1026
 msgid "Edit the child/parent relationships"
 msgstr "Ret børne/forældre-slægtskaberne"
 
-#: FamilyView.py:422
+#: FamilyView.py:457
 msgid "Edit the selected child"
 msgstr "Ret det valgte barn"
 
-#: FamilyView.py:423
+#: FamilyView.py:458
 msgid "Remove the selected child"
 msgstr "Slet det valgte barn"
 
-#: FamilyView.py:458
+#: FamilyView.py:493
 msgid "Spouse Menu"
 msgstr "Ægtefælle Menu"
 
-#: FamilyView.py:477
+#: FamilyView.py:519
 msgid "Make the selected spouse an active person"
 msgstr "Gør den valgte ægtefælle til den aktuelle person"
 
-#: FamilyView.py:478
+#: FamilyView.py:520
 msgid "Edit relationship"
 msgstr "Ret slægtskab"
 
-#: FamilyView.py:479
+#: FamilyView.py:521
 msgid "Remove the selected spouse"
 msgstr "Fjern den valgte ægtefælle"
 
-#: FamilyView.py:480
+#: FamilyView.py:522
 msgid "Edit the selected spouse"
 msgstr "Ret den valgte ægtefælle"
 
-#: FamilyView.py:481
+#: FamilyView.py:523
 msgid "Set the selected spouse as the preferred spouse"
 msgstr "Lad den valgte ægtefælle være den fortrukne ægtefælle"
 
-#: FamilyView.py:682
+#: FamilyView.py:724
 msgid "Remove %s as a spouse of %s?"
 msgstr "Fjern %s som ægtefælle til %s?"
 
-#: FamilyView.py:683
+#: FamilyView.py:725
 msgid ""
 "Removing a spouse removes the relationship between the spouse and the active "
 "person. It does not remove the spouse from the database"
@@ -616,11 +625,15 @@ msgstr ""
 "Fjernelse af en ægtefælle fjerner forbindelsen mellem ægtefællen og den "
 "aktuelle person. Det fjerner ikke ægtefællen fra databasen"
 
-#: FamilyView.py:686
+#: FamilyView.py:728
 msgid "_Remove Spouse"
 msgstr "Fje_rn ægtefælle"
 
-#: FamilyView.py:856
+#: FamilyView.py:857
+msgid "<double click to add spouse>"
+msgstr "<dobbelt klik for at tilføje ægtefælle>"
+
+#: FamilyView.py:898
 msgid ""
 "%s: %s\n"
 "\tRelationship: %s"
@@ -628,40 +641,40 @@ msgstr ""
 "%s: %s\n"
 "\tSlægtskab: %s"
 
-#: FamilyView.py:858
+#: FamilyView.py:900
 msgid "%s: unknown"
 msgstr "%s: ukendt"
 
-#: FamilyView.py:892 Plugins.py:457 Plugins.py:458 Plugins.py:459
-#: Plugins.py:479 Plugins.py:480 Plugins.py:481 Witness.py:74 const.py:176
-#: const.py:496 const.py:504 gramps.glade:4631 gramps.glade:4824
+#: FamilyView.py:934 Plugins.py:457 Plugins.py:458 Plugins.py:459
+#: Plugins.py:479 Plugins.py:480 Plugins.py:481 Witness.py:74 const.py:177
+#: const.py:427 const.py:435 gramps.glade:4631 gramps.glade:4824
 #: gramps.glade:5242 gramps.glade:5422 gramps.glade:7067 gramps.glade:7313
 #: gramps.glade:7899 gramps.glade:8070 gramps_main.py:1648
 #: plugins/WebPage.py:336
 msgid "Unknown"
 msgstr "Ukendt"
 
-#: FamilyView.py:919
+#: FamilyView.py:961
 msgid "Parents Menu"
 msgstr "Forældre Menu"
 
-#: FamilyView.py:938 FamilyView.py:969
+#: FamilyView.py:987 FamilyView.py:1025
 msgid "Make the selected parents the active family"
 msgstr "Gør de valgte forældre til den aktuelle familie"
 
-#: FamilyView.py:941 FamilyView.py:972
+#: FamilyView.py:990 FamilyView.py:1028
 msgid "Remove parents"
 msgstr "Fjern forældre"
 
-#: FamilyView.py:950
+#: FamilyView.py:999
 msgid "Spouse Parents Menu"
 msgstr "Svigerforældre Menu"
 
-#: FamilyView.py:1034 FamilyView.py:1049
+#: FamilyView.py:1090 FamilyView.py:1105
 msgid "Remove Parents of %s"
 msgstr "Fjern forældrene til %s"
 
-#: FamilyView.py:1035 FamilyView.py:1050
+#: FamilyView.py:1091 FamilyView.py:1106
 msgid ""
 "Removing the parents of a person removes the person as a child of the "
 "parents. The parents are not removed from the database, and the relationship "
@@ -671,15 +684,15 @@ msgstr ""
 "forældre. Forældrene selv fjernes ikke fra databasen, og forbindelsen mellem "
 "forældrene fjernes ikke."
 
-#: FamilyView.py:1039 FamilyView.py:1054
+#: FamilyView.py:1095 FamilyView.py:1110
 msgid "_Remove Parents"
 msgstr "Fje_rn Forældre"
 
-#: FamilyView.py:1156
+#: FamilyView.py:1212
 msgid "Attempt to Reorder Children Failed"
 msgstr "Forsøg på at genordne børn fejlede"
 
-#: FamilyView.py:1157
+#: FamilyView.py:1213
 msgid "Children must be ordered by their birth dates."
 msgstr "Børn skal ordnes efter deres fødselsdato."
 
@@ -691,7 +704,7 @@ msgstr "Alle personer"
 msgid "Qualifier"
 msgstr "Kvalifikator"
 
-#: Filter.py:82 GenericFilter.py:103 VersionControl.py:304 rule.glade:1255
+#: Filter.py:82 GenericFilter.py:104 VersionControl.py:305 rule.glade:1255
 msgid "No description"
 msgstr "Ingen beskrivelse"
 
@@ -719,367 +732,368 @@ msgstr "Find Medie Objekt"
 msgid "French Republican"
 msgstr "Fransk republikansk"
 
-#: GenericFilter.py:100
+#: GenericFilter.py:101
 msgid "Miscellaneous filters"
 msgstr "Forskellige filtre"
 
-#: GenericFilter.py:132 GenericFilter.py:266 GenericFilter.py:285
-#: GenericFilter.py:308 GenericFilter.py:913 GenericFilter.py:1215
+#: GenericFilter.py:133 GenericFilter.py:253 GenericFilter.py:272
+#: GenericFilter.py:295 GenericFilter.py:900 GenericFilter.py:1202
 msgid "General filters"
 msgstr "Generelle filtre"
 
-#: GenericFilter.py:135
+#: GenericFilter.py:136
 msgid "Matches everyone in the database"
 msgstr "Matcher alle i databasen"
 
-#: GenericFilter.py:149 GenericFilter.py:257 GenericFilter.py:325
-#: GenericFilter.py:415 GenericFilter.py:460 GenericFilter.py:544
-#: GenericFilter.py:589 GenericFilter.py:687 GenericFilter.py:739
-#: GenericFilter.py:830 choose.glade:536 gramps.glade:3370 imagesel.glade:552
+#: GenericFilter.py:150 GenericFilter.py:244 GenericFilter.py:312
+#: GenericFilter.py:402 GenericFilter.py:447 GenericFilter.py:531
+#: GenericFilter.py:576 GenericFilter.py:674 GenericFilter.py:726
+#: GenericFilter.py:817 choose.glade:536 gramps.glade:3370 imagesel.glade:552
 #: imagesel.glade:1409 mergedata.glade:468 mergedata.glade:1060
-#: plugins/FilterEditor.py:460
+#: plugins/FilterEditor.py:461
 msgid "ID:"
 msgstr "ID:"
 
-#: GenericFilter.py:160
+#: GenericFilter.py:161
 msgid "Relationship filters"
 msgstr "Slægtskabsfiltre"
 
-#: GenericFilter.py:163
+#: GenericFilter.py:164
 msgid ""
 "Matches the ancestors of two people back to a common ancestor, producing the "
 "relationship path between two people."
-msgstr "Matcher to personers aner tilbage til en fælles ane, "
-"og danner derved deres slægtskabslinje."
+msgstr ""
+"Matcher to personers aner tilbage til en fælles ane, og danner derved deres "
+"slægtskabslinje."
 
-#: GenericFilter.py:263
+#: GenericFilter.py:250
 msgid "Matches the person with a specified GRAMPS ID"
 msgstr "Matcher personen med det angivne GRAMPS ID"
 
-#: GenericFilter.py:288
+#: GenericFilter.py:275
 msgid "Matches all people whose records are complete"
 msgstr "Matcher alle personer med komplette oplysninger"
 
-#: GenericFilter.py:311
+#: GenericFilter.py:298
 msgid "Matches all females"
 msgstr "Matcher alle kvinder"
 
-#: GenericFilter.py:325 GenericFilter.py:374 GenericFilter.py:589
-#: GenericFilter.py:645 plugins/FilterEditor.py:466
+#: GenericFilter.py:312 GenericFilter.py:361 GenericFilter.py:576
+#: GenericFilter.py:632 plugins/FilterEditor.py:468
 msgid "Inclusive:"
 msgstr "Inklusiv:"
 
-#: GenericFilter.py:336 GenericFilter.py:383 GenericFilter.py:426
-#: GenericFilter.py:475 GenericFilter.py:550
+#: GenericFilter.py:323 GenericFilter.py:370 GenericFilter.py:413
+#: GenericFilter.py:462 GenericFilter.py:537
 msgid "Descendant filters"
 msgstr "Efterkommerfiltre"
 
-#: GenericFilter.py:339
+#: GenericFilter.py:326
 msgid "Matches all descendants for the specified person"
 msgstr "Matcher alle efterkommere af den angivne person"
 
-#: GenericFilter.py:374 GenericFilter.py:503 GenericFilter.py:645
-#: GenericFilter.py:789 GenericFilter.py:876 GenericFilter.py:1245
-#: GenericFilter.py:1268 plugins/FilterEditor.py:462
+#: GenericFilter.py:361 GenericFilter.py:490 GenericFilter.py:632
+#: GenericFilter.py:776 GenericFilter.py:863 GenericFilter.py:1232
+#: GenericFilter.py:1255 plugins/FilterEditor.py:463
 msgid "Filter name:"
 msgstr "Filter navn:"
 
-#: GenericFilter.py:386
+#: GenericFilter.py:373
 msgid "Matches people that are descendants of someone matched by a filter"
 msgstr "Matcher efterkommere til en person, der matcher et filter"
 
-#: GenericFilter.py:415 GenericFilter.py:460 GenericFilter.py:687
-#: GenericFilter.py:739 plugins/FilterEditor.py:458
+#: GenericFilter.py:402 GenericFilter.py:447 GenericFilter.py:674
+#: GenericFilter.py:726 plugins/FilterEditor.py:459
 msgid "Number of generations:"
 msgstr "Antal generationer:"
 
-#: GenericFilter.py:429
+#: GenericFilter.py:416
 msgid ""
 "Matches people that are descendants of a specified person not more than N "
 "generations away"
 msgstr "Matcher alle efterkommere af en person højst N generationer væk"
 
-#: GenericFilter.py:471
+#: GenericFilter.py:458
 msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
 msgstr "Matcher efterkommere af en person mindst N generationer væk"
 
-#: GenericFilter.py:514
+#: GenericFilter.py:501
 msgid "Matches the person that is a child of someone matched by a filter"
 msgstr "Matcher et barn af en person, der matcher et filter"
 
-#: GenericFilter.py:517 GenericFilter.py:803 GenericFilter.py:1033
-#: GenericFilter.py:1277
+#: GenericFilter.py:504 GenericFilter.py:790 GenericFilter.py:1020
+#: GenericFilter.py:1264
 msgid "Family filters"
 msgstr "Familiefiltre"
 
-#: GenericFilter.py:553
+#: GenericFilter.py:540
 msgid ""
 "Matches people that are descendants or the spouse of a descendant of a "
 "specified person"
-msgstr "Matcher efterkommere og ægtefæller til efterkommere af en "
-"angiven person"
+msgstr ""
+"Matcher efterkommere og ægtefæller til efterkommere af en angiven person"
 
-#: GenericFilter.py:600
+#: GenericFilter.py:587
 msgid "Matches people that are ancestors of a specified person"
 msgstr "Matcher aner til den angivne person"
 
-#: GenericFilter.py:603 GenericFilter.py:658 GenericFilter.py:702
-#: GenericFilter.py:754 GenericFilter.py:840 GenericFilter.py:886
+#: GenericFilter.py:590 GenericFilter.py:645 GenericFilter.py:689
+#: GenericFilter.py:741 GenericFilter.py:827 GenericFilter.py:873
 msgid "Ancestral filters"
 msgstr "Anefiltre"
 
-#: GenericFilter.py:654
+#: GenericFilter.py:641
 msgid "Matches people that are ancestors of someone matched by a filter"
 msgstr "Matcher aner til en person, der matcher et filter"
 
-#: GenericFilter.py:698
+#: GenericFilter.py:685
 msgid ""
 "Matches people that are ancestors of a specified person not more than N "
 "generations away"
 msgstr "Matcher aner til en person højst N generationer væk"
 
-#: GenericFilter.py:750
+#: GenericFilter.py:737
 msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
 msgstr "Matcher aner til en person mindst N generationer væk"
 
-#: GenericFilter.py:800
+#: GenericFilter.py:787
 msgid "Matches the person that is a parent of someone matched by a filter"
 msgstr "Matcher forældrene til en person, der matcher et filter"
 
-#: GenericFilter.py:836
+#: GenericFilter.py:823
 msgid "Matches people that have a common ancestor with a specified person"
 msgstr "Matcher personer med samme ane som den angivne person"
 
-#: GenericFilter.py:882
+#: GenericFilter.py:869
 msgid ""
 "Matches people that have a common ancestor with someone matched by a filter"
 msgstr ""
 "Matcher personer der har en ane fælles med en person, der matcher et filter"
 
-#: GenericFilter.py:916
+#: GenericFilter.py:903
 msgid "Matches all males"
 msgstr "Matcher alle mænd"
 
-#: GenericFilter.py:929 GenericFilter.py:976 GenericFilter.py:1078
-#: GenericFilter.py:1118 edit_person.glade:1907 edit_person.glade:3979
+#: GenericFilter.py:916 GenericFilter.py:963 GenericFilter.py:1065
+#: GenericFilter.py:1105 edit_person.glade:1907 edit_person.glade:3979
 #: marriage.glade:444 places.glade:1710
 msgid "Description:"
 msgstr "Beskrivelse:"
 
-#: GenericFilter.py:929 GenericFilter.py:976 GenericFilter.py:1078
-#: GenericFilter.py:1118 edit_person.glade:1955 marriage.glade:1771
+#: GenericFilter.py:916 GenericFilter.py:963 GenericFilter.py:1065
+#: GenericFilter.py:1105 edit_person.glade:1955 marriage.glade:1771
 #: mergedata.glade:534 mergedata.glade:717 mergedata.glade:1108
-#: mergedata.glade:1156 plugins/FilterEditor.py:456
+#: mergedata.glade:1156 plugins/FilterEditor.py:457
 msgid "Place:"
 msgstr "Sted:"
 
-#: GenericFilter.py:929 GenericFilter.py:976 GenericFilter.py:1078
-#: GenericFilter.py:1118 edit_person.glade:2003 edit_person.glade:2869
+#: GenericFilter.py:916 GenericFilter.py:963 GenericFilter.py:1065
+#: GenericFilter.py:1105 edit_person.glade:2003 edit_person.glade:2869
 #: marriage.glade:348 marriage.glade:1723 mergedata.glade:558
 #: mergedata.glade:693 mergedata.glade:1084 mergedata.glade:1132
 msgid "Date:"
 msgstr "Dato:"
 
-#: GenericFilter.py:929 plugins/FilterEditor.py:58
+#: GenericFilter.py:916 plugins/FilterEditor.py:58
 msgid "Personal event:"
 msgstr "Personhændelse:"
 
-#: GenericFilter.py:943
+#: GenericFilter.py:930
 msgid "Matches the person with a personal event of a particular value"
 msgstr "Matcher en person med en bestemt personlig hændelse"
 
-#: GenericFilter.py:946 GenericFilter.py:993 GenericFilter.py:1095
-#: GenericFilter.py:1135
+#: GenericFilter.py:933 GenericFilter.py:980 GenericFilter.py:1082
+#: GenericFilter.py:1122
 msgid "Event filters"
 msgstr "Hændelsesfiltre"
 
-#: GenericFilter.py:976 plugins/FilterEditor.py:59
+#: GenericFilter.py:963 plugins/FilterEditor.py:59
 msgid "Family event:"
 msgstr "Familiehændelse:"
 
-#: GenericFilter.py:990
+#: GenericFilter.py:977
 msgid "Matches the person with a family event of a particular value"
 msgstr "Matcher en person med en bestemt familiehændelse"
 
-#: GenericFilter.py:1022
+#: GenericFilter.py:1009
 msgid "Number of relationships:"
 msgstr "Antal Slægtskaber:"
 
-#: GenericFilter.py:1023 plugins/FilterEditor.py:62
+#: GenericFilter.py:1010 plugins/FilterEditor.py:62
 msgid "Relationship type:"
 msgstr "Slægtskabstype:"
 
-#: GenericFilter.py:1024
+#: GenericFilter.py:1011
 msgid "Number of children:"
 msgstr "Antal børn:"
 
-#: GenericFilter.py:1030
+#: GenericFilter.py:1017
 msgid "Matches the person who has a particular relationship"
 msgstr "Matcher personen med et bestemt slægtskab"
 
-#: GenericFilter.py:1092
+#: GenericFilter.py:1079
 msgid "Matches the person with a birth of a particular value"
 msgstr "Matcher personen med en bestemt slags fødsel"
 
-#: GenericFilter.py:1132
+#: GenericFilter.py:1119
 msgid "Matches the person with a death of a particular value"
 msgstr "Matcher personen med en bestemt slags død"
 
-#: GenericFilter.py:1158 GenericFilter.py:1180 edit_person.glade:2487
+#: GenericFilter.py:1145 GenericFilter.py:1167 edit_person.glade:2487
 #: imagesel.glade:957 imagesel.glade:1727
 msgid "Value:"
 msgstr "Værdi:"
 
-#: GenericFilter.py:1158 plugins/FilterEditor.py:60
+#: GenericFilter.py:1145 plugins/FilterEditor.py:60
 msgid "Personal attribute:"
 msgstr "Personattribut:"
 
-#: GenericFilter.py:1180 plugins/FilterEditor.py:61
+#: GenericFilter.py:1167 plugins/FilterEditor.py:61
 msgid "Family attribute:"
 msgstr "Familieattribut:"
 
-#: GenericFilter.py:1206 choose.glade:630 edit_person.glade:1415
+#: GenericFilter.py:1193 choose.glade:630 edit_person.glade:1415
 #: gramps.glade:3464 imagesel.glade:718
 msgid "Title:"
 msgstr "Titel:"
 
-#: GenericFilter.py:1206 edit_person.glade:1343
+#: GenericFilter.py:1193 edit_person.glade:1343
 msgid "Suffix:"
 msgstr "Suffiks:"
 
-#: GenericFilter.py:1206 edit_person.glade:1367
+#: GenericFilter.py:1193 edit_person.glade:1367
 msgid "Family name:"
 msgstr "Familienavn:"
 
-#: GenericFilter.py:1206 edit_person.glade:1391
+#: GenericFilter.py:1193 edit_person.glade:1391
 msgid "Given name:"
 msgstr "Fornavn:"
 
-#: GenericFilter.py:1212
+#: GenericFilter.py:1199
 msgid "Matches the person with a specified (partial) name"
 msgstr "Matcher en person med et (delvist) angivet navn"
 
-#: GenericFilter.py:1274
+#: GenericFilter.py:1261
 msgid "Matches the person married to someone matching a filter"
 msgstr "Matcher ægtefællen til en person, der matcher et filter"
 
-#: GenericFilter.py:1421
+#: GenericFilter.py:1408
 msgid "Everyone"
 msgstr "Enhver"
 
-#: GenericFilter.py:1422
+#: GenericFilter.py:1409
 msgid "Has the Id"
 msgstr "Har ID'et"
 
-#: GenericFilter.py:1423
+#: GenericFilter.py:1410
 msgid "Has a name"
 msgstr "Har et navn"
 
-#: GenericFilter.py:1424
+#: GenericFilter.py:1411
 msgid "Has the relationships"
 msgstr "Har slægtskaberne"
 
-#: GenericFilter.py:1425
+#: GenericFilter.py:1412
 msgid "Has the death"
 msgstr "Har dødsfald"
 
-#: GenericFilter.py:1426
+#: GenericFilter.py:1413
 msgid "Has the birth"
 msgstr "Har fødsel"
 
-#: GenericFilter.py:1427
+#: GenericFilter.py:1414
 msgid "Is a descendant of"
 msgstr "Er en efterkommer af"
 
-#: GenericFilter.py:1428
+#: GenericFilter.py:1415
 msgid "Is a descendant family member of"
 msgstr "Er i familie med en efterkommer af"
 
-#: GenericFilter.py:1429
+#: GenericFilter.py:1416
 msgid "Is a descendant of filter match"
 msgstr "Er en efterkommer af filter søgning"
 
-#: GenericFilter.py:1430
+#: GenericFilter.py:1417
 msgid "Is a descendant of person not more than N generations away"
 msgstr "Er en efterkommer af person højst N generationer væk"
 
-#: GenericFilter.py:1432
+#: GenericFilter.py:1419
 msgid "Is a descendant of person at least N generations away"
 msgstr "Er en efterkommer af person mindst N generationer væk"
 
-#: GenericFilter.py:1434
+#: GenericFilter.py:1421
 msgid "Is a child of filter match"
 msgstr "Er et barn af filter søgning"
 
-#: GenericFilter.py:1435
+#: GenericFilter.py:1422
 msgid "Is an ancestor of"
 msgstr "Er en ane til"
 
-#: GenericFilter.py:1436
+#: GenericFilter.py:1423
 msgid "Is an ancestor of filter match"
 msgstr "Er en ane til filter søgning"
 
-#: GenericFilter.py:1437
+#: GenericFilter.py:1424
 msgid "Is an ancestor of person not more than N generations away"
 msgstr "Er en ane til person højst N generationer væk"
 
-#: GenericFilter.py:1439
+#: GenericFilter.py:1426
 msgid "Is an ancestor of person at least N generations away"
 msgstr "Er en ane til person mindst N generationer væk"
 
-#: GenericFilter.py:1441
+#: GenericFilter.py:1428
 msgid "Is a parent of filter match"
 msgstr "Er en forælder til filter søgning"
 
-#: GenericFilter.py:1442
+#: GenericFilter.py:1429
 msgid "Has a common ancestor with"
 msgstr "Har en fælles ane med"
 
-#: GenericFilter.py:1443
+#: GenericFilter.py:1430
 msgid "Has a common ancestor with filter match"
 msgstr "Har en fælles ane med filter søgning"
 
-#: GenericFilter.py:1445
+#: GenericFilter.py:1432
 msgid "Is a female"
 msgstr "Er en kvinde"
 
-#: GenericFilter.py:1446
+#: GenericFilter.py:1433
 msgid "Is a male"
 msgstr "Er en mand"
 
-#: GenericFilter.py:1447
+#: GenericFilter.py:1434
 msgid "Has complete record"
 msgstr "Har komplette oplysninger"
 
-#: GenericFilter.py:1448
+#: GenericFilter.py:1435
 msgid "Has the personal event"
 msgstr "Har personhændelsen"
 
-#: GenericFilter.py:1449
+#: GenericFilter.py:1436
 msgid "Has the family event"
 msgstr "Har familiehændelsen"
 
-#: GenericFilter.py:1450
+#: GenericFilter.py:1437
 msgid "Has the personal attribute"
 msgstr "Har personattributten"
 
-#: GenericFilter.py:1451
+#: GenericFilter.py:1438
 msgid "Has the family attribute"
 msgstr "Har familieattributten"
 
-#: GenericFilter.py:1452
+#: GenericFilter.py:1439
 msgid "Matches the filter named"
 msgstr "Passer med det nævnte filter"
 
-#: GenericFilter.py:1453
+#: GenericFilter.py:1440
 msgid "Is spouse of filter match"
 msgstr "Er ægtefælle til filter søgning"
 
-#: GenericFilter.py:1454
+#: GenericFilter.py:1441
 msgid "Relationship path between two people"
 msgstr "Slægtskabslinjen mellem to personer"
 
@@ -1252,7 +1266,7 @@ msgid "Media Object"
 msgstr "medieobjekt"
 
 #: ImageSelect.py:614 docgen/HtmlDoc.py:480 docgen/KwordDoc.py:495
-#: docgen/PdfDoc.py:583 docgen/RTFDoc.py:427
+#: docgen/PdfDoc.py:590 docgen/RTFDoc.py:427
 msgid "Open in %s"
 msgstr "Åbn i %s"
 
@@ -1423,11 +1437,11 @@ msgstr "Anker"
 msgid "Double clicking will make %s the active person"
 msgstr "Dobbeltklik vil gøre %s til den aktuelle person"
 
-#: PedView.py:493
+#: PedView.py:495
 msgid "Set anchor"
 msgstr "Placer anker"
 
-#: PedView.py:494
+#: PedView.py:496
 msgid "Remove anchor"
 msgstr "Fjern anker"
 
@@ -1435,16 +1449,12 @@ msgstr "Fjern anker"
 msgid "Death date"
 msgstr "Dødsdato:"
 
-#: PeopleStore.py:247 PeopleView.py:255 PeopleView.py:274 gramps_main.py:946
+#: PeopleStore.py:250 PeopleView.py:252 PeopleView.py:271 gramps_main.py:946
 #: gramps_main.py:1546
 msgid "Updating display..."
 msgstr "Opdaterer skærmbillede..."
 
-#: PeopleView.py:383 PeopleView.py:396 gramps.glade:781 gramps_main.py:399
-msgid "Home"
-msgstr "Hjem"
-
-#: PeopleView.py:388 PlaceView.py:177 SourceView.py:143 gramps.glade:844
+#: PeopleView.py:385 PlaceView.py:185 SourceView.py:149 gramps.glade:844
 #: plugins/BookReport.py:814
 msgid "Edit"
 msgstr "Ret"
@@ -1457,11 +1467,11 @@ msgstr "Sogn"
 msgid "Place Name"
 msgstr "Stednavn"
 
-#: PlaceView.py:144
+#: PlaceView.py:152
 msgid "Cannot merge places."
 msgstr "Kan ikke slå stednavne sammen."
 
-#: PlaceView.py:145
+#: PlaceView.py:153
 msgid ""
 "Exactly two places must be selected to perform a merge. A second place can "
 "be selected by holding down the control key while clicking on the desired "
@@ -1471,15 +1481,15 @@ msgstr ""
 "vælges ved at holde kontrol-tasten nede og samtidig klikke på det ønskede "
 "sted."
 
-#: PlaceView.py:181 SourceView.py:147
+#: PlaceView.py:189 SourceView.py:153
 msgid "Source Menu"
 msgstr "Kilde Menu"
 
-#: PlaceView.py:232 SourceView.py:172 gramps_main.py:1283
+#: PlaceView.py:240 SourceView.py:178 gramps_main.py:1283
 msgid "Delete %s?"
 msgstr "Slet %s?"
 
-#: PlaceView.py:233
+#: PlaceView.py:241
 msgid ""
 "This place is currently being used by at least one record in the database. "
 "Deleting it will remove it from the database and remove it from all records "
@@ -1488,7 +1498,7 @@ msgstr ""
 "Dette stednavn anvendes af mindst en post i databasen. Sletning af den vil "
 "fjerne den fra databasen og fjerne den fra alle poster som henviser til den."
 
-#: PlaceView.py:237
+#: PlaceView.py:245
 msgid "_Delete Place"
 msgstr "Slet Ste_d"
 
@@ -1608,7 +1618,7 @@ msgstr "Filen er blevet flyttet eller slettet"
 #: docgen/OpenSpreadSheet.py:229 docgen/OpenSpreadSheet.py:400
 #: docgen/OpenSpreadSheet.py:404 docgen/OpenSpreadSheet.py:432
 #: docgen/OpenSpreadSheet.py:436 docgen/PSDrawDoc.py:103
-#: docgen/PSDrawDoc.py:106 docgen/PdfDoc.py:175 docgen/RTFDoc.py:81
+#: docgen/PSDrawDoc.py:106 docgen/PdfDoc.py:182 docgen/RTFDoc.py:81
 #: docgen/RTFDoc.py:84 docgen/SvgDrawDoc.py:74 docgen/SvgDrawDoc.py:76
 #: gramps_main.py:1187 gramps_main.py:1192 gramps_main.py:1202
 #: plugins/WriteFtree.py:140 plugins/WriteGedcom.py:580
@@ -1646,7 +1656,7 @@ msgstr "Kunne ikke danne en miniature af %s"
 msgid "The file has been moved or deleted."
 msgstr "Filen er blevet flyttet eller slettet."
 
-#: Relationship.py:226 plugins/rel_de.py:345
+#: Relationship.py:258 plugins/rel_de.py:345
 msgid "Relationship loop detected"
 msgstr "Slægtskabsløkke fundet"
 
@@ -1806,7 +1816,7 @@ msgstr "Stileditor"
 msgid "Report Options"
 msgstr "Rapport Valgmuligheder"
 
-#: Report.py:532 plugins/FilterEditor.py:254 plugins/pafexport.glade:127
+#: Report.py:532 plugins/FilterEditor.py:255 plugins/pafexport.glade:127
 msgid "Filter"
 msgstr "Filter"
 
@@ -1818,11 +1828,16 @@ msgstr "Generationer"
 msgid "Page break between generations"
 msgstr "Sideskift imellem generationer"
 
+#: Report.py:736 Witness.py:160 plugins/AncestorChart2.py:623
+#: plugins/FamilyGroup.py:506 plugins/FilterEditor.py:173
+msgid "Select Person"
+msgstr "Vælg en Person"
+
 #: Report.py:808
 msgid "Save Report As"
 msgstr "Gem Rapport Som"
 
-#: Report.py:883 Report.py:961 docgen/PSDrawDoc.py:378
+#: Report.py:883 Report.py:961 docgen/PSDrawDoc.py:405
 msgid "Print a copy"
 msgstr "Udskriv en kopi"
 
@@ -1929,7 +1944,7 @@ msgstr "Slægtskab med %(father)s"
 msgid "Relationship to %(mother)s"
 msgstr "Slægtskab med %(mother)s"
 
-#: SelectChild.py:105 plugins/RelCalc.py:81
+#: SelectChild.py:105 plugins/RelCalc.py:82
 msgid "Relationship to %s"
 msgstr "Slægtskab med %s"
 
@@ -1949,7 +1964,7 @@ msgstr "Slægtskab med moder"
 msgid "Author"
 msgstr "Forfatter"
 
-#: SourceView.py:173
+#: SourceView.py:179
 msgid ""
 "This source is currently being used. Deleting it will remove it from the "
 "database and from all records that reference it."
@@ -1957,7 +1972,7 @@ msgstr ""
 "Denne kilde er i brug nu. Sletning af den vil fjerne den fra databasen og "
 "fra alle poster som henviser til den. "
 
-#: SourceView.py:176
+#: SourceView.py:182
 msgid "_Delete Source"
 msgstr "Slet Kil_de"
 
@@ -2160,27 +2175,27 @@ msgstr "standard"
 msgid "Revision control comment"
 msgstr "Versionskontrolkommentar"
 
-#: VersionControl.py:112
+#: VersionControl.py:113
 msgid "Select an older revision"
 msgstr "Vælg en ældre version"
 
-#: VersionControl.py:117
+#: VersionControl.py:118
 msgid "Changed by"
 msgstr "Rettet af"
 
-#: VersionControl.py:117
+#: VersionControl.py:118
 msgid "Revision"
 msgstr "Version"
 
-#: VersionControl.py:118 plugins/FilterEditor.py:254
+#: VersionControl.py:119 plugins/FilterEditor.py:255
 msgid "Comment"
 msgstr "Kommentar"
 
-#: VersionControl.py:293
+#: VersionControl.py:294
 msgid "Could not retrieve version"
 msgstr "Kunne ikke hente version"
 
-#: VersionControl.py:296 preferences.glade:566
+#: VersionControl.py:297 preferences.glade:566
 msgid "RCS"
 msgstr "RCS"
 
@@ -2192,13 +2207,30 @@ msgstr "Vidne"
 msgid "Witness Editor"
 msgstr "Vidneeditor"
 
-#: WriteXML.py:86
+#: WriteXML.py:86 WriteXML.py:135 WriteXML.py:144 WriteXML.py:161
 msgid "Failure writing %s"
 msgstr "Fejl ved skrivning af %s"
 
 #: WriteXML.py:87
 msgid "An attempt is being made to recover the original file"
 msgstr "Den originale fil forsøges gendannet"
+
+#: WriteXML.py:136
+msgid ""
+"The database cannot be saved because you do not have permission to write to "
+"the directory. Please make sure you have write access to the directory and "
+"try again."
+msgstr ""
+"Databasen kunne ikke gemmes, fordi du ikke har skriverettighed til folderen. "
+"Sørg venligst for at få skriverettighed til folderen og prøv igen."
+
+#: WriteXML.py:145
+msgid ""
+"The database cannot be saved because you do not have permission to write to "
+"the file. Please make sure you have write access to the file and try again."
+msgstr ""
+"Databasen kunne ikke gemmes, fordi du ikke har skriverettighed til filen. "
+"Sørg venligst for at få skriverettighed til filen og prøv igen."
 
 #: calendars/Islamic.py:70
 msgid "Islamic"
@@ -2208,11 +2240,11 @@ msgstr "Islamisk"
 msgid "Persian"
 msgstr "Persisk"
 
-#: choose.glade:128 const.py:139 select_person.glade:128
+#: choose.glade:128 const.py:140 select_person.glade:128
 msgid "female"
 msgstr "kvinde"
 
-#: choose.glade:173 const.py:138 select_person.glade:173
+#: choose.glade:173 const.py:139 select_person.glade:173
 msgid "male"
 msgstr "mand"
 
@@ -2240,7 +2272,7 @@ msgstr "Type:"
 msgid "<b>Information</b>"
 msgstr "<b>Information</b>"
 
-#: const.py:112
+#: const.py:113
 msgid ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
@@ -2248,353 +2280,353 @@ msgstr ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) er "
 "et genealogiprogram til privatpersoner."
 
-#: const.py:127
+#: const.py:128
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr "Lars Kr. Lundin"
 
-#: const.py:171 const.py:291 gramps.glade:4543 gramps.glade:4736
+#: const.py:172 const.py:284 gramps.glade:4543 gramps.glade:4736
 #: gramps.glade:5176 gramps.glade:5356 gramps.glade:6979 gramps.glade:7225
 #: gramps.glade:7833 gramps.glade:8004
 msgid "Adopted"
 msgstr "Adopteret"
 
-#: const.py:172 gramps.glade:4565 gramps.glade:4758 gramps.glade:5198
+#: const.py:173 gramps.glade:4565 gramps.glade:4758 gramps.glade:5198
 #: gramps.glade:5378 gramps.glade:7001 gramps.glade:7247 gramps.glade:7855
 #: gramps.glade:8026
 msgid "Stepchild"
 msgstr "Stedbarn"
 
 # FIXME Better translation?
-#: const.py:173
+#: const.py:174
 msgid "Sponsored"
 msgstr "Sponsoreret"
 
 # FIXME Better translation?
-#: const.py:174 gramps.glade:4587 gramps.glade:4780 gramps.glade:7023
+#: const.py:175 gramps.glade:4587 gramps.glade:4780 gramps.glade:7023
 #: gramps.glade:7269
 msgid "Foster"
 msgstr "Pleje"
 
-#: const.py:177 const.py:497 const.py:505 gramps.glade:1455
+#: const.py:178 const.py:428 const.py:436 gramps.glade:1455
 #: mergedata.glade:218
 msgid "Other"
 msgstr "Anden"
 
-#: const.py:186 srcsel.glade:459
+#: const.py:187 srcsel.glade:459
 msgid "Very High"
 msgstr "Meget Høj"
 
-#: const.py:187 plugins/Merge.py:115 srcsel.glade:451
+#: const.py:188 plugins/Merge.py:115 srcsel.glade:451
 msgid "High"
 msgstr "Høj"
 
-#: const.py:188 srcsel.glade:443
+#: const.py:189 srcsel.glade:443
 msgid "Normal"
 msgstr "Normal"
 
-#: const.py:189 plugins/Merge.py:107 srcsel.glade:435
+#: const.py:190 plugins/Merge.py:107 srcsel.glade:435
 msgid "Low"
 msgstr "Lav"
 
-#: const.py:190 srcsel.glade:427
+#: const.py:191 srcsel.glade:427
 msgid "Very Low"
 msgstr "Meget lav"
 
-#: const.py:210
+#: const.py:217
 msgid "Alternate Marriage"
 msgstr "Andet ægteskab"
 
-#: const.py:211
+#: const.py:218
 msgid "Annulment"
 msgstr "annullering"
 
-#: const.py:212 const.py:306
+#: const.py:219 const.py:299
 msgid "Divorce Filing"
 msgstr "Skilsmissebegæring"
 
-#: const.py:213
+#: const.py:220
 msgid "Divorce"
 msgstr "Skilsmisse"
 
-#: const.py:214
+#: const.py:221
 msgid "Engagement"
 msgstr "Forlovelse"
 
-#: const.py:215
+#: const.py:222
 msgid "Marriage Contract"
 msgstr "Ægteskabskontrakt"
 
-#: const.py:216
+#: const.py:223
 msgid "Marriage License"
 msgstr "Ægteskabstilladelse"
 
-#: const.py:217
+#: const.py:224
 msgid "Marriage Settlement"
 msgstr "Ægtepagt"
 
-#: const.py:218
+#: const.py:225
 msgid "Marriage"
 msgstr "Ægteskab"
 
-#: const.py:292
+#: const.py:285
 msgid "Alternate Birth"
 msgstr "Anden Fødsel"
 
-#: const.py:293
+#: const.py:286
 msgid "Alternate Death"
 msgstr "Anden Død"
 
-#: const.py:294
+#: const.py:287
 msgid "Adult Christening"
 msgstr "Voksen Dåb"
 
-#: const.py:295
+#: const.py:288
 msgid "Baptism"
 msgstr "Dåb"
 
-#: const.py:296
+#: const.py:289
 msgid "Bar Mitzvah"
 msgstr "Bar Mitzvah"
 
-#: const.py:297
+#: const.py:290
 msgid "Bas Mitzvah"
 msgstr "Bas Mitzvah"
 
-#: const.py:298
+#: const.py:291
 msgid "Blessing"
 msgstr "Velsignelse"
 
-#: const.py:299
+#: const.py:292
 msgid "Burial"
 msgstr "Begravelse"
 
-#: const.py:300
+#: const.py:293
 msgid "Cause Of Death"
 msgstr "Dødsårsag"
 
-#: const.py:301
+#: const.py:294
 msgid "Census"
 msgstr "Folketælling"
 
-#: const.py:302
+#: const.py:295
 msgid "Christening"
 msgstr "Dåb"
 
-#: const.py:303
+#: const.py:296
 msgid "Confirmation"
 msgstr "Konfirmation"
 
-#: const.py:304
+#: const.py:297
 msgid "Cremation"
 msgstr "Kremering"
 
-#: const.py:305
+#: const.py:298
 msgid "Degree"
 msgstr "Eksamen"
 
-#: const.py:307
+#: const.py:300
 msgid "Education"
 msgstr "Uddannelse"
 
-#: const.py:308
+#: const.py:301
 msgid "Elected"
 msgstr "Valgt"
 
-#: const.py:309
+#: const.py:302
 msgid "Emigration"
 msgstr "Emigrering"
 
-#: const.py:310
+#: const.py:303
 msgid "First Communion"
 msgstr "Første altergang"
 
-#: const.py:311
+#: const.py:304
 msgid "Immigration"
 msgstr "Immigrering"
 
-#: const.py:312
+#: const.py:305
 msgid "Graduation"
 msgstr "Eksamen"
 
-#: const.py:313
+#: const.py:306
 msgid "Medical Information"
 msgstr "Medicinsk information"
 
-#: const.py:314
+#: const.py:307
 msgid "Military Service"
 msgstr "Militærtjeneste"
 
-#: const.py:315
+#: const.py:308
 msgid "Naturalization"
 msgstr "Naturalisering"
 
-#: const.py:316
+#: const.py:309
 msgid "Nobility Title"
 msgstr "Adelstitel"
 
-#: const.py:317
+#: const.py:310
 msgid "Number of Marriages"
 msgstr "Antal ægteskaber"
 
-#: const.py:318
+#: const.py:311
 msgid "Occupation"
 msgstr "Profession"
 
-#: const.py:319
+#: const.py:312
 msgid "Ordination"
 msgstr "Ordination"
 
-#: const.py:320
+#: const.py:313
 msgid "Probate"
 msgstr "Skifte"
 
-#: const.py:321
+#: const.py:314
 msgid "Property"
 msgstr "Ejendom"
 
-#: const.py:322
+#: const.py:315
 msgid "Religion"
 msgstr "Religion"
 
-#: const.py:323
+#: const.py:316
 msgid "Residence"
 msgstr "Bopæl"
 
-#: const.py:324
+#: const.py:317
 msgid "Retirement"
 msgstr "Pensionering"
 
-#: const.py:325
+#: const.py:318
 msgid "Will"
 msgstr "Testamente"
 
-#: const.py:392
+#: const.py:367
 msgid "Caste"
 msgstr "Kaste"
 
-#: const.py:394
+#: const.py:369
 msgid "Identification Number"
 msgstr "Identifikationsnummer"
 
-#: const.py:395
+#: const.py:370
 msgid "National Origin"
 msgstr "Oprindelsesland"
 
-#: const.py:396
+#: const.py:371
 msgid "Social Security Number"
 msgstr "CPR-nummer"
 
-#: const.py:435
+#: const.py:389
 msgid "Number of Children"
 msgstr "Antal børn"
 
-#: const.py:493
+#: const.py:424
 msgid "A legal or common-law relationship between a husband and wife"
 msgstr ""
 "Et registreret eller ægteskabslignende forhold mellem en mand og kvinde"
 
-#: const.py:494
+#: const.py:425
 msgid "No legal or common-law relationship between man and woman"
 msgstr ""
 "Intet registreret eller ægteskabslignende forhold mellem en mand og kvinde"
 
-#: const.py:494 const.py:502
+#: const.py:425 const.py:433
 msgid "Unmarried"
 msgstr "Ugift"
 
-#: const.py:495
+#: const.py:426
 msgid "An established relationship between members of the same sex"
 msgstr "Et etableret forhold mellem medlemmer af det samme køn"
 
-#: const.py:496
+#: const.py:427
 msgid "Unknown relationship between a man and woman"
 msgstr "Ukendt forhold mellem mand og kvinde"
 
-#: const.py:497
+#: const.py:428
 msgid "An unspecified relationship between a man and woman"
 msgstr "Et ikke specificeret forhold mellem en mand og kvinde"
 
-#: const.py:521
+#: const.py:448
 msgid "No definition available"
 msgstr "Ingen definition tilgængelig"
 
-#: const.py:947
-msgid "Child"
-msgstr "Barn"
-
-#: const.py:947 const.py:953 const.py:959
-msgid "<No Status>"
-msgstr "<Ingen Status>"
-
-#: const.py:947 const.py:953 const.py:959
-msgid "Cleared"
-msgstr "Ryddet"
-
-#: const.py:947 const.py:953 const.py:959
-msgid "Completed"
-msgstr "Komplet"
-
-#: const.py:948
-msgid "Infant"
-msgstr "Spæd"
-
-#: const.py:948 const.py:954
-msgid "Stillborn"
-msgstr "Dødfødt"
-
-#: const.py:948 const.py:954 const.py:960
-msgid "Pre-1970"
-msgstr "Før 1970"
-
-#: const.py:948 const.py:954 const.py:960
-msgid "Qualified"
-msgstr "Kvalificeret"
-
-#: const.py:949 const.py:955 const.py:961
-msgid "Submitted"
-msgstr "Afgivet"
-
-#: const.py:949 const.py:955 const.py:961
-msgid "Uncleared"
-msgstr "Uafklaret"
-
-#: const.py:953
-msgid "BIC"
-msgstr "BIC"
-
-#: const.py:954 const.py:960
-msgid "DNS"
-msgstr "DNS"
-
-#: const.py:959
-msgid "Canceled"
-msgstr "Afbrudt"
-
-#: const.py:960
-msgid "DNS/CAN"
-msgstr "DNS/CAN"
-
-#: const.py:966 const.py:973
+#: const.py:463
 msgid "Also Known As"
 msgstr "Alias"
 
-#: const.py:967 const.py:974
+#: const.py:464
 msgid "Birth Name"
 msgstr "Navn ved Fødslen"
 
-#: const.py:968 const.py:975
+#: const.py:465
 msgid "Married Name"
 msgstr "Navn som gift"
 
-#: const.py:969 const.py:976
+#: const.py:466
 msgid "Other Name"
 msgstr "Andet Navn"
 
-#: const.py:982
+#: const.py:861
+msgid "Child"
+msgstr "Barn"
+
+#: const.py:861 const.py:867 const.py:873
+msgid "<No Status>"
+msgstr "<Ingen Status>"
+
+#: const.py:861 const.py:867 const.py:873
+msgid "Cleared"
+msgstr "Ryddet"
+
+#: const.py:861 const.py:867 const.py:873
+msgid "Completed"
+msgstr "Komplet"
+
+#: const.py:862
+msgid "Infant"
+msgstr "Spæd"
+
+#: const.py:862 const.py:868
+msgid "Stillborn"
+msgstr "Dødfødt"
+
+#: const.py:862 const.py:868 const.py:874
+msgid "Pre-1970"
+msgstr "Før 1970"
+
+#: const.py:862 const.py:868 const.py:874
+msgid "Qualified"
+msgstr "Kvalificeret"
+
+#: const.py:863 const.py:869 const.py:875
+msgid "Submitted"
+msgstr "Afgivet"
+
+#: const.py:863 const.py:869 const.py:875
+msgid "Uncleared"
+msgstr "Uafklaret"
+
+#: const.py:867
+msgid "BIC"
+msgstr "BIC"
+
+#: const.py:868 const.py:874
+msgid "DNS"
+msgstr "DNS"
+
+#: const.py:873
+msgid "Canceled"
+msgstr "Afbrudt"
+
+#: const.py:874
+msgid "DNS/CAN"
+msgstr "DNS/CAN"
+
+#: const.py:881
 msgid "Flowed"
 msgstr "Flydt"
 
-#: const.py:983
+#: const.py:882
 msgid "Preformatted"
 msgstr "Preformatteret"
 
@@ -2890,7 +2922,7 @@ msgstr "OpenOffice.org Writer"
 msgid "OpenOffice.org Draw"
 msgstr "OpenOffice.org Draw"
 
-#: docgen/PSDrawDoc.py:377 plugins/GraphViz.py:157 plugins/RelGraph.py:189
+#: docgen/PSDrawDoc.py:404 plugins/GraphViz.py:157 plugins/RelGraph.py:189
 msgid "PostScript"
 msgstr "PostScript"
 
@@ -2898,7 +2930,7 @@ msgstr "PostScript"
 msgid "The ReportLab modules are not installed"
 msgstr "ReportLabs moduler er ikke installeret"
 
-#: docgen/PdfDoc.py:588 docgen/PdfDoc.py:597 docgen/PdfDoc.py:607
+#: docgen/PdfDoc.py:595 docgen/PdfDoc.py:604 docgen/PdfDoc.py:614
 msgid "PDF"
 msgstr "PDF"
 
@@ -3167,8 +3199,7 @@ msgid ""
 "Select an existing media object from the database and place it in this "
 "gallery"
 msgstr ""
-"Vælg et eksisterende medieobjekt fra databasen og placer det i dette "
-"galleri"
+"Vælg et eksisterende medieobjekt fra databasen og placer det i dette galleri"
 
 #: edit_person.glade:3850 gramps.glade:6090 marriage.glade:1601
 #: places.glade:1568
@@ -3397,7 +3428,7 @@ msgstr "Navne som matcher det regulære udtryk ..."
 #: plugins/AncestorReport.py:525 plugins/Ancestors.py:1130
 #: plugins/CustomBookText.py:378 plugins/DescendReport.py:415
 #: plugins/DetAncestralReport.py:1221 plugins/DetDescendantReport.py:1230
-#: plugins/FamilyGroup.py:770 plugins/FtmStyleAncestors.py:1263
+#: plugins/FamilyGroup.py:772 plugins/FtmStyleAncestors.py:1263
 #: plugins/FtmStyleDescendants.py:1672 plugins/IndivComplete.py:828
 #: plugins/IndivSummary.py:640 plugins/SimpleBookTitle.py:300
 #: plugins/SimpleBookTitle.py:301 plugins/SimpleBookTitle.py:302
@@ -4013,7 +4044,7 @@ msgstr ""
 "En fejl blev konstateret ved forsøg på at danne filen. Styresystemet "
 "rapporterede \"%s\""
 
-#: gramps_main.py:1193 gramps_main.py:1203
+#: gramps_main.py:1193
 msgid "An error was detected while trying to create the file"
 msgstr "En fejl opstod ved forsøg på at danne filen"
 
@@ -4315,7 +4346,7 @@ msgstr "Forfatterens e-mail:"
 #: plugins/AncestorChart.py:225 plugins/AncestorChart2.py:422
 #: plugins/AncestorReport.py:411 plugins/Ancestors.py:791
 #: plugins/Ancestors.py:807 plugins/Ancestors.py:813 plugins/DesGraph.py:315
-#: plugins/FamilyGroup.py:621 plugins/FanChart.py:283
+#: plugins/FamilyGroup.py:623 plugins/FanChart.py:283
 #: plugins/FtmStyleAncestors.py:968 plugins/FtmStyleAncestors.py:973
 #: plugins/FtmStyleAncestors.py:978 plugins/FtmStyleAncestors.py:983
 #: plugins/FtmStyleDescendants.py:1377 plugins/FtmStyleDescendants.py:1382
@@ -4331,7 +4362,7 @@ msgid "Ancestor Chart"
 msgstr "Anetavle"
 
 #: plugins/AncestorChart.py:242 plugins/AncestorChart.py:560
-#: plugins/AncestorChart2.py:462 plugins/AncestorChart2.py:818
+#: plugins/AncestorChart2.py:462 plugins/AncestorChart2.py:836
 #: plugins/DesGraph.py:329 plugins/DesGraph.py:586 plugins/FanChart.py:310
 #: plugins/FanChart.py:462 plugins/GraphViz.py:83 plugins/GraphViz.py:531
 #: plugins/RelGraph.py:111 plugins/RelGraph.py:912 plugins/TimeLine.py:396
@@ -4364,10 +4395,10 @@ msgstr "Tillader dig at tilpasse oplysningerne i kasserne i rapporten"
 msgid "Ancestor Chart for GRAMPS Book"
 msgstr "Anetavle til GRAMPS Bog"
 
-#: plugins/AncestorChart.py:561 plugins/AncestorChart2.py:819
+#: plugins/AncestorChart.py:561 plugins/AncestorChart2.py:837
 #: plugins/AncestorReport.py:515 plugins/Ancestors.py:1120
 #: plugins/DescendReport.py:405 plugins/DetAncestralReport.py:1210
-#: plugins/DetDescendantReport.py:1219 plugins/FamilyGroup.py:762
+#: plugins/DetDescendantReport.py:1219 plugins/FamilyGroup.py:764
 #: plugins/FtmStyleAncestors.py:1253 plugins/FtmStyleDescendants.py:1662
 #: plugins/GraphViz.py:530 plugins/IndivComplete.py:820
 #: plugins/IndivSummary.py:629 plugins/RelGraph.py:911 plugins/Summary.py:162
@@ -4375,11 +4406,11 @@ msgstr "Anetavle til GRAMPS Bog"
 msgid "Beta"
 msgstr "Beta"
 
-#: plugins/AncestorChart.py:562 plugins/AncestorChart2.py:820
+#: plugins/AncestorChart.py:562 plugins/AncestorChart2.py:838
 msgid "Produces a graphical ancestral tree graph"
 msgstr "Laver et grafisk stamtræ"
 
-#: plugins/AncestorChart.py:571 plugins/AncestorChart2.py:829
+#: plugins/AncestorChart.py:571 plugins/AncestorChart2.py:847
 #: plugins/DesGraph.py:597 plugins/FanChart.py:470 plugins/TimeLine.py:667
 msgid "Graphics"
 msgstr "Grafik"
@@ -4396,7 +4427,7 @@ msgstr "Ko_mprimer tavle"
 msgid "Sc_ale to fit on a single page"
 msgstr "Tilpas ved skalering til en enkelt side"
 
-#: plugins/AncestorChart2.py:817 plugins/AncestorChart2.py:828
+#: plugins/AncestorChart2.py:835 plugins/AncestorChart2.py:846
 msgid "Ancestor Chart (Wall Chart)"
 msgstr "Anetavle (Vægtavle)"
 
@@ -4486,7 +4517,7 @@ msgstr "Ahnentafel Rapport"
 #: plugins/Ancestors.py:846 plugins/Ancestors.py:1119
 #: plugins/DescendReport.py:132 plugins/DescendReport.py:404
 #: plugins/DetAncestralReport.py:1211 plugins/DetDescendantReport.py:1220
-#: plugins/FamilyGroup.py:361 plugins/FamilyGroup.py:761
+#: plugins/FamilyGroup.py:363 plugins/FamilyGroup.py:763
 #: plugins/FtmStyleAncestors.py:1006 plugins/FtmStyleAncestors.py:1252
 #: plugins/FtmStyleDescendants.py:1415 plugins/FtmStyleDescendants.py:1661
 #: plugins/IndivComplete.py:473 plugins/IndivComplete.py:821
@@ -4503,7 +4534,7 @@ msgid "Ahnentafel Report for GRAMPS Book"
 msgstr "Ahnentafel Rapport til GRAMPS Bog"
 
 #: plugins/AncestorReport.py:397 plugins/Ancestors.py:776
-#: plugins/DescendReport.py:293 plugins/FamilyGroup.py:612
+#: plugins/DescendReport.py:293 plugins/FamilyGroup.py:614
 #: plugins/FtmStyleAncestors.py:953 plugins/FtmStyleDescendants.py:1362
 #: plugins/IndivComplete.py:662 plugins/IndivSummary.py:590
 #: plugins/SimpleBookTitle.py:118 plugins/TimeLine.py:339
@@ -4967,7 +4998,7 @@ msgstr "Efterkommergraf til GRAMPS Bog"
 msgid "Generates a graph of descendants of the active person"
 msgstr "Danner en graf over den aktive persons efterkommere"
 
-#: plugins/DesGraph.py:588 plugins/FanChart.py:463 plugins/Partition.py:222
+#: plugins/DesGraph.py:588 plugins/FanChart.py:463
 msgid "Alpha"
 msgstr "Alfa"
 
@@ -5387,8 +5418,8 @@ msgstr "Ingen passer"
 msgid "Event Comparison"
 msgstr "Hændelsessammenligning"
 
-#: plugins/EventCmp.py:308 plugins/FamilyGroup.py:171
-#: plugins/FamilyGroup.py:274 plugins/FamilyGroup.py:276
+#: plugins/EventCmp.py:308 plugins/FamilyGroup.py:173
+#: plugins/FamilyGroup.py:276 plugins/FamilyGroup.py:278
 msgid "Death"
 msgstr "Død"
 
@@ -5404,51 +5435,51 @@ msgstr ""
 "Hjælper ved analyse af data ved at tillade udviklingen af egne filtre, der "
 "kan bruges på databasen til at finde lignende hændelser"
 
-#: plugins/FamilyGroup.py:133
+#: plugins/FamilyGroup.py:135
 msgid "Husband"
 msgstr "Mand"
 
-#: plugins/FamilyGroup.py:135
+#: plugins/FamilyGroup.py:137
 msgid "Wife"
 msgstr "Hustru"
 
-#: plugins/FamilyGroup.py:292 plugins/FamilyGroup.py:386
-#: plugins/FamilyGroup.py:500
+#: plugins/FamilyGroup.py:294 plugins/FamilyGroup.py:388
+#: plugins/FamilyGroup.py:502
 msgid "Spouse"
 msgstr "Ægtefælle"
 
-#: plugins/FamilyGroup.py:318 plugins/FamilyGroup.py:361
-#: plugins/FamilyGroup.py:480 plugins/FamilyGroup.py:760
-#: plugins/FamilyGroup.py:769
+#: plugins/FamilyGroup.py:320 plugins/FamilyGroup.py:363
+#: plugins/FamilyGroup.py:482 plugins/FamilyGroup.py:762
+#: plugins/FamilyGroup.py:771
 msgid "Family Group Report"
 msgstr "Familierapport"
 
-#: plugins/FamilyGroup.py:335 plugins/IndivComplete.py:287
+#: plugins/FamilyGroup.py:337 plugins/IndivComplete.py:287
 #: plugins/IndivSummary.py:185 plugins/WebPage.py:607
 msgid "Children"
 msgstr "Børn"
 
-#: plugins/FamilyGroup.py:365
+#: plugins/FamilyGroup.py:367
 msgid "Family Group Report for %s"
 msgstr "Familierapport for %s"
 
-#: plugins/FamilyGroup.py:370
+#: plugins/FamilyGroup.py:372
 msgid "Save Family Group Report"
 msgstr "Gem Familierapport"
 
-#: plugins/FamilyGroup.py:484
+#: plugins/FamilyGroup.py:486
 msgid "Family Group Report for GRAMPS Book"
 msgstr "Familiegrupperapport til GRAMPS Bog"
 
-#: plugins/FamilyGroup.py:630
+#: plugins/FamilyGroup.py:632
 msgid "The style used for the text related to the children."
 msgstr "Stilen, der bruges til tekst der handler om børnene."
 
-#: plugins/FamilyGroup.py:639
+#: plugins/FamilyGroup.py:641
 msgid "The style used for the parent's name"
 msgstr "Stilen, der bruges til forælderens navn"
 
-#: plugins/FamilyGroup.py:763
+#: plugins/FamilyGroup.py:765
 msgid ""
 "Creates a family group report, showing information on a set of parents and "
 "their children."
@@ -5493,56 +5524,52 @@ msgstr "Vælg..."
 msgid "Select person from a list"
 msgstr "Vælg en person fra en liste"
 
-#: plugins/FilterEditor.py:173
-msgid "Select Person"
-msgstr "Vælg en Person"
-
 #: plugins/FilterEditor.py:189
 msgid "Not a valid person"
 msgstr "Ugyldig person"
 
-#: plugins/FilterEditor.py:243
+#: plugins/FilterEditor.py:244
 msgid "User defined filters"
 msgstr "Brugerdefinerede filtre"
 
-#: plugins/FilterEditor.py:311
+#: plugins/FilterEditor.py:312
 msgid "Define filter"
 msgstr "Definer filter"
 
-#: plugins/FilterEditor.py:394
+#: plugins/FilterEditor.py:395
 msgid "Add Rule"
 msgstr "Tilføj Regel"
 
-#: plugins/FilterEditor.py:400
+#: plugins/FilterEditor.py:401
 msgid "Edit Rule"
 msgstr "Editer Regel"
 
-#: plugins/FilterEditor.py:467
+#: plugins/FilterEditor.py:469
 msgid "Include original person"
 msgstr "Medtag oprindelig person"
 
-#: plugins/FilterEditor.py:480
+#: plugins/FilterEditor.py:482
 msgid "Rule Name"
 msgstr "Regel Navn"
 
-#: plugins/FilterEditor.py:543 rule.glade:1213
+#: plugins/FilterEditor.py:545 rule.glade:1213
 msgid "No rule selected"
 msgstr "Ingen regel er valgt"
 
-#: plugins/FilterEditor.py:593
+#: plugins/FilterEditor.py:597
 msgid "Filter Test"
 msgstr "Filter Test"
 
-#: plugins/FilterEditor.py:632
+#: plugins/FilterEditor.py:636
 msgid "Custom Filter Editor"
 msgstr "Tilpasset Filter Editor"
 
-#: plugins/FilterEditor.py:633 plugins/FilterEditor.py:646
-#: plugins/RelCalc.py:160 plugins/Verify.py:418 plugins/soundgen.py:97
+#: plugins/FilterEditor.py:637 plugins/FilterEditor.py:650
+#: plugins/RelCalc.py:161 plugins/Verify.py:418 plugins/soundgen.py:97
 msgid "Utilities"
 msgstr "Redskaber"
 
-#: plugins/FilterEditor.py:634
+#: plugins/FilterEditor.py:638
 msgid ""
 "The Custom Filter Editor builds custom filters that can be used to select "
 "people included in reports, exports, and other utilities."
@@ -5550,11 +5577,11 @@ msgstr ""
 "Den Tilpassede Filter Editor bygger tilpassede filtre, der kan bruges til at "
 "vælge personer medtaget i rapporter, eksporteringer, og andre redskaber."
 
-#: plugins/FilterEditor.py:645
+#: plugins/FilterEditor.py:649
 msgid "System Filter Editor"
 msgstr "System Filter Editor"
 
-#: plugins/FilterEditor.py:647
+#: plugins/FilterEditor.py:651
 msgid ""
 "The System Filter Editor builds custom filters that can be used by anyone on "
 "the system to select people included in reports, exports, and other "
@@ -6369,26 +6396,6 @@ msgstr ""
 "Gennemsøger hele databasen for at se efter personregistreringer, der "
 "muligvis repræsenterer den samme person."
 
-#: plugins/Partition.py:221
-msgid "Partitions"
-msgstr "Partitioner"
-
-#: plugins/Partition.py:223
-msgid "Export"
-msgstr "Eksporter"
-
-#: plugins/Partition.py:224
-msgid ""
-"This program partitions individuals in a database into disjoint partitions.\n"
-"A partition is composed of people related by one or more multiple "
-"relations.\n"
-"There should be no known relationship between people in different partitions."
-msgstr ""
-"Dette program opdeler individer i en database i adskilte partitioner.\n"
-"En partion består af personer, der er indbyrdes beslægtede.\n"
-"Der bør ikke være noget kendt slægtskab mellem personer i forskellige "
-"partitioner."
-
 #: plugins/PatchNames.py:103
 msgid "No modifications made"
 msgstr "Ingen rettelser foretaget"
@@ -6514,35 +6521,35 @@ msgstr "Temporær folder %s er ikke skrivbar"
 msgid "Error extracting into %s"
 msgstr "Fejl ved udtræk ind i %s"
 
-#: plugins/RelCalc.py:82 plugins/RelCalc.py:159
+#: plugins/RelCalc.py:83 plugins/RelCalc.py:160
 msgid "Relationship calculator"
 msgstr "Slægtskabsberegning"
 
-#: plugins/RelCalc.py:87 plugins/TimeLine.py:377
+#: plugins/RelCalc.py:88 plugins/TimeLine.py:377
 msgid "Birth Date"
 msgstr "Fødselsdato"
 
-#: plugins/RelCalc.py:119
+#: plugins/RelCalc.py:120
 msgid "Their common ancestor is %s."
 msgstr "Deres fælles ane er %s."
 
-#: plugins/RelCalc.py:123
+#: plugins/RelCalc.py:124
 msgid "Their common ancestors are %s and %s."
 msgstr "Deres fælles aner er %s og %s."
 
-#: plugins/RelCalc.py:128
+#: plugins/RelCalc.py:129
 msgid "Their common ancestors are : "
 msgstr "Deres fælles aner er : "
 
-#: plugins/RelCalc.py:143
+#: plugins/RelCalc.py:144
 msgid "%(person)s and %(active_person)s are not related."
 msgstr "%(person)s og %(active_person)s er ikke beslægtede."
 
-#: plugins/RelCalc.py:146
+#: plugins/RelCalc.py:147
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
 msgstr "%(person)s er %(relationship)s af %(active_person)s."
 
-#: plugins/RelCalc.py:161
+#: plugins/RelCalc.py:162
 msgid "Calculates the relationship between two people"
 msgstr "Beregner slægtskabet mellem to personer"
 
@@ -6616,9 +6623,9 @@ msgstr "Bogens Undertitel"
 msgid "Copyright %d %s"
 msgstr "Ophavsret %d %s"
 
-#: plugins/SimpleBookTitle.py:278
-msgid "Simple Book Title"
-msgstr "Enkel Bog Titel"
+#: plugins/SimpleBookTitle.py:278 plugins/SimpleBookTitle.py:563
+msgid "Title Page"
+msgstr "Titelside"
 
 #: plugins/SimpleBookTitle.py:282
 msgid "Title Page for GRAMPS Book"
@@ -6650,10 +6657,6 @@ msgstr "Preview"
 #: plugins/SimpleBookTitle.py:336
 msgid "Image"
 msgstr "Billede"
-
-#: plugins/SimpleBookTitle.py:563
-msgid "Title Page"
-msgstr "Titelside"
 
 #: plugins/Summary.py:97
 msgid "Individuals"
@@ -8256,6 +8259,28 @@ msgstr "<b>Retstilling</b>"
 #: styles.glade:1336
 msgid "<b>Paragraph options</b>"
 msgstr "<b>Sætningsvalgmuligheder</b>"
+
+#~ msgid "Partitions"
+#~ msgstr "Partitioner"
+
+#~ msgid "Export"
+#~ msgstr "Eksporter"
+
+#~ msgid ""
+#~ "This program partitions individuals in a database into disjoint "
+#~ "partitions.\n"
+#~ "A partition is composed of people related by one or more multiple "
+#~ "relations.\n"
+#~ "There should be no known relationship between people in different "
+#~ "partitions."
+#~ msgstr ""
+#~ "Dette program opdeler individer i en database i adskilte partitioner.\n"
+#~ "En partion består af personer, der er indbyrdes beslægtede.\n"
+#~ "Der bør ikke være noget kendt slægtskab mellem personer i forskellige "
+#~ "partitioner."
+
+#~ msgid "Simple Book Title"
+#~ msgstr "Enkel Bog Titel"
 
 #~ msgid "Exactly two people must be selected to perform a merge."
 #~ msgstr "Præcis to personer skal vælges for at kunne slå dem sammen."
