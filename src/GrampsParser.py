@@ -469,7 +469,7 @@ class GrampsParser:
 
     def start_objref(self,attrs):
         self.objref = RelLib.MediaRef()
-        self.objref.set_reference(self.db.find_object_from_id(attrs['ref']))
+        self.objref.set_reference_id(attrs['ref'])
         if attrs.has_key('priv'):
             self.objref.set_privacy(int(attrs['priv']))
         if self.family:
@@ -507,7 +507,7 @@ class GrampsParser:
     def start_photo(self,attrs):
         self.photo = RelLib.MediaObject()
         self.pref = RelLib.MediaRef()
-        self.pref.set_reference(self.photo)
+        self.pref.set_reference_id(self.photo.get_id())
         
         for key in attrs.keys():
             if key == "descrip" or key == "description":
@@ -1033,7 +1033,8 @@ class GrampsImportParser(GrampsParser):
 
     def start_objref(self,attrs):
         self.objref = RelLib.MediaRef()
-        self.objref.set_reference(self.db.find_object_no_conflicts(attrs['ref'],self.MediaFileMap))
+        id = self.db.find_object_no_conflicts(attrs['ref'],self.MediaFileMap).get_id()
+        self.objref.set_reference_id(id)
         if attrs.has_key('priv'):
             self.objref.set_privacy(int(attrs['priv']))
         if self.family:

@@ -39,10 +39,4 @@ class GrampsXML(RelLib.GrampsDB):
         
     def load(self,name,callback):
         ReadXML.loadData(self,name,callback)
-#         for key in self.person_map.keys():
-#             data = self.person_map[key]
-#             name = data[2]
-#             print key,data
-#             self.add_surname(name.get_surname())
-        
         return 1

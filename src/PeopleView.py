@@ -286,6 +286,7 @@ class PeopleView:
         self.parent.load_person(self.parent.active_person)
 
     def apply_filter(self,current_model=None):
+        
         self.parent.status_text(_('Updating display...'))
 
         datacomp = self.DataFilter.compare
