@@ -69,11 +69,15 @@ def runTool(database,active_person,callback):
     glade_file = base + os.sep + "verify.glade"
 
     verifySettings = gtk.glade.XML(glade_file,"verify_settings")
-
     verifySettings.signal_autoconnect({
         "destroy_passed_object" : Utils.destroy_passed_object,
         "on_verify_ok_clicked" : on_apply_clicked
         })
+
+    Utils.set_titles(verifySettings.get_widget('verify_settings'),
+                     verifySettings.get_widget('title'),
+                     _('Database Verify'))
+
 
 def on_apply_clicked(obj):
     global db 
@@ -269,6 +273,9 @@ def on_apply_clicked(obj):
         text = "WARNINGS:\n"+warn
 	    
     verifyResult = gtk.glade.XML(glade_file,"verify_result")
+    Utils.set_titles(verifyResult.get_widget('verify_result'),
+                     verifyResult.get_widget('title'),
+                     _('Database Verify'))
     
     verifyResult.signal_autoconnect({
         "destroy_passed_object" : Utils.destroy_passed_object,

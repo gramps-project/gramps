@@ -315,13 +315,18 @@ class RelCalc:
         self.glade = gtk.glade.XML(glade_file,"relcalc")
 
         name = self.person.getPrimaryName().getRegularName()
+
+        Utils.set_titles(self.glade.get_widget('relcalc'),
+                         self.glade.get_widget('title'),
+                         _('Relationshp to %s') % name,
+                         _('Relationship calculator'))
     
-        self.glade.get_widget("name").set_text(_("Relationship to %s") % name)
         self.people = self.glade.get_widget("peopleList")
 
         self.clist = ListModel.ListModel(self.people, [(_('Name'),3,150),(_('ID'),1,50),
-                                                       (_('Birthday'),4,150),
-                                                       ('',-1,0),('',-1,0)])
+                                                       (_('Birth Date'),4,150),
+                                                       ('',-1,0),('',-1,0)],
+                                         self.on_apply_clicked)
         self.clist.new_model()
         for key in self.db.getPersonKeys():
             p = self.db.getPerson(key)

@@ -88,7 +88,7 @@ class ChangeTypes:
         else:
             msg = _("%d event records were modified") % modified
             
-        OkDialog(msg)
+        OkDialog(_('Change types'),msg)
         Utils.destroy_passed_object(obj)
 
 #------------------------------------------------------------------------
