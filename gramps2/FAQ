@@ -1,11 +1,11 @@
-*** This is GRAMPS Frequently Asked Questions ***
+**** This is GRAMPS Frequently Asked Questions ****
 
 The questions below frequently come up in mailing list discussions and forums.
 This list is by no means complete. If you would like to add questions/answers 
 to this list, please email your suggestions to gramps-devel@lists.sf.net
 
 
-*** Index ***
+**** Index ****
 
 
  1. What is GRAMPS?
@@ -55,7 +55,7 @@ to this list, please email your suggestions to gramps-devel@lists.sf.net
 22. I found a bug and I want it fixed right now! What do I do?
 
 
-*** Questions and answers ***
+**** Questions and answers ****
 
 
 1. What is GRAMPS?
@@ -276,6 +276,6 @@ If the above explanations seem vague, please follow this link
 http://www.chiark.greenend.org.uk/~sgtatham/bugs.html
 
 
-*** End of GRAMPS Frequently Asked Questions ***
+**** End of GRAMPS Frequently Asked Questions ****
 
 $Id$
