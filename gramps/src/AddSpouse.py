@@ -104,9 +104,17 @@ class AddSpouse:
         self.relation_type.set_text(_("Married"))
 
     def select_row(self,obj,a,b,c):
+        """
+        Called with a row has be unselected. Used to ensable the OK button
+        when a row has been selected.
+        """
         self.ok.set_sensitive(1)
 
     def unselect_row(self,obj,a,b,c):
+        """
+        Called with a row has be unselected. Used to disable the OK button
+        when nothing is selected.
+        """
         self.ok.set_sensitive(0)
         
     def new_spouse_clicked(self,obj):
@@ -130,10 +138,15 @@ class AddSpouse:
         QuickAdd.QuickAdd(self.db,gen,self.update_list)
 
     def update_list(self,person):
+        """
+        Updates the potential spouse list after a person has been added
+        to database. Called by the QuickAdd class when the dialog has
+        been closed.
+        """
         self.addperson(person)
         self.relation_type_changed(self.relation_type)
-        row = self.spouse_list.find_row_from_data(person)
         self.sorter.sort_list()
+        row = self.spouse_list.find_row_from_data(person.getId())
         self.spouse_list.select_row(row,0)
         self.spouse_list.moveto(row,0)
 
