@@ -55,7 +55,7 @@ class AncestorReport(Report):
             gnome.ui.GnomeErrorDialog(_("Could not open %s") % output + "\n" + msg)
         
     def filter(self,person,index):
-        if person == None or index >= (1 << 31):
+        if person == None or index >= (1 << 30):
             return
         self.map[index] = person
     
@@ -79,7 +79,7 @@ class AncestorReport(Report):
         generation = 0
 
         for key in keys :
-            if generation == 0 or key >= ( 1 << 31):
+            if generation == 0 or key >= ( 1 << 30):
                 if self.pgbrk and generation > 0:
                     self.doc.page_break()
                 self.doc.start_paragraph("Generation")

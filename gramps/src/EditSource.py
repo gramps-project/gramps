@@ -238,7 +238,7 @@ class DelSrcQuery:
         Utils.modified()
 
         for key in self.db.getPersonKeys():
-            p = self.getPerson(key)
+            p = self.db.getPerson(key)
             for v in p.getEventList() + [p.getBirth(), p.getDeath()]:
                 self.delete_source(v)
 

@@ -32,7 +32,7 @@ try:
     from reportlab.lib.units import cm
     from reportlab.lib.colors import Color
 except:
-    raise _("Missing Libraries"), _("The ReportLab modules are not installed")
+    raise Plugins.MissingLibraries, _("The ReportLab modules are not installed")
 
 def make_color(color):
     return Color(float(color[0])/255.0, float(color[1])/255.0,

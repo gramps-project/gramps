@@ -77,11 +77,20 @@ class SubstKeywords:
         if len(person.getFamilyList()) > 0:
             f = person.getFamilyList()[0]
             if f.getFather() == person:
-                self.s = f.getMother().getPrimaryName().getRegularName()
-                self.S = f.getMother().getPrimaryName().getName()
+                if f.getMother():
+                    self.s = f.getMother().getPrimaryName().getRegularName()
+                    self.S = f.getMother().getPrimaryName().getName()
+                else:
+                    self.s = ""
+                    self.S = ""
             else:
-                self.s = ""
-                self.S = ""
+                if f.getFather():
+                    self.s = f.getFather().getPrimaryName().getRegularName()
+                    self.S = f.getFather().getPrimaryName().getName()
+                else:
+                    self.s = ""
+                    self.S = ""
+                
             self.m = ''
             self.M = ''
             for e in f.getEventList():

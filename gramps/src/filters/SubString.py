@@ -30,7 +30,9 @@ class SubString(Filter.Filter):
     "Names that contain a substring"
 
     def match(self,person):
-        return string.find(Utils.phonebook_name(person),self.text) >= 0
+        s1 = string.lower(Utils.phonebook_name(person))
+        s2 = string.lower(self.text)
+        return string.find(s1,s2) >= 0
 
 #------------------------------------------------------------------------
 #

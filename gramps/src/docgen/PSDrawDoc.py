@@ -69,11 +69,11 @@ class PSDrawDoc(DrawDoc):
         return "%s findfont %d scalefont setfont\n" % (font_name,font.get_size())
     
     def open(self,filename):
-        if filename[-4:] != ".ps":
+        if filename[-3:] != ".ps":
             self.filename = filename + ".ps"
         else:
             self.filename = filename
-        self.f = open(filename,"w")
+        self.f = open(self.filename,"w")
         self.f.write('%!PS-Adobe-3.0\n')
         self.f.write('%%LanguageLevel: 2\n')
         self.f.write('%%Pages: (atend)\n')
