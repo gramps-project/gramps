@@ -91,22 +91,26 @@ class CheckIntegrity:
         self.broken_links = []
         for family_id in self.db.get_family_keys():
             family = self.db.find_family_from_id(family_id)
-            father = self.db.find_family_from_id(family.get_father_id())
-            mother = self.db.find_family_from_id(family.get_mother_id())
+            father_id = family.get_father_id()
+            mother_id = family.get_mother_id()
+            if father_id:
+                father = self.db.find_person_from_id(father_id)
+            if mother_id:
+                mother = self.db.find_person_from_id(mother_id)
 
-            if father and family_id not in father.get_family_id_list():
+            if father_id and family_id not in father.get_family_id_list():
                 Utils.modified()
-                self.broken_parent_links.append((father,family))
+                self.broken_parent_links.append((father_id,family_id))
                 father.add_family_id(family_id)
                 self.db.commit_person(father)
-            if mother and family_id not in mother.get_family_id_list():
+            if mother_id and family_id not in mother.get_family_id_list():
                 Utils.modified()
-                self.broken_parent_links.append((mother,family))
+                self.broken_parent_links.append((mother_id,family_id))
                 mother.add_family_id(family_id)
                 self.db.commit_person(mother)
             for child_id in family.get_child_id_list():
                 child = self.db.find_person_from_id(child_id)
-                if family == child.get_main_parents_family_id():
+                if family_id == child.get_main_parents_family_id():
                     continue
                 for family_type in child.get_parent_family_id_list():
                     if family_type[0] == family_id:
@@ -115,7 +119,7 @@ class CheckIntegrity:
                     family.remove_child_id(child_id)
                     self.db.commit_family(family)
                     Utils.modified()
-                    self.broken_links.append((child,family))
+                    self.broken_links.append((child_id,family_id))
 
     def cleanup_missing_photos(self,cl=0):
         missmedia_action = 0
@@ -230,35 +234,37 @@ class CheckIntegrity:
     def cleanup_empty_families(self,automatic):
         for key in self.db.get_family_keys():
             family = self.db.find_family_from_id(key)
-            if family.get_father_id() == None and family.get_mother_id() == None:
+            if not family.get_father_id() and not family.get_mother_id():
                 Utils.modified()
-                self.empty_family.append(family)
-                self.delete_empty_family(family)
+                self.empty_family.append(family_id)
+                self.delete_empty_family(family_id)
 
-    def delete_empty_family(self,family):
+    def delete_empty_family(self,family_id):
         for key in self.db.get_person_keys():
             child = self.db.find_person_from_id(key)
-            child.remove_parent_family_id(family.get_id())
-            child.remove_family_id(family.get_id())
-        self.db.delete_family(family.get_id())
+            child.remove_parent_family_id(family_id)
+            child.remove_family_id(family_id)
+        self.db.delete_family(family_id)
 
     def check_parent_relationships(self):
         for key in self.db.get_family_keys():
             family = self.db.find_family_from_id(key)
             mother_id = family.get_mother_id()
             father_id = family.get_father_id()
-            father = self.db.find_family_from_id(father_id)
-            mother = self.db.find_family_from_id(mother_id)
+            if father_id:
+            	father = self.db.find_person_from_id(father_id)
+            if mother_id:
+                mother = self.db.find_person_from_id(mother_id)
             type = family.get_relationship()
 
-            if not father and not mother:
+            if not father_id and not mother_id:
                 continue
-            elif father == None:
+            elif not father_id:
                 if mother.get_gender() == RelLib.Person.male:
                     family.set_father_id(mother_id)
                     family.set_mother_id(None)
                     self.db.commit_family(family)
-            elif mother == None:
+            elif not mother_id:
                 if father.get_gender() == RelLib.Person.female:
                     family.set_mother_id(father_id)
                     family.set_father_id(None)
@@ -269,16 +275,16 @@ class CheckIntegrity:
                 if type != "Partners":
                     if fgender == mgender and fgender != RelLib.Person.unknown:
                         family.set_relationship("Partners")
-                        self.fam_rel.append(family)
+                        self.fam_rel.append(family_id)
                         self.db.commit_family(family)
                     elif fgender == RelLib.Person.female or mgender == RelLib.Person.male:
                         family.set_father_id(mother_id)
                         family.set_mother_id(father_id)
-                        self.fam_rel.append(family)
+                        self.fam_rel.append(family_id)
                         self.db.commit_family(family)
                 elif fgender != mgender:
                     family.set_relationship("Unknown")
-                    self.fam_rel.append(family)
+                    self.fam_rel.append(family_id)
                     if fgender == RelLib.Person.female or mgender == RelLib.Person.male:
                         family.set_father_id(mother_id)
                         family.set_mother_id(father_id)
@@ -310,10 +316,12 @@ class CheckIntegrity:
                 self.text.write(_("1 broken child/family link was fixed\n"))
             else:
                 self.text.write(_("%d broken child/family links were found\n") % blink)
-            for c in self.broken_links:
-                cn = c[0].get_primary_name().get_name()
-                f = self.db.find_person_from_id(c[1].get_father_id())
-                m = self.db.find_person_from_id(c[1].get_mother_id())
+            for (person_id,family_id) in self.broken_links:
+                person = self.db.find_person_from_id(person_id)
+                family = self.db.find_family_from_id(family_id)
+                cn = person.get_primary_name().get_name()
+                f = self.db.find_person_from_id(family.get_father_id())
+                m = self.db.find_person_from_id(family.get_mother_id())
                 if f and m:
                     pn = _("%s and %s") % (f.get_primary_name().get_name(),\
                                            m.get_primary_name().get_name())
@@ -331,10 +339,12 @@ class CheckIntegrity:
                 self.text.write(_("1 broken spouse/family link was fixed\n"))
             else:
                 self.text.write(_("%d broken spouse/family links were found\n") % plink)
-            for c in self.broken_parent_links:
-                cn = c[0].get_primary_name().get_name()
-                f = self.db.find_person_from_id(c[1].get_father_id())
-                m = self.db.find_person_from_id(c[1].get_mother_id())
+            for (person_id,family_id) in self.broken_parent_links:
+                person = self.db.find_person_from_id(person_id)
+                family = self.db.find_family_from_id(family_id)
+                cn = person.get_primary_name().get_name()
+                f = self.db.find_person_from_id(family.get_father_id())
+                m = self.db.find_person_from_id(family.get_mother_id())
                 if f and m:
                     pn = _("%s and %s") % (f.get_primary_name().get_name(),\
                                            m.get_primary_name().get_name())
@@ -373,9 +383,9 @@ class CheckIntegrity:
         return errors
 
     def report(self,cl=0):
-	if cl:
+        if cl:
             print self.text.getvalue()
-	else:
+        else:
             base = os.path.dirname(__file__)
             glade_file = base + os.sep + "summary.glade"
             topDialog = gtk.glade.XML(glade_file,"summary","gramps")
@@ -387,7 +397,7 @@ class CheckIntegrity:
             textwindow = topDialog.get_widget("textwindow")
 
             Utils.set_titles(top,topDialog.get_widget("title"),title)
-	    textwindow.get_buffer().set_text(self.text.getvalue())
+            textwindow.get_buffer().set_text(self.text.getvalue())
             self.text.close()
             top.show()
 
@@ -404,4 +414,3 @@ register_tool(
     category=_("Database Processing"),
     description=_("Checks the database for integrity problems, fixing the problems that it can")
     )
-    

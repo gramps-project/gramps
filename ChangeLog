@@ -1,6 +1,7 @@
 2004-05-08  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/EventCmp.py: Convert to db. 
 	* src/plugins/eventcmp.glade: HIGify dialogs. 
+	* src/plugins/Check.py: Clean up conversion to db. 
 
 2004-05-07  Don Allingham  <donaldallingham@users.sourceforge.net>
 	* src/DbPrompter.py: handle open dialog in a clean manner
