@@ -23,44 +23,70 @@
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import libglade
+from gnome.ui import *
+from gtk import *
+import GTK
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
 import Utils
-from RelLib import *
+from intl import gettext
+_ = gettext
 
 #-------------------------------------------------------------------------
 #
-#
+# NoteEditor
 #
 #-------------------------------------------------------------------------
 class NoteEditor:
-
+    """Displays a simple text editor that allows a person to edit a note"""
     def __init__(self,data):
 
-        self.editnote = libglade.GladeXML(const.editnoteFile,"editnote")
-        self.textobj = self.editnote.get_widget("notetext")
-        self.en_obj = self.editnote.get_widget("editnote")
         self.data = data
-        self.en_obj.editable_enters(self.textobj);
+        self.draw()
+        self.entry.set_point(0)
+        self.entry.insert_defaults(self.data.getNote())
+        self.entry.set_word_wrap(1)
 
-        self.textobj.set_point(0)
-        self.textobj.insert_defaults(self.data.getNote())
-        self.textobj.set_word_wrap(1)
+    def draw(self):
+        """Displays the NoteEditor window"""
+        title = "%s - GRAMPS" % _("Edit Note")
+
+        self.top = GnomeDialog(title,STOCK_BUTTON_OK,STOCK_BUTTON_CANCEL)
+        self.top.set_policy(FALSE,TRUE,FALSE)
+
+        vbox = GtkVBox()
+        self.top.vbox.pack_start(vbox,TRUE,TRUE,0)
+        vbox.pack_start(GtkLabel(_("Edit Note")), FALSE, FALSE, 10)
+
+        vbox.pack_start(GtkHSeparator(), FALSE, TRUE, 5)
+        self.entry = GtkText()
+        self.entry.set_editable(TRUE)
+        self.entry.show()
+        scroll = GtkScrolledWindow()
+        scroll.add(self.entry)
+        scroll.set_policy (GTK.POLICY_NEVER, GTK.POLICY_ALWAYS)
+        scroll.set_usize(450, 300)
+        scroll.show()
+        vbox.pack_start(scroll, TRUE, TRUE, 0)
+
+        self.top.button_connect(0,self.on_save_note_clicked)
+        self.top.button_connect(1,self.cancel)
+        self.top.show_all()
+        self.entry.grab_focus()
+
+    def cancel(self,obj):
+        """Closes the window without saving the note"""
+        self.top.destroy()
         
-        self.editnote.signal_autoconnect({
-            "on_save_note_clicked"  : self.on_save_note_clicked,
-            "destroy_passed_object" : Utils.destroy_passed_object
-            })
-
     def on_save_note_clicked(self,obj):
-        text = self.textobj.get_chars(0,-1)
+        """Saves the note and closes the window"""
+        text = self.entry.get_chars(0,-1)
         if text != self.data.getNote():
             self.data.setNote(text)
             Utils.modified()
-        Utils.destroy_passed_object(obj)
+        self.top.destroy()
+
