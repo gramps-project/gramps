@@ -1,6 +1,11 @@
 2004-01-20  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/gramps.1.in, doc/gramps.1: Update.
 	* doc/gramps-manual/C/gramps-manual.xml: Update.
+	* src/PedView.py (build_nav_menu): Ditch stock Home item.
+	* src/FamilyView.py (build_ap_menu, build_nav_menu, 
+	build_parents_nosel_menu, build_sp_parents_nosel_menu, 
+	build_child_menu, build_spouse_menu, build_parents_menu, 
+	build_sp_parents_menu): Ditch stock Home item.
 
 2004-01-19  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/FilterEditor.py: handle unicode characters
