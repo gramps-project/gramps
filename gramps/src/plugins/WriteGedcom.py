@@ -64,9 +64,9 @@ _month = [
     "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ]
 
 _calmap = {
-    Date.HEBREW : (_hmonth, '@#HEBREW@'),
-    Date.FRENCH : (_fmonth, '@#FRENCH R@'),
-    Date.JULIAN : (_month, '@#JULIAN@'),
+    Date.HEBREW : (_hmonth, '@#DHEBREW@'),
+    Date.FRENCH : (_fmonth, '@#DFRENCH R@'),
+    Date.JULIAN : (_month, '@#DJULIAN@'),
     }
 
 #-------------------------------------------------------------------------
@@ -872,7 +872,7 @@ class GedcomWriter:
                     val = "FROM %s TO %s" % (make_date(start,mlist),
                                              make_date(stop,mlist))
                 else:
-                    val = make_date(start,_hmonth)
+                    val = make_date(start,mlist)
                 self.g.write("%s %s %s\n" % (prefix,cal,val))
             else:
                 mydate = Date.Date(date)
