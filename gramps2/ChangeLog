@@ -1,3 +1,8 @@
+2003-10-14  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/data/templates/Makefile.am: install blue_edge.tpkg
+	* src/docgen/HtmlDoc.py: report error correctly on missing
+	template
+
 2003-10-13  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsParser.py: handle new witness format in XML file
 	* src/WriteXML.py: handle new witness format in XML file
