@@ -1,3 +1,7 @@
+2003-07-10  Tim Waugh  <twaugh@redhat.com>
+	* src/RelLib.py: Fix for probablyAlive().  If there is no date, but
+	there is other information about the death, the person is not alive.
+
 2003-07-09  Donald Peterson  <dpeterson@sigmaxi.org>
 	* doc/gramps-manual/C/gramps-manual.xml: More corrections.
 
