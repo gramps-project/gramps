@@ -81,7 +81,6 @@ class SourceView:
         self.topWindow = self.glade.get_widget("gramps")
 
         self.columns = []
-        self.change_db(db)
 
     def build_columns(self):
         for column in self.columns:

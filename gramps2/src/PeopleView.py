@@ -91,11 +91,6 @@ class PeopleView:
         self.person_tree.connect('button-press-event',
                                  self.on_plist_button_press)
 
-        self.parent.db.connect('person-add', self.person_added)
-        self.parent.db.connect('person-update', self.person_updated)
-        self.parent.db.connect('person-delete', self.person_removed)
-        self.parent.db.connect('person-rebuild', self.redisplay_person_list)
-
         #
         # DnD support
         #
@@ -187,10 +182,10 @@ class PeopleView:
         self.person_model = PeopleModel.PeopleModel(db,self.DataFilter)
         self.person_tree.set_model(self.person_model)
 
-        self.parent.db.connect('person-add', self.person_added)
-        self.parent.db.connect('person-update', self.person_updated)
-        self.parent.db.connect('person-delete', self.person_removed)
-        self.parent.db.connect('person-rebuild', self.redisplay_person_list)
+        db.connect('person-add', self.person_added)
+        db.connect('person-update', self.person_updated)
+        db.connect('person-delete', self.person_removed)
+        db.connect('person-rebuild', self.redisplay_person_list)
         self.apply_filter()
 
     def remove_from_person_list(self,person):

@@ -1,3 +1,16 @@
+2005-04-06  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/gramps_main.py (post_load): Emit "database-changed" signal instead of
+	calling change_db().
+	* src/PedView.py: Connect to "database-changed" signal and handle person-update signals
+	to redraw the view.
+	* src/FamilyView.py (__init__) connect to database-changed signal, dont call
+	change_cb because on initialisation there is no real database. (change_db):
+	use database parameter supplied by signal emission.
+	* src/PeopleView.py (__init__) dont connect the signals, this will be done by change_db,
+	(change_db): Use supplied database.
+	* src/SourceView.py (__init__): dont call change_cb because on initialisation
+	there is no real database and this will be done by the signal.
+
 2005-04-04  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/plugins/ScratchPad.py: made clear buttons sensitive to contents of 
 	list and current selection. Added support for PERSON_LINK dnd.

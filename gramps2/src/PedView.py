@@ -164,6 +164,9 @@ class DispBox:
 class PedigreeView:
     def __init__(self,parent,canvas,update,status_bar,lp):
         self.parent = parent
+
+        self.parent.connect('database-changed',self.change_db)
+
         self.canvas = canvas
         self.canvas_items = []
         self.boxes = []
@@ -181,6 +184,17 @@ class PedigreeView:
         self.anchor = None
         self.canvas.parent.connect('button-press-event',self.on_canvas_press)
 
+    def change_db(self,db):
+        # Reconnect signals
+        db.connect('person-add', self.person_updated_cb)
+        db.connect('person-update', self.person_updated_cb)
+        db.connect('person-delete', self.person_updated_cb)
+        db.connect('person-rebuild', self.person_updated_cb)
+
+    def person_updated_cb(self,handle_list):
+        # Redraw view on changes of persons
+        self.load_canvas(self.active_person)
+        
     def clear(self):
         for i in self.canvas_items:
             i.destroy()

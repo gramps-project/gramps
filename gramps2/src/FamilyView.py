@@ -90,23 +90,23 @@ class FamilyView:
 
     def __init__(self,parent):
         self.parent = parent
+        self.parent.connect('database-changed',self.change_db)
         self.top = parent.gtop
         self.family = None
         self.cadded = [ 0, 0 ]
         self.in_drag = False
         self.init_interface()
-        self.change_db()
 
-    def change_db(self):
-        self.parent.db.connect('family-add', self.update_callback)
-        self.parent.db.connect('family-update', self.update_callback)
-        self.parent.db.connect('family-delete', self.update_callback)
-        self.parent.db.connect('family-rebuild', self.load_family)
+    def change_db(self,db):
+        db.connect('family-add', self.update_callback)
+        db.connect('family-update', self.update_callback)
+        db.connect('family-delete', self.update_callback)
+        db.connect('family-rebuild', self.load_family)
 
-        self.parent.db.connect('person-add', self.update_callback)
-        self.parent.db.connect('person-update', self.update_callback)
-        self.parent.db.connect('person-delete', self.update_callback)
-        self.parent.db.connect('person-rebuild', self.load_family)
+        db.connect('person-add', self.update_callback)
+        db.connect('person-update', self.update_callback)
+        db.connect('person-delete', self.update_callback)
+        db.connect('person-rebuild', self.load_family)
 
     def update_callback(self,handle):
         self.load_family()

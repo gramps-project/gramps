@@ -1667,23 +1667,13 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         GrampsKeys.save_last_file(name)
         self.gtop.get_widget("filter").set_text("")
     
-        if callback:
-            callback(_('Building Person list...'))
-        self.people_view.change_db(self.db)
-        self.family_view.change_db()
-        if callback:
-            callback(_('Building Place list...'))
-        self.place_view.change_db(self.db)
-        if callback:
-            callback(_('Building Source list...'))
-        self.source_view.change_db(self.db)
-        if callback:
-            callback(_('Building Media list...'))
-        self.media_view.change_db(self.db)
+        self.emit("database-changed", (self.db,))
+        
         self.relationship = self.RelClass(self.db)
 
         self.change_active_person(self.find_initial_person())
-        self.goto_active_person()
+        self.goto_active_person()   # TODO: This should emit a signal so other views can update itself
+        
         if callback:
             callback(_('Setup complete'))
         self.enable_buttons(True)
