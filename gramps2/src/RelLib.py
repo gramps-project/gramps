@@ -2677,6 +2677,19 @@ class Source(PrimaryObject,MediaBase):
         for item in self.get_sourcref_child_list():
             item.remove_source_references(src_handle_list)
 
+    def replace_source_references(self,old_handle,new_handle):
+        """
+        Replaces references to source handles in the list
+        in this object and all child objects.
+
+        @param old_handle: The source handle to be replaced.
+        @type old_handle: str
+        @param new_handle: The source handle to replace the old one with.
+        @type new_handle: str
+        """
+        for item in self.get_sourcref_child_list():
+            item.replace_source_references(old_handle,new_handle)
+
     def get_data_map(self):
         """Returns the data map of attributes for the source"""
         return self.datamap

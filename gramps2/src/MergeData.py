@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import string
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -46,7 +46,6 @@ import Utils
 import ListModel
 import NameDisplay
 import const
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -1263,8 +1262,8 @@ def place_match(p1,p2):
     if name1 == name2:
         return 1
 
-    list1 = string.split(string.replace(name1,","," "))
-    list2 = string.split(string.replace(name2,","," "))
+    list1 = name1.replace(","," ").split()
+    list2 = name2.replace(","," ").split()
 
     value = 0
     for name in list1:
@@ -1289,10 +1288,10 @@ def is_initial(name):
     if len(name) > 2:
         return 0
     elif len(name) == 2:
-        if name[0] in string.uppercase and name[1] == '.':
+        if name[0].isupper() and name[1] == '.':
             return 1
     else:
-        return name[0] in string.uppercase
+        return name[0].isupper()
 
 #---------------------------------------------------------------------
 #
@@ -1521,157 +1520,34 @@ class MergeSources:
         old_handle = self.src2.get_handle()
         new_handle = self.src1.get_handle()
 
-        for key in self.db.get_place_handles():
-            p = self.db.get_place_from_handle(key) 
-            for sref in p.get_source_references():
-                if sref.get_base_handle() == old_handle:
-                    sref.set_base_handle(new_handle)
+        # people
+        for handle in self.db.get_person_handles(sort_handles=False):
+            person = self.db.get_person_from_handle(handle)
+            person.replace_source_references(old_handle,new_handle)
 
-        for key in self.db.get_person_handles(sort_handles=False):
-            p = self.db.get_person_from_handle(key)
-            name = self.name_display(p)
-            # Sources of person
-            for sref in p.get_source_references():
-                if sref.get_base_handle() == self.source.get_handle():
-                    person_list.append((name,''))
-            for event_handle in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
-                if event_handle:
-                    event = self.db.get_event_from_handle(event_handle)
-                    # Personal event sources
-                    for sref in event.get_source_references():
-                        if sref.get_base_handle() == self.source.get_handle():
-                            p_event_list.append((name,event.get_name()))
-                    # personal event's media
-                    for v in event.get_media_list():
-                        # personal event's media's sources
-                        for sref in v.get_source_references():
-                            if sref.get_base_handle() == self.source.get_handle():
-                                o_handle = v.get_reference_handle()
-                                o = self.db.get_object_from_handle(o_handle)
-                                p_event_list_media.append((name,o.get_description()))
-                        for vv in v.get_attribute_list():
-                            # personal event's media's attribute's sources
-                            for sref in vv.get_source_references():
-                                if sref.get_base_handle() == self.source.get_handle():
-                                    p_event_list_media_attr.append((name,vv.get_type()))
-            # personal LDS events Sources
-            if p.get_lds_baptism():
-                for sref in p.get_lds_baptism().get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        p_lds_list.append((name,_('LDS Baptism')))
-            if p.get_lds_endowment():
-                for sref in p.get_lds_endowment().get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        p_lds_list.append((name,_('Endowment')))
-            if p.get_lds_sealing():
-                for sref in p.get_lds_sealing().get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        p_lds_list.append((name,_('Sealed to parents')))
+        # family
+        for handle in self.db.get_family_handles():
+            family = self.db.get_family_from_handle(handle)
+            family.replace_source_references(old_handle,new_handle)
 
-            # Personal attribute's sources
-            for v in p.get_attribute_list():
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        p_attr_list.append((name,v.get_type()))
-            # personal Names' sources
-            for v in p.get_alternate_names() + [p.get_primary_name()]:
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        p_name_list.append((name,v.get_name()))
-            # personal addresses' sources
-            for v in p.get_address_list():
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        p_addr_list.append((name,v.get_street()))
-            # personal media sources
-            for v in p.get_media_list():
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        o_handle = v.get_reference_handle()
-                        o = self.db.get_object_from_handle(o_handle)
-                        p_media_list.append((name,o.get_description()))
-                for vv in v.get_attribute_list():
-                    # personal media's attribute's sources
-                    for sref in vv.get_source_references():
-                        if sref.get_base_handle() == self.source.get_handle():
-                            p_media_attr_list.append((name,vv.get_type()))
-        # personal media's sources
-        for object_handle in self.db.get_media_object_handles():
-            obj = self.db.get_object_from_handle(object_handle)
-            name = obj.get_description()
-            for sref in obj.get_source_references():
-                if sref.get_base_handle() == self.source.get_handle():
-                    m_list.append(name)
-            for v in obj.get_attribute_list():
-                # personal media attribute's sources
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        m_attr_list.append((name,v.get_type()))
+        # events
+        for handle in self.db.get_event_handles():
+            event = self.db.get_event_from_handle(handle)
+            event.replace_source_references(old_handle,new_handle)
 
-        for family_handle in self.db.get_family_handles():
-            family = self.db.get_family_from_handle(family_handle)
-            f_id = family.get_father_handle()
-            m_id = family.get_mother_handle()
-            if f_id:
-                f = self.db.get_person_from_handle(f_id)
-            if m_id:
-                m = self.db.get_person_from_handle(m_id)
-            if f_id and m_id:
-                name = _("%(father)s and %(mother)s") % {
-                    "father" : self.name_display(f),
-                    "mother" : self.name_display(m)}
-            elif f_id:
-                name = self.name_display(f)
-            else:
-                name = self.name_display(m)
-            for v_id in family.get_event_list():
-                v = self.db.get_event_from_handle(v_id)
-                if not v:
-                    continue
-                # Family events sources
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        f_event_list.append((name,v.get_name()))
-                # Family event's media
-                for vv in v.get_media_list():
-                    # Family event's media's sources
-                    for sref in vv.get_source_references():
-                        if sref.get_base_handle() == self.source.get_handle():
-                            o_handle = vv.get_reference_handle()
-                            o = self.db.get_object_from_handle(o_handle)
-                            f_event_list_media.append((name,o.get_description()))
-                    for vvv in vv.get_attribute_list():
-                        # Family event's media's attribute's sources
-                        for sref in vvv.get_source_references():
-                            if sref.get_base_handle() == self.source.get_handle():
-                                f_event_list_media_attr.append((name,vvv.get_type()))
-            # Family LDS events' sources
-            if family.get_lds_sealing():
-                for sref in family.get_lds_sealing().get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        f_lds_list.append((name,_('Sealed to spouse')))
-            # Family sources
-            for sref in family.get_source_references():
-                if sref.get_base_handle() == self.source.get_handle():
-                    family_list.append((name,''))
-            # Family attributes
-            for v in family.get_attribute_list():
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        f_attr_list.append((name,v.get_type()))
-            # Family media
-            for v in family.get_media_list():
-                # Family media sources
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        o_handle = v.get_reference_handle()
-                        o = self.db.get_object_from_handle(o_handle)
-                        f_media_list.append((name,o.get_description()))
-                for vv in v.get_attribute_list():
-                    # Family media's attribute's sources
-                    for sref in vv.get_source_references():
-                        if sref.get_base_handle() == self.source.get_handle():
-                            f_media_attr_list.append((name,vv.get_type()))
+        # sources
+        for handle in self.db.get_source_handles():
+            source = self.db.get_source_from_handle(handle)
+            source.replace_source_references(old_handle,new_handle)
 
+        # places
+        for handle in self.db.get_place_handles():
+            place = self.db.get_place_from_handle(handle) 
+            place.replace_source_references(old_handle,new_handle)
+
+        # media
+        for handle in self.db.get_media_object_handles():
+            obj = self.db.get_object_from_handle(handle)
+            obj.replace_source_references(old_handle,new_handle)
+        
         self.top.destroy()
-
