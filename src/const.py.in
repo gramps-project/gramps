@@ -461,6 +461,13 @@ def display_fattr(st):
 # there might be in the future. 
 #
 #-------------------------------------------------------------------------
+def display_attr(st):
+    if personal_attributes.has_value(st):
+        return personal_attributes.find_value(st)
+    if family_attributes.has_value(st):
+        return family_attributes.find_value(st)
+    return _(st)
+
 def save_attr(st):
     if personal_attributes.has_value(st):
         return personal_attributes.find_key(st)

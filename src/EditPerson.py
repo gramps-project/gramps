@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 import pickle
 import os
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -62,8 +63,6 @@ import TransTable
 import NameDisplay
 
 from QuestionDialog import WarningDialog, ErrorDialog, SaveDialog
-
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -782,11 +781,6 @@ class EditPerson:
         self.build_menu(const.lds_csealing,self.set_lds_seal,self.ldssealstat,
                         self.seal_stat)
 
-                   
-    def build_seal_menu(self):
-        self.build_menu(const.lds_csealing,self.set_lds_seal,self.ldssealstat,
-                        self.seal_stat)
-
     def set_lds_bap(self,obj):
         self.lds_baptism.set_status(obj.get_active())
 
@@ -1281,258 +1275,6 @@ class EditPerson:
 
         if self.complete.get_active() != self.person.get_complete_flag():
             changed = True
-
-        if self.person.get_gramps_id() != idval:
-            changed = True
-        if suffix != name.get_suffix():
-            changed = True
-        if self.use_patronymic:
-            if prefix != name.get_patronymic():
-                changed = True
-            elif prefix != name.get_surname_prefix():
-                changed = True
-        if surname.upper() != name.get_surname().upper():
-            changed = True
-        if ntype != const.NameTypesMap.find_value(name.get_type()):
-            changed = True
-        if given != name.get_first_name():
-            changed = True
-        if nick != self.person.get_nick_name():
-            changed = True
-        if title != name.get_title():
-            changed = True
-        if self.pname.get_note() != name.get_note():
-            changed = True
-        if not self.lds_not_loaded and self.check_lds():
-            changed = True
-
-        bplace = unicode(self.bplace.get_text().strip())
-        dplace = unicode(self.dplace.get_text().strip())
-
-        if self.pdmap.has_key(bplace):
-            self.birth.set_place_handle(self.pdmap[bplace])
-        else:
-            if bplace != "":
-                changed = True
-            self.birth.set_place_handle('')
-
-        if self.pdmap.has_key(dplace):
-            self.death.set_place_handle(self.pdmap[dplace])
-        else:
-            if dplace != "":
-                changed = True
-            self.death.set_place_handle('')
-
-        if not self.birth.are_equal(self.orig_birth):
-            changed = True
-        if not self.death.are_equal(self.orig_death):
-            changed = True
-        if male and self.person.get_gender() != RelLib.Person.MALE:
-            changed = True
-        elif female and self.person.get_gender() != RelLib.Person.FEMALE:
-            changed = True
-        elif unknown and self.person.get_gender() != RelLib.Person.UNKNOWN:
-            changed = True
-        if text != self.person.get_note():
-            changed = True
-        if format != self.person.get_note_format():
-            changed = True
-
-        if not self.lds_not_loaded:
-            if not self.lds_baptism.are_equal(self.person.get_lds_baptism()):
-                changed= True
-
-            if not self.lds_endowment.are_equal(self.person.get_lds_endowment()):
-                changed = True
-
-            if not self.lds_sealing.are_equal(self.person.get_lds_sealing()):
-                changed = True
-                
-        return changed
-
-    def check_lds(self):
-        self.lds_baptism.set_date(unicode(self.ldsbap_date.get_text()))
-        temple = _temple_names[self.ldsbap_temple.get_active()]
-        if const.lds_temple_codes.has_key(temple):
-            self.lds_baptism.set_temple(const.lds_temple_codes[temple])
-        else:
-            self.lds_baptism.set_temple("")
-        self.lds_baptism.set_place_handle(self.get_place(self.ldsbapplace,1))
-
-        self.lds_endowment.set_date(unicode(self.ldsend_date.get_text()))
-        temple = _temple_names[self.ldsend_temple.get_active()]
-        if const.lds_temple_codes.has_key(temple):
-            self.lds_endowment.set_temple(const.lds_temple_codes[temple])
-        else:
-            self.lds_endowment.set_temple("")
-        self.lds_endowment.set_place_handle(self.get_place(self.ldsendowplace,1))
-
-        self.lds_sealing.set_date(unicode(self.ldsseal_date.get_text()))
-        temple = _temple_names[self.ldsseal_temple.get_active()]
-        if const.lds_temple_codes.has_key(temple):
-            self.lds_sealing.set_temple(const.lds_temple_codes[temple])
-        else:
-            self.lds_sealing.set_temple("")
-        self.lds_sealing.set_family_handle(self.ldsfam)
-        self.lds_sealing.set_place_handle(self.get_place(self.ldssealplace,1))
-
-    def on_event_delete_clicked(self,obj):
-        """Delete the selected event"""
-        if Utils.delete_selected(obj,self.elist):
-            self.lists_changed = True
-            self.redraw_event_list()
-
-    def update_birth_death(self):
-        self.bplace.set_text(place_title(self.db,self.birth))
-        self.dplace.set_text(place_title(self.db,self.death))
-
-        self.bdate.set_text(self.dd.display(self.birth_date_object))
-        self.ddate.set_text(self.dd.display(self.death_date_object))
-
-    def on_update_attr_clicked(self,obj):
-        import AttrEdit
-        store,node = self.atree.get_selected()
-        if node:
-            attr = self.atree.get_object(node)
-            pname = self.name_display.display(self.person)
-            AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes,
-                                     self.attr_edit_callback,self.window,
-                                     self.update_sources)
-
-    def on_update_addr_clicked(self,obj):
-        import AddrEdit
-        store,node = self.ptree.get_selected()
-        if node:
-            AddrEdit.AddressEditor(
-                self,self.ptree.get_object(node),
-                self.addr_edit_callback,self.window, self.update_sources)
-
-    def on_update_url_clicked(self,obj):
-        import UrlEdit
-        store,node = self.wtree.get_selected()
-        if node:
-            pname = self.name_display.display(self.person)
-            url = self.wtree.get_object(node)
-            UrlEdit.UrlEditor(self,pname,url,self.url_edit_callback,self.window)
-
-    def on_event_update_clicked(self,obj):
-        import EventEdit
-
-        store,node = self.etree.get_selected()
-        if not node:
-            return
-        pname = self.name_display.display(self.person)
-        event = self.etree.get_object(node)
-        EventEdit.EventEditor(
-            self,pname,const.personalEvents,
-            const.personal_events,event,None,0,
-            self.event_edit_callback,
-            noedit=self.db.readonly,
-            redraw_main_source_list=self.update_sources)
-
-    def on_aka_delete_clicked(self,obj):
-        """Deletes the selected name from the name list"""
-        store,node = self.ntree.get_selected()
-        if node:
-            self.nlist.remove(self.ntree.get_object(node))
-            self.lists_changed = True
-            self.redraw_name_list()
-
-    def on_delete_url_clicked(self,obj):
-        """Deletes the selected URL from the URL list"""
-        store,node = self.wtree.get_selected()
-        if node:
-            self.ulist.remove(self.wtree.get_object(node))
-            self.lists_changed = True
-            self.redraw_url_list()
-
-    def on_delete_attr_clicked(self,obj):
-        """Deletes the selected attribute from the attribute list"""
-        store,node = self.atree.get_selected()
-        if node:
-            self.alist.remove(self.atree.get_object(node))
-            self.lists_changed = True
-            self.redraw_attr_list()
-
-    def on_delete_addr_clicked(self,obj):
-        """Deletes the selected address from the address list"""
-        store,node = self.ptree.get_selected()
-        if node:
-            self.plist.remove(self.ptree.get_object(node))
-            self.lists_changed = True
-            self.redraw_addr_list()
-
-    def on_web_go_clicked(self,obj):
-        """Attempts to display the selected URL in a web browser"""
-        text = obj.get()
-        if text:
-            gnome.url_show(text)
-        
-    def on_cancel_edit(self,obj):
-        """If the data has changed, give the user a chance to cancel
-        the close window"""
-        
-        if self.did_data_change() and not GrampsKeys.get_dont_ask():
-            n = "<i>%s</i>" % self.person.get_primary_name().get_regular_name()
-            SaveDialog(_('Save changes to %s?') % n,
-                       _('If you close without saving, the changes you '
-                         'have made will be lost'),
-                       self.cancel_callback,
-                       self.save)
-        else:
-            self.close()
-
-    def save(self):
-        self.on_apply_person_clicked(None)
-
-    def on_delete_event(self,obj,b):
-        """If the data has changed, give the user a chance to cancel
-        the close window"""
-        if self.did_data_change() and not GrampsKeys.get_dont_ask():
-            n = "<i>%s</i>" % self.person.get_primary_name().get_regular_name()
-            SaveDialog(_('Save Changes to %s?') % n,
-                       _('If you close without saving, the changes you '
-                         'have made will be lost'),
-                       self.cancel_callback,
-                       self.save)
-            return True
-        else:
-            self.close()
-            return False
-
-    def cancel_callback(self):
-        """If the user answered yes to abandoning changes, close the window"""
-        self.close()
-
-    def did_data_change(self):
-        """Check to see if any of the data has changed from the
-        orig record"""
-
-        surname = unicode(self.surname.get_text())
-        self.birth.set_date_object(self.birth_date_object)
-        self.death.set_date_object(self.death_date_object)
-
-        ntype = unicode(self.ntype_field.child.get_text())
-        suffix = unicode(self.suffix.get_text())
-        prefix = unicode(self.prefix.get_text())
-        given = unicode(self.given.get_text())
-        nick = unicode(self.nick.get_text())
-        title = unicode(self.title.get_text())
-        male = self.is_male.get_active()
-        female = self.is_female.get_active()
-        unknown = self.is_unknown.get_active()
-        text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                          self.notes_buffer.get_end_iter(),False))
-        format = self.preform.get_active()
-        idval = unicode(self.gid.get_text())
-        if idval == "":
-            idval = None
-
-        changed = False
-        name = self.person.get_primary_name()
-
-        if self.complete.get_active() != self.person.get_complete_flag():
-            changed = True
         if self.private.get_active() != self.person.get_privacy():
             changed = True
 
@@ -1648,6 +1390,7 @@ class EditPerson:
         store,node = self.atree.get_selected()
         if node:
             attr = self.atree.get_object(node)
+            print attr.get_type()
             pname = self.name_display.display(self.person)
             AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes,
                                      self.attr_edit_callback,self.window,
