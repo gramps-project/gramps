@@ -19,7 +19,7 @@ all: ${PYOBJS}
 
 install:
 	${INSTALL} -d ${plugins}
-	${INSTALL} *.py *.pyo *.glade ${plugins}
+	${INSTALL} -m 644 *.py *.pyo *.glade ${plugins}
 
 uninstall:
 	rm ${plugins}/*.py ${plugins}/*.pyo ${plugins}/*.glade
