@@ -65,7 +65,11 @@ except:
 #-------------------------------------------------------------------------
 def exportData(database, filename, callback):
     if os.path.isfile(filename):
-        shutil.copy(filename, filename + ".bak")
+        shutil.copyfile(filename, filename + ".bak")
+        try:
+            shutil.copystat(filename, filename + ".bak")
+        except:
+            pass
 
     compress = GrampsCfg.uncompress == 0 and _gzip_ok == 1
 
@@ -78,7 +82,11 @@ def exportData(database, filename, callback):
         DisplayTrace.DisplayTrace() 
         ErrorDialog(_("Failure writing %s") % filename,
                     _("An attempt is being made to recover the original file"))
-        shutil.copy(filename + ".bak", filename)
+        shutil.copyfile(filename + ".bak", filename)
+        try:
+            shutil.copystat(filename + ".bak", filename)
+        except:
+            pass
 
 #-------------------------------------------------------------------------
 #

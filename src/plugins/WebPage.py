@@ -362,9 +362,17 @@ class IndividualPage:
                 base = os.path.basename(src)
                     
                 if self.image_dir:
-                    shutil.copy(src,"%s/%s/%s" % (self.dir,self.image_dir,base))
+                    shutil.copyfile(src,"%s/%s/%s" % (self.dir,self.image_dir,base))
+                    try:
+                        shutil.copystat(src,"%s/%s/%s" % (self.dir,self.image_dir,base))
+                    except:
+                        pass
                 else:
-                    shutil.copy(src,"%s/%s" % (self.dir,base))
+                    shutil.copyfile(src,"%s/%s" % (self.dir,base))
+                    try:
+                        shutil.copystat(src,"%s/%s" % (self.dir,base))
+                    except:
+                        pass
 
                 self.doc.start_row()
                 self.doc.start_cell("ImageCell")

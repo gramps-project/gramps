@@ -82,7 +82,11 @@ def import_media_object(filename,path,base):
             return ""
 
         try:
-            shutil.copy(filename,name)
+            shutil.copyfile(filename,name)
+            try:
+                shutil.copystat(filename,name)
+            except:
+                pass
         except IOError,msg:
             ErrorDialog(_("Error copying %s") % filename,str(msg))
             return ""
@@ -91,7 +95,11 @@ def import_media_object(filename,path,base):
         bname = os.path.basename(filename)
         l = string.split(bname,'.')
         name = "%s/%s.%s" % (path,base,l[-1])
-        shutil.copy(filename,name)
+        shutil.copyfile(filename,name)
+        try:
+            shutil.copystat(filename,name)
+        except:
+            pass
 
     return name
 

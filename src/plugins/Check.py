@@ -142,7 +142,11 @@ class CheckIntegrity:
             def fs_ok_clicked(obj):
                 name = fs_top.get_filename()
                 if os.path.isfile(name):
-                    shutil.copy2(name,photo_name)
+                    shutil.copyfile(name,photo_name)
+                    try:
+                        shutil.copystat(name,photo_name)
+                    except:
+                        pass
                     self.replaced_photo.append(ObjectMap[ObjectId])
                 else:
                     self.bad_photo.append(ObjectMap[ObjectId])
