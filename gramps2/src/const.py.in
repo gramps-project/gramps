@@ -112,6 +112,7 @@ comments     = _("GRAMPS (Genealogical Research and Analysis "
 authors      = [
     "Donald N. Allingham",
     "Donald A. Peterson", 
+    "Alexander Roitman",
     "David Hampton",
     ]
 

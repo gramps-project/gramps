@@ -124,7 +124,7 @@ class MediaView:
                 ,_("There is no suitable tool to generate thumbnails for the images. "
                 "If you would like to enable this feature, "
                 "install Python Imaging Library (PIL), available at http://www.pythonware.com/products/pil/ "
-                "or ImageMagick, available http://www.imagemagick.org/"))
+                "or ImageMagick, available at http://www.imagemagick.org/"))
 
     def goto(self,id):
         self.selection.unselect_all()

@@ -557,7 +557,7 @@
 		      <child>
 			<widget class="GtkEntry" id="nickname">
 			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">A name that the person was more commonly know by</property>
+			  <property name="tooltip" translatable="yes">A name that the person was more commonly known by</property>
 			  <property name="can_focus">True</property>
 			  <property name="editable">True</property>
 			  <property name="visibility">True</property>

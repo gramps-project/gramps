@@ -98,7 +98,7 @@ class StartupDialog:
         p.set_text(_('GRAMPS is an Open Source project. Its success '
                      'depends on the users. User feedback is important. '
                      'Please join the mailing lists, submit bug reports, '
-                     'suggest improvements,  and see how you can '
+                     'suggest improvements, and see how you can '
                      'contribute.\n\nPlease enjoy using GRAMPS.'))
         return p
 
