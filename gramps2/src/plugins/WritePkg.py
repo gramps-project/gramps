@@ -45,6 +45,7 @@ import gtk.glade
 import WriteXML
 import TarFile
 import Utils
+from QuestionDialog import MissingMediaDialog
 
 from intl import gettext as _
 
@@ -94,56 +95,97 @@ class PackageWriter:
         self.export(name)
 
     def export(self, filename):
+        #--------------------------------------------------------------
+        def remove_clicked():
+            # File is lost => remove all references and the object itself
+            mobj = ObjectMap[ObjectId]
+            for p in self.db.getFamilyMap().values():
+                nl = p.getPhotoList()
+                for o in nl:
+                    if o.getReference() == mobj:
+                        nl.remove(o) 
+                p.setPhotoList(nl)
+            for key in self.db.getPersonKeys():
+                p = self.db.getPerson(key)
+                nl = p.getPhotoList()
+                for o in nl:
+                    if o.getReference() == mobj:
+                        nl.remove(o) 
+                p.setPhotoList(nl)
+            for key in self.db.getSourceKeys():
+                p = self.db.getSource(key)
+                nl = p.getPhotoList()
+                for o in nl:
+                    if o.getReference() == mobj:
+                        nl.remove(o) 
+                p.setPhotoList(nl)
+            for key in self.db.getPlaceKeys():
+                p = self.db.getPlace(key)
+                nl = p.getPhotoList()
+                for o in nl:
+                    if o.getReference() == mobj:
+                        nl.remove(o) 
+                p.setPhotoList(nl)
+            self.db.removeObject(ObjectId)
+            Utils.modified() 
+
+        def leave_clicked():
+            # File is lost => do nothing, leave as is
+            pass
+
+
+        def select_clicked():
+            # File is lost => select a file to replace the lost one
+            def fs_close_window(obj):
+                fs_top.destroy()
+
+            def fs_ok_clicked(obj):
+                name = fs_top.get_filename()
+                fs_top.destroy()
+                if os.path.isfile(name):
+                    g = open(name,"rb")
+                    t.add_file(base,mtime,g)
+                    g.close()
+
+            fs_top = gtk.FileSelection("%s - GRAMPS" % _("Select file"))
+            fs_top.hide_fileop_buttons()
+            fs_top.ok_button.connect('clicked',fs_ok_clicked)
+            fs_top.cancel_button.connect('clicked',fs_close_window)
+            fs_top.show()
+            fs_top.run()
+        #---------------------------------------------------------------
 
         t = TarFile.TarFile(filename)
-        g = StringIO()
+        mtime = time.time()
         
+        # Write media files first, since the database may be modified 
+        # during the process (i.e. when removing object)
+        ObjectMap = self.db.getObjectMap()
+        for ObjectId in ObjectMap.keys():
+            oldfile = ObjectMap[ObjectId].getPath()
+            base = os.path.basename(oldfile)
+            if os.path.isfile(oldfile):
+                g = open(oldfile,"rb")
+                t.add_file(base,mtime,g)
+                g.close()
+            else:
+                # File is lost => ask what to do
+                MissingMediaDialog(_("Media object could not be found"),
+	            _("%(file_name)s is referenced in the database, but no longer exists. " 
+                        "The file may have been deleted or moved to a different location. " 
+                        "You may choose to either remove the reference from the database, " 
+                        "keep the reference to the missing file, or select a new file." 
+                        ) % { 'file_name' : oldfile },
+                    remove_clicked, leave_clicked, select_clicked)
+        
+        # Write XML now
+        g = StringIO()
         gfile = WriteXML.XmlWriter(self.db,None,1)
         gfile.write_handle(g)
         mtime = time.time()
         t.add_file("data.gramps",mtime,g)
         g.close()
 
-        for f in self.db.getPersonMap().values():
-            for p in f.getPhotoList():
-                object = p.getReference()
-                base = os.path.basename(object.getPath())
-                try:
-                    g = open(object.getPath(),"rb")
-                    t.add_file(base,mtime,g)
-                    g.close()
-                except:
-                    pass
-        for f in self.db.getFamilyMap().values():
-            for p in f.getPhotoList():
-                object = p.getReference()
-                base = os.path.basename(object.getPath())
-                try:
-                    g = open(object.getPath(),"rb")
-                    t.add_file(base,mtime,g)
-                    g.close()
-                except:
-                    pass
-        for f in self.db.getSourceMap().values():
-            for p in f.getPhotoList():
-                object = p.getReference()
-                base = os.path.basename(object.getPath())
-                try:
-                    g = open(object.getPath(),"rb")
-                    t.add_file(base,mtime,g)
-                    g.close()
-                except:
-                    pass
-        for f in self.db.getPlaceMap().values():
-            for p in f.getPhotoList():
-                object = p.getReference()
-                base = os.path.basename(object.getPath())
-                try:
-                    g = open(object.getPath(),"rb")
-                    t.add_file(base,mtime,g)
-                    g.close()
-                except:
-                    pass
         t.close()
     
 #-------------------------------------------------------------------------
