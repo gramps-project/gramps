@@ -2656,7 +2656,7 @@ information.</text>
       <title_color>125,104,74</title_color>
       <text_color>0,0,0</text_color>
       <background_color>225,219,197</background_color>
-      <logo_background_color>191,191,191</logo_background_color>
+      <logo_background_color>225,220,197</logo_background_color>
       <textbox_color>255,255,255</textbox_color>
       <logo_image>gramps.png</logo_image>
       <watermark_image>splash.jpg</watermark_image>
@@ -2674,7 +2674,7 @@ information.</text>
       <title>Researcher Information</title>
       <title_color>125,104,74</title_color>
       <background_color>225,220,197</background_color>
-      <logo_background_color>191,191,191</logo_background_color>
+      <logo_background_color>225,220,197</logo_background_color>
       <logo_image>gramps.png</logo_image>
 
       <widget>
@@ -3200,7 +3200,7 @@ contribute.
 
 Please enjoy using GRAMPS.</text>
       <background_color>225,220,197</background_color>
-      <logo_background_color>191,191,191</logo_background_color>
+      <logo_background_color>225,220,197</logo_background_color>
       <textbox_color>255,255,255</textbox_color>
       <text_color>0,0,0</text_color>
       <title_color>125,104,74</title_color>

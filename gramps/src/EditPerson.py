@@ -1222,7 +1222,7 @@ def birth_dates_in_order(list):
     for i in range(len(list)):
         child = list[i]
         bday = child.getBirth().getDateObj()
-        child_date = sort.build_sort_event(bday)
+        child_date = sort.build_sort_date(bday)
         if (child_date == "99999999"):
             continue
         if (prev_date <= child_date):	# <= allows for twins
@@ -1246,13 +1246,13 @@ def reorder_child_list(person, list):
         return(list)
 
     # Build the person's date string once
-    person_bday = sort.build_sort_event(person.getBirth().getDateObj())
+    person_bday = sort.build_sort_date(person.getBirth().getDateObj())
 
     # First, see if the person needs to be moved forward in the list
     index = list.index(person)
     target = index
     for i in range(index-1, -1, -1):
-        other_bday = sort.build_sort_event(list[i].getBirth().getDateObj())
+        other_bday = sort.build_sort_date(list[i].getBirth().getDateObj())
         if (other_bday == "99999999"):
             continue;
         if (person_bday < other_bday):
@@ -1261,7 +1261,7 @@ def reorder_child_list(person, list):
     # Now try moving to a later position in the list
     if (target == index):
         for i in range(index, len(list)):
-            other_bday = sort.build_sort_event(list[i].getBirth().getDateObj())
+            other_bday = sort.build_sort_date(list[i].getBirth().getDateObj())
             if (other_bday == "99999999"):
                 continue;
             if (person_bday > other_bday):

@@ -78,29 +78,6 @@ fromtoRegexp = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.
 #
 #
 #-------------------------------------------------------------------------
-def find_file(fullname,altpath):
-    if os.path.isfile(fullname):
-        type = utils.get_mime_type(fullname)
-        if type[0:6] != "image/":
-            return ""
-        else:
-            return fullname
-    other = altpath + os.sep + os.path.basename(fullname)
-    if os.path.isfile(other):
-        type = utils.get_mime_type(other)
-        if type[0:6] != "image/":
-            return ""
-        else:
-            return other
-    else:
-        return ""
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-
 def importData(database, filename):
 
     global callback
@@ -199,6 +176,41 @@ class GedcomParser:
         
         self.update(self.file_obj,file)
         self.code = 0
+        self.search_paths = []
+
+        try:
+            f = open("/etc/fstab","r")
+
+            for line in f.readlines():
+                paths = string.split(line)
+                if len(paths) < 3:
+                    continue
+                first = string.strip(paths[0])
+                if first[0] == '#':
+                    continue
+                if string.upper(paths[2]) in ["VFAT","FAT","NTFS"]:
+                    self.search_paths.append(paths[1])
+            f.close()
+        except:
+            pass
+
+    def find_file(self,fullname,altpath):
+        fullname = string.replace(fullname,'\\','/')
+        if os.path.isfile(fullname):
+            return fullname
+        other = os.path.join(altpath,os.path.basename(fullname))
+        if os.path.isfile(other):
+            return other
+        if len(fullname) > 3:
+            if fullname[1] == ':':
+                fullname = fullname[2:]
+                for path in self.search_paths:
+                    other = os.path.join(path,os.path.basename(fullname))
+                    if os.path.isfile(other):
+                        return other
+            return ""
+        else:
+            return ""
 
     def update(self,field,text):
         field.set_text(text)
@@ -311,7 +323,6 @@ class GedcomParser:
     def parse_record(self):
         while 1:
 	    matches = self.get_next()
-
             if matches[2] == "FAM":
                 if self.fam_count % 10 == 0:
                     self.update(self.families_obj,str(self.fam_count))
@@ -333,9 +344,9 @@ class GedcomParser:
                 self.indi_count = self.indi_count + 1
                 self.person = self.db.findPerson(matches[1],self.pmap)
                 self.parse_individual()
-            elif matches[2] == "SUBM":
+            elif matches[2] in ["SUBM","SUBN"]:
                 self.ignore_sub_junk(1)
-            elif matches[1] == "SUBM":
+            elif matches[1] in ["SUBM","SUBN"]:
                 self.ignore_sub_junk(1)
             elif matches[2] == "SOUR":
                 self.parse_source(matches[1],1)
@@ -354,13 +365,36 @@ class GedcomParser:
                     noteobj.set(text + self.parse_continue_data())
                 self.parse_note_data(1)
             elif matches[2] == "OBJE":
-                self.ignore_sub_junk(2)
+                self.ignore_sub_junk(1)
 	    elif matches[1] == "TRLR":
                 self.backup()
                 return
             else:
 	        self.barf(1)
 
+    def parse_cause(self,event,level):
+        while 1:
+            matches = self.get_next()
+	    if int(matches[0]) < level:
+                self.backup()
+                return
+            elif matches[1] == "SOUR":
+                source_ref = SourceRef()
+                if matches[2] and matches[2][0] != "@":
+                    self.localref = self.localref + 1
+                    ref = "gsr%d" % self.localref
+                    s = self.db.findSource(ref,self.smap)
+                    source_ref.setBase(s)
+                    s.setTitle('Imported Source #%d' % self.localref)
+                    s.setNote(matches[2] + self.parse_continue_data())
+                    self.ignore_sub_junk(2)
+                else:
+                    source_ref.setBase(self.db.findSource(matches[2],self.smap))
+                    self.parse_source_reference(source_ref,level+1)
+                event.addSourceRef(source_ref)
+            else:
+	        self.barf(1)
+                
     def parse_note_data(self,level):
         while 1:
             matches = self.get_next()
@@ -507,13 +541,17 @@ class GedcomParser:
                 self.person.setPafUid(matches[2])
             elif matches[1] == "ALIA":
                 aka = Name()
-                names = nameRegexp.match(matches[2]).groups()
-                if names[0]:
-                    aka.setFirstName(names[0])
-                if names[1]:
-                    aka.setSurname(names[1])
-                if names[2]:
-                    aka.setSuffix(names[2])
+                match = nameRegexp.match(matches[2])
+                if match:
+                    names = match.groups()
+                    if names[0]:
+                        aka.setFirstName(names[0])
+                    if names[1]:
+                        aka.setSurname(names[1])
+                    if names[2]:
+                        aka.setSuffix(names[2])
+                else:
+                    aka.setFirstName(matches[2])
                 self.person.addAlternateName(aka)
 	    elif matches[1] == "OBJE":
                 if matches[2] and matches[2][0] == '@':
@@ -621,7 +659,7 @@ class GedcomParser:
                     self.person.addAttribute(attr)
                 else:
                     self.person.addEvent(event)
-	    elif matches[1] in ["AFN","CHAN","REFN","SOUR"]:
+	    elif matches[1] in ["AFN","CHAN","REFN","SOUR","ASSO"]:
                 self.ignore_sub_junk(2)
 	    elif matches[1] in ["ANCI","DESI","RIN","RFN"]:
                 pass
@@ -716,11 +754,10 @@ class GedcomParser:
             url.set_path(file)
             url.set_description(title)
             self.person.addUrl(url)
-        elif form in photo_types:
-            path = find_file(file,self.dir_path)
+        else:
+            path = self.find_file(file,self.dir_path)
             if path == "":
-                self.warn(_("Could not import %s: either the file could not be found, or it was not a valid image")\
-                          % file + "\n")
+                self.warn(_("Could not import %s") % file + "\n")
             else:
                 photo = Photo()
                 photo.setPath(path)
@@ -730,9 +767,6 @@ class GedcomParser:
                 oref = ObjectRef()
                 oref.setReference(photo)
                 self.person.addPhoto(oref)
-        else:
-            self.warn(_("Could not import %s: currently an unknown file type") % \
-                      file + "\n")
 
     def parse_source_object(self,source,level):
         form = ""
@@ -755,11 +789,10 @@ class GedcomParser:
             else:
 	        self.barf(level+1)
 
-        if form in photo_types:
-            path = find_file(file,self.dir_path)
+        if form:
+            path = self.find_file(file,self.dir_path)
             if path == "":
-                self.warn(_("Could not import %s: either the file could not be found, or it was not a valid image")\
-                          % file + "\n")
+                self.warn(_("Could not import %s") % file + "\n")
             else:
                 photo = Photo()
                 photo.setPath(path)
@@ -769,9 +802,6 @@ class GedcomParser:
                 oref = ObjectRef()
                 oref.setReference(photo)
                 source.addPhoto(oref)
-        else:
-            self.warn(_("Could not import %s: currently an unknown file type") % \
-                      file + "\n")
 
     def parse_family_object(self,level):
         form = ""
@@ -794,10 +824,10 @@ class GedcomParser:
             else:
 	        self.barf(level+1)
                 
-        if form in photo_types:
-            path = find_file(file,self.dir_path)
+        if form:
+            path = self.find_file(file,self.dir_path)
             if path == "":
-                self.warn("Could not import %s: the file could not be found\n" % file)
+                self.warn(_("Could not import %s") % file)
             else:
                 photo = Photo()
                 photo.setPath(path)
@@ -807,8 +837,6 @@ class GedcomParser:
                 oref = ObjectRef()
                 oref.setReference(photo)
                 self.family.addPhoto(photo)
-        else:
-            self.warn("Could not import %s: current an unknown file type\n" % file)
 
     def parse_residence(self,address,level):
         while 1:
@@ -888,7 +916,7 @@ class GedcomParser:
                 ord.setDateObj(self.extract_date(matches[2]))
             elif matches[1] == "FAMC":
                 ord.setFamily(self.db.findFamily(matches[2],self.fmap))
-            elif matches[1] == ["PLAC", "STAT", "SOUR", "NOTE" ]:
+            elif matches[1] in ["PLAC", "STAT", "SOUR", "NOTE" ]:
                 self.ignore_sub_junk(level+1)
             else:
                 self.barf(level+1)
@@ -914,9 +942,8 @@ class GedcomParser:
                             name = matches[2]
                     event.setName(name)
             elif matches[1] == "DATE":
-                foo = self.extract_date(matches[2])
-                event.setDateObj(foo)
-            elif matches[1] == ["TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
+                event.setDateObj(self.extract_date(matches[2]))
+            elif matches[1] in ["TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
                 source_ref = SourceRef()
@@ -951,6 +978,7 @@ class GedcomParser:
             elif matches[1] == "CAUS":
                 info = matches[2] + self.parse_continue_data()
                 event.setCause(info)
+                self.parse_cause(event,level+1)
             elif matches[1] == "NOTE":
                 info = matches[2] + self.parse_continue_data()
                 if note == "":
@@ -979,7 +1007,7 @@ class GedcomParser:
                 break
             elif matches[1] == "DATE":
                 event.setDateObj(self.extract_date(matches[2]))
-            elif matches[1] == ["TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
+            elif matches[1] in ["TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
                 source_ref = SourceRef()
@@ -1017,9 +1045,13 @@ class GedcomParser:
                         self.placemap[val] = place
                     event.setPlace(place)
                     self.ignore_sub_junk(level+1)
+            elif matches[1] == "TYPE":
+                # eventually do something intelligent here
+                pass
             elif matches[1] == "CAUS":
                 info = matches[2] + self.parse_continue_data()
                 event.setCause(info)
+                self.parse_cause(event,level+1)
             elif matches[1] == "NOTE":
                 info = matches[2] + self.parse_continue_data()
                 if note == "":
@@ -1072,7 +1104,7 @@ class GedcomParser:
                         else:
                             name = matches[2]
                     attr.setName(name)
-            elif matches[1] == ["CAUS", "DATE","TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
+            elif matches[1] in ["CAUS", "DATE","TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
                 source_ref = SourceRef()
@@ -1127,7 +1159,11 @@ class GedcomParser:
                         event.setName(matches[2])
             elif matches[1] == "DATE":
                 event.setDateObj(self.extract_date(matches[2]))
-            elif matches[1] == ["TIME","AGE","AGNC","CAUS","ADDR","STAT","TEMP","HUSB","WIFE","OBJE"]:
+            elif matches[1] == "CAUS":
+                info = matches[2] + self.parse_continue_data()
+                event.setCause(info)
+                self.parse_cause(event,level+1)
+            elif matches[1] in ["TIME","AGE","AGNC","ADDR","STAT","TEMP","HUSB","WIFE","OBJE"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
                 source_ref = SourceRef()
@@ -1318,22 +1354,12 @@ class GedcomParser:
                 self.update(self.created_obj,matches[2])
    	    elif matches[1] == "VERS":
                 self.update(self.version_obj,matches[2])
-   	    elif matches[1] == "CORP":
+   	    elif matches[1] in ["CORP","DATA","SUBM","SUBN","COPR","FILE","LANG"]:
                 self.ignore_sub_junk(2)
-   	    elif matches[1] == "DATA":
-                self.ignore_sub_junk(2)
-   	    elif matches[1] == "SUBM":
-                pass
-   	    elif matches[1] == "SUBN":
-                pass
    	    elif matches[1] == "DEST":
                 if genby == "GRAMPS":
                     self.gedsource = self.gedmap.get_from_source_tag(matches[2])
                     self.broken_conc = self.gedsource.get_conc()
-   	    elif matches[1] == "FILE":
-                self.ignore_sub_junk(2)
-   	    elif matches[1] == "COPR":
-                pass
    	    elif matches[1] == "CHAR":
                 if matches[2] == "UNICODE" or matches[2] == "UTF-8" or \
                    matches[2] == "UTF8":
@@ -1348,8 +1374,6 @@ class GedcomParser:
                 self.ignore_sub_junk(2)
    	    elif matches[1] == "_SCHEMA":
                 self.parse_ftw_schema(2)
-   	    elif matches[1] == "LANG":
-                pass
    	    elif matches[1] == "PLAC":
                 self.parse_place_form(2)
    	    elif matches[1] == "DATE":
@@ -1496,6 +1520,7 @@ class GedcomParser:
             dateobj.set(data)
         else:
             dateobj.set(text)
+
         return dateobj
 
 #-------------------------------------------------------------------------

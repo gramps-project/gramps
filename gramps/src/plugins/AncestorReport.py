@@ -48,6 +48,7 @@ active_person = None
 db = None
 styles = StyleSheet()
 style_sheet_list = None
+topDialog = None
 
 #------------------------------------------------------------------------
 #
@@ -277,7 +278,6 @@ def report(database,person):
     
     global active_person
     global topDialog
-    global glade_file
     global db
     global style_sheet_list
     

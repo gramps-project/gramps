@@ -45,6 +45,7 @@ active_person = None
 db = None
 styles = StyleSheet()
 style_sheet_list = None
+topDialog = None
 
 #------------------------------------------------------------------------
 #

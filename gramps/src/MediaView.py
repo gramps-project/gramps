@@ -328,7 +328,8 @@ class MediaView:
                 oref.setReference(photo)
                 try:
                     id = photo.getId()
-                    name = RelImage.import_media_object(tfile,self.path,id)
+                    path = self.db.getSavePath()
+                    name = RelImage.import_media_object(tfile,path,id)
                     if name != None and name != "":
                         photo.setPath(name)
                 except:

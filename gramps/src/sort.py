@@ -17,25 +17,39 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+"""
+Provides sorting routines for use in GRAMPS. Since these functions are
+intended to provide fast sorting, they tend to bypass access methods,
+and directly use class members. For this reason, care needs to be taken
+to make sure these remain in sync with the rest of the design.
+"""
 
+#-------------------------------------------------------------------------
+#
+# Imported Modules
+#
+#-------------------------------------------------------------------------
 import string
-from Date import compare_dates, UNDEF
+import Date
 
 #-------------------------------------------------------------------------
 #
-#
+# Functions
 #
 #-------------------------------------------------------------------------
+
 def build_sort_name(n):
+    """Builds a name from a RelLib.Name instance that is suitable for
+    use as a sort key in a GtkCList. The name is converted to upper case
+    to provide for case-insenstive sorting"""
     return "%-25s%-30s%s" % \
            (string.upper(n.Surname),string.upper(n.FirstName),string.upper(n.Suffix))
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def build_sort_event(n):
+def build_sort_date(n):
+    """Builds a date from a Date.Date instance that is suitable for
+    use as a sort key in a GtkCList. The resultant string is in the format
+    of YYYYMMDD. Unknown values are given as all nines, so that the
+    appear at the end"""
     y = n.start.year
     if y < 0:
         y = 9999
@@ -47,110 +61,32 @@ def build_sort_event(n):
         d = 99
     return "%04d%02d%02d" % (y,m,d)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def fast_name_sort(list):
-    nlist = map(build_sort_name,list)
-    nlist.sort()
-    return map(lambda(key,x): x, nlist)
+def by_last_name(first, second):
+    """Sort routine for comparing two last names. If last names are equal,
+    uses the given name and suffix"""
+    u = string.upper
+    name1 = first.PrimaryName
+    name2 = second.PrimaryName
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def reverse_name_sort(list):
-    nlist = map(build_sort_name,list)
-    nlist.sort()
-    nlist.reverse()
-    return map(lambda(key,x): x, nlist)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def fast_birth_sort(list):
-    nlist = map(build_sort_event,list)
-    nlist.sort()
-    return map(lambda(key,x): x, nlist)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def reverse_birth_sort(list):
-    nlist = map(build_sort_event,list)
-    nlist.sort()
-    nlist.reverse()
-    return map(lambda(key,x): x, nlist)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def fast_death_sort(list):
-    nlist = map(build_sort_event,list)
-    nlist.sort()
-    return map(lambda(key,x): x, nlist)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def reverse_death_sort(list):
-    nlist = map(build_sort_event,list)
-    nlist.sort()
-    nlist.reverse()
-    return map(lambda(key,x): x, nlist)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def by_last_name(first, second) :
-
-    name1 = first.getPrimaryName()
-    name2 = second.getPrimaryName()
-
-    fsn = string.upper(name1.getSurname())
-    ssn = string.upper(name2.getSurname())
+    fsn = u(name1.Surname)
+    ssn = u(name2.Surname)
 
     if fsn == ssn :
-        ffn = string.upper(name1.getFirstName())
-        sfn = string.upper(name2.getFirstName())
+        ffn = u(name1.FirstName)
+        sfn = u(name2.FirstName)
         if ffn == sfn :
-            return cmp(string.upper(name1.getSuffix()), string.upper(name2.getSuffix()))
+            return cmp(u(name1.Suffix), u(name2.Suffix))
         else :
             return cmp(ffn, sfn)
     else :
         return cmp(fsn, ssn)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def by_last_name_backwards(first, second) :
-    return by_last_name(second,first)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def by_birthdate(first, second) :
-
+    """Sort routine for comparing two people by birth dates. If the birth dates
+    are equal, sorts by name"""
     date1 = first.getBirth().getDateObj()
     date2 = second.getBirth().getDateObj()
-    val = compare_dates(date1,date2)
+    val = Date.compare_dates(date1,date2)
     if val == 0:
         return by_last_name(first,second)
     return val

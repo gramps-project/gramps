@@ -17,7 +17,15 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+"""
+Provides a TextDoc based interface to the AbiWord document format.
+"""
 
+#-------------------------------------------------------------------------
+#
+# Imported Modules
+#
+#-------------------------------------------------------------------------
 import os
 import base64
 
@@ -25,26 +33,40 @@ from TextDoc import *
 from latin_utf8 import latin_to_utf8
 import const
 import string
-import utils
-cnv = utils.fl2txt
+from utils import fl2txt
 
+#-------------------------------------------------------------------------
+#
+# Attemp to import the Python Imaging Library
+#
+#-------------------------------------------------------------------------
 try:
     import PIL.Image
     no_pil = 0
 except:
     no_pil = 1
 
-
+#-------------------------------------------------------------------------
+#
+# Class Definitions
+#
+#-------------------------------------------------------------------------
 class AbiWordDoc(TextDoc):
+    """AbiWord document generator. Inherits from the TextDoc generic
+    document interface class."""
 
     def __init__(self,styles,type,orientation):
+        """Initializes the AbiWordDoc class, calling the __init__ routine
+        of the parent TextDoc class"""
         TextDoc.__init__(self,styles,type,orientation)
         self.f = None
         self.level = 0
         self.new_page = 0
 
     def open(self,filename):
-
+        """Opens the document, writing the necessary header information.
+        AbiWord uses an XML format, so the document format is pretty easy
+        to understand"""
         if filename[-4:] != ".abw":
             self.filename = "%s.abw" % filename
         else:
@@ -59,19 +81,20 @@ class AbiWordDoc(TextDoc):
             self.f.write('orientation="portrait" ')
         else:
             self.f.write('orientation="landscape" ')
-        self.f.write('width="%s" ' % cnv("%.4f",self.width/2.54))
-        self.f.write('height="%s" ' % cnv("%.4f",self.height/2.54))
+        self.f.write('width="%s" ' % fl2txt("%.4f",self.width/2.54))
+        self.f.write('height="%s" ' % fl2txt("%.4f",self.height/2.54))
         self.f.write('units="inch" page-scale="1.000000"/>\n')
         self.f.write('<section ')
         rmargin = float(self.rmargin)/2.54
         lmargin = float(self.lmargin)/2.54
         self.f.write('props="page-margin-right:%sin; ' % \
-                     cnv("%.4f",rmargin))
+                     fl2txt("%.4f",rmargin))
         self.f.write('page-margin-left:%sin"' % \
-                     cnv("%.4f",lmargin))
+                     fl2txt("%.4f",lmargin))
         self.f.write('>\n')
 
     def close(self):
+        """Write the trailing information and closes the file"""
         self.f.write('</section>\n')
         if len(self.photo_list) > 0:
             self.f.write('<data>\n')
@@ -119,8 +142,8 @@ class AbiWordDoc(TextDoc):
 
         self.f.write('<image dataid="')
         self.f.write(tag)
-        width = cnv("%.3f",act_width)
-        height = cnv("%.3f",act_height)
+        width = fl2txt("%.3f",act_width)
+        height = fl2txt("%.3f",act_height)
         self.f.write('" props="width:%sin; ' % width)
         self.f.write('height:%sin"/>'  % height)
 
@@ -136,9 +159,9 @@ class AbiWordDoc(TextDoc):
             self.f.write('text-align:center;')
         else:
             self.f.write('text-align:justify;')
-        rmargin = cnv("%.4f",float(style.get_right_margin())/2.54)
-        lmargin = cnv("%.4f",float(style.get_left_margin())/2.54)
-        indent = cnv("%.4f",float(style.get_first_indent())/2.54)
+        rmargin = fl2txt("%.4f",float(style.get_right_margin())/2.54)
+        lmargin = fl2txt("%.4f",float(style.get_left_margin())/2.54)
+        indent = fl2txt("%.4f",float(style.get_first_indent())/2.54)
         self.f.write(' margin-right:%sin;' % rmargin)
         self.f.write(' margin-left:%sin;' % lmargin)
         self.f.write(' tabstops:%sin/L;' % lmargin)
@@ -193,7 +216,7 @@ class AbiWordDoc(TextDoc):
             self.f.write('; font-style:italic')
         color = font.get_color()
         if color != (0,0,0):
-            self.f.write('; color:%2x%2x%2x' % color)
+            self.f.write('; color:%02x%02x%02x' % color)
         if font.get_underline():
             self.f.write('; text-decoration:underline')
         self.f.write('">')
@@ -212,7 +235,7 @@ class AbiWordDoc(TextDoc):
             self.f.write('; font-style:italic')
         color = font.get_color()
         if color != (0,0,0):
-            self.f.write('; color:%2x%2x%2x' % color)
+            self.f.write('; color:%02x%02x%02x' % color)
         if font.get_underline():
             self.f.write('; text-decoration:underline')
         self.f.write('">')
