@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps\n"
-"POT-Creation-Date: Tue Mar 12 20:00:53 2002\n"
-"PO-Revision-Date: 2002-03-12 19:33+01:00\n"
+"POT-Creation-Date: Fri Mar 15 07:51:16 2002\n"
+"PO-Revision-Date: 2002-03-15 21:15+01:00\n"
 "Last-Translator: Bernd Schandl <schandl@gmx.net>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgid "Choose Spouse/Partner of %s"
 msgstr "(Ehe-)Partner von %s auswählen"
 
 #: AddSpouse.py:110 const.py:391 const.py:399 plugins/FamilyGroup.py:288
-#: plugins/FamilyGroup.py:290
+#: plugins/FamilyGroup.py:290 plugins/test.py:288 plugins/test.py:290
 msgid "Married"
 msgstr "Verheiratet"
 
@@ -65,7 +65,7 @@ msgstr "Löschen"
 #: gramps.glade:5570 gramps.glade:5591 gramps.glade:5635 gramps.glade:5665
 #: gramps.glade:6570 gramps.glade:6600 gramps.glade:6617 gramps.glade:6647
 #: gramps_main.py:1370 gramps_main.py:1532 plugins/EventCmp.py:474
-#: plugins/FamilyGroup.py:138
+#: plugins/FamilyGroup.py:138 plugins/test.py:138
 msgid "Birth"
 msgstr "Geburt"
 
@@ -81,14 +81,14 @@ msgstr "Elternteil"
 #: ChooseParents.py:161 gramps.glade:1866 gramps.glade:5040
 #: gramps_main.py:1459 mergedata.glade:518 mergedata.glade:1180
 #: plugins/FamilyGroup.py:197 plugins/IndivSummary.py:283
-#: plugins/WebPage.py:245 plugins/WebPage.py:248
+#: plugins/WebPage.py:245 plugins/WebPage.py:248 plugins/test.py:197
 msgid "Mother"
 msgstr "Mutter"
 
 #: ChooseParents.py:162 gramps.glade:1775 gramps.glade:4842
 #: gramps_main.py:1458 mergedata.glade:766 mergedata.glade:1478
 #: plugins/FamilyGroup.py:184 plugins/IndivSummary.py:269
-#: plugins/WebPage.py:244 plugins/WebPage.py:247
+#: plugins/WebPage.py:244 plugins/WebPage.py:247 plugins/test.py:184
 msgid "Father"
 msgstr "Vater"
 
@@ -318,6 +318,7 @@ msgid "Edit"
 msgstr "Bearbeiten"
 
 #: EditPerson.glade:385 plugins/EventCmp.py:474 plugins/FamilyGroup.py:156
+#: plugins/test.py:156
 msgid "Death"
 msgstr "Tod"
 
@@ -339,9 +340,9 @@ msgstr "Männlich"
 msgid "female"
 msgstr "Weiblich"
 
-#: EditPerson.glade:670 EditPerson.py:401 const.py:105 gramps.glade:6720
+#: EditPerson.glade:670 EditPerson.py:393 const.py:105 gramps.glade:6720
 #: plugins/FamilyGroup.py:379 plugins/IndivSummary.py:161
-#: plugins/WebPage.py:505
+#: plugins/WebPage.py:505 plugins/test.py:379
 msgid "unknown"
 msgstr "unbekannt"
 
@@ -745,19 +746,23 @@ msgstr "Internetadressen-Editor - GRAMPS"
 msgid "Internet Address Editor"
 msgstr "Internetadressen-Editor"
 
-#: EditPerson.py:376 GrampsCfg.py:61 const.py:118 gramps.glade:4991
+#: EditPerson.py:368 GrampsCfg.py:61 const.py:118 gramps.glade:4991
 #: gramps.glade:5186 gramps.glade:5570 gramps.glade:5635 gramps.glade:6570
 #: gramps.glade:6617
 msgid "None"
 msgstr "Ohne"
 
-#: EditPerson.py:393 EditSource.py:138
+#: EditPerson.py:385 EditSource.py:138
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s und %(mother)s"
 
-#: EditPerson.py:730 EditPerson.py:739
+#: EditPerson.py:722 EditPerson.py:731
 msgid "Are you sure you want to abandon your changes?"
 msgstr "Sind Sie sicher, dass die Änderungen verworfen werden sollen?"
+
+#: EditPerson.py:1011
+msgid "Make the selected name the preferred name"
+msgstr "Den gewählten Namen als bevorzugten Namen verwenden"
 
 #: EditPerson.py:1071 Marriage.py:368
 msgid "GRAMPS ID value was not changed."
@@ -1025,7 +1030,7 @@ msgstr "Ortsnamen-Editor für %s"
 msgid "Location Editor"
 msgstr "Ortsnamen-Editor"
 
-#: Marriage.py:102 Marriage.py:479 Marriage.py:497 Utils.py:135
+#: Marriage.py:102 Marriage.py:480 Marriage.py:498 Utils.py:135
 #: plugins/Check.py:178
 msgid "%s and %s"
 msgstr "%s und %s"
@@ -1889,7 +1894,7 @@ msgstr ""
 msgid "HTML"
 msgstr "HTML"
 
-#: docgen/KwordDoc.py:433
+#: docgen/KwordDoc.py:479
 msgid "KWord"
 msgstr "KWord"
 
@@ -2259,6 +2264,7 @@ msgid "Relationship"
 msgstr "Verwandtschaftsverhältnis"
 
 #: gramps.glade:1598 plugins/FamilyGroup.py:277 plugins/FamilyGroup.py:381
+#: plugins/test.py:277 plugins/test.py:381
 msgid "Spouse"
 msgstr "Ehepartner"
 
@@ -2279,7 +2285,7 @@ msgid "Add/Edit/View"
 msgstr "Hinzufügen/Bearbeiten/Anzeigen"
 
 #: gramps.glade:2022 plugins/FamilyGroup.py:311 plugins/IndivSummary.py:174
-#: plugins/WebPage.py:521
+#: plugins/WebPage.py:521 plugins/test.py:311
 msgid "Children"
 msgstr "Kinder"
 
@@ -2850,6 +2856,7 @@ msgstr "Erlaubt die Anpassung der Daten in den Kästen des Berichts"
 #: plugins/DescendReport.py:276 plugins/DetAncestralReport.py:607
 #: plugins/FamilyGroup.py:460 plugins/GraphViz.py:288
 #: plugins/IndivSummary.py:431 plugins/Summary.py:133 plugins/WebPage.py:1070
+#: plugins/test.py:460
 msgid "Beta"
 msgstr "Beta"
 
@@ -2945,7 +2952,7 @@ msgstr "Ahnentafel"
 #: plugins/DescendReport.py:143 plugins/DescendReport.py:275
 #: plugins/DetAncestralReport.py:608 plugins/FamilyGroup.py:338
 #: plugins/FamilyGroup.py:459 plugins/IndivSummary.py:332
-#: plugins/IndivSummary.py:432
+#: plugins/IndivSummary.py:432 plugins/test.py:338 plugins/test.py:459
 msgid "Text Reports"
 msgstr "Textuelle Berichte"
 
@@ -3249,31 +3256,31 @@ msgstr ""
 "finden."
 
 #: plugins/FamilyGroup.py:109 plugins/FamilyGroup.py:338
-#: plugins/FamilyGroup.py:458
+#: plugins/FamilyGroup.py:458 plugins/test.py:109 plugins/test.py:338
 msgid "Family Group Report"
 msgstr "Familienbericht"
 
-#: plugins/FamilyGroup.py:118
+#: plugins/FamilyGroup.py:118 plugins/test.py:118
 msgid "Husband"
 msgstr "Ehemann"
 
-#: plugins/FamilyGroup.py:120
+#: plugins/FamilyGroup.py:120 plugins/test.py:120
 msgid "Wife"
 msgstr "Ehefrau"
 
-#: plugins/FamilyGroup.py:342
+#: plugins/FamilyGroup.py:342 plugins/test.py:342
 msgid "Family Group Report for %s"
 msgstr "Familienbericht für %s"
 
-#: plugins/FamilyGroup.py:347
+#: plugins/FamilyGroup.py:347 plugins/test.py:347
 msgid "Save Family Group Report"
 msgstr "Familienbericht speichern"
 
-#: plugins/FamilyGroup.py:369
+#: plugins/FamilyGroup.py:369 plugins/test.py:369
 msgid "No known marriages"
 msgstr "Keine Ehen bekannt"
 
-#: plugins/FamilyGroup.py:461
+#: plugins/FamilyGroup.py:461 plugins/test.py:461
 msgid ""
 "Creates a family group report, showing information on a set of parents and "
 "their children."
@@ -4288,6 +4295,10 @@ msgstr "Datenbankübersicht - GRAMPS"
 #: plugins/summary.glade:95
 msgid "Database Summary"
 msgstr "Datenbankübersicht"
+
+#: plugins/test.py:458
+msgid "test"
+msgstr "test"
 
 #: plugins/verify.glade:18
 msgid "Database Verify - GRAMPS"
