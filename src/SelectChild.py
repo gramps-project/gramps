@@ -334,9 +334,8 @@ class EditRel:
 
         if father:
             fname = father.getPrimaryName().getName()
-            val = _("Relationship to %(father)s" % {
-                'father' : fname
-                })
+            val = _("Relationship to %{father}s") % {
+                'father' : fname }
             self.fdesc.set_text('<b>%s</b>' % val)
             self.fcombo.set_sensitive(1)
         else:
@@ -346,9 +345,8 @@ class EditRel:
 
         if mother:
             mname = mother.getPrimaryName().getName()
-            val = _("Relationship to %(mother)s" % {
-                'mother' : mname
-                })
+            val = _("Relationship to %{mother}s") % {
+                'mother' : mname }
             self.mdesc.set_text('<b>%s</b>' % val)
             self.mcombo.set_sensitive(1)
         else:

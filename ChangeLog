@@ -1,3 +1,8 @@
+2003-07-08  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/SelectChild.py: Fix typos upsetting translation. 
+	* src/plugins/book.glade: Mark dummy strins as non-translatable.
+	* src/po/template.po: Update the above corrections in template.
+
 2003-07-08  Donald Peterson  <dpeterson@sigmaxi.org>
 	* doc/gramps-manual/C/gramps-manual.xml: Fixed a couple of typos
 

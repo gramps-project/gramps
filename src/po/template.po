@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Tue Jul  8 15:47:21 2003\n"
+"POT-Creation-Date: Wed Jul  9 00:04:38 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1176,19 +1176,6 @@ msgstr ""
 msgid "The file has been moved or deleted."
 msgstr ""
 
-#: ReorderIds.py:125 plugins/ReorderIds.py:126
-msgid "Reorder gramps IDs"
-msgstr ""
-
-#: ReorderIds.py:126 plugins/ChangeTypes.py:104 plugins/Check.py:353
-#: plugins/Merge.py:554 plugins/PatchNames.py:209 plugins/ReorderIds.py:127
-msgid "Database Processing"
-msgstr ""
-
-#: ReorderIds.py:127 plugins/ReorderIds.py:128
-msgid "Reorders the gramps IDs according to gramps' default rules."
-msgstr ""
-
 #: Report.py:75
 msgid "Default Template"
 msgstr ""
@@ -1469,18 +1456,18 @@ msgid "Relationships of %s"
 msgstr ""
 
 #: SelectChild.py:337
-msgid "Relationship to %(father)sfather"
+msgid "Relationship to %{father}s"
 msgstr ""
 
-#: SelectChild.py:343
+#: SelectChild.py:342
 msgid "Relationship to father"
 msgstr ""
 
-#: SelectChild.py:349
-msgid "Relationship to %(mother)smother"
+#: SelectChild.py:348
+msgid "Relationship to %{mother}s"
 msgstr ""
 
-#: SelectChild.py:355
+#: SelectChild.py:353
 msgid "Relationship to mother"
 msgstr ""
 
@@ -2262,10 +2249,6 @@ msgstr ""
 
 #: docgen/SvgDrawDoc.py:270
 msgid "SVG (Scalable Vector Graphics)"
-msgstr ""
-
-#: docgen/TextBufDoc.py:169
-msgid "Text Buffer Preview"
 msgstr ""
 
 #: edit_person.glade:34
@@ -3518,9 +3501,8 @@ msgstr ""
 
 #: plugins/AncestorChart.py:214 plugins/AncestorChart.py:427
 #: plugins/DesGraph.py:308 plugins/DesGraph.py:464 plugins/FanChart.py:280
-#: plugins/FanChart.py:353 plugins/FullFamily.py:105 plugins/FullFamily.py:173
-#: plugins/GraphViz.py:80 plugins/GraphViz.py:455 plugins/TimeLine.py:316
-#: plugins/TimeLine.py:465
+#: plugins/FanChart.py:353 plugins/GraphViz.py:80 plugins/GraphViz.py:455
+#: plugins/TimeLine.py:316 plugins/TimeLine.py:465
 msgid "Graphical Reports"
 msgstr ""
 
@@ -3533,12 +3515,10 @@ msgid "Save Ancestor Chart"
 msgstr ""
 
 #: plugins/AncestorChart.py:235 plugins/DesGraph.py:325
-#: plugins/FullFamily.py:126
 msgid "Display Format"
 msgstr ""
 
 #: plugins/AncestorChart.py:236 plugins/DesGraph.py:326
-#: plugins/FullFamily.py:127
 msgid "Allows you to customize the data in the boxes in the report"
 msgstr ""
 
@@ -3557,14 +3537,13 @@ msgstr ""
 #: plugins/Ancestors.py:960 plugins/DescendReport.py:403
 #: plugins/DetAncestralReport.py:1245 plugins/DetDescendantReport.py:1252
 #: plugins/FamilyGroup.py:760 plugins/FtmStyleAncestors.py:1031
-#: plugins/FtmStyleDescendants.py:1438 plugins/FullFamily.py:174
-#: plugins/GraphViz.py:454 plugins/IndivComplete.py:815
-#: plugins/IndivSummary.py:624 plugins/Summary.py:162 plugins/TimeLine.py:464
-#: plugins/WebPage.py:1284
+#: plugins/FtmStyleDescendants.py:1438 plugins/GraphViz.py:454
+#: plugins/IndivComplete.py:815 plugins/IndivSummary.py:624
+#: plugins/Summary.py:162 plugins/TimeLine.py:464 plugins/WebPage.py:1284
 msgid "Beta"
 msgstr ""
 
-#: plugins/AncestorChart.py:429 plugins/FullFamily.py:175
+#: plugins/AncestorChart.py:429
 msgid "Produces a graphical ancestral tree graph"
 msgstr ""
 
@@ -3816,6 +3795,11 @@ msgstr ""
 
 #: plugins/ChangeTypes.py:103
 msgid "Rename personal event types"
+msgstr ""
+
+#: plugins/ChangeTypes.py:104 plugins/Check.py:353 plugins/Merge.py:554
+#: plugins/PatchNames.py:209 plugins/ReorderIds.py:127
+msgid "Database Processing"
 msgstr ""
 
 #: plugins/ChangeTypes.py:105
@@ -4869,18 +4853,6 @@ msgstr ""
 msgid "Produces a textual descendant report similar to Family Tree Maker."
 msgstr ""
 
-#: plugins/FullFamily.py:105 plugins/FullFamily.py:172
-msgid "Full Family Chart"
-msgstr ""
-
-#: plugins/FullFamily.py:109
-msgid "Full Family Chart for %s"
-msgstr ""
-
-#: plugins/FullFamily.py:114
-msgid "Save Full Family Chart"
-msgstr ""
-
 #: plugins/GraphViz.py:62 plugins/GraphViz.py:89
 msgid "Single (scaled)"
 msgstr ""
@@ -5276,6 +5248,14 @@ msgstr ""
 
 #: plugins/RelCalc.py:161
 msgid "Calculates the relationship between two people"
+msgstr ""
+
+#: plugins/ReorderIds.py:126
+msgid "Reorder gramps IDs"
+msgstr ""
+
+#: plugins/ReorderIds.py:128
+msgid "Reorders the gramps IDs according to gramps' default rules."
 msgstr ""
 
 #: plugins/SimpleBookTitle.py:107
@@ -5876,24 +5856,12 @@ msgstr ""
 msgid "Export to GRAMPS package"
 msgstr ""
 
-#: plugins/book.glade:10
-msgid "Book"
-msgstr ""
-
 #: plugins/book.glade:26
 msgid "title"
 msgstr ""
 
 #: plugins/book.glade:59
 msgid "Book _name: "
-msgstr ""
-
-#: plugins/book.glade:127
-msgid "avail_label"
-msgstr ""
-
-#: plugins/book.glade:151
-msgid "book_label"
 msgstr ""
 
 #: plugins/book.glade:251
@@ -5938,14 +5906,6 @@ msgstr ""
 
 #: plugins/book.glade:457
 msgid "_Edit books"
-msgstr ""
-
-#: plugins/book.glade:545
-msgid "dialog1"
-msgstr ""
-
-#: plugins/book.glade:620
-msgid "label6"
 msgstr ""
 
 #: plugins/cdexport.glade:73
