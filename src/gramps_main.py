@@ -123,6 +123,11 @@ class Gramps:
         # a GrampsXML or GrampsZODB
         
         self.db = GrampsDB()
+        self.db.set_iprefix(GrampsCfg.iprefix)
+        self.db.set_oprefix(GrampsCfg.oprefix)
+        self.db.set_fprefix(GrampsCfg.fprefix)
+        self.db.set_sprefix(GrampsCfg.sprefix)
+        self.db.set_pprefix(GrampsCfg.pprefix)
 
         (self.scol,self.sdir) = GrampsCfg.get_sort_cols("person",self.scol,self.sdir)
 
@@ -135,12 +140,6 @@ class Gramps:
 
         self.change_sort(self.scol,self.sdir==GTK.SORT_DESCENDING)
         self.set_sort_arrow(self.scol,self.sdir)
-
-        self.db.set_iprefix(GrampsCfg.iprefix)
-        self.db.set_oprefix(GrampsCfg.oprefix)
-        self.db.set_fprefix(GrampsCfg.fprefix)
-        self.db.set_sprefix(GrampsCfg.sprefix)
-        self.db.set_pprefix(GrampsCfg.pprefix)
         
         if arg != None:
             if string.upper(arg[-3:]) == "GED":
@@ -624,6 +623,11 @@ class Gramps:
             self.db = GrampsZODB()
         else:
             self.db = GrampsXML()
+        self.db.set_iprefix(GrampsCfg.iprefix)
+        self.db.set_oprefix(GrampsCfg.oprefix)
+        self.db.set_fprefix(GrampsCfg.fprefix)
+        self.db.set_sprefix(GrampsCfg.sprefix)
+        self.db.set_pprefix(GrampsCfg.pprefix)
 
         self.place_view.change_db(self.db)
         self.source_view.change_db(self.db)
