@@ -613,7 +613,7 @@ def on_update_attr_clicked(obj):
 
     epo = obj.get_data(EDITPERSON)
     attr = obj.get_row_data(row)
-    attr.setType(const.set_pattr(epo.attr_type.get_text()))
+    attr.setType(const.save_pattr(epo.attr_type.get_text()))
     attr.setValue(epo.attr_value.get_text())
 
     epo.redraw_attr_list()
@@ -1468,8 +1468,7 @@ class EventEditor:
         self.top.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
             "on_event_edit_ok_clicked" : on_event_edit_ok_clicked,
-            "on_source_clicked" : on_source_clicked,
-            "on_event_edit_apply_clicked" : on_event_edit_apply_clicked
+            "on_source_clicked" : on_source_clicked
             })
 
 #-------------------------------------------------------------------------
@@ -1486,7 +1485,7 @@ def on_source_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
-def on_event_edit_apply_clicked(obj):
+def on_event_edit_ok_clicked(obj):
     ee = obj.get_data("o")
     event = ee.event
 
@@ -1504,12 +1503,5 @@ def on_event_edit_apply_clicked(obj):
         ee.parent.events_changed = 1
         
     ee.parent.redraw_event_list()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_event_edit_ok_clicked(obj):
-    on_event_edit_apply_clicked(obj)
     utils.destroy_passed_object(obj)
+
