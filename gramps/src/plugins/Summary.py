@@ -97,7 +97,7 @@ def report(database,person):
     text = text + "----------------------------\n"
     text = text + "%s : %d\n" % (_("Individuals with photos"),with_photos)
     text = text + "%s : %d\n" % (_("Total number of photos"),total_photos)
-    text = text + "%s : %d %s\n" % (_("Total size of photos"),_("bytes"),bytes)
+    text = text + "%s : %d %s\n" % (_("Total size of photos"),bytes,_("bytes"))
     text = text + "\n%s\n" % _("Family Information")
     text = text + "----------------------------\n"
     text = text + "%s : %d\n" % (_("Number of families"),len(familyList))
