@@ -78,20 +78,23 @@ gettext.install("gramps",loc,unicode=1)
 #
 #-------------------------------------------------------------------------
 import gramps_main 
+import gobject
 
 signal.signal(signal.SIGCHLD, signal.SIG_DFL)
 
 args = sys.argv[1:]
 
-try:
-    import StartupDialog
-    
-    if StartupDialog.need_to_run():
-        StartupDialog.StartupDialog(gramps_main.Gramps,args)
-    else:
-        gramps_main.Gramps(args)
-except:
-    import DisplayTrace
-    DisplayTrace.DisplayTrace()
+def run():
+    try:
+        import StartupDialog
+        
+        if StartupDialog.need_to_run():
+            StartupDialog.StartupDialog(gramps_main.Gramps,args)
+        else:
+            gramps_main.Gramps(args)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
 
+gobject.timeout_add(100, run, priority=100)
 gtk.main()

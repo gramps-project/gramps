@@ -59,9 +59,6 @@ import FamilyView
 import SourceView
 import PeopleView
 import GenericFilter
-
-from QuestionDialog import *
-
 import DisplayTrace
 import const
 import Plugins
@@ -72,9 +69,11 @@ import EditPerson
 import Find
 import DbPrompter
 
-try:    # First try python2.3 and later: this is the future
+from QuestionDialog import *
+
+try:                       # First try python2.3 and later: this is the future
     from bsddb import db
-except ImportError: # try python2.2
+except ImportError:        # try python2.2
     from bsddb3 import db
 
 #-------------------------------------------------------------------------
@@ -894,7 +893,6 @@ class Gramps:
                        self.new_database_response,self.topWindow)
                        
     def new_database_response(self):
-        import DbPrompter
         DbPrompter.DbPrompter(self,1,self.topWindow)
 
     def clear_database(self):
@@ -1175,7 +1173,6 @@ class Gramps:
 
         if os.path.exists(filename):
             if not os.path.isdir(filename):
-                import DbPrompter
                 DbPrompter.DbPrompter(self,0,self.topWindow)
                 self.displayError(_("Database could not be opened"),
                                   _("%s is not a directory.") % filename + ' ' + \

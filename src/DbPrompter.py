@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -36,6 +37,8 @@ import gtk.glade
 import Utils
 import const
 import GrampsCfg
+import gnome
+import QuestionDialog
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -48,91 +51,73 @@ class DbPrompter:
     
     def __init__(self,db,want_new,parent=None):
         self.db = db
-        self.want_new = want_new
-        self.parent = parent
-        self.show()
-
-    def show(self):
         opendb = gtk.glade.XML(const.gladeFile, "opendb","gramps")
         top = opendb.get_widget('opendb')
-        if self.parent:
-            top.set_transient_for(self.parent)
+        if parent:
+            top.set_transient_for(parent)
         title = opendb.get_widget('title')
 
         Utils.set_titles(top,title,_('Open a database'))
-        
-        opendb.signal_autoconnect({
-            "on_open_ok_clicked" : self.open_ok_clicked,
-            "on_open_help_clicked" : self.open_help_clicked,
-            "on_open_cancel_clicked" : gtk.main_quit,
-            "on_opendb_delete_event": gtk.main_quit,
-            })
 
-        self.new = opendb.get_widget("new")
-        if self.want_new:
-            self.new.set_active(1)
+        new = opendb.get_widget("new")
+        new.set_active(want_new)
 
-    def open_ok_clicked(self,obj):
-        if self.new.get_active():
+        while 1:
+            response = top.run()
+            if response == gtk.RESPONSE_OK:
+                if self.chooser(new.get_active()):
+                    break
+            elif response == gtk.RESPONSE_CANCEL:
+                break
+            elif response == gtk.RESPONSE_HELP:
+                try:
+                    gnome.help_display('gramps-manual','choose-db-start')
+                except gobject.GError,msg:
+                    QuestionDialog.ErrorDialog(_('Help not available'),msg)
+
+        top.destroy()
+        if response == gtk.RESPONSE_CANCEL:
+            gtk.main_quit()
+
+    def chooser(self,save):
+        if save:
+            choose = gtk.FileChooserDialog('Create GRAMPS database',
+                                           None,
+                                           gtk.FILE_CHOOSER_ACTION_SAVE,
+                                           (gtk.STOCK_CANCEL,
+                                            gtk.RESPONSE_CANCEL,
+                                            gtk.STOCK_OPEN,
+                                            gtk.RESPONSE_OK))
             self.db.clear_database()
-            self.save_as_activate()
         else:
-            self.open_activate()
-        Utils.destroy_passed_object(obj)
-
-    def open_help_clicked(self,obj):
-        """Display the GRAMPS manual"""
-        import gnome
-        gnome.help_display('gramps-manual','choose-db-start')
-
-    def save_as_activate(self):
-        choose = gtk.FileChooserDialog('Create GRAMPS database',
-                                       None,
-                                       gtk.FILE_CHOOSER_ACTION_SAVE,
-                                       (gtk.STOCK_CANCEL,
-                                        gtk.RESPONSE_CANCEL,
-                                        gtk.STOCK_OPEN,
-                                        gtk.RESPONSE_OK))
-        filter = gtk.FileFilter()
-        filter.set_name(_('GRAMPS databases'))
-        filter.add_pattern('*.grdb')
-        choose.add_filter(filter)
-        
-        filter = gtk.FileFilter()
-        filter.set_name(_('All files'))
-        filter.add_pattern('*')
-        choose.add_filter(filter)
-        
-        response = choose.run()
-        if response == gtk.RESPONSE_OK:
-            filename = choose.get_filename()
-            self.db.read_file(filename)
-        choose.destroy()
-
-    def open_activate(self):
-        choose = gtk.FileChooserDialog('Open GRAMPS database',
-                                       None,
-                                       gtk.FILE_CHOOSER_ACTION_OPEN,
-                                       (gtk.STOCK_CANCEL,
-                                        gtk.RESPONSE_CANCEL,
-                                        gtk.STOCK_OPEN,
-                                        gtk.RESPONSE_OK))
-        filter = gtk.FileFilter()
-        filter.set_name(_('GRAMPS databases'))
-        filter.add_pattern('*.grdb')
-        choose.add_filter(filter)
-        
-        filter = gtk.FileFilter()
-        filter.set_name(_('All files'))
-        filter.add_pattern('*')
-        choose.add_filter(filter)
-        
-        if GrampsCfg.lastfile:
-            choose.set_filename(GrampsCfg.lastfile)
+            choose = gtk.FileChooserDialog('Open GRAMPS database',
+                                           None,
+                                           gtk.FILE_CHOOSER_ACTION_OPEN,
+                                           (gtk.STOCK_CANCEL,
+                                            gtk.RESPONSE_CANCEL,
+                                            gtk.STOCK_OPEN,
+                                            gtk.RESPONSE_OK))
             
+        filter = gtk.FileFilter()
+        filter.set_name(_('GRAMPS databases'))
+        filter.add_pattern('*.grdb')
+        choose.add_filter(filter)
+        
+        filter = gtk.FileFilter()
+        filter.set_name(_('All files'))
+        filter.add_pattern('*')
+        choose.add_filter(filter)
+        
+        if save and GrampsCfg.lastfile:
+            choose.set_filename(GrampsCfg.lastfile)
+
         response = choose.run()
         if response == gtk.RESPONSE_OK:
             filename = choose.get_filename()
             self.db.read_file(filename)
-        choose.destroy()
-    
+            choose.destroy()
+            return 1
+        else:
+            choose.destroy()
+            return 0
+
