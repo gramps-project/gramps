@@ -12,6 +12,16 @@
 	* src/DbPrompter.py (NewNativeDbPrompter.chooser):
 	Initialize natvie database before attempting to load.
 
+	* src/gramps.glade: Reorder toolbar style options.
+	* src/GrampsCfg.py (get_toolbar_style): Remove function;
+	(GrampsPreferences.build): Use correct values.
+	* src/GrampsGconfKeys.py (get_toolbar, save_toolbar):
+	Correct tuple of valid values.
+	* src/gramps_main.py (init_interface, toolbar_key_update):
+	Use function from GrampsKeys.
+	* src/data/gramps.schemas: Correct the default and the 
+	description of the toolbar key.
+
 2005-01-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps.glade: removal of more OptionMenus in favor
 	of ComboBoxes

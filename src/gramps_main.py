@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -193,7 +193,11 @@ class Gramps:
         self.modify_statusbar()
 
     def toolbar_key_update(self,client,cnxn_id,entry,data):
-        self.toolbar.set_style(GrampsCfg.get_toolbar_style())
+        the_style = GrampsKeys.get_toolbar()
+        if the_style == -1:
+            self.toolbar.unset_style()
+        else:
+            self.toolbar.set_style(the_style)
 
     def toolbar_on_key_update(self,client,cnxn_id,entry,data):
         is_on = GrampsKeys.get_toolbar_on()
@@ -286,7 +290,11 @@ class Gramps:
 
         self.build_recent_menu()
 
-        self.toolbar.set_style(GrampsCfg.get_toolbar_style())
+        the_style = GrampsKeys.get_toolbar()
+        if the_style == -1:
+            self.toolbar.unset_style()
+        else:
+            self.toolbar.set_style(the_style)
         self.views.set_show_tabs(0)
 
         self.family_view = FamilyView.FamilyView(self)
