@@ -227,7 +227,13 @@ class GedcomParser:
             line = latin_utf8.utf8_to_latin(line)
 	match = lineRE.match(line)
         if not match:
-	    raise GedcomParser.SyntaxError, self.lines[self.index]
+            msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
+            self.error_text_obj.insert_defaults(msg)
+            msg = "\n\t%s\n" % self.lines[self.index-1]
+            self.error_text_obj.insert_defaults(msg)
+            self.error_count = self.error_count + 1
+            self.update(self.errors_obj,str(self.error_count))
+            match = lineRE.match("999 XXX XXX")
         
         self.index = self.index + 1
     	return match.groups()
