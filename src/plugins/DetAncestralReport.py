@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002 Bruce J. DeGrasse
+# Copyright (C) 2000 Bruce J. DeGrasse
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -280,7 +280,7 @@ class DetAncestorReport(Report):
                 else:
                     self.doc.write_text(_(" was born in the year %s.") % date.getYear())
             elif place != "":
-                self.doc.write_text(_(" in %s.") % place)
+                self.doc.write_text(_(" was born in %s.") % place)
             else:
                 self.doc.write_text(_("."))
 
@@ -405,25 +405,25 @@ class DetAncestorReport(Report):
                 if person.getGender() == RelLib.Person.male:
                     if father != "":
                         if mother != "":
-                            self.doc.write_text(_(" %s was the son of %s and %s." % \
-                                (firstName, father, mother)))
+                            self.doc.write_text(_(" %s was the son of %s and %s.") % \
+                                (firstName, father, mother))
                         else:
-                            self.doc.write_text(_(" %s was the son of %s." % \
-                                (firstName, father)))
+                            self.doc.write_text(_(" %s was the son of %s.") % \
+                                (firstName, father))
                     else:
-                        self.doc.write_text(_(" %s was the son of %s." % \
-                                (firstName, mother)))
+                        self.doc.write_text(_(" %s was the son of %s.") % \
+                                (firstName, mother))
                 else:
                     if father != "":
                         if mother != "":
-                            self.doc.write_text(_(" %s was the daughter of %s and %s." % \
-                                (firstName, father, mother)))
+                            self.doc.write_text(_(" %s was the daughter of %s and %s.") % \
+                                (firstName, father, mother))
                         else:
-                            self.doc.write_text(_(" %s was the daughter of %s." % \
-                                (firstName, father)))
+                            self.doc.write_text(_(" %s was the daughter of %s.") % \
+                                (firstName, father))
                     else:
-                        self.doc.write_text(_(" %s was the daughter of %s." % \
-                                (firstName, mother)))
+                        self.doc.write_text(_(" %s was the daughter of %s.") % \
+                                (firstName, mother))
 
 
     def write_marriage(self, person, rptOptions):
@@ -1045,7 +1045,7 @@ class reportOptions:
         self.t= ""
         if birth.getYearValid() and death.getYearValid():
             self.age= death.getYear() - birth.getYear()
-            self.units= "year"
+            self.units= 3                          # year
             if birth.getMonthValid() and death.getMonthValid():
                 if birth.getMonth() > death.getMonth():
                     self.age= self.age -1
@@ -1056,10 +1056,22 @@ class reportOptions:
                         self.age= death.getMonth() - birth.getMonth()   # calc age in months
                         if birth.getDay() > death.getDay():
                             self.age= self.age - 1
-			    self.units= "month"
+			    self.units= 2                        # month
                         if self.age == 0:
                             self.age= death.getDay() + 31 - birth.getDay() # calc age in days
-                            self.units= "day"
-            self.t= _(" at the age of %d %s") % (self.age, self.units)
-            if self.age > 1:  self.t= self.t + "s"
+                            self.units= 1            # day
+            if self.age > 1:
+                if self.units == 1:
+                    self.t= _(" at the age of %d days") % self.age
+                elif self.units == 2:
+                    self.t= _(" at the age of %d months") % self.age
+                else:
+                    self.t= _(" at the age of %d years") % self.age
+            else:
+                if self.units == 1:
+                    self.t= _(" at the age of %d day") % self.age
+                elif self.units == 2:
+                    self.t= _(" at the age of %d month") % self.age
+                else:
+                    self.t= _(" at the age of %d year") % self.age
         return self.t
