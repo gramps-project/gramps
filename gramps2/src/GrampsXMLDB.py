@@ -44,10 +44,12 @@ class GrampsXMLDB(GrampsInMemDB):
         """creates a new GrampsDB"""
         GrampsInMemDB.__init__(self)
 
-    def load(self,name,callback):
+    def load(self,name,callback,mode="w"):
         self.filename = name
         self.id_trans = {}
 
+        self.readonly = mode == "r"
+        
         ReadXML.importData(self,name,use_trans=False)
         
         self.bookmarks = self.metadata.get('bookmarks')
@@ -56,6 +58,6 @@ class GrampsXMLDB(GrampsInMemDB):
         return 1
 
     def close(self):
-        if len(self.undodb) > 0:
+        if not self.readonly and len(self.undodb) > 0:
             WriteXML.quick_write(self,self.filename)
 

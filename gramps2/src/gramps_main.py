@@ -787,11 +787,16 @@ class Gramps:
             self.media_view.on_delete_clicked(obj)
 
     def enable_buttons(self,val):
-        self.add_button.set_sensitive(val)
-        self.remove_button.set_sensitive(val)
+        if self.db.readonly:
+            mode = False
+        else:
+            mode = val
+        self.add_button.set_sensitive(mode)
+        self.remove_button.set_sensitive(mode)
+        self.add_item.set_sensitive(mode)
+        self.remove_item.set_sensitive(mode)
+
         self.edit_button.set_sensitive(val)
-        self.add_item.set_sensitive(val)
-        self.remove_item.set_sensitive(val)
         self.edit_item.set_sensitive(val)
             
     def on_show_plugin_status(self,obj):
@@ -1071,6 +1076,7 @@ class Gramps:
 
     def read_file(self,filename,callback=None):
         self.topWindow.set_resizable(gtk.FALSE)
+        mode = "w"
         filename = os.path.normpath(os.path.abspath(filename))
         
         if os.path.isdir(filename):
@@ -1085,25 +1091,37 @@ class Gramps:
                               'file.'))
                 return 0
             elif not os.access(filename,os.W_OK):
-                ErrorDialog(_('Cannot open database'),
-                            _('You do not have write access to the selected '
-                              'file.'))
-                return 0
+                mode = "r"
+                WarningDialog(_('Read only database'),
+                              _('You do not have write access to the selected '
+                                'file.'))
 
-        try:
-            if self.load_database(filename,callback) == 1:
-                if filename[-1] == '/':
-                    filename = filename[:-1]
-                name = os.path.basename(filename)
-                self.topWindow.set_title("%s - GRAMPS" % name)
-            else:
-                GrampsKeys.save_last_file("")
-                ErrorDialog(_('Cannot open database'),
-                            _('The database file specified could not be opened file.'))
-                return 0
-        except db.DBAccessError, msg:
+#         try:
+#             if self.load_database(filename,callback,mode=mode) == 1:
+#                 if filename[-1] == '/':
+#                     filename = filename[:-1]
+#                 name = os.path.basename(filename)
+#                 self.topWindow.set_title("%s - GRAMPS" % name)
+#             else:
+#                 GrampsKeys.save_last_file("")
+#                 ErrorDialog(_('Cannot open database'),
+#                             _('The database file specified could not be opened.'))
+#                 return 0
+#         except db.DBAccessError, msg:
+#             ErrorDialog(_('Cannot open database'),
+#                         _('%s could not be opened.' % filename) + '\n' + msg[1])
+#             return 0
+
+
+        if self.load_database(filename,callback,mode=mode) == 1:
+            if filename[-1] == '/':
+                filename = filename[:-1]
+            name = os.path.basename(filename)
+            self.topWindow.set_title("%s - GRAMPS" % name)
+        else:
+            GrampsKeys.save_last_file("")
             ErrorDialog(_('Cannot open database'),
-                        _('%s could not be opened.' % filename) + '\n' + msg[1])
+                        _('The database file specified could not be opened.'))
             return 0
         
         self.topWindow.set_resizable(gtk.TRUE)
@@ -1583,6 +1601,7 @@ class Gramps:
         self.goto_active_person()
         if callback:
             callback(_('Setup complete'))
+        self.enable_buttons(True)
         return 1
 
     def find_initial_person(self):
@@ -1594,7 +1613,7 @@ class Gramps:
                 person = self.db.get_person_from_handle(the_ids[0])
         return person
     
-    def load_database(self,name,callback=None):
+    def load_database(self,name,callback=None,mode="w"):
 
         filename = name
 
@@ -1603,7 +1622,7 @@ class Gramps:
         if callback:
             callback(_('Opening database...'))
             
-        if self.db.load(filename,callback) == 0:
+        if self.db.load(filename,callback,mode) == 0:
             self.status_text('')
             return 0
         self.status_text('')
