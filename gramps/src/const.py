@@ -73,6 +73,7 @@ bookFile       = "%s/bookmarks.glade" % rootDir
 pluginsFile    = "%s/plugins.glade" % rootDir
 editnoteFile   = "%s/editnote.glade" % rootDir
 configFile     = "%s/config.glade" % rootDir
+prefsFile      = "%s/preferences.glade" % rootDir
 stylesFile     = "%s/styles.glade" % rootDir
 dialogFile     = "%s/dialog.glade" % rootDir
 revisionFile   = "%s/revision.glade" % rootDir
