@@ -151,6 +151,31 @@ class FamilyView:
     def edit_active_person(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.parent.load_person(self.person)
+        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            self.build_ap_menu()
+
+    def build_ap_menu(self):
+        """Builds the menu with navigation for the active person box"""
+        
+        back_sensitivity = self.parent.hindex > 0 
+        fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
+        entries = [
+            ('gtk-go-back',self.parent.back_clicked,back_sensitivity),
+            ('gtk-go-forward',self.parent.fwd_clicked,fwd_sensitivity),
+            ('gtk-home',self.parent.on_home_clicked,1),
+            (_("Add Bookmark"),self.parent.on_add_bookmark_activate,1),
+        ]
+
+        menu = gtk.Menu()
+        menu.set_title(_('People Menu'))
+        for stock_id,callback,sensitivity in entries:
+            item = gtk.ImageMenuItem(stock_id)
+            if callback:
+                item.connect("activate",callback)
+            item.set_sensitive(sensitivity)
+            item.show()
+            menu.append(item)
+        menu.popup(None,None,None,0,0)
 
     def on_child_list_button_press(self,obj,event):
         model, iter = self.child_selection.get_selected()
@@ -164,14 +189,32 @@ class FamilyView:
 
     def build_child_menu(self,id):
         """Builds the menu that allows editing operations on the child list"""
+
+        menu = gtk.Menu()
+        menu.set_title(_('Child Menu'))
+
+        back_sensitivity = self.parent.hindex > 0 
+        fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
+        nav_entries = [
+            ('gtk-go-back',self.parent.back_clicked,back_sensitivity),
+            ('gtk-go-forward',self.parent.fwd_clicked,fwd_sensitivity),
+            ('gtk-home',self.parent.on_home_clicked,1),
+            (_("Add Bookmark"),self.parent.on_add_bookmark_activate,1),
+            (None,None,0),
+        ]
+        for stock_id,callback,sensitivity in nav_entries:
+            item = gtk.ImageMenuItem(stock_id)
+            if callback:
+                item.connect("activate",callback)
+            item.set_sensitive(sensitivity)
+            item.show()
+            menu.append(item)
+
         entries = [
             (_("Edit the child/parent relationships"), self.child_rel),
             (_("Edit the selected child"),self.edit_child_callback),
             (_("Remove the selected child"),self.remove_child_clicked),
             ]
-        
-        menu = gtk.Menu()
-        menu.set_title(_('Child Menu'))
         for msg,callback in entries:
             Utils.add_menuitem(menu,msg,id,callback)
         menu.popup(None,None,None,0,0)
@@ -199,14 +242,33 @@ class FamilyView:
             self.display_marriage(self.person.getFamilyList()[row[0]])
 
     def build_spouse_menu(self):
+
+        menu = gtk.Menu()
+        menu.set_title(_('Spouse Menu'))
+
+        back_sensitivity = self.parent.hindex > 0 
+        fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
+        nav_entries = [
+            ('gtk-go-back',self.parent.back_clicked,back_sensitivity),
+            ('gtk-go-forward',self.parent.fwd_clicked,fwd_sensitivity),
+            ('gtk-home',self.parent.on_home_clicked,1),
+            (_("Add Bookmark"),self.parent.on_add_bookmark_activate,1),
+            (None,None,0),
+        ]
+        for stock_id,callback,sensitivity in nav_entries:
+            item = gtk.ImageMenuItem(stock_id)
+            if callback:
+                item.connect("activate",callback)
+            item.set_sensitive(sensitivity)
+            item.show()
+            menu.append(item)
+
         entries = [
             (_("Edit relationship"), self.edit_marriage_callback),
             (_("Remove the selected spouse"), self.remove_spouse),
             (_("Edit the selected spouse"), self.edit_spouse_callback),
             (_("Set the selected spouse as the preferred spouse"), self.set_preferred_spouse),
             ]
-
-        menu = gtk.Menu()
         for msg,callback in entries:
             Utils.add_menuitem(menu,msg,id,callback)
         menu.popup(None,None,None,0,0)
@@ -629,24 +691,60 @@ class FamilyView:
 
     def build_parents_menu(self,family):
         """Builds the menu that allows editing operations on the child list"""
+        menu = gtk.Menu()
+        menu.set_title(_('Parents Menu'))
+
+        back_sensitivity = self.parent.hindex > 0 
+        fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
+        nav_entries = [
+            ('gtk-go-back',self.parent.back_clicked,back_sensitivity),
+            ('gtk-go-forward',self.parent.fwd_clicked,fwd_sensitivity),
+            ('gtk-home',self.parent.on_home_clicked,1),
+            (_("Add Bookmark"),self.parent.on_add_bookmark_activate,1),
+            (None,None,0),
+        ]
+        for stock_id,callback,sensitivity in nav_entries:
+            item = gtk.ImageMenuItem(stock_id)
+            if callback:
+                item.connect("activate",callback)
+            item.set_sensitive(sensitivity)
+            item.show()
+            menu.append(item)
+
         entries = [
             (_("Edit the child/parent relationships"), self.edit_ap_relationships),
             (_("Remove parents"),self.del_parents_clicked),
             ]
-        
-        menu = gtk.Menu()
         for msg,callback in entries:
             Utils.add_menuitem(menu,msg,family,callback)
         menu.popup(None,None,None,0,0)
 
     def build_sp_parents_menu(self,family):
         """Builds the menu that allows editing operations on the child list"""
+        menu = gtk.Menu()
+        menu.set_title(_('Spouse Parents Menu'))
+
+        back_sensitivity = self.parent.hindex > 0 
+        fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
+        nav_entries = [
+            ('gtk-go-back',self.parent.back_clicked,back_sensitivity),
+            ('gtk-go-forward',self.parent.fwd_clicked,fwd_sensitivity),
+            ('gtk-home',self.parent.on_home_clicked,1),
+            (_("Add Bookmark"),self.parent.on_add_bookmark_activate,1),
+            (None,None,0),
+        ]
+        for stock_id,callback,sensitivity in nav_entries:
+            item = gtk.ImageMenuItem(stock_id)
+            if callback:
+                item.connect("activate",callback)
+            item.set_sensitive(sensitivity)
+            item.show()
+            menu.append(item)
+
         entries = [
             (_("Edit the child/parent relationships"), self.edit_sp_relationships),
             (_("Remove parents"),self.del_sp_parents),
             ]
-
-        menu = gtk.Menu()
         for msg,callback in entries:
             Utils.add_menuitem(menu,msg,family,callback)
         menu.popup(None,None,None,0,0)
@@ -664,6 +762,7 @@ class FamilyView:
             plist = self.person.getParentList()
 
             if len(plist) == 0:
+                self.build_ap_menu()
                 return
             elif len(plist) == 1:
                 family,m,r = plist[0]
@@ -675,12 +774,15 @@ class FamilyView:
 
     def edit_sp_parents(self,obj,event):
         if self.selected_spouse == None:
-            return
+            if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+                self.build_ap_menu()
+                return
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1: 
             self.parent_editor(self.selected_spouse,self.sp_selection)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             plist = self.selected_spouse.getParentList()
             if len(plist) == 0:
+                self.build_ap_menu()
                 return
             elif len(plist) == 1:
                 family,m,r = plist[0]
