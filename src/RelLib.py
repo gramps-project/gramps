@@ -2409,6 +2409,8 @@ class GrampsDB:
 
         self.env = db.DBEnv()
         flags = db.DB_CREATE|db.DB_INIT_MPOOL|db.DB_PRIVATE
+
+        self.undolog = "%s.log" % name
         self.env.open(os.path.dirname(name), flags)
             
         name = os.path.basename(name)
@@ -2431,6 +2433,9 @@ class GrampsDB:
         self.person_map.associate(self.surnames, find_surname, db.DB_CREATE)
         self.event_map.associate(self.eventnames, find_eventname, db.DB_CREATE)
 
+        self.undodb = db.DB()
+        self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
+        
         self.bookmarks = self.metadata.get('bookmarks')
         if self.bookmarks == None:
             self.bookmarks = []
@@ -2466,7 +2471,13 @@ class GrampsDB:
         self.surnames.close()
         self.eventnames.close()
         self.env.close()
+        self.undodb.close()
 
+        try:
+            os.remove(self.undolog)
+        except:
+            pass
+        
         self.person_map = None
         self.family_map = None
         self.place_map  = None

@@ -3,6 +3,10 @@
 	* src/plugins/RelGraph.py (_get_event_label): Typo.
 	* src/plugins/ReorderIds.py: Display message and return.
 
+2004-05-15  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/ReadGedcom.py: handle mangled temple format
+	produced by some tools
+
 2004-05-15  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/RelGraph.py (_write_graph_record): Bug fixes.
 	* src/docgen/RTFDoc.py: Typo. 
