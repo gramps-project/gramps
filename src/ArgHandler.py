@@ -282,6 +282,9 @@ class ArgHandler:
             os.remove(self.imp_db_path)
             print "Exiting."
             os._exit(0)
+
+        if self.imports:
+            self.parent.import_tool_callback()
         elif GrampsCfg.lastfile and GrampsCfg.autoload:
             if self.parent.auto_save_load(GrampsCfg.lastfile) == 0:
                 DbPrompter.DbPrompter(self.parent,0,self.parent.topWindow)
@@ -343,7 +346,7 @@ class ArgHandler:
                 print "Error extracting into %s" % tmpdir_path 
                 os._exit(1)
 
-            dbname = os.path.join(tmpdir_path,const.xmlFile)  
+            dbname = os.path.join(tmpdir_path,const.xmlFile)
 
             try:
                 ReadXML.importData(self.parent.db,dbname,None)

@@ -464,9 +464,14 @@ def register_export(task, name):
     """Register an export filter, taking the task and name"""
     _exports.append((task, name))
 
-def register_import(task, name):
-    """Register an import filter, taking the task and name"""
-    _imports.append((task, name))
+#def register_import(task, name):
+#    """Register an import filter, taking the task and name"""
+#    _imports.append((task, name))
+
+def register_import(task, ffilter, mime=None):
+    """Register an import filter, taking the task and file filter"""
+    if mime:
+    	_imports.append((task, ffilter, mime))
 
 def register_report(task, name,
                     category=_("Uncategorized"),

@@ -1466,23 +1466,28 @@ class Gramps:
     def on_open_activate(self,obj):
 
         choose = gtk.FileChooserDialog('Open GRAMPS database',
-                                       None,
+                                       self.topWindow,
                                        gtk.FILE_CHOOSER_ACTION_OPEN,
                                        (gtk.STOCK_CANCEL,
                                         gtk.RESPONSE_CANCEL,
                                         gtk.STOCK_OPEN,
                                         gtk.RESPONSE_OK))
 
+        # Always add automatic (macth all files) filter
         filter = gtk.FileFilter()
-        filter.set_name(_('GRAMPS databases'))
-        filter.add_pattern('*.grdb')
-        choose.add_filter(filter)
-        
-        filter = gtk.FileFilter()
-        filter.set_name(_('All files'))
+        filter.set_name(_('Automatic'))
         filter.add_pattern('*')
         choose.add_filter(filter)
         
+        # Always add native format filter
+        filter = gtk.FileFilter()
+        filter.set_name(_('GRAMPS databases'))
+        filter.add_mime_type('application/x-gramps')
+        choose.add_filter(filter)
+
+        for (importData,filter,mime_type) in Plugins._imports:
+            choose.add_filter(filter)
+
         if GrampsCfg.lastfile:
             choose.set_filename(GrampsCfg.lastfile)
 
@@ -1491,8 +1496,28 @@ class Gramps:
             filename = choose.get_filename()
             filename = os.path.normpath(os.path.abspath(filename))
             self.clear_database()
-            if self.auto_save_load(filename) == 0:
-                DbPrompter.DbPrompter(self,0,self.topWindow)
+            filetype = gnome.vfs.get_mime_type(filename)
+            (junk,the_file) = os.path.split(filename)
+
+            if filetype == 'application/x-gramps':
+                if self.auto_save_load(filename) == 0:
+                    DbPrompter.DbPrompter(self,0,self.topWindow)
+            else:
+                opened = 0
+                for (importData,filter,mime_type) in Plugins._imports:
+                    if filetype == mime_type or the_file == mime_type:
+                        OkDialog( _("Opening non-native format"), 
+                                _("New gramps database has to be set up when opening non-native formats. The following dialog will let you select the new database."),
+                                self.topWindow)
+                        DbPrompter.DbPrompter(self,1,self.topWindow,filename)
+                        print "filename:", filename
+                        importData(self.db,filename)
+                        self.import_tool_callback()
+                        opened = 1
+                        break
+                if not opened:
+                    ErrorDialog( _("Could not open file: %s") % filename,
+                            _('The type "%s" is not in the list of known file types') % filetype )
         choose.destroy()
  
     def on_revert_activate(self,obj):
