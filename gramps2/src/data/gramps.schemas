@@ -245,6 +245,30 @@
       </schema>
 
       <schema>
+        <key>/schemas/apps/gramps/paths/recent-import-dir</key>
+        <applyto>/apps/gramps/paths/recent-import-dir</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default></default>
+        <locale name="C">
+          <short>Last directory from which the import was made</short>
+          <long>Full pathname of the directory from which GRAMPS has last imported data.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/paths/recent-export-dir</key>
+        <applyto>/apps/gramps/paths/recent-export-dir</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default></default>
+        <locale name="C">
+          <short>Last directory into which the export was made</short>
+          <long>Full pathname of the directory into which GRAMPS has last exported data.</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/behavior/make-reference</key>
         <applyto>/apps/gramps/behavior/make-reference</applyto>
         <owner>gramps</owner>
