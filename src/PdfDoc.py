@@ -220,7 +220,11 @@ class PdfDoc(TextDoc):
         pass
 
     def end_cell(self):
-        self.cur_row.append(self.text)
+        if self.span == 1:
+#            self.cur_row.append(self.text)
+            self.cur_row.append(Paragraph(self.text,self.current_para))
+        else:
+            self.cur_row.append(self.text)
         for val in range(1,self.span):
             self.cur_row.append("")
 

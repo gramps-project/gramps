@@ -116,9 +116,9 @@ class FamilyGroup:
         table = TableStyle()
         table.set_width(100)
         table.set_columns(4)
-        table.set_column_width(0,5)
-        table.set_column_width(1,15)
-        table.set_column_width(2,40)
+        table.set_column_width(0,7)
+        table.set_column_width(1,18)
+        table.set_column_width(2,35)
         table.set_column_width(3,40)
         self.doc.add_table_style('ChildTable',table)
 
