@@ -1266,11 +1266,10 @@ def delete_person_response(val):
     if family:
         family.removeChild(active_person)
             
+    del personmap[active_person.getId()]
     remove_from_person_list(active_person)
     person_list.sort()
     update_display(0)
-
-    del personmap[active_person.getId()]
     utils.modified()
 
 #-------------------------------------------------------------------------
@@ -1281,14 +1280,12 @@ def delete_person_response(val):
 def remove_from_person_list(person):
     person_list.freeze()
     if id2col.has_key(person):
-        row = person_list.find_row_from_data(id2col[person])
-        if row != -1:
-            person_list.remove(row)
-    if alt2col.has_key(person):
-        for id in alt2col[person]:
+        for id in [id2col[person]] + alt2col[person]:
             row = person_list.find_row_from_data(id)
-            if row != -1:
-                person_list.remove(row)
+            person_list.remove(row)
+
+        del id2col[person]
+        del alt2col[person]
     person_list.thaw()
     
 #-------------------------------------------------------------------------
@@ -2430,12 +2427,10 @@ def apply_filter():
                     
         else:
             if id2col.has_key(person):
-                id = id2col[person]
+                pid = id2col[person]
                 del id2col[person]
-                row = person_list.find_row_from_data(id)
-                person_list.remove(row)
 
-                for id in alt2col[person]:
+                for id in [pid] + dalt2col[person]:
                     row = person_list.find_row_from_data(id)
                     person_list.remove(row)
 
