@@ -1,3 +1,6 @@
+2004-07-26  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/data/Makefile.am: Use HUP instead of default SIGTERM. 
+
 2004-07-25  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/data/Makefile.am: Execute `pkill gconfd'. 
 
