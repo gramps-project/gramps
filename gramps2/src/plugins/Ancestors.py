@@ -150,10 +150,14 @@ class ComprehensiveAncestorsReport (Report.Report):
                 self.doc.end_paragraph ()
 
                 note = source.getNote ()
+                format = source.getNoteFormat ()
                 if note:
-                    self.doc.start_paragraph ("AR-Details")
-                    self.doc.write_text (note)
-                    self.doc.end_paragraph ()
+                    if format == 0:
+                        self.doc.start_paragraph ("AR-Details")
+                        self.doc.write_text (note)
+                        self.doc.end_paragraph ()
+                    else:
+                        self.doc.write_note (note, format, "AR-Details")
 
                 i += 1
 
@@ -697,7 +701,8 @@ class ComprehensiveAncestorsReport (Report.Report):
         if not (name_note == '' or name_note.find ('\n') != -1):
             return _('  Note about their name: ') + name_note
         note = person.getNote ()
-        if not (note == '' or note.find ('\n') != -1):
+        if not (person.getNoteFormat () != 0 or
+                note == '' or note.find ('\n') != -1):
             return '  ' + note
 
         return ''
@@ -706,7 +711,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         para_end = note.find ('\n')
         if para_end != -1:
             paras = self.long_details (note[note.find ('\n') + 1:], paras)
-	else:
+        else:
             para_end = len (note)
 
         paras.insert (0, (self.doc.end_paragraph, []))
@@ -717,7 +722,10 @@ class ComprehensiveAncestorsReport (Report.Report):
     def long_notes (self, person, suppress_children = 0,
                     already_described = []):
         note = person.getNote ()
-        if note != '' and note.find ('\n') != -1:
+        format = person.getNoteFormat ()
+        if format != 0:
+            paras = [ (self.doc.write_note, [note, format, 'AR-Details']) ]
+        elif note != '' and note.find ('\n') != -1:
             paras = self.long_details (note, [])
         else:
             paras = []
