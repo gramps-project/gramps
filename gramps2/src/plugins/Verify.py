@@ -49,6 +49,9 @@ import gtk.glade
 #------------------------------------------------------------------------
 import RelLib
 import Utils
+import Date
+import Gregorian
+
 from gettext import gettext as _
 
 db = None
@@ -61,6 +64,9 @@ def get_year( event ):
     if event != None:
         dateObj = event.getDateObj()
         if dateObj != None:
+            dateObj = Date.Date(dateObj)
+            if dateObj.__class__ != Gregorian.Gregorian:
+                dateObj.set_calendar(Gregorian.Gregorian)
 	    year = dateObj.getYear()
     return year
 
