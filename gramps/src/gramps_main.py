@@ -70,6 +70,7 @@ import EditPerson
 import Marriage
 import Find
 import VersionControl
+import WriteXML
 
 #-------------------------------------------------------------------------
 #
@@ -95,10 +96,10 @@ class Gramps:
         self.c_gender = 3
         self.c_id = 2
         self.c_name = 1
-        self.c_sort_column = self.c_birth_order
-        self.c_sort_direct = GTK.SORT_ASCENDING
-        self.sort_column = 0
-        self.sort_direct = GTK.SORT_ASCENDING
+        self.c_sort_col = self.c_birth_order
+        self.c_sort_dir = GTK.SORT_ASCENDING
+        self.sort_col = 0
+        self.sort_dir = GTK.SORT_ASCENDING
         self.id2col = {}
         self.alt2col = {}
 
@@ -110,7 +111,7 @@ class Gramps:
 
         self.database = GrampsDB()
 
-        (self.sort_column,self.sort_direct) = GrampsCfg.get_sort_cols("person",self.sort_column,self.sort_direct)
+        (self.sort_col,self.sort_dir) = GrampsCfg.get_sort_cols("person",self.sort_col,self.sort_dir)
 
         GrampsCfg.loadConfig(self.full_update)
         self.init_interface()
@@ -119,8 +120,8 @@ class Gramps:
         self.col_arr = [ self.nameArrow, self.idArrow, self.genderArrow,
                          self.dateArrow, self.deathArrow]
 
-        self.change_sort(self.sort_column,self.sort_direct==GTK.SORT_DESCENDING)
-        self.set_sort_arrow(self.sort_column,self.sort_direct)
+        self.change_sort(self.sort_col,self.sort_dir==GTK.SORT_DESCENDING)
+        self.set_sort_arrow(self.sort_col,self.sort_dir)
 
         self.database.set_iprefix(GrampsCfg.iprefix)
         self.database.set_oprefix(GrampsCfg.oprefix)
@@ -133,7 +134,8 @@ class Gramps:
         elif GrampsCfg.lastfile != None and GrampsCfg.lastfile != "" and GrampsCfg.autoload:
             self.auto_save_load(GrampsCfg.lastfile)
         else:
-            DbPrompter(self,0)
+            import DbPrompter
+            DbPrompter.DbPrompter(self,0)
 
             if GrampsCfg.autosave_int != 0:
                 Utils.enable_autosave(self.autosave_database,GrampsCfg.autosave_int)
@@ -141,6 +143,9 @@ class Gramps:
         self.database.setResearcher(GrampsCfg.get_researcher())
 
     def init_interface(self):
+        """Initializes the GLADE interface, and gets references to the
+        widgets that it will need.
+        """
         self.gtop = libglade.GladeXML(const.gladeFile, "gramps")
 
         self.statusbar   = self.gtop.get_widget("statusbar")
@@ -507,10 +512,11 @@ class Gramps:
         gnome.ui.GnomeQuestionDialog(msg,self.new_database_response)
 
     def new_database_response(self,val):
+        import DbPrompter
         if val == 1:
             return
         self.clear_database()
-        DbPrompter(self.database,1)
+        DbPrompter.DbPrompter(self.database,1)
     
     def clear_database(self):
         """Clear out the database if permission was granted"""
@@ -641,6 +647,7 @@ class Gramps:
             self.displayError(_("%s is not a directory") % filename)
             return
 
+
         self.statusbar.set_status(_("Loading %s ...") % filename)
 
         if self.load_database(filename) == 1:
@@ -662,7 +669,6 @@ class Gramps:
                 self.save_file(filename,_("No Comment Provided"))
 
     def save_file(self,filename,comment):        
-        import WriteXML
 
         path = filename
         filename = os.path.normpath(filename)
@@ -680,12 +686,8 @@ class Gramps:
         else:
             try:
                 os.mkdir(filename)
-            except IOError, msg:
+            except (OSError,IOError), msg:
                 gnome.ui.GnomeErrorDialog(_("Could not create %s") % filename +\
-                                          "\n" + str(msg))
-                return
-            except OSError, msg:
-                gnome.ui.GnomeErrorDialog(_("Could not create %s") % filename + \
                                           "\n" + str(msg))
                 return
             except:
@@ -726,7 +728,6 @@ class Gramps:
                 pass
 
     def autosave_database(self):
-        import WriteXML
 
         path = self.database.getSavePath()
         filename = os.path.normpath(path)
@@ -738,8 +739,8 @@ class Gramps:
         try:
             WriteXML.quick_write(self.database,filename,self.quick_progress)
             self.statusbar.set_status(_("autosave complete"));
-        except (IOError,OSError):
-            self.statusbar.set_status(_("autosave failed"));
+        except (IOError,OSError),msg:
+            self.statusbar.set_status(_("autosave failed") + (" - %s" % msg));
         except:
             import traceback
             traceback.print_exc()
@@ -855,9 +856,7 @@ class Gramps:
     def on_person_list_click_column(self,obj,column):
         self.change_sort(column)
 
-
     def set_sort_arrow(self,column,direct):
-
         arrow = self.col_arr[column]
         for a in self.col_arr:
             if arrow != a:
@@ -869,7 +868,6 @@ class Gramps:
             arrow.set(GTK.ARROW_UP,2)
     
     def change_sort(self,column,change=1):
-
         arrow = self.col_arr[column]
         for a in self.col_arr:
             if arrow != a:
@@ -877,28 +875,28 @@ class Gramps:
         arrow.show()
 
         self.person_list.set_sort_column(self.col_map[column])
-        self.person_list.set_sort_type(self.sort_direct)
+        self.person_list.set_sort_type(self.sort_dir)
 
         self.sort_person_list()
 
         if change:
-            if self.sort_column == column:
-                if self.sort_direct == GTK.SORT_DESCENDING:
-                    self.sort_direct = GTK.SORT_ASCENDING
+            if self.sort_col == column:
+                if self.sort_dir == GTK.SORT_DESCENDING:
+                    self.sort_dir = GTK.SORT_ASCENDING
                     arrow.set(GTK.ARROW_DOWN,2)
                 else:
-                    self.sort_direct = GTK.SORT_DESCENDING
+                    self.sort_dir = GTK.SORT_DESCENDING
                     arrow.set(GTK.ARROW_UP,2)
             else:
-                self.sort_direct = GTK.SORT_ASCENDING
+                self.sort_dir = GTK.SORT_ASCENDING
                 arrow.set(GTK.ARROW_DOWN,2)
-        self.sort_column = column
+        self.sort_col = column
 
         if self.id2col.has_key(self.active_person):
             data = self.id2col[self.active_person]
             row = self.person_list.find_row_from_data(data)
             self.person_list.moveto(row)
-        GrampsCfg.save_sort_cols("person",self.sort_column,self.sort_direct)
+        GrampsCfg.save_sort_cols("person",self.sort_col,self.sort_dir)
     
     def sort_person_list(self):
         self.person_list.freeze()
@@ -1004,19 +1002,19 @@ class Gramps:
         self.cGenderArrow.hide()
         arrow.show()
     
-        if self.c_sort_column == column:
-            if self.c_sort_direct == GTK.SORT_DESCENDING:
-                self.c_sort_direct = GTK.SORT_ASCENDING
+        if self.c_sort_col == column:
+            if self.c_sort_dir == GTK.SORT_DESCENDING:
+                self.c_sort_dir = GTK.SORT_ASCENDING
                 arrow.set(GTK.ARROW_DOWN,2)
             else:
-                self.c_sort_direct = GTK.SORT_DESCENDING
+                self.c_sort_dir = GTK.SORT_DESCENDING
                 arrow.set(GTK.ARROW_UP,2)
         else:
-            self.c_sort_direct = GTK.SORT_ASCENDING
-        self.c_sort_column = column
-        clist.set_sort_type(self.c_sort_direct)
-        clist.set_sort_column(self.c_sort_column)
-        clist.set_reorderable(self.c_sort_column == self.c_birth_order)
+            self.c_sort_dir = GTK.SORT_ASCENDING
+        self.c_sort_col = column
+        clist.set_sort_type(self.c_sort_dir)
+        clist.set_sort_column(self.c_sort_col)
+        clist.set_reorderable(self.c_sort_col == self.c_birth_order)
 
     def sort_child_list(self,clist):
         clist.freeze()
@@ -1069,7 +1067,7 @@ class Gramps:
 
         # This function deals with ascending order lists.  Convert if
         # necessary.
-        if (self.c_sort_direct == GTK.SORT_DESCENDING):
+        if (self.c_sort_dir == GTK.SORT_DESCENDING):
             clist_order.reverse()
             max_index = len(clist_order) - 1
             fm = max_index - fm
@@ -1098,7 +1096,7 @@ class Gramps:
 
         # Convert the original list back to whatever ordering is being
         # used by the clist itself.
-        if (self.c_sort_direct == GTK.SORT_DESCENDING):
+        if (self.c_sort_dir == GTK.SORT_DESCENDING):
             clist_order.reverse()
 
         # Update the clist indices so any change of sorting works
@@ -1494,9 +1492,9 @@ class Gramps:
         self.active_child = None
         
         i = 0
-        self.child_list.set_sort_type(self.c_sort_direct)
-        self.child_list.set_sort_column(self.c_sort_column)
-        self.child_list.set_reorderable(self.c_sort_column == self.c_birth_order)
+        self.child_list.set_sort_type(self.c_sort_dir)
+        self.child_list.set_sort_column(self.c_sort_col)
+        self.child_list.set_reorderable(self.c_sort_col == self.c_birth_order)
 
         if family != None:
             if self.active_person.getGender() == Person.male:
@@ -1782,92 +1780,6 @@ class Gramps:
             self.on_delete_person_clicked(obj)
         elif event.keyval == GDK.Insert:
             self.load_new_person(obj)
-
-
-#-------------------------------------------------------------------------
-#
-# Make sure a database is opened
-#
-#-------------------------------------------------------------------------
-class DbPrompter:
-    def __init__(self,db,want_new):
-        self.db = db
-        self.want_new = want_new
-        self.show()
-
-    def show(self):
-        opendb = libglade.GladeXML(const.gladeFile, "opendb")
-        opendb.signal_autoconnect({
-            "on_open_ok_clicked" : self.open_ok_clicked,
-            "on_open_cancel_clicked" : self.open_cancel_clicked,
-            "on_opendb_delete_event": self.open_delete_event,
-            })
-        self.new = opendb.get_widget("new")
-        if self.want_new:
-            self.new.set_active(1)
-
-    def open_ok_clicked(self,obj):
-        if self.new.get_active():
-            self.save_as_activate()
-        else:
-            self.open_activate()
-        Utils.destroy_passed_object(obj)
-
-    def save_as_activate(self):
-        wFs = libglade.GladeXML (const.gladeFile, "fileselection")
-        wFs.signal_autoconnect({
-            "on_ok_button1_clicked": self.save_ok_button_clicked,
-            "destroy_passed_object": self.cancel_button_clicked,
-            })
-
-    def save_ok_button_clicked(self,obj):
-        filename = obj.get_filename()
-        if filename:
-            Utils.destroy_passed_object(obj)
-            if GrampsCfg.usevc and GrampsCfg.vc_comment:
-                self.db.display_comment_box(filename)
-            else:
-                self.db.save_file(filename,_("No Comment Provided"))
-
-    def open_activate(self):
-        wFs = libglade.GladeXML(const.revisionFile, "dbopen")
-        wFs.signal_autoconnect({
-            "on_ok_button1_clicked": self.ok_button_clicked,
-            "destroy_passed_object": self.cancel_button_clicked,
-            })
-
-        self.fileSelector = wFs.get_widget("dbopen")
-        self.dbname = wFs.get_widget("dbname")
-        self.getoldrev = wFs.get_widget("getoldrev")
-        self.dbname.set_default_path(GrampsCfg.db_dir)
-        self.getoldrev.set_sensitive(GrampsCfg.usevc)
-
-    def cancel_button_clicked(self,obj):
-        Utils.destroy_passed_object(obj)
-        self.show()
-        
-    def ok_button_clicked(self,obj):
-        filename = self.dbname.get_full_path(0)
-
-        if not filename:
-            return
-
-        Utils.destroy_passed_object(obj)
-        self.db.clear_database()
-    
-        if self.getoldrev.get_active():
-            vc = VersionControl.RcsVersionControl(filename)
-            VersionControl.RevisionSelect(self.db.database,filename,vc,
-                                          self.db.load_revision,self.show)
-        else:
-            self.db.read_file(filename)
-
-    def open_delete_event(self,obj,event):
-        gtk.mainquit()
-
-    def open_cancel_clicked(self,obj):
-        gtk.mainquit()
-
 
 #-------------------------------------------------------------------------
 #
