@@ -475,7 +475,7 @@ class EditPerson:
 
         build_dropdown(place,self.place_list)
         if ord and ord.get_place_id():
-            ord_place = self.db.find_place_from_id(ord.get_place_id())
+            ord_place = self.db.find_place_from_id(ord.get_place_id(),None)
             place.set_text(ord_place.get_title())
         return stat
 
@@ -1659,7 +1659,7 @@ class EditPerson:
         if media_list:
             ph = media_list[0]
             object_id = ph.get_reference_id()
-            object = self.db.find_object_from_id(object_id)
+            object = self.db.find_object_from_id(object_id,None)
             if self.load_obj != object.get_path():
                 if object.get_mime_type()[0:5] == "image":
                     self.load_photo(object.get_path())
@@ -1811,7 +1811,7 @@ def short(val,size=60):
 def place_title(db,event):
     pid = event.get_place_id()
     if pid:
-        return db.find_place_from_id(pid).get_title()
+        return db.find_place_from_id(pid,None).get_title()
     else:
         return u''
 

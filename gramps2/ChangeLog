@@ -1,3 +1,6 @@
+2004-05-23  Don Allingham  <dallingham@users.sourceforge.net>
+	* various: transactions are now required for commits
+
 2004-05-19  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/ReadGedcom.py: full support for undo
 	* src/ImageSelect.py: undo messages

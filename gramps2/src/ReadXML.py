@@ -383,6 +383,7 @@ class GrampsParser:
 
 
     def parse(self,file):
+        self.trans = self.db.start_transaction()
         p = xml.parsers.expat.ParserCreate()
         p.StartElementHandler = self.startElement
         p.EndElementHandler = self.endElement
@@ -400,6 +401,7 @@ class GrampsParser:
         del self.func_map
         del self.func_list
         del p
+        self.db.add_transaction(self.trans,_("GRAMPS XML import"))
 
     def start_lds_ord(self,attrs):
         type = attrs['type']
@@ -423,13 +425,15 @@ class GrampsParser:
 
     def start_sealed_to(self,attrs):
         id = attrs['ref']
-        self.ord.set_family_id(self.db.find_family_no_map(id))
+        self.ord.set_family_id(self.db.find_family_no_map(id,self.trans))
         
     def start_place(self,attrs):
-        self.placeobj = self.db.find_place_no_conflicts(attrs['ref'],self.lmap)
+        self.placeobj = self.db.find_place_no_conflicts(attrs['ref'],
+                                                        self.lmap, self.trans)
 
     def start_placeobj(self,attrs):
-        self.placeobj = self.db.find_place_no_conflicts(attrs['id'],self.lmap)
+        self.placeobj = self.db.find_place_no_conflicts(attrs['id'],
+                                                        self.lmap,self.trans)
         title = attrs['title']
         if title == "":
             title = attrs['id']
@@ -480,7 +484,7 @@ class GrampsParser:
 
     def start_event(self,attrs):
         self.event = RelLib.Event()
-        self.db.add_event(self.event)
+        self.db.add_event(self.event,self.trans)
         self.event_type = const.save_event(attrs["type"])
         if attrs.has_key("conf"):
             self.event.conf = int(attrs["conf"])
@@ -523,14 +527,16 @@ class GrampsParser:
             self.address.private = int(attrs["priv"])
 
     def start_bmark(self,attrs):
-        person = self.db.find_person_no_conflicts(attrs["ref"],self.pmap)
+        person = self.db.find_person_no_conflicts(attrs["ref"],
+                                                  self.pmap,self.trans)
         self.db.bookmarks.append(person.get_id())
 
     def start_person(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
-        self.person = self.db.find_person_no_conflicts(attrs["id"],self.pmap)
+        self.person = self.db.find_person_no_conflicts(attrs["id"],
+                                                       self.pmap, self.trans)
         if attrs.has_key("complete"):
             self.person.set_complete(int(attrs['complete']))
         else:
@@ -575,7 +581,8 @@ class GrampsParser:
         if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
-        self.family = self.db.find_family_no_conflicts(attrs["id"],self.fmap)
+        self.family = self.db.find_family_no_conflicts(attrs["id"],
+                                                       self.fmap,self.trans)
         if attrs.has_key("type"):
             self.family.set_relationship(const.save_frel(attrs["type"]))
         if attrs.has_key("complete"):
@@ -584,7 +591,8 @@ class GrampsParser:
             self.family.set_complete(0)
 
     def start_childof(self,attrs):
-        family = self.db.find_family_no_conflicts(attrs["ref"],self.fmap)
+        family = self.db.find_family_no_conflicts(attrs["ref"],
+                                                  self.fmap,self.trans)
         if attrs.has_key("mrel"):
             mrel = attrs["mrel"]
         else:
@@ -622,7 +630,8 @@ class GrampsParser:
 
     def start_sourceref(self,attrs):
         self.source_ref = RelLib.SourceRef()
-        source = self.db.find_source_no_conflicts(attrs["ref"],self.smap)
+        source = self.db.find_source_no_conflicts(attrs["ref"],
+                                                  self.smap,self.trans)
         if attrs.has_key("conf"):
             self.source_ref.confidence = int(attrs["conf"])
         else:
@@ -648,11 +657,13 @@ class GrampsParser:
             self.family.add_source_reference(self.source_ref)
 
     def start_source(self,attrs):
-        self.source = self.db.find_source_no_conflicts(attrs["id"],self.smap)
+        self.source = self.db.find_source_no_conflicts(attrs["id"],
+                                                       self.smap,self.trans)
 
     def start_objref(self,attrs):
         self.objref = RelLib.MediaRef()
-        id = self.db.find_object_no_conflicts(attrs['ref'],self.media_file_map).get_id()
+        id = self.db.find_object_no_conflicts(attrs['ref'],
+                                              self.media_file_map,self.trans).get_id()
         self.objref.set_reference_id(id)
         if attrs.has_key('priv'):
             self.objref.set_privacy(int(attrs['priv']))
@@ -666,7 +677,9 @@ class GrampsParser:
             self.placeobj.add_media_reference(self.objref)
 
     def start_object(self,attrs):
-        self.object = self.db.find_object_no_conflicts(attrs['id'],self.media_file_map)
+        self.object = self.db.find_object_no_conflicts(attrs['id'],
+                                                       self.media_file_map,
+                                                       self.trans)
         self.object.set_mime_type(attrs['mime'])
         self.object.set_description(attrs['description'])
         src = attrs["src"]
@@ -680,7 +693,7 @@ class GrampsParser:
         pass
 
     def stop_object(self,*tag):
-        self.db.commit_media_object(self.object)
+        self.db.commit_media_object(self.object,self.trans)
         self.object = None
 
     def stop_objref(self,*tag):
@@ -826,11 +839,11 @@ class GrampsParser:
         if self.placeobj.get_title() == "":
             loc = self.placeobj.get_main_location()
             self.placeobj.set_title(build_place_title(loc))
-        self.db.commit_place(self.placeobj)
+        self.db.commit_place(self.placeobj,self.trans)
         self.placeobj = None
 
     def stop_family(self,*tag):
-        self.db.commit_family(self.family)
+        self.db.commit_family(self.family,self.trans)
         self.family = None
         
     def stop_event(self,*tag):
@@ -845,7 +858,7 @@ class GrampsParser:
                 self.person.set_death_id(self.event.get_id())
             else:
                 self.person.add_event_id(self.event.get_id())
-        self.db.commit_event(self.event)
+        self.db.commit_event(self.event,self.trans)
         self.event = None
 
     def stop_name(self,tag):
@@ -872,7 +885,7 @@ class GrampsParser:
             self.ord.set_place_id(self.placeobj.get_id())
         else:
             self.event.set_place_id(self.placeobj.get_id())
-        self.db.commit_place(self.placeobj)
+        self.db.commit_place(self.placeobj,self.trans)
         self.placeobj = None
         
     def stop_date(self,tag):
@@ -889,7 +902,7 @@ class GrampsParser:
         self.family = None
 
     def stop_person(self,*tag):
-        self.db.commit_person(self.person)
+        self.db.commit_person(self.person,self.trans)
         self.person = None
 
     def stop_description(self,tag):
@@ -914,7 +927,7 @@ class GrampsParser:
         self.source_ref = None
 
     def stop_source(self,*tag):
-        self.db.commit_source(self.source)
+        self.db.commit_source(self.source,self.trans)
         self.source = None
 
     def stop_sauthor(self,tag):

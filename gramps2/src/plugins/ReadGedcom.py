@@ -1092,7 +1092,7 @@ class GedcomParser:
                 self.backup()
                 break
             elif matches[1] == "TEMP":
-                value = extract_temple(matches[2])
+                value = extract_temple(matches)
                 if value:
                     ord.setTemple(value)
             elif matches[1] == "DATE":
@@ -1730,14 +1730,14 @@ class GedcomParser:
 
                 # new ID is not used
                 if not self.db.has_person_id(new_key):
-                    self.db.remove_person_id(pid)
+                    self.db.remove_person_id(pid,self.trans)
                     person.set_id(new_key)
                     self.db.add_person(person,self.trans)
                 else:
                     tp = self.db.find_person_from_id(new_key,self.trans)
                     # same person, just change it
                     if person == tp:
-                        self.db.remove_person_id(pid)
+                        self.db.remove_person_id(pid,self.trans)
                         person.set_id(new_key)
                         self.db.add_person_as(person,self.trans)
                     # give up trying to use the refn as a key
@@ -1746,12 +1746,12 @@ class GedcomParser:
 
         self.db.pmap_index = new_pmax
 
-def extract_temple(text):
+def extract_temple(matches):
     try:
         if const.lds_temple_to_abrev.has_key(matches[2]):
             return const.lds_temple_to_abrev[matches[2]]
         else:
-            values = split(matches[2])
+            values = matches[2].split()
             return const.lds_temple_to_abrev[values[0]]
     except:
         return None
@@ -1764,7 +1764,7 @@ def extract_temple(text):
 def readData(database,active_person,cb):
     global db
     global callback
-    global file_top
+    global file_topa
     
     db = database
     callback = cb

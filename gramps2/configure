@@ -1832,6 +1832,7 @@ echo "$as_me: error: too old" >&2;}
    { (exit 1); exit 1; }; }
 fi
 
+      am_display_PYTHON=$PYTHON
     else
       # Otherwise, try each interpreter until we find one that satisfies
       # VERSION.

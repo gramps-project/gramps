@@ -166,12 +166,17 @@ class ImageSelect:
             return
 
         already_imported = None
+
+        trans = self.db.start_transactions()
         for o_id in self.db.get_object_keys():
-            o = self.db.find_object_from_id(o_id)
+            o = self.db.find_object_from_id(o_id,trans)
             if o.get_path() == filename:
                 already_imported = o
                 break
 
+        # fix referenes here
+        # dna
+        
         if (already_imported):
             oref = RelLib.MediaRef()
             oref.set_reference_id(already_imported.get_id())
@@ -186,7 +191,9 @@ class ImageSelect:
             mobj.set_mime_type(type)
             self.savephoto(mobj)
             mobj.set_path(filename)
-            self.db.commit_media_object(mobj)
+            self.db.commit_media_object(mobj,trans)
+
+        self.db.add_transaction(trans,'Edit Media Objects')
             
         self.parent.lists_changed = 1
         self.load_images()
@@ -269,7 +276,7 @@ class Gallery(ImageSelect):
     def on_drag_begin(self,obj,context):
         if const.dnd_images:
             id = self.sel_obj.get_reference_id()
-            obj = self.db.find_object_from_id(id)
+            obj = self.db.find_object_from_id(id,None)
             mtype = obj.get_mime_type()
             name = Utils.thumb_path(self.db.get_save_path(),obj)
             pix = gtk.gdk.pixbuf_new_from_file(name)
@@ -363,7 +370,7 @@ class Gallery(ImageSelect):
     def add_thumbnail(self, photo):
         """Scale the image and add it to the IconList."""
         oid = photo.get_reference_id()
-        object = self.db.find_object_from_id(oid)
+        object = self.db.find_object_from_id(oid,None)
         if self.canvas_list.has_key(oid):
             (grp,item,text,x,y) = self.canvas_list[oid]
             if x != self.cx or y != self.cy:
@@ -596,7 +603,7 @@ class Gallery(ImageSelect):
         
         menu = gtk.Menu()
         menu.set_title(_("Media Object"))
-        object = self.db.find_object_from_id(photo.get_reference_id())
+        object = self.db.find_object_from_id(photo.get_reference_id(),None)
         mtype = object.get_mime_type()
         progname = GrampsMime.get_application(mtype)
         
@@ -613,20 +620,21 @@ class Gallery(ImageSelect):
     def popup_view_photo(self, obj):
         """Open this picture in a picture viewer"""
         photo = obj.get_data('o')
-        Utils.view_photo(self.db.find_object_from_id(photo.get_reference_id()))
+        Utils.view_photo(self.db.find_object_from_id(photo.get_reference_id(),
+                                                     None))
     
     def popup_edit_photo(self, obj):
         """Open this picture in a picture editor"""
         photo = obj.get_data('o')
         if os.fork() == 0:
-            obj = self.db.find_object_from_id(photo.get_reference_id())
+            obj = self.db.find_object_from_id(photo.get_reference_id(),None)
             os.execvp(const.editor,[const.editor, obj.get_path()])
     
     def popup_convert_to_private(self, obj):
         """Copy this picture into gramps private database instead of
         leaving it as an external data object."""
         photo = obj.get_data('o')
-        object = self.db.find_object_from_id(photo.get_reference_id())
+        object = self.db.find_object_from_id(photo.get_reference_id(),None)
         name = RelImage.import_media_object(object.get_path(),self.path,
                                             object.get_id())
         object.set_path(name)
@@ -657,7 +665,8 @@ class LocalMediaProperties:
         self.child_windows = {}
         self.photo = photo
         self.db = parent.db
-        self.object = self.db.find_object_from_id(photo.get_reference_id())
+        self.object = self.db.find_object_from_id(photo.get_reference_id(),
+                                                  None)
         self.alist = photo.get_attribute_list()[:]
         self.lists_changed = 0
         
