@@ -469,6 +469,13 @@ gramps: gramps.sh
 
 dist-hook: gramps.spec
 	cp gramps.spec $(distdir)
+
+.PHONY: pycheck trans
+
+pycheck:
+	(cd src; make pycheck) 
+trans:
+	(cd src; make trans) 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

@@ -65,7 +65,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %doc README COPYING TODO INSTALL COPYING-DOCS
 %doc %{_mandir}/man1/*
-%doc %{_datadir}/gnome/help/*
 
 %{prefix}/bin/gramps
 
