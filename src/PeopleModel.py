@@ -74,8 +74,9 @@ class PeopleModel(gtk.GenericTreeModel):
         self.top_visible = {}
         self.rebuild_data(data_filter)
     
-    def rebuild_data(self,data_filter):
-        self.data_filter = data_filter
+    def rebuild_data(self,data_filter=None):
+        if data_filter:
+            self.data_filter = data_filter
         temp_top_path2iter = []
         temp_iter2path = {}
         temp_path2iter = {}

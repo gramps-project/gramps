@@ -1052,7 +1052,7 @@ class GrampsParser:
             d = 0
 
         if attrs.has_key("cformat"):
-            cal = Date.Date.calendar.index(attrs['calendar'])
+            cal = Date.Date.calendar_names.index(attrs['calendar'])
         else:
             cal = Date.CAL_GREGORIAN
 
