@@ -76,7 +76,7 @@
 			  <signal name="activate" handler="on_revert_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image118">
+			    <widget class="GtkImage" id="image159">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-revert-to-saved</property>
 			      <property name="icon_size">1</property>
@@ -112,7 +112,7 @@
 			  <property name="use_underline">True</property>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image119">
+			    <widget class="GtkImage" id="image160">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-convert</property>
 			      <property name="icon_size">1</property>
@@ -128,12 +128,12 @@
 		      <child>
 			<widget class="GtkImageMenuItem" id="reload_plugins">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Reload plugins</property>
+			  <property name="label" translatable="yes">Re_load plugins</property>
 			  <property name="use_underline">True</property>
 			  <signal name="activate" handler="on_reload_plugins_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image120">
+			    <widget class="GtkImage" id="image161">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-refresh</property>
 			      <property name="icon_size">1</property>
@@ -176,12 +176,12 @@
 		      <child>
 			<widget class="GtkImageMenuItem" id="find">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Find...</property>
+			  <property name="label" translatable="yes">_Find...</property>
 			  <property name="use_underline">True</property>
 			  <signal name="activate" handler="on_find_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image121">
+			    <widget class="GtkImage" id="image162">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-find</property>
 			      <property name="icon_size">1</property>
@@ -202,7 +202,7 @@
 			  <signal name="activate" handler="on_merge_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image122">
+			    <widget class="GtkImage" id="image163">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-convert</property>
 			      <property name="icon_size">1</property>
@@ -231,7 +231,7 @@
 		      <child>
 			<widget class="GtkCheckMenuItem" id="sidebar1">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Sidebar</property>
+			  <property name="label" translatable="yes">_Sidebar</property>
 			  <property name="use_underline">True</property>
 			  <property name="active">True</property>
 			  <signal name="activate" handler="on_sidebar1_activate" last_modification_time="Thu, 05 Sep 2002 00:58:01 GMT"/>
@@ -241,7 +241,7 @@
 		      <child>
 			<widget class="GtkCheckMenuItem" id="filter1">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Filter</property>
+			  <property name="label" translatable="yes">_Filter</property>
 			  <property name="use_underline">True</property>
 			  <property name="active">True</property>
 			  <signal name="activate" handler="on_filter1_activate" last_modification_time="Thu, 05 Sep 2002 01:38:10 GMT"/>
@@ -270,7 +270,7 @@
 			  <accelerator key="D" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image123">
+			    <widget class="GtkImage" id="image164">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-index</property>
 			      <property name="icon_size">1</property>
@@ -292,7 +292,7 @@
 			  <accelerator key="B" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image124">
+			    <widget class="GtkImage" id="image165">
 			      <property name="visible">True</property>
 			      <property name="stock">gnome-stock-book-open</property>
 			      <property name="icon_size">1</property>
@@ -314,7 +314,7 @@
 		      <child>
 			<widget class="GtkMenuItem" id="jump_to">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Go to bookmark</property>
+			  <property name="label" translatable="yes">_Go to bookmark</property>
 			  <property name="use_underline">True</property>
 			</widget>
 		      </child>
@@ -364,7 +364,7 @@
 			  <signal name="activate" handler="on_default_person_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image125">
+			    <widget class="GtkImage" id="image166">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-home</property>
 			      <property name="icon_size">1</property>
@@ -398,30 +398,9 @@
 			  <signal name="activate" handler="on_contents_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image126">
+			    <widget class="GtkImage" id="image167">
 			      <property name="visible">True</property>
 			      <property name="stock">gnome-stock-book-red</property>
-			      <property name="icon_size">1</property>
-			      <property name="xalign">0.5</property>
-			      <property name="yalign">0.5</property>
-			      <property name="xpad">0</property>
-			      <property name="ypad">0</property>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkImageMenuItem" id="writing_extensions">
-			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">_Writing extensions</property>
-			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="on_writing_extensions_activate"/>
-
-			  <child internal-child="image">
-			    <widget class="GtkImage" id="image127">
-			      <property name="visible">True</property>
-			      <property name="stock">gnome-stock-book-blue</property>
 			      <property name="icon_size">1</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
@@ -440,7 +419,7 @@
 			  <signal name="activate" handler="on_gramps_home_page_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image128">
+			    <widget class="GtkImage" id="image168">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-jump-to</property>
 			      <property name="icon_size">1</property>
@@ -461,7 +440,7 @@
 			  <signal name="activate" handler="on_gramps_mailing_lists_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image129">
+			    <widget class="GtkImage" id="image169">
 			      <property name="visible">True</property>
 			      <property name="stock">gnome-stock-mail</property>
 			      <property name="icon_size">1</property>
@@ -489,6 +468,15 @@
 			  <property name="label" translatable="yes">_Show plugin status</property>
 			  <property name="use_underline">True</property>
 			  <signal name="activate" handler="on_show_plugin_status"/>
+			</widget>
+		      </child>
+
+		      <child>
+			<widget class="GtkMenuItem" id="open_example_database1">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">_Open example database</property>
+			  <property name="use_underline">True</property>
+			  <signal name="activate" handler="on_open_example" last_modification_time="Sun, 30 Mar 2003 04:49:11 GMT"/>
 			</widget>
 		      </child>
 
