@@ -66,14 +66,41 @@ def importData(database, filename, callback):
         parser = xml.sax.saxexts.make_parser()
         parser.setDocumentHandler(GrampsParser(database,callback,basefile,1))
         parser.setErrorHandler(xml.sax.saxutils.ErrorRaiser())
-        xml_file = gzip.open(filename,"rb")
-        parser.parseFile(xml_file)
+         
     else:
         parser = xml.sax.make_parser()
         parser.setContentHandler(GrampsParser(database,callback,basefile,1))
+         
+    try:
         xml_file = gzip.open(filename,"rb")
-        parser.parse(xml_file)
+    except IOError,msg:
+        GnomeErrorDialog(_("%s could not be opened\n") % filename + str(msg))
+        return 0
+    except:
+        GnomeErrorDialog(_("%s could not be opened\n") % filename)
+        return 0
         
+    try:
+        if sax == 1:
+            parser.parseFile(xml_file)
+        else:
+            parser.parse(xml_file)
+    except xml.sax.SAXParseException:
+        GnomeErrorDialog(_("%s is a corrupt file") % filename)
+        import traceback
+        traceback.print_exc()
+        return 0
+    except IOError,msg:
+        GnomeErrorDialog(_("Error reading %s") % filename + "\n" + str(msg))
+        import traceback
+        traceback.print_exc()
+        return 0
+    except:
+        GnomeErrorDialog(_("Error reading %s") % filename)
+        import traceback
+        traceback.print_exc()
+        return 0
+
     xml_file.close()
 
 #-------------------------------------------------------------------------
@@ -129,7 +156,6 @@ def loadData(database, filename, callback):
         traceback.print_exc()
         return 0
 
-
     xml_file.close()
     return 1
 
@@ -148,7 +174,7 @@ if __name__ == "__main__":
 
     t1 = time.time()
 
-    loadData(db,file,lcb)
+    profile.run('loadData(db,file,lcb)')
     t2 = time.time()
     print t2 - t1
 
