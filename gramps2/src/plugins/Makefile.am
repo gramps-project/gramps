@@ -42,8 +42,8 @@ pkgpython_PYTHON = \
 	WritePkg.py\
 	WriteCD.py\
 	rel_ru.py\
-	eval.py\
-	leak.py\
+	Eval.py\
+	Leak.py\
 	SimpleBookTitle.py\
 	CustomBookText.py\
 	RelGraph.py\
