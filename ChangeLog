@@ -1,5 +1,10 @@
 2004-02-04  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/po/template.po: Update translation template.
+	* doc/gramps-manual/ru/filtref.xml: Update.
+	* doc/gramps-manual/ru/getstart.xml: Update.
+	* doc/gramps-manual/ru/gramps-manual.xml: Update.
+	* doc/gramps-manual/ru/mainwin.xml: Update.
+	* doc/gramps-manual/ru/usage.xml: Update.
 
 2004-02-04  Egyeki Gergely  <egeri@elte.hu>
 	* src/po/hu.po: Update.		
