@@ -212,11 +212,12 @@ class SelectChild:
 
 class NewChild:
 
-    def __init__(self,db,family,person,update,autoname=3):
+    def __init__(self,db,family,person,update,update_disp,autoname=3):
         self.db = db
         self.person = person
         self.family = family
         self.update = update
+        self.edit_update = update_disp
         
         self.xml = libglade.GladeXML(const.gladeFile,"addChild")
         self.xml.signal_autoconnect({
@@ -373,9 +374,6 @@ class NewChild:
         mrel = const.childRelations[self.mrel.get_text()]
         frel = const.childRelations[self.frel.get_text()]
 
-#        if mrel == "Birth" and frel == "Birth":
-#            person.setMainFamily(self.family)
-#        else:
         person.addAltFamily(self.family,mrel,frel)
             
         self.family.addChild(person)
@@ -387,13 +385,10 @@ class NewChild:
         Utils.destroy_passed_object(obj)
         self.new_child = person
 
-    def other_update(self,arg1,plist):
-        self.update(None,self.new_child,plist)
-
     def on_edit_new_child(self,obj):
         import EditPerson
         
         self.on_addchild_ok_clicked(obj)
-        EditPerson.EditPerson(self.new_child,self.db,self.other_update)
+        EditPerson.EditPerson(self.new_child,self.db,self.edit_update)
         
 
