@@ -1296,7 +1296,7 @@ class Gramps:
                 sname = self.parent_name(f.getMother())
             else:
                 sname = self.parent_name(f.getFather())
-            c = self.list_item(sname,f)
+            c = self.list_item(sname,f.getId())
             list.append(c)
             if f == self.active_family or sel == None:
                 sel = c
