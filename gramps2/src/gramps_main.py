@@ -149,7 +149,7 @@ class Gramps:
         self.db.set_pprefix(GrampsCfg.pprefix)
         self.clearing_tabs = 0
 
-        GrampsCfg.loadConfig(self.update_display)
+        GrampsCfg.loadConfig(self.pref_callback)
         self.relationship = Plugins.relationship_function()
         self.init_interface()
 
@@ -279,6 +279,10 @@ class Gramps:
                                   GrampsCfg.autosave_int)
 
         self.db.setResearcher(GrampsCfg.get_researcher())
+
+    def pref_callback(self,val):
+        self.family_view.init_interface()
+        self.update_display(val)
 
     def init_interface(self):
         """Initializes the GLADE interface, and gets references to the
