@@ -53,7 +53,6 @@ from TransTable import TransTable
 from gettext import gettext as _
 from Utils import for_each_ancestor
 
-
 _date_parser = DateHandler.create_parser()
 
 #-------------------------------------------------------------------------

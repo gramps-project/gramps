@@ -85,6 +85,8 @@ def create_parser():
     try:
         return _lang_to_parser[_lang]()
     except:
+        import traceback
+        traceback.print_stack()
         print "Date parser for",_lang,"not available"
         return DateParser.DateParser()
 
@@ -145,6 +147,6 @@ def register_datehandler(locales,parse_class,display_class):
 #-------------------------------------------------------------------------
 from Plugins import load_plugins
 from const import datesDir
+print "loading",datesDir
 load_plugins(datesDir)
 
-print _lang_to_display[_lang].formats

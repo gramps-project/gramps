@@ -1,4 +1,7 @@
 2004-12-26  Don Allingham  <dallingham@users.sourceforge.net>
+        * src/Report.py: delay importing of GenericFilter
+	* src/ReadGedcom.py: create GedcomDateParser class to handle 
+	  English requirements for GEDCOM
 	* src/DateHandler.py: provide date handler registration function
 	* src/RelLib.py: more documentation
 	* src/dates/Date_es.py: use new registration function

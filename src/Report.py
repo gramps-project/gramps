@@ -51,7 +51,6 @@ import gnome.ui
 import const
 import Utils
 import Plugins
-import GenericFilter
 import BaseDoc
 import StyleEditor
 import GrampsGconfKeys
@@ -515,6 +514,8 @@ class BareReportDialog:
         this box.  *All* of these items are optional, although the
         generations fields and the filter combo box are used in most
         (but not all) dialog boxes."""
+
+        import GenericFilter
 
         (em_label, extra_map, preset, em_tip) = self.get_report_extra_menu_info()
         (et_label, string, et_tip) = self.get_report_extra_textbox_info()
@@ -1499,6 +1500,8 @@ class CommandLineReport:
                 self.options_help[key] = self.option_class.options_help[key]
 
     def parse_option_str(self):
+        import GenericFilter
+        
         for opt in self.options_str_dict.keys():
             if opt in self.options_dict.keys():
                 converter = Utils.get_type_converter(self.options_dict[opt])

@@ -219,6 +219,14 @@ class DateStruct:
         self.date = ""
         self.time = ""
 
+class GedcomDateParser(DateParser.DateParser):
+
+    month_to_int = {
+        'jan' : 1,  'feb' : 2,  'mar' : 3,  'apr' : 4,
+        'may' : 5,  'jun' : 6,  'jul' : 7,  'aug' : 8,
+        'sep' : 9,  'oct' : 10, 'nov' : 11, 'dec' : 12,
+        }
+
 #-------------------------------------------------------------------------
 #
 #
@@ -230,7 +238,7 @@ class GedcomParser:
     BadFile = "Not a GEDCOM file"
 
     def __init__(self, dbase, filename, window, codeset):
-        self.dp = DateParser.DateParser()
+        self.dp = GedcomDateParser()
         self.db = dbase
         self.person = None
         self.media_map = {}
@@ -1923,6 +1931,17 @@ class GedcomParser:
                         pass
 
         self.db.pmap_index = new_pmax
+
+    def invert_year(self,subdate):
+        return (subdate[0],subdate[1],-subdate[2],subdate[3])
+    
+    def parse(self,text):
+        """
+        Parses the text, returning a Date object.
+        """
+        new_date = Date.Date()
+        self.set_date(new_date,text)
+        return new_date
 
 def extract_temple(matches):
     try:
