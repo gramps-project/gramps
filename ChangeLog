@@ -4,6 +4,9 @@
 	* src/plugins/FtmStyleDescendants.py (write_report): Change from 
 	partial phrases to the complete phrases. Consider all cases (birth 
 	date/place, death date/place, gender). Closes 810904, 810905. 
+	* src/plugins/FtmStyleAncestors.py (write_report): Likewise.
+	* src/plugins/Verify.py (on_apply_clicked): Detect homosexual 
+	marriage only if the spouses' gender is known and equal. 
 
 2003-10-06  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/WebPage.py: Fixed ID link so that link references are
