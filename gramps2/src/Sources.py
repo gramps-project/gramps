@@ -52,6 +52,7 @@ class SourceSelector:
         self.parent = parent
         self.orig = srclist
         self.list = []
+        self.child_windows = []
         for s in self.orig:
             self.list.append(RelLib.SourceRef(s))
         self.update=update
@@ -66,6 +67,9 @@ class SourceSelector:
             "on_del_src_clicked"    : self.del_src_clicked,
             "on_edit_src_clicked"   : self.edit_src_clicked,
             "on_help_srcsel_clicked"   : self.on_help_clicked,
+            "on_cancel_srcsel_clicked"   : self.close,
+            "on_ok_srcsel_clicked"   : self.src_ok_clicked,
+            "on_srcsel_delete_event"   : self.on_delete_event,
             })
 
         self.slist = self.top.get_widget("slist")
@@ -94,17 +98,47 @@ class SourceSelector:
         self.redraw()
         if self.parent:
             self.window.set_transient_for(self.parent.window)
-
+        self.parent.child_windows.append(self)
+        self.add_itself_to_menu()
         self.window.show()
-        self.val = self.window.run()
-        if self.val == gtk.RESPONSE_OK:
-            self.src_ok_clicked()
+
+    def on_delete_event(self,obj,b):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
         self.window.destroy()
+
+    def close_child_windows(self):
+        for child_window in self.child_windows:
+            child_window.close(None)
+        self.child_windows = []
+
+    def add_itself_to_menu(self):
+        label = _('Source Reference')
+        self.parent_menu_item = gtk.MenuItem(label)
+        self.parent_menu_item.set_submenu(gtk.Menu())
+        self.parent_menu_item.show()
+        self.parent.menu.append(self.parent_menu_item)
+        self.menu = self.parent_menu_item.get_submenu()
+        self.menu_item = gtk.MenuItem(_('Reference Selector'))
+        self.menu_item.connect("activate",self.present)
+        self.menu_item.show()
+        self.menu.append(self.menu_item)
+
+    def remove_itself_from_menu(self):
+        self.menu_item.destroy()
+        self.menu.destroy()
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-complete')
-        self.val = self.window.run()
 
     def selection_changed(self,obj):
         (store,iter) = self.selection.get_selected()
@@ -123,12 +157,13 @@ class SourceSelector:
             iter = self.model.append()
             self.model.set(iter,0,base_id,1,base.get_title())
 
-    def src_ok_clicked(self):
+    def src_ok_clicked(self,obj):
         del self.orig[:]
         for s in self.list:
             self.orig.append(s)
         if self.update:
             self.update(self.orig)
+        self.close(obj)
     
     def edit_src_clicked(self,obj):
         store,iter = self.selection.get_selected()
@@ -248,6 +283,10 @@ class SourceEditor:
         self.update = update
         self.source_ref = srcref
         self.child_windows = []
+        if self.parent.__dict__.has_key('child_windows'):
+            self.win_parent = self.parent
+        else:
+            self.win_parent = self.parent.parent
         self.showSource = gtk.glade.XML(const.srcselFile, "sourceDisplay","gramps")
         self.sourceDisplay = self.get_widget("sourceDisplay")
 
@@ -286,13 +325,13 @@ class SourceEditor:
         self.set_button()
         if self.parent:
             self.sourceDisplay.set_transient_for(self.parent.window)
-        self.parent.parent.child_windows.append(self)
+        self.win_parent.child_windows.append(self)
         self.add_itself_to_menu()
         self.sourceDisplay.show()
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()
-        self.parent.parent.child_windows.remove(self)
+        self.win_parent.child_windows.remove(self)
         self.remove_itself_from_menu()
 
     def close(self,obj):
@@ -316,7 +355,7 @@ class SourceEditor:
         self.parent_menu_item = gtk.MenuItem(label)
         self.parent_menu_item.set_submenu(gtk.Menu())
         self.parent_menu_item.show()
-        self.parent.parent.menu.append(self.parent_menu_item)
+        self.win_parent.menu.append(self.parent_menu_item)
         self.menu = self.parent_menu_item.get_submenu()
         self.menu_item = gtk.MenuItem(_('Source Information'))
         self.menu_item.connect("activate",self.present)
