@@ -18,6 +18,13 @@
 	* src/plugins/WebPage.py: Add tab with index page options.
 	* src/sort: Typos. 
 
+	* src/plugins/IndivComplete.py: Call doc.init() after open.
+	* src/plugins/IndivSummary.py: Call doc.init() after open.
+	* src/plugins/RelCalc.py: Use class of calculator.
+	* src/plugins/rel_ru.py: Convert to class. 
+	* src/Plugins.py: Register _relcalc_class.
+	* src/gramps_main.py: Use class of relationship calculator.
+
 2004-02-13  Egyeki Gergely  <egeri@elte.hu>
 	* src/po/hu.po: Update
 	* doc/gramps-manual/hu/filtref.xml: Update

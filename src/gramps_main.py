@@ -141,7 +141,8 @@ class Gramps:
         self.db.set_pprefix(GrampsCfg.pprefix)
 
         GrampsCfg.loadConfig(self.pref_callback)
-        self.relationship = Plugins.relationship_function(self.db)
+        self.RelClass = Plugins.relationship_class(self.db)
+        self.relationship = self.RelClass.get_relationship
         self.init_interface()
 
         if args:
@@ -660,7 +661,8 @@ class Gramps:
         Plugins.build_export_menu(export_menu,self.export_callback)
         Plugins.build_import_menu(import_menu,self.import_callback)
 
-        self.relationship = Plugins.relationship_function(self.db)
+        self.RelClass = Plugins.relationship_class(self.db)
+        self.relationship = self.RelClass.get_relationship
 
     def init_filters(self):
 
@@ -1395,8 +1397,8 @@ class Gramps:
     def display_relationship(self):
         try:
             pname = GrampsCfg.nameof(self.db.get_default_person())
-            (name,plist) = self.relationship.get_relationship(self.db.get_default_person(),
-                                                              self.active_person)
+            (name,plist) = self.relationship(self.db.get_default_person(),
+                                                self.active_person)
 
             if name:
                 if plist == None:

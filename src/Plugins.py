@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -88,6 +88,7 @@ _bkitems = []
 #
 #-------------------------------------------------------------------------
 import Relationship
+_relcalc_class = Relationship.RelationshipCalculator
 
 #-------------------------------------------------------------------------
 #
@@ -530,21 +531,22 @@ def register_draw_doc(name,classref,paper,style, ext,
 
 #-------------------------------------------------------------------------
 #
-# Relationchip calculator registration
+# Relationship calculator registration
 #
 #-------------------------------------------------------------------------
-def register_relcalc(func, languages):
+def register_relcalc(relclass, languages):
     """Register a relationshp calculator"""
-    global _relcalc_task
+    global _relcalc_class
 
     try:
         if os.environ["LANG"] in languages:
-            _relcalc_task = func
+            _relcalc_class = relclass
     except:
         pass
 
-def relationship_function(db):
-    return Relationship.RelationshipCalculator(db)
+def relationship_class(db):
+    global _relcalc_class
+    return _relcalc_class(db)
 
 #-------------------------------------------------------------------------
 #

@@ -69,7 +69,8 @@ class RelCalc:
     def __init__(self,database,person):
         self.person = person
         self.db = database
-        self.relationship = Plugins.relationship_function()
+        self.RelClass = Plugins.relationship_class(database)
+        self.relationship = self.RelClass.get_relationship
 
         base = os.path.dirname(__file__)
         glade_file = "%s/relcalc.glade" % base
