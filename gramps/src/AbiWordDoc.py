@@ -104,6 +104,7 @@ class AbiWordDoc(TextDoc):
         self.f.close()
 
     def add_photo(self,pos,name,x_cm,y_cm):
+        import gtk
         import GdkImlib
 
         image = GdkImlib.Image(name)

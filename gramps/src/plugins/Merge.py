@@ -225,7 +225,7 @@ class Merge:
                 p2 = self.dellist[p2]
             if p1 == p2:
                 continue
-            list.append(c,p1,p2)
+            list.append((c,p1,p2))
         list.sort()
         list.reverse()
 

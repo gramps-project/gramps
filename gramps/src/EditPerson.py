@@ -30,6 +30,7 @@ import string
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+import gtk
 from gnome.ui import GnomeErrorDialog, GnomeWarningDialog, GnomeQuestionDialog
 import libglade
 import GdkImlib
