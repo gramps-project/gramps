@@ -133,7 +133,7 @@
 	<!-- ==== Figure: Missing media window  ==== -->
 	<figure id="missing-media-im"> 
 	<title>Dialogue d'objet multimedia absent</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
+	<screenshot><mediaobject><imageobject><imagedata
 		fileref="figures/missing-media.png" format="PNG"/></imageobject>
 	<textobject>
 	<phrase>Dialogue d'objet multimedia absent. </phrase>
@@ -170,7 +170,7 @@
      <listitem>
      <para>Si vous voulez conserver le choix fait dans ce dialogue pour
      tous les fichiers manquants, cochez la case
-     <guilabel>Utiliser ce choix pour tous les fichiers manquants</guilabel>.
+     <guilabel>Utiliser cette option pour toute absence de fichier media</guilabel>.
      Ceci enregistrera votre choix et l'utilisera pour tous les fichiers
      manquant lors de l'importation en évitant de réafficher le dialogue.
      Utilisez cette possibilité quand vous prévoyez que beaucoup de fichiers
@@ -354,7 +354,7 @@
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-spec-rel"> 
+      <sect3 id="gramps-spec-rel">
         <title>Pour spécifier une relation</title> 
 	<para>Pour spécifier une relation entre deux personnes, aller d'abord
 	dans la vue par famille (<xref linkend="family-fig"/>). 
@@ -400,7 +400,7 @@
 	relation entre eux. Si nécessaire, vous pouvez ajouter une personne
 	à la liste par le bouton
 	<guibutton>Ajouter...</guibutton>. </para>
-	
+
 	<para> Les  listes du haut et du bas contiennent respectivement 
 	les hommes et les femmes. Par défaut, &app; ne proposera dans chaque
 	liste que les personnes qui peuvent être les parents de la personne active 
@@ -630,7 +630,7 @@
 	image de la <guilabel>Galerie</guilabel> pour cette personne
 	(s'il y en a).
 	</para>
-	
+
 	<para>Enfin, la case à cocher <guilabel>Information complète</guilabel> 
 	permet de marquer les données de cet individu en enregistrant leur complétude. </para>
 		</listitem></varlistentry>
@@ -722,7 +722,7 @@
 	<guibutton>Ajouter...</guibutton>, <guibutton>Afficher...</guibutton> 
 	et <guibutton>Supprimer</guibutton> vous permettent respectivement d'ajouter, 
 	modifier et supprimer un attribut et sa valeur pour la personne active. 
-	Notez que les boutons <guibutton>Afficher...</guibutton> et 
+	Notez que les boutons <guibutton>Afficher...</guibutton> et
 	<guibutton>Supprimer</guibutton> ne sont disponibles qu'après avoir
 	sélectionné un attribut dans la liste.
 	</para>
@@ -768,7 +768,7 @@
 	<!-- ==== Figure: Edit Person dialog - Notes ==== -->
 	<figure id="edit-pers-notes-fig"> 
 	<title>Dialogue Afficher la Personne - Notes</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
+	<screenshot><mediaobject><imageobject><imagedata
 		fileref="figures/edit-person-notes.png" format="PNG"/></imageobject>
 	<textobject> 
 	<phrase>Montre l'onglet notes du Dialogue Afficher la Personne. </phrase>
@@ -779,13 +779,13 @@
 	associé à la personne. Pour modifier les notes, simplement modifiez
 	le texte dans la zone de saisie de l'onglet.
 	</para>
-	<para>L'option <guilabel>Formatté</guilabel> vous permet de choisir le rendu
+	<para>L'option <guilabel>Format</guilabel> vous permet de choisir le rendu
 	de la note dans la sortie (édition ou bien page Web).
-	Choisir <guilabel>En continu</guilabel> remplacera les espaces multiples,
+	Choisir <guilabel>Coulé</guilabel> remplacera les espaces multiples,
 	les tabulations et les changements de lignes simples par un espace.
 	Les lignes vides (deux changements de lignes consécutifs) sont comprises
 	comme une fin de paragraphe.
-	Au contraire, choisir <guilabel>Préformatté</guilabel> conservera à l'identique
+	Au contraire, choisir <guilabel>Préformaté</guilabel> conservera à l'identique
 	les espaces multiples, les tabulations et les changements de ligne
 	comme ils ont été saisis dans la zone de texte.
 	</para>
@@ -811,9 +811,9 @@
 	de l'individu et permet leur modification.
 	Les sources sont liées à la personne mais pas spécifiquement à un évènement.
 	Par exemple, le journal personnel de Tante Marthe peut mentionner son
-	arrière-petit-fils Paul. Dans ce cas, Paul aura comme source ce journal. 
+	arrière-petit-fils Paul. Dans ce cas, Paul aura comme source ce journal.
 	Note : si une source est liée à un évènement, il est préférable de la déclarer
-	dans le dialogue de définition de cet évènement, dans l'onglet 
+	dans le dialogue de définition de cet évènement, dans l'onglet
 	<guilabel>Evènements</guilabel>.
 	</para>
 	<para>
@@ -1105,13 +1105,13 @@
 	associé à la relation. Pour modifier les notes, changez simplement
 	le texte dans la zone de saisie de l'onglet.
 	</para>
-	<para>L'option <guilabel>Formatté</guilabel> vous permet de choisir le rendu
+	<para>L'option <guilabel>Format</guilabel> vous permet de choisir le rendu
 	de la note dans la sortie (édition ou bien page Web).
-	Choisir <guilabel>En continu</guilabel> remplacera les espaces multiples,
+	Choisir <guilabel>Coulé</guilabel> remplacera les espaces multiples,
 	les tabulations et les changements de lignes simples par un espace.
 	Les lignes vides (deux changements de lignes consécutifs) sont comprises
 	comme une fin de paragraphe.
-	Au contraire, choisir <guilabel>Préformatté</guilabel> conservera à l'identique
+	Au contraire, choisir <guilabel>Préformaté</guilabel> conservera à l'identique
 	les espaces multiples, les tabulations et les changements de ligne
 	comme ils ont été saisis dans la zone de texte.
 	</para>
@@ -1246,13 +1246,13 @@
 	la source. Si vous voulez ajouter ou modifier des notes, il vous suffit
 	de modifier le contenu de la zone de texte. 
 	</para>
-	<para>L'option <guilabel>Formatté</guilabel> vous permet de choisir le rendu
+	<para>L'option <guilabel>Format</guilabel> vous permet de choisir le rendu
 	de la note dans la sortie (édition ou bien page Web).
-	Choisir <guilabel>En continu</guilabel> remplacera les espaces multiples,
+	Choisir <guilabel>Coulé</guilabel> remplacera les espaces multiples,
 	les tabulations et les changements de lignes simples par un espace.
 	Les lignes vides (deux changements de lignes consécutifs) sont comprises
 	comme une fin de paragraphe.
-	Au contraire, choisir <guilabel>Préformatté</guilabel> conservera à l'identique
+	Au contraire, choisir <guilabel>Préformaté</guilabel> conservera à l'identique
 	les espaces multiples, les tabulations et les changements de ligne
 	comme ils ont été saisis dans la zone de texte.
 	</para>
@@ -1367,7 +1367,7 @@
 
 	Les boutons 
 	<guibutton>Ajouter...</guibutton>, <guibutton>Afficher...</guibutton> 
-	et <guibutton>Supprimer</guibutton> vous permettent respectivement d'ajouter, 
+	et <guibutton>Supprimer</guibutton> vous permettent respectivement d'ajouter,
 	modifier et supprimer un autre nom pour le lieu en cours d'édition. 
 	Notez que les boutons <guibutton>Afficher...</guibutton> et 
 	<guibutton>Supprimer</guibutton> ne sont disponibles qu'après avoir
@@ -1383,13 +1383,13 @@
 	le lieu. Si vous voulez ajouter ou modifier des notes, il vous suffit
 	de modifier le contenu de la zone de texte. 
 	</para>
-	<para>L'option <guilabel>Formatté</guilabel> vous permet de choisir le rendu
+	<para>L'option <guilabel>Format</guilabel> vous permet de choisir le rendu
 	de la note dans la sortie (édition ou bien page Web).
-	Choisir <guilabel>En continu</guilabel> remplacera les espaces multiples,
+	Choisir <guilabel>Coulé</guilabel> remplacera les espaces multiples,
 	les tabulations et les changements de lignes simples par un espace.
 	Les lignes vides (deux changements de lignes consécutifs) sont comprises
 	comme une fin de paragraphe.
-	Au contraire, choisir <guilabel>Préformatté</guilabel> conservera à l'identique
+	Au contraire, choisir <guilabel>Préformaté</guilabel> conservera à l'identique
 	les espaces multiples, les tabulations et les changements de ligne
 	comme ils ont été saisis dans la zone de texte.
 	</para>
@@ -1559,13 +1559,13 @@
 	sur l'objet multimedia modification. Les notes sont un simple texte libre
 	associé à la relation. Pour modifier les notes, changez simplement
 	le texte dans la zone de saisie de l'onglet.</para>
-	<para>L'option <guilabel>Formatté</guilabel> vous permet de choisir le rendu
+	<para>L'option <guilabel>Format</guilabel> vous permet de choisir le rendu
 	de la note dans la sortie (édition ou bien page Web).
-	Choisir <guilabel>En continu</guilabel> remplacera les espaces multiples,
+	Choisir <guilabel>Coulé</guilabel> remplacera les espaces multiples,
 	les tabulations et les changements de lignes simples par un espace.
 	Les lignes vides (deux changements de lignes consécutifs) sont comprises
 	comme une fin de paragraphe.
-	Au contraire, choisir <guilabel>Préformatté</guilabel> conservera à l'identique
+	Au contraire, choisir <guilabel>Préformaté</guilabel> conservera à l'identique
 	les espaces multiples, les tabulations et les changements de ligne
 	comme ils ont été saisis dans la zone de texte.
 	</para>
@@ -1674,13 +1674,13 @@
 	l'évènement. Si vous voulez ajouter ou modifier des notes, il vous suffit
 	de modifier le contenu de la zone de texte. 
 	</para>
-	<para>L'option <guilabel>Formatté</guilabel> vous permet de choisir le rendu
+	<para>L'option <guilabel>Format</guilabel> vous permet de choisir le rendu
 	de la note dans la sortie (édition ou bien page Web).
-	Choisir <guilabel>En continu</guilabel> remplacera les espaces multiples,
+	Choisir <guilabel>Coulé</guilabel> remplacera les espaces multiples,
 	les tabulations et les changements de lignes simples par un espace.
 	Les lignes vides (deux changements de lignes consécutifs) sont comprises
 	comme une fin de paragraphe.
-	Au contraire, choisir <guilabel>Préformatté</guilabel> conservera à l'identique
+	Au contraire, choisir <guilabel>Préformaté</guilabel> conservera à l'identique
 	les espaces multiples, les tabulations et les changements de ligne
 	comme ils ont été saisis dans la zone de texte.
 	</para>
@@ -1823,13 +1823,13 @@
 	sur le nom et permet leur modification. Les notes sont un simple texte libre
 	associé au nom. Pour modifier les notes, simplement modifiez
 	le texte dans la zone de saisie de l'onglet. </para>
-	<para>L'option <guilabel>Formatté</guilabel> vous permet de choisir le rendu
+	<para>L'option <guilabel>Format</guilabel> vous permet de choisir le rendu
 	de la note dans la sortie (édition ou bien page Web).
-	Choisir <guilabel>En continu</guilabel> remplacera les espaces multiples,
+	Choisir <guilabel>Coulé</guilabel> remplacera les espaces multiples,
 	les tabulations et les changements de lignes simples par un espace.
 	Les lignes vides (deux changements de lignes consécutifs) sont comprises
 	comme une fin de paragraphe.
-	Au contraire, choisir <guilabel>Préformatté</guilabel> conservera à l'identique
+	Au contraire, choisir <guilabel>Préformaté</guilabel> conservera à l'identique
 	les espaces multiples, les tabulations et les changements de ligne
 	comme ils ont été saisis dans la zone de texte.
 	</para>
@@ -1918,13 +1918,13 @@
 	l'attribut. Si vous voulez ajouter ou modifier des notes, il vous suffit
 	de modifier le contenu de la zone de texte. 
 	</para>
-	<para>L'option <guilabel>Formatté</guilabel> vous permet de choisir le rendu
+	<para>L'option <guilabel>Format</guilabel> vous permet de choisir le rendu
 	de la note dans la sortie (édition ou bien page Web).
-	Choisir <guilabel>En continu</guilabel> remplacera les espaces multiples,
+	Choisir <guilabel>Coulé</guilabel> remplacera les espaces multiples,
 	les tabulations et les changements de lignes simples par un espace.
 	Les lignes vides (deux changements de lignes consécutifs) sont comprises
 	comme une fin de paragraphe.
-	Au contraire, choisir <guilabel>Préformatté</guilabel> conservera à l'identique
+	Au contraire, choisir <guilabel>Préformaté</guilabel> conservera à l'identique
 	les espaces multiples, les tabulations et les changements de ligne
 	comme ils ont été saisis dans la zone de texte.
 	</para>
@@ -2011,13 +2011,13 @@
 	l'adresse. Si vous voulez ajouter ou modifier des notes, il vous suffit
 	de modifier le contenu de la zone de texte. 
 	</para>
-	<para>L'option <guilabel>Formatté</guilabel> vous permet de choisir le rendu
+	<para>L'option <guilabel>Format</guilabel> vous permet de choisir le rendu
 	de la note dans la sortie (édition ou bien page Web).
-	Choisir <guilabel>En continu</guilabel> remplacera les espaces multiples,
+	Choisir <guilabel>Coulé</guilabel> remplacera les espaces multiples,
 	les tabulations et les changements de lignes simples par un espace.
 	Les lignes vides (deux changements de lignes consécutifs) sont comprises
 	comme une fin de paragraphe.
-	Au contraire, choisir <guilabel>Préformatté</guilabel> conservera à l'identique
+	Au contraire, choisir <guilabel>Préformaté</guilabel> conservera à l'identique
 	les espaces multiples, les tabulations et les changements de ligne
 	comme ils ont été saisis dans la zone de texte.
 	</para>

@@ -118,7 +118,7 @@
       <varlistentry><term>&app; peut-il imprimer mon arbre généalogique ? </term>
       <listitem><para> 
       Oui. Chacun a son idée sur comment doit être dessiné un arbre généalogique. 
-      Certains pensent qu'il faut montrer toues les familles depuis un ancêtre lointain
+      Certains pensent qu'il faut montrer toutes les familles depuis un ancêtre lointain
       jusqu'à la racine de l'arbre, d'autres qu'il faut remonter de la personne
       actuelle et montrer tous ses ancêtres et leurs familles. D'autres encore
       pensent à un tableau, à des éditions en mode texte... </para>
@@ -140,95 +140,95 @@
       </varlistentry>
 
       <varlistentry><term>&app; est-il compatible avec Internet ? </term>
-      <listitem><para> 
-      &app; peut garder des liens web et envoyer votre navigateur web vers elles. 
+      <listitem><para>
+      &app; peut garder des liens web et envoyer votre navigateur web vers eux.
       Il peut importer des données que vous téléchargez depuis le Réseau. Il
       peut exporter des données que vous y enverrez. Il connait les formats
-      de fichiers courants (JPEG, PNG et GIF pour les images, MP3, OGG et 
+      de fichiers courants (JPEG, PNG et GIF pour les images, MP3, OGG et
       WAV pour les sons, QuickTime, MPEG et AVI pour les video). A part cela,
-      il n'y a pas grand chose d'autre qu'un généalogiqte puisse faire avec
-      Internet :-) . 
+      il n'y a pas grand chose d'autre qu'un généalogiste puisse faire avec
+      Internet :-) .
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>Puis-je créer une édition, un filtre ou un machin ? </term>
-      <listitem><para> 
+      <listitem><para>
       Oui. Il y a beaucoup de façons de personnaliser &app;. Vous pouvez
       modifier ou créer les modèles d'impressions. Vous avez ainsi le contrôle des
       polices de caractères, des couleurs et d'éléments de la disposition
       des impressions. Vous pouvez aussi utiliser les réglages de &app;
-      pour choisir les informations servant à préparer l'impression. 
+      pour choisir les informations servant à préparer l'impression.
       En plus de tout cela, vous pouvez créer vos propres filtres.
-      Cela sert à sélectionner des individus selon vos besoins. 
+      Cela sert à sélectionner des individus selon vos besoins.
       Vous pouvez combiner ces filtres pour constituer des filtres
       plus élaborés. Enfin, vous pouvez créer vos greffons. Ils peuvent
-      servir à définir des rapports, des outils d'aide à la recherche 
+      servir à définir des rapports, des outils d'aide à la recherche
       ou encore des filtres de lecture ou d'écriture de données. Cela
-      demande la connaissance de la programmation en Python. 
+      demande la connaissance de la programmation en Python.
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>Quels standards &app; supporte-t'il ? </term>
-      <listitem><para> 
+      <listitem><para>
       L'amusant à propos des standards est qu'on ne risque pas d'en manquer :-).
-      &app; supporte les variantes suivantes de Gedcom : 
-      GEDCOM5.5, Brother's Keeper, Family Origins, Familty Tree Maker, Ftree, 
-      GeneWeb, Legacy, Personal Ancestral File, Pro-Gen, Reunion et 
-      Visual Genealogie. 
+      &app; supporte les variantes suivantes de Gedcom :
+      GEDCOM5.5, Brother's Keeper, Family Origins, Familty Tree Maker, Ftree,
+      GeneWeb, Legacy, Personal Ancestral File, Pro-Gen, Reunion et
+      Visual Genealogie.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Quelle est la taille maximale d'une base de données 
+      <varlistentry><term>Quelle est la taille maximale d'une base de données
       &app; ? </term>
-      <listitem><para> 
+      <listitem><para>
       &app; n'a pas de limite stricte sur la taille de sa base de données.
       Il y a seulement des limites pratiques. Pour le moment, &app; charge
-      ses données en mémoire, qui devient alors la ressource critique. 
+      ses données en mémoire, qui devient alors la ressource critique.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Combien de personnes peut-on mettre dans une base 
+      <varlistentry><term>Combien de personnes peut-on mettre dans une base
       de données &app; ? </term>
-      <listitem><para> 
+      <listitem><para>
       Nous avons expérimenté que &app; tient jusqu'environ 15000 personnes
       sur une configuration moyenne. Encore une fois, cela dépend en fait
-      de la taille mémoire du système. 
+      de la taille mémoire du système.
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>Pourquoi &app; est-il si lent ? </term>
-      <listitem><para> 
+      <listitem><para>
       Si &app; vous parait si lent, c'est probablement que vous avez une
       grosse base de données. Pour le moment, &app; charge les données en
-      mémoire. En conséquence, les temps de réponse s'allongent pour de gros 
+      mémoire. En conséquence, les temps de réponse s'allongent pour de gros
       volumes de données. En particulier, le résultat sera catastrophique
       si les données de &app; occasionnent de la pagination (swap).
       </para>
       <para>
       Ceci sera traité dans la première version stable après le version 1.0 .
       En attendant, ajouter de la mémoire peut tout changer mais nous sommes
-      conscients que ce n'est pas la meilleure façon de traiter le problème. 
+      conscients que ce n'est pas la meilleure façon de traiter le problème.
       Si vous souhaitez aider à l'implémentation avec une vraie base de donnée,
-      n'hésitez pas à nous contacter par courrier électronique à 
-      <ulink url="mailto:gramps-devel@lists.sf.net" 
+      n'hésitez pas à nous contacter par courrier électronique à
+      <ulink url="mailto:gramps-devel@lists.sf.net"
       type="mailto">gramps-devel@lists.sf.net</ulink>
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>Ma base de données est vraiment très grosse.
       Y-a t'il un moyen de la charger sans tout charger en mémoire ? </term>
-      <listitem><para> 
-      Actuellement, il n'y a pas d'autre moyen. C'est notre plus grosse 
+      <listitem><para>
+      Actuellement, il n'y a pas d'autre moyen. C'est notre plus grosse
       priorité après la finition de la version 1.0 . L'utilisation d'une
       vraie base de données se fera dans la prochaine version stable (1.2),
       qui améliorera grandement les performances, tant en vitesse
-      d'exécution qu'en empreinte mémoire. 
+      d'exécution qu'en empreinte mémoire.
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>Pourquoi les caractères non latins sont-ils mal
       affichés dans les impressions PDF ou Postscript ? </term>
-      <listitem><para> 
+      <listitem><para>
       C'est un problème connu. Le Postscript (et le PDF) utilisent des
       polices de caractères internes qui correspondent bien au jeu de caractère
       latin-1. En principe, on pourrait utiliser n'importe quel police de caractères
@@ -236,27 +236,27 @@
       chaque système gère à sa façon les polices et leur définition. </para>
 
       <para>
-      Ce devrait être réglé quand nous serons passés avec Gnome-print. 
+      Ce devrait être réglé quand nous serons passés avec Gnome-print.
       Entre temps, une solution de contournement est de générer des éditions
-      en format OpenOffice.org, puis de générer le PDF depuis OpenOffice.org. 
+      en format OpenOffice.org, puis de générer le PDF depuis OpenOffice.org.
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>Pourquoi ne peut-on pas ajouter, enlever ou modifier
-      des colonnes aux listes dans les Vues Individis et Famille ? </term>
-      <listitem><para> 
+      des colonnes aux listes dans les Vues Individus et Famille ? </term>
+      <listitem><para>
       Ceci sera traité quand l'erreur dans TreeModelSort de pygtk sera corrigée
-      (voir <ulink url="http://bugzilla.gnome.org/show_bug.cgi?id=125172" 
+      (voir <ulink url="http://bugzilla.gnome.org/show_bug.cgi?id=125172"
       type="http">http://bugzilla.gnome.org/show_bug.cgi?id=125172</ulink>
-      for the details).
+      pour les détails).
       Dès que la correction sera validée et mise dans pygtk, nous ajouterons
-      la capacité d'ajouter, retirer et éditer des colonnes avec tri. 
+      la capacité d'ajouter, retirer et éditer des colonnes avec tri.
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>Je souhaiterais contribuer à &app; en écrivant
       mon édition favorite. Comment fais-je ? </term>
-      <listitem><para> 
+      <listitem><para>
       La façon la plus simple pour écrire de nouveaux rapports, filtres
       ou outils est d'en copier un qui existe déjà puis de le modifier.
       Si cela vous convient, tant mieux ! Si votre idée ne rentre 
