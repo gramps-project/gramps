@@ -311,7 +311,7 @@ class Date:
 
     def isEmpty(self):
         s = self.start
-        return s.year==UNDEF and s.month==UNDEF and s.day==UNDEF
+        return s.year==UNDEF and s.month==UNDEF and s.day==UNDEF and not self.text
 
     def isValid(self):
         return self.range != -1 

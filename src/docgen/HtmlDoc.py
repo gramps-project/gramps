@@ -548,7 +548,7 @@ class HtmlDoc(TextDoc):
         self.f.write('<br>\n')
 
     def show_link(self, text, href):
-        self.write_text(' <a href="%s">%s</a> ' % (href, text))
+        self.f.write(' <a href="%s">%s</a> ' % (href, text))
 
 #------------------------------------------------------------------------
 #
