@@ -13,6 +13,11 @@
 	* src/plugins/WebPage.py (IndividualPage.write_normal_row): Add separators
 	between the references (comma and space). 
 
+	* src/data/templates/blue_edge.tpkg, src/data/templates/marble.tpkg,
+	src/data/templates/pink_marble.tpkg, src/data/templates/sepia.tpkg, 
+	src/data/templates/sky_border.tpkg: Remove from CVS (need to add binary
+	files using -kb flag). 
+
 2003-11-12  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/FamilyView.py: Change column sizes on the FamilyView to
 	fit with the new column
