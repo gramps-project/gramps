@@ -1,6 +1,14 @@
 2003-06-29  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/FtmStyleDescendants.py: handle missing "endnotes"
-
+	* src/DisplayTrace.py: identify more linux versions
+	* src/gramps_main.py: fix callbacks for reports
+	* src/plugins/ReorderIds.py: handle integers larger that 32bit
+	* src/Plugins.py: keep a separate lists for formats that support
+	the book format
+	* src/docgen/PdfDoc.py: register as a format supporting books
+	* src/docgen/OpenOfficeDoc.py: register as a format supporting books
+	* src/plugins/BookReport.py: Support different lists for books
+	
 2003-06-28  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/WriteGedcom.py: Convert line end string to chosen
 	encoding (prevents traceback).
