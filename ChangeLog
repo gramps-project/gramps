@@ -1,3 +1,13 @@
+2004-12-23 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ReportOptions.py (ReportOptions): Add wrappers to hide handler.
+	* src/plugins/BookReport.py: Use wrappers.
+	* src/plugins/TimeLine.py: Use wrappers.
+	* src/plugins/FtmStyleDescendants.py: Use wrappers.
+	* src/plugins/FtmStyleAncestors.py: Use wrappers.
+	* src/plugins/AncestorReport.py: Use wrappers.
+	* src/plugins/DescendReport.py: Use wrappers.
+	* src/plugins/IndivSummary.py: Use wrappers.
+
 2004-12-22 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ReportOptions.py (ReportOptions): Add base Options class.
 	* src/plugins/BookReport.py (BookOptions): Derive from base class.

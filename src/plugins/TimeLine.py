@@ -97,7 +97,7 @@ class TimeLine:
         self.person = person
         self.options_class = options_class
 
-        filter_num = options_class.handler.get_filter_number()
+        filter_num = options_class.get_filter_number()
         filters = options_class.get_report_filters(person)
         self.filter = filters[filter_num]
 
@@ -107,9 +107,9 @@ class TimeLine:
         sort_functions = options_class.get_sort_functions(Sort.Sort(database))
         self.sort_func = sort_functions[sort_func_num][1]
 
-        self.d = options_class.handler.doc
-        self.output = options_class.handler.output
-        self.newpage = options_class.handler.newpage
+        self.d = options_class.get_document()
+        self.output = options_class.get_output()
+        self.newpage = options_class.get_newpage()
 
         self.setup()
         if self.output:

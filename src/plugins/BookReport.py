@@ -1012,8 +1012,8 @@ class BookReportDialog(Report.ReportDialog):
         self.rptlist = []
         newpage = 0
         for item in self.book.get_item_list():
-            item.option_class.handler.doc = self.doc
-            item.option_class.handler.newpage = newpage
+            item.option_class.set_document(self.doc)
+	    item.option_class.set_newpage(newpage)
             report_class = item.get_write_item()
             obj = Report.write_book_item(self.database,self.person,
                             report_class,item.option_class)
@@ -1072,14 +1072,14 @@ def cl_report(database,name,category,options_str_dict):
         rptlist = []
         newpage = 0
         for item in book.get_item_list():
-            item.option_class.handler.doc = doc
-            item.option_class.handler.newpage = newpage
+            item.option_class.set_document(doc)
+            item.option_class.set_newpage(newpage)
             report_class = item.get_write_item()
             obj = Report.write_book_item(database,clr.person,
                         report_class,item.option_class)
             rptlist.append(obj)
             newpage = 1
-        doc.open(clr.option_class.handler.output)
+        doc.open(clr.option_class.get_output())
         doc.init()
         for item in rptlist:
             item.write_report()

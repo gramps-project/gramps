@@ -94,11 +94,11 @@ class FtmDescendantReport(Report.Report):
         self.gen_map = {}
 
         (self.max_generations,self.pgbrk) \
-                        = options_class.handler.get_report_generations()
+                        = options_class.get_report_generations()
 
-        self.doc = options_class.handler.doc
-        output = options_class.handler.output
-        self.newpage = options_class.handler.newpage
+        self.doc = options_class.get_document()
+        output = options_class.get_output()
+        self.newpage = options_class.get_newpage()
 
         self.setup()
 
