@@ -692,11 +692,11 @@ class FtmAncestorReportDialog(Report.TextReportDialog):
     #------------------------------------------------------------------------
     def get_title(self):
         """The window title for this dialog"""
-        return "%s - %s - GRAMPS" % (_("Ahnentafel Report"),_("Text Reports"))
+        return "%s - %s - GRAMPS" % (_("FTM Style Ancestral Report"),_("Text Reports"))
 
     def get_header(self, name):
         """The header line at the top of the dialog contents"""
-        return _("Ahnentafel Report for %s") % name
+        return _("FTM Style Ancestral Report for %s") % name
 
     def get_target_browser_title(self):
         """The title of the window created when the 'browse' button is
@@ -708,7 +708,7 @@ class FtmAncestorReportDialog(Report.TextReportDialog):
         return "ftm_ancestor_report.xml"
     
     def make_default_style(self):
-        """Make the default output style for the Ahnentafel report."""
+        """Make the default output style for the FTM Style Ancestral report."""
         font = TextDoc.FontStyle()
         font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1,italic=1)
         para = TextDoc.ParagraphStyle()
@@ -751,7 +751,7 @@ class FtmAncestorReportDialog(Report.TextReportDialog):
 
 
     def make_report(self):
-        """Create the object that will produce the Ahnentafel Report.
+        """Create the object that will produce the FTM Style Ancestral Report.
         All user dialog has already been handled and the output file
         opened."""
         try:
