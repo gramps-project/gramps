@@ -42,14 +42,6 @@ fi
 
 AC_PATH_PROG(ZIP, zip)
 
-AC_SUBST(BINSH)
-AC_SUBST(PYTHON)
-AC_SUBST(PYTHON_VERSION)
-AC_SUBST(PACKAGE)
-AC_SUBST(GNOMEHELP)
-AC_SUBST(DOCBOOKHTML)
-AC_SUBST(LIBS)
-
 AC_PROG_INSTALL
 AC_PROG_MAKE_SET
 
@@ -217,7 +209,6 @@ if test "$PYTHON15" != ""; then
     INTLLIBS="intl15.so "
   fi
 fi
-AC_SUBST(P15_INCLUDES)
 
 if test "$PYTHON20" != ""; then
   py_prefix=`$PYTHON20 -c "import sys; print sys.prefix"`
@@ -228,7 +219,6 @@ if test "$PYTHON20" != ""; then
     INTLLIBS="${INTLLIBS}intl20.so "
   fi
 fi
-AC_SUBST(P20_INCLUDES)
 
 if test "$PYTHON21" != ""; then
   py_prefix=`$PYTHON21 -c "import sys; print sys.prefix"`
@@ -242,7 +232,6 @@ if test "$PYTHON21" != ""; then
     INTLLIBS="${INTLLIBS}intl21.so "
   fi
 fi
-AC_SUBST(P21_INCLUDES)
 
 if test "$PYTHON22" != ""; then
   py_prefix=`$PYTHON22 -c "import sys; print sys.prefix"`
@@ -257,19 +246,41 @@ if test "$PYTHON22" != ""; then
   fi
 fi
 
-AC_SUBST(P22_INCLUDES)
-AC_SUBST(INTLLIBS)
 
 AC_MSG_RESULT(ok)
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 
+AC_ARG_ENABLE(html,   [  --enable-html           Create HTML documentation from sgml files. (requires DocBook 0.6.9)], WANT_HTML="1", WANT_HTML="0")
 
-AC_PATH_PROG(DOCBOOKHTML, db2html)
-if test $DOCBOOKHTML; then
-  AC_MSG_CHECKING(for correct gnome-doc DTD)
-  changequote(,)
-  cat > conftest.sgml <<EOF
+if test "$WANT_HTML" = "1"; then
+  AC_PATH_PROG(DOCBOOKHTML, db2html)
+  if test $DOCBOOKHTML; then
+dnl We need at least 0.6.9 to be safe
+    DOCBOOK_VER_STRING=
+    DB_VERSION=
+    REQ_VERSION=
+    AC_MSG_CHECKING(for docbook 0.6.9)
+    DOCBOOK_VER_STRING=`$DOCBOOKHTML -v | awk '{print $3}'`
+    DB_VERSION=`echo ${DOCBOOK_VER_STRING} | awk -F. '{print $[]1 * 1000 + $[]2 * 100 + $[]3;}'`
+    REQ_VERSION=609
+    if test "$DB_VERSION" -ne $REQ_VERSION; then
+      AC_MSG_RESULT([********
+    DocBook = 0.6.9 is required to safely build extra docs.  I found 
+    $DOCBOOK_VER_STRING so will not build/install them.
+  ********])  
+    DOCBOOKHTML=
+    fi
+  else
+    AC_MSG_RESULT([********
+    Failed to find docbook so will not create requested documentation.
+  ********])
+  fi
+  
+  if test $DOCBOOKHTML; then
+    AC_MSG_CHECKING(for correct gnome-doc DTD)
+    changequote(,)
+    cat > conftest.sgml <<EOF
 <!DOCTYPE article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.1//EN"[
 <!ENTITY version "0.0.1"> 
 ]>
@@ -286,30 +297,39 @@ if test $DOCBOOKHTML; then
   </sect1>
 </article> 
 EOF
-  $DOCBOOKHTML conftest.sgml -o conftest >&5 2>dbconf.err 
-  testresult=`cat dbconf.err | wc | awk '{print $1}'`
-  changequote([, ])
-  if test $testresult = "0"; then
-    rm -f dbconf.err
-    AC_MSG_RESULT(ok)
-  else
-    AC_MSG_RESULT([
-********
-    I had some problem with the gnome-doc DTD.  Please install
-    gnome-doc-tools from http://people.redhat.com/dcm/software.html.
-    Refer to dbconf.err for details.
-    		  I will not create documentation.
-********])
-    DOCBOOKHTML=
-  fi  
-  rm -rf conftest 
-else
-  AC_MSG_RESULT([********
-  Failed to find docbook (db2html) so will not create documentation.
-********])
+    $DOCBOOKHTML conftest.sgml -o conftest >&5 2>dbconf.err 
+    testresult=`cat dbconf.err | wc | awk '{print $1}'`
+    changequote([, ])
+    if test $testresult = "0"; then
+      rm -f dbconf.err
+      AC_MSG_RESULT(ok)
+    else
+      AC_MSG_RESULT([
+  ********
+      I had some problem with the gnome-doc DTD.  Please install
+      gnome-doc-tools from http://people.redhat.com/dcm/software.html.
+      Refer to dbconf.err for details.
+      		  I will not create documentation.
+  ********])
+      DOCBOOKHTML=
+    fi  
+    rm -rf conftest 
+  fi
 fi
 
-dnl Checks for library functions.
+AC_SUBST(BINSH)
+AC_SUBST(PYTHON)
+AC_SUBST(PYTHON_VERSION)
+AC_SUBST(PACKAGE)
+AC_SUBST(GNOMEHELP)
+AC_SUBST(DOCBOOKHTML)
+AC_SUBST(LIBS)
+
+AC_SUBST(P15_INCLUDES)
+AC_SUBST(P20_INCLUDES)
+AC_SUBST(P21_INCLUDES)
+AC_SUBST(P22_INCLUDES)
+AC_SUBST(INTLLIBS)
 
 AC_OUTPUT(Makefile \
 	Makefile.comm\
