@@ -1,3 +1,7 @@
+2004-12-16  Julio Sanchez <julio.sanchez@gmail.com>
+	* src/po/es.po: forward port of the Spanish translations in STABLE,
+	plus many new translations
+
 2004-12-15  Julio Sanchez <julio.sanchez@gmail.com>
 	* src/po/es.po: updated to the result of running msmerge against a
 	recent template.po with no other change
