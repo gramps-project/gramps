@@ -1,5 +1,8 @@
 2003-12-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/KwordDoc.py (write_note): Implement function.
+	* src/edit_person.glade: Correct hotkeys.
+	* src/gramps.glade: Correct hotkey targets.
+	* src/ChooseParents.py: Add hotkeys.
 
 2003-12-12  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/HtmlDoc.py (write_note): Set monospace font family 

@@ -220,9 +220,9 @@ class ChooseParents:
                 self.fmodel.add(info,d[1],fid==d[1])
 
         if self.type == "Partners":
-            self.flabel.set_label("<b>%s</b>" % _("Parent"))
+            self.flabel.set_label("<b>%s</b>" % _("Par_ent"))
         else:
-            self.flabel.set_label("<b>%s</b>" % _("Father"))
+            self.flabel.set_label("<b>%s</b>" % _("Fath_er"))
 
         self.fmodel.connect_model()
 
@@ -296,9 +296,9 @@ class ChooseParents:
                 self.mmodel.add(info,d[1],mid==d[1])
 
         if self.type == "Partners":
-            self.mlabel.set_label("<b>%s</b>" % _("Parent"))
+            self.mlabel.set_label("<b>%s</b>" % _("Pa_rent"))
         else:
-            self.mlabel.set_label("<b>%s</b>" % _("Mother"))
+            self.mlabel.set_label("<b>%s</b>" % _("Mothe_r"))
         self.mmodel.connect_model()
 
     def parent_relation_changed(self,obj):
