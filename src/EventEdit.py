@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -62,6 +62,7 @@ class EventEditor:
         self.parent = parent
         self.db = self.parent.db
         self.event = event
+        self.child_windows = []
         self.trans = trans
         self.callback = cb
         self.plist = []
@@ -178,10 +179,11 @@ class EventEditor:
         self.date_check = DateEdit(self.date_field,self.top.get_widget("date_stat"))
 
         self.top.signal_autoconnect({
-            "on_add_src_clicked" : self.add_source,
-            "on_del_src_clicked" : self.del_source,
             "on_switch_page" : self.on_switch_page,
-            "on_help_event_clicked" : self.on_help_clicked
+            "on_help_event_clicked" : self.on_help_clicked,
+            "on_ok_event_clicked" : self.on_event_edit_ok_clicked,
+            "on_cancel_event_clicked" : self.close,
+            "on_event_edit_delete_event" : self.on_delete_event,
             })
 
         menu = gtk.Menu()
@@ -199,21 +201,53 @@ class EventEditor:
         self.calendar.set_menu(menu)
 
         self.window.set_transient_for(self.parent.window)
-        self.val = self.window.run()
-        if self.val == gtk.RESPONSE_OK:
-            self.on_event_edit_ok_clicked()
+        self.parent.child_windows.append(self)
+        self.add_itself_to_menu()
+        self.window.show()
+
+    def on_delete_event(self,obj,b):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
         self.window.destroy()
+
+    def close_child_windows(self):
+        for child_window in self.child_windows:
+            child_window.close(None)
+        self.child_windows = []
+
+    def add_itself_to_menu(self):
+        if not self.event:
+            label = _("New Event")
+        else:
+            label = self.event.get_name()
+        if not label.strip():
+            label = _("New Event")
+        label = "%s: %s" % (_('Event'),label)
+        self.parent_menu_item = gtk.MenuItem(label)
+        self.parent_menu_item.set_submenu(gtk.Menu())
+        self.parent_menu_item.show()
+        self.parent.menu.append(self.parent_menu_item)
+        self.menu = self.parent_menu_item.get_submenu()
+        self.menu_item = gtk.MenuItem(_('Event Editor'))
+        self.menu_item.connect("activate",self.present)
+        self.menu_item.show()
+        self.menu.append(self.menu_item)
+
+    def remove_itself_from_menu(self):
+        self.menu_item.destroy()
+        self.menu.destroy()
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-complete')
-        self.val = self.window.run()
-
-    def add_source(self,obj):
-        pass
-
-    def del_source(self,obj):
-        pass
 
     def on_menu_changed(self,obj):
         cobj = obj.get_data("d")
@@ -240,7 +274,7 @@ class EventEditor:
         else:
             return None
 
-    def on_event_edit_ok_clicked(self):
+    def on_event_edit_ok_clicked(self,obj):
 
         ename = unicode(self.name_field.get_text())
         self.date.set(unicode(self.date_field.get_text()))
@@ -270,6 +304,7 @@ class EventEditor:
         self.update_event(ename,self.date,eplace_obj,edesc,enote,eformat,epriv,ecause)
         self.parent.redraw_event_list()
         self.callback(self.event)
+        self.close(obj)
 
     def update_event(self,name,date,place,desc,note,format,priv,cause):
         if place:
