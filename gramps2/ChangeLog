@@ -1,3 +1,7 @@
+2005-03-19  Alex Roitman  <shura@gramps-project.org>
+	* doc/gramps-manual/C/figures/export-druid.png: Update.
+	* doc/gramps-manual/C/gramps-manual.xml: Update.
+
 2005-03-18  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/plugins/ScratchPad.py: Tidy up of drag target type handling. 
 	* src/EditPerson.py (x_drag_data_received): fixed problem with 
