@@ -504,6 +504,8 @@
       <widget>
 	<class>GtkFrame</class>
 	<name>values</name>
+	<width>300</width>
+	<height>200</height>
 	<label>Values</label>
 	<label_xalign>0</label_xalign>
 	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
