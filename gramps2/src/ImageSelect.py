@@ -328,12 +328,22 @@ class Gallery(ImageSelect):
             if x != self.cx or y != self.cy:
                 grp.move(self.cx-x,self.cy-y)
         else:
+            import gobject
+            
             name = Utils.thumb_path(self.db.getSavePath(),object)
             description = object.getDescription()
             if len(description) > 20:
                 description = "%s..." % description[0:20]
 
-            image = gtk.gdk.pixbuf_new_from_file(name)
+            try:
+                image = gtk.gdk.pixbuf_new_from_file(name)
+            except gobject.GError,msg:
+                ErrorDialog(str(msg))
+                image = gtk.gdk.pixbuf_new_from_file(const.icon)
+            except:
+                ErrorDialog(_("Thumbnail %s could not be found") % name)
+                image = gtk.gdk.pixbuf_new_from_file(const.icon)
+            
             x = image.get_width()
             y = image.get_height()
 
