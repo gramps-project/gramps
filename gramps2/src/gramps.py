@@ -54,7 +54,11 @@ if os.environ.has_key("GRAMPSI18N"):
 else:
     loc = "/usr/share/locale"
 
-locale.setlocale(locale.LC_ALL,'')
+try:
+    locale.setlocale(locale.LC_ALL,'')
+except ValueError:
+    pass
+
 gettext.bindtextdomain("gramps",loc)
 gtk.glade.bindtextdomain("gramps",loc)
 
