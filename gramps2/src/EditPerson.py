@@ -146,6 +146,7 @@ class EditPerson:
         self.addr_state = self.get_widget("state")
         self.addr_country = self.get_widget("country")
         self.addr_postal = self.get_widget("postal")
+        self.addr_phone = self.get_widget("phone")
         self.event_list = self.get_widget("eventList")
         self.edit_person = self.get_widget("editPerson")
         self.name_list = self.get_widget("nameList")
@@ -1205,6 +1206,7 @@ class EditPerson:
             self.addr_state.set_text(addr.getState())
             self.addr_country.set_text(addr.getCountry())
             self.addr_postal.set_text(addr.getPostal())
+            self.addr_phone.set_text(addr.getPhone())
             if len(addr.getSourceRefList()) > 0:
                 psrc = addr.getSourceRefList()[0]
                 self.addr_conf_field.set_text(const.confidence[psrc.getConfidence()])
@@ -1221,6 +1223,7 @@ class EditPerson:
             self.addr_state.set_text('')
             self.addr_country.set_text('')
             self.addr_postal.set_text('')
+            self.addr_phone.set_text('')
             self.addr_conf_field.set_text('')
             self.addr_src_field.set_text('')
             self.addr_delete_btn.set_sensitive(0)

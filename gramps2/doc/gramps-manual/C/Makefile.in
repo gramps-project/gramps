@@ -200,6 +200,8 @@ entities = legal.xml\
 	mainwin.xml\
 	usage.xml\
 	custom.xml\
+	faq.xml\
+	keybind.xml\
 	filtref.xml\
 	cmdline.xml 
 
@@ -392,6 +394,14 @@ $(docname).xml: $(entities)
 	-ourdir=`pwd`;  \
 	cd $(srcdir);   \
 	cp $(entities) $$ourdir
+
+.PHONY: distclean-hook
+distclean: distclean-hook
+distclean-hook:
+	if [ $(top_srcdir) != $(top_builddir) ]; \
+	then \
+	  rm -f $(entities); \
+	fi
 
 app-dist-hook:
 	if test "$(figdir)"; then \

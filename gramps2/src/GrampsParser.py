@@ -124,6 +124,7 @@ class GrampsParser:
             "created"    : (self.start_created, None),
             "ref"        : (None, self.stop_ref),
             "database"   : (None, None),
+            "phone"      : (None, self.stop_phone),
             "date"       : (None, self.stop_date),
             "cause"      : (None, self.stop_cause),
             "description": (None, self.stop_description),
@@ -256,6 +257,10 @@ class GrampsParser:
         take up quite a bit of time"""
         
         loc = RelLib.Location()
+        if attrs.has_key('phone'):
+            loc.phone = attrs['phone']
+        if attrs.has_key('postal'):
+            loc.postal = attrs['postal']
         if attrs.has_key('city'):
             loc.city = attrs['city']
         if attrs.has_key('parish'):
@@ -736,6 +741,9 @@ class GrampsParser:
         date.set(tag)
         self.source_ref.setDate(date)
         
+    def stop_phone(self,tag):
+        self.address.setPhone(tag)
+
     def stop_street(self,tag):
         self.address.setStreet(tag)
 
