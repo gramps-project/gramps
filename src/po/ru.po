@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 1.0.0\n"
 "POT-Creation-Date: Thu Jan 22 23:56:16 2004\n"
-"PO-Revision-Date: 2004-02-05 23:43-0500\n"
+"PO-Revision-Date: 2004-02-08 20:32-0500\n"
 "Last-Translator: Alexander Bogdashevsky <sanderb@kezomba.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -8820,7 +8820,7 @@ msgstr "База _данных:"
 
 #: revision.glade:174
 msgid "_Revert to an older version from revision control"
-msgstr "О_ткатить к одной их предыдущих версий из репозитария"
+msgstr "О_ткатить к предыдущей версии из репозитария"
 
 #: revision.glade:412
 msgid "Comment:"
