@@ -131,6 +131,13 @@ class _DdTargets(object):
     def is_text_type(self,type_name):
         return type_name in self.all_text_types()
 
+    def all_text(self):
+        return (self.TEXT,
+                self.TEXT_MIME,
+                self.STRING,
+                self.COMPOUND_TEXT,
+                self.UTF8_STRING)
+        
     def all_text_types(self):
         """return a list of all the type names that could be
         used as the type of a string."""

@@ -1,3 +1,15 @@
+2005-03-31  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/plugins/stock_link.png: added icon for scratchpad display
+	* src/DdTargets.py (all_text): new method to return all text ddtypes
+	* src/TreeTips.py (__treetip_show): added support for tips to be callable
+	methods so that tips can be generated on the fly.
+	* src/plugins/Makefile.am: added stock_link.png icon
+	* src/plugins/ScratchPad.py: almost complete rewrite to make proper use
+	of gtk widgets and make more flexible for adding support for new 
+	dnd object types. Added link icon if the object is a link to a primary
+	object.
+
+	
 2005-03-30  Don Allingham  <don@gramps-project.org>
 	* src/MergePeople.py: provide more date in compare window, fix event
 	merging for families. Copy alternate names.

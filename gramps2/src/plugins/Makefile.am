@@ -84,7 +84,10 @@ GLADEFILES = \
 	genewebexport.glade\
 	scratchpad.glade
 
-dist_pkgdata_DATA = $(GLADEFILES)
+GRAPHICS = \
+	stock_link.png
+
+dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS)
 
 GRAMPS_PY_MODPATH = "../:../docgen"
 
