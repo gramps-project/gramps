@@ -130,7 +130,7 @@ class EventEditor:
         AutoComp.AutoEntry(self.place_field,self.pmap.keys())
 
         if event != None:
-            self.name_field.set_text(event.getName())
+            self.name_field.set_text(self.trans(event.getName()))
             if (def_placename):
                 self.place_field.set_text(def_placename)
             else:
