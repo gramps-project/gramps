@@ -1,3 +1,10 @@
+2003-10-22  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GrampsParser.py: remove debugging statement
+	* src/RelLib.py: remove debugging statement
+	* src/gramps_main.py: If an invalid ID is found while attempting to
+	access the history, invalidate the history list (set to empty list).
+	This should only happen after a reordering of IDs.
+
 2003-10-21  Samuel Tardieu  <sam@rfc1149.net>
 	* configure.in: Detect iconv at configuration time.
 	* src/po/Makefile.am: Invoke detected iconv in its simplest form. 
