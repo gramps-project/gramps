@@ -30,6 +30,7 @@ __version__ = "$Revision$"
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
+import gobject
 import gtk
 
 #------------------------------------------------------------------------
@@ -70,7 +71,8 @@ class StyleListDisplay:
             "on_edit_clicked" : self.on_edit_clicked
             })
         
-        self.list = ListModel.ListModel(self.top.get_widget("list"),[('Style',-1,10)])
+        self.list = ListModel.ListModel(self.top.get_widget("list"),
+                                        [('Style',-1,10)],)
         self.redraw()
 
     def redraw(self):
@@ -126,7 +128,7 @@ class StyleListDisplay:
         StyleEditor(name,style,self)
 
     def on_delete_clicked(self,obj):
-        """Deletes teh selected style."""
+        """Deletes the selected style."""
         store,iter = self.list.selection.get_selected()
         if not iter:
             return
@@ -153,7 +155,6 @@ class StyleEditor:
         self.style = TextDoc.StyleSheet(style)
         self.parent = parent
         self.top = gtk.glade.XML(const.stylesFile,"editor")
-        self.current_p = None
         
         self.top.signal_autoconnect({
             "on_save_style_clicked" : self.on_save_style_clicked,
@@ -161,25 +162,19 @@ class StyleEditor:
             })
 
         self.window = self.top.get_widget("editor")
-        self.pnames = self.top.get_widget("name")
+        self.first = 1
+        
+        titles = [(_('Paragraph'),0,130)]
+        self.plist = ListModel.ListModel(self.top.get_widget("ptree"),titles,
+                                         self.change_display)
 
         self.top.get_widget('color').connect('color-set',self.fg_color_set)
         self.top.get_widget('bgcolor').connect('color-set',self.bg_color_set)
-        
         self.top.get_widget("style_name").set_text(name)
-        myMenu = gtk.Menu()
-        first = 0
+
         for p_name in self.style.get_names():
-            p = self.style.get_style(p_name)
-            if first == 0:
-                self.draw(p)
-                first = 1
-            menuitem = gtk.MenuItem(p_name)
-            menuitem.set_data("o",p)
-            menuitem.connect("activate",self.change_display)
-            menuitem.show()
-            myMenu.append(menuitem)
-        self.pnames.set_menu(myMenu)
+            self.plist.add([p_name],self.style.get_style(p_name))
+        self.plist.select_row(0)
 
     def draw(self,p):
         """Updates the display with the selected paragraph."""
@@ -211,14 +206,19 @@ class StyleEditor:
         self.top.get_widget("bborder").set_active(p.get_bottom_border())
         self.fg_color = font.get_color()
         self.top.get_widget("color").set_i8(self.fg_color[0],self.fg_color[1],self.fg_color[2],0)
+        self.top.get_widget('color_code').set_text("#%02X%02X%02X" % self.fg_color)
+        
         self.bg_color = p.get_background_color()
         self.top.get_widget("bgcolor").set_i8(self.bg_color[0],self.bg_color[1],self.bg_color[2],0)
+        self.top.get_widget('bgcolor_code').set_text("#%02X%02X%02X" % self.bg_color)
 
     def bg_color_set(self,x,r,g,b,a):
         self.bg_color = (r >> 8, g >> 8, b >> 8)
+        self.top.get_widget('bgcolor_code').set_text("#%02X%02X%02X" % self.bg_color)
 
     def fg_color_set(self,x,r,g,b,a):
         self.fg_color = (r >> 8, g >> 8, b >> 8)
+        self.top.get_widget('color_code').set_text("#%02X%02X%02X" % self.fg_color)
         
     def save_paragraph(self,p):
         """Saves the current paragraph displayed on the dialog"""
@@ -270,11 +270,11 @@ class StyleEditor:
     def change_display(self,obj):
         """Called when the paragraph selection has been changed. Saves the
         old paragraph, then draws the newly selected paragraph"""
-        
-        style = obj.get_data("o")
-        self.save_paragraph(self.current_p)
-        self.draw(style)
 
-    
-
-
+        objs = self.plist.get_selected_objects()
+        if self.first == 0:
+            self.save_paragraph(self.current_p)
+        else:
+            self.first = 0
+        self.current_p = objs[0]
+        self.draw(self.current_p)
