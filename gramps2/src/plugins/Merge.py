@@ -20,17 +20,32 @@
 
 "Database Processing/Merge people"
 
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
 import RelLib
 import Utils
 import soundex
 import GrampsCfg
 import ListModel
+import MergeData
 from intl import gettext as _ 
 
+#-------------------------------------------------------------------------
+#
+# standard python models
+#
+#-------------------------------------------------------------------------
 import string
 import os
-import MergeData
 
+#-------------------------------------------------------------------------
+#
+# GNOME libraries
+#
+#-------------------------------------------------------------------------
 from gnome.ui import *
 import gtk 
 import gtk.glade
@@ -119,10 +134,9 @@ class Merge:
         self.show()
     
     def progress_update(self,val):
-        pass
-#        self.progress.set_value(val)
-#        while gtk.events_pending():
-#            gtk.mainiteration()
+        self.progress.set_value(val)
+        while gtk.events_pending():
+            gtk.mainiteration()
 
 
     def find_potentials(self,thresh):
@@ -197,12 +211,11 @@ class Merge:
             "destroy_passed_object" : Utils.destroy_passed_object,
             "on_do_merge_clicked" : self.on_do_merge_clicked,
             })
-        self.mlist.connect('button-press-event',self.button_press_event)
 
-        self.list = ListModel.ListModel(self.mlist,
-                                        [(_('Rating'),75,0),
-                                         (_('First Person'),200,1),
-                                         (_('Second Person'),200,2)])
+        mtitles = [(_('Rating'),3,75),(_('First Person'),1,200),
+                   (_('Second Person'),2,200),('',-1,0)]
+        self.list = ListModel.ListModel(self.mlist,mtitles,
+                                        event_func=self.on_do_merge_clicked)
         
         self.redraw()
 
@@ -218,32 +231,21 @@ class Merge:
             if p1 == p2:
                 continue
             list.append((c,p1,p2.getId()))
-        list.sort()
-        list.reverse()
 
-        index = 0
-        self.match_map = {}
         self.list.clear()
         for (c,p1,p2) in list:
-            c = "%5.2f" % c
-            pn1 = self.db.getPerson(p1)
-            pn2 = self.db.getPerson(p2)
-            self.list.add([c, name_of(pn1), name_of(pn2)])
-            self.match_map[index] = (p1,p2)
-            index = index + 1
-
-    def button_press_event(self,obj,event):
-        if event.button != 1 or event.type != gtk.gdk._2BUTTON_PRESS:
-            return
-        self.on_do_merge_clicked(obj)
+            c1 = "%5.2f" % c
+            c2 = "%5.2f" % (100-c)
+            pn1 = self.db.getPerson(p1).getPrimaryName().getName()
+            pn2 = self.db.getPerson(p2).getPrimaryName().getName()
+            self.list.add([c, pn1, pn2,c2],(p1,p2))
 
     def on_do_merge_clicked(self,obj):
         store,iter = self.list.selection.get_selected()
         if not iter:
             return
 
-        row = self.list.model.get_path(iter)
-        (p1,p2) = self.match_map[row[0]]
+        (p1,p2) = self.list.get_object(iter)
         pn1 = self.db.getPerson(p1)
         pn2 = self.db.getPerson(p2)
         MergeData.MergePeople(self.db,pn1,pn2,self.on_update)

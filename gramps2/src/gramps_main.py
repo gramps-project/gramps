@@ -146,8 +146,14 @@ class Gramps:
         """
         self.gtop = gtk.glade.XML(const.gladeFile, "gramps")
 
+        self.report_button = self.gtop.get_widget("reports")
+        self.tool_button  = self.gtop.get_widget("tools")
         self.sidebar = self.gtop.get_widget('side_event')
         self.filterbar = self.gtop.get_widget('filterbar')
+
+        self.tool_button.set_sensitive(0)
+        self.report_button.set_sensitive(0)
+
         set_panel(self.sidebar)
         set_panel(self.gtop.get_widget('side_people'))
         set_panel(self.gtop.get_widget('side_family'))
@@ -415,21 +421,24 @@ class Gramps:
         
     def on_filter_activate(self,obj):
         self.enable_filter(obj.get_active())
-#        GrampsCfg.save_filter(val)
+        GrampsCfg.save_filter(obj.get_active())
 
     def build_plugin_menus(self):
         export_menu = self.gtop.get_widget("export1")
         import_menu = self.gtop.get_widget("import1")
-        report_menu = self.gtop.get_widget("reports_menu")
-        tools_menu  = self.gtop.get_widget("tools_menu")
+        self.report_menu = self.gtop.get_widget("reports_menu")
+        self.tools_menu  = self.gtop.get_widget("tools_menu")
 
+        self.report_menu.set_sensitive(0)
+        self.tools_menu.set_sensitive(0)
+        
         Plugins.load_plugins(const.docgenDir)
         Plugins.load_plugins(os.path.expanduser("~/.gramps/docgen"))
         Plugins.load_plugins(const.pluginsDir)
         Plugins.load_plugins(os.path.expanduser("~/.gramps/plugins"))
 
-        Plugins.build_report_menu(report_menu,self.menu_report)
-        Plugins.build_tools_menu(tools_menu,self.menu_tools)
+        Plugins.build_report_menu(self.report_menu,self.menu_report)
+        Plugins.build_tools_menu(self.tools_menu,self.menu_tools)
         Plugins.build_export_menu(export_menu,self.export_callback)
         Plugins.build_import_menu(import_menu,self.import_callback)
 
@@ -726,7 +735,7 @@ class Gramps:
             self.displayError(_("%s is not a directory") % filename)
             return
 
-        self.statusbar.set_status(_("Loading %s ...") % filename)
+        self.status_text(_("Loading %s ...") % filename)
 
         if self.load_database(filename) == 1:
             if filename[-1] == '/':
@@ -734,7 +743,7 @@ class Gramps:
             name = os.path.basename(filename)
             self.topWindow.set_title("%s - GRAMPS" % name)
         else:
-            self.statusbar.set_status("")
+            self.status_text("")
             GrampsCfg.save_last_file("")
         
     def on_ok_button2_clicked(self,obj):
@@ -752,7 +761,7 @@ class Gramps:
         filename = os.path.normpath(filename)
         autosave = "%s/autosave.gramps" % filename
     
-        self.statusbar.set_status(_("Saving %s ...") % filename)
+        self.status_text(_("Saving %s ...") % filename)
 
         Utils.clearModified()
         Utils.clear_timer()
@@ -793,7 +802,7 @@ class Gramps:
             filename = filename[:-1]
         name = os.path.basename(filename)
         self.topWindow.set_title("%s - GRAMPS" % name)
-        self.statusbar.set_status("")
+        self.status_text("")
         self.statusbar.set_progress_percentage(0.0)
         if os.path.exists(autosave):
             try:
@@ -812,12 +821,12 @@ class Gramps:
 
         filename = "%s/autosave.gramps" % (self.db.getSavePath())
     
-        self.statusbar.set_status(_("autosaving..."));
+        self.status_text(_("autosaving..."));
         try:
             self.db.save(filename,self.quick_progress)
-            self.statusbar.set_status(_("autosave complete"));
+            self.status_text(_("autosave complete"));
         except (IOError,OSError),msg:
-            self.statusbar.set_status("%s - %s" % (_("autosave failed"),msg))
+            self.status_text("%s - %s" % (_("autosave failed"),msg))
         except:
             import traceback
             traceback.print_exc()
@@ -825,10 +834,8 @@ class Gramps:
 
     def load_selected_people(self,obj):
         """Display the selected people in the EditPerson display"""
-        list_store, iter = self.person_selection.get_selected()
-        if iter:
-            id = list_store.get_value(iter,1)
-            self.load_person(self.db.getPerson(id))
+        if self.active_person:
+            self.load_person(self.active_person)
 
     def load_active_person(self,obj):
         self.load_person(self.active_person)
@@ -915,14 +922,24 @@ class Gramps:
     def change_active_person(self,person):
         self.active_person = person
         self.modify_statusbar()
+        if person:
+            self.report_menu.set_sensitive(1)
+            self.tools_menu.set_sensitive(1)
+            self.report_button.set_sensitive(1)
+            self.tool_button.set_sensitive(1)
+        else:
+            self.report_menu.set_sensitive(0)
+            self.tools_menu.set_sensitive(0)
+            self.report_button.set_sensitive(0)
+            self.tool_button.set_sensitive(0)
     
     def modify_statusbar(self):
         if self.active_person == None:
-            self.statusbar.set_status("")
+            self.status_text("")
         else:
             pname = GrampsCfg.nameof(self.active_person)
             name = "[%s] %s" % (self.active_person.getId(),pname)
-            self.statusbar.set_status(name)
+            self.status_text(name)
         return 0
 	
     def on_child_list_row_move(self,clist,fm,to):
@@ -1230,6 +1247,11 @@ class Gramps:
         while gtk.events_pending():
             gtk.mainiteration()
 
+    def status_text(self,text):
+        self.statusbar.set_status(text)
+        while gtk.events_pending():
+            gtk.mainiteration()
+        
     def quick_progress(self,value):
         gtk.threads_enter()
         self.statusbar.set_progress_percentage(value)
@@ -1307,6 +1329,7 @@ class Gramps:
 
     def load_revision(self,f,name,revision):
         filename = "%s/%s" % (name,self.db.get_base())
+        self.status_text(_('Loading %s...' % name))
         if ReadXML.loadRevision(self.db,f,filename,revision,self.load_progress) == 0:
             return 0
         return self.post_load(name)
@@ -1318,9 +1341,10 @@ class Gramps:
 
     def displayError(self,msg):
         ErrorDialog(msg)
-        self.statusbar.set_status("")
+        self.status_text("")
 
     def apply_filter(self):
+        self.status_text(_("Updating display"))
         datacomp = self.DataFilter.compare
 
         for key in self.db.getPersonKeys():
@@ -1348,6 +1372,7 @@ class Gramps:
                 if self.id2col.has_key(key):
                     (model,iter,page) = self.id2col[key]
                     model.remove(iter)
+        self.modify_statusbar()
 
     def on_home_clicked(self,obj):
         temp = self.db.getDefaultPerson()
@@ -1361,7 +1386,7 @@ class Gramps:
         if self.active_person:
             self.bookmarks.add(self.active_person)
             name = GrampsCfg.nameof(self.active_person)
-            self.statusbar.set_status(_("%s has been bookmarked") % name)
+            self.status_text(_("%s has been bookmarked") % name)
             gtk.timeout_add(5000,self.modify_statusbar)
         else:
             WarningDialog(_("Bookmark could not be set because no one was selected"))

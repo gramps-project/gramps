@@ -981,7 +981,7 @@ def save_view(val):
     set_bool("/apps/gramps/view",val)
 
 def get_view():
-    return get_bool("/apps/gramps/view",1)
+    return get_bool("/apps/gramps/view")
 
 def save_filter(val):
     set_bool("/apps/gramps/filter",val)
