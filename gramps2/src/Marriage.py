@@ -21,6 +21,7 @@
 # $Id$
 
 import pickle
+import string
 
 #-------------------------------------------------------------------------
 #
@@ -75,6 +76,7 @@ class Marriage:
         self.cb = callback
         self.update_fv = update
         self.pmap = {}
+        self.add_places = []
 
         if family:
             self.srcreflist = family.getSourceRefList()
@@ -427,7 +429,7 @@ class Marriage:
         else:
             temple = ""
 
-        place = Utils.get_place_from_list(self.lds_place)
+        place = self.get_place(1)
         
         ord = self.family.getLdsSeal()
         if not ord:
@@ -516,7 +518,7 @@ class Marriage:
             temple = const.lds_temple_codes[temple]
         else:
             temple = ""
-        place = Utils.get_place_from_list(self.lds_place)
+        place = self.get_place(1)
 
         ord = self.family.getLdsSeal()
         if not ord:
@@ -674,3 +676,37 @@ class Marriage:
             Utils.bold_label(self.notes_label)
         else:
             Utils.unbold_label(self.notes_label)
+
+        date = self.lds_date.get_text()
+        temple = self.lds_temple.entry.get_text()
+        if const.lds_temple_codes.has_key(temple):
+            temple = const.lds_temple_codes[temple]
+        else:
+            temple = ""
+        place = self.get_place(1)
+        
+        if date or temple or place:
+            Utils.bold_label(self.lds_label)
+        else:
+            Utils.unbold_label(self.lds_label)
+
+    def get_place(self,makenew=0):
+        field = self.lds_place.entry
+        text = string.strip(field.get_text())
+        if type(text) != type(u' '):
+            text = unicode(text)
+        if text:
+            if self.pmap.has_key(text):
+                return self.db.getPlaceMap()[self.pmap[text]]
+            elif makenew:
+                place = RelLib.Place()
+                place.set_title(text)
+                self.db.addPlace(place)
+                self.pmap[text] = place.getId()
+                self.add_places.append(place)
+                Utils.modified()
+                return place
+            else:
+                return None
+        else:
+            return None

@@ -219,7 +219,7 @@ class EditPerson:
             Utils.bold_label(self.inet_label)
         if self.plist:
             Utils.bold_label(self.addr_label)
-        if self.icon_list:
+        if self.person.getPhotoList():
             Utils.bold_label(self.gallery_label)
 
         # event display
@@ -270,7 +270,7 @@ class EditPerson:
         if GrampsCfg.uselds \
                         or (not self.lds_baptism.isEmpty()) \
                         or (not self.lds_endowment.isEmpty()) \
-                        or (not self.lds_sealing.isEmpty()):
+                        or (not self._sealing.isEmpty()):
             self.get_widget("lds_tab").show()
             self.get_widget("lds_page").show()
             if (not self.lds_baptism.isEmpty()) \
@@ -401,7 +401,7 @@ class EditPerson:
 
     def lds_field(self,ord,combo,date,place):
         combo.set_popdown_strings(_temple_names)
-        if ord:
+        if not ord.isEmpty():
             stat = ord.getStatus()
             date.set_text(ord.getDate())
             if ord.getTemple() != "":
@@ -1600,9 +1600,9 @@ class EditPerson:
             self.load_person_image()
         elif page == 2:
             self.redraw_event_list()
-        elif page == 6 and self.not_loaded:
+        elif page == 7 and self.not_loaded:
             self.not_loaded = 0
-        elif page == 8 and self.lds_not_loaded:
+        elif page == 9 and self.lds_not_loaded:
             self.lds_not_loaded = 0
             self.draw_lds()
         text = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
@@ -1611,6 +1611,15 @@ class EditPerson:
             Utils.bold_label(self.notes_label)
         else:
             Utils.unbold_label(self.notes_label)
+
+        if self.lds_not_loaded == 0:
+            self.check_lds()
+        if self.lds_baptism.isEmpty() \
+                        and self.lds_endowment.isEmpty() \
+                        and self.lds_sealing.isEmpty():
+            Utils.unbold_label(self.lds_tab)
+        else:
+            Utils.bold_label(self.lds_tab)
 
     def change_name(self,obj):
         sel_objs = self.ntree.get_selected_objects()

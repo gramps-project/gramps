@@ -19,6 +19,11 @@
 	files using -kb flag). Add with -kb flag. Add charset info to the header of
 	all templates. 
 
+	* src/EditPerson.py: Fix LDS tab label behavior.
+	* src/Marriage.py: Fix LDS tab label behavior. Fix get_place for LDS (was
+	using Utils.get_place_from_list which uses deprecated gtk.List and does not
+	work).
+
 2003-11-12  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/FamilyView.py: Change column sizes on the FamilyView to
 	fit with the new column
