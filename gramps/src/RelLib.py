@@ -1184,6 +1184,7 @@ class Person(Persistent):
         """adds a Family to the alternate family list, indicating the
         relationship to the mother (mrel) and the father (frel)"""
         self.AltFamilyList.append((family,mrel,frel))
+        self._p_changed = 1
 
     def clearAltFamilyList(self):
         self.AltFamilyList = []
@@ -2280,6 +2281,13 @@ class GrampsDB(Persistent):
     
     def getSourceDisplay(self,key):
         return self.sourceTable[key]
+
+    def buildSourceDisplay(self,nkey,okey=None):
+        if nkey != okey and okey != None:
+            del self.sourceTable[okey]
+        if self.sourceTable.has_key(nkey):
+            del self.sourceTable[nkey]
+        self.sourceTable[nkey] = self.sourceMap[nkey].getDisplayInfo()
         
     def newFamily(self):
         """adds a Family to the database, assigning a gramps' ID"""
