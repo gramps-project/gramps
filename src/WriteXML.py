@@ -374,7 +374,7 @@ class XmlWriter:
             keys.sort ()
             for key in keys:
                 try:
-                    place = self.db.get_place_handle(key)
+                    place = self.db.get_place_from_handle(key)
                     if self.callback and count % delta == 0:
                         self.callback(float(count)/float(total))
                     self.write_place_obj(place)
