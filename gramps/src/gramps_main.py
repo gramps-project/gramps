@@ -1994,8 +1994,13 @@ def main(arg):
     global nameArrow, dateArrow, deathArrow, idArrow, genderArrow
     global cNameArrow, cDateArrow, cIDArrow, cGenderArrow, toolbar
     global sort_column, sort_direct
-    
+
     gtk.rc_parse(const.gtkrcFile)
+
+    if os.getuid() == 0:
+        msg = _("You are running GRAMPS as the 'root' user.\nThis account is not meant for normal application use.")
+        gnome.ui.GnomeWarningDialog(msg)
+
     database = RelDataBase()
 
     Plugins.load_plugins(const.pluginsDir)

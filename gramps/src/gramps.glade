@@ -6348,6 +6348,7 @@ Unknown
       <widget>
 	<class>GtkButton</class>
 	<name>button98</name>
+	<tooltip>Creates the new child and adds him or her as a child of the family</tooltip>
 	<can_default>True</can_default>
 	<has_default>True</has_default>
 	<can_focus>True</can_focus>
@@ -6363,6 +6364,7 @@ Unknown
       <widget>
 	<class>GtkButton</class>
 	<name>button99</name>
+	<tooltip>Adds the new person as a child of the family and displays the standard person dialog to allow for more data to be entered</tooltip>
 	<can_default>True</can_default>
 	<can_focus>True</can_focus>
 	<signal>
@@ -6371,7 +6373,7 @@ Unknown
 	  <object>addChild</object>
 	  <last_modification_time>Tue, 15 Jan 2002 14:31:28 GMT</last_modification_time>
 	</signal>
-	<label>Edit</label>
+	<label>Add Data</label>
 	<stock_pixmap>GNOME_STOCK_PIXMAP_PROPERTIES</stock_pixmap>
       </widget>
 

@@ -149,12 +149,12 @@ class SelectChild:
                 if dday.getYearValid():
                     if pbday.getYearValid():
                         # reject if childs birth date > parents deathday + 3
-                        if pdday.getLowYear() > dday.getHighYear()+3:
+                        if pbday.getLowYear() > dday.getHighYear()+3:
                             continue
 
                     if pdday.getYearValid():
                         # reject if childs death date > parents deathday + 150
-                        if pbday.getLowYear() > dday.getHighYear() + 150:
+                        if pdday.getLowYear() > dday.getHighYear() + 150:
                             continue
         
             person_list.append(person)
