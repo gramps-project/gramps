@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Thu Sep 18 22:31:51 2003\n"
-"PO-Revision-Date: 2003-11-26 00:38+0100\n"
+"PO-Revision-Date: 2003-11-28 23:50+0100\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -752,9 +752,8 @@ msgid "Family filters"
 msgstr "Familie filter"
 
 #: GenericFilter.py:420
-#, fuzzy
 msgid "Matches people that are descendants or the spouse of a descendant of a specified person"
-msgstr "Treffer personer som er etterfølgere, eller ektefelle, av en etterfølger av en spesiell person"
+msgstr "Treffer personer som er etterfølgere, eller ektefelle av en etterfølger av en spesifikk person"
 
 #: GenericFilter.py:467
 msgid "Matches people that are ancestors of a specified person"
@@ -847,9 +846,8 @@ msgid "Number of children:"
 msgstr "Antall barn:"
 
 #: GenericFilter.py:900
-#, fuzzy
 msgid "Matches the person who has a particular relationship"
-msgstr "Treffer personen som har en spesiel type relasjon"
+msgstr "Treffer personen som har en spesifikk relasjon"
 
 #: GenericFilter.py:962
 msgid "Matches the person with a birth of a particular value"
@@ -3300,7 +3298,6 @@ msgid "<b>Active person's parents</b>"
 msgstr "<b>Den aktive personens foreldre</b>"
 
 #: gramps.glade:1953 gramps.glade:2688
-#, fuzzy
 msgid "<b>Relationship</b>"
 msgstr "<b>Relasjoner</b>"
 
@@ -3891,11 +3888,11 @@ msgstr "%s Generasjon"
 
 #: plugins/AncestorReport.py:126
 msgid "%s was born on %s in %s. "
-msgstr "%s ble født den %s i %s. "
+msgstr "%s ble født %s i %s. "
 
 #: plugins/AncestorReport.py:129
 msgid "%s was born on %s. "
-msgstr "%s ble født den %s. "
+msgstr "%s ble født %s. "
 
 #: plugins/AncestorReport.py:133
 msgid "%s was born in the year %s in %s. "
@@ -3993,9 +3990,8 @@ msgstr "Stilen, som brukes til sidens tittel."
 
 #: plugins/AncestorReport.py:403 plugins/Ancestors.py:771
 #: plugins/FtmStyleAncestors.py:744 plugins/FtmStyleDescendants.py:1153
-#, fuzzy
 msgid "The style used for the generation header."
-msgstr "Stilen, som brukes til generasjons-hodet."
+msgstr "Stilen, som brukes til generasjonsoverskrift."
 
 #: plugins/AncestorReport.py:513
 msgid "Produces a textual ancestral report"
@@ -4017,7 +4013,6 @@ msgid "Their children:"
 msgstr "Deres barn:"
 
 #: plugins/Ancestors.py:230
-#, fuzzy
 msgid "%(name)s's maternal %(grandparents)s"
 msgstr "%(name)s's på morsiden %(grandparents)s"
 
@@ -4026,7 +4021,6 @@ msgid "%(name)s's %(parents)s"
 msgstr "%(name)s %(parents)s"
 
 #: plugins/Ancestors.py:258
-#, fuzzy
 msgid "%(name)s's paternal %(grandparents)s"
 msgstr "%(name)s's på farsiden %(grandparents)s"
 
@@ -4040,7 +4034,7 @@ msgstr " (nevnt ovenfor)."
 
 #: plugins/Ancestors.py:426
 msgid " on %(specific_date)s"
-msgstr " på %(specific_date)s"
+msgstr " %(specific_date)s"
 
 #: plugins/Ancestors.py:429
 msgid " in %(month_or_year)s"
@@ -4610,11 +4604,11 @@ msgstr "Kommentarer for %s"
 
 #: plugins/DetAncestralReport.py:282 plugins/DetDescendantReport.py:289
 msgid " was born on %s in %s."
-msgstr " ble født den %s i %s."
+msgstr " ble født %s i %s."
 
 #: plugins/DetAncestralReport.py:284 plugins/DetDescendantReport.py:291
 msgid " was born on %s."
-msgstr " ble født den %s."
+msgstr " ble født %s."
 
 #: plugins/DetAncestralReport.py:286 plugins/DetDescendantReport.py:293
 msgid " was born in the year %s in %s."
@@ -4844,7 +4838,7 @@ msgstr "Lager en detaljert etterkommerrapport"
 #: plugins/EventCmp.py:144
 #, fuzzy
 msgid "Event comparison filter selection"
-msgstr "Hendelsessammenligning filtervalg"
+msgstr "Hendelsessammenlignings filtervalg"
 
 #: plugins/EventCmp.py:147 plugins/GraphViz.py:101
 #: plugins/IndivComplete.py:712 plugins/TimeLine.py:356 plugins/WebPage.py:958
@@ -5804,19 +5798,16 @@ msgid "Birth Date"
 msgstr "Fødselsdato"
 
 #: plugins/RelCalc.py:118
-#, fuzzy
 msgid "Their common ancestor is %s."
-msgstr "Deres felles slektsledd/stamfar/aner er %s."
+msgstr "Deres felles ane er %s."
 
 #: plugins/RelCalc.py:122
-#, fuzzy
 msgid "Their common ancestors are %s and %s."
-msgstr "Deres felles slektsledd/stamfar/aner er %s og %s."
+msgstr "Deres felles aner er %s og %s."
 
 #: plugins/RelCalc.py:127
-#, fuzzy
 msgid "Their common ancestors are : "
-msgstr "Deres felles slektsledd/stamfar/aner er : "
+msgstr "Deres felles aner er : "
 
 #: plugins/RelCalc.py:142
 msgid "%(person)s and %(active_person)s are not related."
