@@ -5,7 +5,7 @@ exec_prefix	= @exec_prefix@
 bindir 		= @bindir@
 datadir		= @datadir@/@PACKAGE@
 INSTALL		= @INSTALL@
-plugins         = ${datadir}/plugins
+filters         = ${datadir}/filters
 srcdir		= @top_srcdir@
 pycomp		= ${srcdir}/py-compile
 
@@ -18,12 +18,12 @@ PYOBJS = ${PYSRCS:.py=.pyo}
 all: ${PYOBJS}
 
 install:
-	${INSTALL} -d ${plugins}
-	${INSTALL} -m 644 *.py *.pyo *.glade ${plugins}
+	${INSTALL} -d ${filters}
+	${INSTALL} -m 644 *.py *.pyo ${filters}
 
 uninstall:
-	rm ${plugins}/*.py ${plugins}/*.pyo ${plugins}/*.glade
-	-rmdir ${plugins}
+	rm ${filters}/*.py ${filters}/*.pyo
+	-rmdir ${filters}
 
 clean:
 	-rm -f core *.pyo *.pyc *.bak *~	
