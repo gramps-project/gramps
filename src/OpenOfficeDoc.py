@@ -230,6 +230,7 @@ class OpenOfficeDoc(TextDoc):
         self._write_zip()
 
     def add_photo(self,name,pos,x_cm,y_cm):
+        import gtk
         import GdkImlib
 
         image = GdkImlib.Image(name)
