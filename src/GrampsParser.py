@@ -55,11 +55,12 @@ u2l = utf8_to_latin
 # Remove extraneous spaces
 #
 #-------------------------------------------------------------------------
+
+def rs(text):
+    return string.join(string.split(text))
+
 def fix_spaces(text_list):
-    val = ""
-    for text in text_list:
-        val = val + string.join(string.split(text),' ') + "\n"
-    return val
+    return string.join(map(rs,text_list),'\n')
 
 #-------------------------------------------------------------------------
 #
@@ -639,7 +640,7 @@ class GrampsParser(handler.ContentHandler):
             if self.address:
                 self.address.setDate(u2l(tag))
             else:
-                self.event.date.quick_set(u2l(tag))
+                self.event.setDate(u2l(tag))
 
     #---------------------------------------------------------------------
     #
