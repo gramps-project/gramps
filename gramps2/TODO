@@ -1,6 +1,7 @@
 * Allow for multiple notes. A tabbed interface would be really useful,
   since there are no titles for notes. Not all objects would necessarily
   need multiple notes. Determine which ones should and shouldn't.
+=== THESE should be obsoleted once we move to a database
 * Speed up the reading of the database. The python XML routines are not
   as fast as I would like, and it can take a minute or so to read a
   large database. This is way too slow.
@@ -9,10 +10,10 @@
 * Disable the save buttons if gramps database is marked read-only. Disable 
   the adding of media objects as well, since this will cause gramps to
   try to create a thumbnail in a readonly database.
+===
 * Startup tips.
 * Date calculator.
   See http://sourceforge.net/mailarchive/forum.php?thread_id=3252078&forum_id=1993
-* Add sequence number to childlist in family view
 * Add string substitutions for web page generation (name, report name,
   date, etc).
 * Add support for sources of the parent/child relation
@@ -20,9 +21,20 @@
   see http://sourceforge.net/mailarchive/forum.php?thread_id=3066997&forum_id=1993 
   and http://sourceforge.net/mailarchive/forum.php?thread_id=3134931&forum_id=1993
   for the details.
-* Work out the model and the interface for the completeness of a person,
-  see http://sourceforge.net/mailarchive/forum.php?thread_id=3127454&forum_id=1993
-  and http://sourceforge.net/mailarchive/forum.php?thread_id=3134932&forum_id=1993
-  for the details.
 * Make Date parsing locale dependent, like relationship calculator
+* Add Confession as a standard event
+* Now that the completeness flag exists, create filters that are using it
+  (both individual and family). 
+* Introduce abbreviation attribute for the sources (ABBR in GEDCOM).
+* Introduce format attribute for the notes (Flowed or Preformatted).
+* Add ZIP/Postal code to Places
+* Add Phone as an attribute for Addresses and Places
+* Add FAX too? Maybe rather a property of Phone 
+  (one of: Home, Work, Mobile, FAX, etc).
+* Add Phone as a standard personal and family attribute
+* Add Award as a standard personal (and family?) attribute
+* Add an option to add media from gallery (like TitlePage in BookReport).
+  Currently it has to be done via DnD, which is hard for small displays.
+  The selector is already there waiting anyway ;-)
+* Add autofill feature for City, Church parish, County, State and Country? 
 * And a whole lot more....

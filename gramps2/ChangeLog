@@ -1,6 +1,10 @@
 2003-12-04  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/gramps-manual/C/getstart.xml: Remove ZODB support section. 
 	* doc/gramps-manual/C/usage.xml: Remove ZODB support section.
+	* TODO: Update.
+	* gramps.desktop: Remove in favor of src/gramps.desktop file.
+	* src/gramps_main.py: Replace stock Home with the custom string.
+	* src/PeopleView.py: Replace stock Home with the custom string.
 
 2003-12-03  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/ReadGedcom.py (parse_source): Stop TEXT messing
