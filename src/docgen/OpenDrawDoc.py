@@ -375,10 +375,10 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
 
     def write_text(self,text):
         text = text.replace('&','&amp;');       # Must be first
-        text = text.replace('\t','<text:tab-stop/>')
-        text = text.replace('\n','<text:line-break/>')
         text = text.replace('<','&lt;');
         text = text.replace('>','&gt;');
+        text = text.replace('\t','<text:tab-stop/>')
+        text = text.replace('\n','<text:line-break/>')
         text = text.replace('&lt;super&gt;','<text:span text:style-name="GSuper">')
         text = text.replace('&lt;/super&gt;','</text:span>')
 	self.f.write(text)
