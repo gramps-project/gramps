@@ -1,3 +1,8 @@
+2005-03-02 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/DbPrompter.py (ImportDbPrompter.chooser): Explicitly
+	import XML and GEDCOM.
+	* src/plugins/FilterEditor.py (MySelect.get_text): Typo.
+
 2005-02-27 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/DbPrompter.py (format_maker): Add mnemonic activation target
 	to the format selector label; Use new import format; don't treat

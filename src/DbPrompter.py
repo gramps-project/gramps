@@ -293,10 +293,20 @@ class ImportDbPrompter:
             if filetype == 'auto':
                 filetype = get_mime_type(filename)
 
-            if filetype == 'application/x-gramps':
+            if filetype == const.app_gramps:
                 choose.destroy()
                 ReadGrdb.importData(self.parent.db,filename)
                 self.parent.import_tool_callback()
+                return True
+            elif filetype == const.app_gramps_xml:
+                choose.destroy()
+                import ReadXML
+                ReadXML.importData(self.parent.db,filename)
+                return True
+            elif filetype == const.app_gramps_gedcom:
+                choose.destroy()
+                import ReadGedcom
+                ReadGedcom.importData(self.parent.db,filename)
                 return True
 
             (the_path,the_file) = os.path.split(filename)
