@@ -24,7 +24,7 @@ from ZODB.dbmStorage import gdbmStorage
 from ZODB.DB import DB
 from BTrees.OOBTree import OOBTree
 from UserDict import UserDict
-from RelLib import GrampsDB, Person
+import RelLib
 import const
 
 class PersistentReference(Persistent):
@@ -93,7 +93,7 @@ class PersonWrapper:
         self._notifyChange()
 
 
-for key, value in Person.__dict__.items():
+for key, value in RelLib.Person.__dict__.items():
     if not key.startswith('_'):
         code = ("def %s(self, *args, **kw): "
                 "return apply(self._real.%s, args, kw)") % (key, key)
@@ -122,11 +122,11 @@ class PersonMap(Persistent, UserDict):
         # This probably shouldn't be called anyway.
         raise NotImplementedError
     
-class GrampsZODB(GrampsDB):
+class GrampsZODB(RelLib.GrampsDB):
 
     def __init__(self):
         self.conn = None
-        GrampsDB.__init__(self)
+        RelLib.GrampsDB.__init__(self)
 
     def get_type(self):
         return 'GrampsZODB'
@@ -141,7 +141,7 @@ class GrampsZODB(GrampsDB):
         return 0
         
     def new(self):
-        GrampsDB.new(self)
+        RelLib.GrampsDB.new(self)
         self.familyMap = OOBTree()
         self.personMap = PersonMap()
         self.sourceMap = OOBTree()
@@ -234,7 +234,7 @@ class GrampsZODB(GrampsDB):
 
     def setDefaultPerson(self,person):
         """sets the default Person to the passed instance"""
-        GrampsDB.setDefaultPerson(self,person)
+        RelLib.GrampsDB.setDefaultPerson(self,person)
         self.root['default'] = person
         
 

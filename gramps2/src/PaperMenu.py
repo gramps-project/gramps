@@ -123,6 +123,7 @@ try:
     parser = make_parser()
     parser.setContentHandler(PageSizeParser(paper_sizes))
     parser.parse(const.papersize)
+    paper_sizes.append(TextDoc.PaperStyle(_("Custom Size"),-1,-1))
 except (IOError,OSError,SAXParseException):
     paper_sizes = [
         TextDoc.PaperStyle("Letter",27.94,21.59),
@@ -133,5 +134,7 @@ except (IOError,OSError,SAXParseException):
         TextDoc.PaperStyle("B6",17.6,12.5),
         TextDoc.PaperStyle("C4",32.4,22.9),
         TextDoc.PaperStyle("C5",22.9,16.2),
-        TextDoc.PaperStyle("C6",16.2,11.4)
+        TextDoc.PaperStyle("C6",16.2,11.4),
+        TextDoc.PaperStyle(_("Custom Size"),-1,-1)
         ]
+

@@ -29,6 +29,19 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
+	    <widget class="GtkButton" id="button15">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-cancel</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">0</property>
+	      <signal name="clicked" handler="destroy_passed_object" object="editPerson"/>
+	    </widget>
+	  </child>
+
+	  <child>
 	    <widget class="GtkButton" id="applyPerson">
 	      <property name="visible">True</property>
 	      <property name="tooltip" translatable="yes">Accept changes and close dialog</property>
@@ -40,19 +53,6 @@
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
 	      <signal name="clicked" handler="on_apply_person_clicked" object="editPerson"/>
-	    </widget>
-	  </child>
-
-	  <child>
-	    <widget class="GtkButton" id="button15">
-	      <property name="visible">True</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-cancel</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="editPerson"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -2180,7 +2180,7 @@
 		  <property name="can_focus">True</property>
 		  <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
 		  <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-		  <property name="shadow_type">GTK_SHADOW_NONE</property>
+		  <property name="shadow_type">GTK_SHADOW_IN</property>
 		  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 
 		  <child>
@@ -2203,6 +2203,7 @@
 
 	      <child>
 		<widget class="GtkHButtonBox" id="hbuttonbox14">
+		  <property name="border_width">5</property>
 		  <property name="visible">True</property>
 		  <property name="layout_style">GTK_BUTTONBOX_SPREAD</property>
 		  <property name="spacing">30</property>
@@ -2863,7 +2864,7 @@
 		      <property name="can_focus">True</property>
 		      <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
 		      <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-		      <property name="shadow_type">GTK_SHADOW_NONE</property>
+		      <property name="shadow_type">GTK_SHADOW_IN</property>
 		      <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 
 		      <child>
@@ -2886,6 +2887,7 @@
 
 		  <child>
 		    <widget class="GtkHButtonBox" id="hbuttonbox10">
+		      <property name="border_width">5</property>
 		      <property name="visible">True</property>
 		      <property name="layout_style">GTK_BUTTONBOX_SPREAD</property>
 		      <property name="spacing">30</property>
@@ -3334,7 +3336,7 @@
 		      <property name="can_focus">True</property>
 		      <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
 		      <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-		      <property name="shadow_type">GTK_SHADOW_NONE</property>
+		      <property name="shadow_type">GTK_SHADOW_IN</property>
 		      <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 
 		      <child>
@@ -3357,6 +3359,7 @@
 
 		  <child>
 		    <widget class="GtkHButtonBox" id="hbuttonbox16">
+		      <property name="border_width">6</property>
 		      <property name="visible">True</property>
 		      <property name="layout_style">GTK_BUTTONBOX_SPREAD</property>
 		      <property name="spacing">30</property>
@@ -4169,7 +4172,7 @@
 		      <property name="can_focus">True</property>
 		      <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
 		      <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-		      <property name="shadow_type">GTK_SHADOW_NONE</property>
+		      <property name="shadow_type">GTK_SHADOW_IN</property>
 		      <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 
 		      <child>
@@ -4192,6 +4195,7 @@
 
 		  <child>
 		    <widget class="GtkHButtonBox" id="hbuttonbox17">
+		      <property name="border_width">5</property>
 		      <property name="visible">True</property>
 		      <property name="layout_style">GTK_BUTTONBOX_SPREAD</property>
 		      <property name="spacing">30</property>
@@ -4326,7 +4330,7 @@
 		  <property name="can_focus">True</property>
 		  <property name="hscrollbar_policy">GTK_POLICY_NEVER</property>
 		  <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-		  <property name="shadow_type">GTK_SHADOW_NONE</property>
+		  <property name="shadow_type">GTK_SHADOW_IN</property>
 		  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 
 		  <child>
@@ -4351,6 +4355,7 @@
 
 	      <child>
 		<widget class="GtkHButtonBox" id="hbuttonbox13">
+		  <property name="border_width">5</property>
 		  <property name="visible">True</property>
 		  <property name="layout_style">GTK_BUTTONBOX_SPREAD</property>
 		  <property name="spacing">15</property>
@@ -4799,7 +4804,7 @@
 		  <property name="can_focus">True</property>
 		  <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
 		  <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-		  <property name="shadow_type">GTK_SHADOW_NONE</property>
+		  <property name="shadow_type">GTK_SHADOW_IN</property>
 		  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 
 		  <child>
@@ -4822,6 +4827,7 @@
 
 	      <child>
 		<widget class="GtkHButtonBox" id="hbuttonbox15">
+		  <property name="border_width">5</property>
 		  <property name="visible">True</property>
 		  <property name="layout_style">GTK_BUTTONBOX_SPREAD</property>
 		  <property name="spacing">30</property>
@@ -5127,7 +5133,7 @@
 			  <property name="right_attach">2</property>
 			  <property name="top_attach">1</property>
 			  <property name="bottom_attach">2</property>
-			  <property name="x_padding">3</property>
+			  <property name="x_padding">5</property>
 			  <property name="y_padding">3</property>
 			  <property name="y_options"></property>
 			</packing>
@@ -5398,7 +5404,7 @@
 			  <property name="right_attach">2</property>
 			  <property name="top_attach">1</property>
 			  <property name="bottom_attach">2</property>
-			  <property name="x_padding">3</property>
+			  <property name="x_padding">5</property>
 			  <property name="y_padding">3</property>
 			  <property name="y_options"></property>
 			</packing>
@@ -5717,7 +5723,7 @@
 			  <property name="right_attach">2</property>
 			  <property name="top_attach">1</property>
 			  <property name="bottom_attach">2</property>
-			  <property name="x_padding">3</property>
+			  <property name="x_padding">5</property>
 			  <property name="y_padding">3</property>
 			  <property name="y_options"></property>
 			</packing>

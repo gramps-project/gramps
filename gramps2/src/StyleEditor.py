@@ -102,7 +102,7 @@ class StyleListDisplay:
             self.sheetlist.save()
         except IOError,msg:
             from QuestionDialog import ErrorDialog
-            ErrorDialog(_("Error saving stylesheet") + "\n" + str(msg))
+            ErrorDialog(_("Error saving stylesheet"),str(msg))
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()

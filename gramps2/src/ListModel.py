@@ -21,6 +21,11 @@
 from gobject import TYPE_STRING, TYPE_PYOBJECT
 import gtk
 
+#-------------------------------------------------------------------------
+#
+# ListModel
+#
+#-------------------------------------------------------------------------
 class ListModel:
     def __init__(self,tree,dlist,select_func=None,event_func=None,mode=gtk.SELECTION_SINGLE):
         self.tree = tree

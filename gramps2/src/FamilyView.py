@@ -66,7 +66,12 @@ class FamilyView:
     def __init__(self,parent):
         self.parent = parent
         self.top = parent.gtop
-        self.ap_data = self.top.get_widget('ap_data').get_buffer()
+        self.ap_data = self.top.get_widget('ap_data')
+        self.ap_model = gtk.ListStore(gobject.TYPE_STRING)
+        self.ap_data.set_model(self.ap_model)
+        column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
+        self.ap_data.append_column(column)
+        self.ap_data.connect('button-press-event',self.edit_active_person)
 
         self.swap_btn = self.top.get_widget('swap_spouse_btn')
         self.add_spouse_btn = self.top.get_widget('add_spouse')
@@ -141,6 +146,10 @@ class FamilyView:
                             [ ('',30,-1), (_('Name'),250,-1), (_('ID'),50,-1),
                               (_('Gender'),100,-1), (_('Birth Date'),150,-1),
                               (_('Status'),150,-1), ('',0,-1) ])
+
+    def edit_active_person(self,obj,event):
+        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+            self.parent.load_person(self.person)
 
     def on_child_list_button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
@@ -217,9 +226,13 @@ class FamilyView:
 
     def remove_spouse(self,obj):
         if self.selected_spouse:
-            name = GrampsCfg.nameof(self.selected_spouse)
-            QuestionDialog(_('Delete Spouse'),
-                           _('Do you wish to remove %s as a spouse?') % name,
+            nap = GrampsCfg.nameof(self.person)
+            nsp = GrampsCfg.nameof(self.selected_spouse)
+            QuestionDialog(_('Remove %s as a spouse of %s?') % (nsp,nap),
+                           _('Removing a spouse removes the relationship betwen '
+                             'the spouse and the active person. It does not '
+                             'remove the spouse from the database'),
+                           _('Remove Spouse'),
                            self.really_remove_spouse)
         elif self.family and not self.family.getChildList():
             self.really_remove_spouse()
@@ -288,7 +301,7 @@ class FamilyView:
         self.child_model.clear()
         self.sp_parents_model.clear()
         self.ap_parents_model.clear()
-        self.ap_data.set_text('')
+        self.ap_model.clear()
 
     def load_family(self,family=None):
         self.person = self.parent.active_person
@@ -300,10 +313,10 @@ class FamilyView:
                                       self.person.getBirth().getDate(),
                                       self.person.getDeath().getDate())
 
-        try:
-            self.ap_data.set_text(n,len(n))
-        except TypeError:
-            self.ap_data.set_text(n)
+        self.ap_model.clear()
+        self.ap_data.get_selection().set_mode(gtk.SELECTION_NONE)
+        iter = self.ap_model.append()
+        self.ap_model.set(iter,0,n)
 
         self.selected_spouse = None
         self.spouse_model.clear()
@@ -462,8 +475,13 @@ class FamilyView:
     def del_parents_clicked(self,obj):
         if len(self.person.getParentList()) == 0:
             return
-        QuestionDialog(_('Delete Parents'),
-                       _('Do you wish to remove the selected parents?'),
+        n = GrampsCfg.nameof(self.person)
+        QuestionDialog(_('Remove Parents of %s') % n,
+                       _('Removing the parents of a person removes the person as a '
+                         'child of the parents. The parents are not removed from the '
+                         'database, and the relationship between the parents '
+                         'is not removed.'),
+                       _('Remove Parents'),
                        self.really_del_parents)
         
     def really_del_parents(self):
@@ -472,8 +490,12 @@ class FamilyView:
     def del_sp_parents(self,obj):
         if not self.selected_spouse or len(self.selected_spouse.getParentList()) == 0:
             return
-        QuestionDialog(_('Delete Parents'),
-                       _('Do you wish to remove the selected parents?'),
+        QuestionDialog(_('Remove Parents of %s') % n,
+                       _('Removing the parents of a person removes the person as a '
+                         'child of the parents. The parents are not removed from the '
+                         'database, and the relationship between the parents '
+                         'is not removed.'),
+                       _('Remove Parents'),
                        self.really_del_sp_parents)
 
     def really_del_sp_parents(self):

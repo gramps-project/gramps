@@ -207,7 +207,6 @@ class SourceEditor:
         self.source_ref = srcref
         self.showSource = gtk.glade.XML(const.srcselFile, "sourceDisplay")
         self.showSource.signal_autoconnect({
-            "on_combo_insert_text"  : Utils.combo_insert_text,
             "on_sourceok_clicked"   : self.on_sourceok_clicked,
             "on_source_changed"     : self.on_source_changed,
             "destroy_passed_object" : Utils.destroy_passed_object
@@ -256,7 +255,6 @@ class SourceEditor:
             self.pub_field.set_text("")
 
         values = self.db.getSourceMap().values()
-#        values.sort(by_title)
 
         sel_child = None
         list = []
@@ -311,14 +309,6 @@ class SourceEditor:
         if self.active_source:
             self.author_field.set_text(self.active_source.getAuthor())
             self.pub_field.set_text(self.active_source.getPubInfo())
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def by_title(a,b):
-    return cmp(a.getTitle(),b.getTitle())
                
 
         

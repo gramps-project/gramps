@@ -1334,10 +1334,12 @@ class Person(Persistent):
             return not_too_old(self.birth.getDateObj().get_start_date())
         return 1
     
-    
 class Event(DataObj):
     """Event record, recording the event type, description, place, and date
     of a particular event"""
+
+    NAME = 0
+    ID = 1
     
     def __init__(self,source=None):
         """creates a new Event instance, copying from the source if present"""
@@ -1350,13 +1352,33 @@ class Event(DataObj):
             self.description = source.description
             self.name = source.name
             self.cause = source.cause
+            if source.witness:
+                self.witness = source.witness[:]
+            else:
+                self.witness = None
         else:
             self.place = None
             self.date = None
             self.description = ""
             self.name = ""
             self.cause = ""
+            self.witness = None
 
+    def get_witness_list(self):
+        return self.witness
+
+    def set_witness_list(self,list):
+        if list:
+            self.witness = list[:]
+        else:
+            self.witness = None
+
+    def add_witness(self,value):
+        if self.witness:
+            self.witness.append(value)
+        else:
+            self.witness = [value]
+        
     def is_empty(self):
         date = self.getDateObj()
         place = self.getPlace()
@@ -1469,6 +1491,29 @@ class Event(DataObj):
         """sets the Date object associated with the Event"""
         self.date = date
 
+class Witness:
+    def __init__(self,type=Event.NAME,val="",comment=""):
+        self.set_type(type)
+        self.set_value(val)
+        self.set_comment(comment)
+
+    def set_type(self,type):
+        self.type = type
+
+    def get_type(self):
+        return self.type
+
+    def set_value(self,val):
+        self.val = val
+
+    def get_value(self):
+        return self.val
+
+    def set_comment(self,comment):
+        self.comment = comment
+
+    def get_comment(self):
+        return self.comment
 
 class Family(Persistent):
     """Represents a family unit in the gramps database"""

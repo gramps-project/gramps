@@ -100,8 +100,9 @@ class AddMediaObject:
         external = self.glade.get_widget("private")
         
         if os.path.exists(filename) == 0:
-            msgstr = _("%s is not a valid file name or does not exist.")
-            ErrorDialog(msgstr % filename)
+            msgstr = _("Cannot import %s")
+            msgstr2 = _("The filename supplied could not be found.")
+            ErrorDialog(msgstr % filename, msgstr2)
             return
 
         type = Utils.get_mime_type(filename)

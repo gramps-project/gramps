@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=Genealogy (GRAMPS)
+Name=GRAMPS Genealogy System
 Name[sv]=GRAMPS
-Comment=Genealogy Program
+Comment=Manage genealogical information, perform genealogical research and analysis
 Comment[sv]=Ett släktforskningsprogram
 Exec=gramps
 Icon=gramps.png

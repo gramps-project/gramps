@@ -57,7 +57,7 @@ import PlaceView
 import FamilyView
 import SourceView
 
-from QuestionDialog import QuestionDialog, ErrorDialog, WarningDialog
+from QuestionDialog import QuestionDialog, ErrorDialog, WarningDialog, SaveDialog
 
 import DisplayTrace
 import Filter
@@ -294,7 +294,7 @@ class Gramps:
             "on_sidebar1_activate" : self.on_sidebar_activate,
             "on_filter1_activate" : self.on_filter_activate,
             "on_places_activate" : self.on_places_activate,
-            "on_preferences_activate" : self.on_preferences_activate,
+            "on_preferences1_activate" : self.on_preferences_activate,
             "on_reload_plugins_activate" : Plugins.reload_plugins,
             "on_reports_clicked" : self.on_reports_clicked,
             "on_revert_activate" : self.on_revert_activate,
@@ -473,8 +473,11 @@ class Gramps:
             mlist = self.person_tree.get_selected_objects()
 
             if len(mlist) != 2:
-                msg = _("Exactly two people must be selected to perform a merge")
-                ErrorDialog(msg)
+                msg = _("Cannot merge people.")
+                msg2 = _("Exactly two people must be selected to perform a merge. "
+                         "A second person can be selected by holding down the "
+                         "control key while clicking on a the desired person.")
+                ErrorDialog(msg,msg2)
             else:
                 import MergeData
                 p1 = self.db.getPerson(mlist[0])
@@ -494,10 +497,12 @@ class Gramps:
         """Prompt to save on exit if needed"""
         if Utils.wasModified():
             self.delobj = obj
-            QuestionDialog(_('Abandon Changes'),
-                           _("Unsaved changes exist in the current database\n"
-                             "Do you wish to save the changes?"),
-                           self.save_query,self.quit)
+            SaveDialog(_('Save Changes Made to the Database?'),
+                       _("Unsaved changes exist in the current database. If you "
+                         "close without saving, the changes you have made will "
+                         "be lost."),
+                       self.quit,
+                       self.save_query)
         else:
             self.db.close()
             gtk.mainquit()
@@ -549,8 +554,12 @@ class Gramps:
     def on_new_clicked(self,obj):
         """Prompt for permission to close the current database"""
         
-        msg = _("Do you want to close the current database and create a new one?")
-        QuestionDialog(_('New Database'),msg, self.new_database_response)
+        QuestionDialog(_('Create a New Database'),
+                       _('Creating a new database will close the existing database, ',
+                         'discarding any unsaved changes. You will then be prompted '
+                         'to create a new database'),
+                       _('Create New Database'),
+                       self.new_database_response)
                        
     def new_database_response(self):
         import DbPrompter
@@ -661,6 +670,7 @@ class Gramps:
 
         if filename == "" or filename == None:
             return
+        filename = os.path.normpath(os.path.abspath(filename))
         
         self.clear_database(0)
     
@@ -673,6 +683,7 @@ class Gramps:
 
     def auto_save_load(self,filename):
 
+        filename = os.path.normpath(os.path.abspath(filename))
         if os.path.isdir(filename):
             dirname = filename
         else:
@@ -685,8 +696,17 @@ class Gramps:
             self.yname = autosave
             self.nname = filename
 
-            QuestionDialog(_('Autosave File'),q,self.autosave_query,
-                           self.loadsaved_file)
+            OptionDialog(_('An autosave file was detected'),
+                         _('GRAMPS has detected an autosave file for the '
+                           'selected database. This file is more recent than '
+                           'the last saved database. This typically happens '
+                           'when GRAMPS was unexpected shutdown before the '
+                           'data was saved. You may load this file to try to '
+                           'recover any missing data.'),
+                         _('Load autosave file'),
+                         self.autosave_query,
+                         _('Load saved database'),
+                         self.loadsaved_file)
         else:
             self.read_file(filename)
 
@@ -699,6 +719,7 @@ class Gramps:
     def read_gedcom(self,filename):
         import ReadGedcom
         
+        filename = os.path.normpath(os.path.abspath(filename))
         self.topWindow.set_title("%s - GRAMPS" % filename)
         try:
             ReadGedcom.importData(self.db,filename)
@@ -707,13 +728,19 @@ class Gramps:
         self.full_update()
 
     def read_file(self,filename):
+        filename = os.path.normpath(os.path.abspath(filename))
+        
         base = os.path.basename(filename)
         if base == const.xmlFile:
             filename = os.path.dirname(filename)
         elif base == "autosave.gramps":
             filename = os.path.dirname(filename)
         elif not os.path.isdir(filename):
-            self.displayError(_("%s is not a directory") % filename)
+            self.displayError(_("Database could not be opened"),
+                              _("%s is not a directory.") % filename + ' ' + \
+                              _("The file you should attempt to open should be "
+                                "a directory that contains a data.gramps file or "
+                                "a gramps.zodb file."))
             return
 
         self.status_text(_("Loading %s ...") % filename)
@@ -729,6 +756,7 @@ class Gramps:
         
     def on_ok_button2_clicked(self,obj):
         filename = obj.get_filename()
+        filename = os.path.normpath(os.path.abspath(filename))
         if filename:
             Utils.destroy_passed_object(obj)
             if GrampsCfg.usevc and GrampsCfg.vc_comment:
@@ -739,7 +767,7 @@ class Gramps:
     def save_file(self,filename,comment):        
 
         path = filename
-        filename = os.path.normpath(filename)
+        filename = os.path.normpath(os.path.abspath(filename))
         autosave = "%s/autosave.gramps" % filename
     
         self.status_text(_("Saving %s ...") % filename)
@@ -749,17 +777,23 @@ class Gramps:
 
         if os.path.exists(filename):
             if os.path.isdir(filename) == 0:
-                self.displayError(_("%s is not a directory") % filename)
+                self.displayError(_("Database could not be opened"),
+                                  _("%s is not a directory.") % filename + ' ' + \
+                                  _("The file you should attempt to open should be "
+                                    "a directory that contains a data.gramps file or "
+                                    "a gramps.zodb file."))
                 return
         else:
             try:
                 os.mkdir(filename)
             except (OSError,IOError), msg:
-                emsg = _("Could not create %s") % filename + "\n" + str(msg)
-                ErrorDialog(emsg)
+                emsg = _("Could not create %s") % filename
+                ErrorDialog(emsg,_("An was detected while attempting to create the file. ",
+                                   'The operating system reported "%s"' % str(msg)))
                 return
             except:
-                ErrorDialog(_("Could not create %s") % filename)
+                ErrorDialog(_("Could not create %s") % filename,
+                            _("An error was detected while trying to create the file"))
                 return
         
         old_file = filename
@@ -767,8 +801,8 @@ class Gramps:
         try:
             self.db.save(filename,self.load_progress)
         except (OSError,IOError), msg:
-            emsg = _("Could not create %s") % filename + "\n" + str(msg)
-            ErrorDialog(emsg)
+            emsg = _("Could not create %s") % filename
+            ErrorDialog(emsg,_("An error was detected while trying to create the file"))
             return
 
         self.db.setSavePath(old_file)
@@ -796,7 +830,7 @@ class Gramps:
         if not path:
             return
         
-        filename = os.path.normpath(path)
+        filename = os.path.normpath(os.path.abspath(filename))
         Utils.clear_timer()
 
         filename = "%s/autosave.gramps" % (self.db.getSavePath())
@@ -833,9 +867,15 @@ class Gramps:
         for sel in mlist:
             p = self.db.getPerson(sel)
             name = GrampsCfg.nameof(p) 
-            msg = _("Do you really wish to delete %s?") % name
 
-            QuestionDialog(_('Delete Person'), msg, self.delete_person_response)
+            QuestionDialog(_('Delete %s?') % name,
+                           _('Deleting the person will remove the person from '
+                             'from the database. The data can only be '
+                             'recovered by closing the database without saving '
+                             'changes. This change will become permanent '
+                             'after you save the database.'),
+                           _('Delete Person'),
+                           self.delete_person_response)
 
     def delete_person_response(self):
         for family in self.active_person.getFamilyList():
@@ -947,7 +987,12 @@ class Gramps:
             msg = _("Do you wish to abandon your changes and "
                     "revert to the last saved database?")
 
-            QuestionDialog(_('Abandon Changes'),msg, self.revert_query)
+            QuestionDialog(_('Revert to last saved database?'),
+                           _('Reverting to the last saved database '
+                             'will cause all unsaved changes to be lost, and '
+                             'the last saved database will be loaded.'),
+                           _('Revert'),
+                           self.revert_query)
         else:
             msg = _("Cannot revert to a previous database, since "
                     "one does not exist")
@@ -1004,6 +1049,7 @@ class Gramps:
 
     def display_comment_box(self,filename):
         """Displays a dialog box, prompting for a revison control comment"""
+        filename = os.path.normpath(os.path.abspath(filename))
         VersionControl.RevisionComment(filename,self.save_file)
     
     def on_person_list1_activate(self,obj):
@@ -1261,8 +1307,8 @@ class Gramps:
                                              self.gtop.get_widget("jump_to"),
                                              self.bookmark_callback)
 
-    def displayError(self,msg):
-        ErrorDialog(msg)
+    def displayError(self,msg,msg2):
+        ErrorDialog(msg,msg2)
         self.status_text("")
 
     def complete_rebuild(self):
@@ -1346,7 +1392,8 @@ class Gramps:
             self.change_active_person(temp)
             self.update_display(0)
         else:
-            ErrorDialog(_("No default/home person has been set"))
+            ErrorDialog(_("No home person has been set."),
+                        _("The home person may be set from the Settings menu."))
 
     def on_add_bookmark_activate(self,obj):
         if self.active_person:
@@ -1355,7 +1402,8 @@ class Gramps:
             self.status_text(_("%s has been bookmarked") % name)
             gtk.timeout_add(5000,self.modify_statusbar)
         else:
-            WarningDialog(_("Bookmark could not be set because no one was selected"))
+            WarningDialog(_("Could not set bookmark."),
+                          _("A bookmark could not be set because no one was selected."))
 
     def on_edit_bookmarks_activate(self,obj):
         self.bookmarks.edit()
@@ -1369,7 +1417,12 @@ class Gramps:
             name = self.active_person.getPrimaryName().getRegularName()
             msg = _("Do you wish to set %s as the home person?") % name
 
-            QuestionDialog(_('Set Home Person'),msg,self.set_person)
+            QuestionDialog(_('Set %n as the Home Person') % name,
+                           _('Once a Home Person is defined, pressing the Home key '
+                             'on the toolbar will make the home person the active '
+                             'person.'),
+                           _('Set Home Person'),
+                           self.set_person)
             
     def set_person(self):
         self.db.setDefaultPerson(self.active_person)

@@ -35,6 +35,7 @@ import const
 import Utils
 import GrampsCfg
 import ImageSelect
+import ListModel
 
 from intl import gettext as _
 
@@ -150,31 +151,35 @@ class EditSource:
                         f_attr_list.append((name,v.getType()))
 
         slist = self.top_window.get_widget('slist')
+
+        titles = [(_('Source Type'),0,150),(_('Object'),1,150),(_('Value'),2,150)]
+        
+        self.model = ListModel.ListModel(slist,titles)
         if len(p_event_list) > 0:
             for p in p_event_list:
-                slist.append([_("Individual Events"),p[0],
-                              const.display_pevent(p[1])])
+                self.model.add([_("Individual Events"),p[0],
+                                const.display_pevent(p[1])])
         if len(p_attr_list) > 0:
             for p in p_attr_list:
-                slist.append([_("Individual Attributes"),p[0],
-                              const.display_pattr(p[1])])
+                self.model.add([_("Individual Attributes"),p[0],
+                               const.display_pattr(p[1])])
         if len(p_name_list) > 0:
             for p in p_name_list:
-                slist.append([_("Individual Names"),p[0],p[1]])
+                self.model.add([_("Individual Names"),p[0],p[1]])
         if len(f_event_list) > 0:
             for p in f_event_list:
-                slist.append([_("Family Events"),p[0],
-                              const.display_fevent(p[1])])
+                self.model.add([_("Family Events"),p[0],
+                                const.display_fevent(p[1])])
         if len(f_attr_list) > 0:
             for p in f_event_list:
-                slist.append([_("Family Attributes"),p[0],
-                              const.display_fattr(p[1])])
+                self.model.add([_("Family Attributes"),p[0],
+                                const.display_fattr(p[1])])
         if len(m_list) > 0:
             for p in m_list:
-                slist.append([_("Media Objects"),p,''])
+                self.model.add([_("Media Objects"),p,''])
         if len(p_list) > 0:
             for p in p_list:
-                slist.append([_("Places"),p,''])
+                self.model.add([_("Places"),p,''])
 
     def on_source_apply_clicked(self,obj):
 

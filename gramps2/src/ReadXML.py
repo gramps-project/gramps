@@ -81,22 +81,22 @@ def importData(database, filename, callback):
         else:
             xml_file = open(filename,"r")
     except IOError,msg:
-        ErrorDialog(_("%s could not be opened\n") % filename + str(msg))
+        ErrorDialog(_("%s could not be opened") % filename,str(msg))
         return 0
     except:
-        ErrorDialog(_("%s could not be opened\n") % filename)
+        ErrorDialog(_("%s could not be opened") % filename)
         return 0
         
     try:
         parser.parse(xml_file)
     except IOError,msg:
-        ErrorDialog(_("Error reading %s") % filename + "\n" + str(msg))
+        ErrorDialog(_("Error reading %s") % filename,str(msg))
         import traceback
         traceback.print_exc()
         return 0
     except ExpatError, msg:
-        ErrorDialog(_("Error reading %s") % filename + "\n" + \
-                    _("The file is probably either corrupt or not a valid GRAMPS database.") + "\n" + str(msg))
+        ErrorDialog(_("Error reading %s") % filename,
+                    _("The file is probably either corrupt or not a valid GRAMPS database."))
         return 0
     except ValueError, msg:
         if str(msg)[0:16] == "Incorrect length":
@@ -150,18 +150,17 @@ def loadData(database, filename, callback=None):
         else:
             xml_file = open(filename,"r")
     except IOError,msg:
-        filemsg = _("%s could not be opened\n") % filename
-        ErrorDialog(filemsg + str(msg))
+        filemsg = _("%s could not be opened.") % filename
+        ErrorDialog(filemsg,str(msg))
         return 0
     except:
-        ErrorDialog(_("%s could not be opened\n") % filename)
+        ErrorDialog(_("%s could not be opened.") % filename)
         return 0
 
     try:
         parser.parse(xml_file)
     except IOError,msg:
-        errmsg = "%s\n%s" % (_("Error reading %s") % filename,str(msg))
-        ErrorDialog(errmsg)
+        ErrorDialog(_("Error reading %s") % filename, str(msg))
         import traceback
         traceback.print_exc()
         return 0
@@ -194,8 +193,7 @@ def loadRevision(database, file, filename, revision, callback=None):
     try:
         parser.parse(file)
     except IOError,msg:
-        errmsg = "%s\n%s" % (_("Error reading %s") % filename, str(msg))
-        ErrorDialog(errmsg)
+        ErrorDialog(_("Error reading %s") % filename,str(msg))
         import traceback
         traceback.print_exc()
         return 0

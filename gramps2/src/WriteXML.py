@@ -41,7 +41,7 @@ import const
 import GrampsCfg
 import Calendar
 import Gregorian
-from RelLib import *
+import RelLib 
 from intl import gettext as _
 from QuestionDialog import ErrorDialog
 
@@ -74,8 +74,9 @@ def exportData(database, filename, callback):
     except:
         import DisplayTrace
 
-        DisplayTrace.DisplayTrace()
-        ErrorDialog(_("Failure writing %s, original file restored") % filename)
+        DisplayTrace.DisplayTrace() 
+        ErrorDialog(_("Failure writing %s") % filename,
+                    _("An attempt is begin made to recover the original file"))
         shutil.copy(filename + ".bak", filename)
 
 #-------------------------------------------------------------------------
@@ -198,9 +199,9 @@ class XmlWriter:
                 count = count + 1
             
                 self.write_id("person",person,2)
-                if person.getGender() == Person.male:
+                if person.getGender() == RelLib.Person.male:
                     self.write_line("gender","M",3)
-                elif person.getGender() == Person.female:
+                elif person.getGender() == RelLib.Person.female:
                     self.write_line("gender","F",3)
                 else:
                     self.write_line("gender","U",3)
@@ -358,6 +359,17 @@ class XmlWriter:
         if event:
             self.dump_my_event(event.getName(),event,index)
 
+    def write_witness(self,witness_list,index):
+        if not witness_list:
+            return
+        for w in witness_list:
+            sp = "  "*index
+            com = self.fix(w.get_comment())
+            if w.get_type() == RelLib.Event.ID:
+                self.g.write('%s<witness ref="%s">%s</witness>\n' % (sp,w.get_value(),com))
+            else:
+                self.g.write('%s<witness name="%s">%s</witness>\n' % (sp,w.get_value(),com))
+
     def dump_my_event(self,name,event,index=1):
         if not event or event.is_empty():
             return
@@ -365,6 +377,8 @@ class XmlWriter:
         sp = "  " * index
         self.g.write('%s<event type="%s"%s>\n' % (sp,self.fix(name),conf_priv(event)))
         self.write_date(event.getDateObj(),index+1)
+
+        self.write_witness(event.get_witness_list(),index+1)
         self.write_ref("place",event.getPlace(),index+1)
         self.write_line("cause",event.getCause(),index+1)
         self.write_line("description",event.getDescription(),index+1)

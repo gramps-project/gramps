@@ -396,10 +396,12 @@ class Marriage:
         if self.did_data_change():
             global quit
             self.quit = obj
-            QuestionDialog(_('Abandon Changes'),
-                           _("Data was modified. Are you sure you "
-                             "want to abandon your changes?"),
-                           self.cancel_callback)
+
+            SaveDialog(_('Save Changes?' % n),
+                       _('If you close without saving, the changes you '
+                         'have made will be lost'),
+                       self.cancel_callback,
+                       self.save)
         else:
             Utils.destroy_passed_object(obj)
 
@@ -407,6 +409,9 @@ class Marriage:
         self.on_cancel_edit(obj)
 
     def on_close_marriage_editor(self,obj):
+        self.save()
+        
+    def save(self):
         idval = self.gid.get_text()
         family = self.family
         if idval != family.getId():

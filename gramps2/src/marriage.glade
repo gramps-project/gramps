@@ -29,6 +29,20 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
+	    <widget class="GtkButton" id="button108">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Reject changes and close</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-cancel</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">0</property>
+	      <signal name="clicked" handler="destroy_passed_object" object="marriageEditor"/>
+	    </widget>
+	  </child>
+
+	  <child>
 	    <widget class="GtkButton" id="button107">
 	      <property name="visible">True</property>
 	      <property name="tooltip" translatable="yes">Accept and close</property>
@@ -43,19 +57,6 @@
 	    </widget>
 	  </child>
 
-	  <child>
-	    <widget class="GtkButton" id="button108">
-	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Reject changes and close</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-cancel</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="marriageEditor"/>
-	    </widget>
-	  </child>
 	</widget>
 	<packing>
 	  <property name="padding">0</property>

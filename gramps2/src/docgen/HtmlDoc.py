@@ -124,7 +124,6 @@ class HtmlDoc(TextDoc.TextDoc):
 
     def set_keywords(self,keywords):
         self.meta = string.join(keywords,",")
-        print self.meta
         
     def load_tpkg(self):
         start = re.compile(r"<!--\s*START\s*-->")

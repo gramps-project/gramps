@@ -19,65 +19,86 @@
 #
 
 import gtk
+import gtk.glade
+import const
+
 from intl import gettext as _
 
-class QuestionDialog:
-    def __init__(self,title,msg,task1,task2=None):
-        title = '%s - GRAMPS' % title
-        
-        self.top = gtk.Dialog()
-        self.top.set_title(title)
-        label = gtk.Label(msg)
-        label.show()
-        hbox = gtk.HBox()
-        image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_DIALOG_QUESTION,gtk.ICON_SIZE_DIALOG)
-        hbox.set_spacing(10)
-        hbox.pack_start(image)
-        hbox.add(label)
-        self.top.vbox.pack_start(hbox)
-        self.top.set_default_size(300,150)
-        self.task2 = task2
+class SaveDialog:
+    def __init__(self,msg1,msg2,task1,task2):
+        self.xml = gtk.glade.XML(const.errdialogsFile,"savedialog")
+        self.top = self.xml.get_widget('savedialog')
         self.task1 = task1
-        self.top.add_button(gtk.STOCK_YES,0)
-        self.top.add_button(gtk.STOCK_NO,1)
-        self.top.set_response_sensitive(1,gtk.TRUE)
-        self.top.set_response_sensitive(0,gtk.TRUE)
-        self.top.show_all()
-        if self.top.run():
-            self.my_task2()
-        else:
-            self.my_task1()
+        self.task2 = task2
+        
+        label1 = self.xml.get_widget('label1')
+        label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
+        label1.set_use_markup(gtk.TRUE)
+        
+        label2 = self.xml.get_widget('label2')
+        label2.set_text(msg2)
+        label2.set_use_markup(gtk.TRUE)
 
-    def my_task1(self):
-        if self.task1:
+        response = self.top.run()
+        if response == gtk.RESPONSE_NO:
             self.task1()
-        self.top.destroy()
-
-    def my_task2(self):
-        if self.task2:
+        elif response == gtk.RESPONSE_YES:
             self.task2()
         self.top.destroy()
 
-class ErrorDialog:
-    def __init__(self,msg):
-        title = '%s - GRAMPS' % _('Error')
+class QuestionDialog:
+    def __init__(self,msg1,msg2,label,task):
+        self.xml = gtk.glade.XML(const.errdialogsFile,"questiondialog")
+        self.top = self.xml.get_widget('questiondialog')
+        self.top.set_title('')
+
+        label1 = self.xml.get_widget('label1')
+        label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
+        label1.set_use_markup(gtk.TRUE)
         
-        self.top = gtk.Dialog()
-        self.top.set_title(title)
-        label = gtk.Label(msg)
-        label.show()
-        hbox = gtk.HBox()
-        image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_DIALOG_ERROR,gtk.ICON_SIZE_DIALOG)
-        hbox.set_spacing(10)
-        hbox.pack_start(image)
-        hbox.add(label)
-        self.top.vbox.pack_start(hbox)
-        self.top.set_default_size(300,150)
-        self.top.add_button(gtk.STOCK_OK,0)
-        self.top.set_response_sensitive(0,gtk.TRUE)
-        self.top.show_all()
+        label2 = self.xml.get_widget('label2')
+        label2.set_text(msg2)
+        label2.set_use_markup(gtk.TRUE)
+
+        self.xml.get_widget('okbutton').set_label(label)
+
+        response = self.top.run()
+        if response == gtk.RESPONSE_ACCEPT:
+            task()
+        self.top.destroy()
+
+class OptionDialog:
+    def __init__(self,msg1,msg2,label1,task1,label2,task2):
+        self.xml = gtk.glade.XML(const.errdialogsFile,"optiondialog")
+        self.top = self.xml.get_widget('optiondialog')
+        self.top.set_title('')
+
+        label1 = self.xml.get_widget('label1')
+        label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
+        label1.set_use_markup(gtk.TRUE)
+        
+        label2 = self.xml.get_widget('label2')
+        label2.set_text(msg2)
+        label2.set_use_markup(gtk.TRUE)
+
+        response = self.top.run()
+        if response == gtk.RESPONSE_NO:
+            task1()
+        else:
+            task2()
+        self.top.destroy()
+
+class ErrorDialog:
+    def __init__(self,msg1,msg2=""):
+        
+        self.xml = gtk.glade.XML(const.errdialogsFile,"errdialog")
+        self.top = self.xml.get_widget('errdialog')
+        
+        label1 = self.xml.get_widget('label1')
+        label2 = self.xml.get_widget('label2')
+        label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
+        label1.set_use_markup(gtk.TRUE)
+        label2.set_text(msg2)
         self.top.run()
         self.top.destroy()
 

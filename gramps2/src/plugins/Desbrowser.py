@@ -115,7 +115,9 @@ register_tool(
     runTool,
     _("Interactive descendant browser"),
     category=_("Analysis and Exploration"),
-    description=_("Provides a browsable hierarchy based on the active person")
+    description=_("Provides a browsable hierarchy based on the active person"),
+    author_name="Donald N. Allingham",
+    author_email="dallingham@users.sourceforge.net"
     )
 
 

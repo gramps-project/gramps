@@ -29,6 +29,18 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
+	    <widget class="GtkButton" id="button2">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-cancel</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">0</property>
+	      <signal name="clicked" handler="destroy_passed_object" object="styles"/>
+	    </widget>
+	  </child>
+	  <child>
 	    <widget class="GtkButton" id="button1">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
@@ -42,18 +54,6 @@
 	    </widget>
 	  </child>
 
-	  <child>
-	    <widget class="GtkButton" id="button2">
-	      <property name="visible">True</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-cancel</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="styles"/>
-	    </widget>
-	  </child>
 	</widget>
 	<packing>
 	  <property name="padding">0</property>
@@ -331,6 +331,18 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
+	    <widget class="GtkButton" id="button8">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-cancel</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">0</property>
+	      <signal name="clicked" handler="destroy_passed_object" object="editor"/>
+	    </widget>
+	  </child>
+	  <child>
 	    <widget class="GtkButton" id="button7">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
@@ -344,18 +356,6 @@
 	    </widget>
 	  </child>
 
-	  <child>
-	    <widget class="GtkButton" id="button8">
-	      <property name="visible">True</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-cancel</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="editor"/>
-	    </widget>
-	  </child>
 	</widget>
 	<packing>
 	  <property name="padding">0</property>
