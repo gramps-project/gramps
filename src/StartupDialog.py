@@ -21,6 +21,7 @@
 # $Id$
 
 import const
+import gtk
 import gtk.glade
 import gnome
 import gnome.ui
@@ -56,8 +57,7 @@ class StartupDialog:
         d.add(self.build_page_last())
 
         d.connect('cancel',self.close)
-        self.w.connect("destroy_event", self.close)
-        
+        self.w.connect("delete_event", gtk.quit)
         self.w.show_all()
 
     def close(self,obj):

@@ -400,9 +400,8 @@ class GeneWebWriter:
             retval = self.get_full_person_info(person)
         return retval
 
-    def rem_spaces(self,string):
-        string = string.replace(' ','_')
-        return string
+    def rem_spaces(self,str):
+        return str.replace(' ','_')
     
     def get_ref_name(self,person):
         surname = self.rem_spaces( person.get_primary_name().get_surname())
@@ -514,11 +513,11 @@ class GeneWebWriter:
         
         cal_type = ""
         if cal == Date.CAL_HEBREW:
-            type = "H"
+            cal_type = "H"
         elif cal == Date.CAL_FRENCH:
-            type = "F"
+            cal_type = "F"
         elif cal == Date.CAL_JULIAN:
-            type = "J"
+            cal_type = "J"
         
         mode_prefix = ""
         if mode == Date.MOD_ABOUT:

@@ -100,8 +100,6 @@ class PatchNames:
                 groups = match.groups()
                 self.nick_list.append((key,groups[0],groups[1]))
 
-        msg = ""
-
         if self.nick_list or self.title_list:
             self.display()
         else:
@@ -158,23 +156,23 @@ class PatchNames:
         
         for (id,name,nick) in self.nick_list:
             p = self.db.get_person_from_handle(id)
-            iter = self.model.append()
-            self.model.set_value(iter,0,1)
-            self.model.set_value(iter,1,id)
-            self.model.set_value(iter,2,_('Nickname'))
-            self.model.set_value(iter,3,nick)
-            self.model.set_value(iter,4,p.get_primary_name().get_name())
-            self.nick_hash[id] = iter
+            handle = self.model.append()
+            self.model.set_value(handle,0,1)
+            self.model.set_value(handle,1,id)
+            self.model.set_value(handle,2,_('Nickname'))
+            self.model.set_value(handle,3,nick)
+            self.model.set_value(handle,4,p.get_primary_name().get_name())
+            self.nick_hash[id] = handle
             
         for (id,title,nick) in self.title_list:
             p = self.db.get_person_from_handle(id)
-            iter = self.model.append()
-            self.model.set_value(iter,0,1)
-            self.model.set_value(iter,1,id)
-            self.model.set_value(iter,2,_('Title'))
-            self.model.set_value(iter,3,nick)
-            self.model.set_value(iter,4,p.get_primary_name().get_name())
-            self.title_hash[id] = iter
+            handle = self.model.append()
+            self.model.set_value(handle,0,1)
+            self.model.set_value(handle,1,id)
+            self.model.set_value(handle,2,_('Title'))
+            self.model.set_value(handle,3,nick)
+            self.model.set_value(handle,4,p.get_primary_name().get_name())
+            self.title_hash[id] = handle
 
         self.add_itself_to_menu()
         self.window.show()
@@ -202,8 +200,8 @@ class PatchNames:
                 
     def on_ok_clicked(self,obj):
         for grp in self.nick_list:
-            iter = self.nick_hash[grp[0]]
-            val = self.model.get_value(iter,0)
+            handle = self.nick_hash[grp[0]]
+            val = self.model.get_value(handle,0)
             if val:
                 p = self.db.get_person_from_handle(grp[0])
                 name = p.get_primary_name()
@@ -212,8 +210,8 @@ class PatchNames:
                 self.db.commit_person(p,self.trans)
 
         for grp in self.title_list:
-            iter = self.title_hash[grp[0]]
-            val = self.model.get_value(iter,0)
+            handle = self.title_hash[grp[0]]
+            val = self.model.get_value(handle,0)
             if val:
                 p = self.db.get_person_from_handle(grp[0])
                 name = p.get_primary_name()

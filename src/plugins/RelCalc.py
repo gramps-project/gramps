@@ -137,12 +137,12 @@ class RelCalc:
         self.window.present()
 
     def on_apply_clicked(self,obj):
-        model,iter = self.clist.get_selected()
-        if not iter:
+        model,node = self.clist.get_selected()
+        if not node:
             return
         
-        id = self.clist.get_object(iter)
-        other_person = self.db.get_person_from_handle(id)
+        handle = self.clist.get_object(node)
+        other_person = self.db.get_person_from_handle(handle)
 
         (rel_string,common) = self.relationship.get_relationship(self.person,other_person)
         length = len(common)

@@ -73,55 +73,55 @@ class ReorderIds:
         for x in data_map.keys():
             key_list.append(x)
 
-        for id in key_list:
+        for handle in key_list:
             
             # attempt to extract integer, if we can't, treat it as a
             # duplicate
 
-            match = _findint.match(id)
+            match = _findint.match(handle)
             if match:
-                # get the integer, build the new id. Make sure it
+                # get the integer, build the new handle. Make sure it
                 # hasn't already been chosen. If it has, put this
-                # in the duplicate id list
+                # in the duplicate handle list
 
                 try:
                     index = match.groups()[0]
-                    newid = prefix % int(index)
-                    if newid == id:
-                        newids[newid] = id
+                    newhandle = prefix % int(index)
+                    if newhandle == handle:
+                        newids[newhandle] = handle
                         continue
-                    elif data_map.has_key(newid):
-                        dups.append(id)
+                    elif data_map.has_key(newhandle):
+                        dups.append(handle)
                     else:
-                        data = data_map[id]
-                        data_map[newid] = data
-                        newids[newid] = id
-                        data.set_handle(newid)
-                        del data_map[id]
+                        data = data_map[handle]
+                        data_map[newhandle] = data
+                        newids[newhandle] = handle
+                        data.set_handle(newhandle)
+                        del data_map[handle]
                         if update:
-                            update(newid,id)
+                            update(newhandle,handle)
                 except:
-                    dups.append(id)
+                    dups.append(handle)
             else:
-                dups.append(id)
+                dups.append(handle)
             
         # go through the duplicates, looking for the first availble
-        # id that matches the new scheme.
+        # handle that matches the new scheme.
     
         index = 0
-        for id in dups:
+        for handle in dups:
             while 1:
-                newid = prefix % index
-                if not newids.has_key(newid):
+                newhandle = prefix % index
+                if not newids.has_key(newhandle):
                     break
                 index = index + 1
-            newids[newid] = newid
-            data = data_map[id]
-            data.set_handle(newid)
-            data_map[newid] = data
+            newids[newhandle] = newhandle
+            data = data_map[handle]
+            data.set_handle(newhandle)
+            data_map[newhandle] = data
             if update:
-                update(newid,id)
-            del data_map[id]
+                update(newhandle,handle)
+            del data_map[handle]
     
 #-------------------------------------------------------------------------
 #
