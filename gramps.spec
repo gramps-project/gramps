@@ -1,5 +1,5 @@
-%define ver      0.9.1
-%define rel      1
+%define ver      0.9.2
+%define rel      rc1
 %define prefix   /usr
 %define localstatedir /var/lib
 # Ensure that internal RPM macros for configure & makeinstall 
@@ -65,7 +65,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %doc README COPYING TODO INSTALL COPYING-DOCS
 %doc %{_mandir}/man1/*
-%doc %{_datadir}/gnome/help/*
 
 %{prefix}/bin/gramps
 
