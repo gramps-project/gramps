@@ -188,7 +188,7 @@ def on_apply_clicked(obj):
 	    father = family.getFather()
 	    if mother!=None and father!=None:
 	        if mother.getGender() == father.getGender():
-		    warn = error + _("Homosexual marriage %s family %s.\n") % (idstr, family.getId())
+		    warn = warn + _("Homosexual marriage %s family %s.\n") % (idstr, family.getId())
 	    if family.getFather() == person and person.getGender() == RelLib.Person.female:
 	        error = error + _("Female husband %s family %s.\n") % (idstr, family.getId())
 	    if family.getMother() == person and person.getGender() == RelLib.Person.male:
