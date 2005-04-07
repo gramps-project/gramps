@@ -226,8 +226,8 @@ class Extract:
     
     def get_person_age(self, person):
         "return age for given person, if alive"
-        death = person.get_death_handle()
-        if not death:
+        death_handle = person.get_death_handle()
+        if not death_handle:
             return [self.estimate_age(person)]
         return [_("Already dead")]
 
