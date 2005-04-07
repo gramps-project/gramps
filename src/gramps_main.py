@@ -1480,11 +1480,11 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                 else:
                     self.backbtn.set_sensitive(0)
                     self.back.set_sensitive(0)
-            self.emit('active-changed',(self.active_person.get_handle(),))
+            self.emit('active-changed',(person.get_handle(),))
         else:
             self.active_person = self.db.get_person_from_handle(person.get_handle())
             self.set_buttons(1)
-            self.emit('active-changed',(self.active_person.get_handle(),))
+            self.emit('active-changed',(person.get_handle(),))
         
     def modify_statusbar(self):
         
