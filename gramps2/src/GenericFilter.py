@@ -570,9 +570,11 @@ class IsChildOfFilterMatch(Rule):
         self.db = db
         self.map = {}
         filt = MatchesFilter(self.list)
+        filt.prepare(db)
         for person_handle in db.get_person_handles(sort_handles=False):
             if filt.apply (db, person_handle):
                 self.init_list (person_handle)
+        filt.reset()
 
     def reset(self):
         self.map = {}
@@ -611,9 +613,11 @@ class IsSiblingOfFilterMatch(Rule):
         self.db = db
         self.map = {}
         filt = MatchesFilter(self.list)
+        filt.prepare(db)
         for person_handle in db.get_person_handles(sort_handles=False):
             if filt.apply (db, person_handle):
                 self.init_list (person_handle)
+        filt.reset()
 
     def reset(self):
         self.map = {}
@@ -769,9 +773,11 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
             
         self.init = 1
         filt = MatchesFilter(self.list)
+        filt.prepare(db)
         for person_handle in db.get_person_handles(sort_handles=False):
             if filt.apply (db, person_handle):
                 self.init_ancestor_list (db,person_handle,first)
+        filt.reset()
 
     def name(self):
         return 'Is an ancestor of filter match'
@@ -910,9 +916,11 @@ class IsParentOfFilterMatch(Rule):
         self.db = db
         self.map = {}
         filt = MatchesFilter(self.list)
+        filt.prepare(db)
         for person_handle in db.get_person_handles(sort_handles=False):
             if filt.apply (db, person_handle):
                 self.init_list (person_handle)
+        filt.reset()
 
     def reset(self):
         self.map = {}
@@ -1011,11 +1019,13 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
 
     def init_ancestor_cache(self,db):
         filt = MatchesFilter(self.list)
+        filt.prepare(db)
         def init(self,pid): self.ancestor_cache[pid] = 1
         for p_id in db.get_person_handles(sort_handles=False):
             if (not self.ancestor_cache.has_key (p_id)
                 and filt.apply (db, p_id)):
                 for_each_ancestor(db,[p_id],init,self)
+        filt.reset()
 
 #-------------------------------------------------------------------------
 #
@@ -1448,6 +1458,26 @@ class MatchesFilter(Rule):
     """Rule that checks against another filter"""
 
     labels = [_('Filter name:')]
+
+    def prepare(self,db):
+        for filt in SystemFilters.get_filters():
+            if filt.get_name() == self.list[0]:
+                for rule in filt.flist:
+                    rule.prepare(db)
+        for filt in CustomFilters.get_filters():
+            if filt.get_name() == self.list[0]:
+                for rule in filt.flist:
+                    rule.prepare(db)
+
+    def reset(self):
+        for filt in SystemFilters.get_filters():
+            if filt.get_name() == self.list[0]:
+                for rule in filt.flist:
+                    rule.reset()
+        for filt in CustomFilters.get_filters():
+            if filt.get_name() == self.list[0]:
+                for rule in filt.flist:
+                    rule.reset()
 
     def name(self):
         return 'Matches the filter named'
@@ -2002,7 +2032,7 @@ class HasSourceOf(Rule):
         return _('Matches people who have a particular source')
 
     def apply(self,db,p_id):
-        p = self.db.get_person_from_handle(p_id)
+        p = db.get_person_from_handle(p_id)
 
         return p.has_source_reference( self.source_handle)
 
@@ -2330,8 +2360,13 @@ class ParamFilter(GenericFilter):
 
     def apply(self,db,id_list):
         for rule in self.flist:
+            rule.prepare(db)
+        for rule in self.flist:
             rule.set_list(self.param_list)
-        return GenericFilter.apply(self,db,id_list)
+        result = GenericFilter.apply(self,db,id_list)
+        for rule in self.flist:
+            rule.reset()
+        return result
 
 #-------------------------------------------------------------------------
 #

@@ -1,3 +1,6 @@
+2005-04-07  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GenericFilter.py: Call prepare/reset for nested filters
+
 2005-04-07  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/gramps_main.py: correct type signature for 'active-changed' signal.
 	* src/GrampsDBCallback.py: improve the error reporting.
