@@ -110,6 +110,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
 
     __signals__ = {
         'database-changed' : (GrampsDbBase.GrampsDbBase,),
+        'active-changed' : (str,),
         }
 
     def __init__(self,args):
@@ -1451,6 +1452,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.set_buttons(0)
             self.active_person = None
             self.modify_statusbar()
+            self.emit('active-changed',(None,))
         elif (self.active_person == None or
               person.get_handle() != self.active_person.get_handle()):
             self.active_person = self.db.get_person_from_handle(person.get_handle())
@@ -1478,9 +1480,11 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                 else:
                     self.backbtn.set_sensitive(0)
                     self.back.set_sensitive(0)
+            self.emit('active-changed',(self.active_person.get_handle(),))
         else:
             self.active_person = self.db.get_person_from_handle(person.get_handle())
             self.set_buttons(1)
+            self.emit('active-changed',(self.active_person.get_handle(),))
         
     def modify_statusbar(self):
         
@@ -1497,13 +1501,13 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
 
     def display_relationship(self):
         default_person = self.db.get_default_person()
-        if not default_person:
+        active = self.active_person
+        if default_person == None or active == None:
             return u''
         try:
             pname = NameDisplay.displayer.display(default_person)
             (name,plist) = self.relationship.get_relationship(
-                                    default_person,
-                                    self.active_person)
+                                    default_person,active)
 
             if name:
                 if plist == None:
@@ -1671,12 +1675,11 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         GrampsKeys.save_last_file(name)
         self.gtop.get_widget("filter").set_text("")
     
-        self.emit("database-changed", (self.db,))
-        
         self.relationship = self.RelClass(self.db)
+        self.emit("database-changed", (self.db,))
 
         self.change_active_person(self.find_initial_person())
-        self.goto_active_person()   # TODO: This should emit a signal so other views can update itself
+        self.goto_active_person()
         
         if callback:
             callback(_('Setup complete'))

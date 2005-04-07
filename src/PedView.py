@@ -165,15 +165,15 @@ class PedigreeView:
     def __init__(self,parent,canvas,update,status_bar,lp):
         self.parent = parent
 
+        self.relcalc = Relationship.RelationshipCalculator(self.parent.db)
         self.parent.connect('database-changed',self.change_db)
+        self.parent.connect('active-changed',self.active_changed)
 
         self.canvas = canvas
         self.canvas_items = []
         self.boxes = []
         self.root = self.canvas.root()
         self.active_person = None
-        r = Relationship.RelationshipCalculator(self.parent.db)
-        self.distance = r.get_relationship_distance
         self.x1 = 0
         self.x2 = 0
         self.y1 = 0
@@ -183,17 +183,31 @@ class PedigreeView:
         self.load_person = lp
         self.anchor = None
         self.canvas.parent.connect('button-press-event',self.on_canvas_press)
+        self.change_db(self.parent.db)
+        self.distance = self.relcalc.get_relationship_distance
 
     def change_db(self,db):
         # Reconnect signals
+        self.db = db
         db.connect('person-add', self.person_updated_cb)
         db.connect('person-update', self.person_updated_cb)
         db.connect('person-delete', self.person_updated_cb)
-        db.connect('person-rebuild', self.person_updated_cb)
+        db.connect('person-rebuild', self.person_rebuild)
+        self.relcalc.set_db(db)
+        self.active_person = None
 
-    def person_updated_cb(self,handle_list=None):
-        # Redraw view on changes of persons
+    def person_updated_cb(self,handle_list):
         self.load_canvas(self.active_person)
+
+    def person_rebuild(self):
+        self.load_canvas(self.active_person)
+
+    def active_changed(self,handle):
+        if handle:
+            self.active_person = self.db.get_person_from_handle(handle)
+            self.load_canvas(self.active_person)
+        else:
+            self.load_canvas(None)
         
     def clear(self):
         for i in self.canvas_items:
@@ -231,7 +245,7 @@ class PedigreeView:
         
         for t in lst:
             if t:
-                boxtext = build_detail_string(self.parent.db,t[0]).encode("UTF-8")
+                boxtext = build_detail_string(self.db,t[0]).encode("UTF-8")
                 for line in boxtext.split("\n"):
                     try:
                         a.set_text(line,len(line))
@@ -266,7 +280,7 @@ class PedigreeView:
         self.canvas_items.append(self.anchor_txt)
 
         for family_handle in self.active_person.get_family_handle_list():
-            family = self.parent.db.get_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             if len(family.get_child_handle_list()) > 0:
                 button,arrow = self.make_arrow_button(gtk.ARROW_LEFT,
                                                       self.on_show_child_menu)
@@ -321,11 +335,10 @@ class PedigreeView:
                                               p[1])
                 p = lst[i]
                 box = DispBox(self.root,style,xpts[i],ypts[i],w,h,p[0],
-                              self.parent.db,
+                              self.db,
                               self.parent.change_active_person, 
                               self.load_person, self.build_full_nav_menu)
                 self.boxes.append(box)
-        self.parent.change_active_person(person)
 
     def make_arrow_button(self,direction,function):
         """Make a button containing an arrow with the attached callback"""
@@ -373,18 +386,18 @@ class PedigreeView:
             # button. The menu consists of the children of the current root
             # person of the tree. Attach a child to each menu item.
 
-            childlist = find_children(self.parent.db,self.active_person)
+            childlist = find_children(self.db,self.active_person)
             if len(childlist) == 1:
-                child = self.parent.db.get_person_from_handle(childlist[0])
+                child = self.db.get_person_from_handle(childlist[0])
                 if child:
-                    self.load_canvas(child)
+                    self.parent.change_active_person(child)
             elif len(childlist) > 1:
                 myMenu = gtk.Menu()
                 for child_handle in childlist:
-                    child = self.parent.db.get_person_from_handle(child_handle)
+                    child = self.db.get_person_from_handle(child_handle)
                     cname = NameDisplay.displayer.display(child)
                     menuitem = gtk.MenuItem(None)
-                    if find_children(self.parent.db,child):
+                    if find_children(self.db,child):
                         label = gtk.Label('<b><i>%s</i></b>' % cname)
                     else:
                         label = gtk.Label(cname)
@@ -404,9 +417,9 @@ class PedigreeView:
            attached with menu item."""
 
         person_handle = obj.get_data(_PERSON)
-        person = self.parent.db.get_person_from_handle(person_handle)
+        person = self.db.get_person_from_handle(person_handle)
         if person:
-            self.load_canvas(person)
+            self.parent.change_active_person(person)
         return 1
     
     def add_parent_button(self,parent,x,y,h):
@@ -430,10 +443,10 @@ class PedigreeView:
            attached to the button and change the root person to that
            person, redrawing the view."""
         person_handle = obj.get_data(_PERSON)
-        person = self.parent.db.get_person_from_handle(person_handle)
+        person = self.db.get_person_from_handle(person_handle)
         if self.active_person:
             self.active_person = person
-        self.load_canvas(person)
+        self.parent.change_active_person(person)
     
     def draw_canvas_line(self,x1,y1,x2,y2,h,w,data,style,ls):
         """Draw an two segment line between the x,y point pairs. Attach
@@ -466,12 +479,14 @@ class PedigreeView:
         """Catch X events over a line and respond to the ones we care about"""
 
         person_handle = obj.get_data(_PERSON)
-        person = self.parent.db.get_person_from_handle(person_handle)
+        if not person_handle:
+            return 
+        person = self.db.get_person_from_handle(person_handle)
         style = self.canvas.get_style()
 
         if event.type == gtk.gdk._2BUTTON_PRESS:
             if event.button == 1 and event.type == gtk.gdk._2BUTTON_PRESS:
-                self.load_canvas(person)
+                self.parent.change_active_person(person)
         elif event.type == gtk.gdk.ENTER_NOTIFY:
             obj.set(fill_color_gdk=style.bg[gtk.STATE_SELECTED],
                     width_pixels=4)
@@ -498,15 +513,15 @@ class PedigreeView:
             mrel = m != RelLib.Person.CHILD_REL_BIRTH
             frel = f != RelLib.Person.CHILD_REL_BIRTH
 
-        family = self.parent.db.get_family_from_handle(family_handle)
+        family = self.db.get_family_from_handle(family_handle)
         if family != None:
             father_handle = family.get_father_handle()
             if father_handle != None:
-                father = self.parent.db.get_person_from_handle(father_handle)
+                father = self.db.get_person_from_handle(father_handle)
                 self.find_tree(father,(2*index)+1,depth+1,lst,frel)
             mother_handle = family.get_mother_handle()
             if mother_handle != None:
-                mother = self.parent.db.get_person_from_handle(mother_handle)
+                mother = self.db.get_person_from_handle(mother_handle)
                 self.find_tree(mother,(2*index)+2,depth+1,lst,mrel)
 
     def on_canvas1_event(self,obj,event):
@@ -582,12 +597,12 @@ class PedigreeView:
         fam_list = person.get_family_handle_list()
         no_spouses = 1
         for fam_id in fam_list:
-            family = self.parent.db.get_family_from_handle(fam_id)
+            family = self.db.get_family_from_handle(fam_id)
             if family.get_father_handle() == person.get_handle():
                 sp_id = family.get_mother_handle()
             else:
                 sp_id = family.get_father_handle()
-            spouse = self.parent.db.get_person_from_handle(sp_id)
+            spouse = self.db.get_person_from_handle(sp_id)
             if not spouse:
                 continue
 
@@ -613,12 +628,12 @@ class PedigreeView:
         pfam_list = person.get_parent_family_handle_list()
         no_siblings = 1
         for (f,mrel,frel) in pfam_list:
-            fam = self.parent.db.get_family_from_handle(f)
+            fam = self.db.get_family_from_handle(f)
             sib_list = fam.get_child_handle_list()
             for sib_id in sib_list:
                 if sib_id == person.get_handle():
                     continue
-                sib = self.parent.db.get_person_from_handle(sib_id)
+                sib = self.db.get_person_from_handle(sib_id)
                 if not sib:
                     continue
 
@@ -641,9 +656,9 @@ class PedigreeView:
         # Go over children and build their menu
         item = gtk.MenuItem(_("Children"))
         no_children = 1
-        childlist = find_children(self.parent.db,person)
+        childlist = find_children(self.db,person)
         for child_handle in childlist:
-            child = self.parent.db.get_person_from_handle(child_handle)
+            child = self.db.get_person_from_handle(child_handle)
             if not child:
                 continue
         
@@ -652,7 +667,7 @@ class PedigreeView:
                 item.set_submenu(gtk.Menu())
                 child_menu = item.get_submenu()
 
-            if find_children(self.parent.db,child):
+            if find_children(self.db,child):
                 label = gtk.Label('<b><i>%s</i></b>' % NameDisplay.displayer.display(child))
             else:
                 label = gtk.Label(NameDisplay.displayer.display(child))
@@ -675,9 +690,9 @@ class PedigreeView:
         # Go over parents and build their menu
         item = gtk.MenuItem(_("Parents"))
         no_parents = 1
-        par_list = find_parents(self.parent.db,person)
+        par_list = find_parents(self.db,person)
         for par_id in par_list:
-            par = self.parent.db.get_person_from_handle(par_id)
+            par = self.db.get_person_from_handle(par_id)
             if not par:
                 continue
 
@@ -686,7 +701,7 @@ class PedigreeView:
                 item.set_submenu(gtk.Menu())
                 par_menu = item.get_submenu()
 
-            if find_parents(self.parent.db,par):
+            if find_parents(self.db,par):
                 label = gtk.Label('<b><i>%s</i></b>' % NameDisplay.displayer.display(par))
             else:
                 label = gtk.Label(NameDisplay.displayer.display(par))

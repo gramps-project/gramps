@@ -281,17 +281,21 @@ class PeopleView:
             sel_sensitivity = 1
         else:
             sel_sensitivity = 0
+        merge_sensitivity = len(mlist) == 2
         entries = [
             (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
             (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
-            #FIXME: revert to stock item when German gtk translation is fixed
-	    #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
-            (_("Home"),self.parent.on_home_clicked,1),
+            (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
             (_("Add Bookmark"),self.parent.on_add_bookmark_activate,sel_sensitivity),
             (None,None,0),
             (gtk.STOCK_ADD, self.parent.add_button_clicked,1),
             (gtk.STOCK_REMOVE, self.parent.remove_button_clicked,sel_sensitivity),
             (_("Edit"), self.parent.edit_button_clicked,sel_sensitivity),
+            #(None,None,0),
+            #(_("Compare and Merge"), self.parent.on_merge_activate,
+            # merge_sensitivity),
+            #(_("Fast Merge"), self.parent.on_fast_merge_activate,
+            # merge_sensitivity),
         ]
 
         menu = gtk.Menu()
