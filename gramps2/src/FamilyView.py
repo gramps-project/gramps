@@ -96,7 +96,8 @@ class FamilyView:
         self.cadded = [ 0, 0 ]
         self.in_drag = False
         self.init_interface()
-
+        self.parent.connect('active-changed',self.update_callback)
+                            
     def change_db(self,db):
         db.connect('family-add', self.update_callback)
         db.connect('family-update', self.update_callback)

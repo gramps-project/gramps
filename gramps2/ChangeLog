@@ -1,8 +1,9 @@
 2005-04-06  Don Allingham  <don@gramps-project.org>
-	* src/FamilyView.py: keep track of local person during update
+	* src/FamilyView.py: keep track of local person during update, connect
+	active-changed signal
 	* src/PedView.py: update database pointer when database changed, update
 	active person
-	* src/gramps_main.py: keep track of active-changed
+	* src/gramps_main.py: keep track of active-changed, use local person
 
 2005-04-06  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gramps.glade: People View: Add label for filter text input field.
