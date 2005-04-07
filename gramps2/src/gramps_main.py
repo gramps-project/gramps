@@ -110,7 +110,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
 
     __signals__ = {
         'database-changed' : (GrampsDbBase.GrampsDbBase,),
-        'active-changed' : (str,),
+        'active-changed' : (unicode,),
         }
 
     def __init__(self,args):
