@@ -1,3 +1,7 @@
+2005-04-07  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/gramps_main.py: correct type signature for 'active-changed' signal.
+	* src/GrampsDBCallback.py: improve the error reporting.
+	
 2005-04-06  Don Allingham  <don@gramps-project.org>
 	* src/FamilyView.py: keep track of local person during update, connect
 	active-changed signal

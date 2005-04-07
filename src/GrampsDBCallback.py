@@ -38,6 +38,7 @@
 import sys
 import types
 import traceback
+import inspect
 
 log = sys.stderr.write
 
@@ -326,29 +327,45 @@ class GrampsDBCallback(object):
         # Check signal exists
         if signal_name not in self.__signal_map.keys():
             self._log("Warning: attempt to emit to unknown signal: %s\n"
-                                % str(signal_name))
+                      "         from: file: %s\n"
+                      "               line: %d\n"
+                      "               func: %s\n"
+                      % ((str(signal_name),) + inspect.stack()[1][1:4]))
             return
 
         # type check arguments
         arg_types = self.__signal_map[signal_name]
         if arg_types == None and len(args) > 0:
-            self._log("Warning: signal emitted with "\
-                             "wrong number of args: %s\n" % str(signal_name))
+            self._log("Warning: signal emitted with "
+                      "wrong number of args: %s\n"
+                      "         from: file: %s\n"
+                      "               line: %d\n"
+                      "               func: %s\n"
+                      % ((str(signal_name),) + inspect.stack()[1][1:4]))
             return
 
         if len(args) > 0:
             if len(args) != len(arg_types):
-                self._log("Warning: signal emitted with "\
-                                 "wrong number of args: %s\n" % str(signal_name))
+                self._log("Warning: signal emitted with "
+                          "wrong number of args: %s\n"
+                          "         from: file: %s\n"
+                          "               line: %d\n"
+                          "               func: %s\n"
+                          % ((str(signal_name),) + inspect.stack()[1][1:4]))
                 return
 
             if arg_types != None:
                 for i in range(0,len(arg_types)):
                     if not isinstance(args[i],arg_types[i]):
-                        self._log("Warning: signal emitted with "\
-                                         "wrong arg types: %s\n" % (str(signal_name),))
-                        self._log("    arg passed was: %s, type should be: %s\n"
-                                         % (args[i],repr(arg_types[i])))
+                        self._log("Warning: signal emitted with "
+                                  "wrong arg types: %s\n"
+                                  "         from: file: %s\n"
+                                  "               line: %d\n"
+                                  "               func: %s\n"
+                                  % ((str(signal_name),) + inspect.stack()[1][1:4]))
+                        
+                        self._log("    arg passed was: %s, type of arg passed %s,  type should be: %s\n"
+                                         % (args[i],repr(type(args[i])),repr(arg_types[i])))
                         return 
 
         if signal_name in self.__callback_map.keys():
