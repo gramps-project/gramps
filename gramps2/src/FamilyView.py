@@ -852,34 +852,38 @@ class FamilyView:
         if self.person == None:
             return
 
-        if self.selected_spouse.get_handle() == self.family.get_father_handle():
-            self.family.set_father_handle(None)
+        cur_person = self.person
+        cur_spouse = self.selected_spouse
+        cur_family = self.family
+
+        if cur_spouse.get_handle() == cur_family.get_father_handle():
+            cur_family.set_father_handle(None)
         else:
-            self.family.set_mother_handle(None)
+            cur_family.set_mother_handle(None)
 
         trans = self.parent.db.transaction_begin()
         
-        if self.selected_spouse:
-            self.selected_spouse.remove_family_handle(self.family.get_handle())
-            self.parent.db.commit_person(self.selected_spouse,trans)
+        if cur_spouse:
+            cur_spouse.remove_family_handle(cur_family.get_handle())
+            self.parent.db.commit_person(cur_spouse,trans)
 
-        self.parent.db.commit_family(self.family,trans)
+        self.parent.db.commit_family(cur_family,trans)
 
-        if len(self.family.get_child_handle_list()) == 0:
-            mother_id = self.family.get_mother_handle()
-            father_id = self.family.get_father_handle()
+        if len(cur_family.get_child_handle_list()) == 0:
+            mother_id = cur_family.get_mother_handle()
+            father_id = cur_family.get_father_handle()
 
             for handle in [father_id, mother_id]:
                 if handle:
                     p = self.parent.db.get_person_from_handle(handle)
-                    p.remove_family_handle(self.family.get_handle())
+                    p.remove_family_handle(cur_family.get_handle())
                     self.parent.db.commit_person(p,trans)
 
-            if len(self.person.get_family_handle_list()) > 0:
-                handle = self.person.get_family_handle_list()[0]
+            if len(cur_person.get_family_handle_list()) > 0:
+                handle = cur_person.get_family_handle_list()[0]
                 family = self.parent.db.find_family_from_handle(handle,trans)
 
-        person_id = self.person.get_handle()
+        person_id = cur_person.get_handle()
         self.person = self.parent.db.get_person_from_handle(person_id)
         n = self.person.get_primary_name().get_regular_name()
         self.parent.db.transaction_commit(trans,_("Remove Spouse (%s)") % n)
