@@ -1,4 +1,7 @@
 2005-04-08  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/Utils.py (probably_alive): Added two more checks for birth and death year
+
+2005-04-08  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/Utils.py (probably_alive): fix some bugs and added checking of ancestors.
 	
 2005-04-07  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
