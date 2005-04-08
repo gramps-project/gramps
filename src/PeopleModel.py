@@ -350,7 +350,7 @@ class PeopleModel(gtk.GenericTreeModel):
         
         for event_handle in data[_EVENT_COL]:
             event = self.db.get_event_from_handle(event_handle)
-            if event.name in ["Baptism", "Christening"]:
+            if event.name in ["Burial", "Cremation"]:
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place_title = self.db.get_place_from_handle(place_handle).get_title()
