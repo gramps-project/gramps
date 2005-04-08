@@ -169,7 +169,8 @@ class PeopleView:
 
     def build_tree(self):
         self.person_model = PeopleModel.PeopleModel(self.parent.db,
-                                                    self.DataFilter)
+                                                    self.DataFilter,
+                                                    self.parent.filter_invert.get_active())
         self.person_tree.set_model(self.person_model)
         
     def blist(self, store, path, node, id_list):

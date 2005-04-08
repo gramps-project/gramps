@@ -69,12 +69,13 @@ _CHANGE_COL= 21
 #-------------------------------------------------------------------------
 class PeopleModel(gtk.GenericTreeModel):
 
-    def __init__(self,db,data_filter=None):
+    def __init__(self,db,data_filter=None,invert_result=False):
         gtk.GenericTreeModel.__init__(self)
 
         self.db = db
         self.visible = {}
         self.top_visible = {}
+        self.invert_result = invert_result
         self.rebuild_data(data_filter)
     
     def rebuild_data(self,data_filter=None,skip=None):
@@ -96,6 +97,8 @@ class PeopleModel(gtk.GenericTreeModel):
         if data_filter:
             handle_list = self.db.get_person_handles(sort_handles=False)
             keys = data_filter.apply(self.db,handle_list)
+            if self.invert_result:
+                keys = [k for k in handle_list if k not in keys]
             del handle_list
         else:
             keys = self.db.get_person_handles(sort_handles=False)
