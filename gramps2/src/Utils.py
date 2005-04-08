@@ -439,16 +439,24 @@ def create_id():
 
 
 def probably_alive(person,db,current_year=None):
-    """Returns true if the person may be alive."""
+    """Returns true if the person may be alive.
+
+    This works by a process of emlimination. If we can't find a good
+    reason to believe that someone is dead then we assume they must
+    be alive.
+
+    """
+
+    if not current_year:
+        time_struct = time.localtime(time.time())
+        current_year = time_struct[0]
+
+    # If the recorded death year is before current year then
+    # things are simple.
     if person.death_handle:
-        if not current_year:
-            return False
-        else:
-            death = db.get_event_from_handle(person.death_handle)
-            if death.get_date_object().get_start_date() != Date.EMPTY:
-                if death.get_date_object().get_year < current_year:
-                    return False
-            else:
+        death = db.get_event_from_handle(person.death_handle)
+        if death.get_date_object().get_start_date() != Date.EMPTY:
+            if death.get_date_object().get_year() < current_year:
                 return False
     
     # Look for Cause Of Death, Burial or Cremation events.
@@ -456,18 +464,21 @@ def probably_alive(person,db,current_year=None):
     for ev_handle in person.event_list:
         ev = db.get_event_from_handle(ev_handle)
         if ev and ev.name in ["Cause Of Death", "Burial", "Cremation"]:
-            if not current_year:
-                return False
             if ev.get_date_object().get_start_date() != Date.EMPTY:
-                if ev.get_date_object().get_year < current_year:
+                if ev.get_date_object().get_year() < current_year:
                     return False
-            else:
-                return False
 
+    # If they were born within 100 years before current year then
+    # assume they are alive (we already know they are not dead).
     if person.birth_handle:
         birth = db.get_event_from_handle(person.birth_handle)
         if birth.get_date_object().get_start_date() != Date.EMPTY:
-            return not_too_old(birth.get_date_object(),current_year)
+            r = not_too_old(birth.get_date_object(),current_year)
+            if r:
+                #print person.get_primary_name().get_name(), " is alive because they were born late enough."
+                return True
+
+            
 
     # Neither birth nor death events are available.  Try looking
     # for descendants that were born more than a lifespan ago.
@@ -479,6 +490,8 @@ def probably_alive(person,db,current_year=None):
     def descendants_too_old (person, years):
         for family_handle in person.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
+            family_list = family.get_child_handle_list()
+            
             for child_handle in family.get_child_handle_list():
                 child = db.get_person_from_handle(child_handle)
                 if child.birth_handle:
@@ -501,10 +514,86 @@ def probably_alive(person,db,current_year=None):
 
                 if descendants_too_old (child, years + min_generation):
                     return True
-
-    if descendants_too_old (person, min_generation):
+                
         return False
-    return False
+
+    # If there are descendants that are too old for the person to have
+    # been alive in the current year then they must be dead.
+    if descendants_too_old (person, min_generation):
+        #print person.get_primary_name().get_name(), " is dead because descendants are too old."
+        return False
+
+
+    average_generation_gap = 20
+
+    def ancestors_too_old (person, year):
+        family_handle = person.get_main_parents_family_handle()
+        
+        if family_handle:                
+            family = db.get_family_from_handle(family_handle)
+            father_handle = family.get_father_handle()
+            if father_handle:
+                father = db.get_person_from_handle(father_handle)
+                if father.birth_handle:
+                    father_birth = db.get_event_from_handle(father.birth_handle)
+                    dobj = father_birth.get_date_object()
+                    if dobj.get_start_date() != Date.EMPTY:
+                        if not not_too_old (dobj,year - average_generation_gap):
+                            #print father.get_primary_name().get_name(), " father of ", person.get_primary_name().get_name(), " is too old by birth. birth year ", dobj.get_year(), " test year ", year - average_generation_gap
+                            return True
+                        #else:
+                            #print father.get_primary_name().get_name(), " father of ", person.get_primary_name().get_name(), " is NOT too old by birth. birth year ", dobj.get_year(), " test year ", year - average_generation_gap
+
+
+                if father.death_handle:
+                    father_death = db.get_event_from_handle(father.death_handle)
+                    dobj = father_death.get_date_object()
+                    if dobj.get_start_date() != Date.EMPTY:
+                        if dobj.get_year() < year - average_generation_gap:
+                            #print father.get_primary_name().get_name(), " father of ", person.get_primary_name().get_name(), " is too old by death."
+                            return True
+
+                if ancestors_too_old (father, year - average_generation_gap):
+                    return True
+
+            mother_handle = family.get_mother_handle()
+            if mother_handle:
+                mother = db.get_person_from_handle(mother_handle)
+                if mother.birth_handle:
+                    mother_birth = db.get_event_from_handle(mother.birth_handle)
+                    dobj = mother_birth.get_date_object()
+                    if dobj.get_start_date() != Date.EMPTY:
+                        if not not_too_old (dobj,year - average_generation_gap):
+                            #print mother.get_primary_name().get_name(), " mother of ", person.get_primary_name().get_name(), " is too old by birth. birth year ", dobj.get_year(), " test year ", year - average_generation_gap
+                            return True
+                        #else:
+                            #print mother.get_primary_name().get_name(), " mother of ", person.get_primary_name().get_name(), " is NOT too old by birth. birth year ", dobj.get_year(), " test year ", year - average_generation_gap
+
+
+                if mother.death_handle:
+                    mother_death = db.get_event_from_handle(mother.death_handle)
+                    dobj = mother_death.get_date_object()
+                    if dobj.get_start_date() != Date.EMPTY:
+                        if dobj.get_year() < year - average_generation_gap:
+                            #print mother.get_primary_name().get_name(), " mother of ", person.get_primary_name().get_name(), " is too old by death."
+                            return True
+
+                if ancestors_too_old (mother, year - average_generation_gap):
+                    return True
+
+        return False
+
+
+    # If there are ancestors that would be too old in the current year
+    # then assume our person must be dead too.
+    if ancestors_too_old (person, current_year):
+        #print person.get_primary_name().get_name(), " is dead because ancestors are too old."
+        return False
+
+    # If we can't find any reason to believe that they are dead we
+    # must assume they are alive.
+    #print person.get_primary_name().get_name(), " is probably alive."
+    return True
 
 def not_too_old(date,current_year=None):
     if not current_year:
