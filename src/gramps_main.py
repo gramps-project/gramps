@@ -110,7 +110,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
 
     __signals__ = {
         'database-changed' : (GrampsDbBase.GrampsDbBase,),
-        'active-changed' : (unicode,),
+        'active-changed' : (str,),
         }
 
     def __init__(self,args):
@@ -291,6 +291,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.toolbardock = self.gtop.get_widget("dockitem2")
         self.filter_text = self.gtop.get_widget('filter')
         self.filter_label= self.gtop.get_widget('filter_label')
+        self.filter_invert= self.gtop.get_widget('filter_invert')
         self.qual_label  = self.gtop.get_widget("qual")
         self.child_type  = self.gtop.get_widget("childtype")
         self.spouse_tab  = self.gtop.get_widget("lab_or_list")
@@ -1452,7 +1453,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.set_buttons(0)
             self.active_person = None
             self.modify_statusbar()
-            self.emit('active-changed',(None,))
+            self.emit('active-changed',('',))
         elif (self.active_person == None or
               person.get_handle() != self.active_person.get_handle()):
             self.active_person = self.db.get_person_from_handle(person.get_handle())
