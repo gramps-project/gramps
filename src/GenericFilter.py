@@ -2336,7 +2336,10 @@ class FilterParser(handler.ContentHandler):
             cname = attrs['class']
             name = unicode(_(cname))
             self.a = []
-            self.cname = tasks[name]
+            if name in tasks:
+                self.cname = tasks[name]
+            else:
+                print "ERROR: Filter rule '%s' in filter '%s' not found!" % (name,self.f.get_name())
         elif tag == "arg":
             self.a.append(attrs['value'])
 
