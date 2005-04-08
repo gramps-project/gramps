@@ -451,11 +451,13 @@ def probably_alive(person,db,current_year=None):
         time_struct = time.localtime(time.time())
         current_year = time_struct[0]
 
+    death_year = None
     # If the recorded death year is before current year then
     # things are simple.
     if person.death_handle:
         death = db.get_event_from_handle(person.death_handle)
         if death.get_date_object().get_start_date() != Date.EMPTY:
+            death_year = death.get_date_object().get_year()
             if death.get_date_object().get_year() < current_year:
                 return False
     
@@ -464,20 +466,33 @@ def probably_alive(person,db,current_year=None):
     for ev_handle in person.event_list:
         ev = db.get_event_from_handle(ev_handle)
         if ev and ev.name in ["Cause Of Death", "Burial", "Cremation"]:
+            if not death_year:
+                death_year = ev.get_date_object().get_year()
             if ev.get_date_object().get_start_date() != Date.EMPTY:
                 if ev.get_date_object().get_year() < current_year:
                     return False
 
+    birth_year = None
     # If they were born within 100 years before current year then
     # assume they are alive (we already know they are not dead).
     if person.birth_handle:
         birth = db.get_event_from_handle(person.birth_handle)
         if birth.get_date_object().get_start_date() != Date.EMPTY:
+            if not birth_year:
+                birth_year = birth.get_date_object().get_year()
+            if birth.get_date_object().get_year() > current_year:
+                # person is not yet born
+                return False
             r = not_too_old(birth.get_date_object(),current_year)
             if r:
                 #print person.get_primary_name().get_name(), " is alive because they were born late enough."
                 return True
-
+    
+    
+    if not birth_year and death_year:
+        if death_year > current_year + 110:
+            # person died more tha 110 after current year
+            return False
             
 
     # Neither birth nor death events are available.  Try looking
