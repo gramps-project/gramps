@@ -1,3 +1,7 @@
+2005-04-09  Don Allingham  <don@gramps-project.org>
+	* src/FamilyView.py: ignore None family types. This should never
+	occur, but we want to be safe.
+
 2005-04-09  Alex Roitman  <shura@gramps-project.org>
 	* src/po/template.po: Update translation template.
 
