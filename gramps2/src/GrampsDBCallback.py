@@ -234,6 +234,10 @@ class GrampsDBCallback(object):
                                  # containing the list of types of the arguments
                                  # that the callback methods must accept.
         self._current_key = 0    # counter to give a unique key to each callback.
+        self._current_signals = [] # list of all the signals that are currently
+                                   # being emitted by this instance. This is
+                                   # used to prevent recursive emittion of the
+                                   # same signal.
         
         # To speed up the signal type checking the signals declared by
         # each of the classes in the inheritance tree of this instance
@@ -326,66 +330,94 @@ class GrampsDBCallback(object):
         
         # Check signal exists
         if signal_name not in self.__signal_map.keys():
-            self._log("Warning: attempt to emit to unknown signal: %s\n"
-                      "         from: file: %s\n"
-                      "               line: %d\n"
-                      "               func: %s\n"
-                      % ((str(signal_name),) + inspect.stack()[1][1:4]))
+            self._warn("Attempt to emit to unknown signal: %s\n"
+                       "         from: file: %s\n"
+                       "               line: %d\n"
+                       "               func: %s\n"
+                       % ((str(signal_name),) + inspect.stack()[1][1:4]))
             return
 
-        # type check arguments
-        arg_types = self.__signal_map[signal_name]
-        if arg_types == None and len(args) > 0:
-            self._log("Warning: signal emitted with "
-                      "wrong number of args: %s\n"
-                      "         from: file: %s\n"
-                      "               line: %d\n"
-                      "               func: %s\n"
-                      % ((str(signal_name),) + inspect.stack()[1][1:4]))
-            return
+        # check that the signal is not already being emitted. This prevents
+        # against recursive signal emmissions.
+        if signal_name in self._current_signals:
+            self._warn("Signal recursion blocked. "
+                       "Signals was : %s\n"
+                       "        from: file: %s\n"
+                       "              line: %d\n"
+                       "              func: %s\n"
+                       % ((str(signal_name),) + inspect.stack()[1][1:4]))
+            return 
 
-        if len(args) > 0:
-            if len(args) != len(arg_types):
-                self._log("Warning: signal emitted with "
-                          "wrong number of args: %s\n"
-                          "         from: file: %s\n"
-                          "               line: %d\n"
-                          "               func: %s\n"
-                          % ((str(signal_name),) + inspect.stack()[1][1:4]))
+        try:
+            self._current_signals.append(signal_name)
+
+            # check that args is a tuple. This is a common programming error.
+            if not (isinstance(args,tuple) or args == None):
+                self._warn("Signal emitted with argument that is not a tuple.\n"
+                           "  emit() takes two arguments, the signal name and a \n"
+                           "  tuple that contains the arguments that are to be \n"
+                           "  passed to the callbacks. If you are passing a signal \n"
+                           "  argument it must be done as a single element tuple \n"
+                           "  e.g. emit('my-signal',(1,)) \n"
+                           "         signal was: %s\n"
+                           "         from: file: %s\n"
+                           "               line: %d\n"
+                           "               func: %s\n"
+                           % ((str(signal_name),) + inspect.stack()[1][1:4]))
                 return
 
-            if arg_types != None:
-                for i in range(0,len(arg_types)):
-                    if not isinstance(args[i],arg_types[i]):
-                        self._log("Warning: signal emitted with "
-                                  "wrong arg types: %s\n"
-                                  "         from: file: %s\n"
-                                  "               line: %d\n"
-                                  "               func: %s\n"
-                                  % ((str(signal_name),) + inspect.stack()[1][1:4]))
-                        
-                        self._log("    arg passed was: %s, type of arg passed %s,  type should be: %s\n"
-                                         % (args[i],repr(type(args[i])),repr(arg_types[i])))
-                        return 
+            # type check arguments
+            arg_types = self.__signal_map[signal_name]
+            if arg_types == None and len(args) > 0:
+                self._warn("Signal emitted with "
+                           "wrong number of args: %s\n"
+                           "         from: file: %s\n"
+                           "               line: %d\n"
+                           "               func: %s\n"
+                           % ((str(signal_name),) + inspect.stack()[1][1:4]))
+                return
 
-        if signal_name in self.__callback_map.keys():
-            self._log("emmitting signal: %s\n" % (signal_name,))
-            # Don't bother if there are no callbacks.
-            for (key,fn) in self.__callback_map[signal_name]:
-                self._log("Calling callback with key: %s\n" % (key,))
-                try:
-                    if type(fn) == tuple: # call class method
-                        cb[0](fn[1],*args)
-                    elif type(fn) == types.FunctionType or \
-                             type(fn) == types.MethodType: # call func
-                        fn(*args)
-                    else:
-                        self._log("Warning: badly formed entry in callback map.\n")
-                except:
-                    log("%s: %s" % (self.__class__.__name__,
-                                    "Warning: exception occured in callback function.\n"))
-                    log("%s: %s" % (self.__class__.__name__,
-                                    "".join(traceback.format_exception(*sys.exc_info()))))
+            if len(args) > 0:
+                if len(args) != len(arg_types):
+                    self._warn("Signal emitted with "
+                               "wrong number of args: %s\n"
+                               "         from: file: %s\n"
+                               "               line: %d\n"
+                               "               func: %s\n"
+                               % ((str(signal_name),) + inspect.stack()[1][1:4]))
+                    return
+
+                if arg_types != None:
+                    for i in range(0,len(arg_types)):
+                        if not isinstance(args[i],arg_types[i]):
+                            self._warn("Signal emitted with "
+                                       "wrong arg types: %s\n"
+                                       "         from: file: %s\n"
+                                       "               line: %d\n"
+                                       "               func: %s\n"
+                                       "    arg passed was: %s, type of arg passed %s,  type should be: %s\n"
+                                       % ((str(signal_name),) + inspect.stack()[1][1:4] +\
+                                          (args[i],repr(type(args[i])),repr(arg_types[i]))))                   
+                            return 
+
+            if signal_name in self.__callback_map.keys():
+                self._log("emmitting signal: %s\n" % (signal_name,))
+                # Don't bother if there are no callbacks.
+                for (key,fn) in self.__callback_map[signal_name]:
+                    self._log("Calling callback with key: %s\n" % (key,))
+                    try:
+                        if type(fn) == tuple: # call class method
+                            cb[0](fn[1],*args)
+                        elif type(fn) == types.FunctionType or \
+                                 type(fn) == types.MethodType: # call func
+                            fn(*args)
+                        else:
+                            self._warn("Badly formed entry in callback map.\n")
+                    except:
+                        self._warn("Exception occured in callback function.\n"
+                                   "%s" % ("".join(traceback.format_exception(*sys.exc_info())),))
+        finally:
+            self._current_signals.remove(signal_name)
 
     #
     # instance signals control methods
@@ -408,7 +440,10 @@ class GrampsDBCallback(object):
     def _log(self,msg):
         if GrampsDBCallback.__LOG_ALL or self.__enable_logging:
             log("%s: %s" % (self.__class__.__name__, str(msg)))
-            
+
+    def _warn(self,msg):
+        log("Warning: %s: %s" % (self.__class__.__name__, str(msg)))
+
     #
     # Class methods
     #
@@ -655,9 +690,70 @@ if __name__ == "__main__":
             res=[]
             def fn(s,r=res):
                 res.append(s)
-            t._log = fn
+            t._warn = fn
             t.connect('test-lots',fn2), t.emit('test-lots',('a','a',[1,2],t,1.2))
-            assert res[1][0:8] == "Warning:", "Type error not detected"
+            assert res[0][0:6] == "Signal", "Type error not detected"
+
+        def test_recursion_block(self):
+
+            class TestSignals(GrampsDBCallback):
+
+                __signals__ = {
+                          'test-recursion' : (GrampsDBCallback,)
+                         }
+
+            def fn(cb):
+                cb.emit('test-recursion',(t,))
+
+            res=[]
+            def fn2(s,r=res):
+                res.append(s)
+
+            t = TestSignals()
+            t._warn = fn2
+            t.connect('test-recursion',fn)
+
+            try:
+                t.emit('test-recursion',(t,))
+            except RuntimeError:
+                assert False, "signal recursion not blocked1."
+
+            assert res[0][0:6] == "Signal", "signal recursion not blocked"
+
+
+        def test_multisignal_recursion_block(self):
+
+            class TestSignals(GrampsDBCallback):
+
+                __signals__ = {
+                          'test-top' : (GrampsDBCallback,),
+                          'test-middle' : (GrampsDBCallback,),
+                          'test-bottom' : (GrampsDBCallback,)
+                         }
+
+            def top(cb):
+                cb.emit('test-middle',(t,))
+            def middle(cb):
+                cb.emit('test-bottom',(t,))
+            def bottom(cb):
+                cb.emit('test-top',(t,))
+
+            res=[]
+            def fn2(s,r=res):
+                res.append(s)
+
+            t = TestSignals()
+            t._warn = fn2
+            t.connect('test-top',top)
+            t.connect('test-middle',middle)
+            t.connect('test-bottom',bottom)
+
+            try:
+                t.emit('test-top',(t,))
+            except RuntimeError:
+                assert False, "multisignal recursion not blocked1."
+
+            assert res[0][0:6] == "Signal", "multisignal recursion not blocked"
 
 
     unittest.main()
