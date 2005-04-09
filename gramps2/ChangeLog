@@ -1,3 +1,6 @@
+2005-04-09  Alex Roitman  <shura@gramps-project.org>
+	* src/po/template.po: Update translation template.
+
 2005-04-09  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/GrampsDBCallback.py: block recursive signal calls, improved error 
 	reporting. All warnings are now printed to stderr even if logging 
