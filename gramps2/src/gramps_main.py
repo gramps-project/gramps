@@ -116,7 +116,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
     def __init__(self,args):
 
         GrampsDBCallback.GrampsDBCallback.__init__(self)
-
+        
         try:
             self.program = gnome.program_init('gramps',const.version, 
                                               gnome.libgnome_module_info_get(),
@@ -133,7 +133,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.bookmarks = None
         self.c_details = 6
         self.cl = 0
-
+        self.lock_history = False
 
         self.history = []
         self.mhistory = []
@@ -510,7 +510,6 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
     def exit_and_undo(self,*args):
         self.db.disable_signals()
         self.db.abort_changes()
-        self.db.set_people_view_maps((None,None,None,None))
         gtk.main_quit()
 
     def set_person_column_order(self,list):
@@ -723,12 +722,14 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         ScratchPad.ScratchPadWindow(self.db, self)
 
     def back_clicked(self,obj,step=1):
+        self.lock_history = True
         if self.hindex > 0:
             try:
                 self.hindex -= step
-                self.active_person = self.db.get_person_from_handle(self.history[self.hindex])
+                handle = unicode(self.history[self.hindex])
+                self.active_person = self.db.get_person_from_handle(handle)
                 self.modify_statusbar()
-                self.update_display(0)
+                self.emit('active-changed',(handle,))
                 self.mhistory.append(self.history[self.hindex])
                 self.redraw_histmenu()
                 self.set_buttons(1)
@@ -748,14 +749,17 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.fwdbtn.set_sensitive(1)
             self.forward.set_sensitive(1)
         self.goto_active_person()
+        self.lock_history = False
 
     def fwd_clicked(self,obj,step=1):
+        self.lock_history = True
         if self.hindex+1 < len(self.history):
             try:
                 self.hindex += step
-                self.active_person = self.db.get_person_from_handle(self.history[self.hindex])
+                handle = unicode(self.history[self.hindex])
+                self.active_person = self.db.get_person_from_handle(handle)
                 self.modify_statusbar()
-                self.update_display(0)
+                self.emit('active-changed',(handle,))
                 self.mhistory.append(self.history[self.hindex])
                 self.redraw_histmenu()
                 self.set_buttons(1)
@@ -775,6 +779,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.backbtn.set_sensitive(1)
             self.back.set_sensitive(1)
         self.goto_active_person()
+        self.lock_history = False
 
     def edit_button_clicked(self,obj):
         cpage = self.views.get_current_page()
@@ -1453,13 +1458,13 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.set_buttons(0)
             self.active_person = None
             self.modify_statusbar()
-            self.emit('active-changed',('',))
+            self.emit('active-changed',(u"",))
         elif (self.active_person == None or
               person.get_handle() != self.active_person.get_handle()):
             self.active_person = self.db.get_person_from_handle(person.get_handle())
             self.modify_statusbar()
             self.set_buttons(1)
-            if person:
+            if person and not self.lock_history:
                 if self.hindex+1 < len(self.history):
                     self.history = self.history[0:self.hindex+1]
 
@@ -1481,11 +1486,11 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                 else:
                     self.backbtn.set_sensitive(0)
                     self.back.set_sensitive(0)
-            self.emit('active-changed',(person.get_handle(),))
+            self.emit('active-changed',(unicode(person.get_handle()),))
         else:
             self.active_person = self.db.get_person_from_handle(person.get_handle())
             self.set_buttons(1)
-            self.emit('active-changed',(person.get_handle(),))
+            self.emit('active-changed',(unicode(person.get_handle()),))
         
     def modify_statusbar(self):
         

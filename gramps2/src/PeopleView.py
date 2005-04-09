@@ -238,9 +238,6 @@ class PeopleView:
         self.apply_filter()
         self.goto_active_person()
 
-    def add_to_person_list(self,person,change=0):
-        pass
-
     def goto_active_person(self):
         if not self.parent.active_person:
             return
