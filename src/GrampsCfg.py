@@ -85,7 +85,6 @@ def set_calendar_date_format():
 
 def _update_calendar_date_format(active,dlist):
     GrampsKeys.save_date_format(active,dlist)
-    format_list = DateHandler.get_date_formats()
     DateHandler.set_format(active)
 
 #-------------------------------------------------------------------------

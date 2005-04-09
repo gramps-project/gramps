@@ -165,6 +165,7 @@ class PrimaryObject(BaseObject):
         @param source: Object used to initialize the new object
         @type source: PrimaryObject
         """
+        BaseObject.__init__(self)
         if source:
             self.gramps_id = source.gramps_id
             self.handle = source.handle
@@ -1994,13 +1995,13 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
             return self.place == handle
         elif classname == 'Person':
             return handle in [ witness.val for witness in self.witness \
-                                        if witness.type == ID ]
+                                        if witness.type == Event.ID ]
         return False
 
     def _remove_handle_references(self,classname,handle_list):
         if classname == 'Person' and self.witness:
             new_list = [ witness for witness in self.witness \
-                                        if witness.type == ID and \
+                                        if witness.type == Event.ID and \
                                         witness.val not in handle_list ]
             self.witness = new_list
         elif classname == 'Place' and self.place in handle_list:
@@ -2009,8 +2010,8 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
     def _replace_handle_reference(self,classname,old_handle,new_handle):
         if classname == 'Person' and self.witness:
             for witness in self.witness:
-                if witness.type == ID and witness.val == old_handle:
-                    witness.val = new_hanlde
+                if witness.type == Event.ID and witness.val == old_handle:
+                    witness.val = new_handle
         elif classname == 'Place' and self.place == old_handle:
             self.place = new_handle
 

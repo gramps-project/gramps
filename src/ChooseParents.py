@@ -644,8 +644,6 @@ class ModifyParents:
         self.window.destroy()
 
     def build_list(self,opt_menu,sel):
-        cell = gtk.CellRendererText()
-        
         store = gtk.ListStore(str)
         for val in self.keys:
             store.append(row=[val])

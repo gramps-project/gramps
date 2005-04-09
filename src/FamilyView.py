@@ -635,7 +635,7 @@ class FamilyView:
             self.person.set_preferred_family_handle(self.family)
             trans = self.parent.db.transaction_begin()
             self.parent.db.commit_person(self.person,trans)
-            n = self.person.get_primary_name().get_regular_name()
+            n = NameDisplay.displayer.display(self.person)
             self.parent.db.transaction_commit(trans,_("Set Preferred Spouse (%s)") % n)
             self.load_family()
             
@@ -648,9 +648,7 @@ class FamilyView:
                 DisplayTrace.DisplayTrace()
 
     def edit_marriage_callback(self,obj):
-        Marriage.Marriage(
-            self.parent, self.family,self.parent.db, self.parent.new_after_edit,
-            self.load_family, self.parent.source_view.build_tree)
+        Marriage.Marriage(self.parent, self.family,self.parent.db)
 
     def sp_button_press(self,obj,event):
         if event.state & gtk.gdk.SHIFT_MASK and \
@@ -880,9 +878,9 @@ class FamilyView:
                     p.remove_family_handle(cur_family.get_handle())
                     self.parent.db.commit_person(p,trans)
 
-            if len(cur_person.get_family_handle_list()) > 0:
-                handle = cur_person.get_family_handle_list()[0]
-                family = self.parent.db.find_family_from_handle(handle,trans)
+#             if len(cur_person.get_family_handle_list()) > 0:
+#                 handle = cur_person.get_family_handle_list()[0]
+#                 family = self.parent.db.find_family_from_handle(handle,trans)
 
         person_id = cur_person.get_handle()
         self.person = self.parent.db.get_person_from_handle(person_id)
@@ -1111,7 +1109,6 @@ class FamilyView:
             self.family = self.parent.db.get_family_from_handle(flist[0])
         else:
             self.family = None
-        n = NameDisplay.displayer.display(person)
 
     def display_marriage(self,family):
         if not family:

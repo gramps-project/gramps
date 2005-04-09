@@ -726,7 +726,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         if self.hindex > 0:
             try:
                 self.hindex -= step
-                handle = unicode(self.history[self.hindex])
+                handle = str(self.history[self.hindex])
                 self.active_person = self.db.get_person_from_handle(handle)
                 self.modify_statusbar()
                 self.emit('active-changed',(handle,))
@@ -756,7 +756,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         if self.hindex+1 < len(self.history):
             try:
                 self.hindex += step
-                handle = unicode(self.history[self.hindex])
+                handle = str(self.history[self.hindex])
                 self.active_person = self.db.get_person_from_handle(handle)
                 self.modify_statusbar()
                 self.emit('active-changed',(handle,))
@@ -1458,7 +1458,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.set_buttons(0)
             self.active_person = None
             self.modify_statusbar()
-            self.emit('active-changed',(u"",))
+            self.emit('active-changed',("",))
         elif (self.active_person == None or
               person.get_handle() != self.active_person.get_handle()):
             self.active_person = self.db.get_person_from_handle(person.get_handle())
@@ -1486,11 +1486,11 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                 else:
                     self.backbtn.set_sensitive(0)
                     self.back.set_sensitive(0)
-            self.emit('active-changed',(unicode(person.get_handle()),))
+            self.emit('active-changed',(str(person.get_handle()),))
         else:
             self.active_person = self.db.get_person_from_handle(person.get_handle())
             self.set_buttons(1)
-            self.emit('active-changed',(unicode(person.get_handle()),))
+            self.emit('active-changed',(str(person.get_handle()),))
         
     def modify_statusbar(self):
         

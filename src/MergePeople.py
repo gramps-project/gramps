@@ -35,7 +35,6 @@ from gettext import gettext as _
 import RelLib
 import ReportUtils
 import Utils
-import ListModel
 import NameDisplay
 import const
 import gtk
@@ -117,8 +116,8 @@ class Compare:
         if len(plist) > 0:
             self.add(tobj,title,_("Parents"))
             for fid in person.get_parent_family_handle_list():
-                (fn,mn,id) = self.get_parent_info(fid[0])
-                self.add(tobj,normal,"%s:\t%s" % (_('Family ID'),id))
+                (fn,mn,gid) = self.get_parent_info(fid[0])
+                self.add(tobj,normal,"%s:\t%s" % (_('Family ID'),gid))
                 if fn:
                     self.add(tobj,indent,"%s:\t%s" % (_('Father'),fn))
                 if mn:
@@ -421,7 +420,7 @@ class MergePeople:
             src_family = self.db.get_family_from_handle(src_family_handle)
             family_num += 1
 
-            if not src_family or src_family in self.p1.get_family_handle_list():
+            if not src_family or src_family in family_list:
                 continue
 
             tgt_family = self.find_family(src_family)
@@ -538,7 +537,7 @@ class MergePeople:
             if self.p2 == fam.get_mother_handle():
                 fam.set_mother_handle(self.p1)
             if fam.get_father_handle() == None and fam.get_mother_handle() == None:
-                self.delete_empty_family(fam)
+                self.delete_empty_family(fam,trans)
             data = cursor.next()
 
     def remove_marriage(self,family,person,trans):

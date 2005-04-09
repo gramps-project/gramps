@@ -282,7 +282,7 @@ class NameEditor:
             self.name.set_sort_as(self.sort_as.get_active())
             self.parent.lists_changed = 1
 
-        if self.group_over.get_active() == False:
+        if not self.group_over.get_active():
             self.name.set_group_as("")
             self.parent.lists_changed = 1
         elif self.name.get_group_as() != grp_as:

@@ -114,8 +114,6 @@ class AddMediaObject:
         description = unicode(self.description.get_text())
 
         if self.internal.get_active():
-            import NoteEdit
-
             mobj = RelLib.MediaObject()
             mobj.set_description(description)
             mobj.set_mime_type(None)
@@ -169,7 +167,7 @@ class AddMediaObject:
             self.image.set_from_pixbuf(image)
 
     def run(self):
-        while 1:
+        while True:
             val = self.window.run()
 
             if val == gtk.RESPONSE_OK:
