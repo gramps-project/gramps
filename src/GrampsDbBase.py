@@ -738,30 +738,6 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         """
         assert False, "Needs to be overridden in the derived class"
 
-    def get_people_view_maps(self):
-        """
-        Allows the saving people display data into the database metadata.
-        This allows faster display of the treeview.
-        """
-        if self.metadata:
-            return (self.metadata.get('tp_path'),
-                    self.metadata.get('p_iter'),
-                    self.metadata.get('p_path'),
-                    self.metadata.get('sname'))
-        else:
-            return (None,None,None,None)
-
-    def set_people_view_maps(self,maps):
-        """
-        Allows the retreiving people display data into the database metadata.
-        This allows faster display of the treeview.
-        """
-        if self.metadata and not self.readonly:
-            self.metadata['tp_path'] = maps[0]
-            self.metadata['p_iter']  = maps[1]
-            self.metadata['p_path']  = maps[2]
-            self.metadata['sname'] = maps[3]
-
     def get_number_of_people(self):
         """
         Returns the number of people currently in the databse.
@@ -975,46 +951,22 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         subitems.reverse()
         for record_id in subitems:
             (key, handle, data) = transaction.get_record(record_id)
+            handle = str(handle)
             if key == PERSON_KEY:
-                if data == None:
-                    self.emit('person-delete',([str(handle)],))
-                    del self.person_map[str(handle)]
-                else:
-                    self.person_map[str(handle)] = data
-                    self.emit('person-update',([str(handle)],))
+                self.undo_data(data,handle,self.person_map,'person')
             elif key == FAMILY_KEY:
-                if data == None:
-                    self.emit('family-delete',([str(handle)],))
-                    del self.family_map[str(handle)]
-                else:
-                    self.family_map[str(handle)] = data
-                    self.emit('family-update',([str(handle)],))
+                self.undo_data(data,handle,self.family_map,'family')
             elif key == SOURCE_KEY:
-                if data == None:
-                    self.emit('source-delete',([str(handle)],))
-                    del self.source_map[str(handle)]
-                else:
-                    self.source_map[str(handle)] = data
-                    self.emit('source-update',([str(handle)],))
+                self.undo_data(data,handle,self.source_map,'source')
             elif key == EVENT_KEY:
                 if data == None:
-                    del self.event_map[str(handle)]
+                    del self.event_map[handle]
                 else:
-                    self.event_map[str(handle)] = data
+                    self.event_map[handle] = data
             elif key == PLACE_KEY:
-                if data == None:
-                    self.emit('place-delete',([str(handle)],))
-                    del self.place_map[str(handle)]
-                else:
-                    self.place_map[str(handle)] = data
-                    self.emit('place-update',([str(handle)],))
+                self.undo_data(data,handle,self.place_map,'place')
             elif key == MEDIA_KEY:
-                if data == None:
-                    self.emit('media-delete',([str(handle)],))
-                    del self.media_map[str(handle)]
-                else:
-                    self.emit('media-update',([str(handle)],))
-                    self.media_map[str(handle)] = data
+                self.undo_data(data,handle,self.media_map,'media')
 
         if self.undo_callback:
             if self.undoindex == -1:
@@ -1023,6 +975,18 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
                 transaction = self.translist[self.undoindex]
                 self.undo_callback(_("_Undo %s") % transaction.get_description())
         return True
+
+    def undo_data(self,data,handle,db_map,signal_root):
+        if data == None:
+            self.emit(signal_root + '-delete',([handle],))
+            del db_map[handle]
+        else:
+            if db_map.has_key(handle):
+                signal = signal_root + '-update'
+            else:
+                signal = signal_root + '-add'
+            db_map[handle] = data
+            self.emit(signal,([handle],))
     
     def set_undo_callback(self,callback):
         """
