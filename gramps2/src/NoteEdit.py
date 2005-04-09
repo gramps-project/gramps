@@ -65,7 +65,6 @@ class NoteEditor:
 
     def draw(self):
         """Displays the NoteEditor window"""
-        title = "%s - GRAMPS" % _("Edit Note")
 
         self.top = self.glade.get_widget('note_edit')
         alt_title = self.glade.get_widget('title_msg')

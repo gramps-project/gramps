@@ -67,9 +67,9 @@ class _DdType:
     def _calculate_id(self):
         """return the next available app_id."""
         
-        id = _DdType._APP_ID_OFFSET
+        idval = _DdType._APP_ID_OFFSET
         _DdType._APP_ID_OFFSET += 1
-        return id
+        return idval
 
     def target(self):
         """return the full target information in the format
