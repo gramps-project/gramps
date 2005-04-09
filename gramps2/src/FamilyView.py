@@ -1069,8 +1069,12 @@ class FamilyView:
         selection = tree.get_selection()
         family_list = person.get_parent_family_handle_list()
 
+        count = 0
         for (f,mrel,frel) in family_list:
             fam = self.parent.db.get_family_from_handle(f)
+            if not fam:
+                continue
+            count += 1
             father_handle = fam.get_father_handle()
             mother_handle = fam.get_mother_handle()
             f = self.parent.db.get_person_from_handle(father_handle)
@@ -1086,7 +1090,7 @@ class FamilyView:
                 sel = node
             v = "%s\n%s" % (father,mother)
             model.set(node,0,v)
-        if len(family_list) > 1:
+        if count > 1:
             selection.set_mode(gtk.SELECTION_SINGLE)
             selection.select_iter(sel)
         else:
