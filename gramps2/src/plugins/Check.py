@@ -157,6 +157,10 @@ class CheckIntegrity:
             person = self.db.get_person_from_handle(person_handle)
             for family_type in person.get_parent_family_handle_list():
                 family = self.db.get_family_from_handle(family_type[0])
+                if not family:
+                    person.remove_parent_family_handle(family_type[0])
+                    self.db.commit_person(person,self.trans)
+                    continue
                 for child_handle in family.get_child_handle_list():
                     if child_handle == person_handle:
                         break
@@ -413,8 +417,11 @@ class CheckIntegrity:
                     cn = person.get_primary_name().get_name()
                 else:
                     cn = _("Non existing child")
-                family = self.db.get_family_from_handle(family_handle)
-                pn = Utils.family_name(family,self.db)
+                try:
+                    family = self.db.get_family_from_handle(family_handle)
+                    pn = Utils.family_name(family,self.db)
+                except:
+                    pn = _("Unknown")
                 self.text.write('\t')
                 self.text.write(_("%s was removed from the family of %s\n") % (cn,pn))
 
