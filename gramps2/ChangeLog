@@ -1,4 +1,9 @@
 2005-04-10  Alex Roitman  <shura@gramps-project.org>
+	* Release: Version 1.1.95 "When danger reared its ugly head,
+	he bravely turned his tail and fled" released.
+	* configure.in: Bump up the version number.
+
+2005-04-10  Alex Roitman  <shura@gramps-project.org>
 	* NEWS: Update.
 
 2005-04-10  Don Allingham  <don@gramps-project.org>
