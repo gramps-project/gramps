@@ -228,11 +228,11 @@ class EventEditor:
                                            self.db,self,self.window)
 
         self.top.signal_autoconnect({
-            "on_switch_page" : self.on_switch_page,
-            "on_help_event_clicked" : self.on_help_clicked,
-            "on_ok_event_clicked" : self.on_event_edit_ok_clicked,
-            "on_cancel_event_clicked" : self.close,
-            "on_event_edit_delete_event" : self.on_delete_event,
+            "on_switch_page"            : self.on_switch_page,
+            "on_help_event_clicked"     : self.on_help_clicked,
+            "on_ok_event_clicked"       : self.on_event_edit_ok_clicked,
+            "on_cancel_event_clicked"   : self.close,
+            "on_event_edit_delete_event": self.on_delete_event,
             "on_addphoto_clicked"       : self.gallery.on_add_media_clicked,
             "on_selectphoto_clicked"    : self.gallery.on_select_media_clicked,
             "on_deletephoto_clicked"    : self.gallery.on_delete_media_clicked,
@@ -296,10 +296,17 @@ class EventEditor:
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-complete')
 
-    def get_place(self,field):
-        text = unicode(field.get_text()).strip()
-        if text and self.pmap.has_key(text):
-            return self.parent.db.get_place_from_handle(self.pmap[text])
+    def get_place(self,field,trans):
+        text = unicode(field.get_text().strip())
+        if text:
+            if self.pmap.has_key(text):
+                return self.pdmap[text]
+            else:
+                place = RelLib.Place()
+                place.set_title(text)
+                self.db.add_place(place,trans)
+                self.pmap[text] = place.get_handle()
+                return place
         else:
             return None
 
@@ -316,7 +323,7 @@ class EventEditor:
         trans = self.db.transaction_begin()
         #self.date = self.dp.parse(unicode(self.date_field.get_text()))
         ecause = unicode(self.cause_field.get_text())
-        eplace_obj = self.get_place(self.place_field)
+        eplace_obj = self.get_place(self.place_field,trans)
         buf = self.note_field.get_buffer()
 
         start = buf.get_start_iter()
