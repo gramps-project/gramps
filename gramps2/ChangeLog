@@ -458,7 +458,6 @@
 	* src/plugins/TestcaseGenerator.py: New plugin that creates some of
 	the errors that crashed Check.py before.
 	
-
 2005-03-25  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/ScratchPad.py (ScratchPadWindow): moved content of pad to a 
 	class attribute so that it is preserved when the pad is closed.
