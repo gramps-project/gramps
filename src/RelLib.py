@@ -147,6 +147,42 @@ class BaseObject:
         """
         return []
 
+    def get_referenced_handles(self):
+        """
+        Returns the list of (classname,handle) tuples for all directly
+        referenced primary objects.
+        
+        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @rtype: list
+        """
+        return []
+
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects..
+        
+        @return: Returns the list of objects refereincing primary objects.
+        @rtype: list
+        """
+        return []
+
+    def get_referenced_handles_recursively(self):
+        """
+        Returns the list of (classname,handle) tuples for all referenced
+        primary objects, whether directly or through child objects.
+        
+        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @rtype: list
+        """
+        ret = self.get_referenced_handles()
+        
+        # Run through child objects
+        for obj in self.get_handle_referents():
+            ret += obj.get_referenced_handles_recursively()
+
+        return ret
+
 class PrimaryObject(BaseObject):
     """
     The PrimaryObject is the base class for all primary objects in the
@@ -1021,6 +1057,32 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
                     self.alternate_names + self.address_list + \
                     self.attribute_list + lds_check_list
 
+    def get_referenced_handles(self):
+        """
+        Returns the list of (classname,handle) tuples for all directly
+        referenced primary objects.
+        
+        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @rtype: list
+        """
+        ret = []
+        ret += [('Event',handle) for handle in 
+                        self.event_list + [self.birth_handle,self.death_handle]
+                        if handle]
+        ret += [('Family',handle) for handle in self.family_list 
+                        + [item[0] for item in self.parent_family_list]]
+        return ret
+
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects..
+        
+        @return: Returns the list of objects refereincing primary objects.
+        @rtype: list
+        """
+        return self.get_sourcref_child_list() + self.source_list
+
     def set_complete_flag(self,val):
         """
         Sets or clears the complete flag, which is used to indicate that the
@@ -1720,6 +1782,31 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
             check_list.append(self.lds_seal)
         return check_list
 
+    def get_referenced_handles(self):
+        """
+        Returns the list of (classname,handle) tuples for all directly
+        referenced primary objects.
+        
+        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @rtype: list
+        """
+        ret = []
+        ret += [('Event',handle) for handle in self.event_list]
+        ret += [('Person',handle) for handle in 
+                    self.child_list + [self.father_handle,self.mother_handle]
+                    if handle]
+        return ret
+
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects..
+        
+        @return: Returns the list of objects refereincing primary objects.
+        @rtype: list
+        """
+        return get_sourcref_child_list() + self.source_list
+
     def set_complete_flag(self,val):
         """
         Sets or clears the complete flag, which is used to indicate that the
@@ -2047,6 +2134,30 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         """
         return self.media_list
 
+    def get_referenced_handles(self):
+        """
+        Returns the list of (classname,handle) tuples for all directly
+        referenced primary objects.
+        
+        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @rtype: list
+        """
+        ret = []
+        if self.place:
+            ret.append(('Place',self.place))
+        return ret
+
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects..
+        
+        @return: Returns the list of objects refereincing primary objects.
+        @rtype: list
+        """
+        return self.media_list + self.source_list + \
+                            [witness for witness in self.witness 
+                                            if witness.type == Event.ID]
     def get_witness_list(self):
         """
         Returns the list of L{Witness} instances associated with the Event.
@@ -2297,6 +2408,16 @@ class Place(PrimaryObject,SourceNote,MediaBase):
         """
         return self.media_list
 
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects..
+        
+        @return: Returns the list of objects refereincing primary objects.
+        @rtype: list
+        """
+        return self.media_list + self.source_list
+
     def get_url_list(self):
         """
         Returns the list of L{Url} instances associated with the Place
@@ -2545,6 +2666,16 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
         """
         return self.attribute_list
 
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects..
+        
+        @return: Returns the list of objects refereincing primary objects.
+        @rtype: list
+        """
+        return self.attribute_list + self.source_list
+
     def set_mime_type(self,type):
         """
         Sets the MIME type associated with the MediaObject
@@ -2635,6 +2766,16 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         Returns the list of child secondary objects that may refer sources.
 
         @return: Returns the list of child secondary child objects that may refer sources.
+        @rtype: list
+        """
+        return self.media_list
+
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects..
+        
+        @return: Returns the list of objects refereincing primary objects.
         @rtype: list
         """
         return self.media_list
@@ -2776,6 +2917,29 @@ class LdsOrd(SourceNote,DateBase,PlaceBase):
         if self.note:
             check_list.append(self.note)
         return check_list
+
+    def get_referenced_handles(self):
+        """
+        Returns the list of (classname,handle) tuples for all directly
+        referenced primary objects.
+        
+        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @rtype: list
+        """
+        if self.place:
+            return [('Place',self.place)]
+        else:
+        	return []
+
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects..
+        
+        @return: Returns the list of objects refereincing primary objects.
+        @rtype: list
+        """
+        return self.source_list
 
     def set_family_handle(self,family):
         """Sets the Family database handle associated with the LDS ordinance"""
@@ -3100,6 +3264,29 @@ class MediaRef(PrivateSourceNote,AttributeBase):
         """
         return self.attribute_list
 
+    def get_referenced_handles(self):
+        """
+        Returns the list of (classname,handle) tuples for all directly
+        referenced primary objects.
+        
+        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @rtype: list
+        """
+        if self.ref:
+            return [('MediaObject',self.ref)]
+        else:
+            return []
+
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects..
+        
+        @return: Returns the list of objects refereincing primary objects.
+        @rtype: list
+        """
+        return self.attribute_list + self.source_list
+
     def set_rectangle(self,coord):
         """Sets subection of an image"""
         self.rect = coord
@@ -3149,6 +3336,16 @@ class Attribute(PrivateSourceNote):
         if self.note:
             check_list.append(self.note)
         return check_list
+
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects..
+        
+        @return: Returns the list of objects refereincing primary objects.
+        @rtype: list
+        """
+        return self.source_list
 
     def set_type(self,val):
         """sets the type (or key) of the Attribute instance"""
@@ -3211,6 +3408,16 @@ class Address(PrivateSourceNote,DateBase):
         if self.note:
             check_list.append(self.note)
         return check_list
+
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects..
+        
+        @return: Returns the list of objects refereincing primary objects.
+        @rtype: list
+        """
+        return self.source_list
 
     def set_street(self,val):
         """sets the street portion of the Address"""
@@ -3319,6 +3526,16 @@ class Name(PrivateSourceNote,DateBase):
         if self.note:
             check_list.append(self.note)
         return check_list
+
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects..
+        
+        @return: Returns the list of objects refereincing primary objects.
+        @rtype: list
+        """
+        return self.source_list
 
     def set_group_as(self,name):
         """
@@ -3641,6 +3858,19 @@ class Witness(BaseObject,PrivacyBase):
         """
         return [self.val,self.comment]
 
+    def get_referenced_handles(self):
+        """
+        Returns the list of (classname,handle) tuples for all directly
+        referenced primary objects.
+        
+        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @rtype: list
+        """
+        if self.type == Event.ID:
+            return [('Person',self.val)]
+        else:
+        	return []
+
     def set_type(self,type):
         self.type = type
 
@@ -3697,6 +3927,19 @@ class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase):
         @rtype: list
         """
         return [self.note]
+
+    def get_referenced_handles(self):
+        """
+        Returns the list of (classname,handle) tuples for all directly
+        referenced primary objects.
+        
+        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @rtype: list
+        """
+        if self.ref:
+            return [('Source',self.ref)]
+        else:
+            return []
 
     def set_confidence_level(self,val):
         """Sets the confidence level"""

@@ -3,6 +3,11 @@
 	he bravely turned his tail and fled" released.
 	* configure.in: Bump up the version number.
 
+	* src/RelLib.py (BaseObject): add get_referenced_handles,
+	get_handle_referents, and get_referenced_handles_recursively methods.
+	(various subclasses): override get_referenced_handles and/or
+	get_handle_referents as appropriate.
+
 2005-04-10  Alex Roitman  <shura@gramps-project.org>
 	* NEWS: Update.
 
