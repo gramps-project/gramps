@@ -1,5 +1,17 @@
-Version 1.1.95 -- the "" release
+Version 1.1.95 -- the "When danger reared its ugly head, he bravely
+                       turned his tail and fled" release
 * Explicit format selection in Save As, Open, and Import dialogs.
+* New ScratchPad feature allows you copy frequently used items to a scratchpad,
+  allowing easy reuse.
+* New filtering enhancements.
+* Merge tool overhaul. Merge is not dropping any data now, erring on the
+  safe side and possibly duplicating information.
+* Import/export for vCard/vCalendar.
+* Cleanup of core classes.
+* Signals are now used for notifying interface about data changes.
+* Installation improvements. Non-root install is possible with special options.
+* Interface improvements.
+* Performance improvements.
 * Bug fixes.
 
 Version 1.1.90 -- the "Successful encyclopedia salesman" release
