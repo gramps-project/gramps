@@ -1,3 +1,6 @@
+2005-04-10  Don Allingham  <don@gramps-project.org>
+	* src/Makefile.am: add MergePeople.py
+
 2005-04-09  Don Allingham  <don@gramps-project.org>
 	* src/FamilyView.py: ignore None family types. This should never
 	occur, but we want to be safe.

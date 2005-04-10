@@ -72,6 +72,7 @@ gdir_PYTHON = \
 	Marriage.py\
 	MediaView.py\
 	MergeData.py\
+	MergePeople.py\
 	NameDisplay.py\
 	NameEdit.py\
 	NoteEdit.py\
