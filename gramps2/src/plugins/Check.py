@@ -66,6 +66,7 @@ def runTool(database,active_person,callback,parent=None):
         checker.check_parent_relationships()
         checker.cleanup_empty_families(0)
         checker.check_events()
+        checker.check_place_references()
         database.transaction_commit(trans, _("Check Integrity"))
         database.enable_signals()
         database.request_rebuild()
@@ -98,6 +99,7 @@ class CheckIntegrity:
         self.invalid_events = []
         self.invalid_birth_events = []
         self.invalid_death_events = []
+        self.invalid_place_references = []
 
     def check_for_broken_family_links(self):
         self.broken_links = []
@@ -380,6 +382,18 @@ class CheckIntegrity:
                         self.db.commit_person(person,self.trans)
                         self.invalid_events.append(key)
 
+    def check_place_references(self):
+        for key in self.db.get_event_handles():
+            event = self.db.get_event_from_handle(key)
+            place_handle = event.get_place_handle()
+            if place_handle:
+                place = self.db.get_place_from_handle(place_handle)
+                if not place:
+                    # The referenced place does not exist in the database
+                    event.set_place_handle("")
+                    self.db.commit_event(event,self.trans)
+                    self.invalid_place_references.append(key)
+
     def build_report(self,cl=0):
         bad_photos = len(self.bad_photo)
         replaced_photos = len(self.replaced_photo)
@@ -393,8 +407,9 @@ class CheckIntegrity:
         birth_invalid = len(self.invalid_birth_events)
         death_invalid = len(self.invalid_death_events)
         person = birth_invalid + death_invalid
+        place_references = len(self.invalid_place_references)
 
-        errors = blink + efam + photos + rel + person + event_invalid
+        errors = blink + efam + photos + rel + person + event_invalid + place_references
         
         if errors == 0:
             if cl:
@@ -477,6 +492,10 @@ class CheckIntegrity:
             self.text.write(_("1 invalid death event name was fixed\n"))
         elif death_invalid > 1:
             self.text.write(_("%d invalid death event names were fixed\n") % death_invalid)
+        if place_references == 1:
+            self.text.write(_("1 place was referenced but not found\n"))
+        elif place_references > 1:
+            self.text.write(_("%d places were referenced, but not found\n") % place_references)
 
         return errors
 
