@@ -1,3 +1,7 @@
+2005-04-11  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/plugins/ScratchPad.py: hook up to 'database-changed' signal
+	so that pad is cleared when a new database is opened.
+
 2005-04-11  Alex Roitman  <shura@gramps-project.org>
 	* src/MergeData.py (on_merge_places_clicked): Commit event.
 
