@@ -160,7 +160,7 @@ class BaseObject:
     def get_handle_referents(self):
         """
         Returns the list of child objects which may, directly or through
-        their children, reference primary objects..
+        their children, reference primary objects.
         
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
