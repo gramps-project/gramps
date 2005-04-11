@@ -132,33 +132,24 @@ class MergePlaces:
         self.db.commit_place(self.p1,self.trans)
 
         # replace references in other objetcs
+        # people
+        for handle in self.db.get_person_handles(sort_handles=False):
+            person = self.db.get_person_from_handle(handle)
+            if person.has_handle_reference('Place',self.old_handle):
+                person.replace_handle_reference('Place',self.old_handle,self.new_handle)
+                self.db.commit_person(person,self.trans)
+        # families
+        for handle in self.db.get_family_handles():
+            family = self.db.get_family_from_handle(handle)
+            if family.has_handle_reference('Place',self.old_handle):
+                family.replace_handle_reference('Place',self.old_handle,self.new_handle)
+                self.db.commit_family(family,self.trans)
         # events
         for handle in self.db.get_event_handles():
             event = self.db.get_event_from_handle(handle)
-            if event.get_place_handle() == self.old_handle:
-                event.set_place_handle(self.new_handle)
+            if event.has_handle_reference('Place',self.old_handle):
+                event.replace_handle_reference('Place',self.old_handle,self.new_handle)
                 self.db.commit_event(event,self.trans)
-
-        # personal LDS ordinances
-        for handle in self.db.get_person_handles(sort_handles=False):
-            person = self.db.get_person_from_handle(handle)
-            ord_list = [ordinance for ordinance \
-                        in [person.lds_bapt,person.lds_endow,person.lds_seal]
-                        if (ordinance and \
-                                ordinance.get_place_handle() == self.old_handle)
-                    ]
-            if ord_list:
-                for ordinance in ord_list:
-                    ordinance.set_place_handle(self.new_handle)
-                self.db.commit_person(person,self.trans)
-
-        # family LDS ordinance
-        for handle in self.db.get_family_handles():
-            family = self.db.get_family_from_handle(handle)
-            if family.lds_seal and \
-                    family.lds_seal.get_place_handle() == self.old_handle:
-                family.lds_seal.set_place_handle(self.new_handle)
-                self.db.commit_family(family,self.trans)
 
         self.db.transaction_commit(self.trans,_("Merge Places"))
         self.update()
