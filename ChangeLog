@@ -1,6 +1,9 @@
 2005-04-11  Alex Roitman  <shura@gramps-project.org>
 	* src/MergeData.py (on_merge_places_clicked): Commit event.
 
+	* src/SourceView.py (button_press,build_context_menu): Work with
+	multiple selections.
+
 2005-04-11  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py (load_canvas): Catch bug of not existing family
 

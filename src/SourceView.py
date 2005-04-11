@@ -144,11 +144,13 @@ class SourceView:
     def build_context_menu(self,event):
         """Builds the menu with editing operations on the source's list"""
         
-        store,node = self.selection.get_selected()
-        if node:
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
+        if mlist:
             sel_sensitivity = 1
         else:
             sel_sensitivity = 0
+
         entries = [
             (gtk.STOCK_ADD, self.on_add_clicked,1),
             (gtk.STOCK_REMOVE, self.on_delete_clicked,sel_sensitivity),
@@ -193,9 +195,10 @@ class SourceView:
                            self.topWindow)
 
     def on_edit_clicked(self,obj):
-        list_store, node = self.selection.get_selected()
-        if node:
-            handle = list_store.get_value(node,_HANDLE_COL)
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
+
+        for handle in mlist:
             source = self.parent.db.get_source_from_handle(handle)
             EditSource.EditSource(source, self.parent.db, self.parent,
                                   self.topWindow)
