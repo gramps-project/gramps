@@ -281,6 +281,8 @@ class PedigreeView:
 
         for family_handle in self.active_person.get_family_handle_list():
             family = self.db.get_family_from_handle(family_handle)
+            if not family:
+                continue
             if len(family.get_child_handle_list()) > 0:
                 button,arrow = self.make_arrow_button(gtk.ARROW_LEFT,
                                                       self.on_show_child_menu)
