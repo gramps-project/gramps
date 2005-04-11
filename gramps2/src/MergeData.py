@@ -137,6 +137,7 @@ class MergePlaces:
             event = self.db.get_event_from_handle(handle)
             if event.get_place_handle() == self.old_handle:
                 event.set_place_handle(self.new_handle)
+                self.db.commit_event(event,self.trans)
 
         # personal LDS ordinances
         for handle in self.db.get_person_handles(sort_handles=False):
