@@ -69,12 +69,18 @@ BLANK_PIC = gtk.gdk.Pixbuf(0,0,8,1,1)
 
 class ScratchPadWrapper(object):
 
-    def __init__(self,db,obj):
-        self._db = db
+    def __init__(self,model,obj):
+        self._gramps_model = model
+        self.database_changed(model.db)
+        self._gramps_model.connect('database-changed', self.database_changed)
+
         self._obj = obj
         self._type  = _("Unknown")
         self._title = ''
         self._value = ''
+
+    def database_changed(self,db):
+        self._db = db
 
     def get_type(self):
         return self._type
@@ -90,8 +96,8 @@ class ScratchPadWrapper(object):
 
 class ScratchPadGrampsTypeWrapper(ScratchPadWrapper):
 
-    def __init__(self,db,obj):
-        ScratchPadWrapper.__init__(self,db,obj)
+    def __init__(self,model,obj):
+        ScratchPadWrapper.__init__(self,model,obj)
 
         #unpack object
         exec 'unpack_data = %s' % self._obj
@@ -102,14 +108,15 @@ class ScratchPadGrampsTypeWrapper(ScratchPadWrapper):
     def pack(self):
         return self._pickle
 
+
 class ScratchPadAddress(ScratchPadGrampsTypeWrapper):
 
     DROP_TARGETS = [DdTargets.ADDRESS]
     DRAG_TARGET  = DdTargets.ADDRESS
     ICON         = BLANK_PIC
     
-    def __init__(self,db,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,db,obj)
+    def __init__(self,model,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,model,obj)
         self._type  = _("Address")
         self._title = self._obj.get_date()
         self._value = "%s %s %s %s" % (self._obj.get_street(),self._obj.get_city(),
@@ -154,8 +161,8 @@ class ScratchPadEvent(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.EVENT
     ICON         = LINK_PIC
 
-    def __init__(self,db,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,db,obj)
+    def __init__(self,model,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,model,obj)
         self._type  = _("Event")
         self._title = const.display_pevent(self._obj.get_name())
         self._value = self._obj.get_description()
@@ -196,8 +203,8 @@ class ScratchPadFamilyEvent(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.FAMILY_EVENT
     ICON         = BLANK_PIC
     
-    def __init__(self,db,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,db,obj)
+    def __init__(self,model,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,model,obj)
         self._type  = _("Family Event")
         self._title = const.display_fevent(self._obj.get_name())
         self._value = self._obj.get_description()
@@ -238,8 +245,8 @@ class ScratchPadUrl(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.URL
     ICON         = BLANK_PIC
 
-    def __init__(self,db,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,db,obj)
+    def __init__(self,model,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,model,obj)
         self._type  = _("Url")
         self._title = self._obj.get_path()
         self._value = self._obj.get_description()
@@ -261,8 +268,8 @@ class ScratchPadAttribute(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.ATTRIBUTE
     ICON         = BLANK_PIC
 
-    def __init__(self,db,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,db,obj)
+    def __init__(self,model,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,model,obj)
         self._type  = _("Attribute")
         self._title = const.display_pattr(self._obj.get_type())
         self._value = self._obj.get_value()
@@ -294,8 +301,8 @@ class ScratchPadFamilyAttribute(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.FAMILY_ATTRIBUTE
     ICON         = BLANK_PIC
 
-    def __init__(self,db,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,db,obj)
+    def __init__(self,model,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,model,obj)
         self._type  = _("Family Attribute")
         self._title = const.display_fattr(self._obj.get_type())
         self._value = self._obj.get_value()
@@ -327,8 +334,8 @@ class ScratchPadSourceRef(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.SOURCEREF
     ICON         = BLANK_PIC
 
-    def __init__(self,db,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,db,obj)
+    def __init__(self,model,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,model,obj)
         self._type  = _("SourceRef")
 
         base = self._db.get_source_from_handle(self._obj.get_base_handle())
@@ -357,8 +364,8 @@ class ScratchPadName(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.NAME
     ICON         = BLANK_PIC
 
-    def __init__(self,db,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,db,obj)
+    def __init__(self,model,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,model,obj)
         self._type  = _("Name")
         self._title = self._obj.get_name()
         self._value = self._obj.get_type()
@@ -393,8 +400,8 @@ class ScratchPadText(ScratchPadWrapper):
     DRAG_TARGET  = DdTargets.TEXT
     ICON         = BLANK_PIC
 
-    def __init__(self,db,obj):
-        ScratchPadWrapper.__init__(self,db,obj)
+    def __init__(self,model,obj):
+        ScratchPadWrapper.__init__(self,model,obj)
         self._type  = _("Text")
 
         self._title = ""
@@ -412,8 +419,8 @@ class ScratchMediaObj(ScratchPadWrapper):
     DRAG_TARGET  = DdTargets.MEDIAOBJ
     ICON         = LINK_PIC
 
-    def __init__(self,db,obj):
-        ScratchPadWrapper.__init__(self,db,obj)
+    def __init__(self,model,obj):
+        ScratchPadWrapper.__init__(self,model,obj)
         self._type  = _("Media Object")
 
         self._title = ""
@@ -431,8 +438,8 @@ class ScratchPersonLink(ScratchPadWrapper):
     DRAG_TARGET  = DdTargets.PERSON_LINK
     ICON         = LINK_PIC
 
-    def __init__(self,db,obj):
-        ScratchPadWrapper.__init__(self,db,obj)
+    def __init__(self,model,obj):
+        ScratchPadWrapper.__init__(self,model,obj)
         self._type  = _("Person Link")
 
         person = self._db.get_person_from_handle(self._obj)
@@ -477,20 +484,20 @@ class ScratchPersonLink(ScratchPadWrapper):
 
 class ScratchDropList(object):
 
-    def __init__(self,db,obj_list):
-        self._db = db
+    def __init__(self,model,obj_list):
+        self._model = model
         self._obj_list = pickle.loads(obj_list)
 
     def get_objects(self):
-        return [self._cls(self._db,obj) for obj in self._obj_list]
+        return [self._cls(self._model,obj) for obj in self._obj_list]
 
 class ScratchPersonLinkList(ScratchDropList):
 
     DROP_TARGETS = [DdTargets.PERSON_LINK_LIST]
     DRAG_TARGET  = None
 
-    def __init__(self,db,obj_list):
-        ScratchDropList.__init__(self,db,obj_list)
+    def __init__(self,model,obj_list):
+        ScratchDropList.__init__(self,model,obj_list)
         self._cls = ScratchPersonLink
     
 
@@ -520,8 +527,12 @@ class ScratchPadListView:
     LOCAL_DRAG_TARGET = ('MY_TREE_MODEL_ROW', gtk.TARGET_SAME_WIDGET, 0)
     LOCAL_DRAG_TYPE   = 'MY_TREE_MODEL_ROW'
     
-    def __init__(self, db, widget):
-        self._db = db
+    def __init__(self, model, widget):
+        self._gramps_model = model
+        
+        self.database_changed(self._gramps_model.db)
+        self._gramps_model.connect('database-changed', self.database_changed)
+
         self._widget = widget
 
         self._target_type_to_wrapper_class_map = {}
@@ -573,6 +584,9 @@ class ScratchPadListView:
                              self.object_drag_data_received)
 
         self.register_wrapper_classes()
+
+    def database_changed(self,db):
+        self._db = db
 
     # Method to manage the wrapper classes.
     
@@ -668,7 +682,7 @@ class ScratchPadListView:
         # Just select the first match.
         wrapper_class = self._target_type_to_wrapper_class_map[possible_wrappers[0]]
 
-        o = wrapper_class(self._db,sel_data)
+        o = wrapper_class(self._gramps_model,sel_data)
 
         # If the wrapper object is a subclass of ScratchDropList then
         # the drag data was a list of objects and we need to decode
@@ -741,13 +755,15 @@ class ScratchPadWindow:
     def __init__(self,database,parent):
         """Initializes the ScratchPad class, and displays the window"""
 
-        self.db = database
         self.parent = parent
         if self.parent.child_windows.has_key(self.__class__):
             self.parent.child_windows[self.__class__].present(None)
             return
         self.win_key = self.__class__
 
+
+        self.database_changed(database)
+        self.parent.connect('database-changed', self.database_changed)
 
         base = os.path.dirname(__file__)
         self.glade_file = "%s/%s" % (base,"scratchpad.glade")
@@ -758,7 +774,7 @@ class ScratchPadWindow:
         self.clear_all_btn = self.top.get_widget("btn_clear_all")
         self.clear_btn = self.top.get_widget("btn_clear")
         
-        self.object_list = ScratchPadListView(self.db,self.top.get_widget('objectlist'))
+        self.object_list = ScratchPadListView(self.parent,self.top.get_widget('objectlist'))
         self.object_list.get_selection().connect('changed',self.set_clear_btn_sensitivity)
         self.set_clear_btn_sensitivity(sel=self.object_list.get_selection())
         
@@ -781,10 +797,14 @@ class ScratchPadWindow:
             })
 
         self.clear_all_btn.connect_object('clicked', gtk.ListStore.clear, ScratchPadWindow.otree)
+        self.parent.connect('database-changed', lambda x: ScratchPadWindow.otree.clear())
         
         self.add_itself_to_menu()
         self.window.show()
 
+    def database_changed(self,database):
+        self.db = database
+        
     def set_clear_all_btn_sensitivity(self, treemodel=None, path=None, iter=None, user_param1=None):
         if len(treemodel) == 0:
             self.clear_all_btn.set_sensitive(False)
