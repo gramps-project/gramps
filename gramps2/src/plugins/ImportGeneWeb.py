@@ -97,6 +97,7 @@ class GeneWebParser:
         self.filename = file
 
     def get_next_line(self):
+        self.lineno += 1
         line = self.f.readline()
         if line:
             line = line.strip()
@@ -109,6 +110,7 @@ class GeneWebParser:
         self.trans.set_batch(True)
         self.db.disable_signals()
         t = time.time()
+        self.lineno = 0
         self.index = 0
         self.fam_count = 0
         self.indi_count = 0
@@ -121,6 +123,8 @@ class GeneWebParser:
         self.current_mode = None
         self.current_family = None
         self.current_husband_handle = None
+        self.current_child_birthplace_handle = None
+        self.current_child_source_handle = None
         try:
             while 1:
                 line = self.get_next_line()
@@ -140,6 +144,8 @@ class GeneWebParser:
                     self.read_witness_line(line,fields)
                 elif fields[0] == "cbp":
                     self.read_children_birthplace_line(line,fields)
+                elif fields[0] == "csrc":
+                    self.read_children_source_line(line,fields)
                 elif fields[0] == "beg":
                     self.read_children_lines()
                 elif fields[0] == "comm":
@@ -149,7 +155,7 @@ class GeneWebParser:
                 elif fields[0] == "end":
                     self.current_mode = None
                 else:
-                    print "Token >%s< unknown. line skipped: %s" % (fields[0],line)
+                    print "Token >%s< unknown. line %d skipped: %s" % (fields[0],self.lineno,line)
         except Errors.GedcomError, err:
             self.errmsg(str(err))
             
@@ -167,6 +173,8 @@ class GeneWebParser:
 
     def read_family_line(self,line,fields):
         self.current_husband_handle = None
+        self.current_child_birthplace_handle = None
+        self.current_child_source_handle = None
         self.current_family = RelLib.Family()
         self.db.add_family(self.current_family,self.trans)
         self.db.commit_family(self.current_family,self.trans)
@@ -194,7 +202,7 @@ class GeneWebParser:
     
     def read_source_line(self,line,fields):
         if not self.current_family:
-            print "Unknown family of child!"
+            print "Unknown family of child in line %d!" % self.lineno
             return None
         source = self.get_or_create_source(self.decode(fields[1]))
         self.current_family.add_source_reference(source)
@@ -214,12 +222,12 @@ class GeneWebParser:
     def read_children_lines(self):
         father_surname = "Dummy"
         if not self.current_husband_handle:
-            print "Unknown father for child!"
+            print "Unknown father for child in line %d!" % self.lineno
             return None
         husb = self.db.get_person_from_handle(self.current_husband_handle)
         father_surname = husb.get_primary_name().get_surname()
         if not self.current_family:
-            print "Unknown family of child!"
+            print "Unknown family of child in line %d!" % self.lineno
             return None
         while 1:
             line = self.get_next_line()
@@ -243,6 +251,15 @@ class GeneWebParser:
                     self.current_family.add_child_handle(child.get_handle())
                     self.db.commit_family(self.current_family,self.trans)
                     child.add_parent_family_handle(self.current_family.get_handle(),RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
+                    if self.current_child_birthplace_handle:
+                        birth_handle = child.get_birth_handle()
+                        birth = self.db.get_event_from_handle(birth_handle)
+                        if not birth:
+                            birth = RelLib.Event()
+                        birth.set_place_handle(self.current_child_birthplace_handle)
+                        self.db.commit_event(birth,self.trans)
+                    if self.current_child_source_handle:
+                        child.add_source_reference(self.current_child_source_handle)
                     self.db.commit_person(child,self.trans)
             else:
                 break
@@ -250,11 +267,19 @@ class GeneWebParser:
             
 
     def read_children_birthplace_line(self,line,fields):
+        cbp = self.get_or_create_place(self.decode(fields[1]))
+        if cbp:
+            self.current_child_birthplace_handle = cbp.get_handle()
+        return None
+
+    def read_children_source_line(self,line,fields):
+        csrc = self.get_or_create_source(self.decode(fields[1]))
+        self.current_child_source_handle = csrc
         return None
 
     def read_family_comment(self,line,fields):
         if not self.current_family:
-            print "Unknown family of child!"
+            print "Unknown family of child in line %d!" % self.lineno
             return None
         self.current_family.set_note(self.cnv(line))
         self.db.commit_family(self.current_family,self.trans)
@@ -301,7 +326,7 @@ class GeneWebParser:
         #Alex: this failed when fields[idx] was an empty line. Fixed.
         #while idx < len(fields) and not fields[idx][0] == "+":
         while idx < len(fields) and not (fields[idx] and fields[idx][0] == "+"):
-            print "Unknown field: "+fields[idx]
+            print "Unknown field: '%s' in line %d!" %(fields[idx],self.lineno)
             idx = idx + 1
 
         while idx < len(fields) and mariageDataRe.match(fields[idx]):
@@ -337,7 +362,7 @@ class GeneWebParser:
                 engaged = 1
                 idx = idx + 1
             else:
-                print "Unknown field for mariage: %s" % fields[idx]
+                print "Unknown field '%s'for mariage in line %d!" % (fields[idx],self.lineno)
                 idx = idx + 1
 
         if mar_date or mar_place or mar_source:
@@ -367,7 +392,7 @@ class GeneWebParser:
         
         if not father_surname:
             if not idx < len(fields):
-                print "Missing surname of person"
+                print "Missing surname of person in line %d!" % self.lineno
                 return (idx,None)
             surname = self.decode(fields[idx])
             idx = idx + 1
@@ -375,7 +400,7 @@ class GeneWebParser:
             surname = father_surname
         
         if not idx < len(fields):
-            print "Missing firstname of person"
+            print "Missing firstname of person in line %d!" % self.lineno
             return (idx,None)
         firstname = self.decode(self.cnv(fields[idx]))
         idx = idx + 1
@@ -534,7 +559,7 @@ class GeneWebParser:
                     death_date = self.parse_date(self.decode(fields[idx]))
                 idx = idx + 1
             else:
-                print "Unknown field for person: %s" % fields[idx]
+                print "Unknown field '%s' for person in line %d!" % (fields[idx],self.lineno)
                 idx = idx + 1
         
         if public_name:
@@ -611,6 +636,8 @@ class GeneWebParser:
         return (idx,person)
         
     def parse_date(self,field):
+        if field == "0":
+            return None
         date = _dp.parse(field)
         return date
         

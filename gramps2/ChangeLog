@@ -3,6 +3,9 @@
 
 	* src/plugins/Check.py: Fix events, that reference non existing places
 
+	* src/plugins/ImportGeneWeb.py: Add line numbers to error messages;
+	Support for "csrc" and "cbp" fields; Catch empty date
+
 2005-04-10  Alex Roitman  <shura@gramps-project.org>
 	* Release: Version 1.1.95 "When danger reared its ugly head,
 	he bravely turned his tail and fled" released.
