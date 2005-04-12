@@ -300,7 +300,7 @@ class EventEditor:
         text = unicode(field.get_text().strip())
         if text:
             if self.pmap.has_key(text):
-                return self.db.get_place_from_handle(self.pdmap[text])
+                return self.db.get_place_from_handle(self.pmap[text])
             else:
                 place = RelLib.Place()
                 place.set_title(text)
