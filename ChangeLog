@@ -8,6 +8,8 @@
 	* src/SourceView.py (button_press,build_context_menu): Work with
 	multiple selections.
 
+	* src/ArgHandler.py: Minor string changes.
+	* src/DbPrompter.py: Minor string changes.
 	* src/po/template.po: Update translation template.
 	* src/po/ru.po: Some translation updates.
 
