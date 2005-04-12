@@ -8,6 +8,9 @@
 	* src/SourceView.py (button_press,build_context_menu): Work with
 	multiple selections.
 
+	* src/po/template.po: Update translation template.
+	* src/po/ru.po: Some translation updates.
+
 2005-04-11  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py (load_canvas): Catch bug of not existing family
 
