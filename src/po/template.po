@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Sat Apr  9 13:44:12 2005\n"
+"POT-Creation-Date: Mon Apr 11 20:54:14 2005\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,12 +44,12 @@ msgstr ""
 #: SelectChild.py:124 SelectPerson.py:78 plugins/BookReport.py:631
 #: plugins/FilterEditor.py:451 plugins/IndivComplete.py:404
 #: plugins/IndivSummary.py:225 plugins/NavWebPage.py:194
-#: plugins/PatchNames.py:179 plugins/RelCalc.py:95 plugins/ScratchPad.py:147
-#: plugins/ScratchPad.py:188 plugins/ScratchPad.py:230
-#: plugins/ScratchPad.py:287 plugins/ScratchPad.py:320
-#: plugins/ScratchPad.py:362 plugins/ScratchPad.py:373
-#: plugins/ScratchPad.py:374 plugins/ScratchPad.py:385
-#: plugins/ScratchPad.py:456 plugins/ScratchPad.py:467 plugins/TimeLine.py:431
+#: plugins/PatchNames.py:179 plugins/RelCalc.py:95 plugins/ScratchPad.py:154
+#: plugins/ScratchPad.py:195 plugins/ScratchPad.py:237
+#: plugins/ScratchPad.py:294 plugins/ScratchPad.py:327
+#: plugins/ScratchPad.py:369 plugins/ScratchPad.py:380
+#: plugins/ScratchPad.py:381 plugins/ScratchPad.py:392
+#: plugins/ScratchPad.py:463 plugins/ScratchPad.py:474 plugins/TimeLine.py:431
 #: plugins/WebPage.py:317
 msgid "Name"
 msgstr ""
@@ -94,8 +94,8 @@ msgstr ""
 msgid "Address Editor"
 msgstr ""
 
-#: AddrEdit.py:168 EditPerson.py:334 plugins/ScratchPad.py:113
-#: plugins/ScratchPad.py:130
+#: AddrEdit.py:168 EditPerson.py:334 plugins/ScratchPad.py:120
+#: plugins/ScratchPad.py:137
 msgid "Address"
 msgstr ""
 
@@ -103,23 +103,23 @@ msgstr ""
 msgid "Opening non-native format"
 msgstr ""
 
-#: ArgHandler.py:283
+#: ArgHandler.py:283 DbPrompter.py:215
 msgid "New GRAMPS database has to be set up when opening non-native formats. The following dialog will let you select the new database."
 msgstr ""
 
-#: ArgHandler.py:288
+#: ArgHandler.py:291
 msgid "New GRAMPS database was not set up"
 msgstr ""
 
-#: ArgHandler.py:289
+#: ArgHandler.py:292
 msgid "GRAMPS cannot open non-native data without setting up new GRAMPS database."
 msgstr ""
 
-#: ArgHandler.py:299
-msgid "Cannot open file: unknown type"
+#: ArgHandler.py:302 DbPrompter.py:201 DbPrompter.py:228 DbPrompter.py:327
+msgid "Could not open file: %s"
 msgstr ""
 
-#: ArgHandler.py:300
+#: ArgHandler.py:303 DbPrompter.py:229 DbPrompter.py:328 DbPrompter.py:477
 msgid ""
 "File type \"%s\" is unknown to GRAMPS.\n"
 "\n"
@@ -139,7 +139,7 @@ msgid "New Attribute"
 msgstr ""
 
 #: AttrEdit.py:175 EditPerson.py:328 ImageSelect.py:681 ImageSelect.py:964
-#: Marriage.py:214 plugins/ScratchPad.py:266 plugins/ScratchPad.py:274
+#: Marriage.py:214 plugins/ScratchPad.py:273 plugins/ScratchPad.py:281
 msgid "Attribute"
 msgstr ""
 
@@ -198,7 +198,7 @@ msgstr ""
 msgid "Modify Parents"
 msgstr ""
 
-#: ChooseParents.py:604 FamilyView.py:1081 MergePeople.py:124
+#: ChooseParents.py:604 FamilyView.py:1085 MergePeople.py:124
 #: plugins/FamilyGroup.py:261 plugins/IndivComplete.py:215
 #: plugins/IndivComplete.py:217 plugins/IndivComplete.py:449
 #: plugins/IndivSummary.py:289 plugins/NavWebPage.py:724
@@ -206,7 +206,7 @@ msgstr ""
 msgid "Mother"
 msgstr ""
 
-#: ChooseParents.py:605 FamilyView.py:1079 MergePeople.py:122
+#: ChooseParents.py:605 FamilyView.py:1083 MergePeople.py:122
 #: plugins/FamilyGroup.py:248 plugins/IndivComplete.py:206
 #: plugins/IndivComplete.py:208 plugins/IndivComplete.py:444
 #: plugins/IndivSummary.py:275 plugins/NavWebPage.py:720
@@ -294,18 +294,6 @@ msgstr ""
 msgid "GRAMPS: Open database"
 msgstr ""
 
-#: DbPrompter.py:201 DbPrompter.py:228 DbPrompter.py:327
-msgid "Could not open file: %s"
-msgstr ""
-
-#: DbPrompter.py:215
-msgid "New gramps database has to be set up when opening non-native formats. The following dialog will let you select the new database."
-msgstr ""
-
-#: DbPrompter.py:229 DbPrompter.py:328
-msgid "The type \"%s\" is not in the list of known file types"
-msgstr ""
-
 #: DbPrompter.py:258
 msgid "GRAMPS: Import database"
 msgstr ""
@@ -318,12 +306,8 @@ msgstr ""
 msgid "GRAMPS: Select filename for a new database"
 msgstr ""
 
-#: DbPrompter.py:475
-msgid "Could not save file"
-msgstr ""
-
 #: DbPrompter.py:476
-msgid "Unknown file type: %(file_type)s"
+msgid "Could not save file: %s"
 msgstr ""
 
 #: DbPrompter.py:583
@@ -402,54 +386,54 @@ msgid "Patronymic:"
 msgstr ""
 
 #: EditPerson.py:308 EditSource.py:287 EventEdit.py:275 ImageSelect.py:1135
-#: Marriage.py:213 plugins/ScratchPad.py:159 plugins/ScratchPad.py:173
+#: Marriage.py:213 plugins/ScratchPad.py:166 plugins/ScratchPad.py:180
 msgid "Event"
 msgstr ""
 
 #: EditPerson.py:309 EditPerson.py:346 EditPlace.py:130 const.py:435
-#: plugins/ScratchPad.py:178 plugins/ScratchPad.py:220
-#: plugins/ScratchPad.py:255
+#: plugins/ScratchPad.py:185 plugins/ScratchPad.py:227
+#: plugins/ScratchPad.py:262
 msgid "Description"
 msgstr ""
 
 #: EditPerson.py:310 EditPerson.py:334 Marriage.py:213 MediaView.py:62
-#: plugins/ScratchPad.py:131 plugins/ScratchPad.py:175
-#: plugins/ScratchPad.py:217
+#: plugins/ScratchPad.py:138 plugins/ScratchPad.py:182
+#: plugins/ScratchPad.py:224
 msgid "Date"
 msgstr ""
 
 #: EditPerson.py:311 EditPlace.py:271 EditSource.py:293 ImageSelect.py:1141
 #: Marriage.py:213 MediaView.py:63 gramps.glade:12201
-#: plugins/NavWebPage.py:247 plugins/ScratchPad.py:176
-#: plugins/ScratchPad.py:218
+#: plugins/NavWebPage.py:247 plugins/ScratchPad.py:183
+#: plugins/ScratchPad.py:225
 msgid "Place"
 msgstr ""
 
 #: EditPerson.py:328 EditSource.py:156 ImageSelect.py:681 ImageSelect.py:964
 #: Marriage.py:214 gramps.glade:12720 plugins/FilterEditor.py:451
-#: plugins/PatchNames.py:176 plugins/ScratchPad.py:277
-#: plugins/ScratchPad.py:310 plugins/ScratchPad.py:532
-#: plugins/ScratchPad.py:538
+#: plugins/PatchNames.py:176 plugins/ScratchPad.py:284
+#: plugins/ScratchPad.py:317 plugins/ScratchPad.py:543
+#: plugins/ScratchPad.py:549
 msgid "Value"
 msgstr ""
 
 #: EditPerson.py:340 EditSource.py:267 ImageSelect.py:1114 MediaView.py:59
 #: MergePeople.py:140 SelectObject.py:86 plugins/BookReport.py:631
 #: plugins/BookReport.py:632 plugins/PatchNames.py:173
-#: plugins/ScratchPad.py:174 plugins/ScratchPad.py:216
-#: plugins/ScratchPad.py:275 plugins/ScratchPad.py:308
-#: plugins/ScratchPad.py:375 plugins/ScratchPad.py:530
-#: plugins/ScratchPad.py:536
+#: plugins/ScratchPad.py:181 plugins/ScratchPad.py:223
+#: plugins/ScratchPad.py:282 plugins/ScratchPad.py:315
+#: plugins/ScratchPad.py:382 plugins/ScratchPad.py:541
+#: plugins/ScratchPad.py:547
 msgid "Type"
 msgstr ""
 
 #: EditPerson.py:346 EditPlace.py:129 MediaView.py:60
-#: plugins/ScratchPad.py:253
+#: plugins/ScratchPad.py:260
 msgid "Path"
 msgstr ""
 
 #: EditPerson.py:559 ImageSelect.py:609 ImageSelect.py:1049 MediaView.py:235
-#: plugins/ScratchPad.py:417 plugins/ScratchPad.py:425
+#: plugins/ScratchPad.py:424 plugins/ScratchPad.py:432
 msgid "Media Object"
 msgstr ""
 
@@ -640,38 +624,38 @@ msgstr ""
 msgid "New Event"
 msgstr ""
 
-#: EventEdit.py:311
+#: EventEdit.py:318
 msgid "Event does not have a type"
 msgstr ""
 
-#: EventEdit.py:312
+#: EventEdit.py:319
 msgid "You must specify an event type before you can save the event"
 msgstr ""
 
-#: EventEdit.py:329 MergePeople.py:98 const.py:233 const.py:241
+#: EventEdit.py:336 MergePeople.py:98 const.py:233 const.py:241
 #: plugins/EventCmp.py:408 plugins/FamilyGroup.py:200
 #: plugins/FamilyGroup.py:334 plugins/GraphViz.py:236 plugins/GraphViz.py:237
-#: plugins/NavWebPage.py:640 plugins/ScratchPad.py:457
+#: plugins/NavWebPage.py:640 plugins/ScratchPad.py:464
 msgid "Birth"
 msgstr ""
 
-#: EventEdit.py:329 MergePeople.py:100 plugins/EventCmp.py:408
+#: EventEdit.py:336 MergePeople.py:100 plugins/EventCmp.py:408
 #: plugins/FamilyGroup.py:218 plugins/FamilyGroup.py:336
 #: plugins/FamilyGroup.py:338 plugins/NavWebPage.py:648
 msgid "Death"
 msgstr ""
 
-#: EventEdit.py:331
+#: EventEdit.py:338
 msgid "New event type created"
 msgstr ""
 
-#: EventEdit.py:332
+#: EventEdit.py:339
 msgid ""
 "The \"%s\" event type has been added to this database.\n"
 "It will now appear in the event menus for this database"
 msgstr ""
 
-#: EventEdit.py:346
+#: EventEdit.py:353
 msgid "Edit Event"
 msgstr ""
 
@@ -795,8 +779,8 @@ msgstr ""
 
 #: FamilyView.py:396 FamilyView.py:406 FamilyView.py:427 FamilyView.py:434
 #: FamilyView.py:466 FamilyView.py:531 FamilyView.py:537 FamilyView.py:605
-#: FamilyView.py:611 FamilyView.py:1154 FamilyView.py:1160 FamilyView.py:1193
-#: FamilyView.py:1199 PedView.py:559 PedView.py:568 PeopleView.py:304
+#: FamilyView.py:611 FamilyView.py:1158 FamilyView.py:1164 FamilyView.py:1197
+#: FamilyView.py:1203 PedView.py:561 PedView.py:570 PeopleView.py:304
 #: gramps.glade:843 gramps_main.py:602 plugins/NavWebPage.py:393
 #: plugins/NavWebPage.py:396
 msgid "Home"
@@ -807,11 +791,11 @@ msgid "Add Bookmark"
 msgstr ""
 
 #: FamilyView.py:400 FamilyView.py:430 FamilyView.py:459 FamilyView.py:490
-#: PedView.py:582 PedView.py:593 PeopleView.py:300
+#: PedView.py:584 PedView.py:595 PeopleView.py:300
 msgid "People Menu"
 msgstr ""
 
-#: FamilyView.py:455 FamilyView.py:487 FamilyView.py:1173 FamilyView.py:1212
+#: FamilyView.py:455 FamilyView.py:487 FamilyView.py:1177 FamilyView.py:1216
 msgid "Add parents"
 msgstr ""
 
@@ -823,7 +807,7 @@ msgstr ""
 msgid "Make the selected child an active person"
 msgstr ""
 
-#: FamilyView.py:549 FamilyView.py:1172 FamilyView.py:1211
+#: FamilyView.py:549 FamilyView.py:1176 FamilyView.py:1215
 msgid "Edit the child/parent relationships"
 msgstr ""
 
@@ -867,7 +851,7 @@ msgstr ""
 msgid "Modify family"
 msgstr ""
 
-#: FamilyView.py:795 FamilyView.py:1426 SelectChild.py:85 SelectChild.py:148
+#: FamilyView.py:795 FamilyView.py:1430 SelectChild.py:85 SelectChild.py:148
 msgid "Add Child to Family"
 msgstr ""
 
@@ -899,61 +883,61 @@ msgstr ""
 msgid "<double click to add spouse>"
 msgstr ""
 
-#: FamilyView.py:1099
+#: FamilyView.py:1103
 msgid ""
 "%s: %s [%s]\n"
 "\tRelationship: %s"
 msgstr ""
 
-#: FamilyView.py:1101
+#: FamilyView.py:1105
 msgid "%s: unknown"
 msgstr ""
 
-#: FamilyView.py:1145
+#: FamilyView.py:1149
 msgid "Parents Menu"
 msgstr ""
 
-#: FamilyView.py:1171 FamilyView.py:1210
+#: FamilyView.py:1175 FamilyView.py:1214
 msgid "Make the selected parents the active family"
 msgstr ""
 
-#: FamilyView.py:1174 FamilyView.py:1213
+#: FamilyView.py:1178 FamilyView.py:1217
 msgid "Remove parents"
 msgstr ""
 
-#: FamilyView.py:1184
+#: FamilyView.py:1188
 msgid "Spouse Parents Menu"
 msgstr ""
 
-#: FamilyView.py:1276 FamilyView.py:1291
+#: FamilyView.py:1280 FamilyView.py:1295
 msgid "Remove Parents of %s"
 msgstr ""
 
-#: FamilyView.py:1277 FamilyView.py:1292
+#: FamilyView.py:1281 FamilyView.py:1296
 msgid "Removing the parents of a person removes the person as a child of the parents. The parents are not removed from the database, and the relationship between the parents is not removed."
 msgstr ""
 
-#: FamilyView.py:1281 FamilyView.py:1296
+#: FamilyView.py:1285 FamilyView.py:1300
 msgid "_Remove Parents"
 msgstr ""
 
-#: FamilyView.py:1389
+#: FamilyView.py:1393
 msgid "Remove Parents (%s)"
 msgstr ""
 
-#: FamilyView.py:1457
+#: FamilyView.py:1461
 msgid "Attempt to Reorder Children Failed"
 msgstr ""
 
-#: FamilyView.py:1458
+#: FamilyView.py:1462
 msgid "Children must be ordered by their birth dates."
 msgstr ""
 
-#: FamilyView.py:1463
+#: FamilyView.py:1467
 msgid "Reorder children"
 msgstr ""
 
-#: FamilyView.py:1497
+#: FamilyView.py:1501
 msgid "Reorder spouses"
 msgstr ""
 
@@ -1584,8 +1568,8 @@ msgstr ""
 #: MediaView.py:57 MediaView.py:137 SelectObject.py:85 SourceView.py:51
 #: SourceView.py:89 Sources.py:115 Sources.py:249
 #: plugins/AncestorChart2.py:482 plugins/BookReport.py:789
-#: plugins/PatchNames.py:206 plugins/ScratchPad.py:347
-#: plugins/ScratchPad.py:531 plugins/ScratchPad.py:537
+#: plugins/PatchNames.py:206 plugins/ScratchPad.py:354
+#: plugins/ScratchPad.py:542 plugins/ScratchPad.py:548
 #: plugins/SimpleBookTitle.py:169 plugins/TimeLine.py:456
 msgid "Title"
 msgstr ""
@@ -1630,11 +1614,11 @@ msgstr ""
 msgid "Select title"
 msgstr ""
 
-#: MergeData.py:162
+#: MergeData.py:154
 msgid "Merge Places"
 msgstr ""
 
-#: MergeData.py:312
+#: MergeData.py:304
 msgid "Merge Sources"
 msgstr ""
 
@@ -1651,7 +1635,7 @@ msgstr ""
 msgid "Events"
 msgstr ""
 
-#: MergePeople.py:117 PedView.py:691 plugins/NavWebPage.py:716
+#: MergePeople.py:117 PedView.py:693 plugins/NavWebPage.py:716
 msgid "Parents"
 msgstr ""
 
@@ -1663,7 +1647,7 @@ msgstr ""
 msgid "No parents found"
 msgstr ""
 
-#: MergePeople.py:128 PedView.py:596 plugins/NavWebPage.py:729
+#: MergePeople.py:128 PedView.py:598 plugins/NavWebPage.py:729
 msgid "Spouses"
 msgstr ""
 
@@ -1756,27 +1740,27 @@ msgstr ""
 msgid "crem."
 msgstr ""
 
-#: PedView.py:377
+#: PedView.py:379
 msgid "Anchor"
 msgstr ""
 
-#: PedView.py:494
+#: PedView.py:496
 msgid "Double clicking will make %s the active person"
 msgstr ""
 
-#: PedView.py:561
+#: PedView.py:563
 msgid "Set anchor"
 msgstr ""
 
-#: PedView.py:562
+#: PedView.py:564
 msgid "Remove anchor"
 msgstr ""
 
-#: PedView.py:627 plugins/WebPage.py:711
+#: PedView.py:629 plugins/WebPage.py:711
 msgid "Siblings"
 msgstr ""
 
-#: PedView.py:657 plugins/FamilyGroup.py:400 plugins/IndivComplete.py:295
+#: PedView.py:659 plugins/FamilyGroup.py:400 plugins/IndivComplete.py:295
 #: plugins/IndivSummary.py:179 plugins/NavWebPage.py:738
 #: plugins/WebPage.py:670
 msgid "Children"
@@ -1803,7 +1787,7 @@ msgstr ""
 msgid "Updating display..."
 msgstr ""
 
-#: PeopleView.py:291 PlaceView.py:169 SourceView.py:155 gramps.glade:977
+#: PeopleView.py:291 PlaceView.py:169 SourceView.py:157 gramps.glade:977
 #: plugins/BookReport.py:832
 msgid "Edit"
 msgstr ""
@@ -1832,7 +1816,7 @@ msgstr ""
 msgid "Place Menu"
 msgstr ""
 
-#: PlaceView.py:220 SourceView.py:191 gramps_main.py:1381
+#: PlaceView.py:220 SourceView.py:193 gramps_main.py:1381
 msgid "Delete %s?"
 msgstr ""
 
@@ -1864,7 +1848,7 @@ msgstr ""
 #: PluginMgr.py:191 PluginMgr.py:192 PluginMgr.py:223 PluginMgr.py:224
 #: PluginMgr.py:225 ReportUtils.py:1746 Witness.py:83 Witness.py:166
 #: const.py:234 const.py:247 const.py:493 const.py:506 gramps_main.py:1654
-#: plugins/ScratchPad.py:75 plugins/WebPage.py:331
+#: plugins/Check.py:439 plugins/ScratchPad.py:78 plugins/WebPage.py:331
 msgid "Unknown"
 msgstr ""
 
@@ -1986,7 +1970,7 @@ msgstr ""
 msgid "Warning: line %d was not understood, so it was ignored."
 msgstr ""
 
-#: ReadGedcom.py:497 plugins/ImportGeneWeb.py:157 plugins/ImportvCard.py:158
+#: ReadGedcom.py:497 plugins/ImportGeneWeb.py:163 plugins/ImportvCard.py:158
 msgid "Import Complete: %d seconds"
 msgstr ""
 
@@ -3043,27 +3027,27 @@ msgstr ""
 msgid "Publication Information"
 msgstr ""
 
-#: SourceView.py:159
+#: SourceView.py:161
 msgid "Source Menu"
 msgstr ""
 
-#: SourceView.py:184
+#: SourceView.py:186
 msgid "This source is currently being used. Deleting it will remove it from the database and from all records that reference it."
 msgstr ""
 
-#: SourceView.py:188
+#: SourceView.py:190
 msgid "Deleting source will remove it from the database."
 msgstr ""
 
-#: SourceView.py:192
+#: SourceView.py:194
 msgid "_Delete Source"
 msgstr ""
 
-#: SourceView.py:224
+#: SourceView.py:227
 msgid "Cannot merge sources."
 msgstr ""
 
-#: SourceView.py:225
+#: SourceView.py:228
 msgid "Exactly two sources must be selected to perform a merge. A second source can be selected by holding down the control key while clicking on the desired source."
 msgstr ""
 
@@ -3633,8 +3617,8 @@ msgstr ""
 msgid "Books"
 msgstr ""
 
-#: const.py:943 plugins/NavWebPage.py:1148 plugins/ScratchPad.py:349
-#: plugins/ScratchPad.py:398 plugins/ScratchPad.py:406
+#: const.py:943 plugins/NavWebPage.py:1148 plugins/ScratchPad.py:356
+#: plugins/ScratchPad.py:405 plugins/ScratchPad.py:413
 #: plugins/SimpleBookTitle.py:169 plugins/SimpleBookTitle.py:170
 #: plugins/SimpleBookTitle.py:171
 msgid "Text"
@@ -4696,8 +4680,8 @@ msgstr ""
 #: gramps.glade:23829 gramps.glade:25648 gramps.glade:26652 gramps.glade:28020
 #: gramps.glade:29443 plugins/Ancestors.py:159 plugins/IndivComplete.py:324
 #: plugins/NavWebPage.py:438 plugins/NavWebPage.py:443
-#: plugins/NavWebPage.py:539 plugins/ScratchPad.py:146
-#: plugins/ScratchPad.py:286 plugins/ScratchPad.py:319 plugins/WebPage.py:222
+#: plugins/NavWebPage.py:539 plugins/ScratchPad.py:153
+#: plugins/ScratchPad.py:293 plugins/ScratchPad.py:326 plugins/WebPage.py:222
 msgid "Sources"
 msgstr ""
 
@@ -5620,7 +5604,7 @@ msgstr ""
 msgid "Save Media Object"
 msgstr ""
 
-#: gramps_main.py:1331 plugins/Check.py:261 plugins/WriteCD.py:253
+#: gramps_main.py:1331 plugins/Check.py:267 plugins/WriteCD.py:253
 #: plugins/WritePkg.py:171
 msgid "Media object could not be found"
 msgstr ""
@@ -5783,7 +5767,7 @@ msgstr ""
 #: plugins/FtmStyleAncestors.py:405 plugins/FtmStyleDescendants.py:536
 #: plugins/FtmStyleDescendants.py:541 plugins/FtmStyleDescendants.py:551
 #: plugins/FtmStyleDescendants.py:556 plugins/IndivComplete.py:577
-#: plugins/IndivSummary.py:373
+#: plugins/IndivSummary.py:373 plugins/TradDesTree.py:717
 msgid "The basic style used for the text display."
 msgstr ""
 
@@ -6180,7 +6164,7 @@ msgstr ""
 msgid "Fix capitalization of family names"
 msgstr ""
 
-#: plugins/ChangeNames.py:202 plugins/ChangeTypes.py:161 plugins/Check.py:541
+#: plugins/ChangeNames.py:202 plugins/ChangeTypes.py:161 plugins/Check.py:567
 #: plugins/Merge.py:655 plugins/PatchNames.py:316 plugins/ReorderIds.py:154
 msgid "Database Processing"
 msgstr ""
@@ -6213,166 +6197,176 @@ msgstr ""
 msgid "Allows all the events of a certain name to be renamed to a new name"
 msgstr ""
 
-#: plugins/Check.py:69
+#: plugins/Check.py:70
 msgid "Check Integrity"
 msgstr ""
 
-#: plugins/Check.py:242 plugins/WriteCD.py:229 plugins/WritePkg.py:147
+#: plugins/Check.py:248 plugins/WriteCD.py:229 plugins/WritePkg.py:147
 msgid "Select file"
 msgstr ""
 
-#: plugins/Check.py:262
+#: plugins/Check.py:268
 msgid ""
 "The file:\n"
 " %(file_name)s \n"
 "is referenced in the database, but no longer exists. The file may have been deleted or moved to a different location. You may choose to either remove the reference from the database, keep the reference to the missing file, or select a new file."
 msgstr ""
 
-#: plugins/Check.py:399
+#: plugins/Check.py:418
 msgid "No errors were found"
 msgstr ""
 
-#: plugins/Check.py:400
+#: plugins/Check.py:419
 msgid "The database has passed internal checks"
 msgstr ""
 
-#: plugins/Check.py:407
+#: plugins/Check.py:426
 msgid ""
 "1 broken child/family link was fixed\n"
 msgstr ""
 
-#: plugins/Check.py:409
+#: plugins/Check.py:428
 msgid ""
 "%d broken child/family links were found\n"
 msgstr ""
 
-#: plugins/Check.py:415
+#: plugins/Check.py:434
 msgid "Non existing child"
 msgstr ""
 
-#: plugins/Check.py:419
+#: plugins/Check.py:441
 msgid ""
 "%s was removed from the family of %s\n"
 msgstr ""
 
-#: plugins/Check.py:423
+#: plugins/Check.py:445
 msgid ""
 "1 broken spouse/family link was fixed\n"
 msgstr ""
 
-#: plugins/Check.py:425
+#: plugins/Check.py:447
 msgid ""
 "%d broken spouse/family links were found\n"
 msgstr ""
 
-#: plugins/Check.py:431
+#: plugins/Check.py:453
 msgid "Non existing person"
 msgstr ""
 
-#: plugins/Check.py:435
+#: plugins/Check.py:457
 msgid ""
 "%s was restored to the family of %s\n"
 msgstr ""
 
-#: plugins/Check.py:438
+#: plugins/Check.py:460
 msgid ""
 "1 empty family was found\n"
 msgstr ""
 
-#: plugins/Check.py:440
+#: plugins/Check.py:462
 msgid ""
 "%d empty families were found\n"
 msgstr ""
 
-#: plugins/Check.py:442
+#: plugins/Check.py:464
 msgid ""
 "1 corrupted family relationship fixed\n"
 msgstr ""
 
-#: plugins/Check.py:444
+#: plugins/Check.py:466
 msgid ""
 "%d corrupted family relationship fixed\n"
 msgstr ""
 
-#: plugins/Check.py:446
+#: plugins/Check.py:468
 msgid ""
 "1 media object was referenced, but not found\n"
 msgstr ""
 
-#: plugins/Check.py:448
+#: plugins/Check.py:470
 msgid ""
 "%d media objects were referenced, but not found\n"
 msgstr ""
 
-#: plugins/Check.py:450
+#: plugins/Check.py:472
 msgid ""
 "Reference to 1 missing media object was kept\n"
 msgstr ""
 
-#: plugins/Check.py:452
+#: plugins/Check.py:474
 msgid ""
 "References to %d media objects were kept\n"
 msgstr ""
 
-#: plugins/Check.py:454
+#: plugins/Check.py:476
 msgid ""
 "1 missing media object was replaced\n"
 msgstr ""
 
-#: plugins/Check.py:456
+#: plugins/Check.py:478
 msgid ""
 "%d missing media objects were replaced\n"
 msgstr ""
 
-#: plugins/Check.py:458
+#: plugins/Check.py:480
 msgid ""
 "1 missing media object was removed\n"
 msgstr ""
 
-#: plugins/Check.py:460
+#: plugins/Check.py:482
 msgid ""
 "%d missing media objects were removed\n"
 msgstr ""
 
-#: plugins/Check.py:462
+#: plugins/Check.py:484
 msgid ""
 "1 invalid event reference was removed\n"
 msgstr ""
 
-#: plugins/Check.py:464
+#: plugins/Check.py:486
 msgid ""
 "%d invalid event references were removed\n"
 msgstr ""
 
-#: plugins/Check.py:466
+#: plugins/Check.py:488
 msgid ""
 "1 invalid birth event name was fixed\n"
 msgstr ""
 
-#: plugins/Check.py:468
+#: plugins/Check.py:490
 msgid ""
 "%d invalid birth event names were fixed\n"
 msgstr ""
 
-#: plugins/Check.py:470
+#: plugins/Check.py:492
 msgid ""
 "1 invalid death event name was fixed\n"
 msgstr ""
 
-#: plugins/Check.py:472
+#: plugins/Check.py:494
 msgid ""
 "%d invalid death event names were fixed\n"
 msgstr ""
 
-#: plugins/Check.py:499
+#: plugins/Check.py:496
+msgid ""
+"1 place was referenced but not found\n"
+msgstr ""
+
+#: plugins/Check.py:498
+msgid ""
+"%d places were referenced, but not found\n"
+msgstr ""
+
+#: plugins/Check.py:525
 msgid "Integrity Check Results"
 msgstr ""
 
-#: plugins/Check.py:540
+#: plugins/Check.py:566
 msgid "Check and repair database"
 msgstr ""
 
-#: plugins/Check.py:542
+#: plugins/Check.py:568
 msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr ""
 
@@ -6436,7 +6430,7 @@ msgid "Descendant Graph"
 msgstr ""
 
 #: plugins/DesGraph.py:349 plugins/FanChart.py:325
-#: plugins/StatisticsChart.py:958
+#: plugins/StatisticsChart.py:958 plugins/TradDesTree.py:742
 msgid "Alpha"
 msgstr ""
 
@@ -6717,7 +6711,7 @@ msgstr ""
 msgid "User defined filters"
 msgstr ""
 
-#: plugins/FilterEditor.py:331 plugins/ScratchPad.py:350
+#: plugins/FilterEditor.py:331 plugins/ScratchPad.py:357
 msgid "Comment"
 msgstr ""
 
@@ -6790,7 +6784,7 @@ msgid "Custom Filter Editor"
 msgstr ""
 
 #: plugins/FilterEditor.py:927 plugins/FilterEditor.py:940
-#: plugins/RelCalc.py:208 plugins/ScratchPad.py:874 plugins/SoundGen.py:160
+#: plugins/RelCalc.py:208 plugins/ScratchPad.py:894 plugins/SoundGen.py:160
 #: plugins/Verify.py:553
 msgid "Utilities"
 msgstr ""
@@ -7089,15 +7083,15 @@ msgstr ""
 msgid "Generates relationship graphs using GraphViz (dot) program. This report generates dot file behind the scene and then uses dot to convert it into a graph. If you want the dotfile itself, please use the Code Generators category."
 msgstr ""
 
-#: plugins/ImportGeneWeb.py:159
+#: plugins/ImportGeneWeb.py:165
 msgid "GeneWeb import"
 msgstr ""
 
-#: plugins/ImportGeneWeb.py:684
+#: plugins/ImportGeneWeb.py:711
 msgid "GeneWeb files"
 msgstr ""
 
-#: plugins/ImportGeneWeb.py:686
+#: plugins/ImportGeneWeb.py:713
 msgid "GeneWeb"
 msgstr ""
 
@@ -7497,53 +7491,53 @@ msgstr ""
 msgid "Reorders the gramps IDs according to gramps' default rules."
 msgstr ""
 
-#: plugins/ScratchPad.py:132
+#: plugins/ScratchPad.py:139
 msgid "Location"
 msgstr ""
 
-#: plugins/ScratchPad.py:138
+#: plugins/ScratchPad.py:145
 msgid "Telephone"
 msgstr ""
 
-#: plugins/ScratchPad.py:177 plugins/ScratchPad.py:219
+#: plugins/ScratchPad.py:184 plugins/ScratchPad.py:226
 msgid "Cause"
 msgstr ""
 
-#: plugins/ScratchPad.py:187 plugins/ScratchPad.py:229
-#: plugins/ScratchPad.py:384 plugins/ScratchPad.py:466
+#: plugins/ScratchPad.py:194 plugins/ScratchPad.py:236
+#: plugins/ScratchPad.py:391 plugins/ScratchPad.py:473
 msgid "Primary source"
 msgstr ""
 
-#: plugins/ScratchPad.py:201 plugins/ScratchPad.py:215
+#: plugins/ScratchPad.py:208 plugins/ScratchPad.py:222
 msgid "Family Event"
 msgstr ""
 
-#: plugins/ScratchPad.py:243 plugins/ScratchPad.py:252
+#: plugins/ScratchPad.py:250 plugins/ScratchPad.py:259
 msgid "Url"
 msgstr ""
 
-#: plugins/ScratchPad.py:299 plugins/ScratchPad.py:307
+#: plugins/ScratchPad.py:306 plugins/ScratchPad.py:314
 msgid "Family Attribute"
 msgstr ""
 
-#: plugins/ScratchPad.py:332 plugins/ScratchPad.py:346
+#: plugins/ScratchPad.py:339 plugins/ScratchPad.py:353
 msgid "SourceRef"
 msgstr ""
 
-#: plugins/ScratchPad.py:348
+#: plugins/ScratchPad.py:355
 msgid "Page"
 msgstr ""
 
-#: plugins/ScratchPad.py:436 plugins/ScratchPad.py:455
+#: plugins/ScratchPad.py:443 plugins/ScratchPad.py:462
 msgid "Person Link"
 msgstr ""
 
-#: plugins/ScratchPad.py:810 plugins/ScratchPad.py:873
+#: plugins/ScratchPad.py:830 plugins/ScratchPad.py:893
 #: plugins/scratchpad.glade:9
 msgid "Scratch Pad"
 msgstr ""
 
-#: plugins/ScratchPad.py:875
+#: plugins/ScratchPad.py:895
 msgid "The Scratch Pad provides a temporary note pad to store objects for easy reuse."
 msgstr ""
 
@@ -7944,6 +7938,18 @@ msgstr ""
 
 #: plugins/TimeLine.py:482
 msgid "Generates a timeline graph."
+msgstr ""
+
+#: plugins/TradDesTree.py:725
+msgid "The basic style used for the date display."
+msgstr ""
+
+#: plugins/TradDesTree.py:740
+msgid "Trad Descendant Tree"
+msgstr ""
+
+#: plugins/TradDesTree.py:741
+msgid "Generates a text tree of descendants of the active person"
 msgstr ""
 
 #: plugins/Verify.py:84 plugins/Verify.py:98
