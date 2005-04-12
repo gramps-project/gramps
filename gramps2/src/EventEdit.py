@@ -95,8 +95,8 @@ class EventEditor:
         self.elist.sort()
 
         for key in self.parent.db.get_place_handles():
-            p = self.parent.db.get_place_from_handle(key).get_display_info()
-            self.pmap[p[0]] = key
+            title = self.parent.db.get_place_from_handle(key).get_title()
+            self.pmap[title] = key
 
         if event:
             self.srcreflist = self.event.get_source_references()
@@ -300,12 +300,11 @@ class EventEditor:
         text = unicode(field.get_text().strip())
         if text:
             if self.pmap.has_key(text):
-                return self.pdmap[text]
+                return self.db.get_place_from_handle(self.pdmap[text])
             else:
                 place = RelLib.Place()
                 place.set_title(text)
                 self.db.add_place(place,trans)
-                self.pmap[text] = place.get_handle()
                 return place
         else:
             return None
