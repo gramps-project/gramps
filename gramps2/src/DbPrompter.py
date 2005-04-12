@@ -212,7 +212,7 @@ class ExistingDbPrompter:
                 if filetype == mime_type or the_file == mime_type:
                     QuestionDialog.OkDialog(
                         _("Opening non-native format"), 
-                        _("New gramps database has to be set up "
+                        _("New GRAMPS database has to be set up "
                           "when opening non-native formats. The "
                           "following dialog will let you select "
                           "the new database."),
@@ -226,7 +226,7 @@ class ExistingDbPrompter:
                         return False
             QuestionDialog.ErrorDialog(
                 _("Could not open file: %s") % filename,
-                _('The type "%s" is not in the list of known file types') % filetype )
+                _('File type "%s" is unknown to GRAMPS.\n\nValid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM.') % filetype)
         choose.destroy()
         return False
 
@@ -325,7 +325,7 @@ class ImportDbPrompter:
                     return True
             QuestionDialog.ErrorDialog(
                 _("Could not open file: %s") % filename,
-                _('The type "%s" is not in the list of known file types') % filetype )
+                _('File type "%s" is unknown to GRAMPS.\n\nValid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM.') % filetype)
         choose.destroy()
         return False
 
@@ -472,9 +472,9 @@ class NewSaveasDbPrompter:
                 choose.destroy()
                 if filetype not in [const.app_gramps,const.app_gramps_xml,
                                     const.app_gedcom]:
-                    QuestionDialog.ErrorDialog(_('Could not save file'),
-                        _('Unknown file type: %(file_type)s') % {
-                                'file_type' : filetype }  )
+                    QuestionDialog.ErrorDialog(
+                        _("Could not save file: %s") % filename,
+                        _('File type "%s" is unknown to GRAMPS.\n\nValid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM.') % filetype)
                     return False
                 if filetype == const.app_gramps:
                     WriteGrdb.exportData(self.parent.db,filename,None,None)

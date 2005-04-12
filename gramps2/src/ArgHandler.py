@@ -280,8 +280,11 @@ class ArgHandler:
                     print "Cannot open %s. Exiting..."
             elif filetype in (const.app_gramps_package,):
                 QuestionDialog.OkDialog( _("Opening non-native format"), 
-                            _("New GRAMPS database has to be set up when opening non-native formats. The following dialog will let you select the new database."),
-                            self.parent.topWindow)
+                                    _("New GRAMPS database has to be set up "
+                                      "when opening non-native formats. The "
+                                      "following dialog will let you select "
+                                      "the new database.",
+                                    self.parent.topWindow)
                 prompter = DbPrompter.NewNativeDbPrompter(self.parent)
                 if not prompter.chooser():
                     QuestionDialog.ErrorDialog( 
@@ -296,7 +299,7 @@ class ArgHandler:
             else:
                 print "Unknown file type: %s" % filetype
                 QuestionDialog.ErrorDialog( 
-                        _("Cannot open file: unknown type"),
+                        _("Could not open file: %s") % filename,
                         _('File type "%s" is unknown to GRAMPS.\n\nValid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM.') % filetype)
                 print "Exiting..." 
                 os._exit(1)
