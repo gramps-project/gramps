@@ -283,7 +283,7 @@ class ArgHandler:
                                     _("New GRAMPS database has to be set up "
                                       "when opening non-native formats. The "
                                       "following dialog will let you select "
-                                      "the new database.",
+                                      "the new database."),
                                     self.parent.topWindow)
                 prompter = DbPrompter.NewNativeDbPrompter(self.parent)
                 if not prompter.chooser():
