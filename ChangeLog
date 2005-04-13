@@ -1,4 +1,6 @@
 2005-04-13  Don Allingham  <don@gramps-project.org>
+	* src/plugins/WebPage.py: fixed check on dialog run() return value,
+	changed deprecated gtk.mainiteration to gtk.main_iteration
 	* src/WriteGedcom.py: fixed problem with skipping events
 
 2005-04-12  Don Allingham  <don@gramps-project.org>
