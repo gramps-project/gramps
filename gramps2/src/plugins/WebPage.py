@@ -1124,8 +1124,9 @@ class WebReport(Report.Report):
                 ErrorDialog(_("Could not create the directory: %s") % \
                                  image_dir_name)
                 return
-    
-        ind_list = self.filter.apply(self.database,self.database.get_person_handles(sort_handles=False))
+
+        ind_list = self.database.get_person_handles(sort_handles=False)
+        ind_list = self.filter.apply(self.database,ind_list)
         progress_steps = len(ind_list)
         if len(ind_list) > 1:
             progress_steps = progress_steps+1
@@ -1161,25 +1162,25 @@ class WebReport(Report.Report):
             idoc.close()
             self.progress_bar_step()
             while gtk.events_pending():
-                gtk.mainiteration()
+                gtk.main_iteration()
             
         if len(ind_list) > 1:
             self.dump_index(ind_list,self.selected_style,
                             self.ind_template_name,dir_name)
             self.progress_bar_step()
             while gtk.events_pending():
-                gtk.mainiteration()
+                gtk.main_iteration()
         if self.use_gendex == 1:
             self.dump_gendex(ind_list,dir_name)
             self.progress_bar_step()
             while gtk.events_pending():
-                gtk.mainiteration()
+                gtk.main_iteration()
         if self.use_places == 1:
             self.dump_places(ind_list,self.selected_style,
                             self.ind_template_name,dir_name)
             self.progress_bar_step()
             while gtk.events_pending():
-                gtk.mainiteration()
+                gtk.main_iteration()
         self.progress_bar_done()
 
     def add_styles(self,doc):
@@ -1702,7 +1703,7 @@ class WebReportDialog(Report.ReportDialog):
                                     name,translated_name)
 
         response = self.window.run()
-        if response == True:
+        if response == gtk.RESPONSE_OK:
             try:
                 self.make_report()
             except (IOError,OSError),msg:
