@@ -810,7 +810,7 @@ class GedcomWriter:
             self.write_ord("SLGC",person.get_lds_sealing(),1,const.lds_csealing)
             
             for event_handle in person.get_event_list():
-                if event_handle:
+                if not event_handle:
                     continue
                 event = self.db.get_event_from_handle(event_handle)
                 if self.private and event.get_privacy():
