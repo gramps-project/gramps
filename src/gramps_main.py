@@ -138,6 +138,8 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.history = []
         self.mhistory = []
         self.hindex = -1
+
+        self.undo_active = False
                 
         self.db = GrampsBSDDB.GrampsBSDDB()
 
@@ -501,11 +503,20 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         label.set_use_underline(1)
 
     def undo(self,*args):
+        """
+        Undo signal handler - it is possible to reenter this routine too quickly if
+        the user presses the C-z signal too quickly. So, we need to check to make sure
+        we aren't already active.
+        """
+        if self.undo_active:
+            return
+        self.undo_active = True
         self.db.undo()
         if self.active_person:
             p = self.db.get_person_from_handle(self.active_person.get_handle())
             self.change_active_person(p)
         self.emit('database-changed',(self.db,))
+        self.undo_active = False
 
     def exit_and_undo(self,*args):
         self.db.disable_signals()
