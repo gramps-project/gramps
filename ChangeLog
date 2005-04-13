@@ -1,3 +1,6 @@
+2005-04-13  Don Allingham  <don@gramps-project.org>
+	* src/WriteGedcom.py: fixed problem with skipping events
+
 2005-04-12  Don Allingham  <don@gramps-project.org>
 	* src/FamilyView.py: commit family before people when committing
 	new spouse.
