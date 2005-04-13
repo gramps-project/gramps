@@ -716,10 +716,11 @@ class FamilyView:
             family.set_father_handle(epo.person.get_handle())
             family.set_mother_handle(self.person.get_handle())
 
+        self.parent.db.commit_family(family,trans)
         self.parent.db.commit_person(new_person,trans)
         self.parent.db.commit_person(old_person,trans)
-        self.parent.db.commit_family(family,trans)
         self.parent.db.transaction_commit(trans,_("Add Spouse"))
+
         self.family = family
         self.person = old_person
         m = Marriage.Marriage(self.parent,self.family,self.parent.db)

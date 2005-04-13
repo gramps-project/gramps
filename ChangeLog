@@ -1,4 +1,6 @@
 2005-04-12  Don Allingham  <don@gramps-project.org>
+	* src/FamilyView.py: commit family before people when committing
+	new spouse.
 	* src/EventEdit.py: more robust handler for new place after an edit
 
 2005-04-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
