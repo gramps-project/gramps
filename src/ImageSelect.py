@@ -743,16 +743,25 @@ class LocalMediaProperties:
         self.redraw_attr_list()
         if parent_window:
             self.window.set_transient_for(parent_window)
-        self.add_itself_to_menu()
+        try:
+            self.add_itself_to_menu()
+        except:
+            pass
         self.window.show()
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()
-        self.remove_itself_from_menu()
+        try:
+            self.remove_itself_from_menu()
+        except:
+            pass
 
     def close(self,obj):
         self.close_child_windows()
-        self.remove_itself_from_menu()
+        try:
+            self.remove_itself_from_menu()
+        except:
+            pass
         self.window.destroy()
 
     def close_child_windows(self):
@@ -882,10 +891,13 @@ class GlobalMediaProperties:
         self.dp = DateHandler.parser
         self.dd = DateHandler.displayer
         if obj:
-            if self.parent.parent.child_windows.has_key(obj.get_handle()):
-                self.parent.parent.child_windows[obj.get_handle()].present(None)
-                return
-            else:
+            try:
+                if self.parent.parent.child_windows.has_key(obj.get_handle()):
+                    self.parent.parent.child_windows[obj.get_handle()].present(None)
+                    return
+                else:
+                    self.win_key = obj.get_handle()
+            except:
                 self.win_key = obj.get_handle()
         else:
             self.win_key = self
@@ -1027,7 +1039,10 @@ class GlobalMediaProperties:
         self.display_refs()
         if parent_window:
             self.window.set_transient_for(parent_window)
-        self.add_itself_to_menu()
+        try:
+            self.add_itself_to_menu()
+        except:
+            pass
         self.window.show()
 
     def on_delete_event(self,obj,b):
@@ -1036,7 +1051,10 @@ class GlobalMediaProperties:
 
     def close(self,obj):
         self.close_child_windows()
-        self.remove_itself_from_menu()
+        try:
+            self.remove_itself_from_menu()
+        except:
+            pass
         self.window.destroy()
 
     def close_child_windows(self):

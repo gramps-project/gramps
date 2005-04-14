@@ -54,13 +54,6 @@ import GrampsDBCallback
 
 from DdTargets import DdTargets
 
-
-##pycode_tgts = [('url',    0, 0),
-##               ('pevent', 0, 1),
-##               ('pattr',  0, 2),
-##               ('paddr',  0, 3),
-##               ('srcref', 0, 4)]
-
 #-------------------------------------------------------------------------
 #
 # SourceSelector
@@ -92,13 +85,13 @@ class SourceSelector:
                          _('Source Reference Selection'))
         
         self.top.signal_autoconnect({
-            "on_add_src_clicked"    : self.add_src_clicked,
-            "on_del_src_clicked"    : self.del_src_clicked,
-            "on_edit_src_clicked"   : self.edit_src_clicked,
-            "on_help_srcsel_clicked"   : self.on_help_clicked,
-            "on_cancel_srcsel_clicked"   : self.close,
-            "on_ok_srcsel_clicked"   : self.src_ok_clicked,
-            "on_srcsel_delete_event"   : self.on_delete_event,
+            "on_add_src_clicked" : self.add_src_clicked,
+            "on_del_src_clicked" : self.del_src_clicked,
+            "on_edit_src_clicked" : self.edit_src_clicked,
+            "on_help_srcsel_clicked" : self.on_help_clicked,
+            "on_cancel_srcsel_clicked" : self.close,
+            "on_ok_srcsel_clicked" : self.src_ok_clicked,
+            "on_srcsel_delete_event" : self.on_delete_event,
             })
 
         self.slist = self.top.get_widget("slist")
@@ -116,7 +109,7 @@ class SourceSelector:
             renderer = gtk.CellRendererText ()
             renderer.set_fixed_height_from_font(1)
             column = gtk.TreeViewColumn (title[0], renderer, text=colno)
-            colno = colno + 1
+            colno += 1
             column.set_clickable (True)
             column.set_resizable(True)
             column.set_sort_column_id(title[1])
