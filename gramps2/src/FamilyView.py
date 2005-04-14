@@ -964,35 +964,37 @@ class FamilyView:
         if self.parent.active_person:
             handle = self.parent.active_person.get_handle()
             self.person = self.parent.db.get_person_from_handle(handle)
+            splist = self.person.get_family_handle_list()
         else:
             self.person = None
             self.clear()
             return
 
-        bhandle = self.person.get_birth_handle()
-        dhandle = self.person.get_death_handle()
+        person = self.person
+        bhandle = person.get_birth_handle()
+        dhandle = person.get_death_handle()
         bd = self.parent.db.get_event_from_handle(bhandle)
         dd = self.parent.db.get_event_from_handle(dhandle)
 
         if bd and dd:
             n = "%s [%s]\n\t%s %s\n\t%s %s " % (
-                NameDisplay.displayer.display(self.person),
-                self.person.get_gramps_id(),
+                NameDisplay.displayer.display(person),
+                person.get_gramps_id(),
                 _BORN,DateHandler.displayer.display(bd.get_date_object()),
                 _DIED,DateHandler.displayer.display(dd.get_date_object()))
         elif bd:
             n = "%s [%s]\n\t%s %s" % (
-                NameDisplay.displayer.display(self.person),
-                self.person.get_gramps_id(),
+                NameDisplay.displayer.display(person),
+                person.get_gramps_id(),
                 _BORN,DateHandler.displayer.display(bd.get_date_object()))
         elif dd:
             n = "%s [%s]\n\t%s %s" % (
-                NameDisplay.displayer.display(self.person),
-                self.person.get_gramps_id(),
+                NameDisplay.displayer.display(person),
+                person.get_gramps_id(),
                 _DIED,DateHandler.displayer.display(dd.get_date_object()))
         else:
-            n = "%s [%s]" % (NameDisplay.displayer.display(self.person),
-                             self.person.get_gramps_id())
+            n = "%s [%s]" % (NameDisplay.displayer.display(person),
+                             person.get_gramps_id())
 
         self.ap_model.clear()
         self.ap_data.get_selection().set_mode(gtk.SELECTION_NONE)
@@ -1002,8 +1004,6 @@ class FamilyView:
         self.selected_spouse = None
         self.spouse_model.clear()
         self.sp_parents_model.clear()
-
-        splist = self.person.get_family_handle_list()
 
         if len(splist) > 1:
             self.spouse_selection.set_mode(gtk.SELECTION_SINGLE)
@@ -1016,7 +1016,7 @@ class FamilyView:
             fm = self.parent.db.get_family_from_handle(f)
             if not fm:
                 continue
-            if fm.get_father_handle() == self.person.get_handle():
+            if fm.get_father_handle() == person.get_handle():
                 sp_id = fm.get_mother_handle()
             else:
                 sp_id = fm.get_father_handle()
@@ -1041,6 +1041,7 @@ class FamilyView:
                 self.spouse_model.set(node,0,"%s\n" % _("<double click to add spouse>"))
                 self.spouse_model.set(node,1,f)
 
+
         if family and family.get_handle() in flist:
             self.display_marriage(family)
             node = flist[family.get_handle()]
@@ -1054,7 +1055,7 @@ class FamilyView:
         else:
             self.display_marriage(None)
 
-        self.update_list(self.ap_parents_model,self.ap_parents,self.person)
+        self.update_list(self.ap_parents_model,self.ap_parents,person)
 
     def find_marriage(self,family):
         for event_handle in family.get_event_list():

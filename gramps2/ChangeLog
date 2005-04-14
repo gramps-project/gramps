@@ -1,3 +1,6 @@
+2005-04-14  Don Allingham  <don@gramps-project.org>
+	* src/FamilyView.py: make load_family more robust to signals
+
 2005-04-14  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gramps_main.py (undo): Dont emit "database-changed"
 	* src/plugins/plugins/TestcaseGenerator.py: Added option to generate
