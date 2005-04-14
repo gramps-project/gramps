@@ -84,6 +84,10 @@ class TestcaseGenerator:
         self.check_persons.set_active(True)
         self.top.vbox.pack_start(self.check_persons,0,0,5)
 
+        self.check_trans = gtk.CheckButton( _("Don't block transactions"))
+        self.check_trans.set_active(False)
+        self.top.vbox.pack_start(self.check_trans,0,0,5)
+
         self.entry_count = gtk.Entry()
         self.entry_count.set_text("2000")
         self.top.vbox.pack_start(self.entry_count,0,0,5)
@@ -96,14 +100,15 @@ class TestcaseGenerator:
         response = self.top.run()
         bugs = self.check_bugs.get_active()
         persons = self.check_persons.get_active()
+        multiple_trans = self.check_trans.get_active()
         person_count = int(self.entry_count.get_text())
         self.top.destroy()
 
         if response == gtk.RESPONSE_OK:
-            self.run_generator(bugs,persons,person_count)
+            self.run_generator(bugs,persons,person_count,multiple_trans)
 
 
-    def run_generator( self, generate_bugs = 1, generate_families = 1, generate_max_persons = 2000):
+    def run_generator( self, generate_bugs = 1, generate_families = 1, generate_max_persons = 2000, multiple_transactions=False):
         title = "%s - GRAMPS" % _("Generate testcases")
         self.top = gtk.Window()
         self.top.set_title(title)
@@ -123,9 +128,13 @@ class TestcaseGenerator:
         
         self.max_person_count = generate_max_persons
 
+        self.multiple_transactions = multiple_transactions
+        self.transaction_count = 0;
+        
         self.trans = self.db.transaction_begin()
-        self.trans.set_batch(True)
-        self.db.disable_signals()
+        if not self.multiple_transactions:
+            self.trans.set_batch(True)
+            self.db.disable_signals()
         
         if generate_bugs:
             self.generate_broken_relations()
@@ -146,8 +155,9 @@ class TestcaseGenerator:
                         break
             
         self.db.transaction_commit(self.trans,_("Testcase generator"))
-        self.db.enable_signals()
-        self.db.request_rebuild()
+        if not self.multiple_transactions:
+            self.db.enable_signals()
+            self.db.request_rebuild()
         self.top.destroy()
         
 
@@ -166,6 +176,7 @@ class TestcaseGenerator:
         person2 = self.db.get_person_from_handle(person2_h)
         person2.add_family_handle(fam_h)
         self.db.commit_person(person2,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Create a family, that misses the link to the father
         person1_h = self.generate_person(RelLib.Person.MALE,"Broken2",None)
@@ -181,6 +192,7 @@ class TestcaseGenerator:
         person2 = self.db.get_person_from_handle(person2_h)
         person2.add_family_handle(fam_h)
         self.db.commit_person(person2,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Create a family, that misses the link to the mother
         person1_h = self.generate_person(RelLib.Person.MALE,"Broken3",None)
@@ -196,6 +208,7 @@ class TestcaseGenerator:
         person2 = self.db.get_person_from_handle(person2_h)
         person2.add_family_handle(fam_h)
         self.db.commit_person(person2,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Create a family, that links to father and mother, but father does not link back
         person1_h = self.generate_person(RelLib.Person.MALE,"Broken4",None)
@@ -211,6 +224,7 @@ class TestcaseGenerator:
         #person2 = self.db.get_person_from_handle(person2_h)
         #person2.add_family_handle(fam_h)
         #self.db.commit_person(person2,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Create two married people of same sex.
         person1_h = self.generate_person(RelLib.Person.MALE,"Broken5",None)
@@ -226,6 +240,7 @@ class TestcaseGenerator:
         person2 = self.db.get_person_from_handle(person2_h)
         person2.add_family_handle(fam_h)
         self.db.commit_person(person2,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Create a family, that contains an invalid handle to for the father
         #person1_h = self.generate_person(RelLib.Person.MALE,"Broken6",None)
@@ -241,6 +256,7 @@ class TestcaseGenerator:
         person2 = self.db.get_person_from_handle(person2_h)
         person2.add_family_handle(fam_h)
         self.db.commit_person(person2,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Create a family, that contains an invalid handle to for the mother
         person1_h = self.generate_person(RelLib.Person.MALE,"Broken7",None)
@@ -256,6 +272,7 @@ class TestcaseGenerator:
         #person2 = self.db.get_person_from_handle(person2_h)
         #person2.add_family_handle(fam_h)
         #self.db.commit_person(person2,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
 
         # Creates a family where the child does not link back to the family
@@ -277,6 +294,7 @@ class TestcaseGenerator:
         #child = self.db.get_person_from_handle(child_h)
         #person2.add_parent_family_handle(fam_h)
         #self.db.commit_person(child,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Creates a family where the child is not linked, but the child links to the family
         person1_h = self.generate_person(RelLib.Person.MALE,"Broken9",None)
@@ -297,6 +315,7 @@ class TestcaseGenerator:
         child = self.db.get_person_from_handle(child_h)
         child.add_parent_family_handle(fam_h,RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
         self.db.commit_person(child,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Creates a person with an event having a witness reference to a nonexisting person
         person_h = self.generate_person(None,"Broken10",None)
@@ -311,24 +330,28 @@ class TestcaseGenerator:
         person = self.db.get_person_from_handle(person_h)
         person.add_event_handle(event_h)
         self.db.commit_person(person,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Creates a person having a non existing birth event handle set
         person_h = self.generate_person(None,"Broken11",None)
         person = self.db.get_person_from_handle(person_h)
         person.set_birth_handle("InvalidHandle4")
         self.db.commit_person(person,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Creates a person having a non existing death event handle set
         person_h = self.generate_person(None,"Broken12",None)
         person = self.db.get_person_from_handle(person_h)
         person.set_death_handle("InvalidHandle5")
         self.db.commit_person(person,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Creates a person having a non existing event handle set
         person_h = self.generate_person(None,"Broken13",None)
         person = self.db.get_person_from_handle(person_h)
         person.add_event_handle("InvalidHandle6")
         self.db.commit_person(person,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Creates a person with a birth event having an empty type
         person_h = self.generate_person(None,"Broken14",None)
@@ -338,6 +361,7 @@ class TestcaseGenerator:
         person = self.db.get_person_from_handle(person_h)
         person.set_birth_handle(event_h)
         self.db.commit_person(person,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Creates a person with a death event having an empty type
         person_h = self.generate_person(None,"Broken15",None)
@@ -347,6 +371,7 @@ class TestcaseGenerator:
         person = self.db.get_person_from_handle(person_h)
         person.set_death_handle(event_h)
         self.db.commit_person(person,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Creates a person with an event having an empty type
         person_h = self.generate_person(None,"Broken16",None)
@@ -356,6 +381,7 @@ class TestcaseGenerator:
         person = self.db.get_person_from_handle(person_h)
         person.add_event_handle(event_h)
         self.db.commit_person(person,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
 
     
@@ -365,6 +391,7 @@ class TestcaseGenerator:
             while gtk.events_pending():
                 gtk.main_iteration()
 
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         np = RelLib.Person()
         
@@ -404,6 +431,8 @@ class TestcaseGenerator:
         np.set_primary_name(name)
 
         self.person_count = self.person_count+1
+
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         return( self.db.add_person(np,self.trans))
         
@@ -445,6 +474,7 @@ class TestcaseGenerator:
             self.db.commit_person(child,self.trans)
             if randint(0,3) > 0:
                 self.persons_todo.append(child_h)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
                 
     def generate_parents(self,child_h):
         child = self.db.get_person_from_handle(child_h)
@@ -461,7 +491,6 @@ class TestcaseGenerator:
         if randint(0,2) > 1:
             self.parents_todo.append(person2_h)
             
-
         fam = RelLib.Family()
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
@@ -478,7 +507,13 @@ class TestcaseGenerator:
 
         child.add_parent_family_handle(fam_h,RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
         self.db.commit_person(child,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
+    def commit_transaction(self):
+        if self.multiple_transactions:
+            self.db.transaction_commit(self.trans,_("Testcase generator step %d") % self.transaction_count)
+            self.transaction_count += 1
+            self.trans = self.db.transaction_begin()
 
 
 #-------------------------------------------------------------------------

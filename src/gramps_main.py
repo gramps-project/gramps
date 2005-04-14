@@ -515,7 +515,6 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         if self.active_person:
             p = self.db.get_person_from_handle(self.active_person.get_handle())
             self.change_active_person(p)
-        self.emit('database-changed',(self.db,))
         self.undo_active = False
 
     def exit_and_undo(self,*args):
