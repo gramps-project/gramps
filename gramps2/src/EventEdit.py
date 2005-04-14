@@ -244,7 +244,10 @@ class EventEditor:
         self.top.get_widget('sel_obj').set_sensitive(not noedit)
         self.top.get_widget('add_obj').set_sensitive(not noedit)
 
-        self.window.set_transient_for(self.parent.window)
+        try:
+            self.window.set_transient_for(self.parent.window)
+        except AttributeError:
+            pass
         self.add_itself_to_menu()
         self.window.show()
 
@@ -284,7 +287,8 @@ class EventEditor:
         self.winsmenu.append(self.menu_item)
 
     def remove_itself_from_menu(self):
-        del self.parent.child_windows[self.win_key]
+        if self.window:
+            del self.parent.child_windows[self.win_key]
         self.menu_item.destroy()
         self.winsmenu.destroy()
         self.parent_menu_item.destroy()
@@ -352,7 +356,8 @@ class EventEditor:
         self.db.transaction_commit(trans,_("Edit Event"))
         self.close(obj)
         self.parent.redraw_event_list()
-        self.callback(self.event)
+        if self.callback:
+            self.callback(self.event)
 
     def update_event(self,name,date,place,desc,note,format,priv,cause,trans):
         if place:

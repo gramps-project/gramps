@@ -64,7 +64,7 @@ class EditSource:
         self.parent = parent
         self.name_display = NameDisplay.displayer.display
         if source:
-            if self.parent.child_windows.has_key(source.get_handle()):
+            if parent and self.parent.child_windows.has_key(source.get_handle()):
                 self.parent.child_windows[source.get_handle()].present(None)
                 return
             else:
@@ -253,6 +253,37 @@ class EditSource:
     def present(self,obj):
         self.top.present()
 
+    def button_press(self,obj):
+        data = self.model.get_selected_objects()
+        (type,handle) = data[0]
+        if type == 0:
+            import EditPerson
+            person = self.db.get_person_from_handle(handle)
+            EditPerson.EditPerson(self.parent,person,self.db)
+        elif type == 1:
+            import Marriage
+            family = self.db.get_family_from_handle(handle)
+            Marriage.Marriage(self.parent,family,self.db)
+        elif type == 2:
+            import EventEdit
+            event = self.db.get_event_from_handle(handle)
+            if event.get_name() in const.marriageEvents:
+                EventEdit.EventEditor(
+                    self,", ", const.marriageEvents, const.family_events,
+                    event, None, 0, None, None, self.db.readonly)
+            elif event.get_name() in const.personalEvents + [_("Birth"),_("Death")]:
+                EventEdit.EventEditor(
+                    self,", ", const.personalEvents, const.personal_events,
+                    event, None, 0, None, None, self.db.readonly)
+        elif type == 3:
+            import EditPlace
+            family = self.db.get_place_from_handle(handle)
+            EditPlace.EditPlace(self.parent,family,self.db)
+        elif type == 5:
+            import ImageSelect
+            media = self.db.get_object_from_handle(handle)
+            ImageSelect.GlobalMediaProperties(self.db,media,self.parent)
+
     def display_references(self):
         
         (person_list,family_list,event_list,
@@ -266,43 +297,43 @@ class EditSource:
 
         titles = [(_('Type'),0,150),(_('ID'),1,75),(_('Name'),2,150)]
         
-        self.model = ListModel.ListModel(slist,titles)
+        self.model = ListModel.ListModel(slist,titles,event_func=self.button_press)
 
         for handle in person_list:
             person = self.db.get_person_from_handle(handle)
             name = self.name_display(person)
             gramps_id = person.get_gramps_id()
-            self.model.add([_("Person"),gramps_id,name])
+            self.model.add([_("Person"),gramps_id,name],(0,handle))
 
         for handle in family_list:
             family = self.db.get_family_from_handle(handle)
             name = Utils.family_name(family,self.db)
             gramps_id = family.get_gramps_id()
-            self.model.add([_("Family"),gramps_id,name])
+            self.model.add([_("Family"),gramps_id,name],(1,handle))
 
         for handle in event_list:
             event = self.db.get_event_from_handle(handle)
             name = event.get_name()
             gramps_id = event.get_gramps_id()
-            self.model.add([_("Event"),gramps_id,name])
+            self.model.add([_("Event"),gramps_id,name],(2,handle))
 
         for handle in place_list:
             place = self.db.get_place_from_handle(handle)
             name = place.get_title()
             gramps_id = place.get_gramps_id()
-            self.model.add([_("Place"),gramps_id,name])
+            self.model.add([_("Place"),gramps_id,name],(3,handle))
 
         for handle in source_list:
             source = self.db.get_source_from_handle(handle)
             name = source.get_title()
             gramps_id = source.get_gramps_id()
-            self.model.add([_("Source"),gramps_id,name])
+            self.model.add([_("Source"),gramps_id,name],(4,handle))
 
         for handle in media_list:
             media = self.db.get_object_from_handle(handle)
             name = media.get_description()
             gramps_id = media.get_gramps_id()
-            self.model.add([_("Media"),gramps_id,name])
+            self.model.add([_("Media"),gramps_id,name],(5,handle))
 
         if any:
             Utils.bold_label(self.refs_label)

@@ -1,4 +1,9 @@
 2005-04-13  Don Allingham  <don@gramps-project.org>
+	* src/EditSource.py: allow double click on reference to bring up the referece
+	editor
+	* src/EventEdit.py: don't require a callback
+	* src/ImageSelect.py: horrible hack for handling removing parent windows.
+	Alex: HELP!
 	* src/gramps_main.py: check for reentrancy into the undo handler
 	* src/plugins/WebPage.py: fixed check on dialog run() return value,
 	changed deprecated gtk.mainiteration to gtk.main_iteration
