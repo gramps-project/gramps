@@ -1,3 +1,9 @@
+2005-04-14  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/gramps_main.py (undo): Dont emit "database-changed"
+	* src/plugins/plugins/TestcaseGenerator.py: Added option to generate
+	a new transaction for every change on the database. Useful for UNDO
+	and signal testing.
+	
 2005-04-13  Don Allingham  <don@gramps-project.org>
 	* src/EditSource.py: allow double click on reference to bring up the referece
 	editor
