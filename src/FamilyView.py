@@ -1028,7 +1028,8 @@ class FamilyView:
                 sp = self.parent.db.get_person_from_handle(sp_id)
                 event = self.find_marriage(fm)
                 if event:
-                    mdate = " - %s" % DateHandler.displayer.display(event.get_date_object())
+                    dobj = event.get_date_object()
+                    mdate = " - %s" % DateHandler.displayer.display(dobj)
                 else:
                     mdate = ""
                 v = "%s [%s]\n\t%s%s" % (
@@ -1041,19 +1042,24 @@ class FamilyView:
                 self.spouse_model.set(node,0,"%s\n" % _("<double click to add spouse>"))
                 self.spouse_model.set(node,1,f)
 
-
-        if family and family.get_handle() in flist:
-            self.display_marriage(family)
-            node = flist[family.get_handle()]
-            self.spouse_selection.select_iter(node)
-        elif len(flist) > 0:
-            fid = splist[0]
-            fam = self.parent.db.get_family_from_handle(fid)
-            self.display_marriage(fam)
-            node = flist[fid]
-            self.spouse_selection.select_iter(node)
-        else:
-            self.display_marriage(None)
+        try:
+            if family and family.get_handle() in flist:
+                self.display_marriage(family)
+                node = flist[family.get_handle()]
+                self.spouse_selection.select_iter(node)
+            elif len(flist) > 0:
+                fid = splist[0]
+                fam = self.parent.db.get_family_from_handle(fid)
+                self.display_marriage(fam)
+                node = flist[fid]
+                self.spouse_selection.select_iter(node)
+            else:
+                self.display_marriage(None)
+        except KeyError:
+            WarningDialog(_('Database corruption detected'),
+                          _('A problem was detected with the database. Please '
+                            'run the Check and Repair Database tool to fix the '
+                            'problem.'))
 
         self.update_list(self.ap_parents_model,self.ap_parents,person)
 

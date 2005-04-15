@@ -1,4 +1,6 @@
 2005-04-14  Don Allingham  <don@gramps-project.org>
+	* src/plugins/Check.py: loop through family relationships until all
+	problems are resolved
 	* src/FamilyView.py: make load_family more robust to signals
 
 2005-04-14  Martin Hawlisch  <Martin.Hawlisch@gmx.de>

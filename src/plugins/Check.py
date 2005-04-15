@@ -61,10 +61,20 @@ def runTool(database,active_person,callback,parent=None):
         trans.set_batch(True)
         database.disable_signals()
         checker = CheckIntegrity(database,parent,trans)
-        checker.check_for_broken_family_links()
         checker.cleanup_missing_photos(0)
-        checker.check_parent_relationships()
-        checker.cleanup_empty_families(0)
+
+        prev_total = -1
+        total = 0
+        
+        while prev_total != total:
+            prev_total = total
+        
+            checker.check_for_broken_family_links()
+            checker.check_parent_relationships()
+            checker.cleanup_empty_families(0)
+
+            total = checker.family_errors()
+
         checker.check_events()
         checker.check_place_references()
         database.transaction_commit(trans, _("Check Integrity"))
@@ -101,8 +111,10 @@ class CheckIntegrity:
         self.invalid_death_events = []
         self.invalid_place_references = []
 
+    def family_errors(self):
+        return len(self.broken_parent_links) + len(self.broken_links) + len(self.empty_family)
+
     def check_for_broken_family_links(self):
-        self.broken_links = []
         # Check persons referenced by the family objects
         for family_handle in self.db.get_family_handles():
             family = self.db.get_family_from_handle(family_handle)
