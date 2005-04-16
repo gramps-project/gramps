@@ -1,8 +1,0 @@
-#! /bin/sh
-if [ -f po/template.po ] 
-then
-    mv po/template.po po/template.po.bak
-fi
-
-./get_strings -o po/template.po `cat filelist`
-
