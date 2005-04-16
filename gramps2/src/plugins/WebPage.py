@@ -832,7 +832,7 @@ class WebReport(Report.Report):
             surName = name.get_surname()
             suffix = name.get_suffix()
 
-            f.write("%s.%s|" % (p_id,self.ext))
+            f.write("%s.%s|" % (p.get_gramps_id(),self.ext))
             f.write("%s|" % surName)
             if suffix == "":
                 f.write("%s /%s/|" % (firstName,surName))
@@ -842,9 +842,9 @@ class WebReport(Report.Report):
                 if e_id:
                     e = self.database.get_event_from_handle(e_id)
                 else:
-                    continue
+                    e = None
                 if e:
-                    f.write("%s|" % DateHander.displayer.display(e.get_date_object()))
+                    f.write("%s|" % DateHandler.displayer.display(e.get_date_object()))
                     if e.get_place_handle():
                         f.write('%s|' % self.database.get_place_from_handle(e.get_place_handle()).get_title())
                     else:

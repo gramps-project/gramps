@@ -1,3 +1,7 @@
+2005-04-15  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/WebPage.py (dump_gendex): Files are named by GRAMPS ID;
+	Alway print fields for birth/death; Fixed typo in DateHandler
+
 2005-04-14  Don Allingham  <don@gramps-project.org>
 	* src/plugins/Check.py: loop through family relationships until all
 	problems are resolved
