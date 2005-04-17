@@ -134,67 +134,27 @@ class GrampsInMemDB(GrampsDbBase):
         vals.sort()
         return vals
 
-    def remove_person(self,handle,transaction):
-        if self.readonly:
-            return
-        person = self.get_person_from_handle(handle)
-        self.genderStats.uncount_person (person)
-        if transaction != None:
-            old_data = self.person_map.get(handle)
-            transaction.add(PERSON_KEY,handle,old_data)
-        self.emit('person-delete',([handle],))
+    def _del_person(self,handle):
         del self.id_trans[person.get_gramps_id()]
         del self.person_map[handle]
 
-    def remove_source(self,handle,transaction):
-        if self.readonly:
-            return
-        source = self.get_source_from_handle(handle)
-        if transaction != None:
-            old_data = self.source_map.get(str(handle))
-            transaction.add(SOURCE_KEY,handle,old_data)
-        self.emit('source-delete',([handle],))
+    def _del_source(self,handle):
         del self.sid_trans[source.get_gramps_id()]
         del self.source_map[str(handle)]
 
-    def remove_place(self,handle,transaction):
-        if self.readonly:
-            return
-        place = self.get_place_from_handle(handle)
-        if transaction != None:
-            old_data = self.place_map.get(str(handle))
-            transaction.add(PLACE_KEY,handle,old_data)
-        self.emit('person-delete',([handle],))
+    def _del_place(self,handle):
         del self.pid_trans[place.get_gramps_id()]
         del self.place_map[str(handle)]
 
-    def remove_object(self,handle,transaction):
-        if self.readonly:
-            return
-        obj = self.get_object_from_handle(handle)
-        if transaction != None:
-            old_data = self.media_map.get(str(handle))
-            transaction.add(MEDIA_KEY,handle,old_data)
+    def _del_media(self,handle):
         del self.oid_trans[obj.get_gramps_id()]
         del self.media_map[str(handle)]
 
-    def remove_family(self,handle,transaction):
-        if self.readonly:
-            return
-        family = self.get_family_from_handle(handle)
-        if transaction != None:
-            old_data = self.family_map.get(str(handle))
-            transaction.add(FAMILY_KEY,handle,old_data)
-        self.emit('family-delete',([str(handle),]))
+    def _del_family(self,handle):
         del self.fid_trans[family.get_gramps_id()]
         del self.family_map[str(handle)]
 
-    def remove_event(self,handle,transaction):
-        if self.readonly:
-            return
-        if transaction != None:
-            old_data = self.event_map.get(str(handle))
-            transaction.add(EVENT_KEY,handle,old_data)
+    def _del_event(self,handle):
         del self.event_map[str(handle)]
 
     def commit_person(self,person,transaction,change_time=None):

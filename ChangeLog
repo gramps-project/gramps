@@ -1,3 +1,11 @@
+2005-04-17  Don Allingham  <don@gramps-project.org>
+	* src/GrampsBSDDB.py: actually perform the commits during the
+	transaction_commit task, instead of the commit_* tasks
+	* src/GrampsInMem.py: actually perform the commits during the
+	transaction_commit task, instead of the commit_* tasks
+	* src/GrampsDbBase.py: actually perform the commits during the
+	transaction_commit task, instead of the commit_* tasks
+
 2005-04-17  Eero Tamminen  <eerot@sf>
         * src/gramps.glade: Fix typo
 	* src/GenericFilter.py: Fix typo
