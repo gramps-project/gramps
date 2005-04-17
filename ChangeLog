@@ -1,3 +1,7 @@
+2005-04-17  Eero Tamminen  <eerot@sf>
+	* src/GenericFilter.py: Fix typo
+	* src/ReportUtils.py: Fix typos
+
 2005-04-15  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/WebPage.py (dump_gendex): Files are named by GRAMPS ID;
 	Alway print fields for birth/death; Fixed typo in DateHandler

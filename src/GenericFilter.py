@@ -1822,7 +1822,7 @@ class IsWitness(Rule):
         return 'Witnesses'
 
     def description(self):
-        return _("Matches persons who are whitness in an event")
+        return _("Matches persons who are witnesses in an event")
 
     def category(self):
         return _('Event filters')
