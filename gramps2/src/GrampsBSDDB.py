@@ -246,6 +246,24 @@ class GrampsBSDDB(GrampsDbBase):
         self.env        = None
         self.metadata   = None
 
+    def _del_person(self,handle):
+        self.person_map.delete(str(handle))
+
+    def _del_source(self,handle):
+        self.source_map.delete(str(handle))
+
+    def _del_place(self,handle):
+        self.place_map.delete(str(handle))
+
+    def _del_media(self,handle):
+        self.media_map.delete(str(handle))
+
+    def _del_family(self,handle):
+        self.family_map.delete(str(handle))
+
+    def _del_event(self,handle):
+        self.event_map.delete(str(handle))
+
     def set_name_group_mapping(self,name,group):
         if not self.readonly:
             name = str(name)
@@ -272,54 +290,6 @@ class GrampsBSDDB(GrampsDbBase):
         vals = a.keys()
         vals.sort()
         return vals
-
-    def remove_person(self,handle,transaction):
-        if not self.readonly:
-            person = self.get_person_from_handle(handle)
-            self.genderStats.uncount_person (person)
-            if transaction != None:
-                transaction.add(PERSON_KEY,handle,person.serialize())
-                self.emit('person-delete',([str(handle)],))
-            self.person_map.delete(str(handle))
-
-    def remove_source(self,handle,transaction):
-        if not self.readonly:
-            if transaction != None:
-                old_data = self.source_map.get(str(handle))
-                transaction.add(SOURCE_KEY,handle,old_data)
-                self.emit('source-delete',([handle],))
-            self.source_map.delete(str(handle))
-
-    def remove_family(self,handle,transaction):
-        if not self.readonly:
-            if transaction != None:
-                old_data = self.family_map.get(str(handle))
-                transaction.add(FAMILY_KEY,handle,old_data)
-                self.emit('family-delete',([str(handle)],))
-            self.family_map.delete(str(handle))
-
-    def remove_event(self,handle,transaction):
-        if not self.readonly:
-            if transaction != None:
-                old_data = self.event_map.get(str(handle))
-                transaction.add(EVENT_KEY,handle,old_data)
-            self.event_map.delete(str(handle))
-
-    def remove_place(self,handle,transaction):
-        if not self.readonly:
-            if transaction != None:
-                old_data = self.place_map.get(handle)
-                transaction.add(PLACE_KEY,handle,old_data)
-                self.emit('place-delete',([handle],))
-            self.place_map.delete(str(handle))
-
-    def remove_object(self,handle,transaction):
-        if not self.readonly:
-            if transaction != None:
-                old_data = self.media_map.get(handle)
-                transaction.add(PLACE_KEY,handle,old_data)
-                self.emit('media-delete',([handle],))
-            self.media_map.delete(str(handle))
 
     def get_person_from_gramps_id(self,val):
         """finds a Person in the database from the passed gramps' ID.
