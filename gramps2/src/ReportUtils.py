@@ -1216,7 +1216,7 @@ def died_str(database,person,person_name=None,empty_date="",empty_place="",
                 elif age_units == 2: #male, month_year, place, months
                     text = _("%(male_name)s "
                             "died in %(month_year)s in %(death_place)s "
-                            "at the age of %(age)d mpnths.") % {
+                            "at the age of %(age)d months.") % {
                     'male_name' : person_name, 
                     'month_year' : ddate, 'death_place' : dplace,
                     'age' : age }
@@ -1347,7 +1347,7 @@ def died_str(database,person,person_name=None,empty_date="",empty_place="",
                 elif age_units == 2: #female, month_year, place, months
                     text = _("%(female_name)s "
                             "died in %(month_year)s in %(death_place)s "
-                            "at the age of %(age)d mpnths.") % {
+                            "at the age of %(age)d months.") % {
                     'female_name' : person_name, 
                     'month_year' : ddate, 'death_place' : dplace,
                     'age' : age }
