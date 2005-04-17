@@ -4366,7 +4366,7 @@ Other</property>
 		      <property name="items" translatable="yes">Married
 Unmarried
 Civil Union
-Uknown
+Unknown
 Other</property>
 		      <signal name="changed" handler="on_prel_changed" last_modification_time="Fri, 30 Jul 2004 15:32:53 GMT"/>
 		    </widget>

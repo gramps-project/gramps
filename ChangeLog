@@ -1,4 +1,5 @@
 2005-04-17  Eero Tamminen  <eerot@sf>
+        * src/gramps.glade: Fix typo
 	* src/GenericFilter.py: Fix typo
 	* src/ReportUtils.py: Fix typos
 
