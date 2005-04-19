@@ -379,7 +379,6 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             "on_addperson_clicked" : self.load_new_person,
             "on_apply_filter_clicked" : self.on_apply_filter_clicked,
             "on_arrow_left_clicked" : self.pedigree_view.on_show_child_menu,
-            "on_canvas1_event" : self.pedigree_view.on_canvas1_event,
             "on_contents_activate" : self.on_contents_activate,
             "on_faq_activate" : self.on_faq_activate,
             "on_default_person_activate" : self.on_default_person_activate,
@@ -1144,8 +1143,6 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         page = self.views.get_current_page()
         if page == PERSON_VIEW:
             self.people_view.apply_filter()
-        elif page == PEDIGREE_VIEW:
-            self.pedigree_view.load_canvas(self.active_person)
 
     def on_tools_clicked(self,obj):
         if self.active_person:
@@ -1604,7 +1601,6 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         elif page == PEDIGREE_VIEW:
             self.enable_buttons(0)
             self.merge_button.set_sensitive(0)
-            self.pedigree_view.load_canvas(self.active_person)
         elif page == SOURCE_VIEW:
             self.enable_buttons(1)
             self.merge_button.set_sensitive(1)
