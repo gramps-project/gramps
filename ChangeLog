@@ -1,3 +1,11 @@
+2005-04-18  Don Allingham  <don@gramps-project.org>
+	* src/edit_person.glade: re-add edit_person.glade
+	* src/EditPerson.py: start of new EditPerson dialog
+	* src/ListModel.py: enhancements for the start of inline editing
+	* src/Makefile.am: add edit_person.glade
+	* src/ReadXML.py: commit transactions properly
+	* src/const.py.in: add edit_person.glade back in
+
 2005-04-17  Don Allingham  <don@gramps-project.org>
 	* src/GrampsBSDDB.py: actually perform the commits during the
 	transaction_commit task, instead of the commit_* tasks

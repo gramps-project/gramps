@@ -77,8 +77,7 @@ _PICTURE_WIDTH = 200.0
 _temple_names = const.lds_temple_codes.keys()
 _temple_names.sort()
 _temple_names = [""] + _temple_names
-
-
+_select_gender = ((True,False,False),(False,True,False),(False,False,True))
 _use_patronymic = [
     "ru","RU","ru_RU","koi8r","ru_koi8r","russian","Russian",
     ]
@@ -134,12 +133,14 @@ class EditPerson:
         self.window.set_title("%s - GRAMPS" % _('Edit Person'))
         
         self.icon_list = self.top.get_widget("iconlist")
-        self.gallery = ImageSelect.Gallery(person, self.db.commit_person,
-                                           self.path, self.icon_list,
-                                           self.db, self, self.window)
+        #self.gallery = ImageSelect.Gallery(person, self.db.commit_person,
+        #                                   self.path, self.icon_list,
+        #                                   self.db, self, self.window)
 
         self.complete = self.get_widget('complete')
         self.complete.set_sensitive(mod)
+        self.gender = self.get_widget('gender')
+        self.gender.set_sensitive(mod)
         self.private = self.get_widget('private')
         self.private.set_sensitive(mod)
         self.name_delete_btn = self.top.get_widget('aka_delete')
@@ -147,7 +148,7 @@ class EditPerson:
         self.web_delete_btn = self.top.get_widget('delete_url')
         self.web_edit_btn = self.top.get_widget('edit_url')
         self.event_delete_btn = self.top.get_widget('event_del')
-        self.event_edit_btn = self.top.get_widget('event_edit_btn')
+        self.event_edit_btn = self.top.get_widget('event_edit')
         self.attr_delete_btn = self.top.get_widget('attr_del')
         self.attr_edit_btn = self.top.get_widget('attr_edit_btn')
         self.addr_delete_btn = self.top.get_widget('addr_del')
@@ -159,13 +160,6 @@ class EditPerson:
         self.flowed.set_sensitive(mod)
         self.preform = self.get_widget("preform")
         self.preform.set_sensitive(mod)
-        self.event_name_field  = self.get_widget("eventName")
-        self.event_place_field = self.get_widget("eventPlace")
-        self.event_cause_field = self.get_widget("eventCause")
-        self.event_date_field  = self.get_widget("eventDate")
-        self.event_descr_field = self.get_widget("eventDescription")
-        self.event_src_field = self.get_widget("event_srcinfo")
-        self.event_conf_field = self.get_widget("event_conf")
         self.attr_conf_field = self.get_widget("attr_conf")
         self.addr_conf_field = self.get_widget("addr_conf")
         self.name_conf_field = self.get_widget("name_conf")
@@ -204,26 +198,10 @@ class EditPerson:
         self.prefix.set_editable(mod)
         self.given = self.get_widget("givenName")
         self.given.set_editable(mod)
-        self.nick = self.get_widget("nickname")
-        self.nick.set_editable(mod)
         self.title = self.get_widget("title")
         self.title.set_editable(mod)
-        self.bdate  = self.get_widget("birthDate")
-        self.bdate.set_editable(mod)
-        self.bplace = self.get_widget("birth_place")
-        self.bplace.set_editable(mod)
         self.surname = self.get_widget("surname")
         self.surname.set_editable(mod)
-        self.ddate  = self.get_widget("deathDate")
-        self.ddate.set_editable(mod)
-        self.dplace = self.get_widget("death_place")
-        self.dplace.set_editable(mod)
-        self.is_male = self.get_widget("genderMale")
-        self.is_male.set_sensitive(mod)
-        self.is_female = self.get_widget("genderFemale")
-        self.is_female.set_sensitive(mod)
-        self.is_unknown = self.get_widget("genderUnknown")
-        self.is_unknown.set_sensitive(mod)
         self.addr_note = self.get_widget("addr_note")
         self.addr_source = self.get_widget("addr_source")
         self.attr_note = self.get_widget("attr_note")
@@ -235,7 +213,6 @@ class EditPerson:
         self.slist = self.get_widget("slist")
         self.general_label = self.get_widget("general_label")
         self.names_label = self.get_widget("names_label")
-        self.events_label = self.get_widget("events_label")
         self.attr_label = self.get_widget("attr_label")
         self.addr_label = self.get_widget("addr_label")
         self.notes_label = self.get_widget("notes_label")
@@ -245,9 +222,6 @@ class EditPerson:
         self.lds_tab = self.get_widget("lds_tab")
         self.person_photo = self.get_widget("personPix")
         self.eventbox = self.get_widget("eventbox1")
-
-        self.get_widget("birth_stat").set_sensitive(mod)
-        self.get_widget("death_stat").set_sensitive(mod)
 
         self.prefix_label = self.get_widget('prefix_label')
 
@@ -273,7 +247,13 @@ class EditPerson:
         self.birth = RelLib.Event(self.orig_birth)
         self.pname = RelLib.Name(person.get_primary_name())
 
-        self.elist = person.get_event_list()[:]
+        self.gender.set_active(person.get_gender())
+
+        self.elist = []
+        for val in [birth_handle, death_handle] + person.get_event_list():
+            if val:
+                self.elist.append(val)
+        
         self.nlist = person.get_alternate_names()[:]
         self.alist = person.get_attribute_list()[:]
         self.ulist = person.get_url_list()[:]
@@ -284,21 +264,19 @@ class EditPerson:
         else:
             self.srcreflist = []
 
-        Utils.bold_label(self.general_label)
-        if self.srcreflist:
-            Utils.bold_label(self.sources_label)
-        if self.elist:
-            Utils.bold_label(self.events_label)
-        if self.nlist:
-            Utils.bold_label(self.names_label)
-        if self.alist:
-            Utils.bold_label(self.attr_label)
-        if self.ulist:
-            Utils.bold_label(self.inet_label)
-        if self.plist:
-            Utils.bold_label(self.addr_label)
-        if self.person.get_media_list():
-            Utils.bold_label(self.gallery_label)
+        #Utils.bold_label(self.general_label)
+        #if self.srcreflist:
+        #    Utils.bold_label(self.sources_label)
+        #if self.nlist:
+        #    Utils.bold_label(self.names_label)
+        #if self.alist:
+        #    Utils.bold_label(self.attr_label)
+        #if self.ulist:
+        #    Utils.bold_label(self.inet_label)
+        #if self.plist:
+        #    Utils.bold_label(self.addr_label)
+        #if self.person.get_media_list():
+        #    Utils.bold_label(self.gallery_label)
 
         # event display
 
@@ -351,8 +329,6 @@ class EditPerson:
         self.place_list = self.pdmap.keys()
         self.place_list.sort()
 
-        build_dropdown(self.bplace,self.place_list)
-        build_dropdown(self.dplace,self.place_list)
         build_dropdown(self.surname,self.db.get_surname_list())
 
         gid = person.get_gramps_id()
@@ -370,24 +346,16 @@ class EditPerson:
                         or (not self.lds_sealing.is_empty()):
             self.get_widget("lds_tab").show()
             self.get_widget("lds_page").show()
-            if (not self.lds_baptism.is_empty()) \
-                        or (not self.lds_endowment.is_empty()) \
-                        or (not self.lds_sealing.is_empty()):
-                Utils.bold_label(self.lds_tab)
+            #if (not self.lds_baptism.is_empty()) \
+            #            or (not self.lds_endowment.is_empty()) \
+            #            or (not self.lds_sealing.is_empty()):
+            #    Utils.bold_label(self.lds_tab)
 
         types = const.NameTypesMap.get_values()
         types.sort()
         AutoComp.fill_combo(self.ntype_field,types)
         self.write_primary_name()
         
-        if person.get_gender() == RelLib.Person.MALE:
-            self.is_male.set_active(1)
-        elif person.get_gender() == RelLib.Person.FEMALE:
-            self.is_female.set_active(1)
-        else:
-            self.is_unknown.set_active(1)
-
-        self.nick.set_text(person.get_nick_name())
         self.load_person_image()
         
         # set notes data
@@ -398,7 +366,7 @@ class EditPerson:
                 self.preform.set_active(1)
             else:
                 self.flowed.set_active(1)
-            Utils.bold_label(self.notes_label)
+            #Utils.bold_label(self.notes_label)
 
         self.name_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
                                       [DdTargets.NAME.target()],
@@ -452,19 +420,6 @@ class EditPerson:
         self.addr_list.connect('drag_data_received',self.ad_drag_data_received)
         self.addr_list.connect('drag_begin', self.ad_drag_begin)
 
-        self.birth_date_object = self.birth.get_date_object()
-        self.death_date_object = self.death.get_date_object()
-
-        self.bdate_check = DateEdit.DateEdit(
-            self.birth_date_object, self.bdate,
-            self.get_widget("birth_stat"), self.window)
-
-        self.ddate_check = DateEdit.DateEdit(
-            self.death_date_object, self.ddate,
-            self.get_widget("death_stat"), self.window)
-
-        self.update_birth_death()
-
         self.top.signal_autoconnect({
             "destroy_passed_object"     : self.on_cancel_edit,
             "on_up_clicked"             : self.on_up_clicked,
@@ -473,8 +428,8 @@ class EditPerson:
             "on_add_aka_clicked"        : self.on_add_aka_clicked,
             "on_add_attr_clicked"       : self.on_add_attr_clicked,
             "on_add_url_clicked"        : self.on_add_url_clicked,
-            "on_addphoto_clicked"       : self.gallery.on_add_media_clicked,
-            "on_selectphoto_clicked"    : self.gallery.on_select_media_clicked,
+#            "on_addphoto_clicked"       : self.gallery.on_add_media_clicked,
+#            "on_selectphoto_clicked"    : self.gallery.on_select_media_clicked,
             "on_aka_delete_clicked"     : self.on_aka_delete_clicked,
             "on_aka_update_clicked"     : self.on_aka_update_clicked,
             "on_apply_person_clicked"   : self.on_apply_person_clicked,
@@ -484,9 +439,9 @@ class EditPerson:
             "on_delete_attr_clicked"    : self.on_delete_attr_clicked,
             "on_delete_event"           : self.on_delete_event,
             "on_delete_url_clicked"     : self.on_delete_url_clicked,
-            "on_deletephoto_clicked"    : self.gallery.on_delete_media_clicked,
-            "on_edit_properties_clicked": self.gallery.popup_change_description,
-            "on_editphoto_clicked"      : self.gallery.on_edit_media_clicked,
+#            "on_deletephoto_clicked"    : self.gallery.on_delete_media_clicked,
+#            "on_edit_properties_clicked": self.gallery.popup_change_description,
+#            "on_editphoto_clicked"      : self.gallery.on_edit_media_clicked,
             "on_editperson_switch_page" : self.on_switch_page,
             "on_event_add_clicked"      : self.on_event_add_clicked,
             "on_event_delete_clicked"   : self.on_event_delete_clicked,
@@ -523,11 +478,11 @@ class EditPerson:
         self.redraw_name_list()
         self.redraw_url_list()
         self.get_widget("notebook").set_current_page(0)
-        self.given.grab_focus()
+        self.surname.grab_focus()
         self.add_itself_to_winsmenu()
 
-        for i in ["ok", "add_aka", "aka_delete", "event_del",
-                  "event_add", "attr_add", "attr_del", "addr_add",
+        for i in ["ok", "add_aka", "aka_delete", "event_add", "event_del",
+                  "attr_add", "attr_del", "addr_add",
                   "addr_del", "media_add", "media_sel", "media_del",
                   "add_url", "delete_url", "add_src", "del_src" ]:
             self.get_widget(i).set_sensitive(not self.db.readonly)
@@ -609,7 +564,7 @@ class EditPerson:
         if not self.db.readonly:
             self.db.metadata['event_order'] = event_list
         
-        self.gallery.close()
+        #self.gallery.close()
         self.close_child_windows()
         self.remove_itself_from_winsmenu()
         self.window.destroy()
@@ -645,7 +600,10 @@ class EditPerson:
     def build_columns(self,tree,list):
         cnum = 0
         for name in list:
-            renderer = gtk.CellRendererText()
+            if cnum == 0:
+                renderer = gtk.CellRendererCombo()
+            else:
+                renderer = gtk.CellRendererText()
             column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
             column.set_min_width(name[1])
             cnum = cnum + 1
@@ -777,14 +735,6 @@ class EditPerson:
     def on_given_focus_out_event (self, entry, event):
         if not self.should_guess_gender:
             return
-
-        gender = self.db.genderStats.guess_gender(unicode(entry.get_text ()))
-        if gender == RelLib.Person.UNKNOWN:
-            self.is_unknown.set_active(True)
-        elif gender == RelLib.Person.MALE:
-            self.is_male.set_active(True)
-        else:
-            self.is_female.set_active(True)
 
     def build_menu(self,list,task,opt_menu,type):
         cell = gtk.CellRendererText()
@@ -1022,9 +972,9 @@ class EditPerson:
             self.nmap[str(name)] = node
         if self.nlist:
             self.ntree.select_row(0)
-            Utils.bold_label(self.names_label)
-        else:
-            Utils.unbold_label(self.names_label)
+#            Utils.bold_label(self.names_label)
+#        else:
+#            Utils.unbold_label(self.names_label)
 
     def redraw_url_list(self):
         """redraws the url list, disabling the go button if no url
@@ -1038,12 +988,12 @@ class EditPerson:
         if len(self.ulist) > 0:
             self.web_go.set_sensitive(False)
             self.wtree.select_row(0)
-            Utils.bold_label(self.inet_label)
+#            Utils.bold_label(self.inet_label)
         else:
             self.web_go.set_sensitive(False)
-            self.web_url.set_text("")
-            self.web_description.set_text("")
-            Utils.unbold_label(self.inet_label)
+#            self.web_url.set_text("")
+#            self.web_description.set_text("")
+#            Utils.unbold_label(self.inet_label)
 
     def redraw_addr_list(self):
         """Redraws the address list"""
@@ -1056,9 +1006,9 @@ class EditPerson:
             self.pmap[str(addr)] = node
         if self.plist:
             self.ptree.select_row(0)
-            Utils.bold_label(self.addr_label)
-        else:
-            Utils.unbold_label(self.addr_label)
+#            Utils.bold_label(self.addr_label)
+#        else:
+#            Utils.unbold_label(self.addr_label)
 
     def redraw_attr_list(self):
         """redraws the attribute list for the person"""
@@ -1069,9 +1019,9 @@ class EditPerson:
             self.amap[str(attr)] = node
         if self.alist:
             self.atree.select_row(0)
-            Utils.bold_label(self.attr_label)
-        else:
-            Utils.unbold_label(self.attr_label)
+#            Utils.bold_label(self.attr_label)
+#        else:
+#            Utils.unbold_label(self.attr_label)
 
     def name_edit_callback(self,name):
         self.redraw_name_list()
@@ -1114,31 +1064,7 @@ class EditPerson:
                                    event.get_description(),
                                    event.get_date(),pname],event)
             self.emap[str(event)] = node
-        if self.elist:
-            self.etree.select_row(0)
-            Utils.bold_label(self.events_label)
-        else:
-            Utils.unbold_label(self.events_label)
-
-        # Remember old combo list input
-
-        bplace_text = unicode(self.bplace.get_text())
-        dplace_text = unicode(self.dplace.get_text())
-            
-        prev_btext = self.strip_id(bplace_text)
-        prev_dtext = self.strip_id(dplace_text)
-
-        # Update birth with new values, make sure death values don't change
-        if self.update_birth:
-            self.update_birth = False
-            self.update_birth_info()
-            self.dplace.set_text(prev_dtext)
-
-        # Update death with new values, make sure birth values don't change
-        if self.update_death:
-            self.update_death = False
-            self.update_death_info()
-            self.bplace.set_text(prev_btext)
+        node = self.etree.add(["","","",""],None)
 
     def strip_id(self,text):
         index = text.rfind('[')
@@ -1197,42 +1123,12 @@ class EditPerson:
     def on_edit_birth_clicked(self,obj):
         """Brings up the EventEditor for the birth record, event
         name cannot be changed"""
-        
-        import EventEdit
-        self.update_birth = True
-        pname = self.name_display.display(self.person)
-        event = self.birth
-        event.set_date_object(Date.Date(self.birth_date_object))
-        def_placename = unicode(self.bplace.get_text())
-
-        p = self.get_place(self.bplace)
-        if p:
-            event.set_place_handle(p)
-        EventEdit.EventEditor(
-            self,pname, const.personalEvents,
-            const.personal_events,event,def_placename,1,
-            self.event_edit_callback,
-            noedit=self.db.readonly)
+        pass
 
     def on_edit_death_clicked(self,obj):
         """Brings up the EventEditor for the death record, event
         name cannot be changed"""
-        
-        import EventEdit
-        self.update_death = True
-        pname = self.name_display.display(self.person)
-        event = self.death
-        event.set_date_object(Date.Date(self.death_date_object))
-        def_placename = unicode(self.dplace.get_text())
-
-        p = self.get_place(self.dplace)
-        if p:
-            event.set_place_handle(p)
-        EventEdit.EventEditor(
-            self,pname,const.personalEvents,
-            const.personal_events,event,def_placename,1,
-            self.event_edit_callback,
-            noedit=self.db.readonly)
+        pass
 
     def on_aka_delete_clicked(self,obj):
         """Deletes the selected name from the name list"""
@@ -1313,18 +1209,12 @@ class EditPerson:
         orig record"""
 
         surname = unicode(self.surname.get_text())
-        self.birth.set_date_object(self.birth_date_object)
-        self.death.set_date_object(self.death_date_object)
 
         ntype = unicode(self.ntype_field.child.get_text())
         suffix = unicode(self.suffix.get_text())
         prefix = unicode(self.prefix.get_text())
         given = unicode(self.given.get_text())
-        nick = unicode(self.nick.get_text())
         title = unicode(self.title.get_text())
-        male = self.is_male.get_active()
-        female = self.is_female.get_active()
-        unknown = self.is_unknown.get_active()
 
         start = self.notes_buffer.get_start_iter()
         end = self.notes_buffer.get_end_iter()
@@ -1357,8 +1247,6 @@ class EditPerson:
             changed = True
         if given != name.get_first_name():
             changed = True
-        if nick != self.person.get_nick_name():
-            changed = True
         if title != name.get_title():
             changed = True
         if self.pname.get_note() != name.get_note():
@@ -1366,27 +1254,8 @@ class EditPerson:
         if not self.lds_not_loaded and self.check_lds():
             changed = True
 
-        bplace = unicode(self.bplace.get_text().strip())
-        dplace = unicode(self.dplace.get_text().strip())
-
-        if self.pdmap.has_key(bplace):
-            self.birth.set_place_handle(self.pdmap[bplace])
-        else:
-            if bplace != "":
-                changed = True
-            self.birth.set_place_handle('')
-
-        if self.pdmap.has_key(dplace):
-            self.death.set_place_handle(self.pdmap[dplace])
-        else:
-            if dplace != "":
-                changed = True
-            self.death.set_place_handle('')
-
-        if not self.birth.are_equal(self.orig_birth):
-            changed = True
-        if not self.death.are_equal(self.orig_death):
-            changed = True
+        (female,male,unknown) = _select_gender[self.gender.get_active()]
+        
         if male and self.person.get_gender() != RelLib.Person.MALE:
             changed = True
         elif female and self.person.get_gender() != RelLib.Person.FEMALE:
@@ -1443,11 +1312,7 @@ class EditPerson:
             self.redraw_event_list()
 
     def update_birth_death(self):
-        self.bplace.set_text(place_title(self.db,self.birth))
-        self.dplace.set_text(place_title(self.db,self.death))
-
-        self.bdate_check.update_after_editor(self.birth_date_object)
-        self.ddate_check.update_after_editor(self.death_date_object)
+        pass
 
     def on_update_attr_clicked(self,obj):
         import AttrEdit
@@ -1488,148 +1353,51 @@ class EditPerson:
             self.event_edit_callback,noedit=self.db.readonly)
         
     def on_event_select_row(self,obj):
-        store,node = obj.get_selected()
-        if node:
-            row = store.get_path(node)
-            event = self.db.get_event_from_handle(self.elist[row[0]])
-            self.event_date_field.set_text(event.get_date())
-            self.event_place_field.set_text(place_title(self.db,event))
-            self.event_name_field.set_text(const.display_pevent(event.get_name()))
-            self.event_cause_field.set_text(event.get_cause())
-            self.event_descr_field.set_text(short(event.get_description()))
-            if len(event.get_source_references()) > 0:
-                psrc_ref = event.get_source_references()[0]
-                psrc_id = psrc_ref.get_base_handle()
-                psrc = self.db.get_source_from_handle(psrc_id)
-                self.event_src_field.set_text(short(psrc.get_title()))
-                self.event_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
-            else:
-                self.event_src_field.set_text('')
-                self.event_conf_field.set_text('')
-            if not self.db.readonly:
-                self.event_delete_btn.set_sensitive(1)
-                self.event_edit_btn.set_sensitive(1)
+        store,iter = obj.get_selected()
+        if iter:
+            self.event_delete_btn.set_sensitive(True)
+            self.event_edit_btn.set_sensitive(True)
         else:
-            self.event_date_field.set_text('')
-            self.event_place_field.set_text('')
-            self.event_name_field.set_text('')
-            self.event_cause_field.set_text('')
-            self.event_descr_field.set_text('')
-            self.event_src_field.set_text('')
-            self.event_conf_field.set_text('')
-            self.event_delete_btn.set_sensitive(0)
-            self.event_edit_btn.set_sensitive(0)
+            self.event_delete_btn.set_sensitive(True)
+            self.event_edit_btn.set_sensitive(True)
 
     def on_addr_select_row(self,obj):
         store,node = self.ptree.get_selected()
         if node:
-            addr = self.ptree.get_object(node)
-            self.addr_start.set_text(addr.get_date())
-            self.addr_street.set_text(addr.get_street())
-            self.addr_city.set_text(addr.get_city())
-            self.addr_state.set_text(addr.get_state())
-            self.addr_country.set_text(addr.get_country())
-            self.addr_postal.set_text(addr.get_postal_code())
-            self.addr_phone.set_text(addr.get_phone())
-            if len(addr.get_source_references()) > 0:
-                psrc_ref = addr.get_source_references()[0]
-                psrc_id = psrc_ref.get_base_handle()
-                psrc = self.db.get_source_from_handle(psrc_id)
-                self.addr_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
-                self.addr_src_field.set_text(short(psrc.get_title()))
-            else:
-                self.addr_src_field.set_text('')
-                self.addr_conf_field.set_text('')
-            self.addr_delete_btn.set_sensitive(1)
-            self.addr_edit_btn.set_sensitive(1)
+            self.addr_delete_btn.set_sensitive(True)
+            self.addr_edit_btn.set_sensitive(True)
         else:
-            self.addr_start.set_text('')
-            self.addr_street.set_text('')
-            self.addr_city.set_text('')
-            self.addr_state.set_text('')
-            self.addr_country.set_text('')
-            self.addr_postal.set_text('')
-            self.addr_phone.set_text('')
-            self.addr_conf_field.set_text('')
-            self.addr_src_field.set_text('')
-            self.addr_delete_btn.set_sensitive(0)
-            self.addr_edit_btn.set_sensitive(0)
+            self.addr_delete_btn.set_sensitive(False)
+            self.addr_edit_btn.set_sensitive(False)
 
     def on_name_select_row(self,obj):
         store,node = self.ntree.get_selected()
         if node:
-            name = self.ntree.get_object(node)
-            self.alt_given_field.set_text(name.get_first_name())
-            self.alt_title_field.set_text(name.get_title())
-            self.alt_last_field.set_text(name.get_surname())
-            self.alt_suffix_field.set_text(name.get_suffix())
-            self.alt_prefix_field.set_text(name.get_surname_prefix())
-            self.name_type_field.set_text(const.NameTypesMap.find_value(name.get_type()))
-            if len(name.get_source_references()) > 0:
-                psrc_ref = name.get_source_references()[0]
-                psrc_id = psrc_ref.get_base_handle()
-                psrc = self.db.get_source_from_handle(psrc_id)
-                self.name_src_field.set_text(short(psrc.get_title()))
-                self.name_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
-            else:
-                self.name_src_field.set_text('')
-                self.name_conf_field.set_text('')
-            self.name_delete_btn.set_sensitive(1)
-            self.name_edit_btn.set_sensitive(1)
+            self.name_delete_btn.set_sensitive(True)
+            self.name_edit_btn.set_sensitive(True)
         else:
-            self.alt_given_field.set_text('')
-            self.alt_title_field.set_text('')
-            self.alt_last_field.set_text('')
-            self.alt_suffix_field.set_text('')
-            self.alt_prefix_field.set_text('')
-            self.name_type_field.set_text('')
-            self.name_src_field.set_text('')
-            self.name_conf_field.set_text('')
-            self.name_delete_btn.set_sensitive(0)
-            self.name_edit_btn.set_sensitive(0)
+            self.name_delete_btn.set_sensitive(False)
+            self.name_edit_btn.set_sensitive(False)
 
     def on_web_select_row(self,obj):
         store,node = self.wtree.get_selected()
         if node:
-            url = self.wtree.get_object(node)
-            path = url.get_path()
-            self.web_url.set_text(path)
-            self.web_description.set_text(url.get_description())
-            self.web_go.set_sensitive(0)
-            self.web_go.set_sensitive(1)
-            self.web_delete_btn.set_sensitive(1)
-            self.web_edit_btn.set_sensitive(1)
+            self.web_go.set_sensitive(True)
+            self.web_delete_btn.set_sensitive(True)
+            self.web_edit_btn.set_sensitive(True)
         else:
-            self.web_url.set_text('')
-            self.web_description.set_text('')
-            self.web_go.set_sensitive(0)
-            self.web_delete_btn.set_sensitive(0)
-            self.web_edit_btn.set_sensitive(0)
+            self.web_go.set_sensitive(False)
+            self.web_delete_btn.set_sensitive(False)
+            self.web_edit_btn.set_sensitive(False)
             
     def on_attr_select_row(self,obj):
         store,node = self.atree.get_selected()
         if node:
-            attr = self.atree.get_object(node)
-            self.attr_type.set_text(const.display_pattr(attr.get_type()))
-            self.attr_value.set_text(short(attr.get_value()))
-            if len(attr.get_source_references()) > 0:
-                psrc_ref = attr.get_source_references()[0]
-                psrc_id = psrc_ref.get_base_handle()
-                psrc = self.db.get_source_from_handle(psrc_id)
-                self.attr_src_field.set_text(short(psrc.get_title()))
-                self.attr_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
-            else:
-                self.attr_src_field.set_text('')
-                self.attr_conf_field.set_text('')
-            self.attr_delete_btn.set_sensitive(1)
-            self.attr_edit_btn.set_sensitive(1)
+            self.attr_delete_btn.set_sensitive(True)
+            self.attr_edit_btn.set_sensitive(True)
         else:
-            self.attr_type.set_text('')
-            self.attr_value.set_text('')
-            self.attr_src_field.set_text('')
-            self.attr_conf_field.set_text('')
-            self.attr_delete_btn.set_sensitive(0)
-            self.attr_edit_btn.set_sensitive(0)
+            self.attr_delete_btn.set_sensitive(False)
+            self.attr_edit_btn.set_sensitive(False)
 
     def aka_double_click(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
@@ -1660,7 +1428,7 @@ class EditPerson:
             try:
                 i = pixbuf_new_from_file(photo)
                 ratio = float(max(i.get_height(),i.get_width()))
-                scale = float(_PICTURE_WIDTH)/ratio
+                scale = float(100.0)/ratio
                 x = int(scale*(i.get_width()))
                 y = int(scale*(i.get_height()))
                 i = i.scale_simple(x,y,INTERP_BILINEAR)
@@ -1702,14 +1470,10 @@ class EditPerson:
         prefix = unicode(self.prefix.get_text())
         ntype = unicode(self.ntype_field.child.get_text())
         given = unicode(self.given.get_text())
-        nick = unicode(self.nick.get_text())
         title = unicode(self.title.get_text())
         idval = unicode(self.gid.get_text())
 
         name = self.pname
-
-        self.birth.set_date_object(self.birth_date_object)
-        self.birth.set_place_handle(self.get_place(self.bplace,1))
 
         if idval != self.person.get_gramps_id():
             person = self.db.get_person_from_gramps_id(idval)
@@ -1756,9 +1520,6 @@ class EditPerson:
         if name != self.person.get_primary_name():
             self.person.set_primary_name(name)
 
-        if nick != self.person.get_nick_name():
-            self.person.set_nick_name(nick)
-
         self.pdmap.clear()
         for key in self.db.get_place_handles():
             p = self.db.get_place_from_handle(key).get_display_info()
@@ -1782,19 +1543,8 @@ class EditPerson:
             new_order = self.reorder_child_list(self.person,f.get_child_handle_list())
             f.set_child_handle_list(new_order)
     
-        self.death.set_date_object(self.death_date_object)
-        self.death.set_place_handle(self.get_place(self.dplace,1))
-
-        if not self.orig_death.are_equal(self.death):
-            if self.orig_death.is_empty():
-                self.db.add_event(self.death,trans)
-                self.person.set_death_handle(self.death.get_handle())
-            self.db.commit_event(self.death,trans)
-
-        male = self.is_male.get_active()
-        female = self.is_female.get_active()
-        unknown = self.is_unknown.get_active()
         error = False
+        (female,male,unknown) = _select_gender[self.gender.get_active()]
         if male and self.person.get_gender() != RelLib.Person.MALE:
             self.person.set_gender(RelLib.Person.MALE)
             for temp_family in self.person.get_family_handle_list():
@@ -1972,17 +1722,14 @@ class EditPerson:
             self.load_photo(None)
 
     def update_birth_info(self):
-        self.bdate_check.update_after_editor(self.birth.get_date_object())
-        self.bplace.set_text(place_title(self.db,self.birth))
-
+        pass
+    
     def update_death_info(self):
-        self.ddate_check.update_after_editor(self.death.get_date_object())
-        self.dplace.set_text(place_title(self.db,self.death))
+        pass
         
     def on_switch_page(self,obj,a,page):
         if page == 0:
             self.load_person_image()
-        elif page == 2:
             self.redraw_event_list()
         elif page == 7 and self.not_loaded:
             self.not_loaded = False
@@ -1992,19 +1739,19 @@ class EditPerson:
         note_buf = self.notes_buffer
         text = unicode(note_buf.get_text(note_buf.get_start_iter(),
                                        note_buf.get_end_iter(),False))
-        if text:
-            Utils.bold_label(self.notes_label)
-        else:
-            Utils.unbold_label(self.notes_label)
+#        if text:
+#            Utils.bold_label(self.notes_label)
+#        else:
+#            Utils.unbold_label(self.notes_label)
 
         if not self.lds_not_loaded:
             self.check_lds()
-        if self.lds_baptism.is_empty() \
-                        and self.lds_endowment.is_empty() \
-                        and self.lds_sealing.is_empty():
-            Utils.unbold_label(self.lds_tab)
-        else:
-            Utils.bold_label(self.lds_tab)
+#         if self.lds_baptism.is_empty() \
+#                         and self.lds_endowment.is_empty() \
+#                         and self.lds_sealing.is_empty():
+#             Utils.unbold_label(self.lds_tab)
+#         else:
+#             Utils.bold_label(self.lds_tab)
 
     def change_name(self,obj):
         sel_objs = self.ntree.get_selected_objects()
@@ -2021,8 +1768,8 @@ class EditPerson:
     def write_primary_name(self):
         # initial values
         name = '<span size="larger" weight="bold">%s</span>' % self.name_display.display(self.person)
-        self.get_widget("activepersonTitle").set_text(name)
-        self.get_widget("activepersonTitle").set_use_markup(True)
+#        self.get_widget("activepersonTitle").set_text(name)
+#        self.get_widget("activepersonTitle").set_use_markup(True)
         self.suffix.set_text(self.pname.get_suffix())
         if self.use_patronymic:
             self.prefix.set_text(self.pname.get_patronymic())
@@ -2107,7 +1854,6 @@ class EditPerson:
             list.remove(person.get_handle())
             list.insert(target,person.get_handle())
         return list
-
 
 def short(val,size=60):
     if len(val) > size:

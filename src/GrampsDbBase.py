@@ -992,7 +992,8 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
     def get_default_person(self):
         """returns the default Person of the database"""
         if self.metadata:
-            data = self.person_map.get(self.metadata['default'])
+            key = self.metadata.get('default')
+            data = self.person_map.get(key)
             if data:
                 person = Person()
                 person.unserialize(data)
