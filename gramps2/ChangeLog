@@ -1,3 +1,6 @@
+2005-04-18  Guillaume Pratte <guillaumep@soireevideo.org>
+	* src/po/fr.po: Translation updated, but not finished.
+
 2005-04-15  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/WebPage.py (dump_gendex): Files are named by GRAMPS ID;
 	Alway print fields for birth/death; Fixed typo in DateHandler
