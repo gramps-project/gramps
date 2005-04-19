@@ -672,8 +672,8 @@ class PedigreeView:
         if place:
             place_title = self.db.get_place_from_handle(place_handle).get_title()
             if place_title != "":
-                if len(place_title) > 15:
-                    text = place_title[:14]+"..."
+                if len(place_title) > 25:
+                    text = place_title[:24]+"..."
                 else:
                     text = place_title
         return text
@@ -697,9 +697,9 @@ class PedigreeView:
             dd = death.get_date()
             dp = self.get_place_name(death.get_place_handle())
         if line_count < 5:
-            return "%s\n%s\n%s" % (name,bd,dd)
+            return "%s\n* %s\n+ %s" % (name,bd,dd)
         else:
-            return "%s\n%s\n  %s\n%s\n  %s" % (name,bd,bp,dd,dp)
+            return "%s\n* %s\n  %s\n+ %s\n  %s" % (name,bd,bp,dd,dp)
             
             
 
