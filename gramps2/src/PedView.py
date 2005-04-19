@@ -69,122 +69,55 @@ _CREM = _('crem.')
 
 #-------------------------------------------------------------------------
 #
-# DispBox class
-#
-#-------------------------------------------------------------------------
-class DispBox:
-    """
-    This class handles the person box, including its expanded and
-    shrunk states, as well as the callbacks for events occurring in the box.
-    """
-
-    def __init__(self,root,style,x,y,w,h,person,db,change,edit,build_menu):
-        shadow = _PAD
-        xpad = _PAD
-        
-        self.db = db
-        self.change = change
-        self.edit = edit
-        self.build_menu = build_menu
-        self.x = x
-        self.y = y
-        self.w = w
-        self.h = h
-        self.person = person
-        self.root = root
-
-        self.name = NameDisplay.displayer.display(person)
-        
-        self.exp = build_detail_string( db, person)
-
-        self.group = self.root.add(CanvasGroup,x=x,y=y)
-        self.shadow = self.group.add(
-            CanvasRect, x1=shadow, y1=shadow, x2=w+shadow, y2=h+shadow,
-            outline_color_gdk=style.dark[gtk.STATE_NORMAL],
-            fill_color_gdk=style.dark[gtk.STATE_NORMAL])
-
-        # draw the real box
-        self.bkgnd = self.group.add(
-            CanvasRect, x1=0, y1=0, x2=w, y2=h,
-            outline_color_gdk=style.fg[gtk.STATE_NORMAL],
-            fill_color_gdk=style.base[gtk.STATE_NORMAL])
-
-        font = gtk.gdk.font_from_description(style.font_desc)
-        self.textbox = self.group.add(
-            CanvasText, x=xpad, y=h/2.0, text=self.name,
-            fill_color_gdk=style.text[gtk.STATE_NORMAL],
-            font=font, anchor=gtk.ANCHOR_WEST)
-        self.group.connect('event',self.group_event)
-        self.group.set_data(_PERSON,person.get_handle())
-
-  
-    def cleanup(self):
-        self.shadow.destroy()
-        self.bkgnd.destroy()
-        self.textbox.destroy()
-        self.group.destroy()
-        return
-    
-    def group_event(self,obj,event):
-        """Handle events over a drawn box. Doubleclick would edit,
-           shift doubleclick would change the active person, entering
-           the box expands it to display more information, leaving a
-           box returns it to the original size and information"""
-        if event.type == gtk.gdk._2BUTTON_PRESS:
-            self.edit(self.person)
-            return 0
-        elif event.type == gtk.gdk.ENTER_NOTIFY:
-            self.expand()
-            return 0
-        elif event.type == gtk.gdk.LEAVE_NOTIFY:
-            self.shrink()
-            return 0
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_menu(event,self.person)
-            return True
-        return 0
-
-    def expand(self):
-        """Expand a box to include additional information"""
-        self.textbox.set(text=self.exp)
-        self.bkgnd.set(y1=-self.h,y2=self.h*2)
-        self.shadow.set(y1=-self.h+_PAD,y2=self.h*2+_PAD)
-        
-    def shrink(self):
-        """Expand a box to include additional information"""
-        self.textbox.set(text=self.name)
-        self.bkgnd.set(y1=0,y2=self.h)
-        self.shadow.set(y1=_PAD,y2=self.h+_PAD)
-        
-#-------------------------------------------------------------------------
-#
 # PedigreeView
 #
 #-------------------------------------------------------------------------
 class PedigreeView:
-    def __init__(self,parent,canvas,update,status_bar,lp):
+    def __init__(self,parent,canvas,update,status_bar,edit_person):
         self.parent = parent
 
         self.relcalc = Relationship.RelationshipCalculator(self.parent.db)
         self.parent.connect('database-changed',self.change_db)
         self.parent.connect('active-changed',self.active_changed)
 
-        self.canvas = canvas
-        self.canvas_items = []
-        self.boxes = []
-        self.root = self.canvas.root()
-        self.active_person = None
-        self.x1 = 0
-        self.x2 = 0
-        self.y1 = 0
-        self.y2 = 0
+        # FIXME: Hack to avoid changing the glade file
+        # Replace canvas by notebook
+        parent_container = canvas.get_parent()
+        canvas.destroy()
+        self.notebook = gtk.Notebook()
+        self.notebook.set_show_border(False)
+        self.notebook.set_show_tabs(False)
+        parent_container.add_with_viewport(self.notebook)
+        # ###
+            
+        self.table_2 = gtk.Table(1,1,False)
+        self.add_table_to_notebook( self.table_2)
+
+        self.table_3 = gtk.Table(1,1,False)
+        self.add_table_to_notebook( self.table_3)
+
+        self.table_4 = gtk.Table(1,1,False)
+        self.add_table_to_notebook( self.table_4)
+
+        self.table_5 = gtk.Table(1,1,False)
+        self.add_table_to_notebook( self.table_5)
+
+        parent_container.connect("size-allocate", self.size_request_cb)
+
+        self.notebook.show_all()
+
         self.update = update
         self.sb = status_bar
-        self.load_person = lp
-        self.anchor = None
-        self.canvas.parent.connect('button-press-event',self.on_canvas_press)
+        self.edit_person = edit_person
+    
         self.change_db(self.parent.db)
         self.distance = self.relcalc.get_relationship_distance
+
+    def add_table_to_notebook( self, table):
+        frame = gtk.ScrolledWindow(None,None)
+        frame.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
+        frame.add_with_viewport(table)
+        self.notebook.append_page(frame,None)
 
     def change_db(self,db):
         # Reconnect signals
@@ -197,188 +130,270 @@ class PedigreeView:
         self.active_person = None
 
     def person_updated_cb(self,handle_list):
-        self.load_canvas(self.active_person)
+        self.rebuild_trees(self.active_person)
 
     def person_rebuild(self):
-        self.load_canvas(self.active_person)
+        self.rebuild_trees(self.active_person)
 
     def active_changed(self,handle):
         if handle:
             self.active_person = self.db.get_person_from_handle(handle)
-            self.load_canvas(self.active_person)
+            self.rebuild_trees(self.active_person)
         else:
-            self.load_canvas(None)
+            self.rebuild_trees(None)
         
-    def clear(self):
-        for i in self.canvas_items:
-            i.destroy()
-        for i in self.boxes:
-            i.cleanup()
+    def size_request_cb(self, widget, event, data=None):
+        v = widget.get_allocation()
+        page_list = range(0,self.notebook.get_n_pages())
+        page_list.reverse()
+        for n in page_list:
+            p = self.notebook.get_nth_page(n).get_child().get_child().get_allocation()
+            if v.width >= p.width and v.height > p.height:
+                self.notebook.set_current_page(n)
+                break;
 
-    def load_canvas(self, person):
-        """Redraws the pedigree view window, using the passed person
-           as the root person of the tree."""
+    def rebuild_trees(self,person):
+        pos_2 =((0,1,3,(3,2,7)),
+                (2,0,1,None),
+                (2,4,1,None))
+        pos_3 =((0,2,5,(3,4,5)),
+                (2,1,1,(5,1,1)),
+                (2,7,1,(5,7,1)),
+                (4,0,1,None),
+                (4,2,1,None),
+                (4,6,1,None),
+                (4,8,1,None))
+        pos_4 =((0, 5,5,(3, 7,5)),
+                (2, 2,3,(5, 3,3)),
+                (2,10,3,(5,11,3)),
+                (4, 1,1,(7,1,1)),
+                (4, 5,1,(7,5,1)),
+                (4, 9,1,(7,9,1)),
+                (4,13,1,(7,13,1)),
+                (6, 0,1,None),
+                (6, 2,1,None),
+                (6, 4,1,None),
+                (6, 6,1,None),
+                (6, 8,1,None),
+                (6,10,1,None),
+                (6,12,1,None),
+                (6,14,1,None),)
+        pos_5 =((0,10,11,(3,15,3)),
+                (2, 5,5,(5, 7,1)),
+                (2,21,5,(5,23,1)),
+                (4, 2,3,(7,3,1)),
+                (4,10,3,(7,11,1)),
+                (4,18,3,(7,19,1)),
+                (4,26,3,(7,27,1)),
+                (6, 1,1,(9,1,1)),
+                (6, 5,1,(9,5,1)),
+                (6, 9,1,(9,9,1)),
+                (6,13,1,(9,13,1)),
+                (6,17,1,(9,17,1)),
+                (6,21,1,(9,21,1)),
+                (6,25,1,(9,25,1)),
+                (6,29,1,(9,29,1)),
+                (8, 0,1,None),
+                (8, 2,1,None),
+                (8, 4,1,None),
+                (8, 6,1,None),
+                (8, 8,1,None),
+                (8,10,1,None),
+                (8,12,1,None),
+                (8,14,1,None),
+                (8,16,1,None),
+                (8,18,1,None),
+                (8,20,1,None),
+                (8,22,1,None),
+                (8,24,1,None),
+                (8,26,1,None),
+                (8,28,1,None),
+                (8,30,1,None),)
+        self.rebuild( self.table_2, pos_2, person)
+        self.rebuild( self.table_3, pos_3, person)
+        self.rebuild( self.table_4, pos_4, person)
+        self.rebuild( self.table_5, pos_5, person)
 
-        self.clear()
-        
-        if person is not self.active_person:
-            self.active_person = person
-        if person == None:
-            return
-
-        h = 0
-        w = 0
-        (x2,y2) = self.canvas.get_size()
-    
-        self.canvas.set_scroll_region(0,0,x2,y2)
-        
-        style = self.canvas.get_style()
-        font = gtk.gdk.font_from_description(style.font_desc)
-
+    def rebuild( self, table_widget, positions, active_person):
+        # Build ancestor tree
         lst = [None]*31
         self.find_tree(self.active_person,0,1,lst)
 
-        # determine the largest string width and height for calcuation
-        # of box sizes.
-
-        a = pango.Layout(self.canvas.get_pango_context())
+        # Purge current table content
+        for child in table_widget.get_children():
+            child.destroy()
+        table_widget.resize(1,1)
         
-        for t in lst:
-            if t:
-                boxtext = build_detail_string(self.db,t[0]).encode("UTF-8")
-                for line in boxtext.split("\n"):
-                    try:
-                        a.set_text(line,len(line))
-                    except TypeError:
-                        a.set_text(line)
-                    (w1,h1) = a.get_pixel_size()
-                    h = max(h,h1)
-                    w = max(w,w1)
-        cpad = 10
-        w = w+_PAD
+        debug = False
+        if debug:
+            xmax = 0
+            ymax = 0
+            for field in positions:
+                x = field[0]+3
+                if x > xmax:
+                    xmax = x
+                y = field[1]+field[2]
+                if y > ymax:
+                    ymax = y
+            for x in range(0,xmax):
+                for y in range(0,ymax):
+                    label=gtk.Label("%d,%d"%(x,y))
+                    frame = gtk.ScrolledWindow(None,None)
+                    frame.set_shadow_type(gtk.SHADOW_ETCHED_OUT)
+                    frame.set_policy(gtk.POLICY_NEVER,gtk.POLICY_NEVER)
+                    frame.add(label)
+                    table_widget.attach(frame,x,x+1,y,y+1,0,0,0,0)          
         
-        cw = x2-(2*cpad)-10-h
-        ch = y2-(2*cpad)
+        for i in range(0,31):
+            try:
+                # Table placement for person data
+                x = positions[i][0]
+                y = positions[i][1]
+                w = 3
+                h = positions[i][2]
+    
+                # Keine Person, daher leere Box
+                if not lst[i]:
+                    label = gtk.Label(" ")
+                    frame = gtk.ScrolledWindow(None,None)
+                    frame.set_shadow_type(gtk.SHADOW_OUT)
+                    frame.set_policy(gtk.POLICY_NEVER,gtk.POLICY_NEVER)
+                    frame.add_with_viewport(label)
+                    if positions[i][2] > 1:
+                        table_widget.attach(frame,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.EXPAND|gtk.FILL,0,0)
+                    else:
+                        table_widget.attach(frame,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.FILL,0,0)
+                    continue
 
-        if 5*w < cw and 24*h < ch:
-            gen = 31
-            xdiv = 5.0
-        elif 4*w < cw and 12*h < ch:
-            gen = 15
-            xdiv = 4.0
-        else:
-            gen = 7
-            xdiv = 3.0
+                # button t change active person
+                jump_image = gtk.Image()
+                jump_image.set_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
+                jump_button = gtk.Button()
+                jump_button.add(jump_image)
+                jump_button.set_data(_PERSON,lst[i][0].get_handle())
+                jump_button.connect("clicked", self.on_childmenu_changed);
+                
+                # button to edit person
+                edit_image = gtk.Image()
+                edit_image.set_from_stock(gtk.STOCK_EDIT,gtk.ICON_SIZE_MENU)
+                edit_button = gtk.Button()
+                edit_button.add(edit_image)
+                edit_button.set_data(_PERSON,lst[i][0].get_handle())
+                edit_button.connect("clicked", self.edit_person_cb);
+    
+                # button to jump to children
+                children_button = None
+                if i == 0 and active_person:
+                    for family_handle in active_person.get_family_handle_list():
+                        family = self.db.get_family_from_handle(family_handle)
+                        if not family:
+                            continue
+                        if len(family.get_child_handle_list()) > 0:
+                            children_image = gtk.Image()
+                            children_image.set_from_stock(gtk.STOCK_GO_BACK,gtk.ICON_SIZE_MENU)
+                            children_button = gtk.Button()
+                            children_button.add(children_image)
+                            children_button.connect("clicked", self.on_show_child_menu)
+                            break
+                # Navigation button
+                nav_image = gtk.Image()
+                nav_image.set_from_stock(gtk.STOCK_INDEX,gtk.ICON_SIZE_MENU)
+                nav_button = gtk.Button()
+                nav_button.add(nav_image)
+                nav_button.connect("button-press-event", self.build_full_nav_menu_cb)
+                nav_button.set_data(_PERSON,lst[i][0].get_handle())
 
-        xpts = self.build_x_coords(cw/xdiv,_CANVASPAD+h)
-        ypts = self.build_y_coords((ch-h)/32.0, h)
+                # Box to place buttons and text side by side
+                box1 = gtk.HBox(False,0)
+                box1.set_border_width(0)
+    
+                if positions[i][2] > 1:
+                    # Multiline text boxes get vertical buttons
+                    frame = gtk.ScrolledWindow(None,None)
+                    frame.set_shadow_type(gtk.SHADOW_OUT)
+                    frame.set_policy(gtk.POLICY_NEVER,gtk.POLICY_NEVER)
+                    viewport1 = gtk.Viewport(None,None)
+                    viewport1.set_shadow_type(gtk.SHADOW_NONE)
+                    viewport1.set_border_width(0)
+                    frame.add(viewport1)
+                    viewport1.add(box1)
+                
+                    box2 = gtk.VBox(False,0)   # buttons go into a new box
+                    box2.pack_start(edit_button,False,False,0)
+                    box2.pack_start(jump_button,False,False,0)
+                    box2.pack_start(nav_button,False,False,0)
+                    if children_button:
+                        box2.pack_start(children_button,False,False,0)
+    
+                    # Multiline text using TextBuffer
+                    textbuffer = gtk.TextBuffer()
+                    textbuffer.set_text(self.format_person(lst[i][0], positions[i][2]))
+                    text = gtk.TextView(textbuffer)
+                    text.set_editable(False)
+                    text.set_cursor_visible(False)
+                    text.set_wrap_mode(gtk.WRAP_WORD)
+                    frame2 = gtk.ScrolledWindow(None,None)
+                    frame2.set_shadow_type(gtk.SHADOW_NONE)
+                    frame2.set_policy(gtk.POLICY_NEVER,gtk.POLICY_NEVER)
+                    viewport2 = gtk.Viewport(None,None)
+                    viewport2.set_shadow_type(gtk.SHADOW_NONE)
+                    viewport2.set_border_width(0)
+                    viewport2.add(text)
+                    frame2.add(viewport2)
+                    box1.pack_start(box2,False,False,0)
+                    box1.pack_start(frame2,True,True,0)
+                    table_widget.attach(frame,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.EXPAND|gtk.FILL,0,0)
+                else:
+                    # buttons go into the same box as the text
+                    box1.pack_start(edit_button,False,False,0)
+                    box1.pack_start(jump_button,False,False,0)
+                    box1.pack_start(nav_button,False,False,0)
+                    if children_button:
+                        box1.pack_start(children_button,False,False,0)
+    
+                    #Single line text using Entry
+                    text = gtk.Entry()
+                    text.set_text(self.format_person(lst[i][0], positions[i][2]))
+                    text.set_editable(False)
+                    text.set_has_frame(False)
+                    frame2 = gtk.ScrolledWindow(None,None)
+                    frame2.set_shadow_type(gtk.SHADOW_OUT)
+                    frame2.set_policy(gtk.POLICY_NEVER,gtk.POLICY_NEVER)
+                    viewport2 = gtk.Viewport(None,None)
+                    viewport2.set_shadow_type(gtk.SHADOW_NONE)
+                    viewport2.set_border_width(0)
+                    viewport2.add(text)
+                    frame2.add(viewport2)
+                    box1.pack_start(frame2,True,True,0)
+                    table_widget.attach(box1,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.FILL,0,0)
+    
+                # Marriage data
+                if positions[i][3] and lst[i][2]:
+                    text = self.format_relation( lst[i][2], positions[i][3][2])
+                    label = gtk.Label(text)
+                    label.set_justify(gtk.JUSTIFY_CENTER)
+                    label.set_line_wrap(True)
+                    x = positions[i][3][0]
+                    y = positions[i][3][1]
+                    w = 2
+                    h = 1
+                    if positions[i][3][2] > 1:
+                        table_widget.attach(label,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.EXPAND|gtk.FILL,0,0)
+                    else:
+                        table_widget.attach(label,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.FILL,0,0)
+            except IndexError:
+                pass
+        table_widget.show_all()
 
-        self.anchor_txt = self.root.add(
-            CanvasText, x=0, y=y2-12, font=font, text=self.make_anchor_label(),
-            fill_color_gdk=style.fg[gtk.STATE_NORMAL],
-            anchor=gtk.ANCHOR_WEST)
-        self.canvas_items.append(self.anchor_txt)
 
-        for family_handle in self.active_person.get_family_handle_list():
-            family = self.db.get_family_from_handle(family_handle)
-            if not family:
-                continue
-            if len(family.get_child_handle_list()) > 0:
-                button,arrow = self.make_arrow_button(gtk.ARROW_LEFT,
-                                                      self.on_show_child_menu)
-                item = self.root.add(CanvasWidget, widget=button,
-                                     x=_CANVASPAD, y=ypts[0]+(h/2.0), 
-                                     height=h, width=h,
-                                     size_pixels=1, anchor=gtk.ANCHOR_WEST)
-                self.canvas_items.append(item)
-                self.canvas_items.append(button)
-                self.canvas_items.append(arrow)
-                break
+    def edit_person_cb(self,obj):
+        person_handle = obj.get_data(_PERSON)
+        person = self.db.get_person_from_handle(person_handle)
+        if person:
+            self.edit_person(person)
+            return True
+        return 0
 
-        if lst[1]:
-            p = lst[1]
-            self.add_parent_button(p[0],x2-_PAD,ypts[1],h)
-        
-        if lst[2]:
-            p = lst[2]
-            self.add_parent_button(p[0],x2-_PAD,ypts[2],h)
-
-        gen_no = 1
-        if self.anchor:
-            (firstRel,secondRel,common) = self.distance(self.active_person,
-                                                        self.anchor)
-            if not common or type(common) in [type(''),type(u'')]:
-                self.remove_anchor()
-            else:
-                gen_no = len(firstRel)-len(secondRel)
-
-        for i in range(int(xdiv)):
-            item = self.root.add(CanvasText, x=(cw*i/xdiv + cpad), y=h,
-                                 text=str(gen_no),
-                                 font=font,
-                                 anchor=gtk.ANCHOR_WEST)
-            self.canvas_items.append(item)
-            gen_no = gen_no + 1
-
-        for i in range(gen):
-            if lst[i]:
-                if i < int(gen/2.0):
-                    findex = (2*i)+1 
-                    mindex = findex+1
-                    if lst[findex]:
-                        p = lst[findex]
-                        self.draw_canvas_line(xpts[i], ypts[i], xpts[findex],
-                                              ypts[findex], h, w, p[0], style,
-                                              p[1])
-                    if lst[mindex]:
-                        p = lst[mindex]
-                        self.draw_canvas_line(xpts[i],ypts[i], xpts[mindex],
-                                              ypts[mindex], h, w, p[0], style,
-                                              p[1])
-                p = lst[i]
-                box = DispBox(self.root,style,xpts[i],ypts[i],w,h,p[0],
-                              self.db,
-                              self.parent.change_active_person, 
-                              self.load_person, self.build_full_nav_menu)
-                self.boxes.append(box)
-
-    def make_arrow_button(self,direction,function):
-        """Make a button containing an arrow with the attached callback"""
-
-        arrow = gtk.Arrow(direction,gtk.SHADOW_NONE)
-        button = gtk.Button()
-        button.add(arrow)
-        button.connect("clicked",function)
-        arrow.show()
-        button.show()
-        return (button, arrow)
-
-    def set_anchor(self):
-        if self.active_person:
-            self.anchor = self.active_person
-        else:
-            self.anchor = None
-        self.anchor_txt.set(text=self.make_anchor_label())
-
-    def remove_anchor(self):
-        self.anchor = None
-        self.anchor_txt.set(text=self.make_anchor_label())
-
-    def on_anchor_set(self,junk):
-        self.set_anchor()
-        self.load_canvas(self.active_person)
-        
-    def on_anchor_removed(self,junk):
-        self.remove_anchor()
-        self.load_canvas(self.active_person)
-
-    def make_anchor_label(self):
-        """Make a label containing the name of the anchored person"""
-        if self.anchor:
-            anchor_string = self.anchor.get_primary_name().get_regular_name()
-            return "%s: %s" % (_("Anchor"),anchor_string)
-        else:
-            return ""
 
     def on_show_child_menu(self,obj):
         """User clicked button to move to child of active person"""
@@ -412,99 +427,26 @@ class PedigreeView:
                     menuitem.connect("activate",self.on_childmenu_changed)
                     menuitem.show()
                 myMenu.popup(None,None,None,0,0)
-        return 1
+            return 1
+        return 0
 
     def on_childmenu_changed(self,obj):
         """Callback for the pulldown menu selection, changing to the person
            attached with menu item."""
 
         person_handle = obj.get_data(_PERSON)
-        person = self.db.get_person_from_handle(person_handle)
-        if person:
-            self.parent.change_active_person(person)
-        return 1
+        if person_handle:
+            self.parent.emit("active-changed", (person_handle,))
+            return 1
+        return 0
     
-    def add_parent_button(self,parent,x,y,h):
-        """Add a button with a right pointing button on the main group at
-           the specified location. Attach the passed parent and the callback
-           to the button."""
-
-        button,arrow = self.make_arrow_button(gtk.ARROW_RIGHT,
-                                              self.change_to_parent)
-        button.set_data(_PERSON,parent.get_handle())
-
-        item = self.root.add(CanvasWidget, widget=button, x=x, y=y+(h/2),
-                             height=h, width=h, size_pixels=1,
-                             anchor=gtk.ANCHOR_EAST)
-        self.canvas_items.append(arrow)
-        self.canvas_items.append(item)
-        self.canvas_items.append(button)
-
-    def change_to_parent(self,obj):
-        """Callback to right pointing arrow button. Gets the person
-           attached to the button and change the root person to that
-           person, redrawing the view."""
-        person_handle = obj.get_data(_PERSON)
-        person = self.db.get_person_from_handle(person_handle)
-        if self.active_person:
-            self.active_person = person
-        self.parent.change_active_person(person)
-    
-    def draw_canvas_line(self,x1,y1,x2,y2,h,w,data,style,ls):
-        """Draw an two segment line between the x,y point pairs. Attach
-           a event callback and data to the line."""
- 
-        startx = x1+(w/2.0)
-        pts = [startx,y1, startx,y2+(h/2.0), x2,y2+(h/2.0)]
-        item = self.root.add(CanvasLine, width_pixels=2,
-                             points=pts, line_style=ls,
-                             fill_color_gdk=style.fg[gtk.STATE_NORMAL])
-        item.set_data(_PERSON,data.get_handle())
-        item.connect("event",self.line_event)
-        self.canvas_items.append(item)
-
-    def build_x_coords(self,x,cpad):
-        """Build the array of x coordinates for the possible positions
-           on the pedegree view."""
-        return [cpad] + [x+cpad]*2 + [x*2+cpad]*4 + [x*3+cpad]*8 + [x*4+cpad]*16
-
-    def build_y_coords(self, y, top_pad):
-        """Build the array of y coordinates for the possible positions
-           on the pedegree view."""
-        res = [ y*16.0, y*8.0,  y*24.0, y*4.0,  y*12.0, y*20.0, y*28.0, y*2.0,  
-                y*6.0,  y*10.0, y*14.0, y*18.0, y*22.0, y*26.0, y*30.0, y,    
-                y*3.0,  y*5.0,  y*7.0,  y*9.0,  y*11.0, y*13.0, y*15.0, y*17.0, 
-                y*19.0, y*21.0, y*23.0, y*25.0, y*27.0, y*29.0, y*31.0 ]
-        return map(lambda coord, top_pad=top_pad: coord + top_pad, res)
-
-    def line_event(self,obj,event):
-        """Catch X events over a line and respond to the ones we care about"""
-
-        person_handle = obj.get_data(_PERSON)
-        if not person_handle:
-            return 
-        person = self.db.get_person_from_handle(person_handle)
-        style = self.canvas.get_style()
-
-        if event.type == gtk.gdk._2BUTTON_PRESS:
-            if event.button == 1 and event.type == gtk.gdk._2BUTTON_PRESS:
-                self.parent.change_active_person(person)
-        elif event.type == gtk.gdk.ENTER_NOTIFY:
-            obj.set(fill_color_gdk=style.bg[gtk.STATE_SELECTED],
-                    width_pixels=4)
-            name = NameDisplay.displayer.display(person)
-            msg = _("Double clicking will make %s the active person") % name
-            self.sb.set_status(msg)
-        elif event.type == gtk.gdk.LEAVE_NOTIFY:
-            obj.set(fill_color_gdk=style.fg[gtk.STATE_NORMAL], width_pixels=2)
-            self.update()
 
     def find_tree(self,person,index,depth,lst,val=0):
         """Recursively build a list of ancestors"""
 
         if depth > 5 or person == None:
             return
-        lst[index] = (person,val)
+        lst[index] = (person,val,None)
 
         parent_families = person.get_parent_family_handle_list()
         if parent_families:
@@ -517,6 +459,7 @@ class PedigreeView:
 
         family = self.db.get_family_from_handle(family_handle)
         if family != None:
+            lst[index] = (person,val,family)
             father_handle = family.get_father_handle()
             if father_handle != None:
                 father = self.db.get_person_from_handle(father_handle)
@@ -525,25 +468,6 @@ class PedigreeView:
             if mother_handle != None:
                 mother = self.db.get_person_from_handle(mother_handle)
                 self.find_tree(mother,(2*index)+2,depth+1,lst,mrel)
-
-    def on_canvas1_event(self,obj,event):
-        """Handle resize events over the canvas, redrawing if the size changes"""
-        
-        if event.type == gtk.gdk.EXPOSE:
-            x1,y1,x2,y2 = self.canvas.get_allocation()
-            if self.x1 != x1 or self.x2 != x2 or \
-                   self.y1 != y1 or self.y2 != y2:
-                self.x1 = x1; self.x2 = x2
-                self.y1 = y1; self.y2 = y2
-                self.canvas.set_size(x2,y2)
-                self.load_canvas(self.active_person)
-        return 0
-
-    def on_canvas_press(self,obj,event):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_nav_menu(event)
-            return True
-        return False
 
     def add_nav_portion_to_menu(self,menu):
         """
@@ -560,8 +484,8 @@ class PedigreeView:
             #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
             (_("Home"),self.parent.on_home_clicked,1),
             (None,None,0),
-            (_("Set anchor"),self.on_anchor_set,1),
-            (_("Remove anchor"),self.on_anchor_removed,1),
+            #(_("Set anchor"),self.on_anchor_set,1),
+            #(_("Remove anchor"),self.on_anchor_removed,1),
         ]
 
         for stock_id,callback,sensitivity in entries:
@@ -577,15 +501,8 @@ class PedigreeView:
             item.show()
             menu.append(item)
 
-    def build_nav_menu(self,event):
-        """Builds the menu with only history-based navigation."""
-        
-        menu = gtk.Menu()
-        menu.set_title(_('People Menu'))
-        self.add_nav_portion_to_menu(menu)
-        menu.popup(None,None,None,event.button,event.time)
 
-    def build_full_nav_menu(self,event,person):
+    def build_full_nav_menu_cb(self,obj,event):
         """
         Builds the full menu (including Siblings, Spouses, Children, 
         and Parents) with navigation.
@@ -593,6 +510,11 @@ class PedigreeView:
         
         menu = gtk.Menu()
         menu.set_title(_('People Menu'))
+
+        person_handle = obj.get_data(_PERSON)
+        person = self.db.get_person_from_handle(person_handle)
+        if not person:
+            return 0
 
         # Go over spouses and build their menu
         item = gtk.MenuItem(_("Spouses"))
@@ -731,6 +653,55 @@ class PedigreeView:
         # Add history-based navigation
         self.add_nav_portion_to_menu(menu)
         menu.popup(None,None,None,event.button,event.time)
+
+    def format_relation( self, family, line_count):
+        text = ""
+        for event_handle in family.get_event_list():
+            event = self.db.get_event_from_handle(event_handle)
+            if event:
+                text += _(event.get_name())
+                text += "\n"
+                text += event.get_date()
+                text += "\n"
+                text += self.get_place_name(event.get_place_handle())
+        return text
+
+    def get_place_name( self, place_handle):
+        text = ""
+        place = self.db.get_place_from_handle(place_handle)
+        if place:
+            place_title = self.db.get_place_from_handle(place_handle).get_title()
+            if place_title != "":
+                if len(place_title) > 15:
+                    text = place_title[:14]+"..."
+                else:
+                    text = place_title
+        return text
+        
+    def format_person( self, person, line_count):
+        if not person:
+            return ""
+        name = NameDisplay.displayer.display(person)
+        if line_count < 3:
+            return name
+        birth = self.db.get_event_from_handle( person.get_birth_handle())
+        bd=""
+        bp=""
+        if birth:
+            bd = birth.get_date()
+            bp = self.get_place_name(birth.get_place_handle())
+        death = self.db.get_event_from_handle( person.get_death_handle())
+        dd=""
+        dp=""
+        if death:
+            dd = death.get_date()
+            dp = self.get_place_name(death.get_place_handle())
+        if line_count < 5:
+            return "%s\n%s\n%s" % (name,bd,dd)
+        else:
+            return "%s\n%s\n  %s\n%s\n  %s" % (name,bd,bp,dd,dp)
+            
+            
 
 #-------------------------------------------------------------------------
 #

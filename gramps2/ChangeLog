@@ -1,3 +1,8 @@
+2005-04-19  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/PedView.py: Replaced gnome canvas by an implementation
+	that uses gtk+ only. Still incomplete.
+	* src/gramps_main.py: Removed canvas specific calls of the PedView
+
 2005-04-18  Don Allingham  <don@gramps-project.org>
 	* src/edit_person.glade: re-add edit_person.glade
 	* src/EditPerson.py: start of new EditPerson dialog
