@@ -1950,7 +1950,7 @@ class HasTextMatchingSubstringOf(Rule):
             event = self.db.get_event_from_handle(event_handle)
             if self.match_object(event):
                 match = 1
-            else:
+            elif event:
                 place_handle = event.get_place_handle()
                 if place_handle:
                     if self.search_place(place_handle):
@@ -1985,6 +1985,8 @@ class HasTextMatchingSubstringOf(Rule):
                     self.place_map[handle] = 1
 
     def match_object(self,obj):
+        if not obj:
+            return 0
         if self.regexp_match:
             return obj.matches_regexp(self.list[0],self.case_sensitive)
         return obj.matches_string(self.list[0],self.case_sensitive)
