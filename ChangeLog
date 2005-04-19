@@ -4,6 +4,7 @@
 	* src/gramps_main.py: Removed canvas specific calls of the PedView
 
 	* src/GrampsDbBase.py (create_id): Use sys.maxint to get the maximum possible integer number 
+	* GenericFilter.py: Don't crash on corrupt database
 
 2005-04-18  Don Allingham  <don@gramps-project.org>
 	* src/edit_person.glade: re-add edit_person.glade
