@@ -1,3 +1,8 @@
+2005-04-19  Eero Tamminen  <eerot@sf>
+	* src/GenericFilter.py: Fix typo
+	* src/ReportUtils.py: Fix typos
+	* src/gramps.glade: Fix typo
+
 2005-04-18  Guillaume Pratte <guillaumep@soireevideo.org>
 	* src/po/fr.po: Translation updated, but not finished.
 
