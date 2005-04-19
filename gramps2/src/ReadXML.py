@@ -436,7 +436,7 @@ class GrampsParser:
             person = RelLib.Person()
             person.set_handle(intid)
             person.set_gramps_id(gramps_id)
-            self.db.add_person(person,None)
+            self.db.add_person(person,self.trans)
             self.gid2id[gramps_id] = intid
         return person
 
@@ -449,7 +449,7 @@ class GrampsParser:
             family = RelLib.Family()
             family.set_handle(intid)
             family.set_gramps_id(gramps_id)
-            self.db.add_family(family,None)
+            self.db.add_family(family,self.trans)
             self.gid2fid[gramps_id] = intid
         return family
 
@@ -462,7 +462,7 @@ class GrampsParser:
             place = RelLib.Place()
             place.set_handle(intid)
             place.set_gramps_id(gramps_id)
-            self.db.add_place(place,None)
+            self.db.add_place(place,self.trans)
             self.gid2pid[gramps_id] = intid
         return place
 
@@ -475,7 +475,7 @@ class GrampsParser:
             source = RelLib.Source()
             source.set_handle(intid)
             source.set_gramps_id(gramps_id)
-            self.db.add_source(source,None)
+            self.db.add_source(source,self.trans)
             self.gid2sid[gramps_id] = intid
         return source
 
@@ -488,7 +488,7 @@ class GrampsParser:
             obj = RelLib.MediaObject()
             obj.set_handle(intid)
             obj.set_gramps_id(gramps_id)
-            self.db.add_object(obj,None)
+            self.db.add_object(obj,self.trans)
             self.gid2oid[gramps_id] = intid
         return obj
 
@@ -534,11 +534,8 @@ class GrampsParser:
 
     def parse(self,file,use_trans=True):
 
-        if use_trans:
-            self.trans = self.db.transaction_begin()
-            self.trans.set_batch(True)
-        else:
-            self.trans = None
+        self.trans = self.db.transaction_begin()
+        self.trans.set_batch(True)
 
         self.db.disable_signals()
 
@@ -601,7 +598,8 @@ class GrampsParser:
         
     def start_place(self,attrs):
         try:
-            self.placeobj = self.db.find_place_from_handle(attrs['hlink'],self.trans)
+            self.placeobj = self.db.find_place_from_handle(attrs['hlink'],
+                                                           self.trans)
         except KeyError:
             handle = self.map_pid(attrs['ref'])
             self.placeobj = self.find_place_by_gramps_id(handle)
@@ -609,7 +607,8 @@ class GrampsParser:
     def start_placeobj(self,attrs):
         handle = self.map_pid(attrs['id'])
         try:
-            self.placeobj = self.db.find_place_from_handle(attrs['handle'],self.trans)
+            self.placeobj = self.db.find_place_from_handle(attrs['handle'],
+                                                           self.trans)
             self.placeobj.set_gramps_id(handle)
         except KeyError:
             self.placeobj = self.find_place_by_gramps_id(handle)
@@ -783,14 +782,16 @@ class GrampsParser:
         self.count = self.count + 1
         handle = self.map_fid(attrs["id"])
         try:
-            self.family = self.db.find_family_from_handle(attrs["handle"],self.trans)
+            self.family = self.db.find_family_from_handle(
+                attrs["handle"],self.trans)
             self.family.set_gramps_id(handle)
         except KeyError:
             self.family = self.find_family_by_gramps_id(handle)
 
         if attrs.has_key("type"):
-            self.family.set_relationship(_FAMILY_TRANS.get(attrs["type"],
-                                                           RelLib.Family.UNKNOWN))
+            self.family.set_relationship(
+                _FAMILY_TRANS.get(attrs["type"],
+                                  RelLib.Family.UNKNOWN))
         if attrs.has_key("complete"):
             self.family.set_complete_flag(int(attrs['complete']))
         else:
@@ -891,7 +892,8 @@ class GrampsParser:
     def start_source(self,attrs):
         handle = self.map_sid(attrs["id"])
         try:
-            self.source = self.db.find_source_from_handle(attrs["handle"],self.trans)
+            self.source = self.db.find_source_from_handle(attrs["handle"],
+                                                          self.trans)
             self.source.set_gramps_id(handle)
         except KeyError:
             self.source = self.find_source_by_gramps_id(handle)
@@ -922,7 +924,8 @@ class GrampsParser:
     def start_object(self,attrs):
         handle = self.map_oid(attrs['id'])
         try:
-            self.object = self.db.find_object_from_handle(attrs['handle'],self.trans)
+            self.object = self.db.find_object_from_handle(attrs['handle'],
+                                                          self.trans)
             self.object.set_gramps_id(handle)
         except KeyError:
             self.object = self.find_object_by_gramps_id(handle)

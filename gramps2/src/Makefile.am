@@ -126,6 +126,7 @@ gdir_PYTHON = \
 # The latter is more portable and POSIX-friendly :)
 GLADEFILES = \
 	gramps.glade\
+	edit_person.glade\
 	mergedata.glade\
 	gedcomexport.glade\
 	gedcomimport.glade\

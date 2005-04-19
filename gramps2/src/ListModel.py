@@ -18,8 +18,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-from gobject import TYPE_STRING, TYPE_PYOBJECT
+from gobject import TYPE_STRING, TYPE_PYOBJECT, TYPE_OBJECT
 import gtk
+import const
+
+gtk26 = gtk.pygtk_version >= (2,6,0)
 
 #-------------------------------------------------------------------------
 #
@@ -43,11 +46,30 @@ class ListModel:
         self.cid = None
         self.cids = []
         self.idmap = {}
+
+        store = gtk.ListStore(str)
+
+        events = const.personalConstantEvents.keys()
+        events.append('Birth')
+        events.append('Death')
+        events.sort()
+        
+        model = gtk.ListStore(str,TYPE_OBJECT)
+        for val in events:
+            model.append((val,store))
         
         cnum = 0
         for name in dlist:
-            renderer = gtk.CellRendererText()
-            renderer.set_fixed_height_from_font(1)
+            if gtk26 and cnum == 0:
+                renderer = gtk.CellRendererCombo()
+                renderer.set_property('model',model)
+                renderer.set_property('text_column',0)
+                renderer.set_property('editable',True)
+            else:
+                renderer = gtk.CellRendererText()
+                renderer.set_property('editable',True)
+            renderer.set_fixed_height_from_font(True)
+            renderer.connect('edited',self.edited_cb, cnum)
             column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
             column.set_reorderable(True)
             column.set_min_width(name[2])
@@ -62,7 +84,7 @@ class ListModel:
                 column.set_clickable(True)
                 column.set_sort_column_id(name[1])
 
-            cnum = cnum + 1
+            cnum += 1
             self.cids.append(name[1])
             if name[0] != '':
                 self.tree.append_column(column)
@@ -74,6 +96,9 @@ class ListModel:
         if event_func:
             self.double_click = event_func
             self.tree.connect('event',self.button_press)
+
+    def edited_cb(self, cell, path, new_text, col):
+        self.model[path][col] = new_text
 
     def unselect(self):
         self.selection.unselect_all()
@@ -168,7 +193,7 @@ class ListModel:
 
     def remove(self,node):
         self.model.remove(node)
-        self.count = self.count - 1
+        self.count -= 1
         
     def get_row(self,node):
         row = self.model.get_path(node)
@@ -184,12 +209,12 @@ class ListModel:
         return self.model.get_value(node,self.data_index)
         
     def insert(self,position,data,info=None,select=0):
-        self.count = self.count + 1
+        self.count += 1
         node = self.model.insert(position)
         col = 0
         for obj in data:
             self.model.set_value(node,col,obj)
-            col = col + 1
+            col += 1
         self.model.set_value(node,col,info)
         if info:
             self.idmap[str(info)] = node
@@ -201,12 +226,12 @@ class ListModel:
         return [ self.model.get_value(node,c) for c in cols ]
     
     def add(self,data,info=None,select=0):
-        self.count = self.count + 1
+        self.count += 1
         node = self.model.append()
         col = 0
         for obj in data:
             self.model.set_value(node,col,obj)
-            col = col + 1
+            col += 1
         self.model.set_value(node,col,info)
         if info:
             self.idmap[str(info)] = node
@@ -219,7 +244,7 @@ class ListModel:
         col = 0
         for obj in data:
             self.model.set_value(node,col,obj)
-            col = col + 1
+            col += 1
         self.model.set_value(node,col,info)
         if info:
             self.idmap[str(info)] = node
@@ -228,12 +253,12 @@ class ListModel:
         return node
 
     def add_and_select(self,data,info=None):
-        self.count = self.count + 1
+        self.count += 1
         node = self.model.append()
         col = 0
         for obj in data:
             self.model.set_value(node,col,obj)
-            col = col + 1
+            col += 1
         if info:
             self.idmap[str(info)] = node
         self.model.set_value(node,col,info)
@@ -248,13 +273,11 @@ class ListModel:
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.double_click(obj)
-            return 1
-        return 0
+            return True
+        return False
 
     def find(self,info):
         if info in self.idmap.keys():
             node = self.idmap[str(info)]
             self.selection.select_iter(node)
 
-    def cleanup(self):
-        pass
