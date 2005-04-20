@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Mon Apr 11 20:54:14 2005\n"
-"PO-Revision-Date: 2005-04-18 11:33+0200\n"
+"PO-Revision-Date: 2005-04-20 16:29+0200\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,6 @@ msgid "The filename supplied could not be found."
 msgstr "Fant ikke den angitte fila."
 
 #: AddMedia.py:143 MediaView.py:371 MediaView.py:395
-#, fuzzy
 msgid "Add Media Object"
 msgstr "Legg til mediaobjekt"
 
@@ -74,15 +73,17 @@ msgstr "Fødselsdato"
 #: AddSpouse.py:236 AddSpouse.py:244 AddSpouse.py:255 AddSpouse.py:259
 #, fuzzy
 msgid "Error adding a spouse"
-msgstr "Feil ved lesing av %s"
+msgstr "Klarte ikke å legge til ektefelle"
 
 #: AddSpouse.py:237
+#, fuzzy
 msgid "A person cannot be linked as his/her spouse"
-msgstr ""
+msgstr "Klarte ikke å legge til en person som hans/hennes ektefelle"
 
 #: AddSpouse.py:245
+#, fuzzy
 msgid "A person cannot be linked as his/her child's spouse"
-msgstr ""
+msgstr "En person kan ikke lenkes som hans/hennes barns ektefelle"
 
 #: AddSpouse.py:256
 msgid "The spouse is already present in this family"
@@ -95,7 +96,7 @@ msgstr ""
 #: AddSpouse.py:285 FamilyView.py:722
 #, fuzzy
 msgid "Add Spouse"
-msgstr "Ektefelle"
+msgstr "Legg til ektefelle"
 
 #: AddrEdit.py:106 AddrEdit.py:174
 msgid "Address Editor"
@@ -125,7 +126,7 @@ msgstr ""
 #: ArgHandler.py:302 DbPrompter.py:201 DbPrompter.py:228 DbPrompter.py:327
 #, fuzzy
 msgid "Could not open file: %s"
-msgstr "Kunne ikke åpne %s"
+msgstr "Kunne ikke åpne fil: %s"
 
 #: ArgHandler.py:303 DbPrompter.py:229 DbPrompter.py:328 DbPrompter.py:477
 msgid ""
