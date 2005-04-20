@@ -1,3 +1,6 @@
+2005-04-21  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Translation updated, but not yet tested & fixed
+
 2005-04-20  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/ExportVCalendar.py: Mark strings for translation; use
 	proper family name
