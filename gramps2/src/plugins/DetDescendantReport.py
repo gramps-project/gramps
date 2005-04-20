@@ -261,7 +261,7 @@ class DetDescendantReport(Report.Report):
         if person.get_note() and self.includeNotes:
             self.doc.start_paragraph("DDR-NoteHeader")
             self.doc.start_bold()
-            self.doc.write_text(_("Notes for %s" % name))
+            self.doc.write_text(_("Notes for %s") % name)
             self.doc.end_bold()
             self.doc.end_paragraph()
             self.doc.write_note(person.get_note(),person.get_note_format(),"DDR-Entry")

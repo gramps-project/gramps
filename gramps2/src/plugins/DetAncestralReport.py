@@ -240,7 +240,7 @@ class DetAncestorReport(Report.Report):
         if person.get_note() != "" and self.includeNotes:
             self.doc.start_paragraph("DAR-NoteHeader")
             self.doc.start_bold()
-            self.doc.write_text(_("Notes for %(name)s" % { 'name': name } ))
+            self.doc.write_text(_("Notes for %(name)s") % { 'name': name } )
             self.doc.end_bold()
             self.doc.end_paragraph()
             self.doc.write_note(person.get_note(),person.get_note_format(),"DAR-Entry")

@@ -1,4 +1,6 @@
 2005-04-20  Eero Tamminen  <eerot@sf>
+	* src/plugins/DetAncestralReport.py: fix gettext usage
+	* src/plugins/DetDescendantReport.py: fix gettext usage
 	* src/plugins/ChangeNames.py: Fix typo
 
 2005-04-20  Don Allingham  <don@gramps-project.org>
