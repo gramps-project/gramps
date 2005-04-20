@@ -1,5 +1,11 @@
+2005-04-20  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels.py: fix bad index into list
+	* src/Relationship.py: handle race condition where the screen 
+	wants to update with a stale family handle after the database
+	has been closed and the internal data has not be rebuilt.
+
 2005-04-19  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
-	* GenericFilter.py: Don't crash on corrupt database
+	* src/GenericFilter.py: Don't crash on corrupt database
 
 2005-04-19  Eero Tamminen  <eerot@sf>
 	* src/GenericFilter.py: Fix typo
