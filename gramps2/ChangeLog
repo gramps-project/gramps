@@ -3,9 +3,11 @@
 	proper family name
 
 2005-04-20  Eero Tamminen  <eerot@sf>
+	* src/plugins/changenames.glade: fix typo
+	* src/plugins/TestcaseGenerator.py: fix typos in description
 	* src/plugins/DetAncestralReport.py: fix gettext usage
 	* src/plugins/DetDescendantReport.py: fix gettext usage
-	* src/plugins/ChangeNames.py: Fix typo
+	* src/plugins/ChangeNames.py: fix typo
 
 2005-04-20  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels.py: fix bad index into list

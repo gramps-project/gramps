@@ -537,6 +537,6 @@ register_tool(
     TestcaseGeneratorPlugin,
     _("Generate Testcases for persons and families"),
     category=_("Debug"),
-    description=_("The testcase generator will generate some persons and families."
-                    "that habe brolen links in the database or data that is in conflict to a relation.")
+    description=_("The testcase generator will generate some persons and families"
+                    " that have broken links in the database or data that is in conflict to a relation.")
     )
