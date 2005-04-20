@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Mon Apr 11 20:54:14 2005\n"
-"PO-Revision-Date: 2005-04-20 16:29+0200\n"
+"PO-Revision-Date: 2005-04-20 22:13+0200\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -78,23 +78,24 @@ msgstr "Klarte ikke å legge til ektefelle"
 #: AddSpouse.py:237
 #, fuzzy
 msgid "A person cannot be linked as his/her spouse"
-msgstr "Klarte ikke å legge til en person som hans/hennes ektefelle"
+msgstr "En person kan ikke lenkes som sin egen ektefelle"
 
 #: AddSpouse.py:245
 #, fuzzy
 msgid "A person cannot be linked as his/her child's spouse"
-msgstr "En person kan ikke lenkes som hans/hennes barns ektefelle"
+msgstr "En person kan ikke lenkes som sitt barns ektefelle"
 
 #: AddSpouse.py:256
+#, fuzzy
 msgid "The spouse is already present in this family"
-msgstr ""
+msgstr "Ektefellen er allerede tilstede i denne familien"
 
 #: AddSpouse.py:260
+#, fuzzy
 msgid "A person cannot be linked as his/her parent's spouse"
-msgstr ""
+msgstr "En person kan ikke lenkes som sin forelders ektefelle"
 
 #: AddSpouse.py:285 FamilyView.py:722
-#, fuzzy
 msgid "Add Spouse"
 msgstr "Legg til ektefelle"
 
@@ -108,25 +109,28 @@ msgid "Address"
 msgstr "Adresse"
 
 #: ArgHandler.py:282 DbPrompter.py:214
+#, fuzzy
 msgid "Opening non-native format"
-msgstr ""
+msgstr "Åpne ikke-standard format"
 
 #: ArgHandler.py:283 DbPrompter.py:215
+#, fuzzy
 msgid "New GRAMPS database has to be set up when opening non-native formats. The following dialog will let you select the new database."
-msgstr ""
+msgstr "Ny GRAMPS database må settes opp når man åpner ikke-standard formater. Følgende dialog vil la deg velge den nye databasen."
 
 #: ArgHandler.py:291
+#, fuzzy
 msgid "New GRAMPS database was not set up"
-msgstr ""
+msgstr "Ny GRAMPS database ble ikke satt opp"
 
 #: ArgHandler.py:292
+#, fuzzy
 msgid "GRAMPS cannot open non-native data without setting up new GRAMPS database."
-msgstr ""
+msgstr "GRAMPS kan ikke åpne ikke-standard data uten å sett opp ny GRAMPS database."
 
 #: ArgHandler.py:302 DbPrompter.py:201 DbPrompter.py:228 DbPrompter.py:327
-#, fuzzy
 msgid "Could not open file: %s"
-msgstr "Kunne ikke åpne fil: %s"
+msgstr "Kunne ikke åpne filen: %s"
 
 #: ArgHandler.py:303 DbPrompter.py:229 DbPrompter.py:328 DbPrompter.py:477
 msgid ""
@@ -134,6 +138,9 @@ msgid ""
 "\n"
 "Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
 msgstr ""
+"Fil type \"%s\" er ukjent for GRAMPS.\n"
+"\n"
+"Gyldig fil typer er: GRAMPS database, GRAMPS XML, GRAMPS pakke, og GEDCOM."
 
 #: AttrEdit.py:119 AttrEdit.py:123 AttrEdit.py:181
 msgid "Attribute Editor"
@@ -144,9 +151,8 @@ msgid "Attribute Editor for %s"
 msgstr "Endre egenskapene til %s"
 
 #: AttrEdit.py:170 AttrEdit.py:174
-#, fuzzy
 msgid "New Attribute"
-msgstr "Egenskap"
+msgstr "Ny egenskap"
 
 #: AttrEdit.py:175 EditPerson.py:328 ImageSelect.py:681 ImageSelect.py:964
 #: Marriage.py:214 plugins/ScratchPad.py:273 plugins/ScratchPad.py:281
@@ -197,11 +203,11 @@ msgstr "Mo_r"
 #: ChooseParents.py:468 SelectChild.py:287 SelectChild.py:304
 #, fuzzy
 msgid "Error selecting a child"
-msgstr "Rediger det valgte barnet"
+msgstr "Feil ved valg av barn"
 
 #: ChooseParents.py:469
 msgid "A person cannot be linked as his/her own parent"
-msgstr ""
+msgstr "En person kan ikke være lenket som sin egen forelder"
 
 #: ChooseParents.py:577
 msgid "Modify the Parents of %s"
@@ -228,46 +234,44 @@ msgid "Father"
 msgstr "Far"
 
 #: ColumnOrder.py:40
-#, fuzzy
 msgid "Select Columns"
-msgstr "Velg en person"
+msgstr "Velg kolonner"
 
 #: ColumnOrder.py:52 GrampsCfg.py:69
 msgid "Display"
 msgstr "Vis"
 
 #: ColumnOrder.py:56
-#, fuzzy
 msgid "Column Name"
-msgstr "Navn på regelen"
+msgstr "Kolonne navn"
 
 #: DateEdit.py:74 DateEdit.py:83
+#, fuzzy
 msgid "Regular"
-msgstr ""
+msgstr "Vanlig"
 
 #: DateEdit.py:75
-#, fuzzy
 msgid "Before"
-msgstr "før"
+msgstr "Før"
 
 #: DateEdit.py:76
-#, fuzzy
 msgid "After"
-msgstr "etter"
+msgstr "Etter"
 
 #: DateEdit.py:77
 #, fuzzy
 msgid "About"
-msgstr "Om"
+msgstr "Ca."
 
 #: DateEdit.py:78
 #, fuzzy
 msgid "Range"
-msgstr "Vurdering"
+msgstr "Område"
 
 #: DateEdit.py:79
+#, fuzzy
 msgid "Span"
-msgstr ""
+msgstr "Periode"
 
 #: DateEdit.py:80
 #, fuzzy
@@ -275,105 +279,93 @@ msgid "Text only"
 msgstr "Kun tekst"
 
 #: DateEdit.py:84
+#, fuzzy
 msgid "Estimated"
-msgstr ""
+msgstr "Estimert"
 
 #: DateEdit.py:85
 #, fuzzy
 msgid "Calculated"
-msgstr "Avbrutt"
+msgstr "Kalkulert"
 
 #: DateEdit.py:193
 #, fuzzy
 msgid "Date selection"
-msgstr "Valg av rapport"
+msgstr "Dato utvalg, merket område"
 
 #: DateEdit.py:263 gramps_main.py:1092 gramps_main.py:1099
 #, fuzzy
 msgid "Could not open help"
-msgstr "Kunne ikke åpne %s"
+msgstr "Kunne ikke åpne hjelp"
 
 #: DbPrompter.py:73
-#, fuzzy
 msgid "GRAMPS (grdb)"
-msgstr "GRAMPS"
+msgstr "GRAMPS (grdb)"
 
 #: DbPrompter.py:74
-#, fuzzy
 msgid "GRAMPS XML"
-msgstr "GRAMPS"
+msgstr "GRAMPS XML"
 
 #: DbPrompter.py:75 ReadGedcom.py:73
-#, fuzzy
 msgid "GEDCOM"
-msgstr "Eksporter GEDCOM"
+msgstr "GEDCOM"
 
 #: DbPrompter.py:95
 msgid "Open a database"
 msgstr "Åpne en database"
 
 #: DbPrompter.py:119
-#, fuzzy
 msgid "Help not available"
-msgstr "Minibildet er ikke tilgjengelig"
+msgstr "Hjelp ikke tilgjengelig"
 
 #: DbPrompter.py:149
-#, fuzzy
 msgid "GRAMPS: Open database"
-msgstr "Åpne database"
+msgstr "GRAMPS: Åpne database"
 
 #: DbPrompter.py:258
-#, fuzzy
 msgid "GRAMPS: Import database"
-msgstr "Import fra GRAMPS-database"
+msgstr "GRAMPS: Import database"
 
 #: DbPrompter.py:353
-#, fuzzy
 msgid "GRAMPS: Create GRAMPS database"
-msgstr "Lage en database"
+msgstr "GRAMPS: Lag GRAMPS database"
 
 #: DbPrompter.py:426
 msgid "GRAMPS: Select filename for a new database"
-msgstr ""
+msgstr "GRAMPS: Velg filnavn for den nye databasen"
 
 #: DbPrompter.py:476
-#, fuzzy
 msgid "Could not save file: %s"
-msgstr "Kan ikke erstatte %s"
+msgstr "Kunne ikke lagre filen: %s"
 
 #: DbPrompter.py:583
 #, fuzzy
 msgid "Automatically detected"
-msgstr "Last inn den siste databasen _automatisk "
+msgstr "Automatisk funnet"
 
 #: DbPrompter.py:592
-#, fuzzy
 msgid "Select file _type:"
-msgstr "Velg en fil"
+msgstr "Velg fil _type:"
 
 #: DbPrompter.py:605 gramps_main.py:1301
-#, fuzzy
 msgid "All files"
-msgstr "Alle personer"
+msgstr "Alle filer"
 
 #: DbPrompter.py:614
 msgid "All GRAMPS files"
-msgstr ""
+msgstr "Alle GRAMPS filer"
 
 #: DbPrompter.py:625
-#, fuzzy
 msgid "GRAMPS databases"
-msgstr "Import fra GRAMPS-database"
+msgstr "GRAMPS databaser"
 
 #: DbPrompter.py:634
-#, fuzzy
 msgid "GRAMPS XML databases"
-msgstr "Import fra GRAMPS-database"
+msgstr "GRAMPS XML databaser"
 
 #: DbPrompter.py:643
-#, fuzzy
 msgid "GEDCOM files"
-msgstr "GEDCOM eksport"
+msgstr "GEDCOM filer"
 
 #: DisplayModels.py:45 GrampsMime.py:46 GrampsMime.py:53 MergePeople.py:43
 #: PeopleModel.py:371 SelectChild.py:245 Utils.py:123 const.py:169
@@ -424,8 +416,9 @@ msgid "Edit Person"
 msgstr "Endre personinformasjon"
 
 #: EditPerson.py:255
+#, fuzzy
 msgid "Patronymic:"
-msgstr ""
+msgstr "Patronymisk:"
 
 #: EditPerson.py:308 EditSource.py:287 EventEdit.py:275 ImageSelect.py:1135
 #: Marriage.py:213 plugins/ScratchPad.py:166 plugins/ScratchPad.py:180
@@ -494,9 +487,8 @@ msgid "Edit Object Properties"
 msgstr "Rediger objekt-egenskapene"
 
 #: EditPerson.py:621
-#, fuzzy
 msgid "New Person"
-msgstr "Person"
+msgstr "Ny person"
 
 #: EditPerson.py:746 GrampsCfg.py:63 const.py:233 const.py:246
 msgid "None"
@@ -521,21 +513,21 @@ msgstr "Gjør det valgte navnet til det foretrukne"
 #: EditPerson.py:1687
 #, fuzzy
 msgid "Unknown gender specified"
-msgstr "Ukjent kjønn på %s.\n"
+msgstr "Det spesifiserte kjønnet er ukjent"
 
 #: EditPerson.py:1688
+#, fuzzy
 msgid "The gender of the person is currently unknown. Usually, this is a mistake. You may choose to either continue saving, or returning to the Edit Person dialog to fix the problem."
-msgstr ""
+msgstr "Kjønnet til personen er for øyeblikket ukjent. Vanligvis, er dette en han. Du kan velge å enten fortsette lagringen, eller gå tilbake til Redig personen dialog boksen for å fikse problemet."
 
 #: EditPerson.py:1692
 #, fuzzy
 msgid "Continue saving"
-msgstr "Avslutt uten å lagre"
+msgstr "Fortsette å lagre"
 
 #: EditPerson.py:1692
-#, fuzzy
 msgid "Return to window"
-msgstr "Tilbake til registeret over personer"
+msgstr "Returner til vindu"
 
 #: EditPerson.py:1720 Marriage.py:651
 msgid "GRAMPS ID value was not changed."
@@ -558,14 +550,12 @@ msgstr ""
 "Sjekk personens giftemål."
 
 #: EditPerson.py:1877
-#, fuzzy
 msgid "Edit Person (%s)"
-msgstr "Endre personinformasjon"
+msgstr "Rediger person (%s)"
 
 #: EditPerson.py:1893 ImageSelect.py:1174
-#, fuzzy
 msgid "Add Place (%s)"
-msgstr "Steder"
+msgstr "Legg til sted (%s)"
 
 #: EditPlace.py:90 EditPlace.py:277
 msgid "Place Editor"
@@ -588,14 +578,12 @@ msgid "Country"
 msgstr "Land"
 
 #: EditPlace.py:266 EditPlace.py:270
-#, fuzzy
 msgid "New Place"
-msgstr "Sted"
+msgstr "Nytt sted"
 
 #: EditPlace.py:397
-#, fuzzy
 msgid "Edit Place (%s)"
-msgstr "Endre personinformasjon"
+msgstr "Rediger sted (%s)"
 
 #: EditPlace.py:422 EditPlace.py:449 UrlEdit.py:70
 msgid "Internet Address Editor for %s"
@@ -623,22 +611,21 @@ msgid "%(father)s and %(mother)s"
 msgstr "%(father)s og %(mother)s"
 
 #: EditPlace.py:602 PlaceView.py:190
-#, fuzzy
 msgid "Delete Place (%s)"
-msgstr "Slett ste_d"
+msgstr "Slett sted (%s)"
 
 #: EditSource.py:86 EditSource.py:242
 msgid "Source Editor"
 msgstr "Kilderedigering"
 
 #: EditSource.py:156
+#, fuzzy
 msgid "Key"
-msgstr ""
+msgstr "Tast"
 
 #: EditSource.py:231 EditSource.py:235 Sources.py:456 Sources.py:458
-#, fuzzy
 msgid "New Source"
-msgstr "Kilde"
+msgstr "Ny kilde"
 
 #: EditSource.py:236 EditSource.py:299 ImageSelect.py:1147 Utils.py:165
 #: Utils.py:167
@@ -658,14 +645,12 @@ msgid "Media"
 msgstr "Media"
 
 #: EditSource.py:359
-#, fuzzy
 msgid "Edit Source (%s)"
-msgstr "Siterte kilder"
+msgstr "Rediger kilde (%s)"
 
 #: EditSource.py:423
-#, fuzzy
 msgid "Delete Source (%s)"
-msgstr "Slett kil_de"
+msgstr "Slett kilde (%s)"
 
 #: EventEdit.py:124 EventEdit.py:129 EventEdit.py:281
 msgid "Event Editor"
@@ -676,17 +661,16 @@ msgid "Event Editor for %s"
 msgstr "Rediger hendelser for %s"
 
 #: EventEdit.py:270 EventEdit.py:274
-#, fuzzy
 msgid "New Event"
-msgstr "Hendelse"
+msgstr "Ny hendelse"
 
 #: EventEdit.py:318
 msgid "Event does not have a type"
-msgstr ""
+msgstr "Hendelsestype mangler"
 
 #: EventEdit.py:319
 msgid "You must specify an event type before you can save the event"
-msgstr ""
+msgstr "Du må spesifisere en hendelsestype før du kan lagre hendelsen"
 
 #: EventEdit.py:336 MergePeople.py:98 const.py:233 const.py:241
 #: plugins/EventCmp.py:408 plugins/FamilyGroup.py:200
@@ -714,20 +698,19 @@ msgstr ""
 "Den vil nå vises i menyen for denne databasen"
 
 #: EventEdit.py:353
-#, fuzzy
 msgid "Edit Event"
-msgstr "Hendelse"
+msgstr "Rediger hendelse"
 
 #: Exporter.py:96
-#, fuzzy
 msgid "GRAMPS: Export"
-msgstr "GRAMPS-bok"
+msgstr "GRAMPS: Eksport"
 
 #: Exporter.py:131
 msgid "Saving your data"
-msgstr ""
+msgstr "Lagrer dine data"
 
 #: Exporter.py:136
+#, fuzzy
 msgid ""
 "Under normal circumstances, GRAMPS does not require you to directly save your changes. All changes you make are immediately saved to the database.\n"
 "\n"
@@ -735,13 +718,19 @@ msgid ""
 "\n"
 "If you change your mind during this process, you can safely press the Cancel button at any time and your present database will still be intact."
 msgstr ""
+"Under vanlige omstendigheter, trenger du ikke å lagre dine GRAMPS data manuelt. Alle endringene du gjør blir umiddelbart lagret til databasen.\n"
+"\n"
+"Denne prosessen vil hjelpe deg å lagre en kopi av dine data i hvilke som helst av alle formatene støttet av GRAMPS. På denne måten kan du lage en kopi av dine data, da en backup, eller konvertere de til et annet format, som vil hjelpe deg med å flyttet de over til et annet program.\n"
+"\n"
+"Hvis du ombestemmer deg mens denne prosessen pågår, kan du trykt trykke Avbryt knappen når som helst, og din database vil fortsatt være intakt."
 
 #: Exporter.py:170
 #, fuzzy
 msgid "Final save confirmation"
-msgstr "Familieinformasjon"
+msgstr "Slutt lagringsbekreftelse"
 
 #: Exporter.py:194
+#, fuzzy
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -751,57 +740,72 @@ msgid ""
 "\n"
 "Press Forward to proceed, Cancel to abort, or Back to revisit your options."
 msgstr ""
+"Dataene vil bli lagret som følger:\n"
+"\n"
+"Format:\t%s\n"
+"Navn:\t%s\n"
+"Mappe:\t%s\n"
+"\n"
+"Trykk på fortsett for å gå videre, Avbryt for å avbryte, eller tilbake for å se over dine valg."
 
 #: Exporter.py:214
 msgid "Your data has been saved"
-msgstr ""
+msgstr "Dine data har blitt lagret"
 
 #: Exporter.py:215
+#, fuzzy
 msgid ""
 "The copy of your data has been successfully saved. You may press Apply button now to continue.\n"
 "\n"
 "Note: the database currently opened in your GRAMPS window is NOT the file you have just saved. Future editing of the currently opened database will not alter the copy you have just made. "
 msgstr ""
+"Kopien av dine data har blitt lagret riktig. Du kan trykke på Bruk knappen nå for å fortsette.\n"
+"\n"
+"Merknad: databasen som nå er åpen i ditt GRAMPS vindu er IKKE filen du akkurat har lagret. Fremtidige endringer av den åpne  databasen vil ikke endre kopien du akkurat har laget."
 
 #: Exporter.py:223
-#, fuzzy
 msgid "Saving failed"
 msgstr "Lagre fil"
 
 #: Exporter.py:224
+#, fuzzy
 msgid ""
 "There was an error while saving your data. Please go back and try again.\n"
 "\n"
 "Note: your currently opened database is safe. It was only a copy of your data that failed to save."
 msgstr ""
+"Det oppsto en feil under lagring av dine data. Vennligst gå tilbake å prøv en gang til.\n"
+"\n"
+"Merk: den åpne databasen er trygg. Det var kun en kopi av dataene dine som ikke ble lagret riktig."
 
 #: Exporter.py:237
 #, fuzzy
 msgid "Choosing the format to save"
-msgstr "Angi foreldrene til %s"
+msgstr "Velg formatet å lagre i"
 
 #: Exporter.py:311
 #, fuzzy
 msgid "Selecting the file name"
-msgstr "Velg en fil"
+msgstr "Velg filnavnet"
 
 #: Exporter.py:373
 #, fuzzy
 msgid "Could not write file: %s"
-msgstr "Kan ikke erstatte %s"
+msgstr "Kunne ikke skrive til filen: %s"
 
 #: Exporter.py:374
+#, fuzzy
 msgid "System message was: %s"
-msgstr ""
+msgstr "System meldingen var: %s"
 
 #: Exporter.py:383
-#, fuzzy
 msgid "GRAMPS _GRDB database"
-msgstr "Import fra GRAMPS-database"
+msgstr "GRAMPS _GRDB database"
 
 #: Exporter.py:384
+#, fuzzy
 msgid "The GRAMPS GRDB database is a format that GRAMPS uses to store information. Selecting this option will allow you to make a copy of the current database."
-msgstr ""
+msgstr "GRAMPS GRDB database er et format som GRAMPS bruker for å lagre informasjon. Ved å velge dette valget vil du kunne lage en kopi av den kjørende databasen."
 
 #: FamilyView.py:67 PedView.py:62 plugins/AncestorChart.py:56
 #: plugins/AncestorChart2.py:57 plugins/DesGraph.py:57
@@ -817,7 +821,7 @@ msgstr "d."
 
 #: FamilyView.py:72
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: FamilyView.py:75 MergePeople.py:96 PeopleView.py:60
 #: plugins/IndivComplete.py:417 plugins/IndivSummary.py:239
@@ -834,17 +838,17 @@ msgstr "Fødselsdato"
 #: FamilyView.py:77 PeopleView.py:63
 #, fuzzy
 msgid "Death Date"
-msgstr "Dødsdato"
+msgstr "Døds dato"
 
 #: FamilyView.py:78 PeopleView.py:62
 #, fuzzy
 msgid "Birth Place"
-msgstr "Fødselsdato"
+msgstr "Fødtselssted"
 
 #: FamilyView.py:79 PeopleView.py:64
 #, fuzzy
 msgid "Death Place"
-msgstr "Dødsdato"
+msgstr "Dødssted"
 
 #: FamilyView.py:396 FamilyView.py:406 FamilyView.py:427 FamilyView.py:434
 #: FamilyView.py:466 FamilyView.py:531 FamilyView.py:537 FamilyView.py:605
@@ -913,20 +917,23 @@ msgid "Set the selected spouse as the preferred spouse"
 msgstr "Gjør den valgte ektefellen til et forhåndsvalg"
 
 #: FamilyView.py:639
+#, fuzzy
 msgid "Set Preferred Spouse (%s)"
-msgstr ""
+msgstr "Sett foretrukket ektefelle (%s)"
 
 #: FamilyView.py:769
+#, fuzzy
 msgid "Modify family"
-msgstr ""
+msgstr "Endre familie"
 
 #: FamilyView.py:795 FamilyView.py:1430 SelectChild.py:85 SelectChild.py:148
 msgid "Add Child to Family"
 msgstr "Legg til et barn til en familie"
 
 #: FamilyView.py:834
+#, fuzzy
 msgid "Remove Child (%s)"
-msgstr ""
+msgstr "Fjern barn (%s)"
 
 #: FamilyView.py:840
 msgid "Remove %s as a spouse of %s?"
@@ -943,12 +950,11 @@ msgstr "Fje_rn Ektefelle"
 #: FamilyView.py:888
 #, fuzzy
 msgid "Remove Spouse (%s)"
-msgstr "Fje_rn Ektefelle"
+msgstr "Fjern ektefelle (%s)"
 
 #: FamilyView.py:929
-#, fuzzy
 msgid "Select Parents (%s)"
-msgstr "Fjern foreldrene til %s"
+msgstr "Velg partner (%s)"
 
 #: FamilyView.py:1040
 msgid "<double click to add spouse>"
@@ -960,7 +966,7 @@ msgid ""
 "%s: %s [%s]\n"
 "\tRelationship: %s"
 msgstr ""
-"%s: %s\n"
+"%s: %s [%s]\n"
 "\tRelasjon: %s"
 
 #: FamilyView.py:1105
@@ -996,13 +1002,12 @@ msgid "_Remove Parents"
 msgstr "Fje_rne foreldre"
 
 #: FamilyView.py:1393
-#, fuzzy
 msgid "Remove Parents (%s)"
-msgstr "Fjern foreldrene til %s"
+msgstr "Fjern foreldre (%s)"
 
 #: FamilyView.py:1461
 msgid "Attempt to Reorder Children Failed"
-msgstr "Klarte ikke å omgruppere barnene"
+msgstr "Klarte ikke å endre rekkefølge på barnene"
 
 #: FamilyView.py:1462
 msgid "Children must be ordered by their birth dates."
@@ -1011,7 +1016,7 @@ msgstr "Barn må ordnes etter fødselsdato."
 #: FamilyView.py:1467
 #, fuzzy
 msgid "Reorder children"
-msgstr "Deres barn:"
+msgstr "Endre rekkefølge på barnene"
 
 #: FamilyView.py:1501
 #, fuzzy
@@ -1066,12 +1071,12 @@ msgstr "Gjelder en personen med en bestemt GRAMPS ID"
 #: GenericFilter.py:311
 #, fuzzy
 msgid "Matches the default person"
-msgstr "Gjelder det filteret som heter ..."
+msgstr "standard(verdi), forvalg"
 
 #: GenericFilter.py:336
 #, fuzzy
 msgid "Matches the people on the bookmark list"
-msgstr "Gjelder alle i databasen"
+msgstr "på liste"
 
 #: GenericFilter.py:363
 msgid "Matches all people whose records are complete"
@@ -1131,7 +1136,7 @@ msgstr "Familie-filtere"
 #: GenericFilter.py:629
 #, fuzzy
 msgid "Matches the person that is a sibling of someone matched by a filter"
-msgstr "Gjelder personen som er barn av noen som er funnet ved hjelp av et filter"
+msgstr "av fra filter"
 
 #: GenericFilter.py:663
 msgid "Matches people that are descendants or the spouse of a descendant of a specified person"
@@ -1278,8 +1283,9 @@ msgid "Substring:"
 msgstr ""
 
 #: GenericFilter.py:1438
+#, fuzzy
 msgid "Matches people with firstname or lastname missing"
-msgstr ""
+msgstr "med eller"
 
 #: GenericFilter.py:1509
 msgid "Matches the person married to someone matching a filter"
@@ -1293,7 +1299,7 @@ msgstr "Adopterte personer"
 #: GenericFilter.py:1570
 #, fuzzy
 msgid "Matches person who have images in the gallery"
-msgstr "Sett inn nytt mediaobjekt i dette galleriet"
+msgstr "tommer"
 
 #: GenericFilter.py:1594
 #, fuzzy
@@ -1317,20 +1323,22 @@ msgstr "Personer uten fødselsdato"
 #: GenericFilter.py:1698
 #, fuzzy
 msgid "Matches persons with missing date or place in an event"
-msgstr "Gjelder personen som har dødsfall av en bestemt verdi"
+msgstr "med dato eller tommer hendelse"
 
 #: GenericFilter.py:1729
 #, fuzzy
 msgid "Matches persons with missing date or place in an event of the family"
-msgstr "Gjelder personen med en personlig hendelse med en bestemt verdi"
+msgstr "med dato eller tommer hendelse av"
 
 #: GenericFilter.py:1757
+#, fuzzy
 msgid "On year:"
-msgstr ""
+msgstr "På år:"
 
 #: GenericFilter.py:1769
+#, fuzzy
 msgid "Matches persons without indications of death that are not too old"
-msgstr ""
+msgstr "av"
 
 #: GenericFilter.py:1793
 #, fuzzy
@@ -1338,26 +1346,28 @@ msgid "Matches persons that are indicated as private"
 msgstr "Gjelder personen som har dødsfall av en bestemt verdi"
 
 #: GenericFilter.py:1825
+#, fuzzy
 msgid "Matches persons who are whitness in an event"
-msgstr ""
+msgstr "tommer hendelse"
 
 #: GenericFilter.py:1872 plugins/FilterEditor.py:691
 msgid "Case sensitive:"
 msgstr ""
 
 #: GenericFilter.py:1872 plugins/FilterEditor.py:693
+#, fuzzy
 msgid "Regular-Expression matching:"
-msgstr ""
+msgstr "Vanlig Uttrykk:"
 
 #: GenericFilter.py:1908
 #, fuzzy
 msgid "Matches persons whose records contain text matching a substring"
-msgstr "Gjelderen person som er gift med en som er funnet ved hjelp av et filter"
+msgstr "tekst"
 
 #: GenericFilter.py:2020 plugins/FilterEditor.py:679
 #, fuzzy
 msgid "Source ID:"
-msgstr "Kilder:"
+msgstr "Kilde ID:"
 
 #: GenericFilter.py:2032
 #, fuzzy
@@ -1371,7 +1381,7 @@ msgstr "Enhver"
 #: GenericFilter.py:2179
 #, fuzzy
 msgid "Is default person"
-msgstr "Ta med den opprinnelige personen"
+msgstr "standard(verdi), forvalg"
 
 #: GenericFilter.py:2180
 msgid "Is bookmarked person"
@@ -1479,8 +1489,9 @@ msgid "Has the family attribute"
 msgstr "Har familie-egenskapen"
 
 #: GenericFilter.py:2211
+#, fuzzy
 msgid "Has source of"
-msgstr ""
+msgstr "av"
 
 #: GenericFilter.py:2212
 msgid "Matches the filter named"
@@ -1493,7 +1504,7 @@ msgstr "Er en ektefelle av et filtertreff"
 #: GenericFilter.py:2214
 #, fuzzy
 msgid "Is a sibling of filter match"
-msgstr "Er et barn av et filtertreff"
+msgstr "av filter"
 
 #: GenericFilter.py:2215
 msgid "Relationship path between two people"
@@ -1530,21 +1541,22 @@ msgstr "Personer uten fødselsdato"
 #: GenericFilter.py:2224 gramps_main.py:955
 #, fuzzy
 msgid "People with incomplete events"
-msgstr "Personer med ufullstendige navn"
+msgstr "Mennesker med"
 
 #: GenericFilter.py:2225 gramps_main.py:960
 #, fuzzy
 msgid "Families with incomplete events"
-msgstr "Personer med ufullstendige navn"
+msgstr "Familier med"
 
 #: GenericFilter.py:2226 gramps_main.py:965
+#, fuzzy
 msgid "People probably alive"
-msgstr ""
+msgstr "Mennesker"
 
 #: GenericFilter.py:2227 gramps_main.py:970
 #, fuzzy
 msgid "People marked private"
-msgstr "Ikke ta med opplysninger som er markert som private"
+msgstr "Mennesker"
 
 #: GenericFilter.py:2228 gramps.glade:25984 gramps_main.py:975
 msgid "Witnesses"
@@ -1553,7 +1565,7 @@ msgstr "Vitner"
 #: GenericFilter.py:2230
 #, fuzzy
 msgid "Has text matching substring of"
-msgstr "Navn som inneholder del-setningen ..."
+msgstr "tekst av"
 
 #: GrampsCfg.py:62
 msgid "Father's surname"
@@ -1574,7 +1586,7 @@ msgstr "Generelt"
 #: GrampsCfg.py:71
 #, fuzzy
 msgid "Dates"
-msgstr "Dato"
+msgstr "Datoer"
 
 #: GrampsCfg.py:72
 msgid "Toolbar and Statusbar"
@@ -1587,20 +1599,21 @@ msgstr "Database"
 #: GrampsCfg.py:75
 #, fuzzy
 msgid "GRAMPS IDs"
-msgstr "_GRAMPS ID:"
+msgstr "GRAMPS"
 
 #: GrampsCfg.py:76 StartupDialog.py:115
 msgid "Researcher Information"
 msgstr "Forskerinformasjon"
 
 #: GrampsDbBase.py:938 GrampsDbBase.py:976
+#, fuzzy
 msgid "_Undo %s"
-msgstr ""
+msgstr "Angre"
 
 #: ImageSelect.py:485 ImageSelect.py:506
 #, fuzzy
 msgid "Drag Media Object"
-msgstr "Mediaobjekt"
+msgstr "Media Objekt"
 
 #: ImageSelect.py:496 RelImage.py:52
 msgid "Could not import %s"
@@ -1611,38 +1624,39 @@ msgid "Select an Object"
 msgstr "Velg et objekt"
 
 #: ImageSelect.py:669
+#, fuzzy
 msgid "Media Reference Editor"
-msgstr ""
+msgstr "Media Referanse Redaktør"
 
 #: ImageSelect.py:765
 #, fuzzy
 msgid "Media Reference"
-msgstr "Behold henvisningen"
+msgstr "Media Referanse"
 
 #: ImageSelect.py:771
 #, fuzzy
 msgid "Reference Editor"
-msgstr "Referanser"
+msgstr "Referanse Redaktør"
 
 #: ImageSelect.py:827 ImageSelect.py:1207 MediaView.py:305
 #, fuzzy
 msgid "Edit Media Object"
-msgstr "Mediaobjekt"
+msgstr "Rediger Media Objekt"
 
 #: ImageSelect.py:909
 #, fuzzy
 msgid "Media Properties Editor"
-msgstr "Rediger egenskapene"
+msgstr "Media Egenskaper Redaktør"
 
 #: ImageSelect.py:1055
 #, fuzzy
 msgid "Properties Editor"
-msgstr "Kilderedigering"
+msgstr "Egenskaper Redaktør"
 
 #: ImageSelect.py:1302
 #, fuzzy
 msgid "Remove Media Object"
-msgstr "_Slett objektet"
+msgstr "Fjern Media Objekt"
 
 #: LocEdit.py:72 LocEdit.py:105
 msgid "Location Editor"
@@ -1659,7 +1673,7 @@ msgstr "%s og %s"
 #: Marriage.py:351
 #, fuzzy
 msgid "New Relationship"
-msgstr "_Relasjon:"
+msgstr "Ny"
 
 #: Marriage.py:618 Marriage.py:631
 msgid "Save Changes?"
@@ -1672,7 +1686,7 @@ msgstr "GRAMPS ID-en du har valgt for denne relasjonen er allerede i bruk."
 #: Marriage.py:708
 #, fuzzy
 msgid "Edit Marriage"
-msgstr "Ekteskap"
+msgstr "Rediger Ekteskap"
 
 #: MediaView.py:57 MediaView.py:137 SelectObject.py:85 SourceView.py:51
 #: SourceView.py:89 Sources.py:115 Sources.py:249
@@ -1686,7 +1700,7 @@ msgstr "Tittel"
 #: MediaView.py:61 PlaceView.py:59 SourceView.py:56
 #, fuzzy
 msgid "Last Changed"
-msgstr "Lagre endringer?"
+msgstr "Endret"
 
 #: MediaView.py:212 SelectObject.py:130
 msgid "The file no longer exists"
@@ -1707,7 +1721,7 @@ msgstr "Dette mediaobjektet er for tiden i bruk. Hvis du sletter dette objektet,
 #: MediaView.py:321
 #, fuzzy
 msgid "Deleting media object will remove it from the database."
-msgstr "Fjern objektet og alle henvisningene til det fra databasen."
+msgstr "media fjern fra."
 
 #: MediaView.py:324
 msgid "Delete Media Object?"
@@ -1724,7 +1738,7 @@ msgstr "Klarte ikke å importere bildet"
 #: MergeData.py:67
 #, fuzzy
 msgid "Select title"
-msgstr "Velg en fil"
+msgstr "Velg"
 
 #: MergeData.py:154
 msgid "Merge Places"
@@ -1733,12 +1747,12 @@ msgstr "Flett sammen steder"
 #: MergeData.py:304
 #, fuzzy
 msgid "Merge Sources"
-msgstr "Flett sammen steder"
+msgstr "Slå sammen Kilder"
 
 #: MergePeople.py:59
 #, fuzzy
 msgid "Compare People"
-msgstr "Kan ikke flette personer."
+msgstr "Sammenligne Mennesker"
 
 #: MergePeople.py:104 plugins/IndivComplete.py:232
 msgid "Alternate Names"
@@ -1757,12 +1771,12 @@ msgstr "Forelder"
 #: MergePeople.py:120 MergePeople.py:134
 #, fuzzy
 msgid "Family ID"
-msgstr "Familie"
+msgstr "Familie ID"
 
 #: MergePeople.py:126
 #, fuzzy
 msgid "No parents found"
-msgstr "Ingen passer"
+msgstr "Nei"
 
 #: MergePeople.py:128 PedView.py:598 plugins/NavWebPage.py:729
 #, fuzzy
@@ -1785,7 +1799,7 @@ msgstr "Barn"
 #: MergePeople.py:149
 #, fuzzy
 msgid "No spouses or children found"
-msgstr "Ingen feil ble funnet"
+msgstr "Nei eller"
 
 #: MergePeople.py:153 gramps.glade:10104
 msgid "Addresses"
@@ -1794,48 +1808,52 @@ msgstr "Adresser"
 #: MergePeople.py:221
 #, fuzzy
 msgid "Merge People"
-msgstr "Flett personer"
+msgstr "Slå sammen Mennesker"
 
 #: NameEdit.py:124 NameEdit.py:128 NameEdit.py:224
 #, fuzzy
 msgid "Name Editor"
-msgstr "Rediger steder"
+msgstr "Navn Redaktør"
 
 #: NameEdit.py:126
 #, fuzzy
 msgid "Name Editor for %s"
-msgstr "Rediger hendelser for %s"
+msgstr "Navn Redaktør for"
 
 #: NameEdit.py:213 NameEdit.py:217
 #, fuzzy
 msgid "New Name"
-msgstr "Navn på regelen"
+msgstr "Nytt navn"
 
 #: NameEdit.py:218
 #, fuzzy
 msgid "Alternate Name"
-msgstr "Alternative navn"
+msgstr "Navn"
 
 #: NameEdit.py:292
+#, fuzzy
 msgid "Group all people with the same name?"
-msgstr ""
+msgstr "Gruppe med?"
 
 #: NameEdit.py:293
+#, fuzzy
 msgid "You have the choice of grouping all people with the name of %(surname)s with the name of %(group_name)s, or just mapping this particular name."
-msgstr ""
+msgstr "av med av med av gruppe eller avbilding, mapping."
 
 #: NameEdit.py:297
+#, fuzzy
 msgid "Group all"
-msgstr ""
+msgstr "Gruppe"
 
 #: NameEdit.py:298
+#, fuzzy
 msgid "Group this name only"
-msgstr ""
+msgstr "Gruppe"
 
 #: NoteEdit.py:71
 #, fuzzy
 msgid "Note Editor"
-msgstr "Endre stil"
+msgstr "Notat Redaktør"
 
 #: PaperMenu.py:107 PaperMenu.py:131
 msgid "Portrait"
@@ -1902,7 +1920,7 @@ msgstr "_Endre"
 #: PeopleView.py:67
 #, fuzzy
 msgid "Cause of Death"
-msgstr "Dødsårsak"
+msgstr "av Død"
 
 #: PeopleView.py:83 WriteGedcom.py:327 gramps_main.py:895
 #: plugins/EventCmp.py:158 plugins/ExportVCalendar.py:84
@@ -1933,7 +1951,7 @@ msgstr "Sogn"
 #: PlaceView.py:52
 #, fuzzy
 msgid "ZIP/Postal Code"
-msgstr "Postnummer:"
+msgstr "Postnummer"
 
 #: PlaceView.py:57
 #, fuzzy
@@ -1948,7 +1966,7 @@ msgstr "Breddegr_ad:"
 #: PlaceView.py:173
 #, fuzzy
 msgid "Place Menu"
-msgstr "Personmeny"
+msgstr "Sted Meny"
 
 #: PlaceView.py:220 SourceView.py:193 gramps_main.py:1381
 msgid "Delete %s?"
@@ -2037,7 +2055,7 @@ msgstr "Følgende moduler ble ikke lastet:"
 #: Plugins.py:726
 #, fuzzy
 msgid "Reload plugins"
-msgstr "_Les inn programtillegget på nytt"
+msgstr "Last på nytt"
 
 #: Plugins.py:727 plugins/Eval.py:140 plugins/Leak.py:136
 #: plugins/TestcaseGenerator.py:504
@@ -2045,8 +2063,9 @@ msgid "Debug"
 msgstr "Feilsøke"
 
 #: Plugins.py:728
+#, fuzzy
 msgid "Attempt to reload plugins. Note: This tool itself is not reloaded!"
-msgstr ""
+msgstr "å laste på nytt, oppdate Notat verktøy!"
 
 #: ReadGedcom.py:79 ReadGedcom.py:80
 msgid "Windows 9x file system"
@@ -2078,7 +2097,7 @@ msgstr "Klarte ikke  åpne %s\n"
 #: ReadGedcom.py:266 ReadGedcom.py:1685
 #, fuzzy
 msgid "Import from %s"
-msgstr "Importer fra GEDCOM"
+msgstr "Import fra"
 
 #: ReadGedcom.py:345
 msgid ""
@@ -2093,8 +2112,9 @@ msgid "Images that cannot be found in the specfied path in the GEDCOM file will 
 msgstr "Bilder som ikke blir funnet i mappa som er angitt i GEDCOM-fila vil programmet lete etter i den mappa der GEDCOM-fila er (%s).\n"
 
 #: ReadGedcom.py:417
+#, fuzzy
 msgid "Warning: Premature end of file at line %d.\n"
-msgstr ""
+msgstr "Advarsel slutt av fil ved linje"
 
 #: ReadGedcom.py:443
 msgid "Warning: line %d was blank, so it was ignored.\n"
@@ -2137,7 +2157,7 @@ msgstr "Klarte ikke å åpne %s"
 #: ReadGrdb.py:98 ReadGrdb.py:162
 #, fuzzy
 msgid "Import database"
-msgstr "Lage en database"
+msgstr "Import"
 
 #: ReadXML.py:123 ReadXML.py:133
 msgid "Error reading %s"
@@ -2150,11 +2170,12 @@ msgstr "Fila er sannsynligvis enten ødelagt eller ikke en gyldig GRAMPS database
 #: ReadXML.py:173
 #, fuzzy
 msgid "Could not copy file"
-msgstr "Kunne ikke åpne %s"
+msgstr "fil"
 
 #: ReadXML.py:567
+#, fuzzy
 msgid "GRAMPS XML import"
-msgstr ""
+msgstr "GRAMPS"
 
 #: RelImage.py:53
 msgid "The file has been moved or deleted"
@@ -2187,87 +2208,87 @@ msgstr "standard"
 #: Report.py:188
 #, fuzzy
 msgid "First Generation"
-msgstr "%s Generasjon"
+msgstr "Første"
 
 #: Report.py:188
 #, fuzzy
 msgid "Second Generation"
-msgstr "Andre person"
+msgstr "Andre"
 
 #: Report.py:189
 #, fuzzy
 msgid "Fourth Generation"
-msgstr "%s Generasjon"
+msgstr "Fjerde"
 
 #: Report.py:189
 #, fuzzy
 msgid "Third Generation"
-msgstr "%s Generasjon"
+msgstr "Tredje"
 
 #: Report.py:190
 #, fuzzy
 msgid "Fifth Generation"
-msgstr "%s Generasjon"
+msgstr "Femte"
 
 #: Report.py:190
 #, fuzzy
 msgid "Sixth Generation"
-msgstr "%s Generasjon"
+msgstr "Sjette"
 
 #: Report.py:191
 #, fuzzy
 msgid "Eighth Generation"
-msgstr "%s Generasjon"
+msgstr "Åttende"
 
 #: Report.py:191
 #, fuzzy
 msgid "Seventh Generation"
-msgstr "%s Generasjon"
+msgstr "Sjuende"
 
 #: Report.py:192
 #, fuzzy
 msgid "Ninth Generation"
-msgstr "%s Generasjon"
+msgstr "Niende"
 
 #: Report.py:192
 #, fuzzy
 msgid "Tenth Generation"
-msgstr "%s Generasjon"
+msgstr "Tiende"
 
 #: Report.py:193
 #, fuzzy
 msgid "Eleventh Generation"
-msgstr "%s Generasjon"
+msgstr "Ellevte"
 
 #: Report.py:193
 #, fuzzy
 msgid "Twelfth Generation"
-msgstr "%s Generasjon"
+msgstr "Tolvte"
 
 #: Report.py:194
 #, fuzzy
 msgid "Fourteenth Generation"
-msgstr "%s Generasjon"
+msgstr "Fjortende"
 
 #: Report.py:194
 #, fuzzy
 msgid "Thirteenth Generation"
-msgstr "%s Generasjon"
+msgstr "Trettende"
 
 #: Report.py:195
 #, fuzzy
 msgid "Fifteenth Generation"
-msgstr "%s Generasjon"
+msgstr "Femtende"
 
 #: Report.py:195
 #, fuzzy
 msgid "Sixteenth Generation"
-msgstr "%s Generasjon"
+msgstr "Sekstende"
 
 #: Report.py:196
 #, fuzzy
 msgid "Eighteenth Generation"
-msgstr "%s Generasjon"
+msgstr "Attende"
 
 #: Report.py:196
 #, fuzzy
@@ -2277,12 +2298,12 @@ msgstr "Syttende"
 #: Report.py:197
 #, fuzzy
 msgid "Nineteenth Generation"
-msgstr "%s Generasjon"
+msgstr "Nittende"
 
 #: Report.py:197
 #, fuzzy
 msgid "Twentieth Generation"
-msgstr "%s Generasjon"
+msgstr "Tjuende"
 
 #: Report.py:198
 #, fuzzy
@@ -2292,7 +2313,7 @@ msgstr "Tjueførste"
 #: Report.py:198
 #, fuzzy
 msgid "Twenty-second Generation"
-msgstr "Tjueandre"
+msgstr "sekunder"
 
 #: Report.py:199
 #, fuzzy
@@ -2340,7 +2361,7 @@ msgstr "Jobber"
 #: Report.py:391
 #, fuzzy
 msgid "%(report_name)s for GRAMPS Book"
-msgstr "Tittelside for GRAMPS-bok"
+msgstr "for GRAMPS Bok"
 
 #: Report.py:542 Report.py:1076
 msgid "Document Options"
@@ -2385,7 +2406,7 @@ msgstr "Velg en person"
 #: Report.py:943
 #, fuzzy
 msgid "%(report_name)s for %(person_name)s"
-msgstr "Kommentarer for %(person)s:"
+msgstr "for"
 
 #: Report.py:1030 Report.py:1111 docgen/PSDrawDoc.py:410
 msgid "Print a copy"
@@ -2657,76 +2678,77 @@ msgstr "Hun giftet seg med %(spouse)s%(endnotes)s."
 #: ReportUtils.py:861
 #, fuzzy
 msgid "He also married %(spouse)s %(date)s in %(place)s%(endnotes)s."
-msgstr "Han giftet seg med %(spouse)s %(date)s i %(place)s%(endnotes)s."
+msgstr "Han dato tommer."
 
 #: ReportUtils.py:867
 #, fuzzy
 msgid "She also married %(spouse)s %(date)s in %(place)s%(endnotes)s."
-msgstr "Hun giftet seg med %(spouse)s %(date)s i %(place)s%(endnotes)s."
+msgstr "Hun dato tommer."
 
 #: ReportUtils.py:874
 #, fuzzy
 msgid "He also married %(spouse)s %(date)s%(endnotes)s."
-msgstr "Han giftet seg med %(spouse)s %(date)s%(endnotes)s."
+msgstr "Han dato."
 
 #: ReportUtils.py:879 ReportUtils.py:890
 #, fuzzy
 msgid "She also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Hun giftet seg med %(spouse)s i %(place)s%(endnotes)s."
+msgstr "Hun tommer."
 
 #: ReportUtils.py:885
 #, fuzzy
 msgid "He also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Han giftet seg med %(spouse)s i %(place)s%(endnotes)s."
+msgstr "Han tommer."
 
 #: ReportUtils.py:896
 #, fuzzy
 msgid "He also married %(spouse)s%(endnotes)s."
-msgstr "Han giftet seg med %(spouse)s%(endnotes)s."
+msgstr "Han."
 
 #: ReportUtils.py:900
 #, fuzzy
 msgid "She also married %(spouse)s%(endnotes)s."
-msgstr "Hun giftet seg med %(spouse)s%(endnotes)s."
+msgstr "Hun."
 
 #: ReportUtils.py:916
 #, fuzzy
 msgid "He married %(spouse)s."
-msgstr "Han giftet seg med %(spouse)s%(endnotes)s."
+msgstr "Han."
 
 #: ReportUtils.py:918
 #, fuzzy
 msgid "She married %(spouse)s."
-msgstr "Hun giftet seg med %(spouse)s%(endnotes)s."
+msgstr "Hun."
 
 #: ReportUtils.py:921
 #, fuzzy
 msgid "He had relationship with %(spouse)s."
-msgstr "Relasjon til %(mother)s"
+msgstr "Han med."
 
 #: ReportUtils.py:924
 #, fuzzy
 msgid "She had relationship with %(spouse)s."
-msgstr "Relasjon til %(mother)s"
+msgstr "Hun med."
 
 #: ReportUtils.py:929
 #, fuzzy
 msgid "He also married %(spouse)s."
-msgstr "Han giftet seg med %(spouse)s%(endnotes)s."
+msgstr "Han."
 
 #: ReportUtils.py:931
 #, fuzzy
 msgid "She also married %(spouse)s."
-msgstr "Hun giftet seg med %(spouse)s%(endnotes)s."
+msgstr "Hun."
 
 #: ReportUtils.py:934
 #, fuzzy
 msgid "He also had relationship with %(spouse)s."
-msgstr "Har relasjonen"
+msgstr "Han med."
 
 #: ReportUtils.py:937
+#, fuzzy
 msgid "She also had relationship with %(spouse)s."
-msgstr ""
+msgstr "Hun med."
 
 #: ReportUtils.py:968
 msgid "He was the son of %(father)s and %(mother)s."
@@ -2779,502 +2801,502 @@ msgstr "Hun er datter av %(father)s."
 #: ReportUtils.py:1059
 #, fuzzy
 msgid "%(male_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(male_name)s%(endnotes)s ble født %(birth_date)s i %(birth_place)s%(birth_endnotes)s."
+msgstr "mann født på dato tommer."
 
 #: ReportUtils.py:1064
 #, fuzzy
 msgid "%(male_name)s was born on %(birth_date)s."
-msgstr "%(male_name)s%(endnotes)s ble født %(birth_date)s%(birth_endnotes)s."
+msgstr "mann født på dato."
 
 #: ReportUtils.py:1068
 #, fuzzy
 msgid "%(male_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr "%(male_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s."
+msgstr "mann født tommer måned år tommer."
 
 #: ReportUtils.py:1073
 #, fuzzy
 msgid "%(male_name)s was born in %(month_year)s."
-msgstr "%s ble født i år %s. "
+msgstr "mann født tommer måned år."
 
 #: ReportUtils.py:1077
 #, fuzzy
 msgid "%(male_name)s was born in %(birth_place)s."
-msgstr "%(male_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s."
+msgstr "mann født tommer."
 
 #: ReportUtils.py:1084
 #, fuzzy
 msgid "%(female_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(female_name)s%(endnotes)s ble født %(birth_date)s i %(birth_place)s%(birth_endnotes)s."
+msgstr "kvinne født på dato tommer."
 
 #: ReportUtils.py:1089
 #, fuzzy
 msgid "%(female_name)s was born on %(birth_date)s."
-msgstr "%(female_name)s%(endnotes)s ble født %(birth_date)s%(birth_endnotes)s."
+msgstr "kvinne født på dato."
 
 #: ReportUtils.py:1093
 #, fuzzy
 msgid "%(female_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr "%(female_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s."
+msgstr "kvinne født tommer måned år tommer."
 
 #: ReportUtils.py:1098
 #, fuzzy
 msgid "%(female_name)s was born in %(month_year)s."
-msgstr "%(female_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s."
+msgstr "kvinne født tommer måned år."
 
 #: ReportUtils.py:1102
 #, fuzzy
 msgid "%(female_name)s was born in %(birth_place)s."
-msgstr "%(female_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s."
+msgstr "kvinne født tommer."
 
 #: ReportUtils.py:1158
 #, fuzzy
 msgid "%(male_name)s died on %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s%(endnotes)s døde %(death_date)s i %(death_place)s%(death_endnotes)s."
+msgstr "mann døde på dato tommer."
 
 #: ReportUtils.py:1163
 #, fuzzy
 msgid "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s%(endnotes)s døde %(death_date)s i %(death_place)s%(death_endnotes)s."
+msgstr "mann døde på dato tommer ved av."
 
 #: ReportUtils.py:1170
 #, fuzzy
 msgid "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s%(endnotes)s døde %(death_date)s i %(death_place)s%(death_endnotes)s."
+msgstr "mann døde på dato tommer ved av."
 
 #: ReportUtils.py:1177
 #, fuzzy
 msgid "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s%(endnotes)s døde %(death_date)s i %(death_place)s%(death_endnotes)s."
+msgstr "mann døde på dato tommer ved av dager."
 
 #: ReportUtils.py:1185
 #, fuzzy
 msgid "%(male_name)s died on %(death_date)s."
-msgstr "%(male_name)s%(endnotes)s."
+msgstr "mann døde på dato."
 
 #: ReportUtils.py:1188
 #, fuzzy
 msgid "%(male_name)s died on %(death_date)sat the age of %(age)d years."
-msgstr "Gammel og ugift: %(male_name)s døde ugift, i en alder av %(ageatdeath)d år.\n"
+msgstr "mann døde på dato av."
 
 #: ReportUtils.py:1193
 #, fuzzy
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr "Høy alder: %(male_name)s født %(byear)d, død %(dyear)d, i en alder av %(ageatdeath)d.\n"
+msgstr "mann døde på dato ved av."
 
 #: ReportUtils.py:1198
 #, fuzzy
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s%(endnotes)s døde %(death_date)s%(death_endnotes)s."
+msgstr "mann døde på dato ved av dager."
 
 #: ReportUtils.py:1205
 #, fuzzy
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s."
-msgstr "%(male_name)s%(endnotes)s døde i %(death_place)s%(death_endnotes)s."
+msgstr "mann døde tommer måned år tommer."
 
 #: ReportUtils.py:1210
 #, fuzzy
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "Høy alder: %(male_name)s født %(byear)d, død %(dyear)d, i en alder av %(ageatdeath)d.\n"
+msgstr "mann døde tommer måned år tommer ved av."
 
 #: ReportUtils.py:1217
 #, fuzzy
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d mpnths."
-msgstr "Høy alder: %(male_name)s født %(byear)d, død %(dyear)d, i en alder av %(ageatdeath)d.\n"
+msgstr "mann døde tommer måned år tommer ved av."
 
 #: ReportUtils.py:1224
 #, fuzzy
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s%(endnotes)s døde %(death_date)s i %(death_place)s%(death_endnotes)s."
+msgstr "mann døde tommer måned år tommer ved av dager."
 
 #: ReportUtils.py:1232
 #, fuzzy
 msgid "%(male_name)s died in %(month_year)s."
-msgstr "%(male_name)s%(endnotes)s."
+msgstr "mann døde tommer måned år."
 
 #: ReportUtils.py:1235
 #, fuzzy
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr "Gammel og ugift: %(male_name)s døde ugift, i en alder av %(ageatdeath)d år.\n"
+msgstr "mann døde tommer måned år ved av."
 
 #: ReportUtils.py:1240
 #, fuzzy
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr "Høy alder: %(male_name)s født %(byear)d, død %(dyear)d, i en alder av %(ageatdeath)d.\n"
+msgstr "mann døde tommer måned år ved av."
 
 #: ReportUtils.py:1245
 #, fuzzy
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr "Høy alder: %(male_name)s født %(byear)d, død %(dyear)d, i en alder av %(ageatdeath)d.\n"
+msgstr "mann døde tommer måned år ved av dager."
 
 #: ReportUtils.py:1252
 #, fuzzy
 msgid "%(male_name)s died in %(death_place)s."
-msgstr "%(male_name)s%(endnotes)s døde i %(death_place)s%(death_endnotes)s."
+msgstr "mann døde tommer."
 
 #: ReportUtils.py:1255
 #, fuzzy
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s%(endnotes)s døde i %(death_place)s%(death_endnotes)s."
+msgstr "mann døde tommer ved av."
 
 #: ReportUtils.py:1260
 #, fuzzy
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s%(endnotes)s døde i %(death_place)s%(death_endnotes)s."
+msgstr "mann døde tommer ved av."
 
 #: ReportUtils.py:1265
 #, fuzzy
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s%(endnotes)s døde i %(death_place)s%(death_endnotes)s."
+msgstr "mann døde tommer ved av dager."
 
 #: ReportUtils.py:1274
 #, fuzzy
 msgid "%(male_name)s died at the age of %(age)d years."
-msgstr "Gammel og ugift: %(male_name)s døde ugift, i en alder av %(ageatdeath)d år.\n"
+msgstr "mann døde ved av."
 
 #: ReportUtils.py:1278
 #, fuzzy
 msgid "%(male_name)s died at the age of %(age)d months."
-msgstr " i en alder av %d måneder"
+msgstr "mann døde ved av."
 
 #: ReportUtils.py:1282
 #, fuzzy
 msgid "%(male_name)s died at the age of %(age)d days."
-msgstr "Gammel og ugift: %(male_name)s døde ugift, i en alder av %(ageatdeath)d år.\n"
+msgstr "mann døde ved av dager."
 
 #: ReportUtils.py:1289
 #, fuzzy
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s."
-msgstr "%(female_name)s%(endnotes)s døde %(death_date)s i %(death_place)s%(death_endnotes)s."
+msgstr "kvinne døde på dato tommer."
 
 #: ReportUtils.py:1294
 #, fuzzy
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(female_name)s%(endnotes)s døde %(death_date)s i %(death_place)s%(death_endnotes)s."
+msgstr "kvinne døde på dato tommer ved av."
 
 #: ReportUtils.py:1301
 #, fuzzy
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(female_name)s%(endnotes)s døde %(death_date)s i %(death_place)s%(death_endnotes)s."
+msgstr "kvinne døde på dato tommer ved av."
 
 #: ReportUtils.py:1308
 #, fuzzy
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(female_name)s%(endnotes)s døde %(death_date)s i %(death_place)s%(death_endnotes)s."
+msgstr "kvinne døde på dato tommer ved av dager."
 
 #: ReportUtils.py:1316
 #, fuzzy
 msgid "%(female_name)s died on %(death_date)s."
-msgstr "%(female_name)s%(endnotes)s."
+msgstr "kvinne døde på dato."
 
 #: ReportUtils.py:1319
 #, fuzzy
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr "Gammel og ugift: %(female_name)s døde ugift, i en alder av%(ageatdeath)d år.\n"
+msgstr "kvinne døde på dato ved av."
 
 #: ReportUtils.py:1324
 #, fuzzy
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr "Høy alder: %(female_name)s født %(byear)d, død %(dyear)d, i en alder av %(ageatdeath)d.\n"
+msgstr "kvinne døde på dato ved av."
 
 #: ReportUtils.py:1329
 #, fuzzy
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr "%(female_name)s%(endnotes)s døde %(death_date)s%(death_endnotes)s."
+msgstr "kvinne døde på dato ved av dager."
 
 #: ReportUtils.py:1336
 #, fuzzy
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s."
-msgstr "%(female_name)s%(endnotes)s døde i %(death_place)s%(death_endnotes)s."
+msgstr "kvinne døde tommer måned år tommer."
 
 #: ReportUtils.py:1341
 #, fuzzy
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "Høy alder: %(female_name)s født %(byear)d, død %(dyear)d, i en alder av %(ageatdeath)d.\n"
+msgstr "kvinne døde tommer måned år tommer ved av."
 
 #: ReportUtils.py:1348
 #, fuzzy
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d mpnths."
-msgstr "Høy alder: %(female_name)s født %(byear)d, død %(dyear)d, i en alder av %(ageatdeath)d.\n"
+msgstr "kvinne døde tommer måned år tommer ved av."
 
 #: ReportUtils.py:1355
 #, fuzzy
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(female_name)s%(endnotes)s døde %(death_date)s i %(death_place)s%(death_endnotes)s."
+msgstr "kvinne døde tommer måned år tommer ved av dager."
 
 #: ReportUtils.py:1363
 #, fuzzy
 msgid "%(female_name)s died in %(month_year)s."
-msgstr "%(female_name)s%(endnotes)s."
+msgstr "kvinne døde tommer måned år."
 
 #: ReportUtils.py:1366
 #, fuzzy
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr "Gammel og ugift: %(female_name)s døde ugift, i en alder av%(ageatdeath)d år.\n"
+msgstr "kvinne døde tommer måned år ved av."
 
 #: ReportUtils.py:1371
 #, fuzzy
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr "Høy alder: %(female_name)s født %(byear)d, død %(dyear)d, i en alder av %(ageatdeath)d.\n"
+msgstr "kvinne døde tommer måned år ved av."
 
 #: ReportUtils.py:1376
 #, fuzzy
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr "Gammel og ugift: %(female_name)s døde ugift, i en alder av%(ageatdeath)d år.\n"
+msgstr "kvinne døde tommer måned år ved av dager."
 
 #: ReportUtils.py:1383
 #, fuzzy
 msgid "%(female_name)s died in %(death_place)s."
-msgstr "%(female_name)s%(endnotes)s døde i %(death_place)s%(death_endnotes)s."
+msgstr "kvinne døde tommer."
 
 #: ReportUtils.py:1386
 #, fuzzy
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr "%(female_name)s%(endnotes)s døde i %(death_place)s%(death_endnotes)s."
+msgstr "kvinne døde tommer ved av."
 
 #: ReportUtils.py:1391
 #, fuzzy
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d months."
-msgstr "%(female_name)s%(endnotes)s døde i %(death_place)s%(death_endnotes)s."
+msgstr "kvinne døde tommer ved av."
 
 #: ReportUtils.py:1396
 #, fuzzy
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr "%(female_name)s%(endnotes)s døde i %(death_place)s%(death_endnotes)s."
+msgstr "kvinne døde tommer ved av dager."
 
 #: ReportUtils.py:1405
 #, fuzzy
 msgid "%(female_name)s died at the age of %(age)d years."
-msgstr "Gammel og ugift: %(female_name)s døde ugift, i en alder av%(ageatdeath)d år.\n"
+msgstr "kvinne døde ved av."
 
 #: ReportUtils.py:1409
 #, fuzzy
 msgid "%(female_name)s died at the age of %(age)d months."
-msgstr "Gammel og ugift: %(female_name)s døde ugift, i en alder av%(ageatdeath)d år.\n"
+msgstr "kvinne døde ved av."
 
 #: ReportUtils.py:1413
 #, fuzzy
 msgid "%(female_name)s died at the age of %(age)d days."
-msgstr "Gammel og ugift: %(female_name)s døde ugift, i en alder av%(ageatdeath)d år.\n"
+msgstr "kvinne døde ved av dager."
 
 #: ReportUtils.py:1466
 #, fuzzy
 msgid "%(male_name)s was buried on %(birth_date)s in %(birth_place)s."
-msgstr "%(male_name)s%(endnotes)s ble født %(birth_date)s i %(birth_place)s%(birth_endnotes)s."
+msgstr "mann på dato tommer."
 
 #: ReportUtils.py:1471
 #, fuzzy
 msgid "%(male_name)s was buried on %(birth_date)s."
-msgstr "%(male_name)s%(endnotes)s ble født %(birth_date)s%(birth_endnotes)s."
+msgstr "mann på dato."
 
 #: ReportUtils.py:1475
 #, fuzzy
 msgid "%(male_name)s was buried in %(month_year)s in %(birth_place)s."
-msgstr "%(male_name)s%(endnotes)s ble født %(birth_date)s i %(birth_place)s%(birth_endnotes)s."
+msgstr "mann tommer måned år tommer."
 
 #: ReportUtils.py:1480
 #, fuzzy
 msgid "%(male_name)s was buried in %(month_year)s."
-msgstr ", og ble begravd i år %s."
+msgstr "mann tommer måned år."
 
 #: ReportUtils.py:1484
 #, fuzzy
 msgid "%(male_name)s was buried in %(birth_place)s."
-msgstr "%(male_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s."
+msgstr "mann tommer."
 
 #: ReportUtils.py:1487
 #, fuzzy
 msgid "%(male_name)s was buried."
-msgstr "%(male_name)s%(endnotes)s."
+msgstr "mann."
 
 #: ReportUtils.py:1492
 #, fuzzy
 msgid "%(female_name)s was buried on %(birth_date)s in %(birth_place)s."
-msgstr "%(female_name)s%(endnotes)s ble født %(birth_date)s i %(birth_place)s%(birth_endnotes)s."
+msgstr "kvinne på dato tommer."
 
 #: ReportUtils.py:1497
 #, fuzzy
 msgid "%(female_name)s was buried on %(birth_date)s."
-msgstr "%(female_name)s%(endnotes)s ble født %(birth_date)s%(birth_endnotes)s."
+msgstr "kvinne på dato."
 
 #: ReportUtils.py:1501
 #, fuzzy
 msgid "%(female_name)s was buried in %(month_year)s in %(birth_place)s."
-msgstr "%(female_name)s%(endnotes)s ble født %(birth_date)s i %(birth_place)s%(birth_endnotes)s."
+msgstr "kvinne tommer måned år tommer."
 
 #: ReportUtils.py:1506
 #, fuzzy
 msgid "%(female_name)s was buried in %(month_year)s."
-msgstr "%(female_name)s%(endnotes)s."
+msgstr "kvinne tommer måned år."
 
 #: ReportUtils.py:1510
 #, fuzzy
 msgid "%(female_name)s was buried in %(birth_place)s."
-msgstr "%(female_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s."
+msgstr "kvinne tommer."
 
 #: ReportUtils.py:1513
 #, fuzzy
 msgid "%(female_name)s was buried."
-msgstr "%(female_name)s%(endnotes)s."
+msgstr "kvinne."
 
 #: ReportUtils.py:1543
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s%(endnotes)s ble født %(birth_date)s%(birth_endnotes)s, og døde %(death_date)s%(death_endnotes)s."
+msgstr "mann dato dato."
 
 #: ReportUtils.py:1550
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s."
-msgstr "%(male_name)s%(endnotes)s ble født %(birth_date)s i %(birth_place)s%(birth_endnotes)s."
+msgstr "mann dato dato."
 
 #: ReportUtils.py:1558
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_place)s."
-msgstr "%(male_name)s%(endnotes)s ble født %(birth_date)s i %(birth_place)s%(birth_endnotes)s."
+msgstr "mann dato."
 
 #: ReportUtils.py:1565
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_date)s %(birth_place)s."
-msgstr "%(male_name)s%(endnotes)s ble født %(birth_date)s%(birth_endnotes)s."
+msgstr "mann dato."
 
 #: ReportUtils.py:1572
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_date)s Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s%(endnotes)s døde %(death_date)s%(death_endnotes)s."
+msgstr "mann dato dato."
 
 #: ReportUtils.py:1577
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_date)s Died: %(death_date)s."
-msgstr "%(male_name)s%(endnotes)s ble født %(birth_date)s%(birth_endnotes)s."
+msgstr "mann dato dato."
 
 #: ReportUtils.py:1583
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_date)s Died: %(death_place)s."
-msgstr "%(male_name)s%(endnotes)s ble født %(birth_date)s i %(birth_place)s%(birth_endnotes)s."
+msgstr "mann dato."
 
 #: ReportUtils.py:1588
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_date)s "
-msgstr "%(male_name)s%(endnotes)s."
+msgstr "mann dato "
 
 #: ReportUtils.py:1594
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_place)s Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s%(endnotes)s døde %(death_date)s%(death_endnotes)s."
+msgstr "mann dato."
 
 #: ReportUtils.py:1601
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_place)s Died: %(death_date)s."
-msgstr "%(male_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s."
+msgstr "mann dato."
 
 #: ReportUtils.py:1609
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_place)s Died: %(death_place)s."
-msgstr "%(male_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s."
+msgstr "mann."
 
 #: ReportUtils.py:1616
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_place)s."
-msgstr "%(date)s i %(place)s."
+msgstr "mann."
 
 #: ReportUtils.py:1622
 #, fuzzy
 msgid "%(male_name)s Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s%(endnotes)s døde %(death_date)s%(death_endnotes)s."
+msgstr "mann dato."
 
 #: ReportUtils.py:1627
 #, fuzzy
 msgid "%(male_name)s Died: %(death_date)s."
-msgstr "%(male_name)s%(endnotes)s."
+msgstr "mann dato."
 
 #: ReportUtils.py:1632
 #, fuzzy
 msgid "%(male_name)s Died: %(death_place)s."
-msgstr "%(male_name)s%(endnotes)s."
+msgstr "mann."
 
 #: ReportUtils.py:1635
 #, fuzzy
 msgid "%(male_name)s."
-msgstr "%(male_name)s%(endnotes)s."
+msgstr "mann."
 
 #: ReportUtils.py:1642
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s %(death_place)s."
-msgstr "%(female_name)s%(endnotes)s ble født %(birth_date)s%(birth_endnotes)s, og døde %(death_date)s%(death_endnotes)s."
+msgstr "kvinne dato dato."
 
 #: ReportUtils.py:1649
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s."
-msgstr "%(female_name)s%(endnotes)s ble født %(birth_date)s i %(birth_place)s %(birth_endnotes)s."
+msgstr "kvinne dato dato."
 
 #: ReportUtils.py:1657
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_place)s."
-msgstr "%(female_name)s%(endnotes)s ble født %(birth_date)s i %(birth_place)s %(birth_endnotes)s."
+msgstr "kvinne dato."
 
 #: ReportUtils.py:1664
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_date)s %(birth_place)s."
-msgstr "%(female_name)s%(endnotes)s ble født %(birth_date)s%(birth_endnotes)s."
+msgstr "kvinne dato."
 
 #: ReportUtils.py:1671
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_date)s Died: %(death_date)s %(death_place)s."
-msgstr "%(female_name)s%(endnotes)s døde %(death_date)s%(death_endnotes)s."
+msgstr "kvinne dato dato."
 
 #: ReportUtils.py:1676
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_date)s Died: %(death_date)s."
-msgstr "%(female_name)s%(endnotes)s ble født %(birth_date)s%(birth_endnotes)s."
+msgstr "kvinne dato dato."
 
 #: ReportUtils.py:1682
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_date)s Died: %(death_place)s."
-msgstr "%(female_name)s%(endnotes)s ble født %(birth_date)s i %(birth_place)s%(birth_endnotes)s."
+msgstr "kvinne dato."
 
 #: ReportUtils.py:1687
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_date)s "
-msgstr "%(female_name)s%(endnotes)s."
+msgstr "kvinne dato "
 
 #: ReportUtils.py:1693
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_place)s Died: %(death_date)s %(death_place)s."
-msgstr "%(female_name)s%(endnotes)s døde %(death_date)s%(death_endnotes)s."
+msgstr "kvinne dato."
 
 #: ReportUtils.py:1700
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_place)s Died: %(death_date)s."
-msgstr "%(female_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s."
+msgstr "kvinne dato."
 
 #: ReportUtils.py:1708
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_place)s Died: %(death_place)s."
-msgstr "%(female_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s."
+msgstr "kvinne."
 
 #: ReportUtils.py:1715
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_place)s."
-msgstr "%(female_name)s%(endnotes)s."
+msgstr "kvinne."
 
 #: ReportUtils.py:1721
 #, fuzzy
 msgid "%(female_name)s Died: %(death_date)s %(death_place)s."
-msgstr "%(female_name)s%(endnotes)s døde %(death_date)s%(death_endnotes)s."
+msgstr "kvinne dato."
 
 #: ReportUtils.py:1726
 #, fuzzy
 msgid "%(female_name)s Died: %(death_date)s."
-msgstr "%(female_name)s%(endnotes)s."
+msgstr "kvinne dato."
 
 #: ReportUtils.py:1731
 #, fuzzy
 msgid "%(female_name)s Died: %(death_place)s."
-msgstr "%(female_name)s%(endnotes)s."
+msgstr "kvinne."
 
 #: ReportUtils.py:1734
 #, fuzzy
 msgid "%(female_name)s."
-msgstr "%(female_name)s%(endnotes)s."
+msgstr "kvinne."
 
 #: ReportUtils.py:1743 const.py:490 plugins/FamilyGroup.py:376
 #: plugins/FamilyGroup.py:378
@@ -3286,8 +3308,9 @@ msgid "Unmarried"
 msgstr "Ugift"
 
 #: ReportUtils.py:1745 const.py:492
+#, fuzzy
 msgid "Civil Union"
-msgstr ""
+msgstr "Union"
 
 #: ReportUtils.py:1747 const.py:234 const.py:248 const.py:494
 #: mergedata.glade:240
@@ -3295,13 +3318,14 @@ msgid "Other"
 msgstr "Andre"
 
 #: SelectChild.py:288 SelectChild.py:305
+#, fuzzy
 msgid "A person cannot be linked as his/her own child"
-msgstr ""
+msgstr "En person kan ikke lenkes som sitt eget barn"
 
 #: SelectChild.py:329
 #, fuzzy
 msgid "Add Child to Family (%s)"
-msgstr "Legg til et barn til en familie"
+msgstr "Legg til Barn å Familie"
 
 #: SourceView.py:53
 msgid "Author"
@@ -3315,7 +3339,7 @@ msgstr "Forkortelse:"
 #: SourceView.py:55
 #, fuzzy
 msgid "Publication Information"
-msgstr "Publikasjonsinformasjon:"
+msgstr "Informasjon"
 
 #: SourceView.py:161
 msgid "Source Menu"
@@ -3328,7 +3352,7 @@ msgstr "Denne kilden er for øyeblikket i bruk. Hvis du sletter denne vil den bli
 #: SourceView.py:190
 #, fuzzy
 msgid "Deleting source will remove it from the database."
-msgstr "Fjern objektet og alle henvisningene til det fra databasen."
+msgstr "fjern fra."
 
 #: SourceView.py:194
 msgid "_Delete Source"
@@ -3337,12 +3361,12 @@ msgstr "Slett kil_de"
 #: SourceView.py:227
 #, fuzzy
 msgid "Cannot merge sources."
-msgstr "Kan ikke flette steder."
+msgstr "slå sammen, flette, fletting."
 
 #: SourceView.py:228
 #, fuzzy
 msgid "Exactly two sources must be selected to perform a merge. A second source can be selected by holding down the control key while clicking on the desired source."
-msgstr "Presis to steder må være valgt for å kunne flette. Du kan velge sted nummer to ved å holde nede Ctrl-tasten mens du klikker på det andre stedet."
+msgstr "å yte, utføre slå sammen, flette, fletting A sekunder fra ned på."
 
 #: Sources.py:92
 msgid "Source Reference Selection"
@@ -3351,12 +3375,12 @@ msgstr "Velg kildehenvisning"
 #: Sources.py:152 Sources.py:459
 #, fuzzy
 msgid "Source Reference"
-msgstr "Velg kildehenvisning"
+msgstr "Kilde Referanse"
 
 #: Sources.py:158
 #, fuzzy
 msgid "Reference Selector"
-msgstr "Velg kildehenvisning"
+msgstr "Referanse"
 
 #: Sources.py:383 Sources.py:465
 msgid "Source Information"
@@ -3469,8 +3493,9 @@ msgid "No description available"
 msgstr "Ingen beskrivelse tilgjengelig"
 
 #: Utils.py:72
+#, fuzzy
 msgid "The data can only be recovered by Undo operation or by quitting with abandoning changes."
-msgstr ""
+msgstr "data fra Angre handling, operasjon eller fra med."
 
 #: Witness.py:64
 msgid "Witness"
@@ -3481,15 +3506,20 @@ msgid "Witness Editor"
 msgstr "Vitneredigering"
 
 #: Witness.py:245
+#, fuzzy
 msgid "Witness selection error"
-msgstr ""
+msgstr "Vitne utvalg, merket område feil"
 
 #: Witness.py:246
+#, fuzzy
 msgid ""
 "Since you have indicated that the person is in the database, you need to actually select the person by pressing the Select button.\n"
 "\n"
 "Please try again. The witness has not been changed."
 msgstr ""
+"Siden du har indikert at denne personen er i databasen, må du faktisk velge denne personen ved å trykke på Velg knappen.\n"
+"\n"
+"Vennligst prøv igjen. Vitnet har ikke blitt endret."
 
 #: WriteGedcom.py:331 plugins/DescendReport.py:116
 #: plugins/ExportVCalendar.py:88 plugins/ExportVCard.py:88
@@ -3540,13 +3570,14 @@ msgid "GE_DCOM"
 msgstr "Eksporter GEDCOM"
 
 #: WriteGedcom.py:1237
+#, fuzzy
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input. "
-msgstr ""
+msgstr "å overføre data mellom program, programva godkjenne, akseptere fil inndata "
 
 #: WriteGedcom.py:1239
 #, fuzzy
 msgid "GEDCOM export options"
-msgstr "GEDCOM eksport"
+msgstr "innstillinger (= settings, preferences), valg"
 
 #: WriteXML.py:91 WriteXML.py:141 WriteXML.py:150 WriteXML.py:167
 msgid "Failure writing %s"
@@ -3567,11 +3598,12 @@ msgstr "Databasen kan ikke lagres fordi du ikke har rettigheter til å skrivet ti
 #: WriteXML.py:893
 #, fuzzy
 msgid "GRAMPS _XML database"
-msgstr "Import fra GRAMPS-database"
+msgstr "GRAMPS"
 
 #: WriteXML.py:894
+#, fuzzy
 msgid "The GRAMPS XML database is a format used by older versions of GRAMPS. It is read-write compatible with the present GRAMPS database format."
-msgstr ""
+msgstr "GRAMPS fra av GRAMPS lese med GRAMPS."
 
 #: const.py:141
 msgid "GRAMPS (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
@@ -3640,7 +3672,7 @@ msgstr "Forlovelse"
 #: const.py:293
 #, fuzzy
 msgid "Marriage Banns"
-msgstr "Ekteskapslisens"
+msgstr "Ekteskap"
 
 #: const.py:294
 msgid "Marriage Contract"
@@ -3949,7 +3981,7 @@ msgstr "AbiWord"
 #: docgen/AsciiDoc.py:377
 #, fuzzy
 msgid "Plain Text"
-msgstr "Avsluttende tekst"
+msgstr "Klartekst"
 
 #: docgen/HtmlDoc.py:158 docgen/HtmlDoc.py:183
 msgid "The marker '<!-- START -->' was not in the template"
@@ -3958,7 +3990,7 @@ msgstr "Markøren '<!-- START -->' var ikke i malen"
 #: docgen/HtmlDoc.py:159 docgen/HtmlDoc.py:184
 #, fuzzy
 msgid "Template Error"
-msgstr "Mal"
+msgstr "Mal Feil"
 
 #: docgen/HtmlDoc.py:194 docgen/HtmlDoc.py:200
 msgid ""
@@ -3989,7 +4021,7 @@ msgstr "Forhåndsvisning"
 #: docgen/LPRDoc.py:1239
 #, fuzzy
 msgid "Print..."
-msgstr "Redi_ger..."
+msgstr "Skriv ut ..."
 
 #: docgen/LaTeXDoc.py:429
 msgid "LaTeX"
@@ -4013,12 +4045,14 @@ msgid "The ReportLab modules are not installed"
 msgstr "ReportLab modulen er ikke installert"
 
 #: docgen/PdfDoc.py:638 docgen/PdfDoc.py:639 docgen/PdfDoc.py:640
+#, fuzzy
 msgid "PDF document"
-msgstr ""
+msgstr "PDF"
 
 #: docgen/RTFDoc.py:432
+#, fuzzy
 msgid "RTF document"
-msgstr ""
+msgstr "RTF"
 
 #: docgen/SvgDrawDoc.py:264
 msgid "SVG (Scalable Vector Graphics)"
@@ -4101,7 +4135,7 @@ msgstr "AN_SI (ISO-8859-1)"
 #: gedcomexport.glade:526 plugins/genewebexport.glade:326
 #, fuzzy
 msgid "R_eference images from path:  "
-msgstr "Henvisningsbilder fra sti:  "
+msgstr "R fra "
 
 #: gedcomexport.glade:548 plugins/genewebexport.glade:348
 msgid "media"
@@ -4148,16 +4182,18 @@ msgid "Version:"
 msgstr "Versjon:"
 
 #: gedcomimport.glade:516
+#, fuzzy
 msgid "GRAMPS - GEDCOM Encoding"
-msgstr ""
+msgstr "GRAMPS"
 
 #: gedcomimport.glade:570
 msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
 msgstr ""
 
 #: gedcomimport.glade:591
+#, fuzzy
 msgid "This GEDCOM file has identified itself as using ANSEL enconding. Sometimes, this is in error. If the imported data contains unusual characters, undo the import, and override the character set by selecting a different encoding below."
-msgstr ""
+msgstr "fil tommer feil data angre og tegn fra koding (character (en)coding = tegnkoding) under."
 
 #: gedcomimport.glade:629
 #, fuzzy
@@ -4165,13 +4201,14 @@ msgid "Encoding: "
 msgstr "Koding:"
 
 #: gedcomimport.glade:654
+#, fuzzy
 msgid ""
 "default\n"
 "ANSEL\n"
 "ANSI (iso-8859-1)\n"
 "ASCII\n"
 "UNICODE"
-msgstr ""
+msgstr "standard(verdi), forvalg"
 
 #: gramps.glade:10
 msgid "GRAMPS"
@@ -4190,13 +4227,14 @@ msgid "_Open..."
 msgstr "Åpne..."
 
 #: gramps.glade:97
+#, fuzzy
 msgid "Open _Recent"
-msgstr ""
+msgstr "Åpne"
 
 #: gramps.glade:112
 #, fuzzy
 msgid "_Import..."
-msgstr "_Importer"
+msgstr "Import."
 
 #: gramps.glade:134
 msgid "Save _As..."
@@ -4205,12 +4243,12 @@ msgstr "L_agre som..."
 #: gramps.glade:156
 #, fuzzy
 msgid "E_xport..."
-msgstr "_Eksporter"
+msgstr "SL."
 
 #: gramps.glade:184
 #, fuzzy
 msgid "A_bandon changes and quit"
-msgstr "Lukk vinduet uten å lagre endringene"
+msgstr "A og avsluttet, avslutt"
 
 #: gramps.glade:193
 msgid "_Quit"
@@ -4221,13 +4259,14 @@ msgid "_Edit"
 msgstr "R_ediger"
 
 #: gramps.glade:228 gramps_main.py:491
+#, fuzzy
 msgid "_Undo"
-msgstr ""
+msgstr "Angre"
 
 #: gramps.glade:250 gramps_main.py:500
 #, fuzzy
 msgid "_Redo"
-msgstr "Fje_rn"
+msgstr "Gjør om"
 
 #: gramps.glade:278 gramps.glade:940
 msgid "Add a new item"
@@ -4244,7 +4283,7 @@ msgstr "Fjern det valgte elementet"
 #: gramps.glade:302
 #, fuzzy
 msgid "R_emove"
-msgstr "Fjern"
+msgstr "R"
 
 #: gramps.glade:324 gramps.glade:976
 msgid "Edit the selected item"
@@ -4257,11 +4296,12 @@ msgstr "Re_diger ..."
 #: gramps.glade:340
 #, fuzzy
 msgid "Compare and _Merge..."
-msgstr "Flette sa_mmen ..."
+msgstr "Sammenligne og Slå sammen."
 
 #: gramps.glade:362
+#, fuzzy
 msgid "Fast Mer_ge"
-msgstr ""
+msgstr "Raskt"
 
 #: gramps.glade:377
 msgid "Prefere_nces..."
@@ -4270,7 +4310,7 @@ msgstr "Foretruk_ne innstillinger ..."
 #: gramps.glade:398
 #, fuzzy
 msgid "_Column Editor..."
-msgstr "_Rediger..."
+msgstr "Kolonne Redaktør."
 
 #: gramps.glade:419
 msgid "Set _Home person..."
@@ -4390,8 +4430,9 @@ msgid "Make the Home Person the active person"
 msgstr "Gjør hjempersonen til den aktive personen"
 
 #: gramps.glade:873
+#, fuzzy
 msgid "Open Scratch Pad"
-msgstr ""
+msgstr "Åpne"
 
 #: gramps.glade:874
 msgid "ScratchPad"
@@ -4448,7 +4489,7 @@ msgstr "<b>Media</b>"
 #: gramps.glade:1398
 #, fuzzy
 msgid "Invert"
-msgstr "_Inverter"
+msgstr "Snu"
 
 #: gramps.glade:1416
 msgid "Apply filter using the selected controls"
@@ -4574,13 +4615,14 @@ msgid "_Relationship type:"
 msgstr "Relasjonstype:"
 
 #: gramps.glade:3877
+#, fuzzy
 msgid ""
 "Married\n"
 "Unmarried\n"
 "Civil Union\n"
 "Unknown\n"
 "Other"
-msgstr ""
+msgstr "Gift Union"
 
 #: gramps.glade:4047
 msgid "_Father's relationship to child:"
@@ -4611,13 +4653,14 @@ msgid "Show _all"
 msgstr "Vis _alle"
 
 #: gramps.glade:4370
+#, fuzzy
 msgid ""
 "Married\n"
 "Unmarried\n"
 "Civil Union\n"
 "Uknown\n"
 "Other"
-msgstr ""
+msgstr "Gift Union"
 
 #: gramps.glade:4669
 msgid "Relationship to father:"
@@ -4703,7 +4746,7 @@ msgstr "Fjern det valgte objekt bare fra dette galleriet"
 #: gramps.glade:5363
 #, fuzzy
 msgid "Data"
-msgstr "Dato"
+msgstr "Data"
 
 #: gramps.glade:5459 gramps.glade:10511 gramps.glade:13505 gramps.glade:15608
 #: gramps.glade:26079
@@ -4726,12 +4769,12 @@ msgstr "Referanser"
 #: gramps.glade:5768
 #, fuzzy
 msgid "Open an _existing database"
-msgstr "Åpne en eksisterende database"
+msgstr "Åpne"
 
 #: gramps.glade:5788
 #, fuzzy
 msgid "Create a _new database"
-msgstr "Lag en ny database"
+msgstr "Lag"
 
 #: gramps.glade:5983
 msgid "_Relationship:"
@@ -4768,7 +4811,7 @@ msgstr "_Tekst:"
 #: gramps.glade:6513
 #, fuzzy
 msgid "<b>Select columns</b>"
-msgstr "<b>Valgte regel</b>"
+msgstr "<b> Velg kolonner</b>"
 
 #: gramps.glade:6685 gramps.glade:28611
 msgid "_Given name:"
@@ -4781,7 +4824,7 @@ msgstr "_Etternavn:"
 #: gramps.glade:6735
 #, fuzzy
 msgid "Famil_y prefix:"
-msgstr "Familieforstavelse:"
+msgstr "prefiks, for-, forstavelse:"
 
 #: gramps.glade:6760
 msgid "S_uffix:"
@@ -4835,7 +4878,7 @@ msgstr "<b>Fødsel</b>"
 #: gramps.glade:7076
 #, fuzzy
 msgid "GRAMPS _ID:"
-msgstr "_GRAMPS ID:"
+msgstr "GRAMPS ID:"
 
 #: gramps.glade:7122 gramps.glade:11077 gramps.glade:23014 gramps.glade:25261
 msgid "_Place:"
@@ -4858,7 +4901,7 @@ msgstr "St_ed:"
 #: gramps.glade:29223
 #, fuzzy
 msgid "Invoke date editor"
-msgstr "Registrer et dødsfall"
+msgstr "dato skriv om med redigering, tekstprogram "
 
 #: gramps.glade:7340
 msgid "An optional prefix for the family name that is not used in sorting, such as \"de\" or \"van\""
@@ -4875,7 +4918,7 @@ msgstr "Registrer en fødselshendelse"
 #: gramps.glade:7438
 #, fuzzy
 msgid "Edit the preferred name"
-msgstr "Rediger det valgte navnet"
+msgstr "Rediger"
 
 #: gramps.glade:7468
 msgid "<b>Gender</b>"
@@ -4900,7 +4943,7 @@ msgstr "Informa_sjonen er komplett"
 #: gramps.glade:7683
 #, fuzzy
 msgid "Information is pri_vate"
-msgstr "Informa_sjonen er komplett"
+msgstr "Informasjon"
 
 #: gramps.glade:7791 gramps.glade:8601 gramps.glade:9115 gramps.glade:9551
 #: gramps.glade:12297 gramps.glade:12744
@@ -4931,7 +4974,7 @@ msgstr "Rediger det valgte navnet"
 #: gramps.glade:8316
 #, fuzzy
 msgid "Delete the selected name"
-msgstr "Slett det markerte navnet"
+msgstr "Slett"
 
 #: gramps.glade:8368
 msgid "Names"
@@ -5009,17 +5052,17 @@ msgstr "Kommentarer"
 #: gramps.glade:10319
 #, fuzzy
 msgid "Add a source"
-msgstr "Legg til foreldre"
+msgstr "Legg til"
 
 #: gramps.glade:10346
 #, fuzzy
 msgid "Edit the selected source"
-msgstr "Rediger den valgte ektefellen"
+msgstr "Rediger"
 
 #: gramps.glade:10372
 #, fuzzy
 msgid "Remove the selected source"
-msgstr "Fjern den valgte ektefellen"
+msgstr "Fjern"
 
 #: gramps.glade:10416 gramps.glade:13416 gramps.glade:15513 gramps.glade:22554
 #: gramps.glade:23829 gramps.glade:25648 gramps.glade:26652 gramps.glade:28020
@@ -5033,7 +5076,7 @@ msgstr "Kilder"
 #: gramps.glade:10566
 #, fuzzy
 msgid "Remove the selected object from this gallery only"
-msgstr "Fjern det valgte objekt bare fra dette galleriet"
+msgstr "Fjern fra"
 
 #: gramps.glade:10649 gramps.glade:15759
 msgid "Web address:"
@@ -5050,7 +5093,7 @@ msgstr "Legg til en internett-henvisning om denne personen"
 #: gramps.glade:10844
 #, fuzzy
 msgid "Edit the selected internet address"
-msgstr "Rediger den valgte adressen"
+msgstr "Rediger"
 
 #: gramps.glade:10871
 msgid "Go to this web page"
@@ -5123,7 +5166,7 @@ msgstr "_GRAMPS ID:"
 #: gramps.glade:12035 gramps.glade:14562
 #, fuzzy
 msgid "Last Changed:"
-msgstr "Lagre endringer?"
+msgstr "Endret:"
 
 #: gramps.glade:12344
 msgid "<b>Events</b>"
@@ -5236,7 +5279,7 @@ msgstr "Last inn den siste databasen _automatisk "
 #: gramps.glade:16452
 #, fuzzy
 msgid "<b>Family name guessing</b>"
-msgstr "Gjett etternavn:"
+msgstr "<b> Familie</b>"
 
 #: gramps.glade:16539
 msgid "<b>Toolbar</b>"
@@ -5255,13 +5298,14 @@ msgid "<b>Statusbar</b>"
 msgstr "<b>Statuslinje</b>"
 
 #: gramps.glade:16637
+#, fuzzy
 msgid ""
 "GNOME settings\n"
 "Icons Only\n"
 "Text Only\n"
 "Text Below Icons\n"
 "Text Beside Icons"
-msgstr ""
+msgstr "innstillinger, oppsett Under Ikoner Ikoner"
 
 #: gramps.glade:16702
 msgid "_Always display the LDS ordinance tabs"
@@ -5298,7 +5342,7 @@ msgstr "Ovenfra og ned"
 #: gramps.glade:16891
 #, fuzzy
 msgid "_Display Tip of the Day"
-msgstr "Vis ikoner og tekst"
+msgstr "Vis Tips av Dag"
 
 #: gramps.glade:16960
 msgid "_Date format:"
@@ -5427,13 +5471,14 @@ msgid "_Private record"
 msgstr "_Private opplysninger"
 
 #: gramps.glade:18462
+#, fuzzy
 msgid ""
 "Very Low\n"
 "Low\n"
 "Normal\n"
 "High\n"
 "Very High"
-msgstr ""
+msgstr "Lav Høy"
 
 #: gramps.glade:18637
 msgid "Double click will edit the selected source"
@@ -5554,12 +5599,12 @@ msgstr "Nederst"
 #: gramps.glade:20769
 #, fuzzy
 msgid "<b>First line</b>"
-msgstr "<b>Første person</b>"
+msgstr "<b>Første linje</b>"
 
 #: gramps.glade:20838
 #, fuzzy
 msgid "I_ndent:"
-msgstr "Internett"
+msgstr "I_nnrykk:"
 
 #: gramps.glade:20869
 msgid "<b>Paragraph options</b>"
@@ -5568,27 +5613,31 @@ msgstr "<b>Avsnittsalternativer</b>"
 #: gramps.glade:21155
 #, fuzzy
 msgid "Internal note"
-msgstr "Intern feil"
+msgstr "Intern"
 
 #: gramps.glade:21411 gramps.glade:22808
 msgid "Object type:"
 msgstr "Objekttype:"
 
 #: gramps.glade:21591
+#, fuzzy
 msgid "Lower X:"
-msgstr ""
+msgstr "Små X:"
 
 #: gramps.glade:21615
+#, fuzzy
 msgid "Upper X:"
-msgstr ""
+msgstr "Øvre X:"
 
 #: gramps.glade:21639
+#, fuzzy
 msgid "Upper Y:"
-msgstr ""
+msgstr "Øvre Y:"
 
 #: gramps.glade:21663
+#, fuzzy
 msgid "Lower Y:"
-msgstr ""
+msgstr "Små Y:"
 
 #: gramps.glade:21771
 #, fuzzy
@@ -5598,11 +5647,12 @@ msgstr "<b>Valg av kilde</b>"
 #: gramps.glade:21817
 #, fuzzy
 msgid "<b>Privacy</b>"
-msgstr "<b>Steder</b>"
+msgstr "<b> Privat</b>"
 
 #: gramps.glade:22056
+#, fuzzy
 msgid "Global Notes"
-msgstr ""
+msgstr "Notater"
 
 #: gramps.glade:22257
 msgid "Creates a new object attribute from the above data"
@@ -5714,8 +5764,9 @@ msgid "Family _prefix:"
 msgstr "Forstavelse:"
 
 #: gramps.glade:28857
+#, fuzzy
 msgid "P_atronymic:"
-msgstr ""
+msgstr "P:"
 
 #: gramps.glade:28950
 msgid "G_roup as:"
@@ -5724,17 +5775,17 @@ msgstr ""
 #: gramps.glade:28978
 #, fuzzy
 msgid "_Sort as:"
-msgstr "_Stat:"
+msgstr "Sorter:"
 
 #: gramps.glade:29027
 #, fuzzy
 msgid "_Display as:"
-msgstr "Vis"
+msgstr "Vis:"
 
 #: gramps.glade:29054
 #, fuzzy
 msgid "<b>Name Information</b>"
-msgstr "<b>Informasjon</b>"
+msgstr "<b> Navn Informasjon</b>"
 
 #: gramps.glade:29103
 #, fuzzy
@@ -5742,18 +5793,20 @@ msgid "_Override"
 msgstr "_Overskriv"
 
 #: gramps.glade:29141
+#, fuzzy
 msgid ""
 "Default (based on locale)\n"
 "Family name, Given name\n"
 "Given name, Family name"
-msgstr ""
+msgstr "Standard på lokale, regionaldata, lokalitet, lokaltilpassing Familie"
 
 #: gramps.glade:29159
+#, fuzzy
 msgid ""
 "Default (based on locale)\n"
 "Given name Family name\n"
 "Family name Given name\n"
-msgstr ""
+msgstr "Standard på lokale, regionaldata, lokalitet, lokaltilpassing Familie"
 
 #: gramps.glade:29779
 msgid "_Comment:"
@@ -5774,29 +5827,32 @@ msgstr "_Velg"
 #: gramps.glade:30030
 #, fuzzy
 msgid "_Next"
-msgstr "_Tekst:"
+msgstr "Neste"
 
 #: gramps.glade:30089
 #, fuzzy
 msgid "_Display on startup"
-msgstr "Vis kun _tekst"
+msgstr "Vis på"
 
 #: gramps.glade:30152
+#, fuzzy
 msgid "<span weight=\"bold\" size=\"larger\">Gramps' Tip of the Day</span>"
-msgstr ""
+msgstr "<span weight=\"bold\" size=\"larger\"> Tips av Dag</span>"
 
 #: gramps.glade:30185
 #, fuzzy
 msgid "GRAMPS - Loading Database"
-msgstr "GRA_MPS e-postlister"
+msgstr "GRAMPS Laster inn Database"
 
 #: gramps.glade:30210
+#, fuzzy
 msgid "<span size=\"larger\" weight=\"bold\">Loading database</span>"
-msgstr ""
+msgstr "<span size=\"larger\" weight=\"bold\"> Laster inn</span>"
 
 #: gramps.glade:30234
+#, fuzzy
 msgid "GRAMPS is loading the database you selected. Please wait."
-msgstr ""
+msgstr "GRAMPS."
 
 #: gramps.glade:30417
 #, fuzzy
@@ -5811,32 +5867,32 @@ msgstr "<b>Familie</b>"
 #: gramps.glade:30509
 #, fuzzy
 msgid "<b>_Type</b>"
-msgstr "<b>Skrifttype</b>"
+msgstr "<b> Type</b>"
 
 #: gramps.glade:30551
 #, fuzzy
 msgid "<b>Date</b>"
-msgstr "<b>Død</b>"
+msgstr "<b> Dato</b>"
 
 #: gramps.glade:30575
 #, fuzzy
 msgid "_Day"
-msgstr "_Dato:"
+msgstr "Dag"
 
 #: gramps.glade:30600
 #, fuzzy
 msgid "_Month"
-msgstr "Mor"
+msgstr "Måned"
 
 #: gramps.glade:30625
 #, fuzzy
 msgid "_Year"
-msgstr "_Sidestolpe"
+msgstr "År"
 
 #: gramps.glade:30709
 #, fuzzy
 msgid "<b>Second date</b>"
-msgstr "<b>Andre person</b>"
+msgstr "<b> Andre dato</b>"
 
 #: gramps.glade:30733
 #, fuzzy
@@ -5846,12 +5902,12 @@ msgstr "_Dato:"
 #: gramps.glade:30758
 #, fuzzy
 msgid "Mo_nth"
-msgstr "Mor"
+msgstr "Ma."
 
 #: gramps.glade:30783
 #, fuzzy
 msgid "Y_ear"
-msgstr "_Sidestolpe"
+msgstr "Y"
 
 #: gramps.glade:30880
 #, fuzzy
@@ -5859,40 +5915,45 @@ msgid "Te_xt comment:"
 msgstr "_Kommentar:"
 
 #: gramps_main.py:149
+#, fuzzy
 msgid "Use at your own risk"
-msgstr ""
+msgstr "Bruk ved"
 
 #: gramps_main.py:150
+#, fuzzy
 msgid "This is an unstable development version of GRAMPS. It is intended as a technology preview. Do not trust your family database to this development version. This version may contain bugs which could corrupt your database."
-msgstr ""
+msgstr "versjon av GRAMPS tiltro (trusted = betrodd eller tiltrodd), tillit å versjon versjon."
 
 #: gramps_main.py:164 gramps_main.py:171
 #, fuzzy
 msgid "Configuration error"
-msgstr "Konfirmasjon"
+msgstr "Oppsett feil"
 
 #: gramps_main.py:165
+#, fuzzy
 msgid ""
 "\n"
 "\n"
 "Possibly the installation of GRAMPS was incomplete. Make sure the GConf schema of GRAMPS is properly installed."
-msgstr ""
+msgstr "av GRAMPS skjema av GRAMPS."
 
 #: gramps_main.py:172
+#, fuzzy
 msgid ""
 "A definition for the MIME-type %s could not be found\n"
 "\n"
 "Possibly the installation of GRAMPS was incomplete. Make sure the MIME-types of GRAMPS are properly installed."
-msgstr ""
+msgstr "A for av GRAMPS av GRAMPS."
 
 #: gramps_main.py:479
 #, fuzzy
 msgid "File does not exist"
-msgstr "Fila finnes allerede"
+msgstr "Fil"
 
 #: gramps_main.py:480
+#, fuzzy
 msgid "The file %s cannot be found. It will be removed from the list of recent files."
-msgstr ""
+msgstr "fil fra liste av nylig brukt, nylig."
 
 #: gramps_main.py:652
 msgid "Back Menu"
@@ -5917,7 +5978,7 @@ msgstr "Slektsløse personer"
 #: gramps_main.py:915
 #, fuzzy
 msgid "Name contains..."
-msgstr "Navn som inneholder del-setningen ..."
+msgstr "Navn."
 
 #: gramps_main.py:980
 msgid "Any textual record contains..."
@@ -5955,31 +6016,32 @@ msgstr "Lage en database"
 msgid ""
 "The selected file is a directory, not a file.\n"
 "A GRAMPS database must be a file."
-msgstr "Fila er sannsynligvis enten ødelagt eller ikke en gyldig GRAMPS database."
+msgstr "fil katalog fil GRAMPS fil."
 
 #: gramps_main.py:1204
+#, fuzzy
 msgid "You do not have read access to the selected file."
-msgstr ""
+msgstr "lese å fil."
 
 #: gramps_main.py:1209
 #, fuzzy
 msgid "Read only database"
-msgstr "Åpne database"
+msgstr "Lest"
 
 #: gramps_main.py:1210
 #, fuzzy
 msgid "You do not have write access to the selected file."
-msgstr "Du kan enten velge å overskrive fila, eller å endre det valgte filnavnet."
+msgstr "å fil."
 
 #: gramps_main.py:1219
 #, fuzzy
 msgid "Read Only"
-msgstr "Kun tekst"
+msgstr "Lest"
 
 #: gramps_main.py:1225
 #, fuzzy
 msgid "The database file specified could not be opened."
-msgstr "Fant ikke den angitte fila."
+msgstr "fil."
 
 #: gramps_main.py:1229
 msgid "%s could not be opened."
@@ -5988,7 +6050,7 @@ msgstr "Klarte ikke å åpne %s"
 #: gramps_main.py:1285
 #, fuzzy
 msgid "Save Media Object"
-msgstr "Mediaobjekt"
+msgstr "Lagre Media Objekt"
 
 #: gramps_main.py:1331 plugins/Check.py:267 plugins/WriteCD.py:253
 #: plugins/WritePkg.py:171
@@ -6002,7 +6064,7 @@ msgstr "%(file_name)s har en (eller flere) henvisning(er) i databasen, men eksis
 #: gramps_main.py:1378
 #, fuzzy
 msgid "Deleting the person will remove the person from the database."
-msgstr "Velg en person fra databasen"
+msgstr "fjern fra."
 
 #: gramps_main.py:1382
 msgid "_Delete Person"
@@ -6011,7 +6073,7 @@ msgstr "Slett en person"
 #: gramps_main.py:1446
 #, fuzzy
 msgid "Delete Person (%s)"
-msgstr "Slett en person"
+msgstr "Slett Person"
 
 #: gramps_main.py:1521
 msgid "%(relationship)s of %(person)s"
@@ -6025,7 +6087,7 @@ msgstr "Åpne database"
 #: gramps_main.py:1691
 #, fuzzy
 msgid "Setup complete"
-msgstr "autolagringen er fullført"
+msgstr "Oppsett"
 
 #: gramps_main.py:1708
 msgid "Loading %s..."
@@ -6059,7 +6121,7 @@ msgstr "Bokmerket kunne ikke lages fordi ingen er valgt."
 #: gramps_main.py:1767
 #, fuzzy
 msgid "Could not go to a Person"
-msgstr "Klarte ikke å gå til noen person"
+msgstr "å Person"
 
 #: gramps_main.py:1768
 msgid "Either stale bookmark or broken history caused by IDs reorder."
@@ -6107,18 +6169,19 @@ msgid "Select"
 msgstr "Velg"
 
 #: mergedata.glade:611
+#, fuzzy
 msgid "<span weight=\"bold\" size=\"larger\">Merge Sources</span>"
-msgstr ""
+msgstr "<span weight=\"bold\" size=\"larger\"> Slå sammen Kilder</span>"
 
 #: mergedata.glade:638
 #, fuzzy
 msgid "<b>Source 1</b>"
-msgstr "<b>Kilder</b>"
+msgstr "<b> Kilde</b>"
 
 #: mergedata.glade:666
 #, fuzzy
 msgid "<b>Source 2</b>"
-msgstr "<b>Kilder</b>"
+msgstr "<b> Kilde</b>"
 
 #: mergedata.glade:953 mergedata.glade:975
 #, fuzzy
@@ -6133,15 +6196,17 @@ msgstr "Publikasjonsinformasjon:"
 #: mergedata.glade:1043 mergedata.glade:1065
 #, fuzzy
 msgid "GRAMPS ID:"
-msgstr "_GRAMPS ID:"
+msgstr "GRAMPS ID:"
 
 #: mergedata.glade:1236
+#, fuzzy
 msgid "Select the person that will provide the primary data for the merged person."
-msgstr ""
+msgstr "Velg data for."
 
 #: plugins.glade:112
+#, fuzzy
 msgid "_Automatically pop out when problems are detected"
-msgstr ""
+msgstr "Pop ut _automatisk når problemer blir oppdaget"
 
 #: plugins.glade:176
 msgid "Perform selected action"
@@ -6358,12 +6423,12 @@ msgstr " i %(place)s"
 #: plugins/Ancestors.py:524
 #, fuzzy
 msgid " b. %(birth_date)s"
-msgstr " f. %(date)s"
+msgstr "dato"
 
 #: plugins/Ancestors.py:532
 #, fuzzy
 msgid " d. %(death_date)s"
-msgstr " d. %(date)s)"
+msgstr "dato"
 
 #: plugins/Ancestors.py:545
 msgid "born"
@@ -6424,22 +6489,22 @@ msgstr "  Han giftet seg med %(name)s"
 #: plugins/Ancestors.py:749
 #, fuzzy
 msgid "  She later had a relationship with %(name)s"
-msgstr "  Senere giftet hun seg med %(name)s"
+msgstr "  Hun hadde senere et forhold med %(name)s"
 
 #: plugins/Ancestors.py:752
 #, fuzzy
 msgid "  He later had a relationship with %(name)s"
-msgstr "  Senere giftet han seg med %(name)s"
+msgstr "  Han hadde senere et forhold med %(name)s"
 
 #: plugins/Ancestors.py:756
 #, fuzzy
 msgid "  She had a relationship with %(name)s"
-msgstr "Relasjon til %(father)s"
+msgstr "  Hun hadde et forhold med %(name)s"
 
 #: plugins/Ancestors.py:759
 #, fuzzy
 msgid "  He had a relationship with %(name)s"
-msgstr "Relasjon til %(mother)s"
+msgstr "  Han hadde et forhold med %(name)s"
 
 #: plugins/Ancestors.py:773
 msgid "  Note about their name: "
@@ -6553,8 +6618,9 @@ msgid "No modifications made"
 msgstr "Ingen endringer ble gjort"
 
 #: plugins/ChangeNames.py:91
+#, fuzzy
 msgid "No capitalization changes where detected."
-msgstr ""
+msgstr "Nei."
 
 #: plugins/ChangeNames.py:108 plugins/ChangeNames.py:186
 #, fuzzy
@@ -6564,7 +6630,7 @@ msgstr "Skriv slektsnavet med store bokstaver"
 #: plugins/ChangeNames.py:118
 #, fuzzy
 msgid "Original Name"
-msgstr "Individuelle navn"
+msgstr "Original Navn"
 
 #: plugins/ChangeNames.py:122
 #, fuzzy
@@ -6574,7 +6640,7 @@ msgstr "Naturalisasjon"
 #: plugins/ChangeNames.py:201
 #, fuzzy
 msgid "Fix capitalization of family names"
-msgstr "Skriv slektsnavet med store bokstaver"
+msgstr "av"
 
 #: plugins/ChangeNames.py:202 plugins/ChangeTypes.py:161 plugins/Check.py:567
 #: plugins/Merge.py:655 plugins/PatchNames.py:316 plugins/ReorderIds.py:154
@@ -6584,12 +6650,12 @@ msgstr "Databasebehandling"
 #: plugins/ChangeNames.py:203
 #, fuzzy
 msgid "Searches the entire database and attempts to fix capitalization of the names."
-msgstr "Søk gjennom hele databasen og prøv å hente ut titler og kallenavn som kan være en del av en persons navnefelt."
+msgstr "og å av."
 
 #: plugins/ChangeTypes.py:89
 #, fuzzy
 msgid "Change Event Types"
-msgstr "Endre hendelsestype"
+msgstr "Hendelse"
 
 #: plugins/ChangeTypes.py:143
 msgid "1 event record was modified"
@@ -6625,7 +6691,9 @@ msgid ""
 "The file:\n"
 " %(file_name)s \n"
 "is referenced in the database, but no longer exists. The file may have been deleted or moved to a different location. You may choose to either remove the reference from the database, keep the reference to the missing file, or select a new file."
-msgstr "%(file_name)s har en (eller flere) henvisning(er) i databasen, men eksisterer ikke lenger. Fila kan ha bli slettet eller flyttet til et annet sted. Du kan enten slette referansen fra databasen, beholde referansen til den savnede fila, eller velge en ny fil."
+msgstr ""
+"fil\n"
+" fil tommer fil slettet eller å sted, plassering, adresse [template location = plassering av mal] å fjern referanse fra referanse å fil eller velg fil."
 
 #: plugins/Check.py:418
 msgid "No errors were found"
@@ -6718,30 +6786,32 @@ msgstr "%d manglende mediaobjekter ble fjernet\n"
 #: plugins/Check.py:484
 #, fuzzy
 msgid "1 invalid event reference was removed\n"
-msgstr "1 hendelse ble endret"
+msgstr "ugyldig hendelse referanse"
 
 #: plugins/Check.py:486
 #, fuzzy
 msgid "%d invalid event references were removed\n"
-msgstr "%d hendelse ble endret"
+msgstr "ugyldig hendelse"
 
 #: plugins/Check.py:488
+#, fuzzy
 msgid "1 invalid birth event name was fixed\n"
-msgstr ""
+msgstr "ugyldig hendelse"
 
 #: plugins/Check.py:490
 #, fuzzy
 msgid "%d invalid birth event names were fixed\n"
-msgstr "%d hendelse ble endret"
+msgstr "ugyldig hendelse"
 
 #: plugins/Check.py:492
+#, fuzzy
 msgid "1 invalid death event name was fixed\n"
-msgstr ""
+msgstr "ugyldig hendelse"
 
 #: plugins/Check.py:494
 #, fuzzy
 msgid "%d invalid death event names were fixed\n"
-msgstr "%d hendelse ble endret"
+msgstr "ugyldig hendelse"
 
 #: plugins/Check.py:496
 #, fuzzy
@@ -6754,8 +6824,9 @@ msgid "%d places were referenced, but not found\n"
 msgstr "%d henviste mediaobjekter, ble ikke funnet\n"
 
 #: plugins/Check.py:525
+#, fuzzy
 msgid "Integrity Check Results"
-msgstr ""
+msgstr "Sjekk"
 
 #: plugins/Check.py:566
 msgid "Check and repair database"
@@ -6780,7 +6851,7 @@ msgstr "Generasjon %d har %d personer.\n"
 #: plugins/CountAncestors.py:101
 #, fuzzy
 msgid "Total ancestors in generations %d to -1 is %d.\n"
-msgstr "Totalt antall forfedre i generasjonene %d til -1 er %d .\n"
+msgstr "Totalt tommer å"
 
 #: plugins/CountAncestors.py:121
 msgid "Number of ancestors"
@@ -6834,7 +6905,7 @@ msgstr "Lager en graf med etterkommere av den aktive personen"
 #: plugins/Desbrowser.py:83
 #, fuzzy
 msgid "Descendant Browser: %s"
-msgstr "Etterkommer-utforsker"
+msgstr "Nettleser"
 
 #: plugins/Desbrowser.py:165
 msgid "Interactive descendant browser"
@@ -6865,8 +6936,9 @@ msgid "Detailed Ancestral Report for %s"
 msgstr "Detaljert rapport over forfedrene til %s"
 
 #: plugins/DetAncestralReport.py:157 plugins/DetDescendantReport.py:182
+#, fuzzy
 msgid "Generation %(generation_number)d"
-msgstr ""
+msgstr "tall"
 
 #: plugins/DetAncestralReport.py:208
 #, fuzzy
@@ -6876,7 +6948,7 @@ msgstr " er den samme personen som [%s]."
 #: plugins/DetAncestralReport.py:243
 #, fuzzy
 msgid "Notes for %(name)sname"
-msgstr "Kommentarer for %s"
+msgstr "Notater for"
 
 #: plugins/DetAncestralReport.py:319 plugins/DetDescendantReport.py:341
 msgid "Children of %s and %s are:"
@@ -6885,17 +6957,17 @@ msgstr "Barn av %s og %s er:"
 #: plugins/DetAncestralReport.py:503 plugins/DetDescendantReport.py:524
 #, fuzzy
 msgid "The style used for the children list title."
-msgstr "Stil som blir brukt på tittelen."
+msgstr "Stilen brukt på overskriften på listen over barn."
 
 #: plugins/DetAncestralReport.py:511 plugins/DetDescendantReport.py:532
 #, fuzzy
 msgid "The style used for the children list."
-msgstr "Stil som blir brukt på tittelen."
+msgstr "Stilen brukt på listen over barn."
 
 #: plugins/DetAncestralReport.py:525 plugins/DetDescendantReport.py:546
 #, fuzzy
 msgid "The style used for the first personal entry."
-msgstr "Stil som brukes på personens navn."
+msgstr "Stilen brukt på den første personoppføringen."
 
 #: plugins/DetAncestralReport.py:535 plugins/DetDescendantReport.py:556
 msgid "Use first names instead of pronouns"
@@ -6961,12 +7033,12 @@ msgstr "Lag en detaljert rapport over forfedre"
 #: plugins/DetDescendantReport.py:164
 #, fuzzy
 msgid "%(spouse_name)s and %(person_name)s"
-msgstr "Mer om %(person_name)s:"
+msgstr "og"
 
 #: plugins/DetDescendantReport.py:167
 #, fuzzy
 msgid "Detailed Descendant Report for %(person_name)s"
-msgstr "Detaljert rapport over etterkommere for %s"
+msgstr "Rapport for"
 
 #: plugins/DetDescendantReport.py:232
 msgid " is the same person as [%s]."
@@ -6979,7 +7051,7 @@ msgstr "Kommentarer for %s"
 #: plugins/DetDescendantReport.py:537
 #, fuzzy
 msgid "The style used for the notes section header."
-msgstr "Stilen, som brukes til generasjons-overskrift."
+msgstr "Stilen brukt på overskriften til notat seksjonen."
 
 #: plugins/DetDescendantReport.py:638
 msgid "Detailed Descendant Report"
@@ -7008,7 +7080,7 @@ msgstr "Filtervalg for sammenligning av hendelser"
 #: plugins/EventCmp.py:180
 #, fuzzy
 msgid "Event Comparison tool"
-msgstr "Sammenligning av hendelser"
+msgstr "Hendelse verktøy"
 
 #: plugins/EventCmp.py:206
 msgid "No matches were found"
@@ -7017,7 +7089,7 @@ msgstr "Ingen passer"
 #: plugins/EventCmp.py:265 plugins/EventCmp.py:293
 #, fuzzy
 msgid "Event Comparison Results"
-msgstr "Sammenligning av hendelser"
+msgstr "Hendelse"
 
 #: plugins/EventCmp.py:448
 msgid "Compare individual events"
@@ -7030,7 +7102,7 @@ msgstr "Hjelper til med å analysere data ved å la deg lage egne filtre.Disse kan
 #: plugins/ExportVCalendar.py:57
 #, fuzzy
 msgid "Export to vCalendar"
-msgstr "Overfør til CD"
+msgstr "Eksporter å"
 
 #: plugins/ExportVCalendar.py:312
 #, fuzzy
@@ -7038,18 +7110,19 @@ msgid "vCalendar"
 msgstr "<b>Kalendere</b>"
 
 #: plugins/ExportVCalendar.py:313
+#, fuzzy
 msgid "vCalendar is used in many calendaring and pim applications."
-msgstr ""
+msgstr "tommer og."
 
 #: plugins/ExportVCalendar.py:314
 #, fuzzy
 msgid "vCalendar export options"
-msgstr "Innstillinger for rapporter"
+msgstr "innstillinger (= settings, preferences), valg"
 
 #: plugins/ExportVCard.py:57
 #, fuzzy
 msgid "Export to vCard"
-msgstr "Overfør til CD"
+msgstr "Eksporter å"
 
 #: plugins/ExportVCard.py:234
 #, fuzzy
@@ -7057,13 +7130,14 @@ msgid "vCard"
 msgstr "Ryddet"
 
 #: plugins/ExportVCard.py:235
+#, fuzzy
 msgid "vCard is used in many addressbook and pim applications."
-msgstr ""
+msgstr "tommer og."
 
 #: plugins/ExportVCard.py:236
 #, fuzzy
 msgid "vCard export options"
-msgstr "Innstillinger for rapporter"
+msgstr "innstillinger (= settings, preferences), valg"
 
 #: plugins/FamilyGroup.py:163 plugins/NavWebPage.py:758
 msgid "Husband"
@@ -7128,12 +7202,12 @@ msgstr "Kommentar"
 #: plugins/FilterEditor.py:357
 #, fuzzy
 msgid "Filter Editor tool"
-msgstr "Tilpasset filterbehandler"
+msgstr "Filter Redaktør verktøy"
 
 #: plugins/FilterEditor.py:362
 #, fuzzy
 msgid "Filter List"
-msgstr "Filtertest"
+msgstr "Filter Liste"
 
 #: plugins/FilterEditor.py:447
 msgid "Define filter"
@@ -7142,12 +7216,12 @@ msgstr "Lag filtere"
 #: plugins/FilterEditor.py:512 plugins/FilterEditor.py:516
 #, fuzzy
 msgid "New Filter"
-msgstr "Filter"
+msgstr "Nytt filter"
 
 #: plugins/FilterEditor.py:523
 #, fuzzy
 msgid "Define Filter"
-msgstr "Lag filtere"
+msgstr "Begrens Filter"
 
 #: plugins/FilterEditor.py:578
 msgid "Add Rule"
@@ -7162,13 +7236,14 @@ msgid "Include original person"
 msgstr "Ta med den opprinnelige personen"
 
 #: plugins/FilterEditor.py:692
+#, fuzzy
 msgid "Use exact case of letters"
-msgstr ""
+msgstr "Bruk av"
 
 #: plugins/FilterEditor.py:694
 #, fuzzy
 msgid "Use regular expression"
-msgstr "Navn som treffes av det regulære utrykket ..."
+msgstr "Bruk"
 
 #: plugins/FilterEditor.py:707
 msgid "Rule Name"
@@ -7177,7 +7252,7 @@ msgstr "Navn på regelen"
 #: plugins/FilterEditor.py:782
 #, fuzzy
 msgid "New Rule"
-msgstr "Ny regel"
+msgstr "Ny"
 
 #: plugins/FilterEditor.py:783
 #, fuzzy
@@ -7195,7 +7270,7 @@ msgstr "Filtertest"
 #: plugins/FilterEditor.py:888
 #, fuzzy
 msgid "Test"
-msgstr "est"
+msgstr "Test"
 
 #: plugins/FilterEditor.py:926
 msgid "Custom Filter Editor"
@@ -7252,19 +7327,19 @@ msgstr "Navn %(count)d: %(name)s%(endnotes)s"
 #: plugins/FtmStyleDescendants.py:343
 #, fuzzy
 msgid "%(event_name)s: %(date)s, %(place)s%(endnotes)s. "
-msgstr "%(event_name)s: %(date)s, %(place)s%(endnotes)s"
+msgstr "%(event_name)s: %(date)s, %(place)s%(endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:261 plugins/FtmStyleDescendants.py:294
 #: plugins/FtmStyleDescendants.py:349
 #, fuzzy
 msgid "%(event_name)s: %(date)s%(endnotes)s. "
-msgstr "%(event_name)s: %(date)s%(endnotes)s"
+msgstr "%(event_name)s: %(date)s%(endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:266 plugins/FtmStyleDescendants.py:299
 #: plugins/FtmStyleDescendants.py:354
 #, fuzzy
 msgid "%(event_name)s: %(place)s%(endnotes)s. "
-msgstr "%(event_name)s: %(place)s%(endnotes)s"
+msgstr "%(event_name)s: %(place)s%(endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:421
 msgid "FTM Style Ancestor Report"
@@ -7289,7 +7364,7 @@ msgstr "Barn av %(person_name)s er:"
 #: plugins/FtmStyleDescendants.py:546
 #, fuzzy
 msgid "The style used for numbering children."
-msgstr "Stil som blir brukt på tittelen."
+msgstr "Stilen brukt til nummerering av barn."
 
 #: plugins/FtmStyleDescendants.py:571
 msgid "FTM Style Descendant Report"
@@ -7307,29 +7382,32 @@ msgstr "PostScript"
 #: plugins/GraphViz.py:65
 #, fuzzy
 msgid "Structured Vector Graphics (SVG)"
-msgstr "SVG (Skalerbar Vektor Grafikk)"
+msgstr "Grafikk"
 
 #: plugins/GraphViz.py:66
+#, fuzzy
 msgid "Compressed Structured Vector Graphics (SVG)"
-msgstr ""
+msgstr "Komprimert Grafikk"
 
 #: plugins/GraphViz.py:67
+#, fuzzy
 msgid "PNG image"
-msgstr ""
+msgstr "bilde, avtrykk (cdr/w)"
 
 #: plugins/GraphViz.py:68
+#, fuzzy
 msgid "JPEG image"
-msgstr ""
+msgstr "bilde, avtrykk (cdr/w)"
 
 #: plugins/GraphViz.py:69
 #, fuzzy
 msgid "GIF image"
-msgstr "Bilde"
+msgstr "bilde, avtrykk (cdr/w)"
 
 #: plugins/GraphViz.py:73
 #, fuzzy
 msgid "Default"
-msgstr "standard"
+msgstr "Standard"
 
 #: plugins/GraphViz.py:74
 msgid "Postscript / Helvetica"
@@ -7348,16 +7426,19 @@ msgid "Colored outline"
 msgstr ""
 
 #: plugins/GraphViz.py:80
+#, fuzzy
 msgid "Color fill"
-msgstr ""
+msgstr "Farge"
 
 #: plugins/GraphViz.py:83
+#, fuzzy
 msgid "Horizontal"
-msgstr ""
+msgstr "Vannrett"
 
 #: plugins/GraphViz.py:84
+#, fuzzy
 msgid "Vertical"
-msgstr ""
+msgstr "Loddrett"
 
 #: plugins/GraphViz.py:87
 msgid "Descendants <- Ancestors"
@@ -7378,7 +7459,7 @@ msgstr "Etterkommere - forfedre"
 #: plugins/GraphViz.py:540
 #, fuzzy
 msgid "Include Birth, Marriage and Death dates"
-msgstr "Ta med fødsels-, ekteskaps- og dødsdatoer"
+msgstr "Inkluder Født Ekteskap og Død"
 
 #: plugins/GraphViz.py:545
 msgid "Include the dates that the individual was born, got married and/or died in the graph labels."
@@ -7399,7 +7480,7 @@ msgstr "Sted/grunn når dato mangler"
 #: plugins/GraphViz.py:561
 #, fuzzy
 msgid "When no birth, marriage, or death date is available, the correspondent place field (or cause field when blank place) will be used."
-msgstr "Når ingen fødsels-, ekteskaps-, eller dødsdato er tilgjengelig, vil det tilhørende stedsfeltet (eller grunnfeltet hvis blankt) bli brukt."
+msgstr "eller dato tilgjengelig, disponibel felt eller felt."
 
 #: plugins/GraphViz.py:569
 msgid "Include URLs"
@@ -7428,8 +7509,9 @@ msgid "Graph direction"
 msgstr "Innstillinger for GraphViz"
 
 #: plugins/GraphViz.py:601
+#, fuzzy
 msgid "Whether generations go from top to bottom or left to right."
-msgstr ""
+msgstr "fra oppe å bunn eller venstre å høyre."
 
 #: plugins/GraphViz.py:617
 msgid "Graph coloring"
@@ -7438,7 +7520,7 @@ msgstr ""
 #: plugins/GraphViz.py:619
 #, fuzzy
 msgid "Males will be shown with blue, females with red.  If the sex of an individual is unknown it will be shown with gray."
-msgstr "Menn vises med blått, kvinner med rosa. Personer med ukjent kjønn vises med sort."
+msgstr "Menn med med av ukjent med."
 
 #: plugins/GraphViz.py:636
 #, fuzzy
@@ -7452,21 +7534,22 @@ msgstr "Velg pilens retning."
 #: plugins/GraphViz.py:657
 #, fuzzy
 msgid "Font family"
-msgstr "Familie"
+msgstr "Skrift"
 
 #: plugins/GraphViz.py:659
+#, fuzzy
 msgid "Choose the font family. If international characters don't show, use FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
-msgstr ""
+msgstr "Velg skrift(typ skrift(typ tilgjengelig, disponibel frahttp://www.nongnu.org/freefont/"
 
 #: plugins/GraphViz.py:664
 #, fuzzy
 msgid "Indicate non-birth relationships with dotted lines"
-msgstr "Vis ikke-fødte relasjoner med stiplede linjer"
+msgstr "med linjer"
 
 #: plugins/GraphViz.py:668
 #, fuzzy
 msgid "Non-birth relationships will show up as dotted lines in the graph."
-msgstr "Ikke-fødte relasjoner vises som stiplede linjer i treet."
+msgstr "opp linjer tommer."
 
 #: plugins/GraphViz.py:671
 msgid "Show family nodes"
@@ -7514,8 +7597,9 @@ msgid "Generates relationship graphs, currently only in GraphViz format. GraphVi
 msgstr "Lager slektstrær, for tiden kun i GraphViz format. GraphViz (dot) kan gjøre om treet til PostScript, JPEG, PNG, SVG og mange andre formater. Gå til http://www.graphviz.org for mer informasjon og for å hente en kopi av GraphViz."
 
 #: plugins/GraphViz.py:952
+#, fuzzy
 msgid "Generates relationship graphs using GraphViz (dot) program. This report generates dot file behind the scene and then uses dot to convert it into a graph. If you want the dotfile itself, please use the Code Generators category."
-msgstr ""
+msgstr "fil og å kategori."
 
 #: plugins/ImportGeneWeb.py:165
 #, fuzzy
@@ -7606,7 +7690,7 @@ msgstr "Lager en detaljert rapport om den valgte personen."
 #: plugins/Leak.py:74
 #, fuzzy
 msgid "Uncollected Objects Tool"
-msgstr "<b>Løse Objekter</b>"
+msgstr "Objekter"
 
 #: plugins/Leak.py:116
 #, fuzzy
@@ -7618,7 +7702,7 @@ msgstr "Vis løse objekter"
 #: plugins/Leak.py:118
 #, fuzzy
 msgid "No uncollected objects\n"
-msgstr "Vis løse objekter"
+msgstr "Nei"
 
 #: plugins/Leak.py:135
 msgid "Show uncollected objects"
@@ -7639,12 +7723,12 @@ msgstr "Flett personer"
 #: plugins/Merge.py:174
 #, fuzzy
 msgid "No matches found"
-msgstr "Ingen passer"
+msgstr "Nei"
 
 #: plugins/Merge.py:175
 #, fuzzy
 msgid "No potential duplicate people were found"
-msgstr "Finn dobbelt oppførte personer"
+msgstr "Nei"
 
 #: plugins/Merge.py:191
 msgid "Determining possible merges"
@@ -7679,8 +7763,9 @@ msgid "Individuals"
 msgstr "Personer"
 
 #: plugins/NavWebPage.py:189
+#, fuzzy
 msgid "Index of individuals, sorted by last name."
-msgstr ""
+msgstr "Indeks av sortert fra."
 
 #: plugins/NavWebPage.py:193 plugins/NavWebPage.py:312
 msgid "Surname"
@@ -7691,8 +7776,9 @@ msgid "Places"
 msgstr "Steder"
 
 #: plugins/NavWebPage.py:238
+#, fuzzy
 msgid "Index of all the places in the project."
-msgstr ""
+msgstr "Indeks av tommer."
 
 #: plugins/NavWebPage.py:245 plugins/NavWebPage.py:310
 msgid "Letter"
@@ -7705,8 +7791,9 @@ msgid "Surnames"
 msgstr "Etternavn"
 
 #: plugins/NavWebPage.py:301
+#, fuzzy
 msgid "Index of all the surnames in the project. The links lead to a list of individuals in the database with this same surname."
-msgstr ""
+msgstr "Indeks av tommer lenker å liste av tommer med."
 
 #: plugins/NavWebPage.py:359 plugins/NavWebPage.py:362
 #, fuzzy
@@ -7714,12 +7801,14 @@ msgid "Introduction"
 msgstr "Utdannelse"
 
 #: plugins/NavWebPage.py:444
+#, fuzzy
 msgid "All sources cited in the project."
-msgstr ""
+msgstr "Alle tommer."
 
 #: plugins/NavWebPage.py:470 plugins/NavWebPage.py:473
+#, fuzzy
 msgid "Download"
-msgstr ""
+msgstr "Last ned"
 
 #: plugins/NavWebPage.py:490 plugins/NavWebPage.py:493
 #, fuzzy
@@ -7746,16 +7835,19 @@ msgid "Partner"
 msgstr "Partnere"
 
 #: plugins/NavWebPage.py:831
+#, fuzzy
 msgid "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; at &nbsp&nbsp; %(place)s"
-msgstr ""
+msgstr "beskrivelse&&nbsp;&nbsp; dato&nbsp;&nbsp; ved&nbsp;"
 
 #: plugins/NavWebPage.py:833
+#, fuzzy
 msgid "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp;"
-msgstr ""
+msgstr "beskrivelse&nbsp;&nbsp; dato&nbsp;&nbsp;"
 
 #: plugins/NavWebPage.py:837
+#, fuzzy
 msgid "%(date)s &nbsp;&nbsp; at &nbsp&nbsp; %(place)s"
-msgstr ""
+msgstr "dato&&nbsp;&nbsp; ved&nbsp;"
 
 #: plugins/NavWebPage.py:914 plugins/WebPage.py:818
 msgid "Generate HTML reports - GRAMPS"
@@ -7812,21 +7904,23 @@ msgid "File extension"
 msgstr "Filetternavn"
 
 #: plugins/NavWebPage.py:1096 plugins/WebPage.py:1295
+#, fuzzy
 msgid "Split alphabetical sections to separate pages"
-msgstr ""
+msgstr "Del alfabet seksjonene til separate sider"
 
 #: plugins/NavWebPage.py:1097 plugins/WebPage.py:1298
 msgid "Include short ancestor tree"
 msgstr "Ta med et kort slektstre"
 
 #: plugins/NavWebPage.py:1149
+#, fuzzy
 msgid "Home Note ID"
-msgstr ""
+msgstr "Hjem Notat ID"
 
 #: plugins/NavWebPage.py:1151
 #, fuzzy
 msgid "Introduction Note ID"
-msgstr "Introduksjon til barna."
+msgstr "Notat ID"
 
 #: plugins/NavWebPage.py:1154 plugins/WebPage.py:1426
 msgid "Privacy"
@@ -7865,7 +7959,7 @@ msgstr "Kallenavn"
 #: plugins/PatchNames.py:217 plugins/PatchNames.py:228
 #, fuzzy
 msgid "Prefix"
-msgstr "Forhåndsvisning"
+msgstr "Prefiks"
 
 #: plugins/PatchNames.py:302 plugins/PatchNames.py:315
 msgid "Extract information from names"
@@ -7874,7 +7968,7 @@ msgstr "Hent ut informasjon fra navn"
 #: plugins/PatchNames.py:317
 #, fuzzy
 msgid "Searches the entire database and attempts to extract titles, nicknames and surname prefixes that may be embedded in a person's given name field."
-msgstr "Søk gjennom hele databasen og prøv å hente ut titler og kallenavn som kan være en del av en persons navnefelt."
+msgstr "og å pakke ut, dekomprimere, trekke ut og tommer felt."
 
 #: plugins/ReadPkg.py:63
 msgid "Could not create temporary directory %s"
@@ -7887,12 +7981,12 @@ msgstr "Feil ved uthenting til %s"
 #: plugins/ReadPkg.py:104
 #, fuzzy
 msgid "GRAMPS packages"
-msgstr "Overfør til GRAMPS pakke"
+msgstr "GRAMPS"
 
 #: plugins/ReadPkg.py:106
 #, fuzzy
 msgid "GRAMPS package"
-msgstr "Overfør til GRAMPS pakke"
+msgstr "GRAMPS pakke, programpakke"
 
 #: plugins/RelCalc.py:82
 #, fuzzy
@@ -7902,7 +7996,7 @@ msgstr "Relasjonsberegning"
 #: plugins/RelCalc.py:88
 #, fuzzy
 msgid "Relationship to %(person_name)s"
-msgstr "%(relationship)s til %(person)s"
+msgstr "å"
 
 #: plugins/RelCalc.py:166
 msgid "Their common ancestor is %s."
@@ -7938,8 +8032,9 @@ msgid "Tool currently unavailable"
 msgstr "Ingen definisjon tilgjengelig"
 
 #: plugins/ReorderIds.py:50
+#, fuzzy
 msgid "This tool has not yet been brought up to date after transition to the database, sorry."
-msgstr ""
+msgstr "verktøy opp å dato etter å."
 
 #: plugins/ReorderIds.py:153
 msgid "Reorder gramps IDs"
@@ -7952,11 +8047,12 @@ msgstr "Sorter gramps ID-ene etter gramps standardregler."
 #: plugins/ScratchPad.py:139
 #, fuzzy
 msgid "Location"
-msgstr "Utdannelse"
+msgstr "Plassering"
 
 #: plugins/ScratchPad.py:145
+#, fuzzy
 msgid "Telephone"
-msgstr ""
+msgstr "Telefon"
 
 #: plugins/ScratchPad.py:184 plugins/ScratchPad.py:226
 #, fuzzy
@@ -7981,7 +8077,7 @@ msgstr ""
 #: plugins/ScratchPad.py:306 plugins/ScratchPad.py:314
 #, fuzzy
 msgid "Family Attribute"
-msgstr "Familieegenskaper"
+msgstr "Familieegenskap"
 
 #: plugins/ScratchPad.py:339 plugins/ScratchPad.py:353
 #, fuzzy
@@ -7991,12 +8087,12 @@ msgstr "Kilde"
 #: plugins/ScratchPad.py:355
 #, fuzzy
 msgid "Page"
-msgstr "Nettside"
+msgstr "Side"
 
 #: plugins/ScratchPad.py:443 plugins/ScratchPad.py:462
 #, fuzzy
 msgid "Person Link"
-msgstr "Person"
+msgstr "Person Lenke"
 
 #: plugins/ScratchPad.py:830 plugins/ScratchPad.py:893
 #: plugins/scratchpad.glade:9
@@ -8004,8 +8100,9 @@ msgid "Scratch Pad"
 msgstr ""
 
 #: plugins/ScratchPad.py:895
+#, fuzzy
 msgid "The Scratch Pad provides a temporary note pad to store objects for easy reuse."
-msgstr ""
+msgstr "å for."
 
 #: plugins/SimpleBookTitle.py:128
 msgid "Title of the Book"
@@ -8063,7 +8160,7 @@ msgstr "Program for å lage SoundEx-kode"
 #: plugins/SoundGen.py:131
 #, fuzzy
 msgid "SoundEx code generator tool"
-msgstr "Program for å lage SoundEx-kode"
+msgstr "verktøy"
 
 #: plugins/SoundGen.py:159
 msgid "Generate SoundEx codes"
@@ -8076,33 +8173,34 @@ msgstr "Lag SoundEx koder for navn"
 #: plugins/StatisticsChart.py:75
 #, fuzzy
 msgid "Item count"
-msgstr "Emnenavn"
+msgstr "Emneantall"
 
 #: plugins/StatisticsChart.py:79
 #, fuzzy
 msgid "Both"
-msgstr "Født"
+msgstr "Begge"
 
 #: plugins/StatisticsChart.py:80 plugins/StatisticsChart.py:173
 #: plugins/StatisticsChart.py:501
+#, fuzzy
 msgid "Men"
-msgstr ""
+msgstr "Menn"
 
 #: plugins/StatisticsChart.py:81 plugins/StatisticsChart.py:175
 #: plugins/StatisticsChart.py:503
 #, fuzzy
 msgid "Women"
-msgstr "Kommentar"
+msgstr "Kvinner"
 
 #: plugins/StatisticsChart.py:96
 #, fuzzy
 msgid "Titles"
-msgstr "Tittel"
+msgstr "Titler"
 
 #: plugins/StatisticsChart.py:100
 #, fuzzy
 msgid "Forenames"
-msgstr "Filnavn"
+msgstr "Fornavn"
 
 #: plugins/StatisticsChart.py:102
 #, fuzzy
@@ -8112,60 +8210,62 @@ msgstr "Kjønn"
 #: plugins/StatisticsChart.py:104
 #, fuzzy
 msgid "Birth years"
-msgstr "Fødselsdato"
+msgstr "Fødselsår"
 
 #: plugins/StatisticsChart.py:106
 #, fuzzy
 msgid "Death years"
-msgstr "Dødsdato"
+msgstr "Dødsår"
 
 #: plugins/StatisticsChart.py:108
 #, fuzzy
 msgid "Birth months"
-msgstr "Fødselsdato"
+msgstr "Fødselsmåneder"
 
 #: plugins/StatisticsChart.py:110
 #, fuzzy
 msgid "Death months"
-msgstr "Dødsdato"
+msgstr "Dødsmåneder"
 
 #: plugins/StatisticsChart.py:112
 #, fuzzy
 msgid "Causes of death"
-msgstr "Dødsårsak"
+msgstr "av"
 
 #: plugins/StatisticsChart.py:114
 #, fuzzy
 msgid "Birth places"
-msgstr "Fødselsdato"
+msgstr "Født"
 
 #: plugins/StatisticsChart.py:116
 #, fuzzy
 msgid "Death places"
-msgstr "Dødsdato"
+msgstr "Død"
 
 #: plugins/StatisticsChart.py:118
 #, fuzzy
 msgid "Marriage places"
-msgstr "Ekteskapslisens"
+msgstr "Ekteskap"
 
 #: plugins/StatisticsChart.py:120
 #, fuzzy
 msgid "Number of relationships"
-msgstr "Antall relasjoner:"
+msgstr "Tall av"
 
 #: plugins/StatisticsChart.py:122
+#, fuzzy
 msgid "Ages when first child born"
-msgstr ""
+msgstr "født"
 
 #: plugins/StatisticsChart.py:124
+#, fuzzy
 msgid "Ages when last child born"
-msgstr ""
+msgstr "født"
 
 #: plugins/StatisticsChart.py:126
 #, fuzzy
 msgid "Number of children"
-msgstr "Antall barn:"
+msgstr "Tall av"
 
 #: plugins/StatisticsChart.py:128
 #, fuzzy
@@ -8175,7 +8275,7 @@ msgstr "Ekteskap"
 #: plugins/StatisticsChart.py:130
 #, fuzzy
 msgid "Ages at death"
-msgstr "Har dødsfallet"
+msgstr "ved"
 
 #: plugins/StatisticsChart.py:132
 #, fuzzy
@@ -8185,7 +8285,7 @@ msgstr "august"
 #: plugins/StatisticsChart.py:134
 #, fuzzy
 msgid "Event types"
-msgstr "H_endelsestype:"
+msgstr "Hendelse"
 
 #: plugins/StatisticsChart.py:148
 #, fuzzy
@@ -8205,13 +8305,13 @@ msgstr "Foretrukket _papir størrelse:"
 #: plugins/StatisticsChart.py:176
 #, fuzzy
 msgid "Gender unknown"
-msgstr "(kjønn ukjent)"
+msgstr "Kjønn ukjent"
 
 #: plugins/StatisticsChart.py:185 plugins/StatisticsChart.py:194
 #: plugins/StatisticsChart.py:306
 #, fuzzy
 msgid "Date(s) missing"
-msgstr "Data-gjetting"
+msgstr "Dato"
 
 #: plugins/StatisticsChart.py:201
 #, fuzzy
@@ -8221,7 +8321,7 @@ msgstr "Data-gjetting"
 #: plugins/StatisticsChart.py:210 plugins/StatisticsChart.py:224
 #, fuzzy
 msgid "Place missing"
-msgstr "Velsignelse"
+msgstr "Sted"
 
 #: plugins/StatisticsChart.py:232
 msgid "Already dead"
@@ -8234,7 +8334,7 @@ msgstr ""
 #: plugins/StatisticsChart.py:249 plugins/StatisticsChart.py:260
 #, fuzzy
 msgid "Events missing"
-msgstr "Sammenligning av hendelser"
+msgstr "Hendelser"
 
 #: plugins/StatisticsChart.py:268 plugins/StatisticsChart.py:276
 #, fuzzy
@@ -8244,79 +8344,92 @@ msgstr "Barn"
 #: plugins/StatisticsChart.py:295
 #, fuzzy
 msgid "Birth missing"
-msgstr "Fødselsnavn"
+msgstr "Født"
 
 #: plugins/StatisticsChart.py:395
+#, fuzzy
 msgid "Personal information missing"
-msgstr ""
+msgstr "Personlig informasjon, opplysning"
 
 #: plugins/StatisticsChart.py:803
 #, fuzzy
 msgid "The style used for the items and values."
-msgstr "Stil som blir brukt på tittelen."
+msgstr "Stilen brukt for emner og innhold."
 
 #: plugins/StatisticsChart.py:857
+#, fuzzy
 msgid "Select how the statistical data is sorted."
-msgstr ""
+msgstr "Velg hvordan de statistiske data blir sortert."
 
 #: plugins/StatisticsChart.py:858
+#, fuzzy
 msgid "Sort chart items by"
-msgstr ""
+msgstr "Sorter diagram fra"
 
 #: plugins/StatisticsChart.py:861
+#, fuzzy
 msgid "Check to reverse the sorting order."
-msgstr ""
+msgstr "Huk av for å reversere sorteringsrekkefølgen."
 
 #: plugins/StatisticsChart.py:862
+#, fuzzy
 msgid "Sort in reverse order"
-msgstr ""
+msgstr "Sorter i motsatt rekkefølge"
 
 #: plugins/StatisticsChart.py:877
+#, fuzzy
 msgid "Select year range within which people need to be born to be selected for statistics."
-msgstr ""
+msgstr "Velg årsutvalg for når personer skal være født."
 
 #: plugins/StatisticsChart.py:878
 #, fuzzy
 msgid "People born between"
-msgstr "Personmeny"
+msgstr "Persone født mellom"
 
 #: plugins/StatisticsChart.py:882
+#, fuzzy
 msgid "Check this if you want people who have no birth date or year to be accounted also in the statistics."
-msgstr ""
+msgstr "Sjekk dato eller år å tommer."
 
 #: plugins/StatisticsChart.py:883
 #, fuzzy
 msgid "Include people without birth years"
-msgstr "Personer uten fødselsdato"
+msgstr "Ta med personer uten fødselsår"
 
 #: plugins/StatisticsChart.py:895
+#, fuzzy
 msgid "Select which genders are included into statistics."
-msgstr ""
+msgstr "Velg hvilke kjønn som skal tas med i statistikken."
 
 #: plugins/StatisticsChart.py:896
+#, fuzzy
 msgid "Genders included"
-msgstr ""
+msgstr "Inkluderte kjønn"
 
 #: plugins/StatisticsChart.py:899
+#, fuzzy
 msgid "With fewer items pie chart and legend will be used instead of a bar chart."
-msgstr ""
+msgstr "Med diagram og av linje, stolpe (avhenig av sammenhengen) diagram."
 
 #: plugins/StatisticsChart.py:921
+#, fuzzy
 msgid "Mark checkboxes to add charts with indicated data"
-msgstr ""
+msgstr "Merk å legge til, tilføye, addere med data"
 
 #: plugins/StatisticsChart.py:926
+#, fuzzy
 msgid "Note that both biological and adopted children are taken into account."
-msgstr ""
+msgstr "Notat og konto, kontoer i flertall."
 
 #: plugins/StatisticsChart.py:957
+#, fuzzy
 msgid "Statistics Chart"
-msgstr ""
+msgstr "Statistikk Diagram"
 
 #: plugins/StatisticsChart.py:961
 #, fuzzy
 msgid "Generates statistical bar graphs."
-msgstr "Lager en tidslinjegraf."
+msgstr "Lager statistiske histogrammer."
 
 #: plugins/Summary.py:111
 msgid "Number of individuals"
@@ -8391,18 +8504,19 @@ msgstr "Lage rapporter"
 #: plugins/TestcaseGenerator.py:79
 #, fuzzy
 msgid "Generate Database errors"
-msgstr "Lage rapporter"
+msgstr "Database"
 
 #: plugins/TestcaseGenerator.py:83
 #, fuzzy
 msgid "Generate dummy families"
-msgstr "Generelle filtre"
+msgstr "dummy"
 
 #: plugins/TestcaseGenerator.py:115
+#, fuzzy
 msgid ""
 "Generating persons and families.\n"
 "Please wait."
-msgstr ""
+msgstr "og."
 
 #: plugins/TestcaseGenerator.py:148
 #, fuzzy
@@ -8410,21 +8524,24 @@ msgid "Testcase generator"
 msgstr "Program for å lage SoundEx-kode"
 
 #: plugins/TestcaseGenerator.py:503
+#, fuzzy
 msgid "Generate Testcases for persons and families"
-msgstr ""
+msgstr "for og"
 
 #: plugins/TestcaseGenerator.py:505
+#, fuzzy
 msgid "The testcase generator will generate some persons and families.that habe brolen links in the database or data that is in conflict to a relation."
-msgstr ""
+msgstr "og lenker tommer eller data tommer å."
 
 #: plugins/TimeLine.py:168
 #, fuzzy
 msgid "Report could not be created"
-msgstr "Klarte ikke å åpne %s"
+msgstr "Klarte ikke å lage rapport"
 
 #: plugins/TimeLine.py:169
+#, fuzzy
 msgid "The range of dates chosen was not valid"
-msgstr ""
+msgstr "Dato området valgt var ikke gyldig"
 
 #: plugins/TimeLine.py:380
 msgid "The style used for the person's name."
@@ -8449,7 +8566,7 @@ msgstr "Lager en tidslinjegraf."
 #: plugins/TradDesTree.py:725
 #, fuzzy
 msgid "The basic style used for the date display."
-msgstr "Den grunnleggende stilen for tekstvisning."
+msgstr "for dato."
 
 #: plugins/TradDesTree.py:740
 #, fuzzy
@@ -8459,7 +8576,7 @@ msgstr "Etterkommer-utforsker"
 #: plugins/TradDesTree.py:741
 #, fuzzy
 msgid "Generates a text tree of descendants of the active person"
-msgstr "Lager en liste over den aktive personens etterkommere"
+msgstr "tekst av av Aktiv"
 
 #: plugins/Verify.py:84 plugins/Verify.py:98
 msgid "Database Verify"
@@ -8584,7 +8701,7 @@ msgstr "Ektemann og hustru med samme etternavn: %s i familie %s, og %s.\n"
 #: plugins/Verify.py:322
 #, fuzzy
 msgid "Large age difference between husband and wife: %s in family %s, and %s.\n"
-msgstr "Ektemann og hustru med samme etternavn: %s i familie %s, og %s.\n"
+msgstr "Store mellom og tommer og"
 
 #: plugins/Verify.py:354
 msgid "Married before birth: %(male_name)s born %(byear)d, married %(maryear)d to %(spouse)s.\n"
@@ -8675,16 +8792,19 @@ msgid "Dead mother: %(female_name)s died %(dyear)d, but in family %(fam)s had a 
 msgstr "Død mor: %(female_name)s døde %(dyear)d, men fikk i år %(cbyear)d et barn %(child)s i familien %(fam)s.\n"
 
 #: plugins/Verify.py:463
+#, fuzzy
 msgid "Large year span for all children: family %s.\n"
-msgstr ""
+msgstr "Store år for"
 
 #: plugins/Verify.py:467
+#, fuzzy
 msgid "Large age differences between children: family %s.\n"
-msgstr ""
+msgstr "Store mellom"
 
 #: plugins/Verify.py:473
+#, fuzzy
 msgid "Too many children (%(num_children)d) for %(person_name)s.\n"
-msgstr ""
+msgstr "for"
 
 #: plugins/Verify.py:480
 msgid "ERRORS:\n"
@@ -8697,7 +8817,7 @@ msgstr "ADVARSEL:\n"
 #: plugins/Verify.py:504
 #, fuzzy
 msgid "Database Verification Results"
-msgstr "Kontrollere database"
+msgstr "Database"
 
 #: plugins/Verify.py:552
 msgid "Verify the database"
@@ -8718,11 +8838,12 @@ msgstr "Tilbake til registeret over personer"
 #: plugins/WebPage.py:376 plugins/WebPage.py:1085
 #, fuzzy
 msgid "Return to the index of places"
-msgstr "Tilbake til registeret over personer"
+msgstr "Returner å indeks, stikkordliste/-register av"
 
 #: plugins/WebPage.py:480
+#, fuzzy
 msgid "Links"
-msgstr ""
+msgstr "Lenker"
 
 #: plugins/WebPage.py:526
 msgid "Facts and Events"
@@ -8731,7 +8852,7 @@ msgstr "Fakta og hendelser"
 #: plugins/WebPage.py:862 plugins/WebPage.py:866
 #, fuzzy
 msgid "Place Index"
-msgstr "Plass 2"
+msgstr "Sted Indeks"
 
 #: plugins/WebPage.py:937 plugins/WebPage.py:941
 msgid "Family Tree Index"
@@ -8740,7 +8861,7 @@ msgstr "Familietre-register"
 #: plugins/WebPage.py:983 plugins/WebPage.py:987
 #, fuzzy
 msgid "Section %s"
-msgstr "Hun døde den %s"
+msgstr "Seksjon %s"
 
 #: plugins/WebPage.py:1075
 msgid "%s (continued)"
@@ -8761,33 +8882,37 @@ msgstr "Lag en GENDEX-rapport"
 #: plugins/WebPage.py:1290
 #, fuzzy
 msgid "Create an index of all Places"
-msgstr "Lag ny adresse"
+msgstr "Lag indeks, stikkordliste/-register av Plasser"
 
 #: plugins/WebPage.py:1292
 #, fuzzy
 msgid "Ancestor tree depth"
-msgstr "Slektstavle"
+msgstr "Slektstavle dybde"
 
 #: plugins/WebPage.py:1294
+#, fuzzy
 msgid "Links to alphabetical sections in index page"
-msgstr ""
+msgstr "Lenke til alfabet seksjonen på indeks siden"
 
 #: plugins/WebPage.py:1296
+#, fuzzy
 msgid "Append birth dates to the names"
-msgstr ""
+msgstr "Legg til fødselsdato til navnene"
 
 #: plugins/WebPage.py:1297
+#, fuzzy
 msgid "Use only year of birth"
-msgstr ""
+msgstr "Bruk år av"
 
 #: plugins/WebPage.py:1433
+#, fuzzy
 msgid "Index page"
-msgstr ""
+msgstr "Indeks side"
 
 #: plugins/WebPage.py:1438
 #, fuzzy
 msgid "Number of columns"
-msgstr "Antall forfedre"
+msgstr "Antall spalter"
 
 #: plugins/WebPage.py:1442
 msgid "Advanced"
@@ -8820,7 +8945,7 @@ msgstr "Stil som blir brukt på forsiden (indekssiden) som angir hver del."
 #: plugins/WebPage.py:1599
 #, fuzzy
 msgid "The style used on the index page that labels links to each section."
-msgstr "Stil som blir brukt på forsiden (indekssiden) som angir hver del."
+msgstr "på indeks, stikkordliste/-register lenker å avsnitt, del, (kapittel)."
 
 #: plugins/WebPage.py:1606
 msgid "The style used for the header for the image section."
@@ -8829,7 +8954,7 @@ msgstr "Stil som blir brukt på overskriften for bildedelen."
 #: plugins/WebPage.py:1613
 #, fuzzy
 msgid "The style used for the header for the siblings section."
-msgstr "Stil som blir brukt på overskriften for bildedelen."
+msgstr "for topptekst (i tekstbehandling), hode (message header = meldingshode, letterhead = brevhode), linje (the Content-Type header = Content-Type-linjen) for avsnitt, del, (kapittel)."
 
 #: plugins/WebPage.py:1620
 msgid "The style used for the header for the marriages and children section."
@@ -8862,12 +8987,12 @@ msgstr "Stil som blir brukt på kommentarinformasjon."
 #: plugins/WebPage.py:1677
 #, fuzzy
 msgid "The style used for the header for the URL section."
-msgstr "Stil som blir brukt på overskriften for bildedelen."
+msgstr "Stil som blir brukt på overskriften for lenke seksjonen."
 
 #: plugins/WebPage.py:1684
 #, fuzzy
 msgid "The style used for the URL information."
-msgstr "Stil som blir brukt på kommentarinformasjon."
+msgstr "Stil som blir brukt på lenke informasjonen."
 
 #: plugins/WriteCD.py:60
 msgid "Export to CD"
@@ -8881,62 +9006,66 @@ msgstr ""
 #: plugins/WriteCD.py:151
 #, fuzzy
 msgid "Could not create burn:///%s"
-msgstr "Kunne ikke lage %s"
+msgstr "lage, opprette, skape"
 
 #: plugins/WriteCD.py:163
 #, fuzzy
 msgid "Could not create burn:///%s/.thumb"
-msgstr "Kunne ikke lage %s"
+msgstr "lage, opprette, skape"
 
 #: plugins/WriteCD.py:304
 #, fuzzy
 msgid "Export to CD (p_ortable XML)"
-msgstr "Overfør til CD"
+msgstr "Eksporter å"
 
 #: plugins/WriteCD.py:305
+#, fuzzy
 msgid "Exporting to CD copies all your data and media object files to the CD Creator. You may later burn the CD with this data, and that copy will be completely portable across different machines and binary architectures."
-msgstr ""
+msgstr "Eksporterer å data og media å med data og bærbar, flyttbar, overfør og."
 
 #: plugins/WriteFtree.py:273
 #, fuzzy
 msgid "_Web Family Tree"
-msgstr "Overfør til et familietre på nettet"
+msgstr "Familie"
 
 #: plugins/WriteFtree.py:274
 #, fuzzy
 msgid "Web Family Tree format."
-msgstr "Familieinformasjon"
+msgstr "Familie."
 
 #: plugins/WriteFtree.py:275
 #, fuzzy
 msgid "Web Family Tree export options"
-msgstr "Familierapport for %s"
+msgstr "Familie innstillinger (= settings, preferences), valg"
 
 #: plugins/WriteGeneWeb.py:218
 #, fuzzy
 msgid "No families matched by selected filter"
-msgstr "Slett det valgte filteret"
+msgstr "Nei fra filter"
 
 #: plugins/WriteGeneWeb.py:577
 msgid "G_eneWeb"
 msgstr ""
 
 #: plugins/WriteGeneWeb.py:578
+#, fuzzy
 msgid "GeneWeb is a web based genealogy program."
-msgstr ""
+msgstr "vev(en), men eks. «web browser» = «nettleser."
 
 #: plugins/WriteGeneWeb.py:579
 #, fuzzy
 msgid "GeneWeb export options"
-msgstr "Innstillinger for rapporter"
+msgstr "innstillinger (= settings, preferences), valg"
 
 #: plugins/WritePkg.py:202
+#, fuzzy
 msgid "GRAM_PS package (portable XML)"
-msgstr ""
+msgstr "pakke, programpakke bærbar, flyttbar, overfør"
 
 #: plugins/WritePkg.py:203
+#, fuzzy
 msgid "GRAMPS package is an archived XML database together with the media object files."
-msgstr ""
+msgstr "GRAMPS pakke, programpakke med media."
 
 #: plugins/book.glade:11
 msgid "Book"
@@ -8997,11 +9126,12 @@ msgstr ""
 "Etter overføringen, gå til <b>brenn:///</b> mappa i Nautilus og trykk på «Skriv til CD»-knappen."
 
 #: plugins/changenames.glade:56
+#, fuzzy
 msgid ""
 "Below is a list of the family names that \n"
 "GRAMPS can convert to correct capitalization. \n"
 "Select the names you which GRAMPS to convert. "
-msgstr ""
+msgstr "Under liste av å GRAMPS å "
 
 #: plugins/changenames.glade:125
 msgid "_Accept changes and close"
@@ -9020,8 +9150,9 @@ msgid "_New event type:"
 msgstr "_Ny hendelsestype:"
 
 #: plugins/desbrowse.glade:126
+#, fuzzy
 msgid "<i>Double-click on the row to edit personal information</i>"
-msgstr ""
+msgstr "<i> Dobbel på rad å rediger informasjon, opplysning</i>"
 
 #: plugins/eval.glade:202
 msgid "<b>Evaluation Window</b>"
@@ -9042,7 +9173,7 @@ msgstr "Lagre som regneark - GRAMPS"
 #: plugins/eventcmp.glade:81
 #, fuzzy
 msgid "<b>_File name</b>"
-msgstr "<b>Filnavn</b>"
+msgstr "<b> Fil</b>"
 
 #: plugins/eventcmp.glade:109
 msgid "Save Data"
@@ -9051,7 +9182,7 @@ msgstr "Lagre data"
 #: plugins/eventcmp.glade:118
 #, fuzzy
 msgid "Select file to save OpenOffice.org spreadsheet"
-msgstr "OpenOffice Spreadsheet (regneark)"
+msgstr "Velg fil å OpenOffice"
 
 #: plugins/eventcmp.glade:416
 msgid "The event comparison utility uses the filters defined in the Custom Filter Editor."
@@ -9084,7 +9215,7 @@ msgstr "Bruk soundex koder"
 #: plugins/patchnames.glade:111
 #, fuzzy
 msgid "_Accept and close"
-msgstr "Godt_a endringer og lukk"
+msgstr "Godta og lukke"
 
 #: plugins/patchnames.glade:176
 #, fuzzy
@@ -9092,23 +9223,21 @@ msgid ""
 "Below is a list of the nicknames, titles and family name prefixes that GRAMPS can extract from the \n"
 "current database. If you accept the changes, GRAMPS will modify the entries\n"
 "that have been selected."
-msgstr ""
-"Nedenfor er en liste av de kallenavnene og titlene der GRAMPS kan hente informasjon\n"
-"fra den aktuelle databasen. Hvis du tillater endringene, vil GRAMS endre de \n"
-"valgte postene."
+msgstr "Under liste av og GRAMPS pakke ut, dekomprimere, trekke ut fra godkjenne, akseptere GRAMPS endre."
 
 #: plugins/rel_ru.py:120
 #, fuzzy
 msgid "remote ancestors"
-msgstr "Fjern anker"
+msgstr "ekstern, fjern(-tliggende), over nettverket"
 
 #: plugins/relcalc.glade:97
 msgid "Select a person to determine the relationship"
 msgstr "Velg en person for å avgjøre relasjonen"
 
 #: plugins/scratchpad.glade:54
+#, fuzzy
 msgid "Clear _All"
-msgstr ""
+msgstr "Tøm Alle"
 
 #: plugins/soundex.glade:36
 msgid "Close Window"
@@ -9121,22 +9250,22 @@ msgstr "SoundEx kode:"
 #: plugins/verify.glade:134
 #, fuzzy
 msgid "Maximum number of _spouses for a person"
-msgstr "Høyest antall ektefeller for en person"
+msgstr "Høyest/størst/lengst mulig tall av for"
 
 #: plugins/verify.glade:335
 #, fuzzy
 msgid "Maximum number of consecutive years of _widowhood"
-msgstr "Største antall sammenhengende år som enke(mann)"
+msgstr "Høyest/størst/lengst mulig tall av av"
 
 #: plugins/verify.glade:359
 #, fuzzy
 msgid "Maximum number of years _between children"
-msgstr "Størst antall år mellom barn"
+msgstr "Høyest/størst/lengst mulig tall av mellom"
 
 #: plugins/verify.glade:383
 #, fuzzy
 msgid "Maximum span _of years for all children"
-msgstr "Største antall år mellom eldste og yngste barn"
+msgstr "Høyest/størst/lengst mulig av for"
 
 #: plugins/verify.glade:408
 #, fuzzy
@@ -9146,37 +9275,37 @@ msgstr "Estimer manglende datoer"
 #: plugins/verify.glade:428
 #, fuzzy
 msgid "Maximum _age"
-msgstr "Høyeste alder"
+msgstr "Høyest/størst/lengst mulig"
 
 #: plugins/verify.glade:452
 #, fuzzy
 msgid "Maximum husband-wife age _difference"
-msgstr "Største aldersforskjell mellom ektefolk"
+msgstr "Høyest/størst/lengst mulig"
 
 #: plugins/verify.glade:476
 #, fuzzy
 msgid "Mi_nimum age to marry"
-msgstr "Laveste giftealder"
+msgstr "å"
 
 #: plugins/verify.glade:500
 #, fuzzy
 msgid "Ma_ximum age to marry"
-msgstr "Høyeste giftealder"
+msgstr "å"
 
 #: plugins/verify.glade:559
 #, fuzzy
 msgid "Mi_nimum age to bear a child"
-msgstr "Minste alder for å bli mor"
+msgstr "å"
 
 #: plugins/verify.glade:583
 #, fuzzy
 msgid "Ma_ximum age to bear a child"
-msgstr "Høyest alder for å bli mor"
+msgstr "å"
 
 #: plugins/verify.glade:607 plugins/verify.glade:780
 #, fuzzy
 msgid "Maximum number of c_hildren"
-msgstr "Største antall barn"
+msgstr "Høyest/størst/lengst mulig tall av"
 
 #: plugins/verify.glade:703
 msgid "<b>Women</b>"
@@ -9185,12 +9314,12 @@ msgstr "<b>Kvinner</b>"
 #: plugins/verify.glade:732
 #, fuzzy
 msgid "Mi_nimum age to father a child"
-msgstr "Minste alder for å bli far"
+msgstr "å"
 
 #: plugins/verify.glade:756
 #, fuzzy
 msgid "Ma_ximum age to father a child"
-msgstr "Høyeste alder for å bli far"
+msgstr "å"
 
 #: plugins/verify.glade:876
 msgid "<b>Men</b>"
@@ -9199,12 +9328,12 @@ msgstr "<b>Menn</b>"
 #: rule.glade:132
 #, fuzzy
 msgid "Add another rule to the filter"
-msgstr "Rediger valgte filter"
+msgstr "Legg til å filter"
 
 #: rule.glade:152
 #, fuzzy
 msgid "Edit the selected rule"
-msgstr "Rediger valgte filter"
+msgstr "Rediger"
 
 #: rule.glade:155 rule.glade:742
 msgid "_Edit..."
@@ -9213,7 +9342,7 @@ msgstr "_Rediger..."
 #: rule.glade:172
 #, fuzzy
 msgid "Delete the selected rule"
-msgstr "Slett det valgte filteret"
+msgstr "Slett"
 
 #: rule.glade:175 rule.glade:780
 msgid "_Delete"
@@ -9222,12 +9351,12 @@ msgstr "_Slett"
 #: rule.glade:205
 #, fuzzy
 msgid "<b>Rule options</b>"
-msgstr "<b>Regelliste</b>"
+msgstr "<b> innstillinger (= settings, preferences), valg</b>"
 
 #: rule.glade:229
 #, fuzzy
 msgid "<b>Rule list</b>"
-msgstr "<b>Regelliste</b>"
+msgstr "<b> liste</b>"
 
 #: rule.glade:253
 msgid "<b>Definition</b>"
@@ -9245,7 +9374,7 @@ msgstr "Alle _regler skal gjelde"
 #: rule.glade:352
 #, fuzzy
 msgid "At lea_st one rule must apply"
-msgstr "Minst en regel skal gjelde"
+msgstr "bruk, legg til endringer"
 
 #: rule.glade:375
 msgid "E_xactly one rule must apply"
@@ -9254,12 +9383,12 @@ msgstr "Presis en regel skal gjelde"
 #: rule.glade:467
 #, fuzzy
 msgid "Return values that do no_t match the filter rules"
-msgstr "Vis verdier som ikke passer på filtreringsregler (inverter, motsatt)"
+msgstr "Returner filter"
 
 #: rule.glade:488
 #, fuzzy
 msgid "<b>Filter inversion</b>"
-msgstr "<b>Første person</b>"
+msgstr "<b> Filter</b>"
 
 #: rule.glade:719
 msgid "Add a new filter"
@@ -9272,7 +9401,7 @@ msgstr "Rediger valgte filter"
 #: rule.glade:758
 #, fuzzy
 msgid "Test the selected filter"
-msgstr "Slett det valgte filteret"
+msgstr "Test filter"
 
 #: rule.glade:760
 msgid "_Test..."
@@ -9283,8 +9412,9 @@ msgid "Delete the selected filter"
 msgstr "Slett det valgte filteret"
 
 #: rule.glade:814
+#, fuzzy
 msgid "<i>Note: changes take effect only after this window is closed</i>"
-msgstr ""
+msgstr "<i> Notat etter</i>"
 
 #: rule.glade:1102
 msgid "<b>Selected Rule</b>"
