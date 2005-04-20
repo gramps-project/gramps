@@ -981,9 +981,9 @@ class GedcomParser:
                         break
                 else:
                     if ftype in rel_types:
-                        self.person.add_parent_family_handle(handle,
-                                                             RelLib.Person.CHILD_REL_BIRTH,
-                                                             RelLib.Person.CHILD_REL_BIRTH)
+                        self.person.add_parent_family_handle(
+                            handle, RelLib.Person.CHILD_REL_BIRTH,
+                            RelLib.Person.CHILD_REL_BIRTH)
                     else:
                         if self.person.get_main_parents_family_handle() == handle:
                             self.person.set_main_parent_family_handle(None)
@@ -1427,8 +1427,8 @@ class GedcomParser:
                 self.barf(level+1)
 
     def parse_adopt_famc(self,level):
-        mrel = "Adopted"
-        frel = "Adopted"
+        mrel = RelLib.Person.CHILD_REL_ADOPT
+        frel = RelLib.Person.CHILD_REL_ADOPT
         while 1:
             matches = self.get_next()
             if int(matches[0]) < level:
