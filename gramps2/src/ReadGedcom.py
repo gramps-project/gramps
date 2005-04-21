@@ -1380,9 +1380,14 @@ class GedcomParser:
                     event.set_description("%s%s" % (d, matches[2]))
             elif matches[1] == "CONT":
                 event.set_description("%s\n%s" % (event.get_description(),matches[2]))
-            elif matches[1] in ["_GODP", "_WITN"]:
-                witness = RelLib.Witness(RelLib.Event.NAME,matches[2])
+            elif matches[1] in ["_GODP", "_WITN", "_WTN"]:
+                if matches[2][0] == "@":
+                    witness_handle = self.find_person_handle(self.map_gid(matches[2][1:-1]))
+                    witness = RelLib.Witness(RelLib.Event.ID,witness_handle)
+                else:
+                    witness = RelLib.Witness(RelLib.Event.NAME,matches[2])
                 event.add_witness(witness)
+                self.ignore_sub_junk(level+1)
             elif matches[1] in ["RELI", "TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE","_DATE2"]:
                 self.ignore_sub_junk(level+1)
             else:
@@ -1547,9 +1552,14 @@ class GedcomParser:
                     note = note + "\n" + matches[2]
             elif matches[1] == "NOTE":
                 note = self.parse_note(matches,event,level+1,note)
-            elif matches[1] == "_WITN":
-                witness = RelLib.Witness(RelLib.Event.NAME,matches[2])
+            elif matches[1] in ["_WITN", "_WTN"]:
+                if matches[2][0] == "@":
+                    witness_handle = self.find_person_handle(self.map_gid(matches[2][1:-1]))
+                    witness = RelLib.Witness(RelLib.Event.ID,witness_handle)
+                else:
+                    witness = RelLib.Witness(RelLib.Event.NAME,matches[2])
                 event.add_witness(witness)
+                self.ignore_sub_junk(level+1)
             else:
                 self.barf(level+1)
 
