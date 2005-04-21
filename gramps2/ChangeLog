@@ -2,7 +2,7 @@
 	* src/ReadGedcom.py (parse_family_object): Set MediaRef properly;
 	(parse_individual): Set Adoption event properly;
 	(importData): Dont crash because of a short line;
-	Support _WITN and _GODP; Ignore _LOC extended locations
+	Support _WITN, _WTN and _GODP; Ignore _LOC extended locations
 	* src/Marriage.py (__init__): Properly get place title
 
 2005-04-20  Don Allingham  <don@gramps-project.org>
