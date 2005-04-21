@@ -1015,10 +1015,11 @@ class GedcomParser:
                 self.db.commit_event(event, self.trans)
             elif matches[1] == "ADOP":
                 event = RelLib.Event()
+                self.db.add_event(event, self.trans)
                 event.set_name("Adopted")
                 self.person.add_event_handle(event.get_handle())
                 self.parse_adopt_event(event,2)
-                self.db.add_event(event, self.trans)
+                self.db.commit_event(event, self.trans)
             elif matches[1] == "DEAT":
                 event = RelLib.Event()
                 self.db.add_event(event, self.trans)

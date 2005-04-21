@@ -1,5 +1,6 @@
 2005-04-21  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
-	* src/ReadGedcom.py (parse_family_object): Set MediaRef properly
+	* src/ReadGedcom.py (parse_family_object): Set MediaRef properly;
+	(parse_individual): Set Adoption event properly
 	* src/Marriage.py (__init__): Properly get place title
 
 2005-04-20  Don Allingham  <don@gramps-project.org>
