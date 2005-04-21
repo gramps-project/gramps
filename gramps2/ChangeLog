@@ -1,3 +1,7 @@
+2005-04-20  Don Allingham  <don@gramps-project.org>
+	* src/DbPrompter.py: handle runtime errors issued by 
+	gnomevfs.get_mime_type
+
 2005-04-21  Eero Tamminen  <eerot@sf>
 	* src/po/fi.po: Translation updated, but not yet tested & fixed
 
