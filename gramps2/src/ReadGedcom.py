@@ -653,6 +653,10 @@ class GedcomParser:
 #                noteobj.append(text + self.parse_continue_data(1))
                 noteobj.append(text + self.parse_note_continue(1))
                 self.parse_note_data(1)
+            elif matches[2] == "_LOC":
+                # TODO: Add support for extended Locations.
+                # See: http://en.wiki.genealogy.net/index.php/Gedcom_5.5EL
+                self.ignore_sub_junk(1)
             elif matches[0] < 1 or matches[1] == "TRLR":
                 self.backup()
                 return
@@ -1281,6 +1285,8 @@ class GedcomParser:
                 address.set_postal_code(matches[2])
             elif matches[1] == "CTRY":
                 address.set_country(matches[2])
+            elif matches[1] == "_LOC":
+                pass    # ignore unsupported extended location syntax
             else:
                 self.barf(level+1)
 
@@ -1374,6 +1380,9 @@ class GedcomParser:
                     event.set_description("%s%s" % (d, matches[2]))
             elif matches[1] == "CONT":
                 event.set_description("%s\n%s" % (event.get_description(),matches[2]))
+            elif matches[1] in ["_GODP", "_WITN"]:
+                witness = RelLib.Witness(RelLib.Event.NAME,matches[2])
+                event.add_witness(witness)
             elif matches[1] in ["RELI", "TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE","_DATE2"]:
                 self.ignore_sub_junk(level+1)
             else:
@@ -1538,6 +1547,9 @@ class GedcomParser:
                     note = note + "\n" + matches[2]
             elif matches[1] == "NOTE":
                 note = self.parse_note(matches,event,level+1,note)
+            elif matches[1] == "_WITN":
+                witness = RelLib.Witness(RelLib.Event.NAME,matches[2])
+                event.add_witness(witness)
             else:
                 self.barf(level+1)
 
