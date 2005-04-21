@@ -142,9 +142,9 @@ def importData(database, filename, cb=None, use_trans=True):
         line = f.readline().split()
         if len(line) == 0:
             break
-        if line[1] == 'CHAR' and line[2] == "ANSEL":
+        if len(line) > 2 and line[1] == 'CHAR' and line[2] == "ANSEL":
             ansel = True
-        if line[1] == 'SOUR' and line[2] == "GRAMPS":
+        if len(line) > 2 and line[1] == 'SOUR' and line[2] == "GRAMPS":
             gramps = True
     f.close()
 
