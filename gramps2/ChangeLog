@@ -1,3 +1,6 @@
+2005-04-22  Don Allingham  <don@gramps-project.org>
+	* src/Date.py (__cmp__): check for Date instance before compare
+
 2005-04-21  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/ReadGedcom.py (parse_family_object): Set MediaRef properly;
 	(parse_individual): Set Adoption event properly;
@@ -24,6 +27,10 @@
 	* src/plugins/ChangeNames.py: fix typo
 
 2005-04-20  Don Allingham  <don@gramps-project.org>
+	* src/plugins/DetAncestralReport.py: fixed i18n strings
+	* src/ReadGedcom.py: handle FTM style of child/parent relationship
+	translation
+	* src/gedcomimport.py: 
 	* src/DisplayModels.py: fix bad index into list
 	* src/Relationship.py: handle race condition where the screen 
 	wants to update with a stale family handle after the database
