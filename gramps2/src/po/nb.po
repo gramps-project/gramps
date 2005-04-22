@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Mon Apr 11 20:54:14 2005\n"
-"PO-Revision-Date: 2005-04-21 21:34+0200\n"
+"PO-Revision-Date: 2005-04-23 00:35+0200\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -421,7 +421,7 @@ msgstr "Endre personinformasjon"
 #: EditPerson.py:255
 #, fuzzy
 msgid "Patronymic:"
-msgstr "Patronymisk:"
+msgstr "Avstamningsnavn:"
 
 #: EditPerson.py:308 EditSource.py:287 EventEdit.py:275 ImageSelect.py:1135
 #: Marriage.py:213 plugins/ScratchPad.py:166 plugins/ScratchPad.py:180
@@ -2947,367 +2947,367 @@ msgstr "%(male_name)s døde %(death_place)s."
 #: ReportUtils.py:1255
 #, fuzzy
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr "mann døde tommer ved av."
+msgstr "%(male_name)s døde %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:1260
 #, fuzzy
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d months."
-msgstr "mann døde tommer ved av."
+msgstr "%(male_name)s døde %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:1265
 #, fuzzy
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr "mann døde tommer ved av dager."
+msgstr "%(male_name)s døde %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:1274
 #, fuzzy
 msgid "%(male_name)s died at the age of %(age)d years."
-msgstr "mann døde ved av."
+msgstr "%(male_name)s døde i en alder av %(age)d år."
 
 #: ReportUtils.py:1278
 #, fuzzy
 msgid "%(male_name)s died at the age of %(age)d months."
-msgstr "mann døde ved av."
+msgstr "%(male_name)s døde i en alder av %(age)d måneder."
 
 #: ReportUtils.py:1282
 #, fuzzy
 msgid "%(male_name)s died at the age of %(age)d days."
-msgstr "mann døde ved av dager."
+msgstr "%(male_name)s døde i en alder av %(age)d dager."
 
 #: ReportUtils.py:1289
 #, fuzzy
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s."
-msgstr "kvinne døde på dato tommer."
+msgstr "%(female_name)s døde %(month_date)s, %(death_place)s."
 
 #: ReportUtils.py:1294
 #, fuzzy
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "kvinne døde på dato tommer ved av."
+msgstr "%(female_name)s døde %(month_date)s, %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:1301
 #, fuzzy
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "kvinne døde på dato tommer ved av."
+msgstr "%(female_name)s døde %(month_date)s, %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:1308
 #, fuzzy
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "kvinne døde på dato tommer ved av dager."
+msgstr "%(female_name)s døde %(month_date)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:1316
 #, fuzzy
 msgid "%(female_name)s died on %(death_date)s."
-msgstr "kvinne døde på dato."
+msgstr "%(female_name)s døde %(month_date)s."
 
 #: ReportUtils.py:1319
 #, fuzzy
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr "kvinne døde på dato ved av."
+msgstr "%(female_name)s døde %(death_date)s, i en alder av %(age)d år."
 
 #: ReportUtils.py:1324
 #, fuzzy
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr "kvinne døde på dato ved av."
+msgstr "%(female_name)s døde %(death_date)s, i en alder av %(age)d måneder."
 
 #: ReportUtils.py:1329
 #, fuzzy
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr "kvinne døde på dato ved av dager."
+msgstr "%(female_name)s døde %(death_date)s, i en alder av %(age)d dager."
 
 #: ReportUtils.py:1336
 #, fuzzy
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s."
-msgstr "kvinne døde tommer måned år tommer."
+msgstr "%(female_name)s døde %(month_year)s, %(death_place)s."
 
 #: ReportUtils.py:1341
 #, fuzzy
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "kvinne døde tommer måned år tommer ved av."
+msgstr "%(female_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:1348
 #, fuzzy
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d mpnths."
-msgstr "kvinne døde tommer måned år tommer ved av."
+msgstr "%(female_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:1355
 #, fuzzy
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr "kvinne døde tommer måned år tommer ved av dager."
+msgstr "%(female_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:1363
 #, fuzzy
 msgid "%(female_name)s died in %(month_year)s."
-msgstr "kvinne døde tommer måned år."
+msgstr "%(female_name)s døde %(month_year)s."
 
 #: ReportUtils.py:1366
 #, fuzzy
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr "kvinne døde tommer måned år ved av."
+msgstr "%(female_name)s døde %(month_year)s, i en alder av %(age)d år."
 
 #: ReportUtils.py:1371
 #, fuzzy
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr "kvinne døde tommer måned år ved av."
+msgstr "%(female_name)s døde %(month_year)s, i en alder av %(age)d måneder."
 
 #: ReportUtils.py:1376
 #, fuzzy
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr "kvinne døde tommer måned år ved av dager."
+msgstr "%(female_name)s døde %(month_year)s, i en alder av %(age)d dager."
 
 #: ReportUtils.py:1383
 #, fuzzy
 msgid "%(female_name)s died in %(death_place)s."
-msgstr "kvinne døde tommer."
+msgstr "%(female_name)s døde %(death_place)s."
 
 #: ReportUtils.py:1386
 #, fuzzy
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr "kvinne døde tommer ved av."
+msgstr "%(female_name)s døde %(death_place)s, i en alder av %(age)d år."
 
 #: ReportUtils.py:1391
 #, fuzzy
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d months."
-msgstr "kvinne døde tommer ved av."
+msgstr "%(female_name)s døde %(death_place)s, i en alder av %(age)d måneder."
 
 #: ReportUtils.py:1396
 #, fuzzy
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr "kvinne døde tommer ved av dager."
+msgstr "%(female_name)s døde %(death_place)s, i en alder av %(age)d dager."
 
 #: ReportUtils.py:1405
 #, fuzzy
 msgid "%(female_name)s died at the age of %(age)d years."
-msgstr "kvinne døde ved av."
+msgstr "%(female_name)s døde i en alder av %(age)d år."
 
 #: ReportUtils.py:1409
 #, fuzzy
 msgid "%(female_name)s died at the age of %(age)d months."
-msgstr "kvinne døde ved av."
+msgstr "%(female_name)s døde i en alder av %(age)d måneder."
 
 #: ReportUtils.py:1413
 #, fuzzy
 msgid "%(female_name)s died at the age of %(age)d days."
-msgstr "kvinne døde ved av dager."
+msgstr "%(female_name)s døde i en alder av %(age)d dager."
 
 #: ReportUtils.py:1466
 #, fuzzy
 msgid "%(male_name)s was buried on %(birth_date)s in %(birth_place)s."
-msgstr "mann på dato tommer."
+msgstr "%(male_name)s ble begravet %(birth_date)s, %(birth_place)s."
 
 #: ReportUtils.py:1471
 #, fuzzy
 msgid "%(male_name)s was buried on %(birth_date)s."
-msgstr "mann på dato."
+msgstr "%(male_name)s ble begravet %(birth_date)s."
 
 #: ReportUtils.py:1475
 #, fuzzy
 msgid "%(male_name)s was buried in %(month_year)s in %(birth_place)s."
-msgstr "mann tommer måned år tommer."
+msgstr "%(male_name)s ble begravet %(month_year)s, %(birth_place)s."
 
 #: ReportUtils.py:1480
 #, fuzzy
 msgid "%(male_name)s was buried in %(month_year)s."
-msgstr "mann tommer måned år."
+msgstr "%(male_name)s ble begravet %(month_year)s."
 
 #: ReportUtils.py:1484
 #, fuzzy
 msgid "%(male_name)s was buried in %(birth_place)s."
-msgstr "mann tommer."
+msgstr "%(male_name)s ble begravet %(birth_place)s."
 
 #: ReportUtils.py:1487
 #, fuzzy
 msgid "%(male_name)s was buried."
-msgstr "mann."
+msgstr "%(male_name)s ble begravet."
 
 #: ReportUtils.py:1492
 #, fuzzy
 msgid "%(female_name)s was buried on %(birth_date)s in %(birth_place)s."
-msgstr "kvinne på dato tommer."
+msgstr "%(female_name)s ble begravet %(birth_date)s, %(birth_place)s."
 
 #: ReportUtils.py:1497
 #, fuzzy
 msgid "%(female_name)s was buried on %(birth_date)s."
-msgstr "kvinne på dato."
+msgstr "%(female_name)s ble begravet %(birth_date)s."
 
 #: ReportUtils.py:1501
 #, fuzzy
 msgid "%(female_name)s was buried in %(month_year)s in %(birth_place)s."
-msgstr "kvinne tommer måned år tommer."
+msgstr "%(female_name)s ble begravet %(month_year)s, %(birth_place)s."
 
 #: ReportUtils.py:1506
 #, fuzzy
 msgid "%(female_name)s was buried in %(month_year)s."
-msgstr "kvinne tommer måned år."
+msgstr "%(female_name)s ble begravet %(month_year)s."
 
 #: ReportUtils.py:1510
 #, fuzzy
 msgid "%(female_name)s was buried in %(birth_place)s."
-msgstr "kvinne tommer."
+msgstr "%(female_name)s ble begravet %(birth_place)s."
 
 #: ReportUtils.py:1513
 #, fuzzy
 msgid "%(female_name)s was buried."
-msgstr "kvinne."
+msgstr "%(female_name)s ble begravet."
 
 #: ReportUtils.py:1543
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s %(death_place)s."
-msgstr "mann dato dato."
+msgstr "%(male_name)s. Født: %(birth_date)s, %(birth_place)s. Døde: %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:1550
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s."
-msgstr "mann dato dato."
+msgstr "%(male_name)s. Født: %(birth_date)s, %(birth_place)s. Døde: %(death_date)s."
 
 #: ReportUtils.py:1558
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_place)s."
-msgstr "mann dato."
+msgstr "%(male_name)s. Født: %(birth_date)s, %(birth_place)s. Døde: %(death_place)s."
 
 #: ReportUtils.py:1565
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_date)s %(birth_place)s."
-msgstr "mann dato."
+msgstr "%(male_name)s. Født: %(birth_date)s, %(birth_place)s."
 
 #: ReportUtils.py:1572
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_date)s Died: %(death_date)s %(death_place)s."
-msgstr "mann dato dato."
+msgstr "%(male_name)s. Født: %(birth_date)s. Døde: %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:1577
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_date)s Died: %(death_date)s."
-msgstr "mann dato dato."
+msgstr "%(male_name)s. Født: %(birth_date)s. Døde: %(death_date)s."
 
 #: ReportUtils.py:1583
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_date)s Died: %(death_place)s."
-msgstr "mann dato."
+msgstr "%(male_name)s. Født: %(birth_date)s. Døde: %(death_place)s."
 
 #: ReportUtils.py:1588
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_date)s "
-msgstr "mann dato "
+msgstr "%(male_name)s. Født: %(birth_date)s."
 
 #: ReportUtils.py:1594
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_place)s Died: %(death_date)s %(death_place)s."
-msgstr "mann dato."
+msgstr "%(male_name)s. Født: %(birth_place)s. Døde: %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:1601
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_place)s Died: %(death_date)s."
-msgstr "mann dato."
+msgstr "%(male_name)s. Født: %(birth_place)s. Døde: %(death_date)s."
 
 #: ReportUtils.py:1609
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_place)s Died: %(death_place)s."
-msgstr "mann."
+msgstr "%(male_name)s. Født: %(birth_place)s. Døde: %(death_place)s."
 
 #: ReportUtils.py:1616
 #, fuzzy
 msgid "%(male_name)s Born: %(birth_place)s."
-msgstr "mann."
+msgstr "%(male_name)s. Født: %(birth_place)s."
 
 #: ReportUtils.py:1622
 #, fuzzy
 msgid "%(male_name)s Died: %(death_date)s %(death_place)s."
-msgstr "mann dato."
+msgstr "%(male_name)s. Døde: %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:1627
 #, fuzzy
 msgid "%(male_name)s Died: %(death_date)s."
-msgstr "mann dato."
+msgstr "%(male_name)s. Døde: %(death_date)s."
 
 #: ReportUtils.py:1632
 #, fuzzy
 msgid "%(male_name)s Died: %(death_place)s."
-msgstr "mann."
+msgstr "%(male_name)s. Døde:  %(death_place)s."
 
 #: ReportUtils.py:1635
 #, fuzzy
 msgid "%(male_name)s."
-msgstr "mann."
+msgstr "%(male_name)s."
 
 #: ReportUtils.py:1642
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s %(death_place)s."
-msgstr "kvinne dato dato."
+msgstr "%(female_name)s. Født: %(birth_date)s, %(birth_place)s. Døde: %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:1649
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s."
-msgstr "kvinne dato dato."
+msgstr "%(female_name)s. Født: %(birth_date)s, %(birth_place)s. Døde: %(death_date)s."
 
 #: ReportUtils.py:1657
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_place)s."
-msgstr "kvinne dato."
+msgstr "%(female_name)s. Født: %(birth_date)s, %(birth_place)s. Døde: %(death_place)s."
 
 #: ReportUtils.py:1664
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_date)s %(birth_place)s."
-msgstr "kvinne dato."
+msgstr "%(female_name)s. Født: %(birth_date)s, %(birth_place)s."
 
 #: ReportUtils.py:1671
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_date)s Died: %(death_date)s %(death_place)s."
-msgstr "kvinne dato dato."
+msgstr "%(female_name)s. Født: %(birth_date)s. Døde: %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:1676
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_date)s Died: %(death_date)s."
-msgstr "kvinne dato dato."
+msgstr "%(female_name)s. Født: %(birth_date)s. Døde: %(death_date)s%(death_pl."
 
 #: ReportUtils.py:1682
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_date)s Died: %(death_place)s."
-msgstr "kvinne dato."
+msgstr "%(female_name)s. Født: %(birth_date)s. Døde: %(death_place)s."
 
 #: ReportUtils.py:1687
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_date)s "
-msgstr "kvinne dato "
+msgstr "%(female_name)s. Født: %(birth_date)s."
 
 #: ReportUtils.py:1693
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_place)s Died: %(death_date)s %(death_place)s."
-msgstr "kvinne dato."
+msgstr "%(female_name)s. Født: %(birth_place)s. Døde: %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:1700
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_place)s Died: %(death_date)s."
-msgstr "kvinne dato."
+msgstr "%(female_name)s. Født: %(birth_place)s. Døde: %(death_date)s."
 
 #: ReportUtils.py:1708
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_place)s Died: %(death_place)s."
-msgstr "kvinne."
+msgstr "%(female_name)s. Født: %(birth_place)s. Døde: %(death_place)s."
 
 #: ReportUtils.py:1715
 #, fuzzy
 msgid "%(female_name)s Born: %(birth_place)s."
-msgstr "kvinne."
+msgstr "%(female_name)s. Født: %(birth_place)s."
 
 #: ReportUtils.py:1721
 #, fuzzy
 msgid "%(female_name)s Died: %(death_date)s %(death_place)s."
-msgstr "kvinne dato."
+msgstr "%(female_name)s. Døde: %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:1726
 #, fuzzy
 msgid "%(female_name)s Died: %(death_date)s."
-msgstr "kvinne dato."
+msgstr "%(female_name)s. Døde: %(death_date)s."
 
 #: ReportUtils.py:1731
 #, fuzzy
 msgid "%(female_name)s Died: %(death_place)s."
-msgstr "kvinne."
+msgstr "%(female_name)s. Døde: %(death_place)s."
 
 #: ReportUtils.py:1734
 #, fuzzy
 msgid "%(female_name)s."
-msgstr "kvinne."
+msgstr "%(female_name)s."
 
 #: ReportUtils.py:1743 const.py:490 plugins/FamilyGroup.py:376
 #: plugins/FamilyGroup.py:378
@@ -3321,7 +3321,7 @@ msgstr "Ugift"
 #: ReportUtils.py:1745 const.py:492
 #, fuzzy
 msgid "Civil Union"
-msgstr "Union"
+msgstr "Partnerskap"
 
 #: ReportUtils.py:1747 const.py:234 const.py:248 const.py:494
 #: mergedata.glade:240
@@ -3336,7 +3336,7 @@ msgstr "En person kan ikke lenkes som sitt eget barn"
 #: SelectChild.py:329
 #, fuzzy
 msgid "Add Child to Family (%s)"
-msgstr "Legg til Barn å Familie"
+msgstr "Legg til barn i familien (%s)"
 
 #: SourceView.py:53
 msgid "Author"
@@ -3345,12 +3345,12 @@ msgstr "Forfatter"
 #: SourceView.py:54
 #, fuzzy
 msgid "Abbreviation"
-msgstr "Forkortelse:"
+msgstr "Forkortelse"
 
 #: SourceView.py:55
 #, fuzzy
 msgid "Publication Information"
-msgstr "Informasjon"
+msgstr "Publikasjonsinformasjon"
 
 #: SourceView.py:161
 msgid "Source Menu"
@@ -3363,7 +3363,7 @@ msgstr "Denne kilden er for øyeblikket i bruk. Hvis du sletter denne vil den bli
 #: SourceView.py:190
 #, fuzzy
 msgid "Deleting source will remove it from the database."
-msgstr "fjern fra."
+msgstr "Slette kilden vil fjerne den fra databasen."
 
 #: SourceView.py:194
 msgid "_Delete Source"
@@ -3372,12 +3372,12 @@ msgstr "Slett kil_de"
 #: SourceView.py:227
 #, fuzzy
 msgid "Cannot merge sources."
-msgstr "slå sammen, flette, fletting."
+msgstr "Kan ikke flette sammen kilder."
 
 #: SourceView.py:228
 #, fuzzy
 msgid "Exactly two sources must be selected to perform a merge. A second source can be selected by holding down the control key while clicking on the desired source."
-msgstr "å yte, utføre slå sammen, flette, fletting A sekunder fra ned på."
+msgstr "Nøyaktig to kilder må være valgt for å gjennomføre en fletting. Den andre kilden kan merkes ved å holde nede kontrolltasten samtidig som du klikker på den ønskede kilden."
 
 #: Sources.py:92
 msgid "Source Reference Selection"
@@ -3386,12 +3386,12 @@ msgstr "Velg kildehenvisning"
 #: Sources.py:152 Sources.py:459
 #, fuzzy
 msgid "Source Reference"
-msgstr "Kilde Referanse"
+msgstr "Kildehenvisning"
 
 #: Sources.py:158
 #, fuzzy
 msgid "Reference Selector"
-msgstr "Referanse"
+msgstr "Henvisningsvelger"
 
 #: Sources.py:383 Sources.py:465
 msgid "Source Information"
@@ -3492,7 +3492,6 @@ msgid "Error saving stylesheet"
 msgstr "Feil ved lagring av stilblad"
 
 #: StyleEditor.py:181
-#, fuzzy
 msgid "Style editor"
 msgstr "Stilbehandler"
 
@@ -3507,21 +3506,20 @@ msgstr "Ingen beskrivelse tilgjengelig"
 #: Utils.py:72
 #, fuzzy
 msgid "The data can only be recovered by Undo operation or by quitting with abandoning changes."
-msgstr "data fra Angre handling, operasjon eller fra med."
+msgstr "Dataene kan kun gjenopprettes av Angre operasjonen, eller ved å slutte uten å lagre endringer."
 
 #: Witness.py:64
 msgid "Witness"
 msgstr "Vitne"
 
 #: Witness.py:177 Witness.py:193
-#, fuzzy
 msgid "Witness Editor"
 msgstr "Vitnebehandler"
 
 #: Witness.py:245
 #, fuzzy
 msgid "Witness selection error"
-msgstr "Vitne utvalg, merket område feil"
+msgstr "Feil ved valg av vitne"
 
 #: Witness.py:246
 #, fuzzy
@@ -3580,17 +3578,17 @@ msgstr "Kunne ikke lage %s"
 #: WriteGedcom.py:1236
 #, fuzzy
 msgid "GE_DCOM"
-msgstr "Eksporter GEDCOM"
+msgstr "GE_DCOM"
 
 #: WriteGedcom.py:1237
 #, fuzzy
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input. "
-msgstr "å overføre data mellom program, programva godkjenne, akseptere fil inndata "
+msgstr "GEDCOM brukes til å overføre data mellom slektsforskningsprogrammer. De fleste slektsforskningsprogram vil godta en GEDCOM fil som inndata."
 
 #: WriteGedcom.py:1239
 #, fuzzy
 msgid "GEDCOM export options"
-msgstr "innstillinger (= settings, preferences), valg"
+msgstr "GEDCOM eksport innstillinger"
 
 #: WriteXML.py:91 WriteXML.py:141 WriteXML.py:150 WriteXML.py:167
 msgid "Failure writing %s"
@@ -3609,14 +3607,13 @@ msgid "The database cannot be saved because you do not have permission to write 
 msgstr "Databasen kan ikke lagres fordi du ikke har rettigheter til å skrivet til filen. Vennligst kontroller at du har skrivetilgang til filen, og prøv på nytt."
 
 #: WriteXML.py:893
-#, fuzzy
 msgid "GRAMPS _XML database"
-msgstr "GRAMPS"
+msgstr "GRAMPS _XML database"
 
 #: WriteXML.py:894
 #, fuzzy
 msgid "The GRAMPS XML database is a format used by older versions of GRAMPS. It is read-write compatible with the present GRAMPS database format."
-msgstr "GRAMPS fra av GRAMPS lese med GRAMPS."
+msgstr "GRAMPS XML database er et format brukt av eldre versjoner av GRAMPS. Det er lese-skrive kompatibelt med gjeldende GRAMPS database format."
 
 #: const.py:141
 msgid "GRAMPS (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
@@ -3685,7 +3682,7 @@ msgstr "Forlovelse"
 #: const.py:293
 #, fuzzy
 msgid "Marriage Banns"
-msgstr "Ekteskap"
+msgstr "Ekteskapslysning"
 
 #: const.py:294
 msgid "Marriage Contract"
@@ -3961,7 +3958,7 @@ msgstr "Grafiske rapporter"
 #: const.py:936
 #, fuzzy
 msgid "Code Generators"
-msgstr "Generasjoner"
+msgstr "Kodegeneratorer"
 
 #: const.py:937 plugins/NavWebPage.py:1246 plugins/WebPage.py:1714
 msgid "Web Page"
@@ -3989,7 +3986,7 @@ msgstr "Grafikk"
 #: docgen/AbiWord2Doc.py:332
 #, fuzzy
 msgid "AbiWord document"
-msgstr "AbiWord"
+msgstr "AbiWord dokument"
 
 #: docgen/AsciiDoc.py:377
 #, fuzzy
@@ -4003,7 +4000,7 @@ msgstr "Markøren '<!-- START -->' var ikke i malen"
 #: docgen/HtmlDoc.py:159 docgen/HtmlDoc.py:184
 #, fuzzy
 msgid "Template Error"
-msgstr "Mal Feil"
+msgstr "Mal feil"
 
 #: docgen/HtmlDoc.py:194 docgen/HtmlDoc.py:200
 msgid ""
@@ -4060,12 +4057,12 @@ msgstr "ReportLab modulen er ikke installert"
 #: docgen/PdfDoc.py:638 docgen/PdfDoc.py:639 docgen/PdfDoc.py:640
 #, fuzzy
 msgid "PDF document"
-msgstr "PDF"
+msgstr "PDF dokument"
 
 #: docgen/RTFDoc.py:432
 #, fuzzy
 msgid "RTF document"
-msgstr "RTF"
+msgstr "RTF dokument"
 
 #: docgen/SvgDrawDoc.py:264
 msgid "SVG (Scalable Vector Graphics)"
@@ -4148,7 +4145,7 @@ msgstr "AN_SI (ISO-8859-1)"
 #: gedcomexport.glade:526 plugins/genewebexport.glade:326
 #, fuzzy
 msgid "R_eference images from path:  "
-msgstr "R fra "
+msgstr "R_eferanse bilde fra mappe:  "
 
 #: gedcomexport.glade:548 plugins/genewebexport.glade:348
 msgid "media"
@@ -4197,21 +4194,22 @@ msgstr "Versjon:"
 #: gedcomimport.glade:516
 #, fuzzy
 msgid "GRAMPS - GEDCOM Encoding"
-msgstr "GRAMPS"
+msgstr "GRAMPS - GEDCOM koding"
 
 #: gedcomimport.glade:570
+#, fuzzy
 msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
-msgstr ""
+msgstr "<span size=\"larger\" weight=\"bold\">GEDCOM koding</span>"
 
 #: gedcomimport.glade:591
 #, fuzzy
 msgid "This GEDCOM file has identified itself as using ANSEL enconding. Sometimes, this is in error. If the imported data contains unusual characters, undo the import, and override the character set by selecting a different encoding below."
-msgstr "fil tommer feil data angre og tegn fra koding (character (en)coding = tegnkoding) under."
+msgstr "GEDCOM filen sier selv at den bruker ANSEL tegnkoding. Noen ganger stemmer ikke dette. Hvis de importerte dataene inneholder uvanlige tegn, angre importen, og overkjør tegnsettet ved å velge en annen tegnkoding under."
 
 #: gedcomimport.glade:629
 #, fuzzy
 msgid "Encoding: "
-msgstr "Koding:"
+msgstr "Koding: "
 
 #: gedcomimport.glade:654
 #, fuzzy
@@ -4221,7 +4219,12 @@ msgid ""
 "ANSI (iso-8859-1)\n"
 "ASCII\n"
 "UNICODE"
-msgstr "standard(verdi), forvalg"
+msgstr ""
+"standard\n"
+"ANSEL\n"
+"ANSI (iso-8859-1)\n"
+"ASCII\n"
+"UNICODE"
 
 #: gramps.glade:10
 msgid "GRAMPS"
@@ -4242,12 +4245,12 @@ msgstr "Åpne..."
 #: gramps.glade:97
 #, fuzzy
 msgid "Open _Recent"
-msgstr "Åpne"
+msgstr "Åpne nylig b_rukt"
 
 #: gramps.glade:112
 #, fuzzy
 msgid "_Import..."
-msgstr "Import."
+msgstr "_Import...."
 
 #: gramps.glade:134
 msgid "Save _As..."
@@ -4256,12 +4259,12 @@ msgstr "L_agre som..."
 #: gramps.glade:156
 #, fuzzy
 msgid "E_xport..."
-msgstr "SL."
+msgstr "Eksport..."
 
 #: gramps.glade:184
 #, fuzzy
 msgid "A_bandon changes and quit"
-msgstr "A og avsluttet, avslutt"
+msgstr "Avslutt uten å lagre endringer"
 
 #: gramps.glade:193
 msgid "_Quit"
@@ -4279,7 +4282,7 @@ msgstr "Angre"
 #: gramps.glade:250 gramps_main.py:500
 #, fuzzy
 msgid "_Redo"
-msgstr "Gjør om"
+msgstr "Gjø_re?"
 
 #: gramps.glade:278 gramps.glade:940
 msgid "Add a new item"
@@ -4296,7 +4299,7 @@ msgstr "Fjern det valgte elementet"
 #: gramps.glade:302
 #, fuzzy
 msgid "R_emove"
-msgstr "R"
+msgstr "Fj_erne"
 
 #: gramps.glade:324 gramps.glade:976
 msgid "Edit the selected item"
@@ -4309,12 +4312,12 @@ msgstr "Re_diger ..."
 #: gramps.glade:340
 #, fuzzy
 msgid "Compare and _Merge..."
-msgstr "Sammenligne og Slå sammen."
+msgstr "Sammenligne og flett sa_mmen."
 
 #: gramps.glade:362
 #, fuzzy
 msgid "Fast Mer_ge"
-msgstr "Raskt"
+msgstr "Raskt sammenflettin_g"
 
 #: gramps.glade:377
 msgid "Prefere_nces..."
@@ -4376,7 +4379,7 @@ msgstr "Verk_tøy"
 #: gramps.glade:582
 #, fuzzy
 msgid "_Windows"
-msgstr "Lukk vinduet"
+msgstr "Vindu"
 
 #: gramps.glade:590
 msgid "_Help"
@@ -4445,11 +4448,12 @@ msgstr "Gjør hjempersonen til den aktive personen"
 #: gramps.glade:873
 #, fuzzy
 msgid "Open Scratch Pad"
-msgstr "Åpne"
+msgstr "Åpne notat blokk ?? "
 
 #: gramps.glade:874
+#, fuzzy
 msgid "ScratchPad"
-msgstr ""
+msgstr "Notat blokk??"
 
 #: gramps.glade:891
 msgid "Generate reports"
@@ -4635,7 +4639,12 @@ msgid ""
 "Civil Union\n"
 "Unknown\n"
 "Other"
-msgstr "Gift Union"
+msgstr ""
+"Gift\n"
+"Ugift\n"
+"Partnerskap\n"
+"Ukjent\n"
+"Annet"
 
 #: gramps.glade:4047
 msgid "_Father's relationship to child:"
@@ -4666,14 +4675,18 @@ msgid "Show _all"
 msgstr "Vis _alle"
 
 #: gramps.glade:4370
-#, fuzzy
 msgid ""
 "Married\n"
 "Unmarried\n"
 "Civil Union\n"
 "Uknown\n"
 "Other"
-msgstr "Gift Union"
+msgstr ""
+"Gift\n"
+"Ugift\n"
+"Partnerskap\n"
+"Ukjent\n"
+"Annet"
 
 #: gramps.glade:4669
 msgid "Relationship to father:"
@@ -4782,12 +4795,12 @@ msgstr "Referanser"
 #: gramps.glade:5768
 #, fuzzy
 msgid "Open an _existing database"
-msgstr "Åpne"
+msgstr "Åpne en _eksisterende database"
 
 #: gramps.glade:5788
 #, fuzzy
 msgid "Create a _new database"
-msgstr "Lag"
+msgstr "Lag en _ny database"
 
 #: gramps.glade:5983
 msgid "_Relationship:"
@@ -4822,7 +4835,6 @@ msgid "_Text:"
 msgstr "_Tekst:"
 
 #: gramps.glade:6513
-#, fuzzy
 msgid "<b>Select columns</b>"
 msgstr "<b> Velg kolonner</b>"
 
@@ -4837,7 +4849,7 @@ msgstr "_Etternavn:"
 #: gramps.glade:6735
 #, fuzzy
 msgid "Famil_y prefix:"
-msgstr "prefiks, for-, forstavelse:"
+msgstr "Familieforstavelse:"
 
 #: gramps.glade:6760
 msgid "S_uffix:"
@@ -4889,9 +4901,8 @@ msgid "<b>Birth</b>"
 msgstr "<b>Fødsel</b>"
 
 #: gramps.glade:7076
-#, fuzzy
 msgid "GRAMPS _ID:"
-msgstr "GRAMPS ID:"
+msgstr "GRAMPS _ID:"
 
 #: gramps.glade:7122 gramps.glade:11077 gramps.glade:23014 gramps.glade:25261
 msgid "_Place:"
@@ -4932,7 +4943,7 @@ msgstr "Starte fødselsbehandleren"
 #: gramps.glade:7438
 #, fuzzy
 msgid "Edit the preferred name"
-msgstr "Rediger"
+msgstr "Rediger det foretrukne navnet"
 
 #: gramps.glade:7468
 msgid "<b>Gender</b>"
@@ -4958,7 +4969,7 @@ msgstr "Informa_sjonen er komplett"
 #: gramps.glade:7683
 #, fuzzy
 msgid "Information is pri_vate"
-msgstr "Informasjon"
+msgstr "Informasjon er pri_vat"
 
 #: gramps.glade:7791 gramps.glade:8601 gramps.glade:9115 gramps.glade:9551
 #: gramps.glade:12297 gramps.glade:12744
@@ -4989,7 +5000,7 @@ msgstr "Rediger det valgte navnet"
 #: gramps.glade:8316
 #, fuzzy
 msgid "Delete the selected name"
-msgstr "Slett"
+msgstr "Slett det valgte navnet"
 
 #: gramps.glade:8368
 msgid "Names"
@@ -5067,17 +5078,17 @@ msgstr "Kommentarer"
 #: gramps.glade:10319
 #, fuzzy
 msgid "Add a source"
-msgstr "Legg til"
+msgstr "Legg til kilde"
 
 #: gramps.glade:10346
 #, fuzzy
 msgid "Edit the selected source"
-msgstr "Rediger"
+msgstr "Rediger den valgte kilden"
 
 #: gramps.glade:10372
 #, fuzzy
 msgid "Remove the selected source"
-msgstr "Fjern"
+msgstr "Fjern den valgte kilden"
 
 #: gramps.glade:10416 gramps.glade:13416 gramps.glade:15513 gramps.glade:22554
 #: gramps.glade:23829 gramps.glade:25648 gramps.glade:26652 gramps.glade:28020
@@ -5091,7 +5102,7 @@ msgstr "Kilder"
 #: gramps.glade:10566
 #, fuzzy
 msgid "Remove the selected object from this gallery only"
-msgstr "Fjern fra"
+msgstr "Fjern det valgte objektet fra kun dette galeriet"
 
 #: gramps.glade:10649 gramps.glade:15759
 msgid "Web address:"
@@ -5108,7 +5119,7 @@ msgstr "Legg til en internett-henvisning om denne personen"
 #: gramps.glade:10844
 #, fuzzy
 msgid "Edit the selected internet address"
-msgstr "Rediger"
+msgstr "Rediger den valgte internett adressen"
 
 #: gramps.glade:10871
 msgid "Go to this web page"
@@ -5181,7 +5192,7 @@ msgstr "_GRAMPS ID:"
 #: gramps.glade:12035 gramps.glade:14562
 #, fuzzy
 msgid "Last Changed:"
-msgstr "Endret:"
+msgstr "Sist endret:"
 
 #: gramps.glade:12344
 msgid "<b>Events</b>"
@@ -5294,7 +5305,7 @@ msgstr "Last inn den siste databasen _automatisk "
 #: gramps.glade:16452
 #, fuzzy
 msgid "<b>Family name guessing</b>"
-msgstr "<b> Familie</b>"
+msgstr "<b>Familie navn gjetting</b>"
 
 #: gramps.glade:16539
 msgid "<b>Toolbar</b>"
@@ -5320,7 +5331,12 @@ msgid ""
 "Text Only\n"
 "Text Below Icons\n"
 "Text Beside Icons"
-msgstr "innstillinger, oppsett Under Ikoner Ikoner"
+msgstr ""
+"GNOME innstillinger\n"
+"Kun ikoner\n"
+"Kun tekst\n"
+"Tekst under ikoner\n"
+"Tekst ved siden av ikoner"
 
 #: gramps.glade:16702
 msgid "_Always display the LDS ordinance tabs"
@@ -5357,7 +5373,7 @@ msgstr "Ovenfra og ned"
 #: gramps.glade:16891
 #, fuzzy
 msgid "_Display Tip of the Day"
-msgstr "Vis Tips av Dag"
+msgstr "Vis Tips for dagen"
 
 #: gramps.glade:16960
 msgid "_Date format:"
@@ -5493,7 +5509,12 @@ msgid ""
 "Normal\n"
 "High\n"
 "Very High"
-msgstr "Lav Høy"
+msgstr ""
+"Svært lav\n"
+"Lav\n"
+"Normal\n"
+"Høy\n"
+"Svært høy"
 
 #: gramps.glade:18637
 msgid "Double click will edit the selected source"
@@ -5612,7 +5633,6 @@ msgid "_Bottom"
 msgstr "Nederst"
 
 #: gramps.glade:20769
-#, fuzzy
 msgid "<b>First line</b>"
 msgstr "<b>Første linje</b>"
 
@@ -5628,7 +5648,7 @@ msgstr "<b>Avsnittsalternativer</b>"
 #: gramps.glade:21155
 #, fuzzy
 msgid "Internal note"
-msgstr "Intern"
+msgstr "Internt notat"
 
 #: gramps.glade:21411 gramps.glade:22808
 msgid "Object type:"
@@ -5637,7 +5657,7 @@ msgstr "Objekttype:"
 #: gramps.glade:21591
 #, fuzzy
 msgid "Lower X:"
-msgstr "Små X:"
+msgstr "Lav X:"
 
 #: gramps.glade:21615
 #, fuzzy
@@ -5652,22 +5672,22 @@ msgstr "Øvre Y:"
 #: gramps.glade:21663
 #, fuzzy
 msgid "Lower Y:"
-msgstr "Små Y:"
+msgstr "Lav Y:"
 
 #: gramps.glade:21771
 #, fuzzy
 msgid "<b>Subsection</b>"
-msgstr "<b>Valg av kilde</b>"
+msgstr "<b>Underseksjon</b>"
 
 #: gramps.glade:21817
 #, fuzzy
 msgid "<b>Privacy</b>"
-msgstr "<b> Privat</b>"
+msgstr "<b>Personvern ??</b>"
 
 #: gramps.glade:22056
 #, fuzzy
 msgid "Global Notes"
-msgstr "Notater"
+msgstr "Globale notater"
 
 #: gramps.glade:22257
 msgid "Creates a new object attribute from the above data"
@@ -5684,7 +5704,7 @@ msgstr "Avslutt uten å lagre"
 #: gramps.glade:24153
 #, fuzzy
 msgid "Do not ask again"
-msgstr "Ikke bruk bilder"
+msgstr "Ikke spør igjen"
 
 #: gramps.glade:24771
 msgid "Remove object and all references to it from the database"
@@ -5781,26 +5801,27 @@ msgstr "Forstavelse:"
 #: gramps.glade:28857
 #, fuzzy
 msgid "P_atronymic:"
-msgstr "P:"
+msgstr "_Avstamningsnavn:"
 
 #: gramps.glade:28950
+#, fuzzy
 msgid "G_roup as:"
-msgstr ""
+msgstr "G_ruper som:"
 
 #: gramps.glade:28978
 #, fuzzy
 msgid "_Sort as:"
-msgstr "Sorter:"
+msgstr "_Sorter som:"
 
 #: gramps.glade:29027
 #, fuzzy
 msgid "_Display as:"
-msgstr "Vis:"
+msgstr "Vis som:"
 
 #: gramps.glade:29054
 #, fuzzy
 msgid "<b>Name Information</b>"
-msgstr "<b> Navn Informasjon</b>"
+msgstr "<b> Navneinformasjon</b>"
 
 #: gramps.glade:29103
 #, fuzzy
@@ -5813,7 +5834,10 @@ msgid ""
 "Default (based on locale)\n"
 "Family name, Given name\n"
 "Given name, Family name"
-msgstr "Standard på lokale, regionaldata, lokalitet, lokaltilpassing Familie"
+msgstr ""
+"Standard (basert på lokale)\n"
+"Etternavn, Fornavn\n"
+"Fornavn, Etternavn"
 
 #: gramps.glade:29159
 #, fuzzy
@@ -5821,7 +5845,10 @@ msgid ""
 "Default (based on locale)\n"
 "Given name Family name\n"
 "Family name Given name\n"
-msgstr "Standard på lokale, regionaldata, lokalitet, lokaltilpassing Familie"
+msgstr ""
+"Standard (basert på lokale)\n"
+"Fornavn, Etternavn\n"
+"Etternavn, Fornavn"
 
 #: gramps.glade:29779
 msgid "_Comment:"
@@ -5842,12 +5869,12 @@ msgstr "_Velg"
 #: gramps.glade:30030
 #, fuzzy
 msgid "_Next"
-msgstr "Neste"
+msgstr "_Neste"
 
 #: gramps.glade:30089
 #, fuzzy
 msgid "_Display on startup"
-msgstr "Vis på"
+msgstr "Vis ved oppstart"
 
 #: gramps.glade:30152
 #, fuzzy
