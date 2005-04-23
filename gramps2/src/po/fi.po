@@ -1,25 +1,14 @@
-# translation of fi-new4.po to Suomi
-# translation of fi-new3.po to Suomi
-# translation of fi-new2.po to Suomi
-# translation of fi-new.po to Suomi
 # translation of fi.po to Suomi
 # GRAMPS
-# Eero Tamminen <oak welho com>, 2004.
-# Eero Tamminen <eero tamminen netsonic fi>, 2005.
-# Eero Tamminen <oak_at_welho_com>, 2005.
-# Eero Tamminen, 2005.
-# Eero Tamminen, 2005.
-# Eero Tamminen <oak_at_welho_com>, 2005.
-# Eero Tamminen <oak_at_welho_com>, 2005.
+# Eero Tamminen <eerot at sf>, 2005.
 # Copyright (C) YEAR ORGANIZATION.
-# Eero Tamminen <oak_at_welho_com>, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: fi-new4\n"
+"Project-Id-Version: fi\n"
 "POT-Creation-Date: Mon Apr 11 20:54:14 2005\n"
 "PO-Revision-Date: 2005-04-21 00:25+0300\n"
-"Last-Translator: Eero Tamminen <oak_at_welho_com>\n"
+"Last-Translator: Eero Tamminen <eerot at sf>\n"
 "Language-Team: Suomi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -338,7 +327,7 @@ msgstr "Valitse _tiedostotyyppi:"
 
 #: DbPrompter.py:605 gramps_main.py:1301
 msgid "All files"
-msgstr "Kaikki tiedosto"
+msgstr "Kaikki tiedostot"
 
 #: DbPrompter.py:614
 msgid "All GRAMPS files"
@@ -889,7 +878,7 @@ msgstr "Tee valitusta puolisosta ensisijainen puoliso"
 
 #: FamilyView.py:639
 msgid "Set Preferred Spouse (%s)"
-msgstr "Aseta puoliso (%s) etusijalle"
+msgstr "Aseta (%s) ensisijaiseksi puolisoksi"
 
 #: FamilyView.py:769
 msgid "Modify family"
@@ -1006,11 +995,11 @@ msgstr "Yleiset suotimet"
 
 #: GenericFilter.py:146
 msgid "Matches everyone in the database"
-msgstr "Hyväksyy kaikki tietokannassa"
+msgstr "Poimii kaikki tietokannasta"
 
 #: GenericFilter.py:168
 msgid "Matches individuals that have no relationships"
-msgstr "Valitsee henkilöt, joilla ei ole suhteita"
+msgstr "Poimii henkilöt, joilla ei ole suhteita"
 
 #: GenericFilter.py:184 GenericFilter.py:283 GenericFilter.py:399
 #: GenericFilter.py:479 GenericFilter.py:524 GenericFilter.py:654
@@ -1087,7 +1076,7 @@ msgstr "Poimii henkilöt, jotka ovat valitun henkilön jälkeläisiä vähintä�
 
 #: GenericFilter.py:586
 msgid "Matches the person that is a child of someone matched by a filter"
-msgstr "Poimii henkilön, joka on suotimen hyväksymän henkilön lapsi"
+msgstr "Poimii henkilöt, jotka ovat suotimen hyväksymän henkilön lapsi"
 
 #: GenericFilter.py:589 GenericFilter.py:632 GenericFilter.py:935
 #: GenericFilter.py:1177 GenericFilter.py:1512 GenericFilter.py:1545
@@ -1097,7 +1086,7 @@ msgstr "Perhesuotimet"
 
 #: GenericFilter.py:629
 msgid "Matches the person that is a sibling of someone matched by a filter"
-msgstr "Poimii henkilön, joka on suotimen hyväksymän henkilön sisarus"
+msgstr "Poimii henkilöt, jotka ovat suotimen hyväksymän henkilön sisaruksia"
 
 #: GenericFilter.py:663
 msgid "Matches people that are descendants or the spouse of a descendant of a specified person"
@@ -1105,7 +1094,7 @@ msgstr "Poimii henkilöt, jotka ovat valitun henkilön jälkeläisiä tai heidä
 
 #: GenericFilter.py:727
 msgid "Matches people that are ancestors of a specified person"
-msgstr "Poimii valitun henkilön esivanhempia"
+msgstr "Poimii valitun henkilön esivanhemmat"
 
 #: GenericFilter.py:730 GenericFilter.py:790 GenericFilter.py:822
 #: GenericFilter.py:881 GenericFilter.py:966 GenericFilter.py:1015
@@ -1164,7 +1153,7 @@ msgstr "Henkilökohtainen tapahtuma:"
 
 #: GenericFilter.py:1073
 msgid "Matches the person with a personal event of a particular value"
-msgstr "Hyväksyy henkilön, jonka henkilökohtaisella tapahtumalla on tietty arvo"
+msgstr "Poimii henkilöt, joiden henkilökohtaisella tapahtumalla on tietty arvo"
 
 #: GenericFilter.py:1076 GenericFilter.py:1129 GenericFilter.py:1240
 #: GenericFilter.py:1286 GenericFilter.py:1701 GenericFilter.py:1732
@@ -1178,7 +1167,7 @@ msgstr "Perhetapahtuma:"
 
 #: GenericFilter.py:1126
 msgid "Matches the person with a family event of a particular value"
-msgstr "Hyväksyy henkilön, jonka perhetapahtumalla on tietty arvo"
+msgstr "Poimii henkilöt, joiden perhetapahtumalla on tietty arvo"
 
 #: GenericFilter.py:1166
 msgid "Number of relationships:"
@@ -1194,15 +1183,15 @@ msgstr "Lasten lukumäärä:"
 
 #: GenericFilter.py:1174
 msgid "Matches the person who has a particular relationship"
-msgstr "Hyväksyy henkilön, jolla on tietty suhde"
+msgstr "Poimii henkilöt, joilla on tietynlainen suhde"
 
 #: GenericFilter.py:1237
 msgid "Matches the person with a birth of a particular value"
-msgstr "Hyväksyy henkilön, jonka syntymäajalla on tietty arvo"
+msgstr "Poimii henkilöt, joiden syntymällä on tietty arvo"
 
 #: GenericFilter.py:1283
 msgid "Matches the person with a death of a particular value"
-msgstr "Hyväksyy henkilön, jonka kuolinajalla on tietty arvo"
+msgstr "Poimii henkilöt, joiden kuolemalla on tietty arvo"
 
 #: GenericFilter.py:1316 GenericFilter.py:1341 gramps.glade:9043
 #: gramps.glade:22115 gramps.glade:23168
@@ -1237,7 +1226,7 @@ msgstr "Etunimi:"
 
 #: GenericFilter.py:1374 GenericFilter.py:1413
 msgid "Matches the person with a specified (partial) name"
-msgstr "Hyväksyy henkilön, jonka nimi sisältää annetun nimen"
+msgstr "Poimii henkilöt, joilla on annettu nimi / nimen osa"
 
 #: GenericFilter.py:1407 GenericFilter.py:1872
 msgid "Substring:"
@@ -1249,7 +1238,7 @@ msgstr "Poimii henkilöt, joiden etunimi tai sukunimi puuttuu"
 
 #: GenericFilter.py:1509
 msgid "Matches the person married to someone matching a filter"
-msgstr "Hyväksyy henkilön, joka on aviossa suotimen hyväksymään henkilöön"
+msgstr "Poimii henkilöt, jotka ovat aviossa suotimen hyväksymään henkilöön"
 
 #: GenericFilter.py:1542
 msgid "Matches person who were adopted"
@@ -1289,7 +1278,7 @@ msgstr "Vuonna:"
 
 #: GenericFilter.py:1769
 msgid "Matches persons without indications of death that are not too old"
-msgstr "Poimii henkilöt, joilla ei ole kuolemaan liittyviä tapahtumia, ja jotka eivät ole liian vanhoja"
+msgstr "Poimii henkilöt, joilla ei ole kuolemaan liittyviä tapahtumia, jotka olisivat liian vanhoja"
 
 #: GenericFilter.py:1793
 msgid "Matches persons that are indicated as private"
@@ -1638,7 +1627,7 @@ msgstr "Muokkaa ominaisuuksia"
 
 #: MediaView.py:317
 msgid "This media object is currently being used. If you delete this object, it will be removed from the database and from all records that reference it."
-msgstr "Kyseinen media-objekti on käytössä. Jos hävität sen,kaikki viitteet siihen poistetaan ja objekti itse poistetaan tietokannasta."
+msgstr "Kyseinen media-objekti on käytössä. Jos hävität sen, objekti ja kaikki viitteet siihen poistetaan tietokannasta."
 
 #: MediaView.py:321
 msgid "Deleting media object will remove it from the database."
@@ -1957,7 +1946,7 @@ msgstr "Debuggaus"
 
 #: Plugins.py:728
 msgid "Attempt to reload plugins. Note: This tool itself is not reloaded!"
-msgstr "Yrittää uudelleenladata liitännäiset. Huom. Tätä työkalua itseään ei uudelleenladata!"
+msgstr "Yrittää uudelleenladata liitännäiset. Huom. Työkalua itseään ei uudelleenladata!"
 
 #: ReadGedcom.py:79 ReadGedcom.py:80
 msgid "Windows 9x file system"
@@ -2212,7 +2201,7 @@ msgstr "Edistymisraportti"
 
 #: Report.py:251
 msgid "Working"
-msgstr "Työntouhussa"
+msgstr "Työskentelen"
 
 #: Report.py:391
 msgid "%(report_name)s for GRAMPS Book"
@@ -3701,7 +3690,7 @@ msgstr "Tyylipohjasta puuttuu '<!-- START -->' merkintä"
 
 #: docgen/HtmlDoc.py:159 docgen/HtmlDoc.py:184
 msgid "Template Error"
-msgstr "Virhe tyylissä"
+msgstr "Virhe tyylimallissa"
 
 #: docgen/HtmlDoc.py:194 docgen/HtmlDoc.py:200
 msgid ""
@@ -5327,7 +5316,7 @@ msgstr "Ala-Y:"
 
 #: gramps.glade:21771
 msgid "<b>Subsection</b>"
-msgstr "<b>Alaotsake</b>"
+msgstr "<b>Alaosio</b>"
 
 #: gramps.glade:21817
 msgid "<b>Privacy</b>"
@@ -5515,7 +5504,7 @@ msgstr "_Näytä käynnistettäessä"
 
 #: gramps.glade:30152
 msgid "<span weight=\"bold\" size=\"larger\">Gramps' Tip of the Day</span>"
-msgstr "<span weight=\"bold\" size=\"larger\">Grampsin vihje</span>"
+msgstr "<span weight=\"bold\" size=\"larger\">Grampsin päivän vihje</span>"
 
 #: gramps.glade:30185
 msgid "GRAMPS - Loading Database"
@@ -5717,7 +5706,7 @@ msgstr "%(file_name)s tiedostoon viitataan tietokannassa, mutta sitä ei löydy.
 
 #: gramps_main.py:1378
 msgid "Deleting the person will remove the person from the database."
-msgstr "Henkilön tuhoaminen poistaa henkilön tietokannasta."
+msgstr "Henkilön poistaminen tuhoaa hänet tietokannasta."
 
 #: gramps_main.py:1382
 msgid "_Delete Person"
@@ -5749,7 +5738,7 @@ msgstr "Avaan tietokantaa..."
 
 #: gramps_main.py:1742
 msgid "No Home Person has been set."
-msgstr "\"Koti\"-henkilö ei ole asetettu."
+msgstr "\"Koti\"-henkilöä ei ole asetettu."
 
 #: gramps_main.py:1743
 msgid "The Home Person may be set from the Settings menu."
@@ -6444,7 +6433,7 @@ msgstr "%d paikkaan oli viitteitä, mutta niitä ei löytynyt\n"
 
 #: plugins/Check.py:525
 msgid "Integrity Check Results"
-msgstr "Yheystarkistuksen tulokset"
+msgstr "Eheystarkistuksen tulokset"
 
 #: plugins/Check.py:566
 msgid "Check and repair database"
@@ -6452,7 +6441,7 @@ msgstr "Tarkista ja korjaa tietokanta"
 
 #: plugins/Check.py:568
 msgid "Checks the database for integrity problems, fixing the problems that it can"
-msgstr "Tarkista tietokannan eheyden ja korjaa osaamansa ongelmat"
+msgstr "Tarkistaa tietokannan eheyden ja korjaa osaamansa ongelmat"
 
 #: plugins/CountAncestors.py:71
 msgid "Number of ancestors of \"%s\" by generation"
@@ -6854,7 +6843,7 @@ msgstr "Ei valittua sääntöä"
 
 #: plugins/FilterEditor.py:858
 msgid "Filter Test"
-msgstr "Säätimen testaus"
+msgstr "Suodintesti"
 
 #: plugins/FilterEditor.py:888
 msgid "Test"
@@ -7048,7 +7037,7 @@ msgstr "Näyttää vain vuosiluvun päivämäärästä. Kuukausia, päiviä, pä
 
 #: plugins/GraphViz.py:557
 msgid "Place/cause when no date"
-msgstr "Paikka/syy kun päivämäärä puuttuu"
+msgstr "Paikka/syy, silloin kun päivämäärä puuttuu"
 
 #: plugins/GraphViz.py:561
 msgid "When no birth, marriage, or death date is available, the correspondent place field (or cause field when blank place) will be used."
@@ -7089,7 +7078,7 @@ msgstr "Kaavion väritys"
 
 #: plugins/GraphViz.py:619
 msgid "Males will be shown with blue, females with red.  If the sex of an individual is unknown it will be shown with gray."
-msgstr "Miehet näytetään sinisellä, naiset punaisella. Henkilöt, joiden sukupuoli on tuntematon, näytetään harmaalla.."
+msgstr "Miehet näytetään sinisellä, naiset punaisella. Henkilöt, joiden sukupuoli on tuntematon, näytetään harmaalla."
 
 #: plugins/GraphViz.py:636
 msgid "Arrowhead direction"
@@ -7499,7 +7488,7 @@ msgstr "Etuliite"
 
 #: plugins/PatchNames.py:302 plugins/PatchNames.py:315
 msgid "Extract information from names"
-msgstr "Eriytä nimien tiedot"
+msgstr "Eriytä tietoja nimistä"
 
 #: plugins/PatchNames.py:317
 msgid "Searches the entire database and attempts to extract titles, nicknames and surname prefixes that may be embedded in a person's given name field."
@@ -8366,47 +8355,47 @@ msgstr "GRAMPS tunnuksen linkin URL"
 
 #: plugins/WebPage.py:1563
 msgid "The style used for the header that identifies facts and events."
-msgstr "Tiedot ja tapahtumat otsakkeen tyyli."
+msgstr "Tiedot ja tapahtumat -osion otsikkotyyli."
 
 #: plugins/WebPage.py:1571
 msgid "The style used for the header for the notes section."
-msgstr "Huomioita-kappaleotsakkeen tyyli."
+msgstr "Huomioita -osion otsikkotyyli."
 
 #: plugins/WebPage.py:1578
 msgid "The style used for the copyright notice."
-msgstr "Copyright-merkinnän tyyli."
+msgstr "Tekijänoikeusilmoituksen tyyli."
 
 #: plugins/WebPage.py:1585
 msgid "The style used for the header for the sources section."
-msgstr "Lähde-kappaleotsakkeen tyyli."
+msgstr "Lähteet -osion otsikkotyyli."
 
 #: plugins/WebPage.py:1592
 msgid "The style used on the index page that labels each section."
-msgstr "Indeksisivun kappalenimikkeiden tyyli."
+msgstr "Tyyli indeksisivulle, joka nimeää osiot."
 
 #: plugins/WebPage.py:1599
 msgid "The style used on the index page that labels links to each section."
-msgstr "Indeksisivun, josta on linkit muihin kappaleisiin, tyyli."
+msgstr "Tyyli indeksisivulle, joka nimeää muiden osioiden linkit."
 
 #: plugins/WebPage.py:1606
 msgid "The style used for the header for the image section."
-msgstr "Kuva-kappaleotsakkeen tyyli."
+msgstr "Kuvat -osion otsikkotyyli."
 
 #: plugins/WebPage.py:1613
 msgid "The style used for the header for the siblings section."
-msgstr "Sisarus-kappaleen otsaketyyli."
+msgstr "Sisarukset -osion otsikkotyyli."
 
 #: plugins/WebPage.py:1620
 msgid "The style used for the header for the marriages and children section."
-msgstr "Avioliitot ja lapset-kappaleotsakkeen tyyli."
+msgstr "Avioliitot ja lapset -osion otsikkotyyli."
 
 #: plugins/WebPage.py:1635
 msgid "The style used for the general data labels."
-msgstr "Yleisten tietonimikkeiden tyyli."
+msgstr "Tietojen otsakkeille käytetty yleistyyli."
 
 #: plugins/WebPage.py:1642
 msgid "The style used for the general data."
-msgstr "Yleistietojen tyyli."
+msgstr "Tiedoille käytetty yleistyyli."
 
 #: plugins/WebPage.py:1649
 msgid "The style used for the description of images."
@@ -8426,11 +8415,11 @@ msgstr "Huomiotietojen tyyli."
 
 #: plugins/WebPage.py:1677
 msgid "The style used for the header for the URL section."
-msgstr "URL-kappaleotsakkeen tyyli."
+msgstr "URL-osion otsikkotyyli."
 
 #: plugins/WebPage.py:1684
 msgid "The style used for the URL information."
-msgstr "URL-tietojen tyyli."
+msgstr "Tyyli URL-tiedoille."
 
 #: plugins/WriteCD.py:60
 msgid "Export to CD"
@@ -8459,15 +8448,15 @@ msgstr "CD:lle vienti kopioi kaikki tietosi ja niihin liittyvät media-objektit 
 
 #: plugins/WriteFtree.py:273
 msgid "_Web Family Tree"
-msgstr "_WWW-Sukupuu"
+msgstr "_Web Family Tree"
 
 #: plugins/WriteFtree.py:274
 msgid "Web Family Tree format."
-msgstr "WWW-Sukupuu -muoto."
+msgstr "Web Family Tree -muoto."
 
 #: plugins/WriteFtree.py:275
 msgid "Web Family Tree export options"
-msgstr "WWW-Sukupuu vienti-asetukset"
+msgstr "Web Family Tree vientiasetukset"
 
 #: plugins/WriteGeneWeb.py:218
 msgid "No families matched by selected filter"
@@ -8595,7 +8584,7 @@ msgstr "<b>Virheikkuna</b>"
 
 #: plugins/eventcmp.glade:9
 msgid "Save as a Spreadsheet - GRAMPS"
-msgstr "Tallenna taulukkolaskentataulukkona -GRAMPS"
+msgstr "Tallenna taulukkolaskenta-muotoon -GRAMPS"
 
 #: plugins/eventcmp.glade:81
 msgid "<b>_File name</b>"
@@ -8607,7 +8596,7 @@ msgstr "Tallenna tiedot"
 
 #: plugins/eventcmp.glade:118
 msgid "Select file to save OpenOffice.org spreadsheet"
-msgstr "Valitse tiedosto tallentaaksesi OpenOffice.org taulukkolaskennan"
+msgstr "Valitse tiedosto, johon tallentaa OpenOffice.org taulukkolaskenta"
 
 #: plugins/eventcmp.glade:416
 msgid "The event comparison utility uses the filters defined in the Custom Filter Editor."
@@ -8777,7 +8766,7 @@ msgstr "_Kaikki säännöt täsmäävät"
 
 #: rule.glade:352
 msgid "At lea_st one rule must apply"
-msgstr "_Vähintään yhden säännön pitää päteä"
+msgstr "_Vähintään yksi sääntö täsmää"
 
 #: rule.glade:375
 msgid "E_xactly one rule must apply"
