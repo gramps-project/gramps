@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Mon Apr 11 20:54:14 2005\n"
-"PO-Revision-Date: 2005-04-23 00:35+0200\n"
+"PO-Revision-Date: 2005-04-23 21:10+0200\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -5879,52 +5879,52 @@ msgstr "Vis ved oppstart"
 #: gramps.glade:30152
 #, fuzzy
 msgid "<span weight=\"bold\" size=\"larger\">Gramps' Tip of the Day</span>"
-msgstr "<span weight=\"bold\" size=\"larger\"> Tips av Dag</span>"
+msgstr "<span weight=\"bold\" size=\"larger\">Dagens tips for GRAMPS</span>"
 
 #: gramps.glade:30185
 #, fuzzy
 msgid "GRAMPS - Loading Database"
-msgstr "GRAMPS Laster inn Database"
+msgstr "GRAMPS - Laster inn databasen"
 
 #: gramps.glade:30210
 #, fuzzy
 msgid "<span size=\"larger\" weight=\"bold\">Loading database</span>"
-msgstr "<span size=\"larger\" weight=\"bold\"> Laster inn</span>"
+msgstr "<span size=\"larger\" weight=\"bold\"> Laster inn databasen</span>"
 
 #: gramps.glade:30234
 #, fuzzy
 msgid "GRAMPS is loading the database you selected. Please wait."
-msgstr "GRAMPS."
+msgstr "GRAMPS laster inn databasen du valgte. Vennligst vent."
 
 #: gramps.glade:30417
 #, fuzzy
 msgid "Calenda_r:"
-msgstr "<b>Kalendere</b>"
+msgstr "Kalende_re:"
 
 #: gramps.glade:30467
 #, fuzzy
 msgid "<b>Q_uality</b>"
-msgstr "<b>Familie</b>"
+msgstr "<b>Kvalitet</b>"
 
 #: gramps.glade:30509
 #, fuzzy
 msgid "<b>_Type</b>"
-msgstr "<b> Type</b>"
+msgstr "<b>_Type</b>"
 
 #: gramps.glade:30551
 #, fuzzy
 msgid "<b>Date</b>"
-msgstr "<b> Dato</b>"
+msgstr "<b>Dato</b>"
 
 #: gramps.glade:30575
 #, fuzzy
 msgid "_Day"
-msgstr "Dag"
+msgstr "_Dag"
 
 #: gramps.glade:30600
 #, fuzzy
 msgid "_Month"
-msgstr "Måned"
+msgstr "_Måned"
 
 #: gramps.glade:30625
 #, fuzzy
@@ -5934,42 +5934,42 @@ msgstr "År"
 #: gramps.glade:30709
 #, fuzzy
 msgid "<b>Second date</b>"
-msgstr "<b> Andre dato</b>"
+msgstr "<b>Andre dato</b>"
 
 #: gramps.glade:30733
 #, fuzzy
 msgid "D_ay"
-msgstr "_Dato:"
+msgstr "D_ag"
 
 #: gramps.glade:30758
 #, fuzzy
 msgid "Mo_nth"
-msgstr "Ma."
+msgstr "Må_ned"
 
 #: gramps.glade:30783
 #, fuzzy
 msgid "Y_ear"
-msgstr "Y"
+msgstr "År"
 
 #: gramps.glade:30880
 #, fuzzy
 msgid "Te_xt comment:"
-msgstr "_Kommentar:"
+msgstr "Tekst kommentar:"
 
 #: gramps_main.py:149
 #, fuzzy
 msgid "Use at your own risk"
-msgstr "Bruk ved"
+msgstr "Brukes på egen rissiko"
 
 #: gramps_main.py:150
 #, fuzzy
 msgid "This is an unstable development version of GRAMPS. It is intended as a technology preview. Do not trust your family database to this development version. This version may contain bugs which could corrupt your database."
-msgstr "versjon av GRAMPS tiltro (trusted = betrodd eller tiltrodd), tillit å versjon versjon."
+msgstr "Dette er en ustabil utvikler versjon av GRAMPS. Den er ment som en teknologisk forhåndsvisning. Ikke stol på at dine familie data er trygge med denne versjonen. Denne versjonen kan inneholde feil som kan ødlegge din database."
 
 #: gramps_main.py:164 gramps_main.py:171
 #, fuzzy
 msgid "Configuration error"
-msgstr "Oppsett feil"
+msgstr "Konfigurasjons feil"
 
 #: gramps_main.py:165
 #, fuzzy
@@ -5977,7 +5977,10 @@ msgid ""
 "\n"
 "\n"
 "Possibly the installation of GRAMPS was incomplete. Make sure the GConf schema of GRAMPS is properly installed."
-msgstr "av GRAMPS skjema av GRAMPS."
+msgstr ""
+"\n"
+"\n"
+"Mulig at installasjonen av GRAMPS ikke ble fullføre. Vennligst kontroller at GConf skjema for GRAMPS er ordentlig installert."
 
 #: gramps_main.py:172
 #, fuzzy
@@ -5985,17 +5988,20 @@ msgid ""
 "A definition for the MIME-type %s could not be found\n"
 "\n"
 "Possibly the installation of GRAMPS was incomplete. Make sure the MIME-types of GRAMPS are properly installed."
-msgstr "A for av GRAMPS av GRAMPS."
+msgstr ""
+"Klarte ikke å finne definisjonen av MIME-type %s\n"
+"\n"
+"Mulig at installasjonen av GRAMPS ikke ble fullføre. Vennligst kontroller at MIME-typer for GRAMPS er ordentlig installert."
 
 #: gramps_main.py:479
 #, fuzzy
 msgid "File does not exist"
-msgstr "Fil"
+msgstr "Filen eksisterer ikke"
 
 #: gramps_main.py:480
 #, fuzzy
 msgid "The file %s cannot be found. It will be removed from the list of recent files."
-msgstr "fil fra liste av nylig brukt, nylig."
+msgstr "Kan ikke finne filen %s. Den vil bli fjernet fra listen over nylig brukte filer."
 
 #: gramps_main.py:652
 msgid "Back Menu"
@@ -6020,16 +6026,17 @@ msgstr "Slektsløse personer"
 #: gramps_main.py:915
 #, fuzzy
 msgid "Name contains..."
-msgstr "Navn."
+msgstr "Navn inneholder..."
 
 #: gramps_main.py:980
+#, fuzzy
 msgid "Any textual record contains..."
-msgstr ""
+msgstr "Vilkårlig tekst post som inneholder..."
 
 #: gramps_main.py:985
 #, fuzzy
 msgid "Any textual record matches regular expression..."
-msgstr "Navn som treffes av det regulære utrykket ..."
+msgstr "Vilkårlig tekst post som treffer regulær uttrykket..."
 
 #: gramps_main.py:1012 gramps_main.py:1035
 msgid "Cannot merge people."
@@ -6040,8 +6047,9 @@ msgid "Exactly two people must be selected to perform a merge. A second person c
 msgstr "Nøyaktig to personer må være valgt for å gjennomføre en fletting. Person nummer to kan bli valgt ved å holde nede Ctrl tasten samtidig som man klikker på den andre personen."
 
 #: gramps_main.py:1159
+#, fuzzy
 msgid "Cannot unpak archive"
-msgstr ""
+msgstr "Kan ikke pakke ut arkivet"
 
 #: gramps_main.py:1160 plugins/ReadPkg.py:67
 msgid "Temporary directory %s is not writable"
@@ -6051,39 +6059,41 @@ msgstr "Den midlertidige mappa %s er skrivebeskyttet"
 #: gramps_main.py:1228
 #, fuzzy
 msgid "Cannot open database"
-msgstr "Lage en database"
+msgstr "Kan ikke åpne database"
 
 #: gramps_main.py:1198
 #, fuzzy
 msgid ""
 "The selected file is a directory, not a file.\n"
 "A GRAMPS database must be a file."
-msgstr "fil katalog fil GRAMPS fil."
+msgstr ""
+"Den valgte filen er en mappe, ikke en fil.\n"
+"GRAMPS databasen må være en fil."
 
 #: gramps_main.py:1204
 #, fuzzy
 msgid "You do not have read access to the selected file."
-msgstr "lese å fil."
+msgstr "Du har ikke lesetilgang til den valgte filen."
 
 #: gramps_main.py:1209
 #, fuzzy
 msgid "Read only database"
-msgstr "Lest"
+msgstr "Kun lesetilgang til databasen"
 
 #: gramps_main.py:1210
 #, fuzzy
 msgid "You do not have write access to the selected file."
-msgstr "å fil."
+msgstr "Du har ikke skrivetilgang til den valgte filen."
 
 #: gramps_main.py:1219
 #, fuzzy
 msgid "Read Only"
-msgstr "Lest"
+msgstr "Kun lesbar"
 
 #: gramps_main.py:1225
 #, fuzzy
 msgid "The database file specified could not be opened."
-msgstr "fil."
+msgstr "Den spesifiserte databasefilen kunne ikke åpnes."
 
 #: gramps_main.py:1229
 msgid "%s could not be opened."
@@ -6092,7 +6102,7 @@ msgstr "Klarte ikke å åpne %s"
 #: gramps_main.py:1285
 #, fuzzy
 msgid "Save Media Object"
-msgstr "Lagre Media Objekt"
+msgstr "Lagre media objekt"
 
 #: gramps_main.py:1331 plugins/Check.py:267 plugins/WriteCD.py:253
 #: plugins/WritePkg.py:171
@@ -6106,7 +6116,7 @@ msgstr "%(file_name)s har en (eller flere) henvisning(er) i databasen, men eksis
 #: gramps_main.py:1378
 #, fuzzy
 msgid "Deleting the person will remove the person from the database."
-msgstr "fjern fra."
+msgstr "Å slette personen vil fjerne vedkommende fra databasen."
 
 #: gramps_main.py:1382
 msgid "_Delete Person"
@@ -6115,7 +6125,7 @@ msgstr "Slett en person"
 #: gramps_main.py:1446
 #, fuzzy
 msgid "Delete Person (%s)"
-msgstr "Slett Person"
+msgstr "Slett person (%s)"
 
 #: gramps_main.py:1521
 msgid "%(relationship)s of %(person)s"
@@ -6124,12 +6134,12 @@ msgstr "%(relationship)s til %(person)s"
 #: gramps_main.py:1678
 #, fuzzy
 msgid "Upgrading database..."
-msgstr "Åpne database"
+msgstr "Oppgraderer database..."
 
 #: gramps_main.py:1691
 #, fuzzy
 msgid "Setup complete"
-msgstr "Oppsett"
+msgstr "Ferdig med oppsett"
 
 #: gramps_main.py:1708
 msgid "Loading %s..."
@@ -6138,7 +6148,7 @@ msgstr "Laster inn %s..."
 #: gramps_main.py:1711
 #, fuzzy
 msgid "Opening database..."
-msgstr "Åpne database"
+msgstr "Åpne database..."
 
 #: gramps_main.py:1742
 msgid "No Home Person has been set."
@@ -6163,7 +6173,7 @@ msgstr "Bokmerket kunne ikke lages fordi ingen er valgt."
 #: gramps_main.py:1767
 #, fuzzy
 msgid "Could not go to a Person"
-msgstr "å Person"
+msgstr "Kunne ikke gå til en person"
 
 #: gramps_main.py:1768
 msgid "Either stale bookmark or broken history caused by IDs reorder."
@@ -6213,17 +6223,17 @@ msgstr "Velg"
 #: mergedata.glade:611
 #, fuzzy
 msgid "<span weight=\"bold\" size=\"larger\">Merge Sources</span>"
-msgstr "<span weight=\"bold\" size=\"larger\"> Slå sammen Kilder</span>"
+msgstr "<span weight=\"bold\" size=\"larger\"> Slå sammen kilder</span>"
 
 #: mergedata.glade:638
 #, fuzzy
 msgid "<b>Source 1</b>"
-msgstr "<b> Kilde</b>"
+msgstr "<b>Kilde 1</b>"
 
 #: mergedata.glade:666
 #, fuzzy
 msgid "<b>Source 2</b>"
-msgstr "<b> Kilde</b>"
+msgstr "<b>Kilde 2</b>"
 
 #: mergedata.glade:953 mergedata.glade:975
 #, fuzzy
@@ -6233,17 +6243,16 @@ msgstr "Forkortelse:"
 #: mergedata.glade:998 mergedata.glade:1020
 #, fuzzy
 msgid "Publication:"
-msgstr "Publikasjonsinformasjon:"
+msgstr "Publikasjon:"
 
 #: mergedata.glade:1043 mergedata.glade:1065
-#, fuzzy
 msgid "GRAMPS ID:"
 msgstr "GRAMPS ID:"
 
 #: mergedata.glade:1236
 #, fuzzy
 msgid "Select the person that will provide the primary data for the merged person."
-msgstr "Velg data for."
+msgstr "Velg personen som vil gi primærdata for den flettede personen."
 
 #: plugins.glade:112
 #, fuzzy
@@ -6465,12 +6474,12 @@ msgstr " i %(place)s"
 #: plugins/Ancestors.py:524
 #, fuzzy
 msgid " b. %(birth_date)s"
-msgstr "dato"
+msgstr " b. %(birth_date)s"
 
 #: plugins/Ancestors.py:532
 #, fuzzy
 msgid " d. %(death_date)s"
-msgstr "dato"
+msgstr " d. %(death_date)s"
 
 #: plugins/Ancestors.py:545
 msgid "born"
@@ -6531,7 +6540,7 @@ msgstr "  Han giftet seg med %(name)s"
 #: plugins/Ancestors.py:749
 #, fuzzy
 msgid "  She later had a relationship with %(name)s"
-msgstr "  Hun hadde senere et forhold med %(name)s"
+msgstr "  Hun hadde senere en forhold til %(name)s"
 
 #: plugins/Ancestors.py:752
 #, fuzzy
@@ -6662,27 +6671,27 @@ msgstr "Ingen endringer ble gjort"
 #: plugins/ChangeNames.py:91
 #, fuzzy
 msgid "No capitalization changes where detected."
-msgstr "Nei."
+msgstr "Ingen storbokstavsendringer ble oppdaget."
 
 #: plugins/ChangeNames.py:108 plugins/ChangeNames.py:186
 #, fuzzy
 msgid "Capitalization changes"
-msgstr "Skriv slektsnavet med store bokstaver"
+msgstr "Storbokstavsendringer"
 
 #: plugins/ChangeNames.py:118
 #, fuzzy
 msgid "Original Name"
-msgstr "Original Navn"
+msgstr "Opprinnelige navn"
 
 #: plugins/ChangeNames.py:122
 #, fuzzy
 msgid "Capitalization Change"
-msgstr "Naturalisasjon"
+msgstr "Storbokstavsendring"
 
 #: plugins/ChangeNames.py:201
 #, fuzzy
 msgid "Fix capitalization of family names"
-msgstr "av"
+msgstr "Ordne stor bokstav på familie navn"
 
 #: plugins/ChangeNames.py:202 plugins/ChangeTypes.py:161 plugins/Check.py:567
 #: plugins/Merge.py:655 plugins/PatchNames.py:316 plugins/ReorderIds.py:154
@@ -6692,12 +6701,12 @@ msgstr "Databasebehandling"
 #: plugins/ChangeNames.py:203
 #, fuzzy
 msgid "Searches the entire database and attempts to fix capitalization of the names."
-msgstr "og å av."
+msgstr "Søk igjennom hele databasen og prøv å ordne opp med stor bokstav i navn. ??"
 
 #: plugins/ChangeTypes.py:89
 #, fuzzy
 msgid "Change Event Types"
-msgstr "Hendelse"
+msgstr "Endre hendelsestyper"
 
 #: plugins/ChangeTypes.py:143
 msgid "1 event record was modified"
@@ -6734,8 +6743,9 @@ msgid ""
 " %(file_name)s \n"
 "is referenced in the database, but no longer exists. The file may have been deleted or moved to a different location. You may choose to either remove the reference from the database, keep the reference to the missing file, or select a new file."
 msgstr ""
-"fil\n"
-" fil tommer fil slettet eller å sted, plassering, adresse [template location = plassering av mal] å fjern referanse fra referanse å fil eller velg fil."
+"Filen:\n"
+"%(file_name)s \n"
+"er referert til i databasen, men denne filen eksisterer ikke lenger. Filen kan være slettet eller blitt flyttet til en annen lokasjon. Du kan velge å fjerne referansen til filen fra databasen, beholde referansen til den savnede filen, eller velge en ny fil."
 
 #: plugins/Check.py:418
 msgid "No errors were found"
@@ -6754,8 +6764,9 @@ msgid "%d broken child/family links were found\n"
 msgstr "%d brutte familierelasjoner ble funnet\n"
 
 #: plugins/Check.py:434
+#, fuzzy
 msgid "Non existing child"
-msgstr ""
+msgstr "Ikke eksisterende barn"
 
 #: plugins/Check.py:441
 msgid "%s was removed from the family of %s\n"
@@ -6770,8 +6781,9 @@ msgid "%d broken spouse/family links were found\n"
 msgstr "%d brutte ektefelle/familierelasjoner ble funnet\n"
 
 #: plugins/Check.py:453
+#, fuzzy
 msgid "Non existing person"
-msgstr ""
+msgstr "Ikke eksisterende person"
 
 #: plugins/Check.py:457
 msgid "%s was restored to the family of %s\n"
@@ -6828,47 +6840,47 @@ msgstr "%d manglende mediaobjekter ble fjernet\n"
 #: plugins/Check.py:484
 #, fuzzy
 msgid "1 invalid event reference was removed\n"
-msgstr "ugyldig hendelse referanse"
+msgstr "1 ugyldig hendelsesreferanse ble fjernet\n"
 
 #: plugins/Check.py:486
 #, fuzzy
 msgid "%d invalid event references were removed\n"
-msgstr "ugyldig hendelse"
+msgstr "%d ugyldige hendelsesreferanser ble fjernet\n"
 
 #: plugins/Check.py:488
 #, fuzzy
 msgid "1 invalid birth event name was fixed\n"
-msgstr "ugyldig hendelse"
+msgstr "1 ugyldig fødselshendelsesnavn ble ordnet\n"
 
 #: plugins/Check.py:490
 #, fuzzy
 msgid "%d invalid birth event names were fixed\n"
-msgstr "ugyldig hendelse"
+msgstr "%d ugyldige fødselshendelsesnavn ble ordnet\n"
 
 #: plugins/Check.py:492
 #, fuzzy
 msgid "1 invalid death event name was fixed\n"
-msgstr "ugyldig hendelse"
+msgstr "1 ugyldig dødshendelsesnavn ble ordnet\n"
 
 #: plugins/Check.py:494
 #, fuzzy
 msgid "%d invalid death event names were fixed\n"
-msgstr "ugyldig hendelse"
+msgstr "%d ugyldig dødshendelsesnavn ble ordnet\n"
 
 #: plugins/Check.py:496
 #, fuzzy
 msgid "1 place was referenced but not found\n"
-msgstr "Et henvist mediaobjekt ble ikke funnet\n"
+msgstr "Et sted ble referert, men ikke funnet\n"
 
 #: plugins/Check.py:498
 #, fuzzy
 msgid "%d places were referenced, but not found\n"
-msgstr "%d henviste mediaobjekter, ble ikke funnet\n"
+msgstr "%d steder ble referert, men ikke funnet\n"
 
 #: plugins/Check.py:525
 #, fuzzy
 msgid "Integrity Check Results"
-msgstr "Sjekk"
+msgstr "Resultater for integritetssjekk"
 
 #: plugins/Check.py:566
 msgid "Check and repair database"
@@ -6893,7 +6905,7 @@ msgstr "Generasjon %d har %d personer.\n"
 #: plugins/CountAncestors.py:101
 #, fuzzy
 msgid "Total ancestors in generations %d to -1 is %d.\n"
-msgstr "Totalt tommer å"
+msgstr "Totalt antall aner i generasjonene %d til -1 er %d.\n"
 
 #: plugins/CountAncestors.py:121
 msgid "Number of ancestors"
@@ -6947,7 +6959,7 @@ msgstr "Lager en graf med etterkommere av den aktive personen"
 #: plugins/Desbrowser.py:83
 #, fuzzy
 msgid "Descendant Browser: %s"
-msgstr "Nettleser"
+msgstr "Etterslektsutforsker: %s"
 
 #: plugins/Desbrowser.py:165
 msgid "Interactive descendant browser"
@@ -6980,17 +6992,17 @@ msgstr "Detaljert rapport over forfedrene til %s"
 #: plugins/DetAncestralReport.py:157 plugins/DetDescendantReport.py:182
 #, fuzzy
 msgid "Generation %(generation_number)d"
-msgstr "tall"
+msgstr "Generasjon %(generation_number)d"
 
 #: plugins/DetAncestralReport.py:208
 #, fuzzy
 msgid "%(name)s is the same person as [%(id_str)s]."
-msgstr " er den samme personen som [%s]."
+msgstr "%(name)s er den samme personen som [%(id_str)s]."
 
 #: plugins/DetAncestralReport.py:243
 #, fuzzy
 msgid "Notes for %(name)sname"
-msgstr "Notater for"
+msgstr "Notater for %(name)s name"
 
 #: plugins/DetAncestralReport.py:319 plugins/DetDescendantReport.py:341
 msgid "Children of %s and %s are:"
@@ -7075,12 +7087,12 @@ msgstr "Lag en detaljert rapport over forfedre"
 #: plugins/DetDescendantReport.py:164
 #, fuzzy
 msgid "%(spouse_name)s and %(person_name)s"
-msgstr "og"
+msgstr "%(spouse_name)s og %(person_name)s"
 
 #: plugins/DetDescendantReport.py:167
 #, fuzzy
 msgid "Detailed Descendant Report for %(person_name)s"
-msgstr "Rapport for"
+msgstr "Detaljert etterslektsrapport for %(person_name)s"
 
 #: plugins/DetDescendantReport.py:232
 msgid " is the same person as [%s]."
@@ -7122,7 +7134,7 @@ msgstr "Filtervalg for sammenligning av hendelser"
 #: plugins/EventCmp.py:180
 #, fuzzy
 msgid "Event Comparison tool"
-msgstr "Hendelse verktøy"
+msgstr "Hendelsesamenlignings verktøy"
 
 #: plugins/EventCmp.py:206
 msgid "No matches were found"
@@ -7131,7 +7143,7 @@ msgstr "Ingen passer"
 #: plugins/EventCmp.py:265 plugins/EventCmp.py:293
 #, fuzzy
 msgid "Event Comparison Results"
-msgstr "Hendelse"
+msgstr "Hendelsesamenlignings resultat"
 
 #: plugins/EventCmp.py:448
 msgid "Compare individual events"
@@ -7144,12 +7156,12 @@ msgstr "Hjelper til med å analysere data ved å la deg lage egne filtre.Disse kan
 #: plugins/ExportVCalendar.py:57
 #, fuzzy
 msgid "Export to vCalendar"
-msgstr "Eksporter å"
+msgstr "Eksporter til vCalendar"
 
 #: plugins/ExportVCalendar.py:312
 #, fuzzy
 msgid "vCalendar"
-msgstr "<b>Kalendere</b>"
+msgstr "vCalendar"
 
 #: plugins/ExportVCalendar.py:313
 #, fuzzy
