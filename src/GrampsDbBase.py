@@ -496,7 +496,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         return self._find_from_handle(handle,transaction,Event,
                                       self.event_map,self.add_event)
 
-    def find_object_from_handle(self,val,transaction):
+    def find_object_from_handle(self,handle,transaction):
         """
         Finds an MediaObject in the database from the passed GRAMPS ID.
         If no such MediaObject exists, a new Object is added to the database."""
@@ -504,7 +504,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         return self._find_from_handle(handle,transaction,MediaObject,
                                       self.media_map,self.add_object)
 
-    def find_place_from_handle(self,val,transaction):
+    def find_place_from_handle(self,handle,transaction):
         """
         Finds a Place in the database from the passed GRAMPS ID.
         If no such Place exists, a new Place is added to the database.
