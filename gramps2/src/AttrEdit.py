@@ -98,8 +98,9 @@ class AttributeEditor:
         self.type_field  = self.attrib_menu.child
         self.source_field = self.top.get_widget("attr_source")
         self.priv = self.top.get_widget("priv")
-        self.sources_label = self.top.get_widget("sourcesAttr")
-        self.notes_label = self.top.get_widget("noteAttr")
+        self.general_label = self.top.get_widget("general_tab")
+        self.sources_label = self.top.get_widget("sources_tab")
+        self.notes_label = self.top.get_widget("note_tab")
         self.flowed = self.top.get_widget("attr_flowed")
         self.preform = self.top.get_widget("attr_preform")
 
@@ -133,9 +134,11 @@ class AttributeEditor:
                 self.note_field.get_buffer().set_text(attrib.get_note())
                 Utils.bold_label(self.notes_label)
             	if attrib.get_note_format() == 1:
-                    self.preform.set_active(1)
+                    self.preform.set_active(True)
             	else:
-                    self.flowed.set_active(1)
+                    self.flowed.set_active(True)
+            else:
+                Utils.unbold_label(self.notes_label)
 
         self.top.signal_autoconnect({
             "on_help_attr_clicked" : self.on_help_clicked,
@@ -148,6 +151,7 @@ class AttributeEditor:
         if parent_window:
             self.window.set_transient_for(parent_window)
         self.add_itself_to_menu()
+        self.update_note_page()
         self.window.show()
 
     def on_delete_event(self,obj,b):
@@ -242,8 +246,13 @@ class AttributeEditor:
         self.check(self.attrib.get_privacy,self.attrib.set_privacy,priv)
 
     def on_switch_page(self,obj,a,page):
+        self.update_note_page()
+        
+    def update_note_page(self):
         buf = self.note_field.get_buffer()
-        text = unicode(buf.get_text(buf.get_start_iter(),buf.get_end_iter(),False))
+        start = buf.get_start_iter()
+        end = buf.get_end_iter()
+        text = unicode(buf.get_text(start,end,False))
         if text:
             Utils.bold_label(self.notes_label)
         else:

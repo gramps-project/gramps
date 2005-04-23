@@ -128,8 +128,8 @@ class EditPerson:
         mod = not self.db.readonly
             
         self.load_obj = None
-        self.top = gtk.glade.XML(const.editPersonFile, "editPerson","gramps")
-        self.window = self.get_widget("editPerson")
+        self.top = gtk.glade.XML(const.editPersonFile, "edit_person","gramps")
+        self.window = self.get_widget("edit_person")
         self.window.set_title("%s - GRAMPS" % _('Edit Person'))
         
         self.icon_list = self.top.get_widget("iconlist")
@@ -211,12 +211,12 @@ class EditPerson:
         self.gid = self.get_widget("gid")
         self.gid.set_editable(mod)
         self.slist = self.get_widget("slist")
-        self.general_label = self.get_widget("general_label")
         self.names_label = self.get_widget("names_label")
         self.attr_label = self.get_widget("attr_label")
         self.addr_label = self.get_widget("addr_label")
         self.notes_label = self.get_widget("notes_label")
         self.sources_label = self.get_widget("sources_label")
+        self.events_label = self.get_widget("events_label")
         self.inet_label = self.get_widget("inet_label")
         self.gallery_label = self.get_widget("gallery_label")
         self.lds_tab = self.get_widget("lds_tab")
@@ -264,29 +264,33 @@ class EditPerson:
         else:
             self.srcreflist = []
 
-        #Utils.bold_label(self.general_label)
-        #if self.srcreflist:
-        #    Utils.bold_label(self.sources_label)
-        #if self.nlist:
-        #    Utils.bold_label(self.names_label)
-        #if self.alist:
-        #    Utils.bold_label(self.attr_label)
-        #if self.ulist:
-        #    Utils.bold_label(self.inet_label)
-        #if self.plist:
-        #    Utils.bold_label(self.addr_label)
-        #if self.person.get_media_list():
-        #    Utils.bold_label(self.gallery_label)
+        if self.event_list:
+            Utils.bold_label(self.events_label)
+        if self.srcreflist:
+            Utils.bold_label(self.sources_label)
+        if self.nlist:
+            Utils.bold_label(self.names_label)
+        if self.alist:
+            Utils.bold_label(self.attr_label)
+        if self.ulist:
+            Utils.bold_label(self.inet_label)
+        if self.plist:
+            Utils.bold_label(self.addr_label)
+        if self.person.get_media_list():
+            Utils.bold_label(self.gallery_label)
 
         # event display
 
-        event_default = [ 'Event', 'Description', 'Date', 'Place' ]
+        event_default = [ 'Event', 'Description', 'Date', 'Place',
+                          'Source', 'Note' ]
         self.event_trans = TransTable.TransTable(event_default)
         evalues = {
-            'Event'       : (_('Event'),-1,150),
+            'Event'       : (_('Event'),-1,125),
             'Description' : (_('Description'),-1,150),
             'Date'        : (_('Date'),-1,100),
-            'Place'       : (_('Place'),-1,100)
+            'Place'       : (_('Place'),-1,100),
+            'Source'      : (_(':Source'),-1,50),
+            'Note'        : (_(':Note'),-1,50)
             }
 
         if not self.db.readonly:
@@ -315,7 +319,9 @@ class EditPerson:
                                          self.on_update_addr_clicked)
 
         # name display
-        ntitles = [(_('Name'),-1,250),(_('Type'),-1,100)]
+        ntitles = [(_('Family Name'),-1,250),(_('Prefix'),-1,50),
+                   (_('Given Name'),-1,200),(_('Suffix'),-1,50),
+                   (_('Type'),-1,100)]
         self.ntree = ListModel.ListModel(self.name_list,ntitles,
                                          self.on_name_select_row)
         self.ntree.tree.connect('event',self.aka_double_click)
@@ -340,16 +346,12 @@ class EditPerson:
         self.lds_endowment = RelLib.LdsOrd(self.person.get_lds_endowment())
         self.lds_sealing = RelLib.LdsOrd(self.person.get_lds_sealing())
 
-        if GrampsKeys.get_uselds() \
-                        or (not self.lds_baptism.is_empty()) \
-                        or (not self.lds_endowment.is_empty()) \
-                        or (not self.lds_sealing.is_empty()):
-            self.get_widget("lds_tab").show()
-            self.get_widget("lds_page").show()
-            #if (not self.lds_baptism.is_empty()) \
-            #            or (not self.lds_endowment.is_empty()) \
-            #            or (not self.lds_sealing.is_empty()):
-            #    Utils.bold_label(self.lds_tab)
+        self.get_widget("lds_tab").show()
+        self.get_widget("lds_page").show()
+        if (not self.lds_baptism.is_empty()) \
+               or (not self.lds_endowment.is_empty()) \
+               or (not self.lds_sealing.is_empty()):
+            Utils.bold_label(self.lds_tab)
 
         types = const.NameTypesMap.get_values()
         types.sort()
@@ -366,7 +368,7 @@ class EditPerson:
                 self.preform.set_active(1)
             else:
                 self.flowed.set_active(1)
-            #Utils.bold_label(self.notes_label)
+            Utils.bold_label(self.notes_label)
 
         self.name_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
                                       [DdTargets.NAME.target()],
@@ -678,7 +680,6 @@ class EditPerson:
         self.ldssealstat = self.get_widget("sealstat")
         self.ldssealstat.set_sensitive(not self.db.readonly)
 
-
         self.bstat = self.lds_field(
             self.lds_baptism, self.ldsbap_temple,
             self.ldsbap_date, self.ldsbapplace)
@@ -968,13 +969,16 @@ class EditPerson:
         self.ntree.clear()
         self.nmap = {}
         for name in self.nlist:
-            node = self.ntree.add([name.get_name(),_(name.get_type())],name)
+            node = self.ntree.add([
+                name.get_surname(),name.get_surname_prefix(),
+                name.get_first_name(), name.get_suffix(),
+                _(name.get_type())],name)
             self.nmap[str(name)] = node
         if self.nlist:
             self.ntree.select_row(0)
-#            Utils.bold_label(self.names_label)
-#        else:
-#            Utils.unbold_label(self.names_label)
+            Utils.bold_label(self.names_label)
+        else:
+            Utils.unbold_label(self.names_label)
 
     def redraw_url_list(self):
         """redraws the url list, disabling the go button if no url
@@ -988,12 +992,10 @@ class EditPerson:
         if len(self.ulist) > 0:
             self.web_go.set_sensitive(False)
             self.wtree.select_row(0)
-#            Utils.bold_label(self.inet_label)
+            Utils.bold_label(self.inet_label)
         else:
             self.web_go.set_sensitive(False)
-#            self.web_url.set_text("")
-#            self.web_description.set_text("")
-#            Utils.unbold_label(self.inet_label)
+            Utils.unbold_label(self.inet_label)
 
     def redraw_addr_list(self):
         """Redraws the address list"""
@@ -1006,9 +1008,9 @@ class EditPerson:
             self.pmap[str(addr)] = node
         if self.plist:
             self.ptree.select_row(0)
-#            Utils.bold_label(self.addr_label)
-#        else:
-#            Utils.unbold_label(self.addr_label)
+            Utils.bold_label(self.addr_label)
+        else:
+            Utils.unbold_label(self.addr_label)
 
     def redraw_attr_list(self):
         """redraws the attribute list for the person"""
@@ -1019,9 +1021,9 @@ class EditPerson:
             self.amap[str(attr)] = node
         if self.alist:
             self.atree.select_row(0)
-#            Utils.bold_label(self.attr_label)
-#        else:
-#            Utils.unbold_label(self.attr_label)
+            Utils.bold_label(self.attr_label)
+        else:
+            Utils.unbold_label(self.attr_label)
 
     def name_edit_callback(self,name):
         self.redraw_name_list()
@@ -1060,11 +1062,14 @@ class EditPerson:
         for event_handle in self.elist:
             event = self.db.get_event_from_handle(event_handle)
             pname = place_title(self.db,event)
-            node = self.etree.add([const.display_pevent(event.get_name()),
-                                   event.get_description(),
-                                   event.get_date(),pname],event)
+            has_note = event.get_note()
+            has_source = len(event.get_source_references())> 0
+            data = [const.display_pevent(event.get_name()),
+                    event.get_description(), event.get_date(),
+                    pname, has_source, has_note]
+            node = self.etree.add(data, event)
             self.emap[str(event)] = node
-        node = self.etree.add(["","","",""],None)
+        node = self.etree.add(["","","","",False,False],None)
 
     def strip_id(self,text):
         index = text.rfind('[')
@@ -1450,7 +1455,7 @@ class EditPerson:
 
     def on_apply_person_clicked(self,obj):
 
-        if self.is_unknown.get_active():
+        if self.gender.get_active() == RelLib.Person.UNKNOWN:
             dialog = QuestionDialog2(
                 _("Unknown gender specified"),
                 _("The gender of the person is currently unknown. "
@@ -1542,7 +1547,7 @@ class EditPerson:
             f = self.db.find_family_from_handle(family,trans)
             new_order = self.reorder_child_list(self.person,f.get_child_handle_list())
             f.set_child_handle_list(new_order)
-    
+
         error = False
         (female,male,unknown) = _select_gender[self.gender.get_active()]
         if male and self.person.get_gender() != RelLib.Person.MALE:
@@ -1731,27 +1736,27 @@ class EditPerson:
         if page == 0:
             self.load_person_image()
             self.redraw_event_list()
-        elif page == 7 and self.not_loaded:
+        elif page == 6 and self.not_loaded:
             self.not_loaded = False
-        elif page == 9 and self.lds_not_loaded:
+        elif page == 8 and self.lds_not_loaded:
             self.lds_not_loaded = False
             self.draw_lds()
         note_buf = self.notes_buffer
         text = unicode(note_buf.get_text(note_buf.get_start_iter(),
                                        note_buf.get_end_iter(),False))
-#        if text:
-#            Utils.bold_label(self.notes_label)
-#        else:
-#            Utils.unbold_label(self.notes_label)
+        if text:
+            Utils.bold_label(self.notes_label)
+        else:
+            Utils.unbold_label(self.notes_label)
 
         if not self.lds_not_loaded:
             self.check_lds()
-#         if self.lds_baptism.is_empty() \
-#                         and self.lds_endowment.is_empty() \
-#                         and self.lds_sealing.is_empty():
-#             Utils.unbold_label(self.lds_tab)
-#         else:
-#             Utils.bold_label(self.lds_tab)
+        if self.lds_baptism.is_empty() \
+               and self.lds_endowment.is_empty() \
+               and self.lds_sealing.is_empty():
+            Utils.unbold_label(self.lds_tab)
+        else:
+            Utils.bold_label(self.lds_tab)
 
     def change_name(self,obj):
         sel_objs = self.ntree.get_selected_objects()

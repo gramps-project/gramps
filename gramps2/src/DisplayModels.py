@@ -111,7 +111,7 @@ class BaseModel(gtk.GenericTreeModel):
     def on_get_path(self, node):
 	'''returns the tree path (a tuple of indices at the various
 	levels) for a particular node.'''
-        return self.indexlist[node[0]]
+        return self.indexlist[node]
 
     def on_get_column_type(self,index):
         return gobject.TYPE_STRING

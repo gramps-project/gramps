@@ -105,8 +105,9 @@ class NameEditor:
         self.note_field = self.top.get_widget("alt_note")
         self.slist = self.top.get_widget('slist')
         self.priv = self.top.get_widget("priv")
-        self.sources_label = self.top.get_widget("sourcesName")
-        self.notes_label = self.top.get_widget("noteName")
+        self.general_label = self.top.get_widget("general_tab")
+        self.sources_label = self.top.get_widget("sources_tab")
+        self.notes_label = self.top.get_widget("note_tab")
         self.flowed = self.top.get_widget("alt_flowed")
         self.preform = self.top.get_widget("alt_preform")
         self.group_over = self.top.get_widget('group_over')
@@ -115,6 +116,7 @@ class NameEditor:
         types.sort()
         AutoComp.fill_combo(self.type_combo,types)
         self.type_field = self.type_combo.get_child()
+        self.type_field.set_text(types[0])
 
         full_name = NameDisplay.displayer.display_name(name)
 
@@ -152,6 +154,7 @@ class NameEditor:
             self.type_field.set_text(_(name.get_type()))
             self.patronymic_field.set_text(name.get_patronymic())
             self.priv.set_active(name.get_privacy())
+            Utils.bold_label(self.general_label)
             if name.get_note():
                 self.note_buffer.set_text(name.get_note())
                 Utils.bold_label(self.notes_label)
@@ -159,6 +162,8 @@ class NameEditor:
                     self.preform.set_active(1)
                 else:
                     self.flowed.set_active(1)
+            else:
+                Utils.unbold_label(self.notes_label)
             self.display_as.set_active(name.get_display_as())
             self.sort_as.set_active(name.get_display_as())
             grp_as = name.get_group_as()
@@ -169,6 +174,9 @@ class NameEditor:
         else:
             self.display_as.set_active(0)
             self.sort_as.set_active(0)
+            Utils.unbold_label(self.notes_label)
+            Utils.unbold_label(self.sources_label)
+            Utils.unbold_label(self.general_label)
 
         if parent_window:
             self.window.set_transient_for(parent_window)

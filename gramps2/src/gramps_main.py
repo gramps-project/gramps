@@ -743,20 +743,20 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                 self.redraw_histmenu()
                 self.set_buttons(1)
                 if self.hindex == 0:
-                    self.backbtn.set_sensitive(0)
-                    self.back.set_sensitive(0)
+                    self.backbtn.set_sensitive(False)
+                    self.back.set_sensitive(False)
                 else:
-                    self.backbtn.set_sensitive(1)
-                    self.back.set_sensitive(1)
-                self.fwdbtn.set_sensitive(1)
-                self.forward.set_sensitive(1)
+                    self.backbtn.set_sensitive(True)
+                    self.back.set_sensitive(True)
+                self.fwdbtn.set_sensitive(True)
+                self.forward.set_sensitive(True)
             except:
                 self.clear_history()
         else:
-            self.backbtn.set_sensitive(0)
-            self.back.set_sensitive(0)
-            self.fwdbtn.set_sensitive(1)
-            self.forward.set_sensitive(1)
+            self.backbtn.set_sensitive(False)
+            self.back.set_sensitive(False)
+            self.fwdbtn.set_sensitive(True)
+            self.forward.set_sensitive(True)
         self.goto_active_person()
         self.lock_history = False
 
@@ -773,20 +773,20 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                 self.redraw_histmenu()
                 self.set_buttons(1)
                 if self.hindex == len(self.history)-1:
-                    self.fwdbtn.set_sensitive(0)
-                    self.forward.set_sensitive(0)
+                    self.fwdbtn.set_sensitive(False)
+                    self.forward.set_sensitive(False)
                 else:
-                    self.fwdbtn.set_sensitive(1)
-                    self.forward.set_sensitive(1)
-                self.backbtn.set_sensitive(1)
-                self.back.set_sensitive(1)
+                    self.fwdbtn.set_sensitive(True)
+                    self.forward.set_sensitive(True)
+                self.backbtn.set_sensitive(True)
+                self.back.set_sensitive(True)
             except:
                 self.clear_history()
         else:
-            self.fwdbtn.set_sensitive(0)
-            self.forward.set_sensitive(0)
-            self.backbtn.set_sensitive(1)
-            self.back.set_sensitive(1)
+            self.fwdbtn.set_sensitive(False)
+            self.forward.set_sensitive(False)
+            self.backbtn.set_sensitive(True)
+            self.back.set_sensitive(True)
         self.goto_active_person()
         self.lock_history = False
 
@@ -848,10 +848,10 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
     def enable_sidebar(self,val):
         if val:
             self.sidebar.show()
-            self.views.set_show_tabs(0)
+            self.views.set_show_tabs(False)
         else:
             self.sidebar.hide()
-            self.views.set_show_tabs(1)
+            self.views.set_show_tabs(True)
 
     def enable_filter(self,val):
         if val:
@@ -875,8 +875,8 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.report_menu = self.gtop.get_widget("reports_menu")
         self.tools_menu  = self.gtop.get_widget("tools_menu")
 
-        self.report_menu.set_sensitive(0)
-        self.tools_menu.set_sensitive(0)
+        self.report_menu.set_sensitive(False)
+        self.tools_menu.set_sensitive(False)
 
         error  = PluginMgr.load_plugins(const.docgenDir)
         error |= PluginMgr.load_plugins(os.path.expanduser("~/.gramps/docgen"))

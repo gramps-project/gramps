@@ -25,6 +25,8 @@ Provides the common infrastructure for database formats that
 must hold all of their data in memory.
 """
 
+from bsddb import dbshelve, db
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -86,8 +88,12 @@ class GrampsInMemDB(GrampsDbBase):
         self.eventnames = {}
         self.undodb     = []
 
-    def load(self,name,callback):
-        pass
+    def load(self,name,callback,mode="w"):
+        self.undolog = "%s.log" % name
+        self.undodb = db.DB()
+        self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
+        self.filename = name
+        self.readonly = mode == "r"
 
     def get_person_cursor(self):
         return GrampsInMemCursor(self.person_map)
@@ -105,7 +111,12 @@ class GrampsInMemDB(GrampsDbBase):
         return GrampsInMemCursor(self.media_map)
 
     def close(self):
-        pass
+        if not self.readonly:
+            self.undodb.close()
+            try:
+                os.remove(self.undolog)
+            except:
+                pass
 
     def abort_changes(self):
         pass

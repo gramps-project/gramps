@@ -297,8 +297,14 @@ class ImportDbPrompter:
             filename = choose.get_filename()
             filetype = type_selector.get_value()
             if filetype == 'auto':
-                filetype = get_mime_type(filename)
-
+                try:
+                    filetype = get_mime_type(filename)
+                except RuntimeError,msg:
+                    QuestionDialog.ErrorDialog(
+                        _("Could not open file: %s") % filename,
+                        str(msg))
+                    return False
+                    
             if filetype == const.app_gramps:
                 choose.destroy()
                 ReadGrdb.importData(self.parent.db,filename)

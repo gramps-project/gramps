@@ -135,7 +135,10 @@ class Date:
         Comparison function. Allows the usage of equality tests.
         This allows you do run statements like 'date1 <= date2'
         """
-        return cmp(self.sortval,other.sortval)
+	if isinstance(other,Date):
+            return cmp(self.sortval,other.sortval)
+	else:
+            return -1
 
     def is_equal(self,other):
         """
