@@ -1,3 +1,7 @@
+2005-04-23  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GrampsDbBase.py (_find_from_handle,find_object_from_handle,
+	find_place_from_handle): Fix typo
+
 2005-04-19  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py: Replaced gnome canvas by an implementation
 	that uses gtk+ only. Still incomplete.
