@@ -1,3 +1,25 @@
+2005-04-23  Don Allingham  <don@gramps-project.org>
+	* src/AddrEdit.py: use new label scheme for tabs that uses an
+	icon to indicate used tabs
+	* src/AttrEdit.py: use new label scheme for tabs that uses an
+	icon to indicate used tabs
+	* src/NameEdit.py: use new label scheme for tabs
+	* src/Date.py: incorporate instance check form gramps20 branch
+	* src/EditPerson.py: add additional fields for name edit, handle
+	lds page better, adapt to new label scheme
+	* src/GrampsDbBase.py: fix typos
+	* src/GrampsGEDDB.py: fix undo handling
+	* src/GrampsInMemDB.py: fix undo handling
+	* src/GrampsXMLDB.py: fix undo handling
+	* src/PeopleView.py: don't reselect an already selected person
+	* src/Utils.py: new tab scheme
+	* src/edit_person.glade new tab scheme
+	* src/gramps_main.py: 1->True, 0->False replacements
+	* src/DbPrompter.py: bring up to date with gramps20 branch
+	* src/DisplayModels.py: bring up to date with gramps20 branch
+	* src/ReadGedcom.py: bring up to date with gramps20 branch
+	* src/Relationship.py: bring up to date with gramps20 branch
+
 2005-04-23  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GrampsDbBase.py (_find_from_handle,find_object_from_handle,
 	find_place_from_handle): Fix typo

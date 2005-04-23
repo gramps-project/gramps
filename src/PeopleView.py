@@ -117,15 +117,11 @@ class PeopleView:
         selected_ids = self.get_selected_objects()
 
         if len(selected_ids) == 1:
-            self.person_tree.drag_source_set(BUTTON1_MASK,
-                                             [DdTargets.PERSON_LINK.target()],
-                                             ACTION_COPY)
+            self.person_tree.drag_source_set(
+                BUTTON1_MASK, [DdTargets.PERSON_LINK.target()], ACTION_COPY)
         elif len(selected_ids) > 1:
-            self.person_tree.drag_source_set(BUTTON1_MASK,
-                                             [DdTargets.PERSON_LINK_LIST.target()],
-                                             ACTION_COPY)
-                 
-
+            self.person_tree.drag_source_set(
+                BUTTON1_MASK, [DdTargets.PERSON_LINK_LIST.target()], ACTION_COPY)
 
     def sort_clicked(self,obj):
         for col in self.columns:
@@ -248,9 +244,13 @@ class PeopleView:
             top_name = self.parent.db.get_name_group_mapping(group_name)
             top_path = self.person_model.on_get_path(top_name)
             self.person_tree.expand_row(top_path,0)
-            self.person_selection.unselect_all()
-            self.person_selection.select_path(path)
-            self.person_tree.scroll_to_cell(path,None,1,0.5,0)
+
+            current = self.person_model.on_get_iter(path)
+            selected = self.person_selection.path_is_selected(path)
+            if current != p.get_handle() or not selected:
+                self.person_selection.unselect_all()
+                self.person_selection.select_path(path)
+                self.person_tree.scroll_to_cell(path,None,1,0.5,0)
         except KeyError:
             self.person_selection.unselect_all()
             print "Person not currently available due to filter"
@@ -350,7 +350,6 @@ class PeopleView:
         self.person_model.rebuild_data(self.DataFilter,skip=node)
 
     def person_updated(self,handle_list):
-
         for node in handle_list:
             person = self.parent.db.get_person_from_handle(node)
             try:

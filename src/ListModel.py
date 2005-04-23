@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-from gobject import TYPE_STRING, TYPE_PYOBJECT, TYPE_OBJECT
+from gobject import TYPE_STRING, TYPE_PYOBJECT, TYPE_OBJECT, TYPE_BOOLEAN
 import gtk
 import const
 
@@ -33,9 +33,14 @@ class ListModel:
     def __init__(self,tree,dlist,select_func=None,
                  event_func=None,mode=gtk.SELECTION_SINGLE):
         self.tree = tree
-        l = len(dlist)
-        self.mylist = [TYPE_STRING]*l + [TYPE_PYOBJECT]
-
+        self.mylist = []
+        for l in dlist:
+            if l[0] and l[0][0] == ':':
+                self.mylist.append(TYPE_BOOLEAN)
+            else:
+                self.mylist.append(TYPE_STRING)
+        self.mylist.append(TYPE_PYOBJECT)
+        
         self.tree.set_rules_hint(True)
         self.model = None
         self.selection = None
@@ -60,18 +65,26 @@ class ListModel:
         
         cnum = 0
         for name in dlist:
-            if gtk26 and cnum == 0:
+            if name[0] and name[0][0] == ':':
+                renderer = gtk.CellRendererToggle()
+                column = gtk.TreeViewColumn(name[0][1:],renderer)
+                column.add_attribute(renderer,'active',cnum)
+            elif gtk26 and cnum == 0:
                 renderer = gtk.CellRendererCombo()
                 renderer.set_property('model',model)
                 renderer.set_property('text_column',0)
                 renderer.set_property('editable',True)
+                renderer.set_fixed_height_from_font(True)
+                renderer.connect('edited',self.edited_cb, cnum)
+                column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
+                column.set_reorderable(True)
             else:
                 renderer = gtk.CellRendererText()
                 renderer.set_property('editable',True)
-            renderer.set_fixed_height_from_font(True)
-            renderer.connect('edited',self.edited_cb, cnum)
-            column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
-            column.set_reorderable(True)
+                renderer.set_fixed_height_from_font(True)
+                renderer.connect('edited',self.edited_cb, cnum)
+                column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
+                column.set_reorderable(True)
             column.set_min_width(name[2])
 
             if name[0] == '':

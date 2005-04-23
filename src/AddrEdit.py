@@ -96,8 +96,9 @@ class AddressEditor:
         self.note_field = self.top.get_widget("addr_note")
         self.priv = self.top.get_widget("priv")
         self.slist = self.top.get_widget("slist")
-        self.sources_label = self.top.get_widget("sourcesAddr")
-        self.notes_label = self.top.get_widget("noteAddr")
+        self.sources_label = self.top.get_widget("sources_tab")
+        self.notes_label = self.top.get_widget("note_tab")
+        self.general_label = self.top.get_widget("general_tab")
         self.flowed = self.top.get_widget("addr_flowed")
         self.preform = self.top.get_widget("addr_preform")
 
@@ -123,9 +124,15 @@ class AddressEditor:
                     self.preform.set_active(1)
             	else:
                     self.flowed.set_active(1)
+                Utils.bold_label(self.general_label)
+            else:
+                Utils.unbold_label(self.sources_label)
+            Utils.bold_label(self.general_label)
         else:
+            Utils.unbold_label(self.general_label)
             self.addr_date_obj = Date.Date()
             self.srcreflist = []
+        self.switch_page()
 
         self.sourcetab = Sources.SourceTab(
             self.srcreflist, self, self.top, self.window, self.slist,
@@ -240,8 +247,13 @@ class AddressEditor:
         self.check(self.addr.get_privacy,self.addr.set_privacy,priv)
 
     def on_switch_page(self,obj,a,page):
+        self.switch_page()
+
+    def switch_page(self):
         buf = self.note_field.get_buffer()
-        text = unicode(buf.get_text(buf.get_start_iter(),buf.get_end_iter(),False))
+        start = buf.get_start_iter()
+        stop = buf.get_end_iter()
+        text = unicode(buf.get_text(start,stop,False))
         if text:
             Utils.bold_label(self.notes_label)
         else:

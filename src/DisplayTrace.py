@@ -85,18 +85,27 @@ class DisplayTrace:
         msg.write("Python : %s.%s.%s %s\n" % (ver[0],ver[1],ver[2],ver[3]))
         msg.write("GTK : %s.%s.%s\n" % gtk.gtk_version)
         msg.write('PyGTK : %d.%d.%d\n' % gtk.pygtk_version)
-        for n in _release_files:
-            if os.path.isfile(n):
-                try:
-                    f = open(n)
-                    text = f.readline()
-                    if n.find('debian') != -1:
-                        text = "Debian %s" % text
-                    msg.write("OS : %s\n" % text)
-                    f.close()
-                    break
-                except:
-                    pass
+        n = '/etc/lsb-release'
+        if os.path.isfile(n):
+            f = open(n)
+            for line in f.readlines():
+                (val,text) = line.split('=')
+                if val == "DISTRIB_DESCRIPTION":
+                    msg.write("OS : %s\n" % text.replace('"',''))
+            f.close()
+        else:
+            for n in _release_files:
+                if os.path.isfile(n):
+                    try:
+                        f = open(n)
+                        text = f.readline()
+                        if n.find('debian') != -1:
+                            text = "Debian %s" % text
+                        msg.write("OS : %s\n" % text)
+                        f.close()
+                        break
+                    except:
+                        pass
         
         traceback.print_exception(data[0],data[1],data[2],None,msg)
 

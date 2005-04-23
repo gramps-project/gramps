@@ -45,10 +45,8 @@ class GrampsXMLDB(GrampsInMemDB):
         GrampsInMemDB.__init__(self)
 
     def load(self,name,callback,mode="w"):
-        self.filename = name
+        GrampsInMemDB.load(self,name,callback,mode)
         self.id_trans = {}
-
-        self.readonly = mode == "r"
         
         ReadXML.importData(self,name,use_trans=False)
         

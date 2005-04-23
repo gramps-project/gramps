@@ -3,7 +3,7 @@
 
 <glade-interface>
 
-<widget class="GtkDialog" id="editPerson">
+<widget class="GtkDialog" id="edit_person">
   <property name="has_focus">True</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
@@ -223,6 +223,7 @@
 	      <property name="has_frame">True</property>
 	      <property name="invisible_char">*</property>
 	      <property name="activates_default">False</property>
+	      <property name="width_chars">13</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">2</property>
@@ -851,7 +852,7 @@ Unknown</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkHBox" id="hbox116">
+	    <widget class="GtkHBox" id="events_label">
 	      <property name="visible">True</property>
 	      <property name="homogeneous">False</property>
 	      <property name="spacing">0</property>
@@ -874,7 +875,7 @@ Unknown</property>
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="events_label">
+		<widget class="GtkLabel" id="events_text">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">Events</property>
 		  <property name="use_underline">False</property>
@@ -1050,7 +1051,7 @@ Unknown</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkHBox" id="hbox108">
+	    <widget class="GtkHBox" id="names_label">
 	      <property name="visible">True</property>
 	      <property name="homogeneous">False</property>
 	      <property name="spacing">0</property>
@@ -1073,7 +1074,7 @@ Unknown</property>
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="names_label">
+		<widget class="GtkLabel" id="names_text">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">Names</property>
 		  <property name="use_underline">False</property>
@@ -1274,7 +1275,7 @@ Unknown</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkHBox" id="hbox109">
+	    <widget class="GtkHBox" id="attr_label">
 	      <property name="visible">True</property>
 	      <property name="homogeneous">False</property>
 	      <property name="spacing">0</property>
@@ -1297,7 +1298,7 @@ Unknown</property>
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="attr_label">
+		<widget class="GtkLabel" id="attr_text">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">Attributes</property>
 		  <property name="use_underline">False</property>
@@ -1472,7 +1473,7 @@ Unknown</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkHBox" id="hbox110">
+	    <widget class="GtkHBox" id="addr_label">
 	      <property name="visible">True</property>
 	      <property name="homogeneous">False</property>
 	      <property name="spacing">0</property>
@@ -1495,7 +1496,7 @@ Unknown</property>
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="addr_label">
+		<widget class="GtkLabel" id="addr_text">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">Addresses</property>
 		  <property name="use_underline">False</property>
@@ -1667,7 +1668,7 @@ Unknown</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkHBox" id="hbox111">
+	    <widget class="GtkHBox" id="notes_label">
 	      <property name="visible">True</property>
 	      <property name="homogeneous">False</property>
 	      <property name="spacing">0</property>
@@ -1690,7 +1691,7 @@ Unknown</property>
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="notes_label">
+		<widget class="GtkLabel" id="notes_text">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">Notes</property>
 		  <property name="use_underline">False</property>
@@ -1859,7 +1860,7 @@ Unknown</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkHBox" id="hbox112">
+	    <widget class="GtkHBox" id="sources_label">
 	      <property name="visible">True</property>
 	      <property name="homogeneous">False</property>
 	      <property name="spacing">0</property>
@@ -1882,7 +1883,7 @@ Unknown</property>
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="sources_label">
+		<widget class="GtkLabel" id="sources_text">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">Sources</property>
 		  <property name="use_underline">False</property>
@@ -1938,7 +1939,7 @@ Unknown</property>
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
 			  <property name="selection_mode">GTK_SELECTION_SINGLE</property>
-			  <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+			  <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -2087,7 +2088,7 @@ Unknown</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkHBox" id="hbox113">
+	    <widget class="GtkHBox" id="gallery_label">
 	      <property name="visible">True</property>
 	      <property name="homogeneous">False</property>
 	      <property name="spacing">0</property>
@@ -2110,7 +2111,7 @@ Unknown</property>
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="gallery_label">
+		<widget class="GtkLabel" id="gallery_text">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">Gallery</property>
 		  <property name="use_underline">False</property>
@@ -2326,13 +2327,13 @@ Unknown</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkHBox" id="hbox114">
+	    <widget class="GtkHBox" id="inet_label">
 	      <property name="visible">True</property>
 	      <property name="homogeneous">False</property>
 	      <property name="spacing">0</property>
 
 	      <child>
-		<widget class="GtkImage" id="image2586">
+		<widget class="GtkImage" id="image2589">
 		  <property name="visible">True</property>
 		  <property name="icon_size">4</property>
 		  <property name="icon_name">gtk-file</property>
@@ -2349,7 +2350,7 @@ Unknown</property>
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="inet_label">
+		<widget class="GtkLabel" id="inet_text">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">Internet</property>
 		  <property name="use_underline">False</property>
@@ -3336,7 +3337,7 @@ Unknown</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkHBox" id="hbox115">
+	    <widget class="GtkHBox" id="lds_tab">
 	      <property name="visible">True</property>
 	      <property name="homogeneous">False</property>
 	      <property name="spacing">0</property>
@@ -3359,7 +3360,8 @@ Unknown</property>
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="lds_tab">
+		<widget class="GtkLabel" id="lds_label">
+		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">LDS</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
