@@ -307,21 +307,39 @@ class EditPerson:
                                          self.on_event_update_clicked)
 
         # attribute display
-        atitles = [(_('Attribute'),-1,150),(_('Value'),-1,150)]
+        atitles = [
+            (_('Attribute'),-1,200),
+            (_('Value'),-1,350),
+            (_(':Source'),-1,50),
+            (_(':Note'),-1,50),
+            ]
         self.atree = ListModel.ListModel(self.attr_list,atitles,
                                          self.on_attr_select_row,
                                          self.on_update_attr_clicked)
                                          
         # address display
-        ptitles = [(_('Date'),-1,150),(_('Address'),-1,150)]
+        ptitles = [
+            (_('Date'),-1,175),
+            (_('Address'),-1,150),
+            (_('City'),-1,100),
+            (_('State/Province'),-1,75),
+            (_('Country'),-1,100),
+            (_(':Source'),-1,50),
+            (_(':Note'),-1,50),
+            ]
         self.ptree = ListModel.ListModel(self.addr_list, ptitles,
                                          self.on_addr_select_row,
                                          self.on_update_addr_clicked)
 
         # name display
-        ntitles = [(_('Family Name'),-1,250),(_('Prefix'),-1,50),
-                   (_('Given Name'),-1,200),(_('Suffix'),-1,50),
-                   (_('Type'),-1,100)]
+        ntitles = [
+            (_('Family Name'),-1,225),
+            (_('Prefix'),-1,50),
+            (_('Given Name'),-1,200),
+            (_('Suffix'),-1,50),
+            (_('Type'),-1,100),
+            (_(':Source'),-1,50), (_(':Note'),-1,50),
+            ]
         self.ntree = ListModel.ListModel(self.name_list,ntitles,
                                          self.on_name_select_row)
         self.ntree.tree.connect('event',self.aka_double_click)
@@ -969,10 +987,12 @@ class EditPerson:
         self.ntree.clear()
         self.nmap = {}
         for name in self.nlist:
+            has_note = name.get_note()
+            has_source = len(name.get_source_references())> 0
             node = self.ntree.add([
                 name.get_surname(),name.get_surname_prefix(),
                 name.get_first_name(), name.get_suffix(),
-                _(name.get_type())],name)
+                _(name.get_type()),has_source,has_note],name)
             self.nmap[str(name)] = node
         if self.nlist:
             self.ntree.select_row(0)
@@ -1002,9 +1022,14 @@ class EditPerson:
         self.ptree.clear()
         self.pmap = {}
         for addr in self.plist:
+            has_note = addr.get_note()
+            has_source = len(addr.get_source_references())> 0
             location = "%s %s %s %s" % (addr.get_street(),addr.get_city(),
                                         addr.get_state(),addr.get_country())
-            node = self.ptree.add([addr.get_date(),location],addr)
+            node = self.ptree.add([addr.get_date(),addr.get_street(),
+                                   addr.get_city(),addr_get_state(),
+                                   addr_get_country(),has_source,has_note],
+                                  addr)
             self.pmap[str(addr)] = node
         if self.plist:
             self.ptree.select_row(0)
@@ -1017,7 +1042,12 @@ class EditPerson:
         self.atree.clear()
         self.amap = {}
         for attr in self.alist:
-            node = self.atree.add([const.display_pattr(attr.get_type()),attr.get_value()],attr)
+            has_note = attr.get_note()
+            has_source = len(attr.get_source_references())> 0
+            node = self.atree.add([
+                const.display_pattr(attr.get_type()), attr.get_value(),
+                has_source, has_note,
+                ],attr)
             self.amap[str(attr)] = node
         if self.alist:
             self.atree.select_row(0)

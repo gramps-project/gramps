@@ -34,11 +34,13 @@ class ListModel:
                  event_func=None,mode=gtk.SELECTION_SINGLE):
         self.tree = tree
         self.mylist = []
+        self.data_index = 0
         for l in dlist:
             if l[0] and l[0][0] == ':':
                 self.mylist.append(TYPE_BOOLEAN)
             else:
                 self.mylist.append(TYPE_STRING)
+            self.data_index += 1
         self.mylist.append(TYPE_PYOBJECT)
         
         self.tree.set_rules_hint(True)
@@ -46,7 +48,6 @@ class ListModel:
         self.selection = None
         self.mode = mode
         self.new_model()
-        self.data_index = l
         self.count = 0
         self.cid = None
         self.cids = []

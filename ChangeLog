@@ -1,4 +1,7 @@
 2005-04-23  Don Allingham  <don@gramps-project.org>
+	* src/ListModel.py: keep track of data index
+	* src/EventEdit.py: use new label scheme for tabs that uses an
+	icon to indicate used tabs
 	* src/AddrEdit.py: use new label scheme for tabs that uses an
 	icon to indicate used tabs
 	* src/AttrEdit.py: use new label scheme for tabs that uses an

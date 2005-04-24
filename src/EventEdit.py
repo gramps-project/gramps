@@ -144,14 +144,15 @@ class EventEditor:
         self.event_menu = self.top.get_widget("personal_events")
         self.priv = self.top.get_widget("priv")
         self.priv.set_sensitive(not noedit)
-        self.sources_label = self.top.get_widget("sourcesEvent")
-        self.notes_label = self.top.get_widget("notesEvent")
+        self.sources_label = self.top.get_widget("sources_tab")
+        self.notes_label = self.top.get_widget("note_tab")
+        self.general_label = self.top.get_widget("general_tab")
+        self.gallery_label = self.top.get_widget("gallery_tab")
+        self.witnesses_label = self.top.get_widget("witness_tab")
         self.flowed = self.top.get_widget("eventflowed")
         self.flowed.set_sensitive(not noedit)
         self.preform = self.top.get_widget("eventpreform")
         self.preform.set_sensitive(not noedit)
-        self.gallery_label = self.top.get_widget("galleryEvent")
-        self.witnesses_label = self.top.get_widget("witnessesEvent")
         self.ok = self.top.get_widget('ok')
         
         self.ok.set_sensitive(not noedit)
@@ -219,7 +220,6 @@ class EventEditor:
                                         self.date_field,
                                         self.top.get_widget("date_stat"),
                                         self.window)
-
         if not event:
             event = RelLib.Event()
         self.icon_list = self.top.get_widget("iconlist")
