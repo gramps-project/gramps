@@ -1,3 +1,6 @@
+2005-04-24  Eero Tamminen  <eerot@sf>
+        * configure.in: Add Finnish back to installed languages
+
 2005-04-24  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/rel_ru.py (get_parents): Remove gettext string.
 
