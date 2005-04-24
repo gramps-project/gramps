@@ -1,6 +1,8 @@
 2005-04-24  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/rel_ru.py (get_parents): Remove gettext string.
-	* src/ReportUtils.py (list_person_str): Add missing periods.
+
+	* src/ReportUtils.py (list_person_str): Add missing periods;
+	Use burial_date and burial_place for named format string parameters.
 
 2005-04-23  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/po/es.po: Nearly complete update, but completely untested
