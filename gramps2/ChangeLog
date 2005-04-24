@@ -1,4 +1,5 @@
 2005-04-24  Eero Tamminen  <eerot@sf>
+        * src/po/fi.po: Make translations more consistent + some fixes
         * configure.in: Add Finnish back to installed languages
 
 2005-04-24  Alex Roitman  <shura@gramps-project.org>
