@@ -133,11 +133,11 @@ msgstr ""
 
 #: AttrEdit.py:119 AttrEdit.py:123 AttrEdit.py:181
 msgid "Attribute Editor"
-msgstr "Ominaisuuseditori"
+msgstr "Ominaisuus-editori"
 
 #: AttrEdit.py:121
 msgid "Attribute Editor for %s"
-msgstr "%s:n ominaisuuseditori"
+msgstr "%s:n ominaisuus-editori"
 
 #: AttrEdit.py:170 AttrEdit.py:174
 msgid "New Attribute"
@@ -315,7 +315,7 @@ msgstr "GRAMPS: Valitse uuden tietokannan nimi"
 
 #: DbPrompter.py:476
 msgid "Could not save file: %s"
-msgstr "Tiedoston %s talletus epäonnistui"
+msgstr "Tiedoston %s tallennus epäonnistui"
 
 #: DbPrompter.py:583
 msgid "Automatically detected"
@@ -533,7 +533,7 @@ msgstr "Lisää paikka (%s)"
 
 #: EditPlace.py:90 EditPlace.py:277
 msgid "Place Editor"
-msgstr "Paikkaeditori"
+msgstr "Paikka-editori"
 
 #: EditPlace.py:149 PlaceView.py:53
 msgid "City"
@@ -627,11 +627,11 @@ msgstr "Poista lähde (%s)"
 
 #: EventEdit.py:124 EventEdit.py:129 EventEdit.py:281
 msgid "Event Editor"
-msgstr "Tapahtumaeditori"
+msgstr "Tapahtuma-editori"
 
 #: EventEdit.py:126
 msgid "Event Editor for %s"
-msgstr "Tapahtumaeditori %s:lle"
+msgstr "Tapahtuma-editori %s:lle"
 
 #: EventEdit.py:270 EventEdit.py:274
 msgid "New Event"
@@ -690,7 +690,7 @@ msgid ""
 "\n"
 "If you change your mind during this process, you can safely press the Cancel button at any time and your present database will still be intact."
 msgstr ""
-"Normaalisti sinun ei tarvitse GRAMPS:ssä erikseen tallentaa muutoksia. Kaikki tekemäsi muutokset talletetaan välittömästi tietokantaan.\n"
+"Normaalisti sinun ei tarvitse GRAMPS:ssä erikseen tallentaa muutoksia. Kaikki tekemäsi muutokset tallennetaan välittömästi tietokantaan.\n"
 "\n"
 "Tämä prosessi auttaa sinua tallentamaan kopion tiedoistasi johonkin muuhun GRAMPS:n tukemaan muotoon. Voit käyttää tätä tietojesi kopiointiin, niiden varmuuskopiointiin, tai muuttaaksesi ne muotoon, jota jokin toinen ohjelma tukee.\n"
 "\n"
@@ -698,7 +698,7 @@ msgstr ""
 
 #: Exporter.py:170
 msgid "Final save confirmation"
-msgstr "Viimeinen talletusvahvistus"
+msgstr "Viimeinen tallennusvahvistus"
 
 #: Exporter.py:194
 msgid ""
@@ -710,13 +710,13 @@ msgid ""
 "\n"
 "Press Forward to proceed, Cancel to abort, or Back to revisit your options."
 msgstr ""
-"Tiedot talletetaan seuraavasti:\n"
+"Tiedot tallennetaan seuraavasti:\n"
 "\n"
 "Muoto:\t%s\n"
 "Nimi:\t%s\n"
 "Kansio:\t%s\n"
 "\n"
-"Paina \"Seuraava\" jatkaaksesi, \"Keskeytä\" keskeyttääksesi, tai \"Takaisin\" muuttaaksesi valintojasi."
+"Paina \"Seuraava\" jatkaaksesi, \"Peru\" keskeyttääksesi, tai \"Edellinen\" muuttaaksesi valintojasi."
 
 #: Exporter.py:214
 msgid "Your data has been saved"
@@ -1562,7 +1562,7 @@ msgstr "Muokkaa media-objektia"
 
 #: ImageSelect.py:909
 msgid "Media Properties Editor"
-msgstr "Mediaominaisuuksien editori"
+msgstr "Mediaominaisuus-editori"
 
 #: ImageSelect.py:1055
 msgid "Properties Editor"
@@ -1574,7 +1574,7 @@ msgstr "Poista media-objekti"
 
 #: LocEdit.py:72 LocEdit.py:105
 msgid "Location Editor"
-msgstr "Paikkaeditori"
+msgstr "Sijainti-editori"
 
 #: Marriage.py:106 Marriage.py:357
 msgid "Marriage/Relationship Editor"
@@ -1713,11 +1713,11 @@ msgstr "Yhdistä henkilöitä"
 
 #: NameEdit.py:124 NameEdit.py:128 NameEdit.py:224
 msgid "Name Editor"
-msgstr "Nimieditori"
+msgstr "Nimi-editori"
 
 #: NameEdit.py:126
 msgid "Name Editor for %s"
-msgstr "Nimieditori %s:lle"
+msgstr "Nimi-editori %s:lle"
 
 #: NameEdit.py:213 NameEdit.py:217
 msgid "New Name"
@@ -1745,7 +1745,7 @@ msgstr "Liitä vain tämä nimi"
 
 #: NoteEdit.py:71
 msgid "Note Editor"
-msgstr "Huomautus-editori"
+msgstr "Huomioita-editori"
 
 #: PaperMenu.py:107 PaperMenu.py:131
 msgid "Portrait"
@@ -1917,11 +1917,11 @@ msgstr "Valitse työkalu vasemmalta."
 
 #: Plugins.py:340 plugins/verify.glade:67
 msgid "_Run"
-msgstr "_Aja"
+msgstr "_Avaa"
 
 #: Plugins.py:341
 msgid "Run selected tool"
-msgstr "Aja valittu työkalu"
+msgstr "Avaa valittu työkalu"
 
 #: Plugins.py:367
 msgid "Plugin status"
@@ -2225,7 +2225,7 @@ msgstr "Tyyli"
 
 #: Report.py:582 StyleEditor.py:83
 msgid "Style Editor"
-msgstr "Tyylieditori"
+msgstr "Tyyli-editori"
 
 #: Report.py:638
 msgid "Report Options"
@@ -3198,7 +3198,7 @@ msgstr "Tyylitiedoston tallennus epäonnistui"
 
 #: StyleEditor.py:181
 msgid "Style editor"
-msgstr "Tyylieditori"
+msgstr "Tyyli-editori"
 
 #: StyleEditor.py:185
 msgid "Paragraph"
@@ -3218,7 +3218,7 @@ msgstr "Todistaja"
 
 #: Witness.py:177 Witness.py:193
 msgid "Witness Editor"
-msgstr "Todistajaeditori"
+msgstr "Todistaja-editori"
 
 #: Witness.py:245
 msgid "Witness selection error"
@@ -3924,7 +3924,7 @@ msgstr "_Avaa..."
 
 #: gramps.glade:97
 msgid "Open _Recent"
-msgstr "Viimeksi _Avattu"
+msgstr "Viimeksi _avattu"
 
 #: gramps.glade:112
 msgid "_Import..."
@@ -4116,11 +4116,11 @@ msgstr "Aktivoi \"koti\"-henkilö"
 
 #: gramps.glade:873
 msgid "Open Scratch Pad"
-msgstr "Avaa Muistilista"
+msgstr "Avaa Muistio"
 
 #: gramps.glade:874
 msgid "ScratchPad"
-msgstr "Muistilista"
+msgstr "Muistio"
 
 #: gramps.glade:891
 msgid "Generate reports"
@@ -4132,7 +4132,7 @@ msgstr "Raportit"
 
 #: gramps.glade:909
 msgid "Run tools"
-msgstr "Aja työkaluja"
+msgstr "Avaa työkalut"
 
 #: gramps.glade:910
 msgid "Tools"
@@ -4584,7 +4584,7 @@ msgstr "P_aikka:"
 #: gramps.glade:11741 gramps.glade:13839 gramps.glade:18429 gramps.glade:23085
 #: gramps.glade:29223
 msgid "Invoke date editor"
-msgstr "Käynnistä päivämäärä-editori"
+msgstr "Avaa päivämäärä-editori"
 
 #: gramps.glade:7340
 msgid "An optional prefix for the family name that is not used in sorting, such as \"de\" or \"van\""
@@ -4596,7 +4596,7 @@ msgstr "Henkilön etunimi"
 
 #: gramps.glade:7387
 msgid "Invoke birth event editor"
-msgstr "Käynnistä syntymätapahtumaeditori"
+msgstr "Avaa syntymä-editori"
 
 #: gramps.glade:7438
 msgid "Edit the preferred name"
@@ -4612,7 +4612,7 @@ msgstr "<b>Tunniste</b>"
 
 #: gramps.glade:7515
 msgid "Invoke death event editor"
-msgstr "Käynnistä kuolemantapahtuma-editori"
+msgstr "Avaa kuolema-editori"
 
 #: gramps.glade:7630
 msgid "<b>Image</b>"
@@ -6208,7 +6208,7 @@ msgid ""
 msgstr ""
 "Tämä kirja oli luotu viitteillä tietokantaan %s.\n"
 "\n"
-"Tämän takia kirjan keskushenkilöön talletetut viitteet eivät ole voimassa.\n"
+"Tämän takia kirjan keskushenkilöön tallennetut viitteet eivät ole voimassa.\n"
 "\n"
 "Joten keskushenkilöksi joka kohdalle asetetaan nykyisen tietokannan aktiivinen henkilö."
 
@@ -6241,7 +6241,7 @@ msgid "No modifications made"
 msgstr "Muutoksia ei tehty"
 
 #: plugins/ChangeNames.py:91
-msgid "No capitalization changes where detected."
+msgid "No capitalization changes were detected."
 msgstr "Alkukirjaimien muutoksia ei havaittu."
 
 #: plugins/ChangeNames.py:108 plugins/ChangeNames.py:186
@@ -6787,11 +6787,11 @@ msgstr "Kommentti"
 
 #: plugins/FilterEditor.py:357
 msgid "Filter Editor tool"
-msgstr "Suodineditori-työkalu"
+msgstr "Suodin-editori työkalu"
 
 #: plugins/FilterEditor.py:362
 msgid "Filter List"
-msgstr "Suodin-lista"
+msgstr "Suodin lista"
 
 #: plugins/FilterEditor.py:447
 msgid "Define filter"
@@ -6851,7 +6851,7 @@ msgstr "Testaa"
 
 #: plugins/FilterEditor.py:926
 msgid "Custom Filter Editor"
-msgstr "Erikoissuodineditori"
+msgstr "Erikoissuodin-editori"
 
 #: plugins/FilterEditor.py:927 plugins/FilterEditor.py:940
 #: plugins/RelCalc.py:208 plugins/ScratchPad.py:894 plugins/SoundGen.py:160
@@ -6861,15 +6861,15 @@ msgstr "Apuvälineet"
 
 #: plugins/FilterEditor.py:928
 msgid "The Custom Filter Editor builds custom filters that can be used to select people included in reports, exports, and other utilities."
-msgstr "Erikoissuodineditori rakentaa erikoissuotimiä, joita voidaan käyttää valitsemaan henkilöitä raportteihin, vientiin ja muille työkaluille."
+msgstr "Erikoissuodin-editori rakentaa erikoissuotimiä, joita voidaan käyttää valitsemaan henkilöitä raportteihin, vientiin ja muille työkaluille."
 
 #: plugins/FilterEditor.py:939
 msgid "System Filter Editor"
-msgstr "Järjestelmäsuodineditori"
+msgstr "Järjestelmäsuodin-editori"
 
 #: plugins/FilterEditor.py:941
 msgid "The System Filter Editor builds custom filters that can be used by anyone on the system to select people included in reports, exports, and other utilities."
-msgstr "Järjestelmäsuodineditori rakentaa erikoissuotimiä, joita voidaan käyttää valitsemaan henkilöitä raportteihin, vientiin ja muille työkaluille."
+msgstr "Järjestelmäsuodin-editori rakentaa erikoissuotimiä, joita voidaan käyttää valitsemaan henkilöitä raportteihin, vientiin ja muille työkaluille."
 
 #: plugins/FtmStyleAncestors.py:109 plugins/FtmStyleDescendants.py:132
 msgid "Generation No. %d"
@@ -8556,7 +8556,7 @@ msgstr "_Hyväksy muutokset ja sulje"
 
 #: plugins/changetype.glade:100
 msgid "This tool will rename all events of one type to a different type. Once completed, this cannot be undone without abandoning all changes since the last database save."
-msgstr "Tämä työkälu uudelleennimeää kaikki tiettyä tyyppiä olevat tapahtumat toisen tyyppisiksi. Valmistuttuaan toimintoa ei voi peruta ilman, että hylkää kaikki muutokset viimeisimmän tietokannan talletuksen jälkeen."
+msgstr "Tämä työkälu uudelleennimeää kaikki tiettyä tyyppiä olevat tapahtumat toisen tyyppisiksi. Valmistuttuaan toimintoa ei voi peruta ilman, että hylkää kaikki muutokset viimeisimmän tietokannan tallennuksen jälkeen."
 
 #: plugins/changetype.glade:131
 msgid "_Original event type:"
@@ -8600,11 +8600,11 @@ msgstr "Valitse tiedosto, johon tallentaa OpenOffice.org taulukkolaskenta"
 
 #: plugins/eventcmp.glade:416
 msgid "The event comparison utility uses the filters defined in the Custom Filter Editor."
-msgstr "Tapahtumien vertailutyökalu käyttää erikoissuodineditorissa määritettyjä suotimia."
+msgstr "Tapahtumien vertailutyökalu käyttää erikoissuodin-editorissa määritettyjä suotimia."
 
 #: plugins/eventcmp.glade:441
 msgid "_Custom filter editor"
-msgstr "_Erikoissuodineditori"
+msgstr "_Erikoissuodin-editori"
 
 #: plugins/leak.glade:150
 msgid "<b>Uncollected Objects</b>"
