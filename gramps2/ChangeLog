@@ -1,3 +1,6 @@
+2005-04-24  Don Allingham  <don@gramps-project.org>
+	* src/gramps.glade: remove REDO menu item
+
 2005-04-24  Eero Tamminen  <eerot@sf>
         * src/po/fi.po: Make translations more consistent + some fixes
         * configure.in: Add Finnish back to installed languages
