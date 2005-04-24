@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Mon Apr 11 20:54:14 2005\n"
-"PO-Revision-Date: 2005-04-23 21:10+0200\n"
+"PO-Revision-Date: 2005-04-24 18:13+0200\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -7159,39 +7159,38 @@ msgid "Export to vCalendar"
 msgstr "Eksporter til vCalendar"
 
 #: plugins/ExportVCalendar.py:312
-#, fuzzy
 msgid "vCalendar"
 msgstr "vCalendar"
 
 #: plugins/ExportVCalendar.py:313
 #, fuzzy
 msgid "vCalendar is used in many calendaring and pim applications."
-msgstr "tommer og."
+msgstr "vCalendar brukes av mange kalendere og \"sjette sans\" programmer."
 
 #: plugins/ExportVCalendar.py:314
 #, fuzzy
 msgid "vCalendar export options"
-msgstr "innstillinger (= settings, preferences), valg"
+msgstr "vCalender eksport valg"
 
 #: plugins/ExportVCard.py:57
 #, fuzzy
 msgid "Export to vCard"
-msgstr "Eksporter å"
+msgstr "Eksporter til vCard"
 
 #: plugins/ExportVCard.py:234
 #, fuzzy
 msgid "vCard"
-msgstr "Ryddet"
+msgstr "vCard"
 
 #: plugins/ExportVCard.py:235
 #, fuzzy
 msgid "vCard is used in many addressbook and pim applications."
-msgstr "tommer og."
+msgstr "vCard brukes av mange adressebok og \"sjette sans\" programmer."
 
 #: plugins/ExportVCard.py:236
 #, fuzzy
 msgid "vCard export options"
-msgstr "innstillinger (= settings, preferences), valg"
+msgstr "vCard eksport valg"
 
 #: plugins/FamilyGroup.py:163 plugins/NavWebPage.py:758
 msgid "Husband"
@@ -7261,7 +7260,7 @@ msgstr "Filterhendelsesverktøy"
 #: plugins/FilterEditor.py:362
 #, fuzzy
 msgid "Filter List"
-msgstr "Filter Liste"
+msgstr "Filterliste"
 
 #: plugins/FilterEditor.py:447
 msgid "Define filter"
@@ -7275,7 +7274,7 @@ msgstr "Nytt filter"
 #: plugins/FilterEditor.py:523
 #, fuzzy
 msgid "Define Filter"
-msgstr "Begrens Filter"
+msgstr "Definere filter"
 
 #: plugins/FilterEditor.py:578
 msgid "Add Rule"
@@ -7292,12 +7291,12 @@ msgstr "Ta med den opprinnelige personen"
 #: plugins/FilterEditor.py:692
 #, fuzzy
 msgid "Use exact case of letters"
-msgstr "Bruk av"
+msgstr "Skill mellom store å små bokstaver"
 
 #: plugins/FilterEditor.py:694
 #, fuzzy
 msgid "Use regular expression"
-msgstr "Bruk"
+msgstr "Bruk regulært utrykk"
 
 #: plugins/FilterEditor.py:707
 msgid "Rule Name"
@@ -7306,12 +7305,12 @@ msgstr "Navn på regelen"
 #: plugins/FilterEditor.py:782
 #, fuzzy
 msgid "New Rule"
-msgstr "Ny"
+msgstr "Ny regel"
 
 #: plugins/FilterEditor.py:783
 #, fuzzy
 msgid "Rule"
-msgstr "Ny regel"
+msgstr "Regel"
 
 #: plugins/FilterEditor.py:807 rule.glade:1123
 msgid "No rule selected"
@@ -7329,7 +7328,7 @@ msgstr "Test"
 #: plugins/FilterEditor.py:926
 #, fuzzy
 msgid "Custom Filter Editor"
-msgstr "Filtertilpassningsbehandler"
+msgstr "Egendefinert filterbehandler"
 
 #: plugins/FilterEditor.py:927 plugins/FilterEditor.py:940
 #: plugins/RelCalc.py:208 plugins/ScratchPad.py:894 plugins/SoundGen.py:160
@@ -7340,7 +7339,7 @@ msgstr "Redskaper"
 #: plugins/FilterEditor.py:928
 #, fuzzy
 msgid "The Custom Filter Editor builds custom filters that can be used to select people included in reports, exports, and other utilities."
-msgstr "Den filtertilpassningsbehandleren bygger tilpassede filtre, som kan brukes til å velge personer som skal være med i rapporter, eksporteringer eller i andre redskaper."
+msgstr "Den egendefinerte filterbehandleren bygger tilpassede filtre, som kan brukes til å velge personer som skal være med i rapporter, eksporteringer eller i andre redskaper."
 
 #: plugins/FilterEditor.py:939
 #, fuzzy
@@ -7350,7 +7349,7 @@ msgstr "Systemfilterbehandleren"
 #: plugins/FilterEditor.py:941
 #, fuzzy
 msgid "The System Filter Editor builds custom filters that can be used by anyone on the system to select people included in reports, exports, and other utilities."
-msgstr "Funksjonen «Systemfilterbehandleren» bygger tilpassede filtre, som kan bli brukt av alle på systemet til å velge hvem som skal være med i rapporter, eksporteringer eller andre redskaper."
+msgstr "Systemfilterbehandleren bygger tilpassede filtre, som kan bli brukt av alle på systemet til å velge hvem som skal være med i rapporter, eksporteringer eller andre redskaper."
 
 #: plugins/FtmStyleAncestors.py:109 plugins/FtmStyleDescendants.py:132
 msgid "Generation No. %d"
@@ -7383,19 +7382,16 @@ msgstr "Navn %(count)d: %(name)s%(endnotes)s"
 
 #: plugins/FtmStyleAncestors.py:255 plugins/FtmStyleDescendants.py:288
 #: plugins/FtmStyleDescendants.py:343
-#, fuzzy
 msgid "%(event_name)s: %(date)s, %(place)s%(endnotes)s. "
-msgstr "%(event_name)s: %(date)s, %(place)s%(endnotes)s."
+msgstr "%(event_name)s: %(date)s, %(place)s%(endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:261 plugins/FtmStyleDescendants.py:294
 #: plugins/FtmStyleDescendants.py:349
-#, fuzzy
 msgid "%(event_name)s: %(date)s%(endnotes)s. "
-msgstr "%(event_name)s: %(date)s%(endnotes)s."
+msgstr "%(event_name)s: %(date)s%(endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:266 plugins/FtmStyleDescendants.py:299
 #: plugins/FtmStyleDescendants.py:354
-#, fuzzy
 msgid "%(event_name)s: %(place)s%(endnotes)s. "
 msgstr "%(event_name)s: %(place)s%(endnotes)s."
 
@@ -7440,27 +7436,27 @@ msgstr "PostScript"
 #: plugins/GraphViz.py:65
 #, fuzzy
 msgid "Structured Vector Graphics (SVG)"
-msgstr "Grafikk"
+msgstr "Strukturert vektor grafikk (SVG)"
 
 #: plugins/GraphViz.py:66
 #, fuzzy
 msgid "Compressed Structured Vector Graphics (SVG)"
-msgstr "Komprimert Grafikk"
+msgstr "Komprimert strukturert vektor grafikk (SVG)"
 
 #: plugins/GraphViz.py:67
 #, fuzzy
 msgid "PNG image"
-msgstr "bilde, avtrykk (cdr/w)"
+msgstr "PNG bilde"
 
 #: plugins/GraphViz.py:68
 #, fuzzy
 msgid "JPEG image"
-msgstr "bilde, avtrykk (cdr/w)"
+msgstr "JPEG bilde"
 
 #: plugins/GraphViz.py:69
 #, fuzzy
 msgid "GIF image"
-msgstr "bilde, avtrykk (cdr/w)"
+msgstr "GIF bilde"
 
 #: plugins/GraphViz.py:73
 #, fuzzy
@@ -7468,33 +7464,35 @@ msgid "Default"
 msgstr "Standard"
 
 #: plugins/GraphViz.py:74
+#, fuzzy
 msgid "Postscript / Helvetica"
-msgstr ""
+msgstr "PostScript / Helvetica"
 
 #: plugins/GraphViz.py:75
+#, fuzzy
 msgid "Truetype / FreeSans"
-msgstr ""
+msgstr "TrueType / FreeSans"
 
 #: plugins/GraphViz.py:78
+#, fuzzy
 msgid "B&W outline"
-msgstr ""
+msgstr "Svart hvit disposisjon"
 
 #: plugins/GraphViz.py:79
+#, fuzzy
 msgid "Colored outline"
-msgstr ""
+msgstr "Farget disposisjon"
 
 #: plugins/GraphViz.py:80
 #, fuzzy
 msgid "Color fill"
-msgstr "Farge"
+msgstr "Farge fyll"
 
 #: plugins/GraphViz.py:83
-#, fuzzy
 msgid "Horizontal"
 msgstr "Vannrett"
 
 #: plugins/GraphViz.py:84
-#, fuzzy
 msgid "Vertical"
 msgstr "Loddrett"
 
@@ -7517,7 +7515,7 @@ msgstr "Etterkommere - forfedre"
 #: plugins/GraphViz.py:540
 #, fuzzy
 msgid "Include Birth, Marriage and Death dates"
-msgstr "Inkluder Født Ekteskap og Død"
+msgstr "Inkluder fødsels-, ekteskaps- og dødsdatoer"
 
 #: plugins/GraphViz.py:545
 msgid "Include the dates that the individual was born, got married and/or died in the graph labels."
@@ -7538,7 +7536,7 @@ msgstr "Sted/grunn når dato mangler"
 #: plugins/GraphViz.py:561
 #, fuzzy
 msgid "When no birth, marriage, or death date is available, the correspondent place field (or cause field when blank place) will be used."
-msgstr "eller dato tilgjengelig, disponibel felt eller felt."
+msgstr "Når hverken fødsels-, ekteskaps- eller dødsdato er tilgjengelig, vil det korresponderende stedsfeltet (eller grunnfeltet når stedsfeltet er tomt) vil bli brukt."
 
 #: plugins/GraphViz.py:569
 msgid "Include URLs"
@@ -7564,26 +7562,27 @@ msgstr "Innstillinger for GraphViz"
 #: plugins/GraphViz.py:599
 #, fuzzy
 msgid "Graph direction"
-msgstr "Innstillinger for GraphViz"
+msgstr "Graf retning"
 
 #: plugins/GraphViz.py:601
 #, fuzzy
 msgid "Whether generations go from top to bottom or left to right."
-msgstr "fra oppe å bunn eller venstre å høyre."
+msgstr "Om generasjonene går fra topp til bunn, eller fra venstre til høyre."
 
 #: plugins/GraphViz.py:617
+#, fuzzy
 msgid "Graph coloring"
-msgstr ""
+msgstr "Graf farger"
 
 #: plugins/GraphViz.py:619
 #, fuzzy
 msgid "Males will be shown with blue, females with red.  If the sex of an individual is unknown it will be shown with gray."
-msgstr "Menn med med av ukjent med."
+msgstr "Menn vil bli vist med blå farge, kvinner med rød farge.  Hvis kjønnet er ukjent vil individet bli vist med grå farge."
 
 #: plugins/GraphViz.py:636
 #, fuzzy
 msgid "Arrowhead direction"
-msgstr "Valg av pilhode"
+msgstr "Pilhode retning"
 
 #: plugins/GraphViz.py:638
 msgid "Choose the direction that the arrows point."
@@ -7592,22 +7591,22 @@ msgstr "Velg pilens retning."
 #: plugins/GraphViz.py:657
 #, fuzzy
 msgid "Font family"
-msgstr "Skrift"
+msgstr "Font familie"
 
 #: plugins/GraphViz.py:659
 #, fuzzy
 msgid "Choose the font family. If international characters don't show, use FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
-msgstr "Velg skrift(typ skrift(typ tilgjengelig, disponibel frahttp://www.nongnu.org/freefont/"
+msgstr "Velg font familien. Hvis internasjonale tegn ikke vises, velg FreeSans font. FreeSans er tilgjengelig fra: http://www.nongnu.org/freefont/"
 
 #: plugins/GraphViz.py:664
 #, fuzzy
 msgid "Indicate non-birth relationships with dotted lines"
-msgstr "med linjer"
+msgstr "Indiker ikke blodsrelasjoner med stiplede linjer"
 
 #: plugins/GraphViz.py:668
 #, fuzzy
 msgid "Non-birth relationships will show up as dotted lines in the graph."
-msgstr "opp linjer tommer."
+msgstr "Ikke blodsrelasjoner vil vises som stiplede linjer i grafen."
 
 #: plugins/GraphViz.py:671
 msgid "Show family nodes"
@@ -7657,32 +7656,31 @@ msgstr "Lager slektstrær, for tiden kun i GraphViz format. GraphViz (dot) kan gj
 #: plugins/GraphViz.py:952
 #, fuzzy
 msgid "Generates relationship graphs using GraphViz (dot) program. This report generates dot file behind the scene and then uses dot to convert it into a graph. If you want the dotfile itself, please use the Code Generators category."
-msgstr "fil og å kategori."
+msgstr "Lager relasjons graf med GraphViz (dot) program. Denne rapporten genererer dot filer bak senen, og bruker dot til å konvertere denne til en graf. Hvis du ønsker dot filen i seg selv, vennligst bruke Kodegenerator kategorien."
 
 #: plugins/ImportGeneWeb.py:165
 #, fuzzy
 msgid "GeneWeb import"
-msgstr "Lage rapporter"
+msgstr "GeneWeb import"
 
 #: plugins/ImportGeneWeb.py:711
 #, fuzzy
 msgid "GeneWeb files"
-msgstr "Generelle filtre"
+msgstr "GenWeb filer"
 
 #: plugins/ImportGeneWeb.py:713
-#, fuzzy
 msgid "GeneWeb"
-msgstr "La_g"
+msgstr "GeneWeb"
 
 #: plugins/ImportvCard.py:160
 #, fuzzy
 msgid "vCard import"
-msgstr "Kan ikke importere %s"
+msgstr "vCard import"
 
 #: plugins/ImportvCard.py:233
 #, fuzzy
 msgid "vCard files"
-msgstr "Lagre fil"
+msgstr "vCard fil"
 
 #: plugins/IndivComplete.py:132 plugins/IndivSummary.py:115
 msgid "%(date)s in %(place)s."
@@ -7748,19 +7746,21 @@ msgstr "Lager en detaljert rapport om den valgte personen."
 #: plugins/Leak.py:74
 #, fuzzy
 msgid "Uncollected Objects Tool"
-msgstr "Objekter"
+msgstr "Verktøy for løse objekter"
 
 #: plugins/Leak.py:116
 #, fuzzy
 msgid ""
 "Uncollected objects:\n"
 "\n"
-msgstr "Vis løse objekter"
+msgstr ""
+"Vis løse objekter:\n"
+"\n"
 
 #: plugins/Leak.py:118
 #, fuzzy
 msgid "No uncollected objects\n"
-msgstr "Nei"
+msgstr "Ingen løse objekter\n"
 
 #: plugins/Leak.py:135
 msgid "Show uncollected objects"
@@ -7781,12 +7781,12 @@ msgstr "Flett personer"
 #: plugins/Merge.py:174
 #, fuzzy
 msgid "No matches found"
-msgstr "Nei"
+msgstr "Ingen treff funnet"
 
 #: plugins/Merge.py:175
 #, fuzzy
 msgid "No potential duplicate people were found"
-msgstr "Nei"
+msgstr "Ingen potensielle duplikate personer ble funnet"
 
 #: plugins/Merge.py:191
 msgid "Determining possible merges"
@@ -7823,7 +7823,7 @@ msgstr "Personer"
 #: plugins/NavWebPage.py:189
 #, fuzzy
 msgid "Index of individuals, sorted by last name."
-msgstr "Indeks av sortert fra."
+msgstr "Indeks over alle individer, sortert etter etternavn."
 
 #: plugins/NavWebPage.py:193 plugins/NavWebPage.py:312
 msgid "Surname"
@@ -7836,7 +7836,7 @@ msgstr "Steder"
 #: plugins/NavWebPage.py:238
 #, fuzzy
 msgid "Index of all the places in the project."
-msgstr "Indeks av tommer."
+msgstr "Indeks over alle steder i prosjektet."
 
 #: plugins/NavWebPage.py:245 plugins/NavWebPage.py:310
 msgid "Letter"
@@ -7844,68 +7844,65 @@ msgstr "Letter"
 
 #: plugins/NavWebPage.py:297 plugins/NavWebPage.py:300
 #: plugins/StatisticsChart.py:98
-#, fuzzy
 msgid "Surnames"
 msgstr "Etternavn"
 
 #: plugins/NavWebPage.py:301
 #, fuzzy
 msgid "Index of all the surnames in the project. The links lead to a list of individuals in the database with this same surname."
-msgstr "Indeks av tommer lenker å liste av tommer med."
+msgstr "Indeks over alle fornavn i prosjektet. Lenkene fører til en liste med individer i databasen med dette fornavnet."
 
 #: plugins/NavWebPage.py:359 plugins/NavWebPage.py:362
 #, fuzzy
 msgid "Introduction"
-msgstr "Utdannelse"
+msgstr "Introduksjon"
 
 #: plugins/NavWebPage.py:444
 #, fuzzy
 msgid "All sources cited in the project."
-msgstr "Alle tommer."
+msgstr "Alle kilder referert til i prosjektet."
 
 #: plugins/NavWebPage.py:470 plugins/NavWebPage.py:473
-#, fuzzy
 msgid "Download"
 msgstr "Last ned"
 
 #: plugins/NavWebPage.py:490 plugins/NavWebPage.py:493
 #, fuzzy
 msgid "Contact"
-msgstr "Innhold"
+msgstr "Kontakt"
 
 #: plugins/NavWebPage.py:582
 msgid "Pedigree"
 msgstr "Stamtavle"
 
 #: plugins/NavWebPage.py:673
-#, fuzzy
 msgid "Narrative"
-msgstr "Gift"
+msgstr ""
 
 #: plugins/NavWebPage.py:706
 #, fuzzy
 msgid "Relationships"
-msgstr "Rela_sjon:"
+msgstr "Relasjoner"
 
 #: plugins/NavWebPage.py:762 plugins/NavWebPage.py:764
 #, fuzzy
 msgid "Partner"
-msgstr "Partnere"
+msgstr "Partner"
 
 #: plugins/NavWebPage.py:831
 #, fuzzy
 msgid "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; at &nbsp&nbsp; %(place)s"
-msgstr "beskrivelse&&nbsp;&nbsp; dato&nbsp;&nbsp; ved&nbsp;"
+msgstr "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; ved &nbsp&ndsp; %(place)s"
 
 #: plugins/NavWebPage.py:833
 #, fuzzy
 msgid "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp;"
-msgstr "beskrivelse&nbsp;&nbsp; dato&nbsp;&nbsp;"
+msgstr "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp;"
 
 #: plugins/NavWebPage.py:837
 #, fuzzy
 msgid "%(date)s &nbsp;&nbsp; at &nbsp&nbsp; %(place)s"
-msgstr "dato&&nbsp;&nbsp; ved&nbsp;"
+msgstr "%(date)s &nbsp;&nbsp; ved &nbsp&nbsp; %(place)s"
 
 #: plugins/NavWebPage.py:914 plugins/WebPage.py:818
 msgid "Generate HTML reports - GRAMPS"
@@ -7954,15 +7951,15 @@ msgid "Image subdirectory"
 msgstr "Bilde-undermappe"
 
 #: plugins/NavWebPage.py:1094
+#, fuzzy
 msgid "Web site title"
-msgstr ""
+msgstr "Nettside tittel"
 
 #: plugins/NavWebPage.py:1095 plugins/WebPage.py:1293
 msgid "File extension"
 msgstr "Filetternavn"
 
 #: plugins/NavWebPage.py:1096 plugins/WebPage.py:1295
-#, fuzzy
 msgid "Split alphabetical sections to separate pages"
 msgstr "Del alfabet seksjonene til separate sider"
 
@@ -7973,12 +7970,12 @@ msgstr "Ta med et kort slektstre"
 #: plugins/NavWebPage.py:1149
 #, fuzzy
 msgid "Home Note ID"
-msgstr "Hjem Notat ID"
+msgstr "Hjem notat ID"
 
 #: plugins/NavWebPage.py:1151
 #, fuzzy
 msgid "Introduction Note ID"
-msgstr "Notat ID"
+msgstr "Introduksjons notat ID"
 
 #: plugins/NavWebPage.py:1154 plugins/WebPage.py:1426
 msgid "Privacy"
@@ -7996,7 +7993,7 @@ msgstr "Målmappe"
 #: plugins/NavWebPage.py:1337
 #, fuzzy
 msgid "Narrative Web Site"
-msgstr "Lag nettsted"
+msgstr "Oppsummeringsnettsted ??"
 
 #: plugins/NavWebPage.py:1339 plugins/WebPage.py:1904
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
@@ -8015,7 +8012,6 @@ msgid "Nickname"
 msgstr "Kallenavn"
 
 #: plugins/PatchNames.py:217 plugins/PatchNames.py:228
-#, fuzzy
 msgid "Prefix"
 msgstr "Prefiks"
 
@@ -8026,7 +8022,7 @@ msgstr "Hent ut informasjon fra navn"
 #: plugins/PatchNames.py:317
 #, fuzzy
 msgid "Searches the entire database and attempts to extract titles, nicknames and surname prefixes that may be embedded in a person's given name field."
-msgstr "og å pakke ut, dekomprimere, trekke ut og tommer felt."
+msgstr "Søker gjennom hele databasen og forsøker å trekke ut titler, kallenavn og etternavnsprefikser som kan være lagret i en persons fornavn."
 
 #: plugins/ReadPkg.py:63
 msgid "Could not create temporary directory %s"
@@ -8039,22 +8035,22 @@ msgstr "Feil ved uthenting til %s"
 #: plugins/ReadPkg.py:104
 #, fuzzy
 msgid "GRAMPS packages"
-msgstr "GRAMPS"
+msgstr "GRAMPS pakker"
 
 #: plugins/ReadPkg.py:106
 #, fuzzy
 msgid "GRAMPS package"
-msgstr "GRAMPS pakke, programpakke"
+msgstr "GRAMPS pakke"
 
 #: plugins/RelCalc.py:82
 #, fuzzy
 msgid "Relationship calculator: %(person_name)s"
-msgstr "Relasjonsberegning"
+msgstr "Relasjonsberegning: %(person_name)s"
 
 #: plugins/RelCalc.py:88
 #, fuzzy
 msgid "Relationship to %(person_name)s"
-msgstr "å"
+msgstr "Relasjons til %(person_name)s"
 
 #: plugins/RelCalc.py:166
 msgid "Their common ancestor is %s."
@@ -8087,12 +8083,12 @@ msgstr "Beregner relasjonen mellem to personer"
 #: plugins/ReorderIds.py:49
 #, fuzzy
 msgid "Tool currently unavailable"
-msgstr "Ingen definisjon tilgjengelig"
+msgstr "Verktøy for øyeblikket utilgjengelig"
 
 #: plugins/ReorderIds.py:50
 #, fuzzy
 msgid "This tool has not yet been brought up to date after transition to the database, sorry."
-msgstr "verktøy opp å dato etter å."
+msgstr "Dette verktøyet har ikke blitt oppdatert til å takle den nye database bakstykket, beklager."
 
 #: plugins/ReorderIds.py:153
 msgid "Reorder gramps IDs"
@@ -8108,20 +8104,19 @@ msgid "Location"
 msgstr "Plassering"
 
 #: plugins/ScratchPad.py:145
-#, fuzzy
 msgid "Telephone"
 msgstr "Telefon"
 
 #: plugins/ScratchPad.py:184 plugins/ScratchPad.py:226
 #, fuzzy
 msgid "Cause"
-msgstr "Grunn:"
+msgstr "Grunn"
 
 #: plugins/ScratchPad.py:194 plugins/ScratchPad.py:236
 #: plugins/ScratchPad.py:391 plugins/ScratchPad.py:473
 #, fuzzy
 msgid "Primary source"
-msgstr "<b>Primærkilde</b>"
+msgstr "Primærkilde"
 
 #: plugins/ScratchPad.py:208 plugins/ScratchPad.py:222
 #, fuzzy
@@ -8129,8 +8124,9 @@ msgid "Family Event"
 msgstr "Familiehendelser"
 
 #: plugins/ScratchPad.py:250 plugins/ScratchPad.py:259
+#, fuzzy
 msgid "Url"
-msgstr ""
+msgstr "Nettadresse"
 
 #: plugins/ScratchPad.py:306 plugins/ScratchPad.py:314
 #, fuzzy
@@ -8140,27 +8136,27 @@ msgstr "Familieegenskap"
 #: plugins/ScratchPad.py:339 plugins/ScratchPad.py:353
 #, fuzzy
 msgid "SourceRef"
-msgstr "Kilde"
+msgstr "KildeRef"
 
 #: plugins/ScratchPad.py:355
-#, fuzzy
 msgid "Page"
 msgstr "Side"
 
 #: plugins/ScratchPad.py:443 plugins/ScratchPad.py:462
 #, fuzzy
 msgid "Person Link"
-msgstr "Person Lenke"
+msgstr "Person lenke"
 
 #: plugins/ScratchPad.py:830 plugins/ScratchPad.py:893
 #: plugins/scratchpad.glade:9
+#, fuzzy
 msgid "Scratch Pad"
-msgstr ""
+msgstr "Notatblokk"
 
 #: plugins/ScratchPad.py:895
 #, fuzzy
 msgid "The Scratch Pad provides a temporary note pad to store objects for easy reuse."
-msgstr "å for."
+msgstr "Notatblokken tilbyr en temporær utklippstavle for å lagre objekter for lett gjenbruk."
 
 #: plugins/SimpleBookTitle.py:128
 msgid "Title of the Book"
@@ -8218,7 +8214,7 @@ msgstr "Program for å lage SoundEx-kode"
 #: plugins/SoundGen.py:131
 #, fuzzy
 msgid "SoundEx code generator tool"
-msgstr "verktøy"
+msgstr "SoundEx kodegenerator verktøy"
 
 #: plugins/SoundGen.py:159
 msgid "Generate SoundEx codes"
@@ -8231,7 +8227,7 @@ msgstr "Lag SoundEx koder for navn"
 #: plugins/StatisticsChart.py:75
 #, fuzzy
 msgid "Item count"
-msgstr "Emneantall"
+msgstr "Elementteller"
 
 #: plugins/StatisticsChart.py:79
 #, fuzzy
@@ -8240,38 +8236,31 @@ msgstr "Begge"
 
 #: plugins/StatisticsChart.py:80 plugins/StatisticsChart.py:173
 #: plugins/StatisticsChart.py:501
-#, fuzzy
 msgid "Men"
 msgstr "Menn"
 
 #: plugins/StatisticsChart.py:81 plugins/StatisticsChart.py:175
 #: plugins/StatisticsChart.py:503
-#, fuzzy
 msgid "Women"
 msgstr "Kvinner"
 
 #: plugins/StatisticsChart.py:96
-#, fuzzy
 msgid "Titles"
 msgstr "Titler"
 
 #: plugins/StatisticsChart.py:100
-#, fuzzy
 msgid "Forenames"
 msgstr "Fornavn"
 
 #: plugins/StatisticsChart.py:102
-#, fuzzy
 msgid "Genders"
 msgstr "Kjønn"
 
 #: plugins/StatisticsChart.py:104
-#, fuzzy
 msgid "Birth years"
 msgstr "Fødselsår"
 
 #: plugins/StatisticsChart.py:106
-#, fuzzy
 msgid "Death years"
 msgstr "Dødsår"
 
@@ -8288,77 +8277,77 @@ msgstr "Dødsmåneder"
 #: plugins/StatisticsChart.py:112
 #, fuzzy
 msgid "Causes of death"
-msgstr "av"
+msgstr "Dødsgrunn"
 
 #: plugins/StatisticsChart.py:114
 #, fuzzy
 msgid "Birth places"
-msgstr "Født"
+msgstr "Fødselssted"
 
 #: plugins/StatisticsChart.py:116
 #, fuzzy
 msgid "Death places"
-msgstr "Død"
+msgstr "Dødssted"
 
 #: plugins/StatisticsChart.py:118
 #, fuzzy
 msgid "Marriage places"
-msgstr "Ekteskap"
+msgstr "Ekteskapssted"
 
 #: plugins/StatisticsChart.py:120
 #, fuzzy
 msgid "Number of relationships"
-msgstr "Tall av"
+msgstr "Antall relasjoner"
 
 #: plugins/StatisticsChart.py:122
 #, fuzzy
 msgid "Ages when first child born"
-msgstr "født"
+msgstr "Alder ved fødsel til førstefødte barn"
 
 #: plugins/StatisticsChart.py:124
 #, fuzzy
 msgid "Ages when last child born"
-msgstr "født"
+msgstr "Alder ved fødsel til sistefødte barn"
 
 #: plugins/StatisticsChart.py:126
 #, fuzzy
 msgid "Number of children"
-msgstr "Tall av"
+msgstr "Antall barn"
 
 #: plugins/StatisticsChart.py:128
 #, fuzzy
 msgid "Marriage ages"
-msgstr "Ekteskap"
+msgstr "Ekteskapsalder"
 
 #: plugins/StatisticsChart.py:130
 #, fuzzy
 msgid "Ages at death"
-msgstr "ved"
+msgstr "Alder ved død"
 
 #: plugins/StatisticsChart.py:132
 #, fuzzy
 msgid "Ages"
-msgstr "august"
+msgstr "Alder"
 
 #: plugins/StatisticsChart.py:134
 #, fuzzy
 msgid "Event types"
-msgstr "Hendelse"
+msgstr "Hendelsestyper"
 
 #: plugins/StatisticsChart.py:148
 #, fuzzy
 msgid "(Preferred) title missing"
-msgstr "Behold henvisningen til den savnede fila"
+msgstr "(Foretrukket) tittel mangler"
 
 #: plugins/StatisticsChart.py:157
 #, fuzzy
 msgid "(Preferred) forename missing"
-msgstr "Foretrukket _papir størrelse:"
+msgstr "(Foretrukket) fornavn mangler"
 
 #: plugins/StatisticsChart.py:166
 #, fuzzy
 msgid "(Preferred) surname missing"
-msgstr "Foretrukket _papir størrelse:"
+msgstr "(Foretrukket) etternavn mangler"
 
 #: plugins/StatisticsChart.py:176
 #, fuzzy
@@ -8369,50 +8358,52 @@ msgstr "Kjønn ukjent"
 #: plugins/StatisticsChart.py:306
 #, fuzzy
 msgid "Date(s) missing"
-msgstr "Dato"
+msgstr "Dato(er) mangler"
 
 #: plugins/StatisticsChart.py:201
 #, fuzzy
 msgid "Cause missing"
-msgstr "Data-gjetting"
+msgstr "Grunn mangler"
 
 #: plugins/StatisticsChart.py:210 plugins/StatisticsChart.py:224
 #, fuzzy
 msgid "Place missing"
-msgstr "Sted"
+msgstr "Sted mangler"
 
 #: plugins/StatisticsChart.py:232
+#, fuzzy
 msgid "Already dead"
-msgstr ""
+msgstr "Allerede død"
 
 #: plugins/StatisticsChart.py:239
+#, fuzzy
 msgid "Still alive"
-msgstr ""
+msgstr "Lever fortsatt"
 
 #: plugins/StatisticsChart.py:249 plugins/StatisticsChart.py:260
 #, fuzzy
 msgid "Events missing"
-msgstr "Hendelser"
+msgstr "Hendelser mangler"
 
 #: plugins/StatisticsChart.py:268 plugins/StatisticsChart.py:276
 #, fuzzy
 msgid "Children missing"
-msgstr "Barn"
+msgstr "Barn mangler"
 
 #: plugins/StatisticsChart.py:295
 #, fuzzy
 msgid "Birth missing"
-msgstr "Født"
+msgstr "Fødsel mangler"
 
 #: plugins/StatisticsChart.py:395
 #, fuzzy
 msgid "Personal information missing"
-msgstr "Personlig informasjon, opplysning"
+msgstr "Personlig informasjon mangler"
 
 #: plugins/StatisticsChart.py:803
 #, fuzzy
 msgid "The style used for the items and values."
-msgstr "Stilen brukt for emner og innhold."
+msgstr "Stilen brukt for elementer og verdier."
 
 #: plugins/StatisticsChart.py:857
 #, fuzzy
@@ -8425,12 +8416,10 @@ msgid "Sort chart items by"
 msgstr "Sorter diagram fra"
 
 #: plugins/StatisticsChart.py:861
-#, fuzzy
 msgid "Check to reverse the sorting order."
 msgstr "Huk av for å reversere sorteringsrekkefølgen."
 
 #: plugins/StatisticsChart.py:862
-#, fuzzy
 msgid "Sort in reverse order"
 msgstr "Sorter i motsatt rekkefølge"
 
@@ -8442,12 +8431,12 @@ msgstr "Velg årsutvalg for når personer skal være født."
 #: plugins/StatisticsChart.py:878
 #, fuzzy
 msgid "People born between"
-msgstr "Persone født mellom"
+msgstr "Personer født mellom"
 
 #: plugins/StatisticsChart.py:882
 #, fuzzy
 msgid "Check this if you want people who have no birth date or year to be accounted also in the statistics."
-msgstr "Sjekk dato eller år å tommer."
+msgstr "Sjekk av denne for å inkludere personer uten fødselsdato eller år i statistikken."
 
 #: plugins/StatisticsChart.py:883
 #, fuzzy
@@ -8467,27 +8456,27 @@ msgstr "Inkluderte kjønn"
 #: plugins/StatisticsChart.py:899
 #, fuzzy
 msgid "With fewer items pie chart and legend will be used instead of a bar chart."
-msgstr "Med diagram og av linje, stolpe (avhenig av sammenhengen) diagram."
+msgstr "Med færre elementer, vil et kakediagram og forklaring bli brukt i stede for stolpe diagram."
 
 #: plugins/StatisticsChart.py:921
 #, fuzzy
 msgid "Mark checkboxes to add charts with indicated data"
-msgstr "Merk å legge til, tilføye, addere med data"
+msgstr "Merk sjekkboks for å legge til diagram med valgte data"
 
 #: plugins/StatisticsChart.py:926
 #, fuzzy
 msgid "Note that both biological and adopted children are taken into account."
-msgstr "Notat og konto, kontoer i flertall."
+msgstr "Merk at både biologiske og adopterte barn blir regnet med."
 
 #: plugins/StatisticsChart.py:957
 #, fuzzy
 msgid "Statistics Chart"
-msgstr "Statistikk Diagram"
+msgstr "Statistikk diagram"
 
 #: plugins/StatisticsChart.py:961
 #, fuzzy
 msgid "Generates statistical bar graphs."
-msgstr "Lager statistiske histogrammer."
+msgstr "Generer statistiske histogrammer."
 
 #: plugins/Summary.py:111
 msgid "Number of individuals"
@@ -8557,39 +8546,41 @@ msgstr "Viser en oppsummering for denne databasen"
 #: plugins/TestcaseGenerator.py:107
 #, fuzzy
 msgid "Generate testcases"
-msgstr "Lage rapporter"
+msgstr "Generer testtilfeller"
 
 #: plugins/TestcaseGenerator.py:79
 #, fuzzy
 msgid "Generate Database errors"
-msgstr "Database"
+msgstr "Generer database feil"
 
 #: plugins/TestcaseGenerator.py:83
 #, fuzzy
 msgid "Generate dummy families"
-msgstr "dummy"
+msgstr "Generer test familier"
 
 #: plugins/TestcaseGenerator.py:115
 #, fuzzy
 msgid ""
 "Generating persons and families.\n"
 "Please wait."
-msgstr "og."
+msgstr ""
+"Generer personer og familier.\n"
+"Vennligst vent."
 
 #: plugins/TestcaseGenerator.py:148
 #, fuzzy
 msgid "Testcase generator"
-msgstr "Program for å lage SoundEx-kode"
+msgstr "Testtilfelle generator"
 
 #: plugins/TestcaseGenerator.py:503
 #, fuzzy
 msgid "Generate Testcases for persons and families"
-msgstr "for og"
+msgstr "Generer Testtilfeller for personer og familier"
 
 #: plugins/TestcaseGenerator.py:505
 #, fuzzy
 msgid "The testcase generator will generate some persons and families.that habe brolen links in the database or data that is in conflict to a relation."
-msgstr "og lenker tommer eller data tommer å."
+msgstr "Testtilfelle generatoren vil lage noen personer og familier som har ødelagte lenker i databasen, eller data som som er i konflikt med en relasjon."
 
 #: plugins/TimeLine.py:168
 #, fuzzy
@@ -8599,7 +8590,7 @@ msgstr "Klarte ikke å lage rapport"
 #: plugins/TimeLine.py:169
 #, fuzzy
 msgid "The range of dates chosen was not valid"
-msgstr "Dato området valgt var ikke gyldig"
+msgstr "Dato området som ble valgt var ikke gyldig"
 
 #: plugins/TimeLine.py:380
 msgid "The style used for the person's name."
@@ -8624,17 +8615,17 @@ msgstr "Lager en tidslinjegraf."
 #: plugins/TradDesTree.py:725
 #, fuzzy
 msgid "The basic style used for the date display."
-msgstr "for dato."
+msgstr "Den grunnleggende stilen brukt for dato fremvisning."
 
 #: plugins/TradDesTree.py:740
 #, fuzzy
 msgid "Trad Descendant Tree"
-msgstr "Etterkommer-utforsker"
+msgstr "Tradisjonelt etterslektstre"
 
 #: plugins/TradDesTree.py:741
 #, fuzzy
 msgid "Generates a text tree of descendants of the active person"
-msgstr "tekst av av Aktiv"
+msgstr "Lager et tekst tre av etterkommere av den aktive personen"
 
 #: plugins/Verify.py:84 plugins/Verify.py:98
 msgid "Database Verify"
@@ -8759,7 +8750,7 @@ msgstr "Ektemann og hustru med samme etternavn: %s i familie %s, og %s.\n"
 #: plugins/Verify.py:322
 #, fuzzy
 msgid "Large age difference between husband and wife: %s in family %s, and %s.\n"
-msgstr "Store mellom og tommer og"
+msgstr "Store alders differanse mellom mann og kone: %s i familien %s, og %s.\n"
 
 #: plugins/Verify.py:354
 msgid "Married before birth: %(male_name)s born %(byear)d, married %(maryear)d to %(spouse)s.\n"
@@ -8852,17 +8843,17 @@ msgstr "Død mor: %(female_name)s døde %(dyear)d, men fikk i år %(cbyear)d et bar
 #: plugins/Verify.py:463
 #, fuzzy
 msgid "Large year span for all children: family %s.\n"
-msgstr "Store år for"
+msgstr "Store års sprik for alle barnene: familie %s.\n"
 
 #: plugins/Verify.py:467
 #, fuzzy
 msgid "Large age differences between children: family %s.\n"
-msgstr "Store mellom"
+msgstr "Store alders forskjell mellom barnene: familie %s.\n"
 
 #: plugins/Verify.py:473
 #, fuzzy
 msgid "Too many children (%(num_children)d) for %(person_name)s.\n"
-msgstr "for"
+msgstr "For mange barn (%(num_children)d) for %(person_name)s.\n"
 
 #: plugins/Verify.py:480
 msgid "ERRORS:\n"
@@ -8875,7 +8866,7 @@ msgstr "ADVARSEL:\n"
 #: plugins/Verify.py:504
 #, fuzzy
 msgid "Database Verification Results"
-msgstr "Database"
+msgstr "Database verifiseringsresultat"
 
 #: plugins/Verify.py:552
 msgid "Verify the database"
@@ -8896,7 +8887,7 @@ msgstr "Tilbake til registeret over personer"
 #: plugins/WebPage.py:376 plugins/WebPage.py:1085
 #, fuzzy
 msgid "Return to the index of places"
-msgstr "Returner å indeks, stikkordliste/-register av"
+msgstr "Returner til indeksen over steder"
 
 #: plugins/WebPage.py:480
 #, fuzzy
@@ -8910,7 +8901,7 @@ msgstr "Fakta og hendelser"
 #: plugins/WebPage.py:862 plugins/WebPage.py:866
 #, fuzzy
 msgid "Place Index"
-msgstr "Sted Indeks"
+msgstr "Steds indeks"
 
 #: plugins/WebPage.py:937 plugins/WebPage.py:941
 msgid "Family Tree Index"
@@ -8940,12 +8931,12 @@ msgstr "Lag en GENDEX-rapport"
 #: plugins/WebPage.py:1290
 #, fuzzy
 msgid "Create an index of all Places"
-msgstr "Lag indeks, stikkordliste/-register av Plasser"
+msgstr "Lag en indeks over alle steder"
 
 #: plugins/WebPage.py:1292
 #, fuzzy
 msgid "Ancestor tree depth"
-msgstr "Slektstavle dybde"
+msgstr "Anetavle dybde"
 
 #: plugins/WebPage.py:1294
 #, fuzzy
@@ -8960,12 +8951,12 @@ msgstr "Legg til fødselsdato til navnene"
 #: plugins/WebPage.py:1297
 #, fuzzy
 msgid "Use only year of birth"
-msgstr "Bruk år av"
+msgstr "Bruk kun år for fødsel"
 
 #: plugins/WebPage.py:1433
 #, fuzzy
 msgid "Index page"
-msgstr "Indeks side"
+msgstr "Indeksside"
 
 #: plugins/WebPage.py:1438
 #, fuzzy
@@ -9003,7 +8994,7 @@ msgstr "Stil som blir brukt på forsiden (indekssiden) som angir hver del."
 #: plugins/WebPage.py:1599
 #, fuzzy
 msgid "The style used on the index page that labels links to each section."
-msgstr "på indeks, stikkordliste/-register lenker å avsnitt, del, (kapittel)."
+msgstr "Stilen brukt på indeks siden som merker lenker til hver seksjon."
 
 #: plugins/WebPage.py:1606
 msgid "The style used for the header for the image section."
@@ -9012,7 +9003,7 @@ msgstr "Stil som blir brukt på overskriften for bildedelen."
 #: plugins/WebPage.py:1613
 #, fuzzy
 msgid "The style used for the header for the siblings section."
-msgstr "for topptekst (i tekstbehandling), hode (message header = meldingshode, letterhead = brevhode), linje (the Content-Type header = Content-Type-linjen) for avsnitt, del, (kapittel)."
+msgstr "Stilen brukt til overskrift for søskenbarn delen."
 
 #: plugins/WebPage.py:1620
 msgid "The style used for the header for the marriages and children section."
@@ -9058,33 +9049,34 @@ msgstr "Overfør til CD"
 
 #: plugins/WriteCD.py:102 plugins/WriteCD.py:146 plugins/WriteCD.py:150
 #: plugins/WriteCD.py:162
+#, fuzzy
 msgid "CD export preparation failed"
-msgstr ""
+msgstr "Forberedelsene til å eksportere CD feilet"
 
 #: plugins/WriteCD.py:151
 #, fuzzy
 msgid "Could not create burn:///%s"
-msgstr "lage, opprette, skape"
+msgstr "Kunne ikke lage burn:///%s"
 
 #: plugins/WriteCD.py:163
 #, fuzzy
 msgid "Could not create burn:///%s/.thumb"
-msgstr "lage, opprette, skape"
+msgstr "Kunne ikke lage burn:///%s/.thumb"
 
 #: plugins/WriteCD.py:304
 #, fuzzy
 msgid "Export to CD (p_ortable XML)"
-msgstr "Eksporter å"
+msgstr "Eksporter til CD (p_ortable XML)"
 
 #: plugins/WriteCD.py:305
 #, fuzzy
 msgid "Exporting to CD copies all your data and media object files to the CD Creator. You may later burn the CD with this data, and that copy will be completely portable across different machines and binary architectures."
-msgstr "Eksporterer å data og media å med data og bærbar, flyttbar, overfør og."
+msgstr "Å eksportere til CD, kopierer alle dine data og media objekter filer til CD lageren. Du kan sere brenne CD'en med disse dataene, og den kopien vil fult flyttbare over forskjellige maskiner og binær arkitekturer."
 
 #: plugins/WriteFtree.py:273
 #, fuzzy
 msgid "_Web Family Tree"
-msgstr "Familie"
+msgstr "Nett Familie Tree"
 
 #: plugins/WriteFtree.py:274
 #, fuzzy
