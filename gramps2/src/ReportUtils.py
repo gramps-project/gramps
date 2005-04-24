@@ -1585,7 +1585,7 @@ def list_person_str(database,person,person_name=None,empty_date="",empty_place="
                         'male_name' : person_name, 
                         'birth_date' : bdate, 'death_place' : dplace }
                     else:
-                        text = _("%(male_name)s Born: %(birth_date)s ") % {
+                        text = _("%(male_name)s Born: %(birth_date)s.") % {
                         'male_name' : person_name, 'birth_date' : bdate }
         else:
             if bplace:
@@ -1684,7 +1684,7 @@ def list_person_str(database,person,person_name=None,empty_date="",empty_place="
                         'female_name' : person_name, 
                         'birth_date' : bdate, 'death_place' : dplace }
                     else:
-                        text = _("%(female_name)s Born: %(birth_date)s ") % {
+                        text = _("%(female_name)s Born: %(birth_date)s.") % {
                         'female_name' : person_name, 'birth_date' : bdate }
         else:
             if bplace:
