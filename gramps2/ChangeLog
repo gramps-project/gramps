@@ -1,3 +1,7 @@
+
+2005-04-23  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/po/es.po: Nearly complete update, but completely untested
+
 2005-04-23  Eero Tamminen  <eerot@sf>
 	* src/po/fi.po: Improved translations for style and filter names
 	  and some other things.  Still not tested
