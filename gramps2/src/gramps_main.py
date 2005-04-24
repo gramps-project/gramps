@@ -1750,7 +1750,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.goto_active_person()
         else:
             ErrorDialog(_("No Home Person has been set."),
-                        _("The Home Person may be set from the Settings menu."))
+                        _("The Home Person may be set from the Edit menu."))
 
     def on_add_bookmark_activate(self,obj):
         if self.active_person:
