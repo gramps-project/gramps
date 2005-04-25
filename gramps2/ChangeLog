@@ -20,6 +20,9 @@
 	* src/po/template.po: Update translation template.
 	* src/po/ru.po: Translation update.
 
+	* src/EditSource.py (button_press): Proper invokation of editors.
+	* src/ImageSelect.py: Remove workarounds for window management.
+
 2005-04-23  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/po/es.po: Nearly complete update, but completely untested
 

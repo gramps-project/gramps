@@ -277,12 +277,12 @@ class EditSource:
                     event, None, 0, None, None, self.db.readonly)
         elif type == 3:
             import EditPlace
-            family = self.db.get_place_from_handle(handle)
-            EditPlace.EditPlace(self.parent,family,self.db)
+            place = self.db.get_place_from_handle(handle)
+            EditPlace.EditPlace(self.parent,place)
         elif type == 5:
             import ImageSelect
             media = self.db.get_object_from_handle(handle)
-            ImageSelect.GlobalMediaProperties(self.db,media,self.parent)
+            ImageSelect.GlobalMediaProperties(self.db,media,self)
 
     def display_references(self):
         
