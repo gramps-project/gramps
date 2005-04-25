@@ -1,3 +1,11 @@
+Version 1.1.99 -- the "What... is your favourite colour?" release
+* Bug fixes
+* GEDCOM import fixes with parent/child relationships
+* Improved signaling interface to keep all displays in sync
+* Handle multiple selections in the Source View
+* Handle runtime errors from gnomevfs
+* translation improvements
+
 Version 1.1.95 -- the "When danger reared its ugly head, he bravely
                        turned his tail and fled" release
 * Explicit format selection in Save As, Open, and Import dialogs.

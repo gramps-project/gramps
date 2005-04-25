@@ -305,7 +305,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.spouse_combo= self.gtop.get_widget("spouse_combo")
         self.spouse_tab  = self.gtop.get_widget("spouse_tab")
         self.undolabel   = self.gtop.get_widget('undolabel')
-        self.redolabel   = self.gtop.get_widget('redolabel')
+        #self.redolabel   = self.gtop.get_widget('redolabel')
         self.open_recent = self.gtop.get_widget('open_recent1')
 
         self.child_model = gtk.ListStore(
@@ -494,13 +494,14 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         label.set_use_underline(1)
 
     def redo_callback(self,text):
-        self.redolabel.set_sensitive(bool(text))
-        label = self.redolabel.get_children()[0]
-        if text:
-            label.set_text(text)
-        else:
-            label.set_text(_("_Redo"))
-        label.set_use_underline(1)
+	return
+        #self.redolabel.set_sensitive(bool(text))
+        #label = self.redolabel.get_children()[0]
+        #if text:
+        #    label.set_text(text)
+        #else:
+        #    label.set_text(_("_Redo"))
+        #label.set_use_underline(1)
 
     def undo(self,*args):
         """
