@@ -1,3 +1,6 @@
+2005-04-25  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/FamilyView.py: Dont crash on empty database
+
 2005-04-24  Don Allingham  <don@gramps-project.org>
 	* src/gramps.glade: remove REDO menu item
 
