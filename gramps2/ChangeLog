@@ -23,6 +23,8 @@
 	* src/EditSource.py (button_press): Proper invokation of editors.
 	* src/ImageSelect.py: Remove workarounds for window management.
 
+	* src/Report.py (GrampsStyleComboBox): Use non-translated style name.
+
 2005-04-23  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/po/es.po: Nearly complete update, but completely untested
 
