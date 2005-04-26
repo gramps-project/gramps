@@ -34,12 +34,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk
 import gtk.gdk
-import pango
-
-try:
-    from gnomecanvas import CanvasGroup, CanvasRect, CanvasText, CanvasWidget, CanvasLine
-except:
-    from gnome.canvas import CanvasGroup, CanvasRect, CanvasText, CanvasWidget, CanvasLine
 
 #-------------------------------------------------------------------------
 #
@@ -82,12 +76,12 @@ class PedigreeView:
 
         # FIXME: Hack to avoid changing the glade file
         # Replace canvas by notebook
-        parent_container = canvas.get_parent()
+        self.parent_container = canvas.get_parent()
         canvas.destroy()
         self.notebook = gtk.Notebook()
         self.notebook.set_show_border(False)
         self.notebook.set_show_tabs(False)
-        parent_container.add_with_viewport(self.notebook)
+        self.parent_container.add_with_viewport(self.notebook)
         # ###
             
         self.table_2 = gtk.Table(1,1,False)
@@ -102,7 +96,7 @@ class PedigreeView:
         self.table_5 = gtk.Table(1,1,False)
         self.add_table_to_notebook( self.table_5)
 
-        parent_container.connect("size-allocate", self.size_request_cb)
+        self.parent_container.connect("size-allocate", self.size_request_cb)
 
         self.notebook.show_all()
 
@@ -112,6 +106,8 @@ class PedigreeView:
     
         self.change_db(self.parent.db)
         self.distance = self.relcalc.get_relationship_distance
+        
+        self.force_size = 0 # Automatic resize
 
     def add_table_to_notebook( self, table):
         frame = gtk.ScrolledWindow(None,None)
@@ -143,26 +139,29 @@ class PedigreeView:
             self.rebuild_trees(None)
         
     def size_request_cb(self, widget, event, data=None):
-        v = widget.get_allocation()
-        page_list = range(0,self.notebook.get_n_pages())
-        page_list.reverse()
-        for n in page_list:
-            p = self.notebook.get_nth_page(n).get_child().get_child().get_allocation()
-            if v.width >= p.width and v.height > p.height:
-                self.notebook.set_current_page(n)
-                break;
+        if self.force_size == 0:
+            v = widget.get_allocation()
+            page_list = range(0,self.notebook.get_n_pages())
+            page_list.reverse()
+            for n in page_list:
+                p = self.notebook.get_nth_page(n).get_child().get_child().get_allocation()
+                if v.width >= p.width and v.height > p.height:
+                    self.notebook.set_current_page(n)
+                    break;
+        else:
+            self.notebook.set_current_page(self.force_size-2)
 
     def rebuild_trees(self,person):
-        pos_2 =((0,1,3,(3,2,7)),
-                (2,0,1,None),
-                (2,4,1,None))
-        pos_3 =((0,2,5,(3,4,5)),
-                (2,1,1,(5,1,1)),
-                (2,7,1,(5,7,1)),
+        pos_2 =((0,3,3,(3,4,5)),
+                (2,0,3,None),
+                (2,10,3,None))
+        pos_3 =((0,4,5,(3,6,3)),
+                (2,1,3,(5,2,3)),
+                (2,9,3,(5,10,3)),
                 (4,0,1,None),
-                (4,2,1,None),
-                (4,6,1,None),
-                (4,8,1,None))
+                (4,4,1,None),
+                (4,8,1,None),
+                (4,12,1,None))
         pos_4 =((0, 5,5,(3, 7,5)),
                 (2, 2,3,(5, 3,3)),
                 (2,10,3,(5,11,3)),
@@ -213,6 +212,10 @@ class PedigreeView:
         self.rebuild( self.table_3, pos_3, person)
         self.rebuild( self.table_4, pos_4, person)
         self.rebuild( self.table_5, pos_5, person)
+        
+        while gtk.events_pending(): # give gtk the chance to do the repainting
+            gtk.main_iteration()
+        self.size_request_cb(self.parent_container,None) # switch to matching size
 
     def rebuild( self, table_widget, positions, active_person):
         # Build ancestor tree
@@ -223,6 +226,8 @@ class PedigreeView:
         for child in table_widget.get_children():
             child.destroy()
         table_widget.resize(1,1)
+        
+        tooltip = gtk.Tooltips()
         
         debug = False
         if debug:
@@ -251,9 +256,9 @@ class PedigreeView:
                 y = positions[i][1]
                 w = 3
                 h = positions[i][2]
-    
-                # Keine Person, daher leere Box
+                
                 if not lst[i]:
+                    # No person -> show empty box
                     label = gtk.Label(" ")
                     frame = gtk.ScrolledWindow(None,None)
                     frame.set_shadow_type(gtk.SHADOW_OUT)
@@ -263,116 +268,55 @@ class PedigreeView:
                         table_widget.attach(frame,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.EXPAND|gtk.FILL,0,0)
                     else:
                         table_widget.attach(frame,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.FILL,0,0)
-                    continue
-
-                # button t change active person
-                jump_image = gtk.Image()
-                jump_image.set_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
-                jump_button = gtk.Button()
-                jump_button.add(jump_image)
-                jump_button.set_data(_PERSON,lst[i][0].get_handle())
-                jump_button.connect("clicked", self.on_childmenu_changed);
-                
-                # button to edit person
-                edit_image = gtk.Image()
-                edit_image.set_from_stock(gtk.STOCK_EDIT,gtk.ICON_SIZE_MENU)
-                edit_button = gtk.Button()
-                edit_button.add(edit_image)
-                edit_button.set_data(_PERSON,lst[i][0].get_handle())
-                edit_button.connect("clicked", self.edit_person_cb);
-    
-                # button to jump to children
-                children_button = None
-                if i == 0 and active_person:
-                    for family_handle in active_person.get_family_handle_list():
-                        family = self.db.get_family_from_handle(family_handle)
-                        if not family:
-                            continue
-                        if len(family.get_child_handle_list()) > 0:
-                            children_image = gtk.Image()
-                            children_image.set_from_stock(gtk.STOCK_GO_BACK,gtk.ICON_SIZE_MENU)
-                            children_button = gtk.Button()
-                            children_button.add(children_image)
-                            children_button.connect("clicked", self.on_show_child_menu)
-                            break
-                # Navigation button
-                nav_image = gtk.Image()
-                nav_image.set_from_stock(gtk.STOCK_INDEX,gtk.ICON_SIZE_MENU)
-                nav_button = gtk.Button()
-                nav_button.add(nav_image)
-                nav_button.connect("button-press-event", self.build_full_nav_menu_cb)
-                nav_button.set_data(_PERSON,lst[i][0].get_handle())
-
-                # Box to place buttons and text side by side
-                box1 = gtk.HBox(False,0)
-                box1.set_border_width(0)
-    
-                if positions[i][2] > 1:
-                    # Multiline text boxes get vertical buttons
-                    frame = gtk.ScrolledWindow(None,None)
-                    frame.set_shadow_type(gtk.SHADOW_OUT)
-                    frame.set_policy(gtk.POLICY_NEVER,gtk.POLICY_NEVER)
-                    viewport1 = gtk.Viewport(None,None)
-                    viewport1.set_shadow_type(gtk.SHADOW_NONE)
-                    viewport1.set_border_width(0)
-                    frame.add(viewport1)
-                    viewport1.add(box1)
-                
-                    box2 = gtk.VBox(False,0)   # buttons go into a new box
-                    box2.pack_start(edit_button,False,False,0)
-                    box2.pack_start(jump_button,False,False,0)
-                    box2.pack_start(nav_button,False,False,0)
-                    if children_button:
-                        box2.pack_start(children_button,False,False,0)
-    
-                    # Multiline text using TextBuffer
-                    textbuffer = gtk.TextBuffer()
-                    textbuffer.set_text(self.format_person(lst[i][0], positions[i][2]))
-                    text = gtk.TextView(textbuffer)
-                    text.set_editable(False)
-                    text.set_cursor_visible(False)
-                    text.set_wrap_mode(gtk.WRAP_WORD)
-                    frame2 = gtk.ScrolledWindow(None,None)
-                    frame2.set_shadow_type(gtk.SHADOW_NONE)
-                    frame2.set_policy(gtk.POLICY_NEVER,gtk.POLICY_NEVER)
-                    viewport2 = gtk.Viewport(None,None)
-                    viewport2.set_shadow_type(gtk.SHADOW_NONE)
-                    viewport2.set_border_width(0)
-                    viewport2.add(text)
-                    frame2.add(viewport2)
-                    box1.pack_start(box2,False,False,0)
-                    box1.pack_start(frame2,True,True,0)
-                    table_widget.attach(frame,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.EXPAND|gtk.FILL,0,0)
                 else:
-                    # buttons go into the same box as the text
-                    box1.pack_start(edit_button,False,False,0)
-                    box1.pack_start(jump_button,False,False,0)
-                    box1.pack_start(nav_button,False,False,0)
-                    if children_button:
-                        box1.pack_start(children_button,False,False,0)
-    
-                    #Single line text using Entry
-                    text = gtk.Entry()
-                    text.set_text(self.format_person(lst[i][0], positions[i][2]))
-                    text.set_editable(False)
-                    text.set_has_frame(False)
-                    frame2 = gtk.ScrolledWindow(None,None)
-                    frame2.set_shadow_type(gtk.SHADOW_OUT)
-                    frame2.set_policy(gtk.POLICY_NEVER,gtk.POLICY_NEVER)
-                    viewport2 = gtk.Viewport(None,None)
-                    viewport2.set_shadow_type(gtk.SHADOW_NONE)
-                    viewport2.set_border_width(0)
-                    viewport2.add(text)
-                    frame2.add(viewport2)
-                    box1.pack_start(frame2,True,True,0)
-                    table_widget.attach(box1,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.FILL,0,0)
-    
+                    text = gtk.Button(self.format_person(lst[i][0], positions[i][2]))
+                    if i > 0 and positions[i][2] < 3:
+                        tooltip.set_tip(text, self.format_person(lst[i][0], 11))
+                    text.set_alignment(0.0,0.0)
+                    gender = lst[i][0].get_gender()
+                    if gender == RelLib.Person.MALE:
+                        text.modify_bg( gtk.STATE_NORMAL, text.get_colormap().alloc_color("#F5FFFF"))
+                    elif gender == RelLib.Person.FEMALE:
+                        text.modify_bg( gtk.STATE_NORMAL, text.get_colormap().alloc_color("#FFF5FF"))
+                    else:
+                        text.modify_bg( gtk.STATE_NORMAL, text.get_colormap().alloc_color("#FFFFF5"))
+                    white = text.get_colormap().alloc_color("white")
+                    text.modify_bg( gtk.STATE_ACTIVE, white)
+                    text.modify_bg( gtk.STATE_PRELIGHT, white)
+                    text.modify_bg( gtk.STATE_SELECTED, white)
+                    text.set_data(_PERSON,lst[i][0].get_handle())
+                    text.connect("button-press-event", self.build_full_nav_menu_cb)
+                    if positions[i][2] > 1:
+                        table_widget.attach(text,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.EXPAND|gtk.FILL,0,0)
+                    else:
+                        table_widget.attach(text,x,x+w,y,y+h,gtk.EXPAND|gtk.FILL,gtk.FILL,0,0)
+                    
+                    # Connection lines
+                    if i > 0:
+                        x = positions[i][0]-1
+                        y = positions[i][1]
+                        w = 1
+                        h = positions[i][2]
+                        line = gtk.DrawingArea()
+                        line.connect("expose-event", self.line_expose_cb)
+                        line.set_data("idx", i)
+                        line.set_data("rela", lst[i][1])
+                        table_widget.attach(line,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
+                    
                 # Marriage data
-                if positions[i][3] and lst[i][2]:
-                    text = self.format_relation( lst[i][2], positions[i][3][2])
+                if positions[i][3]:
+                    # An empty label is used as fallback, to allow it to EXPAND.
+                    # This gives a nicer layout
+                    text = " "
+                    try:
+                        if lst[i] and lst[i][2]:
+                            text = self.format_relation( lst[i][2], positions[i][3][2])
+                    except IndexError:
+                        pass
                     label = gtk.Label(text)
-                    label.set_justify(gtk.JUSTIFY_CENTER)
+                    label.set_justify(gtk.JUSTIFY_LEFT)
                     label.set_line_wrap(True)
+                    label.set_alignment(0.1,0.0)
                     x = positions[i][3][0]
                     y = positions[i][3][1]
                     w = 2
@@ -385,7 +329,22 @@ class PedigreeView:
                 pass
         table_widget.show_all()
 
-
+    def line_expose_cb(self, area, event):
+        style = area.get_style()
+        gc = style.fg_gc[gtk.STATE_NORMAL]
+        alloc = area.get_allocation()
+        idx = area.get_data("idx")
+        rela = area.get_data("rela")
+        if rela:
+            gc.line_style = gtk.gdk.LINE_ON_OFF_DASH
+        else:
+            gc.line_style = gtk.gdk.LINE_SOLID
+        gc.line_width = 3
+        if idx %2 == 0:
+            area.window.draw_line(gc, alloc.width, alloc.height/2, alloc.width/2, 0)
+        else:
+            area.window.draw_line(gc, alloc.width, alloc.height/2, alloc.width/2, alloc.height)
+    
     def edit_person_cb(self,obj):
         person_handle = obj.get_data(_PERSON)
         person = self.db.get_person_from_handle(person_handle)
@@ -440,7 +399,11 @@ class PedigreeView:
             return 1
         return 0
     
-
+    def change_force_size_cb(self,event,data):
+        if data in [0,2,3,4,5]:
+            self.force_size = data
+            self.size_request_cb(self.parent_container,None) # switch to matching size
+    
     def find_tree(self,person,index,depth,lst,val=0):
         """Recursively build a list of ancestors"""
 
@@ -501,6 +464,33 @@ class PedigreeView:
             item.show()
             menu.append(item)
 
+    def add_settings_to_menu(self,menu):
+        item = gtk.MenuItem(_("Tree size"))
+        item.set_submenu(gtk.Menu())
+        size_menu = item.get_submenu()
+        
+        current_image = gtk.image_new_from_stock(gtk.STOCK_APPLY,gtk.ICON_SIZE_MENU)
+        current_image.show()
+        
+        entry = gtk.ImageMenuItem(_("Automatic"))
+        entry.connect("activate", self.change_force_size_cb,0)
+        if self.force_size == 0:
+            entry.set_image(current_image)
+        entry.show()
+        size_menu.append(entry)
+
+        for n in range(2,6):
+            entry = gtk.ImageMenuItem(_("%d generations") % n)
+            if self.force_size == n:
+                entry.set_image(current_image)
+            entry.connect("activate", self.change_force_size_cb,n)
+            entry.show()
+            size_menu.append(entry)
+        
+        size_menu.show()
+        item.show()
+        menu.append(item)
+        
 
     def build_full_nav_menu_cb(self,obj,event):
         """
@@ -515,6 +505,24 @@ class PedigreeView:
         person = self.db.get_person_from_handle(person_handle)
         if not person:
             return 0
+
+        go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
+        go_image.show()
+        go_item = gtk.ImageMenuItem(NameDisplay.displayer.display(person))
+        go_item.set_image(go_image)
+        go_item.set_data(_PERSON,person_handle)
+        go_item.connect("activate",self.on_childmenu_changed)
+        go_item.show()
+        menu.append(go_item)
+
+        #edit_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
+        #edit_image.show()
+        edit_item = gtk.ImageMenuItem(gtk.STOCK_EDIT)
+        #edit_item.set_image(edit_image)
+        edit_item.set_data(_PERSON,person_handle)
+        edit_item.connect("activate",self.edit_person_cb)
+        edit_item.show()
+        menu.append(edit_item)
 
         # Go over spouses and build their menu
         item = gtk.MenuItem(_("Spouses"))
@@ -535,7 +543,10 @@ class PedigreeView:
                 item.set_submenu(gtk.Menu())
                 sp_menu = item.get_submenu()
 
-            sp_item = gtk.MenuItem(NameDisplay.displayer.display(spouse))
+            go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
+            go_image.show()
+            sp_item = gtk.ImageMenuItem(NameDisplay.displayer.display(spouse))
+            sp_item.set_image(go_image)
             sp_item.set_data(_PERSON,sp_id)
             sp_item.connect("activate",self.on_childmenu_changed)
             sp_item.show()
@@ -566,7 +577,10 @@ class PedigreeView:
                     item.set_submenu(gtk.Menu())
                     sib_menu = item.get_submenu()
 
-                sib_item = gtk.MenuItem(NameDisplay.displayer.display(sib))
+                go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
+                go_image.show()
+                sib_item = gtk.ImageMenuItem(NameDisplay.displayer.display(sib))
+                sib_item.set_image(go_image)
                 sib_item.set_data(_PERSON,sib_id)
                 sib_item.connect("activate",self.on_childmenu_changed)
                 sib_item.show()
@@ -596,7 +610,10 @@ class PedigreeView:
             else:
                 label = gtk.Label(NameDisplay.displayer.display(child))
 
-            child_item = gtk.MenuItem(None)
+            go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
+            go_image.show()
+            child_item = gtk.ImageMenuItem(None)
+            child_item.set_image(go_image)
             label.set_use_markup(True)
             label.show()
             label.set_alignment(0,0)
@@ -630,7 +647,10 @@ class PedigreeView:
             else:
                 label = gtk.Label(NameDisplay.displayer.display(par))
 
-            par_item = gtk.MenuItem(None)
+            go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
+            go_image.show()
+            par_item = gtk.ImageMenuItem(None)
+            par_item.set_image(go_image)
             label.set_use_markup(True)
             label.show()
             label.set_alignment(0,0)
@@ -652,7 +672,9 @@ class PedigreeView:
 
         # Add history-based navigation
         self.add_nav_portion_to_menu(menu)
+        self.add_settings_to_menu(menu)
         menu.popup(None,None,None,event.button,event.time)
+        return 1
 
     def format_relation( self, family, line_count):
         text = ""
@@ -664,6 +686,7 @@ class PedigreeView:
                 text += event.get_date()
                 text += "\n"
                 text += self.get_place_name(event.get_place_handle())
+                break
         return text
 
     def get_place_name( self, place_handle):
@@ -738,59 +761,3 @@ def find_parents(db,p):
         if mother_handle not in parentlist:
             parentlist.append(mother_handle)
     return parentlist
-
-#-------------------------------------------------------------------------
-#
-# Functions to build the text displayed in the details view of a DispBox
-# aditionally used by PedigreeView to get the largest area covered by a DispBox
-#
-#-------------------------------------------------------------------------
-def build_detail_string(db,person):
-
-    detail_text = NameDisplay.displayer.display(person)
-
-    def format_event(db, label, event):
-        if not event:
-            return u""
-        ed = event.get_date()
-        ep = None
-        place_handle = event.get_place_handle()
-        if place_handle:
-            place_title = db.get_place_from_handle(place_handle).get_title()
-            if place_title != "":
-                if len(place_title) > 15:
-                    ep = place_title[:14]+"..."
-                else:
-                    ep = place_title
-        if ep:
-            return u"\n%s %s, %s" % (label,ed,ep)
-        return u"\n%s %s" % (label,ed)
-
-    
-    birth_handle = person.get_birth_handle()
-    if birth_handle:
-        detail_text += format_event(db, _BORN, db.get_event_from_handle(birth_handle))
-    else:
-        for event_handle in person.get_event_list():
-            event = db.get_event_from_handle(event_handle)
-            if event.get_name() == "Baptism":
-                detail_text += format_event(db, _BAPT, event)
-                break
-            if event.get_name() == "Christening":
-                detail_text += format_event(db, _CHRI, event)
-                break
-
-    death_handle = person.get_death_handle()
-    if death_handle:
-        detail_text += format_event(db, _DIED, db.get_event_from_handle(death_handle))
-    else:
-        for event_handle in person.get_event_list():
-            event = db.get_event_from_handle(event_handle)
-            if event.get_name() == "Burial":
-                detail_text += format_event(db, _BURI, event)
-                break
-            if event.get_name() == "Cremation":
-                detail_text += format_event(db, _CREM, event)
-                break
-
-    return detail_text
