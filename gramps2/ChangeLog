@@ -1,3 +1,7 @@
+2005-04-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/EditPerson.py (on_apply_person_clicked): Fix crash when
+	changing gender caused by a family handle/object mismatch
+
 2005-04-25  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/FamilyView.py: Dont crash on empty database
 
