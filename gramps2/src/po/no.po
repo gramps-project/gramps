@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Mon Apr 11 20:54:14 2005\n"
-"PO-Revision-Date: 2005-04-24 18:13+0200\n"
+"PO-Revision-Date: 2005-04-26 14:36+0200\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -9076,46 +9076,47 @@ msgstr "Å eksportere til CD, kopierer alle dine data og media objekter filer til
 #: plugins/WriteFtree.py:273
 #, fuzzy
 msgid "_Web Family Tree"
-msgstr "Nett Familie Tree"
+msgstr "_Web Familie Tree"
 
 #: plugins/WriteFtree.py:274
 #, fuzzy
 msgid "Web Family Tree format."
-msgstr "Familie."
+msgstr "Web Family Tree format."
 
 #: plugins/WriteFtree.py:275
 #, fuzzy
 msgid "Web Family Tree export options"
-msgstr "Familie innstillinger (= settings, preferences), valg"
+msgstr "Web Family Tree eksport valg"
 
 #: plugins/WriteGeneWeb.py:218
 #, fuzzy
 msgid "No families matched by selected filter"
-msgstr "Nei fra filter"
+msgstr "Søket returnerte ingen familier med dette filteret"
 
 #: plugins/WriteGeneWeb.py:577
+#, fuzzy
 msgid "G_eneWeb"
-msgstr ""
+msgstr "G_eneWeb"
 
 #: plugins/WriteGeneWeb.py:578
 #, fuzzy
 msgid "GeneWeb is a web based genealogy program."
-msgstr "vev(en), men eks. «web browser» = «nettleser."
+msgstr "GeneWeb er et nett basert slektsforskningsprogram."
 
 #: plugins/WriteGeneWeb.py:579
 #, fuzzy
 msgid "GeneWeb export options"
-msgstr "innstillinger (= settings, preferences), valg"
+msgstr "GeneWeb eksport valg"
 
 #: plugins/WritePkg.py:202
 #, fuzzy
 msgid "GRAM_PS package (portable XML)"
-msgstr "pakke, programpakke bærbar, flyttbar, overfør"
+msgstr "GRAM_PS pakke (portable XML)"
 
 #: plugins/WritePkg.py:203
 #, fuzzy
 msgid "GRAMPS package is an archived XML database together with the media object files."
-msgstr "GRAMPS pakke, programpakke med media."
+msgstr "GRAMPS pakke er en arkivert XML database sammen med media objekt filer."
 
 #: plugins/book.glade:11
 msgid "Book"
@@ -9181,7 +9182,10 @@ msgid ""
 "Below is a list of the family names that \n"
 "GRAMPS can convert to correct capitalization. \n"
 "Select the names you which GRAMPS to convert. "
-msgstr "Under liste av å GRAMPS å "
+msgstr ""
+"Under er en liste over familienavn som \n"
+"GRAMPS kan konvertere til riktige med hensyn på store bokstaver. \n"
+"Velg navnet som du vil at GRAMPS skal konvertere. "
 
 #: plugins/changenames.glade:125
 msgid "_Accept changes and close"
@@ -9202,7 +9206,7 @@ msgstr "_Ny hendelsestype:"
 #: plugins/desbrowse.glade:126
 #, fuzzy
 msgid "<i>Double-click on the row to edit personal information</i>"
-msgstr "<i> Dobbel på rad å rediger informasjon, opplysning</i>"
+msgstr "<i> Dobbeltklikk på raden for å rediger personlig informasjon</i>"
 
 #: plugins/eval.glade:202
 msgid "<b>Evaluation Window</b>"
@@ -9223,7 +9227,7 @@ msgstr "Lagre som regneark - GRAMPS"
 #: plugins/eventcmp.glade:81
 #, fuzzy
 msgid "<b>_File name</b>"
-msgstr "<b> Fil</b>"
+msgstr "<b>_Filnavn</b>"
 
 #: plugins/eventcmp.glade:109
 msgid "Save Data"
@@ -9232,17 +9236,17 @@ msgstr "Lagre data"
 #: plugins/eventcmp.glade:118
 #, fuzzy
 msgid "Select file to save OpenOffice.org spreadsheet"
-msgstr "Velg fil å OpenOffice"
+msgstr "Velg fil å lagre som OpenOffice.org regneark"
 
 #: plugins/eventcmp.glade:416
 #, fuzzy
 msgid "The event comparison utility uses the filters defined in the Custom Filter Editor."
-msgstr "Verktøyet for sammenligning av hendelser bruker filtre som er angitt i filtertilpassningsbehandleren."
+msgstr "Verktøyet for sammenligning av hendelser bruker filtre som er angitt i Egendefinert filterbehandleren."
 
 #: plugins/eventcmp.glade:441
 #, fuzzy
 msgid "_Custom filter editor"
-msgstr "Filter_tilpassningsbehandleren"
+msgstr "Egendefinert filterbehandler"
 
 #: plugins/leak.glade:150
 msgid "<b>Uncollected Objects</b>"
@@ -9267,7 +9271,7 @@ msgstr "Bruk soundex koder"
 #: plugins/patchnames.glade:111
 #, fuzzy
 msgid "_Accept and close"
-msgstr "Godta og lukke"
+msgstr "Godt_a og lukke"
 
 #: plugins/patchnames.glade:176
 #, fuzzy
@@ -9275,12 +9279,15 @@ msgid ""
 "Below is a list of the nicknames, titles and family name prefixes that GRAMPS can extract from the \n"
 "current database. If you accept the changes, GRAMPS will modify the entries\n"
 "that have been selected."
-msgstr "Under liste av og GRAMPS pakke ut, dekomprimere, trekke ut fra godkjenne, akseptere GRAMPS endre."
+msgstr ""
+"Under er en liste med kallenavn, titler og familienavn forstavelser som GRAMPS kan trekke ut fra\n"
+"gjeldende databasen. Hvis du aksepterer endringene, vil GRAMPS endre oppføringene\n"
+"som er valgt."
 
 #: plugins/rel_ru.py:120
 #, fuzzy
 msgid "remote ancestors"
-msgstr "ekstern, fjern(-tliggende), over nettverket"
+msgstr "en fjern ane"
 
 #: plugins/relcalc.glade:97
 msgid "Select a person to determine the relationship"
@@ -9289,7 +9296,7 @@ msgstr "Velg en person for å avgjøre relasjonen"
 #: plugins/scratchpad.glade:54
 #, fuzzy
 msgid "Clear _All"
-msgstr "Tøm Alle"
+msgstr "Tøm _alle"
 
 #: plugins/soundex.glade:36
 msgid "Close Window"
@@ -9302,62 +9309,62 @@ msgstr "SoundEx kode:"
 #: plugins/verify.glade:134
 #, fuzzy
 msgid "Maximum number of _spouses for a person"
-msgstr "Høyest/størst/lengst mulig tall av for"
+msgstr "Høye_ste antall ektefeller for en person"
 
 #: plugins/verify.glade:335
 #, fuzzy
 msgid "Maximum number of consecutive years of _widowhood"
-msgstr "Høyest/størst/lengst mulig tall av av"
+msgstr "Høyest antall sammenhengende år i enkestand"
 
 #: plugins/verify.glade:359
 #, fuzzy
 msgid "Maximum number of years _between children"
-msgstr "Høyest/størst/lengst mulig tall av mellom"
+msgstr "Høyeste antall år mellom _barn"
 
 #: plugins/verify.glade:383
 #, fuzzy
 msgid "Maximum span _of years for all children"
-msgstr "Høyest/størst/lengst mulig av for"
+msgstr "Høyest antall år mellom første _og siste barn"
 
 #: plugins/verify.glade:408
 #, fuzzy
 msgid "_Estimate missing dates"
-msgstr "Estimer manglende datoer"
+msgstr "_Estimer manglende datoer"
 
 #: plugins/verify.glade:428
 #, fuzzy
 msgid "Maximum _age"
-msgstr "Høyest/størst/lengst mulig"
+msgstr "Høyest _alder"
 
 #: plugins/verify.glade:452
 #, fuzzy
 msgid "Maximum husband-wife age _difference"
-msgstr "Høyest/størst/lengst mulig"
+msgstr "Høyest aldersdifferanse mellom ektefolk"
 
 #: plugins/verify.glade:476
 #, fuzzy
 msgid "Mi_nimum age to marry"
-msgstr "å"
+msgstr "Laveste alder ved giftemål"
 
 #: plugins/verify.glade:500
 #, fuzzy
 msgid "Ma_ximum age to marry"
-msgstr "å"
+msgstr "Høyeste alder ved giftemål"
 
 #: plugins/verify.glade:559
 #, fuzzy
 msgid "Mi_nimum age to bear a child"
-msgstr "å"
+msgstr "Laveste alder for å bli mor"
 
 #: plugins/verify.glade:583
 #, fuzzy
 msgid "Ma_ximum age to bear a child"
-msgstr "å"
+msgstr "Høyeste alder for å bli mor"
 
 #: plugins/verify.glade:607 plugins/verify.glade:780
 #, fuzzy
 msgid "Maximum number of c_hildren"
-msgstr "Høyest/størst/lengst mulig tall av"
+msgstr "_Høyest antall barn"
 
 #: plugins/verify.glade:703
 msgid "<b>Women</b>"
@@ -9366,12 +9373,12 @@ msgstr "<b>Kvinner</b>"
 #: plugins/verify.glade:732
 #, fuzzy
 msgid "Mi_nimum age to father a child"
-msgstr "å"
+msgstr "Laveste alder for å bli far"
 
 #: plugins/verify.glade:756
 #, fuzzy
 msgid "Ma_ximum age to father a child"
-msgstr "å"
+msgstr "Høyeste alder for å bli far"
 
 #: plugins/verify.glade:876
 msgid "<b>Men</b>"
@@ -9380,12 +9387,12 @@ msgstr "<b>Menn</b>"
 #: rule.glade:132
 #, fuzzy
 msgid "Add another rule to the filter"
-msgstr "Legg til å filter"
+msgstr "Legg til en annen regel til filteret"
 
 #: rule.glade:152
 #, fuzzy
 msgid "Edit the selected rule"
-msgstr "Rediger"
+msgstr "Rediger den valgte regelen"
 
 #: rule.glade:155 rule.glade:742
 msgid "_Edit..."
@@ -9394,7 +9401,7 @@ msgstr "_Rediger..."
 #: rule.glade:172
 #, fuzzy
 msgid "Delete the selected rule"
-msgstr "Slett"
+msgstr "Slett den valgte regelen"
 
 #: rule.glade:175 rule.glade:780
 msgid "_Delete"
@@ -9403,19 +9410,18 @@ msgstr "_Slett"
 #: rule.glade:205
 #, fuzzy
 msgid "<b>Rule options</b>"
-msgstr "<b> innstillinger (= settings, preferences), valg</b>"
+msgstr "<b>Regel innstillinger</b>"
 
 #: rule.glade:229
 #, fuzzy
 msgid "<b>Rule list</b>"
-msgstr "<b> liste</b>"
+msgstr "<b>Regel liste</b>"
 
 #: rule.glade:253
 msgid "<b>Definition</b>"
 msgstr "<b>Definisjon</b>"
 
 #: rule.glade:277
-#, fuzzy
 msgid "Co_mment:"
 msgstr "Ko_mmentarer:"
 
@@ -9426,7 +9432,7 @@ msgstr "Alle _regler skal gjelde"
 #: rule.glade:352
 #, fuzzy
 msgid "At lea_st one rule must apply"
-msgstr "bruk, legg til endringer"
+msgstr "Min_st en regel må gjelde"
 
 #: rule.glade:375
 msgid "E_xactly one rule must apply"
@@ -9435,12 +9441,12 @@ msgstr "Presis en regel skal gjelde"
 #: rule.glade:467
 #, fuzzy
 msgid "Return values that do no_t match the filter rules"
-msgstr "Returner filter"
+msgstr "Returner verdier som ikke _treffer filter reglene"
 
 #: rule.glade:488
 #, fuzzy
 msgid "<b>Filter inversion</b>"
-msgstr "<b> Filter</b>"
+msgstr "<b>Invers filter</b>"
 
 #: rule.glade:719
 msgid "Add a new filter"
@@ -9453,7 +9459,7 @@ msgstr "Rediger valgte filter"
 #: rule.glade:758
 #, fuzzy
 msgid "Test the selected filter"
-msgstr "Test filter"
+msgstr "Test det valgte filteret"
 
 #: rule.glade:760
 msgid "_Test..."
@@ -9466,7 +9472,7 @@ msgstr "Slett det valgte filteret"
 #: rule.glade:814
 #, fuzzy
 msgid "<i>Note: changes take effect only after this window is closed</i>"
-msgstr "<i> Notat etter</i>"
+msgstr "<i>Husk: endringer blir først effektive enter at dette vinduet lukkes</i>"
 
 #: rule.glade:1102
 msgid "<b>Selected Rule</b>"
