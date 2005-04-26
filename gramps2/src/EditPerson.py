@@ -1582,7 +1582,8 @@ class EditPerson:
         (female,male,unknown) = _select_gender[self.gender.get_active()]
         if male and self.person.get_gender() != RelLib.Person.MALE:
             self.person.set_gender(RelLib.Person.MALE)
-            for temp_family in self.person.get_family_handle_list():
+            for temp_family_handle in self.person.get_family_handle_list():
+                temp_family = self.db.get_family_from_handle(temp_family_handle)
                 if self.person == temp_family.get_mother_handle():
                     if temp_family.get_father_handle() != None:
                         error = True
@@ -1591,7 +1592,8 @@ class EditPerson:
                         temp_family.set_father_handle(self.person)
         elif female and self.person.get_gender() != RelLib.Person.FEMALE:
             self.person.set_gender(RelLib.Person.FEMALE)
-            for temp_family in self.person.get_family_handle_list():
+            for temp_family_handle in self.person.get_family_handle_list():
+                temp_family = self.db.get_family_from_handle(temp_family_handle)
                 if self.person == temp_family.get_father_handle():
                     if temp_family.get_mother_handle() != None:
                         error = True
@@ -1600,7 +1602,8 @@ class EditPerson:
                         temp_family.set_mother_handle(self.person)
         elif unknown and self.person.get_gender() != RelLib.Person.UNKNOWN:
             self.person.set_gender(RelLib.Person.UNKNOWN)
-            for temp_family in self.person.get_family_handle_list():
+            for temp_family_handle in self.person.get_family_handle_list():
+                temp_family = self.db.get_family_from_handle(temp_family_handle)
                 if self.person == temp_family.get_father_handle():
                     if temp_family.get_mother_handle() != None:
                         error = True
