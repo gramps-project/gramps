@@ -40,7 +40,7 @@ import const
 import gtk
 import pango
 
-sex = ( _("male"), _("female"), _("unknown"))
+sex = ( _("female"), _("male"), _("unknown"))
 
 class Compare:
 
