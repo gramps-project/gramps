@@ -27,9 +27,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-import string
-import time
-import re
 
 #-------------------------------------------------------------------------
 #
@@ -199,11 +196,12 @@ class CalendarWriter:
                 if event.get_name() == "Marriage":
                     m_date = event.get_date_object()
                     place_handle = event.get_place_handle()
+                    text = _("Marriage of %s") % Utlis.family_name(family)
                     if place_handle:
                         place = self.db.get_place_from_handle(place_handle)
-                        self.write_vevent("Marriage of x and y", m_date, place.get_title())
+                        self.write_vevent( text, m_date, place.get_title())
                     else:
-                        self.write_vevent("Marriage of x and y", m_date)
+                        self.write_vevent( text, m_date)
                     
     def write_person(self, person_handle):
         person = self.db.get_person_from_handle(person_handle)
@@ -216,9 +214,9 @@ class CalendarWriter:
                     place_handle = birth.get_place_handle()
                     if place_handle:
                         place = self.db.get_place_from_handle(place_handle)
-                        self.write_vevent("Birth of %s" % person.get_primary_name().get_name(), b_date, place.get_title())
+                        self.write_vevent(_("Birth of %s") % person.get_primary_name().get_name(), b_date, place.get_title())
                     else:
-                        self.write_vevent("Birth of %s" % person.get_primary_name().get_name(), b_date)
+                        self.write_vevent(_("Birth of %s") % person.get_primary_name().get_name(), b_date)
             death_handle = person.get_death_handle()
             if death_handle:
                 death = self.db.get_event_from_handle(death_handle)
@@ -227,9 +225,9 @@ class CalendarWriter:
                     place_handle = death.get_place_handle()
                     if place_handle:
                         place = self.db.get_place_from_handle(place_handle)
-                        self.write_vevent("Death of %s" % person.get_primary_name().get_name(), d_date, place.get_title())
+                        self.write_vevent(_("Death of %s") % person.get_primary_name().get_name(), d_date, place.get_title())
                     else:
-                        self.write_vevent("Death of %s" % person.get_primary_name().get_name(), d_date)
+                        self.write_vevent(_("Death of %s") % person.get_primary_name().get_name(), d_date)
 
     
     def format_single_date(self,subdate,thisyear,cal):
@@ -237,10 +235,10 @@ class CalendarWriter:
         (day,month,year,sl) = subdate
 
         if thisyear:
-            year = 2004
+            year = localtime().tm_year
         
         if not cal == Date.CAL_GREGORIAN:
-            return "NGREG"
+            return ""
 
         if year > 0:
             if month > 0:
@@ -282,7 +280,7 @@ class CalendarWriter:
             date_string = self.format_date(date,1)
             self.writeln("");
             self.writeln("BEGIN:VEVENT");
-            self.writeln("SUMMARY:Anniversary: %s" % event_text);
+            self.writeln("SUMMARY:"+_("Anniversary: %s") % event_text);
             if location:
                 self.writeln("LOCATION:%s" % location);
             self.writeln("RRULE:YD1 #0")

@@ -88,7 +88,7 @@ class ChangeNames:
             self.display()
         else:
             OkDialog(_('No modifications made'),
-                     _("No capitalization changes where detected."))
+                     _("No capitalization changes were detected."))
 
     def display(self):
 

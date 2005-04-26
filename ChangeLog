@@ -1,3 +1,15 @@
+2005-04-26  Alex Roitman  <shura@gramps-project.org>
+	* NEWS, configure.in, src/EditPerson.py, src/EditSource.py,
+	src/FamilyView.py, src/ImageSelect.py, src/Marriage.py,
+	src/MergePeople.py, src/ReadGedcom.py, src/Report.py,
+	src/ReportUtils.py, src/gedcomimport.glade, src/gramps.glade,
+	src/gramps_main.py, src/rule.glade, src/plugins/ChangeNames.py,
+	src/plugins/DetAncestralReport.py, src/plugins/DetDescendantReport.py,
+	src/plugins/ExportVCalendar.py, src/plugins/TestcaseGenerator.py,
+	src/plugins/changenames.glade, src/plugins/rel_ru.py, src/po/es.po,
+	src/po/fr.po, src/po/ru.po, src/po/template.po: Merge changes
+	made in gramps20 into HEAD.
+
 2005-04-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py: Removed navigation buttons in flavour of a menu;
 

@@ -169,6 +169,8 @@ class GrampsStyleComboBox(gtk.ComboBox):
         if active < 0:
             return None
         key = self.store[active][0]
+        if key == _('default'):
+            key = "default"
         return (key,self.style_map[key])
 
 #-------------------------------------------------------------------------

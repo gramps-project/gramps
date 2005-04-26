@@ -236,8 +236,11 @@ class Marriage:
 
         lds_ord = self.family.get_lds_sealing()
         if lds_ord:
-            if lds_ord.get_place_handle():
-                self.lds_place.child.set_text(lds_ord.get_place_handle().get_title())
+            place_handle = lds_ord.get_place_handle()
+            if place_handle:
+                place = self.db.get_place_from_handle( place_handle)
+                if place:
+                    self.lds_place.child.set_text( place.get_title())
             self.lds_date.set_text(lds_ord.get_date())
             self.seal_stat = lds_ord.get_status()
             self.lds_date_object = lds_ord.get_date_object()

@@ -1185,7 +1185,7 @@ def died_str(database,person,person_name=None,empty_date="",empty_place="",
                     text = _("%(male_name)s died on %(death_date)s.") % {
                     'male_name' : person_name, 'death_date' : ddate }
                 elif age_units == 1: #male, date, no place, years
-                    text = _("%(male_name)s died on %(death_date)s"
+                    text = _("%(male_name)s died on %(death_date)s "
                             "at the age of %(age)d years.") % {
                     'male_name' : person_name, 
                     'death_date' : ddate, 'age' : age }
@@ -1464,25 +1464,25 @@ def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
         if bdate and bdate_full:
             if bplace: #male, date, place
                 text = _("%(male_name)s "
-                        "was buried on %(birth_date)s in %(birth_place)s.") % {
+                        "was buried on %(burial_date)s in %(burial_place)s.") % {
                     'male_name' : person_name, 
-                    'birth_date' : bdate, 'birth_place' : bplace }
+                    'burial_date' : bdate, 'burial_place' : bplace }
             else: #male, date, no place
-                text = _("%(male_name)s was buried on %(birth_date)s.") % {
-                    'male_name' : person_name, 'birth_date' : bdate }
+                text = _("%(male_name)s was buried on %(burial_date)s.") % {
+                    'male_name' : person_name, 'burial_date' : bdate }
         elif bdate:
             if bplace: #male, month_year, place
                 text = _("%(male_name)s "
-                        "was buried in %(month_year)s in %(birth_place)s.") % {
+                        "was buried in %(month_year)s in %(burial_place)s.") % {
                     'male_name' : person_name, 
-                    'month_year' : bdate, 'birth_place' : bplace }
+                    'month_year' : bdate, 'burial_place' : bplace }
             else: #male, month_year, no place
                 text = _("%(male_name)s was buried in %(month_year)s.") % {
                     'male_name' : person_name, 'month_year' : bdate }
         else:
             if bplace: #male, no date, place
-                text = _("%(male_name)s was buried in %(birth_place)s.") % {
-                    'male_name' : person_name, 'birth_place' : bplace }
+                text = _("%(male_name)s was buried in %(burial_place)s.") % {
+                    'male_name' : person_name, 'burial_place' : bplace }
             else: #male, no date, no place
                 text = _("%(male_name)s was buried.") % {
                     'male_name' : person_name }
@@ -1490,25 +1490,25 @@ def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
         if bdate and bdate_full:
             if bplace: #female, date, place
                 text = _("%(female_name)s "
-                        "was buried on %(birth_date)s in %(birth_place)s.") % {
+                        "was buried on %(burial_date)s in %(burial_place)s.") % {
                     'female_name' : person_name, 
-                    'birth_date' : bdate, 'birth_place' : bplace }
+                    'burial_date' : bdate, 'burial_place' : bplace }
             else: #female, date, no place
-                text = _("%(female_name)s was buried on %(birth_date)s.") % {
-                    'female_name' : person_name, 'birth_date' : bdate }
+                text = _("%(female_name)s was buried on %(burial_date)s.") % {
+                    'female_name' : person_name, 'burial_date' : bdate }
         elif bdate:
             if bplace: #female, month_year, place
                 text = _("%(female_name)s "
-                        "was buried in %(month_year)s in %(birth_place)s.") % {
+                        "was buried in %(month_year)s in %(burial_place)s.") % {
                     'female_name' : person_name, 
-                    'month_year' : bdate, 'birth_place' : bplace }
+                    'month_year' : bdate, 'burial_place' : bplace }
             else: #female, month_year, no place
                 text = _("%(female_name)s was buried in %(month_year)s.") % {
                     'female_name' : person_name, 'month_year' : bdate }
         else:
             if bplace: #female, no date, place
-                text = _("%(female_name)s was buried in %(birth_place)s.") % {
-                    'female_name' : person_name, 'birth_place' : bplace }
+                text = _("%(female_name)s was buried in %(burial_place)s.") % {
+                    'female_name' : person_name, 'burial_place' : bplace }
             else: #female, no date, no place
                 text = _("%(female_name)s was buried.") % {
                     'female_name' : person_name }
@@ -1585,7 +1585,7 @@ def list_person_str(database,person,person_name=None,empty_date="",empty_place="
                         'male_name' : person_name, 
                         'birth_date' : bdate, 'death_place' : dplace }
                     else:
-                        text = _("%(male_name)s Born: %(birth_date)s ") % {
+                        text = _("%(male_name)s Born: %(birth_date)s.") % {
                         'male_name' : person_name, 'birth_date' : bdate }
         else:
             if bplace:
@@ -1684,7 +1684,7 @@ def list_person_str(database,person,person_name=None,empty_date="",empty_place="
                         'female_name' : person_name, 
                         'birth_date' : bdate, 'death_place' : dplace }
                     else:
-                        text = _("%(female_name)s Born: %(birth_date)s ") % {
+                        text = _("%(female_name)s Born: %(birth_date)s.") % {
                         'female_name' : person_name, 'birth_date' : bdate }
         else:
             if bplace:

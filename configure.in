@@ -34,7 +34,7 @@ if test x$ICONV = xno; then
   AC_MSG_ERROR(Couldn't find iconv program.)
 fi
 
-LANGUAGES="hu zh_CN cs da de es fr it nb nl no pl pt_BR ro ru sv eo" 
+LANGUAGES="hu zh_CN cs da de es fr it nb nl no pl pt_BR ro ru sv eo fi"
 AC_SUBST(LANGUAGES)
 
 DISTLANGS=

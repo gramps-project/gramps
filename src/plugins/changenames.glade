@@ -53,7 +53,7 @@
 	  <property name="visible">True</property>
 	  <property name="label" translatable="yes">Below is a list of the family names that 
 GRAMPS can convert to correct capitalization. 
-Select the names you which GRAMPS to convert. </property>
+Select the names you wish GRAMPS to convert. </property>
 	  <property name="use_underline">False</property>
 	  <property name="use_markup">False</property>
 	  <property name="justify">GTK_JUSTIFY_LEFT</property>

@@ -142,9 +142,9 @@ def importData(database, filename, cb=None, use_trans=True):
         line = f.readline().split()
         if len(line) == 0:
             break
-        if line[1] == 'CHAR' and line[2] == "ANSEL":
+        if len(line) > 2 and line[1] == 'CHAR' and line[2] == "ANSEL":
             ansel = True
-        if line[1] == 'SOUR' and line[2] == "GRAMPS":
+        if len(line) > 2 and line[1] == 'SOUR' and line[2] == "GRAMPS":
             gramps = True
     f.close()
 
@@ -653,6 +653,10 @@ class GedcomParser:
 #                noteobj.append(text + self.parse_continue_data(1))
                 noteobj.append(text + self.parse_note_continue(1))
                 self.parse_note_data(1)
+            elif matches[2] == "_LOC":
+                # TODO: Add support for extended Locations.
+                # See: http://en.wiki.genealogy.net/index.php/Gedcom_5.5EL
+                self.ignore_sub_junk(1)
             elif matches[0] < 1 or matches[1] == "TRLR":
                 self.backup()
                 return
@@ -1015,10 +1019,11 @@ class GedcomParser:
                 self.db.commit_event(event, self.trans)
             elif matches[1] == "ADOP":
                 event = RelLib.Event()
+                self.db.add_event(event, self.trans)
                 event.set_name("Adopted")
                 self.person.add_event_handle(event.get_handle())
                 self.parse_adopt_event(event,2)
-                self.db.add_event(event, self.trans)
+                self.db.commit_event(event, self.trans)
             elif matches[1] == "DEAT":
                 event = RelLib.Event()
                 self.db.add_event(event, self.trans)
@@ -1209,14 +1214,19 @@ class GedcomParser:
                 self.warn("\n\t\t".join(path))
                 self.warn('\n')
             else:
-                photo = RelLib.MediaObject()
-                photo.set_path(path)
-                photo.set_description(title)
-                photo.set_mime_type(GrampsMime.get_type(os.path.abspath(path)))
-                self.db.add_object(photo, self.trans)
+                photo_handle = self.media_map.get(path)
+                if photo_handle == None:
+                    photo = RelLib.MediaObject()
+                    photo.set_path(path)
+                    photo.set_description(title)
+                    photo.set_mime_type(GrampsMime.get_type(os.path.abspath(path)))
+                    self.db.add_object(photo, self.trans)
+                    self.media_map[path] = photo.get_handle()
+                else:
+                    photo = self.db.get_object_from_handle(photo_handle)
                 oref = RelLib.MediaRef()
                 oref.set_reference_handle(photo.get_handle())
-                self.family.add_media_reference(photo)
+                self.family.add_media_reference(oref)
                 self.db.commit_family(self.family, self.trans)
 
     def parse_residence(self,address,level):
@@ -1275,6 +1285,8 @@ class GedcomParser:
                 address.set_postal_code(matches[2])
             elif matches[1] == "CTRY":
                 address.set_country(matches[2])
+            elif matches[1] == "_LOC":
+                pass    # ignore unsupported extended location syntax
             else:
                 self.barf(level+1)
 
@@ -1368,6 +1380,14 @@ class GedcomParser:
                     event.set_description("%s%s" % (d, matches[2]))
             elif matches[1] == "CONT":
                 event.set_description("%s\n%s" % (event.get_description(),matches[2]))
+            elif matches[1] in ["_GODP", "_WITN", "_WTN"]:
+                if matches[2][0] == "@":
+                    witness_handle = self.find_person_handle(self.map_gid(matches[2][1:-1]))
+                    witness = RelLib.Witness(RelLib.Event.ID,witness_handle)
+                else:
+                    witness = RelLib.Witness(RelLib.Event.NAME,matches[2])
+                event.add_witness(witness)
+                self.ignore_sub_junk(level+1)
             elif matches[1] in ["RELI", "TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE","_DATE2"]:
                 self.ignore_sub_junk(level+1)
             else:
@@ -1532,6 +1552,14 @@ class GedcomParser:
                     note = note + "\n" + matches[2]
             elif matches[1] == "NOTE":
                 note = self.parse_note(matches,event,level+1,note)
+            elif matches[1] in ["_WITN", "_WTN"]:
+                if matches[2][0] == "@":
+                    witness_handle = self.find_person_handle(self.map_gid(matches[2][1:-1]))
+                    witness = RelLib.Witness(RelLib.Event.ID,witness_handle)
+                else:
+                    witness = RelLib.Witness(RelLib.Event.NAME,matches[2])
+                event.add_witness(witness)
+                self.ignore_sub_junk(level+1)
             else:
                 self.barf(level+1)
 

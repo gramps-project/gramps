@@ -240,7 +240,7 @@ class DetAncestorReport(Report.Report):
         if person.get_note() != "" and self.includeNotes:
             self.doc.start_paragraph("DAR-NoteHeader")
             self.doc.start_bold()
-            self.doc.write_text(_("Notes for %(name)s" % { 'name': name } ))
+            self.doc.write_text(_("Notes for %s") % name)
             self.doc.end_bold()
             self.doc.end_paragraph()
             self.doc.write_note(person.get_note(),person.get_note_format(),"DAR-Entry")
@@ -548,11 +548,11 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         self.include_notes_option.set_active(self.options_dict['incnotes'])
 
         # Replace missing Place with ___________
-        self.place_option = gtk.CheckButton(_("Replace Place with ______"))
+        self.place_option = gtk.CheckButton(_("Replace missing places with ______"))
         self.place_option.set_active(self.options_dict['repplace'])
 
         # Replace missing dates with __________
-        self.date_option = gtk.CheckButton(_("Replace Dates with ______"))
+        self.date_option = gtk.CheckButton(_("Replace missing dates with ______"))
         self.date_option.set_active(self.options_dict['repdate'])
 
         # Add "Died at the age of NN" in text

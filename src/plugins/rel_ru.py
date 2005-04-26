@@ -32,7 +32,6 @@
 import RelLib
 import Relationship
 import types
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -117,7 +116,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
     def get_parents(self,level):
         if level>len(_parents_level)-1:
-            return _("remote ancestors")
+            return "дальние родственники"
         else:
             return _parents_level[level]
 

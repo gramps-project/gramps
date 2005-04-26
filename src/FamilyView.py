@@ -681,6 +681,8 @@ class FamilyView:
             DisplayTrace.DisplayTrace()
 
     def add_spouse(self,obj):
+        if not self.person:
+            return
         person = RelLib.Person()
         if self.person.get_gender() == RelLib.Person.MALE:
             person.set_gender(RelLib.Person.FEMALE)
@@ -1282,7 +1284,7 @@ class FamilyView:
             self.parent_add(self.selected_spouse)
 
     def del_parents_clicked(self,obj):
-        if len(self.person.get_parent_family_handle_list()) == 0:
+        if not self.person or len(self.person.get_parent_family_handle_list()) == 0:
             return
         n = NameDisplay.displayer.display(self.person)
         QuestionDialog(_('Remove Parents of %s') % n,
@@ -1319,7 +1321,7 @@ class FamilyView:
             child = self.parent.db.get_person_from_handle(handle)
             self.parent.change_active_person(child)
             self.load_family()
-        else:
+        elif self.family:
             child_list = self.family.get_child_handle_list()
             if len(child_list) == 1:
                 p = self.parent.db.get_person_from_handle(child_list[0])
