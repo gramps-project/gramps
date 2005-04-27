@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Mon Apr 11 20:54:14 2005\n"
-"PO-Revision-Date: 2005-04-26 14:36+0200\n"
+"PO-Revision-Date: 2005-04-27 09:05+0200\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "Legg til mediaobjekt"
 
 #: AddSpouse.py:124
 msgid "Choose Spouse/Partner of %s"
-msgstr "Velg ektefelle/partner av %s"
+msgstr "Velg ektefelle/partner til %s"
 
 #: AddSpouse.py:128
 msgid "Choose Spouse/Partner"
@@ -163,29 +163,33 @@ msgid "Attribute"
 msgstr "Egenskap"
 
 #: AttrEdit.py:213
+#, fuzzy
 msgid "New attribute type created"
-msgstr "Det ble laget en ny attributt-type"
+msgstr "Det ble laget en ny egenskapstype"
 
 #: AttrEdit.py:214
+#, fuzzy
 msgid ""
 "The \"%s\" attribute type has been added to this database.\n"
 "It will now appear in the attribute menus for this database"
 msgstr ""
-"«%s» attributt-typen har blitt lagt til denne databasen.\n"
-"Den vil nå vises i menyen over attributter for denne databasen"
+"«%s» egenskapstypen har blitt lagt til denne databasen.\n"
+"Den vil nå vises i menyen over egenskaper for denne databasen"
 
 #: Bookmarks.py:96 Bookmarks.py:101
 msgid "Edit Bookmarks"
 msgstr "Rediger bokmerke"
 
 #: ChooseParents.py:123
+#, fuzzy
 msgid "Choose the Parents of %s"
-msgstr "Angi foreldrene til %s"
+msgstr "Velg foreldrene til %s"
 
 #: ChooseParents.py:125 ChooseParents.py:240 ChooseParents.py:476
 #: ChooseParents.py:547
+#, fuzzy
 msgid "Choose Parents"
-msgstr "Angi foreldrene"
+msgstr "Velg foreldrene"
 
 #: ChooseParents.py:270 ChooseParents.py:602
 msgid "Par_ent"
@@ -209,6 +213,7 @@ msgid "Error selecting a child"
 msgstr "Feil ved valg av barn"
 
 #: ChooseParents.py:469
+#, fuzzy
 msgid "A person cannot be linked as his/her own parent"
 msgstr "En person kan ikke være lenket som sin egen forelder"
 
@@ -294,7 +299,7 @@ msgstr "Kalkulert"
 #: DateEdit.py:193
 #, fuzzy
 msgid "Date selection"
-msgstr "Dato utvalg, merket område"
+msgstr "Dato utvalg"
 
 #: DateEdit.py:263 gramps_main.py:1092 gramps_main.py:1099
 #, fuzzy
@@ -7876,8 +7881,9 @@ msgid "Pedigree"
 msgstr "Stamtavle"
 
 #: plugins/NavWebPage.py:673
+#, fuzzy
 msgid "Narrative"
-msgstr ""
+msgstr "Bakgrunn, Indeks"
 
 #: plugins/NavWebPage.py:706
 #, fuzzy
@@ -8843,7 +8849,7 @@ msgstr "Død mor: %(female_name)s døde %(dyear)d, men fikk i år %(cbyear)d et bar
 #: plugins/Verify.py:463
 #, fuzzy
 msgid "Large year span for all children: family %s.\n"
-msgstr "Store års sprik for alle barnene: familie %s.\n"
+msgstr "Høyest antall år mellom første og siste barn: familie %s.\n"
 
 #: plugins/Verify.py:467
 #, fuzzy
