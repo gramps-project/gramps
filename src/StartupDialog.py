@@ -27,6 +27,7 @@ import gnome
 import gnome.ui
 
 import GrampsKeys
+from QuestionDialog import ErrorDialog
 
 from gettext import gettext as _
 
@@ -51,10 +52,18 @@ class StartupDialog:
 
         d = gnome.ui.Druid()
         self.w.add(d)
-        d.add(self.build_page1())
-        d.add(self.build_page2())
-        d.add(self.build_page5())
-        d.add(self.build_page_last())
+        try:
+            d.add(self.build_page1())
+            d.add(self.build_page2())
+            d.add(self.build_page5())
+            d.add(self.build_page_last())
+        except:
+            ErrorDialog(_("Configuration error"),
+                        _("\n\nPossibly the installation of GRAMPS was incomplete."
+                          " Make sure the GConf schema of GRAMPS is properly installed."))
+            gtk.main_quit()
+            return
+            
 
         d.connect('cancel',self.close)
         self.w.connect("delete_event", gtk.main_quit)
