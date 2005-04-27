@@ -1,3 +1,7 @@
+2005-04-27  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/gramps_main.py (__init__): Avoid TypeError in schema error
+        message
+
 2005-04-26  Alex Roitman  <shura@gramps-project.org>
 	* NEWS, configure.in, src/EditPerson.py, src/EditSource.py,
 	src/FamilyView.py, src/ImageSelect.py, src/Marriage.py,
