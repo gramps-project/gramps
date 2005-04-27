@@ -164,7 +164,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             
         except Errors.GConfSchemaError, val:
             ErrorDialog(_("Configuration error"),
-                        val + _("\n\nPossibly the installation of GRAMPS was incomplete."
+                        str(val) + _("\n\nPossibly the installation of GRAMPS was incomplete."
                           " Make sure the GConf schema of GRAMPS is properly installed."))
             gtk.main_quit()
             return
