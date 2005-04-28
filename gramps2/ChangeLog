@@ -1,3 +1,6 @@
+2005-04-28    <don@gramps-project.org>
+	* src/FamilyView.py: fix adding child to wrong family
+
 2005-04-27  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gramps_main.py (__init__): Avoid TypeError in schema error
 	message

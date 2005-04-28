@@ -110,7 +110,7 @@ class FamilyView:
         db.connect('person-rebuild', self.load_family)
 
     def update_callback(self,handle):
-        self.load_family()
+        self.load_family(self.family)
 
     def set_widgets(self,val):
         already_init = self.cadded[val]
@@ -584,11 +584,13 @@ class FamilyView:
         model, node = obj.get_selected()
         if not node:
             self.display_marriage(None)
+            self.family = None
         else:
             row = model.get_path(node)
             family_handle = self.person.get_family_handle_list()[row[0]]
             fam = self.parent.db.get_family_from_handle(family_handle)
             self.display_marriage(fam)
+            self.family = fam
 
     def build_spouse_menu(self,event):
 
@@ -796,7 +798,7 @@ class FamilyView:
         self.parent.db.commit_person(new_person,trans)
         self.parent.db.commit_family(family,trans)
         self.parent.db.transaction_commit(trans,_("Add Child to Family"))
-        self.display_marriage(family)
+        self.load_family(family)
 
     def select_child_clicked(self,obj):
         if not self.person:
