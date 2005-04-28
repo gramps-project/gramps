@@ -425,22 +425,12 @@ def unbold_label(label):
 #-------------------------------------------------------------------------
 import random
 import time
+from sys import maxint
 rand = random.Random(time.time())
 
 def create_id():
-    s = ""
-    for val in [ int(time.time()*10000) & 0x7fffffff,
-                 rand.randint(0,0x7fffffff),
-                 rand.randint(0,0x7fffffff)]:
-        while val != 0:
-            rem = val % 36
-            if rem <= 9:
-                s += chr(48+rem)
-            else:
-                s += chr(rem+55)
-            val = int(val/36)
-    return s
-
+    return "%08x%08x" % ( int(time.time()*10000),
+                          rand.randint(0,maxint))
 
 def probably_alive(person,db,current_year=None):
     """Returns true if the person may be alive.
