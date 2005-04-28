@@ -208,22 +208,9 @@ class EditPerson:
             self.prefix_label.set_text(_('Patronymic:'))
             self.prefix_label.set_use_underline(True)
 
-        birth_handle = person.get_birth_handle()
-        if birth_handle:
-            self.orig_birth = self.db.get_event_from_handle(birth_handle)
-        else:
-            self.orig_birth = RelLib.Event()
-            self.orig_birth.set_name("Birth")
+        self.birth_handle = person.get_birth_handle()
+        self.death_handle = person.get_death_handle()
 
-        death_handle = person.get_death_handle()
-        if death_handle:
-            self.orig_death = self.db.get_event_from_handle(death_handle)
-        else:
-            self.orig_death = RelLib.Event()
-            self.orig_death.set_name("Death")
-
-        self.death = RelLib.Event(self.orig_death)
-        self.birth = RelLib.Event(self.orig_birth)
         self.pname = RelLib.Name(person.get_primary_name())
 
         self.gender.set_active(person.get_gender())
@@ -848,13 +835,13 @@ class EditPerson:
     def update_lists(self):
         """Updates the person's lists if anything has changed"""
         if self.lists_changed:
-            #self.person.set_event_list(self.elist)
             self.person.set_alternate_names(self.nlist)
             self.person.set_url_list(self.ulist)
             self.person.set_attribute_list(self.alist)
             self.person.set_address_list(self.plist)
-            self.person.set_birth_handle(self.birth.get_handle())
-            self.person.set_death_handle(self.death.get_handle())
+            #self.person.set_event_list(self.elist)
+#             self.person.set_birth_handle(self.birth.get_handle())
+#             self.person.set_death_handle(self.death.get_handle())
 
     def on_apply_person_clicked(self,obj):
 
@@ -933,11 +920,11 @@ class EditPerson:
             p = self.db.get_place_from_handle(key).get_display_info()
             self.pdmap[p[0]] = key
 
-        if not self.orig_birth.are_equal(self.birth):
-            if self.orig_birth.is_empty():
-                self.db.add_event(self.birth,trans)
-                self.person.set_birth_handle(self.birth.get_handle())
-            self.db.commit_event(self.birth,trans)
+#         if not self.orig_birth.are_equal(self.birth):
+#             if self.orig_birth.is_empty():
+#                 self.db.add_event(self.birth,trans)
+#                 self.person.set_birth_handle(self.birth.get_handle())
+#             self.db.commit_event(self.birth,trans)
 
         # Update each of the families child lists to reflect any
         # change in ordering due to the new birth date
@@ -1294,6 +1281,9 @@ class ListBox:
         self.blist[0].connect('clicked',self.add)
         self.blist[1].connect('clicked',self.update)
         self.blist[2].connect('clicked',self.delete)
+
+    def add_object(self,item):
+        self.data.append(item)
         
     def select_row(self,obj):
         store, node = obj.get_selected()
@@ -1337,6 +1327,7 @@ class ListBox:
         try:
             self.list_model.select_iter(self.node_map[str(data)])
         except:
+            print self.node_map, data
             print "Edit callback failed"
 
     def set_label(self):
@@ -1493,6 +1484,8 @@ class EventListBox(ReorderListBox):
         self.node_map = {}
         for handle in self.data:
             event = self.db.get_event_from_handle(handle)
+            if not event:
+                print "couldn't find",handle
             pname = place_title(self.db,event)
             has_note = event.get_note()
             has_source = len(event.get_source_references())> 0
@@ -1500,7 +1493,7 @@ class EventListBox(ReorderListBox):
                     event.get_description(), event.get_date(),
                     pname, has_source, has_note]
             node = self.list_model.add(data, event)
-            self.node_map[str(event)] = node
+            self.node_map[handle] = node
         if self.data:
             self.list_model.select_row(0)
         self.set_label()

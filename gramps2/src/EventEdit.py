@@ -346,20 +346,22 @@ class EventEditor:
             self.elist.append(ename)
             self.elist.sort()
 
+        just_added = False
         if self.event == None:
             self.event = RelLib.Event()
+            self.event.set_handle(Utils.create_id())
             self.db.add_event(self.event,trans)
             self.event.set_source_reference_list(self.srcreflist)
             self.event.set_witness_list(self.witnesslist)
-            self.parent.elist.append(self.event.get_handle())
+            just_added = True
         
         self.update_event(ename,self.date,eplace_obj,edesc,enote,eformat,
                           epriv,ecause,trans)
         self.db.transaction_commit(trans,_("Edit Event"))
+        
         self.close(obj)
-        self.parent.redraw_event_list()
         if self.callback:
-            self.callback(self.event)
+            self.callback(self.event.get_handle())
 
     def update_event(self,name,date,place,desc,note,format,priv,cause,trans):
         if place:

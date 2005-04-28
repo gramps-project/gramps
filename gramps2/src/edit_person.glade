@@ -283,6 +283,7 @@ Unknown</property>
 
 	  <child>
 	    <widget class="GtkFrame" id="frame5">
+	      <property name="width_request">124</property>
 	      <property name="visible">True</property>
 	      <property name="label_xalign">0</property>
 	      <property name="label_yalign">0.5</property>

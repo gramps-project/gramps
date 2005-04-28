@@ -1,3 +1,11 @@
+2005-04-28  Don Allingham  <don@gramps-project.org>
+        * src/EditPerson.py: remove dead logic for birth/death editing,
+	fix list handling
+	* src/EventEdit.py: fix callbacks for updating events
+	* src/GrampsDbBase.py: shorten handles
+	* src/Utils.py: shorten handles
+	* src/edit_person.glade: fix image spacing
+	
 2005-04-27  Don Allingham  <don@gramps-project.org>
 	* src/EditPerson.py: rewrite of tabbed lists
 	* src/EventEdit.py: bold the label

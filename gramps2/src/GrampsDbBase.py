@@ -211,9 +211,8 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         pass
 
     def create_id(self):
-        return "%08x%08x%08x" % ( int(time.time()*10000),
-                                  self.rand.randint(0,maxint),
-                                  self.rand.randint(0,maxint))
+        return "%08x%08x" % ( int(time.time()*10000),
+                              self.rand.randint(0,maxint))
 
     def get_person_cursor(self):
         assert False, "Needs to be overridden in the derived class"
