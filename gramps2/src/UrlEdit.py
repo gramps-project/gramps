@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,6 +22,13 @@
 
 #-------------------------------------------------------------------------
 #
+# python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -36,7 +43,6 @@ import gnome
 import const
 import Utils
 import RelLib
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -64,7 +70,7 @@ class UrlEditor:
         self.priv = self.top.get_widget("priv")
         title_label = self.top.get_widget("title")
 
-        if name == ", ":
+        if not name or name == ", ":
             etitle =_('Internet Address Editor')
         else:
             etitle =_('Internet Address Editor for %s') % name,

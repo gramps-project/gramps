@@ -1,3 +1,8 @@
+2005-04-28  Alex Roitman  <shura@gramps-project.org>
+	* src/EditPlace.py (on_add_url_clicked,on_update_url_clicked):
+	Use empty name when not available.
+	* src/UrlEdit.py (__init__): Work with empty names.
+
 2005-04-29  Eero Tamminen  <eerot@sf>
 	* src/dates/Date_fi.py: initial Finnish date parser, doesn't yet
 	  work correctly
