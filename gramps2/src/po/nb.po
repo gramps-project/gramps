@@ -1,3 +1,4 @@
+# translation of nb.po to Norsk bokmål
 # translation of nb.po to Norwegian bokmål
 # translation of nb.po to Norsk Bokmål
 # translation of template.po to Norsk Bokmål
@@ -5,14 +6,15 @@
 # Copyright (C) YEAR ORGANIZATION.
 # Frode Jemtland <frode.jemtland@skolelinux.no>, 2003, 2004, 2005.
 # Axel Bojer <axelb@skolelinux.no>, 2003.
+# Jørgen Grønlund <jorgenhg@broadpark.no>, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Mon Apr 11 20:54:14 2005\n"
-"PO-Revision-Date: 2005-04-27 09:05+0200\n"
-"Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
-"Language-Team: Norsk Bokmål\n"
+"PO-Revision-Date: 2005-04-27 20:45+0200\n"
+"Last-Translator: Jørgen Grønlund <jorgenhg@broadpark.no>\n"
+"Language-Team: Norsk bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -71,19 +73,16 @@ msgid "Birth date"
 msgstr "Fødselsdato"
 
 #: AddSpouse.py:236 AddSpouse.py:244 AddSpouse.py:255 AddSpouse.py:259
-#, fuzzy
 msgid "Error adding a spouse"
 msgstr "Klarte ikke å legge til ektefelle"
 
 #: AddSpouse.py:237
-#, fuzzy
 msgid "A person cannot be linked as his/her spouse"
-msgstr "En person kan ikke lenkes som sin egen ektefelle"
+msgstr "En person kan ikke angis som sin egen ektefelle"
 
 #: AddSpouse.py:245
-#, fuzzy
 msgid "A person cannot be linked as his/her child's spouse"
-msgstr "En person kan ikke lenkes som sitt barns ektefelle"
+msgstr "En person kan ikke angis som sitt barns ektefelle"
 
 #: AddSpouse.py:256
 #, fuzzy
@@ -91,16 +90,14 @@ msgid "The spouse is already present in this family"
 msgstr "Ektefellen er allerede tilstede i denne familien"
 
 #: AddSpouse.py:260
-#, fuzzy
 msgid "A person cannot be linked as his/her parent's spouse"
-msgstr "En person kan ikke lenkes som sin forelders ektefelle"
+msgstr "En person kan ikke angis som sin forelders ektefelle"
 
 #: AddSpouse.py:285 FamilyView.py:722
 msgid "Add Spouse"
 msgstr "Legg til ektefelle"
 
 #: AddrEdit.py:106 AddrEdit.py:174
-#, fuzzy
 msgid "Address Editor"
 msgstr "Adressebehandler"
 
@@ -110,28 +107,24 @@ msgid "Address"
 msgstr "Adresse"
 
 #: ArgHandler.py:282 DbPrompter.py:214
-#, fuzzy
 msgid "Opening non-native format"
-msgstr "Åpne ikke-standard format"
+msgstr "Åpne et format som ikke er standard"
 
 #: ArgHandler.py:283 DbPrompter.py:215
-#, fuzzy
 msgid "New GRAMPS database has to be set up when opening non-native formats. The following dialog will let you select the new database."
-msgstr "Ny GRAMPS database må settes opp når man åpner ikke-standard formater. Følgende dialog vil la deg velge den nye databasen."
+msgstr "Ny GRAMPS-database må settes opp når man åpner formater som ikke er standard. I følgende dialogvindu kan du velge den nye databasen."
 
 #: ArgHandler.py:291
-#, fuzzy
 msgid "New GRAMPS database was not set up"
-msgstr "Ny GRAMPS database ble ikke satt opp"
+msgstr "Ny GRAMPS-database ble ikke satt opp"
 
 #: ArgHandler.py:292
-#, fuzzy
 msgid "GRAMPS cannot open non-native data without setting up new GRAMPS database."
-msgstr "GRAMPS kan ikke åpne ikke-standard data uten å sett opp ny GRAMPS database."
+msgstr "GRAMPS kan ikke åpne data som ikke er standard uten å sette opp ny GRAMPS-database."
 
 #: ArgHandler.py:302 DbPrompter.py:201 DbPrompter.py:228 DbPrompter.py:327
 msgid "Could not open file: %s"
-msgstr "Kunne ikke åpne filen: %s"
+msgstr "Kunne ikke åpne fila: %s"
 
 #: ArgHandler.py:303 DbPrompter.py:229 DbPrompter.py:328 DbPrompter.py:477
 msgid ""
@@ -139,17 +132,15 @@ msgid ""
 "\n"
 "Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
 msgstr ""
-"Fil type \"%s\" er ukjent for GRAMPS.\n"
+"Filtypen \"%s\" er ukjent for GRAMPS.\n"
 "\n"
-"Gyldig fil typer er: GRAMPS database, GRAMPS XML, GRAMPS pakke, og GEDCOM."
+"Gyldig filtyper er: GRAMPS-database, GRAMPS XML, GRAMPS-pakke og GEDCOM."
 
 #: AttrEdit.py:119 AttrEdit.py:123 AttrEdit.py:181
-#, fuzzy
 msgid "Attribute Editor"
 msgstr "Egenskapsbehandler"
 
 #: AttrEdit.py:121
-#, fuzzy
 msgid "Attribute Editor for %s"
 msgstr "Egenskapsbehandler for %s"
 
@@ -163,31 +154,27 @@ msgid "Attribute"
 msgstr "Egenskap"
 
 #: AttrEdit.py:213
-#, fuzzy
 msgid "New attribute type created"
 msgstr "Det ble laget en ny egenskapstype"
 
 #: AttrEdit.py:214
-#, fuzzy
 msgid ""
 "The \"%s\" attribute type has been added to this database.\n"
 "It will now appear in the attribute menus for this database"
 msgstr ""
-"«%s» egenskapstypen har blitt lagt til denne databasen.\n"
+"«%s»-egenskapstypen har blitt lagt til i denne databasen.\n"
 "Den vil nå vises i menyen over egenskaper for denne databasen"
 
 #: Bookmarks.py:96 Bookmarks.py:101
 msgid "Edit Bookmarks"
-msgstr "Rediger bokmerke"
+msgstr "Rediger bokmerker"
 
 #: ChooseParents.py:123
-#, fuzzy
 msgid "Choose the Parents of %s"
 msgstr "Velg foreldrene til %s"
 
 #: ChooseParents.py:125 ChooseParents.py:240 ChooseParents.py:476
 #: ChooseParents.py:547
-#, fuzzy
 msgid "Choose Parents"
 msgstr "Velg foreldrene"
 
@@ -197,7 +184,7 @@ msgstr "For_elder"
 
 #: ChooseParents.py:272
 msgid "Fath_er"
-msgstr "Far"
+msgstr "F_ar"
 
 #: ChooseParents.py:280 ChooseParents.py:601
 msgid "Pa_rent"
@@ -208,14 +195,12 @@ msgid "Mothe_r"
 msgstr "Mo_r"
 
 #: ChooseParents.py:468 SelectChild.py:287 SelectChild.py:304
-#, fuzzy
 msgid "Error selecting a child"
 msgstr "Feil ved valg av barn"
 
 #: ChooseParents.py:469
-#, fuzzy
 msgid "A person cannot be linked as his/her own parent"
-msgstr "En person kan ikke være lenket som sin egen forelder"
+msgstr "En person kan ikke angis som sin egen forelder"
 
 #: ChooseParents.py:577
 msgid "Modify the Parents of %s"
@@ -251,10 +236,9 @@ msgstr "Vis"
 
 #: ColumnOrder.py:56
 msgid "Column Name"
-msgstr "Kolonne navn"
+msgstr "Kolonnenavn"
 
 #: DateEdit.py:74 DateEdit.py:83
-#, fuzzy
 msgid "Regular"
 msgstr "Vanlig"
 
@@ -267,44 +251,36 @@ msgid "After"
 msgstr "Etter"
 
 #: DateEdit.py:77
-#, fuzzy
 msgid "About"
 msgstr "Ca."
 
 #: DateEdit.py:78
-#, fuzzy
 msgid "Range"
 msgstr "Område"
 
 #: DateEdit.py:79
-#, fuzzy
 msgid "Span"
 msgstr "Periode"
 
 #: DateEdit.py:80
-#, fuzzy
 msgid "Text only"
 msgstr "Kun tekst"
 
 #: DateEdit.py:84
-#, fuzzy
 msgid "Estimated"
 msgstr "Estimert"
 
 #: DateEdit.py:85
-#, fuzzy
 msgid "Calculated"
 msgstr "Kalkulert"
 
 #: DateEdit.py:193
-#, fuzzy
 msgid "Date selection"
-msgstr "Dato utvalg"
+msgstr "Datovalg"
 
 #: DateEdit.py:263 gramps_main.py:1092 gramps_main.py:1099
-#, fuzzy
 msgid "Could not open help"
-msgstr "Kunne ikke åpne hjelp"
+msgstr "Kunne ikke åpne hjelpen"
 
 #: DbPrompter.py:73
 msgid "GRAMPS (grdb)"
@@ -332,11 +308,11 @@ msgstr "GRAMPS: Åpne database"
 
 #: DbPrompter.py:258
 msgid "GRAMPS: Import database"
-msgstr "GRAMPS: Import database"
+msgstr "GRAMPS: Importer database"
 
 #: DbPrompter.py:353
 msgid "GRAMPS: Create GRAMPS database"
-msgstr "GRAMPS: Lag GRAMPS database"
+msgstr "GRAMPS: Lag GRAMPS-database"
 
 #: DbPrompter.py:426
 msgid "GRAMPS: Select filename for a new database"
@@ -344,10 +320,9 @@ msgstr "GRAMPS: Velg filnavn for den nye databasen"
 
 #: DbPrompter.py:476
 msgid "Could not save file: %s"
-msgstr "Kunne ikke lagre filen: %s"
+msgstr "Kunne ikke lagre fila: %s"
 
 #: DbPrompter.py:583
-#, fuzzy
 msgid "Automatically detected"
 msgstr "Automatisk funnet"
 
@@ -361,19 +336,19 @@ msgstr "Alle filer"
 
 #: DbPrompter.py:614
 msgid "All GRAMPS files"
-msgstr "Alle GRAMPS filer"
+msgstr "Alle GRAMPS-filer"
 
 #: DbPrompter.py:625
 msgid "GRAMPS databases"
-msgstr "GRAMPS databaser"
+msgstr "GRAMPS-databaser"
 
 #: DbPrompter.py:634
 msgid "GRAMPS XML databases"
-msgstr "GRAMPS XML databaser"
+msgstr "GRAMPS XML-databaser"
 
 #: DbPrompter.py:643
 msgid "GEDCOM files"
-msgstr "GEDCOM filer"
+msgstr "GEDCOM-filer"
 
 #: DisplayModels.py:45 GrampsMime.py:46 GrampsMime.py:53 MergePeople.py:43
 #: PeopleModel.py:371 SelectChild.py:245 Utils.py:123 const.py:169
@@ -410,7 +385,7 @@ msgid ""
 "\n"
 msgstr ""
 "Det har oppstått en intern feil i GRAMPS.\n"
-"Vennligst kopier feilmeldingen under og send en feil rapport\n"
+"Vennligst kopier feilmeldingen under og send en feilrapport\n"
 "på http://sourceforge.net/projects/gramps, eller send en \n"
 "e-post til gramps-bugs@lists.sourceforge.net\n"
 "\n"
@@ -421,10 +396,9 @@ msgstr "Intern feil"
 
 #: EditPerson.py:134 EditPerson.py:627
 msgid "Edit Person"
-msgstr "Endre personinformasjon"
+msgstr "Rediger person"
 
 #: EditPerson.py:255
-#, fuzzy
 msgid "Patronymic:"
 msgstr "Avstamningsnavn:"
 
@@ -508,7 +482,7 @@ msgstr "Lagre endringene i %s?"
 
 #: EditPerson.py:1282 EditPerson.py:1298 Marriage.py:619 Marriage.py:632
 msgid "If you close without saving, the changes you have made will be lost"
-msgstr "Hvis du lukker uten å lagre, vil dine endringer bli borte"
+msgstr "Hvis du lukker uten å lagre, vil dine endringer gå tapt"
 
 #: EditPerson.py:1297
 msgid "Save Changes to %s?"
@@ -519,31 +493,28 @@ msgid "Make the selected name the preferred name"
 msgstr "Gjør det valgte navnet til det foretrukne"
 
 #: EditPerson.py:1687
-#, fuzzy
 msgid "Unknown gender specified"
-msgstr "Det spesifiserte kjønnet er ukjent"
+msgstr "Det angitte kjønnet er ukjent"
 
 #: EditPerson.py:1688
-#, fuzzy
 msgid "The gender of the person is currently unknown. Usually, this is a mistake. You may choose to either continue saving, or returning to the Edit Person dialog to fix the problem."
-msgstr "Kjønnet til personen er for øyeblikket ukjent. Vanligvis, er dette en han. Du kan velge å enten fortsette lagringen, eller gå tilbake til Redig personen dialog boksen for å fikse problemet."
+msgstr "Kjønnet til personen er for øyeblikket ukjent. Vanligvis er dette en feil. Du kan velge å fortsette lagringen, eller gå tilbake til «Rediger person»-dialogvinduet for å rette opp feilen."
 
 #: EditPerson.py:1692
-#, fuzzy
 msgid "Continue saving"
 msgstr "Fortsette å lagre"
 
 #: EditPerson.py:1692
 msgid "Return to window"
-msgstr "Returner til vindu"
+msgstr "Gå tilbake til vindu"
 
 #: EditPerson.py:1720 Marriage.py:651
 msgid "GRAMPS ID value was not changed."
-msgstr "GRAMPS ID verdi ble ikke forandret."
+msgstr "GRAMPS ID-verdi ble ikke endret."
 
 #: EditPerson.py:1721
 msgid "You have attempted to change the GRAMPS ID to a value of %(grampsid)s. This value is already used by %(person)s."
-msgstr "Du har prøvd å forandre GRAMPS ID-en til verdien %(grampsid)s. Denne verdien er allerede brukt av %(person)s."
+msgstr "Du har prøvd å forandre GRAMPS ID-en til verdien %(grampsid)s. Denne verdien er allerede i bruk av %(person)s."
 
 #: EditPerson.py:1833
 msgid "Problem changing the gender"
@@ -554,7 +525,7 @@ msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
 msgstr ""
-"Forandring av kjønn førte til problemer med informasjonen om ekteskapet.\n"
+"Endring av kjønn førte til problemer med informasjonen om ekteskapet.\n"
 "Sjekk personens giftemål."
 
 #: EditPerson.py:1877
@@ -566,7 +537,6 @@ msgid "Add Place (%s)"
 msgstr "Legg til sted (%s)"
 
 #: EditPlace.py:90 EditPlace.py:277
-#, fuzzy
 msgid "Place Editor"
 msgstr "Stedsbehandler"
 
@@ -595,13 +565,11 @@ msgid "Edit Place (%s)"
 msgstr "Rediger sted (%s)"
 
 #: EditPlace.py:422 EditPlace.py:449 UrlEdit.py:70
-#, fuzzy
 msgid "Internet Address Editor for %s"
 msgstr "Internettadressebehandler for %s"
 
 #: EditPlace.py:424 EditPlace.py:451 UrlEdit.py:68 UrlEdit.py:74
 #: UrlEdit.py:101
-#, fuzzy
 msgid "Internet Address Editor"
 msgstr "Internettadressebehandler"
 
@@ -626,12 +594,10 @@ msgid "Delete Place (%s)"
 msgstr "Slett sted (%s)"
 
 #: EditSource.py:86 EditSource.py:242
-#, fuzzy
 msgid "Source Editor"
 msgstr "Kildebehandler"
 
 #: EditSource.py:156
-#, fuzzy
 msgid "Key"
 msgstr "Tast"
 
@@ -665,12 +631,10 @@ msgid "Delete Source (%s)"
 msgstr "Slett kilde (%s)"
 
 #: EventEdit.py:124 EventEdit.py:129 EventEdit.py:281
-#, fuzzy
 msgid "Event Editor"
 msgstr "Hendelsesbehandler"
 
 #: EventEdit.py:126
-#, fuzzy
 msgid "Event Editor for %s"
 msgstr "Hendelsesbehandler for %s"
 
@@ -684,7 +648,7 @@ msgstr "Hendelsestype mangler"
 
 #: EventEdit.py:319
 msgid "You must specify an event type before you can save the event"
-msgstr "Du må spesifisere en hendelsestype før du kan lagre hendelsen"
+msgstr "Du må angi en hendelsestype før du kan lagre hendelsen"
 
 #: EventEdit.py:336 MergePeople.py:98 const.py:233 const.py:241
 #: plugins/EventCmp.py:408 plugins/FamilyGroup.py:200
@@ -708,7 +672,7 @@ msgid ""
 "The \"%s\" event type has been added to this database.\n"
 "It will now appear in the event menus for this database"
 msgstr ""
-"Hendelsestypen «%s» har blitt lagt til databasen.\n"
+"Hendelsestypen «%s» har blitt lagt til i databasen.\n"
 "Den vil nå vises i menyen for denne databasen"
 
 #: EventEdit.py:353
@@ -724,7 +688,6 @@ msgid "Saving your data"
 msgstr "Lagrer dine data"
 
 #: Exporter.py:136
-#, fuzzy
 msgid ""
 "Under normal circumstances, GRAMPS does not require you to directly save your changes. All changes you make are immediately saved to the database.\n"
 "\n"
@@ -732,11 +695,11 @@ msgid ""
 "\n"
 "If you change your mind during this process, you can safely press the Cancel button at any time and your present database will still be intact."
 msgstr ""
-"Under vanlige omstendigheter, trenger du ikke å lagre dine GRAMPS data manuelt. Alle endringene du gjør blir umiddelbart lagret til databasen.\n"
+"Under vanlige omstendigheter trenger du ikke å lagre dine GRAMPS-data manuelt. Alle endringene du gjør blir umiddelbart lagret i databasen.\n"
 "\n"
-"Denne prosessen vil hjelpe deg å lagre en kopi av dine data i hvilke som helst av alle formatene støttet av GRAMPS. På denne måten kan du lage en kopi av dine data, da en backup, eller konvertere de til et annet format, som vil hjelpe deg med å flyttet de over til et annet program.\n"
+"Du har også muligheten til å lagre en kopi av dine data i et annet format som er støttet av GRAMPS. På denne måten kan du lage en kopi av dine data (f.eks. en sikkerhetskopi), eller du kan konvertere dem til et annet format som vil hjelpe deg med å flyttet de over til et annet program.\n"
 "\n"
-"Hvis du ombestemmer deg mens denne prosessen pågår, kan du trykt trykke Avbryt knappen når som helst, og din database vil fortsatt være intakt."
+"Hvis du ombestemmer deg mens denne prosessen pågår, kan du trykke «Avbryt»-knappen når som helst, og databasen vil fortsatt være intakt."
 
 #: Exporter.py:170
 #, fuzzy
@@ -9487,1237 +9450,4 @@ msgstr "<b>Valgte regel</b>"
 #: rule.glade:1186
 msgid "<b>Values</b>"
 msgstr "<b>Verdier</b>"
-
-#~ msgid "Address Editor for %s"
-#~ msgstr "Adresseendring for %s"
-
-#~ msgid "abt\\.?"
-#~ msgstr "ca\\.?"
-
-#~ msgid "about"
-#~ msgstr "ca."
-
-#~ msgid "est\\.?"
-#~ msgstr "est\\.?"
-
-#~ msgid "circa"
-#~ msgstr "ca."
-
-#~ msgid "around"
-#~ msgstr "ca."
-
-#~ msgid "aft\\.?"
-#~ msgstr "ett\\.?"
-
-#~ msgid "bef\\.?"
-#~ msgstr "før\\.?"
-
-#~ msgid "April"
-#~ msgstr "april"
-
-#~ msgid "February"
-#~ msgstr "februar"
-
-#~ msgid "January"
-#~ msgstr "januar"
-
-#~ msgid "March"
-#~ msgstr "mars"
-
-#~ msgid "July"
-#~ msgstr "juli"
-
-#~ msgid "June"
-#~ msgstr "juni"
-
-#~ msgid "May"
-#~ msgstr "mai"
-
-#~ msgid "December"
-#~ msgstr "desember"
-
-#~ msgid "November"
-#~ msgstr "november"
-
-#~ msgid "October"
-#~ msgstr "oktober"
-
-#~ msgid "September"
-#~ msgstr "september"
-
-#~ msgid "abt"
-#~ msgstr "ca"
-
-#~ msgid "abt."
-#~ msgstr "ca."
-
-#~ msgid "est."
-#~ msgstr "est."
-
-#~ msgid "bef"
-#~ msgstr "før"
-
-#~ msgid "bef."
-#~ msgstr "før."
-
-#~ msgid "aft."
-#~ msgstr "ett."
-
-#~ msgid "aft"
-#~ msgstr "ett"
-
-#~ msgid "Undefined Calendar"
-#~ msgstr "Kalenderen er ikke satt opp"
-
-#~ msgid "(from|between|bet|bet.)"
-#~ msgstr "(fra|mellom|mellom|mellom)"
-
-#~ msgid "(and|to|-)"
-#~ msgstr "(og|til|-)"
-
-#~ msgid "from %(start_date)s to %(stop_date)s"
-#~ msgstr "fra %(start_date)s til %(stop_date)s"
-
-#~ msgid "Save database"
-#~ msgstr "Lagre database"
-
-#~ msgid "No Comment Provided"
-#~ msgstr "Ingen kommentar tilgjengelig"
-
-#~ msgid "Object"
-#~ msgstr "Objekt"
-
-#~ msgid "Source Type"
-#~ msgstr "Kildetype"
-
-#~ msgid "Individual Events"
-#~ msgstr "Individuelle hendelser"
-
-#~ msgid "Individual Attributes"
-#~ msgstr "Individuelle egenskaper"
-
-#~ msgid "Status"
-#~ msgstr "Status"
-
-#~ msgid "Qualifier"
-#~ msgstr "Godkjenner"
-
-#~ msgid "Failed to load the module: %s"
-#~ msgstr "Klarte ikke å laste modulen: %s"
-
-#~ msgid "Find Person"
-#~ msgstr "Finn person"
-
-#~ msgid "Find Place"
-#~ msgstr "Finn sted"
-
-#~ msgid "Find Source"
-#~ msgstr "Finn kilde"
-
-#~ msgid "Find Media Object"
-#~ msgstr "Finn mediaobjekt"
-
-#~ msgid "French Republican"
-#~ msgstr "Fransk-republikansk"
-
-#~ msgid "Month Day, Year"
-#~ msgstr "Måned dag, år"
-
-#~ msgid "MON Day, Year"
-#~ msgstr "MÅN dag, år"
-
-#~ msgid "Day MON Year"
-#~ msgstr "Dag MÅN år"
-
-#~ msgid "MM/DD/YYYY"
-#~ msgstr "MM/DD/ÅÅÅÅ"
-
-#~ msgid "MM-DD-YYYY"
-#~ msgstr "MM-DD-ÅÅÅÅ"
-
-#~ msgid "DD/MM/YYYY"
-#~ msgstr "DD/MM/ÅÅÅÅ"
-
-#~ msgid "DD-MM-YYYY"
-#~ msgstr "DD-MM-ÅÅÅÅ"
-
-#~ msgid "MM.DD.YYYY"
-#~ msgstr "MM.DD.ÅÅÅÅ"
-
-#~ msgid "DD.MM.YYYY"
-#~ msgstr "DD.MM.ÅÅÅÅ"
-
-#~ msgid "DD. Month Year"
-#~ msgstr "DD. måned år"
-
-#~ msgid "YYYY/MM/DD"
-#~ msgstr "ÅÅÅÅ/MM/DD"
-
-#~ msgid "YYYY-MM-DD"
-#~ msgstr "ÅÅÅÅ-MM-DD"
-
-#~ msgid "YYYY.MM.DD"
-#~ msgstr "ÅÅÅÅ.MM.DD"
-
-#~ msgid "MM/DD/YYYY, MM.DD.YYYY, or MM-DD-YYYY"
-#~ msgstr "MM/DD/ÅÅÅÅ, MM.DD.ÅÅÅÅ, eller MM-DD-ÅÅÅÅ"
-
-#~ msgid "DD/MM/YYYY, DD.MM.YYYY, or DD-MM-YYYY"
-#~ msgstr "DD/MM/ÅÅÅÅ, DD.MM.ÅÅÅÅ, eller DD-MM-ÅÅÅÅ"
-
-#~ msgid "YYYY/MM/DD, YYYY.MM.DD, or YYYY-MM-DD"
-#~ msgstr "ÅÅÅÅ/MM/DD, ÅÅÅÅ.MM.DD, eller ÅÅÅÅ-MM-DD"
-
-#~ msgid "Firstname Surname"
-#~ msgstr "Fornavn etternavn"
-
-#~ msgid "Surname, Firstname"
-#~ msgstr "Etternavn, fornavn"
-
-#~ msgid "Firstname SURNAME"
-#~ msgstr "Fornavn ETTERNAVN"
-
-#~ msgid "SURNAME, Firstname"
-#~ msgstr "ETTERNAVN, fornavn"
-
-#~ msgid "GRAMPS internal IDs"
-#~ msgstr "GRAMPS intern ID"
-
-#~ msgid "Revision Control"
-#~ msgstr "Revisjonskontroll"
-
-#~ msgid "Dates and Calendars"
-#~ msgstr "Datoer og kalendere"
-
-#~ msgid "Usage"
-#~ msgstr "Bruk"
-
-#~ msgid "Find"
-#~ msgstr "Finn"
-
-#~ msgid "Report Preferences"
-#~ msgstr "Rapportinnstillinger"
-
-#~ msgid "No default format"
-#~ msgstr "Intet standard format"
-
-#~ msgid "Gregorian"
-#~ msgstr "Gregoriansk"
-
-#~ msgid "Hebrew"
-#~ msgstr "Hebraisk"
-
-#~ msgid "Thumbnail %s could not be found"
-#~ msgstr "Fant ikke minibildet %s"
-
-#~ msgid "Convert to local copy"
-#~ msgstr "Gjør om til en lokal kopi"
-
-#~ msgid "Change local media object properties"
-#~ msgstr "Endre objektegenskapene til et lokalt media"
-
-#~ msgid "Change global media object properties"
-#~ msgstr "Endre generelle objektegenskaper for media"
-
-#~ msgid "Julian"
-#~ msgstr "Juliansk"
-
-#~ msgid "There is no suitable tool to generate thumbnails for the images. If you would like to enable this feature, install Python Imaging Library (PIL), available at http://www.pythonware.com/products/pil/ or ImageMagick, available at http://www.imagemagick.org/"
-#~ msgstr "Det finnes intet passende verktøy for å lage minibilder. Hvis du ønsker å skru på denne muligheten, installer Python Imaging Library (PIL), tilgjengelig på http://www.pythonware.com/products/pil/ eller ImageMagick, tilgjengelig på http://www.imagemagick.org/"
-
-#~ msgid "<local copy>"
-#~ msgstr "<lokal kopi>"
-
-#~ msgid "Select the title for the merged place"
-#~ msgstr "Gi navn til det flettede stedet"
-
-#~ msgid "Merge %s and %s"
-#~ msgstr "Flett sammen %s og %s"
-
-#~ msgid "Alternate Name Editor"
-#~ msgstr "Alternativ navneredigering"
-
-#~ msgid "Alternate Name Editor for %s"
-#~ msgstr "Alternativ navneredigering for %s"
-
-#~ msgid "Edit Note"
-#~ msgstr "Rediger kommentarer"
-
-#~ msgid "%s (revision %s)"
-#~ msgstr "%s (revisjon %s)"
-
-#~ msgid "Error creating the thumbnail: %s"
-#~ msgstr "Det oppsto en feil under opprettelsen av miniatyrbildet %s"
-
-#~ msgid "Error copying %s"
-#~ msgstr "Det oppsto en feil under kopieringen av %s"
-
-#~ msgid "Could not create a thumbnail for %s"
-#~ msgstr "Kan ikke opprette et miniatyrbilde for %s"
-
-#~ msgid "The file has been moved or deleted."
-#~ msgstr "Fila har blitt flyttet eller slettet."
-
-#~ msgid "First"
-#~ msgstr "Første"
-
-#~ msgid "Second"
-#~ msgstr "Andre"
-
-#~ msgid "Fourth"
-#~ msgstr "Fjerde"
-
-#~ msgid "Third"
-#~ msgstr "Tredje"
-
-#~ msgid "Fifth"
-#~ msgstr "Femte"
-
-#~ msgid "Sixth"
-#~ msgstr "Sjette"
-
-#~ msgid "Eighth"
-#~ msgstr "Åttende"
-
-#~ msgid "Seventh"
-#~ msgstr "Sjuende"
-
-#~ msgid "Ninth"
-#~ msgstr "Niende"
-
-#~ msgid "Tenth"
-#~ msgstr "Tiende"
-
-#~ msgid "Eleventh"
-#~ msgstr "Ellevte"
-
-#~ msgid "Twelfth"
-#~ msgstr "Tolvte"
-
-#~ msgid "Fourteenth"
-#~ msgstr "Fjortende"
-
-#~ msgid "Thirteenth"
-#~ msgstr "Trettende"
-
-#~ msgid "Fifteenth"
-#~ msgstr "Femtende"
-
-#~ msgid "Sixteenth"
-#~ msgstr "Sekstende"
-
-#~ msgid "Eighteenth"
-#~ msgstr "Attende"
-
-#~ msgid "Nineteenth"
-#~ msgstr "Nittende"
-
-#~ msgid "Twentieth"
-#~ msgstr "Tjuende"
-
-#~ msgid "Save Report As"
-#~ msgstr "Lagre rapporten som"
-
-#~ msgid "Relationship to %s"
-#~ msgstr "Relasjon til %s"
-
-#~ msgid "Relationships of %s"
-#~ msgstr "Relasjoner til %s"
-
-#~ msgid "Relationship to father"
-#~ msgstr "Relasjon til far"
-
-#~ msgid "Relationship to mother"
-#~ msgstr "Relasjon til mor"
-
-#~ msgid "Numerical date formats"
-#~ msgstr "Numeriske dato format"
-
-#~ msgid ""
-#~ "There are three common formats for entering dates in a numerical\n"
-#~ "format. Without some type of indication, GRAMPS cannot correctly\n"
-#~ "tell what format you are using. Please indicate your preferred format\n"
-#~ "for entering numerical dates."
-#~ msgstr ""
-#~ "Det er tre vanlige måter å skrive inn en dato i et numerisk format på.\n"
-#~ "Uten en eller annen form for antydning kan ikke GRAMPS forstå hvilket\n"
-#~ "format du bruker. Angi hvilket nummerformat du vil bruke for datoer."
-
-#~ msgid "MM/DD/YYYY (United States)"
-#~ msgstr "MM/DD/ÅÅÅÅ (USA)"
-
-#~ msgid "DD/MM/YYYY (European)"
-#~ msgstr "DD/MM/ÅÅÅÅ (Europeisk)"
-
-#~ msgid "YYYY-MM-DD (ISO)"
-#~ msgstr "ÅÅÅÅ-MM-DD (ISO)"
-
-#~ msgid "Alternate calendar support"
-#~ msgstr "Bruk alternative kalendere"
-
-#~ msgid ""
-#~ "By default, all dates stored by GRAMPS use the Gregorian calendar.\n"
-#~ "This is normally sufficient for most users. Support may be enabled\n"
-#~ "for the Julian, French Republican, and Hebrew calendar. If you believe\n"
-#~ "that you will need one or more of these alternate calendars, enable\n"
-#~ "alternate calendar support\n"
-#~ msgstr ""
-#~ "Som standard blir alle datoeene i GRAMPS lagret i henhold til den \n"
-#~ "Gregorianske kalenderen. Dette passer vanligvis for de fleste. Det er\n"
-#~ "mulig å skru på støtten for den julianske, fransk-republikanske, eller den\n"
-#~ "jødiske kalender. Hvis du tror du vil trenge en eller flere av disse \n"
-#~ "kalenderene, så må du skru på støtte for alternative kalendere.\n"
-
-#~ msgid "Enable support for alternate calendars"
-#~ msgstr "Skru på støtte for alternative kalendere"
-
-#~ msgid "Revision control comment"
-#~ msgstr "Kommentar i versjonskontrollen"
-
-#~ msgid "Select an older revision"
-#~ msgstr "Velg en eldre versjon"
-
-#~ msgid "Changed by"
-#~ msgstr "Endret av"
-
-#~ msgid "Revision"
-#~ msgstr "Versjon"
-
-#~ msgid "Could not retrieve version"
-#~ msgstr "Kunne ikke hente versjonen"
-
-#~ msgid "RCS"
-#~ msgstr "RCS"
-
-#~ msgid "Islamic"
-#~ msgstr "Islamsk"
-
-#~ msgid "Persian"
-#~ msgstr "Persisk"
-
-#~ msgid "Selects the calendar format for display"
-#~ msgstr "Velg kalenderformatet på visningen"
-
-#~ msgid "French"
-#~ msgstr "Fransk"
-
-#~ msgid "Open in AbiWord"
-#~ msgstr "Åpne i AbiWord"
-
-#~ msgid "OpenOffice.org Draw"
-#~ msgstr "OpenOffice.org Draw"
-
-#~ msgid "PDF"
-#~ msgstr "PDF"
-
-#~ msgid "Rich Text Format (RTF)"
-#~ msgstr "Rikt tekst format (RTF)"
-
-#~ msgid "Family prefi_x:"
-#~ msgstr "Familieforstavelse:"
-
-#~ msgid "Select source for this name information"
-#~ msgstr "Velg kilde for denne navneinformasjonen"
-
-#~ msgid "Source..."
-#~ msgstr "_Kilde..."
-
-#~ msgid "Enter/modify notes regarding this name"
-#~ msgstr "Skriv inn/endre kommentarer om navnet"
-
-#~ msgid "The surname or last name"
-#~ msgstr "Etternavn"
-
-#~ msgid "_ID:"
-#~ msgstr "_ID:"
-
-#~ msgid "_Delete..."
-#~ msgstr "_Slett..."
-
-#~ msgid "_Add from file..."
-#~ msgstr "Legge til fr_a fil ..."
-
-#~ msgid "Add from _database..."
-#~ msgstr "Legg til fra _database..."
-
-#~ msgid "People with an event after ..."
-#~ msgstr "Personer med en hendelse etter..."
-
-#~ msgid "People with an event before ..."
-#~ msgstr "Personer med en hendelse før..."
-
-#~ msgid "People with complete information"
-#~ msgstr "Personer med komplett informasjon"
-
-#~ msgid "People with an event location of ..."
-#~ msgstr "Personer med hendelsesstedet ..."
-
-#~ msgid "People who have an event type of ..."
-#~ msgstr "Personer som har hendelses-typen ..."
-
-#~ msgid "Names with same SoundEx code as ..."
-#~ msgstr "Navn med SoundEx koden ..."
-
-#~ msgid "Names with the SoundEx code of ..."
-#~ msgstr "Navn med SoundEx koden ..."
-
-#~ msgid "SoundEx Code"
-#~ msgstr "SoundEx Kode"
-
-#~ msgid "_Save"
-#~ msgstr "Lagre"
-
-#~ msgid "_Revert"
-#~ msgstr "Gå tilbake"
-
-#~ msgid "_Find..."
-#~ msgstr "_Finn ..."
-
-#~ msgid "Save"
-#~ msgstr "Lagre"
-
-#~ msgid "Fi_lter:"
-#~ msgstr "Fi_lter:"
-
-#~ msgid "Qualifier:"
-#~ msgstr "Godkjenner:"
-
-#~ msgid "Show people that do not match the filtering rule"
-#~ msgstr "Vis personer som ikke filterreglene passer på"
-
-#~ msgid "Relationship definition\n"
-#~ msgstr "Relasjonsdefinisjon\n"
-
-#~ msgid "Gender:"
-#~ msgstr "Kjønn:"
-
-#~ msgid "_female"
-#~ msgstr "k_vinne"
-
-#~ msgid "Create a new _XML database"
-#~ msgstr "Lag en ny _XML database"
-
-#~ msgid "GRAMPS is being run as the 'root' user."
-#~ msgstr "GRAMPS kjøres som 'root' (superbruker)."
-
-#~ msgid "This account is not meant for normal appication use. Running user applications in the administrative account is rarely a wise idea, and can open up potential security risks."
-#~ msgstr "Denne kontoen er ikke ment for vanlig programkjøring. Å kjøre brukerprogrammer med administrator-kontoen er sjeldent lurt, og kan være en risiko for sikkerheten på systemet."
-
-#~ msgid "Save Changes Made to the Database?"
-#~ msgstr "Vil du lagre de endringer som er gjort til databasen?"
-
-#~ msgid "Unsaved changes exist in the current database. If you close without saving, the changes you have made will be lost."
-#~ msgstr "Noen endringer i den gjeldende databasen er ikke lagret. Hvis du lukker uten å lagre vil disse endringene gå tapt."
-
-#~ msgid "Creating a new database will close the existing database, discarding any unsaved changes. You will then be prompted to create a new database"
-#~ msgstr "Å lage en ny database vil lukke den eksisterende databasen uten å ta vare på endringer som ikke er lagret. Du vil så bli spurt om å lage en ny database"
-
-#~ msgid "_Create New Database"
-#~ msgstr "Lag ny database"
-
-#~ msgid "Updating display - this may take a few seconds..."
-#~ msgstr "Oppdater visningen - dette kan ta noen sekunder..."
-
-#~ msgid "An autosave file was detected"
-#~ msgstr "En autolagret fil ble oppdaget"
-
-#~ msgid "GRAMPS has detected an autosave file for the selected database. This file is more recent than the last saved database. This typically happens when GRAMPS was unexpected shutdown before the data was saved. You may load this file to try to recover any missing data."
-#~ msgstr "GRAMPS har oppdaget en autolagret fil for den valgte databasen. Denne fila er nyere en den sist lagrede databasen. Dette pleier å skje når GRAMPS har hatt en uventet avslutning før data ble lagret. Du kan laste denne fila for å prøve å gjenopprette tapte data."
-
-#~ msgid "_Load autosave file"
-#~ msgstr "_Last inn den autolagret fila"
-
-#~ msgid "Load _saved database"
-#~ msgstr "La_st inn en lagret database"
-
-#~ msgid "Database could not be opened"
-#~ msgstr "Klarte ikke å åpne databasen"
-
-#~ msgid "%s is not a directory."
-#~ msgstr "%s er ikke en mappe."
-
-#~ msgid "You should select a directory that contains a data.gramps file."
-#~ msgstr "Du må velge en mappe, som inneholder en grampsfil."
-
-#~ msgid "Saving %s ..."
-#~ msgstr "Lagrer %s ..."
-
-#~ msgid "An error was detected while attempting to create the file. The operating system reported \"%s\""
-#~ msgstr "En feil ble oppdaget under forsøket på å lage fila. Operativsystemet rapporterte «%s»"
-
-#~ msgid "An error was detected while trying to create the file"
-#~ msgstr "En feil ble oppdaget under forsøket på å lage fila"
-
-#~ msgid "autosaving..."
-#~ msgstr "autolagrer..."
-
-#~ msgid "autosave failed"
-#~ msgstr "autolagringen mislykket"
-
-#~ msgid "Deleting the person will remove the person from the database. The data can only be recovered by closing the database without saving changes. This change will become permanent after you save the database."
-#~ msgstr "Å slette personen vil fjerne personen fra databasen. Dataene kan kun gjenopprettes ved å lukke databasen uten å lagre endringer. Denne endringen vil bli varig når du har lagret databasen."
-
-#~ msgid "Revert to last saved database?"
-#~ msgstr "Vil du gå tilbake til den sist lagrede databasen?"
-
-#~ msgid "Reverting to the last saved database will cause all unsaved changes to be lost, and the last saved database will be loaded."
-#~ msgstr "Å gå tilbake til den siste lagrede databasen vil føre til at alle data som ikke er lagret vil bli borte, og den siste lagrede databasen vil bli lastet inn."
-
-#~ msgid "Could Not Revert to the Previous Database."
-#~ msgstr "Klarte ikke å gå tilbake til den forrige databasen."
-
-#~ msgid "GRAMPS could not find a previous version of the database"
-#~ msgstr "GRAMPS fant ingen tidligere versjon av databasen"
-
-#~ msgid "Could not create database"
-#~ msgstr "Klarte ikke å lage databasen"
-
-#~ msgid "The directory ~/.gramps/example could not be created."
-#~ msgstr "Klarte ikke å lagre mappa ~/.gramps/example."
-
-#~ msgid "Example database not created"
-#~ msgstr "Eksempel-databasen ble ikke laget"
-
-#~ msgid "_File:"
-#~ msgstr "_Fil:"
-
-#~ msgid "Select an image"
-#~ msgstr "Velg et bilde"
-
-#~ msgid "_Do not make a local copy"
-#~ msgstr "Ikke lag en lokal kopi"
-
-#~ msgid "Copies the object into the database"
-#~ msgstr "Kopier objektet til databasen"
-
-#~ msgid "_Make a local copy"
-#~ msgstr "_Lag en lokal kopi"
-
-#~ msgid "<b>Parents</b>"
-#~ msgstr "<b>Foreldre</b>"
-
-#~ msgid "Mother:"
-#~ msgstr "Mor:"
-
-#~ msgid "<b>Spouses</b>"
-#~ msgstr "<b>Ektefeller</b>"
-
-#~ msgid "Father:"
-#~ msgstr "Far:"
-
-#~ msgid "Keep other name as an alternate name"
-#~ msgstr "Behold det andre navnet som et alternativt navn"
-
-#~ msgid "Keep other birth event as an alternate birth event"
-#~ msgstr "Behold en annen fødselshendelse som alternativ fødselshendelse"
-
-#~ msgid "Keep other death event as an alternate death event"
-#~ msgstr "Behold en annen dødshendelse som alternativ dødshendelse"
-
-#~ msgid "Ancestor Chart for %s"
-#~ msgstr "Slektstavle for %s"
-
-#~ msgid "Save Ancestor Chart"
-#~ msgstr "Lagre slektstavla"
-
-#~ msgid "Ancestor Chart for GRAMPS Book"
-#~ msgstr "Slektstavle for GRAMP-book"
-
-#~ msgid "Save Ahnentafel Report"
-#~ msgstr "Lagre rapporten med slekstre over forfedrene"
-
-#~ msgid "Ahnentafel Report for GRAMPS Book"
-#~ msgstr "Rapport for slektstre over forfedre, GRAMPS bok"
-
-#~ msgid "Ancestors for %s"
-#~ msgstr "Forfedrene til %s"
-
-#~ msgid "Save Ancestor Report"
-#~ msgstr "Lagre rapporten over forfedre"
-
-#~ msgid "Comprehensive Ancestors Report for GRAMPS Book"
-#~ msgstr "Omfattende rapport over forfedre til GRAMPS bok"
-
-#~ msgid "Unstable"
-#~ msgstr "Ustabil"
-
-#~ msgid "Custom Text for GRAMPS Book"
-#~ msgstr "Tilpasset tekst for GRAMPS-bok"
-
-#~ msgid "Descendant Graph for %s"
-#~ msgstr "Slektstre over etterkommere for %s"
-
-#~ msgid "Save Descendant Graph"
-#~ msgstr "Lagre slektstreet over etterkommere"
-
-#~ msgid "Descendant Graph for GRAMPS Book"
-#~ msgstr "Slektstre over etterkommere for GRAMPS bok"
-
-#~ msgid "Descendant Report for %s"
-#~ msgstr "Rapport over etterkommere for %s"
-
-#~ msgid "Save Descendant Report"
-#~ msgstr "Lagre rapport over etterkommere"
-
-#~ msgid "Descendant Report for GRAMPS Book"
-#~ msgstr "Rapport over etterkommere for GRAMPS-bok"
-
-#~ msgid "Child of %s and %s is:"
-#~ msgstr "Barn av %s og %s er:"
-
-#~ msgid "- %s Born: %s %s Died: %s %s"
-#~ msgstr "- %s Født: %s %s Død: %s %s"
-
-#~ msgid "- %s Born: %s %s Died: %s"
-#~ msgstr "- %s Født: %s %s Død: %s"
-
-#~ msgid "- %s Born: %s %s"
-#~ msgstr "- %s Født: %s %s"
-
-#~ msgid "- %s Born: %s Died: %s %s"
-#~ msgstr "- %s Født: %s Død: %s %s"
-
-#~ msgid "- %s Born: %s Died: %s"
-#~ msgstr "- %s Født: %s Død: %s"
-
-#~ msgid "- %s Born: %s"
-#~ msgstr "- %s Født: %s"
-
-#~ msgid "- %s Died: %s %s"
-#~ msgstr "- %s Død: %s %s"
-
-#~ msgid "- %s Died: %s"
-#~ msgstr "- %s Død: %s"
-
-#~ msgid "- %s"
-#~ msgstr "- %s"
-
-#~ msgid " was born on %s in %s."
-#~ msgstr " ble født %s i %s."
-
-#~ msgid " was born on %s."
-#~ msgstr " ble født %s."
-
-#~ msgid " was born in the year %s in %s."
-#~ msgstr " ble født i år %s i %s."
-
-#~ msgid " was born in the year %s."
-#~ msgstr " ble født i år %s."
-
-#~ msgid " was born in %s."
-#~ msgstr " ble født i %s."
-
-#~ msgid "."
-#~ msgstr "."
-
-#~ msgid "  %s died on %s in %s"
-#~ msgstr "  %s døde den %s i %s"
-
-#~ msgid "  %s died on %s"
-#~ msgstr "  %s døde den %s"
-
-#~ msgid "  %s died in %s in %s"
-#~ msgstr "  %s døde den %s i %s"
-
-#~ msgid "  %s died in %s"
-#~ msgstr "  %s døde i %s"
-
-#~ msgid "  And %s was buried on %s in %s."
-#~ msgstr "  Og %s ble begravd den %s i %s."
-
-#~ msgid "  And %s was buried on %s."
-#~ msgstr "  Og %s ble begravd den %s."
-
-#~ msgid "  And %s was buried in %s."
-#~ msgstr "  Og %s ble begravd i %s."
-
-#~ msgid " %s was the son of %s and %s."
-#~ msgstr " %s var sønn av %s og %s."
-
-#~ msgid " %s was the son of %s."
-#~ msgstr " %s var sønn av %s."
-
-#~ msgid " %s was the daughter of %s and %s."
-#~ msgstr " %s var datter av %s og %s."
-
-#~ msgid " %s was the daughter of %s."
-#~ msgstr " %s var datter av %s."
-
-#~ msgid ","
-#~ msgstr ","
-
-#~ msgid "and he"
-#~ msgstr "og han"
-
-#~ msgid "and she"
-#~ msgstr "og hun"
-
-#~ msgid "  %s married %s"
-#~ msgstr "  %s giftet seg med %s"
-
-#~ msgid "  %s married %s in %s"
-#~ msgstr "  %s giftet seg med %s i %s"
-
-#~ msgid "  %s married %s on %s"
-#~ msgstr "  %s giftet seg med %s den %s"
-
-#~ msgid "  %s married %s on %s in %s"
-#~ msgstr "  %s giftet seg med %s den %s i %s"
-
-#~ msgid "  %s married"
-#~ msgstr "  %s giftet seg"
-
-#~ msgid "  %s married in %s"
-#~ msgstr "  %s giftet seg i %s"
-
-#~ msgid "  %s married on %s"
-#~ msgstr "  %s giftet seg den %s"
-
-#~ msgid "  %s married on %s in %s"
-#~ msgstr "  %s giftet seg den %s i %s"
-
-#~ msgid "Gramps - Ahnentafel Report"
-#~ msgstr "Gramps - rapport over forfedre"
-
-#~ msgid "Detailed Ancestral Report for GRAMPS Book"
-#~ msgstr "Detaljert rapport over forfedre til GRAMPS bok"
-
-#~ msgid " at the age of %d days"
-#~ msgstr " i en alder av %d dager"
-
-#~ msgid " at the age of %d years"
-#~ msgstr " i en alder av %d år"
-
-#~ msgid " at the age of %d day"
-#~ msgstr " i en alder av %d dag"
-
-#~ msgid " at the age of %d month"
-#~ msgstr " i en alder av %d måned"
-
-#~ msgid " at the age of %d year"
-#~ msgstr " i en alder av %d år"
-
-#~ msgid "Omit duplicate people"
-#~ msgstr "Utelat dobbelt oppførte personer"
-
-#~ msgid "Detailed Descendant Report for GRAMPS Book"
-#~ msgstr "Detaljert rapport over etterkommere til GRAMPS bok"
-
-#~ msgid "Save Family Group Report"
-#~ msgstr "Lagre familierapport"
-
-#~ msgid "Family Group Report for GRAMPS Book"
-#~ msgstr "Familierapport til GRAMPS-bok"
-
-#~ msgid "Fan Chart for %s"
-#~ msgstr "Vifteformet slektstavle for %s"
-
-#~ msgid "Save Fan Chart"
-#~ msgstr "Lagre en vifteformet slektstavle"
-
-#~ msgid "Fan Chart for GRAMPS Book"
-#~ msgstr "Vifteformet slektstavle for GRAMPS-bok"
-
-#~ msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s %(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s ble født %(birth_date)s i %(birth_place)s %(birth_endnotes)s, og døde i %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s. "
-#~ msgstr "%(male_name)s%(endnotes)s ble født %(birth_date)s i %(birth_place)s%(birth_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
-#~ msgstr "%(male_name)s%(endnotes)s ble født %(birth_date)s%(birth_endnotes)s. "
-
-#~ msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
-#~ msgstr "%(male_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s. "
-
-#~ msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s. "
-#~ msgstr "%(female_name)s%(endnotes)s ble født %(birth_date)s i %(birth_place)s%(birth_endnotes)s. "
-
-#~ msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
-#~ msgstr "%(female_name)s%(endnotes)s ble født %(birth_date)s%(birth_endnotes)s. "
-
-#~ msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
-#~ msgstr "%(female_name)s%(endnotes)s ble født i %(birth_place)s%(birth_endnotes)s. "
-
-#~ msgid "FTM Style Ancestral Report"
-#~ msgstr "Slektsrapport i FTM stil"
-
-#~ msgid "FTM Style Ancestral Report for %s"
-#~ msgstr "Slektsrapport for %s i FTM stil"
-
-#~ msgid "FTM Style Ancestor Report for GRAMPS Book"
-#~ msgstr "Rapport over forfedre i FTM stil til GRAMPS-bok"
-
-#~ msgid "FTM Style Descendant Report for %s"
-#~ msgstr "Rapport over etterkommere av %s i FTM stil"
-
-#~ msgid "Save FTM Style Descendant Report"
-#~ msgstr "Lagre Etterkommerrapport i FTM stil"
-
-#~ msgid "FTM Style Descendant Report for GRAMPS Book"
-#~ msgstr "Etterkommerrapport i FTM stil til GRAMPS-bok"
-
-#~ msgid "Single (scaled)"
-#~ msgstr "Enkel (skalert)"
-
-#~ msgid "Single"
-#~ msgstr "Enkel"
-
-#~ msgid "Multiple"
-#~ msgstr "Flere"
-
-#~ msgid "Graphviz File"
-#~ msgstr "Graphviz Fil"
-
-#~ msgid "TrueType"
-#~ msgstr "TrueType"
-
-#~ msgid "Font Options"
-#~ msgstr "Fontvalg"
-
-#~ msgid "Choose the font family."
-#~ msgstr "Velg fontfamilie."
-
-#~ msgid "Colorize Graph"
-#~ msgstr "Farvelegg treet"
-
-#~ msgid "Generate print output"
-#~ msgstr "Lag utskriftsrapport"
-
-#~ msgid "Save Complete Individual Report"
-#~ msgstr "Lagre en fullstendig personrapport"
-
-#~ msgid "Individual Complete"
-#~ msgstr "Ferdige personrapporter"
-
-#~ msgid "Individual Complete Report for GRAMPS Book"
-#~ msgstr "Lagre en fullstendig personrapport for GRAMPS-bok"
-
-#~ msgid "Individual Summary for %s"
-#~ msgstr "Individuell oppsummering for %s"
-
-#~ msgid "Save Individual Summary"
-#~ msgstr "Lagre individuell oppsummering"
-
-#~ msgid "Individual Summary Report for GRAMPS Book"
-#~ msgstr "Individuell oppsummering til GRAMPS bok"
-
-#~ msgid "Import from GRAMPS package"
-#~ msgstr "Import fra GRAMPS-pakke"
-
-#~ msgid "Descendant family members of %s"
-#~ msgstr "Etterfølgende familiemedlem av %s"
-
-#~ msgid "Show family as a stack"
-#~ msgstr "Vis familien som en stabel"
-
-#~ msgid "The main individual is shown along with their spouses in a stack."
-#~ msgstr "Hovedpersonene vises sammen med deres ektefelle i en stabel."
-
-#~ msgid "Fit page"
-#~ msgstr "Tilpass til siden"
-
-#~ msgid "%d cm"
-#~ msgstr "%d cm"
-
-#~ msgid "Timeline Graph for %s"
-#~ msgstr "Tidslinjegraf for %s"
-
-#~ msgid "Timeline File"
-#~ msgstr "Tidslinjefil"
-
-#~ msgid "Timeline Graph for GRAMPS Book"
-#~ msgstr "Tidslinjegraf for GRAMPS-bok"
-
-#~ msgid "Direct Descendants of %s"
-#~ msgstr "Direkte etterkommere av %s"
-
-#~ msgid "Export to GEDCOM"
-#~ msgstr "Overfør til GEDCOM"
-
-#~ msgid "Package export"
-#~ msgstr "Pakkeoverføring"
-
-#~ msgid "Save data as a spreadsheet"
-#~ msgstr "Lagre data som et regneark"
-
-#~ msgid "Choose the HTML template"
-#~ msgstr "Velg HTML-mal"
-
-#~ msgid "Format"
-#~ msgstr "Format"
-
-#~ msgid "Export PAF for PalmOS file"
-#~ msgstr "Overfør en PAF-fil (for PalmOS)"
-
-#~ msgid "PAF for PalmOS Export"
-#~ msgstr "Overføring av PAF-filer (PalmOS)"
-
-#~ msgid "Information"
-#~ msgstr "Informasjon"
-
-#~ msgid "Database name: "
-#~ msgstr "Databasenavn:"
-
-#~ msgid "Options"
-#~ msgstr "Valgmuligheter"
-
-#~ msgid "Name used to generate SoundEx code"
-#~ msgstr "Navn som brukes til å lage SoundEx-kode"
-
-#~ msgid "A_utosave interval:"
-#~ msgstr "A_utolagreinterval:"
-
-#~ msgid "D_efault database directory:"
-#~ msgstr "Standard databas_e mappe:"
-
-#~ msgid "minutes"
-#~ msgstr "minutter"
-
-#~ msgid "Select default database directory - GRAMPS"
-#~ msgstr "Velg standard databasemappe - GRAMPS"
-
-#~ msgid "The default directory for storing databases"
-#~ msgstr "Standardmappe for lagring av databaser"
-
-#~ msgid "_Do not compress XML data file"
-#~ msgstr "Ikke komprimer XML _datafiler"
-
-#~ msgid "<b>Revision control</b>"
-#~ msgstr "<b>Versjonskontroll</b>"
-
-#~ msgid "_Use revision control"
-#~ msgstr "Br_uk versjonskontroll"
-
-#~ msgid "_Prompt for comment on save"
-#~ msgstr "S_pør etter kommentar ved lagring"
-
-#~ msgid "<b>Find</b>"
-#~ msgstr "<b>Finn</b>"
-
-#~ msgid "_Enable autocompletion"
-#~ msgstr "Slå på autokompl_etering"
-
-#~ msgid "Icons Only"
-#~ msgstr "Kun ikoner"
-
-#~ msgid "Text Below Icons"
-#~ msgstr "Tekst under ikoner"
-
-#~ msgid "Text Beside Icons"
-#~ msgstr "Tekst ved siden av ikoner"
-
-#~ msgid "GNOME Settings"
-#~ msgstr "GNOME innstillinger"
-
-#~ msgid "_Show index numbers in child list"
-#~ msgstr "Vi_s indeksnumre i barnelisten"
-
-#~ msgid "_Name format:"
-#~ msgstr "_Navneformat:"
-
-#~ msgid "D_ate format:"
-#~ msgstr "D_atoformat:"
-
-#~ msgid "_Show calendar format selection menu"
-#~ msgstr "Vi_s menyen valgene for kalenderformat"
-
-#~ msgid "<b>Entry formats</b>"
-#~ msgstr "<b>Innskrivningsformat</b>"
-
-#~ msgid "Preferred _text format:"
-#~ msgstr "Foretrukket _tekst format:"
-
-#~ msgid "Preferred _graphical format:"
-#~ msgstr "Foretrukket _grafisk format:"
-
-#~ msgid "A4"
-#~ msgstr "A4"
-
-#~ msgid "_Default report directory:"
-#~ msgstr "Stan_dard rapportmappe:"
-
-#~ msgid "Select default report directory - GRAMPS"
-#~ msgstr "Velg standard rapportmappe - GRAMPS"
-
-#~ msgid "The default directory for the output of many report generators"
-#~ msgstr "Standardmappe for skriving av utdata for mange standardrapporter"
-
-#~ msgid "Default _web site directory:"
-#~ msgstr "Standardmappe for nettsider"
-
-#~ msgid "The default directory for the output of the Web Site report generators"
-#~ msgstr "Standardmappe for utdata fra nettside-rapporter"
-
-#~ msgid "<b>Report preferences</b>"
-#~ msgstr "<b>Foretrukne rapportinnstillinger</b>"
-
-#~ msgid "Make a _reference to the object when the object is dropped"
-#~ msgstr "Lag en henvisning til objektet nå_r objektet slippes"
-
-#~ msgid "Make a local _copy when the object is dropped"
-#~ msgstr "Lag en lokal kopi når objektet slippes"
-
-#~ msgid "Display _global properties editor when object is dropped"
-#~ msgstr "Vis den _generelle redigeringen av egenskaper når et objekt slippes"
-
-#~ msgid "Display _local properties editor when object is dropped"
-#~ msgstr "Vis den _lokale redigeringen av egenskaper når et objektet slippes"
-
-#~ msgid "<b>Drag and drop from an external source</b>"
-#~ msgstr "<b>Dra og slipp fra en ekstern kilde</b>"
-
-#~ msgid "<b>Drag and drop from an internal source</b>"
-#~ msgstr "<b>Dra og slipp fra en intern kilde</b>"
-
-#~ msgid "<b>User defined IDs</b>"
-#~ msgstr "<b>Brukerdefinerte ID-er</b>"
-
-#~ msgid "_Allow internal GRAMPS ID numbers to be edited"
-#~ msgstr "Till_at at interne GRAMPS ID-numre blir redigert"
-
-#~ msgid "<b>Customization</b>"
-#~ msgstr "<b>Tilpasning</b>"
-
-#~ msgid "_Database:"
-#~ msgstr "_Database:"
-
-#~ msgid "_Revert to an older version from revision control"
-#~ msgstr "Gå tilbake til en eldre versjon fra revisjons kontroll"
-
-#~ msgid "Comment:"
-#~ msgstr "Kommentar:"
-
-#~ msgid "Rule operations:"
-#~ msgstr "Regeloperasjoner:"
-
-#~ msgid "<b>Rule</b>"
-#~ msgstr "<b>Regel</b>"
-
-#~ msgid "Selects an existing source from the Source View"
-#~ msgstr "Velger en eksisterende kilde fra kildeoversikten"
-
-#~ msgid "_State/Province"
-#~ msgstr "_Stat/provins"
-
-#~ msgid "AbiWord (version 1.9 or greater)"
-#~ msgstr "AbiWord (versjon 1.9 eller høyere)"
-
-#~ msgid "AbiWord (version 1.0.x)"
-#~ msgstr "AbiWord (versjon 1.0.x)"
-
-#~ msgid "_unknown"
-#~ msgstr "_ukjent"
-
-#~ msgid "FAQ - GRAMPS"
-#~ msgstr "OSS - GRAMPS"
-
-#~ msgid "<b>Notes</b>"
-#~ msgstr "<b>Kommentarer</b>"
-
-#~ msgid "She is the daughter of "
-#~ msgstr "Hun er datter av "
-
-#~ msgid "He is the son of "
-#~ msgstr "Han er sønn av "
-
-#~ msgid "GEDCOM file ended unexpectedly"
-#~ msgstr "GEDCOM-fila  fikk en uventet avsluttning"
-
-#~ msgid "Simple Book Title"
-#~ msgstr "Enkel boktittel"
-
-#~ msgid "Add Person"
-#~ msgstr "Legg til Person"
-
-#~ msgid "<b>Note</b>"
-#~ msgstr "<b>Kommentar</b>"
-
-#~ msgid "<b>Witnesses</b>"
-#~ msgstr "<b>Vitner</b>"
-
-#~ msgid "<b>Names</b>"
-#~ msgstr "<b>Navn</b>"
-
-#~ msgid "<b>Gallery</b>"
-#~ msgstr "<b>Galleri</b>"
-
-#~ msgid "<b>Internet</b>"
-#~ msgstr "<b>Internett</b>"
-
-#~ msgid "<b>LDS</b>"
-#~ msgstr "<b>SDH</b>"
-
-#~ msgid "Names with the specified SoundEx code"
-#~ msgstr "Navn med den angitte SoundEx koden"
-
-#~ msgid "_History"
-#~ msgstr "_Historie"
-
-#~ msgid "Open file"
-#~ msgstr "Åpne fil"
-
-#~ msgid "Make the selected spouse's family the active family"
-#~ msgstr "Sett den valgte ektefelles familie til den aktive familien"
-
-#~ msgid "Create a new _ZODB database"
-#~ msgstr "Lag en ny _ZODB database"
-
-#~ msgid ""
-#~ "An autosave file exists for %s.\n"
-#~ "Should this be loaded instead of the last saved version?"
-#~ msgstr ""
-#~ "En autolagret fil eksisterer for %s.\n"
-#~ "Skal denne bli lastet i stede for den sist lagrede versjonen?"
-
-#~ msgid "Perform selected action and close this dialog"
-#~ msgstr "Utfør valgte handlingen og lukk denne dialogboksen"
-
-#~ msgid "born %(date)s in %(place)s%(endnotes)s"
-#~ msgstr "født %(date)s i %(place)s%(endnotes)s"
-
-#~ msgid "born %(date)s%(endnotes)s"
-#~ msgstr "født %(date)s%(endnotes)s"
-
-#~ msgid "born in %(place)s%(endnotes)s"
-#~ msgstr "født i %(place)s%(endnotes)s"
-
-#~ msgid "died %(date)s in %(place)s%(endnotes)s."
-#~ msgstr "død %(date)s i %(place)s%(endnotes)s."
-
-#~ msgid "died %(date)s%(endnotes)s."
-#~ msgstr "død %(date)s%(endnotes)s."
-
-#~ msgid "died in %(place)s%(endnotes)s."
-#~ msgstr "død i %(place)s%(endnotes)s."
-
-#~ msgid "was born %(date)s in %(place)s%(endnotes)s"
-#~ msgstr "ble født %(date)s i %(place)s%(endnotes)s"
-
-#~ msgid "was born %(date)s%(endnotes)s"
-#~ msgstr "ble født %(date)s%(endnotes)s"
-
-#~ msgid "was born in %(place)s%(endnotes)s"
-#~ msgstr "ble født i %(place)s%(endnotes)s"
-
-#~ msgid "and died %(date)s in %(place)s%(endnotes)s."
-#~ msgstr "og døde %(date)s i %(place)s%(endnotes)s."
-
-#~ msgid "and died %(date)s%(endnotes)s."
-#~ msgstr "og døde %(date)s%(endnotes)s."
-
-#~ msgid "and died in %(place)s%(endnotes)s."
-#~ msgstr "og døde i %(place)s%(endnotes)s."
-
-#~ msgid "Se_tup"
-#~ msgstr "Inns_tillinger"
-
-#~ msgid "_Edit books"
-#~ msgstr "R_ediger bøker"
-
-#~ msgid "Display only _icons"
-#~ msgstr "Vis kun _ikoner"
-
-#~ msgid "_Active person's name only"
-#~ msgstr "Kun den _aktive personens navn"
 
