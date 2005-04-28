@@ -244,6 +244,8 @@ class EventEditor:
         self.top.get_widget('sel_obj').set_sensitive(not noedit)
         self.top.get_widget('add_obj').set_sensitive(not noedit)
 
+        Utils.bold_label(self.general_label)
+
         try:
             self.window.set_transient_for(self.parent.window)
         except AttributeError:
