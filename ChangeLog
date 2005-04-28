@@ -1,3 +1,9 @@
+2005-04-27  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: rewrite of tabbed lists
+	* src/EventEdit.py: bold the label
+	* src/ListModel.py: allow column types to be specified
+	* src/edit_person.glade: tab improvements
+
 2005-04-27  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gramps_main.py (__init__): Avoid TypeError in schema error
 	message

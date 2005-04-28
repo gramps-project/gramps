@@ -949,7 +949,7 @@ Unknown</property>
 		  <property name="spacing">6</property>
 
 		  <child>
-		    <widget class="GtkButton" id="add_aka">
+		    <widget class="GtkButton" id="aka_add">
 		      <property name="visible">True</property>
 		      <property name="tooltip" translatable="yes">Create an alternate name for this person</property>
 		      <property name="can_focus">True</property>
@@ -1005,7 +1005,7 @@ Unknown</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkButton" id="aka_delete">
+		    <widget class="GtkButton" id="aka_del">
 		      <property name="visible">True</property>
 		      <property name="sensitive">False</property>
 		      <property name="tooltip" translatable="yes">Delete the selected name</property>
@@ -1187,7 +1187,7 @@ Unknown</property>
 			  </child>
 
 			  <child>
-			    <widget class="GtkButton" id="attr_edit_btn">
+			    <widget class="GtkButton" id="attr_edit">
 			      <property name="visible">True</property>
 			      <property name="sensitive">False</property>
 			      <property name="tooltip" translatable="yes">Edit the selected attribute</property>
@@ -1399,7 +1399,7 @@ Unknown</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkButton" id="addr_edit_btn">
+		    <widget class="GtkButton" id="addr_edit">
 		      <property name="visible">True</property>
 		      <property name="sensitive">False</property>
 		      <property name="tooltip" translatable="yes">Edit the selected address</property>
@@ -2190,7 +2190,7 @@ Unknown</property>
 		      <property name="spacing">6</property>
 
 		      <child>
-			<widget class="GtkButton" id="add_url">
+			<widget class="GtkButton" id="url_add">
 			  <property name="visible">True</property>
 			  <property name="tooltip" translatable="yes">Add an internet reference about this person</property>
 			  <property name="can_focus">True</property>
@@ -2218,7 +2218,7 @@ Unknown</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkButton" id="edit_url">
+			<widget class="GtkButton" id="url_edit">
 			  <property name="visible">True</property>
 			  <property name="sensitive">False</property>
 			  <property name="tooltip" translatable="yes">Edit the selected internet address</property>
@@ -2274,7 +2274,7 @@ Unknown</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkButton" id="delete_url">
+			<widget class="GtkButton" id="url_del">
 			  <property name="visible">True</property>
 			  <property name="sensitive">False</property>
 			  <property name="tooltip" translatable="yes">Delete selected reference</property>

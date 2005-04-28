@@ -24,19 +24,25 @@ import const
 
 gtk26 = gtk.pygtk_version >= (2,6,0)
 
+TEXT    = 0
+TOGGLE  = 1
+COMBO   = 2
+
+NOSORT = -1    
 #-------------------------------------------------------------------------
 #
 # ListModel
 #
 #-------------------------------------------------------------------------
 class ListModel:
+
     def __init__(self,tree,dlist,select_func=None,
                  event_func=None,mode=gtk.SELECTION_SINGLE):
         self.tree = tree
         self.mylist = []
         self.data_index = 0
         for l in dlist:
-            if l[0] and l[0][0] == ':':
+            if len(l) == 4 and l[3] == TOGGLE:
                 self.mylist.append(TYPE_BOOLEAN)
             else:
                 self.mylist.append(TYPE_STRING)
@@ -66,11 +72,14 @@ class ListModel:
         
         cnum = 0
         for name in dlist:
-            if name[0] and name[0][0] == ':':
+            if len(name) == 3:
+                name = (name[0],name[1],name[2],TEXT)
+                
+            if name[0] and name[3] == TOGGLE:
                 renderer = gtk.CellRendererToggle()
-                column = gtk.TreeViewColumn(name[0][1:],renderer)
+                column = gtk.TreeViewColumn(name[0],renderer)
                 column.add_attribute(renderer,'active',cnum)
-            elif gtk26 and cnum == 0:
+            elif gtk26 and name[3] == COMBO:
                 renderer = gtk.CellRendererCombo()
                 renderer.set_property('model',model)
                 renderer.set_property('text_column',0)
