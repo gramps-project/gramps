@@ -9,7 +9,7 @@
 	* src/dates/Makefile.am: Added Date_fi.py
 	* src/po/fi.po: Updated translation from template.po + some fixes
 
-2005-04-28    <don@gramps-project.org>
+2005-04-28  Don Allingham  <don@gramps-project.org>
 	* src/FamilyView.py: fix adding child to wrong family
 
 2005-04-27  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
