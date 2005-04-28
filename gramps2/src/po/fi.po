@@ -2,13 +2,14 @@
 # GRAMPS
 # Eero Tamminen <eerot at sf>, 2005.
 # Copyright (C) YEAR ORGANIZATION.
+# Eero Tamminen <oak_at_welho_com>, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fi\n"
 "POT-Creation-Date: Sun Apr 24 15:55:54 2005\n"
-"PO-Revision-Date: 2005-04-21 00:25+0300\n"
-"Last-Translator: Eero Tamminen <eerot at sf>\n"
+"PO-Revision-Date: 2005-04-28 23:23+0300\n"
+"Last-Translator: Eero Tamminen <oak_at_welho_com>\n"
 "Language-Team: Suomi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -236,7 +237,7 @@ msgstr "Sarakkeen nimi"
 
 #: DateEdit.py:74 DateEdit.py:83
 msgid "Regular"
-msgstr "Säännöllinen"
+msgstr "Tavanomainen"
 
 #: DateEdit.py:75
 msgid "Before"
@@ -248,7 +249,7 @@ msgstr "Jälkeen"
 
 #: DateEdit.py:77
 msgid "About"
-msgstr "Tietoja"
+msgstr "Noin"
 
 #: DateEdit.py:78
 msgid "Range"
@@ -260,7 +261,7 @@ msgstr "Jakso"
 
 #: DateEdit.py:80
 msgid "Text only"
-msgstr "Vain tekstiä"
+msgstr "Vain tekstinä"
 
 #: DateEdit.py:84
 msgid "Estimated"
@@ -920,11 +921,11 @@ msgstr "<tuplaklikkaa lisätäksesi puolison>"
 
 #: FamilyView.py:1059
 msgid "Database corruption detected"
-msgstr ""
+msgstr "Tietokannan on havaittu vioittuneen"
 
 #: FamilyView.py:1060
 msgid "A problem was detected with the database. Please run the Check and Repair Database tool to fix the problem."
-msgstr ""
+msgstr "Tietokannassa on havaittu ongelma. Aja \"Tarkista ja korjaa tietokanta\"-työkalu korjataksesi ongelman."
 
 #: FamilyView.py:1111
 msgid ""
@@ -1295,7 +1296,6 @@ msgid "Matches persons that are indicated as private"
 msgstr "Poimii henkilöt, jotka on merkitty yksityisiksi"
 
 #: GenericFilter.py:1825
-#, fuzzy
 msgid "Matches persons who are witnesses in an event"
 msgstr "Poimii henkilöt, jotka ovat jonkin tapahtuman todistajia"
 
@@ -1940,11 +1940,11 @@ msgstr "Liitännäisen tila"
 
 #: Plugins.py:387
 msgid "All modules were successfully loaded."
-msgstr "Kaikkien moduulien lataus onnistui."
+msgstr "Kaikkien liitännäisten lataus onnistui."
 
 #: Plugins.py:389
 msgid "The following modules could not be loaded:"
-msgstr "Seuraavien moduulien lataus epäonnistui:"
+msgstr "Seuraavien liitännäisten lataus epäonnistui:"
 
 #: Plugins.py:726
 msgid "Reload plugins"
@@ -2698,7 +2698,6 @@ msgid "%(male_name)s died on %(death_date)s."
 msgstr "%(male_name)s kuoli %(death_date)s."
 
 #: ReportUtils.py:1188
-#, fuzzy
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d years."
 msgstr "%(male_name)s kuoli %(death_date)s %(age)d vuoden ikäisenä."
 
@@ -2719,7 +2718,6 @@ msgid "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(a
 msgstr "%(male_name)s kuoli %(month_year)s %(age)d vuoden ikäisenä, kuolinpaikka %(death_place)s."
 
 #: ReportUtils.py:1217
-#, fuzzy
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr "%(male_name)s kuoli %(month_year)s %(age)d kuukauden ikäisenä, kuolinpaikka %(death_place)s."
 
@@ -2812,7 +2810,6 @@ msgid "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %
 msgstr "%(female_name)s kuoli %(month_year)s %(age)d vuoden ikäisenä, kuolinpaikka %(death_place)s."
 
 #: ReportUtils.py:1348
-#, fuzzy
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr "%(female_name)s kuoli %(month_year)s %(age)d kuukauden ikäisenä, kuolinpaikka %(death_place)s."
 
@@ -2865,56 +2862,48 @@ msgid "%(female_name)s died at the age of %(age)d days."
 msgstr "%(female_name)s kuoli %(age)d päivän ikäisenä."
 
 #: ReportUtils.py:1466
-#, fuzzy
 msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(male_name)s haudattiin %(birth_date)s, hautauspaikka %(birth_place)s."
+msgstr "%(male_name)s haudattiin %(burial_date)s, hautauspaikka %(burial_place)s."
 
 #: ReportUtils.py:1471
-#, fuzzy
 msgid "%(male_name)s was buried on %(burial_date)s."
-msgstr "%(male_name)s haudattiin %(birth_date)s."
+msgstr "%(male_name)s haudattiin %(burial_date)s."
 
 #: ReportUtils.py:1475
-#, fuzzy
 msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(male_name)s haudattiin %(month_year)s, hautauspaikka %(birth_place)s."
+msgstr "%(male_name)s haudattiin %(month_year)s, hautauspaikka %(burial_place)s."
 
 #: ReportUtils.py:1480
 msgid "%(male_name)s was buried in %(month_year)s."
 msgstr "%(male_name)s haudattiin %(month_year)s."
 
 #: ReportUtils.py:1484
-#, fuzzy
 msgid "%(male_name)s was buried in %(burial_place)s."
-msgstr "%(male_name)s haudattiin %(birth_place)s:n."
+msgstr "%(male_name)s haudattiin %(burial_place)s:n."
 
 #: ReportUtils.py:1487
 msgid "%(male_name)s was buried."
 msgstr "%(male_name)s haudattiin."
 
 #: ReportUtils.py:1492
-#, fuzzy
 msgid "%(female_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(female_name)s haudattiin %(birth_date)s, hautauspaikka %(birth_place)s."
+msgstr "%(female_name)s haudattiin %(burial_date)s, hautauspaikka %(burial_place)s."
 
 #: ReportUtils.py:1497
-#, fuzzy
 msgid "%(female_name)s was buried on %(burial_date)s."
-msgstr "%(female_name)s haudattiin %(birth_date)s."
+msgstr "%(female_name)s haudattiin %(burial_date)s."
 
 #: ReportUtils.py:1501
-#, fuzzy
 msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(female_name)s haudattiin %(month_year)s, hautauspaikka %(birth_place)s."
+msgstr "%(female_name)s haudattiin %(month_year)s, hautauspaikka %(burial_place)s."
 
 #: ReportUtils.py:1506
 msgid "%(female_name)s was buried in %(month_year)s."
 msgstr "%(female_name)s haudattiin %(month_year)s."
 
 #: ReportUtils.py:1510
-#, fuzzy
 msgid "%(female_name)s was buried in %(burial_place)s."
-msgstr "%(female_name)s haudattiin %(birth_place)s:n."
+msgstr "%(female_name)s haudattiin %(burial_place)s:n."
 
 #: ReportUtils.py:1513
 msgid "%(female_name)s was buried."
@@ -2949,9 +2938,8 @@ msgid "%(male_name)s Born: %(birth_date)s Died: %(death_place)s."
 msgstr "%(male_name)s Syntynyt: %(birth_date)s Kuollut: %(death_place)s."
 
 #: ReportUtils.py:1588
-#, fuzzy
 msgid "%(male_name)s Born: %(birth_date)s."
-msgstr "%(male_name)s Syntynyt: %(birth_date)s "
+msgstr "%(male_name)s Syntynyt: %(birth_date)s."
 
 #: ReportUtils.py:1594
 msgid "%(male_name)s Born: %(birth_place)s Died: %(death_date)s %(death_place)s."
@@ -3014,9 +3002,8 @@ msgid "%(female_name)s Born: %(birth_date)s Died: %(death_place)s."
 msgstr "%(female_name)s Syntynyt: %(birth_date)s Kuollut: %(death_place)s."
 
 #: ReportUtils.py:1687
-#, fuzzy
 msgid "%(female_name)s Born: %(birth_date)s."
-msgstr "%(female_name)s Syntynyt: %(birth_date)s "
+msgstr "%(female_name)s Syntynyt: %(birth_date)s."
 
 #: ReportUtils.py:1693
 msgid "%(female_name)s Born: %(birth_place)s Died: %(death_date)s %(death_place)s."
@@ -5751,9 +5738,8 @@ msgid "No Home Person has been set."
 msgstr "\"Koti\"-henkilöä ei ole asetettu."
 
 #: gramps_main.py:1753
-#, fuzzy
 msgid "The Home Person may be set from the Edit menu."
-msgstr "\"Koti\"-henkilö voidaan asettaa Asetukset-valikosta."
+msgstr "\"Koti\"-henkilö voidaan asettaa Muokkaa-valikosta."
 
 #: gramps_main.py:1759
 msgid "%s has been bookmarked"
@@ -6596,14 +6582,12 @@ msgid "Include notes"
 msgstr "Lisää huomiot"
 
 #: plugins/DetAncestralReport.py:551 plugins/DetDescendantReport.py:572
-#, fuzzy
 msgid "Replace missing places with ______"
-msgstr "Korvaa paikka ______:lla"
+msgstr "Korvaa puuttuvat paikat ______:lla"
 
 #: plugins/DetAncestralReport.py:555 plugins/DetDescendantReport.py:576
-#, fuzzy
 msgid "Replace missing dates with ______"
-msgstr "Korvaa päivämäärät ______:lla"
+msgstr "Korvaa puuttuvat päivämäärät ______:lla"
 
 #: plugins/DetAncestralReport.py:559 plugins/DetDescendantReport.py:580
 msgid "Compute age"
@@ -6707,23 +6691,20 @@ msgid "Export to vCalendar"
 msgstr "Vie vCalendar-muotoon"
 
 #: plugins/ExportVCalendar.py:199
-#, fuzzy
 msgid "Marriage of %s"
-msgstr "Avioliittoikä"
+msgstr "Avioliitto: %s"
 
 #: plugins/ExportVCalendar.py:217 plugins/ExportVCalendar.py:219
-#, fuzzy
 msgid "Birth of %s"
-msgstr "Syntymäkuukaudet"
+msgstr "Syntymä: %s"
 
 #: plugins/ExportVCalendar.py:228 plugins/ExportVCalendar.py:230
-#, fuzzy
 msgid "Death of %s"
-msgstr "%s:n jälkeläiset"
+msgstr "Kuolema: %s"
 
 #: plugins/ExportVCalendar.py:283
 msgid "Anniversary: %s"
-msgstr ""
+msgstr "Syntymäpäivä: %s"
 
 #: plugins/ExportVCalendar.py:310
 msgid "vCalendar"
@@ -7995,7 +7976,7 @@ msgstr "Luo testiperheitä"
 
 #: plugins/TestcaseGenerator.py:87
 msgid "Don't block transactions"
-msgstr ""
+msgstr "Älä estä transaktioita"
 
 #: plugins/TestcaseGenerator.py:120
 msgid ""
@@ -8010,16 +7991,14 @@ msgid "Testcase generator"
 msgstr "Testitapausten luonti"
 
 #: plugins/TestcaseGenerator.py:514
-#, fuzzy
 msgid "Testcase generator step %d"
-msgstr "Testitapausten luonti"
+msgstr "Testitapausten luonti, vaihe %d"
 
 #: plugins/TestcaseGenerator.py:538
 msgid "Generate Testcases for persons and families"
 msgstr "Luo testitapauksia henkilöille ja perheille"
 
 #: plugins/TestcaseGenerator.py:540
-#, fuzzy
 msgid "The testcase generator will generate some persons and families that have broken links in the database or data that is in conflict to a relation."
 msgstr "Testitapauksissa luodaan henkilöitä ja perheitä, joilla on viallisia linkkejä tietokannassa tai tietoja, jotka eivät vastaa ao. suhdetta."
 
@@ -8567,13 +8546,12 @@ msgstr ""
 "Viennin jälkeen siirry <b>burn:///</b> hakemistoon Nautiluksessa ja valitse \"Write to CD\"-toiminto."
 
 #: plugins/changenames.glade:56
-#, fuzzy
 msgid ""
 "Below is a list of the family names that \n"
 "GRAMPS can convert to correct capitalization. \n"
 "Select the names you wish GRAMPS to convert. "
 msgstr ""
-"Alla on lista kaikista sukunimistä, joille\n"
+"Alla on lista kaikista sukunimistä, joille \n"
 "GRAMPS voi muuttaa ison Alkukirjaimen.\n"
 "Valitse nimet, jotka haluat GRAMPSin muuttavan."
 
@@ -8804,9 +8782,8 @@ msgid "<b>Filter inversion</b>"
 msgstr "<b>Käänteinen suodin</b>"
 
 #: rule.glade:604
-#, fuzzy
 msgid "Apply and close"
-msgstr "_Hyväksy muutokset ja sulje"
+msgstr "Hyväksy muutokset ja sulje"
 
 #: rule.glade:719
 msgid "Add a new filter"
@@ -8840,30 +8817,3 @@ msgstr "<b>Valittu sääntö</b>"
 msgid "<b>Values</b>"
 msgstr "<b>Arvot</b>"
 
-#~ msgid ""
-#~ "Married\n"
-#~ "Unmarried\n"
-#~ "Civil Union\n"
-#~ "Uknown\n"
-#~ "Other"
-#~ msgstr ""
-#~ "Naimisissa\n"
-#~ "Naimaton\n"
-#~ "Rekisteröity suhde\n"
-#~ "Tuntematon\n"
-#~ "Muu"
-
-#~ msgid "Notes for %(name)sname"
-#~ msgstr "Huomioita %(name)s:lle"
-
-#~ msgid "The basic style used for the date display."
-#~ msgstr "Perustyyli päivämäärän näyttöön."
-
-#~ msgid "Trad Descendant Tree"
-#~ msgstr "Perinteinen jälkeläispuu"
-
-#~ msgid "Generates a text tree of descendants of the active person"
-#~ msgstr "Tuottaa tekstimuotoisen puun aktiivisen henkilön jälkeläisistä"
-
-#~ msgid "remote ancestors"
-#~ msgstr "Etäiset esivanhemmat"
