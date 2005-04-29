@@ -1,10 +1,13 @@
+2005-04-29  Alex Roitman  <shura@gramps-project.org>
+	* src/edit_person.glade: Compact name edit button.
+
 2005-04-29  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/PHPGedViewConnector.py, src/plugins/phpgedview.glade:
 	New files. Start of a client interface for phpGedView.
 	unfinished. Put them in CVS to not loose them.
 
 2005-04-28  Don Allingham  <don@gramps-project.org>
-        * src/EditPerson.py: remove dead logic for birth/death editing,
+	* src/EditPerson.py: remove dead logic for birth/death editing,
 	fix list handling
 	* src/EventEdit.py: fix callbacks for updating events
 	* src/GrampsDbBase.py: shorten handles
