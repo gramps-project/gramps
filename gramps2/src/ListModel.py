@@ -48,7 +48,8 @@ class ListModel:
                 self.mylist.append(TYPE_STRING)
             self.data_index += 1
         self.mylist.append(TYPE_PYOBJECT)
-        
+
+        self.function = {}
         self.tree.set_rules_hint(True)
         self.model = None
         self.selection = None
@@ -73,26 +74,37 @@ class ListModel:
         cnum = 0
         for name in dlist:
             if len(name) == 3:
-                name = (name[0],name[1],name[2],TEXT)
-                
+                name = (name[0],name[1],name[2],TEXT,False, None)
+            elif len(name) == 4:
+                name = (name[0],name[1],name[2],name[3],False, None)
+
             if name[0] and name[3] == TOGGLE:
                 renderer = gtk.CellRendererToggle()
                 column = gtk.TreeViewColumn(name[0],renderer)
                 column.add_attribute(renderer,'active',cnum)
             elif gtk26 and name[3] == COMBO:
+                store = gtk.ListStore(str)
+                model = gtk.ListStore(str,TYPE_OBJECT)
+                for val in name[4]:
+                    model.append((val,store))
+                self.function[cnum] = name[5]
                 renderer = gtk.CellRendererCombo()
                 renderer.set_property('model',model)
                 renderer.set_property('text_column',0)
-                renderer.set_property('editable',True)
                 renderer.set_fixed_height_from_font(True)
+                renderer.set_property('editable',True)
                 renderer.connect('edited',self.edited_cb, cnum)
                 column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
                 column.set_reorderable(True)
             else:
                 renderer = gtk.CellRendererText()
-                renderer.set_property('editable',True)
                 renderer.set_fixed_height_from_font(True)
-                renderer.connect('edited',self.edited_cb, cnum)
+                if name[5]:
+                    renderer.set_property('editable',True)
+                    renderer.connect('edited',self.edited_cb, cnum)
+                    self.function[cnum] = name[5]
+                else:
+                    renderer.set_property('editable',False)
                 column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
                 column.set_reorderable(True)
             column.set_min_width(name[2])
@@ -122,6 +134,8 @@ class ListModel:
 
     def edited_cb(self, cell, path, new_text, col):
         self.model[path][col] = new_text
+        if self.function.has_key(col):
+            self.function[col](int(path),new_text)
 
     def unselect(self):
         self.selection.unselect_all()

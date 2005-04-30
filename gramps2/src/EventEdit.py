@@ -87,9 +87,8 @@ class EventEditor:
         for v in elist:
             values[v] = 1
         for vv in self.db.get_person_event_type_list():
-            if vv not in ("Birth","Death"):
-                v = _(vv)
-                values[v] = 1
+            v = _(vv)
+            values[v] = 1
             
         self.elist = values.keys()
         self.elist.sort()
@@ -325,7 +324,6 @@ class EventEditor:
                           "before you can save the event"))
             return
 
-        trans = self.db.transaction_begin()
         #self.date = self.dp.parse(unicode(self.date_field.get_text()))
         ecause = unicode(self.cause_field.get_text())
         eplace_obj = self.get_place(self.place_field,trans)
@@ -357,11 +355,10 @@ class EventEditor:
         
         self.update_event(ename,self.date,eplace_obj,edesc,enote,eformat,
                           epriv,ecause,trans)
-        self.db.transaction_commit(trans,_("Edit Event"))
         
         self.close(obj)
         if self.callback:
-            self.callback(self.event.get_handle())
+            self.callback(self.event)
 
     def update_event(self,name,date,place,desc,note,format,priv,cause,trans):
         if place:
@@ -373,8 +370,7 @@ class EventEditor:
                 self.event.set_place_handle("")
                 self.parent.lists_changed = 1
         
-        if self.event.get_name() not in [self.trans.find_key(name),
-                                            "Birth","Death"]:
+        if self.event.get_name() not in [self.trans.find_key(name)]:
             self.event.set_name(self.trans.find_key(name))
             self.parent.lists_changed = 1
         
