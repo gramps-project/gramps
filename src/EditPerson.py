@@ -28,6 +28,7 @@
 import cPickle as pickle
 import os
 import locale
+from sets import Set
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -52,7 +53,6 @@ import GrampsKeys
 import GrampsMime
 import ImageSelect
 import AutoComp
-import ListModel
 import RelLib
 import Sources
 import DateEdit
@@ -68,7 +68,7 @@ import EventEdit
 import AddrEdit
 
 from QuestionDialog import WarningDialog, ErrorDialog, SaveDialog, QuestionDialog2
-
+from ListModel import ListModel, NOSORT, COMBO, TEXT, TOGGLE
 from DdTargets import DdTargets
 
 
@@ -413,12 +413,6 @@ class EditPerson:
         self.child_windows = {}
 
     def close(self):
-        event_list = []
-        #for col in self.event_list.get_columns():
-        #    event_list.append(self.event_trans.find_key(col.get_title()))
-        #if not self.db.readonly:
-        #    self.db.metadata['event_order'] = event_list
-        
         #self.gallery.close()
         self.close_child_windows()
         self.remove_itself_from_winsmenu()
@@ -834,14 +828,25 @@ class EditPerson:
 
     def update_lists(self):
         """Updates the person's lists if anything has changed"""
-        if self.lists_changed:
-            self.person.set_alternate_names(self.nlist)
-            self.person.set_url_list(self.ulist)
-            self.person.set_attribute_list(self.alist)
-            self.person.set_address_list(self.plist)
-            #self.person.set_event_list(self.elist)
-#             self.person.set_birth_handle(self.birth.get_handle())
-#             self.person.set_death_handle(self.death.get_handle())
+        self.person.set_alternate_names(self.name_box.data)
+        self.person.set_url_list(self.url_box.data)
+        self.person.set_attribute_list(self.attr_box.data)
+        self.person.set_address_list(self.addr_box.data)
+
+        self.person.set_birth_handle(None)
+        self.person.set_death_handle(None)
+        elist = self.event_box.data[:]
+        for event in elist:
+            if event.get_name() == "Birth":
+                self.person.set_birth_handle(event.get_handle())
+                self.event_box.data.remove(event)
+            if event.get_name() == "Death":
+                self.person.set_death_handle(event.get_handle())
+                self.event_box.data.remove(event)
+        elist = []
+        for val in self.event_box.data:
+            elist.append(val.get_handle())
+        self.person.set_event_list(elist)
 
     def on_apply_person_clicked(self,obj):
 
@@ -869,7 +874,6 @@ class EditPerson:
         idval = unicode(self.gid.get_text())
 
         name = self.pname
-
         if idval != self.person.get_gramps_id():
             person = self.db.get_person_from_gramps_id(idval)
             if not person:
@@ -1012,9 +1016,8 @@ class EditPerson:
             if not self.lds_sealing.are_equal(lds_ord):
                 self.person.set_lds_sealing(self.lds_sealing)
 
-        if self.lists_changed:
-            self.person.set_source_reference_list(self.srcreflist)
-            self.update_lists()
+        self.person.set_source_reference_list(self.srcreflist)
+        self.update_lists()
 
         if not self.person.get_handle():
             self.db.add_person(self.person, trans)
@@ -1023,6 +1026,10 @@ class EditPerson:
                 self.person.set_gramps_id(self.db.find_next_person_gramps_id())
             self.db.commit_person(self.person, trans)
         n = self.person.get_primary_name().get_regular_name()
+
+        for event in self.event_box.get_changed_objects():
+            self.db.commit_event(event,trans)
+        
         self.db.transaction_commit(trans,_("Edit Person (%s)") % n)
         if self.callback:
             self.callback(self,self.retval)
@@ -1272,7 +1279,7 @@ class ListBox:
         self.name = NameDisplay.displayer.display(self.person)
         self.db = parent.db
         self.parent = parent
-        self.list_model = ListModel.ListModel(
+        self.list_model = ListModel(
             obj, titles, self.select_row, self.update)
         self.blist = button_list
         self.node_map = {}
@@ -1281,9 +1288,14 @@ class ListBox:
         self.blist[0].connect('clicked',self.add)
         self.blist[1].connect('clicked',self.update)
         self.blist[2].connect('clicked',self.delete)
+        self.change_list = Set()
+
+    def get_changed_objects(self):
+        return list(self.change_list)
 
     def add_object(self,item):
         self.data.append(item)
+        self.change_list.add(item)
         
     def select_row(self,obj):
         store, node = obj.get_selected()
@@ -1305,7 +1317,7 @@ class ListBox:
         self.node_map = {}
         for item in self.data:
             node = self.list_model.add(self.display_data(item),item)
-            self.node_map[str(item)] = node
+            self.node_map[item] = node
         if self.data:
             self.list_model.select_row(0)
         self.set_label()
@@ -1322,12 +1334,14 @@ class ListBox:
             self.redraw()
 
     def edit_callback(self,data):
-        self.data.append(data)
+        self.changed = True
+        self.change_list.add(data)
+        if data not in self.data:
+            self.data.append(data)
         self.redraw()
         try:
-            self.list_model.select_iter(self.node_map[str(data)])
+            self.list_model.select_iter(self.node_map[data])
         except:
-            print self.node_map, data
             print "Edit callback failed"
 
     def set_label(self):
@@ -1393,11 +1407,11 @@ class ReorderListBox(ListBox):
 class AttrListBox(ListBox):
 
     titles = [
-        # Title          Sort Column       Min Width, Type
-        (_('Attribute'), ListModel.NOSORT, 200,       ListModel.TEXT),
-        (_('Value'),     ListModel.NOSORT, 350,       ListModel.TEXT),
-        (_('Source'),    ListModel.NOSORT, 50,        ListModel.TOGGLE),
-        (_('Note'),      ListModel.NOSORT, 50,        ListModel.TOGGLE),
+        # Title          Sort Col, Size, Type
+        (_('Attribute'), NOSORT,   200,  TEXT),
+        (_('Value'),     NOSORT,   350,  TEXT),
+        (_('Source'),    NOSORT,   50,   TOGGLE),
+        (_('Note'),      NOSORT,   50,   TOGGLE),
         ]
 
     def __init__(self, parent, person, obj, label, button_list):
@@ -1425,35 +1439,52 @@ class AttrListBox(ListBox):
         return [const.display_pattr(attr.get_type()), attr.get_value(),
                 has_source, has_note]
 
-
 class EventListBox(ReorderListBox):
     
-    evalues = [
-        # Title            Sort Column       Min Width,  Type
-        (_('Event'),       ListModel.NOSORT, 125,        ListModel.COMBO),
-        (_('Description'), ListModel.NOSORT, 150,        ListModel.TEXT),
-        (_('Date'),        ListModel.NOSORT, 100,        ListModel.TEXT),
-        (_('Place'),       ListModel.NOSORT, 100,        ListModel.TEXT),
-        (_('Source'),      ListModel.NOSORT, 50,         ListModel.TOGGLE),
-        (_('Note'),        ListModel.NOSORT, 50,         ListModel.TOGGLE)
-        ]
-
     titles = ['Event', 'Description','Date','Place','Source','Note']
 
     def __init__(self,parent,person,obj,label,button_list):
 
         self.trans = TransTable.TransTable(self.titles)
-
+        
         self.data = []
         if person.get_birth_handle():
-            self.data.append(person.get_birth_handle())
+            event = parent.db.get_event_from_handle(person.get_birth_handle())
+            self.data.append(event)
         if person.get_death_handle():
-            self.data.append(person.get_death_handle())
+            event = parent.db.get_event_from_handle(person.get_death_handle())
+            self.data.append(event)
         for val in person.get_event_list():
-            self.data.append(val)
+            self.data.append(parent.db.get_event_from_handle(val))
 
+        evalues = [
+            # Title            Sort Col Size, Type    Argument
+            (_('Event'),       NOSORT,  100,  COMBO,  const.personalEvents, self.set_name),
+            (_('Description'), NOSORT,  140,  TEXT,   None,                 self.set_description),
+            (_('Date'),        NOSORT,  100,  TEXT,   None,                 self.set_date),
+            (_('Place'),       NOSORT,  100,  TEXT,   None,                 self.set_place),
+            (_('Source'),      NOSORT,  50,   TOGGLE),
+            (_('Note'),        NOSORT,  50,   TOGGLE),
+            ]
+        
         ReorderListBox.__init__(self, parent, person, obj, label,
-                                button_list, self.evalues, DdTargets.EVENT)
+                                button_list, evalues, DdTargets.EVENT)
+
+    def set_name(self,index,value):
+        self.data[index].set_name(value)
+        self.change_list.add(self.data[index])
+
+    def set_description(self,index,value):
+        self.data[index].set_description(value)
+        self.change_list.add(self.data[index])
+
+    def set_place(self,index,value):
+        self.data[index].set_description(value)
+        self.change_list.add(self.data[index])
+
+    def set_date(self,index,value):
+        self.data[index].set_date(value)
+        self.change_list.add(self.data[index])
 
     def add(self,obj):
         """Brings up the EventEditor for a new event"""
@@ -1469,34 +1500,16 @@ class EventListBox(ReorderListBox):
         event = self.list_model.get_object(node)
         EventEdit.EventEditor(
             self.parent, self.name, const.personalEvents,
-            const.personal_events,event, None, 0,
+            const.personal_events, event, None, 0,
             self.edit_callback, noedit=self.db.readonly)
 
-    def redraw(self):
-        """redraw_event_list - Update both the birth and death place combo
-        boxes for any changes that occurred in the 'Event Edit' window.
-        Make sure not to allow the editing of a birth event to change
-        any values in the death event, and vice versa.  Since updating a
-        combo list resets its present value, this code will have to save
-        and restore the value for the event *not* being edited."""
-
-        self.list_model.clear()
-        self.node_map = {}
-        for handle in self.data:
-            event = self.db.get_event_from_handle(handle)
-            if not event:
-                print "couldn't find",handle
-            pname = place_title(self.db,event)
-            has_note = event.get_note()
-            has_source = len(event.get_source_references())> 0
-            data = [const.display_pevent(event.get_name()),
-                    event.get_description(), event.get_date(),
-                    pname, has_source, has_note]
-            node = self.list_model.add(data, event)
-            self.node_map[handle] = node
-        if self.data:
-            self.list_model.select_row(0)
-        self.set_label()
+    def display_data(self,event):
+        pname = place_title(self.db,event)
+        has_note = event.get_note()
+        has_source = len(event.get_source_references())> 0
+        return [const.display_pevent(event.get_name()),
+                event.get_description(), event.get_date(),
+                pname, has_source, has_note]
 
     def unpickle(self, data):
         foo = pickle.loads(data);
@@ -1512,14 +1525,14 @@ class EventListBox(ReorderListBox):
 class NameListBox(ReorderListBox):
     
     titles = [
-        # Title              Sort Column       Min Width, Type
-        (_('Family Name'),   ListModel.NOSORT, 225,       ListModel.TEXT),
-        (_('Prefix'),        ListModel.NOSORT, 50,        ListModel.TEXT),
-        (_('Given Name'),    ListModel.NOSORT, 200,       ListModel.TEXT),
-        (_('Suffix'),        ListModel.NOSORT, 50,        ListModel.TEXT),
-        (_('Type'),          ListModel.NOSORT, 100,       ListModel.TEXT),
-        (_('Source'),        ListModel.NOSORT, 50,        ListModel.TOGGLE),
-        (_('Note'),          ListModel.NOSORT, 50,        ListModel.TOGGLE),
+        # Title            Sort Col Size, Type
+        (_('Family Name'), NOSORT,  225,  TEXT),
+        (_('Prefix'),      NOSORT,  50,   TEXT),
+        (_('Given Name'),  NOSORT,  200,  TEXT),
+        (_('Suffix'),      NOSORT,  50,   TEXT),
+        (_('Type'),        NOSORT,  100,  TEXT),
+        (_('Source'),      NOSORT,  50,   TOGGLE),
+        (_('Note'),        NOSORT,  50,   TOGGLE),
         ]
 
     def __init__(self,parent,person,obj,label,button_list):
@@ -1555,14 +1568,14 @@ class NameListBox(ReorderListBox):
 class AddressListBox(ReorderListBox):
     
     titles = [
-        # Title              Sort Column       Min Width, Type
-        (_('Date'),          ListModel.NOSORT, 175,       ListModel.TEXT),
-        (_('Address'),       ListModel.NOSORT, 150,       ListModel.TEXT),
-        (_('City'),          ListModel.NOSORT, 100,       ListModel.TEXT),
-        (_('State/Province'),ListModel.NOSORT, 75,        ListModel.TEXT),
-        (_('Country'),       ListModel.NOSORT, 100,       ListModel.TEXT),
-        (_('Source'),        ListModel.NOSORT, 50,        ListModel.TOGGLE),
-        (_('Note'),          ListModel.NOSORT, 50,        ListModel.TOGGLE),
+        # Title              Sort Col Size, Type
+        (_('Date'),          NOSORT,  175,  TEXT),
+        (_('Address'),       NOSORT,  150,  TEXT),
+        (_('City'),          NOSORT,  100,  TEXT),
+        (_('State/Province'),NOSORT,  75,   TEXT),
+        (_('Country'),       NOSORT,  100,  TEXT),
+        (_('Source'),        NOSORT,  50,   TOGGLE),
+        (_('Note'),          NOSORT,  50,   TOGGLE),
         ]
 
     def __init__(self,parent,person,obj,label,button_list):
@@ -1599,9 +1612,9 @@ class AddressListBox(ReorderListBox):
 class UrlListBox(ReorderListBox):
     
     titles = [
-        # Title              Sort Column       Min Width, Type
-        (_('Path'),          ListModel.NOSORT, 250,       ListModel.TEXT),
-        (_('Description'),   ListModel.NOSORT, 100,       ListModel.TEXT),
+        # Title            Sort Col  Size, Type
+        (_('Path'),        NOSORT,   250,  TEXT),
+        (_('Description'), NOSORT,   100,  TEXT),
         ]
 
     def __init__(self,parent,person,obj,label,button_list):

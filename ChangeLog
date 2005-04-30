@@ -1,3 +1,10 @@
+2005-04-30  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: Add support for inline editing
+	* src/EventEdit.py: Don't commit events here - should be commited
+	elsewhere
+	* src/ListModel.py: Add support for table callback functions
+	to update data after inline editing
+
 2005-04-29  Alex Roitman  <shura@gramps-project.org>
 	* src/edit_person.glade: Compact name edit button.
 
