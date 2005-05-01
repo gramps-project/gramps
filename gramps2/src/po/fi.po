@@ -7639,7 +7639,7 @@ msgstr "Alaotsikko"
 
 #: plugins/SimpleBookTitle.py:171
 msgid "Footer"
-msgstr "Alaotsake"
+msgstr "Alatunniste"
 
 #: plugins/SimpleBookTitle.py:188
 msgid "From gallery..."
@@ -7664,7 +7664,7 @@ msgstr "Alaotsikon tyyli."
 
 #: plugins/SimpleBookTitle.py:285
 msgid "The style used for the footer."
-msgstr "Alaotsakkeen tyyli."
+msgstr "Alatunnisteen tyyli."
 
 #: plugins/SimpleBookTitle.py:300
 msgid "Title Page"
