@@ -1,3 +1,7 @@
+2005-05-01  Eero Tamminen  <eerot@sf>
+	* src/dates/Date_fi.py: Fixed Display class + other changes.
+	  Parser is waiting for Gramps DateParser.py update
+
 2005-04-28  Alex Roitman  <shura@gramps-project.org>
 	* src/EditPlace.py (on_add_url_clicked,on_update_url_clicked):
 	Use empty name when not available.

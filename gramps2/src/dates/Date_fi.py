@@ -45,17 +45,30 @@ from DateDisplay import DateDisplay
 #
 # Finnish parser
 #
+# This handles only dates where days and months are given as numeric, as:
+# - That's how they are normally used in Finland
+# - Parsing Finnish is much more complicated than English
 #-------------------------------------------------------------------------
 class DateParserFI(DateParser):
 
+    # NOTE: these need to be in lower case because the "key" comparison
+    # is done as lower case.  In the display method correct capitalization
+    # can be used.
+    
     modifier_to_int = {
-        u'ennen'   : Date.MOD_BEFORE, 
-        u'e.'      : Date.MOD_BEFORE, 
+        # examples:
+	# - ennen 1.1.2005
+	# - 1.1.2005 jälkeen
+	# - noin 1.1.2005
+        u'ennen'   : Date.MOD_BEFORE,
+        u'e.'      : Date.MOD_BEFORE,
         u'jälkeen' : Date.MOD_AFTER,
         u'j.'      : Date.MOD_AFTER,
         u'noin'    : Date.MOD_ABOUT,
         u'n.'      : Date.MOD_ABOUT,
         }
+
+    bce = ["ekr", "ekr\."]
 
     calendar_to_int = {
         u'gregoriaaninen'  : Date.CAL_GREGORIAN,
@@ -73,23 +86,18 @@ class DateParserFI(DateParser):
         }
 
     quality_to_int = {
-        u'arvioitu'   : Date.QUAL_ESTIMATED,
+        u'arviolta'   : Date.QUAL_ESTIMATED,
         u'arv.'       : Date.QUAL_ESTIMATED,
-        u'laskettu'   : Date.QUAL_CALCULATED,
+        u'laskettuna' : Date.QUAL_CALCULATED,
         u'lask.'      : Date.QUAL_CALCULATED,
         }
 
     def init_strings(self):
         DateParser.init_strings(self)
-        _span_1 = [u'de']
-        _span_2 = [u'a']
-        _range_1 = [u'ent.',u'ent',u'entre']
-        _range_2 = [u'y']
-        self._span     = re.compile("(%s)\s+(.+)\s+(%s)\s+(.+)" % 
-                                   ('|'.join(_span_1),'|'.join(_span_2)),
+	# date, whitespace
+        self._span = re.compile("(?P<start>.+)\s+-\s+(?P<stop>.+)",
                            re.IGNORECASE)
-        self._range    = re.compile("(%s)\s+(.+)\s+(%s)\s+(.+)" %
-                                   ('|'.join(_range_1),'|'.join(_range_2)),
+        self._range = re.compile("(?P<start>.+)\s+ja\s+(?P<stop>.+)\s+väliltä",
                            re.IGNORECASE)
 
 #-------------------------------------------------------------------------
@@ -100,23 +108,17 @@ class DateParserFI(DateParser):
 class DateDisplayFI(DateDisplay):
 
     calendar = ("",
-        u" (Juliaaninen)",
-	u" (Heprealainen)", 
-        u" (Ranskan v.)",
-	u" (Persialainen)",
-	u" (Islamilainen)")
+        u"(Juliaaninen)",
+	u"(Heprealainen)", 
+        u"(Ranskan v.)",
+	u"(Persialainen)",
+	u"(Islamilainen)")
 
-    _mod_str = ("", u"ennen ", u"jälkeen ", u"noin ", "", "", "")
-
-    _qual_str = ("", "laskettu ", "arvioitu ")
+    _qual_str = ("", "laskettuna", "arviolta")
 
     formats = (
         "VVVV-KK-PP (ISO)",
-	"Numeroina",
-	"Kuukausi Päivä, Vuosi",
-        "KUUKAUSI Päivä, Vuosi",
-        "Päivä Kuukausi, Vuosi",
-        "Päivä KUUKAUSI, Vuosi"
+	"PP.KK.VVVV"
         )
     
     def display(self,date):
@@ -124,27 +126,43 @@ class DateDisplayFI(DateDisplay):
         Returns a text string representing the date.
         """
         mod = date.get_modifier()
-        cal = date.get_calendar()
         qual = date.get_quality()
+        cal = date.get_calendar()
         start = date.get_start_date()
-
-        qual_str = self._qual_str[qual]
         
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
-        elif start == Date.EMPTY:
+        if start == Date.EMPTY:
             return ""
-        elif mod == Date.MOD_SPAN:
+
+	# select numerical date format
+	self.format = 1
+	
+	if mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%s%s %s %s %s%s" % (qual_str,u'de',d1,u'a',d2,self.calendar[cal])
+            text = "%s - %s" % (d1, d2)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%s%s %s %s %s%s" % (qual_str,u'entre',d1,u'y',d2,self.calendar[cal])
+            text = "%s ja %s väliltä" % (d1, d2)
         else:
             text = self.display_cal[date.get_calendar()](start)
-            return "%s%s%s%s" % (qual_str,self._mod_str[mod],text,self.calendar[cal])
+	    if mod == Date.MOD_BEFORE:
+		text = "ennen " + text
+	    elif mod == Date.MOD_AFTER:
+		text = text + " jälkeen"
+	    elif mod == Date.MOD_ABOUT:
+		text = "noin " + text
+	
+	if qual:
+	    # prepend quality
+	    text = "%s %s" % (self._qual_str[qual], text)
+	if cal:
+	    # append calendar type
+	    text = "%s %s" % (text, self.calendar[cal])
+	    
+	return text
 
 #-------------------------------------------------------------------------
 #
