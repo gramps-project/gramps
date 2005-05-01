@@ -301,7 +301,7 @@ class EventEditor:
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-complete')
 
-    def get_place(self,field,trans):
+    def get_place(self,field):
         text = unicode(field.get_text().strip())
         if text:
             if self.pmap.has_key(text):
@@ -309,7 +309,9 @@ class EventEditor:
             else:
                 place = RelLib.Place()
                 place.set_title(text)
+                trans = self.db.transaction_begin()
                 self.db.add_place(place,trans)
+                self.db.transaction_commit(trans,_("Add Place"))
                 return place
         else:
             return None
@@ -326,7 +328,7 @@ class EventEditor:
 
         #self.date = self.dp.parse(unicode(self.date_field.get_text()))
         ecause = unicode(self.cause_field.get_text())
-        eplace_obj = self.get_place(self.place_field,trans)
+        eplace_obj = self.get_place(self.place_field)
         buf = self.note_field.get_buffer()
 
         start = buf.get_start_iter()
@@ -336,7 +338,7 @@ class EventEditor:
         edesc = unicode(self.descr_field.get_text())
         epriv = self.priv.get_active()
 
-        if ename not in self.elist + [_("Birth") , _("Death")]:
+        if ename not in self.elist:
             WarningDialog(
                 _('New event type created'),
                 _('The "%s" event type has been added to this database.\n'
@@ -348,19 +350,18 @@ class EventEditor:
         if self.event == None:
             self.event = RelLib.Event()
             self.event.set_handle(Utils.create_id())
-            self.db.add_event(self.event,trans)
             self.event.set_source_reference_list(self.srcreflist)
             self.event.set_witness_list(self.witnesslist)
             just_added = True
         
         self.update_event(ename,self.date,eplace_obj,edesc,enote,eformat,
-                          epriv,ecause,trans)
+                          epriv,ecause)
         
         self.close(obj)
         if self.callback:
             self.callback(self.event)
 
-    def update_event(self,name,date,place,desc,note,format,priv,cause,trans):
+    def update_event(self,name,date,place,desc,note,format,priv,cause):
         if place:
             if self.event.get_place_handle() != place.get_handle():
                 self.event.set_place_handle(place.get_handle())
@@ -402,11 +403,12 @@ class EventEditor:
         if self.event.get_privacy() != priv:
             self.event.set_privacy(priv)
             self.parent.lists_changed = 1
-        self.db.commit_event(self.event,trans)
 
     def on_switch_page(self,obj,a,page):
         buf = self.note_field.get_buffer()
-        text = unicode(buf.get_text(buf.get_start_iter(),buf.get_end_iter(),False))
+        start = buf.get_start_iter()
+        stop = buf.get_end_iter()
+        text = unicode(buf.get_text(start,stop,False))
         if text:
             Utils.bold_label(self.notes_label)
         else:

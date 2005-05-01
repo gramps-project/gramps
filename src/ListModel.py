@@ -42,7 +42,7 @@ class ListModel:
         self.mylist = []
         self.data_index = 0
         for l in dlist:
-            if len(l) == 4 and l[3] == TOGGLE:
+            if l[3] == TOGGLE:
                 self.mylist.append(TYPE_BOOLEAN)
             else:
                 self.mylist.append(TYPE_STRING)
@@ -60,17 +60,6 @@ class ListModel:
         self.cids = []
         self.idmap = {}
 
-        store = gtk.ListStore(str)
-
-        events = const.personalConstantEvents.keys()
-        events.append('Birth')
-        events.append('Death')
-        events.sort()
-        
-        model = gtk.ListStore(str,TYPE_OBJECT)
-        for val in events:
-            model.append((val,store))
-        
         cnum = 0
         for name in dlist:
             if len(name) == 3:
