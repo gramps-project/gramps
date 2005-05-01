@@ -4,7 +4,9 @@
 	elsewhere
 	* src/ListModel.py: Add support for table callback functions
 	to update data after inline editing
-
+	* src/const.py.in: convert Alternate Birth and Alternate Death to
+	Birth and Death
+	
 2005-04-29  Alex Roitman  <shura@gramps-project.org>
 	* src/edit_person.glade: Compact name edit button.
 

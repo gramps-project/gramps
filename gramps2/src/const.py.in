@@ -308,8 +308,8 @@ def display_fevent(st):
 personalConstantEvents = {
     "Adopted"             : "ADOP",
     "Adult Christening"   : "CHRA",
-    "Alternate Birth"     : "BIRT",
-    "Alternate Death"     : "DEAT",
+    "Birth"               : "BIRT",
+    "Death"               : "DEAT",
     "Baptism"             : "BAPM",
     "Bar Mitzvah"         : "BARM",
     "Bas Mitzvah"         : "BASM",
@@ -351,8 +351,8 @@ personalConstantEvents = {
 
 personal_events = TransTable({
     "Adopted"             : _("Adopted"),
-    "Alternate Birth"     : _("Alternate Birth"),
-    "Alternate Death"     : _("Alternate Death"),
+    "Birth"               : _("Birth"),
+    "Death"               : _("Death"),
     "Adult Christening"   : _("Adult Christening"),
     "Baptism"             : _("Baptism"),
     "Bar Mitzvah"         : _("Bar Mitzvah"),

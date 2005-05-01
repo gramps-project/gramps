@@ -1404,20 +1404,29 @@ class ReorderListBox(ListBox):
             self.data.remove(obj)
             self.data.insert(dest,obj)
 
-class AttrListBox(ListBox):
-
-    titles = [
-        # Title          Sort Col, Size, Type
-        (_('Attribute'), NOSORT,   200,  TEXT),
-        (_('Value'),     NOSORT,   350,  TEXT),
-        (_('Source'),    NOSORT,   50,   TOGGLE),
-        (_('Note'),      NOSORT,   50,   TOGGLE),
-        ]
+class AttrListBox(ReorderListBox):
 
     def __init__(self, parent, person, obj, label, button_list):
+
+        attrlist = const.personalAttributes
+
+        titles = [
+            # Title          Sort Col, Size, Type
+            (_('Attribute'), NOSORT,   200,  COMBO,  attrlist, self.set_type),
+            (_('Value'),     NOSORT,   350,  TEXT,   None,     self.set_value),
+            (_('Source'),    NOSORT,   50,   TOGGLE, None,     None),
+            (_('Note'),      NOSORT,   50,   TOGGLE, None,     None),
+            ]
+
         self.data = person.get_attribute_list()[:]
         ListBox.__init__(self, parent, person, obj, label,
-                         button_list, self.titles)
+                         button_list, titles)
+
+    def set_type(self,index,value):
+        self.data[index].set_type(value)
+
+    def set_value(self,index,value):
+        self.data[index].set_value(value)
 
     def add(self,obj):
         """Brings up the AttributeEditor for a new attribute"""
@@ -1457,14 +1466,16 @@ class EventListBox(ReorderListBox):
         for val in person.get_event_list():
             self.data.append(parent.db.get_event_from_handle(val))
 
+        eventnames = const.personalEvents
+
         evalues = [
             # Title            Sort Col Size, Type    Argument
-            (_('Event'),       NOSORT,  100,  COMBO,  const.personalEvents, self.set_name),
-            (_('Description'), NOSORT,  140,  TEXT,   None,                 self.set_description),
-            (_('Date'),        NOSORT,  100,  TEXT,   None,                 self.set_date),
-            (_('Place'),       NOSORT,  100,  TEXT,   None,                 self.set_place),
-            (_('Source'),      NOSORT,  50,   TOGGLE),
-            (_('Note'),        NOSORT,  50,   TOGGLE),
+            (_('Event'),       NOSORT,  100,  COMBO,  eventnames, self.set_name),
+            (_('Description'), NOSORT,  140,  TEXT,   None,       self.set_description),
+            (_('Date'),        NOSORT,  100,  TEXT,   None,       self.set_date),
+            (_('Place'),       NOSORT,  100,  TEXT,   None,       self.set_place),
+            (_('Source'),      NOSORT,  50,   TOGGLE, None,       None),
+            (_('Note'),        NOSORT,  50,   TOGGLE, None,       None),
             ]
         
         ReorderListBox.__init__(self, parent, person, obj, label,
@@ -1524,21 +1535,42 @@ class EventListBox(ReorderListBox):
 
 class NameListBox(ReorderListBox):
     
-    titles = [
-        # Title            Sort Col Size, Type
-        (_('Family Name'), NOSORT,  225,  TEXT),
-        (_('Prefix'),      NOSORT,  50,   TEXT),
-        (_('Given Name'),  NOSORT,  200,  TEXT),
-        (_('Suffix'),      NOSORT,  50,   TEXT),
-        (_('Type'),        NOSORT,  100,  TEXT),
-        (_('Source'),      NOSORT,  50,   TOGGLE),
-        (_('Note'),        NOSORT,  50,   TOGGLE),
-        ]
-
     def __init__(self,parent,person,obj,label,button_list):
+
+        surnames = parent.db.get_surname_list()
+        types = const.NameTypesMap.get_values()
+        types.sort()
+
+        titles = [
+            # Title            Sort Col Size, Type
+            (_('Family Name'), NOSORT,  150,  COMBO,  surnames, self.set_name),
+            (_('Prefix'),      NOSORT,  50,   TEXT,   None,     self.set_prefix),
+            (_('Given Name'),  NOSORT,  200,  TEXT,   None,     self.set_given),
+            (_('Suffix'),      NOSORT,  50,   TEXT,   None,     self.set_suffix),
+            (_('Type'),        NOSORT,  150,  COMBO,  types,    self.set_type),
+            (_('Source'),      NOSORT,  50,   TOGGLE, None,     None),
+            (_('Note'),        NOSORT,  50,   TOGGLE, None,     None),
+            ]
+
         self.data = person.get_alternate_names()[:]
         ReorderListBox.__init__(self, parent, person, obj, label,
-                                button_list, self.titles, DdTargets.NAME)
+                                button_list, titles, DdTargets.NAME)
+
+    def set_name(self,index,value):
+        self.data[index].set_surname(value)
+
+    def set_prefix(self,index,value):
+        self.data[index].set_surname_prefix(value)
+
+    def set_given(self,index,value):
+        self.data[index].set_first_name(value)
+
+    def set_suffix(self,index,value):
+        self.data[index].set_suffix(value)
+
+    def set_type(self,index,value):
+        ntype = const.NameTypesMap.find_value(value)
+        self.data[index].set_type(value)
 
     def add(self,obj):
         NameEdit.NameEditor(self.parent, None, self.edit_callback,
@@ -1567,21 +1599,37 @@ class NameListBox(ReorderListBox):
 
 class AddressListBox(ReorderListBox):
     
-    titles = [
-        # Title              Sort Col Size, Type
-        (_('Date'),          NOSORT,  175,  TEXT),
-        (_('Address'),       NOSORT,  150,  TEXT),
-        (_('City'),          NOSORT,  100,  TEXT),
-        (_('State/Province'),NOSORT,  75,   TEXT),
-        (_('Country'),       NOSORT,  100,  TEXT),
-        (_('Source'),        NOSORT,  50,   TOGGLE),
-        (_('Note'),          NOSORT,  50,   TOGGLE),
-        ]
-
     def __init__(self,parent,person,obj,label,button_list):
+
+        titles = [
+            # Title              Sort Col Size, Type
+            (_('Date'),          NOSORT,  175,  TEXT,   None, self.set_date),
+            (_('Address'),       NOSORT,  150,  TEXT,   None, self.set_addr),
+            (_('City'),          NOSORT,  100,  TEXT,   None, self.set_city),
+            (_('State/Province'),NOSORT,  75,   TEXT,   None, self.set_state),
+            (_('Country'),       NOSORT,  100,  TEXT,   None, self.set_country),
+            (_('Source'),        NOSORT,  50,   TOGGLE, None, None),
+            (_('Note'),          NOSORT,  50,   TOGGLE, None, None),
+            ]
+
         self.data = person.get_address_list()[:]
         ReorderListBox.__init__(self, parent, person, obj, label,
-                                button_list, self.titles, DdTargets.ADDRESS)
+                                button_list, titles, DdTargets.ADDRESS)
+
+    def set_date(self,index,value):
+        self.data[index].set_date(value)
+
+    def set_addr(self,index,value):
+        self.data[index].set_street(value)
+
+    def set_city(self,index,value):
+        self.data[index].set_city(value)
+
+    def set_state(self,index,value):
+        self.data[index].set_state(value)
+
+    def set_country(self,index,value):
+        self.data[index].set_country(value)
 
     def add(self,obj):
         AddrEdit.AddressEditor(self.parent, None, self.edit_callback,
@@ -1611,16 +1659,23 @@ class AddressListBox(ReorderListBox):
 
 class UrlListBox(ReorderListBox):
     
-    titles = [
-        # Title            Sort Col  Size, Type
-        (_('Path'),        NOSORT,   250,  TEXT),
-        (_('Description'), NOSORT,   100,  TEXT),
-        ]
-
     def __init__(self,parent,person,obj,label,button_list):
+
+        titles = [
+            # Title            Sort Col  Size, Type
+            (_('Path'),        NOSORT,   250,  TEXT, None, self.set_path),
+            (_('Description'), NOSORT,   100,  TEXT, None, self.set_description),
+            ]
+
         self.data = person.get_url_list()[:]
         ReorderListBox.__init__(self, parent, person, obj, label,
-                                button_list, self.titles, DdTargets.URL)
+                                button_list, titles, DdTargets.URL)
+
+    def set_path(self,index,value):
+        self.data[index].set_path(value)
+
+    def set_description(self,index,value):
+        self.data[index].set_description(value)
 
     def add(self,obj):
         UrlEdit.UrlEditor(self.parent, self.name, None,
