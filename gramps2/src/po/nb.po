@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Mon Apr 11 20:54:14 2005\n"
-"PO-Revision-Date: 2005-04-30 22:41+0200\n"
+"PO-Revision-Date: 2005-05-01 20:46+0200\n"
 "Last-Translator: Jørgen Grønlund <jorgenhg@broadpark.no>\n"
 "Language-Team: Norsk bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -761,7 +761,7 @@ msgstr "Velg filnavnet"
 
 #: Exporter.py:373
 msgid "Could not write file: %s"
-msgstr "Kunne ikke skrive til filen: %s"
+msgstr "Kunne ikke skrive til fila: %s"
 
 #: Exporter.py:374
 msgid "System message was: %s"
@@ -2068,7 +2068,7 @@ msgstr "Kan ikke vise %s"
 
 #: RelImage.py:67 RelImage.py:80
 msgid "GRAMPS is not able to display the image file. This may be caused by a corrupt file."
-msgstr "GRAMPS kan ikke vise billedfilen. Dette kan skyldes en ødelagt fil."
+msgstr "GRAMPS kan ikke vise billedfila. Dette kan skyldes en ødelagt fil."
 
 #: Relationship.py:277
 msgid "Relationship loop detected"
@@ -4951,7 +4951,7 @@ msgstr "<b>Kategorier:</b>"
 
 #: gramps.glade:16342
 msgid "To change your preferences, select one of the subcategories in the menu on the left hand side of the window."
-msgstr "For å forandre innstillingene, velg en av underkategoriene i menyen på venstre side av vinduet."
+msgstr "For å endre innstillingene, velg en av underkategoriene i menyen på venstre side i vinduet."
 
 #: gramps.glade:16406
 msgid "<b>Database</b>"
@@ -4962,9 +4962,8 @@ msgid "_Automatically load last database"
 msgstr "Last inn den siste databasen _automatisk "
 
 #: gramps.glade:16452
-#, fuzzy
 msgid "<b>Family name guessing</b>"
-msgstr "<b>Familie navn gjetting</b>"
+msgstr "<b>Gjetting av familienavn</b>"
 
 #: gramps.glade:16539
 msgid "<b>Toolbar</b>"
@@ -4972,7 +4971,7 @@ msgstr "<b>Verktøylinje</b>"
 
 #: gramps.glade:16564
 msgid "Active person's _relationship to Home Person"
-msgstr "Den aktive pe_rsonens relasjon til hjempersonen"
+msgstr "Den aktive personens _relasjon til hjempersonen"
 
 #: gramps.glade:16587
 msgid "Active person's name and _GRAMPS ID"
@@ -4983,7 +4982,6 @@ msgid "<b>Statusbar</b>"
 msgstr "<b>Statuslinje</b>"
 
 #: gramps.glade:16637
-#, fuzzy
 msgid ""
 "GNOME settings\n"
 "Icons Only\n"
@@ -4991,7 +4989,7 @@ msgid ""
 "Text Below Icons\n"
 "Text Beside Icons"
 msgstr ""
-"GNOME innstillinger\n"
+"GNOME-innstillinger\n"
 "Kun ikoner\n"
 "Kun tekst\n"
 "Tekst under ikoner\n"
@@ -4999,7 +4997,7 @@ msgstr ""
 
 #: gramps.glade:16702
 msgid "_Always display the LDS ordinance tabs"
-msgstr "Vis _alltid faneblader med SDH ordinanser"
+msgstr "Vis _alltid faneblader med SDH-ordinanser"
 
 #: gramps.glade:16724
 msgid "<b>Display</b>"
@@ -5030,9 +5028,8 @@ msgid "Top to bottom"
 msgstr "Ovenfra og ned"
 
 #: gramps.glade:16891
-#, fuzzy
 msgid "_Display Tip of the Day"
-msgstr "Vis Tips for dagen"
+msgstr "Vis _dagens tips"
 
 #: gramps.glade:16960
 msgid "_Date format:"
@@ -5084,7 +5081,7 @@ msgstr "_Familie:"
 
 #: gramps.glade:17586
 msgid "_Source:"
-msgstr "Kilde:"
+msgstr "_Kilde:"
 
 #: gramps.glade:17611
 msgid "_Media object:"
@@ -5116,15 +5113,15 @@ msgstr "<b>GRAMPS ID forstavelser</b>"
 
 #: gramps.glade:17950
 msgid "_Confidence:"
-msgstr "Troverdighet:"
+msgstr "_Troverdighet:"
 
 #: gramps.glade:17975
 msgid "_Volume/Film/Page:"
-msgstr "Bind/film/side:"
+msgstr "_Bind/film/side:"
 
 #: gramps.glade:18028
 msgid "Te_xt:"
-msgstr "Tekst:"
+msgstr "_Tekst:"
 
 #: gramps.glade:18055
 msgid "Co_mments:"
@@ -5161,7 +5158,6 @@ msgid "_Private record"
 msgstr "_Private opplysninger"
 
 #: gramps.glade:18462
-#, fuzzy
 msgid ""
 "Very Low\n"
 "Low\n"
@@ -5177,7 +5173,7 @@ msgstr ""
 
 #: gramps.glade:18637
 msgid "Double click will edit the selected source"
-msgstr "Å dobbeltklikke vil redigere den valgte kilden"
+msgstr "Et dobbeltklikk vil åpne den valgte kilden for redigering"
 
 #: gramps.glade:19712
 msgid "Style _name:"
@@ -5197,11 +5193,11 @@ msgstr "Velg en farge"
 
 #: gramps.glade:19965
 msgid "_Bold"
-msgstr "Fet"
+msgstr "_Fet"
 
 #: gramps.glade:19987
 msgid "_Italic"
-msgstr "Kurs_iv"
+msgstr "_Kursiv"
 
 #: gramps.glade:20009
 msgid "_Underline"
@@ -5233,19 +5229,19 @@ msgstr "<b>Fontvalg</b>"
 
 #: gramps.glade:20250
 msgid "R_ight:"
-msgstr "Høyre:"
+msgstr "_Høyre:"
 
 #: gramps.glade:20278
 msgid "L_eft:"
-msgstr "V_enstre:"
+msgstr "_Venstre:"
 
 #: gramps.glade:20306
 msgid "_Padding:"
-msgstr "Utfylling:"
+msgstr "_Utfylling:"
 
 #: gramps.glade:20470
 msgid "_Left"
-msgstr "Venstre"
+msgstr "_Venstre"
 
 #: gramps.glade:20492
 msgid "_Right"
@@ -5257,7 +5253,7 @@ msgstr "_Justert"
 
 #: gramps.glade:20538
 msgid "_Center"
-msgstr "Midtstilt"
+msgstr "_Midtstilt"
 
 #: gramps.glade:20560
 msgid "<b>Background</b>"
@@ -5277,26 +5273,25 @@ msgstr "<b>Kanter</b>"
 
 #: gramps.glade:20682
 msgid "Le_ft"
-msgstr "Venstre"
+msgstr "_Venstre"
 
 #: gramps.glade:20704
 msgid "Ri_ght"
-msgstr "Høyre"
+msgstr "_Høyre"
 
 #: gramps.glade:20726
 msgid "_Top"
-msgstr "Øverst"
+msgstr "_Øverst"
 
 #: gramps.glade:20748
 msgid "_Bottom"
-msgstr "Nederst"
+msgstr "_Nederst"
 
 #: gramps.glade:20769
 msgid "<b>First line</b>"
 msgstr "<b>Første linje</b>"
 
 #: gramps.glade:20838
-#, fuzzy
 msgid "I_ndent:"
 msgstr "I_nnrykk:"
 
@@ -5305,7 +5300,6 @@ msgid "<b>Paragraph options</b>"
 msgstr "<b>Avsnittsalternativer</b>"
 
 #: gramps.glade:21155
-#, fuzzy
 msgid "Internal note"
 msgstr "Internt notat"
 
@@ -5314,27 +5308,22 @@ msgid "Object type:"
 msgstr "Objekttype:"
 
 #: gramps.glade:21591
-#, fuzzy
 msgid "Lower X:"
-msgstr "Lav X:"
+msgstr "Nedre X:"
 
 #: gramps.glade:21615
-#, fuzzy
 msgid "Upper X:"
 msgstr "Øvre X:"
 
 #: gramps.glade:21639
-#, fuzzy
 msgid "Upper Y:"
 msgstr "Øvre Y:"
 
 #: gramps.glade:21663
-#, fuzzy
 msgid "Lower Y:"
-msgstr "Lav Y:"
+msgstr "Nedre Y:"
 
 #: gramps.glade:21771
-#, fuzzy
 msgid "<b>Subsection</b>"
 msgstr "<b>Underseksjon</b>"
 
@@ -5344,30 +5333,28 @@ msgid "<b>Privacy</b>"
 msgstr "<b>Personvern ??</b>"
 
 #: gramps.glade:22056
-#, fuzzy
 msgid "Global Notes"
 msgstr "Globale notater"
 
 #: gramps.glade:22257
 msgid "Creates a new object attribute from the above data"
-msgstr "Lag en ny objekt-egenskap av de ovenstående dataene"
+msgstr "Lager en ny objektegenskap av de ovenstående dataene"
 
 #: gramps.glade:23333
 msgid "Creates a new attribute from the above data"
-msgstr "Lag nye egenskaper av de ovenstående dataene"
+msgstr "Lager nye egenskaper av de ovenstående dataene"
 
 #: gramps.glade:24027
 msgid "Close _without saving"
-msgstr "Avslutt uten å lagre"
+msgstr "Avslutt _uten å lagre"
 
 #: gramps.glade:24153
-#, fuzzy
 msgid "Do not ask again"
 msgstr "Ikke spør igjen"
 
 #: gramps.glade:24771
 msgid "Remove object and all references to it from the database"
-msgstr "Fjern objektet og alle henvisningene til det fra databasen."
+msgstr "Fjern objektet og alle henvisningene til det fra databasen"
 
 #: gramps.glade:24816
 msgid "_Remove Object"
@@ -5391,7 +5378,7 @@ msgstr "Velg en fil"
 
 #: gramps.glade:25017
 msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing medial files."
-msgstr "Hvis du trykker på denne knappen vil alle manglende media filer automatisk bli behandlet etter den valgte instillingen. Ingen flere dialoger vil bli vist for manglende media filer."
+msgstr "Hvis du trykker på denne knappen vil alle manglende mediafiler automatisk bli behandlet etter den valgte instillingen. Ingen flere dialoger vil bli vist for manglende mediafiler."
 
 #: gramps.glade:25019
 msgid "_Use this selection for all missing media files"
@@ -5653,14 +5640,12 @@ msgstr ""
 "Mulig at installasjonen av GRAMPS ikke ble fullføre. Vennligst kontroller at MIME-typer for GRAMPS er ordentlig installert."
 
 #: gramps_main.py:479
-#, fuzzy
 msgid "File does not exist"
-msgstr "Filen eksisterer ikke"
+msgstr "Fila eksisterer ikke"
 
 #: gramps_main.py:480
-#, fuzzy
 msgid "The file %s cannot be found. It will be removed from the list of recent files."
-msgstr "Kan ikke finne filen %s. Den vil bli fjernet fra listen over nylig brukte filer."
+msgstr "Kan ikke finne fila %s. Den vil bli fjernet fra listen over nylig brukte filer."
 
 #: gramps_main.py:652
 msgid "Back Menu"
@@ -5721,18 +5706,16 @@ msgid "Cannot open database"
 msgstr "Kan ikke åpne database"
 
 #: gramps_main.py:1198
-#, fuzzy
 msgid ""
 "The selected file is a directory, not a file.\n"
 "A GRAMPS database must be a file."
 msgstr ""
-"Den valgte filen er en mappe, ikke en fil.\n"
+"Den valgte fila er en mappe, ikke en fil.\n"
 "GRAMPS databasen må være en fil."
 
 #: gramps_main.py:1204
-#, fuzzy
 msgid "You do not have read access to the selected file."
-msgstr "Du har ikke lesetilgang til den valgte filen."
+msgstr "Du har ikke lesetilgang til den valgte fila."
 
 #: gramps_main.py:1209
 #, fuzzy
@@ -5740,9 +5723,8 @@ msgid "Read only database"
 msgstr "Kun lesetilgang til databasen"
 
 #: gramps_main.py:1210
-#, fuzzy
 msgid "You do not have write access to the selected file."
-msgstr "Du har ikke skrivetilgang til den valgte filen."
+msgstr "Du har ikke skrivetilgang til den valgte fila."
 
 #: gramps_main.py:1219
 #, fuzzy
@@ -5750,9 +5732,8 @@ msgid "Read Only"
 msgstr "Kun lesbar"
 
 #: gramps_main.py:1225
-#, fuzzy
 msgid "The database file specified could not be opened."
-msgstr "Den spesifiserte databasefilen kunne ikke åpnes."
+msgstr "Den spesifiserte databasefila kunne ikke åpnes."
 
 #: gramps_main.py:1229
 msgid "%s could not be opened."
@@ -6396,15 +6377,14 @@ msgid "Select file"
 msgstr "Velg en fil"
 
 #: plugins/Check.py:268
-#, fuzzy
 msgid ""
 "The file:\n"
 " %(file_name)s \n"
 "is referenced in the database, but no longer exists. The file may have been deleted or moved to a different location. You may choose to either remove the reference from the database, keep the reference to the missing file, or select a new file."
 msgstr ""
-"Filen:\n"
+"Fila:\n"
 "%(file_name)s \n"
-"er referert til i databasen, men denne filen eksisterer ikke lenger. Filen kan være slettet eller blitt flyttet til en annen lokasjon. Du kan velge å fjerne referansen til filen fra databasen, beholde referansen til den savnede filen, eller velge en ny fil."
+"er referert til i databasen, men denne fila eksisterer ikke lenger. Fila kan være slettet eller blitt flyttet til en annen lokasjon. Du kan velge å fjerne referansen til fila fra databasen, beholde referansen til den savnede fila, eller velge en ny fil."
 
 #: plugins/Check.py:418
 msgid "No errors were found"
@@ -7313,9 +7293,8 @@ msgid "Generates relationship graphs, currently only in GraphViz format. GraphVi
 msgstr "Lager slektstrær, for tiden kun i GraphViz format. GraphViz (dot) kan gjøre om treet til PostScript, JPEG, PNG, SVG og mange andre formater. Gå til http://www.graphviz.org for mer informasjon og for å hente en kopi av GraphViz."
 
 #: plugins/GraphViz.py:952
-#, fuzzy
 msgid "Generates relationship graphs using GraphViz (dot) program. This report generates dot file behind the scene and then uses dot to convert it into a graph. If you want the dotfile itself, please use the Code Generators category."
-msgstr "Lager relasjons graf med GraphViz (dot) program. Denne rapporten genererer dot filer bak senen, og bruker dot til å konvertere denne til en graf. Hvis du ønsker dot filen i seg selv, vennligst bruke Kodegenerator kategorien."
+msgstr "Lager relasjons graf med GraphViz (dot) program. Denne rapporten genererer dot filer bak senen, og bruker dot til å konvertere denne til en graf. Hvis du ønsker dot fila i seg selv, vennligst bruke Kodegenerator kategorien."
 
 #: plugins/ImportGeneWeb.py:165
 #, fuzzy
