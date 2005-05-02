@@ -640,7 +640,7 @@ class EditPerson:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-complete')
+        gnome.help_display('gramps-manual','adv-pers')
 
     def build_columns(self,tree,list):
         cnum = 0

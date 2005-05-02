@@ -473,9 +473,17 @@
     <listitem>
       <para>Exporting to GeneWeb will save a copy of your data into
       a popular web genealogy format. To find out more about GeneWeb
-      and its format, visit <ulink url="http://cristal.inria.fr/~ddr/GeneWeb/en/"
+            and its format, visit <ulink url="http://cristal.inria.fr/~ddr/GeneWeb/en/"
        type="http">this site.</ulink>
       </para></listitem></varlistentry>
+
+            <varlistentry><term>vCalendar and vCard</term>
+    <listitem>
+      <para>Exporting to vCalendar or vCard will save information in a 
+      format used in many calendaring and addressbook applications,
+      sometimes called PIM for Personal Information Manager.
+      </para></listitem></varlistentry>
+
       </variablelist>
       </sect2>
 
@@ -489,9 +497,9 @@
 	options include editing personal data, relationship data, data about
 	children and parents, and information about sources, places, and media
 	objects used in the database. In short, any data stored in the 
-	database can be edited! Adding a new piece of information is in fact
-	creating an appropriate empty data structure and subsequent 
-	editing of that empty structure. </para>
+	database can be edited! Adding a new piece of information is the process
+ 	of creating an appropriate empty data structure and subsequently 
+	editing that empty structure. </para>
     
     <para>This section refers mainly to the menu items and buttons as the main 
     way of interacting with &app;. In addition to this, &app; provides an 
@@ -530,15 +538,12 @@
 
 	<para> If using the second button, select the spouse/partner from the list 
         and specify the relationship using the menu at the bottom. If necessary, you 
-        can add a person to the list by clicking the <guibutton>Add...</guibutton> 
-        button. &app; will filter the displayed list of people based on the 
-        relationship type as follows. The relationships Married, Unmarried, Unknown, 
-        and Other will only display people of the sex opposite to that of an active 
-        person. The relationships Partners will only display people of the same sex 
-        as that of an active person. Also, by default, &app; will limit the lists 
-        to people who could possibly be the spouse/partner (judged by the dates of 
-        birth and death) of the active person. To override this, check 
-        the <guilabel>Show all</guilabel> box. 
+        can add a person to the list by clicking the <guibutton>+</guibutton> 
+        button. &app; will filter the displayed list of people based on the apparent
+        relation possibility. Specifically, shown are the people who could possibly
+        be in relationship with the active person, as judged by the available birth
+        and death information. To override this and display all people from the
+        database, check the <guilabel>Show all</guilabel> box. 
 	</para>
 
 	<para>
@@ -619,19 +624,17 @@
         invoke the <guilabel>Edit Person</guilabel> Dialog 
 	(<xref linkend="edit-pers-fig"/>). Then, select the 
 	<guilabel>Gallery</guilabel> tab, and click the 
-	<guibutton>Add from file...</guibutton> button to invoke 
+	<guibutton>+</guibutton> button to invoke 
     the <guilabel>Select a media 
 	object</guilabel> dialog. Type the filename or select a file with the 
-	image, then provide a title for that image. To prevent the file from
-	being copied into your database directory, check the <guilabel>Do not
-	make a local copy</guilabel> box. Keep adding images until you are 
+	image, then provide a title for that image. Keep adding images until you are 
 	done. </para>
 
 	<para> To add images related to a relationship (e.g. marriage), 
 	switch to the Family View (<xref linkend="family-fig"/>) and then
 	double-click on the Spouse box invoke the <guilabel>Marriage/Relationship 
 	editor</guilabel> dialog. Select the <guilabel>Gallery</guilabel> 
-	tab and click the <guibutton>Add from file...</guibutton> button to add 
+	tab and click the <guibutton>+</guibutton> button to add 
     an image. </para>
 
 	<para> To add images related to a source or a place, first switch to 
@@ -641,7 +644,7 @@
 	or click the <guibutton>Edit</guibutton> icon on the toolbar to invoke the 
 	<guilabel>Source Editor</guilabel> (or <guilabel>Place 
 	Editor</guilabel>) dialog. Select the <guilabel>Gallery</guilabel> 
-	tab and click the <guibutton>Add from file...</guibutton> button to add 
+	tab and click the <guibutton>+</guibutton> button to add 
         an image. </para>
 
 	<para> Finally, to add images that are generally related to the 
@@ -652,8 +655,8 @@
 	If you have already added any images to any individual galleries, 
 	you will also find them listed in the Media View. </para>
 
-	<para> In any gallery, you can also use the <guibutton>Edit...</guibutton> 
-	and <guibutton>Remove</guibutton> buttons to edit image information
+	<para> In any gallery, you can also use the <guibutton>Edit</guibutton> 
+	and <guibutton>-</guibutton> buttons to edit image information
 	and to remove the image reference from that gallery. Note that in all
 	galleries removing the reference to the image does not remove the image
 	from the database. To completely remove the image from the database, 
@@ -694,6 +697,20 @@
       The detailed reference to the keybindings is found in 
       the <xref linkend="append-keybind"/>.</para>
 
+<note id="edit-button-note">
+<title>Add, Remove, and Edit buttons</title>
+<para>In order to save precious screen space, most of the
+<guibutton>Add</guibutton>, <guibutton>Remove</guibutton>,
+and <guibutton>Edit</guibutton> buttons no longer are labeled
+with text. Instead, the first two use <guibutton>+</guibutton> and
+<guibutton>-</guibutton> icons, and the third uses the icon
+depicting a pen on top of a paper sheet.</para>
+
+<para>We will continue referring to the latter as the <guibutton>Edit</guibutton>
+button, while using <guibutton>+</guibutton> and
+<guibutton>-</guibutton> to denote the former two buttons.
+</para></note>
+
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-pers"> 
         <title>Edit Personal Information</title> 
@@ -709,10 +726,22 @@
       menu of &app; or choose <guimenuitem>Edit</guimenuitem> from the context 
       menu that appears upon right-click on the name.
 	  </para></listitem></varlistentry>
+
 	<varlistentry><term>From the Family View:</term><listitem><para>
-	  Move the mouse into the <guilabel>Active person</guilabel> box, 
-	  then double-click, or use any of the menu items described above.
+	  To edit active person's data, move the mouse into the
+	  <guilabel>Active person</guilabel> box, then double-click,
+	  or use any of the menu items described above.
+	  To edit Spouse's data, Shift-click desired spouse entry. Also, from
+	  <guilabel>Spouse</guilabel> and <guilabel>Children</guilabel> boxes
+	  you may select the desired person, right-click, and then select the
+	  menu item from the context menu to edit the selected person's data.
 	  </para></listitem></varlistentry>
+
+	<varlistentry><term>From the Pedigree View:</term><listitem><para>
+	  Move the mouse into the box bearing the name of the person whose
+	  data you would like to edit, then double-click.
+	  </para></listitem></varlistentry>
+	  
 	</variablelist>
 	
 	<para> With either method, the following <guilabel>Edit 
@@ -766,26 +795,31 @@
 	and <guilabel>Date</guilabel> and <guilabel>Place</guilabel> of birth 
 	and death. Some of these (<guilabel>Family name</guilabel>,
 	<guilabel>Type</guilabel>, and both <guilabel>Place</guilabel> fields), 
-	also allow you to choose the corresponding
-	contents from the drop-down menus by clicking on the down arrow button
-	located immediately to the right of the text entry field. The 
-	available menu choices are formed from the information already stored 
-	in the database. Also, when you start to type within these fields, 
-	&app; will try to guess the remainder of 
-	the text by using the same choices that are available from the
-	corresponding menu. To accept the highlighted guess and move to 
-	the next field, press the <keycap>Tab</keycap>. </para>
+	also provide autocompletion feature: as you type in these fields, the menu
+	is displayed below the field with the available entries from the database
+	that are compatible with your partial input. This allows for a quick selection
+	of an available entry by selecting in from the menu, either using
+	the mouse or arrows and <keycap>Return</keycap> key.
+</para>
+
+<para>The <guilabel>Edit</guilabel> button located by the <guilabel>Family name</guilabel>
+entry allows editing the preferred name in complete detail, by invoking the <guilabel>Name
+Editor</guilabel> dialog (see <xref linkend="adv-an"/>).
+
+</para>
 	
 	<para>
 	The <guilabel>Gender</guilabel> radio buttons offer
 	the choice of person's gender between <guilabel>male</guilabel>,
 	<guilabel>female</guilabel>, and <guilabel>unknown</guilabel>. 
-	The buttons <guibutton>Source...</guibutton> and 
-	<guibutton>Note...</guibutton> allow adding or modifying the data about 
-	the sources of the name information and any relevant notes. 
-	Clicking either <guibutton>Edit...</guibutton> button located next to 
-        the birth and death Date fields will bring up a dialog allowing you to 
-        edit the corresponding event (birth or death) details.
+	Clicking the colored circle buttons (green, yellow, or red, also called LED buttons)
+	located next to 
+    the birth and death Date fields will bring up the <guilabel>Date Selection</guilabel>
+    dialog allowing detailed modification of the date, see <xref linkend="adv-dates"/>.
+    Clicking either <guibutton>Edit</guibutton> button located next to 
+    the birth and death LED buttons will bring up a dialog allowing you to 
+    edit the corresponding event (birth or death) details, see <xref linkend="adv-ev"/>. 
+        
 	The field <guilabel>ID</guilabel> displays an internal 
 	&app; ID number which identifies the user in the
 	database. The <guilabel>Image</guilabel> area shows the first
@@ -793,10 +827,10 @@
         person (if any exist).
 	</para>
 	
-	<para>Finally, the <guilabel>Information is complete</guilabel> check
-	button provides the way to mark whether this person's record is 
-	complete or 
-	not. </para>
+	<para>Finally, the <guilabel>Information is complete</guilabel> and
+	<guilabel>Information is private</guilabel>  check buttons provides
+	the way to mark whether this person's record is complete or 	not and
+	whether it is a private record. </para>
 		</listitem></varlistentry>
 	</variablelist>
 	
@@ -819,11 +853,11 @@
 	modification. The bottom part displays the list of all alternate names
 	of the person stored in the database. The top part shows the details 
 	of the currently selected name in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow the addition, 
+	<guibutton>+</guibutton>, <guibutton>Edit</guibutton>, 
+	and <guibutton>-</guibutton> allow the addition, 
 	modification, and removal of an alternate name record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	an alternate name is selected from the list.  
 	</para>
 		</listitem></varlistentry>
@@ -848,11 +882,11 @@
 	modification. The bottom part displays the list of all such events 
 	stored in the database. The top part shows the details 
 	of the currently selected event in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow you to correspondingly add, 
+	<guibutton>+</guibutton>, <guibutton>Edit</guibutton>, 
+	and <guibutton>-</guibutton> allow you to correspondingly add, 
 	modify, and remove an event record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	an event is selected from the list.  
 	</para>
 		</listitem></varlistentry>
@@ -880,11 +914,11 @@
 	value "Enormous", etc.). The bottom part displays the list of all  
 	attributes stored in the database. The top part shows the details 
 	of the currently selected attribute in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow you to correspondingly add, 
+	<guibutton>+</guibutton>, <guibutton>Edit</guibutton>, 
+	and <guibutton>-</guibutton> allow you to correspondingly add, 
 	modify, and remove an attribute record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	an attribute is selected from the list.  
 	</para>
 		</listitem></varlistentry>
@@ -909,11 +943,11 @@
 	modification. The bottom part displays the list of all 
 	addresses stored in the database. The top part shows the details 
 	of the currently selected address in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow you to correspondingly add, 
+	<guibutton>+</guibutton>, <guibutton>Edit</guibutton>, 
+	and <guibutton>-</guibutton> allow you to correspondingly add, 
 	modify, and remove an address record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	an address is selected from the list.  
 	</para>
 
@@ -977,17 +1011,21 @@
     describe specifically any event.
     For example, Aunt Martha's memoirs may mention her great grandson Paul,
     so the researcher may assume that this person (Paul) existed and cite 
-    the memoirs as the source for this assumption. NOTE: sources documenting
-    specific events are better filed in relation to those events, under the
-    <guilabel>Events</guilabel> tab.
+    the memoirs as the source for this assumption. 
 	</para>
+	
+	<tip><para>Sources documenting
+    specific events are better recorded in relation to those events, under the
+    <guilabel>Events</guilabel> tab. The person's <guilabel>Sources</guilabel>
+    tab is best used for general source references.</para></tip>
+    
     <para>The central part displays the list of all source references stored 
     in the database in relation to the person. The 
-    buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
+    buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> 
 	allow you to correspondingly add, modify, and remove a source reference  
-	to this person. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	to this person. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a source reference is selected from the list. </para>
 
 		</listitem></varlistentry>
@@ -1013,23 +1051,28 @@
 	modification. The central part shows the list of all such media objects. 
 	For media object which are valid image files, previews of images are 
 	displayed. For other objects such as audio files, movie files, etc., a 
-	generic &app; icon is displayed instead. Note that the first available
+	corresponding file type icon is displayed instead.</para>
+	
+	<tip><para> The first available
 	image in the gallery will be also displayed in the
 	<guilabel>Image</guilabel> area in the <guilabel>General</guilabel> 
-	tab. The buttons <guibutton>Add from file...</guibutton>,
-    <guibutton>Add from database...</guibutton>,
-	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
+	tab. </para></tip>
+
+	<para>
+	The buttons <guibutton>+</guibutton>,
+    <guibutton>Select</guibutton>,
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> allow
 	you to correspondingly add a new image, add a reference to an image already
     stored in the database, modify, and remove a media object reference 
-	to this person. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Remove</guibutton> buttons become available only when 
+	to this person. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a media object is selected from the list. 
 	</para>
 
-	<para>Note: removing a media object from a person's gallery does not 
+	<note><para>Removing a media object from a person's gallery does not 
         remove it from the database. It only removes the reference to that 
         object from this person's record. 
-	</para>
+	</para></note>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1052,13 +1095,13 @@
 	allowing data modification. The bottom part displays the list of all 
 	such Internet addresses stored in the database. The top part shows the
 	details of the currently selected addresses in the list (if any). 
-	The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>,  and <guibutton>Delete</guibutton> 
+	The buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>,  and <guibutton>-</guibutton> 
 	allow you to correspondingly add, modify, and remove an Internet address 
 	record from the database. The button <guibutton>Go</guibutton> allows
 	opening a web-page with the corresponding address with your default 
-	browser. Note that the <guibutton>Edit...</guibutton>, 
-	<guibutton>Delete</guibutton>, and <guibutton>Go</guibutton> buttons 
+	browser. Note that the <guibutton>Edit</guibutton>, 
+	<guibutton>-</guibutton>, and <guibutton>Go</guibutton> buttons 
 	become available only when an address is selected from the list.  
 	</para>
 		</listitem></varlistentry>
