@@ -1,3 +1,9 @@
+2005-05-01  Alex Roitman  <shura@gramps-project.org>
+	* src/DateEdit.py (DateEditorDialog.__init__): Correct manual section.
+	* doc/gramps-manual/C/usage.xml: Update.
+	* doc/gramps-manual/C/figures/edit-person-notes.png: Update.
+	* doc/gramps-manual/C/figures/date-selection.png: Add new figure.
+
 2005-05-02    <dona@gramps-project.org>
 	* src/GrampsBSDDB.py: handle missing version number properly, detect
 	empty database properly.

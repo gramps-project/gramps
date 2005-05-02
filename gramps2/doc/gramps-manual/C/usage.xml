@@ -773,6 +773,11 @@ button, while using <guibutton>+</guibutton> and
 	initial cancel request, or saving the changes. 
 	</para>
 
+<note><para>Clicking <guibutton>OK</guibutton> will immediately
+save changes to the database (write on disk). Unlike previous versions,
+this version of &app; does not have a separate saving function,
+all changes are immediate.</para></note>
+
 	<para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
@@ -1143,67 +1148,151 @@ Editor</guilabel> dialog (see <xref linkend="adv-an"/>).
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-dates"> 
         <title>Edit Dates</title> 
-	<para> Anywhere in &app; where the date 
-        is entered or edited, the following rules apply:</para> 
+	<para> This section describes the details of entering and modifying dates.
+	Dates are important in genealogical research, so &app; goes a long
+	way to preserve and use any date information available.</para> 
 
-      <variablelist>
-      <varlistentry><term>Date validity indicators</term>
-	<listitem><para>&app; uses color 
-        circles to indicate the validity of the entered date. </para>
+      <sect3 id="adv-dates-led">
+      <title>Date types and validity indicators</title>
+<para>&app; uses color circles to indicate the validity of the entered date. </para>
+
+<tip><title>Date LED buttons</title>
+<para>The color circles are also referred to as the LED buttons.
+Clicking on an LED button will invoke the <guilabel>Date selection</guilabel>
+dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></tip>
 
         <itemizedlist>
         
         <listitem><para> Green circle means that the date is valid and 
-        complete (e.g. May 24, 1961). </para></listitem>
+        complete regular date (e.g. May 24, 1961). In simple terms, green
+        means that the date is uniquely defined up to a day.</para></listitem>
 
         <listitem><para> Yellow circle means that the date is valid but is
-        partial (i.e. not complete). Examples of partial dates are: 1961, 
-        about 1961, from 1960 to 1962, before 1963. While partial dates do 
-        not exactly define the date, they allow at least for some type of
+        not a regular date. This could be the date of an alternative type:
+        a before date (before May 25, 1962), an after date (after May, 1960),
+        an about date (about May 23, 1961), a range (between May 1, 1961 and May 31, 1961),
+        or a span (from May 1, 1961 to May 31, 1961). It can also be a complete
+        single date, but with quality of Estimated or Calculated. Finally, it could
+        be a partial date, i.e. a regular quality single date missing some
+        portion, e.g. May 1961 or 1961.</para>
+        
+        <para>While partial dates do 
+        not uniquely define the day, they allow at least for some type of
         comparisons between the dates. </para></listitem>
 
         <listitem><para> Red circle means that the date is not recognized as 
-        a valid date (e.g. Christmas week of 61). In that case the date will 
-        be stored as a text string. Therefore, no comparison with other dates 
-        will be available. It is best to avoid such date entries. Same 
+        a valid date (e.g. "Christmas week of 61", or "the summer when I had surgery"). 
+        n that case the date will be stored as a text string. Therefore, no comparison
+        with other dates will be available. It is best to avoid such date entries. Same 
         information can be entered as a note for the event of interest instead
         of a date. In the example considered, a better things to do is to
-        enter December 1961 as a date and Christmas week of 61 as a note.
+        enter December 1961 as a date and "Christmas week of 61" as a note.
         </para></listitem> 
 
         </itemizedlist>
-      </listitem></varlistentry>
-      </variablelist>
+        </sect3>
 
-      <variablelist>
-      <varlistentry><term>Acceptable date entries</term>
-	<listitem><para>&app; recognizes many 
-        formats of exact dates. The only problematic formats are XX/XX/XX or
-        XX-XX-XX because of the ambiguity between the day and the month.
-        The interpretation for this type of formats is configured 
-        in <guilabel>Getting Started</guilabel> dialog and can also be changed
-        from the <guilabel>Preferences</guilabel> dialog. </para> </listitem>
+      <sect3 id="adv-dates-parsing">
+      <title>Acceptable date entries</title>
 
-	<listitem><para>Besides exact dates, &app; 
-        recognizes and supports partial dates, date ranges, and alternate
-        calendars. </para>
+	<para>&app; recognizes many 
+        formats of exact dates. The numeric formats are determined
+        by the default environment &app; is running under. Most European
+        countries use DD.MM.YYYY, the US commonly uses MM/DD/YYYY,
+        and so on. </para>
+
+<para>Besides exact dates, &app; 
+        recognizes many dates that are not regular: before, after, about, ranges
+        and spans. It also understands the quality: estimated or calculated.
+        Finally, it supports partial dates and many alternative calendars. 
+        Below is the list of date entry rules to allow precise date parsing.</para>
         
+        <note><title>Date parsing rules</title>
+        <para>The list below is only valid for English. If you are using localized version
+        of &app;, your version may or may not provide a localized date parser.
+        At the time of this writing, localized parsers exist for French, Russian, and
+        Spanish languages.</para>
+        
+        <para>If the localized parser is available for your version, chances are
+        that other rules are in effect. If there's no manual in your language yet,
+        you may try following your instinct and go with the common ways
+        of denoting dates in your language. If all else fails, use the <guilabel>Date
+        selection</guilabel> dialog described below.</para></note>
+
         <itemizedlist>
         
-        <listitem><para> Partial dates define some portions of the date such 
-        as a year or a year and a month. </para></listitem>
+        <listitem><para>Regular single dates can be entered just as you would
+        write them in the letter: May 24, 1961 or January 1, 2004.</para></listitem>
+        
+        <listitem><para> Dates that are not regular should start with the quality:
+        estimated or calculated, if applicable. Regular quality does not need to be
+        specified, as it is the default. Example: est. 1961, or calc 2005.</para>
+        </listitem>
 
-        <listitem><para> Date ranges define the boundaries containing the 
-        date such as from January 1961 to March 1963. </para></listitem>
-
-        <listitem><para> Alternate calendars are calendars other than Gregorian
+        <listitem><para> Next should appear the type: before, after, or about.
+        Ranges are denoted with "between DATE and DATE" and spans use "from DATE
+        to DATE" patterns, where DATE stands for a single date.</para>
+        
+        <para>Examples: est from 2001 to 2003, before June 1975, est about 2000,
+        calc between May 1900 and January 1, 1990.
+        </para></listitem>
+        
+        <listitem><para> Partial dates are entered simply by omitting unknown
+        information: May 1961, 2004.</para></listitem>
+        
+        <listitem><para>
+        Alternate calendars are calendars other than Gregorian
         calendar. Currently, &app; supports Hebrew,
         French Republican, Julian, Islamic, and Persian alternate calendars. 
+        To specify the calendar other than the default Gregorian,
+        append the name of the calendar to the date string, e.g.
+        "January 9, 1905 (julian)".
         </para></listitem>
 
         </itemizedlist>
-      </listitem></varlistentry>
-      </variablelist>
+        </sect3>
+        
+        <sect3 id="adv-dates-gui"><title>Graphical User Interface for entering dates</title>
+        <para>While the above rules provide a quick and easy way for entering most
+        common dates, sometimes there is a need to either build a complex date or simply
+        check the date using graphical user interface. The <guilabel>Date selection</guilabel>
+        dialog can be invoked by clicking the color circle button (also known as the LED
+        button) next to the date entry field. </para>
+        </sect3>
+
+	<!-- ==== Figure: Date selection dialog ==== -->
+	<figure id="adv-dates-gui"> 
+	<title>Date selection dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/date-selection.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Date selection dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para>The <guilabel>Calendar</guilabel> menu allows the choice
+	of any supported calendar. The <guilabel>Quality</guilabel> menu
+	provides choices of Regular, Estimated, or Calculated quality. The
+	<guilabel>Type</guilabel> menu allows to adjust the exact date type:
+	Regular, Before, After, About, Range, Span, and Text only.
+	A set of controls labeled <guilabel>Date</guilabel> allows setting
+	the day, the month, and the year for a date. The second set of controls,
+	<guilabel>Second date</guilabel>, is disabled for all dates except
+	for those of Range and Span type. For ranges and spans, the
+	<guilabel>Second date</guilabel> controls allow setting the details
+	of the second date. Finally, the <guilabel>Text comment</guilabel>
+	text entry field allows storing an arbitrary text string along with the date.
+	</para>
+	
+	<note><para>If you enter the date outside this dialog, i.e. as a text
+	in any date entry field, that text will be copied and stored as the text
+	comment string during parsing of entered text.</para>
+	
+	<para>Therefore, the comment only lives until the next parsing.
+	If you have some important text corresponding to the date, you
+	are probably better off by saving that text as a Note for the
+	corresponding event.</para></note>
+
       </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->

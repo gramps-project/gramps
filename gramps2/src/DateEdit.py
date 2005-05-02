@@ -258,7 +258,7 @@ class DateEditorDialog:
             response = self.top_window.run()
             if response == gtk.RESPONSE_HELP:
                 try:
-                    gnome.help_display('gramps-manual','index')
+                    gnome.help_display('gramps-manual','adv-dates')
                 except gobject.GError, msg:
                     QuestionDialog.ErrorDialog(_("Could not open help"),str(msg))
             elif response == gtk.RESPONSE_OK:
