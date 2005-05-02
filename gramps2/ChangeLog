@@ -1,4 +1,8 @@
 2005-05-02    <dona@gramps-project.org>
+	* src/GrampsBSDDB.py: handle missing version number properly, detect
+	empty database properly.
+	* src/ReadGedcom.py: set default gedcom parser class to "GEDCOM 5.5"
+	instead of None
 	* src/AddSpouse.py: fix filtering of lists using GenericFilters
 	* src/ChooseParents.py: fix filtering of lists using GenericFilters
 	* src/GenericFilter.py: fix date comparison

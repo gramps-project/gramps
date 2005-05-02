@@ -262,7 +262,7 @@ class GedcomParser:
         self.refn = {}
         self.added = {}
         self.gedmap = GedcomInfoDB()
-        self.gedsource = None
+        self.gedsource = self.gedmap.get_from_source_tag('GEDCOM 5.5')
         self.def_src = RelLib.Source()
         fname = os.path.basename(filename).split('\\')[-1]
         self.def_src.set_title(_("Import from %s") % unicode(fname))
