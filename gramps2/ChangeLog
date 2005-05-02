@@ -5,6 +5,9 @@
 	* configure.in: Bump up version, to distinguish from released 1.1.99.
 
 2005-05-01  Don Allingham  <don@gramps-project.org>
+	* src/po/template.po: updated for string changes
+	* src/Date.py: add the ui_calendar_names for translation for the ui
+	* src/DateEdit.py: use the new ui_calendar_names for the ui
 	* src/plugins/Check.py: delete families that contain only a
 	single parent and no children
 
