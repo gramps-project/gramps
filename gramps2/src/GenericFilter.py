@@ -66,14 +66,16 @@ from Utils import for_each_ancestor,probably_alive,get_source_referents
 #-------------------------------------------------------------------------
 def date_cmp(rule,value):
     sd = rule.get_start_date()
-    s = sd.get_modifier()
-    value = s.get_start_date()
+    s = rule.get_modifier()
+    od = value.get_start_date()
+    cmp_rule = (sd[2],sd[1],sd[0])
+    cmp_value = (od[2],od[1],od[0])
     if s == Date.MOD_BEFORE:
-        return rule > value
+        return  cmp_rule > cmp_value
     elif s == Date.MOD_AFTER:
-        return rule < value
+        return cmp_rule < cmp_value
     else:
-        return rule == value
+        return cmp_rule == cmp_value
 
 #-------------------------------------------------------------------------
 #
@@ -1243,21 +1245,21 @@ class HasBirth(Rule):
         p = db.get_person_from_handle(p_id)
         event_handle = p.get_birth_handle()
         if not event_handle:
-            return 0
+            return False
         event = db.get_event_from_handle(event_handle)
         ed = event.get_description().upper()
         if len(self.list) > 2 and ed.find(self.list[2].upper())==-1:
-            return 0
+            return False
         if self.date:
             if date_cmp(self.date,event.get_date_object()) == 0:
-                return 0
+                return False
         pl_id = event.get_place_handle()
         if pl_id:
             pl = db.get_place_from_handle(pl_id)
             pn = pl.get_title()
             if len(self.list) > 1 and pn.find(self.list[1].upper()) == -1:
-                return 0
-        return 1
+                return False
+        return True
 
 #-------------------------------------------------------------------------
 #

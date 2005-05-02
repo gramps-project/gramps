@@ -1,3 +1,8 @@
+2005-05-02    <dona@gramps-project.org>
+	* src/AddSpouse.py: fix filtering of lists using GenericFilters
+	* src/ChooseParents.py: fix filtering of lists using GenericFilters
+	* src/GenericFilter.py: fix date comparison
+
 2005-05-02  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gramps_main.py: Disable fast merge on a readonly db
 	* src/plugins/Check.py: Disable on readonly db
