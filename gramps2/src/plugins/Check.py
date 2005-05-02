@@ -57,6 +57,11 @@ from QuestionDialog import OkDialog, MissingMediaDialog
 def runTool(database,active_person,callback,parent=None):
 
     try:
+        if database.readonly:
+            # TODO: split plugin in a check and repair part to support
+            # checking of a read only database
+            return
+        
         trans = database.transaction_begin()
         trans.set_batch(True)
         database.disable_signals()

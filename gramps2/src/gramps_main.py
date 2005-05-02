@@ -1250,6 +1250,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.gtop.get_widget('add_item').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('remove_item').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('merge').set_sensitive(not self.db.readonly)
+        self.gtop.get_widget('fast_merge1').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('default_person1').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('edit_bookmarks').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('tools_menu').set_sensitive(not self.db.readonly)
