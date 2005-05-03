@@ -1191,7 +1191,7 @@ class GlobalMediaProperties:
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-complete')
+        gnome.help_display('gramps-manual','adv-media')
         
     def on_ok_clicked(self, obj):
         self.on_apply_clicked(obj)

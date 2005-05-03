@@ -713,7 +713,7 @@ button, while using <guibutton>+</guibutton> and
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-pers"> 
-        <title>Edit Personal Information</title> 
+        <title>Personal Information</title> 
 	<para> Editing of personal data can be performed in the 
 	following ways: </para>
 	<variablelist>
@@ -778,11 +778,12 @@ save changes to the database (write on disk). Unlike previous versions,
 this version of &app; does not have a separate saving function,
 all changes are immediate.</para></note>
 
-	<para>
+	<tip><para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-	The tabs provide the following information categories of 
+    then its label appears regular (not bold). </para></tip>
+    
+    <para>The tabs provide the following information categories of 
 	personal data:
 	</para>
 
@@ -1147,7 +1148,7 @@ Editor</guilabel> dialog (see <xref linkend="adv-an"/>).
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-dates"> 
-        <title>Edit Dates</title> 
+        <title>Dates</title> 
 	<para> This section describes the details of entering and modifying dates.
 	Dates are important in genealogical research, so &app; goes a long
 	way to preserve and use any date information available.</para> 
@@ -1297,10 +1298,13 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-rel"> 
-        <title>Edit Relationship Data</title> 
+        <title>Relationship Data</title> 
 	<para> Editing of relationship data is performed in the following 
 	<guilabel>Marriage/Relationship Editor</guilabel> dialog which appears 
-	after double-clicking on the spouse box in the Family View.</para>
+	after double-clicking on the spouse box in the Family View. Alternatively,
+	you may invoke this dialog by right-clicking into the spouse box
+	and selecting <guilabel>Edit relationship</guilabel> item from
+	the context menu.</para>
 
  	<!-- ==== Figure: Edit Relationship dialog ==== -->
 	<figure id="edit-rel-fig"> 
@@ -1327,11 +1331,17 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	choices of closing the dialog without saving changes, canceling the
 	initial cancel request, or saving the changes. </para> 
 
-	<para>
+<note><para>Clicking <guibutton>OK</guibutton> will immediately
+save changes to the database (write on disk). Unlike previous versions,
+this version of &app; does not have a separate saving function,
+all changes are immediate.</para></note>
+
+	<tip><para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-	The tabs provide the following information categories of 
+    then its label appears regular (not bold). </para></tip>
+
+	<para>The tabs provide the following information categories of 
 	relationship data:
 	</para>
 
@@ -1342,9 +1352,10 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	information about the relationship: the relationship type. 
 	The available types (such as married, partners, etc.) can be chosen 
 	from the drop-down <guilabel>Relationship type</guilabel> menu. 
-	The non-editable field <guilabel>ID</guilabel> displays an 
-	internal &app; ID number which identifies this relationship in 
-	the database. 
+	The <guilabel>ID</guilabel> field displays &app; ID number
+	which labels this relationship in the database. The <guilabel>Last
+	changed</guilabel> label shows the last modification time for this
+	relationship.
 	Finally, the <guilabel>Information is complete</guilabel> check
 	button provides the way to mark whether this relationship's record is 
 	complete or not. </para>
@@ -1359,11 +1370,11 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	modification. The bottom part displays the list of all such events 
 	stored in the database. The top part shows the details 
 	of the currently selected event in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow you to correspondingly add, 
+	<guibutton>+</guibutton>, <guibutton>Edit</guibutton>, 
+	and <guibutton>-</guibutton> allow you to correspondingly add, 
 	modify, and remove an event record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	an event is selected from the list.  
 	</para>
 		</listitem></varlistentry>
@@ -1377,11 +1388,11 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	modification. The bottom part displays the list of all such 
 	attributes stored in the database. The top part shows the details 
 	of the currently selected attribute in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow you to correspondingly add, 
+	<guibutton>+</guibutton>, <guibutton>Edit</guibutton>, 
+	and <guibutton>-</guibutton> allow you to correspondingly add, 
 	modify, and remove an attribute record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	an attribute is selected from the list.  
 	</para>
 		</listitem></varlistentry>
@@ -1421,17 +1432,20 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
     For example, Aunt Martha's memoirs may mention that her great grandson Paul 
     was married, so the researcher may assume that this relationship (between 
     Paul and his wife) existed and cite the memoirs as the source for this 
-    assumption. NOTE: sources documenting specific events such as marriages 
-    or divorces are better filed in relation to those events, under the 
-    <guilabel>Events</guilabel> tab.
+    assumption.
 	</para>
+	
+	<note><para> Sources documenting specific events such as marriages 
+    or divorces are better filed in relation to those events, under the 
+    <guilabel>Events</guilabel> tab.</para></note>
+    
     <para>The central part displays the list of all source references stored 
     in the database for this relationship. The 
-    buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
+    buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> 
 	allow you to correspondingly add, modify, and remove a source reference  
-	to this relationship. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	to this relationship. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a source reference is selected from the list. </para>
 
 		</listitem></varlistentry>
@@ -1446,14 +1460,14 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	For media object which are valid image files previews of images are 
 	displayed. For other objects such as audio files, movie files, etc., a 
 	generic &app; icon is displayed instead. 
-    The buttons <guibutton>Add from file...</guibutton>,
-    <guibutton>Add from database...</guibutton>,
-	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
+    The buttons <guibutton>+</guibutton>,
+    <guibutton>Select</guibutton>,
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> allow
 	you to correspondingly add a new image, add a reference to an image already
     stored in the database, modify, and remove a media object reference 
 	to this relationship. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Remove</guibutton> buttons become available only when 
+	Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a media object is selected from the list. 
 	</para>
 		</listitem></varlistentry>
@@ -1478,7 +1492,7 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-src"> 
-        <title>Edit Source Data</title> 
+        <title>Source Data</title> 
 	<para> To edit source data, switch to the Sources View and select the
 	desired entry in the list of sources. Double-click on that entry or
 	click the <guibutton>Edit</guibutton> icon on the toolbar to invoke the 
@@ -1499,20 +1513,27 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	title of the dialog. The main part of the window displays four notebook 
 	tabs containing different categories of available information. You can 
 	bring any tab to the top for viewing or editing by clicking on the 
-	appropriate tab heading. The bottom part has <guibutton>OK</guibutton> 
+	appropriate tab heading. 
+	The bottom part has <guibutton>OK</guibutton> 
 	and <guibutton>Cancel</guibutton> buttons. Clicking the 
 	<guibutton>OK</guibutton> button at any time will apply all the changes made 
 	in all tabs and close the dialog window. Clicking the 
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
 	applying any changes. </para> 
-	
-	<para>
+
+<note><para>Clicking <guibutton>OK</guibutton> will immediately
+save changes to the database (write on disk). Unlike previous versions,
+this version of &app; does not have a separate saving function,
+all changes are immediate.</para></note>
+
+	<tip><para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
+    then its label appears regular (not bold). </para></tip>
+	
+	<para>
 	The tabs provide the following information categories of 
-	source data:
-	</para>
+	source data:</para>
 
 	<variablelist>
 		<varlistentry><term><guilabel>General</guilabel></term>
@@ -1555,14 +1576,14 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	such media objects. For media object which are valid image files 
 	previews of images are displayed. For other objects such as audio 
 	files, movie files, etc., a generic &app; icon is displayed instead. 
-    The buttons <guibutton>Add from file...</guibutton>,
-    <guibutton>Add from database...</guibutton>,
-	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
+    The buttons <guibutton>+</guibutton>,
+    <guibutton>Select</guibutton>,
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> allow
 	you to correspondingly add a new image, add a reference to an image already
     stored in the database, modify, and remove a media object reference 
 	to this source.
-    Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Remove</guibutton> buttons become available only when 
+    Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a media object is selected from the list. 
 	</para>
 		</listitem></varlistentry>
@@ -1576,11 +1597,17 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	referenced from any database record, the tab shows an empty list. 
 	If the source is referenced from many records, the tab will list 
 	all of them. The list can be ordered by any of its column headers:
-	<guilabel>Source type</guilabel>, <guilabel>Object</guilabel>, or
-	<guilabel>Value</guilabel>. This information cannot be modified from
-	the <guilabel>Source Editor</guilabel> dialog. Instead, the
-	corresponding database record (e.g. birth event) has to be brought
-	up and its source reference edited. </para>
+	<guilabel>Type</guilabel>, <guilabel>ID</guilabel>, or
+	<guilabel>Name</guilabel>. Double-clicking on the list entry
+	opens up an editor for a corresponding record allowing
+	to view or modify the record.</para>
+	
+	<note><para>Only primary objects can be shown in the 
+	<guilabel>References</guilabel> tab: Person, Family, Event, Place, or Media
+	object. The secondary objects such as Names and Attributes, although
+	may refer the source, will only show up through their primary
+	objects they belong to.
+	</para></note>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1589,7 +1616,7 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-plc"> 
-        <title>Edit Place Data</title> 
+        <title>Place Data</title> 
 	<para> To edit place data, switch to the Places View and select the
 	desired entry in the list of places. Double-click on that entry or
 	click the <guibutton>Edit</guibutton> icon on the toolbar to invoke the 
@@ -1609,20 +1636,27 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	title of the dialog. The main part of the window displays seven 
 	notebook tabs containing different categories of available information. 
 	You can bring any tab to the top for viewing or editing by clicking on 
-	the appropriate tab heading. The bottom part has 
+	the appropriate tab heading. 
+	The bottom part has 
 	<guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. 
 	Clicking the <guibutton>OK</guibutton> button at any time will apply all the 
 	changes made in all tabs and close the dialog window. Clicking the 
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
 	applying any changes. </para> 
+
+<note><para>Clicking <guibutton>OK</guibutton> will immediately
+save changes to the database (write on disk). Unlike previous versions,
+this version of &app; does not have a separate saving function,
+all changes are immediate.</para></note>
 	
-	<para>
+	<tip><para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-	The tabs provide the following information categories of 
-	place data:
-	</para>
+    then its label appears regular (not bold). </para></tip>
+    
+
+	<para>The tabs provide the following information categories of 
+	place data:</para>
 
 	<variablelist>
 		<varlistentry><term><guilabel>General</guilabel></term>
@@ -1643,11 +1677,11 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	allowing their modification. The bottom part displays the list of all 
 	other names of the place stored in the database. The top part shows 
 	the details of the currently selected name in the list (if any). 
-	The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> allow 
+	The buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> allow 
 	you to correspondingly add, modify, and remove a name record 
-	from the database. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	from the database. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a name is selected from the list. </para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1679,11 +1713,11 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	The <guilabel>Sources</guilabel> tab displays information about sources 
 	relevant to this place and controls allowing its modification. 
 	The central part displays the list of all such source references 
-	stored in the database. The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> allow 
+	stored in the database. The buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> allow 
 	you to correspondingly add, modify, and remove a source reference  
-	to this place. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	to this place. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a source reference is selected from the list. </para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1697,14 +1731,14 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	such media objects. For media objects which are valid image files 
 	previews of images are displayed. For other objects such as audio 
 	files, movie files, etc., a generic &app; icon is displayed instead. 
-    The buttons <guibutton>Add from file...</guibutton>,
-    <guibutton>Add from database...</guibutton>,
-	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
+    The buttons <guibutton>+</guibutton>,
+    <guibutton>Select</guibutton>, <guibutton>Edit.</guibutton>, 
+    and <guibutton>-</guibutton> allow
 	you to correspondingly add a new image, add a reference to an image already
     stored in the database, modify, and remove a media object reference 
 	to this place. 
-    Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Remove</guibutton> buttons become available only when 
+    Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a media object is selected from the list. 
 	</para>
 		</listitem></varlistentry>
@@ -1718,13 +1752,13 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	allowing its modification. The bottom part displays the list of all 
 	such Internet addresses stored in the database. The top part shows the
 	details of the currently selected addresses in the list (if any). 
-	The buttons <guibutton>Add...</guibutton>,
-	<guibutton>Edit...</guibutton>,  and <guibutton>Delete</guibutton> 
+	The buttons <guibutton>+</guibutton>,
+	<guibutton>Edit</guibutton>,  and <guibutton>-</guibutton> 
 	allow you to correspondingly add, modify, and remove an Internet address 
 	record from the database. The button <guibutton>Go</guibutton> allows
 	you to open a web-page with the corresponding address with your default 
-	browser. Note that the <guibutton>Edit...</guibutton>, 
-	<guibutton>Delete</guibutton>, and <guibutton>Go</guibutton> buttons 
+	browser. Note that the <guibutton>Edit</guibutton>, 
+	<guibutton>-</guibutton>, and <guibutton>Go</guibutton> buttons 
 	become available only when an address is selected from the list.
 	</para>
 		</listitem></varlistentry>
@@ -1734,7 +1768,7 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 		<varlistentry><term><guilabel>References</guilabel></term>
 		<listitem>
 	<para>The <guilabel>References</guilabel> tab displays information about 
-	database records that refer to this place. If the place is not 
+	database records (events or LDS ordinances) that refer to this place. If the place is not 
 	referenced from any database record, the tab shows an empty list. 
 	If the place is referenced from many records, the tab will list 
 	all of them. This information cannot be modified from 
@@ -1748,19 +1782,19 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-media"> 
-        <title>Edit Media Data</title> 
+        <title>Media Data</title> 
 	<para> To edit media data, switch to the Media View and select the
 	desired entry in the list of sources. Double-click on that entry or
 	click <guibutton>Edit</guibutton> on the toolbar to invoke the 
-	following <guilabel>Edit Media Properties</guilabel> dialog: </para>
+	following <guilabel>Media Properties Editor</guilabel> dialog: </para>
 
  	<!-- ==== Figure: Edit Media Properties dialog ==== -->
 	<figure id="edit-media-fig"> 
-	<title>Edit Media Properties dialog</title> 
+	<title>Media Properties Editor dialog</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-media.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Edit Media Properties dialog. </phrase>
+	<phrase>Shows Media Properties Editor dialog. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 	
@@ -1775,11 +1809,18 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	changes made in all tabs and close the dialog window. Clicking the 
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
 	applying any changes. </para> 
+
+<note><para>Clicking <guibutton>OK</guibutton> will immediately
+save changes to the database (write on disk). Unlike previous versions,
+this version of &app; does not have a separate saving function,
+all changes are immediate.</para></note>
 	
-	<para>
+	<tip><para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
+    then its label appears regular (not bold). </para></tip>
+    
+	<para>
 	The tabs provide the following information categories of 
 	media object data:
 	</para>
@@ -1789,13 +1830,15 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 		<listitem><para>The  
 	<guilabel>General</guilabel> tab allows editing the title which labels 
 	this object in the database. The title can be typed in the appropriate 
-	text entry field. If the object is not local (i.e. the corresponding
-	file does not reside under &app; database directory), the
-	<guibutton>Make a local copy</guibutton> button is available. 
-	Click it to copy the media into the &app; database directory. This will 
-	increase the amount of disk space consumed by the &app; database. However, 
-	if the external file is deleted or removed, &app; will still be able 
-	to use the local copy.  </para>
+	text entry field. The <guilabel>Date</guilabel> field allows entering
+	the date by typing, while the LED button beside it will invoke a 
+	<guilabel>Date selection</guilabel> dialog for setting the date
+	graphically.</para>
+	
+	<note><para>&app; no longer has a concept of local media objects.
+	Every media object is referred to by its path. The users are responsible
+	for keeping track of the object files. &app; will only reference
+	and display the contents, not manage the files themselves.</para></note>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1807,11 +1850,11 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	modification. The bottom part displays the list of all such 
 	attributes stored in the database. The top part shows the details 
 	of the currently selected attribute in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow you to correspondingly add, 
+	<guibutton>+</guibutton>, <guibutton>Edit</guibutton>, 
+	and <guibutton>-</guibutton> allow you to correspondingly add, 
 	modify, and remove an attribute record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	an attribute is selected from the list. </para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1846,20 +1889,25 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	referenced from any database record, the tab shows an empty list. 
 	If the object is referenced from many records, the tab will list 
 	all of them. The list can be ordered by any of its column headers:
-	<guilabel>Type</guilabel>, <guilabel>Object</guilabel>, or
-	<guilabel>Value</guilabel>. This information cannot be modified from
-	the <guilabel>Media Object Properties Editor</guilabel> dialog. 
-	Instead, the corresponding database record (e.g. birth event) has to 
-	be brought up and its media object reference edited in the gallery 
-	tab. </para>
-		</listitem></varlistentry>
+	<guilabel>Type</guilabel>, <guilabel>ID</guilabel>, or
+	<guilabel>Name</guilabel>. Double-clicking on the list entry
+	opens up an editor for a corresponding record allowing
+	to view or modify the record.</para>
+	
+	<note><para>Only primary objects can be shown in the 
+	<guilabel>References</guilabel> tab: Person, Family, Event, Source, or Place.
+	The secondary objects such as Names and Attributes, although
+	able to refer the media object, will only show up through their primary
+	objects they belong to.
+	</para></note>
+			</listitem></varlistentry>
 	</variablelist>
 
       </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-ev"> 
-        <title>Edit Events</title> 
+        <title>Events</title> 
 	<para> Events are edited through the following <guilabel>Event
 	Editor</guilabel> dialog: </para> 
 
@@ -1884,10 +1932,12 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
 	applying any changes. </para> 
 	
-	<para>
+	<tip><para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
+    then its label appears regular (not bold). </para></tip>
+
+	<para>
     The tabs provide the following information categories of 
 	the event data: </para>
 
@@ -1912,11 +1962,11 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	<guilabel>Sources</guilabel> tab displays information about sources 
 	relevant to this event and controls allowing its modification. 
 	The central part displays the list of all such sources references 
-	stored in the database. The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
+	stored in the database. The buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> 
 	allow you to correspondingly add, modify, and remove a source reference  
-	to this event. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	to this event. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a source reference is selected from the list. </para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1948,11 +1998,11 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	<guilabel>Witnesses</guilabel> tab displays information about witnesses 
 	relevant to this event and controls allowing its modification. 
 	The central part displays the list of all such witnesses 
-	stored in the database. The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
+	stored in the database. The buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> 
 	allow you to correspondingly add, modify, and remove a witness reference  
-	to this event. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	to this event, see <xref linkend="adv-wit"/>. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a witness reference is selected from the list. </para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1961,7 +2011,7 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-si"> 
-        <title>Edit Source Information</title> 
+        <title>Source Information</title> 
 	<para> When adding source references to events, places, etc., 
 	the following dialog appears: </para>
 
@@ -1994,27 +2044,33 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	level from the <guilabel>Confidence</guilabel> drop-down menu. 
 	The rest of the details can be typed in the appropriate text entry
 	fields. </para>
+	
+	<tip><para>Information in this dialog is specific to the particular reference.
+	A single source can be referenced many times, and all such references will
+	have in common the overall source information. This dialog lets you provide
+	reference-specific data, such as relevant quotes, comments, confidence,
+	page numbers, etc, to further specify and document the reference.</para></tip>
 
       </sect2>
       
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-an"> 
-        <title>Edit Alternate Names</title> 
-	<para> Alternate names are edited through the following 
-	<guilabel>Alternate Names Editor</guilabel> dialog: </para>
+        <title>Names</title> 
+	<para> Names are edited through the following 
+	<guilabel>Name Editor</guilabel> dialog: </para>
 
- 	<!-- ==== Figure: Alternate Names Editor dialog ==== -->
+ 	<!-- ==== Figure: Names Editor dialog ==== -->
 	<figure id="edit-an-fig"> 
-	<title>Alternate Names Editor dialog</title> 
+	<title>Name Editor dialog</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-an.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Alternate Names Editor dialog. </phrase>
+	<phrase>Shows Name Editor dialog. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 	
 	<para> The top of the window shows the dialog title including the name
-	of the person whose alternate name is being edited. The central part 
+	of the person whose name is being edited. The central part 
 	of the window displays three notebook tabs containing different 
 	categories of available information. You can bring any tab to the 
 	top for viewing or editing by clicking on the appropriate tab heading. 
@@ -2025,22 +2081,39 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
 	applying any changes. </para> 
 	
-	<para>
+	<tip><para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-    The tabs provide the following information categories of 
+    then its label appears regular (not bold). </para></tip>
+    
+    
+    <para>The tabs provide the following information categories of 
 	the alternate name data: </para>
 
  	<variablelist>
 		<varlistentry><term><guilabel>General</guilabel></term>
 		<listitem><para>The 
 	<guilabel>General</guilabel> tab allows editing of general
-	information about the alternate name: given name, family name, family 
+	information about the alternate name: given name, family name, 
+	patronymic, family 
 	prefix, suffix, title, and type of the name. The information can be 
 	typed in the appropriate text entry fields. The family name and the 
 	type can be also selected from available choices listed in the 
-	appropriate drop-down menus. 
+	appropriate drop-down menus. </para>
+	
+	<para><guilabel>Options</guilabel> allow you to adjust specific
+	grouping, sorting, and displaying properties of this name, as well
+	as to provide the date corresponding to the name. The 
+	<guilabel>Grouping</guilabel> field provides an alternative
+	grouping node for a given name, overriding the default grouping
+	based on the family name. This may be necessary with similar
+	family names that need to be grouped together. To enable
+	typing into this field, check the <guilabel>Override</guilabel>
+	check button. The <guilabel>Sort as</guilabel> and 
+	<guilabel>Display as</guilabel> determine the manner
+	in which the name appears in the People View and in the reports.
+	The <guilabel>Date</guilabel> can provide information on
+	the validity of this name -- use spans as necessary.
 	Check the <guilabel>Private record</guilabel> box to mark this name
 	record as private. This will give you a chance to omit this name from
 	being included in reports, if you choose so among the report 
@@ -2054,11 +2127,11 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
 	<guilabel>Sources</guilabel> tab displays information about sources 
 	relevant to this name and controls allowing its modification. 
 	The central part displays the list of all such sources' references 
-	stored in the database. The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
+	stored in the database. The buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> 
 	allow you to correspondingly add, modify, and remove a source reference  
-	to this name. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	to this name. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a source reference is selected from the list. </para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -2088,7 +2161,7 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
       
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-at"> 
-        <title>Edit Attributes</title> 
+        <title>Attributes</title> 
 	<para> Attributes are edited through the following 
 	<guilabel>Attribute Editor</guilabel> dialog: </para>
 
@@ -2175,7 +2248,7 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
       
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-ad"> 
-        <title>Edit Addresses</title> 
+        <title>Addresses</title> 
 	<para> Addresses are edited through the following 
 	<guilabel>Address Editor</guilabel> dialog: </para>
 
@@ -2263,7 +2336,7 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
       
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-wit"> 
-        <title>Edit Witnesses</title> 
+        <title>Witnesses</title> 
 	<para> Witnesses are edited through the following 
 	<guilabel>Witness Editor</guilabel> dialog: </para>
 

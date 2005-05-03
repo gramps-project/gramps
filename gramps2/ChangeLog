@@ -8,6 +8,15 @@
 	* doc/gramps-manual/C/figures/edit-person-notes.png: Update.
 	* doc/gramps-manual/C/figures/date-selection.png: Add new figure.
 
+	* src/EditPlace.py: Correct manual section.
+	* src/EditSource.py: Correct manual section.
+	* src/EventEdit.py: Correct manual section.
+	* src/ImageSelect.py: Correct manual section.
+	* src/Marriage.py: Correct manual section.
+	* src/NameEdit.py: Correct manual section.
+	* doc/gramps-manual/C/usage.xml: Update.
+	* doc/gramps-manual/C/figures/edit-*.png: Update.
+
 2005-05-02    <dona@gramps-project.org>
 	* src/GrampsBSDDB.py: handle missing version number properly, detect
 	empty database properly.

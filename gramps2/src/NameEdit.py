@@ -237,7 +237,7 @@ class NameEditor:
 
     def on_help_clicked(self,*obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-complete')
+        gnome.help_display('gramps-manual','adv-an')
 
     def on_name_edit_ok_clicked(self,obj):
         first = unicode(self.given_field.get_text())
