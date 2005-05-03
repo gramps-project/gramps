@@ -2704,6 +2704,23 @@ all changes are immediate.</para></note>
 	double-clicking the lines connecting to the left of the corresponding
 	boxes for father and mother. </para></listitem>
 	</itemizedlist>
+	
+	<para>You can also quickly access any of the spouses, siblings,
+	children, or parents of any displayed person. To do this, move the
+	mouse over the desired person's box and right-click to invoke
+	a context menu. The appropriate menu items will contain submenus
+	listing all spouses, siblings, children, and parents of the
+	corresponding person. 
+	</para>
+	
+	<tip><title>Advantages of using right-click menus</title>
+	<itemizedlist>
+	<listitem><para>Direct access to spouse and siblings</para></listitem> 
+	<listitem><para>Complete lists of all member of all categories,
+	not only the preferred members.</para></listitem> 
+	</itemizedlist>
+	
+	</tip>
 
       </sect2>
 
@@ -2737,10 +2754,11 @@ all changes are immediate.</para></note>
         tools. These tools are similar to those commonly used in web browsers. 
         They include <guilabel>Back</guilabel> and <guilabel>Forward</guilabel>
         items available from the <menuchoice><guimenu>Go</guimenu></menuchoice> 
-        menu, context menus, and the toolbar buttons. They also include the 
-        list of the recent selections available under the 
-        <menuchoice><guimenu>Go</guimenu></menuchoice> menu that allows you to jump 
-        directly to any of the recent selections. 
+        menu, context menus (available in People, Family, and Pedigree views),
+	and the toolbar buttons. They also include the list of the recent
+	selections available under the 
+	<menuchoice><guimenu>Go</guimenu></menuchoice> menu that allows you
+	to jump directly to any of the recent selections. 
         Finally, right-clicking on the <guibutton>Back</guibutton> 
         and <guibutton>Forward</guibutton> toolbar buttons invokes the 
         popup menu with corresponding portion of the history. Select any item
@@ -2781,48 +2799,39 @@ all changes are immediate.</para></note>
       </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="gramps-nav-find-people"> 
-        <title>Finding People</title> 
-	<para> To find a person in a database, choose 
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
-        when in the People View, Family View, or Pedigree View. This opens a 
-        <guilabel>Find Person</guilabel> dialog which can be used for searching
-        forward and backward. </para>
+      <sect2 id="gramps-nav-find">
+      <title>Finding records</title>
+
+	<para>To find a record in a database, first switch to the appripriate
+	View that provides the list of the desired records: People, Source,
+	Place, or Media. Then start typing the name of a person or the title
+	of a Source, Place, or Media object that you are looking for,
+	respectively.
+	You may also press <keycap>Ctrl+F</keycap> to turn on the search
+	mode, but simply staring to type is also enough.</para>
 	
-	<para> If the search is successful, the found person becomes an active
-        person and the display adjusts according to the new active person and the
-        current view. </para>
-      </sect2>
+ 	<!-- ==== Figure: Type-ahead find ==== -->
+	<figure id="find-people-fig"> 
+	<title>Type-ahead find</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/find-people.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows type-ahead find. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
 
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="gramps-nav-find-sources"> 
-        <title>Finding Sources</title> 
-	<para> To find a source in a database, choose 
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
-        when in the Sources View. This opens a <guilabel>Find Source</guilabel>
-        dialog which can be used for searching forward and backward. If the
-        search is successful, the found source becomes highlighted. </para> 
-      </sect2>
+	<para> As you type, the first record in the list that is compatible
+	with your input will be selected.</para>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="gramps-nav-find-places"> 
-        <title>Finding Places</title> 
-	<para> To find a place in a database, choose 
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
-        when in the Places View. This opens a <guilabel>Find Place</guilabel> 
-        dialog which can be used for searching forward and backward. If the 
-        search is successful, the found place becomes highlighted. </para> 
-      </sect2>
+	<tip>
+        <title>Finding People</title> 
+	<para>For more complex people searches you may want to use filters.
+	Enable filter controls by choosing <menuchoice><guimenu>View</guimenu> 
+	<guimenuitem>Filter</guimenuitem> </menuchoice>, select the desired
+	filter, and click <guibutton>Apply</guibutton>.
+	For details, see <xref linkend="filters"/></para></tip>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="gramps-nav-find-media"> 
-        <title>Finding Media Objects</title> 
-	<para> To find a media object in a database, choose 
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
-        when in the Media View. This opens a <guilabel>Find Media Objects</guilabel> 
-        dialog which can be used for searching forward and backward. If the 
-        search is successful, the found media object becomes highlighted. </para> 
-      </sect2>
+     </sect2>
 
    </sect1>
    
