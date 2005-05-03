@@ -2187,11 +2187,12 @@ all changes are immediate.</para></note>
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
 	applying any changes. </para> 
 	
-	<para>
+	<tip><para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-    The tabs provide the following information categories of 
+    then its label appears regular (not bold). </para></tip>
+    
+    <para>The tabs provide the following information categories of 
 	the attribute data: </para>
 
  	<variablelist>
@@ -2215,11 +2216,11 @@ all changes are immediate.</para></note>
 	<guilabel>Sources</guilabel> tab displays information about sources 
 	relevant to this attribute and controls allowing its modification. 
 	The central part displays the list of all such sources references 
-	stored in the database. The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
+	stored in the database. The buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> 
 	allow you to correspondingly add, modify, and remove a source reference  
-	to this attribute. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	to this attribute. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a source reference is selected from the list. </para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -2274,11 +2275,12 @@ all changes are immediate.</para></note>
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
 	applying any changes. </para> 
 	
-	<para>
+	<tip><para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-    The tabs provide the following information categories of 
+    then its label appears regular (not bold).</para></tip> 
+    
+    <para>The tabs provide the following information categories of 
 	the address data: </para>
 
  	<variablelist>
@@ -2302,11 +2304,11 @@ all changes are immediate.</para></note>
 	<guilabel>Sources</guilabel> tab displays information about sources 
 	relevant to this address and controls allowing its modification. 
 	The central part displays the list of all such sources references 
-	stored in the database. The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
+	stored in the database. The buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> 
 	allow you to correspondingly add, modify, and remove a source reference  
-	to this address. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	to this address. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a source reference is selected from the list. </para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -2361,6 +2363,10 @@ all changes are immediate.</para></note>
 	<para>The witness name can be entered in two ways, depending upon 
 	whether the witness is a person already stored in the database or 
 	not (unrelated person). </para> 
+
+    <tip><para>If the person you would like to add as a wittness is in fact
+	a member of the database, it is better to use the first method below.
+    </para></tip>
 	
 	<variablelist>
 		<varlistentry><term>Person from the database</term>
@@ -2371,10 +2377,12 @@ all changes are immediate.</para></note>
         Person</guilabel> dialog. Choose the person from that dialog and 
         click the <guibutton>OK</guibutton> button. The <guilabel>Person</guilabel> 
         text field will display the name of the person you selected. 
-        Note: even though the person's name is displayed in the 
+	</para>
+    
+    <note><para>Even though the person's name is displayed in the 
         <guilabel>Person</guilabel> field, it is not available for direct
-        editing. 
-	</para></listitem></varlistentry>
+        editing. </para></note>
+    </listitem></varlistentry>
 	</variablelist>
 	
 	<variablelist>
