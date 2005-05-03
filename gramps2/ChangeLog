@@ -2,7 +2,7 @@
 	* src/gramps.glade: remove place field, fixed parent relationships
 	* src/ImageSelect.py: remove place handling
 
-2005-05-01  Alex Roitman  <shura@gramps-project.org>
+2005-05-02  Alex Roitman  <shura@gramps-project.org>
 	* src/DateEdit.py (DateEditorDialog.__init__): Correct manual section.
 	* doc/gramps-manual/C/usage.xml: Update.
 	* doc/gramps-manual/C/figures/edit-person-notes.png: Update.
