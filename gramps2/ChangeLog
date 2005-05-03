@@ -1,3 +1,7 @@
+2005-05-03  Don Allingham  <don@gramps-project.org>
+	* src/ListBox.py: added to CVS
+	* src/Makefile.am: added ListBox.py
+
 2005-05-02  Don Allingham  <don@gramps-project.org>
 	* src/EditPerson.py: start of new gallery
 	* src/ImageSelect.py: start of new gallery
