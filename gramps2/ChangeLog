@@ -1,3 +1,6 @@
+2005-05-03  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Updated to new template.
+
 2005-05-03 Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GenericFilter.py (HaveChildren): Match what it should
 	
