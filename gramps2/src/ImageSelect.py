@@ -36,14 +36,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gobject
 import gtk
-import gnome
-import gnome.ui
 import gtk.glade
-
-try:
-    from gnomecanvas import CanvasGroup, CanvasRect, CanvasPixbuf, CanvasText
-except:
-    from gnome.canvas import CanvasGroup, CanvasRect, CanvasPixbuf, CanvasText
 
 #-------------------------------------------------------------------------
 #
@@ -638,6 +631,7 @@ class Gallery(ImageSelect):
         of a picture."""
         photo = obj.get_data('o')
         LocalMediaProperties(photo,self.path,self)
+
 
 #-------------------------------------------------------------------------
 #
