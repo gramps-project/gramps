@@ -23,6 +23,8 @@
 	* doc/gramps-manual/C/usage.xml: Update.
 	* doc/gramps-manual/C/figures/edit-*.png: Update.
 
+	* src/po/ru.po: Translation update.
+
 2005-05-02    <dona@gramps-project.org>
 	* src/GrampsBSDDB.py: handle missing version number properly, detect
 	empty database properly.
