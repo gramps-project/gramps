@@ -1796,6 +1796,6 @@ def old_calc_age(database,person):
                         age = age - 1
                         units = 2                        # month
                     if age == 0:
-                        age = death.get-day() + 31 - birth.get_day() # calc age in days
+                        age = death.get_day() + 31 - birth.get_day() # calc age in days
                         units  = 3            # day
     return (age,units) 

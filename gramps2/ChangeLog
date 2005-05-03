@@ -1,3 +1,6 @@
+2005-05-03 Don Allingham  <don@gramps-project.org>
+	* src/ReportUtils.py: fixed type (get-day() -> get_day())
+
 2005-05-02  Don Allingham  <don@gramps-project.org>
 	* src/gramps.glade: remove place field, fixed parent relationships
 	* src/ImageSelect.py: remove place handling
@@ -25,7 +28,7 @@
 
 	* src/po/ru.po: Translation update.
 
-2005-05-02    <dona@gramps-project.org>
+2005-05-02 Don Allingham  <dona@gramps-project.org>
 	* src/GrampsBSDDB.py: handle missing version number properly, detect
 	empty database properly.
 	* src/ReadGedcom.py: set default gedcom parser class to "GEDCOM 5.5"
