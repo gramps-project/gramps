@@ -4407,7 +4407,11 @@ Other</property>
 		  <child>
 		    <widget class="GtkComboBox" id="prel_combo">
 		      <property name="visible">True</property>
-		      <property name="items" translatable="yes">Married</property>
+		      <property name="items" translatable="yes">Married
+Unmarried
+Civil Union
+Unknown
+Other</property>
 		      <property name="add_tearoffs">False</property>
 		      <property name="focus_on_click">True</property>
 		      <signal name="changed" handler="on_prel_changed" last_modification_time="Fri, 30 Jul 2004 15:32:53 GMT"/>
