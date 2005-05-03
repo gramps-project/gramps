@@ -1568,6 +1568,28 @@ all changes are immediate.</para></note>
 	</variablelist>
 
 	<variablelist>
+		<varlistentry><term><guilabel>Data</guilabel></term>
+		<listitem>
+	<para>The <guilabel>Data</guilabel> tab displays Key/Value
+	pairs that may be associated with the source. These are similar
+	to the attributes used for other record types. The difference
+	from these Key/Value paris and the attributes is that the attributes
+	may have source references and notes, while the Key/Value
+	data may not.</para>
+
+	<para> The central part shows the list of all Key/Value pairs, if any.
+	The buttons <guibutton>+</guibutton> and <guibutton>-</guibutton>
+	allow you to correspondingly add and remove pairs. To modify the
+	text of Key or Value, first select the desired entry (may be an
+	empty entry when new pair has just been added). Then click into
+	either Key or Value cell inside that entry and edit the text in place.
+	When you are done, click outside the cell to exit editing mode.
+	</para>
+		</listitem></varlistentry>
+	</variablelist>
+
+
+	<variablelist>
 		<varlistentry><term><guilabel>Gallery</guilabel></term>
 		<listitem>
 	<para>The <guilabel>Gallery</guilabel> tab displays information about 
@@ -2408,46 +2430,168 @@ all changes are immediate.</para></note>
       </sect2>
       
        <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="adv-merge"> 
-        <title>Merge People</title> 
-	<para> Sometime two people entries in the database turn out to be 
-        describing the same person. When this happens, merging people is 
+      <sect2 id="adv-merge"><title>Merging records</title>
+
+	<para> Sometime several records in the database turn out to be 
+        describing the same object: same person, same place, or same source.
+	It could happen either when the data is entered twice by mistake,
+	or when new information reveals that the two entries refer to the same
+	person. It can also happen after importing GEDCOM obtained from a
+	relative, whose database overlaps with your existing data.</para>
+	
+	<para>Whenever you detect duplicate records, merging them
         a useful way of correcting the situation. </para>
-        
-        <para> To make a merge, exactly two people have to be selected in the
-        People View. This is accomplished by selecting one person and then
+	
+        <tip><para> To make a merge, exactly two records have to be selected
+	in the appropriate view (People View, Sources View, or Places View).
+	This is accomplished by selecting one entry and then
         selecting another person while holding down <keycap>Ctrl</keycap> key.
-        </para>
+        </para></tip>
+
+        <sect3 id="adv-merge-people"><title>Merge People</title> 
+	<para> There are two ways of merging personal records: 
+	<guilabel>Compare and Merge</guilabel> and
+	<guilabel>Fast Merge</guilabel>, both available from the 
+	<guimenu>Edit</guimenu> menu.
+	</para>
         
-        <para> When exactly two people are selected, choose
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Merge...</guimenuitem></menuchoice>
-        to evoke <guilabel>Merge People</guilabel> dialog. The dialog allows you to
-        retain the data from either person as the primary data for the new
-        (merged) person. The data from the other person can be kept as alternate
-        data if you so choose. If you would like to continue editing data of 
-        a newly merged person, click the <guibutton>Merge and edit</guibutton>
-        button. </para>
-      </sect2>
+	<note><para>
+	Merging people does not discard any information with either method.
+	The decisions you make during the merge only affect which data will
+	become primary and which will become secondary for the resulting
+	merged record.
+	</para></note>
+
+
+	<variablelist>
+	<varlistentry><term><guilabel>Compare and Merge</guilabel></term>
+	<listitem><para>
+        When exactly two people are selected, choose
+        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Compare and
+	Merge...</guimenuitem></menuchoice> to evoke <guilabel>Compare
+	People</guilabel> dialog.</para>
+	
+ 	<!-- ==== Figure: Compare People dialog ==== -->
+	<figure id="comp-people-fig"> 
+	<title>Compare People dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/comp-people.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Compare People dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para>The dialog allows you to make a decision on whether or not
+	the selected records should be merged. If you decide that the records
+	should not be merged, despite similar names, you may click
+	<guibutton>Cancel</guibutton> to close the dialog without making
+	any changes. If you decide to proceed with merging, select the 
+	appropriate <guilabel>Select</guilabel> radio button to specify
+	the record to be used as the source of primary data,
+	then click <guibutton>Merge and close</guibutton>. </para>
+	
+        <para>The data from the other record will be kept as alternate
+        data. Specifically, all names from the other record will become
+	alternate names of the merged record. Similarly, parents, spouses,
+	and children of the other record will become alternate parents,
+	spouses, and children of the merged record, and so on.
+	</para></listitem></varlistentry>
+	</variablelist>
+
+	<variablelist>
+	<varlistentry><term><guilabel>Fast Merge</guilabel></term>
+	<listitem><para>
+        When exactly two people are selected, choose
+        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Fast
+	Merge</guimenuitem></menuchoice> to evoke <guilabel>Merge
+	People</guilabel> dialog.</para>
+	
+ 	<!-- ==== Figure: Compare People dialog ==== -->
+	<figure id="merge-people-fig"> 
+	<title>Merge People dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/merge-people.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Merge People dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para>The dialog allows you to quickly merge two records, specifying
+	the record to be used as the source of primary data.
+	The data from the other record will be kept as alternate
+        data. Specifically, all names from the other record will become
+	alternate names of the merged record. Similarly, parents, spouses,
+	and children of the other record will become alternate parents,
+	spouses, and children of the merged record, and so on.
+	</para>
+	
+	<tip><para>If you are not certain whether or not you need
+	to merge the records, or which record to specify as the source
+	of primary data, use <guilabel>Compare and Merge</guilabel> method
+	described above..
+	</para></tip>
+
+	</listitem></varlistentry>
+	</variablelist>
+      </sect3>
 
        <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="adv-merge-places"> 
+      <sect3 id="adv-merge-sources"> 
+        <title>Merge Sources</title> 
+	<para>When exactly two sources are selected, choose
+        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Compare and
+	Merge...</guimenuitem></menuchoice> to evoke <guilabel>Merge
+	Sources</guilabel> dialog.</para>
+	
+ 	<!-- ==== Figure: Merge Sources dialog ==== -->
+	<figure id="merge-src-fig"> 
+	<title>Merge Sources dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/merge-src.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Merge Sources dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para>The dialog allows you to make a decision on whether or not
+	the selected records should be merged. If you decide that the records
+	should not be merged, despite similar titles, you may click
+	<guibutton>Cancel</guibutton> to close the dialog without making
+	any changes. If you decide to proceed with merging, choose the 
+	appropriate radio button to specify the title, author, abbreviated
+	title, publication information, and the ID to be used for the
+	merged record, then click <guibutton>OK</guibutton>. </para>
+	
+      </sect3>
+
+      <sect3 id="adv-merge-places"> 
         <title>Merge Places</title> 
-        <para> Sometime two place entries in the database turn out to be 
-        describing the same place. When this happens, merging places is 
-        a useful way of correcting the situation. </para>
-        
-        <para> To make a merge, exactly two places have to be selected in the
-        Places View. This is accomplished by selecting one place and then
-        selecting another place while holding down <keycap>Ctrl</keycap> key.
-        </para>
-        
-        <para> When exactly two places are selected, choose
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Merge...</guimenuitem></menuchoice>
-        to evoke <guilabel>Merge Places</guilabel> dialog. The dialog allows 
-        you to retain the data from either place as the primary data for 
-        the new (merged) place. Alternatively, you may type in other data
-        for the new place, if you click <guilabel>Other</guilabel> radio 
-        button.</para>
+
+	<para>When exactly two places are selected, choose
+        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Compare and
+	Merge...</guimenuitem></menuchoice> to evoke <guilabel>Select
+	title</guilabel> dialog.</para>
+	
+ 	<!-- ==== Figure: Select title dialog ==== -->
+	<figure id="merge-plc-fig"> 
+	<title>Merge Places dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/merge-plc.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Select title dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para>The dialog allows you to make a decision on whether or not
+	the selected records should be merged. If you decide that the records
+	should not be merged, despite similar titles, you may click
+	<guibutton>Cancel</guibutton> to close the dialog without making
+	any changes. If you decide to proceed with merging, choose the 
+	appropriate radio button to specify the title of the merged record,
+	or specify <guilabel>Other</guilabel> and enter new text,
+	then click <guibutton>OK</guibutton>. </para>
+      </sect3>
+
       </sect2>
 
    </sect1>

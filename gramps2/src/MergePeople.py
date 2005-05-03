@@ -29,6 +29,15 @@ from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
+# GTK/Gnome modules
+#
+#-------------------------------------------------------------------------
+import gtk
+import pango
+from gnome import help_display
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -37,8 +46,6 @@ import ReportUtils
 import Utils
 import NameDisplay
 import const
-import gtk
-import pango
 
 sex = ( _("female"), _("male"), _("unknown"))
 
@@ -62,9 +69,14 @@ class Compare:
 
         self.glade.get_widget('cancel').connect('clicked',self.cancel)
         self.glade.get_widget('close').connect('clicked',self.merge)
+        self.glade.get_widget('help').connect('clicked',self.help)
 
     def cancel(self,obj):
         self.top.destroy()
+
+    def help(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        help_display('gramps-manual','adv-merge-people')
 
     def merge(self,obj):
         if self.glade.get_widget('select1').get_active():
@@ -219,8 +231,11 @@ class MergePeopleUI:
         p1.set_label(n1)
         p2.set_label(n2)
         Utils.set_titles(top,glade.get_widget('title'),_("Merge People"))
+        glade.get_widget('help').connect('clicked',self.help)
 
-        ret = top.run()
+        ret = gtk.RESPONSE_HELP
+        while ret == gtk.RESPONSE_HELP:
+            ret = top.run()
         
         if ret == gtk.RESPONSE_OK:
             if p1.get_active():
@@ -230,6 +245,11 @@ class MergePeopleUI:
             merge.merge()
             update()
         top.destroy()
+
+    def help(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        help_display('gramps-manual','adv-merge-people')
+
 
 def name_of(p):
     if not p:
