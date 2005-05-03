@@ -25,376 +25,183 @@
     <title>Settings</title> 
     <para>To configure &app;, choose 
       <menuchoice><guimenu>Edit</guimenu>
-      <guimenuitem>Preferences...</guimenuitem></menuchoice>. 
-      The <guilabel>Preferences</guilabel> dialog contains the following 
-      categories: </para>
+      <guimenuitem>Preferences...</guimenuitem></menuchoice>. This will
+      bring up the following <guilabel>Preferences</guilabel> dialog.</para>
+
+ 	<!-- ==== Figure: Type-ahead find ==== -->
+	<figure id="prefs-fig"> 
+	<title>Preferences dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/prefs.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Preferences dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+      <para>The pane on the left displays the tree of available option
+      categories. Selecting a tree node will display the corresponding
+      options in the right side of the dialog. </para>
       
-      <itemizedlist>
-      <listitem><para><xref linkend="gramps-prefs-usage"/></para></listitem>
-      <listitem><para><xref linkend="gramps-prefs-display"/></para></listitem>
-      <listitem><para><xref linkend="gramps-prefs-db"/></para></listitem>
-      </itemizedlist>
-
-<!-- =============== Customization Subsection ================ -->
-    <sect1 id="gramps-prefs-usage"> 
-      <title>Usage</title> 
+    <sect1 id="gramps-prefs-db"> 
+      <title>Database</title> 
 	<para> This category contains preferences relevant to the 
-	general usage of &app;. It has the following subcategories:</para>
-
-  <!-- =============== Customization Sub-subsection ================ -->
-      <sect2 id="prefs-usage-find"> 
-        <title>Find</title> 
+	database itself. It has the following subcategories: </para>
 
 	<variablelist>
+	<varlistentry><term><guilabel>General</guilabel></term>
+	<listitem>
+		<variablelist>
+		<varlistentry><term><guilabel>Automatically
+		load last database</guilabel></term>
+		<listitem><para> Check this box to automatically load the
+		last open database on startup. </para></listitem>
+		</varlistentry>
 
-	<varlistentry><term><guilabel>Enable autocompletion</guilabel></term>
-	<listitem><para>If this box is checked, &app; will attempt to complete
-	the text as you type it into text entry fields such as family name,
-	place of birth, etc. Completion is attempted based on the match 
-	between the beginning of the text being typed and the corresponding 
-	data already stored in the database. 
-	</para></listitem>
+		<varlistentry><term><guilabel>Family name guessing</guilabel></term>
+		<listitem><para> This option affects the initial family name of a 
+		child when he/she is added to the database. </para>
+		
+		<tip><para>This option only
+		affects the initial family name guessed by &app; when the 
+		<guilabel>Edit Person</guilabel> dialog is launched. You can modify
+		that name the way you see fit. Set this option to the value that you 
+		will most frequently use, as it will save you a lot of
+		typing.</para></tip>
+	
+		<para>If <guilabel>None</guilabel> is selected, no guessing will be 
+		attempted. Selecting <guilabel>Father's surname</guilabel> will use
+		the family name of the father. Selecting <guilabel>Combination of 
+		mother's and father's surname</guilabel> will use the father's name 
+		followed by the mother's name. Finally, <guilabel>Icelandic 
+		style</guilabel> will use the father's given name followed by the 
+		&quot;sson&quot; suffix (e.g. the son of Edwin will be guessed as 
+		Edwinsson).
+		</para></listitem>
+		</varlistentry>
+		</variablelist>
+	</listitem>
 	</varlistentry>
 
-	</variablelist>
-
-      </sect2>
-
-  <!-- =============== Customization Sub-subsection ================ -->
-      <sect2 id="prefs-usage-report"> 
-        <title>Report Preferences</title> 
-
-	<variablelist>
-
-	<varlistentry><term><guilabel>Preferred text format</guilabel></term>
-	<listitem><para> Select the preferred format for text reports 
-	from the available formats listed in this menu. 
-	</para></listitem>
+	<varlistentry><term><guilabel>GRAMPS IDs</guilabel></term>
+	<listitem><para> Enter ID prefixes for various kinds of database 
+	entries into the corresponding text entry fields. 
+	</para>
+	
+	<tip><para>The ID prefixes use formatting conventions common for
+	C, Python, and other programming languages. For example, the %04d
+	expands to an integer, prepended with zeros to have the total
+	width of founr digits. If you would like IDs to be 1, 2, 3, etc,
+	simply set the formatting parameter to %d.
+	</para></tip>
+	</listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Preferred graphical format</guilabel></term>
-	<listitem><para> Select the preferred format for graphical reports 
-	from the available formats listed in this menu.
-	</para></listitem>
-	</varlistentry>
-
-	<varlistentry><term><guilabel>Preferred paper size</guilabel></term>
-	<listitem><para> Select the preferred paper size used for reports 
-	from the available sizes listed in this menu.
-	</para></listitem>
-	</varlistentry>
-
-	<varlistentry><term><guilabel>Default report directory</guilabel></term>
-	<listitem><para> Choose the default directory for the reports using the 
-	<guibutton>Browse...</guibutton> button or type it in the text entry
-	field. </para></listitem>
-	</varlistentry>
-
-	<varlistentry><term><guilabel>Default web site directory</guilabel></term>
-	<listitem><para> Choose the default directory for the web site using the 
-	<guibutton>Browse...</guibutton> button or type it in the text entry
-	field. </para></listitem>
-	</varlistentry>
-
-	</variablelist>
-
-      </sect2>
-
-  <!-- =============== Customization Sub-subsection ================ -->
-      <sect2 id="prefs-usage-res"> 
-        <title>Researcher Information</title> 
-
-	<variablelist>
-
-	<varlistentry><term><guilabel>Researcher information</guilabel></term>
+	<varlistentry><term><guilabel>Researcher Information</guilabel></term>
 	<listitem><para> Enter your personal information in the corresponding
 	text entry fields. Although &app; requests information about you, 
 	this information is used only so that &app; can create valid GEDCOM 
 	output files. A valid GEDCOM file requires information about the file's 
 	creator. If you choose, you may leave the information empty, however 
 	none of your exported GEDCOM files will be valid. 
-	</para></listitem>
+	</para>
+	</listitem>
 	</varlistentry>
 
 	</variablelist>
-
-      </sect2>
-
-  <!-- =============== Customization Sub-subsection ================ -->
-      <sect2 id="prefs-usage-guess"> 
-        <title>Data Guessing</title> 
-
-	<variablelist>
-	
-	<varlistentry><term><guilabel>Family name guessing</guilabel></term>
-	<listitem><para> This option affects the initial family name of a 
-	child when he/she is added to the database. NOTE: this option only
-	affects the initial family name guessed by &app; when the 
-	<guilabel>Edit Person</guilabel> dialog is launched. You can modify
-	that name the way you see fit. Set this option to the value that you 
-	will most frequently use, as it will save you a lot of typing.</para>
-	
-	<para>If <guilabel>None</guilabel> is selected, no guessing will be 
-	attempted. Selecting <guilabel>Father's surname</guilabel> will use
-	the family name of the father. Selecting <guilabel>Combination of 
-	mother's and father's surname</guilabel> will use the father's name 
-	followed by the mother's name. Finally, <guilabel>Icelandic 
-	style</guilabel> will use the father's given name followed by the 
-	&quot;sson&quot; suffix (e.g. the son of Edwin will be guessed as 
-	Edwinsson).
-	</para></listitem>
-	</varlistentry>
-
-	</variablelist>
-
-      </sect2>
-
     </sect1>
 
-<!-- =============== Customization Subsection ================ -->
     <sect1 id="gramps-prefs-display"> 
       <title>Display</title> 
 	<para> This category contains preferences relevant to  
 	displaying database records and controls in &app;. 
 	It has the following subcategories:</para>
 
-  <!-- =============== Customization Sub-subsection ================ -->
-      <sect2 id="prefs-display-gen"> 
-        <title>General</title> 
-
 	<variablelist>
-	
-	<varlistentry><term><guilabel>Default view</guilabel></term>
-	<listitem><para> This determines which view will appear when you 
-        start &app;. Choose between Person and Family views. 
-	</para></listitem>
+
+	<varlistentry><term><guilabel>General</guilabel></term>
+	<listitem>
+
+		<variablelist>
+		
+		<varlistentry><term><guilabel>Default view</guilabel></term>
+		<listitem><para> This determines which view will appear when
+		you start &app;. Choose between Person and Family views. 
+		</para></listitem>
+		</varlistentry>
+
+		<varlistentry><term><guilabel>Family view style</guilabel></term>
+		<listitem><para> This selects between the two available styles
+		of the Family view layout. The <guilabel>Left to right</guilabel>
+		style is similar to the Family Tree Maker (tm), while the
+		<guilabel>Top to bottom</guilabel> is similar to the Reunion. 
+		</para></listitem>
+		</varlistentry>
+
+		<varlistentry><term><guilabel>Always display the LDS ordinance
+		tabs</guilabel></term>
+		<listitem><para> Check this box to have LDS ordinance tabs
+		displayed. If you do not know what LDS is then you probably
+		should not check it. </para></listitem></varlistentry>
+
+		<varlistentry><term><guilabel>Display Tip of the
+		Day</guilabel></term>
+		<listitem><para> Check this box to have the <guilabel>Tip
+		of the Day</guilabel> dialog appear on every startup.
+		The tips are displayed randomly from the large collection
+		of information bits on &app;.
+		</para>
+		
+		<tip><para>The <guilabel>Tip of the Day</guilabel> is likely
+		to be useful for new user of &app;.
+		</para></tip>
+		</listitem></varlistentry>
+		
+		</variablelist>
+
+	</listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Family view style</guilabel></term>
-	<listitem><para> This selects between the two available styles of the Family 
-        view layout. The <guilabel>Left to right</guilabel> style is similar to the 
-        Family Tree Maker (tm), while the <guilabel>Top to bottom</guilabel> is
-        similar to the Reunion. 
-	</para></listitem>
-	</varlistentry>
+	<varlistentry><term><guilabel>Dates</guilabel></term>
 
-	<varlistentry><term><guilabel>Always display the LDS ordinance tabs</guilabel></term>
-	<listitem><para> Check this box to have LDS ordinance tabs displayed. 
-	If you do not know what LDS is then you probably should not check it. 
-	</para></listitem>
-	</varlistentry>
-
-	<varlistentry><term><guilabel>Show index numbers in child list</guilabel></term>
-	<listitem><para> 
-	This option is not currently implemented.
-	</para></listitem>
-	</varlistentry>
-
-	</variablelist>
-      </sect2>
-
-  <!-- =============== Customization Sub-subsection ================ -->
-      <sect2 id="prefs-display-date"> 
-        <title>Dates and Calendar</title> 
-
-	<variablelist>
-	
-	<varlistentry><term><guilabel>Display: Date format</guilabel></term>
-	<listitem><para> Select the display format for the dates
+	<listitem>
+	<para> Select the display format for the dates
 	from the available formats listed in this menu. 
-	</para></listitem>
-	</varlistentry>
-
-	<varlistentry><term><guilabel>Name format</guilabel></term>
-	<listitem><para> Select the display format for the names  
-	from the available formats listed in this menu. 
-	</para></listitem>
-	</varlistentry>
-
-	<varlistentry><term><guilabel>Entry: Date format</guilabel></term>
-	<listitem><para> Select the entry format for the dates
-	from the available formats listed in this menu. 
-	</para></listitem>
-	</varlistentry>
-
-	<varlistentry><term><guilabel>Show calendar format selection menu</guilabel></term>
-	<listitem><para> Check this box to enable the calendar format selection 
-	menu when you are entering dates in the <guilabel>Event 
-	Editor</guilabel> dialog.  This will allow you to select different 
-	calendars when editing the dates. 
-	</para></listitem>
-	</varlistentry>
-
-	</variablelist>
-      </sect2>
-
-  <!-- =============== Customization Sub-subsection ================ -->
-      <sect2 id="prefs-display-bars"> 
-        <title>Toolbar and Statusbar</title> 
-	<variablelist>
-	
-	<varlistentry><term><guilabel>Toolbar</guilabel></term>
-	<listitem><para> Select the desired appearance of the toolbar icons
-	from the menu. Selecting <guilabel>GNOME Settings</guilabel> will use
-	the overall settings selected for your GNOME desktop. 
-	</para></listitem>
-	</varlistentry>
-
-	<varlistentry><term><guilabel>Statusbar</guilabel></term>
-	<listitem><para> Select the desired contents displayed in the 
-	statusbar using the radio buttons. 
-	</para></listitem>
-	</varlistentry>
-
-	</variablelist>
-      </sect2>
-
-    </sect1>
-
-<!-- =============== Customization Subsection ================ -->
-    <sect1 id="gramps-prefs-db"> 
-      <title>Database</title> 
-	<para> This category contains preferences relevant to the 
-	database itself. It has the following subcategories: </para>
-
-  <!-- =============== Customization Sub-subsection ================ -->
-      <sect2 id="prefs-db-gen"> 
-        <title>General</title> 
-
-	<variablelist>
-	
-	<varlistentry><term><guilabel>Automatically load last database</guilabel></term>
-	<listitem><para> Check this box to automatically load the last open
-	database on startup. </para></listitem>
-	</varlistentry>
-
-	<varlistentry><term><guilabel>Do not compress XML data file</guilabel></term>
-	<listitem><para> Check this box to disable compression of the XML
-	data file. Compression significantly reduces the file size. While it 
-	creates an overhead in performance (some processor cycles must be spent
-	to decompress the file before use), this overhead is extremely small. 
-	Now that the compression-related bugs have long been fixed, there is 
-	virtually no reason to disable data file compression. 
-	</para></listitem>
-	</varlistentry>
-
-	<varlistentry><term><guilabel>Autosave interval</guilabel></term>
-	<listitem><para> Set the interval (in minutes) after which &app; will
-	automatically save your database. Setting the interval to zero (0) 
-	disables autosaving. </para></listitem>
-	</varlistentry>
-
-	<varlistentry><term><guilabel>Default database directory</guilabel></term>
-	<listitem><para> Choose the default directory in which &app; starts
-	looking when saving the database using the <guibutton>Browse...</guibutton> 
-	or type its path into the text entry field. </para></listitem>
-	</varlistentry>
-
-	</variablelist>
-      </sect2>
-
-  <!-- =============== Customization Sub-subsection ================ -->
-      <sect2 id="prefs-db-media"> 
-        <title>Media Objects</title> 
-
-	<para>Before describing preferences for media objects, let us
-	review the background on local and non-local objects. A local object 
-	is the object whose file is stored inside the same directory in which 
-	the &app; database file resides. A non-local object is stored 
-	elsewhere, so that the database has only the reference to the file's 
-	location and some records of the object's properties. </para>
-	
-	<para>You may choose to store your media objects either locally 
-	or externally. Making your objects local will increase the amount 
-	of disk space consumed by the &app; database directory. However, 
-	if the external file is deleted or removed, &app; will still be able 
-	to use the local copy. In contrast, leaving your objects non-local 
-	will decrease the disk space requirements. However, losing the 
-	original file will render your media object unusable.
 	</para>
 	
-	<para>Note that exporting your database to any format will compile
-	all medial objects, no matter whether they are local or not. 
-	Specifically, export to gramps package will include all the media 
-	object files in the package and change the references accordingly. 
-	Export to CD will copy all media object files to the directory under 
-	the <guilabel>burn:///</guilabel> location in Nautilus and change the 
-	references accordingly. Finally, export to GEDCOM will place all 
-	media object files next to the GEDCOM file with the appropriate 
-	changes in the path names. 
-	</para>
+	<tip><para>Available date display formats are language-specific.
+	Depending on whether or not there is a &app; date displayer 
+	available for your language, you may or may not have a lot of
+	choices.
+	</para></tip>
 	
-	<variablelist>
+	</listitem>
+	</varlistentry>
 
-	<varlistentry><term><guilabel>Drag and drop from an external 
-	source</guilabel></term>
-	<listitem><para> Choose between a reference and a local copy made when
-	the object is dropped into the gallery. The reference saves disk 
-	space as it does not copy the object. The local copy makes your 
-	database portable as it does not depend on an external file. Consult
-	your needs to make best choice.</para> 
+	<varlistentry><term><guilabel>Toolbar and Statusbar</guilabel></term>
+	<listitem>
+
+		<variablelist>
 	
-	<para>Check the <guilabel>Display global properties editor when 
-	object is dropped</guilabel> box to invoke the global properties 
-	editor after you drop an external object into the gallery. 
-	</para></listitem>
-	</varlistentry>
+		<varlistentry><term><guilabel>Toolbar</guilabel></term>
+		<listitem><para> Select the desired appearance of the toolbar
+		icons from the menu. Selecting <guilabel>GNOME
+		Settings</guilabel> will use the overall settings selected
+		for your GNOME desktop.
+		</para></listitem>
+		</varlistentry>
 
-	<varlistentry><term><guilabel>Drag and drop from an internal 
-	source</guilabel></term>
-	<listitem><para> Check the <guilabel>Display local properties editor 
-	when object is dropped</guilabel> box to invoke the local properties 
-	editor after you drop an internal object into the gallery. 
-	</para></listitem>
-	</varlistentry>
+		<varlistentry><term><guilabel>Statusbar</guilabel></term>
+		<listitem><para> Select the desired contents displayed in the 
+		statusbar using the radio buttons. 
+		</para></listitem>
+		</varlistentry>
 
-	</variablelist>
-      </sect2>
+		</variablelist>
 
-  <!-- =============== Customization Sub-subsection ================ -->
-      <sect2 id="prefs-db-id"> 
-        <title>GRAMPS internal IDs</title> 
-
-	<variablelist>
-
-	<varlistentry><term><guilabel> GRAMPS ID prefixes</guilabel></term>
-	<listitem><para> Enter ID prefixes for various kinds of database 
-	entries into the corresponding text entry fields. 
-	</para></listitem>
-	</varlistentry>
-
-	<varlistentry><term><guilabel>Allow internal GRAMPS ID numbers to be
-	edited</guilabel></term>
-	<listitem><para> Check this box to enable editing of the internal &app;
-	ID numbers. Unless you know what you are doing, leave it unchecked.
-	</para></listitem>
+	</listitem>
 	</varlistentry>
 
 	</variablelist>
-      </sect2>
-
-  <!-- =============== Customization Sub-subsection ================ -->
-      <sect2 id="prefs-db-rcs"> 
-        <title>Revision Control</title> 
-
-	<variablelist>
-
-	<varlistentry><term><guilabel>Use revision control</guilabel></term>
-	<listitem><para> Check this box to enable &app; to use the revision control
-	system for your database. If you choose this option, select the
-	particular revision control system from the menu. 
-	</para></listitem>
-	</varlistentry>
-
-	<varlistentry><term><guilabel>Prompt for comment on save</guilabel></term>
-	<listitem><para> Check this box to instruct &app; to prompt you to enter
-	the comment when you save the database. 
-	</para></listitem>
-	</varlistentry>
-
-	</variablelist>
-
-      </sect2>
 
     </sect1>
 

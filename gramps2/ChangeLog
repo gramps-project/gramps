@@ -5,6 +5,9 @@
 	* src/MergeData.py: Minor cleanups; Help buttons.
 	* src/mergedata.glade: Minor cleanups; Help buttons.
 
+	* doc/gramps-manual/C/prefs.xml: Update.
+	* doc/gramps-manual/C/figures/prefs.png: Add new figure.
+
 2005-05-03 Don Allingham  <don@gramps-project.org>
 	* src/ReportUtils.py: fixed type (get-day() -> get_day())
 
