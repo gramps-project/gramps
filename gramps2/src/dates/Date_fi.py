@@ -151,7 +151,8 @@ class DateDisplayFI(DateDisplay):
 	    if mod == Date.MOD_BEFORE:
 		text = "ennen " + text
 	    elif mod == Date.MOD_AFTER:
-		text = text + " jälkeen"
+		# kludge: should be actually after the date
+		text = "jälkeen " + text
 	    elif mod == Date.MOD_ABOUT:
 		text = "noin " + text
 	
