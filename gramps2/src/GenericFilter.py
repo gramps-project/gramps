@@ -1601,7 +1601,7 @@ class HaveChildren(Rule):
 
     def apply(self,db,p_id):
         p = db.get_person_from_handle(p_id)
-        for (family_handle,rel1,rel2) in p.get_parent_family_handle_list():
+        for family_handle in p.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
             return len(family.get_child_handle_list()) > 0
 
