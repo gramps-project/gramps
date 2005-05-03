@@ -25,10 +25,9 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import cPickle as pickle
 import os
 import locale
-from sets import Set
+import ListBox
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -58,19 +57,11 @@ import Sources
 import DateEdit
 import Date
 import DateHandler
-import TransTable
 import NameDisplay
-import UrlEdit
 import NameEdit
 import NoteEdit
-import AttrEdit
-import EventEdit
-import AddrEdit
 
 from QuestionDialog import WarningDialog, ErrorDialog, SaveDialog, QuestionDialog2
-from ListModel import ListModel, NOSORT, COMBO, TEXT, TOGGLE
-from DdTargets import DdTargets
-
 
 #-------------------------------------------------------------------------
 #
@@ -136,10 +127,12 @@ class EditPerson:
         self.window = self.get_widget("edit_person")
         self.window.set_title("%s - GRAMPS" % _('Edit Person'))
         
-        self.icon_list = self.top.get_widget("iconlist")
+        #self.icon_list = self.top.get_widget("iconlist")
         #self.gallery = ImageSelect.Gallery(person, self.db.commit_person,
         #                                   self.path, self.icon_list,
         #                                   self.db, self, self.window)
+
+        self.build_gallery(self.get_widget('iconbox'))
 
         self.complete = self.get_widget('complete')
         self.complete.set_sensitive(mod)
@@ -232,23 +225,23 @@ class EditPerson:
 
         # event display
 
-        self.event_box = EventListBox(
+        self.event_box = ListBox.EventListBox(
             self, self.person, self.event_list, events_label,
             [event_add_btn,event_edit_btn,event_delete_btn])
 
-        self.attr_box = AttrListBox(
+        self.attr_box = ListBox.AttrListBox(
             self, self.person, self.attr_list, attr_label,
             [attr_add_btn, attr_edit_btn, attr_delete_btn])
 
-        self.addr_box = AddressListBox(
+        self.addr_box = ListBox.AddressListBox(
             self, self.person, self.addr_list, addr_label,
             [addr_add_btn, addr_edit_btn, addr_delete_btn])
 
-        self.name_box = NameListBox(
+        self.name_box = ListBox.NameListBox(
             self, self.person, self.name_list, names_label,
             [name_add_btn, name_edit_btn, name_delete_btn])
 
-        self.url_box = UrlListBox(
+        self.url_box = ListBox.UrlListBox(
             self, self.person, self.web_list, web_label,
             [web_add_btn, web_edit_btn, web_delete_btn])
 
@@ -285,9 +278,9 @@ class EditPerson:
         if person.get_note():
             self.notes_buffer.set_text(person.get_note())
             if person.get_note_object().get_format() == 1:
-                self.preform.set_active(1)
+                self.preform.set_active(True)
             else:
-                self.flowed.set_active(1)
+                self.flowed.set_active(True)
             Utils.bold_label(self.notes_label)
 
         self.top.signal_autoconnect({
@@ -343,6 +336,31 @@ class EditPerson:
 
         self.window.show()
 
+    def build_gallery(self,container):
+        self.iconmodel = gtk.ListStore(gtk.gdk.Pixbuf,str)
+        self.iconlist = gtk.IconView(self.iconmodel)
+        self.iconlist.set_pixbuf_column(0)
+        self.iconlist.set_text_column(1)
+        self.iconlist.show()
+        container.add(self.iconlist)
+
+        for ref in self.person.get_media_list():
+            obj = self.db.get_object_from_handle(ref.get_reference_handle())
+            pixbuf = self.get_image(obj)
+            self.iconmodel.append(row=[pixbuf,obj.get_description()])
+
+    def get_image(self,obj):
+        import ImgManip
+        
+        mtype = obj.get_mime_type()
+        if mtype[0:5] == "image":
+            image = ImgManip.get_thumbnail_image(obj.get_path())
+        else:
+            image = Utils.find_mime_type_pixbuf(mtype)
+        if not image:
+            image = gtk.gdk.pixbuf_new_from_file(const.icon)
+        return image
+        
     def image_button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
 
@@ -445,18 +463,6 @@ class EditPerson:
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-complete')
-
-    def build_columns(self,tree,list):
-        cnum = 0
-        for name in list:
-            if cnum == 0:
-                renderer = gtk.CellRendererCombo()
-            else:
-                renderer = gtk.CellRendererText()
-            column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
-            column.set_min_width(name[1])
-            cnum = cnum + 1
-            tree.append_column(column)
 
     def lds_field(self,lds_ord,combo,date,place):
         build_combo(combo,_temple_names)
@@ -1245,13 +1251,6 @@ class EditPerson:
             list.insert(target,person.get_handle())
         return list
 
-def place_title(db,event):
-    pid = event.get_place_handle()
-    if pid:
-        return db.get_place_from_handle(pid).get_title()
-    else:
-        return u''
-
 def build_dropdown(entry,strings):
     store = gtk.ListStore(str)
     for value in strings:
@@ -1271,424 +1270,4 @@ def build_combo(entry,strings):
         node = store.append()
         store.set(node,0,unicode(value))
     entry.set_model(store)
-
-class ListBox:
-    def __init__(self, parent, person, obj, label, button_list, titles):
-        self.person = person
-        self.label = label
-        self.name = NameDisplay.displayer.display(self.person)
-        self.db = parent.db
-        self.parent = parent
-        self.list_model = ListModel(
-            obj, titles, self.select_row, self.update)
-        self.blist = button_list
-        self.node_map = {}
-        self.tree = obj
-        self.changed = False
-        self.blist[0].connect('clicked',self.add)
-        self.blist[1].connect('clicked',self.update)
-        self.blist[2].connect('clicked',self.delete)
-        self.change_list = Set()
-
-    def get_changed_objects(self):
-        return list(self.change_list)
-
-    def add_object(self,item):
-        self.data.append(item)
-        self.change_list.add(item)
-        
-    def select_row(self,obj):
-        store, node = obj.get_selected()
-        enable = node != None
-        for button in self.blist[1:]:
-            button.set_sensitive(enable)
-
-    def delete(self,obj):
-        """Delete the selected event"""
-        if Utils.delete_selected(obj,self.data):
-            self.changed = True
-            self.redraw()
-
-    def update(self,obj):
-        raise NotImplementedError
-
-    def redraw(self):
-        self.list_model.clear()
-        self.node_map = {}
-        for item in self.data:
-            node = self.list_model.add(self.display_data(item),item)
-            self.node_map[item] = node
-        if self.data:
-            self.list_model.select_row(0)
-        self.set_label()
-
-    def display_data(self,item):
-        raise NotImplementedError
-
-    def delete(self,obj):
-        """Deletes the selected name from the name list"""
-        store,node = self.list_model.get_selected()
-        if node:
-            self.list_model.remove(self.list_model.get_object(node))
-            self.changed = True
-            self.redraw()
-
-    def edit_callback(self,data):
-        self.changed = True
-        self.change_list.add(data)
-        if data not in self.data:
-            self.data.append(data)
-        self.redraw()
-        try:
-            self.list_model.select_iter(self.node_map[data])
-        except:
-            print "Edit callback failed"
-
-    def set_label(self):
-        if self.data:
-            self.list_model.select_row(0)
-            Utils.bold_label(self.label)
-            self.blist[1].set_sensitive(True)
-            self.blist[2].set_sensitive(True)
-        else:
-            Utils.unbold_label(self.label)
-            self.blist[1].set_sensitive(False)
-            self.blist[2].set_sensitive(False)
-
-class ReorderListBox(ListBox):
-
-    def __init__(self,parent,person,obj,label,button_list,evalues, dnd_type):
-
-        ListBox.__init__(self,parent,person,obj,label,button_list,evalues)
-
-        self.dnd_type = dnd_type
-
-        obj.drag_dest_set(gtk.DEST_DEFAULT_ALL, [dnd_type.target()],
-                          gtk.gdk.ACTION_COPY)
-        obj.drag_source_set(gtk.gdk.BUTTON1_MASK, [dnd_type.target()],
-                            gtk.gdk.ACTION_COPY)
-        obj.connect('drag_data_get', self.drag_data_get)
-        obj.connect('drag_data_received',self.drag_data_received)
-
-    def drag_data_get(self,widget, context, sel_data, info, time):
-        node = self.list_model.get_selected_objects()
-
-        bits_per = 8; # we're going to pass a string
-        pickled = pickle.dumps(node[0]);
-        data = str((self.dnd_type.drag_type, self.person.get_handle(),
-                    pickled));
-        sel_data.set(sel_data.target, bits_per, data)
-
-    def unpickle(self, data):
-        self.data.insert(pickle.loads(data))
-    
-    def drag_data_received(self,widget,context,x,y,sel_data,info,time):
-        row = self.list_model.get_row_at(x,y)
-        
-        if sel_data and sel_data.data:
-            exec 'data = %s' % sel_data.data
-            exec 'mytype = "%s"' % data[0]
-            exec 'person = "%s"' % data[1]
-            if mytype != self.dnd_type.drag_type:
-                return
-            elif person == self.person.get_handle():
-                self.move_element(self.list_model.get_selected_row(),row)
-            else:
-                self.unpickle(data[2])
-            self.changed = True
-            self.redraw()
-
-    def move_element(self,src,dest):
-        if src != -1:
-            obj = self.data[src]
-            self.data.remove(obj)
-            self.data.insert(dest,obj)
-
-class AttrListBox(ReorderListBox):
-
-    def __init__(self, parent, person, obj, label, button_list):
-
-        attrlist = const.personalAttributes
-
-        titles = [
-            # Title          Sort Col, Size, Type
-            (_('Attribute'), NOSORT,   200,  COMBO,  attrlist, self.set_type),
-            (_('Value'),     NOSORT,   350,  TEXT,   None,     self.set_value),
-            (_('Source'),    NOSORT,   50,   TOGGLE, None,     None),
-            (_('Note'),      NOSORT,   50,   TOGGLE, None,     None),
-            ]
-
-        self.data = person.get_attribute_list()[:]
-        ListBox.__init__(self, parent, person, obj, label,
-                         button_list, titles)
-
-    def set_type(self,index,value):
-        self.data[index].set_type(value)
-
-    def set_value(self,index,value):
-        self.data[index].set_value(value)
-
-    def add(self,obj):
-        """Brings up the AttributeEditor for a new attribute"""
-        AttrEdit.AttributeEditor(self.parent, None, self.name,
-                                 const.personalAttributes,
-                                 self.edit_callback,self.parent.window)
-
-    def update(self,obj):
-        store,node = self.list_model.get_selected()
-        if node:
-            attr = self.list_model.get_object(node)
-            AttrEdit.AttributeEditor(self.parent, attr, self.name,
-                                     const.personalAttributes,
-                                     self.edit_callback,self.parent.window)
-
-    def display_data(self,attr):
-        has_note = attr.get_note()
-        has_source = len(attr.get_source_references())> 0
-        return [const.display_pattr(attr.get_type()), attr.get_value(),
-                has_source, has_note]
-
-class EventListBox(ReorderListBox):
-    
-    titles = ['Event', 'Description','Date','Place','Source','Note']
-
-    def __init__(self,parent,person,obj,label,button_list):
-
-        self.trans = TransTable.TransTable(self.titles)
-        
-        self.data = []
-        if person.get_birth_handle():
-            event = parent.db.get_event_from_handle(person.get_birth_handle())
-            self.data.append(event)
-        if person.get_death_handle():
-            event = parent.db.get_event_from_handle(person.get_death_handle())
-            self.data.append(event)
-        for val in person.get_event_list():
-            self.data.append(parent.db.get_event_from_handle(val))
-
-        eventnames = const.personalEvents
-
-        evalues = [
-            # Title            Sort Col Size, Type    Argument
-            (_('Event'),       NOSORT,  100,  COMBO,  eventnames, self.set_name),
-            (_('Description'), NOSORT,  140,  TEXT,   None,       self.set_description),
-            (_('Date'),        NOSORT,  100,  TEXT,   None,       self.set_date),
-            (_('Place'),       NOSORT,  100,  TEXT,   None,       self.set_place),
-            (_('Source'),      NOSORT,  50,   TOGGLE, None,       None),
-            (_('Note'),        NOSORT,  50,   TOGGLE, None,       None),
-            ]
-        
-        ReorderListBox.__init__(self, parent, person, obj, label,
-                                button_list, evalues, DdTargets.EVENT)
-
-    def set_name(self,index,value):
-        self.data[index].set_name(value)
-        self.change_list.add(self.data[index])
-
-    def set_description(self,index,value):
-        self.data[index].set_description(value)
-        self.change_list.add(self.data[index])
-
-    def set_place(self,index,value):
-        self.data[index].set_description(value)
-        self.change_list.add(self.data[index])
-
-    def set_date(self,index,value):
-        self.data[index].set_date(value)
-        self.change_list.add(self.data[index])
-
-    def add(self,obj):
-        """Brings up the EventEditor for a new event"""
-        EventEdit.EventEditor(
-            self.parent, self.name, const.personalEvents,
-            const.personal_events, None, None, 0,
-            self.edit_callback, noedit=self.db.readonly)
-
-    def update(self,obj):
-        store,node = self.list_model.get_selected()
-        if not node:
-            return
-        event = self.list_model.get_object(node)
-        EventEdit.EventEditor(
-            self.parent, self.name, const.personalEvents,
-            const.personal_events, event, None, 0,
-            self.edit_callback, noedit=self.db.readonly)
-
-    def display_data(self,event):
-        pname = place_title(self.db,event)
-        has_note = event.get_note()
-        has_source = len(event.get_source_references())> 0
-        return [const.display_pevent(event.get_name()),
-                event.get_description(), event.get_date(),
-                pname, has_source, has_note]
-
-    def unpickle(self, data):
-        foo = pickle.loads(data);
-        for src in foo.get_source_references():
-            base_handle = src.get_base_handle()
-            newbase = self.db.get_source_from_handle(base_handle)
-            src.set_base_handle(newbase.get_handle())
-        place = foo.get_place_handle()
-        if place:
-            foo.set_place_handle(place.get_handle())
-        self.data.insert(row,foo.get_handle())
-
-class NameListBox(ReorderListBox):
-    
-    def __init__(self,parent,person,obj,label,button_list):
-
-        surnames = parent.db.get_surname_list()
-        types = const.NameTypesMap.get_values()
-        types.sort()
-
-        titles = [
-            # Title            Sort Col Size, Type
-            (_('Family Name'), NOSORT,  150,  COMBO,  surnames, self.set_name),
-            (_('Prefix'),      NOSORT,  50,   TEXT,   None,     self.set_prefix),
-            (_('Given Name'),  NOSORT,  200,  TEXT,   None,     self.set_given),
-            (_('Suffix'),      NOSORT,  50,   TEXT,   None,     self.set_suffix),
-            (_('Type'),        NOSORT,  150,  COMBO,  types,    self.set_type),
-            (_('Source'),      NOSORT,  50,   TOGGLE, None,     None),
-            (_('Note'),        NOSORT,  50,   TOGGLE, None,     None),
-            ]
-
-        self.data = person.get_alternate_names()[:]
-        ReorderListBox.__init__(self, parent, person, obj, label,
-                                button_list, titles, DdTargets.NAME)
-
-    def set_name(self,index,value):
-        self.data[index].set_surname(value)
-
-    def set_prefix(self,index,value):
-        self.data[index].set_surname_prefix(value)
-
-    def set_given(self,index,value):
-        self.data[index].set_first_name(value)
-
-    def set_suffix(self,index,value):
-        self.data[index].set_suffix(value)
-
-    def set_type(self,index,value):
-        ntype = const.NameTypesMap.find_value(value)
-        self.data[index].set_type(value)
-
-    def add(self,obj):
-        NameEdit.NameEditor(self.parent, None, self.edit_callback,
-                            self.parent.window)
-
-    def update(self,obj):
-        store,node = self.list_model.get_selected()
-        if node:
-            NameEdit.NameEditor(self.parent, self.list_model.get_object(node),
-                                self.edit_callback, self.window)
-
-    def display_data(self,name):
-        has_note = name.get_note()
-        has_source = len(name.get_source_references())> 0
-        return [name.get_surname(),name.get_surname_prefix(),
-                name.get_first_name(), name.get_suffix(),
-                _(name.get_type()),has_source,has_note]
-
-    def unpickle(self, data):
-        foo = pickle.loads(data);
-        for src in foo.get_source_references():
-            base_handle = src.get_base_handle()
-            newbase = self.db.get_source_from_handle(base_handle)
-            src.set_base_handle(newbase.get_handle())
-        self.data.insert(row,foo)
-
-class AddressListBox(ReorderListBox):
-    
-    def __init__(self,parent,person,obj,label,button_list):
-
-        titles = [
-            # Title              Sort Col Size, Type
-            (_('Date'),          NOSORT,  175,  TEXT,   None, self.set_date),
-            (_('Address'),       NOSORT,  150,  TEXT,   None, self.set_addr),
-            (_('City'),          NOSORT,  100,  TEXT,   None, self.set_city),
-            (_('State/Province'),NOSORT,  75,   TEXT,   None, self.set_state),
-            (_('Country'),       NOSORT,  100,  TEXT,   None, self.set_country),
-            (_('Source'),        NOSORT,  50,   TOGGLE, None, None),
-            (_('Note'),          NOSORT,  50,   TOGGLE, None, None),
-            ]
-
-        self.data = person.get_address_list()[:]
-        ReorderListBox.__init__(self, parent, person, obj, label,
-                                button_list, titles, DdTargets.ADDRESS)
-
-    def set_date(self,index,value):
-        self.data[index].set_date(value)
-
-    def set_addr(self,index,value):
-        self.data[index].set_street(value)
-
-    def set_city(self,index,value):
-        self.data[index].set_city(value)
-
-    def set_state(self,index,value):
-        self.data[index].set_state(value)
-
-    def set_country(self,index,value):
-        self.data[index].set_country(value)
-
-    def add(self,obj):
-        AddrEdit.AddressEditor(self.parent, None, self.edit_callback,
-                               self.parent.window)
-
-    def update(self,obj):
-        store,node = self.list_model.get_selected()
-        if node:
-            item = self.list_model.get_object(node)
-            AddrEdit.AddressEditor(self.parent, item,
-                                   self.edit_callback, self.parent.window)
-
-    def display_data(self,item):
-        has_note = item.get_note()
-        has_source = len(item.get_source_references())> 0
-        return [item.get_date(),item.get_street(),
-                item.get_city(), item.get_state(),
-                item.get_country(), has_source,has_note]
-
-    def unpickle(self,data):
-        foo = pickle.loads(data);
-        for src in foo.get_source_references():
-            base_handle = src.get_base_handle()
-            newbase = self.db.get_source_from_handle(base_handle)
-            src.set_base_handle(newbase.get_handle())
-        self.data.insert(row,foo)
-
-class UrlListBox(ReorderListBox):
-    
-    def __init__(self,parent,person,obj,label,button_list):
-
-        titles = [
-            # Title            Sort Col  Size, Type
-            (_('Path'),        NOSORT,   250,  TEXT, None, self.set_path),
-            (_('Description'), NOSORT,   100,  TEXT, None, self.set_description),
-            ]
-
-        self.data = person.get_url_list()[:]
-        ReorderListBox.__init__(self, parent, person, obj, label,
-                                button_list, titles, DdTargets.URL)
-
-    def set_path(self,index,value):
-        self.data[index].set_path(value)
-
-    def set_description(self,index,value):
-        self.data[index].set_description(value)
-
-    def add(self,obj):
-        UrlEdit.UrlEditor(self.parent, self.name, None,
-                          self.edit_callback, self.parent.window)
-
-    def update(self,obj):
-        store,node = self.list_model.get_selected()
-        if node:
-            UrlEdit.UrlEditor(self.parent, self.name,
-                              self.list_model.get_object(node),
-                              self.edit_callback, self.window)
-
-    def display_data(self,url):
-        return [url.get_path(), url.get_description()]
-
 

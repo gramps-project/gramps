@@ -628,7 +628,7 @@ lds_temple_codes = {
     "Houston, Texas"             : "HOUST", #48 Added
     "Idaho Falls, Idaho"         : "IFALL", #49
     "Johannesburg, South Africa" : "JOHAN", #50
-    "Jordan River (South Jordan), Utah" : "JRIVE", #111
+    "Jordan River, Utah"         : "JRIVE", #111
     "Kialua Kona, Hawaii"        : "KONA",  #51 Added
     "Kiev, Ukraine"              : "KIEV",  #52 Added
     "Laie, Hawaii"               : "HAWAI", #54
@@ -652,7 +652,7 @@ lds_temple_codes = {
     "Montevideo, Uruguay"        : "MNTVD", #72
     "Monticello, Utah"           : "MONTI", #73 Added
     "Montreal, Quebec"           : "MONTR", #74 Added
-    "Mt. Timpanogos (American Fork), Utah" : "MTIMP", #5
+    "Mt. Timpanogos, Utah"       : "MTIMP", #5
     "Nashville, Tennessee"       : "NASHV", #75
     "Nauvoo, Illinois"           : "NAUVO", #76
     "Nauvoo, Illinois (New)"     : "NAUV2", #Rebuilt Added
@@ -703,7 +703,7 @@ lds_temple_codes = {
     "Vernal, Utah"               : "VERNA", #124
     "Villahermosa, Tabasco"      : "VILLA", #125 Added
     "Washington, D.C."           : "WASHI", #126
-    "Winter Quarters (Omaha), Nebraska" : "WINTE", #83 Added
+    "Winter Quarters, Nebraska"  : "WINTE", #83 Added
 #Other Places
     "Endowment House"            : "EHOUS", #Not a temple per se
     "President's Office"         : "POFFI", #Not a temple per se

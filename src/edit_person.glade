@@ -1947,11 +1947,21 @@ Unknown</property>
 		      <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 
 		      <child>
-			<widget class="GtkIconView" id="iconlist">
+			<widget class="GtkViewport" id="viewport1">
 			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="selection_mode">GTK_SELECTION_SINGLE</property>
-			  <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
+			  <property name="shadow_type">GTK_SHADOW_IN</property>
+
+			  <child>
+			    <widget class="GtkHBox" id="iconbox">
+			      <property name="visible">True</property>
+			      <property name="homogeneous">False</property>
+			      <property name="spacing">0</property>
+
+			      <child>
+				<placeholder/>
+			      </child>
+			    </widget>
+			  </child>
 			</widget>
 		      </child>
 		    </widget>
@@ -2734,7 +2744,7 @@ Unknown</property>
 	      <child>
 		<widget class="GtkLabel" id="label257">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">LDS _temple:</property>
+		  <property name="label" translatable="yes">_Temple:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -2889,7 +2899,7 @@ Unknown</property>
 	      <child>
 		<widget class="GtkLabel" id="label260">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">LDS te_mple:</property>
+		  <property name="label" translatable="yes">Te_mple:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -3050,7 +3060,7 @@ Unknown</property>
 	      <child>
 		<widget class="GtkLabel" id="label261">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">LD_S temple:</property>
+		  <property name="label" translatable="yes">Temp_le:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>

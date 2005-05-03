@@ -61,8 +61,13 @@ class WitnessTab:
         self.window = window
         self.slist = clist
         self.selection = clist.get_selection()
-        titles = [ (_('Witness'),0,300),(_('ID'),1,100)]
-        self.model = ListModel.ListModel(clist,titles,event_func=self.edit_clicked);
+        titles = [
+            (_('Witness'), 0, 300, ListModel.TEXT, None, None),
+            (_('ID'),      1, 100, ListModel.TEXT, None, None)
+            ]
+
+        self.model = ListModel.ListModel(
+            clist,titles,event_func=self.edit_clicked);
 
         add_btn.connect('clicked', self.add_clicked)
         edit_btn.connect('clicked', self.edit_clicked)
