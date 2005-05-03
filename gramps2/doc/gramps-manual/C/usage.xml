@@ -2803,8 +2803,8 @@ all changes are immediate.</para></note>
       <title>Finding records</title>
 
 	<para>To find a record in a database, first switch to the appripriate
-	View that provides the list of the desired records: People, Source,
-	Place, or Media. Then start typing the name of a person or the title
+	View that provides the list of the desired records: People, Sources,
+	Places, or Media. Then start typing the name of a person or the title
 	of a Source, Place, or Media object that you are looking for,
 	respectively.
 	You may also press <keycap>Ctrl+F</keycap> to turn on the search
