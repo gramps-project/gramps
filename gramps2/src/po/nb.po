@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Sun May  1 22:06:28 2005\n"
-"PO-Revision-Date: 2005-05-01 20:46+0200\n"
-"Last-Translator: Jørgen Grønlund <jorgenhg@broadpark.no>\n"
-"Language-Team: Norsk bokmål <i18n-nb@lister.ping.uio.no>\n"
+"PO-Revision-Date: 2005-05-04 12:08+0200\n"
+"Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
+"Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -241,19 +241,21 @@ msgstr "Kolonnenavn"
 
 #: Date.py:103
 msgid "Gregorian"
-msgstr ""
+msgstr "Gregoriansk"
 
 #: Date.py:104
 msgid "Julian"
-msgstr ""
+msgstr "Juliansk"
 
 #: Date.py:105
+#, fuzzy
 msgid "Hebrew"
-msgstr ""
+msgstr "Hebraisk"
 
 #: Date.py:106
+#, fuzzy
 msgid "French Republican"
-msgstr ""
+msgstr "Fransk republikansk"
 
 #: Date.py:107
 #, fuzzy
@@ -261,8 +263,9 @@ msgid "Persian"
 msgstr "Person"
 
 #: Date.py:108
+#, fuzzy
 msgid "Islamic"
-msgstr ""
+msgstr "Islamsk"
 
 #: DateEdit.py:74 DateEdit.py:83
 msgid "Regular"
@@ -9197,3 +9200,4 @@ msgstr "<b>Verdier</b>"
 #, fuzzy
 #~ msgid "remote ancestors"
 #~ msgstr "en fjern ane"
+
