@@ -1,3 +1,7 @@
+2005-05-03  Don Allingham  <don@gramps-project.org>
+	* src/gramps_main.py: remove beta warning, handle OSError
+	on config open
+
 2005-05-03  Tino Meinen  <a.t.meinen@chello.nl>
 	* src/po/nl.po: Updated Dutch translation
 

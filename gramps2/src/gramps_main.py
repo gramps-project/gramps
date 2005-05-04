@@ -146,27 +146,24 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         try:
             GrampsCfg.loadConfig()
                 
-    
-            if GrampsKeys.get_betawarn() == 0:
-                WarningDialog(_("Use at your own risk"),
-                              _("This is an unstable development version of GRAMPS. "
-                                "It is intended as a technology preview. Do not trust your "
-                                "family database to this development version. This version may "
-                                "contain bugs which could corrupt your database."))
-                GrampsKeys.save_betawarn(1)
-                GrampsKeys.sync()
-    
+            self.beta_warn()    
             self.RelClass = PluginMgr.relationship_class
             self.relationship = self.RelClass(self.db)
             self.gtop = gtk.glade.XML(const.gladeFile, "gramps", "gramps")
         
             self.init_interface()
             
+        except OSError,msg:
+            ErrorDialog(_("Configuration error"),str(msg))
+            return
         except Errors.GConfSchemaError, val:
             ErrorDialog(_("Configuration error"),
                         str(val) + _("\n\nPossibly the installation of GRAMPS was incomplete."
                           " Make sure the GConf schema of GRAMPS is properly installed."))
             gtk.main_quit()
+            return
+        except:
+            DisplayTrace.DisplayTrace()
             return
             
         if not mime_type_is_defined(const.app_gramps):
@@ -206,6 +203,18 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             TipOfDay.TipOfDay(self)
 
         self.db.set_researcher(GrampsCfg.get_researcher())
+
+    def beta_warn(self):
+        return
+        if not GrampsKeys.get_betawarn():
+            return
+        WarningDialog("Use at your own risk",
+                      "This is an unstable development version of GRAMPS. "
+                      "It is intended as a technology preview. Do not trust your "
+                      "family database to this development version. This version may "
+                      "contain bugs which could corrupt your database.")
+        GrampsKeys.save_betawarn(1)
+        GrampsKeys.sync()
 
     def date_format_key_update(self,client,cnxn_id,entry,data):
         GrampsCfg.set_calendar_date_format()
