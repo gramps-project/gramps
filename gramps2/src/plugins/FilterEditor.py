@@ -337,7 +337,7 @@ class FilterEditor:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help_display('gramps-manual','tools-util')
+        help_display('gramps-manual','tools-util-cfe')
 
     def on_delete_event(self,obj,b):
         self.filterdb.save()
@@ -490,7 +490,7 @@ class EditFilter:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help_display('gramps-manual','tools-util')
+        help_display('gramps-manual','tools-util-cfe')
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()

@@ -1,3 +1,15 @@
+2005-05-04  Alex Roitman  <shura@gramps-project.org>
+	* doc/gramps-manual/C/figures/scratch-pad.png: Add new figure.
+	* doc/gramps-manual/C/authors.xml: Update.
+	* doc/gramps-manual/C/keybind.xml: Update.
+	* doc/gramps-manual/C/usage.xml: Update.
+	* doc/gramps-manual/C/figures/cfe-ar.png: Update.
+	* doc/gramps-manual/C/figures/cfe-df.png: Update.
+	* src/plugins/FilterEditor.py: Correct manual section.
+	* src/plugins/ScratchPad.py: Correct manual section.
+	* src/plugins/SoundGen.py: Correct manual section.
+	* src/plugins/Verify.py: Correct manual section.
+
 2005-05-03  Don Allingham  <don@gramps-project.org>
 	* src/gramps_main.py: remove beta warning, handle OSError
 	on config open

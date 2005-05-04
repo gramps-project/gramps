@@ -140,8 +140,8 @@
             <entry><para><keycap>Ctrl</keycap>+<keycap>Up</keycap> 
             or <keycap>Ctrl</keycap>+<keycap>Left</keycap></para></entry> 
             <entry><para>Swap the selected spouse and the Active Person.
-            Use <keycap>Ctrl</keycap>+<keycap>Down</keycap> in standard Family View and
-            <keycap>Ctrl</keycap>+<keycap>Right</keycap> in alternative Family  
+            Use <keycap>Ctrl</keycap>+<keycap>Up</keycap> in standard Family View and
+            <keycap>Ctrl</keycap>+<keycap>Left</keycap> in alternative Family  
             View.</para></entry> 
           </row>  
           </tbody> 

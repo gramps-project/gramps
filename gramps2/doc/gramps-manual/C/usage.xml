@@ -380,8 +380,8 @@
 
             <varlistentry><term>&app; package export</term>
     <listitem><para>Exporting to &app; package will create a gzip-compressed tar 
-      archive (also known as tarball) which contains gramps database, all 
-      local media objects, and copies of all external media objects. This is a
+      archive (also known as tarball) which contains gramps database
+      and copies of all media objects files. This is a
       useful format for moving your database to another machine or for sharing 
       it with somebody, while retaining all the features provided 
       by &app;.
@@ -389,8 +389,8 @@
 
     <varlistentry><term>Export to CD</term>
     <listitem>
-          <para>Exporting to CD will prepare you database directory with all its
-      contents to be recorded to the CD. This is done through the 
+      <para>Exporting to CD will prepare your database and copies of all media
+      objects files to be recorded to the CD. This is done through the 
       <guilabel>burn:///</guilabel> location in Nautilus. After exporting to 
       CD, go to the <guilabel>burn:///</guilabel> location by  
       selecting <menuchoice><guimenu>Go</guimenu>  
@@ -2863,6 +2863,130 @@ all changes are immediate.</para></note>
 
 
       <!-- =============== Usage Sub-subsection ================ -->
+      <sect2 id="rep-books"> 
+	<title>Books</title> 
+	<para> Currently, the only available report under this category
+        is the Book Report. </para>
+
+	<para> The Book Report creates a single document (i.e. a Book) 
+        containing a collection of graphical and textual reports.
+        Consequently, this allows for a very rich set of documents 
+        that &app; can produce. 
+        </para>
+
+	<para> When Book Report is selected, the following book configuration
+        dialog appears: </para>
+
+ 	<!-- ==== Figure: Book Report dialog ==== -->
+	<figure id="rep-book-fig"> 
+	<title>Book Report dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/bookreport.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Book Report dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para> The <guilabel>Book name</guilabel> text entry field is used to
+        save the book (a set of configured selections) for future use.
+        The top pane lists the items available for inclusion in the 
+        book. The bottom pane lists the currently selected items in
+        the order they will appear in the book. </para>
+        
+	<para> The horizontal set of buttons by the <guilabel>Book 
+	name</guilabel> field operates on the whole book. Click 
+	the <guibutton>Clear</guibutton> button to clear all items from
+        the current book. Click the <guibutton>Save</guibutton> button to 
+	save the current book (under the name typed in 
+	the <guilabel>Book name</guilabel> text entry field) for future
+	use.</para> 
+	
+	<tip><para>
+	Saving the book also saves the configuration for each item.
+	</para></tip>
+	
+	<para>Click the <guibutton>Open</guibutton> button to load
+        the book from the list of previously saved books. Finally, click the 
+        <guibutton>Edit books</guibutton> button to evoke the editable list of
+        available books.  </para>
+	
+	<para> The vertical set of buttons to the right of the bottom pane
+	operates on the 
+	selected book item. Click the <guibutton>Add</guibutton> button to 
+	add selected item from the available list to the current book. Click 
+	the <guibutton>Remove</guibutton> button to remove an item from the 
+	current book. Use <guibutton>Up</guibutton> and 
+	<guibutton>Down</guibutton> to change the items order in the current 
+	book. Click the <guibutton>Setup</guibutton> button to configure the 
+	options of the selected item of the current book. 
+        </para>
+
+	<para> The configuration dialogs evoked by <guibutton>Setup</guibutton>
+        are item-specific. If you choose not to configure the item, sane
+        defaults will be used for all needed options. The common option for 
+        almost all book items is the center person: the person on whom the
+        item is centered. Thanks to this option, you can create a book with
+        items centered on different people (e.g. your mom's and dad's 
+        ancestors as separate chapters). By default, the center person is 
+	set to the active person. </para> 
+
+	<para>Almost all items available for inclusion in the book are textual 
+        or graphical reports, and are therefore available in the form of standalone 
+        reports. The exception is the following items which are only available as 
+        book items:</para>
+
+	<variablelist>
+
+	<varlistentry><term>Title Page</term>
+	<listitem><para>This item produces a customized Title page. You can 
+        configure the text of title, subtitle, and the footer of the page. 
+        An image can be optionally placed between the subtitle and the footer. 
+        Because of its configurability, this item can be used to create 
+        title pages for the whole book, its chapter, or even a single item. 
+        </para>
+        </listitem>
+	</varlistentry>
+
+ 	<varlistentry><term>Custom Text</term>
+	<listitem><para>This item produces a page with three paragraphs, each 
+        containing custom text. The appearance of the text can be adjusted by 
+        using custom styles. This item was meant to be used for epigraphs, 
+        dedications, explanations, notes, and so forth. 
+        </para></listitem>
+	</varlistentry>
+
+	</variablelist>
+
+      </sect2>
+
+      <!-- =============== Usage Sub-subsection ================ -->
+      <sect2 id="rep-codegen"> 
+	<title>Code Generators</title> 
+	<para> This category contains reports that produce code intended
+	to be run through the computer, rather than the usual formatted
+	output for human reading. The only code generator currently
+	available in &app; is the Relationship Graph producing the
+	GraphViz description of the graph.</para>
+	
+	<para>The Relationship Graph creates a complex relationship graph in 
+	GraphViz format. The GraphViz <command>dot</command> tool can 
+	transform the graph into postscript, jpeg, png, vrml, svg, and 
+	other formats. GraphViz tools are freely available from the 
+	<ulink url="http://www.graphviz.org" type="http">GraphViz 
+	site</ulink>. Specific options for this report 
+	include filter and number of generations considered, as well as 
+	several GraphViz-specific options related to pagination, color, 
+	and details of the graph.</para>
+	
+	<tip><para>If you are not interested in GraphViz code itself
+	and just want to generate graphical output, &app; can do it for you
+	under the hood. Look for <guilabel>Relationship Graph</guilabel>
+	in the Graphical Reports category, <xref linkend="rep-graph"/>
+	</para></tip>
+
+     </sect2>
+
+      <!-- =============== Usage Sub-subsection ================ -->
       <sect2 id="rep-graph"> 
 	<title>Graphical Reports</title> 
 	<para> Graphical reports represent information in forms of charts 
@@ -2898,16 +3022,36 @@ all changes are immediate.</para></note>
 	the format of the displayed entries. </para></listitem>
 	</varlistentry>
 
+	<varlistentry><term>Fan Chart</term>
+	<listitem><para>This report produces a chart resembling a fan, with
+	Active person in the center, parents the the semicircle next to it,
+	grandparents in the next semicircle, and so on, for a total of five
+	generations. </para></listitem>
+	</varlistentry>
+
 	<varlistentry><term>Relationship Graph</term>
 	<listitem><para>This report creates a complex relationship graph in 
-	GraphViz format. The GraphViz <command>dot</command> tool can 
-	transform the graph into postscript, jpeg, png, vrml, svg, and many
-	other formats. GraphViz tools are freely available from the 
-	<ulink url="http://www.graphviz.org" type="http">GraphViz 
-	site</ulink>. Specific options for this report 
-	include filter and number of generations considered, as well as 
+	GraphViz format and then converts into graphical output
+	running it through the the GraphViz <command>dot</command> tool
+	behind the scene. Specific options for this report 
+	include filter, options for dates and places for the events, and
+	whether to include URLs and IDs for individuals and families. 
+	There are also 
 	several GraphViz-specific options related to pagination, color, 
 	and details of the graph. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Statistics Chart</term>
+	<listitem><para>This report can collect and display a wealth of
+	statistical data about your database. 
+	Specific options include filter, sorting methods, and additional 
+	birth- and gender-based	limit for inclusion into statistics.
+	You can also set the minimum number of items to qualify for the
+	bar chart, so that the charts with fewer items will generate
+	a pice chart instead.
+	The <guilabel>Chart Selection</guilabel> tab
+	allows you to check which charts you  want to include in your report. 
+	</para></listitem>
 	</varlistentry>
 
 	<varlistentry><term>Timeline Graph</term>
@@ -2922,12 +3066,11 @@ all changes are immediate.</para></note>
 	<para>Common options for graphical reports are the filename of the
 	output, the format of the output, selected style, page size and 
 	orientation. Optionally, the reports can be immediately opened
-    with the default application (set in the main GNOME 
-    <menuchoice><guimenu>Desktop Preferenes</guimenu>
-    <guisubmenu><replaceable>Advanced</replaceable></guisubmenu>
-	<guimenuitem><replaceable>Preferred 
-    Applications</replaceable></guimenuitem></menuchoice> dialog). 
-    </para>
+	with the default application. </para>
+	
+	<tip><para>The options used in reports are persistent: each report
+	remembers its options used last time. 
+	</para></tip>
 
       </sect2>
 
@@ -2959,15 +3102,6 @@ all changes are immediate.</para></note>
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term>Comprehensive Ancestors Report</term>
-	<listitem><para>This report produces a comprehensive description 
-	of ancestors of the active person. The highlights of this report
-        include elaborate layout, images of children, present and former 
-        spouses, and source citations. Specific options: number 
-	of backward generations to consider, whether to cite sources, 
-        and whether to break pages between generations. </para></listitem>
-	</varlistentry>
-
 	<varlistentry><term>Complete Individual Report</term>
 	<listitem><para>This report provides individual summaries similar to
 	that of the Individual Summary report. The advantage of this report 
@@ -2976,6 +3110,15 @@ all changes are immediate.</para></note>
 	database), the report may contain from one to many individual 
 	summaries. Another option for this report is the inclusion of 
 	source information when listing events. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Comprehensive Ancestors Report</term>
+	<listitem><para>This report produces a comprehensive description 
+	of ancestors of the active person. The highlights of this report
+        include elaborate layout, images of children, present and former 
+        spouses, and source citations. Specific options: number 
+	of backward generations to consider, whether to cite sources, 
+        and whether to break pages between generations. </para></listitem>
 	</varlistentry>
 
 	<varlistentry><term>Descendant Report</term>
@@ -3035,107 +3178,15 @@ all changes are immediate.</para></note>
 	orientation. For HTML reports, there is no page information. 
 	Instead, HTML options include the choice of the HTML template, 
 	either available in &app; or a custom template defined by you. 
-    Optionally, the reports can be immediately opened
-    with the default application (set in the main GNOME 
-    <menuchoice><guimenu>Desktop Preferenes</guimenu>
-    <guisubmenu><replaceable>Advanced</replaceable></guisubmenu>
-	<guimenuitem><replaceable>Preferred 
-    Applications</replaceable></guimenuitem></menuchoice> dialog). 
-    </para>
+	Optionally, the reports can be immediately opened
+	with the default application. </para>
+
+	<tip><para>The options used in reports are persistent: each report
+	remembers its options used last time. 
+	</para></tip>
 
       </sect2>
 
-      <!-- =============== Usage Sub-subsection ================ -->
-      <sect2 id="rep-books"> 
-	<title>Books</title> 
-	<para> Currently, the only available report under this category
-        is the Book Report. </para>
-
-	<para> The Book Report creates a single document (i.e. a Book) 
-        containing a collection of graphical and textual reports.
-        Consequently, this allows for a very rich set of documents 
-        that &app; can produce. 
-        </para>
-
-	<para> When Book Report is selected, the following book configuration
-        dialog appears: </para>
-
- 	<!-- ==== Figure: Book Report dialog ==== -->
-	<figure id="rep-book-fig"> 
-	<title>Book Report dialog</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/bookreport.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Book Report dialog. </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
-
-	<para> The <guilabel>Book name</guilabel> text entry field is used to
-        save the book (a set of configured selections) for future use.
-        The top pane lists the items available for inclusion in the 
-        book. The bottom pane lists the currently selected items in
-        the order they will appear in the book. </para>
-        
-	<para> The horizontal set of buttons by the <guilabel>Book 
-	name</guilabel> field operates on the whole book. Click 
-	the <guibutton>Clear</guibutton> button to clear all items from
-        the current book. Click the <guibutton>Save</guibutton> button to 
-	save the current book (under the name typed in 
-	the <guilabel>Book name</guilabel> text entry field) for future use. 
-	Note that saving the book also saves the configuration for each item. 
-	Click the <guibutton>Open</guibutton> button to load
-        the book from the list of previously saved books. Finally, click the 
-        <guibutton>Edit books</guibutton> button to evoke the editable list of
-        available books.  </para>
-	
-	<para> The vertical set of buttons to the right of the bottom pane
-	operates on the 
-	selected book item. Click the <guibutton>Add</guibutton> button to 
-	add selected item from the available list to the current book. Click 
-	the <guibutton>Remove</guibutton> button to remove an item from the 
-	current book. Use <guibutton>Up</guibutton> and 
-	<guibutton>Down</guibutton> to change the items order in the current 
-	book. Click the <guibutton>Setup</guibutton> button to configure the 
-	options of the selected item of the current book. 
-        </para>
-
-	<para> The configuration dialogs evoked by <guibutton>Setup</guibutton>
-        are item-specific. If you choose not to configure the item, sane
-        defaults will be used for all needed options. The common option for 
-        almost all book items is the center person: the person on whom the
-        item is centered. Thanks to this option, you can create a book with
-        items centered on different people (e.g. your mom's and dad's 
-        ancestors as separate chapters). By default, the center person is 
-	set to the active person. </para> 
-
-	<para>Almost all items available for inclusion in the book are textual 
-        or graphical reports, and are therefore available in the form of standalone 
-        reports. The exception is the following items which are only available as 
-        book items:</para>
-
-	<variablelist>
-
-	<varlistentry><term>Title Page</term>
-	<listitem><para>This item produces a customized Title page. You can 
-        configure the text of title, subtitle, and the footer of the page. 
-        An image can be optionally placed between the subtitle and the footer. 
-        Because of its configurability, this item can be used to create 
-        title pages for the whole book, its chapter, or even a single item. 
-        </para>
-        </listitem>
-	</varlistentry>
-
- 	<varlistentry><term>Custom Text</term>
-	<listitem><para>This item produces a page with three paragraphs, each 
-        containing custom text. The appearance of the text can be adjusted by 
-        using custom styles. This item was meant to be used for epigraphs, 
-        dedications, explanations, notes, and so forth. 
-        </para></listitem>
-	</varlistentry>
-
-	</variablelist>
-
-      </sect2>
 
       <!-- =============== Usage Sub-subsection ================ -->
       <sect2 id="rep-view"> 
@@ -3163,7 +3214,14 @@ all changes are immediate.</para></note>
       <!-- =============== Usage Sub-subsection ================ -->
       <sect2 id="rep-web"> 
 	<title>Web Page</title> 
+	
+	<para>This category includes reports producing web sites
+	based on your data.</para>
 
+	<variablelist>
+
+	<varlistentry><term>Generate Web Site</term>
+	<listitem>
 	<para> This report generates web pages, either for a selected 
 	individual (active person) or a set of individuals. The options 
 	for this report are broken down into contents, privacy, and advanced 
@@ -3177,6 +3235,17 @@ all changes are immediate.</para></note>
         information. Finally, the advanced options allow you to include 
         the optional &app; ID, create a GENDEX index, and specify the 
         extension of the resulting files. </para>
+	</listitem>
+	</varlistentry>
+
+ 	<varlistentry><term>Narrative Web Site</term>
+	<listitem><para>This report is an alternative web site generator,
+	producing the narrative set of web pages. It is still in development,
+	with the goal of producing a more complete, better looking, and easily
+	adjustable web site.</para></listitem>
+	</varlistentry>
+
+	</variablelist>
 
       </sect2>
 
@@ -3216,15 +3285,23 @@ all changes are immediate.</para></note>
 	<listitem><para>This tool compares events across the selected group of
 	people. The people for this comparison are chosen with the use of 
 	custom filters. The custom filters can be created in the Custom Filter
-	Editor (see <xref linkend="tools-util"/>). The resulting table produced
-	by this tool can be saved as a spreadsheet. </para></listitem>
+	Editor (see <xref linkend="tools-util-cfe"/>) that can be evoked by clicking
+	the <guilabel>Custom Filter Editor</guilabel> button. The resulting
+	table produced by this tool can be saved as a spreadsheet.
+	</para></listitem>
 	</varlistentry>
 
  	<varlistentry><term>Interactive descendant browser</term>
 	<listitem><para>This tool builds a tree with the active person being 
 	the root. Children branch from their parents in the usual manner. 
 	Use this tool for a quick glance of a person's descendants. 
-	</para></listitem>
+	</para>
+	
+	<tip><para>Double-clicking on tree node will bring up the <guilabel>Edit
+	Person</guilabel> dialog allowing to view or modify the personal data.
+	</para></tip>
+	
+	</listitem>
 	</varlistentry>
 
 	</variablelist>
@@ -3234,10 +3311,14 @@ all changes are immediate.</para></note>
       <sect2 id="tools-db"> 
 	<title>Database Processing</title> 
 	<para> This section contains tools which may modify your database. 
-	The modifications will only be performed upon your explicit consent. 
 	The tools from this section are used mostly for finding and correcting
 	errors in the data. The following database processing tools are 
 	currently available in &app;:</para>
+
+	<note><para>
+	The modifications will only be performed upon your explicit consent,
+	except for the automatic fixes performed by <guilabel>Check and repair
+	database</guilabel> tool. </para></note>
 
 	<variablelist>
 
@@ -3273,13 +3354,25 @@ all changes are immediate.</para></note>
  	<varlistentry><term>Extract information from names</term>
 	<listitem><para>This tool searches the entire database and attempts 
 	to extract titles and nicknames that may be embedded in a person's 
-	<guilabel>Given name</guilabel> field. 
+	<guilabel>Given name</guilabel> field. If any information could be
+	extracted, the candidates for fixing will be presented in the table.
+	You may then decide which to repair as suggested and which not to.
 	</para></listitem>
 	</varlistentry>
 
  	<varlistentry><term>Find possible duplicate people</term>
 	<listitem><para>This tool searches the entire database, looking 
 	for the entries that may represent the same person. 
+	</para></listitem>
+	</varlistentry>
+
+ 	<varlistentry><term>Fix capitalization of family names</term>
+	<listitem><para>This tool searches the entire database and attempts 
+	to fix the capitalization of family names. The aim is to have 
+	conventional capitalization: capital first letter and lower case
+	for the rest of the family name. If deviations from this rule
+	are detected, the candidates for fixing will be presented in the table.
+	You may then decide which to repair as suggested and which not to.
 	</para></listitem>
 	</varlistentry>
 
@@ -3300,6 +3393,42 @@ all changes are immediate.</para></note>
       </sect2>
 
       <!-- =============== Usage Sub-subsection ================ -->
+      <sect2 id="tools-debug"> 
+	<title>Debug</title> 
+	<para> This section contains debugging tools that are not of general
+	interest for many of the users of &app;. If you're not interested in
+	debugging or developing &app; you may safely skip this section.</para>
+
+	<variablelist>
+
+	<varlistentry><term>Python evaluation window</term>
+	<listitem><para>Enter expression into the <guilabel>Evaluation
+	Window</guilabel>, get the output in <guilabel>Output Window</guilabel>.
+	Any errors should end up in the <guilabel>Error Window</guilabel>.
+	</para></listitem>
+	</varlistentry>
+
+ 	<varlistentry><term>Reload plugins</term>
+	<listitem><para>Makes an attempt to reload all plugins.
+	</para>
+	
+	<note><para>This tool is itself a plugin, but it will not reload itself!
+	</para></note>
+	
+	</listitem>
+	</varlistentry>
+
+	<varlistentry><term>Show uncollected objects</term>
+	<listitem><para>Provides the window listing all uncollected objects.
+	Depending on the system settings, recently abandoned GUI objects
+	may still be uncollected.
+	</para></listitem>
+	</varlistentry>
+
+	</variablelist>
+      </sect2>
+
+      <!-- =============== Usage Sub-subsection ================ -->
       <sect2 id="tools-util"> 
 	<title>Utilities</title> 
 	<para> </para>
@@ -3309,10 +3438,9 @@ all changes are immediate.</para></note>
 	database, but they will not modify your existing data. 
 	The following utilities are currently available in &app;:</para>
 
-	<variablelist>
-
- 	<varlistentry><term>Custom Filter Editor</term>
-	<listitem><para>The Custom Filter Editor builds custom filters 
+	<sect3 id="tools-util-cfe">
+ 	<title>Custom Filter Editor</title>
+	<para>The Custom Filter Editor builds custom filters 
 	that can be used to select people included in reports, exports, 
 	and other tools and utilities. This is in fact a very powerful tool 
 	in genealogical analysis.</para> 
@@ -3326,6 +3454,10 @@ all changes are immediate.</para></note>
 	buttons, respectively. All the filters displayed in the list will be 
 	automatically saved along with your database and will be available 
 	with subsequent sessions of &app;. </para>
+	
+	<note><para>The changes made to the filters only take effect when you
+	click the <guibutton>Apply and close</guibutton> button.
+	</para></note>
 	
 	<para>Clicking the <guibutton>Add...</guibutton> button invokes the 
 	following <guilabel>Define filter</guilabel> dialog: </para>
@@ -3345,15 +3477,19 @@ all changes are immediate.</para></note>
 	identify this filter in the future into the <guilabel>Comment</guilabel>
 	field. Add as many rules to the <guilabel>Rule list</guilabel> as you
 	would like to your filter using <guibutton>Add...</guibutton> button. 
-	Check <guilabel>Return values that do not match the filter rules
-	(invert)</guilabel> to negate the filter rule (e.g. inverting "has a
-	common ancestor with I1" rule will match everyone who does not have a
-	common ancestor with that person). If the filter has more than one rule, 
+	If the filter has more than one rule, 
 	select one of the <guilabel>Rule operations</guilabel>. This allows you
 	to choose whether all rules must apply, only one (either) rule must 
 	apply, or exactly one (either) rule must apply, in order for the filter 
 	to generate a match. If your filter has only one rule, this selection 
 	has no effect. </para>
+
+	<para>
+	Check <guilabel>Return values that do not match the filter
+	rules</guilabel> to invert the filter rule.  For example, inverting
+	"has a common ancestor with I1" rule will match everyone who does not
+	have a common ancestor with that person). 
+	</para>
 	
 	<para> Clicking the <guibutton>Add...</guibutton> button invokes the 
 	following <guilabel>Add Rule</guilabel> dialog:</para>
@@ -3379,13 +3515,69 @@ all changes are immediate.</para></note>
         of the currently edited filter. Clicking <guibutton>Cancel</guibutton>
         will abort adding the rule to the filter. </para>
         
-        <para> Note that a filter you've already designed may be used as a rule
+        <tip><para> A filter you have already designed may be used as a rule
 	for another filter. This gives you nearly infinite flexibility in
 	custom-tailoring your selection criteria that can be later used in 
-	most of the exports, reports and some of the tools (such as comparing
-	individual events). </para></listitem>
-	</varlistentry>
+	most of the exports, reports, and some of the tools (such as comparing
+	individual events). </para></tip>
+	</sect3>
 
+ 	<sect3 id="tools-util-scratch-pad"><title>Scratch Pad</title>
+	
+	<para>This tool provides a temporary note pad to store
+	database records for easy reuse. In short, this is a sort of the
+	copy-and-paste functionality extended from textual objects to
+	other types of records used in &app;.
+	</para>
+	
+	<tip><para>Scratch Pad makes extensive use of drag-and-drop technique.
+	</para></tip>
+	
+ 	<para>To invoke Scratch Pad, either choose <menuchoice><guimenu>Tools</guimenu>
+	<guisubmenu>Utilities</guisubmenu><guimenuitem>Scratch
+	Pad</guimenuitem></menuchoice> or click the <guilabel>Paste</guilabel>
+	button on the toolbar. The following window will appear:</para>
+	
+	<!-- ==== Figure: Scratch Pad tool ==== -->
+	<figure id="scratch-pad-fig"> 
+	<title>Scratch Pad tool</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/scratch-pad.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Add Scratch Pad tool. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para>
+	Scratch pad supports addresses, attributes (both personal and
+	family), events (both personal and family), names, media objects
+	references, source references, URLs, and of course textual information
+	of notes and comments. To store any type of these records, simply drag
+	the existing record onto the Scratch pad from the corresponding
+	editor dialog. To reuse the record, drag it from the Scratch Pad
+	onlto the corresponding place in the editor, e.g. Address tab, 
+	Attribute tab, etc. 	
+	</para>
+	
+	<tip><para>Some objects are showing the link icon on the left. This
+	indicates that dragging such selection will produce a reference
+	to an existing object, not copy the object itself. </para>
+
+	<para>For example, the media object file will not be duplicated.
+	Instead, the reference will be made to an existing media object,
+	which will result in the local gallery entry.
+	</para></tip>
+
+	<tip><para>Scratch Pad storage is persistent within a single &app;
+	session. Closing the window will not lose the stored records. However,
+	exiting &app; will.
+	</para></tip>
+
+	</sect3>
+
+	<sect3 id="tools-util-other"><title>Other tools</title>
+	
+	<variablelist>
  	<varlistentry><term>Generate SoundEx codes</term>
 	<listitem><para>This utility generates SoundEx codes for the names of
 	people in the database. Please visit the <ulink 
@@ -3396,24 +3588,27 @@ all changes are immediate.</para></note>
 	</varlistentry>
 
  	<varlistentry><term>Relationship calculator</term>
-	<listitem><para>This utility calculates the relationship between 
-	two people from the database. 
+	<listitem><para>This utility calculates and displays the relationship
+	of any person to the active person. 
 	</para></listitem>
 	</varlistentry>
 
  	<varlistentry><term>Verify the database</term>
 	<listitem><para>This utility allows you to verify the database based 
-	on the set of criteria specified by you. This tool is different from 
-	the previously described Check tool in the following. The Check tool
+	on the set of criteria specified by you. </para>  
+	
+	<tip><title>Difference between Verify tool and previously described
+	Check tool </title>
+	<para>The Check tool
 	detects inconsistencies in the database structure. The Verify tool, 
 	however, is detecting the records that do not satisfy your particular 
-	criteria. </para>
+	criteria. </para></tip>
 
 	<para>For example, you may want to make sure that nobody in your 
 	database had children at the age of 98. Based on common sense, such 
 	a record would indicate an error. However, it is not a consistency 
 	error in the database. Besides, someone might have a child at the of 
-	98 (albeit this rarely happens). The Verify tool will display 
+	98 (although this rarely happens). The Verify tool will display 
 	everything that violates your criteria so that you can check whether 
 	the record is erroneous or not. The ultimate decision is yours.
 	</para></listitem>
@@ -3421,6 +3616,7 @@ all changes are immediate.</para></note>
 
 	</variablelist>
 
+     </sect3>
      </sect2>
 
     </sect1>
