@@ -1,3 +1,6 @@
+2005-05-05  Don Allingham  <don@gramps-project.org>
+	* src/ReorderIDs.py: bring up to speed with new handle/id methodology,
+
 2005-05-05  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GenericFilter.py: Fix copy-n-paste errors;
 	dont crash on empty database
