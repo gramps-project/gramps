@@ -71,6 +71,7 @@ class SourceView:
         self.list = glade.get_widget("source_list")
         #self.list.set_property('fixed-height-mode',True)
         self.list.connect('button-press-event',self.button_press)        
+        self.list.connect('key-press-event',self.key_press)
         self.selection = self.list.get_selection()
         self.selection.set_mode(gtk.SELECTION_MULTIPLE)
 

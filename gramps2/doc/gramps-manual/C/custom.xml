@@ -1,4 +1,4 @@
-<chapter id="gramps-prefs"> 
+<chapter id="gramps-settings"> 
 
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
@@ -23,10 +23,14 @@
 <!-- $Id$ -->
 
     <title>Settings</title> 
-    <para>To configure &app;, choose 
-      <menuchoice><guimenu>Edit</guimenu>
-      <guimenuitem>Preferences...</guimenuitem></menuchoice>. This will
-      bring up the following <guilabel>Preferences</guilabel> dialog.</para>
+    
+    <sect1 id="gramps-prefs">
+    <title>Preferences</title> 
+
+    <para>Most of the settings in &app;, are configured in the 
+    <guilabel>Preferences</guilabel> dialog. To invoke it, choose
+    <menuchoice><guimenu>Edit</guimenu>
+    <guimenuitem>Preferences...</guimenuitem></menuchoice>. </para>
 
  	<!-- ==== Figure: Type-ahead find ==== -->
 	<figure id="prefs-fig"> 
@@ -42,7 +46,7 @@
       categories. Selecting a tree node will display the corresponding
       options in the right side of the dialog. </para>
       
-    <sect1 id="gramps-prefs-db"> 
+    <sect2 id="gramps-prefs-db"> 
       <title>Database</title> 
 	<para> This category contains preferences relevant to the 
 	database itself. It has the following subcategories: </para>
@@ -108,9 +112,9 @@
 	</varlistentry>
 
 	</variablelist>
-    </sect1>
+    </sect2>
 
-    <sect1 id="gramps-prefs-display"> 
+    <sect2 id="gramps-prefs-display"> 
       <title>Display</title> 
 	<para> This category contains preferences relevant to  
 	displaying database records and controls in &app;. 
@@ -202,7 +206,86 @@
 	</varlistentry>
 
 	</variablelist>
+    </sect2>
 
+    </sect1>
+    
+    <sect1 id="gramps-prefs-other">
+    <title>Other settings</title>
+    
+    <para>Besides <guilabel>Preferences</guilabel> dialog, there are
+    other settings available in &app;. For various reasons they have been
+    made more readily accessible, as listed below.</para>
+    
+    <variablelist>
+	<varlistentry>
+	<term>Column Editor</term>
+    <listitem>
+    <para>The columns of the list views may be added, removed, or reordered
+    in a <guilabel>Column Editor Dialog</guilabel>,	
+    see <xref linkend="column-editor-fig"/>. Only checked columns will
+    be shown in the view. To change their order, drag any column to its desired place inside
+	the editor. Clicking <guibutton>OK</guibutton> will reflect the changes
+	in the appropriate view. To invoke <guilabel>Column Editor Dialog</guilabel>,
+	choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Column
+	Editor...</guimenuitem></menuchoice>.
+	</para>
+
+	<tip>
+	<para>The <guilabel>Column Editor</guilabel> is available
+	and works in the same way for all list views.
+    Specifically, it is available for People View, Family View (children list).
+    Sources View, Places View, and Media View.</para> </tip>
+
+	</listitem>
+	</varlistentry>
+
+	<varlistentry><term>Setting Home person</term>
+	<listitem><para>The Home person is the person who becomes active
+    when database opened, when <guibutton>Home</guibutton> button is clicked
+    or the <guimenuitem>Home</guimenuitem> menu item is selected from
+    either <guimenu>Go</guimenu> menu or the right-click context menu
+    anywhere.</para>
+    
+    <para>To set Home person, make the desired person active and
+    then choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Set Home
+	person...</guimenuitem></menuchoice>.</para>
+	</listitem>
+	</varlistentry>
+
+
+	<varlistentry><term>Adjusting viewing controls</term>
+	<listitem>Whether the toolbar, the sidebar, or the filter (People View
+    only) are displayed in the main window is adjusted through
+    the <guimenu>View</guimenu> menu.
+	</listitem>
+	</varlistentry>
+
+  	</variablelist>
+
+    </sect1>
+    
+    <sect1 id="gramps-prefs-adv">
+    <title>Advanced manipulation of settings</title>
+    
+    <warning><para>The contents of this section is outside the scope
+    of interest of a general user of &app;. If you proceed with tweaking
+    the options on the low level you may damage your &app; installation.
+    Be careful. YOU HAVE BEEN WARNED!
+    </para></warning>
+    
+    <para>By default, &app; stores its settings using gconf2 system.
+    All the settings used in this version of &app; are stored in
+    subdirectories under <filename>/apps/gramps/</filename> in the 
+    gconf2 namespace. Accessing the keys can be done either using 
+    <command>gconftool-2</command> command line tool, or the
+    <command>gconf-editor</command> GUI tool.
+    </para>
+    
+    <para>All keys are documented, and the notification mechanisms
+    are used as appropriate. Therefore, updating keys from outside
+    of &app; should lead to updating &app; in real time, without
+    necessarily restarting it.</para>
     </sect1>
 
   </chapter>

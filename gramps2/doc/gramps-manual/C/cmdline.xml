@@ -27,7 +27,7 @@
   <para>This appendix provides the reference to the command line 
   capabilities available when launching &app; from the terminal. </para>
   
-  <para>Let us note here that &app; was designed to be an interactive 
+  <note><para>&app; was designed to be an interactive 
   program. Therefore it uses graphical display and cannot run from the 
   true non-graphical console. It would take an enormous amount of effort 
   to enable it to run in a text-only terminal. This is why the set of 
@@ -35,47 +35,60 @@
   on the graphical display. Rather, it merely makes certain (typical) tasks 
   more convenient. It also allows one to execute these tasks from the scripts. 
   However, the graphical display must be accessible at all times! 
-  </para>
+  </para></note>
 
-  <para>To summarize, the use of the command line options provides 
+  <tip><para>To summarize, the use of the command line options provides 
   non-interactive behavior, but does not get rid of graphical display
   dependency. Take it or leave it! 
-  </para>
+  </para></tip>
 
 
       <sect1 id="cmdline-options">
       <title>Available options</title>
 
-      <para>Here is the list of the command line options in &app;:
+      <para>This section provides the reference list of all command line
+      options available in &app;. If you want to know more than just
+      a list of options, see next sections: <xref linkend="cmdline-operation"/>
+      and <xref linkend="cmdline-examples"/>.
       </para>
 
-          <variablelist>
-
-          <varlistentry><term>Format options</term>
-          <listitem><para> The format of any file destined for import or export
-          can be specified with the 
+          <sect2 id="cmdline-opt-format"><title>Format options</title>
+          <para> The format of any file destined for opening, importing,
+          or exporting can be specified with the 
           	<command>-f</command> <replaceable>format</replaceable>
-          option. The <replaceable>format</replaceable> can be one of the 
-          following:
+          option. The acceptable <replaceable>format</replaceable> values
+          are listed below.</para>
           
           	<variablelist>
 
-          	<varlistentry><term>gramps</term>
+          	<varlistentry><term>grdb</term>
           	<listitem><para> &app; database. This format is available 
-                for both import and export. When not specified, it can be 
-                guessed if the filename represents a directory. 
+                for opening, import, and export. When not specified, it can be 
+                guessed if the filename ends with .grdb 
+                </para></listitem></varlistentry>
+
+          	<varlistentry><term>gramps-xml</term>
+          	<listitem><para> &app; XML database. This format is available 
+                for opening, import, and export. When not specified, it can be 
+                guessed if the filename represents a directory.
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>gedcom</term>
           	<listitem><para> GEDCOM file. This format is available 
-                for both import and export. When not specified, it can be 
+                for opening, import, and export. When not specified, it can be 
                 guessed if the filename ends with .ged
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>gramps-pkg</term>
           	<listitem><para> &app; package. This format is available 
-                for both import and export. When not specified, it can be 
+                for import and export. When not specified, it can be 
                 guessed if the filename ends with .tgz
+                </para></listitem></varlistentry>
+
+          	<varlistentry><term>geneweb</term>
+          	<listitem><para> GeneWen file This format is available 
+                for import and export. When not specified, it can be 
+                guessed if the filename ends with gw
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>wft</term>
@@ -91,23 +104,78 @@
 
           	</variablelist>
 
-          </para></listitem>
-          </varlistentry>
+          </sect2>
 
-          <varlistentry><term>Import options</term>
-          <listitem><para> The files destined for import can be specified with 
-          the 
-          	<command>-i</command> <replaceable>filename</replaceable>
-          option. The format can be specified with the <command>-f</command> 
-          option immediately following the <replaceable>filename</replaceable>. 
+          <sect2 id="cmdline-opt-open"><title>Opening options</title>
+          <para>There are two ways to give &app; the name of the file to 
+          be opened: </para>
+          <itemizedlist>
+          <listitem><para>supply bare file name</para></listitem>
+          
+          <listitem><para>use the
+          <command>-O <replaceable>filename</replaceable></command> or
+          <command>-open=<replaceable>filename</replaceable></command> option
+          </para></listitem>
+
+          </itemizedlist>
+
+          <para>If the filename is given without any option flag, the attempt
+          to open the file will be made, and then the interactive &app; session
+          will be launched. 
+          </para>
+          
+          <tip><para>If no option is given, just the file name, &app; will
+          ignore the rest of the command line arguments. Use the -O flag
+          to open the file and do something with the data.
+          </para></tip>
+
+          <para>The format can be specified with the 
+          <command>-f <replaceable>format</replaceable></command> or 
+          <command>--format=<replaceable>format</replaceable></command>
+          option, immediately following the <replaceable>filename</replaceable>. 
           If not specified, the guess will be attempted based on 
-          the <replaceable>filename</replaceable>. For <term>gramps</term> 
+          the <replaceable>filename</replaceable>. For <term>gramps-xml</term> 
           format, the <replaceable>filename</replaceable> is actually the 
           name of directory under which the gramps database resides. For 
-          <term>gedcom</term> and <term>gramps-pkg</term>, the 
-          <replaceable>filename</replaceable> is the name of the 
+          <term>grdb</term> and <term>gedcom</term>, 
+          the <replaceable>filename</replaceable> is the name of the 
           corresponding file.
           </para>
+
+          <tip><para>Only <term>grdb</term>, <term>gramps-xml</term>,
+          and <term>gedcom</term> formats can be opened directly.
+          For other formats, you will need to use the import option
+          which will set up the empty database and then import data into it.
+          </para></tip>
+          
+          <tip><para>Only a single file can be opened. If you need to combine
+          data from several sources, you will need to use
+          the import option.</para></tip>
+                    
+          </sect2>
+
+          <sect2 id="cmdline-opt-import"><title>Import options</title>
+          <para> The files destined for import can be specified with the 
+          <command>-i <replaceable>filename</replaceable></command>
+          or <command>--import=<replaceable>filename</replaceable></command>
+          option. The format can be specified with the 
+          <command>-f <replaceable>format</replaceable></command> or 
+          <command>--format=<replaceable>format</replaceable></command>
+          option, immediately following the <replaceable>filename</replaceable>. 
+          If not specified, the guess will be attempted based on 
+          the <replaceable>filename</replaceable>. For <term>gramps-xml</term> 
+          format, the <replaceable>filename</replaceable> is actually the 
+          name of directory under which the gramps database resides. For 
+          <term>grdb</term>, <term>gedcom</term>, <term>gramps-pkg</term>, 
+          and <term>geneweb</term>,
+          the <replaceable>filename</replaceable> is the name of the 
+          corresponding file.
+          </para>
+
+          <tip><para>More than one file can be imported in one command.
+          If this is the case, &app; will incorporate the data from 
+          the next file into the database available at the moment.
+          </para></tip>
 
           <para>When more than one input file is given, each has to be preceded
           by  <command>-i</command> flag. The files are imported in the 
@@ -118,52 +186,147 @@
           <command>-i</command> <replaceable>file2</replaceable> 
           <command>-i</command> <replaceable>file1</replaceable> 
           might produce different gramps IDs in the resulting database.
-          </para></listitem>
-          </varlistentry>
+          </para></sect2>
 
-
-          <varlistentry><term>Export options</term>
-          <listitem><para> The files destined for export can be specified with 
-          the 
-          	<command>-o</command> <replaceable>filename</replaceable>
+          <sect2 id="cmdline-opt-export"><title>Export options</title>
+          <para> The files destined for export can be specified with the 
+          <command>-o <replaceable>filename</replaceable></command> or
+       	  <command>--output=<replaceable>filename</replaceable></command> 
           option. The format can be specified with the <command>-f</command> 
           option immediately following the <replaceable>filename</replaceable>. 
           If not specified, the guess will be attempted based on 
-          the <replaceable>filename</replaceable>. For <term>gramps</term> 
+          the <replaceable>filename</replaceable>. For <term>gramps-xml</term> 
           and <term>iso</term> formats, the <replaceable>filename</replaceable> 
           is actually the name of directory the gramps database will be written 
-          into. For <term>gedcom</term>, <term>wft</term>, 
+          into. For <term>grdb</term>, <term>gedcom</term>, 
+          <term>wft</term>, <term>geneweb</term>,
           and <term>gramps-pkg</term>, the <replaceable>filename</replaceable> 
           is the name of the resulting file.
           </para>
 
+          <tip><para>More than one file can be exported in one command.
+          If this is the case, &app; will attempt to write several files
+          using the data from the database available at the moment.
+          </para></tip>
+
           <para> When more than one output file is given, each has to be 
           preceded by <command>-o</command> flag. The files are written one 
           by one, in the specified order.
-          </para></listitem>
-          </varlistentry>
+          </para></sect2>
 
-          <varlistentry><term>Action options</term>
-          <listitem><para> The action to perform on the imported data can be 
+          <sect2 id="cmdline-opt-action"><title>Action options</title>
+          <para> The action to perform on the imported data can be 
           specified with the 
-          	<command>-a</command> <replaceable>action</replaceable>
+          <command>-a <replaceable>action</replaceable></command> or
+          <command>--action=<replaceable>action</replaceable></command>
           option. This is done after all imports are successfully completed. 
-          Currently available actions are <term>summary</term> (same as 
+          </para>
+          
+          <para>Currently available actions are:</para>
+          
+          <variablelist>
+          
+          <varlistentry><term>summary</term>
+          <listitem><para>This action is the same as 
           <menuchoice><guimenu>Reports</guimenu><guisubmenu>View</guisubmenu>
-	  <guimenuitem>Summary</guimenuitem></menuchoice>)
-          and <term>check</term> (same as 
+	      <guimenuitem>Summary</guimenuitem></menuchoice>
+          </para></listitem></varlistentry>
+      
+          
+          <varlistentry><term>check</term>
+          <listitem><para>This action is the same as 
           <menuchoice><guimenu>Tools</guimenu>
           <guisubmenu>Database Processing</guisubmenu>
-	  <guimenuitem>Check and Repair</guimenuitem></menuchoice>).
+          <guimenuitem>Check and Repair</guimenuitem></menuchoice>.
+          </para> </listitem> </varlistentry>
+
+          <varlistentry><term>report</term>
+          <listitem><para>This action allows producing reports
+          from the command line. As reports generally have many options
+          of their own, this action should be followed by the report option
+          string. The string is given using the  
+          <command>-p <replaceable>option_string</replaceable></command> or
+          <command>--options=<replaceable>option_string</replaceable></command>
+          option.        
           </para>
+          
+          <tip><para>
+          The report option string should satisfy the following conditions:
+          </para>
+          
+          <itemizedlist>
+          
+          <listitem><para>It must not contain any spaces. If some arguments
+          need to include spaces, the string should be enclosed with 
+          quotation marks.
+          </para></listitem>
+          
+          <listitem><para>Option string must list pairs of option names
+          and values. 
+          </para></listitem>
+
+          <listitem><para>Withing a pair, option name and value must be
+          separated by the equal sign.
+          </para></listitem>
+
+          <listitem><para>Different pairs must be separated by commas.
+          </para></listitem>
+
+          </itemizedlist>
+          </tip>
+          
+          
+          <para>Most of the report options are specific for every report.
+          However, there some common options.
+          </para>
+
+            <variablelist>         
+          
+            <varlistentry><term>name=report_name</term>
+            <listitem> <para>
+            This mandatory option determines which report will be 
+            generated. If the supplied report_name does not correspond
+            to any available report, the error message will be printed
+            followed by the list of available reports.
+            </para>
+            </listitem> </varlistentry>
+
+            <varlistentry><term>show=all</term>
+            <listitem> <para>
+            This will produce the list of names for all options available for
+            a given report.
+            </para>
+            </listitem> </varlistentry>
+
+            <varlistentry><term>show=option_name</term>
+            <listitem> <para>
+            This will print the description of the functionality supplied
+            by the option_name, as well as what are the acceptable types
+            and values for this option.
+            </para>
+            </listitem> </varlistentry>
+
+            </variablelist>         
+
+          <para>
+          Use the above options to find out everything about a given report.
+          </para>
+          
+          <tip><para>
+          If an option is not supplied, the last used value will be used.
+          If this report has never been generated before, then the 
+          value from last generated report will be used when applicable.
+          Otherwise, the default value will be used.
+          </para></tip>
+
+          </listitem> </varlistentry>
+
+          </variablelist>
 
           <para>When more than one output action is given, each has to be 
           preceded by <command>-a</command> flag. The actions are performed 
           one by one, in the specified order.
-          </para></listitem>
-          </varlistentry>
-
-          </variablelist>
+          </para></sect2>
 
       </sect1>
 

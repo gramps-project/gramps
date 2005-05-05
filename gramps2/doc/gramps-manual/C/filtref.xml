@@ -25,7 +25,8 @@
       <title>Filter rules reference</title>
       <para>This appendix lists of all the filter rules currently defined 
       in &app;. Each of these rules is available for use when creating custom 
-      filters. The rules are listed by their categories. 
+      filters, see <xref linkend="tools-util-cfe"/>. The rules are
+      listed by their categories. 
       </para>
 
         <!-- =============== Appendices Sub-subsection ================ -->
@@ -43,10 +44,37 @@
           </para></listitem>
           </varlistentry>
 
+          <varlistentry><term>People with incomplete names</term>
+          <listitem><para> This rule matches all people with either
+          given name or family name missing.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is bookmarked person</term>
+          <listitem><para> This rule matches all people who are on the
+          bookmark list.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Has text matching substring of</term>
+          <listitem><para> This rule matches all people whose records contain
+          specified substring. All textual records are searched. Optionally,
+          the search can be made case sensitive, or a regular expression 
+          match.
+          </para></listitem>
+          </varlistentry>
+
           <varlistentry><term>Everyone</term>
           <listitem><para> This rule matches any person in the database.
           As such it is not very useful on its own except for testing purposes.
           However, it may be useful in combinations with other rules. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People probably alive</term>
+          <listitem><para> This rule matches all people whose records do
+          not indicate their death and who are not unreasonably old,
+          judging by their available birth data and today's date.
           </para></listitem>
           </varlistentry>
 
@@ -77,8 +105,30 @@
           </para></listitem>
           </varlistentry>
 
+          <varlistentry><term>Is default person</term>
+          <listitem><para> This rule matches the default (home) person. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People marked private</term>
+          <listitem><para> This rule matches people whose records are marked
+          as private.
+          </para></listitem>
+          </varlistentry>
+
           <varlistentry><term>Is a female</term>
           <listitem><para> This rule matches any female person. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People who have images</term>
+          <listitem><para> This rule matches people with images in their
+          galleries.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People without a birth date</term>
+          <listitem><para> This rule matches people missing birth date.
           </para></listitem>
           </varlistentry>
 
@@ -128,6 +178,12 @@
           </para></listitem>
           </varlistentry>
 
+          <varlistentry><term>Has source of</term>
+          <listitem><para> This rule matches people whose records refer
+          to the specified source.
+          </para></listitem>
+          </varlistentry>
+
           <varlistentry><term>Has the personal event</term>
           <listitem><para> This rule matches people that have a personal 
           event matching specified values for the Event type, Date, Place, 
@@ -162,6 +218,24 @@
           </para></listitem>
           </varlistentry>
 
+          <varlistentry><term>Witness</term>
+          <listitem><para> This rule matches people who are present as
+          a witness in the event. If the personal or family event type is
+          specified, only the events of this type will be searched.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People with incomplete events</term>
+          <listitem><para> This rule matches people missing date or place in
+          any personal event.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Families with incomplete events</term>
+          <listitem><para> This rule matches people missing date or place in
+          any family event of any of their families.
+          </para></listitem>
+          </varlistentry>
 
           </variablelist>
         </sect1> 
@@ -172,6 +246,26 @@
         <para>This category includes the following rules that match people 
         based on their family relationships:</para>
           <variablelist>
+
+          <varlistentry><term>People with children</term>
+          <listitem><para> This rule matches people with children.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People with multiple marriage records</term>
+          <listitem><para> This rule matches people with more than one spouse.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People with no marriage records</term>
+          <listitem><para> This rule matches people with no spouses.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People who were adopted</term>
+          <listitem><para> This rule matches adopted people.
+          </para></listitem>
+          </varlistentry>
 
           <varlistentry><term>Has the relationships</term>
           <listitem><para> This rule matches people with a particular 
@@ -202,6 +296,13 @@
 
           <varlistentry><term>Is a parent of filter match</term>
           <listitem><para> This rule matches people whose child  
+          is matched by the specified filter. 
+          The specified filter name should be selected from the menu. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is a sibling of filter match</term>
+          <listitem><para> This rule matches people whose sibling  
           is matched by the specified filter. 
           The specified filter name should be selected from the menu. 
           </para></listitem>

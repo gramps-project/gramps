@@ -10,6 +10,12 @@
 	* src/plugins/SoundGen.py: Correct manual section.
 	* src/plugins/Verify.py: Correct manual section.
 
+	* src/SourceView.py (__init__): Connect to the key-press-event.
+	* doc/gramps-manual/C/keybind.xml: Update.
+	* doc/gramps-manual/C/cmdline.xml: Update.
+	* doc/gramps-manual/C/custom.xml: Update.
+	* doc/gramps-manual/C/filtref.xml: Update.
+
 2005-05-03  Don Allingham  <don@gramps-project.org>
 	* src/gramps_main.py: remove beta warning, handle OSError
 	on config open
