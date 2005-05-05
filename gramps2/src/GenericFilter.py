@@ -412,10 +412,8 @@ class IsDescendantOf(Rule):
         except IndexError:
             first = 1
 
-        if not self.init:
-            self.init = 1
-            root_id = self.list[0]
-            self.init_list(root_id,first)
+        root_id = self.list[0]
+        self.init_list(root_id,first)
 
     def reset(self):
         self.map = {}
@@ -433,6 +431,8 @@ class IsDescendantOf(Rule):
         return self.map.has_key(p_id)
 
     def init_list(self,p_id,first):
+        if not p_id:
+            return
         if not first:
             self.map[p_id] = 1
         
@@ -503,6 +503,8 @@ class IsLessThanNthGenerationDescendantOf(Rule):
         return self.map.has_key(p_id)
 
     def init_list(self,p_id,gen):
+        if not p_id:
+            return
         if gen:
             self.map[p_id] = 1
             if gen >= int(self.list[1]):
@@ -548,6 +550,8 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
         return self.map.has_key(p_id)
 
     def init_list(self,p_id,gen):
+        if not p_id:
+            return
         if gen >= int(self.list[1]):
             self.map[p_id] = 1
 
@@ -594,6 +598,8 @@ class IsChildOfFilterMatch(Rule):
         return self.map.has_key(p_id)
 
     def init_list(self,p_id):
+        if not p_id:
+            return
         p = self.db.get_person_from_handle(p_id)
         for fam_id in p.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
@@ -637,6 +643,8 @@ class IsSiblingOfFilterMatch(Rule):
         return self.map.has_key(p_id)
 
     def init_list(self,p_id):
+        if not p_id:
+            return
         p = self.db.get_person_from_handle(p_id)
         fam_id = p.get_main_parents_family_handle()
         fam = self.db.get_family_from_handle(fam_id)
@@ -735,6 +743,8 @@ class IsAncestorOf(Rule):
         return self.map.has_key(p_id)
 
     def init_ancestor_list(self,db,p_id,first):
+        if not p_id:
+            return
         if not first:
             self.map[p_id] = 1
         
@@ -765,6 +775,8 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         IsAncestorOf.__init__(self,list)
     
     def prepare(self,db):
+        self.db = db
+        self.map = {}
         try:
             if int(self.list[1]):
                 first = 0
@@ -773,13 +785,15 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         except IndexError:
             first = 1
             
-        self.init = 1
         filt = MatchesFilter(self.list)
         filt.prepare(db)
         for person_handle in db.get_person_handles(sort_handles=False):
             if filt.apply (db, person_handle):
                 self.init_ancestor_list (db,person_handle,first)
         filt.reset()
+
+    def reset(self):
+        self.map = {}
 
     def name(self):
         return 'Is an ancestor of filter match'
@@ -808,7 +822,8 @@ class IsLessThanNthGenerationAncestorOf(Rule):
     def prepare(self,db):
         self.db = db
         self.map = {}
-        self.build_witness_list()
+        root_id = self.list[0]
+        self.init_ancestor_list(root_id,0)
 
     def reset(self):
         self.map = {}
@@ -824,17 +839,13 @@ class IsLessThanNthGenerationAncestorOf(Rule):
         return _("Ancestral filters")
 
     def apply(self,db,p_id):
-        self.orig_id = p_id
-        self.db = db
-        if not self.init:
-            self.init = 1
-            root_id = self.list[0]
-            self.init_ancestor_list(root_id,0)
         return self.map.has_key(p_id)
 
     def init_ancestor_list(self,p_id,gen):
 #        if self.map.has_key(p.get_handle()) == 1:
 #            loop_error(self.orig,p)
+        if not p_id:
+            return
         if gen:
             self.map[p_id] = 1
             if gen >= int(self.list[1]):
@@ -888,6 +899,8 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
     def init_ancestor_list(self,p_id,gen):
 #        if self.map.has_key(p.get_handle()) == 1:
 #            loop_error(self.orig,p)
+        if not p_id:
+            return
         if gen >= int(self.list[1]):
             self.map[p_id] = 1
         
