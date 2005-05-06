@@ -1,3 +1,7 @@
+2005-05-06  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/gramps_main.py (undo): Block signals during undo to make
+	it MUCH faster when undoing larger imports or plugin runs
+	
 2005-05-05  Alex Roitman  <shura@gramps-project.org>
 	* doc/gramps.1.in, doc/gramps-manual/C/bugs.xml,
 	doc/gramps-manual/C/cmdline.xml, doc/gramps-manual/C/faq.xml,

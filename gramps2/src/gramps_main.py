@@ -521,7 +521,10 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         if self.undo_active:
             return
         self.undo_active = True
+        self.db.disable_signals()
         self.db.undo()
+        self.db.enable_signals()
+        self.db.request_rebuild()        
         if self.active_person:
             p = self.db.get_person_from_handle(self.active_person.get_handle())
             self.change_active_person(p)
