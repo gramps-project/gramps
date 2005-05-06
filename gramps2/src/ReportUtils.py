@@ -908,6 +908,11 @@ def married_str(database,person,spouse,event,endnotes=None,
 def married_rel_str(database,person,family,is_first=True):
     spouse_handle = find_spouse(person,family)
     spouse = database.get_person_from_handle(spouse_handle)
+
+    # not all families have a spouse.
+    if not spouse_handle or not spouse:
+        return u""
+
     spouse_name = _nd.display(spouse)
 
     if is_first:

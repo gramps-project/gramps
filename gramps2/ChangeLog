@@ -1,4 +1,6 @@
 2005-05-06  Don Allingham  <dona@gramps-project.org>
+	* src/ReportUtils.py: check for spouse existance before creating a
+	marriage string - return an empty string instead.
 	* src/ReadXML.py: fix handling of non-gregorian dates
 	* src/EditPerson.py: faster building of place lists using cursors
 
