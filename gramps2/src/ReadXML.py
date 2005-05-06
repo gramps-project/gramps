@@ -1051,7 +1051,6 @@ class GrampsParser:
             bc = -1
             val = val[1:]
         start = val.split('-')
-
         try:
             y = int(start[0])*bc
         except:
@@ -1068,7 +1067,7 @@ class GrampsParser:
             d = 0
 
         if attrs.has_key("cformat"):
-            cal = Date.Date.calendar_names.index(attrs['calendar'])
+            cal = Date.Date.calendar_names.index(attrs['cformat'])
         else:
             cal = Date.CAL_GREGORIAN
 
