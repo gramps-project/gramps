@@ -122,9 +122,7 @@ class EditPerson:
                                     person.get_gender () ==
                                     RelLib.Person.UNKNOWN)
 
-        for key in db.get_place_handles():
-            p = db.get_place_from_handle(key).get_display_info()
-            self.pdmap[p[0]] = key
+        self.build_pdmap()
 
         mod = not self.db.readonly
             
@@ -533,6 +531,15 @@ class EditPerson:
             self.get_widget(i).set_sensitive(not self.db.readonly)
 
         self.window.show()
+
+    def build_pdmap(self):
+        self.pdmap.clear()
+        cursor = self.db.get_place_cursor()
+        data = cursor.next()
+        while data:
+            self.pdmap[data[1][2]] = data[0]
+            data = cursor.next()
+        cursor.close()
 
     def image_button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
@@ -1759,10 +1766,7 @@ class EditPerson:
         if nick != self.person.get_nick_name():
             self.person.set_nick_name(nick)
 
-        self.pdmap.clear()
-        for key in self.db.get_place_handles():
-            p = self.db.get_place_from_handle(key).get_display_info()
-            self.pdmap[p[0]] = key
+        self.build_pdmap()
 
         if not self.orig_birth.are_equal(self.birth):
             if self.orig_birth.is_empty():
