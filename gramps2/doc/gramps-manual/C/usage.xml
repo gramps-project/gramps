@@ -721,7 +721,7 @@ button, while using <guibutton>+</guibutton> and
 	  Double-click the name of the person whose data you would like 
 	  to edit, or select the name by single click and then click the 
 	  <guibutton>Edit</guibutton> icon on the toolbar. You may also select 
-      the name and then press <keycap>Return</keycap>. Finally, you may select 
+      the name and then press <keycap>Enter</keycap>. Finally, you may select 
       <guimenuitem>Edit...</guimenuitem> from the <guisubmenu>Edit</guisubmenu>
       menu of &app; or choose <guimenuitem>Edit</guimenuitem> from the context 
       menu that appears upon right-click on the name.
@@ -805,7 +805,7 @@ all changes are immediate.</para></note>
 	is displayed below the field with the available entries from the database
 	that are compatible with your partial input. This allows for a quick selection
 	of an available entry by selecting in from the menu, either using
-	the mouse or arrows and <keycap>Return</keycap> key.
+	the mouse or arrows and <keycap>Enter</keycap> key.
 </para>
 
 <para>The <guilabel>Edit</guilabel> button located by the <guilabel>Family name</guilabel>
@@ -2110,15 +2110,15 @@ all changes are immediate.</para></note>
     
     
     <para>The tabs provide the following information categories of 
-	the alternate name data: </para>
+	the name data: </para>
 
  	<variablelist>
 		<varlistentry><term><guilabel>General</guilabel></term>
 		<listitem><para>The 
 	<guilabel>General</guilabel> tab allows editing of general
-	information about the alternate name: given name, family name, 
-	patronymic, family 
-	prefix, suffix, title, and type of the name. The information can be 
+	information about the name: given name, family name, 
+	patronymic (a form of father's name used in some languages, e.g. Russian),
+    family prefix, suffix, title, and type of the name. The information can be 
 	typed in the appropriate text entry fields. The family name and the 
 	type can be also selected from available choices listed in the 
 	appropriate drop-down menus. </para>
@@ -2129,7 +2129,9 @@ all changes are immediate.</para></note>
 	<guilabel>Grouping</guilabel> field provides an alternative
 	grouping node for a given name, overriding the default grouping
 	based on the family name. This may be necessary with similar
-	family names that need to be grouped together. To enable
+	family names that need to be grouped together -- for example Russian
+    names Ivanov and Ivanova are considered the same, but difference
+    in gender is reflected in different spelling. To enable
 	typing into this field, check the <guilabel>Override</guilabel>
 	check button. The <guilabel>Sort as</guilabel> and 
 	<guilabel>Display as</guilabel> determine the manner
