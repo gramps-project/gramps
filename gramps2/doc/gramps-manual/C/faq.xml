@@ -61,13 +61,15 @@ This, however, may change in the future.
 
       <varlistentry><term>Does it work with the Mac?</term>
       <listitem><para> 
-The Fink project (<ulink url="http://fink.sf.net" 
-type="http">http://fink.sf.net</ulink>) has ported an old version of 
-&app; (0.8.0) to OSX. The Mac OSX port is not directly supported by 
+<ulink url="http://fink.sourceforge.net" 
+type="http">The Fink project</ulink> has ported 
+<ulink url="http://fink.sourceforge.net/pdb/package.php/gramps"
+type="http">some older versions</ulink> of 
+&app; to OSX. The Mac OSX port is not directly supported by 
 the &app; project, primarily because none of the &app; developers 
-have access to Mac OSX.</para>
+have access to Mac OSX and because OSX is not Free Software.</para>
 
-<para>The GNOME 2 version of &app; (0.9.x) does not appear to have been 
+<para>This version of &app; (&appversion;) does not appear to have been 
 ported by the Fink project. Please contact the Fink project for more
 information.
       </para></listitem>
@@ -86,8 +88,8 @@ Yes, as long as the required GNOME libraries are installed.
 
       <varlistentry><term>What version of GNOME do I need?</term>
       <listitem><para> 
-The latest versions of gramps (0.9.0 and higher) require GNOME 2.0 or higher.
-Previous versions required GNOME 1.X. 
+This version of gramps requires GNOME 2.8.0 or higher.
+Previous versions in 1.0.x series required GNOME 2.0. 
       </para></listitem>
       </varlistentry>
 
@@ -137,7 +139,7 @@ their own plugins which could be new reports, charts, or research tools.
       <listitem><para> 
 Text reports are available in HTML, PDF, AbiWord, KWord, LaTeX, RTF, and
 OpenOffice formats. Graphical reports (charts and diagrams) are available in
-PostScript, PDF, SVG, OpenOffice and GraphViz formats. 
+PostScript, PDF, SVG, OpenOffice, and GraphViz formats. 
       </para></listitem>
       </varlistentry>
 
@@ -181,43 +183,34 @@ Visual Genealogie.
       size (bytes) &app; can handle?</term>
       <listitem><para> 
 &app; has no hard limits on the size of a database that it can handle. 
-In reality, however, there are practical limits. Currently &app; loads all 
-data into memory, so the limiting factor tends to be the available memory 
-on the system. 
+Starting with this release, &app; no longer loads all data into memory,
+which allows it to work with much larger database than before.
+In reality, however, there are practical limits. The main limiting factors
+are the available memory on the system and the cache size used for BSDDB
+database access. With common memory sizes these days, &app; should have
+no problem using databases with tens of thousands of people.
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>How many people can &app; database handle?</term>
       <listitem><para> 
 We have found that on a typical system, &app; tends to bog down after the
-database has around 15,000 people. Again, this is dependant on how much
+database has around 150,000 people. Again, this is dependant on how much
 memory you have. 
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>Why is &app; running so slowly?</term>
-      <listitem><para> 
-If &app; seems too slow to you, it is most likely that you have a large
-database. Currently, &app; loads all the database into memory, therefore 
-large databases tend to be less than responsive. Specifically, the system 
-can be virtually brought to its knees if swapping is needed for &app;' data.
-</para> <para>
-This will be addressed in the next stable release following version 1.0. 
-Temporarily, adding more memory could make a huge difference, but we realize
-that this is a poor way of treating the problem. If you would like to help 
-with the implementation of the real database backend, please don't hesitate 
-to email us at <ulink url="mailto:gramps-devel@lists.sf.net" 
-type="mailto">gramps-devel@lists.sf.net</ulink>
+      <listitem><para> It does not anymore! Just try out the current
+      version, &appversion;.
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>My database is really big. 
       Is there a way around loading all the data into memory?</term>
       <listitem><para> 
-Currently, there is no way around it. However, this is our biggest priority
-after releasing  version 1.0. The real database backend will be incorporated 
-in the next stable release (1.2) which will dramatically improve performance 
-in both speed and memory usage.
+Starting with this release, &app; no longer loads all data into memory,
+which allows it to work with much larger database than before.
       </para></listitem>
       </varlistentry>
 
@@ -229,34 +222,30 @@ in both speed and memory usage.
       the flag needs to be reset. This can be done with the following 
       command: </para>
       
-      <para><command>gconftool-2 -u /apps/gramps/startup</command>
+      <para><command>gconftool-2 -u /apps/gramps/behavior/startup</command>
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>Why are non-latin characters displayed 
       as garbage in PDF/PS reports?</term>
-      <listitem><para> 
-This is a known problem -- PS (and PDF) have builtin fonts which pretty much 
-reflect the latin-1 charset. Any font in principle could be used with PS/PDF 
-but then it would have to be embedded in the file. This is problematic since 
-every system has different idea about fonts and their setup.</para>
-
-<para>
-This should be resolved as we move to gnome-print. In the meantime, a useable 
-workaround is to generate reports in OpenOffice.org format and then export 
-to PDF from the OpenOffice.org application.
-      </para></listitem>
+      <listitem><para> This is a limitation of the builtin fonts of PS
+      and PDF formats. To print non-latin text, use the Print...
+      in the format selection menu of the report dialog. This will use
+      the gnome-print backend, which supports PS and PDF creation,
+      as well as direct printing.</para>
+      
+      <para>If you only have latin text, the PDF option will produce
+      a smalled PDF compared to that created by gnome-print, simply because
+      no font information will be embedded.
+      </para>
+      
+      </listitem>
       </varlistentry>
 
       <varlistentry><term>Why can I not add/remove/edit columns to the lists 
       in People View and Family View?</term>
-      <listitem><para> 
-This will be addressed after the TreeModelSort bug is fixed in pygtk,
-see <ulink url="http://bugzilla.gnome.org/show_bug.cgi?id=125172" 
-type="http">http://bugzilla.gnome.org/show_bug.cgi?id=125172</ulink>
- for the details.
-Once the patch is committed and incorporated into pygtk, we will add the 
-ability to add/remove/edit sortable columns.
+      <listitem><para> Now you can! Just try out the current
+      version, &appversion;.
       </para></listitem>
       </varlistentry>
 
@@ -374,13 +363,13 @@ If, however, you would like the &app; project to to adopt your strategy,
 you would need to convince &app; developers that your strategy is good
 for &app; and superior to the present development strategy.</para>
 
-<para>                                                                                
-HINT: if &app; developers are still not convinced after about three
+<tip><para>                                                                                
+If &app; developers are still not convinced after about three
 messages sent to gramps-devel, maybe you are better off on your own
 rather than with a company of retards who can't fully realize the
 potential of your great idea :-)
 
-      </para></listitem>
+      </para></tip></listitem>
       </varlistentry>
 
       </variablelist>

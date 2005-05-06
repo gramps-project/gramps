@@ -123,7 +123,7 @@
 	  <!-- ==== End of Figure ==== -->
 	  </listitem></varlistentry>
 
-	<varlistentry><term>To switch the View while in a Notebook mode, 
+	<varlistentry><term>To switch the View while in a Tabbed mode, 
 		click on the desired notebook tab.</term>
 	  <listitem>
 	  <!-- ==== Figure: Tabbed Notebook Mode ==== -->
@@ -138,7 +138,7 @@
 	  </listitem></varlistentry>
 	</variablelist>
 
-	<para>To switch between sidebar and notebook viewing modes, 
+	<para>To switch between sidebar and tabbed viewing modes, 
 	choose <menuchoice> <guimenu>View</guimenu> 
 	<guimenuitem>Sidebar</guimenuitem> 
 	</menuchoice> from the &app; menu.</para>
@@ -546,8 +546,10 @@
 	Media Objects are any files that relate somehow to the stored 
 	genealogical data. Technically, any file can be stored as a Media 
 	Object. Most frequently, these are images, audio files, animation 
-	files, etc. The list box on the bottom lists the Name, ID, Type, and 
-	Path to the Media Object. 	<guilabel>Column Editor Dialog</guilabel>
+	files, etc. The list box on the bottom lists the <guilabel>Name</guilabel>, 
+    <guilabel>ID</guilabel>, <guilabel>Type</guilabel>, and 
+	<guilabel>Path</guilabel> of the Media Object.
+    <guilabel>Column Editor Dialog</guilabel>
 	may be used to rearrange the displayed columns, which obey usual
 	sorting rules. The top part of the GRAMPS window shows 
 	a preview (if available) and information about the Media 

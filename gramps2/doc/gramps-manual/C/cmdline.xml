@@ -55,7 +55,7 @@
           <sect2 id="cmdline-opt-format"><title>Format options</title>
           <para> The format of any file destined for opening, importing,
           or exporting can be specified with the 
-          	<command>-f</command> <replaceable>format</replaceable>
+          	<command>-f <replaceable>format</replaceable></command>
           option. The acceptable <replaceable>format</replaceable> values
           are listed below.</para>
           
@@ -113,8 +113,8 @@
           <listitem><para>supply bare file name</para></listitem>
           
           <listitem><para>use the
-          <command>-O <replaceable>filename</replaceable></command> or
-          <command>-open=<replaceable>filename</replaceable></command> option
+          <command>-O <filename>filename</filename></command> or
+          <command>-open=<filename>filename</filename></command> option
           </para></listitem>
 
           </itemizedlist>
@@ -132,18 +132,18 @@
           <para>The format can be specified with the 
           <command>-f <replaceable>format</replaceable></command> or 
           <command>--format=<replaceable>format</replaceable></command>
-          option, immediately following the <replaceable>filename</replaceable>. 
+          option, immediately following the <filename>filename</filename>. 
           If not specified, the guess will be attempted based on 
-          the <replaceable>filename</replaceable>. For <term>gramps-xml</term> 
-          format, the <replaceable>filename</replaceable> is actually the 
+          the <filename>filename</filename>. For gramps-xml 
+          format, the <filename>filename</filename> is actually the 
           name of directory under which the gramps database resides. For 
-          <term>grdb</term> and <term>gedcom</term>, 
-          the <replaceable>filename</replaceable> is the name of the 
+          grdb and gedcom, 
+          the <filename>filename</filename> is the name of the 
           corresponding file.
           </para>
 
-          <tip><para>Only <term>grdb</term>, <term>gramps-xml</term>,
-          and <term>gedcom</term> formats can be opened directly.
+          <tip><para>Only grdb, gramps-xml,
+          and gedcom formats can be opened directly.
           For other formats, you will need to use the import option
           which will set up the empty database and then import data into it.
           </para></tip>
@@ -156,19 +156,18 @@
 
           <sect2 id="cmdline-opt-import"><title>Import options</title>
           <para> The files destined for import can be specified with the 
-          <command>-i <replaceable>filename</replaceable></command>
-          or <command>--import=<replaceable>filename</replaceable></command>
+          <command>-i <filename>filename</filename></command>
+          or <command>--import=<filename>filename</filename></command>
           option. The format can be specified with the 
           <command>-f <replaceable>format</replaceable></command> or 
           <command>--format=<replaceable>format</replaceable></command>
-          option, immediately following the <replaceable>filename</replaceable>. 
+          option, immediately following the <filename>filename</filename>. 
           If not specified, the guess will be attempted based on 
-          the <replaceable>filename</replaceable>. For <term>gramps-xml</term> 
-          format, the <replaceable>filename</replaceable> is actually the 
+          the <filename>filename</filename>. For gramps-xml 
+          format, the <filename>filename</filename> is actually the 
           name of directory under which the gramps database resides. For 
-          <term>grdb</term>, <term>gedcom</term>, <term>gramps-pkg</term>, 
-          and <term>geneweb</term>,
-          the <replaceable>filename</replaceable> is the name of the 
+          grdb, gedcom, gramps-pkg, and geneweb,
+          the <filename>filename</filename> is the name of the 
           corresponding file.
           </para>
 
@@ -179,28 +178,28 @@
 
           <para>When more than one input file is given, each has to be preceded
           by  <command>-i</command> flag. The files are imported in the 
-          specified order, i.e. 
-          <command>-i</command> <replaceable>file1</replaceable> 
-          <command>-i</command> <replaceable>file2</replaceable> 
-          and 
-          <command>-i</command> <replaceable>file2</replaceable> 
-          <command>-i</command> <replaceable>file1</replaceable> 
+          specified order, i.e. <command>
+            -i <filename>file1</filename> 
+            -i <filename>file2</filename>
+          </command> and <command>
+            -i <filename>file2</filename> 
+            -i <filename>file1</filename>
+          </command>
           might produce different gramps IDs in the resulting database.
           </para></sect2>
 
           <sect2 id="cmdline-opt-export"><title>Export options</title>
           <para> The files destined for export can be specified with the 
-          <command>-o <replaceable>filename</replaceable></command> or
-       	  <command>--output=<replaceable>filename</replaceable></command> 
+          <command>-o <filename>filename</filename></command> or
+       	  <command>--output=<filename>filename</filename></command> 
           option. The format can be specified with the <command>-f</command> 
-          option immediately following the <replaceable>filename</replaceable>. 
+          option immediately following the <filename>filename</filename>. 
           If not specified, the guess will be attempted based on 
-          the <replaceable>filename</replaceable>. For <term>gramps-xml</term> 
-          and <term>iso</term> formats, the <replaceable>filename</replaceable> 
+          the <filename>filename</filename>. For gramps-xml 
+          and iso formats, the <filename>filename</filename> 
           is actually the name of directory the gramps database will be written 
-          into. For <term>grdb</term>, <term>gedcom</term>, 
-          <term>wft</term>, <term>geneweb</term>,
-          and <term>gramps-pkg</term>, the <replaceable>filename</replaceable> 
+          into. For grdb, gedcom, wft, geneweb,
+          and gramps-pkg, the <filename>filename</filename> 
           is the name of the resulting file.
           </para>
 
@@ -334,83 +333,181 @@
       <sect1 id="cmdline-operation">
       <title>Operation</title>
       
+       <itemizedlist>
+       
+       <listitem>
+       <para>If the first argument on the command line does not start
+       with dash (i.e. no flag), &app; will attempt to open the file
+       with the name given by the first argument and start interactive
+       session, ignoring the rest of the command line arguments.
+       </para></listitem>
+       
+       <listitem>
+       <para>If the <command>-O</command> flag is given, then &app; will
+       try opening the
+       supplied file name and then work with that data, as instructed by
+       the further command line parameters.
+       </para>
+       
+       <note><para>Only one file can be opened in a single invokation
+       of &app;. If you need to get data from multiple sources, use
+       the importing options by using <command>-i</command> flag.
+       </para></note>
+       </listitem>
+
+       <listitem>
+       <para>With or without the <command>-O</command> flag, there could
+       be multiple imports, exports, and actions specified further on
+       the command line by using <command>-i</command>, 
+       <command>-o</command>, and <command>-a</command> flags.
+       </para></listitem>
+       
+       <listitem>
        <para>The order of <command>-i</command>, <command>-o</command>, 
        or <command>-a</command> options with respect to each does not matter. 
        The actual execution order always is: all imports (if any) -> all 
        exports (if any) -> all actions (if any).</para>
-                                                                                
-       <para>If no <command>-i</command> option is given, gramps will launch 
+       
+       <note><para>But opening must always be first!</para></note>
+       </listitem>
+       
+       <listitem>                                                                         
+       <para>If no <command>-O</command> or <command>-i</command> 
+       option is given, gramps will launch 
        its main window and start the usual interactive session with the empty 
-       database (since there is no data to process, anyway).</para>
+       database, since there is no data to process, anyway.
+       </para></listitem>
                                                                                 
+       <listitem>                                                                       
        <para>If no <command>-o</command> or <command>-a</command> options 
        are given, gramps will launch its main window and start the usual 
-       interactive session with the database resulted from all imports. 
-       This database resides under 
-       <replaceable>~/.gramps/import</replaceable> directory.</para>
-                                                                                
+       interactive session with the database resulted from opening 
+       and all imports (if any). This database resides in the  
+       <filename>import_db.grdb</filename> file under the
+       <filename>~/.gramps/import/</filename> directory.
+       </para></listitem>
+       
+       <listitem>                                                                       
        <para>Any errors encountered during import, export, or action, will 
        be either dumped to stdout (if these are exceptions handled by gramps) 
        or or to stderr (if these are not handled). Use usual shell redirections 
-       of stdout and stderr to save messages and errors in files.</para>
+       of stdout and stderr to save messages and errors in files.
+       </para></listitem>
+       
+       </itemizedlist>
 
       </sect1>
 
       <sect1 id="cmdline-examples">
       <title>Examples</title>
-        <para>To import four databases (whose formats can be  determined from  
+        
+        <variablelist>
+        
+        <varlistentry>
+        <term>To import four databases (whose formats can be  determined from  
         their names) and then check the resulting database for errors, one may 
-        type:</para>
-        <para><command>gramps -i</command> <replaceable>file1.ged</replaceable> 
-        <command>-i</command> <replaceable>file2.tgz</replaceable> 
-        <command>-i</command> <replaceable>~/db3</replaceable> 
-        <command>-i</command> <replaceable>file4.wft</replaceable> 
-        <command>-a</command> <replaceable>check</replaceable>
+        type:</term>
+        
+        <listitem>
+        <para><command>gramps 
+            -i<filename>file1.ged</filename>
+            -i <filename>file2.tgz</filename>
+            -i <filename>~/db3</filename>
+            -i <filename>file4.wft</filename>
+            -a <filename>check</filename></command>
+        </para> </listitem></varlistentry>
+        
+        <varlistentry>
+        <term>To explicitly specify the formats in the above  example, append 
+        filenames with appropriate <command>-f</command> options:</term>
+        <listitem>
+        <para><command>gramps 
+            -i <filename>file1.ged</filename> 
+            -f <replaceable>gedcom</replaceable> 
+            -i <filename>file2.tgz</filename> 
+            -f <replaceable>gramps-pkg</replaceable> 
+            -i <filename>~/db3</filename> 
+            -f <replaceable>gramps</replaceable> 
+            -i <filename>file4.wft</filename> 
+            -f <replaceable>wft</replaceable> 
+            -a <replaceable>check</replaceable></command>
+        </para></listitem>
+        </varlistentry>
+
+        <varlistentry>
+       <term>To record the database resulting from all imports, supply 
+       <command>-o</command> flag (use <command>-f</command>
+       if the filename does not allow gramps to guess the format):</term>
+       <listitem>
+        <para><command>gramps 
+            -i <filename>file1.ged</filename> 
+            -i <filename>file2.tgz</filename> 
+            -o <filename>~/new-package</filename> 
+            -f <replaceable>gramps-pkg</replaceable></command> 
+        </para></listitem>
+        </varlistentry>
+                                                                                
+        <varlistentry>
+       <term>To save any error messages of the above example into files
+       <filename>outfile</filename> and 
+       <filename>errfile</filename>, run:</term>
+        <listitem>
+        <para><command>gramps 
+            -i <filename>file1.ged</filename> 
+            -i <filename>file2.tgz</filename> 
+            -o <filename>~/new-package</filename> 
+            -f <replaceable>gramps-pkg</replaceable> 
+        &gt;<filename>outfile</filename> 
+        2&gt;<filename>errfile</filename> </command>
+        </para></listitem>
+        </varlistentry>
+
+        <varlistentry>
+       <term>To import three databases and start interactive gramps 
+       session with the result:</term>
+       <listitem>
+        <para><command>gramps 
+            -i <filename>file1.ged</filename> 
+            -i <filename>file2.tgz</filename> 
+            -i <filename>~/db3</filename>
+        </command>
+        </para> </listitem>
+       </varlistentry>
+                                                         
+         <varlistentry>
+       <term>To open a database and, based on that data, generate timeline
+       report in PDF format putting the output into the
+       <filename>my_timeline.pdf</filename> file:</term>
+       <listitem>
+        <para><command>gramps 
+            -O <filename>file.grdb</filename> 
+            -a <replaceable>report</replaceable> 
+            -p <replaceable>name=timeline,off=pdf,of=my_timeline.pdf</replaceable>
+        </command> 
         </para> 
         
-        <para>To explicitly specify the formats in the above  example, append 
-        filenames with appropriate <command>-f</command> options:</para>
-        <para><command>gramps -i</command> <replaceable>file1.ged</replaceable> 
-          <command>-f</command> <replaceable>gedcom</replaceable> 
-        <command>-i</command> <replaceable>file2.tgz</replaceable> 
-          <command>-f</command> <replaceable>gramps-pkg</replaceable> 
-        <command>-i</command> <replaceable>~/db3</replaceable> 
-          <command>-f</command> <replaceable>gramps</replaceable> 
-        <command>-i</command> <replaceable>file4.wft</replaceable> 
-          <command>-f</command> <replaceable>wft</replaceable> 
-        <command>-a</command> <replaceable>check</replaceable>
+        <tip><para>Use the <replaceable>name=timeline,show=all</replaceable> 
+        to find out about all available options for the timeline report. To
+        find out details of a particular option, use
+        <replaceable>show=option_name</replaceable>,
+        e.g. <replaceable>name=timeline,show=off</replaceable> 
+        string.</para>
+        
+        <para>To learn about available report names, use
+        <replaceable>name=show</replaceable> string.
         </para>
+        </tip>
 
-       <para>To record the database resulting from all imports, supply 
-       <command>-o</command> flag (use <command>-f</command>
-       if the filename does not allow gramps to guess the format):</para>
-        <para><command>gramps -i</command> <replaceable>file1.ged</replaceable> 
-        <command>-i</command> <replaceable>file2.tgz</replaceable> 
-        <command>-o</command> <replaceable>~/new-package</replaceable> 
-          <command>-f</command> <replaceable>gramps-pkg</replaceable> 
-        </para>
-                                                                                
-       <para>To save any error messages of the above example into files
-       <replaceable>outfile</replaceable> and 
-       <replaceable>errfile</replaceable>, run:</para>
-        <para><command>gramps -i</command> <replaceable>file1.ged</replaceable> 
-        <command>-i</command> <replaceable>file2.tgz</replaceable> 
-        <command>-o</command> <replaceable>~/new-package</replaceable> 
-        <command>-f</command> <replaceable>gramps-pkg</replaceable> 
-        &gt;<replaceable>outfile</replaceable> 
-        2&gt;<replaceable>errfile</replaceable> 
-        </para>
+        </listitem>
+       </varlistentry>
 
-       <para>To import three databases and start interactive gramps 
-       session with the result:</para>
-        <para><command>gramps -i</command> <replaceable>file1.ged</replaceable> 
-        <command>-i</command> <replaceable>file2.tgz</replaceable> 
-        <command>-i</command> <replaceable>~/db3</replaceable> 
-        </para> 
-                                                                                
-       <para>Finally, to start normal interactive session type:</para>
-       <para> <command>gramps </command></para>
-                                                                                
+       <varlistentry>
+       <term>Finally, to start normal interactive session type:</term>
+       <listitem><para> <command>gramps </command></para></listitem>
+              </varlistentry>
+                                                                          
+        </variablelist>
+
       </sect1>
 
 </appendix> 

@@ -1,3 +1,11 @@
+2005-05-05  Alex Roitman  <shura@gramps-project.org>
+	* doc/gramps.1.in, doc/gramps-manual/C/bugs.xml,
+	doc/gramps-manual/C/cmdline.xml, doc/gramps-manual/C/faq.xml,
+	doc/gramps-manual/C/getstart.xml, 
+	doc/gramps-manual/C/gramps-manual.xml,
+	doc/gramps-manual/C/mainwin.xml,
+	doc/gramps-manual/C/preface.xml: Update.
+
 2005-05-05  Don Allingham  <don@gramps-project.org>
 	* src/plugins/PatchNames.py: handle multiple titles (bug 1196056)
 	* src/plugins/ReorderIDs.py: bring up to speed with new handle/id methodology,
