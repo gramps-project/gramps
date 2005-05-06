@@ -396,7 +396,7 @@
       selecting <menuchoice><guimenu>Go</guimenu>  
       <guisubmenu>CD Creator</guisubmenu></menuchoice> in Nautilus menu
       (unless this location is already displayed by &app;). Your 
-      database directory will show up. To record it onto the CD, click the CD 
+      database directory will show up. To record it on to the CD, click the CD 
       icon on the Nautilus toolbar, or select <menuchoice><guimenu>File</guimenu> 
       <guisubmenu>Write to CD</guisubmenu></menuchoice> in Nautilus menu.
       </para></listitem></varlistentry>
@@ -3014,7 +3014,7 @@ all changes are immediate.</para></note>
     It provides more options which make it useful for generating huge charts
     suitable for a poster or a wall chart. These options include the ability
     to compress the report (getting rid of an empty space) and the option
-    to fit the whole chart onto a single page. In the latter case, the
+    to fit the whole chart on to a single page. In the latter case, the
     contents of the chart is scaled down appropriately. </para></listitem>
 	</varlistentry>
 
@@ -3537,8 +3537,9 @@ all changes are immediate.</para></note>
 	
  	<para>To invoke Scratch Pad, either choose <menuchoice><guimenu>Tools</guimenu>
 	<guisubmenu>Utilities</guisubmenu><guimenuitem>Scratch
-	Pad</guimenuitem></menuchoice> or click the <guilabel>Paste</guilabel>
-	button on the toolbar. The following window will appear:</para>
+	Pad</guimenuitem></menuchoice> or click the <guilabel>Scratch
+	Pad</guilabel>button on the toolbar. The following window will
+        appear:</para>
 	
 	<!-- ==== Figure: Scratch Pad tool ==== -->
 	<figure id="scratch-pad-fig"> 
@@ -3551,11 +3552,11 @@ all changes are immediate.</para></note>
 	<!-- ==== End of Figure ==== -->
 
 	<para>
-	Scratch pad supports addresses, attributes (both personal and
+	Scratch Pad supports addresses, attributes (both personal and
 	family), events (both personal and family), names, media objects
 	references, source references, URLs, and of course textual information
 	of notes and comments. To store any type of these records, simply drag
-	the existing record onto the Scratch pad from the corresponding
+	the existing record on to the Scratch Pad from the corresponding
 	editor dialog. To reuse the record, drag it from the Scratch Pad
 	onlto the corresponding place in the editor, e.g. Address tab, 
 	Attribute tab, etc. 	
