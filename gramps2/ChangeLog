@@ -1,3 +1,6 @@
+2005-05-07  Jens Arvidsson <jya@sverige.nu>
+	* src/po/sv.po: Partial translation update for version 2.0.0.
+
 2005-05-07  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py (build_detail_string), src/FamilyView.py (load_family):
 	Dont crash on strange signal race condition, that leaves database in
