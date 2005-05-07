@@ -60,7 +60,7 @@
       The filetype filter in the <guilabel>Open database</guilabel> dialog allows
       you to display files of a certain type. If the <guilabel>All files</guilabel>
       filter is selected (the default), all the files will be shown. The type will
-      be deteremined by the extension of the selected filename.
+      be determined by the extension of the selected filename.
       </para>
 
       <note id="open-db-note"><title>Selecting file</title>
@@ -188,8 +188,8 @@
       <varlistentry><term>&app; package</term>
       <listitem><para>
       The package is a compressed archive containing the &app; XML
-      file and all media objects (images, sound files, etc.) that the 
-      database refers to. The &app; package is created by exporting
+      file and all media objects (images, sound files, etc.) to which the 
+      database refers. The &app; package is created by exporting
       (<menuchoice> <guimenu>File</guimenu><guimenuitem>
       Export...</guimenuitem></menuchoice>) data in that format.
       </para></listitem>
@@ -2397,7 +2397,7 @@ all changes are immediate.</para></note>
 		<listitem><para> 
 	If the person's data are stored in a database, check <guilabel>Person 
 	is in the database</guilabel> box. Then click the 
-        <guibutton>Select</guibutton> button to evoke <guilabel>Select
+        <guibutton>Select</guibutton> button to invoke <guilabel>Select
         Person</guilabel> dialog. Choose the person from that dialog and 
         click the <guibutton>OK</guibutton> button. The <guilabel>Person</guilabel> 
         text field will display the name of the person you selected. 
@@ -2470,7 +2470,7 @@ all changes are immediate.</para></note>
 	<listitem><para>
         When exactly two people are selected, choose
         <menuchoice><guimenu>Edit</guimenu><guimenuitem>Compare and
-	Merge...</guimenuitem></menuchoice> to evoke <guilabel>Compare
+	Merge...</guimenuitem></menuchoice> to invoke <guilabel>Compare
 	People</guilabel> dialog.</para>
 	
  	<!-- ==== Figure: Compare People dialog ==== -->
@@ -2505,7 +2505,7 @@ all changes are immediate.</para></note>
 	<listitem><para>
         When exactly two people are selected, choose
         <menuchoice><guimenu>Edit</guimenu><guimenuitem>Fast
-	Merge</guimenuitem></menuchoice> to evoke <guilabel>Merge
+	Merge</guimenuitem></menuchoice> to invoke <guilabel>Merge
 	People</guilabel> dialog.</para>
 	
  	<!-- ==== Figure: Compare People dialog ==== -->
@@ -2542,7 +2542,7 @@ all changes are immediate.</para></note>
         <title>Merge Sources</title> 
 	<para>When exactly two sources are selected, choose
         <menuchoice><guimenu>Edit</guimenu><guimenuitem>Compare and
-	Merge...</guimenuitem></menuchoice> to evoke <guilabel>Merge
+	Merge...</guimenuitem></menuchoice> to invoke <guilabel>Merge
 	Sources</guilabel> dialog.</para>
 	
  	<!-- ==== Figure: Merge Sources dialog ==== -->
@@ -2571,7 +2571,7 @@ all changes are immediate.</para></note>
 
 	<para>When exactly two places are selected, choose
         <menuchoice><guimenu>Edit</guimenu><guimenuitem>Compare and
-	Merge...</guimenuitem></menuchoice> to evoke <guilabel>Select
+	Merge...</guimenuitem></menuchoice> to invoke <guilabel>Select
 	title</guilabel> dialog.</para>
 	
  	<!-- ==== Figure: Select title dialog ==== -->
@@ -2842,14 +2842,14 @@ all changes are immediate.</para></note>
         <title>Generating Reports</title> 
 	<para> Reports are the most common form of the output produced by
 	genealogical research. The majority of genealogical software puts a lot
-	of emphasis on developing nicely looking reports. &app; is no 
-	exception in this regard: it offers a choice of a variety of reports. 
+	of emphasis on developing nice looking reports. &app; is no 
+	exception in this regard, offering a choice of a variety of reports. 
 	&app; can generate reports in a multitude of open formats, both 
 	text based and graphical. &app; can also produce screen based reports 
 	that are convenient for viewing a summary of your database. 
 	Finally, &app; can generate a web site suitable for immediate 
-	posting on the Internet. All these are almost infinitely flexible: 
-        if you wish to modify or extend the default format of &app; report 
+	posting on the Internet. All of these are almost infinitely flexible.
+    If you wish to modify or extend the default format of &app; report,
 	you can design and choose the style for each of your reports. </para>
 
 	<para> All reports can be accessed through the menu by choosing
@@ -2859,7 +2859,7 @@ all changes are immediate.</para></note>
 	Report</replaceable></guimenuitem></menuchoice>. Alternatively, 
 	you can browse the complete selection of available reports along 
 	with their brief descriptions in a <guilabel>Report 
-	Selection</guilabel> dialog evoked by clicking the 
+	Selection</guilabel> dialog invoked by clicking the 
 	<guibutton>Reports</guibutton> icon on the toolbar. 
 	</para>
 
@@ -2909,7 +2909,7 @@ all changes are immediate.</para></note>
 	
 	<para>Click the <guibutton>Open</guibutton> button to load
         the book from the list of previously saved books. Finally, click the 
-        <guibutton>Edit books</guibutton> button to evoke the editable list of
+        <guibutton>Edit books</guibutton> button to invoke the editable list of
         available books.  </para>
 	
 	<para> The vertical set of buttons to the right of the bottom pane
@@ -2923,7 +2923,7 @@ all changes are immediate.</para></note>
 	options of the selected item of the current book. 
         </para>
 
-	<para> The configuration dialogs evoked by <guibutton>Setup</guibutton>
+	<para> The configuration dialogs invoked by <guibutton>Setup</guibutton>
         are item-specific. If you choose not to configure the item, sane
         defaults will be used for all needed options. The common option for 
         almost all book items is the center person: the person on whom the
@@ -3193,7 +3193,7 @@ all changes are immediate.</para></note>
       <!-- =============== Usage Sub-subsection ================ -->
       <sect2 id="rep-view"> 
 	<title>View Reports</title> 
-	<para> View reports represent overall summaries of the database 
+	<para> View reports are representing overall summaries of the database 
 	information available immediately for on-screen viewing. 
 	The following view reports are currently available in &app;:</para>
 
@@ -3271,7 +3271,7 @@ all changes are immediate.</para></note>
 	Tool</replaceable></guimenuitem></menuchoice>. Alternatively, 
 	you can browse the complete selection of available tools along 
 	with their brief descriptions in a <guilabel>Tool 
-	Selection</guilabel> dialog evoked by clicking the 
+	Selection</guilabel> dialog invoked by clicking the 
 	<guibutton>Tools</guibutton> icon on the toolbar. </para>
 
       <!-- =============== Usage Sub-subsection ================ -->
@@ -3287,7 +3287,7 @@ all changes are immediate.</para></note>
 	<listitem><para>This tool compares events across the selected group of
 	people. The people for this comparison are chosen with the use of 
 	custom filters. The custom filters can be created in the Custom Filter
-	Editor (see <xref linkend="tools-util-cfe"/>) that can be evoked by clicking
+	Editor (see <xref linkend="tools-util-cfe"/>) that can be invoked by clicking
 	the <guilabel>Custom Filter Editor</guilabel> button. The resulting
 	table produced by this tool can be saved as a spreadsheet.
 	</para></listitem>
@@ -3610,7 +3610,7 @@ all changes are immediate.</para></note>
 	<para>For example, you may want to make sure that nobody in your 
 	database had children at the age of 98. Based on common sense, such 
 	a record would indicate an error. However, it is not a consistency 
-	error in the database. Besides, someone might have a child at the of 
+	error in the database. Besides, someone might have a child at the age of 
 	98 (although this rarely happens). The Verify tool will display 
 	everything that violates your criteria so that you can check whether 
 	the record is erroneous or not. The ultimate decision is yours.

@@ -1,3 +1,8 @@
+2005-05-06  Larry Allingham  <lallingham@woh.rr.com>
+	* doc/gramps-manual/C/authors.xml, doc/gramps-manual/C/faq.xml,
+	doc/gramps-manual/C/mainwin.xml, doc/gramps-manual/C/usage.xml:
+        Typos and corrections.
+
 2005-05-06  Don Allingham  <don@gramps-project.org>
 	* src/ReadGedcomp.py: Handle inline sources better in GEDCOM files
 	* src/ReportUtils.py: check for spouse existance before creating a

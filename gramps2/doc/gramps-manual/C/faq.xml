@@ -65,7 +65,7 @@ This, however, may change in the future.
 type="http">The Fink project</ulink> has ported 
 <ulink url="http://fink.sourceforge.net/pdb/package.php/gramps"
 type="http">some older versions</ulink> of 
-&app; to OSX. The Mac OSX port is not directly supported by 
+&app; to OSX (tm). The Mac OSX port is not directly supported by 
 the &app; project, primarily because none of the &app; developers 
 have access to Mac OSX and because OSX is not Free Software.</para>
 
@@ -150,7 +150,7 @@ data that you download from the Internet. It can export data that you could
 send over the Internet. &app; is familiar with the standard file formats 
 widely used on the Internet (e.g. JPEG, PNG, and GIF images, MP3, OGG, and 
 WAV sound files, QuickTime, MPEG, and AVI movie files, etc). Other than that, 
-there is little that a genealogical program can do with the Internet :-) 
+there is little that a genealogical program can do with the Internet. 
       </para></listitem>
       </varlistentry>
 
@@ -172,7 +172,7 @@ knowledge of programming in Python.
       <varlistentry><term>What standards does &app; support?</term>
       <listitem><para> 
 The nice thing about the standards is that there never is a shortage of 
-them :-). &app; is tested to support the following flavors of GEDCOM: 
+them. &app; is tested to support the following flavors of GEDCOM: 
 GEDCOM5.5, Brother's Keeper, Family Origins, Familty Tree Maker, Ftree, 
 GeneWeb, Legacy, Personal Ancestral File, Pro-Gen, Reunion, and 
 Visual Genealogie. 
@@ -195,7 +195,7 @@ no problem using databases with tens of thousands of people.
       <varlistentry><term>How many people can &app; database handle?</term>
       <listitem><para> 
 We have found that on a typical system, &app; tends to bog down after the
-database has around 150,000 people. Again, this is dependant on how much
+database has around 150,000 people. Again, this is dependent on how much
 memory you have. 
       </para></listitem>
       </varlistentry>
