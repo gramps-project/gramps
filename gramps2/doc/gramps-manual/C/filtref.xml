@@ -86,7 +86,7 @@
           </para>
 
           <para> Separate values can be used for Given name, Family name, 
-          Suffix, and the Title. The rule returns a match if and only if 
+          Suffix, and the Title. The rule returns a match if, and only if, 
           all non-empty values are (partially) matched by a person's 
           name. To use just one value, leave the other values empty. 
           </para></listitem>
@@ -157,7 +157,7 @@
           using the value "sw" for the Place. 
           </para>
 
-          <para> The rule returns a match if and only if 
+          <para> The rule returns a match if, and only if, 
           all non-empty values are (partially) matched by a person's 
           birth. To use just one value, leave the other values empty. 
           </para></listitem>
@@ -172,7 +172,7 @@
           will be matched by the rule using the value "sw" for the Place.
           </para>
 
-          <para> The rule returns a match if and only if 
+          <para> The rule returns a match if, and only if, 
           all non-empty values are (partially) matched by a person's 
           death. To use just one value, leave the other values empty. 
           </para></listitem>
@@ -195,7 +195,7 @@
           </para>
 
           <para> The personal events should be selected from a pull-down menu. 
-          The rule returns a match if and only if all non-empty values 
+          The rule returns a match if, and only if, all non-empty values 
           are (partially) matched by the personal event. 
           To use just one value, leave the other values empty. 
           </para></listitem>
@@ -212,7 +212,7 @@
           </para>
 
           <para> The family events should be selected from a pull-down menu. 
-          The rule returns a match if and only if all non-empty values 
+          The rule returns a match if, and only if, all non-empty values 
           are (partially) matched by the personal event. 
           To use just one value, leave the other values empty. 
           </para></listitem>
@@ -274,7 +274,7 @@
           of children can be specified. 
           </para>
 
-          <para> The rule returns a match if and only if 
+          <para> The rule returns a match if, and only if, 
           all non-empty values are (partially) matched by a person's 
           relationship. To use just one value, leave the other values empty. 
           </para></listitem>
