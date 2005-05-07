@@ -1,3 +1,11 @@
+2005-05-07  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/PedView.py (build_detail_string), src/FamilyView.py (load_family):
+	Dont crash on strange signal race condition, that leaves database in
+	corrupt state before sending "active-changed"
+	* src/plugins/ImportGeneWeb.py (read_children_lines): Properly add
+	birth event; (parse_person): Remove brackets from name;
+	(get_or_create_place): Fix typo 
+
 2005-05-06  Alex Roitman  <shura@gramps-project.org>
 	* acinclude.m4: Copy macro for GCONF configuration from gconf2-dev;
 	add --disable-mime-install and --enable-packager-mode arguments.

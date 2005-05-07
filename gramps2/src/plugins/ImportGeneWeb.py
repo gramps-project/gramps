@@ -86,9 +86,8 @@ def importData(database, filename, cb=None):
     
 
 #-------------------------------------------------------------------------
-#
-#
-#
+# For a description of the file format see
+# http://cristal.inria.fr/~ddr/GeneWeb/en/gwformat.htm
 #-------------------------------------------------------------------------
 class GeneWebParser:
     def __init__(self, dbase, file):
@@ -255,7 +254,8 @@ class GeneWebParser:
                         birth_handle = child.get_birth_handle()
                         birth = self.db.get_event_from_handle(birth_handle)
                         if not birth:
-                            birth = RelLib.Event()
+                            birth = self.create_event("Birth")
+                            child.set_birth_handle(birth.get_handle())
                         birth.set_place_handle(self.current_child_birthplace_handle)
                         self.db.commit_event(birth,self.trans)
                     if self.current_child_source_handle:
@@ -450,14 +450,14 @@ class GeneWebParser:
         while idx < len(fields) and personDataRe.match(fields[idx]):
             if fields[idx][0] == '(':
                 #print "Public Name: %s" % fields[idx]
-                public_name = self.decode(fields[idx])
+                public_name = self.decode(fields[idx][1:-1])
                 idx = idx + 1
             elif fields[idx][0] == '{':
                 #print "Firstsname Alias: %s" % fields[idx]
-                firstname_aliases.append(self.decode(fields[idx]))
+                firstname_aliases.append(self.decode(fields[idx][1:-1]))
                 idx = idx + 1
             elif fields[idx][0] == '[':
-                #print "Titles: %s" % fields[idx]
+                print "TODO: Titles: %s" % fields[idx]
                 idx = idx + 1
             elif fields[idx] == '#nick':
                 idx = idx + 1
@@ -672,7 +672,7 @@ class GeneWebParser:
     def get_or_create_place(self,place_name):
         place = None
         if place_name in self.pkeys:
-            person = self.db.get_place_from_handle(self.pkeys[place_name])
+            place = self.db.get_place_from_handle(self.pkeys[place_name])
         else:
             place = RelLib.Place()
             place.set_title(place_name)

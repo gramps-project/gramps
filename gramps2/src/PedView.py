@@ -802,10 +802,10 @@ def build_detail_string(db,person):
     else:
         for event_handle in person.get_event_list():
             event = db.get_event_from_handle(event_handle)
-            if event.get_name() == "Baptism":
+            if event and event.get_name() == "Baptism":
                 detail_text += format_event(db, _BAPT, event)
                 break
-            if event.get_name() == "Christening":
+            if event and event.get_name() == "Christening":
                 detail_text += format_event(db, _CHRI, event)
                 break
 
@@ -815,10 +815,10 @@ def build_detail_string(db,person):
     else:
         for event_handle in person.get_event_list():
             event = db.get_event_from_handle(event_handle)
-            if event.get_name() == "Burial":
+            if event and event.get_name() == "Burial":
                 detail_text += format_event(db, _BURI, event)
                 break
-            if event.get_name() == "Cremation":
+            if event and event.get_name() == "Cremation":
                 detail_text += format_event(db, _CREM, event)
                 break
 

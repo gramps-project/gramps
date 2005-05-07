@@ -968,6 +968,9 @@ class FamilyView:
         if self.parent.active_person:
             handle = self.parent.active_person.get_handle()
             self.person = self.parent.db.get_person_from_handle(handle)
+            if not self.person:
+                self.clear()
+                return
             splist = self.person.get_family_handle_list()
         else:
             self.person = None
