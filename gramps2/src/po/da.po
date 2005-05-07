@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 0.7.2\n"
 "POT-Creation-Date: Sun May  1 22:06:28 2005\n"
-"PO-Revision-Date: 2005-05-06 22:07+0200\n"
+"PO-Revision-Date: 2005-05-07 09:00+0200\n"
 "Last-Translator: Lars Kristian Lundin <gramps@lklundin.dk>\n"
 "Language-Team:  <dk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -105,16 +105,16 @@ msgstr "Åbner et fremmed format"
 msgid ""
 "New GRAMPS database has to be set up when opening non-native formats. The "
 "following dialog will let you select the new database."
-msgstr "En ny GRAMPS database skal opsættes når et fremmed format åbnes. Følgende dialog lader dig vælge den ny database."
+msgstr "En ny GRAMPS-database skal opsættes når et fremmed format åbnes. Følgende dialog lader dig vælge den ny database."
 
 #: ArgHandler.py:291
 msgid "New GRAMPS database was not set up"
-msgstr "En ny GRAMPS database blev ikke sat op"
+msgstr "En ny GRAMPS-database blev ikke sat op"
 
 #: ArgHandler.py:292
 msgid ""
 "GRAMPS cannot open non-native data without setting up new GRAMPS database."
-msgstr "Kan ikke åbne et fremmed format, uden at opsætte en ny GRAMPS database."
+msgstr "Kan ikke åbne et fremmed format, uden at opsætte en ny GRAMPS-database."
 
 #: ArgHandler.py:302 DbPrompter.py:201 DbPrompter.py:228 DbPrompter.py:304
 #: DbPrompter.py:333
@@ -128,7 +128,7 @@ msgid ""
 "Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
 msgstr ""
 "Fil type \"%s\" er ukendt for GRAMPS.\n"
-"Gyldige typer er: GRAMPS database, GRAMPS XML, GRAMPS package, og GEDCOM."
+"Gyldige typer er: GRAMPS-database, GRAMPS XML, GRAMPS-pakke, og GEDCOM."
 
 #: AttrEdit.py:119 AttrEdit.py:123 AttrEdit.py:181
 msgid "Attribute Editor"
@@ -161,7 +161,7 @@ msgstr ""
 
 #: Bookmarks.py:96 Bookmarks.py:101
 msgid "Edit Bookmarks"
-msgstr "Editer Bogmærker"
+msgstr "Rediger Bogmærker"
 
 #: ChooseParents.py:123
 msgid "Choose the Parents of %s"
@@ -331,7 +331,7 @@ msgstr "GRAMPS: Importer database"
 
 #: DbPrompter.py:359
 msgid "GRAMPS: Create GRAMPS database"
-msgstr "GRAMPS: Opret GRAMPS database"
+msgstr "GRAMPS: Opret en GRAMPS-database"
 
 #: DbPrompter.py:432
 msgid "GRAMPS: Select filename for a new database"
@@ -359,7 +359,7 @@ msgstr "Alle GRAMPS filer"
 
 #: DbPrompter.py:631
 msgid "GRAMPS databases"
-msgstr "GRAMPS databaser"
+msgstr "GRAMPS-databaser"
 
 #: DbPrompter.py:640
 msgid "GRAMPS XML databases"
@@ -481,11 +481,11 @@ msgstr "Åbn i %s"
 
 #: EditPerson.py:568 ImageSelect.py:618 MediaView.py:248
 msgid "Edit with the GIMP"
-msgstr "Editer med GIMP"
+msgstr "Rediger med GIMP"
 
 #: EditPerson.py:570 ImageSelect.py:620
 msgid "Edit Object Properties"
-msgstr "Editer Objekt Egenskaber"
+msgstr "Rediger Objekt Egenskaber"
 
 #: EditPerson.py:621
 msgid "New Person"
@@ -718,13 +718,17 @@ msgid ""
 "If you change your mind during this process, you can safely press the Cancel "
 "button at any time and your present database will still be intact."
 msgstr ""
+"Under normale forhold kræver brugen af GRAMPS ikke at du selv gemmer dine ændringer. All ændringer du foretager, bliver øjeblikkeligt gemt i databasen.\n"
+"\n"
+"Denne proces hjælper dig til at gemme en kopi af dine data i ethvert af de formatter, som GRAMPS understøtter. Dette kan benyttes til at kopiere dine data, til at lave en sikkerhedskopi, eller til at konvertere dine data til et format, så de kan overføres til et andet program.\n"
+"\n"
+"Hvis du fortryder undervejs, kan du til enhver tid roligt trykke på Afbryde-knappen, hvorefter din aktuelle database stadig vil være intakt."
 
 #: Exporter.py:170
 msgid "Final save confirmation"
 msgstr "Endelig bekræftelse af gem"
 
 #: Exporter.py:194
-#FIXME: 8 spaces to \t
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -736,9 +740,9 @@ msgid ""
 msgstr ""
 "Data bliver gemt som følger:\n"
 "\n"
-"Format:     %s\n"
-"Name:     %s\n"
-"Folder:     %s\n"
+"Format:\t%s\n"
+"Name:\t%s\n"
+"Folder:\t%s\n"
 "Tryk Fremad for at fortsætte, Fortryd for at afbryde, eller Tilbage for at gentage indstillingerne."
 
 #: Exporter.py:214
@@ -954,7 +958,7 @@ msgstr "<dobbelt klik for at tilføje ægtefælle>"
 #: FamilyView.py:1063
 # FIXME
 msgid "Database corruption detected"
-msgstr "Internt database problem fundet"
+msgstr "Databasen er ikke længere intakt"
 
 #: FamilyView.py:1064
 msgid ""
@@ -1627,7 +1631,7 @@ msgstr "Reference-editor"
 
 #: ImageSelect.py:827 ImageSelect.py:1207 MediaView.py:305
 msgid "Edit Media Object"
-msgstr "Editer medie Objekt"
+msgstr "Rediger medie Objekt"
 
 #: ImageSelect.py:909
 msgid "Media Properties Editor"
@@ -1705,7 +1709,7 @@ msgstr ""
 
 #: MediaView.py:321
 msgid "Deleting media object will remove it from the database."
-msgstr "Fjernelse af medie-objekt vil slette det fra databasen"
+msgstr "Fjernelse af medie-objekt vil slette det fra databasen."
 
 #: MediaView.py:324
 msgid "Delete Media Object?"
@@ -2012,7 +2016,7 @@ msgstr "Brug det valgte værktøj"
 
 #: Plugins.py:367
 msgid "Plugin status"
-msgstr "Plugin status"
+msgstr "Indstik status"
 
 #: Plugins.py:387
 msgid "All modules were successfully loaded."
@@ -2024,7 +2028,7 @@ msgstr "Følgende moduler kunne ikke indlæses:"
 
 #: Plugins.py:726
 msgid "Reload plugins"
-msgstr "Genindlæs plugins"
+msgstr "Genindlæs indstik"
 
 #: Plugins.py:727 plugins/Eval.py:140 plugins/Leak.py:136
 #: plugins/TestcaseGenerator.py:539
@@ -2136,8 +2140,7 @@ msgstr "Fejl ved læsning af %s"
 
 #: ReadXML.py:134
 msgid "The file is probably either corrupt or not a valid GRAMPS database."
-msgstr ""
-"Filen er sandsynligvis enten defekt eller ikke en gyldig GRAMPS database."
+msgstr "Filen er sandsynligvis enten defekt eller ikke en gyldig GRAMPS-database."
 
 #: ReadXML.py:173
 msgid "Could not copy file"
@@ -2861,7 +2864,7 @@ msgstr "%(female_name)s blev født i %(month_year)s."
 
 #: ReportUtils.py:1102
 msgid "%(female_name)s was born in %(birth_place)s."
-msgstr "%(female_name)s blev født i %(month_year)s."
+msgstr "%(female_name)s blev født i %(birth_place)s."
 
 #: ReportUtils.py:1158
 msgid "%(male_name)s died on %(death_date)s in %(death_place)s."
@@ -2891,15 +2894,15 @@ msgstr "%(male_name)s døde %(death_date)s."
 
 #: ReportUtils.py:1188
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_date) i en alder af %(age)d år."
+msgstr "%(male_name)s døde %(death_date)s i en alder af %(age)d år."
 
 #: ReportUtils.py:1193
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_date) i en alder af %(age)d måneder."
+msgstr "%(male_name)s døde %(death_date)s i en alder af %(age)d måneder."
 
 #: ReportUtils.py:1198
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_date) i en alder af %(age)d dage."
+msgstr "%(male_name)s døde %(death_date)s i en alder af %(age)d dage."
 
 #: ReportUtils.py:1205
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s."
@@ -2925,19 +2928,19 @@ msgstr "%(male_name)s døde %(month_year)s i %(death_place)s i en alder af %(age)
 
 #: ReportUtils.py:1232
 msgid "%(male_name)s died in %(month_year)s."
-msgstr "%(male_name)s døde %(month_years)s."
+msgstr "%(male_name)s døde %(month_year)s."
 
 #: ReportUtils.py:1235
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(month_years)s i en alder af %(age)d år."
+msgstr "%(male_name)s døde %(month_year)s i en alder af %(age)d år."
 
 #: ReportUtils.py:1240
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(month_years)s i en alder af %(age)d måneder."
+msgstr "%(male_name)s døde %(month_year)s i en alder af %(age)d måneder."
 
 #: ReportUtils.py:1245
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(month_years)s i en alder af %(age)d dage."
+msgstr "%(male_name)s døde %(month_year)s i en alder af %(age)d dage."
 
 #: ReportUtils.py:1252
 msgid "%(male_name)s died in %(death_place)s."
@@ -2975,19 +2978,19 @@ msgstr "%(female_name)s døde %(death_date)s i %(death_place)s."
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d years."
-msgstr "%(female_name)s døde %(death_date)s i %(death_place)s i en alder af %(age)s år."
+msgstr "%(female_name)s døde %(death_date)s i %(death_place)s i en alder af %(age)d år."
 
 #: ReportUtils.py:1301
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d months."
-msgstr "%(female_name)s døde %(death_date)s i %(death_place)s i en alder af %(age)s måneder."
+msgstr "%(female_name)s døde %(death_date)s i %(death_place)s i en alder af %(age)d måneder."
 
 #: ReportUtils.py:1308
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d days."
-msgstr "%(female_name)s døde %(death_date)s i %(death_place)s i en alder af %(age)s dage."
+msgstr "%(female_name)s døde %(death_date)s i %(death_place)s i en alder af %(age)d dage."
 
 #: ReportUtils.py:1316
 msgid "%(female_name)s died on %(death_date)s."
@@ -3352,10 +3355,7 @@ msgid ""
 "\n"
 "Possibly the installation of GRAMPS was incomplete. Make sure the GConf "
 "schema of GRAMPS is properly installed."
-msgstr ""
-"\n"
-"\n"
-"Installationen af GRAMPS var muligvis ufuldstændig. Kontroller at GRAMPS' GConf-skema er korrekt installeret."
+msgstr "\n\nInstallationen af GRAMPS var muligvis ufuldstændig. Kontroller at GRAMPS' GConf-skema er korrekt installeret."
 
 #: StartupDialog.py:77
 msgid "Getting Started"
@@ -3388,7 +3388,7 @@ msgid ""
 "Please enjoy using GRAMPS."
 msgstr ""
 "GRAMPS er et Open-Source projekt. Dets succes afhænger af brugerne. "
-"Brugernes tilbagemeldinger er vigtige. Tilmeld dig venligst e-mail-listerne, "
+"Brugernes tilbagemeldinger er vigtige. Tilmeld dig venligst e-postlisterne, "
 "indsend fejlmeldinger, foreslå forbedringer, og se hvordan du kan bidrage.\n"
 "\n"
 "God fornøjelse med GRAMPS."
@@ -3605,7 +3605,7 @@ msgstr "GRAMPS _XML database"
 msgid ""
 "The GRAMPS XML database is a format used by older versions of GRAMPS. It is "
 "read-write compatible with the present GRAMPS database format."
-msgstr "GRAMPS XML databasen er et format, der bliver benyttet at ældre versioner af GRAMPS. Det er både læse- og skrive-kompatibelt med den nuværende GRAMPS database format."
+msgstr "GRAMPS XML databasen er et format, der bliver benyttet at ældre versioner af GRAMPS. Det er både læse- og skrive-kompatibelt med den nuværende GRAMPS-database format."
 
 #: const.py:141
 msgid ""
@@ -4017,7 +4017,7 @@ msgstr "KWord"
 # FIXME Better translation?
 #: docgen/LPRDoc.py:1186
 msgid "Print Preview"
-msgstr "Udskifts-Preview"
+msgstr "Udskifts-Smugkig"
 
 #: docgen/LPRDoc.py:1206 docgen/LPRDoc.py:1220 docgen/LPRDoc.py:1230
 #: docgen/LPRDoc.py:1239
@@ -4185,7 +4185,7 @@ msgstr "GRAMPS - GEDCOM Indkodning"
 
 #: gedcomimport.glade:570
 msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
-msgstr "<span size=\\\"larger\\\" weight=\\\"bold\\\">GEDCOM Indkodning</span>"
+msgstr "<span size=\"larger\" weight=\"bold\">GEDCOM Indkodning</span>"
 
 #: gedcomimport.glade:591
 msgid ""
@@ -4255,7 +4255,7 @@ msgstr "Afslut"
 
 #: gramps.glade:219
 msgid "_Edit"
-msgstr "_Editer"
+msgstr "R_ediger"
 
 #: gramps.glade:228 gramps_main.py:493
 msgid "_Undo"
@@ -4361,7 +4361,7 @@ msgstr "_Hjælp"
 
 #: gramps.glade:577
 msgid "_User manual"
-msgstr "Br_uger vejledning"
+msgstr "Br_ugervejledning"
 
 #: gramps.glade:599
 msgid "_FAQ"
@@ -4373,7 +4373,7 @@ msgstr "GRAMPS _hjemmeside"
 
 #: gramps.glade:647
 msgid "GRAMPS _mailing lists"
-msgstr "GRA_MPS E-Mail-lister"
+msgstr "GRA_MPS E-postlister"
 
 #: gramps.glade:668
 msgid "_Report a bug"
@@ -4381,7 +4381,7 @@ msgstr "_Rapporter en fejl"
 
 #: gramps.glade:683
 msgid "_Show plugin status..."
-msgstr "Vi_s plugin status..."
+msgstr "Vi_s indstik status..."
 
 #: gramps.glade:692
 msgid "_Open example database"
@@ -4585,7 +4585,7 @@ msgstr "Fjerner det valgte barn fra den valgte familie"
 #: gramps.glade:3206 gramps.glade:19016 gramps.glade:21036 gramps.glade:21301
 #: gramps.glade:22698
 msgid "<b>Preview</b>"
-msgstr "<b>Preview</b>"
+msgstr "<b>Smugkig</b>"
 
 #: gramps.glade:3242 gramps.glade:19052
 msgid "Details:"
@@ -4907,7 +4907,7 @@ msgstr "St_ed:"
 #: gramps.glade:11715 gramps.glade:13813 gramps.glade:18403 gramps.glade:23059
 #: gramps.glade:29197
 msgid "Invoke date editor"
-msgstr "Start editering af dato"
+msgstr "Start redigering af dato"
 
 #: gramps.glade:7314
 msgid ""
@@ -4923,7 +4923,7 @@ msgstr "Personens fornavn"
 
 #: gramps.glade:7361
 msgid "Invoke birth event editor"
-msgstr "Start editering af fødsler"
+msgstr "Start redigering af fødsler"
 
 #: gramps.glade:7412
 msgid "Edit the preferred name"
@@ -4939,7 +4939,7 @@ msgstr "<b>Identifikation</b>"
 
 #: gramps.glade:7489
 msgid "Invoke death event editor"
-msgstr "Start editering af dødsfald"
+msgstr "Start redigering af dødsfald"
 
 #: gramps.glade:7604
 msgid "<b>Image</b>"
@@ -5792,9 +5792,9 @@ msgid "<b>Name Information</b>"
 msgstr "<b>Navne Information</b>"
 
 #: gramps.glade:29077
-#, fuzzy
+# FIXME
 msgid "_Override"
-msgstr "_Overskriv"
+msgstr "Annuller"
 
 #: gramps.glade:29115
 msgid ""
@@ -5812,7 +5812,7 @@ msgid ""
 "Given name Family name\n"
 "Family name Given name\n"
 msgstr ""
-"Standard (locale baseret)\n"
+"Standard (lokalitets baseret)\n"
 "Fornavn Efternavn\n"
 "Efternavn Fornavn\n"
 
@@ -5842,7 +5842,7 @@ msgstr "Vis ve_d start"
 
 #: gramps.glade:30126
 msgid "<span weight=\"bold\" size=\"larger\">Gramps' Tip of the Day</span>"
-msgstr "<span weight=\\\"bold\\\" size=\\\"larger\\\">Dagens Gramps Tip</span>"
+msgstr "<span weight=\"bold\" size=\"larger\">Dagens Gramps Tip</span>"
 
 #: gramps.glade:30159
 msgid "GRAMPS - Loading Database"
@@ -5850,7 +5850,7 @@ msgstr "GRAMPS - Indlæser Database"
 
 #: gramps.glade:30184
 msgid "<span size=\"larger\" weight=\"bold\">Loading database</span>"
-msgstr "<span size=\\\"larger\\\" weight=\\\"bold\\\">Indlæser database</span>"
+msgstr "<span size=\"larger\" weight=\"bold\">Indlæser database</span>"
 
 #: gramps.glade:30208
 msgid "GRAMPS is loading the database you selected. Please wait."
@@ -6001,7 +6001,7 @@ msgid ""
 "A GRAMPS database must be a file."
 msgstr ""
 "Den valgte fil er en folder, ikke en fil.\n"
-"En GRAMPS database skal være en fil."
+"En GRAMPS-database skal være en fil."
 
 #: gramps_main.py:1215
 msgid "You do not have read access to the selected file."
@@ -6160,7 +6160,7 @@ msgstr "Vælg"
 
 #: mergedata.glade:611
 msgid "<span weight=\"bold\" size=\"larger\">Merge Sources</span>"
-msgstr "<span weight=\\\"bold\\\" size=\\\"larger\\\">Slå kilder sammen</span>"
+msgstr "<span weight=\"bold\" size=\"larger\">Slå kilder sammen</span>"
 
 #: mergedata.glade:638
 msgid "<b>Source 1</b>"
@@ -6598,7 +6598,7 @@ msgstr "Ingen rettelser foretaget"
 
 #: plugins/ChangeNames.py:91
 msgid "No capitalization changes were detected."
-msgstr "Der blev ikke fundet nogen versalændringer"
+msgstr "Der blev ikke fundet nogen versalændringer."
 
 #: plugins/ChangeNames.py:108 plugins/ChangeNames.py:186
 msgid "Capitalization changes"
@@ -6668,7 +6668,7 @@ msgid ""
 "select a new file."
 msgstr ""
 "Filen:\n"
-" %(filename)s \n"
+" %(file_name)s \n"
 "har en henvisning i databasen, men eksisterer ikke længere. Filen kan være slettet eller flyttet. Du kan vælge at enten fjerne databasens henvisning, beholde henvisningen til den manglende fil, eller vælge en ny fil."
 
 #: plugins/Check.py:448
@@ -6793,7 +6793,7 @@ msgstr "Der blev henvist til %d stednavne, som ikke kunne findes\n"
 
 #: plugins/Check.py:555
 msgid "Integrity Check Results"
-msgstr ""
+msgstr "Resultat af Integritetskontrol"
 
 #: plugins/Check.py:596
 msgid "Check and repair database"
@@ -7194,7 +7194,7 @@ msgstr "Tilføj Regel"
 
 #: plugins/FilterEditor.py:584
 msgid "Edit Rule"
-msgstr "Editer Regel"
+msgstr "Rediger Regel"
 
 #: plugins/FilterEditor.py:690
 msgid "Include original person"
@@ -7506,7 +7506,7 @@ msgstr "Font familie"
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
-msgstr ""
+msgstr "Vælg font-familien. Hvis internationale tegn ikke vlier vist, så brug FreeSans fonten. FreeSans er tilgængelig på: http://www.nongnu.org/freefont/"
 
 #: plugins/GraphViz.py:664
 msgid "Indicate non-birth relationships with dotted lines"
@@ -7587,7 +7587,7 @@ msgid ""
 "generates dot file behind the scene and then uses dot to convert it into a "
 "graph. If you want the dotfile itself, please use the Code Generators "
 "category."
-msgstr ""
+msgstr "Danner slægtsskabstavler med GraphViz (dot) programmet. Denne rapport danner førrst en dot fil, som herefter automatisk konverteres til en tavle. Hvis du selv ønsker at behandle dot-filen, så gå til Kode Generator kategorien."
 
 #: plugins/ImportGeneWeb.py:165
 msgid "GeneWeb import"
@@ -7948,11 +7948,11 @@ msgstr "Fejl ved udtræk ind i %s"
 
 #: plugins/ReadPkg.py:104
 msgid "GRAMPS packages"
-msgstr "GRAMPS pakker"
+msgstr "GRAMPS-pakker"
 
 #: plugins/ReadPkg.py:106
 msgid "GRAMPS package"
-msgstr "GRAMPS pakke"
+msgstr "GRAMPS-pakke"
 
 #: plugins/RelCalc.py:82
 msgid "Relationship calculator: %(person_name)s"
@@ -8089,10 +8089,9 @@ msgstr "Fra galleri..."
 msgid "From file..."
 msgstr "Fra fil..."
 
-# FIXME Better translation?
 #: plugins/SimpleBookTitle.py:208
 msgid "Preview"
-msgstr "Preview"
+msgstr "Smugkig"
 
 #: plugins/SimpleBookTitle.py:208 plugins/SimpleBookTitle.py:209
 #: plugins/SimpleBookTitle.py:210
@@ -8284,7 +8283,7 @@ msgstr "Vælg hvordan de statistiske data skal sorteres."
 
 #: plugins/StatisticsChart.py:858
 msgid "Sort chart items by"
-msgstr ""
+msgstr "Sorter diagrammer efter"
 
 #: plugins/StatisticsChart.py:861
 msgid "Check to reverse the sorting order."
@@ -8298,7 +8297,7 @@ msgstr "Sorter i omvendt orden"
 msgid ""
 "Select year range within which people need to be born to be selected for "
 "statistics."
-msgstr ""
+msgstr "Vælg årrækken som personerne skal være født i for at blive inkluderet i statistikken."
 
 #: plugins/StatisticsChart.py:878
 msgid "People born between"
@@ -8325,11 +8324,11 @@ msgstr "Køn, der er taget med"
 #: plugins/StatisticsChart.py:899
 msgid ""
 "With fewer items pie chart and legend will be used instead of a bar chart."
-msgstr ""
+msgstr "Til få bestanddele anvendes et lagkage diagram istedet for et søjlediagram."
 
 #: plugins/StatisticsChart.py:921
 msgid "Mark checkboxes to add charts with indicated data"
-msgstr ""
+msgstr "Marker felterne for at tilføje diagrammer med de udpegede data"
 
 #: plugins/StatisticsChart.py:926
 msgid "Note that both biological and adopted children are taken into account."
@@ -8337,7 +8336,7 @@ msgstr "Bemærk at både biologiske og adopterede børn tages med."
 
 #: plugins/StatisticsChart.py:957
 msgid "Statistics Chart"
-msgstr ""
+msgstr "Statistik Diagram"
 
 #: plugins/StatisticsChart.py:961
 msgid "Generates statistical bar graphs."
@@ -8449,7 +8448,7 @@ msgstr "Generer Testcases for personer og familier"
 msgid ""
 "The testcase generator will generate some persons and families that have "
 "broken links in the database or data that is in conflict to a relation."
-msgstr ""
+msgstr "Testcase generatoren vil danne nogle personer og familier, der har manglende forbindelser i databasen eller som er i konflikt med en forbindelse."
 
 #: plugins/TimeLine.py:168
 msgid "Report could not be created"
@@ -8998,19 +8997,19 @@ msgid ""
 "Exporting to CD copies all your data and media object files to the CD "
 "Creator. You may later burn the CD with this data, and that copy will be "
 "completely portable across different machines and binary architectures."
-msgstr ""
+msgstr "Eksport til CD kopierer alle dine data og medie objekt filer til CD-Danneren. Du kan senere brænde CD'en med disse data, og den kopi vil kunne læses på forskelle computer-typer."
 
 #: plugins/WriteFtree.py:273
 msgid "_Web Family Tree"
-msgstr "_Web Familie Træ"
+msgstr "_Web Familietræ"
 
 #: plugins/WriteFtree.py:274
 msgid "Web Family Tree format."
-msgstr "Web Familie træformat"
+msgstr "Web Familietræ-format."
 
 #: plugins/WriteFtree.py:275
 msgid "Web Family Tree export options"
-msgstr "Web Familie Træ eksport indstillinger"
+msgstr "Web Familietræ eksport indstillinger"
 
 #: plugins/WriteGeneWeb.py:218
 msgid "No families matched by selected filter"
@@ -9030,13 +9029,13 @@ msgstr "GeneWeb eksport indstillinger"
 
 #: plugins/WritePkg.py:202
 msgid "GRAM_PS package (portable XML)"
-msgstr "GRAM_PS pakke (portabel XML)"
+msgstr "GRAM_PS-pakke (portabel XML)"
 
 #: plugins/WritePkg.py:203
 msgid ""
 "GRAMPS package is an archived XML database together with the media object "
 "files."
-msgstr "En GRAMPS pakke er en arkiveret XML database sammen med medie objekt filerne."
+msgstr "En GRAMPS-pakke er en arkiveret XML database sammen med medie objekt filerne."
 
 #: plugins/book.glade:11
 msgid "Book"
@@ -9106,6 +9105,9 @@ msgid ""
 "GRAMPS can convert to correct capitalization. \n"
 "Select the names you wish GRAMPS to convert. "
 msgstr ""
+"Nedenfor er en liste over familienavne,\n"
+"som GRAMPS kan konvertere til at have korrekt brug af versaler. \n"
+"Vælg de navne, du ønsker at GRAMPS skal konvertere. "
 
 #: plugins/changenames.glade:125
 msgid "_Accept changes and close"
@@ -9187,7 +9189,7 @@ msgstr "Slå sa_mmen"
 
 #: plugins/merge.glade:361
 msgid "<b>Match Threshold</b>"
-msgstr "</b>Sammenfaldsgrænse</b>"
+msgstr "<b>Sammenfaldsgrænse</b>"
 
 #: plugins/merge.glade:410
 msgid "Use soundex codes"
@@ -9591,7 +9593,7 @@ msgstr "<b>Værdier</b>"
 #~ msgstr "GRAMPS interne ID'er"
 
 #~ msgid "Revision Control"
-#~ msgstr "Versionskontrol"
+#~ msgstr "Versionsstyring"
 
 #~ msgid "Dates and Calendars"
 #~ msgstr "Datoer og kalendere"
@@ -9647,7 +9649,7 @@ msgstr "<b>Værdier</b>"
 #~ msgstr "Anden navneeditor for %s"
 
 #~ msgid "Edit Note"
-#~ msgstr "Editer note"
+#~ msgstr "Rediger note"
 
 #~ msgid "%s (revision %s)"
 #~ msgstr "%s (revision %s)"
@@ -9781,7 +9783,7 @@ msgstr "<b>Værdier</b>"
 #~ msgstr "Aktiver anvendelse af andre kalendere"
 
 #~ msgid "Revision control comment"
-#~ msgstr "Versionskontrolkommentar"
+#~ msgstr "Versionsstyringskommentar"
 
 #~ msgid "Select an older revision"
 #~ msgstr "Vælg en ældre version"
@@ -10366,10 +10368,10 @@ msgstr "<b>Værdier</b>"
 #~ msgstr "Individuel Opsummering til GRAMPS Bog"
 
 #~ msgid "Import from GRAMPS database"
-#~ msgstr "Import fra GRAMPS database"
+#~ msgstr "Import fra GRAMPS-database"
 
 #~ msgid "Import from GRAMPS package"
-#~ msgstr "Import fra GRAMPS pakke"
+#~ msgstr "Import fra GRAMPS-pakke"
 
 #~ msgid "Descendant family members of %s"
 #~ msgstr "Børn af %s"
@@ -10405,7 +10407,7 @@ msgstr "<b>Værdier</b>"
 #~ msgstr "Eksport til GEDCOM"
 
 #~ msgid "Export to GRAMPS package"
-#~ msgstr "Eksport til GRAMPS pakke"
+#~ msgstr "Eksport til GRAMPS-pakke"
 
 #~ msgid "Package export"
 #~ msgstr "pakke eksport"
@@ -10459,10 +10461,10 @@ msgstr "<b>Værdier</b>"
 #~ msgstr "Komprimer ikke XML-_datafilen"
 
 #~ msgid "<b>Revision control</b>"
-#~ msgstr "<b>Versionskontrol</b>"
+#~ msgstr "<b>Versionsstyring</b>"
 
 #~ msgid "_Use revision control"
-#~ msgstr "Anvend versionskontrol"
+#~ msgstr "Anvend versionsstyring"
 
 #~ msgid "_Prompt for comment on save"
 #~ msgstr "S_pørg efter kommentar ved lagring"
@@ -10559,7 +10561,7 @@ msgstr "<b>Værdier</b>"
 #~ msgstr "_Database:"
 
 #~ msgid "_Revert to an older version from revision control"
-#~ msgstr "Gå tilbage til en æld_re version fra versionskontrollen"
+#~ msgstr "Gå tilbage til en æld_re version fra versionsstyringen"
 
 #~ msgid "Comment:"
 #~ msgstr "Kommentar:"
@@ -10854,8 +10856,8 @@ msgstr "<b>Værdier</b>"
 #~ "Please enjoy using GRAMPS."
 #~ msgstr ""
 #~ "GRAMPS er et Open-Source projekt. Dets succes afhænger af brugerne. "
-#~ "Brugernes tilbagemeldinger er vigtige. Tilmeld dig venligst e-mail-"
-#~ "listerne, indsend fejlmeldinger,\n"
+#~ "Brugernes tilbagemeldinger er vigtige. Tilmeld dig venligst e-postlisterne, "
+#~ "indsend fejlmeldinger,\n"
 #~ "foreslå forbedringer, og se hvordan du kan bidrage.\n"
 #~ "\n"
 #~ "Hav god fornøjelse med GRAMPS."
@@ -10909,7 +10911,7 @@ msgstr "<b>Værdier</b>"
 #~ msgstr "EFTER"
 
 #~ msgid "Edit Person - GRAMPS"
-#~ msgstr "Editer person - GRAMPS"
+#~ msgstr "Rediger person - GRAMPS"
 
 #~ msgid "Select information source"
 #~ msgstr "Vælg informationskilde"
@@ -11028,7 +11030,7 @@ msgstr "<b>Værdier</b>"
 #~ msgstr "Rapporter en programfejl til GRAMPS fejladministreringssystem"
 
 #~ msgid "Shows the status of plugins that failed to load"
-#~ msgstr "Vis status af plugins der ikke kunne indlæses"
+#~ msgstr "Vis status af indstik, der ikke kunne indlæses"
 
 #~ msgid "Display the list of people"
 #~ msgstr "Vis listen af personer"
@@ -11052,7 +11054,7 @@ msgstr "<b>Værdier</b>"
 #~ msgstr "Ombyt aktuel person og den viste ægtefælle"
 
 #~ msgid "Edit/View"
-#~ msgstr "Editer/Se"
+#~ msgstr "Rediger/Se"
 
 #~ msgid "Make the current father the active person"
 #~ msgstr "Gør den aktuelle fader til den aktuelle person"
@@ -11064,7 +11066,7 @@ msgstr "<b>Værdier</b>"
 #~ msgstr "Vælg de foregående forældre"
 
 #~ msgid "Add/Edit/View"
-#~ msgstr "Tilføj/Editer/Se"
+#~ msgstr "Tilføj/Rediger/Se"
 
 #~ msgid ""
 #~ "Click column headers to sort. When sorted by birth date, drag and drop to "
@@ -11104,7 +11106,7 @@ msgstr "<b>Værdier</b>"
 #~ msgstr "Ægteskabseditor - GRAMPS"
 
 #~ msgid "Edit marriage information"
-#~ msgstr "Editer ægteskabsinformation"
+#~ msgstr "Rediger ægteskabsinformation"
 
 #~ msgid "Source Editor - GRAMPS"
 #~ msgstr "Kildeeditor - GRAMPS"
@@ -11260,7 +11262,7 @@ msgstr "<b>Værdier</b>"
 #~ msgstr "Rapport Status"
 
 #~ msgid "Plugin Status - GRAMPS"
-#~ msgstr "Plugin Status - GRAMPS"
+#~ msgstr "Indstik Status - GRAMPS"
 
 #~ msgid "Document write failure"
 #~ msgstr "Dokument skrivningsfejl"
@@ -11543,7 +11545,7 @@ msgstr "<b>Værdier</b>"
 #~ msgstr "Navn- og Titel-udtagningsværktøj - GRAMPS"
 
 #~ msgid "Export GRAMPS package - GRAMPS"
-#~ msgstr "Eksporter GRAMPS pakke - GRAMPS"
+#~ msgstr "Eksporter GRAMPS-pakke - GRAMPS"
 
 #~ msgid "GEDCOM Read Progress"
 #~ msgstr "GEDCOM Indlæsningsforløb"
@@ -11573,7 +11575,7 @@ msgstr "<b>Værdier</b>"
 #~ msgstr "Indstillinger - GRAMPS"
 
 #~ msgid "Revison Control"
-#~ msgstr "Versionskontrol"
+#~ msgstr "Versionsstyring"
 
 #~ msgid "Active person's name and attribute"
 #~ msgstr "Den aktuelle persons navn og attribut"
@@ -11582,7 +11584,7 @@ msgstr "<b>Værdier</b>"
 #~ msgstr "Anvend faneblade"
 
 #~ msgid "Display attribute on Edit Person form"
-#~ msgstr "Vis attribut på formularen til Personeditering"
+#~ msgstr "Vis attribut på formularen til Personredigering"
 
 #~ msgid "List display options"
 #~ msgstr "Vis fremvisningsvalgmuligheder"
@@ -11624,7 +11626,7 @@ msgstr "<b>Værdier</b>"
 #~ msgstr "Gå tilbage til en ældre version"
 
 #~ msgid "Revison Control Comment - GRAMPS"
-#~ msgstr "Versionskontrolkommentar - GRAMPS"
+#~ msgstr "Versionsstyringskommentar - GRAMPS"
 
 #~ msgid "Define Filter - GRAMPS"
 #~ msgstr "Definer Filter - GRAMPS"
@@ -11669,13 +11671,13 @@ msgstr "<b>Værdier</b>"
 #~ msgstr "class"
 
 #~ msgid "Edit source information for the highlighted event"
-#~ msgstr "Editer kildeinformation for den fremhævede tekst"
+#~ msgstr "Rediger kildeinformation for den fremhævede tekst"
 
 #~ msgid "Edit source information for this address"
-#~ msgstr "Editer kilde information for denne adresse"
+#~ msgstr "Rediger kilde information for denne adresse"
 
 #~ msgid "Edit source information for this name"
-#~ msgstr "Editer kilde information for dette navn"
+#~ msgstr "Rediger kilde information for dette navn"
 
 #~ msgid " Died: "
 #~ msgstr " Død: "
