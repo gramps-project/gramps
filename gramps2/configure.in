@@ -16,8 +16,9 @@ then
   VERSIONSTRING="$VERSION-$RELEASE"
 fi
 
-AM_GCONF_SOURCE_2
+AM_GCONF2_REPLACEMENT
 AM_SHARED_MIME
+AM_PACKAGER
 AC_SUBST(RELEASE)
 AC_SUBST(VERSIONSTRING)
 
@@ -253,8 +254,6 @@ src/po/Makefile
 doc/Makefile
 doc/gramps-manual/Makefile
 doc/gramps-manual/C/Makefile	
-doc/gramps-manual/fr/Makefile	
-doc/gramps-manual/ru/Makefile	
 example/Makefile
 example/gramps/Makefile
 gramps.spec

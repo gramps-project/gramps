@@ -724,7 +724,7 @@ msgid "Final save confirmation"
 msgstr "Endelig bekræftelse af gem"
 
 #: Exporter.py:194
-FIXME: 8 spaces to \t
+#FIXME: 8 spaces to \t
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -3352,7 +3352,10 @@ msgid ""
 "\n"
 "Possibly the installation of GRAMPS was incomplete. Make sure the GConf "
 "schema of GRAMPS is properly installed."
-msgstr "Installationen af GRAMPS var muligvis ufuldstændig. Kontroller at GRAMPS' GConf-skema er korrekt installeret."
+msgstr ""
+"\n"
+"\n"
+"Installationen af GRAMPS var muligvis ufuldstændig. Kontroller at GRAMPS' GConf-skema er korrekt installeret."
 
 #: StartupDialog.py:77
 msgid "Getting Started"
@@ -5811,7 +5814,7 @@ msgid ""
 msgstr ""
 "Standard (locale baseret)\n"
 "Fornavn Efternavn\n"
-"Efternavn Fornavn"
+"Efternavn Fornavn\n"
 
 #: gramps.glade:29753
 msgid "_Comment:"

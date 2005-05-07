@@ -1,3 +1,15 @@
+2005-05-06  Alex Roitman  <shura@gramps-project.org>
+	* acinclude.m4: Copy macro for GCONF configuration from gconf2-dev;
+	add --disable-mime-install and --enable-packager-mode arguments.
+	* configure.in: Call new macros; Remove obsolete French and Russian
+	manuals for the time being.
+	* doc/gramps-manual/Makefile.am: Remove obsolete manuals.
+	* src/data/Makefile.am: Conditional installation of gconf keys and
+	mime types.
+	* src/po/da.po: Typos preventing make.
+	* NEWS: Update.
+	* README: Update.
+
 2005-05-06  Larry Allingham  <lallingham@woh.rr.com>
 	* doc/gramps-manual/C/authors.xml, doc/gramps-manual/C/faq.xml,
 	doc/gramps-manual/C/mainwin.xml, doc/gramps-manual/C/usage.xml:
