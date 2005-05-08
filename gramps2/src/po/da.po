@@ -4916,7 +4916,7 @@ msgstr "S_uffiks:"
 
 #: gramps.glade:6784
 msgid "Nic_kname:"
-msgstr "_Kæle_navn:"
+msgstr "_Kælenavn:"
 
 #: gramps.glade:6809 gramps.glade:28641
 msgid "T_ype:"
