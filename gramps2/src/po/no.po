@@ -5512,7 +5512,7 @@ msgid ""
 msgstr ""
 "Standard (basert på lokale)\n"
 "Fornavn, Etternavn\n"
-"Etternavn, Fornavn"
+"Etternavn, Fornavn\n"
 
 #: gramps.glade:29753
 msgid "_Comment:"
