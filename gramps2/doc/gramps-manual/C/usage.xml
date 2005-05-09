@@ -1262,7 +1262,7 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
         </sect3>
 
 	<!-- ==== Figure: Date selection dialog ==== -->
-	<figure id="adv-dates-gui"> 
+	<figure id="adv-dates-gui-fig"> 
 	<title>Date selection dialog</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/date-selection.png" format="PNG"/></imageobject>
