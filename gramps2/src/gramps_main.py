@@ -1247,6 +1247,9 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                 ErrorDialog(_('Cannot open database'),
                             _('The database file specified could not be opened.'))
                 return 0
+        except ( IOError, OSError ), msg:
+            ErrorDialog(_('Cannot open database'),str(msg))
+            return 0
         except db.DBAccessError, msg:
             ErrorDialog(_('Cannot open database'),
                         _('%s could not be opened.' % filename) + '\n' + msg[1])

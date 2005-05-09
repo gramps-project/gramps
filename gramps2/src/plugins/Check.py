@@ -487,7 +487,10 @@ class CheckIntegrity:
                 else:
                     cn = _("Non existing person")
                 family = self.db.get_family_from_handle(family_handle)
-                pn = Utils.family_name(family,self.db)
+                if family:
+                    pn = Utils.family_name(family,self.db)
+                else:
+                    pn = family_handle
                 self.text.write('\t')
                 self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
 

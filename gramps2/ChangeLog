@@ -1,3 +1,6 @@
+2005-05-08  Don Allingham  <don@gramps-project.org>
+	* src/WriteGedcom.py: fix adopted relationship generation
+
 2005-05-08  Alex Roitman  <shura@gramps-project.org>
 	* src/po/ru.po: Typos.
 
