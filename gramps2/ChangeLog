@@ -3,6 +3,8 @@
 	* src/GrampsGconfKeys.py: Add get/set methods for welcome key.
 	* src/GrampsIniKeys.py: Add get/set methods for welcome key.
 
+	* src/po/ru.po: Update.
+
 2005-05-10  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/po/es.po: Updated translation
 	* src/plugins/rel_es.py: Revert to more conservative relationships
