@@ -66,26 +66,35 @@ _level_name_plural = [ "", "primeros", "segundos", "terceros", "cuartos",
                 "decimoséptimos", "decimoctavos", "decimononos",
                 "vigésimos", ]
 
+# This plugin tries to be flexible and expect little from the following
+# tables.  Ancestors are named from the list for the first generations.
+# When this list is not enough, ordinals are used based on the same idea,
+# i.e. bisabuelo is 'segundo abuelo' and so on, that has been the
+# traditional way in Spanish.  When we run out of ordinals we resort to
+# N-ésimo notation, that is sort of understandable if in context.
+_parents_level = [ "", "padres", "abuelos", "bisabuelos", "tatarabuelos",
+                   "trastatarabuelos"]
+
+_father_level = [ "", "padre", "abuelo", "bisabuelo", "tatarabuelo",
+                  "trastatarabuelo"]
+
+_mother_level = [ "", "madre", "abuela", "bisabuela", "tatarabuela",
+                  "trastatarabuela"]
+
 # Higher-order terms (after trastatarabuelo) on this list are not standard,
 # but then there is no standard naming scheme at all for this in Spanish.
 # Check http://www.genealogia-es.com/guia3.html that echoes a proposed
 # scheme that has got some reception in the Spanish-language genealogy
-# community.  This plugin implements a scheme based on this list.  When
-# this list is not enough, ordinals are used based on the same idea, i.e.
-# bisabuelo is 'segundo abuelo' and so on.  When we run out of ordinals
-# we resort to N-ésimo notation, that is sort of understandable if in
-# context.
-_parents_level = [ "", "padres", "abuelos", "bisabuelos", "tatarabuelos",
-                   "trastatarabuelos", "pentabuelos", "hexabuelos",
-                   "heptabuelos", "octabuelos", "eneabuelos", "decabuelos"]
-
-_father_level = [ "", "padre", "abuelo", "bisabuelo", "tatarabuelo",
-                  "trastatarabuelo", "pentabuelo", "hexabuelo",
-                  "heptabuelo", "octabuelo", "eneabuelo", "decabuelo"]
-
-_mother_level = [ "", "madre", "abuela", "bisabuela", "tatarabuela",
-                  "trastatarabuela", "pentabuela", "hexabuela",
-                  "heptabuela", "octabuela", "eneabuela", "decabuela"]
+# community. Uncomment these names if you want to use them.
+#_parents_level = [ "", "padres", "abuelos", "bisabuelos", "tatarabuelos",
+#                   "trastatarabuelos", "pentabuelos", "hexabuelos",
+#                   "heptabuelos", "octabuelos", "eneabuelos", "decabuelos"]
+#_father_level = [ "", "padre", "abuelo", "bisabuelo", "tatarabuelo",
+#                  "trastatarabuelo", "pentabuelo", "hexabuelo",
+#                  "heptabuelo", "octabuelo", "eneabuelo", "decabuelo"]
+#_mother_level = [ "", "madre", "abuela", "bisabuela", "tatarabuela",
+#                  "trastatarabuela", "pentabuela", "hexabuela",
+#                  "heptabuela", "octabuela", "eneabuela", "decabuela"]
 
 _son_level = [ "", "hijo", "nieto", "bisnieto",
                "tataranieto", "trastataranieto", ]

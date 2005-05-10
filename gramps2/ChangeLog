@@ -1,3 +1,7 @@
+2005-05-10  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/po/es.po: Updated translation
+	* src/plugins/rel_es.py: Revert to more conservative relationships
+
 2005-05-09  Don Allingham  <don@gramps-project.org>
 	* src/gramps.glade: new scrollable message dialog 
 	* src/gramps_main.py: add new upgrading information message
