@@ -1,5 +1,7 @@
 2005-05-10  Alex Roitman  <shura@gramps-project.org>
 	* src/data/gramps.schemas: Add a welcome key.
+	* src/GrampsGconfKeys.py: Add get/set methods for welcome key.
+	* src/GrampsIniKeys.py: Add get/set methods for welcome key.
 
 2005-05-10  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/po/es.po: Updated translation
