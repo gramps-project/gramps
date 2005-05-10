@@ -146,7 +146,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         try:
             GrampsCfg.loadConfig()
                 
-            self.beta_warn()    
+            self.welcome()    
             self.RelClass = PluginMgr.relationship_class
             self.relationship = self.RelClass(self.db)
             self.gtop = gtk.glade.XML(const.gladeFile, "gramps", "gramps")
@@ -204,8 +204,8 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
 
         self.db.set_researcher(GrampsCfg.get_researcher())
 
-    def beta_warn(self):
-        if not GrampsKeys.get_betawarn() != 2:
+    def welcome(self):
+        if GrampsKeys.get_welcome() >= 200:
             return
 
         glade = gtk.glade.XML(const.gladeFile,'scrollmsg')
@@ -245,7 +245,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         top.run()
         top.destroy()
 
-        GrampsKeys.save_betawarn(2)
+        GrampsKeys.save_welcome(200)
         GrampsKeys.sync()
 
     def date_format_key_update(self,client,cnxn_id,entry,data):

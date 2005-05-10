@@ -6,6 +6,7 @@
 	* src/po/ru.po: Update.
 
 	* src/gramps.glade: Remove unused widget.
+	* src/gramps_main.py: Use new welcome key for the welcome dialog.
 
 2005-05-10  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/po/es.po: Updated translation
