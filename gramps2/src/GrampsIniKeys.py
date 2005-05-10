@@ -35,6 +35,7 @@ NL = "\n" # FIX: newlines on Mac/Windows, if different?
 _ini_schema = {
  'behavior/autoload' : '0',
  'behavior/betawarn' : '0',
+ 'behavior/welcome' : '100',
  'preferences/date-format' : '0',
  'preferences/dont-ask' : '0',
  'interface/defaultview' : '0',
@@ -311,6 +312,12 @@ def get_betawarn():
 
 def save_betawarn(val):
     set_bool("behavior", "betawarn",val)
+
+def get_welcome():
+    return get_bool("behavior", "welcome")
+
+def save_welcome(val):
+    set_bool("behavior", "welcome",val)
 
 def get_media_reference():
     return get_bool("behavior", "make-reference")
@@ -589,6 +596,8 @@ if __name__ == "__main__":
     save_autoload(val)
     print "get_betawarn()", get_betawarn()
     save_betawarn(val)
+    print "get_welcome()", get_welcome()
+    save_welcome(val)
     print "get_media_reference()", get_media_reference()
     save_media_reference(val)
     print "get_media_global()", get_media_global()
