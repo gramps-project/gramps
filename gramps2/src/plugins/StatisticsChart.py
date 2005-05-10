@@ -524,9 +524,9 @@ class StatisticsChart(Report.Report):
             # document heading
             mapping['chart_title'] = table[0]
             if genders:
-                heading = "%(genders)s born %(year_from)04d-%(year_to)04d: %(chart_title)s" % mapping
+                heading = _("%(genders)s born %(year_from)04d-%(year_to)04d: %(chart_title)s") % mapping
             else:
-                heading = "Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s" % mapping
+                heading = _("Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s") % mapping
             self.data.append((heading, table[1], lookup))
         #DEBUG
         #print heading
@@ -899,7 +899,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         tip = _("With fewer items pie chart and legend will be used instead of a bar chart.")
         self.bar_items = gtk.Entry(2)
         self.bar_items.set_text(str(self.options_dict['bar_items']))
-        dialog.add_option("Min. bar char items", self.bar_items, tip)
+        dialog.add_option(_("Min. bar char items"), self.bar_items, tip)
 
         # -------------------------------------------------
         # List of available charts on a separate option tab
@@ -919,12 +919,12 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
                 vbox = gtk.VBox()
         hbox.add(vbox)
         tip = _("Mark checkboxes to add charts with indicated data")
-        dialog.add_frame_option("Chart Selection", "", hbox, tip)
+        dialog.add_frame_option(_("Chart Selection"), "", hbox, tip)
         hbox.show_all()
 
         # Note about children
         label = gtk.Label(_("Note that both biological and adopted children are taken into account."))
-        dialog.add_frame_option("Chart Selection", "", label)
+        dialog.add_frame_option(_("Chart Selection"), "", label)
 
         
     def parse_user_options(self, dialog):
@@ -958,5 +958,5 @@ register_report(
     status = (_("Alpha")),
     author_name="Eero Tamminen",
     author_email="",
-    description= _("Generates statistical bar graphs.")
+    description= _("Generates statistical bar and pie charts of the people in the database.")
     )
