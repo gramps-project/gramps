@@ -5,6 +5,8 @@
 
 	* src/po/ru.po: Update.
 
+	* src/gramps.glade: Remove unused widget.
+
 2005-05-10  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/po/es.po: Updated translation
 	* src/plugins/rel_es.py: Revert to more conservative relationships
