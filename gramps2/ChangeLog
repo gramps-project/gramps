@@ -1,3 +1,8 @@
+2005-05-10  Don Allingham  <don@gramps-project.org>
+	* src/StartupDialog.py: check for broken Slackware library, and
+	missing gconf installation, present error messages instead of
+	tracebacks
+
 2005-05-10  Alex Roitman  <shura@gramps-project.org>
 	* src/data/gramps.schemas: Add a welcome key.
 	* src/GrampsGconfKeys.py: Add get/set methods for welcome key.

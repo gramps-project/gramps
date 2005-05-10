@@ -134,7 +134,22 @@ class StartupDialog:
         self.logo = gtk.gdk.pixbuf_new_from_file("%s/gramps.png" % const.rootDir)
         self.splash = gtk.gdk.pixbuf_new_from_file("%s/splash.jpg" % const.rootDir)
 
-        d = gnome.ui.Druid()
+        try:
+            d = gnome.ui.Druid()
+        except AttributeError:
+            ErrorDialog(_("Broken GNOME libraries"),
+                        _("GRAMPS has detected an incomplete gnome-python "
+                          "library, which is required by GRAMPS. This is "
+                          "frequently seen on Slackware systems, due to the "
+                          "lack of support for GNOME in the Slackware "
+                          "environment. If you are running Slackware, this "
+                          "problem can be resolved by installing Dropline "
+                          "GNOME (http://www.dropline.net/gnome/). If you "
+                          "are running another distribution, please check "
+                          "your GNOME configuration."))
+            gtk.main_quit()
+            
+            
         self.w.add(d)
         try:
             d.add(self.build_page1())
@@ -237,6 +252,7 @@ class StartupDialog:
         box.add(table)
         box.show_all()
 
+
         name = GrampsKeys.get_researcher_name()
         if not name or name.strip() == "":
             import pwd
@@ -248,14 +264,26 @@ class StartupDialog:
                 name = ""
 
         self.name.set_text(name)
-        self.addr.set_text(GrampsKeys.get_researcher_addr())
-        self.city.set_text(GrampsKeys.get_researcher_city())
-        self.state.set_text(GrampsKeys.get_researcher_state())
-        self.postal.set_text(GrampsKeys.get_researcher_postal())
-        self.country.set_text(GrampsKeys.get_researcher_country())
-        self.phone.set_text(GrampsKeys.get_researcher_phone())
-        self.email.set_text(GrampsKeys.get_researcher_email())
 
+        try:
+            self.addr.set_text(GrampsKeys.get_researcher_addr())
+            self.city.set_text(GrampsKeys.get_researcher_city())
+            self.state.set_text(GrampsKeys.get_researcher_state())
+            self.postal.set_text(GrampsKeys.get_researcher_postal())
+            self.country.set_text(GrampsKeys.get_researcher_country())
+            self.phone.set_text(GrampsKeys.get_researcher_phone())
+            self.email.set_text(GrampsKeys.get_researcher_email())
+        except:
+            ErrorDialog(_("Configuration/Installation error"),
+                        _("The gconf schemas were not found. First, try "
+                          "executing 'pkill gconfd' and try starting gramps "
+                          "again. If this does not help then the schemas "
+                          "were not properly installed. If you have not "
+                          "done 'make install' or if you installed without "
+                          "being a root, this is most likely a cause of the "
+                          "problem. Please read the INSTALL file in the "
+                          "top-level source directory."))
+            gtk.main_quit()
         return p
 
     def build_page5(self):
