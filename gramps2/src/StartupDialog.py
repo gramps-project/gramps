@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004 Donald N. Allingham
+# Copyright (C) 2000-2005 Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,23 +20,103 @@
 
 # $Id$
 
-import const
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
+# GTK+/GNOME modules
+#
+#-------------------------------------------------------------------------
 import gtk
 import gtk.glade
 import gnome
 import gnome.ui
 
+import const
+
+if not const.no_gconf:
+    try:
+        import gconf
+    except ImportError:
+        import gnome.gconf
+        gconf = gnome.gconf
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+import const
 import GrampsKeys
 from QuestionDialog import ErrorDialog
 
-from gettext import gettext as _
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+
+if not const.no_gconf:
+    client = gconf.client_get_default()
+    client.add_dir("/apps/gramps",gconf.CLIENT_PRELOAD_NONE)
 
 def need_to_run():
     val = GrampsKeys.get_startup()
     if val < const.startup:
-        return 1
-    return 0
+        return True
+    return False
 
+def upgrade_prefs():
+    """
+    Get the preferences from the older keys, store them in the new keys.
+    On success, print message and return True.
+    On failure, print message and return False.
+    """
+    try:
+        GrampsKeys.save_fprefix(client.get_string('/apps/gramps/fprefix'))
+        GrampsKeys.save_sprefix(client.get_string('/apps/gramps/sprefix'))
+        GrampsKeys.save_pprefix(client.get_string('/apps/gramps/pprefix'))
+        GrampsKeys.save_oprefix(client.get_string('/apps/gramps/oprefix'))
+        GrampsKeys.save_iprefix(client.get_string('/apps/gramps/iprefix'))
+
+        GrampsKeys.save_researcher_country(client.get_string('/apps/gramps/researcher-country'))
+        GrampsKeys.save_researcher_email(client.get_string('/apps/gramps/researcher-email'))
+        GrampsKeys.save_researcher_phone(client.get_string('/apps/gramps/researcher-phone'))
+        GrampsKeys.save_researcher_city(client.get_string('/apps/gramps/researcher-city'))
+        GrampsKeys.save_researcher_postal(client.get_string('/apps/gramps/researcher-postal'))
+        GrampsKeys.save_researcher_addr(client.get_string('/apps/gramps/researcher-addr'))
+        GrampsKeys.save_researcher_state(client.get_string('/apps/gramps/researcher-state'))
+        GrampsKeys.save_researcher_name(client.get_string('/apps/gramps/researcher-name'))
+
+        GrampsKeys.save_family_view(client.get_int('/apps/gramps/familyview'))
+        GrampsKeys.save_default_view(client.get_int('/apps/gramps/defaultview'))
+        GrampsKeys.save_autoload(client.get_bool('/apps/gramps/autoload'))
+        GrampsKeys.save_uselds(client.get_bool('/apps/gramps/use-lds'))
+        GrampsKeys.save_statusbar(client.get_int('/apps/gramps/statusbar'))
+        GrampsKeys.save_view(not client.get_bool('/apps/gramps/view'))
+        GrampsKeys.save_screen_size_checked(client.get_bool('/apps/gramps/screen-size-checked'))
+        GrampsKeys.save_lastnamegen(client.get_int('/apps/gramps/surname-guessing'))
+        toolbar = client.get_int('/apps/gramps/toolbar')
+        if toolbar == 5:
+            toolbar = -1
+        GrampsKeys.save_toolbar(toolbar)
+        GrampsKeys.save_toolbar_on(client.get_bool('/apps/gramps/toolbar-on'))
+        print "Successfully imported preferences from the 1.0.x version."
+        return True
+    except:
+        print "Failed to import preferences from the 1.0.x version."
+        return False
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
 class StartupDialog:
 
     def __init__(self,task,args):
@@ -44,6 +124,10 @@ class StartupDialog:
         self.task = task
         self.args = args
 
+        if not const.no_gconf and upgrade_prefs():
+            GrampsKeys.save_startup(const.startup)
+            self.close(None)
+            return
         self.w = gtk.Window()
         self.fg_color = gtk.gdk.color_parse('#7d684a')
         self.bg_color = gtk.gdk.color_parse('#e1dbc5')

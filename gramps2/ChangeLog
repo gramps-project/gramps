@@ -1,3 +1,7 @@
+2005-05-09  Don Allingham  <don@gramps-project.org>
+	* src/StartupDialog.py: Added Alex's configuration upgrade, but
+	wrapped in gconf detection
+
 2005-05-09  Alex Roitman  <shura@gramps-project.org>
 	* doc/gramps-manual/C/authors.xml: Update.
 
