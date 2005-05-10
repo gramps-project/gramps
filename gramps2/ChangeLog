@@ -1,6 +1,10 @@
 2005-05-09  Alex Roitman  <shura@gramps-project.org>
 	* doc/gramps-manual/C/authors.xml: Update.
 
+	* src/DisplayModels.py (column_change): Use localized time string.
+	* src/PeopleModel.py (column_change): Use localized time string.
+	* src/RelLib.py (get_change_display): Use localized time string.
+
 2005-05-09  Baruch Even  <baruch@ev-en.org>
 	* src/plugins/GraphViz.py (parse_user_options): Use 'justyears'.
 
