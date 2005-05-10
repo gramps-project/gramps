@@ -1,3 +1,6 @@
+2005-05-10  Alex Roitman  <shura@gramps-project.org>
+	* src/data/gramps.schemas: Add a welcome key.
+
 2005-05-10  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/po/es.po: Updated translation
 	* src/plugins/rel_es.py: Revert to more conservative relationships
