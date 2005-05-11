@@ -1,3 +1,6 @@
+2005-05-11  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/po/es.po: remerge from 2.0.0
+
 2005-05-11  Don Allingham  <don@gramps-project.org>
 	* src/EditPerson.py: remerge from 2.0.0
 
