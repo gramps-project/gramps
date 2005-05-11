@@ -109,7 +109,7 @@ class Verify:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help_display('gramps-manual','tools-util')
+        help_display('gramps-manual','tools-util-other')
 
     def get_year(self,event_handle):
         """

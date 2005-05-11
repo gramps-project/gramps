@@ -1,9 +1,242 @@
+2005-05-11  Alex Roitman  <shura@gramps-project.org>
+	* INSTALL, NEWS, README, acinclude.m4, configure.in, doc/gramps.1.in,
+	doc/gramps-manual/Makefile.am, doc/gramps-manual/C/*.xml,
+	doc/gramps-manual/C/figures/*.png, src/AddSpouse.py, src/AddrEdit.py,
+	src/AttrEdit.py, src/ChooseParents.py, src/Date.py, src/DateEdit.py,
+	src/DbPrompter.py, src/DisplayModels.py, 
+	src/EditPlace.py, src/EditSource.py, src/EventEdit.py,
+	src/FamilyView.py, src/GenericFilter.py, src/GrampsBSDDB.py,
+	src/GrampsGconfKeys.py, src/GrampsIniKeys.py, src/GrampsXMLDB.py,
+	src/ImageSelect.py, src/Marriage.py, src/MergeData.py,
+	src/MergePeople.py, src/NameEdit.py, src/PedView.py, src/PeopleModel.py,
+	src/ReadGedcom.py, src/ReadXML.py, src/RelLib.py, src/ReportUtils.py,
+	src/SourceView.py, src/StartupDialog.py, src/UrlEdit.py, src/Witness.py,
+	src/WriteGedcom.py, src/WriteXML.py, src/gramps.glade,
+	src/gramps_main.py, src/mergedata.glade, src/data/Makefile.am,
+	src/data/gramps.schemas, src/data/tips.xml, src/dates/Date_fi.py,
+	src/dates/Makefile.am, src/plugins/Check.py,
+	src/plugins/FilterEditor.py, src/plugins/GraphViz.py,
+	src/plugins/ImportGeneWeb.py, src/plugins/PatchNames.py,
+	src/plugins/ReorderIds.py, src/plugins/ScratchPad.py,
+	src/plugins/SoundGen.py, src/plugins/StatisticsChart.py,
+	src/plugins/TestcaseGenerator.py, src/plugins/Verify.py,
+	src/plugins/rel_es.py, src/po/da.po, src/po/de.po, src/po/es.po,
+	src/po/fi.po, src/po/fr.po, src/po/nb.po, src/po/nl.po, src/po/no.po,
+	src/po/ru.po, src/po/sv.po, src/po/template.po:
+	Merge changes made in gramps20 into HEAD.
+
+2005-05-10  Don Allingham  <don@gramps-project.org>
+	* src/DbPrompter.py: add callback for progressbar
+	* src/GrampsXMLDB.py: pass callback task
+	* src/ReadXML.py: handle progress callback, fix placeobj error
+	* src/gramps_main.py: define progress bar callback, remove problem
+	filters
+
+2005-05-10  Eero Tamminen  <eerot@sf>
+	* src/plugins/StatisticsChart.po: add gettext _() to three strings
+	  where it was missing
+
+2005-05-10  Don Allingham  <don@gramps-project.org>
+	* src/StartupDialog.py: check for broken Slackware library, and
+	missing gconf installation, present error messages instead of
+	tracebacks
+
+2005-05-10  Alex Roitman  <shura@gramps-project.org>
+	* src/data/gramps.schemas: Add a welcome key.
+	* src/GrampsGconfKeys.py: Add get/set methods for welcome key.
+	* src/GrampsIniKeys.py: Add get/set methods for welcome key.
+
+	* src/po/ru.po: Update.
+
+	* src/gramps.glade: Remove unused widget.
+	* src/gramps_main.py: Use new welcome key for the welcome dialog.
+
+	* src/data/tips.xml: Update tips.
+
+	* src/WriteXML.py (write_witness): Proper witness reference.
+	* src/ReadXML.py (start_witness): Initialize empty comment.
+
+2005-05-10  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/po/es.po: Updated translation
+	* src/plugins/rel_es.py: Revert to more conservative relationships
+
+2005-05-09  Don Allingham  <don@gramps-project.org>
+	* src/gramps.glade: new scrollable message dialog 
+	* src/gramps_main.py: add new upgrading information message
+	* src/template.po: new translatable string
+	* src/StartupDialog.py: Added Alex's configuration upgrade, but
+	wrapped in gconf detection
+
+2005-05-09  Alex Roitman  <shura@gramps-project.org>
+	* doc/gramps-manual/C/authors.xml: Update.
+
+	* src/DisplayModels.py (column_change): Use localized time string.
+	* src/PeopleModel.py (column_change): Use localized time string.
+	* src/RelLib.py (get_change_display): Use localized time string.
+
+2005-05-09  Baruch Even  <baruch@ev-en.org>
+	* src/plugins/GraphViz.py (parse_user_options): Use 'justyears'.
+
+2005-05-08  Don Allingham  <don@gramps-project.org>
+	* src/WriteGedcom.py: fix adopted relationship generation
+
+2005-05-08  Alex Roitman  <shura@gramps-project.org>
+	* src/po/ru.po: Typos.
+
+	* doc/gramps-manual/C/usage.xml: Typo.
+
+2005-05-07  Alex Roitman  <shura@gramps-project.org>
+	* INSTALL: Update.
+
+2005-05-07  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/po/es.po: Updated translation
+
+2005-05-07  Jens Arvidsson <jya@sverige.nu>
+	* src/po/sv.po: Partial translation update for version 2.0.0.
+
+2005-05-07  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/PedView.py (build_detail_string), src/FamilyView.py (load_family):
+	Dont crash on strange signal race condition, that leaves database in
+	corrupt state before sending "active-changed"
+	* src/plugins/ImportGeneWeb.py (read_children_lines): Properly add
+	birth event; (parse_person): Remove brackets from name;
+	(get_or_create_place): Fix typo 
+
+2005-05-06  Alex Roitman  <shura@gramps-project.org>
+	* acinclude.m4: Copy macro for GCONF configuration from gconf2-dev;
+	add --disable-mime-install and --enable-packager-mode arguments.
+	* configure.in: Call new macros; Remove obsolete French and Russian
+	manuals for the time being.
+	* doc/gramps-manual/Makefile.am: Remove obsolete manuals.
+	* src/data/Makefile.am: Conditional installation of gconf keys and
+	mime types.
+	* src/po/da.po: Typos preventing make.
+	* NEWS: Update.
+	* README: Update.
+
+2005-05-06  Larry Allingham  <lallingham@woh.rr.com>
+	* doc/gramps-manual/C/authors.xml, doc/gramps-manual/C/faq.xml,
+	doc/gramps-manual/C/mainwin.xml, doc/gramps-manual/C/usage.xml:
+	Typos and corrections.
+
+2005-05-06  Don Allingham  <don@gramps-project.org>
+	* src/ReadGedcomp.py: Handle inline sources better in GEDCOM files
+	* src/ReportUtils.py: check for spouse existance before creating a
+	marriage string - return an empty string instead.
+	* src/ReadXML.py: fix handling of non-gregorian dates
+	* src/EditPerson.py: faster building of place lists using cursors
+
+2005-05-06  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/gramps_main.py (undo): Block signals during undo to make
+	it MUCH faster when undoing larger imports or plugin runs
+	
 2005-05-06  Don Allingham  <don@gramps-project.org>
 	* src/gramps_main.py: fix beta warning dialog
+
+2005-05-05  Alex Roitman  <shura@gramps-project.org>
+	* doc/gramps.1.in, doc/gramps-manual/C/bugs.xml,
+	doc/gramps-manual/C/cmdline.xml, doc/gramps-manual/C/faq.xml,
+	doc/gramps-manual/C/getstart.xml, 
+	doc/gramps-manual/C/gramps-manual.xml,
+	doc/gramps-manual/C/mainwin.xml,
+	doc/gramps-manual/C/preface.xml: Update.
+
+2005-05-05  Don Allingham  <don@gramps-project.org>
+	* src/plugins/PatchNames.py: handle multiple titles (bug 1196056)
+	* src/plugins/ReorderIDs.py: bring up to speed with new handle/id methodology,
+
+2005-05-05  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GenericFilter.py: Fix copy-n-paste errors;
+	dont crash on empty database
+
+2005-05-04  Alex Roitman  <shura@gramps-project.org>
+	* doc/gramps-manual/C/figures/scratch-pad.png: Add new figure.
+	* doc/gramps-manual/C/authors.xml: Update.
+	* doc/gramps-manual/C/keybind.xml: Update.
+	* doc/gramps-manual/C/usage.xml: Update.
+	* doc/gramps-manual/C/figures/cfe-ar.png: Update.
+	* doc/gramps-manual/C/figures/cfe-df.png: Update.
+	* src/plugins/FilterEditor.py: Correct manual section.
+	* src/plugins/ScratchPad.py: Correct manual section.
+	* src/plugins/SoundGen.py: Correct manual section.
+	* src/plugins/Verify.py: Correct manual section.
+
+	* src/SourceView.py (__init__): Connect to the key-press-event.
+	* doc/gramps-manual/C/keybind.xml: Update.
+	* doc/gramps-manual/C/cmdline.xml: Update.
+	* doc/gramps-manual/C/custom.xml: Update.
+	* doc/gramps-manual/C/filtref.xml: Update.
+
+2005-05-03  Don Allingham  <don@gramps-project.org>
+	* src/gramps_main.py: remove beta warning, handle OSError
+	on config open
+
+2005-05-03  Tino Meinen  <a.t.meinen@chello.nl>
+	* src/po/nl.po: Updated Dutch translation
+
+2005-05-03  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Updated to new template.
+
+2005-05-03  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GenericFilter.py (HaveChildren): Match what it should
+
+2005-05-03  Alex Roitman  <shura@gramps-project.org>
+	* doc/gramps-manual/C/usage.xml: Update.
+	* doc/gramps-manual/C/figures/*.png: Add new figures.
+	* src/MergePeople.py: Minor cleanups; Help buttons.
+	* src/MergeData.py: Minor cleanups; Help buttons.
+	* src/mergedata.glade: Minor cleanups; Help buttons.
+
+	* doc/gramps-manual/C/prefs.xml: Update.
+	* doc/gramps-manual/C/figures/prefs.png: Add new figure.
+
+2005-05-03 Don Allingham  <don@gramps-project.org>
+	* src/ReportUtils.py: fixed type (get-day() -> get_day())
 
 2005-05-03  Don Allingham  <don@gramps-project.org>
 	* src/ListBox.py: added to CVS
 	* src/Makefile.am: added ListBox.py
+
+2005-05-02  Don Allingham  <don@gramps-project.org>
+	* src/gramps.glade: remove place field, fixed parent relationships
+	* src/ImageSelect.py: remove place handling
+
+2005-05-02  Alex Roitman  <shura@gramps-project.org>
+	* src/DateEdit.py (DateEditorDialog.__init__): Correct manual section.
+	* doc/gramps-manual/C/usage.xml: Update.
+	* doc/gramps-manual/C/figures/edit-person-notes.png: Update.
+	* doc/gramps-manual/C/figures/date-selection.png: Add new figure.
+
+	* src/EditPlace.py: Correct manual section.
+	* src/EditSource.py: Correct manual section.
+	* src/EventEdit.py: Correct manual section.
+	* src/ImageSelect.py: Correct manual section.
+	* src/Marriage.py: Correct manual section.
+	* src/NameEdit.py: Correct manual section.
+	* doc/gramps-manual/C/usage.xml: Update.
+	* doc/gramps-manual/C/figures/edit-*.png: Update.
+
+	* src/AddrEdit.py: Correct manual section.
+	* src/AttrEdit.py: Correct manual section.
+	* src/Witness.py: Correct manual section.
+	* doc/gramps-manual/C/usage.xml: Update.
+	* doc/gramps-manual/C/figures/edit-*.png: Update.
+
+	* src/po/ru.po: Translation update.
+
+2005-05-02  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/gramps_main.py: Disable fast merge on a readonly db
+	* src/plugins/Check.py: Disable on readonly db
+	* src/plugins/TestcaseGenerator.py: Disable on readonly db
+	
+2005-05-02 Don Allingham  <dona@gramps-project.org>
+	* src/GrampsBSDDB.py: handle missing version number properly, detect
+	empty database properly.
+	* src/ReadGedcom.py: set default gedcom parser class to "GEDCOM 5.5"
+	instead of None
+	* src/AddSpouse.py: fix filtering of lists using GenericFilters
+	* src/ChooseParents.py: fix filtering of lists using GenericFilters
+	* src/GenericFilter.py: fix date comparison
 
 2005-05-02  Don Allingham  <don@gramps-project.org>
 	* src/EditPerson.py: start of new gallery
@@ -11,6 +244,23 @@
 	* src/Witness.py: fix listmodel
 	* src/const.py.in: LDS temple names
 	* src/edit_person.glade: start of new gallery 
+
+2005-05-01  Alex Roitman  <shura@gramps-project.org>
+	* src/EditPerson.py (on_help_clicked): Call appropriate manual section.
+	* doc/gramps-manual/C/usage.xml: Update.
+	* doc/gramps-manual/C/figures/edit-person-*.png: Update.
+	* configure.in: Bump up version, to distinguish from released 1.1.99.
+
+2005-05-01  Don Allingham  <don@gramps-project.org>
+	* src/po/template.po: updated for string changes
+	* src/Date.py: add the ui_calendar_names for translation for the ui
+	* src/DateEdit.py: use the new ui_calendar_names for the ui
+	* src/plugins/Check.py: delete families that contain only a
+	single parent and no children
+
+2005-05-01  Eero Tamminen  <eerot@sf>
+	* src/dates/Date_fi.py: Fixed Display class + other changes.
+	  Parser is waiting for Gramps DateParser.py update
 
 2005-04-30  Don Allingham  <don@gramps-project.org>
 	* src/EditPerson.py: Add support for inline editing
@@ -21,6 +271,12 @@
 	* src/const.py.in: convert Alternate Birth and Alternate Death to
 	Birth and Death
 	
+2005-04-29  Eero Tamminen  <eerot@sf>
+	* src/dates/Date_fi.py: initial Finnish date parser, doesn't yet
+	  work correctly
+	* src/dates/Makefile.am: Added Date_fi.py
+	* src/po/fi.po: Updated translation from template.po + some fixes
+
 2005-04-29  Alex Roitman  <shura@gramps-project.org>
 	* src/edit_person.glade: Compact name edit button.
 
@@ -28,6 +284,14 @@
 	* src/plugins/PHPGedViewConnector.py, src/plugins/phpgedview.glade:
 	New files. Start of a client interface for phpGedView.
 	unfinished. Put them in CVS to not loose them.
+
+2005-04-28  Alex Roitman  <shura@gramps-project.org>
+	* src/EditPlace.py (on_add_url_clicked,on_update_url_clicked):
+	Use empty name when not available.
+	* src/UrlEdit.py (__init__): Work with empty names.
+
+2005-04-28  Don Allingham  <don@gramps-project.org>
+	* src/FamilyView.py: fix adding child to wrong family
 
 2005-04-28  Don Allingham  <don@gramps-project.org>
 	* src/EditPerson.py: remove dead logic for birth/death editing,
@@ -59,6 +323,12 @@
 	src/plugins/changenames.glade, src/plugins/rel_ru.py, src/po/es.po,
 	src/po/fr.po, src/po/ru.po, src/po/template.po: Merge changes
 	made in gramps20 into HEAD.
+
+2005-04-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/EditPerson.py (on_apply_person_clicked): Fix crash when
+	changing gender caused by a family handle/object mismatch
+	
+	* src/MergePeople.py: Corrected gender display (closes #1190203)
 
 2005-04-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py: Removed navigation buttons in flavour of a menu;

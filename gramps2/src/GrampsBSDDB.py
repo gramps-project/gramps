@@ -112,7 +112,7 @@ class GrampsBSDDB(GrampsDbBase):
         return GrampsBSDDBCursor(self.media_map)
 
     def need_upgrade(self):
-        return self.metadata['version'] < _DBVERSION
+        return not self.readonly and self.metadata.get('version',0) < _DBVERSION
 
     def load(self,name,callback,mode="w"):
         if self.person_map:
@@ -190,10 +190,11 @@ class GrampsBSDDB(GrampsDbBase):
 
         gstats = self.metadata.get('gender_stats')
 
-        if not self.readonly and gstats == None:
-            self.metadata['version'] = _DBVERSION
-        elif not self.metadata.has_key('version'):
-            self.metadata['version'] = 0
+        if not self.readonly:
+            if gstats == None:
+                self.metadata['version'] = _DBVERSION
+            elif not self.metadata.has_key('version'):
+                self.metadata['version'] = 0
 
         if self.bookmarks == None:
             self.bookmarks = []
@@ -207,7 +208,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.close()
 
     def close(self):
-        if not self.person_map:
+        if self.person_map == None:
             return
         self.name_group.close()
         self.person_map.close()
@@ -356,7 +357,7 @@ class GrampsBSDDB(GrampsDbBase):
             "None",      "Birth",  "Adopted", "Stepchild",
             "Sponsored", "Foster", "Unknown", "Other", ]
         
-        version = self.metadata['version']
+        version = self.metadata.get('version',0)
         if version < 2:
             self.upgrade_2(child_rel_notrans)
         if version < 3:

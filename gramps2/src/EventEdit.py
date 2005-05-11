@@ -299,7 +299,7 @@ class EventEditor:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-complete')
+        gnome.help_display('gramps-manual','adv-ev')
 
     def get_place(self,field):
         text = unicode(field.get_text().strip())

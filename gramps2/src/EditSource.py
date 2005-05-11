@@ -212,7 +212,7 @@ class EditSource:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-complete')
+        gnome.help_display('gramps-manual','adv-src')
 
     def close(self,obj):
         self.gallery.close()

@@ -209,7 +209,7 @@ class WitnessEditor:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-complete')
+        gnome.help_display('gramps-manual','adv-wit')
 
     def choose(self,obj):
         import SelectPerson

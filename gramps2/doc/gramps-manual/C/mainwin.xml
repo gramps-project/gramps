@@ -123,7 +123,7 @@
 	  <!-- ==== End of Figure ==== -->
 	  </listitem></varlistentry>
 
-	<varlistentry><term>To switch the View while in a Notebook mode, 
+	<varlistentry><term>To switch the View while in a Tabbed mode, 
 		click on the desired notebook tab.</term>
 	  <listitem>
 	  <!-- ==== Figure: Tabbed Notebook Mode ==== -->
@@ -138,7 +138,7 @@
 	  </listitem></varlistentry>
 	</variablelist>
 
-	<para>To switch between sidebar and notebook viewing modes, 
+	<para>To switch between sidebar and tabbed viewing modes, 
 	choose <menuchoice> <guimenu>View</guimenu> 
 	<guimenuitem>Sidebar</guimenuitem> 
 	</menuchoice> from the &app; menu.</para>
@@ -156,7 +156,7 @@
         <para> The individuals are arranged in a tree-like structure, 
         according to their family names. Every family name is a node of the 
         tree. Clicking the arrow on the left of the node will toggle its 
-        expansion state. When expanded, the node's contents is listed in the 
+        expansion state. When expanded, the node's content is listed in the 
         window. When collapsed, the contents is rolled up and not visible. 
         However, all the data is still intact, it is just not being displayed.
         </para>
@@ -179,7 +179,7 @@
 	see <xref linkend="column-editor-fig"/>. Only checked columns will be shown
 	in the view. To change their order, drag any column to its desired place inside
 	the editor. Clicking <guibutton>OK</guibutton> will reflect the changes
-	in the People View. To incoke <guilabel>Column Editor Dialog</guilabel>,
+	in the People View. To invoke <guilabel>Column Editor Dialog</guilabel>,
 	choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Column
 	Editor</guimenuitem></menuchoice>.
 	</para>
@@ -286,7 +286,7 @@
 	allows you to edit their relationship information. Shift-clicking on 
         the Current spouse allows the editing of the Current spouse's data.</para>
 
-        <para> To add a new relationship use one of the two upper buttons to the
+        <para> To add a new relationship, use one of the two upper buttons to the
         right of the spouse box. Click the top one to add a new person to a
         database and to the new relationship. Click the middle one to add a
         person already existing in the database to the new relationship. 
@@ -295,7 +295,7 @@
 	right of the spouse box. Note that removing a spouse from the
         relationship does not remove the person from the database. Most of these
         functions are also available by right-clicking into the spouse box and
-        selecting an appropriate items from the context menu. </para>
+        selecting an appropriate item from the context menu. </para>
 	
 	<para>The parents of both the Active person and the Current spouse 
 	are listed in the corresponding list boxes in the right-hand part of 
@@ -308,7 +308,7 @@
 	That is, it makes the selected Father the Active person, and the 
 	selected Mother the Current spouse. Most of these
         functions are also available by right-clicking into the parent box and
-        selecting an appropriate items from the context menu. </para>
+        selecting an appropriate item from the context menu. </para>
 	
 	<para>The bottom list box displays children of the Active person and 
 	the Current  Spouse. The Children's list can be ordered by the Birth date 
@@ -329,7 +329,7 @@
         button removes the selected child from the family. Note that removing 
         a child from the family does not remove the person from the 
         database. Most of these functions are also available by right-clicking 
-        into the children box and selecting an appropriate items from the 
+        into the children box and selecting an appropriate item from the 
         context menu.</para> 
 
 	<para>The layout of the Family View can be switched from the 
@@ -378,7 +378,7 @@
 	relations (such as adoption, step-parenthood, guardianship, etc.). 
 	When the mouse moves over the white box, it expands to display the 
 	corresponding person's dates of birth and death. When the mouse is 
-	placed over the family line, the line become highlighted to indicate 
+	placed over the family line, the line becomes highlighted to indicate 
 	an active link: double-clicking on the line makes the corresponding 
 	ancestor the Active person. The display in that case is re-adjusted 
 	to show four generations, starting from the newly selected Active 
@@ -428,7 +428,7 @@
 	context menu. Among other useful items, the context menu has submenus
 	listing <guilabel>Spouses</guilabel>, <guilabel>Siblings</guilabel>,
 	<guilabel>Children</guilabel>, and <guilabel>Parents</guilabel>
-	of that person. Insensitive (greyed out) submenus indicate the absense
+	of that person. Insensitive (greyed out) submenus indicate the absence
 	of the data in the appropriate category. Similarly to the children menu above,
 	children's and parents' menus distinguish continuing lines from dead ends.
 	</para>
@@ -465,7 +465,7 @@
     of the display area. 
     The set anchor person will stay in effect until either the anchor is 
     removed (by selecting the <guilabel>Remove anchor</guilabel> item from the 
-    context menu) or until the active person chosen is unrelated to the anchor 
+    context menu), or until the active person chosen is unrelated to the anchor 
     person. The latter move can be made using extensive navigation tools 
     available in &app;, see <xref linkend="gramps-nav"/> for the detailed 
     reference. 
@@ -546,8 +546,10 @@
 	Media Objects are any files that relate somehow to the stored 
 	genealogical data. Technically, any file can be stored as a Media 
 	Object. Most frequently, these are images, audio files, animation 
-	files, etc. The list box on the bottom lists the Name, ID, Type, and 
-	Path to the Media Object. 	<guilabel>Column Editor Dialog</guilabel>
+	files, etc. The list box on the bottom lists the <guilabel>Name</guilabel>, 
+    <guilabel>ID</guilabel>, <guilabel>Type</guilabel>, and 
+	<guilabel>Path</guilabel> of the Media Object.
+    <guilabel>Column Editor Dialog</guilabel>
 	may be used to rearrange the displayed columns, which obey usual
 	sorting rules. The top part of the GRAMPS window shows 
 	a preview (if available) and information about the Media 

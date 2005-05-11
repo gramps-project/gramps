@@ -313,7 +313,7 @@ class ImportDbPrompter:
             elif filetype == const.app_gramps_xml:
                 choose.destroy()
                 import ReadXML
-                ReadXML.importData(self.parent.db,filename)
+                ReadXML.importData(self.parent.db,filename,self.parent.update_bar)
                 return True
             elif filetype == const.app_gedcom:
                 choose.destroy()

@@ -34,9 +34,9 @@
 
   <!ENTITY legal SYSTEM "legal.xml">
 
-  <!ENTITY appversion "1.2.0">
+  <!ENTITY appversion "2.0.0">
   <!ENTITY manrevision "2.6">
-  <!ENTITY date "February 2005">
+  <!ENTITY date "May 2005">
   <!ENTITY app "GRAMPS">
 
   <!-- The rest of the entities is simply the chapters of the manual.. -->
@@ -93,7 +93,7 @@
 		<surname>Roitman</surname> 
 		<affiliation> 
 	  		<orgname>GRAMPS Project</orgname> 
-	  		<address> <email>shura@alex.neuro.umn.edu</email> </address> 
+	  		<address> <email>shura@gramps-project.org</email> </address> 
 		</affiliation> 
       </author> 
       <author> 
@@ -101,7 +101,7 @@
 		<surname>Allingham</surname> 
 		<affiliation> 
 	  		<orgname>GRAMPS Project</orgname> 
-	  		<address> <email>dallingham@users.sourceforge.net</email> </address> 
+	  		<address> <email>don@gramps-project.org</email> </address> 
 		</affiliation> 
       </author> 
       
@@ -139,7 +139,7 @@
 		<date>&date;</date> 
 		<revdescription> 
 	  	<para role="author">Alex Roitman
-		    	<email>shura@alex.neuro.umn.edu</email></para>
+		    	<email>shura@gramps-project.org</email></para>
                 <para role="publisher">GRAMPS Project</para>
 		</revdescription> 
       </revision> 
@@ -148,7 +148,7 @@
 		<date>February 2004</date> 
 		<revdescription> 
 	  	<para role="author">Alex Roitman
-		    	<email>shura@alex.neuro.umn.edu</email></para>
+		    	<email>shura@gramps-project.org</email></para>
                 <para role="publisher">GRAMPS Project</para>
 		</revdescription> 
       </revision> 
@@ -157,7 +157,7 @@
 		<date>December 2003</date> 
 		<revdescription> 
 	  	<para role="author">Alex Roitman
-		    	<email>shura@alex.neuro.umn.edu</email></para>
+		    	<email>shura@gramps-project.org</email></para>
                 <para role="publisher">GRAMPS Project</para>
 		</revdescription> 
       </revision> 
@@ -166,7 +166,7 @@
 		<date>September 2003</date> 
 		<revdescription> 
 	  	<para role="author">Alex Roitman
-		    	<email>shura@alex.neuro.umn.edu</email></para>
+		    	<email>shura@gramps-project.org</email></para>
                 <para role="publisher">GRAMPS Project</para>
 		</revdescription> 
       </revision> 
@@ -175,7 +175,7 @@
 		<date>July 2003</date> 
 		<revdescription> 
 	  	<para role="author">Alex Roitman
-	    		<email>shura@alex.neuro.umn.edu</email></para>
+	    		<email>shura@gramps-project.org</email></para>
   		<para role="author">Donald A. Peterson
 		    	<email>dpeterson@sigmaxi.org</email></para>
   		<para role="publisher">GRAMPS Project</para>
@@ -186,7 +186,7 @@
 		<date>May 2003</date> 
 		<revdescription> 
 	  		<para role="author">Alex Roitman
-	    	<email>shura@alex.neuro.umn.edu</email>
+	    	<email>shura@gramps-project.org</email>
 	  		</para>
 	  		<para role="publisher">GRAMPS Project</para>
 		</revdescription> 
@@ -196,7 +196,7 @@
 		<date>April 2003</date> 
 		<revdescription> 
 	  		<para role="author">Alex Roitman
-	    	<email>shura@alex.neuro.umn.edu</email>
+	    	<email>shura@gramps-project.org</email>
 	  		</para>
 	  		<para role="publisher">GRAMPS Project</para>
 		</revdescription> 
@@ -206,7 +206,7 @@
 		<date>2001</date> 
 		<revdescription> 
 	  		<para role="author">Donald N. Allingham 
-	    	<email>dallingham@users.sourceforge.net</email>
+	    	<email>don@gramps-project.org</email>
 	  		</para>
 	  		<para role="publisher">GRAMPS Project</para>
 		</revdescription> 
@@ -216,7 +216,7 @@
 		<date>2001</date> 
 		<revdescription> 
 	  		<para role="author">Donald N. Allingham 
-	    	<email>dallingham@users.sourceforge.net</email>
+	    	<email>don@gramps-project.org</email>
 	  		</para>
 	  		<para role="publisher">GRAMPS Project</para>
 		</revdescription> 
@@ -231,7 +231,8 @@
     <para>
       To report a bug or make a suggestion regarding this application or
       this manual, use the help menu in &app;, or follow the directions 
-      on <ulink url="http://gramps.sourceforce.net/contact.html"  type="http">this site.</ulink>
+      found on <ulink url="http://gramps-project.org/index.php?module=pagemaster&amp;PAGE_user_op=view_page&amp;PAGE_id=3"
+      type="http">this site</ulink>.
     </para>
 
 <!-- Translators may also add here feedback address for translations -->

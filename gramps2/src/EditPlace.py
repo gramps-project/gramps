@@ -290,7 +290,7 @@ class EditPlace:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-complete')
+        gnome.help_display('gramps-manual','adv-plc')
 
     def build_columns(self,tree,list):
         cnum = 0
@@ -418,10 +418,9 @@ class EditPlace:
         if node:
             row = store.get_path(node)
             url = self.ulist[row[0]]
-            if url:
-                name = _("Internet Address Editor for %s") % self.place.get_title()
-            else:
-                name = _("Internet Address Editor")
+            name = ""
+            if self.place:
+            	name = self.place.get_title()
             UrlEdit.UrlEditor(self,name,url,self.url_edit_callback)
 
     def on_update_loc_clicked(self,obj):
@@ -445,10 +444,9 @@ class EditPlace:
 
     def on_add_url_clicked(self,obj):
         import UrlEdit
+        name = ""
         if self.place:
-            name = _("Internet Address Editor for %s") % self.place.get_title()
-        else:
-            name = _("Internet Address Editor")
+            name = self.place.get_title()
         UrlEdit.UrlEditor(self,name,None,self.url_edit_callback)
 
     def url_edit_callback(self,url):

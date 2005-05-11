@@ -33,6 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
+from gnome import help_display
 
 #-------------------------------------------------------------------------
 #
@@ -73,8 +74,13 @@ class MergePlaces:
         self.glade.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
             "on_merge_places_clicked" : self.on_merge_places_clicked,
+            "on_help_places_clicked" : self.help,
             })
         self.top.show()
+
+    def help(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        help_display('gramps-manual','adv-merge-places')
 
     def on_merge_places_clicked(self,obj):
         """
@@ -175,6 +181,8 @@ class MergeSources:
 
         self.glade = gtk.glade.XML(const.mergeFile,"merge_sources","gramps")
         self.top = self.glade.get_widget("merge_sources")
+        Utils.set_titles(self.top,self.glade.get_widget('title'),
+                         _("Merge Sources"))
 
         self.title1 = self.glade.get_widget("title1")
         self.title2 = self.glade.get_widget("title2")
@@ -203,11 +211,16 @@ class MergeSources:
         
         self.glade.get_widget('ok').connect('clicked',self.merge)
         self.glade.get_widget('cancel').connect('clicked',self.close)
+        self.glade.get_widget('help').connect('clicked',self.help)
         self.trans = self.db.transaction_begin()
         self.top.show()
 
     def close(self,obj):
         self.top.destroy()
+
+    def help(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        help_display('gramps-manual','adv-merge-sources')
 
     def merge(self,obj):
         """

@@ -66,14 +66,16 @@ from Utils import for_each_ancestor,probably_alive,get_source_referents
 #-------------------------------------------------------------------------
 def date_cmp(rule,value):
     sd = rule.get_start_date()
-    s = sd.get_modifier()
-    value = s.get_start_date()
+    s = rule.get_modifier()
+    od = value.get_start_date()
+    cmp_rule = (sd[2],sd[1],sd[0])
+    cmp_value = (od[2],od[1],od[0])
     if s == Date.MOD_BEFORE:
-        return rule > value
+        return  cmp_rule > cmp_value
     elif s == Date.MOD_AFTER:
-        return rule < value
+        return cmp_rule < cmp_value
     else:
-        return rule == value
+        return cmp_rule == cmp_value
 
 #-------------------------------------------------------------------------
 #
@@ -410,10 +412,8 @@ class IsDescendantOf(Rule):
         except IndexError:
             first = 1
 
-        if not self.init:
-            self.init = 1
-            root_id = self.list[0]
-            self.init_list(root_id,first)
+        root_id = self.list[0]
+        self.init_list(root_id,first)
 
     def reset(self):
         self.map = {}
@@ -431,6 +431,8 @@ class IsDescendantOf(Rule):
         return self.map.has_key(p_id)
 
     def init_list(self,p_id,first):
+        if not p_id:
+            return
         if not first:
             self.map[p_id] = 1
         
@@ -501,6 +503,8 @@ class IsLessThanNthGenerationDescendantOf(Rule):
         return self.map.has_key(p_id)
 
     def init_list(self,p_id,gen):
+        if not p_id:
+            return
         if gen:
             self.map[p_id] = 1
             if gen >= int(self.list[1]):
@@ -546,6 +550,8 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
         return self.map.has_key(p_id)
 
     def init_list(self,p_id,gen):
+        if not p_id:
+            return
         if gen >= int(self.list[1]):
             self.map[p_id] = 1
 
@@ -592,6 +598,8 @@ class IsChildOfFilterMatch(Rule):
         return self.map.has_key(p_id)
 
     def init_list(self,p_id):
+        if not p_id:
+            return
         p = self.db.get_person_from_handle(p_id)
         for fam_id in p.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
@@ -635,6 +643,8 @@ class IsSiblingOfFilterMatch(Rule):
         return self.map.has_key(p_id)
 
     def init_list(self,p_id):
+        if not p_id:
+            return
         p = self.db.get_person_from_handle(p_id)
         fam_id = p.get_main_parents_family_handle()
         fam = self.db.get_family_from_handle(fam_id)
@@ -733,6 +743,8 @@ class IsAncestorOf(Rule):
         return self.map.has_key(p_id)
 
     def init_ancestor_list(self,db,p_id,first):
+        if not p_id:
+            return
         if not first:
             self.map[p_id] = 1
         
@@ -763,6 +775,8 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         IsAncestorOf.__init__(self,list)
     
     def prepare(self,db):
+        self.db = db
+        self.map = {}
         try:
             if int(self.list[1]):
                 first = 0
@@ -771,13 +785,15 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         except IndexError:
             first = 1
             
-        self.init = 1
         filt = MatchesFilter(self.list)
         filt.prepare(db)
         for person_handle in db.get_person_handles(sort_handles=False):
             if filt.apply (db, person_handle):
                 self.init_ancestor_list (db,person_handle,first)
         filt.reset()
+
+    def reset(self):
+        self.map = {}
 
     def name(self):
         return 'Is an ancestor of filter match'
@@ -806,7 +822,8 @@ class IsLessThanNthGenerationAncestorOf(Rule):
     def prepare(self,db):
         self.db = db
         self.map = {}
-        self.build_witness_list()
+        root_id = self.list[0]
+        self.init_ancestor_list(root_id,0)
 
     def reset(self):
         self.map = {}
@@ -822,17 +839,13 @@ class IsLessThanNthGenerationAncestorOf(Rule):
         return _("Ancestral filters")
 
     def apply(self,db,p_id):
-        self.orig_id = p_id
-        self.db = db
-        if not self.init:
-            self.init = 1
-            root_id = self.list[0]
-            self.init_ancestor_list(root_id,0)
         return self.map.has_key(p_id)
 
     def init_ancestor_list(self,p_id,gen):
 #        if self.map.has_key(p.get_handle()) == 1:
 #            loop_error(self.orig,p)
+        if not p_id:
+            return
         if gen:
             self.map[p_id] = 1
             if gen >= int(self.list[1]):
@@ -886,6 +899,8 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
     def init_ancestor_list(self,p_id,gen):
 #        if self.map.has_key(p.get_handle()) == 1:
 #            loop_error(self.orig,p)
+        if not p_id:
+            return
         if gen >= int(self.list[1]):
             self.map[p_id] = 1
         
@@ -1243,21 +1258,21 @@ class HasBirth(Rule):
         p = db.get_person_from_handle(p_id)
         event_handle = p.get_birth_handle()
         if not event_handle:
-            return 0
+            return False
         event = db.get_event_from_handle(event_handle)
         ed = event.get_description().upper()
         if len(self.list) > 2 and ed.find(self.list[2].upper())==-1:
-            return 0
+            return False
         if self.date:
             if date_cmp(self.date,event.get_date_object()) == 0:
-                return 0
+                return False
         pl_id = event.get_place_handle()
         if pl_id:
             pl = db.get_place_from_handle(pl_id)
             pn = pl.get_title()
             if len(self.list) > 1 and pn.find(self.list[1].upper()) == -1:
-                return 0
-        return 1
+                return False
+        return True
 
 #-------------------------------------------------------------------------
 #
@@ -1599,7 +1614,7 @@ class HaveChildren(Rule):
 
     def apply(self,db,p_id):
         p = db.get_person_from_handle(p_id)
-        for (family_handle,rel1,rel2) in p.get_parent_family_handle_list():
+        for family_handle in p.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
             return len(family.get_child_handle_list()) > 0
 

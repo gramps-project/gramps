@@ -99,6 +99,14 @@ class Date:
                       "Persian",
                       "Islamic"]
 
+
+    ui_calendar_names = [_("Gregorian"),
+                         _("Julian"),
+                         _("Hebrew"),
+                         _("French Republican"),
+                         _("Persian"),
+                         _("Islamic")]
+
     def __init__(self,source=None):
         """
         Creates a new Date instance.

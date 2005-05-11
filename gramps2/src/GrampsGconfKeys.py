@@ -164,6 +164,12 @@ def get_betawarn():
 def save_betawarn(val):
     set_bool("/apps/gramps/behavior/betawarn",val)
 
+def get_welcome():
+    return get_int("/apps/gramps/behavior/welcome")
+
+def save_welcome(val):
+    set_int("/apps/gramps/behavior/welcome",val)
+
 def get_media_reference():
     return get_bool("/apps/gramps/behavior/make-reference")
 
