@@ -4,9 +4,12 @@
 # #
 # #	$Id$
 # #	$Log$
+# #	Revision 1.8  2005/05/11 19:25:32  jsanchez
+# #	* src/po/es.po: remerge from 2.0.0
+# #
 # #	Revision 1.7  2005/05/11 14:04:07  rshura
 # #	Merge changes made in gramps20 into HEAD
-# #
+# #	
 # #	Revision 1.5.2.3  2005/05/10 13:52:41  jsanchez
 # #	* src/po/es.po: Updated translation
 # #	* src/plugins/rel_es.py: Revert to more conservative relationships
@@ -2157,7 +2160,9 @@ msgstr "Depuración"
 
 #: Plugins.py:728
 msgid "Attempt to reload plugins. Note: This tool itself is not reloaded!"
-msgstr "Intentar recargar los módulos.  Nota: No se recarga esta herramienta misma, sólo los módulos."
+msgstr ""
+"Intentar recargar los módulos.  Nota: No se recarga esta herramienta misma, "
+"sólo los módulos."
 
 #: ReadGedcom.py:79 ReadGedcom.py:80
 msgid "Windows 9x file system"
@@ -3304,7 +3309,8 @@ msgstr "%(male_name)s Nació: %(birth_date)s %(birth_place)s."
 #: ReportUtils.py:1577
 msgid ""
 "%(male_name)s Born: %(birth_date)s Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s Nació: %(birth_date)s Falleció: %(death_date)s %(death_place)s."
+msgstr ""
+"%(male_name)s Nació: %(birth_date)s Falleció: %(death_date)s %(death_place)s."
 
 #: ReportUtils.py:1582
 msgid "%(male_name)s Born: %(birth_date)s Died: %(death_date)s."
@@ -3321,7 +3327,9 @@ msgstr "%(male_name)s Nació: %(birth_date)s."
 #: ReportUtils.py:1599
 msgid ""
 "%(male_name)s Born: %(birth_place)s Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s Nació: %(birth_place)s Falleció: %(death_date)s %(death_place)s."
+msgstr ""
+"%(male_name)s Nació: %(birth_place)s Falleció: %(death_date)s %(death_place)"
+"s."
 
 #: ReportUtils.py:1606
 msgid "%(male_name)s Born: %(birth_place)s Died: %(death_date)s."
@@ -3369,7 +3377,9 @@ msgstr ""
 #: ReportUtils.py:1662
 msgid ""
 "%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_place)s."
-msgstr "%(female_name)s Nació: %(birth_date)s %(birth_place)s Falleció: %(death_place)s."
+msgstr ""
+"%(female_name)s Nació: %(birth_date)s %(birth_place)s Falleció: %"
+"(death_place)s."
 
 #: ReportUtils.py:1669
 msgid "%(female_name)s Born: %(birth_date)s %(birth_place)s."
@@ -3754,7 +3764,9 @@ msgstr "GE_DCOM"
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input. "
-msgstr "Se utiliza GEDCOM para transferir datos entre programas de genealogía. La mayoría de los programas de genealogía pueden leer archivos GEDCOM. "
+msgstr ""
+"Se utiliza GEDCOM para transferir datos entre programas de genealogía. La "
+"mayoría de los programas de genealogía pueden leer archivos GEDCOM. "
 
 #: WriteGedcom.py:1241
 msgid "GEDCOM export options"
@@ -7786,7 +7798,10 @@ msgstr "Familia de fuentes"
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
-msgstr "Elija la familia de fuentes.  Si no se muestran los caracteres internacionales, utilice la funete FreeSans, disponible en: http://www.nongnu.org/freefont/"
+msgstr ""
+"Elija la familia de fuentes.  Si no se muestran los caracteres "
+"internacionales, utilice la funete FreeSans, disponible en: http://www."
+"nongnu.org/freefont/"
 
 #: plugins/GraphViz.py:664
 msgid "Indicate non-birth relationships with dotted lines"
@@ -8342,7 +8357,9 @@ msgstr "Bloc de apuntes"
 msgid ""
 "The Scratch Pad provides a temporary note pad to store objects for easy "
 "reuse."
-msgstr "El bloc de apuntes proporciona un espacio temporal donde dejar objetos para su reutilización."
+msgstr ""
+"El bloc de apuntes proporciona un espacio temporal donde dejar objetos para "
+"su reutilización."
 
 #: plugins/SimpleBookTitle.py:128
 msgid "Title of the Book"
@@ -8738,7 +8755,10 @@ msgstr "Generar casos de prueba de personas y familias"
 msgid ""
 "The testcase generator will generate some persons and families that have "
 "broken links in the database or data that is in conflict to a relation."
-msgstr "El generador de casos de prueba generará varias personas y familias con enlaces averiados en la base de datos o con datos inconsistentes con alguna relación."
+msgstr ""
+"El generador de casos de prueba generará varias personas y familias con "
+"enlaces averiados en la base de datos o con datos inconsistentes con alguna "
+"relación."
 
 #: plugins/TimeLine.py:168
 msgid "Report could not be created"
@@ -9324,7 +9344,10 @@ msgid ""
 "Exporting to CD copies all your data and media object files to the CD "
 "Creator. You may later burn the CD with this data, and that copy will be "
 "completely portable across different machines and binary architectures."
-msgstr "Exportar a CD copia todos los datos y objetos audiovisuales al Grabador de CDs. A continuación puede grabar un CD con estos datos y la copia resultante será transportable a otros equipos, aunque utilicen un procesador diferente."
+msgstr ""
+"Exportar a CD copia todos los datos y objetos audiovisuales al Grabador de "
+"CDs. A continuación puede grabar un CD con estos datos y la copia resultante "
+"será transportable a otros equipos, aunque utilicen un procesador diferente."
 
 #: plugins/WriteFtree.py:273
 msgid "_Web Family Tree"
@@ -9464,7 +9487,8 @@ msgstr "_Nuevo tipo de evento:"
 
 #: plugins/desbrowse.glade:126
 msgid "<i>Double-click on the row to edit personal information</i>"
-msgstr "<i>Haga doble clic en la fila para modificar la información de la persona</i>"
+msgstr ""
+"<i>Haga doble clic en la fila para modificar la información de la persona</i>"
 
 #: plugins/eval.glade:202
 msgid "<b>Evaluation Window</b>"
@@ -9715,3 +9739,94 @@ msgstr "<b>Regla Seleccionada</b>"
 #: rule.glade:1186
 msgid "<b>Values</b>"
 msgstr "<b>Valores</b>"
+
+#: ReportUtils.py:1188
+msgid "%(male_name)s died on %(death_date)sat the age of %(age)d years."
+msgstr "%(male_name)s falleció el %(death_date)s a la edad de %(age)d años."
+
+#: ReportUtils.py:1466
+msgid "%(male_name)s was buried on %(birth_date)s in %(birth_place)s."
+msgstr "%(male_name)s recibió sepultura el %(birth_date)s en %(birth_place)s."
+
+#: ReportUtils.py:1471
+msgid "%(male_name)s was buried on %(birth_date)s."
+msgstr "%(male_name)s recibió sepultura el %(birth_date)s."
+
+#: ReportUtils.py:1475
+msgid "%(male_name)s was buried in %(month_year)s in %(birth_place)s."
+msgstr "%(male_name)s recibió sepultura en %(month_year)s en %(birth_place)s."
+
+#: ReportUtils.py:1484
+msgid "%(male_name)s was buried in %(birth_place)s."
+msgstr "%(male_name)s recibió sepultura en %(birth_place)s."
+
+#: ReportUtils.py:1492
+msgid "%(female_name)s was buried on %(birth_date)s in %(birth_place)s."
+msgstr ""
+"%(female_name)s recibió sepultura el %(birth_date)s en %(birth_place)s."
+
+#: ReportUtils.py:1497
+msgid "%(female_name)s was buried on %(birth_date)s."
+msgstr "%(female_name)s recibió sepultura el %(birth_date)s."
+
+#: ReportUtils.py:1501
+msgid "%(female_name)s was buried in %(month_year)s in %(birth_place)s."
+msgstr ""
+"%(female_name)s recibió sepultura en %(month_year)s en %(birth_place)s."
+
+#: ReportUtils.py:1510
+msgid "%(female_name)s was buried in %(birth_place)s."
+msgstr "%(female_name)s recibió sepultura en %(birth_place)s."
+
+#: ReportUtils.py:1588
+msgid "%(male_name)s Born: %(birth_date)s "
+msgstr "%(male_name)s Nació: %(birth_date)s."
+
+#: ReportUtils.py:1687
+msgid "%(female_name)s Born: %(birth_date)s "
+msgstr "%(female_name)s Nació: %(birth_date)s."
+
+#: gramps.glade:250 gramps_main.py:502
+msgid "_Redo"
+msgstr "_Rehacer"
+
+#: gramps_main.py:151
+msgid "Use at your own risk"
+msgstr ""
+
+#: gramps_main.py:152
+msgid ""
+"This is an unstable development version of GRAMPS. It is intended as a "
+"technology preview. Do not trust your family database to this development "
+"version. This version may contain bugs which could corrupt your database."
+msgstr ""
+
+#: gramps_main.py:1753
+msgid "The Home Person may be set from the Settings menu."
+msgstr "Se puede establecer la persona inicial en el menú de Preferencias."
+
+#: mergedata.glade:611
+msgid "<span weight=\"bold\" size=\"larger\">Merge Sources</span>"
+msgstr "<span weight=\"bold\" size=\"larger\">Mezclar fuentes</span>"
+
+#: plugins/DetAncestralReport.py:551 plugins/DetDescendantReport.py:572
+msgid "Replace Place with ______"
+msgstr "Sustituir Lugar con ______"
+
+#: plugins/DetAncestralReport.py:555 plugins/DetDescendantReport.py:576
+msgid "Replace Dates with ______"
+msgstr "Sustituir Fechas con ______"
+
+#: plugins/ReorderIds.py:49
+msgid "Tool currently unavailable"
+msgstr "La herramienta no está disponible actualmente"
+
+#: plugins/ReorderIds.py:50
+msgid ""
+"This tool has not yet been brought up to date after transition to the "
+"database, sorry."
+msgstr ""
+
+#: plugins/rel_ru.py:120
+msgid "remote ancestors"
+msgstr "ancestros"
