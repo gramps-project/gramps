@@ -477,15 +477,13 @@ class XmlWriter:
             sp = "  "*index
             com = self.fix(w.get_comment())
             if w.get_type() == RelLib.Event.ID:
-                self.g.write('%s<witness>\n' % sp)
-                self.g.write('  %s<hlink>%s</hlink>\n' % (sp,w.get_value()))
+                self.g.write('%s<witness hlink="%s">\n' % (sp,w.get_value()))
                 if com:
                     self.g.write('  %s<comment>%s</comment>\n' % (sp,com))
                 self.g.write('%s</witness>\n' % sp)
             else:
                 nm = self.fix(w.get_value())
-                self.g.write('%s<witness>\n' % sp)
-                self.g.write('  %s<name>%s</name>\n' % (sp,nm))
+                self.g.write('%s<witness name="%s">\n' % (sp,nm))
                 if com:
                     self.g.write('  %s<comment>%s</comment>\n' % (sp,com))
                 self.g.write('%s</witness>\n' % sp)

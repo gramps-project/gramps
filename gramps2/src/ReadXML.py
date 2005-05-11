@@ -650,6 +650,7 @@ class GrampsParser:
 
     def start_witness(self,attrs):
         self.in_witness = 1
+        self.witness_comment = ""
         if attrs.has_key('hlink'):
             self.witness = RelLib.Witness(RelLib.Event.ID,attrs['hlink'])
         elif attrs.has_key('ref'):

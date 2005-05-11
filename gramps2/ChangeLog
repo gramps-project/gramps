@@ -19,6 +19,9 @@
 
 	* src/data/tips.xml: Update tips.
 
+	* src/WriteXML.py (write_witness): Proper witness reference.
+	* src/ReadXML.py (start_witness): Initialize empty comment.
+
 2005-05-10  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/po/es.po: Updated translation
 	* src/plugins/rel_es.py: Revert to more conservative relationships
