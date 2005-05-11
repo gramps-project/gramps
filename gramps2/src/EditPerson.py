@@ -336,6 +336,15 @@ class EditPerson:
 
         self.window.show()
 
+    def build_pdmap(self):
+        self.pdmap.clear()
+        cursor = self.db.get_place_cursor()
+        data = cursor.next()
+        while data:
+            self.pdmap[data[1][2]] = data[0]
+            data = cursor.next()
+        cursor.close()
+
     def build_gallery(self,container):
         self.iconmodel = gtk.ListStore(gtk.gdk.Pixbuf,str)
         self.iconlist = gtk.IconView(self.iconmodel)
@@ -925,10 +934,7 @@ class EditPerson:
         if name != self.person.get_primary_name():
             self.person.set_primary_name(name)
 
-        self.pdmap.clear()
-        for key in self.db.get_place_handles():
-            p = self.db.get_place_from_handle(key).get_display_info()
-            self.pdmap[p[0]] = key
+        self.build_pdmap()
 
 #         if not self.orig_birth.are_equal(self.birth):
 #             if self.orig_birth.is_empty():

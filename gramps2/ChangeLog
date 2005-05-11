@@ -1,3 +1,6 @@
+2005-05-11  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: remerge from 2.0.0
+
 2005-05-11  Alex Roitman  <shura@gramps-project.org>
 	* INSTALL, NEWS, README, acinclude.m4, configure.in, doc/gramps.1.in,
 	doc/gramps-manual/Makefile.am, doc/gramps-manual/C/*.xml,
