@@ -80,7 +80,7 @@ def get_date_formats():
     try:
         return _lang_to_display[_lang].formats
     except:
-        return DateDisplay.DateDisplay.formats
+        return _lang_to_display["C"].formats
 
 def set_format(value):
     try:
@@ -126,17 +126,19 @@ try:
     parser = _lang_to_parser[_lang]()
 except:
     print "Date parser for",_lang,"not available, using default"
-    parser = DateParser.DateParser()
+    parser = _lang_to_parser["C"]()
 
 try:
     import GrampsKeys
     val = GrampsKeys.get_date_format(_lang_to_display[_lang].formats)
 except:
-    val = 0
+    try:
+        val = GrampsKeys.get_date_format(_lang_to_display["C"].formats)
+    except:
+        val = 0
 
 try:
     displayer = _lang_to_display[_lang](val)
 except:
     print "Date displayer for",_lang,"not available, using default"
-    displayer = DateDisplay.DateDisplay(val)
-
+    displayer = _lang_to_display["C"](val)

@@ -1,3 +1,8 @@
+2005-05-11  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DateHandler.py: Fallback to "C" locale instead of the ISO
+	format. This currently basically falls back to en, but this could
+	be enhanced by a translated fallback parser later.
+
 2005-05-10  Don Allingham  <don@gramps-project.org>
 	* src/DbPrompter.py: add callback for progressbar
 	* src/GrampsXMLDB.py: pass callback task
