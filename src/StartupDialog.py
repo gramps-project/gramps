@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004 Donald N. Allingham
+# Copyright (C) 2000-2005 Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,23 +20,103 @@
 
 # $Id$
 
-import const
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
+# GTK+/GNOME modules
+#
+#-------------------------------------------------------------------------
 import gtk
 import gtk.glade
 import gnome
 import gnome.ui
 
+import const
+
+if not const.no_gconf:
+    try:
+        import gconf
+    except ImportError:
+        import gnome.gconf
+        gconf = gnome.gconf
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+import const
 import GrampsKeys
 from QuestionDialog import ErrorDialog
 
-from gettext import gettext as _
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+
+if not const.no_gconf:
+    client = gconf.client_get_default()
+    client.add_dir("/apps/gramps",gconf.CLIENT_PRELOAD_NONE)
 
 def need_to_run():
     val = GrampsKeys.get_startup()
     if val < const.startup:
-        return 1
-    return 0
+        return True
+    return False
 
+def upgrade_prefs():
+    """
+    Get the preferences from the older keys, store them in the new keys.
+    On success, print message and return True.
+    On failure, print message and return False.
+    """
+    try:
+        GrampsKeys.save_fprefix(client.get_string('/apps/gramps/fprefix'))
+        GrampsKeys.save_sprefix(client.get_string('/apps/gramps/sprefix'))
+        GrampsKeys.save_pprefix(client.get_string('/apps/gramps/pprefix'))
+        GrampsKeys.save_oprefix(client.get_string('/apps/gramps/oprefix'))
+        GrampsKeys.save_iprefix(client.get_string('/apps/gramps/iprefix'))
+
+        GrampsKeys.save_researcher_country(client.get_string('/apps/gramps/researcher-country'))
+        GrampsKeys.save_researcher_email(client.get_string('/apps/gramps/researcher-email'))
+        GrampsKeys.save_researcher_phone(client.get_string('/apps/gramps/researcher-phone'))
+        GrampsKeys.save_researcher_city(client.get_string('/apps/gramps/researcher-city'))
+        GrampsKeys.save_researcher_postal(client.get_string('/apps/gramps/researcher-postal'))
+        GrampsKeys.save_researcher_addr(client.get_string('/apps/gramps/researcher-addr'))
+        GrampsKeys.save_researcher_state(client.get_string('/apps/gramps/researcher-state'))
+        GrampsKeys.save_researcher_name(client.get_string('/apps/gramps/researcher-name'))
+
+        GrampsKeys.save_family_view(client.get_int('/apps/gramps/familyview'))
+        GrampsKeys.save_default_view(client.get_int('/apps/gramps/defaultview'))
+        GrampsKeys.save_autoload(client.get_bool('/apps/gramps/autoload'))
+        GrampsKeys.save_uselds(client.get_bool('/apps/gramps/use-lds'))
+        GrampsKeys.save_statusbar(client.get_int('/apps/gramps/statusbar'))
+        GrampsKeys.save_view(not client.get_bool('/apps/gramps/view'))
+        GrampsKeys.save_screen_size_checked(client.get_bool('/apps/gramps/screen-size-checked'))
+        GrampsKeys.save_lastnamegen(client.get_int('/apps/gramps/surname-guessing'))
+        toolbar = client.get_int('/apps/gramps/toolbar')
+        if toolbar == 5:
+            toolbar = -1
+        GrampsKeys.save_toolbar(toolbar)
+        GrampsKeys.save_toolbar_on(client.get_bool('/apps/gramps/toolbar-on'))
+        print "Successfully imported preferences from the 1.0.x version."
+        return True
+    except:
+        print "Failed to import preferences from the 1.0.x version."
+        return False
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
 class StartupDialog:
 
     def __init__(self,task,args):
@@ -44,13 +124,32 @@ class StartupDialog:
         self.task = task
         self.args = args
 
+        if not const.no_gconf and upgrade_prefs():
+            GrampsKeys.save_startup(const.startup)
+            self.close(None)
+            return
         self.w = gtk.Window()
         self.fg_color = gtk.gdk.color_parse('#7d684a')
         self.bg_color = gtk.gdk.color_parse('#e1dbc5')
         self.logo = gtk.gdk.pixbuf_new_from_file("%s/gramps.png" % const.rootDir)
         self.splash = gtk.gdk.pixbuf_new_from_file("%s/splash.jpg" % const.rootDir)
 
-        d = gnome.ui.Druid()
+        try:
+            d = gnome.ui.Druid()
+        except AttributeError:
+            ErrorDialog(_("Broken GNOME libraries"),
+                        _("GRAMPS has detected an incomplete gnome-python "
+                          "library, which is required by GRAMPS. This is "
+                          "frequently seen on Slackware systems, due to the "
+                          "lack of support for GNOME in the Slackware "
+                          "environment. If you are running Slackware, this "
+                          "problem can be resolved by installing Dropline "
+                          "GNOME (http://www.dropline.net/gnome/). If you "
+                          "are running another distribution, please check "
+                          "your GNOME configuration."))
+            gtk.main_quit()
+            
+            
         self.w.add(d)
         try:
             d.add(self.build_page1())
@@ -153,6 +252,7 @@ class StartupDialog:
         box.add(table)
         box.show_all()
 
+
         name = GrampsKeys.get_researcher_name()
         if not name or name.strip() == "":
             import pwd
@@ -164,14 +264,26 @@ class StartupDialog:
                 name = ""
 
         self.name.set_text(name)
-        self.addr.set_text(GrampsKeys.get_researcher_addr())
-        self.city.set_text(GrampsKeys.get_researcher_city())
-        self.state.set_text(GrampsKeys.get_researcher_state())
-        self.postal.set_text(GrampsKeys.get_researcher_postal())
-        self.country.set_text(GrampsKeys.get_researcher_country())
-        self.phone.set_text(GrampsKeys.get_researcher_phone())
-        self.email.set_text(GrampsKeys.get_researcher_email())
 
+        try:
+            self.addr.set_text(GrampsKeys.get_researcher_addr())
+            self.city.set_text(GrampsKeys.get_researcher_city())
+            self.state.set_text(GrampsKeys.get_researcher_state())
+            self.postal.set_text(GrampsKeys.get_researcher_postal())
+            self.country.set_text(GrampsKeys.get_researcher_country())
+            self.phone.set_text(GrampsKeys.get_researcher_phone())
+            self.email.set_text(GrampsKeys.get_researcher_email())
+        except:
+            ErrorDialog(_("Configuration/Installation error"),
+                        _("The gconf schemas were not found. First, try "
+                          "executing 'pkill gconfd' and try starting gramps "
+                          "again. If this does not help then the schemas "
+                          "were not properly installed. If you have not "
+                          "done 'make install' or if you installed without "
+                          "being a root, this is most likely a cause of the "
+                          "problem. Please read the INSTALL file in the "
+                          "top-level source directory."))
+            gtk.main_quit()
         return p
 
     def build_page5(self):

@@ -53,7 +53,9 @@ import RelLib
 import const
 import Utils
 import PeopleModel
+import Date
 import NameDisplay
+import DateHandler
 import GenericFilter
 from QuestionDialog import ErrorDialog
 
@@ -89,25 +91,16 @@ class ChooseParents:
         self.renderer = gtk.CellRendererText()
 
         # set default filters
-        self.father_filter = GenericFilter.GenericFilter()
-        self.father_filter.add_rule(GenericFilter.IsMale([]))
+        self.all_males_filter = GenericFilter.GenericFilter()
+        self.all_males_filter.add_rule(GenericFilter.IsMale([]))
+        self.likely_males_filter = self.build_likely(True)
 
-        self.mother_filter = GenericFilter.GenericFilter()
-        self.mother_filter.add_rule(GenericFilter.IsFemale([]))
+        self.all_females_filter = GenericFilter.GenericFilter()
+        self.all_females_filter.add_rule(GenericFilter.IsFemale([]))
+        self.likely_females_filter = self.build_likely(False)
 
-        bhandle = self.person.get_birth_handle()
-        birth_event = self.db.get_event_from_handle(bhandle)
-        if birth_event:
-            self.bday = birth_event.get_date_object()
-        else:
-            self.bday = None
-
-        dhandle = self.person.get_death_handle()
-        death_event = self.db.get_event_from_handle(dhandle)
-        if death_event:
-            self.dday = death_event.get_date_object()
-        else:
-            self.dday = None
+        self.father_filter = self.likely_males_filter
+        self.mother_filter = self.likely_females_filter
 
         if self.family:
             self.father = self.family.get_father_handle()
@@ -161,11 +154,13 @@ class ChooseParents:
         self.redrawm()
         
         self.glade.signal_autoconnect({
-            "on_add_parent_clicked"    : self.add_parent_clicked,
-            "on_prel_changed"          : self.parent_relation_changed,
-            "destroy_passed_object"    : self.close,
-            "on_save_parents_clicked"   : self.save_parents_clicked,
-            "on_help_familyDialog_clicked"  : self.on_help_clicked,
+            "on_add_parent_clicked"        : self.add_parent_clicked,
+            "on_prel_changed"              : self.parent_relation_changed,
+            "destroy_passed_object"        : self.close,
+            "on_showallf_toggled"          : self.showallf_toggled,
+            "on_showallm_toggled"          : self.showallm_toggled,
+            "on_save_parents_clicked"      : self.save_parents_clicked,
+            "on_help_familyDialog_clicked" : self.on_help_clicked,
             "on_familyDialog_delete_event" : self.on_delete_event,
             })
 
@@ -174,6 +169,34 @@ class ChooseParents:
         self.build_list(self.fcombo,frel)
         
         self.window.show()
+
+    def build_likely(self,is_male):
+        birth_handle = self.person.get_birth_handle()
+        
+        filt = GenericFilter.GenericFilter()
+        if is_male:
+            filt.add_rule(GenericFilter.IsMale([]))
+        else:
+            filt.add_rule(GenericFilter.IsFemale([]))
+
+        if birth_handle:
+            birth = self.db.get_event_from_handle(birth_handle)
+            date_obj = Date.Date(birth.get_date_object())
+            year = date_obj.get_year()
+            if year:
+                date_obj.set_year(year-10)
+                date_obj.set_modifier(Date.MOD_BEFORE)
+                rule = GenericFilter.HasBirth(
+                    [DateHandler.displayer.display(date_obj),"",""])
+                filt.add_rule(rule)
+
+                date_obj = Date.Date(birth.get_date_object())
+                date_obj.set_year(year-60)
+                date_obj.set_modifier(Date.MOD_AFTER)
+                rule = GenericFilter.HasBirth(
+                    [DateHandler.displayer.display(date_obj),"",""])
+                filt.add_rule(rule)
+        return filt
 
     def build_list(self,opt_menu,sel):
         cell = gtk.CellRendererText()
@@ -255,12 +278,6 @@ class ChooseParents:
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-quick')
 
-    def all_males_filter(self,person):
-        return (person.get_gender() == RelLib.Person.MALE)
-
-    def all_females_filter(self,person):
-        return (person.get_gender() == RelLib.Person.FEMALE)
-
     def redrawf(self):
         """Redraws the potential father list"""
         self.father_model = PeopleModel.PeopleModel(self.db,self.father_filter)
@@ -291,17 +308,17 @@ class ChooseParents:
             self.redrawm()
 
     def showallf_toggled(self,obj):
-        if self.father_filter == self.likely_father_filter:
-            self.father_filter = self.all_males_filter
+        if self.father_filter == self.likely_males_filter:
+            self.father_filter = self.all_females_filter
         else:
-            self.father_filter = self.likely_father_filter
+            self.father_filter = self.likely_males_filter
         self.redrawf()
 
     def showallm_toggled(self,obj):
-        if self.mother_filter == self.likely_mother_filter:
+        if self.mother_filter == self.likely_females_filter:
             self.mother_filter = self.all_females_filter
         else:
-            self.mother_filter = self.likely_mother_filter
+            self.mother_filter = self.likely_females_filter
         self.redrawm()
         
     def find_family(self,father_handle,mother_handle,trans):

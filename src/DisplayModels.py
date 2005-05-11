@@ -17,6 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -25,6 +26,7 @@
 #-------------------------------------------------------------------------
 import time
 from gettext import gettext as _
+import locale
 
 #-------------------------------------------------------------------------
 #
@@ -43,6 +45,14 @@ import NameDisplay
 import DateHandler
 
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
+
+#-------------------------------------------------------------------------
+#
+# Localized constants
+#
+#-------------------------------------------------------------------------
+_date_format = locale.nl_langinfo(locale.D_T_FMT)
+_codeset = locale.nl_langinfo(locale.CODESET)
 
 #-------------------------------------------------------------------------
 #
@@ -281,7 +291,8 @@ class SourceModel(BaseModel):
         return unicode(data[4])
 
     def column_change(self,data):
-        return unicode(time.asctime(time.localtime(data[8])))
+        return unicode(time.strftime(_date_format,time.localtime(data[8])),
+                            _codeset)
 
 #-------------------------------------------------------------------------
 #
@@ -364,7 +375,8 @@ class PlaceModel(BaseModel):
             return u''
 
     def column_change(self,data):
-        return unicode(time.asctime(time.localtime(data[11])))
+        return unicode(time.strftime(_date_format,time.localtime(data[11])),
+                            _codeset)
 
 #-------------------------------------------------------------------------
 #
@@ -423,4 +435,5 @@ class MediaModel(BaseModel):
         return unicode(data[0])
 
     def column_change(self,data):
-        return unicode(time.asctime(time.localtime(data[8])))
+        return unicode(time.strftime(_date_format,time.localtime(data[8])),
+                            _codeset)

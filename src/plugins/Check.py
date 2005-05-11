@@ -57,6 +57,11 @@ from QuestionDialog import OkDialog, MissingMediaDialog
 def runTool(database,active_person,callback,parent=None):
 
     try:
+        if database.readonly:
+            # TODO: split plugin in a check and repair part to support
+            # checking of a read only database
+            return
+        
         trans = database.transaction_begin()
         trans.set_batch(True)
         database.disable_signals()
@@ -68,7 +73,7 @@ def runTool(database,active_person,callback,parent=None):
         
         while prev_total != total:
             prev_total = total
-        
+            
             checker.check_for_broken_family_links()
             checker.check_parent_relationships()
             checker.cleanup_empty_families(0)
@@ -294,9 +299,27 @@ class CheckIntegrity:
     def cleanup_empty_families(self,automatic):
         for family_handle in self.db.get_family_handles():
             family = self.db.get_family_from_handle(family_handle)
-            if not family.get_father_handle() and not family.get_mother_handle():
+            father_handle = family.get_father_handle()
+            mother_handle = family.get_mother_handle()
+
+            if not father_handle and not mother_handle:
                 self.empty_family.append(family_handle)
                 self.delete_empty_family(family_handle)
+                continue
+            elif not father_handle and len(family.get_child_handle_list()) == 0:
+                person = self.db.get_person_from_handle(mother_handle)
+                person.remove_family_handle(family_handle)
+                self.db.commit_person(person,self.trans)
+                self.db.remove_family(family_handle,self.trans)
+                self.empty_family.append(family_handle)
+                continue
+            elif not mother_handle and len(family.get_child_handle_list()) == 0:
+                person = self.db.get_person_from_handle(father_handle)
+                person.remove_family_handle(family_handle)
+                self.db.commit_person(person,self.trans)
+                self.db.remove_family(family_handle,self.trans)
+                self.empty_family.append(family_handle)
+                continue
 
     def delete_empty_family(self,family_handle):
         for key in self.db.get_person_handles(sort_handles=False):
@@ -464,7 +487,10 @@ class CheckIntegrity:
                 else:
                     cn = _("Non existing person")
                 family = self.db.get_family_from_handle(family_handle)
-                pn = Utils.family_name(family,self.db)
+                if family:
+                    pn = Utils.family_name(family,self.db)
+                else:
+                    pn = family_handle
                 self.text.write('\t')
                 self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
 

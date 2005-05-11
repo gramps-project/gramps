@@ -1,71 +1,53 @@
-For rebuilding from source, here are some guidelines to follow.  For
-developers who may be adding functionality to the program, be sure to read
-the last section of this documen: "FINAL WORDS".
+$Id$
 
-SUPER-SHORT VERSION:
-You should be able to just run "./configure && make". But if you make any
-significant changes or experience any problems, you may wish to run
-"./autogen.sh && make" to regenerate everything.
+This file contains some useful details on the installation from source code
+for GRAMPS. It does not cover installation of a pre-built binary package.
+For that use your package manager, the rest is done by the packager.
 
-This will call aclocal if necessary, then automake, which creates
-Makefile.in from Makefile.am rules. Then it calls autoconf, which will
-generate configure from configure.in and the Makefile.{am,in} sources.
-Finally, autogen calls configure to generate the final files necessary for
-building gramps.
 
-SHORT VERSION:
-Execute:
-aclocal
-automake --add-missing --gnu && autoconf && make
+configure vs autogen scripts
+----------------------------
+If you are building from released tarball, you should be able to just
+run "./configure && make". However, if you're building from the CVS,
+the configure is not present. You should auto-generate it by
+running ./autogen.sh and then "make" and, finally, "make install".
 
-MORE INFO: Version and package info is now set in configure.in through a
-call to the AM_INIT_AUTOMAKE macro.  The results are stored in variables
-PACKAGE and VERSION, which then get substituted wherever necessary. 
-(gramps.sh, gramps.spec, src/const.py, asst. Makefiles, etc.) We also
-manually set the RELEASE variable for setting things like "pre" or minor
-bugfix issues. * Note: Using @VERSION@ in the manuals has the advantage that
-the current manual always states that it describes current version of
-gramps.  The disadvantage is that this becomes misleading if the manual
-isn't regularly updated.  Keep in mind this is GRAMPS version and not
-*manual* version. Another problem is that the standard GNOME SGML
-documentation make rules (sgmldocs.make) have their own rule, but automake
-generates its own rule and this introduces a conflict.
 
-"make (un)install" now runs scrollkeeper-update to ensure
-documentation database is up to date. Scrollkeeper v. > 0.3 is required
-to properly register documentation.
+Regular vs local installation
+-----------------------------
+This version of gramps requires, among others, the two things to be done:
+gconf schemas and mime types for gramps MUST be properly installed.
+The usual ./configure, make, and make install as a root should do the trick.
+But be careful if you're using the non-default options or would like
+to install without being root.
 
-VERBOSE, UGLY DETAILS FOR DEVELOPERS:
-Using automake/autoconf adds many, MANY build targets to the makefiles.
-Basically, we only care about the main and "install" targets.  However,
-there are some others that bear further notice:
+The latter is possible, but you should supply additional arguments to
+autogen or configrue:
+   --with-gconf-source=xml::$HOME/.gconf --with-mime-dir=$HOME/.local/share
+Most likely, such local install will also need some prefix with write
+permissions for you:
+   --prefix=$HOME/my_gramps_path
 
-* make dist -- will create a lovely gramps-{VERSION}.tar.gz archive with
-everything needed to distribute, including the HTML documentation just in
-case Joe User doen't know about or have a compatable jw/db2html.  After
-running "make dist" you can create the  rpms using 
-"rpm -ta gramps-{VERSION}.tar.gz".  How nice is that?
+Whether you're doing local install or regular install, YOU MUST INSTALL
+GCONF SCHEMAS AND MIME TYPES. YOU HAVE BEEN WARNED!
 
-* make clean -- only gets rid of byte-compiled stuff like .so files.
 
-* make distclean -- improves on clean by eliminating configuration (*.in,
-config.*, Makefiles, and converted documentation.) stuff. This is generally
-what you (as a developer) will want for testing "fresh" compiles.
+Packager's issues
+------------------
+The above mentioned gconf schemas and mime types must be installed.
+However, the update-mime-database and the gconftool-2 calls to process
+the newly installed types and schemas must be done in POST-INSTALLATION.
+In packager's world, the install happens on packager's machine
+into something like /tmp/gramps-tmp. However, the postinstall
+should happen on the user's machine.
 
-* make trans -- We add this one on our own for building the template.po file.
-
-Another caveat of the automake mantra is that new/overriding make
-targets/rules/defines should generally go in the Makefile.am files rather
-than Makefile.in.  
-
-* Note: Another beauty of the automake mechanism (and having automake macros
-in the configure script) is that once the scripts have been made, a change
-to any .am file will trigger "make" to regenerate the Makefile.in/configure
-scripts as appropriate.  It is _very_ convenient.
-
-FINAL WORDS: automake "thinks" of a distribution in terms of "SOURCES", such
-as raw C code, "COMPILED OBJECTS" like executables and libraries, and
-"DATA", such as images, scripts, and documentation.  Thus, for gramps we
-concentrate on DATA-type objects.  We must tell automake what objects are
-important.  We do this by adding to the EXTRA_DIST variable in the various
-Makefile.am files before running automake. 
+To assist with that, there's an argument available in configure
+(or autogen, which will pass it to configure) which disables
+the gconf schema and mime type processing:
+   --enable-packager-mode
+This argument should disable postinstall calls made during
+make install, and print a nasty warning during configure.
+IT IS PACKAGER'S RESPONSIBILITY to follow the advice given
+by the configure output and to copy the appropriate code
+from the src/data/Makefile.am into the pos-tinstall (and post-uninstall)
+of the particular packaging system.

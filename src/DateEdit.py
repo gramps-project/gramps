@@ -193,7 +193,7 @@ class DateEditorDialog:
         Utils.set_titles(self.top_window,title,_('Date selection'))
 
         self.calendar_box = self.top.get_widget('calendar_box')
-        for name in Date.Date.calendar_names:
+        for name in Date.Date.ui_calendar_names:
             self.calendar_box.append_text(name)
         self.calendar_box.set_active(self.date.get_calendar())
         self.calendar_box.connect('changed',self.switch_calendar)
@@ -258,7 +258,7 @@ class DateEditorDialog:
             response = self.top_window.run()
             if response == gtk.RESPONSE_HELP:
                 try:
-                    gnome.help_display('gramps-manual','index')
+                    gnome.help_display('gramps-manual','adv-dates')
                 except gobject.GError, msg:
                     QuestionDialog.ErrorDialog(_("Could not open help"),str(msg))
             elif response == gtk.RESPONSE_OK:

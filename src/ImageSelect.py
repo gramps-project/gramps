@@ -906,19 +906,6 @@ class GlobalMediaProperties:
         self.date_entry = self.change_dialog.get_widget('date')
         self.date_entry.set_editable(mode)
         
-        self.pdmap = {}
-        self.add_places = []
-        for key in self.db.get_place_handles():
-            p = db.get_place_from_handle(key).get_display_info()
-            self.pdmap[p[0]] = key
-
-        self.place = self.change_dialog.get_widget('place')
-        self.place.set_editable(mode)
-        
-        self.place_list = self.pdmap.keys()
-        self.place_list.sort()
-        build_dropdown(self.place,self.place_list)
-
         if self.obj:
             self.date_entry.set_text(self.dd.display(self.date_object))
         
@@ -1183,10 +1170,6 @@ class GlobalMediaProperties:
         if not self.date_object.is_equal(self.obj.get_date_object()):
             self.obj.set_date_object(self.date_object)
 
-        p = self.get_place(self.place)
-        if p:
-            self.obj.set_place_handle(p)
-        
         format = self.preform.get_active()
         if text != note or desc != self.obj.get_description():
             self.obj.set_note(text)
@@ -1202,7 +1185,7 @@ class GlobalMediaProperties:
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-complete')
+        gnome.help_display('gramps-manual','adv-media')
         
     def on_ok_clicked(self, obj):
         self.on_apply_clicked(obj)

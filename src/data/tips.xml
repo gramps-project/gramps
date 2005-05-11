@@ -31,18 +31,24 @@ often wonder why we didn't write down pieces of information that grandfather
 told us while we were young. Don't wait till it's too late... 
 </tip>
 
+<!--
 <tip>
 <b>EXAMPLES OF A FAMILY TREE</b>: To see how a Gramps family tree database looks,
 check Help &gt; Open example database. You'll find the elaborate Smith family
 database, It includes 42 individuals and 15 families, with fairly complete
 basic data about many of these individuals.
 </tip>
+-->
+
 
 <tip>
-<b>THE PEOPLE VIEW</b>: The People view throws up a list of all individuals in the
-database. You can sort the listing simply by clicking on numerous headings
+<b>THE PEOPLE VIEW</b>: The People view throws up a list of all individuals
+in the database. 
+<!--
+You can sort the listing simply by clicking on numerous headings
 such as name, gender, birth date or death date.  Clicking heading the second
 time will reverse the sort.
+-->
 </tip>
 
 <tip>
@@ -62,13 +68,13 @@ children in the family tree.
 
 <tip>
 <b>LOCATING PEOPLE</b>: In the People view, you can locate any individual by
-navigating through the alphabetic tabs of surnames. Then, click on the names
+through the list of surnames. Then, click on the names
 themselves to unfold display of all the individuals with the same last name.
 </tip>
 
 <tip>
 <b>TO ADD INFORMATION TO SELECTED PEOPLE</b>: First, locate them in the People
-view. (Use the alphabetic tabs of surnames, and click on the names to unfold
+view. (Use the list of surnames, and click on the names to unfold
 the display of all individuals sharing the name). Then, go to the Family
 view, and add the relevant information.
 </tip>
@@ -122,9 +128,6 @@ SoundEx codes.
 <tip>
 <b>SETTING YOUR PREFERENCES</b>: Edit &gt; Preferences will allow you to choose a
 number of settings, determining how your GRAMPS program should work.
-Particularly useful are the report preferences (set the format in which you
-would like your reports to appear, and in which directory these should be
-stored).
 </tip>
 
 <tip>
@@ -171,8 +174,8 @@ more than once in the database.
 </tip>
 
 <tip>
-<b>ADDING A SIBLING</b>: To add siblings in Gramps, make yourself or your spouse an
-active person (i.e. navigate to yourself or your spouse). Then switch to the
+<b>ADDING A SIBLING</b>: To add siblings in Gramps, make either of your parents 
+an active person (i.e. navigate to either of your parents). Then switch to the
 Family View and add a new child by clicking the button second from the top on
 the right of the Children list (the &quot;New&quot; button). Enter the data for the
 new person and click OK.
@@ -201,7 +204,7 @@ over-ride that filtering by checking &quot;Show all&quot; checkbutton.
 </tip>
 
 <tip>
-<b>KEYBINDINGS</b>: GRAMP's manual is quite elaborate and well written; it also is
+<b>KEYBINDINGS</b>: GRAMPS's manual is quite elaborate and well written; it also is
 detailed about keybindings (in a separate appendix) and other matters. Check
 it out.
 </tip>
@@ -214,7 +217,7 @@ gramps-users at lists.sf.net, as appropriate for your questions.
 </tip>
 
 <tip>
-<b>TIPS OF THE DAY</b>: GRAMPS's development version has the option of popping up a
+<b>TIPS OF THE DAY</b>: GRAMPS's has the option of popping up a
 window with the tip of the day about the use of GRAMPS. The tip is chosen
 randomly from the pool of tips. To add your own tip, send it in to
 gramps-users@lists.sf.net
@@ -247,7 +250,8 @@ You can visit these bookmarks much like in your browser, simply via Bookmark
 
 <tip>
 <b>DATES</b>: Incorrect date formats will show up with the red button alongside the
-date. Green means okay, and amber signifies acceptable.
+date. Green means okay, and amber signifies acceptable. Click on the colored
+button to invoke Date Selection dialog, if you like.
 </tip>
 
 <tip>
@@ -260,11 +264,13 @@ military service, nobility titles, number of marriages, occupations,
 ordination, property, religion, retirement, wills, etc.
 </tip>
 
+<!--
 <tip>
 GRAMPS' People view gives you a list of all individuals in the database. You
 can sort the listing by differing priorities simply by clicking on headings
 like name, gender, bate date or death date.
 </tip>
+-->
 
 <tip>
 <b>CHANGING PREFERRED NAME</b>: If a person has several names, it is very easy
@@ -283,14 +289,18 @@ more distant parts of the tree.
 
 <tip>
 The Sources view shows all the family's referenced sources in a single view. 
+<!--
 Double-click on each to edit, add notes, and to see which individuals
-reference the source.
+reference the source.-->
 </tip>
 
 <tip>
-The Places view shows all places referred to in the database. It also allows
+The Places view shows all places referred to in the database. 
+<!--
+It also allows
 you to sort the list by half-a-dozen different criteria, such as City,
 County or State.
+-->
 </tip>
 
 <tip>
@@ -406,8 +416,7 @@ seems to be an error.
 
 <tip>
 You can link any 'media' (including non-text information) and other
-file-types to your GRAMPS family tree. Choose between copying (if in text
-format) or linking the file to the database.
+file-types to your GRAMPS family tree. 
 </tip>
 
 <tip>
@@ -430,7 +439,7 @@ also create their own custom styles.
 <tip>
 Eight output formats are supported by GRAMPS -- PDF, AbiWord, KWord,
 OpenOffice Writer, HTML, Rich Text Format (RTF), Latex, and plain text.
-These formats generate data which can be read in Windows computers, making
+These formats generate data which can be read on all computers, making
 it easy for anyone to access it.
 </tip>
 
@@ -563,14 +572,7 @@ to help too?
 </tip>
 
 <tip>
-New versions of GRAMPS that are already in testing use an advanced database
-design that guarantee very fast access to many thousands of entries in the
-database. Other new features are being designed and coordinated by several
-active developers.
-</tip>
-
-<tip>
-Numerous GRAMPS releases are made each year (11 during one 12-month period).
+Numerous GRAMPS releases are made each year.
 </tip>
 
 <tip>
@@ -592,15 +594,10 @@ http://www.gnu.org/licenses/licenses.html#GPL !
 </tip>
 
 <tip>
-GRAMPS performs slowly with databases of over 10,000 people, does not
+GRAMPS does not
 support TempleReady GEDCOM extensions, and offers limited drag-and-drop
 support. Currently, there is no support for drag and drop between databases.
 Graph reports are also limited in functionality.
-</tip>
-
-<tip>
-To learn more about the GRAMPS Next Generation, visit the wiki page at
-http://gramps.sourceforge.net/wiki/index.php/GrampsNextGeneration
 </tip>
 
 <tip>
@@ -633,11 +630,6 @@ installed.
 <tip>
 To run GRAMPS, you need to have GNOME installed. But you do not need to be
 running the GNOME desktop.
-</tip>
-
-<tip>
-The latest versions of gramps (0.9.0 and higher) require GNOME 2.0 or
-higher. Previous versions required GNOME 1.X.
 </tip>
 
 <tip>

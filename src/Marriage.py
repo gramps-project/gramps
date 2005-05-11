@@ -373,7 +373,7 @@ class Marriage:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-complete')
+        gnome.help_display('gramps-manual','adv-rel')
 
     def ev_drag_begin(self, context, a):
         return

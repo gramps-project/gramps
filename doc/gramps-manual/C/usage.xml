@@ -60,7 +60,7 @@
       The filetype filter in the <guilabel>Open database</guilabel> dialog allows
       you to display files of a certain type. If the <guilabel>All files</guilabel>
       filter is selected (the default), all the files will be shown. The type will
-      be deteremined by the extension of the selected filename.
+      be determined by the extension of the selected filename.
       </para>
 
       <note id="open-db-note"><title>Selecting file</title>
@@ -188,8 +188,8 @@
       <varlistentry><term>&app; package</term>
       <listitem><para>
       The package is a compressed archive containing the &app; XML
-      file and all media objects (images, sound files, etc.) that the 
-      database refers to. The &app; package is created by exporting
+      file and all media objects (images, sound files, etc.) to which the 
+      database refers. The &app; package is created by exporting
       (<menuchoice> <guimenu>File</guimenu><guimenuitem>
       Export...</guimenuitem></menuchoice>) data in that format.
       </para></listitem>
@@ -380,8 +380,8 @@
 
             <varlistentry><term>&app; package export</term>
     <listitem><para>Exporting to &app; package will create a gzip-compressed tar 
-      archive (also known as tarball) which contains gramps database, all 
-      local media objects, and copies of all external media objects. This is a
+      archive (also known as tarball) which contains gramps database
+      and copies of all media objects files. This is a
       useful format for moving your database to another machine or for sharing 
       it with somebody, while retaining all the features provided 
       by &app;.
@@ -389,14 +389,14 @@
 
     <varlistentry><term>Export to CD</term>
     <listitem>
-          <para>Exporting to CD will prepare you database directory with all its
-      contents to be recorded to the CD. This is done through the 
+      <para>Exporting to CD will prepare your database and copies of all media
+      objects files to be recorded to the CD. This is done through the 
       <guilabel>burn:///</guilabel> location in Nautilus. After exporting to 
       CD, go to the <guilabel>burn:///</guilabel> location by  
       selecting <menuchoice><guimenu>Go</guimenu>  
       <guisubmenu>CD Creator</guisubmenu></menuchoice> in Nautilus menu
       (unless this location is already displayed by &app;). Your 
-      database directory will show up. To record it onto the CD, click the CD 
+      database directory will show up. To record it on to the CD, click the CD 
       icon on the Nautilus toolbar, or select <menuchoice><guimenu>File</guimenu> 
       <guisubmenu>Write to CD</guisubmenu></menuchoice> in Nautilus menu.
       </para></listitem></varlistentry>
@@ -473,9 +473,17 @@
     <listitem>
       <para>Exporting to GeneWeb will save a copy of your data into
       a popular web genealogy format. To find out more about GeneWeb
-      and its format, visit <ulink url="http://cristal.inria.fr/~ddr/GeneWeb/en/"
+            and its format, visit <ulink url="http://cristal.inria.fr/~ddr/GeneWeb/en/"
        type="http">this site.</ulink>
       </para></listitem></varlistentry>
+
+            <varlistentry><term>vCalendar and vCard</term>
+    <listitem>
+      <para>Exporting to vCalendar or vCard will save information in a 
+      format used in many calendaring and addressbook applications,
+      sometimes called PIM for Personal Information Manager.
+      </para></listitem></varlistentry>
+
       </variablelist>
       </sect2>
 
@@ -489,9 +497,9 @@
 	options include editing personal data, relationship data, data about
 	children and parents, and information about sources, places, and media
 	objects used in the database. In short, any data stored in the 
-	database can be edited! Adding a new piece of information is in fact
-	creating an appropriate empty data structure and subsequent 
-	editing of that empty structure. </para>
+	database can be edited! Adding a new piece of information is the process
+ 	of creating an appropriate empty data structure and subsequently 
+	editing that empty structure. </para>
     
     <para>This section refers mainly to the menu items and buttons as the main 
     way of interacting with &app;. In addition to this, &app; provides an 
@@ -530,15 +538,12 @@
 
 	<para> If using the second button, select the spouse/partner from the list 
         and specify the relationship using the menu at the bottom. If necessary, you 
-        can add a person to the list by clicking the <guibutton>Add...</guibutton> 
-        button. &app; will filter the displayed list of people based on the 
-        relationship type as follows. The relationships Married, Unmarried, Unknown, 
-        and Other will only display people of the sex opposite to that of an active 
-        person. The relationships Partners will only display people of the same sex 
-        as that of an active person. Also, by default, &app; will limit the lists 
-        to people who could possibly be the spouse/partner (judged by the dates of 
-        birth and death) of the active person. To override this, check 
-        the <guilabel>Show all</guilabel> box. 
+        can add a person to the list by clicking the <guibutton>+</guibutton> 
+        button. &app; will filter the displayed list of people based on the apparent
+        relation possibility. Specifically, shown are the people who could possibly
+        be in relationship with the active person, as judged by the available birth
+        and death information. To override this and display all people from the
+        database, check the <guilabel>Show all</guilabel> box. 
 	</para>
 
 	<para>
@@ -619,19 +624,17 @@
         invoke the <guilabel>Edit Person</guilabel> Dialog 
 	(<xref linkend="edit-pers-fig"/>). Then, select the 
 	<guilabel>Gallery</guilabel> tab, and click the 
-	<guibutton>Add from file...</guibutton> button to invoke 
+	<guibutton>+</guibutton> button to invoke 
     the <guilabel>Select a media 
 	object</guilabel> dialog. Type the filename or select a file with the 
-	image, then provide a title for that image. To prevent the file from
-	being copied into your database directory, check the <guilabel>Do not
-	make a local copy</guilabel> box. Keep adding images until you are 
+	image, then provide a title for that image. Keep adding images until you are 
 	done. </para>
 
 	<para> To add images related to a relationship (e.g. marriage), 
 	switch to the Family View (<xref linkend="family-fig"/>) and then
 	double-click on the Spouse box invoke the <guilabel>Marriage/Relationship 
 	editor</guilabel> dialog. Select the <guilabel>Gallery</guilabel> 
-	tab and click the <guibutton>Add from file...</guibutton> button to add 
+	tab and click the <guibutton>+</guibutton> button to add 
     an image. </para>
 
 	<para> To add images related to a source or a place, first switch to 
@@ -641,7 +644,7 @@
 	or click the <guibutton>Edit</guibutton> icon on the toolbar to invoke the 
 	<guilabel>Source Editor</guilabel> (or <guilabel>Place 
 	Editor</guilabel>) dialog. Select the <guilabel>Gallery</guilabel> 
-	tab and click the <guibutton>Add from file...</guibutton> button to add 
+	tab and click the <guibutton>+</guibutton> button to add 
         an image. </para>
 
 	<para> Finally, to add images that are generally related to the 
@@ -652,8 +655,8 @@
 	If you have already added any images to any individual galleries, 
 	you will also find them listed in the Media View. </para>
 
-	<para> In any gallery, you can also use the <guibutton>Edit...</guibutton> 
-	and <guibutton>Remove</guibutton> buttons to edit image information
+	<para> In any gallery, you can also use the <guibutton>Edit</guibutton> 
+	and <guibutton>-</guibutton> buttons to edit image information
 	and to remove the image reference from that gallery. Note that in all
 	galleries removing the reference to the image does not remove the image
 	from the database. To completely remove the image from the database, 
@@ -694,9 +697,23 @@
       The detailed reference to the keybindings is found in 
       the <xref linkend="append-keybind"/>.</para>
 
+<note id="edit-button-note">
+<title>Add, Remove, and Edit buttons</title>
+<para>In order to save precious screen space, most of the
+<guibutton>Add</guibutton>, <guibutton>Remove</guibutton>,
+and <guibutton>Edit</guibutton> buttons no longer are labeled
+with text. Instead, the first two use <guibutton>+</guibutton> and
+<guibutton>-</guibutton> icons, and the third uses the icon
+depicting a pen on top of a paper sheet.</para>
+
+<para>We will continue referring to the latter as the <guibutton>Edit</guibutton>
+button, while using <guibutton>+</guibutton> and
+<guibutton>-</guibutton> to denote the former two buttons.
+</para></note>
+
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-pers"> 
-        <title>Edit Personal Information</title> 
+        <title>Personal Information</title> 
 	<para> Editing of personal data can be performed in the 
 	following ways: </para>
 	<variablelist>
@@ -704,15 +721,27 @@
 	  Double-click the name of the person whose data you would like 
 	  to edit, or select the name by single click and then click the 
 	  <guibutton>Edit</guibutton> icon on the toolbar. You may also select 
-      the name and then press <keycap>Return</keycap>. Finally, you may select 
+      the name and then press <keycap>Enter</keycap>. Finally, you may select 
       <guimenuitem>Edit...</guimenuitem> from the <guisubmenu>Edit</guisubmenu>
       menu of &app; or choose <guimenuitem>Edit</guimenuitem> from the context 
       menu that appears upon right-click on the name.
 	  </para></listitem></varlistentry>
+
 	<varlistentry><term>From the Family View:</term><listitem><para>
-	  Move the mouse into the <guilabel>Active person</guilabel> box, 
-	  then double-click, or use any of the menu items described above.
+	  To edit active person's data, move the mouse into the
+	  <guilabel>Active person</guilabel> box, then double-click,
+	  or use any of the menu items described above.
+	  To edit Spouse's data, Shift-click desired spouse entry. Also, from
+	  <guilabel>Spouse</guilabel> and <guilabel>Children</guilabel> boxes
+	  you may select the desired person, right-click, and then select the
+	  menu item from the context menu to edit the selected person's data.
 	  </para></listitem></varlistentry>
+
+	<varlistentry><term>From the Pedigree View:</term><listitem><para>
+	  Move the mouse into the box bearing the name of the person whose
+	  data you would like to edit, then double-click.
+	  </para></listitem></varlistentry>
+	  
 	</variablelist>
 	
 	<para> With either method, the following <guilabel>Edit 
@@ -744,11 +773,17 @@
 	initial cancel request, or saving the changes. 
 	</para>
 
-	<para>
+<note><para>Clicking <guibutton>OK</guibutton> will immediately
+save changes to the database (write on disk). Unlike previous versions,
+this version of &app; does not have a separate saving function,
+all changes are immediate.</para></note>
+
+	<tip><para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-	The tabs provide the following information categories of 
+    then its label appears regular (not bold). </para></tip>
+    
+    <para>The tabs provide the following information categories of 
 	personal data:
 	</para>
 
@@ -766,26 +801,31 @@
 	and <guilabel>Date</guilabel> and <guilabel>Place</guilabel> of birth 
 	and death. Some of these (<guilabel>Family name</guilabel>,
 	<guilabel>Type</guilabel>, and both <guilabel>Place</guilabel> fields), 
-	also allow you to choose the corresponding
-	contents from the drop-down menus by clicking on the down arrow button
-	located immediately to the right of the text entry field. The 
-	available menu choices are formed from the information already stored 
-	in the database. Also, when you start to type within these fields, 
-	&app; will try to guess the remainder of 
-	the text by using the same choices that are available from the
-	corresponding menu. To accept the highlighted guess and move to 
-	the next field, press the <keycap>Tab</keycap>. </para>
+	also provide autocompletion feature: as you type in these fields, the menu
+	is displayed below the field with the available entries from the database
+	that are compatible with your partial input. This allows for a quick selection
+	of an available entry by selecting in from the menu, either using
+	the mouse or arrows and <keycap>Enter</keycap> key.
+</para>
+
+<para>The <guilabel>Edit</guilabel> button located by the <guilabel>Family name</guilabel>
+entry allows editing the preferred name in complete detail, by invoking the <guilabel>Name
+Editor</guilabel> dialog (see <xref linkend="adv-an"/>).
+
+</para>
 	
 	<para>
 	The <guilabel>Gender</guilabel> radio buttons offer
 	the choice of person's gender between <guilabel>male</guilabel>,
 	<guilabel>female</guilabel>, and <guilabel>unknown</guilabel>. 
-	The buttons <guibutton>Source...</guibutton> and 
-	<guibutton>Note...</guibutton> allow adding or modifying the data about 
-	the sources of the name information and any relevant notes. 
-	Clicking either <guibutton>Edit...</guibutton> button located next to 
-        the birth and death Date fields will bring up a dialog allowing you to 
-        edit the corresponding event (birth or death) details.
+	Clicking the colored circle buttons (green, yellow, or red, also called LED buttons)
+	located next to 
+    the birth and death Date fields will bring up the <guilabel>Date Selection</guilabel>
+    dialog allowing detailed modification of the date, see <xref linkend="adv-dates"/>.
+    Clicking either <guibutton>Edit</guibutton> button located next to 
+    the birth and death LED buttons will bring up a dialog allowing you to 
+    edit the corresponding event (birth or death) details, see <xref linkend="adv-ev"/>. 
+        
 	The field <guilabel>ID</guilabel> displays an internal 
 	&app; ID number which identifies the user in the
 	database. The <guilabel>Image</guilabel> area shows the first
@@ -793,10 +833,10 @@
         person (if any exist).
 	</para>
 	
-	<para>Finally, the <guilabel>Information is complete</guilabel> check
-	button provides the way to mark whether this person's record is 
-	complete or 
-	not. </para>
+	<para>Finally, the <guilabel>Information is complete</guilabel> and
+	<guilabel>Information is private</guilabel>  check buttons provides
+	the way to mark whether this person's record is complete or 	not and
+	whether it is a private record. </para>
 		</listitem></varlistentry>
 	</variablelist>
 	
@@ -819,11 +859,11 @@
 	modification. The bottom part displays the list of all alternate names
 	of the person stored in the database. The top part shows the details 
 	of the currently selected name in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow the addition, 
+	<guibutton>+</guibutton>, <guibutton>Edit</guibutton>, 
+	and <guibutton>-</guibutton> allow the addition, 
 	modification, and removal of an alternate name record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	an alternate name is selected from the list.  
 	</para>
 		</listitem></varlistentry>
@@ -848,11 +888,11 @@
 	modification. The bottom part displays the list of all such events 
 	stored in the database. The top part shows the details 
 	of the currently selected event in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow you to correspondingly add, 
+	<guibutton>+</guibutton>, <guibutton>Edit</guibutton>, 
+	and <guibutton>-</guibutton> allow you to correspondingly add, 
 	modify, and remove an event record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	an event is selected from the list.  
 	</para>
 		</listitem></varlistentry>
@@ -880,11 +920,11 @@
 	value "Enormous", etc.). The bottom part displays the list of all  
 	attributes stored in the database. The top part shows the details 
 	of the currently selected attribute in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow you to correspondingly add, 
+	<guibutton>+</guibutton>, <guibutton>Edit</guibutton>, 
+	and <guibutton>-</guibutton> allow you to correspondingly add, 
 	modify, and remove an attribute record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	an attribute is selected from the list.  
 	</para>
 		</listitem></varlistentry>
@@ -909,11 +949,11 @@
 	modification. The bottom part displays the list of all 
 	addresses stored in the database. The top part shows the details 
 	of the currently selected address in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow you to correspondingly add, 
+	<guibutton>+</guibutton>, <guibutton>Edit</guibutton>, 
+	and <guibutton>-</guibutton> allow you to correspondingly add, 
 	modify, and remove an address record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	an address is selected from the list.  
 	</para>
 
@@ -977,17 +1017,21 @@
     describe specifically any event.
     For example, Aunt Martha's memoirs may mention her great grandson Paul,
     so the researcher may assume that this person (Paul) existed and cite 
-    the memoirs as the source for this assumption. NOTE: sources documenting
-    specific events are better filed in relation to those events, under the
-    <guilabel>Events</guilabel> tab.
+    the memoirs as the source for this assumption. 
 	</para>
+	
+	<tip><para>Sources documenting
+    specific events are better recorded in relation to those events, under the
+    <guilabel>Events</guilabel> tab. The person's <guilabel>Sources</guilabel>
+    tab is best used for general source references.</para></tip>
+    
     <para>The central part displays the list of all source references stored 
     in the database in relation to the person. The 
-    buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
+    buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> 
 	allow you to correspondingly add, modify, and remove a source reference  
-	to this person. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	to this person. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a source reference is selected from the list. </para>
 
 		</listitem></varlistentry>
@@ -1013,23 +1057,28 @@
 	modification. The central part shows the list of all such media objects. 
 	For media object which are valid image files, previews of images are 
 	displayed. For other objects such as audio files, movie files, etc., a 
-	generic &app; icon is displayed instead. Note that the first available
+	corresponding file type icon is displayed instead.</para>
+	
+	<tip><para> The first available
 	image in the gallery will be also displayed in the
 	<guilabel>Image</guilabel> area in the <guilabel>General</guilabel> 
-	tab. The buttons <guibutton>Add from file...</guibutton>,
-    <guibutton>Add from database...</guibutton>,
-	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
+	tab. </para></tip>
+
+	<para>
+	The buttons <guibutton>+</guibutton>,
+    <guibutton>Select</guibutton>,
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> allow
 	you to correspondingly add a new image, add a reference to an image already
     stored in the database, modify, and remove a media object reference 
-	to this person. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Remove</guibutton> buttons become available only when 
+	to this person. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a media object is selected from the list. 
 	</para>
 
-	<para>Note: removing a media object from a person's gallery does not 
+	<note><para>Removing a media object from a person's gallery does not 
         remove it from the database. It only removes the reference to that 
         object from this person's record. 
-	</para>
+	</para></note>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1052,13 +1101,13 @@
 	allowing data modification. The bottom part displays the list of all 
 	such Internet addresses stored in the database. The top part shows the
 	details of the currently selected addresses in the list (if any). 
-	The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>,  and <guibutton>Delete</guibutton> 
+	The buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>,  and <guibutton>-</guibutton> 
 	allow you to correspondingly add, modify, and remove an Internet address 
 	record from the database. The button <guibutton>Go</guibutton> allows
 	opening a web-page with the corresponding address with your default 
-	browser. Note that the <guibutton>Edit...</guibutton>, 
-	<guibutton>Delete</guibutton>, and <guibutton>Go</guibutton> buttons 
+	browser. Note that the <guibutton>Edit</guibutton>, 
+	<guibutton>-</guibutton>, and <guibutton>Go</guibutton> buttons 
 	become available only when an address is selected from the list.  
 	</para>
 		</listitem></varlistentry>
@@ -1099,76 +1148,163 @@
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-dates"> 
-        <title>Edit Dates</title> 
-	<para> Anywhere in &app; where the date 
-        is entered or edited, the following rules apply:</para> 
+        <title>Dates</title> 
+	<para> This section describes the details of entering and modifying dates.
+	Dates are important in genealogical research, so &app; goes a long
+	way to preserve and use any date information available.</para> 
 
-      <variablelist>
-      <varlistentry><term>Date validity indicators</term>
-	<listitem><para>&app; uses color 
-        circles to indicate the validity of the entered date. </para>
+      <sect3 id="adv-dates-led">
+      <title>Date types and validity indicators</title>
+<para>&app; uses color circles to indicate the validity of the entered date. </para>
+
+<tip><title>Date LED buttons</title>
+<para>The color circles are also referred to as the LED buttons.
+Clicking on an LED button will invoke the <guilabel>Date selection</guilabel>
+dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></tip>
 
         <itemizedlist>
         
         <listitem><para> Green circle means that the date is valid and 
-        complete (e.g. May 24, 1961). </para></listitem>
+        complete regular date (e.g. May 24, 1961). In simple terms, green
+        means that the date is uniquely defined up to a day.</para></listitem>
 
         <listitem><para> Yellow circle means that the date is valid but is
-        partial (i.e. not complete). Examples of partial dates are: 1961, 
-        about 1961, from 1960 to 1962, before 1963. While partial dates do 
-        not exactly define the date, they allow at least for some type of
+        not a regular date. This could be the date of an alternative type:
+        a before date (before May 25, 1962), an after date (after May, 1960),
+        an about date (about May 23, 1961), a range (between May 1, 1961 and May 31, 1961),
+        or a span (from May 1, 1961 to May 31, 1961). It can also be a complete
+        single date, but with quality of Estimated or Calculated. Finally, it could
+        be a partial date, i.e. a regular quality single date missing some
+        portion, e.g. May 1961 or 1961.</para>
+        
+        <para>While partial dates do 
+        not uniquely define the day, they allow at least for some type of
         comparisons between the dates. </para></listitem>
 
         <listitem><para> Red circle means that the date is not recognized as 
-        a valid date (e.g. Christmas week of 61). In that case the date will 
-        be stored as a text string. Therefore, no comparison with other dates 
-        will be available. It is best to avoid such date entries. Same 
+        a valid date (e.g. "Christmas week of 61", or "the summer when I had surgery"). 
+        n that case the date will be stored as a text string. Therefore, no comparison
+        with other dates will be available. It is best to avoid such date entries. Same 
         information can be entered as a note for the event of interest instead
         of a date. In the example considered, a better things to do is to
-        enter December 1961 as a date and Christmas week of 61 as a note.
+        enter December 1961 as a date and "Christmas week of 61" as a note.
         </para></listitem> 
 
         </itemizedlist>
-      </listitem></varlistentry>
-      </variablelist>
+        </sect3>
 
-      <variablelist>
-      <varlistentry><term>Acceptable date entries</term>
-	<listitem><para>&app; recognizes many 
-        formats of exact dates. The only problematic formats are XX/XX/XX or
-        XX-XX-XX because of the ambiguity between the day and the month.
-        The interpretation for this type of formats is configured 
-        in <guilabel>Getting Started</guilabel> dialog and can also be changed
-        from the <guilabel>Preferences</guilabel> dialog. </para> </listitem>
+      <sect3 id="adv-dates-parsing">
+      <title>Acceptable date entries</title>
 
-	<listitem><para>Besides exact dates, &app; 
-        recognizes and supports partial dates, date ranges, and alternate
-        calendars. </para>
+	<para>&app; recognizes many 
+        formats of exact dates. The numeric formats are determined
+        by the default environment &app; is running under. Most European
+        countries use DD.MM.YYYY, the US commonly uses MM/DD/YYYY,
+        and so on. </para>
+
+<para>Besides exact dates, &app; 
+        recognizes many dates that are not regular: before, after, about, ranges
+        and spans. It also understands the quality: estimated or calculated.
+        Finally, it supports partial dates and many alternative calendars. 
+        Below is the list of date entry rules to allow precise date parsing.</para>
         
+        <note><title>Date parsing rules</title>
+        <para>The list below is only valid for English. If you are using localized version
+        of &app;, your version may or may not provide a localized date parser.
+        At the time of this writing, localized parsers exist for French, Russian, and
+        Spanish languages.</para>
+        
+        <para>If the localized parser is available for your version, chances are
+        that other rules are in effect. If there's no manual in your language yet,
+        you may try following your instinct and go with the common ways
+        of denoting dates in your language. If all else fails, use the <guilabel>Date
+        selection</guilabel> dialog described below.</para></note>
+
         <itemizedlist>
         
-        <listitem><para> Partial dates define some portions of the date such 
-        as a year or a year and a month. </para></listitem>
+        <listitem><para>Regular single dates can be entered just as you would
+        write them in the letter: May 24, 1961 or January 1, 2004.</para></listitem>
+        
+        <listitem><para> Dates that are not regular should start with the quality:
+        estimated or calculated, if applicable. Regular quality does not need to be
+        specified, as it is the default. Example: est. 1961, or calc 2005.</para>
+        </listitem>
 
-        <listitem><para> Date ranges define the boundaries containing the 
-        date such as from January 1961 to March 1963. </para></listitem>
-
-        <listitem><para> Alternate calendars are calendars other than Gregorian
+        <listitem><para> Next should appear the type: before, after, or about.
+        Ranges are denoted with "between DATE and DATE" and spans use "from DATE
+        to DATE" patterns, where DATE stands for a single date.</para>
+        
+        <para>Examples: est from 2001 to 2003, before June 1975, est about 2000,
+        calc between May 1900 and January 1, 1990.
+        </para></listitem>
+        
+        <listitem><para> Partial dates are entered simply by omitting unknown
+        information: May 1961, 2004.</para></listitem>
+        
+        <listitem><para>
+        Alternate calendars are calendars other than Gregorian
         calendar. Currently, &app; supports Hebrew,
         French Republican, Julian, Islamic, and Persian alternate calendars. 
+        To specify the calendar other than the default Gregorian,
+        append the name of the calendar to the date string, e.g.
+        "January 9, 1905 (julian)".
         </para></listitem>
 
         </itemizedlist>
-      </listitem></varlistentry>
-      </variablelist>
+        </sect3>
+        
+        <sect3 id="adv-dates-gui"><title>Graphical User Interface for entering dates</title>
+        <para>While the above rules provide a quick and easy way for entering most
+        common dates, sometimes there is a need to either build a complex date or simply
+        check the date using graphical user interface. The <guilabel>Date selection</guilabel>
+        dialog can be invoked by clicking the color circle button (also known as the LED
+        button) next to the date entry field. </para>
+        </sect3>
+
+	<!-- ==== Figure: Date selection dialog ==== -->
+	<figure id="adv-dates-gui-fig"> 
+	<title>Date selection dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/date-selection.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Date selection dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para>The <guilabel>Calendar</guilabel> menu allows the choice
+	of any supported calendar. The <guilabel>Quality</guilabel> menu
+	provides choices of Regular, Estimated, or Calculated quality. The
+	<guilabel>Type</guilabel> menu allows to adjust the exact date type:
+	Regular, Before, After, About, Range, Span, and Text only.
+	A set of controls labeled <guilabel>Date</guilabel> allows setting
+	the day, the month, and the year for a date. The second set of controls,
+	<guilabel>Second date</guilabel>, is disabled for all dates except
+	for those of Range and Span type. For ranges and spans, the
+	<guilabel>Second date</guilabel> controls allow setting the details
+	of the second date. Finally, the <guilabel>Text comment</guilabel>
+	text entry field allows storing an arbitrary text string along with the date.
+	</para>
+	
+	<note><para>If you enter the date outside this dialog, i.e. as a text
+	in any date entry field, that text will be copied and stored as the text
+	comment string during parsing of entered text.</para>
+	
+	<para>Therefore, the comment only lives until the next parsing.
+	If you have some important text corresponding to the date, you
+	are probably better off by saving that text as a Note for the
+	corresponding event.</para></note>
+
       </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-rel"> 
-        <title>Edit Relationship Data</title> 
+        <title>Relationship Data</title> 
 	<para> Editing of relationship data is performed in the following 
 	<guilabel>Marriage/Relationship Editor</guilabel> dialog which appears 
-	after double-clicking on the spouse box in the Family View.</para>
+	after double-clicking on the spouse box in the Family View. Alternatively,
+	you may invoke this dialog by right-clicking into the spouse box
+	and selecting <guilabel>Edit relationship</guilabel> item from
+	the context menu.</para>
 
  	<!-- ==== Figure: Edit Relationship dialog ==== -->
 	<figure id="edit-rel-fig"> 
@@ -1195,11 +1331,17 @@
 	choices of closing the dialog without saving changes, canceling the
 	initial cancel request, or saving the changes. </para> 
 
-	<para>
+<note><para>Clicking <guibutton>OK</guibutton> will immediately
+save changes to the database (write on disk). Unlike previous versions,
+this version of &app; does not have a separate saving function,
+all changes are immediate.</para></note>
+
+	<tip><para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-	The tabs provide the following information categories of 
+    then its label appears regular (not bold). </para></tip>
+
+	<para>The tabs provide the following information categories of 
 	relationship data:
 	</para>
 
@@ -1210,9 +1352,10 @@
 	information about the relationship: the relationship type. 
 	The available types (such as married, partners, etc.) can be chosen 
 	from the drop-down <guilabel>Relationship type</guilabel> menu. 
-	The non-editable field <guilabel>ID</guilabel> displays an 
-	internal &app; ID number which identifies this relationship in 
-	the database. 
+	The <guilabel>ID</guilabel> field displays &app; ID number
+	which labels this relationship in the database. The <guilabel>Last
+	changed</guilabel> label shows the last modification time for this
+	relationship.
 	Finally, the <guilabel>Information is complete</guilabel> check
 	button provides the way to mark whether this relationship's record is 
 	complete or not. </para>
@@ -1227,11 +1370,11 @@
 	modification. The bottom part displays the list of all such events 
 	stored in the database. The top part shows the details 
 	of the currently selected event in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow you to correspondingly add, 
+	<guibutton>+</guibutton>, <guibutton>Edit</guibutton>, 
+	and <guibutton>-</guibutton> allow you to correspondingly add, 
 	modify, and remove an event record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	an event is selected from the list.  
 	</para>
 		</listitem></varlistentry>
@@ -1245,11 +1388,11 @@
 	modification. The bottom part displays the list of all such 
 	attributes stored in the database. The top part shows the details 
 	of the currently selected attribute in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow you to correspondingly add, 
+	<guibutton>+</guibutton>, <guibutton>Edit</guibutton>, 
+	and <guibutton>-</guibutton> allow you to correspondingly add, 
 	modify, and remove an attribute record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	an attribute is selected from the list.  
 	</para>
 		</listitem></varlistentry>
@@ -1289,17 +1432,20 @@
     For example, Aunt Martha's memoirs may mention that her great grandson Paul 
     was married, so the researcher may assume that this relationship (between 
     Paul and his wife) existed and cite the memoirs as the source for this 
-    assumption. NOTE: sources documenting specific events such as marriages 
-    or divorces are better filed in relation to those events, under the 
-    <guilabel>Events</guilabel> tab.
+    assumption.
 	</para>
+	
+	<note><para> Sources documenting specific events such as marriages 
+    or divorces are better filed in relation to those events, under the 
+    <guilabel>Events</guilabel> tab.</para></note>
+    
     <para>The central part displays the list of all source references stored 
     in the database for this relationship. The 
-    buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
+    buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> 
 	allow you to correspondingly add, modify, and remove a source reference  
-	to this relationship. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	to this relationship. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a source reference is selected from the list. </para>
 
 		</listitem></varlistentry>
@@ -1314,14 +1460,14 @@
 	For media object which are valid image files previews of images are 
 	displayed. For other objects such as audio files, movie files, etc., a 
 	generic &app; icon is displayed instead. 
-    The buttons <guibutton>Add from file...</guibutton>,
-    <guibutton>Add from database...</guibutton>,
-	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
+    The buttons <guibutton>+</guibutton>,
+    <guibutton>Select</guibutton>,
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> allow
 	you to correspondingly add a new image, add a reference to an image already
     stored in the database, modify, and remove a media object reference 
 	to this relationship. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Remove</guibutton> buttons become available only when 
+	Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a media object is selected from the list. 
 	</para>
 		</listitem></varlistentry>
@@ -1346,7 +1492,7 @@
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-src"> 
-        <title>Edit Source Data</title> 
+        <title>Source Data</title> 
 	<para> To edit source data, switch to the Sources View and select the
 	desired entry in the list of sources. Double-click on that entry or
 	click the <guibutton>Edit</guibutton> icon on the toolbar to invoke the 
@@ -1367,20 +1513,27 @@
 	title of the dialog. The main part of the window displays four notebook 
 	tabs containing different categories of available information. You can 
 	bring any tab to the top for viewing or editing by clicking on the 
-	appropriate tab heading. The bottom part has <guibutton>OK</guibutton> 
+	appropriate tab heading. 
+	The bottom part has <guibutton>OK</guibutton> 
 	and <guibutton>Cancel</guibutton> buttons. Clicking the 
 	<guibutton>OK</guibutton> button at any time will apply all the changes made 
 	in all tabs and close the dialog window. Clicking the 
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
 	applying any changes. </para> 
-	
-	<para>
+
+<note><para>Clicking <guibutton>OK</guibutton> will immediately
+save changes to the database (write on disk). Unlike previous versions,
+this version of &app; does not have a separate saving function,
+all changes are immediate.</para></note>
+
+	<tip><para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
+    then its label appears regular (not bold). </para></tip>
+	
+	<para>
 	The tabs provide the following information categories of 
-	source data:
-	</para>
+	source data:</para>
 
 	<variablelist>
 		<varlistentry><term><guilabel>General</guilabel></term>
@@ -1415,6 +1568,28 @@
 	</variablelist>
 
 	<variablelist>
+		<varlistentry><term><guilabel>Data</guilabel></term>
+		<listitem>
+	<para>The <guilabel>Data</guilabel> tab displays Key/Value
+	pairs that may be associated with the source. These are similar
+	to the attributes used for other record types. The difference
+	from these Key/Value paris and the attributes is that the attributes
+	may have source references and notes, while the Key/Value
+	data may not.</para>
+
+	<para> The central part shows the list of all Key/Value pairs, if any.
+	The buttons <guibutton>+</guibutton> and <guibutton>-</guibutton>
+	allow you to correspondingly add and remove pairs. To modify the
+	text of Key or Value, first select the desired entry (may be an
+	empty entry when new pair has just been added). Then click into
+	either Key or Value cell inside that entry and edit the text in place.
+	When you are done, click outside the cell to exit editing mode.
+	</para>
+		</listitem></varlistentry>
+	</variablelist>
+
+
+	<variablelist>
 		<varlistentry><term><guilabel>Gallery</guilabel></term>
 		<listitem>
 	<para>The <guilabel>Gallery</guilabel> tab displays information about 
@@ -1423,14 +1598,14 @@
 	such media objects. For media object which are valid image files 
 	previews of images are displayed. For other objects such as audio 
 	files, movie files, etc., a generic &app; icon is displayed instead. 
-    The buttons <guibutton>Add from file...</guibutton>,
-    <guibutton>Add from database...</guibutton>,
-	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
+    The buttons <guibutton>+</guibutton>,
+    <guibutton>Select</guibutton>,
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> allow
 	you to correspondingly add a new image, add a reference to an image already
     stored in the database, modify, and remove a media object reference 
 	to this source.
-    Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Remove</guibutton> buttons become available only when 
+    Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a media object is selected from the list. 
 	</para>
 		</listitem></varlistentry>
@@ -1444,11 +1619,17 @@
 	referenced from any database record, the tab shows an empty list. 
 	If the source is referenced from many records, the tab will list 
 	all of them. The list can be ordered by any of its column headers:
-	<guilabel>Source type</guilabel>, <guilabel>Object</guilabel>, or
-	<guilabel>Value</guilabel>. This information cannot be modified from
-	the <guilabel>Source Editor</guilabel> dialog. Instead, the
-	corresponding database record (e.g. birth event) has to be brought
-	up and its source reference edited. </para>
+	<guilabel>Type</guilabel>, <guilabel>ID</guilabel>, or
+	<guilabel>Name</guilabel>. Double-clicking on the list entry
+	opens up an editor for a corresponding record allowing
+	to view or modify the record.</para>
+	
+	<note><para>Only primary objects can be shown in the 
+	<guilabel>References</guilabel> tab: Person, Family, Event, Place, or Media
+	object. The secondary objects such as Names and Attributes, although
+	may refer the source, will only show up through their primary
+	objects they belong to.
+	</para></note>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1457,7 +1638,7 @@
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-plc"> 
-        <title>Edit Place Data</title> 
+        <title>Place Data</title> 
 	<para> To edit place data, switch to the Places View and select the
 	desired entry in the list of places. Double-click on that entry or
 	click the <guibutton>Edit</guibutton> icon on the toolbar to invoke the 
@@ -1477,20 +1658,27 @@
 	title of the dialog. The main part of the window displays seven 
 	notebook tabs containing different categories of available information. 
 	You can bring any tab to the top for viewing or editing by clicking on 
-	the appropriate tab heading. The bottom part has 
+	the appropriate tab heading. 
+	The bottom part has 
 	<guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. 
 	Clicking the <guibutton>OK</guibutton> button at any time will apply all the 
 	changes made in all tabs and close the dialog window. Clicking the 
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
 	applying any changes. </para> 
+
+<note><para>Clicking <guibutton>OK</guibutton> will immediately
+save changes to the database (write on disk). Unlike previous versions,
+this version of &app; does not have a separate saving function,
+all changes are immediate.</para></note>
 	
-	<para>
+	<tip><para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-	The tabs provide the following information categories of 
-	place data:
-	</para>
+    then its label appears regular (not bold). </para></tip>
+    
+
+	<para>The tabs provide the following information categories of 
+	place data:</para>
 
 	<variablelist>
 		<varlistentry><term><guilabel>General</guilabel></term>
@@ -1511,11 +1699,11 @@
 	allowing their modification. The bottom part displays the list of all 
 	other names of the place stored in the database. The top part shows 
 	the details of the currently selected name in the list (if any). 
-	The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> allow 
+	The buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> allow 
 	you to correspondingly add, modify, and remove a name record 
-	from the database. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	from the database. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a name is selected from the list. </para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1547,11 +1735,11 @@
 	The <guilabel>Sources</guilabel> tab displays information about sources 
 	relevant to this place and controls allowing its modification. 
 	The central part displays the list of all such source references 
-	stored in the database. The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> allow 
+	stored in the database. The buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> allow 
 	you to correspondingly add, modify, and remove a source reference  
-	to this place. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	to this place. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a source reference is selected from the list. </para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1565,14 +1753,14 @@
 	such media objects. For media objects which are valid image files 
 	previews of images are displayed. For other objects such as audio 
 	files, movie files, etc., a generic &app; icon is displayed instead. 
-    The buttons <guibutton>Add from file...</guibutton>,
-    <guibutton>Add from database...</guibutton>,
-	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
+    The buttons <guibutton>+</guibutton>,
+    <guibutton>Select</guibutton>, <guibutton>Edit.</guibutton>, 
+    and <guibutton>-</guibutton> allow
 	you to correspondingly add a new image, add a reference to an image already
     stored in the database, modify, and remove a media object reference 
 	to this place. 
-    Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Remove</guibutton> buttons become available only when 
+    Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a media object is selected from the list. 
 	</para>
 		</listitem></varlistentry>
@@ -1586,13 +1774,13 @@
 	allowing its modification. The bottom part displays the list of all 
 	such Internet addresses stored in the database. The top part shows the
 	details of the currently selected addresses in the list (if any). 
-	The buttons <guibutton>Add...</guibutton>,
-	<guibutton>Edit...</guibutton>,  and <guibutton>Delete</guibutton> 
+	The buttons <guibutton>+</guibutton>,
+	<guibutton>Edit</guibutton>,  and <guibutton>-</guibutton> 
 	allow you to correspondingly add, modify, and remove an Internet address 
 	record from the database. The button <guibutton>Go</guibutton> allows
 	you to open a web-page with the corresponding address with your default 
-	browser. Note that the <guibutton>Edit...</guibutton>, 
-	<guibutton>Delete</guibutton>, and <guibutton>Go</guibutton> buttons 
+	browser. Note that the <guibutton>Edit</guibutton>, 
+	<guibutton>-</guibutton>, and <guibutton>Go</guibutton> buttons 
 	become available only when an address is selected from the list.
 	</para>
 		</listitem></varlistentry>
@@ -1602,7 +1790,7 @@
 		<varlistentry><term><guilabel>References</guilabel></term>
 		<listitem>
 	<para>The <guilabel>References</guilabel> tab displays information about 
-	database records that refer to this place. If the place is not 
+	database records (events or LDS ordinances) that refer to this place. If the place is not 
 	referenced from any database record, the tab shows an empty list. 
 	If the place is referenced from many records, the tab will list 
 	all of them. This information cannot be modified from 
@@ -1616,19 +1804,19 @@
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-media"> 
-        <title>Edit Media Data</title> 
+        <title>Media Data</title> 
 	<para> To edit media data, switch to the Media View and select the
 	desired entry in the list of sources. Double-click on that entry or
 	click <guibutton>Edit</guibutton> on the toolbar to invoke the 
-	following <guilabel>Edit Media Properties</guilabel> dialog: </para>
+	following <guilabel>Media Properties Editor</guilabel> dialog: </para>
 
  	<!-- ==== Figure: Edit Media Properties dialog ==== -->
 	<figure id="edit-media-fig"> 
-	<title>Edit Media Properties dialog</title> 
+	<title>Media Properties Editor dialog</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-media.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Edit Media Properties dialog. </phrase>
+	<phrase>Shows Media Properties Editor dialog. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 	
@@ -1643,11 +1831,18 @@
 	changes made in all tabs and close the dialog window. Clicking the 
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
 	applying any changes. </para> 
+
+<note><para>Clicking <guibutton>OK</guibutton> will immediately
+save changes to the database (write on disk). Unlike previous versions,
+this version of &app; does not have a separate saving function,
+all changes are immediate.</para></note>
 	
-	<para>
+	<tip><para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
+    then its label appears regular (not bold). </para></tip>
+    
+	<para>
 	The tabs provide the following information categories of 
 	media object data:
 	</para>
@@ -1657,13 +1852,15 @@
 		<listitem><para>The  
 	<guilabel>General</guilabel> tab allows editing the title which labels 
 	this object in the database. The title can be typed in the appropriate 
-	text entry field. If the object is not local (i.e. the corresponding
-	file does not reside under &app; database directory), the
-	<guibutton>Make a local copy</guibutton> button is available. 
-	Click it to copy the media into the &app; database directory. This will 
-	increase the amount of disk space consumed by the &app; database. However, 
-	if the external file is deleted or removed, &app; will still be able 
-	to use the local copy.  </para>
+	text entry field. The <guilabel>Date</guilabel> field allows entering
+	the date by typing, while the LED button beside it will invoke a 
+	<guilabel>Date selection</guilabel> dialog for setting the date
+	graphically.</para>
+	
+	<note><para>&app; no longer has a concept of local media objects.
+	Every media object is referred to by its path. The users are responsible
+	for keeping track of the object files. &app; will only reference
+	and display the contents, not manage the files themselves.</para></note>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1675,11 +1872,11 @@
 	modification. The bottom part displays the list of all such 
 	attributes stored in the database. The top part shows the details 
 	of the currently selected attribute in the list (if any). The buttons
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Delete</guibutton> allow you to correspondingly add, 
+	<guibutton>+</guibutton>, <guibutton>Edit</guibutton>, 
+	and <guibutton>-</guibutton> allow you to correspondingly add, 
 	modify, and remove an attribute record from the database. 
-	Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	an attribute is selected from the list. </para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1714,20 +1911,25 @@
 	referenced from any database record, the tab shows an empty list. 
 	If the object is referenced from many records, the tab will list 
 	all of them. The list can be ordered by any of its column headers:
-	<guilabel>Type</guilabel>, <guilabel>Object</guilabel>, or
-	<guilabel>Value</guilabel>. This information cannot be modified from
-	the <guilabel>Media Object Properties Editor</guilabel> dialog. 
-	Instead, the corresponding database record (e.g. birth event) has to 
-	be brought up and its media object reference edited in the gallery 
-	tab. </para>
-		</listitem></varlistentry>
+	<guilabel>Type</guilabel>, <guilabel>ID</guilabel>, or
+	<guilabel>Name</guilabel>. Double-clicking on the list entry
+	opens up an editor for a corresponding record allowing
+	to view or modify the record.</para>
+	
+	<note><para>Only primary objects can be shown in the 
+	<guilabel>References</guilabel> tab: Person, Family, Event, Source, or Place.
+	The secondary objects such as Names and Attributes, although
+	able to refer the media object, will only show up through their primary
+	objects they belong to.
+	</para></note>
+			</listitem></varlistentry>
 	</variablelist>
 
       </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-ev"> 
-        <title>Edit Events</title> 
+        <title>Events</title> 
 	<para> Events are edited through the following <guilabel>Event
 	Editor</guilabel> dialog: </para> 
 
@@ -1752,10 +1954,12 @@
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
 	applying any changes. </para> 
 	
-	<para>
+	<tip><para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
+    then its label appears regular (not bold). </para></tip>
+
+	<para>
     The tabs provide the following information categories of 
 	the event data: </para>
 
@@ -1780,11 +1984,11 @@
 	<guilabel>Sources</guilabel> tab displays information about sources 
 	relevant to this event and controls allowing its modification. 
 	The central part displays the list of all such sources references 
-	stored in the database. The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
+	stored in the database. The buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> 
 	allow you to correspondingly add, modify, and remove a source reference  
-	to this event. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	to this event. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a source reference is selected from the list. </para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1816,11 +2020,11 @@
 	<guilabel>Witnesses</guilabel> tab displays information about witnesses 
 	relevant to this event and controls allowing its modification. 
 	The central part displays the list of all such witnesses 
-	stored in the database. The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
+	stored in the database. The buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> 
 	allow you to correspondingly add, modify, and remove a witness reference  
-	to this event. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	to this event, see <xref linkend="adv-wit"/>. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a witness reference is selected from the list. </para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1829,7 +2033,7 @@
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-si"> 
-        <title>Edit Source Information</title> 
+        <title>Source Information</title> 
 	<para> When adding source references to events, places, etc., 
 	the following dialog appears: </para>
 
@@ -1862,27 +2066,33 @@
 	level from the <guilabel>Confidence</guilabel> drop-down menu. 
 	The rest of the details can be typed in the appropriate text entry
 	fields. </para>
+	
+	<tip><para>Information in this dialog is specific to the particular reference.
+	A single source can be referenced many times, and all such references will
+	have in common the overall source information. This dialog lets you provide
+	reference-specific data, such as relevant quotes, comments, confidence,
+	page numbers, etc, to further specify and document the reference.</para></tip>
 
       </sect2>
       
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-an"> 
-        <title>Edit Alternate Names</title> 
-	<para> Alternate names are edited through the following 
-	<guilabel>Alternate Names Editor</guilabel> dialog: </para>
+        <title>Names</title> 
+	<para> Names are edited through the following 
+	<guilabel>Name Editor</guilabel> dialog: </para>
 
- 	<!-- ==== Figure: Alternate Names Editor dialog ==== -->
+ 	<!-- ==== Figure: Names Editor dialog ==== -->
 	<figure id="edit-an-fig"> 
-	<title>Alternate Names Editor dialog</title> 
+	<title>Name Editor dialog</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-an.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Alternate Names Editor dialog. </phrase>
+	<phrase>Shows Name Editor dialog. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 	
 	<para> The top of the window shows the dialog title including the name
-	of the person whose alternate name is being edited. The central part 
+	of the person whose name is being edited. The central part 
 	of the window displays three notebook tabs containing different 
 	categories of available information. You can bring any tab to the 
 	top for viewing or editing by clicking on the appropriate tab heading. 
@@ -1893,22 +2103,41 @@
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
 	applying any changes. </para> 
 	
-	<para>
+	<tip><para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-    The tabs provide the following information categories of 
-	the alternate name data: </para>
+    then its label appears regular (not bold). </para></tip>
+    
+    
+    <para>The tabs provide the following information categories of 
+	the name data: </para>
 
  	<variablelist>
 		<varlistentry><term><guilabel>General</guilabel></term>
 		<listitem><para>The 
 	<guilabel>General</guilabel> tab allows editing of general
-	information about the alternate name: given name, family name, family 
-	prefix, suffix, title, and type of the name. The information can be 
+	information about the name: given name, family name, 
+	patronymic (a form of father's name used in some languages, e.g. Russian),
+    family prefix, suffix, title, and type of the name. The information can be 
 	typed in the appropriate text entry fields. The family name and the 
 	type can be also selected from available choices listed in the 
-	appropriate drop-down menus. 
+	appropriate drop-down menus. </para>
+	
+	<para><guilabel>Options</guilabel> allow you to adjust specific
+	grouping, sorting, and displaying properties of this name, as well
+	as to provide the date corresponding to the name. The 
+	<guilabel>Grouping</guilabel> field provides an alternative
+	grouping node for a given name, overriding the default grouping
+	based on the family name. This may be necessary with similar
+	family names that need to be grouped together -- for example Russian
+    names Ivanov and Ivanova are considered the same, but difference
+    in gender is reflected in different spelling. To enable
+	typing into this field, check the <guilabel>Override</guilabel>
+	check button. The <guilabel>Sort as</guilabel> and 
+	<guilabel>Display as</guilabel> determine the manner
+	in which the name appears in the People View and in the reports.
+	The <guilabel>Date</guilabel> can provide information on
+	the validity of this name -- use spans as necessary.
 	Check the <guilabel>Private record</guilabel> box to mark this name
 	record as private. This will give you a chance to omit this name from
 	being included in reports, if you choose so among the report 
@@ -1922,11 +2151,11 @@
 	<guilabel>Sources</guilabel> tab displays information about sources 
 	relevant to this name and controls allowing its modification. 
 	The central part displays the list of all such sources' references 
-	stored in the database. The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
+	stored in the database. The buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> 
 	allow you to correspondingly add, modify, and remove a source reference  
-	to this name. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	to this name. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a source reference is selected from the list. </para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1956,7 +2185,7 @@
       
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-at"> 
-        <title>Edit Attributes</title> 
+        <title>Attributes</title> 
 	<para> Attributes are edited through the following 
 	<guilabel>Attribute Editor</guilabel> dialog: </para>
 
@@ -1982,11 +2211,12 @@
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
 	applying any changes. </para> 
 	
-	<para>
+	<tip><para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-    The tabs provide the following information categories of 
+    then its label appears regular (not bold). </para></tip>
+    
+    <para>The tabs provide the following information categories of 
 	the attribute data: </para>
 
  	<variablelist>
@@ -2010,11 +2240,11 @@
 	<guilabel>Sources</guilabel> tab displays information about sources 
 	relevant to this attribute and controls allowing its modification. 
 	The central part displays the list of all such sources references 
-	stored in the database. The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
+	stored in the database. The buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> 
 	allow you to correspondingly add, modify, and remove a source reference  
-	to this attribute. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	to this attribute. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a source reference is selected from the list. </para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -2043,7 +2273,7 @@
       
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-ad"> 
-        <title>Edit Addresses</title> 
+        <title>Addresses</title> 
 	<para> Addresses are edited through the following 
 	<guilabel>Address Editor</guilabel> dialog: </para>
 
@@ -2069,11 +2299,12 @@
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
 	applying any changes. </para> 
 	
-	<para>
+	<tip><para>
     The tab labels reflect the presence of corresponding information: if the 
     tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). 
-    The tabs provide the following information categories of 
+    then its label appears regular (not bold).</para></tip> 
+    
+    <para>The tabs provide the following information categories of 
 	the address data: </para>
 
  	<variablelist>
@@ -2097,11 +2328,11 @@
 	<guilabel>Sources</guilabel> tab displays information about sources 
 	relevant to this address and controls allowing its modification. 
 	The central part displays the list of all such sources references 
-	stored in the database. The buttons <guibutton>Add...</guibutton>, 
-	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
+	stored in the database. The buttons <guibutton>+</guibutton>, 
+	<guibutton>Edit</guibutton>, and <guibutton>-</guibutton> 
 	allow you to correspondingly add, modify, and remove a source reference  
-	to this address. Note that the <guibutton>Edit...</guibutton> and 
-	<guibutton>Delete</guibutton> buttons become available only when 
+	to this address. Note that the <guibutton>Edit</guibutton> and 
+	<guibutton>-</guibutton> buttons become available only when 
 	a source reference is selected from the list. </para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -2131,7 +2362,7 @@
       
       <!-- ================ Usage Sub-subsection ================ -->
       <sect2 id="adv-wit"> 
-        <title>Edit Witnesses</title> 
+        <title>Witnesses</title> 
 	<para> Witnesses are edited through the following 
 	<guilabel>Witness Editor</guilabel> dialog: </para>
 
@@ -2156,20 +2387,26 @@
 	<para>The witness name can be entered in two ways, depending upon 
 	whether the witness is a person already stored in the database or 
 	not (unrelated person). </para> 
+
+    <tip><para>If the person you would like to add as a wittness is in fact
+	a member of the database, it is better to use the first method below.
+    </para></tip>
 	
 	<variablelist>
 		<varlistentry><term>Person from the database</term>
 		<listitem><para> 
 	If the person's data are stored in a database, check <guilabel>Person 
 	is in the database</guilabel> box. Then click the 
-        <guibutton>Select</guibutton> button to evoke <guilabel>Select
+        <guibutton>Select</guibutton> button to invoke <guilabel>Select
         Person</guilabel> dialog. Choose the person from that dialog and 
         click the <guibutton>OK</guibutton> button. The <guilabel>Person</guilabel> 
         text field will display the name of the person you selected. 
-        Note: even though the person's name is displayed in the 
+	</para>
+    
+    <note><para>Even though the person's name is displayed in the 
         <guilabel>Person</guilabel> field, it is not available for direct
-        editing. 
-	</para></listitem></varlistentry>
+        editing. </para></note>
+    </listitem></varlistentry>
 	</variablelist>
 	
 	<variablelist>
@@ -2195,46 +2432,168 @@
       </sect2>
       
        <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="adv-merge"> 
-        <title>Merge People</title> 
-	<para> Sometime two people entries in the database turn out to be 
-        describing the same person. When this happens, merging people is 
+      <sect2 id="adv-merge"><title>Merging records</title>
+
+	<para> Sometime several records in the database turn out to be 
+        describing the same object: same person, same place, or same source.
+	It could happen either when the data is entered twice by mistake,
+	or when new information reveals that the two entries refer to the same
+	person. It can also happen after importing GEDCOM obtained from a
+	relative, whose database overlaps with your existing data.</para>
+	
+	<para>Whenever you detect duplicate records, merging them
         a useful way of correcting the situation. </para>
-        
-        <para> To make a merge, exactly two people have to be selected in the
-        People View. This is accomplished by selecting one person and then
+	
+        <tip><para> To make a merge, exactly two records have to be selected
+	in the appropriate view (People View, Sources View, or Places View).
+	This is accomplished by selecting one entry and then
         selecting another person while holding down <keycap>Ctrl</keycap> key.
-        </para>
+        </para></tip>
+
+        <sect3 id="adv-merge-people"><title>Merge People</title> 
+	<para> There are two ways of merging personal records: 
+	<guilabel>Compare and Merge</guilabel> and
+	<guilabel>Fast Merge</guilabel>, both available from the 
+	<guimenu>Edit</guimenu> menu.
+	</para>
         
-        <para> When exactly two people are selected, choose
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Merge...</guimenuitem></menuchoice>
-        to evoke <guilabel>Merge People</guilabel> dialog. The dialog allows you to
-        retain the data from either person as the primary data for the new
-        (merged) person. The data from the other person can be kept as alternate
-        data if you so choose. If you would like to continue editing data of 
-        a newly merged person, click the <guibutton>Merge and edit</guibutton>
-        button. </para>
-      </sect2>
+	<note><para>
+	Merging people does not discard any information with either method.
+	The decisions you make during the merge only affect which data will
+	become primary and which will become secondary for the resulting
+	merged record.
+	</para></note>
+
+
+	<variablelist>
+	<varlistentry><term><guilabel>Compare and Merge</guilabel></term>
+	<listitem><para>
+        When exactly two people are selected, choose
+        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Compare and
+	Merge...</guimenuitem></menuchoice> to invoke <guilabel>Compare
+	People</guilabel> dialog.</para>
+	
+ 	<!-- ==== Figure: Compare People dialog ==== -->
+	<figure id="comp-people-fig"> 
+	<title>Compare People dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/comp-people.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Compare People dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para>The dialog allows you to make a decision on whether or not
+	the selected records should be merged. If you decide that the records
+	should not be merged, despite similar names, you may click
+	<guibutton>Cancel</guibutton> to close the dialog without making
+	any changes. If you decide to proceed with merging, select the 
+	appropriate <guilabel>Select</guilabel> radio button to specify
+	the record to be used as the source of primary data,
+	then click <guibutton>Merge and close</guibutton>. </para>
+	
+        <para>The data from the other record will be kept as alternate
+        data. Specifically, all names from the other record will become
+	alternate names of the merged record. Similarly, parents, spouses,
+	and children of the other record will become alternate parents,
+	spouses, and children of the merged record, and so on.
+	</para></listitem></varlistentry>
+	</variablelist>
+
+	<variablelist>
+	<varlistentry><term><guilabel>Fast Merge</guilabel></term>
+	<listitem><para>
+        When exactly two people are selected, choose
+        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Fast
+	Merge</guimenuitem></menuchoice> to invoke <guilabel>Merge
+	People</guilabel> dialog.</para>
+	
+ 	<!-- ==== Figure: Compare People dialog ==== -->
+	<figure id="merge-people-fig"> 
+	<title>Merge People dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/merge-people.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Merge People dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para>The dialog allows you to quickly merge two records, specifying
+	the record to be used as the source of primary data.
+	The data from the other record will be kept as alternate
+        data. Specifically, all names from the other record will become
+	alternate names of the merged record. Similarly, parents, spouses,
+	and children of the other record will become alternate parents,
+	spouses, and children of the merged record, and so on.
+	</para>
+	
+	<tip><para>If you are not certain whether or not you need
+	to merge the records, or which record to specify as the source
+	of primary data, use <guilabel>Compare and Merge</guilabel> method
+	described above..
+	</para></tip>
+
+	</listitem></varlistentry>
+	</variablelist>
+      </sect3>
 
        <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="adv-merge-places"> 
+      <sect3 id="adv-merge-sources"> 
+        <title>Merge Sources</title> 
+	<para>When exactly two sources are selected, choose
+        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Compare and
+	Merge...</guimenuitem></menuchoice> to invoke <guilabel>Merge
+	Sources</guilabel> dialog.</para>
+	
+ 	<!-- ==== Figure: Merge Sources dialog ==== -->
+	<figure id="merge-src-fig"> 
+	<title>Merge Sources dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/merge-src.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Merge Sources dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para>The dialog allows you to make a decision on whether or not
+	the selected records should be merged. If you decide that the records
+	should not be merged, despite similar titles, you may click
+	<guibutton>Cancel</guibutton> to close the dialog without making
+	any changes. If you decide to proceed with merging, choose the 
+	appropriate radio button to specify the title, author, abbreviated
+	title, publication information, and the ID to be used for the
+	merged record, then click <guibutton>OK</guibutton>. </para>
+	
+      </sect3>
+
+      <sect3 id="adv-merge-places"> 
         <title>Merge Places</title> 
-        <para> Sometime two place entries in the database turn out to be 
-        describing the same place. When this happens, merging places is 
-        a useful way of correcting the situation. </para>
-        
-        <para> To make a merge, exactly two places have to be selected in the
-        Places View. This is accomplished by selecting one place and then
-        selecting another place while holding down <keycap>Ctrl</keycap> key.
-        </para>
-        
-        <para> When exactly two places are selected, choose
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Merge...</guimenuitem></menuchoice>
-        to evoke <guilabel>Merge Places</guilabel> dialog. The dialog allows 
-        you to retain the data from either place as the primary data for 
-        the new (merged) place. Alternatively, you may type in other data
-        for the new place, if you click <guilabel>Other</guilabel> radio 
-        button.</para>
+
+	<para>When exactly two places are selected, choose
+        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Compare and
+	Merge...</guimenuitem></menuchoice> to invoke <guilabel>Select
+	title</guilabel> dialog.</para>
+	
+ 	<!-- ==== Figure: Select title dialog ==== -->
+	<figure id="merge-plc-fig"> 
+	<title>Merge Places dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/merge-plc.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Select title dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para>The dialog allows you to make a decision on whether or not
+	the selected records should be merged. If you decide that the records
+	should not be merged, despite similar titles, you may click
+	<guibutton>Cancel</guibutton> to close the dialog without making
+	any changes. If you decide to proceed with merging, choose the 
+	appropriate radio button to specify the title of the merged record,
+	or specify <guilabel>Other</guilabel> and enter new text,
+	then click <guibutton>OK</guibutton>. </para>
+      </sect3>
+
       </sect2>
 
    </sect1>
@@ -2347,6 +2706,23 @@
 	double-clicking the lines connecting to the left of the corresponding
 	boxes for father and mother. </para></listitem>
 	</itemizedlist>
+	
+	<para>You can also quickly access any of the spouses, siblings,
+	children, or parents of any displayed person. To do this, move the
+	mouse over the desired person's box and right-click to invoke
+	a context menu. The appropriate menu items will contain submenus
+	listing all spouses, siblings, children, and parents of the
+	corresponding person. 
+	</para>
+	
+	<tip><title>Advantages of using right-click menus</title>
+	<itemizedlist>
+	<listitem><para>Direct access to spouse and siblings</para></listitem> 
+	<listitem><para>Complete lists of all member of all categories,
+	not only the preferred members.</para></listitem> 
+	</itemizedlist>
+	
+	</tip>
 
       </sect2>
 
@@ -2380,10 +2756,11 @@
         tools. These tools are similar to those commonly used in web browsers. 
         They include <guilabel>Back</guilabel> and <guilabel>Forward</guilabel>
         items available from the <menuchoice><guimenu>Go</guimenu></menuchoice> 
-        menu, context menus, and the toolbar buttons. They also include the 
-        list of the recent selections available under the 
-        <menuchoice><guimenu>Go</guimenu></menuchoice> menu that allows you to jump 
-        directly to any of the recent selections. 
+        menu, context menus (available in People, Family, and Pedigree views),
+	and the toolbar buttons. They also include the list of the recent
+	selections available under the 
+	<menuchoice><guimenu>Go</guimenu></menuchoice> menu that allows you
+	to jump directly to any of the recent selections. 
         Finally, right-clicking on the <guibutton>Back</guibutton> 
         and <guibutton>Forward</guibutton> toolbar buttons invokes the 
         popup menu with corresponding portion of the history. Select any item
@@ -2424,48 +2801,39 @@
       </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="gramps-nav-find-people"> 
-        <title>Finding People</title> 
-	<para> To find a person in a database, choose 
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
-        when in the People View, Family View, or Pedigree View. This opens a 
-        <guilabel>Find Person</guilabel> dialog which can be used for searching
-        forward and backward. </para>
+      <sect2 id="gramps-nav-find">
+      <title>Finding records</title>
+
+	<para>To find a record in a database, first switch to the appripriate
+	View that provides the list of the desired records: People, Sources,
+	Places, or Media. Then start typing the name of a person or the title
+	of a Source, Place, or Media object that you are looking for,
+	respectively.
+	You may also press <keycap>Ctrl+F</keycap> to turn on the search
+	mode, but simply staring to type is also enough.</para>
 	
-	<para> If the search is successful, the found person becomes an active
-        person and the display adjusts according to the new active person and the
-        current view. </para>
-      </sect2>
+ 	<!-- ==== Figure: Type-ahead find ==== -->
+	<figure id="find-people-fig"> 
+	<title>Type-ahead find</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/find-people.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows type-ahead find. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
 
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="gramps-nav-find-sources"> 
-        <title>Finding Sources</title> 
-	<para> To find a source in a database, choose 
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
-        when in the Sources View. This opens a <guilabel>Find Source</guilabel>
-        dialog which can be used for searching forward and backward. If the
-        search is successful, the found source becomes highlighted. </para> 
-      </sect2>
+	<para> As you type, the first record in the list that is compatible
+	with your input will be selected.</para>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="gramps-nav-find-places"> 
-        <title>Finding Places</title> 
-	<para> To find a place in a database, choose 
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
-        when in the Places View. This opens a <guilabel>Find Place</guilabel> 
-        dialog which can be used for searching forward and backward. If the 
-        search is successful, the found place becomes highlighted. </para> 
-      </sect2>
+	<tip>
+        <title>Finding People</title> 
+	<para>For more complex people searches you may want to use filters.
+	Enable filter controls by choosing <menuchoice><guimenu>View</guimenu> 
+	<guimenuitem>Filter</guimenuitem> </menuchoice>, select the desired
+	filter, and click <guibutton>Apply</guibutton>.
+	For details, see <xref linkend="filters"/></para></tip>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="gramps-nav-find-media"> 
-        <title>Finding Media Objects</title> 
-	<para> To find a media object in a database, choose 
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
-        when in the Media View. This opens a <guilabel>Find Media Objects</guilabel> 
-        dialog which can be used for searching forward and backward. If the 
-        search is successful, the found media object becomes highlighted. </para> 
-      </sect2>
+     </sect2>
 
    </sect1>
    
@@ -2474,14 +2842,14 @@
         <title>Generating Reports</title> 
 	<para> Reports are the most common form of the output produced by
 	genealogical research. The majority of genealogical software puts a lot
-	of emphasis on developing nicely looking reports. &app; is no 
-	exception in this regard: it offers a choice of a variety of reports. 
+	of emphasis on developing nice looking reports. &app; is no 
+	exception in this regard, offering a choice of a variety of reports. 
 	&app; can generate reports in a multitude of open formats, both 
 	text based and graphical. &app; can also produce screen based reports 
 	that are convenient for viewing a summary of your database. 
 	Finally, &app; can generate a web site suitable for immediate 
-	posting on the Internet. All these are almost infinitely flexible: 
-        if you wish to modify or extend the default format of &app; report 
+	posting on the Internet. All of these are almost infinitely flexible.
+    If you wish to modify or extend the default format of &app; report,
 	you can design and choose the style for each of your reports. </para>
 
 	<para> All reports can be accessed through the menu by choosing
@@ -2491,10 +2859,134 @@
 	Report</replaceable></guimenuitem></menuchoice>. Alternatively, 
 	you can browse the complete selection of available reports along 
 	with their brief descriptions in a <guilabel>Report 
-	Selection</guilabel> dialog evoked by clicking the 
+	Selection</guilabel> dialog invoked by clicking the 
 	<guibutton>Reports</guibutton> icon on the toolbar. 
 	</para>
 
+
+      <!-- =============== Usage Sub-subsection ================ -->
+      <sect2 id="rep-books"> 
+	<title>Books</title> 
+	<para> Currently, the only available report under this category
+        is the Book Report. </para>
+
+	<para> The Book Report creates a single document (i.e. a Book) 
+        containing a collection of graphical and textual reports.
+        Consequently, this allows for a very rich set of documents 
+        that &app; can produce. 
+        </para>
+
+	<para> When Book Report is selected, the following book configuration
+        dialog appears: </para>
+
+ 	<!-- ==== Figure: Book Report dialog ==== -->
+	<figure id="rep-book-fig"> 
+	<title>Book Report dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/bookreport.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Book Report dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para> The <guilabel>Book name</guilabel> text entry field is used to
+        save the book (a set of configured selections) for future use.
+        The top pane lists the items available for inclusion in the 
+        book. The bottom pane lists the currently selected items in
+        the order they will appear in the book. </para>
+        
+	<para> The horizontal set of buttons by the <guilabel>Book 
+	name</guilabel> field operates on the whole book. Click 
+	the <guibutton>Clear</guibutton> button to clear all items from
+        the current book. Click the <guibutton>Save</guibutton> button to 
+	save the current book (under the name typed in 
+	the <guilabel>Book name</guilabel> text entry field) for future
+	use.</para> 
+	
+	<tip><para>
+	Saving the book also saves the configuration for each item.
+	</para></tip>
+	
+	<para>Click the <guibutton>Open</guibutton> button to load
+        the book from the list of previously saved books. Finally, click the 
+        <guibutton>Edit books</guibutton> button to invoke the editable list of
+        available books.  </para>
+	
+	<para> The vertical set of buttons to the right of the bottom pane
+	operates on the 
+	selected book item. Click the <guibutton>Add</guibutton> button to 
+	add selected item from the available list to the current book. Click 
+	the <guibutton>Remove</guibutton> button to remove an item from the 
+	current book. Use <guibutton>Up</guibutton> and 
+	<guibutton>Down</guibutton> to change the items order in the current 
+	book. Click the <guibutton>Setup</guibutton> button to configure the 
+	options of the selected item of the current book. 
+        </para>
+
+	<para> The configuration dialogs invoked by <guibutton>Setup</guibutton>
+        are item-specific. If you choose not to configure the item, sane
+        defaults will be used for all needed options. The common option for 
+        almost all book items is the center person: the person on whom the
+        item is centered. Thanks to this option, you can create a book with
+        items centered on different people (e.g. your mom's and dad's 
+        ancestors as separate chapters). By default, the center person is 
+	set to the active person. </para> 
+
+	<para>Almost all items available for inclusion in the book are textual 
+        or graphical reports, and are therefore available in the form of standalone 
+        reports. The exception is the following items which are only available as 
+        book items:</para>
+
+	<variablelist>
+
+	<varlistentry><term>Title Page</term>
+	<listitem><para>This item produces a customized Title page. You can 
+        configure the text of title, subtitle, and the footer of the page. 
+        An image can be optionally placed between the subtitle and the footer. 
+        Because of its configurability, this item can be used to create 
+        title pages for the whole book, its chapter, or even a single item. 
+        </para>
+        </listitem>
+	</varlistentry>
+
+ 	<varlistentry><term>Custom Text</term>
+	<listitem><para>This item produces a page with three paragraphs, each 
+        containing custom text. The appearance of the text can be adjusted by 
+        using custom styles. This item was meant to be used for epigraphs, 
+        dedications, explanations, notes, and so forth. 
+        </para></listitem>
+	</varlistentry>
+
+	</variablelist>
+
+      </sect2>
+
+      <!-- =============== Usage Sub-subsection ================ -->
+      <sect2 id="rep-codegen"> 
+	<title>Code Generators</title> 
+	<para> This category contains reports that produce code intended
+	to be run through the computer, rather than the usual formatted
+	output for human reading. The only code generator currently
+	available in &app; is the Relationship Graph producing the
+	GraphViz description of the graph.</para>
+	
+	<para>The Relationship Graph creates a complex relationship graph in 
+	GraphViz format. The GraphViz <command>dot</command> tool can 
+	transform the graph into postscript, jpeg, png, vrml, svg, and 
+	other formats. GraphViz tools are freely available from the 
+	<ulink url="http://www.graphviz.org" type="http">GraphViz 
+	site</ulink>. Specific options for this report 
+	include filter and number of generations considered, as well as 
+	several GraphViz-specific options related to pagination, color, 
+	and details of the graph.</para>
+	
+	<tip><para>If you are not interested in GraphViz code itself
+	and just want to generate graphical output, &app; can do it for you
+	under the hood. Look for <guilabel>Relationship Graph</guilabel>
+	in the Graphical Reports category, <xref linkend="rep-graph"/>
+	</para></tip>
+
+     </sect2>
 
       <!-- =============== Usage Sub-subsection ================ -->
       <sect2 id="rep-graph"> 
@@ -2522,7 +3014,7 @@
     It provides more options which make it useful for generating huge charts
     suitable for a poster or a wall chart. These options include the ability
     to compress the report (getting rid of an empty space) and the option
-    to fit the whole chart onto a single page. In the latter case, the
+    to fit the whole chart on to a single page. In the latter case, the
     contents of the chart is scaled down appropriately. </para></listitem>
 	</varlistentry>
 
@@ -2532,16 +3024,36 @@
 	the format of the displayed entries. </para></listitem>
 	</varlistentry>
 
+	<varlistentry><term>Fan Chart</term>
+	<listitem><para>This report produces a chart resembling a fan, with
+	Active person in the center, parents the the semicircle next to it,
+	grandparents in the next semicircle, and so on, for a total of five
+	generations. </para></listitem>
+	</varlistentry>
+
 	<varlistentry><term>Relationship Graph</term>
 	<listitem><para>This report creates a complex relationship graph in 
-	GraphViz format. The GraphViz <command>dot</command> tool can 
-	transform the graph into postscript, jpeg, png, vrml, svg, and many
-	other formats. GraphViz tools are freely available from the 
-	<ulink url="http://www.graphviz.org" type="http">GraphViz 
-	site</ulink>. Specific options for this report 
-	include filter and number of generations considered, as well as 
+	GraphViz format and then converts into graphical output
+	running it through the the GraphViz <command>dot</command> tool
+	behind the scene. Specific options for this report 
+	include filter, options for dates and places for the events, and
+	whether to include URLs and IDs for individuals and families. 
+	There are also 
 	several GraphViz-specific options related to pagination, color, 
 	and details of the graph. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Statistics Chart</term>
+	<listitem><para>This report can collect and display a wealth of
+	statistical data about your database. 
+	Specific options include filter, sorting methods, and additional 
+	birth- and gender-based	limit for inclusion into statistics.
+	You can also set the minimum number of items to qualify for the
+	bar chart, so that the charts with fewer items will generate
+	a pice chart instead.
+	The <guilabel>Chart Selection</guilabel> tab
+	allows you to check which charts you  want to include in your report. 
+	</para></listitem>
 	</varlistentry>
 
 	<varlistentry><term>Timeline Graph</term>
@@ -2556,12 +3068,11 @@
 	<para>Common options for graphical reports are the filename of the
 	output, the format of the output, selected style, page size and 
 	orientation. Optionally, the reports can be immediately opened
-    with the default application (set in the main GNOME 
-    <menuchoice><guimenu>Desktop Preferenes</guimenu>
-    <guisubmenu><replaceable>Advanced</replaceable></guisubmenu>
-	<guimenuitem><replaceable>Preferred 
-    Applications</replaceable></guimenuitem></menuchoice> dialog). 
-    </para>
+	with the default application. </para>
+	
+	<tip><para>The options used in reports are persistent: each report
+	remembers its options used last time. 
+	</para></tip>
 
       </sect2>
 
@@ -2593,15 +3104,6 @@
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term>Comprehensive Ancestors Report</term>
-	<listitem><para>This report produces a comprehensive description 
-	of ancestors of the active person. The highlights of this report
-        include elaborate layout, images of children, present and former 
-        spouses, and source citations. Specific options: number 
-	of backward generations to consider, whether to cite sources, 
-        and whether to break pages between generations. </para></listitem>
-	</varlistentry>
-
 	<varlistentry><term>Complete Individual Report</term>
 	<listitem><para>This report provides individual summaries similar to
 	that of the Individual Summary report. The advantage of this report 
@@ -2610,6 +3112,15 @@
 	database), the report may contain from one to many individual 
 	summaries. Another option for this report is the inclusion of 
 	source information when listing events. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Comprehensive Ancestors Report</term>
+	<listitem><para>This report produces a comprehensive description 
+	of ancestors of the active person. The highlights of this report
+        include elaborate layout, images of children, present and former 
+        spouses, and source citations. Specific options: number 
+	of backward generations to consider, whether to cite sources, 
+        and whether to break pages between generations. </para></listitem>
 	</varlistentry>
 
 	<varlistentry><term>Descendant Report</term>
@@ -2669,112 +3180,20 @@
 	orientation. For HTML reports, there is no page information. 
 	Instead, HTML options include the choice of the HTML template, 
 	either available in &app; or a custom template defined by you. 
-    Optionally, the reports can be immediately opened
-    with the default application (set in the main GNOME 
-    <menuchoice><guimenu>Desktop Preferenes</guimenu>
-    <guisubmenu><replaceable>Advanced</replaceable></guisubmenu>
-	<guimenuitem><replaceable>Preferred 
-    Applications</replaceable></guimenuitem></menuchoice> dialog). 
-    </para>
+	Optionally, the reports can be immediately opened
+	with the default application. </para>
+
+	<tip><para>The options used in reports are persistent: each report
+	remembers its options used last time. 
+	</para></tip>
 
       </sect2>
 
-      <!-- =============== Usage Sub-subsection ================ -->
-      <sect2 id="rep-books"> 
-	<title>Books</title> 
-	<para> Currently, the only available report under this category
-        is the Book Report. </para>
-
-	<para> The Book Report creates a single document (i.e. a Book) 
-        containing a collection of graphical and textual reports.
-        Consequently, this allows for a very rich set of documents 
-        that &app; can produce. 
-        </para>
-
-	<para> When Book Report is selected, the following book configuration
-        dialog appears: </para>
-
- 	<!-- ==== Figure: Book Report dialog ==== -->
-	<figure id="rep-book-fig"> 
-	<title>Book Report dialog</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/bookreport.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Book Report dialog. </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
-
-	<para> The <guilabel>Book name</guilabel> text entry field is used to
-        save the book (a set of configured selections) for future use.
-        The top pane lists the items available for inclusion in the 
-        book. The bottom pane lists the currently selected items in
-        the order they will appear in the book. </para>
-        
-	<para> The horizontal set of buttons by the <guilabel>Book 
-	name</guilabel> field operates on the whole book. Click 
-	the <guibutton>Clear</guibutton> button to clear all items from
-        the current book. Click the <guibutton>Save</guibutton> button to 
-	save the current book (under the name typed in 
-	the <guilabel>Book name</guilabel> text entry field) for future use. 
-	Note that saving the book also saves the configuration for each item. 
-	Click the <guibutton>Open</guibutton> button to load
-        the book from the list of previously saved books. Finally, click the 
-        <guibutton>Edit books</guibutton> button to evoke the editable list of
-        available books.  </para>
-	
-	<para> The vertical set of buttons to the right of the bottom pane
-	operates on the 
-	selected book item. Click the <guibutton>Add</guibutton> button to 
-	add selected item from the available list to the current book. Click 
-	the <guibutton>Remove</guibutton> button to remove an item from the 
-	current book. Use <guibutton>Up</guibutton> and 
-	<guibutton>Down</guibutton> to change the items order in the current 
-	book. Click the <guibutton>Setup</guibutton> button to configure the 
-	options of the selected item of the current book. 
-        </para>
-
-	<para> The configuration dialogs evoked by <guibutton>Setup</guibutton>
-        are item-specific. If you choose not to configure the item, sane
-        defaults will be used for all needed options. The common option for 
-        almost all book items is the center person: the person on whom the
-        item is centered. Thanks to this option, you can create a book with
-        items centered on different people (e.g. your mom's and dad's 
-        ancestors as separate chapters). By default, the center person is 
-	set to the active person. </para> 
-
-	<para>Almost all items available for inclusion in the book are textual 
-        or graphical reports, and are therefore available in the form of standalone 
-        reports. The exception is the following items which are only available as 
-        book items:</para>
-
-	<variablelist>
-
-	<varlistentry><term>Title Page</term>
-	<listitem><para>This item produces a customized Title page. You can 
-        configure the text of title, subtitle, and the footer of the page. 
-        An image can be optionally placed between the subtitle and the footer. 
-        Because of its configurability, this item can be used to create 
-        title pages for the whole book, its chapter, or even a single item. 
-        </para>
-        </listitem>
-	</varlistentry>
-
- 	<varlistentry><term>Custom Text</term>
-	<listitem><para>This item produces a page with three paragraphs, each 
-        containing custom text. The appearance of the text can be adjusted by 
-        using custom styles. This item was meant to be used for epigraphs, 
-        dedications, explanations, notes, and so forth. 
-        </para></listitem>
-	</varlistentry>
-
-	</variablelist>
-
-      </sect2>
 
       <!-- =============== Usage Sub-subsection ================ -->
       <sect2 id="rep-view"> 
 	<title>View Reports</title> 
-	<para> View reports represent overall summaries of the database 
+	<para> View reports are representing overall summaries of the database 
 	information available immediately for on-screen viewing. 
 	The following view reports are currently available in &app;:</para>
 
@@ -2797,7 +3216,14 @@
       <!-- =============== Usage Sub-subsection ================ -->
       <sect2 id="rep-web"> 
 	<title>Web Page</title> 
+	
+	<para>This category includes reports producing web sites
+	based on your data.</para>
 
+	<variablelist>
+
+	<varlistentry><term>Generate Web Site</term>
+	<listitem>
 	<para> This report generates web pages, either for a selected 
 	individual (active person) or a set of individuals. The options 
 	for this report are broken down into contents, privacy, and advanced 
@@ -2811,6 +3237,17 @@
         information. Finally, the advanced options allow you to include 
         the optional &app; ID, create a GENDEX index, and specify the 
         extension of the resulting files. </para>
+	</listitem>
+	</varlistentry>
+
+ 	<varlistentry><term>Narrative Web Site</term>
+	<listitem><para>This report is an alternative web site generator,
+	producing the narrative set of web pages. It is still in development,
+	with the goal of producing a more complete, better looking, and easily
+	adjustable web site.</para></listitem>
+	</varlistentry>
+
+	</variablelist>
 
       </sect2>
 
@@ -2834,7 +3271,7 @@
 	Tool</replaceable></guimenuitem></menuchoice>. Alternatively, 
 	you can browse the complete selection of available tools along 
 	with their brief descriptions in a <guilabel>Tool 
-	Selection</guilabel> dialog evoked by clicking the 
+	Selection</guilabel> dialog invoked by clicking the 
 	<guibutton>Tools</guibutton> icon on the toolbar. </para>
 
       <!-- =============== Usage Sub-subsection ================ -->
@@ -2850,15 +3287,23 @@
 	<listitem><para>This tool compares events across the selected group of
 	people. The people for this comparison are chosen with the use of 
 	custom filters. The custom filters can be created in the Custom Filter
-	Editor (see <xref linkend="tools-util"/>). The resulting table produced
-	by this tool can be saved as a spreadsheet. </para></listitem>
+	Editor (see <xref linkend="tools-util-cfe"/>) that can be invoked by clicking
+	the <guilabel>Custom Filter Editor</guilabel> button. The resulting
+	table produced by this tool can be saved as a spreadsheet.
+	</para></listitem>
 	</varlistentry>
 
  	<varlistentry><term>Interactive descendant browser</term>
 	<listitem><para>This tool builds a tree with the active person being 
 	the root. Children branch from their parents in the usual manner. 
 	Use this tool for a quick glance of a person's descendants. 
-	</para></listitem>
+	</para>
+	
+	<tip><para>Double-clicking on tree node will bring up the <guilabel>Edit
+	Person</guilabel> dialog allowing to view or modify the personal data.
+	</para></tip>
+	
+	</listitem>
 	</varlistentry>
 
 	</variablelist>
@@ -2868,10 +3313,14 @@
       <sect2 id="tools-db"> 
 	<title>Database Processing</title> 
 	<para> This section contains tools which may modify your database. 
-	The modifications will only be performed upon your explicit consent. 
 	The tools from this section are used mostly for finding and correcting
 	errors in the data. The following database processing tools are 
 	currently available in &app;:</para>
+
+	<note><para>
+	The modifications will only be performed upon your explicit consent,
+	except for the automatic fixes performed by <guilabel>Check and repair
+	database</guilabel> tool. </para></note>
 
 	<variablelist>
 
@@ -2907,13 +3356,25 @@
  	<varlistentry><term>Extract information from names</term>
 	<listitem><para>This tool searches the entire database and attempts 
 	to extract titles and nicknames that may be embedded in a person's 
-	<guilabel>Given name</guilabel> field. 
+	<guilabel>Given name</guilabel> field. If any information could be
+	extracted, the candidates for fixing will be presented in the table.
+	You may then decide which to repair as suggested and which not to.
 	</para></listitem>
 	</varlistentry>
 
  	<varlistentry><term>Find possible duplicate people</term>
 	<listitem><para>This tool searches the entire database, looking 
 	for the entries that may represent the same person. 
+	</para></listitem>
+	</varlistentry>
+
+ 	<varlistentry><term>Fix capitalization of family names</term>
+	<listitem><para>This tool searches the entire database and attempts 
+	to fix the capitalization of family names. The aim is to have 
+	conventional capitalization: capital first letter and lower case
+	for the rest of the family name. If deviations from this rule
+	are detected, the candidates for fixing will be presented in the table.
+	You may then decide which to repair as suggested and which not to.
 	</para></listitem>
 	</varlistentry>
 
@@ -2934,6 +3395,42 @@
       </sect2>
 
       <!-- =============== Usage Sub-subsection ================ -->
+      <sect2 id="tools-debug"> 
+	<title>Debug</title> 
+	<para> This section contains debugging tools that are not of general
+	interest for many of the users of &app;. If you're not interested in
+	debugging or developing &app; you may safely skip this section.</para>
+
+	<variablelist>
+
+	<varlistentry><term>Python evaluation window</term>
+	<listitem><para>Enter expression into the <guilabel>Evaluation
+	Window</guilabel>, get the output in <guilabel>Output Window</guilabel>.
+	Any errors should end up in the <guilabel>Error Window</guilabel>.
+	</para></listitem>
+	</varlistentry>
+
+ 	<varlistentry><term>Reload plugins</term>
+	<listitem><para>Makes an attempt to reload all plugins.
+	</para>
+	
+	<note><para>This tool is itself a plugin, but it will not reload itself!
+	</para></note>
+	
+	</listitem>
+	</varlistentry>
+
+	<varlistentry><term>Show uncollected objects</term>
+	<listitem><para>Provides the window listing all uncollected objects.
+	Depending on the system settings, recently abandoned GUI objects
+	may still be uncollected.
+	</para></listitem>
+	</varlistentry>
+
+	</variablelist>
+      </sect2>
+
+      <!-- =============== Usage Sub-subsection ================ -->
       <sect2 id="tools-util"> 
 	<title>Utilities</title> 
 	<para> </para>
@@ -2943,10 +3440,9 @@
 	database, but they will not modify your existing data. 
 	The following utilities are currently available in &app;:</para>
 
-	<variablelist>
-
- 	<varlistentry><term>Custom Filter Editor</term>
-	<listitem><para>The Custom Filter Editor builds custom filters 
+	<sect3 id="tools-util-cfe">
+ 	<title>Custom Filter Editor</title>
+	<para>The Custom Filter Editor builds custom filters 
 	that can be used to select people included in reports, exports, 
 	and other tools and utilities. This is in fact a very powerful tool 
 	in genealogical analysis.</para> 
@@ -2960,6 +3456,10 @@
 	buttons, respectively. All the filters displayed in the list will be 
 	automatically saved along with your database and will be available 
 	with subsequent sessions of &app;. </para>
+	
+	<note><para>The changes made to the filters only take effect when you
+	click the <guibutton>Apply and close</guibutton> button.
+	</para></note>
 	
 	<para>Clicking the <guibutton>Add...</guibutton> button invokes the 
 	following <guilabel>Define filter</guilabel> dialog: </para>
@@ -2979,15 +3479,19 @@
 	identify this filter in the future into the <guilabel>Comment</guilabel>
 	field. Add as many rules to the <guilabel>Rule list</guilabel> as you
 	would like to your filter using <guibutton>Add...</guibutton> button. 
-	Check <guilabel>Return values that do not match the filter rules
-	(invert)</guilabel> to negate the filter rule (e.g. inverting "has a
-	common ancestor with I1" rule will match everyone who does not have a
-	common ancestor with that person). If the filter has more than one rule, 
+	If the filter has more than one rule, 
 	select one of the <guilabel>Rule operations</guilabel>. This allows you
 	to choose whether all rules must apply, only one (either) rule must 
 	apply, or exactly one (either) rule must apply, in order for the filter 
 	to generate a match. If your filter has only one rule, this selection 
 	has no effect. </para>
+
+	<para>
+	Check <guilabel>Return values that do not match the filter
+	rules</guilabel> to invert the filter rule.  For example, inverting
+	"has a common ancestor with I1" rule will match everyone who does not
+	have a common ancestor with that person). 
+	</para>
 	
 	<para> Clicking the <guibutton>Add...</guibutton> button invokes the 
 	following <guilabel>Add Rule</guilabel> dialog:</para>
@@ -3013,13 +3517,70 @@
         of the currently edited filter. Clicking <guibutton>Cancel</guibutton>
         will abort adding the rule to the filter. </para>
         
-        <para> Note that a filter you've already designed may be used as a rule
+        <tip><para> A filter you have already designed may be used as a rule
 	for another filter. This gives you nearly infinite flexibility in
 	custom-tailoring your selection criteria that can be later used in 
-	most of the exports, reports and some of the tools (such as comparing
-	individual events). </para></listitem>
-	</varlistentry>
+	most of the exports, reports, and some of the tools (such as comparing
+	individual events). </para></tip>
+	</sect3>
 
+ 	<sect3 id="tools-util-scratch-pad"><title>Scratch Pad</title>
+	
+	<para>This tool provides a temporary note pad to store
+	database records for easy reuse. In short, this is a sort of the
+	copy-and-paste functionality extended from textual objects to
+	other types of records used in &app;.
+	</para>
+	
+	<tip><para>Scratch Pad makes extensive use of drag-and-drop technique.
+	</para></tip>
+	
+ 	<para>To invoke Scratch Pad, either choose <menuchoice><guimenu>Tools</guimenu>
+	<guisubmenu>Utilities</guisubmenu><guimenuitem>Scratch
+	Pad</guimenuitem></menuchoice> or click the <guilabel>Scratch
+	Pad</guilabel>button on the toolbar. The following window will
+        appear:</para>
+	
+	<!-- ==== Figure: Scratch Pad tool ==== -->
+	<figure id="scratch-pad-fig"> 
+	<title>Scratch Pad tool</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/scratch-pad.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Add Scratch Pad tool. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para>
+	Scratch Pad supports addresses, attributes (both personal and
+	family), events (both personal and family), names, media objects
+	references, source references, URLs, and of course textual information
+	of notes and comments. To store any type of these records, simply drag
+	the existing record on to the Scratch Pad from the corresponding
+	editor dialog. To reuse the record, drag it from the Scratch Pad
+	onlto the corresponding place in the editor, e.g. Address tab, 
+	Attribute tab, etc. 	
+	</para>
+	
+	<tip><para>Some objects are showing the link icon on the left. This
+	indicates that dragging such selection will produce a reference
+	to an existing object, not copy the object itself. </para>
+
+	<para>For example, the media object file will not be duplicated.
+	Instead, the reference will be made to an existing media object,
+	which will result in the local gallery entry.
+	</para></tip>
+
+	<tip><para>Scratch Pad storage is persistent within a single &app;
+	session. Closing the window will not lose the stored records. However,
+	exiting &app; will.
+	</para></tip>
+
+	</sect3>
+
+	<sect3 id="tools-util-other"><title>Other tools</title>
+	
+	<variablelist>
  	<varlistentry><term>Generate SoundEx codes</term>
 	<listitem><para>This utility generates SoundEx codes for the names of
 	people in the database. Please visit the <ulink 
@@ -3030,24 +3591,27 @@
 	</varlistentry>
 
  	<varlistentry><term>Relationship calculator</term>
-	<listitem><para>This utility calculates the relationship between 
-	two people from the database. 
+	<listitem><para>This utility calculates and displays the relationship
+	of any person to the active person. 
 	</para></listitem>
 	</varlistentry>
 
  	<varlistentry><term>Verify the database</term>
 	<listitem><para>This utility allows you to verify the database based 
-	on the set of criteria specified by you. This tool is different from 
-	the previously described Check tool in the following. The Check tool
+	on the set of criteria specified by you. </para>  
+	
+	<tip><title>Difference between Verify tool and previously described
+	Check tool </title>
+	<para>The Check tool
 	detects inconsistencies in the database structure. The Verify tool, 
 	however, is detecting the records that do not satisfy your particular 
-	criteria. </para>
+	criteria. </para></tip>
 
 	<para>For example, you may want to make sure that nobody in your 
 	database had children at the age of 98. Based on common sense, such 
 	a record would indicate an error. However, it is not a consistency 
-	error in the database. Besides, someone might have a child at the of 
-	98 (albeit this rarely happens). The Verify tool will display 
+	error in the database. Besides, someone might have a child at the age of 
+	98 (although this rarely happens). The Verify tool will display 
 	everything that violates your criteria so that you can check whether 
 	the record is erroneous or not. The ultimate decision is yours.
 	</para></listitem>
@@ -3055,6 +3619,7 @@
 
 	</variablelist>
 
+     </sect3>
      </sect2>
 
     </sect1>

@@ -5,28 +5,18 @@ If building from source, also read the INSTALL file (at least through the
 Requirements
 --------------------------------
 The following packages *MUST* be installed in order for Gramps to work:
-   Python 2.2 or greater
-   Gnome 2.0 or greater
-   PyGTK2 1.99.14 or greater
-   Gnome-python 1.99.14 or greater
-
-Many distributions already provide PyXML, but if your
-installation does not have it, you can get it from
-http://sourceforge.net/project/showfiles.php?group_id=6473
+   Python 2.3 or greater
+   Gnome 2.8 or greater
+   PyGTK2 2.4 or greater
+   Gnome-python 2.6 or greater
 
 The following packages are *STRONGLY RECOMMENDED* to be installed:
    Reportlab         Enable creation of PDF documents 
                      http://www.reportlab.com
 
-   Python Imaging Library (PIL)
-                    Enable generation of thumbnails for images
-                    http://www.pythonware.com/products/pil
+   GraphViz         Enable creation of graphs using GraphViz engine
+                    http://www.graphviz.org
 
-If, for some reason, you can't/don't want to install PIL, at least make sure
-that ImageMagick is available on your system: http://www.imagemagick.org
-
-WITHOUT eithr PIL or ImageMagick *YOU WILL NOT BE ABLE TO USE THUMBNAILS*
-for any of your images. 
 
 Documentation
 ---------------------------------
@@ -35,7 +25,7 @@ installed in the GNOME help path(*).  Gnome help browser (Yelp) uses these
 (properly installed) XML files to display the documentation.
 
 Of course, current HTML documentation can also be found on the gramps website,
-http://gramps.sourceforge.net/help.html
+http://gramps-project.org/index.php?module=pagemaster&PAGE_user_op=view_page&PAGE_id=7
 
 (*) More precisely, they are installed 
 in ${prefix}/share/gramps/gnome/help/gramps, 

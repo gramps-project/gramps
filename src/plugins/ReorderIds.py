@@ -39,6 +39,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import Utils
+import RelLib
 from QuestionDialog import WarningDialog
 
 _findint = re.compile('^[^\d]*(\d+)[^\d]*')
@@ -46,14 +47,14 @@ _findint = re.compile('^[^\d]*(\d+)[^\d]*')
 def runTool(db,active_person,callback,parent):
     """Changed person, family, object, source, and place ids"""
     #FIXME -- Remove when the tool is back from the dead
-    WarningDialog(_('Tool currently unavailable'),
-                _('This tool has not yet been brought up to date '
-                'after transition to the database, sorry.'),parent.topWindow)
-    return
+    #WarningDialog(_('Tool currently unavailable'),
+    #            _('This tool has not yet been brought up to date '
+    #            'after transition to the database, sorry.'),parent.topWindow)
+    #return
     
     #FIXME
     try:
-        ReorderIds(db,callback)
+        ReorderIds(db)
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
@@ -65,31 +66,43 @@ def runTool(db,active_person,callback,parent):
 #-------------------------------------------------------------------------
 class ReorderIds:
 
-    def __init__(self,db,callback):
+    def __init__(self,db):
 
         self.db = db
 
-        self.reorder_person()
-        self.reorder(db.get_family_handle_map(),db.fprefix,None)
-        self.reorder(db.get_object_map(),db.oprefix,None)
-        self.reorder(db.get_source_map(),db.sprefix,db.build_source_display)
-        self.reorder(db.get_place_handle_map(),db.pprefix,db.build_place_display)
-        callback(1)
+        self.trans = db.transaction_begin()
+        self.reorder(RelLib.Person, db.get_person_from_gramps_id, db.get_person_from_handle,
+                     db.find_next_person_gramps_id, db.get_person_cursor, db.commit_person,
+                     db.iprefix)
+        self.reorder(RelLib.Family,db.get_family_from_gramps_id, db.get_family_from_handle,
+                     db.find_next_family_gramps_id, db.get_family_cursor, db.commit_family,
+                     db.fprefix)
+        self.reorder(RelLib.MediaObject, db.get_object_from_gramps_id, db.get_object_from_handle,
+                     db.find_next_object_gramps_id, db.get_media_cursor, db.commit_media_object,
+                     db.oprefix)
+        self.reorder(RelLib.Source, db.get_source_from_gramps_id, db.get_source_from_handle,
+                     db.find_next_source_gramps_id, db.get_source_cursor, db.commit_source,
+                     db.sprefix)
+        self.reorder(RelLib.Place, db.get_place_from_gramps_id, db.get_place_from_handle,
+                     db.find_next_place_gramps_id, db.get_place_cursor, db.commit_place,
+                     db.pprefix)
+        db.transaction_commit(self.trans,_("Reorder gramps IDs"))
         
-    def reorder_person(self):
+    def reorder(self, class_type, find_from_id, find_from_handle, find_next_id, get_cursor, commit, prefix):
         dups = []
         newids = {}
         key_list = []
 
         # search all ids in the map
 
-        cursor = self.db.get_person_cursor()
+        cursor = get_cursor()
         data = cursor.first()
         while data:
             (handle,sdata) = data
 
-            gramps_id = sdata[1]
-
+            obj = class_type()
+            obj.unserialize(sdata)
+            gramps_id = obj.get_gramps_id()
             # attempt to extract integer, if we can't, treat it as a
             # duplicate
 
@@ -104,42 +117,27 @@ class ReorderIds:
                     newgramps_id = prefix % int(index)
                     if newgramps_id == gramps_id:
                         newids[newgramps_id] = gramps_id
-                        continue
-                    elif data_map.has_key(newgramps_id):
-                        dups.append(handle)
+                    elif find_from_id(newgramps_id) != None:
+                        dups.append(obj.get_handle())
                     else:
-                        data = data_map[gramps_id]
-                        data_map[newgramps_id] = data
-                        newids[newgramps_id] = gramps_id
                         data.set_gramps_id(newgramps_id)
-                        del data_map[gramps_id]
-                        if update:
-                            update(newgramps_id,gramps_id)
+                        commit(obj,self.trans)
+                        newids[newgramps_id] = gramps_id
                 except:
                     dups.append(handle)
             else:
                 dups.append(handle)
 
             data = cursor.next()
-
+        cursor.close()
             
         # go through the duplicates, looking for the first availble
         # handle that matches the new scheme.
     
-        index = 0
-        for gramps_id in dups:
-            while 1:
-                newgramps_id = prefix % index
-                if not newids.has_key(newgramps_id):
-                    break
-                index = index + 1
-            newids[newgramps_id] = newgramps_id
-            data = data_map[gramps_id]
-            data.set_gramps_id(newgramps_id)
-            data_map[newgramps_id] = data
-            if update:
-                update(newgramps_id,gramps_id)
-            del data_map[gramps_id]
+        for handle in dups:
+            obj = find_from_handle(handle)
+            obj.set_gramps_id(find_next_id())
+            commit(obj,self.trans)
     
 #-------------------------------------------------------------------------
 #

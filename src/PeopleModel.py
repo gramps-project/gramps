@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,6 +46,14 @@ import pango
 #-------------------------------------------------------------------------
 from RelLib import *
 import NameDisplay
+
+#-------------------------------------------------------------------------
+#
+# Localized constants
+#
+#-------------------------------------------------------------------------
+_date_format = locale.nl_langinfo(locale.D_T_FMT)
+_codeset = locale.nl_langinfo(locale.CODESET)
 
 #-------------------------------------------------------------------------
 #
@@ -280,7 +288,9 @@ class PeopleModel(gtk.GenericTreeModel):
         return data[_ID_COL]
 
     def column_change(self,data,node):
-        return time.asctime(time.localtime(data[_CHANGE_COL]))
+        return unicode(time.strftime(_date_format,
+                                        time.localtime(data[_CHANGE_COL])),
+                            _codeset)
 
     def column_gender(self,data,node):
         return _GENDER[data[_GENDER_COL]]

@@ -729,6 +729,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
         self.options_dict['pagesv'] = self.vpages_sb.get_value_as_int()
         self.options_dict['showfamily'] = int(self.show_families_cb.get_active())
         self.options_dict['incid'] = int(self.includeid_cb.get_active())
+        self.options_dict['justyears'] = int(self.just_years_cb.get_active())
         self.options_dict['placecause'] = int(self.place_cause_cb.get_active())
         self.options_dict['rankdir'] = \
                 _options.rankdir[self.rank_box.get_active()][0]

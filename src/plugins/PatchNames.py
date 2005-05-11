@@ -106,13 +106,25 @@ class PatchNames:
         for key in self.db.get_person_handles(sort_handles=False):
         
             person = self.db.get_person_from_handle(key)
-            first = person.get_primary_name().get_first_name()
-            sname = person.get_primary_name().get_surname()
+            name = person.get_primary_name()
+            first = name.get_first_name()
+            sname = name.get_surname()
+
             match = _title_re.match(first)
-            if match:
+            if name.get_title():
+                current_title = [name.get_title()]
+            else:
+                current_title = []
+            while match:
                 groups = match.groups()
-                self.title_list.append((key,groups[0],groups[1]))
+                first = groups[1]
+                current_title.append(groups[0])
+                match = _title_re.match(first)
+
+            if current_title:
+                self.title_list.append((key," ".join(current_title),first))
                 continue
+            
             match = _nick_re.match(first)
             if match:
                 groups = match.groups()

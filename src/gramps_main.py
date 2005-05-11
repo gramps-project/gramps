@@ -145,9 +145,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
 
         try:
             GrampsCfg.loadConfig()
-
-            self.beta_warn()
-    
+            self.welcome()    
             self.RelClass = PluginMgr.relationship_class
             self.relationship = self.RelClass(self.db)
             self.gtop = gtk.glade.XML(const.gladeFile, "gramps", "gramps")
@@ -205,17 +203,48 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
 
         self.db.set_researcher(GrampsCfg.get_researcher())
 
-    def beta_warn(self):
-        if not GrampsKeys.get_betawarn():
+    def welcome(self):
+        if GrampsKeys.get_welcome() >= 200:
             return
-        WarningDialog(
-            "Use at your own risk",
-            "This is an unstable development version of GRAMPS. "
-            "It is intended as a technology preview. Do not trust "
-            "your family database to this development version. "
-            "This version may contain bugs which could corrupt "
-            "your database.")
-        GrampsKeys.save_betawarn(1)
+
+        glade = gtk.glade.XML(const.gladeFile,'scrollmsg')
+        top = glade.get_widget('scrollmsg')
+        msg = glade.get_widget('msg')
+        msg.get_buffer().set_text(
+            _("Welcome to the 2.0.x series of GRAMPS!\n"
+              "\n"
+              "This version drastically differs from the 1.0.x branch\n"
+              "in a few ways. Please read carefully, as this may affect\n"
+              "the way you are using the program.\n"
+              "\n"
+              "1. This version works with the Berkeley database backend.\n"
+              "   Because of this, changes are written to disk immediately.\n"
+              "   There is NO Save function anymore!\n"
+              "2. The Media object files are not managed by GRAMPS.\n"
+              "   There is no concept of local objects, all objects\n"
+              "   are external. You are in charge of keeping track of\n"
+              "   your files. If you delete the image file from disk,\n"
+              "   it will be lost!\n"
+              "3. The version control provided by previous GRAMPS\n"
+              "   versions has been removed. You may set up the versioning\n"
+              "   system on your own if you'd like, but it will have to be\n"
+              "   outside of GRAMPS.\n"
+              "4. It is possible to directly open GRAMPS XML databases\n"
+              "   (used by previous versions) as well as GEDCOM files.\n"
+              "   However, any changes will be written to the disk when\n"
+              "   you quit GRAMPS. In case of GEDCOM files, this may lead\n"
+              "   to a data loss because some GEDCOM files contain data\n"
+              "   that does not comply with the GEDCOM standard and cannot\n"
+              "   be parsed by GRAMPS. If unsure, set up an empty grdb\n"
+              "   database (new GRAMPS format) and import GEDCOM into it.\n"
+              "   This will keep the original GEDCOM untouched.\n"
+              "\n"
+              "Enjoy!\n"
+              "The GRAMPS project\n"))
+        top.run()
+        top.destroy()
+
+        GrampsKeys.save_welcome(200)
         GrampsKeys.sync()
 
     def date_format_key_update(self,client,cnxn_id,entry,data):
@@ -295,6 +324,8 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.filter_btn  = self.gtop.get_widget("filter1")
         self.toolbar_btn = self.gtop.get_widget("toolbar2")
         self.statusbar   = self.gtop.get_widget("statusbar")
+        self.progress    = self.statusbar.get_children()[0]
+        self.progress.set_pulse_step(0.01)
 
         self.filter_list = self.gtop.get_widget("filter_list")
         self.views       = self.gtop.get_widget("views")
@@ -522,7 +553,10 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         if self.undo_active:
             return
         self.undo_active = True
+        self.db.disable_signals()
         self.db.undo()
+        self.db.enable_signals()
+        self.db.request_rebuild()        
         if self.active_person:
             p = self.db.get_person_from_handle(self.active_person.get_handle())
             self.change_active_person(p)
@@ -997,15 +1031,15 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         all.add_rule(GenericFilter.IsWitness([]))
         filter_list.append(all)
 
-        all = GenericFilter.ParamFilter()
-        all.set_name(_("Any textual record contains..."))
-        all.add_rule(GenericFilter.HasTextMatchingSubstringOf([]))
-        filter_list.append(all)
+#         all = GenericFilter.ParamFilter()
+#         all.set_name(_("Any textual record contains..."))
+#         all.add_rule(GenericFilter.HasTextMatchingSubstringOf([]))
+#         filter_list.append(all)
 
-        all = GenericFilter.ParamFilter()
-        all.set_name(_("Any textual record matches regular expression..."))
-        all.add_rule(GenericFilter.HasTextMatchingRegexpOf([]))
-        filter_list.append(all)
+#         all = GenericFilter.ParamFilter()
+#         all.set_name(_("Any textual record matches regular expression..."))
+#         all.add_rule(GenericFilter.HasTextMatchingRegexpOf([]))
+#         filter_list.append(all)
 
         self.filter_model = GenericFilter.FilterStore(filter_list)
         self.filter_list.set_model(self.filter_model)
@@ -1196,7 +1230,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
 
         try:
             import ReadXML
-            ReadXML.importData(self.db,dbname,None)
+            ReadXML.importData(self.db,dbname,self.update_bar)
         except:
             DisplayTrace.DisplayTrace()
 
@@ -1206,6 +1240,12 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             os.remove(os.path.join(tmpdir_path,fn))
         os.rmdir(tmpdir_path)
         self.import_tool_callback()
+
+    def update_bar(self,percent):
+        if percent:
+            self.progress.pulse()
+        else:
+            self.progress.set_fraction(0)
 
     def read_file(self,filename,callback=None):
         self.topWindow.set_resizable(False)
@@ -1243,6 +1283,9 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                 ErrorDialog(_('Cannot open database'),
                             _('The database file specified could not be opened.'))
                 return 0
+        except ( IOError, OSError ), msg:
+            ErrorDialog(_('Cannot open database'),str(msg))
+            return 0
         except db.DBAccessError, msg:
             ErrorDialog(_('Cannot open database'),
                         _('%s could not be opened.' % filename) + '\n' + msg[1])
@@ -1258,6 +1301,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.gtop.get_widget('add_item').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('remove_item').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('merge').set_sensitive(not self.db.readonly)
+        self.gtop.get_widget('fast_merge1').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('default_person1').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('edit_bookmarks').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('tools_menu').set_sensitive(not self.db.readonly)

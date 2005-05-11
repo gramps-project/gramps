@@ -827,9 +827,10 @@ class GedcomWriter:
                     self.writeln('1 ADOP')
                     fam = None
                     for f in person.get_parent_family_handle_list():
-                        mrel = f[1].lower()
-                        frel = f[2].lower()
-                        if mrel=="adopted" or frel=="adopted":
+                        mrel = f[1]
+                        frel = f[2]
+                        if (mrel == RelLib.Person.CHILD_REL_ADOPT or
+                            frel == RelLib.Person.CHILD_REL_ADOPT):
                             fam = f[0]
                             break
                     if fam:
@@ -853,9 +854,10 @@ class GedcomWriter:
                 self.writeln('1 ADOP')
                 fam = None
                 for f in person.get_parent_family_handle_list():
-                    mrel = f[1].lower()
-                    frel = f[2].lower()
-                    if mrel=="adopted" or frel=="adopted":
+                    mrel = f[1]
+                    frel = f[2]
+                    if (mrel == RelLib.Person.CHILD_REL_ADOPT or
+                        frel == RelLib.Person.CHILD_REL_ADOPT):
                         fam = f[0]
                         break
                 if fam:
@@ -957,7 +959,7 @@ class GedcomWriter:
             if self.flist.has_key(family[0]):
                 self.writeln("1 FAMC @%s@" % self.fid(family[0]))
                 if self.adopt == GedcomInfo.ADOPT_PEDI:
-                    if family[1].lower() == "adopted":
+                    if family[1] == RelLib.Person.CHILD_REL_ADOPT:
                         self.writeln("2 PEDI Adopted")
         
         for family_handle in person.get_family_handle_list():

@@ -522,9 +522,9 @@ class TestcaseGenerator:
 #
 #-------------------------------------------------------------------------
 def TestcaseGeneratorPlugin(database,active_person,callback,parent=None):
-    print "TestcaseGeneratorPlugin"
-    fg = TestcaseGenerator(database,active_person,callback,parent)
-    fg.run()
+    if not database.readonly:
+        fg = TestcaseGenerator(database,active_person,callback,parent)
+        fg.run()
 
 #-------------------------------------------------------------------------
 #

@@ -761,3 +761,59 @@ def find_parents(db,p):
         if mother_handle not in parentlist:
             parentlist.append(mother_handle)
     return parentlist
+
+#-------------------------------------------------------------------------
+#
+# Functions to build the text displayed in the details view of a DispBox
+# aditionally used by PedigreeView to get the largest area covered by a DispBox
+#
+#-------------------------------------------------------------------------
+def build_detail_string(db,person):
+
+    detail_text = NameDisplay.displayer.display(person)
+
+    def format_event(db, label, event):
+        if not event:
+            return u""
+        ed = event.get_date()
+        ep = None
+        place_handle = event.get_place_handle()
+        if place_handle:
+            place_title = db.get_place_from_handle(place_handle).get_title()
+            if place_title != "":
+                if len(place_title) > 15:
+                    ep = place_title[:14]+"..."
+                else:
+                    ep = place_title
+        if ep:
+            return u"\n%s %s, %s" % (label,ed,ep)
+        return u"\n%s %s" % (label,ed)
+
+    
+    birth_handle = person.get_birth_handle()
+    if birth_handle:
+        detail_text += format_event(db, _BORN, db.get_event_from_handle(birth_handle))
+    else:
+        for event_handle in person.get_event_list():
+            event = db.get_event_from_handle(event_handle)
+            if event and event.get_name() == "Baptism":
+                detail_text += format_event(db, _BAPT, event)
+                break
+            if event and event.get_name() == "Christening":
+                detail_text += format_event(db, _CHRI, event)
+                break
+
+    death_handle = person.get_death_handle()
+    if death_handle:
+        detail_text += format_event(db, _DIED, db.get_event_from_handle(death_handle))
+    else:
+        for event_handle in person.get_event_list():
+            event = db.get_event_from_handle(event_handle)
+            if event and event.get_name() == "Burial":
+                detail_text += format_event(db, _BURI, event)
+                break
+            if event and event.get_name() == "Cremation":
+                detail_text += format_event(db, _CREM, event)
+                break
+
+    return detail_text

@@ -29,6 +29,20 @@
       </schema>
 
       <schema>
+        <key>/schemas/apps/gramps/behavior/welcome</key>
+        <applyto>/apps/gramps/behavior/welcome</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>100</default>
+        <locale name="C">
+          <short>Welcome message has already been displayed for this version</short>
+          <long>This key keeps the version for which the welcome message
+	  has already been displayed. The integer denotes the major, minor,
+	  and release numerals, e.g. 200 denotes the 2.0.0 version.</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/preferences/date-format</key>
         <applyto>/apps/gramps/preferences/date-format</applyto>
         <owner>gramps</owner>

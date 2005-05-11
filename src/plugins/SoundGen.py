@@ -117,7 +117,7 @@ class SoundGen:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help_display('gramps-manual','tools-util')
+        help_display('gramps-manual','tools-util-other')
 
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()

@@ -25,7 +25,8 @@
       <title>Filter rules reference</title>
       <para>This appendix lists of all the filter rules currently defined 
       in &app;. Each of these rules is available for use when creating custom 
-      filters. The rules are listed by their categories. 
+      filters, see <xref linkend="tools-util-cfe"/>. The rules are
+      listed by their categories. 
       </para>
 
         <!-- =============== Appendices Sub-subsection ================ -->
@@ -43,10 +44,37 @@
           </para></listitem>
           </varlistentry>
 
+          <varlistentry><term>People with incomplete names</term>
+          <listitem><para> This rule matches all people with either
+          given name or family name missing.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is bookmarked person</term>
+          <listitem><para> This rule matches all people who are on the
+          bookmark list.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Has text matching substring of</term>
+          <listitem><para> This rule matches all people whose records contain
+          specified substring. All textual records are searched. Optionally,
+          the search can be made case sensitive, or a regular expression 
+          match.
+          </para></listitem>
+          </varlistentry>
+
           <varlistentry><term>Everyone</term>
           <listitem><para> This rule matches any person in the database.
           As such it is not very useful on its own except for testing purposes.
           However, it may be useful in combinations with other rules. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People probably alive</term>
+          <listitem><para> This rule matches all people whose records do
+          not indicate their death and who are not unreasonably old,
+          judging by their available birth data and today's date.
           </para></listitem>
           </varlistentry>
 
@@ -58,7 +86,7 @@
           </para>
 
           <para> Separate values can be used for Given name, Family name, 
-          Suffix, and the Title. The rule returns a match if and only if 
+          Suffix, and the Title. The rule returns a match if, and only if, 
           all non-empty values are (partially) matched by a person's 
           name. To use just one value, leave the other values empty. 
           </para></listitem>
@@ -77,8 +105,30 @@
           </para></listitem>
           </varlistentry>
 
+          <varlistentry><term>Is default person</term>
+          <listitem><para> This rule matches the default (home) person. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People marked private</term>
+          <listitem><para> This rule matches people whose records are marked
+          as private.
+          </para></listitem>
+          </varlistentry>
+
           <varlistentry><term>Is a female</term>
           <listitem><para> This rule matches any female person. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People who have images</term>
+          <listitem><para> This rule matches people with images in their
+          galleries.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People without a birth date</term>
+          <listitem><para> This rule matches people missing birth date.
           </para></listitem>
           </varlistentry>
 
@@ -107,7 +157,7 @@
           using the value "sw" for the Place. 
           </para>
 
-          <para> The rule returns a match if and only if 
+          <para> The rule returns a match if, and only if, 
           all non-empty values are (partially) matched by a person's 
           birth. To use just one value, leave the other values empty. 
           </para></listitem>
@@ -122,9 +172,15 @@
           will be matched by the rule using the value "sw" for the Place.
           </para>
 
-          <para> The rule returns a match if and only if 
+          <para> The rule returns a match if, and only if, 
           all non-empty values are (partially) matched by a person's 
           death. To use just one value, leave the other values empty. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Has source of</term>
+          <listitem><para> This rule matches people whose records refer
+          to the specified source.
           </para></listitem>
           </varlistentry>
 
@@ -139,7 +195,7 @@
           </para>
 
           <para> The personal events should be selected from a pull-down menu. 
-          The rule returns a match if and only if all non-empty values 
+          The rule returns a match if, and only if, all non-empty values 
           are (partially) matched by the personal event. 
           To use just one value, leave the other values empty. 
           </para></listitem>
@@ -156,12 +212,30 @@
           </para>
 
           <para> The family events should be selected from a pull-down menu. 
-          The rule returns a match if and only if all non-empty values 
+          The rule returns a match if, and only if, all non-empty values 
           are (partially) matched by the personal event. 
           To use just one value, leave the other values empty. 
           </para></listitem>
           </varlistentry>
 
+          <varlistentry><term>Witness</term>
+          <listitem><para> This rule matches people who are present as
+          a witness in the event. If the personal or family event type is
+          specified, only the events of this type will be searched.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People with incomplete events</term>
+          <listitem><para> This rule matches people missing date or place in
+          any personal event.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Families with incomplete events</term>
+          <listitem><para> This rule matches people missing date or place in
+          any family event of any of their families.
+          </para></listitem>
+          </varlistentry>
 
           </variablelist>
         </sect1> 
@@ -173,6 +247,26 @@
         based on their family relationships:</para>
           <variablelist>
 
+          <varlistentry><term>People with children</term>
+          <listitem><para> This rule matches people with children.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People with multiple marriage records</term>
+          <listitem><para> This rule matches people with more than one spouse.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People with no marriage records</term>
+          <listitem><para> This rule matches people with no spouses.
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>People who were adopted</term>
+          <listitem><para> This rule matches adopted people.
+          </para></listitem>
+          </varlistentry>
+
           <varlistentry><term>Has the relationships</term>
           <listitem><para> This rule matches people with a particular 
           relationship. The relationship must match the type selected from 
@@ -180,7 +274,7 @@
           of children can be specified. 
           </para>
 
-          <para> The rule returns a match if and only if 
+          <para> The rule returns a match if, and only if, 
           all non-empty values are (partially) matched by a person's 
           relationship. To use just one value, leave the other values empty. 
           </para></listitem>
@@ -202,6 +296,13 @@
 
           <varlistentry><term>Is a parent of filter match</term>
           <listitem><para> This rule matches people whose child  
+          is matched by the specified filter. 
+          The specified filter name should be selected from the menu. 
+          </para></listitem>
+          </varlistentry>
+
+          <varlistentry><term>Is a sibling of filter match</term>
+          <listitem><para> This rule matches people whose sibling  
           is matched by the specified filter. 
           The specified filter name should be selected from the menu. 
           </para></listitem>

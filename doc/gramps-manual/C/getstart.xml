@@ -25,8 +25,9 @@
 
     <title>Getting Started</title> 
     
-    <para>This chapter provides the most basic information on starting &app; and
-    obtaining help. Please procede to the following chapters for more information.</para>
+    <para>This chapter provides the most basic information on starting &app;
+    and obtaining help. Please procede to the following chapters for more
+    information.</para>
 
     <!-- ================ Getting Started Subsection ====== -->
     <sect1 id="gramps-start">
@@ -35,13 +36,15 @@
     <variablelist>
     <varlistentry>
 	<term><guimenu>Applications</guimenu> menu</term>
-	<listitem><para>Choose <menuchoice><guisubmenu>Other</guisubmenu>
+	<listitem><para>The method of starting &app; from the menus may vary from
+   distribution to distribution. On default GNOME desktop,
+   choose <menuchoice><guisubmenu>Other</guisubmenu>
 	<guimenuitem>Gramps</guimenuitem></menuchoice>. </para></listitem>
     </varlistentry>
     <varlistentry>
 	<term>Command line</term>
     	<listitem><para>To start &app; from a command line, type 
-        <command>gramps</command>, then press <keycap>Return</keycap>.</para>
+        <command>gramps</command>, then press <keycap>Enter</keycap>.</para>
 	
 	<para>If you would like &app; to open a specific database or to 
         import a specific file on startup, you can supply the filename 

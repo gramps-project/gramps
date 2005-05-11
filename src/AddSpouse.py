@@ -53,8 +53,10 @@ import const
 import Utils
 import PeopleModel
 import Date
+import DateHandler
 import Marriage
 import NameDisplay
+import GenericFilter
 from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -81,24 +83,13 @@ class AddSpouse:
         self.gender = self.person.get_gender()
         self.active_family = family
 
-        self.filter_func = self.likely_filter
+        self.likely = self.build_likely(self.gender)
+        self.all    = self.build_all()
+        self.filter = self.likely
 
         # determine the gender of the people to be loaded into
         # the potential spouse list. If Partners is selected, use
         # the same gender as the current person.
-
-        birth_handle = self.person.get_birth_handle()
-        death_handle = self.person.get_death_handle()
-        
-        if birth_handle:
-            self.bday = self.db.get_event_from_handle(birth_handle).get_date_object()
-        else:
-            self.bday = Date.Date()
-            
-        if death_handle:
-            self.dday = self.db.get_event_from_handle(death_handle).get_date_object()
-        else:
-            self.dday = Date.Date()
 
         self.glade = gtk.glade.XML(const.gladeFile, "spouseDialog","gramps")
 
@@ -111,7 +102,7 @@ class AddSpouse:
 
         self.renderer = gtk.CellRendererText()
 
-        self.slist = PeopleModel.PeopleModel(self.db)
+        self.slist = PeopleModel.PeopleModel(self.db,self.filter)
         self.spouse_list.set_model(self.slist)
         self.selection = self.spouse_list.get_selection()
         self.selection.connect('changed',self.select_row)
@@ -127,7 +118,6 @@ class AddSpouse:
                          self.glade.get_widget('title'),title,
                          _('Choose Spouse/Partner'))
 
-
         self.glade.signal_autoconnect({
             "on_select_spouse_clicked" : self.select_spouse_clicked,
             "on_spouse_help_clicked"   : self.on_spouse_help_clicked,
@@ -138,7 +128,34 @@ class AddSpouse:
 
         self.rel_combo.set_active(RelLib.Family.MARRIED)
         self.update_data()
+
+    def build_all(self):
+        filt = GenericFilter.GenericFilter()
+        filt.add_rule(GenericFilter.Everyone([]))
+        return filt
+
+    def build_likely(self,gender):
+        birth_handle = self.person.get_birth_handle()
+        death_handle = self.person.get_death_handle()
+
+        filt = GenericFilter.GenericFilter()
+        if gender == RelLib.Person.MALE:
+            filt.add_rule(GenericFilter.IsFemale([]))
+        else:
+            filt.add_rule(GenericFilter.IsMale([]))
         
+        if birth_handle:
+            birth = self.db.get_event_from_handle(birth_handle)
+            date_obj = Date.Date(birth.get_date_object())
+            year = date_obj.get_year()
+            if year:
+                date_obj.set_year(year-50)
+                date_obj.set_modifier(Date.MOD_AFTER)
+                text = DateHandler.displayer.display(date_obj)
+                rule = GenericFilter.HasBirth([text,"",""])
+                filt.add_rule(rule)
+        return filt
+
     def add_columns(self,tree):
         column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
         column.set_resizable(True)        
@@ -209,7 +226,7 @@ class AddSpouse:
         person = epo.person
         self.update_data(person.get_handle())
         
-        self.slist = PeopleModel.PeopleModel(self.db)
+        self.slist = PeopleModel.PeopleModel(self.db,self.filter)
         self.slist.rebuild_data()
         self.spouse_list.set_model(self.slist)
         
@@ -295,7 +312,6 @@ class AddSpouse:
         return person.get_gender() != self.sgender
 
     def likely_filter(self, person):
-        print self.sgender
         if person.get_gender() == self.sgender:
             return False
 
@@ -361,12 +377,12 @@ class AddSpouse:
         the potential spouse list.
         """
 
-        self.slist = PeopleModel.PeopleModel(self.db)
+        self.slist = PeopleModel.PeopleModel(self.db,self.filter)
         self.spouse_list.set_model(self.slist)
 
     def on_show_toggled(self,obj):
-        if self.filter_func == self.likely_filter:
-            self.filter_func = self.all_filter
+        if self.filter == self.likely:
+            self.filter = self.all
         else:
-            self.filter_func = self.likely_filter
+            self.filter = self.likely
         self.update_data()

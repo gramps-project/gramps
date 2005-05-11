@@ -4,7 +4,7 @@ dnl Process this file with autoconf to produce a configure script.
 dnl May need to run automake && aclocal first
 
 AC_PREREQ(2.57)
-AC_INIT(gramps, 1.1.99, gramps-bugs@lists.sourceforge.net)
+AC_INIT(gramps, 2.0.0, gramps-bugs@lists.sourceforge.net)
 AC_CONFIG_SRCDIR(src/gramps.py)
 AM_INIT_AUTOMAKE(1.6.3)
 dnl RELEASE=0.CVS$(head -c 10 ${srcdir}/ChangeLog | tr -d '-')
@@ -16,8 +16,9 @@ then
   VERSIONSTRING="$VERSION-$RELEASE"
 fi
 
-AM_GCONF_SOURCE_2
+AM_GCONF2_REPLACEMENT
 AM_SHARED_MIME
+AM_PACKAGER
 AC_SUBST(RELEASE)
 AC_SUBST(VERSIONSTRING)
 
@@ -253,8 +254,6 @@ src/po/Makefile
 doc/Makefile
 doc/gramps-manual/Makefile
 doc/gramps-manual/C/Makefile	
-doc/gramps-manual/fr/Makefile	
-doc/gramps-manual/ru/Makefile	
 example/Makefile
 example/gramps/Makefile
 gramps.spec
