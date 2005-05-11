@@ -325,9 +325,8 @@ class GrampsParser:
         self.media_file_map = {}
         
         self.callback = callback
-        self.entries = 0
         self.count = 0
-        self.increment = 100
+        self.increment = 500
         self.event = None
         self.name = None
         self.tempDefault = None
@@ -362,7 +361,7 @@ class GrampsParser:
             "comment"    : (None, self.stop_comment),
             "created"    : (self.start_created, None),
             "ref"        : (None, self.stop_ref),
-            "database"   : (None, None),
+            "database"   : (None, self.stop_database),
             "phone"      : (None, self.stop_phone),
             "date"       : (None, self.stop_date),
             "cause"      : (None, self.stop_cause),
@@ -617,10 +616,9 @@ class GrampsParser:
             title = attrs['id']
         self.placeobj.set_title(title)
         self.locations = 0
-        if self.num_places > 0:
-            if self.callback != None and self.count % self.increment == 0:
-                self.callback(float(self.count)/float(self.entries))
-            self.count = self.count + 1
+        if self.callback != None and self.count % self.increment == 0:
+            self.callback(True)
+        self.count += 1
             
     def start_location(self,attrs):
         """Bypass the function calls for this one, since it appears to
@@ -649,6 +647,7 @@ class GrampsParser:
 
     def start_witness(self,attrs):
         self.in_witness = 1
+        self.witness_comment = ""
         if attrs.has_key('hlink'):
             self.witness = RelLib.Witness(RelLib.Event.ID,attrs['hlink'])
         elif attrs.has_key('ref'):
@@ -716,6 +715,8 @@ class GrampsParser:
         self.db.bookmarks.append(person.get_handle())
 
     def start_person(self,attrs):
+        if self.callback != None and self.count % self.increment == 0:
+            self.callback(True)
         new_id = self.map_gid(attrs['id'])
         try:
             self.person = self.db.find_person_from_handle(attrs['handle'],self.trans)
@@ -778,7 +779,7 @@ class GrampsParser:
 
     def start_family(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
-            self.callback(float(self.count)/float(self.entries))
+            self.callback(True)
         self.count = self.count + 1
         handle = self.map_fid(attrs["id"])
         try:
@@ -941,6 +942,10 @@ class GrampsParser:
     def stop_people(self,*tag):
         pass
 
+    def stop_database(self,*tag):
+        if self.callback:
+            self.callback(False)
+
     def stop_object(self,*tag):
         self.db.commit_media_object(self.object,self.trans,self.change)
         self.object = None
@@ -1054,7 +1059,6 @@ class GrampsParser:
             bc = -1
             val = val[1:]
         start = val.split('-')
-
         try:
             y = int(start[0])*bc
         except:
@@ -1071,7 +1075,7 @@ class GrampsParser:
             d = 0
 
         if attrs.has_key("cformat"):
-            cal = Date.Date.calendar_names.index(attrs['calendar'])
+            cal = Date.Date.calendar_names.index(attrs['cformat'])
         else:
             cal = Date.CAL_GREGORIAN
 
@@ -1113,8 +1117,6 @@ class GrampsParser:
             self.num_places = int(attrs['places'])
         else:
             self.num_places = 0
-        self.entries = int(attrs["people"]) + int(attrs["families"]) + \
-                       self.num_places + self.num_srcs
 
     def start_pos(self,attrs):
         self.person.position = (int(attrs["x"]), int(attrs["y"]))

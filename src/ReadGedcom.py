@@ -254,6 +254,7 @@ class GedcomParser:
         self.dp = GedcomDateParser()
         self.db = dbase
         self.person = None
+        self.inline_srcs = {}
         self.media_map = {}
         self.fmap = {}
         self.smap = {}
@@ -262,7 +263,7 @@ class GedcomParser:
         self.refn = {}
         self.added = {}
         self.gedmap = GedcomInfoDB()
-        self.gedsource = None
+        self.gedsource = self.gedmap.get_from_source_tag('GEDCOM 5.5')
         self.def_src = RelLib.Source()
         fname = os.path.basename(filename).split('\\')[-1]
         self.def_src.set_title(_("Import from %s") % unicode(fname))
@@ -493,6 +494,16 @@ class GedcomParser:
         if self.window:
             self.update(self.families_obj,str(self.fam_count))
             self.update(self.people_obj,str(self.indi_count))
+
+        for value in self.inline_srcs.keys():
+            title,note = value
+            handle = self.inline_srcs[value]
+            src = RelLib.Source()
+            src.set_handle(handle)
+            src.set_title(title)
+            if note:
+                src.set_note(note)
+            self.db.add_source(src,self.trans)
             
         self.break_note_links()
         t = time.time() - t
@@ -1944,16 +1955,15 @@ class GedcomParser:
     def handle_source(self,matches,level):
         source_ref = RelLib.SourceRef()
         if matches[2] and matches[2][0] != "@":
-            self.localref = self.localref + 1
-            ref = "gsr%d" % self.localref
-            s = self.find_or_create_source(ref)
-            source_ref.set_base_handle(s.get_handle())
-            s.set_title('Imported Source #%d' % self.localref)
-            s.set_note(matches[2] + self.parse_continue_data(level))
+            title = matches[2]
+            note = self.parse_continue_data(level)
+            handle = self.inline_srcs.get((title,note),Utils.create_id())
+            self.inline_srcs[(title,note)] = handle
             self.ignore_sub_junk(level+1)
         else:
-            source_ref.set_base_handle(self.find_or_create_source(matches[2][1:-1]).get_handle())
+            handle = self.find_or_create_source(matches[2][1:-1]).get_handle()
             self.parse_source_reference(source_ref,level)
+        source_ref.set_base_handle(handle)
         return source_ref
 
     def resolve_refns(self):
