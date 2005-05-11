@@ -34,6 +34,7 @@ from gettext import gettext as _
 import os
 import time
 import re
+import locale
 
 #-------------------------------------------------------------------------
 #
@@ -48,12 +49,19 @@ import DateHandler
 # Confidence levels
 #
 #-------------------------------------------------------------------------
-
 CONF_VERY_HIGH = 4
 CONF_HIGH      = 3
 CONF_NORMAL    = 2
 CONF_LOW       = 1
 CONF_VERY_LOW  = 0
+
+#-------------------------------------------------------------------------
+#
+# Localized constants
+#
+#-------------------------------------------------------------------------
+_date_format = locale.nl_langinfo(locale.D_T_FMT)
+_codeset = locale.nl_langinfo(locale.CODESET)
 
 #-------------------------------------------------------------------------
 #
@@ -231,7 +239,9 @@ class PrimaryObject(BaseObject):
         
         """
         if self.change:
-            return time.asctime(time.localtime(self.change))
+            return unicode(time.strftime(_date_format,
+                                            time.localtime(self.change)),
+                            _codeset)
         else:
             return ''
 
