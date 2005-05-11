@@ -1,3 +1,9 @@
+2005-05-10  Don Allingham  <don@gramps-project.org>
+	* src/DbPrompter.py: add callback for progressbar
+	* src/GrampsXMLDB.py: pass callback task
+	* src/ReadXML.py: handle progress callback, fix placeobj error
+	* src/gramps_main.py: define progress bar callback
+
 2005-05-10  Eero Tamminen  <eerot@sf>
 	* src/plugins/StatisticsChart.po: add gettext _() to three strings
 	  where it was missing

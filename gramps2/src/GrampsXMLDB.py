@@ -50,7 +50,7 @@ class GrampsXMLDB(GrampsInMemDB):
 
         self.readonly = mode == "r"
         
-        ReadXML.importData(self,name,use_trans=False)
+        ReadXML.importData(self,name,callback,use_trans=False)
         
         self.bookmarks = self.metadata.get('bookmarks')
         if self.bookmarks == None:

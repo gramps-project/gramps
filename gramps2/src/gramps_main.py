@@ -325,6 +325,8 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.filter_btn  = self.gtop.get_widget("filter1")
         self.toolbar_btn = self.gtop.get_widget("toolbar2")
         self.statusbar   = self.gtop.get_widget("statusbar")
+        self.progress    = self.statusbar.get_children()[0]
+        self.progress.set_pulse_step(0.01)
 
         self.filter_list = self.gtop.get_widget("filter_list")
         self.views       = self.gtop.get_widget("views")
@@ -1232,7 +1234,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
 
         try:
             import ReadXML
-            ReadXML.importData(self.db,dbname,None)
+            ReadXML.importData(self.db,dbname,self.update_bar)
         except:
             DisplayTrace.DisplayTrace()
 
@@ -1242,6 +1244,12 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             os.remove(os.path.join(tmpdir_path,fn))
         os.rmdir(tmpdir_path)
         self.import_tool_callback()
+
+    def update_bar(self,percent):
+        if percent:
+            self.progress.pulse()
+        else:
+            self.progress.set_fraction(0)
 
     def read_file(self,filename,callback=None):
         self.topWindow.set_resizable(False)
