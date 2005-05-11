@@ -940,7 +940,8 @@ class GrampsParser:
         pass
 
     def stop_database(self,*tag):
-        self.callback(False)
+        if self.callback:
+            self.callback(False)
 
     def stop_object(self,*tag):
         self.db.commit_media_object(self.object,self.trans,self.change)
