@@ -418,7 +418,7 @@ def insert_images(database, doc, person, w_cm=4.0, h_cm=4.0):
         media_object = database.get_object_from_handle(object_handle)
         if media_object.get_mime_type()[0:5] == "image":
             filename = media_object.get_path()
-            doc.add_media_object(filename,"row")
+            doc.add_media_object(filename,"row",w_cm,h_cm)
 
 #-------------------------------------------------------------------------
 #
