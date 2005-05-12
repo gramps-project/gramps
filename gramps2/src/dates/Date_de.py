@@ -51,8 +51,10 @@ class DateParserDE(DateParser):
     modifier_to_int = {
         u'vor'    : Date.MOD_BEFORE, 
         u'nach'   : Date.MOD_AFTER,
-        u'über'   : Date.MOD_ABOUT,
+        u'gegen'  : Date.MOD_ABOUT,
         u'um'     : Date.MOD_ABOUT,
+        u'etwa'   : Date.MOD_ABOUT,
+        u'circa'  : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
@@ -65,14 +67,15 @@ class DateParserDE(DateParser):
         }
 
     quality_to_int = {
-        u'geschätzt'  : Date.QUAL_ESTIMATED,
+        u'geschätzt' : Date.QUAL_ESTIMATED,
         u'errechnet' : Date.QUAL_CALCULATED,
+        u'berechnet' : Date.QUAL_CALCULATED,
         }
 
     def init_strings(self):
         DateParser.init_strings(self)
         self._span  = re.compile("(von|vom)\s+(.+)\s+bis\s+(.+)",re.IGNORECASE)
-        self._range = re.compile("zwischen\s+(.+)\s+and\s+(.+)", re.IGNORECASE)
+        self._range = re.compile("zwischen\s+(.+)\s+und\s+(.+)", re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
@@ -88,7 +91,7 @@ class DateDisplayDE(DateDisplay):
 
     _mod_str = ("",u"vor ",u"nach ",u"circa ","","","")
     
-    _qual_str = ("",u"errechnet ",u"geschätzt ")
+    _qual_str = ("",u"geschätzt ",u"errechnet ")
 
     formats = (
         "JJJJ-MM-DD (ISO)", "Numerisch", "Monat Tag Jahr",
