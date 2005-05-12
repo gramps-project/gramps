@@ -1,3 +1,6 @@
+2005-05-12  Don Allingham  <don@gramps-project.org>
+	* src/GrampsBSDDB.py: force database sync on transaction commit
+
 2005-05-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GenericFilter.py (ParamFilter.apply): Set parameter list before
 	prepare (solves crash in full text search)

@@ -382,6 +382,25 @@ class GrampsBSDDB(GrampsDbBase):
         else:
             return None
 
+    def transaction_commit(self,transaction,msg):
+        GrampsDbBase.transaction_commit(self,transaction,msg)
+        self.family_map.sync()
+        self.place_map.sync()
+        self.source_map.sync()
+        self.media_map.sync()
+        self.event_map.sync()
+        self.metadata.sync()
+        self.person_map.sync()
+        self.surnames.sync()
+        self.name_group.sync()
+        self.id_trans.sync()
+        self.fid_trans.sync()
+        self.pid_trans.sync()
+        self.sid_trans.sync()
+        self.oid_trans.sync()
+        self.eventnames.sync()
+        self.undodb.sync()
+
     def upgrade(self):
         child_rel_notrans = [
             "None",      "Birth",  "Adopted", "Stepchild",
