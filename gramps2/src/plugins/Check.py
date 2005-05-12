@@ -239,7 +239,7 @@ class CheckIntegrity:
                 place = self.db.get_place_from_handle(handle)
                 if place.has_media_reference(ObjectId):
                     place.remove_media_references([ObjectId])
-                    self.db.commit_place(p,self.trans)
+                    self.db.commit_place(place,self.trans)
 
             self.removed_photo.append(ObjectId)
             self.db.remove_object(ObjectId,self.trans) 
