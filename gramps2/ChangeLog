@@ -7,7 +7,8 @@
 	* src/plugins/Check.py (cleanup_missing_photos): Typo.
 	* configure.in: Bump up the version number.
 	* NEWS: Update.
-	* src/ReportUtils.py (insert_images): Pass sizes to add_media_object.
+	* src/ReportUtils.py (insert_images): Pass sizes to add_media_object;
+	(married_str): Quit if no spouse.
 
 2005-05-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/TestcaseGenerator.py: Added generation of multiple date

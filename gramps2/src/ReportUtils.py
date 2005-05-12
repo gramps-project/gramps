@@ -795,6 +795,10 @@ def married_str(database,person,spouse,event,endnotes=None,
     @rtype: unicode
     """
 
+    # not all families have a spouse.
+    if not spouse:
+        return u""
+
     if not endnotes:
         endnotes = empty_notes
 
