@@ -74,8 +74,8 @@ class DateParserDE(DateParser):
 
     def init_strings(self):
         DateParser.init_strings(self)
-        self._span  = re.compile("(von|vom)\s+(.+)\s+bis\s+(.+)",re.IGNORECASE)
-        self._range = re.compile("zwischen\s+(.+)\s+und\s+(.+)", re.IGNORECASE)
+        self._span  = re.compile("(von|vom)\s+(.+)\s+(bis)\s+(.+)",re.IGNORECASE)
+        self._range = re.compile("(zwischen)\s+(.+)\s+(und)\s+(.+)", re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
