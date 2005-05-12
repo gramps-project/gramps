@@ -933,11 +933,11 @@ class GedcomParser:
                     except:
                         names = (matches[2],"","","","")
                 if names[0]:
-                    name.set_first_name(names[0].strip())
+                    name.set_first_name(unicode(names[0].strip()))
                 if names[2]:
-                    name.set_surname(names[2].strip())
+                    name.set_surname(unicode(names[2].strip()))
                 if names[4]:
-                    name.set_suffix(names[4].strip())
+                    name.set_suffix(unicode(names[4].strip()))
                 if name_cnt == 0:
                     self.person.set_primary_name(name)
                 else:
@@ -1648,11 +1648,11 @@ class GedcomParser:
             elif matches[1] == "SPFX":
                 name.set_surname_prefix(matches[2])
             elif matches[1] == "SURN":
-                name.set_surname(matches[2])
+                name.set_surname(unicode(matches[2]))
             elif matches[1] == "_MARNM":
-                self.parse_marnm(self.person,matches[2].strip())
+                self.parse_marnm(unicode(self.person,matches[2].strip()))
             elif matches[1] == "TITL":
-                name.set_suffix(matches[2])
+                name.set_suffix(unicode(matches[2]))
             elif matches[1] == "NSFX":
                 if name.get_suffix() == "":
                     name.set_suffix(matches[2])
@@ -1665,7 +1665,7 @@ class GedcomParser:
                     self.person.set_nick_name(matches[2])
                 else:
                     name = RelLib.Name()
-                    name.set_surname(lname[-1])
+                    name.set_surname(unicode(lname[-1]))
                     name.set_first_name(' '.join(lname[0:l-1]))
                     self.person.add_alternate_name(name)
             elif matches[1] == "SOUR":
