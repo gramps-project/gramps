@@ -419,14 +419,18 @@ class TestcaseGenerator:
                 d.set(Date.QUAL_NONE,Date.MOD_NONE,Date.CAL_GREGORIAN,dateval[:l],"Text comment")
                 dates.append( d)
             except:
-                print "Exception"
+                d = Date.Date()
+                d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
+                dates.append( d)
         for l in range(1,len(dateval)):
             try:
                 d = Date.Date()
                 d.set(Date.QUAL_NONE,Date.MOD_SPAN,Date.CAL_GREGORIAN,dateval[:l],"Text comment")
                 dates.append( d)
             except:
-                print "Exception"
+                d = Date.Date()
+                d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
+                dates.append( d)
         d = Date.Date()
         d.set(Date.QUAL_NONE,Date.MOD_NONE,Date.CAL_GREGORIAN,(44,7,1789,False),"Text comment")
         dates.append( d)
@@ -450,7 +454,6 @@ class TestcaseGenerator:
             ndate = None
             try:
                 datestr = _dd.display( dateval)
-                print datestr
                 try:
                     ndate = _dp.parse( datestr)
                     if not ndate:
