@@ -84,6 +84,10 @@ class TestcaseGenerator:
         self.check_bugs.set_active(True)
         self.top.vbox.pack_start(self.check_bugs,0,0,5)
 
+        self.check_dates = gtk.CheckButton( _("Generate date tests"))
+        self.check_dates.set_active(True)
+        self.top.vbox.pack_start(self.check_dates,0,0,5)
+
         self.check_persons = gtk.CheckButton( _("Generate dummy families"))
         self.check_persons.set_active(True)
         self.top.vbox.pack_start(self.check_persons,0,0,5)
@@ -103,16 +107,17 @@ class TestcaseGenerator:
 
         response = self.top.run()
         bugs = self.check_bugs.get_active()
+        dates = self.check_dates.get_active()
         persons = self.check_persons.get_active()
         multiple_trans = self.check_trans.get_active()
         person_count = int(self.entry_count.get_text())
         self.top.destroy()
 
         if response == gtk.RESPONSE_OK:
-            self.run_generator(bugs,persons,person_count,multiple_trans)
+            self.run_generator(bugs,dates,persons,person_count,multiple_trans)
 
 
-    def run_generator( self, generate_bugs = 1, generate_families = 1, generate_max_persons = 2000, multiple_transactions=False):
+    def run_generator( self, generate_bugs = 1, generate_dates = 1, generate_families = 1, generate_max_persons = 2000, multiple_transactions=False):
         title = "%s - GRAMPS" % _("Generate testcases")
         self.top = gtk.Window()
         self.top.set_title(title)
@@ -143,7 +148,8 @@ class TestcaseGenerator:
         if generate_bugs:
             self.generate_broken_relations()
         
-        self.generate_date_tests()
+        if generate_dates:
+            self.generate_date_tests()
 
         if generate_families:
             self.persons_todo.append( self.generate_person(0))
