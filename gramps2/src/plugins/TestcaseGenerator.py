@@ -30,6 +30,8 @@
 import os
 import re
 import time
+import traceback
+import sys
 from random import randint,choice
 from gettext import gettext as _
 
@@ -54,6 +56,7 @@ import Utils
 import const
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
+from DateHandler import displayer as _dd
 
 #-------------------------------------------------------------------------
 #
@@ -439,13 +442,35 @@ class TestcaseGenerator:
         
         # now add them as birth to new persons
         for dateval in dates:
-            event = RelLib.Event()
-            event.set_name("Birth")
-            event.set_date_object(dateval)
-            event_h = self.db.add_event(event,self.trans)
+            bevent = RelLib.Event()
+            bevent.set_name("Birth")
+            bevent.set_date_object(dateval)
+            bevent_h = self.db.add_event(bevent,self.trans)
+            # for the death event display the date as text and parse it back to a new date
+            ndate = None
+            try:
+                datestr = _dd.display( dateval)
+                print datestr
+                try:
+                    ndate = _dp.parse( datestr)
+                    if not ndate:
+                        ndate = Date.Date()
+                        ndate.set_as_text("DateParser None")
+                except:
+                    ndate = Date.Date()
+                    ndate.set_as_text("DateParser Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
+            except:
+                ndate = Date.Date()
+                ndate.set_as_text("DateDisplay Exception: %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
+                
+            devent = RelLib.Event()
+            devent.set_name("Death")
+            devent.set_date_object(ndate)
+            devent_h = self.db.add_event(devent,self.trans)
             person_h = self.generate_person(None, "DateTest")
             person = self.db.get_person_from_handle(person_h)
-            person.set_birth_handle(event_h)
+            person.set_birth_handle(bevent_h)
+            person.set_death_handle(devent_h)
             self.db.commit_person(person,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
     

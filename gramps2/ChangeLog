@@ -1,6 +1,7 @@
 2005-05-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/TestcaseGenerator.py: Added generation of multiple date
-	formats including invalid dates.
+	formats including invalid dates. This is displaying and reparsing every
+	date to compare the result.
 	* src/plugins/NavWebPage.py (HomePage): Dont crash on note only object 
 	* src/dates/Date_de.py: Updated translation
 	
