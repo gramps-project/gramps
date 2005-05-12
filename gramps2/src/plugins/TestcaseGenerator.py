@@ -471,7 +471,12 @@ class TestcaseGenerator:
             except:
                 ndate = Date.Date()
                 ndate.set_as_text("DateDisplay Exception: %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
+            
+            if dateval.get_modifier() != Date.MOD_TEXTONLY and ndate.get_modifier() == Date.MOD_TEXTONLY:
+                # parser was unable to correctly parse the string
+                ndate.set_as_text( "TEXTONLY: "+ndate.get_text())
                 
+            
             devent = RelLib.Event()
             devent.set_name("Death")
             devent.set_date_object(ndate)
