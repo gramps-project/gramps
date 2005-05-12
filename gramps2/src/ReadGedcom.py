@@ -438,9 +438,9 @@ class GedcomParser:
             ln = len(l)
             try:
                 if ln == 2:
-                    self.groups = (int(l[0]),l[1],"")
+                    self.groups = (int(l[0]),unicode(l[1]),u"")
                 else:
-                    self.groups = (int(l[0]),l[1],l[2])
+                    self.groups = (int(l[0]),unicode(l[1]),unicode(l[2]))
             except:
                 if self.text == "":
                     msg = _("Warning: line %d was blank, so it was ignored.\n") % self.index
@@ -551,7 +551,7 @@ class GedcomParser:
                 self.backup()
                 return
             elif matches[1] == "NAME":
-                self.def_src.set_author(unicode(matches[2]))
+                self.def_src.set_author(matches[2])
             elif matches[1] == ["ADDR"]:
                 self.ignore_sub_junk(level+1)
 
@@ -933,11 +933,11 @@ class GedcomParser:
                     except:
                         names = (matches[2],"","","","")
                 if names[0]:
-                    name.set_first_name(unicode(names[0].strip()))
+                    name.set_first_name(names[0].strip())
                 if names[2]:
-                    name.set_surname(unicode(names[2].strip()))
+                    name.set_surname(names[2].strip())
                 if names[4]:
-                    name.set_suffix(unicode(names[4].strip()))
+                    name.set_suffix(names[4].strip())
                 if name_cnt == 0:
                     self.person.set_primary_name(name)
                 else:
@@ -1648,11 +1648,11 @@ class GedcomParser:
             elif matches[1] == "SPFX":
                 name.set_surname_prefix(matches[2])
             elif matches[1] == "SURN":
-                name.set_surname(unicode(matches[2]))
+                name.set_surname(matches[2])
             elif matches[1] == "_MARNM":
-                self.parse_marnm(unicode(self.person,matches[2].strip()))
+                self.parse_marnm(self.person,matches[2].strip())
             elif matches[1] == "TITL":
-                name.set_suffix(unicode(matches[2]))
+                name.set_suffix(matches[2])
             elif matches[1] == "NSFX":
                 if name.get_suffix() == "":
                     name.set_suffix(matches[2])
@@ -1665,7 +1665,7 @@ class GedcomParser:
                     self.person.set_nick_name(matches[2])
                 else:
                     name = RelLib.Name()
-                    name.set_surname(unicode(lname[-1]))
+                    name.set_surname(lname[-1])
                     name.set_first_name(' '.join(lname[0:l-1]))
                     self.person.add_alternate_name(name)
             elif matches[1] == "SOUR":
@@ -1721,9 +1721,9 @@ class GedcomParser:
                 pass
             elif matches[1] == "FILE":
                 filename = os.path.basename(matches[2]).split('\\')[-1]
-                self.def_src.set_title(_("Import from %s") % unicode(filename))
+                self.def_src.set_title(_("Import from %s") % filename)
             elif matches[1] == "COPR":
-                self.def_src.set_publication_info(unicode(matches[2]))
+                self.def_src.set_publication_info(matches[2])
             elif matches[1] in ["CORP","DATA","SUBM","SUBN","LANG"]:
                 self.ignore_sub_junk(2)
             elif matches[1] == "DEST":
@@ -1751,7 +1751,7 @@ class GedcomParser:
             elif matches[1] == "DATE":
                 date = self.parse_date(2)
                 date.date = matches[2]
-                self.def_src.set_data_item('Creation date',unicode(matches[2]))
+                self.def_src.set_data_item('Creation date',matches[2])
             elif matches[1] == "NOTE":
                 note = matches[2] + self.parse_continue_data(2)
             elif matches[1][0] == "_":
