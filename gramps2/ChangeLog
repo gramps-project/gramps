@@ -2,6 +2,7 @@
 	* src/plugins/TestcaseGenerator.py: Added generation of multiple date
 	formats including invalid dates.
 	* src/plugins/NavWebPage.py (HomePage): Dont crash on note only object 
+	* src/dates/Date_de.py: Updated translation
 	
 2005-05-11  Don Allingham  <don@gramps-project.org>
 	* src/ReadGedcom.py: coerce the name into a unicode value - if the wrong character

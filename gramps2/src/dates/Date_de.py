@@ -83,16 +83,16 @@ class DateDisplayDE(DateDisplay):
 
     calendar = (
         "", u" (Julianisch)", u" (Hebräisch)", 
-        u" (Französischer Republikaner)", u" (Persisch)", u" (Islamisch)"
+        u" (Französisch Republikanisch)", u" (Persisch)", u" (Islamisch)"
         )
 
-    _mod_str = ("",u"avant ",u"après ",u"vers ","","","")
+    _mod_str = ("",u"vor ",u"nach ",u"circa ","","","")
     
-    _qual_str = ("","calculated ","estimated ")
+    _qual_str = ("",u"errechnet ",u"geschätzt ")
 
     formats = (
         "JJJJ-MM-DD (ISO)", "Numerisch", "Monat Tag Jahr",
-        "MICH Tag Jahr", "Tag Monat Jahr", "Tag MONAT Jahr"
+        "MONAT Tag Jahr", "Tag Monat Jahr", "Tag MONAT Jahr"
         )
 
     def display(self,date):
@@ -113,11 +113,11 @@ class DateDisplayDE(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%s%s %s %s %s%s" % (qual_str,u'de',d1,u'à',d2,self.calendar[cal])
+            return "%s%s %s %s %s%s" % (qual_str,u'von',d1,u'bis',d2,self.calendar[cal])
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%szwischen %s and %s%s" % (qual_str,d1,d2,self.calendar[cal])
+            return "%szwischen %s und %s%s" % (qual_str,d1,d2,self.calendar[cal])
         else:
             text = self.display_cal[date.get_calendar()](start)
             return "%s%s%s%s" % (qual_str,self._mod_str[mod],text,self.calendar[cal])
