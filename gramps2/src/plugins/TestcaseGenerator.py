@@ -47,6 +47,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import Errors
+import Date
 import RelLib
 import latin_utf8 
 import Utils
@@ -138,6 +139,8 @@ class TestcaseGenerator:
         
         if generate_bugs:
             self.generate_broken_relations()
+        
+        self.generate_date_tests()
 
         if generate_families:
             self.persons_todo.append( self.generate_person(0))
@@ -384,6 +387,67 @@ class TestcaseGenerator:
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
 
+    def generate_date_tests(self):
+        dates = []
+        # first some valid dates
+        calendar = Date.CAL_GREGORIAN
+        for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
+            for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
+                for slash1 in (False,True):
+                    d = Date.Date()
+                    d.set(quality,modifier,calendar,(4,7,1789,slash1),"Text comment")
+                    dates.append( d)
+            for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
+                for slash1 in (False,True):
+                    for slash2 in (False,True):
+                        d = Date.Date()
+                        d.set(quality,modifier,calendar,(4,7,1789,slash1,5,8,1876,slash2),"Text comment")
+                        dates.append( d)
+            modifier = Date.MOD_TEXTONLY
+            d = Date.Date()
+            d.set(quality,modifier,calendar,Date.EMPTY,"This is a textual date")
+            dates.append( d)
+        
+        # test invalid dates
+        dateval = (4,7,1789,False,5,8,1876,False)
+        for l in range(1,len(dateval)):
+            try:
+                d = Date.Date()
+                d.set(Date.QUAL_NONE,Date.MOD_NONE,Date.CAL_GREGORIAN,dateval[:l],"Text comment")
+                dates.append( d)
+            except:
+                print "Exception"
+        for l in range(1,len(dateval)):
+            try:
+                d = Date.Date()
+                d.set(Date.QUAL_NONE,Date.MOD_SPAN,Date.CAL_GREGORIAN,dateval[:l],"Text comment")
+                dates.append( d)
+            except:
+                print "Exception"
+        d = Date.Date()
+        d.set(Date.QUAL_NONE,Date.MOD_NONE,Date.CAL_GREGORIAN,(44,7,1789,False),"Text comment")
+        dates.append( d)
+        d = Date.Date()
+        d.set(Date.QUAL_NONE,Date.MOD_NONE,Date.CAL_GREGORIAN,(4,77,1789,False),"Text comment")
+        dates.append( d)
+        d = Date.Date()
+        d.set(Date.QUAL_NONE,Date.MOD_SPAN,Date.CAL_GREGORIAN,(4,7,1789,False,55,8,1876,False),"Text comment")
+        dates.append( d)
+        d = Date.Date()
+        d.set(Date.QUAL_NONE,Date.MOD_SPAN,Date.CAL_GREGORIAN,(4,7,1789,False,5,88,1876,False),"Text comment")
+        dates.append( d)
+        
+        # now add them as birth to new persons
+        for dateval in dates:
+            event = RelLib.Event()
+            event.set_name("Birth")
+            event.set_date_object(dateval)
+            event_h = self.db.add_event(event,self.trans)
+            person_h = self.generate_person(None, "DateTest")
+            person = self.db.get_person_from_handle(person_h)
+            person.set_birth_handle(event_h)
+            self.db.commit_person(person,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
     
     def generate_person(self,gender=None,lastname=None,note=None):
         self.progress.set_fraction(min(1.0,max(0.0, 1.0*self.person_count/self.max_person_count)))

@@ -1,3 +1,7 @@
+2005-05-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/TestcaseGenerator.py: Added generation of multiple date
+	formats including invalid dates.
+	
 2005-05-11  Don Allingham  <don@gramps-project.org>
 	* src/ReadGedcom.py: coerce the name into a unicode value - if the wrong character
 	encoding is indicated in the file, the screen display can get corrupted due to keys
