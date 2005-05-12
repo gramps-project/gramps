@@ -1033,15 +1033,15 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         all.add_rule(GenericFilter.IsWitness([]))
         filter_list.append(all)
 
-#         all = GenericFilter.ParamFilter()
-#         all.set_name(_("Any textual record contains..."))
-#         all.add_rule(GenericFilter.HasTextMatchingSubstringOf([]))
-#         filter_list.append(all)
+        all = GenericFilter.ParamFilter()
+        all.set_name(_("Any textual record contains..."))
+        all.add_rule(GenericFilter.HasTextMatchingSubstringOf([]))
+        filter_list.append(all)
 
-#         all = GenericFilter.ParamFilter()
-#         all.set_name(_("Any textual record matches regular expression..."))
-#         all.add_rule(GenericFilter.HasTextMatchingRegexpOf([]))
-#         filter_list.append(all)
+        all = GenericFilter.ParamFilter()
+        all.set_name(_("Any textual record matches regular expression..."))
+        all.add_rule(GenericFilter.HasTextMatchingRegexpOf([]))
+        filter_list.append(all)
 
         self.filter_model = GenericFilter.FilterStore(filter_list)
         self.filter_list.set_model(self.filter_model)

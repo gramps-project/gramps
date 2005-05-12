@@ -1,3 +1,8 @@
+2005-05-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GenericFilter.py (ParamFilter.apply): Set parameter list before
+	prepare (solves crash in full text search)
+	* src/gramps_main.py: Enable full text search filters again
+	
 2005-05-12  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/Check.py (cleanup_missing_photos): Typo.
 	* configure.in: Bump up the version number.

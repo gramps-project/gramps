@@ -2380,9 +2380,9 @@ class ParamFilter(GenericFilter):
 
     def apply(self,db,id_list):
         for rule in self.flist:
-            rule.prepare(db)
-        for rule in self.flist:
             rule.set_list(self.param_list)
+        for rule in self.flist:
+            rule.prepare(db)
         result = GenericFilter.apply(self,db,id_list)
         for rule in self.flist:
             rule.reset()
