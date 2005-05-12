@@ -17,6 +17,9 @@
 	be enhanced by a translated fallback parser later.
 
 2005-05-10  Don Allingham  <don@gramps-project.org>
+	* Release: Version 2.0.0 "The Bright Side of Life"" released.
+
+2005-05-10  Don Allingham  <don@gramps-project.org>
 	* src/DbPrompter.py: add callback for progressbar
 	* src/GrampsXMLDB.py: pass callback task
 	* src/ReadXML.py: handle progress callback, fix placeobj error
