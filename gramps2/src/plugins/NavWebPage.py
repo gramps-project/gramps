@@ -401,7 +401,8 @@ class HomePage(BasePage):
             if not obj:
                 print "%s object not found" % note_id
             else:
-                if obj.get_mime_type()[0:5] == "image":
+                mime_type = obj.get_mime_type()
+                if mime_type and mime_type.startswith("image"):
                     newpath = obj.gramps_id + os.path.splitext(obj.get_path())[1]
                     shutil.copyfile(obj.get_path(),
                                     os.path.join(html_dir,newpath))
