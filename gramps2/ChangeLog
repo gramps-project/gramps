@@ -1,3 +1,8 @@
+2005-05-13  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/SelectChild.py (on_save_child_clicked) Commit new parent family
+	of child properly; correct handle/object mismatch; exec parent callback
+ 	to do a proper redraw (closes #1201151)
+
 2005-05-12  Don Allingham  <don@gramps-project.org>
 	* src/GrampsBSDDB.py: force database sync on transaction commit
 
