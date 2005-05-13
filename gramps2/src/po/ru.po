@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: gramps 2.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Mon May  9 22:38:46 2005\n"
-"PO-Revision-Date: 2005-05-10 11:21-0500\n"
+"PO-Revision-Date: 2005-05-12 23:01-0500\n"
 "Last-Translator: Alexander Roitman <shura@gramps-project.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1642,7 +1642,7 @@ msgstr "Информация об исследователе"
 
 #: GrampsDbBase.py:938 GrampsDbBase.py:976
 msgid "_Undo %s"
-msgstr "_Откатить"
+msgstr "_Откатить %s"
 
 #: ImageSelect.py:485 ImageSelect.py:506
 msgid "Drag Media Object"
