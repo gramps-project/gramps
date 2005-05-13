@@ -419,6 +419,8 @@ class GeneWebParser:
         person.set_primary_name(name)
         if gender != None:
             person.set_gender(gender)
+        else:
+            person.set_gender(RelLib.Person.UNKNOWN)
         self.db.commit_person(person,self.trans)
         personDataRe = re.compile("^[0-9<>~#\[({!].*$")
         dateRe = re.compile("^[0-9~<>?]+.*$")
@@ -660,7 +662,7 @@ class GeneWebParser:
     def get_or_create_person(self,firstname,lastname):
         person = None
         mykey = firstname+lastname
-        if mykey in self.ikeys:
+        if mykey in self.ikeys and firstname != "?" and lastname != "?":
             person = self.db.get_person_from_handle(self.ikeys[mykey])
         else:
             person = RelLib.Person()
