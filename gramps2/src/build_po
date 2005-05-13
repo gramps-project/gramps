@@ -4,5 +4,5 @@ then
     mv po/template.po po/template.po.bak
 fi
 
-./get_strings -o po/template.po *.py */*.py *.glade */*.glade 
+./get_strings -o po/template.po *.py */*.py *.glade */*.glade data/tips.xml
 

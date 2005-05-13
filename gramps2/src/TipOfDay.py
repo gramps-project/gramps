@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 from xml.parsers.expat import ParserCreate
 from random import Random
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -68,7 +69,7 @@ class TipOfDay:
         index = 0
         rval = 0
         while rval == 0:
-            tip.set_text(tip_list[new_index[index]])
+            tip.set_text(_(tip_list[new_index[index]]))
             tip.set_use_markup(1)
             rval = top.run()
             if index >= len(tip_list)-1:
