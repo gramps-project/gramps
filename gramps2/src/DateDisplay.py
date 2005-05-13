@@ -292,8 +292,8 @@ class DateDisplayEn(DateDisplay):
     """
 
     formats = (
-        "YYYY-MM-DD (ISO)", "Numerical", "Month Day, Year",
-        "MON DAY, YEAR", "Day Month Year", "DAY MON YEAR"
+        _("YYYY-MM-DD (ISO)"), _("Numerical"), _("Month Day, Year"),
+        _("MON DAY, YEAR"), _("Day Month Year"), _("DAY MON YEAR")
         )
 
     def __init__(self,format=None):
