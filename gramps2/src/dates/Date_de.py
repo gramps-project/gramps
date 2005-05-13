@@ -83,23 +83,33 @@ class DateParserDE(DateParser):
         u'um'     : Date.MOD_ABOUT,
         u'etwa'   : Date.MOD_ABOUT,
         u'circa'  : Date.MOD_ABOUT,
+        u'ca.'  : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
         u'Gregorianisch'  : Date.CAL_GREGORIAN,
+        u'Greg.'          : Date.CAL_GREGORIAN,
         u'Julianisch'     : Date.CAL_JULIAN,
+        u'Jul.'           : Date.CAL_JULIAN,
         u'Hebräisch'      : Date.CAL_HEBREW,
+        u'Hebr.'          : Date.CAL_HEBREW,
         u'Islamisch'      : Date.CAL_ISLAMIC,
-        u'Französischer Republikaner': Date.CAL_FRENCH,
+        u'Isl.'           : Date.CAL_ISLAMIC,
+        u'Französisch Republikanisch': Date.CAL_FRENCH,
+        u'Franz.'         : Date.CAL_FRENCH,
         u'Persisch'       : Date.CAL_PERSIAN,
         }
 
     quality_to_int = {
         u'geschätzt' : Date.QUAL_ESTIMATED,
+        u'gesch.'    : Date.QUAL_ESTIMATED,
         u'errechnet' : Date.QUAL_CALCULATED,
         u'berechnet' : Date.QUAL_CALCULATED,
+        u'ber.'      : Date.QUAL_CALCULATED,
         }
 
+    bce = DateParser.bce + ["vor (unserer|der) Zeit(rechnung)?", "v\. (u|d)\. Z\.", "vor Christus", "vor Christi Geburt", "v\. Chr\."]
+    
     def init_strings(self):
         DateParser.init_strings(self)
         self._span  = re.compile("(von|vom)\s+(.+)\s+(bis)\s+(.+)",re.IGNORECASE)
@@ -121,6 +131,7 @@ class DateDisplayDE(DateDisplay):
     
     _qual_str = ("",u"geschätzt ",u"errechnet ")
     
+    _bce_str = "%s v. u. Z."
 
     formats = (
         "JJJJ-MM-DD (ISO)", "Numerisch", "Monat Tag Jahr",
