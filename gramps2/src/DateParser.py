@@ -44,7 +44,7 @@ import calendar
 #
 #-------------------------------------------------------------------------
 import Date
-
+from Errors import DateError
 #-------------------------------------------------------------------------
 #
 # Top-level module functions
@@ -587,5 +587,8 @@ class DateParser:
         Parses the text, returning a Date object.
         """
         new_date = Date.Date()
-        self.set_date(new_date,text)
+        try:
+            self.set_date(new_date,text)
+        except DateError:
+            new_date.set_as_text(text)
         return new_date

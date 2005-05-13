@@ -420,18 +420,24 @@ class TestcaseGenerator:
         # test invalid dates
         dateval = (4,7,1789,False,5,8,1876,False)
         for l in range(1,len(dateval)):
+            d = Date.Date()
             try:
-                d = Date.Date()
                 d.set(Date.QUAL_NONE,Date.MOD_NONE,Date.CAL_GREGORIAN,dateval[:l],"Text comment")
+                dates.append( d)
+            except Errors.DateError, e:
+                d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
                 dates.append( d)
             except:
                 d = Date.Date()
                 d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
                 dates.append( d)
         for l in range(1,len(dateval)):
+            d = Date.Date()
             try:
-                d = Date.Date()
                 d.set(Date.QUAL_NONE,Date.MOD_SPAN,Date.CAL_GREGORIAN,dateval[:l],"Text comment")
+                dates.append( d)
+            except Errors.DateError, e:
+                d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
                 dates.append( d)
             except:
                 d = Date.Date()
