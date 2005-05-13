@@ -1076,8 +1076,8 @@ class HasEvent(Rule):
     
     def __init__(self,list):
         Rule.__init__(self,list)
-        if self.list and self.list[0]:
-            self.date = DateHandler.parser.parse(self.list[0])
+        if self.list and self.list[1]:
+            self.date = DateHandler.parser.parse(self.list[1])
         else:
             self.date = None
 
@@ -1112,8 +1112,8 @@ class HasEvent(Rule):
                     pn = pl.get_title()
                     if pn.upper().find(self.list[2].upper()) == -1:
                         val = 0
-                if val == 1:
-                    return 1
+            if val == 1:
+                return 1
         return 0
 
 #-------------------------------------------------------------------------
@@ -1129,8 +1129,8 @@ class HasFamilyEvent(Rule):
     
     def __init__(self,list):
         Rule.__init__(self,list)
-        if self.list and self.list[0]:
-            self.date = DateHandler.parser.parse(self.list[0])
+        if self.list and self.list[1]:
+            self.date = DateHandler.parser.parse(self.list[1])
         else:
             self.date = None
 
@@ -1166,8 +1166,8 @@ class HasFamilyEvent(Rule):
                     pn = pl.get_title()
                     if self.list[2] and pn.find(self.list[2].upper()) == -1:
                         val = 0
-                    if val == 1:
-                        return 1
+                if val == 1:
+                    return 1
         return 0
 
 #-------------------------------------------------------------------------

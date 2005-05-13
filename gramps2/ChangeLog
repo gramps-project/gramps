@@ -1,3 +1,6 @@
+2005-05-13  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GenericFilter.py (HasEvent,HasFamilyEvent): Correct filter rules
+
 2005-05-13  Alex Roitman  <shura@gramps-project.org>
 	* src/DateDisplay.py (DateDisplayEn): Localize format names.
 
