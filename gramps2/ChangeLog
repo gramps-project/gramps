@@ -13,6 +13,8 @@
 	* src/ReportUtils.py (insert_images): Pass sizes to add_media_object;
 	(married_str): Quit if no spouse.
 
+	* src/data/gramps.xml: Include different cases for file extensions.
+
 2005-05-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/TestcaseGenerator.py: Added generation of multiple date
 	formats including invalid dates. This is displaying and reparsing every
