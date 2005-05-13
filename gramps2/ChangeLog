@@ -6,6 +6,8 @@
 	* src/dates/Date_de.py: Register for all variants of german; Add other
 	variants of month names for parser
 
+	* src/Date.py: Raise Exception.DateError on invalid arguments
+
 2005-05-12  Don Allingham  <don@gramps-project.org>
 	* src/GrampsBSDDB.py: force database sync on transaction commit
 
