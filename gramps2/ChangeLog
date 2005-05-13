@@ -3,6 +3,9 @@
 	of child properly; correct handle/object mismatch; exec parent callback
  	to do a proper redraw (closes #1201151)
 
+	* src/dates/Date_de.py: Register for all variants of german; Add other
+	variants of month names for parser
+
 2005-05-12  Don Allingham  <don@gramps-project.org>
 	* src/GrampsBSDDB.py: force database sync on transaction commit
 

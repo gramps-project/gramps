@@ -48,6 +48,34 @@ from DateDisplay import DateDisplay
 #-------------------------------------------------------------------------
 class DateParserDE(DateParser):
 
+    month_to_int = DateParser.month_to_int
+    # Always add german and austrian name variants no matter what the current locale is
+    month_to_int[u"januar"] = 1
+    month_to_int[u"jan"]    = 1
+    month_to_int[u"jänner"] = 1
+    month_to_int[u"jän"]    = 1
+    # Add other common latin, local and historical variants  
+    month_to_int[u"januaris"] = 1
+    month_to_int[u"jenner"] = 1
+    month_to_int[u"feber"]  = 2
+    month_to_int[u"februaris"]  = 2
+    month_to_int[u"merz"]  = 2
+    month_to_int[u"aprilis"]  = 4
+    month_to_int[u"maius"]  = 5
+    month_to_int[u"junius"]  = 6
+    month_to_int[u"julius"]  = 7
+    month_to_int[u"augst"]  = 8
+    month_to_int[u"7ber"]  = 9
+    month_to_int[u"7bris"]  = 9
+    month_to_int[u"8ber"]  = 10
+    month_to_int[u"8bris"]  = 10
+    month_to_int[u"9ber"]  = 11
+    month_to_int[u"9bris"]  = 11
+    month_to_int[u"10ber"]  = 12
+    month_to_int[u"10bris"]  = 12
+    month_to_int[u"xber"]  = 12
+    month_to_int[u"xbris"]  = 12
+    
     modifier_to_int = {
         u'vor'    : Date.MOD_BEFORE, 
         u'nach'   : Date.MOD_AFTER,
@@ -92,6 +120,7 @@ class DateDisplayDE(DateDisplay):
     _mod_str = ("",u"vor ",u"nach ",u"circa ","","","")
     
     _qual_str = ("",u"geschätzt ",u"errechnet ")
+    
 
     formats = (
         "JJJJ-MM-DD (ISO)", "Numerisch", "Monat Tag Jahr",
@@ -132,3 +161,8 @@ class DateDisplayDE(DateDisplay):
 #-------------------------------------------------------------------------
 from DateHandler import register_datehandler
 register_datehandler(('de_DE','german'),DateParserDE, DateDisplayDE)
+register_datehandler(('de_AT','german (Austria)'),DateParserDE, DateDisplayDE)
+register_datehandler(('de_CH','german (Switzerland)'),DateParserDE, DateDisplayDE)
+register_datehandler(('de_LI','german (Lichtenstein)'),DateParserDE, DateDisplayDE)
+register_datehandler(('de_LU','german (Luxembourg)'),DateParserDE, DateDisplayDE)
+register_datehandler(('de_BE','german (Belgium)'),DateParserDE, DateDisplayDE)
