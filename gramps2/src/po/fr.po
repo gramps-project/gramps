@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Thu May 12 08:32:15 2005\n"
-"PO-Revision-Date: 2005-05-12 21:31+0200\n"
+"PO-Revision-Date: 2005-05-13 07:22+0200\n"
 "Last-Translator: Matthieu Pupat <tieum.tieum@free.fr>\n"
 "Language-Team: Français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -122,8 +122,10 @@ msgid "New GRAMPS database was not set up"
 msgstr "Le nouvelle base GRAMPS n'a pas été créée"
 
 #: ArgHandler.py:292
-msgid "GRAMPS cannot open non-native data without setting up new GRAMPS database."
-msgstr "GRAMPS ne peut ouvrir un format externe sans créer de nouvelle base GRAMPS."
+msgid ""
+"GRAMPS cannot open non-native data without setting up new GRAMPS database."
+msgstr ""
+"GRAMPS ne peut ouvrir un format externe sans créer de nouvelle base GRAMPS."
 
 #: ArgHandler.py:302 DbPrompter.py:201 DbPrompter.py:228 DbPrompter.py:304
 #: DbPrompter.py:333
@@ -345,7 +347,8 @@ msgstr "GRAMPS : Créer une nouvelle base de données GRAMPS"
 
 #: DbPrompter.py:432
 msgid "GRAMPS: Select filename for a new database"
-msgstr "GRAMPS : Sélectionner un nom de fichier pour la nouvelle base de données"
+msgstr ""
+"GRAMPS : Sélectionner un nom de fichier pour la nouvelle base de données"
 
 #: DbPrompter.py:482
 msgid "Could not save file: %s"
@@ -1222,8 +1225,10 @@ msgid "Matches people that have a common ancestor with a specified person"
 msgstr "Assortir les individus ayant des ascendants commun à un individu"
 
 #: GenericFilter.py:1026
-msgid "Matches people that have a common ancestor with someone matched by a filter"
-msgstr "Assortir les individus ayant des ascendants commun aux résultats du filtrage"
+msgid ""
+"Matches people that have a common ancestor with someone matched by a filter"
+msgstr ""
+"Assortir les individus ayant des ascendants commun aux résultats du filtrage"
 
 #: GenericFilter.py:1062
 msgid "Matches all males"
@@ -1534,7 +1539,7 @@ msgstr "Est l'époux(se) d'un individu résultant du filtrage"
 
 #: GenericFilter.py:2231
 msgid "Is a sibling of filter match"
-msgstr "Est un enfant d'un individu résultant du filtrage"
+msgstr "Est un frère ou une soeur d'un individu résultant du filtrage"
 
 #: GenericFilter.py:2232
 msgid "Relationship path between two people"
@@ -1693,7 +1698,8 @@ msgid "Save Changes?"
 msgstr "Enregistrer les modifications?"
 
 #: Marriage.py:655
-msgid "The GRAMPS ID that you chose for this relationship is already being used."
+msgid ""
+"The GRAMPS ID that you chose for this relationship is already being used."
 msgstr "L'identifiant GRAMPS choisi pour cette relation est déjà utilisé."
 
 #: Marriage.py:711
@@ -2065,7 +2071,8 @@ msgstr "Déboguer"
 
 #: Plugins.py:728
 msgid "Attempt to reload plugins. Note: This tool itself is not reloaded!"
-msgstr "Essayer de recharger les modules. Note : cet outil ne sera pas rechargé !"
+msgstr ""
+"Essayer de recharger les modules. Note : cet outil ne sera pas rechargé !"
 
 #: ReadGedcom.py:79 ReadGedcom.py:80
 msgid "Windows 9x file system"
@@ -2168,7 +2175,8 @@ msgstr "Erreur de lecture de %s"
 
 #: ReadXML.py:134
 msgid "The file is probably either corrupt or not a valid GRAMPS database."
-msgstr "Ce fichier est probablement corrompu ou n'est pas une base GRAMPS valide."
+msgstr ""
+"Ce fichier est probablement corrompu ou n'est pas une base GRAMPS valide."
 
 #: ReadXML.py:173
 msgid "Could not copy file"
@@ -2464,7 +2472,8 @@ msgid "File already exists"
 msgstr "Fichier existant"
 
 #: Report.py:1329
-msgid "You can choose to either overwrite the file, or change the selected filename."
+msgid ""
+"You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 "Vous pouvez choisir soit d'écraser le fichier ou de changer de nom de "
 "fichier."
@@ -2582,7 +2591,8 @@ msgstr ""
 "décédé à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:611
-msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgid ""
+"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr "%(male_name)s%(endnotes)s est né à %(birth_place)s%(birth_endnotes)s."
 
 #: ReportUtils.py:619
@@ -2595,11 +2605,13 @@ msgstr ""
 
 #: ReportUtils.py:625
 msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s est décédé le %(death_date)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s est décédé le %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:632
 msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s est décédé à %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s est décédé à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:638
 msgid "%(male_name)s%(endnotes)s."
@@ -2665,7 +2677,8 @@ msgstr ""
 
 #: ReportUtils.py:705
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s%(birth_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s est née le %(birth_date)s%(birth_endnotes)s."
 
 #: ReportUtils.py:713
 msgid ""
@@ -2692,8 +2705,10 @@ msgstr ""
 "décédé à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:739
-msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s est née à %(birth_place)s%(birth_endnotes)s."
+msgid ""
+"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s est née à %(birth_place)s%(birth_endnotes)s."
 
 #: ReportUtils.py:747
 msgid ""
@@ -2709,7 +2724,8 @@ msgstr "%(female_name)s%(endnotes)s décédée %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:760
 msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s décédée à %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s décédée à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:766
 msgid "%(female_name)s%(endnotes)s."
@@ -3109,7 +3125,8 @@ msgstr "%(female_name)s est décédée à %(death_place)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:1401
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr "%(female_name)s est décédée à %(death_place)s à l'âge de %(age)d jours."
+msgstr ""
+"%(female_name)s est décédée à %(death_place)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:1410
 msgid "%(female_name)s died at the age of %(age)d years."
@@ -3180,20 +3197,26 @@ msgstr ""
 "(death_place)s."
 
 #: ReportUtils.py:1555
-msgid "%(male_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s."
-msgstr "%(male_name)s Né : %(birth_date)s %(birth_place)s Décédé : %(death_date)s."
+msgid ""
+"%(male_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s."
+msgstr ""
+"%(male_name)s Né : %(birth_date)s %(birth_place)s Décédé : %(death_date)s."
 
 #: ReportUtils.py:1563
-msgid "%(male_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_place)s."
-msgstr "%(male_name)s Né : %(birth_date)s %(birth_place)s Décédé : %(death_place)s."
+msgid ""
+"%(male_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_place)s."
+msgstr ""
+"%(male_name)s Né : %(birth_date)s %(birth_place)s Décédé : %(death_place)s."
 
 #: ReportUtils.py:1570
 msgid "%(male_name)s Born: %(birth_date)s %(birth_place)s."
 msgstr "%(male_name)s Né : %(birth_date)s %(birth_place)s."
 
 #: ReportUtils.py:1577
-msgid "%(male_name)s Born: %(birth_date)s Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s Né : %(birth_date)s Décédé : %(death_date)s %(death_place)s."
+msgid ""
+"%(male_name)s Born: %(birth_date)s Died: %(death_date)s %(death_place)s."
+msgstr ""
+"%(male_name)s Né : %(birth_date)s Décédé : %(death_date)s %(death_place)s."
 
 #: ReportUtils.py:1582
 msgid "%(male_name)s Born: %(birth_date)s Died: %(death_date)s."
@@ -3208,8 +3231,10 @@ msgid "%(male_name)s Born: %(birth_date)s."
 msgstr "%(male_name)s Né : %(birth_date)s."
 
 #: ReportUtils.py:1599
-msgid "%(male_name)s Born: %(birth_place)s Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s Né : %(birth_place)s Décédé : %(death_date)s %(death_place)s."
+msgid ""
+"%(male_name)s Born: %(birth_place)s Died: %(death_date)s %(death_place)s."
+msgstr ""
+"%(male_name)s Né : %(birth_place)s Décédé : %(death_date)s %(death_place)s."
 
 #: ReportUtils.py:1606
 msgid "%(male_name)s Born: %(birth_place)s Died: %(death_date)s."
@@ -3248,13 +3273,15 @@ msgstr ""
 "s %(death_place)s."
 
 #: ReportUtils.py:1654
-msgid "%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s."
+msgid ""
+"%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s."
 msgstr ""
 "%(female_name)s Née : %(birth_date)s %(birth_place)s Décédée : %(death_date)"
 "s."
 
 #: ReportUtils.py:1662
-msgid "%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_place)s."
+msgid ""
+"%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_place)s."
 msgstr ""
 "%(female_name)s Née : %(birth_date)s %(birth_place)s Décédée : %(death_place)"
 "s."
@@ -3264,7 +3291,8 @@ msgid "%(female_name)s Born: %(birth_date)s %(birth_place)s."
 msgstr "%(female_name)s Née : %(birth_date)s %(birth_place)s."
 
 #: ReportUtils.py:1676
-msgid "%(female_name)s Born: %(birth_date)s Died: %(death_date)s %(death_place)s."
+msgid ""
+"%(female_name)s Born: %(birth_date)s Died: %(death_date)s %(death_place)s."
 msgstr ""
 "%(female_name)s Née : %(birth_date)s Décédée : %(death_date)s %(death_place)"
 "s."
@@ -3282,7 +3310,8 @@ msgid "%(female_name)s Born: %(birth_date)s."
 msgstr "%(female_name)s Née : %(birth_date)s."
 
 #: ReportUtils.py:1698
-msgid "%(female_name)s Born: %(birth_place)s Died: %(death_date)s %(death_place)s."
+msgid ""
+"%(female_name)s Born: %(birth_place)s Died: %(death_date)s %(death_place)s."
 msgstr ""
 "%(female_name)s Née : %(birth_place)s Décédée : %(death_date)s %(death_place)"
 "s."
@@ -3962,7 +3991,8 @@ msgstr "Numéro de sécurité sociale"
 
 #: const.py:490
 msgid "A legal or common-law relationship between a husband and wife"
-msgstr "Une relation légalisée par le droit coutumier entre un homme et une femme"
+msgstr ""
+"Une relation légalisée par le droit coutumier entre un homme et une femme"
 
 #: const.py:491
 msgid "No legal or common-law relationship between man and woman"
@@ -4607,7 +4637,8 @@ msgid "Adds a new person to the database and to a new relationship"
 msgstr "Ajouter un nouvel individu à la base et créer une nouvelle relation"
 
 #: gramps.glade:1574 gramps.glade:2745
-msgid "Selects an existing person from the database and adds to a new relationship"
+msgid ""
+"Selects an existing person from the database and adds to a new relationship"
 msgstr "Ajouter une personne existante et lui créer une nouvelle relation"
 
 #: gramps.glade:1601 gramps.glade:2772
@@ -4686,7 +4717,8 @@ msgstr "Ajouter un nouvel enfant à la base et à la famille en cours"
 msgid ""
 "Selects an existing person from the database and adds as a child to the "
 "current family"
-msgstr "Sélectionner un individu et l'ajouter comme enfant de la famille en cours"
+msgstr ""
+"Sélectionner un individu et l'ajouter comme enfant de la famille en cours"
 
 #: gramps.glade:2194 gramps.glade:2528
 msgid "Deletes the selected child from the selected family"
@@ -4866,7 +4898,8 @@ msgstr "Données"
 msgid ""
 "Select an existing media object from the database and place it in this "
 "gallery"
-msgstr "Choisir un media déjà existant dans la base et le placer dans la galerie"
+msgstr ""
+"Choisir un media déjà existant dans la base et le placer dans la galerie"
 
 #: gramps.glade:5461 gramps.glade:10513 gramps.glade:15610 gramps.glade:26016
 msgid "Edit the properties of the selected object"
@@ -5948,7 +5981,8 @@ msgstr "_Afficher au démarrage"
 
 #: gramps.glade:30068
 msgid "<span weight=\"bold\" size=\"larger\">Gramps' Tip of the Day</span>"
-msgstr "<span weight=\"bold\" size=\"larger\">L'astuce du jour de GRAMPS</span>"
+msgstr ""
+"<span weight=\"bold\" size=\"larger\">L'astuce du jour de GRAMPS</span>"
 
 #: gramps.glade:30101
 msgid "GRAMPS - Loading Database"
@@ -5956,7 +5990,8 @@ msgstr "GRAMPS - Chargement de la base de donnée"
 
 #: gramps.glade:30126
 msgid "<span size=\"larger\" weight=\"bold\">Loading database</span>"
-msgstr "<span size=\"larger\" weight=\"bold\">Chargement de la base de données</span>"
+msgstr ""
+"<span size=\"larger\" weight=\"bold\">Chargement de la base de données</span>"
 
 #: gramps.glade:30150
 msgid "GRAMPS is loading the database you selected. Please wait."
@@ -6336,7 +6371,8 @@ msgid "GRAMPS ID:"
 msgstr "_Identifiant GRAMPS :"
 
 #: mergedata.glade:1291
-msgid "Select the person that will provide the primary data for the merged person."
+msgid ""
+"Select the person that will provide the primary data for the merged person."
 msgstr ""
 "Sélectionner la personne dont les données seront utilisées en priorité pour "
 "la personne fusionnée."
@@ -6776,7 +6812,8 @@ msgid "Database Processing"
 msgstr "Traitement de la base de données"
 
 #: plugins/ChangeNames.py:203
-msgid "Searches the entire database and attempts to fix capitalization of the names."
+msgid ""
+"Searches the entire database and attempts to fix capitalization of the names."
 msgstr "Recherche dans toute la base pour tenter de réparer la casse des noms."
 
 #: plugins/ChangeTypes.py:89
@@ -6956,8 +6993,10 @@ msgid "Check and repair database"
 msgstr "Vérifier et réparer la base de données"
 
 #: plugins/Check.py:606
-msgid "Checks the database for integrity problems, fixing the problems that it can"
-msgstr "Vérifie l'intégrité de la base de données, corrigeant les problèmes éventuels"
+msgid ""
+"Checks the database for integrity problems, fixing the problems that it can"
+msgstr ""
+"Vérifie l'intégrité de la base de données, corrigeant les problèmes éventuels"
 
 #: plugins/CountAncestors.py:71
 msgid "Number of ancestors of \"%s\" by generation"
@@ -7679,7 +7718,8 @@ msgstr "Indiquer les relations autres que la naissance avec des pointillés"
 
 #: plugins/GraphViz.py:668
 msgid "Non-birth relationships will show up as dotted lines in the graph."
-msgstr "Les relations autres que la naissance seront en pointillé sur le graphique."
+msgstr ""
+"Les relations autres que la naissance seront en pointillé sur le graphique."
 
 #: plugins/GraphViz.py:671
 msgid "Show family nodes"
@@ -7687,7 +7727,8 @@ msgstr "Affiche les noeuds familiaux"
 
 #: plugins/GraphViz.py:675
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr "Les familles seront affichées en cercles, reliées aux parents et aux enfants."
+msgstr ""
+"Les familles seront affichées en cercles, reliées aux parents et aux enfants."
 
 #: plugins/GraphViz.py:687 plugins/GraphViz.py:690 plugins/GraphViz.py:702
 #: plugins/GraphViz.py:709
@@ -7979,8 +8020,10 @@ msgid "Partner"
 msgstr "Partenaire"
 
 #: plugins/NavWebPage.py:831
-msgid "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; at &nbsp&nbsp; %(place)s"
-msgstr "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; à &nbsp&nbsp; %(place)s"
+msgid ""
+"%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; at &nbsp&nbsp; %(place)s"
+msgstr ""
+"%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; à &nbsp&nbsp; %(place)s"
 
 #: plugins/NavWebPage.py:833
 msgid "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp;"
@@ -8444,7 +8487,8 @@ msgstr ""
 
 #: plugins/StatisticsChart.py:529
 msgid "Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s"
-msgstr "Personnes nées entre %(year_from)04d et %(year_to)04d : %(chart_title)s"
+msgstr ""
+"Personnes nées entre %(year_from)04d et %(year_to)04d : %(chart_title)s"
 
 #: plugins/StatisticsChart.py:803
 msgid "The style used for the items and values."
@@ -8480,7 +8524,8 @@ msgstr "Personnes nées entre"
 msgid ""
 "Check this if you want people who have no birth date or year to be accounted "
 "also in the statistics."
-msgstr "Inclure les personnes sans date ni année de naissance dans les statistiques."
+msgstr ""
+"Inclure les personnes sans date ni année de naissance dans les statistiques."
 
 #: plugins/StatisticsChart.py:883
 msgid "Include people without birth years"
@@ -8495,7 +8540,8 @@ msgid "Genders included"
 msgstr "Sexes choisis"
 
 #: plugins/StatisticsChart.py:899
-msgid "With fewer items pie chart and legend will be used instead of a bar chart."
+msgid ""
+"With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
 "S'il y a moins d'éléments que spécifié un diagramme en camembert avec "
 "légende sera généré à la place d'un diagramme en barres."
@@ -8664,7 +8710,8 @@ msgid "Database Verify"
 msgstr "Vérification de la base de données"
 
 #: plugins/Verify.py:180
-msgid "Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
+msgid ""
+"Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
 msgstr ""
 "Baptisé avant la naissance : %(male_name)s né %(byear)d, baptisé %(bapyear)"
 "d.\n"
@@ -8679,27 +8726,32 @@ msgstr ""
 
 #: plugins/Verify.py:187
 msgid "Baptized late: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
-msgstr "Baptisé tardivement : %(male_name)s né %(byear)d, baptisé %(bapyear)d.\n"
+msgstr ""
+"Baptisé tardivement : %(male_name)s né %(byear)d, baptisé %(bapyear)d.\n"
 
 #: plugins/Verify.py:190
 msgid "Baptized late: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n"
-msgstr "Baptisée tardivement : %(female_name)s née %(byear)d, baptisée %(bapyear)d.\n"
+msgstr ""
+"Baptisée tardivement : %(female_name)s née %(byear)d, baptisée %(bapyear)d.\n"
 
 #: plugins/Verify.py:195
-msgid "Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
+msgid ""
+"Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
 msgstr ""
 "Enterré avant la mort : %(male_name)s décédé %(dyear)d, enterré %(buryear)"
 "d.\n"
 
 #: plugins/Verify.py:198
-msgid "Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
+msgid ""
+"Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
 msgstr ""
 "Enterrée avant la mort : %(female_name)s décédée %(dyear)d, enterrée %"
 "(buryear)d.\n"
 
 #: plugins/Verify.py:202
 msgid "Buried late: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr "Enterré tardivement : %(male_name)s décédé %(dyear)d, enterré %(buryear)d.\n"
+msgstr ""
+"Enterré tardivement : %(male_name)s décédé %(dyear)d, enterré %(buryear)d.\n"
 
 #: plugins/Verify.py:205
 msgid "Buried late: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
@@ -8709,7 +8761,8 @@ msgstr ""
 
 #: plugins/Verify.py:209
 msgid "Died before birth: %(male_name)s born %(byear)d, died %(dyear)d.\n"
-msgstr "Mort avant la naissance : %(male_name)s né %(byear)d, décédé %(dyear)d.\n"
+msgstr ""
+"Mort avant la naissance : %(male_name)s né %(byear)d, décédé %(dyear)d.\n"
 
 #: plugins/Verify.py:212
 msgid "Died before birth: %(female_name)s born %(byear)d, died %(dyear)d.\n"
@@ -8718,25 +8771,29 @@ msgstr ""
 "d.\n"
 
 #: plugins/Verify.py:216
-msgid "Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
+msgid ""
+"Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
 msgstr ""
 "Décédé avant le baptême : %(male_name)s baptisé %(bapyear)d, décédé %(dyear)"
 "d.\n"
 
 #: plugins/Verify.py:219
-msgid "Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)d.\n"
+msgid ""
+"Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)d.\n"
 msgstr ""
 "Décédée avant le baptême : %(female_name)s baptisée %(bapyear)d, décédée %"
 "(dyear)d.\n"
 
 #: plugins/Verify.py:223
-msgid "Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
+msgid ""
+"Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
 msgstr ""
 "Enterré avant la naissance : %(male_name)s né %(byear)d, enterré %(buryear)"
 "d.\n"
 
 #: plugins/Verify.py:226
-msgid "Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n"
+msgid ""
+"Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n"
 msgstr ""
 "Enterrée avant la naissance : %(female_name)s née %(byear)d, enterrée %"
 "(buryear)d.\n"
@@ -8826,7 +8883,8 @@ msgid "Husband and wife with the same surname: %s in family %s, and %s.\n"
 msgstr "Mari et femme ayant le même nom : %s dans la famille %s, et %s.\n"
 
 #: plugins/Verify.py:322
-msgid "Large age difference between husband and wife: %s in family %s, and %s.\n"
+msgid ""
+"Large age difference between husband and wife: %s in family %s, and %s.\n"
 msgstr ""
 "Différence d'âge importante entre le mari et la femme : %s dans la famille %"
 "s, et %s.\n"
@@ -8848,19 +8906,25 @@ msgstr ""
 "(maryear)d à %(spouse)s.\n"
 
 #: plugins/Verify.py:362
-msgid "Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Jeune mariage : %(male_name)s marié à l'âge de %(marage)d ans à %(spouse)s.\n"
+msgid ""
+"Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr ""
+"Jeune mariage : %(male_name)s marié à l'âge de %(marage)d ans à %(spouse)s.\n"
 
 #: plugins/Verify.py:365
-msgid "Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Jeune mariage : %(female_name)s mariée à l'âge de %(marage)d à %(spouse)s.\n"
+msgid ""
+"Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr ""
+"Jeune mariage : %(female_name)s mariée à l'âge de %(marage)d à %(spouse)s.\n"
 
 #: plugins/Verify.py:369
 msgid "Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Vieux mariage : %(male_name)s marié(e) à l'âge de %(marage)d à %(spouse)s.\n"
+msgstr ""
+"Vieux mariage : %(male_name)s marié(e) à l'âge de %(marage)d à %(spouse)s.\n"
 
 #: plugins/Verify.py:372
-msgid "Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
+msgid ""
+"Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
 msgstr ""
 "Vieux mariage : %(female_name)s marié(e) à l'âge de %(marage)d à %(spouse)"
 "s.\n"
@@ -9326,7 +9390,8 @@ msgstr "_Nouveau type d'événement :"
 
 #: plugins/desbrowse.glade:126
 msgid "<i>Double-click on the row to edit personal information</i>"
-msgstr "<i>Double-cliquer sur la ligne pour éditer les informations personnelles</i>"
+msgstr ""
+"<i>Double-cliquer sur la ligne pour éditer les informations personnelles</i>"
 
 #: plugins/eval.glade:202
 msgid "<b>Evaluation Window</b>"
@@ -9354,7 +9419,8 @@ msgstr "Enregistrer les données"
 
 #: plugins/eventcmp.glade:118
 msgid "Select file to save OpenOffice.org spreadsheet"
-msgstr "Sélectionner une feuille de calcul OpenOffice.org pour sauver les résultats"
+msgstr ""
+"Sélectionner une feuille de calcul OpenOffice.org pour sauver les résultats"
 
 #: plugins/eventcmp.glade:416
 msgid ""
@@ -9579,4 +9645,3 @@ msgstr "<b>Critère retenu</b>"
 #: rule.glade:1186
 msgid "<b>Values</b>"
 msgstr "<b>Valeurs</b>"
-
