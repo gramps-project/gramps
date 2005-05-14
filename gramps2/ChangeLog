@@ -1,3 +1,7 @@
+2005-05-14  Alex Roitman  <shura@gramps-project.org>
+	* src/data/Makefile.am: Always install gramps.schemas and gramps.xml,
+	with or without packager mode.
+
 2005-05-14  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GenericFilter.py (IsSiblingOfFilterMatch): Match only sibling,
 	not the filterMatch; (HasEvent,HasFamilyEvent): Dont crash in filter
