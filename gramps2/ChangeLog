@@ -3,6 +3,13 @@
 	not the filterMatch; (HasEvent,HasFamilyEvent): Dont crash in filter
 	editor.
 
+	* src/GenericFilter.py (HasTextMatchingSubstringOf, HasTextMatchingRegexpOf):
+	Search media objects in full text search.
+	* src/RelLib.py: Add GRAMPS ID to get_text_data_list so this field is
+	usable in full text search; Dont crash if get_text_data_list contains
+	None values instead of empty strings.
+	* src/EditPerson.py: Dont crash with "note only" media object.
+
 2005-05-13  Don Allingham  <don@gramps-project.org>
 	* src/plugins/ScratchPad.py: fix GdkAtom index problem with pygtk2.4
 

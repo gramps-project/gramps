@@ -96,6 +96,8 @@ class BaseObject:
         # Run through its own items
         patern_upper = pattern.upper()
         for item in self.get_text_data_list():
+            if not item:
+                continue
             if case_sensitive:
                 if item.find(pattern) != -1:
                     return True
@@ -127,7 +129,7 @@ class BaseObject:
         else:
             pattern_obj = re.compile(pattern,re.IGNORECASE)
         for item in self.get_text_data_list():
-            if pattern_obj.match(item):
+            if item and pattern_obj.match(item):
                 return True
 
         # Run through child objects
@@ -1038,7 +1040,7 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.nickname]
+        return [self.nickname,self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -1768,6 +1770,15 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
             if self.lds_seal and self.lds_seal.place == old_handle:
                 self.lds_seal.place = new_handle
 
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.gramps_id]
+
     def get_text_data_child_list(self):
         """
         Returns the list of child objects that may carry textual data.
@@ -2119,7 +2130,7 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.description,self.name,self.cause,self.get_date()]
+        return [self.description,self.name,self.cause,self.get_date(),self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -2394,7 +2405,7 @@ class Place(PrimaryObject,SourceNote,MediaBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.long,self.lat,self.title]
+        return [self.long,self.lat,self.title,self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -2653,7 +2664,7 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.path,self.mime,self.desc,self.get_date()]
+        return [self.path,self.mime,self.desc,self.get_date(),self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -2757,7 +2768,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.title,self.author,self.pubinfo,self.abbrev]
+        return [self.title,self.author,self.pubinfo,self.abbrev,self.gramps_id]
 
     def get_text_data_child_list(self):
         """

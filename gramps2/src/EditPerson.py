@@ -1971,7 +1971,8 @@ class EditPerson:
             object_handle = ph.get_reference_handle()
             obj = self.db.get_object_from_handle(object_handle)
             if self.load_obj != obj.get_path():
-                if obj.get_mime_type()[0:5] == "image":
+                mime_type = obj.get_mime_type()
+                if mime_type and mime_type.startswith("image"):
                     self.load_photo(obj.get_path())
                 else:
                     self.load_photo(None)

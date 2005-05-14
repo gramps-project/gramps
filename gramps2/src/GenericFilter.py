@@ -1894,6 +1894,7 @@ class HasTextMatchingSubstringOf(Rule):
         self.source_map = {}
         self.family_map = {}
         self.place_map = {}
+        self.media_map = {}
         try:
             if int(self.list[1]):
                 self.case_sensitive = True
@@ -1916,6 +1917,7 @@ class HasTextMatchingSubstringOf(Rule):
         self.source_map = {}
         self.family_map = {}
         self.place_map = {}
+        self.media_map = {}
 
     def name(self):
         return 'Has text matching substring of'
@@ -1938,6 +1940,9 @@ class HasTextMatchingSubstringOf(Rule):
         for family_handle in p.get_family_handle_list(): # match families
             if self.search_family(family_handle):
                 return 1
+        for media_ref in p.get_media_list(): # match Media object
+            if self.search_media(media_ref.get_reference_handle()):
+                return 1
         return 0
     
     def search_family(self,family_handle):
@@ -1954,6 +1959,9 @@ class HasTextMatchingSubstringOf(Rule):
                     if self.search_event(event_handle):
                         match = 1
                         break
+                for media_ref in family.get_media_list(): # match Media object
+                    if self.search_media(media_ref.get_reference_handle()):
+                        return 1
             self.family_map[family_handle] = match
         return self.family_map[family_handle]
 
@@ -1971,6 +1979,9 @@ class HasTextMatchingSubstringOf(Rule):
                 if place_handle:
                     if self.search_place(place_handle):
                         match = 1
+                for media_ref in event.get_media_list(): # match Media object
+                    if self.search_media(media_ref.get_reference_handle()):
+                        return 1
             self.event_map[event_handle] = match
         return self.event_map[event_handle]
 
@@ -1982,6 +1993,15 @@ class HasTextMatchingSubstringOf(Rule):
             place = self.db.get_place_from_handle(place_handle)
             self.place_map[place_handle] = self.match_object(place)
         return self.place_map[place_handle]
+
+    def search_media(self,media_handle):
+        if not media_handle:
+            return 0
+        # search inside the place and cache the result
+        if not media_handle in self.media_map:
+            media = self.db.get_object_from_handle(media_handle)
+            self.media_map[media_handle] = self.match_object(media)
+        return self.media_map[media_handle]
 
     def cache_sources(self):
         # search all sources and match all referents of a matching source
@@ -1999,6 +2019,8 @@ class HasTextMatchingSubstringOf(Rule):
                     self.event_map[handle] = 1
                 for handle in place_list:
                     self.place_map[handle] = 1
+                for handle in media_list:
+                    self.media_map[handle] = 1
 
     def match_object(self,obj):
         if not obj:
@@ -2022,6 +2044,7 @@ class HasTextMatchingRegexpOf(HasTextMatchingSubstringOf):
         self.source_map = {}
         self.family_map = {}
         self.place_map = {}
+        self.media_map = {}
         self.case_sensitive = False
         self.regexp_match = True
         self.cache_sources()
