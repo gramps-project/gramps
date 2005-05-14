@@ -650,7 +650,8 @@ class IsSiblingOfFilterMatch(Rule):
         fam = self.db.get_family_from_handle(fam_id)
         if fam:
             for child_handle in fam.get_child_handle_list():
-                self.map[child_handle] = 1
+                if child_handle != p_id:
+                    self.map[child_handle] = 1
 
 #-------------------------------------------------------------------------
 #
@@ -1074,12 +1075,12 @@ class HasEvent(Rule):
 
     labels = [ _('Personal event:'), _('Date:'), _('Place:'), _('Description:') ]
     
-    def __init__(self,list):
-        Rule.__init__(self,list)
-        if self.list and self.list[1]:
-            self.date = DateHandler.parser.parse(self.list[1])
-        else:
-            self.date = None
+    def prepare(self,list):
+        self.date = None
+        try:
+            if self.list and self.list[1]:
+                self.date = DateHandler.parser.parse(self.list[1])
+        except: pass
 
     def name(self):
         return 'Has the personal event'
@@ -1127,12 +1128,12 @@ class HasFamilyEvent(Rule):
 
     labels = [ _('Family event:'), _('Date:'), _('Place:'), _('Description:') ]
     
-    def __init__(self,list):
-        Rule.__init__(self,list)
-        if self.list and self.list[1]:
-            self.date = DateHandler.parser.parse(self.list[1])
-        else:
-            self.date = None
+    def prepare(self,list):
+        self.date = None
+        try:
+            if self.list and self.list[1]:
+                self.date = DateHandler.parser.parse(self.list[1])
+        except: pass
 
     def name(self):
         return 'Has the family event'
