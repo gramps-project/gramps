@@ -573,7 +573,7 @@ class GedcomParser:
                 title = matches[2] + self.parse_continue_data(level+1)
                 title = title.replace('\n',' ')
                 self.source.set_title(title)
-            elif matches[1] == "TAXT" or matches[1] == "PERI": # EasyTree Sierra On-Line
+            elif matches[1] in ["TAXT","PERI"]: # EasyTree Sierra On-Line
                 if self.source.get_title() == "":
                     title = matches[2] + self.parse_continue_data(level+1)
                     title = title.replace('\n',' ')
@@ -603,7 +603,7 @@ class GedcomParser:
                     note = "%s %s" % (matches[1],matches[2])
 
     def parse_record(self):
-        while 1:
+        while True:
             matches = self.get_next()
             if matches[2] == "FAM":
                 if self.fam_count % UPDATE == 0 and self.window:
@@ -914,9 +914,9 @@ class GedcomParser:
     def parse_individual(self):
         name_cnt = 0
         note = ""
-        while 1:
+        while True:
             matches = self.get_next()
-
+            
             if int(matches[0]) < 1:
                 self.backup()
                 return
@@ -1074,7 +1074,7 @@ class GedcomParser:
                 attr.set_type(matches[1])
                 attr.set_value(matches[2])
                 self.person.add_attribute(attr)
-            elif matches[1] in ["CHAN","ASSO","ANCI","DESI","RIN"]:
+            elif matches[1] in ["CHAN","ASSO","ANCI","DESI","RIN","_TODO"]:
                 self.ignore_sub_junk(2)
             else:
                 event = RelLib.Event()
@@ -1150,9 +1150,12 @@ class GedcomParser:
         filename = ""
         title = "no title"
         note = ""
-        while 1:
+        while True:
             matches = self.get_next()
-            if matches[1] == "FORM":
+            if int(matches[0]) < level:
+                self.backup()
+                break
+            elif matches[1] == "FORM":
                 form = matches[2].lower()
             elif matches[1] == "TITL":
                 title = matches[2]
@@ -1162,9 +1165,6 @@ class GedcomParser:
                 note = matches[2] + self.parse_continue_data(level+1)
             elif matches[1][0] == "_":
                 self.ignore_sub_junk(level+1)
-            elif int(matches[0]) < level:
-                self.backup()
-                break
             else:
                 self.barf(level+1)
 
@@ -1357,6 +1357,8 @@ class GedcomParser:
                     event.set_name(name)
                 else:
                     event.set_description(matches[2])
+            elif matches[1] == "_PRIV" and  matches[2] == "Y":
+                event.set_privacy(True)
             elif matches[1] == "DATE":
                 event.set_date_object(self.extract_date(matches[2]))
             elif matches[1] == "SOUR":
@@ -1585,10 +1587,13 @@ class GedcomParser:
                 return
             elif matches[1] == "PAGE":
                 source.set_page(matches[2] + self.parse_continue_data(level+1))
+            elif matches[1] == "DATE":
+                source.set_date_object(self.extract_date(matches[2]))
             elif matches[1] == "DATA":
                 date,text = self.parse_source_data(level+1)
-                d = self.dp.parse(date)
-                source.set_date_object(d)
+                if date:
+                    d = self.dp.parse(date)
+                    source.set_date_object(d)
                 source.set_text(text)
             elif matches[1] in ["OBJE","REFN","TEXT"]:
                 self.ignore_sub_junk(level+1)

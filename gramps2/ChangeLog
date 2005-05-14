@@ -1,3 +1,7 @@
+2005-05-14  Don Allingham  <don@gramps-project.org>
+	* src/ReadGedcom.py: add a few more items to parse from Legacy
+	generated GEDCOM files
+
 2005-05-14  Alex Roitman  <shura@gramps-project.org>
 	* src/data/Makefile.am: Always install gramps.schemas and gramps.xml,
 	with or without packager mode.
