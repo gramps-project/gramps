@@ -571,7 +571,7 @@ class EditPerson:
         if progname and len(progname) > 1:
             Utils.add_menuitem(menu,_("Open in %s") % progname[1],
                                photo,self.popup_view_photo)
-        if mtype[0:5] == "image":
+        if mtype and mtype.startswith("image"):
             Utils.add_menuitem(menu,_("Edit with the GIMP"),
                                photo,self.popup_edit_photo)
         Utils.add_menuitem(menu,_("Edit Object Properties"),photo,

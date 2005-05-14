@@ -154,7 +154,7 @@ class ImageSelect:
         
         if os.path.isfile(filename):
             mtype = GrampsMime.get_type(filename)
-            if mtype[0:5] == "image":
+            if mtype and mtype.startswith("image"):
                 image = RelImage.scale_image(filename,const.thumbScale)
                 self.image.set_from_pixbuf(image)
             else:
@@ -381,7 +381,7 @@ class Gallery(ImageSelect):
             try:
                 media_obj = self.db.get_object_from_handle(oid)
                 mtype = media_obj.get_mime_type()
-                if mtype[0:5] == "image":
+                if mtype and mtype.startswith("image"):
                     image = ImgManip.get_thumbnail_image(media_obj.get_path())
                 else:
                     image = Utils.find_mime_type_pixbuf(mtype)
@@ -614,7 +614,7 @@ class Gallery(ImageSelect):
         if progname and len(progname) > 1:
             Utils.add_menuitem(menu,_("Open in %s") % progname[1],
                                photo,self.popup_view_photo)
-        if mtype[0:5] == "image":
+        if mtype and mtype.startswith("image"):
             Utils.add_menuitem(menu,_("Edit with the GIMP"),
                                photo,self.popup_edit_photo)
         Utils.add_menuitem(menu,_("Edit Object Properties"),photo,

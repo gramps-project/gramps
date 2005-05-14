@@ -8,7 +8,11 @@
 	* src/RelLib.py: Add GRAMPS ID to get_text_data_list so this field is
 	usable in full text search; Dont crash if get_text_data_list contains
 	None values instead of empty strings.
-	* src/EditPerson.py: Dont crash with "note only" media object.
+	
+	* src/EditPerson.py, src/AddMedia.py, src/ImageSelect.py, src/ReportUtils.py,
+	src/SelectObject.py, src/plugins/Ancestors.py, src/plugins/IndivComplete.py,
+	src/plugins/IndivSummary.py, src/plugins/WebPage.py, src/plugins/WriteCD.py:
+	Dont crash with "note only" media object.
 
 2005-05-13  Don Allingham  <don@gramps-project.org>
 	* src/plugins/ScratchPad.py: fix GdkAtom index problem with pygtk2.4

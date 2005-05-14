@@ -370,7 +370,8 @@ class ComprehensiveAncestorsReport (Report.Report):
                             for media_ref in partner.get_media_list ()[:1]:
                                 object_handle = media_ref.get_reference_handle()
                                 mobject = self.database.get_object_from_handle(object_handle)
-                                if mobject.get_mime_type()[0:5] == "image":
+                                mime_type = mobject.get_mime_type()
+                                if mime_type and mime_type.startswith("image"):
                                     spouse.append ((self.doc.add_media_object,
                                                     [mobject.get_path (),
                                                      'right', 2, 2]))
@@ -403,7 +404,8 @@ class ComprehensiveAncestorsReport (Report.Report):
                     for media_ref in photos[:1]:
                         object_handle = media_ref.get_reference_handle()
                         mobject = self.database.get_object_from_handle(object_handle)
-                        if mobject.get_mime_type()[0:5] == "image":
+                        mime_type = mobject.get_mime_type()
+                        if mime_type and mime_type.startswith("image"):
                             ret.append ((self.doc.add_media_object,
                                          [mobject.get_path (), 'left', 2, 2]))
                         ret.append ((self.doc.end_cell, []))
