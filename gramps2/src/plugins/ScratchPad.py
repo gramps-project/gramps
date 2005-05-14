@@ -680,7 +680,7 @@ class ScratchPadListView:
             return
 
         # Just select the first match.
-        wrapper_class = self._target_type_to_wrapper_class_map[possible_wrappers[0]]
+        wrapper_class = self._target_type_to_wrapper_class_map[str(possible_wrappers[0])]
 
         o = wrapper_class(self._gramps_model,sel_data)
 
