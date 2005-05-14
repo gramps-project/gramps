@@ -9,6 +9,9 @@
 	* src/TipOfDay.py (TipOfDay.__init__): Use translated tips.
 	* src/po/template.po: new translatable strings.
 
+	* src/DateEdit.py (parse_and_check): Display date as parsed on
+        focus-out from the entry fields.
+
 2005-05-13  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/SelectChild.py (on_save_child_clicked) Commit new parent family
 	of child properly; correct handle/object mismatch; exec parent callback
