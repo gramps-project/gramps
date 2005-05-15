@@ -82,9 +82,32 @@ class PlaceView:
             
         self.list.set_model(self.model)
         self.topWindow = self.glade.get_widget("gramps")
-
+        self.sort_col = 0
+        
         self.columns = []
         self.change_db(db)
+
+    def column_clicked(self,obj,data):
+        if self.sort_col != data:
+            order = gtk.SORT_ASCENDING
+        else:
+            if (self.columns[data].get_sort_order() == gtk.SORT_DESCENDING
+                or self.columns[data].get_sort_indicator() == False):
+                order = gtk.SORT_ASCENDING
+            else:
+                order = gtk.SORT_DESCENDING
+        self.sort_col = data
+        handle = self.first_selected()
+        self.model = DisplayModels.PlaceModel(self.parent.db,
+                                              self.sort_col,order)
+        self.list.set_model(self.model)
+        if handle:
+            path = self.model.on_get_path(handle)
+            self.selection.select_path(path)
+            self.list.scroll_to_cell(path,None,1,0.5,0)
+        for i in range(0,len(self.columns)):
+            self.columns[i].set_sort_indicator(i==data)
+        self.columns[data].set_sort_order(order)
 
     def build_columns(self):
         for column in self.columns:
@@ -92,8 +115,9 @@ class PlaceView:
             
         column = gtk.TreeViewColumn(_('Place Name'), self.renderer,text=0)
         column.set_resizable(True)
-
         column.set_min_width(225)
+        column.connect('clicked',self.column_clicked,0)
+        column.set_clickable(True)
         self.list.append_column(column)
         self.columns = [column]
 
@@ -104,6 +128,8 @@ class PlaceView:
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
             column.set_resizable(True)
             column.set_min_width(75)
+            column.set_clickable(True)
+            column.connect('clicked',self.column_clicked,pair[1])
             self.columns.append(column)
             self.list.append_column(column)
 
@@ -235,6 +261,14 @@ class PlaceView:
         for place_handle in mlist:
             place = self.parent.db.get_place_from_handle(place_handle)
             EditPlace.EditPlace(self.parent, place,self.topWindow)
+
+    def first_selected(self):
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
+        if mlist:
+            return mlist[0]
+        else:
+            return None
 
     def blist(self,store,path,iter,list):
         handle = store.get_value(iter,_HANDLE_COL)
