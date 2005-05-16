@@ -612,8 +612,7 @@ class IsChildOfFilterMatch(Rule):
 #
 #-------------------------------------------------------------------------
 class IsSiblingOfFilterMatch(Rule):
-    """Rule that checks for a person that is a sibling
-    of someone matched by a filter"""
+    """Rule that checks for siblings of someone matched by a filter"""
 
     labels = [ _('Filter name:') ]
 
@@ -634,7 +633,7 @@ class IsSiblingOfFilterMatch(Rule):
         return 'Is a sibling of filter match'
 
     def description(self):
-        return _("Matches the person that is a sibling of someone matched by a filter")
+        return _("Matches siblings of someone matched by a filter")
 
     def category(self):
         return _('Family filters')
@@ -1678,10 +1677,10 @@ class NoBirthdate(Rule):
     labels = []
 
     def name(self):
-        return 'People without a birth date'
+        return 'People without a known birth date'
 
     def description(self):
-        return _("Matches persons without a birthdate")
+        return _("Matches persons without a known birthdate")
 
     def category(self):
         return _('General filters')

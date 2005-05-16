@@ -7,6 +7,9 @@
 2005-05-16  Alex Roitman  <shura@gramps-project.org>
 	* src/ansel_utf8.py: Convert to Unix end-of-line.
 
+	* src/plugins/StatisticsChart.py: Minor stylistic corrections.
+	* src/GenericFilter.py: Minor stylistic corrections.
+
 2005-05-16  Don Allingham  <don@gramps-project.org>
 	* src/FamilyView.py: fix reordering of children in family view
 
