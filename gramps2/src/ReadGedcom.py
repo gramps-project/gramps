@@ -528,9 +528,9 @@ class GedcomParser:
             
     def parse_trailer(self):
         matches = self.get_next()
-        if matches[1] != "TRLR":
+        if matches[0] >= 0 and matches[1] != "TRLR":
             self.barf(0)
-            self.f.close()
+        self.f.close()
         
     def parse_header(self):
         self.parse_header_head()
@@ -654,6 +654,12 @@ class GedcomParser:
                 self.ignore_sub_junk(1)
             elif matches[2] == "SOUR":
                 self.parse_source(matches[1],1)
+            elif matches[2].startswith("SOUR "):
+                # A source formatted in a single line, for example:
+                # 0 @S62@ SOUR This is the title of the source
+                source = self.find_or_create_source(matches[1][1:-1])
+                source.set_title( matches[2][5:])
+                self.db.commit_source(source, self.trans)
             elif matches[2][0:4] == "NOTE":
                 if self.nmap.has_key(matches[1]):
                     noteobj = self.nmap[matches[1]]
@@ -668,7 +674,7 @@ class GedcomParser:
                 # TODO: Add support for extended Locations.
                 # See: http://en.wiki.genealogy.net/index.php/Gedcom_5.5EL
                 self.ignore_sub_junk(1)
-            elif matches[0] < 1 or matches[1] == "TRLR":
+            elif matches[0] < 0 or matches[1] == "TRLR":
                 self.backup()
                 return
             else:
@@ -1296,8 +1302,14 @@ class GedcomParser:
                 address.set_postal_code(matches[2])
             elif matches[1] == "CTRY":
                 address.set_country(matches[2])
+            elif matches[1] == "PHON":
+                address.set_phone(matches[2])
+            elif matches[1] == "NOTE":
+                note = self.parse_note(matches,address,level+1,note)
             elif matches[1] == "_LOC":
                 pass    # ignore unsupported extended location syntax
+            elif matches[1] == "_NAME":
+                pass    # ignore
             else:
                 self.barf(level+1)
 

@@ -1,3 +1,9 @@
+2005-05-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/ReadGedcom.py (parse_trailer): Catch EOF to warn about premature
+	EOF only once; Always close file; (parse_record): Properly catch
+	premature EOF instead of unknown level 0 records; Support single line
+	SOUR records; (parse_address): Support PHON and NOTE, ignore _NAME.
+	
 2005-05-16  Alex Roitman  <shura@gramps-project.org>
 	* src/ansel_utf8.py: Convert to Unix end-of-line.
 
