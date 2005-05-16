@@ -90,6 +90,11 @@ class ChooseParents:
         self.parent_selected = 0
         self.renderer = gtk.CellRendererText()
 
+        db.connect('person-add', self.redraw)
+        db.connect('person-update', self.redraw)
+        db.connect('person-delete', self.redraw)
+        db.connect('person-rebuild', self.redraw2)
+
         # set default filters
         self.all_males_filter = GenericFilter.GenericFilter()
         self.all_males_filter.add_rule(GenericFilter.IsMale([]))
@@ -277,6 +282,14 @@ class ChooseParents:
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-quick')
+
+    def redraw(self,handle_list):
+        self.father_model.rebuild_data()
+        self.mother_model.rebuild_data()
+
+    def redraw2(self):
+        self.father_model.rebuild_data()
+        self.mother_model.rebuild_data()
 
     def redrawf(self):
         """Redraws the potential father list"""
@@ -505,14 +518,12 @@ class ChooseParents:
         if self.type == RelLib.Family.CIVIL_UNION:
             self.parent_relation_changed(self.prel)
         elif person.get_gender() == RelLib.Person.MALE:
-            self.redrawf()
             path = self.father_model.on_get_path(handle)
             top_path = self.father_model.on_get_path(name)
             self.father_list.expand_row(top_path,0)
             self.father_selection.select_path(path)
             self.father_list.scroll_to_cell(path,None,1,0.5,0)
         else:
-            self.redrawm()
             path = self.mother_model.on_get_path(handle)
             top_path = self.mother_model.on_get_path(name)
             self.mother_list.expand_row(top_path,0)
