@@ -14,6 +14,10 @@
 	* src/plugins/StatisticsChart.py: Minor stylistic corrections.
 	* src/GenericFilter.py: Minor stylistic corrections.
 
+	* src/TarFile.py: Indent with spaces, remove string module.
+	* src/RelImage.py: Remove unused string module.
+	* src/SubstKeywords.py: Remove string module.
+
 2005-05-16  Don Allingham  <don@gramps-project.org>
 	* src/FamilyView.py: fix reordering of children in family view
 

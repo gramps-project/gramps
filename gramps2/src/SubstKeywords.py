@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,10 +37,9 @@ __version__ = "$Revision$"
 
 #------------------------------------------------------------------------
 #
-# python classes
+# Gramps modules
 #
 #------------------------------------------------------------------------
-import string
 
 import NameDisplay
 
@@ -126,15 +125,15 @@ class SubstKeywords:
     def replace(self,line):
         """Returns a new line of text with the substitutions performed."""
         
-        line = string.replace(line,"$n",self.n)
-        line = string.replace(line,"$N",self.N)
-        line = string.replace(line,"$b",self.b)
-        line = string.replace(line,"$B",self.B)
-        line = string.replace(line,"$d",self.d)
-        line = string.replace(line,"$D",self.D)
-        line = string.replace(line,"$i",self.i)
-        line = string.replace(line,"$S",self.S)
-        line = string.replace(line,"$s",self.s)
-        line = string.replace(line,"$m",self.m)
-        line = string.replace(line,"$M",self.M)
-        return string.replace(line,"$$",'$')
+        line = line.replace("$n",self.n)
+        line = line.replace("$N",self.N)
+        line = line.replace("$b",self.b)
+        line = line.replace("$B",self.B)
+        line = line.replace("$d",self.d)
+        line = line.replace("$D",self.D)
+        line = line.replace("$i",self.i)
+        line = line.replace("$S",self.S)
+        line = line.replace("$s",self.s)
+        line = line.replace("$m",self.m)
+        line = line.replace("$M",self.M)
+        return line.replace("$$",'$')
