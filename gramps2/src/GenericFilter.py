@@ -156,18 +156,19 @@ class Everyone(Rule):
 #
 #-------------------------------------------------------------------------
 class Disconnected(Rule):
-    """Matches disconnected individuals"""
+    """Matches disconnected people"""
 
     labels = []
     
     def name(self):
-        return 'Disconnected individuals'
+        return 'Disconnected people'
 
     def category(self): 
         return _('General filters')
     
     def description(self):
-        return _('Matches individuals that have no relationships')
+        return _('Matches people that have no family relationships '
+                    'to any other person in the database')
 
     def apply(self,db,p_id):
         person = db.get_person_from_handle(p_id)
@@ -196,14 +197,14 @@ class RelationshipPathBetween(Rule):
         self.map = {}
 
     def name(self):
-        return "Relationship path between two people"
+        return "Relationship path between <persons>"
 
     def category(self): 
         return _('Relationship filters')
 
     def description(self):
-        return _("Matches the ancestors of two people back to a common ancestor, producing "
-                 "the relationship path between two people.")
+        return _("Matches the ancestors of two persons back to a common ancestor, "
+                    "producing the relationship path between two persons.")
 
     def desc_list(self, p_id, map, first):
         if not first:
@@ -285,10 +286,10 @@ class HasIdOf(Rule):
     labels = [ _('ID:') ]
     
     def name(self):
-        return 'Has the Id'
+        return 'People with Id:'
 
     def description(self):
-        return _("Matches the person with a specified GRAMPS ID")
+        return _("Matches people with a specified GRAMPS ID")
 
     def category(self):
         return _('General filters')
@@ -307,7 +308,7 @@ class IsDefaultPerson(Rule):
     labels = []
     
     def name(self):
-        return 'Is default person'
+        return 'Default person'
 
     def description(self):
         return _("Matches the default person")
@@ -332,7 +333,7 @@ class IsBookmarked(Rule):
     labels = []
     
     def name(self):
-        return 'Is bookmarked person'
+        return 'Bookmarked people'
 
     def description(self):
         return _("Matches the people on the bookmark list")
@@ -356,7 +357,7 @@ class HasCompleteRecord(Rule):
     labels = []
     
     def name(self):
-        return 'Has complete record'
+        return 'People with complete records'
 
     def category(self): 
         return _('General filters')
@@ -378,7 +379,7 @@ class IsFemale(Rule):
     labels = []
     
     def name(self):
-        return 'Is a female'
+        return 'Females'
 
     def category(self): 
         return _('General filters')
@@ -388,6 +389,29 @@ class IsFemale(Rule):
 
     def apply(self,db,p_id):
         return db.get_person_from_handle(p_id).get_gender() == RelLib.Person.FEMALE
+
+#-------------------------------------------------------------------------
+#
+# HasUnknownGender
+#
+#-------------------------------------------------------------------------
+class HasUnknownGender(Rule):
+    """Rule that checks for a person that has unknown gender"""
+
+    labels = []
+    
+    def name(self):
+        return 'People with unknown gender'
+
+    def category(self): 
+        return _('General filters')
+    
+    def description(self):
+        return _('Matches all people with unknown gender')
+
+    def apply(self,db,p_id):
+        return db.get_person_from_handle(p_id).get_gender() == RelLib.Person.UNKNOWN
+
 
 #-------------------------------------------------------------------------
 #
@@ -419,7 +443,7 @@ class IsDescendantOf(Rule):
         self.map = {}
 
     def name(self):
-        return 'Is a descendant of'
+        return 'Descendants of <person>'
 
     def category(self): 
         return _('Descendant filters')
@@ -458,13 +482,13 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
         IsDescendantOf.__init__(self,list)
 
     def name(self):
-        return 'Is a descendant of filter match'
+        return 'Descendants of <filter> match'
 
     def category(self): 
         return _('Descendant filters')
 
     def description(self):
-        return _("Matches people that are descendants of someone matched by a filter")
+        return _("Matches people that are descendants of anybody matched by a filter")
     
     def apply(self,db,p_id):
         return self.map.has_key(p_id)
@@ -490,7 +514,7 @@ class IsLessThanNthGenerationDescendantOf(Rule):
         self.map = {}
 
     def name(self):
-        return 'Is a descendant of person not more than N generations away'
+        return 'Descendants of <person> not more than <N> generations away'
 
     def category(self): 
         return _('Descendant filters')
@@ -537,7 +561,7 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
         self.map = {}
 
     def name(self):
-        return 'Is a descendant of person at least N generations away'
+        return 'Descendants of <person> at least <N> generations away'
 
     def description(self):
         return _("Matches people that are descendants of a specified "
@@ -586,10 +610,10 @@ class IsChildOfFilterMatch(Rule):
         self.map = {}
 
     def name(self):
-        return 'Is a child of filter match'
+        return 'Children of <filter> match'
 
     def description(self):
-        return _("Matches the person that is a child of someone matched by a filter")
+        return _("Matches children of anybody matched by a filter")
 
     def category(self):
         return _('Family filters')
@@ -630,10 +654,10 @@ class IsSiblingOfFilterMatch(Rule):
         self.map = {}
 
     def name(self):
-        return 'Is a sibling of filter match'
+        return 'Siblings of <filter> match'
 
     def description(self):
-        return _("Matches siblings of someone matched by a filter")
+        return _("Matches siblings of anybody matched by a filter")
 
     def category(self):
         return _('Family filters')
@@ -664,7 +688,7 @@ class IsDescendantFamilyOf(Rule):
     labels = [ _('ID:') ]
     
     def name(self):
-        return "Is a descendant family member of"
+        return "Descendant family members of <person>"
 
     def category(self): 
         return _('Descendant filters')
@@ -731,7 +755,7 @@ class IsAncestorOf(Rule):
         self.map = {}
     
     def name(self):
-        return 'Is an ancestor of'
+        return 'Ancestors of <person>'
 
     def description(self):
         return _("Matches people that are ancestors of a specified person")
@@ -796,11 +820,11 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         self.map = {}
 
     def name(self):
-        return 'Is an ancestor of filter match'
+        return 'Ancestors of <filter> match'
 
     def description(self):
         return _("Matches people that are ancestors "
-            "of someone matched by a filter")
+            "of anybody matched by a filter")
     
     def category(self):
         return _("Ancestral filters")
@@ -829,7 +853,7 @@ class IsLessThanNthGenerationAncestorOf(Rule):
         self.map = {}
     
     def name(self):
-        return 'Is an ancestor of person not more than N generations away'
+        return 'Ancestors of <person> not more than <N> generations away'
 
     def description(self):
         return _("Matches people that are ancestors "
@@ -884,7 +908,7 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
         self.map = []
     
     def name(self):
-        return 'Is an ancestor of person at least N generations away'
+        return 'Ancestors of <person> at least <N> generations away'
 
     def description(self):
         return _("Matches people that are ancestors "
@@ -941,10 +965,10 @@ class IsParentOfFilterMatch(Rule):
         self.map = {}
 
     def name(self):
-        return 'Is a parent of filter match'
+        return 'Parents of <filter> match'
 
     def description(self):
-        return _("Matches the person that is a parent of someone matched by a filter")
+        return _("Matches parents of anybody matched by a filter")
 
     def category(self):
         return _('Family filters')
@@ -971,7 +995,7 @@ class HasCommonAncestorWith(Rule):
     labels = [ _('ID:') ]
 
     def name(self):
-        return 'Has a common ancestor with'
+        return 'People with a common ancestor with <person>'
 
     def description(self):
         return _("Matches people that have a common ancestor "
@@ -1020,11 +1044,11 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
     labels = [ _('Filter name:') ]
 
     def name(self):
-        return 'Has a common ancestor with filter match'
+        return 'People with a common ancestor with <filter> match'
 
     def description(self):
         return _("Matches people that have a common ancestor "
-            "with someone matched by a filter")
+            "with anybody matched by a filter")
     
     def category(self):
         return _("Ancestral filters")
@@ -1053,7 +1077,7 @@ class IsMale(Rule):
     labels = []
     
     def name(self):
-        return 'Is a male'
+        return 'Males'
 
     def category(self): 
         return _('General filters')
@@ -1082,10 +1106,10 @@ class HasEvent(Rule):
         except: pass
 
     def name(self):
-        return 'Has the personal event'
+        return 'People with the personal event:'
 
     def description(self):
-        return _("Matches the person with a personal event of a particular value")
+        return _("Matches people with a personal event of a particular value")
 
     def category(self):
         return _('Event filters')
@@ -1135,10 +1159,10 @@ class HasFamilyEvent(Rule):
         except: pass
 
     def name(self):
-        return 'Has the family event'
+        return 'People with the family event:'
 
     def description(self):
-        return _("Matches the person with a family event of a particular value")
+        return _("Matches people with a family event of a particular value")
 
     def category(self):
         return _('Event filters')
@@ -1183,10 +1207,10 @@ class HasRelationship(Rule):
                _('Number of children:') ]
 
     def name(self):
-        return 'Has the relationships'
+        return 'People with the relationships:'
 
     def description(self):
-        return _("Matches the person who has a particular relationship")
+        return _("Matches people with a particular relationship")
 
     def category(self):
         return _('Family filters')
@@ -1246,10 +1270,10 @@ class HasBirth(Rule):
             self.date = None
         
     def name(self):
-        return 'Has the birth'
+        return 'People with the birth data'
 
     def description(self):
-        return _("Matches the person with a birth of a particular value")
+        return _("Matches people with birth data of a particular value")
 
     def category(self):
         return _('Event filters')
@@ -1292,10 +1316,10 @@ class HasDeath(Rule):
             self.date = None
 
     def name(self):
-        return 'Has the death'
+        return 'People with the death data:'
 
     def description(self):
-        return _("Matches the person with a death of a particular value")
+        return _("Matches the person with death data of a particular value")
 
     def category(self):
         return _('Event filters')
@@ -1331,7 +1355,7 @@ class HasAttribute(Rule):
     labels = [ _('Personal attribute:'), _('Value:') ]
     
     def name(self):
-        return 'Has the personal attribute'
+        return 'People with the personal attribute:'
 
     def apply(self,db,p_id):
         if not self.list[0]:
@@ -1356,7 +1380,7 @@ class HasFamilyAttribute(Rule):
     labels = [ _('Family attribute:'), _('Value:') ]
     
     def name(self):
-        return 'Has the family attribute'
+        return 'People with the family attribute:'
 
     def apply(self,db,p_id):
         if not self.list[0]:
@@ -1383,10 +1407,10 @@ class HasNameOf(Rule):
     labels = [_('Given name:'),_('Family name:'),_('Suffix:'),_('Title:')]
     
     def name(self):
-        return 'Has a name'
+        return 'People with the name:'
     
     def description(self):
-        return _("Matches the person with a specified (partial) name")
+        return _("Matches people with a specified (partial) name")
 
     def category(self):
         return _('General filters')
@@ -1422,10 +1446,10 @@ class SearchName(Rule):
     labels = [_('Substring:')]
     
     def name(self):
-        return 'Matches name'
+        return 'People matching the <name>'
     
     def description(self):
-        return _("Matches the person with a specified (partial) name")
+        return _("Matches people with a specified (partial) name")
 
     def category(self):
         return _('General filters')
@@ -1495,7 +1519,7 @@ class MatchesFilter(Rule):
                     rule.reset()
 
     def name(self):
-        return 'Matches the filter named'
+        return 'People matching the <filter>'
 
     def apply(self,db,p_id):
         for filt in SystemFilters.get_filters():
@@ -1518,10 +1542,10 @@ class IsSpouseOfFilterMatch(Rule):
     labels = [_('Filter name:')]
 
     def name(self):
-        return 'Is spouse of filter match'
+        return 'Spouses of <filter> match'
 
     def description(self):
-        return _("Matches the person married to someone matching a filter")
+        return _("Matches people married to anybody matching a filter")
 
     def category(self):
         return _('Family filters')
@@ -1551,10 +1575,10 @@ class HaveAltFamilies(Rule):
     labels = []
 
     def name(self):
-        return 'People who were adopted'
+        return 'Adopted people'
 
     def description(self):
-        return _("Matches person who were adopted")
+        return _("Matches people who were adopted")
 
     def category(self):
         return _('Family filters')
@@ -1579,10 +1603,10 @@ class HavePhotos(Rule):
     labels = []
 
     def name(self):
-        return 'People who have images'
+        return 'People with images'
 
     def description(self):
-        return _("Matches person who have images in the gallery")
+        return _("Matches people with images in the gallery")
 
     def category(self):
         return _('General filters')
@@ -1606,7 +1630,7 @@ class HaveChildren(Rule):
         return 'People with children'
 
     def description(self):
-        return _("Matches persons who have children")
+        return _("Matches people who have children")
 
     def category(self):
         return _('Family filters')
@@ -1632,7 +1656,7 @@ class NeverMarried(Rule):
         return 'People with no marriage records'
 
     def description(self):
-        return _("Matches persons who have have no spouse")
+        return _("Matches people who have no spouse")
 
     def category(self):
         return _('Family filters')
@@ -1656,7 +1680,7 @@ class MultipleMarriages(Rule):
         return 'People with multiple marriage records'
 
     def description(self):
-        return _("Matches persons who have more than one spouse")
+        return _("Matches people who have more than one spouse")
 
     def category(self):
         return _('Family filters')
@@ -1680,7 +1704,7 @@ class NoBirthdate(Rule):
         return 'People without a known birth date'
 
     def description(self):
-        return _("Matches persons without a known birthdate")
+        return _("Matches people without a known birthdate")
 
     def category(self):
         return _('General filters')
@@ -1710,7 +1734,7 @@ class PersonWithIncompleteEvent(Rule):
         return 'People with incomplete events'
 
     def description(self):
-        return _("Matches persons with missing date or place in an event")
+        return _("Matches people with missing date or place in an event")
 
     def category(self):
         return _('Event filters')
@@ -1741,7 +1765,7 @@ class FamilyWithIncompleteEvent(Rule):
         return 'Families with incomplete events'
 
     def description(self):
-        return _("Matches persons with missing date or place in an event of the family")
+        return _("Matches people with missing date or place in an event of the family")
 
     def category(self):
         return _('Event filters')
@@ -1781,7 +1805,7 @@ class ProbablyAlive(Rule):
         return 'People probably alive'
 
     def description(self):
-        return _("Matches persons without indications of death that are not too old")
+        return _("Matches people without indications of death that are not too old")
 
     def category(self):
         return _('General filters')
@@ -1805,7 +1829,7 @@ class PeoplePrivate(Rule):
         return 'People marked private'
 
     def description(self):
-        return _("Matches persons that are indicated as private")
+        return _("Matches people that are indicated as private")
 
     def category(self):
         return _('General filters')
@@ -1837,7 +1861,7 @@ class IsWitness(Rule):
         return 'Witnesses'
 
     def description(self):
-        return _("Matches persons who are witnesses in an event")
+        return _("Matches people who are witnesses in any event")
 
     def category(self):
         return _('Event filters')
@@ -1919,10 +1943,10 @@ class HasTextMatchingSubstringOf(Rule):
         self.media_map = {}
 
     def name(self):
-        return 'Has text matching substring of'
+        return 'People with records containing the substring:'
     
     def description(self):
-        return _("Matches persons whose records contain text matching a substring")
+        return _("Matches people whose records contain text matching a substring")
 
     def category(self):
         return _('General filters')
@@ -2063,7 +2087,7 @@ class HasSourceOf(Rule):
         self.source_handle = db.get_source_from_gramps_id(self.list[0]).get_handle()
 
     def name(self):
-        return 'Has source of'
+        return 'People with the source:'
 
     def category(self): 
         return _('Event filters')
@@ -2216,58 +2240,59 @@ class GenericFilter:
 #-------------------------------------------------------------------------
 tasks = {
     unicode(_("Everyone"))                             : Everyone,
-    unicode(_("Is default person"))                    : IsDefaultPerson,
-    unicode(_("Is bookmarked person"))                 : IsBookmarked,
-    unicode(_("Has the Id"))                           : HasIdOf,
-    unicode(_("Has a name"))                           : HasNameOf,
-    unicode(_("Has the relationships"))                : HasRelationship,
-    unicode(_("Has the death"))                        : HasDeath,
-    unicode(_("Has the birth"))                        : HasBirth,
-    unicode(_("Is a descendant of"))                   : IsDescendantOf,
-    unicode(_("Is a descendant family member of"))     : IsDescendantFamilyOf,
-    unicode(_("Is a descendant of filter match"))      : IsDescendantOfFilterMatch,
-    unicode(_("Is a descendant of person not more than N generations away"))
+    unicode(_("Default person"))                       : IsDefaultPerson,
+    unicode(_("Bookmarked people"))                    : IsBookmarked,
+    unicode(_("People with Id:"))                      : HasIdOf,
+    unicode(_("People with the name:"))                           : HasNameOf,
+    unicode(_("People with the relationships:"))                : HasRelationship,
+    unicode(_("People with the death data:"))                        : HasDeath,
+    unicode(_("People with the birth data"))                        : HasBirth,
+    unicode(_("Descendants of <person>"))              : IsDescendantOf,
+    unicode(_("Descendant family members of <person>"))     : IsDescendantFamilyOf,
+    unicode(_("Descendants of <filter> match"))      : IsDescendantOfFilterMatch,
+    unicode(_("Descendants of <person> not more than <N> generations away"))
                                                        : IsLessThanNthGenerationDescendantOf,
-    unicode(_("Is a descendant of person at least N generations away"))
+    unicode(_("Ancestors of <person> at least <N> generations away"))
                                                        : IsMoreThanNthGenerationDescendantOf,
-    unicode(_("Is a child of filter match"))           : IsChildOfFilterMatch,
-    unicode(_("Is an ancestor of"))                    : IsAncestorOf,
-    unicode(_("Is an ancestor of filter match"))       : IsAncestorOfFilterMatch,
-    unicode(_("Is an ancestor of person not more than N generations away"))
+    unicode(_("Children of <filter> match"))           : IsChildOfFilterMatch,
+    unicode(_("Ancestors of <person>"))                    : IsAncestorOf,
+    unicode(_("Ancestors of <filter> match"))       : IsAncestorOfFilterMatch,
+    unicode(_("Ancestors of <person> not more than <N> generations away"))
                                                        : IsLessThanNthGenerationAncestorOf,
-    unicode(_("Is an ancestor of person at least N generations away"))
+    unicode(_("Ancestors of <person> at least <N> generations away"))
                                                        : IsMoreThanNthGenerationAncestorOf,
-    unicode(_("Is a parent of filter match"))          : IsParentOfFilterMatch,
-    unicode(_("Has a common ancestor with"))           : HasCommonAncestorWith,
-    unicode(_("Has a common ancestor with filter match"))
+    unicode(_("Parents of <filter> match"))          : IsParentOfFilterMatch,
+    unicode(_("People with a common ancestor with <person>"))           : HasCommonAncestorWith,
+    unicode(_("People with a common ancestor with <filter> match"))
                                                        : HasCommonAncestorWithFilterMatch,
-    unicode(_("Is a female"))                          : IsFemale,
-    unicode(_("Is a male"))                            : IsMale,
-    unicode(_("Has complete record"))                  : HasCompleteRecord,
-    unicode(_("Has the personal event"))               : HasEvent,
-    unicode(_("Has the family event"))                 : HasFamilyEvent,
-    unicode(_("Has the personal attribute"))           : HasAttribute,
-    unicode(_("Has the family attribute"))             : HasFamilyAttribute,
-    unicode(_("Has source of"))                        : HasSourceOf,
-    unicode(_("Matches the filter named"))             : MatchesFilter,
-    unicode(_("Is spouse of filter match"))            : IsSpouseOfFilterMatch,
-    unicode(_("Is a sibling of filter match"))         : IsSiblingOfFilterMatch,
-    unicode(_("Relationship path between two people")) : RelationshipPathBetween,
+    unicode(_("Females"))                              : IsFemale,
+    unicode(_("People with unknown gender"))           : HasUnknownGender,
+    unicode(_("Males"))                                : IsMale,
+    unicode(_("People with complete records"))         : HasCompleteRecord,
+    unicode(_("People with the personal event:"))               : HasEvent,
+    unicode(_("People with the family event:"))                 : HasFamilyEvent,
+    unicode(_("People with the personal attribute:"))           : HasAttribute,
+    unicode(_("People with the family attribute:"))             : HasFamilyAttribute,
+    unicode(_("People with the source:"))                        : HasSourceOf,
+    unicode(_("People matching the <filter>"))             : MatchesFilter,
+    unicode(_("Spouses of <filter> match"))            : IsSpouseOfFilterMatch,
+    unicode(_("Siblings of <filter> match"))         : IsSiblingOfFilterMatch,
+    unicode(_("Relationship path between <persons>")) : RelationshipPathBetween,
 
-    unicode(_("People who were adopted"))              : HaveAltFamilies,
-    unicode(_("People who have images"))               : HavePhotos,
+    unicode(_("Adopted people"))              : HaveAltFamilies,
+    unicode(_("People with images"))               : HavePhotos,
     unicode(_("People with children"))                 : HaveChildren,
     unicode(_("People with incomplete names"))         : IncompleteNames,
     unicode(_("People with no marriage records"))      : NeverMarried,
     unicode(_("People with multiple marriage records")): MultipleMarriages,
-    unicode(_("People without a birth date"))          : NoBirthdate,
+    unicode(_("People without a known birth date"))          : NoBirthdate,
     unicode(_("People with incomplete events"))        : PersonWithIncompleteEvent,
     unicode(_("Families with incomplete events"))      : FamilyWithIncompleteEvent,
     unicode(_("People probably alive"))                : ProbablyAlive,
     unicode(_("People marked private"))                : PeoplePrivate,
     unicode(_("Witnesses"))                            : IsWitness,
 
-    unicode(_("Has text matching substring of"))       : HasTextMatchingSubstringOf,
+    unicode(_("People with records containing the substring:"))       : HasTextMatchingSubstringOf,
 }
 
 #-------------------------------------------------------------------------

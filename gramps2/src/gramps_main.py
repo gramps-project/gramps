@@ -964,22 +964,27 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         filter_list.append(all)
 
         all = GenericFilter.GenericFilter()
+        all.set_name(_("People with unknown gender"))
+        all.add_rule(GenericFilter.HasUnknownGender([]))
+        filter_list.append(all)
+
+        all = GenericFilter.GenericFilter()
         all.set_name(_("Disconnected individuals"))
         all.add_rule(GenericFilter.Disconnected([]))
         filter_list.append(all)
 
         all = GenericFilter.ParamFilter()
-        all.set_name(_("Name contains..."))
+        all.set_name(_("People with names containing..."))
         all.add_rule(GenericFilter.SearchName([]))
         filter_list.append(all)
 
         all = GenericFilter.GenericFilter()
-        all.set_name(_("People who were adopted"))
+        all.set_name(_("Adopted people"))
         all.add_rule(GenericFilter.HaveAltFamilies([]))
         filter_list.append(all)
 
         all = GenericFilter.GenericFilter()
-        all.set_name(_("People who have images"))
+        all.set_name(_("People with images"))
         all.add_rule(GenericFilter.HavePhotos([]))
         filter_list.append(all)
 
@@ -1004,7 +1009,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         filter_list.append(all)
 
         all = GenericFilter.GenericFilter()
-        all.set_name(_("People without a birth date"))
+        all.set_name(_("People without a known birth date"))
         all.add_rule(GenericFilter.NoBirthdate([]))
         filter_list.append(all)
 
@@ -1034,12 +1039,12 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         filter_list.append(all)
 
         all = GenericFilter.ParamFilter()
-        all.set_name(_("Any textual record contains..."))
+        all.set_name(_("People with records containing..."))
         all.add_rule(GenericFilter.HasTextMatchingSubstringOf([]))
         filter_list.append(all)
 
         all = GenericFilter.ParamFilter()
-        all.set_name(_("Any textual record matches regular expression..."))
+        all.set_name(_("People with records matching regular expression..."))
         all.add_rule(GenericFilter.HasTextMatchingRegexpOf([]))
         filter_list.append(all)
 

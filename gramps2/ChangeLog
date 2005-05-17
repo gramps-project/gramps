@@ -1,3 +1,7 @@
+2005-05-17  Alex Roitman  <shura@gramps-project.org>
+	* src/GenericFilter.py: Change filter rule names to make them consistent.
+	* src/gramps_main.py: Change filter names to make them consistent.
+
 2005-05-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/ImportGeneWeb.py (decode): Decode characters and named
 	entities. Because gramps is not web browser based we can simply use
