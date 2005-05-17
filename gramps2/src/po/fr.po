@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu May 12 08:32:15 2005\n"
-"PO-Revision-Date: 2005-05-13 07:22+0200\n"
+"POT-Creation-Date: Fri May 13 12:02:11 2005\n"
+"PO-Revision-Date: 2005-05-17 18:11+0200\n"
 "Last-Translator: Matthieu Pupat <tieum.tieum@free.fr>\n"
 "Language-Team: Français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -122,10 +122,8 @@ msgid "New GRAMPS database was not set up"
 msgstr "Le nouvelle base GRAMPS n'a pas été créée"
 
 #: ArgHandler.py:292
-msgid ""
-"GRAMPS cannot open non-native data without setting up new GRAMPS database."
-msgstr ""
-"GRAMPS ne peut ouvrir un format externe sans créer de nouvelle base GRAMPS."
+msgid "GRAMPS cannot open non-native data without setting up new GRAMPS database."
+msgstr "GRAMPS ne peut ouvrir un format externe sans créer de nouvelle base GRAMPS."
 
 #: ArgHandler.py:302 DbPrompter.py:201 DbPrompter.py:228 DbPrompter.py:304
 #: DbPrompter.py:333
@@ -201,7 +199,7 @@ msgstr "Pa_rent"
 msgid "Mothe_r"
 msgstr "Mè_re"
 
-#: ChooseParents.py:485 SelectChild.py:287 SelectChild.py:304
+#: ChooseParents.py:485 SelectChild.py:287 SelectChild.py:306
 msgid "Error selecting a child"
 msgstr "Erreur lors de la sélection d'un enfant"
 
@@ -220,7 +218,7 @@ msgstr "Modifier les parents"
 #: ChooseParents.py:621 FamilyView.py:1100 MergePeople.py:136
 #: plugins/FamilyGroup.py:261 plugins/IndivComplete.py:215
 #: plugins/IndivComplete.py:217 plugins/IndivComplete.py:449
-#: plugins/IndivSummary.py:289 plugins/NavWebPage.py:724
+#: plugins/IndivSummary.py:289 plugins/NavWebPage.py:725
 #: plugins/WebPage.py:337 plugins/WebPage.py:340
 msgid "Mother"
 msgstr "Mère"
@@ -228,7 +226,7 @@ msgstr "Mère"
 #: ChooseParents.py:622 FamilyView.py:1098 MergePeople.py:134
 #: plugins/FamilyGroup.py:248 plugins/IndivComplete.py:206
 #: plugins/IndivComplete.py:208 plugins/IndivComplete.py:444
-#: plugins/IndivSummary.py:275 plugins/NavWebPage.py:720
+#: plugins/IndivSummary.py:275 plugins/NavWebPage.py:721
 #: plugins/WebPage.py:336 plugins/WebPage.py:339
 msgid "Father"
 msgstr "Père"
@@ -245,29 +243,53 @@ msgstr "Affichage"
 msgid "Column Name"
 msgstr "Nom de la colonne"
 
-#: Date.py:103
+#: Date.py:104
 msgid "Gregorian"
 msgstr "Grégorien"
 
-#: Date.py:104
+#: Date.py:105
 msgid "Julian"
 msgstr "Julien"
 
-#: Date.py:105
+#: Date.py:106
 msgid "Hebrew"
 msgstr "Hébreu"
 
-#: Date.py:106
+#: Date.py:107
 msgid "French Republican"
 msgstr "Républicain (France)"
 
-#: Date.py:107
+#: Date.py:108
 msgid "Persian"
 msgstr "Persan"
 
-#: Date.py:108
+#: Date.py:109
 msgid "Islamic"
 msgstr "Islamique"
+
+#: DateDisplay.py:295
+msgid "Month Day, Year"
+msgstr "Mois Jour, Année"
+
+#: DateDisplay.py:295
+msgid "Numerical"
+msgstr "Numérique"
+
+#: DateDisplay.py:295
+msgid "YYYY-MM-DD (ISO)"
+msgstr "AAAA-MM-JJ (ISO)"
+
+#: DateDisplay.py:296
+msgid "DAY MON YEAR"
+msgstr "JOUR MOIS ANNEE"
+
+#: DateDisplay.py:296
+msgid "Day Month Year"
+msgstr "Jour Mois Année"
+
+#: DateDisplay.py:296
+msgid "MON DAY, YEAR"
+msgstr "MOIS JOUR, ANNEE"
 
 #: DateEdit.py:74 DateEdit.py:83
 msgid "Regular"
@@ -347,8 +369,7 @@ msgstr "GRAMPS : Créer une nouvelle base de données GRAMPS"
 
 #: DbPrompter.py:432
 msgid "GRAMPS: Select filename for a new database"
-msgstr ""
-"GRAMPS : Sélectionner un nom de fichier pour la nouvelle base de données"
+msgstr "GRAMPS : Sélectionner un nom de fichier pour la nouvelle base de données"
 
 #: DbPrompter.py:482
 msgid "Could not save file: %s"
@@ -387,7 +408,7 @@ msgstr "Fichiers GEDCOM"
 #: plugins/DetAncestralReport.py:308 plugins/DetAncestralReport.py:315
 #: plugins/DetDescendantReport.py:330 plugins/DetDescendantReport.py:337
 #: plugins/FamilyGroup.py:458 plugins/IndivComplete.py:281
-#: plugins/IndivSummary.py:165 plugins/NavWebPage.py:771
+#: plugins/IndivSummary.py:165 plugins/NavWebPage.py:772
 #: plugins/RelCalc.py:115 plugins/WebPage.py:652
 msgid "unknown"
 msgstr "inconnu"
@@ -647,14 +668,14 @@ msgstr "Source"
 #: EditSource.py:274 EventEdit.py:339 MergePeople.py:110 const.py:233
 #: const.py:241 plugins/EventCmp.py:408 plugins/FamilyGroup.py:200
 #: plugins/FamilyGroup.py:334 plugins/GraphViz.py:236 plugins/GraphViz.py:237
-#: plugins/NavWebPage.py:640 plugins/ScratchPad.py:464
+#: plugins/NavWebPage.py:641 plugins/ScratchPad.py:464
 msgid "Birth"
 msgstr "Naissance"
 
 #: EditSource.py:274 EventEdit.py:339 MergePeople.py:112
 #: plugins/EventCmp.py:408 plugins/FamilyGroup.py:218
 #: plugins/FamilyGroup.py:336 plugins/FamilyGroup.py:338
-#: plugins/NavWebPage.py:648
+#: plugins/NavWebPage.py:649
 msgid "Death"
 msgstr "Décès"
 
@@ -854,7 +875,7 @@ msgstr "Numéro"
 
 #: FamilyView.py:75 MergePeople.py:108 PeopleView.py:60
 #: plugins/IndivComplete.py:417 plugins/IndivSummary.py:239
-#: plugins/NavWebPage.py:631 plugins/WebPage.py:327 plugins/WebPage.py:329
+#: plugins/NavWebPage.py:632 plugins/WebPage.py:327 plugins/WebPage.py:329
 #: plugins/WebPage.py:331
 msgid "Gender"
 msgstr "Sexe"
@@ -1225,10 +1246,8 @@ msgid "Matches people that have a common ancestor with a specified person"
 msgstr "Assortir les individus ayant des ascendants commun à un individu"
 
 #: GenericFilter.py:1026
-msgid ""
-"Matches people that have a common ancestor with someone matched by a filter"
-msgstr ""
-"Assortir les individus ayant des ascendants commun aux résultats du filtrage"
+msgid "Matches people that have a common ancestor with someone matched by a filter"
+msgstr "Assortir les individus ayant des ascendants commun aux résultats du filtrage"
 
 #: GenericFilter.py:1062
 msgid "Matches all males"
@@ -1698,8 +1717,7 @@ msgid "Save Changes?"
 msgstr "Enregistrer les modifications?"
 
 #: Marriage.py:655
-msgid ""
-"The GRAMPS ID that you chose for this relationship is already being used."
+msgid "The GRAMPS ID that you chose for this relationship is already being used."
 msgstr "L'identifiant GRAMPS choisi pour cette relation est déjà utilisé."
 
 #: Marriage.py:711
@@ -1776,11 +1794,11 @@ msgid "Alternate Names"
 msgstr "Autres noms"
 
 #: MergePeople.py:122 gramps.glade:8928 gramps.glade:12659
-#: plugins/NavWebPage.py:656
+#: plugins/NavWebPage.py:657
 msgid "Events"
 msgstr "Evénements"
 
-#: MergePeople.py:129 PedView.py:693 plugins/NavWebPage.py:716
+#: MergePeople.py:129 PedView.py:693 plugins/NavWebPage.py:717
 msgid "Parents"
 msgstr "Parents"
 
@@ -1792,7 +1810,7 @@ msgstr "Numéro de famille"
 msgid "No parents found"
 msgstr "Pas de parents"
 
-#: MergePeople.py:140 PedView.py:598 plugins/NavWebPage.py:729
+#: MergePeople.py:140 PedView.py:598 plugins/NavWebPage.py:730
 msgid "Spouses"
 msgstr "Conjoints"
 
@@ -1910,7 +1928,7 @@ msgid "Siblings"
 msgstr "Frères et soeurs"
 
 #: PedView.py:659 plugins/FamilyGroup.py:400 plugins/IndivComplete.py:295
-#: plugins/IndivSummary.py:179 plugins/NavWebPage.py:738
+#: plugins/IndivSummary.py:179 plugins/NavWebPage.py:739
 #: plugins/WebPage.py:670
 msgid "Children"
 msgstr "Enfants"
@@ -1926,7 +1944,7 @@ msgstr "Cause du décès"
 #: PeopleView.py:83 WriteGedcom.py:327 gramps_main.py:952
 #: plugins/EventCmp.py:158 plugins/ExportVCalendar.py:81
 #: plugins/ExportVCard.py:84 plugins/GraphViz.py:513
-#: plugins/IndivComplete.py:509 plugins/NavWebPage.py:1066
+#: plugins/IndivComplete.py:509 plugins/NavWebPage.py:1067
 #: plugins/StatisticsChart.py:827 plugins/TimeLine.py:411
 #: plugins/WebPage.py:1261 plugins/WriteFtree.py:86 plugins/WriteGeneWeb.py:87
 msgid "Entire Database"
@@ -2006,7 +2024,7 @@ msgstr "Inclassable"
 
 #: PluginMgr.py:162 PluginMgr.py:163 PluginMgr.py:164 PluginMgr.py:189
 #: PluginMgr.py:191 PluginMgr.py:192 PluginMgr.py:223 PluginMgr.py:224
-#: PluginMgr.py:225 ReportUtils.py:1751 Witness.py:83 Witness.py:166
+#: PluginMgr.py:225 ReportUtils.py:1755 Witness.py:83 Witness.py:166
 #: const.py:234 const.py:247 const.py:493 const.py:506 gramps_main.py:1721
 #: plugins/Check.py:474 plugins/ScratchPad.py:78 plugins/WebPage.py:331
 msgid "Unknown"
@@ -2065,14 +2083,13 @@ msgid "Reload plugins"
 msgstr "Recharger les modules"
 
 #: Plugins.py:727 plugins/Eval.py:140 plugins/Leak.py:136
-#: plugins/TestcaseGenerator.py:539
+#: plugins/TestcaseGenerator.py:648
 msgid "Debug"
 msgstr "Déboguer"
 
 #: Plugins.py:728
 msgid "Attempt to reload plugins. Note: This tool itself is not reloaded!"
-msgstr ""
-"Essayer de recharger les modules. Note : cet outil ne sera pas rechargé !"
+msgstr "Essayer de recharger les modules. Note : cet outil ne sera pas rechargé !"
 
 #: ReadGedcom.py:79 ReadGedcom.py:80
 msgid "Windows 9x file system"
@@ -2175,8 +2192,7 @@ msgstr "Erreur de lecture de %s"
 
 #: ReadXML.py:134
 msgid "The file is probably either corrupt or not a valid GRAMPS database."
-msgstr ""
-"Ce fichier est probablement corrompu ou n'est pas une base GRAMPS valide."
+msgstr "Ce fichier est probablement corrompu ou n'est pas une base GRAMPS valide."
 
 #: ReadXML.py:173
 msgid "Could not copy file"
@@ -2472,8 +2488,7 @@ msgid "File already exists"
 msgstr "Fichier existant"
 
 #: Report.py:1329
-msgid ""
-"You can choose to either overwrite the file, or change the selected filename."
+msgid "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 "Vous pouvez choisir soit d'écraser le fichier ou de changer de nom de "
 "fichier."
@@ -2490,15 +2505,15 @@ msgstr "_Renommer"
 msgid "Private"
 msgstr "Privé(e)"
 
-#: ReportUtils.py:502 ReportUtils.py:1052 ReportUtils.py:1150
-#: ReportUtils.py:1441 ReportUtils.py:1534 plugins/DetAncestralReport.py:192
+#: ReportUtils.py:502 ReportUtils.py:1056 ReportUtils.py:1154
+#: ReportUtils.py:1445 ReportUtils.py:1538 plugins/DetAncestralReport.py:192
 #: plugins/DetAncestralReport.py:350 plugins/DetDescendantReport.py:216
 #: plugins/DetDescendantReport.py:371
 msgid "He"
 msgstr "Il"
 
-#: ReportUtils.py:504 ReportUtils.py:1054 ReportUtils.py:1152
-#: ReportUtils.py:1443 ReportUtils.py:1536 plugins/DetAncestralReport.py:194
+#: ReportUtils.py:504 ReportUtils.py:1058 ReportUtils.py:1156
+#: ReportUtils.py:1447 ReportUtils.py:1540 plugins/DetAncestralReport.py:194
 #: plugins/DetAncestralReport.py:348 plugins/DetDescendantReport.py:218
 #: plugins/DetDescendantReport.py:369
 msgid "She"
@@ -2591,8 +2606,7 @@ msgstr ""
 "décédé à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:611
-msgid ""
-"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr "%(male_name)s%(endnotes)s est né à %(birth_place)s%(birth_endnotes)s."
 
 #: ReportUtils.py:619
@@ -2605,13 +2619,11 @@ msgstr ""
 
 #: ReportUtils.py:625
 msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-msgstr ""
-"%(male_name)s%(endnotes)s est décédé le %(death_date)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s est décédé le %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:632
 msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr ""
-"%(male_name)s%(endnotes)s est décédé à %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s est décédé à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:638
 msgid "%(male_name)s%(endnotes)s."
@@ -2677,8 +2689,7 @@ msgstr ""
 
 #: ReportUtils.py:705
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-msgstr ""
-"%(female_name)s%(endnotes)s est née le %(birth_date)s%(birth_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s%(birth_endnotes)s."
 
 #: ReportUtils.py:713
 msgid ""
@@ -2705,10 +2716,8 @@ msgstr ""
 "décédé à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:739
-msgid ""
-"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-msgstr ""
-"%(female_name)s%(endnotes)s est née à %(birth_place)s%(birth_endnotes)s."
+msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s est née à %(birth_place)s%(birth_endnotes)s."
 
 #: ReportUtils.py:747
 msgid ""
@@ -2724,194 +2733,193 @@ msgstr "%(female_name)s%(endnotes)s décédée %(death_date)s%(death_endnotes)s."
 
 #: ReportUtils.py:760
 msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr ""
-"%(female_name)s%(endnotes)s décédée à %(death_place)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s décédée à %(death_place)s%(death_endnotes)s."
 
 #: ReportUtils.py:766
 msgid "%(female_name)s%(endnotes)s."
 msgstr "%(female_name)s%(endnotes)s."
 
-#: ReportUtils.py:816
+#: ReportUtils.py:820
 msgid "He married %(spouse)s %(date)s in %(place)s%(endnotes)s."
 msgstr "il épousa %(spouse)s %(date)s à %(place)s%(endnotes)s."
 
-#: ReportUtils.py:822
+#: ReportUtils.py:826
 msgid "She married %(spouse)s %(date)s in %(place)s%(endnotes)s."
 msgstr "elle épousa %(spouse)s %(date)s à %(place)s%(endnotes)s."
 
-#: ReportUtils.py:829
+#: ReportUtils.py:833
 msgid "He married %(spouse)s %(date)s%(endnotes)s."
 msgstr "il épousa %(spouse)s %(date)s%(endnotes)s."
 
-#: ReportUtils.py:834 ReportUtils.py:845
+#: ReportUtils.py:838 ReportUtils.py:849
 msgid "She married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "elle épousa %(spouse)s à %(place)s%(endnotes)s."
 
-#: ReportUtils.py:840
+#: ReportUtils.py:844
 msgid "He married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "il épousa %(spouse)s à %(place)s%(endnotes)s."
 
-#: ReportUtils.py:851
+#: ReportUtils.py:855
 msgid "He married %(spouse)s%(endnotes)s."
 msgstr "il épousa %(spouse)s%(endnotes)s."
 
-#: ReportUtils.py:855
+#: ReportUtils.py:859
 msgid "She married %(spouse)s%(endnotes)s."
 msgstr "Elle épousa %(spouse)s%(endnotes)s."
 
-#: ReportUtils.py:861
+#: ReportUtils.py:865
 msgid "He also married %(spouse)s %(date)s in %(place)s%(endnotes)s."
 msgstr "Il épousa également %(spouse)s %(date)s à %(place)s%(endnotes)s."
 
-#: ReportUtils.py:867
+#: ReportUtils.py:871
 msgid "She also married %(spouse)s %(date)s in %(place)s%(endnotes)s."
 msgstr "Elle épousa également %(spouse)s %(date)s à %(place)s%(endnotes)s."
 
-#: ReportUtils.py:874
+#: ReportUtils.py:878
 msgid "He also married %(spouse)s %(date)s%(endnotes)s."
 msgstr "Il épousa également %(spouse)s %(date)s%(endnotes)s."
 
-#: ReportUtils.py:879 ReportUtils.py:890
+#: ReportUtils.py:883 ReportUtils.py:894
 msgid "She also married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Elle épousa également %(spouse)s à %(place)s%(endnotes)s."
 
-#: ReportUtils.py:885
+#: ReportUtils.py:889
 msgid "He also married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Il épousa également %(spouse)s à %(place)s%(endnotes)s."
 
-#: ReportUtils.py:896
+#: ReportUtils.py:900
 msgid "He also married %(spouse)s%(endnotes)s."
 msgstr "Il épousa également %(spouse)s%(endnotes)s."
 
-#: ReportUtils.py:900
+#: ReportUtils.py:904
 msgid "She also married %(spouse)s%(endnotes)s."
 msgstr "Elle épousa également %(spouse)s%(endnotes)s."
 
-#: ReportUtils.py:921
+#: ReportUtils.py:925
 msgid "He married %(spouse)s."
 msgstr "Il épousa %(spouse)s."
 
-#: ReportUtils.py:923
+#: ReportUtils.py:927
 msgid "She married %(spouse)s."
 msgstr "Elle épousa %(spouse)s."
 
-#: ReportUtils.py:926
+#: ReportUtils.py:930
 msgid "He had relationship with %(spouse)s."
 msgstr "Il eut une relation avec %(spouse)s."
 
-#: ReportUtils.py:929
+#: ReportUtils.py:933
 msgid "She had relationship with %(spouse)s."
 msgstr "Elle eut une relation avec %(spouse)s."
 
-#: ReportUtils.py:934
+#: ReportUtils.py:938
 msgid "He also married %(spouse)s."
 msgstr "Il épousa également %(spouse)s."
 
-#: ReportUtils.py:936
+#: ReportUtils.py:940
 msgid "She also married %(spouse)s."
 msgstr "Elle épousa également %(spouse)s."
 
-#: ReportUtils.py:939
+#: ReportUtils.py:943
 msgid "He also had relationship with %(spouse)s."
 msgstr "Il eut une relation avec %(spouse)s."
 
-#: ReportUtils.py:942
+#: ReportUtils.py:946
 msgid "She also had relationship with %(spouse)s."
 msgstr "Elle eut également une relation avec %(spouse)s."
 
-#: ReportUtils.py:973
+#: ReportUtils.py:977
 msgid "He was the son of %(father)s and %(mother)s."
 msgstr "Il était le fils de %(father)s et %(mother)s."
 
-#: ReportUtils.py:977
+#: ReportUtils.py:981
 msgid "He is the son of %(father)s and %(mother)s."
 msgstr "Il est le fils de %(father)s et %(mother)s."
 
-#: ReportUtils.py:982
+#: ReportUtils.py:986
 msgid "He was the son of %(mother)s."
 msgstr "il était le fils de %(mother)s."
 
-#: ReportUtils.py:985
+#: ReportUtils.py:989
 msgid "He is the son of %(mother)s."
 msgstr "il est le fils de %(mother)s."
 
-#: ReportUtils.py:989
+#: ReportUtils.py:993
 msgid "He was the son of %(father)s."
 msgstr "il était le fils de %(father)s."
 
-#: ReportUtils.py:992
+#: ReportUtils.py:996
 msgid "He is the son of %(father)s."
 msgstr "il est le fils de %(father)s."
 
-#: ReportUtils.py:997
+#: ReportUtils.py:1001
 msgid "She was the daughter of %(father)s and %(mother)s."
 msgstr "elle était la fille de %(father)s et %(mother)s."
 
-#: ReportUtils.py:1001
+#: ReportUtils.py:1005
 msgid "She is the daughter of %(father)s and %(mother)s."
 msgstr "elle est la fille de %(father)s et %(mother)s."
 
-#: ReportUtils.py:1006
+#: ReportUtils.py:1010
 msgid "She was the daughter of %(mother)s."
 msgstr "elle était la file de %(mother)s."
 
-#: ReportUtils.py:1009
+#: ReportUtils.py:1013
 msgid "She is the daughter of %(mother)s."
 msgstr "elle est la fille de %(mother)s."
 
-#: ReportUtils.py:1013
+#: ReportUtils.py:1017
 msgid "She was the daughter of %(father)s."
 msgstr "elle était la fille de %(father)s."
 
-#: ReportUtils.py:1016
+#: ReportUtils.py:1020
 msgid "She is the daughter of %(father)s."
 msgstr "elle est la fille de %(father)s."
 
-#: ReportUtils.py:1064
+#: ReportUtils.py:1068
 msgid "%(male_name)s was born on %(birth_date)s in %(birth_place)s."
 msgstr "%(male_name)s est né le %(birth_date)s à %(birth_place)s."
 
-#: ReportUtils.py:1069
+#: ReportUtils.py:1073
 msgid "%(male_name)s was born on %(birth_date)s."
 msgstr "%(male_name)s est né le %(birth_date)s."
 
-#: ReportUtils.py:1073
+#: ReportUtils.py:1077
 msgid "%(male_name)s was born in %(month_year)s in %(birth_place)s."
 msgstr "%(male_name)s est né en %(month_year)s à %(birth_place)s."
 
-#: ReportUtils.py:1078
+#: ReportUtils.py:1082
 msgid "%(male_name)s was born in %(month_year)s."
 msgstr "%(male_name)s est né en %(month_year)s."
 
-#: ReportUtils.py:1082
+#: ReportUtils.py:1086
 msgid "%(male_name)s was born in %(birth_place)s."
 msgstr "%(male_name)s est né à %(birth_place)s."
 
-#: ReportUtils.py:1089
+#: ReportUtils.py:1093
 msgid "%(female_name)s was born on %(birth_date)s in %(birth_place)s."
 msgstr "%(female_name)s est née le %(birth_date)s à %(birth_place)s."
 
-#: ReportUtils.py:1094
+#: ReportUtils.py:1098
 msgid "%(female_name)s was born on %(birth_date)s."
 msgstr "%(female_name)s est née le %(birth_date)s."
 
-#: ReportUtils.py:1098
+#: ReportUtils.py:1102
 msgid "%(female_name)s was born in %(month_year)s in %(birth_place)s."
 msgstr "%(female_name)s est née en %(month_year)s à %(birth_place)s."
 
-#: ReportUtils.py:1103
+#: ReportUtils.py:1107
 msgid "%(female_name)s was born in %(month_year)s."
 msgstr "%(female_name)s est née en %(month_year)s."
 
-#: ReportUtils.py:1107
+#: ReportUtils.py:1111
 msgid "%(female_name)s was born in %(birth_place)s."
 msgstr "%(female_name)s est née à %(birth_place)s."
 
-#: ReportUtils.py:1163
+#: ReportUtils.py:1167
 msgid "%(male_name)s died on %(death_date)s in %(death_place)s."
 msgstr "%(male_name)s est mort le %(death_date)s à %(death_place)s."
 
-#: ReportUtils.py:1168
+#: ReportUtils.py:1172
 msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d years."
@@ -2919,7 +2927,7 @@ msgstr ""
 "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)"
 "d ans."
 
-#: ReportUtils.py:1175
+#: ReportUtils.py:1179
 msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d months."
@@ -2927,7 +2935,7 @@ msgstr ""
 "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)"
 "d mois."
 
-#: ReportUtils.py:1182
+#: ReportUtils.py:1186
 msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d days."
@@ -2935,27 +2943,27 @@ msgstr ""
 "%(male_name)s est mort le %(death_date)s à %(death_place)s à l'âge de %(age)"
 "d jours."
 
-#: ReportUtils.py:1190
+#: ReportUtils.py:1194
 msgid "%(male_name)s died on %(death_date)s."
 msgstr "%(male_name)s est mort le %(death_date)s."
 
-#: ReportUtils.py:1193
+#: ReportUtils.py:1197
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d years."
 msgstr "%(male_name)s décédé le %(death_date)s à l'âge de %(age)d ans."
 
-#: ReportUtils.py:1198
+#: ReportUtils.py:1202
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d months."
 msgstr "%(male_name)s décédé le %(death_date)s à l'âge de %(age)d mois."
 
-#: ReportUtils.py:1203
+#: ReportUtils.py:1207
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d days."
 msgstr "%(male_name)s est décédé le %(death_date)s à l'âge de %(age)d jours."
 
-#: ReportUtils.py:1210
+#: ReportUtils.py:1214
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s."
 msgstr "%(male_name)s est décédé en %(month_year)s à %(death_place)s."
 
-#: ReportUtils.py:1215
+#: ReportUtils.py:1219
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d years."
@@ -2963,7 +2971,7 @@ msgstr ""
 "%(male_name)s décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d "
 "ans."
 
-#: ReportUtils.py:1222
+#: ReportUtils.py:1226
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d months."
@@ -2971,7 +2979,7 @@ msgstr ""
 "%(male_name)s décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d "
 "mois."
 
-#: ReportUtils.py:1229
+#: ReportUtils.py:1233
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d days."
@@ -2979,55 +2987,55 @@ msgstr ""
 "%(male_name)s est décédé en %(month_year)s à %(death_place)s à l'âge de %"
 "(age)d jours."
 
-#: ReportUtils.py:1237
+#: ReportUtils.py:1241
 msgid "%(male_name)s died in %(month_year)s."
 msgstr "%(male_name)s est décédé en %(month_year)s."
 
-#: ReportUtils.py:1240
+#: ReportUtils.py:1244
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d years."
 msgstr "%(male_name)s décédé en %(month_year)s à l'âge de %(age)d ans."
 
-#: ReportUtils.py:1245
+#: ReportUtils.py:1249
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d months."
 msgstr "%(male_name)s décédé en %(month_year)s à l'âge de %(age)d mois."
 
-#: ReportUtils.py:1250
+#: ReportUtils.py:1254
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d days."
 msgstr "%(male_name)s décédé en %(month_year)s à l'âge de %(age)d jours."
 
-#: ReportUtils.py:1257
+#: ReportUtils.py:1261
 msgid "%(male_name)s died in %(death_place)s."
 msgstr "%(male_name)s à %(death_place)s."
 
-#: ReportUtils.py:1260
+#: ReportUtils.py:1264
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d years."
 msgstr "%(male_name)s est décédé à %(death_place)s à l'âge de %(age)d ans."
 
-#: ReportUtils.py:1265
+#: ReportUtils.py:1269
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d months."
 msgstr "%(male_name)s est décédé à %(death_place)s à l'âge de %(age)d mois."
 
-#: ReportUtils.py:1270
+#: ReportUtils.py:1274
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d days."
 msgstr "%(male_name)s est décédé à %(death_place)s à l'âge de %(age)d jours."
 
-#: ReportUtils.py:1279
+#: ReportUtils.py:1283
 msgid "%(male_name)s died at the age of %(age)d years."
 msgstr "%(male_name)s décédé à l'âge de %(age)d ans."
 
-#: ReportUtils.py:1283
+#: ReportUtils.py:1287
 msgid "%(male_name)s died at the age of %(age)d months."
 msgstr "%(male_name)s décédé à l'âge de %(age)d mois."
 
-#: ReportUtils.py:1287
+#: ReportUtils.py:1291
 msgid "%(male_name)s died at the age of %(age)d days."
 msgstr "%(male_name)s décédé à l'âge de %(age)d jours."
 
-#: ReportUtils.py:1294
+#: ReportUtils.py:1298
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s."
 msgstr "%(female_name)s est décédée le %(death_date)s à %(death_place)s."
 
-#: ReportUtils.py:1299
+#: ReportUtils.py:1303
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d years."
@@ -3035,7 +3043,7 @@ msgstr ""
 "%(female_name)s est décédée le %(death_date)s à %(death_place)s à l'âge de %"
 "(age)d ans."
 
-#: ReportUtils.py:1306
+#: ReportUtils.py:1310
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d months."
@@ -3043,7 +3051,7 @@ msgstr ""
 "%(female_name)s est décédée le %(death_date)s à %(death_place)s à l'âge de %"
 "(age)d mois."
 
-#: ReportUtils.py:1313
+#: ReportUtils.py:1317
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d days."
@@ -3051,27 +3059,27 @@ msgstr ""
 "%(female_name)s est décédée le %(death_date)s à %(death_place)s à l'âge de %"
 "(age)d jours."
 
-#: ReportUtils.py:1321
+#: ReportUtils.py:1325
 msgid "%(female_name)s died on %(death_date)s."
 msgstr "%(female_name)s est décédée le %(deathdate)s."
 
-#: ReportUtils.py:1324
+#: ReportUtils.py:1328
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d years."
 msgstr "%(female_name)s décédée le %(death_date)s à l'âge de %(age)d ans."
 
-#: ReportUtils.py:1329
+#: ReportUtils.py:1333
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d months."
 msgstr "%(female_name)s décédée le %(death_date)s à l'âge de %(age)d mois."
 
-#: ReportUtils.py:1334
+#: ReportUtils.py:1338
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d days."
 msgstr "%(female_name)s est décédée le %(deathdate)s à l'âge de %(age)d jours."
 
-#: ReportUtils.py:1341
+#: ReportUtils.py:1345
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s."
 msgstr "%(female_name)s est décédée en %(month_year)s à %(death_place)s."
 
-#: ReportUtils.py:1346
+#: ReportUtils.py:1350
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d years."
@@ -3079,7 +3087,7 @@ msgstr ""
 "%(female_name)s décédée en %(month_year)s à %(death_place) à l'âge de %(age)"
 "d ans."
 
-#: ReportUtils.py:1353
+#: ReportUtils.py:1357
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d months."
@@ -3087,7 +3095,7 @@ msgstr ""
 "%(female_name)s décédée en %(month_year)s à %(death_place) à l'âge de %(age)"
 "d mois."
 
-#: ReportUtils.py:1360
+#: ReportUtils.py:1364
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d days."
@@ -3095,100 +3103,99 @@ msgstr ""
 "%(female_name)s est décédée en %(month_year)s à %(death_place)s à l'âge de %"
 "(age)d jours."
 
-#: ReportUtils.py:1368
+#: ReportUtils.py:1372
 msgid "%(female_name)s died in %(month_year)s."
 msgstr "%(female_name)s est décédée en %(month_year)s."
 
-#: ReportUtils.py:1371
+#: ReportUtils.py:1375
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d years."
 msgstr "%(female_name)s décédée en %(month_year)s à l'âge de %(age)d ans."
 
-#: ReportUtils.py:1376
+#: ReportUtils.py:1380
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d months."
 msgstr "%(female_name)s décédée en %(month_year)s à l'âge de %(age)d mois."
 
-#: ReportUtils.py:1381
+#: ReportUtils.py:1385
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d days."
 msgstr "%(female_name)s décédée en %(month_year)s à l'âge de %(age)d jours."
 
-#: ReportUtils.py:1388
+#: ReportUtils.py:1392
 msgid "%(female_name)s died in %(death_place)s."
 msgstr "%(female_name)s est décédée à %(death_place)s."
 
-#: ReportUtils.py:1391
+#: ReportUtils.py:1395
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d years."
 msgstr "%(female_name)s est décédée à %(death_place)s à l'âge de %(age)d ans."
 
-#: ReportUtils.py:1396
+#: ReportUtils.py:1400
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d months."
 msgstr "%(female_name)s est décédée à %(death_place)s à l'âge de %(age)d mois."
 
-#: ReportUtils.py:1401
+#: ReportUtils.py:1405
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"%(female_name)s est décédée à %(death_place)s à l'âge de %(age)d jours."
+msgstr "%(female_name)s est décédée à %(death_place)s à l'âge de %(age)d jours."
 
-#: ReportUtils.py:1410
+#: ReportUtils.py:1414
 msgid "%(female_name)s died at the age of %(age)d years."
 msgstr "%(female_name)s décédée à l'âge de %(age)d ans."
 
-#: ReportUtils.py:1414
+#: ReportUtils.py:1418
 msgid "%(female_name)s died at the age of %(age)d months."
 msgstr "%(female_name)s décédée à l'âge de %(age)d mois."
 
-#: ReportUtils.py:1418
+#: ReportUtils.py:1422
 msgid "%(female_name)s died at the age of %(age)d days."
 msgstr "%(female_name)s décédée à l'âge de %(age)d jours."
 
-#: ReportUtils.py:1471
+#: ReportUtils.py:1475
 msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s."
 msgstr "%(male_name)s% a été enterré le %(burial_date)s à %(burial_place)s."
 
-#: ReportUtils.py:1476
+#: ReportUtils.py:1480
 msgid "%(male_name)s was buried on %(burial_date)s."
 msgstr "%(male_name)s% a été enterré le %(burial_date)s."
 
-#: ReportUtils.py:1480
+#: ReportUtils.py:1484
 msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s."
 msgstr "%(male_name)s% a été enterré en %(month_year)s à %(burial_place)s."
 
-#: ReportUtils.py:1485
+#: ReportUtils.py:1489
 msgid "%(male_name)s was buried in %(month_year)s."
 msgstr "%(male_name)s a été inhumé en %(month_year)s."
 
-#: ReportUtils.py:1489
+#: ReportUtils.py:1493
 msgid "%(male_name)s was buried in %(burial_place)s."
 msgstr "%(male_name)s% a été enterré à %(burial_place)s."
 
-#: ReportUtils.py:1492
+#: ReportUtils.py:1496
 msgid "%(male_name)s was buried."
 msgstr "%(male_name)s% a été enterré."
 
-#: ReportUtils.py:1497
+#: ReportUtils.py:1501
 msgid "%(female_name)s was buried on %(burial_date)s in %(burial_place)s."
 msgstr "%(female_name)s% a été enterrée le %(burial_date)s à %(burial_place)s."
 
-#: ReportUtils.py:1502
+#: ReportUtils.py:1506
 msgid "%(female_name)s was buried on %(burial_date)s."
 msgstr "%(female_name)s% a été enterrée le %(burial_date)s."
 
-#: ReportUtils.py:1506
+#: ReportUtils.py:1510
 msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s."
 msgstr "%(female_name)s% a été enterrée en %(month_year)s à %(burial_place)s."
 
-#: ReportUtils.py:1511
+#: ReportUtils.py:1515
 msgid "%(female_name)s was buried in %(month_year)s."
 msgstr "%(female_name)s% a été enterrée en %(month_year)s."
 
-#: ReportUtils.py:1515
+#: ReportUtils.py:1519
 msgid "%(female_name)s was buried in %(burial_place)s."
 msgstr "%(female_name)s% a été enterrée à %(burial_place)s."
 
-#: ReportUtils.py:1518
+#: ReportUtils.py:1522
 msgid "%(female_name)s was buried."
 msgstr "%(female_name)s a été inhumée."
 
-#: ReportUtils.py:1548
+#: ReportUtils.py:1552
 msgid ""
 "%(male_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s %"
 "(death_place)s."
@@ -3196,75 +3203,67 @@ msgstr ""
 "%(male_name)s Né : %(birth_date)s %(birth_place)s Décédé : %(death_date)s %"
 "(death_place)s."
 
-#: ReportUtils.py:1555
-msgid ""
-"%(male_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s."
-msgstr ""
-"%(male_name)s Né : %(birth_date)s %(birth_place)s Décédé : %(death_date)s."
+#: ReportUtils.py:1559
+msgid "%(male_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s."
+msgstr "%(male_name)s Né : %(birth_date)s %(birth_place)s Décédé : %(death_date)s."
 
-#: ReportUtils.py:1563
-msgid ""
-"%(male_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_place)s."
-msgstr ""
-"%(male_name)s Né : %(birth_date)s %(birth_place)s Décédé : %(death_place)s."
+#: ReportUtils.py:1567
+msgid "%(male_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_place)s."
+msgstr "%(male_name)s Né : %(birth_date)s %(birth_place)s Décédé : %(death_place)s."
 
-#: ReportUtils.py:1570
+#: ReportUtils.py:1574
 msgid "%(male_name)s Born: %(birth_date)s %(birth_place)s."
 msgstr "%(male_name)s Né : %(birth_date)s %(birth_place)s."
 
-#: ReportUtils.py:1577
-msgid ""
-"%(male_name)s Born: %(birth_date)s Died: %(death_date)s %(death_place)s."
-msgstr ""
-"%(male_name)s Né : %(birth_date)s Décédé : %(death_date)s %(death_place)s."
+#: ReportUtils.py:1581
+msgid "%(male_name)s Born: %(birth_date)s Died: %(death_date)s %(death_place)s."
+msgstr "%(male_name)s Né : %(birth_date)s Décédé : %(death_date)s %(death_place)s."
 
-#: ReportUtils.py:1582
+#: ReportUtils.py:1586
 msgid "%(male_name)s Born: %(birth_date)s Died: %(death_date)s."
 msgstr "%(male_name)s Né : %(birth_date)s Décédé : %(death_date)s."
 
-#: ReportUtils.py:1588
+#: ReportUtils.py:1592
 msgid "%(male_name)s Born: %(birth_date)s Died: %(death_place)s."
 msgstr "%(male_name)s Né : %(birth_date)s Décédé : %(death_place)s."
 
-#: ReportUtils.py:1593
+#: ReportUtils.py:1597
 msgid "%(male_name)s Born: %(birth_date)s."
 msgstr "%(male_name)s Né : %(birth_date)s."
 
-#: ReportUtils.py:1599
-msgid ""
-"%(male_name)s Born: %(birth_place)s Died: %(death_date)s %(death_place)s."
-msgstr ""
-"%(male_name)s Né : %(birth_place)s Décédé : %(death_date)s %(death_place)s."
+#: ReportUtils.py:1603
+msgid "%(male_name)s Born: %(birth_place)s Died: %(death_date)s %(death_place)s."
+msgstr "%(male_name)s Né : %(birth_place)s Décédé : %(death_date)s %(death_place)s."
 
-#: ReportUtils.py:1606
+#: ReportUtils.py:1610
 msgid "%(male_name)s Born: %(birth_place)s Died: %(death_date)s."
 msgstr "%(male_name)s Né : %(birth_place)s Décédé : %(death_date)s."
 
-#: ReportUtils.py:1614
+#: ReportUtils.py:1618
 msgid "%(male_name)s Born: %(birth_place)s Died: %(death_place)s."
 msgstr "%(male_name)s Né : %(birth_place)s Décédé : %(death_place)s."
 
-#: ReportUtils.py:1621
+#: ReportUtils.py:1625
 msgid "%(male_name)s Born: %(birth_place)s."
 msgstr "%(male_name)s Né : %(birth_place)s."
 
-#: ReportUtils.py:1627
+#: ReportUtils.py:1631
 msgid "%(male_name)s Died: %(death_date)s %(death_place)s."
 msgstr "%(male_name)s  Décédé : %(death_date)s %(death_place)s."
 
-#: ReportUtils.py:1632
+#: ReportUtils.py:1636
 msgid "%(male_name)s Died: %(death_date)s."
 msgstr "%(male_name)s  Décédé : %(death_date)s."
 
-#: ReportUtils.py:1637
+#: ReportUtils.py:1641
 msgid "%(male_name)s Died: %(death_place)s."
 msgstr "%(male_name)s Décédé : %(death_place)s."
 
-#: ReportUtils.py:1640
+#: ReportUtils.py:1644
 msgid "%(male_name)s."
 msgstr "%(male_name)s."
 
-#: ReportUtils.py:1647
+#: ReportUtils.py:1651
 msgid ""
 "%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s %"
 "(death_place)s."
@@ -3272,101 +3271,97 @@ msgstr ""
 "%(female_name)s Née : %(birth_date)s %(birth_place)s Décédée : %(death_date)"
 "s %(death_place)s."
 
-#: ReportUtils.py:1654
-msgid ""
-"%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s."
+#: ReportUtils.py:1658
+msgid "%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s."
 msgstr ""
 "%(female_name)s Née : %(birth_date)s %(birth_place)s Décédée : %(death_date)"
 "s."
 
-#: ReportUtils.py:1662
-msgid ""
-"%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_place)s."
+#: ReportUtils.py:1666
+msgid "%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_place)s."
 msgstr ""
 "%(female_name)s Née : %(birth_date)s %(birth_place)s Décédée : %(death_place)"
 "s."
 
-#: ReportUtils.py:1669
+#: ReportUtils.py:1673
 msgid "%(female_name)s Born: %(birth_date)s %(birth_place)s."
 msgstr "%(female_name)s Née : %(birth_date)s %(birth_place)s."
 
-#: ReportUtils.py:1676
-msgid ""
-"%(female_name)s Born: %(birth_date)s Died: %(death_date)s %(death_place)s."
+#: ReportUtils.py:1680
+msgid "%(female_name)s Born: %(birth_date)s Died: %(death_date)s %(death_place)s."
 msgstr ""
 "%(female_name)s Née : %(birth_date)s Décédée : %(death_date)s %(death_place)"
 "s."
 
-#: ReportUtils.py:1681
+#: ReportUtils.py:1685
 msgid "%(female_name)s Born: %(birth_date)s Died: %(death_date)s."
 msgstr "%(female_name)s Née : %(birth_date)s Décédée : %(death_date)s."
 
-#: ReportUtils.py:1687
+#: ReportUtils.py:1691
 msgid "%(female_name)s Born: %(birth_date)s Died: %(death_place)s."
 msgstr "%(female_name)s Née : %(birth_date)s Décédée : %(death_place)s."
 
-#: ReportUtils.py:1692
+#: ReportUtils.py:1696
 msgid "%(female_name)s Born: %(birth_date)s."
 msgstr "%(female_name)s Née : %(birth_date)s."
 
-#: ReportUtils.py:1698
-msgid ""
-"%(female_name)s Born: %(birth_place)s Died: %(death_date)s %(death_place)s."
+#: ReportUtils.py:1702
+msgid "%(female_name)s Born: %(birth_place)s Died: %(death_date)s %(death_place)s."
 msgstr ""
 "%(female_name)s Née : %(birth_place)s Décédée : %(death_date)s %(death_place)"
 "s."
 
-#: ReportUtils.py:1705
+#: ReportUtils.py:1709
 msgid "%(female_name)s Born: %(birth_place)s Died: %(death_date)s."
 msgstr "%(female_name)s Née : %(birth_place)s Décédée : %(death_date)s."
 
-#: ReportUtils.py:1713
+#: ReportUtils.py:1717
 msgid "%(female_name)s Born: %(birth_place)s Died: %(death_place)s."
 msgstr "%(female_name)s Née : %(birth_place)s Décédée: %(death_place)s."
 
-#: ReportUtils.py:1720
+#: ReportUtils.py:1724
 msgid "%(female_name)s Born: %(birth_place)s."
 msgstr "%(female_name)s Née : %(birth_place)s."
 
-#: ReportUtils.py:1726
+#: ReportUtils.py:1730
 msgid "%(female_name)s Died: %(death_date)s %(death_place)s."
 msgstr "%(female_name)s Décédée : %(death_date)s %(death_place)s."
 
-#: ReportUtils.py:1731
+#: ReportUtils.py:1735
 msgid "%(female_name)s Died: %(death_date)s."
 msgstr "%(female_name)s Décédée : %(death_date)s."
 
-#: ReportUtils.py:1736
+#: ReportUtils.py:1740
 msgid "%(female_name)s Died: %(death_place)s."
 msgstr "%(female_name)s Décédée : %(death_place)s."
 
-#: ReportUtils.py:1739
+#: ReportUtils.py:1743
 msgid "%(female_name)s."
 msgstr "%(female_name)s."
 
-#: ReportUtils.py:1748 const.py:490 gramps.glade:4344
+#: ReportUtils.py:1752 const.py:490 gramps.glade:4344
 #: plugins/FamilyGroup.py:376 plugins/FamilyGroup.py:378
 msgid "Married"
 msgstr "Marié(e)"
 
-#: ReportUtils.py:1749 const.py:491
+#: ReportUtils.py:1753 const.py:491
 msgid "Unmarried"
 msgstr "N'est plus marié(e)"
 
-#: ReportUtils.py:1750 const.py:492
+#: ReportUtils.py:1754 const.py:492
 msgid "Civil Union"
 msgstr "Union civile"
 
-#: ReportUtils.py:1752 const.py:234 const.py:248 const.py:494
+#: ReportUtils.py:1756 const.py:234 const.py:248 const.py:494
 #: mergedata.glade:255
 msgid "Other"
 msgstr "Autre"
 
-#: SelectChild.py:288 SelectChild.py:305
+#: SelectChild.py:288 SelectChild.py:307
 msgid "A person cannot be linked as his/her own child"
 msgstr "Une personne ne peut être son propre parent"
 
-#: SelectChild.py:329
+#: SelectChild.py:331
 msgid "Add Child to Family (%s)"
 msgstr "Ajouter un enfant à la famille (%s)"
 
@@ -3653,7 +3648,7 @@ msgstr ""
 #: WriteGedcom.py:331 plugins/DescendReport.py:116
 #: plugins/ExportVCalendar.py:85 plugins/ExportVCard.py:88
 #: plugins/FtmStyleDescendants.py:121 plugins/GraphViz.py:517
-#: plugins/IndivComplete.py:513 plugins/NavWebPage.py:1070
+#: plugins/IndivComplete.py:513 plugins/NavWebPage.py:1071
 #: plugins/StatisticsChart.py:831 plugins/TimeLine.py:415
 #: plugins/WebPage.py:1265 plugins/WriteFtree.py:90 plugins/WriteGeneWeb.py:91
 msgid "Descendants of %s"
@@ -3662,7 +3657,7 @@ msgstr "Descendants de %s"
 #: WriteGedcom.py:335 plugins/Ancestors.py:141 plugins/ExportVCalendar.py:89
 #: plugins/ExportVCard.py:92 plugins/FtmStyleAncestors.py:96
 #: plugins/GraphViz.py:521 plugins/IndivComplete.py:517
-#: plugins/NavWebPage.py:1078 plugins/StatisticsChart.py:835
+#: plugins/NavWebPage.py:1079 plugins/StatisticsChart.py:835
 #: plugins/TimeLine.py:419 plugins/WebPage.py:1273 plugins/WriteFtree.py:94
 #: plugins/WriteGeneWeb.py:95
 msgid "Ancestors of %s"
@@ -3670,7 +3665,7 @@ msgstr "Ancêtres de %s"
 
 #: WriteGedcom.py:339 plugins/ExportVCalendar.py:93 plugins/ExportVCard.py:96
 #: plugins/GraphViz.py:525 plugins/IndivComplete.py:521
-#: plugins/NavWebPage.py:1082 plugins/StatisticsChart.py:839
+#: plugins/NavWebPage.py:1083 plugins/StatisticsChart.py:839
 #: plugins/TimeLine.py:423 plugins/WebPage.py:1277 plugins/WriteFtree.py:98
 #: plugins/WriteGeneWeb.py:99
 msgid "People with common ancestor with %s"
@@ -3991,8 +3986,7 @@ msgstr "Numéro de sécurité sociale"
 
 #: const.py:490
 msgid "A legal or common-law relationship between a husband and wife"
-msgstr ""
-"Une relation légalisée par le droit coutumier entre un homme et une femme"
+msgstr "Une relation légalisée par le droit coutumier entre un homme et une femme"
 
 #: const.py:491
 msgid "No legal or common-law relationship between man and woman"
@@ -4098,7 +4092,7 @@ msgstr "Rapports graphiques"
 msgid "Code Generators"
 msgstr "Générateurs de code"
 
-#: const.py:937 plugins/NavWebPage.py:1246 plugins/WebPage.py:1715
+#: const.py:937 plugins/NavWebPage.py:1247 plugins/WebPage.py:1715
 msgid "Web Page"
 msgstr "Page internet"
 
@@ -4110,7 +4104,7 @@ msgstr "Statistiques"
 msgid "Books"
 msgstr "Livres"
 
-#: const.py:943 plugins/NavWebPage.py:1148 plugins/ScratchPad.py:356
+#: const.py:943 plugins/NavWebPage.py:1149 plugins/ScratchPad.py:356
 #: plugins/ScratchPad.py:405 plugins/ScratchPad.py:413
 #: plugins/SimpleBookTitle.py:169 plugins/SimpleBookTitle.py:170
 #: plugins/SimpleBookTitle.py:171
@@ -4120,6 +4114,714 @@ msgstr "Texte"
 #: const.py:944
 msgid "Graphics"
 msgstr "Graphiques"
+
+#: data/tips.xml:8
+msgid ""
+"<i>You can represent a range of dates by using the format of \"between "
+"January 4, 2000 and March 20, 2003\"</i>"
+msgstr ""
+
+#: data/tips.xml:12
+msgid ""
+"You can drag and drop an image from either the Media View or any gallery "
+"into another gallery"
+msgstr ""
+
+#: data/tips.xml:15
+msgid ""
+"You can add an image to any gallery or the Media View by dragging and "
+"dropping from a file manager or a web browser."
+msgstr ""
+
+#: data/tips.xml:18
+msgid ""
+"You can set the birth order of children in a family even if you do not have "
+"birth dates by using drag and drop."
+msgstr ""
+
+#: data/tips.xml:22
+msgid ""
+"You can convert an alternate name to the person's preferred name by "
+"selecting the desired name in the person's name list, bringing up the "
+"context menu by clicking the right mouse button, and selecting from the menu."
+msgstr ""
+
+#: data/tips.xml:32
+msgid ""
+"<b>ASKING RELATIVES BEFORE IT IS TOO LATE</b>: Your oldest relatives could "
+"be your most important source of information. They usually know things about "
+"the family that hasn't been written down. They might tell you nuggets about "
+"people, the information about whom might one day be reduced to numbers. We "
+"often wonder why we didn't write down pieces of information that grandfather "
+"told us while we were young. Don't wait till it's too late..."
+msgstr ""
+
+#: data/tips.xml:52
+msgid ""
+"<b>THE PEOPLE VIEW</b>: The People view throws up a list of all individuals "
+"in the database."
+msgstr ""
+
+#: data/tips.xml:60
+msgid ""
+"<b>FILTERING PEOPLE OUT</b>: In the People view, you can 'filter' out "
+"individuals based on certain criteria. Go to the Filter (just to the right "
+"of the People icon) and choose one of the dozen different presets. For "
+"instance, all adopted people in the family tree can be located. People "
+"without a birth date mentioned can also be filtered. To get the results, "
+"click on Apply."
+msgstr ""
+
+#: data/tips.xml:67
+msgid ""
+"<b>INVERTED FILTERING</b>: You can get another set of results by using the "
+"'invert' option. For instance, if you choose to filter the 'People with "
+"children' preset filter, and then invert it, you'll find all the people "
+"without children in the family tree."
+msgstr ""
+
+#: data/tips.xml:73
+msgid ""
+"<b>LOCATING PEOPLE</b>: In the People view, you can locate any individual by "
+"through the list of surnames. Then, click on the names themselves to unfold "
+"display of all the individuals with the same last name."
+msgstr ""
+
+#: data/tips.xml:80
+msgid ""
+"<b>TO ADD INFORMATION TO SELECTED PEOPLE</b>: First, locate them in the "
+"People view. (Use the list of surnames, and click on the names to unfold the "
+"display of all individuals sharing the name). Then, go to the Family view, "
+"and add the relevant information."
+msgstr ""
+
+#: data/tips.xml:86
+msgid ""
+"<b>THE FAMILY VIEW</b>: The Family view display a family of parents, "
+"grandparents and children along with the birth and death dates (if relevant) "
+"and relationships. You can navigate to nearby relatives with a single click."
+msgstr ""
+
+#: data/tips.xml:94
+msgid ""
+"<b>IMPROVING GRAMPS</b>: Users are entitled to request enhancements to "
+"GRAMPS. Requesting an enhancement can be done either through the gramps-"
+"users or gramps-devel mailing lists, or by creating a Request for "
+"Enhancement (RFE) at http://sourceforge.net/tracker/?group_id=25770&amp;"
+"atid=385140 The last is preferred."
+msgstr ""
+
+#: data/tips.xml:101
+msgid ""
+"<b>WHO WAS BORN WHEN</b>: The 'Compare individual events' tool allows you to "
+"compare data of all (or some of) the individuals in your database. This is "
+"useful, say, if you wish to list the birth-dates of everyone in your "
+"database. For best results, your data needs to be complete."
+msgstr ""
+
+#: data/tips.xml:110
+msgid ""
+"<b>WHO'S THE OLDEST OF US ALL?</b> You can find out a lot of statistical "
+"information about your entire family, using the Tools > Utilities > Verify "
+"the database facility. For instance, what was the maximum age of any "
+"individual in the family? Or the largest husband-wife age difference. Or the "
+"minimum age at which anyone in your family ever married. Or even the minimum "
+"age at which a woman bore a child."
+msgstr ""
+
+#: data/tips.xml:117
+msgid ""
+"<b>CALCULATING RELATIONSHIPS</b>: This allows you to check if someone else "
+"in the entire family is related (by blood, not marriage) to you. Precise "
+"relationships as well as the common ancestors are reported. See Tools > "
+"Utilities > Relationship calculator."
+msgstr ""
+
+#: data/tips.xml:126
+msgid ""
+"<b>USEFUL CODES FOR SURNAMES</b>: SoundEx is a utility that will allow you "
+"to type in a surname, then give you the SoundEx Code for that name. Knowing "
+"the SoundEx Code for a surname is very helpful for researching Census Data "
+"files (microfiche) at a library or other research facility. To get your "
+"Soundex codes for surnames in your database, go to Tools > Utilities > "
+"Generate SoundEx codes."
+msgstr ""
+
+#: data/tips.xml:131
+msgid ""
+"<b>SETTING YOUR PREFERENCES</b>: Edit > Preferences will allow you to choose "
+"a number of settings, determining how your GRAMPS program should work."
+msgstr ""
+
+#: data/tips.xml:137
+msgid ""
+"<b>GRAMPS REPORTS</b>: GRAMPS offers a wide number of reports that can be "
+"generated. The Text Reports are particularly useful if you want to send out "
+"the results of your family tree to members of the family, via e-mail."
+msgstr ""
+
+#: data/tips.xml:144
+msgid ""
+"<b>STARTING A NEW FAMILY TREE</b>: The best way to start a new family tree "
+"is probably to add-in all the members of the family into the database (use "
+"Edit > Add or click on the Add button under the People menu). Then go about "
+"tracing the relationships among them all under the Family menu."
+msgstr ""
+
+#: data/tips.xml:152
+msgid ""
+"<b>TRACING RELATIONSHIPS</b>: People from an existing database can easily be "
+"all linked into the family. Go to Family, and choose the second button to "
+"the right of the Relationship window. (The first button to the right of the "
+"relationship window adds a new person to the database, and adds to a new "
+"relationship.)"
+msgstr ""
+
+#: data/tips.xml:160
+msgid ""
+"<b>ASKING RELATIONS FOR DETAILS</b>: To get inputs for building your family "
+"tree, ask key members of your extended family (including other families "
+"connected to yours via marriage) to send in information. Most important is "
+"the full name, date and places of birth and death (if expired), relationship "
+"within the family."
+msgstr ""
+
+#: data/tips.xml:168
+msgid ""
+"<b>UNSURE ABOUT BIRTH-DATES?</b> If you're unsure about the birth-dates "
+"about individuals in your family, GRAMPS allows you to enter a wide range, "
+"based on a guess or an estimate. For instance, \"about 1908\" is also a "
+"valid entry. for a birth date in GRAMPS. Subsequently, the precise dates "
+"could be included once it is available."
+msgstr ""
+
+#: data/tips.xml:174
+msgid ""
+"<b>DUPLICATE ENTRIES</b>: Tools > Database Processing > Find possible "
+"duplicate people allows you to located (and merge) entries of the same "
+"person entered more than once in the database."
+msgstr ""
+
+#: data/tips.xml:182
+msgid ""
+"<b>ADDING A SIBLING</b>: To add siblings in Gramps, make either of your "
+"parents an active person (i.e. navigate to either of your parents). Then "
+"switch to the Family View and add a new child by clicking the button second "
+"from the top on the right of the Children list (the \"New\" button). Enter "
+"the data for the new person and click OK."
+msgstr ""
+
+#: data/tips.xml:190
+msgid ""
+"<b>EDITING THE RELATIONSHIP OF A CHILD</b>: You can edit the relationship of "
+"the child to each parent by selecting the child, right-clicking, and "
+"choosing \"Edit the child-parent relationship\" item. If this is not your "
+"child but your wife's child, you would select \"Birth\" in relationship to "
+"her and \"Stepchild\" in relationship to you."
+msgstr ""
+
+#: data/tips.xml:197
+msgid ""
+"<b>ADDING A CHILD</b>: If the child is already in the database, then you "
+"don't need to add him to the database. Just add the child to the family, "
+"which can be done by pressing the third button from the top (the \"Select\" "
+"button). Then, select the person from the list."
+msgstr ""
+
+#: data/tips.xml:204
+msgid ""
+"<b>SHOW-ALL CHECKBUTTON</b>: The list of people you can add into a family is "
+"filtered to display only people who could possibly be the child (based on he "
+"birth-dates). In case GRAMPS is wrong in making this choice, you can always "
+"over-ride that filtering by checking \"Show all\" checkbutton."
+msgstr ""
+
+#: data/tips.xml:210
+msgid ""
+"<b>KEYBINDINGS</b>: GRAMPS's manual is quite elaborate and well written; it "
+"also is detailed about keybindings (in a separate appendix) and other "
+"matters. Check it out."
+msgstr ""
+
+#: data/tips.xml:217
+msgid ""
+"<b>GRAMPS-USERS</b>: Want to answer your queries about GRAMPS? Check out the "
+"gramps-users list. Many users are on the list, so you're likely to get an "
+"answer faster. If you need to ask questions -- use either gramps-devel or "
+"gramps-users at lists.sf.net, as appropriate for your questions."
+msgstr ""
+
+#: data/tips.xml:224
+msgid ""
+"<b>TIPS OF THE DAY</b>: GRAMPS's has the option of popping up a window with "
+"the tip of the day about the use of GRAMPS. The tip is chosen randomly from "
+"the pool of tips. To add your own tip, send it in to gramps-users@lists.sf."
+"net"
+msgstr ""
+
+#: data/tips.xml:230
+msgid ""
+"GRAMPS (Genealogical Research and Analysis Management Programming System) "
+"offers you a well-designed user interface to make entering data easy, and "
+"browser-like controls to allow you to navigate your family tree with ease."
+msgstr ""
+
+#: data/tips.xml:236
+msgid ""
+"<b>DIFFERENT VIEWS</b>: There are six different views for navigating your "
+"family: People, Family, Pedigree, Sources, Places, Media. Each helps you to "
+"achieve one or more specific tasks."
+msgstr ""
+
+#: data/tips.xml:242
+msgid ""
+"<b>CHANGING A CHILD/PARENT RELATIONSHIP</b>: In the Family view, a right-"
+"click on the Children allows you to edit the child/parent relationship. This "
+"is used to mark out children as adopted or step-children."
+msgstr ""
+
+#: data/tips.xml:249
+msgid ""
+"<b>BOOKMARKING INDIVIDUALS</b>: To 'bookmark' individuals in your database, "
+"navigate to them using the Family view, then right-click and 'add bookmark'. "
+"You can visit these bookmarks much like in your browser, simply via Bookmark "
+"> Go to bookmark."
+msgstr ""
+
+#: data/tips.xml:255
+msgid ""
+"<b>DATES</b>: Incorrect date formats will show up with the red button "
+"alongside the date. Green means okay, and amber signifies acceptable. Click "
+"on the colored button to invoke Date Selection dialog, if you like."
+msgstr ""
+
+#: data/tips.xml:265
+msgid ""
+"<b>LISTING EVENTS</b>: Events in the life of any individual in the database "
+"may be added via the Person > Edit Person > Events option. This space can be "
+"used to include a wide range of options ranging from adoptions, to baptisms "
+"(and other religious ceremonies), burials, causes of death, Census listings, "
+"degrees earned in education, divorce filings, elections, emigration, "
+"military service, nobility titles, number of marriages, occupations, "
+"ordination, property, religion, retirement, wills, etc."
+msgstr ""
+
+#: data/tips.xml:282
+msgid ""
+"<b>CHANGING PREFERRED NAME</b>: If a person has several names, it is very "
+"easy to manage these names in Gramps. Find the person in the Family view, "
+"double-click on the record, and open Names tab. You can add different types "
+"of names here, like Married Name, Birth Name, etc. Selecting a preferred "
+"name is just a matter of right-clicking on the name and choosing the only "
+"item in the menu."
+msgstr ""
+
+#: data/tips.xml:288
+msgid ""
+"The Pedigree view display the family in the traditional pedigree view. Hold "
+"the mouse over individuals to see more information about them and to move to "
+"more distant parts of the tree."
+msgstr ""
+
+#: data/tips.xml:295
+msgid "The Sources view shows all the family's referenced sources in a single view."
+msgstr ""
+
+#: data/tips.xml:304
+msgid "The Places view shows all places referred to in the database."
+msgstr ""
+
+#: data/tips.xml:310
+msgid ""
+"The Media list includes all forms of media referenced by the database. These "
+"could be graphic images, videos, sound clips, spreadsheets, documents, and "
+"more."
+msgstr ""
+
+#: data/tips.xml:315
+msgid ""
+"GRAMPS allows you to bookmark key individuals in your family tree, for quick "
+"access. The number able to be marked is unlimited."
+msgstr ""
+
+#: data/tips.xml:322
+msgid ""
+"GRAMPS comes with a rich set of tools. This allows you to undertake "
+"operations such as checking database for errors and consistency, as well as "
+"the research and analysis tools such as event comparison, finding duplicate "
+"people, interactive descendant browser, and others."
+msgstr ""
+
+#: data/tips.xml:328
+msgid ""
+"The 'merge' function allows you to combine separately-listed people into "
+"one. This is very useful for combining two databases with overlapping "
+"people, or combining erroneously-entered differing names for one individual."
+msgstr ""
+
+#: data/tips.xml:334
+msgid ""
+"The Soundex generator allows you to generate the standard codes commonly "
+"used in genealogy, to compare similar sounding names even though spelled "
+"differently."
+msgstr ""
+
+#: data/tips.xml:340
+msgid ""
+"Custom filters allow you to dig out family data and interesting facts, in a "
+"number of interesting selections. Such custom filters can be used in "
+"addition to the numerous preset filters."
+msgstr ""
+
+#: data/tips.xml:347
+msgid ""
+"GRAMPS allows you to import from, and export to, GEDCOM format. There is "
+"extensive support for the industry standard GEDCOM version 5.5, so you can "
+"exchange GRAMPS information to and from users of most other genealogy "
+"programs."
+msgstr ""
+
+#: data/tips.xml:353
+msgid ""
+"You can convert your data into a GRAMPS 'package', which is a compressed "
+"file containing your family tree data and any other files used. This is "
+"useful for backup or sharing with other GRAMPS users."
+msgstr ""
+
+#: data/tips.xml:358
+msgid ""
+"Make your data portable -- you can export your family tree data and media "
+"directly to the GNOME file manager (Nautilus), for burning onto a CD."
+msgstr ""
+
+#: data/tips.xml:364
+msgid ""
+"Web Family Tree (WFT) allows you to display your family tree online with "
+"only a single file, instead of many html files. GRAMPS allows you to export "
+"data to the WFT format."
+msgstr ""
+
+#: data/tips.xml:368
+msgid "GRAMPS currently runs on Linux, BSD, and Solaris."
+msgstr ""
+
+#: data/tips.xml:375
+msgid ""
+"There are several ways to report a bug, including the GRAMPS Bugs mailing "
+"list. The best way to report a bug is to use the GRAMPS Bug Tracker at "
+"Sourceforge. Using the bug tracker will make sure that your issue will be "
+"handled, and doesn't miss the developers' attention."
+msgstr ""
+
+#: data/tips.xml:383
+msgid ""
+"GRAMPS is taken forward by a set of useful mailing-lists, which any serious "
+"user needs to consider joining. These lists include gramps-announce "
+"(announcements relating to the software project), gramps-bugs (to track "
+"bugs), gramps-devel (for developers), and gramps-users (for all users, "
+"including beginners)."
+msgstr ""
+
+#: data/tips.xml:387
+msgid "Tonnes of GRAMPS-related information at http://gramps.sourceforge.net/"
+msgstr ""
+
+#: data/tips.xml:393
+msgid ""
+"GRAMPS stands for Genealogical Research and Analysis Management Programming "
+"System. It allows you to store, edit, and research genealogical data, with "
+"similar functionality to other genealogical programs."
+msgstr ""
+
+#: data/tips.xml:401
+msgid ""
+"GRAMPS offers some unique features, including the ability to input any bits "
+"and pieces of information directly into GRAMPS and rearrange/manipulate any "
+"data events in the entire data base (in any order or sequence) to assist the "
+"user in doing research, analysis and correlation with the potential of "
+"filling relationship gaps."
+msgstr ""
+
+#: data/tips.xml:407
+msgid ""
+"Respect the privacy of people in your family tree. Genealogy shouldn't "
+"reveal anyone's current health condition, their financial information, and "
+"other information they would prefer be kept confidential."
+msgstr ""
+
+#: data/tips.xml:415
+msgid ""
+"Be accurate when recording genealogical information. Don't make assumptions "
+"while recording primary information; write it exactly as you see it. Use "
+"bracketed comments to indicate your additions, deletions or comments. Use of "
+"the Latin 'sic' is recommended to confirm the accurate transcription of what "
+"seems to be an error."
+msgstr ""
+
+#: data/tips.xml:420
+msgid ""
+"You can link any 'media' (including non-text information) and other file-"
+"types to your GRAMPS family tree."
+msgstr ""
+
+#: data/tips.xml:426
+msgid ""
+"Privacy options allow the restriction of any information marked or "
+"information about living individuals. Data marked with this option can be "
+"excluded from reports and data exports."
+msgstr ""
+
+#: data/tips.xml:432
+msgid ""
+"GRAMPS allows you to generate brief or detailed reports for the ancestors or "
+"descendents of any individual in your family tree, depending on your "
+"requirements."
+msgstr ""
+
+#: data/tips.xml:437
+msgid ""
+"Multiple styles of reports are currently available by default. Users can "
+"also create their own custom styles."
+msgstr ""
+
+#: data/tips.xml:444
+msgid ""
+"Eight output formats are supported by GRAMPS -- PDF, AbiWord, KWord, "
+"OpenOffice Writer, HTML, Rich Text Format (RTF), Latex, and plain text. "
+"These formats generate data which can be read on all computers, making it "
+"easy for anyone to access it."
+msgstr ""
+
+#: data/tips.xml:449
+msgid ""
+"Custom reports can be created by advanced users under the \"plugin\" system "
+"which allows the sharing of custom report styles between users."
+msgstr ""
+
+#: data/tips.xml:455
+msgid ""
+"Book report allows the user to collect a variety of reports in a single "
+"document, which in turn is easier to distribute, especially in a paper "
+"format."
+msgstr ""
+
+#: data/tips.xml:461
+msgid ""
+"Want improvements in GRAMPS? You can do it yourself too. Since GRAMPS is "
+"free/libre and open source software, nobody prevents you from taking all of "
+"the code and continuing its development in whatever direction you see fit."
+msgstr ""
+
+#: data/tips.xml:467
+msgid ""
+"Interested in getting notified when a GRAMPS release is made? Sign up on the "
+"gramps-announce mailing list ultra-low bandwidth, at http://lists."
+"sourceforge.net/lists/listinfo/gramps-announce"
+msgstr ""
+
+#: data/tips.xml:474
+msgid ""
+"Have questions about GRAMPS, or are you looking to discuss GRAMPS related "
+"items? The best place is the gramps-users mailing list http://lists."
+"sourceforge.net/lists/listinfo/gramps-users You need to first sign-up to be "
+"able to post."
+msgstr ""
+
+#: data/tips.xml:481
+msgid ""
+"Need enhancements for GRAMPS? Requesting an enhancement can be done either "
+"through the gramps-users or gramps-devel mailing lists, or by creating a "
+"Request for Enhancement (RFE) http://sourceforge.net/tracker/?"
+"group_id=25770&amp;atid=385140"
+msgstr ""
+
+#: data/tips.xml:487
+msgid ""
+"Good genealogy tip: Information collated about your family is only as good "
+"as the source it came from. Take time and trouble to write down all the "
+"details of where the information came from."
+msgstr ""
+
+#: data/tips.xml:494
+msgid ""
+"Go from what you know to what you do not. Always record everything that is "
+"known before making conjecture. Often the facts at hand suggest plenty of "
+"direction for more research. Don't waste time looking through thousands of "
+"records hoping for a trail when you have other unexplored options."
+msgstr ""
+
+#: data/tips.xml:501
+msgid ""
+"Genealogy isn't only about dates and names. It is about people. Be "
+"descriptive. Include the <b>why</b> of how things happened, and how "
+"descendents might have been shaped by the events they went through. "
+"Narratives go a long way in making your family interesting to others too."
+msgstr ""
+
+#: data/tips.xml:506
+msgid ""
+"Join the gramps-users mailing list at http://lists.sourceforge.net/lists/"
+"listinfo/gramps-users"
+msgstr ""
+
+#: data/tips.xml:512
+msgid ""
+"You can create graphical ancestor or descendent charts in several formats -- "
+"box charts, a fan chart, multiple formats (OpenOffice Draw, PDF, PostScript, "
+"SVG), and custom charts."
+msgstr ""
+
+#: data/tips.xml:518
+msgid ""
+"You can easily export your family tree to a web page. Select the entire "
+"database, family lines or selected individuals to a collection of web pages "
+"ready for upload to the World Wide Web."
+msgstr ""
+
+#: data/tips.xml:522
+msgid "Multiple calendars and date ranges are supported by GRAMPS."
+msgstr ""
+
+#: data/tips.xml:526
+msgid "Support is mature for multiple languages and cultures."
+msgstr ""
+
+#: data/tips.xml:530
+msgid "GRAMPS offers translations for 15 languages."
+msgstr ""
+
+#: data/tips.xml:536
+msgid ""
+"GRAMPS has been designed so that new translations can easily be added with "
+"little development effort. If you are interested in participating please "
+"email gramps-devel@lists.sf.net"
+msgstr ""
+
+#: data/tips.xml:540
+msgid "Relationship calculators in GRAMPS are available in four languages."
+msgstr ""
+
+#: data/tips.xml:545
+msgid ""
+"GRAMPS offers full Unicode support. Characters for all languages are "
+"properly displayed."
+msgstr ""
+
+#: data/tips.xml:552
+msgid ""
+"You can choose anyone as your 'home person' in GRAMPS. Use Edit -> Set Home "
+"Person. The home person is the person who is selected when the database is "
+"opened, when the home-button is pressed in your browser-like GRAMPS "
+"interface, and when Home is selected from the context menu anywhere."
+msgstr ""
+
+#: data/tips.xml:557
+msgid ""
+"You can specify several names for a single person -- such as, birth name, "
+"marriage name, etc."
+msgstr ""
+
+#: data/tips.xml:565
+msgid ""
+"To switch between the different names of a single individual (birth name, "
+"marriage name, etc) right-click on the name wanted in the list of "
+"alternative names (under the Names tag in the EditPerson dialog) and select "
+"an item from the context menu. This name will become the primary name, and "
+"will be used in all display-related places."
+msgstr ""
+
+#: data/tips.xml:572
+msgid ""
+"Many current GRAMPS users contribute reports, suggestions, and feedback to "
+"the developers through various public mailing lists. The program is only a "
+"few years old and already has wide capabilities and features. Would you like "
+"to help too?"
+msgstr ""
+
+#: data/tips.xml:576
+msgid "Numerous GRAMPS releases are made each year."
+msgstr ""
+
+#: data/tips.xml:583
+msgid ""
+"GRAMPS is written in a computer language called Python using GTK and GNOME "
+"libraries. While only well supported in certain Unix and Linux environments, "
+"these are multi-platform development libraries, meaning that GRAMPS can be "
+"ported to any platform the required libraries are ported to."
+msgstr ""
+
+#: data/tips.xml:589
+msgid ""
+"The Free/Libre and Open Source Software (FLOSS) development model means "
+"GRAMPS can be extended by any programmer since all of the source code is "
+"freely available under its license."
+msgstr ""
+
+#: data/tips.xml:594
+msgid ""
+"GRAMPS is freely distributable under the General Public License, see http://"
+"www.gnu.org/licenses/licenses.html#GPL !"
+msgstr ""
+
+#: data/tips.xml:601
+msgid ""
+"GRAMPS does not support TempleReady GEDCOM extensions, and offers limited "
+"drag-and-drop support. Currently, there is no support for drag and drop "
+"between databases. Graph reports are also limited in functionality."
+msgstr ""
+
+#: data/tips.xml:607
+msgid ""
+"GRAMPS is the Genealogical Research and Analysis Management Program System. "
+"In other words, it a personal genealogy program letting you store, edit, and "
+"research genealogical data using the powers of your computer."
+msgstr ""
+
+#: data/tips.xml:615
+msgid ""
+"GRAMPS can be downloaded from Sourceforge http://sf.net/projects/gramps at "
+"no charge. GRAMPS is an Free/Libre and Open Source Software project covered "
+"by the GNU General Public License http://www.gnu.org/copyleft/gpl.html . You "
+"have full access to the source code and are allowed to distribute the "
+"program and source code freely."
+msgstr ""
+
+#: data/tips.xml:623
+msgid ""
+"A port of GRAMPS to Mac OS X exists from the Fink project http://fink."
+"sourceforge.net/pdb/package.php/gramps . It is not unusual for this version "
+"to lag behind the Linux version. The port is not supported by the GRAMPS "
+"project (since few if any of us have Macs), but we try to help out where we "
+"can."
+msgstr ""
+
+#: data/tips.xml:628
+msgid ""
+"GRAMPS works with KDE too, as long as the required GNOME libraries are "
+"installed."
+msgstr ""
+
+#: data/tips.xml:633
+msgid ""
+"To run GRAMPS, you need to have GNOME installed. But you do not need to be "
+"running the GNOME desktop."
+msgstr ""
+
+#: data/tips.xml:641
+msgid ""
+"GRAMPS makes every effort to maintain compatibility with GEDCOM, the general "
+"standard of recording genealogical information. We have import and export "
+"filters that enable GRAMPS to read and write GEDCOM files. Please do inform "
+"us about any GEDCOM flavor not supported by GRAMPS, and we will do our best "
+"to support it!"
+msgstr ""
+
+#: data/tips.xml:647
+msgid ""
+"GRAMPS can produce many different charts and reports. Moreover, the plugin "
+"architecture enables a user (you) to create his own plugins which could be "
+"new reports, charts, or research tools."
+msgstr ""
 
 # msgstr "AaàâBbCcDdEeéèêëFfGgHhIiîïJjKkLlMmNnOoPpQqRrSsTtUuùûVvWwXxYyZz"
 #: docgen/AbiWord2Doc.py:332
@@ -4637,8 +5339,7 @@ msgid "Adds a new person to the database and to a new relationship"
 msgstr "Ajouter un nouvel individu à la base et créer une nouvelle relation"
 
 #: gramps.glade:1574 gramps.glade:2745
-msgid ""
-"Selects an existing person from the database and adds to a new relationship"
+msgid "Selects an existing person from the database and adds to a new relationship"
 msgstr "Ajouter une personne existante et lui créer une nouvelle relation"
 
 #: gramps.glade:1601 gramps.glade:2772
@@ -4717,8 +5418,7 @@ msgstr "Ajouter un nouvel enfant à la base et à la famille en cours"
 msgid ""
 "Selects an existing person from the database and adds as a child to the "
 "current family"
-msgstr ""
-"Sélectionner un individu et l'ajouter comme enfant de la famille en cours"
+msgstr "Sélectionner un individu et l'ajouter comme enfant de la famille en cours"
 
 #: gramps.glade:2194 gramps.glade:2528
 msgid "Deletes the selected child from the selected family"
@@ -4898,8 +5598,7 @@ msgstr "Données"
 msgid ""
 "Select an existing media object from the database and place it in this "
 "gallery"
-msgstr ""
-"Choisir un media déjà existant dans la base et le placer dans la galerie"
+msgstr "Choisir un media déjà existant dans la base et le placer dans la galerie"
 
 #: gramps.glade:5461 gramps.glade:10513 gramps.glade:15610 gramps.glade:26016
 msgid "Edit the properties of the selected object"
@@ -5211,8 +5910,8 @@ msgstr "Supprimer la source sélectionnée"
 #: gramps.glade:10390 gramps.glade:13390 gramps.glade:15487 gramps.glade:22509
 #: gramps.glade:23738 gramps.glade:25557 gramps.glade:26561 gramps.glade:27929
 #: gramps.glade:29359 plugins/Ancestors.py:159 plugins/IndivComplete.py:324
-#: plugins/NavWebPage.py:438 plugins/NavWebPage.py:443
-#: plugins/NavWebPage.py:539 plugins/ScratchPad.py:153
+#: plugins/NavWebPage.py:439 plugins/NavWebPage.py:444
+#: plugins/NavWebPage.py:540 plugins/ScratchPad.py:153
 #: plugins/ScratchPad.py:293 plugins/ScratchPad.py:326 plugins/WebPage.py:222
 msgid "Sources"
 msgstr "Sources"
@@ -5981,8 +6680,7 @@ msgstr "_Afficher au démarrage"
 
 #: gramps.glade:30068
 msgid "<span weight=\"bold\" size=\"larger\">Gramps' Tip of the Day</span>"
-msgstr ""
-"<span weight=\"bold\" size=\"larger\">L'astuce du jour de GRAMPS</span>"
+msgstr "<span weight=\"bold\" size=\"larger\">L'astuce du jour de GRAMPS</span>"
 
 #: gramps.glade:30101
 msgid "GRAMPS - Loading Database"
@@ -5990,8 +6688,7 @@ msgstr "GRAMPS - Chargement de la base de donnée"
 
 #: gramps.glade:30126
 msgid "<span size=\"larger\" weight=\"bold\">Loading database</span>"
-msgstr ""
-"<span size=\"larger\" weight=\"bold\">Chargement de la base de données</span>"
+msgstr "<span size=\"larger\" weight=\"bold\">Chargement de la base de données</span>"
 
 #: gramps.glade:30150
 msgid "GRAMPS is loading the database you selected. Please wait."
@@ -6157,6 +6854,14 @@ msgstr "Individus déconnectés"
 #: gramps_main.py:972
 msgid "Name contains..."
 msgstr "Le nom contient ..."
+
+#: gramps_main.py:1037
+msgid "Any textual record contains..."
+msgstr ""
+
+#: gramps_main.py:1042
+msgid "Any textual record matches regular expression..."
+msgstr ""
 
 #: gramps_main.py:1069 gramps_main.py:1092
 msgid "Cannot merge people."
@@ -6371,8 +7076,7 @@ msgid "GRAMPS ID:"
 msgstr "_Identifiant GRAMPS :"
 
 #: mergedata.glade:1291
-msgid ""
-"Select the person that will provide the primary data for the merged person."
+msgid "Select the person that will provide the primary data for the merged person."
 msgstr ""
 "Sélectionner la personne dont les données seront utilisées en priorité pour "
 "la personne fusionnée."
@@ -6428,7 +7132,7 @@ msgstr "Arbre des ascendants"
 #: plugins/FtmStyleAncestors.py:422 plugins/FtmStyleDescendants.py:572
 #: plugins/GraphViz.py:971 plugins/GraphViz.py:985
 #: plugins/IndivComplete.py:594 plugins/IndivSummary.py:390
-#: plugins/NavWebPage.py:1338 plugins/Summary.py:178 plugins/TimeLine.py:479
+#: plugins/NavWebPage.py:1339 plugins/Summary.py:178 plugins/TimeLine.py:479
 #: plugins/WebPage.py:1904
 msgid "Beta"
 msgstr "Bêta"
@@ -6812,8 +7516,7 @@ msgid "Database Processing"
 msgstr "Traitement de la base de données"
 
 #: plugins/ChangeNames.py:203
-msgid ""
-"Searches the entire database and attempts to fix capitalization of the names."
+msgid "Searches the entire database and attempts to fix capitalization of the names."
 msgstr "Recherche dans toute la base pour tenter de réparer la casse des noms."
 
 #: plugins/ChangeTypes.py:89
@@ -6993,10 +7696,8 @@ msgid "Check and repair database"
 msgstr "Vérifier et réparer la base de données"
 
 #: plugins/Check.py:606
-msgid ""
-"Checks the database for integrity problems, fixing the problems that it can"
-msgstr ""
-"Vérifie l'intégrité de la base de données, corrigeant les problèmes éventuels"
+msgid "Checks the database for integrity problems, fixing the problems that it can"
+msgstr "Vérifie l'intégrité de la base de données, corrigeant les problèmes éventuels"
 
 #: plugins/CountAncestors.py:71
 msgid "Number of ancestors of \"%s\" by generation"
@@ -7300,11 +8001,11 @@ msgstr ""
 msgid "vCard export options"
 msgstr "Options d'exportation vCard"
 
-#: plugins/FamilyGroup.py:163 plugins/NavWebPage.py:758
+#: plugins/FamilyGroup.py:163 plugins/NavWebPage.py:759
 msgid "Husband"
 msgstr "Mari"
 
-#: plugins/FamilyGroup.py:165 plugins/NavWebPage.py:760
+#: plugins/FamilyGroup.py:165 plugins/NavWebPage.py:761
 msgid "Wife"
 msgstr "Femme"
 
@@ -7718,8 +8419,7 @@ msgstr "Indiquer les relations autres que la naissance avec des pointillés"
 
 #: plugins/GraphViz.py:668
 msgid "Non-birth relationships will show up as dotted lines in the graph."
-msgstr ""
-"Les relations autres que la naissance seront en pointillé sur le graphique."
+msgstr "Les relations autres que la naissance seront en pointillé sur le graphique."
 
 #: plugins/GraphViz.py:671
 msgid "Show family nodes"
@@ -7727,8 +8427,7 @@ msgstr "Affiche les noeuds familiaux"
 
 #: plugins/GraphViz.py:675
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr ""
-"Les familles seront affichées en cercles, reliées aux parents et aux enfants."
+msgstr "Les familles seront affichées en cercles, reliées aux parents et aux enfants."
 
 #: plugins/GraphViz.py:687 plugins/GraphViz.py:690 plugins/GraphViz.py:702
 #: plugins/GraphViz.py:709
@@ -7803,11 +8502,11 @@ msgstr ""
 msgid "GeneWeb import"
 msgstr "Import GeneWeb"
 
-#: plugins/ImportGeneWeb.py:711
+#: plugins/ImportGeneWeb.py:713
 msgid "GeneWeb files"
 msgstr "Fichiers GeneWeb"
 
-#: plugins/ImportGeneWeb.py:713
+#: plugins/ImportGeneWeb.py:715
 msgid "GeneWeb"
 msgstr "GeneWeb"
 
@@ -7991,136 +8690,134 @@ msgstr ""
 msgid "Introduction"
 msgstr "Introduction"
 
-#: plugins/NavWebPage.py:444
+#: plugins/NavWebPage.py:445
 msgid "All sources cited in the project."
 msgstr "Toutes les sources citées dans le projet."
 
-#: plugins/NavWebPage.py:470 plugins/NavWebPage.py:473
+#: plugins/NavWebPage.py:471 plugins/NavWebPage.py:474
 msgid "Download"
 msgstr "Télécharger"
 
-#: plugins/NavWebPage.py:490 plugins/NavWebPage.py:493
+#: plugins/NavWebPage.py:491 plugins/NavWebPage.py:494
 msgid "Contact"
 msgstr "Contact"
 
-#: plugins/NavWebPage.py:582
+#: plugins/NavWebPage.py:583
 msgid "Pedigree"
 msgstr "Arborescence"
 
-#: plugins/NavWebPage.py:673
+#: plugins/NavWebPage.py:674
 msgid "Narrative"
 msgstr "Narratif"
 
-#: plugins/NavWebPage.py:706
+#: plugins/NavWebPage.py:707
 msgid "Relationships"
 msgstr "Relations"
 
-#: plugins/NavWebPage.py:762 plugins/NavWebPage.py:764
+#: plugins/NavWebPage.py:763 plugins/NavWebPage.py:765
 msgid "Partner"
 msgstr "Partenaire"
 
-#: plugins/NavWebPage.py:831
-msgid ""
-"%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; at &nbsp&nbsp; %(place)s"
-msgstr ""
-"%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; à &nbsp&nbsp; %(place)s"
+#: plugins/NavWebPage.py:832
+msgid "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; at &nbsp&nbsp; %(place)s"
+msgstr "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; à &nbsp&nbsp; %(place)s"
 
-#: plugins/NavWebPage.py:833
+#: plugins/NavWebPage.py:834
 msgid "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp;"
 msgstr "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp;"
 
-#: plugins/NavWebPage.py:837
+#: plugins/NavWebPage.py:838
 msgid "%(date)s &nbsp;&nbsp; at &nbsp&nbsp; %(place)s"
 msgstr "%(date)s &nbsp;&nbsp; à &nbsp&nbsp; %(place)s"
 
-#: plugins/NavWebPage.py:914 plugins/WebPage.py:818
+#: plugins/NavWebPage.py:915 plugins/WebPage.py:818
 msgid "Generate HTML reports - GRAMPS"
 msgstr "Génération des pages HTML - GRAMPS"
 
-#: plugins/NavWebPage.py:916 plugins/WebPage.py:820
+#: plugins/NavWebPage.py:917 plugins/WebPage.py:820
 msgid "Creating Web Pages"
 msgstr "Création du site Web"
 
-#: plugins/NavWebPage.py:925 plugins/WebPage.py:1097
+#: plugins/NavWebPage.py:926 plugins/WebPage.py:1097
 msgid "Neither %s nor %s are directories"
 msgstr "Ni %s ni %s ne sont des répertoires"
 
-#: plugins/NavWebPage.py:932 plugins/NavWebPage.py:936
-#: plugins/NavWebPage.py:948 plugins/NavWebPage.py:952 plugins/WebPage.py:1104
+#: plugins/NavWebPage.py:933 plugins/NavWebPage.py:937
+#: plugins/NavWebPage.py:949 plugins/NavWebPage.py:953 plugins/WebPage.py:1104
 #: plugins/WebPage.py:1108 plugins/WebPage.py:1120 plugins/WebPage.py:1124
 msgid "Could not create the directory: %s"
 msgstr "Impossible de créer le répertoire : %s"
 
-#: plugins/NavWebPage.py:1074 plugins/WebPage.py:1269
+#: plugins/NavWebPage.py:1075 plugins/WebPage.py:1269
 msgid "Descendant Families of %s"
 msgstr "Familles descendantes de %s"
 
-#: plugins/NavWebPage.py:1088 plugins/WebPage.py:1284
+#: plugins/NavWebPage.py:1089 plugins/WebPage.py:1284
 msgid "Do not include records marked private"
 msgstr "Ne pas inclure les fiches privées"
 
-#: plugins/NavWebPage.py:1089 plugins/WebPage.py:1285
+#: plugins/NavWebPage.py:1090 plugins/WebPage.py:1285
 msgid "Restrict information on living people"
 msgstr "Restreindre l'information sur les personnes vivantes"
 
-#: plugins/NavWebPage.py:1090 plugins/WebPage.py:1286
+#: plugins/NavWebPage.py:1091 plugins/WebPage.py:1286
 msgid "Do not use images"
 msgstr "Ne pas inclure les images"
 
-#: plugins/NavWebPage.py:1091 plugins/WebPage.py:1287
+#: plugins/NavWebPage.py:1092 plugins/WebPage.py:1287
 msgid "Do not use images for living people"
 msgstr "Ne pas inclure les images pour les personnes vivantes"
 
-#: plugins/NavWebPage.py:1092 plugins/WebPage.py:1288
+#: plugins/NavWebPage.py:1093 plugins/WebPage.py:1288
 msgid "Do not include comments and text in source information"
 msgstr "Ne pas inclure de commentaire ni de texte dans les sources"
 
-#: plugins/NavWebPage.py:1093 plugins/WebPage.py:1292
+#: plugins/NavWebPage.py:1094 plugins/WebPage.py:1292
 msgid "Image subdirectory"
 msgstr "Répertoire d'images"
 
-#: plugins/NavWebPage.py:1094
+#: plugins/NavWebPage.py:1095
 msgid "Web site title"
 msgstr "Nom du site web"
 
-#: plugins/NavWebPage.py:1095 plugins/WebPage.py:1294
+#: plugins/NavWebPage.py:1096 plugins/WebPage.py:1294
 msgid "File extension"
 msgstr "Extension de fichier"
 
-#: plugins/NavWebPage.py:1096 plugins/WebPage.py:1296
+#: plugins/NavWebPage.py:1097 plugins/WebPage.py:1296
 msgid "Split alphabetical sections to separate pages"
 msgstr "Scinder les sections alphabétiques en pages distinctes"
 
-#: plugins/NavWebPage.py:1097 plugins/WebPage.py:1299
+#: plugins/NavWebPage.py:1098 plugins/WebPage.py:1299
 msgid "Include short ancestor tree"
 msgstr "Inclure un arbre restreint des ascendants"
 
-#: plugins/NavWebPage.py:1149
+#: plugins/NavWebPage.py:1150
 msgid "Home Note ID"
 msgstr ""
 
-#: plugins/NavWebPage.py:1151
+#: plugins/NavWebPage.py:1152
 msgid "Introduction Note ID"
 msgstr ""
 
-#: plugins/NavWebPage.py:1154 plugins/WebPage.py:1427
+#: plugins/NavWebPage.py:1155 plugins/WebPage.py:1427
 msgid "Privacy"
 msgstr "Vie privée"
 
-#: plugins/NavWebPage.py:1221 plugins/NavWebPage.py:1246
+#: plugins/NavWebPage.py:1222 plugins/NavWebPage.py:1247
 #: plugins/WebPage.py:1699 plugins/WebPage.py:1715 plugins/WebPage.py:1903
 msgid "Generate Web Site"
 msgstr "Génération de site internet"
 
-#: plugins/NavWebPage.py:1251 plugins/WebPage.py:1720
+#: plugins/NavWebPage.py:1252 plugins/WebPage.py:1720
 msgid "Target Directory"
 msgstr "Répertoire cible"
 
-#: plugins/NavWebPage.py:1337
+#: plugins/NavWebPage.py:1338
 msgid "Narrative Web Site"
 msgstr "Génération de site internet détaillé"
 
-#: plugins/NavWebPage.py:1339 plugins/WebPage.py:1905
+#: plugins/NavWebPage.py:1340 plugins/WebPage.py:1905
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr ""
 "Génération de pages internet (HTML) pour tous les indivdus ou une partie des "
@@ -8487,8 +9184,7 @@ msgstr ""
 
 #: plugins/StatisticsChart.py:529
 msgid "Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s"
-msgstr ""
-"Personnes nées entre %(year_from)04d et %(year_to)04d : %(chart_title)s"
+msgstr "Personnes nées entre %(year_from)04d et %(year_to)04d : %(chart_title)s"
 
 #: plugins/StatisticsChart.py:803
 msgid "The style used for the items and values."
@@ -8524,8 +9220,7 @@ msgstr "Personnes nées entre"
 msgid ""
 "Check this if you want people who have no birth date or year to be accounted "
 "also in the statistics."
-msgstr ""
-"Inclure les personnes sans date ni année de naissance dans les statistiques."
+msgstr "Inclure les personnes sans date ni année de naissance dans les statistiques."
 
 #: plugins/StatisticsChart.py:883
 msgid "Include people without birth years"
@@ -8540,8 +9235,7 @@ msgid "Genders included"
 msgstr "Sexes choisis"
 
 #: plugins/StatisticsChart.py:899
-msgid ""
-"With fewer items pie chart and legend will be used instead of a bar chart."
+msgid "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
 "S'il y a moins d'éléments que spécifié un diagramme en camembert avec "
 "légende sera généré à la place d'un diagramme en barres."
@@ -8634,24 +9328,28 @@ msgstr "Statistiques sur la base"
 msgid "Provides a summary of the current database"
 msgstr "Fournit un résumé de la base de donnée active"
 
-#: plugins/TestcaseGenerator.py:70 plugins/TestcaseGenerator.py:75
-#: plugins/TestcaseGenerator.py:112
+#: plugins/TestcaseGenerator.py:74 plugins/TestcaseGenerator.py:79
+#: plugins/TestcaseGenerator.py:121
 msgid "Generate testcases"
 msgstr ""
 
-#: plugins/TestcaseGenerator.py:79
+#: plugins/TestcaseGenerator.py:83
 msgid "Generate Database errors"
 msgstr "Générer les erreurs de la base de données"
 
-#: plugins/TestcaseGenerator.py:83
+#: plugins/TestcaseGenerator.py:87
+msgid "Generate date tests"
+msgstr ""
+
+#: plugins/TestcaseGenerator.py:91
 msgid "Generate dummy families"
 msgstr "Générer des familles bidons"
 
-#: plugins/TestcaseGenerator.py:87
+#: plugins/TestcaseGenerator.py:95
 msgid "Don't block transactions"
 msgstr ""
 
-#: plugins/TestcaseGenerator.py:120
+#: plugins/TestcaseGenerator.py:129
 msgid ""
 "Generating persons and families.\n"
 "Please wait."
@@ -8659,19 +9357,19 @@ msgstr ""
 "Génération des personnes et des familles.\n"
 "Patientez."
 
-#: plugins/TestcaseGenerator.py:157
+#: plugins/TestcaseGenerator.py:169
 msgid "Testcase generator"
 msgstr ""
 
-#: plugins/TestcaseGenerator.py:514
+#: plugins/TestcaseGenerator.py:623
 msgid "Testcase generator step %d"
 msgstr ""
 
-#: plugins/TestcaseGenerator.py:538
+#: plugins/TestcaseGenerator.py:647
 msgid "Generate Testcases for persons and families"
 msgstr ""
 
-#: plugins/TestcaseGenerator.py:540
+#: plugins/TestcaseGenerator.py:649
 msgid ""
 "The testcase generator will generate some persons and families that have "
 "broken links in the database or data that is in conflict to a relation."
@@ -8710,8 +9408,7 @@ msgid "Database Verify"
 msgstr "Vérification de la base de données"
 
 #: plugins/Verify.py:180
-msgid ""
-"Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
+msgid "Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
 msgstr ""
 "Baptisé avant la naissance : %(male_name)s né %(byear)d, baptisé %(bapyear)"
 "d.\n"
@@ -8726,32 +9423,27 @@ msgstr ""
 
 #: plugins/Verify.py:187
 msgid "Baptized late: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
-msgstr ""
-"Baptisé tardivement : %(male_name)s né %(byear)d, baptisé %(bapyear)d.\n"
+msgstr "Baptisé tardivement : %(male_name)s né %(byear)d, baptisé %(bapyear)d.\n"
 
 #: plugins/Verify.py:190
 msgid "Baptized late: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n"
-msgstr ""
-"Baptisée tardivement : %(female_name)s née %(byear)d, baptisée %(bapyear)d.\n"
+msgstr "Baptisée tardivement : %(female_name)s née %(byear)d, baptisée %(bapyear)d.\n"
 
 #: plugins/Verify.py:195
-msgid ""
-"Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
+msgid "Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
 msgstr ""
 "Enterré avant la mort : %(male_name)s décédé %(dyear)d, enterré %(buryear)"
 "d.\n"
 
 #: plugins/Verify.py:198
-msgid ""
-"Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
+msgid "Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
 msgstr ""
 "Enterrée avant la mort : %(female_name)s décédée %(dyear)d, enterrée %"
 "(buryear)d.\n"
 
 #: plugins/Verify.py:202
 msgid "Buried late: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr ""
-"Enterré tardivement : %(male_name)s décédé %(dyear)d, enterré %(buryear)d.\n"
+msgstr "Enterré tardivement : %(male_name)s décédé %(dyear)d, enterré %(buryear)d.\n"
 
 #: plugins/Verify.py:205
 msgid "Buried late: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
@@ -8761,8 +9453,7 @@ msgstr ""
 
 #: plugins/Verify.py:209
 msgid "Died before birth: %(male_name)s born %(byear)d, died %(dyear)d.\n"
-msgstr ""
-"Mort avant la naissance : %(male_name)s né %(byear)d, décédé %(dyear)d.\n"
+msgstr "Mort avant la naissance : %(male_name)s né %(byear)d, décédé %(dyear)d.\n"
 
 #: plugins/Verify.py:212
 msgid "Died before birth: %(female_name)s born %(byear)d, died %(dyear)d.\n"
@@ -8771,29 +9462,25 @@ msgstr ""
 "d.\n"
 
 #: plugins/Verify.py:216
-msgid ""
-"Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
+msgid "Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
 msgstr ""
 "Décédé avant le baptême : %(male_name)s baptisé %(bapyear)d, décédé %(dyear)"
 "d.\n"
 
 #: plugins/Verify.py:219
-msgid ""
-"Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)d.\n"
+msgid "Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)d.\n"
 msgstr ""
 "Décédée avant le baptême : %(female_name)s baptisée %(bapyear)d, décédée %"
 "(dyear)d.\n"
 
 #: plugins/Verify.py:223
-msgid ""
-"Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
+msgid "Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
 msgstr ""
 "Enterré avant la naissance : %(male_name)s né %(byear)d, enterré %(buryear)"
 "d.\n"
 
 #: plugins/Verify.py:226
-msgid ""
-"Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n"
+msgid "Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n"
 msgstr ""
 "Enterrée avant la naissance : %(female_name)s née %(byear)d, enterrée %"
 "(buryear)d.\n"
@@ -8883,8 +9570,7 @@ msgid "Husband and wife with the same surname: %s in family %s, and %s.\n"
 msgstr "Mari et femme ayant le même nom : %s dans la famille %s, et %s.\n"
 
 #: plugins/Verify.py:322
-msgid ""
-"Large age difference between husband and wife: %s in family %s, and %s.\n"
+msgid "Large age difference between husband and wife: %s in family %s, and %s.\n"
 msgstr ""
 "Différence d'âge importante entre le mari et la femme : %s dans la famille %"
 "s, et %s.\n"
@@ -8906,25 +9592,19 @@ msgstr ""
 "(maryear)d à %(spouse)s.\n"
 
 #: plugins/Verify.py:362
-msgid ""
-"Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr ""
-"Jeune mariage : %(male_name)s marié à l'âge de %(marage)d ans à %(spouse)s.\n"
+msgid "Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr "Jeune mariage : %(male_name)s marié à l'âge de %(marage)d ans à %(spouse)s.\n"
 
 #: plugins/Verify.py:365
-msgid ""
-"Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr ""
-"Jeune mariage : %(female_name)s mariée à l'âge de %(marage)d à %(spouse)s.\n"
+msgid "Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr "Jeune mariage : %(female_name)s mariée à l'âge de %(marage)d à %(spouse)s.\n"
 
 #: plugins/Verify.py:369
 msgid "Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr ""
-"Vieux mariage : %(male_name)s marié(e) à l'âge de %(marage)d à %(spouse)s.\n"
+msgstr "Vieux mariage : %(male_name)s marié(e) à l'âge de %(marage)d à %(spouse)s.\n"
 
 #: plugins/Verify.py:372
-msgid ""
-"Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
+msgid "Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
 msgstr ""
 "Vieux mariage : %(female_name)s marié(e) à l'âge de %(marage)d à %(spouse)"
 "s.\n"
@@ -9390,8 +10070,7 @@ msgstr "_Nouveau type d'événement :"
 
 #: plugins/desbrowse.glade:126
 msgid "<i>Double-click on the row to edit personal information</i>"
-msgstr ""
-"<i>Double-cliquer sur la ligne pour éditer les informations personnelles</i>"
+msgstr "<i>Double-cliquer sur la ligne pour éditer les informations personnelles</i>"
 
 #: plugins/eval.glade:202
 msgid "<b>Evaluation Window</b>"
@@ -9419,8 +10098,7 @@ msgstr "Enregistrer les données"
 
 #: plugins/eventcmp.glade:118
 msgid "Select file to save OpenOffice.org spreadsheet"
-msgstr ""
-"Sélectionner une feuille de calcul OpenOffice.org pour sauver les résultats"
+msgstr "Sélectionner une feuille de calcul OpenOffice.org pour sauver les résultats"
 
 #: plugins/eventcmp.glade:416
 msgid ""
@@ -9645,3 +10323,4 @@ msgstr "<b>Critère retenu</b>"
 #: rule.glade:1186
 msgid "<b>Values</b>"
 msgstr "<b>Valeurs</b>"
+
