@@ -1,3 +1,8 @@
+2005-05-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/ImportGeneWeb.py (decode): Decode characters and named
+	entities. Because gramps is not web browser based we can simply use
+	unicode.
+	
 2005-05-16  Don Allingham  <don@gramps-project.org>
 	* src/PlaceView.py: select correct column for sorting
 	* src/SourceView.py: select correct column for sorting

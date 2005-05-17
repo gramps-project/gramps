@@ -52,6 +52,7 @@ import Utils
 import const
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
+from htmlentitydefs import name2codepoint
 
 #-------------------------------------------------------------------------
 #
@@ -698,7 +699,29 @@ class GeneWebParser:
         return sref
 
     def decode(self,s):
-        return( latin_utf8.latin_to_utf8( s.replace('_',' ')))
+        s = latin_utf8.latin_to_utf8( s.replace('_',' '))
+        charref_re = re.compile('(&#)(x?)([0-9a-zA-Z]+)(;)')
+        for match in charref_re.finditer(s):
+            try:
+                if match.group(2):  # HEX
+                    nchar = unichr(int(match.group(3),16))
+                else:   # Decimal
+                    nchar = unichr(int(match.group(3)))
+                s = s.replace(match.group(0),nchar)
+            except UnicodeDecodeError:
+                pass
+        
+        # replace named entities
+        entref_re = re.compile('(&)([a-zA-Z]+)(;)')
+        for match in entref_re.finditer(s):
+            try:
+                if match.group(2) in name2codepoint:
+                    nchar = unichr(name2codepoint[match.group(2)])
+                s = s.replace(match.group(0),nchar)
+            except UnicodeDecodeError:
+                pass
+        
+        return( s)
 
     def cnv(seld,s):
         return( latin_utf8.latin_to_utf8(s))
