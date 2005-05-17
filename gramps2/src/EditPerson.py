@@ -309,10 +309,10 @@ class EditPerson:
             'Place'       : (_('Place'),-1,100)
             }
 
-        if not self.db.readonly:
-            values = self.db.metadata.get('event_order',event_default)
-        else:
-            values = event_default
+        #if not self.db.readonly:
+        #    values = self.db.metadata.get('event_order',event_default)
+        #else:
+        values = event_default
 
         etitles = []
         for val in values:

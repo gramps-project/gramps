@@ -201,12 +201,12 @@ class ListModel:
         return [ self.model.get_value(node,c) for c in cols ]
     
     def add(self,data,info=None,select=0):
-        self.count = self.count + 1
+        self.count += 1
         node = self.model.append()
         col = 0
         for obj in data:
             self.model.set_value(node,col,obj)
-            col = col + 1
+            col += 1
         self.model.set_value(node,col,info)
         if info:
             self.idmap[str(info)] = node
@@ -219,7 +219,7 @@ class ListModel:
         col = 0
         for obj in data:
             self.model.set_value(node,col,obj)
-            col = col + 1
+            col += 1
         self.model.set_value(node,col,info)
         if info:
             self.idmap[str(info)] = node
