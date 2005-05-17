@@ -99,13 +99,15 @@ class SourceView:
         self.model = DisplayModels.SourceModel(self.parent.db,
                                                self.sort_col,order)
         self.list.set_model(self.model)
+        colmap = self.parent.db.get_place_column_order()
+
         if handle:
             path = self.model.on_get_path(handle)
             self.selection.select_path(path)
             self.list.scroll_to_cell(path,None,1,0.5,0)
         for i in range(0,len(self.columns)):
-            self.columns[i].set_sort_indicator(i==data)
-        self.columns[data].set_sort_order(order)
+            self.columns[i].set_sort_indicator(i==colmap[data][1]-1)
+        self.columns[self.sort_col].set_sort_order(order)
 
     def build_columns(self):
         for column in self.columns:
@@ -125,7 +127,7 @@ class SourceView:
                 continue
             name = column_names[pair[1]]
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
-            column.connect('clicked',self.column_clicked,pair[1])
+            column.connect('clicked',self.column_clicked,index)
             column.set_resizable(True)
             column.set_min_width(75)
             column.set_clickable(True)
