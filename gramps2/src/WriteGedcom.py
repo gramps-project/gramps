@@ -59,7 +59,7 @@ def keep_utf8(s):
     return s
 
 def iso8859(s):
-    return s.encode('iso-8859-1')
+    return s.encode('iso-8859-1','replace')
 
 #-------------------------------------------------------------------------
 #

@@ -1,3 +1,7 @@
+2005-05-16  Don Allingham  <don@gramps-project.org>
+	* src/WriteGedcom.py: used 'replace' mode on iso-8859-1 string
+	encoding conversion
+
 2005-05-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/ReadGedcom.py (parse_trailer): Catch EOF to warn about premature
 	EOF only once; Always close file; (parse_record): Properly catch
