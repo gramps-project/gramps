@@ -2,6 +2,11 @@
 	* src/GenericFilter.py: Change filter rule names to make them consistent.
 	* src/gramps_main.py: Change filter names to make them consistent.
 
+	* src/Date.py: Import gettext.
+	* src/DateDisplay.py: Import gettext.
+	* src/GenericFilter.py: Support existing custom_filters.xml files
+	by adding an old2new mapping for names.
+
 2005-05-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/ImportGeneWeb.py (decode): Decode characters and named
 	entities. Because gramps is not web browser based we can simply use

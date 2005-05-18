@@ -1270,7 +1270,7 @@ class HasBirth(Rule):
             self.date = None
         
     def name(self):
-        return 'People with the birth data'
+        return 'People with the birth data:'
 
     def description(self):
         return _("Matches people with birth data of a particular value")
@@ -2238,6 +2238,54 @@ class GenericFilter:
 # Name to class mappings
 #
 #-------------------------------------------------------------------------
+# This dict is mapping from old names to new names, so that the existing
+# custom_filters.xml will continue working
+old2new = {
+    "Is default person"             : "Default person",
+    "Has the Id"                    : "People with Id:",
+    "Is bookmarked person"          : "Bookmarked people",
+    "Has a name"                    : "People with the name:",
+    "Has the relationships"         : "People with the relationships:",
+    "Has the death"                 : "People with the death data:",
+    "Has the birth"                 : "People with the birth data:",
+    "Is a descendant of"            : "Descendants of <person>",
+    "Is a descendant family member of" : "Descendant family members of <person>",
+    "Is a descendant of filter match": "Descendants of <filter> match",
+    "Is a descendant of person not more than N generations away":
+                    "Descendants of <person> not more than <N> generations away",
+    "Is an ancestor of person at least N generations away" :
+                        "Ancestors of <person> at least <N> generations away",
+    "Is a child of filter match"    : "Children of <filter> match",
+    "Is an ancestor of"             : "Ancestors of <person>",
+    "Is an ancestor of filter match":"Ancestors of <filter> match",
+    "Is an ancestor of person not more than N generations away" : 
+                "Ancestors of <person> not more than <N> generations away",
+    "Is an ancestor of person at least N generations away":
+                    "Ancestors of <person> at least <N> generations away",
+    "Is a parent of filter match"   : "Parents of <filter> match",
+    "Has a common ancestor with"    : 
+                            "People with a common ancestor with <person>",
+    "Has a common ancestor with filter match" :
+                        "People with a common ancestor with <filter> match",
+    "Is a female"                   : "Females",
+    "Is a male"                     : "Males",
+    "Has complete record"           : "People with complete records",
+    "Has the personal event"        : "People with the personal event:",
+    "Has the family event"          : "People with the family event:",
+    "Has the personal attribute"    : "People with the personal attribute:",
+    "Has the family attribute"      : "People with the family attribute:",
+    "Has source of"                 : "People with the source:",
+    "Matches the filter named"      : "People matching the <filter>",
+    "Is spouse of filter match"     : "Spouses of <filter> match",
+    "Is a sibling of filter match"  : "Siblings of <filter> match",
+    "Relationship path between two people" : "Relationship path between <persons>",
+    "Adopted people"                : "People who were adopted",
+    "People who have images"        : "People with images",
+    "People without a birth date"   : "People without a known birth date",
+    "Families with incomplete events" :"People with incomplete events",
+    "Has text matching substring of" :"People with records containing the substring:",
+}
+
 tasks = {
     unicode(_("Everyone"))                             : Everyone,
     unicode(_("Default person"))                       : IsDefaultPerson,
@@ -2246,7 +2294,7 @@ tasks = {
     unicode(_("People with the name:"))                           : HasNameOf,
     unicode(_("People with the relationships:"))                : HasRelationship,
     unicode(_("People with the death data:"))                        : HasDeath,
-    unicode(_("People with the birth data"))                        : HasBirth,
+    unicode(_("People with the birth data:"))                        : HasBirth,
     unicode(_("Descendants of <person>"))              : IsDescendantOf,
     unicode(_("Descendant family members of <person>"))     : IsDescendantFamilyOf,
     unicode(_("Descendants of <filter> match"))      : IsDescendantOfFilterMatch,
@@ -2399,6 +2447,8 @@ class FilterParser(handler.ContentHandler):
             self.gfilter_list.add(self.f)
         elif tag == "rule":
             cname = attrs['class']
+            if cname in old2new:
+                cname = old2new[cname]
             name = unicode(_(cname))
             self.a = []
             if name in tasks:

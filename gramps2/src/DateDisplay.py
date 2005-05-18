@@ -30,6 +30,7 @@ __version__ = "$Revision$"
 
 import Date
 import locale
+from gettext import gettext as _
 
 
 class DateDisplay:
