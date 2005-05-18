@@ -1,3 +1,6 @@
+2005-05-18  James Treacy  <treacy@debian.org>
+	* src/data/tips.xml: Update and rework.
+
 2005-05-18  Alex Roitman  <shura@gramps-project.org>
 	* src/GenericFilter.py: Use class names for internal work; Rework
 	ID-based filters to use gramps-id instead of a handle.
