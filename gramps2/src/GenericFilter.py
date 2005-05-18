@@ -255,7 +255,7 @@ class HasIdOf(Rule):
     """Rule that checks for a person with a specific GRAMPS ID"""
 
     labels      = [ _('ID:') ]
-    name        = _('People with Id:')
+    name        = _('People with <Id>')
     description = _("Matches people with a specified GRAMPS ID")
     category    = _('General filters')
 
@@ -961,7 +961,7 @@ class HasEvent(Rule):
                     _('Date:'), 
                     _('Place:'), 
                     _('Description:') ]
-    name        =  _('People with the personal event:')
+    name        =  _('People with the personal <event>')
     description = _("Matches people with a personal event of a particular value")
     category    = _('Event filters')
     
@@ -1011,7 +1011,7 @@ class HasFamilyEvent(Rule):
                     _('Date:'), 
                     _('Place:'), 
                     _('Description:') ]
-    name        =  _('People with the family event:')
+    name        =  _('People with the family <event>')
     description = _("Matches people with a family event of a particular value")
     category    = _('Event filters')
     
@@ -1060,7 +1060,7 @@ class HasRelationship(Rule):
     labels      = [ _('Number of relationships:'),
                     _('Relationship type:'),
                     _('Number of children:') ]
-    name        = _('People with the relationships:')
+    name        = _('People with the <relationships>')
     description = _("Matches people with a particular relationship")
     category    = _('Family filters')
 
@@ -1110,7 +1110,7 @@ class HasBirth(Rule):
     """Rule that checks for a person with a birth of a particular value"""
 
     labels      = [ _('Date:'), _('Place:'), _('Description:') ]
-    name        = _('People with the birth data:')
+    name        = _('People with the <birth data>')
     description = _("Matches people with birth data of a particular value")
     category    = _('Event filters')
     
@@ -1150,7 +1150,7 @@ class HasDeath(Rule):
     """Rule that checks for a person with a death of a particular value"""
 
     labels      = [ _('Date:'), _('Place:'), _('Description:') ]
-    name        = _('People with the death data:')
+    name        = _('People with the <death data>')
     description = _("Matches people with death data of a particular value")
     category    = _('Event filters')
     
@@ -1190,7 +1190,7 @@ class HasAttribute(Rule):
     """Rule that checks for a person with a particular personal attribute"""
 
     labels      = [ _('Personal attribute:'), _('Value:') ]
-    name        = _('People with the personal attribute:')
+    name        = _('People with the personal <attribute>')
     description = _("Matches people with the personal attribute of a particular value")
     category    = _('General filters')
 
@@ -1215,7 +1215,7 @@ class HasFamilyAttribute(Rule):
     """Rule that checks for a person with a particular family attribute"""
 
     labels      = [ _('Family attribute:'), _('Value:') ]
-    name        = _('People with the family attribute:')
+    name        = _('People with the family <attribute>')
     description = _("Matches people with the family attribute of a particular value")
     category    = _('General filters')
     
@@ -1245,7 +1245,7 @@ class HasNameOf(Rule):
                     _('Family name:'),
                     _('Suffix:'),
                     _('Title:')]
-    name        = _('People with the name:')
+    name        = _('People with the <name>')
     description = _("Matches people with a specified (partial) name")
     category    = _('General filters')
 
@@ -1617,7 +1617,7 @@ class HasTextMatchingSubstringOf(Rule):
     labels      = [ _('Substring:'),
                     _('Case sensitive:'), 
                     _('Regular-Expression matching:')]
-    name        = _('People with records containing the substring:')
+    name        = _('People with records containing <substring>')
     description = _("Matches people whose records contain text matching a substring")
     category    = _('General filters')
 
@@ -1783,7 +1783,7 @@ class HasSourceOf(Rule):
     """Rule that checks people that have a particular source."""
 
     labels      = [ _('Source ID:') ]
-    name        = _('People with the source:')
+    name        = _('People with the <source>')
     category    = _('General filters')
     description = _('Matches people who have a particular source')
     
