@@ -265,7 +265,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Commits the specified Person to the database, storing the changes
         as part of the transaction.
         """
-        if self.readonly or not person.get_handle():
+        if self.readonly or not person or not person.get_handle():
             return 
         if change_time:
             person.change = int(change_time)
@@ -287,7 +287,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Commits the specified MediaObject to the database, storing the changes
         as part of the transaction.
         """
-        if self.readonly or not obj.get_handle():
+        if self.readonly or not obj or not obj.get_handle():
             return 
         if change_time:
             obj.change = int(change_time)
@@ -308,7 +308,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Commits the specified Source to the database, storing the changes
         as part of the transaction.
         """
-        if self.readonly or not source.get_handle():
+        if self.readonly or not source or not source.get_handle():
             return 
         if change_time:
             source.change = int(change_time)
@@ -329,7 +329,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Commits the specified Place to the database, storing the changes
         as part of the transaction.
         """
-        if self.readonly or not place.get_handle():
+        if self.readonly or not place or not place.get_handle():
             return 
         if change_time:
             place.change = int(change_time)
@@ -350,7 +350,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Commits the specified Event to the database, storing the changes
         as part of the transaction.
         """
-        if self.readonly or not event.get_handle():
+        if self.readonly or not event or not event.get_handle():
             return 
         if change_time:
             event.change = int(change_time)
@@ -367,7 +367,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Commits the specified Family to the database, storing the changes
         as part of the transaction.
         """
-        if self.readonly or not family.handle:
+        if self.readonly or not family or not family.handle:
             return
         if change_time:
             family.change = int(change_time)
@@ -648,6 +648,8 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Adds a Person to the database, assigning internal IDs if they have
         not already been defined.
         """
+        if not person:
+            return None
         if not person.get_gramps_id():
             person.set_gramps_id(self.find_next_person_gramps_id())
         if not person.get_handle():
@@ -661,6 +663,8 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Adds a Family to the database, assigning internal IDs if they have
         not already been defined.
         """
+        if not family:
+            return None
         if family.get_gramps_id() == None:
             family.set_gramps_id(self.find_next_family_gramps_id())
         if family.get_handle() == None:
@@ -673,6 +677,8 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Adds a Source to the database, assigning internal IDs if they have
         not already been defined.
         """
+        if not source:
+            return None
         if source.get_handle() == None:
             source.set_handle(self.create_id())
         if source.get_gramps_id() == None:
@@ -685,6 +691,8 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Adds an Event to the database, assigning internal IDs if they have
         not already been defined.
         """
+        if not event:
+            return None
         if event.get_handle() == None:
             event.set_handle(self.create_id())
         if event.get_gramps_id() == None:
@@ -697,6 +705,8 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Adds a Place to the database, assigning internal IDs if they have
         not already been defined.
         """
+        if not place:
+            return None
         if place.get_handle() == None:
             index = self.create_id()
             place.set_handle(index)
@@ -710,6 +720,8 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Adds a MediaObject to the database, assigning internal IDs if they have
         not already been defined.
         """
+        if not obj:
+            return None
         index = obj.get_handle()
         if index == None:
             index = self.create_id()

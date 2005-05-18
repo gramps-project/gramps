@@ -275,7 +275,7 @@ class GrampsBSDDB(GrampsDbBase):
         return vals
 
     def remove_person(self,handle,transaction):
-        if not self.readonly:
+        if not self.readonly and handle and str(handle) in self.person_map:
             person = self.get_person_from_handle(handle)
             self.genderStats.uncount_person (person)
             if transaction != None:
@@ -284,7 +284,7 @@ class GrampsBSDDB(GrampsDbBase):
             self.person_map.delete(str(handle))
 
     def remove_source(self,handle,transaction):
-        if not self.readonly:
+        if not self.readonly and handle and str(handle) in self.source_map:
             if transaction != None:
                 old_data = self.source_map.get(str(handle))
                 transaction.add(SOURCE_KEY,handle,old_data)
@@ -292,7 +292,7 @@ class GrampsBSDDB(GrampsDbBase):
             self.source_map.delete(str(handle))
 
     def remove_family(self,handle,transaction):
-        if not self.readonly:
+        if not self.readonly and handle and str(handle) in self.family_map:
             if transaction != None:
                 old_data = self.family_map.get(str(handle))
                 transaction.add(FAMILY_KEY,handle,old_data)
@@ -300,14 +300,14 @@ class GrampsBSDDB(GrampsDbBase):
             self.family_map.delete(str(handle))
 
     def remove_event(self,handle,transaction):
-        if not self.readonly:
+        if not self.readonly and handle and str(handle) in self.event_map:
             if transaction != None:
                 old_data = self.event_map.get(str(handle))
                 transaction.add(EVENT_KEY,handle,old_data)
             self.event_map.delete(str(handle))
 
     def remove_place(self,handle,transaction):
-        if not self.readonly:
+        if not self.readonly and handle and str(handle) in self.place_map:
             if transaction != None:
                 old_data = self.place_map.get(handle)
                 transaction.add(PLACE_KEY,handle,old_data)
@@ -315,7 +315,7 @@ class GrampsBSDDB(GrampsDbBase):
             self.place_map.delete(str(handle))
 
     def remove_object(self,handle,transaction):
-        if not self.readonly:
+        if not self.readonly and handle and str(handle) in self.media_map:
             if transaction != None:
                 old_data = self.media_map.get(handle)
                 transaction.add(PLACE_KEY,handle,old_data)

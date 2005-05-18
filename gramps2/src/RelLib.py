@@ -4046,6 +4046,8 @@ class GenderStats:
         return (0, 0, 0)
 
     def count_person (self, person, db, undo = 0):
+        if not person:
+            return
         # Let the Person do their own counting later
         person.db = db
 
