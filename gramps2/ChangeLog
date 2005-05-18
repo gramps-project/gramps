@@ -7,6 +7,9 @@
 	* src/GenericFilter.py: Support existing custom_filters.xml files
 	by adding an old2new mapping for names.
 
+	* src/AddSpouse.py (select_spouse_clicked): Display warning and
+	provide a way to override when trying to add child/parent as a spouse.
+
 2005-05-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/ImportGeneWeb.py (decode): Decode characters and named
 	entities. Because gramps is not web browser based we can simply use
