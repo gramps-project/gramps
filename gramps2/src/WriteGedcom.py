@@ -793,14 +793,20 @@ class GedcomWriter:
             birth = self.db.get_event_from_handle(birth_handle)
             if birth_handle and not (self.private and birth.get_privacy()):
                 if not birth.get_date_object().is_empty() or birth.get_place_handle():
-                    self.writeln("1 BIRT")
+                    if birth.get_description() != "":
+                        self.writeln("1 BIRT %s" % birth.get_description())
+                    else:
+                        self.writeln("1 BIRT")
                     self.dump_event_stats(birth)
 
             death_handle = person.get_death_handle()
             death = self.db.get_event_from_handle(death_handle)
             if death_handle and not (self.private and death.get_privacy()):
                 if not death.get_date_object().is_empty() or death.get_place_handle():
-                    self.writeln("1 DEAT")
+                    if birth.get_description() != "":
+                        self.writeln("1 DEAT %s" % death.get_description())
+                    else:
+                        self.writeln("1 DEAT")
                     self.dump_event_stats(death)
 
             ad = 0

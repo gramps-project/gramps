@@ -1025,6 +1025,8 @@ class GedcomParser:
                 self.person.add_address(addr)
             elif matches[1] == "BIRT":
                 event = RelLib.Event()
+                if matches[2]:
+                    event.set_description(matches[2])
                 self.db.add_event(event, self.trans)
                 if self.person.get_birth_handle():
                     event.set_name("Alternate Birth")
@@ -1043,6 +1045,8 @@ class GedcomParser:
                 self.db.commit_event(event, self.trans)
             elif matches[1] == "DEAT":
                 event = RelLib.Event()
+                if matches[2]:
+                    event.set_description(matches[2])
                 self.db.add_event(event, self.trans)
                 if self.person.get_death_handle():
                     event.set_name("Alternate Death")
