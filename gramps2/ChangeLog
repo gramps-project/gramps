@@ -1,3 +1,8 @@
+2005-05-18  Alex Roitman  <shura@gramps-project.org>
+	* src/GenericFilter.py: Use class names for internal work; Rework
+	ID-based filters to use gramps-id instead of a handle.
+	* src/plugins/FilterEditor.py: Use class names for internal work.
+
 2005-05-18  Don Allingham  <don@gramps-project.org>
 	* src/ReadGedcom.py: grab description for birth and death events
 	* src/WriteGedcom.py: export description for birth and death events
