@@ -1,3 +1,6 @@
+2005-05-18  Don Allingham  <don@gramps-project.org>
+	* src/plugins/FilterEditor.py: sort entries in Add Rule dialog
+
 2005-05-18  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GrampsBSDDB.py, src/GrampsDbBase.py, src/GrampsInMemDB.py,
 	  src/RelLib.py: Catch invalid arguments instead of crashing.

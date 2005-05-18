@@ -722,18 +722,28 @@ class EditRule:
             self.sel_name = unicode(_(self.active_rule.name()))
         else:
             self.sel_name = ""
-            
-        for v in the_map.keys():
+
+        keys = the_map.keys()
+        keys.sort()
+        keys.reverse()
+        catlist = []
+        for v in keys:
             the_filter = GenericFilter.tasks[v]([None])
             category = the_filter.category()
-            if top_level.has_key(category):
-                top_level[category].append(v)
-            else:
-                top_level[category] = [v]
-                top_node[category] = self.store.insert_after(None,last_top)
-                last_top = top_node[category]
-                self.store.set(last_top,0,category)
+            if category not in catlist:
+                catlist.append(category)
+        catlist.sort()
 
+        for category in catlist:
+            top_node[category] = self.store.insert_after(None,last_top)
+            top_level[category] = []
+            last_top = top_node[category]
+            self.store.set(last_top,0,category)
+
+        for v in keys:
+            the_filter = GenericFilter.tasks[v]([None])
+            category = the_filter.category()
+            top_level[category].append(v)
             node = self.store.insert_after(top_node[category],prev)
             self.store.set(node,0,v)
 
