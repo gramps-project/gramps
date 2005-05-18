@@ -272,12 +272,11 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         else:
             person.change = int(time.time())
         handle = str(person.get_handle())
+        old_data = self.person_map.get(handle)
         if transaction != None:
-            old_data = self.person_map.get(handle)
             transaction.add(PERSON_KEY,handle,old_data)
-
         self.person_map[handle] = person.serialize()
-        if transaction and old_data:
+        if old_data:
             self.emit('person-update',([handle],))
         else:
             self.emit('person-add',([handle],))
@@ -294,11 +293,11 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         else:
             obj.change = int(time.time())
         handle = str(obj.get_handle())
+        old_data = self.media_map.get(handle)
         if transaction != None:
-            old_data = self.media_map.get(handle)
             transaction.add(MEDIA_KEY,handle,old_data)
         self.media_map[handle] = obj.serialize()
-        if transaction and old_data:
+        if old_data:
             self.emit('media-update',([handle],))
         else:
             self.emit('media-add',([handle],))
@@ -315,11 +314,11 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         else:
             source.change = int(time.time())
         handle = str(source.get_handle())
+        old_data = self.source_map.get(handle)
         if transaction != None:
-            old_data = self.source_map.get(handle)
             transaction.add(SOURCE_KEY,handle,old_data)
         self.source_map[handle] =  source.serialize()
-        if transaction and old_data:
+        if old_data:
             self.emit('source-update',([handle],))
         else:
             self.emit('source-add',([handle],))
@@ -336,11 +335,11 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         else:
             place.change = int(time.time())
         handle = str(place.get_handle())
+        old_data = self.place_map.get(handle)
         if transaction != None:
-            old_data = self.place_map.get(handle)
             transaction.add(PLACE_KEY,handle,old_data)
         self.place_map[handle] = place.serialize()
-        if transaction and old_data:
+        if old_data:
             self.emit('place-update',([handle],))
         else:
             self.emit('place-add',([handle],))
@@ -357,8 +356,8 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         else:
             event.change = int(time.time())
         handle = str(event.get_handle())
+        old_data = self.event_map.get(handle)
         if transaction != None:
-            old_data = self.event_map.get(handle)
             transaction.add(EVENT_KEY,handle,old_data)
         self.event_map[handle] = event.serialize()
 
@@ -374,12 +373,12 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         else:
             family.change = int(time.time())
         handle = str(family.get_handle())
+        old_data = self.family_map.get(handle)
         if transaction != None:
-            old_data = self.family_map.get(handle)
             transaction.add(FAMILY_KEY,handle,old_data)
         self.family_map[handle] = family.serialize()
 
-        if transaction and old_data:
+        if old_data:
             self.emit('family-update',([handle],))
         else:
             self.emit('family-add',([handle],))

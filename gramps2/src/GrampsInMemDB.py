@@ -164,7 +164,7 @@ class GrampsInMemDB(GrampsDbBase):
         if transaction != None:
             old_data = self.place_map.get(str(handle))
             transaction.add(PLACE_KEY,handle,old_data)
-        self.emit('person-delete',([handle],))
+        self.emit('place-delete',([handle],))
         del self.pid_trans[place.get_gramps_id()]
         del self.place_map[str(handle)]
 
@@ -175,6 +175,7 @@ class GrampsInMemDB(GrampsDbBase):
         if transaction != None:
             old_data = self.media_map.get(str(handle))
             transaction.add(MEDIA_KEY,handle,old_data)
+        self.emit('media-delete',([handle],))
         del self.oid_trans[obj.get_gramps_id()]
         del self.media_map[str(handle)]
 
@@ -185,7 +186,7 @@ class GrampsInMemDB(GrampsDbBase):
         if transaction != None:
             old_data = self.family_map.get(str(handle))
             transaction.add(FAMILY_KEY,handle,old_data)
-        self.emit('family-delete',([str(handle),]))
+        self.emit('family-delete',([handle],))
         del self.fid_trans[family.get_gramps_id()]
         del self.family_map[str(handle)]
 
