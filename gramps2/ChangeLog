@@ -3,6 +3,8 @@
 	  src/RelLib.py: Catch invalid arguments instead of crashing.
 	TODO: raise TypeError or HandleError instead of simply returning?
 
+	* src/plugins/TestcaseGenerator.py: Added debbuging helpers for signal emissions
+
 2005-05-17  Alex Roitman  <shura@gramps-project.org>
 	* src/GenericFilter.py: Change filter rule names to make them consistent.
 	* src/gramps_main.py: Change filter names to make them consistent.
