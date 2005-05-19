@@ -114,6 +114,10 @@ class DateParserDE(DateParser):
         DateParser.init_strings(self)
         self._span  = re.compile("(von|vom)\s+(.+)\s+(bis)\s+(.+)",re.IGNORECASE)
         self._range = re.compile("(zwischen)\s+(.+)\s+(und)\s+(.+)", re.IGNORECASE)
+        self._text2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str,
+                                 re.IGNORECASE)
+        self._jtext2= re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._jmon_str,
+                                 re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
@@ -135,8 +139,57 @@ class DateDisplayDE(DateDisplay):
 
     formats = (
         "JJJJ-MM-DD (ISO)", "Numerisch", "Monat Tag Jahr",
-        "MONAT Tag Jahr", "Tag Monat Jahr", "Tag MONAT Jahr"
+        "MONAT Tag Jahr", "Tag. Monat Jahr", "Tag. MONAT Jahr"
         )
+
+    def _display_gregorian(self,date_val):
+        year = self._slash_year(date_val[2],date_val[3])
+        if self.format == 0:
+            value = self.display_iso(date_val)
+        elif self.format == 1:
+            if date_val[0] == 0 and date_val[1] == 0:
+                value = str(date_val[2])
+            else:
+                value = self._tformat.replace('%m',str(date_val[1]))
+                value = value.replace('%d',str(date_val[0]))
+                value = value.replace('%Y',str(date_val[2]))
+        elif self.format == 2:
+            # Month Day, Year
+            if date_val[0] == 0:
+                if date_val[1] == 0:
+                    value = year
+                else:
+                    value = "%s %s" % (self._months[date_val[1]],year)
+            else:
+                value = "%s %d, %s" % (self._months[date_val[1]],date_val[0],year)
+        elif self.format == 3:
+            # MON Day, Year
+            if date_val[0] == 0:
+                if date_val[1] == 0:
+                    value = year
+                else:
+                    value = "%s %s" % (self._MONS[date_val[1]],year)
+            else:
+                value = "%s %d, %s" % (self._MONS[date_val[1]],date_val[0],year)
+        elif self.format == 4:
+            # Day Month Year
+            if date_val[0] == 0:
+                if date_val[1] == 0:
+                    value = year
+                else:
+                    value = "%s %s" % (self._months[date_val[1]],year)
+            else:
+                value = "%d. %s %s" % (date_val[0],self._months[date_val[1]],year)
+        else:
+            # Day MON Year
+            if date_val[0] == 0:
+                if date_val[1] == 0:
+                    value = year
+                else:
+                    value = "%s %s" % (self._MONS[date_val[1]],year)
+            else:
+                value = "%d. %s %s" % (date_val[0],self._MONS[date_val[1]],year)
+        return value
 
     def display(self,date):
         """

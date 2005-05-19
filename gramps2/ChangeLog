@@ -1,3 +1,6 @@
+2005-05-18  Don Allingham  <don@gramps-project.org>
+	* src/dates/Date_de.py: handle dates in the form of dd. mon year
+
 2005-05-18  Richard Bos  <radoeka@xs4all.nl>
 	* src/data/gramps.desktop: Add Dutch strings.
 
