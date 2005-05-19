@@ -1888,7 +1888,40 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             task(self.db,self.active_person,self.tool_callback,self)
     
     def open_example(self,obj):
-        pass
+        import shutil
+        dest = os.path.expanduser("~/.gramps/example")
+        if not os.path.isdir(dest):
+            try:
+                os.mkdir(dest)
+            except IOError,msg:
+                ErrorDialog(_('Could not create example database'),
+                    _('The directory ~/.gramps/example could not '
+                    'be created.') + '\n' + str(msg) )
+            except OSError,msg:
+                ErrorDialog(_('Could not create example database'),
+                    _('The directory ~/.gramps/example could not '
+                    'be created.') + '\n' + str(msg) )
+            except:
+                ErrorDialog(_('Could not create example database'),
+                    _('The directory ~/.gramps/example could not '
+                    'be created.'))
+            try:
+                example_dir = "%s/share/gramps/example" % const.prefixdir
+                for filename in os.listdir(example_dir):
+                    shutil.copyfile("%s/%s" % (example_dir,filename), 
+                        "%s/%s" % (dest,filename) )
+                    try:
+                        shutil.copystat("%s/%s" % (example_dir,filename),
+                            "%s/%s" % (dest,filename))
+                    except:
+                        pass
+            except IOError,msg:
+                ErrorDialog(_('Could not create example database'),str(msg))
+            except OSError,msg:
+                ErrorDialog(_('Could not create example database'),str(msg))
+
+        filename = "%s/%s" % (dest,const.xmlFile)
+        DbPrompter.open_native(self,filename,const.app_gramps_xml)
 
 DARKEN = 1.4
 

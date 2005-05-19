@@ -14,6 +14,8 @@
 
 	* src/po/template.po: Update for 2.0.1.
 
+	* src/gramps_main.py (open_example): Add example database funciton.
+
 2005-05-18  Don Allingham  <don@gramps-project.org>
 	* src/ReadGedcom.py: grab description for birth and death events
 	* src/WriteGedcom.py: export description for birth and death events
