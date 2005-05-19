@@ -12,6 +12,7 @@
 	* src/gramps.glade: Enclose date and place groups into tables,
 	to allow proper widget order when using tab key.
 	* src/EditSource.py (button_press): Properly test event names.
+	* src/po/ru.po: Partial update for 2.0.1.
 
 2005-05-19  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GenericFilter.py: Catch invalid input in some filters;
