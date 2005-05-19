@@ -11,12 +11,10 @@
 	* src/GenericFilter.py: Use class names for internal work; Rework
 	ID-based filters to use gramps-id instead of a handle.
 	* src/plugins/FilterEditor.py: Use class names for internal work.
-
 	* src/po/template.po: Update for 2.0.1.
-
 	* src/gramps_main.py (open_example): Add example database funciton.
-
 	* NEWS: Update.
+	* src/po/ru.po: Partial update for 2.0.1.
 
 2005-05-18  Don Allingham  <don@gramps-project.org>
 	* src/ReadGedcom.py: grab description for birth and death events
