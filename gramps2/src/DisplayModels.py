@@ -428,7 +428,7 @@ class PlaceModel(BaseModel):
 #-------------------------------------------------------------------------
 class MediaModel(BaseModel):
 
-    def __init__(self,db):
+    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
         self.gen_cursor = db.get_media_cursor
         self.map = db.media_map
         
@@ -452,7 +452,7 @@ class MediaModel(BaseModel):
             self.column_place,
             self.column_handle,
             ]
-        BaseModel.__init__(self,db)
+        BaseModel.__init__(self,db,scol,order)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
