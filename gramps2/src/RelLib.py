@@ -523,10 +523,13 @@ class SourceNote(BaseObject,NoteBase):
         @param new_handle: The source handle to replace the old one with.
         @type new_handle: str
         """
-        while old_handle in self.source_list:
-            ix = self.source_list.index(old_handle)
-            self.source_list[ix] = new_handle
-
+        refs_list = [ src_ref.ref for src_ref in self.source_list ]
+        n_replace = refs_list.count(old_handle)
+        for ix_replace in xrange(n_replace):
+            ix = refs_list.index(old_handle)
+            self.source_list[ix].ref = new_handle
+            refs_list.pop(ix)
+            
         for item in self.get_sourcref_child_list():
             item.replace_source_references(old_handle,new_handle)
 
@@ -620,9 +623,12 @@ class MediaBase:
         @param new_handle: The media handle to replace the old one with.
         @type new_handle: str
         """
-        while old_handle in self.media_list:
-            ix = self.media_list.index(old_handle)
-            self.media_list[ix] = new_handle
+        refs_list = [ media_ref.ref for media_ref in self.media_list ]
+        n_replace = refs_list.count(old_handle)
+        for ix_replace in xrange(n_replace):
+            ix = refs_list.index(old_handle)
+            self.media_list[ix].ref = new_handle
+            refs_list.pop(ix)
 
 class DateBase:
     """
@@ -2950,7 +2956,7 @@ class LdsOrd(SourceNote,DateBase,PlaceBase):
         if self.place:
             return [('Place',self.place)]
         else:
-        	return []
+            return []
 
     def get_handle_referents(self):
         """
@@ -3890,7 +3896,7 @@ class Witness(BaseObject,PrivacyBase):
         if self.type == Event.ID:
             return [('Person',self.val)]
         else:
-        	return []
+            return []
 
     def set_type(self,type):
         self.type = type

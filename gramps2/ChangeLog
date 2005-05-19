@@ -4,6 +4,10 @@
 
 2005-05-19  Alex Roitman  <shura@gramps-project.org>
 	* src/MergePeople.py (merge_family_pair): Properly use handles.
+	* src/RelLib.py (SourceNote.replace_source_references): Properly
+	replace references; (MediaBase.replace_media_references): Properly
+	replace references.
+	* src/MergeData.py: Correct comments.
 
 2005-05-19  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GenericFilter.py: Catch invalid input in some filters;
