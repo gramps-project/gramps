@@ -8,6 +8,7 @@
 	replace references; (MediaBase.replace_media_references): Properly
 	replace references.
 	* src/MergeData.py: Correct comments.
+	* src/mergedata.glade: Make information panes non-editable.
 
 2005-05-19  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GenericFilter.py: Catch invalid input in some filters;
