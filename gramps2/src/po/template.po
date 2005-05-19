@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Wed May 18 16:18:11 2005\n"
+"POT-Creation-Date: Wed May 18 21:32:32 2005\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -908,7 +908,7 @@ msgstr ""
 msgid "Modify family"
 msgstr ""
 
-#: FamilyView.py:799 FamilyView.py:1444 SelectChild.py:85 SelectChild.py:148
+#: FamilyView.py:799 FamilyView.py:1447 SelectChild.py:85 SelectChild.py:148
 msgid "Add Child to Family"
 msgstr ""
 
@@ -990,19 +990,19 @@ msgstr ""
 msgid "Remove Parents (%s)"
 msgstr ""
 
-#: FamilyView.py:1475
+#: FamilyView.py:1478
 msgid "Attempt to Reorder Children Failed"
 msgstr ""
 
-#: FamilyView.py:1476
+#: FamilyView.py:1479
 msgid "Children must be ordered by their birth dates."
 msgstr ""
 
-#: FamilyView.py:1481
+#: FamilyView.py:1484
 msgid "Reorder children"
 msgstr ""
 
-#: FamilyView.py:1515
+#: FamilyView.py:1518
 msgid "Reorder spouses"
 msgstr ""
 
@@ -6119,6 +6119,15 @@ msgstr ""
 
 #: gramps_main.py:1866
 msgid "Exporting requires that an active person be selected. Please select a person and try again."
+msgstr ""
+
+#: gramps_main.py:1897 gramps_main.py:1901 gramps_main.py:1905
+#: gramps_main.py:1919 gramps_main.py:1921
+msgid "Could not create example database"
+msgstr ""
+
+#: gramps_main.py:1898 gramps_main.py:1902 gramps_main.py:1906
+msgid "The directory ~/.gramps/example could not be created."
 msgstr ""
 
 #: mergedata.glade:206
