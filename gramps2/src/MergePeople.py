@@ -391,13 +391,13 @@ class MergePeople:
             if child_handle not in tgt_family.get_child_handle_list():
                 child = self.db.get_person_from_handle(child_handle)
                 parents = child.get_parent_family_handle_list()
-                tgt_family.add_child_handle(child)
-                if child.get_main_parents_family_handle() == src_family:
-                    child.set_main_parent_family_handle(tgt_family)
+                tgt_family.add_child_handle(child_handle)
+                if child.get_main_parents_family_handle() == src_family.get_handle():
+                    child.set_main_parent_family_handle(tgt_family.get_handle())
                 i = 0
                 for fam in parents[:]:
                     if fam[0] == src_family.get_handle():
-                        parents[i] = (tgt_family,fam[1],fam[2])
+                        parents[i] = (tgt_family.get_handle(),fam[1],fam[2])
                     i += 1
                 self.db.commit_person(child,trans)
 

@@ -1,3 +1,6 @@
+2005-05-19  Alex Roitman  <shura@gramps-project.org>
+	* src/MergePeople.py (merge_family_pair): Properly use handles.
+
 2005-05-19  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GenericFilter.py: Catch invalid input in some filters;
 	(old_names_2_class): Add one name for full 1.0.11 compatibility;
