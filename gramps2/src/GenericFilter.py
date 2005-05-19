@@ -170,9 +170,12 @@ class RelationshipPathBetween(Rule):
     def prepare(self,db):
         self.db = db
         self.map = {}
-        root1_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
-        root2_handle = db.get_person_from_gramps_id(self.list[1]).get_handle()
-        self.init_list(root1_handle,root2_handle)
+        try:
+            root1_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
+            root2_handle = db.get_person_from_gramps_id(self.list[1]).get_handle()
+            self.init_list(root1_handle,root2_handle)
+        except:
+            pass
 
     def reset(self):
         self.map = {}
@@ -366,9 +369,11 @@ class IsDescendantOf(Rule):
                 first = 1
         except IndexError:
             first = 1
-
-        root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
-        self.init_list(root_handle,first)
+        try:
+            root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
+            self.init_list(root_handle,first)
+        except:
+            pass
 
     def reset(self):
         self.map = {}
@@ -449,8 +454,11 @@ class IsLessThanNthGenerationDescendantOf(Rule):
     def prepare(self,db):
         self.db = db
         self.map = {}
-        root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
-        self.init_list(root_handle,0)
+        try:
+            root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
+            self.init_list(root_handle,0)
+        except:
+            pass
 
     def reset(self):
         self.map = {}
@@ -491,8 +499,11 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
     def prepare(self,db):
         self.db = db
         self.map = {}
-        root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
-        self.init_list(root_handle,0)
+        try:
+            root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
+            self.init_list(root_handle,0)
+        except:
+            pass
 
     def reset(self):
         self.map = {}
@@ -613,9 +624,12 @@ class IsDescendantFamilyOf(Rule):
         return self.search(handle,1)
 
     def search(self,handle,val):
-        if handle == self.db.get_person_from_gramps_id(self.list[0]).get_handle():
-            self.map[handle] = 1
-            return 1
+        try:
+            if handle == self.db.get_person_from_gramps_id(self.list[0]).get_handle():
+                self.map[handle] = 1
+                return 1
+        except:
+            return 0
         
         p = self.db.get_person_from_handle(handle)
         for (f,r1,r2) in p.get_parent_family_handle_list():
@@ -660,8 +674,11 @@ class IsAncestorOf(Rule):
                 first = 1
         except IndexError:
             first = 1
-        root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
-        self.init_ancestor_list(db,root_handle,first)
+        try:
+            root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
+            self.init_ancestor_list(db,root_handle,first)
+        except:
+            pass
 
     def reset(self):
         self.map = {}
@@ -748,8 +765,11 @@ class IsLessThanNthGenerationAncestorOf(Rule):
     def prepare(self,db):
         self.db = db
         self.map = {}
-        root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
-        self.init_ancestor_list(root_handle,0)
+        try:
+            root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
+            self.init_ancestor_list(root_handle,0)
+        except:
+            pass
 
     def reset(self):
         self.map = {}
@@ -797,8 +817,11 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
     def prepare(self,db):
         self.db = db
         self.map = {}
-        root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
-        self.init_ancestor_list(root_handle,0)
+        try:
+            root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
+            self.init_ancestor_list(root_handle,0)
+        except:
+            pass
 
     def reset(self):
         self.map = []
@@ -1788,11 +1811,15 @@ class HasSourceOf(Rule):
     description = _('Matches people who have a particular source')
     
     def prepare(self,db):
-        self.source_handle = db.get_source_from_gramps_id(self.list[0]).get_handle()
+        try:
+            self.source_handle = db.get_source_from_gramps_id(self.list[0]).get_handle()
+        except:
+            self.source_handle = None
 
     def apply(self,db,handle):
+        if not self.source_handle:
+            return False
         p = db.get_person_from_handle(handle)
-
         return p.has_source_reference( self.source_handle)
 
 #-------------------------------------------------------------------------
@@ -1948,6 +1975,8 @@ old_names_2_class = {
     "Is a descendant of filter match": IsDescendantOfFilterMatch,
     "Is a descendant of person not more than N generations away":
                                 IsLessThanNthGenerationDescendantOf,
+    "Is a descendant of person at least N generations away":
+                                IsMoreThanNthGenerationDescendantOf,
     "Is an descendant of person at least N generations away" :
                                 IsMoreThanNthGenerationDescendantOf,
     "Is a child of filter match"    : IsChildOfFilterMatch,
@@ -2147,21 +2176,32 @@ class FilterParser(handler.ContentHandler):
             if save_name in old_names_2_class.keys():
                 self.r = old_names_2_class[save_name]
             else:
-                module_name,class_name = save_name.split('.')
-                if class_name not in [item.__name__ for item in editor_rule_list]:
+                mc_match = save_name.split('.')
+                if len(mc_match) != 2:
+                    # rule has an old style name, that is not in old_names_2_class
+                    # or is not in the format "module.class"
                     print "ERROR: Filter rule '%s' in filter '%s' not found!" % (
-                            class_name,self.f.get_name())
-                if module_name == self.__module__:
-                    exec 'self.r = %s' % class_name
-                else:
-                    exec 'import %s' % module_name
-                    exec 'self.r = %s.%s' % (module_name,class_name)
+                            save_name,self.f.get_name())
+                    self.r = None
+                    return
+                module_name,class_name = mc_match
+                try:
+                    if module_name == self.__module__:
+                        exec 'self.r = %s' % class_name
+                    else:
+                        exec 'import %s' % module_name
+                        exec 'self.r = %s.%s' % (module_name,class_name)
+                except (ImportError,NameError):
+                    print "ERROR: Filter rule '%s' in filter '%s' not found!" % (
+                            save_name,self.f.get_name())
+                    self.r = None
+                    return
             self.a = []
         elif tag == "arg":
             self.a.append(attrs['value'])
 
     def endElement(self,tag):
-        if tag == "rule":
+        if tag == "rule" and self.r != None:
             rule = self.r(self.a)
             self.f.add_rule(rule)
             
