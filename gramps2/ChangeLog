@@ -1,3 +1,7 @@
+2005-05-20  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/WriteXML.py: Remove unnecessary database reads, so it does no
+	longer crash when exporting a corrupt database.
+
 2005-05-20  Alex Roitman  <shura@gramps-project.org>
 	* src/SelectObject.py (on_select_row): Properly get mime type.
 	* src/GrampsBSDDB.py (remove_object): Use correct key for transaction.

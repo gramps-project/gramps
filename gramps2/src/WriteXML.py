@@ -306,13 +306,11 @@ class XmlWriter:
                         frel=' frel="%s"' % const.child_rel_notrans[alt[2]]
                     else:
                         frel=''
-                    parent_family = self.db.get_family_from_handle (alt[0])
                     self.g.write("      <childof hlink=\"%s\"%s%s/>\n" % \
-                            (parent_family.get_handle(), mrel, frel))
+                            (alt[0], mrel, frel))
 
                 for family_handle in person.get_family_handle_list():
-                    family = self.db.get_family_from_handle (family_handle)
-                    self.write_ref("parentin",family.get_handle(),3)
+                    self.write_ref("parentin",family_handle,3)
 
                 self.write_note("note",person.get_note_object(),3)
                 for s in person.get_source_references():
@@ -341,11 +339,9 @@ class XmlWriter:
                 fhandle = family.get_father_handle()
                 mhandle = family.get_mother_handle()
                 if fhandle:
-                    fid = self.db.get_person_from_handle (fhandle).get_handle()
-                    self.write_ref("father",fid,3)
+                    self.write_ref("father",fhandle,3)
                 if mhandle:
-                    mid = self.db.get_person_from_handle (mhandle).get_handle()
-                    self.write_ref("mother",mid,3)
+                    self.write_ref("mother",mhandle,3)
                 for event_handle in family.get_event_list():
                     event = self.db.get_event_from_handle(event_handle)
                     self.dump_event(event,3)
@@ -355,8 +351,7 @@ class XmlWriter:
 
                 if len(family.get_child_handle_list()) > 0:
                     for person_handle in family.get_child_handle_list():
-                        person = self.db.get_person_from_handle (person_handle)
-                        self.write_ref("child",person.get_handle(),3)
+                        self.write_ref("child",person_handle,3)
                 self.write_attribute_list(family.get_attribute_list())
                 self.write_note("note",family.get_note_object(),3)
                 for s in family.get_source_references():
