@@ -7,9 +7,6 @@
 	* src/WriteXML.py: Remove unnecessary database reads, so it does no
 	longer crash when exporting a corrupt database.
 	* src/WriteGedcom.py: Some hardening against corrupt database.
-	* src/gramps_main.py (read_file): No longer setting the windows
-	non-resizable during load. Works fine now without it and causes less
-	trouble to the windowmanager.
 
 2005-05-20  Alex Roitman  <shura@gramps-project.org>
 	* src/SelectObject.py (on_select_row): Properly get mime type.
