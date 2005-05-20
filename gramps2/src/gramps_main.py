@@ -1257,7 +1257,6 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.progress.set_fraction(0)
 
     def read_file(self,filename,callback=None):
-        self.topWindow.set_resizable(False)
         mode = "w"
         filename = os.path.normpath(os.path.abspath(filename))
         
@@ -1300,7 +1299,6 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                         _('%s could not be opened.' % filename) + '\n' + msg[1])
             return 0
 
-        self.topWindow.set_resizable(True)
         # Undo/Redo always start with standard labels and insensitive state
         self.undo_callback(None)
         self.redo_callback(None)

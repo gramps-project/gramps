@@ -1190,21 +1190,22 @@ class GedcomParser:
                 self.warn(_("\tThe following paths were tried:\n\t\t"))
                 self.warn("\n\t\t".join(path))
                 self.warn('\n')
+                path = filename.replace('\\','/')
+            photo_handle = self.media_map.get(path)
+            if photo_handle == None:
+                photo = RelLib.MediaObject()
+                photo.set_path(path)
+                photo.set_description(title)
+                photo.set_mime_type(GrampsMime.get_type(os.path.abspath(path)))
+                self.db.add_object(photo, self.trans)
+                self.media_map[path] = photo.get_handle()
             else:
-                photo_handle = self.media_map.get(path)
-                if photo_handle == None:
-                    photo = RelLib.MediaObject()
-                    photo.set_path(path)
-                    photo.set_description(title)
-                    photo.set_mime_type(GrampsMime.get_type(os.path.abspath(path)))
-                    self.db.add_object(photo, self.trans)
-                    self.media_map[path] = photo.get_handle()
-                else:
-                    photo = self.db.get_object_from_handle(photo_handle)
-                oref = RelLib.MediaRef()
-                oref.set_reference_handle(photo.get_handle())
-                self.person.add_media_reference(oref)
-                self.db.commit_person(self.person, self.trans)
+                photo = self.db.get_object_from_handle(photo_handle)
+            oref = RelLib.MediaRef()
+            oref.set_reference_handle(photo.get_handle())
+            oref.set_note(note)
+            self.person.add_media_reference(oref)
+            self.db.commit_person(self.person, self.trans)
 
     def parse_family_object(self,level):
         form = ""
@@ -1234,21 +1235,22 @@ class GedcomParser:
                 self.warn(_("\tThe following paths were tried:\n\t\t"))
                 self.warn("\n\t\t".join(path))
                 self.warn('\n')
+                path = filename.replace('\\','/')
+            photo_handle = self.media_map.get(path)
+            if photo_handle == None:
+                photo = RelLib.MediaObject()
+                photo.set_path(path)
+                photo.set_description(title)
+                photo.set_mime_type(GrampsMime.get_type(os.path.abspath(path)))
+                self.db.add_object(photo, self.trans)
+                self.media_map[path] = photo.get_handle()
             else:
-                photo_handle = self.media_map.get(path)
-                if photo_handle == None:
-                    photo = RelLib.MediaObject()
-                    photo.set_path(path)
-                    photo.set_description(title)
-                    photo.set_mime_type(GrampsMime.get_type(os.path.abspath(path)))
-                    self.db.add_object(photo, self.trans)
-                    self.media_map[path] = photo.get_handle()
-                else:
-                    photo = self.db.get_object_from_handle(photo_handle)
-                oref = RelLib.MediaRef()
-                oref.set_reference_handle(photo.get_handle())
-                self.family.add_media_reference(oref)
-                self.db.commit_family(self.family, self.trans)
+                photo = self.db.get_object_from_handle(photo_handle)
+            oref = RelLib.MediaRef()
+            oref.set_reference_handle(photo.get_handle())
+            oref.set_note(note)
+            self.family.add_media_reference(oref)
+            self.db.commit_family(self.family, self.trans)
 
     def parse_residence(self,address,level):
         note = ""
