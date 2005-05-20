@@ -368,18 +368,17 @@ class Gallery(ImageSelect):
     def add_thumbnail(self, photo):
         """Scale the image and add it to the IconList."""
         oid = photo.get_reference_handle()
-        obj = self.db.get_object_from_handle(oid)
-        if self.canvas_list.has_key(oid):
-            (grp,item,text,x,y) = self.canvas_list[oid]
+        media_obj = self.db.get_object_from_handle(oid)
+        if self.canvas_list.has_key(photo):
+            (grp,item,text,x,y) = self.canvas_list[photo]
             if x != self.cx or y != self.cy:
                 grp.move(self.cx-x,self.cy-y)
         else:
-            description = obj.get_description()
+            description = media_obj.get_description()
             if len(description) > 20:
                 description = "%s..." % description[0:20]
 
             try:
-                media_obj = self.db.get_object_from_handle(oid)
                 mtype = media_obj.get_mime_type()
                 if mtype and mtype.startswith("image"):
                     image = ImgManip.get_thumbnail_image(media_obj.get_path())
@@ -424,7 +423,7 @@ class Gallery(ImageSelect):
                 self.p_map[i] = (item,text,box,photo,oid)
                 i.show()
             
-        self.canvas_list[oid] = (grp,item,text,self.cx,self.cy)
+        self.canvas_list[photo] = (grp,item,text,self.cx,self.cy)
 
         self.cx += _PAD + _IMAGEX
         
@@ -582,7 +581,7 @@ class Gallery(ImageSelect):
 
         if self.sel:
             (i,t,b,photo,oid) = self.p_map[self.sel]
-            val = self.canvas_list[photo.get_reference_handle()]
+            val = self.canvas_list[photo]
             val[0].hide()
             val[1].hide()
             val[2].hide()

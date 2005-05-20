@@ -318,7 +318,7 @@ class GrampsBSDDB(GrampsDbBase):
         if not self.readonly and handle and str(handle) in self.media_map:
             if transaction != None:
                 old_data = self.media_map.get(handle)
-                transaction.add(PLACE_KEY,handle,old_data)
+                transaction.add(MEDIA_KEY,handle,old_data)
                 self.emit('media-delete',([handle],))
             self.media_map.delete(str(handle))
 

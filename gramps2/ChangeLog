@@ -1,5 +1,9 @@
 2005-05-20  Alex Roitman  <shura@gramps-project.org>
 	* src/SelectObject.py (on_select_row): Properly get mime type.
+	* src/GrampsBSDDB.py (remove_object): Use correct key for transaction.
+	* src/ImageSelect.py (add_thumbnail, on_delete_media_clicked):
+	Identify canvas items by MediaRef instance, not by the handle of the
+	referred MediaObject.
 
 2005-05-19  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels.py: remove place column
