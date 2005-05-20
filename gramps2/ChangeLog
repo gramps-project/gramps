@@ -19,10 +19,10 @@
 	referred MediaObject.
 	* src/MediaView.py (on_drag_drop): Remove drag_get_data() call
 	as it was calling extraneous 'drag-data-received' signal.
-	* src/gramps_main.py (read_file): Remove set_resizable() calls.
 	* src/ReadGedcom.py (parse_person_object,parse_family_object):
 	Always add media references/objects, even if the files are not found
 	(keep the warnings); set the note for the media references.
+	* example/gedcom/sample.ged: Correct object format tags.
 
 2005-05-19  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels.py: remove place column

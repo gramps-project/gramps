@@ -60,7 +60,7 @@
 1 SEX M
 1 TITL Grand Poobah
 1 OBJE
-2 FROM jpeg
+2 FORM jpeg
 2 FILE foo/O0.jpg
 1 BIRT Edwin Michael Smith's Birth event
 2 DATE 24 MAY 1961
@@ -88,7 +88,7 @@
 2 SOUR @S1601@
 1 SEX F
 1 OBJE
-2 FROM jpeg
+2 FORM jpeg
 2 FILE foo/O0.jpg
 1 BIRT
 2 DATE 22 NOV 1933
