@@ -1291,7 +1291,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Returns the MediaObject display common information stored in the
         database's metadata.
         """
-        default = [(1,1),(0,5),(0,6),(1,2),(1,3),(0,4)]
+        default = [(1,1),(0,5),(0,4),(1,2),(1,3)]
         if self.metadata == None:
             return default
         else:

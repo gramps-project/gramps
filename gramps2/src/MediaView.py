@@ -60,7 +60,6 @@ column_names = [
     _('Path'),
     _('Last Changed'),
     _('Date'),
-    _('Place'),
     ]
 
 _HANDLE_COL = len(column_names)

@@ -1,4 +1,8 @@
 2005-05-19  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels.py: remove place column
+	* src/MediaView.py: delete Place option
+	* src/GrampsDbBase.py: new default for media columns
+	* src/GrampsBSDDB.py: upgrade database version for media columns
 	* src/MediaView.py: enable sorting by columns
 	* src/DisplayModels.py: enable sorting by columns for MediaModel
 

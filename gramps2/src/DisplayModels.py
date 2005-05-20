@@ -439,7 +439,6 @@ class MediaModel(BaseModel):
             self.column_path,
             self.column_change,
             self.column_date,
-            self.column_place,
             self.column_handle,
             ]
         self.smap = [
@@ -449,7 +448,6 @@ class MediaModel(BaseModel):
             self.column_path,
             self.sort_change,
             self.column_date,
-            self.column_place,
             self.column_handle,
             ]
         BaseModel.__init__(self,db,scol,order)
@@ -475,13 +473,6 @@ class MediaModel(BaseModel):
     def column_date(self,data):
         if data[9]:
             return unicode(DateHandler.displayer.display(data[9]))
-        return u''
-
-    def column_place(self,data):
-        if data[10]:
-            place = self.db.get_place_from_handle(data[10])
-            if place:
-                return place.get_title()
         return u''
 
     def column_handle(self,data):
