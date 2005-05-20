@@ -366,7 +366,6 @@ class MediaView:
 
     def on_drag_drop(self, tree, context, x, y, time):
         self.list.emit_stop_by_name('drag-drop')
-        self.list.drag_get_data(context,context.targets[-1],time)
         return 1
 
     def on_drag_begin(self,obj,context):
