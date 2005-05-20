@@ -1,6 +1,7 @@
 2005-05-20  Eero Tamminen  <eerot@sf>
 	* src/po/fi.po: Merge PO file and (finally) translate the welcome
 	  message.  Otherwise translation is not yet updated
+	* src/data/gramps.desktop: Add Finnish translations
 
 2005-05-20  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/WriteXML.py: Remove unnecessary database reads, so it does no
