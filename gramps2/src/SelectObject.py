@@ -113,15 +113,14 @@ class SelectObject:
         data = self.object_model.get_data(node,range(self.ncols))
         handle = data[4]
         obj = self.db.get_object_from_handle(handle)
-        the_type = Utils.get_mime_description(obj.get_mime_type())
+        the_type = obj.get_mime_type()
         path = obj.get_path()
 
         if the_type and the_type[0:5] == "image":
-            image = ImgManip.get_thumbnail_image(obj.get_path())
-            self.preview.set_from_pixbuf(image)
+            image = ImgManip.get_thumbnail_image(path)
         else:
-            icon_image = Utils.find_mime_type_pixbuf(the_type)
-            self.preview.set_from_pixbuf(icon_image)
+            image = Utils.find_mime_type_pixbuf(the_type)
+        self.preview.set_from_pixbuf(image)
         
         self.object_handle.set_text(obj.get_gramps_id())
         self.object_type.set_text(the_type)
