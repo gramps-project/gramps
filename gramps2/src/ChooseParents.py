@@ -255,7 +255,7 @@ class ChooseParents:
         
     def close_child_windows(self):
         for child_window in self.child_windows.values():
-            child_window.close(None)
+            child_window.close()
         self.child_windows = {}
 
     def add_itself_to_menu(self):

@@ -21,6 +21,9 @@
 	(keep the warnings); set the note for the media references.
 	* example/gedcom/sample.ged: Correct object format tags.
 
+	* src/ChooseParents.py (close_child_windows): Pass no arguments
+	to child_window.close().
+
 2005-05-19  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels.py: remove place column
 	* src/MediaView.py: delete Place option
