@@ -14,6 +14,7 @@
 	* src/ImageSelect.py (add_thumbnail, on_delete_media_clicked):
 	Identify canvas items by MediaRef instance, not by the handle of the
 	referred MediaObject.
+	* src/gramps_main.py (read_file): Remove set_resizable() calls.
 	* src/MediaView.py (on_drag_drop): Remove drag_get_data() call
 	as it was calling extraneous 'drag-data-received' signal.
 	* src/ReadGedcom.py (parse_person_object,parse_family_object):
