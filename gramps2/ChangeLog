@@ -1,3 +1,12 @@
+2005-05-21  Don Allingham  <don@gramps-project.org>
+	* src/ChooseParents.py: handle the addition of a person correctly.
+	Warn if the person just added is suppressed by the filter.
+	* src/MergePeople.py: use __debug__ for print statements
+
+2005-05-20  Don Allingham  <don@gramps-project.org>
+	* src/MergePeople.py: fixed name merging, incorporate Martin's 
+	patches.
+
 2005-05-20  Eero Tamminen  <eerot@sf>
 	* src/po/fi.po: Merge PO file and (finally) translate the welcome
 	  message.  Otherwise translation is not yet updated

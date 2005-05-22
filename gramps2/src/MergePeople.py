@@ -281,6 +281,16 @@ class MergePeople:
             else:
                 one.add_source_reference(xsrc)
 
+    def debug_person(self,person, msg=""):
+        if __debug__:
+            print "## %s person handle %s" % (msg,person.get_handle())
+            for h in person.get_family_handle_list():
+                fam = self.db.get_family_from_handle(h)
+                print " - family %s has father: %s, mother: %s" % \
+                      (h,fam.get_father_handle(),fam.get_mother_handle())
+            for h,m1,m2 in person.get_parent_family_handle_list():
+                print " - parent family %s" % h
+
     def merge_person_information(self,new,trans):
         self.old_handle = self.p2.get_handle()
         self.new_handle = self.p1.get_handle()
@@ -296,11 +306,6 @@ class MergePeople:
         new.set_attribute_list(self.p1.get_attribute_list() +
                                self.p2.get_attribute_list())
 
-        # copy names
-
-        new.set_alternate_names(self.p1.get_alternate_names() +
-                                self.p2.get_alternate_names())
-        
         # copy addresses
         new.set_address_list(self.p1.get_address_list() + self.p2.get_address_list())
 
@@ -328,12 +333,15 @@ class MergePeople:
         
     def merge(self):
 
+        self.debug_person(self.p1, "P1")
+        self.debug_person(self.p2, "P2")
         new = RelLib.Person()
         trans = self.db.transaction_begin()
 
         self.merge_person_information(new,trans)
         self.merge_family_information(new,trans)
         self.db.commit_person(new,trans)
+        self.debug_person(new, "NEW")
         self.db.remove_person(self.old_handle,trans)
         self.db.transaction_commit(trans,"Merge Person")
 
@@ -344,13 +352,14 @@ class MergePeople:
 
         for child_id in family.get_child_handle_list():
             if child_id == id2:
-                new_list.append(id1)
-                change = True
-            else:
+                if id1 not in new_list:
+                    new_list.append(id1)
+                    change = True
+            elif child_id not in new_list:
                 new_list.append(child_id)
-        if change:
-            family.set_child_handle_list(new_list)
-            self.db.commit_family(family,trans)
+        #if change:
+        family.set_child_handle_list(new_list)
+        self.db.commit_family(family,trans)
     
     def merge_parents(self, new, trans):
         f1_list = self.p1.get_parent_family_handle_list()
@@ -359,9 +368,10 @@ class MergePeople:
         parent_list = f1_list
 
         for fid in f2_list:
-            self.convert_child_ids(fid[0], self.new_handle, self.old_handle, trans)
-            parent_list.append(fid)
+            if fid not in parent_list:
+                parent_list.append(fid)
         for fid in parent_list:
+            self.convert_child_ids(fid[0], self.new_handle, self.old_handle, trans)
             new.add_parent_family_handle(fid[0],fid[1],fid[2])
                     
     def merge_family_information(self, new, trans):
@@ -369,6 +379,8 @@ class MergePeople:
         self.merge_families(new, trans)
         
     def find_family(self,family):
+        if __debug__:
+            print "SourceFamily: %s" % family.get_handle()
         if self.p1.get_gender() == RelLib.Person.MALE:
             mother_handle = family.get_mother_handle()
             father_handle = self.p1.get_handle()
@@ -379,8 +391,13 @@ class MergePeople:
         for myfamily_handle in self.db.get_family_handles():
             myfamily = self.db.get_family_from_handle(myfamily_handle)
             if (myfamily.get_father_handle() == father_handle and
-                myfamily.get_mother_handle() == mother_handle):
+                myfamily.get_mother_handle() == mother_handle and
+                myfamily_handle != family.get_handle()):
+                if __debug__:
+                    print "TargetFamily: %s" % myfamily.get_handle()
                 return myfamily
+        if __debug__:
+            print "TargetFamily: None"
         return None
 
     def merge_family_pair(self,tgt_family,src_family,trans):
@@ -465,9 +482,13 @@ class MergePeople:
 
                     if father and src_family_handle in father.get_family_handle_list():
                         father.remove_family_handle(src_family_handle)
+                        if __debug__:
+                            print "Removed family %s from father %s" % (src_family_handle, father_id)
                         self.db.commit_person(father,trans)
                     if mother and src_family_handle in mother.get_family_handle_list():
                         mother.remove_family_handle(src_family_handle)
+                        if __debug__:
+                            print "Removed family %s from mother %s" % (src_family_handle, mother_id)
                         self.db.commit_person(mother,trans)
                         
                     self.merge_family_pair(tgt_family,src_family,trans)
@@ -480,6 +501,8 @@ class MergePeople:
 
                     # delete the old source family
                     self.db.remove_family(src_family_handle,trans)
+                    if __debug__:
+                        print "Deleted src_family %s" % src_family_handle
                     self.db.commit_family(tgt_family,trans)
 
                     new.add_family_handle(tgt_family_handle)
@@ -507,14 +530,22 @@ class MergePeople:
                     if father_handle:
                         father = self.db.get_person_from_handle(father_handle)
                         father.remove_family_handle(src_family_handle)
+                        if __debug__:
+                            print "Removed family %s from father %s" % (src_family_handle, father_handle)
                         father.add_family_handle(tgt_family_handle)
+                        if __debug__:
+                            print "Added family %s to father %s" % (tgt_family_handle, father_handle)
                         self.db.commit_person(father,trans)
 
                     mother_handle = src_family.get_mother_handle()
                     if mother_handle:
                         mother = self.db.get_person_from_handle(mother_handle)
                         mother.remove_family_handle(src_family_handle)
+                        if __debug__:
+                            print "Removed family %s from mother %s" % (src_family_handle, mother_handle)
                         mother.add_family_handle(tgt_family_handle)
+                        if __debug__:
+                            print "Added family %s to mother %s" % (tgt_family_handle, mother_handle)
                         self.db.commit_person(mother,trans)
                         
                     for child_handle in src_family.get_child_handle_list():
@@ -525,22 +556,29 @@ class MergePeople:
                         
                     new.remove_family_handle(src_family_handle)
                     self.db.remove_family(src_family_handle,trans)
-
+                    if __debug__:
+                        print "Deleted src_family %s" % src_family_handle
             else:
 
                 for fid in self.p1.get_family_handle_list():
-                    new.add_family_handle(fid)
+                    if fid not in new.get_family_handle_list():
+                        new.add_family_handle(fid)
 
-                for src_family_handle in self.p2.get_family_handle_list():
-                    if src_family_handle in self.p1.get_family_handle_list():
-                        continue
-                    src_family = self.db.get_family_from_handle(src_family_handle)
-                    new.add_family_handle(src_family_handle)
-                    if src_family.get_father_handle() == self.old_handle:
-                        src_family.set_father_handle(self.new_handle)
-                    if src_family.get_mother_handle() == self.old_handle:
-                        src_family.set_mother_handle(self.new_handle)
-                    self.db.commit_family(src_family,trans)
+#                for src_family_handle in self.p2.get_family_handle_list():
+            if src_family_handle in new.get_family_handle_list():
+                continue
+            src_family = self.db.get_family_from_handle(src_family_handle)
+            new.add_family_handle(src_family_handle)
+            if src_family.get_father_handle() == self.old_handle:
+                src_family.set_father_handle(self.new_handle)
+                if __debug__:
+                    print "Family %s now has father %s" % (src_family_handle, self.new_handle)
+            if src_family.get_mother_handle() == self.old_handle:
+                src_family.set_mother_handle(self.new_handle)
+                if __debug__:
+                    print "Family %s now has mother %s" % (src_family_handle, self.new_handle)
+            self.db.commit_family(src_family,trans)
+
 
         # a little debugging here
 
@@ -576,6 +614,8 @@ class MergePeople:
                 child.remove_parent_family_handle(family_handle)
             self.db.commit_person(child,trans)
         self.db.remove_family(family_handle,trans)
+        if __debug__:
+            print "Deleted empty family %s" % family_handle
 
     def merge_gramps_ids(self,new):
         new.set_gramps_id(self.p1.get_gramps_id())
