@@ -1,3 +1,6 @@
+2005-05-23  Alex Roitman  <shura@gramps-project.org>
+	* src/po/ru.po: More tranlsated tips.
+
 2005-05-23  Eero Tamminen  <eerot@sf>
 	* src/po/fi.po: Translate all fuzzy strings.  Tips are still to be
 	  translated
