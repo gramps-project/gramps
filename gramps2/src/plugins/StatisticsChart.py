@@ -899,7 +899,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         tip = _("With fewer items pie chart and legend will be used instead of a bar chart.")
         self.bar_items = gtk.Entry(2)
         self.bar_items.set_text(str(self.options_dict['bar_items']))
-        dialog.add_option(_("Min. bar char items"), self.bar_items, tip)
+        dialog.add_option(_("Max. items for a pie"), self.bar_items, tip)
 
         # -------------------------------------------------
         # List of available charts on a separate option tab

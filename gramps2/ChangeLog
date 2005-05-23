@@ -1,3 +1,14 @@
+2005-05-23  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Translate all fuzzy strings.  Tips are still to be
+	  translated
+	* src/plugins/StatisticsChart.py: Fix a typo in one string
+	  (I actually changed the string, but now it should actually be
+	   understandable i.e. something people can localize)
+	* src/dates/Makefile.am, src/dates/Date_fi.py: Remove Finnish date
+	  parser.  Unfortunately I don't have time either to fix DateParser.py
+	  regexps matches to be position independent or write the required
+	  (almost) duplicate code to Date_fi.py directly
+
 2005-05-23  Jens Arvidsson <jya@sverige.nu>
 	* src/po/sv.po: Translation update for version 2.0.1.
 
