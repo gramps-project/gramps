@@ -314,11 +314,14 @@ class EditPlace:
             self.redraw_url_list()
 
     def url_source_drag_data_get(self,widget, context, sel_data, info, time):
-
-        ev = self.web_model.get_selected_objects()[0]
+        store,node = self.web_list.get_selection().get_selected()
+        if not node:
+            return
+        row = store.get_path(node)
+        url = self.ulist[row[0]]
         bits_per = 8; # we're going to pass a string
-        pickled = pickle.dumps(ev);
-        data = str(('url',self.place.get_handle(),pickled));
+        pickled = pickle.dumps(url)
+        data = str(('url',self.place.get_handle(),pickled))
         sel_data.set(sel_data.target, bits_per, data)
 
     def update_lists(self):

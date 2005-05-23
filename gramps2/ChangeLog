@@ -1,3 +1,12 @@
+2005-05-22  Alex Roitman  <shura@gramps-project.org>
+	* src/ImageSelect.py (item_event): Do nothing if nothing is selected.
+	* src/EditSource.py (button_press): Return if no data.
+	* src/Sources.py (drag_data_get): Return if no data.
+	* src/EditPerson.py (ev_drag_data_get,name_drag_data_get):
+	Return if no data.
+	* src/EditPlace.py (url_source_drag_data_get): Properly obtain data;
+	return if no data.
+
 2005-05-22  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/po/es.po: Updated translation for filters, tips still pending
 

@@ -255,16 +255,18 @@ class EditSource:
 
     def button_press(self,obj):
         data = self.model.get_selected_objects()
-        (type,handle) = data[0]
-        if type == 0:
+        if not data:
+            return
+        (data_type,handle) = data[0]
+        if data_type == 0:
             import EditPerson
             person = self.db.get_person_from_handle(handle)
             EditPerson.EditPerson(self.parent,person,self.db)
-        elif type == 1:
+        elif data_type == 1:
             import Marriage
             family = self.db.get_family_from_handle(handle)
             Marriage.Marriage(self.parent,family,self.db)
-        elif type == 2:
+        elif data_type == 2:
             import EventEdit
             event = self.db.get_event_from_handle(handle)
             event_name = event.get_name()
@@ -280,11 +282,11 @@ class EditSource:
                 EventEdit.EventEditor(
                     self,", ", const.personalEvents, const.personal_events,
                     event, None, 1, None, None, self.db.readonly)
-        elif type == 3:
+        elif data_type == 3:
             import EditPlace
             place = self.db.get_place_from_handle(handle)
             EditPlace.EditPlace(self.parent,place)
-        elif type == 5:
+        elif data_type == 5:
             import ImageSelect
             media = self.db.get_object_from_handle(handle)
             ImageSelect.GlobalMediaProperties(self.db,media,self)

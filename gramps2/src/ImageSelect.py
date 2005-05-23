@@ -291,6 +291,8 @@ class Gallery(ImageSelect):
                 self.drag_item = widget.get_item_at(self.remember_x,
                                                     self.remember_y)
                 icon_index = self.get_index(widget,event.x,event.y)-1
+                if icon_index == -1:
+                    return
                 self.sel_obj = self.dataobj.get_media_list()[icon_index]
                 if self.drag_item:
                     widget.drag_begin([DdTargets.MEDIAOBJ.target()]+_drag_targets,

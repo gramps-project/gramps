@@ -286,6 +286,8 @@ class SourceTab:
     def drag_data_get(self,widget, context, sel_data, info, time):
 
         store,node = self.selection.get_selected()
+        if not node:
+            return
         ev = store.get_value(node,2)
 
         bits_per = 8; # we're going to pass a string

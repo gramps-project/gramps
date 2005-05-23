@@ -828,7 +828,8 @@ class EditPerson:
 
     def name_drag_data_get(self,widget, context, sel_data, info, time):
         name = self.ntree.get_selected_objects()
-
+        if not name:
+            return
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(name[0]);
         data = str((DdTargets.NAME.drag_type,self.person.get_handle(),pickled));
@@ -900,7 +901,8 @@ class EditPerson:
 
     def ev_drag_data_get(self,widget, context, sel_data, info, time):
         ev = self.etree.get_selected_objects()
-
+        if not ev:
+            return
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev[0]);
         data = str((DdTargets.EVENT.drag_type,self.person.get_handle(),pickled));
