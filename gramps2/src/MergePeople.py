@@ -291,17 +291,64 @@ class MergePeople:
             for h,m1,m2 in person.get_parent_family_handle_list():
                 print " - parent family %s" % h
 
+    def merge(self):
+        """
+        Perform the actual merge. A new person is created to store the
+        merged data. First, the person information is merged. This is a
+        very straight forward process. Second, the families associated
+        with the merged people must be modified to handle the family
+        information. This process can be tricky.
+
+        Finally, the merged person is delete from the database and the
+        entire transaction is committed.
+        """
+        self.debug_person(self.p1, "P1")
+        self.debug_person(self.p2, "P2")
+        
+        new = RelLib.Person()
+        trans = self.db.transaction_begin()
+
+        self.merge_person_information(new,trans)
+        self.merge_family_information(new,trans)
+        self.db.commit_person(new,trans)
+        self.debug_person(new, "NEW")
+        self.db.remove_person(self.old_handle,trans)
+        self.db.transaction_commit(trans,"Merge Person")
+
     def merge_person_information(self,new,trans):
+        """
+        Merging the person's individual information is pretty simple. The
+        person 'new' is a new, empty person. The data is loaded in this
+        new person. The idea is that all information that can possibly be
+        preserved is preserved.
+        """
         self.old_handle = self.p2.get_handle()
         self.new_handle = self.p1.get_handle()
-        
+
+        # Choose the handle from the target person. Since this is internal
+        # only information, no user visible information is lost.
         new.set_handle(self.new_handle)
+
+        # The gender is chosen from the primary person. This is one case
+        # where data may be lost if you merge the data from two people of
+        # opposite genders.
         new.set_gender(self.p1.get_gender())
+
+        # copy the GRAMPS Ids
         self.merge_gramps_ids(new)
+
+        # copy names
         self.merge_names(new)
+
+        # copy the birth event
         self.merge_birth(new,trans)
+
+        # copy the death event
         self.merge_death(new,trans)
+
+        # merge the event lists
         self.merge_event_lists(new)
+
         # copy attributes
         new.set_attribute_list(self.p1.get_attribute_list() +
                                self.p2.get_attribute_list())
@@ -325,128 +372,181 @@ class MergePeople:
         for photo in self.p2.get_media_list():
             new.add_media_reference(photo)
 
-
         # note
         note1 = self.p1.get_note_object()
         note2 = self.p2.get_note_object()
         new.set_note_object(self.merge_notes(note1,note2))
         
-    def merge(self):
+    def merge_gramps_ids(self,new):
+        """
+        Merges the GRAMPS IDs. The new GRAMPS ID is taken from
+        destination person. The GRAMPS ID of the other person is added
+        to the merged person as an attribute.
+        """
+        # copy of GRAMPS ID as an attribute
+        attr = RelLib.Attribute()
+        attr.set_type('Merged GRAMPS ID')
+        attr.set_value(self.p2.get_gramps_id())
+        new.add_attribute(attr)
 
-        self.debug_person(self.p1, "P1")
-        self.debug_person(self.p2, "P2")
-        new = RelLib.Person()
-        trans = self.db.transaction_begin()
+        # store GRAMPS ID of the destination person
+        new.set_gramps_id(self.p1.get_gramps_id())
 
-        self.merge_person_information(new,trans)
-        self.merge_family_information(new,trans)
-        self.db.commit_person(new,trans)
-        self.debug_person(new, "NEW")
-        self.db.remove_person(self.old_handle,trans)
-        self.db.transaction_commit(trans,"Merge Person")
+    def merge_names(self, new):
+        """
+        Merges the names of the two people into the destination. The
+        primary name of the destination person is kept as the primary
+        name.
 
-    def convert_child_ids(self, family_id, id1, id2, trans):
-        new_list = []
-        change = False
-        family = self.db.get_family_from_handle(family_id)
+        The other person's name is stored as an alternate name if it is
+        not entirely identical to the destination person's primary name.
 
-        for child_id in family.get_child_handle_list():
-            if child_id == id2:
-                if id1 not in new_list:
-                    new_list.append(id1)
-                    change = True
-            elif child_id not in new_list:
-                new_list.append(child_id)
-        #if change:
-        family.set_child_handle_list(new_list)
-        self.db.commit_family(family,trans)
-    
-    def merge_parents(self, new, trans):
-        f1_list = self.p1.get_parent_family_handle_list()
-        f2_list = self.p2.get_parent_family_handle_list()
+        In the current implementation, If only one person has a
+        nickname, it is assigned as the merged person's nickname. If
+        both people have nicknames, then the nickname of the second
+        person is lost.
 
-        parent_list = f1_list
+        Remaining alternate names are then added to the merged
+        person's alternate names.
+        """
+        p1_name = self.p1.get_primary_name()
+        p2_name = self.p2.get_primary_name()
 
-        for fid in f2_list:
-            if fid not in parent_list:
-                parent_list.append(fid)
-        for fid in parent_list:
-            self.convert_child_ids(fid[0], self.new_handle, self.old_handle, trans)
-            new.add_parent_family_handle(fid[0],fid[1],fid[2])
-                    
+        new.set_primary_name(self.p1.get_primary_name())
+        if not p2_name.is_equal(p1_name):
+            new.add_alternate_name(p2_name)
+            
+        if self.p1.get_nick_name() == "":
+            new.set_nick_name(self.p2.get_nick_name())
+        else:
+            new.set_nick_name(self.p1.get_nick_name())
+
+        for name in self.p1.get_alternate_names():
+            new.add_alternate_name(name)
+        for name in self.p2.get_alternate_names():
+            new.add_alternate_name(name)
+
+    def merge_birth(self, new,trans):
+        """
+        Merges the birth events of the two people. If the primary
+        person does not have a birth event, then the birth event from
+        the secodnary person is selected. If the primary person has
+        a birth date, then the merged person gets the primary person's
+        birth event, and the secondary person's birth event is added
+        as a 'Alternate Birth' event.
+        """
+        handle1 = self.p1.get_birth_handle()
+        handle2 = self.p2.get_birth_handle()
+
+        if handle1:
+            new.set_birth_handle(handle1)
+            if handle2:
+                event = self.db.get_event_from_handle(handle2)
+                event.set_name('Alternate Birth')
+                self.db.add_event(event,trans)
+                new.add_event_handle(event.get_handle())
+        elif not handle1 and handle2:
+            new.set_birth_handle(handle2)
+
+    def merge_death(self, new, trans):
+        """
+        Merges the death events of the two people. If the primary
+        person does not have a death event, then the death event from
+        the secodnary person is selected. If the primary person has
+        a death date, then the merged person gets the primary person's
+        death event, and the secondary person's death event is added
+        as a 'Alternate Death' event.
+        """
+        handle1 = self.p1.get_death_handle()
+        handle2 = self.p2.get_death_handle()
+
+        if handle1:
+            new.set_death_handle(handle1)
+            if handle2:
+                event = self.db.get_event_from_handle(handle2)
+                event.set_handle(Utils.create_id())
+                event.set_name('Alternate Death')
+                new.add_event_handle(event.get_handle())
+                self.db.add_event(event,trans)
+        elif not handle1 and handle2:
+            new.set_death_handle(handle2)
+
+    def merge_event_lists(self, new):
+        """
+        Merges the events from the two people into the destination
+        person.  Duplicates are not transferred.
+        """
+        data_list = new.get_event_list()
+        for handle in self.p1.get_event_list():
+            if handle not in data_list:
+                data_list.append(handle)
+        for handle in self.p2.get_event_list():
+            if handle not in data_list:
+                data_list.append(handle)
+        new.set_event_list(data_list)
+
     def merge_family_information(self, new, trans):
+        """
+        Merge the parent families and the relationship families of the
+        selected people.
+        """
         self.merge_parents(new, trans)
         self.merge_families(new, trans)
         
-    def find_family(self,family):
-        if __debug__:
-            print "SourceFamily: %s" % family.get_handle()
-        if self.p1.get_gender() == RelLib.Person.MALE:
-            mother_handle = family.get_mother_handle()
-            father_handle = self.p1.get_handle()
-        else:
-            father_handle = family.get_father_handle()
-            mother_handle = self.p1.get_handle()
+    def merge_parents(self, new, trans):
+        """
+        Merging the parent list is not too difficult. We grab the
+        parent list of the destination person. We then loop through
+        the parent list of the secondary person, adding to the parent
+        list any parents that are not already there. This eliminates
+        any duplicates.
 
-        for myfamily_handle in self.db.get_family_handles():
-            myfamily = self.db.get_family_from_handle(myfamily_handle)
-            if (myfamily.get_father_handle() == father_handle and
-                myfamily.get_mother_handle() == mother_handle and
-                myfamily_handle != family.get_handle()):
-                if __debug__:
-                    print "TargetFamily: %s" % myfamily.get_handle()
-                return myfamily
-        if __debug__:
-            print "TargetFamily: None"
-        return None
+        Once this has been completed, we loop through each family,
+        converting any child handles referring to the secondary person
+        to the destination person.
+        """
+        parent_list = self.p1.get_parent_family_handle_list()
 
-    def merge_family_pair(self,tgt_family,src_family,trans):
+        # copy handles of families that are not common between the
+        # two lists
+        for fid in self.p2.get_parent_family_handle_list():
+            if fid not in parent_list:
+                parent_list.append(fid)
 
-        # copy children from source to target
+        # loop through the combined list, converting the child handles
+        # of the families, and adding the families to the merged
+        # person
+        
+        for (family_handle,mrel,frel) in parent_list:
+            self.convert_child_ids(family_handle, self.new_handle,
+                                   self.old_handle, trans)
+            new.add_parent_family_handle(family_handle, mrel, frel)
+                    
+    def convert_child_ids(self, fhandle, new_handle, old_handle, trans):
+        """
+        Search the family associated with fhandle, and replace all
+        child handles that match old_handle with new_handle.
+        """
+        family = self.db.get_family_from_handle(fhandle)
+        new_child_list = []
+        orig_list = family.get_child_handle_list()
 
-        for child_handle in src_family.get_child_handle_list():
-            if child_handle not in tgt_family.get_child_handle_list():
-                child = self.db.get_person_from_handle(child_handle)
-                parents = child.get_parent_family_handle_list()
-                tgt_family.add_child_handle(child_handle)
-                if child.get_main_parents_family_handle() == src_family.get_handle():
-                    child.set_main_parent_family_handle(tgt_family.get_handle())
-                i = 0
-                for fam in parents[:]:
-                    if fam[0] == src_family.get_handle():
-                        parents[i] = (tgt_family.get_handle(),fam[1],fam[2])
-                    i += 1
-                self.db.commit_person(child,trans)
+        # loop through original child list. If a handle matches the
+        # old handle, replace it with the new handle if the new handle
+        # is not already in the list
+        for child_id in orig_list:
+            if child_id == old_handle:
+                if new_handle not in new_child_list:
+                    new_child_list.append(new_handle)
+            elif child_id not in new_child_list:
+                new_child_list.append(child_id)
 
-        # merge family events
-
-        elist = tgt_family.get_event_list()[:]
-        for event_id in src_family.get_event_list():
-            if event_id not in elist:
-                tgt_family.add_event_handle(event_id)
-
-        # merge family attributes
-
-        for xdata in src_family.get_attribute_list():
-            tgt_family.add_attribute(xdata)
-
-        # merge family notes
-
-        if src_family.get_note() != "":
-            old_note = tgt_family.get_note()
-            if old_note:
-                old_note = old_note + "\n\n"
-            tgt_family.set_note(old_note + src_family.get_note())
-
-        # merge family top-level sources
-
-        self.copy_sources(tgt_family,src_family)
-
-        # merge multimedia objects
-
-        for photo in src_family.get_media_list():
-            tgt_family.add_media_reference(photo)
-
+        # compare the new list with the original list. If this list
+        # is different, we need to save the changes to the database.
+        if new_child_list != orig_list:
+            family.set_child_handle_list(new_child_list)
+            self.db.commit_family(family,trans)
+    
     def merge_families(self,new,trans):
         
         family_num = 0
@@ -460,58 +560,20 @@ class MergePeople:
             if not src_family or src_family in family_list:
                 continue
 
-            tgt_family = self.find_family(src_family)
+            tgt_family = self.find_modified_family(src_family)
 
-            #
-            # This is the case where a new family to be added to the
-            # p1 as a result of the merge already exists as a
-            # family.  In this case, we need to remove the old source
-            # family (with the pre-merge identity of the p1) from
-            # both the parents
-            #
-
+            # existing family is found
             if tgt_family:
                 tgt_family_handle = tgt_family.get_handle()
+
+                # The target family is already a family in the person's
+                # family list. 
                 if tgt_family_handle in self.p1.get_family_handle_list():
-                    
-                    father_id = tgt_family.get_father_handle()
-                    father = self.db.get_person_from_handle(father_id)
-                    
-                    mother_id = tgt_family.get_mother_handle()
-                    mother = self.db.get_person_from_handle(mother_id)
-
-                    if father and src_family_handle in father.get_family_handle_list():
-                        father.remove_family_handle(src_family_handle)
-                        if __debug__:
-                            print "Removed family %s from father %s" % (src_family_handle, father_id)
-                        self.db.commit_person(father,trans)
-                    if mother and src_family_handle in mother.get_family_handle_list():
-                        mother.remove_family_handle(src_family_handle)
-                        if __debug__:
-                            print "Removed family %s from mother %s" % (src_family_handle, mother_id)
-                        self.db.commit_person(mother,trans)
-                        
-                    self.merge_family_pair(tgt_family,src_family,trans)
-                        
-                    for child_handle in src_family.get_child_handle_list():
-                        if child_handle != self.new_handle:
-                            child = self.db.get_person_from_handle(child_handle)
-                            if child.remove_parent_family_handle(src_family_handle):
-                                self.db.commit_person(child,trans)
-
-                    # delete the old source family
-                    self.db.remove_family(src_family_handle,trans)
-                    if __debug__:
-                        print "Deleted src_family %s" % src_family_handle
-                    self.db.commit_family(tgt_family,trans)
-
-                    new.add_family_handle(tgt_family_handle)
-
+                    self.merge_existing_family(new, src_family, tgt_family, trans)
                     continue
             
-                # This is the case where a new family to be added 
-                # and it is not already in the list.
-
+                # This is the case the family is not already in the person's
+                # family list.
                 else:
 
                     # tgt_family a duplicate family, transfer children from
@@ -598,6 +660,141 @@ class MergePeople:
                 self.delete_empty_family(fam,trans)
             data = cursor.next()
 
+    def find_modified_family(self,family):
+        """
+        Look for a existing family that matches the merged person. This means
+        looking at the current family, and replacing the secondary person's
+        handle with the merged person's handle. Search the family table for
+        a family that matches this new mother/father pair.
+
+        If no family is found, return None
+        """
+
+        family_handle = family.get_handle()
+
+        if __debug__:
+            print "SourceFamily: %s" % family_handle
+
+        # Determine the mother and father handles for the search.
+        # This is determined by replacing the secodnary person's
+        # handle with the primary person's handle in the mother/father
+        # pair.
+        
+        mhandle = family.get_mother_handle()
+        if mhandle == self.old_handle:
+            mhandle = self.new_handle
+
+        fhandle = family.get_father_handle()
+        if fhandle == self.old_handle:
+            fhandle = self.new_handle
+
+        # loop through the families using a cursor. Check the handles
+        # for a mother/father match.
+        
+        cursor = self.db.get_family_cursor()
+        node = cursor.next()
+        myfamily = None
+        while node:
+            # data[2] == father_handle field, data[2] == mother_handle field
+            (thandle,data) = node
+            if data[2] == fhandle and data[3] == mhandle and thandle != family_handle:
+                myfamily = RelLib.Family()
+                myfamily.unserialize(data)
+                break
+            node = cursor.next()
+
+        if __debug__:
+            if myfamily:
+                print "TargetFamily: %s" % myfamily.get_handle()
+            else:
+                print "TargetFamily: None"
+            
+        cursor.close()
+        return myfamily
+
+    def merge_existing_family(self, new, src_family, tgt_family, trans):
+
+        src_family_handle = src_family.get_handle()
+        
+        father_id = tgt_family.get_father_handle()
+        father = self.db.get_person_from_handle(father_id)
+                    
+        mother_id = tgt_family.get_mother_handle()
+        mother = self.db.get_person_from_handle(mother_id)
+
+        if father and src_family_handle in father.get_family_handle_list():
+            father.remove_family_handle(src_family_handle)
+            if __debug__:
+                print "Removed family %s from father %s" % (src_family_handle, father_id)
+            self.db.commit_person(father,trans)
+        if mother and src_family_handle in mother.get_family_handle_list():
+            mother.remove_family_handle(src_family_handle)
+            if __debug__:
+                print "Removed family %s from mother %s" % (src_family_handle, mother_id)
+            self.db.commit_person(mother,trans)
+                        
+        self.merge_family_pair(tgt_family,src_family,trans)
+                        
+        for child_handle in src_family.get_child_handle_list():
+            if child_handle != self.new_handle:
+                child = self.db.get_person_from_handle(child_handle)
+            if child.remove_parent_family_handle(src_family_handle):
+                self.db.commit_person(child,trans)
+
+        # delete the old source family
+        self.db.remove_family(src_family_handle,trans)
+        if __debug__:
+            print "Deleted src_family %s" % src_family_handle
+        self.db.commit_family(tgt_family,trans)
+        new.add_family_handle(tgt_family.get_handle())
+
+    def merge_family_pair(self,tgt_family,src_family,trans):
+
+        # copy children from source to target
+
+        for child_handle in src_family.get_child_handle_list():
+            if child_handle not in tgt_family.get_child_handle_list():
+                child = self.db.get_person_from_handle(child_handle)
+                parents = child.get_parent_family_handle_list()
+                tgt_family.add_child_handle(child_handle)
+                if child.get_main_parents_family_handle() == src_family.get_handle():
+                    child.set_main_parent_family_handle(tgt_family.get_handle())
+                i = 0
+                for fam in parents[:]:
+                    if fam[0] == src_family.get_handle():
+                        parents[i] = (tgt_family.get_handle(),fam[1],fam[2])
+                    i += 1
+                self.db.commit_person(child,trans)
+
+        # merge family events
+
+        elist = tgt_family.get_event_list()[:]
+        for event_id in src_family.get_event_list():
+            if event_id not in elist:
+                tgt_family.add_event_handle(event_id)
+
+        # merge family attributes
+
+        for xdata in src_family.get_attribute_list():
+            tgt_family.add_attribute(xdata)
+
+        # merge family notes
+
+        if src_family.get_note() != "":
+            old_note = tgt_family.get_note()
+            if old_note:
+                old_note = old_note + "\n\n"
+            tgt_family.set_note(old_note + src_family.get_note())
+
+        # merge family top-level sources
+
+        self.copy_sources(tgt_family,src_family)
+
+        # merge multimedia objects
+
+        for photo in src_family.get_media_list():
+            tgt_family.add_media_reference(photo)
+
     def remove_marriage(self,family,person,trans):
         if person:
             person.remove_family_handle(family.get_handle())
@@ -617,13 +814,6 @@ class MergePeople:
         if __debug__:
             print "Deleted empty family %s" % family_handle
 
-    def merge_gramps_ids(self,new):
-        new.set_gramps_id(self.p1.get_gramps_id())
-        attr = RelLib.Attribute()
-        attr.set_type('Merged GRAMPS ID')
-        attr.set_value(self.p2.get_gramps_id())
-        new.add_attribute(attr)
-
     def merge_notes(self, note1, note2):
         if note1 and not note2:
             return note1
@@ -635,49 +825,3 @@ class MergePeople:
             return note1
         return None
 
-    def merge_names(self, new):
-        new.set_primary_name(self.p1.get_primary_name())
-        new.add_alternate_name(self.p2.get_primary_name())
-        if self.p1.get_nick_name() == "":
-            new.set_nick_name(self.p2.get_nick_name())
-        else:
-            new.set_nick_name(self.p1.get_nick_name())
-
-    def merge_death(self, new, trans):
-        handle1 = self.p1.get_death_handle()
-        handle2 = self.p2.get_death_handle()
-
-        if handle1:
-            new.set_death_handle(handle1)
-            if handle2:
-                event = self.db.get_event_from_handle(handle2)
-                event.set_handle(Utils.create_id())
-                event.set_name('Alternate Death')
-                new.add_event_handle(event.get_handle())
-                self.db.add_event(event,trans)
-        elif not handle1 and handle2:
-            new.set_death_handle(handle2)
-
-    def merge_birth(self, new,trans):
-        handle1 = self.p1.get_birth_handle()
-        handle2 = self.p2.get_birth_handle()
-
-        if handle1:
-            new.set_birth_handle(handle1)
-            if handle2:
-                event = self.db.get_event_from_handle(handle2)
-                event.set_name('Alternate Birth')
-                self.db.add_event(event,trans)
-                new.add_event_handle(event.get_handle())
-        elif not handle1 and handle2:
-            new.set_birth_handle(handle2)
-
-    def merge_event_lists(self, new):
-        data_list = new.get_event_list()
-        for handle in self.p1.get_event_list():
-            if handle not in data_list:
-                data_list.append(handle)
-        for handle in self.p2.get_event_list():
-            if handle not in data_list:
-                data_list.append(handle)
-        new.set_event_list(data_list)

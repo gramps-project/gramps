@@ -1,3 +1,6 @@
+2005-05-22  Don Allingham  <don@gramps-project.org>
+	* src/MergePeople.py: merge improvements, merge data not merged before.
+
 2005-05-22  Alex Roitman  <shura@gramps-project.org>
 	* src/ImageSelect.py (item_event): Do nothing if nothing is selected.
 	* src/EditSource.py (button_press): Return if no data.
