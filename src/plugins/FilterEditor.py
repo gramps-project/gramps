@@ -67,6 +67,14 @@ _menulist = {
 
 #-------------------------------------------------------------------------
 #
+# Sorting function for the filter rules
+#
+#-------------------------------------------------------------------------
+def by_rule_name(f,s):
+    return cmp(f.name,s.name)
+
+#-------------------------------------------------------------------------
+#
 # MyBoolean - check button with standard interface
 #
 #-------------------------------------------------------------------------
@@ -213,7 +221,7 @@ class MyID(gtk.HBox):
         if val == None:
             self.set_text('')
         else:
-            self.set_text(val.get_handle())
+            self.set_text(val.get_gramps_id())
         
     def get_text(self):
         return unicode(self.entry.get_text())
@@ -550,7 +558,7 @@ class EditFilter:
     def draw_rules(self):
         self.rlist.clear()
         for r in self.filter.get_rules():
-            self.rlist.add([r.trans_name(),r.display_values()],r)
+            self.rlist.add([r.name,r.display_values()],r)
             
     def on_ok_clicked(self,obj):
         n = unicode(self.fname.get_text()).strip()
@@ -636,26 +644,21 @@ class EditRule:
         self.valuebox.add(self.notebook)
         self.page_num = 0
         self.page = []
-        self.name2page = {}
+        self.class2page = {}
         the_map = {}
-        the_list = []
-        keylist = GenericFilter.tasks.keys()
-        keylist.sort()
-        for name in keylist:
-            cname = GenericFilter.tasks[name]
-            arglist = cname.labels
+        for class_obj in GenericFilter.editor_rule_list:
+            arglist = class_obj.labels
             vallist = []
             tlist = []
-            self.page.append((name,cname,vallist,tlist))
+            self.page.append((class_obj,vallist,tlist))
             pos = 0
-            l2 = gtk.Label(name)
+            l2 = gtk.Label(class_obj.name)
             l2.set_alignment(0,0.5)
             l2.show()
             c = gtk.TreeView()
             c.set_data('d',pos)
             c.show()
-            the_list.append(c)
-            the_map[name] = c
+            the_map[class_obj] = c
             # Only add a table with parameters if there are any parameters
             if arglist:
                 table = gtk.Table(3,len(arglist))
@@ -698,11 +701,11 @@ class EditRule:
                 table.attach(l,1,2,pos,pos+1,gtk.FILL,0,5,5)
                 table.attach(t,2,3,pos,pos+1,gtk.EXPAND|gtk.FILL,0,5,5)
                 pos = pos + 1
-            self.notebook.append_page(table,gtk.Label(name))
-            self.name2page[name] = self.page_num
+            self.notebook.append_page(table,gtk.Label(class_obj.name))
+            self.class2page[class_obj] = self.page_num
             self.page_num = self.page_num + 1
         self.page_num = 0
-        self.store = gtk.TreeStore(gobject.TYPE_STRING)
+        self.store = gtk.TreeStore(gobject.TYPE_STRING,gobject.TYPE_PYOBJECT)
         self.selection = self.rname.get_selection()
         col = gtk.TreeViewColumn(_('Rule Name'),gtk.CellRendererText(),text=0)
         self.rname.append_column(col)
@@ -719,38 +722,46 @@ class EditRule:
         #
         sel_node = None
         if self.active_rule:
-            self.sel_name = unicode(_(self.active_rule.name()))
+            self.sel_class = self.active_rule.__class__
         else:
-            self.sel_name = ""
-            
-        for v in the_map.keys():
-            the_filter = GenericFilter.tasks[v]([None])
-            category = the_filter.category()
-            if top_level.has_key(category):
-                top_level[category].append(v)
-            else:
-                top_level[category] = [v]
-                top_node[category] = self.store.insert_after(None,last_top)
-                last_top = top_node[category]
-                self.store.set(last_top,0,category)
+            self.sel_class = None
 
+        keys = the_map.keys()
+        keys.sort(by_rule_name)
+        keys.reverse()
+        catlist = []
+        for class_obj in keys:
+            category = class_obj.category
+            if category not in catlist:
+                catlist.append(category)
+        catlist.sort()
+
+        for category in catlist:
+            top_node[category] = self.store.insert_after(None,last_top)
+            top_level[category] = []
+            last_top = top_node[category]
+            self.store.set(last_top,0,category,1,None)
+
+        for class_obj in keys:
+            category = class_obj.category
+            top_level[category].append(class_obj.name)
             node = self.store.insert_after(top_node[category],prev)
-            self.store.set(node,0,v)
+            self.store.set(node,0,class_obj.name,1,class_obj)
 
             #
             # if this is an edit rule, save the node
-            if v == self.sel_name:
+            if class_obj == self.sel_class:
                 sel_node = node
 
         if sel_node:
             self.selection.select_iter(sel_node)
-            page = self.name2page[self.sel_name]
+            page = self.class2page[self.active_rule.__class__]
             self.notebook.set_current_page(page)
-            self.display_values(self.sel_name)
-            (n,c,v,t) = self.page[page]
+            self.display_values(self.active_rule.__class__)
+            (class_obj,vallist,tlist) = self.page[page]
             r = self.active_rule.values()
-            for i in range(0,len(t)):
-                t[i].set_text(r[i])
+            for i in range(0,len(tlist)):
+                tlist[i].set_text(r[i])
             
         self.selection.connect('changed', self.on_node_selected)
         self.rule.signal_autoconnect({
@@ -777,7 +788,10 @@ class EditRule:
 
     def add_itself_to_menu(self):
         self.parent.child_windows[self.win_key] = self
-        label = self.sel_name
+        if self.sel_class:
+            label = self.sel_class.name
+        else:
+            label = ''
         if not label.strip():
             label = _("New Rule")
         label = "%s: %s" % (_('Rule'),label)
@@ -800,32 +814,32 @@ class EditRule:
         store,iter = self.selection.get_selected()
         if iter:
             try:
-                key = unicode(store.get_value(iter,0))
-                self.display_values(key)
+                class_obj = store.get_value(iter,1)
+                self.display_values(class_obj)
             except:
                 self.valuebox.set_sensitive(0)
                 self.rule_name.set_text(_('No rule selected'))
+                self.rule.get_widget('description').set_text('')
 
-    def display_values(self,key):
-        page = self.name2page[key]
+    def display_values(self,class_obj):
+        page = self.class2page[class_obj]
         self.notebook.set_current_page(page)
         self.valuebox.set_sensitive(1)
-        self.rule_name.set_text(key)
-        the_filter = GenericFilter.tasks[key]([None])
-        self.rule.get_widget('description').set_text(the_filter.description())
+        self.rule_name.set_text(class_obj.name)
+        self.rule.get_widget('description').set_text(class_obj.description)
 
     def rule_ok(self,obj):
-        name = unicode(self.rule_name.get_text())
-        class_def = GenericFilter.tasks[name]
-        obj = class_def(None)
+        if self.rule_name.get_text() == _('No rule selected'):
+            return
+
         try:
-            page = self.name2page[name]
-            (n,c,v,t) = self.page[page]
+            page = self.notebook.get_current_page()
+            (class_obj,vallist,tlist) = self.page[page]
             value_list = []
-            for x in t:
+            for x in tlist:
                 value_list.append(unicode(x.get_text()))
             store,iter = self.parent.rlist.get_selected()
-            new_rule = c(value_list)
+            new_rule = class_obj(value_list)
             if self.active_rule:
                 rule = self.parent.rlist.get_object(iter)
                 self.parent.filter.delete_rule(rule)
@@ -839,7 +853,6 @@ class EditRule:
             self.window.destroy()
             DisplayTrace.DisplayTrace()
                                
-
 #-------------------------------------------------------------------------
 #
 #

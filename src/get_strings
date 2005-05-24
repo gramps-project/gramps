@@ -9,6 +9,7 @@
 # Completely butchered to add glade support for the GRAMPS
 # project by Don Allingham (dallingham@users.sourceforge.net)
 #
+# Further bastardized by Alex Roitman to support tips.xml file
 
 # $Id$
 
@@ -120,7 +121,6 @@ import getopt
 import tokenize
 import operator
 import re
-import string
 import os
 
 from xml.sax import make_parser,handler,SAXParseException
@@ -213,6 +213,87 @@ class GladeParser(handler.ContentHandler):
     def characters(self, data):
         self.text = self.text + data
 
+class TipExtractor:
+
+    def __init__(self,msgs):
+        self.strings = msgs
+
+    def add_string(self, str, lineno):
+        if str.strip() == "":
+            return
+        if _ignore.has_key(str):
+            return
+        entry = (self.file, lineno)
+        if self.strings.has_key(str):
+            self.strings[str][entry] = 0
+        else:
+            self.strings[str] = {entry: 0}
+
+    def parse(self,file):
+        self.p = make_parser()
+        self.p.setContentHandler(TipParser(self,file))
+        filename = "file://" + os.path.abspath(file)
+        self.file = file
+        self.p.parse(filename)
+
+class TipParser(handler.ContentHandler):
+    """
+    SAX parsing class for the Tips XML file.
+
+    This parser needs to extract strings in *exactly* the same way
+    as the TipOfDay.TipParser does. Otherwise, msgid's won't be correctly
+    matched.
+    """
+    
+    def __init__(self,parent,filename):
+        """
+        Creates a SheetParser class that populates the passed StyleSheetList
+        class.
+
+        sheetlist - StyleSheetList instance to be loaded from the file.
+        """
+        handler.ContentHandler.__init__(self)
+        self.parent = parent
+        self.translate = 0
+        self.text = ""
+        self.filename = filename
+        self.lineno = 0
+        
+    def startElement(self,tag,attrs):
+        """
+        Overridden class that handles the start of a XML element
+        """
+        if tag == "tip":
+             self.text = ""
+        elif tag != "tips":
+            # let all the other tags through, except for the "tips" tag
+            self.text = self.text + "<%s>" % tag
+
+    def endElement(self,tag):
+        "Overridden class that handles the start of a XML element"
+        if tag == "tip":
+            if not _int_re.match(self.text):
+                text = self.escape(self.text)
+                self.parent.add_string(' '.join(text.split()), 
+                            self.locator.getLineNumber())
+        elif tag != "tips":
+            # let all the other tags through, except for the "tips" tag
+            self.text = self.text + "</%s>" % tag
+
+    def setDocumentLocator(self,locator):
+        self.locator = locator
+
+    def characters(self, data):
+        self.text = self.text + data
+
+    def escape(self,text):
+        """
+        The tip's text will be interpreted as a markup, so we need to escape
+        some special chars.
+        """
+        text = text.replace('&','&amp;');       # Must be first
+        return text
+
 # The normal pot-file header. msgmerge and Emacs's po-mode work better if it's
 # there.
 pot_header = _('''\
@@ -270,7 +351,7 @@ def escape(s):
     s = list(s)
     for i in range(len(s)):
         s[i] = escapes[ord(s[i])]
-    return string.join(s,'')
+    return ''.join(s)
 
 
 def safe_eval(s):
@@ -281,7 +362,7 @@ def safe_eval(s):
 def normalize(s):
     # This converts the various Python string types into a format that is
     # appropriate for .po files, namely much closer to C style.
-    lines = string.split(s,'\n')
+    lines = s.split('\n')
     if len(lines) == 1:
         s = '"' + escape(s) + '"'
     else:
@@ -291,7 +372,7 @@ def normalize(s):
         for i in range(len(lines)):
             lines[i] = escape(lines[i])
         lineterm = '\\n"\n"'
-        s = '""\n"' + string.join(lines,lineterm) + '"'
+        s = '""\n"' + lineterm.join(lines) + '"'
     return s
 
 class TokenEater:
@@ -342,7 +423,7 @@ class TokenEater:
             # of messages seen.  Reset state for the next batch.  If there
             # were no strings inside _(), then just ignore this entry.
             if self.__data:
-                self.__addentry(string.join(self.__data,''))
+                self.__addentry(''.join(self.__data))
             self.__state = self.__waiting
         elif ttype == tokenize.STRING:
             self.__data.append(safe_eval(tstring))
@@ -499,13 +580,18 @@ def main():
     # slurp through all the files
     eater = TokenEater(options)
     p = GladeExtractor(eater.get_messages())
+    tp = TipExtractor(eater.get_messages())
     
     for filename in args:
         if filename[-5:] == 'glade':
             print 'Working on %s' % filename
             p.parse(filename)
-        elif filename[-3:] == 'xml':
+        elif filename[-8:] == 'tips.xml':
+            # Using our own custom Tips parser for tips.xml
             print 'Working on %s' % filename
+            tp.parse(filename)
+        elif filename[-3:] == 'xml':
+            # THIS IS NOT WORKING -- something has changed in SAX/Expat
             try:
                 parser = make_parser()
                 pxml = XMLParser(filename,eater.get_messages())

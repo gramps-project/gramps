@@ -260,8 +260,7 @@ class FamilyView:
                                        DdTargets.PERSON_LINK.target()],
                                       ACTION_COPY)
         self.child_list.drag_source_set(BUTTON1_MASK,
-                                        [DdTargets.CHILD.target(),
-                                         DdTargets.PERSON_LINK.target()],
+                                        [DdTargets.CHILD.target()],
                                         ACTION_COPY)
         self.child_list.connect('drag_data_get', self.drag_data_get)
         self.child_list.connect('drag_data_received',self.drag_data_received)

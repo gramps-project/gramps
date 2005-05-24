@@ -57,7 +57,7 @@ import Date
 import NameDisplay
 import DateHandler
 import GenericFilter
-from QuestionDialog import ErrorDialog
+from QuestionDialog import ErrorDialog, WarningDialog
 
 #-------------------------------------------------------------------------
 #
@@ -89,6 +89,11 @@ class ChooseParents:
         self.type = ""
         self.parent_selected = 0
         self.renderer = gtk.CellRendererText()
+
+        db.connect('person-add', self.redraw)
+        db.connect('person-update', self.redraw)
+        db.connect('person-delete', self.redraw)
+        db.connect('person-rebuild', self.redraw2)
 
         # set default filters
         self.all_males_filter = GenericFilter.GenericFilter()
@@ -250,7 +255,7 @@ class ChooseParents:
         
     def close_child_windows(self):
         for child_window in self.child_windows.values():
-            child_window.close(None)
+            child_window.close()
         self.child_windows = {}
 
     def add_itself_to_menu(self):
@@ -277,6 +282,18 @@ class ChooseParents:
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-quick')
+
+    def redraw(self,handle_list):
+        self.redrawf()
+        self.redrawm()
+#        self.father_model.rebuild_data()
+#        self.mother_model.rebuild_data()
+
+    def redraw2(self):
+        self.redrawf()
+        self.redrawm()
+#        self.father_model.rebuild_data()
+#        self.mother_model.rebuild_data()
 
     def redrawf(self):
         """Redraws the potential father list"""
@@ -505,19 +522,31 @@ class ChooseParents:
         if self.type == RelLib.Family.CIVIL_UNION:
             self.parent_relation_changed(self.prel)
         elif person.get_gender() == RelLib.Person.MALE:
-            self.redrawf()
-            path = self.father_model.on_get_path(handle)
-            top_path = self.father_model.on_get_path(name)
-            self.father_list.expand_row(top_path,0)
-            self.father_selection.select_path(path)
-            self.father_list.scroll_to_cell(path,None,1,0.5,0)
+            try:
+                path = self.father_model.on_get_path(handle)
+                top_path = self.father_model.on_get_path(name)
+                self.father_list.expand_row(top_path,0)
+                self.father_selection.select_path(path)
+                self.father_list.scroll_to_cell(path,None,1,0.5,0)
+            except KeyError:
+                WarningDialog(_("Added person is not visible"),
+                              _("The person you added is currently "
+                                "not visible due to the chosen filter. "
+                                "This may occur if you did not specify "
+                                "a birth date."))
         else:
-            self.redrawm()
-            path = self.mother_model.on_get_path(handle)
-            top_path = self.mother_model.on_get_path(name)
-            self.mother_list.expand_row(top_path,0)
-            self.mother_selection.select_path(path)
-            self.mother_list.scroll_to_cell(path,None,1,0.5,0)
+            try:
+                path = self.mother_model.on_get_path(handle)
+                top_path = self.mother_model.on_get_path(name)
+                self.mother_list.expand_row(top_path,0)
+                self.mother_selection.select_path(path)
+                self.mother_list.scroll_to_cell(path,None,1,0.5,0)
+            except:
+                WarningDialog(_("Added person is not visible"),
+                              _("The person you added is currently "
+                                "not visible due to the chosen filter. "
+                                "This may occur if you did not specify "
+                                "a birth date."))
         
     def add_parent_clicked(self,obj):
         """Called with the Add New Person button is pressed. Calls the QuickAdd

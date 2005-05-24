@@ -412,7 +412,7 @@ class Extract:
         genders     - which gender(s) to include into statistics
         year_from   - use only persons who've born this year of after
         year_to     - use only persons who've born this year or before
-        no_years    - use also people without any birth year
+        no_years    - use also people without known birth year
         
         Returns an array of tuple of:
         - Extraction method title
@@ -774,7 +774,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
                                 "Earlier than 'year_to' value"),
             'year_to'   : ("=num", "Birth year until which to include people",
                                 "Smaller than %d" % self.options_dict['year_to']),
-            'no_years'  : ("=0/1", "Whether to include people without birth years",
+            'no_years'  : ("=0/1", "Whether to include people without known birth years",
                                 ["Do not include", "Include"], True),
             'bar_items' : ("=num", "Use barchart instead of piechart with this many or more items",
                                 "Number of items with which piecharts still look good...")
@@ -878,9 +878,9 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         dialog.add_option(_('People born between'), box, tip)
         box.show_all()
 
-        # include people without birth year?
-        tip = _("Check this if you want people who have no birth date or year to be accounted also in the statistics.")
-        self.no_years = gtk.CheckButton(_("Include people without birth years"))
+        # include people without known birth year?
+        tip = _("Check this if you want people who have no known birth date or year to be accounted also in the statistics.")
+        self.no_years = gtk.CheckButton(_("Include people without known birth years"))
         self.no_years.set_active(self.options_dict['no_years'])
         dialog.add_option(None, self.no_years, tip)
         self.no_years.show()
@@ -899,7 +899,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         tip = _("With fewer items pie chart and legend will be used instead of a bar chart.")
         self.bar_items = gtk.Entry(2)
         self.bar_items.set_text(str(self.options_dict['bar_items']))
-        dialog.add_option(_("Min. bar char items"), self.bar_items, tip)
+        dialog.add_option(_("Max. items for a pie"), self.bar_items, tip)
 
         # -------------------------------------------------
         # List of available charts on a separate option tab

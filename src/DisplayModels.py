@@ -61,14 +61,30 @@ _codeset = locale.nl_langinfo(locale.CODESET)
 #-------------------------------------------------------------------------
 class BaseModel(gtk.GenericTreeModel):
 
-    def __init__(self,db):
+    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
         gtk.GenericTreeModel.__init__(self)
         self.set_property("leak_references",False)
         self.db = db
+        self.sort_func = self.smap[scol]
+        self.sort_col = scol
+        self.reverse = (order == gtk.SORT_DESCENDING)
         self.rebuild_data()
 
+    def set_sort_column(self,col):
+        self.sort_func = self.smap[col]
+
     def sort_keys(self):
-        return []
+        cursor = self.gen_cursor()
+        sarray = []
+        data = cursor.next()
+        while data:
+            sarray.append((self.sort_func(data[1]),data[0]))
+            data = cursor.next()
+        cursor.close()
+        sarray.sort()
+        if self.reverse:
+            sarray.reverse()
+        return map(lambda x: x[1], sarray)
 
     def rebuild_data(self):
         if self.db.is_open():
@@ -255,9 +271,9 @@ class ChildModel(gtk.ListStore):
 #-------------------------------------------------------------------------
 class SourceModel(BaseModel):
 
-    def __init__(self,db):
-        self.sort_keys = db.get_source_handles
+    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
         self.map = db.source_map
+        self.gen_cursor = db.get_source_cursor
         self.fmap = [
             self.column_title,
             self.column_id,
@@ -267,7 +283,15 @@ class SourceModel(BaseModel):
             self.column_change,
             self.column_handle,
             ]
-        BaseModel.__init__(self,db)
+        self.smap = [
+            self.column_title,
+            self.column_id,
+            self.column_author,
+            self.column_abbrev,
+            self.column_pubinfo,
+            self.sort_change,
+            ]
+        BaseModel.__init__(self,db,scol,order)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
@@ -293,6 +317,8 @@ class SourceModel(BaseModel):
     def column_change(self,data):
         return unicode(time.strftime(_date_format,time.localtime(data[8])),
                             _codeset)
+    def sort_change(self,data):
+        return time.localtime(data[8])
 
 #-------------------------------------------------------------------------
 #
@@ -301,8 +327,8 @@ class SourceModel(BaseModel):
 #-------------------------------------------------------------------------
 class PlaceModel(BaseModel):
 
-    def __init__(self,db):
-        self.sort_keys = db.get_place_handles
+    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
+        self.gen_cursor = db.get_place_cursor
         self.map = db.place_map
         self.fmap = [
             self.column_name,
@@ -318,7 +344,21 @@ class PlaceModel(BaseModel):
             self.column_change,
             self.column_handle,
             ]
-        BaseModel.__init__(self,db)
+        self.smap = [
+            self.column_name,
+            self.column_id,
+            self.column_parish,
+            self.column_postal_code,
+            self.column_city,
+            self.column_county,
+            self.column_state,
+            self.column_country,
+            self.column_longitude,
+            self.column_latitude,
+            self.column_change,
+            self.column_handle,
+            ]
+        BaseModel.__init__(self,db,scol,order)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
@@ -374,6 +414,9 @@ class PlaceModel(BaseModel):
         except:
             return u''
 
+    def sort_change(self,data):
+        return time.localtime(data[11])
+    
     def column_change(self,data):
         return unicode(time.strftime(_date_format,time.localtime(data[11])),
                             _codeset)
@@ -385,8 +428,8 @@ class PlaceModel(BaseModel):
 #-------------------------------------------------------------------------
 class MediaModel(BaseModel):
 
-    def __init__(self,db):
-        self.sort_keys = db.get_media_object_handles
+    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
+        self.gen_cursor = db.get_media_cursor
         self.map = db.media_map
         
         self.fmap = [
@@ -396,10 +439,18 @@ class MediaModel(BaseModel):
             self.column_path,
             self.column_change,
             self.column_date,
-            self.column_place,
             self.column_handle,
             ]
-        BaseModel.__init__(self,db)
+        self.smap = [
+            self.column_description,
+            self.column_id,
+            self.column_mime,
+            self.column_path,
+            self.sort_change,
+            self.column_date,
+            self.column_handle,
+            ]
+        BaseModel.__init__(self,db,scol,order)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
@@ -424,15 +475,11 @@ class MediaModel(BaseModel):
             return unicode(DateHandler.displayer.display(data[9]))
         return u''
 
-    def column_place(self,data):
-        if data[10]:
-            place = self.db.get_place_from_handle(data[10])
-            if place:
-                return place.get_title()
-        return u''
-
     def column_handle(self,data):
         return unicode(data[0])
+
+    def sort_change(self,data):
+        return time.localtime(data[8])
 
     def column_change(self,data):
         return unicode(time.strftime(_date_format,time.localtime(data[8])),

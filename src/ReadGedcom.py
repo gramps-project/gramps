@@ -438,9 +438,9 @@ class GedcomParser:
             ln = len(l)
             try:
                 if ln == 2:
-                    self.groups = (int(l[0]),l[1],"")
+                    self.groups = (int(l[0]),unicode(l[1]),u"")
                 else:
-                    self.groups = (int(l[0]),l[1],l[2])
+                    self.groups = (int(l[0]),unicode(l[1]),unicode(l[2]))
             except:
                 if self.text == "":
                     msg = _("Warning: line %d was blank, so it was ignored.\n") % self.index
@@ -528,9 +528,9 @@ class GedcomParser:
             
     def parse_trailer(self):
         matches = self.get_next()
-        if matches[1] != "TRLR":
+        if matches[0] >= 0 and matches[1] != "TRLR":
             self.barf(0)
-            self.f.close()
+        self.f.close()
         
     def parse_header(self):
         self.parse_header_head()
@@ -551,7 +551,7 @@ class GedcomParser:
                 self.backup()
                 return
             elif matches[1] == "NAME":
-                self.def_src.set_author(unicode(matches[2]))
+                self.def_src.set_author(matches[2])
             elif matches[1] == ["ADDR"]:
                 self.ignore_sub_junk(level+1)
 
@@ -573,7 +573,7 @@ class GedcomParser:
                 title = matches[2] + self.parse_continue_data(level+1)
                 title = title.replace('\n',' ')
                 self.source.set_title(title)
-            elif matches[1] == "TAXT" or matches[1] == "PERI": # EasyTree Sierra On-Line
+            elif matches[1] in ["TAXT","PERI"]: # EasyTree Sierra On-Line
                 if self.source.get_title() == "":
                     title = matches[2] + self.parse_continue_data(level+1)
                     title = title.replace('\n',' ')
@@ -603,7 +603,7 @@ class GedcomParser:
                     note = "%s %s" % (matches[1],matches[2])
 
     def parse_record(self):
-        while 1:
+        while True:
             matches = self.get_next()
             if matches[2] == "FAM":
                 if self.fam_count % UPDATE == 0 and self.window:
@@ -654,6 +654,12 @@ class GedcomParser:
                 self.ignore_sub_junk(1)
             elif matches[2] == "SOUR":
                 self.parse_source(matches[1],1)
+            elif matches[2].startswith("SOUR "):
+                # A source formatted in a single line, for example:
+                # 0 @S62@ SOUR This is the title of the source
+                source = self.find_or_create_source(matches[1][1:-1])
+                source.set_title( matches[2][5:])
+                self.db.commit_source(source, self.trans)
             elif matches[2][0:4] == "NOTE":
                 if self.nmap.has_key(matches[1]):
                     noteobj = self.nmap[matches[1]]
@@ -668,7 +674,7 @@ class GedcomParser:
                 # TODO: Add support for extended Locations.
                 # See: http://en.wiki.genealogy.net/index.php/Gedcom_5.5EL
                 self.ignore_sub_junk(1)
-            elif matches[0] < 1 or matches[1] == "TRLR":
+            elif matches[0] < 0 or matches[1] == "TRLR":
                 self.backup()
                 return
             else:
@@ -914,9 +920,9 @@ class GedcomParser:
     def parse_individual(self):
         name_cnt = 0
         note = ""
-        while 1:
+        while True:
             matches = self.get_next()
-
+            
             if int(matches[0]) < 1:
                 self.backup()
                 return
@@ -1019,6 +1025,8 @@ class GedcomParser:
                 self.person.add_address(addr)
             elif matches[1] == "BIRT":
                 event = RelLib.Event()
+                if matches[2]:
+                    event.set_description(matches[2])
                 self.db.add_event(event, self.trans)
                 if self.person.get_birth_handle():
                     event.set_name("Alternate Birth")
@@ -1037,6 +1045,8 @@ class GedcomParser:
                 self.db.commit_event(event, self.trans)
             elif matches[1] == "DEAT":
                 event = RelLib.Event()
+                if matches[2]:
+                    event.set_description(matches[2])
                 self.db.add_event(event, self.trans)
                 if self.person.get_death_handle():
                     event.set_name("Alternate Death")
@@ -1074,7 +1084,7 @@ class GedcomParser:
                 attr.set_type(matches[1])
                 attr.set_value(matches[2])
                 self.person.add_attribute(attr)
-            elif matches[1] in ["CHAN","ASSO","ANCI","DESI","RIN"]:
+            elif matches[1] in ["CHAN","ASSO","ANCI","DESI","RIN","_TODO"]:
                 self.ignore_sub_junk(2)
             else:
                 event = RelLib.Event()
@@ -1150,9 +1160,12 @@ class GedcomParser:
         filename = ""
         title = "no title"
         note = ""
-        while 1:
+        while True:
             matches = self.get_next()
-            if matches[1] == "FORM":
+            if int(matches[0]) < level:
+                self.backup()
+                break
+            elif matches[1] == "FORM":
                 form = matches[2].lower()
             elif matches[1] == "TITL":
                 title = matches[2]
@@ -1162,9 +1175,6 @@ class GedcomParser:
                 note = matches[2] + self.parse_continue_data(level+1)
             elif matches[1][0] == "_":
                 self.ignore_sub_junk(level+1)
-            elif int(matches[0]) < level:
-                self.backup()
-                break
             else:
                 self.barf(level+1)
 
@@ -1180,21 +1190,22 @@ class GedcomParser:
                 self.warn(_("\tThe following paths were tried:\n\t\t"))
                 self.warn("\n\t\t".join(path))
                 self.warn('\n')
+                path = filename.replace('\\','/')
+            photo_handle = self.media_map.get(path)
+            if photo_handle == None:
+                photo = RelLib.MediaObject()
+                photo.set_path(path)
+                photo.set_description(title)
+                photo.set_mime_type(GrampsMime.get_type(os.path.abspath(path)))
+                self.db.add_object(photo, self.trans)
+                self.media_map[path] = photo.get_handle()
             else:
-                photo_handle = self.media_map.get(path)
-                if photo_handle == None:
-                    photo = RelLib.MediaObject()
-                    photo.set_path(path)
-                    photo.set_description(title)
-                    photo.set_mime_type(GrampsMime.get_type(os.path.abspath(path)))
-                    self.db.add_object(photo, self.trans)
-                    self.media_map[path] = photo.get_handle()
-                else:
-                    photo = self.db.get_object_from_handle(photo_handle)
-                oref = RelLib.MediaRef()
-                oref.set_reference_handle(photo.get_handle())
-                self.person.add_media_reference(oref)
-                self.db.commit_person(self.person, self.trans)
+                photo = self.db.get_object_from_handle(photo_handle)
+            oref = RelLib.MediaRef()
+            oref.set_reference_handle(photo.get_handle())
+            oref.set_note(note)
+            self.person.add_media_reference(oref)
+            self.db.commit_person(self.person, self.trans)
 
     def parse_family_object(self,level):
         form = ""
@@ -1224,21 +1235,22 @@ class GedcomParser:
                 self.warn(_("\tThe following paths were tried:\n\t\t"))
                 self.warn("\n\t\t".join(path))
                 self.warn('\n')
+                path = filename.replace('\\','/')
+            photo_handle = self.media_map.get(path)
+            if photo_handle == None:
+                photo = RelLib.MediaObject()
+                photo.set_path(path)
+                photo.set_description(title)
+                photo.set_mime_type(GrampsMime.get_type(os.path.abspath(path)))
+                self.db.add_object(photo, self.trans)
+                self.media_map[path] = photo.get_handle()
             else:
-                photo_handle = self.media_map.get(path)
-                if photo_handle == None:
-                    photo = RelLib.MediaObject()
-                    photo.set_path(path)
-                    photo.set_description(title)
-                    photo.set_mime_type(GrampsMime.get_type(os.path.abspath(path)))
-                    self.db.add_object(photo, self.trans)
-                    self.media_map[path] = photo.get_handle()
-                else:
-                    photo = self.db.get_object_from_handle(photo_handle)
-                oref = RelLib.MediaRef()
-                oref.set_reference_handle(photo.get_handle())
-                self.family.add_media_reference(oref)
-                self.db.commit_family(self.family, self.trans)
+                photo = self.db.get_object_from_handle(photo_handle)
+            oref = RelLib.MediaRef()
+            oref.set_reference_handle(photo.get_handle())
+            oref.set_note(note)
+            self.family.add_media_reference(oref)
+            self.db.commit_family(self.family, self.trans)
 
     def parse_residence(self,address,level):
         note = ""
@@ -1296,8 +1308,14 @@ class GedcomParser:
                 address.set_postal_code(matches[2])
             elif matches[1] == "CTRY":
                 address.set_country(matches[2])
+            elif matches[1] == "PHON":
+                address.set_phone(matches[2])
+            elif matches[1] == "NOTE":
+                note = self.parse_note(matches,address,level+1,note)
             elif matches[1] == "_LOC":
                 pass    # ignore unsupported extended location syntax
+            elif matches[1] == "_NAME":
+                pass    # ignore
             else:
                 self.barf(level+1)
 
@@ -1357,6 +1375,8 @@ class GedcomParser:
                     event.set_name(name)
                 else:
                     event.set_description(matches[2])
+            elif matches[1] == "_PRIV" and  matches[2] == "Y":
+                event.set_privacy(True)
             elif matches[1] == "DATE":
                 event.set_date_object(self.extract_date(matches[2]))
             elif matches[1] == "SOUR":
@@ -1585,10 +1605,13 @@ class GedcomParser:
                 return
             elif matches[1] == "PAGE":
                 source.set_page(matches[2] + self.parse_continue_data(level+1))
+            elif matches[1] == "DATE":
+                source.set_date_object(self.extract_date(matches[2]))
             elif matches[1] == "DATA":
                 date,text = self.parse_source_data(level+1)
-                d = self.dp.parse(date)
-                source.set_date_object(d)
+                if date:
+                    d = self.dp.parse(date)
+                    source.set_date_object(d)
                 source.set_text(text)
             elif matches[1] in ["OBJE","REFN","TEXT"]:
                 self.ignore_sub_junk(level+1)
@@ -1721,9 +1744,9 @@ class GedcomParser:
                 pass
             elif matches[1] == "FILE":
                 filename = os.path.basename(matches[2]).split('\\')[-1]
-                self.def_src.set_title(_("Import from %s") % unicode(filename))
+                self.def_src.set_title(_("Import from %s") % filename)
             elif matches[1] == "COPR":
-                self.def_src.set_publication_info(unicode(matches[2]))
+                self.def_src.set_publication_info(matches[2])
             elif matches[1] in ["CORP","DATA","SUBM","SUBN","LANG"]:
                 self.ignore_sub_junk(2)
             elif matches[1] == "DEST":
@@ -1751,7 +1774,7 @@ class GedcomParser:
             elif matches[1] == "DATE":
                 date = self.parse_date(2)
                 date.date = matches[2]
-                self.def_src.set_data_item('Creation date',unicode(matches[2]))
+                self.def_src.set_data_item('Creation date',matches[2])
             elif matches[1] == "NOTE":
                 note = matches[2] + self.parse_continue_data(2)
             elif matches[1][0] == "_":

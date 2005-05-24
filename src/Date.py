@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,6 +25,8 @@
 __author__ = "Donald N. Allingham"
 __version__ = "$Revision$"
 
+from gettext import gettext as _
+from Errors import DateError
 from CalSdn import *
 
 #-------------------------------------------------------------------------
@@ -143,9 +145,9 @@ class Date:
         Comparison function. Allows the usage of equality tests.
         This allows you do run statements like 'date1 <= date2'
         """
-	if isinstance(other,Date):
+        if isinstance(other,Date):
             return cmp(self.sortval,other.sortval)
-	else:
+        else:
             return -1
 
     def is_equal(self,other):
@@ -233,6 +235,8 @@ class Date:
         """
         Sets the modifier for the date.
         """
+        if val not in (MOD_NONE,MOD_BEFORE,MOD_AFTER,MOD_ABOUT,MOD_RANGE,MOD_SPAN,MOD_TEXTONLY):
+            raise DateError("Invalid modifier")
         self.modifier = val
 
     def get_quality(self):
@@ -250,6 +254,8 @@ class Date:
         """
         Sets the quality selected for the date.
         """
+        if val not in (QUAL_NONE,QUAL_ESTIMATED,QUAL_CALCULATED):
+            raise DateError("Invalid quality")
         self.quality = val
     
     def get_calendar(self):
@@ -270,6 +276,8 @@ class Date:
         """
         Sets the calendar selected for the date.
         """
+        if val not in (CAL_GREGORIAN,CAL_JULIAN,CAL_HEBREW,CAL_FRENCH,CAL_PERSIAN,CAL_ISLAMIC):
+            raise DateError("Invalid calendar")
         self.calendar = val
 
     def get_start_date(self):
@@ -427,6 +435,18 @@ class Date:
 
         The sort value is recalculated.
         """
+        
+        if modifier in (MOD_NONE,MOD_BEFORE,MOD_AFTER,MOD_ABOUT) and len(value) < 4:
+            raise DateError("Invalid value. Should be: (DD,MM,YY,slash)")
+        if modifier in (MOD_RANGE,MOD_SPAN) and len(value) < 8:
+            raise DateError("Invalid value. Should be: (DD,MM,YY,slash1,DD,MM,YY,slash2)")
+        if modifier not in (MOD_NONE,MOD_BEFORE,MOD_AFTER,MOD_ABOUT,MOD_RANGE,MOD_SPAN,MOD_TEXTONLY):
+            raise DateError("Invalid modifier")
+        if quality not in (QUAL_NONE,QUAL_ESTIMATED,QUAL_CALCULATED):
+            raise DateError("Invalid quality")
+        if calendar not in (CAL_GREGORIAN,CAL_JULIAN,CAL_HEBREW,CAL_FRENCH,CAL_PERSIAN,CAL_ISLAMIC):
+            raise DateError("Invalid calendar")
+
         self.quality = quality
         self.modifier = modifier
         self.calendar = calendar

@@ -962,22 +962,27 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         filter_list.append(all)
 
         all = GenericFilter.GenericFilter()
+        all.set_name(_("People with unknown gender"))
+        all.add_rule(GenericFilter.HasUnknownGender([]))
+        filter_list.append(all)
+
+        all = GenericFilter.GenericFilter()
         all.set_name(_("Disconnected individuals"))
         all.add_rule(GenericFilter.Disconnected([]))
         filter_list.append(all)
 
         all = GenericFilter.ParamFilter()
-        all.set_name(_("Name contains..."))
+        all.set_name(_("People with names containing..."))
         all.add_rule(GenericFilter.SearchName([]))
         filter_list.append(all)
 
         all = GenericFilter.GenericFilter()
-        all.set_name(_("People who were adopted"))
+        all.set_name(_("Adopted people"))
         all.add_rule(GenericFilter.HaveAltFamilies([]))
         filter_list.append(all)
 
         all = GenericFilter.GenericFilter()
-        all.set_name(_("People who have images"))
+        all.set_name(_("People with images"))
         all.add_rule(GenericFilter.HavePhotos([]))
         filter_list.append(all)
 
@@ -1002,7 +1007,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         filter_list.append(all)
 
         all = GenericFilter.GenericFilter()
-        all.set_name(_("People without a birth date"))
+        all.set_name(_("People without a known birth date"))
         all.add_rule(GenericFilter.NoBirthdate([]))
         filter_list.append(all)
 
@@ -1031,15 +1036,15 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         all.add_rule(GenericFilter.IsWitness([]))
         filter_list.append(all)
 
-#         all = GenericFilter.ParamFilter()
-#         all.set_name(_("Any textual record contains..."))
-#         all.add_rule(GenericFilter.HasTextMatchingSubstringOf([]))
-#         filter_list.append(all)
+        all = GenericFilter.ParamFilter()
+        all.set_name(_("People with records containing..."))
+        all.add_rule(GenericFilter.HasTextMatchingSubstringOf([]))
+        filter_list.append(all)
 
-#         all = GenericFilter.ParamFilter()
-#         all.set_name(_("Any textual record matches regular expression..."))
-#         all.add_rule(GenericFilter.HasTextMatchingRegexpOf([]))
-#         filter_list.append(all)
+        all = GenericFilter.ParamFilter()
+        all.set_name(_("People with records matching regular expression..."))
+        all.add_rule(GenericFilter.HasTextMatchingRegexpOf([]))
+        filter_list.append(all)
 
         self.filter_model = GenericFilter.FilterStore(filter_list)
         self.filter_list.set_model(self.filter_model)
@@ -1248,7 +1253,6 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.progress.set_fraction(0)
 
     def read_file(self,filename,callback=None):
-        self.topWindow.set_resizable(False)
         mode = "w"
         filename = os.path.normpath(os.path.abspath(filename))
         
@@ -1289,9 +1293,11 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         except db.DBAccessError, msg:
             ErrorDialog(_('Cannot open database'),
                         _('%s could not be opened.' % filename) + '\n' + msg[1])
-            return 0
+        except (db.DBError), msg:
+            ErrorDialog(_('Cannot open database'),
+                        _('%s could not be opened.' % filename) + '\n' + msg[1])
+            gtk.main_quit()
 
-        self.topWindow.set_resizable(True)
         # Undo/Redo always start with standard labels and insensitive state
         self.undo_callback(None)
         self.redo_callback(None)
@@ -1878,7 +1884,40 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             task(self.db,self.active_person,self.tool_callback,self)
     
     def open_example(self,obj):
-        pass
+        import shutil
+        dest = os.path.expanduser("~/.gramps/example")
+        if not os.path.isdir(dest):
+            try:
+                os.mkdir(dest)
+            except IOError,msg:
+                ErrorDialog(_('Could not create example database'),
+                    _('The directory ~/.gramps/example could not '
+                    'be created.') + '\n' + str(msg) )
+            except OSError,msg:
+                ErrorDialog(_('Could not create example database'),
+                    _('The directory ~/.gramps/example could not '
+                    'be created.') + '\n' + str(msg) )
+            except:
+                ErrorDialog(_('Could not create example database'),
+                    _('The directory ~/.gramps/example could not '
+                    'be created.'))
+            try:
+                example_dir = "%s/share/gramps/example" % const.prefixdir
+                for filename in os.listdir(example_dir):
+                    shutil.copyfile("%s/%s" % (example_dir,filename), 
+                        "%s/%s" % (dest,filename) )
+                    try:
+                        shutil.copystat("%s/%s" % (example_dir,filename),
+                            "%s/%s" % (dest,filename))
+                    except:
+                        pass
+            except IOError,msg:
+                ErrorDialog(_('Could not create example database'),str(msg))
+            except OSError,msg:
+                ErrorDialog(_('Could not create example database'),str(msg))
+
+        filename = "%s/%s" % (dest,const.xmlFile)
+        DbPrompter.open_native(self,filename,const.app_gramps_xml)
 
 DARKEN = 1.4
 

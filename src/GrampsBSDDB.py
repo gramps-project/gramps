@@ -43,7 +43,7 @@ from bsddb import dbshelve, db
 from RelLib import *
 from GrampsDbBase import *
 
-_DBVERSION = 5
+_DBVERSION = 6
 
 def find_surname(key,data):
     return str(data[3].get_surname())
@@ -292,6 +292,57 @@ class GrampsBSDDB(GrampsDbBase):
         vals.sort()
         return vals
 
+<<<<<<< GrampsBSDDB.py
+=======
+    def remove_person(self,handle,transaction):
+        if not self.readonly and handle and str(handle) in self.person_map:
+            person = self.get_person_from_handle(handle)
+            self.genderStats.uncount_person (person)
+            if transaction != None:
+                transaction.add(PERSON_KEY,handle,person.serialize())
+                self.emit('person-delete',([str(handle)],))
+            self.person_map.delete(str(handle))
+
+    def remove_source(self,handle,transaction):
+        if not self.readonly and handle and str(handle) in self.source_map:
+            if transaction != None:
+                old_data = self.source_map.get(str(handle))
+                transaction.add(SOURCE_KEY,handle,old_data)
+                self.emit('source-delete',([handle],))
+            self.source_map.delete(str(handle))
+
+    def remove_family(self,handle,transaction):
+        if not self.readonly and handle and str(handle) in self.family_map:
+            if transaction != None:
+                old_data = self.family_map.get(str(handle))
+                transaction.add(FAMILY_KEY,handle,old_data)
+                self.emit('family-delete',([str(handle)],))
+            self.family_map.delete(str(handle))
+
+    def remove_event(self,handle,transaction):
+        if not self.readonly and handle and str(handle) in self.event_map:
+            if transaction != None:
+                old_data = self.event_map.get(str(handle))
+                transaction.add(EVENT_KEY,handle,old_data)
+            self.event_map.delete(str(handle))
+
+    def remove_place(self,handle,transaction):
+        if not self.readonly and handle and str(handle) in self.place_map:
+            if transaction != None:
+                old_data = self.place_map.get(handle)
+                transaction.add(PLACE_KEY,handle,old_data)
+                self.emit('place-delete',([handle],))
+            self.place_map.delete(str(handle))
+
+    def remove_object(self,handle,transaction):
+        if not self.readonly and handle and str(handle) in self.media_map:
+            if transaction != None:
+                old_data = self.media_map.get(handle)
+                transaction.add(MEDIA_KEY,handle,old_data)
+                self.emit('media-delete',([handle],))
+            self.media_map.delete(str(handle))
+
+>>>>>>> 1.41.2.5
     def get_person_from_gramps_id(self,val):
         """finds a Person in the database from the passed gramps' ID.
         If no such Person exists, a new Person is added to the database."""
@@ -352,6 +403,25 @@ class GrampsBSDDB(GrampsDbBase):
         else:
             return None
 
+    def transaction_commit(self,transaction,msg):
+        GrampsDbBase.transaction_commit(self,transaction,msg)
+        self.family_map.sync()
+        self.place_map.sync()
+        self.source_map.sync()
+        self.media_map.sync()
+        self.event_map.sync()
+        self.metadata.sync()
+        self.person_map.sync()
+        self.surnames.sync()
+        self.name_group.sync()
+        self.id_trans.sync()
+        self.fid_trans.sync()
+        self.pid_trans.sync()
+        self.sid_trans.sync()
+        self.oid_trans.sync()
+        self.eventnames.sync()
+        self.undodb.sync()
+
     def upgrade(self):
         child_rel_notrans = [
             "None",      "Birth",  "Adopted", "Stepchild",
@@ -366,6 +436,8 @@ class GrampsBSDDB(GrampsDbBase):
             self.upgrade_4(child_rel_notrans)
         if version < 5:
             self.upgrade_5()
+        if version < 6:
+            self.upgrade_6()
         self.metadata['version'] = _DBVERSION
         print 'Successfully finished all upgrades'
 
@@ -674,3 +746,11 @@ class GrampsBSDDB(GrampsDbBase):
                 self.commit_source(source,None)
             data = cursor.next()
         cursor.close()
+
+    def upgrade_6(self):
+        print "Upgrading to DB version 6"
+        order = []
+        for val in self.get_media_column_order():
+            if val[1] != 6:
+                order.append(val)
+        self.set_media_column_order(order)

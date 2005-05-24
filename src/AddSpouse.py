@@ -57,7 +57,7 @@ import DateHandler
 import Marriage
 import NameDisplay
 import GenericFilter
-from QuestionDialog import ErrorDialog
+from QuestionDialog import ErrorDialog, QuestionDialog2
 
 #-------------------------------------------------------------------------
 #
@@ -114,7 +114,8 @@ class AddSpouse:
         name = NameDisplay.displayer.display(person)
         title = _("Choose Spouse/Partner of %s") % name
 
-        Utils.set_titles(self.glade.get_widget('spouseDialog'),
+        self.window = self.glade.get_widget('spouseDialog')
+        Utils.set_titles(self.window,
                          self.glade.get_widget('title'),title,
                          _('Choose Spouse/Partner'))
 
@@ -254,14 +255,20 @@ class AddSpouse:
                         _("A person cannot be linked as his/her spouse"))
             return
 
-        # don't do anything if adding a parent
+        # display warning if adding a parent
         for (family_handle,frel,mrel) in self.person.get_parent_family_handle_list():
             family = self.db.get_family_from_handle(family_handle)
             if spouse_id in [family.get_mother_handle(),family.get_father_handle()]:
-                ErrorDialog(_("Error adding a spouse"),
-                            _("A person cannot be linked as his/her "
-                                "child's spouse"))
-                return
+                dialog = QuestionDialog2(
+                    _("Spouse is a parent"),
+                    _("The person selected as a spouse is a parent of the "
+                    "active person. Usually, this is a mistake. You may "
+                    "choose either to proceed with adding a spouse, or to "
+                    "return to the Choose Spouse dialog to fix the problem."),
+                    _("Proceed with adding"), _("Return to dialog"),
+                    self.window)
+                if not dialog.run():
+                    return
 
         # don't do anything if the marriage already exists
         for f in self.person.get_family_handle_list():
@@ -273,10 +280,16 @@ class AddSpouse:
                             _("The spouse is already present in this family"))
                     return
                 if spouse_id in fam.get_child_handle_list():
-                    ErrorDialog(_("Error adding a spouse"),
-                                _("A person cannot be linked as his/her "
-                                    "parent's spouse"))
-                    return
+                    dialog = QuestionDialog2(
+                        _("Spouse is a child"),
+                        _("The person selected as a spouse is a child of the "
+                        "active person. Usually, this is a mistake. You may "
+                        "choose either to proceed with adding a spouse, or to "
+                        "return to the Choose Spouse dialog to fix the problem."),
+                        _("Proceed with adding"), _("Return to dialog"),
+                        self.window)
+                    if not dialog.run():
+                        return
 
         trans = self.db.transaction_begin()
 

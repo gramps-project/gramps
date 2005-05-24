@@ -30,6 +30,7 @@ __version__ = "$Revision$"
 
 import Date
 import locale
+from gettext import gettext as _
 
 
 class DateDisplay:
@@ -111,6 +112,8 @@ class DateDisplay:
     _mod_str = ("","before ","after ","about ","","","")
 
     _qual_str = ("","estimated ","calculated ")
+    
+    _bce_str = "%s B.C.E."
 
     def __init__(self,format=None):
         self.display_cal = [
@@ -172,15 +175,19 @@ class DateDisplay:
             return "%s%s%s%s" % (qual_str,self._mod_str[mod],text,self.calendar[cal])
 
     def _slash_year(self,val,slash):
-        bc = ""
         if val < 0:
             val = - val
-            bc = " B.C.E"
+            # self._bce_str is a localizes string that prints B.C.E. at the apropriate place
+            format_string = self._bce_str
+        else:
+            format_string = "%s"
             
         if slash:
-            return "%d/%d%s" % (val,(val%10)+1,bc)
+            year = "%d/%d" % (val,(val%10)+1)
         else:
-            return "%d%s" % (val,bc)
+            year = "%d" % (val)
+        
+        return format_string % year
         
     def display_iso(self,date_val):
         # YYYY-MM-DD (ISO)
@@ -286,8 +293,8 @@ class DateDisplayEn(DateDisplay):
     """
 
     formats = (
-        "YYYY-MM-DD (ISO)", "Numerical", "Month Day, Year",
-        "MON DAY, YEAR", "Day Month Year", "DAY MON YEAR"
+        _("YYYY-MM-DD (ISO)"), _("Numerical"), _("Month Day, Year"),
+        _("MON DAY, YEAR"), _("Day Month Year"), _("DAY MON YEAR")
         )
 
     def __init__(self,format=None):

@@ -85,8 +85,11 @@ def date_cmp(rule,value):
 class Rule:
     """Base rule class"""
 
-    labels = []
-    
+    labels      = []
+    name        = ''
+    category    = _('Miscellaneous filters')
+    description = _('No description')
+
     def __init__(self,list):
         self.set_list(list)
     
@@ -102,23 +105,11 @@ class Rule:
 
     def values(self):
         return self.list
-
-    def trans_name(self):
-        return _(self.name())
     
-    def name(self): 
-        return 'None'
-
-    def category(self): 
-        return _('Miscellaneous filters')
-    
-    def description(self):
-        return _('No description')
-
     def check(self):
         return len(self.list) == len(self.labels)
 
-    def apply(self,db,p):
+    def apply(self,db,handle):
         return 1
 
     def display_values(self):
@@ -136,18 +127,11 @@ class Rule:
 class Everyone(Rule):
     """Matches Everyone"""
 
-    labels = []
-    
-    def name(self):
-        return 'Everyone'
+    name        = _('Everyone')
+    category    = _('General filters')
+    description = _('Matches everyone in the database')
 
-    def category(self): 
-        return _('General filters')
-    
-    def description(self):
-        return _('Matches everyone in the database')
-
-    def apply(self,db,p_id):
+    def apply(self,db,handle):
         return 1
 
 #-------------------------------------------------------------------------
@@ -156,21 +140,15 @@ class Everyone(Rule):
 #
 #-------------------------------------------------------------------------
 class Disconnected(Rule):
-    """Matches disconnected individuals"""
+    """Matches disconnected people"""
 
-    labels = []
-    
-    def name(self):
-        return 'Disconnected individuals'
+    name        = _('Disconnected people')
+    category    = _('General filters')
+    description = _('Matches people that have no family relationships '
+                    'to any other person in the database')
 
-    def category(self): 
-        return _('General filters')
-    
-    def description(self):
-        return _('Matches individuals that have no relationships')
-
-    def apply(self,db,p_id):
-        person = db.get_person_from_handle(p_id)
+    def apply(self,db,handle):
+        person = db.get_person_from_handle(handle)
         return (not person.get_main_parents_family_handle() and
                 not len(person.get_family_handle_list()))
 
@@ -183,33 +161,30 @@ class RelationshipPathBetween(Rule):
     """Rule that checks for a person that is a descendant of a specified person
     not more than N generations away"""
 
-    labels = [ _('ID:'), _('ID:') ]
-    
+    labels      = [ _('ID:'), _('ID:') ]
+    name        = _("Relationship path between <persons>")
+    category    = _('Relationship filters')
+    description = _("Matches the ancestors of two persons back to a common ancestor, "
+                    "producing the relationship path between two persons.")    
+
     def prepare(self,db):
         self.db = db
         self.map = {}
-        root1 = self.list[0]
-        root2 = self.list[1]
-        self.init_list(root1,root2)
+        try:
+            root1_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
+            root2_handle = db.get_person_from_gramps_id(self.list[1]).get_handle()
+            self.init_list(root1_handle,root2_handle)
+        except:
+            pass
 
     def reset(self):
         self.map = {}
 
-    def name(self):
-        return "Relationship path between two people"
-
-    def category(self): 
-        return _('Relationship filters')
-
-    def description(self):
-        return _("Matches the ancestors of two people back to a common ancestor, producing "
-                 "the relationship path between two people.")
-
-    def desc_list(self, p_id, map, first):
+    def desc_list(self, handle, map, first):
         if not first:
-            map[p_id] = 1
+            map[handle] = 1
         
-        p = self.db.get_person_from_handle(p_id)
+        p = self.db.get_person_from_handle(handle)
         for fam_id in p.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
@@ -217,8 +192,8 @@ class RelationshipPathBetween(Rule):
                     if child_handle:
                         self.desc_list(child_handle,map,0)
     
-    def apply_filter(self,rank,p_id,plist,pmap):
-        person = self.db.get_person_from_handle(p_id)
+    def apply_filter(self,rank,handle,plist,pmap):
+        person = self.db.get_person_from_handle(handle)
         if person == None:
             return
         plist.append(person)
@@ -230,10 +205,10 @@ class RelationshipPathBetween(Rule):
             self.apply_filter(rank+1,family.get_father_handle(),plist,pmap)
             self.apply_filter(rank+1,family.get_mother_handle(),plist,pmap)
 
-    def apply(self,db,p_id):
-        return self.map.has_key(p_id)
+    def apply(self,db,handle):
+        return self.map.has_key(handle)
 
-    def init_list(self,p1_id,p2_id):
+    def init_list(self,p1_handle,p2_handle):
         firstMap = {}
         firstList = []
         secondMap = {}
@@ -241,8 +216,8 @@ class RelationshipPathBetween(Rule):
         common = []
         rank = 9999999
 
-        self.apply_filter(0,p1_id,firstList,firstMap)
-        self.apply_filter(0,p2_id,secondList,secondMap)
+        self.apply_filter(0,p1_handle,firstList,firstMap)
+        self.apply_filter(0,p2_handle,secondList,secondMap)
         
         for person_handle in firstList:
             if person_handle in secondList:
@@ -253,8 +228,8 @@ class RelationshipPathBetween(Rule):
                 elif new_rank == rank:
                     common.append(person_handle)
 
-        path1 = { p1_id : 1}
-        path2 = { p2_id : 1}
+        path1 = { p1_handle : 1}
+        path2 = { p2_handle : 1}
 
         for person_handle in common:
             new_map = {}
@@ -282,19 +257,13 @@ class RelationshipPathBetween(Rule):
 class HasIdOf(Rule):
     """Rule that checks for a person with a specific GRAMPS ID"""
 
-    labels = [ _('ID:') ]
-    
-    def name(self):
-        return 'Has the Id'
+    labels      = [ _('ID:') ]
+    name        = _('People with <Id>')
+    description = _("Matches people with a specified GRAMPS ID")
+    category    = _('General filters')
 
-    def description(self):
-        return _("Matches the person with a specified GRAMPS ID")
-
-    def category(self):
-        return _('General filters')
-
-    def apply(self,db,p_id):
-        return p_id == self.list[0]
+    def apply(self,db,handle):
+        return db.get_person_from_handle(handle).get_gramps_id() == self.list[0]
 
 #-------------------------------------------------------------------------
 #
@@ -304,21 +273,14 @@ class HasIdOf(Rule):
 class IsDefaultPerson(Rule):
     """Rule that checks for a default person in the database"""
 
-    labels = []
-    
-    def name(self):
-        return 'Is default person'
+    name        = _('Default person')
+    category    = _('General filters')
+    description = _("Matches the default person")
 
-    def description(self):
-        return _("Matches the default person")
-
-    def category(self):
-        return _('General filters')
-
-    def apply(self,db,p_id):
+    def apply(self,db,handle):
         person = db.get_default_person()
         if person:
-            return p_id == person.get_handle()
+            return handle == person.get_handle()
         return 0
 
 #-------------------------------------------------------------------------
@@ -329,19 +291,12 @@ class IsDefaultPerson(Rule):
 class IsBookmarked(Rule):
     """Rule that checks for the bookmark list in the database"""
 
-    labels = []
-    
-    def name(self):
-        return 'Is bookmarked person'
+    name        = _('Bookmarked people')
+    category    = _('General filters')
+    description = _("Matches the people on the bookmark list")
 
-    def description(self):
-        return _("Matches the people on the bookmark list")
-
-    def category(self):
-        return _('General filters')
-
-    def apply(self,db,p_id):
-        if p_id in db.get_bookmarks():
+    def apply(self,db,handle):
+        if handle in db.get_bookmarks():
            return 1
         return 0
 
@@ -353,19 +308,12 @@ class IsBookmarked(Rule):
 class HasCompleteRecord(Rule):
     """Rule that checks for a person whose record is complete"""
 
-    labels = []
-    
-    def name(self):
-        return 'Has complete record'
+    name        = _('People with complete records')
+    category    = _('General filters')
+    description = _('Matches all people whose records are complete')
 
-    def category(self): 
-        return _('General filters')
-    
-    def description(self):
-        return _('Matches all people whose records are complete')
-
-    def apply(self,db,p_id):
-        return db.get_person_from_handle(p_id).get_complete_flag() == 1
+    def apply(self,db,handle):
+        return db.get_person_from_handle(handle).get_complete_flag() == 1
 
 #-------------------------------------------------------------------------
 #
@@ -375,19 +323,27 @@ class HasCompleteRecord(Rule):
 class IsFemale(Rule):
     """Rule that checks for a person that is a female"""
 
-    labels = []
-    
-    def name(self):
-        return 'Is a female'
+    name        = _('Females')
+    category    = _('General filters')
+    description = _('Matches all females')
 
-    def category(self): 
-        return _('General filters')
-    
-    def description(self):
-        return _('Matches all females')
+    def apply(self,db,handle):
+        return db.get_person_from_handle(handle).get_gender() == RelLib.Person.FEMALE
 
-    def apply(self,db,p_id):
-        return db.get_person_from_handle(p_id).get_gender() == RelLib.Person.FEMALE
+#-------------------------------------------------------------------------
+#
+# HasUnknownGender
+#
+#-------------------------------------------------------------------------
+class HasUnknownGender(Rule):
+    """Rule that checks for a person that has unknown gender"""
+
+    name        = _('People with unknown gender')
+    category    = _('General filters')
+    description = _('Matches all people with unknown gender')
+
+    def apply(self,db,handle):
+        return db.get_person_from_handle(handle).get_gender() == RelLib.Person.UNKNOWN
 
 #-------------------------------------------------------------------------
 #
@@ -398,12 +354,14 @@ class IsDescendantOf(Rule):
     """Rule that checks for a person that is a descendant
     of a specified person"""
 
-    labels = [ _('ID:'), _('Inclusive:') ]
-    
+    labels      = [ _('ID:'), _('Inclusive:') ]
+    name        = _('Descendants of <person>')
+    category    = _('Descendant filters')
+    description = _('Matches all descendants for the specified person')
+
     def prepare(self,db):
         self.db = db
         self.map = {}
-        self.db = db
         try:
             if int(self.list[1]):
                 first = 0
@@ -411,32 +369,25 @@ class IsDescendantOf(Rule):
                 first = 1
         except IndexError:
             first = 1
-
-        root_id = self.list[0]
-        self.init_list(root_id,first)
+        try:
+            root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
+            self.init_list(root_handle,first)
+        except:
+            pass
 
     def reset(self):
         self.map = {}
 
-    def name(self):
-        return 'Is a descendant of'
+    def apply(self,db,handle):
+        return self.map.has_key(handle)
 
-    def category(self): 
-        return _('Descendant filters')
-    
-    def description(self):
-        return _('Matches all descendants for the specified person')
-
-    def apply(self,db,p_id):
-        return self.map.has_key(p_id)
-
-    def init_list(self,p_id,first):
-        if not p_id:
+    def init_list(self,handle,first):
+        if not handle:
             return
         if not first:
-            self.map[p_id] = 1
+            self.map[handle] = 1
         
-        p = self.db.get_person_from_handle(p_id)
+        p = self.db.get_person_from_handle(handle)
         for fam_id in p.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
@@ -452,22 +403,38 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
     """Rule that checks for a person that is a descendant
     of someone matched by a filter"""
 
-    labels = [ _('Filter name:'), _('Inclusive:') ]
+    labels      = [ _('Filter name:'), _('Inclusive:') ]
+    name        = _('Descendants of <filter> match')
+    category    = _('Descendant filters')
+    description = _("Matches people that are descendants of anybody matched by a filter")
+    
 
     def __init__(self,list):
         IsDescendantOf.__init__(self,list)
 
-    def name(self):
-        return 'Is a descendant of filter match'
+    def prepare(self,db):
+        self.db = db
+        self.map = {}
+        try:
+            if int(self.list[1]):
+                first = 0
+            else:
+                first = 1
+        except IndexError:
+            first = 1
+            
+        filt = MatchesFilter(self.list)
+        filt.prepare(db)
+        for person_handle in db.get_person_handles(sort_handles=False):
+            if filt.apply (db, person_handle):
+                self.init_list (person_handle,first)
+        filt.reset()
 
-    def category(self): 
-        return _('Descendant filters')
+    def reset(self):
+        self.map = {}
 
-    def description(self):
-        return _("Matches people that are descendants of someone matched by a filter")
-    
-    def apply(self,db,p_id):
-        return self.map.has_key(p_id)
+    def apply(self,db,handle):
+        return self.map.has_key(handle)
 
 #-------------------------------------------------------------------------
 #
@@ -478,39 +445,36 @@ class IsLessThanNthGenerationDescendantOf(Rule):
     """Rule that checks for a person that is a descendant of a specified person
     not more than N generations away"""
 
-    labels = [ _('ID:'), _('Number of generations:') ]
-    
+    labels      = [ _('ID:'), _('Number of generations:') ]
+    name        = _('Descendants of <person> not more than <N> generations away')
+    category    = _('Descendant filters')
+    description = _("Matches people that are descendants of a specified person "
+                 "not more than N generations away")
+
     def prepare(self,db):
         self.db = db
         self.map = {}
-        root_id = self.list[0]
-        self.init_list(root_id,0)
+        try:
+            root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
+            self.init_list(root_handle,0)
+        except:
+            pass
 
     def reset(self):
         self.map = {}
 
-    def name(self):
-        return 'Is a descendant of person not more than N generations away'
+    def apply(self,db,handle):
+        return self.map.has_key(handle)
 
-    def category(self): 
-        return _('Descendant filters')
-
-    def description(self):
-        return _("Matches people that are descendants of a specified person "
-                 "not more than N generations away")
-    
-    def apply(self,db,p_id):
-        return self.map.has_key(p_id)
-
-    def init_list(self,p_id,gen):
-        if not p_id:
+    def init_list(self,handle,gen):
+        if not handle:
             return
         if gen:
-            self.map[p_id] = 1
+            self.map[handle] = 1
             if gen >= int(self.list[1]):
                 return
 
-        p = self.db.get_person_from_handle(p_id)
+        p = self.db.get_person_from_handle(handle)
         for fam_id in p.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
             for child_handle in fam.get_child_handle_list():
@@ -525,37 +489,35 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
     """Rule that checks for a person that is a descendant of a specified person
     at least N generations away"""
 
-    labels = [ _('ID:'), _('Number of generations:') ]
+    labels      = [ _('ID:'), _('Number of generations:') ]
+    name        = _('Descendants of <person> at least <N> generations away')
+    category    = _("Descendant filters")
+    description = _("Matches people that are descendants of a specified "
+                 "person at least N generations away")
+    
     
     def prepare(self,db):
         self.db = db
         self.map = {}
-        root_id = self.list[0]
-        self.init_list(root_id,0)
+        try:
+            root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
+            self.init_list(root_handle,0)
+        except:
+            pass
 
     def reset(self):
         self.map = {}
 
-    def name(self):
-        return 'Is a descendant of person at least N generations away'
+    def apply(self,db,handle):
+        return self.map.has_key(handle)
 
-    def description(self):
-        return _("Matches people that are descendants of a specified "
-                 "person at least N generations away")
-    
-    def category(self):
-        return _("Descendant filters")
-
-    def apply(self,db,p_id):
-        return self.map.has_key(p_id)
-
-    def init_list(self,p_id,gen):
-        if not p_id:
+    def init_list(self,handle,gen):
+        if not handle:
             return
         if gen >= int(self.list[1]):
-            self.map[p_id] = 1
+            self.map[handle] = 1
 
-        p = self.db.get_person_from_handle(p_id)
+        p = self.db.get_person_from_handle(handle)
         for fam_id in p.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
             for child_handle in fam.get_child_handle_list():
@@ -570,7 +532,10 @@ class IsChildOfFilterMatch(Rule):
     """Rule that checks for a person that is a child
     of someone matched by a filter"""
 
-    labels = [ _('Filter name:') ]
+    labels      = [ _('Filter name:') ]
+    name        = _('Children of <filter> match')
+    category    = _('Family filters')
+    description = _("Matches children of anybody matched by a filter")
 
     def prepare(self,db):
         self.db = db
@@ -585,22 +550,13 @@ class IsChildOfFilterMatch(Rule):
     def reset(self):
         self.map = {}
 
-    def name(self):
-        return 'Is a child of filter match'
+    def apply(self,db,handle):
+        return self.map.has_key(handle)
 
-    def description(self):
-        return _("Matches the person that is a child of someone matched by a filter")
-
-    def category(self):
-        return _('Family filters')
-
-    def apply(self,db,p_id):
-        return self.map.has_key(p_id)
-
-    def init_list(self,p_id):
-        if not p_id:
+    def init_list(self,handle):
+        if not handle:
             return
-        p = self.db.get_person_from_handle(p_id)
+        p = self.db.get_person_from_handle(handle)
         for fam_id in p.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
             for child_handle in fam.get_child_handle_list():
@@ -612,10 +568,12 @@ class IsChildOfFilterMatch(Rule):
 #
 #-------------------------------------------------------------------------
 class IsSiblingOfFilterMatch(Rule):
-    """Rule that checks for a person that is a sibling
-    of someone matched by a filter"""
+    """Rule that checks for siblings of someone matched by a filter"""
 
-    labels = [ _('Filter name:') ]
+    labels      = [ _('Filter name:') ]
+    name        = _('Siblings of <filter> match')
+    category    = _('Family filters')
+    description = _("Matches siblings of anybody matched by a filter")
 
     def prepare(self,db):
         self.db = db
@@ -630,27 +588,19 @@ class IsSiblingOfFilterMatch(Rule):
     def reset(self):
         self.map = {}
 
-    def name(self):
-        return 'Is a sibling of filter match'
+    def apply(self,db,handle):
+        return self.map.has_key(handle)
 
-    def description(self):
-        return _("Matches the person that is a sibling of someone matched by a filter")
-
-    def category(self):
-        return _('Family filters')
-
-    def apply(self,db,p_id):
-        return self.map.has_key(p_id)
-
-    def init_list(self,p_id):
-        if not p_id:
+    def init_list(self,handle):
+        if not handle:
             return
-        p = self.db.get_person_from_handle(p_id)
+        p = self.db.get_person_from_handle(handle)
         fam_id = p.get_main_parents_family_handle()
         fam = self.db.get_family_from_handle(fam_id)
         if fam:
             for child_handle in fam.get_child_handle_list():
-                self.map[child_handle] = 1
+                if child_handle != handle:
+                    self.map[child_handle] = 1
 
 #-------------------------------------------------------------------------
 #
@@ -661,30 +611,27 @@ class IsDescendantFamilyOf(Rule):
     """Rule that checks for a person that is a descendant or the spouse
     of a descendant of a specified person"""
 
-    labels = [ _('ID:') ]
-    
-    def name(self):
-        return "Is a descendant family member of"
-
-    def category(self): 
-        return _('Descendant filters')
-
-    def description(self):
-        return _("Matches people that are descendants or the spouse "
+    labels      = [ _('ID:') ]
+    name        = _('Descendant family members of <person>')
+    category    = _('Descendant filters')
+    description = _("Matches people that are descendants or the spouse "
                  "of a descendant of a specified person")
     
-    def apply(self,db,p_id):
+    def apply(self,db,handle):
         self.map = {}
-        self.orig_id = p_id
+        self.orig_handle = handle
         self.db = db
-        return self.search(p_id,1)
+        return self.search(handle,1)
 
-    def search(self,p_id,val):
-        if p_id == self.list[0]:
-            self.map[p_id] = 1
-            return 1
+    def search(self,handle,val):
+        try:
+            if handle == self.db.get_person_from_gramps_id(self.list[0]).get_handle():
+                self.map[handle] = 1
+                return 1
+        except:
+            return 0
         
-        p = self.db.get_person_from_handle(p_id)
+        p = self.db.get_person_from_handle(handle)
         for (f,r1,r2) in p.get_parent_family_handle_list():
             family = self.db.get_family_from_handle(f)
             for person_handle in [family.get_mother_handle(),family.get_father_handle()]:
@@ -694,7 +641,7 @@ class IsDescendantFamilyOf(Rule):
         if val:
             for family_handle in p.get_family_handle_list():
                 family = self.db.get_family_from_handle(family_handle)
-                if p_id == family.get_father_handle():
+                if handle == family.get_father_handle():
                     spouse_id = family.get_mother_handle()
                 else:
                     spouse_id = family.get_father_handle()
@@ -711,7 +658,10 @@ class IsDescendantFamilyOf(Rule):
 class IsAncestorOf(Rule):
     """Rule that checks for a person that is an ancestor of a specified person"""
 
-    labels = [ _('ID:'), _('Inclusive:') ]
+    labels      = [ _('ID:'), _('Inclusive:') ]
+    name        = _('Ancestors of <person>')
+    category    = _("Ancestral filters")
+    description = _("Matches people that are ancestors of a specified person")
 
     def prepare(self,db):
         """Assume that if 'Inclusive' not defined, assume inclusive"""
@@ -724,31 +674,25 @@ class IsAncestorOf(Rule):
                 first = 1
         except IndexError:
             first = 1
-        root_id = self.list[0]
-        self.init_ancestor_list(db,root_id,first)
+        try:
+            root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
+            self.init_ancestor_list(db,root_handle,first)
+        except:
+            pass
 
     def reset(self):
         self.map = {}
-    
-    def name(self):
-        return 'Is an ancestor of'
 
-    def description(self):
-        return _("Matches people that are ancestors of a specified person")
-    
-    def category(self):
-        return _("Ancestral filters")
+    def apply(self,db,handle):
+        return self.map.has_key(handle)
 
-    def apply(self,db,p_id):
-        return self.map.has_key(p_id)
-
-    def init_ancestor_list(self,db,p_id,first):
-        if not p_id:
+    def init_ancestor_list(self,db,handle,first):
+        if not handle:
             return
         if not first:
-            self.map[p_id] = 1
+            self.map[handle] = 1
         
-        p = db.get_person_from_handle(p_id)
+        p = db.get_person_from_handle(handle)
         fam_id = p.get_main_parents_family_handle()
         fam = db.get_family_from_handle(fam_id)
         if fam:
@@ -769,7 +713,12 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
     """Rule that checks for a person that is an ancestor of
     someone matched by a filter"""
 
-    labels = [ _('Filter name:'), _('Inclusive:') ]
+    labels      = [ _('Filter name:'), _('Inclusive:') ]
+    name        = _('Ancestors of <filter> match')
+    category    =  _("Ancestral filters")
+    description = _("Matches people that are ancestors "
+                    "of anybody matched by a filter")
+
 
     def __init__(self,list):
         IsAncestorOf.__init__(self,list)
@@ -795,18 +744,8 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
     def reset(self):
         self.map = {}
 
-    def name(self):
-        return 'Is an ancestor of filter match'
-
-    def description(self):
-        return _("Matches people that are ancestors "
-            "of someone matched by a filter")
-    
-    def category(self):
-        return _("Ancestral filters")
-
-    def apply(self,db,p_id):
-        return self.map.has_key(p_id)
+    def apply(self,db,handle):
+        return self.map.has_key(handle)
 
 #-------------------------------------------------------------------------
 #
@@ -817,41 +756,38 @@ class IsLessThanNthGenerationAncestorOf(Rule):
     """Rule that checks for a person that is an ancestor of a specified person
     not more than N generations away"""
 
-    labels = [ _('ID:'), _('Number of generations:') ]
+    labels      = [ _('ID:'), _('Number of generations:') ]
+    name        = _('Ancestors of <person> not more than <N> generations away')
+    category    = _("Ancestral filters")
+    description = _("Matches people that are ancestors "
+                    "of a specified person not more than N generations away")
 
     def prepare(self,db):
         self.db = db
         self.map = {}
-        root_id = self.list[0]
-        self.init_ancestor_list(root_id,0)
+        try:
+            root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
+            self.init_ancestor_list(root_handle,0)
+        except:
+            pass
 
     def reset(self):
         self.map = {}
     
-    def name(self):
-        return 'Is an ancestor of person not more than N generations away'
+    def apply(self,db,handle):
+        return self.map.has_key(handle)
 
-    def description(self):
-        return _("Matches people that are ancestors "
-            "of a specified person not more than N generations away")
-    
-    def category(self):
-        return _("Ancestral filters")
-
-    def apply(self,db,p_id):
-        return self.map.has_key(p_id)
-
-    def init_ancestor_list(self,p_id,gen):
+    def init_ancestor_list(self,handle,gen):
 #        if self.map.has_key(p.get_handle()) == 1:
 #            loop_error(self.orig,p)
-        if not p_id:
+        if not handle:
             return
         if gen:
-            self.map[p_id] = 1
+            self.map[handle] = 1
             if gen >= int(self.list[1]):
                 return
         
-        p = self.db.get_person_from_handle(p_id)
+        p = self.db.get_person_from_handle(handle)
         fam_id = p.get_main_parents_family_handle()
         fam = self.db.get_family_from_handle(fam_id)
         if fam:
@@ -872,39 +808,36 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
     """Rule that checks for a person that is an ancestor of a specified person
     at least N generations away"""
 
-    labels = [ _('ID:'), _('Number of generations:') ]
+    labels      = [ _('ID:'), _('Number of generations:') ]
+    name        = _('Ancestors of <person> at least <N> generations away')
+    category    = _("Ancestral filters")
+    description = _("Matches people that are ancestors "
+                    "of a specified person at least N generations away")
 
     def prepare(self,db):
         self.db = db
         self.map = {}
-        root_id = self.list[0]
-        self.init_ancestor_list(root_id,0)
+        try:
+            root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
+            self.init_ancestor_list(root_handle,0)
+        except:
+            pass
 
     def reset(self):
         self.map = []
     
-    def name(self):
-        return 'Is an ancestor of person at least N generations away'
+    def apply(self,db,handle):
+        return self.map.has_key(handle)
 
-    def description(self):
-        return _("Matches people that are ancestors "
-            "of a specified person at least N generations away")
-    
-    def category(self):
-        return _("Ancestral filters")
-
-    def apply(self,db,p_id):
-        return self.map.has_key(p_id)
-
-    def init_ancestor_list(self,p_id,gen):
+    def init_ancestor_list(self,handle,gen):
 #        if self.map.has_key(p.get_handle()) == 1:
 #            loop_error(self.orig,p)
-        if not p_id:
+        if not handle:
             return
         if gen >= int(self.list[1]):
-            self.map[p_id] = 1
+            self.map[handle] = 1
         
-        p = self.db.get_person_from_handle(p_id)
+        p = self.db.get_person_from_handle(handle)
         fam_id = p.get_main_parents_family_handle()
         fam = self.db.get_family_from_handle(fam_id)
         if fam:
@@ -925,7 +858,10 @@ class IsParentOfFilterMatch(Rule):
     """Rule that checks for a person that is a parent
     of someone matched by a filter"""
 
-    labels = [ _('Filter name:') ]
+    labels      = [ _('Filter name:') ]
+    name        = _('Parents of <filter> match')
+    category    = _('Family filters')
+    description = _("Matches parents of anybody matched by a filter")
 
     def prepare(self,db):
         self.db = db
@@ -940,20 +876,11 @@ class IsParentOfFilterMatch(Rule):
     def reset(self):
         self.map = {}
 
-    def name(self):
-        return 'Is a parent of filter match'
+    def apply(self,db,handle):
+        return self.map.has_key(handle)
 
-    def description(self):
-        return _("Matches the person that is a parent of someone matched by a filter")
-
-    def category(self):
-        return _('Family filters')
-
-    def apply(self,db,p_id):
-        return self.map.has_key(p_id)
-
-    def init_list(self,p_id):
-        p = self.db.get_person_from_handle(p_id)
+    def init_list(self,handle):
+        p = self.db.get_person_from_handle(handle)
         for fam_id,frel,mrel in p.get_parent_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
             for parent_id in [fam.get_father_handle (), fam.get_mother_handle ()]:
@@ -968,17 +895,11 @@ class IsParentOfFilterMatch(Rule):
 class HasCommonAncestorWith(Rule):
     """Rule that checks for a person that has a common ancestor with a specified person"""
 
-    labels = [ _('ID:') ]
-
-    def name(self):
-        return 'Has a common ancestor with'
-
-    def description(self):
-        return _("Matches people that have a common ancestor "
-            "with a specified person")
-    
-    def category(self):
-        return _("Ancestral filters")
+    labels      = [ _('ID:') ]
+    name        = _('People with a common ancestor with <person>')
+    category    = _("Ancestral filters")
+    description = _("Matches people that have a common ancestor "
+                    "with a specified person")
 
     def prepare(self,db):
         self.db = db
@@ -993,19 +914,19 @@ class HasCommonAncestorWith(Rule):
 
     def init_ancestor_cache(self,db):
         # list[0] is an Id, but we need to pass a Person to for_each_ancestor.
-        p_id = self.list[0]
-        if p_id:
-            def init(self,pid): self.ancestor_cache[pid] = 1
-            for_each_ancestor(db,[p_id],init,self)
+        handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
+        if handle:
+            def init(self,handle): self.ancestor_cache[handle] = 1
+            for_each_ancestor(db,[handle],init,self)
 
-    def apply(self,db,p_id):
+    def apply(self,db,handle):
         # On the first call, we build the ancestor cache for the
         # reference person.   Then, for each person to test,
         # we browse his ancestors until we found one in the cache.
         if len(self.ancestor_cache) == 0:
             self.init_ancestor_cache(db)
-        return for_each_ancestor(db,[p_id],
-                                 lambda self,p_id: self.ancestor_cache.has_key(p_id),
+        return for_each_ancestor(db,[handle],
+                                 lambda self,handle: self.ancestor_cache.has_key(handle),
                                  self);
 
 #-------------------------------------------------------------------------
@@ -1017,17 +938,11 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
     """Rule that checks for a person that has a common ancestor with
     someone matching a filter"""
 
-    labels = [ _('Filter name:') ]
-
-    def name(self):
-        return 'Has a common ancestor with filter match'
-
-    def description(self):
-        return _("Matches people that have a common ancestor "
-            "with someone matched by a filter")
-    
-    def category(self):
-        return _("Ancestral filters")
+    labels      = [ _('Filter name:') ]
+    name        = _('People with a common ancestor with <filter> match')
+    description = _("Matches people that have a common ancestor "
+                    "with anybody matched by a filter")
+    category    = _("Ancestral filters")
 
     def __init__(self,list):
         HasCommonAncestorWith.__init__(self,list)
@@ -1035,11 +950,11 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
     def init_ancestor_cache(self,db):
         filt = MatchesFilter(self.list)
         filt.prepare(db)
-        def init(self,pid): self.ancestor_cache[pid] = 1
-        for p_id in db.get_person_handles(sort_handles=False):
-            if (not self.ancestor_cache.has_key (p_id)
-                and filt.apply (db, p_id)):
-                for_each_ancestor(db,[p_id],init,self)
+        def init(self,h): self.ancestor_cache[h] = 1
+        for handle in db.get_person_handles(sort_handles=False):
+            if (not self.ancestor_cache.has_key (handle)
+                and filt.apply (db, handle)):
+                for_each_ancestor(db,[handle],init,self)
         filt.reset()
 
 #-------------------------------------------------------------------------
@@ -1050,19 +965,12 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
 class IsMale(Rule):
     """Rule that checks for a person that is a male"""
 
-    labels = []
-    
-    def name(self):
-        return 'Is a male'
+    name        =  _('Males')
+    category    = _('General filters')
+    description = _('Matches all males')
 
-    def category(self): 
-        return _('General filters')
-    
-    def description(self):
-        return _('Matches all males')
-
-    def apply(self,db,p_id):
-        return db.get_person_from_handle(p_id).get_gender() == RelLib.Person.MALE
+    def apply(self,db,handle):
+        return db.get_person_from_handle(handle).get_gender() == RelLib.Person.MALE
 
 #-------------------------------------------------------------------------
 #
@@ -1072,26 +980,23 @@ class IsMale(Rule):
 class HasEvent(Rule):
     """Rule that checks for a person with a particular value"""
 
-    labels = [ _('Personal event:'), _('Date:'), _('Place:'), _('Description:') ]
+    labels      = [ _('Personal event:'), 
+                    _('Date:'), 
+                    _('Place:'), 
+                    _('Description:') ]
+    name        =  _('People with the personal <event>')
+    description = _("Matches people with a personal event of a particular value")
+    category    = _('Event filters')
     
-    def __init__(self,list):
-        Rule.__init__(self,list)
-        if self.list and self.list[0]:
-            self.date = DateHandler.parser.parse(self.list[0])
-        else:
-            self.date = None
+    def prepare(self,list):
+        self.date = None
+        try:
+            if self.list and self.list[1]:
+                self.date = DateHandler.parser.parse(self.list[1])
+        except: pass
 
-    def name(self):
-        return 'Has the personal event'
-
-    def description(self):
-        return _("Matches the person with a personal event of a particular value")
-
-    def category(self):
-        return _('Event filters')
-
-    def apply(self,db,p_id):
-        p = db.get_person_from_handle(p_id)
+    def apply(self,db,handle):
+        p = db.get_person_from_handle(handle)
         for event_handle in p.get_event_list():
             if not event_handle:
                 continue
@@ -1112,8 +1017,8 @@ class HasEvent(Rule):
                     pn = pl.get_title()
                     if pn.upper().find(self.list[2].upper()) == -1:
                         val = 0
-                if val == 1:
-                    return 1
+            if val == 1:
+                return 1
         return 0
 
 #-------------------------------------------------------------------------
@@ -1125,26 +1030,23 @@ class HasFamilyEvent(Rule):
     """Rule that checks for a person who has a relationship event
     with a particular value"""
 
-    labels = [ _('Family event:'), _('Date:'), _('Place:'), _('Description:') ]
+    labels      = [ _('Family event:'), 
+                    _('Date:'), 
+                    _('Place:'), 
+                    _('Description:') ]
+    name        =  _('People with the family <event>')
+    description = _("Matches people with a family event of a particular value")
+    category    = _('Event filters')
     
-    def __init__(self,list):
-        Rule.__init__(self,list)
-        if self.list and self.list[0]:
-            self.date = DateHandler.parser.parse(self.list[0])
-        else:
-            self.date = None
+    def prepare(self,list):
+        self.date = None
+        try:
+            if self.list and self.list[1]:
+                self.date = DateHandler.parser.parse(self.list[1])
+        except: pass
 
-    def name(self):
-        return 'Has the family event'
-
-    def description(self):
-        return _("Matches the person with a family event of a particular value")
-
-    def category(self):
-        return _('Event filters')
-
-    def apply(self,db,p_id):
-        p = db.get_person_from_handle(p_id)
+    def apply(self,db,handle):
+        p = db.get_person_from_handle(handle)
         for f_id in p.get_family_handle_list():
             f = db.get_family_from_handle(f_id)
             for event_handle in f.get_event_list():
@@ -1166,8 +1068,8 @@ class HasFamilyEvent(Rule):
                     pn = pl.get_title()
                     if self.list[2] and pn.find(self.list[2].upper()) == -1:
                         val = 0
-                    if val == 1:
-                        return 1
+                if val == 1:
+                    return 1
         return 0
 
 #-------------------------------------------------------------------------
@@ -1178,23 +1080,17 @@ class HasFamilyEvent(Rule):
 class HasRelationship(Rule):
     """Rule that checks for a person who has a particular relationship"""
 
-    labels = [ _('Number of relationships:'),
-               _('Relationship type:'),
-               _('Number of children:') ]
+    labels      = [ _('Number of relationships:'),
+                    _('Relationship type:'),
+                    _('Number of children:') ]
+    name        = _('People with the <relationships>')
+    description = _("Matches people with a particular relationship")
+    category    = _('Family filters')
 
-    def name(self):
-        return 'Has the relationships'
-
-    def description(self):
-        return _("Matches the person who has a particular relationship")
-
-    def category(self):
-        return _('Family filters')
-
-    def apply(self,db,p_id):
+    def apply(self,db,handle):
         rel_type = 0
         cnt = 0
-        p = db.get_person_from_handle(p_id)
+        p = db.get_person_from_handle(handle)
         num_rel = len(p.get_family_handle_list())
 
         # count children and look for a relationship type match
@@ -1236,7 +1132,10 @@ class HasRelationship(Rule):
 class HasBirth(Rule):
     """Rule that checks for a person with a birth of a particular value"""
 
-    labels = [ _('Date:'), _('Place:'), _('Description:') ]
+    labels      = [ _('Date:'), _('Place:'), _('Description:') ]
+    name        = _('People with the <birth data>')
+    description = _("Matches people with birth data of a particular value")
+    category    = _('Event filters')
     
     def __init__(self,list):
         Rule.__init__(self,list)
@@ -1245,17 +1144,8 @@ class HasBirth(Rule):
         else:
             self.date = None
         
-    def name(self):
-        return 'Has the birth'
-
-    def description(self):
-        return _("Matches the person with a birth of a particular value")
-
-    def category(self):
-        return _('Event filters')
-
-    def apply(self,db,p_id):
-        p = db.get_person_from_handle(p_id)
+    def apply(self,db,handle):
+        p = db.get_person_from_handle(handle)
         event_handle = p.get_birth_handle()
         if not event_handle:
             return False
@@ -1282,7 +1172,10 @@ class HasBirth(Rule):
 class HasDeath(Rule):
     """Rule that checks for a person with a death of a particular value"""
 
-    labels = [ _('Date:'), _('Place:'), _('Description:') ]
+    labels      = [ _('Date:'), _('Place:'), _('Description:') ]
+    name        = _('People with the <death data>')
+    description = _("Matches people with death data of a particular value")
+    category    = _('Event filters')
     
     def __init__(self,list):
         Rule.__init__(self,list)
@@ -1291,17 +1184,8 @@ class HasDeath(Rule):
         else:
             self.date = None
 
-    def name(self):
-        return 'Has the death'
-
-    def description(self):
-        return _("Matches the person with a death of a particular value")
-
-    def category(self):
-        return _('Event filters')
-
-    def apply(self,db,p_id):
-        p = db.get_person_from_handle(p_id)
+    def apply(self,db,handle):
+        p = db.get_person_from_handle(handle)
         event_handle = p.get_death_handle()
         if not event_handle:
             return 0
@@ -1328,15 +1212,15 @@ class HasDeath(Rule):
 class HasAttribute(Rule):
     """Rule that checks for a person with a particular personal attribute"""
 
-    labels = [ _('Personal attribute:'), _('Value:') ]
-    
-    def name(self):
-        return 'Has the personal attribute'
+    labels      = [ _('Personal attribute:'), _('Value:') ]
+    name        = _('People with the personal <attribute>')
+    description = _("Matches people with the personal attribute of a particular value")
+    category    = _('General filters')
 
-    def apply(self,db,p_id):
+    def apply(self,db,handle):
         if not self.list[0]:
             return 0
-        p = db.get_person_from_handle(p_id)
+        p = db.get_person_from_handle(handle)
         for attr in p.get_attribute_list():
             name_match = self.list[0] == attr.get_type()
             value_match = \
@@ -1353,15 +1237,15 @@ class HasAttribute(Rule):
 class HasFamilyAttribute(Rule):
     """Rule that checks for a person with a particular family attribute"""
 
-    labels = [ _('Family attribute:'), _('Value:') ]
+    labels      = [ _('Family attribute:'), _('Value:') ]
+    name        = _('People with the family <attribute>')
+    description = _("Matches people with the family attribute of a particular value")
+    category    = _('General filters')
     
-    def name(self):
-        return 'Has the family attribute'
-
-    def apply(self,db,p_id):
+    def apply(self,db,handle):
         if not self.list[0]:
             return 0
-        p = db.get_person_from_handle(p_id)
+        p = db.get_person_from_handle(handle)
         for f_id in p.get_family_handle_list():
             f = db.get_family_from_handle(f_id)
             for attr in f.get_attribute_list():
@@ -1380,23 +1264,20 @@ class HasFamilyAttribute(Rule):
 class HasNameOf(Rule):
     """Rule that checks for full or partial name matches"""
 
-    labels = [_('Given name:'),_('Family name:'),_('Suffix:'),_('Title:')]
-    
-    def name(self):
-        return 'Has a name'
-    
-    def description(self):
-        return _("Matches the person with a specified (partial) name")
+    labels      = [ _('Given name:'),
+                    _('Family name:'),
+                    _('Suffix:'),
+                    _('Title:')]
+    name        = _('People with the <name>')
+    description = _("Matches people with a specified (partial) name")
+    category    = _('General filters')
 
-    def category(self):
-        return _('General filters')
-
-    def apply(self,db,p_id):
+    def apply(self,db,handle):
         self.f = self.list[0]
         self.l = self.list[1]
         self.s = self.list[2]
         self.t = self.list[3]
-        p = db.get_person_from_handle(p_id)
+        p = db.get_person_from_handle(handle)
         for name in [p.get_primary_name()] + p.get_alternate_names():
             val = 1
             if self.f and name.get_first_name().upper().find(self.f.upper()) == -1:
@@ -1419,20 +1300,14 @@ class HasNameOf(Rule):
 class SearchName(Rule):
     """Rule that checks for full or partial name matches"""
 
-    labels = [_('Substring:')]
-    
-    def name(self):
-        return 'Matches name'
-    
-    def description(self):
-        return _("Matches the person with a specified (partial) name")
+    labels      = [_('Substring:')]
+    name        = _('People matching the <name>')
+    description = _("Matches people with a specified (partial) name")
+    category    = _('General filters')
 
-    def category(self):
-        return _('General filters')
-
-    def apply(self,db,p_id):
+    def apply(self,db,handle):
         self.f = self.list[0]
-        p = db.get_person_from_handle(p_id)
+        p = db.get_person_from_handle(handle)
         n = NameDisplay.displayer.display(p)
         return self.f and n.upper().find(self.f.upper()) != -1
     
@@ -1444,19 +1319,12 @@ class SearchName(Rule):
 class IncompleteNames(Rule):
     """People with incomplete names"""
 
-    labels = []
-    
-    def name(self):
-        return 'People with incomplete names'
-    
-    def description(self):
-        return _("Matches people with firstname or lastname missing")
+    name        = _('People with incomplete names')
+    description = _("Matches people with firstname or lastname missing")
+    category    = _('General filters')
 
-    def category(self):
-        return _('General filters')
-
-    def apply(self,db,p_id):
-        p = db.get_person_from_handle(p_id)
+    def apply(self,db,handle):
+        p = db.get_person_from_handle(handle)
         for name in [p.get_primary_name()] + p.get_alternate_names():
             if name.get_first_name() == "":
                 return 1
@@ -1472,7 +1340,10 @@ class IncompleteNames(Rule):
 class MatchesFilter(Rule):
     """Rule that checks against another filter"""
 
-    labels = [_('Filter name:')]
+    labels      = [_('Filter name:')]
+    name        = _('People matching the <filter>')
+    description = _("Matches people macthed by the specified filter name")
+    category    = _('General filters')
 
     def prepare(self,db):
         for filt in SystemFilters.get_filters():
@@ -1494,16 +1365,13 @@ class MatchesFilter(Rule):
                 for rule in filt.flist:
                     rule.reset()
 
-    def name(self):
-        return 'Matches the filter named'
-
-    def apply(self,db,p_id):
+    def apply(self,db,handle):
         for filt in SystemFilters.get_filters():
             if filt.get_name() == self.list[0]:
-                return filt.check(p_id)
+                return filt.check(handle)
         for filt in CustomFilters.get_filters():
             if filt.get_name() == self.list[0]:
-                return filt.check(db,p_id)
+                return filt.check(db,handle)
         return 0
 
 #-------------------------------------------------------------------------
@@ -1515,26 +1383,20 @@ class IsSpouseOfFilterMatch(Rule):
     """Rule that checks for a person married to someone matching
     a filter"""
 
-    labels = [_('Filter name:')]
+    labels      = [_('Filter name:')]
+    name        = _('Spouses of <filter> match')
+    description = _("Matches people married to anybody matching a filter")
+    category    = _('Family filters')
 
-    def name(self):
-        return 'Is spouse of filter match'
-
-    def description(self):
-        return _("Matches the person married to someone matching a filter")
-
-    def category(self):
-        return _('Family filters')
-
-    def apply(self,db,p_id):
+    def apply(self,db,handle):
         filt = MatchesFilter (self.list)
-        p = db.get_person_from_handle(p_id)
+        p = db.get_person_from_handle(handle)
         for family_handle in p.get_family_handle_list ():
             family = db.get_family_from_handle(family_handle)
             for spouse_id in [family.get_father_handle (), family.get_mother_handle ()]:
                 if not spouse_id:
                     continue
-                if spouse_id == p_id:
+                if spouse_id == handle:
                     continue
                 if filt.apply (db, spouse_id):
                     return 1
@@ -1543,25 +1405,15 @@ class IsSpouseOfFilterMatch(Rule):
 #-------------------------------------------------------------------------
 # "People who were adopted"
 #-------------------------------------------------------------------------
-
-
 class HaveAltFamilies(Rule):
     """People who were adopted"""
 
-    labels = []
+    name        = _('Adopted people')
+    description = _("Matches people who were adopted")
+    category    = _('Family filters')
 
-    def name(self):
-        return 'People who were adopted'
-
-    def description(self):
-        return _("Matches person who were adopted")
-
-    def category(self):
-        return _('Family filters')
-
-
-    def apply(self,db,p_id):
-        p = db.get_person_from_handle(p_id)
+    def apply(self,db,handle):
+        p = db.get_person_from_handle(handle)
         for (fam,rel1,rel2) in p.get_parent_family_handle_list():
             if rel1 == RelLib.Person.CHILD_REL_ADOPT or rel2 == RelLib.Person.CHILD_REL_ADOPT:
                 return 1
@@ -1571,49 +1423,29 @@ class HaveAltFamilies(Rule):
 #-------------------------------------------------------------------------
 # "People who have images"
 #-------------------------------------------------------------------------
-
-
 class HavePhotos(Rule):
     """People who have images"""
 
-    labels = []
+    name        = _('People with images')
+    description = _("Matches people with images in the gallery")
+    category    = _('General filters')
 
-    def name(self):
-        return 'People who have images'
-
-    def description(self):
-        return _("Matches person who have images in the gallery")
-
-    def category(self):
-        return _('General filters')
-
-
-    def apply(self,db,p_id):
-        p = db.get_person_from_handle(p_id)
+    def apply(self,db,handle):
+        p = db.get_person_from_handle(handle)
         return len( p.get_media_list()) > 0
 
 #-------------------------------------------------------------------------
 # "People with children"
 #-------------------------------------------------------------------------
-
-
 class HaveChildren(Rule):
     """People with children"""
 
-    labels = []
+    name        = _('People with children')
+    description = _("Matches people who have children")
+    category    = _('Family filters')
 
-    def name(self):
-        return 'People with children'
-
-    def description(self):
-        return _("Matches persons who have children")
-
-    def category(self):
-        return _('Family filters')
-
-
-    def apply(self,db,p_id):
-        p = db.get_person_from_handle(p_id)
+    def apply(self,db,handle):
+        p = db.get_person_from_handle(handle)
         for family_handle in p.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
             return len(family.get_child_handle_list()) > 0
@@ -1621,73 +1453,43 @@ class HaveChildren(Rule):
 #-------------------------------------------------------------------------
 # "People with no marriage records"
 #-------------------------------------------------------------------------
-
-
 class NeverMarried(Rule):
     """People with no marriage records"""
 
-    labels = []
+    name        = _('People with no marriage records')
+    description = _("Matches people who have no spouse")
+    category    = _('Family filters')
 
-    def name(self):
-        return 'People with no marriage records'
-
-    def description(self):
-        return _("Matches persons who have have no spouse")
-
-    def category(self):
-        return _('Family filters')
-
-
-    def apply(self,db,p_id):
-        p = db.get_person_from_handle(p_id)
+    def apply(self,db,handle):
+        p = db.get_person_from_handle(handle)
         return len(p.get_family_handle_list()) == 0
 
 #-------------------------------------------------------------------------
 # "People with multiple marriage records"
 #-------------------------------------------------------------------------
-
-
 class MultipleMarriages(Rule):
     """People with multiple marriage records"""
 
-    labels = []
+    name        = _('People with multiple marriage records')
+    description = _("Matches people who have more than one spouse")
+    category    = _('Family filters')
 
-    def name(self):
-        return 'People with multiple marriage records'
-
-    def description(self):
-        return _("Matches persons who have more than one spouse")
-
-    def category(self):
-        return _('Family filters')
-
-
-    def apply(self,db,p_id):
-        p = db.get_person_from_handle(p_id)
+    def apply(self,db,handle):
+        p = db.get_person_from_handle(handle)
         return len(p.get_family_handle_list()) > 1
 
 #-------------------------------------------------------------------------
 # "People without a birth date"
 #-------------------------------------------------------------------------
-
-
 class NoBirthdate(Rule):
     """People without a birth date"""
 
-    labels = []
+    name        = _('People without a known birth date')
+    description = _("Matches people without a known birthdate")
+    category    = _('General filters')
 
-    def name(self):
-        return 'People without a birth date'
-
-    def description(self):
-        return _("Matches persons without a birthdate")
-
-    def category(self):
-        return _('General filters')
-
-
-    def apply(self,db,p_id):
-        p = db.get_person_from_handle(p_id)
+    def apply(self,db,handle):
+        p = db.get_person_from_handle(handle)
         birth_handle = p.get_birth_handle()
         if not birth_handle:
             return 1
@@ -1699,25 +1501,15 @@ class NoBirthdate(Rule):
 #-------------------------------------------------------------------------
 # "People with incomplete events"
 #-------------------------------------------------------------------------
-
-
 class PersonWithIncompleteEvent(Rule):
     """People with incomplete events"""
 
-    labels = []
+    name        = _('People with incomplete events')
+    description = _("Matches people with missing date or place in an event")
+    category    = _('Event filters')
 
-    def name(self):
-        return 'People with incomplete events'
-
-    def description(self):
-        return _("Matches persons with missing date or place in an event")
-
-    def category(self):
-        return _('Event filters')
-
-
-    def apply(self,db,p_id):
-        p = db.get_person_from_handle(p_id)
+    def apply(self,db,handle):
+        p = db.get_person_from_handle(handle)
         for event_handle in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
             event = db.get_event_from_handle(event_handle)
             if event:
@@ -1730,25 +1522,15 @@ class PersonWithIncompleteEvent(Rule):
 #-------------------------------------------------------------------------
 # "Families with incomplete events"
 #-------------------------------------------------------------------------
-
-
 class FamilyWithIncompleteEvent(Rule):
     """Families with incomplete events"""
 
-    labels = []
+    name        = _('Families with incomplete events')
+    description = _("Matches people with missing date or place in an event of the family")
+    category    = _('Event filters')
 
-    def name(self):
-        return 'Families with incomplete events'
-
-    def description(self):
-        return _("Matches persons with missing date or place in an event of the family")
-
-    def category(self):
-        return _('Event filters')
-
-
-    def apply(self,db,p_id):
-        p = db.get_person_from_handle(p_id)
+    def apply(self,db,handle):
+        p = db.get_person_from_handle(handle)
         for family_handle in p.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
             for event_handle in family.get_event_list():
@@ -1760,16 +1542,16 @@ class FamilyWithIncompleteEvent(Rule):
                         return 1
         return 0
 
-
 #-------------------------------------------------------------------------
 # "People probably alive"
 #-------------------------------------------------------------------------
-
-
 class ProbablyAlive(Rule):
     """People probably alive"""
 
-    labels = [_("On year:")]
+    labels      = [_("On year:")]
+    name        =  _('People probably alive')
+    description = _("Matches people without indications of death that are not too old")
+    category    = _('General filters')
 
     def prepare(self,db):
         try:
@@ -1777,53 +1559,34 @@ class ProbablyAlive(Rule):
         except:
             self.current_year = None
 
-    def name(self):
-        return 'People probably alive'
-
-    def description(self):
-        return _("Matches persons without indications of death that are not too old")
-
-    def category(self):
-        return _('General filters')
-
-
-    def apply(self,db,p_id):
-        p = db.get_person_from_handle(p_id)
+    def apply(self,db,handle):
+        p = db.get_person_from_handle(handle)
         return probably_alive(p,db,self.current_year)
 
 #-------------------------------------------------------------------------
 # "People marked private"
 #-------------------------------------------------------------------------
-
-
 class PeoplePrivate(Rule):
     """People marked private"""
 
-    labels = []
+    name        = _('People marked private')
+    description = _("Matches people that are indicated as private")
+    category    = _('General filters')
 
-    def name(self):
-        return 'People marked private'
-
-    def description(self):
-        return _("Matches persons that are indicated as private")
-
-    def category(self):
-        return _('General filters')
-
-
-    def apply(self,db,p_id):
-        p = db.get_person_from_handle(p_id)
+    def apply(self,db,handle):
+        p = db.get_person_from_handle(handle)
         return p.get_privacy()
 
 #-------------------------------------------------------------------------
 # "Witnesses"
 #-------------------------------------------------------------------------
-
-
 class IsWitness(Rule):
     """Witnesses"""
 
-    labels = [_('Personal event:'), _('Family event:')]
+    labels      = [_('Personal event:'), _('Family event:')]
+    name        = _('Witnesses')
+    description = _("Matches people who are witnesses in any event")
+    category    = _('Event filters')
 
     def prepare(self,db):
         self.db = db
@@ -1833,17 +1596,8 @@ class IsWitness(Rule):
     def reset(self):
         self.map = []
         
-    def name(self):
-        return 'Witnesses'
-
-    def description(self):
-        return _("Matches persons who are witnesses in an event")
-
-    def category(self):
-        return _('Event filters')
-
-    def apply(self,db,p_id):
-        return p_id in self.map
+    def apply(self,db,handle):
+        return handle in self.map
 
     def build_witness_list(self):
         event_type = None
@@ -1880,11 +1634,15 @@ class IsWitness(Rule):
 #-------------------------------------------------------------------------
 # "HasTextMatchingSubstringOf"
 #-------------------------------------------------------------------------
-
 class HasTextMatchingSubstringOf(Rule):
     """Rule that checks for string matches in any textual information"""
 
-    labels = [_('Substring:'), _('Case sensitive:'), _('Regular-Expression matching:')]
+    labels      = [ _('Substring:'),
+                    _('Case sensitive:'), 
+                    _('Regular-Expression matching:')]
+    name        = _('People with records containing <substring>')
+    description = _("Matches people whose records contain text matching a substring")
+    category    = _('General filters')
 
     def prepare(self,db):
         self.db = db
@@ -1893,6 +1651,7 @@ class HasTextMatchingSubstringOf(Rule):
         self.source_map = {}
         self.family_map = {}
         self.place_map = {}
+        self.media_map = {}
         try:
             if int(self.list[1]):
                 self.case_sensitive = True
@@ -1915,27 +1674,22 @@ class HasTextMatchingSubstringOf(Rule):
         self.source_map = {}
         self.family_map = {}
         self.place_map = {}
+        self.media_map = {}
 
-    def name(self):
-        return 'Has text matching substring of'
-    
-    def description(self):
-        return _("Matches persons whose records contain text matching a substring")
-
-    def category(self):
-        return _('General filters')
-
-    def apply(self,db,p_id):
-        if p_id in self.person_map:	# Cached by matching Source?
-            return self.person_map[p_id]
-        p = db.get_person_from_handle(p_id)
-        if self.match_object(p):	# first match the person itself
+    def apply(self,db,handle):
+        if handle in self.person_map:   # Cached by matching Source?
+            return self.person_map[handle]
+        p = db.get_person_from_handle(handle)
+        if self.match_object(p):        # first match the person itself
             return 1
         for event_handle in p.get_event_list()+[p.get_birth_handle(), p.get_death_handle()]:
-            if self.search_event(event_handle):	# match referenced events
+            if self.search_event(event_handle): # match referenced events
                 return 1
         for family_handle in p.get_family_handle_list(): # match families
             if self.search_family(family_handle):
+                return 1
+        for media_ref in p.get_media_list(): # match Media object
+            if self.search_media(media_ref.get_reference_handle()):
                 return 1
         return 0
     
@@ -1953,6 +1707,9 @@ class HasTextMatchingSubstringOf(Rule):
                     if self.search_event(event_handle):
                         match = 1
                         break
+                for media_ref in family.get_media_list(): # match Media object
+                    if self.search_media(media_ref.get_reference_handle()):
+                        return 1
             self.family_map[family_handle] = match
         return self.family_map[family_handle]
 
@@ -1970,6 +1727,9 @@ class HasTextMatchingSubstringOf(Rule):
                 if place_handle:
                     if self.search_place(place_handle):
                         match = 1
+                for media_ref in event.get_media_list(): # match Media object
+                    if self.search_media(media_ref.get_reference_handle()):
+                        return 1
             self.event_map[event_handle] = match
         return self.event_map[event_handle]
 
@@ -1981,6 +1741,15 @@ class HasTextMatchingSubstringOf(Rule):
             place = self.db.get_place_from_handle(place_handle)
             self.place_map[place_handle] = self.match_object(place)
         return self.place_map[place_handle]
+
+    def search_media(self,media_handle):
+        if not media_handle:
+            return 0
+        # search inside the place and cache the result
+        if not media_handle in self.media_map:
+            media = self.db.get_object_from_handle(media_handle)
+            self.media_map[media_handle] = self.match_object(media)
+        return self.media_map[media_handle]
 
     def cache_sources(self):
         # search all sources and match all referents of a matching source
@@ -1998,6 +1767,8 @@ class HasTextMatchingSubstringOf(Rule):
                     self.event_map[handle] = 1
                 for handle in place_list:
                     self.place_map[handle] = 1
+                for handle in media_list:
+                    self.media_map[handle] = 1
 
     def match_object(self,obj):
         if not obj:
@@ -2021,10 +1792,10 @@ class HasTextMatchingRegexpOf(HasTextMatchingSubstringOf):
         self.source_map = {}
         self.family_map = {}
         self.place_map = {}
+        self.media_map = {}
         self.case_sensitive = False
         self.regexp_match = True
         self.cache_sources()
-
 
 #-------------------------------------------------------------------------
 #
@@ -2034,25 +1805,22 @@ class HasTextMatchingRegexpOf(HasTextMatchingSubstringOf):
 class HasSourceOf(Rule):
     """Rule that checks people that have a particular source."""
 
-    labels = [ _('Source ID:') ]
+    labels      = [ _('Source ID:') ]
+    name        = _('People with the <source>')
+    category    = _('General filters')
+    description = _('Matches people who have a particular source')
     
     def prepare(self,db):
-        self.source_handle = db.get_source_from_gramps_id(self.list[0]).get_handle()
+        try:
+            self.source_handle = db.get_source_from_gramps_id(self.list[0]).get_handle()
+        except:
+            self.source_handle = None
 
-    def name(self):
-        return 'Has source of'
-
-    def category(self): 
-        return _('Event filters')
-    
-    def description(self):
-        return _('Matches people who have a particular source')
-
-    def apply(self,db,p_id):
-        p = db.get_person_from_handle(p_id)
-
+    def apply(self,db,handle):
+        if not self.source_handle:
+            return False
+        p = db.get_person_from_handle(handle)
         return p.has_source_reference( self.source_handle)
-
 
 #-------------------------------------------------------------------------
 #
@@ -2119,10 +1887,10 @@ class GenericFilter:
     def get_rules(self):
         return self.flist
 
-    def check_or(self,db,p_id):
+    def check_or(self,db,handle):
         test = 0
         for rule in self.flist:
-            test = test or rule.apply(db,p_id)
+            test = test or rule.apply(db,handle)
             if test:
                 break
         if self.invert:
@@ -2130,20 +1898,20 @@ class GenericFilter:
         else:
             return test
 
-    def check_xor(self,db,p_id):
+    def check_xor(self,db,handle):
         test = 0
         for rule in self.flist:
-            temp = rule.apply(db,p_id)
+            temp = rule.apply(db,handle)
             test = ((not test) and temp) or (test and (not temp))
         if self.invert:
             return not test
         else:
             return test
 
-    def check_one(self,db,p_id):
+    def check_one(self,db,handle):
         count = 0
         for rule in self.flist:
-            if rule.apply(db,p_id):
+            if rule.apply(db,handle):
                 count = count + 1
                 if count > 1:
                     break
@@ -2152,10 +1920,10 @@ class GenericFilter:
         else:
             return count == 1
 
-    def check_and(self,db,p_id):
+    def check_and(self,db,handle):
         test = 1
         for rule in self.flist:
-            test = test and rule.apply(db,p_id)
+            test = test and rule.apply(db,handle)
             if not test:
                 break
         if self.invert:
@@ -2170,17 +1938,17 @@ class GenericFilter:
             m = self.check_and
         return m
 
-    def check(self,db,p_id):
-        return self.get_check_func()(db,p_id)
+    def check(self,db,handle):
+        return self.get_check_func()(db,handle)
 
     def apply(self,db,id_list):
         m = self.get_check_func()
         res = []
         for rule in self.flist:
             rule.prepare(db)
-        for p_id in id_list:
-            if m(db,p_id):
-                res.append(p_id)
+        for handle in id_list:
+            if m(db,handle):
+                res.append(handle)
         for rule in self.flist:
             rule.reset()
         return res
@@ -2191,61 +1959,112 @@ class GenericFilter:
 # Name to class mappings
 #
 #-------------------------------------------------------------------------
-tasks = {
-    unicode(_("Everyone"))                             : Everyone,
-    unicode(_("Is default person"))                    : IsDefaultPerson,
-    unicode(_("Is bookmarked person"))                 : IsBookmarked,
-    unicode(_("Has the Id"))                           : HasIdOf,
-    unicode(_("Has a name"))                           : HasNameOf,
-    unicode(_("Has the relationships"))                : HasRelationship,
-    unicode(_("Has the death"))                        : HasDeath,
-    unicode(_("Has the birth"))                        : HasBirth,
-    unicode(_("Is a descendant of"))                   : IsDescendantOf,
-    unicode(_("Is a descendant family member of"))     : IsDescendantFamilyOf,
-    unicode(_("Is a descendant of filter match"))      : IsDescendantOfFilterMatch,
-    unicode(_("Is a descendant of person not more than N generations away"))
-                                                       : IsLessThanNthGenerationDescendantOf,
-    unicode(_("Is a descendant of person at least N generations away"))
-                                                       : IsMoreThanNthGenerationDescendantOf,
-    unicode(_("Is a child of filter match"))           : IsChildOfFilterMatch,
-    unicode(_("Is an ancestor of"))                    : IsAncestorOf,
-    unicode(_("Is an ancestor of filter match"))       : IsAncestorOfFilterMatch,
-    unicode(_("Is an ancestor of person not more than N generations away"))
-                                                       : IsLessThanNthGenerationAncestorOf,
-    unicode(_("Is an ancestor of person at least N generations away"))
-                                                       : IsMoreThanNthGenerationAncestorOf,
-    unicode(_("Is a parent of filter match"))          : IsParentOfFilterMatch,
-    unicode(_("Has a common ancestor with"))           : HasCommonAncestorWith,
-    unicode(_("Has a common ancestor with filter match"))
-                                                       : HasCommonAncestorWithFilterMatch,
-    unicode(_("Is a female"))                          : IsFemale,
-    unicode(_("Is a male"))                            : IsMale,
-    unicode(_("Has complete record"))                  : HasCompleteRecord,
-    unicode(_("Has the personal event"))               : HasEvent,
-    unicode(_("Has the family event"))                 : HasFamilyEvent,
-    unicode(_("Has the personal attribute"))           : HasAttribute,
-    unicode(_("Has the family attribute"))             : HasFamilyAttribute,
-    unicode(_("Has source of"))                        : HasSourceOf,
-    unicode(_("Matches the filter named"))             : MatchesFilter,
-    unicode(_("Is spouse of filter match"))            : IsSpouseOfFilterMatch,
-    unicode(_("Is a sibling of filter match"))         : IsSiblingOfFilterMatch,
-    unicode(_("Relationship path between two people")) : RelationshipPathBetween,
-
-    unicode(_("People who were adopted"))              : HaveAltFamilies,
-    unicode(_("People who have images"))               : HavePhotos,
-    unicode(_("People with children"))                 : HaveChildren,
-    unicode(_("People with incomplete names"))         : IncompleteNames,
-    unicode(_("People with no marriage records"))      : NeverMarried,
-    unicode(_("People with multiple marriage records")): MultipleMarriages,
-    unicode(_("People without a birth date"))          : NoBirthdate,
-    unicode(_("People with incomplete events"))        : PersonWithIncompleteEvent,
-    unicode(_("Families with incomplete events"))      : FamilyWithIncompleteEvent,
-    unicode(_("People probably alive"))                : ProbablyAlive,
-    unicode(_("People marked private"))                : PeoplePrivate,
-    unicode(_("Witnesses"))                            : IsWitness,
-
-    unicode(_("Has text matching substring of"))       : HasTextMatchingSubstringOf,
+# This dict is mapping from old names to new names, so that the existing
+# custom_filters.xml will continue working
+old_names_2_class = {
+    "Everyone"                      : Everyone,
+    "Is default person"             : IsDefaultPerson,
+    "Is bookmarked person"          : IsBookmarked,
+    "Has the Id"                    : HasIdOf,
+    "Has a name"                    : HasNameOf,
+    "Has the relationships"         : HasRelationship,
+    "Has the death"                 : HasDeath,
+    "Has the birth"                 : HasBirth,
+    "Is a descendant of"            : IsDescendantOf,
+    "Is a descendant family member of" : IsDescendantFamilyOf,
+    "Is a descendant of filter match": IsDescendantOfFilterMatch,
+    "Is a descendant of person not more than N generations away":
+                                IsLessThanNthGenerationDescendantOf,
+    "Is a descendant of person at least N generations away":
+                                IsMoreThanNthGenerationDescendantOf,
+    "Is an descendant of person at least N generations away" :
+                                IsMoreThanNthGenerationDescendantOf,
+    "Is a child of filter match"    : IsChildOfFilterMatch,
+    "Is an ancestor of"             : IsAncestorOf,
+    "Is an ancestor of filter match": IsAncestorOfFilterMatch,
+    "Is an ancestor of person not more than N generations away" : 
+                                IsLessThanNthGenerationAncestorOf,
+    "Is an ancestor of person at least N generations away":
+                                IsMoreThanNthGenerationAncestorOf,
+    "Is a parent of filter match"   : IsParentOfFilterMatch,
+    "Has a common ancestor with"    : HasCommonAncestorWith,
+    "Has a common ancestor with filter match" :HasCommonAncestorWithFilterMatch,
+    "Is a female"                   : IsFemale,
+    "Is a male"                     : IsMale,
+    "Has complete record"           : HasCompleteRecord,
+    "Has the personal event"        : HasEvent,
+    "Has the family event"          : HasFamilyEvent,
+    "Has the personal attribute"    : HasAttribute,
+    "Has the family attribute"      : HasFamilyAttribute,
+    "Has source of"                 : HasSourceOf,
+    "Matches the filter named"      : HasSourceOf,
+    "Is spouse of filter match"     : IsSpouseOfFilterMatch,
+    "Is a sibling of filter match"  : IsSiblingOfFilterMatch,
+    "Relationship path between two people" : RelationshipPathBetween,
+    "People who were adopted"       : HaveAltFamilies,
+    "People who have images"        : HavePhotos,
+    "People with children"          : HaveChildren,
+    "People with incomplete names"  : IncompleteNames,
+    "People with no marriage records" : NeverMarried,
+    "People with multiple marriage records": MultipleMarriages,
+    "People without a birth date"   : NoBirthdate,
+    "People with incomplete events" : PersonWithIncompleteEvent,
+    "Families with incomplete events" :FamilyWithIncompleteEvent,
+    "People probably alive"         : ProbablyAlive,
+    "People marked private"         : PeoplePrivate,
+    "Witnesses"                     : IsWitness,
+    "Has text matching substring of":HasTextMatchingSubstringOf,
 }
+
+editor_rule_list = [
+    Everyone,
+    IsFemale,
+    HasUnknownGender,
+    IsMale,
+    IsDefaultPerson,
+    IsBookmarked,
+    HasIdOf,
+    HasNameOf,
+    HasRelationship,
+    HasDeath,
+    HasBirth,
+    HasCompleteRecord,
+    HasEvent,
+    HasFamilyEvent,
+    HasAttribute,
+    HasFamilyAttribute,
+    HasSourceOf,
+    HaveAltFamilies,
+    HavePhotos,
+    HaveChildren,
+    IncompleteNames,
+    NeverMarried,
+    MultipleMarriages,
+    NoBirthdate,
+    PersonWithIncompleteEvent,
+    FamilyWithIncompleteEvent,
+    ProbablyAlive,
+    PeoplePrivate,
+    IsWitness,
+    IsDescendantOf,
+    IsDescendantFamilyOf,
+    IsDescendantOfFilterMatch,
+    IsLessThanNthGenerationDescendantOf,
+    IsMoreThanNthGenerationDescendantOf,
+    IsAncestorOf,
+    IsAncestorOfFilterMatch,
+    IsLessThanNthGenerationAncestorOf,
+    IsMoreThanNthGenerationAncestorOf,
+    HasCommonAncestorWith,
+    HasCommonAncestorWithFilterMatch,
+    MatchesFilter,
+    IsChildOfFilterMatch,
+    IsParentOfFilterMatch,
+    IsSpouseOfFilterMatch,
+    IsSiblingOfFilterMatch,
+    RelationshipPathBetween,
+    HasTextMatchingSubstringOf,
+]
 
 #-------------------------------------------------------------------------
 #
@@ -2301,7 +2120,10 @@ class GenericFilterList:
                 f.write(' comment="%s"' % self.fix(comment))
             f.write('>\n')
             for rule in i.get_rules():
-                f.write('    <rule class="%s">\n' % self.fix(rule.name()))
+                rule_module_name = rule.__module__
+                rule_class_name = rule.__class__.__name__
+                rule_save_name = "%s.%s" % (rule_module_name,rule_class_name)
+                f.write('    <rule class="%s">\n' % rule_save_name)
                 for v in rule.values():
                     f.write('      <arg value="%s"/>\n' % self.fix(v))
                 f.write('    </rule>\n')
@@ -2350,19 +2172,37 @@ class FilterParser(handler.ContentHandler):
                     pass
             self.gfilter_list.add(self.f)
         elif tag == "rule":
-            cname = attrs['class']
-            name = unicode(_(cname))
-            self.a = []
-            if name in tasks:
-                self.cname = tasks[name]
+            save_name = attrs['class']
+            if save_name in old_names_2_class.keys():
+                self.r = old_names_2_class[save_name]
             else:
-                print "ERROR: Filter rule '%s' in filter '%s' not found!" % (name,self.f.get_name())
+                mc_match = save_name.split('.')
+                if len(mc_match) != 2:
+                    # rule has an old style name, that is not in old_names_2_class
+                    # or is not in the format "module.class"
+                    print "ERROR: Filter rule '%s' in filter '%s' not found!" % (
+                            save_name,self.f.get_name())
+                    self.r = None
+                    return
+                module_name,class_name = mc_match
+                try:
+                    if module_name == self.__module__:
+                        exec 'self.r = %s' % class_name
+                    else:
+                        exec 'import %s' % module_name
+                        exec 'self.r = %s.%s' % (module_name,class_name)
+                except (ImportError,NameError):
+                    print "ERROR: Filter rule '%s' in filter '%s' not found!" % (
+                            save_name,self.f.get_name())
+                    self.r = None
+                    return
+            self.a = []
         elif tag == "arg":
             self.a.append(attrs['value'])
 
     def endElement(self,tag):
-        if tag == "rule":
-            rule = self.cname(self.a)
+        if tag == "rule" and self.r != None:
+            rule = self.r(self.a)
             self.f.add_rule(rule)
             
     def characters(self, data):
@@ -2380,9 +2220,9 @@ class ParamFilter(GenericFilter):
 
     def apply(self,db,id_list):
         for rule in self.flist:
-            rule.prepare(db)
-        for rule in self.flist:
             rule.set_list(self.param_list)
+        for rule in self.flist:
+            rule.prepare(db)
         result = GenericFilter.apply(self,db,id_list)
         for rule in self.flist:
             rule.reset()

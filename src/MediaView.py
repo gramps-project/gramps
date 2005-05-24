@@ -60,7 +60,6 @@ column_names = [
     _('Path'),
     _('Last Changed'),
     _('Date'),
-    _('Place'),
     ]
 
 _HANDLE_COL = len(column_names)
@@ -84,6 +83,7 @@ class MediaView:
         self.topWindow = glade.get_widget("gramps")
         self.renderer = gtk.CellRendererText()
         self.model = DisplayModels.MediaModel(self.db)
+        self.sort_col = 0
 
         self.selection = self.list.get_selection()
         self.list.set_model(self.model)
@@ -130,13 +130,51 @@ class MediaView:
         self.build_columns()
         self.build_tree()
 
+    def column_clicked(self,obj,data):
+        if self.sort_col != data:
+            order = gtk.SORT_ASCENDING
+        else:
+            if (self.columns[data].get_sort_order() == gtk.SORT_DESCENDING
+                or self.columns[data].get_sort_indicator() == False):
+                order = gtk.SORT_ASCENDING
+            else:
+                order = gtk.SORT_DESCENDING
+        self.sort_col = data
+        handle = self.first_selected()
+        self.model = DisplayModels.MediaModel(self.parent.db,
+                                              self.sort_col,order)
+        self.list.set_model(self.model)
+
+        colmap = self.parent.db.get_place_column_order()
+        
+        if handle:
+            path = self.model.on_get_path(handle)
+            self.selection.select_path(path)
+            self.list.scroll_to_cell(path,None,1,0.5,0)
+        for i in range(0,len(self.columns)):
+            self.columns[i].set_sort_indicator(i==colmap[data][1]-1)
+        self.columns[self.sort_col].set_sort_order(order)
+
+    def first_selected(self):
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
+        if mlist:
+            return mlist[0]
+        else:
+            return None
+
+    def blist(self,store,path,iter,list):
+        handle = store.get_value(iter,_HANDLE_COL)
+        list.append(handle)
+
     def build_columns(self):
         for column in self.columns:
             self.list.remove_column(column)
             
         column = gtk.TreeViewColumn(_('Title'), self.renderer,text=0)
         column.set_resizable(True)
-
+        column.connect('clicked',self.column_clicked,0)
+        column.set_clickable(True)
         column.set_min_width(225)
         self.list.append_column(column)
         self.columns = [column]
@@ -149,6 +187,8 @@ class MediaView:
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
             column.set_resizable(True)
             column.set_min_width(75)
+            column.set_clickable(True)
+            column.connect('clicked',self.column_clicked,index)
             self.columns.append(column)
             self.list.append_column(column)
             index += 1
@@ -326,7 +366,6 @@ class MediaView:
 
     def on_drag_drop(self, tree, context, x, y, time):
         self.list.emit_stop_by_name('drag-drop')
-        self.list.drag_get_data(context,context.targets[-1],time)
         return 1
 
     def on_drag_begin(self,obj,context):
