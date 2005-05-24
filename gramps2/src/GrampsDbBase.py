@@ -270,7 +270,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Commits the specified Person to the database, storing the changes
         as part of the transaction.
         """
-        if self.readonly or not obj.handle:
+        if self.readonly or not obj or not obj.handle:
             return 
         if change_time:
             obj.change = int(change_time)
@@ -574,13 +574,13 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self.genderStats.count_person (person, self)
         return person.handle
 
-    def _add_object(self,object,transaction,find_next_func,commit_func):
-        if not object.gramps_id:
-            object.gramps_id = find_next_func()
-        if not object.handle:
-            object.handle = self.create_id()
-        commit_func(object,transaction)
-        return object.handle
+    def _add_object(self,obj,transaction,find_next_func,commit_func):
+        if not obj.gramps_id:
+            obj.gramps_id = find_next_func()
+        if not obj.handle:
+            obj.handle = self.create_id()
+        commit_func(obj,transaction)
+        return obj.handle
 
     def add_family(self,family,transaction):
         """
@@ -1230,8 +1230,20 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Returns the MediaObject display common information stored in the
         database's metadata.
         """
+<<<<<<< GrampsDbBase.py
         default = [(1,1),(0,5),(0,6),(1,2),(1,3),(0,4)]
         return self._get_column_order(MEDIA_COL_KEY,default)
+=======
+        default = [(1,1),(0,5),(0,4),(1,2),(1,3)]
+        if self.metadata == None:
+            return default
+        else:
+            cols = self.metadata.get('media_columns',default)
+            if len(cols) != len(default):
+                return cols + default[len(cols):]
+            else:
+                return cols
+>>>>>>> 1.53.2.3
 
 class Transaction:
     """

@@ -295,10 +295,12 @@ class SelectChild:
             self.family = RelLib.Family()
             self.db.add_family(self.family,trans)
             self.person.add_family_handle(self.family.get_handle())
+            self.db.commit_person(self.person,trans)
             if self.person.get_gender() == RelLib.Person.MALE:
-                self.family.set_father_handle(self.person)
+                self.family.set_father_handle(self.person.get_handle())
             else:	
-                self.family.set_mother_handle(self.person)
+                self.family.set_mother_handle(self.person.get_handle())
+            self.db.commit_family(self.family,trans)
                 
         if handle in (self.family.get_father_handle(),self.family.get_mother_handle()):
             ErrorDialog(_("Error selecting a child"),
@@ -328,6 +330,7 @@ class SelectChild:
         n = select_child.get_primary_name().get_regular_name()
         self.db.transaction_commit(trans,_("Add Child to Family (%s)") % n)
         self.close(obj)
+        self.callback()
         
     def on_show_toggled(self,obj):
         self.redraw_child_list(not obj.get_active())
@@ -378,4 +381,3 @@ class SelectChild:
             return ("","%sdóttir" % fname)
         else:
             return ("","")
-

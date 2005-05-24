@@ -146,6 +146,7 @@ class DateEdit:
         if text != self.text:
             self.text = text
             self.date_obj.copy(DateHandler.parser.parse(text))
+            self.text_obj.set_text(DateHandler.displayer.display(self.date_obj))
             self.check()
 
     def invoke_date_editor(self,obj):

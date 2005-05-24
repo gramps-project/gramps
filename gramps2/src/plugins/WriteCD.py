@@ -121,7 +121,8 @@ class PackageWriter:
             root = os.path.basename(oldfile)
             if os.path.isfile(oldfile):
                 self.copy_file(oldfile,'burn:///%s/%s' % (base,root))
-                if obj.get_mime_type()[0:5] == "image":
+                mime_type = obj.get_mime_type()
+                if mime_type and mime_type.startswith("image"):
                     self.make_thumbnail(base,root,obj.get_path())
             else:
                 print "Warning: media file %s was not found," % root,\
@@ -223,7 +224,7 @@ class PackageWriter:
                 if os.path.isfile(newfile):
                     self.copy_file(newfile,'burn:///%s/%s' % (base,obase))
                     ntype = GrampsMime.get_type(newfile)
-                    if ntype[0:5] == "image":
+                    if ntype and ntype.startswith("image"):
                         self.make_thumbnail(base,obase,newfile)
     
             fs_top = gtk.FileSelection("%s - GRAMPS" % _("Select file"))
@@ -244,7 +245,8 @@ class PackageWriter:
             root = os.path.basename(oldfile)
             if os.path.isfile(oldfile):
                 self.copy_file(oldfile,'burn:///%s/%s' % (base,root))
-                if obj.get_mime_type()[0:5] == "image":
+                mime_type = obj.get_mime_type()
+                if mime_type and mime_type.startswith("image"):
                     self.make_thumbnail(base,root,obj.get_path())
             else:
                 # File is lost => ask what to do

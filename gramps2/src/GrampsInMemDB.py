@@ -145,59 +145,124 @@ class GrampsInMemDB(GrampsDbBase):
         vals.sort()
         return vals
 
+<<<<<<< GrampsInMemDB.py
     def _del_person(self,handle):
+=======
+    def remove_person(self,handle,transaction):
+        if self.readonly or not handle or str(handle) not in self.person_map:
+            return
+        person = self.get_person_from_handle(handle)
+        self.genderStats.uncount_person (person)
+        if transaction != None:
+            old_data = self.person_map.get(handle)
+            transaction.add(PERSON_KEY,handle,old_data)
+        self.emit('person-delete',([handle],))
+>>>>>>> 1.23.2.2
         del self.id_trans[person.get_gramps_id()]
         del self.person_map[handle]
 
+<<<<<<< GrampsInMemDB.py
     def _del_source(self,handle):
+=======
+    def remove_source(self,handle,transaction):
+        if self.readonly or not handle or str(handle) not in self.source_map:
+            return
+        source = self.get_source_from_handle(handle)
+        if transaction != None:
+            old_data = self.source_map.get(str(handle))
+            transaction.add(SOURCE_KEY,handle,old_data)
+        self.emit('source-delete',([handle],))
+>>>>>>> 1.23.2.2
         del self.sid_trans[source.get_gramps_id()]
         del self.source_map[str(handle)]
 
+<<<<<<< GrampsInMemDB.py
     def _del_place(self,handle):
+=======
+    def remove_place(self,handle,transaction):
+        if self.readonly or not handle or str(handle) not in self.place_map:
+            return
+        place = self.get_place_from_handle(handle)
+        if transaction != None:
+            old_data = self.place_map.get(str(handle))
+            transaction.add(PLACE_KEY,handle,old_data)
+        self.emit('place-delete',([handle],))
+>>>>>>> 1.23.2.2
         del self.pid_trans[place.get_gramps_id()]
         del self.place_map[str(handle)]
 
+<<<<<<< GrampsInMemDB.py
     def _del_media(self,handle):
+=======
+    def remove_object(self,handle,transaction):
+        if self.readonly or not handle or str(handle) not in self.media_map:
+            return
+        obj = self.get_object_from_handle(handle)
+        if transaction != None:
+            old_data = self.media_map.get(str(handle))
+            transaction.add(MEDIA_KEY,handle,old_data)
+        self.emit('media-delete',([handle],))
+>>>>>>> 1.23.2.2
         del self.oid_trans[obj.get_gramps_id()]
         del self.media_map[str(handle)]
 
+<<<<<<< GrampsInMemDB.py
     def _del_family(self,handle):
+=======
+    def remove_family(self,handle,transaction):
+        if self.readonly or not handle or str(handle) not in self.family_map:
+            return
+        family = self.get_family_from_handle(handle)
+        if transaction != None:
+            old_data = self.family_map.get(str(handle))
+            transaction.add(FAMILY_KEY,handle,old_data)
+        self.emit('family-delete',([handle],))
+>>>>>>> 1.23.2.2
         del self.fid_trans[family.get_gramps_id()]
         del self.family_map[str(handle)]
 
+<<<<<<< GrampsInMemDB.py
     def _del_event(self,handle):
+=======
+    def remove_event(self,handle,transaction):
+        if self.readonly or not handle or str(handle) not in self.event_map:
+            return
+        if transaction != None:
+            old_data = self.event_map.get(str(handle))
+            transaction.add(EVENT_KEY,handle,old_data)
+>>>>>>> 1.23.2.2
         del self.event_map[str(handle)]
 
     def commit_person(self,person,transaction,change_time=None):
-        if self.readonly or not person.get_handle():
+        if self.readonly or not person or not person.get_handle():
             return
         gid = person.get_gramps_id()
         self.id_trans[gid] = person.get_handle()
         GrampsDbBase.commit_person(self,person,transaction,change_time)
 
     def commit_place(self,place,transaction,change_time=None):
-        if self.readonly or not place.get_handle():
+        if self.readonly or not place or not place.get_handle():
             return
         gid = place.get_gramps_id()
         self.pid_trans[gid] = place.get_handle()
         GrampsDbBase.commit_place(self,place,transaction,change_time)
 
     def commit_family(self,family,transaction,change_time=None):
-        if self.readonly or not family.get_handle():
+        if self.readonly or not family or not family.get_handle():
             return
         gid = family.get_gramps_id()
         self.fid_trans[gid] = family.get_handle()
         GrampsDbBase.commit_family(self,family,transaction,change_time)
 
     def commit_media_object(self,obj,transaction,change_time=None):
-        if self.readonly or not obj.get_handle():
+        if self.readonly or not obj or not obj.get_handle():
             return
         gid = obj.get_gramps_id()
         self.oid_trans[gid] = obj.get_handle()
         GrampsDbBase.commit_media_object(self,obj,transaction,change_time)
 
     def commit_source(self,source,transaction,change_time=None):
-        if self.readonly or not source.get_handle():
+        if self.readonly or not source or not source.get_handle():
             return
         gid = source.get_gramps_id()
         self.sid_trans[gid] = source.get_handle()

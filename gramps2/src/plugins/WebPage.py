@@ -294,7 +294,8 @@ class IndividualPage:
         if self.photos and len(media_list) > 0:
             object_handle = media_list[0].get_reference_handle()
             object = self.db.get_object_from_handle(object_handle)
-            if object.get_mime_type()[0:5] == "image":
+            mime_type = object.get_mime_type()
+            if mime_type and mime_type.startswith("image"):
                 src = object.get_path()
                 junk,ext = os.path.splitext(src)
                 base = '%s%s' % (object.get_gramps_id(),ext)
@@ -390,7 +391,8 @@ class IndividualPage:
         for object_ref in self.person.get_media_list():
             obj_id = object_ref.get_reference_handle()
             obj = self.db.get_object_from_handle(obj_id)
-            if obj.get_mime_type()[0:5] != "image":
+            mime_type = obj.get_mime_type()
+            if not mime_type or not mime_type.startswith("image"):
                 continue
             if object_ref.get_privacy():
                 continue

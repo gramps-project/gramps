@@ -1,5 +1,287 @@
+2005-05-23  Alex Roitman  <shura@gramps-project.org>
+	* various: merge changes made in gramps20 branch with main trunk.
+
+2005-05-23  Don Allingham  <don@gramps-project.org>
+	* src/MergePeople.py: clean up and refactoring of code.
+	* Release: Version 2.0.1 "None shall pass" released.
+
+2005-05-23  Alex Roitman  <shura@gramps-project.org>
+	* src/po/ru.po: More tranlsated tips.
+
+2005-05-23  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Translate all fuzzy strings.  Tips are still to be
+	  translated
+	* src/plugins/StatisticsChart.py: Fix a typo in one string
+	  (I actually changed the string, but now it should actually be
+	   understandable i.e. something people can localize)
+	* src/dates/Makefile.am, src/dates/Date_fi.py: Remove Finnish date
+	  parser.  Unfortunately I don't have time either to fix DateParser.py
+	  regexps matches to be position independent or write the required
+	  (almost) duplicate code to Date_fi.py directly
+
+2005-05-23  Jens Arvidsson <jya@sverige.nu>
+	* src/po/sv.po: Translation update for version 2.0.1.
+
+2005-05-22  Don Allingham  <don@gramps-project.org>
+	* src/MergePeople.py: merge improvements, merge data not merged before.
+
+2005-05-22  Alex Roitman  <shura@gramps-project.org>
+	* src/ImageSelect.py (item_event): Do nothing if nothing is selected.
+	* src/EditSource.py (button_press): Return if no data.
+	* src/Sources.py (drag_data_get): Return if no data.
+	* src/EditPerson.py (ev_drag_data_get,name_drag_data_get):
+	Return if no data.
+	* src/EditPlace.py (url_source_drag_data_get): Properly obtain data;
+	return if no data.
+
+2005-05-22  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/po/es.po: Updated translation for filters, tips still pending
+
+2005-05-21  Don Allingham  <don@gramps-project.org>
+	* src/ChooseParents.py: handle the addition of a person correctly.
+	Warn if the person just added is suppressed by the filter.
+	* src/MergePeople.py: use __debug__ for print statements
+
+2005-05-20  Don Allingham  <don@gramps-project.org>
+	* src/MergePeople.py: fixed name merging, incorporate Martin's 
+	patches.
+
+2005-05-20  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Merge PO file and (finally) translate the welcome
+	  message.  Otherwise translation is not yet updated
+	* src/data/gramps.desktop: Add Finnish translations
+
+2005-05-20  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/WriteXML.py: Remove unnecessary database reads, so it does no
+	longer crash when exporting a corrupt database.
+	* src/WriteGedcom.py: Some hardening against corrupt database.
+
+2005-05-20  Alex Roitman  <shura@gramps-project.org>
+	* src/SelectObject.py (on_select_row): Properly get mime type.
+	* src/GrampsBSDDB.py (remove_object): Use correct key for transaction.
+	* src/ImageSelect.py (add_thumbnail, on_delete_media_clicked):
+	Identify canvas items by MediaRef instance, not by the handle of the
+	referred MediaObject.
+	* src/gramps_main.py (read_file): Remove set_resizable() calls.
+	* src/MediaView.py (on_drag_drop): Remove drag_get_data() call
+	as it was calling extraneous 'drag-data-received' signal.
+	* src/ReadGedcom.py (parse_person_object,parse_family_object):
+	Always add media references/objects, even if the files are not found
+	(keep the warnings); set the note for the media references.
+	* example/gedcom/sample.ged: Correct object format tags.
+
+	* src/ChooseParents.py (close_child_windows): Pass no arguments
+	to child_window.close().
+
+2005-05-19  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels.py: remove place column
+	* src/MediaView.py: delete Place option
+	* src/GrampsDbBase.py: new default for media columns
+	* src/GrampsBSDDB.py: upgrade database version for media columns
+	* src/MediaView.py: enable sorting by columns
+	* src/DisplayModels.py: enable sorting by columns for MediaModel
+
+2005-05-19  Alex Roitman  <shura@gramps-project.org>
+	* src/MergePeople.py (merge_family_pair): Properly use handles.
+	* src/RelLib.py (SourceNote.replace_source_references): Properly
+	replace references; (MediaBase.replace_media_references): Properly
+	replace references.
+	* src/MergeData.py: Correct comments.
+	* src/mergedata.glade: Make information panes non-editable.
+	* src/gramps.glade: Enclose date and place groups into tables,
+	to allow proper widget order when using tab key.
+	* src/EditSource.py (button_press): Properly test event names.
+	* src/po/ru.po: Partial update for 2.0.1.
+
+2005-05-19  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GenericFilter.py: Catch invalid input in some filters;
+	(old_names_2_class): Add one name for full 1.0.11 compatibility;
+	(FilterParser): Properly catch invalid rule names and invalid
+	module/class names.
+
+2005-05-18  Don Allingham  <don@gramps-project.org>
+	* src/dates/Date_de.py: handle dates in the form of dd. mon year
+
+2005-05-18  Richard Bos  <radoeka@xs4all.nl>
+	* src/data/gramps.desktop: Add Dutch strings.
+
+2005-05-18  James Treacy  <treacy@debian.org>
+	* src/data/tips.xml: Update and rework.
+
+2005-05-18  Alex Roitman  <shura@gramps-project.org>
+	* src/GenericFilter.py: Use class names for internal work; Rework
+	ID-based filters to use gramps-id instead of a handle.
+	* src/plugins/FilterEditor.py: Use class names for internal work.
+	* src/po/template.po: Update for 2.0.1.
+	* src/gramps_main.py (open_example): Add example database funciton.
+	* NEWS: Update.
+	* src/po/ru.po: Partial update for 2.0.1.
+
+2005-05-18  Don Allingham  <don@gramps-project.org>
+	* src/ReadGedcom.py: grab description for birth and death events
+	* src/WriteGedcom.py: export description for birth and death events
+	* example/gedcom/sample.ged: add test case
+
+2005-05-18  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GrampsInMemDB.py: Emit the *-delete signals correctly.
+	* src/GrampsDbBase.py: Emission of the *-update/*-add signals should not depend
+	on the existance of a transaction.
+
+2005-05-18  Don Allingham  <don@gramps-project.org>
+	* src/plugins/FilterEditor.py: sort entries in Add Rule dialog
+
+2005-05-18  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GrampsBSDDB.py, src/GrampsDbBase.py, src/GrampsInMemDB.py,
+	  src/RelLib.py: Catch invalid arguments instead of crashing.
+	TODO: raise TypeError or HandleError instead of simply returning?
+
+	* src/plugins/TestcaseGenerator.py: Added debbuging helpers for signal emissions
+
 2005-05-17  Don Allingham  <don@gramps-project.org>
 	* configure.in: bump up verison number to 2.1.0
+
+2005-05-17  Alex Roitman  <shura@gramps-project.org>
+	* src/GenericFilter.py: Change filter rule names to make them consistent.
+	* src/gramps_main.py: Change filter names to make them consistent.
+
+	* src/Date.py: Import gettext.
+	* src/DateDisplay.py: Import gettext.
+	* src/GenericFilter.py: Support existing custom_filters.xml files
+	by adding an old2new mapping for names.
+
+	* src/AddSpouse.py (select_spouse_clicked): Display warning and
+	provide a way to override when trying to add child/parent as a spouse.
+
+2005-05-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/ImportGeneWeb.py (decode): Decode characters and named
+	entities. Because gramps is not web browser based we can simply use
+	unicode.
+	
+2005-05-16  Don Allingham  <don@gramps-project.org>
+	* src/PlaceView.py: select correct column for sorting
+	* src/SourceView.py: select correct column for sorting
+	* src/WriteGedcom.py: used 'replace' mode on iso-8859-1 string
+	encoding conversion
+
+2005-05-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/ReadGedcom.py (parse_trailer): Catch EOF to warn about premature
+	EOF only once; Always close file; (parse_record): Properly catch
+	premature EOF instead of unknown level 0 records; Support single line
+	SOUR records; (parse_address): Support PHON and NOTE, ignore _NAME.
+	
+2005-05-16  Alex Roitman  <shura@gramps-project.org>
+	* src/ansel_utf8.py: Convert to Unix end-of-line.
+
+	* src/plugins/StatisticsChart.py: Minor stylistic corrections.
+	* src/GenericFilter.py: Minor stylistic corrections.
+
+	* src/TarFile.py: Indent with spaces, remove string module.
+	* src/RelImage.py: Remove unused string module.
+	* src/SubstKeywords.py: Remove string module.
+
+2005-05-16  Don Allingham  <don@gramps-project.org>
+	* src/FamilyView.py: fix reordering of children in family view
+
+2005-05-15  Don Allingham  <don@gramps-project.org>
+	* src/ChooseParents.py: redraw window properly after person add
+	* src/DisplayModels.py: provide sorting support
+	* src/PlaceView.py: add sorting by columns
+	* src/SourceView.py: add sorting by columns
+
+2005-05-14  Don Allingham  <don@gramps-project.org>
+	* src/ReadGedcom.py: add a few more items to parse from Legacy
+	generated GEDCOM files
+
+2005-05-14  Alex Roitman  <shura@gramps-project.org>
+	* src/data/Makefile.am: Always install gramps.schemas and gramps.xml,
+	with or without packager mode.
+
+2005-05-14  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GenericFilter.py (IsSiblingOfFilterMatch): Match only sibling,
+	not the filterMatch; (HasEvent,HasFamilyEvent): Dont crash in filter
+	editor.
+
+	* src/GenericFilter.py (HasTextMatchingSubstringOf, HasTextMatchingRegexpOf):
+	Search media objects in full text search.
+	* src/RelLib.py: Add GRAMPS ID to get_text_data_list so this field is
+	usable in full text search; Dont crash if get_text_data_list contains
+	None values instead of empty strings.
+	
+	* src/EditPerson.py, src/AddMedia.py, src/ImageSelect.py, src/ReportUtils.py,
+	src/SelectObject.py, src/plugins/Ancestors.py, src/plugins/IndivComplete.py,
+	src/plugins/IndivSummary.py, src/plugins/WebPage.py, src/plugins/WriteCD.py:
+	Dont crash with "note only" media object.
+
+2005-05-13  Don Allingham  <don@gramps-project.org>
+	* src/plugins/ScratchPad.py: fix GdkAtom index problem with pygtk2.4
+
+2005-05-13  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GenericFilter.py (HasEvent,HasFamilyEvent): Correct filter rules
+
+2005-05-13  Alex Roitman  <shura@gramps-project.org>
+	* src/DateDisplay.py (DateDisplayEn): Localize format names.
+
+	* src/get_strings: Support extracting strings from tips.xml file.
+	* src/build_po: Process tips.xml file.
+	* src/TipOfDay.py (TipOfDay.__init__): Use translated tips.
+	* src/po/template.po: new translatable strings.
+
+	* src/DateEdit.py (parse_and_check): Display date as parsed on
+	focus-out from the entry fields.
+
+2005-05-13  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/SelectChild.py (on_save_child_clicked) Commit new parent family
+	of child properly; correct handle/object mismatch; exec parent callback
+ 	to do a proper redraw (closes #1201151)
+
+	* src/dates/Date_de.py: Register for all variants of german; Add other
+	variants of month names for parser
+
+	* src/Date.py: Raise Exception.DateError on invalid arguments
+	* src/DateParser.py: Catch DateError and use text only date as fallback
+	* src/plugins/TestcaseGenerator.py: Handle DateError exception
+
+	* src/plugins/ImportGeneWeb.py: Distinguish unknown people
+	
+	* src/DateDisplay.py: Allow B.C.E. in years to be localized
+	* src/dates/Date_de.py: Some more translations including B.C.E.
+
+2005-05-12  Don Allingham  <don@gramps-project.org>
+	* src/GrampsBSDDB.py: force database sync on transaction commit
+
+2005-05-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GenericFilter.py (ParamFilter.apply): Set parameter list before
+	prepare (solves crash in full text search)
+	* src/gramps_main.py: Enable full text search filters again
+	
+2005-05-12  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Check.py (cleanup_missing_photos): Typo.
+	* configure.in: Bump up the version number.
+	* NEWS: Update.
+	* src/ReportUtils.py (insert_images): Pass sizes to add_media_object;
+	(married_str): Quit if no spouse.
+
+	* src/data/gramps.xml: Include different cases for file extensions.
+
+	* src/po/ru.po: Typo.
+
+2005-05-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/TestcaseGenerator.py: Added generation of multiple date
+	formats including invalid dates. This is displaying and reparsing every
+	date to compare the result.
+	* src/plugins/NavWebPage.py (HomePage): Dont crash on note only object 
+	* src/dates/Date_de.py: Updated translation
+	
+2005-05-11  Don Allingham  <don@gramps-project.org>
+	* src/ReadGedcom.py: coerce the name into a unicode value - if the wrong character
+	encoding is indicated in the file, the screen display can get corrupted due to keys
+	that aren't unicode values
+	* src/dates/Date_de.py: first pass at a German date handler
+
+2005-05-11  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DateHandler.py: Fallback to "C" locale instead of the ISO
+	format. This currently basically falls back to en, but this could
+	be enhanced by a translated fallback parser later.
 
 2005-05-11  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/po/es.po: remerge from 2.0.0
@@ -33,6 +315,9 @@
 	src/po/fi.po, src/po/fr.po, src/po/nb.po, src/po/nl.po, src/po/no.po,
 	src/po/ru.po, src/po/sv.po, src/po/template.po:
 	Merge changes made in gramps20 into HEAD.
+
+2005-05-10  Don Allingham  <don@gramps-project.org>
+	* Release: Version 2.0.0 "The Bright Side of Life"" released.
 
 2005-05-10  Don Allingham  <don@gramps-project.org>
 	* src/DbPrompter.py: add callback for progressbar

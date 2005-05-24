@@ -392,7 +392,8 @@ class IndivCompleteReport(Report.Report):
         if len(media_list) > 0:
             object_handle = media_list[0].get_reference_handle()
             object = self.database.get_object_from_handle(object_handle)
-            if object.get_mime_type()[0:5] == "image":
+            mime_type = object.get_mime_type()
+            if mime_type and mime_type.startswith("image"):
                 file = object.get_path()
                 self.doc.start_paragraph("IDS-Normal")
                 self.doc.add_media_object(file,"row",4.0,4.0)

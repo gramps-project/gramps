@@ -416,9 +416,10 @@ def insert_images(database, doc, person, w_cm=4.0, h_cm=4.0):
     for photo in photos :
         object_handle = photo.get_reference_handle()
         media_object = database.get_object_from_handle(object_handle)
-        if media_object.get_mime_type()[0:5] == "image":
+        mime_type = media_object.get_mime_type()
+        if mime_type and mime_type.startswith("image"):
             filename = media_object.get_path()
-            doc.add_media_object(filename,"row")
+            doc.add_media_object(filename,"row",w_cm,h_cm)
 
 #-------------------------------------------------------------------------
 #
@@ -794,6 +795,10 @@ def married_str(database,person,spouse,event,endnotes=None,
     @returns: A composed string
     @rtype: unicode
     """
+
+    # not all families have a spouse.
+    if not spouse:
+        return u""
 
     if not endnotes:
         endnotes = empty_notes
@@ -1803,4 +1808,4 @@ def old_calc_age(database,person):
                     if age == 0:
                         age = death.get_day() + 31 - birth.get_day() # calc age in days
                         units  = 3            # day
-    return (age,units) 
+    return (age,units)

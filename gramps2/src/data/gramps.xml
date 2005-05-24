@@ -10,6 +10,9 @@
   <mime-type type="application/x-gedcom">
     <comment xml:lang="en">GEDCOM</comment>
     <glob pattern="*.ged"/>
+    <glob pattern="*.gedcom"/>
+    <glob pattern="*.GED"/>
+    <glob pattern="*.GEDCOM"/>
     <magic priority="80">
       <match type="string" value="0 HEAD" offset="0:1"/>
     </magic>
@@ -29,6 +32,7 @@
   <mime-type type="application/x-geneweb">
     <comment xml:lang="en">GeneWeb source file</comment>
     <glob pattern="*.gw"/>
+    <glob pattern="*.GW"/>
     <magic priority="80">
       <match type="string" value="fam " offset="0:64"/>
     </magic>

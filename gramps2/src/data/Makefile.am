@@ -1,4 +1,6 @@
 # This is the src/data level Makefile
+# $Id$
+#
 SUBDIRS = templates
 pkgdatadir = $(datadir)/@PACKAGE@/data
 
@@ -31,24 +33,18 @@ SHARED_MIME_UNINSTALLATION =
 if !PACKAGER_MODE
 if GCONF_SCHEMAS_INSTALL
 GCONF_SCHEMAS_INSTALLATION += \
-	$(INSTALL) -d $(DESTDIR)$(GCONF_SCHEMA_FILE_DIR) ;\
-	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.schemas $(DESTDIR)$(GCONF_SCHEMA_FILE_DIR) ;\
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
-		gconftool-2 --makefile-install-rule $(top_srcdir)/src/data/gramps.schemas ;\
+		gconftool-2 --makefile-install-rule $(DESTDIR)$(GCONF_SCHEMA_FILE_DIR)/gramps.schemas ;\
 	pkill gconfd ; echo Restarting gconfd
 
 GCONF_SCHEMAS_UNINSTALLATION += \
-	rm $(DESTDIR)$(GCONF_SCHEMA_FILE_DIR)/gramps.schemas ;\
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
-		gconftool-2 --makefile-uninstall-rule $(top_srcdir)/src/data/gramps.schemas
+		gconftool-2 --makefile-uninstall-rule $(DESTDIR)$(GCONF_SCHEMA_FILE_DIR)/gramps.schemas
 endif
 if SHARED_MIME_INSTALL
 SHARED_MIME_INSTALLATION += \
-	$(INSTALL) -d $(DESTDIR)$(SHARED_MIME_DIR)/packages ;\
-	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.xml $(DESTDIR)$(SHARED_MIME_DIR)/packages ;\
 	update-mime-database $(DESTDIR)$(SHARED_MIME_DIR)
 SHARED_MIME_UNINSTALLATION += \
-	rm $(DESTDIR)$(SHARED_MIME_DIR)/packages/gramps.xml ;\
 	update-mime-database $(DESTDIR)$(SHARED_MIME_DIR)
 endif
 endif
@@ -63,6 +59,10 @@ install-data-local:
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/mime-info
 	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.keys $(DESTDIR)$(prefix)/share/mime-info
 	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.mime $(DESTDIR)$(prefix)/share/mime-info
+	$(INSTALL) -d $(DESTDIR)$(SHARED_MIME_DIR)/packages
+	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.xml $(DESTDIR)$(SHARED_MIME_DIR)/packages
+	$(INSTALL) -d $(DESTDIR)$(GCONF_SCHEMA_FILE_DIR)
+	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.schemas $(DESTDIR)$(GCONF_SCHEMA_FILE_DIR)
 	$(SHARED_MIME_INSTALLATION)
 	$(GCONF_SCHEMAS_INSTALLATION)
 
@@ -72,5 +72,7 @@ uninstall-local:
 	-rm $(DESTDIR)$(prefix)/share/mime-info/gramps.keys
 	-rm $(DESTDIR)$(prefix)/share/mime-info/gramps.mime
 	-rm $(DESTDIR)$(prefix)/share/application-registry/gramps.applications
-	$(SHARED_MIME_UNINSTALLATION)
 	$(GCONF_SCHEMAS_UNINSTALLATION)
+	-rm $(DESTDIR)$(GCONF_SCHEMA_FILE_DIR)/gramps.schemas
+	-rm $(DESTDIR)$(SHARED_MIME_DIR)/packages/gramps.xml
+	$(SHARED_MIME_UNINSTALLATION)

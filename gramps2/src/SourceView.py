@@ -67,21 +67,47 @@ class SourceView:
     def __init__(self,parent,db,glade):
         self.parent = parent
         self.parent.connect('database-changed',self.change_db)
+
         self.glade = glade
         self.list = glade.get_widget("source_list")
-        #self.list.set_property('fixed-height-mode',True)
         self.list.connect('button-press-event',self.button_press)        
         self.list.connect('key-press-event',self.key_press)
         self.selection = self.list.get_selection()
         self.selection.set_mode(gtk.SELECTION_MULTIPLE)
-
         self.renderer = gtk.CellRendererText()
-
-        self.model = DisplayModels.SourceModel(self.parent.db)
+        self.model = DisplayModels.SourceModel(self.parent.db,0)
+        self.sort_col = 0
+        
         self.list.set_model(self.model)
+        self.list.set_headers_clickable(True)
         self.topWindow = self.glade.get_widget("gramps")
 
         self.columns = []
+        self.change_db(db)
+
+    def column_clicked(self,obj,data):
+        if self.sort_col != data:
+            order = gtk.SORT_ASCENDING
+        else:
+            if (self.columns[data].get_sort_order() == gtk.SORT_DESCENDING
+                or self.columns[data].get_sort_indicator() == False):
+                order = gtk.SORT_ASCENDING
+            else:
+                order = gtk.SORT_DESCENDING
+        self.sort_col = data
+        handle = self.first_selected()
+        self.model = DisplayModels.SourceModel(self.parent.db,
+                                               self.sort_col,order)
+        self.list.set_model(self.model)
+        colmap = self.parent.db.get_place_column_order()
+
+        if handle:
+            path = self.model.on_get_path(handle)
+            self.selection.select_path(path)
+            self.list.scroll_to_cell(path,None,1,0.5,0)
+        for i in range(0,len(self.columns)):
+            self.columns[i].set_sort_indicator(i==colmap[data][1]-1)
+        self.columns[self.sort_col].set_sort_order(order)
 
     def build_columns(self):
         for column in self.columns:
@@ -90,21 +116,24 @@ class SourceView:
         column = gtk.TreeViewColumn(_('Title'), self.renderer,text=0)
         column.set_resizable(True)
         column.set_min_width(225)
+        column.set_clickable(True)
+        column.connect('clicked',self.column_clicked,0)
         self.list.append_column(column)
         self.columns = [column]
 
+        index = 1
         for pair in self.parent.db.get_source_column_order():
             if not pair[0]:
                 continue
             name = column_names[pair[1]]
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
+            column.connect('clicked',self.column_clicked,index)
             column.set_resizable(True)
             column.set_min_width(75)
+            column.set_clickable(True)
             self.columns.append(column)
             self.list.append_column(column)
-
-    def on_click(self,column):
-        self.click_col = column
+            index += 1
 
     def change_db(self,db):
         db.connect('source-add',    self.source_add)
@@ -116,7 +145,7 @@ class SourceView:
 
     def build_tree(self):
         self.list.set_model(None)
-        self.model = DisplayModels.SourceModel(self.parent.db)
+        self.model = DisplayModels.SourceModel(self.parent.db,self.sort_col)
         self.list.set_model(self.model)
         self.selection = self.list.get_selection()
         self.selection.set_mode(gtk.SELECTION_MULTIPLE)
@@ -215,6 +244,14 @@ class SourceView:
     def source_delete(self,handle_list):
         for handle in handle_list:
             self.model.delete_row_by_handle(handle)
+
+    def first_selected(self):
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
+        if mlist:
+            return mlist[0]
+        else:
+            return None
 
     def blist(self,store,path,iter,sel_list):
         handle = store.get_value(iter,_HANDLE_COL)

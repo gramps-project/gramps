@@ -30,6 +30,8 @@
 import os
 import re
 import time
+import traceback
+import sys
 from random import randint,choice
 from gettext import gettext as _
 
@@ -47,12 +49,14 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import Errors
+import Date
 import RelLib
 import latin_utf8 
 import Utils
 import const
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
+from DateHandler import displayer as _dd
 
 #-------------------------------------------------------------------------
 #
@@ -80,6 +84,10 @@ class TestcaseGenerator:
         self.check_bugs.set_active(True)
         self.top.vbox.pack_start(self.check_bugs,0,0,5)
 
+        self.check_dates = gtk.CheckButton( _("Generate date tests"))
+        self.check_dates.set_active(True)
+        self.top.vbox.pack_start(self.check_dates,0,0,5)
+
         self.check_persons = gtk.CheckButton( _("Generate dummy families"))
         self.check_persons.set_active(True)
         self.top.vbox.pack_start(self.check_persons,0,0,5)
@@ -99,16 +107,17 @@ class TestcaseGenerator:
 
         response = self.top.run()
         bugs = self.check_bugs.get_active()
+        dates = self.check_dates.get_active()
         persons = self.check_persons.get_active()
         multiple_trans = self.check_trans.get_active()
         person_count = int(self.entry_count.get_text())
         self.top.destroy()
 
         if response == gtk.RESPONSE_OK:
-            self.run_generator(bugs,persons,person_count,multiple_trans)
+            self.run_generator(bugs,dates,persons,person_count,multiple_trans)
 
 
-    def run_generator( self, generate_bugs = 1, generate_families = 1, generate_max_persons = 2000, multiple_transactions=False):
+    def run_generator( self, generate_bugs = 1, generate_dates = 1, generate_families = 1, generate_max_persons = 2000, multiple_transactions=False):
         title = "%s - GRAMPS" % _("Generate testcases")
         self.top = gtk.Window()
         self.top.set_title(title)
@@ -136,8 +145,114 @@ class TestcaseGenerator:
             self.trans.set_batch(True)
             self.db.disable_signals()
         
+
+        if self.multiple_transactions:
+    
+            print "TESTING SIGNALS..."
+    
+            print "\nCREATE PERSON"
+            p = RelLib.Person()
+            self.db.add_person( p, self.trans)
+            print "\nUPDATE PERSON"
+            self.db.commit_person( p, self.trans)
+            print "\nDELETE PERSON"
+            self.db.remove_person( p.get_handle(), self.trans)
+    
+            print "\nCREATE FAMILY"
+            f = RelLib.Family()
+            self.db.add_family( f, self.trans)
+            print "\nUPDATE FAMILY"
+            self.db.commit_family( f, self.trans)
+            print "\nDELETE FAMILY"
+            self.db.remove_family( f.get_handle(), self.trans)
+    
+            print "\nCREATE EVENT"
+            e = RelLib.Event()
+            self.db.add_event( e, self.trans)
+            print "\nUPDATE EVENT"
+            self.db.commit_event( e, self.trans)
+            print "\nDELETE EVENT"
+            self.db.remove_event( e.get_handle(), self.trans)
+    
+            print "\nCREATE PLACE"
+            p = RelLib.Place()
+            self.db.add_place( p, self.trans)
+            print "\nUPDATE PLACE"
+            self.db.commit_place( p, self.trans)
+            print "\nDELETE PLACE"
+            self.db.remove_place( p.get_handle(), self.trans)
+    
+            print "\nCREATE SOURCE"
+            s = RelLib.Source()
+            self.db.add_source( s, self.trans)
+            print "\nUPDATE SOURCE"
+            self.db.commit_source( s, self.trans)
+            print "\nDELETE SOURCE"
+            self.db.remove_source( s.get_handle(), self.trans)
+    
+            print "\nCREATE MEDIA"
+            m = RelLib.MediaObject()
+            self.db.add_object( m, self.trans)
+            print "\nUPDATE MEDIA"
+            self.db.commit_media_object( m, self.trans)
+            print "\nDELETE MEDIA"
+            self.db.remove_object( m.get_handle(), self.trans)
+    
+            print "DONE."
+    
+    
+            print "TESTING DB..."
+    
+            print "\nCREATE PERSON None"
+            self.db.add_person( None, self.trans)
+            print "\nUPDATE PERSON None"
+            self.db.commit_person( None, self.trans)
+            print "\nDELETE PERSON Invalid Handle"
+            self.db.remove_person( "Invalid Handle", self.trans)
+    
+            print "\nCREATE FAMILY None"
+            self.db.add_family( None, self.trans)
+            print "\nUPDATE FAMILY None"
+            self.db.commit_family( None, self.trans)
+            print "\nDELETE FAMILY Invalid Handle"
+            self.db.remove_family( "Invalid Handle", self.trans)
+    
+            print "\nCREATE EVENT None"
+            self.db.add_event( None, self.trans)
+            print "\nUPDATE EVENT None"
+            self.db.commit_event( None, self.trans)
+            print "\nDELETE EVENT Invalid Handle"
+            self.db.remove_event( "Invalid Handle", self.trans)
+    
+            print "\nCREATE PLACE None"
+            self.db.add_place( None, self.trans)
+            print "\nUPDATE PLACE None"
+            self.db.commit_place( None, self.trans)
+            print "\nDELETE PLACE Invalid Handle"
+            self.db.remove_place( "Invalid Handle", self.trans)
+    
+            print "\nCREATE SOURCE None"
+            self.db.add_source( None, self.trans)
+            print "\nUPDATE SOURCE None"
+            self.db.commit_source( None, self.trans)
+            print "\nDELETE SOURCE Invalid Handle"
+            self.db.remove_source( "Invalid Handle", self.trans)
+    
+            print "\nCREATE MEDIA None"
+            self.db.add_object( None, self.trans)
+            print "\nUPDATE MEDIA None"
+            self.db.commit_media_object( None, self.trans)
+            print "\nDELETE MEDIA Invalid Handle"
+            self.db.remove_object( "Invalid Handle", self.trans)
+    
+            print "DONE."
+        
+        
         if generate_bugs:
             self.generate_broken_relations()
+        
+        if generate_dates:
+            self.generate_date_tests()
 
         if generate_families:
             self.persons_todo.append( self.generate_person(0))
@@ -384,6 +499,103 @@ class TestcaseGenerator:
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
 
+    def generate_date_tests(self):
+        dates = []
+        # first some valid dates
+        calendar = Date.CAL_GREGORIAN
+        for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
+            for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
+                for slash1 in (False,True):
+                    d = Date.Date()
+                    d.set(quality,modifier,calendar,(4,7,1789,slash1),"Text comment")
+                    dates.append( d)
+            for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
+                for slash1 in (False,True):
+                    for slash2 in (False,True):
+                        d = Date.Date()
+                        d.set(quality,modifier,calendar,(4,7,1789,slash1,5,8,1876,slash2),"Text comment")
+                        dates.append( d)
+            modifier = Date.MOD_TEXTONLY
+            d = Date.Date()
+            d.set(quality,modifier,calendar,Date.EMPTY,"This is a textual date")
+            dates.append( d)
+        
+        # test invalid dates
+        dateval = (4,7,1789,False,5,8,1876,False)
+        for l in range(1,len(dateval)):
+            d = Date.Date()
+            try:
+                d.set(Date.QUAL_NONE,Date.MOD_NONE,Date.CAL_GREGORIAN,dateval[:l],"Text comment")
+                dates.append( d)
+            except Errors.DateError, e:
+                d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
+                dates.append( d)
+            except:
+                d = Date.Date()
+                d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
+                dates.append( d)
+        for l in range(1,len(dateval)):
+            d = Date.Date()
+            try:
+                d.set(Date.QUAL_NONE,Date.MOD_SPAN,Date.CAL_GREGORIAN,dateval[:l],"Text comment")
+                dates.append( d)
+            except Errors.DateError, e:
+                d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
+                dates.append( d)
+            except:
+                d = Date.Date()
+                d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
+                dates.append( d)
+        d = Date.Date()
+        d.set(Date.QUAL_NONE,Date.MOD_NONE,Date.CAL_GREGORIAN,(44,7,1789,False),"Text comment")
+        dates.append( d)
+        d = Date.Date()
+        d.set(Date.QUAL_NONE,Date.MOD_NONE,Date.CAL_GREGORIAN,(4,77,1789,False),"Text comment")
+        dates.append( d)
+        d = Date.Date()
+        d.set(Date.QUAL_NONE,Date.MOD_SPAN,Date.CAL_GREGORIAN,(4,7,1789,False,55,8,1876,False),"Text comment")
+        dates.append( d)
+        d = Date.Date()
+        d.set(Date.QUAL_NONE,Date.MOD_SPAN,Date.CAL_GREGORIAN,(4,7,1789,False,5,88,1876,False),"Text comment")
+        dates.append( d)
+        
+        # now add them as birth to new persons
+        for dateval in dates:
+            bevent = RelLib.Event()
+            bevent.set_name("Birth")
+            bevent.set_date_object(dateval)
+            bevent_h = self.db.add_event(bevent,self.trans)
+            # for the death event display the date as text and parse it back to a new date
+            ndate = None
+            try:
+                datestr = _dd.display( dateval)
+                try:
+                    ndate = _dp.parse( datestr)
+                    if not ndate:
+                        ndate = Date.Date()
+                        ndate.set_as_text("DateParser None")
+                except:
+                    ndate = Date.Date()
+                    ndate.set_as_text("DateParser Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
+            except:
+                ndate = Date.Date()
+                ndate.set_as_text("DateDisplay Exception: %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
+            
+            if dateval.get_modifier() != Date.MOD_TEXTONLY and ndate.get_modifier() == Date.MOD_TEXTONLY:
+                # parser was unable to correctly parse the string
+                ndate.set_as_text( "TEXTONLY: "+ndate.get_text())
+                
+            
+            devent = RelLib.Event()
+            devent.set_name("Death")
+            devent.set_date_object(ndate)
+            devent_h = self.db.add_event(devent,self.trans)
+            person_h = self.generate_person(None, "DateTest")
+            person = self.db.get_person_from_handle(person_h)
+            person.set_birth_handle(bevent_h)
+            person.set_death_handle(devent_h)
+            self.db.commit_person(person,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
     
     def generate_person(self,gender=None,lastname=None,note=None):
         self.progress.set_fraction(min(1.0,max(0.0, 1.0*self.person_count/self.max_person_count)))

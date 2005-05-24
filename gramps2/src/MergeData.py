@@ -168,8 +168,8 @@ class MergePlaces:
 #-------------------------------------------------------------------------
 class MergeSources:
     """
-    Merges to places into a single place. Displays a dialog box that
-    allows the places to be combined into one.
+    Merges to sources into a single source. Displays a dialog box that
+    allows the sources to be combined into one.
     """
     def __init__(self,database,new_handle,old_handle,update):
         self.db = database
@@ -291,7 +291,7 @@ class MergeSources:
             event = self.db.get_event_from_handle(handle)
             if event.has_source_reference(self.old_handle):
                 event.replace_source_references(self.old_handle,self.new_handle)
-                self.db.commit_event(event,self.trans)
+		self.db.commit_event(event,self.trans)
 
         # sources
         for handle in self.db.get_source_handles():

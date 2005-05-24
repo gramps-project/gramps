@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,9 +17,11 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
+
 import gzip
 import cStringIO
-import string
 
 _BLKSIZE=512
 nul = '\0'
@@ -87,75 +89,74 @@ class TarFile:
 class ReadTarFile:
     def __init__(self,name,wd="/tmp"):
         self.name = name
-	self.wd = wd
+        self.wd = wd
         self.f = gzip.open(name,"rb")
         self.pos = 0
 
     def extract_files(self):
         data = {}
-	while 1:
-	    buf = self.f.read(100)
+        while 1:
+            buf = self.f.read(100)
             if buf == '':
-	        return
+                return
             index = 0
-	    for b in buf:
-	        if b != nul:
-		    index = index + 1
-	        else:
-		    if index == 0:
+            for b in buf:
+                if b != nul:
+                    index = index + 1
+                else:
+                    if index == 0:
                         return data
-		    continue
-	    filename = buf[0:index]
+                    continue
+            filename = buf[0:index]
             if filename == None:
                 return data
-	    self.f.read(24) # modes
-            l = string.replace(self.f.read(12),chr(0),' ')
+            self.f.read(24) # modes
+            l = self.f.read(12)(chr(0),' ')
             length = int(l,8) 
-	    self.f.read(12)
-	    self.f.read(6)
-	    self.f.read(111)
+            self.f.read(12)
+            self.f.read(6)
+            self.f.read(111)
 
-	    self.f.read(64)
-	    self.f.read(183)
+            self.f.read(64)
+            self.f.read(183)
             foo = cStringIO.StringIO()
             data[filename] = foo
-	    foo.write(self.f.read(length))
-	    foo.reset()
-	    self.f.read(_BLKSIZE-(length%_BLKSIZE))
+            foo.write(self.f.read(length))
+            foo.reset()
+            self.f.read(_BLKSIZE-(length%_BLKSIZE))
         return data
     
     def extract(self):
-	while 1:
-	    buf = self.f.read(100)
+        while 1:
+            buf = self.f.read(100)
             if buf == '':
-	        return
+                return
             index = 0
-	    for b in buf:
-	        if b != nul:
-		    index = index + 1
-	        else:
-		    if index == 0:
+            for b in buf:
+                if b != nul:
+                    index = index + 1
+                else:
+                    if index == 0:
                         return
-		    continue
-	    filename = buf[0:index]
-	    self.f.read(24) # modes
+                    continue
+            filename = buf[0:index]
+            self.f.read(24) # modes
             l = self.f.read(12)
             length_string = "";
             for char in l:
                 if ord(char) != 0:
                     length_string = length_string + char
             length = int(length_string,8) 
-	    self.f.read(12)
-	    self.f.read(6)
-	    self.f.read(111)
+            self.f.read(12)
+            self.f.read(6)
+            self.f.read(111)
 
-	    self.f.read(64)
-	    self.f.read(183)
+            self.f.read(64)
+            self.f.read(183)
             foo = open("%s/%s" % (self.wd,filename),"wb")
-	    foo.write(self.f.read(length))
-	    foo.close()
-	    self.f.read(_BLKSIZE-(length%_BLKSIZE))
+            foo.write(self.f.read(length))
+            foo.close()
+            self.f.read(_BLKSIZE-(length%_BLKSIZE))
 
     def close(self):
         self.f.close()
-

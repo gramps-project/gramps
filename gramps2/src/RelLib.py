@@ -96,6 +96,8 @@ class BaseObject:
         # Run through its own items
         patern_upper = pattern.upper()
         for item in self.get_text_data_list():
+            if not item:
+                continue
             if case_sensitive:
                 if item.find(pattern) != -1:
                     return True
@@ -127,7 +129,7 @@ class BaseObject:
         else:
             pattern_obj = re.compile(pattern,re.IGNORECASE)
         for item in self.get_text_data_list():
-            if pattern_obj.match(item):
+            if item and pattern_obj.match(item):
                 return True
 
         # Run through child objects
@@ -521,10 +523,13 @@ class SourceNote(BaseObject,NoteBase):
         @param new_handle: The source handle to replace the old one with.
         @type new_handle: str
         """
-        while old_handle in self.source_list:
-            ix = self.source_list.index(old_handle)
-            self.source_list[ix] = new_handle
-
+        refs_list = [ src_ref.ref for src_ref in self.source_list ]
+        n_replace = refs_list.count(old_handle)
+        for ix_replace in xrange(n_replace):
+            ix = refs_list.index(old_handle)
+            self.source_list[ix].ref = new_handle
+            refs_list.pop(ix)
+            
         for item in self.get_sourcref_child_list():
             item.replace_source_references(old_handle,new_handle)
 
@@ -618,9 +623,12 @@ class MediaBase:
         @param new_handle: The media handle to replace the old one with.
         @type new_handle: str
         """
-        while old_handle in self.media_list:
-            ix = self.media_list.index(old_handle)
-            self.media_list[ix] = new_handle
+        refs_list = [ media_ref.ref for media_ref in self.media_list ]
+        n_replace = refs_list.count(old_handle)
+        for ix_replace in xrange(n_replace):
+            ix = refs_list.index(old_handle)
+            self.media_list[ix].ref = new_handle
+            refs_list.pop(ix)
 
 class DateBase:
     """
@@ -1038,7 +1046,7 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.nickname]
+        return [self.nickname,self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -1768,6 +1776,15 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
             if self.lds_seal and self.lds_seal.place == old_handle:
                 self.lds_seal.place = new_handle
 
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.gramps_id]
+
     def get_text_data_child_list(self):
         """
         Returns the list of child objects that may carry textual data.
@@ -2119,7 +2136,7 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.description,self.name,self.cause,self.get_date()]
+        return [self.description,self.name,self.cause,self.get_date(),self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -2394,7 +2411,7 @@ class Place(PrimaryObject,SourceNote,MediaBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.long,self.lat,self.title]
+        return [self.long,self.lat,self.title,self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -2653,7 +2670,7 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.path,self.mime,self.desc,self.get_date()]
+        return [self.path,self.mime,self.desc,self.get_date(),self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -2757,7 +2774,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.title,self.author,self.pubinfo,self.abbrev]
+        return [self.title,self.author,self.pubinfo,self.abbrev,self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -2939,7 +2956,7 @@ class LdsOrd(SourceNote,DateBase,PlaceBase):
         if self.place:
             return [('Place',self.place)]
         else:
-        	return []
+            return []
 
     def get_handle_referents(self):
         """
@@ -3879,7 +3896,7 @@ class Witness(BaseObject,PrivacyBase):
         if self.type == Event.ID:
             return [('Person',self.val)]
         else:
-        	return []
+            return []
 
     def set_type(self,type):
         self.type = type
@@ -4035,6 +4052,8 @@ class GenderStats:
         return (0, 0, 0)
 
     def count_person (self, person, db, undo = 0):
+        if not person:
+            return
         # Let the Person do their own counting later
         person.db = db
 
