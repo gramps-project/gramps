@@ -1,3 +1,6 @@
+2005-05-24  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/PHPGedViewConnector.py: Enhanced version.
+	
 2005-05-23  Alex Roitman  <shura@gramps-project.org>
 	* various: merge changes made in gramps20 branch with main trunk.
 
