@@ -1,3 +1,11 @@
+2005-05-25  Alex Roitman  <shura@gramps-project.org>
+	* src/EditSource.py (__init__): set cursor to WATCH before displaying
+	references; call display_references when idle;
+	(display_references): set cursor to LEFT_PTR when done.
+	* src/ListModel.py (__init__): Typo.
+	* src/Utils.py (bold_label,unbold_label): make work with both
+	labels and their parent containers.
+
 2005-05-24  Don Allingham  <don@gramps-project.org>
 	* various: CVS conflict resolution
 
