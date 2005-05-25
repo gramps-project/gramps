@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,18 +27,24 @@ and directly use class members. For this reason, care needs to be taken
 to make sure these remain in sync with the rest of the design.
 """
 
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
 import locale
 
 #-------------------------------------------------------------------------
 #
-# Imported Modules
+# GRAMPS Modules
 #
 #-------------------------------------------------------------------------
 import Date
+from NameDisplay import displayer as _nd
 
 #-------------------------------------------------------------------------
 #
-# Functions
+# Constants
 #
 #-------------------------------------------------------------------------
 
@@ -51,7 +57,6 @@ for i in _plist:
 class Sort:
     def __init__(self,database):
         self.database = database
-
 
     def by_last_name(self,first_id,second_id):
         """Sort routine for comparing two last names. If last names are equal,
@@ -74,6 +79,19 @@ class Sort:
                 return locale.strcoll(ffn, sfn)
         else:
             return locale.strcoll(fsn, ssn)
+
+    def by_sorted_name(self,first_id,second_id):
+        """
+        Sort routine for comparing two displayed names.
+        """
+
+        first = self.database.get_person_from_handle(first_id)
+        second = self.database.get_person_from_handle(second_id)
+
+        name1 = _nd.sorted(first)
+        name2 = _nd.sorted(second)
+
+        return locale.strcoll(name1,name2)
 
     def by_birthdate(self,first_id,second_id):
         """Sort routine for comparing two people by birth dates. If the birth dates

@@ -1,6 +1,11 @@
 2005-05-25  Alex Roitman  <shura@gramps-project.org>
 	* src/WriteGedcom.py (write_person): Typo.
 
+	* src/NameDisplay.py (sorted): Use sorted name, not display name flag.
+	* src/Sort.py (by_sorted_name): Add method.
+	* src/WebPage (dump_index): Proper sorting, for both last name
+	sections and the names within each section.	
+
 2005-05-25  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/plugins/ScratchPad.py: disabled search because it does not do 
 	  what the user expects.
