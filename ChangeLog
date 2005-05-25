@@ -1,4 +1,8 @@
 2005-05-25  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/plugins/ScratchPad.py: disabled search because it does not do 
+	  what the user expects.
+	
+2005-05-25  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/plugins/ScratchPad.py: rename on_scratch_pad_delete_event for consistency
         * src/plugins/scratchpad.glade: add on_scratch_pad_delete_event to fix bug 
 	  when window is close using the window manager close button.
