@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Wed May 18 21:32:32 2005\n"
-"PO-Revision-Date: 2005-05-10 21:41+0200\n"
+"PO-Revision-Date: 2005-05-25 16:53+0200\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -286,7 +286,7 @@ msgstr "Islamsk"
 
 #: DateDisplay.py:296
 msgid "Month Day, Year"
-msgstr ""
+msgstr "Måned Dag, År"
 
 #: DateDisplay.py:296
 #, fuzzy
@@ -295,11 +295,11 @@ msgstr "Loddrett"
 
 #: DateDisplay.py:296
 msgid "YYYY-MM-DD (ISO)"
-msgstr ""
+msgstr "ÅÅÅÅ-MM-DD (ISO)"
 
 #: DateDisplay.py:297
 msgid "DAY MON YEAR"
-msgstr ""
+msgstr "DAG MÅN ÅR"
 
 #: DateDisplay.py:297
 #, fuzzy
@@ -308,7 +308,7 @@ msgstr "Dødsår"
 
 #: DateDisplay.py:297
 msgid "MON DAY, YEAR"
-msgstr ""
+msgstr "MÅN DAG, ÅR"
 
 #: DateEdit.py:74 DateEdit.py:83
 msgid "Regular"
@@ -3281,8 +3281,9 @@ msgid "Source Information"
 msgstr "Kilde-informasjon"
 
 #: StartupDialog.py:140
+#, fuzzy
 msgid "Broken GNOME libraries"
-msgstr ""
+msgstr "Utdatterte GNOME biblioteker"
 
 #: StartupDialog.py:141
 msgid "GRAMPS has detected an incomplete gnome-python library, which is required by GRAMPS. This is frequently seen on Slackware systems, due to the lack of support for GNOME in the Slackware environment. If you are running Slackware, this problem can be resolved by installing Dropline GNOME (http://www.dropline.net/gnome/). If you are running another distribution, please check your GNOME configuration."
@@ -8375,11 +8376,11 @@ msgstr "Personlig informasjon mangler"
 
 #: plugins/StatisticsChart.py:527
 msgid "%(genders)s born %(year_from)04d-%(year_to)04d: %(chart_title)s"
-msgstr ""
+msgstr "%(genders)s født %(year_from)04d-%(year_to)04d: %(chart_title)s"
 
 #: plugins/StatisticsChart.py:529
 msgid "Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s"
-msgstr ""
+msgstr "Personer født %(year_from)04d-%(year_to)04d: %(chart_title)s"
 
 #: plugins/StatisticsChart.py:803
 msgid "The style used for the items and values."
@@ -8454,8 +8455,9 @@ msgid "Statistics Chart"
 msgstr "Statistikkdiagram"
 
 #: plugins/StatisticsChart.py:961
+#, fuzzy
 msgid "Generates statistical bar and pie charts of the people in the database."
-msgstr ""
+msgstr "Lager statistiske stolpe- og kake-diagrammer over personene i databasen."
 
 #: plugins/Summary.py:111
 msgid "Number of individuals"
@@ -9459,3 +9461,4 @@ msgstr "<b>Verdier</b>"
 
 #~ msgid "This tool has not yet been brought up to date after transition to the database, sorry."
 #~ msgstr "Dette verktøyet har ikke blitt oppdatert til å takle det nye database-formatet."
+
