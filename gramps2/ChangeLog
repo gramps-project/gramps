@@ -1,3 +1,6 @@
+2005-05-25  Alex Roitman  <shura@gramps-project.org>
+	* src/WriteGedcom.py (write_person): Typo.
+
 2005-05-25  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/plugins/ScratchPad.py: disabled search because it does not do 
 	  what the user expects.
