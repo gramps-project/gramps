@@ -573,6 +573,11 @@ class ScratchPadListView:
         
         self.treetips = TreeTips.TreeTips(self._widget,2,True)
 
+	# Set the column that inline searching will use.
+        # The search does not appear to work properly so I am disabling it for now.
+        self._widget.set_enable_search(False)
+        #self._widget.set_search_column(1)
+
         self._widget.drag_dest_set(gtk.DEST_DEFAULT_ALL,
                                    (ScratchPadListView.LOCAL_DRAG_TARGET,) + \
                                    DdTargets.all_targets(),
@@ -793,7 +798,7 @@ class ScratchPadWindow:
             "on_clear_clicked": self.on_clear_clicked,
             "on_help_clicked": self.on_help_clicked,
             "on_objectlist_delete_event": self.on_delete_event,
-            "on_scratchPad_delete_event": self.on_delete_event
+            "on_scratch_pad_delete_event": self.on_delete_event
             })
 
         self.clear_all_btn.connect_object('clicked', gtk.ListStore.clear, ScratchPadWindow.otree)
