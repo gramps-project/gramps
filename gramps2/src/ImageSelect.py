@@ -1243,6 +1243,7 @@ class DeleteMediaQuery:
         
     def query_response(self):
         trans = self.db.transaction_begin()
+        self.db.disable_signals()
         
         (person_list,family_list,event_list,
                 place_list,source_list) = self.the_lists
@@ -1282,6 +1283,7 @@ class DeleteMediaQuery:
             source.set_media_list(new_list)
             self.db.commit_source(source,trans)
 
+        self.db.enable_signals()
         self.db.remove_object(self.media_handle,trans)
         self.db.transaction_commit(trans,_("Remove Media Object"))
 

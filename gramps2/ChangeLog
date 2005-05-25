@@ -1,3 +1,13 @@
+2005-05-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/EditSource.py (DelSrcQuery.query_response),
+	src/EditPlace.py (DeletePlaceQuery.query_response),
+	src/ImageSelect.py (DeleteMediaQuery.query_response): Block
+	signals while removing the references of the to be deleted
+	object to get much more speed.
+	* src/plugins/TestcaseGenerator.py: Add place, media and source
+	references.
+	* src/SourceView.py (button_press): Handle case of no selection.
+
 2005-05-25  Alex Roitman  <shura@gramps-project.org>
 	* src/WriteGedcom.py (write_person): Typo.
 

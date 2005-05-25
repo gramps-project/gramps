@@ -420,6 +420,7 @@ class DelSrcQuery:
 
     def query_response(self):
         trans = self.db.transaction_begin()
+        self.db.disable_signals()
         
         (person_list,family_list,event_list,
             place_list,source_list,media_list) = self.the_lists
@@ -456,6 +457,7 @@ class DelSrcQuery:
             media.remove_source_references(src_handle_list)
             self.db.commit_media_object(media,trans)
 
+        self.db.enable_signals()
         self.db.remove_source(self.source.get_handle(),trans)
         self.db.transaction_commit(
             trans,_("Delete Source (%s)") % self.source.get_title())

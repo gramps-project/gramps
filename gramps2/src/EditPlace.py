@@ -577,9 +577,9 @@ class DeletePlaceQuery:
         
     def query_response(self):
         trans = self.db.transaction_begin()
+        self.db.disable_signals()
         
         place_handle = self.place.get_handle()
-        self.db.remove_place(place_handle,trans)
 
         for handle in self.db.get_person_handles(sort_handles=False):
             person = self.db.get_person_from_handle(handle)
@@ -599,5 +599,7 @@ class DeletePlaceQuery:
                 event.remove_handle_references('Place',place_handle)
                 self.db.commit_event(event,trans)
 
+        self.db.enable_signals()
+        self.db.remove_place(place_handle,trans)
         self.db.transaction_commit(trans,
                                    _("Delete Place (%s)") % self.place.get_title())
