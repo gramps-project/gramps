@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Wed May 18 21:32:32 2005\n"
-"PO-Revision-Date: 2005-05-25 16:53+0200\n"
+"PO-Revision-Date: 2005-05-25 17:18+0200\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgstr "En person kan ikke angis som sin egen ektefelle"
 #: AddSpouse.py:263
 #, fuzzy
 msgid "Spouse is a parent"
-msgstr "<b>_Ektefellens foreldre</b>"
+msgstr "Ektefellen er en forelder"
 
 #: AddSpouse.py:264
 #, fuzzy
@@ -93,12 +93,12 @@ msgstr "Kjønnet til personen er for øyeblikket ukjent. Vanligvis er dette en fei
 #: AddSpouse.py:268 AddSpouse.py:289
 #, fuzzy
 msgid "Proceed with adding"
-msgstr "Avslutt _uten å lagre"
+msgstr "Fortsett med å legge til"
 
 #: AddSpouse.py:268 AddSpouse.py:289
 #, fuzzy
 msgid "Return to dialog"
-msgstr "Gå tilbake til vindu"
+msgstr "Gå tilbake til dialogen"
 
 #: AddSpouse.py:280
 msgid "The spouse is already present in this family"
@@ -107,7 +107,7 @@ msgstr "Ektefellen er allerede tilstede i denne familien"
 #: AddSpouse.py:284
 #, fuzzy
 msgid "Spouse is a child"
-msgstr "Feil ved valg av barn"
+msgstr "Ektefellen er et barn"
 
 #: AddSpouse.py:285
 #, fuzzy
@@ -289,9 +289,8 @@ msgid "Month Day, Year"
 msgstr "Måned Dag, År"
 
 #: DateDisplay.py:296
-#, fuzzy
 msgid "Numerical"
-msgstr "Loddrett"
+msgstr "Numerisk"
 
 #: DateDisplay.py:296
 msgid "YYYY-MM-DD (ISO)"
@@ -302,9 +301,8 @@ msgid "DAY MON YEAR"
 msgstr "DAG MÅN ÅR"
 
 #: DateDisplay.py:297
-#, fuzzy
 msgid "Day Month Year"
-msgstr "Dødsår"
+msgstr "Dag Måned År"
 
 #: DateDisplay.py:297
 msgid "MON DAY, YEAR"
@@ -1100,7 +1098,7 @@ msgstr "ID:"
 #: GenericFilter.py:165
 #, fuzzy
 msgid "Relationship path between <persons>"
-msgstr "Relasjonstre mellem to personer"
+msgstr "Relasjonssti mellem to personer <persons>"
 
 #: GenericFilter.py:166
 msgid "Relationship filters"
@@ -1114,7 +1112,7 @@ msgstr "Gjelder for forfedrene til to personer tilbake til en felles forfar. Det
 #: GenericFilter.py:258
 #, fuzzy
 msgid "People with <Id>"
-msgstr "Personer med barn"
+msgstr "Personer med <Id>"
 
 #: GenericFilter.py:259
 #, fuzzy
@@ -1133,7 +1131,7 @@ msgstr "Gjelder standardpersonen"
 #: GenericFilter.py:291
 #, fuzzy
 msgid "Bookmarked people"
-msgstr "Sammenligne personer"
+msgstr "Personer med bokmerke"
 
 #: GenericFilter.py:293
 msgid "Matches the people on the bookmark list"
@@ -1142,7 +1140,7 @@ msgstr "Gjelder personer i lista over bokmerker"
 #: GenericFilter.py:308
 #, fuzzy
 msgid "People with complete records"
-msgstr "Personer med ufullstendige navn"
+msgstr "Personer med fullstendige opplysninger"
 
 #: GenericFilter.py:310
 msgid "Matches all people whose records are complete"
@@ -1159,12 +1157,12 @@ msgstr "Gjelder alle kvinner"
 #: GenericFilter.py:338 gramps_main.py:967
 #, fuzzy
 msgid "People with unknown gender"
-msgstr "Personer der informasjon om ekteskap mangler"
+msgstr "Personer med ukjent kjønn"
 
 #: GenericFilter.py:340
 #, fuzzy
 msgid "Matches all people with unknown gender"
-msgstr "Gjelder alle personer med komplett informasjon"
+msgstr "Gjelder alle personer med ukjent kjønn"
 
 #: GenericFilter.py:354 GenericFilter.py:401 GenericFilter.py:647
 #: GenericFilter.py:699 plugins/FilterEditor.py:692
@@ -1174,7 +1172,7 @@ msgstr "Inkludert:"
 #: GenericFilter.py:355
 #, fuzzy
 msgid "Descendants of <person>"
-msgstr "Etterkommere av %s"
+msgstr "Etterkommere av <person>"
 
 #: GenericFilter.py:356 GenericFilter.py:403 GenericFilter.py:445
 #: GenericFilter.py:486 GenericFilter.py:605
@@ -1194,7 +1192,7 @@ msgstr "Filternavn:"
 #: GenericFilter.py:402
 #, fuzzy
 msgid "Descendants of <filter> match"
-msgstr "Er en etterkommer av et filtertreff"
+msgstr "Etterkommer av <filter> filtertreff"
 
 #: GenericFilter.py:404
 #, fuzzy
@@ -1209,7 +1207,7 @@ msgstr "Antall generasjoner:"
 #: GenericFilter.py:444
 #, fuzzy
 msgid "Descendants of <person> not more than <N> generations away"
-msgstr "Er en etterkommer av en person ikke mer enn N generasjoner unna"
+msgstr "Etterkommer av <person> som ikke er mer enn N generasjoner unna"
 
 #: GenericFilter.py:446
 msgid "Matches people that are descendants of a specified person not more than N generations away"
@@ -1218,7 +1216,7 @@ msgstr "Gjelder personer som er etterkommere av en bestemt person ikke mer enn N
 #: GenericFilter.py:485
 #, fuzzy
 msgid "Descendants of <person> at least <N> generations away"
-msgstr "Er en etterkommer av en person minst N generasjoner unna"
+msgstr "Etterkommer av <person>, minst <N> generasjoner unna"
 
 #: GenericFilter.py:487
 msgid "Matches people that are descendants of a specified person at least N generations away"
@@ -1227,7 +1225,7 @@ msgstr "Gjelder de som er etterkommere av en bestemt person minst N generasjoner
 #: GenericFilter.py:525
 #, fuzzy
 msgid "Children of <filter> match"
-msgstr "Er et barn av et filtertreff"
+msgstr "Barn av <filter> filtertreff"
 
 #: GenericFilter.py:526 GenericFilter.py:564 GenericFilter.py:840
 #: GenericFilter.py:1065 GenericFilter.py:1366 GenericFilter.py:1390
@@ -1243,17 +1241,17 @@ msgstr "Gjelder personen som er barn av noen som er funnet ved hjelp av et filte
 #: GenericFilter.py:563
 #, fuzzy
 msgid "Siblings of <filter> match"
-msgstr "Er et søskenbarn av filtertreff"
+msgstr "Er et søsken av <filter> filtertreff"
 
 #: GenericFilter.py:565
 #, fuzzy
 msgid "Matches siblings of anybody matched by a filter"
-msgstr "Gjelder personen som er søskenbarn av noen som er funnet ved hjelp av et filter"
+msgstr "Gjelder personen som er søsken av noen som er funnet ved hjelp av et filter"
 
 #: GenericFilter.py:604
 #, fuzzy
 msgid "Descendant family members of <person>"
-msgstr "Er etterkommer og familiemedlem av"
+msgstr "Etterkommende familiemedlem av <person>"
 
 #: GenericFilter.py:606
 msgid "Matches people that are descendants or the spouse of a descendant of a specified person"
@@ -1262,7 +1260,7 @@ msgstr "Gjelder personer som er etterkommere, eller ektefellen til en etterkomme
 #: GenericFilter.py:648
 #, fuzzy
 msgid "Ancestors of <person>"
-msgstr "Forfedre av %s"
+msgstr "Forfedre av <person>"
 
 #: GenericFilter.py:649 GenericFilter.py:701 GenericFilter.py:744
 #: GenericFilter.py:793 GenericFilter.py:877 GenericFilter.py:922
@@ -1277,7 +1275,7 @@ msgstr "Gjelder personer som er forfedrene til en bestemt person"
 #: GenericFilter.py:700
 #, fuzzy
 msgid "Ancestors of <filter> match"
-msgstr "Er en stamfar av et filtertreff"
+msgstr "Ane av <filter> filtertreff"
 
 #: GenericFilter.py:702
 #, fuzzy
@@ -1287,7 +1285,7 @@ msgstr "Gjelder personer som er forfedre av noen som er funnet ved hjelp av et f
 #: GenericFilter.py:743
 #, fuzzy
 msgid "Ancestors of <person> not more than <N> generations away"
-msgstr "Er en stamfar av en person ikke mer enn N generasjoner unna"
+msgstr "Ane av <person>, ikke mer enn <N> generasjoner unna"
 
 #: GenericFilter.py:745
 msgid "Matches people that are ancestors of a specified person not more than N generations away"
@@ -1296,7 +1294,7 @@ msgstr "Gjelder personer som er forfedre av en bestemt person ikke mer enn N gen
 #: GenericFilter.py:792
 #, fuzzy
 msgid "Ancestors of <person> at least <N> generations away"
-msgstr "Er en stamfar av en person minst N generasjoner unna"
+msgstr "Ane av <person>, minst <N> generasjoner unna"
 
 #: GenericFilter.py:794
 msgid "Matches people that are ancestors of a specified person at least N generations away"
@@ -1305,7 +1303,7 @@ msgstr "Gjelder personer som er forfedre av en bestemt person minst N generasjon
 #: GenericFilter.py:839
 #, fuzzy
 msgid "Parents of <filter> match"
-msgstr "Er en forelder av et filtertreff"
+msgstr "Forelder av <filter> filtertreff"
 
 #: GenericFilter.py:841
 #, fuzzy
@@ -1315,7 +1313,7 @@ msgstr "Gjelder personer som er forfedre av noen som er funnet ved hjelp av et f
 #: GenericFilter.py:876
 #, fuzzy
 msgid "People with a common ancestor with <person>"
-msgstr "Personer med samme forfedre som %s"
+msgstr "Personer med samme forfedre som <person>"
 
 #: GenericFilter.py:878
 msgid "Matches people that have a common ancestor with a specified person"
@@ -1324,7 +1322,7 @@ msgstr "Gjelder personer som har en felles forfader med en bestemt person"
 #: GenericFilter.py:919
 #, fuzzy
 msgid "People with a common ancestor with <filter> match"
-msgstr "Har en felles stamfar med et filtertreff"
+msgstr "Personer som har en felles stamfar med <filter> filtertreff"
 
 #: GenericFilter.py:920
 #, fuzzy
@@ -1364,7 +1362,7 @@ msgstr "Beskrivelse:"
 #: GenericFilter.py:964
 #, fuzzy
 msgid "People with the personal <event>"
-msgstr "Har person-hendelsen"
+msgstr "Personer som har person-hendelsen <event>"
 
 #: GenericFilter.py:965
 #, fuzzy
@@ -1384,7 +1382,7 @@ msgstr "Familie-hendelse:"
 #: GenericFilter.py:1014
 #, fuzzy
 msgid "People with the family <event>"
-msgstr "Har familie-hendelsen"
+msgstr "Personer med familie-hendelsen <event>"
 
 #: GenericFilter.py:1015
 #, fuzzy
@@ -1406,7 +1404,7 @@ msgstr "Antall barn:"
 #: GenericFilter.py:1063
 #, fuzzy
 msgid "People with the <relationships>"
-msgstr "Har relasjonene"
+msgstr "Personer med <relationships>"
 
 #: GenericFilter.py:1064
 #, fuzzy
@@ -1416,7 +1414,7 @@ msgstr "Gjelder personen som har en bestemt relasjon"
 #: GenericFilter.py:1113
 #, fuzzy
 msgid "People with the <birth data>"
-msgstr "Personer uten fødselsdato"
+msgstr "Personer med <birth data>"
 
 #: GenericFilter.py:1114
 #, fuzzy
@@ -1426,7 +1424,7 @@ msgstr "Gjelder personen som har fødsel av en bestemt verdi"
 #: GenericFilter.py:1153
 #, fuzzy
 msgid "People with the <death data>"
-msgstr "Personer uten fødselsdato"
+msgstr "Personer med <death date>"
 
 #: GenericFilter.py:1154
 #, fuzzy
@@ -1445,7 +1443,7 @@ msgstr "Personlig egenskap:"
 #: GenericFilter.py:1193
 #, fuzzy
 msgid "People with the personal <attribute>"
-msgstr "Har den personlige egenskapen"
+msgstr "Persone med den personlige <attribut>"
 
 #: GenericFilter.py:1194
 #, fuzzy
@@ -1969,7 +1967,7 @@ msgstr "Fjern anker"
 
 #: PedView.py:629 plugins/WebPage.py:713
 msgid "Siblings"
-msgstr "Søskenbarn"
+msgstr "Søsken"
 
 #: PedView.py:659 plugins/FamilyGroup.py:400 plugins/IndivComplete.py:295
 #: plugins/IndivSummary.py:179 plugins/NavWebPage.py:739
@@ -8955,7 +8953,7 @@ msgstr "Stil som blir brukt på overskriften for bildedelen."
 
 #: plugins/WebPage.py:1616
 msgid "The style used for the header for the siblings section."
-msgstr "Stilen brukt til overskrift for søskenbarn-seksjonen."
+msgstr "Stilen brukt til overskrift for søsken-seksjonen."
 
 #: plugins/WebPage.py:1623
 msgid "The style used for the header for the marriages and children section."
