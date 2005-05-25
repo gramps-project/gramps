@@ -292,8 +292,6 @@ class GrampsBSDDB(GrampsDbBase):
         vals.sort()
         return vals
 
-<<<<<<< GrampsBSDDB.py
-=======
     def remove_person(self,handle,transaction):
         if not self.readonly and handle and str(handle) in self.person_map:
             person = self.get_person_from_handle(handle)
@@ -342,7 +340,6 @@ class GrampsBSDDB(GrampsDbBase):
                 self.emit('media-delete',([handle],))
             self.media_map.delete(str(handle))
 
->>>>>>> 1.41.2.5
     def get_person_from_gramps_id(self,val):
         """finds a Person in the database from the passed gramps' ID.
         If no such Person exists, a new Person is added to the database."""
@@ -754,3 +751,4 @@ class GrampsBSDDB(GrampsDbBase):
             if val[1] != 6:
                 order.append(val)
         self.set_media_column_order(order)
+
