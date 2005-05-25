@@ -94,8 +94,11 @@ class ScratchPadWrapper(object):
     def pack(self):
         return str(self._obj)
 
-class ScratchPadGrampsTypeWrapper(ScratchPadWrapper):
+    def is_valid(self):
+        return True
 
+class ScratchPadGrampsTypeWrapper(ScratchPadWrapper):
+        
     def __init__(self,model,obj):
         ScratchPadWrapper.__init__(self,model,obj)
 
@@ -107,6 +110,21 @@ class ScratchPadGrampsTypeWrapper(ScratchPadWrapper):
 
     def pack(self):
         return self._pickle
+
+    def is_valid(self):
+        valid_func_map = {'Person': self._db.get_person_from_handle,
+                          'Family': self._db.get_family_from_handle,
+                          'Event':  self._db.get_event_from_handle,
+                          'Place': self._db.get_place_from_handle,
+                          'MediaObject': self._db.get_object_from_handle,
+                          'Source': self._db.get_source_from_handle}
+
+        for (classname,handle) in self._obj.get_referenced_handles_recursively():
+            if classname in valid_func_map.keys():
+                if not valid_func_map[classname](handle):
+                    return False
+            
+        return True
 
 
 class ScratchPadAddress(ScratchPadGrampsTypeWrapper):
@@ -533,6 +551,27 @@ class ScratchPadListView:
         self.database_changed(self._gramps_model.db)
         self._gramps_model.connect('database-changed', self.database_changed)
 
+        db_signals = (
+            'person-update',
+            'person-delete',
+            'person-rebuild',
+            'family-update',
+            'family-delete',
+            'family-rebuild',
+            'source-update',
+            'source-delete',
+            'source-rebuild',
+            'place-update',
+            'place-delete',
+            'place-rebuild',
+            'media-update',
+            'media-delete',
+            'media-rebuild'
+            )
+
+        for signal in db_signals:
+            self._gramps_model.db.connect(signal,self.remove_invalid_objects)
+            
         self._widget = widget
 
         self._target_type_to_wrapper_class_map = {}
@@ -588,6 +627,13 @@ class ScratchPadListView:
     def database_changed(self,db):
         self._db = db
 
+    def remove_invalid_objects(self,dummy=None):
+        model = self._widget.get_model()
+
+        for o in model:
+            if not o.is_valid():
+                model.remove(o)
+    
     # Method to manage the wrapper classes.
     
     def register_wrapper_classes(self):
@@ -793,7 +839,7 @@ class ScratchPadWindow:
             "on_clear_clicked": self.on_clear_clicked,
             "on_help_clicked": self.on_help_clicked,
             "on_objectlist_delete_event": self.on_delete_event,
-            "on_scratchPad_delete_event": self.on_delete_event
+            "on_scratch_pad_delete_event": self.on_delete_event
             })
 
         self.clear_all_btn.connect_object('clicked', gtk.ListStore.clear, ScratchPadWindow.otree)
