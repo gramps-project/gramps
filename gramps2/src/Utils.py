@@ -403,20 +403,32 @@ def search_for(name):
 #
 #-------------------------------------------------------------------------
 def bold_label(label):
-    clist = label.get_children()
-    text = unicode(clist[1].get_text())
-    clist[0].show()
-    clist[1].set_text("<b>%s</b>" % text )
-    clist[1].set_use_markup(True)
+    try:
+        clist = label.get_children()
+        text = unicode(clist[1].get_text())
+        clist[0].show()
+        clist[1].set_text("<b>%s</b>" % text )
+        clist[1].set_use_markup(True)
+    except AttributeError:
+        text = unicode(label.get_text())
+        label.set_text("<b>%s</b>" % text )
+        label.set_use_markup(1)
 
 def unbold_label(label):
-    clist = label.get_children()
-    text = unicode(clist[1].get_text())
-    text = text.replace('<b>','')
-    text = text.replace('</b>','')
-    clist[0].hide()
-    clist[1].set_text(text)
-    clist[1].set_use_markup(False)
+    try:
+        clist = label.get_children()
+        text = unicode(clist[1].get_text())
+        text = text.replace('<b>','')
+        text = text.replace('</b>','')
+        clist[0].hide()
+        clist[1].set_text(text)
+        clist[1].set_use_markup(False)
+    except AttributeError:
+        text = unicode(label.get_text())
+        text = text.replace('<b>','')
+        text = text.replace('</b>','')
+        label.set_text(text)
+        label.set_use_markup(0)
 
 #-------------------------------------------------------------------------
 #
