@@ -225,7 +225,6 @@ class EditPerson:
 
         # event display
 
-<<<<<<< EditPerson.py
         self.event_box = ListBox.EventListBox(
             self, self.person, self.event_list, events_label,
             [event_add_btn,event_edit_btn,event_delete_btn])
@@ -245,53 +244,6 @@ class EditPerson:
         self.url_box = ListBox.UrlListBox(
             self, self.person, self.web_list, web_label,
             [web_add_btn, web_edit_btn, web_delete_btn])
-=======
-        event_default = [ 'Event', 'Description', 'Date', 'Place' ]
-        self.event_trans = TransTable.TransTable(event_default)
-        evalues = {
-            'Event'       : (_('Event'),-1,150),
-            'Description' : (_('Description'),-1,150),
-            'Date'        : (_('Date'),-1,100),
-            'Place'       : (_('Place'),-1,100)
-            }
-
-        #if not self.db.readonly:
-        #    values = self.db.metadata.get('event_order',event_default)
-        #else:
-        values = event_default
-
-        etitles = []
-        for val in values:
-            etitles.append(evalues[val])
-            
-        self.etree = ListModel.ListModel(self.event_list,etitles,
-                                         self.on_event_select_row,
-                                         self.on_event_update_clicked)
-
-        # attribute display
-        atitles = [(_('Attribute'),-1,150),(_('Value'),-1,150)]
-        self.atree = ListModel.ListModel(self.attr_list,atitles,
-                                         self.on_attr_select_row,
-                                         self.on_update_attr_clicked)
-                                         
-        # address display
-        ptitles = [(_('Date'),-1,150),(_('Address'),-1,150)]
-        self.ptree = ListModel.ListModel(self.addr_list, ptitles,
-                                         self.on_addr_select_row,
-                                         self.on_update_addr_clicked)
-
-        # name display
-        ntitles = [(_('Name'),-1,250),(_('Type'),-1,100)]
-        self.ntree = ListModel.ListModel(self.name_list,ntitles,
-                                         self.on_name_select_row)
-        self.ntree.tree.connect('event',self.aka_double_click)
-
-        # web display
-        wtitles = [(_('Path'),-1,250),(_('Description'),-1,100)]
-        self.wtree = ListModel.ListModel(self.web_list,wtitles,
-                                         self.on_web_select_row,
-                                         self.on_update_url_clicked)
->>>>>>> 1.194.2.7
 
         self.place_list = self.pdmap.keys()
         self.place_list.sort()
@@ -680,75 +632,6 @@ class EditPerson:
     def set_lds_seal(self,obj):
         self.lds_sealing.set_status(obj.get_active())
 
-<<<<<<< EditPerson.py
-=======
-    def name_drag_data_get(self,widget, context, sel_data, info, time):
-        name = self.ntree.get_selected_objects()
-        if not name:
-            return
-        bits_per = 8; # we're going to pass a string
-        pickled = pickle.dumps(name[0]);
-        data = str((DdTargets.NAME.drag_type,self.person.get_handle(),pickled));
-        sel_data.set(sel_data.target, bits_per, data)
-
-    def name_drag_begin(self, context, a):
-        return
-        icon = self.ntree.get_icon()
-        t = self.ntree.tree
-        (x,y) = icon.get_size()
-        mask = gtk.gdk.Pixmap(self.window.window,x,y,1)
-        mask.draw_rectangle(t.get_style().white_gc, True, 0,0,x,y)
-        t.drag_source_set_icon(t.get_colormap(),icon,mask)
-
-    def name_drag_data_received(self,widget,context,x,y,sel_data,info,time):
-        row = self.ntree.get_row_at(x,y)
-        
-        if sel_data and sel_data.data:
-            exec 'data = %s' % sel_data.data
-            exec 'mytype = "%s"' % data[0]
-            exec 'person = "%s"' % data[1]
-            if mytype != DdTargets.NAME.drag_type:
-                return
-            elif person == self.person.get_handle():
-                self.move_element(self.nlist,self.ntree.get_selected_row(),row)
-            else:
-                foo = pickle.loads(data[2]);
-                for src in foo.get_source_references():
-                    base_handle = src.get_base_handle()
-                    newbase = self.db.get_source_from_handle(base_handle)
-                    src.set_base_handle(newbase.get_handle())
-
-                self.nlist.insert(row,foo)
-
-            self.lists_changed = True
-            self.redraw_name_list()
-
-    def ev_drag_data_received(self,widget,context,x,y,sel_data,info,time):
-        row = self.etree.get_row_at(x,y)
-        
-        if sel_data and sel_data.data:
-            exec 'data = %s' % sel_data.data
-            exec 'mytype = "%s"' % data[0]
-            exec 'person = "%s"' % data[1]
-            if mytype != DdTargets.EVENT.drag_type:
-                return
-            elif person == self.person.get_handle():
-                self.move_element(self.elist,self.etree.get_selected_row(),row)
-            else:
-                foo = pickle.loads(data[2]);
-                for src in foo.get_source_references():
-                    base_handle = src.get_base_handle()
-                    newbase = self.db.get_source_from_handle(base_handle)
-                    src.set_base_handle(newbase.get_handle())
-                place = foo.get_place_handle()
-                if place:
-                    foo.set_place_handle(place.get_handle())
-                self.elist.insert(row,foo.get_handle())
-
-            self.lists_changed = True
-            self.redraw_event_list()
-
->>>>>>> 1.194.2.7
     def move_element(self,list,src,dest):
         if src == -1:
             return
@@ -756,125 +639,6 @@ class EditPerson:
         list.remove(obj)
         list.insert(dest,obj)
 
-<<<<<<< EditPerson.py
-=======
-    def ev_drag_data_get(self,widget, context, sel_data, info, time):
-        ev = self.etree.get_selected_objects()
-        if not ev:
-            return
-        bits_per = 8; # we're going to pass a string
-        pickled = pickle.dumps(ev[0]);
-        data = str((DdTargets.EVENT.drag_type,self.person.get_handle(),pickled));
-        sel_data.set(sel_data.target, bits_per, data)
-
-    def ev_drag_begin(self, context, a):
-        return
-        icon = self.etree.get_icon()
-        t = self.etree.tree
-        (x,y) = icon.get_size()
-        mask = gtk.gdk.Pixmap(self.window.window,x,y,1)
-        mask.draw_rectangle(t.get_style().white_gc, True, 0,0,x,y)
-        t.drag_source_set_icon(t.get_colormap(),icon,mask)
-
-    def url_drag_data_received(self,widget,context,x,y,sel_data,info,time):
-        row = self.wtree.get_row_at(x,y)
-        
-        if sel_data and sel_data.data:
-            exec 'data = %s' % sel_data.data
-            exec 'mytype = "%s"' % data[0]
-            exec 'person = "%s"' % data[1]
-            if mytype != DdTargets.URL.drag_type:
-                return
-            elif person == self.person.get_handle():
-                self.move_element(self.ulist,self.wtree.get_selected_row(),row)
-            else:
-                foo = pickle.loads(data[2]);
-                self.ulist.append(foo)
-            self.lists_changed = True
-            self.redraw_url_list()
-
-    def url_drag_begin(self, context, a):
-        return
-
-    def url_drag_data_get(self,widget, context, sel_data, info, time):
-        ev = self.wtree.get_selected_objects()
-
-        if len(ev):
-            bits_per = 8; # we're going to pass a string
-            pickled = pickle.dumps(ev[0]);
-            data = str((DdTargets.URL.drag_type,self.person.get_handle(),pickled));
-            sel_data.set(sel_data.target, bits_per, data)
-
-    def at_drag_data_received(self,widget,context,x,y,sel_data,info,time):
-        row = self.atree.get_row_at(x,y)
-
-        if sel_data and sel_data.data:
-            exec 'data = %s' % sel_data.data
-            exec 'mytype = "%s"' % data[0]
-            exec 'person = "%s"' % data[1]
-            if mytype != DdTargets.ATTRIBUTE.drag_type:
-                return
-            elif person == self.person.get_handle():
-                self.move_element(self.alist,self.atree.get_selected_row(),row)
-            else:
-                foo = pickle.loads(data[2]);
-                for src in foo.get_source_references():
-                    base_handle = src.get_base_handle()
-                    newbase = self.db.get_source_from_handle(base_handle)
-                    src.set_base_handle(newbase.get_handle())
-                self.alist.append(foo)
-            self.lists_changed = True
-            self.redraw_attr_list()
-
-    def at_drag_begin(self, context, a):
-        return
-
-    def at_drag_data_get(self,widget, context, sel_data, info, time):
-        ev = self.atree.get_selected_objects()
-
-        if len(ev):
-            bits_per = 8; # we're going to pass a string
-            pickled = pickle.dumps(ev[0]);
-            data = str((DdTargets.ATTRIBUTE.drag_type,
-                        self.person.get_handle(),pickled));
-            sel_data.set(sel_data.target, bits_per, data)
-            
-    def ad_drag_data_received(self,widget,context,x,y,sel_data,info,time):
-        row = self.ptree.get_row_at(x,y)
-
-        if sel_data and sel_data.data:
-            exec 'data = %s' % sel_data.data
-            exec 'mytype = "%s"' % data[0]
-            exec 'person = "%s"' % data[1]
-            if mytype != DdTargets.ADDRESS.drag_type:
-                return
-            elif person == self.person.get_handle():
-                self.move_element(self.plist,self.ptree.get_selected_row(),row)
-            else:
-                foo = pickle.loads(data[2]);
-                for src in foo.get_source_references():
-                    base_handle = src.get_base_handle()
-                    newbase = self.db.get_source_from_handle(base_handle)
-                    src.set_base_handle(newbase.get_handle())
-                self.plist.insert(row,foo)
-                
-            self.lists_changed = True
-            self.redraw_addr_list()
-
-    def ad_drag_data_get(self,widget, context, sel_data, info, time):
-        ev = self.ptree.get_selected_objects()
-        
-        if len(ev):
-            bits_per = 8; # we're going to pass a string
-            pickled = pickle.dumps(ev[0]);
-            data = str((DdTargets.ADDRESS.drag_type,
-                        self.person.get_handle(),pickled));
-            sel_data.set(sel_data.target, bits_per, data)
-
-    def ad_drag_begin(self, context, a):
-        return
-
->>>>>>> 1.194.2.7
     def menu_changed(self,obj):
         self.ldsfam = self.lds_fam_list[obj.get_active()]
         
@@ -1513,4 +1277,5 @@ def build_combo(entry,strings):
         node = store.append()
         store.set(node,0,unicode(value))
     entry.set_model(store)
+
 

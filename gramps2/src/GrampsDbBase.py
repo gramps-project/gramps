@@ -1230,20 +1230,8 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Returns the MediaObject display common information stored in the
         database's metadata.
         """
-<<<<<<< GrampsDbBase.py
         default = [(1,1),(0,5),(0,6),(1,2),(1,3),(0,4)]
         return self._get_column_order(MEDIA_COL_KEY,default)
-=======
-        default = [(1,1),(0,5),(0,4),(1,2),(1,3)]
-        if self.metadata == None:
-            return default
-        else:
-            cols = self.metadata.get('media_columns',default)
-            if len(cols) != len(default):
-                return cols + default[len(cols):]
-            else:
-                return cols
->>>>>>> 1.53.2.3
 
 class Transaction:
     """
@@ -1342,4 +1330,5 @@ class Transaction:
         if self.last and self.first:
             return self.last - self.first + 1
         return 0
+
 
