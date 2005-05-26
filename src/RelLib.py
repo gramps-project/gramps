@@ -4024,6 +4024,69 @@ class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase):
         else:
             return False
 
+class EventRef:
+    """
+    Event reference class.
+
+    This class is for keeping information about how the person relates
+    to the refereneced event.
+    """
+
+    ROLE_CUSTOM = 0
+    ROLE_WITNESS = 1
+    ROLE_CLERGY = 2
+    ROLE_CELEBRANT = 3
+    ROLE_AIDE = 4
+    ROLE_BRIDE = 5
+    ROLE_GROOM = 6
+
+    def __init__(self,source=None):
+        """
+        Creates a new EventRef instance, copying from the source if present.
+        """
+        if source:
+            self.ref = source.ref
+            self.role_int = source.role_int
+            self.role_str = source.role_str
+        else:
+            self.ref = None
+            self.role_int = self.ROLE_CUSTOM
+            self.role_str = ""
+
+    def get_reference_handle(self):
+        """
+        Returns the handle of the referred Event object.
+        """
+        return self.ref
+
+    def set_reference_handle(self,handle):
+        """
+        Sets the handle of the referred Event object.
+        """
+        self.ref = handle
+
+    def get_role(self):
+        """
+        Returns the integer corresponding to the preset role.
+        If custom then the string is returned.
+        """
+        if self.role_int == self.ROLE_CUSTOM:
+            return self.role_str
+        else:
+            return self.role_int
+
+    def set_role(self,role):
+        """
+        Sets the role according to the given argument.
+        If integer, it is set as is. If string, it is recorded as custom role.
+        """
+        if type(role) == str:
+            self.role_int = self.ROLE_CUSTOM
+            self.role_str = role
+        elif type(role) == int:
+            self.role_int = role
+            self.role_str = ""
+
 class GenderStats:
     """
     Class for keeping track of statistics related to Given Name vs.
