@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Wed May 18 21:32:32 2005\n"
-"PO-Revision-Date: 2005-05-25 17:18+0200\n"
+"PO-Revision-Date: 2005-05-26 18:04+0200\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -1457,7 +1457,7 @@ msgstr "Familie-egenskap:"
 #: GenericFilter.py:1218
 #, fuzzy
 msgid "People with the family <attribute>"
-msgstr "Har familie-egenskapen"
+msgstr "Personer med familie <attribute>"
 
 #: GenericFilter.py:1219
 #, fuzzy
@@ -1485,7 +1485,7 @@ msgstr "Tittel:"
 #: GenericFilter.py:1248
 #, fuzzy
 msgid "People with the <name>"
-msgstr "Personer med ufullstendige navn"
+msgstr "Personer med <name>"
 
 #: GenericFilter.py:1249 GenericFilter.py:1282
 #, fuzzy
@@ -1499,7 +1499,7 @@ msgstr "Delstreng:"
 #: GenericFilter.py:1281
 #, fuzzy
 msgid "People matching the <name>"
-msgstr "Personer med ufullstendige navn"
+msgstr "Gjelder personer med <name>"
 
 #: GenericFilter.py:1299 gramps_main.py:992
 msgid "People with incomplete names"
@@ -1512,17 +1512,17 @@ msgstr "Gjelder personer som mangler for- eller etternavn"
 #: GenericFilter.py:1321
 #, fuzzy
 msgid "People matching the <filter>"
-msgstr "Velg filnavnet"
+msgstr "Gjelder personer med <filter>"
 
 #: GenericFilter.py:1322
 #, fuzzy
 msgid "Matches people macthed by the specified filter name"
-msgstr "Gjelder personen med et bestemt (del av et) navn"
+msgstr "Gjelder personen fra et bestemt filter"
 
 #: GenericFilter.py:1364
 #, fuzzy
 msgid "Spouses of <filter> match"
-msgstr "Er en ektefelle av et filtertreff"
+msgstr "Ektefelle av et <filter> treff"
 
 #: GenericFilter.py:1365
 #, fuzzy
@@ -1532,7 +1532,7 @@ msgstr "Gjelder personen som er gift med en som er funnet ved hjelp av et filter
 #: GenericFilter.py:1388 gramps_main.py:982
 #, fuzzy
 msgid "Adopted people"
-msgstr "Adoptert"
+msgstr "Adopterte personer"
 
 #: GenericFilter.py:1389
 #, fuzzy
@@ -1646,7 +1646,7 @@ msgstr "Regulært uttrykk:"
 #: GenericFilter.py:1620
 #, fuzzy
 msgid "People with records containing <substring>"
-msgstr "Gjelder personer med poster som inneholder tekst fra et treff på en delstreng"
+msgstr "Gjelder personer med poster som inneholder <substring>"
 
 #: GenericFilter.py:1621
 #, fuzzy
@@ -1660,7 +1660,7 @@ msgstr "Kilde ID:"
 #: GenericFilter.py:1786
 #, fuzzy
 msgid "People with the <source>"
-msgstr "Personer med barn"
+msgstr "Personer med <source>"
 
 #: GenericFilter.py:1788
 msgid "Matches people who have a particular source"
@@ -3284,8 +3284,9 @@ msgid "Broken GNOME libraries"
 msgstr "Utdatterte GNOME biblioteker"
 
 #: StartupDialog.py:141
+#, fuzzy
 msgid "GRAMPS has detected an incomplete gnome-python library, which is required by GRAMPS. This is frequently seen on Slackware systems, due to the lack of support for GNOME in the Slackware environment. If you are running Slackware, this problem can be resolved by installing Dropline GNOME (http://www.dropline.net/gnome/). If you are running another distribution, please check your GNOME configuration."
-msgstr ""
+msgstr "GRAMPS har oppdaget et ufulstendig gnome-python bibliotek, som kreves av GRAMPS. Dette er ofte sett på Slackware sytemer, grunnet den manglende støtten for GNOME i Slackware mijøet. Hvis du kjører Slackware, kan dette problemet løses ved å installere Dropline GNOME (http://www.dropline.net/gnome/). Hvis du kjører en annen distribusjon, vennligst kontroller din GNOME konfigurasjon."
 
 #: StartupDialog.py:160 gramps_main.py:157 gramps_main.py:160
 #: gramps_main.py:170
@@ -3372,8 +3373,9 @@ msgid "Configuration/Installation error"
 msgstr "Feil i oppsett"
 
 #: StartupDialog.py:278
+#, fuzzy
 msgid "The gconf schemas were not found. First, try executing 'pkill gconfd' and try starting gramps again. If this does not help then the schemas were not properly installed. If you have not done 'make install' or if you installed without being a root, this is most likely a cause of the problem. Please read the INSTALL file in the top-level source directory."
-msgstr ""
+msgstr "Gconf oppsettet ble ikke funnet. Prøv først å kjøre 'pkill gconfd', og prøv å starte GRAMPS igjen. Hvis dette ikke hjelper, er dette forde gconf oppsettet ikke ble installert riktig. Hvis du ikke har gjort 'make install' eller hvis du installerte uten å være root, så er dette mest sansynlig grunnen til problemet. Vennligst les INSTALL filen i topp katalogen for kilde treet."
 
 #: StartupDialog.py:291
 msgid "LDS extensions"
@@ -3894,8 +3896,9 @@ msgid "Graphics"
 msgstr "Grafikk"
 
 #: data/tips.xml:9
+#, fuzzy
 msgid "A range of dates can be given by using the format \"between January 4, 2000 and March 20, 2003\""
-msgstr ""
+msgstr "En dato rekke kan spesifiseres ved å bruke formatet \"mellom 4. januar 2004 og 20. mars 2003\" (Fungerer ikke enda.)"
 
 #: data/tips.xml:16
 msgid "In most cases double clicking on a name, source, place or media entry will bring up a window to allow you to edit the object. Note that the result can be dependent on context. For example, in the Family View clicking on a parent or child will bring up the relationship editor."
@@ -6163,17 +6166,17 @@ msgstr "Slektsløse personer"
 #: gramps_main.py:977
 #, fuzzy
 msgid "People with names containing..."
-msgstr "Personer med ufullstendige navn"
+msgstr "Personer med navn, som inneholder..."
 
 #: gramps_main.py:1042
 #, fuzzy
 msgid "People with records containing..."
-msgstr "Vilkårlig tekstpost som inneholder ..."
+msgstr "Personer med poster som inneholder..."
 
 #: gramps_main.py:1047
 #, fuzzy
 msgid "People with records matching regular expression..."
-msgstr "Vilkårlig tekstpost som passer regulæruttrykket ..."
+msgstr "Personer med poster som passer regulæruttrykket ..."
 
 #: gramps_main.py:1074 gramps_main.py:1097
 msgid "Cannot merge people."
@@ -6325,12 +6328,12 @@ msgstr "Eksport krever at en aktiv person er valgt. Velg en person og prøv igjen
 #: gramps_main.py:1919 gramps_main.py:1921
 #, fuzzy
 msgid "Could not create example database"
-msgstr "Kunne ikke lage %s"
+msgstr "Kunne ikke lage eksempel database"
 
 #: gramps_main.py:1898 gramps_main.py:1902 gramps_main.py:1906
 #, fuzzy
 msgid "The directory ~/.gramps/example could not be created."
-msgstr "Klarte ikke å lage rapport"
+msgstr "Klarte ikke å lage ~/.gramps/example"
 
 #: mergedata.glade:206
 msgid "Place 1"
@@ -8411,7 +8414,7 @@ msgstr "Personer født mellom"
 #: plugins/StatisticsChart.py:882
 #, fuzzy
 msgid "Check this if you want people who have no known birth date or year to be accounted also in the statistics."
-msgstr "Kryss av for denne for å inkludere personer uten fødselsdato eller år i statistikken."
+msgstr "Kryss av denne for å inkludere personer uten fødselsdato eller år i statistikken."
 
 #: plugins/StatisticsChart.py:883
 #, fuzzy
@@ -8433,7 +8436,7 @@ msgstr "Med færre elementer vil et kakediagram med forklaringer bli brukt i sted
 #: plugins/StatisticsChart.py:902
 #, fuzzy
 msgid "Min. bar char items"
-msgstr "Sorter diagramelementer fra"
+msgstr "Min. kakediagram antall"
 
 #: plugins/StatisticsChart.py:921
 msgid "Mark checkboxes to add charts with indicated data"
@@ -8442,7 +8445,7 @@ msgstr "Kryss av i sjekkboksene for å legge til diagrammer med valgte data"
 #: plugins/StatisticsChart.py:922 plugins/StatisticsChart.py:927
 #, fuzzy
 msgid "Chart Selection"
-msgstr "Valg av rapport"
+msgstr "Rapport valg"
 
 #: plugins/StatisticsChart.py:926
 msgid "Note that both biological and adopted children are taken into account."
@@ -8533,7 +8536,7 @@ msgstr "Generer databasefeil"
 #: plugins/TestcaseGenerator.py:87
 #, fuzzy
 msgid "Generate date tests"
-msgstr "Generer testtilfeller"
+msgstr "Generer dato tester"
 
 #: plugins/TestcaseGenerator.py:91
 msgid "Generate dummy families"
