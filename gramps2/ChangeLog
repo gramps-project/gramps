@@ -1,3 +1,6 @@
+2005-05-25  Don Allingham  <don@gramps-project.org>
+	* src/DateDisplay.py: properly encode french republican dates as unicode
+
 2005-05-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EditSource.py (DelSrcQuery.query_response),
 	src/EditPlace.py (DeletePlaceQuery.query_response),

@@ -83,11 +83,20 @@ class DateDisplay:
         )
     
     _french = (
-        '',           u'Vend\xc3\xa9miaire', 'Brumaire',
-        'Frimaire',   u'Niv\xc3\xb4se',      u'Pluvi\xc3\xb4se',
-        u'Vent\xc3\xb4se', 'Germinal',       u'Flor\xc3\xa9al',
-        'Prairial',   'Messidor',       'Thermidor',
-        'Fructidor',  'Extra'
+        '',
+        unicode("Vendémiaire",'latin-1'),
+        'Brumaire',
+        'Frimaire',
+        unicode("Nivôse",'latin-1'),
+        unicode("Pluviôse",'latin-1'),
+        unicode("Ventôse",'latin-1'),
+        'Germinal',
+        unicode("Floréal",'latin-1'),
+        'Prairial',
+        'Messidor',
+        'Thermidor',
+        'Fructidor',
+        'Extra'
         )
     
     _persian = (
@@ -271,9 +280,9 @@ class DateDisplay:
                 if date_val[1] == 0:
                     return year
                 else:
-                    return "%s %d" % (month_list[date_val[1]],year)
+                    return u"%s %d" % (month_list[date_val[1]],year)
             else:
-                return "%s %d, %s" % (month_list[date_val[1]],date_val[0],year)
+                return u"%s %d, %s" % (month_list[date_val[1]],date_val[0],year)
 
     def _display_french(self,date_val):
         return self._display_calendar(date_val,self._french)
