@@ -1,3 +1,6 @@
+2005-05-26  Don Allingham  <don@gramps-project.org>
+	* src/DateDisplay.py: don't mark date formats as translatable
+
 2005-05-25  Don Allingham  <don@gramps-project.org>
 	* src/DateDisplay.py: properly encode french republican dates as unicode
 
