@@ -4032,15 +4032,15 @@ class EventRef:
     to the refereneced event.
     """
 
-    ROLE_UNKNOWN = -1
-    ROLE_CUSTOM = 0
-    ROLE_PRIMARY = 1
-    ROLE_CLERGY = 2
+    ROLE_UNKNOWN   = -1
+    ROLE_CUSTOM    = 0
+    ROLE_PRIMARY   = 1
+    ROLE_CLERGY    = 2
     ROLE_CELEBRANT = 3
-    ROLE_AIDE = 4
-    ROLE_BRIDE = 5
-    ROLE_GROOM = 6
-    ROLE_WITNESS = 7
+    ROLE_AIDE      = 4
+    ROLE_BRIDE     = 5
+    ROLE_GROOM     = 6
+    ROLE_WITNESS   = 7
 
     def __init__(self,source=None):
         """
