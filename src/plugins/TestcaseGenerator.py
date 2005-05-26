@@ -144,7 +144,6 @@ class TestcaseGenerator:
         if not self.multiple_transactions:
             self.trans.set_batch(True)
             self.db.disable_signals()
-        
 
         if self.multiple_transactions:
     
@@ -248,6 +247,23 @@ class TestcaseGenerator:
             print "DONE."
         
         
+        if generate_bugs or generate_dates or generate_families:
+            self.default_source = RelLib.Source()
+            self.default_source.set_title("TestcaseGenerator")
+            self.db.add_source(self.default_source, self.trans)
+            self.default_sourceref = RelLib.SourceRef()
+            self.default_sourceref.set_base_handle(self.default_source.get_handle())
+            self.default_place = RelLib.Place()
+            self.default_place.set_title("TestcaseGenerator place")
+            self.db.add_place(self.default_place, self.trans)
+            self.default_media = RelLib.MediaObject()
+            self.default_media.set_description("TestcaseGenerator media")
+            self.default_media.set_path("/tmp/TestcaseGenerator.png")
+            self.default_media.set_mime_type("image/png")
+            self.db.add_object(self.default_media, self.trans)
+            self.default_mediaref = RelLib.MediaRef()
+            self.default_mediaref.set_reference_handle(self.default_media.get_handle())
+
         if generate_bugs:
             self.generate_broken_relations()
         
@@ -607,6 +623,8 @@ class TestcaseGenerator:
 
         np = RelLib.Person()
         
+        self.add_defaults(np)
+        
         # Note
         if note:
             np.set_note(note)
@@ -662,6 +680,7 @@ class TestcaseGenerator:
             self.parents_todo.append(person2_h)
             
         fam = RelLib.Family()
+        self.add_defaults(fam)
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
         fam.set_relationship(RelLib.Family.MARRIED)
@@ -721,6 +740,15 @@ class TestcaseGenerator:
         self.db.commit_person(child,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
+    def add_defaults(self,object,ref_text = ""):
+        object.add_source_reference(self.default_sourceref)
+        object.add_media_reference(self.default_mediaref)
+        e = RelLib.Event()
+        e.set_name("TestcaseGenerator")
+        e.set_place_handle(self.default_place.get_handle())
+        self.db.add_event(e, self.trans)
+        object.add_event_handle(e.get_handle())
+        
     def commit_transaction(self):
         if self.multiple_transactions:
             self.db.transaction_commit(self.trans,_("Testcase generator step %d") % self.transaction_count)
