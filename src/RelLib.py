@@ -4032,6 +4032,7 @@ class EventRef:
     to the refereneced event.
     """
 
+    ROLE_UNKNOWN = -1
     ROLE_CUSTOM = 0
     ROLE_PRIMARY = 1
     ROLE_CLERGY = 2
