@@ -32,6 +32,7 @@ from gettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+import gobject
 import gtk
 import gtk.gdk
 
@@ -113,7 +114,11 @@ class PedigreeView:
         frame = gtk.ScrolledWindow(None,None)
         frame.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         frame.add_with_viewport(table)
-        self.notebook.append_page(frame,None)
+        try:
+            self.notebook.append_page(frame,None)
+        except:
+            # for PyGtk < 2.4
+            self.notebook.append_page(frame,gtk.Label(""))
 
     def change_db(self,db):
         # Reconnect signals
@@ -137,6 +142,9 @@ class PedigreeView:
             self.rebuild_trees(self.active_person)
         else:
             self.rebuild_trees(None)
+    
+    def request_resize(self):
+        self.size_request_cb(self.parent_container,None,None)
         
     def size_request_cb(self, widget, event, data=None):
         if self.force_size == 0:
@@ -213,9 +221,7 @@ class PedigreeView:
         self.rebuild( self.table_4, pos_4, person)
         self.rebuild( self.table_5, pos_5, person)
         
-        while gtk.events_pending(): # give gtk the chance to do the repainting
-            gtk.main_iteration()
-        self.size_request_cb(self.parent_container,None) # switch to matching size
+        gobject.idle_add(self.request_resize)
 
     def rebuild( self, table_widget, positions, active_person):
         # Build ancestor tree
@@ -395,6 +401,7 @@ class PedigreeView:
 
         person_handle = obj.get_data(_PERSON)
         if person_handle:
+            print "PedView.on_childmenu_changed emits 'active-changed'"
             self.parent.emit("active-changed", (person_handle,))
             return 1
         return 0
@@ -681,11 +688,15 @@ class PedigreeView:
         for event_handle in family.get_event_list():
             event = self.db.get_event_from_handle(event_handle)
             if event:
+                if line_count < 3:
+                    return event.get_date()
                 text += _(event.get_name())
                 text += "\n"
                 text += event.get_date()
                 text += "\n"
                 text += self.get_place_name(event.get_place_handle())
+                if line_count < 5:
+                   return text;
                 break
         return text
 

@@ -1,6 +1,9 @@
 2005-05-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/TestcaseGenerator.py: Add place, media and source
 	references.
+	* src/PedView.py (rebuild_trees): Resize matching is now done later by
+	idle callback; (add_table_to_notebook): Work with PyGtk < 2.4;
+	(format_relation): Adapt format to availably space.
 
 2005-05-25  Alex Roitman  <shura@gramps-project.org>
 	* src/EditPlace.py: WATCH cursor and temp label for References tab.
