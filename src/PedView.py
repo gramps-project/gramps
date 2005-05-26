@@ -401,7 +401,6 @@ class PedigreeView:
 
         person_handle = obj.get_data(_PERSON)
         if person_handle:
-            print "PedView.on_childmenu_changed emits 'active-changed'"
             self.parent.emit("active-changed", (person_handle,))
             return 1
         return 0
