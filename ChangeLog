@@ -1,3 +1,11 @@
+2005-05-25  Alex Roitman  <shura@gramps-project.org>
+	* src/EditPlace.py: WATCH cursor and temp label for References tab.
+	* src/EditSource.py: Improve manipulating notebook tab labels.
+	* src/Utils.py (temp_label): Add function;
+	(bold_label,unbold_label): Properly set cursor to default.
+	* src/gramps.glade (event editor, source editor, place editor):
+	Add icons to notebook tabs. 
+
 2005-05-25  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/plugins/ScratchPad.py: disabled search because it does not do 
 	  what the user expects.
