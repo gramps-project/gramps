@@ -34,7 +34,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gobject
 import gtk.glade
-import gtk.gdk
 import gnome
 
 #-------------------------------------------------------------------------
@@ -96,9 +95,10 @@ class EditSource:
         self.note = self.top_window.get_widget("source_note")
         self.note.set_editable(mode)
         self.notes_buffer = self.note.get_buffer()
-        self.gallery_label = self.top_window.get_widget("gallerySourceEditor")
-        self.refs_label = self.top_window.get_widget("refsSourceEditor")
-        self.notes_label = self.top_window.get_widget("notesSourceEditor")
+        self.gallery_label = self.top_window.get_widget("source_edit_gallery")
+        self.refs_label = self.top_window.get_widget("source_edit_refs")
+        self.notes_label = self.top_window.get_widget("source_edit_notes")
+        self.data_label = self.top_window.get_widget("source_edit_data")
         self.flowed = self.top_window.get_widget("source_flowed")
         self.flowed.set_sensitive(mode)
         self.preform = self.top_window.get_widget("source_preform")
@@ -129,9 +129,13 @@ class EditSource:
                 self.preform.set_active(1)
             else:
                 self.flowed.set_active(1)
+        else:
+            Utils.unbold_label(self.notes_label)
 
         if self.source.get_media_list():
             Utils.bold_label(self.gallery_label)
+        else:
+            Utils.unbold_label(self.gallery_label)
 
         self.top_window.signal_autoconnect({
             "on_switch_page" : self.on_switch_page,
@@ -177,6 +181,11 @@ class EditSource:
         for item in dmap.keys():
             self.data_model.append(row=[item,dmap[item]])
 
+        if dmap:
+            Utils.bold_label(self.data_label)
+        else:
+            Utils.unbold_label(self.data_label)
+
         if parent_window:
             self.top.set_transient_for(parent_window)
 
@@ -186,7 +195,7 @@ class EditSource:
             self.top.set_transient_for(parent_window)
         self.add_itself_to_menu()
         self.top.show()
-        self.refs_label.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        Utils.temp_label(self.refs_label,self.top)
         gobject.idle_add(self.display_references)
         self.data_sel = self.datalist.get_selection()
 
@@ -346,12 +355,11 @@ class EditSource:
             self.model.add([_("Media"),gramps_id,name],(5,handle))
 
         if any:
-            Utils.bold_label(self.refs_label)
+            Utils.bold_label(self.refs_label,self.top)
         else:
-            Utils.unbold_label(self.refs_label)
+            Utils.unbold_label(self.refs_label,self.top)
             
         self.ref_not_loaded = 0
-        self.refs_label.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.LEFT_PTR))
 
     def on_source_apply_clicked(self,obj):
 
@@ -407,14 +415,14 @@ class EditSource:
             self.gallery.load_images()
         elif page == 3 and self.ref_not_loaded:
             self.ref_not_loaded = 0
-            self.refs_label.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-            gobject.idle_add(self.display_references)
+            Utils.temp_label(self.refs_label,self.top)
+            gobject.idle_add(display_references)
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                 self.notes_buffer.get_end_iter(),False))
         if text:
-            Utils.bold_label(self.notes_label)
+            Utils.bold_label(self.notes_label,self.top)
         else:
-            Utils.unbold_label(self.notes_label)
+            Utils.unbold_label(self.notes_label,self.top)
 
 
 class DelSrcQuery:
