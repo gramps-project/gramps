@@ -201,8 +201,8 @@ class EditPerson:
             self.prefix_label.set_text(_('Patronymic:'))
             self.prefix_label.set_use_underline(True)
 
-        self.birth_handle = person.get_birth_handle()
-        self.death_handle = person.get_death_handle()
+        self.birth_ref = person.get_birth_ref()
+        self.death_ref = person.get_death_ref()
 
         self.pname = RelLib.Name(person.get_primary_name())
 
@@ -226,7 +226,7 @@ class EditPerson:
         # event display
 
         self.event_box = ListBox.EventListBox(
-            self, self.person, self.event_list, events_label,
+            self, self.person, self.event_ref_list, events_label,
             [event_add_btn,event_edit_btn,event_delete_btn])
 
         self.attr_box = ListBox.AttrListBox(
@@ -848,20 +848,20 @@ class EditPerson:
         self.person.set_attribute_list(self.attr_box.data)
         self.person.set_address_list(self.addr_box.data)
 
-        self.person.set_birth_handle(None)
-        self.person.set_death_handle(None)
-        elist = self.event_box.data[:]
-        for event in elist:
-            if event.get_name() == "Birth":
-                self.person.set_birth_handle(event.get_handle())
-                self.event_box.data.remove(event)
-            if event.get_name() == "Death":
-                self.person.set_death_handle(event.get_handle())
-                self.event_box.data.remove(event)
-        elist = []
-        for val in self.event_box.data:
-            elist.append(val.get_handle())
-        self.person.set_event_list(elist)
+        self.person.set_birth_ref(None)
+        self.person.set_death_ref(None)
+        eref_list = self.event_box.data[:]
+        for event_ref in eref_list:
+            if event_ref and event_ref.ref:
+                event = self.db.get_event_from_handle(event_ref.ref)
+                if event.get_name() == "Birth":
+                    self.person.set_birth_ref(event_ref)
+                    self.event_box.data.remove(event_ref)
+                if event.get_name() == "Death":
+                    self.person.set_death_ref(event_ref)
+                    self.event_box.data.remove(event_ref)
+        eref_list = [event_ref for event_ref in self.event_box.data]
+        self.person.set_event_ref_list(eref_list)
 
     def on_apply_person_clicked(self,obj):
 
@@ -1193,8 +1193,8 @@ class EditPerson:
         for i in range(len(list)):
             child_handle = list[i]
             child = self.db.get_person_from_handle(child_handle)
-            if child.get_birth_handle():
-                event = self.db.get_event_from_handle(child.get_birth_handle())
+            if child.get_birth_ref():
+                event = self.db.get_event_from_handle(child.get_birth_ref().ref)
                 child_date = event.get_date_object().get_sort_value()
             else:
                 continue
@@ -1213,9 +1213,9 @@ class EditPerson:
             return(list)
 
         # Build the person's date string once
-        event_handle = person.get_birth_handle()
-        if event_handle:
-            event = self.db.get_event_from_handle(event_handle)
+        event_ref = person.get_birth_ref()
+        if event_ref:
+            event = self.db.get_event_from_handle(event_ref.ref)
             person_bday = event.get_date_object().get_sort_value()
         else:
             person_bday = 0
@@ -1226,9 +1226,9 @@ class EditPerson:
         target = index
         for i in range(index-1, -1, -1):
             other = self.db.get_person_from_handle(list[i])
-            event_handle = other.get_birth_handle()
-            if event_handle:
-                event = self.db.get_event_from_handle(event_handle)
+            event_ref = other.get_birth_ref()
+            if event_ref:
+                event = self.db.get_event_from_handle(event_ref.ref)
                 other_bday = event.get_date_object().get_sort_value()
                 if other_bday == 0:
                     continue;
@@ -1241,9 +1241,9 @@ class EditPerson:
         if (target == index):
             for i in range(index, len(list)):
                 other = self.db.get_person_from_handle(list[i])
-                event_handle = other.get_birth_handle()
-                if event_handle:
-                    event = self.db.get_event_from_handle(event_handle)
+                event_ref = other.get_birth_ref()
+                if event_ref:
+                    event = self.db.get_event_from_handle(event_ref.ref)
                     other_bday = event.get_date_object().get_sort_value()
                     if other_bday == "99999999":
                         continue;

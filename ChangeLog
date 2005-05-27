@@ -1,6 +1,12 @@
 2005-05-26  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib.py (EventRef): Add class.
 
+	* src/EditPerson.py: Support for event references.
+	* src/FamilyView.py: Support for event references.
+	* src/ListBox.py: Support for event references.
+	* src/PedView.py: Support for event references.
+	* src/RelLib.py: Support for event references.
+
 2005-05-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/TestcaseGenerator.py: Add place, media and source
 	references.
