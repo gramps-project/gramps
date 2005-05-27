@@ -1649,6 +1649,7 @@ class HasTextMatchingSubstringOf(Rule):
         self.person_map = {}
         self.event_map = {}
         self.source_map = {}
+        self.repo_map = {}
         self.family_map = {}
         self.place_map = {}
         self.media_map = {}
@@ -1666,12 +1667,14 @@ class HasTextMatchingSubstringOf(Rule):
                 self.regexp_match = False
         except IndexError:
             self.regexp_match = False
+        self.cache_repos()
         self.cache_sources()
 
     def reset(self):
         self.person_map = {}
         self.event_map = {}
         self.source_map = {}
+        self.repo_map = {}
         self.family_map = {}
         self.place_map = {}
         self.media_map = {}
@@ -1751,11 +1754,23 @@ class HasTextMatchingSubstringOf(Rule):
             self.media_map[media_handle] = self.match_object(media)
         return self.media_map[media_handle]
 
+    def cache_repos(self):
+        # search all matching repositories
+        for repo_handle in self.db.get_repository_handles():
+            repo = self.db.get_repository_from_handle(repo_handle)
+            if( self.match_object(repo)):
+                self.repo_map[repo_handle] = 1
+    
     def cache_sources(self):
         # search all sources and match all referents of a matching source
         for source_handle in self.db.get_source_handles():
             source = self.db.get_source_from_handle(source_handle)
-            if self.match_object(source):
+            match = self.match_object(source)
+            if not match:
+                for reporef in source.get_reporef_list():
+                    if reporef.get_reference_handle() in self.repo_map:
+                        match = 1
+            if match:
                 (person_list,family_list,event_list,
                     place_list,source_list,media_list
                     ) = get_source_referents(source_handle,self.db)
@@ -1790,6 +1805,7 @@ class HasTextMatchingRegexpOf(HasTextMatchingSubstringOf):
         self.person_map = {}
         self.event_map = {}
         self.source_map = {}
+        self.repo_map = {}
         self.family_map = {}
         self.place_map = {}
         self.media_map = {}
