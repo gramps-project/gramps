@@ -294,12 +294,12 @@ class TestcaseGenerator:
 
     def generate_broken_relations(self):
         # Create a family, that links to father and mother, but father does not link back
-        person1_h = self.generate_person(RelLib.Person.MALE,"Broken1","Family links to this person, but person does not link back")
-        person2_h = self.generate_person(RelLib.Person.FEMALE,"Broken1",None)
+        person1_h = self.generate_person(const.MALE,"Broken1","Family links to this person, but person does not link back")
+        person2_h = self.generate_person(const.FEMALE,"Broken1",None)
         fam = RelLib.Family()
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship(RelLib.Family.MARRIED)
+        fam.set_relationship(const.FAMILY_MARRIED)
         fam_h = self.db.add_family(fam,self.trans)
         #person1 = self.db.get_person_from_handle(person1_h)
         #person1.add_family_handle(fam_h)
@@ -310,12 +310,12 @@ class TestcaseGenerator:
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Create a family, that misses the link to the father
-        person1_h = self.generate_person(RelLib.Person.MALE,"Broken2",None)
-        person2_h = self.generate_person(RelLib.Person.FEMALE,"Broken2",None)
+        person1_h = self.generate_person(const.MALE,"Broken2",None)
+        person2_h = self.generate_person(const.FEMALE,"Broken2",None)
         fam = RelLib.Family()
         #fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship(RelLib.Family.MARRIED)
+        fam.set_relationship(const.FAMILY_MARRIED)
         fam_h = self.db.add_family(fam,self.trans)
         person1 = self.db.get_person_from_handle(person1_h)
         person1.add_family_handle(fam_h)
@@ -326,12 +326,12 @@ class TestcaseGenerator:
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Create a family, that misses the link to the mother
-        person1_h = self.generate_person(RelLib.Person.MALE,"Broken3",None)
-        person2_h = self.generate_person(RelLib.Person.FEMALE,"Broken3",None)
+        person1_h = self.generate_person(const.MALE,"Broken3",None)
+        person2_h = self.generate_person(const.FEMALE,"Broken3",None)
         fam = RelLib.Family()
         fam.set_father_handle(person1_h)
         #fam.set_mother_handle(person2_h)
-        fam.set_relationship(RelLib.Family.MARRIED)
+        fam.set_relationship(const.FAMILY_MARRIED)
         fam_h = self.db.add_family(fam,self.trans)
         person1 = self.db.get_person_from_handle(person1_h)
         person1.add_family_handle(fam_h)
@@ -342,12 +342,12 @@ class TestcaseGenerator:
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Create a family, that links to father and mother, but father does not link back
-        person1_h = self.generate_person(RelLib.Person.MALE,"Broken4",None)
-        person2_h = self.generate_person(RelLib.Person.FEMALE,"Broken4","Family links to this person, but person does not link back")
+        person1_h = self.generate_person(const.MALE,"Broken4",None)
+        person2_h = self.generate_person(const.FEMALE,"Broken4","Family links to this person, but person does not link back")
         fam = RelLib.Family()
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship(RelLib.Family.MARRIED)
+        fam.set_relationship(const.FAMILY_MARRIED)
         fam_h = self.db.add_family(fam,self.trans)
         person1 = self.db.get_person_from_handle(person1_h)
         person1.add_family_handle(fam_h)
@@ -358,12 +358,12 @@ class TestcaseGenerator:
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Create two married people of same sex.
-        person1_h = self.generate_person(RelLib.Person.MALE,"Broken5",None)
-        person2_h = self.generate_person(RelLib.Person.MALE,"Broken5",None)
+        person1_h = self.generate_person(const.MALE,"Broken5",None)
+        person2_h = self.generate_person(const.MALE,"Broken5",None)
         fam = RelLib.Family()
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship(RelLib.Family.MARRIED)
+        fam.set_relationship(const.FAMILY_MARRIED)
         fam_h = self.db.add_family(fam,self.trans)
         person1 = self.db.get_person_from_handle(person1_h)
         person1.add_family_handle(fam_h)
@@ -374,12 +374,12 @@ class TestcaseGenerator:
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Create a family, that contains an invalid handle to for the father
-        #person1_h = self.generate_person(RelLib.Person.MALE,"Broken6",None)
-        person2_h = self.generate_person(RelLib.Person.FEMALE,"Broken6",None)
+        #person1_h = self.generate_person(const.MALE,"Broken6",None)
+        person2_h = self.generate_person(const.FEMALE,"Broken6",None)
         fam = RelLib.Family()
         fam.set_father_handle("InvalidHandle1")
         fam.set_mother_handle(person2_h)
-        fam.set_relationship(RelLib.Family.MARRIED)
+        fam.set_relationship(const.FAMILY_MARRIED)
         fam_h = self.db.add_family(fam,self.trans)
         #person1 = self.db.get_person_from_handle(person1_h)
         #person1.add_family_handle(fam_h)
@@ -390,12 +390,12 @@ class TestcaseGenerator:
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Create a family, that contains an invalid handle to for the mother
-        person1_h = self.generate_person(RelLib.Person.MALE,"Broken7",None)
-        #person2_h = self.generate_person(RelLib.Person.FEMALE,"Broken7",None)
+        person1_h = self.generate_person(const.MALE,"Broken7",None)
+        #person2_h = self.generate_person(const.FEMALE,"Broken7",None)
         fam = RelLib.Family()
         fam.set_father_handle(person1_h)
         fam.set_mother_handle("InvalidHandle2")
-        fam.set_relationship(RelLib.Family.MARRIED)
+        fam.set_relationship(const.FAMILY_MARRIED)
         fam_h = self.db.add_family(fam,self.trans)
         person1 = self.db.get_person_from_handle(person1_h)
         person1.add_family_handle(fam_h)
@@ -407,13 +407,13 @@ class TestcaseGenerator:
 
 
         # Creates a family where the child does not link back to the family
-        person1_h = self.generate_person(RelLib.Person.MALE,"Broken8",None)
-        person2_h = self.generate_person(RelLib.Person.FEMALE,"Broken8",None)
+        person1_h = self.generate_person(const.MALE,"Broken8",None)
+        person2_h = self.generate_person(const.FEMALE,"Broken8",None)
         child_h = self.generate_person(None,"Broken8",None)
         fam = RelLib.Family()
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship(RelLib.Family.MARRIED)
+        fam.set_relationship(const.FAMILY_MARRIED)
         fam.add_child_handle(child_h)
         fam_h = self.db.add_family(fam,self.trans)
         person1 = self.db.get_person_from_handle(person1_h)
@@ -428,13 +428,13 @@ class TestcaseGenerator:
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Creates a family where the child is not linked, but the child links to the family
-        person1_h = self.generate_person(RelLib.Person.MALE,"Broken9",None)
-        person2_h = self.generate_person(RelLib.Person.FEMALE,"Broken9",None)
+        person1_h = self.generate_person(const.MALE,"Broken9",None)
+        person2_h = self.generate_person(const.FEMALE,"Broken9",None)
         child_h = self.generate_person(None,"Broken9",None)
         fam = RelLib.Family()
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship(RelLib.Family.MARRIED)
+        fam.set_relationship(const.FAMILY_MARRIED)
         #fam.add_child_handle(child_h)
         fam_h = self.db.add_family(fam,self.trans)
         person1 = self.db.get_person_from_handle(person1_h)
@@ -444,7 +444,7 @@ class TestcaseGenerator:
         person2.add_family_handle(fam_h)
         self.db.commit_person(person2,self.trans)
         child = self.db.get_person_from_handle(child_h)
-        child.add_parent_family_handle(fam_h,RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
+        child.add_parent_family_handle(fam_h,const.CHILD_BIRTH,const.CHILD_BIRTH)
         self.db.commit_person(child,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
@@ -460,7 +460,7 @@ class TestcaseGenerator:
         event_h = self.db.add_event(event,self.trans)
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event_h)
-        event_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
+        event_ref.set_role(RelLib.const.ROLE_PRIMARY)
         person = self.db.get_person_from_handle(person_h)
         person.add_event_ref(event_ref)
         self.db.commit_person(person,self.trans)
@@ -471,7 +471,7 @@ class TestcaseGenerator:
         person = self.db.get_person_from_handle(person_h)
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle("InvalidHandle4")
-        event_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
+        event_ref.set_role(const.ROLE_PRIMARY)
         person.set_birth_ref(event_ref)
         self.db.commit_person(person,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
@@ -481,7 +481,7 @@ class TestcaseGenerator:
         person = self.db.get_person_from_handle(person_h)
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle("InvalidHandle5")
-        event_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
+        event_ref.set_role(const.ROLE_PRIMARY)
         person.set_death_ref(event_ref)
         self.db.commit_person(person,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
@@ -491,7 +491,7 @@ class TestcaseGenerator:
         person = self.db.get_person_from_handle(person_h)
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle("InvalidHandle6")
-        event_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
+        event_ref.set_role(const.ROLE_PRIMARY)
         person.add_event_ref(event_ref)
         self.db.commit_person(person,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
@@ -503,7 +503,7 @@ class TestcaseGenerator:
         event_h = self.db.add_event(event,self.trans)
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event_h)
-        event_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
+        event_ref.set_role(const.ROLE_PRIMARY)
         person = self.db.get_person_from_handle(person_h)
         person.set_birth_ref(event_ref)
         self.db.commit_person(person,self.trans)
@@ -516,7 +516,7 @@ class TestcaseGenerator:
         event_h = self.db.add_event(event,self.trans)
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event_h)
-        event_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
+        event_ref.set_role(const.ROLE_PRIMARY)
         person = self.db.get_person_from_handle(person_h)
         person.set_death_ref(event_ref)
         self.db.commit_person(person,self.trans)
@@ -529,7 +529,7 @@ class TestcaseGenerator:
         event_h = self.db.add_event(event,self.trans)
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event_h)
-        event_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
+        event_ref.set_role(const.ROLE_PRIMARY)
         person = self.db.get_person_from_handle(person_h)
         person.add_event_ref(event_ref)
         self.db.commit_person(person,self.trans)
@@ -604,7 +604,7 @@ class TestcaseGenerator:
             bevent_h = self.db.add_event(bevent,self.trans)
             bevent_ref = RelLib.EventRef()
             bevent_ref.set_reference_handle(bevent_h)
-            bevent_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
+            bevent_ref.set_role(const.ROLE_PRIMARY)
             # for the death event display the date as text and parse it back to a new date
             ndate = None
             try:
@@ -632,7 +632,7 @@ class TestcaseGenerator:
             devent_h = self.db.add_event(devent,self.trans)
             devent_ref = RelLib.EventRef()
             devent_ref.set_reference_handle(devent_h)
-            devent_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
+            devent_ref.set_role(const.ROLE_PRIMARY)
             person_h = self.generate_person(None, "DateTest")
             person = self.db.get_person_from_handle(person_h)
             person.set_birth_ref(bevent_ref)
@@ -670,7 +670,7 @@ class TestcaseGenerator:
         for i in range(0,randint(1,5)):
             for j in range(0,randint(2,5)):
                 firstname = firstname + choice(syllables2)
-            if gender == RelLib.Person.FEMALE:
+            if gender == const.FEMALE:
                 firstname = firstname + choice(("a","e","i","o","u"))
             firstname = firstname + " "
         firstname = firstname.title().strip()
@@ -694,6 +694,8 @@ class TestcaseGenerator:
         return( self.db.add_person(np,self.trans))
         
     def generate_family(self,person1_h):
+        if not person1_h:
+            return
         person1 = self.db.get_person_from_handle(person1_h)
         if person1.get_gender() == 1:
             person2_h = self.generate_person(0)
@@ -710,7 +712,7 @@ class TestcaseGenerator:
         self.add_defaults(fam)
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship(RelLib.Family.MARRIED)
+        fam.set_relationship(const.FAMILY_MARRIED)
         fam_h = self.db.add_family(fam,self.trans)
         fam = self.db.commit_family(fam,self.trans)
         person1 = self.db.get_person_from_handle(person1_h)
@@ -728,13 +730,15 @@ class TestcaseGenerator:
             fam.add_child_handle(child_h)
             self.db.commit_family(fam,self.trans)
             child = self.db.get_person_from_handle(child_h)
-            child.add_parent_family_handle(fam_h,RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
+            child.add_parent_family_handle(fam_h,const.CHILD_BIRTH,const.CHILD_BIRTH)
             self.db.commit_person(child,self.trans)
             if randint(0,3) > 0:
                 self.persons_todo.append(child_h)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
                 
     def generate_parents(self,child_h):
+        if not child_h:
+            return
         child = self.db.get_person_from_handle(child_h)
         if child.get_parent_family_handle_list():
             return
@@ -752,7 +756,7 @@ class TestcaseGenerator:
         fam = RelLib.Family()
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship(RelLib.Family.MARRIED)
+        fam.set_relationship(const.FAMILY_MARRIED)
         fam.add_child_handle(child_h)
         fam_h = self.db.add_family(fam,self.trans)
         fam = self.db.commit_family(fam,self.trans)
@@ -763,7 +767,7 @@ class TestcaseGenerator:
         person2.add_family_handle(fam_h)
         self.db.commit_person(person2,self.trans)
 
-        child.add_parent_family_handle(fam_h,RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
+        child.add_parent_family_handle(fam_h,const.CHILD_BIRTH,const.CHILD_BIRTH)
         self.db.commit_person(child,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
@@ -776,7 +780,7 @@ class TestcaseGenerator:
         event_h = self.db.add_event(e, self.trans)
         event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event_h)
-        event_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
+        event_ref.set_role(const.ROLE_PRIMARY)
         object.add_event_ref(event_ref)
         
     def commit_transaction(self):
