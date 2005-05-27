@@ -35,7 +35,6 @@ import os
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-from TransTable import TransTable
 
 #-------------------------------------------------------------------------
 #
@@ -164,9 +163,6 @@ translators = _('TRANSLATORS: Translate this to your name in your native languag
 #-------------------------------------------------------------------------
 thumbScale   = 96.0
 xmlFile      = "data.gramps"
-male         = _("male")
-female       = _("female")
-unknown      = _("unknown")
 
 #-------------------------------------------------------------------------
 #
@@ -225,41 +221,62 @@ shortopts = "O:i:o:f:a:p:?"
 
 #-------------------------------------------------------------------------
 #
-# Constants
+# Gender constants
 #
 #-------------------------------------------------------------------------
+UNKNOWN = 2
+MALE    = 1
+FEMALE  = 0
 
-child_rel_list = [
-    _("None"),      _("Birth"),   _("Adopted"), _("Stepchild"),
-    _("Sponsored"),  _("Foster"), _("Unknown"), _("Other"), ]
-
-child_rel_notrans = [
-    "None",      "Birth",  "Adopted", "Stepchild",
-    "Sponsored", "Foster", "Unknown", "Other", ]
-
-child_relations = TransTable( {
-    _("Birth")     : "Birth",
-    _("Adopted")   : "Adopted",
-    _("Stepchild") : "Stepchild",
-    _("Sponsored") : "Sponsored",
-    _("Foster")    : "Foster",
-    _("None")      : "None",
-    _("Unknown")   : "Unknown",
-    _("Other")     : "Other",
-    })
+gender = {
+    MALE    : _("male"),
+    FEMALE  : _("female"),
+    UNKNOWN : _("unknown"),
+    }
 
 #-------------------------------------------------------------------------
 #
-# Confidence
+# Child relation constants
 #
 #-------------------------------------------------------------------------
-confidence = [
-    _("Very High"), 
-    _("High"),
-    _("Normal"),
-    _("Low"),
-    _("Very Low")
-    ]
+CHILD_NONE      = 0
+CHILD_BIRTH     = 1
+CHILD_ADOPTED   = 2
+CHILD_STEPCHILD = 3
+CHILD_SPONSORED = 4
+CHILD_FOSTER    = 5
+CHILD_UNKNOWN   = 6
+CHILD_CUSTOM    = 7
+
+child_relations = {
+    CHILD_NONE      : _("None"),
+    CHILD_BIRTH     : _("Birth"),
+    CHILD_ADOPTED   : _("Adopted"),
+    CHILD_STEPCHILD : _("Stepchild"),
+    CHILD_SPONSORED : _("Sponsored"),
+    CHILD_FOSTER    : _("Foster"),
+    CHILD_UNKNOWN   : _("Unknown"),
+    CHILD_CUSTOM    : _("Custom"),
+    }
+
+#-------------------------------------------------------------------------
+#
+# Confidence constants
+#
+#-------------------------------------------------------------------------
+CONF_VERY_HIGH = 4
+CONF_HIGH      = 3
+CONF_NORMAL    = 2
+CONF_LOW       = 1
+CONF_VERY_LOW  = 0
+
+confidence = {
+   CONF_VERY_HIGH : _("Very High"),
+   CONF_HIGH      : _("High"),
+   CONF_NORMAL    : _("Normal"),
+   CONF_LOW       : _("Low"),
+   CONF_VERY_LOW  : _("Very Low"),
+   }
 
 #-------------------------------------------------------------------------
 #
@@ -419,121 +436,165 @@ personal_events = {
     EVENT_WILL            : _("Will")
     }
 
+#-------------------------------------------------------------------------
+#
+# Attribute constants
+#
+#-------------------------------------------------------------------------
+ATTR_UNKNOWN     = -1
+ATTR_CUSTOM      = 0
+ATTR_CASTE       = 1
+ATTR_DESCRIPTION = 2
+ATTR_ID          = 3
+ATTR_NATIONAL    = 4
+ATTR_NUM_CHILD   = 5
+ATTR_SSN         = 6
 
-#-------------------------------------------------------------------------
-#
-# Merged functions for events: personal, family, whatever else 
-# there might be in the future. 
-#
-#-------------------------------------------------------------------------
-def display_event(st):
-    if personal_events.has_key(st):
-        return personal_events.find_value(st)
-    if family_events.has_key(st):
-        return family_events.find_value(st)
-    return _(st)
+personal_attributes = {
+    ATTR_UNKNOWN     : _("Unknown"),
+    ATTR_CUSTOM      : _("Custom"),
+    ATTR_CASTE       : _("Caste"),
+    ATTR_DESCRIPTION : _("Description"),
+    ATTR_ID          : _("Identification Number"),
+    ATTR_NATIONAL    : _("National Origin"),
+    ATTR_NUM_CHILD   : _("Number of Children"),
+    ATTR_SSN         : _("Social Security Number"),
+    }
 
-def save_event(st):
-    if personal_events.has_value(st):
-        return personal_events.find_key(st)
-    if family_events.has_value(st):
-        return family_events.find_key(st)
-    return st
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 personalConstantAttributes = {
-    "Caste"                 : "CAST",
-    "Description"           : "DSCR",
-    "Identification Number" : "IDNO",
-    "National Origin"       : "NATI",
-    "Number of Children"    : "NCHI",
-    "Social Security Number": "SSN"
+    ATTR_CASTE       : "CAST",
+    ATTR_DESCRIPTION : "DSCR",
+    ATTR_ID          : "IDNO",
+    ATTR_NATIONAL    : "NATI",
+    ATTR_NUM_CHILD   : "NCHI",
+    ATTR_SSN         : "SSN",
     }
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-
-personal_attributes = TransTable({
-    "Caste"                 : _("Caste"),
-    "Description"           : _("Description"),
-    "Identification Number" : _("Identification Number"),
-    "National Origin"       : _("National Origin"),
-    "Number of Children"    : _("Number of Children"),
-    "Social Security Number": _("Social Security Number")
-    })
-
-def display_pattr(st):
-    return personal_attributes.find_value(st)
-
-def save_pattr(st):
-    return personal_attributes.find_key(st)
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 familyConstantAttributes = {
-    "Number of Children" : "NCHI",
+    ATTR_NUM_CHILD   : "NCHI",
     }
 
-family_attributes = TransTable({"Number of Children" : _("Number of Children")})
-
-def display_fattr(st):
-    return family_attributes.find_value(st)
-
-#-------------------------------------------------------------------------
-#
-# Merged functions for attributes: personal, family, whatever else 
-# there might be in the future. 
-#
-#-------------------------------------------------------------------------
-def display_attr(st):
-    if personal_attributes.has_value(st):
-        return personal_attributes.find_value(st)
-    if family_attributes.has_value(st):
-        return family_attributes.find_value(st)
-    return _(st)
-
-def save_attr(st):
-    if personal_attributes.has_value(st):
-        return personal_attributes.find_key(st)
-    if family_attributes.has_value(st):
-        return family_attributes.find_key(st)
-    return st
+family_attributes = {
+    ATTR_UNKNOWN     : _("Unknown"),
+    ATTR_CUSTOM      : _("Custom"),
+    ATTR_NUM_CHILD : _("Number of Children"),
+    }
 
 #-------------------------------------------------------------------------
 #
 # Family Relationship Translation table
 #
 #-------------------------------------------------------------------------
+FAMILY_MARRIED     = 0
+FAMILY_UNMARRIED   = 1
+FAMILY_CIVIL_UNION = 2
+FAMILY_UNKNOWN     = 3
+FAMILY_CUSTOM      = 4
 
+family_relations = {
+    FAMILY_MARRIED     : _("Married"),
+    FAMILY_UNMARRIED   : _("Unmarried"),
+    FAMILY_CIVIL_UNION : _("Civil Union"),
+    FAMILY_UNKNOWN     : _("Unknown"),
+    FAMILY_CUSTOM      : _("Other"),
+    }
 
-family_relations = [
-    (_("Married"),     _("A legal or common-law relationship between a husband and wife")),
-    (_("Unmarried"),   _("No legal or common-law relationship between man and woman")),
-    (_("Civil Union"), _("An established relationship between members of the same sex")),
-    (_("Unknown"),     _("Unknown relationship between a man and woman")),
-    (_("Other"),       _("An unspecified relationship between a man and woman"))
-]
+family_rel_descriptions = {
+    FAMILY_MARRIED     : _("A legal or common-law relationship "
+                           "between a husband and wife"),
+    FAMILY_UNMARRIED   : _("No legal or common-law relationship "
+                           "between man and woman"),
+    FAMILY_CIVIL_UNION : _("An established relationship between "
+                           "members of the same sex"),
+    FAMILY_UNKNOWN     : _("Unknown relationship between a man and woman"),
+    FAMILY_CUSTOM      : _("An unspecified relationship between "
+                           "a man and woman"),
+    }
+
+#-------------------------------------------------------------------------
+#
+# Name constants
+#
+#-------------------------------------------------------------------------
+NAME_UNKNOWN = -1
+NAME_CUSTOM  = 0
+NAME_AKA     = 1
+NAME_BIRTH   = 2
+NAME_MARRIED = 3
+
+NameTypesMap = ({
+    NAME_UNKNOWN : _("Unknown"),
+    NAME_CUSTOM  : _("Custom"),
+    NAME_AKA     : _("Also Known As"),
+    NAME_BIRTH   : _("Birth Name"),
+    NAME_MARRIED : _("Married Name"),
+    }
+
+#-------------------------------------------------------------------------
+#
+# Role constants
+#
+#-------------------------------------------------------------------------
+ROLE_UNKNOWN   = -1
+ROLE_CUSTOM    = 0
+ROLE_PRIMARY   = 1
+ROLE_CLERGY    = 2
+ROLE_CELEBRANT = 3
+ROLE_AIDE      = 4
+ROLE_BRIDE     = 5
+ROLE_GROOM     = 6
+ROLE_WITNESS   = 7
+
+event_roles = {
+    ROLE_UNKNOWN   : _("Unknown"),
+    ROLE_CUSTOM    : _("Custom"),
+    ROLE_PRIMARY   : _("Primary participant"),
+    ROLE_CLERGY    : _("Clergy personnel"),
+    ROLE_CELEBRANT : _("Celebrant"),
+    ROLE_AIDE      : _("Aide"),
+    ROLE_BRIDE     : _("Bride"),
+    ROLE_GROOM     : _("Groom"),
+    ROLE_WITNESS   : _("Witness"),
+    }
 
 #-------------------------------------------------------------------------
 #
 # 
 #
 #-------------------------------------------------------------------------
-def save_frel(st):
-    try:
-        return family_relations[st][0]
-    except:
-        return _("Unknown")
+SRC_MEDIA_UNKNOWN    = -1
+SRC_MEDIA_CUSTOM     = 0
+SRC_MEDIA_AUDIO      = 1
+SRC_MEDIA_BOOK       = 2
+SRC_MEDIA_CARD       = 3
+SRC_MEDIA_ELECTRONIC = 4
+SRC_MEDIA_FICHE      = 5
+SRC_MEDIA_FILM       = 6
+SRC_MEDIA_MAGAZINE   = 7
+SRC_MEDIA_MANUSCRIPT = 8
+SRC_MEDIA_MAP        = 9
+SRC_MEDIA_NEWSPAPER  = 10
+SRC_MEDIA_PHOTO      = 11
+SRC_MEDIA_THOMBSTOBE = 12
+SRC_MEDIA_VIDEO      = 13
+
+source_media_types = {
+    SRC_MEDIA_UNKNOWN    : _("Unknown"),
+    SRC_MEDIA_CUSTOM     : _("Custom"),
+    SRC_MEDIA_AUDIO      : _("Audio"),
+    SRC_MEDIA_BOOK       : _("Book"),
+    SRC_MEDIA_CARD       : _("Card"),
+    SRC_MEDIA_ELECTRONIC : _("Electronic"),
+    SRC_MEDIA_FICHE      : _("Fiche"),
+    SRC_MEDIA_FILM       : _("Film"),
+    SRC_MEDIA_MAGAZINE   : _("Magazine"),
+    SRC_MEDIA_MANUSCRIPT : _("Manuscript"),
+    SRC_MEDIA_MAP        : _("Map"),
+    SRC_MEDIA_NEWSPAPER  : _("Newspaper"),
+    SRC_MEDIA_PHOTO      : _("Photo"),
+    SRC_MEDIA_THOMBSTOBE : _("Thombstone"),
+    SRC_MEDIA_VIDEO      : _("Video"),
+    }
 
 #-------------------------------------------------------------------------
 #
@@ -541,60 +602,6 @@ def save_frel(st):
 #
 #-------------------------------------------------------------------------
 
-NameTypesMap = TransTable({
-    "Also Known As" : _("Also Known As"),
-    "Birth Name"    : _("Birth Name"),
-    "Married Name"  : _("Married Name"),
-    "Other Name"    : _("Other Name"),
-    })
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def init_personal_event_list():
-    return
-    p = personal_events.get_values()
-    p.sort()
-    return p
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def init_marriage_event_list():
-    return
-    p = family_events.get_values()
-    p.sort()
-    return p
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def init_personal_attribute_list():
-    p = personal_attributes.get_values()
-    p.sort()
-    return p
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def init_family_attribute_list():
-    p = family_attributes.get_values()
-    p.sort()
-    return p
-
-personalEvents = [] #init_personal_event_list()
-personalAttributes = init_personal_attribute_list()
-marriageEvents = [] #init_marriage_event_list()
-defaultMarriageEvent = "" #family_events.find_value("Marriage")
-familyAttributes = init_family_attribute_list()
 places = []
 surnames = []
 
