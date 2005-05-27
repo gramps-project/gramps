@@ -4384,7 +4384,7 @@ class GenderStats:
 
         return Person.UNKNOWN
 
-class RepoRef(NoteBase):
+class RepoRef(BaseObject,NoteBase):
     """
     Repository reference class.
     """
