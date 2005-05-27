@@ -166,7 +166,7 @@ class EditPerson:
         self.web_list = self.get_widget("web_list")
         self.web_go = self.get_widget("web_go")
         self.addr_list = self.get_widget("address_list")
-        self.event_list = self.get_widget("eventList")
+        self.event_ref_list = self.get_widget("eventList")
         self.edit_person = self.get_widget("editPerson")
         self.name_list = self.get_widget("nameList")
         self.name_type_field = self.get_widget("name_type")
@@ -1277,5 +1277,3 @@ def build_combo(entry,strings):
         node = store.append()
         store.set(node,0,unicode(value))
     entry.set_model(store)
-
-

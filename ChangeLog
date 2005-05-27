@@ -2,6 +2,7 @@
 	* src/RelLib.py: Add wrappers for old event handle API including a
 	DeprecationWarning (this makes HEAD no longer completely defunct);
 	Add checks for EventRef class type
+	* src/EditPerson.py: typo
 
 2005-05-26  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib.py (EventRef): Add class.
