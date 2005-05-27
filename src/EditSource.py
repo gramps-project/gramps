@@ -47,6 +47,7 @@ import ImageSelect
 import ListModel
 import RelLib
 import NameDisplay
+import RepositoryRefEdit
 
 #-------------------------------------------------------------------------
 #
@@ -54,6 +55,109 @@ import NameDisplay
 #
 #-------------------------------------------------------------------------
 
+class ReposRefListModel(gtk.ListStore):
+    def __init__(self, source=None):
+        gtk.ListStore.__init__(self,
+                               object    # repostory reference
+                               )
+        self.set_source(source)
+
+    def rebuild(self):
+        """Clear the list and repopulate from the current source record."""
+        self.clear()
+
+        for repos_ref in self._source.get_reporef_list():
+            self.append([repos_ref])
+
+    def update(self,repos_ref):
+        """Add the record if it is not already in the list otherwise
+        replace the record with the new one."""
+
+        found = False
+        for val in range(0,len(self)):
+            iter = self.get_iter(val)
+            if repos_ref == self.get_value(iter,0):
+                self.row_changed(self.get_path(iter),iter)
+                found = True
+                break
+
+        if not found:
+            self.append([repos_ref])
+        
+    def set_source(self, source):
+        self._source = source
+        self.rebuild()
+
+class ReposRefListView:
+
+    def __init__(self, model, widget):
+        self._gramps_model = model
+        
+        self.database_changed(self._gramps_model.db)
+        self._gramps_model.connect('database-changed', self.database_changed)
+
+        self._widget = widget
+
+        # Create the tree columns
+        self._col1 = gtk.TreeViewColumn(_("Name"))
+        self._col2 = gtk.TreeViewColumn(_("Type"))
+        self._col3 = gtk.TreeViewColumn(_("Note"))
+
+        # Add columns
+        self._widget.append_column(self._col1)
+        self._widget.append_column(self._col2)
+        self._widget.append_column(self._col3)
+
+        # Create cell renders
+        self._col1_cell = gtk.CellRendererText()
+        self._col2_cell = gtk.CellRendererText()
+        self._col3_cell = gtk.CellRendererText()
+
+        # Add cells to view
+        self._col1.pack_start(self._col1_cell, True)
+        self._col2.pack_start(self._col2_cell, True)
+        self._col3.pack_start(self._col3_cell, True)
+
+        # Setup the cell data callback funcs
+        self._col1.set_cell_data_func(self._col1_cell, self.object_name)
+        self._col2.set_cell_data_func(self._col2_cell, self.object_type)
+        self._col3.set_cell_data_func(self._col3_cell, self.object_note)                        
+        self._widget.set_enable_search(False)
+
+        
+    def database_changed(self,db):
+        self._db = db
+
+    # Methods for rendering the cells.
+    
+    def object_name(self, column, cell, model, iter, user_data=None):
+        o = model.get_value(iter, 0)
+        repos_hdl = o.get_reference_handle()
+        repos = self._db.get_repository_from_handle(repos_hdl)
+        cell.set_property('text', repos.get_name())
+
+    def object_type(self, column, cell, model, iter, user_data=None):
+        o = model.get_value(iter, 0)
+        repos_hdl = o.get_reference_handle()
+        repos = self._db.get_repository_from_handle(repos_hdl)
+        cell.set_property('text', repos.get_type())
+
+    def object_note(self, column, cell, model, iter, user_data=None):
+        o = model.get_value(iter, 0)
+        cell.set_property('text', o.get_note())
+
+    # proxy methods to provide access to the real widget functions.
+    
+    def set_model(self,model=None):
+        self._widget.set_model(model)
+
+    def get_model(self):
+        return self._widget.get_model()
+
+    def get_selection(self):
+        return self._widget.get_selection()
+
+        
 class EditSource:
 
     def __init__(self,source,db,parent,parent_window=None,readonly=False):
@@ -122,6 +226,15 @@ class EditSource:
         self.top_window.get_widget('sel_photo').set_sensitive(mode)
         self.top_window.get_widget('delete_photo').set_sensitive(mode)
 
+        self.repos_ref_view = ReposRefListView(self.parent,
+                                              self.top_window.get_widget('repository_ref_list'))
+        self.repos_ref_model = ReposRefListModel(self.source)
+        self.repos_ref_view.set_model(self.repos_ref_model)
+        
+        self.top_window.get_widget('add_repos_ref').set_sensitive(mode)
+        self.top_window.get_widget('edit_repos_ref').set_sensitive(mode)
+        self.top_window.get_widget('del_repos_ref').set_sensitive(mode)
+
         if source.get_note():
             self.notes_buffer.set_text(source.get_note())
             Utils.bold_label(self.notes_label)
@@ -143,6 +256,12 @@ class EditSource:
             "on_selectphoto_clicked"    : self.gallery.on_select_media_clicked,
             "on_deletephoto_clicked" : self.gallery.on_delete_media_clicked,
             "on_editphoto_clicked"     : self.gallery.on_edit_media_clicked,
+            
+            "on_add_repos_ref_clicked"    : self.on_add_repos_ref_clicked,
+            "on_delete_repos_ref_clicked" : self.on_delete_repos_ref_clicked,
+            "on_edit_repos_ref_clicked"   : self.on_edit_repos_ref_clicked,
+            "on_edit_repos_ref_row_activated" : self.on_edit_repos_ref_clicked,
+            
             "on_edit_properties_clicked": self.gallery.popup_change_description,
             "on_sourceEditor_help_clicked" : self.on_help_clicked,
             "on_sourceEditor_ok_clicked" : self.on_source_apply_clicked,
@@ -213,6 +332,29 @@ class EditSource:
         (model,node) = self.data_sel.get_selected()
         if node:
             model.remove(node)
+
+    def on_add_repos_ref_clicked(self,widget):
+        RepositoryRefEdit.RepositoryRefEdit(RelLib.RepoRef(),self.db,
+                                            self.repos_ref_model.update,self)
+
+    def on_delete_repos_ref_clicked(self,widget):
+        selection = self.repos_ref_view.get_selection()
+        model, iter = selection.get_selected()
+        if iter:
+            model.remove(iter)
+        return        
+
+
+    def on_edit_repos_ref_clicked(self,widget,path=None,colm=None,userp=None):
+        selection = self.repos_ref_view.get_selection()
+        model, iter = selection.get_selected()
+        
+        if iter:
+            repos_ref = model.get_value(iter,0)
+            
+            RepositoryRefEdit.RepositoryRefEdit(repos_ref,self.db,
+                                                self.repos_ref_model.update,self)
+
 
     def edit_cb(self, cell, path, new_text, data):
         node = self.data_model.get_iter(path)
@@ -398,6 +540,14 @@ class EditSource:
                 new_map[unicode(key)] = unicode(value)
         if new_map != self.source.get_data_map():
             self.source.set_data_map(new_map)
+
+        # update repository refs
+        repos_ref_list = []
+        for val in range(0,len(self.repos_ref_model)):
+            iter = self.repos_ref_model.get_iter(val)
+            repos_ref_list.append(self.repos_ref_model.get_value(iter,0))
+            
+        self.source.set_reporef_list(repos_ref_list)
         
         self.gallery_ok = 1
 
@@ -423,6 +573,10 @@ class EditSource:
             Utils.bold_label(self.notes_label,self.top)
         else:
             Utils.unbold_label(self.notes_label,self.top)
+
+    def update_repositories(self, repos_ref):
+        """Make the repository list reflect the change or addition of repos_ref"""
+        pass
 
 
 class DelSrcQuery:

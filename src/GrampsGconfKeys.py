@@ -251,6 +251,12 @@ def get_family_id_prefix():
 def save_fprefix(val):
     set_string_as_id_prefix("/apps/gramps/preferences/fprefix",val)
 
+def get_repository_id_prefix():
+    return get_string("/apps/gramps/preferences/rprefix")
+
+def save_rprefix(val):
+    set_string_as_id_prefix("/apps/gramps/preferences/rprefix",val)
+
 def get_paper_preference():
     return get_string("/apps/gramps/preferences/paper-preference")
 

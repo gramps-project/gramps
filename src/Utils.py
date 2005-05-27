@@ -726,6 +726,7 @@ def get_media_referents(media_handle,db):
 
     return (person_list,family_list,event_list,place_list,source_list)
 
+
 #-------------------------------------------------------------------------
 #
 # 

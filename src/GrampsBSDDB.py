@@ -43,7 +43,7 @@ from bsddb import dbshelve, db
 from RelLib import *
 from GrampsDbBase import *
 
-_DBVERSION = 6
+_DBVERSION = 7
 
 def find_surname(key,data):
     return str(data[3].get_surname())
@@ -55,6 +55,9 @@ def find_fidmap(key,data):
     return str(data[1])
 
 def find_eventname(key,data):
+    return str(data[2])
+
+def find_repository_type(key,data):
     return str(data[2])
 
 class GrampsBSDDBCursor(GrampsCursor):
@@ -111,6 +114,9 @@ class GrampsBSDDB(GrampsDbBase):
     def get_media_cursor(self):
         return GrampsBSDDBCursor(self.media_map)
 
+    def get_repository_cursor(self):
+        return GrampsBSDDBCursor(self.repository_map)
+
     def need_upgrade(self):
         return not self.readonly and self.metadata.get('version',0) < _DBVERSION
 
@@ -129,13 +135,14 @@ class GrampsBSDDB(GrampsDbBase):
             
         name = os.path.basename(name)
 
-        self.family_map = self.dbopen(name, "family")
-        self.place_map  = self.dbopen(name, "places")
-        self.source_map = self.dbopen(name, "sources")
-        self.media_map  = self.dbopen(name, "media")
-        self.event_map  = self.dbopen(name, "events")
-        self.metadata   = self.dbopen(name, "meta")
-        self.person_map = self.dbopen(name, "person")
+        self.family_map     = self.dbopen(name, "family")
+        self.place_map      = self.dbopen(name, "places")
+        self.source_map     = self.dbopen(name, "sources")
+        self.media_map      = self.dbopen(name, "media")
+        self.event_map      = self.dbopen(name, "events")
+        self.metadata       = self.dbopen(name, "meta")
+        self.person_map     = self.dbopen(name, "person")
+        self.repository_map = self.dbopen(name, "repository")
 
         if self.readonly:
             openflags = db.DB_RDONLY
@@ -170,14 +177,24 @@ class GrampsBSDDB(GrampsDbBase):
         self.oid_trans.set_flags(db.DB_DUP)
         self.oid_trans.open(name, "oidtrans", db.DB_HASH, flags=openflags)
 
+        self.rid_trans = db.DB(self.env)
+        self.rid_trans.set_flags(db.DB_DUP)
+        self.rid_trans.open(name, "ridtrans", db.DB_HASH, flags=openflags)
+
         self.eventnames = db.DB(self.env)
         self.eventnames.set_flags(db.DB_DUP)
         self.eventnames.open(name, "eventnames", db.DB_HASH, flags=openflags)
+
+        self.repository_types = db.DB(self.env)
+        self.repository_types.set_flags(db.DB_DUP)
+        self.repository_types.open(name, "repostypes", db.DB_HASH, flags=openflags)
 
         if not self.readonly:
             self.person_map.associate(self.surnames,  find_surname, openflags)
             self.person_map.associate(self.id_trans,  find_idmap, openflags)
             self.family_map.associate(self.fid_trans, find_idmap, openflags)
+            self.repository_map.associate(self.rid_trans, find_idmap, openflags)
+            self.repository_map.associate(self.repository_types, find_repository_type, openflags)
             self.place_map.associate(self.pid_trans,  find_idmap, openflags)
             self.media_map.associate(self.oid_trans, find_idmap, openflags)
             self.source_map.associate(self.sid_trans, find_idmap, openflags)
@@ -213,6 +230,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.name_group.close()
         self.person_map.close()
         self.family_map.close()
+        self.repository_map.close()
         self.place_map.close()
         self.source_map.close()
         self.media_map.close()
@@ -223,8 +241,10 @@ class GrampsBSDDB(GrampsDbBase):
         self.metadata.close()
         self.surnames.close()
         self.eventnames.close()
+        self.repository_types.close()
         self.id_trans.close()
         self.fid_trans.close()
+        self.rid_trans.close()
         self.oid_trans.close()
         self.sid_trans.close()
         self.pid_trans.close()
@@ -237,21 +257,25 @@ class GrampsBSDDB(GrampsDbBase):
             except:
                 pass
         
-        self.person_map = None
-        self.family_map = None
-        self.place_map  = None
-        self.source_map = None
-        self.media_map  = None
-        self.event_map  = None
-        self.surnames   = None
-        self.env        = None
-        self.metadata   = None
+        self.person_map     = None
+        self.family_map     = None
+        self.repository_map = None
+        self.place_map      = None
+        self.source_map     = None
+        self.media_map      = None
+        self.event_map      = None
+        self.surnames       = None
+        self.env            = None
+        self.metadata       = None
 
     def _del_person(self,handle):
         self.person_map.delete(str(handle))
 
     def _del_source(self,handle):
         self.source_map.delete(str(handle))
+
+    def _del_repository(self,handle):
+        self.repository_map.delete(str(handle))
 
     def _del_place(self,handle):
         self.place_map.delete(str(handle))
@@ -292,6 +316,16 @@ class GrampsBSDDB(GrampsDbBase):
         vals.sort()
         return vals
 
+    def get_repository_type_list(self):
+        repos_types = self.repository_types.keys()
+        a = {}
+        for repos_type in repos_types:
+            
+            a[unicode(repos_type)] = 1
+        vals = a.keys()
+        vals.sort()
+        return vals
+
     def remove_person(self,handle,transaction):
         if not self.readonly and handle and str(handle) in self.person_map:
             person = self.get_person_from_handle(handle)
@@ -308,6 +342,14 @@ class GrampsBSDDB(GrampsDbBase):
                 transaction.add(SOURCE_KEY,handle,old_data)
                 self.emit('source-delete',([handle],))
             self.source_map.delete(str(handle))
+
+    def remove_repository(self,handle,transaction):
+        if not self.readonly and handle and str(handle) in self.repository_map:
+            if transaction != None:
+                old_data = self.repository_map.get(str(handle))
+                transaction.add(REPOSITORY_KEY,handle,old_data)
+                self.emit('repository-delete',([handle],))
+            self.repository_map.delete(str(handle))
 
     def remove_family(self,handle,transaction):
         if not self.readonly and handle and str(handle) in self.family_map:
@@ -388,6 +430,18 @@ class GrampsBSDDB(GrampsDbBase):
         else:
             return None
 
+    def get_repository_from_gramps_id(self,val):
+        """finds a Repository in the database from the passed gramps' ID.
+        If no such Repository exists, a new Repository is added to the database."""
+
+        data = self.rid_trans.get(str(val))
+        if data:
+            repository = Repository()
+            repository.unserialize(cPickle.loads(data))
+            return repository
+        else:
+            return None
+
     def get_object_from_gramps_id(self,val):
         """finds a MediaObject in the database from the passed gramps' ID.
         If no such MediaObject exists, a new Person is added to the database."""
@@ -405,6 +459,8 @@ class GrampsBSDDB(GrampsDbBase):
         self.family_map.sync()
         self.place_map.sync()
         self.source_map.sync()
+        self.repository_map.sync()
+        self.repository_types.sync()
         self.media_map.sync()
         self.event_map.sync()
         self.metadata.sync()
@@ -415,6 +471,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.fid_trans.sync()
         self.pid_trans.sync()
         self.sid_trans.sync()
+        self.rid_trans.sync()
         self.oid_trans.sync()
         self.eventnames.sync()
         self.undodb.sync()
@@ -435,6 +492,8 @@ class GrampsBSDDB(GrampsDbBase):
             self.upgrade_5()
         if version < 6:
             self.upgrade_6()
+        if version < 7:
+            self.upgrade_7()
         self.metadata['version'] = _DBVERSION
         print 'Successfully finished all upgrades'
 
@@ -752,3 +811,19 @@ class GrampsBSDDB(GrampsDbBase):
                 order.append(val)
         self.set_media_column_order(order)
 
+    def upgrade_7(self):
+        print "Upgrading to DB version 7"
+        trans = Transaction("",self)
+        trans.set_batch(True)
+        # Change every source to have reporef_list
+        cursor = self.get_source_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            source = Source()
+            (source.handle, source.gramps_id, source.title, source.author,
+             source.pubinfo, source.note, source.media_list,
+             source.abbrev, source.change, source.datamap) = info
+            self.commit_source(source,trans)
+            data = cursor.next()
+        cursor.close()

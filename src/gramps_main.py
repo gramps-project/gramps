@@ -59,6 +59,7 @@ import MediaView
 import PlaceView
 import FamilyView
 import SourceView
+import RepositoryView
 import PeopleView
 import GenericFilter
 import DisplayTrace
@@ -93,13 +94,14 @@ _HOMEPAGE  = "http://gramps-project.org"
 _MAILLIST  = "http://sourceforge.net/mail/?group_id=25770"
 _BUGREPORT = "http://sourceforge.net/tracker/?group_id=25770&atid=385137"
 
-PERSON_VIEW   = 0
-FAMILY_VIEW1  = 1
-FAMILY_VIEW2  = 2
-PEDIGREE_VIEW = 3
-SOURCE_VIEW   = 4
-PLACE_VIEW    = 5
-MEDIA_VIEW    = 6
+PERSON_VIEW     = 0
+FAMILY_VIEW1    = 1
+FAMILY_VIEW2    = 2
+PEDIGREE_VIEW   = 3
+SOURCE_VIEW     = 4
+REPOSITORY_VIEW = 5
+PLACE_VIEW      = 6
+MEDIA_VIEW      = 7
 
 #-------------------------------------------------------------------------
 #
@@ -376,10 +378,11 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.load_person
             )
         
-        self.place_view  = PlaceView.PlaceView(self,self.db,self.gtop)
-        self.source_view = SourceView.SourceView(self,self.db,self.gtop)
-        self.media_view  = MediaView.MediaView(self,self.db,self.gtop,
-                                               self.update_display)
+        self.place_view      = PlaceView.PlaceView(self,self.db,self.gtop)
+        self.source_view     = SourceView.SourceView(self,self.db,self.gtop)
+        self.repository_view = RepositoryView.RepositoryView(self,self.db,self.gtop)
+        self.media_view      = MediaView.MediaView(self,self.db,self.gtop,
+                                                   self.update_display)
 
         self.add_button = self.gtop.get_widget('addbtn')
         self.add_item = self.gtop.get_widget('add_item')
@@ -418,6 +421,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             "on_add_bookmark_activate" : self.on_add_bookmark_activate,
             "on_add_place_clicked" : self.place_view.on_add_place_clicked,
             "on_add_source_clicked" : self.source_view.on_add_clicked,
+            "on_add_repository_clicked" : self.repository_view.on_add_clicked,
             "on_addperson_clicked" : self.load_new_person,
             "on_apply_filter_clicked" : self.on_apply_filter_clicked,
             "on_arrow_left_clicked" : self.pedigree_view.on_show_child_menu,
@@ -427,6 +431,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             "on_delete_person_clicked" : self.delete_person_clicked,
             "on_delete_place_clicked" : self.place_view.on_delete_clicked,
             "on_delete_source_clicked" : self.source_view.on_delete_clicked,
+            "on_delete_repository_clicked" : self.repository_view.on_delete_clicked,
             "on_delete_media_clicked" : self.media_view.on_delete_clicked,
             "on_edit_active_person" : self.load_active_person,
             "on_edit_selected_people" : self.load_selected_people,
@@ -459,6 +464,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             "on_revert_activate" : self.on_revert_activate,
             "on_show_plugin_status" : self.on_show_plugin_status,
             "on_source_list_button_press" : self.source_view.button_press,
+            "on_repository_list_button_press" : self.repository_view.button_press,
             "on_sources_activate" : self.on_sources_activate,
             "on_tools_clicked" : self.on_tools_clicked,
             "on_gramps_home_page_activate" : self.home_page_activate,
@@ -582,6 +588,10 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
     def set_source_column_order(self,list):
         self.db.set_source_column_order(list)
         self.source_view.build_columns()
+
+    def set_repository_column_order(self,list):
+        self.db.set_repository_column_order(list)
+        self.repository_view.build_columns()
 
     def set_media_column_order(self,list):
         self.db.set_media_column_order(list)
@@ -844,6 +854,8 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.load_person(self.active_person)
         elif cpage == SOURCE_VIEW:
             self.source_view.on_edit_clicked(obj)
+        elif cpage == REPOSITORY_VIEW:
+            self.repository_view.on_edit_clicked(obj)
         elif cpage == PLACE_VIEW:
             self.place_view.on_edit_clicked(obj)
         elif cpage == MEDIA_VIEW:
@@ -855,6 +867,8 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.load_new_person(obj)
         elif cpage == SOURCE_VIEW:
             self.source_view.on_add_clicked(obj)
+        elif cpage == REPOSITORY_VIEW:
+            self.repository_view.on_add_clicked(obj)
         elif cpage == PLACE_VIEW:
             self.place_view.on_add_place_clicked(obj)
         elif cpage == MEDIA_VIEW:
@@ -866,6 +880,8 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.delete_person_clicked(obj)
         elif cpage == SOURCE_VIEW:
             self.source_view.on_delete_clicked(obj)
+        elif cpage == REPOSITORY_VIEW:
+            self.repository_view.on_delete_clicked(obj)
         elif cpage == PLACE_VIEW:
             self.place_view.on_delete_clicked(obj)
         elif cpage == MEDIA_VIEW:

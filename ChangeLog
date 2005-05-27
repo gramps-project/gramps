@@ -1,5 +1,23 @@
 2005-05-27  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsBSDDB.py (upgrade_7): Add upgrade path for repo changes.
 	* src/const.py.in: Define integer constants for standard events.
+	* gramps.glade: Resolve merge conflicts.
+
+2005-05-27  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/EditRepository.py: polish Repository Ref UI
+	* src/RelLib.py: merge minor changes from HEAD
+	* src/RepositoryRefEdit.py: polish Repository Ref UI
+	* src/gramps.glade: polish Repository Ref UI
+
+2005-05-27  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/EditRepository.py: completed delete Repository
+	* src/RepositoryView.py: completed delete Repository
+	* src/Utils.py: added then removed a method, line number changed.
+
+2005-05-27  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/EditSource.py: completed support Repository Ref UI
+	* src/RepositoryRefEdit.py: everything now works accept MediaType
+	* src/gramps.glade: tooltips etc. for Repository Ref UI
 
 2005-05-27  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/RelLib.py: Add wrappers for old event handle API including a
@@ -24,6 +42,37 @@
 	idle callback; (add_table_to_notebook): Work with PyGtk < 2.4;
 	(format_relation): Adapt format to availably space.
 
+2005-05-26  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/EditSource.py: added Repositories tab and related code (not complete)
+	* src/RepositoryRefEdit.py: outline of Repository Ref UI
+	* src/gramps.glade: Repositoy tab for Source and Repository Ref UI
+
+2005-05-26  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/DisplayModels.py: fixed for removing phone
+	* src/RelLib.py: removed phone field from Repository because it is 
+	in Location anyway.
+	* src/RepositoryView.py: Fixed display of home_url in list view.
+
+2005-05-26  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/EditRepository.py: add support for repository types
+	* src/GrampsBSDDB.py: add get_repository_type_list method
+	* src/GrampsInMemDB.py: add get_repository_type_list method
+
+2005-05-26  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/EditRepository.py: new module to edit repository objects
+	* src/RepositoryView.py: new module to main repository list view
+	* src/DisplayModels.py:  added a model for Repositories
+	* src/gramps.glade: added Repository tab to gramps, and added new
+	                    repositoryEditor dialog
+	* src/gramps_main.py: added calls for repository editor
+
+2005-05-26  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/GrampsBSDDB.py: add support for Repository primary table
+	* src/GrampsDbBase.py: add support for Repository primary table
+	* src/GrampsGconfKeys.py: add Repository id prefix keys
+	* src/GrampsInMemDB.py: add support for Repository primary table
+	* src/GrampsIniKeys.py: add Repository id prefix keys
+
 2005-05-25  Alex Roitman  <shura@gramps-project.org>
 	* src/EditPlace.py: WATCH cursor and temp label for References tab.
 	* src/EditSource.py: Improve manipulating notebook tab labels.
@@ -32,6 +81,14 @@
 	* src/gramps.glade (event editor, source editor, place editor):
 	Add icons to notebook tabs. 
 
+2005-05-25  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib.py: Switch Repository from using locations to using
+	Address object. Adjust methods accordingly. Add RepoRef class.
+	Add support for RepoRef list in Source class.
+
+2005-05-25  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/RelLib.py: added Repository class and unittests
+	
 2005-05-25  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/plugins/ScratchPad.py: disabled search because it does not do 
 	  what the user expects.

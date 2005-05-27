@@ -2867,12 +2867,13 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         self.note = Note()
         self.datamap = {}
         self.abbrev = ""
+        self.reporef_list = []
 
     def serialize(self):
         return (self.handle, self.gramps_id, unicode(self.title),
                 unicode(self.author), unicode(self.pubinfo),
                 self.note, self.media_list, unicode(self.abbrev),
-                self.change,self.datamap)
+                self.change,self.datamap,self.reporef_list)
 
     def unserialize(self,data):
         """
@@ -2881,7 +2882,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         """
         (self.handle, self.gramps_id, self.title, self.author,
          self.pubinfo, self.note, self.media_list,
-         self.abbrev, self.change, self.datamap) = data
+         self.abbrev, self.change, self.datamap, self.reporef_list) = data
         
     def get_text_data_list(self):
         """
@@ -2899,7 +2900,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        check_list = self.media_list
+        check_list = self.media_list + self.reporef_list
         if self.note:
             check_list.append(self.note)
         return check_list
@@ -3016,6 +3017,72 @@ class Source(PrimaryObject,MediaBase,NoteBase):
     def get_abbreviation(self):
         """returns the title abbreviation of the Source"""
         return self.abbrev
+
+    def add_repo_reference(self,repo_ref):
+        """
+        Adds a L{RepoRef} instance to the Source's reporef list.
+
+        @param repo_ref: L{RepoRef} instance to be added to the object's reporef list.
+        @type repo_ref: L{RepoRef}
+        """
+        self.reporef_list.append(repo_ref)
+
+    def get_reporef_list(self):
+        """
+        Returns the list of L{RepoRef} instances associated with the Source.
+
+        @returns: list of L{RepoRef} instances associated with the Source
+        @rtype: list
+        """
+        return self.reporef_list
+
+    def set_reporef_list(self,reporef_list):
+        """
+        Sets the list of L{RepoRef} instances associated with the Source.
+        It replaces the previous list.
+
+        @param reporef_list: list of L{RepoRef} instances to be assigned to the Source.
+        @type reporef_list: list
+        """
+        self.reporef_list = reporef_list
+
+    def has_repo_reference(self,repo_handle):
+        """
+        Returns True if the Source has reference to this Repository handle.
+
+        @param repo_handle: The Repository handle to be checked.
+        @type repo_handle: str
+        @return: Returns whether the Source has reference to this Repository handle.
+        @rtype: bool
+        """
+        return repo_handle in [repo_ref.ref for repo_ref in self.reporef_list]
+
+    def remove_repo_references(self,repo_handle_list):
+        """
+        Removes references to all Repository handles in the list.
+
+        @param repo_handle_list: The list of Repository handles to be removed.
+        @type repo_handle_list: list
+        """
+        new_reporef_list = [ repo_ref for repo_ref in self.reporef_list \
+                                    if repo_ref.ref not in repo_handle_list ]
+        self.reporef_list = new_reporef_list
+
+    def replace_repo_references(self,old_handle,new_handle):
+        """
+        Replaces all references to old Repository handle with the new handle.
+
+        @param old_handle: The Repository handle to be replaced.
+        @type old_handle: str
+        @param new_handle: The Repository handle to replace the old one with.
+        @type new_handle: str
+        """
+        refs_list = [ repo_ref.ref for repo_ref in self.reporef_list ]
+        n_replace = refs_list.count(old_handle)
+        for ix_replace in xrange(n_replace):
+            ix = refs_list.index(old_handle)
+            self.reporef_list[ix].ref = new_handle
+            refs_list.pop(ix)
 
 class LdsOrd(SourceNote,DateBase,PlaceBase):
     """
@@ -4316,3 +4383,359 @@ class GenderStats:
             return Person.FEMALE
 
         return Person.UNKNOWN
+
+class RepoRef(NoteBase):
+    """
+    Repository reference class.
+    """
+    MEDIA_TYPE_CUSTOM = 0
+    MEDIA_TYPE_AUDIO = 1
+    MEDIA_TYPE_BOOK = 2
+    MEDIA_TYPE_CARD = 3
+    MEDIA_TYPE_ELECTRONIC = 4
+    MEDIA_TYPE_FICHE = 5
+    MEDIA_TYPE_FILM = 6
+    MEDIA_TYPE_MAGAZINE = 7
+    MEDIA_TYPE_MANUSCRIPT = 8
+    MEDIA_TYPE_MAP = 9
+    MEDIA_TYPE_NEWSPAPER = 10
+    MEDIA_TYPE_PHOTO = 11
+    MEDIA_TYPE_THOMBSTOBE = 12
+    MEDIA_TYPE_VIDEO = 13
+
+    def __init__(self,source=None):
+        NoteBase.__init__(self)
+        if source:
+            self.ref = source.ref
+            self.call_number = source.call_number
+            self.media_type_int = source.media_type_int
+            self.media_type_str = source.media_type_str
+        else:
+            self.ref = None
+            self.call_number = ""
+            self.media_type_int = self.MEDIA_TYPE_CUSTOM
+            self.media_type_str = ""
+
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.call_number,self.media_type_str]
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        if self.note:
+            return [self.note]
+        return []
+
+    def get_referenced_handles(self):
+        """
+        Returns the list of (classname,handle) tuples for all directly
+        referenced primary objects.
+        
+        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @rtype: list
+        """
+        if self.ref:
+            return [('Repository',self.ref)]
+        else:
+            return []
+
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects..
+        
+        @return: Returns the list of objects refereincing primary objects.
+        @rtype: list
+        """
+        return []
+
+    def set_reference_handle(self,ref):
+        self.ref = ref
+
+    def get_reference_handle(self):
+        return self.ref
+
+    def set_call_number(self,number):
+        self.call_number = number
+
+    def get_call_number(self):
+        return self.call_number
+
+    def get_media_type(self):
+        if self.media_type_int == self.MEDIA_TYPE_CUSTOM:
+            return self.media_type_str
+        else:
+            return self.media_type_int
+
+    def set_media_type(self,media_type):
+        if type(media_type) == int:
+            self.media_type_int = media_type
+            self.media_type_str = ""
+        else:
+            self.media_type_int = self.MEDIA_TYPE_CUSTOM
+            self.media_type_str = media_type
+
+class Repository(PrimaryObject,NoteBase):
+    """A location where collections of Sources are found"""
+    
+    def __init__(self):
+        """creates a new Repository instance"""
+        PrimaryObject.__init__(self)
+        NoteBase.__init__(self)
+        self.type = ""
+        self.name = ""
+        self.address = Location()
+	self.email = ""
+	self.search_url = ""
+	self.home_url = ""
+        self.note = Note()
+
+    def serialize(self):
+        return (self.handle, self.gramps_id, unicode(self.type),
+                unicode(self.name), self.address,
+                unicode(self.email),
+                unicode(self.search_url), unicode(self.home_url),
+                self.note)
+
+    def unserialize(self,data):
+        """
+        Converts the data held in a tuple created by the serialize method
+        back into the data in an Repository structure.
+        """
+        (self.handle, self.gramps_id, self.type, self.name,
+         self.address, self.email,
+         self.search_url, self.home_url, self.note) = data
+        
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.name,self.email,self.search_url,self.home_url]
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        check_list = [self.address]
+        if self.note:
+            check_list.append(self.note)
+        return check_list
+
+    def has_source_reference(self,src_handle) :
+        """
+        Returns True if any of the child objects has reference
+        to this source handle.
+
+        @param src_handle: The source handle to be checked.
+        @type src_handle: str
+        @return: Returns whether any of it's child objects has reference to this source handle.
+        @rtype: bool
+        """
+        return False
+
+    def remove_source_references(self,src_handle_list):
+        """
+        Removes references to all source handles in the list
+        in all child objects.
+
+        @param src_handle_list: The list of source handles to be removed.
+        @type src_handle_list: list
+        """
+        pass
+
+    def replace_source_references(self,old_handle,new_handle):
+        """
+        Replaces references to source handles in the list
+        in this object and all child objects.
+
+        @param old_handle: The source handle to be replaced.
+        @type old_handle: str
+        @param new_handle: The source handle to replace the old one with.
+        @type new_handle: str
+        """
+        pass
+
+    def set_type(self,type):
+        """
+        @param type: descriptive type of the Repository
+        @type type: str
+        """
+        self.type = type
+
+    def get_type(self):
+        """
+        @returns: the descriptive type of the Repository
+        @rtype: str
+        """
+        return self.type
+
+    def set_name(self,name):
+        """
+        @param name: descriptive name of the Repository
+        @type name: str
+        """
+        self.name = name
+
+    def get_name(self):
+        """
+        @returns: the descriptive name of the Repository
+        @rtype: str
+        """
+        return self.name
+
+    def set_address(self,address):
+        """
+        @param address: L{Location} instance to set as Repository's address
+        @type address: L{Location}
+        """
+        self.address = address
+
+    def get_address(self):
+        """
+        @returns: L{Location} instance representing Repository's address
+        @rtype: L{Location}
+        """
+        return self.address
+    
+    def set_email(self,email):
+        """
+        @param email: descriptive email of the Repository
+        @type email: str
+        """
+        self.email = email
+
+    def get_email(self):
+        """
+        @returns: the descriptive email of the Repository
+        @rtype: str
+        """
+        return self.email
+    
+    def set_search_url(self,search_url):
+        """
+        @param search_url: descriptive search_url of the Repository
+        @type search_url: str
+        """
+        self.search_url = search_url
+
+    def get_search_url(self):
+        """
+        @returns: the descriptive search_url of the Repository
+        @rtype: str
+        """
+        return self.search_url
+    
+    def set_home_url(self,home_url):
+        """
+        @param home_url: descriptive home_url of the Repository
+        @type home_url: str
+        """
+        self.home_url = home_url
+
+    def get_home_url(self):
+        """
+        @returns: the descriptive home_url of the Repository
+        @rtype: str
+        """
+        return self.home_url
+    
+    
+#-------------------------------------------------------------------------
+#
+# Testing code below this point
+#
+#-------------------------------------------------------------------------
+
+
+if __name__ == "__main__":
+    import unittest
+
+    class TestRepository(unittest.TestCase):
+
+        def test_simple(self):
+
+            rep1 = Repository()
+            rep1.set_type("type")
+            rep1.set_name("name")
+            addr1 = Location()
+            rep1.set_address(addr1)
+            rep1.set_email("email")
+            rep1.set_search_url("search url")
+            rep1.set_home_url("home url")
+            rep1.set_note("a note")
+
+            assert rep1.get_type() == "type"
+            assert rep1.get_name() == "name"
+            assert rep1.get_address() == addr1
+            assert rep1.get_email() == "email"
+            assert rep1.get_search_url() == "search url"
+            assert rep1.get_home_url() == "home url"
+            assert rep1.get_note() == "a note"
+
+        def test_serialize(self):
+            
+            rep1 = Repository()
+            addr1 = Location()
+            rep1.set_type("type")
+            rep1.set_name("name")
+            rep1.set_address(addr1)
+            rep1.set_email("email")
+            rep1.set_search_url("search url")
+            rep1.set_home_url("home url")
+            rep1.set_note("a note")
+
+            rep2 = Repository()
+            rep2.unserialize(rep1.serialize())
+            assert rep1.get_handle() == rep2.get_handle()
+            assert rep1.get_gramps_id() == rep2.get_gramps_id()
+            assert rep1.get_type() == rep2.get_type()
+            assert rep1.get_name() == rep2.get_name()
+            assert rep1.get_address() == rep2.get_address()
+            assert rep1.get_email() == rep2.get_email()
+            assert rep1.get_search_url() == rep2.get_search_url()
+            assert rep1.get_home_url() == rep2.get_home_url()
+            assert rep1.get_note() == rep2.get_note()
+
+        def test_methods(self):
+            
+            rep1 = Repository()
+            addr1 = Location()
+            rep1.set_note("a note")
+            rep1.set_address(addr1)
+
+            assert type(rep1.get_text_data_list()) == type([])
+            assert rep1.get_text_data_child_list() == [addr1,rep1.note]
+            assert rep1.get_handle_referents() == []
+            assert rep1.has_source_reference(None) == False
+                
+
+    class TestRepoRef(unittest.TestCase):
+        def test_simple(self):
+            rr1 = RepoRef()
+            rr1.set_reference_handle('ref-handle')
+            rr1.set_call_number('call-number')
+            rr1.set_media_type(RepoRef.MEDIA_TYPE_BOOK)
+            rr1.set_note('some note')
+
+            assert rr1.get_reference_handle() == 'ref-handle'
+            assert rr1.get_call_number() == 'call-number'
+            assert rr1.get_media_type() == RepoRef.MEDIA_TYPE_BOOK
+            assert rr1.get_note() == 'some note'
+    
+    unittest.main()
