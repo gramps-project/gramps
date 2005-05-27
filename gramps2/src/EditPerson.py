@@ -266,7 +266,7 @@ class EditPerson:
                or (not self.lds_sealing.is_empty()):
             Utils.bold_label(self.lds_tab)
 
-        types = const.NameTypesMap.get_values()
+        types = const.NameTypesMap.values()
         types.sort()
         AutoComp.fill_combo(self.ntype_field,types)
         self.write_primary_name()
