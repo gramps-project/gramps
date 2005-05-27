@@ -1,3 +1,6 @@
+2005-05-27  Alex Roitman  <shura@gramps-project.org>
+	* src/const.py.in: Define integer constants for standard events.
+
 2005-05-27  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/RelLib.py: Add wrappers for old event handle API including a
 	DeprecationWarning (this makes HEAD no longer completely defunct);

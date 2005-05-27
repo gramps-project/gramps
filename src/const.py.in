@@ -263,132 +263,162 @@ confidence = [
 
 #-------------------------------------------------------------------------
 #
-# Family event string mappings
+# Event constants
 #
 #-------------------------------------------------------------------------
+EVENT_UNKNOWN        = -1
+EVENT_CUSTOM         = 0
+EVENT_MARRIAGE       = 1
+EVENT_MARR_SETTL     = 2
+EVENT_MARR_LIC       = 3
+EVENT_MARR_CONTR     = 4
+EVENT_MARR_BANNS     = 5
+EVENT_ENGAGEMENT     = 6
+EVENT_DIVORCE        = 7
+EVENT_DIV_FILING     = 8
+EVENT_ANNULMENT      = 9
+EVENT_MARR_ALT       = 10
+EVENT_ADOPT          = 11
+EVENT_BIRTH          = 12
+EVENT_DEATH          = 13
+EVENT_ADULT_CHRISTEN = 14
+EVENT_BAPTISM        = 15
+EVENT_BAR_MITZVAH    = 16
+EVENT_BAS_MITZVAH    = 17
+EVENT_BLESS          = 18
+EVENT_BURIAL         = 19
+EVENT_CAUSE_DEATH    = 20
+EVENT_CENSUS         = 21
+EVENT_CHRISTEN       = 22
+EVENT_CONFIRMATION   = 23
+EVENT_CREMATION      = 24
+EVENT_DEGREE         = 25
+EVENT_EDUCATION      = 26
+EVENT_ELECTED        = 27
+EVENT_EMIGRATION     = 28
+EVENT_FIRST_COMMUN   = 29
+EVENT_IMMIGRATION    = 30
+EVENT_GRADUATION     = 31
+EVENT_MED_INFO       = 32
+EVENT_MILITARY_SERV  = 33
+EVENT_NATURALIZATION = 34
+EVENT_NOB_TITLE      = 35
+EVENT_NUM_MARRIAGES  = 36
+EVENT_OCCUPATION     = 37
+EVENT_ORDINATION     = 38
+EVENT_PROBATE        = 39
+EVENT_PROPERTY       = 40
+EVENT_RELIGION       = 41
+EVENT_RESIDENCE      = 42
+EVENT_RETIREMENT     = 43
+EVENT_WILL           = 44
+
+
 familyConstantEvents = {
-    "Annulment"           : "ANUL",
-    "Divorce Filing"      : "DIVF",
-    "Divorce"             : "DIV",
-    "Engagement"          : "ENGA",
-    "Marriage Banns"      : "MARB",
-    "Marriage Contract"   : "MARC",
-    "Marriage License"    : "MARL",
-    "Marriage Settlement" : "MARS",
-    "Marriage"            : "MARR"
+    EVENT_ANNULMENT  : "ANUL",
+    EVENT_DIV_FILING : "DIVF",
+    EVENT_DIVORCE    : "DIV",
+    EVENT_ENGAGEMENT : "ENGA",
+    EVENT_MARR_BANNS : "MARB",
+    EVENT_MARR_CONTR : "MARC",
+    EVENT_MARR_LIC   : "MARL",
+    EVENT_MARR_SETTL : "MARS",
+    EVENT_MARRIAGE   : "MARR"
     }
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
+family_events = {
+    EVENT_UNKNOWN    : _("Unknown"),
+    EVENT_CUSTOM     : _("Custom"),
+    EVENT_MARRIAGE   : _("Marriage"),
+    EVENT_MARR_SETTL : _("Marriage Settlement"),
+    EVENT_MARR_LIC   : _("Marriage License"),
+    EVENT_MARR_CONTR : _("Marriage Contract"),
+    EVENT_MARR_BANNS : _("Marriage Banns"),
+    EVENT_ENGAGEMENT : _("Engagement"),
+    EVENT_DIVORCE    : _("Divorce")
+    EVENT_DIV_FILING : _("Divorce Filing"),
+    EVENT_ANNULMENT  : _("Annulment"),
+    EVENT_MARR_ALT   : _("Alternate Marriage"),
+    }
 
-family_events = TransTable( {
-    "Alternate Marriage"  : _("Alternate Marriage"),
-    "Annulment"           : _("Annulment"),
-    "Divorce Filing"      : _("Divorce Filing"),
-    "Divorce"             : _("Divorce"),
-    "Engagement"          : _("Engagement"),
-    "Marriage Banns"      : _("Marriage Banns"),
-    "Marriage Contract"   : _("Marriage Contract"),
-    "Marriage License"    : _("Marriage License"),
-    "Marriage Settlement" : _("Marriage Settlement"),
-    "Marriage"            : _("Marriage")
-    })
-
-def display_fevent(st):
-    return family_events.find_value(st)
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 personalConstantEvents = {
-    "Adopted"             : "ADOP",
-    "Adult Christening"   : "CHRA",
-    "Birth"               : "BIRT",
-    "Death"               : "DEAT",
-    "Baptism"             : "BAPM",
-    "Bar Mitzvah"         : "BARM",
-    "Bas Mitzvah"         : "BASM",
-    "Blessing"            : "BLES",
-    "Burial"              : "BURI",
-    "Cause Of Death"      : "CAUS",
-    "Ordination"          : "ORDI",
-    "Census"              : "CENS",
-    "Christening"         : "CHR" ,
-    "Confirmation"        : "CONF",
-    "Cremation"           : "CREM",
-    "Degree"              : "", 
-    "Divorce Filing"      : "DIVF",
-    "Education"           : "EDUC",
-    "Elected"             : "",
-    "Emigration"          : "EMIG",
-    "First Communion"     : "FCOM",
-    "Graduation"          : "GRAD",
-    "Medical Information" : "", 
-    "Military Service"    : "", 
-    "Naturalization"      : "NATU",
-    "Nobility Title"      : "TITL",
-    "Number of Marriages" : "NMR",
-    "Immigration"         : "IMMI",
-    "Occupation"          : "OCCU",
-    "Probate"             : "PROB",
-    "Property"            : "PROP",
-    "Religion"            : "RELI",
-    "Residence"           : "RESI", 
-    "Retirement"          : "RETI",
-    "Will"                : "WILL"
+    EVENT_ADOPT            : "ADOP",
+    EVENT_ADULT_CHRISTEN   : "CHRA",
+    EVENT_BIRTH            : "BIRT",
+    EVENT_DEATH            : "DEAT",
+    EVENT_BAPTISM          : "BAPM",
+    EVENT_BAR_MITZVAH      : "BARM",
+    EVENT_BAS_MITZVAH      : "BASM",
+    EVENT_BLESS            : "BLES",
+    EVENT_BURIAL           : "BURI",
+    EVENT_CAUSE_DEATH      : "CAUS",
+    EVENT_ORDINATION       : "ORDI",
+    EVENT_CENSUS           : "CENS",
+    EVENT_CHRISTEN         : "CHR" ,
+    EVENT_CONFIRMATION     : "CONF",
+    EVENT_CREMATION        : "CREM",
+    EVENT_DEGREE           : "", 
+    EVENT_DIV_FILING       : "DIVF",
+    EVENT_EDUCATION        : "EDUC",
+    EVENT_ELECTED          : "",
+    EVENT_ELECTED          : "EMIG",
+    EVENT_FIRST_COMMUN     : "FCOM",
+    EVENT_GRADUATION       : "GRAD",
+    EVENT_MED_INFO         : "", 
+    EVENT_MILITARY_SERV    : "", 
+    EVENT_NATURALIZATION   : "NATU",
+    EVENT_NOB_TITLE        : "TITL",
+    EVENT_NUM_MARRIAGES    : "NMR",
+    EVENT_IMMIGRATION      : "IMMI",
+    EVENT_OCCUPATION       : "OCCU",
+    EVENT_PROBATE          : "PROB",
+    EVENT_PROPERTY         : "PROP",
+    EVENT_RELIGION         : "RELI",
+    EVENT_RESIDENCE        : "RESI", 
+    EVENT_RETIREMENT       : "RETI",
+    EVENT_WILL             : "WILL",
     }
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
+personal_events = {
+    EVENT_UNKNOWN         : _("Unknown"),
+    EVENT_CUSTOM          : _("Custom"),
+    EVENT_ADOPT           : _("Adopted"),
+    EVENT_BIRTH           : _("Birth"),
+    EVENT_DEATH           : _("Death"),
+    EVENT_ADULT_CHRISTEN  : _("Adult Christening"),
+    EVENT_BAPTISM         : _("Baptism"),
+    EVENT_BAR_MITZVAH     : _("Bar Mitzvah"),
+    EVENT_BAS_MITZVAH     : _("Bas Mitzvah"),
+    EVENT_BLESS           : _("Blessing"),
+    EVENT_BURIAL          : _("Burial"),
+    EVENT_CAUSE_DEATH     : _("Cause Of Death"),
+    EVENT_CENSUS          : _("Census"),
+    EVENT_CHRISTEN        : _("Christening"),
+    EVENT_CONFIRMATION    : _("Confirmation"),
+    EVENT_CREMATION       : _("Cremation"),
+    EVENT_DEGREE          : _("Degree"),
+    EVENT_DIV_FILING      : _("Divorce Filing"),
+    EVENT_EDUCATION       : _("Education"),
+    EVENT_ELECTED         : _("Elected"),
+    EVENT_EMIGRATION      : _("Emigration"),
+    EVENT_FIRST_COMMUN    : _("First Communion"),
+    EVENT_IMMIGRATION     : _("Immigration"),
+    EVENT_GRADUATION      : _("Graduation"),
+    EVENT_MED_INFO        : _("Medical Information"),
+    EVENT_MILITARY_SERV   : _("Military Service"), 
+    EVENT_NATURALIZATION  : _("Naturalization"),
+    EVENT_NOB_TITLE       : _("Nobility Title"),
+    EVENT_NUM_MARRIAGES   : _("Number of Marriages"),
+    EVENT_OCCUPATION      : _("Occupation"),
+    EVENT_ORDINATION      : _("Ordination"),
+    EVENT_PROBATE         : _("Probate"),
+    EVENT_PROPERTY        : _("Property"),
+    EVENT_RELIGION        : _("Religion"),
+    EVENT_RESIDENCE       : _("Residence"),
+    EVENT_RETIREMENT      : _("Retirement"),
+    EVENT_WILL            : _("Will")
+    }
 
-personal_events = TransTable({
-    "Adopted"             : _("Adopted"),
-    "Birth"               : _("Birth"),
-    "Death"               : _("Death"),
-    "Adult Christening"   : _("Adult Christening"),
-    "Baptism"             : _("Baptism"),
-    "Bar Mitzvah"         : _("Bar Mitzvah"),
-    "Bas Mitzvah"         : _("Bas Mitzvah"),
-    "Blessing"            : _("Blessing"),
-    "Burial"              : _("Burial"),
-    "Cause Of Death"      : _("Cause Of Death"),
-    "Census"              : _("Census"),
-    "Christening"         : _("Christening"),
-    "Confirmation"        : _("Confirmation"),
-    "Cremation"           : _("Cremation"),
-    "Degree"              : _("Degree"),
-    "Divorce Filing"      : _("Divorce Filing"),
-    "Education"           : _("Education"),
-    "Elected"             : _("Elected"),
-    "Emigration"          : _("Emigration"),
-    "First Communion"     : _("First Communion"),
-    "Immigration"         : _("Immigration"),
-    "Graduation"          : _("Graduation"),
-    "Medical Information" : _("Medical Information"),
-    "Military Service"    : _("Military Service"), 
-    "Naturalization"      : _("Naturalization"),
-    "Nobility Title"      : _("Nobility Title"),
-    "Number of Marriages" : _("Number of Marriages"),
-    "Occupation"          : _("Occupation"),
-    "Ordination"          : _("Ordination"),
-    "Probate"             : _("Probate"),
-    "Property"            : _("Property"),
-    "Religion"            : _("Religion"),
-    "Residence"           : _("Residence"),
-    "Retirement"          : _("Retirement"),
-    "Will"                : _("Will")
-    })
-
-def display_pevent(st):
-    return personal_events.find_value(st)
 
 #-------------------------------------------------------------------------
 #
