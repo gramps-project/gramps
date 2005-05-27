@@ -458,29 +458,41 @@ class TestcaseGenerator:
         event.add_witness(witness)
         event.set_name("Christening")
         event_h = self.db.add_event(event,self.trans)
+        event_ref = RelLib.EventRef()
+        event_ref.set_reference_handle(event_h)
+        event_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
         person = self.db.get_person_from_handle(person_h)
-        person.add_event_handle(event_h)
+        person.add_event_ref(event_ref)
         self.db.commit_person(person,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Creates a person having a non existing birth event handle set
         person_h = self.generate_person(None,"Broken11",None)
         person = self.db.get_person_from_handle(person_h)
-        person.set_birth_handle("InvalidHandle4")
+        event_ref = RelLib.EventRef()
+        event_ref.set_reference_handle("InvalidHandle4")
+        event_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
+        person.set_birth_ref(event_ref)
         self.db.commit_person(person,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Creates a person having a non existing death event handle set
         person_h = self.generate_person(None,"Broken12",None)
         person = self.db.get_person_from_handle(person_h)
-        person.set_death_handle("InvalidHandle5")
+        event_ref = RelLib.EventRef()
+        event_ref.set_reference_handle("InvalidHandle5")
+        event_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
+        person.set_death_ref(event_ref)
         self.db.commit_person(person,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Creates a person having a non existing event handle set
         person_h = self.generate_person(None,"Broken13",None)
         person = self.db.get_person_from_handle(person_h)
-        person.add_event_handle("InvalidHandle6")
+        event_ref = RelLib.EventRef()
+        event_ref.set_reference_handle("InvalidHandle6")
+        event_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
+        person.add_event_ref(event_ref)
         self.db.commit_person(person,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
@@ -489,8 +501,11 @@ class TestcaseGenerator:
         event = RelLib.Event()
         event.set_description("Test for Broken14")
         event_h = self.db.add_event(event,self.trans)
+        event_ref = RelLib.EventRef()
+        event_ref.set_reference_handle(event_h)
+        event_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
         person = self.db.get_person_from_handle(person_h)
-        person.set_birth_handle(event_h)
+        person.set_birth_ref(event_ref)
         self.db.commit_person(person,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
@@ -499,8 +514,11 @@ class TestcaseGenerator:
         event = RelLib.Event()
         event.set_description("Test for Broken15")
         event_h = self.db.add_event(event,self.trans)
+        event_ref = RelLib.EventRef()
+        event_ref.set_reference_handle(event_h)
+        event_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
         person = self.db.get_person_from_handle(person_h)
-        person.set_death_handle(event_h)
+        person.set_death_ref(event_ref)
         self.db.commit_person(person,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
@@ -509,8 +527,11 @@ class TestcaseGenerator:
         event = RelLib.Event()
         event.set_description("Test for Broken16")
         event_h = self.db.add_event(event,self.trans)
+        event_ref = RelLib.EventRef()
+        event_ref.set_reference_handle(event_h)
+        event_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
         person = self.db.get_person_from_handle(person_h)
-        person.add_event_handle(event_h)
+        person.add_event_ref(event_ref)
         self.db.commit_person(person,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
@@ -581,6 +602,9 @@ class TestcaseGenerator:
             bevent.set_name("Birth")
             bevent.set_date_object(dateval)
             bevent_h = self.db.add_event(bevent,self.trans)
+            bevent_ref = RelLib.EventRef()
+            bevent_ref.set_reference_handle(bevent_h)
+            bevent_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
             # for the death event display the date as text and parse it back to a new date
             ndate = None
             try:
@@ -606,10 +630,13 @@ class TestcaseGenerator:
             devent.set_name("Death")
             devent.set_date_object(ndate)
             devent_h = self.db.add_event(devent,self.trans)
+            devent_ref = RelLib.EventRef()
+            devent_ref.set_reference_handle(devent_h)
+            devent_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
             person_h = self.generate_person(None, "DateTest")
             person = self.db.get_person_from_handle(person_h)
-            person.set_birth_handle(bevent_h)
-            person.set_death_handle(devent_h)
+            person.set_birth_ref(bevent_ref)
+            person.set_death_ref(devent_ref)
             self.db.commit_person(person,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
     
@@ -746,8 +773,11 @@ class TestcaseGenerator:
         e = RelLib.Event()
         e.set_name("TestcaseGenerator")
         e.set_place_handle(self.default_place.get_handle())
-        self.db.add_event(e, self.trans)
-        object.add_event_handle(e.get_handle())
+        event_h = self.db.add_event(e, self.trans)
+        event_ref = RelLib.EventRef()
+        event_ref.set_reference_handle(event_h)
+        event_ref.set_role(RelLib.EventRef.ROLE_PRIMARY)
+        object.add_event_ref(event_ref)
         
     def commit_transaction(self):
         if self.multiple_transactions:
