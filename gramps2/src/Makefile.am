@@ -66,7 +66,7 @@ gdir_PYTHON = \
 	ImageSelect.py\
 	ImgManip.py\
 	latin_ansel.py\
-	latin_utf8.py\	
+	latin_utf8.py\
 	ListBox.py\
 	ListModel.py\
 	LocEdit.py\

@@ -61,14 +61,17 @@ SOURCE_KEY     = 2
 EVENT_KEY      = 3
 MEDIA_KEY      = 4
 PLACE_KEY      = 5
+REPOSITORY_KEY = 6
 
-PERSON_COL_KEY = 'columns'
-CHILD_COL_KEY  = 'child_columns'
-PLACE_COL_KEY  = 'place_columns'
-SOURCE_COL_KEY = 'source_columns'
-MEDIA_COL_KEY  = 'media_columns'
+PERSON_COL_KEY      = 'columns'
+CHILD_COL_KEY       = 'child_columns'
+PLACE_COL_KEY       = 'place_columns'
+SOURCE_COL_KEY      = 'source_columns'
+MEDIA_COL_KEY       = 'media_columns'
+REPOSITORY_COL_KEY  = 'repository_columns'
 
-_sigbase = ('person', 'family', 'source', 'event', 'media', 'place')
+_sigbase = ('person', 'family', 'source', 'event',
+            'media', 'place', 'repository')
 
 class GrampsCursor:
     """
@@ -145,6 +148,10 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         'event-update'   : (list,),
         'event-delete'   : (list,),
         'event-rebuild'  : None,
+        'repository-add'      : (list,),
+        'repository-update'   : (list,),
+        'repository-delete'   : (list,),
+        'repository-rebuild'  : None,
         }
     
     def __init__(self):
@@ -164,6 +171,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self.fmap_index = 0
         self.lmap_index = 0
         self.omap_index = 0
+        self.rmap_index = 0
 
         self.set_person_id_prefix(GrampsKeys.get_person_id_prefix())
         self.set_object_id_prefix(GrampsKeys.get_object_id_prefix())
@@ -171,6 +179,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self.set_source_id_prefix(GrampsKeys.get_source_id_prefix())
         self.set_place_id_prefix(GrampsKeys.get_place_id_prefix())
         self.set_event_id_prefix(GrampsKeys.get_event_id_prefix())
+        self.set_repository_id_prefix(GrampsKeys.get_repository_id_prefix())
 
         self.open = 0
         self.genderStats = GenderStats()
@@ -181,11 +190,13 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self.pid_trans = None
         self.sid_trans = None
         self.oid_trans = None
+        self.rid_trans = None
         self.env = None
         self.person_map = None
         self.family_map = None
         self.place_map  = None
         self.source_map = None
+        self.repository_map  = None
         self.media_map  = None
         self.event_map  = None
         self.eventnames = None
@@ -229,6 +240,9 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
     def get_media_cursor(self):
         assert False, "Needs to be overridden in the derived class"
 
+    def get_repository_cursor(self):
+        assert False, "Needs to be overridden in the derived class"
+
     def load(self,name,callback):
         """
         Opens the specified database. The method needs to be overridden
@@ -263,6 +277,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self.emit('source-rebuild')
         self.emit('media-rebuild')
         self.emit('event-rebuild')
+        self.emit('repository-rebuild')
 
     def _commit_base(self, obj, data_map, key, update_list, add_list,
                      transaction, change_time):
@@ -342,6 +357,15 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
                           transaction.family_update, transaction.family_add,
                           transaction, change_time)
 
+    def commit_repository(self,repository,transaction,change_time=None):
+        """
+        Commits the specified Repository to the database, storing the changes
+        as part of the transaction.
+        """
+        self._commit_base(repository, self.repository_map, REPOSITORY_KEY,
+                          transaction.repository_update, transaction.repository_add,
+                          transaction, change_time)
+
     def find_next_person_gramps_id(self):
         """
         Returns the next available GRAMPS' ID for a Person object based
@@ -411,6 +435,18 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self.fmap_index += 1
         return index
 
+    def find_next_repository_gramps_id(self):
+        """
+        Returns the next available GRAMPS' ID for a Respository object based
+        off the repository ID prefix.
+        """
+        index = self.rprefix % self.rmap_index
+        while self.rid_trans.get(str(index)):
+            self.rmap_index += 1
+            index = self.rprefix % self.rmap_index
+        self.rmap_index += 1
+        return index
+
     def _get_from_handle(self, handle, class_type, data_map):
         data = data_map.get(str(handle))
         if data:
@@ -460,6 +496,13 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         If no such Family exists, None is returned.
         """
         return self._get_from_handle(handle,Family,self.family_map)
+
+    def get_repository_from_handle(self,handle):
+        """
+        Finds a Repository in the database from the passed gramps' ID.
+        If no such Repository exists, None is returned.
+        """
+        return self._get_from_handle(handle,Repository,self.repository_map)
 
     def _find_from_handle(self,handle,transaction,class_type,dmap,add_func):
         obj = class_type()
@@ -519,6 +562,14 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         return self._find_from_handle(handle,transaction,Family,
                                       self.family_map,self.add_family)
 
+    def find_repository_from_handle(self,handle,transaction):
+        """
+        Finds a Repository in the database from the passed gramps' ID.
+        If no such Repository exists, a new Repository is added to the database.
+        """
+        return self._find_from_handle(handle,transaction,Repository,
+                                      self.repository_map,self.add_repository)
+
     def get_person_from_gramps_id(self,val):
         """
         Finds a Person in the database from the passed GRAMPS ID.
@@ -556,6 +607,14 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
     def get_object_from_gramps_id(self,val):
         """finds a MediaObject in the database from the passed gramps' ID.
         If no such MediaObject exists, a new Person is added to the database.
+
+        Needs to be overridden by the derrived class.
+        """
+        assert False, "Needs to be overridden in the derived class"
+
+    def get_repository_from_gramps_id(self,val):
+        """finds a Repository in the database from the passed gramps' ID.
+        If no such Repository exists, a new Repository is added to the database.
 
         Needs to be overridden by the derrived class.
         """
@@ -626,6 +685,15 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         return self._add_object(obj,transaction,
                                 self.find_next_object_gramps_id,
                                 self.commit_media_object)
+
+    def add_repository(self,obj,transaction):
+        """
+        Adds a Repository to the database, assigning internal IDs if they have
+        not already been defined.
+        """
+        return self._add_object(obj,transaction,
+                                self.find_next_repository_gramps_id,
+                                self.commit_repository)
 
     def get_name_group_mapping(self,name):
         """
@@ -737,6 +805,15 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
             return self.family_map.keys()
         return []
 
+    def get_repository_handles(self):
+        """
+        Returns a list of database handles, one handle for each Repository in
+        the database.
+        """
+        if self.repository_map:
+            return self.repository_map.keys()
+        return []
+
     def set_person_id_prefix(self,val):
         """
         Sets the naming template for GRAMPS Person ID values. The string is
@@ -826,7 +903,22 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
                 self.eprefix = val + "%d"
         else:
             self.eprefix = "E%04d"
-            
+
+    def set_repository_id_prefix(self,val):
+        """
+        Sets the naming template for GRAMPS Repository ID values. The string is
+        expected to be in the form of a simple text string, or in a format
+        that contains a C/Python style format string using %d, such as E%d
+        or E%04d.
+        """
+        if val:
+            if _id_reg.search(val):
+                self.rprefix = val
+            else:
+                self.rprefix = val + "%d"
+        else:
+            self.rprefix = "R%04d"
+
     def transaction_begin(self,msg=""):
         """
         Creates a new Transaction tied to the current UNDO database. The
@@ -848,19 +940,21 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         else:
             self.translist[self.undoindex] = transaction
 
-        person_add = self._do_commit(transaction.person_add,self.person_map)
-        family_add = self._do_commit(transaction.family_add,self.family_map)
-        source_add = self._do_commit(transaction.source_add,self.source_map)
-        place_add  = self._do_commit(transaction.place_add,self.place_map)
-        media_add  = self._do_commit(transaction.media_add,self.media_map)
-        event_add  = self._do_commit(transaction.event_add,self.event_map)
+        person_add      = self._do_commit(transaction.person_add,self.person_map)
+        family_add      = self._do_commit(transaction.family_add,self.family_map)
+        source_add      = self._do_commit(transaction.source_add,self.source_map)
+        place_add       = self._do_commit(transaction.place_add,self.place_map)
+        media_add       = self._do_commit(transaction.media_add,self.media_map)
+        event_add       = self._do_commit(transaction.event_add,self.event_map)
+        repository_add  = self._do_commit(transaction.repository_add,self.repository_map)
 
-        person_upd = self._do_commit(transaction.person_update,self.person_map)
-        family_upd = self._do_commit(transaction.family_update,self.family_map)
-        source_upd = self._do_commit(transaction.source_update,self.source_map)
-        place_upd  = self._do_commit(transaction.place_update,self.place_map)
-        media_upd  = self._do_commit(transaction.media_update,self.media_map)
-        event_upd  = self._do_commit(transaction.event_update,self.event_map)
+        person_upd      = self._do_commit(transaction.person_update,self.person_map)
+        family_upd      = self._do_commit(transaction.family_update,self.family_map)
+        source_upd      = self._do_commit(transaction.source_update,self.source_map)
+        place_upd       = self._do_commit(transaction.place_update,self.place_map)
+        media_upd       = self._do_commit(transaction.media_update,self.media_map)
+        event_upd       = self._do_commit(transaction.event_update,self.event_map)
+        repository_upd  = self._do_commit(transaction.repository_update,self.repository_map)
 
         self._do_emit('person', person_add, person_upd, transaction.person_del)
         self._do_emit('family', family_add, family_upd, transaction.family_del)
@@ -868,13 +962,15 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self._do_emit('source', source_add, source_upd, transaction.source_del)
         self._do_emit('place',  place_add,  place_upd,  transaction.place_del)
         self._do_emit('media',  media_add,  media_upd,  transaction.media_del)
+        self._do_emit('repository', repository_add, repository_upd, transaction.repository_del)
 
-        self._do_del(transaction.person_del, self._del_person)
-        self._do_del(transaction.family_del, self._del_family)
-        self._do_del(transaction.place_del,  self._del_place)
-        self._do_del(transaction.source_del, self._del_source)
-        self._do_del(transaction.event_del,  self._del_event)
-        self._do_del(transaction.media_del,  self._del_media)
+        self._do_del(transaction.person_del,     self._del_person)
+        self._do_del(transaction.family_del,     self._del_family)
+        self._do_del(transaction.place_del,      self._del_place)
+        self._do_del(transaction.source_del,     self._del_source)
+        self._do_del(transaction.event_del,      self._del_event)
+        self._do_del(transaction.media_del,      self._del_media)
+        self._do_del(transaction.repository_del, self._del_repository)
 
         if self.undo_callback:
             self.undo_callback(_("_Undo %s") % transaction.get_description())
@@ -1059,7 +1155,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
             handle = str(handle)
             if not trans.batch:
                 old_data = dmap.get(handle)
-                transaction.add(key,handle,old_data)
+                trans.add(key,handle,old_data)
             del_list.append(handle)
 
     def remove_source(self,handle,transaction):
@@ -1107,6 +1203,15 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self._do_remove_object(handle,transaction,self.family_map,
                                FAMILY_KEY, transaction.family_del)
 
+    def remove_repository(self,handle,transaction):
+        """
+        Removes the Repository specified by the database handle from the
+        database, preserving the change in the passed transaction. This
+        method must be overridden in the derived class.
+        """
+        self._do_remove_object(handle,transaction,self.repository_map,
+                               REPOSITORY_KEY, transaction.repository_del)
+
     def has_person_handle(self,handle):
         """
         returns True if the handle exists in the current Person database.
@@ -1124,6 +1229,12 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         returns True if the handle exists in the current MediaObjectdatabase.
         """
         return self.media_map.has_key(str(handle)) != None
+
+    def has_repository_handle(self,handle):
+        """
+        returns True if the handle exists in the current Repository database.
+        """
+        return self.repository_map.has_key(str(handle)) != False
 
     def _sortbyname(self,f,s):
         n1 = self.person_map.get(str(f))[3].sname
@@ -1183,6 +1294,13 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         """
         self._set_column_order(col_list,MEDIA_COL_KEY)
 
+    def set_repository_column_order(self,list):
+        """
+        Stores the Repository display common information in the
+        database's metadata.
+        """
+        self._set_column_order(col_list,REPOSITORY_COL_KEY)
+
     def _get_column_order(self,name,default):
         if self.metadata == None:
             return default
@@ -1233,6 +1351,14 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         default = [(1,1),(0,5),(0,6),(1,2),(1,3),(0,4)]
         return self._get_column_order(MEDIA_COL_KEY,default)
 
+    def get_repository_column_order(self):
+        """
+        Returns the Repository display common information stored in the
+        database's metadata.
+        """
+        default = [(1,1),(0,5),(0,6),(1,2),(1,3),(0,4)]
+        return self._get_column_order(REPOSITORY_COL_KEY,default)
+
 class Transaction:
     """
     Defines a group of database commits that define a single logical
@@ -1275,6 +1401,11 @@ class Transaction:
         self.place_add = []
         self.place_del = []
         self.place_update = []
+
+        self.repository_add = []
+        self.repository_del = []
+        self.repository_update = []
+
 
     def set_batch(self,batch):
         self.batch = batch

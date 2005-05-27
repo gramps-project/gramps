@@ -484,3 +484,114 @@ class MediaModel(BaseModel):
     def column_change(self,data):
         return unicode(time.strftime(_date_format,time.localtime(data[8])),
                             _codeset)
+
+
+#-------------------------------------------------------------------------
+#
+# RepositoryModel
+#
+#-------------------------------------------------------------------------
+class RepositoryModel(BaseModel):
+
+    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
+        self.gen_cursor = db.get_repository_cursor
+        self.map = db.repository_map
+        self.fmap = [
+            self.column_name,
+            self.column_id,
+            self.column_type,
+            self.column_home_url,
+            self.column_parish,
+            self.column_postal_code,
+            self.column_city,
+            self.column_county,
+            self.column_state,
+            self.column_country,
+            self.column_email,
+            self.column_search_url,            
+            self.column_handle,            
+            ]
+        self.smap = [
+            self.column_name,
+            self.column_id,
+            self.column_type,
+            self.column_home_url,
+            self.column_parish,
+            self.column_postal_code,
+            self.column_city,
+            self.column_county,
+            self.column_state,
+            self.column_country,
+            self.column_email,
+            self.column_search_url,            
+            self.column_handle,            
+            ]
+        BaseModel.__init__(self,db,scol,order)
+
+    def on_get_n_columns(self):
+        return len(self.fmap)+1
+
+    def column_handle(self,data):
+        return unicode(data[0])
+
+    def column_id(self,data):
+        return unicode(data[1])
+
+    def column_type(self,data):
+        return unicode(data[2])
+
+    def column_name(self,data):
+        return unicode(data[3])
+
+    def column_parish(self,data):
+        try:
+            return data[4].get_parish()
+        except:
+            return u''
+
+    def column_city(self,data):
+        try:
+            return data[4].get_city()
+        except:
+            return u''
+        
+    def column_county(self,data):
+        try:
+            return data[4].get_county()
+        except:
+            return u''
+    
+    def column_state(self,data):
+        try:
+            return data[4].get_state()
+        except:
+            return u''
+
+    def column_country(self,data):
+        try:
+            return data[4].get_country()
+        except:
+            return u''
+
+    def column_postal_code(self,data):
+        try:
+            return data[4].get_postal_code()
+        except:
+            return u''
+
+    def column_phone(self,data):
+        try:
+            return data[4].get_phone()
+        except:
+            return u''
+
+
+    def column_email(self,data):
+        return unicode(data[5])
+
+    def column_search_url(self,data):
+        return unicode(data[6])
+
+    def column_home_url(self,data):
+        return unicode(data[7])
+

@@ -335,7 +335,7 @@ family_events = {
     EVENT_MARR_CONTR : _("Marriage Contract"),
     EVENT_MARR_BANNS : _("Marriage Banns"),
     EVENT_ENGAGEMENT : _("Engagement"),
-    EVENT_DIVORCE    : _("Divorce")
+    EVENT_DIVORCE    : _("Divorce"),
     EVENT_DIV_FILING : _("Divorce Filing"),
     EVENT_ANNULMENT  : _("Annulment"),
     EVENT_MARR_ALT   : _("Alternate Marriage"),
@@ -554,6 +554,7 @@ NameTypesMap = TransTable({
 #
 #-------------------------------------------------------------------------
 def init_personal_event_list():
+    return
     p = personal_events.get_values()
     p.sort()
     return p
@@ -564,6 +565,7 @@ def init_personal_event_list():
 #
 #-------------------------------------------------------------------------
 def init_marriage_event_list():
+    return
     p = family_events.get_values()
     p.sort()
     return p
@@ -588,10 +590,10 @@ def init_family_attribute_list():
     p.sort()
     return p
 
-personalEvents = init_personal_event_list()
+personalEvents = [] #init_personal_event_list()
 personalAttributes = init_personal_attribute_list()
-marriageEvents = init_marriage_event_list()
-defaultMarriageEvent = family_events.find_value("Marriage")
+marriageEvents = [] #init_marriage_event_list()
+defaultMarriageEvent = "" #family_events.find_value("Marriage")
 familyAttributes = init_family_attribute_list()
 places = []
 surnames = []

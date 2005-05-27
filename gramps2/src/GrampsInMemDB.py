@@ -71,22 +71,25 @@ class GrampsInMemDB(GrampsDbBase):
     def __init__(self):
         """creates a new GrampsDB"""
         GrampsDbBase.__init__(self)
-        self.person_map = {}
-        self.name_group = {}
-        self.family_map = {}
-        self.place_map  = {}
-        self.source_map = {}
-        self.media_map  = {}
-        self.event_map  = {}
-        self.metadata   = {}
-        self.filename   = ""
-        self.id_trans   = {}
-        self.pid_trans  = {}
-        self.fid_trans  = {}
-        self.sid_trans  = {}
-        self.oid_trans  = {}
-        self.eventnames = {}
-        self.undodb     = []
+        self.person_map       = {}
+        self.name_group       = {}
+        self.family_map       = {}
+        self.place_map        = {}
+        self.source_map       = {}
+        self.repository_map   = {}
+        self.media_map        = {}
+        self.event_map        = {}
+        self.metadata         = {}
+        self.filename         = ""
+        self.id_trans         = {}
+        self.pid_trans        = {}
+        self.fid_trans        = {}
+        self.sid_trans        = {}
+        self.rid_trans        = {}
+        self.oid_trans        = {}
+        self.eventnames       = {}
+        self.repository_types = {}
+        self.undodb           = []
 
     def load(self,name,callback,mode="w"):
         self.undolog = "%s.log" % name
@@ -106,6 +109,9 @@ class GrampsInMemDB(GrampsDbBase):
 
     def get_source_cursor(self):
         return GrampsInMemCursor(self.source_map)
+
+    def get_repository_cursor(self):
+        return GrampsInMemCursor(self.repository_map)
 
     def get_media_cursor(self):
         return GrampsInMemCursor(self.media_map)
@@ -145,6 +151,15 @@ class GrampsInMemDB(GrampsDbBase):
         vals.sort()
         return vals
 
+    def get_repository_type_list(self):
+        repos_types = self.repository_types.keys()
+        a = {}
+        for repos_type in repos_types:
+            a[unicode(repos_type)] = 1
+        vals = a.keys()
+        vals.sort()
+        return vals
+
     def _del_person(self,handle):
         del self.id_trans[person.get_gramps_id()]
         del self.person_map[handle]
@@ -152,6 +167,10 @@ class GrampsInMemDB(GrampsDbBase):
     def _del_source(self,handle):
         del self.sid_trans[source.get_gramps_id()]
         del self.source_map[str(handle)]
+
+    def _del_repository(self,handle):
+        del self.rid_trans[repository.get_gramps_id()]
+        del self.repository_map[str(handle)]
 
     def _del_place(self,handle):
         del self.pid_trans[place.get_gramps_id()]
@@ -203,6 +222,13 @@ class GrampsInMemDB(GrampsDbBase):
         self.sid_trans[gid] = source.get_handle()
         GrampsDbBase.commit_source(self,source,transaction,change_time)
 
+    def commit_repository(self,repository,transaction,change_time=None):
+        if self.readonly or not repository.get_handle():
+            return
+        gid = repository.get_gramps_id()
+        self.rid_trans[gid] = repository.get_handle()
+        GrampsDbBase.commit_repository(self,repository,transaction,change_time)
+
     def get_person_from_gramps_id(self,val):
         handle = self.id_trans.get(str(val))
         if handle:
@@ -241,6 +267,16 @@ class GrampsInMemDB(GrampsDbBase):
                 source = Source()
                 source.unserialize(data)
                 return source
+        return None
+
+    def get_repository_from_gramps_id(self,val):
+        handle = self.rid_trans.get(str(val))
+        if handle:
+            data = self.repository_map[handle]
+            if data:
+                repository = Repository()
+                repository.unserialize(data)
+                return repository
         return None
 
     def get_object_from_gramps_id(self,val):

@@ -47,6 +47,7 @@ _ini_schema = {
  'preferences/oprefix' : 'O%04d',
  'preferences/pprefix' : 'P%04d',
  'preferences/sprefix' : 'S%04d',
+ 'preferences/rprefix' : 'R%04d',
  'preferences/goutput-preference' : 'No default format',
  'preferences/output-preference' : 'No default format',
  'preferences/paper-preference' : 'Letter',
@@ -400,6 +401,12 @@ def get_family_id_prefix():
 def save_fprefix(val):
     set_string_as_id_prefix("preferences", "fprefix",val)
 
+def get_repository_id_prefix():
+    return get_string("preferences", "rprefix")
+
+def save_rprefix(val):
+    set_string_as_id_prefix("preferences", "rprefix",val)
+
 def get_paper_preference():
     return get_string("preferences", "paper-preference")
 
@@ -624,6 +631,8 @@ if __name__ == "__main__":
     save_pprefix(val)
     print "get_family_id_prefix()", get_family_id_prefix()
     save_fprefix(val)
+    print "get_repository_id_prefix()", get_repository_id_prefix()
+    save_rprefix(val)
     print "get_paper_preference()", get_paper_preference()
     save_paper_preference(val)
     print "get_output_preference()", get_output_preference()
