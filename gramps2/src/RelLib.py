@@ -918,14 +918,14 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         MediaBase.__init__(self)
         AttributeBase.__init__(self)
         self.primary_name = Name()
-        self.event_list = []
+        self.event_ref_list = []
         self.family_list = []
         self.parent_family_list = []
         self.nickname = ""
         self.alternate_names = []
         self.gender = Person.UNKNOWN
-        self.death_handle = None
-        self.birth_handle = None
+        self.death_ref = None
+        self.birth_ref = None
         self.address_list = []
         self.urls = []
         self.lds_bapt = None
@@ -956,8 +956,8 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         """
         return (self.handle, self.gramps_id, self.gender, 
                 self.primary_name, self.alternate_names,
-                unicode(self.nickname), self.death_handle, self.birth_handle,
-                self.event_list, self.family_list, self.parent_family_list,
+                unicode(self.nickname), self.death_ref, self.birth_ref,
+                self.event_ref_list, self.family_list, self.parent_family_list,
                 self.media_list, self.address_list, self.attribute_list,
                 self.urls, self.lds_bapt, self.lds_endow, self.lds_seal,
                 self.complete, self.source_list, self.note, self.change,
@@ -973,8 +973,8 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         @type data: tuple
         """
         (self.handle, self.gramps_id, self.gender, self.primary_name,
-         self.alternate_names, self.nickname, self.death_handle,
-         self.birth_handle, self.event_list, self.family_list,
+         self.alternate_names, self.nickname, self.death_ref,
+         self.birth_ref, self.event_ref_list, self.family_list,
          self.parent_family_list, self.media_list, self.address_list,
          self.attribute_list, self.urls, self.lds_bapt, self.lds_endow,
          self.lds_seal, self.complete, self.source_list, self.note,
@@ -982,7 +982,10 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
             
     def _has_handle_reference(self,classname,handle):
         if classname == 'Event':
-            return handle in self.event_list + [self.birth_handle,self.death_handle]
+            return handle in [ref.ref for ref in
+                              self.event_ref_list + [self.birth_ref,
+                                                     self.death_ref]
+                              if ref]
         elif classname == 'Family':
             return handle in self.family_list + \
                         [item[0] for item in self.parent_family_list ]
@@ -994,13 +997,13 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
 
     def _remove_handle_references(self,classname,handle_list):
         if classname == 'Event':
-            new_list = [ handle for handle in self.event_list \
-                                        if handle not in handle_list ]
-            self.event_list = new_list
-            if self.death_handle and self.death_handle in handle_list:
-                self.death_handle = None
-            if self.birth_handle and self.birth_handle in handle_list:
-                self.birth_handle = None
+            new_list = [ ref for ref in self.event_ref_list \
+                                        if ref and ref.ref not in handle_list ]
+            self.event_ref_list = new_list
+            if self.death_ref and self.death_ref.ref in handle_list:
+                self.death_ref = None
+            if self.birth_ref and self.birth_ref.ref in handle_list:
+                self.birth_ref = None
         elif classname == 'Family':
             new_list = [ handle for handle in self.family_list \
                                         if handle not in handle_list ]
@@ -1015,13 +1018,15 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
 
     def _replace_handle_reference(self,classname,old_handle,new_handle):
         if classname == 'Event':
-            while old_handle in self.event_list:
-                ix = self.event_list.index(old_handle)
-                self.event_list[ix] = new_handle
-            if self.death_handle and self.death_handle == old_handle:
-                self.death_handle = new_handle
-            if self.birth_handle and self.birth_handle == old_handle:
-                self.birth_handle = new_handle
+            handle_list = [ref.ref for ref in self.event_ref_list]
+            while old_handle in handle_list:
+                ix = handle_list.index(old_handle)
+                self.event_ref_list[ix].ref = new_handle
+                handle_list[ix] = ''
+            if self.death_ref and self.death_ref.ref == old_handle:
+                self.death_ref.ref = new_handle
+            if self.birth_ref and self.birth_ref.ref == old_handle:
+                self.birth_ref.ref = new_handle
         elif classname == 'Family':
             while old_handle in self.family_list:
                 ix = self.family_list.index(old_handle)
@@ -1084,9 +1089,9 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         @rtype: list
         """
         ret = []
-        ret += [('Event',handle) for handle in 
-                        self.event_list + [self.birth_handle,self.death_handle]
-                        if handle]
+        ret += [('Event',ref.ref) for ref in 
+                        self.event_ref_list + [self.birth_ref,self.death_ref]
+                        if ref]
         ret += [('Family',handle) for handle in self.family_list 
                         + [item[0] for item in self.parent_family_list]]
         return ret
@@ -1250,80 +1255,83 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         """
         return self.gender
 
-    def set_birth_handle(self,event_handle):
+    def set_birth_ref(self,event_ref):
         """
         Assigns the birth event to the Person object. This is accomplished
-        by assigning the handle of a valid L{Event} in the current database.
+        by assigning the L{EventRef} of the birth event in the current
+        database.
 
-        @param event_handle: handle of the L{Event} to be associated with
+        @param event_ref: the L{EventRef} object associated with
             the Person's birth.
-        @type event_handle: str
+        @type event_handle: EventRef
         """
-        self.birth_handle = event_handle
+        self.birth_ref = event_ref
 
-    def set_death_handle(self,event_handle):
+    def set_death_ref(self,event_ref):
         """
         Assigns the death event to the Person object. This is accomplished
-        by assigning the handle of a valid L{Event} in the current database.
+        by assigning the L{EventRef} of the death event in the current
+        database.
 
-        @param event_handle: handle of the L{Event} to be associated with
+        @param event_ref: the L{EventRef} object associated with
             the Person's death.
-        @type event_handle: str
+        @type event_handle: EventRef
         """
-        self.death_handle = event_handle
+        self.death_ref = event_ref
 
-    def get_birth_handle(self):
+    def get_birth_ref(self):
         """
-        Returns the database handle for the Person's birth event. This
+        Returns the L{EventRef} for Person's birth event. This
         should correspond to an L{Event} in the database's L{Event} list.
 
-        @returns: Returns the birth L{Event} handle or None if no birth
+        @returns: Returns the birth L{EventRef} or None if no birth
             L{Event} has been assigned.
-        @rtype: str
+        @rtype: EventRef
         """
-        return self.birth_handle
+        return self.birth_ref
 
-    def get_death_handle(self):
+    def get_death_ref(self):
         """
-        Returns the database handle for the Person's death event. This
+        Returns the L{EventRef} for the Person's death event. This
         should correspond to an L{Event} in the database's L{Event} list.
 
-        @returns: Returns the death L{Event} handle or None if no death
+        @returns: Returns the death L{EventRef} or None if no death
             L{Event} has been assigned.
-        @rtype: str
+        @rtype: event_ref
         """
-        return self.death_handle
+        return self.death_ref
 
-    def add_event_handle(self,event_handle):
+    def add_event_ref(self,event_ref):
         """
-        Adds the L{Event} to the Person instance's L{Event} list. This is
-        accomplished by assigning the handle of a valid L{Event} in the
-        current database.
+        Adds the L{EventRef} to the Person instance's L{EventRef} list.
+        This is accomplished by assigning the L{EventRef} of a valid
+        L{Event} in the current database.
         
-        @param event_handle: handle of the L{Event} to be added to the
-            Person's L{Event} list.
-        @type event_handle: str
+        @param event_ref: the L{EventRef} to be added to the
+            Person's L{EventRef} list.
+        @type event_ref: EventRef
         """
-        self.event_list.append(event_handle)
+        self.event_ref_list.append(event_ref)
 
-    def get_event_list(self):
+    def get_event_ref_list(self):
         """
-        Returns the list of handles associated with L{Event} instances.
+        Returns the list of L{EventRef} objects associated with L{Event}
+        instances.
 
-        @returns: Returns the list of L{Event} handles associated with
+        @returns: Returns the list of L{EventRef} objects associated with
             the Person instance.
         @rtype: list
         """
-        return self.event_list
+        return self.event_ref_list
 
-    def set_event_list(self,event_list):
+    def set_event_ref_list(self,event_ref_list):
         """
-        Sets the Person instance's L{Event} list to the passed list.
+        Sets the Person instance's L{EventRef} list to the passed list.
 
-        @param event_list: List of valid L{Event} handles
-        @type event_list: list
+        @param event_ref_list: List of valid L{EventRef} objects
+        @type event_ref_list: list
         """
-        self.event_list = event_list
+        self.event_ref_list = event_ref_list
 
     def add_family_handle(self,family_handle):
         """
@@ -1697,7 +1705,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         self.mother_handle = None
         self.child_list = []
         self.type = Family.MARRIED
-        self.event_list = []
+        self.event_ref_list = []
         self.lds_seal = None
         self.complete = 0
 
@@ -1718,7 +1726,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         @rtype: tuple
         """
         return (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
-                self.child_list, self.type, self.event_list,
+                self.child_list, self.type, self.event_ref_list,
                 self.media_list, self.attribute_list, self.lds_seal,
                 self.complete, self.source_list, self.note,
                 self.change)
@@ -1729,13 +1737,13 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         back into the data in a Family structure.
         """
         (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
-         self.child_list, self.type, self.event_list,
+         self.child_list, self.type, self.event_ref_list,
          self.media_list, self.attribute_list, self.lds_seal,
          self.complete, self.source_list, self.note, self.change) = data
 
     def _has_handle_reference(self,classname,handle):
         if classname == 'Event':
-            return handle in self.event_list
+            return handle in [ref.ref for ref in self.event_ref_list]
         elif classname == 'Person':
             return handle in self.child_list + [self.father_handle,self.mother_handle]
         elif classname == 'Place':
@@ -1744,9 +1752,9 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
 
     def _remove_handle_references(self,classname,handle_list):
         if classname == 'Event':
-            new_list = [ handle for handle in self.event_list \
-                                        if handle not in handle_list ]
-            self.event_list = new_list
+            new_list = [ ref for ref in self.event_ref_list \
+                                        if ref.ref not in handle_list ]
+            self.event_ref_list = new_list
         elif classname == 'Person':
             new_list = [ handle for handle in self.child_list \
                                         if handle not in handle_list ]
@@ -1761,9 +1769,11 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
 
     def _replace_handle_reference(self,classname,old_handle,new_handle):
         if classname == 'Event':
-            while old_handle in self.event_list:
-                ix = self.event_list.index(old_handle)
-                self.event_list[ix] = new_handle
+            handle_list = [ref.ref for ref in self.event_ref_list]
+            while old_handle in handle_list:
+                ix = handle_list(old_handle)
+                self.event_ref_list[ix].ref = new_handle
+                handle_list[ix] = ''
         elif classname == 'Person':
             while old_handle in self.child_list:
                 ix = self.child_list.index(old_handle)
@@ -1818,7 +1828,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         @rtype: list
         """
         ret = []
-        ret += [('Event',handle) for handle in self.event_list]
+        ret += [('Event',ref.ref) for ref in self.event_ref_list]
         ret += [('Person',handle) for handle in 
                     self.child_list + [self.father_handle,self.mother_handle]
                     if handle]
@@ -1999,36 +2009,37 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         """
         self.child_list = child_list
 
-    def add_event_handle(self,event_handle):
+    def add_event_ref(self,event_ref):
         """
-        Adds the L{Event} to the Family instance's L{Event} list. This is
-        accomplished by assigning the handle of a valid L{Event} in the
-        current database.
+        Adds the L{EventRef} to the Family instance's L{EventRef} list.
+        This is accomplished by assigning the L{EventRef} for the valid
+        L{Event}in the current database.
         
-        @param event_handle: handle of the L{Event} to be added to the
-            Person's L{Event} list.
-        @type event_handle: str
+        @param event_ref: the L{EventRef} to be added to the
+            Person's L{EventRef} list.
+        @type event_ref: EventRef
         """
-        self.event_list.append(event_handle)
+        self.event_ref_list.append(event_ref)
 
-    def get_event_list(self) :
+    def get_event_ref_list(self) :
         """
-        Returns the list of handles associated with L{Event} instances.
+        Returns the list of L{EventRef} objects associated with L{Event}
+        instances.
 
-        @returns: Returns the list of L{Event} handles associated with
+        @returns: Returns the list of L{EventRef} objects associated with
             the Family instance.
         @rtype: list
         """
-        return self.event_list
+        return self.event_ref_list
 
-    def set_event_list(self,event_list) :
+    def set_event_ref_list(self,event_ref_list) :
         """
-        Sets the Family instance's L{Event} list to the passed list.
+        Sets the Family instance's L{EventRef} list to the passed list.
 
-        @param event_list: List of valid L{Event} handles
-        @type event_list: list
+        @param event_ref_list: List of valid L{EventRef} objects
+        @type event_ref_list: list
         """
-        self.event_list = event_list
+        self.event_ref_list = event_ref_list
 
 class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
     """
@@ -4024,7 +4035,7 @@ class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase):
         else:
             return False
 
-class EventRef:
+class EventRef(BaseObject,PrivacyBase,NoteBase):
     """
     Event reference class.
 
@@ -4046,6 +4057,8 @@ class EventRef:
         """
         Creates a new EventRef instance, copying from the source if present.
         """
+        PrivacyBase.__init__(self)
+        NoteBase.__init__(self)
         if source:
             self.ref = source.ref
             self.role_int = source.role_int
@@ -4054,6 +4067,39 @@ class EventRef:
             self.ref = None
             self.role_int = self.ROLE_CUSTOM
             self.role_str = ""
+
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.role_str]
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        if self.note:
+            return [self.note]
+        return []
+
+    def get_referenced_handles(self):
+        """
+        Returns the list of (classname,handle) tuples for all directly
+        referenced primary objects.
+        
+        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @rtype: list
+        """
+        if self.ref:
+            return [('Event',self.ref)]
+        else:
+            return []
 
     def get_reference_handle(self):
         """

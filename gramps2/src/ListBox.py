@@ -245,14 +245,14 @@ class EventListBox(ReorderListBox):
         self.trans = TransTable.TransTable(self.titles)
         
         self.data = []
-        if person.get_birth_handle():
-            event = parent.db.get_event_from_handle(person.get_birth_handle())
+        if person.get_birth_ref():
+            event = parent.db.get_event_from_handle(person.get_birth_ref().ref)
             self.data.append(event)
-        if person.get_death_handle():
-            event = parent.db.get_event_from_handle(person.get_death_handle())
+        if person.get_death_ref():
+            event = parent.db.get_event_from_handle(person.get_death_ref().ref)
             self.data.append(event)
-        for val in person.get_event_list():
-            self.data.append(parent.db.get_event_from_handle(val))
+        for event_ref in person.get_event_ref_list():
+            self.data.append(parent.db.get_event_from_handle(event_ref.ref))
 
         eventnames = const.personalEvents
 

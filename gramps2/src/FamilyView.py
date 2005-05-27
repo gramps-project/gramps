@@ -977,10 +977,16 @@ class FamilyView:
             return
 
         person = self.person
-        bhandle = person.get_birth_handle()
-        dhandle = person.get_death_handle()
-        bd = self.parent.db.get_event_from_handle(bhandle)
-        dd = self.parent.db.get_event_from_handle(dhandle)
+        bref = person.get_birth_ref()
+        dref = person.get_death_ref()
+        if bref:
+            bd = self.parent.db.get_event_from_handle(bref.ref)
+        else:
+            bd = None
+        if dref:
+            dd = self.parent.db.get_event_from_handle(dref.ref)
+        else:
+            dd = None
 
         if bd and dd:
             n = "%s [%s]\n\t%s %s\n\t%s %s " % (
@@ -1596,10 +1602,10 @@ class FamilyView:
         for i in range(len(list)):
             child_handle = list[i]
             child = self.parent.db.get_person_from_handle(child_handle)
-            birth_handle = child.get_birth_handle()
-            birth = self.parent.db.get_event_from_handle(birth_handle)
-            if not birth:
+            birth_ref = child.get_birth_ref()
+            if not birth_ref:
                 continue
+            birth = self.parent.db.get_event_from_handle(birth_ref.ref)
             child_date = birth.get_date_object().get_sort_value()
             if child_date == 0:
                 continue

@@ -717,16 +717,18 @@ class PedigreeView:
         name = NameDisplay.displayer.display(person)
         if line_count < 3:
             return name
-        birth = self.db.get_event_from_handle( person.get_birth_handle())
+        birth_ref = person.get_birth_ref()
         bd=""
         bp=""
-        if birth:
+        if birth_ref:
+            birth = self.db.get_event_from_handle(birth_ref.ref)
             bd = birth.get_date()
             bp = self.get_place_name(birth.get_place_handle())
-        death = self.db.get_event_from_handle( person.get_death_handle())
+        death_ref = person.get_death_ref()
         dd=""
         dp=""
-        if death:
+        if death_ref:
+            death = self.db.get_event_from_handle(death_ref.ref)
             dd = death.get_date()
             dp = self.get_place_name(death.get_place_handle())
         if line_count < 5:
@@ -800,12 +802,13 @@ def build_detail_string(db,person):
         return u"\n%s %s" % (label,ed)
 
     
-    birth_handle = person.get_birth_handle()
-    if birth_handle:
-        detail_text += format_event(db, _BORN, db.get_event_from_handle(birth_handle))
+    birth_ref = person.get_birth_ref()
+    if birth_ref:
+        detail_text += format_event(db, _BORN,
+                                    db.get_event_from_handle(birth_ref.ref))
     else:
-        for event_handle in person.get_event_list():
-            event = db.get_event_from_handle(event_handle)
+        for event_ref in person.get_event_ref_list():
+            event = db.get_event_from_handle(event_ref.ref)
             if event and event.get_name() == "Baptism":
                 detail_text += format_event(db, _BAPT, event)
                 break
@@ -813,12 +816,13 @@ def build_detail_string(db,person):
                 detail_text += format_event(db, _CHRI, event)
                 break
 
-    death_handle = person.get_death_handle()
-    if death_handle:
-        detail_text += format_event(db, _DIED, db.get_event_from_handle(death_handle))
+    death_ref = person.get_death_ref()
+    if death_ref:
+        detail_text += format_event(db, _DIED,
+                                    db.get_event_from_handle(death_ref.ref))
     else:
-        for event_handle in person.get_event_list():
-            event = db.get_event_from_handle(event_handle)
+        for event_ref in person.get_event_ref_list():
+            event = db.get_event_from_handle(event_ref.ref)
             if event and event.get_name() == "Burial":
                 detail_text += format_event(db, _BURI, event)
                 break
