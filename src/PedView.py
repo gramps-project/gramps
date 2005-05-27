@@ -41,6 +41,7 @@ import gtk.gdk
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
+import const
 import GrampsCfg
 import Relationship
 import NameDisplay
