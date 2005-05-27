@@ -248,9 +248,13 @@ class PeopleView:
             top_name = self.parent.db.get_name_group_mapping(group_name)
             top_path = self.person_model.on_get_path(top_name)
             self.person_tree.expand_row(top_path,0)
-            self.person_selection.unselect_all()
-            self.person_selection.select_path(path)
-            self.person_tree.scroll_to_cell(path,None,1,0.5,0)
+
+            current = self.person_model.on_get_iter(path)
+            selected = self.person_selection.path_is_selected(path)
+            if current != p.get_handle() or not selected:
+                self.person_selection.unselect_all()
+                self.person_selection.select_path(path)
+                self.person_tree.scroll_to_cell(path,None,1,0.5,0)
         except KeyError:
             self.person_selection.unselect_all()
             print "Person not currently available due to filter"

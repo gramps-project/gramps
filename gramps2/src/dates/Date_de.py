@@ -131,7 +131,7 @@ class DateDisplayDE(DateDisplay):
         u" (Französisch Republikanisch)", u" (Persisch)", u" (Islamisch)"
         )
 
-    _mod_str = ("",u"vor ",u"nach ",u"circa ","","","")
+    _mod_str = ("",u"vor ",u"nach ",u"etwa ","","","")
     
     _qual_str = ("",u"geschätzt ",u"errechnet ")
     

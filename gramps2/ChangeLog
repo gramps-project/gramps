@@ -1,4 +1,6 @@
 2005-05-26  Don Allingham  <don@gramps-project.org>
+	* src/PeopleView.py: back port anti-flicker code from HEAD
+	* src/dates/Date_de.py: use "etwa" instead of "circa"
 	* src/DateDisplay.py: don't mark date formats as translatable
 
 2005-05-25  Don Allingham  <don@gramps-project.org>
