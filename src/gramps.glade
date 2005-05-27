@@ -3111,13 +3111,24 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkTreeView" id="repository_list">
+		<widget class="GtkScrolledWindow" id="scrolledwindow95">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
-		  <property name="headers_visible">True</property>
-		  <property name="rules_hint">True</property>
-		  <property name="reorderable">False</property>
-		  <property name="enable_search">True</property>
+		  <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+		  <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+		  <property name="shadow_type">GTK_SHADOW_IN</property>
+		  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
+
+		  <child>
+		    <widget class="GtkTreeView" id="repository_list">
+		      <property name="visible">True</property>
+		      <property name="can_focus">True</property>
+		      <property name="headers_visible">True</property>
+		      <property name="rules_hint">True</property>
+		      <property name="reorderable">False</property>
+		      <property name="enable_search">True</property>
+		    </widget>
+		  </child>
 		</widget>
 		<packing>
 		  <property name="tab_expand">False</property>

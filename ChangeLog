@@ -4,6 +4,8 @@
 	* src/GenericFilter.py: Enable Repositories in full-text search filter
 	* src/RelLib.py: Move constants from RelLib to const
 	* src/plugins/TestcaseGenerator.py: Move constants from RelLib to const
+	* src/gramps.glade: Add ScrolledWindow to RepositoryView to make it
+	look like Source and Place View.
 
 2005-05-27  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsBSDDB.py (upgrade_7): Add upgrade path for repo changes.
