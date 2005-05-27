@@ -499,6 +499,8 @@ class GrampsBSDDB(GrampsDbBase):
 
     def upgrade_2(self,child_rel_notrans):
         print "Upgrading to DB version 2"
+        trans = Transaction("",self)
+        trans.set_batch(True)
         cursor = self.get_person_cursor()
         data = cursor.first()
         while data:
@@ -519,12 +521,15 @@ class GrampsBSDDB(GrampsDbBase):
                     frel = Person.CHILD_REL_BIRTH
                 new_list.append((f,mrel,frel))
             person.parent_family_list = new_list
-            self.commit_person(person,None)
+            self.commit_person(person,trans)
             data = cursor.next()
         cursor.close()
+        self.transaction_commit(trans,"Upgrade to DB version 2")
 
     def upgrade_3(self):
         print "Upgrading to DB version 3"
+        trans = Transaction("",self)
+        trans.set_batch(True)
         cursor = self.get_person_cursor()
         data = cursor.first()
         while data:
@@ -535,12 +540,15 @@ class GrampsBSDDB(GrampsDbBase):
             person.primary_name.date = None
             for name in person.alternate_names:
                 name.date = None
-            self.commit_person(person,None)
+            self.commit_person(person,trans)
             data = cursor.next()
         cursor.close()
+        self.transaction_commit(trans,"Upgrade to DB version 3")
 
     def upgrade_4(self,child_rel_notrans):
         print "Upgrading to DB version 4"
+        trans = Transaction("",self)
+        trans.set_batch(True)
         cursor = self.get_person_cursor()
         data = cursor.first()
         while data:
@@ -561,12 +569,15 @@ class GrampsBSDDB(GrampsDbBase):
                 new_list.append((f,mrel,frel))
             if change:
                 person.parent_family_list = new_list
-                self.commit_person(person,None)
+                self.commit_person(person,trans)
             data = cursor.next()
         cursor.close()
+        self.transaction_commit(trans,"Upgrade to DB version 4")
 
     def upgrade_5(self):
         print "Upgrading to DB version 5 -- this may take a while"
+        trans = Transaction("",self)
+        trans.set_batch(True)
         # Need to rename:
         #       attrlist into attribute_list in MediaRefs
         #       comments into note in SourceRefs
@@ -600,7 +611,7 @@ class GrampsBSDDB(GrampsDbBase):
                         del src_ref.comments
                         changed = True
             if changed:
-                self.commit_media_object(obj,None)
+                self.commit_media_object(obj,trans)
             data = cursor.next()
         cursor.close()
         # person
@@ -659,7 +670,7 @@ class GrampsBSDDB(GrampsDbBase):
                         del src_ref.comments
                         changed = True
             if changed:
-                self.commit_person(person,None)
+                self.commit_person(person,trans)
             data = cursor.next()
         cursor.close()
         # family
@@ -704,7 +715,7 @@ class GrampsBSDDB(GrampsDbBase):
                         del src_ref.comments
                         changed = True
             if changed:
-                self.commit_family(family,None)
+                self.commit_family(family,trans)
             data = cursor.next()
         cursor.close()
         # event
@@ -738,7 +749,7 @@ class GrampsBSDDB(GrampsDbBase):
                     del src_ref.comments
                     changed = True
             if changed:
-                self.commit_event(event,None)
+                self.commit_event(event,trans)
             data = cursor.next()
         cursor.close()
         # place
@@ -771,7 +782,7 @@ class GrampsBSDDB(GrampsDbBase):
                     del src_ref.comments
                     changed = True
             if changed:
-                self.commit_place(place,None)
+                self.commit_place(place,trans)
             data = cursor.next()
         cursor.close()
         # source
@@ -799,9 +810,10 @@ class GrampsBSDDB(GrampsDbBase):
                             del src_ref.comments
                             changed = True
             if changed:
-                self.commit_source(source,None)
+                self.commit_source(source,trans)
             data = cursor.next()
         cursor.close()
+        self.transaction_commit(trans,"Upgrade to DB version 5")
 
     def upgrade_6(self):
         print "Upgrading to DB version 6"
@@ -827,3 +839,4 @@ class GrampsBSDDB(GrampsDbBase):
             self.commit_source(source,trans)
             data = cursor.next()
         cursor.close()
+        self.transaction_commit(trans,"Upgrade to DB version 7")
