@@ -42,6 +42,7 @@ from warnings import warn
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+import const
 import Date
 import DateHandler
 
