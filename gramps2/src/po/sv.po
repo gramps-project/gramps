@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 2.0.0\n"
 "POT-Creation-Date: Fri May 13 12:02:11 2005\n"
-"PO-Revision-Date: 2005-05-23 20:31+0200\n"
+"PO-Revision-Date: 2005-05-27 19:31+0200\n"
 "Last-Translator: Jens Arvidsson <jya@sverige.nu>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -5001,7 +5001,7 @@ msgstr "GRAMPS"
 
 #: gramps.glade:44
 msgid "_File"
-msgstr "_Filter"
+msgstr "_Arkiv"
 
 #: gramps.glade:53
 msgid "_New"
@@ -5169,7 +5169,7 @@ msgstr "_Öppna exempeldatabas"
 
 #: gramps.glade:701
 msgid "_About"
-msgstr "_Omkring"
+msgstr "_Om"
 
 #: gramps.glade:751
 msgid "Open database"
