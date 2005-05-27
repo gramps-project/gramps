@@ -50,11 +50,6 @@ import DateHandler
 # Confidence levels
 #
 #-------------------------------------------------------------------------
-CONF_VERY_HIGH = 4
-CONF_HIGH      = 3
-CONF_NORMAL    = 2
-CONF_LOW       = 1
-CONF_VERY_LOW  = 0
 
 #-------------------------------------------------------------------------
 #
@@ -895,19 +890,6 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
     @sort: serialize, unserialize, get_*, set_*, add_*, remove_*
     """
     
-    UNKNOWN = 2
-    MALE = 1
-    FEMALE = 0
-
-    CHILD_REL_NONE  = 0
-    CHILD_REL_BIRTH = 1
-    CHILD_REL_ADOPT = 2
-    CHILD_REL_STEP  = 3
-    CHILD_REL_SPONS = 4
-    CHILD_REL_FOST  = 5
-    CHILD_REL_UNKWN = 6
-    CHILD_REL_OTHER = 7
-
     def __init__(self):
         """
         Creates a new Person instance. After initialization, most
@@ -924,7 +906,7 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         self.parent_family_list = []
         self.nickname = ""
         self.alternate_names = []
-        self.gender = Person.UNKNOWN
+        self.gender = const.UNKNOWN
         self.death_ref = None
         self.birth_ref = None
         self.address_list = []
@@ -1231,9 +1213,9 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
 
         @param gender: Assigns the Person's gender to one of the
             following constants::
-                Person.MALE
-                Person.FEMALE
-                Person.UNKNOWN
+                const.MALE
+                const.FEMALE
+                const.UNKNOWN
         @type gender: int
         """
         # if the db object has been assigned, update the
@@ -1249,9 +1231,9 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         Returns the gender of the Person
 
         @returns: Returns one of the following constants::
-            Person.MALE
-            Person.FEMALE
-            Person.UNKNOWN
+            const.MALE
+            const.FEMALE
+            const.UNKNOWN
         @rtype: int
         """
         return self.gender
@@ -1758,12 +1740,6 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
     or the changes will be lost.
     """
 
-    MARRIED     = 0
-    UNMARRIED   = 1
-    CIVIL_UNION = 2
-    UNKNOWN     = 3
-    OTHER       = 4
-    
     def __init__(self):
         """
         Creates a new Family instance. After initialization, most
@@ -1777,7 +1753,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         self.father_handle = None
         self.mother_handle = None
         self.child_list = []
-        self.type = Family.MARRIED
+        self.type = const.FAMILY_MARRIED
         self.event_ref_list = []
         self.lds_seal = None
         self.complete = 0
@@ -1964,17 +1940,17 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         Sets the relationship type between the people identified as the
         father and mother in the relationship. The valid values are:
 
-            - C{Family.MARRIED} : indicates a legally recognized married
+            - C{const.FAMILY_MARRIED} : indicates a legally recognized married
                 relationship between two individuals. This may be either
                 an opposite or a same sex relationship.
-            - C{Family.UNMARRIED} : indicates a relationship between two
+            - C{const_FAMILY_UNMARRIED} : indicates a relationship between two
                 individuals that is not a legally recognized relationship.
-            - C{Family.CIVIL_UNION} : indicates a legally recongnized,
+            - C{const_FAMILY_CIVIL_UNION} : indicates a legally recongnized,
                 non-married relationship between two individuals of the
                 same sex.
-            - C{Family.UNKNOWN} : indicates that the type of relationship
+            - C{const.FAMILY_UNKNOWN} : indicates that the type of relationship
                 between the two individuals is not know.
-            - C{Family.OTHER} : indicates that the type of relationship
+            - C{const.FAMILY_CUSTOM} : indicates that the type of relationship
                 between the two individuals does not match any of the
                 other types.
 
@@ -4114,7 +4090,7 @@ class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase):
             self.page = source.page
             self.text = source.text
         else:
-            self.confidence = CONF_NORMAL
+            self.confidence = const.CONF_NORMAL
             self.ref = None
             self.page = ""
             self.note = Note()
@@ -4215,16 +4191,6 @@ class EventRef(BaseObject,PrivacyBase,NoteBase):
     to the refereneced event.
     """
 
-    ROLE_UNKNOWN   = -1
-    ROLE_CUSTOM    = 0
-    ROLE_PRIMARY   = 1
-    ROLE_CLERGY    = 2
-    ROLE_CELEBRANT = 3
-    ROLE_AIDE      = 4
-    ROLE_BRIDE     = 5
-    ROLE_GROOM     = 6
-    ROLE_WITNESS   = 7
-
     def __init__(self,source=None):
         """
         Creates a new EventRef instance, copying from the source if present.
@@ -4237,7 +4203,7 @@ class EventRef(BaseObject,PrivacyBase,NoteBase):
             self.role_str = source.role_str
         else:
             self.ref = None
-            self.role_int = self.ROLE_CUSTOM
+            self.role_int = const.ROLE_CUSTOM
             self.role_str = ""
 
     def get_text_data_list(self):
@@ -4290,7 +4256,7 @@ class EventRef(BaseObject,PrivacyBase,NoteBase):
         Returns the integer corresponding to the preset role.
         If custom then the string is returned.
         """
-        if self.role_int == self.ROLE_CUSTOM:
+        if self.role_int == const.ROLE_CUSTOM:
             return self.role_str
         else:
             return self.role_int
@@ -4301,7 +4267,7 @@ class EventRef(BaseObject,PrivacyBase,NoteBase):
         If integer, it is set as is. If string, it is recorded as custom role.
         """
         if type(role) == str:
-            self.role_int = self.ROLE_CUSTOM
+            self.role_int = const.ROLE_CUSTOM
             self.role_str = role
         elif type(role) == int:
             self.role_int = role
@@ -4351,11 +4317,11 @@ class GenderStats:
         else:
             increment = -1
 
-        if gender == Person.MALE:
+        if gender == const.MALE:
             male += increment
-        elif gender == Person.FEMALE:
+        elif gender == const.FEMALE:
             female += increment
-        elif gender == Person.UNKNOWN:
+        elif gender == const.UNKNOWN:
             unknown += increment
 
         self.stats[name] = (male, female, unknown)
@@ -4367,42 +4333,27 @@ class GenderStats:
     def guess_gender (self, name):
         name = self._get_key_from_name (name)
         if not name or not self.stats.has_key (name):
-            return Person.UNKNOWN
+            return const.UNKNOWN
 
         (male, female, unknown) = self.stats[name]
         if unknown == 0:
             if male and not female:
-                return Person.MALE
+                return const.MALE
             if female and not male:
-                return Person.FEMALE
+                return const.FEMALE
 
         if male > (2 * female):
-            return Person.MALE
+            return const.MALE
 
         if female > (2 * male):
-            return Person.FEMALE
+            return const.FEMALE
 
-        return Person.UNKNOWN
+        return const.UNKNOWN
 
 class RepoRef(BaseObject,NoteBase):
     """
     Repository reference class.
     """
-    MEDIA_TYPE_CUSTOM = 0
-    MEDIA_TYPE_AUDIO = 1
-    MEDIA_TYPE_BOOK = 2
-    MEDIA_TYPE_CARD = 3
-    MEDIA_TYPE_ELECTRONIC = 4
-    MEDIA_TYPE_FICHE = 5
-    MEDIA_TYPE_FILM = 6
-    MEDIA_TYPE_MAGAZINE = 7
-    MEDIA_TYPE_MANUSCRIPT = 8
-    MEDIA_TYPE_MAP = 9
-    MEDIA_TYPE_NEWSPAPER = 10
-    MEDIA_TYPE_PHOTO = 11
-    MEDIA_TYPE_THOMBSTOBE = 12
-    MEDIA_TYPE_VIDEO = 13
-
     def __init__(self,source=None):
         NoteBase.__init__(self)
         if source:
@@ -4413,7 +4364,7 @@ class RepoRef(BaseObject,NoteBase):
         else:
             self.ref = None
             self.call_number = ""
-            self.media_type_int = self.MEDIA_TYPE_CUSTOM
+            self.media_type_int = const.SRC_MEDIA_CUSTOM
             self.media_type_str = ""
 
     def get_text_data_list(self):
@@ -4472,7 +4423,7 @@ class RepoRef(BaseObject,NoteBase):
         return self.call_number
 
     def get_media_type(self):
-        if self.media_type_int == self.MEDIA_TYPE_CUSTOM:
+        if self.media_type_int == const.SRC_MEDIA_CUSTOM:
             return self.media_type_str
         else:
             return self.media_type_int
@@ -4482,7 +4433,7 @@ class RepoRef(BaseObject,NoteBase):
             self.media_type_int = media_type
             self.media_type_str = ""
         else:
-            self.media_type_int = self.MEDIA_TYPE_CUSTOM
+            self.media_type_int = const.SRC_MEDIA_CUSTOM
             self.media_type_str = media_type
 
 class Repository(PrimaryObject,NoteBase):
@@ -4730,12 +4681,12 @@ if __name__ == "__main__":
             rr1 = RepoRef()
             rr1.set_reference_handle('ref-handle')
             rr1.set_call_number('call-number')
-            rr1.set_media_type(RepoRef.MEDIA_TYPE_BOOK)
+            rr1.set_media_type(const.SRC_MEDIA_BOOK)
             rr1.set_note('some note')
 
             assert rr1.get_reference_handle() == 'ref-handle'
             assert rr1.get_call_number() == 'call-number'
-            assert rr1.get_media_type() == RepoRef.MEDIA_TYPE_BOOK
+            assert rr1.get_media_type() == const.SRC_MEDIA_BOOK
             assert rr1.get_note() == 'some note'
     
     unittest.main()

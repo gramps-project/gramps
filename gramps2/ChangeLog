@@ -8,6 +8,9 @@
 	* src/const.py.in: Define integer constants for standard events.
 	* gramps.glade: Resolve merge conflicts.
 	* src/GrampsBSDDB.py (upgrade_*): Use transaction for commits.
+	* src/const.py.in: Get rid of TransTable use in favor of int contsants.
+	* src/GrampsBSDDB.py (upgrade_2): Use proper constants.
+	* src/RelLib.py: Move constants out to const.py.in.
 
 2005-05-27  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/EditRepository.py: polish Repository Ref UI
