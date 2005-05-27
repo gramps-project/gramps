@@ -1,3 +1,6 @@
+2005-05-23  Jens Arvidsson <jya@sverige.nu>
+	* src/po/sv.po: A few fixes to the Swedish translation.
+
 2005-05-26  Don Allingham  <don@gramps-project.org>
 	* src/PeopleView.py: back port anti-flicker code from HEAD
 	* src/dates/Date_de.py: use "etwa" instead of "circa"
