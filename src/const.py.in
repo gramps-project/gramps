@@ -522,7 +522,7 @@ NAME_AKA     = 1
 NAME_BIRTH   = 2
 NAME_MARRIED = 3
 
-NameTypesMap = ({
+NameTypesMap = {
     NAME_UNKNOWN : _("Unknown"),
     NAME_CUSTOM  : _("Custom"),
     NAME_AKA     : _("Also Known As"),
