@@ -35,6 +35,7 @@ import os
 import time
 import re
 import locale
+from warnings import warn
 
 #-------------------------------------------------------------------------
 #
@@ -1255,6 +1256,15 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         """
         return self.gender
 
+    def set_birth_handle(self,event_handle):
+        warn( "Use set_birth_ref instead of set_birth_handle", DeprecationWarning, 2)
+        # Wrapper for old API
+        # remove when transitition done.
+        event_ref = EventRef()
+        event_ref.set_reference_handle(event_handle)
+        event_ref.set_role( EventRef.ROLE_PRIMARY)
+        self.set_birth_ref( event_ref)
+
     def set_birth_ref(self,event_ref):
         """
         Assigns the birth event to the Person object. This is accomplished
@@ -1265,7 +1275,18 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
             the Person's birth.
         @type event_handle: EventRef
         """
+        if event_ref is not None and not isinstance(event_ref,EventRef):
+            raise ValueError("Expecting EventRef instance")
         self.birth_ref = event_ref
+
+    def set_death_handle(self,event_handle):
+        warn( "Use set_death_ref instead of set_death_handle", DeprecationWarning, 2)
+        # Wrapper for old API
+        # remove when transitition done.
+        event_ref = EventRef()
+        event_ref.set_reference_handle(event_handle)
+        event_ref.set_role( EventRef.ROLE_PRIMARY)
+        self.set_death_ref( event_ref)
 
     def set_death_ref(self,event_ref):
         """
@@ -1277,7 +1298,18 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
             the Person's death.
         @type event_handle: EventRef
         """
+        if event_ref is not None and not isinstance(event_ref,EventRef):
+            raise ValueError("Expecting EventRef instance")
         self.death_ref = event_ref
+
+    def get_birth_handle(self):
+        warn( "Use get_birth_ref instead of get_birth_handle", DeprecationWarning, 2)
+        # Wrapper for old API
+        # remove when transitition done.
+        event_ref = self.get_birth_ref()
+        if event_ref:
+            return event_ref.get_reference_handle()
+        return ""
 
     def get_birth_ref(self):
         """
@@ -1290,6 +1322,15 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         """
         return self.birth_ref
 
+    def get_death_handle(self):
+        warn( "Use get_death_ref instead of get_death_handle", DeprecationWarning, 2)
+        # Wrapper for old API
+        # remove when transitition done.
+        event_ref = self.get_death_ref()
+        if event_ref:
+            return event_ref.get_reference_handle()
+        return ""
+
     def get_death_ref(self):
         """
         Returns the L{EventRef} for the Person's death event. This
@@ -1301,6 +1342,15 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         """
         return self.death_ref
 
+    def add_event_handle(self,event_handle):
+        warn( "Use add_event_ref instead of add_event_handle", DeprecationWarning, 2)
+        # Wrapper for old API
+        # remove when transitition done.
+        event_ref = EventRef()
+        event_ref.set_reference_handle(event_handle)
+        event_ref.set_role( EventRef.ROLE_PRIMARY)
+        self.add_event_ref( event_ref)
+
     def add_event_ref(self,event_ref):
         """
         Adds the L{EventRef} to the Person instance's L{EventRef} list.
@@ -1311,7 +1361,18 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
             Person's L{EventRef} list.
         @type event_ref: EventRef
         """
+        if event_ref is not None and not isinstance(event_ref,EventRef):
+            raise ValueError("Expecting EventRef instance")
         self.event_ref_list.append(event_ref)
+
+    def get_event_list(self):
+        warn( "Use get_event_ref_list instead of get_event_list", DeprecationWarning, 2)
+        # Wrapper for old API
+        # remove when transitition done.
+        event_handle_list = []
+        for event_ref in self.get_event_ref_list():
+            event_handle_list.append( event_ref.get_reference_handle())
+        return event_handle_list
 
     def get_event_ref_list(self):
         """
@@ -1323,6 +1384,18 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         @rtype: list
         """
         return self.event_ref_list
+
+    def set_event_list(self,event_list):
+        warn( "Use set_event_ref_list instead of set_event_list", DeprecationWarning, 2)
+        # Wrapper for old API
+        # remove when transitition done.
+        event_ref_list = []
+        for event_handle in event_list:
+            event_ref = EventRef()
+            event_ref.set_reference_handle(event_handle)
+            event_ref.set_role( EventRef.ROLE_PRIMARY)
+            event_ref_list.append( event_ref)
+        self.set_event_ref_list(event_ref_list)
 
     def set_event_ref_list(self,event_ref_list):
         """
@@ -2009,6 +2082,15 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         """
         self.child_list = child_list
 
+    def add_event_handle(self,event_handle):
+        warn( "Use add_event_ref instead of add_event_handle", DeprecationWarning, 2)
+        # Wrapper for old API
+        # remove when transitition done.
+        event_ref = EventRef()
+        event_ref.set_reference_handle(event_handle)
+        event_ref.set_role( EventRef.ROLE_PRIMARY)
+        self.add_event_ref( event_ref)
+
     def add_event_ref(self,event_ref):
         """
         Adds the L{EventRef} to the Family instance's L{EventRef} list.
@@ -2019,7 +2101,18 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
             Person's L{EventRef} list.
         @type event_ref: EventRef
         """
+        if event_ref is not None and not isinstance(event_ref,EventRef):
+            raise ValueError("Expecting EventRef instance")
         self.event_ref_list.append(event_ref)
+
+    def get_event_list(self) :
+        warn( "Use get_event_ref_list instead of get_event_list", DeprecationWarning, 2)
+        # Wrapper for old API
+        # remove when transitition done.
+        event_handle_list = []
+        for event_ref in self.get_event_ref_list():
+            event_handle_list.append( event_ref.get_reference_handle())
+        return event_handle_list
 
     def get_event_ref_list(self) :
         """
@@ -2031,6 +2124,18 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         @rtype: list
         """
         return self.event_ref_list
+
+    def set_event_list(self,event_list) :
+        warn( "Use set_event_ref_list instead of set_event_list", DeprecationWarning, 2)
+        # Wrapper for old API
+        # remove when transitition done.
+        event_ref_list = []
+        for event_handle in event_list:
+            event_ref = EventRef()
+            event_ref.set_reference_handle(event_handle)
+            event_ref.set_role( EventRef.ROLE_PRIMARY)
+            event_ref_list.append( event_ref)
+        self.set_event_ref_list(event_ref_list)
 
     def set_event_ref_list(self,event_ref_list) :
         """
