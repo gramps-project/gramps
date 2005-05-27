@@ -808,16 +808,16 @@ class GrampsParser:
             try:
                 mrel = const.child_rel_notrans.index(attrs["mrel"])
             except:
-                mrel = RelLib.Person.CHILD_REL_NONE
+                mrel = const.CHILD_NONE
         else:
-            mrel = RelLib.Person.CHILD_REL_BIRTH
+            mrel = const.CHILD_BIRTH
         if attrs.has_key("frel"):
             try:
                 frel = const.child_rel_notrans.index(attrs["frel"])
             except:
-                frel = RelLib.Person.CHILD_REL_NONE
+                frel = const.CHILD_NONE
         else:
-            frel = RelLib.Person.CHILD_REL_BIRTH
+            frel = const.CHILD_BIRTH
         self.person.add_parent_family_handle(family.get_handle(),mrel,frel)
 
     def start_parentin(self,attrs):
@@ -1242,11 +1242,11 @@ class GrampsParser:
     def stop_gender(self,tag):
         t = tag
         if t == "M":
-            self.person.set_gender (RelLib.Person.MALE)
+            self.person.set_gender (const.MALE)
         elif t == "F":
-            self.person.set_gender (RelLib.Person.FEMALE)
+            self.person.set_gender (const.FEMALE)
         else:
-            self.person.set_gender (RelLib.Person.UNKNOWN)
+            self.person.set_gender (const.UNKNOWN)
 
     def stop_stitle(self,tag):
         self.source.set_title(tag)

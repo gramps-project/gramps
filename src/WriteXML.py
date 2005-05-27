@@ -253,9 +253,9 @@ class XmlWriter:
                 count += 1
             
                 self.write_id("person",person,2)
-                if person.get_gender() == RelLib.Person.MALE:
+                if person.get_gender() == const.MALE:
                     self.write_line("gender","M",3)
-                elif person.get_gender() == RelLib.Person.FEMALE:
+                elif person.get_gender() == const.FEMALE:
                     self.write_line("gender","F",3)
                 else:
                     self.write_line("gender","U",3)
@@ -298,11 +298,11 @@ class XmlWriter:
                 self.write_url_list(person.get_url_list())
 
                 for alt in person.get_parent_family_handle_list():
-                    if alt[1] != RelLib.Person.CHILD_REL_BIRTH:
+                    if alt[1] != const.CHILD_BIRTH:
                         mrel=' mrel="%s"' % const.child_rel_notrans[alt[1]]
                     else:
                         mrel=''
-                    if alt[2] != RelLib.Person.CHILD_REL_BIRTH:
+                    if alt[2] != const.CHILD_BIRTH:
                         frel=' frel="%s"' % const.child_rel_notrans[alt[2]]
                     else:
                         frel=''

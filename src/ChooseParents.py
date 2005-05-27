@@ -147,8 +147,8 @@ class ChooseParents:
                 frel = fr
                 break
         else:
-            mrel = RelLib.Person.CHILD_REL_BIRTH
-            frel = RelLib.Person.CHILD_REL_BIRTH
+            mrel = const.CHILD_BIRTH
+            frel = const.CHILD_BIRTH
 
         if self.family:
             self.type = self.family.get_relationship()
@@ -455,12 +455,12 @@ class ChooseParents:
         try:
             mother_rel = self.mcombo.get_active()
         except KeyError:
-            mother_rel = RelLib.Person.CHILD_REL_BIRTH
+            mother_rel = const.CHILD_BIRTH
 
         try:
             father_rel = self.fcombo.get_active()
         except KeyError:
-            father_rel = RelLib.Person.CHILD_REL_BIRTH
+            father_rel = const.CHILD_BIRTH
 
         trans = self.db.transaction_begin()
         if self.father or self.mother:
@@ -630,8 +630,8 @@ class ModifyParents:
         self.fcombo = self.glade.get_widget('fcombo')
         self.mcombo = self.glade.get_widget('mcombo')
 
-        self.orig_mrel = RelLib.Person.CHILD_REL_BIRTH
-        self.orig_frel = RelLib.Person.CHILD_REL_BIRTH
+        self.orig_mrel = const.CHILD_BIRTH
+        self.orig_frel = const.CHILD_BIRTH
         for (f,mr,fr) in self.person.get_parent_family_handle_list():
             if f == self.family.get_handle():
                 self.orig_mrel = mr

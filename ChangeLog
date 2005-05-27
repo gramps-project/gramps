@@ -12,6 +12,14 @@
 	* src/GrampsBSDDB.py (upgrade_2): Use proper constants.
 	* src/RelLib.py: Move constants out to const.py.in.
 
+	* src/ChooseParents.py: Fix constants.
+	* src/FamilyView.py: Fix constants.
+	* src/PedView.py: Fix constants.
+	* src/ReadGedcom.py: Fix constants.
+	* src/ReadXML.py: Fix constants.
+	* src/SelectChild.py: Fix constants.
+	* src/WriteXML.py: Fix constants.
+
 2005-05-27  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/EditRepository.py: polish Repository Ref UI
 	* src/RelLib.py: merge minor changes from HEAD

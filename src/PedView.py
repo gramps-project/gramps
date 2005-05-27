@@ -280,9 +280,9 @@ class PedigreeView:
                         tooltip.set_tip(text, self.format_person(lst[i][0], 11))
                     text.set_alignment(0.0,0.0)
                     gender = lst[i][0].get_gender()
-                    if gender == RelLib.Person.MALE:
+                    if gender == const.MALE:
                         text.modify_bg( gtk.STATE_NORMAL, text.get_colormap().alloc_color("#F5FFFF"))
-                    elif gender == RelLib.Person.FEMALE:
+                    elif gender == const.FEMALE:
                         text.modify_bg( gtk.STATE_NORMAL, text.get_colormap().alloc_color("#FFF5FF"))
                     else:
                         text.modify_bg( gtk.STATE_NORMAL, text.get_colormap().alloc_color("#FFFFF5"))
@@ -423,8 +423,8 @@ class PedigreeView:
         else:
             return
         if family_handle:
-            mrel = m != RelLib.Person.CHILD_REL_BIRTH
-            frel = f != RelLib.Person.CHILD_REL_BIRTH
+            mrel = m != const.CHILD_BIRTH
+            frel = f != const.CHILD_BIRTH
 
         family = self.db.get_family_from_handle(family_handle)
         if family != None:
