@@ -44,6 +44,7 @@
 
 2005-05-23  Don Allingham  <don@gramps-project.org>
 	* src/MergePeople.py: clean up and refactoring of code.
+	* Release: Version 2.0.1 "None shall pass" released.
 
 2005-05-23  Alex Roitman  <shura@gramps-project.org>
 	* src/po/ru.po: More tranlsated tips.
