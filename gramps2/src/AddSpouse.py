@@ -127,7 +127,7 @@ class AddSpouse:
             "destroy_passed_object"    : Utils.destroy_passed_object
             })
 
-        self.rel_combo.set_active(RelLib.Family.MARRIED)
+        self.rel_combo.set_active(const.MARRIED)
         self.update_data()
 
     def build_all(self):
@@ -140,7 +140,7 @@ class AddSpouse:
         death_handle = self.person.get_death_handle()
 
         filt = GenericFilter.GenericFilter()
-        if gender == RelLib.Person.MALE:
+        if gender == const.MALE:
             filt.add_rule(GenericFilter.IsFemale([]))
         else:
             filt.add_rule(GenericFilter.IsMale([]))
@@ -204,15 +204,15 @@ class AddSpouse:
         import EditPerson
 
         relation = self.rel_combo.get_active()
-        if relation == RelLib.Family.CIVIL_UNION:
-            if self.person.get_gender() == RelLib.Person.MALE:
-                gen = RelLib.Person.MALE
+        if relation == const.FAMILY_CIVIL_UNION:
+            if self.person.get_gender() == const.MALE:
+                gen = const.MALE
             else:
-                gen = RelLib.Person.FEMALE
-        elif self.person.get_gender() == RelLib.Person.MALE:
-            gen = RelLib.Person.FEMALE
+                gen = const.FEMALE
+        elif self.person.get_gender() == const.MALE:
+            gen = const.FEMALE
         else:
-            gen = RelLib.Person.MALE
+            gen = const.MALE
 
         person = RelLib.Person()
         person.set_gender(gen)
@@ -302,7 +302,7 @@ class AddSpouse:
         spouse.add_family_handle(self.active_family.get_handle())
         self.db.commit_person(spouse,trans)
 
-        if self.person.get_gender() == RelLib.Person.MALE:
+        if self.person.get_gender() == const.MALE:
             self.active_family.set_mother_handle(spouse.get_handle())
             self.active_family.set_father_handle(self.person.get_handle())
         else:
@@ -373,16 +373,16 @@ class AddSpouse:
         return 1
 
     def set_gender(self):
-        if self.rel_combo.get_active() == RelLib.Family.CIVIL_UNION:
-            if self.gender == RelLib.Person.MALE:
-                self.sgender = RelLib.Person.FEMALE
+        if self.rel_combo.get_active() == const.FAMILY_CIVIL_UNION:
+            if self.gender == const.MALE:
+                self.sgender = const.FEMALE
             else:
-                self.sgender = RelLib.Person.MALE
+                self.sgender = const.MALE
         else:
-            if self.gender == RelLib.Person.MALE:
-                self.sgender = RelLib.Person.MALE
+            if self.gender == const.MALE:
+                self.sgender = const.MALE
             else:
-                self.sgender = RelLib.Person.FEMALE
+                self.sgender = const.FEMALE
 
     def update_data(self,person = None):
         """

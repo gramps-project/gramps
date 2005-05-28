@@ -789,9 +789,9 @@ class GedcomWriter:
             for name in person.get_alternate_names():
                 self.write_person_name(name,"")
     
-        if person.get_gender() == RelLib.Person.MALE:
+        if person.get_gender() == const.MALE:
             self.writeln("1 SEX M")
-        elif person.get_gender() == RelLib.Person.FEMALE:
+        elif person.get_gender() == const.FEMALE:
             self.writeln("1 SEX F")
 
         if not restricted:
@@ -843,8 +843,8 @@ class GedcomWriter:
                     for f in person.get_parent_family_handle_list():
                         mrel = f[1]
                         frel = f[2]
-                        if (mrel == RelLib.Person.CHILD_REL_ADOPT or
-                            frel == RelLib.Person.CHILD_REL_ADOPT):
+                        if (mrel == const.CHILD_ADOPTED or
+                            frel == const.CHILD_ADOPTED):
                             fam = f[0]
                             break
                     if fam:
@@ -870,8 +870,8 @@ class GedcomWriter:
                 for f in person.get_parent_family_handle_list():
                     mrel = f[1]
                     frel = f[2]
-                    if (mrel == RelLib.Person.CHILD_REL_ADOPT or
-                        frel == RelLib.Person.CHILD_REL_ADOPT):
+                    if (mrel == const.CHILD_ADOPTED or
+                        frel == const.CHILD_ADOPTED):
                         fam = f[0]
                         break
                 if fam:
@@ -973,7 +973,7 @@ class GedcomWriter:
             if self.flist.has_key(family[0]):
                 self.writeln("1 FAMC @%s@" % self.fid(family[0]))
                 if self.adopt == GedcomInfo.ADOPT_PEDI:
-                    if family[1] == RelLib.Person.CHILD_REL_ADOPT:
+                    if family[1] == const.CHILD_ADOPTED:
                         self.writeln("2 PEDI Adopted")
         
         for family_handle in person.get_family_handle_list():
