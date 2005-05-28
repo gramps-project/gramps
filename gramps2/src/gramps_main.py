@@ -1294,14 +1294,14 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         except ( IOError, OSError ), msg:
             ErrorDialog(_('Cannot open database'),str(msg))
             return 0
-        except db.DBAccessError, msg:
+        except (db.DBAccessError,db.DBError), msg:
             ErrorDialog(_('Cannot open database'),
                         _('%s could not be opened.' % filename) + '\n' + msg[1])
-        except (db.DBError), msg:
-            ErrorDialog(_('Cannot open database'),
-                        _('%s could not be opened.' % filename) + '\n' + msg[1])
-            gtk.main_quit()
-
+            return 0
+        except Exception:
+            DisplayTrace.DisplayTrace()
+            return 0
+        
         # Undo/Redo always start with standard labels and insensitive state
         self.undo_callback(None)
         self.redo_callback(None)

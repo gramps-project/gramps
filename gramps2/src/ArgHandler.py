@@ -228,20 +228,17 @@ class ArgHandler:
             import GrampsBSDDB
             self.parent.db.close()
             self.parent.db = GrampsBSDDB.GrampsBSDDB()
-            self.parent.read_file(filename)
-            return 1
+            return self.parent.read_file(filename)
         elif filetype == const.app_gramps_xml:
             import GrampsXMLDB
             self.parent.db.close()
             self.parent.db = GrampsXMLDB.GrampsXMLDB()
-            self.parent.read_file(filename)
-            return 1
+            return self.parent.read_file(filename)
         elif filetype == const.app_gedcom:
             import GrampsGEDDB
             self.parent.db.close()
             self.parent.db = GrampsGEDDB.GrampsGEDDB()
-            self.parent.read_file(filename)
-            return 1
+            return self.parent.read_file(filename)
         else:
             return 0
 
