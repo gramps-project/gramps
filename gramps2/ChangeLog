@@ -1,3 +1,9 @@
+2005-05-28  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/gramps_main.py (change_active_person): Dont change to the
+	current active person again.
+	* src/FamilyView.py (drag_data_received): Allow reordering of childs
+	when they were not correctly ordered before.
+	
 2005-05-23  Jens Arvidsson <jya@sverige.nu>
 	* src/po/sv.po: A few fixes to the Swedish translation.
 

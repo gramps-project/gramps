@@ -1527,6 +1527,15 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.people_view.goto_active_person()
             
     def change_active_person(self,person,force=0):
+        nph = ""
+        if person:
+            nph = person.get_handle()
+        oph = ""
+        if self.active_person:
+            oph = self.active_person.get_handle()
+        if nph == oph:  # no need to change to the current active person again
+            return
+        
         if person == None:
             self.set_buttons(0)
             self.active_person = None

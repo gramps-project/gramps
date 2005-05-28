@@ -790,6 +790,7 @@ class FamilyView:
             self.parent.db.commit_family(family,trans)
             self.parent.db.commit_person(person,trans)
 
+        # TODO: Add child ordered by birth day
         family.add_child_handle(new_person.get_handle())
         new_person.add_parent_family_handle(family.get_handle(),
                                             RelLib.Person.CHILD_REL_BIRTH,
@@ -1467,11 +1468,15 @@ class FamilyView:
             src = spath[0] 
             child_list = self.family.get_child_handle_list()
 
+            # Check if the children were in order before the attempt to reorder
+            was_ordered = self.birth_dates_in_order(child_list)
+
             obj = child_list[src]
             child_list.remove(obj)
             child_list.insert(row,obj)
             
-            if self.birth_dates_in_order(child_list) == 0:
+            # abort if a valid order was attempt to destroy
+            if was_ordered and self.birth_dates_in_order(child_list) == False:
                 WarningDialog(_("Attempt to Reorder Children Failed"),
                               _("Children must be ordered by their birth dates."))
                 return
