@@ -328,7 +328,7 @@ class IsFemale(Rule):
     description = _('Matches all females')
 
     def apply(self,db,handle):
-        return db.get_person_from_handle(handle).get_gender() == RelLib.Person.FEMALE
+        return db.get_person_from_handle(handle).get_gender() == const.FEMALE
 
 #-------------------------------------------------------------------------
 #
@@ -343,7 +343,7 @@ class HasUnknownGender(Rule):
     description = _('Matches all people with unknown gender')
 
     def apply(self,db,handle):
-        return db.get_person_from_handle(handle).get_gender() == RelLib.Person.UNKNOWN
+        return db.get_person_from_handle(handle).get_gender() == const.UNKNOWN
 
 #-------------------------------------------------------------------------
 #
@@ -970,7 +970,7 @@ class IsMale(Rule):
     description = _('Matches all males')
 
     def apply(self,db,handle):
-        return db.get_person_from_handle(handle).get_gender() == RelLib.Person.MALE
+        return db.get_person_from_handle(handle).get_gender() == const.MALE
 
 #-------------------------------------------------------------------------
 #
@@ -1415,7 +1415,7 @@ class HaveAltFamilies(Rule):
     def apply(self,db,handle):
         p = db.get_person_from_handle(handle)
         for (fam,rel1,rel2) in p.get_parent_family_handle_list():
-            if rel1 == RelLib.Person.CHILD_REL_ADOPT or rel2 == RelLib.Person.CHILD_REL_ADOPT:
+            if rel1 == const.CHILD_ADOPTED or rel2 == const.CHILD_ADOPTED:
                 return 1
         return 0
 

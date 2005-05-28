@@ -884,7 +884,7 @@ class GedcomParser:
                 except:
                     event.set_name(matches[1])
                 if event.get_name() == "Marriage":
-                    self.family.set_relationship(RelLib.Family.MARRIED)
+                    self.family.set_relationship(const.FAMILY_MARRIED)
                 self.db.add_event(event,self.trans)
                 self.family.add_event_handle(event.get_handle())
                 self.parse_family_event(event,2)
@@ -1138,7 +1138,7 @@ class GedcomParser:
                 self.backup()
                 return (ftype,note)
             elif matches[1] == "PEDI":
-                ftype = pedi_type.get(matches[2],RelLib.Person.UNKNOWN)
+                ftype = pedi_type.get(matches[2],const.UNKNOWN)
             elif matches[1] == "SOUR":
                 source_ref = self.handle_source(matches,level+1)
                 self.person.get_primary_name().add_source_reference(source_ref)

@@ -153,7 +153,7 @@ class ChooseParents:
         if self.family:
             self.type = self.family.get_relationship()
         else:
-            self.type = RelLib.Family.MARRIED
+            self.type = const.FAMILY_MARRIED
 
         self.prel.set_active(self.type)
         self.redrawm()
@@ -300,7 +300,7 @@ class ChooseParents:
         self.father_model = PeopleModel.PeopleModel(self.db,self.father_filter)
         self.father_list.set_model(self.father_model)
         
-        if self.type == RelLib.Family.CIVIL_UNION:
+        if self.type == const.FAMILY_CIVIL_UNION:
             self.flabel.set_label("<b>%s</b>" % _("Par_ent"))
         else:
             self.flabel.set_label("<b>%s</b>" % _("Fath_er"))
@@ -310,7 +310,7 @@ class ChooseParents:
         self.mother_model = PeopleModel.PeopleModel(self.db,self.mother_filter)
         self.mother_list.set_model(self.mother_model)
         
-        if self.type == RelLib.Family.CIVIL_UNION:
+        if self.type == const.FAMILY_CIVIL_UNION:
             self.mlabel.set_label("<b>%s</b>" % _("Pa_rent"))
         else:
             self.mlabel.set_label("<b>%s</b>" % _("Mothe_r"))
@@ -319,8 +319,8 @@ class ChooseParents:
         """Called everytime the parent relationship information is changed"""
         self.old_type = self.type
         self.type = self.prel.get_active()
-        if (self.old_type == RelLib.Family.CIVIL_UNION or
-            self.type == RelLib.Family.CIVIL_UNION):
+        if (self.old_type == const.FAMILY_CIVIL_UNION or
+            self.type == const.FAMILY_CIVIL_UNION):
             self.redrawf()
             self.redrawm()
 
@@ -465,7 +465,7 @@ class ChooseParents:
         trans = self.db.transaction_begin()
         if self.father or self.mother:
             if self.mother and not self.father:
-                if self.mother.get_gender() == RelLib.Person.MALE:
+                if self.mother.get_gender() == const.MALE:
                     self.father = self.mother
                     father_handle = self.father.get_handle()
                     self.mother = None
@@ -474,7 +474,7 @@ class ChooseParents:
                     mother_handle = self.mother.get_handle()
                     father_handle = None
             elif self.father and not self.mother: 
-                if self.father.get_gender() == RelLib.Person.FEMALE:
+                if self.father.get_gender() == const.FEMALE:
                     self.mother = self.father
                     self.father = None
                     mother_handle = self.mother.get_handle()
@@ -485,7 +485,7 @@ class ChooseParents:
             elif self.mother.get_gender() != self.father.get_gender():
                 if self.type == "Partners":
                     self.type = "Unknown"
-                if self.father.get_gender() == RelLib.Person.FEMALE:
+                if self.father.get_gender() == const.FEMALE:
                     self.father, self.mother = self.mother, self.father
                 father_handle = self.father.get_handle()
                 mother_handle = self.mother.get_handle()
@@ -519,9 +519,9 @@ class ChooseParents:
         name = person.get_primary_name().get_surname()
         self.type = self.prel.get_active()
 
-        if self.type == RelLib.Family.CIVIL_UNION:
+        if self.type == const.FAMILY_CIVIL_UNION:
             self.parent_relation_changed(self.prel)
-        elif person.get_gender() == RelLib.Person.MALE:
+        elif person.get_gender() == const.MALE:
             try:
                 path = self.father_model.on_get_path(handle)
                 top_path = self.father_model.on_get_path(name)
@@ -553,7 +553,7 @@ class ChooseParents:
         class to create a new person."""
         
         person = RelLib.Person()
-        person.set_gender(RelLib.Person.MALE)
+        person.set_gender(const.MALE)
         
         try:
             import EditPerson
@@ -643,7 +643,7 @@ class ModifyParents:
 
         self.title.set_use_markup(True)
 
-        if self.family.get_relationship() == RelLib.Family.CIVIL_UNION:
+        if self.family.get_relationship() == const.FAMILY_CIVIL_UNION:
             self.mlabel.set_label("<b>%s</b>" % _("Pa_rent"))
             self.flabel.set_label("<b>%s</b>" % _("Par_ent"))
         else:
