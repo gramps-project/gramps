@@ -1049,7 +1049,7 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         return [self.primary_name] + self.media_list + \
                     self.alternate_names + self.address_list + \
                     self.attribute_list + self.urls + \
-                    self.source_list + add_list
+                    self.source_list + self.event_ref_list + add_list
 
     def get_sourcref_child_list(self):
         """
@@ -1072,13 +1072,8 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         @return: Returns the list of (classname,handle) tuples for referenced objects.
         @rtype: list
         """
-        ret = []
-        ret += [('Event',ref.ref) for ref in 
-                        self.event_ref_list + [self.birth_ref,self.death_ref]
-                        if ref]
-        ret += [('Family',handle) for handle in self.family_list 
+        return [('Family',handle) for handle in self.family_list 
                         + [item[0] for item in self.parent_family_list]]
-        return ret
 
     def get_handle_referents(self):
         """
@@ -1088,7 +1083,8 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
         """
-        return self.get_sourcref_child_list() + self.source_list
+        return self.get_sourcref_child_list() + self.source_list \
+               + self.event_ref_list
 
     def set_complete_flag(self,val):
         """
@@ -4400,16 +4396,6 @@ class RepoRef(BaseObject,NoteBase):
             return [('Repository',self.ref)]
         else:
             return []
-
-    def get_handle_referents(self):
-        """
-        Returns the list of child objects which may, directly or through
-        their children, reference primary objects..
-        
-        @return: Returns the list of objects refereincing primary objects.
-        @rtype: list
-        """
-        return []
 
     def set_reference_handle(self,ref):
         self.ref = ref
