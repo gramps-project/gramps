@@ -111,6 +111,9 @@ class GrampsBSDDB(GrampsDbBase):
     def get_media_cursor(self):
         return GrampsBSDDBCursor(self.media_map)
 
+    def version_supported(self):
+        return self.metadata.get('version',0) <= _DBVERSION
+    
     def need_upgrade(self):
         return not self.readonly and self.metadata.get('version',0) < _DBVERSION
 
@@ -407,6 +410,7 @@ class GrampsBSDDB(GrampsDbBase):
             "Sponsored", "Foster", "Unknown", "Other", ]
         
         version = self.metadata.get('version',0)
+
         if version < 2:
             self.upgrade_2(child_rel_notrans)
         if version < 3:

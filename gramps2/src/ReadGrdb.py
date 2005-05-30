@@ -59,7 +59,16 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
         else:
             ErrorDialog(_("%s could not be opened") % filename)
         return
-    
+    if not other_database.version_supported():
+        if cl:
+            print "Error: %s could not be opened.\n%s  Exiting." % (filename,\
+                        _("The database version is not supported by this version of GRAMPS.\n"\
+                          "Please upgrade to the corresponding version or use XML for porting data between different database versions."))
+        else:
+            ErrorDialog(_("%s could not be opened") % filename,
+                        _("The Database version is not supported by this version of GRAMPS."))
+        return
+        
     # Check for duplicate handles. At the moment we simply exit here,
     # before modifying any data. In the future we will need to handle
     # this better.

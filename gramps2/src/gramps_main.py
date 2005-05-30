@@ -1291,7 +1291,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                 ErrorDialog(_('Cannot open database'),
                             _('The database file specified could not be opened.'))
                 return 0
-        except ( IOError, OSError ), msg:
+        except ( IOError, OSError, Errors.FileVersionError), msg:
             ErrorDialog(_('Cannot open database'),str(msg))
             return 0
         except (db.DBAccessError,db.DBError), msg:
@@ -1743,6 +1743,11 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             gtk.main_iteration()
         
     def post_load(self,name,callback=None):
+        if not self.db.version_supported():
+            raise Errors.FileVersionError(
+                    "The database version is not supported by this version of GRAMPS.\n"
+                    "Please upgrade to the corresponding version or use XML for porting data between different database versions.")
+        
         self.db.set_save_path(name)
         res = self.db.get_researcher()
         owner = GrampsCfg.get_researcher()

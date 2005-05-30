@@ -304,6 +304,8 @@ class ArgHandler:
                 # Add the file to the recent items
                 RecentFiles.recent_files(filename,filetype)
                 self.parent.build_recent_menu()
+            else:
+                os._exit(1)
             return
            
         if self.open:

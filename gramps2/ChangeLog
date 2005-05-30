@@ -1,3 +1,12 @@
+2005-05-30  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/ArgHandler.py (handle_args) Exit if opening a file failed
+	* src/Errors.py: New exception type "FileVersionError"
+	* src/GrampsDbBase.py (version_supported): New method
+	* src/GrampsBSDDB.py (version_supported): New method
+	* src/gramps_main.py (read_file) catch FileVersionError;
+	(post_load): only load if version_supported()
+	* src/ReadGrdb.py (importData): only load if version_supported()
+	
 2005-05-30  Matt Brubeck  <mbrubeck@cs.hmc.edu>
 	* src/DbPrompter.py: fix handling of spaces when creating a new
 	file - use open instead of "touch"
