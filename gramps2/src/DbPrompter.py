@@ -472,7 +472,8 @@ class NewSaveasDbPrompter:
                     continue
                 filetype = type_selector.get_value()
                 if filetype == 'auto':
-                    os.system('touch %s' % filename)
+                    new_file = open(filename, "w")
+                    new_file.close()
                     filetype = get_mime_type(filename)
                 (the_path,the_file) = os.path.split(filename)
                 choose.destroy()

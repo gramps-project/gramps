@@ -1,3 +1,7 @@
+2005-05-30  Matt Brubeck  <mbrubeck@cs.hmc.edu>
+	* src/DbPrompter.py: fix handling of spaces when creating a new
+	file - use open instead of "touch"
+
 2005-05-30  Alex Roitman  <shura@gramps-project.org>
 	* src/po/sv.po: Typo (closes 1211150).
 
