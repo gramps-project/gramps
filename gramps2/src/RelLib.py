@@ -42,7 +42,6 @@ from warnings import warn
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
 import Date
 import DateHandler
 
@@ -891,6 +890,19 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
     @sort: serialize, unserialize, get_*, set_*, add_*, remove_*
     """
     
+    UNKNOWN = 2
+    MALE    = 1
+    FEMALE  = 0
+    
+    CHILD_NONE      = 0
+    CHILD_BIRTH     = 1
+    CHILD_ADOPTED   = 2
+    CHILD_STEPCHILD = 3
+    CHILD_SPONSORED = 4
+    CHILD_FOSTER    = 5
+    CHILD_UNKNOWN   = 6
+    CHILD_CUSTOM    = 7
+
     def __init__(self):
         """
         Creates a new Person instance. After initialization, most
@@ -907,7 +919,7 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         self.parent_family_list = []
         self.nickname = ""
         self.alternate_names = []
-        self.gender = const.UNKNOWN
+        self.gender = Person.UNKNOWN
         self.death_ref = None
         self.birth_ref = None
         self.address_list = []
@@ -1210,9 +1222,9 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
 
         @param gender: Assigns the Person's gender to one of the
             following constants::
-                const.MALE
-                const.FEMALE
-                const.UNKNOWN
+                Person.MALE
+                Person.FEMALE
+                Person.UNKNOWN
         @type gender: int
         """
         # if the db object has been assigned, update the
@@ -1228,9 +1240,9 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         Returns the gender of the Person
 
         @returns: Returns one of the following constants::
-            const.MALE
-            const.FEMALE
-            const.UNKNOWN
+            Person.MALE
+            Person.FEMALE
+            Person.UNKNOWN
         @rtype: int
         """
         return self.gender
@@ -1264,7 +1276,7 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         # remove when transitition done.
         event_ref = EventRef()
         event_ref.set_reference_handle(event_handle)
-        event_ref.set_role( const.ROLE_PRIMARY)
+        event_ref.set_role( EventRef.ROLE_PRIMARY)
         self.set_death_ref( event_ref)
 
     def set_death_ref(self,event_ref):
@@ -1327,7 +1339,7 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         # remove when transitition done.
         event_ref = EventRef()
         event_ref.set_reference_handle(event_handle)
-        event_ref.set_role( const.ROLE_PRIMARY)
+        event_ref.set_role( EventRef.ROLE_PRIMARY)
         self.add_event_ref( event_ref)
 
     def add_event_ref(self,event_ref):
@@ -1372,7 +1384,7 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         for event_handle in event_list:
             event_ref = EventRef()
             event_ref.set_reference_handle(event_handle)
-            event_ref.set_role( const.ROLE_PRIMARY)
+            event_ref.set_role( EventRef.ROLE_PRIMARY)
             event_ref_list.append( event_ref)
         self.set_event_ref_list(event_ref_list)
 
@@ -1737,6 +1749,12 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
     or the changes will be lost.
     """
 
+    MARRIED     = 0
+    UNMARRIED   = 1
+    CIVIL_UNION = 2
+    UNKNOWN     = 3
+    CUSTOM      = 4
+
     def __init__(self):
         """
         Creates a new Family instance. After initialization, most
@@ -1750,7 +1768,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         self.father_handle = None
         self.mother_handle = None
         self.child_list = []
-        self.type = const.FAMILY_MARRIED
+        self.type = Family.MARRIED
         self.event_ref_list = []
         self.lds_seal = None
         self.complete = 0
@@ -1937,17 +1955,17 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         Sets the relationship type between the people identified as the
         father and mother in the relationship. The valid values are:
 
-            - C{const.FAMILY_MARRIED} : indicates a legally recognized married
+            - C{Family.MARRIED} : indicates a legally recognized married
                 relationship between two individuals. This may be either
                 an opposite or a same sex relationship.
-            - C{const_FAMILY_UNMARRIED} : indicates a relationship between two
+            - C{Family.UNMARRIED} : indicates a relationship between two
                 individuals that is not a legally recognized relationship.
-            - C{const_FAMILY_CIVIL_UNION} : indicates a legally recongnized,
+            - C{Family.CIVIL_UNION} : indicates a legally recongnized,
                 non-married relationship between two individuals of the
                 same sex.
-            - C{const.FAMILY_UNKNOWN} : indicates that the type of relationship
+            - C{Family.UNKNOWN} : indicates that the type of relationship
                 between the two individuals is not know.
-            - C{const.FAMILY_CUSTOM} : indicates that the type of relationship
+            - C{Family.CUSTOM} : indicates that the type of relationship
                 between the two individuals does not match any of the
                 other types.
 
@@ -2061,8 +2079,8 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         # remove when transitition done.
         event_ref = EventRef()
         event_ref.set_reference_handle(event_handle)
-        event_ref.set_role( const.ROLE_PRIMARY)
-        self.add_event_ref( event_ref)
+        event_ref.set_role(EventRef.ROLE_PRIMARY)
+        self.add_event_ref(event_ref)
 
     def add_event_ref(self,event_ref):
         """
@@ -2106,7 +2124,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         for event_handle in event_list:
             event_ref = EventRef()
             event_ref.set_reference_handle(event_handle)
-            event_ref.set_role( const.ROLE_PRIMARY)
+            event_ref.set_role(EventRef.ROLE_PRIMARY)
             event_ref_list.append( event_ref)
         self.set_event_ref_list(event_ref_list)
 
@@ -2128,9 +2146,53 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
     such as a birth, death, or marriage.
     """
 
-    NAME = 0
-    ID = 1
-    
+    UNKNOWN        = -1
+    CUSTOM         = 0
+    MARRIAGE       = 1
+    MARR_SETTL     = 2
+    MARR_LIC       = 3
+    MARR_CONTR     = 4
+    MARR_BANNS     = 5
+    ENGAGEMENT     = 6
+    DIVORCE        = 7
+    DIV_FILING     = 8
+    ANNULMENT      = 9
+    MARR_ALT       = 10
+    ADOPT          = 11
+    BIRTH          = 12
+    DEATH          = 13
+    ADULT_CHRISTEN = 14
+    BAPTISM        = 15
+    BAR_MITZVAH    = 16
+    BAS_MITZVAH    = 17
+    BLESS          = 18
+    BURIAL         = 19
+    CAUSE_DEATH    = 20
+    CENSUS         = 21
+    CHRISTEN       = 22
+    CONFIRMATION   = 23
+    CREMATION      = 24
+    DEGREE         = 25
+    EDUCATION      = 26
+    ELECTED        = 27
+    EMIGRATION     = 28
+    FIRST_COMMUN   = 29
+    IMMIGRATION    = 30
+    GRADUATION     = 31
+    MED_INFO       = 32
+    MILITARY_SERV  = 33
+    NATURALIZATION = 34
+    NOB_TITLE      = 35
+    NUM_MARRIAGES  = 36
+    OCCUPATION     = 37
+    ORDINATION     = 38
+    PROBATE        = 39
+    PROPERTY       = 40
+    RELIGION       = 41
+    RESIDENCE      = 42
+    RETIREMENT     = 43
+    WILL           = 44
+
     def __init__(self,source=None):
         """
         Creates a new Event instance, copying from the source if present
@@ -2147,7 +2209,8 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
 
         if source:
             self.description = source.description
-            self.name = source.name
+            self.type_int = source.type_int
+            self.type_str = source.type_str
             self.cause = source.cause
             if source.witness != None:
                 self.witness = source.witness[:]
@@ -2155,7 +2218,8 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
                 self.witness = None
         else:
             self.description = ""
-            self.name = ""
+            self.type_int = Event.CUSTOM
+            self.type_str = ""
             self.cause = ""
             self.witness = None
 
@@ -2175,10 +2239,10 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
             be considered persistent.
         @rtype: tuple
         """
-        return (self.handle, self.gramps_id, self.name, self.date,
-                self.description, self.place, self.cause, self.private,
-                self.source_list, self.note, self.witness, self.media_list,
-                self.change)
+        return (self.handle, self.gramps_id, self.type_int, self.type_str,
+                self.date, self.description, self.place, self.cause,
+                self.private, self.source_list, self.note, self.witness,
+                self.media_list, self.change)
 
     def unserialize(self,data):
         """
@@ -2189,9 +2253,10 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
             Person object
         @type data: tuple
         """
-        (self.handle, self.gramps_id, self.name, self.date, self.description,
-         self.place, self.cause, self.private, self.source_list,
-         self.note, self.witness, self.media_list, self.change) = data
+        (self.handle, self.gramps_id, self.type_int, self.type_str,
+         self.date, self.description, self.place, self.cause, self.private,
+         self.source_list, self.note, self.witness, self.media_list,
+         self.change) = data
 
     def _has_handle_reference(self,classname,handle):
         if classname == 'Place':
@@ -3488,6 +3553,15 @@ class Attribute(PrivateSourceNote):
     """Provides a simple key/value pair for describing properties. Used
     by the Person and Family objects to store descriptive information."""
     
+    UNKNOWN     = -1
+    CUSTOM      = 0
+    CASTE       = 1
+    DESCRIPTION = 2
+    ID          = 3
+    NATIONAL    = 4
+    NUM_CHILD   = 5
+    SSN         = 6
+
     def __init__(self,source=None):
         """creates a new Attribute object, copying from the source if provided"""
         PrivateSourceNote.__init__(self,source)
@@ -3658,6 +3732,12 @@ class Name(PrivateSourceNote,DateBase):
     LNFN = 1  # last name, first name
     FNLN = 2  # first name, last name
     
+    UNKNOWN = -1
+    CUSTOM  = 0
+    AKA     = 1
+    BIRTH   = 2
+    MARRIED = 3
+
     def __init__(self,source=None):
         """creates a new Name instance, copying from the source if provided"""
         PrivateSourceNote.__init__(self,source)
@@ -4076,6 +4156,12 @@ class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase):
     """Source reference, containing detailed information about how a
     referenced source relates to it"""
     
+    CONF_VERY_HIGH = 4
+    CONF_HIGH      = 3
+    CONF_NORMAL    = 2
+    CONF_LOW       = 1
+    CONF_VERY_LOW  = 0
+
     def __init__(self,source=None):
         """creates a new SourceRef, copying from the source if present"""
         DateBase.__init__(self,source)
@@ -4087,7 +4173,7 @@ class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase):
             self.page = source.page
             self.text = source.text
         else:
-            self.confidence = const.CONF_NORMAL
+            self.confidence = SourceRef.CONF_NORMAL
             self.ref = None
             self.page = ""
             self.note = Note()
@@ -4188,6 +4274,16 @@ class EventRef(BaseObject,PrivacyBase,NoteBase):
     to the refereneced event.
     """
 
+    UNKNOWN   = -1
+    CUSTOM    = 0
+    PRIMARY   = 1
+    CLERGY    = 2
+    CELEBRANT = 3
+    AIDE      = 4
+    BRIDE     = 5
+    GROOM     = 6
+    WITNESS   = 7
+
     def __init__(self,source=None):
         """
         Creates a new EventRef instance, copying from the source if present.
@@ -4200,7 +4296,7 @@ class EventRef(BaseObject,PrivacyBase,NoteBase):
             self.role_str = source.role_str
         else:
             self.ref = None
-            self.role_int = const.ROLE_CUSTOM
+            self.role_int = EventRef.ROLE_CUSTOM
             self.role_str = ""
 
     def get_text_data_list(self):
@@ -4253,7 +4349,7 @@ class EventRef(BaseObject,PrivacyBase,NoteBase):
         Returns the integer corresponding to the preset role.
         If custom then the string is returned.
         """
-        if self.role_int == const.ROLE_CUSTOM:
+        if self.role_int == EventRef.ROLE_CUSTOM:
             return self.role_str
         else:
             return self.role_int
@@ -4264,7 +4360,7 @@ class EventRef(BaseObject,PrivacyBase,NoteBase):
         If integer, it is set as is. If string, it is recorded as custom role.
         """
         if type(role) == str:
-            self.role_int = const.ROLE_CUSTOM
+            self.role_int = EventRef.ROLE_CUSTOM
             self.role_str = role
         elif type(role) == int:
             self.role_int = role
@@ -4314,11 +4410,11 @@ class GenderStats:
         else:
             increment = -1
 
-        if gender == const.MALE:
+        if gender == Person.MALE:
             male += increment
-        elif gender == const.FEMALE:
+        elif gender == Person.FEMALE:
             female += increment
-        elif gender == const.UNKNOWN:
+        elif gender == Person.UNKNOWN:
             unknown += increment
 
         self.stats[name] = (male, female, unknown)
@@ -4330,27 +4426,44 @@ class GenderStats:
     def guess_gender (self, name):
         name = self._get_key_from_name (name)
         if not name or not self.stats.has_key (name):
-            return const.UNKNOWN
+            return Person.UNKNOWN
 
         (male, female, unknown) = self.stats[name]
         if unknown == 0:
             if male and not female:
-                return const.MALE
+                return Person.MALE
             if female and not male:
-                return const.FEMALE
+                return Person.FEMALE
 
         if male > (2 * female):
-            return const.MALE
+            return Person.MALE
 
         if female > (2 * male):
-            return const.FEMALE
+            return Person.FEMALE
 
-        return const.UNKNOWN
+        return Person.UNKNOWN
 
 class RepoRef(BaseObject,NoteBase):
     """
     Repository reference class.
     """
+
+    UNKNOWN    = -1
+    CUSTOM     = 0
+    AUDIO      = 1
+    BOOK       = 2
+    CARD       = 3
+    ELECTRONIC = 4
+    FICHE      = 5
+    FILM       = 6
+    MAGAZINE   = 7
+    MANUSCRIPT = 8
+    MAP        = 9
+    NEWSPAPER  = 10
+    PHOTO      = 11
+    THOMBSTOBE = 12
+    VIDEO      = 13
+
     def __init__(self,source=None):
         NoteBase.__init__(self)
         if source:
@@ -4361,7 +4474,7 @@ class RepoRef(BaseObject,NoteBase):
         else:
             self.ref = None
             self.call_number = ""
-            self.media_type_int = const.SRC_MEDIA_CUSTOM
+            self.media_type_int = RepoRef.CUSTOM
             self.media_type_str = ""
 
     def get_text_data_list(self):
@@ -4410,7 +4523,7 @@ class RepoRef(BaseObject,NoteBase):
         return self.call_number
 
     def get_media_type(self):
-        if self.media_type_int == const.SRC_MEDIA_CUSTOM:
+        if self.media_type_int == RepoRef.CUSTOM:
             return self.media_type_str
         else:
             return self.media_type_int
@@ -4420,7 +4533,7 @@ class RepoRef(BaseObject,NoteBase):
             self.media_type_int = media_type
             self.media_type_str = ""
         else:
-            self.media_type_int = const.SRC_MEDIA_CUSTOM
+            self.media_type_int = RepoRef.CUSTOM
             self.media_type_str = media_type
 
 class Repository(PrimaryObject,NoteBase):
@@ -4668,12 +4781,12 @@ if __name__ == "__main__":
             rr1 = RepoRef()
             rr1.set_reference_handle('ref-handle')
             rr1.set_call_number('call-number')
-            rr1.set_media_type(const.SRC_MEDIA_BOOK)
+            rr1.set_media_type(RepoRef.BOOK)
             rr1.set_note('some note')
 
             assert rr1.get_reference_handle() == 'ref-handle'
             assert rr1.get_call_number() == 'call-number'
-            assert rr1.get_media_type() == const.SRC_MEDIA_BOOK
+            assert rr1.get_media_type() == RepoRef.BOOK
             assert rr1.get_note() == 'some note'
     
     unittest.main()

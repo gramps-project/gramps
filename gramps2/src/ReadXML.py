@@ -792,7 +792,7 @@ class GrampsParser:
         if attrs.has_key("type"):
             self.family.set_relationship(
                 _FAMILY_TRANS.get(attrs["type"],
-                                  const.FAMILY_UNKNOWN))
+                                  RelLib.Family.UNKNOWN))
         if attrs.has_key("complete"):
             self.family.set_complete_flag(int(attrs['complete']))
         else:
@@ -1242,11 +1242,11 @@ class GrampsParser:
     def stop_gender(self,tag):
         t = tag
         if t == "M":
-            self.person.set_gender (const.MALE)
+            self.person.set_gender (RelLib.Person.MALE)
         elif t == "F":
-            self.person.set_gender (const.FEMALE)
+            self.person.set_gender (RelLib.Person.FEMALE)
         else:
-            self.person.set_gender (const.UNKNOWN)
+            self.person.set_gender (RelLib.Person.UNKNOWN)
 
     def stop_stitle(self,tag):
         self.source.set_title(tag)

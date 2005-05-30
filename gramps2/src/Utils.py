@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 import os
 import locale
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -51,13 +52,224 @@ import const
 import GrampsMime
 import NameDisplay
 import Date
+import RelLib
 
 #-------------------------------------------------------------------------
 #
-# internationalization
+# Integer to String  mappings for constants
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+gender = {
+    RelLib.Person.MALE    : _("male"),
+    RelLib.Person.FEMALE  : _("female"),
+    RelLib.Person.UNKNOWN : _("unknown"),
+    }
+
+child_relations = {
+    RelLib.Person.CHILD_NONE      : _("None"),
+    RelLib.Person.CHILD_BIRTH     : _("Birth"),
+    RelLib.Person.CHILD_ADOPTED   : _("Adopted"),
+    RelLib.Person.CHILD_STEPCHILD : _("Stepchild"),
+    RelLib.Person.CHILD_SPONSORED : _("Sponsored"),
+    RelLib.Person.CHILD_FOSTER    : _("Foster"),
+    RelLib.Person.CHILD_UNKNOWN   : _("Unknown"),
+    RelLib.Person.CHILD_CUSTOM    : _("Custom"),
+    }
+
+confidence = {
+    RelLib.SourceRef.CONF_VERY_HIGH : _("Very High"),
+    RelLib.SourceRef.CONF_HIGH      : _("High"),
+    RelLib.SourceRef.CONF_NORMAL    : _("Normal"),
+    RelLib.SourceRef.CONF_LOW       : _("Low"),
+    RelLib.SourceRef.CONF_VERY_LOW  : _("Very Low"),
+   }
+
+family_events = {
+    RelLib.Event.UNKNOWN    : _("Unknown"),
+    RelLib.Event.CUSTOM     : _("Custom"),
+    RelLib.Event.MARRIAGE   : _("Marriage"),
+    RelLib.Event.MARR_SETTL : _("Marriage Settlement"),
+    RelLib.Event.MARR_LIC   : _("Marriage License"),
+    RelLib.Event.MARR_CONTR : _("Marriage Contract"),
+    RelLib.Event.MARR_BANNS : _("Marriage Banns"),
+    RelLib.Event.ENGAGEMENT : _("Engagement"),
+    RelLib.Event.DIVORCE    : _("Divorce"),
+    RelLib.Event.DIV_FILING : _("Divorce Filing"),
+    RelLib.Event.ANNULMENT  : _("Annulment"),
+    RelLib.Event.MARR_ALT   : _("Alternate Marriage"),
+    }
+
+personal_events = {
+    RelLib.Event.UNKNOWN         : _("Unknown"),
+    RelLib.Event.CUSTOM          : _("Custom"),
+    RelLib.Event.ADOPT           : _("Adopted"),
+    RelLib.Event.BIRTH           : _("Birth"),
+    RelLib.Event.DEATH           : _("Death"),
+    RelLib.Event.ADULT_CHRISTEN  : _("Adult Christening"),
+    RelLib.Event.BAPTISM         : _("Baptism"),
+    RelLib.Event.BAR_MITZVAH     : _("Bar Mitzvah"),
+    RelLib.Event.BAS_MITZVAH     : _("Bas Mitzvah"),
+    RelLib.Event.BLESS           : _("Blessing"),
+    RelLib.Event.BURIAL          : _("Burial"),
+    RelLib.Event.CAUSE_DEATH     : _("Cause Of Death"),
+    RelLib.Event.CENSUS          : _("Census"),
+    RelLib.Event.CHRISTEN        : _("Christening"),
+    RelLib.Event.CONFIRMATION    : _("Confirmation"),
+    RelLib.Event.CREMATION       : _("Cremation"),
+    RelLib.Event.DEGREE          : _("Degree"),
+    RelLib.Event.DIV_FILING      : _("Divorce Filing"),
+    RelLib.Event.EDUCATION       : _("Education"),
+    RelLib.Event.ELECTED         : _("Elected"),
+    RelLib.Event.EMIGRATION      : _("Emigration"),
+    RelLib.Event.FIRST_COMMUN    : _("First Communion"),
+    RelLib.Event.IMMIGRATION     : _("Immigration"),
+    RelLib.Event.GRADUATION      : _("Graduation"),
+    RelLib.Event.MED_INFO        : _("Medical Information"),
+    RelLib.Event.MILITARY_SERV   : _("Military Service"), 
+    RelLib.Event.NATURALIZATION  : _("Naturalization"),
+    RelLib.Event.NOB_TITLE       : _("Nobility Title"),
+    RelLib.Event.NUM_MARRIAGES   : _("Number of Marriages"),
+    RelLib.Event.OCCUPATION      : _("Occupation"),
+    RelLib.Event.ORDINATION      : _("Ordination"),
+    RelLib.Event.PROBATE         : _("Probate"),
+    RelLib.Event.PROPERTY        : _("Property"),
+    RelLib.Event.RELIGION        : _("Religion"),
+    RelLib.Event.RESIDENCE       : _("Residence"),
+    RelLib.Event.RETIREMENT      : _("Retirement"),
+    RelLib.Event.WILL            : _("Will")
+    }
+
+personal_attributes = {
+    RelLib.Attribute.UNKNOWN     : _("Unknown"),
+    RelLib.Attribute.CUSTOM      : _("Custom"),
+    RelLib.Attribute.CASTE       : _("Caste"),
+    RelLib.Attribute.DESCRIPTION : _("Description"),
+    RelLib.Attribute.ID          : _("Identification Number"),
+    RelLib.Attribute.NATIONAL    : _("National Origin"),
+    RelLib.Attribute.NUM_CHILD   : _("Number of Children"),
+    RelLib.Attribute.SSN         : _("Social Security Number"),
+    }
+
+family_attributes = {
+    RelLib.Attribute.UNKNOWN     : _("Unknown"),
+    RelLib.Attribute.CUSTOM      : _("Custom"),
+    RelLib.Attribute.NUM_CHILD : _("Number of Children"),
+    }
+
+family_relations = {
+    RelLib.Family.MARRIED     : _("Married"),
+    RelLib.Family.UNMARRIED   : _("Unmarried"),
+    RelLib.Family.CIVIL_UNION : _("Civil Union"),
+    RelLib.Family.UNKNOWN     : _("Unknown"),
+    RelLib.Family.CUSTOM      : _("Other"),
+    }
+
+family_rel_descriptions = {
+    RelLib.Family.MARRIED     : _("A legal or common-law relationship "
+                                  "between a husband and wife"),
+    RelLib.Family.UNMARRIED   : _("No legal or common-law relationship "
+                                  "between man and woman"),
+    RelLib.Family.CIVIL_UNION : _("An established relationship between "
+                                  "members of the same sex"),
+    RelLib.Family.UNKNOWN     : _("Unknown relationship between a man "
+                                  "and woman"),
+    RelLib.Family.CUSTOM      : _("An unspecified relationship "
+                                  "a man and woman"),
+    }
+
+name_types = {
+    RelLib.Name.UNKNOWN : _("Unknown"),
+    RelLib.Name.CUSTOM  : _("Custom"),
+    RelLib.Name.AKA     : _("Also Known As"),
+    RelLib.Name.BIRTH   : _("Birth Name"),
+    RelLib.Name.MARRIED : _("Married Name"),
+    }
+
+source_media_types = {
+    RelLib.RepoRef.UNKNOWN    : _("Unknown"),
+    RelLib.RepoRef.CUSTOM     : _("Custom"),
+    RelLib.RepoRef.AUDIO      : _("Audio"),
+    RelLib.RepoRef.BOOK       : _("Book"),
+    RelLib.RepoRef.CARD       : _("Card"),
+    RelLib.RepoRef.ELECTRONIC : _("Electronic"),
+    RelLib.RepoRef.FICHE      : _("Fiche"),
+    RelLib.RepoRef.FILM       : _("Film"),
+    RelLib.RepoRef.MAGAZINE   : _("Magazine"),
+    RelLib.RepoRef.MANUSCRIPT : _("Manuscript"),
+    RelLib.RepoRef.MAP        : _("Map"),
+    RelLib.RepoRef.NEWSPAPER  : _("Newspaper"),
+    RelLib.RepoRef.PHOTO      : _("Photo"),
+    RelLib.RepoRef.THOMBSTOBE : _("Thombstone"),
+    RelLib.RepoRef.VIDEO      : _("Video"),
+    }
+
+#-------------------------------------------------------------------------
+#
+# Integer to GEDCOM tag mappings for constants
+#
+#-------------------------------------------------------------------------
+familyConstantEvents = {
+    RelLib.Event.ANNULMENT  : "ANUL",
+    RelLib.Event.DIV_FILING : "DIVF",
+    RelLib.Event.DIVORCE    : "DIV",
+    RelLib.Event.ENGAGEMENT : "ENGA",
+    RelLib.Event.MARR_BANNS : "MARB",
+    RelLib.Event.MARR_CONTR : "MARC",
+    RelLib.Event.MARR_LIC   : "MARL",
+    RelLib.Event.MARR_SETTL : "MARS",
+    RelLib.Event.MARRIAGE   : "MARR"
+    }
+
+personalConstantEvents = {
+    RelLib.Event.ADOPT            : "ADOP",
+    RelLib.Event.ADULT_CHRISTEN   : "CHRA",
+    RelLib.Event.BIRTH            : "BIRT",
+    RelLib.Event.DEATH            : "DEAT",
+    RelLib.Event.BAPTISM          : "BAPM",
+    RelLib.Event.BAR_MITZVAH      : "BARM",
+    RelLib.Event.BAS_MITZVAH      : "BASM",
+    RelLib.Event.BLESS            : "BLES",
+    RelLib.Event.BURIAL           : "BURI",
+    RelLib.Event.CAUSE_DEATH      : "CAUS",
+    RelLib.Event.ORDINATION       : "ORDI",
+    RelLib.Event.CENSUS           : "CENS",
+    RelLib.Event.CHRISTEN         : "CHR" ,
+    RelLib.Event.CONFIRMATION     : "CONF",
+    RelLib.Event.CREMATION        : "CREM",
+    RelLib.Event.DEGREE           : "", 
+    RelLib.Event.DIV_FILING       : "DIVF",
+    RelLib.Event.EDUCATION        : "EDUC",
+    RelLib.Event.ELECTED          : "",
+    RelLib.Event.ELECTED          : "EMIG",
+    RelLib.Event.FIRST_COMMUN     : "FCOM",
+    RelLib.Event.GRADUATION       : "GRAD",
+    RelLib.Event.MED_INFO         : "", 
+    RelLib.Event.MILITARY_SERV    : "", 
+    RelLib.Event.NATURALIZATION   : "NATU",
+    RelLib.Event.NOB_TITLE        : "TITL",
+    RelLib.Event.NUM_MARRIAGES    : "NMR",
+    RelLib.Event.IMMIGRATION      : "IMMI",
+    RelLib.Event.OCCUPATION       : "OCCU",
+    RelLib.Event.PROBATE          : "PROB",
+    RelLib.Event.PROPERTY         : "PROP",
+    RelLib.Event.RELIGION         : "RELI",
+    RelLib.Event.RESIDENCE        : "RESI", 
+    RelLib.Event.RETIREMENT       : "RETI",
+    RelLib.Event.WILL             : "WILL",
+    }
+
+familyConstantAttributes = {
+    RelLib.Attribute.NUM_CHILD   : "NCHI",
+    }
+
+personalConstantAttributes = {
+    RelLib.Attribute.CASTE       : "CAST",
+    RelLib.Attribute.DESCRIPTION : "DSCR",
+    RelLib.Attribute.ID          : "IDNO",
+    RelLib.Attribute.NATIONAL    : "NATI",
+    RelLib.Attribute.NUM_CHILD   : "NCHI",
+    RelLib.Attribute.SSN         : "SSN",
+    }
 
 #-------------------------------------------------------------------------
 #

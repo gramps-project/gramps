@@ -328,7 +328,7 @@ class IsFemale(Rule):
     description = _('Matches all females')
 
     def apply(self,db,handle):
-        return db.get_person_from_handle(handle).get_gender() == const.FEMALE
+        return db.get_person_from_handle(handle).get_gender() == RelLib.Person.FEMALE
 
 #-------------------------------------------------------------------------
 #
@@ -343,7 +343,7 @@ class HasUnknownGender(Rule):
     description = _('Matches all people with unknown gender')
 
     def apply(self,db,handle):
-        return db.get_person_from_handle(handle).get_gender() == const.UNKNOWN
+        return db.get_person_from_handle(handle).get_gender() == RelLib.Person.UNKNOWN
 
 #-------------------------------------------------------------------------
 #
@@ -970,7 +970,7 @@ class IsMale(Rule):
     description = _('Matches all males')
 
     def apply(self,db,handle):
-        return db.get_person_from_handle(handle).get_gender() == const.MALE
+        return db.get_person_from_handle(handle).get_gender() == RelLib.Person.MALE
 
 #-------------------------------------------------------------------------
 #
