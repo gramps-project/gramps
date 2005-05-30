@@ -281,9 +281,9 @@ class PedigreeView:
                         tooltip.set_tip(text, self.format_person(lst[i][0], 11))
                     text.set_alignment(0.0,0.0)
                     gender = lst[i][0].get_gender()
-                    if gender == const.MALE:
+                    if gender == RelLib.Person.MALE:
                         text.modify_bg( gtk.STATE_NORMAL, text.get_colormap().alloc_color("#F5FFFF"))
-                    elif gender == const.FEMALE:
+                    elif gender == RelLib.Person.FEMALE:
                         text.modify_bg( gtk.STATE_NORMAL, text.get_colormap().alloc_color("#FFF5FF"))
                     else:
                         text.modify_bg( gtk.STATE_NORMAL, text.get_colormap().alloc_color("#FFFFF5"))

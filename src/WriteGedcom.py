@@ -789,9 +789,9 @@ class GedcomWriter:
             for name in person.get_alternate_names():
                 self.write_person_name(name,"")
     
-        if person.get_gender() == const.MALE:
+        if person.get_gender() == RelLib.Person.MALE:
             self.writeln("1 SEX M")
-        elif person.get_gender() == const.FEMALE:
+        elif person.get_gender() == RelLib.Person.FEMALE:
             self.writeln("1 SEX F")
 
         if not restricted:

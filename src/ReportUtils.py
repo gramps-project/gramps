@@ -499,7 +499,7 @@ def born_died_str(database,person,endnotes=None,name_object=None,person_name=Non
     if person_name == None:
         person_name = _nd.display_name(name_object)
     elif person_name == 0:
-        if person.get_gender() == const.MALE:
+        if person.get_gender() == RelLib.Person.MALE:
             person_name = _('He')
         else:
             person_name = _('She')
@@ -510,7 +510,7 @@ def born_died_str(database,person,endnotes=None,name_object=None,person_name=Non
     birth = database.get_event_from_handle(person.get_birth_handle())
     death = database.get_event_from_handle(person.get_death_handle())
 
-    if person.get_gender() == const.MALE:
+    if person.get_gender() == RelLib.Person.MALE:
         if bdate:
             if bplace:
                 if ddate:
@@ -817,7 +817,7 @@ def married_str(database,person,spouse,event,endnotes=None,
     text = ""
     if is_first:
         if date and place:
-            if person.get_gender() == const.MALE:
+            if person.get_gender() == RelLib.Person.MALE:
                     text = _('He married %(spouse)s %(date)s in %(place)s%(endnotes)s.') % {
                         'spouse' : spouse_name,
                         'endnotes' : endnotes(event),
@@ -830,7 +830,7 @@ def married_str(database,person,spouse,event,endnotes=None,
                         'endnotes' : endnotes(event),
                         'place' : place}
         elif date:
-            if person.get_gender() == const.MALE:
+            if person.get_gender() == RelLib.Person.MALE:
                     text = _('He married %(spouse)s %(date)s%(endnotes)s.') % {
                         'spouse' : spouse_name,
                         'endnotes' : endnotes(event),
@@ -841,7 +841,7 @@ def married_str(database,person,spouse,event,endnotes=None,
                         'endnotes' : endnotes(event),
                         'place' : place,}
         elif place:
-            if person.get_gender() == const.MALE:
+            if person.get_gender() == RelLib.Person.MALE:
                     text = _('He married %(spouse)s in %(place)s%(endnotes)s.') % {
                         'spouse' : spouse_name,
                         'endnotes' : endnotes(event),
@@ -852,7 +852,7 @@ def married_str(database,person,spouse,event,endnotes=None,
                         'endnotes' : endnotes(event),
                         'place' : place}
         else:
-            if person.get_gender() == const.MALE:
+            if person.get_gender() == RelLib.Person.MALE:
                     text = _('He married %(spouse)s%(endnotes)s.') % {
                         'spouse' : spouse_name,
                         'endnotes' : endnotes(event) }
@@ -862,7 +862,7 @@ def married_str(database,person,spouse,event,endnotes=None,
                         'endnotes' : endnotes(event)}
     else:
         if date and place:
-            if person.get_gender() == const.MALE:
+            if person.get_gender() == RelLib.Person.MALE:
                     text = _('He also married %(spouse)s %(date)s in %(place)s%(endnotes)s.') % {
                         'spouse' : spouse_name,
                         'endnotes' : endnotes(event),
@@ -875,7 +875,7 @@ def married_str(database,person,spouse,event,endnotes=None,
                         'endnotes' : endnotes(event),
                         'place' : place}
         elif date:
-            if person.get_gender() == const.MALE:
+            if person.get_gender() == RelLib.Person.MALE:
                     text = _('He also married %(spouse)s %(date)s%(endnotes)s.') % {
                         'spouse' : spouse_name,
                         'endnotes' : endnotes(event),
@@ -886,7 +886,7 @@ def married_str(database,person,spouse,event,endnotes=None,
                         'endnotes' : endnotes(event),
                         'place' : place,}
         elif place:
-            if person.get_gender() == const.MALE:
+            if person.get_gender() == RelLib.Person.MALE:
                     text = _('He also married %(spouse)s in %(place)s%(endnotes)s.') % {
                         'spouse' : spouse_name,
                         'endnotes' : endnotes(event),
@@ -897,7 +897,7 @@ def married_str(database,person,spouse,event,endnotes=None,
                         'endnotes' : endnotes(event),
                         'place' : place}
         else:
-            if person.get_gender() == const.MALE:
+            if person.get_gender() == RelLib.Person.MALE:
                     text = _('He also married %(spouse)s%(endnotes)s.') % {
                         'spouse' : spouse_name,
                         'endnotes' : endnotes(event) }
@@ -921,26 +921,26 @@ def married_rel_str(database,person,family,is_first=True):
     spouse_name = _nd.display(spouse)
 
     if is_first:
-        if family.get_relationship() == const.FAMILY_MARRIED:
-            if person.get_gender() == const.MALE:
+        if family.get_relationship() == RelLib.Family.MARRIED:
+            if person.get_gender() == RelLib.Person.MALE:
                 text = _('He married %(spouse)s.') % { 'spouse' : spouse_name }
             else:
                 text = _('She married %(spouse)s.') % { 'spouse' : spouse_name }
         else:
-            if person.get_gender() == const.MALE:
+            if person.get_gender() == RelLib.Person.MALE:
                 text = _('He had relationship with %(spouse)s.') % { 
                             'spouse' : spouse_name }
             else:
                 text = _('She had relationship with %(spouse)s.') % { 
                             'spouse' : spouse_name }
     else:
-        if family.get_relationship() == const.FAMILY_MARRIED:
-            if person.get_gender() == const.MALE:
+        if family.get_relationship() == RelLib.Family.MARRIED:
+            if person.get_gender() == RelLib.Person.MALE:
                 text = _('He also married %(spouse)s.') % { 'spouse' : spouse_name }
             else:
                 text = _('She also married %(spouse)s.') % { 'spouse' : spouse_name }
         else:
-            if person.get_gender() == const.MALE:
+            if person.get_gender() == RelLib.Person.MALE:
                 text = _('He also had relationship with %(spouse)s.') % { 
                             'spouse' : spouse_name }
             else:
@@ -972,7 +972,7 @@ def child_str(person,father_name="",mother_name="",dead=0):
     
     text = ""
 
-    if person.get_gender() == const.MALE:
+    if person.get_gender() == RelLib.Person.MALE:
         if mother_name and father_name:
             if dead:
                 text = _("He was the son of %(father)s and %(mother)s.") % {
@@ -1053,7 +1053,7 @@ def born_str(database,person,person_name=None,empty_date="",empty_place=""):
     if person_name == None:
         person_name = _nd.display_name(person.get_primary_name())
     elif person_name == 0:
-        if person.get_gender() == const.MALE:
+        if person.get_gender() == RelLib.Person.MALE:
             person_name = _('He')
         else:
             person_name = _('She')
@@ -1063,7 +1063,7 @@ def born_str(database,person,person_name=None,empty_date="",empty_place=""):
     bdate,bplace,bdate_full,ddate,dplace,ddate_full = \
                 get_birth_death_strings(database,person,empty_date,empty_place)
 
-    if person.get_gender() == const.MALE:
+    if person.get_gender() == RelLib.Person.MALE:
         if bdate and bdate_full:
             if bplace: #male, date, place
                 text = _("%(male_name)s "
@@ -1151,7 +1151,7 @@ def died_str(database,person,person_name=None,empty_date="",empty_place="",
     if person_name == None:
         person_name = _nd.display_name(person.get_primary_name())
     elif person_name == 0:
-        if person.get_gender() == const.MALE:
+        if person.get_gender() == RelLib.Person.MALE:
             person_name = _('He')
         else:
             person_name = _('She')
@@ -1161,7 +1161,7 @@ def died_str(database,person,person_name=None,empty_date="",empty_place="",
     bdate,bplace,bdate_full,ddate,dplace,ddate_full = \
                 get_birth_death_strings(database,person,empty_date,empty_place)
 
-    if person.get_gender() == const.MALE:
+    if person.get_gender() == RelLib.Person.MALE:
         if ddate and ddate_full:
             if dplace: 
                 if not age_units: #male, date, place, no age
@@ -1442,7 +1442,7 @@ def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
     if person_name == None:
         person_name = _nd.display_name(person.get_primary_name())
     elif person_name == 0:
-        if person.get_gender() == const.MALE:
+        if person.get_gender() == RelLib.Person.MALE:
             person_name = _('He')
         else:
             person_name = _('She')
@@ -1470,7 +1470,7 @@ def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
     else:
         return text
 
-    if person.get_gender() == const.MALE:
+    if person.get_gender() == RelLib.Person.MALE:
         if bdate and bdate_full:
             if bplace: #male, date, place
                 text = _("%(male_name)s "
@@ -1535,7 +1535,7 @@ def list_person_str(database,person,person_name=None,empty_date="",empty_place="
     if person_name == None:
         person_name = _nd.display_name(person.get_primary_name())
     elif person_name == 0:
-        if person.get_gender() == const.MALE:
+        if person.get_gender() == RelLib.Person.MALE:
             person_name = _('He')
         else:
             person_name = _('She')
@@ -1545,7 +1545,7 @@ def list_person_str(database,person,person_name=None,empty_date="",empty_place="
 
     text = ""
     
-    if person.get_gender() == const.MALE:
+    if person.get_gender() == RelLib.Person.MALE:
         if bdate:
             if bplace:
                 if ddate:
@@ -1750,11 +1750,11 @@ def list_person_str(database,person,person_name=None,empty_date="",empty_place="
 
  
 _rtype = {
-    const.FAMILY_MARRIED       : _("Married"),
-    const.FAMILY_UNMARRIED     : _("Unmarried"),
-    const.FAMILY_CIVIL_UNION   : _("Civil Union"),
-    const.FAMILY_UNKNOWN       : _("Unknown"),
-    const.FAMILY_CUSTOM         : _("Other"),
+    RelLib.Family.MARRIED       : _("Married"),
+    RelLib.Family.UNMARRIED     : _("Unmarried"),
+    RelLib.Family.CIVIL_UNION   : _("Civil Union"),
+    RelLib.Family.UNKNOWN       : _("Unknown"),
+    RelLib.Family.CUSTOM         : _("Other"),
     }
 
 def relationship_name(rtype):
