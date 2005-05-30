@@ -1,5 +1,13 @@
+2005-05-30  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib.py: Move constants back to RelLib, as class attributes.
+	* src/Utils.py: Move constant mappings from const.py.in.
+	* src/const.py.in: Move constants and mappings elsewhere.
+	* various: Use constants from RelLib, not const.
+
+	* src/RelLib.py: Fix (int,str) types.
+
 2005-05-30  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
-	* src/src/GrampsBSDDB.py (upgrade_7): Handle case of not set default person
+	* src/GrampsBSDDB.py (upgrade_7): Handle case of not set default person
 
 2005-05-28  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib.py: Delegate event handle reference lookup from

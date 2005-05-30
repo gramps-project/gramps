@@ -2209,19 +2209,12 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
 
         if source:
             self.description = source.description
-            self.type_int = source.type_int
-            self.type_str = source.type_str
+            self.type = source.type
             self.cause = source.cause
-            if source.witness != None:
-                self.witness = source.witness[:]
-            else:
-                self.witness = None
         else:
             self.description = ""
-            self.type_int = Event.CUSTOM
-            self.type_str = ""
+            self.type = (Event.CUSTOM,"")
             self.cause = ""
-            self.witness = None
 
     def serialize(self):
         """
@@ -2239,10 +2232,9 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
             be considered persistent.
         @rtype: tuple
         """
-        return (self.handle, self.gramps_id, self.type_int, self.type_str,
-                self.date, self.description, self.place, self.cause,
-                self.private, self.source_list, self.note, self.witness,
-                self.media_list, self.change)
+        return (self.handle, self.gramps_id, self.type, self.date,
+                self.description, self.place, self.cause, self.private,
+                self.source_list, self.note, self.media_list, self.change)
 
     def unserialize(self,data):
         """
@@ -2253,34 +2245,21 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
             Person object
         @type data: tuple
         """
-        (self.handle, self.gramps_id, self.type_int, self.type_str,
-         self.date, self.description, self.place, self.cause, self.private,
-         self.source_list, self.note, self.witness, self.media_list,
-         self.change) = data
+        (self.handle, self.gramps_id, self.type, self.date,
+         self.description, self.place, self.cause, self.private,
+         self.source_list, self.note, self.media_list, self.change) = data
 
     def _has_handle_reference(self,classname,handle):
         if classname == 'Place':
             return self.place == handle
-        elif classname == 'Person':
-            return handle in [ witness.val for witness in self.witness \
-                                        if witness.type == Event.ID ]
         return False
 
     def _remove_handle_references(self,classname,handle_list):
-        if classname == 'Person' and self.witness:
-            new_list = [ witness for witness in self.witness \
-                                        if witness.type == Event.ID and \
-                                        witness.val not in handle_list ]
-            self.witness = new_list
-        elif classname == 'Place' and self.place in handle_list:
-                self.place = ""
+        if classname == 'Place' and self.place in handle_list:
+            self.place = ""
 
     def _replace_handle_reference(self,classname,old_handle,new_handle):
-        if classname == 'Person' and self.witness:
-            for witness in self.witness:
-                if witness.type == Event.ID and witness.val == old_handle:
-                    witness.val = new_handle
-        elif classname == 'Place' and self.place == old_handle:
+        if classname == 'Place' and self.place == old_handle:
             self.place = new_handle
 
     def get_text_data_list(self):
@@ -2290,7 +2269,8 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.description,self.name,self.cause,self.get_date(),self.gramps_id]
+        return [self.description,self.type[1],self.cause,
+                self.get_date(),self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -2300,8 +2280,6 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         @rtype: list
         """
         check_list = self.media_list + self.source_list
-        if self.witness:
-            check_list = check_list + self.witness
         if self.note:
             check_list.append(self.note)
         return check_list
@@ -2336,46 +2314,8 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
         """
-        return self.media_list + self.source_list + \
-                            [witness for witness in self.witness 
-                                            if witness.type == Event.ID]
-    def get_witness_list(self):
-        """
-        Returns the list of L{Witness} instances associated with the Event.
+        return self.media_list + self.source_list
 
-        @return: Returns the list of L{Witness} objects assocated with
-            the object.
-        @rtype: list
-        """
-        return self.witness
-
-    def set_witness_list(self,witness_list):
-        """
-        Assigns the passed list to the object's list of L{Witness}
-        instances. To clear the list, None should be passed.
-
-        @param witness_list: List of L{Witness} instances to ba associated
-            with the Event.
-        @type witness_list: list
-        """
-        if witness_list:
-            self.witness = witness_list
-        else:
-            self.witness = None
-
-    def add_witness(self,witness):
-        """
-        Adds the L{Witness} instance to the Event's witness list.
-
-        @param witness: The L{Witness} instance to be added to the
-            Event's list of L{Witness} instances.
-        @type witness: L{Witness}
-        """
-        if self.witness:
-            self.witness.append(witness)
-        else:
-            self.witness = [witness]
-        
     def is_empty(self):
         """
         Returns True if the Event is an empty object (no values set).
@@ -2387,9 +2327,9 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         place = self.get_place_handle()
         description = self.description
         cause = self.cause
-        name = self.name
-        return ((not name or name == "Birth" or name == "Death") and 
-                date.is_empty() and not place and not description and not cause)
+        the_type = self.type
+        return (the_type == (Event.CUSTOM,"") and date.is_empty()
+                and not place and not description and not cause) 
 
     def are_equal(self,other):
         """
@@ -2402,12 +2342,13 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         """
         if other == None:
             other = Event (None)
-        if (self.name != other.name or 
-            ((self.place or other.place) and (self.place != other.place)) or
-            self.description != other.description or self.cause != other.cause or
-            self.private != other.private or
-            (not self.get_date_object().is_equal(other.get_date_object())) or
-            len(self.get_source_references()) != len(other.get_source_references())):
+        if self.type[0] != other.type[0] or \
+           self.type[0] == Event.CUSTOM and self.type[1] != other.type[1]) or \
+           ((self.place or other.place) and (self.place != other.place)) or \
+           self.description != other.description or self.cause != other.cause \
+           or self.private != other.private or
+           (not self.get_date_object().is_equal(other.get_date_object())) or
+           len(self.get_source_references()) != len(other.get_source_references())):
             return False
 
         index = 0
@@ -2417,39 +2358,25 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
                 return False
             index += 1
 
-        witness_list = self.get_witness_list()
-        other_list = other.get_witness_list()
-        if (witness_list and not other_list) or \
-                        (other_list and not witness_list):
-            return False
-        if witness_list and other_list:
-            another_list = other_list[:]
-            for a in witness_list:
-                if a in another_list:
-                    another_list.remove(a)
-                else:
-                    return False
-            if another_list:
-                return False
         return True
         
-    def set_name(self,name):
+    def set_type(self,the_type):
         """
-        Sets the name of the Event to the passed string.
+        Sets the type of the Event to the passed (int,str) tuple.
 
-        @param name: Name to assign to the Event
-        @type name: str
+        @param the_type: Type to assign to the Event
+        @type the_type: tuple
         """
-        self.name = name
+        self.type = the_type
 
-    def get_name(self):
+    def get_type(self):
         """
-        Returns the name of the Event.
+        Returns the type of the Event.
 
-        @return: Name of the Event
-        @rtype: str
+        @return: Type of the Event
+        @rtype: tuple
         """
-        return self.name
+        return self.type
 
     def set_cause(self,cause):
         """
@@ -3570,7 +3497,7 @@ class Attribute(PrivateSourceNote):
             self.type = source.type
             self.value = source.value
         else:
-            self.type = ""
+            self.type = (Attribute.CUSTOM,"")
             self.value = ""
 
     def get_text_data_list(self):
@@ -3580,7 +3507,7 @@ class Attribute(PrivateSourceNote):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.type,self.value]
+        return [self.value]
 
     def get_text_data_child_list(self):
         """
@@ -3760,7 +3687,7 @@ class Name(PrivateSourceNote,DateBase):
             self.surname = ""
             self.suffix = ""
             self.title = ""
-            self.type = "Birth Name"
+            self.type = (Name.BIRTH,"")
             self.prefix = ""
             self.patronymic = ""
             self.sname = '@'
@@ -3776,7 +3703,7 @@ class Name(PrivateSourceNote,DateBase):
         @rtype: list
         """
         return [self.first_name,self.surname,self.suffix,self.title,
-                self.type,self.prefix,self.patronymic,self.get_date()]
+                self.type[1],self.prefix,self.patronymic,self.get_date()]
 
     def get_text_data_child_list(self):
         """
@@ -4469,13 +4396,11 @@ class RepoRef(BaseObject,NoteBase):
         if source:
             self.ref = source.ref
             self.call_number = source.call_number
-            self.media_type_int = source.media_type_int
-            self.media_type_str = source.media_type_str
+            self.media_type = source.media_type
         else:
             self.ref = None
             self.call_number = ""
-            self.media_type_int = RepoRef.CUSTOM
-            self.media_type_str = ""
+            self.media_type = (RepoRef.CUSTOM,"")
 
     def get_text_data_list(self):
         """
@@ -4484,7 +4409,7 @@ class RepoRef(BaseObject,NoteBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.call_number,self.media_type_str]
+        return [self.call_number,self.media_type[1]]
 
     def get_text_data_child_list(self):
         """
@@ -4523,18 +4448,10 @@ class RepoRef(BaseObject,NoteBase):
         return self.call_number
 
     def get_media_type(self):
-        if self.media_type_int == RepoRef.CUSTOM:
-            return self.media_type_str
-        else:
-            return self.media_type_int
+        return self.media_type
 
     def set_media_type(self,media_type):
-        if type(media_type) == int:
-            self.media_type_int = media_type
-            self.media_type_str = ""
-        else:
-            self.media_type_int = RepoRef.CUSTOM
-            self.media_type_str = media_type
+       self.media_type = media_type
 
 class Repository(PrimaryObject,NoteBase):
     """A location where collections of Sources are found"""
