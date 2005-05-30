@@ -1,3 +1,6 @@
+2005-05-30  Alex Roitman  <shura@gramps-project.org>
+	* src/po/sv.po: Typo (closes 1211150).
+
 2005-05-28  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gramps_main.py (read_file): Optimize exception handling of
 	load_database errors.

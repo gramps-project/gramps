@@ -1635,7 +1635,7 @@ msgstr "Forskarinformation"
 
 #: GrampsDbBase.py:938 GrampsDbBase.py:976
 msgid "_Undo %s"
-msgstr "_Ångra"
+msgstr "_Ångra %s"
 
 #: ImageSelect.py:485 ImageSelect.py:506
 msgid "Drag Media Object"
