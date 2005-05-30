@@ -826,8 +826,12 @@ class GrampsBSDDB(GrampsDbBase):
     def upgrade_7(self):
         print "Upgrading to DB version 7"
         # First, make sure the stored default person handle is str, not unicode
-        handle = self.metadata['default']
-        self.metadata['default'] = str(handle)
+        try:
+            handle = self.metadata['default']
+            self.metadata['default'] = str(handle)
+        except KeyError:
+            # default person was not stored in database
+            pass
         trans = Transaction("",self)
         trans.set_batch(True)
         # Change every source to have reporef_list

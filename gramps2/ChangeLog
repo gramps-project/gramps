@@ -1,3 +1,6 @@
+2005-05-30  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/src/GrampsBSDDB.py (upgrade_7): Handle case of not set default person
+
 2005-05-28  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib.py: Delegate event handle reference lookup from
 	Person to EventRef class; (RepoRef.get_handle_referents): Remove
