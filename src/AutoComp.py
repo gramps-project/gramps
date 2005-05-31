@@ -140,7 +140,7 @@ class StandardCustomSelector:
         """
         Get selected values.
 
-        @return: Returns a tuple of (int,str) corresponding to the selected or entered text.
+        @return: Returns (int,str) tuple corresponding to the selection.
         @rtype: tuple
         """
         ai = self.selector.get_active_iter()
