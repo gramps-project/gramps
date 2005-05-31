@@ -1,3 +1,6 @@
+2005-05-31  Anton Huber  <anton_huber@gmx.de>
+	* src/po/de.po: Updated translation
+
 2005-05-30  Don Allingham  <don@gramps-project.org>
 	* src/plugins/Checkpoint.py: Start of a checkpoint tool
 
