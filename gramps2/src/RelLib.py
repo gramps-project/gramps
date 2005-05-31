@@ -2343,12 +2343,12 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         if other == None:
             other = Event (None)
         if self.type[0] != other.type[0] or \
-           self.type[0] == Event.CUSTOM and self.type[1] != other.type[1]) or \
+           (self.type[0] == Event.CUSTOM and self.type[1] != other.type[1]) or \
            ((self.place or other.place) and (self.place != other.place)) or \
            self.description != other.description or self.cause != other.cause \
-           or self.private != other.private or
-           (not self.get_date_object().is_equal(other.get_date_object())) or
-           len(self.get_source_references()) != len(other.get_source_references())):
+           or self.private != other.private or \
+           (not self.get_date_object().is_equal(other.get_date_object())) or \
+           len(self.get_source_references()) != len(other.get_source_references()):
             return False
 
         index = 0
@@ -4023,61 +4023,6 @@ class Url(BaseObject,PrivacyBase):
         if self.desc != other.desc:
             return 0
         return 1
-
-class Witness(BaseObject,PrivacyBase):
-    """
-    The Witness class is used to represent a person who may or may
-    not be in the database. If the person is in the database, the
-    type will be Event.ID, and the value with be the database handle
-    for the person. If the person is not in the database, the type
-    will be Event.NAME, and the value will be a string representing
-    the person's name.
-    """
-    def __init__(self,type=Event.NAME,val="",comment=""):
-        PrivacyBase.__init__(self)
-        self.set_type(type)
-        self.set_value(val)
-        self.set_comment(comment)
-
-    def get_text_data_list(self):
-        """
-        Returns the list of all textual attributes of the object.
-
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
-        """
-        return [self.val,self.comment]
-
-    def get_referenced_handles(self):
-        """
-        Returns the list of (classname,handle) tuples for all directly
-        referenced primary objects.
-        
-        @return: Returns the list of (classname,handle) tuples for referenced objects.
-        @rtype: list
-        """
-        if self.type == Event.ID:
-            return [('Person',self.val)]
-        else:
-            return []
-
-    def set_type(self,type):
-        self.type = type
-
-    def get_type(self):
-        return self.type
-
-    def set_value(self,val):
-        self.val = val
-
-    def get_value(self):
-        return self.val
-
-    def set_comment(self,comment):
-        self.comment = comment
-
-    def get_comment(self):
-        return self.comment
 
 class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase):
     """Source reference, containing detailed information about how a

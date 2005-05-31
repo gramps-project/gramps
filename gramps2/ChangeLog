@@ -1,6 +1,8 @@
 2005-05-31  Alex Roitman  <shura@gramps-project.org>
 	* src/AutoComp.py (StandardCustomSelector): Add class to handle
 	(int,str) selections including custom strings.
+	* src/RelLib.py (Witness): Remove class, as it is obsoleted by the
+	EventRef class.
 
 2005-05-30  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib.py: Move constants back to RelLib, as class attributes.
