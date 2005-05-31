@@ -83,15 +83,15 @@ file_systems = {
     "SMBFS"   : _('Networked Windows file system')
     }
 
-rel_types = (const.CHILD_BIRTH,
-             const.CHILD_UNKNOWN,
-             const.CHILD_NONE)
+rel_types = (RelLib.Person.CHILD_BIRTH,
+             RelLib.Person.CHILD_UNKNOWN,
+             RelLib.Person.CHILD_NONE)
 
 pedi_type = {
-    'birth'  : const.CHILD_BIRTH,
-    'natural': const.CHILD_BIRTH,
-    'adopted': const.CHILD_ADOPTED,
-    'foster' : const.CHILD_FOSTER,
+    'birth'  : RelLib.Person.CHILD_BIRTH,
+    'natural': RelLib.Person.CHILD_BIRTH,
+    'adopted': RelLib.Person.CHILD_ADOPTED,
+    'foster' : RelLib.Person.CHILD_FOSTER,
     }
 
 #-------------------------------------------------------------------------
@@ -100,14 +100,14 @@ pedi_type = {
 #
 #-------------------------------------------------------------------------
 ged2gramps = {}
-for _val in const.personalConstantEvents.keys():
-    _key = const.personalConstantEvents[_val]
+for _val in Utils.personalConstantEvents.keys():
+    _key = Utils.personalConstantEvents[_val]
     if _key != "":
         ged2gramps[_key] = _val
 
 ged2fam = {}
-for _val in const.familyConstantEvents.keys():
-    _key = const.familyConstantEvents[_val]
+for _val in Utils.familyConstantEvents.keys():
+    _key = Utils.familyConstantEvents[_val]
     if _key != "":
         ged2fam[_key] = _val
 
@@ -321,7 +321,7 @@ class GedcomParser:
             
         self.error_count = 0
 
-        amap = const.personalConstantAttributes
+        amap = Utils.personalConstantAttributes
         self.attrs = amap.values()
         self.gedattr = {}
         for val in amap.keys():
@@ -781,8 +781,8 @@ class GedcomParser:
                 self.barf(level+1)
 
     def parse_ftw_relations(self,level):
-        mrel = const.CHILD_BIRTH
-        frel = const.CHILD_BIRTH
+        mrel = RelLib.Person.CHILD_BIRTH
+        frel = RelLib.Person.CHILD_BIRTH
         
         while 1:
             matches = self.get_next()
@@ -791,17 +791,17 @@ class GedcomParser:
                 return (mrel,frel)
             # FTW
             elif matches[1] == "_FREL":
-                frel = pedi_type.get(matches[2].lower(),const.CHILD_BIRTH)
+                frel = pedi_type.get(matches[2].lower(),RelLib.Person.CHILD_BIRTH)
             # FTW
             elif matches[1] == "_MREL":
-                mrel = pedi_type.get(matches[2].lower(),const.CHILD_BIRTH)
+                mrel = pedi_type.get(matches[2].lower(),RelLib.Person.CHILD_BIRTH)
             elif matches[1] == "ADOP":
-                mrel = const.CHILD_ADOPTED
-                frel = const.CHILD_ADOPTED
+                mrel = RelLib.Person.CHILD_ADOPTED
+                frel = RelLib.Person.CHILD_ADOPTED
             # Legacy
             elif matches[1] == "_STAT":
-                mrel = const.CHILD_BIRTH
-                frel = const.CHILD_BIRTH
+                mrel = RelLib.Person.CHILD_BIRTH
+                frel = RelLib.Person.CHILD_BIRTH
                 #mrel = matches[2]
                 #frel = matches[2]
             # Legacy _PREF
@@ -1003,7 +1003,7 @@ class GedcomParser:
                 else:
                     if ftype in rel_types:
                         self.person.add_parent_family_handle(
-                            handle, const.CHILD_BIRTH, const.CHILD_BIRTH)
+                            handle, RelLib.Person.CHILD_BIRTH, RelLib.Person.CHILD_BIRTH)
                     else:
                         if self.person.get_main_parents_family_handle() == handle:
                             self.person.set_main_parent_family_handle(None)
@@ -1129,7 +1129,7 @@ class GedcomParser:
         return None
         
     def parse_famc_type(self,level):
-        ftype = const.CHILD_BIRTH
+        ftype = RelLib.Person.CHILD_BIRTH
         note = ""
         while 1:
             matches = self.get_next()
@@ -1477,8 +1477,8 @@ class GedcomParser:
                 self.barf(level+1)
 
     def parse_adopt_famc(self,level):
-        mrel = const.CHILD_ADOPTED
-        frel = const.CHILD_ADOPTED
+        mrel = RelLib.Person.CHILD_ADOPTED
+        frel = RelLib.Person.CHILD_ADOPTED
         while 1:
             matches = self.get_next()
             if int(matches[0]) < level:
@@ -1486,9 +1486,9 @@ class GedcomParser:
                 return (mrel,frel)
             elif matches[1] == "ADOP":
                 if matches[2] == "HUSB":
-                    mrel = const.CHILD_BIRTH
+                    mrel = RelLib.Person.CHILD_BIRTH
                 elif matches[2] == "WIFE":
-                    frel = const.CHILD_BIRTH
+                    frel = RelLib.Person.CHILD_BIRTH
             else:
                 self.barf(level+1)
         return None

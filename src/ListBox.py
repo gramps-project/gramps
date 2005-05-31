@@ -196,7 +196,7 @@ class AttrListBox(ReorderListBox):
 
     def __init__(self, parent, person, obj, label, button_list):
 
-        attrlist = const.personal_attributes
+        attrlist = Utils.personal_attributes
 
         titles = [
             # Title          Sort Col, Size, Type
@@ -219,7 +219,7 @@ class AttrListBox(ReorderListBox):
     def add(self,obj):
         """Brings up the AttributeEditor for a new attribute"""
         AttrEdit.AttributeEditor(self.parent, None, self.name,
-                                 const.personal_attributes,
+                                 Utils.personal_attributes,
                                  self.edit_callback,self.parent.window)
 
     def update(self,obj):
@@ -227,7 +227,7 @@ class AttrListBox(ReorderListBox):
         if node:
             attr = self.list_model.get_object(node)
             AttrEdit.AttributeEditor(self.parent, attr, self.name,
-                                     const.personal_attributes,
+                                     Utils.personal_attributes,
                                      self.edit_callback,self.parent.window)
 
     def display_data(self,attr):
@@ -254,7 +254,7 @@ class EventListBox(ReorderListBox):
         for event_ref in person.get_event_ref_list():
             self.data.append(parent.db.get_event_from_handle(event_ref.ref))
 
-        eventnames = const.personal_events.values()
+        eventnames = Utils.personal_events.values()
 
         evalues = [
             # Title            Sort Col Size, Type    Argument
@@ -288,8 +288,8 @@ class EventListBox(ReorderListBox):
     def add(self,obj):
         """Brings up the EventEditor for a new event"""
         EventEdit.EventEditor(
-            self.parent, self.name, const.personal_events,
-            const.personal_events, None, None, 0,
+            self.parent, self.name, Utils.personal_events,
+            Utils.personal_events, None, None, 0,
             self.edit_callback, noedit=self.db.readonly)
 
     def update(self,obj):
@@ -298,8 +298,8 @@ class EventListBox(ReorderListBox):
             return
         event = self.list_model.get_object(node)
         EventEdit.EventEditor(
-            self.parent, self.name, const.personal_events,
-            const.personal_events, event, None, 0,
+            self.parent, self.name, Utils.personal_events,
+            Utils.personal_events, event, None, 0,
             self.edit_callback, noedit=self.db.readonly)
 
     def display_data(self,event):
