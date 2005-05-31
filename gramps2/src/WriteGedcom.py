@@ -697,8 +697,8 @@ class GedcomWriter:
                         continue
                     name = event.get_name()
                     val = ""
-                    if const.familyConstantEvents.has_key(name):
-                        val = const.familyConstantEvents[name]
+                    if Utils.familyConstantEvents.has_key(name):
+                        val = Utils.familyConstantEvents[name]
                     if val == "":
                         val = self.target_ged.gramps2tag(name)
 
@@ -831,8 +831,8 @@ class GedcomWriter:
                     continue
                 name = event.get_name()
                 val = ""
-                if const.personalConstantEvents.has_key(name):
-                    val = const.personalConstantEvents[name]
+                if Utils.personalConstantEvents.has_key(name):
+                    val = Utils.personalConstantEvents[name]
                 if val == "":
                     val = self.target_ged.gramps2tag(name)
                         
@@ -843,8 +843,8 @@ class GedcomWriter:
                     for f in person.get_parent_family_handle_list():
                         mrel = f[1]
                         frel = f[2]
-                        if (mrel == const.CHILD_ADOPTED or
-                            frel == const.CHILD_ADOPTED):
+                        if (mrel == RelLib.Person.CHILD_ADOPTED or
+                            frel == RelLib.Person.CHILD_ADOPTED):
                             fam = f[0]
                             break
                     if fam:
@@ -870,8 +870,8 @@ class GedcomWriter:
                 for f in person.get_parent_family_handle_list():
                     mrel = f[1]
                     frel = f[2]
-                    if (mrel == const.CHILD_ADOPTED or
-                        frel == const.CHILD_ADOPTED):
+                    if (mrel == RelLib.Person.CHILD_ADOPTED or
+                        frel == RelLib.Person.CHILD_ADOPTED):
                         fam = f[0]
                         break
                 if fam:
@@ -892,8 +892,8 @@ class GedcomWriter:
                     self.writeln("1 %s %s" % ( name, attr.get_value()))
                     continue
                 
-                if const.personalConstantAttributes.has_key(name):
-                    val = const.personalConstantAttributes[name]
+                if Utils.personalConstantAttributes.has_key(name):
+                    val = Utils.personalConstantAttributes[name]
                 else:
                     val = ""
                 if val : 
@@ -973,7 +973,7 @@ class GedcomWriter:
             if self.flist.has_key(family[0]):
                 self.writeln("1 FAMC @%s@" % self.fid(family[0]))
                 if self.adopt == GedcomInfo.ADOPT_PEDI:
-                    if family[1] == const.CHILD_ADOPTED:
+                    if family[1] == RelLib.Person.CHILD_ADOPTED:
                         self.writeln("2 PEDI Adopted")
         
         for family_handle in person.get_family_handle_list():

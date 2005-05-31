@@ -1,3 +1,7 @@
+2005-05-31  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/EditSource.py, src/ListBox.py, src/ReadGedcom.py,
+	src/WriteGedcom.py: Constants moved from const to Utils and RelLib
+
 2005-05-31  Alex Roitman  <shura@gramps-project.org>
 	* src/AutoComp.py (StandardCustomSelector): Add class to handle
 	(int,str) selections including custom strings.

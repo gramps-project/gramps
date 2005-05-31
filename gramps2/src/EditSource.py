@@ -424,17 +424,17 @@ class EditSource:
             import EventEdit
             event = self.db.get_event_from_handle(handle)
             event_name = event.get_name()
-            if const.family_events.has_key(event_name):
+            if Utils.family_events.has_key(event_name):
                 EventEdit.EventEditor(
-                    self,", ", const.marriageEvents, const.family_events,
+                    self,", ", const.marriageEvents, Utils.family_events,
                     event, None, 0, None, None, self.db.readonly)
-            elif const.personal_events.has_key(event_name):
+            elif Utils.personal_events.has_key(event_name):
                 EventEdit.EventEditor(
-                    self,", ", const.personalEvents, const.personal_events,
+                    self,", ", const.personalEvents, Utils.personal_events,
                     event, None, 0, None, None, self.db.readonly)
             elif event_name in ["Birth","Death"]:
                 EventEdit.EventEditor(
-                    self,", ", const.personalEvents, const.personal_events,
+                    self,", ", const.personalEvents, Utils.personal_events,
                     event, None, 1, None, None, self.db.readonly)
         elif data_type == 3:
             import EditPlace
