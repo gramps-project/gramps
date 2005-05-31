@@ -4,6 +4,8 @@
 	* src/RelLib.py (Witness): Remove class, as it is obsoleted by the
 	EventRef class.
 
+	* src/AutoComp.py (StandardCustomSelector): Add autocompletion.
+
 2005-05-30  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib.py: Move constants back to RelLib, as class attributes.
 	* src/Utils.py: Move constant mappings from const.py.in.

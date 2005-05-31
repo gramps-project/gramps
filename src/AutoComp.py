@@ -104,18 +104,30 @@ class StandardCustomSelector:
         @param active_key: The key for the entry to make active upon creation
         @type active_key:  int
         """
+
+        # set variables
         self.mapping = mapping
         self.custom_key = custom_key
         self.active_key = active_key
         self.active_index = 0
+
         # make model
         self.store = gtk.ListStore(gobject.TYPE_INT,gobject.TYPE_STRING)
+
         # fill it up using mapping
         self.fill()
+
         # create combo box entry
         self.selector = gtk.ComboBoxEntry(self.store,1)
         if self.active_key:
             self.selector.set_active(self.active_index)
+
+        # make autocompletion work
+        completion = gtk.EntryCompletion()
+        completion.set_model(self.store)
+        completion.set_minimum_key_length(1)
+        completion.set_text_column(1)
+        self.selector.child.set_completion(completion)
 
     def fill(self):
         keys = self.mapping.keys()
@@ -163,7 +175,7 @@ if __name__ == "__main__":
         gtk.main_quit()
 
 
-    s = StandardCustomSelector({0:'a',1:'b',2:'c'},0)
+    s = StandardCustomSelector({0:'abc',1:'abd',2:'bbe'},0)
     w = gtk.Dialog()
     w.child.add(s.selector)
     w.connect('delete-event',here)
