@@ -76,11 +76,11 @@ class StandardCustomSelector:
     options or entering custom string.
 
     The typical usage should be:
-        sce = StandardCustomSelector(mapping,custom_key,active_key)
-        whatever_table.attach(sce,...)
+        scs = StandardCustomSelector(mapping,custom_key,active_key)
+        whatever_table.attach(scs,...)
 
     and later, when or before the dialog is closed, do:
-        (i,s) = sce.get_values()
+        (i,s) = scs.get_values()
 
     to obtain the tuple of (int,str) corresponding to the user selection.
 
