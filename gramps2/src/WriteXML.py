@@ -827,11 +827,6 @@ class XmlWriter:
         path = obj.get_path()
         if self.strip_photos:
             path = os.path.basename(path)
-        else:
-            l = len(self.fileroot)
-            if len(path) >= l:
-                if self.fileroot == path[0:l]:
-                    path = path[l+1:]
         self.g.write('    <object id="%s" handle="%s" change="%d" src="%s" mime="%s"' %
                      (handle,obj.get_handle(),obj.get_change_time(),path,mime_type))
         self.g.write(' description="%s"' % self.fix(obj.get_description()))

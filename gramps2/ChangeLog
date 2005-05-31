@@ -1,3 +1,6 @@
+2005-05-30  Don Allingham  <don@gramps-project.org>
+	* src/plugins/Checkpoint.py: Start of a checkpoint tool
+
 2005-05-30  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/ArgHandler.py (handle_args) Exit if opening a file failed
 	* src/Errors.py: New exception type "FileVersionError"
