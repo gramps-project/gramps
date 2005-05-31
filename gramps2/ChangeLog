@@ -1,3 +1,6 @@
+2005-05-30  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DbPrompter.py: Properly return False if opening a file failed
+ 
 2005-05-31  Anton Huber  <anton_huber@gmx.de>
 	* src/po/de.po: Updated translation
 

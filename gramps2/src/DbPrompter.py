@@ -193,17 +193,19 @@ class ExistingDbPrompter:
                 filetype = get_mime_type(filename)
             (the_path,the_file) = os.path.split(filename)
             choose.destroy()
-            try:
-                if open_native(self.parent,filename,filetype):
-                    return True
-            except db.DBInvalidArgError, msg:
-                QuestionDialog.ErrorDialog(
-                    _("Could not open file: %s") % filename, msg[1])
-                return False
-            except:
-                import DisplayTrace
-                DisplayTrace.DisplayTrace()
-                return False
+            if filetype in [const.app_gramps,const.app_gramps_xml,
+                                const.app_gedcom]:
+    
+                try:
+                    return open_native(self.parent,filename,filetype)
+                except db.DBInvalidArgError, msg:
+                    QuestionDialog.ErrorDialog(
+                        _("Could not open file: %s") % filename, msg[1])
+                    return False
+                except:
+                    import DisplayTrace
+                    DisplayTrace.DisplayTrace()
+                    return False
 
             # The above native formats did not work, so we need to 
             # look up the importer for this format
@@ -532,17 +534,14 @@ def open_native(parent,filename,filetype):
             while gtk.events_pending():
                 gtk.main_iteration()
 
-        parent.read_file(filename,update_msg)
+        success = parent.read_file(filename,update_msg)
         msg_top.destroy()
-        success = True
     elif filetype == const.app_gramps_xml:
         parent.db = GrampsXMLDB.GrampsXMLDB()
-        parent.read_file(filename)
-        success = True
+        success = parent.read_file(filename)
     elif filetype == const.app_gedcom:
         parent.db = GrampsGEDDB.GrampsGEDDB()
-        parent.read_file(filename)
-        success = True
+        success = parent.read_file(filename)
 
     if success:
         # Add the file to the recent items
