@@ -1084,7 +1084,7 @@ class FamilyView:
         for event_ref in family.get_event_ref_list():
             if event_ref:
                 event = self.parent.db.get_event_from_handle(event_ref.ref)
-                if event.get_name() == "Marriage":
+                if event.get_type()[0] == RelLib.Event.MARRIAGE:
                     return event
         return None
 

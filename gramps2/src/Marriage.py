@@ -557,7 +557,7 @@ class Marriage:
                 place_name = self.db.get_place_from_handle(place_handle).get_title()
             else:
                 place_name = ""
-            node = self.etree.add([const.display_fevent(event.get_name()),
+            node = self.etree.add([event.get_type()[1],
                                    event.get_quote_date(),place_name],event)
             self.emap[str(event)] = node
         if self.ereflist:
@@ -726,11 +726,11 @@ class Marriage:
 
     def on_add_clicked(self,*obj):
         import EventEdit
-        name = Utils.family_name(self.family,self.db)
-        EventEdit.EventEditor(
-            self,name, const.marriageEvents, const.family_events,
-            None, None, 0, self.event_edit_callback,
-            const.defaultMarriageEvent, self.db.readonly)
+        #name = Utils.family_name(self.family,self.db)
+        EventEdit.EventRefEditor(None,self.family, self.db,None,self)
+            #self,name, Utils.family_events,
+            #None, None, 0, self.event_edit_callback,
+            #RelLib.Event.MARRIAGE, self.db.readonly)
 
     def on_event_update_clicked(self,obj):
         import EventEdit
@@ -739,9 +739,9 @@ class Marriage:
             return
         event = self.etree.get_object(node)
         name = Utils.family_name(self.family,self.db)
-        EventEdit.EventEditor(
-            self, name, const.marriageEvents, const.family_events,event,
-            None, 0,self.event_edit_callback, None, self.db.readonly)
+        EventEdit.EventRefEditor(
+            self, name, Utils.family_events,event,
+            None, 0, self.event_edit_callback, None, self.db.readonly)
 
     def on_delete_clicked(self,obj):
         if Utils.delete_selected(obj,self.ereflist):
@@ -763,7 +763,7 @@ class Marriage:
             place_name = u""
         self.place_field.set_text(place_name)
         self.cause_field.set_text(event.get_cause())
-        self.name_field.set_label(const.display_fevent(event.get_name()))
+        self.name_field.set_label(event.get_type()[1])
         if len(event.get_source_references()) > 0:
             psrc_ref = event.get_source_references()[0]
             psrc_id = psrc_ref.get_base_handle()

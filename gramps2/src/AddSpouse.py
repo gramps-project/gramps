@@ -58,6 +58,7 @@ import Marriage
 import NameDisplay
 import GenericFilter
 from QuestionDialog import ErrorDialog, QuestionDialog2
+import AutoComp
 
 #-------------------------------------------------------------------------
 #
@@ -93,12 +94,9 @@ class AddSpouse:
 
         self.glade = gtk.glade.XML(const.gladeFile, "spouseDialog","gramps")
 
-        self.relation_def = self.glade.get_widget("reldef")
         self.rel_combo = self.glade.get_widget("rel_combo")
         self.spouse_list = self.glade.get_widget("spouse_list")
         self.showall = self.glade.get_widget('showall')
-
-        self.set_gender()
 
         self.renderer = gtk.CellRendererText()
 
@@ -127,7 +125,11 @@ class AddSpouse:
             "destroy_passed_object"    : Utils.destroy_passed_object
             })
 
-        self.rel_combo.set_active(RelLib.Family.MARRIED)
+        self.rel_selector = AutoComp.StandardCustomSelector(
+            Utils.family_relations,self.rel_combo,
+            RelLib.Family.CUSTOM,RelLib.Family.MARRIED)
+        
+        self.set_gender()
         self.update_data()
 
     def build_all(self):
@@ -203,8 +205,8 @@ class AddSpouse:
         """
         import EditPerson
 
-        relation = self.rel_combo.get_active()
-        if relation == RelLib.Family.CIVIL_UNION:
+        rel_i,rel_s = self.rel_selector.get_values()
+        if rel_i == RelLib.Family.CIVIL_UNION:
             if self.person.get_gender() == RelLib.Person.MALE:
                 gen = RelLib.Person.MALE
             else:
@@ -309,8 +311,8 @@ class AddSpouse:
             self.active_family.set_father_handle(spouse.get_handle())
             self.active_family.set_mother_handle(self.person.get_handle())
 
-        rtype = self.rel_combo.get_active()
-        self.active_family.set_relationship((rtype,Utils.family_relations[rtype]))
+        rtype = self.rel_selector.get_values()
+        self.active_family.set_relationship(rtype)
         self.db.commit_family(self.active_family,trans)
         self.db.transaction_commit(trans,_("Add Spouse"))
 
@@ -373,7 +375,8 @@ class AddSpouse:
         return 1
 
     def set_gender(self):
-        if self.rel_combo.get_active() == RelLib.Family.CIVIL_UNION:
+        rel_i,rel_s = self.rel_selector.get_values()
+        if rel_i == RelLib.Family.CIVIL_UNION:
             if self.gender == RelLib.Person.MALE:
                 self.sgender = RelLib.Person.FEMALE
             else:

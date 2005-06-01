@@ -60,7 +60,7 @@ from QuestionDialog import WarningDialog, ErrorDialog
 #-------------------------------------------------------------------------
 class EventEditor:
 
-    def __init__(self,parent,name,elist,trans,event,def_placename,
+    def __init__(self,parent,name,etypes,event,def_placename,
                  read_only, cb, def_event=None, noedit=False):
         self.parent = parent
         self.db = self.parent.db
@@ -74,7 +74,6 @@ class EventEditor:
             self.win_key = self
         self.event = event
         self.child_windows = {}
-        self.trans = trans
         self.callback = cb
         self.path = self.db.get_save_path()
         self.plist = []
@@ -83,15 +82,15 @@ class EventEditor:
         self.dp = DateHandler.parser
         self.dd = DateHandler.displayer
 
-        values = {}
-        for v in elist:
-            values[v] = 1
-        for vv in self.db.get_person_event_type_list():
-            v = _(vv)
-            values[v] = 1
-            
-        self.elist = values.keys()
-        self.elist.sort()
+#        values = {}
+#        for v in elist:
+#            values[v] = 1
+#        for vv in self.db.get_person_event_type_list():
+#            v = _(vv)
+#            values[v] = 1
+#            
+#        self.elist = values.keys()
+#        self.elist.sort()
 
         for key in self.parent.db.get_place_handles():
             title = self.parent.db.get_place_from_handle(key).get_title()
@@ -103,7 +102,6 @@ class EventEditor:
             if not self.witnesslist:
                 self.witnesslist = []
             self.date = Date.Date(self.event.get_date_object())
-            transname = const.display_event(event.get_name())
             # add the name to the list if it is not already there. This
             # tends to occur in translated languages with the 'Death'
             # event, which is a partial match to other events
@@ -361,7 +359,7 @@ class EventEditor:
         if self.callback:
             self.callback(self.event)
 
-    def update_event(self,name,date,place,desc,note,format,priv,cause):
+    def update_event(self,the_type,date,place,desc,note,format,priv,cause):
         if place:
             if self.event.get_place_handle() != place.get_handle():
                 self.event.set_place_handle(place.get_handle())
@@ -371,8 +369,8 @@ class EventEditor:
                 self.event.set_place_handle("")
                 self.parent.lists_changed = 1
         
-        if self.event.get_name() not in [self.trans.find_key(name)]:
-            self.event.set_name(self.trans.find_key(name))
+        if self.event.get_type() != the_type:
+            self.event.set_type(the_type)
             self.parent.lists_changed = 1
         
         if self.event.get_description() != desc:
@@ -413,3 +411,128 @@ class EventEditor:
             Utils.bold_label(self.notes_label)
         else:
             Utils.unbold_label(self.notes_label)
+
+
+
+class EventRefEditor:
+    def __init__(self, eventref, referent, database, update, parent):
+
+        self.db = database
+        self.parent = parent
+        self.referent = referent
+        if self.parent.__dict__.has_key('child_windows'):
+            self.win_parent = self.parent
+        else:
+            self.win_parent = self.parent.parent
+        if eventref:
+            if self.win_parent.child_windows.has_key(eventref):
+                self.win_parent.child_windows[eventref].present(None)
+                return
+            else:
+                self.win_key = eventref
+        else:
+            self.win_key = self
+        self.update = update
+        self.event_ref = eventref
+        self.child_windows = {}
+
+        self.title = _('Event Reference Editor')
+
+        self.top = gtk.glade.XML(const.dialogFile, "eventref_edit","gramps")
+        self.window = self.top.get_widget('eventref_edit')
+        self.note_field = self.top.get_widget('er_note')
+        self.role_combo = self.top.get_widget('er_role_combo')
+        self.type_label = self.top.get_widget('er_type_label')
+        self.id_label = self.top.get_widget('er_id_label')
+        self.privacy = self.top.get_widget('er_priv_button')
+
+        Utils.set_titles(self.window,
+                         self.top.get_widget('er_title'),
+                         self.title)
+        
+        self.top.signal_autoconnect({
+            "on_help_er_edit_clicked"   : self.on_help_clicked,
+            "on_ok_er_edit_clicked"     : self.on_ok_clicked,
+            "on_cancel_er_edit_clicked" : self.close,
+            "on_er_edit_delete_event"   : self.on_delete_event,
+            })
+
+        self.role_selector = AutoComp.StandardCustomSelector(
+            Utils.event_roles,self.role_combo,
+            RelLib.EventRef.CUSTOM,RelLib.EventRef.PRIMARY)
+
+        self.trans = self.db.transaction_begin()
+
+        if not self.event_ref:
+            trans2 = self.db.transaction_begin()
+            e = RelLib.Event()
+            e.set_type((RelLib.Event.MARRIAGE,_("Married")))
+            self.db.add_event(e,trans2)
+            self.db.transaction_commit(trans2,_("Add Event"))
+            self.event_ref = RelLib.EventRef()
+            self.event_ref.set_role((RelLib.EventRef.PRIMARY,_('Primary')))
+            self.event_ref.set_note('Some text')
+            self.event_ref.set_reference_handle(e.get_handle())
+
+        self.role_selector.set_values(self.event_ref.get_role())
+        self.note_field.get_buffer().set_text(self.event_ref.get_note())
+        event = self.db.get_event_from_handle(self.event_ref.ref)
+        self.id_label.set_text(event.get_gramps_id())
+        self.type_label.set_text(event.get_type()[1])
+
+        self.add_itself_to_menu()
+        self.window.show()
+
+    def on_delete_event(self,obj,b):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
+        self.window.destroy()
+
+    def close_child_windows(self):
+        for child_window in self.child_windows.values():
+            child_window.close(None)
+        self.child_windows = {}
+
+    def add_itself_to_menu(self):
+        self.win_parent.child_windows[self.win_key] = self
+        label = _('Event Reference')
+        self.parent_menu_item = gtk.MenuItem(label)
+        self.parent_menu_item.set_submenu(gtk.Menu())
+        self.parent_menu_item.show()
+        self.win_parent.winsmenu.append(self.parent_menu_item)
+        self.winsmenu = self.parent_menu_item.get_submenu()
+        self.menu_item = gtk.MenuItem(self.title)
+        self.menu_item.connect("activate",self.present)
+        self.menu_item.show()
+        self.winsmenu.append(self.menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.win_parent.child_windows[self.win_key]
+        self.menu_item.destroy()
+        self.winsmenu.destroy()
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
+
+    def on_help_clicked(self,obj):
+        pass
+
+    def on_ok_clicked(self,obj):
+        self.event_ref.set_role(self.role_selector.get_values())
+        buf = self.note_field.get_buffer()
+        start = buf.get_start_iter()
+        stop = buf.get_end_iter()
+        note = unicode(buf.get_text(start,stop,False))
+        self.event_ref.set_note(note)
+        self.referent.add_event_ref(self.event_ref)
+        if self.referent.__class__.__name__ == 'Person':
+            self.db.commit_person(self.referent,self.trans)
+        elif self.referent.__class__.__name__ == 'Family':
+            self.db.commit_family(self.referent,self.trans)
+        self.db.transaction_commit(self.trans,_("Add Event Reference"))
+        self.close(None)

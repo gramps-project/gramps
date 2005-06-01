@@ -7,7 +7,8 @@
 	src/ListBox.py, src/Marriage.py, src/NameEdit.py: Support tuple
 	types.
 	* src/gramps.glade: Replace ComboBox with ComboBoxEntry; add icons.
-	
+
+	* various: More support for event refs.
 
 2005-05-31  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EditSource.py, src/ListBox.py, src/ReadGedcom.py,
