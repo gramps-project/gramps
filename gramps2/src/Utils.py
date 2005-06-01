@@ -447,14 +447,13 @@ def probably_alive(person,db,current_year=None):
 
     """
 
-    if not current_year:
-        time_struct = time.localtime(time.time())
-        current_year = time_struct[0]
-
     death_year = None
     # If the recorded death year is before current year then
     # things are simple.
     if person.death_handle:
+        if not current_year:
+            # no current year and we have a death event -> person died
+            return False
         death = db.get_event_from_handle(person.death_handle)
         if death.get_date_object().get_start_date() != Date.EMPTY:
             death_year = death.get_date_object().get_year()
@@ -466,11 +465,18 @@ def probably_alive(person,db,current_year=None):
     for ev_handle in person.event_list:
         ev = db.get_event_from_handle(ev_handle)
         if ev and ev.name in ["Cause Of Death", "Burial", "Cremation"]:
+            if not current_year:
+                # no current year and we have an event related to death
+                return False
             if not death_year:
                 death_year = ev.get_date_object().get_year()
             if ev.get_date_object().get_start_date() != Date.EMPTY:
                 if ev.get_date_object().get_year() < current_year:
                     return False
+
+    if not current_year:
+        time_struct = time.localtime(time.time())
+        current_year = time_struct[0]
 
     birth_year = None
     # If they were born within 100 years before current year then

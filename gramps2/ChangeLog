@@ -1,3 +1,8 @@
+2005-06-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/Utils.py (probably_alive): If no year is given it now treats
+	people as dead when they have a death event instead of counting them
+	as alive in the curent year when they died in the current year.
+
 2005-06-01  Anton Huber  <anton_huber@gmx.de>
 	* src/po/de.po: Updated translation
 
