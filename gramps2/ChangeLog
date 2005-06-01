@@ -1,3 +1,6 @@
+2005-06-01  Anton Huber  <anton_huber@gmx.de>
+	* src/po/de.po: Updated translation
+
 2005-06-01  Don Allingham  <don@gramps-project.org>
 	* src/PeopleModel.py: Improve rebuid times by using database cursor,
 	caching sort names, and replacing loops with map/lamba
