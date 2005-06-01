@@ -50,12 +50,6 @@ import WriteXML
 
 #-------------------------------------------------------------------------
 #
-# constants
-#
-#-------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------
-#
 #
 #
 #-------------------------------------------------------------------------
@@ -77,14 +71,23 @@ class Checkpoint:
         self.cb = callback
         self.db = db
         self.parent = parent
+        self.use_custom = False
+        self.custom_str = "cat > /tmp/temp.file"
+        self.run()
 
+    def run(self):
+        """
+        RCS will be a builtin command, since we can handle all
+        configuration on our own. This isn't true for most versioning
+        systems, which usually require external setup, and external
+        communication.
+        """
         self.parent.status_text(_("Checkpointing database..."))
 
-        # RCS will be a builtin command, since we can handle all
-        # configuration on our own. This isn't true for most versioning
-        # systems, which usually require external setup, and external
-        # communication
-        self.rcs()
+        if self.use_custom:
+            self.custom()
+        else:
+            self.rcs()
         
         self.parent.progress.set_fraction(0)
         self.parent.modify_statusbar()
@@ -93,8 +96,24 @@ class Checkpoint:
         format = locale.nl_langinfo(locale.D_T_FMT)
         return unicode(time.strftime(format,time.localtime(time.time())))
 
-    def rcs(self):
+    def custom(self):
+        """
+        Passed the generated XML file to the specified command.
+        """
+        proc = popen2.Popen3(self.custom_str, True)
+        xmlwrite = WriteXML.XmlWriter(self.db,self.callback,False,False)
+        xmlwrite.write_handle(proc.tochild)
+        status = proc.wait()
+        if status:
+            ErrorDialog(_("Checkpoint failed"),
+                        "\n".join(proc.childerr.readlines()))
+        del proc
 
+    def rcs(self):
+        """
+        Check the generated XML file into RCS. Initialize the RCS file if
+        it does not already exist.
+        """
         (archive_base,ext) = os.path.splitext(self.db.get_save_path())
 
         archive = archive_base + ",v"
@@ -124,6 +143,10 @@ class Checkpoint:
         del proc
 
     def callback(self,value):
+        """
+        Call back function for the WriteXML function that updates the
+        status progress bar.
+        """
         self.parent.progress.set_fraction(value)
         while(gtk.events_pending()):
             gtk.main_iteration()
@@ -138,6 +161,6 @@ from PluginMgr import register_tool
 register_tool(
     runTool,
     _("Checkpoint the database"),
-    category=_("Database Processing"),
+    category=_("Revision control"),
     description=_("Store a snapshot of the current database into "
                   "a revision control system"))

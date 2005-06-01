@@ -1,3 +1,6 @@
+2005-05-31  Don Allingham  <don@gramps-project.org>
+	* src/plugins/Checkpoint.py: add support for custom command
+
 2005-05-30  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DbPrompter.py: Properly return False if opening a file failed
  
