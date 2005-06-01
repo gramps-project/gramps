@@ -1,3 +1,10 @@
+2005-06-01  Don Allingham  <don@gramps-project.org>
+	* src/PeopleModel.py: Improve rebuid times by using database cursor,
+	caching sort names, and replacing loops with map/lamba
+	* src/PeopleView.py: prevent goto_active_person reentrancy, use get_selected_objects
+	instead of selected_foreach, combine row_changed and set_dnd_target into the same
+	callback, rebuild only affected surname on person-update if pissible
+
 2005-06-01  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/Makefile.am: Don't ship NavWebPage yet.
 	* src/po/template.po: Update for 2.0.2.

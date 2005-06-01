@@ -29,6 +29,7 @@ from gettext import gettext as _
 import time
 import locale
 import cgi
+import sets
 
 #-------------------------------------------------------------------------
 #
@@ -84,6 +85,7 @@ class PeopleModel(gtk.GenericTreeModel):
         self.visible = {}
         self.top_visible = {}
         self.invert_result = invert_result
+        self.sortnames = {}
         self.rebuild_data(data_filter)
     
     def rebuild_data(self,data_filter=None,skip=None):
@@ -111,38 +113,44 @@ class PeopleModel(gtk.GenericTreeModel):
         else:
             keys = self.db.get_person_handles(sort_handles=False)
 
-        for person_handle in keys:
-            if person_handle == skip:
-                continue
-            person = self.db.get_person_from_handle(person_handle)
-            grp_as = person.get_primary_name().get_group_as()
-            sn = person.get_primary_name().get_surname()
-            if grp_as:
-                surname = grp_as
-            else:
-                surname = self.db.get_name_group_mapping(sn)
+        flist = sets.Set(keys)
+        if skip and skip in flist:
+            flist.remove(skip)
 
-            if self.temp_sname_sub.has_key(surname):
-                self.temp_sname_sub[surname].append(person_handle)
-            else:
-                self.temp_sname_sub[surname] = [person_handle]
+        self.sortnames = {}
+        cursor = self.db.get_person_cursor()
+        node = cursor.next()
+        while node:
+            if node[0] in flist:
+                primary_name = node[1][_NAME_COL]
+                if primary_name.group_as:
+                    surname = primary_name.group_as
+                else:
+                    surname = self.db.get_name_group_mapping(primary_name.surname)
+                self.sortnames[node[0]] = primary_name.sname
+
+                if self.temp_sname_sub.has_key(surname):
+                    self.temp_sname_sub[surname].append(node[0])
+                else:
+                    self.temp_sname_sub[surname] = [node[0]]
+            node = cursor.next()
+        cursor.close()
         
         self.temp_top_path2iter = self.temp_sname_sub.keys()
         self.temp_top_path2iter.sort(locale.strcoll)
         for name in self.temp_top_path2iter:
+            self.build_sub_entry(name)
 
-            slist = []
-            for handle in self.temp_sname_sub[name]:
-                n = self.db.person_map.get(handle)[_NAME_COL].get_sort_name()
-                slist.append((n,handle))
-            slist.sort(self.byname)
-            entries = map(lambda x: x[1], slist)
-            val = 0
-            for person_handle in entries:
-                tpl = (name,val)
-                self.temp_iter2path[person_handle] = tpl
-                self.temp_path2iter[tpl] = person_handle
-                val += 1
+    def build_sub_entry(self,name):
+        slist = map(lambda x: (self.sortnames[x],x),self.temp_sname_sub[name])
+        slist.sort(self.byname)
+        entries = map(lambda x: x[1], slist)
+        val = 0
+        for person_handle in entries:
+            tpl = (name,val)
+            self.temp_iter2path[person_handle] = tpl
+            self.temp_path2iter[tpl] = person_handle
+            val += 1
 
     def assign_data(self):
         self.top_path2iter = self.temp_top_path2iter

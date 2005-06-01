@@ -1749,9 +1749,9 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                     "Please upgrade to the corresponding version or use XML for porting data between different database versions.")
         
         self.db.set_save_path(name)
+
         res = self.db.get_researcher()
         owner = GrampsCfg.get_researcher()
-        
         if res.get_name() == "" and owner.get_name():
             self.db.set_researcher(owner)
 

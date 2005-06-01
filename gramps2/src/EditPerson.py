@@ -620,7 +620,7 @@ class EditPerson:
         self.close_child_windows()
         self.remove_itself_from_winsmenu()
         self.window.destroy()
-
+        
     def add_itself_to_winsmenu(self):
         self.parent.child_windows[self.orig_handle] = self
         win_menu_label = self.name_display.display(self.person)
