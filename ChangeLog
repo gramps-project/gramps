@@ -1,3 +1,14 @@
+2005-06-01  Alex Roitman  <shura@gramps-project.org>
+	* src/AutoComp.py (StandardCustomSelector): Provide an option to
+	use an existing ComboBoxEntry instance; add set_values method.
+	* src/RelLib.py (Family.__init__): Use tuple for type.
+	* src/Utils.py: Add event_roles mapping.
+	* src/AddSpouse.py, src/EditPerson.py, src/FamilyView.py,
+	src/ListBox.py, src/Marriage.py, src/NameEdit.py: Support tuple
+	types.
+	* src/gramps.glade: Replace ComboBox with ComboBoxEntry; add icons.
+	
+
 2005-05-31  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EditSource.py, src/ListBox.py, src/ReadGedcom.py,
 	src/WriteGedcom.py: Constants moved from const to Utils and RelLib

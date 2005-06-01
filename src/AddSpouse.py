@@ -127,7 +127,7 @@ class AddSpouse:
             "destroy_passed_object"    : Utils.destroy_passed_object
             })
 
-        self.rel_combo.set_active(const.MARRIED)
+        self.rel_combo.set_active(RelLib.Family.MARRIED)
         self.update_data()
 
     def build_all(self):
@@ -136,8 +136,8 @@ class AddSpouse:
         return filt
 
     def build_likely(self,gender):
-        birth_handle = self.person.get_birth_handle()
-        death_handle = self.person.get_death_handle()
+        birth_ref = self.person.get_birth_ref()
+        death_ref = self.person.get_death_ref()
 
         filt = GenericFilter.GenericFilter()
         if gender == RelLib.Person.MALE:
@@ -145,8 +145,8 @@ class AddSpouse:
         else:
             filt.add_rule(GenericFilter.IsMale([]))
         
-        if birth_handle:
-            birth = self.db.get_event_from_handle(birth_handle)
+        if birth_ref:
+            birth = self.db.get_event_from_handle(birth_ref.ref)
             date_obj = Date.Date(birth.get_date_object())
             year = date_obj.get_year()
             if year:
@@ -310,7 +310,7 @@ class AddSpouse:
             self.active_family.set_mother_handle(self.person.get_handle())
 
         rtype = self.rel_combo.get_active()
-        self.active_family.set_relationship(rtype)
+        self.active_family.set_relationship((rtype,Utils.family_relations[rtype]))
         self.db.commit_family(self.active_family,trans)
         self.db.transaction_commit(trans,_("Add Spouse"))
 

@@ -331,8 +331,7 @@ class NameListBox(ReorderListBox):
     def __init__(self,parent,person,obj,label,button_list):
 
         surnames = parent.db.get_surname_list()
-        types = const.NameTypesMap.values()
-        types.sort()
+        types = Utils.name_types.values()
 
         titles = [
             # Title            Sort Col Size, Type
@@ -362,8 +361,7 @@ class NameListBox(ReorderListBox):
         self.data[index].set_suffix(value)
 
     def set_type(self,index,value):
-        ntype = const.NameTypesMap.find_value(value)
-        self.data[index].set_type(value)
+        self.data[index].set_type(value[1])
 
     def add(self,obj):
         NameEdit.NameEditor(self.parent, None, self.edit_callback,
@@ -380,7 +378,7 @@ class NameListBox(ReorderListBox):
         has_source = len(name.get_source_references())> 0
         return [name.get_surname(),name.get_surname_prefix(),
                 name.get_first_name(), name.get_suffix(),
-                _(name.get_type()),has_source,has_note]
+                name.get_type()[1],has_source,has_note]
 
     def unpickle(self, data):
         foo = pickle.loads(data);

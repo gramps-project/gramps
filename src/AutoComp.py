@@ -76,11 +76,18 @@ class StandardCustomSelector:
     options or entering custom string.
 
     The typical usage should be:
-        scs = StandardCustomSelector(mapping,custom_key,active_key)
-        whatever_table.attach(scs,...)
+        type_sel = StandardCustomSelector(mapping,None,custom_key,active_key)
+        whatever_table.attach(type_sel,...)
+    or
+        type_sel = StandardCustomSelector(mapping,cbe,custom_key,active_key)
+    with the existing ComboBoxEntry cbe.
+
+    To set up the combo box, specify the active key at creation time,
+    or later (or with custom text) use:
+       type_sel.set_values(i,s)
 
     and later, when or before the dialog is closed, do:
-        (i,s) = scs.get_values()
+        (i,s) = type_sel.get_values()
 
     to obtain the tuple of (int,str) corresponding to the user selection.
 
@@ -93,10 +100,12 @@ class StandardCustomSelector:
     (active_key,mapping[active_key]) tuple.
         
     """
-    def __init__(self,mapping,custom_key=None,active_key=None):
+    def __init__(self,mapping,cbe=None,custom_key=None,active_key=None):
         """
         Constructor for the StandardCustomSelector class.
 
+        @param cbe: Existing ComboBoxEntry widget to use.
+        @type cbe: gtk.ComboBoxEntry
         @param mapping: The mapping between integer and string constants.
         @type mapping:  dict
         @param custom_key: The key corresponding to the custom string entry
@@ -118,7 +127,12 @@ class StandardCustomSelector:
         self.fill()
 
         # create combo box entry
-        self.selector = gtk.ComboBoxEntry(self.store,1)
+        if cbe:
+            self.selector = cbe
+            self.selector.set_model(self.store)
+            self.selector.set_text_column(1)
+        else:
+            self.selector = gtk.ComboBoxEntry(self.store,1)
         if self.active_key:
             self.selector.set_active(self.active_index)
 
@@ -159,9 +173,40 @@ class StandardCustomSelector:
         if ai:
             i = self.store.get_value(ai,0)
             s = self.store.get_value(ai,1)
-            return (i,s)
-        entry = self.selector.child
-        return (self.custom_key,entry.get_text())
+            if s != self.mapping[i]:
+                s = self.selector.child.get_text().strip()
+        else:
+            i = self.custom_key
+            s = self.selector.child.get_text().strip()
+        if s in self.mapping.values():
+            for key in self.mapping.keys():
+                if s == self.mapping[key]:
+                    i = key
+                    break
+        else:
+            i = self.custom_key
+        return (i,s)
+
+    def set_values(self,val):
+        """
+        Set values according to given tuple.
+
+        @param val: (int,str) tuple with the values to set.
+        @type val: tuple
+        """
+        i,s = val
+        if i in self.mapping.keys() and i != self.custom_key:
+            self.store.foreach(self.set_int_value,i)
+        elif self.custom_key != None:
+            self.selector.child.set_text(s)
+        else:
+            print "StandardCustomSelector.set(): Option not available:", val
+
+    def set_int_value(self,model,path,iter,val):
+        if model.get_value(iter,0) == val:
+            self.selector.set_active_iter(iter)
+            return True
+        return False
 
 
 #-------------------------------------------------------------------------
@@ -174,8 +219,8 @@ if __name__ == "__main__":
         print s.get_values()
         gtk.main_quit()
 
-
-    s = StandardCustomSelector({0:'abc',1:'abd',2:'bbe'},0)
+    s = StandardCustomSelector({0:'abc',1:'abd',2:'bbe'},None,0,1)
+    s.set_values((2,'bbe'))
     w = gtk.Dialog()
     w.child.add(s.selector)
     w.connect('delete-event',here)

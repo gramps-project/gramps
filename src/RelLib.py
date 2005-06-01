@@ -1768,7 +1768,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         self.father_handle = None
         self.mother_handle = None
         self.child_list = []
-        self.type = Family.MARRIED
+        self.type = (Family.MARRIED,'')
         self.event_ref_list = []
         self.lds_seal = None
         self.complete = 0

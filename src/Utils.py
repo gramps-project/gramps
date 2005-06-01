@@ -203,6 +203,17 @@ source_media_types = {
     RelLib.RepoRef.VIDEO      : _("Video"),
     }
 
+event_roles = {
+    RelLib.EventRef.UNKNOWN   : _("Unknown"),
+    RelLib.EventRef.CUSTOM    : _("Custom"),
+    RelLib.EventRef.PRIMARY   : _("Primary"),
+    RelLib.EventRef.CLERGY    : _("Clergy"),
+    RelLib.EventRef.CELEBRANT : _("Celebrant"),
+    RelLib.EventRef.AIDE      : _("Aide"),
+    RelLib.EventRef.BRIDE     : _("Bride"),
+    RelLib.EventRef.GROOM     : _("Groom"),
+    RelLib.EventRef.WITNESS   : _("Witness"),
+    }
 #-------------------------------------------------------------------------
 #
 # Integer to GEDCOM tag mappings for constants
