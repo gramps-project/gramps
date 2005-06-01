@@ -112,12 +112,12 @@ class NameEditor:
         self.preform = self.top.get_widget("alt_preform")
         self.group_over = self.top.get_widget('group_over')
 
-        types = const.NameTypesMap.get_values()
-        types.sort()
-        AutoComp.fill_combo(self.type_combo,types)
-        self.type_field = self.type_combo.get_child()
-        self.type_field.set_text(types[0])
-
+        self.type_selector = \
+                           AutoComp.StandardCustomSelector(Utils.name_types,
+                                                           self.type_combo,
+                                                           RelLib.Name.CUSTOM,
+                                                           RelLib.Name.BIRTH)
+        
         full_name = NameDisplay.displayer.display_name(name)
 
         alt_title = self.top.get_widget("title")
@@ -151,7 +151,7 @@ class NameEditor:
             self.title_field.set_text(name.get_title())
             self.suffix_field.set_text(name.get_suffix())
             self.prefix_field.set_text(name.get_surname_prefix())
-            self.type_field.set_text(_(name.get_type()))
+            self.type_selector.set_values(name.set_type())
             self.patronymic_field.set_text(name.get_patronymic())
             self.priv.set_active(name.get_privacy())
             Utils.bold_label(self.general_label)
@@ -259,13 +259,8 @@ class NameEditor:
         format = self.preform.get_active()
         priv = self.priv.get_active()
 
-        mtype = unicode(self.type_field.get_text())
+        the_type = self.type_selector.get_values()
 
-        if const.NameTypesMap.has_value(mtype):
-            mtype = const.NameTypesMap.find_key(mtype)
-        else:
-            mtype = "Also Known As"
-        
         if self.name == None:
             self.name = RelLib.Name()
             self.parent.nlist.append(self.name)
@@ -312,13 +307,13 @@ class NameEditor:
                     self.name.set_group_as(grp_as)
             self.parent.lists_changed = 1
 
-        self.update_name(first,last,suffix,patronymic,title,mtype,note,format,priv)
+        self.update_name(first,last,suffix,patronymic,title,the_type,note,format,priv)
         self.parent.lists_changed = 1
 
         self.callback(self.name)
         self.close(obj)
 
-    def update_name(self,first,last,suffix,patronymic,title,type,note,format,priv):
+    def update_name(self,first,last,suffix,patronymic,title,the_type,note,format,priv):
         
         if self.name.get_first_name() != first:
             self.name.set_first_name(first)
@@ -340,8 +335,8 @@ class NameEditor:
             self.name.set_title(title)
             self.parent.lists_changed = 1
 
-        if self.name.get_type() != type:
-            self.name.set_type(type)
+        if self.name.get_type() != the_type:
+            self.name.set_type(the_type)
             self.parent.lists_changed = 1
 
         if self.name.get_note() != note:

@@ -1044,10 +1044,15 @@ class FamilyView:
                     mdate = " - %s" % DateHandler.displayer.display(dobj)
                 else:
                     mdate = ""
+                i,s = fm.get_relationship()
+                if Utils.family_relations.has_key(i) \
+                       and i != RelLib.Family.CUSTOM:
+                    disp_rel = Utils.family_relations[i]
+                else:
+                    disp_rel = s
                 v = "%s [%s]\n\t%s%s" % (
                     NameDisplay.displayer.display(sp),
-                    sp.get_gramps_id(),
-                    const.family_relations[fm.get_relationship()][0], mdate)
+                    sp.get_gramps_id(), disp_rel, mdate)
                 self.spouse_model.set(node,0,v)
                 self.spouse_model.set(node,1,f)
             else:
@@ -1076,9 +1081,9 @@ class FamilyView:
         self.update_list(self.ap_parents_model,self.ap_parents,person)
 
     def find_marriage(self,family):
-        for event_handle in family.get_event_list():
-            if event_handle:
-                event = self.parent.db.get_event_from_handle(event_handle)
+        for event_ref in family.get_event_ref_list():
+            if event_ref:
+                event = self.parent.db.get_event_from_handle(event_ref.ref)
                 if event.get_name() == "Marriage":
                     return event
         return None

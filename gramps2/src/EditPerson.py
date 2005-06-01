@@ -266,9 +266,11 @@ class EditPerson:
                or (not self.lds_sealing.is_empty()):
             Utils.bold_label(self.lds_tab)
 
-        types = const.NameTypesMap.values()
-        types.sort()
-        AutoComp.fill_combo(self.ntype_field,types)
+        self.ntype_selector = \
+                           AutoComp.StandardCustomSelector(Utils.name_types,
+                                                           self.ntype_field,
+                                                           RelLib.Name.CUSTOM,
+                                                           RelLib.Name.BIRTH)
         self.write_primary_name()
         
         self.load_person_image()
@@ -715,7 +717,7 @@ class EditPerson:
 
         surname = unicode(self.surname.get_text())
 
-        ntype = unicode(self.ntype_field.child.get_text())
+        ntype = self.ntype_selector.get_values()
         suffix = unicode(self.suffix.get_text())
         prefix = unicode(self.prefix.get_text())
         given = unicode(self.given.get_text())
@@ -748,7 +750,7 @@ class EditPerson:
                 changed = True
         if surname.upper() != name.get_surname().upper():
             changed = True
-        if ntype != const.NameTypesMap.find_value(name.get_type()):
+        if ntype != name.get_type():
             changed = True
         if given != name.get_first_name():
             changed = True
@@ -883,7 +885,7 @@ class EditPerson:
         surname = unicode(self.surname.get_text())
         suffix = unicode(self.suffix.get_text())
         prefix = unicode(self.prefix.get_text())
-        ntype = unicode(self.ntype_field.child.get_text())
+        ntype = self.ntype_selector.get_values()
         given = unicode(self.given.get_text())
         title = unicode(self.title.get_text())
         idval = unicode(self.gid.get_text())
@@ -911,11 +913,6 @@ class EditPerson:
         else:
             if prefix != name.get_surname_prefix():
                 name.set_surname_prefix(prefix)
-
-        if const.NameTypesMap.has_value(ntype):
-            ntype = const.NameTypesMap.find_key(ntype)
-        else:
-            ntype = "Birth Name"
 
         if ntype != name.get_type():
             name.set_type(ntype)
@@ -1068,8 +1065,8 @@ class EditPerson:
             return u""
 
     def on_edit_name_clicked(self,obj):
-        ntype = unicode(self.ntype_field.child.get_text())
-        self.pname.set_type(const.NameTypesMap.find_value(ntype))
+        ntype = self.ntype_selector.get_values()
+        self.pname.set_type(ntype)
         self.pname.set_suffix(unicode(self.suffix.get_text()))
         self.pname.set_surname(unicode(self.surname.get_text()))
         if self.use_patronymic:
@@ -1182,7 +1179,7 @@ class EditPerson:
         self.surname.set_text(self.pname.get_surname())
         self.given.set_text(self.pname.get_first_name())
 
-        self.ntype_field.child.set_text(_(self.pname.get_type()))
+        self.ntype_selector.set_values(self.pname.get_type())
         self.title.set_text(self.pname.get_title())
 
     def birth_dates_in_order(self,list):

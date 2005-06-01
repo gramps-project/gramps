@@ -201,7 +201,7 @@ class Marriage:
         self.preform = self.get_widget("mar_preform")
         self.preform.set_sensitive(mode)
 
-        self.elist = family.get_event_list()[:]
+        self.ereflist = family.get_event_ref_list()[:]
         self.alist = family.get_attribute_list()[:]
         self.lists_changed = 0
 
@@ -220,13 +220,12 @@ class Marriage:
                                          self.on_attr_list_select_row,
                                          self.on_update_attr_clicked)
 
-        rel_list = []
-        for (val,junk) in const.family_relations:
-            rel_list.append(val)
-        AutoComp.fill_option_text(self.type_field,rel_list)
+        self.type_selector = AutoComp.StandardCustomSelector( \
+            Utils.family_relations,self.type_field,
+            RelLib.Family.CUSTOM,RelLib.Name.MARRIED)
 
         frel = family.get_relationship()
-        self.type_field.set_active(frel)
+        self.type_selector.set_values(frel)
         self.gid.set_text(family.get_gramps_id())
 
 
@@ -458,8 +457,8 @@ class Marriage:
             foo = pickle.loads(data[2]);
             
             if family == self.family.get_handle() and \
-                   foo.get_handle() in self.elist:
-                self.move_element(self.elist,self.etree.get_selected_row(),
+                   foo.get_handle() in [ref.ref for ref in self.ereflist]:
+                self.move_element(self.ereflist,self.etree.get_selected_row(),
                                   row)
             else:
                 for src in foo.get_source_references():
@@ -470,7 +469,12 @@ class Marriage:
                 if place:
                     foo.set_place_handle(
                         self.db.get_place_from_handle(place.get_handle()).get_handle())
-                self.elist.insert(row,foo.get_handle())
+                eref = RelLib.EventRef()
+                eref.set_ref = foo.get_handle()
+                eref.set_role(RelLib.EventRef.PRIMARY,
+                              Utils.event_roles(RelLib.EventRef.PRIMARY))
+
+                self.ereflist.insert(row,)
 
             self.lists_changed = 1
             self.redraw_event_list()
@@ -520,7 +524,7 @@ class Marriage:
         selection_data.set(selection_data.target, bits_per, data)
 
     def update_lists(self):
-        self.family.set_event_list(self.elist)
+        self.family.set_event_ref_list(self.ereflist)
         self.family.set_attribute_list(self.alist)
 
     def attr_edit_callback(self,attr):
@@ -543,10 +547,10 @@ class Marriage:
     def redraw_event_list(self):
         self.etree.clear()
         self.emap = {}
-        for event_handle in self.elist:
-            event = self.db.get_event_from_handle(event_handle)
-            if not event:
+        for event_ref in self.ereflist:
+            if not event_ref:
                 continue
+            event = self.db.get_event_from_handle(event_ref.ref)
             place_handle = event.get_place_handle()
             
             if place_handle:
@@ -556,7 +560,7 @@ class Marriage:
             node = self.etree.add([const.display_fevent(event.get_name()),
                                    event.get_quote_date(),place_name],event)
             self.emap[str(event)] = node
-        if self.elist:
+        if self.ereflist:
             self.etree.select_row(0)
             Utils.bold_label(self.events_label)
         else:
@@ -567,7 +571,7 @@ class Marriage:
 
     def did_data_change(self):
         changed = 0
-        if self.type_field.get_active() != self.family.get_relationship():
+        if self.type_selector.get_values() != self.family.get_relationship():
             changed = 1
 
         if self.complete.get_active() != self.family.get_complete_flag():
@@ -655,7 +659,7 @@ class Marriage:
                               _('The GRAMPS ID that you chose for this '
                                 'relationship is already being used.'))
 
-        relation = self.type_field.get_active()
+        relation = self.type_selector.get_values()
         father = self.family.get_father_handle()
         mother = self.family.get_mother_handle()
         if father and mother:
@@ -740,7 +744,7 @@ class Marriage:
             None, 0,self.event_edit_callback, None, self.db.readonly)
 
     def on_delete_clicked(self,obj):
-        if Utils.delete_selected(obj,self.elist):
+        if Utils.delete_selected(obj,self.ereflist):
             self.lists_changed = 1
             self.redraw_event_list()
 
