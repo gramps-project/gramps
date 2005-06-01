@@ -4164,12 +4164,10 @@ class EventRef(BaseObject,PrivacyBase,NoteBase):
         NoteBase.__init__(self)
         if source:
             self.ref = source.ref
-            self.role_int = source.role_int
-            self.role_str = source.role_str
+            self.role = source.role_int
         else:
             self.ref = None
-            self.role_int = EventRef.ROLE_CUSTOM
-            self.role_str = ""
+            self.role = (EventRef.CUSTOM,"")
 
     def get_text_data_list(self):
         """
@@ -4218,25 +4216,15 @@ class EventRef(BaseObject,PrivacyBase,NoteBase):
 
     def get_role(self):
         """
-        Returns the integer corresponding to the preset role.
-        If custom then the string is returned.
+        Returns the tuple corresponding to the preset role.
         """
-        if self.role_int == EventRef.ROLE_CUSTOM:
-            return self.role_str
-        else:
-            return self.role_int
+        return self.role
 
     def set_role(self,role):
         """
         Sets the role according to the given argument.
-        If integer, it is set as is. If string, it is recorded as custom role.
         """
-        if type(role) == str:
-            self.role_int = EventRef.ROLE_CUSTOM
-            self.role_str = role
-        elif type(role) == int:
-            self.role_int = role
-            self.role_str = ""
+        self.role = role
 
 class GenderStats:
     """
