@@ -1,4 +1,6 @@
 2005-06-02  Don Allingham  <don@gramps-project.org>
+	* src/dates/Date_fi.py: Finnish date parser
+	* src/dates/Makefile.am: added Date_fi.py
 	* src/ChooseParents.py: fixed all_males filtering problem, display
 	all people when a person is blocked by the likely filter
 
