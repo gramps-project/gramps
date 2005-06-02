@@ -1,3 +1,8 @@
+2005-06-02  Alex Roitman  <shura@gramps-project.org>
+	* src/ListModel.py: Check for the list to be long enough.
+	* src/gramps.glade: Replace ComboBox with ComboBoxEntry; remove
+	unneeded scrollwed window (caused warning).
+
 2005-06-01  Don Allingham  <don@gramps-project.org>
 	* src/EditPerson.py: Start event_ref integration
 	* src/EventEdit.py: Start event_ref integration
