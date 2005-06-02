@@ -1,3 +1,7 @@
+2005-06-02  Don Allingham  <don@gramps-project.org>
+	* src/ChooseParents.py: fixed all_males filtering problem, display
+	all people when a person is blocked by the likely filter
+
 2005-06-02  Alex Roitman  <shura@gramps-project.org>
 	* src/ReadGedcom.py (get_next): Use single space to split the line
 	into level, tag, and the field contents; strip extra white space

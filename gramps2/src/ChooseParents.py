@@ -93,7 +93,7 @@ class ChooseParents:
         db.connect('person-add', self.redraw)
         db.connect('person-update', self.redraw)
         db.connect('person-delete', self.redraw)
-        db.connect('person-rebuild', self.redraw2)
+        db.connect('person-rebuild', self.redraw)
 
         # set default filters
         self.all_males_filter = GenericFilter.GenericFilter()
@@ -286,14 +286,6 @@ class ChooseParents:
     def redraw(self,handle_list):
         self.redrawf()
         self.redrawm()
-#        self.father_model.rebuild_data()
-#        self.mother_model.rebuild_data()
-
-    def redraw2(self):
-        self.redrawf()
-        self.redrawm()
-#        self.father_model.rebuild_data()
-#        self.mother_model.rebuild_data()
 
     def redrawf(self):
         """Redraws the potential father list"""
@@ -326,7 +318,7 @@ class ChooseParents:
 
     def showallf_toggled(self,obj):
         if self.father_filter == self.likely_males_filter:
-            self.father_filter = self.all_females_filter
+            self.father_filter = self.all_males_filter
         else:
             self.father_filter = self.likely_males_filter
         self.redrawf()
@@ -529,11 +521,13 @@ class ChooseParents:
                 self.father_selection.select_path(path)
                 self.father_list.scroll_to_cell(path,None,1,0.5,0)
             except KeyError:
-                WarningDialog(_("Added person is not visible"),
-                              _("The person you added is currently "
-                                "not visible due to the chosen filter. "
-                                "This may occur if you did not specify "
-                                "a birth date."))
+                self.father_filter = self.all_males_filter
+                self.showallf_toggled(None)
+                path = self.father_model.on_get_path(handle)
+                top_path = self.father_model.on_get_path(name)
+                self.father_list.expand_row(top_path,0)
+                self.father_selection.select_path(path)
+                self.father_list.scroll_to_cell(path,None,1,0.5,0)
         else:
             try:
                 path = self.mother_model.on_get_path(handle)
@@ -542,11 +536,13 @@ class ChooseParents:
                 self.mother_selection.select_path(path)
                 self.mother_list.scroll_to_cell(path,None,1,0.5,0)
             except:
-                WarningDialog(_("Added person is not visible"),
-                              _("The person you added is currently "
-                                "not visible due to the chosen filter. "
-                                "This may occur if you did not specify "
-                                "a birth date."))
+                self.mother_filter = self.all_females_filter
+                self.showallm_toggled(None)
+                path = self.mother_model.on_get_path(handle)
+                top_path = self.mother_model.on_get_path(name)
+                self.mother_list.expand_row(top_path,0)
+                self.mother_selection.select_path(path)
+                self.mother_list.scroll_to_cell(path,None,1,0.5,0)
         
     def add_parent_clicked(self,obj):
         """Called with the Add New Person button is pressed. Calls the QuickAdd
