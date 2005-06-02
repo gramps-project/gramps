@@ -1,3 +1,8 @@
+Version 2.0.2 -- the "Little fermented curd will do the trick" release
+* Updated German translation (Anton Huber).
+* Usability improvements for large databases.
+* Bug fixes
+
 Version 2.0.1 -- the "None shall pass" release
 * Example database function is back.
 * Entering incestuous relations is possible (with the warning).
