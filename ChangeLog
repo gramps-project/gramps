@@ -1,3 +1,10 @@
+2005-06-01  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: Start event_ref integration
+	* src/EventEdit.py: Start event_ref integration
+	* src/ListModel.py: Start event_ref integration
+	* src/PersonModel.py: Start event_ref integration
+	* src/ListBox.py: Start event_ref integration
+
 2005-06-01  Alex Roitman  <shura@gramps-project.org>
 	* src/AutoComp.py (StandardCustomSelector): Provide an option to
 	use an existing ComboBoxEntry instance; add set_values method.

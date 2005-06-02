@@ -853,16 +853,16 @@ class EditPerson:
         self.person.set_birth_ref(None)
         self.person.set_death_ref(None)
         eref_list = self.event_box.data[:]
-        for event_ref in eref_list:
-            if event_ref and event_ref.ref:
-                event = self.db.get_event_from_handle(event_ref.ref)
-                if event.get_name() == "Birth":
-                    self.person.set_birth_ref(event_ref)
-                    self.event_box.data.remove(event_ref)
-                if event.get_name() == "Death":
-                    self.person.set_death_ref(event_ref)
-                    self.event_box.data.remove(event_ref)
-        eref_list = [event_ref for event_ref in self.event_box.data]
+        print eref_list
+        for (event_ref,event) in eref_list:
+            print event.handle
+            if event.get_type()[0] == RelLib.Event.BIRTH:
+                self.person.set_birth_ref(event_ref)
+                self.event_box.data.remove(event_ref)
+            if event.get_type()[0] == RelLib.Event.DEATH:
+                self.person.set_death_ref(event_ref)
+                self.event_box.data.remove(event_ref)
+        eref_list = [event_ref for (event_ref,event) in self.event_box.data]
         self.person.set_event_ref_list(eref_list)
 
     def on_apply_person_clicked(self,obj):
@@ -1036,7 +1036,7 @@ class EditPerson:
             self.db.commit_person(self.person, trans)
         n = self.person.get_primary_name().get_regular_name()
 
-        for event in self.event_box.get_changed_objects():
+        for (event_ref,event) in self.event_box.get_changed_objects():
             self.db.commit_event(event,trans)
         
         self.db.transaction_commit(trans,_("Edit Person (%s)") % n)
