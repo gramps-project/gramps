@@ -26,10 +26,9 @@
 #
 #-------------------------------------------------------------------------
 import gtk
-import gobject
 
 def fill_combo(combo,data_list):
-    store = gtk.ListStore(gobject.TYPE_STRING)
+    store = gtk.ListStore(str)
 
     for data in data_list:
         store.append(row=[data])
@@ -43,7 +42,7 @@ def fill_combo(combo,data_list):
     combo.child.set_completion(completion)
 
 def fill_entry(entry,data_list):
-    store = gtk.ListStore(gobject.TYPE_STRING)
+    store = gtk.ListStore(str)
     for data in data_list:
         store.append(row=[data])
         
@@ -121,7 +120,7 @@ class StandardCustomSelector:
         self.active_index = 0
 
         # make model
-        self.store = gtk.ListStore(gobject.TYPE_INT,gobject.TYPE_STRING)
+        self.store = gtk.ListStore(int,str)
 
         # fill it up using mapping
         self.fill()

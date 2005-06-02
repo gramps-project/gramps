@@ -4,6 +4,7 @@
 	* src/ListModel.py: Start event_ref integration
 	* src/PersonModel.py: Start event_ref integration
 	* src/ListBox.py: Start event_ref integration
+	* src/gramps.glade: 
 
 2005-06-01  Alex Roitman  <shura@gramps-project.org>
 	* src/AutoComp.py (StandardCustomSelector): Provide an option to

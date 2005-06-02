@@ -302,10 +302,9 @@ class PeopleModel(gtk.GenericTreeModel):
                 return cgi.escape(birth.get_date())
         
         for event_ref in data[_EVENT_COL]:
-            print event_ref, event_ref.ref
             event = self.db.get_event_from_handle(event_ref.ref)
-            print "Event",event
-            if (event.get_type() in [RelLib.Event.BAPTISM, RelLib.Event.CHRISTEN]
+            etype = event.get_type()[0]
+            if (etype in [Event.BAPTISM, Event.CHRISTEN]
                 and event.get_date() != ""):
                 return "<i>" + cgi.escape(event.get_date()) + "</i>"
         
@@ -317,9 +316,11 @@ class PeopleModel(gtk.GenericTreeModel):
             if death.get_date() and death.get_date() != "":
                 return cgi.escape(death.get_date())
         
-        for event_handle in data[_EVENT_COL].ref:
-            event = self.db.get_event_from_handle(event_handle)
-            if event.name in ["Burial", "Cremation"] and event.get_date() != "":
+        for event_ref in data[_EVENT_COL]:
+            event = self.db.get_event_from_handle(event_ref.ref)
+            etype = event.get_type()[0]
+            if (etype in [Event.BURIAL, Event.CREMATION]
+                and event.get_date() != ""):
                 return "<i>" + cgi.escape(event.get_date()) + "</i>"
         
         return u""
@@ -340,9 +341,10 @@ class PeopleModel(gtk.GenericTreeModel):
                     if place_title != "":
                         return cgi.escape(place_title)
         
-        for event_handle in data[_EVENT_COL].ref:
-            event = self.db.get_event_from_handle(event_handle)
-            if event.name in ["Baptism", "Christening"]:
+        for event_ref in data[_EVENT_COL]:
+            etype = event.get_type()[0]
+            if etype in [Event.BAPTISM, Event.CHRISTEN]:
+                event = self.db.get_event_from_handle(event_ref.ref)
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place_title = self.db.get_place_from_handle(place_handle).get_title()
@@ -361,9 +363,10 @@ class PeopleModel(gtk.GenericTreeModel):
                     if place_title != "":
                         return cgi.escape(place_title)
         
-        for event_handle in data[_EVENT_COL].ref:
-            event = self.db.get_event_from_handle(event_handle)
-            if event.name in ["Burial", "Cremation"]:
+        for event_ref in data[_EVENT_COL]:
+            etype = event.get_type()[0]
+            if etype in [Event.BURIAL, Event.CREMATION]:
+                event = self.db.get_event_from_handle(event_ref.ref)
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place_title = self.db.get_place_from_handle(place_handle).get_title()

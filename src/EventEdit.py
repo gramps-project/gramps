@@ -82,25 +82,12 @@ class EventEditor:
         self.dp = DateHandler.parser
         self.dd = DateHandler.displayer
 
-#        values = {}
-#        for v in elist:
-#            values[v] = 1
-#        for vv in self.db.get_person_event_type_list():
-#            v = _(vv)
-#            values[v] = 1
-#            
-#        self.elist = values.keys()
-#        self.elist.sort()
-
         for key in self.parent.db.get_place_handles():
             title = self.parent.db.get_place_from_handle(key).get_title()
             self.pmap[title] = key
 
         if event:
             self.srcreflist = self.event.get_source_references()
-            self.witnesslist = self.event.get_witness_list()
-            if not self.witnesslist:
-                self.witnesslist = []
             self.date = Date.Date(self.event.get_date_object())
             # add the name to the list if it is not already there. This
             # tends to occur in translated languages with the 'Death'
@@ -109,7 +96,6 @@ class EventEditor:
             #    elist.append(transname)
         else:
             self.srcreflist = []
-            self.witnesslist = []
             self.date = Date.Date(None)
 
         self.top = gtk.glade.XML(const.dialogFile, "event_edit","gramps")
@@ -174,19 +160,24 @@ class EventEditor:
         del_witness = self.top.get_widget('del_witness')
         del_witness.set_sensitive(not noedit)
         
-        self.witnesstab = Witness.WitnessTab(
-            self.witnesslist, self, self.top, self.window, self.wlist,
-            add_witness, edit_witness, del_witness)
+#        self.witnesstab = Witness.WitnessTab(
+#            self.witnesslist, self, self.top, self.window, self.wlist,
+#            add_witness, edit_witness, del_witness)
 
         #AutoComp.fill_combo(self.event_menu,self.elist)
 
+        if event:
+            defval = event.get_type()[0]
+        else:
+            defval = None
+
         self.eventmapper = AutoComp.StandardCustomSelector(
-            Utils.personal_events, self.event_menu, RelLib.Event.CUSTOM)
+            Utils.personal_events, self.event_menu, RelLib.Event.CUSTOM, defval)
         AutoComp.fill_entry(self.place_field,self.pmap.keys())
 
         if event != None:
-            self.event_menu.child.set_text(transname)
-            if (def_placename):
+#            self.event_menu.child.set_text(transname)
+            if def_placename:
                 self.place_field.set_text(def_placename)
             else:
                 place_handle = event.get_place_handle()
@@ -275,7 +266,11 @@ class EventEditor:
         if not self.event:
             label = _("New Event")
         else:
-            label = self.event.get_name()
+            (val,strval) = self.event.get_type()
+            if val == RelLib.Event.CUSTOM:
+                label = strval
+            else:
+                label = Utils.personal_events[val]
         if not label.strip():
             label = _("New Event")
         label = "%s: %s" % (_('Event'),label)
@@ -347,7 +342,6 @@ class EventEditor:
             self.event = RelLib.Event()
             self.event.set_handle(Utils.create_id())
             self.event.set_source_reference_list(self.srcreflist)
-            #self.event.set_witness_list(self.witnesslist)
             self.event.set_type(event_data)
             just_added = True
         
@@ -359,8 +353,6 @@ class EventEditor:
             self.callback(self.event)
 
     def update_event(self,the_type,date,place,desc,note,format,priv,cause):
-        print self.event
-        
         if place:
             if self.event.get_place_handle() != place.get_handle():
                 self.event.set_place_handle(place.get_handle())
@@ -389,7 +381,6 @@ class EventEditor:
         dobj = self.event.get_date_object()
 
         self.event.set_source_reference_list(self.srcreflist)
-        #self.event.set_witness_list(self.witnesslist)
         
         if not dobj.is_equal(date):
             self.event.set_date_object(date)
