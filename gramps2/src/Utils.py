@@ -214,6 +214,20 @@ event_roles = {
     RelLib.EventRef.GROOM     : _("Groom"),
     RelLib.EventRef.WITNESS   : _("Witness"),
     }
+
+repository_types = {
+    RelLib.Repository.UNKNOWN    : _("Unknown"),
+    RelLib.Repository.CUSTOM     : _("Custom"),
+    RelLib.Repository.LIBRARY    : _("Library"),
+    RelLib.Repository.CEMETERY   : _("Cemetery"),
+    RelLib.Repository.CHURCH     : _("Church"),
+    RelLib.Repository.ARCHIVE    : _("Archive"),
+    RelLib.Repository.ALBUM      : _("Album"),
+    RelLib.Repository.WEBSITE    : _("Web site"),
+    RelLib.Repository.BOOKSTORE  : _("Bookstore"),
+    RelLib.Repository.COLLECTION : _("Collection"),
+    RelLib.Repository.SAFE       : _("Safe"),
+    }
 #-------------------------------------------------------------------------
 #
 # Integer to GEDCOM tag mappings for constants
