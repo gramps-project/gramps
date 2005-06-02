@@ -6,6 +6,7 @@
 	* src/ReadGedcom.py (get_next): Use single space to split the line
 	into level, tag, and the field contents; strip extra white space
 	off the tag name.
+	* src/po/ru.po: Update for 2.0.2.
 
 2005-06-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/Utils.py (probably_alive): If no year is given it now treats
