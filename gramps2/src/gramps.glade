@@ -33441,6 +33441,7 @@ Family name Given name
 			  <property name="active">False</property>
 			  <property name="inconsistent">False</property>
 			  <property name="draw_indicator">True</property>
+			  <property name="group">repository_flowed</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -33485,147 +33486,136 @@ Family name Given name
 	      </child>
 
 	      <child>
-		<widget class="GtkScrolledWindow" id="scrolledwindow89">
+		<widget class="GtkHBox" id="hbox110">
+		  <property name="border_width">6</property>
 		  <property name="visible">True</property>
-		  <property name="can_focus">True</property>
-		  <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-		  <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-		  <property name="shadow_type">GTK_SHADOW_NONE</property>
-		  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
+		  <property name="homogeneous">False</property>
+		  <property name="spacing">6</property>
 
 		  <child>
-		    <widget class="GtkHBox" id="hbox110">
-		      <property name="border_width">6</property>
+		    <widget class="GtkScrolledWindow" id="scrolledwindow93">
+		      <property name="visible">True</property>
+		      <property name="can_focus">True</property>
+		      <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+		      <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+		      <property name="shadow_type">GTK_SHADOW_IN</property>
+		      <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
+
+		      <child>
+			<widget class="GtkTreeView" id="repository_sources">
+			  <property name="visible">True</property>
+			  <property name="can_focus">True</property>
+			  <property name="headers_visible">True</property>
+			  <property name="rules_hint">True</property>
+			  <property name="reorderable">False</property>
+			  <property name="enable_search">True</property>
+			  <signal name="row_activated" handler="on_edit_repos_ref_row_activated" last_modification_time="Fri, 27 May 2005 07:58:33 GMT"/>
+			</widget>
+		      </child>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">True</property>
+		      <property name="fill">True</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkVBox" id="vbox98">
 		      <property name="visible">True</property>
 		      <property name="homogeneous">False</property>
 		      <property name="spacing">6</property>
 
 		      <child>
-			<widget class="GtkScrolledWindow" id="scrolledwindow93">
+			<widget class="GtkButton" id="repository_sources_add">
+			  <property name="width_request">36</property>
 			  <property name="visible">True</property>
+			  <property name="tooltip" translatable="yes">Add a new reference to a Repository where this Source is held</property>
 			  <property name="can_focus">True</property>
-			  <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-			  <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-			  <property name="shadow_type">GTK_SHADOW_IN</property>
-			  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
+			  <property name="relief">GTK_RELIEF_NORMAL</property>
+			  <property name="focus_on_click">True</property>
+			  <signal name="clicked" handler="on_add_repos_sources_clicked" object="sourceEditor" last_modification_time="Fri, 27 May 2005 09:34:33 GMT"/>
 
 			  <child>
-			    <widget class="GtkTreeView" id="repository_sources">
+			    <widget class="GtkImage" id="image2597">
 			      <property name="visible">True</property>
-			      <property name="can_focus">True</property>
-			      <property name="headers_visible">True</property>
-			      <property name="rules_hint">True</property>
-			      <property name="reorderable">False</property>
-			      <property name="enable_search">True</property>
-			      <signal name="row_activated" handler="on_edit_repos_ref_row_activated" last_modification_time="Fri, 27 May 2005 07:58:33 GMT"/>
+			      <property name="stock">gtk-add</property>
+			      <property name="icon_size">4</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
 			    </widget>
-			  </child>
-			</widget>
-			<packing>
-			  <property name="padding">0</property>
-			  <property name="expand">True</property>
-			  <property name="fill">True</property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkVBox" id="vbox98">
-			  <property name="visible">True</property>
-			  <property name="homogeneous">False</property>
-			  <property name="spacing">6</property>
-
-			  <child>
-			    <widget class="GtkButton" id="repository_sources_add">
-			      <property name="width_request">36</property>
-			      <property name="visible">True</property>
-			      <property name="tooltip" translatable="yes">Add a new reference to a Repository where this Source is held</property>
-			      <property name="can_focus">True</property>
-			      <property name="relief">GTK_RELIEF_NORMAL</property>
-			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_add_repos_sources_clicked" object="sourceEditor" last_modification_time="Fri, 27 May 2005 09:34:33 GMT"/>
-
-			      <child>
-				<widget class="GtkImage" id="image2597">
-				  <property name="visible">True</property>
-				  <property name="stock">gtk-add</property>
-				  <property name="icon_size">4</property>
-				  <property name="xalign">0.5</property>
-				  <property name="yalign">0.5</property>
-				  <property name="xpad">0</property>
-				  <property name="ypad">0</property>
-				</widget>
-			      </child>
-			    </widget>
-			    <packing>
-			      <property name="padding">0</property>
-			      <property name="expand">False</property>
-			      <property name="fill">False</property>
-			    </packing>
-			  </child>
-
-			  <child>
-			    <widget class="GtkButton" id="repository_sources_edit">
-			      <property name="visible">True</property>
-			      <property name="tooltip" translatable="yes">Edit the properties of the selected object</property>
-			      <property name="can_focus">True</property>
-			      <property name="relief">GTK_RELIEF_NORMAL</property>
-			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_edit_repos_ref_clicked" object="sourceEditor" last_modification_time="Thu, 26 May 2005 13:14:57 GMT"/>
-
-			      <child>
-				<widget class="GtkImage" id="image2598">
-				  <property name="width_request">36</property>
-				  <property name="visible">True</property>
-				  <property name="pixbuf">edit_sm.png</property>
-				  <property name="xalign">0.5</property>
-				  <property name="yalign">0.5</property>
-				  <property name="xpad">0</property>
-				  <property name="ypad">0</property>
-				</widget>
-			      </child>
-			    </widget>
-			    <packing>
-			      <property name="padding">0</property>
-			      <property name="expand">False</property>
-			      <property name="fill">False</property>
-			    </packing>
-			  </child>
-
-			  <child>
-			    <widget class="GtkButton" id="repository_sources_del">
-			      <property name="visible">True</property>
-			      <property name="tooltip" translatable="yes">Remove selected Repository Reference from this Source</property>
-			      <property name="can_focus">True</property>
-			      <property name="relief">GTK_RELIEF_NORMAL</property>
-			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_delete_repos_ref_clicked" object="sourceEditor" last_modification_time="Thu, 26 May 2005 13:15:07 GMT"/>
-
-			      <child>
-				<widget class="GtkImage" id="image2599">
-				  <property name="visible">True</property>
-				  <property name="stock">gtk-remove</property>
-				  <property name="icon_size">4</property>
-				  <property name="xalign">0.5</property>
-				  <property name="yalign">0.5</property>
-				  <property name="xpad">0</property>
-				  <property name="ypad">0</property>
-				</widget>
-			      </child>
-			    </widget>
-			    <packing>
-			      <property name="padding">0</property>
-			      <property name="expand">False</property>
-			      <property name="fill">False</property>
-			    </packing>
 			  </child>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
 			  <property name="expand">False</property>
-			  <property name="fill">True</property>
+			  <property name="fill">False</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkButton" id="repository_sources_edit">
+			  <property name="visible">True</property>
+			  <property name="tooltip" translatable="yes">Edit the properties of the selected object</property>
+			  <property name="can_focus">True</property>
+			  <property name="relief">GTK_RELIEF_NORMAL</property>
+			  <property name="focus_on_click">True</property>
+			  <signal name="clicked" handler="on_edit_repos_ref_clicked" object="sourceEditor" last_modification_time="Thu, 26 May 2005 13:14:57 GMT"/>
+
+			  <child>
+			    <widget class="GtkImage" id="image2598">
+			      <property name="width_request">36</property>
+			      <property name="visible">True</property>
+			      <property name="pixbuf">edit_sm.png</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">False</property>
+			  <property name="fill">False</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkButton" id="repository_sources_del">
+			  <property name="visible">True</property>
+			  <property name="tooltip" translatable="yes">Remove selected Repository Reference from this Source</property>
+			  <property name="can_focus">True</property>
+			  <property name="relief">GTK_RELIEF_NORMAL</property>
+			  <property name="focus_on_click">True</property>
+			  <signal name="clicked" handler="on_delete_repos_ref_clicked" object="sourceEditor" last_modification_time="Thu, 26 May 2005 13:15:07 GMT"/>
+
+			  <child>
+			    <widget class="GtkImage" id="image2599">
+			      <property name="visible">True</property>
+			      <property name="stock">gtk-remove</property>
+			      <property name="icon_size">4</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">False</property>
+			  <property name="fill">False</property>
 			</packing>
 		      </child>
 		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">True</property>
+		    </packing>
 		  </child>
 		</widget>
 		<packing>
@@ -34508,24 +34498,6 @@ Family name Given name
 		  </child>
 
 		  <child>
-		    <widget class="GtkComboBox" id="repos_ref_media_type">
-		      <property name="visible">True</property>
-		      <property name="items" translatable="yes">Very Low
-Low
-Normal
-High
-Very High</property>
-		    </widget>
-		    <packing>
-		      <property name="left_attach">2</property>
-		      <property name="right_attach">4</property>
-		      <property name="top_attach">6</property>
-		      <property name="bottom_attach">7</property>
-		      <property name="y_options">fill</property>
-		    </packing>
-		  </child>
-
-		  <child>
 		    <widget class="GtkEntry" id="repos_ref_callnumber">
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
@@ -34591,6 +34563,20 @@ Very High</property>
 		      <property name="bottom_attach">4</property>
 		      <property name="x_options">fill</property>
 		      <property name="y_options"></property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkComboBoxEntry" id="repos_ref_media_type">
+		      <property name="visible">True</property>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">2</property>
+		      <property name="right_attach">4</property>
+		      <property name="top_attach">6</property>
+		      <property name="bottom_attach">7</property>
+		      <property name="x_options">fill</property>
+		      <property name="y_options">fill</property>
 		    </packing>
 		  </child>
 		</widget>

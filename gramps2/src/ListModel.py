@@ -42,7 +42,7 @@ class ListModel:
         self.mylist = []
         self.data_index = 0
         for l in dlist:
-            if l[3] == TOGGLE:
+            if len(l)>3 and l[3] == TOGGLE:
                 self.mylist.append(TYPE_BOOLEAN)
             else:
                 self.mylist.append(TYPE_STRING)
