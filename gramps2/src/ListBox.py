@@ -45,7 +45,7 @@ from ListModel import ListModel, NOSORT, COMBO, TEXT, TOGGLE
 from DdTargets import DdTargets
 
 import const
-import TransTable
+import RelLib
 import UrlEdit
 import NameEdit
 import NoteEdit
@@ -82,6 +82,8 @@ class ListBox:
         return list(self.change_list)
 
     def add_object(self,item):
+        import traceback
+        traceback.print_stack()
         self.data.append(item)
         self.change_list.add(item)
         
@@ -242,17 +244,19 @@ class EventListBox(ReorderListBox):
 
     def __init__(self,parent,person,obj,label,button_list):
 
-        self.trans = TransTable.TransTable(self.titles)
-        
         self.data = []
-        if person.get_birth_ref():
-            event = parent.db.get_event_from_handle(person.get_birth_ref().ref)
-            self.data.append(event)
-        if person.get_death_ref():
-            event = parent.db.get_event_from_handle(person.get_death_ref().ref)
-            self.data.append(event)
+        birth_ref = person.get_birth_ref()
+        death_ref = person.get_death_ref()
+        if birth_ref:
+            self.data.append((birth_ref,
+                             parent.db.get_event_from_handle(birth_ref.ref)))
+        if death_ref:
+            self.data.append((death_ref,
+                             parent.db.get_event_from_handle(death_ref.ref)))
+        self 
         for event_ref in person.get_event_ref_list():
-            self.data.append(parent.db.get_event_from_handle(event_ref.ref))
+            self.data.append((event_ref,
+                              parent.db.get_event_from_handle(event_ref.ref)))
 
         eventnames = Utils.personal_events.values()
 
@@ -270,26 +274,26 @@ class EventListBox(ReorderListBox):
                                 button_list, evalues, DdTargets.EVENT)
 
     def set_name(self,index,value):
-        self.data[index].set_name(value)
+        self.data[index][1].set_name(value)
         self.change_list.add(self.data[index])
 
     def set_description(self,index,value):
-        self.data[index].set_description(value)
+        self.data[index][1].set_description(value)
         self.change_list.add(self.data[index])
 
     def set_place(self,index,value):
-        self.data[index].set_description(value)
+        self.data[index][1].set_description(value)
         self.change_list.add(self.data[index])
 
     def set_date(self,index,value):
-        self.data[index].set_date(value)
+        self.data[index][1].set_date(value)
         self.change_list.add(self.data[index])
 
     def add(self,obj):
         """Brings up the EventEditor for a new event"""
         EventEdit.EventEditor(
             self.parent, self.name, Utils.personal_events,
-            Utils.personal_events, None, None, 0,
+            None, None, False,
             self.edit_callback, noedit=self.db.readonly)
 
     def update(self,obj):
@@ -299,11 +303,12 @@ class EventListBox(ReorderListBox):
         event = self.list_model.get_object(node)
         EventEdit.EventEditor(
             self.parent, self.name, Utils.personal_events,
-            Utils.personal_events, event, None, 0,
+            event, None, False,
             self.edit_callback, noedit=self.db.readonly)
 
-    def display_data(self,event):
-
+    def display_data(self,event_tuple):
+        print event_tuple
+        (event_ref, event) = event_tuple
         pid = event.get_place_handle()
         if pid:
             pname = self.db.get_place_from_handle(pid).get_title()
@@ -311,7 +316,12 @@ class EventListBox(ReorderListBox):
             pname = u''
         has_note = event.get_note()
         has_source = len(event.get_source_references())> 0
-        return [const.display_pevent(event.get_name()),
+        etype = event.get_type()
+        if etype[0] == RelLib.Event.CUSTOM:
+            name = etype[1]
+        else:
+            name = Utils.personal_events[etype[0]]
+        return [name,
                 event.get_description(), event.get_date(),
                 pname, has_source, has_note]
 
@@ -325,6 +335,20 @@ class EventListBox(ReorderListBox):
         if place:
             foo.set_place_handle(place.get_handle())
         self.data.insert(row,foo.get_handle())
+
+    def edit_callback(self,data):
+        self.changed = True
+        ref = RelLib.EventRef()
+        ref.ref = data
+        new_data = (ref,data)
+        self.change_list.add(new_data)
+        if new_data not in self.data:
+            self.data.append(new_data)
+        self.redraw()
+        try:
+            self.list_model.select_iter(self.node_map[new_data])
+        except:
+            print "Edit callback failed"
 
 class NameListBox(ReorderListBox):
     

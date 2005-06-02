@@ -178,7 +178,10 @@ class EventEditor:
             self.witnesslist, self, self.top, self.window, self.wlist,
             add_witness, edit_witness, del_witness)
 
-        AutoComp.fill_combo(self.event_menu,self.elist)
+        #AutoComp.fill_combo(self.event_menu,self.elist)
+
+        self.eventmapper = AutoComp.StandardCustomSelector(
+            Utils.personal_events, self.event_menu, RelLib.Event.CUSTOM)
         AutoComp.fill_entry(self.place_field,self.pmap.keys())
 
         if event != None:
@@ -219,6 +222,7 @@ class EventEditor:
                                         self.window)
         if not event:
             event = RelLib.Event()
+            event.set_handle(Utils.create_id())
         self.icon_list = self.top.get_widget("iconlist")
         self.gallery = ImageSelect.Gallery(event, self.db.commit_event,
                                            self.path, self.icon_list,
@@ -316,13 +320,7 @@ class EventEditor:
 
     def on_event_edit_ok_clicked(self,obj):
 
-        ename = unicode(self.event_menu.child.get_text())
-
-        if not ename.strip():
-            ErrorDialog(_("Event does not have a type"),
-                        _("You must specify an event type "
-                          "before you can save the event"))
-            return
+        event_data = self.eventmapper.get_values()
 
         #self.date = self.dp.parse(unicode(self.date_field.get_text()))
         ecause = unicode(self.cause_field.get_text())
@@ -336,23 +334,24 @@ class EventEditor:
         edesc = unicode(self.descr_field.get_text())
         epriv = self.priv.get_active()
 
-        if ename not in self.elist:
-            WarningDialog(
-                _('New event type created'),
-                _('The "%s" event type has been added to this database.\n'
-                  'It will now appear in the event menus for this database') % ename)
-            self.elist.append(ename)
-            self.elist.sort()
+#         if ename not in self.elist:
+#             WarningDialog(
+#                 _('New event type created'),
+#                 _('The "%s" event type has been added to this database.\n'
+#                   'It will now appear in the event menus for this database') % ename)
+#             self.elist.append(ename)
+#             self.elist.sort()
 
         just_added = False
         if self.event == None:
             self.event = RelLib.Event()
             self.event.set_handle(Utils.create_id())
             self.event.set_source_reference_list(self.srcreflist)
-            self.event.set_witness_list(self.witnesslist)
+            #self.event.set_witness_list(self.witnesslist)
+            self.event.set_type(event_data)
             just_added = True
         
-        self.update_event(ename,self.date,eplace_obj,edesc,enote,eformat,
+        self.update_event(event_data,self.date,eplace_obj,edesc,enote,eformat,
                           epriv,ecause)
         
         self.close(obj)
@@ -360,6 +359,8 @@ class EventEditor:
             self.callback(self.event)
 
     def update_event(self,the_type,date,place,desc,note,format,priv,cause):
+        print self.event
+        
         if place:
             if self.event.get_place_handle() != place.get_handle():
                 self.event.set_place_handle(place.get_handle())
@@ -388,7 +389,7 @@ class EventEditor:
         dobj = self.event.get_date_object()
 
         self.event.set_source_reference_list(self.srcreflist)
-        self.event.set_witness_list(self.witnesslist)
+        #self.event.set_witness_list(self.witnesslist)
         
         if not dobj.is_equal(date):
             self.event.set_date_object(date)
@@ -411,8 +412,6 @@ class EventEditor:
             Utils.bold_label(self.notes_label)
         else:
             Utils.unbold_label(self.notes_label)
-
-
 
 class EventRefEditor:
     def __init__(self, eventref, referent, database, update, parent):

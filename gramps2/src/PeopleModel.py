@@ -297,24 +297,27 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_birth_day(self,data,node):
         if data[_BIRTH_COL]:
-            birth = self.db.get_event_from_handle(data[_BIRTH_COL])
+            birth = self.db.get_event_from_handle(data[_BIRTH_COL].ref)
             if birth.get_date() and birth.get_date() != "":
                 return cgi.escape(birth.get_date())
         
-        for event_handle in data[_EVENT_COL]:
-            event = self.db.get_event_from_handle(event_handle)
-            if event.name in ["Baptism", "Christening"] and event.get_date() != "":
+        for event_ref in data[_EVENT_COL]:
+            print event_ref, event_ref.ref
+            event = self.db.get_event_from_handle(event_ref.ref)
+            print "Event",event
+            if (event.get_type() in [RelLib.Event.BAPTISM, RelLib.Event.CHRISTEN]
+                and event.get_date() != ""):
                 return "<i>" + cgi.escape(event.get_date()) + "</i>"
         
         return u""
 
     def column_death_day(self,data,node):
         if data[_DEATH_COL]:
-            death = self.db.get_event_from_handle(data[_DEATH_COL])
+            death = self.db.get_event_from_handle(data[_DEATH_COL].ref)
             if death.get_date() and death.get_date() != "":
                 return cgi.escape(death.get_date())
         
-        for event_handle in data[_EVENT_COL]:
+        for event_handle in data[_EVENT_COL].ref:
             event = self.db.get_event_from_handle(event_handle)
             if event.name in ["Burial", "Cremation"] and event.get_date() != "":
                 return "<i>" + cgi.escape(event.get_date()) + "</i>"
@@ -323,13 +326,13 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_cause_of_death(self,data,node):
         if data[_DEATH_COL]:
-            return self.db.get_event_from_handle(data[_DEATH_COL]).get_cause()
+            return self.db.get_event_from_handle(data[_DEATH_COL].ref).get_cause()
         else:
             return u""
         
     def column_birth_place(self,data,node):
         if data[_BIRTH_COL]:
-            event = self.db.get_event_from_handle(data[_BIRTH_COL])
+            event = self.db.get_event_from_handle(data[_BIRTH_COL].ref)
             if event:
                   place_handle = event.get_place_handle()
                   if place_handle:
@@ -337,7 +340,7 @@ class PeopleModel(gtk.GenericTreeModel):
                     if place_title != "":
                         return cgi.escape(place_title)
         
-        for event_handle in data[_EVENT_COL]:
+        for event_handle in data[_EVENT_COL].ref:
             event = self.db.get_event_from_handle(event_handle)
             if event.name in ["Baptism", "Christening"]:
                 place_handle = event.get_place_handle()
@@ -350,7 +353,7 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_death_place(self,data,node):
         if data[_DEATH_COL]:
-            event = self.db.get_event_from_handle(data[_DEATH_COL])
+            event = self.db.get_event_from_handle(data[_DEATH_COL].ref)
             if event:
                   place_handle = event.get_place_handle()
                   if place_handle:
@@ -358,7 +361,7 @@ class PeopleModel(gtk.GenericTreeModel):
                     if place_title != "":
                         return cgi.escape(place_title)
         
-        for event_handle in data[_EVENT_COL]:
+        for event_handle in data[_EVENT_COL].ref:
             event = self.db.get_event_from_handle(event_handle)
             if event.name in ["Burial", "Cremation"]:
                 place_handle = event.get_place_handle()
