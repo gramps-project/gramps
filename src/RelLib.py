@@ -4389,11 +4389,23 @@ class RepoRef(BaseObject,NoteBase):
 class Repository(PrimaryObject,NoteBase):
     """A location where collections of Sources are found"""
     
+    UNKNOWN    = -1
+    CUSTOM     = 0
+    LIBRARY    = 1
+    CEMETERY   = 2
+    CHURCH     = 3
+    ARCHIVE    = 4
+    ALBUM      = 5
+    WEBSITE    = 6
+    BOOKSTORE  = 7
+    COLLECTION = 8
+    SAFE       = 9
+    
     def __init__(self):
         """creates a new Repository instance"""
         PrimaryObject.__init__(self)
         NoteBase.__init__(self)
-        self.type = ""
+        self.type = (Repository.LIBRARY,"")
         self.name = ""
         self.address = Location()
 	self.email = ""
@@ -4424,7 +4436,7 @@ class Repository(PrimaryObject,NoteBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.name,self.email,self.search_url,self.home_url]
+        return [self.name,self.type[1],self.email,self.search_url,self.home_url]
 
     def get_text_data_child_list(self):
         """

@@ -303,10 +303,10 @@ class EditRepository:
         self.name.set_editable(mode)
 
         self.type = self.top_window.get_widget("repository_type")
-        AutoComp.fill_combo(self.type,[ repos_type for repos_type \
-                                        in self.db.get_repository_type_list() \
-                                        if repos_type != '' ])
-        self.type.child.set_text(repository.get_type())
+        self.type_selector = AutoComp.StandardCustomSelector( \
+            Utils.repository_types,self.type,
+            RelLib.Repository.CUSTOM,RelLib.Repository.LIBRARY)
+        self.type_selector.set_values(repository.get_type())
         
         self.street = self.top_window.get_widget("repository_street")
         self.street.set_text(repository.get_address().get_parish())
@@ -493,7 +493,7 @@ class EditRepository:
         if name != self.repository.get_name():
             self.repository.set_name(name)
 
-        repos_type = unicode(self.type.child.get_text())
+        repos_type = self.type_selector.get_values()
         if repos_type != self.repository.get_type():
             self.repository.set_type(repos_type)
         

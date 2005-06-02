@@ -51,7 +51,7 @@ import Date
 import DateEdit
 import DateHandler
 import GrampsDBCallback
-
+import AutoComp
 
 
 #-------------------------------------------------------------------------
@@ -103,6 +103,9 @@ class RepositoryRefEditBase:
         
         
         self.media_type = self.get_widget("repos_ref_media_type")
+        self.media_type_selector = AutoComp.StandardCustomSelector( \
+            Utils.source_media_types,self.media_type,
+            RelLib.RepoRef.CUSTOM,RelLib.RepoRef.MANUSCRIPT)
         
         self.call_number = self.get_widget("repos_ref_callnumber")
         self.note = self.get_widget("repos_ref_note")
@@ -228,9 +231,9 @@ class RepositoryRefEdit(RepositoryRefEditBase):
             repos = self.db.get_repository_from_handle(idval)
             self.active_repos = repos
             if repos:
-                self.type.set_text(repos.get_type())
-        else:
-            self.type.set_text("")
+                self.type.set_text(repos.get_type()[1])
+            else:
+                self.type.set_text("")
             
         self.active_repos = sel
         if sel:
@@ -272,6 +275,9 @@ class RepositoryRefEdit(RepositoryRefEditBase):
             self.repos_ref.set_reference_handle(self.active_repos.get_handle())
 
         # handle type here.
+        the_type = self.media_type_selector.get_values()
+        if the_type != self.repos_ref.get_media_type():
+            self.repos_ref.set_media_type(the_type)
         
         buf = self.note.get_buffer()
         note = unicode(buf.get_text(buf.get_start_iter(),
@@ -289,7 +295,7 @@ class RepositoryRefEdit(RepositoryRefEditBase):
     def on_source_changed(self,obj):
         handle = self.handle_list[obj.get_active()]
         self.active_repos = self.db.get_repository_from_handle(handle)
-        self.type.set_text(self.active_repos.get_type())
+        self.type.set_text(self.active_repos.get_type()[1])
         self.set_button()
         pass
 
