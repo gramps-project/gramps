@@ -82,8 +82,6 @@ class ListBox:
         return list(self.change_list)
 
     def add_object(self,item):
-        import traceback
-        traceback.print_stack()
         self.data.append(item)
         self.change_list.add(item)
         
@@ -253,7 +251,6 @@ class EventListBox(ReorderListBox):
         if death_ref:
             self.data.append((death_ref,
                              parent.db.get_event_from_handle(death_ref.ref)))
-        self 
         for event_ref in person.get_event_ref_list():
             self.data.append((event_ref,
                               parent.db.get_event_from_handle(event_ref.ref)))
@@ -303,11 +300,10 @@ class EventListBox(ReorderListBox):
         event = self.list_model.get_object(node)
         EventEdit.EventEditor(
             self.parent, self.name, Utils.personal_events,
-            event, None, False,
+            event[1], None, False,
             self.edit_callback, noedit=self.db.readonly)
 
     def display_data(self,event_tuple):
-        print event_tuple
         (event_ref, event) = event_tuple
         pid = event.get_place_handle()
         if pid:
@@ -338,11 +334,16 @@ class EventListBox(ReorderListBox):
 
     def edit_callback(self,data):
         self.changed = True
-        ref = RelLib.EventRef()
-        ref.ref = data
-        new_data = (ref,data)
-        self.change_list.add(new_data)
-        if new_data not in self.data:
+        changed = False
+        for val in self.data:
+            if data.handle == val[1].handle:
+                self.change_list.add(val)
+                changed = True
+        if not changed:
+            ref = RelLib.EventRef()
+            ref.ref = data.handle
+            new_data = (ref,data)
+            self.change_list.add(new_data)
             self.data.append(new_data)
         self.redraw()
         try:
