@@ -1,3 +1,6 @@
+2005-06-03  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/po/es.po: Translation update for version 2.0.2.
+
 2005-06-03  Don Allingham  <don@gramps-project.org>
 	* src/EditPerson.py: Don't add empty strings to pdmap
 	* src/AutoComp.py: don't add empty strings to completion
