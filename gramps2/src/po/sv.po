@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 2.0.2\n"
 "POT-Creation-Date: Wed Jun  1 09:58:59 2005\n"
-"PO-Revision-Date: 2005-06-03 11:27+0200\n"
+"PO-Revision-Date: 2005-06-03 12:11+0200\n"
 "Last-Translator: Jens Arvidsson <jya@sverige.nu>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -7198,7 +7198,7 @@ msgstr "Deras barn:"
 
 #: plugins/Ancestors.py:258
 msgid "%(name)s's maternal %(grandparents)s"
-msgstr "%(grandparents)s på mödernet till (name)s"
+msgstr "%(grandparents)s på mödernet till %(name)s"
 
 #: plugins/Ancestors.py:284
 msgid "%(name)s's %(parents)s"
@@ -7206,7 +7206,7 @@ msgstr "%(parents)s till %(name)s"
 
 #: plugins/Ancestors.py:288
 msgid "%(name)s's paternal %(grandparents)s"
-msgstr "%(grandparents)s på fädernet till (name)s"
+msgstr "%(grandparents)s på fädernet till %(name)s"
 
 #: plugins/Ancestors.py:399
 msgid "(no photo)"
@@ -7824,7 +7824,7 @@ msgstr "%(spouse_name)s och %(person_name)s"
 
 #: plugins/DetDescendantReport.py:167
 msgid "Detailed Descendant Report for %(person_name)s"
-msgstr "Detaljerad stamtavlerapport för %(person_names)"
+msgstr "Detaljerad stamtavlerapport för %(person_name)s"
 
 #: plugins/DetDescendantReport.py:232
 msgid " is the same person as [%s]."

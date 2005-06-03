@@ -1,4 +1,7 @@
 2005-06-03  Jens Arvidsson <jya@sverige.nu>
+	* src/po/sv.po: Minor fixes found via pochkpyvar.pl.
+
+2005-06-03  Jens Arvidsson <jya@sverige.nu>
 	* src/po/sv.po: Translation update for version 2.0.2.
 
 2005-06-02  Don Allingham  <don@gramps-project.org>
