@@ -43,6 +43,8 @@ import gtk
 #-------------------------------------------------------------------------
 import NameDisplay
 import DateHandler
+import RelLib
+import Utils
 
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
@@ -541,7 +543,12 @@ class RepositoryModel(BaseModel):
         return unicode(data[1])
 
     def column_type(self,data):
-        return unicode(data[2])
+        rtype = data[2]
+        if rtype[0] == RelLib.Event.CUSTOM or rtype[0] not in Utils.repository_types:
+            name = rtype[1]
+        else:
+            name = Utils.repository_types[rtype[0]]
+        return unicode(name)
 
     def column_name(self,data):
         return unicode(data[3])
@@ -597,4 +604,3 @@ class RepositoryModel(BaseModel):
     
     def column_home_url(self,data):
         return unicode(data[7])
-

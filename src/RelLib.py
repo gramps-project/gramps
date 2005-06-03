@@ -4410,13 +4410,13 @@ class Repository(PrimaryObject,NoteBase):
         self.type = (Repository.LIBRARY,"")
         self.name = ""
         self.address = Location()
-	self.email = ""
-	self.search_url = ""
-	self.home_url = ""
+        self.email = ""
+        self.search_url = ""
+        self.home_url = ""
         self.note = Note()
 
     def serialize(self):
-        return (self.handle, self.gramps_id, unicode(self.type),
+        return (self.handle, self.gramps_id, self.type,
                 unicode(self.name), self.address,
                 unicode(self.email),
                 unicode(self.search_url), unicode(self.home_url),
