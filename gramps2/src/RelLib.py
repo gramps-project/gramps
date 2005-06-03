@@ -1971,9 +1971,9 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
                 between the two individuals does not match any of the
                 other types.
 
-        @param relationship_type: Relationship type between the father
-            and mother of the relationship.
-        @type relationship_type: int
+        @param relationship_type: (int,str) tuple of the relationship type
+            between the father and mother of the relationship.
+        @type relationship_type: tuple
         """
         self.type = relationship_type
 
