@@ -56,8 +56,12 @@ except:
     gzip_ok = 0
 
 _FAMILY_TRANS = {
-    'Married' : 0,      'Unmarried' : 1,  'Partners' : 1,
-    'Civil Union' : 2,  'Unknown' : 3,    'Other' : 4
+    'Married'     : RelLib.Family.MARRIED,
+    'Unmarried'   : RelLib.Family.UNMARRIED,
+    'Partners'    : RelLib.Family.UNMARRIED,
+    'Civil Union' : RelLib.Family.CIVIL_UNION,
+    'Unknown'     : RelLib.Family.UNKNOWN,
+    'Other'       : RelLib.Family.CUSTOM,
     }
 
 #-------------------------------------------------------------------------
@@ -352,7 +356,6 @@ class GrampsParser:
             "attr_type"  : (None,self.stop_attr_type),
             "attr_value" : (None,self.stop_attr_value),
             "bookmark"   : (self.start_bmark, None),
-            "witness"    : (self.start_witness,self.stop_witness),
             "bookmarks"  : (None, None),
             "child"      : (self.start_child,None),
             "childof"    : (self.start_childof,None),
@@ -424,6 +427,56 @@ class GrampsParser:
             "suffix"     : (None, self.stop_suffix),
             "title"      : (None, self.stop_title),
             "url"        : (self.start_url, None)
+            }
+
+        self.save_event = {
+            "Unknown" : RelLib.Event.UNKNOWN,
+            "Custom" : RelLib.Event.CUSTOM,
+            "Marriage" : RelLib.Event.MARRIAGE,
+            "Marriage Settlement" : RelLib.Event.MARR_SETTL,
+            "Marriage License" : RelLib.Event.MARR_LIC,
+            "Marriage Contract" : RelLib.Event.MARR_CONTR,
+            "Marriage Banns" : RelLib.Event.MARR_BANNS,
+            "Engagement" : RelLib.Event.ENGAGEMENT,
+            "Divorce" : RelLib.Event.DIVORCE,
+            "Divorce Filing" : RelLib.Event.DIV_FILING,
+            "Annulment" : RelLib.Event.ANNULMENT,
+            "Alternate Marriage" : RelLib.Event.MARR_ALT,
+            "Adopted" : RelLib.Event.ADOPT,
+            "Birth" : RelLib.Event.BIRTH,
+            "Death" : RelLib.Event.DEATH,
+            "Adult Christening" : RelLib.Event.ADULT_CHRISTEN,
+            "Baptism" : RelLib.Event.BAPTISM,
+            "Bar Mitzvah" : RelLib.Event.BAR_MITZVAH,
+            "Bas Mitzvah" : RelLib.Event.BAS_MITZVAH,
+            "Blessing" : RelLib.Event.BLESS,
+            "Burial" : RelLib.Event.BURIAL,
+            "Cause Of Death" : RelLib.Event.CAUSE_DEATH,
+            "Census" : RelLib.Event.CENSUS,
+            "Christening" : RelLib.Event.CHRISTEN,
+            "Confirmation" : RelLib.Event.CONFIRMATION,
+            "Cremation" : RelLib.Event.CREMATION,
+            "Degree" : RelLib.Event.DEGREE,
+            "Divorce Filing" : RelLib.Event.DIV_FILING,
+            "Education" : RelLib.Event.EDUCATION,
+            "Elected" : RelLib.Event.ELECTED,
+            "Emigration" : RelLib.Event.EMIGRATION,
+            "First Communion" : RelLib.Event.FIRST_COMMUN,
+            "Immigration" : RelLib.Event.IMMIGRATION,
+            "Graduation" : RelLib.Event.GRADUATION,
+            "Medical Information" : RelLib.Event.MED_INFO,
+            "Military Service" : RelLib.Event.MILITARY_SERV,
+            "Naturalization" : RelLib.Event.NATURALIZATION,
+            "Nobility Title" : RelLib.Event.NOB_TITLE,
+            "Number of Marriages" : RelLib.Event.NUM_MARRIAGES,
+            "Occupation" : RelLib.Event.OCCUPATION,
+            "Ordination" : RelLib.Event.ORDINATION,
+            "Probate" : RelLib.Event.PROBATE,
+            "Property" : RelLib.Event.PROPERTY,
+            "Religion" : RelLib.Event.RELIGION,
+            "Residence" : RelLib.Event.RESIDENCE,
+            "Retirement" : RelLib.Event.RETIREMENT,
+            "Will" : RelLib.Event.WILL,
             }
 
     def find_person_by_gramps_id(self,gramps_id):
@@ -646,6 +699,7 @@ class GrampsParser:
             self.locations = self.locations + 1
 
     def start_witness(self,attrs):
+        return
         self.in_witness = 1
         self.witness_comment = ""
         if attrs.has_key('hlink'):
@@ -664,8 +718,13 @@ class GrampsParser:
 
     def start_event(self,attrs):
         self.event = RelLib.Event()
+        self.event.set_handle(Utils.create_id())
         self.db.add_event(self.event,self.trans)
-        self.event_type = const.save_event(attrs["type"])
+        etype = self.save_event.get(attrs["type"],RelLib.Event.CUSTOM)
+        if etype == RelLib.Event.CUSTOM:
+            self.event.set_type((etype,attrs["type"]))
+        else:
+            self.event.set_type((etype,u""))
         if attrs.has_key("conf"):
             self.event.conf = int(attrs["conf"])
         else:
@@ -682,7 +741,7 @@ class GrampsParser:
         if attrs.has_key("priv"):
             self.attribute.private = int(attrs["priv"])
         if attrs.has_key('type'):
-            self.attribute.set_type(const.save_attr(attrs["type"]))
+            self.attribute.set_type(attrs["type"])
         if attrs.has_key('value'):
             self.attribute.set_value(attrs["value"])
         if self.photo:
@@ -790,9 +849,12 @@ class GrampsParser:
             self.family = self.find_family_by_gramps_id(handle)
 
         if attrs.has_key("type"):
-            self.family.set_relationship(
-                _FAMILY_TRANS.get(attrs["type"],
-                                  RelLib.Family.UNKNOWN))
+            ftype = _FAMILY_TRANS.get(attrs["type"],RelLib.Family.UNKNOWN)
+            if ftype == RelLib.Family.UNKNOWN:
+                self.family.set_relationship((ftype,attrs['type']))
+            else:
+                self.family.set_relationship((ftype,""))
+                
         if attrs.has_key("complete"):
             self.family.set_complete_flag(int(attrs['complete']))
         else:
@@ -1169,31 +1231,33 @@ class GrampsParser:
             gtk.main_iteration()
         
     def stop_event(self,*tag):
-        self.event.name = self.event_type
-
         if self.family:
             self.family.add_event_handle(self.event.get_handle())
         else:
-            if self.event_type == "Birth":
-                self.person.set_birth_handle(self.event.get_handle())
-            elif self.event_type == "Death":
-                self.person.set_death_handle(self.event.get_handle())
+            ref = RelLib.EventRef()
+            ref.ref = self.event.get_handle()
+            if self.event.get_type()[0] == RelLib.Event.BIRTH:
+                self.person.set_birth_ref(ref)
+            elif self.event.get_type()[0] == RelLib.Event.DEATH:
+                self.person.set_death_ref(ref)
             else:
-                self.person.add_event_handle(self.event.get_handle())
+                self.person.add_event_ref(ref)
+            print self.event.get_date()
         self.db.commit_event(self.event,self.trans,self.change)
         self.event = None
 
     def stop_name(self,tag):
-        if self.in_witness:
-            self.witness = RelLib.Witness(RelLib.Event.NAME,tag)
-        else:
-            if self.name.get_type() == "":
-                self.name.set_type("Birth Name")
-            self.person.set_primary_name (self.name)
-            self.person.get_primary_name().build_sort_name()
-            self.name = None
+        #if self.in_witness:
+        #    self.witness = RelLib.Witness(RelLib.Event.NAME,tag)
+        #else:
+        if self.name.get_type() == "":
+            self.name.set_type("Birth Name")
+        self.person.set_primary_name (self.name)
+        self.person.get_primary_name().build_sort_name()
+        self.name = None
 
     def stop_ref(self,tag):
+        return
         self.witness = RelLib.Witness(RelLib.Event.ID,tag)
 
     def stop_place(self,tag):

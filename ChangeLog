@@ -1,3 +1,9 @@
+2005-06-02  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels.py: Handle EventRefs properly
+	* src/FamilyView.py: handle relationship types
+	* src/ReadXML.py: start of upgrade process
+	* src/RelLib.py: ROLE_PRIMARY -> PRIMARY
+
 2005-06-02  Alex Roitman  <shura@gramps-project.org>
 	* src/ListModel.py: Check for the list to be long enough.
 	* src/gramps.glade: Replace ComboBox with ComboBoxEntry; remove

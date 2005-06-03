@@ -1044,12 +1044,12 @@ class FamilyView:
                     mdate = " - %s" % DateHandler.displayer.display(dobj)
                 else:
                     mdate = ""
+
                 i,s = fm.get_relationship()
-                if Utils.family_relations.has_key(i) \
-                       and i != RelLib.Family.CUSTOM:
-                    disp_rel = Utils.family_relations[i]
-                else:
+                if i == RelLib.Family.CUSTOM:
                     disp_rel = s
+                else:
+                    disp_rel = Utils.family_relations[i]
                 v = "%s [%s]\n\t%s%s" % (
                     NameDisplay.displayer.display(sp),
                     sp.get_gramps_id(), disp_rel, mdate)
@@ -1106,9 +1106,9 @@ class FamilyView:
             m = self.parent.db.get_person_from_handle(mother_handle)
 
             father = self.nameof(_("Father"),f,
-                                 const.child_rel_list[frel])
+                                 Utils.child_relations[frel])
             mother = self.nameof(_("Mother"),m,
-                                 const.child_rel_list[mrel])
+                                 Utils.child_relations[mrel])
 
             node = model.append()
             if not sel:

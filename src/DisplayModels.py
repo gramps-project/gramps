@@ -216,37 +216,40 @@ class ChildModel(gtk.ListStore):
             index += 1
 
     def column_birth_day(self,data):
-        event_handle = data.get_birth_handle()
-        if event_handle:
-            return self.db.get_event_from_handle(event_handle).get_date()
+        event_ref = data.get_birth_ref()
+        if event_ref and event_ref.ref:
+            print event_ref.ref
+            return self.db.get_event_from_handle(event_ref.ref).get_date()
         else:
             return u""
 
     def column_birth_sort(self,data):
-        event_handle = data.get_birth_handle()
-        if event_handle:
-            return self.db.get_event_from_handle(event_handle).get_date_object().get_sort_value()
+        event_ref = data.get_birth_ref()
+        if event_ref and event_ref.ref:
+            event = self.db.get_event_from_handle(event_ref.ref)
+            return event.get_date_object().get_sort_value()
         else:
             return 0
 
     def column_death_day(self,data):
-        event_handle = data.get_death_handle()
-        if event_handle:
-            return self.db.get_event_from_handle(event_handle).get_date()
+        event_ref = data.get_death_ref()
+        if event_ref and event_ref.ref:
+            return self.db.get_event_from_handle(event_ref.ref).get_date()
         else:
             return u""
 
     def column_death_sort(self,data):
-        event_handle = data.get_death_handle()
-        if event_handle:
-            return self.db.get_event_from_handle(event_handle).get_date_object().get_sort_value()
+        event_ref = data.get_death_ref()
+        if event_ref and event_ref.ref:
+            event = self.db.get_event_from_handle(event_ref.ref)
+            return event.get_date_object().get_sort_value()
         else:
             return 0
         
     def column_birth_place(self,data):
-        event_handle = data.get_birth_handle()
-        if event_handle:
-            event = self.db.get_event_from_handle(event_handle)
+        event_ref = data.get_birth_ref()
+        if event_ref and event_ref.ref:
+            event = self.db.get_event_from_handle(event_ref.ref)
             if event:
                 place_handle = event.get_place_handle()
                 if place_handle:
@@ -254,9 +257,9 @@ class ChildModel(gtk.ListStore):
         return u""
 
     def column_death_place(self,data):
-        event_handle = data.get_death_handle()
-        if event_handle:
-            event = self.db.get_event_from_handle(event_handle)
+        event_ref = data.get_death_ref()
+        if event_ref and event_ref.ref:
+            event = self.db.get_event_from_handle(event_ref.ref)
             if event:
                 place_handle = event.get_place_handle()
                 if place_handle:
@@ -591,7 +594,7 @@ class RepositoryModel(BaseModel):
 
     def column_search_url(self,data):
         return unicode(data[6])
-
+    
     def column_home_url(self,data):
         return unicode(data[7])
 
