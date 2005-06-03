@@ -34,6 +34,7 @@ import locale
 #
 #-------------------------------------------------------------------------
 import gtk
+import gtk.gdk
 import gnome
 
 try:
@@ -402,17 +403,34 @@ def search_for(name):
 #  Change label apperance
 #
 #-------------------------------------------------------------------------
-def bold_label(label):
+def bold_label(label,widget=None):
     text = unicode(label.get_text())
+    text = text.replace('<i>','')
+    text = text.replace('</i>','')
     label.set_text("<b>%s</b>" % text )
-    label.set_use_markup(1)
+    label.set_use_markup(True)
+    if widget:
+        widget.window.set_cursor(None)
 
-def unbold_label(label):
+def unbold_label(label,widget=None):
     text = unicode(label.get_text())
     text = text.replace('<b>','')
     text = text.replace('</b>','')
+    text = text.replace('<i>','')
+    text = text.replace('</i>','')
     label.set_text(text)
-    label.set_use_markup(0)
+    label.set_use_markup(False)
+    if widget:
+        widget.window.set_cursor(None)
+
+def temp_label(label,widget=None):
+    text = unicode(label.get_text())
+    text = text.replace('<b>','')
+    text = text.replace('</b>','')
+    label.set_text("<i>%s</i>" % text )
+    label.set_use_markup(True)
+    if widget:
+        widget.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
 
 #-------------------------------------------------------------------------
 #

@@ -32,6 +32,7 @@ from gettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+import gobject
 import gtk.glade
 import gnome
 
@@ -180,11 +181,12 @@ class EditSource:
 
         self.top_window.get_widget('ok').set_sensitive(not self.db.readonly)
 
-        self.display_references()
         if parent_window:
             self.top.set_transient_for(parent_window)
         self.add_itself_to_menu()
         self.top.show()
+        Utils.temp_label(self.refs_label,self.top)
+        gobject.idle_add(self.display_references)
         self.data_sel = self.datalist.get_selection()
 
     def on_add_data_clicked(self,widget):
@@ -343,9 +345,9 @@ class EditSource:
             self.model.add([_("Media"),gramps_id,name],(5,handle))
 
         if any:
-            Utils.bold_label(self.refs_label)
+            Utils.bold_label(self.refs_label,self.top)
         else:
-            Utils.unbold_label(self.refs_label)
+            Utils.unbold_label(self.refs_label,self.top)
             
         self.ref_not_loaded = 0
 
@@ -403,7 +405,8 @@ class EditSource:
             self.gallery.load_images()
         elif page == 3 and self.ref_not_loaded:
             self.ref_not_loaded = 0
-            self.display_references()
+            Utils.temp_label(self.refs_label,self.top)
+            gobject.idle_add(self.display_references)
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                 self.notes_buffer.get_end_iter(),False))
         if text:
