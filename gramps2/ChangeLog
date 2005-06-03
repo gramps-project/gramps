@@ -1,3 +1,7 @@
+2005-06-03  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: Don't add empty strings to pdmap
+	* src/AutoComp.py: don't add empty strings to completion
+
 2005-06-03  Alexander Roitman  <shura@gramps-project.org>
 	* src/Utils.py (bold_label,unbold_label,temp_label): optionally
 	set cursor.
