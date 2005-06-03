@@ -59,9 +59,11 @@ class EditSource:
     def __init__(self,source,db,parent,parent_window=None,readonly=False):
         if source:
             self.source = source
-            self.ref_not_loaded = 1
         else:
             self.source = RelLib.Source()
+        if self.source.get_handle():
+            self.ref_not_loaded = 1
+        else:
             self.ref_not_loaded = 0
         self.db = db
         self.parent = parent

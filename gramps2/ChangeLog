@@ -11,6 +11,8 @@
 	display_references using idle_add; (display_references): set
 	cursor when done.
 
+	* src/EditPlace.py, src/EditSource.py: Detect new objects by handle.
+
 2005-06-03  Jens Arvidsson <jya@sverige.nu>
 	* src/po/sv.po: Minor fixes found via pochkpyvar.pl.
 

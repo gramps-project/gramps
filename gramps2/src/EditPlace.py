@@ -67,8 +67,10 @@ class EditPlace:
                 return
             else:
                 self.win_key = place.get_handle()
+            self.ref_not_loaded = 1
         else:
             self.win_key = self
+            self.ref_not_loaded = 0
         self.name_display = NameDisplay.displayer.display
         self.place = place
         self.db = parent.db
@@ -78,10 +80,8 @@ class EditPlace:
         self.lists_changed = 0
         if place:
             self.srcreflist = place.get_source_references()
-            self.ref_not_loaded = 1
         else:
             self.srcreflist = []
-            self.ref_not_loaded = 0
 
         self.top_window = gtk.glade.XML(const.placesFile,"placeEditor","gramps")
         self.top = self.top_window.get_widget("placeEditor")
