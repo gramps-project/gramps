@@ -4,6 +4,9 @@
 	* src/EditSource.py (__init__,on_switch_page): Call
 	display_references using idle_add; (display_references): set
 	cursor when done.
+	* src/EditPlace (__init__,on_switch_page): Call
+	display_references using idle_add; (display_references): set
+	cursor when done.
 
 2005-06-03  Jens Arvidsson <jya@sverige.nu>
 	* src/po/sv.po: Minor fixes found via pochkpyvar.pl.

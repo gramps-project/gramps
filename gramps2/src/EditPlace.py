@@ -237,12 +237,13 @@ class EditPlace:
 
         self.redraw_url_list()
         self.redraw_location_list()
-        self.display_references()
         if parent_window:
             self.top.set_transient_for(parent_window)
         self.add_itself_to_menu()
         self.top_window.get_widget('ok').set_sensitive(not self.db.readonly)
+        Utils.temp_label(self.refs_label,self.top)
         self.top.show()
+        gobject.idle_add(self.display_references)
 
     def on_delete_event(self,obj,b):
         self.glry.close()
@@ -407,7 +408,8 @@ class EditPlace:
             self.glry.load_images()
         elif page == 6 and self.ref_not_loaded:
             self.ref_not_loaded = 0
-            self.display_references()
+            Utils.temp_label(self.refs_label,self.top)
+            gobject.idle_add(self.display_references)
         text = unicode(self.note_buffer.get_text(self.note_buffer.get_start_iter(),
                                 self.note_buffer.get_end_iter(),False))
         if text:
@@ -544,7 +546,9 @@ class EditPlace:
 
         self.refinfo.get_buffer().set_text(msg)
         if any:
-            Utils.bold_label(self.refs_label)
+            Utils.bold_label(self.refs_label,self.top)
+        else:
+            Utils.unbold_label(self.refs_label,self.top)
         
         self.ref_not_loaded = 0
         
