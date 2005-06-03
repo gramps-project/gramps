@@ -59,8 +59,10 @@ class EditSource:
     def __init__(self,source,db,parent,parent_window=None,readonly=False):
         if source:
             self.source = source
+            self.ref_not_loaded = 1
         else:
             self.source = RelLib.Source()
+            self.ref_not_loaded = 0
         self.db = db
         self.parent = parent
         self.name_display = NameDisplay.displayer.display
@@ -75,7 +77,6 @@ class EditSource:
         self.child_windows = {}
         self.path = db.get_save_path()
         self.not_loaded = 1
-        self.ref_not_loaded = 1
         self.lists_changed = 0
         self.gallery_ok = 0
         mode = not self.db.readonly
@@ -185,8 +186,10 @@ class EditSource:
             self.top.set_transient_for(parent_window)
         self.add_itself_to_menu()
         self.top.show()
-        Utils.temp_label(self.refs_label,self.top)
-        gobject.idle_add(self.display_references)
+        if self.ref_not_loaded:
+            self.ref_not_loaded = 0
+            Utils.temp_label(self.refs_label,self.top)
+            gobject.idle_add(self.display_references)
         self.data_sel = self.datalist.get_selection()
 
     def on_add_data_clicked(self,widget):

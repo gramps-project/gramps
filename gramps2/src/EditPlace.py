@@ -61,7 +61,7 @@ class EditPlace:
 
     def __init__(self,parent,place,parent_window=None):
         self.parent = parent
-        if place.get_handle():
+        if place and place.get_handle():
             if self.parent.child_windows.has_key(place.get_handle()):
                 self.parent.child_windows[place.get_handle()].present(None)
                 return
@@ -75,12 +75,13 @@ class EditPlace:
         self.child_windows = {}
         self.path = parent.db.get_save_path()
         self.not_loaded = 1
-        self.ref_not_loaded = 1
         self.lists_changed = 0
         if place:
             self.srcreflist = place.get_source_references()
+            self.ref_not_loaded = 1
         else:
             self.srcreflist = []
+            self.ref_not_loaded = 0
 
         self.top_window = gtk.glade.XML(const.placesFile,"placeEditor","gramps")
         self.top = self.top_window.get_widget("placeEditor")
@@ -241,9 +242,11 @@ class EditPlace:
             self.top.set_transient_for(parent_window)
         self.add_itself_to_menu()
         self.top_window.get_widget('ok').set_sensitive(not self.db.readonly)
-        Utils.temp_label(self.refs_label,self.top)
         self.top.show()
-        gobject.idle_add(self.display_references)
+        if self.ref_not_loaded:
+            Utils.temp_label(self.refs_label,self.top)
+            gobject.idle_add(self.display_references)
+            self.ref_not_loaded = 0
 
     def on_delete_event(self,obj,b):
         self.glry.close()
@@ -549,8 +552,6 @@ class EditPlace:
             Utils.bold_label(self.refs_label,self.top)
         else:
             Utils.unbold_label(self.refs_label,self.top)
-        
-        self.ref_not_loaded = 0
         
 #-------------------------------------------------------------------------
 #

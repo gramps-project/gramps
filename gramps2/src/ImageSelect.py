@@ -892,14 +892,16 @@ class GlobalMediaProperties:
             self.win_key = self
         self.child_windows = {}
         self.obj = obj
-        self.alist = self.obj.get_attribute_list()[:]
         self.lists_changed = 0
         self.db = db
-        self.refs = 0
         if obj:
             self.date_object = Date.Date(self.obj.get_date_object())
+            self.alist = self.obj.get_attribute_list()[:]
+            self.refs = 0
         else:
             self.date_object = Date.Date()
+            self.alist = []
+            self.refs = 1
             
         self.path = self.db.get_save_path()
         self.change_dialog = gtk.glade.XML(const.imageselFile,
@@ -1012,11 +1014,13 @@ class GlobalMediaProperties:
             self.change_dialog.get_widget(name).set_sensitive(mode)
 
         self.redraw_attr_list()
-        self.display_refs()
         if parent_window:
             self.window.set_transient_for(parent_window)
         self.add_itself_to_menu()
         self.window.show()
+        if not self.refs:
+            Utils.temp_label(self.refs_label,self.window)
+            gobject.idle_add(self.display_refs)
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()
@@ -1090,8 +1094,6 @@ class GlobalMediaProperties:
             return
             
     def display_refs(self):
-        if self.refs == 1:
-            return
         self.refs = 1
 
         (person_list,family_list,event_list,place_list,source_list
@@ -1135,13 +1137,14 @@ class GlobalMediaProperties:
             self.refmodel.add([_("Source"),gramps_id,name])
 
         if any:
-            Utils.bold_label(self.refs_label)
+            Utils.bold_label(self.refs_label,self.window)
         else:
-            Utils.unbold_label(self.refs_label)
+            Utils.unbold_label(self.refs_label,self.window)
         
     def on_notebook_switch_page(self,obj,junk,page):
-        if page == 3:
-            self.display_refs()
+        if page == 3 and not self.refs:
+            Utils.temp_label(self.refs_label,self.window)
+            gobject.idle_add(self.display_refs)
         t = self.notes.get_buffer()
         text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),False))
         if text:
