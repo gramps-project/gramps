@@ -270,8 +270,18 @@ class EventListBox(ReorderListBox):
         ReorderListBox.__init__(self, parent, person, obj, label,
                                 button_list, evalues, DdTargets.EVENT)
 
+        self.name_map = {}
+        self.val_map = Utils.personal_events
+        self.custom = RelLib.Event.CUSTOM
+        for key in self.val_map.keys():
+            self.name_map[self.val_map[key]] = key
+
     def set_name(self,index,value):
-        self.data[index][1].set_name(value)
+        val = self.name_map.get(value,self.custom)
+        if val == self.custom:
+            self.data[index][1].set_type((val,value))
+        else:
+            self.data[index][1].set_type((val,self.val_map[val]))
         self.change_list.add(self.data[index])
 
     def set_description(self,index,value):

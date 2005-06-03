@@ -46,6 +46,7 @@ import GrampsCfg
 import Relationship
 import NameDisplay
 import RelLib
+import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -690,7 +691,9 @@ class PedigreeView:
             if event:
                 if line_count < 3:
                     return event.get_date()
-                text += _(event.get_name())
+                i,s = event.get_type()
+                name = Utils.family_relations[i]
+                text += name
                 text += "\n"
                 text += event.get_date()
                 text += "\n"

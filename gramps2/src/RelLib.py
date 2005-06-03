@@ -2369,6 +2369,7 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         @param the_type: Type to assign to the Event
         @type the_type: tuple
         """
+        assert type(the_type) == tuple
         self.type = the_type
 
     def get_type(self):
@@ -3535,6 +3536,7 @@ class Attribute(PrivateSourceNote):
 
     def set_type(self,val):
         """sets the type (or key) of the Attribute instance"""
+        assert type(the_type) == tuple
         self.type = val
 
     def get_type(self):
@@ -3801,9 +3803,10 @@ class Name(PrivateSourceNote,DateBase):
         """
         self.prefix = val
 
-    def set_type(self,type):
+    def set_type(self,the_type):
         """sets the type of the Name instance"""
-        self.type = type
+        assert type(the_type) == tuple
+        self.type = the_type
 
     def get_type(self):
         """returns the type of the Name instance"""

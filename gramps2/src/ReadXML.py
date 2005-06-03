@@ -64,6 +64,14 @@ _FAMILY_TRANS = {
     'Other'       : RelLib.Family.CUSTOM,
     }
 
+_NAME_TRANS = {
+    "Unknown"       : RelLib.Name.UNKNOWN,
+    "Custom"        : RelLib.Name.CUSTOM,
+    "Also Known As" : RelLib.Name.AKA,
+    "Birth Name"    : RelLib.Name.BIRTH,
+    "Married Name"  : RelLib.Name.MARRIED,
+    }
+
 #-------------------------------------------------------------------------
 #
 # Importing data into the currently open database. 
@@ -893,7 +901,11 @@ class GrampsParser:
         if not self.in_witness:
             self.name = RelLib.Name()
             if attrs.has_key("type"):
-                self.name.set_type(attrs["type"])
+                tval = _NAME_TRANS[attrs['type']]
+                if tval == RelLib.Name.CUSTOM:
+                    self.name.set_type((tval,attrs["type"]))
+                else:
+                    self.name.set_type((tval,Utils.name_types[tval]))
             if attrs.has_key("sort"):
                 self.name.set_sort_as(int(attrs["sort"]))
             if attrs.has_key("display"):
@@ -1242,7 +1254,6 @@ class GrampsParser:
                 self.person.set_death_ref(ref)
             else:
                 self.person.add_event_ref(ref)
-            print self.event.get_date()
         self.db.commit_event(self.event,self.trans,self.change)
         self.event = None
 
@@ -1254,6 +1265,7 @@ class GrampsParser:
             self.name.set_type("Birth Name")
         self.person.set_primary_name (self.name)
         self.person.get_primary_name().build_sort_name()
+        print "*",self.person.primary_name.get_name()
         self.name = None
 
     def stop_ref(self,tag):
@@ -1293,6 +1305,7 @@ class GrampsParser:
 
     def stop_person(self,*tag):
         self.db.commit_person(self.person,self.trans,self.change)
+        print self.person.handle,self.person.primary_name.get_name()
         self.person = None
         while gtk.events_pending():
             gtk.main_iteration()
