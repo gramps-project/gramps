@@ -18,6 +18,8 @@
 	* src/EditPlace.py, src/EditSource.py: Detect new objects by
 	handle.
 	* src/const.py.in (save_frel): Return English strings.
+	* src/plugins/FamilyGroup.py (parse_user_options): Only select
+	spouse if there is any.
 
 2005-06-03  Jens Arvidsson <jya@sverige.nu>
 	* src/po/sv.po: Minor fixes found via pochkpyvar.pl.
