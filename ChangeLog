@@ -2,6 +2,7 @@
 	* src/ListModel.py: Check for the list to be long enough.
 	* src/gramps.glade: Replace ComboBox with ComboBoxEntry; remove
 	unneeded scrollwed window (caused warning).
+	* src/RelLib.py (Family.set_relationship): Update doc string.
 
 2005-06-01  Don Allingham  <don@gramps-project.org>
 	* src/EditPerson.py: Start event_ref integration

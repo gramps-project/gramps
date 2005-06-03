@@ -1953,7 +1953,9 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
     def set_relationship(self,relationship_type):
         """
         Sets the relationship type between the people identified as the
-        father and mother in the relationship. The valid values are:
+        father and mother in the relationship. The type is a tuple whose
+        first item is an integer constant and whose second item is
+        the string. The valid values are:
 
             - C{Family.MARRIED} : indicates a legally recognized married
                 relationship between two individuals. This may be either
