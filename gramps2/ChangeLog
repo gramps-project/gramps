@@ -1,3 +1,7 @@
+2005-06-04  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Updated translation to 2.0.2 template.pot.
+	  Everything except for a few dozen tips is translated.
+
 2005-06-03  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/po/es.po: Translation update for version 2.0.2.
 

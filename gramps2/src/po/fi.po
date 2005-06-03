@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fi\n"
-"POT-Creation-Date: Wed May 18 21:32:32 2005\n"
-"PO-Revision-Date: 2005-05-23 23:47+0300\n"
+"POT-Creation-Date: Wed Jun  1 09:58:59 2005\n"
+"PO-Revision-Date: 2005-06-04 00:52+0300\n"
 "Last-Translator: Eero Tamminen <eerot@sf>\n"
 "Language-Team: Suomi\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "%s: avaus ei onnistu"
 msgid "The filename supplied could not be found."
 msgstr "Annettu tiedosto ei löytynyt."
 
-#: AddMedia.py:143 MediaView.py:371 MediaView.py:395
+#: AddMedia.py:143 MediaView.py:410 MediaView.py:434
 msgid "Add Media Object"
 msgstr "Lisää media-objekti"
 
@@ -42,23 +42,22 @@ msgstr "Valitse %s:n puoliso/kumppani"
 msgid "Choose Spouse/Partner"
 msgstr "Valitse puoliso/kumppani"
 
-#: AddSpouse.py:161 ChooseParents.py:230 EditPerson.py:338 EditSource.py:298
-#: FamilyView.py:74 ImageSelect.py:1101 PeopleView.py:58 PeopleView.py:148
+#: AddSpouse.py:161 ChooseParents.py:230 EditPerson.py:338 EditSource.py:305
+#: FamilyView.py:74 ImageSelect.py:1102 PeopleView.py:58 PeopleView.py:148
 #: SelectChild.py:124 SelectPerson.py:78 plugins/BookReport.py:631
 #: plugins/FilterEditor.py:459 plugins/IndivComplete.py:405
-#: plugins/IndivSummary.py:226 plugins/NavWebPage.py:194
-#: plugins/PatchNames.py:191 plugins/RelCalc.py:95 plugins/ScratchPad.py:154
-#: plugins/ScratchPad.py:195 plugins/ScratchPad.py:237
-#: plugins/ScratchPad.py:294 plugins/ScratchPad.py:327
-#: plugins/ScratchPad.py:369 plugins/ScratchPad.py:380
-#: plugins/ScratchPad.py:381 plugins/ScratchPad.py:392
-#: plugins/ScratchPad.py:463 plugins/ScratchPad.py:474 plugins/TimeLine.py:431
-#: plugins/WebPage.py:318
+#: plugins/IndivSummary.py:226 plugins/PatchNames.py:191 plugins/RelCalc.py:95
+#: plugins/ScratchPad.py:154 plugins/ScratchPad.py:195
+#: plugins/ScratchPad.py:237 plugins/ScratchPad.py:294
+#: plugins/ScratchPad.py:327 plugins/ScratchPad.py:369
+#: plugins/ScratchPad.py:380 plugins/ScratchPad.py:381
+#: plugins/ScratchPad.py:392 plugins/ScratchPad.py:463
+#: plugins/ScratchPad.py:474 plugins/TimeLine.py:431 plugins/WebPage.py:320
 msgid "Name"
 msgstr "Nimi"
 
-#: AddSpouse.py:166 ChooseParents.py:236 EditSource.py:298 FamilyView.py:73
-#: ImageSelect.py:1101 MediaView.py:58 MergePeople.py:107 PeopleView.py:59
+#: AddSpouse.py:166 ChooseParents.py:236 EditSource.py:305 FamilyView.py:73
+#: ImageSelect.py:1102 MediaView.py:58 MergePeople.py:107 PeopleView.py:59
 #: PlaceView.py:50 SelectChild.py:129 SelectObject.py:85 SelectPerson.py:84
 #: SourceView.py:52 Sources.py:108 Sources.py:242 Witness.py:64
 #: plugins/PatchNames.py:182 plugins/RelCalc.py:95
@@ -83,9 +82,7 @@ msgstr "Puoliso on aktiivisen henkilön vanhempi"
 
 #: AddSpouse.py:264
 msgid "The person selected as a spouse is a parent of the active person. Usually, this is a mistake. You may choose either to proceed with adding a spouse, or to return to the Choose Spouse dialog to fix the problem."
-msgstr ""
-"Valitsemasi henkilö on aktiivisen henkilön puoliso. Yleensä tämä on virhe. "
-"Voit joko jatkaa lisäämällä puolison, tai palata Puolison valintadialogiin korjataksesi ongelman."
+msgstr "Valitsemasi henkilö on aktiivisen henkilön puoliso. Yleensä tämä on virhe. Voit joko jatkaa lisäämällä puolison, tai palata Puolison valintadialogiin korjataksesi ongelman."
 
 #: AddSpouse.py:268 AddSpouse.py:289
 msgid "Proceed with adding"
@@ -105,9 +102,7 @@ msgstr "Puoliso on valitun henkilön lapsi"
 
 #: AddSpouse.py:285
 msgid "The person selected as a spouse is a child of the active person. Usually, this is a mistake. You may choose either to proceed with adding a spouse, or to return to the Choose Spouse dialog to fix the problem."
-msgstr ""
-"Valitsemasi henkilö on aktiivisen henkilön lapsi. Yleensä tämä on virhe. "
-"Voit joko jatkaa lisäämällä puolison, tai palata Puolison valintadialogiin korjataksesi ongelman."
+msgstr "Valitsemasi henkilö on aktiivisen henkilön lapsi. Yleensä tämä on virhe. Voit joko jatkaa lisäämällä puolison, tai palata Puolison valintadialogiin korjataksesi ongelman."
 
 #: AddSpouse.py:315 FamilyView.py:725
 msgid "Add Spouse"
@@ -122,28 +117,28 @@ msgstr "Osoite-editori"
 msgid "Address"
 msgstr "Osoite"
 
-#: ArgHandler.py:282 DbPrompter.py:214
+#: ArgHandler.py:279 DbPrompter.py:216
 msgid "Opening non-native format"
 msgstr "Avaan muuta kuin sisäistä tiedostomuotoa"
 
-#: ArgHandler.py:283 DbPrompter.py:215
+#: ArgHandler.py:280 DbPrompter.py:217
 msgid "New GRAMPS database has to be set up when opening non-native formats. The following dialog will let you select the new database."
 msgstr "Muita kuin sisäisiä tiedostomuotoja aukaistessa täytyy luoda uusi GRAMPS tietokanta. Voit valita sen seuraavasta dialogista."
 
-#: ArgHandler.py:291
+#: ArgHandler.py:288
 msgid "New GRAMPS database was not set up"
 msgstr "Uutta GRAMPS tietokantaa ei luotu"
 
-#: ArgHandler.py:292
+#: ArgHandler.py:289
 msgid "GRAMPS cannot open non-native data without setting up new GRAMPS database."
 msgstr "GRAMPS ei pysty aukaisemaan muita kuin sisäisiä tiedostomuotoja luomatta uutta GRAMPS tietokantaa."
 
-#: ArgHandler.py:302 DbPrompter.py:201 DbPrompter.py:228 DbPrompter.py:304
-#: DbPrompter.py:333
+#: ArgHandler.py:299 DbPrompter.py:203 DbPrompter.py:230 DbPrompter.py:306
+#: DbPrompter.py:335
 msgid "Could not open file: %s"
 msgstr "Tiedoston %s avaus epäonnistui"
 
-#: ArgHandler.py:303 DbPrompter.py:229 DbPrompter.py:334 DbPrompter.py:483
+#: ArgHandler.py:300 DbPrompter.py:231 DbPrompter.py:336 DbPrompter.py:486
 msgid ""
 "File type \"%s\" is unknown to GRAMPS.\n"
 "\n"
@@ -165,7 +160,7 @@ msgstr "%s:n ominaisuus-editori"
 msgid "New Attribute"
 msgstr "Uusi ominaisuus"
 
-#: AttrEdit.py:175 EditPerson.py:326 ImageSelect.py:681 ImageSelect.py:951
+#: AttrEdit.py:175 EditPerson.py:326 ImageSelect.py:682 ImageSelect.py:952
 #: Marriage.py:214 plugins/ScratchPad.py:273 plugins/ScratchPad.py:281
 msgid "Attribute"
 msgstr "Ominaisuus"
@@ -190,56 +185,62 @@ msgstr "Muokkaa kirjanmerkkejä"
 msgid "Choose the Parents of %s"
 msgstr "Valitse %s:n vanhemmat"
 
-#: ChooseParents.py:123 ChooseParents.py:268 ChooseParents.py:506
-#: ChooseParents.py:575
+#: ChooseParents.py:123 ChooseParents.py:268 ChooseParents.py:510
+#: ChooseParents.py:593
 msgid "Choose Parents"
 msgstr "Valitse vanhemmat"
 
-#: ChooseParents.py:300 ChooseParents.py:630
+#: ChooseParents.py:304 ChooseParents.py:648
 msgid "Par_ent"
 msgstr "_Vanhempi"
 
-#: ChooseParents.py:302
+#: ChooseParents.py:306
 msgid "Fath_er"
 msgstr "_Isä"
 
-#: ChooseParents.py:310 ChooseParents.py:629
+#: ChooseParents.py:314 ChooseParents.py:647
 msgid "Pa_rent"
 msgstr "Van_hempi"
 
-#: ChooseParents.py:312
+#: ChooseParents.py:316
 msgid "Mothe_r"
 msgstr "_Äiti"
 
-#: ChooseParents.py:498 SelectChild.py:287 SelectChild.py:306
+#: ChooseParents.py:502 SelectChild.py:287 SelectChild.py:306
 msgid "Error selecting a child"
 msgstr "Lapsen valinta epäonnistui"
 
-#: ChooseParents.py:499
+#: ChooseParents.py:503
 msgid "A person cannot be linked as his/her own parent"
 msgstr "Henkilöstä ei voi tehdä itsensä vanhempaa"
 
-#: ChooseParents.py:605
+#: ChooseParents.py:532 ChooseParents.py:545
+msgid "Added person is not visible"
+msgstr "Lisätty henkilö ei ole näkyvissä"
+
+#: ChooseParents.py:533 ChooseParents.py:546
+msgid "The person you added is currently not visible due to the chosen filter. This may occur if you did not specify a birth date."
+msgstr "Lisäämäsi henkilö ei ole juuri nyt näkyvissä valitusta suotimesta johtuen. Tämä saattaa tapahtua, jos et ole antanut syntymäpäivää."
+
+#: ChooseParents.py:623
 msgid "Modify the Parents of %s"
 msgstr "Muuta %s:n vanhempia"
 
-#: ChooseParents.py:606 ChooseParents.py:718
+#: ChooseParents.py:624 ChooseParents.py:736
 msgid "Modify Parents"
 msgstr "Muuta vanhempia"
 
-#: ChooseParents.py:632 FamilyView.py:1099 MergePeople.py:136
+#: ChooseParents.py:650 FamilyView.py:1100 MergePeople.py:136
 #: plugins/FamilyGroup.py:261 plugins/IndivComplete.py:215
 #: plugins/IndivComplete.py:217 plugins/IndivComplete.py:450
-#: plugins/IndivSummary.py:290 plugins/NavWebPage.py:725
-#: plugins/WebPage.py:338 plugins/WebPage.py:341
+#: plugins/IndivSummary.py:290 plugins/WebPage.py:340 plugins/WebPage.py:343
 msgid "Mother"
 msgstr "Äiti"
 
-#: ChooseParents.py:633 FamilyView.py:1097 MergePeople.py:134
+#: ChooseParents.py:651 FamilyView.py:1098 MergePeople.py:134
 #: plugins/FamilyGroup.py:248 plugins/IndivComplete.py:206
 #: plugins/IndivComplete.py:208 plugins/IndivComplete.py:445
-#: plugins/IndivSummary.py:276 plugins/NavWebPage.py:721
-#: plugins/WebPage.py:337 plugins/WebPage.py:340
+#: plugins/IndivSummary.py:276 plugins/WebPage.py:339 plugins/WebPage.py:342
 msgid "Father"
 msgstr "Isä"
 
@@ -278,30 +279,6 @@ msgstr "Persialainen"
 #: Date.py:110
 msgid "Islamic"
 msgstr "Islamilainen"
-
-#: DateDisplay.py:296
-msgid "Month Day, Year"
-msgstr "Kuukausi Päivä, Vuosi"
-
-#: DateDisplay.py:296
-msgid "Numerical"
-msgstr "Suomalainen päiväys"
-
-#: DateDisplay.py:296
-msgid "YYYY-MM-DD (ISO)"
-msgstr "VVVV-KK-PP (ISO)"
-
-#: DateDisplay.py:297
-msgid "DAY MON YEAR"
-msgstr "PÄIVÄ KUU VUOSI"
-
-#: DateDisplay.py:297
-msgid "Day Month Year"
-msgstr "Päivä Kuukausi Vuosi"
-
-#: DateDisplay.py:297
-msgid "MON DAY, YEAR"
-msgstr "KUU PÄIVÄ, VUOSI"
 
 #: DateEdit.py:74 DateEdit.py:83
 msgid "Regular"
@@ -371,19 +348,19 @@ msgstr "Käyttöohjetta ei ole saatavilla"
 msgid "GRAMPS: Open database"
 msgstr "GRAMPS: Avaa tietokanta"
 
-#: DbPrompter.py:258
+#: DbPrompter.py:260
 msgid "GRAMPS: Import database"
 msgstr "GRAMPS: Tuo tietokanta"
 
-#: DbPrompter.py:359
+#: DbPrompter.py:361
 msgid "GRAMPS: Create GRAMPS database"
 msgstr "GRAMPS: Luo GRAMPS tietokanta"
 
-#: DbPrompter.py:432
+#: DbPrompter.py:434
 msgid "GRAMPS: Select filename for a new database"
 msgstr "GRAMPS: Valitse uuden tietokannan nimi"
 
-#: DbPrompter.py:482
+#: DbPrompter.py:485
 msgid "Could not save file: %s"
 msgstr "Tiedoston %s tallennus epäonnistui"
 
@@ -395,7 +372,7 @@ msgstr "Tunnistetaan automaattisesti"
 msgid "Select file _type:"
 msgstr "Valitse _tiedostotyyppi:"
 
-#: DbPrompter.py:611 gramps_main.py:1373
+#: DbPrompter.py:611 gramps_main.py:1374
 msgid "All files"
 msgstr "Kaikki tiedostot"
 
@@ -420,8 +397,7 @@ msgstr "GEDCOM tiedostot"
 #: plugins/DetAncestralReport.py:308 plugins/DetAncestralReport.py:315
 #: plugins/DetDescendantReport.py:330 plugins/DetDescendantReport.py:337
 #: plugins/FamilyGroup.py:458 plugins/IndivComplete.py:281
-#: plugins/IndivSummary.py:165 plugins/NavWebPage.py:772
-#: plugins/RelCalc.py:115 plugins/WebPage.py:654
+#: plugins/IndivSummary.py:165 plugins/RelCalc.py:115 plugins/WebPage.py:656
 msgid "unknown"
 msgstr "tuntematon"
 
@@ -435,9 +411,9 @@ msgstr "mies"
 msgid "female"
 msgstr "nainen"
 
-#: DisplayModels.py:470 ImageSelect.py:980 MediaView.py:203 NoteEdit.py:104
-#: Utils.py:160 gramps.glade:5208 gramps.glade:15309 gramps.glade:25714
-#: gramps.glade:26716 gramps.glade:28084 gramps.glade:29515
+#: DisplayModels.py:468 ImageSelect.py:981 MediaView.py:243 NoteEdit.py:104
+#: Utils.py:160 gramps.glade:5208 gramps.glade:15342 gramps.glade:25747
+#: gramps.glade:26749 gramps.glade:28117 gramps.glade:29548
 msgid "Note"
 msgstr "Huomioita"
 
@@ -467,7 +443,7 @@ msgstr "Muokkaa henkilöä"
 msgid "Patronymic:"
 msgstr "Patronyymi:"
 
-#: EditPerson.py:306 EditSource.py:318 EventEdit.py:278 ImageSelect.py:1122
+#: EditPerson.py:306 EditSource.py:325 EventEdit.py:278 ImageSelect.py:1123
 #: Marriage.py:213 plugins/ScratchPad.py:166 plugins/ScratchPad.py:180
 msgid "Event"
 msgstr "Tapahtuma"
@@ -484,22 +460,21 @@ msgstr "Kuvaus"
 msgid "Date"
 msgstr "Päivämäärä"
 
-#: EditPerson.py:309 EditPlace.py:271 EditSource.py:324 ImageSelect.py:1128
-#: Marriage.py:213 MediaView.py:63 gramps.glade:12175
-#: plugins/NavWebPage.py:247 plugins/ScratchPad.py:183
+#: EditPerson.py:309 EditPlace.py:271 EditSource.py:331 ImageSelect.py:1129
+#: Marriage.py:213 gramps.glade:12208 plugins/ScratchPad.py:183
 #: plugins/ScratchPad.py:225
 msgid "Place"
 msgstr "Paikka"
 
-#: EditPerson.py:326 EditSource.py:156 ImageSelect.py:681 ImageSelect.py:951
-#: Marriage.py:214 gramps.glade:12694 plugins/FilterEditor.py:459
+#: EditPerson.py:326 EditSource.py:156 ImageSelect.py:682 ImageSelect.py:952
+#: Marriage.py:214 gramps.glade:12727 plugins/FilterEditor.py:459
 #: plugins/PatchNames.py:188 plugins/ScratchPad.py:284
 #: plugins/ScratchPad.py:317 plugins/ScratchPad.py:543
 #: plugins/ScratchPad.py:549
 msgid "Value"
 msgstr "Arvo"
 
-#: EditPerson.py:338 EditSource.py:298 ImageSelect.py:1101 MediaView.py:59
+#: EditPerson.py:338 EditSource.py:305 ImageSelect.py:1102 MediaView.py:59
 #: MergePeople.py:152 SelectObject.py:86 plugins/BookReport.py:631
 #: plugins/BookReport.py:632 plugins/PatchNames.py:185
 #: plugins/ScratchPad.py:181 plugins/ScratchPad.py:223
@@ -514,22 +489,22 @@ msgstr "Tyyppi"
 msgid "Path"
 msgstr "Polku"
 
-#: EditPerson.py:566 ImageSelect.py:609 ImageSelect.py:1036 MediaView.py:235
+#: EditPerson.py:566 ImageSelect.py:610 ImageSelect.py:1037 MediaView.py:275
 #: plugins/ScratchPad.py:424 plugins/ScratchPad.py:432
 msgid "Media Object"
 msgstr "Media-objekti"
 
-#: EditPerson.py:572 ImageSelect.py:615 docgen/AbiWord2Doc.py:327
+#: EditPerson.py:572 ImageSelect.py:616 docgen/AbiWord2Doc.py:327
 #: docgen/AsciiDoc.py:371 docgen/HtmlDoc.py:486 docgen/KwordDoc.py:494
 #: docgen/PdfDoc.py:631 docgen/RTFDoc.py:427
 msgid "Open in %s"
 msgstr "Aukaise %s:ä käyttäen"
 
-#: EditPerson.py:575 ImageSelect.py:618 MediaView.py:248
+#: EditPerson.py:575 ImageSelect.py:619 MediaView.py:288
 msgid "Edit with the GIMP"
 msgstr "Muokkaa GIMP:llä"
 
-#: EditPerson.py:577 ImageSelect.py:620
+#: EditPerson.py:577 ImageSelect.py:621
 msgid "Edit Object Properties"
 msgstr "Muokkaa objektin ominaisuuksia"
 
@@ -541,51 +516,51 @@ msgstr "Uusi henkilö"
 msgid "None"
 msgstr "Tyhjä"
 
-#: EditPerson.py:1288
+#: EditPerson.py:1290
 msgid "Save changes to %s?"
 msgstr "Tallenna muutokset %s:n?"
 
-#: EditPerson.py:1289 EditPerson.py:1305 Marriage.py:622 Marriage.py:635
+#: EditPerson.py:1291 EditPerson.py:1307 Marriage.py:622 Marriage.py:635
 msgid "If you close without saving, the changes you have made will be lost"
 msgstr "Tallentamatta sulkuminen hävittää tekemäsi muutokset"
 
-#: EditPerson.py:1304
+#: EditPerson.py:1306
 msgid "Save Changes to %s?"
 msgstr "Tallenna muutokset %s:n?"
 
-#: EditPerson.py:1650
+#: EditPerson.py:1652
 msgid "Make the selected name the preferred name"
 msgstr "Tee valitusta nimestä ensisijainen nimi"
 
-#: EditPerson.py:1694
+#: EditPerson.py:1696
 msgid "Unknown gender specified"
 msgstr "Annettu tuntematon sukupuoli"
 
-#: EditPerson.py:1695
+#: EditPerson.py:1697
 msgid "The gender of the person is currently unknown. Usually, this is a mistake. You may choose to either continue saving, or returning to the Edit Person dialog to fix the problem."
 msgstr "Henkilön sukupuoli on tuntematon. Yleensä tämä on virhe. Voit joko jatkaa tallentamista, tai palata Henkilön muokkausdialogiin korjataksesi ongelman."
 
-#: EditPerson.py:1699
+#: EditPerson.py:1701
 msgid "Continue saving"
 msgstr "Jatka tallentamista"
 
-#: EditPerson.py:1699
+#: EditPerson.py:1701
 msgid "Return to window"
 msgstr "Palaa ikkunaan"
 
-#: EditPerson.py:1727 Marriage.py:654
+#: EditPerson.py:1729 Marriage.py:654
 msgid "GRAMPS ID value was not changed."
 msgstr "GRAMPS tunnuksen arvoa ei muutettu."
 
-#: EditPerson.py:1728
+#: EditPerson.py:1730
 msgid "You have attempted to change the GRAMPS ID to a value of %(grampsid)s. This value is already used by %(person)s."
 msgstr "Yritit muuttaa GRAMPS tunnuksen arvoon %(grampsid)s. %(person)s käyttää jo ao. arvoa."
 
-#: EditPerson.py:1840
+#: EditPerson.py:1842
 msgid "Problem changing the gender"
 msgstr "Sukupuolenvaihdosongelma"
 
-#: EditPerson.py:1841
+#: EditPerson.py:1843
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
@@ -593,11 +568,11 @@ msgstr ""
 "Sukupuolenvaihto aiheuttaa ongelmia avioitumistietojen kanssa.\n"
 "Tarkista henkilön avioliitot."
 
-#: EditPerson.py:1884
+#: EditPerson.py:1886
 msgid "Edit Person (%s)"
 msgstr "Muokkaa henkilöä (%s)"
 
-#: EditPerson.py:1900 ImageSelect.py:1161
+#: EditPerson.py:1902 ImageSelect.py:1162
 msgid "Add Place (%s)"
 msgstr "Lisää paikka (%s)"
 
@@ -625,27 +600,27 @@ msgstr "Maa"
 msgid "New Place"
 msgstr "Uusi paikka"
 
-#: EditPlace.py:397
+#: EditPlace.py:400
 msgid "Edit Place (%s)"
 msgstr "Muokkaa paikkaa (%s)"
 
-#: EditPlace.py:515
+#: EditPlace.py:518
 msgid "People"
 msgstr "Henkilöt"
 
-#: EditPlace.py:517 EditPlace.py:526
+#: EditPlace.py:520 EditPlace.py:529
 msgid "%s [%s]: event %s\n"
 msgstr "%s [%s]: tapahtuma %s\n"
 
-#: EditPlace.py:524
+#: EditPlace.py:527
 msgid "Families"
 msgstr "Perheet"
 
-#: EditPlace.py:532 Utils.py:115
+#: EditPlace.py:535 Utils.py:115
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s ja %(mother)s"
 
-#: EditPlace.py:600 PlaceView.py:221
+#: EditPlace.py:605 PlaceView.py:221
 msgid "Delete Place (%s)"
 msgstr "Poista paikka (%s)"
 
@@ -657,46 +632,32 @@ msgstr "Lähde-editori"
 msgid "Key"
 msgstr "Avain"
 
-#: EditSource.py:231 EditSource.py:235 Sources.py:449 Sources.py:451
+#: EditSource.py:231 EditSource.py:235 Sources.py:451 Sources.py:453
 msgid "New Source"
 msgstr "Uusi lähde"
 
-#: EditSource.py:236 EditSource.py:330 ImageSelect.py:1134 Utils.py:165
+#: EditSource.py:236 EditSource.py:337 ImageSelect.py:1135 Utils.py:165
 #: Utils.py:167
 msgid "Source"
 msgstr "Lähde"
 
-#: EditSource.py:274 EventEdit.py:339 MergePeople.py:110 const.py:233
-#: const.py:241 plugins/EventCmp.py:408 plugins/FamilyGroup.py:200
-#: plugins/FamilyGroup.py:334 plugins/GraphViz.py:236 plugins/GraphViz.py:237
-#: plugins/NavWebPage.py:641 plugins/ScratchPad.py:464
-msgid "Birth"
-msgstr "Syntymä"
-
-#: EditSource.py:274 EventEdit.py:339 MergePeople.py:112
-#: plugins/EventCmp.py:408 plugins/FamilyGroup.py:218
-#: plugins/FamilyGroup.py:336 plugins/FamilyGroup.py:338
-#: plugins/NavWebPage.py:649
-msgid "Death"
-msgstr "Kuolema"
-
-#: EditSource.py:306 ImageSelect.py:1110 plugins/EventCmp.py:408
+#: EditSource.py:313 ImageSelect.py:1111 plugins/EventCmp.py:408
 msgid "Person"
 msgstr "Henkilö"
 
-#: EditSource.py:312 ImageSelect.py:1116
+#: EditSource.py:319 ImageSelect.py:1117
 msgid "Family"
 msgstr "Perhe"
 
-#: EditSource.py:336
+#: EditSource.py:343
 msgid "Media"
 msgstr "Media"
 
-#: EditSource.py:390
+#: EditSource.py:397
 msgid "Edit Source (%s)"
 msgstr "Muokkaa lähdettä (%s)"
 
-#: EditSource.py:454
+#: EditSource.py:463
 msgid "Delete Source (%s)"
 msgstr "Poista lähde (%s)"
 
@@ -719,6 +680,19 @@ msgstr "Tapahtuman tyyppi puuttuu"
 #: EventEdit.py:322
 msgid "You must specify an event type before you can save the event"
 msgstr "Sinun pitää valita tapahtumalle tyyppi ennen kuin voit tallentaa sen"
+
+#: EventEdit.py:339 MergePeople.py:110 const.py:233 const.py:241
+#: plugins/EventCmp.py:408 plugins/FamilyGroup.py:200
+#: plugins/FamilyGroup.py:334 plugins/GraphViz.py:236 plugins/GraphViz.py:237
+#: plugins/ScratchPad.py:464
+msgid "Birth"
+msgstr "Syntymä"
+
+#: EventEdit.py:339 MergePeople.py:112 plugins/EventCmp.py:408
+#: plugins/FamilyGroup.py:218 plugins/FamilyGroup.py:336
+#: plugins/FamilyGroup.py:338
+msgid "Death"
+msgstr "Kuolema"
 
 #: EventEdit.py:341
 msgid "New event type created"
@@ -834,7 +808,7 @@ msgstr "GRAMPS GRDB tietokanta on tiedostomuoto, jota GRAMPS käyttää itse tie
 
 #: FamilyView.py:67 PedView.py:62 plugins/AncestorChart.py:56
 #: plugins/AncestorChart2.py:57 plugins/DesGraph.py:57
-#: plugins/DescendReport.py:53 plugins/WebPage.py:71
+#: plugins/DescendReport.py:53 plugins/WebPage.py:73
 msgid "b."
 msgstr "s."
 
@@ -850,8 +824,7 @@ msgstr "#"
 
 #: FamilyView.py:75 MergePeople.py:108 PeopleView.py:60
 #: plugins/IndivComplete.py:418 plugins/IndivSummary.py:240
-#: plugins/NavWebPage.py:632 plugins/WebPage.py:328 plugins/WebPage.py:330
-#: plugins/WebPage.py:332
+#: plugins/WebPage.py:330 plugins/WebPage.py:332 plugins/WebPage.py:334
 msgid "Gender"
 msgstr "Sukupuoli"
 
@@ -874,23 +847,22 @@ msgstr "Kuolinpaikka"
 
 #: FamilyView.py:395 FamilyView.py:405 FamilyView.py:426 FamilyView.py:433
 #: FamilyView.py:465 FamilyView.py:530 FamilyView.py:536 FamilyView.py:606
-#: FamilyView.py:612 FamilyView.py:1172 FamilyView.py:1178 FamilyView.py:1211
-#: FamilyView.py:1217 PedView.py:561 PedView.py:570 PeopleView.py:304
-#: gramps.glade:821 gramps_main.py:659 plugins/NavWebPage.py:393
-#: plugins/NavWebPage.py:396
+#: FamilyView.py:612 FamilyView.py:1173 FamilyView.py:1179 FamilyView.py:1212
+#: FamilyView.py:1218 PedView.py:561 PedView.py:570 PeopleView.py:308
+#: gramps.glade:821 gramps_main.py:659
 msgid "Home"
 msgstr "Koti"
 
-#: FamilyView.py:396 PeopleView.py:287
+#: FamilyView.py:396 PeopleView.py:291
 msgid "Add Bookmark"
 msgstr "Lisää kirjanmerkki"
 
 #: FamilyView.py:399 FamilyView.py:429 FamilyView.py:458 FamilyView.py:489
-#: PedView.py:584 PedView.py:595 PeopleView.py:300
+#: PedView.py:584 PedView.py:595 PeopleView.py:304
 msgid "People Menu"
 msgstr "Henkilöt-valikko"
 
-#: FamilyView.py:454 FamilyView.py:486 FamilyView.py:1191 FamilyView.py:1230
+#: FamilyView.py:454 FamilyView.py:486 FamilyView.py:1192 FamilyView.py:1231
 msgid "Add parents"
 msgstr "Lisää vanhemmat"
 
@@ -902,7 +874,7 @@ msgstr "Lapsi-valikko"
 msgid "Make the selected child an active person"
 msgstr "Tee valitusta lapsesta aktiivinen henkilö"
 
-#: FamilyView.py:548 FamilyView.py:1190 FamilyView.py:1229
+#: FamilyView.py:548 FamilyView.py:1191 FamilyView.py:1230
 msgid "Edit the child/parent relationships"
 msgstr "Muokkaa lapsi/vanhempi-suhteita"
 
@@ -946,47 +918,47 @@ msgstr "Aseta (%s) ensisijaiseksi puolisoksi"
 msgid "Modify family"
 msgstr "Muokkaa perhettä"
 
-#: FamilyView.py:799 FamilyView.py:1447 SelectChild.py:85 SelectChild.py:148
+#: FamilyView.py:800 FamilyView.py:1445 SelectChild.py:85 SelectChild.py:148
 msgid "Add Child to Family"
 msgstr "Lisää perheeseen lapsi"
 
-#: FamilyView.py:838
+#: FamilyView.py:839
 msgid "Remove Child (%s)"
 msgstr "Poista lapsi (%s)"
 
-#: FamilyView.py:844
+#: FamilyView.py:845
 msgid "Remove %s as a spouse of %s?"
 msgstr "Poista %s puoliso %s:ltä?"
 
-#: FamilyView.py:845
+#: FamilyView.py:846
 msgid "Removing a spouse removes the relationship between the spouse and the active person. It does not remove the spouse from the database"
 msgstr "Puolison poisto poistaa sen puolison ja aktiivisen henkilön  suhteesta. Poistettu puoliso säilyy silti tietokannassa"
 
-#: FamilyView.py:848
+#: FamilyView.py:849
 msgid "_Remove Spouse"
 msgstr "_Poista puoliso"
 
-#: FamilyView.py:892
+#: FamilyView.py:893
 msgid "Remove Spouse (%s)"
 msgstr "Poista puoliso (%s)"
 
-#: FamilyView.py:933
+#: FamilyView.py:934
 msgid "Select Parents (%s)"
 msgstr "Valitse vanhemmat (%s)"
 
-#: FamilyView.py:1048
+#: FamilyView.py:1049
 msgid "<double click to add spouse>"
 msgstr "<tuplaklikkaa lisätäksesi puolison>"
 
-#: FamilyView.py:1065
+#: FamilyView.py:1066
 msgid "Database corruption detected"
 msgstr "Tietokannan on havaittu vioittuneen"
 
-#: FamilyView.py:1066
+#: FamilyView.py:1067
 msgid "A problem was detected with the database. Please run the Check and Repair Database tool to fix the problem."
 msgstr "Tietokannassa on havaittu ongelma. Aja \"Tarkista ja korjaa tietokanta\"-työkalu korjataksesi ongelman."
 
-#: FamilyView.py:1117
+#: FamilyView.py:1118
 msgid ""
 "%s: %s [%s]\n"
 "\tRelationship: %s"
@@ -994,55 +966,55 @@ msgstr ""
 "%s: %s [%s]\n"
 "\tSuhde: %s"
 
-#: FamilyView.py:1119
+#: FamilyView.py:1120
 msgid "%s: unknown"
 msgstr "%s: tuntematon"
 
-#: FamilyView.py:1163
+#: FamilyView.py:1164
 msgid "Parents Menu"
 msgstr "Vanhemmat-valikko"
 
-#: FamilyView.py:1189 FamilyView.py:1228
+#: FamilyView.py:1190 FamilyView.py:1229
 msgid "Make the selected parents the active family"
 msgstr "Tee valituista vanhemmista aktiivinen perhe"
 
-#: FamilyView.py:1192 FamilyView.py:1231
+#: FamilyView.py:1193 FamilyView.py:1232
 msgid "Remove parents"
 msgstr "Poista vanhemmat"
 
-#: FamilyView.py:1202
+#: FamilyView.py:1203
 msgid "Spouse Parents Menu"
 msgstr "Puolison vanhemmat-valikko"
 
-#: FamilyView.py:1294 FamilyView.py:1309
+#: FamilyView.py:1295 FamilyView.py:1310
 msgid "Remove Parents of %s"
 msgstr "Poista %s:n vanhemmat"
 
-#: FamilyView.py:1295 FamilyView.py:1310
+#: FamilyView.py:1296 FamilyView.py:1311
 msgid "Removing the parents of a person removes the person as a child of the parents. The parents are not removed from the database, and the relationship between the parents is not removed."
 msgstr "Henkilön vanhempien poiston jälkeen henkilö ei ole enää ao. vanhempien lapsi. Poistetut vanhemmat ja heidän suhteensa säilyy silti tietokannassa."
 
-#: FamilyView.py:1299 FamilyView.py:1314
+#: FamilyView.py:1300 FamilyView.py:1315
 msgid "_Remove Parents"
 msgstr "_Poista vanhemmat"
 
-#: FamilyView.py:1407
+#: FamilyView.py:1408
 msgid "Remove Parents (%s)"
 msgstr "Poista vanhemmat (%s)"
 
-#: FamilyView.py:1478
+#: FamilyView.py:1480
 msgid "Attempt to Reorder Children Failed"
 msgstr "Lasten uudelleenjärjestys epäonnistui"
 
-#: FamilyView.py:1479
+#: FamilyView.py:1481
 msgid "Children must be ordered by their birth dates."
 msgstr "Lasten pitää olla järjestetty heidän syntymäaikojensa mukaan."
 
-#: FamilyView.py:1484
+#: FamilyView.py:1486
 msgid "Reorder children"
 msgstr "Järjestä lapset"
 
-#: FamilyView.py:1518
+#: FamilyView.py:1520
 msgid "Reorder spouses"
 msgstr "Järjestä puolisot"
 
@@ -1058,13 +1030,13 @@ msgstr "Ei kuvausta"
 msgid "Everyone"
 msgstr "Kaikki"
 
-#: GenericFilter.py:131 GenericFilter.py:146 GenericFilter.py:260
-#: GenericFilter.py:274 GenericFilter.py:292 GenericFilter.py:309
-#: GenericFilter.py:324 GenericFilter.py:339 GenericFilter.py:946
-#: GenericFilter.py:1195 GenericFilter.py:1220 GenericFilter.py:1250
-#: GenericFilter.py:1283 GenericFilter.py:1301 GenericFilter.py:1323
-#: GenericFilter.py:1408 GenericFilter.py:1466 GenericFilter.py:1531
-#: GenericFilter.py:1551 GenericFilter.py:1622 GenericFilter.py:1787
+#: GenericFilter.py:131 GenericFilter.py:146 GenericFilter.py:263
+#: GenericFilter.py:277 GenericFilter.py:295 GenericFilter.py:312
+#: GenericFilter.py:327 GenericFilter.py:342 GenericFilter.py:969
+#: GenericFilter.py:1218 GenericFilter.py:1243 GenericFilter.py:1273
+#: GenericFilter.py:1306 GenericFilter.py:1324 GenericFilter.py:1346
+#: GenericFilter.py:1431 GenericFilter.py:1489 GenericFilter.py:1554
+#: GenericFilter.py:1574 GenericFilter.py:1645 GenericFilter.py:1810
 msgid "General filters"
 msgstr "Yleiset suotimet"
 
@@ -1080,11 +1052,11 @@ msgstr "Henkilöt ilman suhteita"
 msgid "Matches people that have no family relationships to any other person in the database"
 msgstr "Poimii henkilöt, joilla ei ole perhesuhteita muihin tietokannan henkilöihin"
 
-#: GenericFilter.py:164 GenericFilter.py:257 GenericFilter.py:354
-#: GenericFilter.py:443 GenericFilter.py:484 GenericFilter.py:603
-#: GenericFilter.py:647 GenericFilter.py:742 GenericFilter.py:791
-#: GenericFilter.py:875 gramps.glade:3363 gramps.glade:19154
-#: gramps.glade:21342 gramps.glade:22739 plugins/FilterEditor.py:680
+#: GenericFilter.py:164 GenericFilter.py:260 GenericFilter.py:357
+#: GenericFilter.py:448 GenericFilter.py:492 GenericFilter.py:614
+#: GenericFilter.py:661 GenericFilter.py:759 GenericFilter.py:811
+#: GenericFilter.py:898 gramps.glade:3363 gramps.glade:19187
+#: gramps.glade:21375 gramps.glade:22772 plugins/FilterEditor.py:680
 msgid "ID:"
 msgstr "Tunnus:"
 
@@ -1100,495 +1072,494 @@ msgstr "Suhdesuodin"
 msgid "Matches the ancestors of two persons back to a common ancestor, producing the relationship path between two persons."
 msgstr "Poimii kahden henkilön yhteisen esivanhemman ja palauttaa suhdepolun heidän välillään."
 
-#: GenericFilter.py:258
+#: GenericFilter.py:261
 msgid "People with <Id>"
 msgstr "Henkilöt, joilla on <tunnus>"
 
-#: GenericFilter.py:259
+#: GenericFilter.py:262
 msgid "Matches people with a specified GRAMPS ID"
 msgstr "Poimii henkilöt, joilla on annettu GRAMPS tunnus"
 
-#: GenericFilter.py:273
+#: GenericFilter.py:276
 msgid "Default person"
 msgstr "Oletushenkilö"
 
-#: GenericFilter.py:275
+#: GenericFilter.py:278
 msgid "Matches the default person"
 msgstr "Poimii oletushenkilön"
 
-#: GenericFilter.py:291
+#: GenericFilter.py:294
 msgid "Bookmarked people"
 msgstr "Kirjanmerkityt henkilöt"
 
-#: GenericFilter.py:293
+#: GenericFilter.py:296
 msgid "Matches the people on the bookmark list"
 msgstr "Poimii ihmiset kirjanmerkkilistalta"
 
-#: GenericFilter.py:308
+#: GenericFilter.py:311
 msgid "People with complete records"
 msgstr "Henkilöt täysillä tiedoilla"
 
-#: GenericFilter.py:310
+#: GenericFilter.py:313
 msgid "Matches all people whose records are complete"
 msgstr "Poimii kaikki henkilöt, joiden tiedoissa ei ole puutteita"
 
-#: GenericFilter.py:323 gramps_main.py:957 plugins/Summary.py:113
+#: GenericFilter.py:326 gramps_main.py:957 plugins/Summary.py:113
 msgid "Females"
 msgstr "Naiset"
 
-#: GenericFilter.py:325
+#: GenericFilter.py:328
 msgid "Matches all females"
 msgstr "Poimii kaikki naispuoliset"
 
-#: GenericFilter.py:338 gramps_main.py:967
+#: GenericFilter.py:341 gramps_main.py:967
 msgid "People with unknown gender"
 msgstr "Henkilöt, joiden sukupuoli on tuntematon"
 
-#: GenericFilter.py:340
+#: GenericFilter.py:343
 msgid "Matches all people with unknown gender"
 msgstr "Poimii kaikki henkilöt, joiden sukupuolta ei tiedetä"
 
-#: GenericFilter.py:354 GenericFilter.py:401 GenericFilter.py:647
-#: GenericFilter.py:699 plugins/FilterEditor.py:692
+#: GenericFilter.py:357 GenericFilter.py:406 GenericFilter.py:661
+#: GenericFilter.py:716 plugins/FilterEditor.py:692
 msgid "Inclusive:"
 msgstr "Sisältäen:"
 
-#: GenericFilter.py:355
+#: GenericFilter.py:358
 msgid "Descendants of <person>"
 msgstr "<henkilön> jälkeläiset"
 
-#: GenericFilter.py:356 GenericFilter.py:403 GenericFilter.py:445
-#: GenericFilter.py:486 GenericFilter.py:605
+#: GenericFilter.py:359 GenericFilter.py:408 GenericFilter.py:450
+#: GenericFilter.py:494 GenericFilter.py:616
 msgid "Descendant filters"
 msgstr "Jälkeläissuodin"
 
-#: GenericFilter.py:357
+#: GenericFilter.py:360
 msgid "Matches all descendants for the specified person"
 msgstr "Poimii kaikki annetun henkilön jälkeläiset"
 
-#: GenericFilter.py:401 GenericFilter.py:524 GenericFilter.py:562
-#: GenericFilter.py:699 GenericFilter.py:838 GenericFilter.py:918
-#: GenericFilter.py:1320 GenericFilter.py:1363 plugins/FilterEditor.py:684
+#: GenericFilter.py:406 GenericFilter.py:535 GenericFilter.py:573
+#: GenericFilter.py:716 GenericFilter.py:861 GenericFilter.py:941
+#: GenericFilter.py:1343 GenericFilter.py:1386 plugins/FilterEditor.py:684
 msgid "Filter name:"
 msgstr "Suotimen nimi:"
 
-#: GenericFilter.py:402
+#: GenericFilter.py:407
 msgid "Descendants of <filter> match"
 msgstr "<Suotimen> hyväksymän henkilön jälkeläinen"
 
-#: GenericFilter.py:404
+#: GenericFilter.py:409
 msgid "Matches people that are descendants of anybody matched by a filter"
 msgstr "Poimii suotimen hyväksymien henkilöiden jälkeläiset"
 
-#: GenericFilter.py:443 GenericFilter.py:484 GenericFilter.py:742
-#: GenericFilter.py:791 plugins/FilterEditor.py:678
+#: GenericFilter.py:448 GenericFilter.py:492 GenericFilter.py:759
+#: GenericFilter.py:811 plugins/FilterEditor.py:678
 msgid "Number of generations:"
 msgstr "Sukupolvien lukumäärä:"
 
-#: GenericFilter.py:444
+#: GenericFilter.py:449
 msgid "Descendants of <person> not more than <N> generations away"
 msgstr "Jälkeläinen <henkilölle> enintään <N> sukupolven päässä"
 
-#: GenericFilter.py:446
+#: GenericFilter.py:451
 msgid "Matches people that are descendants of a specified person not more than N generations away"
 msgstr "Poimii henkilöt, jotka ovat valitun henkilön jälkeläisiä enintään N sukupolven päässä"
 
-#: GenericFilter.py:485
+#: GenericFilter.py:493
 msgid "Descendants of <person> at least <N> generations away"
 msgstr "Jälkeläinen <henkilölle> vähintään <N> sukupolven päässä"
 
-#: GenericFilter.py:487
+#: GenericFilter.py:495
 msgid "Matches people that are descendants of a specified person at least N generations away"
 msgstr "Poimii henkilöt, jotka ovat valitun henkilön jälkeläisiä vähintään N sukupolven päässä"
 
-#: GenericFilter.py:525
+#: GenericFilter.py:536
 msgid "Children of <filter> match"
 msgstr "<Suotimen> hyväksymän henkilön lapsi"
 
-#: GenericFilter.py:526 GenericFilter.py:564 GenericFilter.py:840
-#: GenericFilter.py:1065 GenericFilter.py:1366 GenericFilter.py:1390
-#: GenericFilter.py:1422 GenericFilter.py:1438 GenericFilter.py:1452
+#: GenericFilter.py:537 GenericFilter.py:575 GenericFilter.py:863
+#: GenericFilter.py:1088 GenericFilter.py:1389 GenericFilter.py:1413
+#: GenericFilter.py:1445 GenericFilter.py:1461 GenericFilter.py:1475
 msgid "Family filters"
 msgstr "Perhesuotimet"
 
-#: GenericFilter.py:527
+#: GenericFilter.py:538
 msgid "Matches children of anybody matched by a filter"
 msgstr "Poimii suotimen hyväksymien henkilöiden lapset"
 
-#: GenericFilter.py:563
+#: GenericFilter.py:574
 msgid "Siblings of <filter> match"
 msgstr "<Suotimen> hyväksymän henkilön sisarus"
 
-#: GenericFilter.py:565
+#: GenericFilter.py:576
 msgid "Matches siblings of anybody matched by a filter"
 msgstr "Poimii suotimen hyväksymien henkilöiden sisarukset"
 
-#: GenericFilter.py:604
+#: GenericFilter.py:615
 msgid "Descendant family members of <person>"
 msgstr "<Henkilön> jälkeläisen perheenjäsen"
 
-#: GenericFilter.py:606
+#: GenericFilter.py:617
 msgid "Matches people that are descendants or the spouse of a descendant of a specified person"
 msgstr "Poimii henkilöt, jotka ovat valitun henkilön jälkeläisiä tai heidän puolisoitaan"
 
-#: GenericFilter.py:648
+#: GenericFilter.py:662
 msgid "Ancestors of <person>"
 msgstr "<Henkilön> esivanhemmat"
 
-#: GenericFilter.py:649 GenericFilter.py:701 GenericFilter.py:744
-#: GenericFilter.py:793 GenericFilter.py:877 GenericFilter.py:922
+#: GenericFilter.py:663 GenericFilter.py:718 GenericFilter.py:761
+#: GenericFilter.py:813 GenericFilter.py:900 GenericFilter.py:945
 msgid "Ancestral filters"
 msgstr "Esivanhemmuussuotimet"
 
-#: GenericFilter.py:650
+#: GenericFilter.py:664
 msgid "Matches people that are ancestors of a specified person"
 msgstr "Poimii valitun henkilön esivanhemmat"
 
-#: GenericFilter.py:700
+#: GenericFilter.py:717
 msgid "Ancestors of <filter> match"
 msgstr "<Suotimen> hyväksymien henkilöiden esivanhemmat"
 
-#: GenericFilter.py:702
+#: GenericFilter.py:719
 msgid "Matches people that are ancestors of anybody matched by a filter"
 msgstr "Poimii  suotimen hyväksymien henkilöiden esivanhemmat"
 
-#: GenericFilter.py:743
+#: GenericFilter.py:760
 msgid "Ancestors of <person> not more than <N> generations away"
 msgstr "Esivanhempi <henkilölle> enintään <N> sukupolven päässä"
 
-#: GenericFilter.py:745
+#: GenericFilter.py:762
 msgid "Matches people that are ancestors of a specified person not more than N generations away"
 msgstr "Poimii henkilöt, jotka ovat valitun henkilön esivanhempia enintään N sukupolven päässä"
 
-#: GenericFilter.py:792
+#: GenericFilter.py:812
 msgid "Ancestors of <person> at least <N> generations away"
 msgstr "Esivanhempi <henkilölle> vähintään <N> sukupolven päässä"
 
-#: GenericFilter.py:794
+#: GenericFilter.py:814
 msgid "Matches people that are ancestors of a specified person at least N generations away"
 msgstr "Poimii henkilöt, jotka ovat valitun henkilön jälkeläisiä vähintään N sukupolven päässä"
 
-#: GenericFilter.py:839
+#: GenericFilter.py:862
 msgid "Parents of <filter> match"
 msgstr "<Suotimen> hyväksymien henkilöiden vanhemmat"
 
-#: GenericFilter.py:841
+#: GenericFilter.py:864
 msgid "Matches parents of anybody matched by a filter"
 msgstr "Poimii suotimen hyväksymien henkilöiden esivanhemmat"
 
-#: GenericFilter.py:876
+#: GenericFilter.py:899
 msgid "People with a common ancestor with <person>"
 msgstr "Henkilöt, joilla on yhteinen esivanhempi <henkilön> kanssa"
 
-#: GenericFilter.py:878
+#: GenericFilter.py:901
 msgid "Matches people that have a common ancestor with a specified person"
 msgstr "Poimii henkilöt, joilla on yhteinen esivanhempi valitun henkilön kanssa"
 
-#: GenericFilter.py:919
+#: GenericFilter.py:942
 msgid "People with a common ancestor with <filter> match"
 msgstr "Henkilöt, joilla on yhteinen esivanhempi <suotimen> hyväksymien henkilöiden kanssa"
 
-#: GenericFilter.py:920
+#: GenericFilter.py:943
 msgid "Matches people that have a common ancestor with anybody matched by a filter"
 msgstr "Poimii henkilöt, joilla on yhteinen esivanhempi suotimen hyväksymien henkilöiden kanssa"
 
-#: GenericFilter.py:945 gramps_main.py:962 plugins/Summary.py:112
+#: GenericFilter.py:968 gramps_main.py:962 plugins/Summary.py:112
 msgid "Males"
 msgstr "Miehet"
 
-#: GenericFilter.py:947
+#: GenericFilter.py:970
 msgid "Matches all males"
 msgstr "Poimii kaikki miespuoliset"
 
-#: GenericFilter.py:960 GenericFilter.py:1563 plugins/FilterEditor.py:58
+#: GenericFilter.py:983 GenericFilter.py:1586 plugins/FilterEditor.py:58
 msgid "Personal event:"
 msgstr "Henkilökohtainen tapahtuma:"
 
-#: GenericFilter.py:961 GenericFilter.py:1011 GenericFilter.py:1112
-#: GenericFilter.py:1152 gramps.glade:8503 gramps.glade:9429
-#: gramps.glade:12127 gramps.glade:13634
+#: GenericFilter.py:984 GenericFilter.py:1034 GenericFilter.py:1135
+#: GenericFilter.py:1175 gramps.glade:8536 gramps.glade:9462
+#: gramps.glade:12160 gramps.glade:13667
 msgid "Date:"
 msgstr "Päivämäärä:"
 
-#: GenericFilter.py:962 GenericFilter.py:1012 GenericFilter.py:1112
-#: GenericFilter.py:1152 gramps.glade:8455 gramps.glade:13682
+#: GenericFilter.py:985 GenericFilter.py:1035 GenericFilter.py:1135
+#: GenericFilter.py:1175 gramps.glade:8488 gramps.glade:13715
 #: plugins/FilterEditor.py:676
 msgid "Place:"
 msgstr "Paikka:"
 
-#: GenericFilter.py:963 GenericFilter.py:1013 GenericFilter.py:1112
-#: GenericFilter.py:1152 gramps.glade:8407 gramps.glade:10647
-#: gramps.glade:12223 gramps.glade:15757
+#: GenericFilter.py:986 GenericFilter.py:1036 GenericFilter.py:1135
+#: GenericFilter.py:1175 gramps.glade:8440 gramps.glade:10680
+#: gramps.glade:12256 gramps.glade:15790
 msgid "Description:"
 msgstr "Kuvaus:"
 
-#: GenericFilter.py:964
+#: GenericFilter.py:987
 msgid "People with the personal <event>"
 msgstr "Henkilöt, joilla on henkilökohtainen <tapahtuma>"
 
-#: GenericFilter.py:965
+#: GenericFilter.py:988
 msgid "Matches people with a personal event of a particular value"
 msgstr "Poimii henkilöt, joiden henkilökohtaisella tapahtumalla on tietty arvo"
 
-#: GenericFilter.py:966 GenericFilter.py:1016 GenericFilter.py:1115
-#: GenericFilter.py:1155 GenericFilter.py:1486 GenericFilter.py:1507
-#: GenericFilter.py:1566
+#: GenericFilter.py:989 GenericFilter.py:1039 GenericFilter.py:1138
+#: GenericFilter.py:1178 GenericFilter.py:1509 GenericFilter.py:1530
+#: GenericFilter.py:1589
 msgid "Event filters"
 msgstr "Tapahtumasuotimet"
 
-#: GenericFilter.py:1010 GenericFilter.py:1563 plugins/FilterEditor.py:59
+#: GenericFilter.py:1033 GenericFilter.py:1586 plugins/FilterEditor.py:59
 msgid "Family event:"
 msgstr "Perhetapahtuma:"
 
-#: GenericFilter.py:1014
+#: GenericFilter.py:1037
 msgid "People with the family <event>"
 msgstr "Henklöt, joilla on <perhetapahtuma>"
 
-#: GenericFilter.py:1015
+#: GenericFilter.py:1038
 msgid "Matches people with a family event of a particular value"
 msgstr "Poimii henkilöt, joiden perhetapahtumalla on tietty arvo"
 
-#: GenericFilter.py:1060
+#: GenericFilter.py:1083
 msgid "Number of relationships:"
 msgstr "Suhteiden määrä:"
 
-#: GenericFilter.py:1061 plugins/FilterEditor.py:65
+#: GenericFilter.py:1084 plugins/FilterEditor.py:65
 msgid "Relationship type:"
 msgstr "Suhteen tyyppi:"
 
-#: GenericFilter.py:1062
+#: GenericFilter.py:1085
 msgid "Number of children:"
 msgstr "Lasten lukumäärä:"
 
-#: GenericFilter.py:1063
+#: GenericFilter.py:1086
 msgid "People with the <relationships>"
 msgstr "Henkilöt, joilla on <suhteet>"
 
-#: GenericFilter.py:1064
+#: GenericFilter.py:1087
 msgid "Matches people with a particular relationship"
 msgstr "Poimii henkilöt, joilla on tietynlainen suhde"
 
-#: GenericFilter.py:1113
+#: GenericFilter.py:1136
 msgid "People with the <birth data>"
 msgstr "Henkilöt, joilla on <syntymätieto>"
 
-#: GenericFilter.py:1114
+#: GenericFilter.py:1137
 msgid "Matches people with birth data of a particular value"
 msgstr "Poimii henkilöt, joiden syntymätiedolla on tietty arvo"
 
-#: GenericFilter.py:1153
+#: GenericFilter.py:1176
 msgid "People with the <death data>"
 msgstr "Henkilöt, joilla on <kuolintieto>"
 
-#: GenericFilter.py:1154
+#: GenericFilter.py:1177
 msgid "Matches people with death data of a particular value"
 msgstr "Poimii henkilöt, joiden kuolintiedolla on tietty arvo"
 
-#: GenericFilter.py:1192 GenericFilter.py:1217 gramps.glade:9017
-#: gramps.glade:22070 gramps.glade:23077
+#: GenericFilter.py:1215 GenericFilter.py:1240 gramps.glade:9050
+#: gramps.glade:22103 gramps.glade:23110
 msgid "Value:"
 msgstr "Arvo:"
 
-#: GenericFilter.py:1192 plugins/FilterEditor.py:60
+#: GenericFilter.py:1215 plugins/FilterEditor.py:60
 msgid "Personal attribute:"
 msgstr "Henkilökohtainen ominaisuus:"
 
-#: GenericFilter.py:1193
+#: GenericFilter.py:1216
 msgid "People with the personal <attribute>"
 msgstr "Henkilöt, joilla on henkilökohtainen <ominaisuus>"
 
-#: GenericFilter.py:1194
+#: GenericFilter.py:1217
 msgid "Matches people with the personal attribute of a particular value"
 msgstr "Poimii henkilöt, joiden henkilökohtaisella ominaisuudella on tietty arvo"
 
-#: GenericFilter.py:1217 plugins/FilterEditor.py:61
+#: GenericFilter.py:1240 plugins/FilterEditor.py:61
 msgid "Family attribute:"
 msgstr "Perheen ominaisuus:"
 
-#: GenericFilter.py:1218
+#: GenericFilter.py:1241
 msgid "People with the family <attribute>"
 msgstr "Henkilöt, joilla on <perheominaisuus>"
 
-#: GenericFilter.py:1219
+#: GenericFilter.py:1242
 msgid "Matches people with the family attribute of a particular value"
 msgstr "Poimii henkilöt, joiden perheominaisuudella on tietty arvo"
 
-#: GenericFilter.py:1244 gramps.glade:7861
+#: GenericFilter.py:1267 gramps.glade:7894
 msgid "Given name:"
 msgstr "Etunimi:"
 
-#: GenericFilter.py:1245 gramps.glade:7837
+#: GenericFilter.py:1268 gramps.glade:7870
 msgid "Family name:"
 msgstr "Sukunimi:"
 
-#: GenericFilter.py:1246 gramps.glade:7813
+#: GenericFilter.py:1269 gramps.glade:7846
 msgid "Suffix:"
 msgstr "Pääte:"
 
-#: GenericFilter.py:1247 gramps.glade:3457 gramps.glade:7885
-#: gramps.glade:19248 gramps.glade:21487 gramps.glade:30957
-#: mergedata.glade:905 mergedata.glade:927
+#: GenericFilter.py:1270 gramps.glade:3457 gramps.glade:7918
+#: gramps.glade:19281 gramps.glade:21520 gramps.glade:30990
+#: mergedata.glade:874 mergedata.glade:896
 msgid "Title:"
 msgstr "Nimike:"
 
-#: GenericFilter.py:1248
+#: GenericFilter.py:1271
 msgid "People with the <name>"
 msgstr "Henkilöt, joilla on <nimi>"
 
-#: GenericFilter.py:1249 GenericFilter.py:1282
+#: GenericFilter.py:1272 GenericFilter.py:1305
 msgid "Matches people with a specified (partial) name"
 msgstr "Poimii henkilöt, joilla on annettu nimi / nimen osa"
 
-#: GenericFilter.py:1280 GenericFilter.py:1617
+#: GenericFilter.py:1303 GenericFilter.py:1640
 msgid "Substring:"
 msgstr "Merkkijonon osa:"
 
-#: GenericFilter.py:1281
+#: GenericFilter.py:1304
 msgid "People matching the <name>"
 msgstr "Henkilöt, joilla on <nimi>"
 
-#: GenericFilter.py:1299 gramps_main.py:992
+#: GenericFilter.py:1322 gramps_main.py:992
 msgid "People with incomplete names"
 msgstr "Henkilöt epätäydellisillä nimillä"
 
-#: GenericFilter.py:1300
+#: GenericFilter.py:1323
 msgid "Matches people with firstname or lastname missing"
 msgstr "Poimii henkilöt, joiden etunimi tai sukunimi puuttuu"
 
-#: GenericFilter.py:1321
+#: GenericFilter.py:1344
 msgid "People matching the <filter>"
 msgstr "Henkilöt, jotka <suodin> hyväksyy"
 
-#: GenericFilter.py:1322
+#: GenericFilter.py:1345
 msgid "Matches people macthed by the specified filter name"
 msgstr "Poimii henkilöt, jotka saadaan annetun nimisellä suotimella"
 
-#: GenericFilter.py:1364
+#: GenericFilter.py:1387
 msgid "Spouses of <filter> match"
 msgstr "<Suotimen> hyväksymien henkilöiden puolisot"
 
-#: GenericFilter.py:1365
+#: GenericFilter.py:1388
 msgid "Matches people married to anybody matching a filter"
 msgstr "Poimii henkilöt, jotka ovat aviossa suotimen hyväksymän henkilön kanssa"
 
-#: GenericFilter.py:1388 gramps_main.py:982
+#: GenericFilter.py:1411 gramps_main.py:982
 msgid "Adopted people"
 msgstr "Adoptoidut henkilöt"
 
-#: GenericFilter.py:1389
+#: GenericFilter.py:1412
 msgid "Matches people who were adopted"
 msgstr "Poimii henkilöt, jotka ovat adoptoituja"
 
-#: GenericFilter.py:1406 gramps_main.py:987
-#, fuzzy
+#: GenericFilter.py:1429 gramps_main.py:987
 msgid "People with images"
 msgstr "Henkilöt, joista on kuvia"
 
-#: GenericFilter.py:1407
+#: GenericFilter.py:1430
 msgid "Matches people with images in the gallery"
 msgstr "Poimii henkilöt, joilla on kuvia kuvagalleriassa"
 
-#: GenericFilter.py:1420 gramps_main.py:997
+#: GenericFilter.py:1443 gramps_main.py:997
 msgid "People with children"
 msgstr "Henkilöt, joilla on lapsia"
 
-#: GenericFilter.py:1421
+#: GenericFilter.py:1444
 msgid "Matches people who have children"
 msgstr "Poimii henkilöt, joilla on lapsia"
 
-#: GenericFilter.py:1436 gramps_main.py:1002
+#: GenericFilter.py:1459 gramps_main.py:1002
 msgid "People with no marriage records"
 msgstr "Henkilöt, jotka eivät ole koskaan avioituneet"
 
-#: GenericFilter.py:1437
+#: GenericFilter.py:1460
 msgid "Matches people who have no spouse"
 msgstr "Poimii henkilöt, joilla ei ole puolisoa"
 
-#: GenericFilter.py:1450 gramps_main.py:1007
+#: GenericFilter.py:1473 gramps_main.py:1007
 msgid "People with multiple marriage records"
 msgstr "Henkilöt, jotka ovat olleet useasti aviossa"
 
-#: GenericFilter.py:1451
+#: GenericFilter.py:1474
 msgid "Matches people who have more than one spouse"
 msgstr "Poimii henkilöt, joilla on enemmän kuin yksi puoliso"
 
-#: GenericFilter.py:1464 gramps_main.py:1012
+#: GenericFilter.py:1487 gramps_main.py:1012
 msgid "People without a known birth date"
 msgstr "Henkilöt, joiden syntymäaika ei ole tiedossa"
 
-#: GenericFilter.py:1465
+#: GenericFilter.py:1488
 msgid "Matches people without a known birthdate"
 msgstr "Poimii henkilöt, joiden syntymäaika ei ole tiedossa"
 
-#: GenericFilter.py:1484 gramps_main.py:1017
+#: GenericFilter.py:1507 gramps_main.py:1017
 msgid "People with incomplete events"
 msgstr "Henkilöt epätäydellisillä tapahtumilla"
 
-#: GenericFilter.py:1485
+#: GenericFilter.py:1508
 msgid "Matches people with missing date or place in an event"
 msgstr "Poimii henkilöt, joiden tapahtumista puuttuu joko aika tai paikka"
 
-#: GenericFilter.py:1505 gramps_main.py:1022
+#: GenericFilter.py:1528 gramps_main.py:1022
 msgid "Families with incomplete events"
 msgstr "Perheet epätäydellisillä tapahtumilla"
 
-#: GenericFilter.py:1506
+#: GenericFilter.py:1529
 msgid "Matches people with missing date or place in an event of the family"
 msgstr "Poimii henkilöt, joiden perhetapahtumista puuttuu joko aika tai paikka"
 
-#: GenericFilter.py:1528
+#: GenericFilter.py:1551
 msgid "On year:"
 msgstr "Vuonna:"
 
-#: GenericFilter.py:1529 gramps_main.py:1027
+#: GenericFilter.py:1552 gramps_main.py:1027
 msgid "People probably alive"
 msgstr "Henkilöt todennäköisesti elossa"
 
-#: GenericFilter.py:1530
+#: GenericFilter.py:1553
 msgid "Matches people without indications of death that are not too old"
 msgstr "Poimii henkilöt, joilla ei ole kuolemaan liittyviä tapahtumia, ja jotka eivät ole liian vanhoja"
 
-#: GenericFilter.py:1549 gramps_main.py:1032
+#: GenericFilter.py:1572 gramps_main.py:1032
 msgid "People marked private"
 msgstr "Yksityisiksi merkityt henkilöt"
 
-#: GenericFilter.py:1550
+#: GenericFilter.py:1573
 msgid "Matches people that are indicated as private"
 msgstr "Poimii henkilöt, jotka on merkitty yksityisiksi"
 
-#: GenericFilter.py:1564 gramps.glade:25893 gramps_main.py:1037
+#: GenericFilter.py:1587 gramps.glade:25926 gramps_main.py:1037
 msgid "Witnesses"
 msgstr "Todistajat"
 
-#: GenericFilter.py:1565
+#: GenericFilter.py:1588
 msgid "Matches people who are witnesses in any event"
 msgstr "Poimii kaikki henkilöt, jotka ovat jonkin tapahtuman todistajia"
 
-#: GenericFilter.py:1618 plugins/FilterEditor.py:694
+#: GenericFilter.py:1641 plugins/FilterEditor.py:694
 msgid "Case sensitive:"
 msgstr "Sama kirjainkoko:"
 
-#: GenericFilter.py:1619 plugins/FilterEditor.py:696
+#: GenericFilter.py:1642 plugins/FilterEditor.py:696
 msgid "Regular-Expression matching:"
 msgstr "Regular-expression poiminta:"
 
-#: GenericFilter.py:1620
+#: GenericFilter.py:1643
 msgid "People with records containing <substring>"
 msgstr "Poimii henkilöt, joiden tiedoista löytyy <merkkijono>"
 
-#: GenericFilter.py:1621
+#: GenericFilter.py:1644
 msgid "Matches people whose records contain text matching a substring"
 msgstr "Poimii henkilöt, joiden tiedoista löytyy annettu merkkijonon osa"
 
-#: GenericFilter.py:1785 plugins/FilterEditor.py:682
+#: GenericFilter.py:1808 plugins/FilterEditor.py:682
 msgid "Source ID:"
 msgstr "Lähdetunniste:"
 
-#: GenericFilter.py:1786
+#: GenericFilter.py:1809
 msgid "People with the <source>"
 msgstr "Henkilöt <lähteellä>"
 
-#: GenericFilter.py:1788
+#: GenericFilter.py:1811
 msgid "Matches people who have a particular source"
 msgstr "Poimii henkilöt, joilla on tietty lähde"
 
@@ -1604,7 +1575,7 @@ msgstr "Yhdistetty isän ja äidin sukunimi"
 msgid "Icelandic style"
 msgstr "Islantilaisittain"
 
-#: GrampsCfg.py:70 GrampsCfg.py:74 gramps.glade:7700 gramps.glade:21802
+#: GrampsCfg.py:70 GrampsCfg.py:74 gramps.glade:7733 gramps.glade:21835
 msgid "General"
 msgstr "Yleiset"
 
@@ -1628,47 +1599,47 @@ msgstr "GRAMPS tunnukset"
 msgid "Researcher Information"
 msgstr "Tutkijan tiedot"
 
-#: GrampsDbBase.py:949 GrampsDbBase.py:987
+#: GrampsDbBase.py:953 GrampsDbBase.py:991
 msgid "_Undo %s"
 msgstr "_Peru %s"
 
-#: ImageSelect.py:485 ImageSelect.py:506
+#: ImageSelect.py:486 ImageSelect.py:507
 msgid "Drag Media Object"
 msgstr "Vedä media-objekti"
 
-#: ImageSelect.py:496 RelImage.py:51
+#: ImageSelect.py:497 RelImage.py:51
 msgid "Could not import %s"
 msgstr "%s:n tuonti epäonnistui"
 
-#: ImageSelect.py:567 plugins/SimpleBookTitle.py:237
+#: ImageSelect.py:568 plugins/SimpleBookTitle.py:237
 msgid "Select an Object"
 msgstr "Valitse objekti"
 
-#: ImageSelect.py:669
+#: ImageSelect.py:670
 msgid "Media Reference Editor"
 msgstr "Median viite-editori"
 
-#: ImageSelect.py:765
+#: ImageSelect.py:766
 msgid "Media Reference"
 msgstr "Mediaviite"
 
-#: ImageSelect.py:771
+#: ImageSelect.py:772
 msgid "Reference Editor"
 msgstr "Viite-editori"
 
-#: ImageSelect.py:827 ImageSelect.py:1190 MediaView.py:305
+#: ImageSelect.py:828 ImageSelect.py:1191 MediaView.py:345
 msgid "Edit Media Object"
 msgstr "Muokkaa media-objektia"
 
-#: ImageSelect.py:909
+#: ImageSelect.py:910
 msgid "Media Properties Editor"
 msgstr "Mediaominaisuus-editori"
 
-#: ImageSelect.py:1042
+#: ImageSelect.py:1043
 msgid "Properties Editor"
 msgstr "Ominaisuus-editori"
 
-#: ImageSelect.py:1285
+#: ImageSelect.py:1288
 msgid "Remove Media Object"
 msgstr "Poista media-objekti"
 
@@ -1700,7 +1671,7 @@ msgstr "Suhteelle valitsemasi GRAMPS tunnus on jo käytössä."
 msgid "Edit Marriage"
 msgstr "Muokkaa avioliittoa"
 
-#: MediaView.py:57 MediaView.py:137 SelectObject.py:85 SourceView.py:51
+#: MediaView.py:57 MediaView.py:174 SelectObject.py:85 SourceView.py:51
 #: SourceView.py:116 Sources.py:108 Sources.py:242
 #: plugins/AncestorChart2.py:482 plugins/BookReport.py:789
 #: plugins/PatchNames.py:218 plugins/ScratchPad.py:354
@@ -1713,35 +1684,35 @@ msgstr "Otsake"
 msgid "Last Changed"
 msgstr "Viimeksi muutettu"
 
-#: MediaView.py:212 SelectObject.py:130
+#: MediaView.py:252 SelectObject.py:129
 msgid "The file no longer exists"
 msgstr "Tiedostoa ei enää ole olemassa"
 
-#: MediaView.py:244
+#: MediaView.py:284
 msgid "View in the default viewer"
 msgstr "Näytä oletuskatselimessa"
 
-#: MediaView.py:260
+#: MediaView.py:300
 msgid "Edit properties"
 msgstr "Muokkaa ominaisuuksia"
 
-#: MediaView.py:317
+#: MediaView.py:357
 msgid "This media object is currently being used. If you delete this object, it will be removed from the database and from all records that reference it."
 msgstr "Kyseinen media-objekti on käytössä. Jos hävität sen, objekti ja kaikki viitteet siihen poistetaan tietokannasta."
 
-#: MediaView.py:321
+#: MediaView.py:361
 msgid "Deleting media object will remove it from the database."
 msgstr "Media-objektin poisto hävittää sen tietokannasta."
 
-#: MediaView.py:324
+#: MediaView.py:364
 msgid "Delete Media Object?"
 msgstr "Poista media-objekti?"
 
-#: MediaView.py:325
+#: MediaView.py:365
 msgid "_Delete Media Object"
 msgstr "_Poista media-objekti"
 
-#: MediaView.py:382
+#: MediaView.py:421
 msgid "Image import failed"
 msgstr "Kuvan tuonti epäonnistui"
 
@@ -1765,12 +1736,11 @@ msgstr "Vertaa henkilöitä"
 msgid "Alternate Names"
 msgstr "Vaihtoehtoiset nimet"
 
-#: MergePeople.py:122 gramps.glade:8928 gramps.glade:12659
-#: plugins/NavWebPage.py:657
+#: MergePeople.py:122 gramps.glade:8961 gramps.glade:12692
 msgid "Events"
 msgstr "Tapahtumat"
 
-#: MergePeople.py:129 PedView.py:693 plugins/NavWebPage.py:717
+#: MergePeople.py:129 PedView.py:693
 msgid "Parents"
 msgstr "Vanhemmat"
 
@@ -1782,7 +1752,7 @@ msgstr "Perhetunnus"
 msgid "No parents found"
 msgstr "Vanhempia ei löytynyt"
 
-#: MergePeople.py:140 PedView.py:598 plugins/NavWebPage.py:730
+#: MergePeople.py:140 PedView.py:598
 msgid "Spouses"
 msgstr "Puolisot"
 
@@ -1803,7 +1773,7 @@ msgstr "Lapsi"
 msgid "No spouses or children found"
 msgstr "Puolisoita tai lapsia ei löytynyt"
 
-#: MergePeople.py:165 gramps.glade:10078
+#: MergePeople.py:165 gramps.glade:10111
 msgid "Addresses"
 msgstr "Osoitteet"
 
@@ -1891,13 +1861,12 @@ msgstr "Aseta ankkuri"
 msgid "Remove anchor"
 msgstr "Poista ankkuri"
 
-#: PedView.py:629 plugins/WebPage.py:713
+#: PedView.py:629 plugins/WebPage.py:715
 msgid "Siblings"
 msgstr "Sisarukset"
 
 #: PedView.py:659 plugins/FamilyGroup.py:400 plugins/IndivComplete.py:295
-#: plugins/IndivSummary.py:179 plugins/NavWebPage.py:739
-#: plugins/WebPage.py:672
+#: plugins/IndivSummary.py:179 plugins/WebPage.py:674
 msgid "Children"
 msgstr "Lapset"
 
@@ -1909,20 +1878,20 @@ msgstr "Viimeisin muutos"
 msgid "Cause of Death"
 msgstr "Kuolinsyy"
 
-#: PeopleView.py:83 WriteGedcom.py:327 gramps_main.py:952
+#: PeopleView.py:83 WriteGedcom.py:329 gramps_main.py:952
 #: plugins/EventCmp.py:158 plugins/ExportVCalendar.py:81
 #: plugins/ExportVCard.py:84 plugins/GraphViz.py:513
-#: plugins/IndivComplete.py:510 plugins/NavWebPage.py:1067
-#: plugins/StatisticsChart.py:827 plugins/TimeLine.py:411
-#: plugins/WebPage.py:1263 plugins/WriteFtree.py:86 plugins/WriteGeneWeb.py:87
+#: plugins/IndivComplete.py:510 plugins/StatisticsChart.py:827
+#: plugins/TimeLine.py:411 plugins/WebPage.py:1265 plugins/WriteFtree.py:86
+#: plugins/WriteGeneWeb.py:87
 msgid "Entire Database"
 msgstr "Koko tietokanta"
 
-#: PeopleView.py:263 gramps_main.py:1648
+#: PeopleView.py:267 gramps_main.py:1658
 msgid "Updating display..."
 msgstr "Päivitetään näyttöä..."
 
-#: PeopleView.py:291 PlaceView.py:200 SourceView.py:187 gramps.glade:955
+#: PeopleView.py:295 PlaceView.py:200 SourceView.py:189 gramps.glade:955
 #: plugins/BookReport.py:832
 msgid "Edit"
 msgstr "Muokkaa"
@@ -1951,7 +1920,7 @@ msgstr "Leveysaste"
 msgid "Place Menu"
 msgstr "Paikka-valikko"
 
-#: PlaceView.py:251 SourceView.py:223 gramps_main.py:1453
+#: PlaceView.py:251 SourceView.py:225 gramps_main.py:1454
 msgid "Delete %s?"
 msgstr "Poista %s?"
 
@@ -1982,8 +1951,8 @@ msgstr "Lajittelemattomat"
 #: PluginMgr.py:162 PluginMgr.py:163 PluginMgr.py:164 PluginMgr.py:189
 #: PluginMgr.py:191 PluginMgr.py:192 PluginMgr.py:223 PluginMgr.py:224
 #: PluginMgr.py:225 ReportUtils.py:1756 Witness.py:83 Witness.py:166
-#: const.py:234 const.py:247 const.py:493 const.py:506 gramps_main.py:1726
-#: plugins/Check.py:474 plugins/ScratchPad.py:78 plugins/WebPage.py:332
+#: const.py:234 const.py:247 const.py:493 const.py:506 gramps_main.py:1736
+#: plugins/Check.py:474 plugins/ScratchPad.py:78 plugins/WebPage.py:334
 msgid "Unknown"
 msgstr "Tuntematon"
 
@@ -2040,7 +2009,7 @@ msgid "Reload plugins"
 msgstr "Uudelleenlataa liitännäiset"
 
 #: Plugins.py:727 plugins/Eval.py:140 plugins/Leak.py:136
-#: plugins/TestcaseGenerator.py:751
+#: plugins/TestcaseGenerator.py:779
 msgid "Debug"
 msgstr "Debuggaus"
 
@@ -2075,7 +2044,7 @@ msgstr "GEDCOM tuonnin tila"
 msgid "%s could not be opened\n"
 msgstr "%s:ää ei voitu avata\n"
 
-#: ReadGedcom.py:269 ReadGedcom.py:1745
+#: ReadGedcom.py:269 ReadGedcom.py:1747
 msgid "Import from %s"
 msgstr "Tuo %s:stä"
 
@@ -2111,11 +2080,11 @@ msgstr "Tuonti valmis: %d sekuntia"
 msgid "GEDCOM import"
 msgstr "GEDCOM tuonti"
 
-#: ReadGedcom.py:1189 ReadGedcom.py:1233
+#: ReadGedcom.py:1189 ReadGedcom.py:1234
 msgid "Warning: could not import %s"
 msgstr "Varoitus %s:n tuonti epäonnistui"
 
-#: ReadGedcom.py:1190 ReadGedcom.py:1234
+#: ReadGedcom.py:1190 ReadGedcom.py:1235
 msgid ""
 "\tThe following paths were tried:\n"
 "\t\t"
@@ -2123,15 +2092,28 @@ msgstr ""
 "\tYritettiin seuraavia polkuja:\n"
 "\t\t"
 
-#: ReadGedcom.py:1765
+#: ReadGedcom.py:1767
 msgid "Overridden"
 msgstr "Ylikirjoitettu"
 
-#: ReadGrdb.py:60 ReadXML.py:104 ReadXML.py:111 WriteGrdb.py:57
+#: ReadGrdb.py:60 ReadGrdb.py:68 ReadXML.py:104 ReadXML.py:111 WriteGrdb.py:57
 msgid "%s could not be opened"
 msgstr "%s:n avaus epäonnistui"
 
-#: ReadGrdb.py:98 ReadGrdb.py:162
+#: ReadGrdb.py:65
+msgid ""
+"The database version is not supported by this version of GRAMPS.\n"
+"Please upgrade to the corresponding version or use XML for porting data between different database versions."
+msgstr ""
+"Tämä GRAMPS versio ei tuo valittua tietokantaversiota.\n"
+"Päivitä GRAMPS vastaavaan versioon tai käytä XML-muotoa\n"
+"vaihtaaksesi tietoa eri GRAMPS versioiden välillä."
+
+#: ReadGrdb.py:69
+msgid "The Database version is not supported by this version of GRAMPS."
+msgstr "Tämä GRAMPS versio ei tue valittua tietokantaversiota."
+
+#: ReadGrdb.py:107 ReadGrdb.py:171
 msgid "Import database"
 msgstr "Tuo tietokanta"
 
@@ -2383,8 +2365,8 @@ msgstr "Koko"
 msgid "Height"
 msgstr "Korkeus"
 
-#: Report.py:1199 Report.py:1215 gramps.glade:20289 gramps.glade:20313
-#: gramps.glade:20337 gramps.glade:20769
+#: Report.py:1199 Report.py:1215 gramps.glade:20322 gramps.glade:20346
+#: gramps.glade:20370 gramps.glade:20802
 msgid "cm"
 msgstr "cm"
 
@@ -2404,15 +2386,15 @@ msgstr "Sivumäärä"
 msgid "HTML Options"
 msgstr "HTML-asetukset"
 
-#: Report.py:1262 plugins/WebPage.py:1437
+#: Report.py:1262 plugins/WebPage.py:1439
 msgid "Template"
 msgstr "Tyylimalli"
 
-#: Report.py:1286 plugins/WebPage.py:1438
+#: Report.py:1286 plugins/WebPage.py:1440
 msgid "User Template"
 msgstr "Käyttäjän tyylimalli"
 
-#: Report.py:1290 plugins/WebPage.py:1396
+#: Report.py:1290 plugins/WebPage.py:1398
 msgid "Choose File"
 msgstr "Valitse tiedosto"
 
@@ -3140,7 +3122,7 @@ msgid "Civil Union"
 msgstr "Rekisteröity parisuhde"
 
 #: ReportUtils.py:1757 const.py:234 const.py:248 const.py:494
-#: mergedata.glade:255
+#: mergedata.glade:242
 msgid "Other"
 msgstr "Muu"
 
@@ -3148,7 +3130,7 @@ msgstr "Muu"
 msgid "A person cannot be linked as his/her own child"
 msgstr "Henkilöstä ei voi tehdä itsensä lasta"
 
-#: SelectChild.py:331
+#: SelectChild.py:332
 msgid "Add Child to Family (%s)"
 msgstr "Lisää perheeseen (%s) lapsi"
 
@@ -3164,27 +3146,27 @@ msgstr "Lyhennys"
 msgid "Publication Information"
 msgstr "Julkaisutiedot"
 
-#: SourceView.py:191
+#: SourceView.py:193
 msgid "Source Menu"
 msgstr "Lähde-valikko"
 
-#: SourceView.py:216
+#: SourceView.py:218
 msgid "This source is currently being used. Deleting it will remove it from the database and from all records that reference it."
 msgstr "Tämä lähde on käytössä. Se hävittäminen poistaa lähteen ja kaikki sen viitteet tietokannasta."
 
-#: SourceView.py:220
+#: SourceView.py:222
 msgid "Deleting source will remove it from the database."
 msgstr "Lähteen hävittäminen poistaa sen tietokannasta."
 
-#: SourceView.py:224
+#: SourceView.py:226
 msgid "_Delete Source"
 msgstr "_Poista lähde"
 
-#: SourceView.py:265
+#: SourceView.py:267
 msgid "Cannot merge sources."
 msgstr "Lähteiden yhdistys ei onnistu."
 
-#: SourceView.py:266
+#: SourceView.py:268
 msgid "Exactly two sources must be selected to perform a merge. A second source can be selected by holding down the control key while clicking on the desired source."
 msgstr "Tasan kaksi lähdettä pitää olla valittuna yhdistettäväksi. Toinen lähde voidaan valita pitämällä Control-näppäintä alhaalla klikatessa."
 
@@ -3192,7 +3174,7 @@ msgstr "Tasan kaksi lähdettä pitää olla valittuna yhdistettäväksi. Toinen 
 msgid "Source Reference Selection"
 msgstr "Lähdeviitteen valinta"
 
-#: Sources.py:145 Sources.py:452
+#: Sources.py:145 Sources.py:454
 msgid "Source Reference"
 msgstr "Lähdeviite"
 
@@ -3200,7 +3182,7 @@ msgstr "Lähdeviite"
 msgid "Reference Selector"
 msgstr "Viitevalitsin"
 
-#: Sources.py:376 Sources.py:458
+#: Sources.py:378 Sources.py:460
 msgid "Source Information"
 msgstr "Lähteen tiedot"
 
@@ -3257,33 +3239,33 @@ msgstr ""
 msgid "In order to create valid GEDCOM files, the following information needs to be entered. If you do not plan to generate GEDCOM files, you may leave this empty."
 msgstr "Toimivien GEDCOM tiedoston luontia varten tarvitaan seuraavat tiedot. Jos et aio luoda GEDCOM tiedostoja (esim. käyttääksesi muita sukututkimusohjelmia), voit jättää ne tyhjiksi."
 
-#: StartupDialog.py:243 gramps.glade:5910 gramps.glade:5981 gramps.glade:7741
-#: gramps.glade:8551 gramps.glade:9065 gramps.glade:9501 gramps.glade:12247
-#: gramps.glade:12742 plugins/soundex.glade:110
+#: StartupDialog.py:243 gramps.glade:5910 gramps.glade:5981 gramps.glade:7774
+#: gramps.glade:8584 gramps.glade:9098 gramps.glade:9534 gramps.glade:12280
+#: gramps.glade:12775 plugins/soundex.glade:110
 msgid "Name:"
 msgstr "Nimi:"
 
-#: StartupDialog.py:244 gramps.glade:9453 plugins/Ancestors.py:505
+#: StartupDialog.py:244 gramps.glade:9486 plugins/Ancestors.py:505
 msgid "Address:"
 msgstr "Osoite:"
 
-#: StartupDialog.py:245 gramps.glade:14649
+#: StartupDialog.py:245 gramps.glade:14682
 msgid "City:"
 msgstr "Kaupunki:"
 
-#: StartupDialog.py:246 gramps.glade:9573
+#: StartupDialog.py:246 gramps.glade:9606
 msgid "State/Province:"
 msgstr "Maakunta:"
 
-#: StartupDialog.py:247 gramps.glade:9477 gramps.glade:14697
+#: StartupDialog.py:247 gramps.glade:9510 gramps.glade:14730
 msgid "Country:"
 msgstr "Maa:"
 
-#: StartupDialog.py:248 gramps.glade:9549
+#: StartupDialog.py:248 gramps.glade:9582
 msgid "ZIP/Postal code:"
 msgstr "Postinumero:"
 
-#: StartupDialog.py:249 gramps.glade:9835 gramps.glade:14944
+#: StartupDialog.py:249 gramps.glade:9868 gramps.glade:14977
 msgid "Phone:"
 msgstr "Puhelin:"
 
@@ -3373,33 +3355,31 @@ msgstr ""
 "\n"
 "Yritä uudelleen. Todistajaa ei ole muutettu."
 
-#: WriteGedcom.py:331 plugins/DescendReport.py:116
+#: WriteGedcom.py:333 plugins/DescendReport.py:116
 #: plugins/ExportVCalendar.py:85 plugins/ExportVCard.py:88
 #: plugins/FtmStyleDescendants.py:121 plugins/GraphViz.py:517
-#: plugins/IndivComplete.py:514 plugins/NavWebPage.py:1071
-#: plugins/StatisticsChart.py:831 plugins/TimeLine.py:415
-#: plugins/WebPage.py:1267 plugins/WriteFtree.py:90 plugins/WriteGeneWeb.py:91
+#: plugins/IndivComplete.py:514 plugins/StatisticsChart.py:831
+#: plugins/TimeLine.py:415 plugins/WebPage.py:1269 plugins/WriteFtree.py:90
+#: plugins/WriteGeneWeb.py:91
 msgid "Descendants of %s"
 msgstr "%s:n jälkeläiset"
 
-#: WriteGedcom.py:335 plugins/Ancestors.py:141 plugins/ExportVCalendar.py:89
+#: WriteGedcom.py:337 plugins/Ancestors.py:141 plugins/ExportVCalendar.py:89
 #: plugins/ExportVCard.py:92 plugins/FtmStyleAncestors.py:96
 #: plugins/GraphViz.py:521 plugins/IndivComplete.py:518
-#: plugins/NavWebPage.py:1079 plugins/StatisticsChart.py:835
-#: plugins/TimeLine.py:419 plugins/WebPage.py:1275 plugins/WriteFtree.py:94
-#: plugins/WriteGeneWeb.py:95
+#: plugins/StatisticsChart.py:835 plugins/TimeLine.py:419
+#: plugins/WebPage.py:1277 plugins/WriteFtree.py:94 plugins/WriteGeneWeb.py:95
 msgid "Ancestors of %s"
 msgstr "%s:n esivanhemmat"
 
-#: WriteGedcom.py:339 plugins/ExportVCalendar.py:93 plugins/ExportVCard.py:96
+#: WriteGedcom.py:341 plugins/ExportVCalendar.py:93 plugins/ExportVCard.py:96
 #: plugins/GraphViz.py:525 plugins/IndivComplete.py:522
-#: plugins/NavWebPage.py:1083 plugins/StatisticsChart.py:839
-#: plugins/TimeLine.py:423 plugins/WebPage.py:1279 plugins/WriteFtree.py:98
-#: plugins/WriteGeneWeb.py:99
+#: plugins/StatisticsChart.py:839 plugins/TimeLine.py:423
+#: plugins/WebPage.py:1281 plugins/WriteFtree.py:98 plugins/WriteGeneWeb.py:99
 msgid "People with common ancestor with %s"
 msgstr "Henkilöt, joilla on yhteinen esivanhempi %s:n kanssa"
 
-#: WriteGedcom.py:555 WriteGedcom.py:560 docgen/AbiWord2Doc.py:77
+#: WriteGedcom.py:557 WriteGedcom.py:562 docgen/AbiWord2Doc.py:77
 #: docgen/AbiWord2Doc.py:80 docgen/AsciiDoc.py:113 docgen/AsciiDoc.py:116
 #: docgen/HtmlDoc.py:225 docgen/HtmlDoc.py:228 docgen/HtmlDoc.py:353
 #: docgen/HtmlDoc.py:356 docgen/LaTeXDoc.py:87 docgen/LaTeXDoc.py:90
@@ -3416,15 +3396,15 @@ msgstr "Henkilöt, joilla on yhteinen esivanhempi %s:n kanssa"
 msgid "Could not create %s"
 msgstr "%s:n luonti epäonnistui"
 
-#: WriteGedcom.py:1244
+#: WriteGedcom.py:1252
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: WriteGedcom.py:1245
+#: WriteGedcom.py:1253
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input. "
 msgstr "GEDCOM tiedostomuotoa käytetään tiedon siirtämiseen eri sukututkimusohjelmien välillä. Useimmat sukututkimusohjelmat pystyvät lukemaan GEDCOM tiedostoja."
 
-#: WriteGedcom.py:1247
+#: WriteGedcom.py:1255
 msgid "GEDCOM export options"
 msgstr "GEDCOM vientiasetukset"
 
@@ -3444,11 +3424,11 @@ msgstr "Tietokantaa ei voida tallentaa, koska sinulla ei ole tarvittavaa kirjoit
 msgid "The database cannot be saved because you do not have permission to write to the file. Please make sure you have write access to the file and try again."
 msgstr "Tietokantaa ei voida tallentaa, koska sinulla ei ole tarvittavaa kirjoitusoikeutta tiedostoon. Varmista, että sinulla on kirjoitusoikeus tietokantatiedostoon ja yritä uudelleen."
 
-#: WriteXML.py:891
+#: WriteXML.py:881
 msgid "GRAMPS _XML database"
 msgstr "GRAMPS _XML tietokanta"
 
-#: WriteXML.py:892
+#: WriteXML.py:882
 msgid "The GRAMPS XML database is a format used by older versions of GRAMPS. It is read-write compatible with the present GRAMPS database format."
 msgstr "GRAMPS XML tietokanta on GRAMPSin vanhempien versioiden käyttämä tiedostomuoto. GRAMPS osaa muuntaa tietoja sen ja nykyisen GRAMPS tietokannan tiedostomuodon välillä vaikeuksitta."
 
@@ -3792,7 +3772,7 @@ msgstr "Graafiset raportit"
 msgid "Code Generators"
 msgstr "Koodigeneraattorit"
 
-#: const.py:937 plugins/NavWebPage.py:1247 plugins/WebPage.py:1717
+#: const.py:937 plugins/WebPage.py:1719
 msgid "Web Page"
 msgstr "WWW-sivu"
 
@@ -3804,10 +3784,9 @@ msgstr "Näkymä"
 msgid "Books"
 msgstr "Kirjat"
 
-#: const.py:943 plugins/NavWebPage.py:1149 plugins/ScratchPad.py:356
-#: plugins/ScratchPad.py:405 plugins/ScratchPad.py:413
-#: plugins/SimpleBookTitle.py:169 plugins/SimpleBookTitle.py:170
-#: plugins/SimpleBookTitle.py:171
+#: const.py:943 plugins/ScratchPad.py:356 plugins/ScratchPad.py:405
+#: plugins/ScratchPad.py:413 plugins/SimpleBookTitle.py:169
+#: plugins/SimpleBookTitle.py:170 plugins/SimpleBookTitle.py:171
 msgid "Text"
 msgstr "Teksti"
 
@@ -3817,148 +3796,149 @@ msgstr "Kaavio"
 
 #: data/tips.xml:9
 msgid "A range of dates can be given by using the format \"between January 4, 2000 and March 20, 2003\""
-msgstr ""
+msgstr "Päivämääräväli voidaan antaa muodossa \"4.1.2000 - 20.3.2003\""
 
 #: data/tips.xml:16
 msgid "In most cases double clicking on a name, source, place or media entry will bring up a window to allow you to edit the object. Note that the result can be dependent on context. For example, in the Family View clicking on a parent or child will bring up the relationship editor."
-msgstr ""
+msgstr "Useimmissa tapauksissa nimeen, lähteeseen, paikkaan tai media-objektiin klikkaaminen aukaisee ikkunan, josta voit muokata sen ominasuuksia. Huomaa, että mitä tapahtuu, saattaa riippua kontekstista.  Esimerkiksi Perhenäkymässä vanhempaan tai lapseen klikkaaminen aukaiseen suhde-editorin."
 
 #: data/tips.xml:20
 msgid "An image can be added to any gallery or the Media View by dragging and dropping it from a file manager or a web browser."
-msgstr ""
+msgstr "Kuva voidaan lisätä mihin tahansa galleriaan tai media-näkymään vetämällä ja pudottamalle se sinne tiedostonhallinnasta tai www-selaimesta."
 
 #: data/tips.xml:24
 msgid "Birth order of children in a family can be set, even if they do not have birth dates, by using drag and drop."
-msgstr ""
+msgstr "Vaikka perheen lasten syntymäajat eivät olisi tiedossa, heidän syntymäjärjestystään voidaan muuttaa listassa vetämällä ja pudottamalla."
 
 #: data/tips.xml:34
 msgid "<b>Talk to Relatives Before It Is Too Late</b>: Your oldest relatives can be your most important source of information. They usually know things about the family that haven't been written down. They might tell you nuggets about people that may one day lead to a new avenue of research. At the very least, you will get to hear some great stories. Don't forget to record the conversations!"
-msgstr ""
+msgstr "<b>Haastattele sukulaisiasi ennen kuin se on liian myöhäistä</b>: Vanhimmat sukulaisesi ovat tärkeimpiä tietolähteitäsi. Yleensä he tietävät suvustasi asioita, joita ei ole kirjattu minnekään. Voit saada heiltä ihmisistä tietoja, jotka jonain päivänä voivat hyvinkin johtaa tutkimuksesi uusille urille. Vähintäänkin kuulet muutamia hyviä tarinoita. Älä unohda nauhoittaa keskustelujasi!"
 
 #: data/tips.xml:42
 msgid "<b>Example of a Family Tree</b>: To see an example of what a family looks like in GRAMPS, check <b>Help > Open example database</b>. You will then be viewing the elaborate Smith family database, which includes 42 individuals and 15 families, with fairly complete data about many of the individuals."
 msgstr ""
+"<b>Sukupuuesimerkki</b>: Nähdäksesi esimerkin, miltä suku GRAMPS:ssä näyttää, avaa <b>Ohjeet > Avaa esimerkkitietokanta</b>."
+"Näet sitten esimerkin Smith-suvun tietokannasta, joka sisältää 42 henkilöä ja 15 perhettä, kohtuullisen täysillä tiedoilla monista suvun jäsenistä."
 
 #: data/tips.xml:51
 msgid "<b>The People View</b>: The People View shows a list of all individuals in the database. The listings can be sorted by simply clicking on a heading such as name, gender, birth date or death date. Clicking the heading a second time will reverse the sort."
-msgstr ""
+msgstr "<b>Henkilönäkymä</b>: Henkilönäkymä näyttää sinulle listan kaikista tietokannan henkilöistä. Voit järjestää listan klikkaamalla jotakin otsakkeista, kuten nimi, sukupuoli, syntymäaika tai kuolinaika. Klikkaamalla otsaketta toisen kerran saat vaihdettua järjestyksen käänteiseksi."
 
 #: data/tips.xml:61
 msgid "<b>Filtering People</b>: In the People View, you can 'filter' individuals based on many criteria. Go to the Filter (just to the right of the People icon) and choose one of the dozen different presets. For example, all adopted people in the family tree can be located. People without a birth date mentioned can also be filtered. To get the results click Apply. If the filter controls are not visible, enable them by choosing <b>View > Filter</b>."
-msgstr ""
+msgstr "<b>Henkilöiden suodattaminen</b>: Voit suodattaa henkilönäkymän ihmisiä monin eri perustein. Avaa suodinvalikko (henkilönäkymän yläosassa) ja valitse jokin monista valmiista suotimista. Voit valita esim. kaikki henkilöt, jotka on adoptoitu. Tai henkilöt, joilla ei ole syntymäaikaa. Nähdäksesi heidät, klikkaa \"käytä\". Jos suodinvalikko ei ole näkyvillä, saat sen näkyviin valitsemalla <b>Näytä > Suodin</b>."
 
 #: data/tips.xml:68
 msgid "<b>Inverted Filtering</b>: Filters can easily be reversed by using the 'invert' option. For instance, by inverting the 'People with children' filter you can select all people without children."
-msgstr ""
+msgstr "<b>Käänteinen suodatus</b>: Suotimet on helppo kääntää käyttämällä 'Vaihda päinvastaiseksi' valintaa. Esimerkiksi kääntämällä suotimen 'Henkilöt, joilla on lapsia', saat näkyviin henkilöt, joilla <b>ei</b> ole lapsia."
 
 #: data/tips.xml:74
 msgid "<b>Locating People</b>: By default, each surname in the People View is listed only once. By clicking on the arrow to the left of a name, the list will expand to show all individuals with that last name."
-msgstr ""
+msgstr "<b>Henkilöiden paikallistaminen</b>: Oletusarvoisesti jokainen sukunimi henkilönäkymässä on listattu vain kerran. Klikkaamalla nimen vieressä olevaa nuolta, lista aukeaa näyttämään kaikki henkilöt, joilla on sen osoittama sukunimi."
 
 #: data/tips.xml:79
 msgid "<b>The Family View</b>: The Family View is used to display a typical family unit---the parents, spouses and children of an individual."
-msgstr ""
+msgstr "<b>Perhenäkymä</b>: Perhenäkymä näyttää tyypillisen perheen jäsenet; henkilön vanhemmat, puolisot ja lapset."
 
 #: data/tips.xml:89
 msgid "<b>Shifting a Family View</b>: Changing the Active Person in the Family View is easy. A spouse can be made the Active Person by clicking the button just to the right of the Active Person. A father can be made the Active Person by clicking on the arrow to the right of their name. A child can be made the Active Person by selecting them from the Children list and then clicking the arrow button to the right of the Children."
-msgstr ""
+msgstr "<b>Perhenäkymän muuttaminen</b>: Aktiivisen henkilön muuttaminen perhenäkymässä on helppoa. Puolisosta voi tehdä aktiivisen henkilön klikkaamalla aktiivisen henkilön oikealla puolla olevaa nappulaa. Isästä voi tehdä aktiivisen henkilön klikkaamalla nuolinappulaa nimen oikealla puolella. Lapsesta voi tehdä aktiivisen henkilön välitsemalla hänet listasta ja klikkaamalla lapsilistan oikealla puolella olevaa nuolinappulaa."
 
 #: data/tips.xml:96
 msgid "<b>Who Was Born When</b>: The 'Compare individual events' tool allows you to compare data of all (or some of) the individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database."
-msgstr ""
+msgstr "<b>Kuka syntyi ja milloin</b>: 'Vertaa yksittäisiä tapahtumia...' työkalu sallii sinun verrata kaikkien (tai joidenkin) tietokannan henkilöiden tietoja. Tästä on hyötyä, jos haluat esimerkiksi listata kaikkien tietokannassasi olevien henkilöiden syntymäajat."
 
 #: data/tips.xml:104
 msgid "GRAMPS comes with a rich set of tools. These allows you to undertake operations such as checking database for errors and consistency, as well as research and analysis tools such as event comparison, finding duplicate people, interactive descendant browser, and others. All tools can be accessed through the <b>Tools</b> menu."
-msgstr ""
+msgstr "GRAMPSin mukana tulee runsas joukko työkaluja. Niillä voit tarkistaa tietokantasi virheiden ja epäyhtenäisyyksien varalta, verrata tapahtumia, löytää kahdennettuja tietoja, käyttää interaktiivista jälkeläisselainta jne. Kaikki työkalut löytyvät <b>Työkalut</b> menusta."
 
 #: data/tips.xml:111
 msgid "<b>Calculating Relationships</b>: This tool, under <b>Tools > Utilities > Relationship calculator</b> allows you to check if someone else in the family is related (by blood, not marriage) to you. Precise relationships as well as the common ancestors are reported."
-msgstr ""
+msgstr "<b>Suhdelaskenta</b>: Voit tarkistaa onko joku sukua sinulle (verisukulainen, ei avioliiton kautta) käyttämällä <b>Työkalut > Apuvälineet > Suhdelaskin...</b> työkalua. Se raportoi tarkan sukulaisuussuhteen sekä yhteiset esivanhemmat."
 
 #: data/tips.xml:122
 msgid "<b>SoundEx can help with family research</b>: SoundEx solves a long standing problem in genealogy---how to handle spelling variations. The SoundEx utility takes a surname and generates a simplified form that is equivalent for similar sounding names. Knowing the SoundEx Code for a surname is very helpful for researching Census Data files (microfiche) at a library or other research facility. To get the SoundEx codes for surnames in your database, go to <b>Tools > Utilities > Generate SoundEx codes</b>."
-msgstr ""
+msgstr "<b>SoundEx koodeista hyötyä sukututkimuksessa</b>: SoundEx ratkaisee sukututkimusta pitkään vaivanneen ongelman -- miten käsitellä  nimien ääntämykseen liittyviä eroavaisuuksia. SoundEx apuväline ottaa sukunimen ja tuottaa siitä yksinkertaistetun muodon, joka on yhteinen (latinalaisten kielten?) samalta kuulostavilla nimillä. Sukunimen SoundEx koodin tietäminen auttaa tutkittaessa (Amerikan?) väestonlaskentarekisterin tietoja (mikrofilmilla) kirjastossa tai muussa tutkimuslaitoksessa. Saadaksesi SoundEx koodin tietokantasi nimille, avaa <b>Työkalut > Tuota SoundEx koodeja...</b>."
 
 #: data/tips.xml:128
 msgid "<b>Setting Your Preferences</b>: Not happy with some default behavior of GRAMPS? <b>Edit > Preferences</b> lets you to modify a number of settings, allowing you to tailor GRAMPS to your needs."
-msgstr ""
+msgstr "<b>Omat asetukset</b>: Etkö ole tyytyväinen GRAMPSin oletuskäyttäytymiseen? <b>Muokkaa > Asetukset</b> tarjoaa sinulle mahdollisuuden muuttaa useita asetuksia, saadaksesi GRAMPSin toimimaan haluamallasi tavalla."
 
 #: data/tips.xml:134
 msgid "<b>GRAMPS Reports</b>: GRAMPS offers a wide variety of reports. The Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email."
-msgstr ""
+msgstr "<b>GRAMPSin raportit</b>: GRAMPS tarjoaa laajan kirjon erilaisia raportteja. Tekstiraportit ovat erityisen käyttökelpoisia, jos haluat lähettää sukupuusi tuloksia sukulaisillesi sähköpostin välityksellä."
 
 #: data/tips.xml:142
 msgid "<b>Starting a New Family Tree</b>: A good way to start a new family tree is to enter all the members of the family into the database (use <b>Edit > Add</b> or click on the Add button under the People menu). Then go to the Family View and create relationships between people. Then go about tracing the relationships among them all under the Family menu."
-msgstr ""
+msgstr "<b>Uuden sukupuun aloittaminen</b>: Hyvä tapa aloittaa uusi sukupuu on ensin syöttää kaikki haluamasi sukulaiset tietokantaan (käytä <b>Muokkaa > Lisää</b> tai klikkaa Lisää nappulaa henkilönäkymän ollessa auki). Sitten siirry perhenäkymään ja lisää henkilöiden väliset suhteet. Lopuksi tarkista kaikkien henkilöiden väliset suhteet perhenäkymän (tai esim. graafisen suhdekaavion) avulla."
 
 #: data/tips.xml:147
 msgid "Unsure what a button does? Simply hold the mouse over a button and a tooltip will appear."
-msgstr ""
+msgstr "Epävarma siitä, mitä jostain nappulasta tapahtuu? Siirrä hiiri hetkeksi ao. nappulan yläpuolelle ja sitä koskeva vinkki tulee näkyviin."
 
 #: data/tips.xml:156
 msgid "<b>Unsure of a Date?</b> If you're unsure about the date an event occurred (for example birth or death), GRAMPS allows you to enter a wide range of date formats based on a guess or an estimate. For instance, \"about 1908\" is a valid entry for a birth date in GRAMPS. See section 3.7.2.2 of the GRAMPS manual for a complete description of date entry options."
-msgstr ""
+msgstr "<b>Epävarma päivämäärästä?</b>: Jos et ole varma milloin jokin tapahtuma tapahtui (esim. syntymä tai kuolema), GRAMPS sallii päivämäärän antamisen monissa eri muodoissa, arvaukseen tai arvioon perustuen. GRAMPS hyväksyy esimerkiksi muodon \"noin 1908\". GRAMPSin ohjekirjan kappale (3.7.2.2) päivämäärän syötöstä tarjoaa tarkemman kuvauksen vaihtoehdoista."
 
 #: data/tips.xml:162
 msgid "<b>Duplicate Entries</b>: <b>Tools > Database Processing > Find possible duplicate</b> people allows you to located (and merge) entries of the same person entered more than once in the database."
-msgstr ""
+msgstr "<b>Kahdentuneet tiedot</b>: <b>Työkalut > Tietokannan prosessointi > Etsi mahdolliset henkilöiden kahdennukset...</b> sallii sinun paikantaa (ja liittää) henkilöt, joiden tiedot on syötetty tietokantaan useamman kerran."
 
 #: data/tips.xml:168
 msgid "The 'merge' function allows you to combine separately listed people into one. This is very useful for combining two databases with overlapping people, or combining erroneously entered differing names for one individual."
-msgstr ""
+msgstr "'Liitä' toiminto sallii sinun liittää erikseen listattuja henkilöitä yhteen. Tästä on hyötyä yhdistettäessä samoja ihmisiä sisältäviä tietokantoja tai yhdistettäessä vahingossa useampaan kertaan syötettyjä henkilöitä."
 
 #: data/tips.xml:174
-#, fuzzy
 msgid "To easily merge two people, select them both (a second person can be selected by holding the Control key while clicking) and clicking on <b>Edit > Fast Merge</b>."
-msgstr "Tasan kaksi henkilöä pitää olla valittuna yhdistettäväksi. Toinen henkilö voidaan valita pitämällä Control-näppäintä alhaalla klikatessa."
+msgstr "Yhdistääksesi helposti kaksi henkilöä, valitse molemmat (voit valita toisen henkilön pitämällä Control näppäintä alhaalla klikatessasi) ja klikkaa <b>Muokkaa > Pikaliitos</b>."
 
 #: data/tips.xml:180
 msgid "GRAMPS maintains a list of previous Active People. You can move forward and backward through the list using <b>Go > Forward</b> and <b>Go > Back</b>."
-msgstr ""
+msgstr "GRAMPS pitää listaa aikaisemmista aktiivisista henkilöistä. Voit siirtyä eteen ja taaksepäin listassa <b>Siirry > Seuraava</b> ja <b>Siirry > Edellinen</b> toimintoja käyttämällä."
 
 #: data/tips.xml:186
 msgid "Tired of having to take your hand off the keyboard to use the mouse? Many functions in GRAMPS have keyboard shortcuts. If one exists for a function it is displayed on the right side of the menu."
-msgstr ""
+msgstr "Väsynyt käsien irroittamiseen näppäimistöltä hiirtä käyttääksesi? Monille GRAMPSin toiminnoille on olemassa näppäinyhdistelmät. Jos toiminnolle on sellainen, se näytetään menun oikeassa reunassa."
 
 #: data/tips.xml:193
 msgid "Don't forget to read the GRAMPS manual, <b>Help > User Manual</b>. The developers have worked hard to make most operations intuitive but the manual is full of information that will make your time spent on genealogy more productive."
-msgstr ""
+msgstr "Älä unohda lukea GRAMPSin käyttöohjetta <b>Ohjeet > Käyttöohje</b>. Kehittäjät ovat työskennelleet ahkerasti tehdäkseen useimmat toiminnot intuitiivisiksi, mutta käyttöohje on täynnä tietoa, jolla saat sukututkimukseen varaamasi ajan tuottavammaksi."
 
 #: data/tips.xml:203
 msgid "<b>Adding Children</b>: To add children in GRAMPS make either of the parents the Active Person then switch to the Family View. If the child is already in the database, click on the third button down to the right of the Children list. If the person is not already in the database, click on the second button down to the right of the Children list. After the child's information is entered they will automatically be listed as a child of the Active Person."
-msgstr ""
+msgstr "<b>Lasten lisääminen</b>: Lisätäksesi lapsia GRAMPsiin tee jommastakummasta vanhemmasta aktiivinen perhenäkymässä. Jos lapsi löytyy jo tietokannasta, klikkaa kolmatta nappulaa lapsilistan oikealla puolella. Jos häntä ei ei ole vielä tietokannassa, klikkaa toisena olevaa nappulaa. Lapsen tietojen lisäämisen jälkeen hänet listataan automaattisesti aktiivisen henkilön lapsena."
 
 #: data/tips.xml:212
 msgid "<b>Editing The Relationship of a Child</b>: Not all children are the related by birth to their parents. You can edit the relationship of a child to each parent by selecting the child, right-clicking, and choosing \"Edit the child parent relationship\". Relationships can be any of Birth, Adopted, Stepchild, Sponsored, Foster, or Unknown."
-msgstr ""
+msgstr "<b>Lapsen suhteiden muokkaaminen</b>: Kaikki lapset eivät ole vanhempiensa verisukulaisia. Voit muokata lapsen sukulaisuussuhdetta jokaiseen vanhempaansa valitsemalla lapsen, ja klikkaamalla \"Muokkaa lapsi/vanhempi suhteita\" kohtaa hiiren oikealla näppäimellä saamastasi menusta."
 
 #: data/tips.xml:220
 msgid "<b>Show All Checkbutton</b>: When adding a spouse or child, the list of people shown is filtered to display only people who could realistically fit the role (based on dates in the database). In case GRAMPS is wrong in making this choice, you can override that filter by checking the \"Show All\" checkbutton."
-msgstr ""
+msgstr "<b>Näytä kaikki  -valinta</b>: Puolisoa tai lasta lisätessäsi, näytettyjen henkilöiden listaan on suodatettu vain henkilöt, jotka voisivat realistisesti sopia ao. rooliin (tietokannassa olevien päivämäärien perusteella). Jos GRAMPS on valinnut heidät väärin, voit poistaa suotimen käytöstä valitsemalla \"Näytä kaikki\"."
 
 #: data/tips.xml:227
 msgid "<b>GRAMPS Manual</b>: The GRAMPS manual is quite elaborate and well written. It includes details on keybindings and includes some useful tips that will help you in your genealogy work. Check it out."
-msgstr ""
+msgstr "<b>GRAMPS ohjekirja</b>: GRAMPSin ohjekirja on varsin kattava ja hyvin kirjoitettu. Se sisältää yksityiskohtia näppäinlyhenteistä ja sisältää muutamia käyttökelpoisia vinkkejä sukututkimuksesi avuksi. Tarkistapa se."
 
 #: data/tips.xml:236
 msgid "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to GRAMPS. Requesting an enhancement can be done either through the gramps-users or gramps-devel mailing lists, or by creating a Request for Enhancement (RFE) at http://sourceforge.net/tracker/?group_id=25770&amp;atid=385140 Filing an RFE is preferred."
-msgstr ""
+msgstr "<b>GRAMPSin parantaminen</b>: Käyttäjiä rohkaistaan esittämään prannusehdoituksia GRAMPSiin. Ehdoituksia voi lähettää gramps-users tai gramps-devel sähköpostilistoille tai (mieluummin) luomalla RFE (Request for Enhancement) parannusehdoituksen GRAMPS sivustolle osoitteeseen http://sourceforge.net/tracker/?group_id=25770&amp;atid=385140"
 
 #: data/tips.xml:245
 msgid "<b>GRAMPS Mailing Lists</b>: Want answers to your queries about GRAMPS? Check out the gramps-users list. Many people are on the list, so you're likely to get an answer quickly. If you have questions related to the development of GRAMPS, try gramps-devel. Information on both mailing lists can be found at lists.sf.net."
-msgstr ""
+msgstr "<b>GRAMPS postituslistat</b>: Haluatko vastauksia GRAMPsiä koskeviin kysymyksiisi? Tarkista gramps-users sähköpostilista. Listalla on useita käyttäjiä, joten todennäköisesti saat vastauksen nopeasti. Jos sinulla on GRAMPSin kehitystä koskevia kysymyksia, yritä gramps-devel listaa. Tietoja molemmista listoista löytyy osoitteesta lists.sf.net."
 
 #: data/tips.xml:256
 msgid "<b>Contributing to GRAMPS</b>: Want to help with GRAMPS but can't program? Not a problem. A project as large as GRAMPS requires people with a wide variety of skills. Contributions can vary from writing documentation to testing development versions to helping with the web site. Start by subscribing to the gramps developers mailing list, gramps-devel and introducing yourself. Subscription information can be found at lists.sf.net."
-msgstr ""
+msgstr "<b>GRAMPS kehityksen avustaminen</b>: Haluatko auttaa GRAMPSin kehityksessä, mutta et osaa ohjelmoida? Ei hätää.  GRAMPSin kokoinen projekti vaatii erilaisiä kykyjä omaavia ihmisiä. Avustukset voivat vaihdella dokumentaation kirjoittamisesta, kehitysversioiden testaamisesta www-sivuston kehitykseen. Aloita liittymällä gramps-devel sähköpostilistalle ja esittelemällä itsesi. Liittymistiedot löytyvät lists.sf.net osoitteesta."
 
 #: data/tips.xml:264
 msgid "GRAMPS is the Genealogical Research and Analysis Management Program System. It is a full-featured genealogy program letting you store, edit, and research genealogical data. Gramps database back end is so robust that some users are managing genealogies containing hundreds of thousands of people."
-msgstr ""
+msgstr "GRAMPS on sukutiedon tutkimisen ja analyysin hallintasysteemi. Se on täynnä ominaisuuksia, jotka sallivat sinun tallentaa, muokata ja tutkia sukututkimukseen liittyvää tietoa. Muutamilla käyttäjillä on jopa satojen tuhansien henkilöiden GRAMPS tietokantoja."
 
 #: data/tips.xml:271
 msgid "<b>Different Views</b>: There are six different views for navigating your family: People, Family, Pedigree, Sources, Places, Media. Each helps you to achieve one or more specific tasks."
-msgstr ""
+msgstr "<b>Eri näkymät</b>: GRAMPS tarjoaa sukutiedon käsittelyyn kuusi erilaista näkymää: Henkilö, Perhe, Sukupuu, Lähde, Paikka ja Media-objekti näkymät. Jokaisessa voit suorittaa tietyn tyyppisia asioita."
 
 #: data/tips.xml:280
 msgid "<b>Bookmarking Individuals</b>: The Bookmark menu at the top of the window is a convenient place to store the names of frequently used individuals. Clicking on a bookmarked individual will make that person the Active Person. To create a bookmark for a person, make them the Active Person, right click on their name and click on 'add bookmark'."
@@ -4018,11 +3998,11 @@ msgstr ""
 
 #: data/tips.xml:380
 msgid "The best way to report a bug in GRAMPS is to use the GRAMPS Bug Tracker at Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
-msgstr ""
+msgstr "Paras tapa raportoida GRAMPS virhe on käyttää GRAMPSin virheidenseurantajärjestelmää Sourceforge sivustolla osoitteessa http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
 
 #: data/tips.xml:384
 msgid "The GRAMPS homepage is at http://gramps-project.org/"
-msgstr ""
+msgstr "GRAMPS kotisivu on osoitteessa http://gramps-project.org/"
 
 #: data/tips.xml:392
 msgid "GRAMPS has some unique features, including the ability to input any piece of information directly into GRAMPS. All data in the data base can be rearranged/manipulated to assist the user in doing research, analysis and correlation with the potential of filling relationship gaps."
@@ -4038,7 +4018,7 @@ msgstr ""
 
 #: data/tips.xml:411
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
-msgstr ""
+msgstr "Voit liittää mitä tahansa sähköistä mediaa (esim. kuvia) and muita tiedostotyyppejä sukupuuhusi GRAMPSissä."
 
 #: data/tips.xml:420
 msgid "GRAMPS allows you to generate a number of reports (both text and graphical) based on your genealogical information. There is great flexibility in selecting what people are included in the reports as well as the output format (html, pdf, OpenOffice, RTF, AbiWord, KWord, LaTeX and plain text). Experiment with the reports under the <b>Reports</b> menu to get an idea of how powerful GRAMPS is."
@@ -4054,7 +4034,7 @@ msgstr ""
 
 #: data/tips.xml:438
 msgid "Interested in getting notified when a new version of GRAMPS is released? Join the gramps-announce mailing list at http://lists.sourceforge.net/lists/listinfo/gramps-announce"
-msgstr ""
+msgstr "Haluatko tietää milloin uusi GRAMPS versio julkaistaan? Liity gramps-announce sähköpostilistalle osoitteessa http://lists.sourceforge.net/lists/listinfo/gramps-announce"
 
 #: data/tips.xml:446
 msgid "<b>Good genealogy tip</b>: Information collected about your family is only as good as the source it came from. Take time and trouble to record all the details of where the information came from. Whenever possible get a copy of original documents."
@@ -4070,15 +4050,15 @@ msgstr ""
 
 #: data/tips.xml:466
 msgid "GRAMPS has been translated to 15 languages. If GRAMPS supports your language and it is not being displayed, set the default language on your machine and restart GRAMPS."
-msgstr ""
+msgstr "GRAMPS on käännetty 15 eri kielelle. Jos GRAMPS tukee kieltäsi, mutta teksti ei näy oikein, aseta koneesi oletuskieli ja käynnistä GRAMPS uudelleen."
 
 #: data/tips.xml:472
 msgid "GRAMPS has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net"
-msgstr ""
+msgstr "GRAMPS on suunniteltu siten, että uusia käännöksiä voidaan lisätä helposti.  Jos sinua kiinnostaa auttaa, lähetä sähköpostia osoitteeseen gramps-devel@lists.sf.net"
 
 #: data/tips.xml:476
 msgid "Relationship calculators in GRAMPS are available in ten languages."
-msgstr ""
+msgstr "GRAMPS tarjoaa suhdelaskimen kymmenelle eri kielelle."
 
 #: data/tips.xml:481
 msgid "GRAMPS offers full Unicode support. Characters for all languages are properly displayed."
@@ -4086,31 +4066,31 @@ msgstr ""
 
 #: data/tips.xml:487
 msgid "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit -> Set Home Person</b>. The home person is the person who is selected when the database is opened or when the home button is pressed."
-msgstr ""
+msgstr "Voit asettaa kenet tahansa GRAMPSin 'koti'-henkilöksi valitsemalla <b>Muokkaa > Aseta \"koti\"-henkilö...</b>. 'Koti'-henkilö on henkilö, joka valitaan kun tietokanta avataan tai painat 'Koti'-nappulaa."
 
 #: data/tips.xml:492
 msgid "Multiple names can be specified for individuals. Examples are birth name, marriage name or aliases."
-msgstr ""
+msgstr "Henkilöille voidaan antaa useita nimiä. Nimet voivat olla kasteessa tai avioliiton kautta saatuja tai aliaksia."
 
 #: data/tips.xml:497
 msgid "An alternate name can be selected as a person's preferred name by selecting the desired name in the person's name list, bringing up the context menu by clicking the right mouse button, and selecting from the menu."
-msgstr ""
+msgstr "Henkilön vaihtoehtoinen nimi voidaan muuttaa ensisijaiseksi valitsemalla se nimilistasta ja käyttäen konteksti-menua, joka aukeaa oikean hiiren napilla."
 
 #: data/tips.xml:504
 msgid "GRAMPS is written in a computer language called Python using the GTK and GNOME libraries for the graphical interface. GRAMPS is supported on any computer system where these programs have been ported."
-msgstr ""
+msgstr "GRAMPS on kirjoitettu Python nimistä ohjelmointikieltä ja GTK + GNOME v2 käyttöliittymäkirjastoja käyttäen.  GRAMPS tukee niitä käyttöjärjestelmiä, joissa nämä toimivat."
 
 #: data/tips.xml:510
 msgid "The Free/Libre and Open Source Software (FLOSS) development model means GRAMPS can be extended by any programmer since all of the source code is freely available under its license."
-msgstr ""
+msgstr "Ilmaisen/Vapaan ja Avoimen lähdekoodin (FLOSS) kehitysmalli tarkoittaa, etttä GRAMPS ohjelmaa voi kuka tahansa kehittää eteenpäin, koska kaikki lähdekoodi on vapaasti saatavilla lisenssinsä mukaisesti."
 
 #: data/tips.xml:515
 msgid "GRAMPS is freely distributable under the General Public License, see http://www.gnu.org/licenses/licenses.html#GPL"
-msgstr ""
+msgstr "GRAMPS on vapaasti levitettävissä GNU General Public Licence -lisessin ehtojen mukaisesti, kts. http://www.gnu.org/licenses/licenses.html#GPL"
 
 #: data/tips.xml:520
 msgid "GRAMPS works even when using KDE, as long as the required GNOME libraries are installed."
-msgstr ""
+msgstr "GRAMPS toimii myös KDE työpöytäympäristössä kunhan vaaditut GNOME kirjastot on asennettu."
 
 #: data/tips.xml:525
 msgid "To run GRAMPS, you need to have GNOME installed. But you do not need to be running the GNOME desktop."
@@ -4202,7 +4182,7 @@ msgstr "SVG (Scalable Vector Graphics)"
 msgid "<b>Encoding</b>"
 msgstr "<b>Koodaus</b>"
 
-#: gedcomexport.glade:127 gramps.glade:20057 gramps.glade:28961
+#: gedcomexport.glade:127 gramps.glade:20090 gramps.glade:28994
 #: plugins/genewebexport.glade:103 plugins/merge.glade:385
 #: plugins/vcalendarexport.glade:103 plugins/vcardexport.glade:103
 #: plugins/writeftree.glade:124
@@ -4304,7 +4284,7 @@ msgstr "Tekijä:"
 msgid "<b>Status</b>"
 msgstr "<b>Asema/tila</b>"
 
-#: gedcomimport.glade:216 gramps.glade:3482 gramps.glade:19273
+#: gedcomimport.glade:216 gramps.glade:3482 gramps.glade:19306
 msgid "<b>Information</b>"
 msgstr "<b>Tiedot</b>"
 
@@ -4350,7 +4330,7 @@ msgstr ""
 "ASCII\n"
 "UNICODE"
 
-#: gramps.glade:10 gramps.glade:31049
+#: gramps.glade:10 gramps.glade:31082
 msgid "GRAMPS"
 msgstr "GRAMPS"
 
@@ -4706,22 +4686,22 @@ msgstr "Valitse henkilö tietokannasta ja lisää hänet lapseksi perheeseen"
 msgid "Deletes the selected child from the selected family"
 msgstr "Poista valittu lapsi valitusta perheestä"
 
-#: gramps.glade:3206 gramps.glade:18997 gramps.glade:21017 gramps.glade:21282
-#: gramps.glade:22679
+#: gramps.glade:3206 gramps.glade:19030 gramps.glade:21050 gramps.glade:21315
+#: gramps.glade:22712
 msgid "<b>Preview</b>"
 msgstr "<b>Esikatselu</b>"
 
-#: gramps.glade:3242 gramps.glade:19033
+#: gramps.glade:3242 gramps.glade:19066
 msgid "Details:"
 msgstr "Yksityiskohdat:"
 
-#: gramps.glade:3313 gramps.glade:19104 gramps.glade:21318 gramps.glade:22715
+#: gramps.glade:3313 gramps.glade:19137 gramps.glade:21351 gramps.glade:22748
 msgid "Path:"
 msgstr "Polku:"
 
-#: gramps.glade:3338 gramps.glade:7909 gramps.glade:8479 gramps.glade:8993
-#: gramps.glade:12151 gramps.glade:12766 gramps.glade:19129 gramps.glade:22046
-#: gramps.glade:23124
+#: gramps.glade:3338 gramps.glade:7942 gramps.glade:8512 gramps.glade:9026
+#: gramps.glade:12184 gramps.glade:12799 gramps.glade:19162 gramps.glade:22079
+#: gramps.glade:23157
 msgid "Type:"
 msgstr "Tyyppi:"
 
@@ -4733,7 +4713,7 @@ msgstr "Valitse nähdäksesi kaikki listan henkilöt.  Ilman valintaa, lista on 
 msgid "_Show all"
 msgstr "_Näytä kaikki"
 
-#: gramps.glade:3827 gramps.glade:11921
+#: gramps.glade:3827 gramps.glade:11954
 msgid "_Relationship type:"
 msgstr "_Suhteen tyyppi:"
 
@@ -4787,17 +4767,17 @@ msgstr "Suhde isään:"
 msgid "Relationship to mother:"
 msgstr "Suhde äitiin:"
 
-#: gramps.glade:4758 gramps.glade:6549 gramps.glade:11813 gramps.glade:28418
+#: gramps.glade:4758 gramps.glade:6549 gramps.glade:11846 gramps.glade:28451
 msgid "Abandon changes and close window"
 msgstr "Hylkää muutokset ja sulje ikkuna"
 
-#: gramps.glade:4773 gramps.glade:6564 gramps.glade:11828 gramps.glade:25005
-#: gramps.glade:27269 gramps.glade:28163 gramps.glade:28433
+#: gramps.glade:4773 gramps.glade:6564 gramps.glade:11861 gramps.glade:25038
+#: gramps.glade:27302 gramps.glade:28196 gramps.glade:28466
 msgid "Accept changes and close window"
 msgstr "Hyväksy muutokset ja sulje ikkuna"
 
-#: gramps.glade:4860 gramps.glade:6759 gramps.glade:14026 gramps.glade:18104
-#: gramps.glade:21063 gramps.glade:22899 gramps.glade:28602
+#: gramps.glade:4860 gramps.glade:6759 gramps.glade:14059 gramps.glade:18137
+#: gramps.glade:21096 gramps.glade:22932 gramps.glade:28635
 msgid "_Title:"
 msgstr "_Nimike:"
 
@@ -4813,49 +4793,49 @@ msgstr "_Julkaisutiedot:"
 msgid "A_bbreviation:"
 msgstr "_Lyhennys:"
 
-#: gramps.glade:5054 gramps.glade:12092 gramps.glade:14420 gramps.glade:14590
-#: gramps.glade:23042 gramps.glade:25379 gramps.glade:26383 gramps.glade:27751
-#: gramps.glade:29180 plugins/verify.glade:530
+#: gramps.glade:5054 gramps.glade:12125 gramps.glade:14453 gramps.glade:14623
+#: gramps.glade:23075 gramps.glade:25412 gramps.glade:26416 gramps.glade:27784
+#: gramps.glade:29213 plugins/verify.glade:530
 msgid "<b>General</b>"
 msgstr "<b>Yleinen</b>"
 
-#: gramps.glade:5124 gramps.glade:10150 gramps.glade:13154 gramps.glade:15225
-#: gramps.glade:21872 gramps.glade:23432 gramps.glade:25630 gramps.glade:26632
-#: gramps.glade:28000 gramps.glade:29431
+#: gramps.glade:5124 gramps.glade:10183 gramps.glade:13187 gramps.glade:15258
+#: gramps.glade:21905 gramps.glade:23465 gramps.glade:25663 gramps.glade:26665
+#: gramps.glade:28033 gramps.glade:29464
 msgid "<b>Format</b>"
 msgstr "<b>Muoto</b>"
 
-#: gramps.glade:5148 gramps.glade:10175 gramps.glade:13178 gramps.glade:15249
-#: gramps.glade:21896 gramps.glade:23456 gramps.glade:25654 gramps.glade:26656
-#: gramps.glade:28024 gramps.glade:29455
+#: gramps.glade:5148 gramps.glade:10208 gramps.glade:13211 gramps.glade:15282
+#: gramps.glade:21929 gramps.glade:23489 gramps.glade:25687 gramps.glade:26689
+#: gramps.glade:28057 gramps.glade:29488
 msgid "Multiple spaces, tabs, and single line breaks are replaced with single spaces. Two consecutive line breaks mark a new paragraph."
 msgstr "Peräkkäiset välilyönnit, tabulaattorit ja yksittäiset rivinvaihdot korvataan yhdellä välilyönnillä. Kaksi perättäistä rivinvaihtoa merkitsee uutta kappaletta."
 
-#: gramps.glade:5150 gramps.glade:10177 gramps.glade:13180 gramps.glade:15251
-#: gramps.glade:21898 gramps.glade:23458 gramps.glade:25656 gramps.glade:26658
-#: gramps.glade:28026 gramps.glade:29457
+#: gramps.glade:5150 gramps.glade:10210 gramps.glade:13213 gramps.glade:15284
+#: gramps.glade:21931 gramps.glade:23491 gramps.glade:25689 gramps.glade:26691
+#: gramps.glade:28059 gramps.glade:29490
 msgid "_Flowed"
 msgstr "_Virtaava/muotoilematon"
 
-#: gramps.glade:5171 gramps.glade:10198 gramps.glade:13201 gramps.glade:15272
-#: gramps.glade:21919 gramps.glade:23479 gramps.glade:25677 gramps.glade:26679
-#: gramps.glade:28047 gramps.glade:29478
+#: gramps.glade:5171 gramps.glade:10231 gramps.glade:13234 gramps.glade:15305
+#: gramps.glade:21952 gramps.glade:23512 gramps.glade:25710 gramps.glade:26712
+#: gramps.glade:28080 gramps.glade:29511
 msgid "Formatting is preserved, except for the leading whitespace. Multiple spaces, tabs, and all line breaks are respected."
 msgstr "Muotoilu säilytetään, edeltävää tyhjää lukuunottamatta. Peräkkäiset välilyönnit, tabulaattorit ja rivinvaihdot säilytetään."
 
-#: gramps.glade:5173 gramps.glade:10200 gramps.glade:13203 gramps.glade:15274
-#: gramps.glade:21921 gramps.glade:23481 gramps.glade:25679 gramps.glade:26681
-#: gramps.glade:28049 gramps.glade:29480
+#: gramps.glade:5173 gramps.glade:10233 gramps.glade:13236 gramps.glade:15307
+#: gramps.glade:21954 gramps.glade:23514 gramps.glade:25712 gramps.glade:26714
+#: gramps.glade:28082 gramps.glade:29513
 msgid "_Preformatted"
 msgstr "_Esimuotoiltu"
 
-#: gramps.glade:5268 gramps.glade:5405 gramps.glade:10457 gramps.glade:13451
-#: gramps.glade:15554 gramps.glade:25960
+#: gramps.glade:5268 gramps.glade:5405 gramps.glade:10490 gramps.glade:13484
+#: gramps.glade:15587 gramps.glade:25993
 msgid "Add a new media object to the database and place it in this gallery"
 msgstr "Lisää uusi media-objekti tietokantaan ja sijoita se galleriaan"
 
-#: gramps.glade:5296 gramps.glade:5489 gramps.glade:13534 gramps.glade:15637
-#: gramps.glade:26043
+#: gramps.glade:5296 gramps.glade:5489 gramps.glade:13567 gramps.glade:15670
+#: gramps.glade:26076
 msgid "Remove selected object from this gallery only"
 msgstr "Poista valittu objekti vain tästä galleriasta"
 
@@ -4863,21 +4843,21 @@ msgstr "Poista valittu objekti vain tästä galleriasta"
 msgid "Data"
 msgstr "Tieto"
 
-#: gramps.glade:5433 gramps.glade:10485 gramps.glade:13479 gramps.glade:15582
-#: gramps.glade:25988
+#: gramps.glade:5433 gramps.glade:10518 gramps.glade:13512 gramps.glade:15615
+#: gramps.glade:26021
 msgid "Select an existing media object from the database and place it in this gallery"
 msgstr "Valitse tietokannasta media-objekti ja sijoita se tähän galleriaan"
 
-#: gramps.glade:5461 gramps.glade:10513 gramps.glade:15610 gramps.glade:26016
+#: gramps.glade:5461 gramps.glade:10546 gramps.glade:15643 gramps.glade:26049
 msgid "Edit the properties of the selected object"
 msgstr "Muokkaa valitun objektin ominaisuuksia"
 
-#: gramps.glade:5550 gramps.glade:10588 gramps.glade:13575 gramps.glade:15698
-#: gramps.glade:26104 plugins/WebPage.py:430
+#: gramps.glade:5550 gramps.glade:10621 gramps.glade:13608 gramps.glade:15731
+#: gramps.glade:26137 plugins/WebPage.py:432
 msgid "Gallery"
 msgstr "Galleria"
 
-#: gramps.glade:5595 gramps.glade:16095 gramps.glade:23560
+#: gramps.glade:5595 gramps.glade:16128 gramps.glade:23593
 msgid "References"
 msgstr "Viitteet"
 
@@ -4925,11 +4905,11 @@ msgstr "_Teksti:"
 msgid "<b>Select columns</b>"
 msgstr "<b>Valitse sarakkeet</b>"
 
-#: gramps.glade:6659 gramps.glade:28519
+#: gramps.glade:6659 gramps.glade:28552
 msgid "_Given name:"
 msgstr "_Etunimi:"
 
-#: gramps.glade:6684 gramps.glade:28793
+#: gramps.glade:6684 gramps.glade:28826
 msgid "_Family name:"
 msgstr "_Sukunimi:"
 
@@ -4945,458 +4925,457 @@ msgstr "P_ääte:"
 msgid "Nic_kname:"
 msgstr "_Lempinimi:"
 
-#: gramps.glade:6809 gramps.glade:28575
+#: gramps.glade:6809 gramps.glade:28608
 msgid "T_ype:"
 msgstr "T_yyppi:"
 
-#: gramps.glade:6833 gramps.glade:10979 gramps.glade:17974 gramps.glade:22945
-#: gramps.glade:25114 gramps.glade:27355
-msgid "_Date:"
-msgstr "_Päivämäärä:"
-
-#: gramps.glade:6858
+#: gramps.glade:6833
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr "Valinnainen pääte nimelle, kuten \"Jr.\" tai \"III\""
 
-#: gramps.glade:6880
+#: gramps.glade:6855
 msgid "A title used to refer to the person, such as \"Dr.\" or \"Rev.\""
 msgstr "Henkilöstä käytetty titteli, kuten \"Fil. Toht.\""
 
-#: gramps.glade:6902
+#: gramps.glade:6877
 msgid "A name that the person was more commonly known by"
 msgstr "Nimi, jolla henkilö paremmin tunnettiin"
 
-#: gramps.glade:6924
+#: gramps.glade:6899
 msgid "<b>Preferred name</b>"
 msgstr "<b>Ensisijainen nimi</b>"
 
-#: gramps.glade:6955
+#: gramps.glade:6930
 msgid "_male"
 msgstr "_mies"
 
-#: gramps.glade:6975
+#: gramps.glade:6950
 msgid "fema_le"
 msgstr "_nainen"
 
-#: gramps.glade:6996
+#: gramps.glade:6971
 msgid "u_nknown"
 msgstr "_tuntematon"
 
-#: gramps.glade:7026
+#: gramps.glade:7001
 msgid "<b>Birth</b>"
 msgstr "<b>Syntymä</b>"
 
-#: gramps.glade:7050
+#: gramps.glade:7025
 msgid "GRAMPS _ID:"
 msgstr "_GRAMPS tunnus:"
 
-#: gramps.glade:7096 gramps.glade:11051 gramps.glade:25170
-msgid "_Place:"
-msgstr "P_aikka:"
-
-#: gramps.glade:7121
+#: gramps.glade:7071
 msgid "<b>Death</b>"
 msgstr "<b>Kuolema</b>"
 
-#: gramps.glade:7145 gramps.glade:11144
-msgid "D_ate:"
-msgstr "P_äivämäärä:"
-
-#: gramps.glade:7173
-msgid "Plac_e:"
-msgstr "P_aikka:"
-
-#: gramps.glade:7279 gramps.glade:7544 gramps.glade:11595 gramps.glade:11655
-#: gramps.glade:11715 gramps.glade:13813 gramps.glade:18403 gramps.glade:22994
-#: gramps.glade:29083
-msgid "Invoke date editor"
-msgstr "Avaa päivämäärä-editori"
-
-#: gramps.glade:7314
+#: gramps.glade:7109
 msgid "An optional prefix for the family name that is not used in sorting, such as \"de\" or \"van\""
 msgstr "Valinnainen etuliite sukunimelle, jota ei käytetä lajittelussa, kuten \"de\" tai \"van\""
 
-#: gramps.glade:7336
+#: gramps.glade:7131
 msgid "The person's given name"
 msgstr "Henkilön etunimi"
 
-#: gramps.glade:7361
-msgid "Invoke birth event editor"
-msgstr "Avaa syntymä-editori"
-
-#: gramps.glade:7412
+#: gramps.glade:7176
 msgid "Edit the preferred name"
 msgstr "Muokkaa ensisijaista nimeä"
 
-#: gramps.glade:7442
+#: gramps.glade:7206
 msgid "<b>Gender</b>"
 msgstr "<b>Sukupuoli</b>"
 
-#: gramps.glade:7465
+#: gramps.glade:7229
 msgid "<b>Identification</b>"
 msgstr "<b>Tunniste</b>"
 
-#: gramps.glade:7489
-msgid "Invoke death event editor"
-msgstr "Avaa kuolema-editori"
-
-#: gramps.glade:7604
+#: gramps.glade:7277
 msgid "<b>Image</b>"
 msgstr "<b>Kuva</b>"
 
-#: gramps.glade:7635 gramps.glade:12058
+#: gramps.glade:7308 gramps.glade:12091
 msgid "Information i_s complete"
 msgstr "Tiedoissa e_i ole puutteita"
 
-#: gramps.glade:7657
+#: gramps.glade:7330
 msgid "Information is pri_vate"
 msgstr "Tiedot ovat _yksityisiä"
 
-#: gramps.glade:7765 gramps.glade:8575 gramps.glade:9089 gramps.glade:9525
-#: gramps.glade:12271 gramps.glade:12718
+#: gramps.glade:7360 gramps.glade:11012 gramps.glade:18007 gramps.glade:22978
+#: gramps.glade:25147 gramps.glade:27388
+msgid "_Date:"
+msgstr "_Päivämäärä:"
+
+#: gramps.glade:7384 gramps.glade:11084 gramps.glade:25203
+msgid "_Place:"
+msgstr "P_aikka:"
+
+#: gramps.glade:7431
+msgid "Invoke birth event editor"
+msgstr "Avaa syntymä-editori"
+
+#: gramps.glade:7486 gramps.glade:7589 gramps.glade:11628 gramps.glade:11688
+#: gramps.glade:11748 gramps.glade:13846 gramps.glade:18436 gramps.glade:23027
+#: gramps.glade:29116
+msgid "Invoke date editor"
+msgstr "Avaa päivämäärä-editori"
+
+#: gramps.glade:7539 gramps.glade:11177
+msgid "D_ate:"
+msgstr "P_äivämäärä:"
+
+#: gramps.glade:7625
+msgid "Invoke death event editor"
+msgstr "Avaa kuolema-editori"
+
+#: gramps.glade:7655
+msgid "Plac_e:"
+msgstr "P_aikka:"
+
+#: gramps.glade:7798 gramps.glade:8608 gramps.glade:9122 gramps.glade:9558
+#: gramps.glade:12304 gramps.glade:12751
 msgid "Confidence:"
 msgstr "Luottamus:"
 
-#: gramps.glade:7789
+#: gramps.glade:7822
 msgid "Family prefix:"
 msgstr "Sukunimen etuliite:"
 
-#: gramps.glade:7933
+#: gramps.glade:7966
 msgid "<b>Alternate name</b>"
 msgstr "<b>Vaihtoehtoinen nimi</b>"
 
-#: gramps.glade:7957 gramps.glade:8527 gramps.glade:9041 gramps.glade:9621
-#: gramps.glade:12342 gramps.glade:12790
+#: gramps.glade:7990 gramps.glade:8560 gramps.glade:9074 gramps.glade:9654
+#: gramps.glade:12375 gramps.glade:12823
 msgid "<b>Primary source</b>"
 msgstr "<b>Ensisijainen lähde</b>"
 
-#: gramps.glade:8233
+#: gramps.glade:8266
 msgid "Create an alternate name for this person"
 msgstr "Luo vaihtoehtoinen nimi tälle henkilölle"
 
-#: gramps.glade:8262
+#: gramps.glade:8295
 msgid "Edit the selected name"
 msgstr "Muokkaa valittua nimeä"
 
-#: gramps.glade:8290
+#: gramps.glade:8323
 msgid "Delete the selected name"
 msgstr "Poista valittu nimi"
 
-#: gramps.glade:8342
+#: gramps.glade:8375
 msgid "Names"
 msgstr "Nimet"
 
-#: gramps.glade:8383
+#: gramps.glade:8416
 msgid "<b>Event</b>"
 msgstr "<b>Tapahtuma</b>"
 
-#: gramps.glade:8431 gramps.glade:12199
+#: gramps.glade:8464 gramps.glade:12232
 msgid "Cause:"
 msgstr "Syy:"
 
-#: gramps.glade:8812
+#: gramps.glade:8845
 msgid "Create a new event"
 msgstr "Luo uusi tapahtuma"
 
-#: gramps.glade:8841
+#: gramps.glade:8874
 msgid "Edit the selected event"
 msgstr "Muokkaa valittua tapahtumaa"
 
-#: gramps.glade:8869
+#: gramps.glade:8902
 msgid "Delete the selected event"
 msgstr "Poista valittu tapahtuma"
 
-#: gramps.glade:8969 gramps.glade:12814 gramps.glade:22141 gramps.glade:23172
+#: gramps.glade:9002 gramps.glade:12847 gramps.glade:22174 gramps.glade:23205
 msgid "<b>Attributes</b>"
 msgstr "<b>Ominaisuudet</b>"
 
-#: gramps.glade:9254
+#: gramps.glade:9287
 msgid "Create a new attribute"
 msgstr "Luo uusi ominaisuus"
 
-#: gramps.glade:9283
+#: gramps.glade:9316
 msgid "Edit the selected attribute"
 msgstr "Muokkaa valittua ominaisuutta"
 
-#: gramps.glade:9311 gramps.glade:13032 gramps.glade:22266 gramps.glade:23296
+#: gramps.glade:9344 gramps.glade:13065 gramps.glade:22299 gramps.glade:23329
 msgid "Delete the selected attribute"
 msgstr "Poista valittu ominaisuus"
 
-#: gramps.glade:9370 gramps.glade:13084 gramps.glade:22331 gramps.glade:23362
+#: gramps.glade:9403 gramps.glade:13117 gramps.glade:22364 gramps.glade:23395
 msgid "Attributes"
 msgstr "Ominaisuudet"
 
-#: gramps.glade:9405
+#: gramps.glade:9438
 msgid "City/County:"
 msgstr "Kaupunki/kunta:"
 
-#: gramps.glade:9597
+#: gramps.glade:9630
 msgid "<b>Addresses</b>"
 msgstr "<b>Osoitteet</b>"
 
-#: gramps.glade:9962
+#: gramps.glade:9995
 msgid "Create a new address"
 msgstr "Luo uusi osoite"
 
-#: gramps.glade:9991
+#: gramps.glade:10024
 msgid "Edit the selected address"
 msgstr "Muokkaa valittua osoitetta"
 
-#: gramps.glade:10019
+#: gramps.glade:10052
 msgid "Delete the selected address"
 msgstr "Poista valittu osoite"
 
-#: gramps.glade:10112
+#: gramps.glade:10145
 msgid "Enter miscellaneous relevant data and documentation"
 msgstr "Anna muut relevantit tiedot ja dokumentaatiot"
 
-#: gramps.glade:10235 gramps.glade:13238 gramps.glade:21956 gramps.glade:23516
-#: plugins/IndivComplete.py:166 plugins/WebPage.py:565
+#: gramps.glade:10268 gramps.glade:13271 gramps.glade:21989 gramps.glade:23549
+#: plugins/IndivComplete.py:166 plugins/WebPage.py:567
 msgid "Notes"
 msgstr "Huomioita"
 
-#: gramps.glade:10293
+#: gramps.glade:10326
 msgid "Add a source"
 msgstr "Lisää lähde"
 
-#: gramps.glade:10320
+#: gramps.glade:10353
 msgid "Edit the selected source"
 msgstr "Muokkaa valittua lähdettä"
 
-#: gramps.glade:10346
+#: gramps.glade:10379
 msgid "Remove the selected source"
 msgstr "Poista valittu lähde"
 
-#: gramps.glade:10390 gramps.glade:13390 gramps.glade:15487 gramps.glade:22509
-#: gramps.glade:23738 gramps.glade:25557 gramps.glade:26561 gramps.glade:27929
-#: gramps.glade:29359 plugins/Ancestors.py:159 plugins/IndivComplete.py:324
-#: plugins/NavWebPage.py:439 plugins/NavWebPage.py:444
-#: plugins/NavWebPage.py:540 plugins/ScratchPad.py:153
-#: plugins/ScratchPad.py:293 plugins/ScratchPad.py:326 plugins/WebPage.py:222
+#: gramps.glade:10423 gramps.glade:13423 gramps.glade:15520 gramps.glade:22542
+#: gramps.glade:23771 gramps.glade:25590 gramps.glade:26594 gramps.glade:27962
+#: gramps.glade:29392 plugins/Ancestors.py:159 plugins/IndivComplete.py:324
+#: plugins/ScratchPad.py:153 plugins/ScratchPad.py:293
+#: plugins/ScratchPad.py:326 plugins/WebPage.py:224
 msgid "Sources"
 msgstr "Lähteet"
 
-#: gramps.glade:10540
+#: gramps.glade:10573
 msgid "Remove the selected object from this gallery only"
 msgstr "Poista valittu objekti vain tästä galleriasta"
 
-#: gramps.glade:10623 gramps.glade:15733
+#: gramps.glade:10656 gramps.glade:15766
 msgid "Web address:"
 msgstr "WWW-osoite:"
 
-#: gramps.glade:10718 gramps.glade:15828
+#: gramps.glade:10751 gramps.glade:15861
 msgid "<b>Internet addresses</b>"
 msgstr "<b>Internet osoitteet</b>"
 
-#: gramps.glade:10789
+#: gramps.glade:10822
 msgid "Add an internet reference about this person"
 msgstr "Lisää henkilöön liittyvä internet-viite"
 
-#: gramps.glade:10818
+#: gramps.glade:10851
 msgid "Edit the selected internet address"
 msgstr "Muokkaa valittua internet-osoitetta"
 
-#: gramps.glade:10845
+#: gramps.glade:10878
 msgid "Go to this web page"
 msgstr "Siirry tälle WWW-sivulle"
 
-#: gramps.glade:10874
+#: gramps.glade:10907
 msgid "Delete selected reference"
 msgstr "Poista valittu viite"
 
-#: gramps.glade:10926 gramps.glade:16042
+#: gramps.glade:10959 gramps.glade:16075
 msgid "Internet"
 msgstr "Internet"
 
-#: gramps.glade:10955
+#: gramps.glade:10988
 msgid "<b>LDS baptism</b>"
 msgstr "<b>Mormonikaste</b>"
 
-#: gramps.glade:11004
+#: gramps.glade:11037
 msgid "LDS _temple:"
 msgstr "Mormoni_temppeli:"
 
-#: gramps.glade:11032 gramps.glade:11246 gramps.glade:11335 gramps.glade:13707
+#: gramps.glade:11065 gramps.glade:11279 gramps.glade:11368 gramps.glade:13740
 msgid "Sources..."
 msgstr "Lähteet..."
 
-#: gramps.glade:11101 gramps.glade:11266 gramps.glade:11404 gramps.glade:13727
+#: gramps.glade:11134 gramps.glade:11299 gramps.glade:11437 gramps.glade:13760
 msgid "Note..."
 msgstr "Huomioita..."
 
-#: gramps.glade:11120
+#: gramps.glade:11153
 msgid "<b>Endowment</b>"
 msgstr "<b>Lahjoitus</b>"
 
-#: gramps.glade:11172
+#: gramps.glade:11205
 msgid "LDS te_mple:"
 msgstr "Mormonite_mppeli:"
 
-#: gramps.glade:11196 gramps.glade:17535
+#: gramps.glade:11229 gramps.glade:17568
 msgid "P_lace:"
 msgstr "P_aikka:"
 
-#: gramps.glade:11285 gramps.glade:29034
+#: gramps.glade:11318 gramps.glade:29067
 msgid "Dat_e:"
 msgstr "P_äivämäärä:"
 
-#: gramps.glade:11310
+#: gramps.glade:11343
 msgid "LD_S temple:"
 msgstr "Mormo_nitemppeli:"
 
-#: gramps.glade:11354
+#: gramps.glade:11387
 msgid "Pla_ce:"
 msgstr "P_aikka:"
 
-#: gramps.glade:11423
+#: gramps.glade:11456
 msgid "Pa_rents:"
 msgstr "_Vanhemmat:"
 
-#: gramps.glade:11448
+#: gramps.glade:11481
 msgid "<b>Sealed to parents</b>"
 msgstr "<b>Liitetty vanhempiinsa</b>"
 
-#: gramps.glade:11755 gramps.glade:13861
+#: gramps.glade:11788 gramps.glade:13894
 msgid "LDS"
 msgstr "MAP"
 
-#: gramps.glade:11945
+#: gramps.glade:11978
 msgid "_GRAMPS ID:"
 msgstr "_GRAMPS tunnus:"
 
-#: gramps.glade:12009 gramps.glade:14536
+#: gramps.glade:12042 gramps.glade:14569
 msgid "Last Changed:"
 msgstr "Viimeksi muutettu:"
 
-#: gramps.glade:12318
+#: gramps.glade:12351
 msgid "<b>Events</b>"
 msgstr "<b>Tapahtuma</b>"
 
-#: gramps.glade:12553
+#: gramps.glade:12586
 msgid "Add new event for this marriage"
 msgstr "Lisää uusi tapahtuma tälle avioliitolle"
 
-#: gramps.glade:12607
+#: gramps.glade:12640
 msgid "Delete selected event"
 msgstr "Poista valittu tapahtuma"
 
-#: gramps.glade:12978
+#: gramps.glade:13011
 msgid "Create a new attribute for this marriage"
 msgstr "Luo uusi ominaisuus tälle avioliitolle"
 
-#: gramps.glade:13507
+#: gramps.glade:13540
 msgid "Edit the properties of the selected objects"
 msgstr "Muokkaa valittujen objektien ominaisuuksia"
 
-#: gramps.glade:13610
+#: gramps.glade:13643
 msgid "<b>Sealed to spouse</b>"
 msgstr "<b>Liitetty puolisoon</b>"
 
-#: gramps.glade:13658
+#: gramps.glade:13691
 msgid "Temple:"
 msgstr "Temppeli:"
 
-#: gramps.glade:14054
+#: gramps.glade:14087
 msgid "C_ity:"
 msgstr "_Kaupunki:"
 
-#: gramps.glade:14082 gramps.glade:26954
+#: gramps.glade:14115 gramps.glade:26987
 msgid "_State:"
 msgstr "_Osavaltio:"
 
-#: gramps.glade:14110 gramps.glade:26897
+#: gramps.glade:14143 gramps.glade:26930
 msgid "C_ounty:"
 msgstr "K_unta:"
 
-#: gramps.glade:14138
+#: gramps.glade:14171
 msgid "Co_untry:"
 msgstr "_Maa:"
 
-#: gramps.glade:14166
+#: gramps.glade:14199
 msgid "_Longitude:"
 msgstr "_Pituusaste:"
 
-#: gramps.glade:14194
+#: gramps.glade:14227
 msgid "L_atitude:"
 msgstr "_Leveysaste:"
 
-#: gramps.glade:14222 gramps.glade:26983
+#: gramps.glade:14255 gramps.glade:27016
 msgid "Church _parish:"
 msgstr "_Seurakunta:"
 
-#: gramps.glade:14444 gramps.glade:17170 gramps.glade:27495
+#: gramps.glade:14477 gramps.glade:17203 gramps.glade:27528
 msgid "_ZIP/Postal code:"
 msgstr "Po_stinumero:"
 
-#: gramps.glade:14490 gramps.glade:27117 gramps.glade:27672
+#: gramps.glade:14523 gramps.glade:27150 gramps.glade:27705
 msgid "P_hone:"
 msgstr "Pu_helin:"
 
-#: gramps.glade:14625
+#: gramps.glade:14658
 msgid "County:"
 msgstr "Kunta:"
 
-#: gramps.glade:14673
+#: gramps.glade:14706
 msgid "State:"
 msgstr "Osavaltio:"
 
-#: gramps.glade:14721
+#: gramps.glade:14754
 msgid "Church parish:"
 msgstr "Seurakunta:"
 
-#: gramps.glade:14822
+#: gramps.glade:14855
 msgid "Zip/Postal code:"
 msgstr "Postinumero:"
 
-#: gramps.glade:14894
+#: gramps.glade:14927
 msgid "<b>Other names</b>"
 msgstr "<b>Muut nimet</b>"
 
-#: gramps.glade:15155
+#: gramps.glade:15188
 msgid "Other names"
 msgstr "Muut nimet"
 
-#: gramps.glade:16129
+#: gramps.glade:16162
 msgid "GRAMPS Preferences"
 msgstr "GRAMPS asetukset"
 
-#: gramps.glade:16201
+#: gramps.glade:16234
 msgid "<b>Categories:</b>"
 msgstr "<b>Kategoriat:</b>"
 
-#: gramps.glade:16316
+#: gramps.glade:16349
 msgid "To change your preferences, select one of the subcategories in the menu on the left hand side of the window."
 msgstr "Vaihtaaksesi asetuksiasi, valitse jokin vasemmanpuoleisen valikon alakategorioista."
 
-#: gramps.glade:16380
+#: gramps.glade:16413
 msgid "<b>Database</b>"
 msgstr "<b>Tietokanta</b>"
 
-#: gramps.glade:16405
+#: gramps.glade:16438
 msgid "_Automatically load last database"
 msgstr "_Lataa automaattisesti viimeisin tietokanta"
 
-#: gramps.glade:16426
+#: gramps.glade:16459
 msgid "<b>Family name guessing</b>"
 msgstr "<b>Oletussukunimi</b>"
 
-#: gramps.glade:16513
+#: gramps.glade:16546
 msgid "<b>Toolbar</b>"
 msgstr "<b>Työkalupalkki</b>"
 
-#: gramps.glade:16538
+#: gramps.glade:16571
 msgid "Active person's _relationship to Home Person"
 msgstr "_Näytä henkilön suhde \"koti\"-henkilöön"
 
-#: gramps.glade:16561
+#: gramps.glade:16594
 msgid "Active person's name and _GRAMPS ID"
 msgstr "Näytä henkilön nimi ja _GRAMPS tunnus"
 
-#: gramps.glade:16583
+#: gramps.glade:16616
 msgid "<b>Statusbar</b>"
 msgstr "<b>Tilapalkki</b>"
 
-#: gramps.glade:16611
+#: gramps.glade:16644
 msgid ""
 "GNOME settings\n"
 "Icons Only\n"
@@ -5410,171 +5389,171 @@ msgstr ""
 "Teksti ikonien alla\n"
 "Teksti ikonien vieressä"
 
-#: gramps.glade:16676
+#: gramps.glade:16709
 msgid "_Always display the LDS ordinance tabs"
 msgstr ""
 "_Näytä aina välilehti MAP-temppelitoimituksille\n"
 "(MAP = Myöhempien Aikojen Pyhien Jeesuksen Kristuksen Kirkko)"
 
-#: gramps.glade:16698
+#: gramps.glade:16731
 msgid "<b>Display</b>"
 msgstr "<b>Näyttö</b>"
 
-#: gramps.glade:16722
+#: gramps.glade:16755
 msgid "<b>Default view</b>"
 msgstr "<b>Oletusnäkymä</b>"
 
-#: gramps.glade:16747
+#: gramps.glade:16780
 msgid "_Person view"
 msgstr "_Henkilönäkymä"
 
-#: gramps.glade:16770
+#: gramps.glade:16803
 msgid "_Family view"
 msgstr "Perhenäkymä"
 
-#: gramps.glade:16792
+#: gramps.glade:16825
 msgid "<b>Family view style</b>"
 msgstr "<b>Perhenäkymätyyli</b>"
 
-#: gramps.glade:16817
+#: gramps.glade:16850
 msgid "Left to right"
 msgstr "Vasemmalta oikealle"
 
-#: gramps.glade:16840
+#: gramps.glade:16873
 msgid "Top to bottom"
 msgstr "Ylhäältä alas"
 
-#: gramps.glade:16865
+#: gramps.glade:16898
 msgid "_Display Tip of the Day"
 msgstr "_Näytä päivän vihje"
 
-#: gramps.glade:16934
+#: gramps.glade:16967
 msgid "_Date format:"
 msgstr "_Päivämäärän muoto:"
 
-#: gramps.glade:16959
+#: gramps.glade:16992
 msgid "<b>Display formats</b>"
 msgstr "<b>Näyttömuodot</b>"
 
-#: gramps.glade:17045 rule.glade:397
+#: gramps.glade:17078 rule.glade:397
 msgid "_Name:"
 msgstr "_Nimi:"
 
-#: gramps.glade:17070
+#: gramps.glade:17103
 msgid "_Address:"
 msgstr "_Osoite:"
 
-#: gramps.glade:17095 gramps.glade:26869
+#: gramps.glade:17128 gramps.glade:26902
 msgid "_City:"
 msgstr "_Kaupunki:"
 
-#: gramps.glade:17120 gramps.glade:27439
+#: gramps.glade:17153 gramps.glade:27472
 msgid "_State/Province:"
 msgstr "Maa_kunta:"
 
-#: gramps.glade:17145
+#: gramps.glade:17178
 msgid "_Country:"
 msgstr "_Maa:"
 
-#: gramps.glade:17195
+#: gramps.glade:17228
 msgid "_Phone:"
 msgstr "_Puhelin:"
 
-#: gramps.glade:17220
+#: gramps.glade:17253
 msgid "_Email:"
 msgstr "S_ähköposti:"
 
-#: gramps.glade:17413
+#: gramps.glade:17446
 msgid "<b>Researcher information</b>"
 msgstr "<b>Tutkijan tiedot</b>"
 
-#: gramps.glade:17485 gramps.glade:29667
+#: gramps.glade:17518 gramps.glade:29700
 msgid "_Person:"
 msgstr "_Henkilö:"
 
-#: gramps.glade:17510
+#: gramps.glade:17543
 msgid "_Family:"
 msgstr "_Perhe:"
 
-#: gramps.glade:17560
+#: gramps.glade:17593
 msgid "_Source:"
 msgstr "_Lähde:"
 
-#: gramps.glade:17585
+#: gramps.glade:17618
 msgid "_Media object:"
 msgstr "_Media-objekti:"
 
-#: gramps.glade:17614
+#: gramps.glade:17647
 msgid "I"
 msgstr "I"
 
-#: gramps.glade:17635
+#: gramps.glade:17668
 msgid "F"
 msgstr "F"
 
-#: gramps.glade:17656
+#: gramps.glade:17689
 msgid "P"
 msgstr "P"
 
-#: gramps.glade:17677
+#: gramps.glade:17710
 msgid "S"
 msgstr "S"
 
-#: gramps.glade:17698
+#: gramps.glade:17731
 msgid "O"
 msgstr "P"
 
-#: gramps.glade:17715
+#: gramps.glade:17748
 msgid "<b>GRAMPS ID prefixes</b>"
 msgstr "<b>GRAMPS tunnusten etuliitteet</b>"
 
-#: gramps.glade:17924
+#: gramps.glade:17957
 msgid "_Confidence:"
 msgstr "_Luottamus:"
 
-#: gramps.glade:17949
+#: gramps.glade:17982
 msgid "_Volume/Film/Page:"
 msgstr "_Osa/filmi/sivu:"
 
-#: gramps.glade:18002
+#: gramps.glade:18035
 msgid "Te_xt:"
 msgstr "_Teksti:"
 
-#: gramps.glade:18029
+#: gramps.glade:18062
 msgid "Co_mments:"
 msgstr "_Kommentit:"
 
-#: gramps.glade:18056
+#: gramps.glade:18089
 msgid "Publication information:"
 msgstr "Julkaisutiedot:"
 
-#: gramps.glade:18080 mergedata.glade:950 mergedata.glade:972
+#: gramps.glade:18113 mergedata.glade:919 mergedata.glade:941
 #: plugins.glade:362
 msgid "Author:"
 msgstr "Tekijä:"
 
-#: gramps.glade:18176
+#: gramps.glade:18209
 msgid "<b>Source selection</b>"
 msgstr "<b>Lähteen valinta</b>"
 
-#: gramps.glade:18200
+#: gramps.glade:18233
 msgid "<b>Source details</b>"
 msgstr "<b>Lähteen yksityiskohdat</b>"
 
-#: gramps.glade:18339
+#: gramps.glade:18372
 msgid "Creates a new source"
 msgstr "Luo uusi lähde"
 
-#: gramps.glade:18341
+#: gramps.glade:18374
 msgid "_New..."
 msgstr "_Uusi..."
 
-#: gramps.glade:18361 gramps.glade:21751 gramps.glade:25311 gramps.glade:26321
-#: gramps.glade:27524 gramps.glade:28301 gramps.glade:29836
+#: gramps.glade:18394 gramps.glade:21784 gramps.glade:25344 gramps.glade:26354
+#: gramps.glade:27557 gramps.glade:28334 gramps.glade:29869
 msgid "_Private record"
 msgstr "_Yksityinen tietue"
 
-#: gramps.glade:18436
+#: gramps.glade:18469
 msgid ""
 "Very Low\n"
 "Low\n"
@@ -5588,299 +5567,299 @@ msgstr ""
 "Korkea\n"
 "Hyvin korkea"
 
-#: gramps.glade:18611
+#: gramps.glade:18644
 msgid "Double click will edit the selected source"
 msgstr "Tuplaklikkaus muokkaa valittua lähdettä"
 
-#: gramps.glade:19667
+#: gramps.glade:19700
 msgid "Style _name:"
 msgstr "Tyylin _nimi:"
 
-#: gramps.glade:19825 rule.glade:1144
+#: gramps.glade:19858 rule.glade:1144
 msgid "<b>Description</b>"
 msgstr "<b>Kuvaus</b>"
 
-#: gramps.glade:19854
+#: gramps.glade:19887
 msgid "pt"
 msgstr "pt"
 
-#: gramps.glade:19881 gramps.glade:20189
+#: gramps.glade:19914 gramps.glade:20222
 msgid "Pick a color"
 msgstr "Valitse väri"
 
-#: gramps.glade:19920
+#: gramps.glade:19953
 msgid "_Bold"
 msgstr "_Lihavoitu"
 
-#: gramps.glade:19942
+#: gramps.glade:19975
 msgid "_Italic"
 msgstr "_Kursiivi"
 
-#: gramps.glade:19964
+#: gramps.glade:19997
 msgid "_Underline"
 msgstr "_Alleviivattu"
 
-#: gramps.glade:19985
+#: gramps.glade:20018
 msgid "<b>Type face</b>"
 msgstr "<b>Kirjasintyyli</b>"
 
-#: gramps.glade:20009
+#: gramps.glade:20042
 msgid "<b>Size</b>"
 msgstr "<b>Koko</b>"
 
-#: gramps.glade:20033
+#: gramps.glade:20066
 msgid "<b>Color</b>"
 msgstr "<b>Väri</b>"
 
-#: gramps.glade:20107
+#: gramps.glade:20140
 msgid "_Roman (Times, serif)"
 msgstr "_Roman (Times, serif)"
 
-#: gramps.glade:20129
+#: gramps.glade:20162
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr "_Swiss (Arial, Helvetica, sans-serif)"
 
-#: gramps.glade:20157
+#: gramps.glade:20190
 msgid "<b>Font options</b>"
 msgstr "<b>Kirjasinasetukset</b>"
 
-#: gramps.glade:20205
+#: gramps.glade:20238
 msgid "R_ight:"
 msgstr "O_ikea:"
 
-#: gramps.glade:20233
+#: gramps.glade:20266
 msgid "L_eft:"
 msgstr "V_asen:"
 
-#: gramps.glade:20261
+#: gramps.glade:20294
 msgid "_Padding:"
 msgstr "T_äyte:"
 
-#: gramps.glade:20425
+#: gramps.glade:20458
 msgid "_Left"
 msgstr "_Vasen"
 
-#: gramps.glade:20447
+#: gramps.glade:20480
 msgid "_Right"
 msgstr "_Oikea"
 
-#: gramps.glade:20470
+#: gramps.glade:20503
 msgid "_Justify"
 msgstr "_Tasaa"
 
-#: gramps.glade:20493
+#: gramps.glade:20526
 msgid "_Center"
 msgstr "_Keskitä"
 
-#: gramps.glade:20515
+#: gramps.glade:20548
 msgid "<b>Background</b>"
 msgstr "<b>Tausta</b>"
 
-#: gramps.glade:20539
+#: gramps.glade:20572
 msgid "<b>Margins</b>"
 msgstr "<b>Marginaalit</b>"
 
-#: gramps.glade:20588
+#: gramps.glade:20621
 msgid "<b>Alignment</b>"
 msgstr "<b>Asemointi</b>"
 
-#: gramps.glade:20612
+#: gramps.glade:20645
 msgid "<b>Borders</b>"
 msgstr "<b>Reunukset</b>"
 
-#: gramps.glade:20637
+#: gramps.glade:20670
 msgid "Le_ft"
 msgstr "Va_sen"
 
-#: gramps.glade:20659
+#: gramps.glade:20692
 msgid "Ri_ght"
 msgstr "Oi_kea"
 
-#: gramps.glade:20681
+#: gramps.glade:20714
 msgid "_Top"
 msgstr "_Ylä"
 
-#: gramps.glade:20703
+#: gramps.glade:20736
 msgid "_Bottom"
 msgstr "A_la"
 
-#: gramps.glade:20724
+#: gramps.glade:20757
 msgid "<b>First line</b>"
 msgstr "<b>Ensimmäinen rivi</b>"
 
-#: gramps.glade:20793
+#: gramps.glade:20826
 msgid "I_ndent:"
 msgstr "S_isennys:"
 
-#: gramps.glade:20824
+#: gramps.glade:20857
 msgid "<b>Paragraph options</b>"
 msgstr "<b>Kappaleasetukset</b>"
 
-#: gramps.glade:21110
+#: gramps.glade:21143
 msgid "Internal note"
 msgstr "Sisäinen huomio"
 
-#: gramps.glade:21366 gramps.glade:22763
+#: gramps.glade:21399 gramps.glade:22796
 msgid "Object type:"
 msgstr "Objektin tyyppi:"
 
-#: gramps.glade:21546
+#: gramps.glade:21579
 msgid "Lower X:"
 msgstr "Ala-X:"
 
-#: gramps.glade:21570
+#: gramps.glade:21603
 msgid "Upper X:"
 msgstr "Ylä-X:"
 
-#: gramps.glade:21594
+#: gramps.glade:21627
 msgid "Upper Y:"
 msgstr "Ylä-Y:"
 
-#: gramps.glade:21618
+#: gramps.glade:21651
 msgid "Lower Y:"
 msgstr "Ala-Y:"
 
-#: gramps.glade:21726
+#: gramps.glade:21759
 msgid "<b>Subsection</b>"
 msgstr "<b>Alaosio</b>"
 
-#: gramps.glade:21772
+#: gramps.glade:21805
 msgid "<b>Privacy</b>"
 msgstr "<b>Yksityisyys</b>"
 
-#: gramps.glade:22011
+#: gramps.glade:22044
 msgid "Global Notes"
 msgstr "Yleiset huomiot"
 
-#: gramps.glade:22212
+#: gramps.glade:22245
 msgid "Creates a new object attribute from the above data"
 msgstr "Luo uuden objektin ominaisuuden ylläolevasta tiedosta"
 
-#: gramps.glade:23242
+#: gramps.glade:23275
 msgid "Creates a new attribute from the above data"
 msgstr "Luo uuden ominaisuuden ylläolevasta tiedosta"
 
-#: gramps.glade:23936
+#: gramps.glade:23969
 msgid "Close _without saving"
 msgstr "Sulje tallentamatta"
 
-#: gramps.glade:24062
+#: gramps.glade:24095
 msgid "Do not ask again"
 msgstr "Älä kysy uudelleen"
 
-#: gramps.glade:24680
+#: gramps.glade:24713
 msgid "Remove object and all references to it from the database"
 msgstr "Poista objekti ja kaikki sen viitteet tietokannasta"
 
-#: gramps.glade:24725
+#: gramps.glade:24758
 msgid "_Remove Object"
 msgstr "P_oista objekti"
 
-#: gramps.glade:24752
+#: gramps.glade:24785
 msgid "Keep reference to the missing file"
 msgstr "Pidä viite puuttuvaan tiedostoon"
 
-#: gramps.glade:24755
+#: gramps.glade:24788
 msgid "_Keep Reference"
 msgstr "P_idä viite"
 
-#: gramps.glade:24766
+#: gramps.glade:24799
 msgid "Select replacement for the missing file"
 msgstr "Valitse korvaava tiedosto"
 
-#: gramps.glade:24813
+#: gramps.glade:24846
 msgid "_Select File"
 msgstr "_Valitse tiedosto"
 
-#: gramps.glade:24926
+#: gramps.glade:24959
 msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing medial files."
 msgstr "Valitsemalla tämän, kaikkia puuttuvia media tiedostoja käsitellään sillä hetkellä voimassa olevien asetusten mukaisesti, eikä minkään puuttuvan media tiedoston kohdalla enää näytetä dialogeja."
 
-#: gramps.glade:24928
+#: gramps.glade:24961
 msgid "_Use this selection for all missing media files"
 msgstr "_Käytä tätä valintaa kaikille puuttuville media tiedostoille"
 
-#: gramps.glade:24989
+#: gramps.glade:25022
 msgid "Close window without changes"
 msgstr "Sulje ikkuna ilman muutoksia"
 
-#: gramps.glade:25090
+#: gramps.glade:25123
 msgid "_Event type:"
 msgstr "_Tapahtumatyyppi:"
 
-#: gramps.glade:25142
+#: gramps.glade:25175
 msgid "De_scription:"
 msgstr "_Kuvaus:"
 
-#: gramps.glade:25198
+#: gramps.glade:25231
 msgid "_Cause:"
 msgstr "_Syy:"
 
-#: gramps.glade:26268
+#: gramps.glade:26301
 msgid "_Attribute:"
 msgstr "_Ominaisuus:"
 
-#: gramps.glade:26292
+#: gramps.glade:26325
 msgid "_Value:"
 msgstr "_Arvo:"
 
-#: gramps.glade:26925 gramps.glade:27467
+#: gramps.glade:26958 gramps.glade:27500
 msgid "Cou_ntry:"
 msgstr "_Maa:"
 
-#: gramps.glade:27163
+#: gramps.glade:27196
 msgid "_Zip/Postal code:"
 msgstr "Po_stinumero:"
 
-#: gramps.glade:27383
+#: gramps.glade:27416
 msgid "Add_ress:"
 msgstr "Oso_ite:"
 
-#: gramps.glade:27411
+#: gramps.glade:27444
 msgid "_City/County:"
 msgstr "_Kaupunki/kunta:"
 
-#: gramps.glade:28238
+#: gramps.glade:28271
 msgid "_Web address:"
 msgstr "_WWW-osoite:"
 
-#: gramps.glade:28266
+#: gramps.glade:28299
 msgid "_Description:"
 msgstr "_Kuvaus:"
 
-#: gramps.glade:28547
+#: gramps.glade:28580
 msgid "Suffi_x:"
 msgstr "_Pääte:"
 
-#: gramps.glade:28631
+#: gramps.glade:28664
 msgid "P_rivate record"
 msgstr "_Yksityinen tietue"
 
-#: gramps.glade:28652
+#: gramps.glade:28685
 msgid "Family _prefix:"
 msgstr "Perheen et_uliite:"
 
-#: gramps.glade:28765
+#: gramps.glade:28798
 msgid "P_atronymic:"
 msgstr "Patron_yymi:"
 
-#: gramps.glade:28858
+#: gramps.glade:28891
 msgid "G_roup as:"
 msgstr "_Ryhmittele:"
 
-#: gramps.glade:28883
+#: gramps.glade:28916
 msgid "_Sort as:"
 msgstr "_Järjestä:"
 
-#: gramps.glade:28910
+#: gramps.glade:28943
 msgid "_Display as:"
 msgstr "_Näytä:"
 
-#: gramps.glade:28937
+#: gramps.glade:28970
 msgid "<b>Name Information</b>"
 msgstr "<b>Nimen tiedot</b>"
 
-#: gramps.glade:29001
+#: gramps.glade:29034
 msgid ""
 "Default (based on locale)\n"
 "Family name, Given name\n"
@@ -5890,7 +5869,7 @@ msgstr ""
 "Sukunimi, Etunimi\n"
 "Etunimi, Sukunimi"
 
-#: gramps.glade:29019
+#: gramps.glade:29052
 msgid ""
 "Default (based on locale)\n"
 "Given name Family name\n"
@@ -5900,95 +5879,95 @@ msgstr ""
 "Etunimi Sukunimi\n"
 "Sukunimi Etunimi\n"
 
-#: gramps.glade:29145
+#: gramps.glade:29178
 msgid "_Override"
 msgstr "_Ylikirjoita"
 
-#: gramps.glade:29695
+#: gramps.glade:29728
 msgid "_Comment:"
 msgstr "_Kommentti:"
 
-#: gramps.glade:29747
+#: gramps.glade:29780
 msgid "Person is in the _database"
 msgstr "Henkil_ö on tietokannassa"
 
-#: gramps.glade:29815
+#: gramps.glade:29848
 msgid "Choose a person from the database"
 msgstr "Valitse henkilö tietokannasta"
 
-#: gramps.glade:29817
+#: gramps.glade:29850
 msgid "_Select"
 msgstr "_Valitse"
 
-#: gramps.glade:29946
+#: gramps.glade:29979
 msgid "_Next"
 msgstr "_Seuraava"
 
-#: gramps.glade:30005
+#: gramps.glade:30038
 msgid "_Display on startup"
 msgstr "_Näytä käynnistettäessä"
 
-#: gramps.glade:30068
+#: gramps.glade:30101
 msgid "<span weight=\"bold\" size=\"larger\">Gramps' Tip of the Day</span>"
 msgstr "<span weight=\"bold\" size=\"larger\">Grampsin päivän vihje</span>"
 
-#: gramps.glade:30101
+#: gramps.glade:30134
 msgid "GRAMPS - Loading Database"
 msgstr "GRAMPS - Lataan tietokantaa"
 
-#: gramps.glade:30126
+#: gramps.glade:30159
 msgid "<span size=\"larger\" weight=\"bold\">Loading database</span>"
 msgstr "<span size=\"larger\" weight=\"bold\">Lataan tietokantaa</span>"
 
-#: gramps.glade:30150
+#: gramps.glade:30183
 msgid "GRAMPS is loading the database you selected. Please wait."
 msgstr "GRAMPS lataa valitsemaasi tietokantaa. Odota."
 
-#: gramps.glade:30333
+#: gramps.glade:30366
 msgid "Calenda_r:"
 msgstr "Kalente_ri:"
 
-#: gramps.glade:30383
+#: gramps.glade:30416
 msgid "<b>Q_uality</b>"
 msgstr "<b>_Laatu</b>"
 
-#: gramps.glade:30425
+#: gramps.glade:30458
 msgid "<b>_Type</b>"
 msgstr "<b>_Tyyppi</b>"
 
-#: gramps.glade:30467
+#: gramps.glade:30500
 msgid "<b>Date</b>"
 msgstr "<b>Päivämäärä</b>"
 
-#: gramps.glade:30491
+#: gramps.glade:30524
 msgid "_Day"
 msgstr "_Päivä"
 
-#: gramps.glade:30516
+#: gramps.glade:30549
 msgid "_Month"
 msgstr "_Kuukausi"
 
-#: gramps.glade:30541
+#: gramps.glade:30574
 msgid "_Year"
 msgstr "_Vuosi"
 
-#: gramps.glade:30625
+#: gramps.glade:30658
 msgid "<b>Second date</b>"
 msgstr "<b>Toinen päivämäärä</b>"
 
-#: gramps.glade:30649
+#: gramps.glade:30682
 msgid "D_ay"
 msgstr "P_äivä"
 
-#: gramps.glade:30674
+#: gramps.glade:30707
 msgid "Mo_nth"
 msgstr "K_uukausi"
 
-#: gramps.glade:30699
+#: gramps.glade:30732
 msgid "Y_ear"
 msgstr "_Vuosi"
 
-#: gramps.glade:30796
+#: gramps.glade:30829
 msgid "Te_xt comment:"
 msgstr "_Tekstikommentti:"
 
@@ -6115,12 +6094,12 @@ msgstr "Arkiston purkaminen ei onnistu"
 msgid "Temporary directory %s is not writable"
 msgstr "Valiaikaishakemisto '%s' ei ole kirjoitettavissa"
 
-#: gramps_main.py:1265 gramps_main.py:1271 gramps_main.py:1292
-#: gramps_main.py:1296 gramps_main.py:1299
+#: gramps_main.py:1264 gramps_main.py:1270 gramps_main.py:1291
+#: gramps_main.py:1295 gramps_main.py:1298
 msgid "Cannot open database"
 msgstr "Tietokannan aukaisu ei onnistu"
 
-#: gramps_main.py:1266
+#: gramps_main.py:1265
 msgid ""
 "The selected file is a directory, not a file.\n"
 "A GRAMPS database must be a file."
@@ -6128,174 +6107,174 @@ msgstr ""
 "Valittu tiedosto on hakemisto, ei tiedosto.\n"
 "GRAMPSin tietokanta voi olla vain tiedosto."
 
-#: gramps_main.py:1272
+#: gramps_main.py:1271
 msgid "You do not have read access to the selected file."
 msgstr "Sinulla ei ole lukuoikeutta valittuun tiedostoon."
 
-#: gramps_main.py:1277
+#: gramps_main.py:1276
 msgid "Read only database"
 msgstr "Tietokanta on kirjoitussuojattu"
 
-#: gramps_main.py:1278
+#: gramps_main.py:1277
 msgid "You do not have write access to the selected file."
 msgstr "Sinulla ei ole kirjoitusoikeutta valittuun tiedostoon."
 
-#: gramps_main.py:1287
+#: gramps_main.py:1286
 msgid "Read Only"
 msgstr "Kirjoitussuojattu"
 
-#: gramps_main.py:1293
+#: gramps_main.py:1292
 msgid "The database file specified could not be opened."
 msgstr "Annettua tietokantaa ei voitu avata."
 
-#: gramps_main.py:1300
+#: gramps_main.py:1299
 msgid "%s could not be opened."
 msgstr "%s:n avaus epäonnistui."
 
-#: gramps_main.py:1357
+#: gramps_main.py:1358
 msgid "Save Media Object"
 msgstr "Tallenna media-objekti"
 
-#: gramps_main.py:1403 plugins/Check.py:284 plugins/WriteCD.py:255
+#: gramps_main.py:1404 plugins/Check.py:284 plugins/WriteCD.py:255
 #: plugins/WritePkg.py:171
 msgid "Media object could not be found"
 msgstr "Media-objektia ei löydy"
 
-#: gramps_main.py:1404 plugins/WriteCD.py:256 plugins/WritePkg.py:172
+#: gramps_main.py:1405 plugins/WriteCD.py:256 plugins/WritePkg.py:172
 msgid "%(file_name)s is referenced in the database, but no longer exists. The file may have been deleted or moved to a different location. You may choose to either remove the reference from the database, keep the reference to the missing file, or select a new file."
 msgstr "%(file_name)s tiedostoon viitataan tietokannassa, mutta sitä ei löydy. Tiedosto on saatettu poistaa tai siirtää. Voit valita joko viitteen poiston tietokannasta, pitää viitteen ennallaan tai viitata uuteen tiedostoon."
 
-#: gramps_main.py:1450
+#: gramps_main.py:1451
 msgid "Deleting the person will remove the person from the database."
 msgstr "Henkilön poistaminen tuhoaa hänet tietokannasta."
 
-#: gramps_main.py:1454
+#: gramps_main.py:1455
 msgid "_Delete Person"
 msgstr "_Poista henkilö"
 
-#: gramps_main.py:1518
+#: gramps_main.py:1519
 msgid "Delete Person (%s)"
 msgstr "_Poista henkilö (%s)"
 
-#: gramps_main.py:1593
+#: gramps_main.py:1603
 msgid "%(relationship)s of %(person)s"
 msgstr "%(person)s:n %(relationship)s"
 
-#: gramps_main.py:1750
+#: gramps_main.py:1765
 msgid "Upgrading database..."
 msgstr "Päivitän tietokantaa..."
 
-#: gramps_main.py:1763
+#: gramps_main.py:1778
 msgid "Setup complete"
 msgstr "Asennus valmis"
 
-#: gramps_main.py:1780
+#: gramps_main.py:1795
 msgid "Loading %s..."
 msgstr "Ladataan %s..."
 
-#: gramps_main.py:1783
+#: gramps_main.py:1798
 msgid "Opening database..."
 msgstr "Avaan tietokantaa..."
 
-#: gramps_main.py:1814
+#: gramps_main.py:1829
 msgid "No Home Person has been set."
 msgstr "\"Koti\"-henkilöä ei ole asetettu."
 
-#: gramps_main.py:1815
+#: gramps_main.py:1830
 msgid "The Home Person may be set from the Edit menu."
 msgstr "\"Koti\"-henkilö voidaan asettaa Muokkaa-valikosta."
 
-#: gramps_main.py:1821
+#: gramps_main.py:1836
 msgid "%s has been bookmarked"
 msgstr "%s on kirjanmerkitty"
 
-#: gramps_main.py:1824
+#: gramps_main.py:1839
 msgid "Could Not Set a Bookmark"
 msgstr "Kirjanmerkin asetus epäonnistui"
 
-#: gramps_main.py:1825
+#: gramps_main.py:1840
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Kirjanmerkin asetus epäonnistui, koska ketään ei ollut valittuna."
 
-#: gramps_main.py:1839
+#: gramps_main.py:1854
 msgid "Could not go to a Person"
 msgstr "Henkilöön siirtyminen epäonnistui"
 
-#: gramps_main.py:1840
+#: gramps_main.py:1855
 msgid "Either stale bookmark or broken history caused by IDs reorder."
 msgstr "Vanhentunut kirjanmerkki tai tunnuksien uudelleenjärjestelyn aiheuttama historian epäkelpoisuus."
 
-#: gramps_main.py:1850
+#: gramps_main.py:1865
 msgid "Set %s as the Home Person"
 msgstr "Aseta %s \"Koti\"-henkilöksi"
 
-#: gramps_main.py:1851
+#: gramps_main.py:1866
 msgid "Once a Home Person is defined, pressing the Home button on the toolbar will make the home person the active person."
 msgstr "\"Koti\"-henkilön asettamisen jälkeen \"Koti\" nappulan painaminen työkalupalkissa aktivoi \"koti\"-henkilön."
 
-#: gramps_main.py:1854
+#: gramps_main.py:1869
 msgid "_Set Home Person"
 msgstr "_Aseta \"koti\"-henkilö"
 
-#: gramps_main.py:1865
+#: gramps_main.py:1880
 msgid "A person must be selected to export"
 msgstr "Vientiä varten pitää valita henkilö"
 
-#: gramps_main.py:1866
+#: gramps_main.py:1881
 msgid "Exporting requires that an active person be selected. Please select a person and try again."
 msgstr "Vienti vaatii, että joku henkilö on valittuna. Valitse henkilö ja yritä uudelleen."
 
-#: gramps_main.py:1897 gramps_main.py:1901 gramps_main.py:1905
-#: gramps_main.py:1919 gramps_main.py:1921
+#: gramps_main.py:1912 gramps_main.py:1916 gramps_main.py:1920
+#: gramps_main.py:1934 gramps_main.py:1936
 msgid "Could not create example database"
 msgstr "Esimerkkitietokannan luonti epäonnistui"
 
-#: gramps_main.py:1898 gramps_main.py:1902 gramps_main.py:1906
+#: gramps_main.py:1913 gramps_main.py:1917 gramps_main.py:1921
 msgid "The directory ~/.gramps/example could not be created."
 msgstr "Hakemistoa ~/.gramps/example ei voitu luoda."
 
-#: mergedata.glade:206
+#: mergedata.glade:193
 msgid "Place 1"
 msgstr "Paikka 1"
 
-#: mergedata.glade:230
+#: mergedata.glade:217
 msgid "Place 2"
 msgstr "Paikka 2"
 
-#: mergedata.glade:343
+#: mergedata.glade:329
 msgid "Merge and _edit"
 msgstr "Liitä ja _muokkaa"
 
-#: mergedata.glade:357
+#: mergedata.glade:343
 msgid "_Merge and close"
 msgstr "_Liitä ja sulje"
 
-#: mergedata.glade:507 mergedata.glade:529 plugins/ChangeNames.py:115
+#: mergedata.glade:489 mergedata.glade:511 plugins/ChangeNames.py:115
 #: plugins/PatchNames.py:179 plugins/SimpleBookTitle.py:209
 msgid "Select"
 msgstr "Valitse"
 
-#: mergedata.glade:680
+#: mergedata.glade:657
 msgid "<b>Source 1</b>"
 msgstr "<b>Lähde 1</b>"
 
-#: mergedata.glade:708
+#: mergedata.glade:681
 msgid "<b>Source 2</b>"
 msgstr "<b>Lähde 2</b>"
 
-#: mergedata.glade:995 mergedata.glade:1017
+#: mergedata.glade:964 mergedata.glade:986
 msgid "Abbreviation:"
 msgstr "Lyhennys:"
 
-#: mergedata.glade:1040 mergedata.glade:1062
+#: mergedata.glade:1009 mergedata.glade:1031
 msgid "Publication:"
 msgstr "Julkaisu:"
 
-#: mergedata.glade:1085 mergedata.glade:1107
+#: mergedata.glade:1054 mergedata.glade:1076
 msgid "GRAMPS ID:"
 msgstr "GRAMPS tunnus:"
 
-#: mergedata.glade:1291
+#: mergedata.glade:1255
 msgid "Select the person that will provide the primary data for the merged person."
 msgstr "Valitse henkilö, jolta ensisijaiset tiedot tulevat liitetylle henkilölle."
 
@@ -6350,8 +6329,7 @@ msgstr "Kaavio esivanhemmista"
 #: plugins/FtmStyleAncestors.py:422 plugins/FtmStyleDescendants.py:572
 #: plugins/GraphViz.py:971 plugins/GraphViz.py:985
 #: plugins/IndivComplete.py:595 plugins/IndivSummary.py:391
-#: plugins/NavWebPage.py:1339 plugins/Summary.py:178 plugins/TimeLine.py:479
-#: plugins/WebPage.py:1906
+#: plugins/Summary.py:178 plugins/TimeLine.py:479 plugins/WebPage.py:1908
 msgid "Beta"
 msgstr "Beta"
 
@@ -6457,7 +6435,7 @@ msgstr ", hautauspaikka %s."
 #: plugins/FtmStyleAncestors.py:375 plugins/FtmStyleDescendants.py:521
 #: plugins/IndivComplete.py:552 plugins/IndivSummary.py:348
 #: plugins/SimpleBookTitle.py:265 plugins/StatisticsChart.py:812
-#: plugins/TimeLine.py:398 plugins/WebPage.py:1559
+#: plugins/TimeLine.py:398 plugins/WebPage.py:1561
 msgid "The style used for the title of the page."
 msgstr "Sivuotsikon tyyli."
 
@@ -7203,11 +7181,11 @@ msgstr "vCard-muotoa käytetään monissa osoitekirja- ja PIM-sovelluksissa."
 msgid "vCard export options"
 msgstr "vCard vienti-asetukset"
 
-#: plugins/FamilyGroup.py:163 plugins/NavWebPage.py:759
+#: plugins/FamilyGroup.py:163
 msgid "Husband"
 msgstr "Aviomies"
 
-#: plugins/FamilyGroup.py:165 plugins/NavWebPage.py:761
+#: plugins/FamilyGroup.py:165
 msgid "Wife"
 msgstr "Vaimo"
 
@@ -7332,7 +7310,7 @@ msgid "Custom Filter Editor"
 msgstr "Erikoissuodin-editori"
 
 #: plugins/FilterEditor.py:940 plugins/FilterEditor.py:953
-#: plugins/RelCalc.py:208 plugins/ScratchPad.py:894 plugins/SoundGen.py:160
+#: plugins/RelCalc.py:208 plugins/ScratchPad.py:899 plugins/SoundGen.py:160
 #: plugins/Verify.py:553
 msgid "Utilities"
 msgstr "Apuvälineet"
@@ -7660,7 +7638,7 @@ msgid "Alternate Parents"
 msgstr "Vaihtoehtoiset vanhemmat"
 
 #: plugins/IndivComplete.py:263 plugins/IndivSummary.py:146
-#: plugins/WebPage.py:631
+#: plugins/WebPage.py:633
 msgid "Marriages/Children"
 msgstr "Puolisot/lapset"
 
@@ -7669,17 +7647,17 @@ msgid "Individual Facts"
 msgstr "Henkilötiedot"
 
 #: plugins/IndivComplete.py:386 plugins/IndivSummary.py:205
-#: plugins/WebPage.py:129 plugins/WebPage.py:282
+#: plugins/WebPage.py:131 plugins/WebPage.py:284
 msgid "Summary of %s"
-msgstr "%s:n yhteenveto"
+msgstr "%s; yhteenveto"
 
 #: plugins/IndivComplete.py:420 plugins/IndivSummary.py:247
-#: plugins/WebPage.py:328
+#: plugins/WebPage.py:330
 msgid "Male"
 msgstr "Mies"
 
 #: plugins/IndivComplete.py:422 plugins/IndivSummary.py:249
-#: plugins/WebPage.py:330
+#: plugins/WebPage.py:332
 msgid "Female"
 msgstr "Nainen"
 
@@ -7692,7 +7670,7 @@ msgid "The style used for category labels."
 msgstr "Kategorianimikkeiden tyyli."
 
 #: plugins/IndivComplete.py:571 plugins/IndivSummary.py:367
-#: plugins/WebPage.py:1631
+#: plugins/WebPage.py:1633
 msgid "The style used for the spouse's name."
 msgstr "Puolison nimen tyyli."
 
@@ -7779,174 +7757,6 @@ msgstr "Etsi mahdolliset henkilöiden kahdennukset"
 #: plugins/Merge.py:656
 msgid "Searches the entire database, looking for individual entries that may represent the same person."
 msgstr "Etsii koko tietokannasta yksilöitä, jotka saattavat olla yksi ja sama henkilö."
-
-#: plugins/NavWebPage.py:185 plugins/NavWebPage.py:188 plugins/Summary.py:109
-msgid "Individuals"
-msgstr "Henkilöt"
-
-#: plugins/NavWebPage.py:189
-msgid "Index of individuals, sorted by last name."
-msgstr "Sukunimen mukaan lajiteltu lista henkilöistä."
-
-#: plugins/NavWebPage.py:193 plugins/NavWebPage.py:312
-msgid "Surname"
-msgstr "Sukunimi"
-
-#: plugins/NavWebPage.py:234 plugins/NavWebPage.py:237
-msgid "Places"
-msgstr "Paikat"
-
-#: plugins/NavWebPage.py:238
-msgid "Index of all the places in the project."
-msgstr "List kaikista projektiin kuuluvista paikoista."
-
-#: plugins/NavWebPage.py:245 plugins/NavWebPage.py:310
-msgid "Letter"
-msgstr "US Letter"
-
-#: plugins/NavWebPage.py:297 plugins/NavWebPage.py:300
-#: plugins/StatisticsChart.py:98
-msgid "Surnames"
-msgstr "Sukunimet"
-
-#: plugins/NavWebPage.py:301
-msgid "Index of all the surnames in the project. The links lead to a list of individuals in the database with this same surname."
-msgstr "List kaikista projektin sukunimistä. Linkit johtavat listaan henkilöistä, joilla on tietokannassa tämä sukunimi."
-
-#: plugins/NavWebPage.py:359 plugins/NavWebPage.py:362
-msgid "Introduction"
-msgstr "Esittely"
-
-#: plugins/NavWebPage.py:445
-msgid "All sources cited in the project."
-msgstr "Kaikki projektissa viitatut lähteet."
-
-#: plugins/NavWebPage.py:471 plugins/NavWebPage.py:474
-msgid "Download"
-msgstr "Tallenna"
-
-#: plugins/NavWebPage.py:491 plugins/NavWebPage.py:494
-msgid "Contact"
-msgstr "Yhteystiedot"
-
-#: plugins/NavWebPage.py:583
-msgid "Pedigree"
-msgstr "Sukupuu"
-
-#: plugins/NavWebPage.py:674
-msgid "Narrative"
-msgstr "Kuvaus"
-
-#: plugins/NavWebPage.py:707
-msgid "Relationships"
-msgstr "Suhteet"
-
-#: plugins/NavWebPage.py:763 plugins/NavWebPage.py:765
-msgid "Partner"
-msgstr "Kumppani"
-
-#: plugins/NavWebPage.py:832
-msgid "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; at &nbsp&nbsp; %(place)s"
-msgstr "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; paikka: &nbsp&nbsp; %(place)s"
-
-#: plugins/NavWebPage.py:834
-msgid "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp;"
-msgstr "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp;"
-
-#: plugins/NavWebPage.py:838
-msgid "%(date)s &nbsp;&nbsp; at &nbsp&nbsp; %(place)s"
-msgstr "%(date)s &nbsp;&nbsp; paikassa: &nbsp&nbsp; %(place)s"
-
-#: plugins/NavWebPage.py:915 plugins/WebPage.py:820
-msgid "Generate HTML reports - GRAMPS"
-msgstr "Tuota HTML-raportteja - GRAMPS"
-
-#: plugins/NavWebPage.py:917 plugins/WebPage.py:822
-msgid "Creating Web Pages"
-msgstr "WWW-sivujen luonti"
-
-#: plugins/NavWebPage.py:926 plugins/WebPage.py:1099
-msgid "Neither %s nor %s are directories"
-msgstr "%s eikä %s ole hakemistoja"
-
-#: plugins/NavWebPage.py:933 plugins/NavWebPage.py:937
-#: plugins/NavWebPage.py:949 plugins/NavWebPage.py:953 plugins/WebPage.py:1106
-#: plugins/WebPage.py:1110 plugins/WebPage.py:1122 plugins/WebPage.py:1126
-msgid "Could not create the directory: %s"
-msgstr "Hakemiston '%s' luonti epäonnistui"
-
-#: plugins/NavWebPage.py:1075 plugins/WebPage.py:1271
-msgid "Descendant Families of %s"
-msgstr "%s:n jälkeläisperheet"
-
-#: plugins/NavWebPage.py:1089 plugins/WebPage.py:1286
-msgid "Do not include records marked private"
-msgstr "Älä lisää tietoja, jotka on merkitty yksityisiksi"
-
-#: plugins/NavWebPage.py:1090 plugins/WebPage.py:1287
-msgid "Restrict information on living people"
-msgstr "Rajoita tiedot elossaoleviin henkilöihin"
-
-#: plugins/NavWebPage.py:1091 plugins/WebPage.py:1288
-msgid "Do not use images"
-msgstr "Älä käytä kuvia"
-
-#: plugins/NavWebPage.py:1092 plugins/WebPage.py:1289
-msgid "Do not use images for living people"
-msgstr "Älä käytä elossaolevien henkilöiden kuvia"
-
-#: plugins/NavWebPage.py:1093 plugins/WebPage.py:1290
-msgid "Do not include comments and text in source information"
-msgstr "Älä lisää kommentteja tai tekstiä lähdetiedoista"
-
-#: plugins/NavWebPage.py:1094 plugins/WebPage.py:1294
-msgid "Image subdirectory"
-msgstr "Alihakemisto kuville"
-
-#: plugins/NavWebPage.py:1095
-msgid "Web site title"
-msgstr "WWWW-sivuston otsikko"
-
-#: plugins/NavWebPage.py:1096 plugins/WebPage.py:1296
-msgid "File extension"
-msgstr "Tiedostopääte"
-
-#: plugins/NavWebPage.py:1097 plugins/WebPage.py:1298
-msgid "Split alphabetical sections to separate pages"
-msgstr "Jaa aakkoselliset kappaleet erillisille sivuille"
-
-#: plugins/NavWebPage.py:1098 plugins/WebPage.py:1301
-msgid "Include short ancestor tree"
-msgstr "Lisää lyhyt sukupuu esivanhemmista"
-
-#: plugins/NavWebPage.py:1150
-msgid "Home Note ID"
-msgstr "Pääsivun huomion tunnus"
-
-#: plugins/NavWebPage.py:1152
-msgid "Introduction Note ID"
-msgstr "Johdantosivun huomion tunnus"
-
-#: plugins/NavWebPage.py:1155 plugins/WebPage.py:1429
-msgid "Privacy"
-msgstr "Yksityisyys"
-
-#: plugins/NavWebPage.py:1222 plugins/NavWebPage.py:1247
-#: plugins/WebPage.py:1701 plugins/WebPage.py:1717 plugins/WebPage.py:1905
-msgid "Generate Web Site"
-msgstr "Tuota WWW-sivusto"
-
-#: plugins/NavWebPage.py:1252 plugins/WebPage.py:1722
-msgid "Target Directory"
-msgstr "Kohdehakemisto"
-
-#: plugins/NavWebPage.py:1338
-msgid "Narrative Web Site"
-msgstr "Kerronnallinen WWW-sivusto"
-
-#: plugins/NavWebPage.py:1340 plugins/WebPage.py:1907
-msgid "Generates web (HTML) pages for individuals, or a set of individuals."
-msgstr "Tuottaa WWW (HTML) sivuja henkilöistä."
 
 #: plugins/PatchNames.py:147
 msgid "No titles or nicknames were found"
@@ -8073,12 +7883,12 @@ msgstr "Sivu"
 msgid "Person Link"
 msgstr "Henkilölinkki"
 
-#: plugins/ScratchPad.py:830 plugins/ScratchPad.py:893
+#: plugins/ScratchPad.py:835 plugins/ScratchPad.py:898
 #: plugins/scratchpad.glade:9
 msgid "Scratch Pad"
 msgstr "Muistio"
 
-#: plugins/ScratchPad.py:895
+#: plugins/ScratchPad.py:900
 msgid "The Scratch Pad provides a temporary note pad to store objects for easy reuse."
 msgstr "Muistio tarjoaa väliaikaisen säilytyspaikan, jonne voit tallentaa objekteja uudelleenkäyttöä varten."
 
@@ -8168,6 +7978,10 @@ msgstr "Naiset"
 #: plugins/StatisticsChart.py:96
 msgid "Titles"
 msgstr "Ammatit"
+
+#: plugins/StatisticsChart.py:98
+msgid "Surnames"
+msgstr "Sukunimet"
 
 #: plugins/StatisticsChart.py:100
 msgid "Forenames"
@@ -8351,8 +8165,8 @@ msgid "With fewer items pie chart and legend will be used instead of a bar chart
 msgstr "Jos näytettäviä tietoja on vähemmän, piirakkakaaviota käytetään pylväskaavion sijaan."
 
 #: plugins/StatisticsChart.py:902
-msgid "Min. bar char items"
-msgstr "Aineiston yläraja ympyräkaaviolle"
+msgid "Max. items for a pie"
+msgstr "Enin määrä asioita piiraaseen"
 
 #: plugins/StatisticsChart.py:921
 msgid "Mark checkboxes to add charts with indicated data"
@@ -8373,6 +8187,10 @@ msgstr "Tilastokaaviot"
 #: plugins/StatisticsChart.py:961
 msgid "Generates statistical bar and pie charts of the people in the database."
 msgstr "Luo palkki- ja ympyrätilastokaavioita tietokannassa olevista henkilöistä."
+
+#: plugins/Summary.py:109
+msgid "Individuals"
+msgstr "Henkilöt"
 
 #: plugins/Summary.py:111
 msgid "Number of individuals"
@@ -8467,19 +8285,19 @@ msgstr ""
 "Luon henkilöitä ja perheitä.\n"
 "Odota."
 
-#: plugins/TestcaseGenerator.py:272
+#: plugins/TestcaseGenerator.py:288
 msgid "Testcase generator"
 msgstr "Testitapausten luonti"
 
-#: plugins/TestcaseGenerator.py:726
+#: plugins/TestcaseGenerator.py:754
 msgid "Testcase generator step %d"
 msgstr "Testitapausten luonti, vaihe %d"
 
-#: plugins/TestcaseGenerator.py:750
+#: plugins/TestcaseGenerator.py:778
 msgid "Generate Testcases for persons and families"
 msgstr "Luo testitapauksia henkilöille ja perheille"
 
-#: plugins/TestcaseGenerator.py:752
+#: plugins/TestcaseGenerator.py:780
 msgid "The testcase generator will generate some persons and families that have broken links in the database or data that is in conflict to a relation."
 msgstr "Testitapauksissa luodaan henkilöitä ja perheitä, joilla on viallisia linkkejä tietokannassa tai tietoja, jotka eivät vastaa ao. suhdetta."
 
@@ -8755,157 +8573,230 @@ msgstr "Tarkista tietokanta"
 msgid "Lists exceptions to assertions or checks about the database"
 msgstr "Listaa tietokannan tarkistuksiin liittyvät poikkeustapaukset"
 
-#: plugins/WebPage.py:325
+#: plugins/WebPage.py:327
 msgid "ID Number"
 msgstr "Tunnistenumero"
 
-#: plugins/WebPage.py:372 plugins/WebPage.py:929
+#: plugins/WebPage.py:374 plugins/WebPage.py:931
 msgid "Return to the index of people"
 msgstr "Palaa henkilölistaan"
 
-#: plugins/WebPage.py:377 plugins/WebPage.py:1087
+#: plugins/WebPage.py:379 plugins/WebPage.py:1089
 msgid "Return to the index of places"
 msgstr "Palaa paikkalistaan"
 
-#: plugins/WebPage.py:482
+#: plugins/WebPage.py:484
 msgid "Links"
 msgstr "Linkit"
 
-#: plugins/WebPage.py:528
+#: plugins/WebPage.py:530
 msgid "Facts and Events"
 msgstr "Tiedot ja tapahtumat"
 
-#: plugins/WebPage.py:864 plugins/WebPage.py:868
+#: plugins/WebPage.py:822
+msgid "Generate HTML reports - GRAMPS"
+msgstr "Tuota HTML-raportteja - GRAMPS"
+
+#: plugins/WebPage.py:824
+msgid "Creating Web Pages"
+msgstr "WWW-sivujen luonti"
+
+#: plugins/WebPage.py:866 plugins/WebPage.py:870
 msgid "Place Index"
 msgstr "Paikkalista"
 
-#: plugins/WebPage.py:939 plugins/WebPage.py:943
+#: plugins/WebPage.py:941 plugins/WebPage.py:945
 msgid "Family Tree Index"
 msgstr "Sukupuu-indeksi"
 
-#: plugins/WebPage.py:985 plugins/WebPage.py:989
+#: plugins/WebPage.py:986 plugins/WebPage.py:990
 msgid "Section %s"
 msgstr "Kappale %s"
 
-#: plugins/WebPage.py:1077
+#: plugins/WebPage.py:1079
 msgid "%s (continued)"
 msgstr "%s (jatkuu)"
 
-#: plugins/WebPage.py:1285
+#: plugins/WebPage.py:1101
+msgid "Neither %s nor %s are directories"
+msgstr "%s eikä %s ole hakemistoja"
+
+#: plugins/WebPage.py:1108 plugins/WebPage.py:1112 plugins/WebPage.py:1124
+#: plugins/WebPage.py:1128
+msgid "Could not create the directory: %s"
+msgstr "Hakemiston '%s' luonti epäonnistui"
+
+#: plugins/WebPage.py:1273
+msgid "Descendant Families of %s"
+msgstr "%s:n jälkeläisperheet"
+
+#: plugins/WebPage.py:1287
 msgid "Include a link to the index page"
 msgstr "Lisää linkki indeksisivulle"
 
+#: plugins/WebPage.py:1288
+msgid "Do not include records marked private"
+msgstr "Älä lisää tietoja, jotka on merkitty yksityisiksi"
+
+#: plugins/WebPage.py:1289
+msgid "Restrict information on living people"
+msgstr "Rajoita tiedot elossaoleviin henkilöihin"
+
+#: plugins/WebPage.py:1290
+msgid "Do not use images"
+msgstr "Älä käytä kuvia"
+
 #: plugins/WebPage.py:1291
+msgid "Do not use images for living people"
+msgstr "Älä käytä elossaolevien henkilöiden kuvia"
+
+#: plugins/WebPage.py:1292
+msgid "Do not include comments and text in source information"
+msgstr "Älä lisää kommentteja tai tekstiä lähdetiedoista"
+
+#: plugins/WebPage.py:1293
 msgid "Include the GRAMPS ID in the report"
 msgstr "Lisää raporttiin GRAMPS tunnukset"
 
-#: plugins/WebPage.py:1292
+#: plugins/WebPage.py:1294
 msgid "Create a GENDEX index"
 msgstr "Luo GENDEX indeksi"
 
-#: plugins/WebPage.py:1293
+#: plugins/WebPage.py:1295
 msgid "Create an index of all Places"
 msgstr "Luo lista paikoista"
 
-#: plugins/WebPage.py:1295
+#: plugins/WebPage.py:1296
+msgid "Image subdirectory"
+msgstr "Alihakemisto kuville"
+
+#: plugins/WebPage.py:1297
 msgid "Ancestor tree depth"
 msgstr "Sukupuun syvyys"
 
-#: plugins/WebPage.py:1297
+#: plugins/WebPage.py:1298
+msgid "File extension"
+msgstr "Tiedostopääte"
+
+#: plugins/WebPage.py:1299
 msgid "Links to alphabetical sections in index page"
 msgstr "Linkit aakkosellisiin kappaleisiin indeksisivulla"
 
-#: plugins/WebPage.py:1299
+#: plugins/WebPage.py:1300
+msgid "Split alphabetical sections to separate pages"
+msgstr "Jaa aakkoselliset kappaleet erillisille sivuille"
+
+#: plugins/WebPage.py:1301
 msgid "Append birth dates to the names"
 msgstr "Lisää syntymäpäivät nimiin"
 
-#: plugins/WebPage.py:1300
+#: plugins/WebPage.py:1302
 msgid "Use only year of birth"
 msgstr "Käytä vain syntymävuotta"
 
-#: plugins/WebPage.py:1436
+#: plugins/WebPage.py:1303
+msgid "Include short ancestor tree"
+msgstr "Lisää lyhyt sukupuu esivanhemmista"
+
+#: plugins/WebPage.py:1431
+msgid "Privacy"
+msgstr "Yksityisyys"
+
+#: plugins/WebPage.py:1438
 msgid "Index page"
 msgstr "Indeksisivu"
 
-#: plugins/WebPage.py:1441
+#: plugins/WebPage.py:1443
 msgid "Number of columns"
 msgstr "Sarakkeiden määrä"
 
-#: plugins/WebPage.py:1445
+#: plugins/WebPage.py:1447
 msgid "Advanced"
 msgstr "Tekniset"
 
-#: plugins/WebPage.py:1447
+#: plugins/WebPage.py:1449
 msgid "GRAMPS ID link URL"
 msgstr "GRAMPS tunnuksen linkin URL"
 
-#: plugins/WebPage.py:1566
+#: plugins/WebPage.py:1568
 msgid "The style used for the header that identifies facts and events."
 msgstr "Tiedot ja tapahtumat -osion otsikkotyyli."
 
-#: plugins/WebPage.py:1574
+#: plugins/WebPage.py:1576
 msgid "The style used for the header for the notes section."
 msgstr "Huomioita -osion otsikkotyyli."
 
-#: plugins/WebPage.py:1581
+#: plugins/WebPage.py:1583
 msgid "The style used for the copyright notice."
 msgstr "Tekijänoikeusilmoituksen tyyli."
 
-#: plugins/WebPage.py:1588
+#: plugins/WebPage.py:1590
 msgid "The style used for the header for the sources section."
 msgstr "Lähteet -osion otsikkotyyli."
 
-#: plugins/WebPage.py:1595
+#: plugins/WebPage.py:1597
 msgid "The style used on the index page that labels each section."
 msgstr "Tyyli indeksisivulle, joka nimeää osiot."
 
-#: plugins/WebPage.py:1602
+#: plugins/WebPage.py:1604
 msgid "The style used on the index page that labels links to each section."
 msgstr "Tyyli indeksisivulle, joka nimeää muiden osioiden linkit."
 
-#: plugins/WebPage.py:1609
+#: plugins/WebPage.py:1611
 msgid "The style used for the header for the image section."
 msgstr "Kuvat -osion otsikkotyyli."
 
-#: plugins/WebPage.py:1616
+#: plugins/WebPage.py:1618
 msgid "The style used for the header for the siblings section."
 msgstr "Sisarukset -osion otsikkotyyli."
 
-#: plugins/WebPage.py:1623
+#: plugins/WebPage.py:1625
 msgid "The style used for the header for the marriages and children section."
 msgstr "Avioliitot ja lapset -osion otsikkotyyli."
 
-#: plugins/WebPage.py:1638
+#: plugins/WebPage.py:1640
 msgid "The style used for the general data labels."
 msgstr "Tietojen otsakkeille käytetty yleistyyli."
 
-#: plugins/WebPage.py:1645
+#: plugins/WebPage.py:1647
 msgid "The style used for the general data."
 msgstr "Tiedoille käytetty yleistyyli."
 
-#: plugins/WebPage.py:1652
+#: plugins/WebPage.py:1654
 msgid "The style used for the description of images."
 msgstr "Kuvien kuvauksen tyyli."
 
-#: plugins/WebPage.py:1659
+#: plugins/WebPage.py:1661
 msgid "The style used for the notes associated with images."
 msgstr "Kuviin liittyvien huomioiden tyyli."
 
-#: plugins/WebPage.py:1666
+#: plugins/WebPage.py:1668
 msgid "The style used for the source information."
 msgstr "Lähdetietojen tyyli."
 
-#: plugins/WebPage.py:1673
+#: plugins/WebPage.py:1675
 msgid "The style used for the note information."
 msgstr "Huomiotietojen tyyli."
 
-#: plugins/WebPage.py:1680
+#: plugins/WebPage.py:1682
 msgid "The style used for the header for the URL section."
 msgstr "URL-osion otsikkotyyli."
 
-#: plugins/WebPage.py:1687
+#: plugins/WebPage.py:1689
 msgid "The style used for the URL information."
 msgstr "Tyyli URL-tiedoille."
+
+#: plugins/WebPage.py:1703 plugins/WebPage.py:1719 plugins/WebPage.py:1907
+msgid "Generate Web Site"
+msgstr "Tuota WWW-sivusto"
+
+#: plugins/WebPage.py:1724
+msgid "Target Directory"
+msgstr "Kohdehakemisto"
+
+#: plugins/WebPage.py:1909
+msgid "Generates web (HTML) pages for individuals, or a set of individuals."
+msgstr "Tuottaa WWW (HTML) sivuja henkilöistä."
 
 #: plugins/WriteCD.py:60
 msgid "Export to CD"
@@ -9130,7 +9021,7 @@ msgstr ""
 msgid "Select a person to determine the relationship"
 msgstr "Valitse henkilö suhteen määrittämistä varten"
 
-#: plugins/scratchpad.glade:54
+#: plugins/scratchpad.glade:55
 msgid "Clear _All"
 msgstr "Tyh_jennä kaikki"
 
