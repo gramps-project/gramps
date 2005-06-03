@@ -1,3 +1,6 @@
+2005-06-03  Jens Arvidsson <jya@sverige.nu>
+	* src/po/sv.po: Translation update for version 2.0.2.
+
 2005-06-02  Don Allingham  <don@gramps-project.org>
 	* src/dates/Date_fi.py: Finnish date parser
 	* src/dates/Makefile.am: added Date_fi.py
