@@ -494,6 +494,13 @@ family_relations = [
     (_("Other"),       _("An unspecified relationship between a man and woman"))
 ]
 
+family_relations_C = [
+    "Married",
+    "Unmarried",
+    "Civil Union",
+    "Unknown",
+    "Other",
+    ]
 #-------------------------------------------------------------------------
 #
 # 
@@ -501,9 +508,9 @@ family_relations = [
 #-------------------------------------------------------------------------
 def save_frel(st):
     try:
-        return family_relations[st][0]
+        return family_relations_C[st]
     except:
-        return _("Unknown")
+        return "Unknown"
 
 #-------------------------------------------------------------------------
 #
