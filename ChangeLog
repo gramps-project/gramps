@@ -1,3 +1,10 @@
+2005-06-03  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels.py: remove unused print
+	* src/ListBox.py: get EventBox working for event types
+	* src/PedView.py: handle event types
+	* src/ReadXML.py: handle name types properly
+	* src/RelLib.py: add type checking for set_type
+
 2005-06-03  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DisplayModels.py (RepositoryModel): Display repository type as text
 	* src/RelLib.py (Repository): Serialize type as tuple not unicode

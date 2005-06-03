@@ -220,7 +220,6 @@ class ChildModel(gtk.ListStore):
     def column_birth_day(self,data):
         event_ref = data.get_birth_ref()
         if event_ref and event_ref.ref:
-            print event_ref.ref
             return self.db.get_event_from_handle(event_ref.ref).get_date()
         else:
             return u""
