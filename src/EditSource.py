@@ -140,7 +140,12 @@ class ReposRefListView:
         o = model.get_value(iter, 0)
         repos_hdl = o.get_reference_handle()
         repos = self._db.get_repository_from_handle(repos_hdl)
-        cell.set_property('text', repos.get_type())
+        rtype = repos.get_type()
+        if rtype[0] == RelLib.Event.CUSTOM or rtype[0] not in Utils.repository_types:
+            name = rtype[1]
+        else:
+            name = Utils.repository_types[rtype[0]]
+        cell.set_property('text', name)
 
     def object_note(self, column, cell, model, iter, user_data=None):
         o = model.get_value(iter, 0)
