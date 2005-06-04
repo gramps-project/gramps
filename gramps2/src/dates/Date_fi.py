@@ -177,5 +177,5 @@ class DateDisplayFI(DateDisplay):
 #
 #-------------------------------------------------------------------------
 from DateHandler import register_datehandler
-register_datehandler(('fi_FI','finnish'), DateParserFI, DateDisplayFI)
+register_datehandler(('fi_FI','fi','finnish'), DateParserFI, DateDisplayFI)
 

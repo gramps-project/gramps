@@ -168,4 +168,4 @@ class DateDisplayRU(DateDisplay):
 #
 #-------------------------------------------------------------------------
 from DateHandler import register_datehandler
-register_datehandler(('ru_RU','russian'),DateParserRU, DateDisplayRU)
+register_datehandler(('ru_RU','ru','russian'),DateParserRU, DateDisplayRU)

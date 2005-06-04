@@ -1,3 +1,8 @@
+2005-06-04  Don Allingham  <don@gramps-project.org>
+	* src/DateHandler.py: handle generic "en", "fr" cases as a fallback
+	if the unknown "yy_XX" code is passed. Try yy if yy_XX fails.
+	* src/dates/Date_*.py: add a default xx case
+
 2005-06-03  Don Allingham  <don@gramps-project.org>
 	* src/DateHandler.py: add more English locales
 	* src/dates/Date_fi.py: fix estimated/calculated, handle span

@@ -153,4 +153,4 @@ class DateDisplayFR(DateDisplay):
 #
 #-------------------------------------------------------------------------
 from DateHandler import register_datehandler
-register_datehandler(('fr_FR','french'),DateParserFR, DateDisplayFR)
+register_datehandler(('fr_FR','fr','french'),DateParserFR, DateDisplayFR)

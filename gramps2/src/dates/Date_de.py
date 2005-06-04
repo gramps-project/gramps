@@ -224,9 +224,5 @@ class DateDisplayDE(DateDisplay):
 #
 #-------------------------------------------------------------------------
 from DateHandler import register_datehandler
-register_datehandler(('de_DE','german'),DateParserDE, DateDisplayDE)
-register_datehandler(('de_AT','german (Austria)'),DateParserDE, DateDisplayDE)
-register_datehandler(('de_CH','german (Switzerland)'),DateParserDE, DateDisplayDE)
-register_datehandler(('de_LI','german (Lichtenstein)'),DateParserDE, DateDisplayDE)
-register_datehandler(('de_LU','german (Luxembourg)'),DateParserDE, DateDisplayDE)
-register_datehandler(('de_BE','german (Belgium)'),DateParserDE, DateDisplayDE)
+register_datehandler(('de_DE','german','de_AT','de_CH',
+                      'de_LI','de_LU','de_BE','de'),DateParserDE, DateDisplayDE)

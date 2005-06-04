@@ -159,4 +159,4 @@ class DateDisplayES(DateDisplay):
 #
 #-------------------------------------------------------------------------
 from DateHandler import register_datehandler
-register_datehandler(('es_ES','spanish'),DateParserES, DateDisplayES)
+register_datehandler(('es_ES','es','spanish'),DateParserES, DateDisplayES)
