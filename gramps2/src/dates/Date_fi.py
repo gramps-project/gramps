@@ -95,9 +95,9 @@ class DateParserFI(DateParser):
     def init_strings(self):
         DateParser.init_strings(self)
 	# date, whitespace
-        self._span = re.compile("(.+)\s+-\s+(.+)",
+        self._span = re.compile("(?P<start>.+)\s+(-)\s+(?P<stop>.+)",
                            re.IGNORECASE)
-        self._range = re.compile("(vuosien\s*)?(.+)\s+ja\s+(.+)\s+väliltä",
+        self._range = re.compile("(vuosien\s*)?(?P<start>.+)\s+ja\s+(?P<stop>.+)\s+väliltä",
                            re.IGNORECASE)
 
 #-------------------------------------------------------------------------
@@ -114,7 +114,7 @@ class DateDisplayFI(DateDisplay):
 	u"(Persialainen)",
 	u"(Islamilainen)")
 
-    _qual_str = ("", "laskettuna", "arviolta")
+    _qual_str = ("", "arviolta", "laskettuna")
 
     formats = (
         "VVVV-KK-PP (ISO)",

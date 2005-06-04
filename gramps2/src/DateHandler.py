@@ -49,21 +49,41 @@ _lang = locale.getlocale(locale.LC_TIME)[0]
 
 _lang_to_parser = {
     'C'      : DateParser.DateParser,
-    'en_US'  : DateParser.DateParser,
-    'en_GB'  : DateParser.DateParser,
     'en_AU'  : DateParser.DateParser,
+    'en_BW'  : DateParser.DateParser,
     'en_CA'  : DateParser.DateParser,
+    'en_DK'  : DateParser.DateParser,
+    'en_GB'  : DateParser.DateParser,
+    'en_HK'  : DateParser.DateParser,
+    'en_IE'  : DateParser.DateParser,
+    'en_IN'  : DateParser.DateParser,
+    'en_NZ'  : DateParser.DateParser,
+    'en_PH'  : DateParser.DateParser,
     'en_SE'  : DateParser.DateParser,
+    'en_SG'  : DateParser.DateParser,
+    'en_US'  : DateParser.DateParser,
+    'en_ZA'  : DateParser.DateParser,
+    'en_ZW'  : DateParser.DateParser,
     'en'     : DateParser.DateParser,
     }
 
 _lang_to_display = {
     'C'      : DateDisplay.DateDisplayEn,
-    'en_US'  : DateDisplay.DateDisplayEn,
-    'en_GB'  : DateDisplay.DateDisplayEn,
     'en_AU'  : DateDisplay.DateDisplayEn,
+    'en_BW'  : DateDisplay.DateDisplayEn,
     'en_CA'  : DateDisplay.DateDisplayEn,
+    'en_DK'  : DateDisplay.DateDisplayEn,
+    'en_GB'  : DateDisplay.DateDisplayEn,
+    'en_HK'  : DateDisplay.DateDisplayEn,
+    'en_IE'  : DateDisplay.DateDisplayEn,
+    'en_IN'  : DateDisplay.DateDisplayEn,
+    'en_NZ'  : DateDisplay.DateDisplayEn,
+    'en_PH'  : DateDisplay.DateDisplayEn,
     'en_SE'  : DateDisplay.DateDisplayEn,
+    'en_SG'  : DateDisplay.DateDisplayEn,
+    'en_US'  : DateDisplay.DateDisplayEn,
+    'en_ZA'  : DateDisplay.DateDisplayEn,
+    'en_ZW'  : DateDisplay.DateDisplayEn,
     'en'     : DateDisplay.DateDisplayEn,
     'zh_CN'  : DateDisplay.DateDisplay,
     'zh_TW'  : DateDisplay.DateDisplay,
@@ -142,3 +162,4 @@ try:
 except:
     print "Date displayer for",_lang,"not available, using default"
     displayer = _lang_to_display["C"](val)
+    

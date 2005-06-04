@@ -1,3 +1,9 @@
+2005-06-03  Don Allingham  <don@gramps-project.org>
+	* src/DateHandler.py: add more English locales
+	* src/dates/Date_fi.py: fix estimated/calculated, handle span
+	properly
+	* src/dates/Makefile.am: remove Date_fi for 2.0.2
+
 2005-06-04  Eero Tamminen  <eerot@sf>
 	* src/po/fi.po: Updated translation to 2.0.2 template.pot.
 	  Everything except for a few dozen tips is translated.

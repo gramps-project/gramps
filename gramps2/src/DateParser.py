@@ -257,9 +257,9 @@ class DateParser:
                            re.IGNORECASE)
         self._qual     = re.compile("%s\s+(.+)" % self._qual_str,
                            re.IGNORECASE)
-        self._span     = re.compile("(from)\s+(.+)\s+(to)\s+(.+)",
+        self._span     = re.compile("(from)\s+(?P<start>.+)\s+to\s+(?P<stop>.+)",
                            re.IGNORECASE)
-        self._range    = re.compile("(bet|bet.|between)\s+(.+)\s+(and)\s+(.+)",
+        self._range    = re.compile("(bet|bet.|between)\s+(?P<start>.+)\s+and\s+(?P<stop>.+)",
                            re.IGNORECASE)
         self._modifier = re.compile('%s\s+(.*)' % self._mod_str,
                            re.IGNORECASE)
@@ -452,10 +452,9 @@ class DateParser:
         """
         match = self._span.match(text)
         if match:
-            grps = match.groups()
             text_parser = self.parser[cal]
-            start = self._parse_subdate(grps[1],text_parser)
-            stop = self._parse_subdate(grps[3],text_parser)
+            start = self._parse_subdate(match.group('start'),text_parser)
+            stop = self._parse_subdate(match.group('stop'),text_parser)
             date.set(qual,Date.MOD_SPAN,cal,start + stop)
             return 1
         return 0
@@ -468,10 +467,9 @@ class DateParser:
         """
         match = self._range.match(text)
         if match:
-            grps = match.groups()
             text_parser = self.parser[cal]
-            start = self._parse_subdate(grps[1],text_parser)
-            stop = self._parse_subdate(grps[3],text_parser)
+            start = self._parse_subdate(match.group('start'),text_parser)
+            stop = self._parse_subdate(match.group('stop'),text_parser)
             date.set(qual,Date.MOD_RANGE,cal,start + stop)
             return 1
         return 0

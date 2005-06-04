@@ -102,10 +102,10 @@ class DateParserRU(DateParser):
         _span_2 = [u'по',u'до']
         _range_1 = [u'между',u'меж',u'меж.']
         _range_2 = [u'и']
-        self._span     = re.compile("(%s)\s+(.+)\s+(%s)\s+(.+)" % 
+        self._span     = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
                                    ('|'.join(_span_1),'|'.join(_span_2)),
                            re.IGNORECASE)
-        self._range    = re.compile("(%s)\s+(.+)\s+(%s)\s+(.+)" %
+        self._range    = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
                                    ('|'.join(_range_1),'|'.join(_range_2)),
                            re.IGNORECASE)
 
