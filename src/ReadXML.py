@@ -1265,7 +1265,6 @@ class GrampsParser:
             self.name.set_type("Birth Name")
         self.person.set_primary_name (self.name)
         self.person.get_primary_name().build_sort_name()
-        print "*",self.person.primary_name.get_name()
         self.name = None
 
     def stop_ref(self,tag):
@@ -1305,7 +1304,6 @@ class GrampsParser:
 
     def stop_person(self,*tag):
         self.db.commit_person(self.person,self.trans,self.change)
-        print self.person.handle,self.person.primary_name.get_name()
         self.person = None
         while gtk.events_pending():
             gtk.main_iteration()

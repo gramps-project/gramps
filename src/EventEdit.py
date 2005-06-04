@@ -164,8 +164,6 @@ class EventEditor:
 #            self.witnesslist, self, self.top, self.window, self.wlist,
 #            add_witness, edit_witness, del_witness)
 
-        #AutoComp.fill_combo(self.event_menu,self.elist)
-
         if event:
             defval = event.get_type()[0]
         else:

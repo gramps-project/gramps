@@ -3536,7 +3536,7 @@ class Attribute(PrivateSourceNote):
 
     def set_type(self,val):
         """sets the type (or key) of the Attribute instance"""
-        assert type(the_type) == tuple
+        assert type(val) == tuple
         self.type = val
 
     def get_type(self):
