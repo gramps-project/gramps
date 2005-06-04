@@ -686,8 +686,8 @@ class PedigreeView:
 
     def format_relation( self, family, line_count):
         text = ""
-        for event_handle in family.get_event_list():
-            event = self.db.get_event_from_handle(event_handle)
+        for event_ref in family.get_event_ref_list():
+            event = self.db.get_event_from_handle(event_ref.ref)
             if event:
                 if line_count < 3:
                     return event.get_date()

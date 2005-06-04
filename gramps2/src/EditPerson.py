@@ -856,10 +856,10 @@ class EditPerson:
         for (event_ref,event) in eref_list:
             if event.get_type()[0] == RelLib.Event.BIRTH:
                 self.person.set_birth_ref(event_ref)
-                self.event_box.data.remove(event_ref)
+                self.event_box.data.remove((event_ref,event))
             if event.get_type()[0] == RelLib.Event.DEATH:
                 self.person.set_death_ref(event_ref)
-                self.event_box.data.remove(event_ref)
+                self.event_box.data.remove((event_ref,event))
         eref_list = [event_ref for (event_ref,event) in self.event_box.data]
         self.person.set_event_ref_list(eref_list)
 

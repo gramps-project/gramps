@@ -123,7 +123,14 @@ class AttributeEditor:
         l = self.top.get_widget("title")
         Utils.set_titles(self.window,l,title,_('Attribute Editor'))
 
-        AutoComp.fill_combo(self.attrib_menu,list)
+        if attrib:
+            defval = attrib.get_type()[0]
+        else:
+            defval = None
+
+        self.attrmapper = AutoComp.StandardCustomSelector(
+            Utils.personal_attributes, self.attrib_menu,
+            RelLib.Attribute.CUSTOM, defval)
 
         if attrib != None:
             self.type_field.set_text(const.display_attr(attrib.get_type()))
@@ -205,27 +212,29 @@ class AttributeEditor:
         Called when the OK button is pressed. Gets data from the
         form and updates the Attribute data structure.
         """
-        attr = unicode(self.type_field.get_text())
+        attr_data = self.attrmapper.get_values()
         value = unicode(self.value_field.get_text())
 
         buf = self.note_field.get_buffer()
-        note = unicode(buf.get_text(buf.get_start_iter(),buf.get_end_iter(),False))
+        note = unicode(buf.get_text(buf.get_start_iter(),
+                                    buf.get_end_iter(),False))
         format = self.preform.get_active()
         priv = self.priv.get_active()
 
-        if not attr in self.alist:
-            WarningDialog(_('New attribute type created'),
-                          _('The "%s" attribute type has been added to this database.\n'
-                            'It will now appear in the attribute menus for this database') % attr)
-            self.alist.append(attr)
+        if (attr_data[0] == RelLib.Attribute.CUSTOM and
+            not attr_data[1] in self.alist):
+            WarningDialog(
+                _('New attribute type created'),
+                _('The "%s" attribute type has been added to this database.\n'
+                  'It will now appear in the attribute menus for this database') % attr_data[1])
+            self.alist.append(attr_data[1])
             self.alist.sort()
 
         if self.attrib == None:
             self.attrib = RelLib.Attribute()
             self.parent.alist.append(self.attrib)
-
         self.attrib.set_source_reference_list(self.srcreflist)
-        self.update(attr,value,note,format,priv)
+        self.update(attr_data,value,note,format,priv)
         self.callback(self.attrib)
         self.close(obj)
 
@@ -236,10 +245,9 @@ class AttributeEditor:
             set(data)
             self.parent.lists_changed = 1
             
-    def update(self,attr,value,note,format,priv):
+    def update(self,attr_data,value,note,format,priv):
         """Compares the data items, and updates if necessary"""
-        ntype = const.save_pattr(attr)
-        self.check(self.attrib.get_type,self.attrib.set_type,ntype)
+        self.check(self.attrib.get_type,self.attrib.set_type,attr_data)
         self.check(self.attrib.get_value,self.attrib.set_value,value)
         self.check(self.attrib.get_note,self.attrib.set_note,note)
         self.check(self.attrib.get_note_format,self.attrib.set_note_format,format)

@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 import cPickle as pickle
 from sets import Set
+import locale
 
 #-------------------------------------------------------------------------
 #
@@ -56,10 +57,15 @@ import NameDisplay
 import Utils
 
 class ListBox:
+    """
+    The ListBox manages the lists contained by the EditPerson dialog.
+    It manages the add, update, and delete buttons, along with the
+    handling of inline editing.
+    """
     def __init__(self, parent, person, obj, label, button_list, titles):
         self.person = person
+        self.name = NameDisplay.displayer.display(person)
         self.label = label
-        self.name = NameDisplay.displayer.display(self.person)
         self.db = parent.db
         self.parent = parent
         self.list_model = ListModel(
@@ -73,6 +79,14 @@ class ListBox:
         self.blist[2].connect('clicked',self.delete)
         self.tree.connect('key_press_event', self.keypress)
         self.change_list = Set()
+
+    def build_maps(self,custom,string_map):
+        self.name_map = {}
+        self.val_map = string_map
+        self.custom = custom
+        for key in self.val_map.keys():
+            val = self.val_map[key]
+            self.name_map[val] = key
 
     def keypress(self,obj,event):
         if event.keyval == 65379:
@@ -163,8 +177,7 @@ class ReorderListBox(ListBox):
 
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(node[0]);
-        data = str((self.dnd_type.drag_type, self.person.get_handle(),
-                    pickled));
+        data = str((self.dnd_type.drag_type, self.person.get_handle(), pickled));
         sel_data.set(sel_data.target, bits_per, data)
 
     def unpickle(self, data):
@@ -196,7 +209,10 @@ class AttrListBox(ReorderListBox):
 
     def __init__(self, parent, person, obj, label, button_list):
 
-        attrlist = Utils.personal_attributes
+        custom_str = Utils.personal_attributes[RelLib.Attribute.CUSTOM]
+        attrlist = filter(lambda x: x != custom_str,
+                          Utils.personal_attributes.values())
+        attrlist.sort(locale.strcoll)
 
         titles = [
             # Title          Sort Col, Size, Type
@@ -210,8 +226,15 @@ class AttrListBox(ReorderListBox):
         ListBox.__init__(self, parent, person, obj, label,
                          button_list, titles)
 
+        self.build_maps(RelLib.Attribute.CUSTOM, Utils.personal_attributes)
+
     def set_type(self,index,value):
-        self.data[index].set_type(value)
+        val = self.name_map.get(value,self.custom)
+        if val == self.custom:
+            self.data[index].set_type((val,value))
+        else:
+            self.data[index].set_type((val,self.val_map[val]))
+        self.change_list.add(self.data[index])
 
     def set_value(self,index,value):
         self.data[index].set_value(value)
@@ -233,8 +256,14 @@ class AttrListBox(ReorderListBox):
     def display_data(self,attr):
         has_note = attr.get_note()
         has_source = len(attr.get_source_references())> 0
-        return [const.display_pattr(attr.get_type()), attr.get_value(),
-                has_source, has_note]
+
+        etype = attr.get_type()
+        if etype[0] == RelLib.Attribute.CUSTOM:
+            name = etype[1]
+        else:
+            name = Utils.personal_attributes[etype[0]]
+
+        return [name, attr.get_value(), has_source, has_note]
 
 class EventListBox(ReorderListBox):
     
@@ -255,11 +284,14 @@ class EventListBox(ReorderListBox):
             self.data.append((event_ref,
                               parent.db.get_event_from_handle(event_ref.ref)))
 
-        eventnames = Utils.personal_events.values()
+        custom_str = Utils.personal_events[RelLib.Attribute.CUSTOM]
+        eventnames = filter(lambda x: x != custom_str,
+                            Utils.personal_events.values())
+        eventnames.sort(locale.strcoll)
 
         evalues = [
             # Title            Sort Col Size, Type    Argument
-            (_('Event'),       NOSORT,  100,  COMBO,  eventnames, self.set_name),
+            (_('Event'),       NOSORT,  100,  COMBO,  eventnames, self.set_type),
             (_('Description'), NOSORT,  140,  TEXT,   None,       self.set_description),
             (_('Date'),        NOSORT,  100,  TEXT,   None,       self.set_date),
             (_('Place'),       NOSORT,  100,  TEXT,   None,       self.set_place),
@@ -270,13 +302,9 @@ class EventListBox(ReorderListBox):
         ReorderListBox.__init__(self, parent, person, obj, label,
                                 button_list, evalues, DdTargets.EVENT)
 
-        self.name_map = {}
-        self.val_map = Utils.personal_events
-        self.custom = RelLib.Event.CUSTOM
-        for key in self.val_map.keys():
-            self.name_map[self.val_map[key]] = key
+        self.build_maps(RelLib.Event.CUSTOM,Utils.personal_events)
 
-    def set_name(self,index,value):
+    def set_type(self,index,value):
         val = self.name_map.get(value,self.custom)
         if val == self.custom:
             self.data[index][1].set_type((val,value))
@@ -327,8 +355,7 @@ class EventListBox(ReorderListBox):
             name = etype[1]
         else:
             name = Utils.personal_events[etype[0]]
-        return [name,
-                event.get_description(), event.get_date(),
+        return [name, event.get_description(), event.get_date(),
                 pname, has_source, has_note]
 
     def unpickle(self, data):
@@ -366,11 +393,14 @@ class NameListBox(ReorderListBox):
     def __init__(self,parent,person,obj,label,button_list):
 
         surnames = parent.db.get_surname_list()
-        types = Utils.name_types.values()
+
+        custom_str = Utils.name_types[RelLib.Name.CUSTOM]
+        types = filter(lambda x: x != custom_str, Utils.name_types.values())
+        types.sort(locale.strcoll)
 
         titles = [
             # Title            Sort Col Size, Type
-            (_('Family Name'), NOSORT,  150,  COMBO,  surnames, self.set_name),
+            (_('Family Name'), NOSORT,  180,  COMBO,  surnames, self.set_name),
             (_('Prefix'),      NOSORT,  50,   TEXT,   None,     self.set_prefix),
             (_('Given Name'),  NOSORT,  200,  TEXT,   None,     self.set_given),
             (_('Suffix'),      NOSORT,  50,   TEXT,   None,     self.set_suffix),
@@ -383,6 +413,16 @@ class NameListBox(ReorderListBox):
         ReorderListBox.__init__(self, parent, person, obj, label,
                                 button_list, titles, DdTargets.NAME)
 
+        self.build_maps(RelLib.Name.CUSTOM,Utils.name_types)
+
+    def set_type(self,index,value):
+        val = self.name_map.get(value,self.custom)
+        if val == self.custom:
+            self.data[index].set_type((val,value))
+        else:
+            self.data[index].set_type((val,self.val_map[val]))
+        self.change_list.add(self.data[index])
+
     def set_name(self,index,value):
         self.data[index].set_surname(value)
 
@@ -394,9 +434,6 @@ class NameListBox(ReorderListBox):
 
     def set_suffix(self,index,value):
         self.data[index].set_suffix(value)
-
-    def set_type(self,index,value):
-        self.data[index].set_type(value[1])
 
     def add(self,obj):
         NameEdit.NameEditor(self.parent, None, self.edit_callback,
@@ -492,9 +529,8 @@ class UrlListBox(ReorderListBox):
             (_('Path'),        NOSORT,   250,  TEXT, None, self.set_path),
             (_('Description'), NOSORT,   100,  TEXT, None, self.set_description),
             ]
-
         self.data = person.get_url_list()[:]
-        ReorderListBox.__init__(self, parent, person, obj, label,
+        ReorderListBox.__init__(self, person, person, obj, label,
                                 button_list, titles, DdTargets.URL)
 
     def set_path(self,index,value):
