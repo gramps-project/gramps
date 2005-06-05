@@ -1,5 +1,10 @@
+2005-06-05  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Bump up the version number.
+
 2005-06-05  Don Allingham  <don@gramps-project.org>
 	* src/DateHandler.py: fixed initialization of parser class
+	* Release: Version 2.0.3 "Mynd you, møøse bites Kan be pretty
+	nasti..." released.
 
 2005-06-05  Alex Roitman  <shura@gramps-project.org>
 	* configure.in: Bump up the version number.
