@@ -118,9 +118,9 @@ load_plugins(datesDir)
 
 try:
     if _lang_to_parser.has_key(_lang):
-        parser = _lang_to_parser[_lang]
+        parser = _lang_to_parser[_lang]()
     else:
-        parser = _lang_to_parser[_lang_short]
+        parser = _lang_to_parser[_lang_short]()
 except:
     print "Date parser for",_lang,"not available, using default"
     parser = _lang_to_parser["C"]()
