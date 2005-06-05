@@ -1,3 +1,6 @@
+2005-06-05  Alex Roitman  <shura@gramps-project.org>
+	* src/DateHandler.py: Fix typo caught in gramps20 branch.
+
 2005-06-05  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/po/es.po: version merge fix
 
