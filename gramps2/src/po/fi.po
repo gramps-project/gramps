@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fi\n"
 "POT-Creation-Date: Wed Jun  1 09:58:59 2005\n"
-"PO-Revision-Date: 2005-06-04 00:52+0300\n"
-"Last-Translator: Eero Tamminen <eerot@sf>\n"
-"Language-Team: Suomi\n"
+"PO-Revision-Date: 2005-06-04 18:54+0300\n"
+"Last-Translator: Eero Tamminen\n"
+"Language-Team: Suomi <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: AddMedia.py:91 ImageSelect.py:120
 msgid "Select a media object"
-msgstr "Valitse media-objekti"
+msgstr "Valitse mediatiedosto"
 
 #: AddMedia.py:124 ImageSelect.py:174
 msgid "Cannot import %s"
@@ -32,7 +32,7 @@ msgstr "Annettu tiedosto ei löytynyt."
 
 #: AddMedia.py:143 MediaView.py:410 MediaView.py:434
 msgid "Add Media Object"
-msgstr "Lisää media-objekti"
+msgstr "Lisää mediatiedosto"
 
 #: AddSpouse.py:115
 msgid "Choose Spouse/Partner of %s"
@@ -175,7 +175,7 @@ msgid ""
 "It will now appear in the attribute menus for this database"
 msgstr ""
 "Ominaisuustyyppi \"%s\" on lisätty tietokantaan.\n"
-"Lisäys näkyy nyt tietokannan menuissa"
+"Lisäys näkyy nyt tietokannan valikoissa"
 
 #: Bookmarks.py:96 Bookmarks.py:101
 msgid "Edit Bookmarks"
@@ -492,7 +492,7 @@ msgstr "Polku"
 #: EditPerson.py:566 ImageSelect.py:610 ImageSelect.py:1037 MediaView.py:275
 #: plugins/ScratchPad.py:424 plugins/ScratchPad.py:432
 msgid "Media Object"
-msgstr "Media-objekti"
+msgstr "Mediatiedosto"
 
 #: EditPerson.py:572 ImageSelect.py:616 docgen/AbiWord2Doc.py:327
 #: docgen/AsciiDoc.py:371 docgen/HtmlDoc.py:486 docgen/KwordDoc.py:494
@@ -704,7 +704,7 @@ msgid ""
 "It will now appear in the event menus for this database"
 msgstr ""
 "%s tapahtumatyyppi on lisätty tietokantaan.\n"
-"Lisäys näkyy nyt tietokannan menuissa"
+"Lisäys näkyy nyt tietokannan valikoissa"
 
 #: EventEdit.py:356
 msgid "Edit Event"
@@ -1132,7 +1132,7 @@ msgstr "<henkilön> jälkeläiset"
 #: GenericFilter.py:359 GenericFilter.py:408 GenericFilter.py:450
 #: GenericFilter.py:494 GenericFilter.py:616
 msgid "Descendant filters"
-msgstr "Jälkeläissuodin"
+msgstr "Jälkeläissuotimet"
 
 #: GenericFilter.py:360
 msgid "Matches all descendants for the specified person"
@@ -1605,7 +1605,7 @@ msgstr "_Peru %s"
 
 #: ImageSelect.py:486 ImageSelect.py:507
 msgid "Drag Media Object"
-msgstr "Vedä media-objekti"
+msgstr "Vedä mediatiedosto"
 
 #: ImageSelect.py:497 RelImage.py:51
 msgid "Could not import %s"
@@ -1629,7 +1629,7 @@ msgstr "Viite-editori"
 
 #: ImageSelect.py:828 ImageSelect.py:1191 MediaView.py:345
 msgid "Edit Media Object"
-msgstr "Muokkaa media-objektia"
+msgstr "Muokkaa mediatiedostoa"
 
 #: ImageSelect.py:910
 msgid "Media Properties Editor"
@@ -1641,7 +1641,7 @@ msgstr "Ominaisuus-editori"
 
 #: ImageSelect.py:1288
 msgid "Remove Media Object"
-msgstr "Poista media-objekti"
+msgstr "Poista mediatiedosto"
 
 #: LocEdit.py:72 LocEdit.py:105
 msgid "Location Editor"
@@ -1698,19 +1698,19 @@ msgstr "Muokkaa ominaisuuksia"
 
 #: MediaView.py:357
 msgid "This media object is currently being used. If you delete this object, it will be removed from the database and from all records that reference it."
-msgstr "Kyseinen media-objekti on käytössä. Jos hävität sen, objekti ja kaikki viitteet siihen poistetaan tietokannasta."
+msgstr "Kyseinen mediatiedosto on käytössä. Jos hävität sen, se ja kaikki viitteet siihen poistetaan tietokannasta."
 
 #: MediaView.py:361
 msgid "Deleting media object will remove it from the database."
-msgstr "Media-objektin poisto hävittää sen tietokannasta."
+msgstr "Mediatiedoston poisto hävittää sen tietokannasta."
 
 #: MediaView.py:364
 msgid "Delete Media Object?"
-msgstr "Poista media-objekti?"
+msgstr "Poista mediatiedosto?"
 
 #: MediaView.py:365
 msgid "_Delete Media Object"
-msgstr "_Poista media-objekti"
+msgstr "_Poista mediatiedosto"
 
 #: MediaView.py:421
 msgid "Image import failed"
@@ -2351,7 +2351,7 @@ msgstr "Tiedostonimi"
 
 #: Report.py:1119
 msgid "Output Format"
-msgstr "Tulostusformaatti"
+msgstr "Tulostusmuoto"
 
 #: Report.py:1175 Report.py:1177
 msgid "Paper Options"
@@ -3796,19 +3796,19 @@ msgstr "Kaavio"
 
 #: data/tips.xml:9
 msgid "A range of dates can be given by using the format \"between January 4, 2000 and March 20, 2003\""
-msgstr "Päivämääräväli voidaan antaa muodossa \"4.1.2000 - 20.3.2003\""
+msgstr "Päivämääräväli voidaan antaa esim. muodossa \"4.1.2000 - 20.3.2003\""
 
 #: data/tips.xml:16
 msgid "In most cases double clicking on a name, source, place or media entry will bring up a window to allow you to edit the object. Note that the result can be dependent on context. For example, in the Family View clicking on a parent or child will bring up the relationship editor."
-msgstr "Useimmissa tapauksissa nimeen, lähteeseen, paikkaan tai media-objektiin klikkaaminen aukaisee ikkunan, josta voit muokata sen ominasuuksia. Huomaa, että mitä tapahtuu, saattaa riippua kontekstista.  Esimerkiksi Perhenäkymässä vanhempaan tai lapseen klikkaaminen aukaiseen suhde-editorin."
+msgstr "Useimmissa tapauksissa nimeen, lähteeseen, paikkaan tai mediatiedostoon klikkaaminen aukaisee ikkunan, josta voit muokata sen ominaisuuksia. Se mitä tapahtuu, saattaa riippua kontekstista.  Esimerkiksi Perhenäkymässä vanhempaan tai lapseen klikkaaminen aukaiseen suhde-editorin."
 
 #: data/tips.xml:20
 msgid "An image can be added to any gallery or the Media View by dragging and dropping it from a file manager or a web browser."
-msgstr "Kuva voidaan lisätä mihin tahansa galleriaan tai media-näkymään vetämällä ja pudottamalle se sinne tiedostonhallinnasta tai www-selaimesta."
+msgstr "Kuva voidaan lisätä medianäkymään tai mihin tahansa galleriaan vetämällä ja pudottamalle se sinne tiedostonhallinnasta tai www-selaimesta."
 
 #: data/tips.xml:24
 msgid "Birth order of children in a family can be set, even if they do not have birth dates, by using drag and drop."
-msgstr "Vaikka perheen lasten syntymäajat eivät olisi tiedossa, heidän syntymäjärjestystään voidaan muuttaa listassa vetämällä ja pudottamalla."
+msgstr "Vaikka perheen lasten syntymäajat eivät olisi tiedossa, heidän syntymäjärjestystään voidaan muuttaa lapsilistassa hiirellä vetämällä ja pudottamalla."
 
 #: data/tips.xml:34
 msgid "<b>Talk to Relatives Before It Is Too Late</b>: Your oldest relatives can be your most important source of information. They usually know things about the family that haven't been written down. They might tell you nuggets about people that may one day lead to a new avenue of research. At the very least, you will get to hear some great stories. Don't forget to record the conversations!"
@@ -3817,8 +3817,7 @@ msgstr "<b>Haastattele sukulaisiasi ennen kuin se on liian myöhäistä</b>: Van
 #: data/tips.xml:42
 msgid "<b>Example of a Family Tree</b>: To see an example of what a family looks like in GRAMPS, check <b>Help > Open example database</b>. You will then be viewing the elaborate Smith family database, which includes 42 individuals and 15 families, with fairly complete data about many of the individuals."
 msgstr ""
-"<b>Sukupuuesimerkki</b>: Nähdäksesi esimerkin, miltä suku GRAMPS:ssä näyttää, avaa <b>Ohjeet > Avaa esimerkkitietokanta</b>."
-"Näet sitten esimerkin Smith-suvun tietokannasta, joka sisältää 42 henkilöä ja 15 perhettä, kohtuullisen täysillä tiedoilla monista suvun jäsenistä."
+"<b>Sukupuuesimerkki</b>: Nähdäksesi esimerkin, miltä suku GRAMPS:ssä näyttää, avaa <b>Ohjeet > Avaa esimerkkitietokanta</b>. Näet sitten esimerkin Smith-suvun tietokannasta, joka sisältää 42 henkilöä ja 15 perhettä, kohtuullisen täysillä tiedoilla monista suvun jäsenistä."
 
 #: data/tips.xml:51
 msgid "<b>The People View</b>: The People View shows a list of all individuals in the database. The listings can be sorted by simply clicking on a heading such as name, gender, birth date or death date. Clicking the heading a second time will reverse the sort."
@@ -3826,7 +3825,7 @@ msgstr "<b>Henkilönäkymä</b>: Henkilönäkymä näyttää sinulle listan kaik
 
 #: data/tips.xml:61
 msgid "<b>Filtering People</b>: In the People View, you can 'filter' individuals based on many criteria. Go to the Filter (just to the right of the People icon) and choose one of the dozen different presets. For example, all adopted people in the family tree can be located. People without a birth date mentioned can also be filtered. To get the results click Apply. If the filter controls are not visible, enable them by choosing <b>View > Filter</b>."
-msgstr "<b>Henkilöiden suodattaminen</b>: Voit suodattaa henkilönäkymän ihmisiä monin eri perustein. Avaa suodinvalikko (henkilönäkymän yläosassa) ja valitse jokin monista valmiista suotimista. Voit valita esim. kaikki henkilöt, jotka on adoptoitu. Tai henkilöt, joilla ei ole syntymäaikaa. Nähdäksesi heidät, klikkaa \"käytä\". Jos suodinvalikko ei ole näkyvillä, saat sen näkyviin valitsemalla <b>Näytä > Suodin</b>."
+msgstr "<b>Henkilöiden suodattaminen</b>: Voit suodattaa henkilönäkymän ihmisiä monin eri perustein. Avaa suodinvalikko (henkilönäkymän yläosassa) ja valitse jokin monista valmiista suotimista. Voit valita esim. kaikki henkilöt, jotka on adoptoitu. Tai henkilöt, joilla ei ole syntymäaikaa. Nähdäksesi henkilöt suodatettuina, klikkaa \"käytä\". Jos suodinvalikko ei ole näkyvillä, saat sen näkyviin valitsemalla <b>Näytä > Suodin</b>."
 
 #: data/tips.xml:68
 msgid "<b>Inverted Filtering</b>: Filters can easily be reversed by using the 'invert' option. For instance, by inverting the 'People with children' filter you can select all people without children."
@@ -3834,7 +3833,7 @@ msgstr "<b>Käänteinen suodatus</b>: Suotimet on helppo kääntää käyttämä
 
 #: data/tips.xml:74
 msgid "<b>Locating People</b>: By default, each surname in the People View is listed only once. By clicking on the arrow to the left of a name, the list will expand to show all individuals with that last name."
-msgstr "<b>Henkilöiden paikallistaminen</b>: Oletusarvoisesti jokainen sukunimi henkilönäkymässä on listattu vain kerran. Klikkaamalla nimen vieressä olevaa nuolta, lista aukeaa näyttämään kaikki henkilöt, joilla on sen osoittama sukunimi."
+msgstr "<b>Henkilöiden paikallistaminen</b>: Oletusarvoisesti jokainen sukunimi henkilönäkymässä on listattu vain kerran. Klikkaamalla sukunimen vieressä olevaa nuolta, lista aukeaa näyttämään kaikki henkilöt, joilla on vastaava sukunimi."
 
 #: data/tips.xml:79
 msgid "<b>The Family View</b>: The Family View is used to display a typical family unit---the parents, spouses and children of an individual."
@@ -3850,7 +3849,7 @@ msgstr "<b>Kuka syntyi ja milloin</b>: 'Vertaa yksittäisiä tapahtumia...' työ
 
 #: data/tips.xml:104
 msgid "GRAMPS comes with a rich set of tools. These allows you to undertake operations such as checking database for errors and consistency, as well as research and analysis tools such as event comparison, finding duplicate people, interactive descendant browser, and others. All tools can be accessed through the <b>Tools</b> menu."
-msgstr "GRAMPSin mukana tulee runsas joukko työkaluja. Niillä voit tarkistaa tietokantasi virheiden ja epäyhtenäisyyksien varalta, verrata tapahtumia, löytää kahdennettuja tietoja, käyttää interaktiivista jälkeläisselainta jne. Kaikki työkalut löytyvät <b>Työkalut</b> menusta."
+msgstr "GRAMPSin mukana tulee runsas joukko työkaluja. Niillä voit tarkistaa tietokantasi virheiden ja epäyhtenäisyyksien varalta, verrata tapahtumia, löytää kahdennettuja tietoja, käyttää interaktiivista jälkeläisselainta jne. Kaikki työkalut löytyvät <b>Työkalut</b> valikosta."
 
 #: data/tips.xml:111
 msgid "<b>Calculating Relationships</b>: This tool, under <b>Tools > Utilities > Relationship calculator</b> allows you to check if someone else in the family is related (by blood, not marriage) to you. Precise relationships as well as the common ancestors are reported."
@@ -3862,7 +3861,7 @@ msgstr "<b>SoundEx koodeista hyötyä sukututkimuksessa</b>: SoundEx ratkaisee s
 
 #: data/tips.xml:128
 msgid "<b>Setting Your Preferences</b>: Not happy with some default behavior of GRAMPS? <b>Edit > Preferences</b> lets you to modify a number of settings, allowing you to tailor GRAMPS to your needs."
-msgstr "<b>Omat asetukset</b>: Etkö ole tyytyväinen GRAMPSin oletuskäyttäytymiseen? <b>Muokkaa > Asetukset</b> tarjoaa sinulle mahdollisuuden muuttaa useita asetuksia, saadaksesi GRAMPSin toimimaan haluamallasi tavalla."
+msgstr "<b>Omat asetukset</b>: Etkö ole tyytyväinen GRAMPSin oletuskäyttäytymiseen? <b>Muokkaa > Asetukset</b> tarjoaa sinulle mahdollisuuden muuttaa useita asetuksia, jotta GRAMPS toimisi haluamallasi tavalla."
 
 #: data/tips.xml:134
 msgid "<b>GRAMPS Reports</b>: GRAMPS offers a wide variety of reports. The Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email."
@@ -3898,7 +3897,7 @@ msgstr "GRAMPS pitää listaa aikaisemmista aktiivisista henkilöistä. Voit sii
 
 #: data/tips.xml:186
 msgid "Tired of having to take your hand off the keyboard to use the mouse? Many functions in GRAMPS have keyboard shortcuts. If one exists for a function it is displayed on the right side of the menu."
-msgstr "Väsynyt käsien irroittamiseen näppäimistöltä hiirtä käyttääksesi? Monille GRAMPSin toiminnoille on olemassa näppäinyhdistelmät. Jos toiminnolle on sellainen, se näytetään menun oikeassa reunassa."
+msgstr "Väsynyt käsien irroittamiseen näppäimistöltä hiirtä käyttääksesi? Monille GRAMPSin toiminnoille on olemassa näppäinyhdistelmät. Jos toiminnolle on sellainen, se näytetään valikon oikeassa reunassa."
 
 #: data/tips.xml:193
 msgid "Don't forget to read the GRAMPS manual, <b>Help > User Manual</b>. The developers have worked hard to make most operations intuitive but the manual is full of information that will make your time spent on genealogy more productive."
@@ -3906,11 +3905,11 @@ msgstr "Älä unohda lukea GRAMPSin käyttöohjetta <b>Ohjeet > Käyttöohje</b>
 
 #: data/tips.xml:203
 msgid "<b>Adding Children</b>: To add children in GRAMPS make either of the parents the Active Person then switch to the Family View. If the child is already in the database, click on the third button down to the right of the Children list. If the person is not already in the database, click on the second button down to the right of the Children list. After the child's information is entered they will automatically be listed as a child of the Active Person."
-msgstr "<b>Lasten lisääminen</b>: Lisätäksesi lapsia GRAMPsiin tee jommastakummasta vanhemmasta aktiivinen perhenäkymässä. Jos lapsi löytyy jo tietokannasta, klikkaa kolmatta nappulaa lapsilistan oikealla puolella. Jos häntä ei ei ole vielä tietokannassa, klikkaa toisena olevaa nappulaa. Lapsen tietojen lisäämisen jälkeen hänet listataan automaattisesti aktiivisen henkilön lapsena."
+msgstr "<b>Lasten lisääminen</b>: Lisätäksesi lapsia GRAMPsiin tee jommastakummasta vanhemmasta aktiivinen perhenäkymässä. Jos lapsi löytyy jo tietokannasta, klikkaa kolmatta nappulaa lapsilistan oikealla puolella. Jos häntä ei ole vielä tietokannassa, klikkaa toisena olevaa nappulaa. Lapsen tietojen lisäämisen jälkeen hänet listataan automaattisesti aktiivisen henkilön lapsena."
 
 #: data/tips.xml:212
 msgid "<b>Editing The Relationship of a Child</b>: Not all children are the related by birth to their parents. You can edit the relationship of a child to each parent by selecting the child, right-clicking, and choosing \"Edit the child parent relationship\". Relationships can be any of Birth, Adopted, Stepchild, Sponsored, Foster, or Unknown."
-msgstr "<b>Lapsen suhteiden muokkaaminen</b>: Kaikki lapset eivät ole vanhempiensa verisukulaisia. Voit muokata lapsen sukulaisuussuhdetta jokaiseen vanhempaansa valitsemalla lapsen, ja klikkaamalla \"Muokkaa lapsi/vanhempi suhteita\" kohtaa hiiren oikealla näppäimellä saamastasi menusta."
+msgstr "<b>Lapsen suhteiden muokkaaminen</b>: Kaikki lapset eivät ole vanhempiensa verisukulaisia. Voit muokata lapsen sukulaisuussuhdetta jokaiseen vanhempaansa. Klikkaa hiiren oikealla painikkeella valitsemaasi lasta ja valitse valikosta \"Muokkaa lapsi/vanhempi suhteita\"."
 
 #: data/tips.xml:220
 msgid "<b>Show All Checkbutton</b>: When adding a spouse or child, the list of people shown is filtered to display only people who could realistically fit the role (based on dates in the database). In case GRAMPS is wrong in making this choice, you can override that filter by checking the \"Show All\" checkbutton."
@@ -3922,7 +3921,7 @@ msgstr "<b>GRAMPS ohjekirja</b>: GRAMPSin ohjekirja on varsin kattava ja hyvin k
 
 #: data/tips.xml:236
 msgid "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to GRAMPS. Requesting an enhancement can be done either through the gramps-users or gramps-devel mailing lists, or by creating a Request for Enhancement (RFE) at http://sourceforge.net/tracker/?group_id=25770&amp;atid=385140 Filing an RFE is preferred."
-msgstr "<b>GRAMPSin parantaminen</b>: Käyttäjiä rohkaistaan esittämään prannusehdoituksia GRAMPSiin. Ehdoituksia voi lähettää gramps-users tai gramps-devel sähköpostilistoille tai (mieluummin) luomalla RFE (Request for Enhancement) parannusehdoituksen GRAMPS sivustolle osoitteeseen http://sourceforge.net/tracker/?group_id=25770&amp;atid=385140"
+msgstr "<b>GRAMPSin kehittäminen</b>: Käyttäjiä rohkaistaan esittämään prannusehdoituksia GRAMPSiin. Ehdoituksia voi lähettää gramps-users tai gramps-devel sähköpostilistoille tai (mieluummin) luomalla RFE (Request for Enhancement) parannusehdoitus GRAMPS sivustolle osoitteeseen http://sourceforge.net/tracker/?group_id=25770&amp;atid=385140"
 
 #: data/tips.xml:245
 msgid "<b>GRAMPS Mailing Lists</b>: Want answers to your queries about GRAMPS? Check out the gramps-users list. Many people are on the list, so you're likely to get an answer quickly. If you have questions related to the development of GRAMPS, try gramps-devel. Information on both mailing lists can be found at lists.sf.net."
@@ -3930,7 +3929,7 @@ msgstr "<b>GRAMPS postituslistat</b>: Haluatko vastauksia GRAMPsiä koskeviin ky
 
 #: data/tips.xml:256
 msgid "<b>Contributing to GRAMPS</b>: Want to help with GRAMPS but can't program? Not a problem. A project as large as GRAMPS requires people with a wide variety of skills. Contributions can vary from writing documentation to testing development versions to helping with the web site. Start by subscribing to the gramps developers mailing list, gramps-devel and introducing yourself. Subscription information can be found at lists.sf.net."
-msgstr "<b>GRAMPS kehityksen avustaminen</b>: Haluatko auttaa GRAMPSin kehityksessä, mutta et osaa ohjelmoida? Ei hätää.  GRAMPSin kokoinen projekti vaatii erilaisiä kykyjä omaavia ihmisiä. Avustukset voivat vaihdella dokumentaation kirjoittamisesta, kehitysversioiden testaamisesta www-sivuston kehitykseen. Aloita liittymällä gramps-devel sähköpostilistalle ja esittelemällä itsesi. Liittymistiedot löytyvät lists.sf.net osoitteesta."
+msgstr "<b>GRAMPS kehityksen avustaminen</b>: Haluatko auttaa GRAMPSin kehityksessä, mutta et osaa ohjelmoida? Ei hätää.  GRAMPSin kokoinen projekti vaatii erilaisiä kykyjä omaavia ihmisiä. Avustukset voivat vaihdella dokumentaation kirjoittamisesta ja kehitysversioiden testaamisesta GRAMPS www-sivuston kehitykseen. Aloita liittymällä gramps-devel sähköpostilistalle ja esittelemällä itsesi. Liittymistiedot löytyvät lists.sf.net osoitteesta."
 
 #: data/tips.xml:264
 msgid "GRAMPS is the Genealogical Research and Analysis Management Program System. It is a full-featured genealogy program letting you store, edit, and research genealogical data. Gramps database back end is so robust that some users are managing genealogies containing hundreds of thousands of people."
@@ -3938,63 +3937,63 @@ msgstr "GRAMPS on sukutiedon tutkimisen ja analyysin hallintasysteemi. Se on tä
 
 #: data/tips.xml:271
 msgid "<b>Different Views</b>: There are six different views for navigating your family: People, Family, Pedigree, Sources, Places, Media. Each helps you to achieve one or more specific tasks."
-msgstr "<b>Eri näkymät</b>: GRAMPS tarjoaa sukutiedon käsittelyyn kuusi erilaista näkymää: Henkilö, Perhe, Sukupuu, Lähde, Paikka ja Media-objekti näkymät. Jokaisessa voit suorittaa tietyn tyyppisia asioita."
+msgstr "<b>Eri näkymät</b>: GRAMPS tarjoaa sukutiedon käsittelyyn kuusi erilaista näkymää: Henkilö-, Perhe-, Sukupuu-, Lähde-, Paikka- ja Medianäkymät. Jokaisessa voit tehdä tiedoille tietyn tyyppisia asioita."
 
 #: data/tips.xml:280
 msgid "<b>Bookmarking Individuals</b>: The Bookmark menu at the top of the window is a convenient place to store the names of frequently used individuals. Clicking on a bookmarked individual will make that person the Active Person. To create a bookmark for a person, make them the Active Person, right click on their name and click on 'add bookmark'."
-msgstr ""
+msgstr "<b>Henkilöiden kirjanmerkitseminen</b>: Kirjanmerkit-valikkoon voit kätevästi lisätä usein käytettyjen henkilöiden nimet. Kirjanmerkityn henkilön klikaaminen tekee hänestä aktiivisen henkilön. Saat luotua kirjanmerkin henkilöön tekemällä hänestä aktiivisen henkilön, klikkaamalla hiiren oikealla painikkeella ja valitsemalla 'Lisää kirjanmerkki'."
 
 #: data/tips.xml:288
 msgid "<b>Incorrect Dates</b>: Everyone occasionally enters dates with a nonvalid format. Incorrect date formats will show up with the red button next to the date. Green means okay, and amber signifies acceptable. The Date Selection dialog can be invoked by clicking on the colored button."
-msgstr ""
+msgstr "<b>Virheelliset päivämäärät</b>: Jokainen antaa joskus päivämäärän, jonka muoto on virheellinen. Sopimattomat päivämäärämuodot osoitetaan päivämäärän vieressä olevalla punaisella nappulalla. Nappulan vihreä väri tarkoittaa, että päivämäärä on kunnossa, keltainen, että se on hyväksyttävissä. Värinappulan klikkaaminen aukaiseen päivämäärän valintadialogin."
 
 #: data/tips.xml:298
 msgid "<b>Listing Events</b>: Events in the life of any individual may be added to the database via the <b>Person > Edit Person > Events</b> option. This space can be used to include a wide range of options ranging from adoptions, to baptisms (and other religious ceremonies), burials, causes of death, Census listings, degrees earned, elections, emigration, military service, nobility titles, occupations, ordination, property, religion, retirement, wills, etc."
-msgstr ""
+msgstr "<b>Tapahtumien listaaminen</b>: Henkilön elämään kuuluvat tapahtumat voidaan lisätä tietokantaan kohdasta <b>Henkilö > Muokkaa henkilöä > Tapahtumat</b>. Voit lisätä sinne erilaisia tapahtumia adoptoinnista kasteeseen (ja muita uskonnollisia seremonioita), hautaamiset, kuolinsyyt, väestörekisteriin merkitsemiset, tutkintojen suorittamiset, virkaan valitsemiset, siirtolaisuuden, asepalveluksen, aateloinnin, virat, ominaisuudet, uskonnon, eläkkeelle siirtymisen, testamentit jne."
 
 #: data/tips.xml:308
 msgid "<b>Changing The Preferred Name</b>: It is easy to manage people with several names in GRAMPS. Make the person the Active Person, doubleclick on the record, and select the Names tab. Different types of names can be added. For example, Married Name, Birth Name, etc. Selecting a preferred name is just a matter of right-clicking on the name and choosing the only item in the menu."
-msgstr ""
+msgstr "<b>Oletusnimen vaihtaminen</b>: GRAMPSissä on helppo käsitellä henkilöitä, joilla on useita nimiä. Aktivoi henkilö ja tuplaklikkaa häneen, sitten valitse Nimet välilehti. Voit lisätä eri tyyppisiä nimiä, esimerkiksi syntyessä tai avioliitossa saadun nimen jne. Voit asettaa nimen oletusnimeksi klikkaamalla sitä hiiren oikealla painikkeella ja valitsemalla ao. toiminnon aukeavasta valikosta."
 
 #: data/tips.xml:315
 msgid "The Pedigree View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to view a menu to quickly access their spouses, siblings, children, or parents."
-msgstr ""
+msgstr "Sukupuunäkymä näyttää perinteisen sukupuukaavion. Pidä hiirtä henkilön nimen yllä nähdäksesi hänestä enemmän tietoja. Klikkaamalla henkilöä hiiren oikealla painikkeella saat valikon, josta voit nopeasti siirtyä henkilön puolisoon, sisarukseen, lapseen tai vanhempaan."
 
 #: data/tips.xml:321
 msgid "The Sources View shows a list of all sources in a single window. Double-click on each to edit, add notes, and to see which individuals reference the source."
-msgstr ""
+msgstr "Lähdenäkymä näyttää listan kaikista tietokannassa olevista lähteistä. Tuplaklikkaamalla lähdettä voit muokata sitä, lisätä siihen huomioita ja nähdä ketkä henkilöistä viittaavat siihen."
 
 #: data/tips.xml:327
 msgid "The Places View shows a list of all places in the database. The list can be sorted by a number of different criteria, such as City, County or State."
-msgstr ""
+msgstr "Paikkanäkymä näyttää listan kaikista tietokannassa olevista paikoista. Voit järjestää listan eri perusteiden mukaan, kuten kaupungin tai kunnan mukaan."
 
 #: data/tips.xml:333
 msgid "The Media View shows a list of all media entered in the database. These can be graphic images, videos, sound clips, spreadsheets, documents, and more."
-msgstr ""
+msgstr "Medianäkymä näyttää listan kaikista tietokantaan liitetyistä mediatiedostoista. Tiedostot voivat olla kuvia, videoita, ääniä, taulukoita, dokumentteja jne."
 
 #: data/tips.xml:342
 msgid "Filters allow you to limit the people seen in the People View. In addition to the many preset filters, Custom Filters can be created that allow you to create filters limited only by your imagination. Custom filters can be created from <b>Tools > Utilities > Custom Filter Editor</b>."
-msgstr ""
+msgstr "Suotimilla voit rajoittaa henkilönäkymässä näkyviä henkilöitä. Monien oletussuotimien lisäksi voit luoda myös erikoissuotimia, joiden mahdollisuuksia rajoittaa vain mielikuvituksesi. Erikoissuotimia voit luoda <b>Työkalut > Apuvälineet > Erikoissuodin-editori</b> kautta."
 
 #: data/tips.xml:349
 msgid "GRAMPS allows you to import from, and export to, GEDCOM format. There is extensive support for the industry standard GEDCOM version 5.5, so you can exchange GRAMPS information to and from users of most other genealogy programs."
-msgstr ""
+msgstr "GRAMPS sallii sinun tuoda ja viedä tietoja GEDCOM tiedostomuodosta. Standardille GEDCOM versiolle 5.5 on laaja tuki, joten voit vaihtaa GRAMPSin sisältämiä tietoja useimpien sukututkimusohjelmien kanssa."
 
 #: data/tips.xml:358
 msgid "You can convert your data into a GRAMPS package, which is a compressed file containing your family tree data and includes all other files used by the database, such as images. This file is completely portable so is useful for backups or sharing with other GRAMPS users. This format has advantages over GEDCOM in that no information is ever lost in exporting and importing."
-msgstr ""
+msgstr "Voit muuttaa tietosi GRAMPS-pakettimuotoon.  Se on pakattu tiedosto, joka sisältää sukutietosi, sekä kaikki muut tiedostot, kuten kuvat, joihin tietokannastasi viitataan. Tiedosto on täysin siirrettävissä, joten se käy hyvin varmuuskopioiden tekoon tai tietojen vaihtoon muiden GRAMPSin käyttäjien kanssa. GEDCOM-muotoon verrattuna tällä on se etu, että sitä käytettäessä tietoja ei koskaan häviä niitä ohjelmasta viedessä tai tuodessa."
 
 #: data/tips.xml:363
 msgid "Make your data portable --- your family tree data and media can be exported directly to the GNOME file manager (Nautilus), for burning onto a CD."
-msgstr ""
+msgstr "Tee tiedoistasi siirrettäviä -- Sukutietosi ja niihin liittyvät mediatiedostot voidaan viedä suoraan GNOME työpöydän (Nautilus) tiedostonhallintaohjelmaan, CD:lle polttamista varten."
 
 #: data/tips.xml:369
 msgid "GRAMPS can export data to the Web Family Tree (WFT) format. This format allows a family tree to be displayed online using a single file, instead of many html files."
-msgstr ""
+msgstr "GRAMPS osaa viedä tietosi WWW-Sukupuu (WTF, Web Family Tree) muotoon. Tässä muodossa sukupuusi voidaan näyttää verkossa yhtenä tiedostona useiden html-tiedostojen sijaan."
 
 #: data/tips.xml:375
 msgid "You can easily export your family tree to a web page. Select the entire database, family lines or selected individuals to a collection of web pages ready for upload to the World Wide Web."
-msgstr ""
+msgstr "Voit helposti tuottaa www-sivuston sukupuustasi. Valitse koko tietokanta, sukulinjoja tai valittuja henkilöitä yhdistelmäksi www-sivuja, jotka ovat valmiita internetissä näytettäviksi."
 
 #: data/tips.xml:380
 msgid "The best way to report a bug in GRAMPS is to use the GRAMPS Bug Tracker at Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
@@ -4006,31 +4005,31 @@ msgstr "GRAMPS kotisivu on osoitteessa http://gramps-project.org/"
 
 #: data/tips.xml:392
 msgid "GRAMPS has some unique features, including the ability to input any piece of information directly into GRAMPS. All data in the data base can be rearranged/manipulated to assist the user in doing research, analysis and correlation with the potential of filling relationship gaps."
-msgstr ""
+msgstr "GRAMPSissä on muutamia ainutlaatuisia ominaisuuksia, mukaanlukien mahdollisuus syöttää mitä tahansa tietoa suoraan GRAMPSiin. Kaikkia tietoja voidaan järjestää/muokata auttamaan tutkimisessa, analyysissä ja tietojen korreloinnissa, jotta voit täyttää tiedoissa ja suhteissa olevia puutteita."
 
 #: data/tips.xml:398
 msgid "GRAMPS helps you to keep personal information secure by allowing you to mark information as private. Data marked as private can be excluded from reports and data exports."
-msgstr ""
+msgstr "GRAMPS auttaa pitämään henkilökohtaiset tiedot salassa, jos merkitset ne yksityisiksi. Tiedot, jotka on merkitty yksityisiksi voidaan jättää pois raporteista ja tietojen ulosviennistä GRAMPsistä."
 
 #: data/tips.xml:406
 msgid "Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source."
-msgstr ""
+msgstr "Ole tarkkana kun talletat sukutietoja. Alä tee oletuksia kun talletat alkuperäistietoja, vaan kirjaa ne näkemässäsi muodossa. Käytä kulmasulkeita merkitessäsi omat lisäyksesi, poistosi tai kommenttisi. Jos lähde vaikuttaa virheelliseltä, on suositeltavaa, että merkitset tallentaneesi sen tarkassa alkkuperäismuodossa."
 
 #: data/tips.xml:411
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
-msgstr "Voit liittää mitä tahansa sähköistä mediaa (esim. kuvia) and muita tiedostotyyppejä sukupuuhusi GRAMPSissä."
+msgstr "Voit liittää mitä tahansa sähköistä mediaa (esim. kuvia) ja muita tiedostotyyppejä sukupuuhusi GRAMPSissä."
 
 #: data/tips.xml:420
 msgid "GRAMPS allows you to generate a number of reports (both text and graphical) based on your genealogical information. There is great flexibility in selecting what people are included in the reports as well as the output format (html, pdf, OpenOffice, RTF, AbiWord, KWord, LaTeX and plain text). Experiment with the reports under the <b>Reports</b> menu to get an idea of how powerful GRAMPS is."
-msgstr ""
+msgstr "Voit luoda GRAMPSiin tallettamistasi sukutiedoista useita erilaisia (sekä graafisia, että tekstimuotoisia) raportteja.  Raportteihin sisällytettävien henkilöiden valinta on hyvin joustavaa ja voit tallentaa raportteja monissa eri muodoissa (HTML, PDF, OpenOffice, RTF, AbiWord, KWord, LaTeX ja normaali teksti).  Kokeile erilaisia raportteja <b>Raportit</b> valikon alla saadaksesi kuvan siitä, miten monipuolinen GRAMPS on."
 
 #: data/tips.xml:426
 msgid "Custom reports can be created by advanced users under the \"plugin\" system. More information on custom reports can be found at http://developers.gramps-project.org"
-msgstr ""
+msgstr "Edistyneemmät käyttäjät voivat luoda omia erikoisraporttejaan kirjoittamalla sitä varten GRAMPS \"liitännäisen\". Enemmän tietoja erikoisraporteista löytyy osoitteesta http://developers.gramps-project.org"
 
 #: data/tips.xml:432
 msgid "The Book report, <b>Reports > Books > Book Report</b>, allows users to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed."
-msgstr ""
+msgstr "Kirjaraportin <b>Raportit > Kirjat > Kirjaraportti</b> avulla käyttäjä voi kerätä erilaisiä raportteja yhteen dokumenttiin.  Tälläisen yksittäisen raportin valintoja on helpompi muuttaa. Se on myös helpompi tulostaa ja lähettää asianomaisille henkilöille."
 
 #: data/tips.xml:438
 msgid "Interested in getting notified when a new version of GRAMPS is released? Join the gramps-announce mailing list at http://lists.sourceforge.net/lists/listinfo/gramps-announce"
@@ -4038,15 +4037,15 @@ msgstr "Haluatko tietää milloin uusi GRAMPS versio julkaistaan? Liity gramps-a
 
 #: data/tips.xml:446
 msgid "<b>Good genealogy tip</b>: Information collected about your family is only as good as the source it came from. Take time and trouble to record all the details of where the information came from. Whenever possible get a copy of original documents."
-msgstr ""
+msgstr "<b>Sukututkimusvihje</b>: Sukuasi koskevat tiedot ovat korkeintaan yhtä luotettavia kuin lähde, josta ne sait. Näe vaivaa, jotta tallennat kaikki yksityiskohdat siitä, mistä lähteestä tietosi tulivat. Aina kuin mahdollista, hanki kopio alkuperäisistä dokumenteista."
 
 #: data/tips.xml:453
 msgid "Go from what you know to what you do not. Always record everything that is known before making conjecture. Often the facts at hand suggest plenty of direction for more research. Don't waste time looking through thousands of records hoping for a trail when you have other unexplored leads."
-msgstr ""
+msgstr "Siirry siitä, mitä tiedät, siihen mitä et tiedä. Tallenna aina kaikki mitä asiasta tiedetään, ennen kuin teet johtopäätöksiä. Yleensä tiedossa olevista asioista löytyy hyvin suuntia jatkotutkimukselle. Älä hukkaa aikaasi tuhansien uusien tietojen tutkimiseen vihjeen toivossa kun sinulla on vielä hallussasi käyttämätöntä tietoa."
 
 #: data/tips.xml:460
 msgid "Genealogy isn't only about dates and names. It is about people. Be descriptive. Include the <b>why</b> of how things happened, and how descendants might have been shaped by the events they went through. Narratives go a long way in making your family history come alive."
-msgstr ""
+msgstr "Sukututkimus ei ole vain päivämääriä ja nimiä, vaan ihmisiä. Kuvaile asioita. Sisällytä tietoihisi <b>miksi</b> jotakin tapahtui tietyllä tavalla ja miten jälkeläisiin ovat saattaneet vaikuttaa heille tapahtuneet asiat. Tarinat tekevät perheesi historiasta elävämmän."
 
 #: data/tips.xml:466
 msgid "GRAMPS has been translated to 15 languages. If GRAMPS supports your language and it is not being displayed, set the default language on your machine and restart GRAMPS."
@@ -4054,7 +4053,7 @@ msgstr "GRAMPS on käännetty 15 eri kielelle. Jos GRAMPS tukee kieltäsi, mutta
 
 #: data/tips.xml:472
 msgid "GRAMPS has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net"
-msgstr "GRAMPS on suunniteltu siten, että uusia käännöksiä voidaan lisätä helposti.  Jos sinua kiinnostaa auttaa, lähetä sähköpostia osoitteeseen gramps-devel@lists.sf.net"
+msgstr "GRAMPS on suunniteltu siten, että uusia käännöksiä voidaan lisätä helposti.  Jos haluat auttaa, lähetä sähköpostia osoitteeseen gramps-devel@lists.sf.net"
 
 #: data/tips.xml:476
 msgid "Relationship calculators in GRAMPS are available in ten languages."
@@ -4062,7 +4061,7 @@ msgstr "GRAMPS tarjoaa suhdelaskimen kymmenelle eri kielelle."
 
 #: data/tips.xml:481
 msgid "GRAMPS offers full Unicode support. Characters for all languages are properly displayed."
-msgstr ""
+msgstr "GRAMPSissä on täysi Unicode-merkistön tuki. Jos koneellesi on asennettu vaaditut kirjasimet, kaikkien kielten merkit näykyvät oikein."
 
 #: data/tips.xml:487
 msgid "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit -> Set Home Person</b>. The home person is the person who is selected when the database is opened or when the home button is pressed."
@@ -4070,11 +4069,11 @@ msgstr "Voit asettaa kenet tahansa GRAMPSin 'koti'-henkilöksi valitsemalla <b>M
 
 #: data/tips.xml:492
 msgid "Multiple names can be specified for individuals. Examples are birth name, marriage name or aliases."
-msgstr "Henkilöille voidaan antaa useita nimiä. Nimet voivat olla kasteessa tai avioliiton kautta saatuja tai aliaksia."
+msgstr "Henkilöille voidaan antaa useita nimiä. Nimet voivat olla kasteessa tai avioliiton kautta saatuja tai muita vaihtoehtoisia nimiä."
 
 #: data/tips.xml:497
 msgid "An alternate name can be selected as a person's preferred name by selecting the desired name in the person's name list, bringing up the context menu by clicking the right mouse button, and selecting from the menu."
-msgstr "Henkilön vaihtoehtoinen nimi voidaan muuttaa ensisijaiseksi valitsemalla se nimilistasta ja käyttäen konteksti-menua, joka aukeaa oikean hiiren napilla."
+msgstr "Henkilön vaihtoehtoinen nimi voidaan muuttaa ensisijaiseksi valitsemalla se nimilistasta ja käyttäen kontekstivalikkoa, joka aukeaa  hiiren oikealla painikkeella."
 
 #: data/tips.xml:504
 msgid "GRAMPS is written in a computer language called Python using the GTK and GNOME libraries for the graphical interface. GRAMPS is supported on any computer system where these programs have been ported."
@@ -4094,7 +4093,7 @@ msgstr "GRAMPS toimii myös KDE työpöytäympäristössä kunhan vaaditut GNOME
 
 #: data/tips.xml:525
 msgid "To run GRAMPS, you need to have GNOME installed. But you do not need to be running the GNOME desktop."
-msgstr "Ajaaksesi GRAMPS ohjelmaa, sinun pitää asentaa GNOME.  Sinun ei kuitenkaan tarvitse käyttää GNOME työpöytäympäristöä."
+msgstr "Ajaaksesi GRAMPS ohjelmaa, sinun täytyy <i>asentaa</i> GNOME työpöytäympäristö. Sinun ei kuitenkaan tarvitse ajaa itse työpöytäympäristöä, sen olemassaolo on riittävä GRAMPSin ajamiseen."
 
 #: data/tips.xml:531
 msgid "GRAMPS makes every effort to maintain compatibility with GEDCOM, the general standard of recording genealogical information. Filters exist that make importing and exporting GEDCOM files trivial."
@@ -4102,7 +4101,7 @@ msgstr "GRAMPS tekee kaikkensa ollakseen yhteensopiva GEDCOM tiedostojen kanssa 
 
 #: docgen/AbiWord2Doc.py:332
 msgid "AbiWord document"
-msgstr "AbiWord dokumentti"
+msgstr "AbiWord-dokumentti"
 
 #: docgen/AsciiDoc.py:377
 msgid "Plain Text"
@@ -4832,12 +4831,12 @@ msgstr "_Esimuotoiltu"
 #: gramps.glade:5268 gramps.glade:5405 gramps.glade:10490 gramps.glade:13484
 #: gramps.glade:15587 gramps.glade:25993
 msgid "Add a new media object to the database and place it in this gallery"
-msgstr "Lisää uusi media-objekti tietokantaan ja sijoita se galleriaan"
+msgstr "Lisää uusi mediatiedosto tietokantaan ja liitä se tähän galleriaan"
 
 #: gramps.glade:5296 gramps.glade:5489 gramps.glade:13567 gramps.glade:15670
 #: gramps.glade:26076
 msgid "Remove selected object from this gallery only"
-msgstr "Poista valittu objekti vain tästä galleriasta"
+msgstr "Poista valittu tiedosto vain tästä galleriasta"
 
 #: gramps.glade:5337
 msgid "Data"
@@ -4846,7 +4845,7 @@ msgstr "Tieto"
 #: gramps.glade:5433 gramps.glade:10518 gramps.glade:13512 gramps.glade:15615
 #: gramps.glade:26021
 msgid "Select an existing media object from the database and place it in this gallery"
-msgstr "Valitse tietokannasta media-objekti ja sijoita se tähän galleriaan"
+msgstr "Valitse tietokannassa jo oleva mediatiedosto ja liitä se tähän galleriaan"
 
 #: gramps.glade:5461 gramps.glade:10546 gramps.glade:15643 gramps.glade:26049
 msgid "Edit the properties of the selected object"
@@ -5157,7 +5156,7 @@ msgstr "Lähteet"
 
 #: gramps.glade:10573
 msgid "Remove the selected object from this gallery only"
-msgstr "Poista valittu objekti vain tästä galleriasta"
+msgstr "Poista valittu tiedosto vain tästä galleriasta"
 
 #: gramps.glade:10656 gramps.glade:15766
 msgid "Web address:"
@@ -5481,7 +5480,7 @@ msgstr "_Lähde:"
 
 #: gramps.glade:17618
 msgid "_Media object:"
-msgstr "_Media-objekti:"
+msgstr "_Mediatiedosto:"
 
 #: gramps.glade:17647
 msgid "I"
@@ -6024,8 +6023,8 @@ msgstr ""
 "   Tästä johtuen tiedot talletaan levylle välittömästi ja GRAMPS:n\n"
 "   tietokanta skaalautuu nyt kymmeniin tuhansiin henkilöihin.\n"
 "   Talleta toiminnallisuutta EI enää ole!\n"
-"2. GRAMPS ei hallinnoi media-objekteja.\n"
-"   Enää ei ole paikallisia objekteja (kuvia jne.), ainoastaan ulkoisia.\n"
+"2. GRAMPS ei hallinnoi mediatiedostoja.\n"
+"   Enää ei ole paikallisia tiedostoja (kuvia jne.), ainoastaan ulkoisia.\n"
 "   Olet itse vastuussa tiedostoistasi.  Jos poistat kuvatiedoston\n"
 "   levyltä, sitä ei enää ole!\n"
 "3. Aikaisempien GRAMPS versioiden tarjoama versionhallinta\n"
@@ -6133,12 +6132,12 @@ msgstr "%s:n avaus epäonnistui."
 
 #: gramps_main.py:1358
 msgid "Save Media Object"
-msgstr "Tallenna media-objekti"
+msgstr "Tallenna mediatiedosto"
 
 #: gramps_main.py:1404 plugins/Check.py:284 plugins/WriteCD.py:255
 #: plugins/WritePkg.py:171
 msgid "Media object could not be found"
-msgstr "Media-objektia ei löydy"
+msgstr "Mediatiedostoa ei löydy"
 
 #: gramps_main.py:1405 plugins/WriteCD.py:256 plugins/WritePkg.py:172
 msgid "%(file_name)s is referenced in the database, but no longer exists. The file may have been deleted or moved to a different location. You may choose to either remove the reference from the database, keep the reference to the missing file, or select a new file."
@@ -6632,7 +6631,7 @@ msgstr "Valittu _kirja"
 
 #: plugins/BookReport.py:632 plugins/StatisticsChart.py:76
 msgid "Item name"
-msgstr "Kohteen nimi"
+msgstr "Kohteen nimen mukaan"
 
 #: plugins/BookReport.py:633
 msgid "Center person"
@@ -6761,7 +6760,7 @@ msgstr "Ei havaittu virheitä"
 
 #: plugins/Check.py:454
 msgid "The database has passed internal checks"
-msgstr "Tietokannan sisäiset tarkistukset läpikäyty ja kunnossa"
+msgstr "Tietokannan sisäiset tarkistukset eivät löytäneet ongelmia"
 
 #: plugins/Check.py:461
 msgid "1 broken child/family link was fixed\n"
@@ -6813,35 +6812,35 @@ msgstr "%d vioittunutta perhesuhdetta korjattu\n"
 
 #: plugins/Check.py:506
 msgid "1 media object was referenced, but not found\n"
-msgstr "Yhteen media-objektiin on viite, mutta sitä ei löydy\n"
+msgstr "Yhteen mediatiedostoon on viite, mutta sitä ei löydy\n"
 
 #: plugins/Check.py:508
 msgid "%d media objects were referenced, but not found\n"
-msgstr "%d:n media-objektiin viitteitä, vaikka niitä ei löydy\n"
+msgstr "%d:n mediatiedostoon viitteitä, vaikka niitä ei löydy\n"
 
 #: plugins/Check.py:510
 msgid "Reference to 1 missing media object was kept\n"
-msgstr "Viite yhteen puuttuvaan media-objektiin säilytetty\n"
+msgstr "Viite yhteen puuttuvaan mediatiedostoon säilytetty\n"
 
 #: plugins/Check.py:512
 msgid "References to %d media objects were kept\n"
-msgstr "Viitteet %d:n media-objektiin säilytetty\n"
+msgstr "Viitteet %d mediatiedostoon säilytetty\n"
 
 #: plugins/Check.py:514
 msgid "1 missing media object was replaced\n"
-msgstr "Yksi puuttuva media-objekti korvattiin\n"
+msgstr "Yksi puuttuva mediatiedosto korvattiin\n"
 
 #: plugins/Check.py:516
 msgid "%d missing media objects were replaced\n"
-msgstr "%d puuttuvaa media-objektia korvattiin\n"
+msgstr "%d puuttuvaa mediatiedostoa korvattiin\n"
 
 #: plugins/Check.py:518
 msgid "1 missing media object was removed\n"
-msgstr "Yksi puuttuva media-objekti poistettu\n"
+msgstr "Yksi puuttuva mediatiedosto poistettu\n"
 
 #: plugins/Check.py:520
 msgid "%d missing media objects were removed\n"
-msgstr "%d puuttuvaa media-objektia poistettu\n"
+msgstr "%d puuttuvaa mediatiedostoa poistettu\n"
 
 #: plugins/Check.py:522
 msgid "1 invalid event reference was removed\n"
@@ -7663,7 +7662,7 @@ msgstr "Nainen"
 
 #: plugins/IndivComplete.py:533
 msgid "Include Source Information"
-msgstr "Lisää lahdetiedot"
+msgstr "Lisää lähdetiedot"
 
 #: plugins/IndivComplete.py:562 plugins/IndivSummary.py:358
 msgid "The style used for category labels."
@@ -7890,7 +7889,7 @@ msgstr "Muistio"
 
 #: plugins/ScratchPad.py:900
 msgid "The Scratch Pad provides a temporary note pad to store objects for easy reuse."
-msgstr "Muistio tarjoaa väliaikaisen säilytyspaikan, jonne voit tallentaa objekteja uudelleenkäyttöä varten."
+msgstr "Muistio tarjoaa väliaikaisen säilytyspaikan, jonne voit tallentaa asioita uudelleenkäyttöä varten."
 
 #: plugins/SimpleBookTitle.py:128
 msgid "Title of the Book"
@@ -7959,7 +7958,7 @@ msgstr "Tuota SoundEx koodeja nimille"
 
 #: plugins/StatisticsChart.py:75
 msgid "Item count"
-msgstr "Kohteen lukumäärä"
+msgstr "Kohteen lukumäärän mukaan"
 
 #: plugins/StatisticsChart.py:79
 msgid "Both"
@@ -8202,7 +8201,7 @@ msgstr "Henkilöt puutteellisilla nimillä"
 
 #: plugins/Summary.py:115
 msgid "Individuals missing birth dates"
-msgstr "Henkilöt, joilta puuttuu syntymäpäivämäärät"
+msgstr "Henkilöt puutteellisilla syntymäajoilla"
 
 #: plugins/Summary.py:117
 msgid "Family Information"
@@ -8218,23 +8217,23 @@ msgstr "Uniikit sukunimet"
 
 #: plugins/Summary.py:121
 msgid "Media Objects"
-msgstr "Media-objektit"
+msgstr "Mediatiedostot"
 
 #: plugins/Summary.py:123
 msgid "Individuals with media objects"
-msgstr "Henkilöt, joihin liittyy media-objekteja"
+msgstr "Henkilöt, joihin liittyy mediatiedostoja"
 
 #: plugins/Summary.py:124
 msgid "Total number of media object references"
-msgstr "Media-objektien viitteiden kokonaismäärä"
+msgstr "Mediatiedostojen viitteiden kokonaismäärä"
 
 #: plugins/Summary.py:125
 msgid "Number of unique media objects"
-msgstr "Uniikkien media-objektien määrä"
+msgstr "Uniikkien mediatiedostojen määrä"
 
 #: plugins/Summary.py:126
 msgid "Total size of media objects"
-msgstr "Media-objektien yhteenlaskettu koko"
+msgstr "Mediatiedostojen yhteenlaskettu koko"
 
 #: plugins/Summary.py:127
 msgid "bytes"
@@ -8242,7 +8241,7 @@ msgstr "tavua"
 
 #: plugins/Summary.py:130
 msgid "Missing Media Objects"
-msgstr "Puuttuvia media-objekteja"
+msgstr "Puuttuvia mediatiedostoja"
 
 #: plugins/Summary.py:156
 msgid "Database summary"
@@ -8821,7 +8820,7 @@ msgstr "Vie CD:lle (_yhteensopiva XML)"
 
 #: plugins/WriteCD.py:307
 msgid "Exporting to CD copies all your data and media object files to the CD Creator. You may later burn the CD with this data, and that copy will be completely portable across different machines and binary architectures."
-msgstr "CD:lle vienti kopioi kaikki tietosi ja niihin liittyvät media-objektit CD:n luontiohjelmalle. Voit myöhemmin polttaa nämä CD:lle, ja luotu kopio on yhteensopiva eri tietokoneiden ja konearkkitehtuurien välillä."
+msgstr "CD:lle vienti kopioi kaikki tietosi ja niihin liittyvät mediatiedostot CD:n luontiohjelmalle. Voit sitten myöhemmin polttaa ne CD:lle, ja luotu kopio on yhteensopiva eri tietokoneiden ja konearkkitehtuurien välillä."
 
 #: plugins/WriteFtree.py:273
 msgid "_Web Family Tree"
@@ -8857,7 +8856,7 @@ msgstr "GRAM_PS paketti (yhteensopiva XML)"
 
 #: plugins/WritePkg.py:203
 msgid "GRAMPS package is an archived XML database together with the media object files."
-msgstr "GRAMPS paketti sisältää tietokannan XML muodossa ja kaikki siihen liittyvät media-objektit."
+msgstr "GRAMPS paketti sisältää tietokannan XML muodossa ja kaikki siihen liittyvät mediatiedostot."
 
 #: plugins/book.glade:11
 msgid "Book"
