@@ -4,9 +4,12 @@
 # #
 # #	$Id$
 # #	$Log$
+# #	Revision 1.11  2005/06/05 05:11:32  jsanchez
+# #	* src/po/es.po: version merge fix
+# #
 # #	Revision 1.10  2005/06/05 04:01:23  rshura
 # #	Merge changes between 2.0.1 and 2.0.2 with the main trunk
-# #
+# #	
 # #	Revision 1.5.2.5  2005/06/03 21:07:17  jsanchez
 # #	* src/po/es.po: Translation update for version 2.0.2.
 # #	
@@ -310,7 +313,9 @@ msgstr "La person agregada no es visible"
 msgid ""
 "The person you added is currently not visible due to the chosen filter. This "
 "may occur if you did not specify a birth date."
-msgstr "La persona que ha agregado no es visible a causa del filtro elegido.  Esto puede ocurrir si no especificó fecha de nacimiento."
+msgstr ""
+"La persona que ha agregado no es visible a causa del filtro elegido.  Esto "
+"puede ocurrir si no especificó fecha de nacimiento."
 
 #: ChooseParents.py:623
 msgid "Modify the Parents of %s"
@@ -1219,7 +1224,7 @@ msgid ""
 "the relationship path between two persons."
 msgstr ""
 "Compara los ascendientes de dos personas hasta encontrar un ascendiente "
-"común, produciendo un camino de parentesto entre dos personas."
+"común, produciendo un camino de parentesco entre dos personas."
 
 #: GenericFilter.py:261
 msgid "People with <Id>"
@@ -2332,12 +2337,15 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different database versions."
 msgstr ""
-"La versión de esta base de datos no está soportada por esta versión de GRAMPS.\n"
-"Por favor, actualice a la versión correspondiente o utilice el formato XML para transportar datos entre diferentes versiones de la base de datos."
+"La versión de esta base de datos no está soportada por esta versión de "
+"GRAMPS.\n"
+"Por favor, actualice a la versión correspondiente o utilice el formato XML "
+"para transportar datos entre diferentes versiones de la base de datos."
 
 #: ReadGrdb.py:69
 msgid "The Database version is not supported by this version of GRAMPS."
-msgstr "La versión de la base de datos no está soportada por esta versión de GRAMPS."
+msgstr ""
+"La versión de la base de datos no está soportada por esta versión de GRAMPS."
 
 #: ReadGrdb.py:107 ReadGrdb.py:171
 msgid "Import database"
@@ -4387,7 +4395,14 @@ msgid ""
 "date mentioned can also be filtered. To get the results click Apply. If the "
 "filter controls are not visible, enable them by choosing <b>View > Filter</"
 "b>."
-msgstr "<b>Filtrar Personas</b>: En la Vista de Personas, puede 'filtrar' personas en función de muchos criterios.  Colóquese en el campo de Filtro (justo a la derecha del icono de Persona) y elija uno de la docena de filtros predefinidos. Por ejemplo, se puede seleccionar todas las personas adoptadas del árbol genealógico. O todas las personas sin datos de nacimiento. Para obtener los resultados, pinche en Aplicar.  Si los campos de filtro no son visibles, actívelos con <b>Ver > Filtro</b>."
+msgstr ""
+"<b>Filtrar Personas</b>: En la Vista de Personas, puede 'filtrar' personas "
+"en función de muchos criterios.  Colóquese en el campo de Filtro (justo a la "
+"derecha del icono de Persona) y elija uno de la docena de filtros "
+"predefinidos. Por ejemplo, se puede seleccionar todas las personas adoptadas "
+"del árbol genealógico. O todas las personas sin datos de nacimiento. Para "
+"obtener los resultados, pinche en Aplicar.  Si los campos de filtro no son "
+"visibles, actívelos con <b>Ver > Filtro</b>."
 
 #: data/tips.xml:68
 msgid ""
@@ -9188,7 +9203,9 @@ msgstr "Sexos incluidos"
 #: plugins/StatisticsChart.py:899
 msgid ""
 "With fewer items pie chart and legend will be used instead of a bar chart."
-msgstr "Con menos elementos, se utilizará un diagrama de tarta en vez de un diagrama de barras."
+msgstr ""
+"Con menos elementos, se utilizará un diagrama de tarta en vez de un diagrama "
+"de barras."
 
 #: plugins/StatisticsChart.py:902
 msgid "Max. items for a pie"
@@ -10388,6 +10405,323 @@ msgstr "<b>Regla Seleccionada</b>"
 #: rule.glade:1186
 msgid "<b>Values</b>"
 msgstr "<b>Valores</b>"
+
+#: GenericFilter.py:205
+msgid ""
+"Matches the ancestors of two people back to a common ancestor, producing the "
+"relationship path between two people."
+msgstr ""
+"Compara los ascendientes de dos personas hasta encontrar un ascendiente "
+"común, produciendo un camino de parentesto entre dos personas."
+
+#: GenericFilter.py:291
+msgid "Matches the person with a specified GRAMPS ID"
+msgstr "Coincide con la persona que tiene el ID GRAMPS especificado"
+
+#: GenericFilter.py:467
+msgid "Matches people that are descendants of someone matched by a filter"
+msgstr ""
+"Coincide con las personas que son descendientes de alguien que coincide con "
+"un filtro"
+
+#: GenericFilter.py:592
+msgid "Matches the person that is a child of someone matched by a filter"
+msgstr ""
+"Coincide con las personas que son hijas de alguien que coincide con un filtro"
+
+#: GenericFilter.py:637
+msgid "Matches the person that is a sibling of someone matched by a filter"
+msgstr ""
+"Coincide con las personas que son hermanos o hermanas de alguien que "
+"coincide con un filtro"
+
+#: GenericFilter.py:802
+msgid "Matches people that are ancestors of someone matched by a filter"
+msgstr ""
+"Coincide con las personas que son ancendientes de alguien que coincide con "
+"un filtro"
+
+#: GenericFilter.py:1026
+msgid ""
+"Matches people that have a common ancestor with someone matched by a filter"
+msgstr ""
+"Coincide con las personas con un ascendiente común con alguien que coincide "
+"con un filtro"
+
+#: GenericFilter.py:1088
+msgid "Matches the person with a personal event of a particular value"
+msgstr ""
+"Coincide con las personas con un evento personal de un valor particular"
+
+#: GenericFilter.py:1141
+msgid "Matches the person with a family event of a particular value"
+msgstr ""
+"Coincide con las personas con un evento familiar de un valor particular"
+
+#: GenericFilter.py:1189
+msgid "Matches the person who has a particular relationship"
+msgstr "Personas con una cierta relación"
+
+#: GenericFilter.py:1252
+msgid "Matches the person with a birth of a particular value"
+msgstr "Coincide con las personas con un nacimiento de un valor particular"
+
+#: GenericFilter.py:1298
+msgid "Matches the person with a death of a particular value"
+msgstr "Coincide con las personas con un fallecimiento de un valor particular"
+
+#: GenericFilter.py:1389 GenericFilter.py:1428
+msgid "Matches the person with a specified (partial) name"
+msgstr "Coincide con las personas con un nombre (parcial) especificado"
+
+#: GenericFilter.py:1524
+msgid "Matches the person married to someone matching a filter"
+msgstr ""
+"Coincide con las personas casadas con alguien que coincide con un filtro"
+
+#: GenericFilter.py:1557
+msgid "Matches person who were adopted"
+msgstr "Coincide con la personas que fueron adoptadas"
+
+#: GenericFilter.py:1585
+msgid "Matches person who have images in the gallery"
+msgstr "Coincide con las personas que tienen imágenes en la galería"
+
+#: GenericFilter.py:1609
+msgid "Matches persons who have children"
+msgstr "Personas con hijos"
+
+#: GenericFilter.py:1635
+msgid "Matches persons who have have no spouse"
+msgstr "Personas sin cónyuges"
+
+#: GenericFilter.py:1659
+msgid "Matches persons who have more than one spouse"
+msgstr "Personas con más de un cónyuge"
+
+#: GenericFilter.py:1683
+msgid "Matches persons without a birthdate"
+msgstr "Personas sin fecha de nacimiento"
+
+#: GenericFilter.py:1713
+msgid "Matches persons with missing date or place in an event"
+msgstr "Personas con eventos sin fecha o lugar"
+
+#: GenericFilter.py:1744
+msgid "Matches persons with missing date or place in an event of the family"
+msgstr "Personas con eventos familiares sin fecha o lugar"
+
+#: GenericFilter.py:1784
+msgid "Matches persons without indications of death that are not too old"
+msgstr ""
+"Coincide con las personas sin datos de fallecimiento o demasiado viejas"
+
+#: GenericFilter.py:1808
+msgid "Matches persons that are indicated as private"
+msgstr "Personas marcadas como privadas"
+
+#: GenericFilter.py:1840
+msgid "Matches persons who are witnesses in an event"
+msgstr "Personas testigos de un evento"
+
+#: GenericFilter.py:1923
+msgid "Matches persons whose records contain text matching a substring"
+msgstr "Personas cuyos registros contienen texto que coincide con una cadena"
+
+#: GenericFilter.py:2196
+msgid "Is default person"
+msgstr "Es la persona inicial"
+
+#: GenericFilter.py:2200
+msgid "Has the relationships"
+msgstr "Tiene las relaciones"
+
+#: GenericFilter.py:2204
+msgid "Is a descendant family member of"
+msgstr "Es un miembro de la familia descendiente de"
+
+#: GenericFilter.py:2205
+msgid "Is a descendant of filter match"
+msgstr "Descendiente de alguien seleccionado en otro filtro"
+
+#: GenericFilter.py:2206
+msgid "Is a descendant of person not more than N generations away"
+msgstr "Es descendiente de una persona a no más de N generaciones de distancia"
+
+#: GenericFilter.py:2208
+msgid "Is a descendant of person at least N generations away"
+msgstr "Es descendiente de una persona al menos a N generaciones de distancia"
+
+#: GenericFilter.py:2210
+msgid "Is a child of filter match"
+msgstr "Es hijo de una coincidencia de un filtro"
+
+#: GenericFilter.py:2212
+msgid "Is an ancestor of filter match"
+msgstr "Es un ascendiente de alguien seleccionado en otro filtro"
+
+#: GenericFilter.py:2213
+msgid "Is an ancestor of person not more than N generations away"
+msgstr "Es ascendiente de una persona a no más de N generaciones de distancia"
+
+#: GenericFilter.py:2215
+msgid "Is an ancestor of person at least N generations away"
+msgstr "Es ascendiente de una persona al menos a N generaciones de distancia"
+
+#: GenericFilter.py:2217
+msgid "Is a parent of filter match"
+msgstr "Es padre o madre de una coincidencia de un filtro"
+
+#: GenericFilter.py:2219
+msgid "Has a common ancestor with filter match"
+msgstr "Tiene un ascendiente común con alguien seleccionado en otro filtro"
+
+#: GenericFilter.py:2224
+msgid "Has the personal event"
+msgstr "Tiene el evento personal"
+
+#: GenericFilter.py:2225
+msgid "Has the family event"
+msgstr "Tiene el evento familiar"
+
+#: GenericFilter.py:2226
+msgid "Has the personal attribute"
+msgstr "Tiene el atributo personal"
+
+#: GenericFilter.py:2227
+msgid "Has the family attribute"
+msgstr "Tiene el atributos familiar"
+
+#: GenericFilter.py:2230
+msgid "Is spouse of filter match"
+msgstr "Es cónyuge de una coincidencia de un filtro"
+
+#: GenericFilter.py:2231
+msgid "Is a sibling of filter match"
+msgstr "Es hermano o hermana de una coincidencia de un filtro"
+
+#: GenericFilter.py:2232
+msgid "Relationship path between two people"
+msgstr "Parentesco entre dos personas"
+
+#: GenericFilter.py:2235 gramps_main.py:980
+msgid "People who have images"
+msgstr "Personas que tienen imágenes"
+
+#: GenericFilter.py:2240 gramps_main.py:1005
+msgid "People without a birth date"
+msgstr "Personas sin una fecha de nacimiento"
+
+#: gramps_main.py:1035
+msgid "Any textual record contains..."
+msgstr "El texto de cualquier registro contiene..."
+
+#: gramps_main.py:1040
+msgid "Any textual record matches regular expression..."
+msgstr "Cualquier registro de texto se ajusta a la expresión regular..."
+
+#: plugins/StatisticsChart.py:882
+msgid ""
+"Check this if you want people who have no birth date or year to be accounted "
+"also in the statistics."
+msgstr ""
+"Marque aquí si desea que se incluyan las personas sin fecha de nacimiento en "
+"la estadística."
+
+#: plugins/StatisticsChart.py:883
+msgid "Include people without birth years"
+msgstr "Incluir personas sin fecha de nacimiento"
+
+#: ReportUtils.py:1188
+msgid "%(male_name)s died on %(death_date)sat the age of %(age)d years."
+msgstr "%(male_name)s falleció el %(death_date)s a la edad de %(age)d años."
+
+#: ReportUtils.py:1466
+msgid "%(male_name)s was buried on %(birth_date)s in %(birth_place)s."
+msgstr "%(male_name)s recibió sepultura el %(birth_date)s en %(birth_place)s."
+
+#: ReportUtils.py:1471
+msgid "%(male_name)s was buried on %(birth_date)s."
+msgstr "%(male_name)s recibió sepultura el %(birth_date)s."
+
+#: ReportUtils.py:1475
+msgid "%(male_name)s was buried in %(month_year)s in %(birth_place)s."
+msgstr "%(male_name)s recibió sepultura en %(month_year)s en %(birth_place)s."
+
+#: ReportUtils.py:1484
+msgid "%(male_name)s was buried in %(birth_place)s."
+msgstr "%(male_name)s recibió sepultura en %(birth_place)s."
+
+#: ReportUtils.py:1492
+msgid "%(female_name)s was buried on %(birth_date)s in %(birth_place)s."
+msgstr ""
+"%(female_name)s recibió sepultura el %(birth_date)s en %(birth_place)s."
+
+#: ReportUtils.py:1497
+msgid "%(female_name)s was buried on %(birth_date)s."
+msgstr "%(female_name)s recibió sepultura el %(birth_date)s."
+
+#: ReportUtils.py:1501
+msgid "%(female_name)s was buried in %(month_year)s in %(birth_place)s."
+msgstr ""
+"%(female_name)s recibió sepultura en %(month_year)s en %(birth_place)s."
+
+#: ReportUtils.py:1510
+msgid "%(female_name)s was buried in %(birth_place)s."
+msgstr "%(female_name)s recibió sepultura en %(birth_place)s."
+
+#: ReportUtils.py:1588
+msgid "%(male_name)s Born: %(birth_date)s "
+msgstr "%(male_name)s Nació: %(birth_date)s."
+
+#: ReportUtils.py:1687
+msgid "%(female_name)s Born: %(birth_date)s "
+msgstr "%(female_name)s Nació: %(birth_date)s."
+
+#: gramps.glade:250 gramps_main.py:502
+msgid "_Redo"
+msgstr "_Rehacer"
+
+#: gramps_main.py:151
+msgid "Use at your own risk"
+msgstr ""
+
+#: gramps_main.py:152
+msgid ""
+"This is an unstable development version of GRAMPS. It is intended as a "
+"technology preview. Do not trust your family database to this development "
+"version. This version may contain bugs which could corrupt your database."
+msgstr ""
+
+#: gramps_main.py:1753
+msgid "The Home Person may be set from the Settings menu."
+msgstr "Se puede establecer la persona inicial en el menú de Preferencias."
+
+#: mergedata.glade:611
+msgid "<span weight=\"bold\" size=\"larger\">Merge Sources</span>"
+msgstr "<span weight=\"bold\" size=\"larger\">Mezclar fuentes</span>"
+
+#: plugins/DetAncestralReport.py:551 plugins/DetDescendantReport.py:572
+msgid "Replace Place with ______"
+msgstr "Sustituir Lugar con ______"
+
+#: plugins/DetAncestralReport.py:555 plugins/DetDescendantReport.py:576
+msgid "Replace Dates with ______"
+msgstr "Sustituir Fechas con ______"
+
+#: plugins/ReorderIds.py:49
+msgid "Tool currently unavailable"
+msgstr "La herramienta no está disponible actualmente"
+
+#: plugins/ReorderIds.py:50
+msgid ""
+"This tool has not yet been brought up to date after transition to the "
+"database, sorry."
+msgstr ""
+
+#: plugins/rel_ru.py:120
+msgid "remote ancestors"
+msgstr "ancestros"
 
 #~ msgid "Month Day, Year"
 #~ msgstr "Mes Día, Año"
