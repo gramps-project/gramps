@@ -83,7 +83,7 @@ class NameDisplay:
         @rtype: str
         """
         name = person.get_primary_name()
-        if name.display_as == RelLib.Name.FNLN:
+        if name.get_sort_as() == RelLib.Name.FNLN:
             return self._fnln(name)
         else:
             return self._lnfn(name)

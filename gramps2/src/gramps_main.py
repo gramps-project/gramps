@@ -1303,17 +1303,17 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                 ErrorDialog(_('Cannot open database'),
                             _('The database file specified could not be opened.'))
                 return 0
-        except ( IOError, OSError ), msg:
+        except ( IOError, OSError, Errors.FileVersionError), msg:
             ErrorDialog(_('Cannot open database'),str(msg))
             return 0
-        except db.DBAccessError, msg:
+        except (db.DBAccessError,db.DBError), msg:
             ErrorDialog(_('Cannot open database'),
                         _('%s could not be opened.' % filename) + '\n' + msg[1])
-        except (db.DBError), msg:
-            ErrorDialog(_('Cannot open database'),
-                        _('%s could not be opened.' % filename) + '\n' + msg[1])
-            gtk.main_quit()
-
+            return 0
+        except Exception:
+            DisplayTrace.DisplayTrace()
+            return 0
+        
         # Undo/Redo always start with standard labels and insensitive state
         self.undo_callback(None)
         self.redo_callback(None)
@@ -1539,6 +1539,15 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.people_view.goto_active_person()
             
     def change_active_person(self,person,force=0):
+        nph = ""
+        if person:
+            nph = person.get_handle()
+        oph = ""
+        if self.active_person:
+            oph = self.active_person.get_handle()
+        if nph == oph:  # no need to change to the current active person again
+            return
+        
         if person == None:
             self.set_buttons(0)
             self.active_person = None
@@ -1745,10 +1754,15 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             gtk.main_iteration()
         
     def post_load(self,name,callback=None):
+        if not self.db.version_supported():
+            raise Errors.FileVersionError(
+                    "The database version is not supported by this version of GRAMPS.\n"
+                    "Please upgrade to the corresponding version or use XML for porting data between different database versions.")
+        
         self.db.set_save_path(name)
+
         res = self.db.get_researcher()
         owner = GrampsCfg.get_researcher()
-        
         if res.get_name() == "" and owner.get_name():
             self.db.set_researcher(owner)
 

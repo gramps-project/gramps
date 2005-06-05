@@ -61,21 +61,22 @@ class EditPlace:
 
     def __init__(self,parent,place,parent_window=None):
         self.parent = parent
-        if place.get_handle():
+        if place and place.get_handle():
             if self.parent.child_windows.has_key(place.get_handle()):
                 self.parent.child_windows[place.get_handle()].present(None)
                 return
             else:
                 self.win_key = place.get_handle()
+            self.ref_not_loaded = 1
         else:
             self.win_key = self
+            self.ref_not_loaded = 0
         self.name_display = NameDisplay.displayer.display
         self.place = place
         self.db = parent.db
         self.child_windows = {}
         self.path = parent.db.get_save_path()
         self.not_loaded = 1
-        self.ref_not_loaded = 1
         self.lists_changed = 0
         if place:
             self.srcreflist = place.get_source_references()
@@ -245,9 +246,11 @@ class EditPlace:
             self.top.set_transient_for(parent_window)
         self.add_itself_to_menu()
         self.top_window.get_widget('ok').set_sensitive(not self.db.readonly)
-        Utils.temp_label(self.refs_label,self.top)
         self.top.show()
-        gobject.idle_add(self.display_references)
+        if self.ref_not_loaded:
+            Utils.temp_label(self.refs_label,self.top)
+            gobject.idle_add(self.display_references)
+            self.ref_not_loaded = 0
 
     def on_delete_event(self,obj,b):
         self.glry.close()
@@ -554,8 +557,6 @@ class EditPlace:
         else:
             Utils.unbold_label(self.refs_label,self.top)
         
-        self.ref_not_loaded = 0
-        
 #-------------------------------------------------------------------------
 #
 # disp_url
@@ -585,9 +586,9 @@ class DeletePlaceQuery:
         
     def query_response(self):
         trans = self.db.transaction_begin()
+        self.db.disable_signals()
         
         place_handle = self.place.get_handle()
-        self.db.remove_place(place_handle,trans)
 
         for handle in self.db.get_person_handles(sort_handles=False):
             person = self.db.get_person_from_handle(handle)
@@ -607,5 +608,7 @@ class DeletePlaceQuery:
                 event.remove_handle_references('Place',place_handle)
                 self.db.commit_event(event,trans)
 
+        self.db.enable_signals()
+        self.db.remove_place(place_handle,trans)
         self.db.transaction_commit(trans,
                                    _("Delete Place (%s)") % self.place.get_title())

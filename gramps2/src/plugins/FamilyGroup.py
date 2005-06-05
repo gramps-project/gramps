@@ -486,7 +486,8 @@ class FamilyGroupOptions(ReportOptions.ReportOptions):
         """
         spouses = self.get_spouses(dialog.db,dialog.person)
         spouse_index = self.spouse_menu.get_active()
-        self.options_dict['spouse_id'] = spouses[spouse_index][0]
+        if spouses:
+            self.options_dict['spouse_id'] = spouses[spouse_index][0]
 
     def make_default_style(self,default_style):
         """Make default output style for the Family Group Report."""

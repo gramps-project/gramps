@@ -88,13 +88,13 @@ class PeopleView:
         self.person_tree = self.parent.gtop.get_widget("person_tree")
         self.person_tree.set_rules_hint(True)
         self.renderer = gtk.CellRendererText()
+        self.inactive = False
 
         self.columns = []
         self.build_columns()
         self.person_selection = self.person_tree.get_selection()
         self.person_selection.set_mode(gtk.SELECTION_MULTIPLE)
         self.person_selection.connect('changed',self.row_changed)
-        self.person_selection.connect('changed',self.set_dnd_target)
         self.person_tree.connect('row_activated', self.alpha_event)
         self.person_tree.connect('button-press-event',
                                  self.on_plist_button_press)
@@ -169,13 +169,12 @@ class PeopleView:
                                                     self.parent.filter_invert.get_active())
         self.person_tree.set_model(self.person_model)
         
-    def blist(self, store, path, node, id_list):
-        idval = self.person_model.get_value(node, PeopleModel.COLUMN_INT_ID)
-        id_list.append(idval)
-
     def get_selected_objects(self):
+        (mode,paths) = self.person_selection.get_selected_rows()
         mlist = []
-        self.person_selection.selected_foreach(self.blist,mlist)
+        for path in paths:
+            node = self.person_model.on_get_iter(path)
+            mlist.append(self.person_model.on_get_value(node, PeopleModel.COLUMN_INT_ID))
         return mlist
         
     def row_changed(self,obj):
@@ -185,24 +184,29 @@ class PeopleView:
         selected, set the active person to None"""
 
         selected_ids = self.get_selected_objects()
-
         try:
             person = self.parent.db.get_person_from_handle(selected_ids[0])
             self.parent.change_active_person(person)
         except:
             self.parent.change_active_person(None)
 
+        if len(selected_ids) == 1:
+            self.person_tree.drag_source_set(BUTTON1_MASK,
+                                             [DdTargets.PERSON_LINK.target()],
+                                             ACTION_COPY)
+        elif len(selected_ids) > 1:
+            self.person_tree.drag_source_set(BUTTON1_MASK,
+                                             [DdTargets.PERSON_LINK_LIST.target()],
+                                             ACTION_COPY)
+
     def change_db(self,db):
         self.build_columns()
-        self.person_model = PeopleModel.PeopleModel(db,self.DataFilter)
-        self.person_tree.set_model(self.person_model)
-
         db.connect('person-add', self.person_added)
         db.connect('person-update', self.person_updated)
         db.connect('person-delete', self.person_removed)
         db.connect('person-rebuild', self.redisplay_person_list)
         self.apply_filter()
-
+        
     def remove_from_person_list(self,person):
         """Remove the selected person from the list. A person object is
         expected, not an ID"""
@@ -235,8 +239,9 @@ class PeopleView:
         self.goto_active_person()
 
     def goto_active_person(self):
-        if not self.parent.active_person:
+        if not self.parent.active_person or self.inactive:
             return
+        self.inactive = True
         p = self.parent.active_person
         try:
             path = self.person_model.on_get_path(p.get_handle())
@@ -255,6 +260,7 @@ class PeopleView:
             self.person_selection.unselect_all()
             print "Person not currently available due to filter"
             self.parent.active_person = p
+        self.inactive = False
 
     def alpha_event(self,*obj):
         self.parent.load_person(self.parent.active_person)
@@ -276,9 +282,9 @@ class PeopleView:
         fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
         mlist = self.get_selected_objects()
         if mlist:
-            sel_sensitivity = 1
+            sel_sensitivity = True
         else:
-            sel_sensitivity = 0
+            sel_sensitivity = False
         merge_sensitivity = len(mlist) == 2
         entries = [
             (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
@@ -360,7 +366,17 @@ class PeopleView:
             pnode = self.person_model.get_iter(pathval)
 
             # calculate the new data
-            self.person_model.calculate_data(self.DataFilter)
+
+            if person.primary_name.group_as:
+                surname = person.primary_name.group_as
+            else:
+                surname = self.parent.db.get_name_group_mapping(person.primary_name.surname)
+
+
+            if oldpath[0] == surname:
+                self.person_model.build_sub_entry(surname)
+            else:
+                self.person_model.calculate_data(self.DataFilter)
             
             # find the path of the person in the new data build
             newpath = self.person_model.temp_iter2path[node]
@@ -399,5 +415,4 @@ class PeopleView:
                 pnode = self.person_model.get_iter(path)
                 self.person_model.row_inserted(path,pnode)
                 
-        #self.parent.change_active_person(person)
         self.goto_active_person()

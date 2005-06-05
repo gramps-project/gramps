@@ -612,10 +612,10 @@ class ScratchPadListView:
         
         self.treetips = TreeTips.TreeTips(self._widget,2,True)
 
-        # Set the column that inline searching will use.
+	# Set the column that inline searching will use.
         # The search does not appear to work properly so I am disabling it for now.
         self._widget.set_enable_search(False)
-        #self._widget.set_search_column(1)        
+        #self._widget.set_search_column(1)
 
         self._widget.drag_dest_set(gtk.DEST_DEFAULT_ALL,
                                    (ScratchPadListView.LOCAL_DRAG_TARGET,) + \

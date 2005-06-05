@@ -46,24 +46,18 @@ import DateDisplay
 #
 #-------------------------------------------------------------------------
 _lang = locale.getlocale(locale.LC_TIME)[0]
+if _lang:
+    _lang_short = _lang.split('_')[0]
+else:
+    _lang_short = "C"
 
 _lang_to_parser = {
     'C'      : DateParser.DateParser,
-    'en_US'  : DateParser.DateParser,
-    'en_GB'  : DateParser.DateParser,
-    'en_AU'  : DateParser.DateParser,
-    'en_CA'  : DateParser.DateParser,
-    'en_SE'  : DateParser.DateParser,
     'en'     : DateParser.DateParser,
     }
 
 _lang_to_display = {
     'C'      : DateDisplay.DateDisplayEn,
-    'en_US'  : DateDisplay.DateDisplayEn,
-    'en_GB'  : DateDisplay.DateDisplayEn,
-    'en_AU'  : DateDisplay.DateDisplayEn,
-    'en_CA'  : DateDisplay.DateDisplayEn,
-    'en_SE'  : DateDisplay.DateDisplayEn,
     'en'     : DateDisplay.DateDisplayEn,
     'zh_CN'  : DateDisplay.DateDisplay,
     'zh_TW'  : DateDisplay.DateDisplay,
@@ -123,7 +117,10 @@ load_plugins(datesDir)
 #-------------------------------------------------------------------------
 
 try:
-    parser = _lang_to_parser[_lang]()
+    if _lang_to_parser.has_key(_lang):
+        parser = _lang_to_parser[_lang]
+    else:
+        parser = _lang_to_parser[_lang_short]
 except:
     print "Date parser for",_lang,"not available, using default"
     parser = _lang_to_parser["C"]()
@@ -138,7 +135,11 @@ except:
         val = 0
 
 try:
-    displayer = _lang_to_display[_lang](val)
+    if _lang_to_display.has_key(_lang):
+        displayer = _lang_to_display[_lang](val)
+    else:
+        displayer = _lang_to_display[_lang_short](val)
 except:
     print "Date displayer for",_lang,"not available, using default"
     displayer = _lang_to_display["C"](val)
+    

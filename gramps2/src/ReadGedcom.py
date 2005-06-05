@@ -434,13 +434,13 @@ class GedcomParser:
                 self.text = string.translate(self.text,self.transtable2)
             
             self.index += 1
-            l = self.text.split(None, 2)
+            l = self.text.split(' ', 2)
             ln = len(l)
             try:
                 if ln == 2:
-                    self.groups = (int(l[0]),unicode(l[1]),u"")
+                    self.groups = (int(l[0]),unicode(l[1]).strip(),u"")
                 else:
-                    self.groups = (int(l[0]),unicode(l[1]),unicode(l[2]))
+                    self.groups = (int(l[0]),unicode(l[1]).strip(),unicode(l[2]))
             except:
                 if self.text == "":
                     msg = _("Warning: line %d was blank, so it was ignored.\n") % self.index

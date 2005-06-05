@@ -215,6 +215,10 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self.place2title = {}
         self.name_group = {}
 
+    def version_supported(self):
+        """ Returns True when the file has a supported version"""
+        return True
+
     def need_upgrade(self):
         return False
 
