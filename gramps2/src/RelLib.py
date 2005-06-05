@@ -2213,10 +2213,12 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
             self.description = source.description
             self.type = source.type
             self.cause = source.cause
+            self.ext_witness_list = source.ext_witness_list
         else:
             self.description = ""
             self.type = (Event.CUSTOM,"")
             self.cause = ""
+            self.ext_witness_list = []
 
     def serialize(self):
         """
@@ -2417,7 +2419,22 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         @return: Returns the description of the Event
         @rtype: str
         """
-        return self.description 
+        return self.description
+
+    def add_ext_witness(self,witness):
+        self.ext_witness_list.append(witness)
+
+    def remove_ext_witness(self,witness):
+        if witness in self.ext_witness_list:
+            self.ext_witness_list.remove(witness)
+            return True
+        return False
+
+    def get_ext_witness_list(self):
+        return self.ext_witness_list
+
+    def set_ext_witness_list(self,witness_list):
+        self.ext_witness_list = witness_list
 
 class Place(PrimaryObject,SourceNote,MediaBase):
     """
