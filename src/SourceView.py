@@ -154,11 +154,13 @@ class SourceView:
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             mlist = []
             self.selection.selected_foreach(self.blist,mlist)
-            handle = mlist[0]
-            source = self.parent.db.get_source_from_handle(handle)
-            EditSource.EditSource(source,self.parent.db,self.parent,
-                                  self.topWindow)
-            return True
+            if mlist:
+                handle = mlist[0]
+                source = self.parent.db.get_source_from_handle(handle)
+                EditSource.EditSource(source,self.parent.db,self.parent,
+                                      self.topWindow)
+                return True
+            return False
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_context_menu(event)
             return True

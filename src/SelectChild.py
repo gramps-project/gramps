@@ -308,6 +308,7 @@ class SelectChild:
                         self.top)
             return
 
+        # TODO: Add child ordered by birth day
         self.family.add_child_handle(select_child.get_handle())
         
         mrel = self.mrel.get_active()

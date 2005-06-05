@@ -31,7 +31,8 @@ def fill_combo(combo,data_list):
     store = gtk.ListStore(str)
 
     for data in data_list:
-        store.append(row=[data])
+        if data:
+            store.append(row=[data])
 	    
     combo.set_model(store)
     combo.set_text_column(0)
@@ -44,7 +45,8 @@ def fill_combo(combo,data_list):
 def fill_entry(entry,data_list):
     store = gtk.ListStore(str)
     for data in data_list:
-        store.append(row=[data])
+        if data:
+            store.append(row=[data])
         
     completion = gtk.EntryCompletion()
     completion.set_model(store)
@@ -55,7 +57,8 @@ def fill_entry(entry,data_list):
 def fill_option_text(combobox,data):
     store = gtk.ListStore(str)
     for item in data:
-        store.append(row=[item])
+        if item:
+            store.append(row=[item])
     combobox.set_model(store)
     combobox.set_active(0)
 

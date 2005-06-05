@@ -30,7 +30,6 @@ pkgdata_PYTHON = \
 	IndivComplete.py\
 	IndivSummary.py\
 	Merge.py\
-	NavWebPage.py\
 	PatchNames.py\
 	ReadPkg.py\
 	RelCalc.py\

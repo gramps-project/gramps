@@ -29,6 +29,7 @@
 #------------------------------------------------------------------------
 import os
 import shutil
+import locale
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -57,6 +58,7 @@ import Errors
 import Utils
 from QuestionDialog import ErrorDialog
 import ReportOptions
+from NameDisplay import displayer as _nd
 
 #------------------------------------------------------------------------
 #
@@ -943,8 +945,6 @@ class WebReport(Report.Report):
         doc.write_text(_("Family Tree Index"))
         doc.end_paragraph()
     
-        person_handle_list.sort(self.sort.by_last_name)
-
         a = {}
         for person_handle in person_handle_list:
             person = self.database.get_person_from_handle(person_handle)
@@ -956,7 +956,7 @@ class WebReport(Report.Report):
 
         section_number = 1
         link_keys = a.keys()
-        link_keys.sort()
+        link_keys.sort(locale.strcoll)
         for n in link_keys:
             a[n] = section_number
             section_number = section_number + 1
@@ -980,6 +980,7 @@ class WebReport(Report.Report):
                 p_id_list = [ p_id for p_id in person_handle_list if \
                             (self.database.get_person_from_handle(p_id).get_primary_name().get_surname() \
                             and (self.database.get_person_from_handle(p_id).get_primary_name().get_surname()[0] == n) ) ]
+                p_id_list.sort(self.sort.by_sorted_name)
                 doc = HtmlLinkDoc(self.selected_style,None,template,None)
                 doc.set_extension(self.ext)
                 doc.set_title(_("Section %s") % n)
@@ -998,7 +999,7 @@ class WebReport(Report.Report):
 
                 for person_handle in p_id_list:
                     the_person = self.database.get_person_from_handle(person_handle)
-                    name = the_person.get_primary_name().get_name()
+                    name = _nd.sorted(the_person)
 
                     if self.birth_dates:
                         birth_handle = self.database.get_person_from_handle(person_handle).get_birth_handle()
@@ -1040,6 +1041,7 @@ class WebReport(Report.Report):
                 p_id_list = [ p_id for p_id in person_handle_list if \
                             (self.database.get_person_from_handle(p_id).get_primary_name().get_surname() \
                             and (self.database.get_person_from_handle(p_id).get_primary_name().get_surname()[0] == n) ) ]
+                p_id_list.sort(self.sort.by_sorted_name)
                 doc.start_paragraph('IndexLabel')
                 if self.include_alpha_links:
                     doc.write_linktarget("%03d" % a[n])
@@ -1049,7 +1051,7 @@ class WebReport(Report.Report):
 
                 for person_handle in p_id_list:
                     the_person = self.database.get_person_from_handle(person_handle)
-                    name = the_person.get_primary_name().get_name()
+                    name = _nd.sorted(the_person)
 
                     if self.birth_dates:
                         birth_handle = self.database.get_person_from_handle(person_handle).get_birth_handle()

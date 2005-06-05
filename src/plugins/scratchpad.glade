@@ -20,7 +20,7 @@
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="has_separator">True</property>
-  <signal name="delete_event" handler="on_scratch_pad_delete_event" last_modification_time="Wed, 25 May 2005 06:50:50 GMT"/>
+  <signal name="delete_event" handler="on_scratch_pad_delete_event" last_modification_time="Wed, 25 May 2005 13:26:32 GMT"/>
 
   <child internal-child="vbox">
     <widget class="GtkVBox" id="dialog-vbox1">

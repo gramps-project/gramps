@@ -112,8 +112,8 @@ class DateParserDE(DateParser):
     
     def init_strings(self):
         DateParser.init_strings(self)
-        self._span  = re.compile("(von|vom)\s+(.+)\s+(bis)\s+(.+)",re.IGNORECASE)
-        self._range = re.compile("(zwischen)\s+(.+)\s+(und)\s+(.+)", re.IGNORECASE)
+        self._span  = re.compile("(von|vom)\s+(?P<start>.+)\s+(bis)\s+(?P<stop>.+)",re.IGNORECASE)
+        self._range = re.compile("zwischen\s+(?P<start>.+)\s+und\s+(?P<stop>.+)", re.IGNORECASE)
         self._text2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str,
                                  re.IGNORECASE)
         self._jtext2= re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._jmon_str,
@@ -131,7 +131,7 @@ class DateDisplayDE(DateDisplay):
         u" (Französisch Republikanisch)", u" (Persisch)", u" (Islamisch)"
         )
 
-    _mod_str = ("",u"vor ",u"nach ",u"circa ","","","")
+    _mod_str = ("",u"vor ",u"nach ",u"etwa ","","","")
     
     _qual_str = ("",u"geschätzt ",u"errechnet ")
     
@@ -224,9 +224,5 @@ class DateDisplayDE(DateDisplay):
 #
 #-------------------------------------------------------------------------
 from DateHandler import register_datehandler
-register_datehandler(('de_DE','german'),DateParserDE, DateDisplayDE)
-register_datehandler(('de_AT','german (Austria)'),DateParserDE, DateDisplayDE)
-register_datehandler(('de_CH','german (Switzerland)'),DateParserDE, DateDisplayDE)
-register_datehandler(('de_LI','german (Lichtenstein)'),DateParserDE, DateDisplayDE)
-register_datehandler(('de_LU','german (Luxembourg)'),DateParserDE, DateDisplayDE)
-register_datehandler(('de_BE','german (Belgium)'),DateParserDE, DateDisplayDE)
+register_datehandler(('de_DE','german','de_AT','de_CH',
+                      'de_LI','de_LU','de_BE','de'),DateParserDE, DateDisplayDE)

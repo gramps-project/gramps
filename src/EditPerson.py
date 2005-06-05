@@ -343,7 +343,8 @@ class EditPerson:
         cursor = self.db.get_place_cursor()
         data = cursor.next()
         while data:
-            self.pdmap[data[1][2]] = data[0]
+            if data[1][2]:
+                self.pdmap[data[1][2]] = data[0]
             data = cursor.next()
         cursor.close()
 
@@ -446,7 +447,7 @@ class EditPerson:
         self.close_child_windows()
         self.remove_itself_from_winsmenu()
         self.window.destroy()
-
+        
     def add_itself_to_winsmenu(self):
         self.parent.child_windows[self.orig_handle] = self
         win_menu_label = self.name_display.display(self.person)

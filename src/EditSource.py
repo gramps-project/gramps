@@ -170,6 +170,10 @@ class EditSource:
             self.source = source
         else:
             self.source = RelLib.Source()
+        if self.source.get_handle():
+            self.ref_not_loaded = 1
+        else:
+            self.ref_not_loaded = 0
         self.db = db
         self.parent = parent
         self.name_display = NameDisplay.displayer.display
@@ -184,7 +188,6 @@ class EditSource:
         self.child_windows = {}
         self.path = db.get_save_path()
         self.not_loaded = 1
-        self.ref_not_loaded = 1
         self.lists_changed = 0
         self.gallery_ok = 0
         mode = not self.db.readonly
@@ -319,8 +322,11 @@ class EditSource:
             self.top.set_transient_for(parent_window)
         self.add_itself_to_menu()
         self.top.show()
-        Utils.temp_label(self.refs_label,self.top)
-        gobject.idle_add(self.display_references)
+        if self.ref_not_loaded:
+            self.ref_not_loaded = 0
+            Utils.temp_label(self.refs_label,self.top)
+            gobject.idle_add(self.display_references)
+
         self.data_sel = self.datalist.get_selection()
 
     def on_add_data_clicked(self,widget):
@@ -571,7 +577,7 @@ class EditSource:
         elif page == 3 and self.ref_not_loaded:
             self.ref_not_loaded = 0
             Utils.temp_label(self.refs_label,self.top)
-            gobject.idle_add(display_references)
+            gobject.idle_add(self.display_references)
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                 self.notes_buffer.get_end_iter(),False))
         if text:
@@ -592,6 +598,7 @@ class DelSrcQuery:
 
     def query_response(self):
         trans = self.db.transaction_begin()
+        self.db.disable_signals()
         
         (person_list,family_list,event_list,
             place_list,source_list,media_list) = self.the_lists
@@ -628,6 +635,7 @@ class DelSrcQuery:
             media.remove_source_references(src_handle_list)
             self.db.commit_media_object(media,trans)
 
+        self.db.enable_signals()
         self.db.remove_source(self.source.get_handle(),trans)
         self.db.transaction_commit(
             trans,_("Delete Source (%s)") % self.source.get_title())

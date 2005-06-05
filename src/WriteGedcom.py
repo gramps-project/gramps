@@ -809,7 +809,7 @@ class GedcomWriter:
             death = self.db.get_event_from_handle(death_handle)
             if death_handle and death and not (self.private and death.get_privacy()):
                 if not death.get_date_object().is_empty() or death.get_place_handle():
-                    if birth.get_description() != "":
+                    if death.get_description() != "":
                         self.writeln("1 DEAT %s" % death.get_description())
                     else:
                         self.writeln("1 DEAT")
