@@ -4,6 +4,7 @@
 
 2005-06-05  Alex Roitman  <shura@gramps-project.org>
 	* configure.in: Bump up the version number.
+	* src/Utils.py (strip_context): Add function.
 
 2005-06-05  Don Allingham  <don@gramps-project.org>
 	* src/DateHandler.py: fixed initialization of parser class
