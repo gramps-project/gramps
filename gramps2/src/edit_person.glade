@@ -17,7 +17,6 @@
   <property name="skip_pager_hint">False</property>
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
-  <property name="focus_on_map">True</property>
   <property name="has_separator">False</property>
   <signal name="delete_event" handler="on_delete_event"/>
 
@@ -109,10 +108,6 @@
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
 	      <property name="mnemonic_widget">surname</property>
-	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-	      <property name="width_chars">-1</property>
-	      <property name="single_line_mode">False</property>
-	      <property name="angle">0</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">1</property>
@@ -138,10 +133,6 @@
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
 	      <property name="mnemonic_widget">givenName</property>
-	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-	      <property name="width_chars">-1</property>
-	      <property name="single_line_mode">False</property>
-	      <property name="angle">0</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">1</property>
@@ -167,10 +158,6 @@
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
 	      <property name="mnemonic_widget">prefix</property>
-	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-	      <property name="width_chars">-1</property>
-	      <property name="single_line_mode">False</property>
-	      <property name="angle">0</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">5</property>
@@ -196,10 +183,6 @@
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
 	      <property name="mnemonic_widget">title</property>
-	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-	      <property name="width_chars">-1</property>
-	      <property name="single_line_mode">False</property>
-	      <property name="angle">0</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">1</property>
@@ -247,10 +230,6 @@
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
-	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-	      <property name="width_chars">-1</property>
-	      <property name="single_line_mode">False</property>
-	      <property name="angle">0</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">1</property>
@@ -268,8 +247,6 @@
 	      <property name="items" translatable="yes">Female
 Male
 Unknown</property>
-	      <property name="add_tearoffs">False</property>
-	      <property name="focus_on_click">True</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">2</property>
@@ -316,10 +293,6 @@ Unknown</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
 	      <property name="mnemonic_widget">suffix</property>
-	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-	      <property name="width_chars">-1</property>
-	      <property name="single_line_mode">False</property>
-	      <property name="angle">0</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">3</property>
@@ -344,10 +317,6 @@ Unknown</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
-	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-	      <property name="width_chars">-1</property>
-	      <property name="single_line_mode">False</property>
-	      <property name="angle">0</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">3</property>
@@ -372,10 +341,6 @@ Unknown</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
-	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-	      <property name="width_chars">-1</property>
-	      <property name="single_line_mode">False</property>
-	      <property name="angle">0</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">5</property>
@@ -435,9 +400,6 @@ Unknown</property>
 	  <child>
 	    <widget class="GtkComboBoxEntry" id="ntype">
 	      <property name="visible">True</property>
-	      <property name="add_tearoffs">False</property>
-	      <property name="has_frame">True</property>
-	      <property name="focus_on_click">True</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">6</property>
@@ -508,10 +470,6 @@ Unknown</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
-	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-	      <property name="width_chars">-1</property>
-	      <property name="single_line_mode">False</property>
-	      <property name="angle">0</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">0</property>
@@ -601,10 +559,6 @@ Unknown</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
-	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-	      <property name="width_chars">-1</property>
-	      <property name="single_line_mode">False</property>
-	      <property name="angle">0</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">0</property>
@@ -657,10 +611,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="type">label_item</property>
@@ -742,9 +692,6 @@ Unknown</property>
 		      <property name="rules_hint">False</property>
 		      <property name="reorderable">False</property>
 		      <property name="enable_search">True</property>
-		      <property name="fixed_height_mode">False</property>
-		      <property name="hover_selection">False</property>
-		      <property name="hover_expand">False</property>
 		    </widget>
 		  </child>
 		</widget>
@@ -790,6 +737,34 @@ Unknown</property>
 		  </child>
 
 		  <child>
+		    <widget class="GtkButton" id="event_sel">
+		      <property name="visible">True</property>
+		      <property name="tooltip" translatable="yes">Select an existing media object from the database and place it in this gallery</property>
+		      <property name="can_focus">True</property>
+		      <property name="relief">GTK_RELIEF_NORMAL</property>
+		      <property name="focus_on_click">True</property>
+		      <signal name="clicked" handler="on_event_sel_clicked" object="eventList" last_modification_time="Mon, 06 Jun 2005 22:25:51 GMT"/>
+
+		      <child>
+			<widget class="GtkImage" id="image2590">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-index</property>
+			  <property name="icon_size">4</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
+		    </packing>
+		  </child>
+
+		  <child>
 		    <widget class="GtkButton" id="event_edit">
 		      <property name="visible">True</property>
 		      <property name="sensitive">False</property>
@@ -813,7 +788,7 @@ Unknown</property>
 		    <packing>
 		      <property name="padding">0</property>
 		      <property name="expand">False</property>
-		      <property name="fill">True</property>
+		      <property name="fill">False</property>
 		    </packing>
 		  </child>
 
@@ -842,12 +817,8 @@ Unknown</property>
 		    <packing>
 		      <property name="padding">0</property>
 		      <property name="expand">False</property>
-		      <property name="fill">True</property>
+		      <property name="fill">False</property>
 		    </packing>
-		  </child>
-
-		  <child>
-		    <placeholder/>
 		  </child>
 		</widget>
 		<packing>
@@ -872,8 +843,6 @@ Unknown</property>
 	      <child>
 		<widget class="GtkImage" id="image2588">
 		  <property name="visible">True</property>
-		  <property name="icon_size">4</property>
-		  <property name="icon_name">gtk-file</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
@@ -899,10 +868,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">6</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -941,9 +906,6 @@ Unknown</property>
 		      <property name="rules_hint">False</property>
 		      <property name="reorderable">False</property>
 		      <property name="enable_search">True</property>
-		      <property name="fixed_height_mode">False</property>
-		      <property name="hover_selection">False</property>
-		      <property name="hover_expand">False</property>
 		    </widget>
 		  </child>
 		</widget>
@@ -1071,8 +1033,6 @@ Unknown</property>
 	      <child>
 		<widget class="GtkImage" id="image2580">
 		  <property name="visible">True</property>
-		  <property name="icon_size">4</property>
-		  <property name="icon_name">gtk-file</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
@@ -1098,10 +1058,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">6</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -1151,9 +1107,6 @@ Unknown</property>
 			      <property name="rules_hint">False</property>
 			      <property name="reorderable">False</property>
 			      <property name="enable_search">True</property>
-			      <property name="fixed_height_mode">False</property>
-			      <property name="hover_selection">False</property>
-			      <property name="hover_expand">False</property>
 			    </widget>
 			  </child>
 			</widget>
@@ -1295,8 +1248,6 @@ Unknown</property>
 	      <child>
 		<widget class="GtkImage" id="image2581">
 		  <property name="visible">True</property>
-		  <property name="icon_size">4</property>
-		  <property name="icon_name">gtk-file</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
@@ -1322,10 +1273,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">6</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -1363,9 +1310,6 @@ Unknown</property>
 		      <property name="rules_hint">False</property>
 		      <property name="reorderable">False</property>
 		      <property name="enable_search">True</property>
-		      <property name="fixed_height_mode">False</property>
-		      <property name="hover_selection">False</property>
-		      <property name="hover_expand">False</property>
 		    </widget>
 		  </child>
 		</widget>
@@ -1493,8 +1437,6 @@ Unknown</property>
 	      <child>
 		<widget class="GtkImage" id="image2582">
 		  <property name="visible">True</property>
-		  <property name="icon_size">4</property>
-		  <property name="icon_name">gtk-file</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
@@ -1520,10 +1462,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">6</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -1604,10 +1542,6 @@ Unknown</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">flowed</property>
-		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		      <property name="width_chars">-1</property>
-		      <property name="single_line_mode">False</property>
-		      <property name="angle">0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -1688,8 +1622,6 @@ Unknown</property>
 	      <child>
 		<widget class="GtkImage" id="image2583">
 		  <property name="visible">True</property>
-		  <property name="icon_size">4</property>
-		  <property name="icon_name">gtk-file</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
@@ -1715,10 +1647,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">6</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -1755,9 +1683,6 @@ Unknown</property>
 		      <property name="rules_hint">False</property>
 		      <property name="reorderable">False</property>
 		      <property name="enable_search">True</property>
-		      <property name="fixed_height_mode">False</property>
-		      <property name="hover_selection">False</property>
-		      <property name="hover_expand">False</property>
 		    </widget>
 		  </child>
 		</widget>
@@ -1880,8 +1805,6 @@ Unknown</property>
 	      <child>
 		<widget class="GtkImage" id="image2584">
 		  <property name="visible">True</property>
-		  <property name="icon_size">4</property>
-		  <property name="icon_name">gtk-file</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
@@ -1907,10 +1830,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -2118,8 +2037,6 @@ Unknown</property>
 	      <child>
 		<widget class="GtkImage" id="image2585">
 		  <property name="visible">True</property>
-		  <property name="icon_size">4</property>
-		  <property name="icon_name">gtk-file</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
@@ -2145,10 +2062,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">6</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -2192,9 +2105,6 @@ Unknown</property>
 			  <property name="rules_hint">False</property>
 			  <property name="reorderable">False</property>
 			  <property name="enable_search">True</property>
-			  <property name="fixed_height_mode">False</property>
-			  <property name="hover_selection">False</property>
-			  <property name="hover_expand">False</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -2357,8 +2267,6 @@ Unknown</property>
 	      <child>
 		<widget class="GtkImage" id="image2589">
 		  <property name="visible">True</property>
-		  <property name="icon_size">4</property>
-		  <property name="icon_name">gtk-file</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
@@ -2384,10 +2292,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">6</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -2425,10 +2329,6 @@ Unknown</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">ldsbapdate</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">1</property>
@@ -2474,10 +2374,6 @@ Unknown</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">endowdate</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		  <accessibility>
 		    <atkproperty name="AtkObject::accessible_name" translatable="yes">Date:</atkproperty>
 		  </accessibility>
@@ -2526,10 +2422,6 @@ Unknown</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">sealdate</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">1</property>
@@ -2754,10 +2646,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">3</property>
@@ -2772,8 +2660,6 @@ Unknown</property>
 	      <child>
 		<widget class="GtkComboBox" id="ldsbaptemple">
 		  <property name="visible">True</property>
-		  <property name="add_tearoffs">False</property>
-		  <property name="focus_on_click">True</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">4</property>
@@ -2798,10 +2684,6 @@ Unknown</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">lds_bap_place</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		  <accessibility>
 		    <atkrelation target="lds_bap_place" type="label-for"/>
 		  </accessibility>
@@ -2839,8 +2721,6 @@ Unknown</property>
 	      <child>
 		<widget class="GtkComboBox" id="ldsbapstat">
 		  <property name="visible">True</property>
-		  <property name="add_tearoffs">False</property>
-		  <property name="focus_on_click">True</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">4</property>
@@ -2865,10 +2745,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">3</property>
@@ -2883,8 +2759,6 @@ Unknown</property>
 	      <child>
 		<widget class="GtkComboBox" id="endowtemple">
 		  <property name="visible">True</property>
-		  <property name="add_tearoffs">False</property>
-		  <property name="focus_on_click">True</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">4</property>
@@ -2909,10 +2783,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">3</property>
@@ -2938,10 +2808,6 @@ Unknown</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">lds_end_place</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		  <accessibility>
 		    <atkrelation target="lds_end_place" type="label-for"/>
 		  </accessibility>
@@ -2990,10 +2856,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">3</property>
@@ -3008,8 +2870,6 @@ Unknown</property>
 	      <child>
 		<widget class="GtkComboBox" id="endowstat">
 		  <property name="visible">True</property>
-		  <property name="add_tearoffs">False</property>
-		  <property name="focus_on_click">True</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">4</property>
@@ -3044,8 +2904,6 @@ Unknown</property>
 	      <child>
 		<widget class="GtkComboBox" id="sealtemple">
 		  <property name="visible">True</property>
-		  <property name="add_tearoffs">False</property>
-		  <property name="focus_on_click">True</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">4</property>
@@ -3070,10 +2928,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">3</property>
@@ -3099,10 +2953,6 @@ Unknown</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">lds_seal_place</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		  <accessibility>
 		    <atkrelation target="lds_seal_place" type="label-for"/>
 		  </accessibility>
@@ -3151,10 +3001,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">3</property>
@@ -3169,8 +3015,6 @@ Unknown</property>
 	      <child>
 		<widget class="GtkComboBox" id="sealstat">
 		  <property name="visible">True</property>
-		  <property name="add_tearoffs">False</property>
-		  <property name="focus_on_click">True</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">4</property>
@@ -3215,10 +3059,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">0</property>
@@ -3243,10 +3083,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">0</property>
@@ -3271,10 +3107,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">0</property>
@@ -3300,10 +3132,6 @@ Unknown</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">sealparents</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">1</property>
@@ -3318,8 +3146,6 @@ Unknown</property>
 	      <child>
 		<widget class="GtkComboBox" id="sealparents">
 		  <property name="visible">True</property>
-		  <property name="add_tearoffs">False</property>
-		  <property name="focus_on_click">True</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">2</property>
@@ -3367,8 +3193,6 @@ Unknown</property>
 	      <child>
 		<widget class="GtkImage" id="image2587">
 		  <property name="visible">True</property>
-		  <property name="icon_size">4</property>
-		  <property name="icon_name">gtk-file</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
@@ -3394,10 +3218,6 @@ Unknown</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">6</property>
 		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>

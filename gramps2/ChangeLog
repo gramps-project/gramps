@@ -1,3 +1,15 @@
+2005-06-06  Alex Roitman  <shura@gramps-project.org>
+	* src/AttrEdit.py: proper type selector support.
+	* src/AutoComp.py (by_value): Use locale-aware sorting.
+	* src/EditPerson.py: Support select button for the event tab.
+	* src/EventEdit.py (EventRefEditor): Editor for both events and
+	event refs.
+	* src/ListBox.py: Support for select button; Proper removal of
+	entries; Proper Event/ref editing support; fixes for combos.
+	* src/NameEdit.py: Typo.
+	* src/edit_person.glade: Add select button to the event tab.
+	* src/gramps.glade: Add new editor for both events and refs.
+
 2005-06-05  Alex Roitman  <shura@gramps-project.org>
 	* src/DateHandler.py: Fix typo caught in gramps20 branch.
 

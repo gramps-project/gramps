@@ -148,6 +148,7 @@ class EditPerson:
         web_add_btn = self.top.get_widget('url_add')
         event_delete_btn = self.top.get_widget('event_del')
         event_add_btn = self.top.get_widget('event_add')
+        event_sel_btn = self.top.get_widget('event_sel')
         event_edit_btn = self.top.get_widget('event_edit')
         attr_add_btn = self.top.get_widget('attr_add')
         attr_delete_btn = self.top.get_widget('attr_del')
@@ -227,7 +228,7 @@ class EditPerson:
 
         self.event_box = ListBox.EventListBox(
             self, self.person, self.event_ref_list, events_label,
-            [event_add_btn,event_edit_btn,event_delete_btn])
+            [event_add_btn,event_edit_btn,event_delete_btn,event_sel_btn])
 
         self.attr_box = ListBox.AttrListBox(
             self, self.person, self.attr_list, attr_label,
