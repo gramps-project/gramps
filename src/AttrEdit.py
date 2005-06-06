@@ -95,7 +95,7 @@ class AttributeEditor:
         self.value_field = self.top.get_widget("attr_value")
         self.note_field = self.top.get_widget("attr_note")
         self.attrib_menu = self.top.get_widget("attr_menu")
-        self.type_field  = self.attrib_menu.child
+#        self.type_field  = self.attrib_menu.child
         self.source_field = self.top.get_widget("attr_source")
         self.priv = self.top.get_widget("priv")
         self.general_label = self.top.get_widget("general_tab")
@@ -105,6 +105,9 @@ class AttributeEditor:
         self.preform = self.top.get_widget("attr_preform")
 
         self.window = self.top.get_widget("attr_edit")
+        self.type_selector = AutoComp.StandardCustomSelector(
+            Utils.personal_attributes,self.attrib_menu,
+            RelLib.Attribute.CUSTOM,RelLib.Attribute.DESCRIPTION)
         
         if attrib:
             self.srcreflist = self.attrib.get_source_references()
@@ -123,17 +126,8 @@ class AttributeEditor:
         l = self.top.get_widget("title")
         Utils.set_titles(self.window,l,title,_('Attribute Editor'))
 
-        if attrib:
-            defval = attrib.get_type()[0]
-        else:
-            defval = None
-
-        self.attrmapper = AutoComp.StandardCustomSelector(
-            Utils.personal_attributes, self.attrib_menu,
-            RelLib.Attribute.CUSTOM, defval)
-
         if attrib != None:
-            self.type_field.set_text(const.display_attr(attrib.get_type()))
+            self.type_selector.set_values(attrib.get_type())
             self.value_field.set_text(attrib.get_value())
             self.priv.set_active(attrib.get_privacy())
 
@@ -180,7 +174,7 @@ class AttributeEditor:
         if not self.attrib:
             label = _("New Attribute")
         else:
-            label = self.attrib.get_type()
+            label = self.attrib.get_type()[1]
         if not label.strip():
             label = _("New Attribute")
         label = "%s: %s" % (_('Attribute'),label)
@@ -212,7 +206,7 @@ class AttributeEditor:
         Called when the OK button is pressed. Gets data from the
         form and updates the Attribute data structure.
         """
-        attr_data = self.attrmapper.get_values()
+        attr_data = self.type_selector.get_values()
         value = unicode(self.value_field.get_text())
 
         buf = self.note_field.get_buffer()

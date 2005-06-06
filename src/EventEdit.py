@@ -48,10 +48,30 @@ import Utils
 import AutoComp
 import RelLib
 import Date
-import DateHandler
+from DateHandler import parser as _dp, displayer as _dd
 import ImageSelect
 import DateEdit
 from QuestionDialog import WarningDialog, ErrorDialog
+
+#-------------------------------------------------------------------------
+#
+# helper function
+#
+#-------------------------------------------------------------------------
+def get_place(field,pmap,db):
+    text = unicode(field.get_text().strip())
+    if text:
+        if pmap.has_key(text):
+            return db.get_place_from_handle(pmap[text])
+        else:
+            place = RelLib.Place()
+            place.set_title(text)
+            trans = db.transaction_begin()
+            db.add_place(place,trans)
+            db.transaction_commit(trans,_("Add Place"))
+            return place
+    else:
+        return None
 
 #-------------------------------------------------------------------------
 #
@@ -79,9 +99,6 @@ class EventEditor:
         self.plist = []
         self.pmap = {}
 
-        self.dp = DateHandler.parser
-        self.dd = DateHandler.displayer
-
         for key in self.parent.db.get_place_handles():
             title = self.parent.db.get_place_from_handle(key).get_title()
             self.pmap[title] = key
@@ -89,11 +106,6 @@ class EventEditor:
         if event:
             self.srcreflist = self.event.get_source_references()
             self.date = Date.Date(self.event.get_date_object())
-            # add the name to the list if it is not already there. This
-            # tends to occur in translated languages with the 'Death'
-            # event, which is a partial match to other events
-            #if not transname in elist:
-            #    elist.append(transname)
         else:
             self.srcreflist = []
             self.date = Date.Date(None)
@@ -170,7 +182,9 @@ class EventEditor:
             defval = None
 
         self.eventmapper = AutoComp.StandardCustomSelector(
-            Utils.personal_events, self.event_menu, RelLib.Event.CUSTOM, defval)
+            Utils.personal_events, self.event_menu,
+            RelLib.Event.CUSTOM, defval)
+
         AutoComp.fill_entry(self.place_field,self.pmap.keys())
 
         if event != None:
@@ -185,7 +199,7 @@ class EventEditor:
                     place_name = self.db.get_place_from_handle(place_handle).get_title()
                 self.place_field.set_text(place_name)
 
-            self.date_field.set_text(self.dd.display(self.date))
+            self.date_field.set_text(_dd.display(self.date))
             self.cause_field.set_text(event.get_cause())
             self.descr_field.set_text(event.get_description())
             self.priv.set_active(event.get_privacy())
@@ -296,28 +310,13 @@ class EventEditor:
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','adv-ev')
 
-    def get_place(self,field):
-        text = unicode(field.get_text().strip())
-        if text:
-            if self.pmap.has_key(text):
-                return self.db.get_place_from_handle(self.pmap[text])
-            else:
-                place = RelLib.Place()
-                place.set_title(text)
-                trans = self.db.transaction_begin()
-                self.db.add_place(place,trans)
-                self.db.transaction_commit(trans,_("Add Place"))
-                return place
-        else:
-            return None
-
     def on_event_edit_ok_clicked(self,obj):
 
         event_data = self.eventmapper.get_values()
 
         #self.date = self.dp.parse(unicode(self.date_field.get_text()))
         ecause = unicode(self.cause_field.get_text())
-        eplace_obj = self.get_place(self.place_field)
+        eplace_obj = get_place(self.place_field,self.pmap,self.db)
         buf = self.note_field.get_buffer()
 
         start = buf.get_start_iter()
@@ -402,9 +401,13 @@ class EventEditor:
         else:
             Utils.unbold_label(self.notes_label)
 
+#-------------------------------------------------------------------------
+#
+# EventRefEditor class
+#
+#-------------------------------------------------------------------------
 class EventRefEditor:
-    def __init__(self, eventref, referent, database, update, parent):
-
+    def __init__(self, event_ref, event, referent, database, update, parent):
         self.db = database
         self.parent = parent
         self.referent = referent
@@ -412,61 +415,140 @@ class EventRefEditor:
             self.win_parent = self.parent
         else:
             self.win_parent = self.parent.parent
-        if eventref:
-            if self.win_parent.child_windows.has_key(eventref):
-                self.win_parent.child_windows[eventref].present(None)
+        if event_ref:
+            if self.win_parent.child_windows.has_key(event_ref):
+                self.win_parent.child_windows[event_ref].present(None)
                 return
             else:
-                self.win_key = eventref
+                self.win_key = event_ref
         else:
             self.win_key = self
         self.update = update
-        self.event_ref = eventref
+        self.event_ref = event_ref
+        self.event = event
         self.child_windows = {}
+
+        self.pmap = {}
+        for key in self.parent.db.get_place_handles():
+            title = self.parent.db.get_place_from_handle(key).get_title()
+            self.pmap[title] = key
 
         self.title = _('Event Reference Editor')
 
-        self.top = gtk.glade.XML(const.dialogFile, "eventref_edit","gramps")
-        self.window = self.top.get_widget('eventref_edit')
-        self.note_field = self.top.get_widget('er_note')
-        self.role_combo = self.top.get_widget('er_role_combo')
-        self.type_label = self.top.get_widget('er_type_label')
-        self.id_label = self.top.get_widget('er_id_label')
-        self.privacy = self.top.get_widget('er_priv_button')
+        self.top = gtk.glade.XML(const.dialogFile, "event_eref_edit","gramps")
+        self.window = self.top.get_widget('event_eref_edit')
+        self.ref_note_field = self.top.get_widget('eer_ref_note')
+        self.role_combo = self.top.get_widget('eer_role_combo')
+        self.ref_privacy = self.top.get_widget('eer_ref_priv')
+
+        self.place_field = self.top.get_widget("eer_place")
+        self.cause_field = self.top.get_widget("eer_cause")
+        self.slist = self.top.get_widget("eer_slist")
+        self.wlist = self.top.get_widget("eer_wlist")
+        self.date_field  = self.top.get_widget("eer_date")
+        self.descr_field = self.top.get_widget("eer_description")
+        self.ev_note_field = self.top.get_widget("eer_ev_note")
+        self.type_combo = self.top.get_widget("eer_type_combo")
+        self.ev_privacy = self.top.get_widget("eer_ev_priv")
+        self.sources_label = self.top.get_widget("eer_sources_tab")
+        self.notes_label = self.top.get_widget("eer_note_tab")
+        self.general_label = self.top.get_widget("eer_general_tab")
+        self.gallery_label = self.top.get_widget("eer_gallery_tab")
+        self.witnesses_label = self.top.get_widget("eer_witness_tab")
+        self.flowed = self.top.get_widget("eer_ev_flowed")
+        self.preform = self.top.get_widget("eer_ev_preform")
+        self.ok = self.top.get_widget('ok')
+        self.expander = self.top.get_widget("eer_expander")
+        
+        add_src = self.top.get_widget('eer_add_src')
+        del_src = self.top.get_widget('eer_del_src')
+
+        add_witness = self.top.get_widget('eer_add_wit')
+        edit_witness = self.top.get_widget('eer_edit_wit')
+        del_witness = self.top.get_widget('eer_del_wit')
 
         Utils.set_titles(self.window,
-                         self.top.get_widget('er_title'),
+                         self.top.get_widget('eer_title'),
                          self.title)
         
         self.top.signal_autoconnect({
-            "on_help_er_edit_clicked"   : self.on_help_clicked,
-            "on_ok_er_edit_clicked"     : self.on_ok_clicked,
-            "on_cancel_er_edit_clicked" : self.close,
-            "on_er_edit_delete_event"   : self.on_delete_event,
+            "on_eer_help_clicked"   : self.on_help_clicked,
+            "on_eer_ok_clicked"     : self.on_ok_clicked,
+            "on_eer_cancel_clicked" : self.close,
+            "on_eer_delete_event"   : self.on_delete_event,
             })
 
         self.role_selector = AutoComp.StandardCustomSelector(
             Utils.event_roles,self.role_combo,
             RelLib.EventRef.CUSTOM,RelLib.EventRef.PRIMARY)
 
-        self.trans = self.db.transaction_begin()
+        AutoComp.fill_entry(self.place_field,self.pmap.keys())
+
+        if self.referent.__class__.__name__ == 'Person':
+            default_type = RelLib.Event.BIRTH
+            default_str = _("Birth")
+        elif self.referent.__class__.__name__ == 'Family':
+            default_type = RelLib.Event.MARRIAGE
+            default_str = _("Marriage")
+
+        self.type_selector = AutoComp.StandardCustomSelector(
+            Utils.personal_events,self.type_combo,
+            RelLib.Event.CUSTOM,default_type)
+
+        if self.event:
+            self.date = Date.Date(self.event.get_date_object())
+            self.expander.set_expanded(False)
+        else:
+            trans = self.db.transaction_begin()
+            self.event = RelLib.Event()
+            self.event.set_type((default_type,default_str))
+            self.db.add_event(self.event,trans)
+            self.db.transaction_commit(trans,_("Add Event"))
+            self.date = Date.Date(None)
+            self.expander.set_expanded(True)
 
         if not self.event_ref:
-            trans2 = self.db.transaction_begin()
-            e = RelLib.Event()
-            e.set_type((RelLib.Event.MARRIAGE,_("Married")))
-            self.db.add_event(e,trans2)
-            self.db.transaction_commit(trans2,_("Add Event"))
             self.event_ref = RelLib.EventRef()
             self.event_ref.set_role((RelLib.EventRef.PRIMARY,_('Primary')))
-            self.event_ref.set_note('Some text')
-            self.event_ref.set_reference_handle(e.get_handle())
+            self.event_ref.set_reference_handle(self.event.get_handle())
 
+        self.srcreflist = self.event.get_source_references()
+        self.sourcetab = Sources.SourceTab(
+            self.srcreflist, self, self.top, self.window, self.slist,
+            add_src, self.top.get_widget('eer_edit_src'), del_src,
+            self.db.readonly)
+
+        self.date_check = DateEdit.DateEdit(self.date,
+                                        self.date_field,
+                                        self.top.get_widget("eer_date_stat"),
+                                        self.window)
+
+        # set event_ref values
         self.role_selector.set_values(self.event_ref.get_role())
-        self.note_field.get_buffer().set_text(self.event_ref.get_note())
-        event = self.db.get_event_from_handle(self.event_ref.ref)
-        self.id_label.set_text(event.get_gramps_id())
-        self.type_label.set_text(event.get_type()[1])
+        self.ref_note_field.get_buffer().set_text(self.event_ref.get_note())
+        self.ref_privacy.set_active(self.event_ref.get_privacy())
+
+        # set event values
+        self.type_selector.set_values(self.event.get_type())
+        place_handle = self.event.get_place_handle()
+        if not place_handle:
+            place_name = u""
+        else:
+            place_name = self.db.get_place_from_handle(place_handle).get_title()
+        self.place_field.set_text(place_name)
+        self.date_field.set_text(_dd.display(self.date))
+        self.cause_field.set_text(self.event.get_cause())
+        self.descr_field.set_text(self.event.get_description())
+        self.ev_privacy.set_active(self.event.get_privacy())
+        if self.event.get_note():
+            self.ev_note_field.get_buffer().set_text(event.get_note())
+            Utils.bold_label(self.notes_label)
+            if event.get_note_format() == 1:
+                self.preform.set_active(1)
+            else:
+                self.flowed.set_active(1)
+        if self.event.get_media_list():
+            Utils.bold_label(self.gallery_label)
 
         self.add_itself_to_menu()
         self.window.show()
@@ -511,16 +593,88 @@ class EventRefEditor:
         pass
 
     def on_ok_clicked(self,obj):
+
+        # first, save event if changed
+        etype = self.type_selector.get_values()
+        ecause = unicode(self.cause_field.get_text())
+        eplace_obj = get_place(self.place_field,self.pmap,self.db)
+        buf = self.ev_note_field.get_buffer()
+        start = buf.get_start_iter()
+        stop = buf.get_end_iter()
+        enote = unicode(buf.get_text(start,stop,False))
+        eformat = self.preform.get_active()
+        edesc = unicode(self.descr_field.get_text())
+        epriv = self.ev_privacy.get_active()
+        self.update_event(etype,self.date,eplace_obj,edesc,enote,eformat,
+                          epriv,ecause)
+        # event is a primary object, so its change has to be committed now
+        if self.parent.lists_changed:
+            trans = self.db.transaction_begin()
+            self.db.commit_event(self.event,trans)
+            self.db.transaction_commit(trans,_("Modify Event"))
+        
+        # then, set properties of the event_ref
         self.event_ref.set_role(self.role_selector.get_values())
-        buf = self.note_field.get_buffer()
+        self.event_ref.set_privacy(self.ref_privacy.get_active())
+        buf = self.ref_note_field.get_buffer()
         start = buf.get_start_iter()
         stop = buf.get_end_iter()
         note = unicode(buf.get_text(start,stop,False))
         self.event_ref.set_note(note)
         self.referent.add_event_ref(self.event_ref)
-        if self.referent.__class__.__name__ == 'Person':
-            self.db.commit_person(self.referent,self.trans)
-        elif self.referent.__class__.__name__ == 'Family':
-            self.db.commit_family(self.referent,self.trans)
-        self.db.transaction_commit(self.trans,_("Add Event Reference"))
         self.close(None)
+
+        if self.update:
+            self.update((self.event_ref,self.event))
+
+    def update_event(self,the_type,date,place,desc,note,format,priv,cause):
+        if place:
+            if self.event.get_place_handle() != place.get_handle():
+                self.event.set_place_handle(place.get_handle())
+                self.parent.lists_changed = 1
+        else:
+            if self.event.get_place_handle():
+                self.event.set_place_handle("")
+                self.parent.lists_changed = 1
+        
+        if self.event.get_type() != the_type:
+            self.event.set_type(the_type)
+            self.parent.lists_changed = 1
+        
+        if self.event.get_description() != desc:
+            self.event.set_description(desc)
+            self.parent.lists_changed = 1
+
+        if self.event.get_note() != note:
+            self.event.set_note(note)
+            self.parent.lists_changed = 1
+
+        if self.event.get_note_format() != format:
+            self.event.set_note_format(format)
+            self.parent.lists_changed = 1
+
+        dobj = self.event.get_date_object()
+
+        self.event.set_source_reference_list(self.srcreflist)
+        
+        if not dobj.is_equal(date):
+            self.event.set_date_object(date)
+            self.parent.lists_changed = 1
+
+        if self.event.get_cause() != cause:
+            self.event.set_cause(cause)
+            self.parent.lists_changed = 1
+
+        if self.event.get_privacy() != priv:
+            self.event.set_privacy(priv)
+            self.parent.lists_changed = 1
+
+    def on_switch_page(self,obj,a,page):
+        buf = self.ev_note_field.get_buffer()
+        start = buf.get_start_iter()
+        stop = buf.get_end_iter()
+        text = unicode(buf.get_text(start,stop,False))
+        if text:
+            Utils.bold_label(self.eer_notes_label)
+        else:
+            Utils.unbold_label(self.eer_notes_label)

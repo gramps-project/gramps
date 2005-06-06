@@ -77,6 +77,8 @@ class ListBox:
         self.blist[0].connect('clicked',self.add)
         self.blist[1].connect('clicked',self.update)
         self.blist[2].connect('clicked',self.delete)
+        if len(self.blist) > 3:
+            self.blist[3].connect('clicked',self.select)
         self.tree.connect('key_press_event', self.keypress)
         self.change_list = Set()
 
@@ -102,7 +104,7 @@ class ListBox:
     def select_row(self,obj):
         store, node = obj.get_selected()
         enable = node != None
-        for button in self.blist[1:]:
+        for button in self.blist[1:3]:
             button.set_sensitive(enable)
 
     def delete(self,obj):
@@ -131,7 +133,8 @@ class ListBox:
         """Deletes the selected name from the name list"""
         store,node = self.list_model.get_selected()
         if node:
-            self.list_model.remove(self.list_model.get_object(node))
+            self.data.remove(self.list_model.get_object(node))
+            self.list_model.remove(node)
             self.changed = True
             self.redraw()
 
@@ -258,7 +261,8 @@ class AttrListBox(ReorderListBox):
         has_source = len(attr.get_source_references())> 0
 
         etype = attr.get_type()
-        if etype[0] == RelLib.Attribute.CUSTOM:
+        if etype[0] == RelLib.Attribute.CUSTOM \
+               or not Utils.personal_attributes.has_key(etype[0]):
             name = etype[1]
         else:
             name = Utils.personal_attributes[etype[0]]
@@ -272,6 +276,8 @@ class EventListBox(ReorderListBox):
     def __init__(self,parent,person,obj,label,button_list):
 
         self.data = []
+        self.person = person
+        self.parent = parent
         birth_ref = person.get_birth_ref()
         death_ref = person.get_death_ref()
         if birth_ref:
@@ -284,7 +290,7 @@ class EventListBox(ReorderListBox):
             self.data.append((event_ref,
                               parent.db.get_event_from_handle(event_ref.ref)))
 
-        custom_str = Utils.personal_events[RelLib.Attribute.CUSTOM]
+        custom_str = Utils.personal_events[RelLib.Event.CUSTOM]
         eventnames = filter(lambda x: x != custom_str,
                             Utils.personal_events.values())
         eventnames.sort(locale.strcoll)
@@ -326,20 +332,31 @@ class EventListBox(ReorderListBox):
 
     def add(self,obj):
         """Brings up the EventEditor for a new event"""
-        EventEdit.EventEditor(
-            self.parent, self.name, Utils.personal_events,
-            None, None, False,
-            self.edit_callback, noedit=self.db.readonly)
+        EventEdit.EventRefEditor(None,None,self.person,self.parent.db,
+                                 self.edit_callback,self.parent)
+        #            self.parent, self.name, Utils.personal_events,
+        #            None, None, False,
+        #            self.edit_callback, noedit=self.db.readonly)
 
+    def select(self,obj):
+        """
+        Creates eventref for an existing event.
+        """
+        # select existing event
+        event = RelLiv.Event()
+        EventEdit.EventRefEditor(event,None,self.person,self.parent.db,
+                                 self.edit_callback,self.parent)
+    
     def update(self,obj):
         store,node = self.list_model.get_selected()
         if not node:
             return
-        event = self.list_model.get_object(node)
-        EventEdit.EventEditor(
-            self.parent, self.name, Utils.personal_events,
-            event[1], None, False,
-            self.edit_callback, noedit=self.db.readonly)
+        event,event_ref = self.list_model.get_object(node)
+        EventEdit.EventRefEditor(event,event_ref,self.person,self.parent.db,
+                                 self.edit_callback,self.parent)   
+#            self.parent, self.name, Utils.personal_events,
+#            event[1], None, False,
+#            self.edit_callback, noedit=self.db.readonly)
 
     def display_data(self,event_tuple):
         (event_ref, event) = event_tuple
@@ -351,7 +368,8 @@ class EventListBox(ReorderListBox):
         has_note = event.get_note()
         has_source = len(event.get_source_references())> 0
         etype = event.get_type()
-        if etype[0] == RelLib.Event.CUSTOM:
+        if etype[0] == RelLib.Event.CUSTOM \
+               or not Utils.personal_events.has_key(etype[0]):
             name = etype[1]
         else:
             name = Utils.personal_events[etype[0]]
@@ -369,24 +387,35 @@ class EventListBox(ReorderListBox):
             foo.set_place_handle(place.get_handle())
         self.data.insert(row,foo.get_handle())
 
-    def edit_callback(self,data):
-        self.changed = True
-        changed = False
-        for val in self.data:
-            if data.handle == val[1].handle:
-                self.change_list.add(val)
-                changed = True
-        if not changed:
-            ref = RelLib.EventRef()
-            ref.ref = data.handle
-            new_data = (ref,data)
-            self.change_list.add(new_data)
-            self.data.append(new_data)
-        self.redraw()
-        try:
-            self.list_model.select_iter(self.node_map[new_data])
-        except:
-            print "Edit callback failed"
+##     def edit_callback(self,data):
+##         self.changed = True
+##         self.change_list.add(data)
+##         if data not in self.data:
+##             self.data.append(data)
+##         self.redraw()
+##         try:
+##             self.list_model.select_iter(self.node_map[data])
+##         except:
+##             print "Edit callback failed"
+##         self.changed = True
+##         changed = False
+##         event_ref,event = data
+##         if event.handle == 
+##         for val in self.data:
+##             if data.handle == val[1].handle:
+##                 self.change_list.add(val)
+##                 changed = True
+##         if not changed:
+##             ref = RelLib.EventRef()
+##             ref.ref = data.handle
+##             new_data = (ref,data)
+##             self.change_list.add(new_data)
+##             self.data.append(new_data)
+##         self.redraw()
+##         try:
+##             self.list_model.select_iter(self.node_map[new_data])
+##         except:
+##             print "Edit callback failed"
 
 class NameListBox(ReorderListBox):
     
@@ -443,14 +472,20 @@ class NameListBox(ReorderListBox):
         store,node = self.list_model.get_selected()
         if node:
             NameEdit.NameEditor(self.parent, self.list_model.get_object(node),
-                                self.edit_callback, self.window)
+                                self.edit_callback, self.parent.window)
 
     def display_data(self,name):
         has_note = name.get_note()
         has_source = len(name.get_source_references())> 0
+        the_type = name.get_type()
+        if the_type[0] == RelLib.Name.CUSTOM or \
+                not Utils.name_types.has_key(the_type[0]):
+            type_name = the_type[1]
+        else:
+            type_name = Utils.name_types[the_type[0]]
         return [name.get_surname(),name.get_surname_prefix(),
                 name.get_first_name(), name.get_suffix(),
-                name.get_type()[1],has_source,has_note]
+                type_name,has_source,has_note]
 
     def unpickle(self, data):
         foo = pickle.loads(data);

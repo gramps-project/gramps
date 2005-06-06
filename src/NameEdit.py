@@ -151,7 +151,7 @@ class NameEditor:
             self.title_field.set_text(name.get_title())
             self.suffix_field.set_text(name.get_suffix())
             self.prefix_field.set_text(name.get_surname_prefix())
-            self.type_selector.set_values(name.set_type())
+            self.type_selector.set_values(name.get_type())
             self.patronymic_field.set_text(name.get_patronymic())
             self.priv.set_active(name.get_privacy())
             Utils.bold_label(self.general_label)
