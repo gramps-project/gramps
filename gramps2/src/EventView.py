@@ -113,15 +113,16 @@ class EventView:
         for column in self.columns:
             self.list.remove_column(column)
             
-        column = gtk.TreeViewColumn(_('Type'), self.renderer,text=0)
-        column.set_resizable(True)
-        column.set_min_width(225)
-        column.set_clickable(True)
-        column.connect('clicked',self.column_clicked,0)
-        self.list.append_column(column)
-        self.columns = [column]
+##         column = gtk.TreeViewColumn(_('Type'), self.renderer,text=0)
+##         column.set_resizable(True)
+##         column.set_min_width(225)
+##         column.set_clickable(True)
+##         column.connect('clicked',self.column_clicked,0)
+##         self.list.append_column(column)
+##         self.columns = [column]
+        self.columns = []
 
-        index = 1
+        index = 0
         for pair in self.parent.db.get_event_column_order():
             if not pair[0]:
                 continue

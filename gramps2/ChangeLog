@@ -1,3 +1,7 @@
+2005-06-07  Alex Roitman  <shura@gramps-project.org>
+	* src/EventView.py (build_columns): Do not artificially create
+	an extra column.
+
 2005-06-06  Alex Roitman  <shura@gramps-project.org>
 	* src/AttrEdit.py: proper type selector support.
 	* src/AutoComp.py (by_value): Use locale-aware sorting.
