@@ -120,7 +120,8 @@ gdir_PYTHON = \
 	RecentFiles.py\
 	ReportOptions.py\
 	ReadGrdb.py\
-	WriteGrdb.py
+	WriteGrdb.py\
+	EventView.py
 
 # Could use GNU make's ':=' syntax for nice wildcard use.
 # If not using GNU make, then list all files individually

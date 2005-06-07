@@ -10,6 +10,15 @@
 	* src/edit_person.glade: Add select button to the event tab.
 	* src/gramps.glade: Add new editor for both events and refs.
 
+	* src/DisplayModels.py: Support for event view.
+	* src/EventEdit.py: Commit event on OK.
+	* src/GrampsDbBase.py: Event column order and event cursor.
+	* src/GrampsInMemDB.py: Event cursor.
+	* src/gramps.glade: Event View, rework buttons.
+	* src/gramps_main.py: Event View support.
+	* src/EventView.py: Add to CVS. 
+	* src/Makefile.am: Ship EventView.
+
 2005-06-05  Alex Roitman  <shura@gramps-project.org>
 	* src/DateHandler.py: Fix typo caught in gramps20 branch.
 

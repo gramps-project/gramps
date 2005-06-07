@@ -80,10 +80,12 @@ def get_place(field,pmap,db):
 #-------------------------------------------------------------------------
 class EventEditor:
 
-    def __init__(self,parent,name,etypes,event,def_placename,
-                 read_only, cb, def_event=None, noedit=False):
+    def __init__(self,event,db,parent,parent_window):
+                 #read_only, cb, def_event=None, noedit=False):
         self.parent = parent
-        self.db = self.parent.db
+        self.db = db
+        read_only = self.db.readonly
+        noedit = self.db.readonly
         if event:
             if self.parent.child_windows.has_key(event.get_handle()):
                 self.parent.child_windows[event.get_handle()].present(None)
@@ -94,7 +96,6 @@ class EventEditor:
             self.win_key = self
         self.event = event
         self.child_windows = {}
-        self.callback = cb
         self.path = self.db.get_save_path()
         self.plist = []
         self.pmap = {}
@@ -115,10 +116,10 @@ class EventEditor:
         self.window = self.top.get_widget("event_edit")
         title_label = self.top.get_widget('title')
 
-        if name == ", ":
-            etitle = _('Event Editor')
-        else:
-            etitle = _('Event Editor for %s') % name
+        #if name == ", ":
+        etitle = _('Event Editor')
+        #else:
+        #    etitle = _('Event Editor for %s') % name
 
         Utils.set_titles(self.window,title_label, etitle,
                          _('Event Editor'))
@@ -188,16 +189,16 @@ class EventEditor:
         AutoComp.fill_entry(self.place_field,self.pmap.keys())
 
         if event != None:
-#            self.event_menu.child.set_text(transname)
-            if def_placename:
-                self.place_field.set_text(def_placename)
+            #            self.event_menu.child.set_text(transname)
+            #            if def_placename:
+            #                self.place_field.set_text(def_placename)
+            #            else:
+            place_handle = event.get_place_handle()
+            if not place_handle:
+                place_name = u""
             else:
-                place_handle = event.get_place_handle()
-                if not place_handle:
-                    place_name = u""
-                else:
-                    place_name = self.db.get_place_from_handle(place_handle).get_title()
-                self.place_field.set_text(place_name)
+                place_name = self.db.get_place_from_handle(place_handle).get_title()
+            self.place_field.set_text(place_name)
 
             self.date_field.set_text(_dd.display(self.date))
             self.cause_field.set_text(event.get_cause())
@@ -345,9 +346,12 @@ class EventEditor:
         self.update_event(event_data,self.date,eplace_obj,edesc,enote,eformat,
                           epriv,ecause)
         
+        if self.parent.lists_changed:
+            trans = self.db.transaction_begin()
+            self.db.commit_event(self.event,trans)
+            self.db.transaction_commit(trans,_("Edit Event"))
+            
         self.close(obj)
-        if self.callback:
-            self.callback(self.event)
 
     def update_event(self,the_type,date,place,desc,note,format,priv,cause):
         if place:

@@ -58,6 +58,7 @@ import PedView
 import MediaView
 import PlaceView
 import FamilyView
+import EventView
 import SourceView
 import RepositoryView
 import PeopleView
@@ -102,6 +103,7 @@ SOURCE_VIEW     = 4
 REPOSITORY_VIEW = 5
 PLACE_VIEW      = 6
 MEDIA_VIEW      = 7
+EVENT_VIEW      = 8
 
 #-------------------------------------------------------------------------
 #
@@ -383,6 +385,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.repository_view = RepositoryView.RepositoryView(self,self.db,self.gtop)
         self.media_view      = MediaView.MediaView(self,self.db,self.gtop,
                                                    self.update_display)
+        self.event_view      = EventView.EventView(self,self.db,self.gtop)
 
         self.add_button = self.gtop.get_widget('addbtn')
         self.add_item = self.gtop.get_widget('add_item')
@@ -471,6 +474,8 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             "on_gramps_report_bug_activate" : self.report_bug_activate,
             "on_gramps_mailing_lists_activate" : self.mailing_lists_activate,
             "on_open_example" : self.open_example,
+            "on_events_activate" : self.on_events_activate,
+            "on_repos_activate"  : self.on_repos_activate,
             })
 
         self.filter_btn.set_active(GrampsKeys.get_filter())
@@ -597,6 +602,10 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.db.set_media_column_order(list)
         self.media_view.build_columns()
 
+    def set_event_column_order(self,list):
+        self.db.set_event_column_order(list)
+        self.event_view.build_columns()
+
     def column_order(self,obj):
         import ColumnOrder
 
@@ -621,6 +630,10 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             ColumnOrder.ColumnOrder(self.db.get_media_column_order(),
                                     MediaView.column_names,
                                     self.set_media_column_order)
+        elif cpage == EVENT_VIEW:
+            ColumnOrder.ColumnOrder(self.db.get_event_column_order(),
+                                    EventView.column_names,
+                                    self.set_event_column_order)
         
     def clear_history(self):
         self.history = []
@@ -860,6 +873,8 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.place_view.on_edit_clicked(obj)
         elif cpage == MEDIA_VIEW:
             self.media_view.on_edit_clicked(obj)
+        elif cpage == EVENT_VIEW:
+            self.event_view.on_edit_clicked(obj)
 
     def add_button_clicked(self,obj):
         cpage = self.views.get_current_page()
@@ -873,6 +888,8 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.place_view.on_add_place_clicked(obj)
         elif cpage == MEDIA_VIEW:
             self.media_view.on_add_clicked(obj)
+        elif cpage == EVENT_VIEW:
+            self.event_view.on_add_clicked(obj)
 
     def remove_button_clicked(self,obj):
         cpage = self.views.get_current_page()
@@ -886,6 +903,8 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.place_view.on_delete_clicked(obj)
         elif cpage == MEDIA_VIEW:
             self.media_view.on_delete_clicked(obj)
+        elif cpage == EVENT_VIEW:
+            self.event_view.on_delete_clicked(obj)
 
     def enable_buttons(self,val):
         if self.db.readonly:
@@ -1675,6 +1694,14 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         """Switches to the media view"""
         self.views.set_current_page(MEDIA_VIEW)
 
+    def on_events_activate(self,obj):
+        """Switches to the event view"""
+        self.views.set_current_page(EVENT_VIEW)
+
+    def on_repos_activate(self,obj):
+        """Switches to the repository view"""
+        self.views.set_current_page(REPOSITORY_VIEW)
+
     def on_views_switch_page(self,obj,junk,page):
         """Load the appropriate page after a notebook switch"""
         if page == PERSON_VIEW:
@@ -1695,6 +1722,9 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.enable_buttons(1)
             self.merge_button.set_sensitive(1)
         elif page == MEDIA_VIEW:
+            self.enable_buttons(1)
+            self.merge_button.set_sensitive(0)
+        elif page == EVENT_VIEW:
             self.enable_buttons(1)
             self.merge_button.set_sensitive(0)
             
