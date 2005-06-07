@@ -104,6 +104,9 @@ class GrampsInMemDB(GrampsDbBase):
     def get_family_cursor(self):
         return GrampsInMemCursor(self.family_map)
 
+    def get_event_cursor(self):
+        return GrampsInMemCursor(self.event_map)
+
     def get_place_cursor(self):
         return GrampsInMemCursor(self.place_map)
 

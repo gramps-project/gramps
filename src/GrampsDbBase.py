@@ -69,6 +69,7 @@ PLACE_COL_KEY       = 'place_columns'
 SOURCE_COL_KEY      = 'source_columns'
 MEDIA_COL_KEY       = 'media_columns'
 REPOSITORY_COL_KEY  = 'repository_columns'
+EVENT_COL_KEY       = 'event_columns'
 
 _sigbase = ('person', 'family', 'source', 'event',
             'media', 'place', 'repository')
@@ -233,6 +234,9 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         assert False, "Needs to be overridden in the derived class"
 
     def get_family_cursor(self):
+        assert False, "Needs to be overridden in the derived class"
+
+    def get_event_cursor(self):
         assert False, "Needs to be overridden in the derived class"
 
     def get_place_cursor(self):
@@ -1354,6 +1358,14 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         """
         default = [(1,1),(0,5),(0,6),(1,2),(1,3),(0,4)]
         return self._get_column_order(MEDIA_COL_KEY,default)
+
+    def get_event_column_order(self):
+        """
+        Returns the Event display common information stored in the
+        database's metadata.
+        """
+        default = [(1,0),(1,1),(1,2),(0,3),(1,4),(1,5),(0,6)]
+        return self._get_column_order(EVENT_COL_KEY,default)
 
     def get_repository_column_order(self):
         """

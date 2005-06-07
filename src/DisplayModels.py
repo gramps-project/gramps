@@ -489,6 +489,75 @@ class MediaModel(BaseModel):
         return unicode(time.strftime(_date_format,time.localtime(data[8])),
                             _codeset)
 
+#-------------------------------------------------------------------------
+#
+# EventModel
+#
+#-------------------------------------------------------------------------
+class EventModel(BaseModel):
+
+    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
+        self.gen_cursor = db.get_event_cursor
+        self.map = db.event_map
+        
+        self.fmap = [
+            self.column_description,
+            self.column_id,
+            self.column_type,
+            self.column_change,
+            self.column_date,
+            self.column_place,
+            self.column_cause,
+            self.column_handle,
+            ]
+        self.smap = [
+            self.column_description,
+            self.column_id,
+            self.column_type,
+            self.sort_change,
+            self.column_date,
+            self.column_place,
+            self.column_cause,
+            self.column_handle,
+            ]
+        BaseModel.__init__(self,db,scol,order)
+
+    def on_get_n_columns(self):
+        return len(self.fmap)+1
+
+    def column_description(self,data):
+        return unicode(data[4])
+
+    def column_cause(self,data):
+        return unicode(data[6])
+
+    def column_place(self,data):
+        if data[5]:
+            return unicode(self.db.get_place_from_handle(data[5]).get_title())
+        else:
+            return u''
+
+    def column_type(self,data):
+        return unicode(data[2][1])
+
+    def column_id(self,data):
+        return unicode(data[1])
+
+    def column_date(self,data):
+        if data[3]:
+            return unicode(DateHandler.displayer.display(data[3]))
+        return u''
+
+    def column_handle(self,data):
+        return unicode(data[0])
+
+    def sort_change(self,data):
+        return time.localtime(data[11])
+
+    def column_change(self,data):
+        return unicode(time.strftime(_date_format,time.localtime(data[11])),
+                            _codeset)
+
 
 #-------------------------------------------------------------------------
 #
