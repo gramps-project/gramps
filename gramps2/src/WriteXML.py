@@ -298,11 +298,11 @@ class XmlWriter:
                 self.write_url_list(person.get_url_list())
 
                 for alt in person.get_parent_family_handle_list():
-                    if alt[1] != const.CHILD_BIRTH:
+                    if alt[1] != RelLib.Person.CHILD_BIRTH:
                         mrel=' mrel="%s"' % const.child_rel_notrans[alt[1]]
                     else:
                         mrel=''
-                    if alt[2] != const.CHILD_BIRTH:
+                    if alt[2] != RelLib.Person.CHILD_BIRTH:
                         frel=' frel="%s"' % const.child_rel_notrans[alt[2]]
                     else:
                         frel=''

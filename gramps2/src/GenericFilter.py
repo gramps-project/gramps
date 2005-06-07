@@ -1415,7 +1415,7 @@ class HaveAltFamilies(Rule):
     def apply(self,db,handle):
         p = db.get_person_from_handle(handle)
         for (fam,rel1,rel2) in p.get_parent_family_handle_list():
-            if rel1 == const.CHILD_ADOPTED or rel2 == const.CHILD_ADOPTED:
+            if rel1 == RelLib.Person.CHILD_ADOPTED or rel2 == RelLib.Person.CHILD_ADOPTED:
                 return 1
         return 0
 

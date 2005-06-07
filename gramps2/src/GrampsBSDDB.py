@@ -518,11 +518,11 @@ class GrampsBSDDB(GrampsDbBase):
                 try:
                     mrel = child_rel_notrans.index(mrel)
                 except:
-                    mrel = const.CHILD_BIRTH
+                    mrel = RelLib.Person.CHILD_BIRTH
                 try:
                     frel = child_rel_notrans.index(frel)
                 except:
-                    frel = const.CHILD_BIRTH
+                    frel = RelLib.Person.CHILD_BIRTH
                 new_list.append((f,mrel,frel))
             person.parent_family_list = new_list
             self.commit_person(person,trans)
