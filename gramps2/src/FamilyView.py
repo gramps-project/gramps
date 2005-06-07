@@ -1549,10 +1549,10 @@ class FamilyView:
             pname = self.person.get_primary_name()
             return (pname.get_surname_prefix(),pname.get_surname())
         elif self.family:
-            fid = self.family.get_father_handle()
-            f = self.parent.db.get_family_from_handle(fid)
-            if f:
-                pname = f.get_primary_name()
+            father_handle = self.family.get_father_handle()
+            if father_handle:
+                father = self.parent.db.get_person_from_handle(father_handle)
+                pname = father.get_primary_name()
                 return (pname.get_surname_prefix(),pname.get_surname())
         return ("","")
 
@@ -1561,10 +1561,12 @@ class FamilyView:
 
     def latin_american(self,val):
         if self.family:
-            father = self.family.get_father_handle()
-            mother = self.family.get_mother_handle()
-            if not father or not mother:
+            father_handle = self.family.get_father_handle()
+            mother_handle = self.family.get_mother_handle()
+            if not father_handle or not mother_handle:
                 return ("","")
+            father = self.parent.db.get_person_from_handle(father_handle)
+            mother = self.parent.db.get_person_from_handle(mother_handle)
             fsn = father.get_primary_name().get_surname()
             msn = mother.get_primary_name().get_surname()
             if not father or not mother:
@@ -1581,9 +1583,10 @@ class FamilyView:
         if self.person.get_gender() == RelLib.Person.MALE:
             fname = self.person.get_primary_name().get_first_name()
         elif self.family:
-            f = self.family.get_father_handle()
-            if f:
-                fname = f.get_primary_name().get_first_name()
+            father_handle = self.family.get_father_handle()
+            if father_handle:
+                father = self.parent.db.get_person_from_handle(father_handle)
+                fname = father.get_primary_name().get_first_name()
         if fname:
             fname = fname.split()[0]
         if val == 0:

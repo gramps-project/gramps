@@ -1,3 +1,7 @@
+2005-06-07  Alex Roitman  <shura@gramps-project.org>
+	* src/FamilyView.py (north_american,latin_american,icelandic): Fix
+	object/handle mixups.
+
 2005-06-05  Eero Tamminen  <eerot@sf>
 	* src/po/fi.po: Translated rest of the tips (=everything).
 	  Improved previous translations and fixed typos.
