@@ -878,16 +878,16 @@ class GrampsParser:
             try:
                 mrel = const.child_rel_notrans.index(attrs["mrel"])
             except:
-                mrel = const.CHILD_NONE
+                mrel = RelLib.Person.CHILD_NONE
         else:
-            mrel = const.CHILD_BIRTH
+            mrel = RelLib.Person.CHILD_BIRTH
         if attrs.has_key("frel"):
             try:
                 frel = const.child_rel_notrans.index(attrs["frel"])
             except:
-                frel = const.CHILD_NONE
+                frel = RelLib.Person.CHILD_NONE
         else:
-            frel = const.CHILD_BIRTH
+            frel = RelLib.Person.CHILD_BIRTH
         self.person.add_parent_family_handle(family.get_handle(),mrel,frel)
 
     def start_parentin(self,attrs):

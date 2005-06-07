@@ -793,8 +793,8 @@ class FamilyView:
         # TODO: Add child ordered by birth day
         family.add_child_handle(new_person.get_handle())
         new_person.add_parent_family_handle(family.get_handle(),
-                                            const.CHILD_BIRTH,
-                                            const.CHILD_BIRTH)
+                                            RelLib.Person.CHILD_BIRTH,
+                                            RelLib.Person.CHILD_BIRTH)
         self.parent.db.commit_person(new_person,trans)
         self.parent.db.commit_family(family,trans)
         self.parent.db.transaction_commit(trans,_("Add Child to Family"))
@@ -1449,8 +1449,8 @@ class FamilyView:
 
             family.add_child_handle(new_person.get_handle())
             new_person.add_parent_family_handle(family.get_handle(),
-                                                const.CHILD_BIRTH,
-                                                const.CHILD_BIRTH)
+                                                RelLib.Person.CHILD_BIRTH,
+                                                RelLib.Person.CHILD_BIRTH)
             self.parent.db.commit_person(new_person,trans)
             self.parent.db.commit_family(family,trans)
             self.parent.db.transaction_commit(trans,_("Add Child to Family"))

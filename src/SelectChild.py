@@ -89,8 +89,8 @@ class SelectChild:
         self.mrel = self.xml.get_widget("mrel_combo")
         self.frel = self.xml.get_widget("frel_combo")
 
-        self.build_list(self.mrel,const.CHILD_BIRTH)
-        self.build_list(self.frel,const.CHILD_BIRTH)
+        self.build_list(self.mrel,RelLib.Person.CHILD_BIRTH)
+        self.build_list(self.frel,RelLib.Person.CHILD_BIRTH)
 
         if self.family:
             father = self.db.get_person_from_handle(self.family.get_father_handle())
@@ -314,14 +314,14 @@ class SelectChild:
         mrel = self.mrel.get_active()
         mother = self.db.get_person_from_handle(self.family.get_mother_handle())
         if mother and mother.get_gender() != RelLib.Person.FEMALE:
-            if mrel == const.CHILD_BIRTH:
-                mrel = const.CHILD_UNKNOWN
+            if mrel == RelLib.Person.CHILD_BIRTH:
+                mrel = RelLib.Person.CHILD_UNKNOWN
                 
         frel = self.frel.get_active()
         father = self.db.get_person_from_handle(self.family.get_father_handle())
         if father and father.get_gender() != RelLib.Person.MALE:
-            if frel == const.CHILD_BIRTH:
-                frel = const.CHILD_UNKNOWN
+            if frel == RelLib.Person.CHILD_BIRTH:
+                frel = RelLib.Person.CHILD_UNKNOWN
 
         select_child.add_parent_family_handle(self.family.get_handle(),
                                               mrel,frel)
