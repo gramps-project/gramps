@@ -427,7 +427,6 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             "on_add_repository_clicked" : self.repository_view.on_add_clicked,
             "on_addperson_clicked" : self.load_new_person,
             "on_apply_filter_clicked" : self.on_apply_filter_clicked,
-            "on_arrow_left_clicked" : self.pedigree_view.on_show_child_menu,
             "on_contents_activate" : self.on_contents_activate,
             "on_faq_activate" : self.on_faq_activate,
             "on_default_person_activate" : self.on_default_person_activate,
@@ -622,6 +621,10 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             ColumnOrder.ColumnOrder(self.db.get_source_column_order(),
                                     SourceView.column_names,
                                     self.set_source_column_order)
+        elif cpage == REPOSITORY_VIEW:
+            ColumnOrder.ColumnOrder(self.db.get_repository_column_order(),
+                                    RepositoryView.column_names,
+                                    self.set_repository_column_order)
         elif cpage == PLACE_VIEW:
             ColumnOrder.ColumnOrder(self.db.get_place_column_order(),
                                     PlaceView.column_names,
