@@ -58,6 +58,19 @@ import NameDisplay
 import DateHandler
 import GenericFilter
 from QuestionDialog import ErrorDialog, WarningDialog
+import AutoComp
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+UNKNOWN_REL = (RelLib.Person.CHILD_UNKNOWN,
+               Utils.child_relations[RelLib.Person.CHILD_UNKNOWN])
+BIRTH_REL   = (RelLib.Person.CHILD_BIRTH,
+               Utils.child_relations[RelLib.Person.CHILD_BIRTH])
+MARRIED_REL = (RelLib.Family.MARRIED,
+               Utils.family_relations[RelLib.Family.MARRIED])
 
 #-------------------------------------------------------------------------
 #
@@ -147,15 +160,18 @@ class ChooseParents:
                 frel = fr
                 break
         else:
-            mrel = RelLib.Person.CHILD_BIRTH
-            frel = RelLib.Person.CHILD_BIRTH
+            mrel = BIRTH_REL
+            frel = BIRTH_REL
 
         if self.family:
             self.type = self.family.get_relationship()
         else:
-            self.type = RelLib.Family.MARRIED
+            self.type = MARRIED_REL
 
-        self.prel.set_active(self.type)
+        self.prel_selector = AutoComp.StandardCustomSelector(
+            Utils.child_relations,self.prel,
+            RelLib.Family.CUSTOM,RelLib.Family.MARIIED)
+        self.prel_selector.set_values(self.type)
         self.redrawm()
         
         self.glade.signal_autoconnect({
@@ -169,9 +185,17 @@ class ChooseParents:
             "on_familyDialog_delete_event" : self.on_delete_event,
             })
 
-        self.keys = const.child_rel_list
-        self.build_list(self.mcombo,mrel)
-        self.build_list(self.fcombo,frel)
+        #self.build_list(self.mcombo,mrel)
+        #self.build_list(self.fcombo,frel)
+        self.frel_selector = AutoComp.StandardCustomSelector(
+            Utils.child_relations,self.fcombo,
+            RelLib.Person.CHILD_CUSTOM,RelLib.Person.CHILD_BIRTH)
+        self.mrel_selector = AutoComp.StandardCustomSelector(
+            Utils.child_relations,self.mcombo,
+            RelLib.Person.CHILD_CUSTOM,RelLib.Person.CHILD_BIRTH)
+
+        self.frel_selector.set_values(frel)
+        self.mrel_selector.set_values(mrel)
         
         self.window.show()
 
@@ -292,7 +316,7 @@ class ChooseParents:
         self.father_model = PeopleModel.PeopleModel(self.db,self.father_filter)
         self.father_list.set_model(self.father_model)
         
-        if self.type == RelLib.Family.CIVIL_UNION:
+        if self.type[0] == RelLib.Family.CIVIL_UNION:
             self.flabel.set_label("<b>%s</b>" % _("Par_ent"))
         else:
             self.flabel.set_label("<b>%s</b>" % _("Fath_er"))
@@ -302,7 +326,7 @@ class ChooseParents:
         self.mother_model = PeopleModel.PeopleModel(self.db,self.mother_filter)
         self.mother_list.set_model(self.mother_model)
         
-        if self.type == RelLib.Family.CIVIL_UNION:
+        if self.type[0] == RelLib.Family.CIVIL_UNION:
             self.mlabel.set_label("<b>%s</b>" % _("Pa_rent"))
         else:
             self.mlabel.set_label("<b>%s</b>" % _("Mothe_r"))
@@ -310,9 +334,9 @@ class ChooseParents:
     def parent_relation_changed(self,obj):
         """Called everytime the parent relationship information is changed"""
         self.old_type = self.type
-        self.type = self.prel.get_active()
-        if (self.old_type == RelLib.Family.CIVIL_UNION or
-            self.type == RelLib.Family.CIVIL_UNION):
+        self.type = self.prel_selector.get_values()
+        if (self.old_type[0] == RelLib.Family.CIVIL_UNION or
+            self.type[0] == RelLib.Family.CIVIL_UNION):
             self.redrawf()
             self.redrawm()
 
@@ -445,14 +469,14 @@ class ChooseParents:
         as parents of the main person.
         """
         try:
-            mother_rel = self.mcombo.get_active()
+            mother_rel = self.mrel_selector.get_values()
         except KeyError:
-            mother_rel = RelLib.Person.CHILD_BIRTH
+            mother_rel = BIRTH_REL
 
         try:
-            father_rel = self.fcombo.get_active()
+            father_rel = self.frel_selector.get_values()
         except KeyError:
-            father_rel = RelLib.Person.CHILD_BIRTH
+            father_rel = BIRTH_REL
 
         trans = self.db.transaction_begin()
         if self.father or self.mother:
@@ -509,9 +533,9 @@ class ChooseParents:
         person = epo.person
         handle = person.get_handle()
         name = person.get_primary_name().get_surname()
-        self.type = self.prel.get_active()
+        self.type = self.prel_selector.get_values()
 
-        if self.type == RelLib.Family.CIVIL_UNION:
+        if self.type[0] == RelLib.Family.CIVIL_UNION:
             self.parent_relation_changed(self.prel)
         elif person.get_gender() == RelLib.Person.MALE:
             try:
@@ -626,8 +650,8 @@ class ModifyParents:
         self.fcombo = self.glade.get_widget('fcombo')
         self.mcombo = self.glade.get_widget('mcombo')
 
-        self.orig_mrel = RelLib.Person.CHILD_BIRTH
-        self.orig_frel = RelLib.Person.CHILD_BIRTH
+        self.orig_mrel = BIRTH_REL
+        self.orig_frel = BIRTH_REL
         for (f,mr,fr) in self.person.get_parent_family_handle_list():
             if f == self.family.get_handle():
                 self.orig_mrel = mr
@@ -675,11 +699,19 @@ class ModifyParents:
             self.mcombo.set_sensitive(False)
             self.glade.get_widget('ok').set_sensitive(False)
 
-        self.keys = const.child_rel_list
 
-        self.build_list(self.mcombo,self.orig_mrel)
-        self.build_list(self.fcombo,self.orig_frel)
+        #self.build_list(self.mcombo,self.orig_mrel)
+        #self.build_list(self.fcombo,self.orig_frel)
+        self.frel_selector = AutoComp.StandardCustomSelector(
+            Utils.child_relations,self.fcombo,
+            RelLib.Person.CHILD_CUSTOM,RelLib.Person.CHILD_BIRTH)
+        self.frel_selector.set_values(self.orig_frel)
         
+        self.mrel_selector = AutoComp.StandardCustomSelector(
+            Utils.child_relations,self.mcombo,
+            RelLib.Person.CHILD_CUSTOM,RelLib.Person.CHILD_BIRTH)
+        self.mrel_selector.set_values(self.orig_mrel)
+                
         self.val = self.window.run()
         if self.val == gtk.RESPONSE_OK:
             self.save_parents_clicked()
@@ -703,8 +735,8 @@ class ModifyParents:
         as parents of the main person.
         """
 
-        mother_rel = self.mcombo.get_active()
-        father_rel = self.fcombo.get_active()
+        mother_rel = self.mrel_selector.get_values()
+        father_rel = self.frel_selector.get_values()
         mod = False
 
         fhandle = self.family.get_handle()

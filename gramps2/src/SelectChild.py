@@ -46,8 +46,16 @@ import const
 import Utils
 import PeopleModel
 import NameDisplay
-
+import AutoComp
 from QuestionDialog import ErrorDialog
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+UNKNOWN_REL = (RelLib.Person.CHILD_UNKNOWN,
+               Utils.child_relations[RelLib.Person.CHILD_UNKNOWN])
 
 #-------------------------------------------------------------------------
 #
@@ -89,8 +97,15 @@ class SelectChild:
         self.mrel = self.xml.get_widget("mrel_combo")
         self.frel = self.xml.get_widget("frel_combo")
 
-        self.build_list(self.mrel,RelLib.Person.CHILD_BIRTH)
-        self.build_list(self.frel,RelLib.Person.CHILD_BIRTH)
+        self.frel_selector = AutoComp.StandardCustomSelector(
+            Utils.child_relations,self.frel,
+            RelLib.Person.CHILD_CUSTOM,RelLib.Person.CHILD_BIRTH)
+        self.mrel_selector = AutoComp.StandardCustomSelector(
+            Utils.child_relations,self.mrel,
+            RelLib.Person.CHILD_CUSTOM,RelLib.Person.CHILD_BIRTH)
+
+        #self.build_list(self.mrel,RelLib.Person.CHILD_BIRTH)
+        #self.build_list(self.frel,RelLib.Person.CHILD_BIRTH)
 
         if self.family:
             father = self.db.get_person_from_handle(self.family.get_father_handle())
@@ -311,17 +326,17 @@ class SelectChild:
         # TODO: Add child ordered by birth day
         self.family.add_child_handle(select_child.get_handle())
         
-        mrel = self.mrel.get_active()
+        mrel = self.mrel_selector.get_values()
         mother = self.db.get_person_from_handle(self.family.get_mother_handle())
         if mother and mother.get_gender() != RelLib.Person.FEMALE:
-            if mrel == RelLib.Person.CHILD_BIRTH:
-                mrel = RelLib.Person.CHILD_UNKNOWN
+            if mrel[0] == RelLib.Person.CHILD_BIRTH:
+                mrel = UNKNOWN_REL
                 
-        frel = self.frel.get_active()
+        frel = self.frel_selector.get_values()
         father = self.db.get_person_from_handle(self.family.get_father_handle())
         if father and father.get_gender() != RelLib.Person.MALE:
-            if frel == RelLib.Person.CHILD_BIRTH:
-                frel = RelLib.Person.CHILD_UNKNOWN
+            if frel[0] == RelLib.Person.CHILD_BIRTH:
+                frel = UNKNOWN_REL
 
         select_child.add_parent_family_handle(self.family.get_handle(),
                                               mrel,frel)

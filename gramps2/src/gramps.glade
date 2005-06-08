@@ -4714,23 +4714,7 @@ tories&lt;/b&gt;</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkComboBox" id="prel_combo">
-		      <property name="visible">True</property>
-		      <property name="items" translatable="yes">Married</property>
-		      <signal name="changed" handler="on_prel_changed" last_modification_time="Fri, 30 Jul 2004 15:32:53 GMT"/>
-		    </widget>
-		    <packing>
-		      <property name="left_attach">2</property>
-		      <property name="right_attach">3</property>
-		      <property name="top_attach">9</property>
-		      <property name="bottom_attach">10</property>
-		      <property name="x_options">fill</property>
-		      <property name="y_options">fill</property>
-		    </packing>
-		  </child>
-
-		  <child>
-		    <widget class="GtkComboBox" id="fcombo">
+		    <widget class="GtkComboBoxEntry" id="mrel_combo">
 		      <property name="visible">True</property>
 		    </widget>
 		    <packing>
@@ -4744,7 +4728,7 @@ tories&lt;/b&gt;</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkComboBox" id="mcombo">
+		    <widget class="GtkComboBoxEntry" id="mcombo">
 		      <property name="visible">True</property>
 		    </widget>
 		    <packing>
@@ -4752,6 +4736,21 @@ tories&lt;/b&gt;</property>
 		      <property name="right_attach">3</property>
 		      <property name="top_attach">8</property>
 		      <property name="bottom_attach">9</property>
+		      <property name="x_options">fill</property>
+		      <property name="y_options">fill</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkComboBoxEntry" id="prel_combo">
+		      <property name="visible">True</property>
+		      <signal name="changed" handler="on_prel_changed" last_modification_time="Wed, 08 Jun 2005 13:12:04 GMT"/>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">2</property>
+		      <property name="right_attach">3</property>
+		      <property name="top_attach">9</property>
+		      <property name="bottom_attach">10</property>
 		      <property name="x_options">fill</property>
 		      <property name="y_options">fill</property>
 		    </packing>
@@ -5061,20 +5060,7 @@ tories&lt;/b&gt;</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkComboBox" id="mrel_combo">
-	      <property name="visible">True</property>
-	    </widget>
-	    <packing>
-	      <property name="left_attach">1</property>
-	      <property name="right_attach">2</property>
-	      <property name="top_attach">1</property>
-	      <property name="bottom_attach">2</property>
-	      <property name="y_options">fill</property>
-	    </packing>
-	  </child>
-
-	  <child>
-	    <widget class="GtkComboBox" id="frel_combo">
+	    <widget class="GtkComboBoxEntry" id="frel_combo">
 	      <property name="visible">True</property>
 	    </widget>
 	    <packing>
@@ -5082,7 +5068,19 @@ tories&lt;/b&gt;</property>
 	      <property name="right_attach">2</property>
 	      <property name="top_attach">0</property>
 	      <property name="bottom_attach">1</property>
-	      <property name="x_options">fill</property>
+	      <property name="y_options">fill</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkComboBoxEntry" id="mrel_combo">
+	      <property name="visible">True</property>
+	    </widget>
+	    <packing>
+	      <property name="left_attach">1</property>
+	      <property name="right_attach">2</property>
+	      <property name="top_attach">1</property>
+	      <property name="bottom_attach">2</property>
 	      <property name="y_options">fill</property>
 	    </packing>
 	  </child>
@@ -6836,9 +6834,8 @@ tories&lt;/b&gt;</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkComboBox" id="fcombo">
+		    <widget class="GtkComboBoxEntry" id="fcombo">
 		      <property name="visible">True</property>
-		      <property name="items" translatable="yes"></property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -6851,9 +6848,8 @@ tories&lt;/b&gt;</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkComboBox" id="mcombo">
+		    <widget class="GtkComboBoxEntry" id="mcombo">
 		      <property name="visible">True</property>
-		      <property name="items" translatable="yes"></property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
