@@ -1108,11 +1108,20 @@ class FamilyView:
             mother_handle = fam.get_mother_handle()
             f = self.parent.db.get_person_from_handle(father_handle)
             m = self.parent.db.get_person_from_handle(mother_handle)
+            if frel[0] == RelLib.Person.CHILD_CUSTOM \
+                   or not Utils.child_relations.has_key(frel[0]):
+                frel_name = frel[1]
+            else:
+                frel_name = Utils.child_relations[frel[0]]
+            if mrel[0] == RelLib.Person.CHILD_CUSTOM \
+                   or not Utils.child_relations.has_key(mrel[0]):
+                mrel_name = mrel[1]
+            else:
+                mrel_name = Utils.child_relations[mrel[0]]
 
-            father = self.nameof(_("Father"),f,
-                                 Utils.child_relations[frel])
-            mother = self.nameof(_("Mother"),m,
-                                 Utils.child_relations[mrel])
+
+            father = self.nameof(_("Father"),f,frel_name)
+            mother = self.nameof(_("Mother"),m,mrel_name)
 
             node = model.append()
             if not sel:
@@ -1125,11 +1134,11 @@ class FamilyView:
         else:
             selection.set_mode(gtk.SELECTION_NONE)
             
-    def nameof(self,l,p,mode):
+    def nameof(self,l,p,rel_name):
         if p:
             n = NameDisplay.displayer.display(p)
             pid = p.get_gramps_id()
-            return _("%s: %s [%s]\n\tRelationship: %s") % (l,n,pid,_(mode))
+            return _("%s: %s [%s]\n\tRelationship: %s") % (l,n,pid,rel_name)
         else:
             return _("%s: unknown") % (l)
 
