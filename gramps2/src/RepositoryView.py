@@ -52,6 +52,13 @@ column_names = [
     _('ID'),
     _('Type'),
     _('Home URL'),
+    _('ZIP/Postal Code'),
+    _('City'),
+    _('County'),
+    _('State'),
+    _('Country'),
+    _('Email'),
+    _('Search URL'),
     ]
 
 _HANDLE_COL = 12

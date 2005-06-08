@@ -1299,14 +1299,21 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         """
         self._set_column_order(col_list,SOURCE_COL_KEY)
 
-    def set_media_column_order(self,list):
+    def set_media_column_order(self,col_list):
         """
         Stores the Media display common information in the
         database's metadata.
         """
         self._set_column_order(col_list,MEDIA_COL_KEY)
 
-    def set_repository_column_order(self,list):
+    def set_event_column_order(self,col_list):
+        """
+        Stores the Event display common information in the
+        database's metadata.
+        """
+        self._set_column_order(col_list,EVENT_COL_KEY)
+
+    def set_repository_column_order(self,col_list):
         """
         Stores the Repository display common information in the
         database's metadata.
@@ -1360,7 +1367,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Returns the MediaObject display common information stored in the
         database's metadata.
         """
-        default = [(1,1),(0,5),(0,6),(1,2),(1,3),(0,4)]
+        default = [(1,1),(1,2),(1,3),(1,5),(0,4)]
         return self._get_column_order(MEDIA_COL_KEY,default)
 
     def get_event_column_order(self):
@@ -1376,7 +1383,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Returns the Repository display common information stored in the
         database's metadata.
         """
-        default = [(1,1),(0,5),(0,6),(1,2),(1,3),(0,4)]
+        default = [(1,1),(0,5),(0,6),(1,2),(1,3),(0,4),(0,7),(0,8),(0,9),(0,10)]
         return self._get_column_order(REPOSITORY_COL_KEY,default)
 
 class Transaction:
@@ -1481,5 +1488,3 @@ class Transaction:
         if self.last and self.first:
             return self.last - self.first + 1
         return 0
-
-

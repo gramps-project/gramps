@@ -574,7 +574,6 @@ class RepositoryModel(BaseModel):
             self.column_id,
             self.column_type,
             self.column_home_url,
-            self.column_parish,
             self.column_postal_code,
             self.column_city,
             self.column_county,
@@ -589,7 +588,6 @@ class RepositoryModel(BaseModel):
             self.column_id,
             self.column_type,
             self.column_home_url,
-            self.column_parish,
             self.column_postal_code,
             self.column_city,
             self.column_county,
@@ -620,12 +618,6 @@ class RepositoryModel(BaseModel):
 
     def column_name(self,data):
         return unicode(data[3])
-
-    def column_parish(self,data):
-        try:
-            return data[4].get_parish()
-        except:
-            return u''
 
     def column_city(self,data):
         try:

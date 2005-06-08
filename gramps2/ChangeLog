@@ -1,3 +1,10 @@
+2005-06-08  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/EventView.py (column_names): Add missing column
+	* src/RepositoryView.py (column_names): Add missing columns
+	* src/GrampsDbBase.py: fix column_order methods
+	* src/DisplayModels.py (RepositoryModel): Remove parish column because
+	it is not editable anyway
+
 2005-06-08  Alex Roitman  <shura@gramps-project.org>
 	* src/ChooseParens.py: Support for (int,str) relationships.
 	* src/FamilyView.py (new_child_after_edit): Use tuple relationships.

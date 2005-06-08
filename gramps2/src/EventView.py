@@ -50,6 +50,7 @@ column_names = [
     _('Description'),
     _('ID'),
     _('Type'),
+    _('Last Change'),
     _('Date'),
     _('Place'),
     _('Cause'),
