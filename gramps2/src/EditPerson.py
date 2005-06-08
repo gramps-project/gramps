@@ -118,7 +118,7 @@ class EditPerson:
         self.pdmap = {}
         self.add_places = []
         self.name_display = NameDisplay.displayer
-        self.should_guess_gender = (person.get_gramps_id() == '' and
+        self.should_guess_gender = (not person.get_gramps_id() and
                                     person.get_gender () ==
                                     RelLib.Person.UNKNOWN)
 

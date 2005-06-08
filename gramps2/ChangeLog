@@ -1,3 +1,6 @@
+2005-06-08  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/EditPerson (__init__): Make gender guessing work again
+
 2005-06-08  Daniel Durand  <daniel@durand-amd.net>
 	* src/plugins/rel_fr.py: Add more levels; provide fallback phrases.
 
