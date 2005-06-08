@@ -4,6 +4,8 @@
 	* src/GrampsDbBase.py: fix column_order methods
 	* src/DisplayModels.py (RepositoryModel): Remove parish column because
 	it is not editable anyway
+	* src/gramps_main.py (column_order): add Repository View;
+	(init_interface): Remove unneeded callback
 
 2005-06-08  Alex Roitman  <shura@gramps-project.org>
 	* src/ChooseParens.py: Support for (int,str) relationships.
