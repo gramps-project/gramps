@@ -1,3 +1,6 @@
+2005-06-08  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/EditPerson.py: Make gender guessing work again
+
 2005-06-08  Alex Roitman  <shura@gramps-project.org>
 	* src/gramps_main.py (init_interface): Set proper color for new icons.
 	* src/gramps.glade (gramps): Label new buttons, left-align labels.
