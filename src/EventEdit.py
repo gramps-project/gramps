@@ -55,6 +55,16 @@ from QuestionDialog import WarningDialog, ErrorDialog
 
 #-------------------------------------------------------------------------
 #
+# Constants
+#
+#-------------------------------------------------------------------------
+total_events = dict(Utils.personal_events)
+for event_type in Utils.family_events.keys():
+    if not total_events.has_key(event_type):
+        total_events[event_type] = Utils.family_events[event_type]
+
+#-------------------------------------------------------------------------
+#
 # helper function
 #
 #-------------------------------------------------------------------------
@@ -178,7 +188,7 @@ class EventEditor:
             defval = None
 
         self.type_selector = AutoComp.StandardCustomSelector(
-            Utils.personal_events, self.event_menu,
+            total_events, self.event_menu,
             RelLib.Event.CUSTOM, defval)
 
         AutoComp.fill_entry(self.place_field,self.pmap.keys())
@@ -270,7 +280,7 @@ class EventEditor:
             if val == RelLib.Event.CUSTOM:
                 label = strval
             else:
-                label = Utils.personal_events[val]
+                label = total_events[val]
         if not label.strip():
             label = _("New Event")
         label = "%s: %s" % (_('Event'),label)

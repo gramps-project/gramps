@@ -153,7 +153,7 @@ personal_attributes = {
 family_attributes = {
     RelLib.Attribute.UNKNOWN     : _("Unknown"),
     RelLib.Attribute.CUSTOM      : _("Custom"),
-    RelLib.Attribute.NUM_CHILD : _("Number of Children"),
+    RelLib.Attribute.NUM_CHILD   : _("Number of Children"),
     }
 
 family_relations = {

@@ -1039,8 +1039,8 @@ class EditPerson:
             self.db.commit_person(self.person, trans)
         n = self.person.get_primary_name().get_regular_name()
 
-        #for (event_ref,event) in self.event_box.get_changed_objects():
-        #    self.db.commit_event(event,trans)
+        for (event_ref,event) in self.event_box.get_changed_objects():
+            self.db.commit_event(event,trans)
         
         self.db.transaction_commit(trans,_("Edit Person (%s)") % n)
         if self.callback:

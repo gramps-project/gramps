@@ -722,23 +722,25 @@ class Marriage:
             self.family.set_source_reference_list(self.srcreflist)
 
         self.update_lists()
+
+        for (event_ref,event) in self.event_box.get_changed_objects():
+            self.db.commit_event(event,trans)
+
         self.db.commit_family(self.family,trans)
         self.db.transaction_commit(trans,_("Edit Marriage"))
 
         self.close()
 
-    def event_edit_callback(self,event):
+    def event_edit_callback(self,data):
         """Birth and death events may not be in the map"""
-        self.redraw_event_list()
-        try:
-            self.etree.select_iter(self.emap[str(event)])
-        except:
-            pass
+        self.event_box.edit_callback(data)
 
     def on_add_clicked(self,*obj):
         import EventEdit
+        EventEdit.EventRefEditor(None,None,self.family,self.db,
+                                 self.event_box.edit_callback,self)
         #name = Utils.family_name(self.family,self.db)
-        EventEdit.EventRefEditor(None,self.family, self.db,None,self)
+        #EventEdit.EventRefEditor(None,self.family, self.db,None,self)
             #self,name, Utils.family_events,
             #None, None, 0, self.event_edit_callback,
             #RelLib.Event.MARRIAGE, self.db.readonly)

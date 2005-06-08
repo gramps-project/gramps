@@ -21,6 +21,14 @@
 	* src/EditPerson.py (on_apply_person_clicked): Do not commit
 	event, as this is done in the editor.
 
+	* src/EditPerson.py: Commit events, since there may be changes
+	made no in the editor.
+	* src/EventEdit.py: Use combined mapping for all events.
+	* src/FamilyView.py: Proper display of child relations.
+	* src/Marriage.py: Commit events; properly call common event/ref
+	editor. 
+	* src/Utils.py: Minor.
+
 2005-06-08  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EventView.py (column_names): Add missing column
 	* src/RepositoryView.py (column_names): Add missing columns
