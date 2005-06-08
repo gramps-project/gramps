@@ -323,6 +323,8 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         set_panel(self.gtop.get_widget('side_sources'))
         set_panel(self.gtop.get_widget('side_places'))
         set_panel(self.gtop.get_widget('side_media'))
+        set_panel(self.gtop.get_widget('side_events'))
+        set_panel(self.gtop.get_widget('side_repos'))
 
         self.sidebar_btn = self.gtop.get_widget("sidebar1")
         self.filter_btn  = self.gtop.get_widget("filter1")

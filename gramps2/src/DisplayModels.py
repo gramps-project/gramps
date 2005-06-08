@@ -504,20 +504,20 @@ class EventModel(BaseModel):
             self.column_description,
             self.column_id,
             self.column_type,
-            self.column_change,
             self.column_date,
             self.column_place,
             self.column_cause,
+            self.column_change,
             self.column_handle,
             ]
         self.smap = [
             self.column_description,
             self.column_id,
             self.column_type,
-            self.sort_change,
             self.column_date,
             self.column_place,
             self.column_cause,
+            self.sort_change,
             self.column_handle,
             ]
         BaseModel.__init__(self,db,scol,order)
