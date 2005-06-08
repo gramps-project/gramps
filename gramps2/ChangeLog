@@ -28,6 +28,7 @@
 	* src/Marriage.py: Commit events; properly call common event/ref
 	editor. 
 	* src/Utils.py: Minor.
+	* src/gramps.glade: Minor update.
 
 2005-06-08  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EventView.py (column_names): Add missing column
