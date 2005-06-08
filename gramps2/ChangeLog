@@ -1,3 +1,6 @@
+2005-06-08  Daniel Durand  <daniel@durand-amd.net>
+	* src/plugins/rel_fr.py: Add more levels; provide fallback phrases.
+
 2005-06-07  Alex Roitman  <shura@gramps-project.org>
 	* src/FamilyView.py (north_american,latin_american,icelandic): Fix
 	object/handle mixups.

@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2004  Donald N. Allingham
+# Copyright (C) 2003-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -39,28 +39,30 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 
 _level_name = [ "", "premier", "deuxième", "troisième", "quatrième", "cinquième", "sixième",
-                "septième", "huitième", "neuvième", "dicième", "onzième", "douzième",
+                "septième", "huitième", "neuvième", "dixième", "onzième", "douzième",
                 "treizième", "quatorzième", "quinzième", "seizième",
-                "dix-septième", "dix-huitième", "dix_neuvième", "vingtième", ]
+                "dix-septième", "dix-huitième", "dix-neuvième", "vingtième", "vingt-et-unième", "vingt-deuxième",
+                "vingt-deuxième", "vingt-troisième","vingt-quatrième","vingt-sixième","vingt-septième",
+                "vingt-huitième","vingt-neuvième","trentième" ]
 
-_parents_level = [ "", "les parents", "les grand-parents", "les arrières grand-parents",
+_parents_level = [ "", "les parents", "les grand-parents", "les arrière-grand-parents",
                    "les trisaïeux", ]
 
-_father_level = [ "", "le père", "le grand-père", "l'arrière grand-père", "le trisaïeul", ]
+_father_level = [ "", "le père", "le grand-père paternel", "l'arrière-grand-père paternel", "le trisaïeul paternel", ]
 
-_mother_level = [ "", "la mère", "la grand-mère", "l'arrière grand-mère", "la trisaïeule", ]
+_mother_level = [ "", "la mère", "la grand-mère maternelle", "l'arrière-grand-mère maternelle", "la trisaïeule maternelle", ]
 
-_son_level = [ "", "le fils", "le petits-fils", "l'arrière petit-fils", ]
+_son_level = [ "", "le fils", "le petit-fils", "l'arrière-petit-fils", ]
 
-_daughter_level = [ "", "la fille", "la petite-fille", "l'arrière petite-fille", ]
+_daughter_level = [ "", "la fille", "la petite-fille", "l'arrière-petite-fille", ]
 
-_sister_level = [ "", "la soeur", "la tante", "la grande-tante", "l'arrière grande-tante", ]
+_sister_level = [ "", "la soeur", "la tante", "la grand-tante", "l'arrière-grand-tante", ]
 
-_brother_level = [ "", "le frère", "l'oncle", "le grand-oncle", "l'arrière grand-oncle", ]
+_brother_level = [ "", "le frère", "l'oncle", "le grand-oncle", "l'arrière-grand-oncle", ]
 
-_nephew_level = [ "", "le neveu", "le petit-neveu", "l'arrière petit-neveu", ]
+_nephew_level = [ "", "le neveu", "le petit-neveu", "l'arrière-petit-neveu", ]
 
-_niece_level = [ "", "la nièce", "la petite-nièce", "l'arrière petite-nièce", ]
+_niece_level = [ "", "la nièce", "la petite-nièce", "l'arrière-petite-nièce", ]
 
 #-------------------------------------------------------------------------
 #
@@ -73,10 +75,16 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         Relationship.RelationshipCalculator.__init__(self,db)
 
     def get_male_cousin(self,level):
-        return "le cousin au %s degré" % (_level_name[level])
+        if level>len(_level_name)-1:
+            return "le parent lointain"
+        else:
+            return "le cousin au %s degré" % (_level_name[level])
 
     def get_female_cousin(self,level):
-        return "la cousine au %s degré" % (_level_name[level])
+        if level>len(_level_name)-1:
+            return "la parente lointaine"
+        else:
+            return "la cousine au %s degré" % (_level_name[level])
 
     def get_parents(self,level):
         if level>len(_parents_level)-1:
