@@ -1558,9 +1558,9 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
             Person's L{Family} list.
         @type family_handle: str
         @param mrel: relationship between the Person and its mother
-        @type mrel: str
+        @type mrel: tuple
         @param frel: relationship between the Person and its father
-        @type frel: str
+        @type frel: tuple
         """
         self.parent_family_list.append((family_handle,mrel,frel))
 
@@ -1602,9 +1602,9 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
             Person's L{Family} list.
         @type family_handle: str
         @param mrel: relationship between the Person and its mother
-        @type mrel: str
+        @type mrel: tuple
         @param frel: relationship between the Person and its father
-        @type frel: str
+        @type frel: tuple
         """
         index=0
         for f in self.parent_family_list[:]:
