@@ -1375,7 +1375,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Returns the Event display common information stored in the
         database's metadata.
         """
-        default = [(1,0),(1,1),(1,2),(0,3),(1,4),(1,5),(0,6)]
+        default = [(1,0),(1,1),(1,2),(1,3),(1,4),(1,5),(0,6)]
         return self._get_column_order(EVENT_COL_KEY,default)
 
     def get_repository_column_order(self):

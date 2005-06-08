@@ -54,9 +54,10 @@ column_names = [
     _('Date'),
     _('Place'),
     _('Cause'),
+    _('Last Changed'),
     ]
 
-_HANDLE_COL = 7
+_HANDLE_COL = len(column_names)
 
 #-------------------------------------------------------------------------
 #

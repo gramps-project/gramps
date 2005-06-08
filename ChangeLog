@@ -1,3 +1,11 @@
+2005-06-08  Alex Roitman  <shura@gramps-project.org>
+	* src/gramps_main.py (init_interface): Set proper color for new icons.
+	* src/gramps.glade (gramps): Label new buttons, left-align labels.
+	* src/GrampsDbBase.py (get_event_column_order): Show date column.
+	* src/EventView.py (Module): Add "Last Changed" column; do not
+	hard-code handle column.
+	* src/DisplayModels.py (EventModel.__init__): Switch column order.
+
 2005-06-08  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EventView.py (column_names): Add missing column
 	* src/RepositoryView.py (column_names): Add missing columns
