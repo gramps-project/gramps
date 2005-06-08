@@ -112,7 +112,7 @@ class EditPerson:
         self.pdmap = {}
         self.add_places = []
         self.name_display = NameDisplay.displayer
-        self.should_guess_gender = (person.get_gramps_id() == '' and
+        self.should_guess_gender = (not person.get_gramps_id() and
                                     person.get_gender () ==
                                     RelLib.Person.UNKNOWN)
 
@@ -602,6 +602,9 @@ class EditPerson:
     def on_given_focus_out_event (self, entry, event):
         if not self.should_guess_gender:
             return
+
+        gender = self.db.genderStats.guess_gender(unicode(entry.get_text ()))
+        self.gender.set_active( gender)
 
     def build_menu(self,list,task,opt_menu,type):
         cell = gtk.CellRendererText()
