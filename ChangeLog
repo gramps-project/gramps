@@ -1,3 +1,10 @@
+2005-06-08  Alex Roitman  <shura@gramps-project.org>
+	* src/ChooseParens.py: Support for (int,str) relationships.
+	* src/FamilyView.py (new_child_after_edit): Use tuple relationships.
+	* src/SelectChild.py: Support for (int,str) relationships.
+	* src/gramps.glade (selec_child,modparents,familyDialog): Replace
+	ComboBoxes with ComboBoxEntries.
+
 2005-06-07  Alex Roitman  <shura@gramps-project.org>
 	* src/gramps.glade (selecty_person): Change positioning; add icon.
 	* src/edit_person.glade (event_tab): Correct tooltips.

@@ -64,6 +64,9 @@ from DdTargets import DdTargets
 # Constants
 #
 #-------------------------------------------------------------------------
+BIRTH_REL   = (RelLib.Person.CHILD_BIRTH,
+               Utils.child_relations[RelLib.Person.CHILD_BIRTH])
+
 _BORN = _('b.')
 _DIED = _('d.')
 
@@ -793,8 +796,8 @@ class FamilyView:
         # TODO: Add child ordered by birth day
         family.add_child_handle(new_person.get_handle())
         new_person.add_parent_family_handle(family.get_handle(),
-                                            RelLib.Person.CHILD_BIRTH,
-                                            RelLib.Person.CHILD_BIRTH)
+                                            BIRTH_REL,BIRTH_REL)
+
         self.parent.db.commit_person(new_person,trans)
         self.parent.db.commit_family(family,trans)
         self.parent.db.transaction_commit(trans,_("Add Child to Family"))
