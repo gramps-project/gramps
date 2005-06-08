@@ -397,6 +397,11 @@ class EventListBox(ReorderListBox):
         ref_role = event_ref.get_role()
         if ref_role[0] == RelLib.EventRef.CUSTOM \
                or not Utils.event_roles.has_key(ref_role[0]):
+            role = ref_role[1]
+        else:
+            role = Utils.event_roles[ref_role[0]]
+        return [name, event.get_description(), event.get_date(),
+                pname, role, has_source, has_note]
 
 class NameListBox(ReorderListBox):
     
