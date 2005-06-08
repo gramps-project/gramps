@@ -739,7 +739,7 @@ Unknown</property>
 		  <child>
 		    <widget class="GtkButton" id="event_sel">
 		      <property name="visible">True</property>
-		      <property name="tooltip" translatable="yes">Select an existing media object from the database and place it in this gallery</property>
+		      <property name="tooltip" translatable="yes">Select an existing event object from the database and add a reference for this person</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
@@ -768,7 +768,7 @@ Unknown</property>
 		    <widget class="GtkButton" id="event_edit">
 		      <property name="visible">True</property>
 		      <property name="sensitive">False</property>
-		      <property name="tooltip" translatable="yes">Edit the selected name</property>
+		      <property name="tooltip" translatable="yes">Edit the selected event reference</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
@@ -796,7 +796,7 @@ Unknown</property>
 		    <widget class="GtkButton" id="event_del">
 		      <property name="visible">True</property>
 		      <property name="sensitive">False</property>
-		      <property name="tooltip" translatable="yes">Delete the selected name</property>
+		      <property name="tooltip" translatable="yes">Delete the selected event reference</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>

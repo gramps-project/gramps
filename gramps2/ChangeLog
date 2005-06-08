@@ -1,3 +1,20 @@
+2005-06-07  Alex Roitman  <shura@gramps-project.org>
+	* src/gramps.glade (selecty_person): Change positioning; add icon.
+	* src/edit_person.glade (event_tab): Correct tooltips.
+	* src/SelectEvent.py: Add to CVS.
+	* src/Makefile.am: Ship SelectEvent.py file.
+	* src/SelectChild.py (build_list): Use mapping from Utils.
+	* src/ReadGrdb.py (importData): Properly copy event table.
+	* src/ListBox.py: Properly fill in the Combo maps without
+	collisions; Add Role to the EventListbox; Support selecting an
+	existing Event object.
+	* src/GrampsInMemDB.py: Support for event id table.
+	* src/GrampsDbBase.py: Support for event id table.
+	* src/GrampsBSDDB.py: Support for event id table; emit
+	event-delete signal when events are deleted.
+	* src/EventView.py: Support deleting events.
+	* src/EventEdit.py: Support deleting events; Proper adding events.
+
 2005-06-07  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* various: const to RelLib transitition.
 

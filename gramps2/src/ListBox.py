@@ -83,12 +83,12 @@ class ListBox:
         self.change_list = Set()
 
     def build_maps(self,custom,string_map):
-        self.name_map = {}
-        self.val_map = string_map
-        self.custom = custom
-        for key in self.val_map.keys():
-            val = self.val_map[key]
-            self.name_map[val] = key
+        name_map = {}
+        val_map = string_map
+        for key in val_map.keys():
+            val = val_map[key]
+            name_map[val] = key
+        return (name_map,val_map)
 
     def keypress(self,obj,event):
         if event.keyval == 65379:
@@ -229,14 +229,15 @@ class AttrListBox(ReorderListBox):
         ListBox.__init__(self, parent, person, obj, label,
                          button_list, titles)
 
-        self.build_maps(RelLib.Attribute.CUSTOM, Utils.personal_attributes)
+        self.attr_name_map,self.attr_val_map = self.build_maps(
+            RelLib.Attribute.CUSTOM,Utils.personal_attributes)
 
     def set_type(self,index,value):
-        val = self.name_map.get(value,self.custom)
-        if val == self.custom:
+        val = self.attr_name_map.get(value,RelLib.Attribute.CUSTOM)
+        if val == RelLib.Attribute.CUSTOM:
             self.data[index].set_type((val,value))
         else:
-            self.data[index].set_type((val,self.val_map[val]))
+            self.data[index].set_type((val,self.attr_val_map[val]))
         self.change_list.add(self.data[index])
 
     def set_value(self,index,value):
@@ -290,32 +291,48 @@ class EventListBox(ReorderListBox):
             self.data.append((event_ref,
                               parent.db.get_event_from_handle(event_ref.ref)))
 
-        custom_str = Utils.personal_events[RelLib.Event.CUSTOM]
-        eventnames = filter(lambda x: x != custom_str,
+        ev_custom_str = Utils.personal_events[RelLib.Event.CUSTOM]
+        eventnames = filter(lambda x: x != ev_custom_str,
                             Utils.personal_events.values())
         eventnames.sort(locale.strcoll)
 
+        role_custom_str = Utils.event_roles[RelLib.EventRef.CUSTOM]
+        rolenames = filter(lambda x: x != role_custom_str,
+                           Utils.event_roles.values())
+
         evalues = [
             # Title            Sort Col Size, Type    Argument
-            (_('Event'),       NOSORT,  100,  COMBO,  eventnames, self.set_type),
-            (_('Description'), NOSORT,  140,  TEXT,   None,       self.set_description),
-            (_('Date'),        NOSORT,  100,  TEXT,   None,       self.set_date),
-            (_('Place'),       NOSORT,  100,  TEXT,   None,       self.set_place),
-            (_('Source'),      NOSORT,  50,   TOGGLE, None,       None),
-            (_('Note'),        NOSORT,  50,   TOGGLE, None,       None),
+            (_('Event'),       NOSORT, 100, COMBO,  eventnames, self.set_type),
+            (_('Description'), NOSORT, 140, TEXT,   None,       self.set_description),
+            (_('Date'),        NOSORT, 100, TEXT,   None,       self.set_date),
+            (_('Place'),       NOSORT, 100, TEXT,   None,       self.set_place),
+            (_('Role'),        NOSORT, 100, COMBO,  rolenames,  self.set_role),
+            (_('Source'),      NOSORT, 50,  TOGGLE, None,       None),
+            (_('Note'),        NOSORT, 50,  TOGGLE, None,       None),
             ]
         
         ReorderListBox.__init__(self, parent, person, obj, label,
                                 button_list, evalues, DdTargets.EVENT)
 
-        self.build_maps(RelLib.Event.CUSTOM,Utils.personal_events)
+        self.ev_name_map,self.ev_val_map = self.build_maps(
+            RelLib.Event.CUSTOM,Utils.personal_events)
+        self.ref_name_map,self.ref_val_map = self.build_maps(
+            RelLib.EventRef.CUSTOM,Utils.personal_events)
 
     def set_type(self,index,value):
-        val = self.name_map.get(value,self.custom)
-        if val == self.custom:
+        val = self.ev_name_map.get(value,RelLib.Event.CUSTOM)
+        if val == RelLib.Event.CUSTOM:
             self.data[index][1].set_type((val,value))
         else:
-            self.data[index][1].set_type((val,self.val_map[val]))
+            self.data[index][1].set_type((val,self.ev_val_map[val]))
+        self.change_list.add(self.data[index])
+
+    def set_role(self,index,value):
+        val = self.ref_name_map.get(value,RelLib.EventRef.CUSTOM)
+        if val == RelLib.EventRef.CUSTOM:
+            self.data[index][0].set_role((val,value))
+        else:
+            self.data[index][0].set_role((val,self.ref_val_map[val]))
         self.change_list.add(self.data[index])
 
     def set_description(self,index,value):
@@ -343,15 +360,19 @@ class EventListBox(ReorderListBox):
         Creates eventref for an existing event.
         """
         # select existing event
-        event = RelLiv.Event()
-        EventEdit.EventRefEditor(event,None,self.person,self.parent.db,
-                                 self.edit_callback,self.parent)
+        import SelectEvent
+        sel_event = SelectEvent.SelectEvent(self.db,_('Select Event'),
+                                            self.parent.window)
+        event = sel_event.run()
+        if event:
+            EventEdit.EventRefEditor(event,None,self.person,self.parent.db,
+                                     self.edit_callback,self.parent)
     
     def update(self,obj):
         store,node = self.list_model.get_selected()
         if not node:
             return
-        event,event_ref = self.list_model.get_object(node)
+        event_ref,event = self.list_model.get_object(node)
         EventEdit.EventRefEditor(event,event_ref,self.person,self.parent.db,
                                  self.edit_callback,self.parent)   
 #            self.parent, self.name, Utils.personal_events,
@@ -373,49 +394,9 @@ class EventListBox(ReorderListBox):
             name = etype[1]
         else:
             name = Utils.personal_events[etype[0]]
-        return [name, event.get_description(), event.get_date(),
-                pname, has_source, has_note]
-
-    def unpickle(self, data):
-        foo = pickle.loads(data);
-        for src in foo.get_source_references():
-            base_handle = src.get_base_handle()
-            newbase = self.db.get_source_from_handle(base_handle)
-            src.set_base_handle(newbase.get_handle())
-        place = foo.get_place_handle()
-        if place:
-            foo.set_place_handle(place.get_handle())
-        self.data.insert(row,foo.get_handle())
-
-##     def edit_callback(self,data):
-##         self.changed = True
-##         self.change_list.add(data)
-##         if data not in self.data:
-##             self.data.append(data)
-##         self.redraw()
-##         try:
-##             self.list_model.select_iter(self.node_map[data])
-##         except:
-##             print "Edit callback failed"
-##         self.changed = True
-##         changed = False
-##         event_ref,event = data
-##         if event.handle == 
-##         for val in self.data:
-##             if data.handle == val[1].handle:
-##                 self.change_list.add(val)
-##                 changed = True
-##         if not changed:
-##             ref = RelLib.EventRef()
-##             ref.ref = data.handle
-##             new_data = (ref,data)
-##             self.change_list.add(new_data)
-##             self.data.append(new_data)
-##         self.redraw()
-##         try:
-##             self.list_model.select_iter(self.node_map[new_data])
-##         except:
-##             print "Edit callback failed"
+        ref_role = event_ref.get_role()
+        if ref_role[0] == RelLib.EventRef.CUSTOM \
+               or not Utils.event_roles.has_key(ref_role[0]):
 
 class NameListBox(ReorderListBox):
     
@@ -442,14 +423,15 @@ class NameListBox(ReorderListBox):
         ReorderListBox.__init__(self, parent, person, obj, label,
                                 button_list, titles, DdTargets.NAME)
 
-        self.build_maps(RelLib.Name.CUSTOM,Utils.name_types)
+        self.name_name_map,self.name_val_map = self.build_maps(
+            RelLib.Name.CUSTOM,Utils.name_types)
 
     def set_type(self,index,value):
-        val = self.name_map.get(value,self.custom)
-        if val == self.custom:
+        val = self.name_name_map.get(value,RelLib.Name.CUSTOM)
+        if val == RelLib.Name.CUSTOM:
             self.data[index].set_type((val,value))
         else:
-            self.data[index].set_type((val,self.val_map[val]))
+            self.data[index].set_type((val,self.name_val_map[val]))
         self.change_list.add(self.data[index])
 
     def set_name(self,index,value):
