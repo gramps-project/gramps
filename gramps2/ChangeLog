@@ -9,6 +9,15 @@
 	* src/EventView.py (Module): Remove extra column.
 	* src/EventEdit.py (EventEditor.__init__): Remove obsolete code.
 	
+	* src/gramps.glade (Marriage): Re-work dialog similar to EditPerson.
+	* src/Utils.py (family_event_roles): Add mapping.
+	* src/RelLib.py (EventRef): Add FAMILY role.
+	* src/Marriage.py: Start using Listbox, so far for Events only.
+	* src/ListBox.py: Support both person and family primaries.
+	* src/EventEdit.py: Support both person and family primaries.
+	* src/EditPerson.py (on_apply_person_clicked): Do not commit
+	event, as this is done in the editor.
+
 2005-06-08  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EventView.py (column_names): Add missing column
 	* src/RepositoryView.py (column_names): Add missing columns

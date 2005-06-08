@@ -58,13 +58,20 @@ import Utils
 
 class ListBox:
     """
-    The ListBox manages the lists contained by the EditPerson dialog.
-    It manages the add, update, and delete buttons, along with the
+    The ListBox manages the lists contained by the EditPerson or Marriage
+    dialogs. It manages the add, update, and delete buttons, along with the
     handling of inline editing.
+
+    The primary argument is either Person or Family object.
     """
-    def __init__(self, parent, person, obj, label, button_list, titles):
-        self.person = person
-        self.name = NameDisplay.displayer.display(person)
+    def __init__(self, parent, primary, obj, label, button_list, titles):
+        self.primary = primary
+        if self.primary.__class__.__name__ == 'Person':
+            self.name = NameDisplay.displayer.display(primary)
+        elif self.primary.__class__.__name__ == 'Family':
+            self.name = Utils.family_name(primary,parent.db)
+        else:
+            self.name = ""
         self.label = label
         self.db = parent.db
         self.parent = parent
@@ -162,9 +169,9 @@ class ListBox:
 
 class ReorderListBox(ListBox):
 
-    def __init__(self,parent,person,obj,label,button_list,evalues, dnd_type):
+    def __init__(self,parent,primary,obj,label,button_list,evalues, dnd_type):
 
-        ListBox.__init__(self,parent,person,obj,label,button_list,evalues)
+        ListBox.__init__(self,parent,primary,obj,label,button_list,evalues)
 
         self.dnd_type = dnd_type
 
@@ -180,7 +187,7 @@ class ReorderListBox(ListBox):
 
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(node[0]);
-        data = str((self.dnd_type.drag_type, self.person.get_handle(), pickled));
+        data = str((self.dnd_type.drag_type, self.primary.get_handle(), pickled));
         sel_data.set(sel_data.target, bits_per, data)
 
     def unpickle(self, data):
@@ -192,10 +199,10 @@ class ReorderListBox(ListBox):
         if sel_data and sel_data.data:
             exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
-            exec 'person = "%s"' % data[1]
+            exec 'primary = "%s"' % data[1]
             if mytype != self.dnd_type.drag_type:
                 return
-            elif person == self.person.get_handle():
+            elif primary == self.primary.get_handle():
                 self.move_element(self.list_model.get_selected_row(),row)
             else:
                 self.unpickle(data[2])
@@ -274,31 +281,38 @@ class EventListBox(ReorderListBox):
     
     titles = ['Event', 'Description','Date','Place','Source','Note']
 
-    def __init__(self,parent,person,obj,label,button_list):
+    def __init__(self,parent,primary,obj,label,button_list):
 
         self.data = []
-        self.person = person
+        self.primary = primary
         self.parent = parent
-        birth_ref = person.get_birth_ref()
-        death_ref = person.get_death_ref()
-        if birth_ref:
-            self.data.append((birth_ref,
+        if self.primary.__class__.__name__ == 'Person':
+            birth_ref = primary.get_birth_ref()
+            death_ref = primary.get_death_ref()
+            if birth_ref:
+                self.data.append((birth_ref,
                              parent.db.get_event_from_handle(birth_ref.ref)))
-        if death_ref:
-            self.data.append((death_ref,
+                if death_ref:
+                    self.data.append((death_ref,
                              parent.db.get_event_from_handle(death_ref.ref)))
-        for event_ref in person.get_event_ref_list():
+            self.ev_dict = Utils.personal_events
+            self.role_dict = Utils.event_roles
+        elif self.primary.__class__.__name__ == 'Family':
+            self.ev_dict = Utils.family_events
+            self.role_dict = Utils.family_event_roles
+
+        for event_ref in primary.get_event_ref_list():
             self.data.append((event_ref,
                               parent.db.get_event_from_handle(event_ref.ref)))
 
-        ev_custom_str = Utils.personal_events[RelLib.Event.CUSTOM]
+        ev_custom_str = self.ev_dict[RelLib.Event.CUSTOM]
         eventnames = filter(lambda x: x != ev_custom_str,
-                            Utils.personal_events.values())
+                            self.ev_dict.values())
         eventnames.sort(locale.strcoll)
 
-        role_custom_str = Utils.event_roles[RelLib.EventRef.CUSTOM]
+        role_custom_str = self.role_dict[RelLib.EventRef.CUSTOM]
         rolenames = filter(lambda x: x != role_custom_str,
-                           Utils.event_roles.values())
+                           self.role_dict.values())
 
         evalues = [
             # Title            Sort Col Size, Type    Argument
@@ -311,13 +325,13 @@ class EventListBox(ReorderListBox):
             (_('Note'),        NOSORT, 50,  TOGGLE, None,       None),
             ]
         
-        ReorderListBox.__init__(self, parent, person, obj, label,
+        ReorderListBox.__init__(self, parent, primary, obj, label,
                                 button_list, evalues, DdTargets.EVENT)
 
         self.ev_name_map,self.ev_val_map = self.build_maps(
-            RelLib.Event.CUSTOM,Utils.personal_events)
+            RelLib.Event.CUSTOM,self.ev_dict)
         self.ref_name_map,self.ref_val_map = self.build_maps(
-            RelLib.EventRef.CUSTOM,Utils.personal_events)
+            RelLib.EventRef.CUSTOM,self.role_dict)
 
     def set_type(self,index,value):
         val = self.ev_name_map.get(value,RelLib.Event.CUSTOM)
@@ -349,11 +363,8 @@ class EventListBox(ReorderListBox):
 
     def add(self,obj):
         """Brings up the EventEditor for a new event"""
-        EventEdit.EventRefEditor(None,None,self.person,self.parent.db,
+        EventEdit.EventRefEditor(None,None,self.primary,self.parent.db,
                                  self.edit_callback,self.parent)
-        #            self.parent, self.name, Utils.personal_events,
-        #            None, None, False,
-        #            self.edit_callback, noedit=self.db.readonly)
 
     def select(self,obj):
         """
@@ -365,7 +376,7 @@ class EventListBox(ReorderListBox):
                                             self.parent.window)
         event = sel_event.run()
         if event:
-            EventEdit.EventRefEditor(event,None,self.person,self.parent.db,
+            EventEdit.EventRefEditor(event,None,self.primary,self.parent.db,
                                      self.edit_callback,self.parent)
     
     def update(self,obj):
@@ -373,11 +384,8 @@ class EventListBox(ReorderListBox):
         if not node:
             return
         event_ref,event = self.list_model.get_object(node)
-        EventEdit.EventRefEditor(event,event_ref,self.person,self.parent.db,
+        EventEdit.EventRefEditor(event,event_ref,self.primary,self.parent.db,
                                  self.edit_callback,self.parent)   
-#            self.parent, self.name, Utils.personal_events,
-#            event[1], None, False,
-#            self.edit_callback, noedit=self.db.readonly)
 
     def display_data(self,event_tuple):
         (event_ref, event) = event_tuple
@@ -390,16 +398,16 @@ class EventListBox(ReorderListBox):
         has_source = len(event.get_source_references())> 0
         etype = event.get_type()
         if etype[0] == RelLib.Event.CUSTOM \
-               or not Utils.personal_events.has_key(etype[0]):
+               or not self.ev_dict.has_key(etype[0]):
             name = etype[1]
         else:
-            name = Utils.personal_events[etype[0]]
+            name = self.ev_dict[etype[0]]
         ref_role = event_ref.get_role()
         if ref_role[0] == RelLib.EventRef.CUSTOM \
-               or not Utils.event_roles.has_key(ref_role[0]):
+               or not self.role_dict.has_key(ref_role[0]):
             role = ref_role[1]
         else:
-            role = Utils.event_roles[ref_role[0]]
+            role = self.role_dict[ref_role[0]]
         return [name, event.get_description(), event.get_date(),
                 pname, role, has_source, has_note]
 

@@ -48,6 +48,7 @@ import const
 import Utils
 import AutoComp
 import ListModel
+import ListBox
 import RelLib
 import ImageSelect
 import DateHandler
@@ -121,16 +122,16 @@ class Marriage:
             "on_addphoto_clicked" : self.gallery.on_add_media_clicked,
             "on_selectphoto_clicked" : self.gallery.on_select_media_clicked,
             "on_close_marriage_editor" : self.on_close_marriage_editor,
-            "on_delete_event" : self.on_delete_event,
+            #"on_delete_event" : self.on_delete_event,
             "on_lds_src_clicked" : self.lds_src_clicked,
             "on_lds_note_clicked" : self.lds_note_clicked,
             "on_deletephoto_clicked" : self.gallery.on_delete_media_clicked,
             "on_edit_photo_clicked" : self.gallery.on_edit_media_clicked,
             "on_edit_properties_clicked": self.gallery.popup_change_description,
-            "on_marriageAddBtn_clicked" : self.on_add_clicked,
-            "on_event_update_clicked" : self.on_event_update_clicked,
+            #"on_marriageAddBtn_clicked" : self.on_add_clicked,
+            #"on_event_update_clicked" : self.on_event_update_clicked,
             "on_attr_update_clicked" : self.on_update_attr_clicked,
-            "on_marriageDeleteBtn_clicked" : self.on_delete_clicked,
+            #"on_marriageDeleteBtn_clicked" : self.on_delete_clicked,
             "on_switch_page" : self.on_switch_page
             })
 
@@ -148,22 +149,21 @@ class Marriage:
 
         Utils.set_title_label(self.top,self.title)
         
-        self.event_list = self.get_widget("marriageEventList")
+        self.event_ref_list = self.get_widget("marriageEventList")
 
         if gtk.gdk.screen_height() > 700:
-            self.event_list.set_size_request(500,250)
+            self.event_ref_list.set_size_request(500,250)
         else:
-            self.event_list.set_size_request(500,-1)
-
+            self.event_ref_list.set_size_request(500,-1)
 
         # widgets
         self.complete = self.get_widget('complete')
         self.complete.set_sensitive(mode)
-        self.date_field  = self.get_widget("marriageDate")
-        self.place_field = self.get_widget("marriagePlace")
-        self.cause_field = self.get_widget("marriageCause")
-        self.name_field  = self.get_widget("marriageEventName")
-        self.descr_field = self.get_widget("marriageDescription")
+        #self.date_field  = self.get_widget("marriageDate")
+        #self.place_field = self.get_widget("marriagePlace")
+        #self.cause_field = self.get_widget("marriageCause")
+        #self.name_field  = self.get_widget("marriageEventName")
+        #self.descr_field = self.get_widget("marriageDescription")
         self.type_field  = self.get_widget("marriage_type")
         self.type_field.set_sensitive(mode)
         self.notes_field = self.get_widget("marriageNotes")
@@ -173,8 +173,12 @@ class Marriage:
         self.attr_list = self.get_widget("attr_list")
         self.attr_type = self.get_widget("attr_type")
         self.attr_value = self.get_widget("attr_value")
-        self.event_src_field = self.get_widget("event_srcinfo")
-        self.event_conf_field = self.get_widget("event_conf")
+        #self.event_src_field = self.get_widget("event_srcinfo")
+        #self.event_conf_field = self.get_widget("event_conf")
+        event_add_btn = self.get_widget("marriage_add")
+        event_edit_btn = self.get_widget("marriage_edit")
+        event_delete_btn = self.get_widget("marriage_del")
+        event_sel_btn = self.get_widget("marriage_sel")
         self.attr_src_field = self.get_widget("attr_srcinfo")
         self.attr_conf_field = self.get_widget("attr_conf")
         self.lds_date = self.get_widget("lds_date")
@@ -201,7 +205,7 @@ class Marriage:
         self.preform = self.get_widget("mar_preform")
         self.preform.set_sensitive(mode)
 
-        self.ereflist = family.get_event_ref_list()[:]
+        #self.ereflist = family.get_event_ref_list()[:]
         self.alist = family.get_attribute_list()[:]
         self.lists_changed = 0
 
@@ -210,15 +214,21 @@ class Marriage:
         # set initial data
         self.gallery.load_images()
 
-        etitles = [(_('Event'),-1,100),(_('Date'),-1,125),(_('Place'),-1,150)]
+        #etitles = [(_('Event'),-1,100),(_('Date'),-1,125),(_('Place'),-1,150)]
         atitles = [(_('Attribute'),-1,150),(_('Value'),-1,150)]
 
-        self.etree = ListModel.ListModel(self.event_list, etitles,
-                                         self.on_select_row,
-                                         self.on_event_update_clicked)
+        #self.etree = ListModel.ListModel(self.event_list, etitles,
+        #                                 self.on_select_row,
+        #                                 self.on_event_update_clicked)
         self.atree = ListModel.ListModel(self.attr_list, atitles,
                                          self.on_attr_list_select_row,
                                          self.on_update_attr_clicked)
+
+        # event display
+        self.event_box = ListBox.EventListBox(
+            self, family, self.event_ref_list, self.events_label,
+            [event_add_btn,event_edit_btn,event_delete_btn,event_sel_btn])
+        self.event_box.redraw()
 
         self.type_selector = AutoComp.StandardCustomSelector( \
             Utils.family_relations,self.type_field,
@@ -264,17 +274,17 @@ class Marriage:
         else:
             Utils.unbold_label(self.lds_label)
         
-        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                      [DdTargets.FAMILY_EVENT.target()],
-                                      gtk.gdk.ACTION_COPY)
-        self.event_list.drag_source_set(gtk.gdk.BUTTON1_MASK,
-                                        [DdTargets.FAMILY_EVENT.target()],
-                                        gtk.gdk.ACTION_COPY)
-        self.event_list.connect('drag_data_get',
-                                self.ev_source_drag_data_get)
-        self.event_list.connect('drag_data_received',
-                                self.ev_dest_drag_data_received)
-        self.event_list.connect('drag_begin', self.ev_drag_begin)
+        #self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+        #                              [DdTargets.FAMILY_EVENT.target()],
+        #                              gtk.gdk.ACTION_COPY)
+        #self.event_list.drag_source_set(gtk.gdk.BUTTON1_MASK,
+        #                                [DdTargets.FAMILY_EVENT.target()],
+        #                                gtk.gdk.ACTION_COPY)
+        #self.event_list.connect('drag_data_get',
+        #                        self.ev_source_drag_data_get)
+        #self.event_list.connect('drag_data_received',
+        #                        self.ev_dest_drag_data_received)
+        #self.event_list.connect('drag_begin', self.ev_drag_begin)
 
         self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
                                      [DdTargets.FAMILY_ATTRIBUTE.target()],
@@ -303,7 +313,7 @@ class Marriage:
             self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
             self.top.get_widget('del_src'), self.db.readonly)
 
-        self.redraw_event_list()
+        #self.redraw_event_list()
         self.redraw_attr_list()
         self.add_itself_to_winsmenu()
         self.top.get_widget('ok').set_sensitive(not self.db.readonly)
@@ -524,7 +534,8 @@ class Marriage:
         selection_data.set(selection_data.target, bits_per, data)
 
     def update_lists(self):
-        self.family.set_event_ref_list(self.ereflist)
+        eref_list = [event_ref for (event_ref,event) in self.event_box.data]
+        self.family.set_event_ref_list(eref_list)
         self.family.set_attribute_list(self.alist)
 
     def attr_edit_callback(self,attr):
@@ -848,6 +859,8 @@ class Marriage:
         list.insert(dest,obj)
 
     def on_switch_page(self,obj,a,page):
+        if page == 0:
+            self.event_box.redraw()
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                 self.notes_buffer.get_end_iter(),False))
         if text:

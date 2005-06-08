@@ -215,6 +215,12 @@ event_roles = {
     RelLib.EventRef.WITNESS   : _("Witness"),
     }
 
+family_event_roles = {
+    RelLib.EventRef.UNKNOWN   : _("Unknown"),
+    RelLib.EventRef.CUSTOM    : _("Custom"),
+    RelLib.EventRef.FAMILY    : _("Family"),
+    }
+
 repository_types = {
     RelLib.Repository.UNKNOWN    : _("Unknown"),
     RelLib.Repository.CUSTOM     : _("Custom"),
