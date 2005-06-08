@@ -81,7 +81,6 @@ def get_place(field,pmap,db):
 class EventEditor:
 
     def __init__(self,event,db,parent,parent_window):
-                 #read_only, cb, def_event=None, noedit=False):
         self.parent = parent
         self.db = db
         read_only = self.db.readonly
@@ -116,11 +115,7 @@ class EventEditor:
         self.window = self.top.get_widget("event_edit")
         title_label = self.top.get_widget('title')
 
-        #if name == ", ":
         etitle = _('Event Editor')
-        #else:
-        #    etitle = _('Event Editor for %s') % name
-
         Utils.set_titles(self.window,title_label, etitle,
                          _('Event Editor'))
         
@@ -182,17 +177,13 @@ class EventEditor:
         else:
             defval = None
 
-        self.eventmapper = AutoComp.StandardCustomSelector(
+        self.type_selector = AutoComp.StandardCustomSelector(
             Utils.personal_events, self.event_menu,
             RelLib.Event.CUSTOM, defval)
 
         AutoComp.fill_entry(self.place_field,self.pmap.keys())
 
         if event != None:
-            #            self.event_menu.child.set_text(transname)
-            #            if def_placename:
-            #                self.place_field.set_text(def_placename)
-            #            else:
             place_handle = event.get_place_handle()
             if not place_handle:
                 place_name = u""
@@ -216,17 +207,13 @@ class EventEditor:
             if event.get_media_list():
                 Utils.bold_label(self.gallery_label)
         else:
-            if def_event:
-                self.event_menu.child.set_text(def_event)
-            if def_placename:
-                self.place_field.set_text(def_placename)
+            event = RelLib.Event()
+
         self.date_check = DateEdit.DateEdit(self.date,
                                         self.date_field,
                                         self.top.get_widget("date_stat"),
                                         self.window)
-        if not event:
-            event = RelLib.Event()
-            event.set_handle(Utils.create_id())
+
         self.icon_list = self.top.get_widget("iconlist")
         self.gallery = ImageSelect.Gallery(event, self.db.commit_event,
                                            self.path, self.icon_list,
@@ -313,9 +300,7 @@ class EventEditor:
 
     def on_event_edit_ok_clicked(self,obj):
 
-        event_data = self.eventmapper.get_values()
-
-        #self.date = self.dp.parse(unicode(self.date_field.get_text()))
+        event_data = self.type_selector.get_values()
         ecause = unicode(self.cause_field.get_text())
         eplace_obj = get_place(self.place_field,self.pmap,self.db)
         buf = self.note_field.get_buffer()
@@ -336,12 +321,7 @@ class EventEditor:
 #             self.elist.sort()
 
         just_added = self.event.handle == None
-#        if just_added:
-#            self.event.set_handle(Utils.create_id())
-#            self.event.set_source_reference_list(self.srcreflist)
-#            self.event.set_type(event_data)
-#            just_added = True
-        
+
         self.update_event(event_data,self.date,eplace_obj,edesc,enote,eformat,
                           epriv,ecause)
         if just_added:
@@ -352,10 +332,11 @@ class EventEditor:
             trans = self.db.transaction_begin()
             self.db.commit_event(self.event,trans)
             self.db.transaction_commit(trans,_("Edit Event"))
-            
+
         self.close(obj)
 
     def update_event(self,the_type,date,place,desc,note,format,priv,cause):
+        self.parent.lists_changed = 0
         if place:
             if self.event.get_place_handle() != place.get_handle():
                 self.event.set_place_handle(place.get_handle())
