@@ -4,6 +4,9 @@
 	* src/SelectChild.py: Support for (int,str) relationships.
 	* src/gramps.glade (selec_child,modparents,familyDialog): Replace
 	ComboBoxes with ComboBoxEntries.
+	* src/RelLib.py (add_parent_family_handle,
+	change_parent_family_handle): Correct the docstring to reflect
+	tuple relationships.
 
 2005-06-07  Alex Roitman  <shura@gramps-project.org>
 	* src/gramps.glade (selecty_person): Change positioning; add icon.
