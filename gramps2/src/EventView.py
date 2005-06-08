@@ -50,7 +50,6 @@ column_names = [
     _('Description'),
     _('ID'),
     _('Type'),
-    _('Last Change'),
     _('Date'),
     _('Place'),
     _('Cause'),
@@ -240,6 +239,8 @@ class EventView:
 
         for handle in mlist:
             event = self.parent.db.get_event_from_handle(handle)
+            print "0", handle
+            print "1", event
             EventEdit.EventEditor(event, self.parent.db, self.parent,
                                   self.topWindow)
 

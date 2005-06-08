@@ -6,6 +6,9 @@
 	hard-code handle column.
 	* src/DisplayModels.py (EventModel.__init__): Switch column order.
 
+	* src/EventView.py (Module): Remove extra column.
+	* src/EventEdit.py (EventEditor.__init__): Remove obsolete code.
+	
 2005-06-08  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EventView.py (column_names): Add missing column
 	* src/RepositoryView.py (column_names): Add missing columns
