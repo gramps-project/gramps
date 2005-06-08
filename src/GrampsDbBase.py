@@ -192,6 +192,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self.sid_trans = None
         self.oid_trans = None
         self.rid_trans = None
+        self.eid_trans = None
         self.env = None
         self.person_map = None
         self.family_map = None
@@ -404,6 +405,9 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         off the person ID prefix.
         """
         index = self.eprefix % self.emap_index
+        while self.eid_trans.get(str(index)):
+            self.emap_index += 1
+            index = self.eprefix % self.emap_index
         self.emap_index += 1
         return index
 

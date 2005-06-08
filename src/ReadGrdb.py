@@ -165,7 +165,11 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
     for event_handle in other_database.event_map.keys():
         event = other_database.get_event_from_handle(event_handle)
         
-        # Events don't have gramps IDs, so we don't need to check here
+        # Then we check gramps_id for conflicts and change it if needed
+        gramps_id = str(event.get_gramps_id())
+        if database.eid_trans.has_key(gramps_id):
+            gramps_id = database.find_next_event_gramps_id()
+            event.set_gramps_id(gramps_id)
         database.add_event(event,trans)
 
     database.transaction_commit(trans,_("Import database"))

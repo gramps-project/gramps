@@ -335,18 +335,20 @@ class EventEditor:
 #             self.elist.append(ename)
 #             self.elist.sort()
 
-        just_added = False
-        if self.event == None:
-            self.event = RelLib.Event()
-            self.event.set_handle(Utils.create_id())
-            self.event.set_source_reference_list(self.srcreflist)
-            self.event.set_type(event_data)
-            just_added = True
+        just_added = self.event.handle == None
+#        if just_added:
+#            self.event.set_handle(Utils.create_id())
+#            self.event.set_source_reference_list(self.srcreflist)
+#            self.event.set_type(event_data)
+#            just_added = True
         
         self.update_event(event_data,self.date,eplace_obj,edesc,enote,eformat,
                           epriv,ecause)
-        
-        if self.parent.lists_changed:
+        if just_added:
+            trans = self.db.transaction_begin()
+            self.db.add_event(self.event,trans)
+            self.db.transaction_commit(trans,_("Add Event"))
+        elif self.parent.lists_changed:
             trans = self.db.transaction_begin()
             self.db.commit_event(self.event,trans)
             self.db.transaction_commit(trans,_("Edit Event"))
@@ -411,7 +413,7 @@ class EventEditor:
 #
 #-------------------------------------------------------------------------
 class EventRefEditor:
-    def __init__(self, event_ref, event, referent, database, update, parent):
+    def __init__(self, event, event_ref, referent, database, update, parent):
         self.db = database
         self.parent = parent
         self.referent = referent
@@ -682,3 +684,36 @@ class EventRefEditor:
             Utils.bold_label(self.eer_notes_label)
         else:
             Utils.unbold_label(self.eer_notes_label)
+
+#-------------------------------------------------------------------------
+#
+# Delete Query class
+#
+#-------------------------------------------------------------------------
+class DelEventQuery:
+    def __init__(self,event,db,person_list,family_list):
+        self.event = event
+        self.db = db
+        self.person_list = person_list
+        self.family_list = family_list
+
+    def query_response(self):
+        trans = self.db.transaction_begin()
+        self.db.disable_signals()
+        
+        ev_handle_list = [self.event.get_handle()]
+
+        for handle in self.person_list:
+            person = self.db.get_person_from_handle(handle)
+            person.remove_handle_references('Event',ev_handle_list)
+            self.db.commit_person(person,trans)
+
+        for handle in self.family_list:
+            family = self.db.get_family_from_handle(handle)
+            family.remove_handle_references('Event',ev_handle_list)
+            self.db.commit_family(family,trans)
+
+        self.db.enable_signals()
+        self.db.remove_event(self.event.get_handle(),trans)
+        self.db.transaction_commit(
+            trans,_("Delete Event (%s)") % self.event.get_gramps_id())

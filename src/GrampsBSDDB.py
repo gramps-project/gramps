@@ -168,6 +168,10 @@ class GrampsBSDDB(GrampsDbBase):
         self.fid_trans.set_flags(db.DB_DUP)
         self.fid_trans.open(name, "fidtrans", db.DB_HASH, flags=openflags)
 
+        self.eid_trans = db.DB(self.env)
+        self.eid_trans.set_flags(db.DB_DUP)
+        self.eid_trans.open(name, "eidtrans", db.DB_HASH, flags=openflags)
+
         self.pid_trans = db.DB(self.env)
         self.pid_trans.set_flags(db.DB_DUP)
         self.pid_trans.open(name, "pidtrans", db.DB_HASH, flags=openflags)
@@ -196,6 +200,7 @@ class GrampsBSDDB(GrampsDbBase):
             self.person_map.associate(self.surnames,  find_surname, openflags)
             self.person_map.associate(self.id_trans,  find_idmap, openflags)
             self.family_map.associate(self.fid_trans, find_idmap, openflags)
+            self.event_map.associate(self.eid_trans,  find_idmap,  openflags)
             self.repository_map.associate(self.rid_trans, find_idmap, openflags)
             self.repository_map.associate(self.repository_types, find_repository_type, openflags)
             self.place_map.associate(self.pid_trans,  find_idmap, openflags)
@@ -247,6 +252,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.repository_types.close()
         self.id_trans.close()
         self.fid_trans.close()
+        self.eid_trans.close()
         self.rid_trans.close()
         self.oid_trans.close()
         self.sid_trans.close()
@@ -367,6 +373,7 @@ class GrampsBSDDB(GrampsDbBase):
             if transaction != None:
                 old_data = self.event_map.get(str(handle))
                 transaction.add(EVENT_KEY,handle,old_data)
+                self.emit('event-delete',([str(handle)],))
             self.event_map.delete(str(handle))
 
     def remove_place(self,handle,transaction):
@@ -387,7 +394,7 @@ class GrampsBSDDB(GrampsDbBase):
 
     def get_person_from_gramps_id(self,val):
         """finds a Person in the database from the passed gramps' ID.
-        If no such Person exists, a new Person is added to the database."""
+        If no such Person exists, None is returned."""
 
         data = self.id_trans.get(str(val))
         if data:
@@ -399,7 +406,7 @@ class GrampsBSDDB(GrampsDbBase):
 
     def get_family_from_gramps_id(self,val):
         """finds a Family in the database from the passed gramps' ID.
-        If no such Family exists, a new Person is added to the database."""
+        If no such Family exists, None is returned."""
 
         data = self.fid_trans.get(str(val))
         if data:
@@ -409,9 +416,21 @@ class GrampsBSDDB(GrampsDbBase):
         else:
             return None
 
+    def get_event_from_gramps_id(self,val):
+        """finds an Event in the database from the passed gramps' ID.
+        If no such Event exists, None is returned."""
+
+        data = self.eid_trans.get(str(val))
+        if data:
+            event = Event()
+            event.unserialize(cPickle.loads(data))
+            return event
+        else:
+            return None
+
     def get_place_from_gramps_id(self,val):
         """finds a Place in the database from the passed gramps' ID.
-        If no such Place exists, a new Person is added to the database."""
+        If no such Place exists, None is returned."""
 
         data = self.pid_trans.get(str(val))
         if data:
@@ -423,7 +442,7 @@ class GrampsBSDDB(GrampsDbBase):
 
     def get_source_from_gramps_id(self,val):
         """finds a Source in the database from the passed gramps' ID.
-        If no such Source exists, a new Person is added to the database."""
+        If no such Source exists, None is returned."""
 
         data = self.sid_trans.get(str(val))
         if data:
@@ -435,7 +454,7 @@ class GrampsBSDDB(GrampsDbBase):
 
     def get_repository_from_gramps_id(self,val):
         """finds a Repository in the database from the passed gramps' ID.
-        If no such Repository exists, a new Repository is added to the database."""
+        If no such Repository exists, None is returned."""
 
         data = self.rid_trans.get(str(val))
         if data:
@@ -447,7 +466,7 @@ class GrampsBSDDB(GrampsDbBase):
 
     def get_object_from_gramps_id(self,val):
         """finds a MediaObject in the database from the passed gramps' ID.
-        If no such MediaObject exists, a new Person is added to the database."""
+        If no such MediaObject exists, None is returned."""
 
         data = self.oid_trans.get(str(val))
         if data:
@@ -472,6 +491,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.name_group.sync()
         self.id_trans.sync()
         self.fid_trans.sync()
+        self.eid_trans.sync()
         self.pid_trans.sync()
         self.sid_trans.sync()
         self.rid_trans.sync()

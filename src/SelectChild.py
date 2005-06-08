@@ -115,7 +115,7 @@ class SelectChild:
         opt_menu.add_attribute(cell,'text',0)
         
         store = gtk.ListStore(str)
-        for val in const.child_rel_list:
+        for val in Utils.child_relations.values():
             store.append(row=[val])
         opt_menu.set_model(store)
         opt_menu.set_active(sel)

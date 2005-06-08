@@ -84,6 +84,7 @@ class GrampsInMemDB(GrampsDbBase):
         self.id_trans         = {}
         self.pid_trans        = {}
         self.fid_trans        = {}
+        self.eid_trans        = {}
         self.sid_trans        = {}
         self.rid_trans        = {}
         self.oid_trans        = {}
@@ -188,6 +189,7 @@ class GrampsInMemDB(GrampsDbBase):
         del self.family_map[str(handle)]
 
     def _del_event(self,handle):
+        del self.eid_trans[event.get_gramps_id()]
         del self.event_map[str(handle)]
 
     def commit_person(self,person,transaction,change_time=None):
@@ -210,6 +212,13 @@ class GrampsInMemDB(GrampsDbBase):
         gid = family.get_gramps_id()
         self.fid_trans[gid] = family.get_handle()
         GrampsDbBase.commit_family(self,family,transaction,change_time)
+
+    def commit_event(self,event,transaction,change_time=None):
+        if self.readonly or not event.get_handle():
+            return
+        gid = event.get_gramps_id()
+        self.eid_trans[gid] = event.get_handle()
+        GrampsDbBase.commit_event(self,event,transaction,change_time)
 
     def commit_media_object(self,obj,transaction,change_time=None):
         if self.readonly or not obj.get_handle():
@@ -250,6 +259,16 @@ class GrampsInMemDB(GrampsDbBase):
                 family = Family()
                 family.unserialize(data)
                 return family
+        return None
+
+    def get_event_from_gramps_id(self,val):
+        handle = self.eid_trans.get(str(val))
+        if handle:
+            data = self.event_map[handle]
+            if data:
+                event = Event()
+                event.unserialize(data)
+                return event
         return None
 
     def get_place_from_gramps_id(self,val):

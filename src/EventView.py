@@ -46,7 +46,6 @@ from QuestionDialog import QuestionDialog, ErrorDialog
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 
-
 column_names = [
     _('Description'),
     _('ID'),
@@ -126,7 +125,6 @@ class EventView:
         for pair in self.parent.db.get_event_column_order():
             if not pair[0]:
                 continue
-            print pair
             name = column_names[pair[1]]
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
             column.connect('clicked',self.column_clicked,index)
@@ -219,10 +217,10 @@ class EventView:
             
             event = self.parent.db.get_event_from_handle(event_handle)
 
-            ans = EventEdit.DelReposQuery(event,self.parent.db,
-                                          person_list+family_list)
+            ans = EventEdit.DelEventQuery(event,self.parent.db,
+                                          person_list,family_list)
 
-            if len(person_list+family_list) > 0:
+            if len(person_list) + len(family_list) > 0:
                 msg = _('This event is currently being used. Deleting it '
                         'will remove it from the database and from all '
                         'people and families that reference it.')
