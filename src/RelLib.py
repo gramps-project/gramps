@@ -4177,6 +4177,7 @@ class EventRef(BaseObject,PrivacyBase,NoteBase):
     BRIDE     = 5
     GROOM     = 6
     WITNESS   = 7
+    FAMILY    = 8
 
     def __init__(self,source=None):
         """

@@ -465,21 +465,25 @@ class EventRefEditor:
             "on_eer_delete_event"   : self.on_delete_event,
             })
 
+        if self.referent.__class__.__name__ == 'Person':
+            default_type = RelLib.Event.BIRTH
+            default_role = RelLib.EventRef.PRIMARY
+            ev_dict = Utils.personal_events
+            role_dict = Utils.event_roles
+        elif self.referent.__class__.__name__ == 'Family':
+            default_type = RelLib.Event.MARRIAGE
+            default_role = RelLib.EventRef.FAMILY
+            ev_dict = Utils.family_events
+            role_dict = Utils.family_event_roles
+
         self.role_selector = AutoComp.StandardCustomSelector(
-            Utils.event_roles,self.role_combo,
-            RelLib.EventRef.CUSTOM,RelLib.EventRef.PRIMARY)
+            role_dict,self.role_combo,
+            RelLib.EventRef.CUSTOM,default_role)
 
         AutoComp.fill_entry(self.place_field,self.pmap.keys())
 
-        if self.referent.__class__.__name__ == 'Person':
-            default_type = RelLib.Event.BIRTH
-            default_str = _("Birth")
-        elif self.referent.__class__.__name__ == 'Family':
-            default_type = RelLib.Event.MARRIAGE
-            default_str = _("Marriage")
-
         self.type_selector = AutoComp.StandardCustomSelector(
-            Utils.personal_events,self.type_combo,
+            ev_dict,self.type_combo,
             RelLib.Event.CUSTOM,default_type)
 
         if self.event:
@@ -488,7 +492,7 @@ class EventRefEditor:
         else:
             trans = self.db.transaction_begin()
             self.event = RelLib.Event()
-            self.event.set_type((default_type,default_str))
+            self.event.set_type((default_type,ev_dict[default_type]))
             self.db.add_event(self.event,trans)
             self.db.transaction_commit(trans,_("Add Event"))
             self.date = Date.Date(None)
@@ -496,7 +500,7 @@ class EventRefEditor:
 
         if not self.event_ref:
             self.event_ref = RelLib.EventRef()
-            self.event_ref.set_role((RelLib.EventRef.PRIMARY,_('Primary')))
+            self.event_ref.set_role((default_role,role_dict[default_role]))
             self.event_ref.set_reference_handle(self.event.get_handle())
 
         self.srcreflist = self.event.get_source_references()
@@ -538,6 +542,10 @@ class EventRefEditor:
             Utils.bold_label(self.gallery_label)
 
         self.add_itself_to_menu()
+        try:
+            self.window.set_transient_for(self.parent.window)
+        except AttributeError:
+            pass
         self.window.show()
 
     def on_delete_event(self,obj,b):
@@ -608,7 +616,7 @@ class EventRefEditor:
         stop = buf.get_end_iter()
         note = unicode(buf.get_text(start,stop,False))
         self.event_ref.set_note(note)
-        self.referent.add_event_ref(self.event_ref)
+        #self.referent.add_event_ref(self.event_ref)
         self.close(None)
 
         if self.update:
