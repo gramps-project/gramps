@@ -21,6 +21,8 @@ pkgdata_PYTHON = \
 	DetAncestralReport.py\
 	DetDescendantReport.py\
 	EventCmp.py\
+    ExportVCalendar.py\
+    ExportVCard.py\
 	FamilyGroup.py\
 	FanChart.py\
 	FtmStyleAncestors.py\
@@ -29,6 +31,7 @@ pkgdata_PYTHON = \
 	GraphViz.py\
 	IndivComplete.py\
 	IndivSummary.py\
+    ImportvCard.py\
 	Merge.py\
 	PatchNames.py\
 	ReadPkg.py\
@@ -81,7 +84,9 @@ GLADEFILES = \
 	book.glade\
 	writeftree.glade\
 	genewebexport.glade\
-	scratchpad.glade
+	scratchpad.glade\
+    vcardexport.glade\
+    vcalendarexport.glade
 
 GRAPHICS = \
 	stock_link.png
