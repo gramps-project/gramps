@@ -30,6 +30,14 @@
 	* src/Utils.py: Minor.
 	* src/gramps.glade: Minor update.
 
+	* src/AutoComp.py (StandardCustomSelector.__init__): Compare
+	active_key to None.
+	* src/gramps.glade (marriageDialog): Remove displayed strings from
+	the Sttributes tab.
+	* src/Marriage.py: Delegate attribute handling to ListBox.
+	* src/ListBox.py (AttrListBox): Support both personal and family
+	attributes.
+
 2005-06-08  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EventView.py (column_names): Add missing column
 	* src/RepositoryView.py (column_names): Add missing columns

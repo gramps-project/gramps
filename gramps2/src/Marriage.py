@@ -115,23 +115,14 @@ class Marriage:
             "on_help_marriage_editor" : self.on_help_clicked,
             "on_up_clicked" : self.on_up_clicked,
             "on_down_clicked" : self.on_down_clicked,
-            "on_attr_up_clicked" : self.on_attr_up_clicked,
-            "on_attr_down_clicked" : self.on_attr_down_clicked,
-            "on_add_attr_clicked" : self.on_add_attr_clicked,
-            "on_delete_attr_clicked" : self.on_delete_attr_clicked,
             "on_addphoto_clicked" : self.gallery.on_add_media_clicked,
             "on_selectphoto_clicked" : self.gallery.on_select_media_clicked,
             "on_close_marriage_editor" : self.on_close_marriage_editor,
-            #"on_delete_event" : self.on_delete_event,
             "on_lds_src_clicked" : self.lds_src_clicked,
             "on_lds_note_clicked" : self.lds_note_clicked,
             "on_deletephoto_clicked" : self.gallery.on_delete_media_clicked,
             "on_edit_photo_clicked" : self.gallery.on_edit_media_clicked,
             "on_edit_properties_clicked": self.gallery.popup_change_description,
-            #"on_marriageAddBtn_clicked" : self.on_add_clicked,
-            #"on_event_update_clicked" : self.on_event_update_clicked,
-            "on_attr_update_clicked" : self.on_update_attr_clicked,
-            #"on_marriageDeleteBtn_clicked" : self.on_delete_clicked,
             "on_switch_page" : self.on_switch_page
             })
 
@@ -159,11 +150,6 @@ class Marriage:
         # widgets
         self.complete = self.get_widget('complete')
         self.complete.set_sensitive(mode)
-        #self.date_field  = self.get_widget("marriageDate")
-        #self.place_field = self.get_widget("marriagePlace")
-        #self.cause_field = self.get_widget("marriageCause")
-        #self.name_field  = self.get_widget("marriageEventName")
-        #self.descr_field = self.get_widget("marriageDescription")
         self.type_field  = self.get_widget("marriage_type")
         self.type_field.set_sensitive(mode)
         self.notes_field = self.get_widget("marriageNotes")
@@ -171,16 +157,13 @@ class Marriage:
         self.gid = self.get_widget("gid")
         self.gid.set_editable(mode)
         self.attr_list = self.get_widget("attr_list")
-        self.attr_type = self.get_widget("attr_type")
-        self.attr_value = self.get_widget("attr_value")
-        #self.event_src_field = self.get_widget("event_srcinfo")
-        #self.event_conf_field = self.get_widget("event_conf")
         event_add_btn = self.get_widget("marriage_add")
         event_edit_btn = self.get_widget("marriage_edit")
         event_delete_btn = self.get_widget("marriage_del")
         event_sel_btn = self.get_widget("marriage_sel")
-        self.attr_src_field = self.get_widget("attr_srcinfo")
-        self.attr_conf_field = self.get_widget("attr_conf")
+        attr_add_btn = self.get_widget("attr_add")
+        attr_edit_btn = self.get_widget("attr_edit")
+        attr_del_btn = self.get_widget("attr_del")
         self.lds_date = self.get_widget("lds_date")
         self.lds_date.set_editable(mode)
         self.lds_date_led = self.get_widget("lds_date_stat")
@@ -205,7 +188,6 @@ class Marriage:
         self.preform = self.get_widget("mar_preform")
         self.preform.set_sensitive(mode)
 
-        #self.ereflist = family.get_event_ref_list()[:]
         self.alist = family.get_attribute_list()[:]
         self.lists_changed = 0
 
@@ -213,16 +195,6 @@ class Marriage:
 
         # set initial data
         self.gallery.load_images()
-
-        #etitles = [(_('Event'),-1,100),(_('Date'),-1,125),(_('Place'),-1,150)]
-        atitles = [(_('Attribute'),-1,150),(_('Value'),-1,150)]
-
-        #self.etree = ListModel.ListModel(self.event_list, etitles,
-        #                                 self.on_select_row,
-        #                                 self.on_event_update_clicked)
-        self.atree = ListModel.ListModel(self.attr_list, atitles,
-                                         self.on_attr_list_select_row,
-                                         self.on_update_attr_clicked)
 
         # event display
         self.event_box = ListBox.EventListBox(
@@ -236,6 +208,13 @@ class Marriage:
 
         frel = family.get_relationship()
         self.type_selector.set_values(frel)
+
+        # attribute display
+        self.attr_box = ListBox.AttrListBox(
+            self, family, self.attr_list, self.attr_label,
+            [attr_add_btn,attr_edit_btn,attr_del_btn])
+        self.attr_box.redraw()
+
         self.gid.set_text(family.get_gramps_id())
 
 
@@ -286,17 +265,17 @@ class Marriage:
         #                        self.ev_dest_drag_data_received)
         #self.event_list.connect('drag_begin', self.ev_drag_begin)
 
-        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                     [DdTargets.FAMILY_ATTRIBUTE.target()],
-                                     gtk.gdk.ACTION_COPY)
-        self.attr_list.drag_source_set(gtk.gdk.BUTTON1_MASK,
-                                       [DdTargets.FAMILY_ATTRIBUTE.target()],
-                                       gtk.gdk.ACTION_COPY)
-        self.attr_list.connect('drag_data_get',
-                               self.at_source_drag_data_get)
-        self.attr_list.connect('drag_data_received',
-                               self.at_dest_drag_data_received)
-        self.attr_list.connect('drag_begin', self.at_drag_begin)
+        #self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+        #                             [DdTargets.FAMILY_ATTRIBUTE.target()],
+        #                             gtk.gdk.ACTION_COPY)
+        #self.attr_list.drag_source_set(gtk.gdk.BUTTON1_MASK,
+        #                               [DdTargets.FAMILY_ATTRIBUTE.target()],
+        #                               gtk.gdk.ACTION_COPY)
+        #self.attr_list.connect('drag_data_get',
+        #                       self.at_source_drag_data_get)
+        #self.attr_list.connect('drag_data_received',
+        #                       self.at_dest_drag_data_received)
+        #self.attr_list.connect('drag_begin', self.at_drag_begin)
 
         # set notes data
         self.notes_buffer = self.notes_field.get_buffer()
@@ -313,8 +292,6 @@ class Marriage:
             self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
             self.top.get_widget('del_src'), self.db.readonly)
 
-        #self.redraw_event_list()
-        self.redraw_attr_list()
         self.add_itself_to_winsmenu()
         self.top.get_widget('ok').set_sensitive(not self.db.readonly)
 
@@ -536,7 +513,7 @@ class Marriage:
     def update_lists(self):
         eref_list = [event_ref for (event_ref,event) in self.event_box.data]
         self.family.set_event_ref_list(eref_list)
-        self.family.set_attribute_list(self.alist)
+        self.family.set_attribute_list(self.attr_box.data)
 
     def attr_edit_callback(self,attr):
         self.redraw_attr_list()
@@ -739,11 +716,6 @@ class Marriage:
         import EventEdit
         EventEdit.EventRefEditor(None,None,self.family,self.db,
                                  self.event_box.edit_callback,self)
-        #name = Utils.family_name(self.family,self.db)
-        #EventEdit.EventRefEditor(None,self.family, self.db,None,self)
-            #self,name, Utils.family_events,
-            #None, None, 0, self.event_edit_callback,
-            #RelLib.Event.MARRIAGE, self.db.readonly)
 
     def on_event_update_clicked(self,obj):
         import EventEdit
@@ -863,6 +835,8 @@ class Marriage:
     def on_switch_page(self,obj,a,page):
         if page == 0:
             self.event_box.redraw()
+        elif page == 1:
+            self.attr_box.redraw()
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                 self.notes_buffer.get_end_iter(),False))
         if text:

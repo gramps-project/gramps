@@ -142,7 +142,7 @@ class StandardCustomSelector:
             self.selector.set_text_column(1)
         else:
             self.selector = gtk.ComboBoxEntry(self.store,1)
-        if self.active_key:
+        if self.active_key != None:
             self.selector.set_active(self.active_index)
 
         # make autocompletion work
