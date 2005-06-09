@@ -4728,7 +4728,7 @@ tories&lt;/b&gt;</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkComboBoxEntry" id="mrel_combo">
+		    <widget class="GtkComboBoxEntry" id="fcombo">
 		      <property name="visible">True</property>
 		    </widget>
 		    <packing>

@@ -38,6 +38,10 @@
 	* src/ListBox.py (AttrListBox): Support both personal and family
 	attributes.
 
+	* src/ChooseParents.py: Correct use of types; Use family relations
+	between parents; Use EventRef for birth; Remove obsolete code.
+	* src/gramps.glade (familyDialog): Typo in widget name.
+
 2005-06-08  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EventView.py (column_names): Add missing column
 	* src/RepositoryView.py (column_names): Add missing columns

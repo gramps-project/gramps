@@ -65,12 +65,16 @@ import AutoComp
 # Constants
 #
 #-------------------------------------------------------------------------
-UNKNOWN_REL = (RelLib.Person.CHILD_UNKNOWN,
-               Utils.child_relations[RelLib.Person.CHILD_UNKNOWN])
-BIRTH_REL   = (RelLib.Person.CHILD_BIRTH,
-               Utils.child_relations[RelLib.Person.CHILD_BIRTH])
-MARRIED_REL = (RelLib.Family.MARRIED,
-               Utils.family_relations[RelLib.Family.MARRIED])
+UNKNOWN_REL     = (RelLib.Person.CHILD_UNKNOWN,
+                   Utils.child_relations[RelLib.Person.CHILD_UNKNOWN])
+BIRTH_REL       = (RelLib.Person.CHILD_BIRTH,
+                   Utils.child_relations[RelLib.Person.CHILD_BIRTH])
+MARRIED_REL     = (RelLib.Family.MARRIED,
+                   Utils.family_relations[RelLib.Family.MARRIED])
+FAM_UNKNOWN_REL = (RelLib.Family.UNKNOWN,
+                   Utils.family_relations[RelLib.Family.UNKNOWN])
+CIVIL_UNION_REL = (RelLib.Family.CIVIL_UNION,
+                   Utils.family_relations[RelLib.Family.CIVIL_UNION])
 
 #-------------------------------------------------------------------------
 #
@@ -98,8 +102,8 @@ class ChooseParents:
             self.family = self.db.get_family_from_handle(family.get_handle())
         else:
             self.family = None
-        self.old_type = ""
-        self.type = ""
+        self.old_type = MARRIED_REL
+        self.type = MARRIED_REL
         self.parent_selected = 0
         self.renderer = gtk.CellRendererText()
 
@@ -169,8 +173,8 @@ class ChooseParents:
             self.type = MARRIED_REL
 
         self.prel_selector = AutoComp.StandardCustomSelector(
-            Utils.child_relations,self.prel,
-            RelLib.Family.CUSTOM,RelLib.Family.MARIIED)
+            Utils.family_relations,self.prel,
+            RelLib.Family.CUSTOM,RelLib.Family.MARRIED)
         self.prel_selector.set_values(self.type)
         self.redrawm()
         
@@ -185,8 +189,6 @@ class ChooseParents:
             "on_familyDialog_delete_event" : self.on_delete_event,
             })
 
-        #self.build_list(self.mcombo,mrel)
-        #self.build_list(self.fcombo,frel)
         self.frel_selector = AutoComp.StandardCustomSelector(
             Utils.child_relations,self.fcombo,
             RelLib.Person.CHILD_CUSTOM,RelLib.Person.CHILD_BIRTH)
@@ -200,7 +202,7 @@ class ChooseParents:
         self.window.show()
 
     def build_likely(self,is_male):
-        birth_handle = self.person.get_birth_handle()
+        birth_ref = self.person.get_birth_ref()
         
         filt = GenericFilter.GenericFilter()
         if is_male:
@@ -208,8 +210,8 @@ class ChooseParents:
         else:
             filt.add_rule(GenericFilter.IsFemale([]))
 
-        if birth_handle:
-            birth = self.db.get_event_from_handle(birth_handle)
+        if birth_ref:
+            birth = self.db.get_event_from_handle(birth_ref.ref)
             date_obj = Date.Date(birth.get_date_object())
             year = date_obj.get_year()
             if year:
@@ -226,17 +228,6 @@ class ChooseParents:
                     [DateHandler.displayer.display(date_obj),"",""])
                 filt.add_rule(rule)
         return filt
-
-    def build_list(self,opt_menu,sel):
-        cell = gtk.CellRendererText()
-        opt_menu.pack_start(cell,True)
-        opt_menu.add_attribute(cell,'text',0)
-        
-        store = gtk.ListStore(str)
-        for val in self.keys:
-            store.append(row=[val])
-        opt_menu.set_model(store)
-        opt_menu.set_active(sel)
 
     def build_father_list(self):
         self.father_selection = self.father_list.get_selection()
@@ -499,14 +490,14 @@ class ChooseParents:
                     father_handle = self.father.get_handle()
                     mother_handle = None
             elif self.mother.get_gender() != self.father.get_gender():
-                if self.type == "Partners":
-                    self.type = "Unknown"
+                if self.type[0] == RelLib.Family.CIVIL_UNION:
+                    self.type = FAM_UNKNOWN_REL
                 if self.father.get_gender() == RelLib.Person.FEMALE:
                     self.father, self.mother = self.mother, self.father
                 father_handle = self.father.get_handle()
                 mother_handle = self.mother.get_handle()
             else:
-                self.type = "Partners"
+                self.type = CIVIL_UNION_REL
                 father_handle = self.father.get_handle()
                 mother_handle = self.mother.get_handle()
             self.family = self.find_family(father_handle,mother_handle,trans)
@@ -699,9 +690,6 @@ class ModifyParents:
             self.mcombo.set_sensitive(False)
             self.glade.get_widget('ok').set_sensitive(False)
 
-
-        #self.build_list(self.mcombo,self.orig_mrel)
-        #self.build_list(self.fcombo,self.orig_frel)
         self.frel_selector = AutoComp.StandardCustomSelector(
             Utils.child_relations,self.fcombo,
             RelLib.Person.CHILD_CUSTOM,RelLib.Person.CHILD_BIRTH)
@@ -716,13 +704,6 @@ class ModifyParents:
         if self.val == gtk.RESPONSE_OK:
             self.save_parents_clicked()
         self.window.destroy()
-
-    def build_list(self,opt_menu,sel):
-        store = gtk.ListStore(str)
-        for val in self.keys:
-            store.append(row=[val])
-        opt_menu.set_model(store)
-        opt_menu.set_active(sel)
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
