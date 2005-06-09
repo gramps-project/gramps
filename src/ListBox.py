@@ -217,11 +217,16 @@ class ReorderListBox(ListBox):
 
 class AttrListBox(ReorderListBox):
 
-    def __init__(self, parent, person, obj, label, button_list):
+    def __init__(self, parent, primary, obj, label, button_list):
 
-        custom_str = Utils.personal_attributes[RelLib.Attribute.CUSTOM]
+        if primary.__class__.__name__ == 'Person':
+            self.attr_dict = Utils.personal_attributes
+        elif primary.__class__.__name__ == 'Family':
+            self.attr_dict = Utils.family_attributes
+
+        custom_str = self.attr_dict[RelLib.Attribute.CUSTOM]
         attrlist = filter(lambda x: x != custom_str,
-                          Utils.personal_attributes.values())
+                          self.attr_dict.values())
         attrlist.sort(locale.strcoll)
 
         titles = [
@@ -232,12 +237,12 @@ class AttrListBox(ReorderListBox):
             (_('Note'),      NOSORT,   50,   TOGGLE, None,     None),
             ]
 
-        self.data = person.get_attribute_list()[:]
-        ListBox.__init__(self, parent, person, obj, label,
+        self.data = primary.get_attribute_list()[:]
+        ListBox.__init__(self, parent, primary, obj, label,
                          button_list, titles)
 
         self.attr_name_map,self.attr_val_map = self.build_maps(
-            RelLib.Attribute.CUSTOM,Utils.personal_attributes)
+            RelLib.Attribute.CUSTOM,self.attr_dict)
 
     def set_type(self,index,value):
         val = self.attr_name_map.get(value,RelLib.Attribute.CUSTOM)
@@ -253,7 +258,7 @@ class AttrListBox(ReorderListBox):
     def add(self,obj):
         """Brings up the AttributeEditor for a new attribute"""
         AttrEdit.AttributeEditor(self.parent, None, self.name,
-                                 Utils.personal_attributes,
+                                 self.attr_dict,
                                  self.edit_callback,self.parent.window)
 
     def update(self,obj):
@@ -261,7 +266,7 @@ class AttrListBox(ReorderListBox):
         if node:
             attr = self.list_model.get_object(node)
             AttrEdit.AttributeEditor(self.parent, attr, self.name,
-                                     Utils.personal_attributes,
+                                     self.attr_dict,
                                      self.edit_callback,self.parent.window)
 
     def display_data(self,attr):
@@ -270,10 +275,10 @@ class AttrListBox(ReorderListBox):
 
         etype = attr.get_type()
         if etype[0] == RelLib.Attribute.CUSTOM \
-               or not Utils.personal_attributes.has_key(etype[0]):
+               or not self.attr_dict.has_key(etype[0]):
             name = etype[1]
         else:
-            name = Utils.personal_attributes[etype[0]]
+            name = self.attr_dict[etype[0]]
 
         return [name, attr.get_value(), has_source, has_note]
 
