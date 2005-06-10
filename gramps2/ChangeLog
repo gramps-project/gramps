@@ -1,5 +1,8 @@
 2005-06-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/ReportUtils.py (place_name): Really return place name
+	* src/plugins/NavWebPage.py: Marked strings for translation; Dont crash
+	if media file does not exist; Generate pages for every place; Build list
+	of used sources
 
 2005-06-09  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/Makefile.am: Install vCal and vCard plugins
