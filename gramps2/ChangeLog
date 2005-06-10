@@ -1,3 +1,7 @@
+2005-06-10  Alex Roitman  <shura@gramps-project.org>
+	* src/docgen/AbiWord2Doc.py: Only embed one data chunk per image
+	file; add empty paragraph if the image is not in paragraph already.
+
 2005-06-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/ReportUtils.py (place_name): Really return place name
 	* src/plugins/NavWebPage.py: Marked strings for translation; Dont crash

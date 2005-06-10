@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,7 +30,6 @@ Provides a BaseDoc based interface to the AbiWord document format.
 #
 #-------------------------------------------------------------------------
 import base64
-import string
 import os
 
 import BaseDoc
@@ -59,8 +58,7 @@ class AbiWordDoc(BaseDoc.BaseDoc):
         self.level = 0
         self.new_page = 0
         self.in_table = 0
-        self.icount = 0;
-        self.imap = {}
+        self.in_paragraph = 0
 
     def open(self,filename):
         """Opens the document, writing the necessary header information.
@@ -161,15 +159,16 @@ class AbiWordDoc(BaseDoc.BaseDoc):
     def close(self):
         """Write the trailing information and closes the file"""
         self.f.write('</section>\n')
-        if len(self.media_list) > 0:
+        if self.media_list:
             self.f.write('<data>\n')
-            for file_tuple in self.media_list:
-                tag = self.imap[file_tuple[0]]
-
-                img = ImgManip.ImgManip(file_tuple[0])
+            for tag_number in range(len(self.media_list)):
+                name = self.media_list[tag_number]
+                img = ImgManip.ImgManip(name)
                 buf = img.png_data()
 
-                self.f.write('<d name="%s" mime-type="image/png" base64="yes">\n' % tag)
+                self.f.write(
+                    '<d name="image%d" mime-type="image/png" base64="yes">\n'
+                    % tag_number)
                 self.f.write(base64.encodestring(buf))
                 self.f.write('</d>\n')
             self.f.write('</data>\n')
@@ -206,14 +205,21 @@ class AbiWordDoc(BaseDoc.BaseDoc):
             act_height = y_cm
             act_width = x_cm*aspect_ratio
 
-        self.media_list.append((name,act_width,act_height))
+        if name in self.media_list:
+            tag_number = self.media_list.index(name)
+        else:
+            tag_number = len(self.media_list)
+            self.media_list.append(name)
 
-        tag = "image%d" % self.icount
+        if self.in_paragraph:        # We cannot insert photo 
+            start_p = end_p = ''     # outside text paragraph.
+        else:                        # So if not in paragraph, insert one.
+            start_p = '<p>'
+            end_p = '</p>'
 
-        self.f.write('<image dataid="%s" props="width:%.3fcm; ' % (tag, x_cm))
-        self.f.write('height:%.3fcm"/>' % y_cm)
-        self.imap[name] = tag
-        self.icount += 1
+        self.f.write('%s<image dataid="image%d" '
+                     'props="height:%.3fcm; width:%.3fcm"/>%s '
+                     % (start_p,tag_number,act_height,act_width,end_p))
 
     def start_superscript(self):
         self.text = self.text + '<c props="text-position:superscript">'
@@ -222,6 +228,7 @@ class AbiWordDoc(BaseDoc.BaseDoc):
         self.text = self.text + '</c>'
 
     def start_paragraph(self,style_name,leader=None):
+        self.in_paragraph = 1
         style = self.style_list[style_name]
         self.current_style = style
         self.f.write('<p style="%s">' % style_name)
@@ -236,6 +243,7 @@ class AbiWordDoc(BaseDoc.BaseDoc):
         self.new_page = 1
 
     def end_paragraph(self):
+        self.in_paragraph = 0
         self.f.write('</p>\n')
 
     def write_note(self,text,format,style_name):
@@ -249,7 +257,7 @@ class AbiWordDoc(BaseDoc.BaseDoc):
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
                 line = line.replace('\n',' ')
-                line = string.join(string.split(line))
+                line = ' '.join(line.split())
                 self.write_text(line)
                 self.end_paragraph()
 
