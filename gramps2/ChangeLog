@@ -1,3 +1,6 @@
+2005-06-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/ReportUtils.py (place_name): Really return place name
+
 2005-06-09  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/Makefile.am: Install vCal and vCard plugins
 
