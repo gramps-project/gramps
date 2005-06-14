@@ -1,3 +1,11 @@
+2005-06-14  Alex Roitman  <shura@gramps-project.org>
+	* src/events.png, src/repos.png, src/repos24.png: Add GNOME icons
+	for the stock calendar and drawer.
+	* src/events24.png: Update small icon.
+	* src/gramps.glade: Use new icons for the Event View and
+	Repository View side bar buttons. Add small icons to the main
+	notebook tabs.
+
 2005-06-08  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EditPerson.py: Make gender guessing work again
 
