@@ -7,7 +7,9 @@
 	Build person-centered filters only if a person is selected.
 
 2005-06-15  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
-	* src/po/de.po: Applied patch from Jens Seidel <jensseidel@users.sf.net>
+	* src/po/de.po: Applied patcHies from Jens Seidel <jensseidel@users.sf.net>
+	and Anton Huber <anton_huber@gmx.de>
+
 2005-06-10  Alex Roitman  <shura@gramps-project.org>
 	* src/docgen/AbiWord2Doc.py: Only embed one data chunk per image
 	file; add empty paragraph if the image is not in paragraph already.
