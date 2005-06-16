@@ -43,6 +43,7 @@ import RelLib
 import const
 import Utils
 import DateHandler
+import NameDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -298,6 +299,16 @@ class GrampsParser:
         self.gid2sid = {}
         self.change = change
         self.dp = DateHandler.parser
+
+        self.child_relmap = {
+            "None"      : RelLib.Person.CHILD_NONE,
+            "Birth"     : RelLib.Person.CHILD_BIRTH,
+            "Adopted"   : RelLib.Person.CHILD_ADOPTED,
+            "Stepchild" : RelLib.Person.CHILD_STEPCHILD,
+            "Sponsored" : RelLib.Person.CHILD_SPONSORED,
+            "Foster"    : RelLib.Person.CHILD_FOSTER,
+            "Unknown"   : RelLib.Person.CHILD_UNKNOWN,
+            }
         
         self.ord = None
         self.objref = None
@@ -875,19 +886,17 @@ class GrampsParser:
             family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
             
         if attrs.has_key("mrel"):
-            try:
-                mrel = const.child_rel_notrans.index(attrs["mrel"])
-            except:
-                mrel = RelLib.Person.CHILD_NONE
+            mval = attrs.has_key('mrel')
+            mrel = (self.child_relmap.get(mval,RelLib.Person.CHILD_CUSTOM),
+                    mval)
         else:
-            mrel = RelLib.Person.CHILD_BIRTH
+            mrel = (RelLib.Person.CHILD_BIRTH,'Birth')
         if attrs.has_key("frel"):
-            try:
-                frel = const.child_rel_notrans.index(attrs["frel"])
-            except:
-                frel = RelLib.Person.CHILD_NONE
+            fval = attrs.has_key('frel')
+            frel = (self.child_relmap.get(fval,RelLib.Person.CHILD_CUSTOM),
+                    fval)
         else:
-            frel = RelLib.Person.CHILD_BIRTH
+            frel = (RelLib.Person.CHILD_BIRTH,'Birth')
         self.person.add_parent_family_handle(family.get_handle(),mrel,frel)
 
     def start_parentin(self,attrs):
@@ -1244,16 +1253,46 @@ class GrampsParser:
         
     def stop_event(self,*tag):
         if self.family:
-            self.family.add_event_handle(self.event.get_handle())
+            ref = RelLib.EventRef()
+            ref.set_reference_handle(self.event.get_handle())
+            self.family.add_event_ref(ref)
+
+            descr = self.event.get_description()
+            if not descr:
+                (code,val) = self.event.get_type()
+                if code == RelLib.Event.CUSTOM:
+                    event_name = val
+                else:
+                    event_name = Utils.family_events[code]
+                text = _("%(event_name)s of %(family)s") % {
+                    'event_name' : event_name,
+                    'family' : Utils.family_name(self.family,self.db),
+                    }
+                self.event.set_description(text)
+
         else:
             ref = RelLib.EventRef()
-            ref.ref = self.event.get_handle()
+            ref.set_reference_handle(self.event.get_handle())
+            ref.set_role((RelLib.EventRef.PRIMARY,''))
             if self.event.get_type()[0] == RelLib.Event.BIRTH:
                 self.person.set_birth_ref(ref)
             elif self.event.get_type()[0] == RelLib.Event.DEATH:
                 self.person.set_death_ref(ref)
             else:
                 self.person.add_event_ref(ref)
+
+            descr = self.event.get_description()
+            if not descr:
+                (code,val) = self.event.get_type()
+                if code == RelLib.Event.CUSTOM:
+                    event_name = val
+                else:
+                    event_name = Utils.personal_events[code]
+                text = _("%(event_name)s of %(person)s") % {
+                    'event_name' : event_name,
+                    'person' : NameDisplay.displayer.display(self.person),
+                    }
+                self.event.set_description(text)
         self.db.commit_event(self.event,self.trans,self.change)
         self.event = None
 
