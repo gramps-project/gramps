@@ -2424,9 +2424,11 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         return self.description
 
     def add_ext_witness(self,witness):
+        assert type(witness) == tuple
         self.ext_witness_list.append(witness)
 
     def remove_ext_witness(self,witness):
+        assert type(witness) == tuple
         if witness in self.ext_witness_list:
             self.ext_witness_list.remove(witness)
             return True

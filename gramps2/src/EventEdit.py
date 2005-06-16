@@ -455,6 +455,7 @@ class EventRefEditor:
         self.preform = self.top.get_widget("eer_ev_preform")
         self.ok = self.top.get_widget('ok')
         self.expander = self.top.get_widget("eer_expander")
+        self.warning = self.top.get_widget("eer_warning")
         
         add_src = self.top.get_widget('eer_add_src')
         del_src = self.top.get_widget('eer_del_src')
@@ -496,16 +497,24 @@ class EventRefEditor:
             RelLib.Event.CUSTOM,default_type)
 
         if self.event:
+            self.event_added = False
             self.date = Date.Date(self.event.get_date_object())
-            self.expander.set_expanded(False)
+            if self.event_ref:
+                if self.event_ref.get_role()[0] == default_role:
+                    self.expander.set_expanded(True)
+                    self.warning.hide()
+                else:
+                    self.expander.set_expanded(False)
+                    self.warning.show_all()
         else:
-            trans = self.db.transaction_begin()
             self.event = RelLib.Event()
             self.event.set_type((default_type,ev_dict[default_type]))
-            self.db.add_event(self.event,trans)
-            self.db.transaction_commit(trans,_("Add Event"))
+            self.event.set_handle(self.db.create_id())
+            self.event.set_gramps_id(self.db.find_next_event_gramps_id())
+            self.event_added = True
             self.date = Date.Date(None)
             self.expander.set_expanded(True)
+            self.warning.hide()
 
         if not self.event_ref:
             self.event_ref = RelLib.EventRef()
@@ -615,7 +624,10 @@ class EventRefEditor:
         if self.parent.lists_changed:
             trans = self.db.transaction_begin()
             self.db.commit_event(self.event,trans)
-            self.db.transaction_commit(trans,_("Modify Event"))
+            if self.event_added:
+                self.db.transaction_commit(trans,_("Add Event"))
+            else:
+                self.db.transaction_commit(trans,_("Modify Event"))
         
         # then, set properties of the event_ref
         self.event_ref.set_role(self.role_selector.get_values())
@@ -625,7 +637,6 @@ class EventRefEditor:
         stop = buf.get_end_iter()
         note = unicode(buf.get_text(start,stop,False))
         self.event_ref.set_note(note)
-        #self.referent.add_event_ref(self.event_ref)
         self.close(None)
 
         if self.update:
