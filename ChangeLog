@@ -5,7 +5,7 @@
 	existing events with the default role; Only commit new Event when
 	OK clicked in the editor.
 	* src/RelLib.py: Add assertions for external witness methods.
-	* src/gramps.glade:
+	* src/gramps.glade: Make warning easy to show/hide.
 
 2005-06-15  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels.py: fixed event type display
