@@ -1,3 +1,6 @@
+2005-06-16  Alex Roitman  <shura@gramps-project.org>
+	* src/EventEdit.py: Remove unused variable.
+
 2005-06-15  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels.py: fixed event type display
 	* src/ReadXML.py: build child/family relationships properly on
