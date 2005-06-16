@@ -1,6 +1,12 @@
 2005-06-16  Alex Roitman  <shura@gramps-project.org>
 	* src/EventEdit.py: Remove unused variable.
 
+	* src/EventEdit.py: Hide warning message for new events and for
+	existing events with the default role; Only commit new Event when
+	OK clicked in the editor.
+	* src/RelLib.py: Add assertions for external witness methods.
+	* src/gramps.glade:
+
 2005-06-15  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels.py: fixed event type display
 	* src/ReadXML.py: build child/family relationships properly on
