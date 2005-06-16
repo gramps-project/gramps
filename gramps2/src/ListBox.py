@@ -319,15 +319,22 @@ class EventListBox(ReorderListBox):
         rolenames = filter(lambda x: x != role_custom_str,
                            self.role_dict.values())
 
+        self.place_dict = {} 
+        for handle in self.parent.db.get_place_handles():
+            title = self.parent.db.get_place_from_handle(handle).get_title()
+            self.place_dict[title] = handle
+        placenames = self.place_dict.keys()
+        placenames.sort(locale.strcoll)
+        
         evalues = [
             # Title            Sort Col Size, Type    Argument
-            (_('Event'),       NOSORT, 100, COMBO,  eventnames, self.set_type),
-            (_('Description'), NOSORT, 140, TEXT,   None,       self.set_description),
-            (_('Date'),        NOSORT, 100, TEXT,   None,       self.set_date),
-            (_('Place'),       NOSORT, 100, TEXT,   None,       self.set_place),
-            (_('Role'),        NOSORT, 100, COMBO,  rolenames,  self.set_role),
-            (_('Source'),      NOSORT, 50,  TOGGLE, None,       None),
-            (_('Note'),        NOSORT, 50,  TOGGLE, None,       None),
+            (_('Event'),       NOSORT, 100, COMBO,  eventnames,self.set_type),
+            (_('Description'), NOSORT, 140, TEXT,   None,self.set_description),
+            (_('Date'),        NOSORT, 100, TEXT,   None,      self.set_date),
+            (_('Place'),       NOSORT, 100, TEXT,   None,      self.set_place),
+            (_('Role'),        NOSORT, 100, COMBO,  rolenames, self.set_role),
+            (_('Source'),      NOSORT, 50,  TOGGLE, None,      None),
+            (_('Note'),        NOSORT, 50,  TOGGLE, None,      None),
             ]
         
         ReorderListBox.__init__(self, parent, primary, obj, label,
@@ -359,7 +366,20 @@ class EventListBox(ReorderListBox):
         self.change_list.add(self.data[index])
 
     def set_place(self,index,value):
-        self.data[index][1].set_description(value)
+        if not value.strip():
+            return
+        handle = self.place_dict.get(value,None)
+        if handle:
+            place = self.parent.db.get_place_from_handle(handle)
+        else:
+            place = RelLib.Place()
+            place.set_title(value)
+            trans = self.parent.db.transaction_begin()
+            self.parent.db.add_place(place,trans)
+            self.parent.db.transaction_commit(trans,_("Add Place"))
+            handle = place.get_handle()
+        
+        self.data[index][1].set_place_handle(handle)
         self.change_list.add(self.data[index])
 
     def set_date(self,index,value):
