@@ -1,3 +1,8 @@
+2005-06-15  Don Allingham  <don@gramps-project.org>
+	* src/ReadXML.py: build child/family relationships properly on
+	import, add missing event descriptions
+	* src/RelLib.py: type checking for set_role relationship types
+
 2005-06-15  Alex Roitman  <shura@gramps-project.org>
 	* src/ListBox.py (EventListBox.set_place): Fix place setting.
 

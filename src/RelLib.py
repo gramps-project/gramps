@@ -1253,7 +1253,7 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         # remove when transitition done.
         event_ref = EventRef()
         event_ref.set_reference_handle(event_handle)
-        event_ref.set_role( EventRef.PRIMARY)
+        event_ref.set_role((EventRef.PRIMARY,''))
         self.set_birth_ref( event_ref)
 
     def set_birth_ref(self,event_ref):
@@ -1276,7 +1276,7 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         # remove when transitition done.
         event_ref = EventRef()
         event_ref.set_reference_handle(event_handle)
-        event_ref.set_role( EventRef.PRIMARY)
+        event_ref.set_role((EventRef.PRIMARY,''))
         self.set_death_ref( event_ref)
 
     def set_death_ref(self,event_ref):
@@ -1339,7 +1339,7 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         # remove when transitition done.
         event_ref = EventRef()
         event_ref.set_reference_handle(event_handle)
-        event_ref.set_role( EventRef.PRIMARY)
+        event_ref.set_role((EventRef.PRIMARY,''))
         self.add_event_ref( event_ref)
 
     def add_event_ref(self,event_ref):
@@ -1384,7 +1384,7 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         for event_handle in event_list:
             event_ref = EventRef()
             event_ref.set_reference_handle(event_handle)
-            event_ref.set_role( EventRef.PRIMARY)
+            event_ref.set_role((EventRef.PRIMARY,''))
             event_ref_list.append( event_ref)
         self.set_event_ref_list(event_ref_list)
 
@@ -1562,6 +1562,8 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         @param frel: relationship between the Person and its father
         @type frel: tuple
         """
+        assert type(mrel) == tuple
+        assert type(frel) == tuple
         self.parent_family_list.append((family_handle,mrel,frel))
 
     def clear_parent_family_handle_list(self):
@@ -2081,7 +2083,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         # remove when transitition done.
         event_ref = EventRef()
         event_ref.set_reference_handle(event_handle)
-        event_ref.set_role(EventRef.PRIMARY)
+        event_ref.set_role((EventRef.PRIMARY,''))
         self.add_event_ref(event_ref)
 
     def add_event_ref(self,event_ref):
@@ -2126,7 +2128,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         for event_handle in event_list:
             event_ref = EventRef()
             event_ref.set_reference_handle(event_handle)
-            event_ref.set_role(EventRef.PRIMARY)
+            event_ref.set_role((EventRef.PRIMARY,''))
             event_ref_list.append( event_ref)
         self.set_event_ref_list(event_ref_list)
 
@@ -4247,6 +4249,7 @@ class EventRef(BaseObject,PrivacyBase,NoteBase):
         """
         Sets the role according to the given argument.
         """
+        assert type(role) == tuple
         self.role = role
 
 class GenderStats:
