@@ -538,7 +538,14 @@ class EventModel(BaseModel):
             return u''
 
     def column_type(self,data):
-        return unicode(data[2][1])
+        (code,val) = data[2]
+        if code == RelLib.Event.CUSTOM:
+            return unicode(val)
+        else:
+            val = Utils.personal_events.get(code)
+            if not val:
+                val = Utils.family_events.get(code,_("Unknown"))
+            return val
 
     def column_id(self,data):
         return unicode(data[1])
