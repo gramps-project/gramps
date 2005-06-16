@@ -6,6 +6,10 @@
 	* src/plugins/WriteFtree.py (FtreeWriterOptionBox.get_option_box):
 	Build person-centered filters only if a person is selected.
 
+	* src/PedView.py (load_canvas): Set anchor_txt to None if no
+	person is selected; (set_anchor,remove_anchor): Only set anchor
+	text if anchor_txt evaluates as True.
+
 2005-06-15  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/po/de.po: Applied patches from Jens Seidel <jensseidel@users.sf.net>
 	and Anton Huber <anton_huber@gmx.de>

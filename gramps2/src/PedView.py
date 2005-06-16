@@ -224,6 +224,7 @@ class PedigreeView:
         if person is not self.active_person:
             self.active_person = person
         if person == None:
+            self.anchor_txt = None
             return
 
         h = 0
@@ -358,11 +359,13 @@ class PedigreeView:
             self.anchor = self.active_person
         else:
             self.anchor = None
-        self.anchor_txt.set(text=self.make_anchor_label())
+        if self.anchor_txt:
+            self.anchor_txt.set(text=self.make_anchor_label())
 
     def remove_anchor(self):
         self.anchor = None
-        self.anchor_txt.set(text=self.make_anchor_label())
+        if self.anchor_txt:
+            self.anchor_txt.set(text=self.make_anchor_label())
 
     def on_anchor_set(self,junk):
         self.set_anchor()
