@@ -135,7 +135,6 @@ class EventEditor:
         self.cause_field.set_editable(not noedit)
         self.slist = self.top.get_widget("slist")
         self.wlist = self.top.get_widget("wlist")
-        self.place_combo = self.top.get_widget("eventPlace_combo")
         self.date_field  = self.top.get_widget("eventDate")
         self.date_field.set_editable(not noedit)
         self.descr_field = self.top.get_widget("event_description")
