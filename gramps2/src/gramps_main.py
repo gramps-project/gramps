@@ -1080,7 +1080,14 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                 import MergePeople
                 p1 = self.db.get_person_from_handle(mlist[0])
                 p2 = self.db.get_person_from_handle(mlist[1])
-                merger = MergePeople.MergePeopleUI(self.db,p1,p2,self.merge_update)
+                if p1 and p2:
+                    merger = MergePeople.MergePeopleUI(self.db,p1,p2,self.merge_update)
+                else:
+                    msg = _("Cannot merge people.")
+                    msg2 = _("Exactly two people must be selected to perform a merge. "
+                             "A second person can be selected by holding down the "
+                             "control key while clicking on the desired person.")
+                    ErrorDialog(msg,msg2)
         elif page == PLACE_VIEW:
             self.place_view.merge()
         elif page == SOURCE_VIEW:
@@ -1103,7 +1110,14 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                 import MergePeople
                 p1 = self.db.get_person_from_handle(mlist[0])
                 p2 = self.db.get_person_from_handle(mlist[1])
-                merger = MergePeople.Compare(self.db,p1,p2,self.merge_update)
+                if p1 and p2:
+                    merger = MergePeople.Compare(self.db,p1,p2,self.merge_update)
+                else:
+                    msg = _("Cannot merge people.")
+                    msg2 = _("Exactly two people must be selected to perform a merge. "
+                             "A second person can be selected by holding down the "
+                             "control key while clicking on the desired person.")
+                    ErrorDialog(msg,msg2)
         elif page == PLACE_VIEW:
             self.place_view.merge()
         elif page == SOURCE_VIEW:
