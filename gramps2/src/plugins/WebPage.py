@@ -1093,7 +1093,7 @@ class WebReport(Report.Report):
         
     def write_report(self):
         dir_name = self.target_path
-        if dir_name == None:
+        if not dir_name:
             dir_name = os.getcwd()
         elif not os.path.isdir(dir_name):
             parent_dir = os.path.dirname(dir_name)

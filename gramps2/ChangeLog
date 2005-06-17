@@ -14,7 +14,9 @@
 	* src/plugins/WebPage.py: Pass gramps_id to filter rules.
 	* src/plugins/WriteFtree.py: Pass gramps_id to filter rules.
 	* src/plugins/WriteGeneWeb.py: Pass gramps_id to filter rules.
-	
+
+	* src/plugins/WebPage.py (write_report): Test for empty dir_name.
+
 2005-06-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gramps_main.py (on_merge_activate,on_fast_merge_activate):
 	only merge if exactly two persons have been selected
