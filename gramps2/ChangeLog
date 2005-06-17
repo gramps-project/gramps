@@ -3,6 +3,18 @@
 	creator; (write_person): write person sources; (sid): return
 	gramps_id; (write_families): write family sources.
 
+	* src/WriteGedcom.py: Pass gramps_id to filter rules.
+	* src/plugins/ExportVCalendar.py: Pass gramps_id to filter rules.
+	* src/plugins/ExportVCard.py: Pass gramps_id to filter rules.
+	* src/plugins/GraphViz.py: Pass gramps_id to filter rules.
+	* src/plugins/IndivComplete.py: Pass gramps_id to filter rules.
+	* src/plugins/NavWebPage.py: Pass gramps_id to filter rules.
+	* src/plugins/StatisticsChart.py: Pass gramps_id to filter rules.
+	* src/plugins/TimeLine.py: Pass gramps_id to filter rules.
+	* src/plugins/WebPage.py: Pass gramps_id to filter rules.
+	* src/plugins/WriteFtree.py: Pass gramps_id to filter rules.
+	* src/plugins/WriteGeneWeb.py: Pass gramps_id to filter rules.
+	
 2005-06-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gramps_main.py (on_merge_activate,on_fast_merge_activate):
 	only merge if exactly two persons have been selected

@@ -1126,10 +1126,10 @@ class WebReportOptions(ReportOptions.ReportOptions):
         """Set up the list of possible content filters."""
         if person:
             name = person.get_primary_name().get_name()
-            handle = person.get_handle()
+            gramps_id = person.get_gramps_id()
         else:
             name = 'PERSON'
-            handle = ''
+            gramps_is = ''
 
         all = GenericFilter.GenericFilter()
         all.set_name(_("Entire Database"))
@@ -1137,19 +1137,19 @@ class WebReportOptions(ReportOptions.ReportOptions):
 
         des = GenericFilter.GenericFilter()
         des.set_name(_("Descendants of %s") % name)
-        des.add_rule(GenericFilter.IsDescendantOf([handle,1]))
+        des.add_rule(GenericFilter.IsDescendantOf([gramps_id,1]))
 
         df = GenericFilter.GenericFilter()
         df.set_name(_("Descendant Families of %s") % name)
-        df.add_rule(GenericFilter.IsDescendantFamilyOf([handle]))
+        df.add_rule(GenericFilter.IsDescendantFamilyOf([gramps_id]))
 
         ans = GenericFilter.GenericFilter()
         ans.set_name(_("Ancestors of %s") % name)
-        ans.add_rule(GenericFilter.IsAncestorOf([handle,1]))
+        ans.add_rule(GenericFilter.IsAncestorOf([gramps_id,1]))
 
         com = GenericFilter.GenericFilter()
         com.set_name(_("People with common ancestor with %s") % name)
-        com.add_rule(GenericFilter.HasCommonAncestorWith([handle]))
+        com.add_rule(GenericFilter.HasCommonAncestorWith([gramps_id]))
 
         return [all,des,df,ans,com]
 

@@ -331,17 +331,22 @@ class GedcomWriterOptionBox:
 
         if self.person:
             des = GenericFilter.GenericFilter()
-            des.set_name(_("Descendants of %s") % NameDisplay.displayer.display(self.person))
-            des.add_rule(GenericFilter.IsDescendantOf([self.person.get_handle(),1]))
+            des.set_name(_("Descendants of %s") %
+                         NameDisplay.displayer.display(self.person))
+            des.add_rule(GenericFilter.IsDescendantOf(
+                [self.person.get_gramps_id(),1]))
 
             ans = GenericFilter.GenericFilter()
-            ans.set_name(_("Ancestors of %s") % NameDisplay.displayer.display(self.person))
-            ans.add_rule(GenericFilter.IsAncestorOf([self.person.get_handle(),1]))
+            ans.set_name(_("Ancestors of %s")
+                         % NameDisplay.displayer.display(self.person))
+            ans.add_rule(GenericFilter.IsAncestorOf(
+                [self.person.get_gramps_id(),1]))
 
             com = GenericFilter.GenericFilter()
             com.set_name(_("People with common ancestor with %s") %
                          NameDisplay.displayer.display(self.person))
-            com.add_rule(GenericFilter.HasCommonAncestorWith([self.person.get_handle()]))
+            com.add_rule(GenericFilter.HasCommonAncestorWith(
+                [self.person.get_gramps_id()]))
 
             self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])
         else:
@@ -739,6 +744,7 @@ class GedcomWriter:
 
             for srcref in family.get_source_references():
                 self.write_source_ref(1,srcref)
+
             self.write_change(1,family.get_change_time())
             
     def write_sources(self):

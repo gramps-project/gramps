@@ -497,14 +497,14 @@ class IndivCompleteOptions(ReportOptions.ReportOptions):
         """Set up the list of possible content filters."""
         if person:
             name = person.get_primary_name().get_name()
-            handle = person.get_handle()
+            gramps_id = person.get_gramps_id()
         else:
             name = 'PERSON'
-            handle = ''
+            gramps_id = ''
 
         filt_id = GenericFilter.GenericFilter()
         filt_id.set_name(name)
-        filt_id.add_rule(GenericFilter.HasIdOf([handle]))
+        filt_id.add_rule(GenericFilter.HasIdOf([gramps_id]))
 
         all = GenericFilter.GenericFilter()
         all.set_name(_("Entire Database"))
@@ -512,15 +512,15 @@ class IndivCompleteOptions(ReportOptions.ReportOptions):
 
         des = GenericFilter.GenericFilter()
         des.set_name(_("Descendants of %s") % name)
-        des.add_rule(GenericFilter.IsDescendantOf([handle,1]))
+        des.add_rule(GenericFilter.IsDescendantOf([gramps_id,1]))
 
         ans = GenericFilter.GenericFilter()
         ans.set_name(_("Ancestors of %s") % name)
-        ans.add_rule(GenericFilter.IsAncestorOf([handle,1]))
+        ans.add_rule(GenericFilter.IsAncestorOf([gramps_id,1]))
 
         com = GenericFilter.GenericFilter()
         com.set_name(_("People with common ancestor with %s") % name)
-        com.add_rule(GenericFilter.HasCommonAncestorWith([handle]))
+        com.add_rule(GenericFilter.HasCommonAncestorWith([gramps_id]))
 
         return [filt_id,all,des,ans,com]
 
