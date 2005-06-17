@@ -1,3 +1,8 @@
+2005-06-17  Alex Roitman  <shura@gramps-project.org>
+	* src/WriteGedcom.py (write_sources): Pass handle to the id
+	creator; (write_person): write person sources; (sid): return
+	gramps_id; (write_families): write family sources.
+
 2005-06-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gramps_main.py (on_merge_activate,on_fast_merge_activate):
 	only merge if exactly two persons have been selected

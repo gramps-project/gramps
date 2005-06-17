@@ -737,16 +737,18 @@ class GedcomWriter:
                            self.writeln('2 _STAT %s' % f[2])
                            break
 
+            for srcref in family.get_source_references():
+                self.write_source_ref(1,srcref)
             self.write_change(1,family.get_change_time())
             
     def write_sources(self):
         index = 0.0
         sorted = []
-        for key in self.slist.keys():
-            source = self.db.get_source_from_handle(key)
+        for handle in self.slist.keys():
+            source = self.db.get_source_from_handle(handle)
             if not source:
                 continue
-            data = (self.sid (source.get_gramps_id ()), source)
+            data = (self.sid(handle), source)
             sorted.append (data)
         sorted.sort ()
         for (source_id, source) in sorted:
@@ -978,11 +980,14 @@ class GedcomWriter:
                 if self.adopt == GedcomInfo.ADOPT_PEDI:
                     if family[1] == RelLib.Person.CHILD_REL_ADOPT:
                         self.writeln("2 PEDI Adopted")
-        
+
         for family_handle in person.get_family_handle_list():
             if family_handle != None and self.flist.has_key(family_handle):
                 self.writeln("1 FAMS @%s@" % self.fid(family_handle))
 
+        for srcref in person.get_source_references():
+            self.write_source_ref(1,srcref)
+        
         if not restricted:
             if self.obje:
                 for url in person.get_url_list():
@@ -1223,14 +1228,9 @@ class GedcomWriter:
         if match:
             self.writeln('1 REFN %d' % int(match.groups()[0]))
     
-    def sid(self,id):
-        if self.sidmap.has_key(id):
-            return self.sidmap[id]
-        else:
-            val = "S%05d" % self.sidval
-            self.sidval = self.sidval + 1
-            self.sidmap[id] = val
-            return val
+    def sid(self,handle):
+        source = self.db.get_source_from_handle(handle)
+        return source.get_gramps_id()
 
 #-------------------------------------------------------------------------
 #
