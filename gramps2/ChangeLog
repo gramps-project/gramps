@@ -1,3 +1,7 @@
+2005-06-19  Eero Tamminen  <eerot@sf>
+	* src/plugins/StatisticsChart.py: Changed the entry fields to
+	  SpinButtons as suggested by Alex
+
 2005-06-17  Don Allingham  <don@gramps-project.org>
 	* src/ChooseParents.py: optimize the add of a person to the models
 	* src/EditPlace.py: check to make sure a duplicate title is not

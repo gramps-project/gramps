@@ -865,10 +865,14 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         self.reverse.show()
 
         # year range
-        self.from_box = gtk.Entry(4)
-        self.from_box.set_text(str(self.options_dict['year_from']))
-        self.to_box = gtk.Entry(4)
-        self.to_box.set_text(str(self.options_dict['year_to']))
+	from_adj = gtk.Adjustment(value=self.options_dict['year_from'],
+				  lower=1, upper=time.localtime()[0],
+				  step_incr=1, page_incr=100)
+        self.from_box = gtk.SpinButton(adjustment=from_adj, digits=0)
+	to_adj = gtk.Adjustment(value=self.options_dict['year_to'],
+				lower=1, upper=time.localtime()[0],
+				step_incr=1, page_incr=100)
+        self.to_box = gtk.SpinButton(adjustment=to_adj, digits=0)
 
         box = gtk.HBox()
         box.add(self.from_box)
@@ -897,8 +901,9 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
 
         # max. pie item selection
         tip = _("With fewer items pie chart and legend will be used instead of a bar chart.")
-        self.bar_items = gtk.Entry(2)
-        self.bar_items.set_text(str(self.options_dict['bar_items']))
+	pie_adj = gtk.Adjustment(value=self.options_dict['bar_items'],
+				 lower=0, upper=20, step_incr=1)
+        self.bar_items = gtk.SpinButton(adjustment=pie_adj, digits=0)
         dialog.add_option(_("Max. items for a pie"), self.bar_items, tip)
 
         # -------------------------------------------------
@@ -933,11 +938,11 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         """
         self.options_dict['sortby'] = _options.sorts[self.sort_menu.get_active()][0]
         self.options_dict['reverse'] = int(self.reverse.get_active())
-        self.options_dict['year_to'] = int(self.to_box.get_text())
-        self.options_dict['year_from'] = int(self.from_box.get_text())
+        self.options_dict['year_to'] = int(self.to_box.get_value_as_int())
+        self.options_dict['year_from'] = int(self.from_box.get_value_as_int())
         self.options_dict['no_years'] = int(self.no_years.get_active())
         self.options_dict['gender'] = _options.genders[self.gender_menu.get_active()][0]
-        self.options_dict['bar_items'] = int(self.bar_items.get_text())
+        self.options_dict['bar_items'] = int(self.bar_items.get_value_as_int())
         for key in _Extract.extractors:
             self.options_dict[key] = int(self.charts[key].get_active())
 
