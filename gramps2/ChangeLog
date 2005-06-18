@@ -1,3 +1,7 @@
+2005-06-17  Don Allingham  <don@gramps-project.org>
+	* src/EditPlace.py: check to make sure a duplicate title is not
+	entered
+
 2005-06-17  Alex Roitman  <shura@gramps-project.org>
 	* src/WriteGedcom.py (write_sources): Pass handle to the id
 	creator; (write_person): write person sources; (sid): return
