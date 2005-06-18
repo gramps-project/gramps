@@ -90,7 +90,7 @@ class ChooseParents:
         self.parent_selected = 0
         self.renderer = gtk.CellRendererText()
 
-        db.connect('person-add', self.redraw)
+        db.connect('person-add', self.person_added)
         db.connect('person-update', self.redraw)
         db.connect('person-delete', self.redraw)
         db.connect('person-rebuild', self.redraw)
@@ -282,6 +282,26 @@ class ChooseParents:
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-quick')
+
+    def person_added(self,handle_list):
+        self.person_added_base(handle_list,self.father_model, self.father_filter)
+        self.person_added_base(handle_list,self.mother_model, self.mother_filter)
+
+    def person_added_base(self,handle_list,model,data_filter):
+        for node in handle_list:
+            person = self.db.get_person_from_handle(node)
+            top = person.get_primary_name().get_group_name()
+            model.rebuild_data(data_filter)
+            if not model.is_visable(node):
+                continue
+            if (not model.sname_sub.has_key(top) or 
+                len(model.sname_sub[top]) == 1):
+                path = model.on_get_path(top)
+                pnode = model.get_iter(path)
+                model.row_inserted(path,pnode)
+            path = model.on_get_path(node)
+            pnode = model.get_iter(path)
+            model.row_inserted(path,pnode)
 
     def redraw(self,handle_list):
         self.redrawf()
@@ -522,7 +542,7 @@ class ChooseParents:
                 self.father_list.scroll_to_cell(path,None,1,0.5,0)
             except KeyError:
                 self.father_filter = self.all_males_filter
-                self.showallf_toggled(None)
+                self.redrawf()
                 path = self.father_model.on_get_path(handle)
                 top_path = self.father_model.on_get_path(name)
                 self.father_list.expand_row(top_path,0)
@@ -537,7 +557,7 @@ class ChooseParents:
                 self.mother_list.scroll_to_cell(path,None,1,0.5,0)
             except:
                 self.mother_filter = self.all_females_filter
-                self.showallm_toggled(None)
+                self.redrawm()
                 path = self.mother_model.on_get_path(handle)
                 top_path = self.mother_model.on_get_path(name)
                 self.mother_list.expand_row(top_path,0)
