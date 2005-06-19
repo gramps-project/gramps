@@ -123,7 +123,11 @@ class ChooseParents:
 
         self.glade = gtk.glade.XML(const.gladeFile,"familyDialog","gramps")
         self.window = self.glade.get_widget("familyDialog")
+        self.flabel = self.glade.get_widget("flabel")
+        self.mlabel = self.glade.get_widget("mlabel")
         self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.mlabel.set_label("<i>%s</i>" % _("Loading..."))
+        self.flabel.set_label("<i>%s</i>" % _("Loading..."))
 
         name = NameDisplay.displayer.display(self.person)
         self.title_text = _("Choose the Parents of %s") % name
@@ -136,8 +140,6 @@ class ChooseParents:
         self.title = self.glade.get_widget("chooseTitle")
         self.father_list = self.glade.get_widget("father_list")
         self.mother_list = self.glade.get_widget("mother_list")
-        self.flabel = self.glade.get_widget("flabel")
-        self.mlabel = self.glade.get_widget("mlabel")
         self.showallf = self.glade.get_widget('showallf')
         self.showallm = self.glade.get_widget('showallm')
         self.add_itself_to_menu()
@@ -354,22 +356,22 @@ class ChooseParents:
     def redrawf(self):
         """Redraws the potential father list"""
         self.father_model = PeopleModel.PeopleModel(self.db,self.father_filter)
+        self.father_list.set_model(self.father_model)
         
         if self.type == RelLib.Family.CIVIL_UNION:
             self.flabel.set_label("<b>%s</b>" % _("Par_ent"))
         else:
             self.flabel.set_label("<b>%s</b>" % _("Fath_er"))
-        self.father_list.set_model(self.father_model)
 
     def redrawm(self):
         """Redraws the potential mother list"""
         self.mother_model = PeopleModel.PeopleModel(self.db,self.mother_filter)
         
+        self.mother_list.set_model(self.mother_model)
         if self.type == RelLib.Family.CIVIL_UNION:
             self.mlabel.set_label("<b>%s</b>" % _("Pa_rent"))
         else:
             self.mlabel.set_label("<b>%s</b>" % _("Mothe_r"))
-        self.mother_list.set_model(self.mother_model)
 
     def parent_relation_changed(self,obj):
         """Called everytime the parent relationship information is changed"""

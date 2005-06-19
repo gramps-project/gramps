@@ -1,3 +1,6 @@
+2005-06-19  Don Allingham  <don@gramps-project.org>
+	* src/ChooseParents.y: display "Loading..." while loading lists
+
 2005-06-18  Don Allingham  <don@gramps-project.org>
 	* src/ChooseParents.py: build custom filter rules to speed up
 	loading the data, provide watch cursor to provide feedback to 
