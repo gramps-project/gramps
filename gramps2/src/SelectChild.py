@@ -35,6 +35,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk.glade
 import gnome
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -46,6 +47,8 @@ import const
 import Utils
 import PeopleModel
 import NameDisplay
+import GenericFilter
+import Date
 
 from QuestionDialog import ErrorDialog
 
@@ -101,10 +104,12 @@ class SelectChild:
             else:
                 self.frel.set_sensitive(False)
 
-        self.refmodel = PeopleModel.PeopleModel(self.db)
+        self.likely_filter = GenericFilter.GenericFilter()
+        self.likely_filter.add_rule(LikelyFilter([self.person.handle]))
+        self.active_filter = self.likely_filter
 
-        self.add_child.set_model(self.refmodel)
-        self.redraw_child_list(2)
+        self.top.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        gobject.idle_add(self.redraw_child_list)
         self.add_itself_to_menu()
         self.add_columns(self.add_child)
         self.top.show()
@@ -161,110 +166,10 @@ class SelectChild:
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-quick')
 
-    def redraw_child_list(self,filter):
-        return
-    
-        birth = self.db.get_event_from_handle(self.person.get_birth_handle())
-        death = self.db.get_event_from_handle(self.person.get_death_handle())
-        if birth:
-            bday = birth.get_date_object()
-        else:
-            bday = None
-        if death:
-            dday = death.get_date_object()
-        else:
-            dday = None
-
-        slist = {}
-        for f in self.person.get_parent_family_handle_list():
-            if f:
-                family = self.db.get_family_from_handle(f[0])
-                if family.get_father_handle():
-                    slist[family.get_father_handle()] = 1
-                elif family.get_mother_handle():
-                    slist[family.get_mother_handle()] = 1
-                for c in family.get_child_handle_list():
-                    slist[c] = 1
-            
-        person_list = []
-        for key in self.db.get_person_handles(sort_handles=True):
-            person = self.db.get_person_from_handle(key)
-            if filter:
-                if slist.has_key(key) or person.get_main_parents_family_handle():
-                    continue
-            
-                birth_event = self.db.get_event_from_handle(person.get_birth_handle())
-                if birth_event:
-                    pbday = birth_event.get_date_object()
-                else:
-                    pbday = None
-
-                death_event = self.db.get_event_from_handle(person.get_death_handle())
-                if death_event:
-                    pdday = death_event.get_date_object()
-                else:
-                    pdday = None
- 
-                if bday and bday.getYearValid():
-                    if pbday and pbday.getYearValid():
-                        # reject if child birthdate < parents birthdate + 10
-                        if pbday.getLowYear() < bday.getHighYear()+10:
-                            continue
-
-                        # reject if child birthdate > parents birthdate + 90
-                        if pbday.getLowYear() > bday.getHighYear()+90:
-                            continue
-
-                    if pdday and pdday.getYearValid():
-                        # reject if child deathdate < parents birthdate+ 10
-                        if pdday.getLowYear() < bday.getHighYear()+10:
-                            continue
-                
-                if dday and dday.getYearValid():
-                    if pbday and pbday.getYearValid():
-                        # reject if childs birth date > parents deathday + 3
-                        if pbday.getLowYear() > dday.getHighYear()+3:
-                            continue
-
-                    if pdday and pdday.getYearValid():
-                        # reject if childs death date > parents deathday + 150
-                        if pdday.getLowYear() > dday.getHighYear() + 150:
-                            continue
-        
-            person_list.append(person.get_handle())
-
-        node = None
-        for idval in person_list:
-            person = self.db.get_person_from_handle(idval)
-            name = NameDisplay.displayer.display(person)
-            if person.gender == RelLib.Person.MALE:
-                gender = _("male")
-            elif person.gender == RelLib.Person.FEMALE:
-                gender = _("female")
-            else:
-                gender = _("unknown")
-
-            bh = person.get_birth_handle()
-            dh = person.get_death_handle()
-            if bh:
-                bdate = self.db.get_event_from_handle(bh).get_date()
-            else:
-                bdate = ""
-            if dh:
-                ddate = self.db.get_event_from_handle(bh).get_date()
-            else:
-                ddate = ""
-                
-            rdata = [name,person.get_gramps_id(),gender,bdate,ddate]
-            node = self.refmodel.add(rdata)
-
-        self.refmodel.connect_model()
-
-        if node:
-            self.refmodel.selection.select_iter(node)
-            path = self.refmodel.model.get_path(node)
-            col = self.add_child.get_column(0)
-            self.add_child.scroll_to_cell(path,col,1,0.5,0.0)
+    def redraw_child_list(self):
+        self.refmodel = PeopleModel.PeopleModel(self.db,self.active_filter)
+        self.add_child.set_model(self.refmodel)
+        self.top.window.set_cursor(None)
 
     def select_function(self,store,path,node,id_list):
         id_list.append(self.refmodel.get_value(node,PeopleModel.COLUMN_INT_ID))
@@ -334,7 +239,14 @@ class SelectChild:
         self.callback()
         
     def on_show_toggled(self,obj):
-        self.redraw_child_list(not obj.get_active())
+        if obj.get_active():
+            self.active_filter = None
+        else:
+            self.active_filter = self.likely_filter
+        self.top.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        while(gtk.events_pending()):
+            gtk.main_iteration()
+        self.redraw_child_list()
 
     def north_american(self,val):
         if self.person.get_gender() == RelLib.Person.MALE:
@@ -382,3 +294,31 @@ class SelectChild:
             return ("","%sdóttir" % fname)
         else:
             return ("","")
+
+#-------------------------------------------------------------------------
+#
+# Likely Filters
+#
+#-------------------------------------------------------------------------
+class LikelyFilter(GenericFilter.Rule):
+
+    category    = _('General filters')
+
+    def prepare(self,db):
+        person = db.get_person_from_handle(self.list[0])
+        birth = db.get_event_from_handle(person.birth_handle)
+        dateobj = Date.Date(birth.date)
+        year = dateobj.get_year()
+        dateobj.set_year(year+10)
+        self.lower = dateobj.sortval
+        dateobj.set_year(year+70)
+        self.upper = dateobj.sortval
+
+    def apply(self,db,handle):
+        person = db.get_person_from_handle(handle)
+        if not person.birth_handle:
+            return True
+        event = db.get_event_from_handle(person.birth_handle)
+        return (event.date == None or event.date.sortval == 0 or
+                self.lower < event.date.sortval < self.upper)
+

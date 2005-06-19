@@ -94,7 +94,7 @@ class ChooseParents:
         db.connect('person-add', self.person_added)
         db.connect('person-update', self.redraw)
         db.connect('person-delete', self.redraw)
-        db.connect('person-rebuild', self.redraw)
+        db.connect('person-rebuild', self.redraw_all)
 
         # set default filters
         self.all_males_filter = GenericFilter.GenericFilter()
@@ -350,6 +350,10 @@ class ChooseParents:
             model.row_inserted(path,pnode)
 
     def redraw(self,handle_list):
+        self.redrawf()
+        self.redrawm()
+
+    def redraw_all(self):
         self.redrawf()
         self.redrawm()
 

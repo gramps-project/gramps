@@ -1,4 +1,6 @@
 2005-06-19  Don Allingham  <don@gramps-project.org>
+	* src/AddSpouse.py: display idle cursor
+	* src/SelectChild.py: display idle cursor
 	* src/ChooseParents.y: display "Loading..." while loading lists
 
 2005-06-18  Don Allingham  <don@gramps-project.org>

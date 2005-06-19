@@ -42,6 +42,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk.glade
 import gnome
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -102,8 +103,6 @@ class AddSpouse:
 
         self.renderer = gtk.CellRendererText()
 
-        self.slist = PeopleModel.PeopleModel(self.db,self.filter)
-        self.spouse_list.set_model(self.slist)
         self.selection = self.spouse_list.get_selection()
         self.selection.connect('changed',self.select_row)
         self.add_columns(self.spouse_list)
@@ -118,7 +117,7 @@ class AddSpouse:
         Utils.set_titles(self.window,
                          self.glade.get_widget('title'),title,
                          _('Choose Spouse/Partner'))
-
+            
         self.glade.signal_autoconnect({
             "on_select_spouse_clicked" : self.select_spouse_clicked,
             "on_spouse_help_clicked"   : self.on_spouse_help_clicked,
@@ -128,12 +127,11 @@ class AddSpouse:
             })
 
         self.rel_combo.set_active(RelLib.Family.MARRIED)
-        self.update_data()
+        self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        gobject.idle_add(self.update_data)
 
     def build_all(self):
-        filt = GenericFilter.GenericFilter()
-        filt.add_rule(GenericFilter.Everyone([]))
-        return filt
+        return None
 
     def build_likely(self,gender):
         birth_handle = self.person.get_birth_handle()
@@ -225,7 +223,7 @@ class AddSpouse:
         been closed.
         """
         person = epo.person
-        self.update_data(person.get_handle())
+        self.update_data()
         
         self.slist = PeopleModel.PeopleModel(self.db,self.filter)
         self.slist.rebuild_data()
@@ -319,7 +317,7 @@ class AddSpouse:
         m.on_add_clicked()
 
     def relation_type_changed(self,obj):
-        self.update_data()
+        gobject.idle_add(self.update_data)
 
     def all_filter(self, person):
         return person.get_gender() != self.sgender
@@ -384,18 +382,21 @@ class AddSpouse:
             else:
                 self.sgender = RelLib.Person.FEMALE
 
-    def update_data(self,person = None):
+    def update_data(self):
         """
         Called whenever the relationship type changes. Rebuilds the
         the potential spouse list.
         """
-
+        self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        while(gtk.events_pending()):
+            gtk.main_iteration()
         self.slist = PeopleModel.PeopleModel(self.db,self.filter)
         self.spouse_list.set_model(self.slist)
+        self.window.window.set_cursor(None)
 
     def on_show_toggled(self,obj):
         if self.filter == self.likely:
             self.filter = self.all
         else:
             self.filter = self.likely
-        self.update_data()
+        gobject.idle_add(self.update_data)
