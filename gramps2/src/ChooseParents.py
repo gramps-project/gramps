@@ -247,7 +247,6 @@ class ChooseParents:
         
     def add_columns(self,tree):
 
-        tree.set_fixed_height_mode(True)
         column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
         column.set_resizable(True)        
         column.set_clickable(True)
@@ -319,7 +318,7 @@ class ChooseParents:
         update_mother = False
 
         for handle in handle_list:
-            person = self.db.find_person_from_handle(handle)
+            person = self.db.get_person_from_handle(handle)
             if person.get_gender() == RelLib.Person.MALE:
                 update_father = True
             elif person.get_gender() == RelLib.Person.FEMALE:
