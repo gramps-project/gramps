@@ -340,6 +340,7 @@ class Date:
         """
         """
         self.dateval = self.dateval[0:2] + (year,) + self.dateval[3:]
+        self.calc_sort_value()
 
     def get_year_valid(self):
         return self._get_low_item_valid(_POS_YR)
@@ -457,6 +458,12 @@ class Date:
         self.sortval = _calendar_convert[calendar](year,month,day)
         if text:
             self.text = text
+
+    def calc_sort_value(self):
+        year = max(self.dateval[_POS_YR],1)
+        month = max(self.dateval[_POS_MON],1)
+        day = max(self.dateval[_POS_DAY],1)
+        self.sortval = _calendar_convert[self.calendar](year,month,day)
 
     def convert_calendar(self,calendar):
         """
