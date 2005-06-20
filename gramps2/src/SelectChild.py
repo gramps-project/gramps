@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -303,20 +303,25 @@ class SelectChild:
 class LikelyFilter(GenericFilter.Rule):
 
     category    = _('General filters')
-
+    
     def prepare(self,db):
         person = db.get_person_from_handle(self.list[0])
-        birth = db.get_event_from_handle(person.birth_handle)
-        dateobj = Date.Date(birth.date)
-        year = dateobj.get_year()
-        dateobj.set_year(year+10)
-        self.lower = dateobj.sortval
-        dateobj.set_year(year+70)
-        self.upper = dateobj.sortval
-
+        if person.birth_handle:
+            birth = db.get_event_from_handle(person.birth_handle)
+            dateobj = Date.Date(birth.date)
+            year = dateobj.get_year()
+            dateobj.set_year(year+10)
+            self.lower = dateobj.sortval
+            dateobj.set_year(year+70)
+            self.upper = dateobj.sortval
+        else:
+            self.lower = None
+            self.upper = None
+    
     def apply(self,db,handle):
         person = db.get_person_from_handle(handle)
-        if not person.birth_handle:
+        if not person.birth_handle or (self.upper == None and
+                                       self.lower == None):
             return True
         event = db.get_event_from_handle(person.birth_handle)
         return (event.date == None or event.date.sortval == 0 or

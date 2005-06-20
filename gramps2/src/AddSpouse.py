@@ -393,14 +393,19 @@ class LikelyFilter(GenericFilter.Rule):
 
     def prepare(self,db):
         person = db.get_person_from_handle(self.list[0])
-        birth = db.get_event_from_handle(person.birth_handle)
-        dateobj = Date.Date(birth.date)
-        year = dateobj.get_year()
-        dateobj.set_year(year+40)
-        self.lower = dateobj.sortval
-        dateobj.set_year(year-40)
-        self.upper = dateobj.sortval
-        if self.list[0] == RelLib.Person.MALE:
+        if person.birth_handle:
+            birth = db.get_event_from_handle(person.birth_handle)
+            dateobj = Date.Date(birth.date)
+            year = dateobj.get_year()
+            dateobj.set_year(year+40)
+            self.lower = dateobj.sortval
+            dateobj.set_year(year-40)
+            self.upper = dateobj.sortval
+        else:
+            self.upper = None
+            self.lower = None
+
+        if person.gender == RelLib.Person.MALE:
             self.gender = RelLib.Person.FEMALE
         else:
             self.gender = RelLib.Person.MALE
@@ -409,7 +414,8 @@ class LikelyFilter(GenericFilter.Rule):
         person = db.get_person_from_handle(handle)
         if person.gender != self.gender:
             return False
-        if not person.birth_handle:
+        if not person.birth_handle or (self.upper == None and
+                                       self.lower == None):
             return True
         event = db.get_event_from_handle(person.birth_handle)
         return (event.date == None or event.date.sortval == 0 or

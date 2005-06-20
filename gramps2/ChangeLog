@@ -1,3 +1,9 @@
+2005-06-20  Alexander Roitman  <shura@gramps-project.org>
+	* src/SelectChildpy (LikelyFilter.prepare,LikelyFilter.apply):
+	Handle absent birth of a parent.
+	* src/AddSpouse.py (LikelyFilter.prepare,LikelyFilter.apply):
+	Handle absent birth of a parent; correctly use gender.
+
 2005-06-19  Don Allingham  <don@gramps-project.org>
 	* src/AddSpouse.py: display idle cursor, build better likely filter
 	* src/SelectChild.py: display idle cursor
