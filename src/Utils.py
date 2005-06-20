@@ -711,8 +711,8 @@ def probably_alive(person,db,current_year=None):
     death_year = None
     # If the recorded death year is before current year then
     # things are simple.
-    if person.death_handle:
-        death = db.get_event_from_handle(person.death_handle)
+    if person.death_ref:
+        death = db.get_event_from_handle(person.death_ref.ref)
         if death.get_date_object().get_start_date() != Date.EMPTY:
             death_year = death.get_date_object().get_year()
             if death.get_date_object().get_year() < current_year:
@@ -720,9 +720,10 @@ def probably_alive(person,db,current_year=None):
     
     # Look for Cause Of Death, Burial or Cremation events.
     # These are fairly good indications that someone's not alive.
-    for ev_handle in person.event_list:
-        ev = db.get_event_from_handle(ev_handle)
-        if ev and ev.name in ["Cause Of Death", "Burial", "Cremation"]:
+    for ev_ref in person.event_ref_list:
+        ev = db.get_event_from_handle(ev_ref.ref)
+        if ev and ev.get_type()[0] in [RelLib.Event.CAUSE_DEATH, RelLib.Event.BURIAL,
+                                       RelLib.Event.CREMATION]:
             if not death_year:
                 death_year = ev.get_date_object().get_year()
             if ev.get_date_object().get_start_date() != Date.EMPTY:
@@ -732,8 +733,8 @@ def probably_alive(person,db,current_year=None):
     birth_year = None
     # If they were born within 100 years before current year then
     # assume they are alive (we already know they are not dead).
-    if person.birth_handle:
-        birth = db.get_event_from_handle(person.birth_handle)
+    if person.birth_ref:
+        birth = db.get_event_from_handle(person.birth_ref.ref)
         if birth.get_date_object().get_start_date() != Date.EMPTY:
             if not birth_year:
                 birth_year = birth.get_date_object().get_year()
@@ -766,8 +767,8 @@ def probably_alive(person,db,current_year=None):
             
             for child_handle in family.get_child_handle_list():
                 child = db.get_person_from_handle(child_handle)
-                if child.birth_handle:
-                    child_birth = db.get_event_from_handle(child.birth_handle)
+                if child.birth_ref:
+                    child_birth = db.get_event_from_handle(child.birth_ref.ref)
                     dobj = child_birth.get_date_object()
                     if dobj.get_start_date() != Date.EMPTY:
                         d = Date.Date(dobj)
@@ -777,8 +778,8 @@ def probably_alive(person,db,current_year=None):
                         if not not_too_old (d,current_year):
                             return True
 
-                if child.death_handle:
-                    child_death = db.get_event_from_handle(child.death_handle)
+                if child.death_ref:
+                    child_death = db.get_event_from_handle(child.death_ref.ref)
                     dobj = child_death.get_date_object()
                     if dobj.get_start_date() != Date.EMPTY:
                         if not not_too_old (dobj,current_year):
@@ -806,8 +807,8 @@ def probably_alive(person,db,current_year=None):
             father_handle = family.get_father_handle()
             if father_handle:
                 father = db.get_person_from_handle(father_handle)
-                if father.birth_handle:
-                    father_birth = db.get_event_from_handle(father.birth_handle)
+                if father.birth_ref:
+                    father_birth = db.get_event_from_handle(father.birth_ref.ref)
                     dobj = father_birth.get_date_object()
                     if dobj.get_start_date() != Date.EMPTY:
                         if not not_too_old (dobj,year - average_generation_gap):
@@ -817,8 +818,8 @@ def probably_alive(person,db,current_year=None):
                             #print father.get_primary_name().get_name(), " father of ", person.get_primary_name().get_name(), " is NOT too old by birth. birth year ", dobj.get_year(), " test year ", year - average_generation_gap
 
 
-                if father.death_handle:
-                    father_death = db.get_event_from_handle(father.death_handle)
+                if father.death_ref:
+                    father_death = db.get_event_from_handle(father.death_ref.ref)
                     dobj = father_death.get_date_object()
                     if dobj.get_start_date() != Date.EMPTY:
                         if dobj.get_year() < year - average_generation_gap:
@@ -831,8 +832,8 @@ def probably_alive(person,db,current_year=None):
             mother_handle = family.get_mother_handle()
             if mother_handle:
                 mother = db.get_person_from_handle(mother_handle)
-                if mother.birth_handle:
-                    mother_birth = db.get_event_from_handle(mother.birth_handle)
+                if mother.birth_ref:
+                    mother_birth = db.get_event_from_handle(mother.birth_ref.ref)
                     dobj = mother_birth.get_date_object()
                     if dobj.get_start_date() != Date.EMPTY:
                         if not not_too_old (dobj,year - average_generation_gap):
@@ -842,8 +843,8 @@ def probably_alive(person,db,current_year=None):
                             #print mother.get_primary_name().get_name(), " mother of ", person.get_primary_name().get_name(), " is NOT too old by birth. birth year ", dobj.get_year(), " test year ", year - average_generation_gap
 
 
-                if mother.death_handle:
-                    mother_death = db.get_event_from_handle(mother.death_handle)
+                if mother.death_ref:
+                    mother_death = db.get_event_from_handle(mother.death_ref.ref)
                     dobj = mother_death.get_date_object()
                     if dobj.get_start_date() != Date.EMPTY:
                         if dobj.get_year() < year - average_generation_gap:
