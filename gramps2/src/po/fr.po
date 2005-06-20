@@ -7802,7 +7802,7 @@ msgstr "Génération %(generation_number)d"
 
 #: plugins/DetAncestralReport.py:208
 msgid "%(name)s is the same person as [%(id_str)s]."
-msgstr "%(name) est la même personne que [%(id_str)s]."
+msgstr "%(name)s est la même personne que [%(id_str)s]."
 
 #: plugins/DetAncestralReport.py:243 plugins/DetDescendantReport.py:264
 msgid "Notes for %s"
