@@ -134,40 +134,20 @@ class AddSpouse:
         return None
 
     def build_likely(self,gender):
-        birth_handle = self.person.get_birth_handle()
-        death_handle = self.person.get_death_handle()
-
         filt = GenericFilter.GenericFilter()
-        if gender == RelLib.Person.MALE:
-            filt.add_rule(GenericFilter.IsFemale([]))
-        else:
-            filt.add_rule(GenericFilter.IsMale([]))
-        
-        if birth_handle:
-            birth = self.db.get_event_from_handle(birth_handle)
-            date_obj = Date.Date(birth.get_date_object())
-            year = date_obj.get_year()
-            if year:
-                date_obj.set_year(year-50)
-                date_obj.set_modifier(Date.MOD_AFTER)
-                text = DateHandler.displayer.display(date_obj)
-                rule = GenericFilter.HasBirth([text,"",""])
-                filt.add_rule(rule)
+        filt.add_rule(LikelyFilter([self.person.handle,self.person.gender]))
         return filt
 
     def add_columns(self,tree):
         column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
         column.set_resizable(True)        
-        #column.set_clickable(True)
         column.set_min_width(225)
         tree.append_column(column)
         column = gtk.TreeViewColumn(_('ID'), self.renderer,text=1)
         column.set_resizable(True)        
-        #column.set_clickable(True)
         column.set_min_width(75)
         tree.append_column(column)
         column = gtk.TreeViewColumn(_('Birth date'), self.renderer,text=3)
-        #column.set_resizable(True)        
         column.set_clickable(True)
         tree.append_column(column)
 
@@ -190,9 +170,9 @@ class AddSpouse:
         """
         idlist = self.get_selected_ids()
         if idlist and idlist[0]:
-            self.ok.set_sensitive(1)
+            self.ok.set_sensitive(True)
         else:
-            self.ok.set_sensitive(0)
+            self.ok.set_sensitive(False)
         
     def new_spouse_clicked(self,obj):
         """
@@ -400,3 +380,38 @@ class AddSpouse:
         else:
             self.filter = self.likely
         gobject.idle_add(self.update_data)
+
+
+#-------------------------------------------------------------------------
+#
+# Likely Filters
+#
+#-------------------------------------------------------------------------
+class LikelyFilter(GenericFilter.Rule):
+
+    category    = _('General filters')
+
+    def prepare(self,db):
+        person = db.get_person_from_handle(self.list[0])
+        birth = db.get_event_from_handle(person.birth_handle)
+        dateobj = Date.Date(birth.date)
+        year = dateobj.get_year()
+        dateobj.set_year(year+40)
+        self.lower = dateobj.sortval
+        dateobj.set_year(year-40)
+        self.upper = dateobj.sortval
+        if self.list[0] == RelLib.Person.MALE:
+            self.gender = RelLib.Person.FEMALE
+        else:
+            self.gender = RelLib.Person.MALE
+
+    def apply(self,db,handle):
+        person = db.get_person_from_handle(handle)
+        if person.gender != self.gender:
+            return False
+        if not person.birth_handle:
+            return True
+        event = db.get_event_from_handle(person.birth_handle)
+        return (event.date == None or event.date.sortval == 0 or
+                self.lower > event.date.sortval > self.upper)
+
