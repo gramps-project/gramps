@@ -37,6 +37,7 @@ from xml.sax import make_parser,handler,SAXParseException
 #
 #-------------------------------------------------------------------------
 import os
+import sets
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -266,7 +267,7 @@ class HasIdOf(Rule):
 
 #-------------------------------------------------------------------------
 #
-# HasIdOf
+# IsDefaultPerson
 #
 #-------------------------------------------------------------------------
 class IsDefaultPerson(Rule):
@@ -276,11 +277,16 @@ class IsDefaultPerson(Rule):
     category    = _('General filters')
     description = _("Matches the default person")
 
-    def apply(self,db,person):
-        def_person = db.get_default_person()
-        if def_person:
-            return person.handle == def_person.handle
-        return False
+    def prepare(self,db):
+        p = db.get_default_person()
+        if p:
+            self.def_handle = p.get_handle()
+            self.apply = self.apply_real
+        else:
+            self.apply = lambda db,p: False
+
+    def apply_real(self,db,person):
+        return person.handle == self.def_handle
 
 #-------------------------------------------------------------------------
 #
@@ -294,10 +300,16 @@ class IsBookmarked(Rule):
     category    = _('General filters')
     description = _("Matches the people on the bookmark list")
 
-    def apply(self,db,person):
-        if person.handle in db.get_bookmarks():
-           return True
-        return False
+    def prepare(self,db):
+        bookmarks = db.get_bookmarks()
+        if len(bookmarks) == 0:
+            self.apply = lambda db,p : False
+        else:
+            self.bookmarks = sets.Set(bookmarks)
+            self.apply = self.apply_real
+
+    def apply_real(self,db,person):
+        return person.handle in self.bookmarks
 
 #-------------------------------------------------------------------------
 #
@@ -342,7 +354,7 @@ class HasUnknownGender(Rule):
     description = _('Matches all people with unknown gender')
 
     def apply(self,db,person):
-        return person.get_gender() == RelLib.Person.UNKNOWN
+        return person.gender == RelLib.Person.UNKNOWN
 
 #-------------------------------------------------------------------------
 #
@@ -612,7 +624,7 @@ class IsDescendantFamilyOf(Rule):
     name        = _('Descendant family members of <person>')
     category    = _('Descendant filters')
     description = _("Matches people that are descendants or the spouse "
-                 "of a descendant of a specified person")
+                    "of a descendant of a specified person")
     
     def apply(self,db,person):
         self.map = {}
