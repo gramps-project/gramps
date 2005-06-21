@@ -1,5 +1,15 @@
+2005-06-20  Don Allingham  <don@gramps-project.org>
+	* src/AddSpouse.py: accept Person instead of handle
+	* src/ChooseParents.py: accept Person instead of handle
+	* src/GenericFilter.py: use single pass through database, filters
+	accept Person objects instead of handles
+	* src/PeopleModel.py: don't precalculate handle list
+	* src/RelLib.py: allow person object to be initialized with
+	serialized data
+	* src/SelectChild.py: accept Person instead of handle
+
 2005-06-20  Alexander Roitman  <shura@gramps-project.org>
-	* src/SelectChildpy (LikelyFilter.prepare,LikelyFilter.apply):
+	* src/SelectChild.py (LikelyFilter.prepare,LikelyFilter.apply):
 	Handle absent birth of a parent.
 	* src/AddSpouse.py (LikelyFilter.prepare,LikelyFilter.apply):
 	Handle absent birth of a parent; correctly use gender.

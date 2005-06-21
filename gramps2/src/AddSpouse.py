@@ -410,8 +410,7 @@ class LikelyFilter(GenericFilter.Rule):
         else:
             self.gender = RelLib.Person.MALE
 
-    def apply(self,db,handle):
-        person = db.get_person_from_handle(handle)
+    def apply(self,db,person):
         if person.gender != self.gender:
             return False
         if not person.birth_handle or (self.upper == None and

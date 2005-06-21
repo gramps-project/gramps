@@ -820,8 +820,7 @@ class LikelyFilter(GenericFilter.Rule):
         dateobj.set_year(year-70)
         self.upper = dateobj.sortval
 
-    def apply(self,db,handle):
-        person = db.get_person_from_handle(handle)
+    def apply(self,db,person):
         if person.gender != self.gender:
             return False
         if not person.birth_handle:

@@ -318,8 +318,7 @@ class LikelyFilter(GenericFilter.Rule):
             self.lower = None
             self.upper = None
     
-    def apply(self,db,handle):
-        person = db.get_person_from_handle(handle)
+    def apply(self,db,person):
         if not person.birth_handle or (self.upper == None and
                                        self.lower == None):
             return True

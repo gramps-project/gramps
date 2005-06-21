@@ -907,31 +907,34 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
     CHILD_REL_UNKWN = 6
     CHILD_REL_OTHER = 7
 
-    def __init__(self):
+    def __init__(self,data=None):
         """
         Creates a new Person instance. After initialization, most
         data items have empty or null values, including the database
         handle.
         """
-        PrimaryObject.__init__(self)
-        PrivateSourceNote.__init__(self)
-        MediaBase.__init__(self)
-        AttributeBase.__init__(self)
-        self.primary_name = Name()
-        self.event_list = []
-        self.family_list = []
-        self.parent_family_list = []
-        self.nickname = ""
-        self.alternate_names = []
-        self.gender = Person.UNKNOWN
-        self.death_handle = None
-        self.birth_handle = None
-        self.address_list = []
-        self.urls = []
-        self.lds_bapt = None
-        self.lds_endow = None
-        self.lds_seal = None
-        self.complete = False
+        if data:
+            self.unserialize(data)
+        else:
+            PrimaryObject.__init__(self)
+            PrivateSourceNote.__init__(self)
+            MediaBase.__init__(self)
+            AttributeBase.__init__(self)
+            self.primary_name = Name()
+            self.event_list = []
+            self.family_list = []
+            self.parent_family_list = []
+            self.nickname = ""
+            self.alternate_names = []
+            self.gender = Person.UNKNOWN
+            self.death_handle = None
+            self.birth_handle = None
+            self.address_list = []
+            self.urls = []
+            self.lds_bapt = None
+            self.lds_endow = None
+            self.lds_seal = None
+            self.complete = False
         
         # We hold a reference to the GrampsDB so that we can maintain
         # its genderStats.  It doesn't get set here, but from
