@@ -15214,7 +15214,7 @@ Other</property>
 		  <child>
 		    <widget class="GtkLabel" id="label247">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">C_ounty:</property>
+		      <property name="label" translatable="yes">Co_unty:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -15246,7 +15246,7 @@ Other</property>
 		  <child>
 		    <widget class="GtkLabel" id="label248">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Co_untry:</property>
+		      <property name="label" translatable="yes">Count_ry:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -15622,7 +15622,7 @@ Other</property>
 		  <child>
 		    <widget class="GtkLabel" id="label291">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">P_hone:</property>
+		      <property name="label" translatable="yes">Phon_e:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
