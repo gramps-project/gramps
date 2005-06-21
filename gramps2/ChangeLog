@@ -1,3 +1,6 @@
+2005-06-21  Alexander Roitman  <shura@gramps-project.org>
+	* src/po/fr.po: Remove extra "%" signs.
+
 2005-06-21  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GenericFilter.py: Resolve handle-person mixup +many other bugfixes
 
