@@ -833,10 +833,13 @@ class FamilyView:
             elif family.get_mother_handle() == None:
                 self.delete_family_from(family.get_father_handle(),trans)
 
+        self.parent.db.disable_all_signals()
         self.parent.db.commit_person(child,trans)
         self.parent.db.commit_family(family,trans)
         n = child.get_primary_name().get_regular_name()
         self.parent.db.transaction_commit(trans,_("Remove Child (%s)") % n)
+        self.parent.db.enable_all_signals()
+        self.parent.db.emit('family-update',([family.get_handle()],))
 
     def remove_spouse(self,obj):
         if self.selected_spouse:
@@ -1137,6 +1140,7 @@ class FamilyView:
             return
 
         hlist = family.get_child_handle_list()
+
         self.child_model = DisplayModels.ChildModel(hlist,self.parent.db)
         self.child_list.set_model(self.child_model)
         self.family = self.parent.db.get_family_from_handle(family.get_handle())
