@@ -1,3 +1,7 @@
+2005-06-22  Don Allingham  <don@gramps-project.org>
+	* src/PlaceView.py: fix sorting
+	* src/SourceView.py: fix sorting
+
 2005-06-22  Alexander Roitman  <shura@gramps-project.org>
 	* src/GenericFilter.py (IsDescendantOfFilterMatch.__init__):
 	Remove unneeded method.
