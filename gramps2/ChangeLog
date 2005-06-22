@@ -7,6 +7,7 @@
 	Remove unneeded method.
 	* src/FamilyView.py (remove_child_clicked): Prevent signal race.
 	* NEWS: Update.
+	* src/TarFile.py (extract_files): insert missing 'replace' call.
 
 2005-06-21  Don Allingham  <don@gramps-project.org>
 	* src/GenericFilter.py: optimize a few filters

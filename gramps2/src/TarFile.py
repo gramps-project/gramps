@@ -111,7 +111,7 @@ class ReadTarFile:
             if filename == None:
                 return data
             self.f.read(24) # modes
-            l = self.f.read(12)(chr(0),' ')
+            l = self.f.read(12).replace(chr(0),' ')
             length = int(l,8) 
             self.f.read(12)
             self.f.read(6)
