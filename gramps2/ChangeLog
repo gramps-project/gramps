@@ -9,6 +9,9 @@
 	* src/FamilyView.py (remove_child_clicked): Prevent signal race.
 	* NEWS: Update.
 	* src/TarFile.py (extract_files): insert missing 'replace' call.
+	* src/Relationship.py (is_spouse): return translated spouse name,
+	based on gender and family relation.
+	* src/plugins/rel_*.py (get_relationship): use new spouse scheme.
 
 2005-06-21  Don Allingham  <don@gramps-project.org>
 	* src/GenericFilter.py: optimize a few filters

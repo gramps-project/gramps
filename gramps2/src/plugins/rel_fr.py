@@ -154,11 +154,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if orig_person.get_handle() == other_person.get_handle():
             return ('', [])
 
-        if self.is_spouse(orig_person,other_person):
-            if other_person.get_gender() == RelLib.Person.MALE:
-                return ("le mari",[])
-            else:
-                return ("la femme",[])
+        is_spouse = self.is_spouse(orig_person,other_person)
+        if is_spouse:
+            return (is_spouse,[])
 
         (firstRel,secondRel,common) = self.get_relationship_distance(orig_person,other_person)
 

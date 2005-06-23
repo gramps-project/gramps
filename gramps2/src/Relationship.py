@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2004  Donald N. Allingham
+# Copyright (C) 2003-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ _level_name = [ "", "first", "second", "third", "fourth", "fifth", "sixth",
 
 _removed_level = [ "", " once removed", " twice removed", " three times removed",
                    " four times removed", " five times removed", " six times removed",
-                   " sevent times removed", " eight times removed", " nine times removed",
+                  " sevent times removed", " eight times removed", " nine times removed",
                    " ten times removed", " eleven times removed", " twelve times removed",
                    " thirteen times removed", " fourteen times removed", " fifteen times removed",
                    " sixteen times removed", " seventeen times removed", " eighteen times removed",
@@ -240,12 +240,20 @@ class RelationshipCalculator:
     def is_spouse(self,orig,other):
         for f in orig.get_family_handle_list():
             family = self.db.get_family_from_handle(f)
-            if family:
-                if other.get_handle() == family.get_father_handle() or other.get_handle() == family.get_mother_handle():
-                    return 1
+            if family and other.get_handle() in [family.get_father_handle(),
+                                                 family.get_mother_handle()]:
+                    family_rel = family.get_relationship()
+                    if other.get_gender() == RelLib.Person.MALE \
+                           and family_rel != RelLib.Family.CIVIL_UNION:
+                        return _("husband")
+                    elif other.get_gender() == RelLib.Person.FEMALE\
+                             and family_rel != RelLib.Family.CIVIL_UNION:
+                        return _("wife")
+                    else:
+                        return _("partner")
             else:
-                return 0
-        return 0
+                return None
+        return None
 
     def get_relationship_distance(self,orig_person,other_person):
         """
@@ -304,8 +312,9 @@ class RelationshipCalculator:
         if orig_person.get_handle() == other_person.get_handle():
             return ('', [])
 
-        if self.is_spouse(orig_person,other_person):
-            return ("spouse",[])
+        is_spouse = self.is_spouse(orig_person,other_person)
+        if is_spouse:
+            return (is_spouse,[])
 
         (firstRel,secondRel,common) = self.get_relationship_distance(orig_person,other_person)
         
