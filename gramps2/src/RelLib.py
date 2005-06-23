@@ -528,7 +528,7 @@ class SourceNote(BaseObject,NoteBase):
         for ix_replace in xrange(n_replace):
             ix = refs_list.index(old_handle)
             self.source_list[ix].ref = new_handle
-            refs_list.pop(ix)
+            refs_list[ix] = new_handle
             
         for item in self.get_sourcref_child_list():
             item.replace_source_references(old_handle,new_handle)
@@ -628,7 +628,7 @@ class MediaBase:
         for ix_replace in xrange(n_replace):
             ix = refs_list.index(old_handle)
             self.media_list[ix].ref = new_handle
-            refs_list.pop(ix)
+            refs_list[ix] = new_handle
 
 class DateBase:
     """

@@ -5,6 +5,9 @@
 	* src/Relationship.py (is_spouse): Use context.
 	* src/get_strings: Add "__" to default keywords.
 	* src/po/template.po: Update for 2.0.4.
+	* src/RelLib.py (SourceNote.replace_source_references,
+	MediaBase.replace_media_references,): Fix problem with replacing
+	multiple occurrences.
 
 2005-06-23  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/WriteGedcom.py: Fix family source references, fix spurious
