@@ -1,3 +1,6 @@
+2005-06-23  Don Allingham  <don@gramps-project.org>
+	* src/WriteGedcom.py: Fix GEDCOM date exporting.
+
 2005-06-23  Alex Roitman  <shura@gramps-project.org>
 	* src/Relationship.py (is_spouse): Use context.
 	* src/get_strings: Add "__" to default keywords.

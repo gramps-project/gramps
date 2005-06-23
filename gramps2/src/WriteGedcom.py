@@ -1130,10 +1130,7 @@ class GedcomWriter:
 
     def print_date(self,prefix,date):
         start = date.get_start_date()
-        val = date.get_text()
-        if val:
-            self.writeln("%s %s" % (prefix,self.cnvtxt(val)))
-        elif not date.is_empty ():
+        if start != Date.EMPTY:
             cal = date.get_calendar()
             mod = date.get_modifier()
             if date.get_modifier() == Date.MOD_SPAN:
@@ -1145,6 +1142,8 @@ class GedcomWriter:
             else:
                 val = make_date(start,cal,mod)
             self.writeln("%s %s" % (prefix,val))
+        elif date.get_text():
+            self.writeln("%s %s" % (prefix,self.cnvtxt(date.get_text())))
 
     def write_person_name(self,name,nick):
         firstName = self.cnvtxt(name.get_first_name())
