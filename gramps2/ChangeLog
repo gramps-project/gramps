@@ -1,3 +1,7 @@
+2005-06-23  Alex Roitman  <shura@gramps-project.org>
+	* src/Relationship.py (is_spouse): Use context.
+	* src/get_strings: Add "__" to default keywords.
+
 2005-06-23  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/WriteGedcom.py: Fix family source references, fix spurious
 	PLAC subrecords, respect more privacy settings

@@ -29,6 +29,7 @@
 import RelLib
 import types
 from gettext import gettext as _
+from Utils import strip_context as __
 
 #-------------------------------------------------------------------------
 #
@@ -242,15 +243,34 @@ class RelationshipCalculator:
             family = self.db.get_family_from_handle(f)
             if family and other.get_handle() in [family.get_father_handle(),
                                                  family.get_mother_handle()]:
-                    family_rel = family.get_relationship()
-                    if other.get_gender() == RelLib.Person.MALE \
-                           and family_rel != RelLib.Family.CIVIL_UNION:
-                        return _("husband")
-                    elif other.get_gender() == RelLib.Person.FEMALE\
-                             and family_rel != RelLib.Family.CIVIL_UNION:
-                        return _("wife")
+                family_rel = family.get_relationship()
+                # Use person's gender
+                if other.get_gender() == RelLib.Person.MALE:
+                    if family_rel == RelLib.Family.CIVIL_UNION:
+                        return __("male|partner")
                     else:
-                        return _("partner")
+                        return _("husband")
+                elif other.get_gender() == RelLib.Person.FEMALE:
+                    if family_rel == RelLib.Family.CIVIL_UNION:
+                        return __("female|partner")
+                    else:
+                        return _("wife")
+                # Gender is unknown, try using other person's gender
+                elif orig.get_gender() == RelLib.Person.MALE:
+                    if family_rel == RelLib.Family.CIVIL_UNION:
+                        return __("female|partner")
+                    else:
+                        return _("wife")
+                elif orig.get_gender() == RelLib.Person.FEMALE:
+                    if family_rel == RelLib.Family.CIVIL_UNION:
+                        return __("male|partner")
+                    else:
+                        return _("husband")
+                # Gender of both people is unknown, go with family rel alone
+                elif family_rel == RelLib.Family.CIVIL_UNION:
+                    return __("gender unknown|partner")
+                else:
+                    return __("gender unknown|spouse")
             else:
                 return None
         return None
