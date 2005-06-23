@@ -4,9 +4,14 @@
 # #
 # #	$Id$
 # #	$Log$
+# #	Revision 1.5.2.6  2005/06/23 16:27:47  jsanchez
+# #	* src/WriteGedcom.py: Fix family source references, fix spurious
+# #	PLAC subrecords, respect more privacy settings
+# #	* src/po/es.po: Translation fixes
+# #
 # #	Revision 1.5.2.5  2005/06/03 21:07:17  jsanchez
 # #	* src/po/es.po: Translation update for version 2.0.2.
-# #
+# #	
 # #	Revision 1.5.2.3  2005/05/10 13:52:41  jsanchez
 # #	* src/po/es.po: Updated translation
 # #	* src/plugins/rel_es.py: Revert to more conservative relationships
@@ -74,7 +79,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 0.9.0\n"
 "POT-Creation-Date: Wed Jun  1 09:58:59 2005\n"
-"PO-Revision-Date: 2005-06-03 20:07+0200\n"
+"PO-Revision-Date: 2005-06-21 14:40+0200\n"
 "Last-Translator: Julio Sánchez <julio.sanchez@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
@@ -345,7 +350,7 @@ msgstr "Nombre de la Columna"
 
 #: Date.py:105
 msgid "Gregorian"
-msgstr "Gragoriano"
+msgstr "Gregoriano"
 
 #: Date.py:106
 msgid "Julian"
@@ -944,7 +949,7 @@ msgstr "f."
 
 #: FamilyView.py:72
 msgid "#"
-msgstr "#"
+msgstr "Nº"
 
 #: FamilyView.py:75 MergePeople.py:108 PeopleView.py:60
 #: plugins/IndivComplete.py:418 plugins/IndivSummary.py:240
@@ -1216,7 +1221,7 @@ msgid ""
 "the relationship path between two persons."
 msgstr ""
 "Compara los ascendientes de dos personas hasta encontrar un ascendiente "
-"común, produciendo un camino de parentesto entre dos personas."
+"común, produciendo un camino de parentesco entre dos personas."
 
 #: GenericFilter.py:261
 msgid "People with <Id>"
@@ -1749,7 +1754,7 @@ msgstr "ID de la fuente:"
 
 #: GenericFilter.py:1809
 msgid "People with the <source>"
-msgstr "Personas que tienen la <fuente;"
+msgstr "Personas que tienen la <fuente>"
 
 #: GenericFilter.py:1811
 msgid "Matches people who have a particular source"
@@ -5686,7 +5691,7 @@ msgid ""
 "Select an existing media object from the database and place it in this "
 "gallery"
 msgstr ""
-"Seleccionar un objeto audiovisual de la bsee de datos y colocarla en esta "
+"Seleccionar un objeto audiovisual de la base de datos y colocarla en esta "
 "galería"
 
 #: gramps.glade:5461 gramps.glade:10546 gramps.glade:15643 gramps.glade:26049
@@ -7396,11 +7401,11 @@ msgstr " f. %(death_date)s"
 
 #: plugins/Ancestors.py:547
 msgid "born"
-msgstr "nacido"
+msgstr "nació"
 
 #: plugins/Ancestors.py:559
 msgid "died"
-msgstr "fallecido"
+msgstr "falleció"
 
 #: plugins/Ancestors.py:605
 msgid "Mrs."
@@ -7708,7 +7713,7 @@ msgstr "Se encontró 1 familia vacía \n"
 
 #: plugins/Check.py:500
 msgid "%d empty families were found\n"
-msgstr "se econtraron %d familias vacías\n"
+msgstr "se encontraron %d familias vacías\n"
 
 #: plugins/Check.py:502
 msgid "1 corrupted family relationship fixed\n"

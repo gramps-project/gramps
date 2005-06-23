@@ -1,3 +1,8 @@
+2005-06-23  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/WriteGedcom.py: Fix family source references, fix spurious
+	PLAC subrecords, respect more privacy settings
+	* src/po/es.po: Translation fixes
+
 2005-06-22  Don Allingham  <don@gramps-project.org>
 	* src/FamilyView.py: fix deleting of spouse and children
 	* src/PlaceView.py: fix sorting

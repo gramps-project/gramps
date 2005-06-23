@@ -120,8 +120,8 @@ def add_familys_sources(db,family_handle,slist,private):
             continue
         for source_ref in attr.get_source_references():
             sbase = source_ref.get_base_handle()
-            if sbase != None and not slist.has_key(sbase.get_handle()):
-                slist[sbase.get_handle()] = 1
+            if sbase != None and not slist.has_key(sbase):
+                slist[sbase] = 1
 
 #-------------------------------------------------------------------------
 #
@@ -907,12 +907,19 @@ class GedcomWriter:
                     val = const.personalConstantAttributes[name]
                 else:
                     val = ""
-                if val : 
-                    self.writeln("1 %s" % val)
+                value = self.cnvtxt(attr.get_value()).replace('\r',' ')
+                if val:
+                    if value:
+                        self.writeln("1 %s %s" % (val, value))
+                    else:
+                        self.writeln("1 %s" % val)
                 else:
                     self.writeln("1 EVEN")
-                    self.writeln("2 TYPE %s" % self.cnvtxt(name))
-                self.writeln("2 PLAC %s" % self.cnvtxt(attr.get_value()).replace('\r',' '))
+                    if value:
+                        self.writeln("2 TYPE %s %s" % (self.cnvtxt(name), value
+))
+                    else:
+                        self.writeln("2 TYPE %s" % self.cnvtxt(name))
                 if attr.get_note():
                     self.write_long_text("NOTE",2,self.cnvtxt(attr.get_note()))
                 for srcref in attr.get_source_references():
@@ -955,6 +962,8 @@ class GedcomWriter:
                 photos = []
 
             for photo in photos:
+                if self.private and photo.get_privacy():
+                    continue
                 photo_obj_id = photo.get_reference_handle()
                 photo_obj = self.db.get_object_from_handle(photo_obj_id)
                 if photo_obj and photo_obj.get_mime_type() == "image/jpeg":
@@ -997,6 +1006,8 @@ class GedcomWriter:
         if not restricted:
             if self.obje:
                 for url in person.get_url_list():
+                    if self.private and url.get_privacy():
+                        continue
                     self.writeln('1 OBJE')
                     self.writeln('2 FORM URL')
                     if url.get_description():
