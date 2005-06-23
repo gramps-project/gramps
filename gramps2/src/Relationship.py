@@ -244,33 +244,53 @@ class RelationshipCalculator:
             if family and other.get_handle() in [family.get_father_handle(),
                                                  family.get_mother_handle()]:
                 family_rel = family.get_relationship()
-                # Use person's gender
+                # Determine person's gender
                 if other.get_gender() == RelLib.Person.MALE:
-                    if family_rel == RelLib.Family.CIVIL_UNION:
-                        return __("male|partner")
-                    else:
-                        return _("husband")
+                    gender = RelLib.Person.MALE
                 elif other.get_gender() == RelLib.Person.FEMALE:
-                    if family_rel == RelLib.Family.CIVIL_UNION:
-                        return __("female|partner")
-                    else:
-                        return _("wife")
-                # Gender is unknown, try using other person's gender
+                    gender = RelLib.Person.FEMALE
+                # Person's gender is unknown, try guessing from spouse's
                 elif orig.get_gender() == RelLib.Person.MALE:
                     if family_rel == RelLib.Family.CIVIL_UNION:
-                        return __("female|partner")
+                        gender = RelLib.Person.MALE
                     else:
-                        return _("wife")
+                        gender = RelLib.Person.FEMALE
                 elif orig.get_gender() == RelLib.Person.FEMALE:
                     if family_rel == RelLib.Family.CIVIL_UNION:
-                        return __("male|partner")
+                        gender = RelLib.Person.FEMALE
                     else:
-                        return _("husband")
-                # Gender of both people is unknown, go with family rel alone
-                elif family_rel == RelLib.Family.CIVIL_UNION:
-                    return __("gender unknown|partner")
+                        gender = RelLib.Person.MALE
                 else:
-                    return __("gender unknown|spouse")
+                    gender = RelLib.Person.UNKNOWN
+
+                if family_rel == RelLib.Family.MARRIED:
+                    if gender == RelLib.Person.MALE:
+                        return _("husband")
+                    elif gender == RelLib.Person.FEMALE:
+                        return _("wife")
+                    else:
+                        return __("gender unknown|spouse")
+                elif family_rel == RelLib.Family.UNMARRIED:
+                    if gender == RelLib.Person.MALE:
+                        return __("unmarried|husband")
+                    elif gender == RelLib.Person.FEMALE:
+                        return __("unmarried|wife")
+                    else:
+                        return __("gender unknown,unmarried|spouse")
+                elif family_rel == RelLib.Family.CIVIL_UNION:
+                    if gender == RelLib.Person.MALE:
+                        return __("male,civil union|partner")
+                    elif gender == RelLib.Person.FEMALE:
+                        return __("female,civil union|partner")
+                    else:
+                        return __("gender unknown,civil union|partner")
+                else:
+                    if gender == RelLib.Person.MALE:
+                        return __("male,unknown relation|partner")
+                    elif gender == RelLib.Person.FEMALE:
+                        return __("female,unknown relation|partner")
+                    else:
+                        return __("gender unknown,unknown relation|partner")
             else:
                 return None
         return None
