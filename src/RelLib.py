@@ -1562,8 +1562,22 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         @param frel: relationship between the Person and its father
         @type frel: tuple
         """
-        assert type(mrel) == tuple
-        assert type(frel) == tuple
+        if not type(mrel) == tuple:
+            if mrel in range(0,8):
+                warn( "add_parent_family_handle now takes a tuple", DeprecationWarning, 2)
+                # Wrapper for old API
+                # remove when transitition done.
+                mrel = (mrel,'')
+            else:
+                assert type(mrel) == tuple
+        if not type(frel) == tuple:
+            if frel in range(0,8):
+                warn( "add_parent_family_handle now takes a tuple", DeprecationWarning, 2)
+                # Wrapper for old API
+                # remove when transitition done.
+                frel = (frel,'')
+            else:
+                assert type(frel) == tuple
         self.parent_family_list.append((family_handle,mrel,frel))
 
     def clear_parent_family_handle_list(self):
@@ -1977,6 +1991,14 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
             between the father and mother of the relationship.
         @type relationship_type: tuple
         """
+        if not type(relationship_type) == tuple:
+            if mrel in [Family.MARRIED,Family.UNMARRIED,Family.CIVIL_UNION,Family.UNKNOWN,Family.CUSTOM]:
+                warn( "set_relationship now takes a tuple", DeprecationWarning, 2)
+                # Wrapper for old API
+                # remove when transitition done.
+                relationship_type = (relationship_type,'')
+            else:
+                assert type(relationship_type) == tuple
         self.type = relationship_type
 
     def get_relationship(self):
@@ -2366,6 +2388,23 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
 
         return True
         
+    def set_name(self,name):
+        warn( "Use set_type instead of set_name", DeprecationWarning, 2)
+        # INCOMPLETE Wrapper for old API
+        # remove when transitition done.
+        if name in range(-1,45):
+            the_type = (name,'')
+        else:
+            the_type = (Event.CUSTOM,name)
+        self.set_type(the_type)
+
+    def get_name(self):
+        warn( "Use get_type instead of get_name", DeprecationWarning, 2)
+        # INCOMPLETE Wrapper for old API
+        # remove when transitition done.
+        type = self.get_type()
+        return type[1]
+        
     def set_type(self,the_type):
         """
         Sets the type of the Event to the passed (int,str) tuple.
@@ -2373,7 +2412,14 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         @param the_type: Type to assign to the Event
         @type the_type: tuple
         """
-        assert type(the_type) == tuple
+        if not type(the_type) == tuple:
+            warn( "set_type now takes a tuple", DeprecationWarning, 2)
+            # Wrapper for old API
+            # remove when transitition done.
+            if the_type in range(-1,45):
+                the_type = (the_type,'')
+            else:
+                the_type = (Event.CUSTOM,the_type)
         self.type = the_type
 
     def get_type(self):
@@ -3557,7 +3603,14 @@ class Attribute(PrivateSourceNote):
 
     def set_type(self,val):
         """sets the type (or key) of the Attribute instance"""
-        assert type(val) == tuple
+        if not type(val) == tuple:
+            warn( "set_type now takes a tuple", DeprecationWarning, 2)
+            # Wrapper for old API
+            # remove when transitition done.
+            if val in range(-1,7):
+                val = (val,'')
+            else:
+                val = (Attribute.CUSTOM,val)
         self.type = val
 
     def get_type(self):
@@ -3826,7 +3879,14 @@ class Name(PrivateSourceNote,DateBase):
 
     def set_type(self,the_type):
         """sets the type of the Name instance"""
-        assert type(the_type) == tuple
+        if not type(the_type) == tuple:
+            if mrel in [UNKNOWN,CUSTOM,AKA,BIRTH,MARRIED]:
+                warn( "set_type now takes a tuple", DeprecationWarning, 2)
+                # Wrapper for old API
+                # remove when transitition done.
+                the_type = (the_type,'')
+            else:
+                assert type(the_type) == tuple
         self.type = the_type
 
     def get_type(self):
@@ -4251,7 +4311,14 @@ class EventRef(BaseObject,PrivacyBase,NoteBase):
         """
         Sets the role according to the given argument.
         """
-        assert type(role) == tuple
+        if not type(role) == tuple:
+            if role in range(-1,9):
+                warn( "set_role now takes a tuple", DeprecationWarning, 2)
+                # Wrapper for old API
+                # remove when transitition done.
+                role = (role,'')
+            else:
+                assert type(role) == tuple
         self.role = role
 
 class GenderStats:
