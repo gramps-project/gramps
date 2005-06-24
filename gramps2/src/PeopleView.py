@@ -280,7 +280,7 @@ class PeopleView:
         entries = [
             (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
             (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
-            (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
+            (_("Home"),self.parent.on_home_clicked,1),
             (_("Add Bookmark"),self.parent.on_add_bookmark_activate,sel_sensitivity),
             (None,None,0),
             (gtk.STOCK_ADD, self.parent.add_button_clicked,1),

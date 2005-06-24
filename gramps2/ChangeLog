@@ -1,3 +1,8 @@
+2005-06-24  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/PeopleView.py (build_people_context_menu): Workaround to get a
+	proper german translation.
+	* srx/po/de.po: Updated
+
 2005-06-24  Alexander Roitman  <shura@gramps-project.org>
 	* src/po/fr.po: Add missing format line parameters.
 
