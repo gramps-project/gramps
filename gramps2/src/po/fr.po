@@ -3084,7 +3084,7 @@ msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d years."
 msgstr ""
-"%(female_name)s décédée en %(month_year)s à %(death_place) à l'âge de %(age)"
+"%(female_name)s décédée en %(month_year)s à %(death_place)s à l'âge de %(age)"
 "d ans."
 
 #: ReportUtils.py:1357
@@ -3092,7 +3092,7 @@ msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d months."
 msgstr ""
-"%(female_name)s décédée en %(month_year)s à %(death_place) à l'âge de %(age)"
+"%(female_name)s décédée en %(month_year)s à %(death_place)s à l'âge de %(age)"
 "d mois."
 
 #: ReportUtils.py:1364
