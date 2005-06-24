@@ -2,6 +2,9 @@
 	* src/GrampsBSDDB.py (upgrade): Disable upgrade_7 until this is
 	properly working to not accidently destroy a database from gramps20
 	* src/plugins/TestcaseGenerator.py: Update to new tuple types
+	* src/RelLib.py: Use DeprecationWarning and api wrappers instead of
+	assert to make HEAD a little more usable again until all transitition
+	is done
 
 2005-06-20  Don Allingham  <don@gramps-project.org>
 	* src/GenericFilter.py: optimize looping and reducing fetches
