@@ -8,6 +8,7 @@
 	* src/RelLib.py (SourceNote.replace_source_references,
 	MediaBase.replace_media_references,): Fix problem with replacing
 	multiple occurrences.
+	* src/po/ru.po: Update for 2.0.4.
 
 2005-06-23  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/WriteGedcom.py: Fix family source references, fix spurious
