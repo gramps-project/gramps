@@ -1,3 +1,7 @@
+2005-06-24  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GrampsBSDDB.py (upgrade): Disable upgrade_7 until this is
+	properly working to not accidently destroy a database from gramps20
+
 2005-06-20  Don Allingham  <don@gramps-project.org>
 	* src/GenericFilter.py: optimize looping and reducing fetches
 	* src/Utils.py: fix event handle accesses
