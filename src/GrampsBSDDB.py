@@ -516,10 +516,12 @@ class GrampsBSDDB(GrampsDbBase):
             self.upgrade_5()
         if version < 6:
             self.upgrade_6()
-        if version < 7:
-            self.upgrade_7()
         self.metadata['version'] = _DBVERSION
-        print 'Successfully finished all upgrades'
+        if version < 7:
+            #self.upgrade_7()
+            raise Exception("Currently there is no database upgrade available")
+        else:
+            print 'Successfully finished all upgrades'
 
     def upgrade_2(self,child_rel_notrans):
         print "Upgrading to DB version 2"
