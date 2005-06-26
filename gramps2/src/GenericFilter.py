@@ -956,6 +956,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
 
     def __init__(self,list):
         HasCommonAncestorWith.__init__(self,list)
+        self.ancestor_cache = {}
 
     def init_ancestor_cache(self,db):
         filt = MatchesFilter(self.list)
@@ -1949,7 +1950,7 @@ class GenericFilter:
                 count += 1
         return count != 1
 
-    def and_or(self,db,person):
+    def or_test(self,db,person):
         for rule in self.flist:
             if rule.apply(db,person):
                 return True
