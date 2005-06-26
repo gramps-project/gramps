@@ -1,3 +1,7 @@
+2005-06-26  Don Allingham  <don@gramps-project.org>
+	* src/ReadXML.py: prevent duplicate place names on import
+	* src/ReadGedcom.py: prevent duplicate place names on import
+
 2005-06-26  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/GenericFilter.py: Fix uninitialized ancestor_cache in
 	HasCommonAncestorWithFilterMatch, fix or-ing filters

@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+import sets
 import gtk
 import shutil
 from xml.parsers.expat import ExpatError, ParserCreate
@@ -171,87 +172,6 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
                 database.commit_media_object(mobject,None,change)
             except (IOError,OSError),msg:
                 ErrorDialog(_('Could not copy file'),str(msg))
-                            
-
-#-------------------------------------------------------------------------
-#     def remove_clicked():
-#         # File is lost => remove all references and the object itself
-#         mobj = database.find_object_from_handle(NewMediaID)
-#         for fid in database.get_family_handles():
-#             p = database.get_family_from_handle(fid)
-#             nl = p.get_media_list()
-#             for o in nl:
-#                 if o.get_reference() == mobj:
-#                     nl.remove(o) 
-#             p.set_media_list(nl)
-#         for key in database.get_person_handles(sort_handles=False):
-#             p = database.find_person_from_handle(key)
-#             nl = p.get_media_list()
-#             for o in nl:
-#                 if o.get_reference_handle() == mobj.get_handle():
-#                     nl.remove(o) 
-#             p.set_media_list(nl)
-#         for key in database.get_source_handles():
-#             p = database.find_source_from_handle(key)
-#             nl = p.get_media_list()
-#             for o in nl:
-#                 if o.get_reference_handle() == mobj.get_handle():
-#                     nl.remove(o) 
-#             p.set_media_list(nl)
-#         for key in database.get_place_handles():
-#             p = database.find_place_from_handle(key)
-#             nl = p.get_media_list()
-#             for o in nl:
-#                 if o.get_reference() == mobj:
-#                     nl.remove(o) 
-#             p.set_media_list(nl)
-#         database.remove_object(NewMediaID) 
-
-
-#     def leave_clicked():
-#         # File is lost => do nothing, leave as is
-#         pass
-
-#     def select_clicked():
-#         # File is lost => select a file to replace the lost one
-#         def fs_close_window(obj):
-#             pass
-
-#         def fs_ok_clicked(obj):
-#             name = fs_top.get_filename()
-#             if os.path.isfile(name):
-#                 shutil.copyfile(name,newfile)
-#                 try:
-#                     shutil.copystat(name,newfile)
-#                 except:
-#                     pass
-
-#         choose = gtk.FileChooserDialog('Select file',
-#                                        None,
-#                                        gtk.FILE_CHOOSER_ACTION_OPEN,
-#                                        (gtk.STOCK_CANCEL,
-#                                         gtk.RESPONSE_CANCEL,
-#                                         gtk.STOCK_OPEN,
-#                                         gtk.RESPONSE_OK))
-            
-#         filter = gtk.FileFilter()
-#         filter.set_name(_('All files'))
-#         filter.add_pattern('*')
-#         choose.add_filter(filter)
-        
-#         response = choose.run()
-#         if response == gtk.RESPONSE_OK:
-#             name = fs_top.get_filename()
-#             if os.path.isfile(name):
-#                 shutil.copyfile(name,newfile)
-#                 try:
-#                     shutil.copystat(name,newfile)
-#                 except:
-#                     pass
-#         choose.destroy()
-
-#     del parser
-#     return 1
 
 #-------------------------------------------------------------------------
 #
@@ -286,6 +206,15 @@ class GrampsParser:
         self.gid2sid = {}
         self.change = change
         self.dp = DateHandler.parser
+
+        self.place_names = sets.Set()
+        cursor = database.get_place_cursor()
+        data = cursor.next()
+        while data:
+            (handle,val) = data
+            self.place_names.add(val[2])
+            data = cursor.next()
+        cursor.close()
         
         self.ord = None
         self.objref = None
@@ -615,6 +544,7 @@ class GrampsParser:
         title = attrs['title']
         if title == "":
             title = attrs['id']
+
         self.placeobj.set_title(title)
         self.locations = 0
         if self.callback != None and self.count % self.increment == 0:
@@ -1156,6 +1086,11 @@ class GrampsParser:
         if self.placeobj.get_title() == "":
             loc = self.placeobj.get_main_location()
             self.placeobj.set_title(build_place_title(loc))
+
+        title = self.placeobj.get_title()
+        if title in self.place_names:
+            self.placeobj.set_title(title + " [%s]" % self.placeobj.get_gramps_id())
+
         self.db.commit_place(self.placeobj,self.trans,self.change)
         self.placeobj = None
 

@@ -32,6 +32,7 @@ import re
 import string
 import const
 import time
+import sets
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -278,6 +279,15 @@ class GedcomParser:
         self.sid2id = {}
         self.lid2id = {}
         self.fid2id = {}
+
+        self.place_names = sets.Set()
+        cursor = dbase.get_place_cursor()
+        data = cursor.next()
+        while data:
+            (handle,val) = data
+            self.place_names.add(val[2])
+            data = cursor.next()
+        cursor.close()
 
         self.f = open(filename,"rU")
         self.filename = filename
@@ -742,16 +752,35 @@ class GedcomParser:
             self.sid2id[gramps_id] = intid
         return source
 
-    def find_or_create_place(self,gramps_id):
+    def find_or_create_place(self,title):
         place = RelLib.Place()
-        intid = self.lid2id.get(gramps_id)
+
+        # check to see if we've encountered this name before
+        # if we haven't we need to get a new GRAMPS ID
+        intid = self.lid2id.get(title)
+        if intid == None:
+            new_id = self.db.find_next_place_gramps_id()
+        else:
+            new_id = None
+
+        # check to see if the name already existed in the database
+        # if it does, create a new name by appending the GRAMPS ID.
+        # generate a GRAMPS ID if needed
+        
+        if title in self.place_names:
+            if not new_id:
+                new_id = self.db.find_next_place_gramps_id()
+            pname = "%s [%s]" % (title,new_id)
+        else:
+            pname = title
+            
         if self.db.place_map.has_key(intid):
             place.unserialize(self.db.place_map.get(intid))
         else:
             intid = create_id()
             place.set_handle(intid)
-            place.set_title(gramps_id)
-            place.set_gramps_id(self.db.find_next_place_gramps_id())
+            place.set_title(pname)
+            place.set_gramps_id(new_id)
             self.db.add_place(place,self.trans)
             self.lid2id[gramps_id] = intid
         return place
