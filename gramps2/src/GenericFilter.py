@@ -2296,14 +2296,14 @@ class GrampsFilterComboBox(gtk.ComboBox):
             cnt += 1
         
         for filt in SystemFilters.get_filters():
-            self.store.append(row=[_(filt.get_name())])
+            self.store.append(row=[filt.get_name()])
             self.map[filt.get_name()] = filt
             if default != "" and default == filt.get_name():
                 active = cnt
             cnt += 1
 
         for filt in CustomFilters.get_filters():
-            self.store.append(row=[_(filt.get_name())])
+            self.store.append(row=[filt.get_name()])
             self.map[filt.get_name()] = filt
             if default != "" and default == filt.get_name():
                 active = cnt
@@ -2324,7 +2324,7 @@ class GrampsFilterComboBox(gtk.ComboBox):
         active = self.get_active()
         if active < 0:
             return None
-        key = self.store[active][0]
+        key = unicode(self.store[active][0])
         return self.map[key]
 
 
