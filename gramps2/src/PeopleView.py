@@ -202,6 +202,11 @@ class PeopleView:
         expected, not an ID"""
         path = self.person_model.on_get_path(person.get_handle())
         self.person_model.row_deleted(path)
+        (col,row) = path
+        if row > 0:
+            self.person_selection.select_path((col,row-1))
+        elif row == 0 and self.person.on_get_iter(path):
+            self.person_selection.select_path(path)
     
     def remove_from_history(self,person_handle,old_id=None):
         """Removes a person from the history list"""

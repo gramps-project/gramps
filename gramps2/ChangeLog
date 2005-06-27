@@ -1,4 +1,6 @@
 2005-06-26  Don Allingham  <don@gramps-project.org>
+	* src/PeopleView.py: partial implementation of the alexrithm to
+	select a new person after a person has been deleted
 	* src/const.py.in: fix confidence display
 	* src/ReadXML.py: prevent duplicate place names on import
 	* src/ReadGedcom.py: prevent duplicate place names on import
