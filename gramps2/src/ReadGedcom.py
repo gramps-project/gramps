@@ -782,7 +782,7 @@ class GedcomParser:
             place.set_title(pname)
             place.set_gramps_id(new_id)
             self.db.add_place(place,self.trans)
-            self.lid2id[gramps_id] = intid
+            self.lid2id[title] = intid
         return place
 
     def parse_cause(self,event,level):
