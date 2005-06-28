@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Thu Jun 23 14:11:42 2005\n"
-"PO-Revision-Date: 2005-05-17 18:11+0200\n"
+"PO-Revision-Date: 2005-06-28 21:48+0200\n"
 "Last-Translator: Matthieu Pupat <tieum.tieum@free.fr>\n"
 "Language-Team: Français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -79,28 +79,24 @@ msgid "A person cannot be linked as his/her spouse"
 msgstr "Une personne ne peut être son propre conjoint"
 
 #: AddSpouse.py:241
-#, fuzzy
 msgid "Spouse is a parent"
-msgstr "<b>Parents de l'ép_oux(se)</b>"
+msgstr "Le conjoint est un parent"
 
 #: AddSpouse.py:242
-#, fuzzy
 msgid ""
 "The person selected as a spouse is a parent of the active person. Usually, "
 "this is a mistake. You may choose either to proceed with adding a spouse, or "
 "to return to the Choose Spouse dialog to fix the problem."
 msgstr ""
-"Le sexe de la personne est inconnu. Habituellement, c'est une erreur. Vous "
-"pouvez choisir de continuer la sauvegarde ou d'éditer la fiche pour corriger "
-"le problème."
+"La personne sélectionnée comme conjoint est un parent de la personne active. "
+"Habituellement, c'est une erreur. Vous pouvez choisir de continuer la "
+"sauvegarde ou d'éditer la fiche pour corriger le problème."
 
 #: AddSpouse.py:246 AddSpouse.py:267
-#, fuzzy
 msgid "Proceed with adding"
-msgstr "Fermer _sans sauvegarder"
+msgstr "Forcer l'ajout"
 
 #: AddSpouse.py:246 AddSpouse.py:267
-#, fuzzy
 msgid "Return to dialog"
 msgstr "Retour à la fenêtre"
 
@@ -109,20 +105,18 @@ msgid "The spouse is already present in this family"
 msgstr "Le conjoint est déjà présent dans la famille"
 
 #: AddSpouse.py:262
-#, fuzzy
 msgid "Spouse is a child"
-msgstr "Erreur lors de la sélection d'un enfant"
+msgstr "Le conjoint est un enfant"
 
 #: AddSpouse.py:263
-#, fuzzy
 msgid ""
 "The person selected as a spouse is a child of the active person. Usually, "
 "this is a mistake. You may choose either to proceed with adding a spouse, or "
 "to return to the Choose Spouse dialog to fix the problem."
 msgstr ""
-"Le sexe de la personne est inconnu. Habituellement, c'est une erreur. Vous "
-"pouvez choisir de continuer la sauvegarde ou d'éditer la fiche pour corriger "
-"le problème."
+"La personne choisie comme conjoint est un enfant de la personne active. "
+"Habituellement, c'est une erreur. Vous pouvez choisir de continuer la "
+"sauvegarde ou d'éditer la fiche pour corriger le problème."
 
 #: AddSpouse.py:293 FamilyView.py:725
 msgid "Add Spouse"
@@ -221,9 +215,8 @@ msgid "Edit Bookmarks"
 msgstr "Gérer les signets"
 
 #: ChooseParents.py:129 ChooseParents.py:130
-#, fuzzy
 msgid "Loading..."
-msgstr "Chargement de %s ..."
+msgstr "Chargement ..."
 
 #: ChooseParents.py:133
 msgid "Choose the Parents of %s"
@@ -281,24 +274,20 @@ msgid "Father"
 msgstr "Père"
 
 #: ChooseParents.py:834
-#, fuzzy
 msgid "Likely Father"
-msgstr "Père"
+msgstr "Père supposé"
 
 #: ChooseParents.py:835
-#, fuzzy
 msgid "Matches likely fathers"
-msgstr "Corresponds à toutes les femmes de la base de données"
+msgstr "Tous les pères supposés"
 
 #: ChooseParents.py:844
-#, fuzzy
 msgid "Likely Mother"
-msgstr "Mère"
+msgstr "Mère supposée"
 
 #: ChooseParents.py:845
-#, fuzzy
 msgid "Matches likely mothers"
-msgstr "Corresponds à tous les hommes de la base de données"
+msgstr "Toutes les mères supposées"
 
 #: ColumnOrder.py:40
 msgid "Select Columns"
@@ -670,13 +659,15 @@ msgstr "Nouveau lieu"
 
 #: EditPlace.py:391
 msgid "Place title is already in use"
-msgstr ""
+msgstr "Le nom de lieu est déjà utilisé"
 
 #: EditPlace.py:392
 msgid ""
 "Each place must have a unique title, and title you have selected is already "
 "used by another place"
 msgstr ""
+"Chaque lieu doit avoir un titre unique. Le titre sélectionné est utilisé "
+"pour un autre lieu"
 
 #: EditPlace.py:427
 msgid "Edit Place (%s)"
@@ -1154,17 +1145,15 @@ msgid "Matches everyone in the database"
 msgstr "Assortir tout un chacun dans la base"
 
 #: GenericFilter.py:146
-#, fuzzy
 msgid "Disconnected people"
 msgstr "Individus déconnectés"
 
 #: GenericFilter.py:148
-#, fuzzy
 msgid ""
 "Matches people that have no family relationships to any other person in the "
 "database"
 msgstr ""
-"Assortir les individus ayant des ascendants commun aux résultats du filtrage"
+"Assortir les individus n'ayant de relation avec aucun individu de la base"
 
 #: GenericFilter.py:164 GenericFilter.py:260 GenericFilter.py:368
 #: GenericFilter.py:459 GenericFilter.py:502 GenericFilter.py:623
@@ -1175,16 +1164,14 @@ msgid "ID:"
 msgstr "Id :"
 
 #: GenericFilter.py:165
-#, fuzzy
 msgid "Relationship path between <persons>"
-msgstr "Relation entre deux individus"
+msgstr "Relation entre <persons>"
 
 #: GenericFilter.py:166
 msgid "Relationship filters"
 msgstr "Filtres relationnels"
 
 #: GenericFilter.py:167
-#, fuzzy
 msgid ""
 "Matches the ancestors of two persons back to a common ancestor, producing "
 "the relationship path between two persons."
@@ -1193,17 +1180,14 @@ msgstr ""
 "relier ces deux personnes."
 
 #: GenericFilter.py:261
-#, fuzzy
 msgid "People with <Id>"
-msgstr "Individus ayant des enfants"
+msgstr "Individus avec <id>"
 
 #: GenericFilter.py:262
-#, fuzzy
 msgid "Matches people with a specified GRAMPS ID"
-msgstr "Assortir l'individu à son identifiant GRAMPS"
+msgstr "Assortir les individus avec l'identifiant GRAMPS"
 
 #: GenericFilter.py:276
-#, fuzzy
 msgid "Default person"
 msgstr "Individu par défaut"
 
@@ -1212,18 +1196,16 @@ msgid "Matches the default person"
 msgstr "Trouver l'individu par défaut"
 
 #: GenericFilter.py:299
-#, fuzzy
 msgid "Bookmarked people"
-msgstr "Comparer des personnes"
+msgstr "Personnes avec un marque-pages"
 
 #: GenericFilter.py:301
 msgid "Matches the people on the bookmark list"
 msgstr "Trouver les personnes sur un marque-page"
 
 #: GenericFilter.py:322
-#, fuzzy
 msgid "People with complete records"
-msgstr "Individus ayant des noms incomplets"
+msgstr "Individus ayant un enregistrement complet"
 
 #: GenericFilter.py:324
 msgid "Matches all people whose records are complete"
@@ -1238,14 +1220,12 @@ msgid "Matches all females"
 msgstr "Corresponds à toutes les femmes de la base de données"
 
 #: GenericFilter.py:352 gramps_main.py:967
-#, fuzzy
 msgid "People with unknown gender"
-msgstr "Individus sans aucun mariage"
+msgstr "Individus sans sexe connu"
 
 #: GenericFilter.py:354
-#, fuzzy
 msgid "Matches all people with unknown gender"
-msgstr "Rassemble les individus aux enregistrements complets"
+msgstr "Rassemble les individus sans sexe connu"
 
 #: GenericFilter.py:368 GenericFilter.py:416 GenericFilter.py:670
 #: GenericFilter.py:724 plugins/FilterEditor.py:692
@@ -1253,9 +1233,8 @@ msgid "Inclusive:"
 msgstr "Inclusif :"
 
 #: GenericFilter.py:369
-#, fuzzy
 msgid "Descendants of <person>"
-msgstr "Descendants de %s"
+msgstr "Descendants de <person>"
 
 #: GenericFilter.py:370 GenericFilter.py:418 GenericFilter.py:461
 #: GenericFilter.py:504 GenericFilter.py:625
@@ -1273,14 +1252,12 @@ msgid "Filter name:"
 msgstr "Filtre sur le nom :"
 
 #: GenericFilter.py:417
-#, fuzzy
 msgid "Descendants of <filter> match"
-msgstr "Est le descendant d'un individu résultant du filtrage"
+msgstr "Est le descendant du filtre <filter>"
 
 #: GenericFilter.py:419
-#, fuzzy
 msgid "Matches people that are descendants of anybody matched by a filter"
-msgstr "Assortir les descendants d'un individu aux résultats du filtrage"
+msgstr "Descendants des individus résultant d'un filtre"
 
 #: GenericFilter.py:459 GenericFilter.py:502 GenericFilter.py:768
 #: GenericFilter.py:820 plugins/FilterEditor.py:678
@@ -1288,9 +1265,8 @@ msgid "Number of generations:"
 msgstr "Nombre de générations :"
 
 #: GenericFilter.py:460
-#, fuzzy
 msgid "Descendants of <person> not more than <N> generations away"
-msgstr "Est le descendant d'un individu sur moins de N générations"
+msgstr "Est le descendant de <person> sur moins de <N> générations"
 
 #: GenericFilter.py:462
 msgid ""
@@ -1299,9 +1275,8 @@ msgid ""
 msgstr "Assortir les descendants d'un individu sur moins de N générations"
 
 #: GenericFilter.py:503
-#, fuzzy
 msgid "Descendants of <person> at least <N> generations away"
-msgstr "Est le descendant d'un individu sur au moins N générations"
+msgstr "Est le descendant de <person> sur au moins <N> générations"
 
 #: GenericFilter.py:505
 msgid ""
@@ -1310,9 +1285,8 @@ msgid ""
 msgstr "Assortir les descendants d'un individu sur au moins N générations"
 
 #: GenericFilter.py:545
-#, fuzzy
 msgid "Children of <filter> match"
-msgstr "Est un enfant d'un individu résultant du filtrage"
+msgstr "Enfants du filtre <filter>"
 
 #: GenericFilter.py:546 GenericFilter.py:584 GenericFilter.py:872
 #: GenericFilter.py:1096 GenericFilter.py:1389 GenericFilter.py:1412
@@ -1321,24 +1295,20 @@ msgid "Family filters"
 msgstr "Filtres familiaux"
 
 #: GenericFilter.py:547
-#, fuzzy
 msgid "Matches children of anybody matched by a filter"
-msgstr "Assortir les enfants d'un individu aux résultats du filtrage"
+msgstr "Enfants des individus résultant d'un filtre"
 
 #: GenericFilter.py:583
-#, fuzzy
 msgid "Siblings of <filter> match"
-msgstr "Est un frère ou une soeur d'un individu résultant du filtrage"
+msgstr "Est un frère ou une soeur du filtre <filter>"
 
 #: GenericFilter.py:585
-#, fuzzy
 msgid "Matches siblings of anybody matched by a filter"
-msgstr "Trouver les frères et soeurs d'une personne grâce à un filtre"
+msgstr "Frères et soeurs des individus résultant d'un filtre"
 
 #: GenericFilter.py:624
-#, fuzzy
 msgid "Descendant family members of <person>"
-msgstr "Est un membre de la famille descendant de"
+msgstr "Est un membre de la famille descendant de <person>"
 
 #: GenericFilter.py:626
 msgid ""
@@ -1347,9 +1317,8 @@ msgid ""
 msgstr "Assortir les descendants ou leurs époux(se) à un individu"
 
 #: GenericFilter.py:671
-#, fuzzy
 msgid "Ancestors of <person>"
-msgstr "Ancêtres de %s"
+msgstr "Ancêtres de <person>"
 
 #: GenericFilter.py:672 GenericFilter.py:726 GenericFilter.py:770
 #: GenericFilter.py:822 GenericFilter.py:909 GenericFilter.py:955
@@ -1361,9 +1330,8 @@ msgid "Matches people that are ancestors of a specified person"
 msgstr "Assortir les ascendants à un individu"
 
 #: GenericFilter.py:725
-#, fuzzy
 msgid "Ancestors of <filter> match"
-msgstr "Est l'ascendant d'un individu résultant du filtrage"
+msgstr "Est l'ascendant du filtre <filter>"
 
 #: GenericFilter.py:727
 #, fuzzy
@@ -10381,149 +10349,3 @@ msgstr "<b>Critère retenu</b>"
 #: rule.glade:1186
 msgid "<b>Values</b>"
 msgstr "<b>Valeurs</b>"
-
-#~ msgid "A person cannot be linked as his/her child's spouse"
-#~ msgstr "Une personne ne peut être le conjoint de son enfant"
-
-#~ msgid "A person cannot be linked as his/her parent's spouse"
-#~ msgstr "Une personne ne peut être le conjoint de son père ou de sa mère"
-
-#~ msgid "Month Day, Year"
-#~ msgstr "Mois Jour, Année"
-
-#~ msgid "Numerical"
-#~ msgstr "Numérique"
-
-#~ msgid "YYYY-MM-DD (ISO)"
-#~ msgstr "AAAA-MM-JJ (ISO)"
-
-#~ msgid "DAY MON YEAR"
-#~ msgstr "JOUR MOIS ANNEE"
-
-#~ msgid "Day Month Year"
-#~ msgstr "Jour Mois Année"
-
-#~ msgid "MON DAY, YEAR"
-#~ msgstr "MOIS JOUR, ANNEE"
-
-#~ msgid "Matches individuals that have no relationships"
-#~ msgstr "Trouver les individus sans relations"
-
-#~ msgid "Matches the person that is a parent of someone matched by a filter"
-#~ msgstr "Assortir les parents d'un individu aux résultats du filtrage"
-
-#~ msgid "Is bookmarked person"
-#~ msgstr "Individu avec un marque-page"
-
-#~ msgid "Has the Id"
-#~ msgstr "A l'identifiant"
-
-#~ msgid "Has a name"
-#~ msgstr "A un nom"
-
-#~ msgid "Has the death"
-#~ msgstr "A le décès"
-
-#~ msgid "Has the birth"
-#~ msgstr "A la naissance"
-
-#~ msgid "Is a descendant of"
-#~ msgstr "Est le descendant de"
-
-#~ msgid "Is an ancestor of"
-#~ msgstr "Est l'ancêtre de"
-
-#~ msgid "Has a common ancestor with"
-#~ msgstr "A un ancêtre commun avec"
-
-#~ msgid "Is a female"
-#~ msgstr "Est une femme"
-
-#~ msgid "Is a male"
-#~ msgstr "Est un homme"
-
-#~ msgid "Has complete record"
-#~ msgstr "A un enregistrement complet"
-
-#~ msgid "Has source of"
-#~ msgstr "Contient la source"
-
-#~ msgid "Matches the filter named"
-#~ msgstr "Correspond au critère suivant"
-
-#~ msgid "People who were adopted"
-#~ msgstr "Individus ayant été adoptés"
-
-#~ msgid "Has text matching substring of"
-#~ msgstr "A du texte contenant"
-
-#~ msgid "Name contains..."
-#~ msgstr "Le nom contient ..."
-
-#~ msgid "Index of individuals, sorted by last name."
-#~ msgstr "Index des individus trié par nom."
-
-#~ msgid "Surname"
-#~ msgstr "Nom de famille"
-
-#~ msgid "Places"
-#~ msgstr "Lieux"
-
-#~ msgid "Index of all the places in the project."
-#~ msgstr "Index de tous les lieux du projet."
-
-#~ msgid "Letter"
-#~ msgstr "Lettres"
-
-#~ msgid ""
-#~ "Index of all the surnames in the project. The links lead to a list of "
-#~ "individuals in the database with this same surname."
-#~ msgstr ""
-#~ "Index des noms de famille du projet. Les liens mènent vers la liste des "
-#~ "individus de la base ayant le même nom de famille."
-
-#~ msgid "Introduction"
-#~ msgstr "Introduction"
-
-#~ msgid "All sources cited in the project."
-#~ msgstr "Toutes les sources citées dans le projet."
-
-#~ msgid "Download"
-#~ msgstr "Télécharger"
-
-#~ msgid "Contact"
-#~ msgstr "Contact"
-
-#~ msgid "Pedigree"
-#~ msgstr "Arborescence"
-
-#~ msgid "Narrative"
-#~ msgstr "Narratif"
-
-#~ msgid "Relationships"
-#~ msgstr "Relations"
-
-#~ msgid "Partner"
-#~ msgstr "Partenaire"
-
-#~ msgid ""
-#~ "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; at &nbsp&nbsp; %"
-#~ "(place)s"
-#~ msgstr ""
-#~ "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; à &nbsp&nbsp; %(place)"
-#~ "s"
-
-#~ msgid "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp;"
-#~ msgstr "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp;"
-
-#~ msgid "%(date)s &nbsp;&nbsp; at &nbsp&nbsp; %(place)s"
-#~ msgstr "%(date)s &nbsp;&nbsp; à &nbsp&nbsp; %(place)s"
-
-#~ msgid "Web site title"
-#~ msgstr "Nom du site web"
-
-#~ msgid "Narrative Web Site"
-#~ msgstr "Génération de site internet détaillé"
-
-#~ msgid "Min. bar char items"
-#~ msgstr "Nombre minimum d'entrées pour les diagrammes en barres"
