@@ -1,3 +1,6 @@
+2005-06-27  Don Allingham  <don@gramps-project.org>
+	* src/PeopleView.py: fix on_get_iter on delete person
+
 2005-06-27  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/po/es.po: Translation fixes
 	* src/GenericFilter.py: Do not attempt to translate user filters,
