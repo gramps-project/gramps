@@ -43,7 +43,7 @@ from bsddb import dbshelve, db
 from RelLib import *
 from GrampsDbBase import *
 
-_DBVERSION = 6
+_DBVERSION = 7
 
 def find_surname(key,data):
     return str(data[3].get_surname())
@@ -421,6 +421,8 @@ class GrampsBSDDB(GrampsDbBase):
             self.upgrade_5()
         if version < 6:
             self.upgrade_6()
+        if version < 7:
+            self.upgrade_7()
         self.metadata['version'] = _DBVERSION
         print 'Successfully finished all upgrades'
 
@@ -737,3 +739,16 @@ class GrampsBSDDB(GrampsDbBase):
             if val[1] != 6:
                 order.append(val)
         self.set_media_column_order(order)
+
+    def upgrade_7(self):
+        print "Upgrading to DB version 7"
+
+        self.genderStats = GenderStats()
+        cursor = self.get_person_cursor()
+        data = cursor.first()
+        while data:
+            handle,val = data
+            p = Person(val)
+            self.genderStats.count_person(p,self)
+            data = cursor.next()
+        cursor.close()
