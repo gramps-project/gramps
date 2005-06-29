@@ -545,7 +545,6 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
                     transaction.add(PERSON_KEY, val, None)
                 self.person_map[str(val)] = person.serialize()
                 self.emit('person-add', ([str(val)],))
-            self.genderStats.count_person (person, self)
         return person
 
     def find_source_from_handle(self,val,transaction):
@@ -667,7 +666,6 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         if not person.get_handle():
             person.set_handle(self.create_id())
         self.commit_person(person,transaction)
-        self.genderStats.count_person (person, self)
         return person.get_handle()
 
     def add_family(self,family,transaction):

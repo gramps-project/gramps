@@ -1,3 +1,7 @@
+2005-06-29  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbBase.py: don't count_person for gender stats on 
+	add_person, since already done it commit_person
+
 2005-06-29  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/DumpGenderStats.py: New plugin for debugging
 
