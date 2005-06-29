@@ -279,6 +279,16 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         old_data = self.person_map.get(handle)
         if transaction != None:
             transaction.add(PERSON_KEY,handle,old_data)
+
+        if old_data:
+            old_person = Person(old_data)
+            if (old_data[2] != person.gender or
+                old_data[3].first_name != person.primary_name.first_name):
+                self.genderStats.uncount_person(old_person)
+                self.genderStats.count_person(person,self)
+        else:
+            self.genderStats.count_person(person,self)
+            
         self.person_map[handle] = person.serialize()
         if old_data:
             self.emit('person-update',([handle],))
@@ -462,8 +472,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
 
         data = self.person_map.get(str(val))
         if data:
-            person = Person()
-            person.unserialize(data)
+            person = Person(data)
             return person
         return None
 

@@ -1,3 +1,8 @@
+2005-06-29  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbBase.py: move gender stats handling to the commit_person
+	task, instead of trying to handle it in the Person() class
+	* src/RelLib.py: removal of genderstats handling
+
 2005-06-28  Don Allingham  <don@gramps-project.org>
 	* src/EditPerson.py: parse date correctly on edit
 	* src/ReadGedcom.py: load previously used title properly into

@@ -939,7 +939,6 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         # We hold a reference to the GrampsDB so that we can maintain
         # its genderStats.  It doesn't get set here, but from
         # GenderStats.count_person.
-        self.db = None
         
     def serialize(self):
         """
@@ -1134,12 +1133,7 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         @param name: L{Name} to be assigned to the person
         @type name: L{Name}
         """
-        db = self.db
-        if db:
-            db.genderStats.uncount_person (self)
         self.primary_name = name
-        if db:
-            db.genderStats.count_person (self, db)
 
     def get_primary_name(self):
         """
@@ -1233,13 +1227,7 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
                 Person.UNKNOWN
         @type gender: int
         """
-        # if the db object has been assigned, update the
-        # genderStats of the database
-        if self.db:
-            self.db.genderStats.uncount_person (self)
         self.gender = gender
-        if self.db:
-            self.db.genderStats.count_person (self, self.db)
 
     def get_gender(self) :
         """
@@ -4058,7 +4046,6 @@ class GenderStats:
         if not person:
             return
         # Let the Person do their own counting later
-        person.db = db
 
         name = self._get_key (person)
         if not name:
