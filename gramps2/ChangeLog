@@ -1,3 +1,6 @@
+2005-07-03  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Updated translated to latest template
+
 2005-07-02  Alexander Roitman  <shura@gramps-project.org>
 	* src/RelLib.py (Family.get_handle_referents): Typo;
 	(Event.get_handle_referents): Work around possible None for

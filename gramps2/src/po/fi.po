@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fi\n"
 "POT-Creation-Date: Thu Jun 23 14:11:42 2005\n"
-"PO-Revision-Date: 2005-06-04 18:54+0300\n"
-"Last-Translator: Eero Tamminen\n"
-"Language-Team: Suomi <fi@li.org>\n"
+"PO-Revision-Date: 2005-07-03 00:20+0300\n"
+"Last-Translator: Eero Tamminen <eerot@sf>\n"
+"Language-Team: Suomi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -193,9 +193,8 @@ msgid "Edit Bookmarks"
 msgstr "Muokkaa kirjanmerkkejä"
 
 #: ChooseParents.py:129 ChooseParents.py:130
-#, fuzzy
 msgid "Loading..."
-msgstr "Ladataan %s..."
+msgstr "Ladataan..."
 
 #: ChooseParents.py:133
 msgid "Choose the Parents of %s"
@@ -253,24 +252,20 @@ msgid "Father"
 msgstr "Isä"
 
 #: ChooseParents.py:834
-#, fuzzy
 msgid "Likely Father"
-msgstr "Isä"
+msgstr "Todennäköinen isä"
 
 #: ChooseParents.py:835
-#, fuzzy
 msgid "Matches likely fathers"
-msgstr "Poimii kaikki naispuoliset"
+msgstr "Poimii todennäköiset isät"
 
 #: ChooseParents.py:844
-#, fuzzy
 msgid "Likely Mother"
-msgstr "Äiti"
+msgstr "Todennäköinen äiti"
 
 #: ChooseParents.py:845
-#, fuzzy
 msgid "Matches likely mothers"
-msgstr "Poimii kaikki miespuoliset"
+msgstr "Poimii todennäköiset äidit"
 
 #: ColumnOrder.py:40
 msgid "Select Columns"
@@ -630,11 +625,11 @@ msgstr "Uusi paikka"
 
 #: EditPlace.py:391
 msgid "Place title is already in use"
-msgstr ""
+msgstr "Paikannimi on jo käytössä"
 
 #: EditPlace.py:392
 msgid "Each place must have a unique title, and title you have selected is already used by another place"
-msgstr ""
+msgstr "Joka paikalla pitää olla ainutkertainen nimi, mutta valitsemasi paikan nimi on jo käytössä"
 
 #: EditPlace.py:427
 msgid "Edit Place (%s)"
@@ -2172,57 +2167,52 @@ msgid "GRAMPS is not able to display the image file. This may be caused by a cor
 msgstr "GRAMPS ei pysty näyttämään kuvaa. Kuvatiedosto voi olla viallinen."
 
 #: Relationship.py:268
-#, fuzzy
 msgid "husband"
-msgstr "Aviomies"
+msgstr "aviomies"
 
 #: Relationship.py:270
-#, fuzzy
 msgid "wife"
-msgstr "Vaimo"
+msgstr "vaimo"
 
 #: Relationship.py:272
-#, fuzzy
 msgid "gender unknown|spouse"
-msgstr "(sukupuoli tuntematon)"
+msgstr "puoliso"
 
 #: Relationship.py:275
-#, fuzzy
 msgid "unmarried|husband"
-msgstr "Naimaton"
+msgstr "avomies"
 
 #: Relationship.py:277
-#, fuzzy
 msgid "unmarried|wife"
-msgstr "Naimaton"
+msgstr "avovaimo"
 
 #: Relationship.py:279
 msgid "gender unknown,unmarried|spouse"
-msgstr ""
+msgstr "avopuoliso"
 
 #: Relationship.py:282
 msgid "male,civil union|partner"
-msgstr ""
+msgstr "virallinen mieskumppani"
 
 #: Relationship.py:284
 msgid "female,civil union|partner"
-msgstr ""
+msgstr "virallinen naiskumppani"
 
 #: Relationship.py:286
 msgid "gender unknown,civil union|partner"
-msgstr ""
+msgstr "virallinen kumppani"
 
 #: Relationship.py:289
 msgid "male,unknown relation|partner"
-msgstr ""
+msgstr "mieskumppani"
 
 #: Relationship.py:291
 msgid "female,unknown relation|partner"
-msgstr ""
+msgstr "naiskumppani"
 
 #: Relationship.py:293
 msgid "gender unknown,unknown relation|partner"
-msgstr ""
+msgstr "kumppani"
 
 #: Relationship.py:325
 msgid "Relationship loop detected"
@@ -5362,14 +5352,12 @@ msgid "_State:"
 msgstr "_Osavaltio:"
 
 #: gramps.glade:15217
-#, fuzzy
 msgid "Co_unty:"
-msgstr "_Maa:"
+msgstr "K_unta:"
 
 #: gramps.glade:15249
-#, fuzzy
 msgid "Count_ry:"
-msgstr "Maa:"
+msgstr "_Maa:"
 
 #: gramps.glade:15281
 msgid "_Longitude:"
@@ -5385,12 +5373,11 @@ msgstr "_Seurakunta:"
 
 #: gramps.glade:15575 gramps.glade:18532 gramps.glade:29598
 msgid "_ZIP/Postal code:"
-msgstr "Po_stinumero:"
+msgstr "Pos_tinumero:"
 
 #: gramps.glade:15625
-#, fuzzy
 msgid "Phon_e:"
-msgstr "Puhelin:"
+msgstr "Pu_helin:"
 
 #: gramps.glade:15776
 msgid "County:"
@@ -9280,8 +9267,3 @@ msgstr "<b>Valittu sääntö</b>"
 msgid "<b>Values</b>"
 msgstr "<b>Arvot</b>"
 
-#~ msgid "Added person is not visible"
-#~ msgstr "Lisätty henkilö ei ole näkyvissä"
-
-#~ msgid "The person you added is currently not visible due to the chosen filter. This may occur if you did not specify a birth date."
-#~ msgstr "Lisäämäsi henkilö ei ole juuri nyt näkyvissä valitusta suotimesta johtuen. Tämä saattaa tapahtua, jos et ole antanut syntymäpäivää."
