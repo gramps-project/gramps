@@ -4,6 +4,7 @@
 	witness. 
 	* src/plugins/Check.py (check_source_references): Add checking
 	routine to detect and remove dangling source references.
+	* configure.in: Bump up the version number.
 
 2005-07-01  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/WebPage.py (write_sibling): Apply patch from bug #
