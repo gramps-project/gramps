@@ -1,3 +1,10 @@
+2005-07-02  Alexander Roitman  <shura@gramps-project.org>
+	* src/RelLib.py (Family.get_handle_referents): Typo;
+	(Event.get_handle_referents): Work around possible None for
+	witness. 
+	* src/plugins/Check.py (check_source_references): Add checking
+	routine to detect and remove dangling source references.
+
 2005-07-01  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/WebPage.py (write_sibling): Apply patch from bug #
 	1230430 at sf.net with minor tweaks.

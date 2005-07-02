@@ -1823,7 +1823,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
         """
-        return get_sourcref_child_list() + self.source_list
+        return self.get_sourcref_child_list() + self.source_list
 
     def set_complete_flag(self,val):
         """
@@ -2173,9 +2173,12 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
         """
-        return self.media_list + self.source_list + \
-                            [witness for witness in self.witness 
-                                            if witness.type == Event.ID]
+        ret = self.media_list + self.source_list
+        if self.witness:
+            ret += [witness for witness in self.witness 
+                    if witness.type == Event.ID]
+        return ret
+
     def get_witness_list(self):
         """
         Returns the list of L{Witness} instances associated with the Event.

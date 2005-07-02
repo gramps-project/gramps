@@ -82,6 +82,7 @@ def runTool(database,active_person,callback,parent=None):
 
         checker.check_events()
         checker.check_place_references()
+        checker.check_source_references()
         database.transaction_commit(trans, _("Check Integrity"))
         database.enable_signals()
         database.request_rebuild()
@@ -115,6 +116,7 @@ class CheckIntegrity:
         self.invalid_birth_events = []
         self.invalid_death_events = []
         self.invalid_place_references = []
+        self.invalid_source_references = []
 
     def family_errors(self):
         return len(self.broken_parent_links) + len(self.broken_links) + len(self.empty_family)
@@ -429,6 +431,123 @@ class CheckIntegrity:
                     self.db.commit_event(event,self.trans)
                     self.invalid_place_references.append(key)
 
+    def check_source_references(self):
+        known_handles = self.db.get_source_handles()
+        
+        cursor = self.db.get_person_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            person = RelLib.Person()
+            person.unserialize(info)
+            handle_list = person.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Source' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                person.remove_source_references(bad_handles)
+                self.db.commit_person(person,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_source_references]
+                self.invalid_source_references += new_bad_handles
+            data = cursor.next()
+        cursor.close()
+
+        cursor = self.db.get_family_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            family = RelLib.Family()
+            family.unserialize(info)
+            handle_list = family.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Source' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                family.remove_source_references(bad_handles)
+                self.db.commit_family(family,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_source_references]
+                self.invalid_source_references += new_bad_handles
+            data = cursor.next()
+        cursor.close()
+
+        cursor = self.db.get_place_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            place = RelLib.Place()
+            place.unserialize(info)
+            handle_list = place.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Source' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                place.remove_source_references(bad_handles)
+                self.db.commit_family(place,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_source_references]
+                self.invalid_source_references += new_bad_handles
+            data = cursor.next()
+        cursor.close()
+            
+        cursor = self.db.get_source_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            source = RelLib.Source()
+            source.unserialize(info)
+            handle_list = source.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Source' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                source.remove_source_references(bad_handles)
+                self.db.commit_source(source,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_source_references]
+                self.invalid_source_references += new_bad_handles
+            data = cursor.next()
+        cursor.close()
+
+        cursor = self.db.get_media_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            obj = RelLib.MediaObject()
+            obj.unserialize(info)
+            handle_list = obj.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Source' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                obj.remove_source_references(bad_handles)
+                self.db.commit_object(obj,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_source_references]
+                self.invalid_source_references += new_bad_handles
+            data = cursor.next()
+        cursor.close()
+
+        cursor = self.db.get_event_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            event = RelLib.Event()
+            event.unserialize(info)
+            handle_list = event.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Source' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                event.remove_source_references(bad_handles)
+                self.db.commit_event(event,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_source_references]
+                self.invalid_source_references += new_bad_handles
+            data = cursor.next()
+        cursor.close()
+
     def build_report(self,cl=0):
         bad_photos = len(self.bad_photo)
         replaced_photos = len(self.replaced_photo)
@@ -443,8 +562,10 @@ class CheckIntegrity:
         death_invalid = len(self.invalid_death_events)
         person = birth_invalid + death_invalid
         place_references = len(self.invalid_place_references)
+        source_references = len(self.invalid_source_references)
 
-        errors = blink + efam + photos + rel + person + event_invalid + place_references
+        errors = blink + efam + photos + rel + person \
+                 + event_invalid + place_references + source_references
         
         if errors == 0:
             if cl:
@@ -534,6 +655,10 @@ class CheckIntegrity:
             self.text.write(_("1 place was referenced but not found\n"))
         elif place_references > 1:
             self.text.write(_("%d places were referenced, but not found\n") % place_references)
+        if source_references == 1:
+            self.text.write(_("1 source was referenced but not found\n"))
+        elif source_references > 1:
+            self.text.write(_("%d sources were referenced, but not found\n") % source_references)
 
         return errors
 
