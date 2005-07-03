@@ -48,6 +48,7 @@ import Report
 import ReportOptions
 import GenericFilter
 import const
+import RelLib
 from BaseDoc import PAPER_LANDSCAPE
 from latin_utf8 import utf8_to_latin
 from QuestionDialog import ErrorDialog
@@ -233,8 +234,8 @@ class GraphViz:
                 family = self.database.get_family_from_handle(family_handle)
                 father_handle = family.get_father_handle()
                 mother_handle = family.get_mother_handle()
-                fadopted  = frel != _("Birth")
-                madopted  = mrel != _("Birth")
+                fadopted  = frel != RelLib.Person.CHILD_REL_BIRTH
+                madopted  = mrel != RelLib.Person.CHILD_REL_BIRTH
                 famid = family.get_gramps_id().replace('-','_')
                 if (self.show_families and
                     (father_handle and person_dict.has_key(father_handle) or
