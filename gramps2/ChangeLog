@@ -2,6 +2,7 @@
 	* src/PeopleModel.py (calculate_data): Fix invert of search result
 	* src/Date.py (is_equal): Only compare text value for TEXTONLY dates.
 	* src/GenericFilter.py: Add new filters to search for notes
+	* src/gramps_main.py: Add new filters
 
 2005-07-05  Alex Roitman  <shura@gramps-project.org>
 	* src/system_filters.xml: Remove testing contents.

@@ -1048,6 +1048,16 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         all.add_rule(GenericFilter.HasTextMatchingRegexpOf([]))
         filter_list.append(all)
 
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("People with notes"))
+        all.add_rule(GenericFilter.HasNote([]))
+        filter_list.append(all)
+
+        all = GenericFilter.ParamFilter()
+        all.set_name(_("People with notes containing..."))
+        all.add_rule(GenericFilter.HasNoteMatchingSubstringOf([]))
+        filter_list.append(all)
+
         self.filter_model = GenericFilter.FilterStore(filter_list)
         self.filter_list.set_model(self.filter_model)
         self.filter_list.set_active(self.filter_model.default_index())
