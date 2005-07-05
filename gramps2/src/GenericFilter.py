@@ -1814,6 +1814,36 @@ class HasSourceOf(Rule):
         return person.has_source_reference( self.source_handle)
 
 #-------------------------------------------------------------------------
+# "People having notes"
+#-------------------------------------------------------------------------
+class HasNote(Rule):
+    """People having notes"""
+
+    name        = _('People having notes')
+    description = _("Matches people that have a note")
+    category    = _('General filters')
+
+    def apply(self,db,person):
+        return bool(person.get_note())
+
+#-------------------------------------------------------------------------
+# "People having notes that contain a substring"
+#-------------------------------------------------------------------------
+class HasNoteMatchingSubstringOf(Rule):
+    """People having notes containing <subtring>"""
+
+    labels      = [ _('Substring:')]
+    name        = _('People having notes containing <subtring>')
+    description = _("Matches people whose notes contain text matching a substring")
+    category    = _('General filters')
+
+    def apply(self,db,person):
+        n = person.get_note()
+        if n:
+            return n.find(self.list[0]) != -1
+        return False
+
+#-------------------------------------------------------------------------
 #
 # GenericFilter
 #
@@ -2086,6 +2116,8 @@ editor_rule_list = [
     IsSiblingOfFilterMatch,
     RelationshipPathBetween,
     HasTextMatchingSubstringOf,
+    HasNote,
+    HasNoteMatchingSubstringOf
 ]
 
 #-------------------------------------------------------------------------

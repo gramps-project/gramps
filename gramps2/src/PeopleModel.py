@@ -107,7 +107,10 @@ class PeopleModel(gtk.GenericTreeModel):
         if data_filter:
             keys = data_filter.apply(self.db)
             if self.invert_result:
+                handle_list = self.db.get_person_handles(sort_handles=False)
+                #TODO: Could be optimized by using a cursor
                 keys = [k for k in handle_list if k not in keys]
+                del handle_list
         else:
             keys = self.db.get_person_handles(sort_handles=False)
 

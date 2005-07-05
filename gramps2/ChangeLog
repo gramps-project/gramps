@@ -1,3 +1,8 @@
+2005-07-05  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/PeopleModel.py (calculate_data): Fix invert of search result
+	* src/Date.py (is_equal): Only compare text value for TEXTONLY dates.
+	* src/GenericFilter.py: Add new filters to search for notes
+
 2005-07-05  Alex Roitman  <shura@gramps-project.org>
 	* src/system_filters.xml: Remove testing contents.
 	* src/EditPerson.py (__init__): Refresh person object from handle,

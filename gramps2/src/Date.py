@@ -156,12 +156,12 @@ class Date:
         instance IN ALL REGARDS. Needed, because the __cmp__ only looks
         at the sorting value, and ignores the modifiers/comments.
         """
-        
+        if self.modifier == other.modifier and self.modifier == MOD_TEXTONLY:
+            return self.text == other.text
         return (self.calendar == other.calendar and 
                 self.modifier == other.modifier and 
                 self.quality == other.quality and 
                 self.dateval == other.dateval and 
-                self.text == other.text and 
                 self.sortval == other.sortval)
             
     def __str__(self):
