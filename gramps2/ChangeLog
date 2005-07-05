@@ -1,5 +1,9 @@
 2005-07-05  Alex Roitman  <shura@gramps-project.org>
 	* src/system_filters.xml: Remove testing contents.
+	* src/EditPerson.py (__init__): Refresh person object from handle,
+	if handle exists.
+	* src/Marriage.py (__init__): Refresh family object from handle,
+	if handle exists.
 
 2005-07-03  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/GraphViz.py (dump_person): Correctly test for birth

@@ -99,12 +99,17 @@ class EditPerson:
         
         self.dp = DateHandler.parser
         self.dd = DateHandler.displayer
+        self.orig_handle = person.get_handle()
+        # UGLY HACK to refresh person object from handle if that exists
+        # done to ensure that the person object is not stale, as it could
+        # have been changed by something external (merge, tool, etc).
+        if self.orig_handle:
+            person = db.get_person_from_handle(self.orig_handle)
         self.person = person
-        self.orig_surname = person.get_primary_name().get_group_name()
+        self.orig_surname = self.person.get_primary_name().get_group_name()
         self.parent = parent
-        self.orig_handle = self.person.get_handle()
         if self.parent.child_windows.has_key(self.orig_handle):
-            self.parent.child_windows[self.person.get_handle()].present(None)
+            self.parent.child_windows[self.orig_handle].present(None)
             return
         self.db = db
         self.callback = callback
