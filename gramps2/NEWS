@@ -1,4 +1,7 @@
 Version 2.0.5 -- the "It's certainly uncontaminated by cheese" release
+* New filters based on personal notes.
+* New routine for checking and removing corrupted source references in
+  the Check and Repair tool.
 * Bug fixes.
 
 Version 2.0.4 -- the "That's enough music for now, lads." release
