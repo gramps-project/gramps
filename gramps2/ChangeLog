@@ -13,6 +13,10 @@
 	* NEWS: Update.
 	* configure.in: Bump up the release number.
 
+	* Release: Version 2.0.5 "It's certainly uncontaminated by cheese"
+	released.
+	* configure.in: Bump up the version number.
+
 2005-07-03  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/GraphViz.py (dump_person): Correctly test for birth
 	relations.
