@@ -12,14 +12,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Thu Jun 23 14:11:42 2005\n"
-"PO-Revision-Date: 2005-06-24 23:33+0200\n"
+"PO-Revision-Date: 2005-07-07 16:29+0200\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
-"Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
+"Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Generator: KBabel 1.9.1\n"
+"Language-Team: Norsk Bokmål\n"
 
 #: AddMedia.py:91 ImageSelect.py:120
 msgid "Select a media object"
@@ -1478,7 +1479,7 @@ msgstr "Personer med familie <attribute>"
 #: GenericFilter.py:1246
 #, fuzzy
 msgid "Matches people with the family attribute of a particular value"
-msgstr "Samsvarer med personen med en familie-hendelse av en bestemt verdi"
+msgstr "Samsvarer med personen med en bestemt familie-hendelse"
 
 #: GenericFilter.py:1270 gramps.glade:8380
 msgid "Given name:"
@@ -1506,7 +1507,7 @@ msgstr "Personer med <name>"
 #: GenericFilter.py:1275 GenericFilter.py:1307
 #, fuzzy
 msgid "Matches people with a specified (partial) name"
-msgstr "Samsvarer med personen med et bestemt (del av et) navn"
+msgstr "Samsvarer med personen med et bestemt (del) navn"
 
 #: GenericFilter.py:1305 GenericFilter.py:1629
 msgid "Substring:"
@@ -1528,12 +1529,12 @@ msgstr "Samsvarer med personer som mangler for- eller etternavn"
 #: GenericFilter.py:1344
 #, fuzzy
 msgid "People matching the <filter>"
-msgstr "Samsvarer med personer med <filter>"
+msgstr "Samsvarer med personer med filter <filter>"
 
 #: GenericFilter.py:1345
 #, fuzzy
 msgid "Matches people macthed by the specified filter name"
-msgstr "Samsvarer med personen fra et bestemt filter"
+msgstr "Samsvarer med personer fra et bestemt filter"
 
 #: GenericFilter.py:1387
 #, fuzzy
@@ -1543,7 +1544,7 @@ msgstr "Ektefelle av et <filter> treff"
 #: GenericFilter.py:1388
 #, fuzzy
 msgid "Matches people married to anybody matching a filter"
-msgstr "Samsvarer med personen som er gift med en som er funnet ved hjelp av et filter"
+msgstr "Samsvarer med ektefeller av noen funnet ved et filter"
 
 #: GenericFilter.py:1410 gramps_main.py:982
 #, fuzzy
@@ -1581,7 +1582,7 @@ msgstr "Personer der informasjon om ekteskap mangler"
 #: GenericFilter.py:1456
 #, fuzzy
 msgid "Matches people who have no spouse"
-msgstr "Samsvarer med personer som ikke har ektefeller"
+msgstr "Samsvarer med personer uten ektefelle"
 
 #: GenericFilter.py:1468 gramps_main.py:1007
 msgid "People with multiple marriage records"
@@ -1595,12 +1596,12 @@ msgstr "Samsvarer med personen som har mer enn en ektefelle"
 #: GenericFilter.py:1481 gramps_main.py:1012
 #, fuzzy
 msgid "People without a known birth date"
-msgstr "Personer uten fødselsdato"
+msgstr "Personer uten en kjent fødselsdato"
 
 #: GenericFilter.py:1482
 #, fuzzy
 msgid "Matches people without a known birthdate"
-msgstr "Samsvarer med personer uten fødselsdato"
+msgstr "Samsvarer med personer uten en kjent fødselsdato"
 
 #: GenericFilter.py:1500 gramps_main.py:1017
 msgid "People with incomplete events"
@@ -1649,7 +1650,7 @@ msgstr "Vitner"
 #: GenericFilter.py:1577
 #, fuzzy
 msgid "Matches people who are witnesses in any event"
-msgstr "Samsvarer med personer som er vitne til en hendelse"
+msgstr "Samsvarer med personer som er vitne i en hendelse"
 
 #: GenericFilter.py:1630 plugins/FilterEditor.py:694
 msgid "Case sensitive:"
@@ -1662,7 +1663,7 @@ msgstr "Regulært uttrykk:"
 #: GenericFilter.py:1632
 #, fuzzy
 msgid "People with records containing <substring>"
-msgstr "Samsvarer med personer med poster som inneholder <substring>"
+msgstr "Personer med poster som inneholder <substring>"
 
 #: GenericFilter.py:1633
 #, fuzzy
@@ -2220,14 +2221,18 @@ msgid "%s could not be opened"
 msgstr "Klarte ikke å åpne %s"
 
 #: ReadGrdb.py:65
+#, fuzzy
 msgid ""
 "The database version is not supported by this version of GRAMPS.\n"
 "Please upgrade to the corresponding version or use XML for porting data between different database versions."
 msgstr ""
+"Database versjonen er ikke supportert av denne versjonen av GRAMPS.\n"
+"Vennligst oppgrader til den koresponderende versjonen, eller bruk XML for å flytte data mellom de forskjellige database versjonene."
 
 #: ReadGrdb.py:69
+#, fuzzy
 msgid "The Database version is not supported by this version of GRAMPS."
-msgstr ""
+msgstr "Database versjonen er ikke supportert av denne versjonen av GRAMPS."
 
 #: ReadGrdb.py:107 ReadGrdb.py:171
 msgid "Import database"
@@ -2262,57 +2267,62 @@ msgid "GRAMPS is not able to display the image file. This may be caused by a cor
 msgstr "GRAMPS kan ikke vise billedfila. Dette kan skyldes en ødelagt fil."
 
 #: Relationship.py:268
-#, fuzzy
 msgid "husband"
-msgstr "Ektemann"
+msgstr "ektemann"
 
 #: Relationship.py:270
-#, fuzzy
 msgid "wife"
-msgstr "Kone"
+msgstr "kone"
 
 #: Relationship.py:272
 #, fuzzy
 msgid "gender unknown|spouse"
-msgstr "(kjønn ukjent)"
+msgstr "ukjent kjønn|ektefelle"
 
 #: Relationship.py:275
 #, fuzzy
 msgid "unmarried|husband"
-msgstr "Ugift"
+msgstr "ugift|ektemann"
 
 #: Relationship.py:277
 #, fuzzy
 msgid "unmarried|wife"
-msgstr "Ugift"
+msgstr "ugift|kone"
 
 #: Relationship.py:279
+#, fuzzy
 msgid "gender unknown,unmarried|spouse"
-msgstr ""
+msgstr "ukjent kjønn, ugift|ektefelle"
 
 #: Relationship.py:282
+#, fuzzy
 msgid "male,civil union|partner"
-msgstr ""
+msgstr "mann, partnerskap|partner"
 
 #: Relationship.py:284
+#, fuzzy
 msgid "female,civil union|partner"
-msgstr ""
+msgstr "kvinne, partnerskap|partner"
 
 #: Relationship.py:286
+#, fuzzy
 msgid "gender unknown,civil union|partner"
-msgstr ""
+msgstr "ukjent kjønn,partnerskap|partner"
 
 #: Relationship.py:289
+#, fuzzy
 msgid "male,unknown relation|partner"
-msgstr ""
+msgstr "mann,ukjent relasjon|partner"
 
 #: Relationship.py:291
+#, fuzzy
 msgid "female,unknown relation|partner"
-msgstr ""
+msgstr "kvinne,ukjent relasjon|partner"
 
 #: Relationship.py:293
+#, fuzzy
 msgid "gender unknown,unknown relation|partner"
-msgstr ""
+msgstr "ukjent kjønn,ukjent relasjon|partner"
 
 #: Relationship.py:325
 msgid "Relationship loop detected"
@@ -3447,7 +3457,7 @@ msgstr "E-post:"
 #: StartupDialog.py:277
 #, fuzzy
 msgid "Configuration/Installation error"
-msgstr "Feil i oppsett"
+msgstr "Konfigurasjon/Installasjonsfeil"
 
 #: StartupDialog.py:278
 #, fuzzy
@@ -3555,7 +3565,7 @@ msgstr "Aner av %s"
 #: plugins/WriteGeneWeb.py:104
 #, fuzzy
 msgid "People with common ancestor with %s"
-msgstr "Personer med samme aner som %s"
+msgstr "Personer med samme ane som %s"
 
 #: WriteGedcom.py:565 WriteGedcom.py:570 docgen/AbiWord2Doc.py:75
 #: docgen/AbiWord2Doc.py:78 docgen/AsciiDoc.py:113 docgen/AsciiDoc.py:116
@@ -3978,28 +3988,34 @@ msgid "A range of dates can be given by using the format \"between January 4, 20
 msgstr "En dato rekke kan spesifiseres ved å bruke formatet \"mellom 4. januar 2004 og 20. mars 2003\" (Fungerer ikke enda.)"
 
 #: data/tips.xml:16
+#, fuzzy
 msgid "In most cases double clicking on a name, source, place or media entry will bring up a window to allow you to edit the object. Note that the result can be dependent on context. For example, in the Family View clicking on a parent or child will bring up the relationship editor."
-msgstr ""
+msgstr "I de fleste tilfeller vil du få frem et redigeringsvindu ved å dobbelklikke på navn, kilde, sted eller media info. Husk at resultatet kan være avhengig av konteksten. For eksempel, i familie visning, når man klikker på en forelder eller et barn, vil du få opp relasjonsredigeringsvinduet."
 
 #: data/tips.xml:20
+#, fuzzy
 msgid "An image can be added to any gallery or the Media View by dragging and dropping it from a file manager or a web browser."
-msgstr ""
+msgstr "Et bilde kan legges til et vilkålig galleri eller Media visning, ved å dra og slipp fra en filbehandler eller vevutforsker."
 
 #: data/tips.xml:24
+#, fuzzy
 msgid "Birth order of children in a family can be set, even if they do not have birth dates, by using drag and drop."
-msgstr ""
+msgstr "Fødselsrekkefølgen for barn i familivisning kan settes, hvis de mangler fødselsdato, kan de dras og slippes."
 
 #: data/tips.xml:34
+#, fuzzy
 msgid "<b>Talk to Relatives Before It Is Too Late</b>: Your oldest relatives can be your most important source of information. They usually know things about the family that haven't been written down. They might tell you nuggets about people that may one day lead to a new avenue of research. At the very least, you will get to hear some great stories. Don't forget to record the conversations!"
-msgstr ""
+msgstr "<b>Snakk med slektninger før det er for sent</b>: Dine elste slektninger kan være din beste kilde til informasjon. De vet vanligvis ting om familien som ikke har blit skrevet ned. Det kan hende de forteller deg tips om personer, som en dag kan lede deg inn i et nytt spor i din sleksforskning. Du vil i alle fall få noen flotte historier. Ikke glem å ta opp samtalen!"
 
 #: data/tips.xml:42
+#, fuzzy
 msgid "<b>Example of a Family Tree</b>: To see an example of what a family looks like in GRAMPS, check <b>Help > Open example database</b>. You will then be viewing the elaborate Smith family database, which includes 42 individuals and 15 families, with fairly complete data about many of the individuals."
-msgstr ""
+msgstr "<b>Eksempel på et familietre</b>: For å se et eksempel på hvordan et familietre ser ut i GRAMPS, velg <b>Hjelp > Åpne eksempel database</b>. Du vil da se den detaljerte Smith familiens database, som inneholder 42 personer og 15 familier, med relativt utfyllende data for flere av personene."
 
 #: data/tips.xml:51
+#, fuzzy
 msgid "<b>The People View</b>: The People View shows a list of all individuals in the database. The listings can be sorted by simply clicking on a heading such as name, gender, birth date or death date. Clicking the heading a second time will reverse the sort."
-msgstr ""
+msgstr "<b>Personvisning</b>: Personvisning viser en liste over alle i databasen. Listen kan sorterses ved å klikke på en kollonneoverskrift som navn, kjønn, fødselsdato eller dødsdato. Ved å klikke på overskriften en gang til, vil sorteringen bli invertert."
 
 #: data/tips.xml:61
 msgid "<b>Filtering People</b>: In the People View, you can 'filter' individuals based on many criteria. Go to the Filter (just to the right of the People icon) and choose one of the dozen different presets. For example, all adopted people in the family tree can be located. People without a birth date mentioned can also be filtered. To get the results click Apply. If the filter controls are not visible, enable them by choosing <b>View > Filter</b>."
