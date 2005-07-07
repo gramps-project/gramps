@@ -1,3 +1,7 @@
+2005-07-07  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/docgen/OpenOfficeDoc.py: Compute correctly the draw:viewBox to
+	please some versions of OpenOffice.org
+
 2005-07-05  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PeopleModel.py (calculate_data): Fix invert of search result
 	* src/Date.py (is_equal): Only compare text value for TEXTONLY dates.

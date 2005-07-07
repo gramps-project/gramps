@@ -834,7 +834,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         y = int((miny)*1000)
         
         self.cntnt.write('svg:x="%d" svg:y="%d" ' % (x,y))
-        self.cntnt.write('svg:viewBox="0 0 %d %d" ' % (int(maxx-minx)*1000,int(maxy-miny)*1000))
+        self.cntnt.write('svg:viewBox="0 0 %d %d" ' % (int((maxx-minx)*1000),int((maxy-miny)*1000)))
         self.cntnt.write('svg:width="%.4fcm" ' % (maxx-minx))
         self.cntnt.write('svg:height="%.4fcm" ' % (maxy-miny))
         
