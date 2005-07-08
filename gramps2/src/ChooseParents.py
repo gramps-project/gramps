@@ -103,8 +103,8 @@ class ChooseParents:
         self.all_females_filter = GenericFilter.GenericFilter()
         self.all_females_filter.add_rule(GenericFilter.IsFemale([]))
 
-        bh = person.birth_handle
-        if bh and self.db.get_event_from_handle(bh).date.sortval != 0:
+        bev = self.db.get_event_from_handle(person.birth_handle)
+        if bev and bev.date and bev.date.sortval != 0:
             self.likely_females_filter = self.build_likely(False)
             self.likely_males_filter = self.build_likely(True)
         else:
