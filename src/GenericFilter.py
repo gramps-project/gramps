@@ -37,6 +37,7 @@ from xml.sax import make_parser,handler,SAXParseException
 #
 #-------------------------------------------------------------------------
 import os
+import sets
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -266,7 +267,7 @@ class HasIdOf(Rule):
 
 #-------------------------------------------------------------------------
 #
-# HasIdOf
+# IsDefaultPerson
 #
 #-------------------------------------------------------------------------
 class IsDefaultPerson(Rule):
@@ -276,11 +277,16 @@ class IsDefaultPerson(Rule):
     category    = _('General filters')
     description = _("Matches the default person")
 
-    def apply(self,db,person):
-        def_person = db.get_default_person()
-        if def_person:
-            return person.handle == def_person.handle
-        return False
+    def prepare(self,db):
+        p = db.get_default_person()
+        if p:
+            self.def_handle = p.get_handle()
+            self.apply = self.apply_real
+        else:
+            self.apply = lambda db,p: False
+
+    def apply_real(self,db,person):
+        return person.handle == self.def_handle
 
 #-------------------------------------------------------------------------
 #
@@ -294,10 +300,16 @@ class IsBookmarked(Rule):
     category    = _('General filters')
     description = _("Matches the people on the bookmark list")
 
-    def apply(self,db,person):
-        if person.handle in db.get_bookmarks():
-           return True
-        return False
+    def prepare(self,db):
+        bookmarks = db.get_bookmarks()
+        if len(bookmarks) == 0:
+            self.apply = lambda db,p : False
+        else:
+            self.bookmarks = sets.Set(bookmarks)
+            self.apply = self.apply_real
+
+    def apply_real(self,db,person):
+        return person.handle in self.bookmarks
 
 #-------------------------------------------------------------------------
 #
@@ -342,7 +354,7 @@ class HasUnknownGender(Rule):
     description = _('Matches all people with unknown gender')
 
     def apply(self,db,person):
-        return person.get_gender() == RelLib.Person.UNKNOWN
+        return person.gender == RelLib.Person.UNKNOWN
 
 #-------------------------------------------------------------------------
 #
@@ -369,8 +381,8 @@ class IsDescendantOf(Rule):
         except IndexError:
             first = True
         try:
-            root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
-            self.init_list(root_handle,first)
+            root_person = db.get_person_from_gramps_id(self.list[0])
+            self.init_list(root_person,first)
         except:
             pass
 
@@ -380,18 +392,17 @@ class IsDescendantOf(Rule):
     def apply(self,db,person):
         return self.map.has_key(person.handle)
 
-    def init_list(self,handle,first):
-        if not handle:
+    def init_list(self,person,first):
+        if not person:
             return
         if not first:
-            self.map[handle] = 1
+            self.map[person.handle] = 1
         
-        p = self.db.get_person_from_handle(handle)
-        for fam_id in p.get_family_handle_list():
+        for fam_id in person.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
                 for child_handle in fam.get_child_handle_list():
-                    self.init_list(child_handle,0)
+                    self.init_list(self.db.get_person_from_handle(child_handle),0)
 
 #-------------------------------------------------------------------------
 #
@@ -408,8 +419,8 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
     description = _("Matches people that are descendants of anybody matched by a filter")
     
 
-    def __init__(self,list):
-        IsDescendantOf.__init__(self,list)
+#    def __init__(self,list):
+#        IsDescendantOf.__init__(self,list)
 
     def prepare(self,db):
         self.db = db
@@ -425,8 +436,9 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
         filt = MatchesFilter(self.list)
         filt.prepare(db)
         for person_handle in db.get_person_handles(sort_handles=False):
-            if filt.apply (db, person_handle):
-                self.init_list (person_handle,first)
+            person = db.get_person_from_handle( person_handle)
+            if filt.apply (db, person):
+                self.init_list (person,first)
         filt.reset()
 
     def reset(self):
@@ -454,8 +466,8 @@ class IsLessThanNthGenerationDescendantOf(Rule):
         self.db = db
         self.map = {}
         try:
-            root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
-            self.init_list(root_handle,0)
+            root_person = db.get_person_from_gramps_id(self.list[0])
+            self.init_list(root_person,0)
         except:
             pass
 
@@ -465,19 +477,18 @@ class IsLessThanNthGenerationDescendantOf(Rule):
     def apply(self,db,person):
         return self.map.has_key(person.handle)
 
-    def init_list(self,handle,gen):
-        if not handle:
+    def init_list(self,person,gen):
+        if not person:
             return
         if gen:
-            self.map[handle] = 1
+            self.map[person.handle] = 1
             if gen >= int(self.list[1]):
                 return
 
-        p = self.db.get_person_from_handle(handle)
-        for fam_id in p.get_family_handle_list():
+        for fam_id in person.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
             for child_handle in fam.get_child_handle_list():
-                self.init_list(child_handle,gen+1)
+                self.init_list(self.db.get_person_from_handle(child_handle),gen+1)
 
 #-------------------------------------------------------------------------
 #
@@ -499,8 +510,8 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
         self.db = db
         self.map = {}
         try:
-            root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
-            self.init_list(root_handle,0)
+            root_person = db.get_person_from_gramps_id(self.list[0])
+            self.init_list(root_person,0)
         except:
             pass
 
@@ -510,17 +521,16 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
     def apply(self,db,person):
         return self.map.has_key(person.handle)
 
-    def init_list(self,handle,gen):
-        if not handle:
+    def init_list(self,person,gen):
+        if not person:
             return
         if gen >= int(self.list[1]):
-            self.map[handle] = 1
+            self.map[person.handle] = 1
 
-        p = self.db.get_person_from_handle(handle)
-        for fam_id in p.get_family_handle_list():
+        for fam_id in person.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
             for child_handle in fam.get_child_handle_list():
-                self.init_list(child_handle,gen+1)
+                self.init_list(self.db.get_person_from_handle(child_handle),gen+1)
 
 #-------------------------------------------------------------------------
 #
@@ -542,8 +552,9 @@ class IsChildOfFilterMatch(Rule):
         filt = MatchesFilter(self.list)
         filt.prepare(db)
         for person_handle in db.get_person_handles(sort_handles=False):
-            if filt.apply (db, person_handle):
-                self.init_list (person_handle)
+            person = db.get_person_from_handle( person_handle)
+            if filt.apply (db, person):
+                self.init_list (person)
         filt.reset()
 
     def reset(self):
@@ -552,11 +563,10 @@ class IsChildOfFilterMatch(Rule):
     def apply(self,db,person):
         return self.map.has_key(person.handle)
 
-    def init_list(self,handle):
-        if not handle:
+    def init_list(self,person):
+        if not person:
             return
-        p = self.db.get_person_from_handle(handle)
-        for fam_id in p.get_family_handle_list():
+        for fam_id in person.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
             for child_handle in fam.get_child_handle_list():
                 self.map[child_handle] = 1
@@ -580,8 +590,9 @@ class IsSiblingOfFilterMatch(Rule):
         filt = MatchesFilter(self.list)
         filt.prepare(db)
         for person_handle in db.get_person_handles(sort_handles=False):
-            if filt.apply (db, person_handle):
-                self.init_list (person_handle)
+            person = db.get_person_from_handle( person_handle)
+            if filt.apply (db, person):
+                self.init_list (person)
         filt.reset()
 
     def reset(self):
@@ -590,11 +601,10 @@ class IsSiblingOfFilterMatch(Rule):
     def apply(self,db,person):
         return self.map.has_key(person.handle)
 
-    def init_list(self,handle):
-        if not handle:
+    def init_list(self,person):
+        if not person:
             return
-        p = self.db.get_person_from_handle(handle)
-        fam_id = p.get_main_parents_family_handle()
+        fam_id = person.get_main_parents_family_handle()
         fam = self.db.get_family_from_handle(fam_id)
         if fam:
             for child_handle in fam.get_child_handle_list():
@@ -614,13 +624,13 @@ class IsDescendantFamilyOf(Rule):
     name        = _('Descendant family members of <person>')
     category    = _('Descendant filters')
     description = _("Matches people that are descendants or the spouse "
-                 "of a descendant of a specified person")
+                    "of a descendant of a specified person")
     
     def apply(self,db,person):
         self.map = {}
         self.orig_handle = person.handle
         self.db = db
-        return self.search(handle,1)
+        return self.search(person.handle,1)
 
     def search(self,handle,val):
         try:
@@ -674,8 +684,8 @@ class IsAncestorOf(Rule):
         except IndexError:
             first = 1
         try:
-            root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
-            self.init_ancestor_list(db,root_handle,first)
+            root_person = db.get_person_from_gramps_id(self.list[0])
+            self.init_ancestor_list(db,root_person,first)
         except:
             pass
 
@@ -685,23 +695,22 @@ class IsAncestorOf(Rule):
     def apply(self,db,person):
         return self.map.has_key(person.handle)
 
-    def init_ancestor_list(self,db,handle,first):
-        if not handle:
+    def init_ancestor_list(self,db,person,first):
+        if not person:
             return
         if not first:
-            self.map[handle] = 1
+            self.map[person.handle] = 1
         
-        p = db.get_person_from_handle(handle)
-        fam_id = p.get_main_parents_family_handle()
+        fam_id = person.get_main_parents_family_handle()
         fam = db.get_family_from_handle(fam_id)
         if fam:
             f_id = fam.get_father_handle()
             m_id = fam.get_mother_handle()
         
             if f_id:
-                self.init_ancestor_list(db,f_id,0)
+                self.init_ancestor_list(db,db.get_person_from_handle(f_id),0)
             if m_id:
-                self.init_ancestor_list(db,m_id,0)
+                self.init_ancestor_list(db,db.get_person_from_handle(m_id),0)
 
 #-------------------------------------------------------------------------
 #
@@ -736,8 +745,9 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         filt = MatchesFilter(self.list)
         filt.prepare(db)
         for person_handle in db.get_person_handles(sort_handles=False):
-            if filt.apply (db, person_handle):
-                self.init_ancestor_list (db,person_handle,first)
+            person = db.get_person_from_handle( person_handle)
+            if filt.apply (db, person):
+                self.init_ancestor_list (db,person,first)
         filt.reset()
 
     def reset(self):
@@ -868,8 +878,9 @@ class IsParentOfFilterMatch(Rule):
         filt = MatchesFilter(self.list)
         filt.prepare(db)
         for person_handle in db.get_person_handles(sort_handles=False):
-            if filt.apply (db, person_handle):
-                self.init_list (person_handle)
+            person = db.get_person_from_handle(person_handle)
+            if filt.apply (db, person):
+                self.init_list (person)
         filt.reset()
 
     def reset(self):
@@ -878,9 +889,8 @@ class IsParentOfFilterMatch(Rule):
     def apply(self,db,person):
         return self.map.has_key(person.handle)
 
-    def init_list(self,handle):
-        p = self.db.get_person_from_handle(handle)
-        for fam_id,frel,mrel in p.get_parent_family_handle_list():
+    def init_list(self,person):
+        for fam_id,frel,mrel in person.get_parent_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
             for parent_id in [fam.get_father_handle (), fam.get_mother_handle ()]:
                 if parent_id:
@@ -946,6 +956,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
 
     def __init__(self,list):
         HasCommonAncestorWith.__init__(self,list)
+        self.ancestor_cache = {}
 
     def init_ancestor_cache(self,db):
         filt = MatchesFilter(self.list)
@@ -953,7 +964,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
         def init(self,h): self.ancestor_cache[h] = 1
         for handle in db.get_person_handles(sort_handles=False):
             if (not self.ancestor_cache.has_key (handle)
-                and filt.apply (db, handle)):
+                and filt.apply (db, db.get_person_from_handle(handle))):
                 for_each_ancestor(db,[handle],init,self)
         filt.reset()
 
@@ -1297,10 +1308,9 @@ class SearchName(Rule):
     description = _("Matches people with a specified (partial) name")
     category    = _('General filters')
 
-    def apply(self,db,handle):
+    def apply(self,db,person):
         self.f = self.list[0]
-        p = db.get_person_from_handle(handle)
-        n = NameDisplay.displayer.display(p)
+        n = NameDisplay.displayer.display(person)
         return self.f and n.upper().find(self.f.upper()) != -1
     
 #-------------------------------------------------------------------------
@@ -1356,13 +1366,13 @@ class MatchesFilter(Rule):
                 for rule in filt.flist:
                     rule.reset()
 
-    def apply(self,db,handle):
+    def apply(self,db,person):
         for filt in SystemFilters.get_filters():
             if filt.get_name() == self.list[0]:
-                return filt.check(handle)
+                return filt.check(person.handle)
         for filt in CustomFilters.get_filters():
             if filt.get_name() == self.list[0]:
-                return filt.check(db,handle)
+                return filt.check(db,person.handle)
         return False
 
 #-------------------------------------------------------------------------
@@ -1386,9 +1396,9 @@ class IsSpouseOfFilterMatch(Rule):
             for spouse_id in [family.get_father_handle (), family.get_mother_handle ()]:
                 if not spouse_id:
                     continue
-                if spouse_id == handle:
+                if spouse_id == person.handle:
                     continue
-                if filt.apply (db, spouse_id):
+                if filt.apply (db, db.get_person_from_handle( spouse_id)):
                     return True
         return False
 
@@ -1404,7 +1414,8 @@ class HaveAltFamilies(Rule):
 
     def apply(self,db,person):
         for (fam,rel1,rel2) in person.get_parent_family_handle_list():
-            if rel1 == RelLib.Person.CHILD_ADOPTED or rel2 == RelLib.Person.CHILD_ADOPTED:
+            if rel1 == RelLib.Person.CHILD_ADOPTED \
+                   or rel2 == RelLib.Person.CHILD_ADOPTED:
                 return True
         return False
 
@@ -1817,6 +1828,36 @@ class HasSourceOf(Rule):
         return person.has_source_reference( self.source_handle)
 
 #-------------------------------------------------------------------------
+# "People having notes"
+#-------------------------------------------------------------------------
+class HasNote(Rule):
+    """People having notes"""
+
+    name        = _('People having notes')
+    description = _("Matches people that have a note")
+    category    = _('General filters')
+
+    def apply(self,db,person):
+        return bool(person.get_note())
+
+#-------------------------------------------------------------------------
+# "People having notes that contain a substring"
+#-------------------------------------------------------------------------
+class HasNoteMatchingSubstringOf(Rule):
+    """People having notes containing <subtring>"""
+
+    labels      = [ _('Substring:')]
+    name        = _('People having notes containing <subtring>')
+    description = _("Matches people whose notes contain text matching a substring")
+    category    = _('General filters')
+
+    def apply(self,db,person):
+        n = person.get_note()
+        if n:
+            return n.find(self.list[0]) != -1
+        return False
+
+#-------------------------------------------------------------------------
 #
 # GenericFilter
 #
@@ -1892,6 +1933,7 @@ class GenericFilter:
                 person.unserialize(data[1])
                 if self.invert ^ task(db,person):
                     final_list.append(data[0])
+                data = cursor.next()
         else:
             for handle in id_list:
                 person = db.get_person_from_handle(handle)
@@ -1903,7 +1945,33 @@ class GenericFilter:
         return self.check_func(db,id_list,self.or_test)
 
     def check_and(self,db,id_list):
-        return self.check_func(db,id_list,self.and_test)
+        final_list = []
+        flist = self.flist
+        invert = self.invert
+        if id_list == None:
+            cursor = db.get_person_cursor()
+            data = cursor.next()
+            p = RelLib.Person
+            while data:
+                person = p(data[1])
+                val = True
+                for rule in flist:
+                    if not rule.apply(db,person):
+                        val = False
+                        break
+                if invert ^ val:
+                    final_list.append(data[0])
+                data = cursor.next()
+        else:
+            for handle in id_list:
+                person = db.get_person_from_handle(handle)
+                val = True
+                for rule in flist:
+                    if not rule.apply(db,person):
+                        val = False
+                if invert ^ val:
+                    final_list.append(handle)
+        return final_list
 
     def check_one(self,db,id_list):
         return self.check_func(db,id_list,self.one_test)
@@ -1917,12 +1985,6 @@ class GenericFilter:
             test = test ^ rule.apply(db,handle)
         return test
 
-    def and_test(self,db,person):
-        for rule in self.flist:
-            if not rule.apply(db,person):
-                return False
-        return True
-
     def one_test(self,db,person):
         count = 0
         for rule in self.flist:
@@ -1932,7 +1994,7 @@ class GenericFilter:
                 count += 1
         return count != 1
 
-    def and_or(self,db,person):
+    def or_test(self,db,person):
         for rule in self.flist:
             if rule.apply(db,person):
                 return True
@@ -1946,7 +2008,7 @@ class GenericFilter:
         return m
 
     def check(self,db,handle):
-        return self.get_check_func()(db,handle)
+        return self.get_check_func()(db,[handle])
 
     def apply(self,db,id_list=None):
         m = self.get_check_func()
@@ -1956,7 +2018,6 @@ class GenericFilter:
         for rule in self.flist:
             rule.reset()
         return res
-
 
 #-------------------------------------------------------------------------
 #
@@ -2068,6 +2129,8 @@ editor_rule_list = [
     IsSiblingOfFilterMatch,
     RelationshipPathBetween,
     HasTextMatchingSubstringOf,
+    HasNote,
+    HasNoteMatchingSubstringOf
 ]
 
 #-------------------------------------------------------------------------
@@ -2222,7 +2285,7 @@ class ParamFilter(GenericFilter):
     def set_parameter(self,param):
         self.param_list = [param]
 
-    def apply(self,db,id_list):
+    def apply(self,db,id_list=None):
         for rule in self.flist:
             rule.set_list(self.param_list)
         for rule in self.flist:
@@ -2278,14 +2341,14 @@ class GrampsFilterComboBox(gtk.ComboBox):
             cnt += 1
         
         for filt in SystemFilters.get_filters():
-            self.store.append(row=[_(filt.get_name())])
+            self.store.append(row=[filt.get_name()])
             self.map[filt.get_name()] = filt
             if default != "" and default == filt.get_name():
                 active = cnt
             cnt += 1
 
         for filt in CustomFilters.get_filters():
-            self.store.append(row=[_(filt.get_name())])
+            self.store.append(row=[filt.get_name()])
             self.map[filt.get_name()] = filt
             if default != "" and default == filt.get_name():
                 active = cnt
@@ -2306,7 +2369,7 @@ class GrampsFilterComboBox(gtk.ComboBox):
         active = self.get_active()
         if active < 0:
             return None
-        key = self.store[active][0]
+        key = unicode(self.store[active][0])
         return self.map[key]
 
 

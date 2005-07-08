@@ -213,6 +213,61 @@ shortopts = "O:i:o:f:a:p:?"
 
 #-------------------------------------------------------------------------
 #
+# Constants
+#
+#-------------------------------------------------------------------------
+
+child_rel_list = [
+    _("None"),      _("Birth"),   _("Adopted"), _("Stepchild"),
+    _("Sponsored"),  _("Foster"), _("Unknown"), _("Other"), ]
+
+child_rel_notrans = [
+    "None",      "Birth",  "Adopted", "Stepchild",
+    "Sponsored", "Foster", "Unknown", "Other", ]
+
+child_relations = TransTable( {
+    _("Birth")     : "Birth",
+    _("Adopted")   : "Adopted",
+    _("Stepchild") : "Stepchild",
+    _("Sponsored") : "Sponsored",
+    _("Foster")    : "Foster",
+    _("None")      : "None",
+    _("Unknown")   : "Unknown",
+    _("Other")     : "Other",
+    })
+
+#-------------------------------------------------------------------------
+#
+# Confidence
+#
+#-------------------------------------------------------------------------
+confidence = [
+    _("Very Low"),
+    _("Low"),
+    _("Normal"),
+    _("High"),
+    _("Very High"), 
+    ]
+
+#-------------------------------------------------------------------------
+#
+# Family event string mappings
+#
+#-------------------------------------------------------------------------
+familyConstantEvents = {
+    "Annulment"           : "ANUL",
+    "Divorce Filing"      : "DIVF",
+    "Divorce"             : "DIV",
+    "Engagement"          : "ENGA",
+    "Marriage Banns"      : "MARB",
+    "Marriage Contract"   : "MARC",
+    "Marriage License"    : "MARL",
+    "Marriage Settlement" : "MARS",
+    "Marriage"            : "MARR"
+    }
+
+#-------------------------------------------------------------------------
+#
 # 
 #
 #-------------------------------------------------------------------------

@@ -247,10 +247,24 @@ class EditPlace:
         self.add_itself_to_menu()
         self.top_window.get_widget('ok').set_sensitive(not self.db.readonly)
         self.top.show()
+
+        self.pdmap = {}
+        self.build_pdmap()
+        
         if self.ref_not_loaded:
             Utils.temp_label(self.refs_label,self.top)
             gobject.idle_add(self.display_references)
             self.ref_not_loaded = 0
+
+    def build_pdmap(self):
+        self.pdmap.clear()
+        cursor = self.db.get_place_cursor()
+        data = cursor.next()
+        while data:
+            if data[1][2]:
+                self.pdmap[data[1][2]] = data[0]
+            data = cursor.next()
+        cursor.close()
 
     def on_delete_event(self,obj,b):
         self.glry.close()
@@ -374,6 +388,15 @@ class EditPlace:
                                  self.note_buffer.get_end_iter(),False))
         format = self.preform.get_active()
         mloc = self.place.get_main_location()
+
+        title = self.title.get_text()
+        if self.pdmap.has_key(title) and self.pdmap[title] != self.place.handle:
+            import QuestionDialog
+            QuestionDialog.ErrorDialog(_("Place title is already in use"),
+                                       _("Each place must have a unique title, and "
+                                         "title you have selected is already used by "
+                                         "another place"))
+            return
 
         self.set(self.city,mloc.get_city,mloc.set_city)
         self.set(self.parish,mloc.get_parish,mloc.set_parish)

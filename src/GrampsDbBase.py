@@ -311,7 +311,17 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
                 update_list.append((handle,obj.serialize()))
             else:
                 add_list.append((handle,obj.serialize()))
-    
+
+        # committing person, do gender stats here
+        if old_data and key == PERSON_KEY:
+            old_person = Person(old_data)
+            if (old_data[2] != person.gender or
+                old_data[3].first_name != obj.primary_name.first_name):
+                self.genderStats.uncount_person(old_person)
+                self.genderStats.count_person(obj,self)
+        else:
+            self.genderStats.count_person(obj,self)
+
     def commit_person(self,person,transaction,change_time=None):
         """
         Commits the specified Person to the database, storing the changes
@@ -632,26 +642,24 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         """
         assert False, "Needs to be overridden in the derived class"
 
-    def add_person(self,person,transaction):
-        """
-        Adds a Person to the database, assigning internal IDs if they have
-        not already been defined.
-        """
-        if not person.gramps_id:
-            person.gramps_id = self.find_next_person_gramps_id()
-        if not person.handle:
-            person.handle = self.create_id()
-        self.commit_person(person,transaction)
-        self.genderStats.count_person (person, self)
-        return person.handle
-
     def _add_object(self,obj,transaction,find_next_func,commit_func):
         if not obj.gramps_id:
             obj.gramps_id = find_next_func()
         if not obj.handle:
             obj.handle = self.create_id()
         commit_func(obj,transaction)
+        if obj.__class__.__name__ == 'Person':
+            self.genderStats.count_person (person, self)
         return obj.handle
+
+    def add_person(self,person,transaction):
+        """
+        Adds a Person to the database, assigning internal IDs if they have
+        not already been defined.
+        """
+        return self._add_object(person,transaction,
+                                self.find_next_person_gramps_id,
+                                self.commit_person)
 
     def add_family(self,family,transaction):
         """

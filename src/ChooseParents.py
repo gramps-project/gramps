@@ -42,6 +42,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk.glade
 import gtk.gdk
+import gobject
 import gnome
 
 #-------------------------------------------------------------------------
@@ -107,19 +108,25 @@ class ChooseParents:
         self.parent_selected = 0
         self.renderer = gtk.CellRendererText()
 
-        db.connect('person-add', self.redraw)
+        db.connect('person-add', self.person_added)
         db.connect('person-update', self.redraw)
         db.connect('person-delete', self.redraw)
-        db.connect('person-rebuild', self.redraw)
+        db.connect('person-rebuild', self.redraw_all)
 
         # set default filters
         self.all_males_filter = GenericFilter.GenericFilter()
         self.all_males_filter.add_rule(GenericFilter.IsMale([]))
-        self.likely_males_filter = self.build_likely(True)
 
         self.all_females_filter = GenericFilter.GenericFilter()
         self.all_females_filter.add_rule(GenericFilter.IsFemale([]))
-        self.likely_females_filter = self.build_likely(False)
+
+        bh = person.birth_handle
+        if bh and self.db.get_event_from_handle(bh).date.sortval != 0:
+            self.likely_females_filter = self.build_likely(False)
+            self.likely_males_filter = self.build_likely(True)
+        else:
+            self.likely_males_filter = self.all_males_filter
+            self.likely_females_filter = self.all_females_filter
 
         self.father_filter = self.likely_males_filter
         self.mother_filter = self.likely_females_filter
@@ -133,6 +140,11 @@ class ChooseParents:
 
         self.glade = gtk.glade.XML(const.gladeFile,"familyDialog","gramps")
         self.window = self.glade.get_widget("familyDialog")
+        self.flabel = self.glade.get_widget("flabel")
+        self.mlabel = self.glade.get_widget("mlabel")
+        self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.mlabel.set_label("<i>%s</i>" % _("Loading..."))
+        self.flabel.set_label("<i>%s</i>" % _("Loading..."))
 
         name = NameDisplay.displayer.display(self.person)
         self.title_text = _("Choose the Parents of %s") % name
@@ -145,14 +157,11 @@ class ChooseParents:
         self.title = self.glade.get_widget("chooseTitle")
         self.father_list = self.glade.get_widget("father_list")
         self.mother_list = self.glade.get_widget("mother_list")
-        self.flabel = self.glade.get_widget("flabel")
-        self.mlabel = self.glade.get_widget("mlabel")
         self.showallf = self.glade.get_widget('showallf')
         self.showallm = self.glade.get_widget('showallm')
         self.add_itself_to_menu()
-        
-        self.build_father_list()
-        self.build_mother_list()
+
+        gobject.idle_add(self.draw_list)
 
         if gtk.gdk.screen_height() > 700:
             self.father_list.set_size_request(-1,150)
@@ -201,7 +210,20 @@ class ChooseParents:
         
         self.window.show()
 
+    def draw_list(self):
+        self.build_father_list()
+        self.build_mother_list()
+        self.window.window.set_cursor(None)
+
     def build_likely(self,is_male):
+        filt = GenericFilter.GenericFilter()
+        if is_male:
+            filt.add_rule(LikelyFather([self.person.handle]))
+        else:
+            filt.add_rule(LikelyMother([self.person.handle]))
+        return filt
+
+    def build_likely2(self,is_male):
         birth_ref = self.person.get_birth_ref()
         
         filt = GenericFilter.GenericFilter()
@@ -242,21 +264,32 @@ class ChooseParents:
         self.redrawm()
         
     def add_columns(self,tree):
+
         column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
         column.set_resizable(True)        
         column.set_clickable(True)
         column.set_sort_column_id(0)
-        column.set_min_width(225)
+
+        column.set_fixed_width(255)
+        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        
         tree.append_column(column)
         column = gtk.TreeViewColumn(_('ID'), self.renderer,text=1)
         column.set_resizable(True)        
         column.set_clickable(True)
         column.set_sort_column_id(1)
-        column.set_min_width(75)
+
+        column.set_fixed_width(75)
+        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        #column.set_min_width(75)
+
         tree.append_column(column)
         column = gtk.TreeViewColumn(_('Birth date'), self.renderer,text=3)
         #column.set_resizable(True)        
         column.set_clickable(True)
+        column.set_fixed_width(150)
+        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+
         tree.append_column(column)
 
     def on_delete_event(self,obj,b):
@@ -298,7 +331,45 @@ class ChooseParents:
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-quick')
 
+    def person_added(self,handle_list):
+        update_father = False
+        update_mother = False
+
+        for handle in handle_list:
+            person = self.db.get_person_from_handle(handle)
+            if person.get_gender() == RelLib.Person.MALE:
+                update_father = True
+            elif person.get_gender() == RelLib.Person.FEMALE:
+                update_mother = True
+
+        if update_father:
+            self.person_added_base(handle_list,self.father_model,
+                                   self.father_filter)
+        if update_mother:
+            self.person_added_base(handle_list,self.mother_model,
+                                   self.mother_filter)
+
+    def person_added_base(self,handle_list,model,data_filter):
+        for node in handle_list:
+            person = self.db.get_person_from_handle(node)
+            top = person.get_primary_name().get_group_name()
+            model.rebuild_data(data_filter)
+            if not model.is_visable(node):
+                continue
+            if (not model.sname_sub.has_key(top) or 
+                len(model.sname_sub[top]) == 1):
+                path = model.on_get_path(top)
+                pnode = model.get_iter(path)
+                model.row_inserted(path,pnode)
+            path = model.on_get_path(node)
+            pnode = model.get_iter(path)
+            model.row_inserted(path,pnode)
+
     def redraw(self,handle_list):
+        self.redrawf()
+        self.redrawm()
+
+    def redraw_all(self):
         self.redrawf()
         self.redrawm()
 
@@ -315,8 +386,8 @@ class ChooseParents:
     def redrawm(self):
         """Redraws the potential mother list"""
         self.mother_model = PeopleModel.PeopleModel(self.db,self.mother_filter)
-        self.mother_list.set_model(self.mother_model)
         
+        self.mother_list.set_model(self.mother_model)
         if self.type[0] == RelLib.Family.CIVIL_UNION:
             self.mlabel.set_label("<b>%s</b>" % _("Pa_rent"))
         else:
@@ -537,7 +608,7 @@ class ChooseParents:
                 self.father_list.scroll_to_cell(path,None,1,0.5,0)
             except KeyError:
                 self.father_filter = self.all_males_filter
-                self.showallf_toggled(None)
+                self.redrawf()
                 path = self.father_model.on_get_path(handle)
                 top_path = self.father_model.on_get_path(name)
                 self.father_list.expand_row(top_path,0)
@@ -552,7 +623,7 @@ class ChooseParents:
                 self.mother_list.scroll_to_cell(path,None,1,0.5,0)
             except:
                 self.mother_filter = self.all_females_filter
-                self.showallm_toggled(None)
+                self.redrawm()
                 path = self.mother_model.on_get_path(handle)
                 top_path = self.mother_model.on_get_path(name)
                 self.mother_list.expand_row(top_path,0)
@@ -743,3 +814,51 @@ class ModifyParents:
             trans = self.db.transaction_begin()
             self.db.commit_person(self.person,trans)
             self.db.transaction_commit(trans,_("Modify Parents"))
+
+#-------------------------------------------------------------------------
+#
+# Likely Filters
+#
+#-------------------------------------------------------------------------
+class LikelyFilter(GenericFilter.Rule):
+
+    category    = _('General filters')
+
+    def prepare(self,db):
+        person = db.get_person_from_handle(self.list[0])
+        birth = db.get_event_from_handle(person.birth_handle)
+        dateobj = Date.Date(birth.date)
+        year = dateobj.get_year()
+        dateobj.set_year(year-10)
+        self.lower = dateobj.sortval
+        dateobj.set_year(year-70)
+        self.upper = dateobj.sortval
+
+    def apply(self,db,person):
+        if person.gender != self.gender:
+            return False
+        if not person.birth_handle:
+            return True
+        event = db.get_event_from_handle(person.birth_handle)
+        return (event.date == None or event.date.sortval == 0 or
+                self.lower > event.date.sortval > self.upper)
+
+class LikelyFather(LikelyFilter):
+
+    name        = _('Likely Father')
+    description = _('Matches likely fathers')
+
+    def __init__(self,data_list):
+        GenericFilter.Rule.__init__(self,data_list)
+        self.gender = RelLib.Person.MALE
+
+
+class LikelyMother(LikelyFilter):
+
+    name        = _('Likely Mother')
+    description = _('Matches likely mothers')
+
+    def __init__(self,data_list):
+        GenericFilter.Rule.__init__(self,data_list)
+        self.gender = RelLib.Person.FEMALE
+

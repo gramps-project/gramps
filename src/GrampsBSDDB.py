@@ -43,7 +43,7 @@ from bsddb import dbshelve, db
 from RelLib import *
 from GrampsDbBase import *
 
-_DBVERSION = 7
+_DBVERSION = 8
 
 def find_surname(key,data):
     return str(data[3].get_surname())
@@ -516,12 +516,14 @@ class GrampsBSDDB(GrampsDbBase):
             self.upgrade_5()
         if version < 6:
             self.upgrade_6()
-        self.metadata['version'] = _DBVERSION
         if version < 7:
+            self.upgrade_7()
+        if version < 8:
             #self.upgrade_7()
             raise Exception("Currently there is no database upgrade available")
         else:
             print 'Successfully finished all upgrades'
+        self.metadata['version'] = _DBVERSION
 
     def upgrade_2(self,child_rel_notrans):
         print "Upgrading to DB version 2"
@@ -851,6 +853,19 @@ class GrampsBSDDB(GrampsDbBase):
 
     def upgrade_7(self):
         print "Upgrading to DB version 7"
+
+        self.genderStats = GenderStats()
+        cursor = self.get_person_cursor()
+        data = cursor.first()
+        while data:
+            handle,val = data
+            p = Person(val)
+            self.genderStats.count_person(p,self)
+            data = cursor.next()
+        cursor.close()
+
+    def upgrade_8(self):
+        print "Upgrading to DB version 8"
         # First, make sure the stored default person handle is str, not unicode
         try:
             handle = self.metadata['default']

@@ -139,7 +139,7 @@ except ImportError:
     def _(s): return s
 
 __version__ = '1.4'
-default_keywords = ['_']
+default_keywords = ['_','__']
 EMPTYSTRING = ''
 
 

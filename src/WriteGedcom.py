@@ -120,8 +120,8 @@ def add_familys_sources(db,family_handle,slist,private):
             continue
         for source_ref in attr.get_source_references():
             sbase = source_ref.get_base_handle()
-            if sbase != None and not slist.has_key(sbase.get_handle()):
-                slist[sbase.get_handle()] = 1
+            if sbase != None and not slist.has_key(sbase):
+                slist[sbase] = 1
 
 #-------------------------------------------------------------------------
 #
@@ -329,20 +329,28 @@ class GedcomWriterOptionBox:
         all.set_name(_("Entire Database"))
         all.add_rule(GenericFilter.Everyone([]))
 
-        des = GenericFilter.GenericFilter()
-        des.set_name(_("Descendants of %s") % NameDisplay.displayer.display(self.person))
-        des.add_rule(GenericFilter.IsDescendantOf([self.person.get_handle(),1]))
+        if self.person:
+            des = GenericFilter.GenericFilter()
+            des.set_name(_("Descendants of %s") %
+                         NameDisplay.displayer.display(self.person))
+            des.add_rule(GenericFilter.IsDescendantOf(
+                [self.person.get_gramps_id(),1]))
 
-        ans = GenericFilter.GenericFilter()
-        ans.set_name(_("Ancestors of %s") % NameDisplay.displayer.display(self.person))
-        ans.add_rule(GenericFilter.IsAncestorOf([self.person.get_handle(),1]))
+            ans = GenericFilter.GenericFilter()
+            ans.set_name(_("Ancestors of %s")
+                         % NameDisplay.displayer.display(self.person))
+            ans.add_rule(GenericFilter.IsAncestorOf(
+                [self.person.get_gramps_id(),1]))
 
-        com = GenericFilter.GenericFilter()
-        com.set_name(_("People with common ancestor with %s") %
-                     NameDisplay.displayer.display(self.person))
-        com.add_rule(GenericFilter.HasCommonAncestorWith([self.person.get_handle()]))
+            com = GenericFilter.GenericFilter()
+            com.set_name(_("People with common ancestor with %s") %
+                         NameDisplay.displayer.display(self.person))
+            com.add_rule(GenericFilter.HasCommonAncestorWith(
+                [self.person.get_gramps_id()]))
 
-        self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])
+            self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])
+        else:
+            self.filter_menu = GenericFilter.build_filter_menu([all])
         filter_obj.set_menu(self.filter_menu)
 
         gedmap = GedcomInfo.GedcomInfoDB()
@@ -734,16 +742,19 @@ class GedcomWriter:
                            self.writeln('2 _STAT %s' % f[2])
                            break
 
+            for srcref in family.get_source_references():
+                self.write_source_ref(1,srcref)
+
             self.write_change(1,family.get_change_time())
             
     def write_sources(self):
         index = 0.0
         sorted = []
-        for key in self.slist.keys():
-            source = self.db.get_source_from_handle(key)
+        for handle in self.slist.keys():
+            source = self.db.get_source_from_handle(handle)
             if not source:
                 continue
-            data = (self.sid (source.get_gramps_id ()), source)
+            data = (self.sid(handle), source)
             sorted.append (data)
         sorted.sort ()
         for (source_id, source) in sorted:
@@ -896,12 +907,19 @@ class GedcomWriter:
                     val = Utils.personalConstantAttributes[name]
                 else:
                     val = ""
-                if val : 
-                    self.writeln("1 %s" % val)
+                value = self.cnvtxt(attr.get_value()).replace('\r',' ')
+                if val:
+                    if value:
+                        self.writeln("1 %s %s" % (val, value))
+                    else:
+                        self.writeln("1 %s" % val)
                 else:
                     self.writeln("1 EVEN")
-                    self.writeln("2 TYPE %s" % self.cnvtxt(name))
-                self.writeln("2 PLAC %s" % self.cnvtxt(attr.get_value()).replace('\r',' '))
+                    if value:
+                        self.writeln("2 TYPE %s %s" % (self.cnvtxt(name), value
+))
+                    else:
+                        self.writeln("2 TYPE %s" % self.cnvtxt(name))
                 if attr.get_note():
                     self.write_long_text("NOTE",2,self.cnvtxt(attr.get_note()))
                 for srcref in attr.get_source_references():
@@ -944,6 +962,8 @@ class GedcomWriter:
                 photos = []
 
             for photo in photos:
+                if self.private and photo.get_privacy():
+                    continue
                 photo_obj_id = photo.get_reference_handle()
                 photo_obj = self.db.get_object_from_handle(photo_obj_id)
                 if photo_obj and photo_obj.get_mime_type() == "image/jpeg":
@@ -975,14 +995,19 @@ class GedcomWriter:
                 if self.adopt == GedcomInfo.ADOPT_PEDI:
                     if family[1] == RelLib.Person.CHILD_ADOPTED:
                         self.writeln("2 PEDI Adopted")
-        
+
         for family_handle in person.get_family_handle_list():
             if family_handle != None and self.flist.has_key(family_handle):
                 self.writeln("1 FAMS @%s@" % self.fid(family_handle))
 
+        for srcref in person.get_source_references():
+            self.write_source_ref(1,srcref)
+        
         if not restricted:
             if self.obje:
                 for url in person.get_url_list():
+                    if self.private and url.get_privacy():
+                        continue
                     self.writeln('1 OBJE')
                     self.writeln('2 FORM URL')
                     if url.get_description():
@@ -1105,10 +1130,7 @@ class GedcomWriter:
 
     def print_date(self,prefix,date):
         start = date.get_start_date()
-        val = date.get_text()
-        if val:
-            self.writeln("%s %s" % (prefix,self.cnvtxt(val)))
-        elif not date.is_empty ():
+        if start != Date.EMPTY:
             cal = date.get_calendar()
             mod = date.get_modifier()
             if date.get_modifier() == Date.MOD_SPAN:
@@ -1120,6 +1142,8 @@ class GedcomWriter:
             else:
                 val = make_date(start,cal,mod)
             self.writeln("%s %s" % (prefix,val))
+        elif date.get_text():
+            self.writeln("%s %s" % (prefix,self.cnvtxt(date.get_text())))
 
     def write_person_name(self,name,nick):
         firstName = self.cnvtxt(name.get_first_name())
@@ -1220,14 +1244,9 @@ class GedcomWriter:
         if match:
             self.writeln('1 REFN %d' % int(match.groups()[0]))
     
-    def sid(self,id):
-        if self.sidmap.has_key(id):
-            return self.sidmap[id]
-        else:
-            val = "S%05d" % self.sidval
-            self.sidval = self.sidval + 1
-            self.sidmap[id] = val
-            return val
+    def sid(self,handle):
+        source = self.db.get_source_from_handle(handle)
+        return source.get_gramps_id()
 
 #-------------------------------------------------------------------------
 #

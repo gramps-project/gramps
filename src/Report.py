@@ -1677,7 +1677,7 @@ class CommandLineReport:
         for paper in PaperMenu.paper_sizes:
             if paper.get_name() == self.options_dict['papers']:
                 self.paper = paper
-            self.option_class.handler.set_paper(self.paper)
+        self.option_class.handler.set_paper(self.paper)
         self.options_help['papers'].append(
             [ paper.get_name() for paper in PaperMenu.paper_sizes 
                         if paper.get_name() != 'Custom Size' ] )

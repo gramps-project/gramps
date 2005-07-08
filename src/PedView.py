@@ -361,7 +361,6 @@ class PedigreeView:
             return True
         return 0
 
-
     def on_show_child_menu(self,obj):
         """User clicked button to move to child of active person"""
 

@@ -211,7 +211,12 @@ class PeopleView:
         """Remove the selected person from the list. A person object is
         expected, not an ID"""
         path = self.person_model.on_get_path(person.get_handle())
-        self.person_model.row_deleted(path)
+        #self.person_model.row_deleted(path)
+        (col,row) = path
+        if row > 0:
+            self.person_selection.select_path((col,row-1))
+        elif row == 0 and self.person_model.on_get_iter(path):
+            self.person_selection.select_path(path)
     
     def remove_from_history(self,person_handle,old_id=None):
         """Removes a person from the history list"""
@@ -289,7 +294,7 @@ class PeopleView:
         entries = [
             (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
             (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
-            (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
+            (_("Home"),self.parent.on_home_clicked,1),
             (_("Add Bookmark"),self.parent.on_add_bookmark_activate,sel_sensitivity),
             (None,None,0),
             (gtk.STOCK_ADD, self.parent.add_button_clicked,1),
