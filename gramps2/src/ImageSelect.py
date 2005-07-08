@@ -1170,6 +1170,8 @@ class GlobalMediaProperties:
         text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),False))
         desc = unicode(self.descr_window.get_text())
         note = self.obj.get_note()
+        path = self.change_dialog.get_widget('path').get_text()
+        self.obj.set_path(path)
 
         if not self.date_object.is_equal(self.obj.get_date_object()):
             self.obj.set_date_object(self.date_object)

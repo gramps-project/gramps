@@ -524,7 +524,7 @@ class SourceNote(BaseObject,NoteBase):
         for ix_replace in xrange(n_replace):
             ix = refs_list.index(old_handle)
             self.source_list[ix].ref = new_handle
-            refs_list.pop(ix)
+            refs_list[ix] = new_handle
             
         for item in self.get_sourcref_child_list():
             item.replace_source_references(old_handle,new_handle)
@@ -624,7 +624,7 @@ class MediaBase:
         for ix_replace in xrange(n_replace):
             ix = refs_list.index(old_handle)
             self.media_list[ix].ref = new_handle
-            refs_list.pop(ix)
+            refs_list[ix] = new_handle
 
 class DateBase:
     """
@@ -903,36 +903,38 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
     CHILD_UNKNOWN   = 6
     CHILD_CUSTOM    = 7
 
-    def __init__(self):
+    def __init__(self,data=None):
         """
         Creates a new Person instance. After initialization, most
         data items have empty or null values, including the database
         handle.
         """
-        PrimaryObject.__init__(self)
-        PrivateSourceNote.__init__(self)
-        MediaBase.__init__(self)
-        AttributeBase.__init__(self)
-        self.primary_name = Name()
-        self.event_ref_list = []
-        self.family_list = []
-        self.parent_family_list = []
-        self.nickname = ""
-        self.alternate_names = []
-        self.gender = Person.UNKNOWN
-        self.death_ref = None
-        self.birth_ref = None
-        self.address_list = []
-        self.urls = []
-        self.lds_bapt = None
-        self.lds_endow = None
-        self.lds_seal = None
-        self.complete = False
+        if data:
+            self.unserialize(data)
+        else:
+            PrimaryObject.__init__(self)
+            PrivateSourceNote.__init__(self)
+            MediaBase.__init__(self)
+            AttributeBase.__init__(self)
+            self.primary_name = Name()
+            self.event_ref_list = []
+            self.family_list = []
+            self.parent_family_list = []
+            self.nickname = ""
+            self.alternate_names = []
+            self.gender = Person.UNKNOWN
+            self.death_ref = None
+            self.birth_ref = None
+            self.address_list = []
+            self.urls = []
+            self.lds_bapt = None
+            self.lds_endow = None
+            self.lds_seal = None
+            self.complete = False
         
         # We hold a reference to the GrampsDB so that we can maintain
         # its genderStats.  It doesn't get set here, but from
         # GenderStats.count_person.
-        self.db = None
         
     def serialize(self):
         """
@@ -1128,12 +1130,7 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
         @param name: L{Name} to be assigned to the person
         @type name: L{Name}
         """
-        db = self.db
-        if db:
-            db.genderStats.uncount_person (self)
         self.primary_name = name
-        if db:
-            db.genderStats.count_person (self, db)
 
     def get_primary_name(self):
         """
@@ -1227,13 +1224,7 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
                 Person.UNKNOWN
         @type gender: int
         """
-        # if the db object has been assigned, update the
-        # genderStats of the database
-        if self.db:
-            self.db.genderStats.uncount_person (self)
         self.gender = gender
-        if self.db:
-            self.db.genderStats.count_person (self, self.db)
 
     def get_gender(self) :
         """
@@ -1922,7 +1913,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
         """
-        return get_sourcref_child_list() + self.source_list
+        return self.get_sourcref_child_list() + self.source_list
 
     def set_complete_flag(self,val):
         """
@@ -4352,7 +4343,6 @@ class GenderStats:
         if not person:
             return
         # Let the Person do their own counting later
-        person.db = db
 
         name = self._get_key (person)
         if not name:

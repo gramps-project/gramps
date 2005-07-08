@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2004  Donald N. Allingham
+# Copyright (C) 2003-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@
 import RelLib
 import types
 from gettext import gettext as _
+from Utils import strip_context as __
 
 #-------------------------------------------------------------------------
 #
@@ -43,7 +44,7 @@ _level_name = [ "", "first", "second", "third", "fourth", "fifth", "sixth",
 
 _removed_level = [ "", " once removed", " twice removed", " three times removed",
                    " four times removed", " five times removed", " six times removed",
-                   " sevent times removed", " eight times removed", " nine times removed",
+                  " sevent times removed", " eight times removed", " nine times removed",
                    " ten times removed", " eleven times removed", " twelve times removed",
                    " thirteen times removed", " fourteen times removed", " fifteen times removed",
                    " sixteen times removed", " seventeen times removed", " eighteen times removed",
@@ -240,12 +241,59 @@ class RelationshipCalculator:
     def is_spouse(self,orig,other):
         for f in orig.get_family_handle_list():
             family = self.db.get_family_from_handle(f)
-            if family:
-                if other.get_handle() == family.get_father_handle() or other.get_handle() == family.get_mother_handle():
-                    return 1
+            if family and other.get_handle() in [family.get_father_handle(),
+                                                 family.get_mother_handle()]:
+                family_rel = family.get_relationship()
+                # Determine person's gender
+                if other.get_gender() == RelLib.Person.MALE:
+                    gender = RelLib.Person.MALE
+                elif other.get_gender() == RelLib.Person.FEMALE:
+                    gender = RelLib.Person.FEMALE
+                # Person's gender is unknown, try guessing from spouse's
+                elif orig.get_gender() == RelLib.Person.MALE:
+                    if family_rel == RelLib.Family.CIVIL_UNION:
+                        gender = RelLib.Person.MALE
+                    else:
+                        gender = RelLib.Person.FEMALE
+                elif orig.get_gender() == RelLib.Person.FEMALE:
+                    if family_rel == RelLib.Family.CIVIL_UNION:
+                        gender = RelLib.Person.FEMALE
+                    else:
+                        gender = RelLib.Person.MALE
+                else:
+                    gender = RelLib.Person.UNKNOWN
+
+                if family_rel == RelLib.Family.MARRIED:
+                    if gender == RelLib.Person.MALE:
+                        return _("husband")
+                    elif gender == RelLib.Person.FEMALE:
+                        return _("wife")
+                    else:
+                        return __("gender unknown|spouse")
+                elif family_rel == RelLib.Family.UNMARRIED:
+                    if gender == RelLib.Person.MALE:
+                        return __("unmarried|husband")
+                    elif gender == RelLib.Person.FEMALE:
+                        return __("unmarried|wife")
+                    else:
+                        return __("gender unknown,unmarried|spouse")
+                elif family_rel == RelLib.Family.CIVIL_UNION:
+                    if gender == RelLib.Person.MALE:
+                        return __("male,civil union|partner")
+                    elif gender == RelLib.Person.FEMALE:
+                        return __("female,civil union|partner")
+                    else:
+                        return __("gender unknown,civil union|partner")
+                else:
+                    if gender == RelLib.Person.MALE:
+                        return __("male,unknown relation|partner")
+                    elif gender == RelLib.Person.FEMALE:
+                        return __("female,unknown relation|partner")
+                    else:
+                        return __("gender unknown,unknown relation|partner")
             else:
-                return 0
-        return 0
+                return None
+        return None
 
     def get_relationship_distance(self,orig_person,other_person):
         """
@@ -304,8 +352,9 @@ class RelationshipCalculator:
         if orig_person.get_handle() == other_person.get_handle():
             return ('', [])
 
-        if self.is_spouse(orig_person,other_person):
-            return ("spouse",[])
+        is_spouse = self.is_spouse(orig_person,other_person)
+        if is_spouse:
+            return (is_spouse,[])
 
         (firstRel,secondRel,common) = self.get_relationship_distance(orig_person,other_person)
         

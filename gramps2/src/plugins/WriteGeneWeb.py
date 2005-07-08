@@ -87,20 +87,29 @@ class GeneWebWriterOptionBox:
         all.set_name(_("Entire Database"))
         all.add_rule(GenericFilter.Everyone([]))
 
-        des = GenericFilter.GenericFilter()
-        des.set_name(_("Descendants of %s") % self.person.get_primary_name().get_name())
-        des.add_rule(GenericFilter.IsDescendantOf([self.person.get_handle(),1]))
-
-        ans = GenericFilter.GenericFilter()
-        ans.set_name(_("Ancestors of %s") % self.person.get_primary_name().get_name())
-        ans.add_rule(GenericFilter.IsAncestorOf([self.person.get_handle(),1]))
-
-        com = GenericFilter.GenericFilter()
-        com.set_name(_("People with common ancestor with %s") %
+        if self.person:
+            des = GenericFilter.GenericFilter()
+            des.set_name(_("Descendants of %s") %
                          self.person.get_primary_name().get_name())
-        com.add_rule(GenericFilter.HasCommonAncestorWith([self.person.get_handle()]))
+            des.add_rule(GenericFilter.IsDescendantOf(
+                [self.person.get_gramps_id(),1]))
 
-        self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])
+            ans = GenericFilter.GenericFilter()
+            ans.set_name(_("Ancestors of %s") %
+                         self.person.get_primary_name().get_name())
+            ans.add_rule(GenericFilter.IsAncestorOf(
+                [self.person.get_gramps_id(),1]))
+
+            com = GenericFilter.GenericFilter()
+            com.set_name(_("People with common ancestor with %s") %
+                         self.person.get_primary_name().get_name())
+            com.add_rule(GenericFilter.HasCommonAncestorWith(
+                [self.person.get_gramps_id()]))
+
+            self.filter_menu = GenericFilter.build_filter_menu(
+                [all,des,ans,com])
+        else:
+            self.filter_menu = GenericFilter.build_filter_menu([all])
         filter_obj.set_menu(self.filter_menu)
 
         the_box = self.topDialog.get_widget('vbox1')

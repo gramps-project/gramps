@@ -48,6 +48,7 @@ import Report
 import ReportOptions
 import GenericFilter
 import const
+import RelLib
 from BaseDoc import PAPER_LANDSCAPE
 from latin_utf8 import utf8_to_latin
 from QuestionDialog import ErrorDialog
@@ -233,8 +234,8 @@ class GraphViz:
                 family = self.database.get_family_from_handle(family_handle)
                 father_handle = family.get_father_handle()
                 mother_handle = family.get_mother_handle()
-                fadopted  = frel != _("Birth")
-                madopted  = mrel != _("Birth")
+                fadopted  = frel != RelLib.Person.CHILD_REL_BIRTH
+                madopted  = mrel != RelLib.Person.CHILD_REL_BIRTH
                 famid = family.get_gramps_id().replace('-','_')
                 if (self.show_families and
                     (father_handle and person_dict.has_key(father_handle) or
@@ -504,10 +505,10 @@ class GraphVizOptions(ReportOptions.ReportOptions):
         """Set up the list of possible content filters."""
         if person:
             name = person.get_primary_name().get_name()
-            handle = person.get_handle()
+            gramps_id = person.get_gramps_id()
         else:
             name = 'PERSON'
-            handle = ''
+            gramps_id = ''
 
         all = GenericFilter.GenericFilter()
         all.set_name(_("Entire Database"))
@@ -515,15 +516,15 @@ class GraphVizOptions(ReportOptions.ReportOptions):
 
         des = GenericFilter.GenericFilter()
         des.set_name(_("Descendants of %s") % name)
-        des.add_rule(GenericFilter.IsDescendantOf([handle,1]))
+        des.add_rule(GenericFilter.IsDescendantOf([gramps_id,1]))
 
         ans = GenericFilter.GenericFilter()
         ans.set_name(_("Ancestors of %s") % name)
-        ans.add_rule(GenericFilter.IsAncestorOf([handle,1]))
+        ans.add_rule(GenericFilter.IsAncestorOf([gramps_id,1]))
 
         com = GenericFilter.GenericFilter()
         com.set_name(_("People with common ancestor with %s") % name)
-        com.add_rule(GenericFilter.HasCommonAncestorWith([handle]))
+        com.add_rule(GenericFilter.HasCommonAncestorWith([gramps_id]))
 
         return [all,des,ans,com]
 

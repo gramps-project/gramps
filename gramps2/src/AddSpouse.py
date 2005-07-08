@@ -42,6 +42,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk.glade
 import gnome
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -100,8 +101,6 @@ class AddSpouse:
 
         self.renderer = gtk.CellRendererText()
 
-        self.slist = PeopleModel.PeopleModel(self.db,self.filter)
-        self.spouse_list.set_model(self.slist)
         self.selection = self.spouse_list.get_selection()
         self.selection.connect('changed',self.select_row)
         self.add_columns(self.spouse_list)
@@ -116,7 +115,7 @@ class AddSpouse:
         Utils.set_titles(self.window,
                          self.glade.get_widget('title'),title,
                          _('Choose Spouse/Partner'))
-
+            
         self.glade.signal_autoconnect({
             "on_select_spouse_clicked" : self.select_spouse_clicked,
             "on_spouse_help_clicked"   : self.on_spouse_help_clicked,
@@ -130,22 +129,18 @@ class AddSpouse:
             RelLib.Family.CUSTOM,RelLib.Family.MARRIED)
         
         self.set_gender()
-        self.update_data()
+        self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        gobject.idle_add(self.update_data)
 
     def build_all(self):
-        filt = GenericFilter.GenericFilter()
-        filt.add_rule(GenericFilter.Everyone([]))
-        return filt
+        return None
 
     def build_likely(self,gender):
         birth_ref = self.person.get_birth_ref()
         death_ref = self.person.get_death_ref()
 
         filt = GenericFilter.GenericFilter()
-        if gender == RelLib.Person.MALE:
-            filt.add_rule(GenericFilter.IsFemale([]))
-        else:
-            filt.add_rule(GenericFilter.IsMale([]))
+        filt.add_rule(LikelyFilter([self.person.handle,self.person.gender]))
         
         if birth_ref:
             birth = self.db.get_event_from_handle(birth_ref.ref)
@@ -162,16 +157,13 @@ class AddSpouse:
     def add_columns(self,tree):
         column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
         column.set_resizable(True)        
-        #column.set_clickable(True)
         column.set_min_width(225)
         tree.append_column(column)
         column = gtk.TreeViewColumn(_('ID'), self.renderer,text=1)
         column.set_resizable(True)        
-        #column.set_clickable(True)
         column.set_min_width(75)
         tree.append_column(column)
         column = gtk.TreeViewColumn(_('Birth date'), self.renderer,text=3)
-        #column.set_resizable(True)        
         column.set_clickable(True)
         tree.append_column(column)
 
@@ -194,9 +186,9 @@ class AddSpouse:
         """
         idlist = self.get_selected_ids()
         if idlist and idlist[0]:
-            self.ok.set_sensitive(1)
+            self.ok.set_sensitive(True)
         else:
-            self.ok.set_sensitive(0)
+            self.ok.set_sensitive(False)
         
     def new_spouse_clicked(self,obj):
         """
@@ -227,7 +219,7 @@ class AddSpouse:
         been closed.
         """
         person = epo.person
-        self.update_data(person.get_handle())
+        self.update_data()
         
         self.slist = PeopleModel.PeopleModel(self.db,self.filter)
         self.slist.rebuild_data()
@@ -321,7 +313,7 @@ class AddSpouse:
         m.on_add_clicked()
 
     def relation_type_changed(self,obj):
-        self.update_data()
+        gobject.idle_add(self.update_data)
 
     def all_filter(self, person):
         return person.get_gender() != self.sgender
@@ -387,18 +379,61 @@ class AddSpouse:
             else:
                 self.sgender = RelLib.Person.FEMALE
 
-    def update_data(self,person = None):
+    def update_data(self):
         """
         Called whenever the relationship type changes. Rebuilds the
         the potential spouse list.
         """
-
+        self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        while(gtk.events_pending()):
+            gtk.main_iteration()
         self.slist = PeopleModel.PeopleModel(self.db,self.filter)
         self.spouse_list.set_model(self.slist)
+        self.window.window.set_cursor(None)
 
     def on_show_toggled(self,obj):
         if self.filter == self.likely:
             self.filter = self.all
         else:
             self.filter = self.likely
-        self.update_data()
+        gobject.idle_add(self.update_data)
+
+
+#-------------------------------------------------------------------------
+#
+# Likely Filters
+#
+#-------------------------------------------------------------------------
+class LikelyFilter(GenericFilter.Rule):
+
+    category    = _('General filters')
+
+    def prepare(self,db):
+        person = db.get_person_from_handle(self.list[0])
+        if person.birth_handle:
+            birth = db.get_event_from_handle(person.birth_handle)
+            dateobj = Date.Date(birth.date)
+            year = dateobj.get_year()
+            dateobj.set_year(year+40)
+            self.lower = dateobj.sortval
+            dateobj.set_year(year-40)
+            self.upper = dateobj.sortval
+        else:
+            self.upper = None
+            self.lower = None
+
+        if person.gender == RelLib.Person.MALE:
+            self.gender = RelLib.Person.FEMALE
+        else:
+            self.gender = RelLib.Person.MALE
+
+    def apply(self,db,person):
+        if person.gender != self.gender:
+            return False
+        if not person.birth_handle or (self.upper == None and
+                                       self.lower == None):
+            return True
+        event = db.get_event_from_handle(person.birth_handle)
+        return (event.date == None or event.date.sortval == 0 or
+                self.lower > event.date.sortval > self.upper)
+

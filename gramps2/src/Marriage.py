@@ -80,10 +80,16 @@ class Marriage:
 
     def __init__(self,parent,family,db):
         """Initializes the Marriage class, and displays the window"""
+        family_handle = family.get_handle()
+        # UGLY HACK to refresh faimly object from handle if that exists
+        # done to ensure that the family object is not stale, as it could
+        # have been changed by something external (merge, tool, etc).
+        if family_handle:
+            family = db.get_family_from_handle(family_handle)
         self.family = family
         self.parent = parent
-        if self.parent.child_windows.has_key(family.get_handle()):
-            self.parent.child_windows[family.get_handle()].present(None)
+        if self.parent.child_windows.has_key(family_handle):
+            self.parent.child_windows[family_handle].present(None)
             return
         self.child_windows = {}
         self.db = db

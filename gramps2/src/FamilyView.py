@@ -818,28 +818,45 @@ class FamilyView:
 
         family = self.family
         
+        # determine the child
         model, node = self.child_selection.get_selected()
         if not node:
             return
-
         handle = self.child_model.get_value(node,_HANDLE_COL)
         child = self.parent.db.get_person_from_handle(handle)
 
-        trans = self.parent.db.transaction_begin()
-        
+        # remove the child from the family and the family from the child
         family.remove_child_handle(child.get_handle())
         child.remove_parent_family_handle(family.get_handle())
         
-        if len(family.get_child_handle_list()) == 0:
-            if family.get_father_handle() == None:
-                self.delete_family_from(family.get_mother_handle(),trans)
-            elif family.get_mother_handle() == None:
-                self.delete_family_from(family.get_father_handle(),trans)
+        # begin transaction
+        trans = self.parent.db.transaction_begin()
 
+        # if there are no children left, and the spouse is empty, delete the
+        # family
+        mother_handle = family.get_mother_handle()
+        father_handle = family.get_father_handle()
+        no_of_kids = len(family.get_child_handle_list())
+        
+        self.parent.db.disable_all_signals()
+
+        if no_of_kids == 0 and (mother_handle == None or father_handle == None):
+            if family.get_father_handle() == None:
+                temp = self.parent.db.get_person_from_handle(family.get_mother_handle())
+                temp.get_family_handle_list().remove(family.get_handle())
+            elif family.get_mother_handle() == None:
+                temp = self.parent.db.get_person_from_handle(family.get_father_handle())
+                temp.get_family_handle_list().remove(family.get_handle())
+            self.parent.db.remove_family(family.get_handle(),trans)
+        else:
+            self.parent.db.commit_family(family,trans)
+
+        # commit the transaction
         self.parent.db.commit_person(child,trans)
-        self.parent.db.commit_family(family,trans)
         n = child.get_primary_name().get_regular_name()
         self.parent.db.transaction_commit(trans,_("Remove Child (%s)") % n)
+        self.parent.db.enable_all_signals()
+        self.parent.db.emit('family-update',([family.get_handle()],))
 
     def remove_spouse(self,obj):
         if self.selected_spouse:
@@ -863,32 +880,27 @@ class FamilyView:
         cur_spouse = self.selected_spouse
         cur_family = self.family
 
+        # Remove spouse from the family
         if cur_spouse.get_handle() == cur_family.get_father_handle():
             cur_family.set_father_handle(None)
         else:
             cur_family.set_mother_handle(None)
 
         trans = self.parent.db.transaction_begin()
-        
+
+        #If the spouse is defined, remove the family from the spouse
         if cur_spouse:
             cur_spouse.remove_family_handle(cur_family.get_handle())
             self.parent.db.commit_person(cur_spouse,trans)
 
-        self.parent.db.commit_family(cur_family,trans)
-
+        # if there are no children, remove it from the current person
+        # and delete the family
         if len(cur_family.get_child_handle_list()) == 0:
-            mother_id = cur_family.get_mother_handle()
-            father_id = cur_family.get_father_handle()
-
-            for handle in [father_id, mother_id]:
-                if handle:
-                    p = self.parent.db.get_person_from_handle(handle)
-                    p.remove_family_handle(cur_family.get_handle())
-                    self.parent.db.commit_person(p,trans)
-
-#             if len(cur_person.get_family_handle_list()) > 0:
-#                 handle = cur_person.get_family_handle_list()[0]
-#                 family = self.parent.db.find_family_from_handle(handle,trans)
+            cur_person.remove_family_handle(cur_family.get_handle())
+            self.parent.db.commit_person(cur_person,trans)
+            self.parent.db.remove_family(cur_family.get_handle(),trans)
+        else:
+            self.parent.db.commit_family(cur_family,trans)
 
         person_id = cur_person.get_handle()
         self.person = self.parent.db.get_person_from_handle(person_id)
@@ -1142,16 +1154,6 @@ class FamilyView:
         else:
             return _("%s: unknown") % (l)
 
-    def delete_family_from(self,person_handle,trans):
-        person = self.parent.db.get_person_from_handle(person_handle)
-        person.remove_family_handle(self.family.get_handle())
-        self.parent.db.remove_family(self.family.get_handle(),trans)
-        flist = self.person.get_family_handle_list()
-        if len(flist) > 0:
-            self.family = self.parent.db.get_family_from_handle(flist[0])
-        else:
-            self.family = None
-
     def display_marriage(self,family):
         if not family:
             self.family = None
@@ -1160,6 +1162,7 @@ class FamilyView:
             return
 
         hlist = family.get_child_handle_list()
+
         self.child_model = DisplayModels.ChildModel(hlist,self.parent.db)
         self.child_list.set_model(self.child_model)
         self.family = self.parent.db.get_family_from_handle(family.get_handle())
@@ -1572,10 +1575,10 @@ class FamilyView:
             pname = self.person.get_primary_name()
             return (pname.get_surname_prefix(),pname.get_surname())
         elif self.family:
-            fid = self.family.get_father_handle()
-            f = self.parent.db.get_family_from_handle(fid)
-            if f:
-                pname = f.get_primary_name()
+            father_handle = self.family.get_father_handle()
+            if father_handle:
+                father = self.parent.db.get_person_from_handle(father_handle)
+                pname = father.get_primary_name()
                 return (pname.get_surname_prefix(),pname.get_surname())
         return ("","")
 
@@ -1584,10 +1587,12 @@ class FamilyView:
 
     def latin_american(self,val):
         if self.family:
-            father = self.family.get_father_handle()
-            mother = self.family.get_mother_handle()
-            if not father or not mother:
+            father_handle = self.family.get_father_handle()
+            mother_handle = self.family.get_mother_handle()
+            if not father_handle or not mother_handle:
                 return ("","")
+            father = self.parent.db.get_person_from_handle(father_handle)
+            mother = self.parent.db.get_person_from_handle(mother_handle)
             fsn = father.get_primary_name().get_surname()
             msn = mother.get_primary_name().get_surname()
             if not father or not mother:
@@ -1604,9 +1609,10 @@ class FamilyView:
         if self.person.get_gender() == RelLib.Person.MALE:
             fname = self.person.get_primary_name().get_first_name()
         elif self.family:
-            f = self.family.get_father_handle()
-            if f:
-                fname = f.get_primary_name().get_first_name()
+            father_handle = self.family.get_father_handle()
+            if father_handle:
+                father = self.parent.db.get_person_from_handle(father_handle)
+                fname = father.get_primary_name().get_first_name()
         if fname:
             fname = fname.split()[0]
         if val == 0:

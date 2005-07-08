@@ -715,12 +715,24 @@ class IndividualPage:
             self.doc.write_text(_("Siblings"))
             self.doc.end_paragraph()
     
-            self.doc.start_table("three","IndTable")
-        
+            self.doc.start_table("four","IndTable")
+            self.doc.start_row()
+            self.doc.start_cell("NormalCell")
+            self.doc.start_paragraph("Label")
+            self.doc.write_text(_("Siblings"))
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.start_cell("NormalCell")
+            first = True
             for child_handle in all_sisters:
                 child = self.db.get_person_from_handle(child_handle)
-                self.doc.start_paragraph("Data")
                 name = child.get_primary_name().get_regular_name()
+                if first:
+                    self.doc.start_paragraph("Data")
+                    first = False
+                else:
+                    self.doc.write_text('\n')
                 if self.person.get_handle() == child_handle:
                     self.doc.write_text(name)
                 elif self.list.has_key(child_handle):
@@ -729,8 +741,12 @@ class IndividualPage:
                     self.doc.end_link()
                 else:
                     self.doc.write_text(name)
+            if not first:
                 self.doc.end_paragraph()
-                
+
+            self.doc.end_cell()
+            self.doc.end_row()
+            self.doc.end_table()    
 
 #------------------------------------------------------------------------
 #
@@ -1093,7 +1109,7 @@ class WebReport(Report.Report):
         
     def write_report(self):
         dir_name = self.target_path
-        if dir_name == None:
+        if not dir_name:
             dir_name = os.getcwd()
         elif not os.path.isdir(dir_name):
             parent_dir = os.path.dirname(dir_name)
@@ -1256,10 +1272,10 @@ class WebReportOptions(ReportOptions.ReportOptions):
         """Set up the list of possible content filters."""
         if person:
             name = person.get_primary_name().get_name()
-            handle = person.get_handle()
+            gramps_id = person.get_gramps_id()
         else:
             name = 'PERSON'
-            handle = ''
+            gramps_id = ''
 
         all = GenericFilter.GenericFilter()
         all.set_name(_("Entire Database"))
@@ -1267,19 +1283,19 @@ class WebReportOptions(ReportOptions.ReportOptions):
 
         des = GenericFilter.GenericFilter()
         des.set_name(_("Descendants of %s") % name)
-        des.add_rule(GenericFilter.IsDescendantOf([handle,1]))
+        des.add_rule(GenericFilter.IsDescendantOf([gramps_id,1]))
 
         df = GenericFilter.GenericFilter()
         df.set_name(_("Descendant Families of %s") % name)
-        df.add_rule(GenericFilter.IsDescendantFamilyOf([handle]))
+        df.add_rule(GenericFilter.IsDescendantFamilyOf([gramps_id]))
 
         ans = GenericFilter.GenericFilter()
         ans.set_name(_("Ancestors of %s") % name)
-        ans.add_rule(GenericFilter.IsAncestorOf([handle,1]))
+        ans.add_rule(GenericFilter.IsAncestorOf([gramps_id,1]))
 
         com = GenericFilter.GenericFilter()
         com.set_name(_("People with common ancestor with %s") % name)
-        com.add_rule(GenericFilter.HasCommonAncestorWith([handle]))
+        com.add_rule(GenericFilter.HasCommonAncestorWith([gramps_id]))
 
         return [all,des,df,ans,com]
 
