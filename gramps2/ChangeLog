@@ -1,3 +1,7 @@
+2005-07-09  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/docgen/OpenOfficeDoc.py: Make the output conform to the DTDs
+	for OpenOffice.org XML
+
 2005-07-08  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/GraphViz.py: Use single margin value, properly use
 	cm for margin, properly use 2 digits after converting to inches.
