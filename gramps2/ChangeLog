@@ -1,3 +1,7 @@
+2005-07-08  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/GraphViz.py: Use single margin value, properly use
+	cm for margin, properly use 2 digits after converting to inches.
+
 2005-07-07  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/docgen/OpenOfficeDoc.py: Compute correctly the draw:viewBox to
 	please some versions of OpenOffice.org
