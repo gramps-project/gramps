@@ -1126,7 +1126,8 @@ class GrampsParser:
             self.name = None
 
     def stop_ref(self,tag):
-        self.witness = RelLib.Witness(RelLib.Event.ID,tag)
+        person = self.find_person_by_gramps_id(self.map_gid(tag))
+        self.witness = RelLib.Witness(RelLib.Event.ID,person.get_handle())
 
     def stop_place(self,tag):
         if self.placeobj == None:

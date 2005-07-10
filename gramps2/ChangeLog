@@ -1,3 +1,7 @@
+2005-07-09  Alex Roitman  <shura@gramps-project.org>
+	* src/ReadXML.py (stop_ref): Properly read id-based witness
+	reference created by old gramps.
+
 2005-07-09  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/docgen/OpenOfficeDoc.py: Make the output conform to the DTDs
 	for OpenOffice.org XML
