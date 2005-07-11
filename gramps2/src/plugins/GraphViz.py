@@ -155,7 +155,12 @@ class GraphViz:
         options = options_class.handler.options_dict
         self.hpages = options['pagesh']
         self.vpages = options['pagesv']
-        self.margin = round(options['margin']/2.54,2)
+        margin_cm = options['margin']
+        self.margin = round(margin_cm/2.54,2)
+        if margin_cm > 0.1:
+            self.margin_small = round((margin_cm-0.1)/2.54,2)
+        else:
+            self.margin_small = 0
         self.includeid = options['incid']
         self.includedates = options['incdate']
         self.includeurl = options['url']
@@ -200,7 +205,7 @@ class GraphViz:
         self.f.write("bgcolor=white;\n")
         self.f.write("rankdir=%s;\n" % self.rankdir)
         self.f.write("center=1;\n")
-        self.f.write("margin=%3.2f;\n" % self.margin)
+        self.f.write("margin=%3.2f;\n" % self.margin_small)
         self.f.write("ratio=fill;\n")
         self.f.write("size=\"%3.2f,%3.2f\";\n" % (
             (self.width-self.margin*2)*self.hpages,
@@ -395,7 +400,7 @@ class GraphViz:
         self.f.write(" *   colorize           : %s\n" % bool(self.colorize))
         self.f.write(" *   dotted adoptions   : %s\n" % bool(self.adoptionsdashed))
         self.f.write(" *   show family nodes  : %s\n" % bool(self.show_families))
-        self.f.write(" *   margin             : %3.2fin\n" % self.margin)
+        self.f.write(" *   margin             : %3.2fin\n" % self.margin_small)
         self.f.write(" *   pages horizontal   : %s\n" % self.hpages)
         self.f.write(" *         vertical     : %s\n" % self.vpages)
         self.f.write(" *   page width         : %3.2fin\n" % self.width)
