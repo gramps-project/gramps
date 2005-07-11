@@ -1,3 +1,7 @@
+2005-07-10  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: enhancements, almost usable
+	* src/Report.py: fixed spacing
+
 2005-07-09  Alex Roitman  <shura@gramps-project.org>
 	* src/ReadXML.py (stop_ref): Properly read id-based witness
 	reference created by old gramps.

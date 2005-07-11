@@ -545,7 +545,7 @@ class BareReportDialog:
         label.set_use_markup(1)
         label.set_alignment(0.0,0.5)
         self.tbl.set_border_width(12)
-        self.tbl.attach(label,0,4,self.col,self.col+1)
+        self.tbl.attach(label, 0, 4, self.col, self.col+1, gtk.FILL|gtk.EXPAND)
         self.col += 1
 
     def setup_center_person(self): 
@@ -1079,7 +1079,7 @@ class ReportDialog(BareReportDialog):
         label.set_use_markup(1)
         label.set_alignment(0.0,0.5)
         self.tbl.set_border_width(12)
-        self.tbl.attach(label,0,4,self.col,self.col+1)
+        self.tbl.attach(label, 0, 4, self.col, self.col+1, gtk.FILL)
         self.col += 1
         
         hid = self.get_stylesheet_savefile()
@@ -1090,13 +1090,15 @@ class ReportDialog(BareReportDialog):
 
         if self.get_target_is_directory():
             self.target_fileentry.set_directory_entry(1)
-            label = gtk.Label("%s:" % _("Directory"))
+            self.doc_label = gtk.Label("%s:" % _("Directory"))
         else:
-            label = gtk.Label("%s:" % _("Filename"))
-        label.set_alignment(0.0,0.5)
+            self.doc_label = gtk.Label("%s:" % _("Filename"))
+        self.doc_label.set_alignment(0.0,0.5)
 
-        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
-        self.tbl.attach(self.target_fileentry,2,4,self.col,self.col+1)
+        self.tbl.attach(self.doc_label, 1, 2, self.col, self.col+1,
+                        gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(self.target_fileentry, 2, 4, self.col, self.col+1,
+                        gtk.EXPAND|gtk.FILL)
         self.col += 1
         
         spath = self.get_default_directory()
