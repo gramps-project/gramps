@@ -1,3 +1,10 @@
+2005-07-11  Don Allingham  <don@gramps-project.org>
+	* src/GrampsBSDDB.py: add repair_secondary task to rebuild 
+	secondary indices
+	* src/GrampsDbBase.py: add repair_secondary task
+	* src/plugins/Check.py: move to "Repair Database" category
+	* src/plugins/Rebuild.py: new plugin to repair secondary indices
+
 2005-07-11  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/GraphViz.py (GraphViz.__init__): Define nominal and
 	reduced margins; (write_report): Use nominal margin to compute

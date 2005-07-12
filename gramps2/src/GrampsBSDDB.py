@@ -131,6 +131,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.env.open(os.path.dirname(name), flags)
             
         name = os.path.basename(name)
+        self.save_name = name
 
         self.family_map = self.dbopen(name, "family")
         self.place_map  = self.dbopen(name, "places")
@@ -204,6 +205,103 @@ class GrampsBSDDB(GrampsDbBase):
 
         self.genderStats = GenderStats(gstats)
         return 1
+
+    def rebuild_secondary(self):
+
+        # Repair secondary indices related to person_map
+        
+        self.id_trans.close()
+        self.surnames.close()
+
+        self.id_trans = db.DB(self.env)
+        self.id_trans.set_flags(db.DB_DUP)
+        self.id_trans.open(self.save_name, "idtrans", db.DB_HASH,
+                           flags=db.DB_CREATE)
+        self.id_trans.truncate()
+
+        self.surnames = db.DB(self.env)
+        self.surnames.set_flags(db.DB_DUP)
+        self.surnames.open(self.save_name, "surnames", db.DB_HASH,
+                           flags=db.DB_CREATE)
+        self.surnames.truncate()
+
+        self.person_map.associate(self.surnames, find_surname, db.DB_CREATE)
+        self.person_map.associate(self.id_trans, find_idmap, db.DB_CREATE)
+
+        for key in self.person_map.keys():
+            self.person_map[key] = self.person_map[key]
+
+        self.person_map.sync()
+
+        # Repair secondary indices related to family_map
+
+        self.fid_trans.close()
+        self.fid_trans = db.DB(self.env)
+        self.fid_trans.set_flags(db.DB_DUP)
+        self.fid_trans.open(self.save_name, "fidtrans", db.DB_HASH,
+                            flags=db.DB_CREATE)
+        self.fid_trans.truncate()
+        self.family_map.associate(self.fid_trans, find_idmap, db.DB_CREATE)
+
+        for key in self.family_map.keys():
+            self.family_map[key] = self.family_map[key]
+        self.family_map.sync()
+
+        # Repair secondary indices related to place_map
+
+        self.pid_trans.close()
+        self.pid_trans = db.DB(self.env)
+        self.pid_trans.set_flags(db.DB_DUP)
+        self.pid_trans.open(self.save_name, "pidtrans", db.DB_HASH,
+                            flags=db.DB_CREATE)
+        self.pid_trans.truncate()
+        self.place_map.associate(self.pid_trans, find_idmap, db.DB_CREATE)
+
+        for key in self.place_map.keys():
+            self.place_map[key] = self.place_map[key]
+        self.place_map.sync()
+
+        # Repair secondary indices related to media_map
+
+        self.oid_trans.close()
+        self.oid_trans = db.DB(self.env)
+        self.oid_trans.set_flags(db.DB_DUP)
+        self.oid_trans.open(self.save_name, "oidtrans", db.DB_HASH,
+                            flags=db.DB_CREATE)
+        self.oid_trans.truncate()
+        self.media_map.associate(self.oid_trans, find_idmap, db.DB_CREATE)
+
+        for key in self.media_map.keys():
+            self.media_map[key] = self.media_map[key]
+        self.media_map.sync()
+
+        # Repair secondary indices related to source_map
+
+        self.sid_trans.close()
+        self.sid_trans = db.DB(self.env)
+        self.sid_trans.set_flags(db.DB_DUP)
+        self.sid_trans.open(self.save_name, "sidtrans", db.DB_HASH,
+                            flags=db.DB_CREATE)
+        self.sid_trans.truncate()
+        self.source_map.associate(self.sid_trans, find_idmap, db.DB_CREATE)
+
+        for key in self.source_map.keys():
+            self.source_map[key] = self.source_map[key]
+        self.source_map.sync()
+
+        # Repair secondary indices related to event_map
+
+        self.eventnames.close()
+        self.eventnames = db.DB(self.env)
+        self.eventnames.set_flags(db.DB_DUP)
+        self.eventnames.open(self.save_name, "eventnames", db.DB_HASH,
+                            flags=db.DB_CREATE)
+        self.eventnames.truncate()
+        self.event_map.associate(self.eventnames, find_eventname, db.DB_CREATE)
+
+        for key in self.event_map.keys():
+            self.event_map[key] = self.event_map[key]
+        self.event_map.sync()
 
     def abort_changes(self):
         while self.undo():

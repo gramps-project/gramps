@@ -191,6 +191,9 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self.place2title = {}
         self.name_group = {}
 
+    def rebuild_secondary(self):
+        pass
+
     def version_supported(self):
         """ Returns True when the file has a supported version"""
         return True

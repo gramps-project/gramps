@@ -727,6 +727,6 @@ from PluginMgr import register_tool
 register_tool(
     runTool,
     _("Check and repair database"),
-    category=_("Database Processing"),
+    category=_("Database Repair"),
     description=_("Checks the database for integrity problems, fixing the problems that it can")
     )
