@@ -31,6 +31,7 @@ import os
 import time
 import locale
 import shutil
+import codecs
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -64,6 +65,25 @@ import ReportUtils
 import sets
 
 _NARRATIVE = "narrative.css"
+
+_character_sets = [
+    [_('Unicode (recommended)'), 'utf-8'],
+    ['ISO-8859-1',  'iso-8859-1' ],
+    ['ISO-8859-2',  'iso-8859-2' ],
+    ['ISO-8859-3',  'iso-8859-3' ],
+    ['ISO-8859-4',  'iso-8859-4' ],
+    ['ISO-8859-5',  'iso-8859-5' ],
+    ['ISO-8859-6',  'iso-8859-6' ],
+    ['ISO-8859-7',  'iso-8859-7' ],
+    ['ISO-8859-8',  'iso-8859-8' ],
+    ['ISO-8859-9',  'iso-8859-9' ],
+    ['ISO-8859-10', 'iso-8859-10' ],
+    ['ISO-8859-13', 'iso-8859-13' ],
+    ['ISO-8859-14', 'iso-8859-14' ],
+    ['ISO-8859-15', 'iso-8859-15' ],
+    ['koi8_r',      'koi8_r',     ],
+    ]
+
 
 _css = [
     'BODY {\nfont-family: "Arial", "Helvetica", sans-serif;',
@@ -138,6 +158,7 @@ class BasePage:
         self.archive = archive
         self.image_dir = options.handler.options_dict['NWEBimagedir'].strip()
         self.ext = options.handler.options_dict['NWEBext']
+        self.encoding = options.handler.options_dict['NWEBencoding']
 
     def copy_media(self,photo):
         newpath = photo.gramps_id + os.path.splitext(photo.get_path())[1]
@@ -154,16 +175,17 @@ class BasePage:
         
     def create_file(self,name):
         if self.archive:
-            of = StringIO()
+            self.string_io = StringIO()
+            of = codecs.EncodedFile(self.string_io,self.encoding)
             self.cur_name = name + "." + self.ext
         else:
             page_name = os.path.join(self.html_dir,name + "." + self.ext)
-            of = open(page_name, "w")
+            of = codecs.EncodedFile(open(page_name, "w"),self.encoding)
         return of
 
     def close_file(self,of):
         if self.archive:
-            self.archive.add_file(self.cur_name,time.time(),of)
+            self.archive.add_file(self.cur_name,time.time(),self.string_io)
             of.close()
         else:
             of.close()
@@ -198,7 +220,7 @@ class BasePage:
         of.write(u'<html>\n<head>\n')
         of.write(u'<title>%s</title>\n' % self.title_str)
         of.write(u'<meta http-equiv="Content-Type" content="text/html; ')
-        of.write(u'charset=UTF-8">\n')
+        of.write(u'charset=%s">\n' % self.encoding)
         of.write(u'<link href="%s" ' % _NARRATIVE)
         of.write(u'rel="stylesheet" type="text/css">\n')
         of.write(u'<link href="favicon.png" rel="Shortcut Icon">\n')
@@ -219,7 +241,7 @@ class BasePage:
         if self.inc_download:
             of.write(u'    <a href="download.%s">%s</a> &nbsp;\n' % (self.ext,_('Download')))
         if self.inc_contact:
-            of.write(u'    <a href="contact.%s">%s</a> &nbsp;\n' % (self.ext_('Contact')))
+            of.write(u'    <a href="contact.%s">%s</a> &nbsp;\n' % (self.ext,_('Contact')))
         of.write(u'    </div>\n')
         of.write(u'  </div>\n')
 
@@ -473,9 +495,7 @@ class IntroductionPage(BasePage):
 
         if note_id:
             obj = db.get_object_from_gramps_id(note_id)
-            if not obj:
-                print "%s object not found" % note_id
-            else:
+            if obj:
                 note_obj = obj.get_note_object()
                 text = note_obj.get()
                 if note_obj.get_format():
@@ -992,6 +1012,7 @@ class WebReport(Report.Report):
         NWEBidurl
         NWEBlinktidx
         NWEBext
+        NWEBencoding
         NWEBtreed
         NWEBidxt
         NWEBidxbirth
@@ -1010,6 +1031,7 @@ class WebReport(Report.Report):
 
         self.target_path = options_class.handler.options_dict['NWEBod']
         self.ext = options_class.handler.options_dict['NWEBext']
+        self.encoding = options_class.handler.options_dict['NWEBencoding']
         self.id_link = options_class.handler.options_dict['NWEBlinktidx']
         self.photos = options_class.handler.options_dict['NWEBimg']
         self.restrict = options_class.handler.options_dict['NWEBrestrictinfo']
@@ -1178,6 +1200,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
             'NWEBidurl'         : '',
             'NWEBlinktidx'      : 1,
             'NWEBext'           : 'html',
+            'NWEBencoding'      : 'utf-8',
             'NWEBtreed'         : 3,
             'NWEBidxt'          : '',
             'NWEBintronote'     : '',
@@ -1289,9 +1312,21 @@ class WebReportOptions(ReportOptions.ReportOptions):
         def_ext = "." + self.options_dict['NWEBext']
         self.ext.set_active(self.ext_options.index(def_ext))
 
+        cset_node = None
+        cset = self.options_dict['NWEBencoding']
+
+        store = gtk.ListStore(str,str)
+        for data in _character_sets:
+            if data[1] == cset:
+                cset_node = store.append(row=data)
+            else:
+                store.append(row=data)
+        self.encoding = GrampsNoteComboBox(store,cset_node)
+
         dialog.add_option(title_msg,self.title)
         dialog.add_option(imgdir_msg,self.imgdir)
         dialog.add_option(ext_msg,self.ext)
+        dialog.add_option(_('Character set encoding'),self.encoding)
 
         title = _("Page Generation")
 
@@ -1315,7 +1350,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
             else:
                 store.append(row=data)
         self.home_note = GrampsNoteComboBox(store,home_node)
-            
+
         dialog.add_frame_option(title,_('Home Media/Note ID'),
                                 self.home_note)
         dialog.add_frame_option(title,_('Introduction Media/Note ID'),
@@ -1352,6 +1387,9 @@ class WebReportOptions(ReportOptions.ReportOptions):
         if html_ext[0] == '.':
             html_ext = html_ext[1:]
         self.options_dict['NWEBext'] = html_ext
+
+        print self.encoding.get_handle()
+        self.options_dict['NWEBencoding'] = self.encoding.get_handle()
 
         self.options_dict['NWEBidurl'] = unicode(self.linkpath.get_text().strip())
 
@@ -1565,7 +1603,9 @@ class GrampsNoteComboBox(gtk.ComboBox):
         @rtype: str
         """
         active = self.get_active_iter()
-        handle = self.local_store.get_value(active,1)
+        handle = None
+        if active:
+            handle = self.local_store.get_value(active,1)
         return handle
 
 #-------------------------------------------------------------------------
