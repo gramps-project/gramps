@@ -160,6 +160,7 @@ class BasePage:
         self.ext = options.handler.options_dict['NWEBext']
         self.encoding = options.handler.options_dict['NWEBencoding']
         self.noid = options.handler.options_dict['NWEBnoid']
+        self.use_intro = options.handler.options_dict['NWEBintronote'] != u""
         
     def copy_media(self,photo):
         newpath = photo.gramps_id + os.path.splitext(photo.get_path())[1]
@@ -234,7 +235,8 @@ class BasePage:
         of.write(u'  <hr>\n')
         of.write(u'    <div class="nav">\n')
         of.write(u'    <a href="index.%s">%s</a> &nbsp;\n' % (self.ext,_('Home')))
-        of.write(u'    <a href="introduction.%s">%s</a> &nbsp;\n' % (self.ext,_('Introduction')))
+        if self.use_intro:
+            of.write(u'    <a href="introduction.%s">%s</a> &nbsp;\n' % (self.ext,_('Introduction')))
         of.write(u'    <a href="surnames.%s">%s</a> &nbsp;\n' % (self.ext,_('Surnames')))
         of.write(u'    <a href="individuals.%s">%s</a> &nbsp;\n' % (self.ext,_('Individuals')))
         of.write(u'    <a href="sources.%s">%s</a> &nbsp;\n' % (self.ext,_('Sources')))
@@ -289,7 +291,7 @@ class IndividualListPage(BasePage):
                 else:
                     of.write(u'&nbsp')
                 of.write(u'</td><td class="data">')
-                of.write(u' <a href="%s.%s">' % (person.gramps_id,self.ext))
+                of.write(u' <a href="%s.%s">' % (person.handle,self.ext))
                 of.write(person.get_primary_name().get_first_name())
                 if not self.noid:
                     of.write(u"&nbsp;[%s]" % person.gramps_id)
@@ -347,7 +349,7 @@ class PlaceListPage(BasePage):
                 of.write(u'<tr><td colspan="2">&nbsp;</td></tr>\n')
                 of.write(u'<tr><td class="category">%s</td>' % last_letter)
                 of.write(u'<td class="data">')
-                of.write(u'<a href="%s.%s">' % (place.gramps_id,self.ext))
+                of.write(u'<a href="%s.%s">' % (place.handle,self.ext))
                 of.write(n)
                 if not self.noid:
                     of.write(u'&nbsp;[%s]' % place.gramps_id)
@@ -356,7 +358,7 @@ class PlaceListPage(BasePage):
             elif n != last_surname:
                 of.write(u'<tr><td class="category">&nbsp;</td>')
                 of.write(u'<td class="data">')
-                of.write(u'<a href="%s.%s">' % (place.gramps_id,self.ext))
+                of.write(u'<a href="%s.%s">' % (place.handle,self.ext))
                 of.write(n)
                 if not self.noid:
                     of.write(u'&nbsp;[%s]' % place.gramps_id)
@@ -377,11 +379,42 @@ class PlacePage(BasePage):
     def __init__(self, db, title, place_handle, src_list, options, archive):
         place = db.get_place_from_handle( place_handle)
         BasePage.__init__(self,title,options,archive)
-        of = self.create_file(place.get_gramps_id())
+        of = self.create_file(place.get_handle())
         place_name = ReportUtils.place_name(db,place_handle)
         self.display_header(of,place_name,
                             db.get_researcher().get_name())
+
+        of.write(u'<div class="summaryarea">\n')
         of.write(u'<h3>%s</h3>\n' % place_name)
+        of.write(u'<table class="infolist" cellpadding="0" cellspacing="0" ')
+        of.write(u'border="0">\n')
+
+        of.write(u'<tr><td class="field">%s</td>\n' % _('GRAMPS ID'))
+        of.write(u'<td class="data">%s</td>\n' % place.gramps_id)
+        of.write(u'</tr>\n')
+
+        if place.main_loc:
+            ml = place.main_loc
+            for val in [(_('City'),ml.city),(_('Church Parish'),ml.parish),
+                        (_('County'),ml.county),(_('State/Province'),ml.state),
+                        (_('Postal Code'),ml.postal),(_('Country'),ml.country)]:
+                if val[1]:
+                    of.write(u'<tr><td class="field">%s</td>\n' % val[0])
+                    of.write(u'<td class="data">%s</td>\n' % val[1])
+                    of.write(u'</tr>\n')
+                
+        if place.long:
+            of.write(u'<tr><td class="field">%s</td>\n' % _('Longitude'))
+            of.write(u'<td class="data">%s</td>\n' % place.long)
+            of.write(u'</tr>\n')
+
+        if place.lat:
+            of.write(u'<tr><td class="field">%s</td>\n' % _('Latitude'))
+            of.write(u'<td class="data">%s</td>\n' % place.lat)
+            of.write(u'</tr>\n')
+
+        of.write(u'</table>\n')
+        of.write(u'</div>\n')
 
         photolist = place.get_media_list()
         if photolist:
@@ -400,11 +433,10 @@ class PlacePage(BasePage):
 
         # TODO: Add more information
 
-        of.write('<h4>%s</h4>\n' % _('Narrative'))
-        of.write('<hr>\n')
-
         noteobj = place.get_note_object()
         if noteobj:
+            of.write('<h4>%s</h4>\n' % _('Narrative'))
+            of.write('<hr>\n')
             format = noteobj.get_format()
             text = noteobj.get()
 
@@ -647,7 +679,7 @@ class IndividualPage(BasePage):
         self.sort_name = _nd.sorted(self.person)
         self.name = _nd.sorted(self.person)
         
-        of = self.create_file(person.gramps_id)
+        of = self.create_file(person.handle)
         self.display_header(of, title,
                             self.db.get_researcher().get_name())
         self.display_ind_general(of)
@@ -734,7 +766,6 @@ class IndividualPage(BasePage):
             of.write(u'</blockquote>\n')
         of.write(u'</td>\n</tr>\n</table>\n')
 
-
     def display_ind_general(self,of):
         photolist = self.person.get_media_list()
         if photolist:
@@ -755,6 +786,10 @@ class IndividualPage(BasePage):
         of.write(u'<h3>%s</h3>\n' % self.sort_name)
         of.write(u'<table class="infolist" cellpadding="0" cellspacing="0" ')
         of.write(u'border="0">\n')
+
+        of.write(u'<tr><td class="field">%s</td>\n' % _('GRAMPS ID'))
+        of.write(u'<td class="data">%s</td>\n' % self.person.gramps_id)
+        of.write(u'</tr>\n')
 
         # Gender
         of.write(u'<tr><td class="field">%s</td>\n' % _('Gender'))
@@ -782,6 +817,9 @@ class IndividualPage(BasePage):
         of.write(u'</div>\n')
 
     def display_ind_events(self,of):
+        if len(self.person.get_event_list()) == 0:
+            return
+        
         of.write(u'<h4>%s</h4>\n' % _('Events'))
         of.write(u'<hr>\n')
         of.write(u'<table class="infolist" cellpadding="0" cellspacing="0" ')
@@ -795,15 +833,13 @@ class IndividualPage(BasePage):
             of.write(self.format_event(event))
             of.write(u'</td>\n')
             of.write(u'</tr>\n')
-
         of.write(u'</table>\n')
 
     def display_ind_narrative(self,of):
-        of.write(u'<h4>%s</h4>\n' % _('Narrative'))
-        of.write(u'<hr>\n')
-
         noteobj = self.person.get_note_object()
         if noteobj:
+            of.write(u'<h4>%s</h4>\n' % _('Narrative'))
+            of.write(u'<hr>\n')
             format = noteobj.get_format()
             text = noteobj.get()
 
@@ -821,7 +857,7 @@ class IndividualPage(BasePage):
         of.write(u'<td class="data">')
         val = person.gramps_id
         if use_link:
-            of.write('<a href="%s.%s">' % (val,self.ext))           
+            of.write('<a href="%s.%s">' % (person.handle,self.ext))           
         of.write(_nd.display(person))
         if not self.noid:
             of.write(u'&nbsp;[%s]' % (val))
@@ -875,7 +911,7 @@ class IndividualPage(BasePage):
                         child = self.db.get_person_from_handle(child_handle)
                         gid = child.get_gramps_id()
                         if use_link:
-                            of.write(u'<a href="%s.%s">' % (gid,self.ext))
+                            of.write(u'<a href="%s.%s">' % (child.handle,self.ext))
                         of.write(_nd.display(child))
                         if not self.noid:
                             of.write(u'&nbsp;[%s]' % gid)
@@ -914,7 +950,7 @@ class IndividualPage(BasePage):
             use_link = spouse_id in self.ind_list
             gid = spouse.get_gramps_id()
             if use_link:
-                of.write(u'<a href="%s.%s">' % (gid,self.ext))
+                of.write(u'<a href="%s.%s">' % (spouse.handle,self.ext))
             of.write(name)
             if not self.noid:
                 of.write(u'&nbsp;[%s]' % (gid))
@@ -936,7 +972,7 @@ class IndividualPage(BasePage):
         person_link = person.handle in self.ind_list
         of.write(u'%s ' % bullet)
         if person_link:
-            of.write(u'<a href="%s.%s">' % (person.gramps_id,self.ext))
+            of.write(u'<a href="%s.%s">' % (person.handle,self.ext))
         of.write(_nd.display(person))
         if person_link:
             of.write(u'</a>')
@@ -964,7 +1000,7 @@ class IndividualPage(BasePage):
         place_handle = event.get_place_handle()
         if place_handle:
             self.place_list.add(place_handle)
-        place = ReportUtils.place_name(self.db,place_handle)
+        place = '<a href="%s.%s">%s</a>' % (place_handle,self.ext,ReportUtils.place_name(self.db,place_handle))
 
         date = _dd.display(event.get_date_object())
         tmap = {'description' : descr, 'date' : date, 'place' : place}
@@ -1055,7 +1091,8 @@ class WebReport(Report.Report):
         self.inc_contact = options_class.handler.options_dict['NWEBcontact']
         self.inc_download = options_class.handler.options_dict['NWEBdownload']
         self.use_archive = options_class.handler.options_dict['NWEBarchive']
-
+        self.use_intro = options_class.handler.options_dict['NWEBintronote'] != u""
+        
     def get_progressbar_data(self):
         return (_("Generate HTML reports - GRAMPS"),
                 '<span size="larger" weight="bold">%s</span>' %
@@ -1122,7 +1159,8 @@ class WebReport(Report.Report):
         if self.inc_download:
             DownloadPage(self.database, self.title, self.options_class, archive)
         
-        IntroductionPage(self.database, self.title, self.options_class, archive)
+        if self.use_intro:
+            IntroductionPage(self.database, self.title, self.options_class, archive)
         
         place_list = sets.Set()
         source_list = sets.Set()
@@ -1365,6 +1403,17 @@ class WebReportOptions(ReportOptions.ReportOptions):
                 store.append(row=data)
         self.home_note = GrampsNoteComboBox(store,home_node)
 
+        intro_node = None
+        intro_note = self.options_dict['NWEBintronote']
+
+        store = gtk.ListStore(str,str)
+        for data in media_list:
+            if data[1] == intro_note:
+                intro_node = store.append(row=data)
+            else:
+                store.append(row=data)
+        self.intro_note = GrampsNoteComboBox(store,intro_node)
+
         dialog.add_frame_option(title,_('Home Media/Note ID'),
                                 self.home_note)
         dialog.add_frame_option(title,_('Introduction Media/Note ID'),
@@ -1392,7 +1441,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.options_dict['NWEBdownload'] = int(self.inc_download.get_active())
         self.options_dict['NWEBimagedir'] = unicode(self.imgdir.get_text())
         self.options_dict['NWEBtitle'] = unicode(self.title.get_text())
-        self.options_dict['NWEBintronote'] = unicode(self.intro_note.get_text())
+        self.options_dict['NWEBintronote'] = unicode(self.intro_note.get_handle())
         self.options_dict['NWEBhomenote'] = unicode(self.home_note.get_handle())
 
         index = self.ext.get_active()
@@ -1653,7 +1702,7 @@ class GrampsNoteComboBox(gtk.ComboBox):
         @rtype: str
         """
         active = self.get_active_iter()
-        handle = None
+        handle = u""
         if active:
             handle = self.local_store.get_value(active,1)
         return handle
