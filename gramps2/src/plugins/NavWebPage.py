@@ -64,6 +64,7 @@ import ReportUtils
 import sets
 
 _NARRATIVE = "narrative.css"
+_NAME_COL  = 3
 
 _character_sets = [
     [_('Unicode (recommended)'), 'utf-8'],
@@ -273,27 +274,27 @@ class IndividualListPage(BasePage):
         of.write(u'<td class="field"><u><b>%s</b></u></td>\n' % _('Name'))
         of.write(u'</tr>\n')
 
-        self.sort = Sort.Sort(db)
-        person_handle_list.sort(self.sort.by_last_name)
-        last_surname = ""
+        flist = sets.Set(person_handle_list)
+
+        person_handle_list = sort_people(db,person_handle_list)
         
-        for person_handle in person_handle_list:
-            person = db.get_person_from_handle(person_handle)
-            n = person.get_primary_name().get_surname()
-            if n != last_surname:
-                of.write(u'<tr><td colspan="2">&nbsp;</td></tr>\n')
-            of.write(u'<tr><td class="category">')
-            if n != last_surname:
-                of.write(u'<a name="%s">%s</a>' % (self.lnkfmt(n),n))
-            else:
-                of.write(u'&nbsp')
-            of.write(u'</td><td class="data">')
-            of.write(u' <a href="%s.%s">' % (person.gramps_id,self.ext))
-            of.write(person.get_primary_name().get_first_name())
-            if not self.noid:
-                of.write(u"&nbsp;[%s]" % person.gramps_id)
-            of.write(u'</a></td></tr>\n')
-            last_surname = n
+        for (surname,handle_list) in person_handle_list:
+            first = True
+            of.write(u'<tr><td colspan="2">&nbsp;</td></tr>\n')
+            for person_handle in handle_list:
+                person = db.get_person_from_handle(person_handle)
+                of.write(u'<tr><td class="category">')
+                if first:
+                    of.write(u'<a name="%s">%s</a>' % (self.lnkfmt(surname),surname))
+                else:
+                    of.write(u'&nbsp')
+                of.write(u'</td><td class="data">')
+                of.write(u' <a href="%s.%s">' % (person.gramps_id,self.ext))
+                of.write(person.get_primary_name().get_first_name())
+                if not self.noid:
+                    of.write(u"&nbsp;[%s]" % person.gramps_id)
+                of.write(u'</a></td></tr>\n')
+                first = False
             
         of.write(u'</table>\n</blockquote>\n')
         self.display_footer(of)
@@ -313,10 +314,8 @@ class PlaceListPage(BasePage):
                             db.get_researcher().get_name())
 
         msg = _("This page contains an index of all the places in the "
-                "database, sorted by their title. Selecting the GRAMPS "
-                "ID next to a person's name will take you to that place's "
-                "page.")
-        
+                "database, sorted by their title. Clicking on a place's "
+                "title will take you to that place's page.")
 
         of.write(u'<h3>%s</h3>\n' % _('Places'))
         of.write(u'<p>%s</p>\n' % msg )
@@ -447,33 +446,28 @@ class SurnameListPage(BasePage):
         of.write(u'<b>%s</b></u></td>\n' % _('Surname'))
         of.write(u'</tr>\n')
 
-        self.sort = Sort.Sort(db)
-        person_handle_list.sort(self.sort.by_last_name)
-        last_surname = ""
+        person_handle_list = sort_people(db,person_handle_list)
         last_letter = ''
+        last_surname = ''
         
-        for person_handle in person_handle_list:
-            person = db.get_person_from_handle(person_handle)
-            n = person.get_primary_name().get_surname()
-
-            if len(n) == 0:
+        for (surname,data_list) in person_handle_list:
+            if len(surname) == 0:
                 continue
             
-            if n[0] != last_letter:
-                last_letter = n[0]
+            if surname[0] != last_letter:
+                last_letter = surname[0]
                 of.write(u'<tr><td class="category">%s</td>' % last_letter)
                 of.write(u'<td class="data">')
-                of.write(u'<a href="individuals.%s#%s">' % (self.lnkfmt(n),self.ext))
-                of.write(n)
+                of.write(u'<a href="individuals.%s#%s">' % (self.ext,self.lnkfmt(surname)))
+                of.write(surname)
                 of.write(u'</a></td></tr>')
-                last_surname = n
-            elif n != last_surname:
+            elif surname != last_surname:
                 of.write(u'<tr><td class="category">&nbsp;</td>')
                 of.write(u'<td class="data">')
-                of.write(u'<a href="individuals.%s#%s">' % (self.lnkfmt(n),self.ext))
-                of.write(n)
+                of.write(u'<a href="individuals.%s#%s">' % (self.ext,self.lnkfmt(surname)))
+                of.write(surname)
                 of.write(u'</a></td></tr>')
-                last_surname = n
+                last_surname = surname
             
         of.write(u'</table>\n</blockquote>\n')
         self.display_footer(of)
@@ -916,15 +910,16 @@ class IndividualPage(BasePage):
             of.write(u'<td>&nbsp;</td>')
         of.write(u'<td class="field">%s</td>\n' % relstr)
         of.write(u'<td class="data">')
-        use_link = spouse_id in self.ind_list
-        gid = spouse.get_gramps_id()
-        if use_link:
-            of.write(u'<a href="%s.%s">' % (gid,self.ext))
-        of.write(name)
-        if not self.noid:
-            of.write(u'&nbsp;[%s]' % (gid))
-        if use_link:
-            of.write(u'</a>')
+        if spouse_id:
+            use_link = spouse_id in self.ind_list
+            gid = spouse.get_gramps_id()
+            if use_link:
+                of.write(u'<a href="%s.%s">' % (gid,self.ext))
+            of.write(name)
+            if not self.noid:
+                of.write(u'&nbsp;[%s]' % (gid))
+            if use_link:
+                of.write(u'</a>')
         
         of.write(u'</td>\n</tr>\n')
 
@@ -1559,6 +1554,41 @@ class WebReportDialog(Report.ReportDialog):
         except Errors.FilterError, msg:
             (m1,m2) = msg.messages()
             ErrorDialog(m1,m2)
+
+
+def sort_people(db,handle_list):
+    import sets
+
+    flist = sets.Set(handle_list)
+
+    sname_sub = {}
+    sortnames = {}
+    cursor = db.get_person_cursor()
+    node = cursor.first()
+    while node:
+        if node[0] in flist:
+            primary_name = node[1][_NAME_COL]
+            if primary_name.group_as:
+                surname = primary_name.group_as
+            else:
+                surname = db.get_name_group_mapping(primary_name.surname)
+            sortnames[node[0]] = primary_name.sname
+            if sname_sub.has_key(surname):
+                sname_sub[surname].append(node[0])
+            else:
+                sname_sub[surname] = [node[0]]
+        node = cursor.next()
+    cursor.close()
+
+    sorted_lists = []
+    temp_list = sname_sub.keys()
+    temp_list.sort(locale.strcoll)
+    for name in temp_list:
+        slist = map(lambda x: (sortnames[x],x),sname_sub[name])
+        slist.sort(lambda x,y: locale.strcoll(x[0],y[0]))
+        entries = map(lambda x: x[1], slist)
+        sorted_lists.append((name,entries))
+    return sorted_lists
 
 #------------------------------------------------------------------------
 #

@@ -1,3 +1,8 @@
+2005-07-13  Don Allingham  <don@gramps-project.org>
+	* src/Sort.py: don't use upper case, let locale.strcoll figure this
+	out (correctly) for us
+	* src/plugins/NavWebPage.py: fix sorting.
+
 2005-07-13  Alex Roitman  <shura@gramps-project.org>
 	* src/GenericFilter.py: Proper test for place in event-based filters.
 
