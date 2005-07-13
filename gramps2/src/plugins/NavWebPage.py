@@ -40,7 +40,6 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import gtk
-import gnome.ui
 
 #------------------------------------------------------------------------
 #
@@ -159,7 +158,8 @@ class BasePage:
         self.image_dir = options.handler.options_dict['NWEBimagedir'].strip()
         self.ext = options.handler.options_dict['NWEBext']
         self.encoding = options.handler.options_dict['NWEBencoding']
-
+        self.noid = options.handler.options_dict['NWEBnoid']
+        
     def copy_media(self,photo):
         newpath = photo.gramps_id + os.path.splitext(photo.get_path())[1]
         if self.image_dir:
@@ -288,9 +288,10 @@ class IndividualListPage(BasePage):
             else:
                 of.write(u'&nbsp')
             of.write(u'</td><td class="data">')
-            of.write(person.get_primary_name().get_first_name())
             of.write(u' <a href="%s.%s">' % (person.gramps_id,self.ext))
-            of.write(u"<sup>[%s]</sup>" % person.gramps_id)
+            of.write(person.get_primary_name().get_first_name())
+            if not self.noid:
+                of.write(u"&nbsp;[%s]" % person.gramps_id)
             of.write(u'</a></td></tr>\n')
             last_surname = n
             
@@ -347,18 +348,20 @@ class PlaceListPage(BasePage):
                 of.write(u'<tr><td colspan="2">&nbsp;</td></tr>\n')
                 of.write(u'<tr><td class="category">%s</td>' % last_letter)
                 of.write(u'<td class="data">')
+                of.write(u'<a href="%s.%s">' % (place.gramps_id,self.ext))
                 of.write(n)
-                of.write(u' <sup><a href="%s.%s">' % (place.gramps_id,self.ext))
-                of.write(u'[%s]' % place.gramps_id)
-                of.write(u'</a></sup></td></tr>')
+                if not self.noid:
+                    of.write(u'&nbsp;[%s]' % place.gramps_id)
+                of.write(u'</a></td></tr>')
                 last_surname = n
             elif n != last_surname:
                 of.write(u'<tr><td class="category">&nbsp;</td>')
                 of.write(u'<td class="data">')
+                of.write(u'<a href="%s.%s">' % (place.gramps_id,self.ext))
                 of.write(n)
-                of.write(u' <sup><a href="%s.%s">' % (place.gramps_id,self.ext))
-                of.write(u'[%s]' % place.gramps_id)
-                of.write(u'</a></sup></td></tr>')
+                if not self.noid:
+                    of.write(u'&nbsp;[%s]' % place.gramps_id)
+                of.write(u'</a></td></tr>')
                 last_surname = n
             
         of.write(u'</table>\n</blockquote>\n')
@@ -429,10 +432,11 @@ class SurnameListPage(BasePage):
                             db.get_researcher().get_name())
 
         of.write(u'<h3>%s</h3>\n' % _('Surnames'))
-        of.write(u'<p>%s</p>\n' % _('This page contains an index of all the '
-                                    'surnames in the database. Selecting a link '
-                                    'will lead to a list of individuals in the '
-                                    'database with this same surname.'))
+        of.write(u'<p>%s</p>\n' % _(
+            'This page contains an index of all the '
+            'surnames in the database. Selecting a link '
+            'will lead to a list of individuals in the '
+            'database with this same surname.'))
 
         of.write(u'<blockquote>\n')
         of.write(u'<table class="infolist" cellspacing="0" ')
@@ -528,9 +532,7 @@ class HomePage(BasePage):
         if note_id:
             obj = db.get_object_from_handle(note_id)
 
-            if not obj:
-                print "%s object not found" % note_id
-            else:
+            if obj:
                 mime_type = obj.get_mime_type()
                 if mime_type and mime_type.startswith("image"):
                     try:
@@ -823,10 +825,14 @@ class IndividualPage(BasePage):
         person = self.db.get_person_from_handle(handle)
         of.write(u'<td class="field">%s</td>\n' % title)
         of.write(u'<td class="data">')
-        of.write(_nd.display(person))
+        val = person.gramps_id
         if use_link:
-            val = person.gramps_id
-            of.write(u'&nbsp;<sup><a href="%s.%s">[%s]</a></sup>' % (val,self.ext,val))
+            of.write('<a href="%s.%s">' % (val,self.ext))           
+        of.write(_nd.display(person))
+        if not self.noid:
+            of.write(u'&nbsp;[%s]' % (val))
+        if use_link:
+            of.write('</a>')
         of.write(u'</td>\n')
 
     def display_ind_relationships(self,of):
@@ -873,11 +879,14 @@ class IndividualPage(BasePage):
                     for child_handle in childlist:
                         use_link = child_handle in self.ind_list
                         child = self.db.get_person_from_handle(child_handle)
-                        of.write(_nd.display(child))
+                        gid = child.get_gramps_id()
                         if use_link:
-                            gid = child.get_gramps_id()
                             of.write(u'<a href="%s.%s">' % (gid,self.ext))
-                            of.write(u'<sup>[%s]</sup>&nbsp;</a>\n' % gid)
+                        of.write(_nd.display(child))
+                        if not self.noid:
+                            of.write(u'&nbsp;[%s]' % gid)
+                        if use_link:
+                            of.write(u'</a>\n')
                         of.write(u"<br>\n")
                     of.write(u'</td>\n</tr>\n')
         of.write(u'</table>\n')
@@ -908,10 +917,14 @@ class IndividualPage(BasePage):
         of.write(u'<td class="field">%s</td>\n' % relstr)
         of.write(u'<td class="data">')
         use_link = spouse_id in self.ind_list
-        of.write(name)
+        gid = spouse.get_gramps_id()
         if use_link:
-            gid = spouse.get_gramps_id()
-            of.write(u'&nbsp;<sup><a href="%s.%s">[%s]</a>' % (gid,self.ext,gid))
+            of.write(u'<a href="%s.%s">' % (gid,self.ext))
+        of.write(name)
+        if not self.noid:
+            of.write(u'&nbsp;[%s]' % (gid))
+        if use_link:
+            of.write(u'</a>')
         
         of.write(u'</td>\n</tr>\n')
 
@@ -1018,6 +1031,7 @@ class WebReport(Report.Report):
         NWEBidxbirth
         NWEBintronote
         NWEBhomenote
+        NWEBnoid
         yearso
         """
         self.database = database
@@ -1036,6 +1050,7 @@ class WebReport(Report.Report):
         self.photos = options_class.handler.options_dict['NWEBimg']
         self.restrict = options_class.handler.options_dict['NWEBrestrictinfo']
         self.private = options_class.handler.options_dict['NWEBincpriv']
+        self.noid = options_class.handler.options_dict['NWEBnoid']
         self.srccomments = options_class.handler.options_dict['NWEBcmtxtsi']
         self.image_dir = options_class.handler.options_dict['NWEBimagedir']
         self.title = options_class.handler.options_dict['NWEBtitle']
@@ -1184,10 +1199,11 @@ class WebReportOptions(ReportOptions.ReportOptions):
         # Options specific for this report
         self.options_dict = {
             'NWEBarchive'       : 0,
-            'NWEBod'            : '',
+            'NWEBod'            : './',
             'NWEBimg'           : 2,
             'NWEBrestrictinfo'  : 0,
             'NWEBincpriv'       : 0,
+            'NWEBnoid'          : 0,
             'NWEBcmtxtsi'       : 0, 
             'NWEBlnktoalphabet' : 0, 
             'NWEBsplita'        : 0, 
@@ -1266,6 +1282,9 @@ class WebReportOptions(ReportOptions.ReportOptions):
 
         self.no_private = gtk.CheckButton(priv_msg)
         self.no_private.set_active(not self.options_dict['NWEBincpriv'])
+
+        self.noid = gtk.CheckButton(_('Suppress GRAMPS ID'))
+        self.noid.set_active(self.options_dict['NWEBnoid'])
 
         self.restrict_living = gtk.CheckButton(restrict_msg)
         self.restrict_living.set_active(self.options_dict['NWEBrestrictinfo'])
@@ -1357,6 +1376,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
                                 self.intro_note)
         dialog.add_frame_option(title,None,self.inc_contact)
         dialog.add_frame_option(title,None,self.inc_download)
+        dialog.add_frame_option(title,None,self.noid)
 
         title = _("Privacy")
         dialog.add_frame_option(title,None,self.no_private)
@@ -1372,8 +1392,9 @@ class WebReportOptions(ReportOptions.ReportOptions):
         
         self.options_dict['NWEBrestrictinfo'] = int(self.restrict_living.get_active())
         self.options_dict['NWEBincpriv'] = int(not self.no_private.get_active())
-        self.options_dict['NWEBcontact'] = int(not self.inc_contact.get_active())
-        self.options_dict['NWEBdownload'] = int(not self.inc_download.get_active())
+        self.options_dict['NWEBnoid'] = int(self.noid.get_active())
+        self.options_dict['NWEBcontact'] = int(self.inc_contact.get_active())
+        self.options_dict['NWEBdownload'] = int(self.inc_download.get_active())
         self.options_dict['NWEBimagedir'] = unicode(self.imgdir.get_text())
         self.options_dict['NWEBtitle'] = unicode(self.title.get_text())
         self.options_dict['NWEBintronote'] = unicode(self.intro_note.get_text())
@@ -1388,7 +1409,6 @@ class WebReportOptions(ReportOptions.ReportOptions):
             html_ext = html_ext[1:]
         self.options_dict['NWEBext'] = html_ext
 
-        print self.encoding.get_handle()
         self.options_dict['NWEBencoding'] = self.encoding.get_handle()
 
         self.options_dict['NWEBidurl'] = unicode(self.linkpath.get_text().strip())
