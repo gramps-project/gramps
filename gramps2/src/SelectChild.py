@@ -302,7 +302,8 @@ class SelectChild:
 #-------------------------------------------------------------------------
 class LikelyFilter(GenericFilter.Rule):
 
-    category    = _('General filters')
+    labels   = [ 'Person handle' ]
+    category = _('General filters')
     
     def prepare(self,db):
         person = db.get_person_from_handle(self.list[0])

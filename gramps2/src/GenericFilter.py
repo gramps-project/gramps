@@ -102,6 +102,9 @@ class Rule:
 
     def set_list(self,list):
         assert type(list) == type([]) or list == None, "Argument is not a list"
+        assert len(list) == len(self.labels), \
+               "Number of arguments does not match number of labels.\n"\
+               "list: %s\nlabels: %s" % (list,self.labels)
         self.list = list
 
     def values(self):
@@ -1002,7 +1005,7 @@ class HasEvent(Rule):
     def prepare(self,db):
         self.date = None
         try:
-            if self.list and self.list[1]:
+            if self.list[1]:
                 self.date = DateHandler.parser.parse(self.list[1])
         except: pass
 
@@ -1051,9 +1054,10 @@ class HasFamilyEvent(Rule):
     def prepare(self,db):
         self.date = None
         try:
-            if self.list and self.list[1]:
+            if self.list[1]:
                 self.date = DateHandler.parser.parse(self.list[1])
-        except: pass
+        except:
+            pass
 
     def apply(self,db,person):
         for f_id in person.get_family_handle_list():
@@ -1109,7 +1113,7 @@ class HasRelationship(Rule):
         for f_id in person.get_family_handle_list():
             f = db.get_family_from_handle(f_id)
             cnt = cnt + len(f.get_child_handle_list())
-            if self.list[1]  and int(self.list[1]) == f.get_relationship():
+            if self.list[1] and int(self.list[1]) == f.get_relationship():
                 rel_type = 1
 
         # if number of relations specified
@@ -1151,7 +1155,7 @@ class HasBirth(Rule):
     
     def __init__(self,list):
         Rule.__init__(self,list)
-        if self.list and self.list[0]:
+        if self.list[0]:
             self.date = DateHandler.parser.parse(self.list[0])
         else:
             self.date = None
@@ -1162,17 +1166,17 @@ class HasBirth(Rule):
             return False
         event = db.get_event_from_handle(event_handle)
         ed = event.get_description().upper()
-        if len(self.list) > 2 and self.list[2] \
+        if self.list[2] \
                and ed.find(self.list[2].upper())==-1:
             return False
         if self.date:
             if date_cmp(self.date,event.get_date_object()) == 0:
                 return False
-        if len(self.list)>1 and self.list[1]:
+        if self.list[1]:
             pl_id = event.get_place_handle()
             if pl_id:
                 pl = db.get_place_from_handle(pl_id)
-                pn = pl.get_title().upper
+                pn = pl.get_title().upper()
                 if pn.find(self.list[1].upper()) == -1:
                     return False
             else:
@@ -1194,7 +1198,7 @@ class HasDeath(Rule):
     
     def __init__(self,list):
         Rule.__init__(self,list)
-        if self.list and self.list[0]:
+        if self.list[0]:
             self.date = DateHandler.parser.parse(self.list[0])
         else:
             self.date = None
@@ -1205,13 +1209,13 @@ class HasDeath(Rule):
             return False
         event = db.get_event_from_handle(event_handle)
         ed = event.get_description().upper()
-        if len(self.list)>2 and self.list[2] \
+        if self.list[2] \
                and ed.find(self.list[2].upper())==-1:
             return False
         if self.date:
             if date_cmp(self.date,event.get_date_object()) == 0:
                 return False
-        if len(self.list)>1 and self.list[1]:
+        if self.list[1]:
             pl_id = event.get_place_handle()
             if pl_id:
                 pl = db.get_place_from_handle(pl_id)
@@ -1602,21 +1606,17 @@ class IsWitness(Rule):
         return person.handle in self.map
 
     def build_witness_list(self):
-        event_type = None
-        if self.list and self.list[0]:
-            event_type = self.list[0]
-        if not self.list or event_type:
-            for person_handle in self.db.get_person_handles():
-                p = self.db.get_person_from_handle(person_handle)
-                self.get_witness_of_events( event_type,
-                    p.get_event_list()+[p.get_birth_handle(), p.get_death_handle()])
-        event_type = None
-        if self.list and self.list[1]:
-            event_type = self.list[1]
-        if not self.list or event_type:
-            for family_handle in self.db.get_family_handles():
-                f = self.db.get_family_from_handle(family_handle)
-                self.get_witness_of_events(event_type, f.get_event_list())
+        for person_handle in self.db.get_person_handles():
+            p = self.db.get_person_from_handle(person_handle)
+            self.get_witness_of_events(self.list[0],
+                                       p.get_event_list()+
+                                       [p.get_birth_handle(),
+                                        p.get_death_handle()]
+                                       )
+
+        for family_handle in self.db.get_family_handles():
+            f = self.db.get_family_from_handle(family_handle)
+            self.get_witness_of_events(self.list[1],f.get_event_list())
 
     def get_witness_of_events(self, event_type, event_list):
         if not event_list:
@@ -1681,7 +1681,7 @@ class HasTextMatchingSubstringOf(Rule):
 
     def apply(self,db,person):
         if person.handle in self.person_map:   # Cached by matching Source?
-            return self.person_map[handle]
+            return self.person_map[person.handle]
         if self.match_object(person):        # first match the person itself
             return True
         for event_handle in person.get_event_list()+[person.get_birth_handle(), person.get_death_handle()]:
@@ -1852,7 +1852,7 @@ class HasNoteMatchingSubstringOf(Rule):
     def apply(self,db,person):
         n = person.get_note()
         if n:
-            return n.find(self.list[0]) != -1
+            return n.upper().find(self.list[0].upper()) != -1
         return False
 
 #-------------------------------------------------------------------------
@@ -2286,7 +2286,15 @@ class ParamFilter(GenericFilter):
 
     def apply(self,db,id_list=None):
         for rule in self.flist:
-            rule.set_list(self.param_list)
+            #rule.set_list(self.param_list)
+            #
+            # The above breaks filters with more than one param
+            # Need to change existing params one by one to keep
+            # the correct number of arguments
+            new_list = rule.list[:]
+            for ix in range(len(self.param_list)):
+                new_list[ix] = self.param_list[ix]
+            rule.set_list(new_list)
         for rule in self.flist:
             rule.prepare(db)
         result = GenericFilter.apply(self,db,id_list)
