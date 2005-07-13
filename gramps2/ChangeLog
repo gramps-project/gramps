@@ -1,3 +1,6 @@
+2005-07-13  Alex Roitman  <shura@gramps-project.org>
+	* src/GenericFilter.py: Proper test for place in event-based filters.
+
 2005-07-13  Don Allingham  <don@gramps-project.org>
 	* src/GrampsInMemDB.py: add get_event_cursor
 	* src/GrampsDbBase.py: add get_event_cursor

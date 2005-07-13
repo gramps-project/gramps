@@ -999,7 +999,7 @@ class HasEvent(Rule):
     description = _("Matches people with a personal event of a particular value")
     category    = _('Event filters')
     
-    def prepare(self,list):
+    def prepare(self,db):
         self.date = None
         try:
             if self.list and self.list[1]:
@@ -1048,7 +1048,7 @@ class HasFamilyEvent(Rule):
     description = _("Matches people with a family event of a particular value")
     category    = _('Event filters')
     
-    def prepare(self,list):
+    def prepare(self,db):
         self.date = None
         try:
             if self.list and self.list[1]:
@@ -1071,12 +1071,16 @@ class HasFamilyEvent(Rule):
                 if self.date:
                     if date_cmp(self.date,event.get_date_object()):
                         val = 0
-                pl_id = event.get_place_handle()
-                if pl_id:
-                    pl = db.get_place_from_handle(pl_id)
-                    pn = pl.get_title()
-                    if self.list[2] and pn.find(self.list[2].upper()) == -1:
+                if self.list[2]:
+                    pl_id = event.get_place_handle()
+                    if pl_id:
+                        pl = db.get_place_from_handle(pl_id)
+                        pn = pl.get_title().upper()
+                        if pn.find(self.list[2].upper()) == -1:
+                            val = 0
+                    else:
                         val = 0
+                            
                 if val == 1:
                     return True
         return False
@@ -1158,16 +1162,20 @@ class HasBirth(Rule):
             return False
         event = db.get_event_from_handle(event_handle)
         ed = event.get_description().upper()
-        if len(self.list) > 2 and ed.find(self.list[2].upper())==-1:
+        if len(self.list) > 2 and self.list[2] \
+               and ed.find(self.list[2].upper())==-1:
             return False
         if self.date:
             if date_cmp(self.date,event.get_date_object()) == 0:
                 return False
-        pl_id = event.get_place_handle()
-        if pl_id:
-            pl = db.get_place_from_handle(pl_id)
-            pn = pl.get_title()
-            if len(self.list) > 1 and pn.find(self.list[1].upper()) == -1:
+        if len(self.list)>1 and self.list[1]:
+            pl_id = event.get_place_handle()
+            if pl_id:
+                pl = db.get_place_from_handle(pl_id)
+                pn = pl.get_title().upper
+                if pn.find(self.list[1].upper()) == -1:
+                    return False
+            else:
                 return False
         return True
 
@@ -1197,16 +1205,20 @@ class HasDeath(Rule):
             return False
         event = db.get_event_from_handle(event_handle)
         ed = event.get_description().upper()
-        if self.list[2] and ed.find(self.list[2].upper())==-1:
+        if len(self.list)>2 and self.list[2] \
+               and ed.find(self.list[2].upper())==-1:
             return False
         if self.date:
             if date_cmp(self.date,event.get_date_object()) == 0:
                 return False
-        pl_id = event.get_place_handle()
-        if pl_id:
-            pl = db.get_place_from_handle(pl_id)
-            pn = pl.get_title()
-            if self.list[1] and pn.find(self.list[1].upper()) == -1:
+        if len(self.list)>1 and self.list[1]:
+            pl_id = event.get_place_handle()
+            if pl_id:
+                pl = db.get_place_from_handle(pl_id)
+                pn = pl.get_title().upper()
+                if self.list[1] and pn.find(self.list[1].upper()) == -1:
+                    return False
+            else:
                 return False
         return True
 
