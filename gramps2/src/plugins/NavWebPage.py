@@ -87,7 +87,7 @@ _character_sets = [
 
 _css = [
     'BODY {\nfont-family: "Arial", "Helvetica", sans-serif;',
-    'letter-spacing: 0.05em;\nbackground-color: #fafaff;',
+    'background-color: #fafaff;',
     'color: #003;\n}',
     'P,BLOCKQUOTE {\nfont-size: 14px;\n}',
     'DIV {\nmargin: 2px;\npadding: 2px;\n}',
