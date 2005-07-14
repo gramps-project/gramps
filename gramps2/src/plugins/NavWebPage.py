@@ -218,16 +218,17 @@ class BasePage:
     def display_note_object(self,of,noteobj=None):
         if not noteobj:
             return
-        of.write('<h4>%s</h4>\n' % _('Narrative'))
-        of.write('<hr>\n')
         format = noteobj.get_format()
         text = noteobj.get()
 
-        if format:
-            text = u"<pre>" + u"<br>".join(text.split("\n"))
-        else:
-            text = u"</p><p>".join(text.split("\n"))
-        of.write('<p>%s</p>\n' % text)
+        if text:
+            of.write('<h4>%s</h4>\n' % _('Narrative'))
+            of.write('<hr>\n')
+            if format:
+                text = u"<pre>" + u"<br>".join(text.split("\n"))
+            else:
+                text = u"</p><p>".join(text.split("\n"))
+            of.write('<p>%s</p>\n' % text)
 
     def display_url_list(self,of,urllist=None):
         if not urllist:
@@ -242,6 +243,22 @@ class BasePage:
             uri = url.get_path()
             descr = url.get_description()
             of.write('<tr><td class="field">%d. <a href="%s">%s</a>' % (index,uri,descr))
+            of.write('</td></tr>\n')
+            index = index + 1
+        of.write('</table>\n')
+
+    def display_references(self,of,db,handlelist):
+        if not handlelist:
+            return
+        of.write('<h4>%s</h4>\n' % _('References'))
+        of.write('<hr>\n')
+        of.write('<table class="infolist" cellpadding="0" ')
+        of.write('cellspacing="0" border="0">\n')
+
+        index = 1
+        for handle in handlelist:
+            person = db.get_person_from_handle(handle)
+            of.write('<tr><td class="field">%d. <a href="%s.%s">%s</a>' % (index,handle,self.ext,_nd.display(person)))
             of.write('</td></tr>\n')
             index = index + 1
         of.write('</table>\n')
@@ -329,7 +346,7 @@ class PlaceListPage(BasePage):
         of.write('</tr>\n')
 
         self.sort = Sort.Sort(db)
-        handle_list = list(place_handles)
+        handle_list = place_handles.keys()
         handle_list.sort(self.sort.by_place_title)
         last_name = ""
         last_letter = ''
@@ -373,7 +390,7 @@ class PlaceListPage(BasePage):
 #------------------------------------------------------------------------
 class PlacePage(BasePage):
 
-    def __init__(self, db, title, place_handle, src_list, options, archive, media_list):
+    def __init__(self, db, title, place_handle, src_list, place_list, options, archive, media_list):
         place = db.get_place_from_handle( place_handle)
         BasePage.__init__(self, title, options, archive, media_list)
         of = self.create_file(place.get_handle())
@@ -419,7 +436,7 @@ class PlacePage(BasePage):
 
         self.display_note_object(of, place.get_note_object())
         self.display_url_list(of, place.get_url_list())
-
+        self.display_references(of,db,place_list[place.handle])
         self.display_footer(of)
         self.close_file(of)
 
@@ -641,8 +658,12 @@ class SourcesPage(BasePage):
 
         handle_list = list(handle_set)
 
+        msg = _("This page contains an index of all the sources in the "
+                "database, sorted by their title. Clicking on a sources's "
+                "title will take you to that sources's page.")
+
         of.write('<h3>%s</h3>\n<p>' % _('Sources'))
-        of.write(_('All sources cited in the project.'))
+        of.write(msg)
         of.write('</p>\n<blockquote>\n<table class="infolist">\n')
 
         index = 1
@@ -650,12 +671,53 @@ class SourcesPage(BasePage):
             source = db.get_source_from_handle(handle)
             of.write('<tr><td class="category">%d.</td>\n' % index)
             of.write('<td class="data">')
-            of.write(source.get_title())
-            of.write('</td></tr>\n')
+            of.write('<a href="%s.%s">' % (handle,self.ext))
+            of.write('%s&nbsp;<span class="grampsid">[%s]</span>' % (source.get_title(),source.gramps_id))
+            of.write('</a></td></tr>\n')
             index += 1
             
         of.write('</table>\n<blockquote>\n')
 
+        self.display_footer(of)
+        self.close_file(of)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class SourcePage(BasePage):
+
+    def __init__(self, db, title, handle, src_list, options, archive, media_list):
+        source = db.get_source_from_handle( handle)
+        BasePage.__init__(self, title, options, archive, media_list)
+        of = self.create_file(source.get_handle())
+        source_name = source.get_title()
+        self.display_header(of,source_name,db.get_researcher().get_name())
+
+        self.display_first_image_as_thumbnail(of, db, source.get_media_list())
+
+        of.write('<div class="summaryarea">\n')
+        of.write('<h3>%s</h3>\n' % source_name)
+        of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
+        of.write('border="0">\n')
+
+        for (label,val) in [(_('GRAMPS ID'),source.gramps_id),
+                            (_('Author'),source.author),
+                            (_('Publication information'),source.pubinfo),
+                            (_('Abbreviation'),source.abbrev)]:
+            if val:
+                of.write('<tr><td class="field">%s</td>\n' % label)
+                of.write('<td class="data">%s</td>\n' % val)
+                of.write('</tr>\n')
+
+        of.write('</table>\n')
+        of.write('</div>\n')
+
+        # TODO: Add more information
+
+        self.display_note_object(of, source.get_note_object())
+        self.display_references(of,db,src_list[source.handle])
         self.display_footer(of)
         self.close_file(of)
 
@@ -672,13 +734,17 @@ class GalleryPage(BasePage):
         of = self.create_file("gallery")
         self.display_header(of, _('Gallery'), db.get_researcher().get_name())
 
-        handle_list = list(handle_set)
-
         of.write('<h3>%s</h3>\n<p>' % _('Gallery'))
-        of.write(_('All media images cited in the project.'))
+
+        of.write(_("This page contains an index of all the media objects in the "
+                   "database, sorted by their title. Clicking on the title will "
+                   "take you to that media object's page"))
         of.write('</p>\n<blockquote>\n<table class="infolist">\n')
 
+        self.db = db
+
         index = 1
+        media_list.sort(self.by_media_title)
         for handle in media_list:
             media = db.get_object_from_handle(handle)
             of.write('<tr><td class="category">%d.</td>\n' % index)
@@ -693,6 +759,15 @@ class GalleryPage(BasePage):
 
         self.display_footer(of)
         self.close_file(of)
+
+    def by_media_title(self,a_id,b_id):
+        """Sort routine for comparing two events by their dates. """
+        if not (a_id and b_id):
+            return False
+        a = self.db.get_object_from_handle(a_id)
+        b = self.db.get_object_from_handle(b_id)
+        return cmp(a.desc,b.desc)
+
 
 #------------------------------------------------------------------------
 #
@@ -1086,12 +1161,26 @@ class IndividualPage(BasePage):
                 of.write('</blockquote>\n')
 
     def format_event(self,event):
+        gid_list = []
         for sref in event.get_source_references():
-            self.src_list.add(sref.get_base_handle())
+            handle = sref.get_base_handle()
+            gid_list.append(handle)
+
+            if self.src_list.has_key(handle):
+                if self.person.handle not in self.src_list[handle]:
+                    self.src_list[handle].append(self.person.handle)
+            else:
+                self.src_list[handle] = [self.person.handle]
+            
         descr = event.get_description()
         place_handle = event.get_place_handle()
         if place_handle:
-            self.place_list.add(place_handle)
+            if self.place_list.has_key(place_handle):
+                if self.person.handle not in self.place_list[place_handle]:
+                    self.place_list[place_handle].append(self.person.handle)
+            else:
+                self.place_list[place_handle] = [self.person.handle]
+                
         place = '<a href="%s.%s">%s</a>' % (place_handle,self.ext,ReportUtils.place_name(self.db,place_handle))
 
         date = _dd.display(event.get_date_object())
@@ -1111,6 +1200,12 @@ class IndividualPage(BasePage):
             text = place
         else:
             text = '\n'
+        if len(gid_list) > 0:
+            text = text + " <sup>"
+            for handle in gid_list:
+                src = self.db.get_source_from_handle(handle)
+                text = text + ' <a href="%s.%s">[%s]' % (handle,self.ext,src.gramps_id)
+            text = text + "</sup>"
         return text
             
 #------------------------------------------------------------------------
@@ -1257,8 +1352,8 @@ class WebReport(Report.Report):
         if self.use_intro:
             IntroductionPage(self.database, self.title, self.options_class, archive, photo_list)
         
-        place_list = sets.Set()
-        source_list = sets.Set()
+        place_list = {}
+        source_list = {}
 
         for person_handle in ind_list:
             person = self.database.get_person_from_handle(person_handle)
@@ -1284,14 +1379,18 @@ class WebReport(Report.Report):
         PlaceListPage(self.database, self.title, place_list,
                       source_list,self.options_class, archive, photo_list)
         
-        for place in place_list:
-            PlacePage(self.database, self.title, place, source_list,
+        for place in place_list.keys():
+            PlacePage(self.database, self.title, place, source_list, place_list,
                       self.options_class, archive, photo_list)
             
-        SourcesPage(self.database,self.title, source_list, self.options_class,
+        SourcesPage(self.database,self.title, source_list.keys(), self.options_class,
                     archive, photo_list)
 
-        GalleryPage(self.database,self.title, source_list, self.options_class,
+        for key in list(source_list):
+            SourcePage(self.database,self.title, key, source_list, self.options_class,
+                        archive, photo_list)
+
+        GalleryPage(self.database, self.title, source_list, self.options_class,
                     archive, photo_list)
 
         for photo_handle in photo_list:
