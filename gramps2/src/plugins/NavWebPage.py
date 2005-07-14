@@ -231,6 +231,23 @@ class BasePage:
             text = u"</p><p>".join(text.split("\n"))
         of.write('<p>%s</p>\n' % text)
 
+    def display_url_list(self,of,urllist=None):
+        if not urllist:
+            return
+        of.write('<h4>%s</h4>\n' % _('Weblinks'))
+        of.write('<hr>\n')
+        of.write('<table class="infolist" cellpadding="0" ')
+        of.write('cellspacing="0" border="0">\n')
+
+        index = 1
+        for url in urllist:
+            uri = url.get_path()
+            descr = url.get_description()
+            of.write('<tr><td class="field">%d. <a href="%s">%s</a>' % (index,uri,descr))
+            of.write('</td></tr>\n')
+            index = index + 1
+        of.write('</table>\n')
+
 #------------------------------------------------------------------------
 #
 # 
@@ -403,6 +420,7 @@ class PlacePage(BasePage):
         # TODO: Add more information
 
         self.display_note_object(of, place.get_note_object())
+        self.display_url_list(of, place.get_url_list())
 
         self.display_footer(of)
         self.close_file(of)
@@ -701,6 +719,7 @@ class IndividualPage(BasePage):
         self.display_ind_events(of)
         self.display_ind_relationships(of)
         self.display_note_object(of, self.person.get_note_object())
+        self.display_url_list(of, self.person.get_url_list())
         self.display_ind_sources(of)
         self.display_ind_pedigree(of)
         self.display_footer(of)
