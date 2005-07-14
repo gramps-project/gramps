@@ -618,6 +618,9 @@ class ContactPage(BasePage):
         of.write('<h3>%s</h3>\n' % _('Contact'))
 
         note_id = options.handler.options_dict['NWEBcontact']
+
+        print "NOTEID",note_id
+        
         obj = db.get_object_from_handle(note_id)
         mime_type = obj.get_mime_type()
 
