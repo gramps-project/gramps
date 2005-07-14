@@ -208,7 +208,7 @@ class BasePage:
         try:
             newpath = self.copy_media(photo)
             of.write('<div class="snapshot">\n')
-            of.write('<a href="%s">' % newpath)
+            of.write('<a href="%s.%s">' % (photo_handle,self.ext))
             of.write('<img class="thumbnail"  border="0" src="%s" ' % newpath)
             of.write('height="100"></a>')
             of.write('</div>\n')
@@ -473,19 +473,7 @@ class MediaPage(BasePage):
         of.write('</tr>\n')
         of.write('</table>\n')
 
-        noteobj = photo.get_note_object()
-        if noteobj:
-            of.write('<h4>%s</h4>\n' % _('Narrative'))
-            of.write('<hr>\n')
-            format = noteobj.get_format()
-            text = noteobj.get()
-
-            if format:
-                text = u"<pre>" + u"<br>".join(text.split("\n"))
-            else:
-                text = u"</p><p>".join(text.split("\n"))
-                of.write('<p>%s</p>\n' % text)
-        of.write('</div>\n')
+        self.display_note_object(of, photo.get_note_object())
 
         self.display_footer(of)
         self.close_file(of)
