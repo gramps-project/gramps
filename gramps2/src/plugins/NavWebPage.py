@@ -200,6 +200,37 @@ class BasePage:
         of.write('  </div>\n')
         of.write('  <div class="content">\n')
 
+    def display_first_image_as_thumbnail( self, of, db, photolist=None):
+        if not photolist:
+            return
+            
+        photo_handle = photolist[0].get_reference_handle()
+        photo = db.get_object_from_handle(photo_handle)
+        
+        try:
+            newpath = self.copy_media(photo)
+            of.write('<div class="snapshot">\n')
+            of.write('<a href="%s">' % newpath)
+            of.write('<img class="thumbnail"  border="0" src="%s" ' % newpath)
+            of.write('height="100"></a>')
+            of.write('</div>\n')
+        except (IOError,OSError),msg:
+            ErrorDialog(str(msg))
+
+    def display_note_object(self,of,noteobj=None):
+        if not noteobj:
+            return
+        of.write('<h4>%s</h4>\n' % _('Narrative'))
+        of.write('<hr>\n')
+        format = noteobj.get_format()
+        text = noteobj.get()
+
+        if format:
+            text = u"<pre>" + u"<br>".join(text.split("\n"))
+        else:
+            text = u"</p><p>".join(text.split("\n"))
+        of.write('<p>%s</p>\n' % text)
+
 #------------------------------------------------------------------------
 #
 # 
@@ -335,6 +366,8 @@ class PlacePage(BasePage):
         self.display_header(of,place_name,
                             db.get_researcher().get_name())
 
+        self.display_first_image_as_thumbnail(of, db, place.get_media_list())
+
         of.write('<div class="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % place_name)
         of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
@@ -367,35 +400,9 @@ class PlacePage(BasePage):
         of.write('</table>\n')
         of.write('</div>\n')
 
-        photolist = place.get_media_list()
-        if photolist:
-            photo_handle = photolist[0].get_reference_handle()
-            photo = db.get_object_from_handle(photo_handle)
-            
-            try:
-                newpath = self.copy_media(photo)
-                of.write('<div class="snapshot">\n')
-                of.write('<a href="%s">' % newpath)
-                of.write('<img class="thumbnail"  border="0" src="%s" ' % newpath)
-                of.write('height="100"></a>')
-                of.write('</div>\n')
-            except (IOError,OSError),msg:
-                ErrorDialog(str(msg))
-
         # TODO: Add more information
 
-        noteobj = place.get_note_object()
-        if noteobj:
-            of.write('<h4>%s</h4>\n' % _('Narrative'))
-            of.write('<hr>\n')
-            format = noteobj.get_format()
-            text = noteobj.get()
-
-            if format:
-                text = u"<pre>" + u"<br>".join(text.split("\n"))
-            else:
-                text = u"</p><p>".join(text.split("\n"))
-            of.write('<p>%s</p>\n' % text)
+        self.display_note_object(of, place.get_note_object())
 
         self.display_footer(of)
         self.close_file(of)
@@ -693,7 +700,7 @@ class IndividualPage(BasePage):
         self.display_ind_general(of)
         self.display_ind_events(of)
         self.display_ind_relationships(of)
-        self.display_ind_narrative(of)
+        self.display_note_object(of, self.person.get_note_object())
         self.display_ind_sources(of)
         self.display_ind_pedigree(of)
         self.display_footer(of)
@@ -775,20 +782,7 @@ class IndividualPage(BasePage):
         of.write('</td>\n</tr>\n</table>\n')
 
     def display_ind_general(self,of):
-        photolist = self.person.get_media_list()
-        if photolist:
-            photo_handle = photolist[0].get_reference_handle()
-            photo = self.db.get_object_from_handle(photo_handle)
-            
-            try:
-                newpath = self.copy_media(photo)
-                of.write('<div class="snapshot">\n')
-                of.write('<a href="%s">' % newpath)
-                of.write('<img class="thumbnail"  border="0" src="%s" ' % newpath)
-                of.write('height="100"></a>')
-                of.write('</div>\n')
-            except (IOError,OSError),msg:
-                ErrorDialog(str(msg))
+        self.display_first_image_as_thumbnail(of, self.db, self.person.get_media_list())
 
         of.write('<div class="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % self.sort_name)
@@ -843,21 +837,6 @@ class IndividualPage(BasePage):
             of.write('</tr>\n')
         of.write('</table>\n')
 
-    def display_ind_narrative(self,of):
-        noteobj = self.person.get_note_object()
-        if noteobj:
-            of.write('<h4>%s</h4>\n' % _('Narrative'))
-            of.write('<hr>\n')
-            format = noteobj.get_format()
-            text = noteobj.get()
-
-            if format:
-                text = u"<pre>" + u"<br>".join(text.split("\n"))
-            else:
-                text = u"</p><p>".join(text.split("\n"))
-            of.write('<p>%s</p>\n' % text)
-
-        
     def display_parent(self,of,handle,title):
         use_link = handle in self.ind_list
         person = self.db.get_person_from_handle(handle)
