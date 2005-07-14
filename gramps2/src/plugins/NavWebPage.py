@@ -97,8 +97,9 @@ _character_sets = [
     ['koi8_r',      'koi8_r',     ],
     ]
 
+
 class BasePage:
-    def __init__(self, title, options, archive):
+    def __init__(self, title, options, archive, photo_list):
         self.title_str = title
         self.inc_download = options.handler.options_dict['NWEBdownload']
         self.html_dir = options.handler.options_dict['NWEBod']
@@ -111,18 +112,14 @@ class BasePage:
         self.noid = options.handler.options_dict['NWEBnoid']
         self.use_intro = options.handler.options_dict['NWEBintronote'] != u""
         self.use_contact = options.handler.options_dict['NWEBcontact'] != u""
+        self.photo_list = photo_list
         
     def copy_media(self,photo):
+        if photo.get_handle() != self.photo_list:
+            self.photo_list.append(photo.get_handle())
         newpath = photo.gramps_id + os.path.splitext(photo.get_path())[1]
         if self.image_dir:
             newpath = os.path.join(self.image_dir,newpath)
-        if self.archive:
-            imagefile = open(photo.get_path(),"r")
-            self.archive.add_file(newpath,time.time(),imagefile)
-            imagefile.close()
-        else:
-            shutil.copyfile(photo.get_path(),
-                            os.path.join(self.html_dir,newpath))
         return newpath
         
     def create_file(self,name):
@@ -192,6 +189,7 @@ class BasePage:
         of.write('    <a href="individuals.%s">%s</a> &nbsp;\n' % (self.ext,_('Individuals')))
         of.write('    <a href="sources.%s">%s</a> &nbsp;\n' % (self.ext,_('Sources')))
         of.write('    <a href="places.%s">%s</a> &nbsp;\n' % (self.ext,_('Places')))
+        of.write('    <a href="gallery.%s">%s</a> &nbsp;\n' % (self.ext,_('Gallery')))
         if self.inc_download:
             of.write('    <a href="download.%s">%s</a> &nbsp;\n' % (self.ext,_('Download')))
         if self.use_contact:
@@ -255,8 +253,8 @@ class BasePage:
 #------------------------------------------------------------------------
 class IndividualListPage(BasePage):
 
-    def __init__(self, db, title, person_handle_list, options, archive):
-        BasePage.__init__(self, title, options, archive)
+    def __init__(self, db, title, person_handle_list, options, archive, media_list):
+        BasePage.__init__(self, title, options, archive, media_list)
 
         of = self.create_file("individuals")
         self.display_header(of,_('Individuals'),
@@ -293,7 +291,7 @@ class IndividualListPage(BasePage):
                 of.write(' <a href="%s.%s">' % (person.handle,self.ext))
                 of.write(person.get_primary_name().get_first_name())
                 if not self.noid:
-                    of.write(u"&nbsp;[%s]" % person.gramps_id)
+                    of.write(u'&nbsp;<span class="grampsid">[%s]</span>' % person.gramps_id)
                 of.write('</a></td></tr>\n')
                 first = False
             
@@ -308,8 +306,8 @@ class IndividualListPage(BasePage):
 #------------------------------------------------------------------------
 class PlaceListPage(BasePage):
 
-    def __init__(self, db, title, place_handles, src_list, options, archive):
-        BasePage.__init__(self, title, options, archive)
+    def __init__(self, db, title, place_handles, src_list, options, archive, media_list):
+        BasePage.__init__(self, title, options, archive, media_list)
         of = self.create_file("places")
         self.display_header(of,_('Places'),
                             db.get_researcher().get_name())
@@ -351,7 +349,7 @@ class PlaceListPage(BasePage):
                 of.write('<a href="%s.%s">' % (place.handle,self.ext))
                 of.write(n)
                 if not self.noid:
-                    of.write('&nbsp;[%s]' % place.gramps_id)
+                    of.write('&nbsp;<span class="grampsid">[%s]</span>' % place.gramps_id)
                 of.write('</a></td></tr>')
                 last_surname = n
             elif n != last_surname:
@@ -360,7 +358,7 @@ class PlaceListPage(BasePage):
                 of.write('<a href="%s.%s">' % (place.handle,self.ext))
                 of.write(n)
                 if not self.noid:
-                    of.write('&nbsp;[%s]' % place.gramps_id)
+                    of.write('&nbsp;<span class="grampsid">[%s]</span>' % place.gramps_id)
                 of.write('</a></td></tr>')
                 last_surname = n
             
@@ -375,9 +373,9 @@ class PlaceListPage(BasePage):
 #------------------------------------------------------------------------
 class PlacePage(BasePage):
 
-    def __init__(self, db, title, place_handle, src_list, options, archive):
+    def __init__(self, db, title, place_handle, src_list, options, archive, media_list):
         place = db.get_place_from_handle( place_handle)
-        BasePage.__init__(self,title,options,archive)
+        BasePage.__init__(self, title, options, archive, media_list)
         of = self.create_file(place.get_handle())
         place_name = ReportUtils.place_name(db,place_handle)
         self.display_header(of,place_name,
@@ -430,10 +428,77 @@ class PlacePage(BasePage):
 # 
 #
 #------------------------------------------------------------------------
+class MediaPage(BasePage):
+
+    def __init__(self, db, title, handle, src_list, options, archive, media_list):
+        photo = db.get_object_from_handle(handle)
+        BasePage.__init__(self, title, options, archive, media_list)
+        of = self.create_file(handle)
+
+        newpath = photo.gramps_id + os.path.splitext(photo.get_path())[1]
+        if self.image_dir:
+            newpath = os.path.join(self.image_dir,newpath)
+        if self.archive:
+            imagefile = open(photo.get_path(),"r")
+            self.archive.add_file(newpath,time.time(),imagefile)
+            imagefile.close()
+        else:
+            shutil.copyfile(photo.get_path(),
+                            os.path.join(self.html_dir,newpath))
+
+        title = photo.get_description()
+        self.display_header(of, title, db.get_researcher().get_name())
+        
+        of.write('<div class="summaryarea">\n')
+        of.write('<h3>%s</h3>\n' % title)
+
+        mime_type = photo.get_mime_type()
+        if mime_type and mime_type.startswith("image"):
+            try:
+                of.write('<div align="center">\n')
+                of.write('<img border="0" ')
+                of.write('src="%s" />' % newpath)
+                of.write('</div>\n')
+            except (IOError,OSError),msg:
+                ErrorDialog(str(msg))
+
+        of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
+        of.write('border="0">\n')
+
+        of.write('<tr><td class="field">%s</td>\n' % _('GRAMPS ID'))
+        of.write('<td class="data">%s</td>\n' % photo.gramps_id)
+        of.write('</tr>\n')
+        of.write('<tr><td class="field">%s</td>\n' % _('MIME type'))
+        of.write('<td class="data">%s</td>\n' % photo.mime)
+        of.write('</tr>\n')
+        of.write('</table>\n')
+
+        noteobj = photo.get_note_object()
+        if noteobj:
+            of.write('<h4>%s</h4>\n' % _('Narrative'))
+            of.write('<hr>\n')
+            format = noteobj.get_format()
+            text = noteobj.get()
+
+            if format:
+                text = u"<pre>" + u"<br>".join(text.split("\n"))
+            else:
+                text = u"</p><p>".join(text.split("\n"))
+                of.write('<p>%s</p>\n' % text)
+        of.write('</div>\n')
+
+        self.display_footer(of)
+        self.close_file(of)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 class SurnameListPage(BasePage):
 
-    def __init__(self, db, title, person_handle_list, options, archive):
-        BasePage.__init__(self, title, options, archive)
+    def __init__(self, db, title, person_handle_list, options, archive, media_list):
+        BasePage.__init__(self, title, options, archive, media_list)
         of = self.create_file("surnames")
         self.display_header(of,_('Surnames'),
                             db.get_researcher().get_name())
@@ -467,13 +532,13 @@ class SurnameListPage(BasePage):
                 of.write('<tr><td class="category">%s</td>' % last_letter)
                 of.write('<td class="data">')
                 of.write('<a href="individuals.%s#%s">' % (self.ext,self.lnkfmt(surname)))
-                of.write(surname)
+                of.write("%s (%d)" % (surname,len(data_list)))
                 of.write('</a></td></tr>')
             elif surname != last_surname:
                 of.write('<tr><td class="category">&nbsp;</td>')
                 of.write('<td class="data">')
                 of.write('<a href="individuals.%s#%s">' % (self.ext,self.lnkfmt(surname)))
-                of.write(surname)
+                of.write("%s (%d)" % (surname,len(data_list)))
                 of.write('</a></td></tr>')
                 last_surname = surname
             
@@ -489,8 +554,8 @@ class SurnameListPage(BasePage):
 #------------------------------------------------------------------------
 class IntroductionPage(BasePage):
 
-    def __init__(self, db, title, options, archive):
-        BasePage.__init__(self, title, options, archive)
+    def __init__(self, db, title, options, archive, media_list):
+        BasePage.__init__(self, title, options, archive, media_list)
         note_id = options.handler.options_dict['NWEBintronote']
 
         of = self.create_file("introduction")
@@ -534,8 +599,8 @@ class IntroductionPage(BasePage):
 #------------------------------------------------------------------------
 class HomePage(BasePage):
 
-    def __init__(self, db, title, options, archive):
-        BasePage.__init__(self, title, options, archive)
+    def __init__(self, db, title, options, archive, media_list):
+        BasePage.__init__(self, title, options, archive, media_list)
         note_id = options.handler.options_dict['NWEBhomenote']
 
         of = self.create_file("index")
@@ -579,8 +644,8 @@ class HomePage(BasePage):
 #------------------------------------------------------------------------
 class SourcesPage(BasePage):
 
-    def __init__(self, db, title, handle_set, options, archive):
-        BasePage.__init__(self, title, options, archive)
+    def __init__(self, db, title, handle_set, options, archive, media_list):
+        BasePage.__init__(self, title, options, archive, media_list)
 
         of = self.create_file("sources")
         self.display_header(of,_('Sources'),
@@ -611,10 +676,45 @@ class SourcesPage(BasePage):
 # 
 #
 #------------------------------------------------------------------------
+class GalleryPage(BasePage):
+
+    def __init__(self, db, title, handle_set, options, archive, media_list):
+        BasePage.__init__(self, title, options, archive, media_list)
+
+        of = self.create_file("gallery")
+        self.display_header(of, _('Gallery'), db.get_researcher().get_name())
+
+        handle_list = list(handle_set)
+
+        of.write('<h3>%s</h3>\n<p>' % _('Gallery'))
+        of.write(_('All media images cited in the project.'))
+        of.write('</p>\n<blockquote>\n<table class="infolist">\n')
+
+        index = 1
+        for handle in media_list:
+            media = db.get_object_from_handle(handle)
+            of.write('<tr><td class="category">%d.</td>\n' % index)
+            of.write('<td class="data">')
+            of.write('<a href="%s.%s">' % (handle,self.ext))
+            of.write(media.get_description())
+            of.write('</a>\n')
+            of.write('</td></tr>\n')
+            index += 1
+            
+        of.write('</table>\n<blockquote>\n')
+
+        self.display_footer(of)
+        self.close_file(of)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 class DownloadPage(BasePage):
 
-    def __init__(self, db, title, options, archive):
-        BasePage.__init__(self, title, options, archive)
+    def __init__(self, db, title, options, archive, media_list):
+        BasePage.__init__(self, title, options, archive, media_list)
 
         of = self.create_file("download")
         self.display_header(of,_('Download'),
@@ -632,8 +732,8 @@ class DownloadPage(BasePage):
 #------------------------------------------------------------------------
 class ContactPage(BasePage):
 
-    def __init__(self, db, title, options, archive):
-        BasePage.__init__(self, title, options, archive)
+    def __init__(self, db, title, options, archive, media_list):
+        BasePage.__init__(self, title, options, archive, media_list)
 
         of = self.create_file("contact")
         self.display_header(of,_('Contact'),
@@ -644,8 +744,6 @@ class ContactPage(BasePage):
 
         note_id = options.handler.options_dict['NWEBcontact']
 
-        print "NOTEID",note_id
-        
         obj = db.get_object_from_handle(note_id)
         mime_type = obj.get_mime_type()
 
@@ -656,7 +754,7 @@ class ContactPage(BasePage):
                 of.write('<table cellspacing="0" cellpadding="0" border="0"><tr>')
                 of.write('<td height="205">')
                 of.write('<img border="0" height="200" ')
-                of.write('src="%s" />' % newpath)
+                of.write('src="%s.%s" />' % (note_id,self.ext))
                 of.write('</td></tr></table>\n')
                 of.write('</div>\n')
             except (IOError,OSError),msg:
@@ -702,8 +800,8 @@ class IndividualPage(BasePage):
         }
     
     def __init__(self, db, person, title, ind_list,
-                 place_list, src_list, options, archive):
-        BasePage.__init__(self, title, options, archive)
+                 place_list, src_list, options, archive, media_list):
+        BasePage.__init__(self, title, options, archive, media_list)
         self.person = person
         self.db = db
         self.ind_list = ind_list
@@ -866,7 +964,7 @@ class IndividualPage(BasePage):
             of.write('<a href="%s.%s">' % (person.handle,self.ext))           
         of.write(_nd.display(person))
         if not self.noid:
-            of.write('&nbsp;[%s]' % (val))
+            of.write('&nbsp;<span class="grampsid">[%s]</span>' % (val))
         if use_link:
             of.write('</a>')
         of.write('</td>\n')
@@ -920,7 +1018,7 @@ class IndividualPage(BasePage):
                             of.write('<a href="%s.%s">' % (child.handle,self.ext))
                         of.write(_nd.display(child))
                         if not self.noid:
-                            of.write('&nbsp;[%s]' % gid)
+                            of.write('&nbsp;<span class="grampsid">[%s]</span>' % gid)
                         if use_link:
                             of.write('</a>\n')
                         of.write(u"<br>\n")
@@ -959,7 +1057,7 @@ class IndividualPage(BasePage):
                 of.write('<a href="%s.%s">' % (spouse.handle,self.ext))
             of.write(name)
             if not self.noid:
-                of.write('&nbsp;[%s]' % (gid))
+                of.write('&nbsp;<span class="grampsid">[%s]</span>' % (gid))
             if use_link:
                 of.write('</a>')
         
@@ -1095,7 +1193,7 @@ class WebReport(Report.Report):
         self.separate_alpha = options_class.handler.options_dict['NWEBsplita']
         self.depth = options_class.handler.options_dict['NWEBtreed']
         self.sort = Sort.Sort(self.database)
-        self.inc_contact = options_class.handler.options_dict['NWEBcontact']
+        self.inc_contact = options_class.handler.options_dict['NWEBcontact'] != u""
         self.inc_download = options_class.handler.options_dict['NWEBdownload']
         self.use_archive = options_class.handler.options_dict['NWEBarchive']
         self.use_intro = options_class.handler.options_dict['NWEBintronote'] != u""
@@ -1160,14 +1258,16 @@ class WebReport(Report.Report):
 
         self.write_css(archive,self.target_path,self.css)
 
-        HomePage(self.database, self.title, self.options_class, archive)
+        photo_list = []
+        
+        HomePage(self.database, self.title, self.options_class, archive, photo_list)
         if self.inc_contact:
-            ContactPage(self.database, self.title, self.options_class, archive)
+            ContactPage(self.database, self.title, self.options_class, archive, photo_list)
         if self.inc_download:
-            DownloadPage(self.database, self.title, self.options_class, archive)
+            DownloadPage(self.database, self.title, self.options_class, archive, photo_list)
         
         if self.use_intro:
-            IntroductionPage(self.database, self.title, self.options_class, archive)
+            IntroductionPage(self.database, self.title, self.options_class, archive, photo_list)
         
         place_list = sets.Set()
         source_list = sets.Set()
@@ -1179,29 +1279,37 @@ class WebReport(Report.Report):
                 
             idoc = IndividualPage(self.database, person, self.title,
                                   ind_list, place_list, source_list,
-                                  self.options_class, archive)
+                                  self.options_class, archive, photo_list)
             self.progress_bar_step()
             while gtk.events_pending():
                 gtk.main_iteration()
             
         if len(ind_list) > 1:
             IndividualListPage(self.database, self.title, ind_list,
-                               self.options_class, archive)
+                               self.options_class, archive, photo_list)
             SurnameListPage(self.database, self.title, ind_list,
-                            self.options_class, archive)
+                            self.options_class, archive, photo_list)
             self.progress_bar_step()
             while gtk.events_pending():
                 gtk.main_iteration()
 
         PlaceListPage(self.database, self.title, place_list,
-                      source_list,self.options_class, archive)
+                      source_list,self.options_class, archive, photo_list)
         
         for place in place_list:
             PlacePage(self.database, self.title, place, source_list,
-                      self.options_class, archive)
+                      self.options_class, archive, photo_list)
             
         SourcesPage(self.database,self.title, source_list, self.options_class,
-                    archive)
+                    archive, photo_list)
+
+        GalleryPage(self.database,self.title, source_list, self.options_class,
+                    archive, photo_list)
+
+        for photo_handle in photo_list:
+            MediaPage(self.database, self.title, photo_handle, source_list,
+                      self.options_class, archive, photo_list)
+        
         if archive:
             archive.close()
         self.progress_bar_done()
@@ -1406,38 +1514,9 @@ class WebReportOptions(ReportOptions.ReportOptions):
         cursor.close()
         media_list.sort()
 
-        home_node = None
-        home_note = self.options_dict['NWEBhomenote']
-
-        store = gtk.ListStore(str,str)
-        for data in media_list:
-            if data[1] == home_note:
-                home_node = store.append(row=data)
-            else:
-                store.append(row=data)
-        self.home_note = GrampsNoteComboBox(store,home_node)
-
-        intro_node = None
-        intro_note = self.options_dict['NWEBintronote']
-
-        store = gtk.ListStore(str,str)
-        for data in media_list:
-            if data[1] == intro_note:
-                intro_node = store.append(row=data)
-            else:
-                store.append(row=data)
-        self.intro_note = GrampsNoteComboBox(store,intro_node)
-
-        contact_node = None
-        self.inc_contact = self.options_dict['NWEBcontact']
-
-        store = gtk.ListStore(str,str)
-        for data in media_list:
-            if data[1] == self.inc_contact:
-                contact_node = store.append(row=data)
-            else:
-                store.append(row=data)
-        self.contact = GrampsNoteComboBox(store,contact_node)
+        self.home_note = build_combo_box(media_list,self.options_dict['NWEBhomenote'])
+        self.intro_note = build_combo_box(media_list,self.options_dict['NWEBintronote'])
+        self.contact = build_combo_box(media_list,self.options_dict['NWEBcontact'])
 
         dialog.add_frame_option(title,_('Home Media/Note ID'),
                                 self.home_note)
@@ -1731,6 +1810,21 @@ class GrampsNoteComboBox(gtk.ComboBox):
         if active:
             handle = self.local_store.get_value(active,1)
         return handle
+
+def build_combo_box(media_list,select_value):
+    store = gtk.ListStore(str,str)
+    node = None
+    
+    for data in media_list:
+        if data[1] == select_value:
+            node = store.append(row=data)
+        else:
+            store.append(row=data)
+    widget = GrampsNoteComboBox(store,node)
+    if len(media_list) == 0:
+        widget.set_sensitive(False)
+    return widget
+    
 
 #-------------------------------------------------------------------------
 #
