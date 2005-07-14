@@ -21,7 +21,12 @@ EXTRA_DIST = \
 	gramps.applications \
 	gramps.keys \
 	gramps.mime \
-	gramps.schemas
+	gramps.schemas \
+	main1.css\
+	main2.css\
+	main3.css\
+	main4.css\
+	main5.css
 
 # Conditionally enable/disable gconf schemas or mime types,
 # or disable both in a packager mode

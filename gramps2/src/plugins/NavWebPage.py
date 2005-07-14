@@ -32,7 +32,9 @@ import time
 import locale
 import shutil
 import codecs
+import sets
 from gettext import gettext as _
+from cStringIO import StringIO
 
 #------------------------------------------------------------------------
 #
@@ -46,7 +48,6 @@ import gtk
 # GRAMPS module
 #
 #------------------------------------------------------------------------
-import os
 import RelLib
 import const
 import GrampsKeys
@@ -55,16 +56,28 @@ import Sort
 import Report
 import Errors
 import Utils
-from QuestionDialog import ErrorDialog
 import ReportOptions
 import BaseDoc
+import ReportUtils
+from QuestionDialog import ErrorDialog
 from NameDisplay import displayer as _nd
 from DateHandler import displayer as _dd
-import ReportUtils
-import sets
 
+#------------------------------------------------------------------------
+#
+# constants
+#
+#------------------------------------------------------------------------
 _NARRATIVE = "narrative.css"
 _NAME_COL  = 3
+
+_css_files = [
+    [_("Style 1"), 'main1.css'],
+    [_("Style 2"), 'main2.css'],
+    [_("Style 3"), 'main3.css'],
+    [_("Style 4"), 'main4.css'],
+    [_("Style 5"), 'main5.css'],
+    ]
 
 _character_sets = [
     [_('Unicode (recommended)'), 'utf-8'],
@@ -84,74 +97,9 @@ _character_sets = [
     ['koi8_r',      'koi8_r',     ],
     ]
 
-
-_css = [
-    'BODY {\nfont-family: "Arial", "Helvetica", sans-serif;',
-    'background-color: #fafaff;',
-    'color: #003;\n}',
-    'P,BLOCKQUOTE {\nfont-size: 14px;\n}',
-    'DIV {\nmargin: 2px;\npadding: 2px;\n}',
-    'TD {\nvertical-align: top;\n}',
-    'H1 {',
-    'font-family: "Verdana", "Bistream Vera Sans", "Arial", "Helvetica", sans-serif;',
-    'font-weight: bolder;\nfont-size: 160%;\nmargin: 2px;\n}\n',
-    'H2 {',
-    'font-family: "Verdana", "Bistream Vera Sans", "Arial", "Helvetica", sans-serif;',
-    'font-weight: bolder;\nfont-style: italic;\nfont-size: 150%;\n}',
-    'H3 {\nfont-weight: bold;\nmargin: 0;\npadding-top: 10px;',
-    'padding-bottom: 10px;\ncolor: #336;\n}',
-    'H4 {\nmargin-top: 1em;\nmargin-bottom: 0.3em;',
-    'padding-left: 4px;\nbackground-color: #667;\ncolor: #fff;\n}',
-    'H5 {\nmargin-bottom: 0.5em;\n}',
-    'H6 {\nfont-weight: normal;\nfont-style: italic;',
-    'font-size: 100%;\nmargin-left: 1em;\nmargin-top: 1.3em;',
-    'margin-bottom: 0.8em;\n}',
-    'HR {\nheight: 0;\nwidth: 0;\nmargin: 0;\nmargin-top: 1px;',
-    'margin-bottom: 1px;\npadding: 0;\nborder-top: 0;',
-    'border-color: #e0e0e9;\n}',
-    'A:link {\ncolor: #006;\ntext-decoration: underline;\n}',
-    'A:visited {\ncolor: #669;\ntext-decoration: underline;\n}',
-    'A:hover {\nbackground-color: #eef;\ncolor: #000;',
-    'text-decoration: underline;\n}',
-    'A:active {\nbackground-color: #eef;\ncolor: #000;\ntext-decoration: none;\n}',
-    '.navheader {\npadding: 4px;\nbackground-color: #e0e0e9;',
-    'margin: 2px;\n}',
-    '.navtitle {\nfont-size: 160%;\ncolor: #669;\nmargin: 2px;\n}',
-    '.navbyline {\nfloat: right;\nfont-size: 14px;\nmargin: 2px;',
-    'padding: 4px;\n}',
-    '.nav {\nmargin: 0;\nmargin-bottom: 4px;\npadding: 0;',
-    'font-size: 14px;\nfont-weight: bold;\n}',
-    '.summaryarea {',
-    'min-height: 100px;',
-    'height: expression(document.body.clientHeight < 1 ? "100px" : "100px" );',
-    '}',
-    '.portrait {\njustify: center;\nmargin: 5px;\nmargin-right: 20px;',
-    'padding: 3px;\nborder-color: #336;\nborder-width: 1px;\n}',
-    '.snapshot {\nfloat: right;\nmargin: 5px;\nmargin-right: 20px;',
-    'padding: 3px;\n}',
-    '.thumbnail {\nheight: 100px;\nborder-color: #336;\nborder-width: 1px;\n}',
-    '.leftwrap {\nfloat: left;\nmargin: 2px;\nmargin-right: 10px;\n}',
-    '.rightwrap {\nfloat: right;\nmargin: 2px;\nmargin-left: 10px;\n}',
-    'TABLE.infolist {\nborder: 0;\nfont-size: 14px;\n}',
-    'TD.category {\npadding: 3px;\npadding-right: 3em;',
-    'font-weight: bold;\n}',
-    'TD.field {\npadding: 3px;\npadding-right: 3em;\n}',
-    'TD.data {\npadding: 3px;\npadding-right: 3em;',
-    'font-weight: bold;\n}',
-    '.pedigree {\nmargin: 0;\nmargin-left: 2em;\npadding: 0;',
-    'background-color: #e0e0e9;\nborder: 1px;\n}',
-    '.pedigreeind {\nfont-size: 14px;\nmargin: 0;\npadding: 2em;',
-    'padding-top: 0.25em;\npadding-bottom: 0.5em;\n}',
-    '.footer {\nmargin: 1em;\nfont-size: 12px;\nfloat: right;\n}',
-    ]
-
-
-from cStringIO import StringIO
-
 class BasePage:
     def __init__(self, title, options, archive):
         self.title_str = title
-        self.inc_contact = options.handler.options_dict['NWEBcontact']
         self.inc_download = options.handler.options_dict['NWEBdownload']
         self.html_dir = options.handler.options_dict['NWEBod']
         self.options = options
@@ -159,8 +107,10 @@ class BasePage:
         self.image_dir = options.handler.options_dict['NWEBimagedir'].strip()
         self.ext = options.handler.options_dict['NWEBext']
         self.encoding = options.handler.options_dict['NWEBencoding']
+        self.css = options.handler.options_dict['NWEBcss']
         self.noid = options.handler.options_dict['NWEBnoid']
         self.use_intro = options.handler.options_dict['NWEBintronote'] != u""
+        self.use_contact = options.handler.options_dict['NWEBcontact'] != u""
         
     def copy_media(self,photo):
         newpath = photo.gramps_id + os.path.splitext(photo.get_path())[1]
@@ -243,7 +193,7 @@ class BasePage:
         of.write(u'    <a href="places.%s">%s</a> &nbsp;\n' % (self.ext,_('Places')))
         if self.inc_download:
             of.write(u'    <a href="download.%s">%s</a> &nbsp;\n' % (self.ext,_('Download')))
-        if self.inc_contact:
+        if self.use_contact:
             of.write(u'    <a href="contact.%s">%s</a> &nbsp;\n' % (self.ext,_('Contact')))
         of.write(u'    </div>\n')
         of.write(u'  </div>\n')
@@ -263,9 +213,8 @@ class IndividualListPage(BasePage):
                             db.get_researcher().get_name())
 
         msg = _("This page contains an index of all the individuals in the "
-                "database, sorted by their last names. Selecting the GRAMPS "
-                "ID next to a person's name will take you to that person's "
-                "individual page.")
+                "database, sorted by their last names. Selecting person's name "
+                "will take you to that person's individual page.")
 
         of.write(u'<h3>%s</h3>\n' % _('Individuals'))
         of.write(u'<p>%s</p>\n' % msg)
@@ -650,7 +599,48 @@ class ContactPage(BasePage):
         self.display_header(of,_('Contact'),
                             db.get_researcher().get_name())
 
+        of.write(u'<div class="summaryarea">\n')
         of.write(u'<h3>%s</h3>\n' % _('Contact'))
+
+        note_id = options.handler.options_dict['NWEBcontact']
+        obj = db.get_object_from_handle(note_id)
+        mime_type = obj.get_mime_type()
+
+        if mime_type and mime_type.startswith("image"):
+            try:
+                newpath = self.copy_media(obj)
+                of.write(u'<div class="rightwrap">\n')
+                of.write(u'<table cellspacing="0" cellpadding="0" border="0"><tr>')
+                of.write(u'<td height="205">')
+                of.write(u'<img border="0" height="200" ')
+                of.write(u'src="%s" />' % newpath)
+                of.write(u'</td></tr></table>\n')
+                of.write(u'</div>\n')
+            except (IOError,OSError),msg:
+                ErrorDialog(str(msg))
+
+        r = db.get_researcher()
+
+        of.write(u'<blockquote></td>\n')
+        of.write(u'%s<br>\n' % r.name)
+        of.write(u'%s<br>\n' % r.addr)
+        of.write(u'%s, %s, %s<br>\n' % (r.city,r.state,r.postal))
+        of.write(u'%s<br>\n' % r.country)
+        of.write(u'%s<br>\n' % r.email)
+        of.write(u'</blockquote>\n')
+
+        nobj = obj.get_note_object()
+        if nobj:
+            format = nobj.get_format()
+            text = nobj.get()
+
+            if format:
+                text = u"<pre>" + u"<br>".join(text.split("\n"))
+            else:
+                text = u"</p><p>".join(text.split("\n"))
+            of.write(u'<p>%s</p>\n' % text)
+        else:
+            of.write(u'<br><br><br><br>\n')
 
         self.display_footer(of)
         self.close_file(of)
@@ -1077,6 +1067,7 @@ class WebReport(Report.Report):
         self.target_path = options_class.handler.options_dict['NWEBod']
         self.ext = options_class.handler.options_dict['NWEBext']
         self.encoding = options_class.handler.options_dict['NWEBencoding']
+        self.css = options_class.handler.options_dict['NWEBcss']
         self.id_link = options_class.handler.options_dict['NWEBlinktidx']
         self.photos = options_class.handler.options_dict['NWEBimg']
         self.restrict = options_class.handler.options_dict['NWEBrestrictinfo']
@@ -1151,7 +1142,7 @@ class WebReport(Report.Report):
         else:
             archive = None
 
-        self.write_css(archive)
+        self.write_css(archive,self.target_path,self.css)
 
         HomePage(self.database, self.title, self.options_class, archive)
         if self.inc_contact:
@@ -1199,16 +1190,14 @@ class WebReport(Report.Report):
             archive.close()
         self.progress_bar_done()
 
-    def write_css(self,archive):
+    def write_css(self,archive,html_dir,css_file):
         if archive:
-            f = StringIO()
-            f.write('\n'.join(_css))
+            f = open(os.path.join(const.dataDir,css_file),"r")
             archive.add_file(_NARRATIVE,time.time(),f)
             f.close()
         else:
-            f = open(os.path.join(self.target_path,_NARRATIVE), "w")
-            f.write('\n'.join(_css))
-            f.close()
+            shutil.copyfile(os.path.join(const.dataDir,css_file),
+                            os.path.join(html_dir,_NARRATIVE))
                  
     def add_styles(self,doc):
         pass
@@ -1240,7 +1229,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
             'NWEBcmtxtsi'       : 0, 
             'NWEBlnktoalphabet' : 0, 
             'NWEBsplita'        : 0, 
-            'NWEBcontact'       : 0, 
+            'NWEBcontact'       : '', 
             'NWEBdownload'      : 0, 
             'NWEBshorttree'     : 1,
             'NWEBimagedir'      : 'images', 
@@ -1250,6 +1239,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
             'NWEBlinktidx'      : 1,
             'NWEBext'           : 'html',
             'NWEBencoding'      : 'utf-8',
+            'NWEBcss'           : 'main0.css',
             'NWEBtreed'         : 3,
             'NWEBidxt'          : '',
             'NWEBintronote'     : '',
@@ -1310,7 +1300,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         ext_msg = _("File extension")
         sep_alpha_msg = _("Split alphabetical sections to separate pages")
         tree_msg = _("Include short ancestor tree")
-        contact_msg = _("Include publisher contact page")
+        contact_msg = _("Publisher contact/Note ID")
         download_msg = _("Include download page")
 
         self.no_private = gtk.CheckButton(priv_msg)
@@ -1321,9 +1311,6 @@ class WebReportOptions(ReportOptions.ReportOptions):
 
         self.restrict_living = gtk.CheckButton(restrict_msg)
         self.restrict_living.set_active(self.options_dict['NWEBrestrictinfo'])
-
-        self.inc_contact = gtk.CheckButton(contact_msg)
-        self.inc_contact.set_active(self.options_dict['NWEBcontact'])
 
         self.inc_download = gtk.CheckButton(download_msg)
         self.inc_download.set_active(self.options_dict['NWEBdownload'])
@@ -1375,10 +1362,21 @@ class WebReportOptions(ReportOptions.ReportOptions):
                 store.append(row=data)
         self.encoding = GrampsNoteComboBox(store,cset_node)
 
+        cset_node = None
+        cset = self.options_dict['NWEBcss']
+        store = gtk.ListStore(str,str)
+        for data in _css_files:
+            if data[1] == cset:
+                cset_node = store.append(row=data)
+            else:
+                store.append(row=data)
+        self.css = GrampsNoteComboBox(store,cset_node)
+
         dialog.add_option(title_msg,self.title)
         dialog.add_option(imgdir_msg,self.imgdir)
         dialog.add_option(ext_msg,self.ext)
         dialog.add_option(_('Character set encoding'),self.encoding)
+        dialog.add_option(_('Stylesheet'),self.css)
 
         title = _("Page Generation")
 
@@ -1414,11 +1412,22 @@ class WebReportOptions(ReportOptions.ReportOptions):
                 store.append(row=data)
         self.intro_note = GrampsNoteComboBox(store,intro_node)
 
+        contact_node = None
+        self.inc_contact = self.options_dict['NWEBcontact']
+
+        store = gtk.ListStore(str,str)
+        for data in media_list:
+            if data[1] == self.inc_contact:
+                intro_node = store.append(row=data)
+            else:
+                store.append(row=data)
+        self.contact = GrampsNoteComboBox(store,intro_node)
+
         dialog.add_frame_option(title,_('Home Media/Note ID'),
                                 self.home_note)
         dialog.add_frame_option(title,_('Introduction Media/Note ID'),
                                 self.intro_note)
-        dialog.add_frame_option(title,None,self.inc_contact)
+        dialog.add_frame_option(title,contact_msg,self.contact)
         dialog.add_frame_option(title,None,self.inc_download)
         dialog.add_frame_option(title,None,self.noid)
 
@@ -1437,7 +1446,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.options_dict['NWEBrestrictinfo'] = int(self.restrict_living.get_active())
         self.options_dict['NWEBincpriv'] = int(not self.no_private.get_active())
         self.options_dict['NWEBnoid'] = int(self.noid.get_active())
-        self.options_dict['NWEBcontact'] = int(self.inc_contact.get_active())
+        self.options_dict['NWEBcontact'] = unicode(self.contact.get_handle())
         self.options_dict['NWEBdownload'] = int(self.inc_download.get_active())
         self.options_dict['NWEBimagedir'] = unicode(self.imgdir.get_text())
         self.options_dict['NWEBtitle'] = unicode(self.title.get_text())
@@ -1454,10 +1463,10 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.options_dict['NWEBext'] = html_ext
 
         self.options_dict['NWEBencoding'] = self.encoding.get_handle()
-
+        self.options_dict['NWEBcss'] = self.css.get_handle()
         self.options_dict['NWEBidurl'] = unicode(self.linkpath.get_text().strip())
-
         self.options_dict['NWEBcmtxtsi'] = int(not self.no_comments.get_active())
+        
         if self.no_images.get_active():
             photos = 0
         elif self.no_living_images.get_active():

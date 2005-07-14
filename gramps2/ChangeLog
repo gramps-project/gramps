@@ -2,7 +2,9 @@
 	* src/Sort.py: don't use upper case, let locale.strcoll figure this
 	out (correctly) for us
 	* src/plugins/NavWebPage.py: fix sorting.
-
+	* src/data/main*.css: added stylesheets for web page generator
+	* src/data/Makefile.am: add stylesheets
+	
 2005-07-13  Alex Roitman  <shura@gramps-project.org>
 	* src/GenericFilter.py: Proper test for place in event-based
 	filters; (Rule.set_list): Add assertion to have the correct number
