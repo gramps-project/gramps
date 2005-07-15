@@ -174,6 +174,7 @@ class BasePage:
         of.write('<link href="%s" ' % _NARRATIVE)
         of.write('rel="stylesheet" type="text/css">\n')
         of.write('<link href="favicon.png" rel="Shortcut Icon">\n')
+        of.write('<!-- $Id$ -->')
         of.write('</head>\n')
         of.write('<body>\n')
         of.write('<div class="navheader">\n')
