@@ -211,7 +211,7 @@ class BasePage:
                 of.write('<div class="snapshot">\n')
                 of.write('<a href="%s.%s">' % (photo_handle,self.ext))
                 of.write('<img class="thumbnail"  border="0" src="%s" ' % newpath)
-                of.write('height="100"></a>')
+                of.write('height="100" alt="%s"></a>' % photo.get_description())
                 of.write('</div>\n')
             except (IOError,OSError),msg:
                 ErrorDialog(str(msg))
@@ -475,7 +475,7 @@ class MediaPage(BasePage):
             try:
                 of.write('<div align="center">\n')
                 of.write('<img border="0" ')
-                of.write('src="%s" />' % newpath)
+                of.write('src="%s" alt="%s"/>' % (newpath, title))
                 of.write('</div>\n')
             except (IOError,OSError),msg:
                 ErrorDialog(str(msg))
@@ -490,6 +490,7 @@ class MediaPage(BasePage):
         of.write('<td class="data">%s</td>\n' % photo.mime)
         of.write('</tr>\n')
         of.write('</table>\n')
+        of.write('</div>\n')
 
         self.display_note_object(of, photo.get_note_object())
 
@@ -580,7 +581,7 @@ class IntroductionPage(BasePage):
                         newpath = self.copy_media(obj)
                         of.write('<div align="center">\n')
                         of.write('<img border="0" ')
-                        of.write('src="%s" />' % newpath)
+                        of.write('src="%s" alt="%s" />' % (newpath, obj.get_description()))
                         of.write('</div>\n')
                     except (IOError,OSError),msg:
                         ErrorDialog(str(msg))
@@ -625,7 +626,7 @@ class HomePage(BasePage):
                         newpath = self.copy_media(obj)
                         of.write('<div align="center">\n')
                         of.write('<img border="0" ')
-                        of.write('src="%s" />' % newpath)
+                        of.write('src="%s" alt="%s" />' % (newpath, obj.get_description()))
                         of.write('</div>\n')
                     except (IOError,OSError),msg:
                         ErrorDialog(str(msg))
@@ -677,7 +678,7 @@ class SourcesPage(BasePage):
             of.write('</a></td></tr>\n')
             index += 1
             
-        of.write('</table>\n<blockquote>\n')
+        of.write('</table>\n</blockquote>\n')
 
         self.display_footer(of)
         self.close_file(of)
@@ -756,7 +757,7 @@ class GalleryPage(BasePage):
             of.write('</td></tr>\n')
             index += 1
             
-        of.write('</table>\n<blockquote>\n')
+        of.write('</table>\n</blockquote>\n')
 
         self.display_footer(of)
         self.close_file(of)
@@ -819,7 +820,7 @@ class ContactPage(BasePage):
                         of.write('<table cellspacing="0" cellpadding="0" border="0"><tr>')
                         of.write('<td height="205">')
                         of.write('<img border="0" height="200" ')
-                        of.write('src="%s.%s" />' % (note_id,self.ext))
+                        of.write('src="%s.%s" alt="%s" />' % (note_id,self.ext,obj.get_description()))
                         of.write('</td></tr></table>\n')
                         of.write('</div>\n')
                     except (IOError,OSError),msg:
@@ -1216,7 +1217,7 @@ class IndividualPage(BasePage):
             text = text + " <sup>"
             for handle in gid_list:
                 src = self.db.get_source_from_handle(handle)
-                text = text + ' <a href="%s.%s">[%s]' % (handle,self.ext,src.gramps_id)
+                text = text + ' <a href="%s.%s">[%s]</a>' % (handle,self.ext,src.gramps_id)
             text = text + "</sup>"
         return text
             

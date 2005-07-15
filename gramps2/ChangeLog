@@ -1,5 +1,5 @@
 2005-07-15  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
-	* src/plugins/NavWebPage.py: Avoid some segfaults
+	* src/plugins/NavWebPage.py: Avoid some segfaults; HTML validation fixes
 	* src/Utils.py (find_mime_type_pixbuf): Dont segfault with note only object
 	* src/SelectObject.py (on_select_row): Dont segfault with note only object
 
