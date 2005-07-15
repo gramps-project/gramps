@@ -168,7 +168,7 @@ class BasePage:
         of.write('<!DOCTYPE HTML PUBLIC ')
         of.write('"-//W3C//DTD HTML 4.01 Transitional//EN">\n')
         of.write('<html>\n<head>\n')
-        of.write('<title>%s</title>\n' % self.title_str)
+        of.write('<title>%s - %s</title>\n' % (self.title_str, title))
         of.write('<meta http-equiv="Content-Type" content="text/html; ')
         of.write('charset=%s">\n' % self.encoding)
         of.write('<link href="%s" ' % _NARRATIVE)
@@ -421,7 +421,7 @@ class PlacePage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list)
         of = self.create_file(place.get_handle())
         place_name = ReportUtils.place_name(db,place_handle)
-        self.display_header(of,place_name,
+        self.display_header(of,"%s - %s" % (_('Places'), place_name),
                             db.get_researcher().get_name())
 
         self.display_first_image_as_thumbnail(of, db, place.get_media_list())
@@ -491,7 +491,7 @@ class MediaPage(BasePage):
                             os.path.join(self.html_dir,newpath))
 
         title = photo.get_description()
-        self.display_header(of, title, db.get_researcher().get_name())
+        self.display_header(of, "%s - %s" % (_('Gallery'), title), db.get_researcher().get_name())
         
         of.write('<div class="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % title)
@@ -721,7 +721,7 @@ class SourcePage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list)
         of = self.create_file(source.get_handle())
         source_name = source.get_title()
-        self.display_header(of,source_name,db.get_researcher().get_name())
+        self.display_header(of,"%s - %s" % (_('Sources'), source_name),db.get_researcher().get_name())
 
         self.display_first_image_as_thumbnail(of, db, source.get_media_list())
 
@@ -908,7 +908,7 @@ class IndividualPage(BasePage):
         self.name = _nd.sorted(self.person)
         
         of = self.create_file(person.handle)
-        self.display_header(of, title,
+        self.display_header(of, self.sort_name,
                             self.db.get_researcher().get_name())
         self.display_ind_general(of)
         self.display_ind_events(of)
