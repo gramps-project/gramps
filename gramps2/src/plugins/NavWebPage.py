@@ -50,7 +50,7 @@ import gtk
 #------------------------------------------------------------------------
 import RelLib
 import const
-import GrampsKeys
+from GrampsCfg import get_researcher
 import GenericFilter
 import Sort
 import Report
@@ -301,7 +301,7 @@ class IndividualListPage(BasePage):
 
         of = self.create_file("individuals")
         self.display_header(of,_('Individuals'),
-                            db.get_researcher().get_name())
+                            get_researcher().get_name())
 
         msg = _("This page contains an index of all the individuals in the "
                 "database, sorted by their last names. Selecting person's name "
@@ -353,7 +353,7 @@ class PlaceListPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list)
         of = self.create_file("places")
         self.display_header(of,_('Places'),
-                            db.get_researcher().get_name())
+                            get_researcher().get_name())
 
         msg = _("This page contains an index of all the places in the "
                 "database, sorted by their title. Clicking on a place's "
@@ -422,7 +422,7 @@ class PlacePage(BasePage):
         of = self.create_file(place.get_handle())
         place_name = ReportUtils.place_name(db,place_handle)
         self.display_header(of,"%s - %s" % (_('Places'), place_name),
-                            db.get_researcher().get_name())
+                            get_researcher().get_name())
 
         self.display_first_image_as_thumbnail(of, db, place.get_media_list())
 
@@ -491,7 +491,7 @@ class MediaPage(BasePage):
                             os.path.join(self.html_dir,newpath))
 
         title = photo.get_description()
-        self.display_header(of, "%s - %s" % (_('Gallery'), title), db.get_researcher().get_name())
+        self.display_header(of, "%s - %s" % (_('Gallery'), title), get_researcher().get_name())
         
         of.write('<div class="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % title)
@@ -534,7 +534,7 @@ class SurnameListPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list)
         of = self.create_file("surnames")
         self.display_header(of,_('Surnames'),
-                            db.get_researcher().get_name())
+                            get_researcher().get_name())
 
         of.write('<h3>%s</h3>\n' % _('Surnames'))
         of.write('<p>%s</p>\n' % _(
@@ -593,7 +593,7 @@ class IntroductionPage(BasePage):
 
         of = self.create_file("introduction")
         self.display_header(of,_('Introduction'),
-                            db.get_researcher().get_name())
+                            get_researcher().get_name())
 
         of.write('<h3>%s</h3>\n' % _('Introduction'))
 
@@ -638,7 +638,7 @@ class HomePage(BasePage):
 
         of = self.create_file("index")
         self.display_header(of,_('Home'),
-                            db.get_researcher().get_name())
+                            get_researcher().get_name())
 
         of.write('<h3>%s</h3>\n' % _('Home'))
 
@@ -682,7 +682,7 @@ class SourcesPage(BasePage):
 
         of = self.create_file("sources")
         self.display_header(of,_('Sources'),
-                            db.get_researcher().get_name())
+                            get_researcher().get_name())
 
         handle_list = list(handle_set)
 
@@ -721,7 +721,7 @@ class SourcePage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list)
         of = self.create_file(source.get_handle())
         source_name = source.get_title()
-        self.display_header(of,"%s - %s" % (_('Sources'), source_name),db.get_researcher().get_name())
+        self.display_header(of,"%s - %s" % (_('Sources'), source_name),get_researcher().get_name())
 
         self.display_first_image_as_thumbnail(of, db, source.get_media_list())
 
@@ -761,7 +761,7 @@ class GalleryPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list)
 
         of = self.create_file("gallery")
-        self.display_header(of, _('Gallery'), db.get_researcher().get_name())
+        self.display_header(of, _('Gallery'), get_researcher().get_name())
 
         of.write('<h3>%s</h3>\n<p>' % _('Gallery'))
 
@@ -810,7 +810,7 @@ class DownloadPage(BasePage):
 
         of = self.create_file("download")
         self.display_header(of,_('Download'),
-                            db.get_researcher().get_name())
+                            get_researcher().get_name())
 
         of.write('<h3>%s</h3>\n' % _('Download'))
 
@@ -829,7 +829,7 @@ class ContactPage(BasePage):
 
         of = self.create_file("contact")
         self.display_header(of,_('Contact'),
-                            db.get_researcher().get_name())
+                            get_researcher().get_name())
 
         of.write('<div class="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % _('Contact'))
@@ -853,7 +853,7 @@ class ContactPage(BasePage):
                     except (IOError,OSError),msg:
                         ErrorDialog(str(msg))
 
-        r = db.get_researcher()
+        r = get_researcher()
 
         of.write('<blockquote>\n')
         of.write('%s<br>\n' % r.name)
@@ -909,7 +909,7 @@ class IndividualPage(BasePage):
         
         of = self.create_file(person.handle)
         self.display_header(of, self.sort_name,
-                            self.db.get_researcher().get_name())
+                            get_researcher().get_name())
         self.display_ind_general(of)
         self.display_ind_events(of)
         self.display_ind_relationships(of)
