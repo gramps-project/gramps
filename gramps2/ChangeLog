@@ -1,6 +1,7 @@
 2005-07-15  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/NavWebPage.py: Use researcher info from Gramps
 	session, not from the database.
+	* src/data/main4.css: Typos.
 
 2005-07-15  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/NavWebPage.py: Avoid some segfaults; HTML validation fixes;
