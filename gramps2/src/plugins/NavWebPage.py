@@ -828,7 +828,7 @@ class ContactPage(BasePage):
 
         r = db.get_researcher()
 
-        of.write('<blockquote></td>\n')
+        of.write('<blockquote>\n')
         of.write('%s<br>\n' % r.name)
         of.write('%s<br>\n' % r.addr)
         of.write('%s, %s, %s<br>\n' % (r.city,r.state,r.postal))
@@ -851,6 +851,7 @@ class ContactPage(BasePage):
                 of.write('<br><br><br><br>\n')
         else:
             of.write('<br><br><br><br>\n')
+        of.write('</div>\n')
 
         self.display_footer(of)
         self.close_file(of)
