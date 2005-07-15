@@ -347,6 +347,11 @@ def sanitize_person(db,person):
         if not attribute.get_privacy():
             new_person.add_attribute(RelLib.Attribute(attribute))
 
+    # copy source references
+    for ref in person.get_source_references():
+        if not ref.get_privacy():
+            new_person.add_source_reference(RelLib.SourceRef(ref))
+
     # copy URL list
     for url in person.get_url_list():
         if not url.get_privacy():

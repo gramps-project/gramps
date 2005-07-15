@@ -903,6 +903,7 @@ class IndividualPage(BasePage):
         self.db = db
         self.ind_list = ind_list
         self.src_list = src_list
+        self.src_refs = []
         self.place_list = place_list
         self.sort_name = _nd.sorted(self.person)
         self.name = _nd.sorted(self.person)
@@ -922,10 +923,10 @@ class IndividualPage(BasePage):
         self.close_file(of)
 
     def display_ind_sources(self,of):
-        sreflist = self.person.get_source_references()
+        sreflist = self.src_refs + self.person.get_source_references()
         if not sreflist:
             return
-        of.write('<h4>%s</h4>\n' % _('Sources'))
+        of.write('<h4>%s</h4>\n' % _('Source Referencess'))
         of.write('<hr>\n')
         of.write('<table class="infolist" cellpadding="0" ')
         of.write('cellspacing="0" border="0">\n')
@@ -939,25 +940,22 @@ class IndividualPage(BasePage):
             else:
                 self.src_list[sref.get_base_handle()] = [self.person.handle]
 
-
             source = self.db.get_source_from_handle(sref.get_base_handle())
-            author = source.get_author()
             title = source.get_title()
-            publisher = source.get_publication_info()
-            date = _dd.display(sref.get_date_object())
-            of.write('<tr><td class="field">%d. ' % index)
-            of.write('<a href="%s.%s">' % (source.handle,self.ext))
-            values = []
-            if author:
-                values.append(author)
-            if title:
-                values.append(title)
-            if publisher:
-                values.append(publisher)
-            if date:
-                values.append(date)
-            of.write(', '.join(values))
-            of.write('</a></td></tr>\n')
+            of.write('<tr><td class="field"><a name="sref%d">%d.</a></td>' % (index,index))
+            of.write('<td class="field"><a href="%s.%s">' % (source.handle,self.ext))
+            of.write('%s <span class="grampsid">[%s]</span>' %(title,source.gramps_id))
+            of.write('</a>')
+            tmp = []
+            for (label,data) in [(_('Page'),sref.page),
+                                 (_('Confidence'),const.confidence[sref.confidence]),
+                                 (_('Text'),sref.text)]:
+                if data:
+                    tmp.append("%s: %s" % (label,data))
+            if len(tmp) > 0:
+                of.write('<br>' + '<br>'.join(tmp))
+            of.write('</td></tr>\n')
+            index += 1
         of.write('</table>\n')
 
     def display_ind_pedigree(self,of):
@@ -1024,18 +1022,19 @@ class IndividualPage(BasePage):
             of.write('<td class="data">%s' % pname)
             nshl = []
             for nsref in name.get_source_references():
+                self.src_refs.append(nsref)
                 nsh = nsref.get_base_handle()
                 if self.src_list.has_key(nsh):
                     if self.person.handle not in self.src_list[nsh]:
                         self.src_list[nsh].append(self.person.handle)
                 else:
                     self.src_list[nsh] = [self.person.handle]
-                nshl.append(nsh)
+                nshl.append(nsref)
             if nshl:
                 of.write( " <sup>")
                 for nsh in nshl:
-                    src = self.db.get_source_from_handle(nsh)
-                    of.write(' <a href="%s.%s">[%s]</a>' % (nsh,self.ext,src.gramps_id))
+                    index = self.src_refs.index(nsh)+1
+                    of.write(' <a href="#sref%d">%d</a>' % (index,index))
                 of.write( " </sup>")
 
             of.write('</td>\n</tr>\n')
@@ -1231,13 +1230,14 @@ class IndividualPage(BasePage):
         gid_list = []
         for sref in event.get_source_references():
             handle = sref.get_base_handle()
-            gid_list.append(handle)
+            gid_list.append(sref)
 
             if self.src_list.has_key(handle):
                 if self.person.handle not in self.src_list[handle]:
                     self.src_list[handle].append(self.person.handle)
             else:
                 self.src_list[handle] = [self.person.handle]
+            self.src_refs.append(sref)
             
         descr = event.get_description()
         place_handle = event.get_place_handle()
@@ -1269,9 +1269,9 @@ class IndividualPage(BasePage):
             text = '\n'
         if len(gid_list) > 0:
             text = text + " <sup>"
-            for handle in gid_list:
-                src = self.db.get_source_from_handle(handle)
-                text = text + ' <a href="%s.%s">[%s]</a>' % (handle,self.ext,src.gramps_id)
+            for ref in gid_list:
+                index = self.src_refs.index(ref)+1
+                text = text + ' <a href="#sref%d">%d</a>' % (index,index)
             text = text + "</sup>"
         return text
             
@@ -1950,6 +1950,8 @@ class GrampsNoteComboBox(gtk.ComboBox):
         self.add_attribute(cell,'text',0)
         if node:
             self.set_active_iter(node)
+        else:
+            self.set_active(0)
         self.local_store = model
 
     def get_handle(self):
