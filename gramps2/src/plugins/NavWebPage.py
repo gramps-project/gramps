@@ -205,15 +205,16 @@ class BasePage:
         photo_handle = photolist[0].get_reference_handle()
         photo = db.get_object_from_handle(photo_handle)
         
-        try:
-            newpath = self.copy_media(photo)
-            of.write('<div class="snapshot">\n')
-            of.write('<a href="%s.%s">' % (photo_handle,self.ext))
-            of.write('<img class="thumbnail"  border="0" src="%s" ' % newpath)
-            of.write('height="100"></a>')
-            of.write('</div>\n')
-        except (IOError,OSError),msg:
-            ErrorDialog(str(msg))
+        if photo.get_mime_type():
+            try:
+                newpath = self.copy_media(photo)
+                of.write('<div class="snapshot">\n')
+                of.write('<a href="%s.%s">' % (photo_handle,self.ext))
+                of.write('<img class="thumbnail"  border="0" src="%s" ' % newpath)
+                of.write('height="100"></a>')
+                of.write('</div>\n')
+            except (IOError,OSError),msg:
+                ErrorDialog(str(msg))
 
     def display_note_object(self,of,noteobj=None):
         if not noteobj:
@@ -806,22 +807,23 @@ class ContactPage(BasePage):
         of.write('<h3>%s</h3>\n' % _('Contact'))
 
         note_id = options.handler.options_dict['NWEBcontact']
-
-        obj = db.get_object_from_handle(note_id)
-        mime_type = obj.get_mime_type()
-
-        if mime_type and mime_type.startswith("image"):
-            try:
-                newpath = self.copy_media(obj)
-                of.write('<div class="rightwrap">\n')
-                of.write('<table cellspacing="0" cellpadding="0" border="0"><tr>')
-                of.write('<td height="205">')
-                of.write('<img border="0" height="200" ')
-                of.write('src="%s.%s" />' % (note_id,self.ext))
-                of.write('</td></tr></table>\n')
-                of.write('</div>\n')
-            except (IOError,OSError),msg:
-                ErrorDialog(str(msg))
+        if note_id:
+            obj = db.get_object_from_handle(note_id)
+            if obj:
+                mime_type = obj.get_mime_type()
+        
+                if mime_type and mime_type.startswith("image"):
+                    try:
+                        newpath = self.copy_media(obj)
+                        of.write('<div class="rightwrap">\n')
+                        of.write('<table cellspacing="0" cellpadding="0" border="0"><tr>')
+                        of.write('<td height="205">')
+                        of.write('<img border="0" height="200" ')
+                        of.write('src="%s.%s" />' % (note_id,self.ext))
+                        of.write('</td></tr></table>\n')
+                        of.write('</div>\n')
+                    except (IOError,OSError),msg:
+                        ErrorDialog(str(msg))
 
         r = db.get_researcher()
 
@@ -833,16 +835,19 @@ class ContactPage(BasePage):
         of.write('%s<br>\n' % r.email)
         of.write('</blockquote>\n')
 
-        nobj = obj.get_note_object()
-        if nobj:
-            format = nobj.get_format()
-            text = nobj.get()
-
-            if format:
-                text = u"<pre>" + u"<br>".join(text.split("\n"))
+        if obj:
+            nobj = obj.get_note_object()
+            if nobj:
+                format = nobj.get_format()
+                text = nobj.get()
+    
+                if format:
+                    text = u"<pre>" + u"<br>".join(text.split("\n"))
+                else:
+                    text = u"</p><p>".join(text.split("\n"))
+                of.write('<p>%s</p>\n' % text)
             else:
-                text = u"</p><p>".join(text.split("\n"))
-            of.write('<p>%s</p>\n' % text)
+                of.write('<br><br><br><br>\n')
         else:
             of.write('<br><br><br><br>\n')
 
@@ -897,7 +902,13 @@ class IndividualPage(BasePage):
 
         index = 1
         for sref in sreflist:
-            self.src_list.add(sref.get_base_handle())
+
+            if self.src_list.has_key(sref.get_base_handle()):
+                if self.person.handle not in self.src_list[sref.get_base_handle()]:
+                    self.src_list[sref.get_base_handle()].append(self.person.handle)
+            else:
+                self.src_list[sref.get_base_handle()] = [self.person.handle]
+
 
             source = self.db.get_source_from_handle(sref.get_base_handle())
             author = source.get_author()
@@ -905,6 +916,7 @@ class IndividualPage(BasePage):
             publisher = source.get_publication_info()
             date = _dd.display(sref.get_date_object())
             of.write('<tr><td class="field">%d. ' % index)
+            of.write('<a href="%s.%s">' % (source.handle,self.ext))
             values = []
             if author:
                 values.append(author)
@@ -915,7 +927,7 @@ class IndividualPage(BasePage):
             if date:
                 values.append(date)
             of.write(', '.join(values))
-            of.write('</td></tr>\n')
+            of.write('</a></td></tr>\n')
         of.write('</table>\n')
 
     def display_ind_pedigree(self,of):
