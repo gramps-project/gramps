@@ -216,6 +216,30 @@ class BasePage:
             except (IOError,OSError),msg:
                 ErrorDialog(str(msg))
 
+    def display_additional_images_as_gallery( self, of, db, photolist=None):
+        if not photolist or len(photolist) < 2:
+            return
+            
+        of.write('<h4>%s</h4>\n' % _('Gallery'))
+        of.write('<hr>\n')
+        of.write('<blockquote>')
+        for mediaref in photolist[1:]:
+            photo_handle = mediaref.get_reference_handle()
+            photo = db.get_object_from_handle(photo_handle)
+            
+            if photo.get_mime_type():
+                try:
+                    newpath = self.copy_media(photo)
+                    of.write('<div class="galleryentry">\n')
+                    of.write('<a href="%s.%s">' % (photo_handle,self.ext))
+                    of.write('<img class="thumbnail"  border="0" src="%s" ' % newpath)
+                    of.write('height="100" alt="%s"></a>' % photo.get_description())
+                    of.write('<div>%s</div>' % photo.get_description())
+                    of.write('</div>\n')
+                except (IOError,OSError),msg:
+                    ErrorDialog(str(msg))
+        of.write('</blockquote>')
+
     def display_note_object(self,of,noteobj=None):
         if not noteobj:
             return
@@ -226,7 +250,7 @@ class BasePage:
             of.write('<h4>%s</h4>\n' % _('Narrative'))
             of.write('<hr>\n')
             if format:
-                text = u"<pre>" + u"<br>".join(text.split("\n"))
+                text = u"<pre>" + u"<br>".join(text.split("\n"))+u"</pre>"
             else:
                 text = u"</p><p>".join(text.split("\n"))
             of.write('<p>%s</p>\n' % text)
@@ -435,6 +459,7 @@ class PlacePage(BasePage):
 
         # TODO: Add more information
 
+        self.display_additional_images_as_gallery(of, db, place.get_media_list())
         self.display_note_object(of, place.get_note_object())
         self.display_url_list(of, place.get_url_list())
         self.display_references(of,db,place_list[place.handle])
@@ -718,6 +743,7 @@ class SourcePage(BasePage):
 
         # TODO: Add more information
 
+        self.display_additional_images_as_gallery(of, db, source.get_media_list())
         self.display_note_object(of, source.get_note_object())
         self.display_references(of,db,src_list[source.handle])
         self.display_footer(of)
@@ -843,7 +869,7 @@ class ContactPage(BasePage):
                 text = nobj.get()
     
                 if format:
-                    text = u"<pre>" + u"<br>".join(text.split("\n"))
+                    text = u"<pre>" + u"<br>".join(text.split("\n"))+u"</pre>"
                 else:
                     text = u"</p><p>".join(text.split("\n"))
                 of.write('<p>%s</p>\n' % text)
@@ -886,6 +912,7 @@ class IndividualPage(BasePage):
         self.display_ind_general(of)
         self.display_ind_events(of)
         self.display_ind_relationships(of)
+        self.display_additional_images_as_gallery(of, db, self.person.get_media_list())
         self.display_note_object(of, self.person.get_note_object())
         self.display_url_list(of, self.person.get_url_list())
         self.display_ind_sources(of)
@@ -980,12 +1007,37 @@ class IndividualPage(BasePage):
 
         of.write('<div class="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % self.sort_name)
+            
         of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
         of.write('border="0">\n')
 
+        # GRAMPS ID
         of.write('<tr><td class="field">%s</td>\n' % _('GRAMPS ID'))
         of.write('<td class="data">%s</td>\n' % self.person.gramps_id)
         of.write('</tr>\n')
+
+        # Names [and their sources]
+        for name in [self.person.get_primary_name(),]+self.person.get_alternate_names():
+            pname = _nd.display_name(name)
+            of.write('<tr><td class="field">%s</td>\n' % _(name.get_type()))
+            of.write('<td class="data">%s' % pname)
+            nshl = []
+            for nsref in name.get_source_references():
+                nsh = nsref.get_base_handle()
+                if self.src_list.has_key(nsh):
+                    if self.person.handle not in self.src_list[nsh]:
+                        self.src_list[nsh].append(self.person.handle)
+                else:
+                    self.src_list[nsh] = [self.person.handle]
+                nshl.append(nsh)
+            if nshl:
+                of.write( " <sup>")
+                for nsh in nshl:
+                    src = self.db.get_source_from_handle(nsh)
+                    of.write(' <a href="%s.%s">[%s]</a>' % (nsh,self.ext,src.gramps_id))
+                of.write( " </sup>")
+
+            of.write('</td>\n</tr>\n')
 
         # Gender
         of.write('<tr><td class="field">%s</td>\n' % _('Gender'))
