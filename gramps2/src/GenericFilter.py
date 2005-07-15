@@ -2268,8 +2268,12 @@ class FilterParser(handler.ContentHandler):
 
     def endElement(self,tag):
         if tag == "rule" and self.r != None:
-            rule = self.r(self.a)
-            self.f.add_rule(rule)
+            if len(self.r.labels) != len(self.a):
+                    print "ERROR: Invalid number of arguments in filter '%s'!" %\
+                            self.f.get_name()
+            else:
+                rule = self.r(self.a)
+                self.f.add_rule(rule)
             
     def characters(self, data):
         pass
