@@ -232,8 +232,8 @@ def view_photo(photo):
 _icon_theme = gtk.icon_theme_get_default()
 
 def find_mime_type_pixbuf(mime_type):
-    icontmp = mime_type.replace('/','-')
     try:
+        icontmp = mime_type.replace('/','-')
         newicon = "gnome-mime-%s" % icontmp
         try:
             return _icon_theme.load_icon(newicon,48,0)
