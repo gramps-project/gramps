@@ -1,3 +1,7 @@
+2005-07-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/Makefile.am: Install NavWebPage.py plugin
+	* src/data/Makefile.am: Install stylesheets for NavWebPage
+	
 2005-07-15  Don Allingham  <don@gramps-project.org>
 	* src/Reportutils.py: copy source information while sanitizing data
 	* src/plugins/NavWebPage.py: add source references instead of direct

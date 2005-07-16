@@ -33,6 +33,7 @@ pkgdata_PYTHON = \
 	IndivSummary.py\
 	ImportvCard.py\
 	Merge.py\
+	NavWebPage.py\
 	PatchNames.py\
 	ReadPkg.py\
 	Rebuild.py\
