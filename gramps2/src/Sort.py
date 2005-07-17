@@ -111,7 +111,10 @@ class Sort:
         else:
             date2 = Date.Date()
 
-        val = cmp(date1,date2)
+        dsv1 = date1.get_sort_value()
+        dsv2 = date2.get_sort_value()
+
+        val = cmp(dsv1,dsv2)
         if val == 0:
             return self.by_last_name(first_id,second_id)
         return val

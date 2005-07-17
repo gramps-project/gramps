@@ -129,6 +129,11 @@ def add_familys_sources(db,family_handle,slist,private):
 #
 #-------------------------------------------------------------------------
 def add_persons_sources(db,person,slist,private):
+    for source_ref in person.get_source_references():
+        sbase = source_ref.get_base_handle()
+        if sbase != None and not slist.has_key(sbase):
+            slist[sbase] = 1
+        
     elist = person.get_event_list()[:]
 
     elist.append(person.get_birth_handle())

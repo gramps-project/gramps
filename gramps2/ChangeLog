@@ -1,3 +1,9 @@
+2005-07-17  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/Sort.py: Make sure sorting by birthdate handles correctly
+	missing dates
+	* src/WriteGedcom.py: Export source references at the global person
+	level
+
 2005-07-16  Steve Hall  <digitect@mindspring.org>
 	* src/data/main*.css: fix <sup> spacing in CSS files
 
