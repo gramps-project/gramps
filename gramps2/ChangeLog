@@ -1,3 +1,10 @@
+2005-07-16  Steve Hall  <digitect@mindspring.org>
+	* src/data/main*.css: fix <sup> spacing in CSS files
+
+2005-07-16  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: split parents and families
+	* src/ReportUtils.py: save note information
+
 2005-07-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/Makefile.am: Install NavWebPage.py plugin
 	* src/data/Makefile.am: Install stylesheets for NavWebPage

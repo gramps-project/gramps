@@ -72,11 +72,11 @@ _NARRATIVE = "narrative.css"
 _NAME_COL  = 3
 
 _css_files = [
-    [_("Style 1"), 'main1.css'],
-    [_("Style 2"), 'main2.css'],
-    [_("Style 3"), 'main3.css'],
-    [_("Style 4"), 'main4.css'],
-    [_("Style 5"), 'main5.css'],
+    [_("Modern"),     'main1.css'],
+    [_("Business"),   'main2.css'],
+    [_("Certificate"),'main3.css'],
+    [_("Antique"),    'main4.css'],
+    [_("Tranquil"),   'main5.css'],
     ]
 
 _character_sets = [
@@ -246,7 +246,6 @@ class BasePage:
             return
         format = noteobj.get_format()
         text = noteobj.get()
-
         if text:
             of.write('<h4>%s</h4>\n' % _('Narrative'))
             of.write('<hr>\n')
@@ -268,7 +267,8 @@ class BasePage:
         for url in urllist:
             uri = url.get_path()
             descr = url.get_description()
-            of.write('<tr><td class="field">%d. <a href="%s">%s</a>' % (index,uri,descr))
+            of.write('<tr><td class="field">%d.</td>' % index)
+            of.write('<td class="field"><a href="%s">%s</a>' % (uri,descr))
             of.write('</td></tr>\n')
             index = index + 1
         of.write('</table>\n')
@@ -431,9 +431,10 @@ class PlacePage(BasePage):
         of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
         of.write('border="0">\n')
 
-        of.write('<tr><td class="field">%s</td>\n' % _('GRAMPS ID'))
-        of.write('<td class="data">%s</td>\n' % place.gramps_id)
-        of.write('</tr>\n')
+        if not self.noid:
+            of.write('<tr><td class="field">%s</td>\n' % _('GRAMPS ID'))
+            of.write('<td class="data">%s</td>\n' % place.gramps_id)
+            of.write('</tr>\n')
 
         if place.main_loc:
             ml = place.main_loc
@@ -509,9 +510,10 @@ class MediaPage(BasePage):
         of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
         of.write('border="0">\n')
 
-        of.write('<tr><td class="field">%s</td>\n' % _('GRAMPS ID'))
-        of.write('<td class="data">%s</td>\n' % photo.gramps_id)
-        of.write('</tr>\n')
+        if not self.noid:
+            of.write('<tr><td class="field">%s</td>\n' % _('GRAMPS ID'))
+            of.write('<td class="data">%s</td>\n' % photo.gramps_id)
+            of.write('</tr>\n')
         of.write('<tr><td class="field">%s</td>\n' % _('MIME type'))
         of.write('<td class="data">%s</td>\n' % photo.mime)
         of.write('</tr>\n')
@@ -913,6 +915,7 @@ class IndividualPage(BasePage):
                             get_researcher().get_name())
         self.display_ind_general(of)
         self.display_ind_events(of)
+        self.display_ind_parents(of)
         self.display_ind_relationships(of)
         self.display_additional_images_as_gallery(of, db, self.person.get_media_list())
         self.display_note_object(of, self.person.get_note_object())
@@ -933,14 +936,14 @@ class IndividualPage(BasePage):
 
         index = 1
         for sref in sreflist:
-
-            if self.src_list.has_key(sref.get_base_handle()):
-                if self.person.handle not in self.src_list[sref.get_base_handle()]:
-                    self.src_list[sref.get_base_handle()].append(self.person.handle)
+            shandle = sref.get_base_handle()
+            if self.src_list.has_key(shandle):
+                if self.person.handle not in self.src_list[shandle]:
+                    self.src_list[shandle].append(self.person.handle)
             else:
-                self.src_list[sref.get_base_handle()] = [self.person.handle]
+                self.src_list[shandle] = [self.person.handle]
 
-            source = self.db.get_source_from_handle(sref.get_base_handle())
+            source = self.db.get_source_from_handle(shandle)
             title = source.get_title()
             of.write('<tr><td class="field"><a name="sref%d">%d.</a></td>' % (index,index))
             of.write('<td class="field"><a href="%s.%s">' % (source.handle,self.ext))
@@ -1011,9 +1014,10 @@ class IndividualPage(BasePage):
         of.write('border="0">\n')
 
         # GRAMPS ID
-        of.write('<tr><td class="field">%s</td>\n' % _('GRAMPS ID'))
-        of.write('<td class="data">%s</td>\n' % self.person.gramps_id)
-        of.write('</tr>\n')
+        if not self.noid:
+            of.write('<tr><td class="field">%s</td>\n' % _('GRAMPS ID'))
+            of.write('<td class="data">%s</td>\n' % self.person.gramps_id)
+            of.write('</tr>\n')
 
         # Names [and their sources]
         for name in [self.person.get_primary_name(),]+self.person.get_alternate_names():
@@ -1083,7 +1087,20 @@ class IndividualPage(BasePage):
             of.write('</tr>\n')
         of.write('</table>\n')
 
-    def display_parent(self,of,handle,title):
+    def display_child_link(self, of, child_handle):
+        use_link = child_handle in self.ind_list
+        child = self.db.get_person_from_handle(child_handle)
+        gid = child.get_gramps_id()
+        if use_link:
+            of.write('<a href="%s.%s">' % (child.handle,self.ext))
+        of.write(_nd.display(child))
+        if not self.noid:
+            of.write('&nbsp;<span class="grampsid">[%s]</span>' % gid)
+        if use_link:
+            of.write('</a>\n')
+        of.write(u"<br>\n")
+
+    def display_parent(self, of, handle, title, rel):
         use_link = handle in self.ind_list
         person = self.db.get_person_from_handle(handle)
         of.write('<td class="field">%s</td>\n' % title)
@@ -1096,62 +1113,78 @@ class IndividualPage(BasePage):
             of.write('&nbsp;<span class="grampsid">[%s]</span>' % (val))
         if use_link:
             of.write('</a>')
+        if rel != RelLib.Person.CHILD_REL_BIRTH:
+            of.write('&nbsp;&nbsp;&nbsp;(%s)' % const.child_rel_list[rel])
         of.write('</td>\n')
 
-    def display_ind_relationships(self,of):
+    def display_ind_parents(self,of):
         parent_list = self.person.get_parent_family_handle_list()
-        family_list = self.person.get_family_handle_list()
 
-        if not parent_list and not family_list:
+        if not parent_list:
             return
         
-        of.write('<h4>%s</h4>\n' % _("Relationships"))
+        of.write('<h4>%s</h4>\n' % _("Parents"))
         of.write('<hr>\n')
         of.write('<table class="infolist" cellpadding="0" ')
         of.write('cellspacing="0" border="0">\n')
 
+        first = True
         if parent_list:
             for (family_handle,mrel,frel) in parent_list:
                 family = self.db.get_family_from_handle(family_handle)
-                
-                of.write('<tr><td colspan="3">&nbsp;</td></tr>\n')
-                of.write('<tr><td class="category">%s</td>\n' % _("Parents"))
+
+                if not first:
+                    of.write('<tr><td colspan="2">&nbsp;</td></tr>\n')
+                else:
+                    first = False
 
                 father_handle = family.get_father_handle()
                 if father_handle:
-                    self.display_parent(of,father_handle,_('Father'))
-                of.write('</tr><tr><td>&nbsp;</td>\n')
+                    self.display_parent(of,father_handle,_('Father'),frel)
+                of.write('<tr>\n')
                 mother_handle = family.get_mother_handle()
                 if mother_handle:
-                    self.display_parent(of,mother_handle,_('Mother'))
+                    self.display_parent(of,mother_handle,_('Mother'),mrel)
                 of.write('</tr>\n')
-            of.write('<tr><td colspan="3">&nbsp;</td></tr>\n')
-
-        if family_list:
-            of.write('<tr><td class="category">%s</td>\n' % _("Spouses"))
-            first = True
-            for family_handle in family_list:
-                family = self.db.get_family_from_handle(family_handle)
-                self.display_spouse(of,family,first)
                 first = False
                 childlist = family.get_child_handle_list()
-                if childlist:
-                    of.write('<tr><td>&nbsp;</td>\n')
-                    of.write('<td class="field">%s</td>\n' % _("Children"))
+                if len(childlist) > 1:
+                    of.write('<tr>\n')
+                    of.write('<td class="field">%s</td>\n' % _("Siblings"))
                     of.write('<td class="data">\n')
                     for child_handle in childlist:
-                        use_link = child_handle in self.ind_list
-                        child = self.db.get_person_from_handle(child_handle)
-                        gid = child.get_gramps_id()
-                        if use_link:
-                            of.write('<a href="%s.%s">' % (child.handle,self.ext))
-                        of.write(_nd.display(child))
-                        if not self.noid:
-                            of.write('&nbsp;<span class="grampsid">[%s]</span>' % gid)
-                        if use_link:
-                            of.write('</a>\n')
-                        of.write(u"<br>\n")
+                        if child_handle != self.person.handle:
+                            self.display_child_link(of,child_handle)
                     of.write('</td>\n</tr>\n')
+            of.write('<tr><td colspan="3">&nbsp;</td></tr>\n')
+        of.write('</table>\n')
+
+    def display_ind_relationships(self,of):
+        family_list = self.person.get_family_handle_list()
+
+        if not family_list:
+            return
+        
+        of.write('<h4>%s</h4>\n' % _("Families"))
+        of.write('<hr>\n')
+        of.write('<table class="infolist" cellpadding="0" ')
+        of.write('cellspacing="0" border="0">\n')
+
+        first = True
+        for family_handle in family_list:
+            family = self.db.get_family_from_handle(family_handle)
+            rtype = const.family_relations[family.get_relationship()][0]
+            of.write('<tr><td class="category">%s</td>\n' % rtype)
+            self.display_spouse(of,family,first)
+            first = False
+            childlist = family.get_child_handle_list()
+            if childlist:
+                of.write('<tr><td>&nbsp;</td>\n')
+                of.write('<td class="field">%s</td>\n' % _("Children"))
+                of.write('<td class="data">\n')
+                for child_handle in childlist:
+                    self.display_child_link(of,child_handle)
+                of.write('</td>\n</tr>\n')
         of.write('</table>\n')
 
     def display_spouse(self,of,family,first=True):
@@ -1248,19 +1281,21 @@ class IndividualPage(BasePage):
             else:
                 self.place_list[place_handle] = [self.person.handle]
                 
-        place = '<a href="%s.%s">%s</a>' % (place_handle,self.ext,ReportUtils.place_name(self.db,place_handle))
+            place = '<a href="%s.%s">%s</a>' % (place_handle,self.ext,ReportUtils.place_name(self.db,place_handle))
+        else:
+            place = u""
 
         date = _dd.display(event.get_date_object())
         tmap = {'description' : descr, 'date' : date, 'place' : place}
         
         if descr and date and place:
-            text = _('%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; at &nbsp&nbsp; %(place)s') % tmap
+            text = _('%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s') % tmap
         elif descr and date:
-            text = _('%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp;') % tmap
+            text = _('%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;') % tmap
         elif descr:
             text = descr
         elif date and place:
-            text = _('%(date)s &nbsp;&nbsp; at &nbsp&nbsp; %(place)s') % tmap
+            text = _('%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s') % tmap
         elif date:
             text = date
         elif place:

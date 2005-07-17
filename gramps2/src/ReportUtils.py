@@ -308,7 +308,6 @@ def sanitize_person(db,person):
     for item in person.get_parent_family_handle_list():
         new_person.add_parent_family_handle(item[0],item[1],item[2])
 
-
     if person.get_privacy():
         return new_person
 
@@ -373,6 +372,8 @@ def sanitize_person(db,person):
     ordinance = person.get_lds_sealing()
     if ordinance:
         new_person.set_lds_sealing(ordinance)
+
+    new_person.set_note(person.get_note())
     
     return new_person
 
