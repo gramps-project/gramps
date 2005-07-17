@@ -1,3 +1,9 @@
+2005-07-17  Don Allingham  <don@gramps-project.org>
+	* src/ReportUtils.py: fix private name generation
+	* src/plugins/NavWebPage.py: Add family photos to the gallery,
+	handle privacy better and filter out private people from the
+	internal lists
+
 2005-07-17  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/Sort.py: Make sure sorting by birthdate handles correctly
 	missing dates

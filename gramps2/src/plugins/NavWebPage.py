@@ -113,6 +113,7 @@ class BasePage:
         self.use_intro = options.handler.options_dict['NWEBintronote'] != u""
         self.use_contact = options.handler.options_dict['NWEBcontact'] != u""
         self.photo_list = photo_list
+        self.private = not options.handler.options_dict['NWEBincpriv']
         
     def copy_media(self,photo):
         if photo.get_handle() != self.photo_list:
@@ -218,13 +219,14 @@ class BasePage:
                 ErrorDialog(str(msg))
 
     def display_additional_images_as_gallery( self, of, db, photolist=None):
-        if not photolist or len(photolist) < 2:
+
+        if not photolist and len(photolist) == 0:
             return
             
         of.write('<h4>%s</h4>\n' % _('Gallery'))
         of.write('<hr>\n')
         of.write('<blockquote>')
-        for mediaref in photolist[1:]:
+        for mediaref in photolist:
             photo_handle = mediaref.get_reference_handle()
             photo = db.get_object_from_handle(photo_handle)
             
@@ -284,7 +286,9 @@ class BasePage:
         index = 1
         for handle in handlelist:
             person = db.get_person_from_handle(handle)
-            of.write('<tr><td class="field">%d. <a href="%s.%s">%s</a>' % (index,handle,self.ext,_nd.display(person)))
+            of.write('<tr><td class="field">%d. ' % index)
+            of.write('<a href="%s.%s">%s</a>' % (handle,self.ext,
+                                                 nameof(person,self.private)))
             of.write('</td></tr>\n')
             index = index + 1
         of.write('</table>\n')
@@ -907,8 +911,8 @@ class IndividualPage(BasePage):
         self.src_list = src_list
         self.src_refs = []
         self.place_list = place_list
-        self.sort_name = _nd.sorted(self.person)
-        self.name = _nd.sorted(self.person)
+        self.sort_name = sort_nameof(self.person,self.private)
+        self.name = sort_nameof(self.person,self.private)
         
         of = self.create_file(person.handle)
         self.display_header(of, self.sort_name,
@@ -917,7 +921,16 @@ class IndividualPage(BasePage):
         self.display_ind_events(of)
         self.display_ind_parents(of)
         self.display_ind_relationships(of)
-        self.display_additional_images_as_gallery(of, db, self.person.get_media_list())
+        
+        media_list = []
+        photolist = self.person.get_media_list()
+        if len(photolist) > 1:
+            media_list = photolist[1:]
+        for handle in self.person.get_family_handle_list():
+            family = self.db.get_family_from_handle(handle)
+            media_list = media_list + family.get_media_list()
+
+        self.display_additional_images_as_gallery(of, db, media_list)
         self.display_note_object(of, self.person.get_note_object())
         self.display_url_list(of, self.person.get_url_list())
         self.display_ind_sources(of)
@@ -1021,7 +1034,7 @@ class IndividualPage(BasePage):
 
         # Names [and their sources]
         for name in [self.person.get_primary_name(),]+self.person.get_alternate_names():
-            pname = _nd.display_name(name)
+            pname = name_nameof(name,self.private)
             of.write('<tr><td class="field">%s</td>\n' % _(name.get_type()))
             of.write('<td class="data">%s' % pname)
             nshl = []
@@ -1047,7 +1060,16 @@ class IndividualPage(BasePage):
         of.write('<tr><td class="field">%s</td>\n' % _('Gender'))
         gender = self.gender_map[self.person.gender]
         of.write('<td class="data">%s</td>\n' % gender)
-        of.write('</tr>\n')
+        of.write('</tr>\n</table>\n</div>\n')
+
+    def display_ind_events(self,of):
+        if len(self.person.get_event_list()) == 0:
+            return
+        
+        of.write('<h4>%s</h4>\n' % _('Events'))
+        of.write('<hr>\n')
+        of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
+        of.write('border="0">\n')
 
         # Birth
         handle = self.person.get_birth_handle()
@@ -1065,18 +1087,6 @@ class IndividualPage(BasePage):
             of.write('<td class="data">%s</td>\n' % self.format_event(event))
             of.write('</tr>\n')
 
-        of.write('</table>\n')
-        of.write('</div>\n')
-
-    def display_ind_events(self,of):
-        if len(self.person.get_event_list()) == 0:
-            return
-        
-        of.write('<h4>%s</h4>\n' % _('Events'))
-        of.write('<hr>\n')
-        of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
-        of.write('border="0">\n')
-
         for event_id in self.person.get_event_list():
             event = self.db.get_event_from_handle(event_id)
 
@@ -1093,7 +1103,7 @@ class IndividualPage(BasePage):
         gid = child.get_gramps_id()
         if use_link:
             of.write('<a href="%s.%s">' % (child.handle,self.ext))
-        of.write(_nd.display(child))
+        of.write(nameof(child,self.private))
         if not self.noid:
             of.write('&nbsp;<span class="grampsid">[%s]</span>' % gid)
         if use_link:
@@ -1108,7 +1118,7 @@ class IndividualPage(BasePage):
         val = person.gramps_id
         if use_link:
             of.write('<a href="%s.%s">' % (person.handle,self.ext))           
-        of.write(_nd.display(person))
+        of.write(nameof(person,self.private))
         if not self.noid:
             of.write('&nbsp;<span class="grampsid">[%s]</span>' % (val))
         if use_link:
@@ -1204,7 +1214,7 @@ class IndividualPage(BasePage):
         spouse_id = ReportUtils.find_spouse(self.person,family)
         if spouse_id:
             spouse = self.db.get_person_from_handle(spouse_id)
-            name = _nd.display(spouse)
+            name = nameof(spouse,self.private)
         else:
             name = _("unknown")
         if not first:
@@ -1239,7 +1249,7 @@ class IndividualPage(BasePage):
         of.write('%s ' % bullet)
         if person_link:
             of.write('<a href="%s.%s">' % (person.handle,self.ext))
-        of.write(_nd.display(person))
+        of.write(nameof(person,self.private))
         if person_link:
             of.write('</a>')
         of.write('<br>\n')
@@ -1429,6 +1439,14 @@ class WebReport(Report.Report):
 
         ind_list = self.database.get_person_handles(sort_handles=False)
         ind_list = self.filter.apply(self.database,ind_list)
+
+        if not self.private:
+            new_list = []
+            for key in ind_list:
+                if not self.database.get_person_from_handle(key).private:
+                    new_list.append(key)
+            ind_list = new_list
+        
         progress_steps = len(ind_list)
         if len(ind_list) > 1:
             progress_steps = progress_steps+1
@@ -1447,12 +1465,15 @@ class WebReport(Report.Report):
         
         HomePage(self.database, self.title, self.options_class, archive, photo_list)
         if self.inc_contact:
-            ContactPage(self.database, self.title, self.options_class, archive, photo_list)
+            ContactPage(self.database, self.title, self.options_class,
+                        archive, photo_list)
         if self.inc_download:
-            DownloadPage(self.database, self.title, self.options_class, archive, photo_list)
+            DownloadPage(self.database, self.title, self.options_class,
+                         archive, photo_list)
         
         if self.use_intro:
-            IntroductionPage(self.database, self.title, self.options_class, archive, photo_list)
+            IntroductionPage(self.database, self.title, self.options_class,
+                             archive, photo_list)
         
         place_list = {}
         source_list = {}
@@ -2016,6 +2037,23 @@ def build_combo_box(media_list,select_value):
         widget.set_sensitive(False)
     return widget
     
+def nameof(person,private):
+    if person.private and private:
+        return _("Private")
+    else:
+        return _nd.display(person)
+
+def name_nameof(name,private):
+    if name.private and private:
+        return _("Private")
+    else:
+        return _nd.display_name(name)
+
+def sort_nameof(person, private):
+    if person.private and private:
+        return _("Private")
+    else:
+        return _nd.sorted(person)
 
 #-------------------------------------------------------------------------
 #

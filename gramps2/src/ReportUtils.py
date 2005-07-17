@@ -294,7 +294,6 @@ def sanitize_person(db,person):
     name = person.get_primary_name()
     if name.get_privacy() or person.get_privacy():
         name = RelLib.Name()
-        name.set_first_name(_('Private'))
         name.set_surname(_('Private'))
     else:
         new_person.set_nick_name(person.get_nick_name())
