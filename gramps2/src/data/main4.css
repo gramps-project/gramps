@@ -181,6 +181,14 @@ TABLE.infolist {
 	margin-left: 2em;
 	margin-top: 8px;
 }
+.img_navbar {
+  	margin: 0;
+  	margin-bottom: 4px;
+  	padding: 10px;
+  	font-size: 14px;
+  	font-weight: bold;
+	text-align: center;
+}
 TD.category {
 	margin: 0;
 	padding: 4px;	/* Defines spacing between rows */

@@ -116,7 +116,7 @@ class BasePage:
         self.private = not options.handler.options_dict['NWEBincpriv']
         
     def copy_media(self,photo):
-        if photo.get_handle() != self.photo_list:
+        if photo.get_handle() != self.photo_list and photo.get_handle() not in self.photo_list:
             self.photo_list.append(photo.get_handle())
         newpath = photo.gramps_id + os.path.splitext(photo.get_path())[1]
         if self.image_dir:
@@ -494,7 +494,10 @@ class PlacePage(BasePage):
 #------------------------------------------------------------------------
 class MediaPage(BasePage):
 
-    def __init__(self, db, title, handle, src_list, options, archive, media_list):
+    def __init__(self, db, title, handle, src_list, options, archive, media_list,
+                 info):
+
+        (prev, next, page_number, total_pages) = info
         photo = db.get_object_from_handle(handle)
         BasePage.__init__(self, title, options, archive, media_list)
         of = self.create_file(handle)
@@ -515,6 +518,17 @@ class MediaPage(BasePage):
         
         of.write('<div class="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % title)
+
+        # gallery navigation
+        of.write('<div class="img_navbar">')
+        if prev:
+            of.write('<a href="%s.%s">%s</a>' % (prev,self.ext,_('Previous')))
+        data = _('%(page_number)d of %(total_pages)d' % {
+            'page_number' : page_number, 'total_pages' : total_pages })
+        of.write('&nbsp;&nbsp;%s&nbsp;&nbsp;' % data)
+        if next:
+            of.write('<a href="%s.%s">%s</a>' % (next,self.ext,_('Next')))
+        of.write('</div><br>\n')
 
         mime_type = photo.get_mime_type()
         if mime_type and mime_type.startswith("image"):
@@ -1551,9 +1565,19 @@ class WebReport(Report.Report):
         GalleryPage(self.database, self.title, source_list, self.options_class,
                     archive, photo_list)
 
+        prev = None
+        total = len(photo_list)
+        index = 1
         for photo_handle in photo_list:
+            if index == total:
+                next = None
+            else:
+                next = photo_list[index]
             MediaPage(self.database, self.title, photo_handle, source_list,
-                      self.options_class, archive, photo_list)
+                      self.options_class, archive, photo_list,
+                      (prev, next, index, total))
+            prev = photo_handle
+            index += 1
         
         if archive:
             archive.close()
