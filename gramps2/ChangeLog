@@ -1,3 +1,7 @@
+2005-07-18  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/NavWebPage.py: Optimize separation of multiple families;
+	Print out attributes; Print out family note
+
 2005-07-17  Don Allingham  <don@gramps-project.org>
 	* src/ReportUtils.py: fix private name generation
 	* src/plugins/NavWebPage.py: Add family photos to the gallery,

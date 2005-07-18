@@ -270,9 +270,24 @@ class BasePage:
             uri = url.get_path()
             descr = url.get_description()
             of.write('<tr><td class="field">%d.</td>' % index)
-            of.write('<td class="field"><a href="%s">%s</a>' % (uri,descr))
+            of.write('<td class="data"><a href="%s">%s</a>' % (uri,descr))
             of.write('</td></tr>\n')
             index = index + 1
+        of.write('</table>\n')
+
+    def display_attr_list(self,of,attrlist=None):
+        if not attrlist:
+            return
+        of.write('<h4>%s</h4>\n' % _('Attributes'))
+        of.write('<hr>\n')
+        of.write('<table class="infolist" cellpadding="0" ')
+        of.write('cellspacing="0" border="0">\n')
+
+        for attr in attrlist:
+            type = attr.get_type()
+            value = attr.get_value()
+            of.write('<tr><td class="field">%s</td>' % _(type))
+            of.write('<td class="data">%s</td></tr>\n' % value)
         of.write('</table>\n')
 
     def display_references(self,of,db,handlelist):
@@ -525,6 +540,7 @@ class MediaPage(BasePage):
         of.write('</div>\n')
 
         self.display_note_object(of, photo.get_note_object())
+        self.display_attr_list(of, photo.get_attribute_list())
 
         self.display_footer(of)
         self.close_file(of)
@@ -919,6 +935,7 @@ class IndividualPage(BasePage):
                             get_researcher().get_name())
         self.display_ind_general(of)
         self.display_ind_events(of)
+        self.display_attr_list(of, self.person.get_attribute_list())
         self.display_ind_parents(of)
         self.display_ind_relationships(of)
         
@@ -1183,8 +1200,6 @@ class IndividualPage(BasePage):
         first = True
         for family_handle in family_list:
             family = self.db.get_family_from_handle(family_handle)
-            rtype = const.family_relations[family.get_relationship()][0]
-            of.write('<tr><td class="category">%s</td>\n' % rtype)
             self.display_spouse(of,family,first)
             first = False
             childlist = family.get_child_handle_list()
@@ -1218,8 +1233,9 @@ class IndividualPage(BasePage):
         else:
             name = _("unknown")
         if not first:
-            of.write('<tr><td>&nbsp;</td></tr>\n')
-            of.write('<td>&nbsp;</td>')
+            of.write('<tr><td colspan="3">&nbsp;</td></tr>\n')
+        rtype = const.family_relations[family.get_relationship()][0]
+        of.write('<tr><td class="category">%s</td>\n' % rtype)
         of.write('<td class="field">%s</td>\n' % relstr)
         of.write('<td class="data">')
         if spouse_id:
@@ -1243,6 +1259,25 @@ class IndividualPage(BasePage):
             of.write('<td class="data">\n')
             of.write(self.format_event(event))
             of.write('</td>\n</tr>\n')
+        for attr in family.get_attribute_list():
+            type = attr.get_type()
+            value = attr.get_value()
+            of.write('<tr><td>&nbsp;</td>\n')
+            of.write('<td class="field">%s</td>' % _(type))
+            of.write('<td class="data">%s</td>\n</tr>\n' % value)
+        nobj = family.get_note_object()
+        if nobj:
+            of.write('<tr><td>&nbsp;</td>\n')
+            of.write('<td class="field">%s</td>\n' % _('Narrative'))
+            of.write('<td class="data">\n')
+            format = nobj.get_format()
+            text = nobj.get()
+            if format:
+                of.write( u"<pre>" + u"<br>".join(text.split("\n"))+u"</pre>")
+            else:
+                of.write( u"</p><p>".join(text.split("\n")))
+            of.write('</td>\n</tr>\n')
+            
 
     def pedigree_person(self,of,person,bullet='|'):
         person_link = person.handle in self.ind_list
