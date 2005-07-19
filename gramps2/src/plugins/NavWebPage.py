@@ -180,25 +180,27 @@ class BasePage:
         of.write('<body>\n')
         of.write('<div class="navheader">\n')
         if author:
-            of.write('  <div class="navbyline">%s</div>\n' % cright)
-        of.write('  <h1 class="navtitle">%s</h1>\n' % self.title_str)
-        of.write('  <hr>\n')
-        of.write('    <div class="nav">\n')
-        of.write('    <a href="index.%s">%s</a> &nbsp;\n' % (self.ext,_('Home')))
+            of.write('<div class="navbyline">%s</div>\n' % cright)
+        of.write('<h1 class="navtitle">%s</h1>\n' % self.title_str)
+        of.write('<hr>\n')
+        of.write('<div class="nav">\n')
+        self.show_link(of,'index',_('Home'))
         if self.use_intro:
-            of.write('    <a href="introduction.%s">%s</a> &nbsp;\n' % (self.ext,_('Introduction')))
-        of.write('    <a href="surnames.%s">%s</a> &nbsp;\n' % (self.ext,_('Surnames')))
-        of.write('    <a href="individuals.%s">%s</a> &nbsp;\n' % (self.ext,_('Individuals')))
-        of.write('    <a href="sources.%s">%s</a> &nbsp;\n' % (self.ext,_('Sources')))
-        of.write('    <a href="places.%s">%s</a> &nbsp;\n' % (self.ext,_('Places')))
-        of.write('    <a href="gallery.%s">%s</a> &nbsp;\n' % (self.ext,_('Gallery')))
+            self.show_link(of,'introduction',_('Introduction'))
+        self.show_link(of,'surnames',_('Surnames'))
+        self.show_link(of,'individuals',_('Individuals'))
+        self.show_link(of,'sources',_('Sources'))
+        self.show_link(of,'places',_('Places'))
+        self.show_link(of,'gallery',_('Gallery'))
         if self.inc_download:
-            of.write('    <a href="download.%s">%s</a> &nbsp;\n' % (self.ext,_('Download')))
+            self.show_link(of,'download',_('Download'))
         if self.use_contact:
-            of.write('    <a href="contact.%s">%s</a> &nbsp;\n' % (self.ext,_('Contact')))
-        of.write('    </div>\n')
-        of.write('  </div>\n')
+            self.show_link(of,'contact',_('Contact'))
+        of.write('</div>\n</div>\n')
         of.write('  <div class="content">\n')
+
+    def show_link(self,of,lpath,title):
+        of.write('<a href="%s.%s">%s</a> &nbsp;' % (lpath,self.ext,title))
 
     def display_first_image_as_thumbnail( self, of, db, photolist=None):
         if not photolist:

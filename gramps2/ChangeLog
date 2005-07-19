@@ -1,5 +1,5 @@
 2005-07-18  Don Allingham  <don@gramps-project.org>
-	* src/plugins/NavWebPage.py: add media gallery navigation
+	* src/plugins/NavWebPage.py: add media gallery navigation, clean up
 	* src/data/main*.css: add support for media gallery navigation
 
 2005-07-18  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
