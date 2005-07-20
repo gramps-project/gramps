@@ -3105,7 +3105,7 @@ msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d months."
 msgstr ""
-"%(male_name)s starb am %(death_date)s in %(death_place)s% im Alter von %(age)"
+"%(male_name)s starb am %(death_date)s in %(death_place)s im Alter von %(age)"
 "d Monaten."
 
 #: ReportUtils.py:1188
