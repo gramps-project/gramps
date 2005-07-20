@@ -52,6 +52,7 @@ import ReportUtils
 import const
 from DateHandler import displayer as _dd
 from NameDisplay import displayer as _nd
+import cStringIO
 
 #------------------------------------------------------------------------
 #
@@ -110,6 +111,9 @@ class DetDescendantReport(Report.Report):
         self.dupPerson     = options_class.handler.options_dict['omitda']
         self.childRef      = options_class.handler.options_dict['desref']
         self.addImages     = options_class.handler.options_dict['incphotos']
+        self.includeNames  = options_class.handler.options_dict['incnames']
+        self.includeEvents = options_class.handler.options_dict['incevents']
+        self.includeSources= options_class.handler.options_dict['incsources']
 
         self.gen_handles = {}
         self.prev_gen_handles= {}
@@ -124,6 +128,9 @@ class DetDescendantReport(Report.Report):
             self.EMPTY_PLACE = EMPTY_ENTRY
         else:
             self.EMPTY_PLACE = ""
+
+        self.sref_map = {}
+        self.sref_index = 0
 
     def apply_filter(self,person_handle,index,cur_gen=1):
         if (not person_handle) or (cur_gen > self.max_generations):
@@ -149,6 +156,7 @@ class DetDescendantReport(Report.Report):
         name = _nd.display_name(self.start_person.get_primary_name())
 
         spouseName = ""
+        nspouses = 0
         for family_handle in self.start_person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
             if self.start_person.get_gender() == RelLib.Person.MALE:
@@ -156,11 +164,12 @@ class DetDescendantReport(Report.Report):
             else:
                 spouse_handle = family.get_father_handle()
             if spouse_handle:
+                nspouses += 1
                 spouse = self.database.get_person_from_handle(spouse_handle)
                 spouseName = _nd.display(spouse)
 
         self.doc.start_paragraph("DDR-Title")
-        if spouseName:
+        if nspouses == 1:
             name = _("%(spouse_name)s and %(person_name)s") % {
                     'spouse_name' : spouseName, 'person_name' : name }
 
@@ -198,6 +207,9 @@ class DetDescendantReport(Report.Report):
                             family = self.database.get_family_from_handle(family_handle)
                             self.write_children(family)
 
+        if self.includeSources:
+            self.write_endnotes()
+
     def write_person(self, key):
         """Output birth, death, parentage, marriage and notes information """
 
@@ -233,6 +245,8 @@ class DetDescendantReport(Report.Report):
                     self.doc.end_paragraph()
                     return 1    # Duplicate person
 
+        # Output the global source references for this person
+        self.endnotes(person)
         # Check birth record
         birth_handle = person.get_birth_handle()
         if birth_handle:
@@ -240,17 +254,25 @@ class DetDescendantReport(Report.Report):
                         self.EMPTY_DATE,self.EMPTY_PLACE)
             if text:
                 self.doc.write_text(text)
-        if person.get_death_handle():
+                self.endnotes(self.database.get_event_from_handle(birth_handle))
+            else:
+                self.doc.write_text(". ");
+        else:
+            self.doc.write_text(". ");
+        death_handle = person.get_death_handle()
+        if death_handle:
             age,units = self.calc_age(person)
             text = ReportUtils.died_str(self.database,person,firstName,
                         self.EMPTY_DATE,self.EMPTY_PLACE,age,units)
             if text:
                 self.doc.write_text(text)
+                self.endnotes(self.database.get_event_from_handle(death_handle))
 
         text = ReportUtils.buried_str(self.database,person,firstName,
                     self.EMPTY_DATE,self.EMPTY_PLACE)
         if text:
             self.doc.write_text(text)
+            # Missing source reference for burial
 
         self.write_parents(person, firstName)
         self.write_marriage(person)
@@ -265,6 +287,64 @@ class DetDescendantReport(Report.Report):
             self.doc.end_bold()
             self.doc.end_paragraph()
             self.doc.write_note(person.get_note(),person.get_note_format(),"DDR-Entry")
+
+        first = 1
+        if self.includeNames:
+            for alt_name in person.get_alternate_names():
+                if first:
+                    self.doc.start_paragraph('DDR-MoreHeader')
+                    self.doc.write_text(_('More about %(person_name)s:') % { 
+                        'person_name' : name })
+                    self.doc.end_paragraph()
+                    first = 0
+                self.doc.start_paragraph('DDR-MoreDetails')
+                self.doc.write_text(_('%(name_kind)s: %(name)s%(endnotes)s') % {
+                    'name_kind' : const.NameTypesMap.find_value(alt_name.get_type()),
+                    'name' : alt_name.get_regular_name(),
+                    'endnotes' : self.endnotes(alt_name),
+                    })
+                self.doc.end_paragraph()
+
+        if self.includeEvents:
+            for event_handle in person.get_event_list():
+                event = self.database.get_event_from_handle(event_handle)
+                date = event.get_date()
+                place_handle = event.get_place_handle()
+                if place_handle:
+                    place = self.database.get_place_from_handle(place_handle).get_title()
+                else:
+                    place = u''
+                
+                if not date and not place_handle:
+                    continue
+                if first:
+                    self.doc.start_paragraph('DDR-MoreHeader')
+                    self.doc.write_text(_('More about %(person_name)s:') % { 
+                        'person_name' : person.get_primary_name().get_regular_name() })
+                    self.doc.end_paragraph()
+                    first = 0
+
+
+                self.doc.start_paragraph('DDR-MoreDetails')
+                if date and place:
+                    self.doc.write_text(_('%(event_name)s: %(date)s, %(place)s%(endnotes)s. ') % {
+                        'event_name' : _(event.get_name()),
+                        'date' : date,
+                        'endnotes' : self.endnotes(event),
+                        'place' : place })
+                elif date:
+                    self.doc.write_text(_('%(event_name)s: %(date)s%(endnotes)s. ') % {
+                        'event_name' : _(event.get_name()),
+                        'endnotes' : self.endnotes(event),
+                        'date' : date})
+                else:
+                    self.doc.write_text(_('%(event_name)s: %(place)s%(endnotes)s. ') % {
+                        'event_name' : _(event.get_name()),
+                        'endnotes' : self.endnotes(event),
+                        'place' : place })
+                if event.get_description():
+                    self.doc.write_text(event.get_description())
+                self.doc.end_paragraph()
 
         return 0        # Not duplicate person
 
@@ -305,7 +385,7 @@ class DetDescendantReport(Report.Report):
             text = ""
             if marriage_event:
                 text = ReportUtils.married_str(self.database,person,spouse,
-                                            marriage_event,None,
+                                            marriage_event,self.endnotes,
                                             self.EMPTY_DATE,self.EMPTY_PLACE,
                                             is_first)
             else:
@@ -390,6 +470,8 @@ class DetDescendantReport(Report.Report):
                     self.EMPTY_DATE,self.EMPTY_PLACE)
                 if text:
                     self.doc.write_text(text)
+                else:
+                    self.doc.write_text(". ");
 
                 age,units = self.calc_age(ind)
                 text = ReportUtils.died_str(self.database,ind,heshe,
@@ -406,9 +488,9 @@ class DetDescendantReport(Report.Report):
 
                 self.doc.end_paragraph()
 
-                if self.listChildren \
-                           and mate.get_gender() == RelLib.Person.MALE:
-                    self.write_children(family)
+#                 if self.listChildren \
+#                            and mate.get_gender() == RelLib.Person.MALE:
+#                     self.write_children(family)
 
     def calc_age(self,ind):
         """
@@ -425,6 +507,74 @@ class DetDescendantReport(Report.Report):
             return ReportUtils.old_calc_age(self.database,ind)
         else:
             return (0,0)
+
+    def write_endnotes(self):
+        keys = self.sref_map.keys()
+        if not keys:
+            return
+
+        self.doc.start_paragraph('DDR-Endnotes-Header')
+        self.doc.write_text(_('Endnotes'))
+        self.doc.end_paragraph()
+        
+        keys.sort()
+        for key in keys:
+            srcref = self.sref_map[key]
+            base = self.database.get_source_from_handle(srcref.get_base_handle())
+            
+            self.doc.start_paragraph('DDR-Endnotes',"%d." % key)
+            self.doc.write_text(base.get_title())
+
+            for item in [ base.get_author(), base.get_publication_info(), base.get_abbreviation(),
+                          _dd.display(srcref.get_date_object()),]:
+                if item:
+                    self.doc.write_text('; %s' % item)
+
+            item = srcref.get_text()
+            if item:
+                self.doc.write_text('; ')
+                self.doc.write_text(_('Text:'))
+                self.doc.write_text(' ')
+                self.doc.write_text(item)
+
+            item = srcref.get_note()
+            if item:
+                self.doc.write_text('; ')
+                self.doc.write_text(_('Comments:'))
+                self.doc.write_text(' ')
+                self.doc.write_text(item)
+
+            self.doc.write_text('.')
+            self.doc.end_paragraph()
+
+    def endnotes(self,obj):
+        if not self.includeSources:
+            return ""
+        msg = cStringIO.StringIO()
+        slist = obj.get_source_references()
+        if slist:
+            msg.write('<super>')
+            first = 1
+            for ref in slist:
+                if not first:
+                    msg.write(',')
+                first = 0
+                ref_base = ref.get_base_handle()
+                the_key = 0
+                for key in self.sref_map.keys():
+                    if ref_base == self.sref_map[key].get_base_handle():
+                        the_key = key
+                        break
+                if the_key:
+                    msg.write("%d" % the_key)
+                else:
+                    self.sref_index += 1
+                    self.sref_map[self.sref_index] = ref
+                    msg.write("%d" % self.sref_index)
+            msg.write('</super>')
+        str = msg.getvalue()
+        msg.close()
+        return str
 
 #------------------------------------------------------------------------
 #
@@ -453,6 +603,9 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
             'omitda'        : 1,
             'desref'        : 1,
             'incphotos'     : 0,
+            'incnames'      : 0,
+            'incevents'     : 0,
+            'incsources'    : 0,
         }
         self.options_help = {
             'firstnameiop'  : ("=0/1","Whether to use first names instead of pronouns",
@@ -484,6 +637,15 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
                             True),
             'incphotos'     : ("=0/1","Whether to include images.",
                             ["Do not include images","Include images"],
+                            True),
+            'incnames'      : ("=0/1","Whether to include other names.",
+                            ["Do not include other names","Include other names"],
+                            True),
+            'incevents'     : ("=0/1","Whether to include events.",
+                            ["Do not include events","Include events"],
+                            True),
+            'incsources'    : ("=0/1","Whether to include source references.",
+                            ["Do not include sources","Include sources"],
                             True),
         }
 
@@ -546,6 +708,36 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         para.set_description(_('The style used for the first personal entry.'))
         default_style.add_style("DDR-First-Entry",para)
 
+        font = BaseDoc.FontStyle()
+        font.set(bold=1)
+        para = BaseDoc.ParagraphStyle()
+        para.set_font(font)
+        para.set(first_indent=0.0,lmargin=0.0,pad=0.25)
+        para.set_description(_('The style used for the More About header.'))
+        default_style.add_style("DDR-MoreHeader",para)
+
+        font = BaseDoc.FontStyle()
+        font.set(face=BaseDoc.FONT_SANS_SERIF,size=9)
+        para = BaseDoc.ParagraphStyle()
+        para.set_font(font)
+        para.set(first_indent=0.0,lmargin=1.0,pad=0.25)
+        para.set_description(_('The style used for additional detail data.'))
+        default_style.add_style("DDR-MoreDetails",para)
+
+        font = BaseDoc.FontStyle()
+        font.set(face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
+        para = BaseDoc.ParagraphStyle()
+        para.set_font(font)
+        para.set_header_level(2)
+        para.set(pad=0.5)
+        para.set_description(_('The style used for the generation header.'))
+        default_style.add_style("DDR-Endnotes-Header",para)
+
+        para = BaseDoc.ParagraphStyle()
+        para.set(first_indent=0.5,lmargin=1.0,pad=0.25)
+        para.set_description(_('The basic style used for the endnotes text display.'))
+        default_style.add_style("DDR-Endnotes",para)
+
     def add_user_options(self,dialog):
         """
         Override the base class add_user_options task to add a menu that allows
@@ -592,6 +784,18 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         self.image_option = gtk.CheckButton(_("Include Photo/Images from Gallery"))
         self.image_option.set_active(self.options_dict['incphotos'])
 
+        # Print alternative names
+        self.include_names_option = gtk.CheckButton(_("Include alternative names"))
+        self.include_names_option.set_active(self.options_dict['incnames'])
+
+        # Print events
+        self.include_events_option = gtk.CheckButton(_("Include events"))
+        self.include_events_option.set_active(self.options_dict['incevents'])
+
+        # Print sources
+        self.include_sources_option = gtk.CheckButton(_("Include sources"))
+        self.include_sources_option.set_active(self.options_dict['incsources'])
+
         # Add new options. The first argument is the tab name for grouping options.
         # if you want to put everyting in the generic "Options" category, use
         # self.add_option(text,widget) instead of self.add_frame_option(category,text,widget)
@@ -606,6 +810,9 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         dialog.add_frame_option(_('Content'),'',self.dupPersons_option)
         dialog.add_frame_option(_('Content'),'',self.childRef_option)
         dialog.add_frame_option(_('Content'),'',self.image_option)
+        dialog.add_frame_option(_('Content'),'',self.include_names_option)
+        dialog.add_frame_option(_('Content'),'',self.include_events_option)
+        dialog.add_frame_option(_('Content'),'',self.include_sources_option)
 
     def parse_user_options(self,dialog):
         """
@@ -622,6 +829,9 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         self.options_dict['omitda'] = int(self.dupPersons_option.get_active())
         self.options_dict['desref'] = int(self.childRef_option.get_active())
         self.options_dict['incphotos'] = int(self.image_option.get_active())
+        self.options_dict['incnames'] = int(self.include_names_option.get_active())
+        self.options_dict['incevents'] = int(self.include_events_option.get_active())
+        self.options_dict['incsources'] = int(self.include_sources_option.get_active())
 
 #------------------------------------------------------------------------
 #

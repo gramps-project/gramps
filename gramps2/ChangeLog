@@ -1,3 +1,7 @@
+2005-07-20  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/plugins/DetDescendantReport.py: Names, events and sources.
+	* src/plugins/DetAncestralReport.py (add_user_options): Names, events and sources.
+
 2005-07-20  Alexander Roitman  <shura@gramps-project.org>
 	* configure.in: Put release number back to CVS+date.
 	* src/po/de.po: Typo.
@@ -1077,8 +1081,6 @@
 	Use burial_date and burial_place for named format string parameters.
 
 	* src/ReportUtils.py (died_str): Typo.
-	* src/plugins/DetDescendantReport.py (add_user_options): Typos.
-	* src/plugins/DetAncestralReport.py (add_user_options): Typos.
 	* src/gramps_main.py (on_home_clicked): Typo.
 	* src/rule.glade: Translate label.
 	* src/po/fi.po: Add to gramps20 branch.
