@@ -1,3 +1,8 @@
+2005-07-20  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: Add support for multiple directory levels to
+	try to keep the number of files per directory under 254 for optimal ext3
+	file performance, add support for copyright.
+
 2005-07-20  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/plugins/DetDescendantReport.py: Names, events and sources.
 	* src/plugins/DetAncestralReport.py (add_user_options): Names, events and sources.
