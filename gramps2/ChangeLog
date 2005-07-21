@@ -5,6 +5,7 @@
 2005-07-20  Alexander Roitman  <shura@gramps-project.org>
 	* configure.in: Put release number back to CVS+date.
 	* src/po/de.po: Typo.
+	* src/plugins/Ancestors.py (person): correctly compare handles.
 
 2005-07-18  Don Allingham  <don@gramps-project.org>
 	* src/plugins/NavWebPage.py: add media gallery navigation, clean up
