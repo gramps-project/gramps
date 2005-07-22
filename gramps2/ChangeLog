@@ -1,3 +1,7 @@
+2005-07-22  Don Allingham  <don@gramps-project.org>
+        * src/ImgManip.py: provide path of a thumbnail
+	* src/NavWebPage.py: add user defined header/footer, add thumbnails
+	
 2005-07-22  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/dates/Date_es.py: fix translation table for date qualifiers
 	* src/dates/Date_fr.py: fix translation table for date qualifiers

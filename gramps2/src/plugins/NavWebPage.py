@@ -27,9 +27,7 @@ Narrative Web Page generator.
 #
 # TODO:
 #
-#  1) Thumbnail creation
-#  2) Templating enhancements
-#  3) Privacy options
+#  1) Privacy options
 #
 
 #------------------------------------------------------------------------
@@ -70,6 +68,7 @@ import Utils
 import ReportOptions
 import BaseDoc
 import ReportUtils
+import ImgManip
 from QuestionDialog import ErrorDialog
 from NameDisplay import displayer as _nd
 from DateHandler import displayer as _dd
@@ -132,6 +131,8 @@ class BasePage:
         self.noid = options.handler.options_dict['NWEBnoid']
         self.use_intro = options.handler.options_dict['NWEBintronote'] != u""
         self.use_contact = options.handler.options_dict['NWEBcontact'] != u""
+        self.header = options.handler.options_dict['NWEBheader']
+        self.footer = options.handler.options_dict['NWEBfooter']
         self.photo_list = photo_list
         self.private = not options.handler.options_dict['NWEBincpriv']
         self.copyright = options.handler.options_dict['NWEBcopyright']
@@ -142,8 +143,9 @@ class BasePage:
             and photo.get_handle() not in self.photo_list):
             self.photo_list.append(photo.get_handle())
         newpath = photo.gramps_id + os.path.splitext(photo.get_path())[1]
-        newpath = os.path.join('images',newpath)
-        return newpath
+        real_path = os.path.join('images',newpath)
+        thumb_path = os.path.join('thumb',newpath)
+        return (real_path,thumb_path)
 
     def create_file(self,name):
         if self.archive:
@@ -184,10 +186,8 @@ class BasePage:
     def lnkfmt(self,text):
         return md5.new(text).hexdigest()
 
-    def display_footer(self,of):
+    def display_footer(self,of,db):
 
-        of.write('</div>\n')
-        of.write('<div class="user_footer">\n')
         of.write('</div>\n')
         of.write('<div class="footer">\n')
         if self.copyright == 0:
@@ -211,10 +211,15 @@ class BasePage:
             of.write(text)
             of.write('</div>')
         of.write('</div><br><br><br><hr>\n')
+        if self.footer != u"":
+            obj = db.get_object_from_handle(self.footer)
+            of.write('<div class="user_footer">\n')
+            of.write(obj.get_note())
+            of.write('  </div>\n')
         of.write('</body>\n')
         of.write('</html>\n')
     
-    def display_header(self,of,title,author="",up=False):
+    def display_header(self,of,db,title,author="",up=False):
         self.up = up
         if up:
             if self.levels == 1:
@@ -240,6 +245,11 @@ class BasePage:
         of.write('<!-- $Id$ -->')
         of.write('</head>\n')
         of.write('<body>\n')
+        if self.header != u"":
+            obj = db.get_object_from_handle(self.header)
+            of.write('  <div class="user_header">\n')
+            of.write(obj.get_note())
+            of.write('  </div>\n')
         of.write('<div class="navheader">\n')
 
         format = locale.nl_langinfo(locale.D_FMT)
@@ -265,8 +275,6 @@ class BasePage:
         if self.use_contact:
             self.show_link(of,'contact',_('Contact'),path)
         of.write('</div>\n</div>\n')
-        of.write('  <div class="user_header">\n')
-        of.write('  </div>\n')
         of.write('  <div class="content">\n')
 
     def show_link(self,of,lpath,title,path):
@@ -284,7 +292,7 @@ class BasePage:
         
         if photo.get_mime_type():
             try:
-                newpath = self.copy_media(photo)
+                (real_path,newpath) = self.copy_media(photo)
                 of.write('<div class="snapshot">\n')
                 self.media_link(of,photo_handle,newpath,
                                 photo.get_description(),up=True)
@@ -306,7 +314,7 @@ class BasePage:
             
             if photo.get_mime_type():
                 try:
-                    newpath = self.copy_media(photo)
+                    (real_path,newpath) = self.copy_media(photo)
                     self.media_link(of,photo_handle,newpath,
                                     photo.get_description(),up=True)
                 except (IOError,OSError),msg:
@@ -420,7 +428,7 @@ class BasePage:
             of.write('<img class="thumbnail" border="0" src="../../%s" ' % path)
         else:
             of.write('<img class="thumbnail" border="0" src="../../../%s" ' % path)
-        of.write('height="100", alt="%s"></a>' % name)
+        of.write('height="%d", alt="%s"></a>' % (const.thumbScale,name))
         if usedescr:
             of.write('<div class="thumbname">%s</div>' % name)
         of.write('</a>')
@@ -460,7 +468,7 @@ class IndividualListPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list, levels)
 
         of = self.create_file("individuals")
-        self.display_header(of,_('Individuals'),
+        self.display_header(of,db,_('Individuals'),
                             get_researcher().get_name())
 
         msg = _("This page contains an index of all the individuals in the "
@@ -502,7 +510,7 @@ class IndividualListPage(BasePage):
                 first = False
             
         of.write('</table>\n</blockquote>\n')
-        self.display_footer(of)
+        self.display_footer(of,db)
         self.close_file(of)
 
 #------------------------------------------------------------------------
@@ -517,7 +525,7 @@ class SurnamePage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list, levels)
 
         of = self.create_link_file(md5.new(title).hexdigest(),'srn')
-        self.display_header(of,title,get_researcher().get_name(),True)
+        self.display_header(of,db,title,get_researcher().get_name(),True)
 
         msg = _("This page contains an index of all the individuals in the "
                 "database with the surname of %s. Selecting the person's name "
@@ -545,7 +553,7 @@ class SurnamePage(BasePage):
                 of.write(birth.get_date())
             of.write('</td></tr>\n')
         of.write('</table>\n</blockquote>\n')
-        self.display_footer(of)
+        self.display_footer(of,db)
         self.close_file(of)
 
 #------------------------------------------------------------------------
@@ -559,7 +567,7 @@ class PlaceListPage(BasePage):
                  media_list, levels):
         BasePage.__init__(self, title, options, archive, media_list, levels)
         of = self.create_file("places")
-        self.display_header(of,_('Places'),
+        self.display_header(of,db,_('Places'),
                             get_researcher().get_name())
 
         msg = _("This page contains an index of all the places in the "
@@ -607,7 +615,7 @@ class PlaceListPage(BasePage):
                 last_surname = n
             
         of.write('</table>\n</blockquote>\n')
-        self.display_footer(of)
+        self.display_footer(of,db)
         self.close_file(of)
 
 #------------------------------------------------------------------------
@@ -623,7 +631,7 @@ class PlacePage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list, levels)
         of = self.create_link_file(place.get_handle(),"plc")
         place_name = ReportUtils.place_name(db,place_handle)
-        self.display_header(of,"%s - %s" % (_('Places'), place_name),
+        self.display_header(of,db,"%s - %s" % (_('Places'), place_name),
                             get_researcher().get_name(),up=True)
 
         self.display_first_image_as_thumbnail(of, db, place.get_media_list())
@@ -667,7 +675,7 @@ class PlacePage(BasePage):
         self.display_note_object(of, place.get_note_object())
         self.display_url_list(of, place.get_url_list())
         self.display_references(of,db,place_list[place.handle])
-        self.display_footer(of)
+        self.display_footer(of,db)
         self.close_file(of)
 
 #------------------------------------------------------------------------
@@ -695,8 +703,19 @@ class MediaPage(BasePage):
             shutil.copyfile(photo.get_path(),
                             os.path.join(self.html_dir,newpath))
 
+
+        to_path = photo.gramps_id + os.path.splitext(photo.get_path())[1]
+        to_path = os.path.join('thumb',to_path)
+        from_path = ImgManip.get_thumbnail_path(photo.get_path())
+        if self.archive:
+            imagefile = open(from_path,"r")
+            self.archive.add_file(to_path,time.time(),imagefile)
+            imagefile.close()
+        else:
+            shutil.copyfile(from_path,os.path.join(self.html_dir,to_path))
+
         title = photo.get_description()
-        self.display_header(of, "%s - %s" % (_('Gallery'), title),
+        self.display_header(of,db, "%s - %s" % (_('Gallery'), title),
                             get_researcher().get_name(),up=True)
         
         of.write('<div class="summaryarea">\n')
@@ -740,7 +759,7 @@ class MediaPage(BasePage):
         self.display_note_object(of, photo.get_note_object())
         self.display_attr_list(of, photo.get_attribute_list())
 
-        self.display_footer(of)
+        self.display_footer(of,db)
         self.close_file(of)
 
 #------------------------------------------------------------------------
@@ -754,7 +773,7 @@ class SurnameListPage(BasePage):
                  media_list, levels):
         BasePage.__init__(self, title, options, archive, media_list, levels)
         of = self.create_file("surnames")
-        self.display_header(of,_('Surnames'),
+        self.display_header(of,db,_('Surnames'),
                             get_researcher().get_name())
 
         of.write('<h3>%s</h3>\n' % _('Surnames'))
@@ -798,7 +817,7 @@ class SurnameListPage(BasePage):
             of.write('<td class="field">%d</td></tr>' % len(data_list))
             
         of.write('</table>\n</blockquote>\n')
-        self.display_footer(of)
+        self.display_footer(of,db)
         self.close_file(of)
         return
 
@@ -814,7 +833,7 @@ class IntroductionPage(BasePage):
         note_id = options.handler.options_dict['NWEBintronote']
 
         of = self.create_file("introduction")
-        self.display_header(of,_('Introduction'),
+        self.display_header(of,db,_('Introduction'),
                             get_researcher().get_name())
 
         of.write('<h3>%s</h3>\n' % _('Introduction'))
@@ -826,7 +845,7 @@ class IntroductionPage(BasePage):
                 mime_type = obj.get_mime_type()
                 if mime_type and mime_type.startswith("image"):
                     try:
-                        newpath = self.copy_media(obj)
+                        (newpath,thumb_path) = self.copy_media(obj)
                         of.write('<div align="center">\n')
                         of.write('<img border="0" ')
                         of.write('src="%s" alt="%s" />' % (newpath, obj.get_description()))
@@ -844,7 +863,7 @@ class IntroductionPage(BasePage):
                         of.write('</p><p>'.join(text.split('\n')))
                         of.write('</p>')
 
-        self.display_footer(of)
+        self.display_footer(of,db)
         self.close_file(of)
 
 #------------------------------------------------------------------------
@@ -859,7 +878,7 @@ class HomePage(BasePage):
         note_id = options.handler.options_dict['NWEBhomenote']
 
         of = self.create_file("index")
-        self.display_header(of,_('Home'),
+        self.display_header(of,db,_('Home'),
                             get_researcher().get_name())
 
         of.write('<h3>%s</h3>\n' % _('Home'))
@@ -871,7 +890,7 @@ class HomePage(BasePage):
                 mime_type = obj.get_mime_type()
                 if mime_type and mime_type.startswith("image"):
                     try:
-                        newpath = self.copy_media(obj)
+                        (newpath,thumb_path) = self.copy_media(obj)
                         of.write('<div align="center">\n')
                         of.write('<img border="0" ')
                         of.write('src="%s" alt="%s" />' % (newpath, obj.get_description()))
@@ -889,7 +908,7 @@ class HomePage(BasePage):
                         of.write('</p><p>'.join(text.split('\n')))
                         of.write('</p>')
 
-        self.display_footer(of)
+        self.display_footer(of,db)
         self.close_file(of)
 
 #------------------------------------------------------------------------
@@ -904,7 +923,7 @@ class SourcesPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list, levels)
 
         of = self.create_file("sources")
-        self.display_header(of,_('Sources'),
+        self.display_header(of,db,_('Sources'),
                             get_researcher().get_name())
 
         handle_list = list(handle_set)
@@ -928,7 +947,7 @@ class SourcesPage(BasePage):
             
         of.write('</table>\n</blockquote>\n')
 
-        self.display_footer(of)
+        self.display_footer(of,db)
         self.close_file(of)
 
 #------------------------------------------------------------------------
@@ -944,7 +963,7 @@ class SourcePage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list, levels)
         of = self.create_link_file(source.get_handle(),"src")
         source_name = source.get_title()
-        self.display_header(of,"%s - %s" % (_('Sources'), source_name),
+        self.display_header(of,db,"%s - %s" % (_('Sources'), source_name),
                             get_researcher().get_name(),up=True)
 
         self.display_first_image_as_thumbnail(of, db, source.get_media_list())
@@ -971,7 +990,7 @@ class SourcePage(BasePage):
         self.display_additional_images_as_gallery(of, db, source.get_media_list())
         self.display_note_object(of, source.get_note_object())
         self.display_references(of,db,src_list[source.handle])
-        self.display_footer(of)
+        self.display_footer(of,db)
         self.close_file(of)
 
 #------------------------------------------------------------------------
@@ -985,7 +1004,7 @@ class GalleryPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list, levels)
 
         of = self.create_file("gallery")
-        self.display_header(of, _('Gallery'), get_researcher().get_name())
+        self.display_header(of,db, _('Gallery'), get_researcher().get_name())
 
         of.write('<h3>%s</h3>\n<p>' % _('Gallery'))
 
@@ -1008,7 +1027,7 @@ class GalleryPage(BasePage):
             
         of.write('</table>\n</blockquote>\n')
 
-        self.display_footer(of)
+        self.display_footer(of,db)
         self.close_file(of)
 
     def by_media_title(self,a_id,b_id):
@@ -1031,12 +1050,12 @@ class DownloadPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list, levels)
 
         of = self.create_file("download")
-        self.display_header(of,_('Download'),
+        self.display_header(of,db,_('Download'),
                             get_researcher().get_name())
 
         of.write('<h3>%s</h3>\n' % _('Download'))
 
-        self.display_footer(of)
+        self.display_footer(of,db)
         self.close_file(of)
 
 #------------------------------------------------------------------------
@@ -1050,7 +1069,7 @@ class ContactPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list, levels)
 
         of = self.create_file("contact")
-        self.display_header(of,_('Contact'),
+        self.display_header(of,db,_('Contact'),
                             get_researcher().get_name())
 
         of.write('<div class="summaryarea">\n')
@@ -1064,7 +1083,7 @@ class ContactPage(BasePage):
         
                 if mime_type and mime_type.startswith("image"):
                     try:
-                        newpath = self.copy_media(obj)
+                        (newpath,thumb_path) = self.copy_media(obj)
                         of.write('<div class="rightwrap">\n')
                         of.write('<table cellspacing="0" cellpadding="0" border="0"><tr>')
                         of.write('<td height="205">')
@@ -1102,7 +1121,7 @@ class ContactPage(BasePage):
             of.write('<br><br><br><br>\n')
         of.write('</div>\n')
 
-        self.display_footer(of)
+        self.display_footer(of,db)
         self.close_file(of)
 
 #------------------------------------------------------------------------
@@ -1131,7 +1150,7 @@ class IndividualPage(BasePage):
         self.name = sort_nameof(self.person,self.private)
         
         of = self.create_link_file(person.handle,"ppl")
-        self.display_header(of, self.sort_name,
+        self.display_header(of,db, self.sort_name,
                             get_researcher().get_name(),up=True)
         self.display_ind_general(of)
         self.display_ind_events(of)
@@ -1152,7 +1171,7 @@ class IndividualPage(BasePage):
         self.display_url_list(of, self.person.get_url_list())
         self.display_ind_sources(of)
         self.display_ind_pedigree(of)
-        self.display_footer(of)
+        self.display_footer(of,db)
         self.close_file(of)
 
     def display_ind_sources(self,of):
@@ -1619,6 +1638,8 @@ class WebReport(Report.Report):
         self.sort = Sort.Sort(self.database)
         self.inc_contact = options_class.handler.options_dict['NWEBcontact'] != u""
         self.inc_download = options_class.handler.options_dict['NWEBdownload']
+        self.user_header = options_class.handler.options_dict['NWEBheader']
+        self.user_footer = options_class.handler.options_dict['NWEBfooter']
         self.use_archive = options_class.handler.options_dict['NWEBarchive']
         self.use_intro = options_class.handler.options_dict['NWEBintronote'] != u""
         
@@ -1662,6 +1683,20 @@ class WebReport(Report.Report):
                     ErrorDialog(_("Could not create the directory: %s") % \
                                 image_dir_name)
                     return
+
+            image_dir_name = os.path.join(dir_name, 'thumb')
+            if not os.path.isdir(image_dir_name) and self.photos != 0:
+                try:
+                    os.mkdir(image_dir_name)
+                except IOError, value:
+                    ErrorDialog(_("Could not create the directory: %s") % \
+                                image_dir_name + "\n" + value[1])
+                    return
+                except:
+                    ErrorDialog(_("Could not create the directory: %s") % \
+                                image_dir_name)
+                    return
+
 
         ind_list = self.database.get_person_handles(sort_handles=False)
         ind_list = self.filter.apply(self.database,ind_list)
@@ -1828,6 +1863,8 @@ class WebReportOptions(ReportOptions.ReportOptions):
             'NWEBlnktoalphabet' : 0, 
             'NWEBsplita'        : 0, 
             'NWEBcontact'       : '', 
+            'NWEBheader'        : '', 
+            'NWEBfooter'        : '', 
             'NWEBdownload'      : 0, 
             'NWEBshorttree'     : 1,
             'NWEBtitle'         : _('My Family Tree'), 
@@ -1993,23 +2030,32 @@ class WebReportOptions(ReportOptions.ReportOptions):
 
         cursor = self.db.get_media_cursor()
         media_list = [['',None]]
+        html_list = [['',None]]
         data = cursor.first()
         while data:
             (handle, value) = data
-            media_list.append([value[4],handle])
+            if value[3]:
+                media_list.append([value[4],handle])
+            else:
+                html_list.append([value[4],handle])
             data = cursor.next()
         cursor.close()
         media_list.sort()
+        html_list.sort()
 
         self.home_note = build_combo_box(media_list,self.options_dict['NWEBhomenote'])
         self.intro_note = build_combo_box(media_list,self.options_dict['NWEBintronote'])
         self.contact = build_combo_box(media_list,self.options_dict['NWEBcontact'])
+        self.header = build_combo_box(html_list,self.options_dict['NWEBheader'])
+        self.footer = build_combo_box(html_list,self.options_dict['NWEBfooter'])
 
         dialog.add_frame_option(title,_('Home Media/Note ID'),
                                 self.home_note)
         dialog.add_frame_option(title,_('Introduction Media/Note ID'),
                                 self.intro_note)
         dialog.add_frame_option(title,contact_msg,self.contact)
+        dialog.add_frame_option(title,('HTML user header'),self.header)
+        dialog.add_frame_option(title,('HTML user footer'),self.footer)
         dialog.add_frame_option(title,None,self.inc_download)
         dialog.add_frame_option(title,None,self.noid)
 
@@ -2030,6 +2076,8 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.options_dict['NWEBincpriv'] = int(not self.no_private.get_active())
         self.options_dict['NWEBnoid'] = int(self.noid.get_active())
         self.options_dict['NWEBcontact'] = unicode(self.contact.get_handle())
+        self.options_dict['NWEBheader'] = unicode(self.header.get_handle())
+        self.options_dict['NWEBfooter'] = unicode(self.footer.get_handle())
         self.options_dict['NWEBdownload'] = int(self.inc_download.get_active())
         self.options_dict['NWEBtitle'] = unicode(self.title.get_text())
         self.options_dict['NWEBintronote'] = unicode(self.intro_note.get_handle())
