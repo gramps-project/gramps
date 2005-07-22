@@ -381,7 +381,7 @@ class BasePage:
     def build_path(self,handle,dirroot,up):
         if up:
             if self.levels == 1:
-                return '../../%s/%s/' % (dirroot,handle[0])
+                return '../../%s/%s' % (dirroot,handle[0])
             else:
                 return '../../../%s/%s/%s' % (dirroot,handle[0],handle[1])
         else:
@@ -871,7 +871,7 @@ class HomePage(BasePage):
                 mime_type = obj.get_mime_type()
                 if mime_type and mime_type.startswith("image"):
                     try:
-                        newpath = self.copy_media_add(obj)
+                        newpath = self.copy_media(obj)
                         of.write('<div align="center">\n')
                         of.write('<img border="0" ')
                         of.write('src="%s" alt="%s" />' % (newpath, obj.get_description()))

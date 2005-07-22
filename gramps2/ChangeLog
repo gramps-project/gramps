@@ -1,3 +1,6 @@
+2005-07-22  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/NavWebPage.py: fix typos 
+
 2005-07-21  Don Allingham  <don@gramps-project.org>
 	* src/data/somerights20.gif: make a local copy of the Create Commons
 	image
