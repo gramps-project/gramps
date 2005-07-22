@@ -20,7 +20,18 @@
 
 # $Id$
 
-"Web Site/Generate Web Site"
+"""
+Narrative Web Page generator.
+"""
+
+#
+# TODO:
+#
+#  1) Thumbnail creation
+#  2) Surname/People integration to reduce Individual page size
+#  3) Templating enhancements
+#  4) Privacy options
+#
 
 #------------------------------------------------------------------------
 #
@@ -28,6 +39,7 @@
 #
 #------------------------------------------------------------------------
 import os
+import md5
 import time
 import locale
 import shutil
@@ -98,12 +110,12 @@ _character_sets = [
     ]
 
 _cc = [
-    '<a rel="license" href="http://creativecommons.org/licenses/by/2.5/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by/2.5/"><img alt="Creative Commons License" border="0" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/"><img alt="Creative Commons License" border="0" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/"><img alt="Creative Commons License" border="0" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/"><img alt="Creative Commons License" border="0" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/"><img alt="Creative Commons License" border="0" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/"><img alt="Creative Commons License" border="0" src="#PATH#images/somerights20.gif" /></a>',
     ]
 
 
@@ -127,12 +139,13 @@ class BasePage:
         self.levels = levels
         
     def copy_media(self,photo):
-        if photo.get_handle() != self.photo_list and photo.get_handle() not in self.photo_list:
+        if (photo.get_handle() != self.photo_list
+            and photo.get_handle() not in self.photo_list):
             self.photo_list.append(photo.get_handle())
         newpath = photo.gramps_id + os.path.splitext(photo.get_path())[1]
         newpath = os.path.join('images',newpath)
         return newpath
-        
+
     def create_file(self,name):
         if self.archive:
             self.string_io = StringIO()
@@ -170,10 +183,12 @@ class BasePage:
             of.close()
 
     def lnkfmt(self,text):
-        return text.replace(' ','%20')
+        return md5.new(text).hexdigest()
 
     def display_footer(self,of):
 
+        of.write('</div>\n')
+        of.write('<div class="user_footer">\n')
         of.write('</div>\n')
         of.write('<div class="footer">\n')
         if self.copyright == 0:
@@ -186,13 +201,22 @@ class BasePage:
                 of.write('<br>%s\n' % cright)
         elif self.copyright <=6:
             of.write('<div align="center">')
-            of.write(_cc[self.copyright-1])
+            text = _cc[self.copyright-1]
+            if self.up:
+                if self.levels == 1:
+                    text = text.replace('#PATH#','../../')
+                else:
+                    text = text.replace('#PATH#','../../../')
+            else:
+                text = text.replace('#PATH#','')
+            of.write(text)
             of.write('</div>')
         of.write('</div><br><br><br><hr>\n')
         of.write('</body>\n')
         of.write('</html>\n')
     
     def display_header(self,of,title,author="",up=False):
+        self.up = up
         if up:
             if self.levels == 1:
                 path = "../.."
@@ -242,6 +266,8 @@ class BasePage:
         if self.use_contact:
             self.show_link(of,'contact',_('Contact'),path)
         of.write('</div>\n</div>\n')
+        of.write('  <div class="user_header">\n')
+        of.write('  </div>\n')
         of.write('  <div class="content">\n')
 
     def show_link(self,of,lpath,title,path):
@@ -373,6 +399,15 @@ class BasePage:
             of.write('&nbsp;<span class="grampsid">[%s]</span>' % gid)
         of.write('</a>')
 
+    def surname_link(self,of,name,opt_val=None,up=False):
+        handle = self.lnkfmt(name)
+        dirpath = self.build_path(handle,'srn',up)
+            
+        of.write('<a href="%s/%s.%s">%s' % (dirpath,handle,self.ext,name))
+        if opt_val != None:
+            of.write('&nbsp;(%d)' % opt_val)
+        of.write('</a>')
+
     def media_ref_link(self,of,handle,name,up=False):
         dirpath = self.build_path(handle,'img',up)
         of.write('<a href="%s/%s.%s">%s</a>' % (
@@ -430,7 +465,7 @@ class IndividualListPage(BasePage):
                             get_researcher().get_name())
 
         msg = _("This page contains an index of all the individuals in the "
-                "database, sorted by their last names. Selecting person's name "
+                "database, sorted by their last names. Selecting the person's name "
                 "will take you to that person's individual page.")
 
         of.write('<h3>%s</h3>\n' % _('Individuals'))
@@ -440,9 +475,8 @@ class IndividualListPage(BasePage):
         of.write('cellpadding="0" border="0">\n')
         of.write('<tr><td class="field"><u><b>%s</b></u></td>\n' % _('Surname'))
         of.write('<td class="field"><u><b>%s</b></u></td>\n' % _('Name'))
+        of.write('<td class="field"><u><b>%s</b></u></td>\n' % _('Birth date'))
         of.write('</tr>\n')
-
-        flist = sets.Set(person_handle_list)
 
         person_handle_list = sort_people(db,person_handle_list)
         
@@ -460,9 +494,57 @@ class IndividualListPage(BasePage):
                 self.person_link(of,person.handle,
                                  person.get_primary_name().get_first_name(),
                                  person.gramps_id)
+                of.write('</td><td class="field">')
+                birth_handle = person.get_birth_handle()
+                if birth_handle:
+                    birth = db.get_event_from_handle(birth_handle)
+                    of.write(birth.get_date())
                 of.write('</td></tr>\n')
                 first = False
             
+        of.write('</table>\n</blockquote>\n')
+        self.display_footer(of)
+        self.close_file(of)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class SurnamePage(BasePage):
+
+    def __init__(self, db, title, person_handle_list, options, archive,
+                 media_list, levels):
+        BasePage.__init__(self, title, options, archive, media_list, levels)
+
+        of = self.create_link_file(md5.new(title).hexdigest(),'srn')
+        self.display_header(of,title,get_researcher().get_name(),True)
+
+        msg = _("This page contains an index of all the individuals in the "
+                "database with the surname of %s. Selecting the person's name "
+                "will take you to that person's individual page.") % title
+
+        of.write('<h3>%s</h3>\n' % title)
+        of.write('<p>%s</p>\n' % msg)
+        of.write('<blockquote>\n')
+        of.write('<table class="infolist" cellspacing="0" ')
+        of.write('cellpadding="0" border="0">\n')
+        of.write('<tr><td class="field"><u><b>%s</b></u></td>\n' % _('Name'))
+        of.write('<td class="field"><u><b>%s</b></u></td>\n' % _('Birth date'))
+        of.write('</tr>\n')
+
+        for person_handle in person_handle_list:
+            person = db.get_person_from_handle(person_handle)
+            of.write('<tr><td class="category">')
+            self.person_link(of,person.handle,
+                             person.get_primary_name().get_first_name(),
+                             person.gramps_id,up=True)
+            of.write('</td><td class="field">')
+            birth_handle = person.get_birth_handle()
+            if birth_handle:
+                birth = db.get_event_from_handle(birth_handle)
+                of.write(birth.get_date())
+            of.write('</td></tr>\n')
         of.write('</table>\n</blockquote>\n')
         self.display_footer(of)
         self.close_file(of)
@@ -690,6 +772,8 @@ class SurnameListPage(BasePage):
         of.write('<b>%s</b></u></td>\n' % _('Letter'))
         of.write('<td class="field"><u>')
         of.write('<b>%s</b></u></td>\n' % _('Surname'))
+        of.write('<td class="field"><u>')
+        of.write('<b>%s</b></u></td>\n' % _('Number of people'))
         of.write('</tr>\n')
 
         person_handle_list = sort_people(db,person_handle_list)
@@ -704,16 +788,15 @@ class SurnameListPage(BasePage):
                 last_letter = surname[0]
                 of.write('<tr><td class="category">%s</td>' % last_letter)
                 of.write('<td class="data">')
-                of.write('<a href="individuals.%s#%s">' % (self.ext,self.lnkfmt(surname)))
-                of.write("%s (%d)" % (surname,len(data_list)))
-                of.write('</a></td></tr>')
+                self.surname_link(of,surname)
+                of.write('</td>')
             elif surname != last_surname:
                 of.write('<tr><td class="category">&nbsp;</td>')
                 of.write('<td class="data">')
-                of.write('<a href="individuals.%s#%s">' % (self.ext,self.lnkfmt(surname)))
-                of.write("%s (%d)" % (surname,len(data_list)))
-                of.write('</a></td></tr>')
+                self.surname_link(of,surname)
+                of.write('</td>')
                 last_surname = surname
+            of.write('<td class="field">%d</td></tr>' % len(data_list))
             
         of.write('</table>\n</blockquote>\n')
         self.display_footer(of)
@@ -789,7 +872,7 @@ class HomePage(BasePage):
                 mime_type = obj.get_mime_type()
                 if mime_type and mime_type.startswith("image"):
                     try:
-                        newpath = self.copy_media(obj)
+                        newpath = self.copy_media_add(obj)
                         of.write('<div align="center">\n')
                         of.write('<img border="0" ')
                         of.write('src="%s" alt="%s" />' % (newpath, obj.get_description()))
@@ -1604,6 +1687,10 @@ class WebReport(Report.Report):
             archive = None
 
         self.write_css(archive,self.target_path,self.css)
+        if 1 < self.copyright < 7:
+            from_path = os.path.join(const.dataDir,"somerights20.gif")
+            to_path = os.path.join("images","somerights20.gif")
+            self.store_file(archive,self.target_path,from_path,to_path)
 
         photo_list = []
 
@@ -1652,6 +1739,11 @@ class WebReport(Report.Report):
             while gtk.events_pending():
                 gtk.main_iteration()
 
+        local_list = sort_people(self.database,ind_list)
+        for (surname,handle_list) in local_list:
+            SurnamePage(self.database, surname, handle_list, self.options_class,
+                        archive, photo_list, levels)
+
         PlaceListPage(self.database, self.title, place_list,
                       source_list,self.options_class, archive,
                       photo_list, levels)
@@ -1696,7 +1788,15 @@ class WebReport(Report.Report):
         else:
             shutil.copyfile(os.path.join(const.dataDir,css_file),
                             os.path.join(html_dir,_NARRATIVE))
-                 
+
+    def store_file(self,archive,html_dir,from_path,to_path):
+        if archive:
+            imagefile = open(from_path,"r")
+            archive.add_file(to_path,time.time(),imagefile)
+            imagefile.close()
+        else:
+            shutil.copyfile(from_path,os.path.join(html_dir,to_path))
+
     def add_styles(self,doc):
         pass
 

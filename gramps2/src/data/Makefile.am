@@ -6,6 +6,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/data
 
 dist_pkgdata_DATA = \
 	gedcom.xml \
+	somerights20.gif \
 	papersize.xml \
 	tips.xml\
 	main1.css\

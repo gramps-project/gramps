@@ -1,3 +1,10 @@
+2005-07-21  Don Allingham  <don@gramps-project.org>
+	* src/data/somerights20.gif: make a local copy of the Create Commons
+	image
+	* src/data/Makefile.am: add somerights20.gif
+	* src/plugins/NavWebPage.py: add birth dates to people, use local
+	create commons image, add surname pages
+
 2005-07-20  Don Allingham  <don@gramps-project.org>
 	* src/plugins/NavWebPage.py: Add support for multiple directory levels to
 	try to keep the number of files per directory under 254 for optimal ext3
