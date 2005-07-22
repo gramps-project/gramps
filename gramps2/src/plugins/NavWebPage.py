@@ -28,9 +28,8 @@ Narrative Web Page generator.
 # TODO:
 #
 #  1) Thumbnail creation
-#  2) Surname/People integration to reduce Individual page size
-#  3) Templating enhancements
-#  4) Privacy options
+#  2) Templating enhancements
+#  3) Privacy options
 #
 
 #------------------------------------------------------------------------
