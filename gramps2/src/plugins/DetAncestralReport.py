@@ -292,8 +292,6 @@ class DetAncestorReport(Report.Report):
                 else:
                     place = u''
                 
-                if not date and not place_handle:
-                    continue
                 if first:
                     self.doc.start_paragraph('DAR-MoreHeader')
                     self.doc.write_text(_('More about %(person_name)s:') % { 
@@ -314,11 +312,14 @@ class DetAncestorReport(Report.Report):
                         'event_name' : _(event.get_name()),
                         'endnotes' : self.endnotes(event),
                         'date' : date})
-                else:
+                elif place:
                     self.doc.write_text(_('%(event_name)s: %(place)s%(endnotes)s. ') % {
                         'event_name' : _(event.get_name()),
                         'endnotes' : self.endnotes(event),
                         'place' : place })
+                else:
+                    self.doc.write_text(_('%(event_name)s: ') % {
+                        'event_name' : _(event.get_name())})
                 if event.get_description():
                     self.doc.write_text(event.get_description())
                 self.doc.end_paragraph()

@@ -1,3 +1,11 @@
+2005-07-22  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/dates/Date_es.py: fix translation table for date qualifiers
+	* src/dates/Date_fr.py: fix translation table for date qualifiers
+	* src/plugins/DetAncestralReport.py: show events even if they have
+	neither date nor place
+	* src/plugins/DetDescendantReport.py: show events even if they have
+	neither date nor place
+
 2005-07-22  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/NavWebPage.py: fix typos 
 
