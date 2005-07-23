@@ -207,10 +207,16 @@ class GraphViz:
         self.f.write("center=1;\n")
         self.f.write("margin=%3.2f;\n" % self.margin_small)
         self.f.write("ratio=fill;\n")
-        self.f.write("size=\"%3.2f,%3.2f\";\n" % (
-            (self.width-self.margin*2)*self.hpages,
-            (self.height-self.margin*2)*self.vpages
-            ))
+        if self.orient == PAPER_LANDSCAPE:
+            self.f.write("size=\"%3.2f,%3.2f\";\n" % (
+                (self.height-self.margin*2)*self.hpages,
+                (self.width-self.margin*2)*self.vpages
+                ))
+        else:
+            self.f.write("size=\"%3.2f,%3.2f\";\n" % (
+                (self.width-self.margin*2)*self.hpages,
+                (self.height-self.margin*2)*self.vpages
+                ))
         self.f.write("page=\"%3.2f,%3.2f\";\n" % (self.width,self.height))
 
         if self.orient == PAPER_LANDSCAPE:
