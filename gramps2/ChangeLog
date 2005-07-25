@@ -1,3 +1,6 @@
+2005-07-24  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/RelCalc.py (__init__): Correctly name column header.
+
 2005-07-23  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/plugins/GraphViz.py: Fix computation of landscape dimensions,
 	especially when generating multiple sheets

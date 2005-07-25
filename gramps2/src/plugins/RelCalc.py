@@ -92,7 +92,7 @@ class RelCalc:
         self.people = self.glade.get_widget("peopleList")
 
         self.clist = ListModel.ListModel(self.people,
-                                         [(_('Name'),3,150),(_('ID'),1,50),
+                                         [(_('Name'),3,150),(_('Gender'),1,50),
                                           (_('Birth Date'),4,150),
                                           ('',-1,0),('',-1,0)],
                                          self.on_apply_clicked)
