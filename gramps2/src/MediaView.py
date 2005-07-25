@@ -248,7 +248,9 @@ class MediaView:
         self.mid.set_text(mobj.get_gramps_id())
         self.mtype.set_text(type_name)
         self.mdesc.set_text(mobj.get_description())
-        if len(path) == 0 or fexists == 0:
+        if type_name == _('Note'):
+            self.mpath.set_text('')
+        elif len(path) == 0 or fexists == 0:
             self.mpath.set_text(_("The file no longer exists"))
         else:
             self.mpath.set_text(path)

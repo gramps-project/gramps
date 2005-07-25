@@ -1004,8 +1004,10 @@ class GedcomParser:
                     self.person.set_gender(RelLib.Person.UNKNOWN)
                 elif matches[2][0] == "M":
                     self.person.set_gender(RelLib.Person.MALE)
-                else:
+                elif matches[2][0] == "F":
                     self.person.set_gender(RelLib.Person.FEMALE)
+                else:
+                    self.person.set_gender(RelLib.Person.UNKNOWN)
             elif matches[1] in [ "BAPL", "ENDL", "SLGC" ]:
                 lds_ord = RelLib.LdsOrd()
                 if matches[1] == "BAPL":

@@ -1,3 +1,9 @@
+2005-07-24  Don Allingham  <don@gramps-project.org>
+	* src/MediaView.py: don't indicate missing path for Notes, which
+	aren't supposed to have a path
+	* src/ReadGedcom.py: Handle PAF's non-GEDCOM compliant method of
+	indicating unknown gender.
+
 2005-07-24  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/RelCalc.py (__init__): Correctly name column header.
 
