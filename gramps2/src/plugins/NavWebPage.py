@@ -213,9 +213,10 @@ class BasePage:
         of.write('</div><br><br><br><hr>\n')
         if self.footer != u"":
             obj = db.get_object_from_handle(self.footer)
-            of.write('<div class="user_footer">\n')
-            of.write(obj.get_note())
-            of.write('  </div>\n')
+            if obj:
+                of.write('<div class="user_footer">\n')
+                of.write(obj.get_note())
+                of.write('  </div>\n')
         of.write('</body>\n')
         of.write('</html>\n')
     
@@ -247,9 +248,10 @@ class BasePage:
         of.write('<body>\n')
         if self.header != u"":
             obj = db.get_object_from_handle(self.header)
-            of.write('  <div class="user_header">\n')
-            of.write(obj.get_note())
-            of.write('  </div>\n')
+            if obj:
+                of.write('  <div class="user_header">\n')
+                of.write(obj.get_note())
+                of.write('  </div>\n')
         of.write('<div class="navheader">\n')
 
         format = locale.nl_langinfo(locale.D_FMT)
@@ -768,15 +770,22 @@ class MediaPage(BasePage):
 #
 #------------------------------------------------------------------------
 class SurnameListPage(BasePage):
-
+    ORDER_BY_NAME = 0
+    ORDER_BY_COUNT = 1
     def __init__(self, db, title, person_handle_list, options, archive,
-                 media_list, levels):
+                 media_list, levels, order_by=ORDER_BY_NAME):
         BasePage.__init__(self, title, options, archive, media_list, levels)
-        of = self.create_file("surnames")
-        self.display_header(of,db,_('Surnames'),
+        if order_by == self.ORDER_BY_NAME:
+            of = self.create_file("surnames")
+            self.display_header(of,db,_('Surnames'),
                             get_researcher().get_name())
+            of.write('<h3>%s</h3>\n' % _('Surnames'))
+        else:
+            of = self.create_file("surnames_count")
+            self.display_header(of,db,_('Surnames by person count'),
+                            get_researcher().get_name())
+            of.write('<h3>%s</h3>\n' % _('Surnames by person count'))
 
-        of.write('<h3>%s</h3>\n' % _('Surnames'))
         of.write('<p>%s</p>\n' % _(
             'This page contains an index of all the '
             'surnames in the database. Selecting a link '
@@ -789,12 +798,22 @@ class SurnameListPage(BasePage):
         of.write('<tr><td class="field"><u>')
         of.write('<b>%s</b></u></td>\n' % _('Letter'))
         of.write('<td class="field"><u>')
-        of.write('<b>%s</b></u></td>\n' % _('Surname'))
+        of.write('<b><a href="%s.%s">%s</a></b></u></td>\n' % ("surnames", self.ext, _('Surname')))
         of.write('<td class="field"><u>')
-        of.write('<b>%s</b></u></td>\n' % _('Number of people'))
+        of.write('<b><a href="%s.%s">%s</a></b></u></td>\n' % ("surnames_count", self.ext, _('Number of people')))
         of.write('</tr>\n')
 
         person_handle_list = sort_people(db,person_handle_list)
+        if order_by == self.ORDER_BY_COUNT:
+            temp_list = {}
+            for (surname,data_list) in person_handle_list:
+                temp_list["%90d_%s" % (999999999-len(data_list),surname)] = (surname,data_list)
+            temp_keys = temp_list.keys()
+            temp_keys.sort()
+            person_handle_list = []
+            for key in temp_keys:
+                person_handle_list.append(temp_list[key])
+        
         last_letter = ''
         last_surname = ''
         
@@ -1768,7 +1787,10 @@ class WebReport(Report.Report):
                                levels)
             SurnameListPage(self.database, self.title, ind_list,
                             self.options_class, archive, photo_list,
-                            levels)
+                            levels, SurnameListPage.ORDER_BY_NAME)
+            SurnameListPage(self.database, self.title, ind_list,
+                            self.options_class, archive, photo_list,
+                            levels, SurnameListPage.ORDER_BY_COUNT)
             self.progress_bar_step()
             while gtk.events_pending():
                 gtk.main_iteration()

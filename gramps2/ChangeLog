@@ -1,3 +1,7 @@
+2005-07-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/NavWebPage.py: Catch missing header/footer notes; Add Surname
+	page that is sorted by the number of persons.
+
 2005-07-25  Alexander Roitman  <shura@gramps-project.org>
 	* src/gramps.glade (editPerson,marriageEditor): Use Title for the
 	source titles.
