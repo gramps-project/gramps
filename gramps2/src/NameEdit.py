@@ -189,7 +189,9 @@ class NameEditor:
             self.group_as.set_sensitive(True)
             self.group_as.set_editable(True)
         else:
-            self.group_as.set_text(self.db.get_name_group_mapping(self.surname_field.get_text()))
+            field_value = self.surname_field.get_text()
+            mapping = self.db.get_name_group_mapping(field_value)
+            self.group_as.set_text(mapping)
             self.group_as.set_sensitive(False)
             self.group_as.set_editable(False)
 

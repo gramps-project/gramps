@@ -378,7 +378,7 @@ class PedigreeView:
     def make_anchor_label(self):
         """Make a label containing the name of the anchored person"""
         if self.anchor:
-            anchor_string = self.anchor.get_primary_name().get_regular_name()
+            anchor_string = NameDisplay.displayer.display(self.anchor)
             return "%s: %s" % (_("Anchor"),anchor_string)
         else:
             return ""

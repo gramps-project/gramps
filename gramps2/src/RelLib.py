@@ -3493,8 +3493,10 @@ class Name(PrivateSourceNote,DateBase):
     that one name throughout his or her life."""
 
     DEF  = 0  # locale default
-    LNFN = 1  # last name, first name
-    FNLN = 2  # first name, last name
+    LNFN = 1  # last name first name [patronymic]
+    FNLN = 2  # first name last name
+    PTFN = 3  # patronymic last name
+    FN   = 4  # first name
     
     def __init__(self,source=None):
         """creates a new Name instance, copying from the source if provided"""
@@ -3750,24 +3752,6 @@ class Name(PrivateSourceNote,DateBase):
                 return "%s %s %s, %s" % (first, self.prefix, self.surname, self.suffix)
             else:
                 return "%s %s, %s" % (first, self.surname, self.suffix)
-
-    def get_regular_upper_name(self):
-        """returns a name string built from the components of the Name
-        instance, in the form of Firstname surname"""
-        if self.patronymic:
-            first = "%s %s" % (self.first_name, self.patronymic)
-        else:
-            first = self.first_name
-        if (self.suffix == ""):
-            if self.prefix:
-                return "%s %s %s" % (first, self.prefix.upper(), self.surname.upper())
-            else:
-                return "%s %s" % (first, self.surname.upper())
-        else:
-            if self.prefix:
-                return "%s %s %s, %s" % (first, self.prefix.upper(), self.surname.upper(), self.suffix)
-            else:
-                return "%s %s, %s" % (first, self.surname.upper(), self.suffix)
 
     def is_equal(self,other):
         """

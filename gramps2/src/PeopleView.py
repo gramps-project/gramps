@@ -52,6 +52,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 #-------------------------------------------------------------------------
 import PeopleModel
 import GenericFilter
+import NameDisplay
 from DdTargets import DdTargets
 
 column_names = [
@@ -154,9 +155,9 @@ class PeopleView:
             index += 1
 
     def build_tree(self):
-        self.person_model = PeopleModel.PeopleModel(self.parent.db,
-                                                    self.DataFilter,
-                                                    self.parent.filter_invert.get_active())
+        self.person_model = PeopleModel.PeopleModel(
+            self.parent.db,self.DataFilter,
+            self.parent.filter_invert.get_active())
         self.person_tree.set_model(self.person_model)
         
     def get_selected_objects(self):
@@ -240,7 +241,7 @@ class PeopleView:
         p = self.parent.active_person
         try:
             path = self.person_model.on_get_path(p.get_handle())
-            group_name = p.get_primary_name().get_group_name()
+            group_name = NameDisplay.displayer.name_grouping(self.parent.db,p)
             top_name = self.parent.db.get_name_group_mapping(group_name)
             top_path = self.person_model.on_get_path(top_name)
             self.person_tree.expand_row(top_path,0)
@@ -320,7 +321,7 @@ class PeopleView:
     def person_added(self,handle_list):
         for node in handle_list:
             person = self.parent.db.get_person_from_handle(node)
-            top = person.get_primary_name().get_group_name()
+            top = NameDisplay.displayer.name_grouping(self.parent.db,person)
             self.person_model.rebuild_data(self.DataFilter)
             if not self.person_model.is_visable(node):
                 continue
@@ -338,7 +339,7 @@ class PeopleView:
             person = self.parent.db.get_person_from_handle(node)
             if not self.person_model.is_visable(node):
                 continue
-            top = person.get_primary_name().get_group_name()
+            top = NameDisplay.displayer.name_grouping(self.parent.db,person)
             mylist = self.person_model.sname_sub.get(top,[])
             if mylist:
                 try:
@@ -364,11 +365,7 @@ class PeopleView:
 
             # calculate the new data
 
-            if person.primary_name.group_as:
-                surname = person.primary_name.group_as
-            else:
-                surname = self.parent.db.get_name_group_mapping(person.primary_name.surname)
-
+            surname = NameDisplay.displayer.name_grouping(self.parent.db,person)
 
             if oldpath[0] == surname:
                 self.person_model.build_sub_entry(surname)

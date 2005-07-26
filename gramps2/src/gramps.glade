@@ -31101,9 +31101,6 @@ Very High</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
 		      <property name="angle">0</property>
-		      <accessibility>
-			<atkrelation target="display_as" type="label-for"/>
-		      </accessibility>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -31192,8 +31189,10 @@ Very High</property>
 		    <widget class="GtkComboBox" id="sort_as">
 		      <property name="visible">True</property>
 		      <property name="items" translatable="yes">Default (based on locale)
-Family name, Given name
-Given name, Family name</property>
+Family name, Given name [Patronymic]
+Given name, Family name
+Patronymic, Given name
+Given name</property>
 		      <property name="add_tearoffs">False</property>
 		      <property name="focus_on_click">True</property>
 		    </widget>
@@ -31202,26 +31201,6 @@ Given name, Family name</property>
 		      <property name="right_attach">3</property>
 		      <property name="top_attach">10</property>
 		      <property name="bottom_attach">11</property>
-		      <property name="x_options">fill</property>
-		      <property name="y_options">fill</property>
-		    </packing>
-		  </child>
-
-		  <child>
-		    <widget class="GtkComboBox" id="display_as">
-		      <property name="visible">True</property>
-		      <property name="items" translatable="yes">Default (based on locale)
-Given name Family name
-Family name Given name
-</property>
-		      <property name="add_tearoffs">False</property>
-		      <property name="focus_on_click">True</property>
-		    </widget>
-		    <packing>
-		      <property name="left_attach">2</property>
-		      <property name="right_attach">3</property>
-		      <property name="top_attach">11</property>
-		      <property name="bottom_attach">12</property>
 		      <property name="x_options">fill</property>
 		      <property name="y_options">fill</property>
 		    </packing>
@@ -31366,6 +31345,28 @@ Family name Given name
 		      <property name="right_attach">3</property>
 		      <property name="top_attach">9</property>
 		      <property name="bottom_attach">10</property>
+		      <property name="x_options">fill</property>
+		      <property name="y_options">fill</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkComboBox" id="display_as">
+		      <property name="visible">True</property>
+		      <property name="items" translatable="yes">Default (based on locale)
+Given name [Patronymic] Family name
+Family name Given name
+Given name Patronymic
+Given name
+</property>
+		      <property name="add_tearoffs">False</property>
+		      <property name="focus_on_click">True</property>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">2</property>
+		      <property name="right_attach">3</property>
+		      <property name="top_attach">11</property>
+		      <property name="bottom_attach">12</property>
 		      <property name="x_options">fill</property>
 		      <property name="y_options">fill</property>
 		    </packing>

@@ -777,8 +777,7 @@ class SurnameListPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list, levels)
         if order_by == self.ORDER_BY_NAME:
             of = self.create_file("surnames")
-            self.display_header(of,db,_('Surnames'),
-                            get_researcher().get_name())
+            self.display_header(of,db,_('Surnames'),get_researcher().get_name())
             of.write('<h3>%s</h3>\n' % _('Surnames'))
         else:
             of = self.create_file("surnames_count")
@@ -1213,7 +1212,8 @@ class IndividualPage(BasePage):
 
             source = self.db.get_source_from_handle(shandle)
             title = source.get_title()
-            of.write('<tr><td class="field"><a name="sref%d">%d.</a></td>' % (index,index))
+            of.write('<tr><td class="field">')
+            of.write('<a name="sref%d">%d.</a></td>' % (index,index))
             of.write('<td class="field">')
             self.source_link(of,source.handle,title,source.gramps_id,True)
             of.write('</a>')

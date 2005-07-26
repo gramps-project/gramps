@@ -1,3 +1,18 @@
+2005-07-26  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: NameDisplay enhancements
+	* src/FamilyView.py: NameDisplay enhancements
+	* src/NameDisplay.py: NameDisplay enhancements
+	* src/NameEdit.py: NameDisplay enhancements
+	* src/PedView.py: NameDisplay enhancements
+	* src/PeopleModel.py: NameDisplay enhancements
+	* src/PeopleView.py: NameDisplay enhancements
+	* src/RelLib.py: NameDisplay enhancements
+	* src/Report.py: NameDisplay enhancements
+	* src/SelectChild.py: NameDisplay enhancements
+	* src/Witness.py: NameDisplay enhancements
+	* src/gramps.glade: NameDisplay enhancements
+	* src/gramps_main.py: NameDisplay enhancements
+
 2005-07-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/NavWebPage.py: Catch missing header/footer notes; Add Surname
 	page that is sorted by the number of persons.

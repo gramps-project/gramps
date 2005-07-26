@@ -1493,7 +1493,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.disable_interface()
         trans = self.db.transaction_begin()
         
-        n = self.active_person.get_primary_name().get_regular_name()
+        n = NameDisplay.displayer.display(self.active_person)
 
         if self.db.get_default_person() == self.active_person:
             self.db.set_default_person_handle(None)
@@ -1885,7 +1885,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
     
     def on_default_person_activate(self,obj):
         if self.active_person:
-            name = self.active_person.get_primary_name().get_regular_name()
+            name = NameDisplay.displayer.display(self.active_person)
             QuestionDialog(_('Set %s as the Home Person') % name,
                            _('Once a Home Person is defined, pressing the '
                              'Home button on the toolbar will make the home '

@@ -99,6 +99,7 @@ class EditPerson:
         
         self.dp = DateHandler.parser
         self.dd = DateHandler.displayer
+        self.nd = NameDisplay.displayer
         self.orig_handle = person.get_handle()
         # UGLY HACK to refresh person object from handle if that exists
         # done to ensure that the person object is not stale, as it could
@@ -122,7 +123,6 @@ class EditPerson:
         self.update_death = False
         self.pdmap = {}
         self.add_places = []
-        self.name_display = NameDisplay.displayer
         self.should_guess_gender = (not person.get_gramps_id() and
                                     person.get_gender () ==
                                     RelLib.Person.UNKNOWN)
@@ -629,7 +629,7 @@ class EditPerson:
         
     def add_itself_to_winsmenu(self):
         self.parent.child_windows[self.orig_handle] = self
-        win_menu_label = self.name_display.display(self.person)
+        win_menu_label = self.nd.display(self.person)
         if not win_menu_label.strip():
             win_menu_label = _("New Person")
         self.win_menu_item = gtk.MenuItem(win_menu_label)
@@ -1175,13 +1175,13 @@ class EditPerson:
     def on_add_url_clicked(self,obj):
         """Invokes the url editor to add a new name"""
         import UrlEdit
-        pname = self.name_display.display(self.person)
+        pname = self.nd.display(self.person)
         UrlEdit.UrlEditor(self,pname,None,self.url_edit_callback,self.window)
 
     def on_add_attr_clicked(self,obj):
         """Brings up the AttributeEditor for a new attribute"""
         import AttrEdit
-        pname = self.name_display.display(self.person)
+        pname = self.nd.display(self.person)
         AttrEdit.AttributeEditor(self,None,pname,const.personalAttributes,
                                  self.attr_edit_callback,self.window)
 
@@ -1202,7 +1202,7 @@ class EditPerson:
     def on_event_add_clicked(self,obj):
         """Brings up the EventEditor for a new event"""
         import EventEdit
-        pname = self.name_display.display(self.person)
+        pname = self.nd.display(self.person)
         EventEdit.EventEditor(
             self,pname,const.personalEvents,
             const.personal_events,None,None,0,
@@ -1215,7 +1215,7 @@ class EditPerson:
         
         import EventEdit
         self.update_birth = True
-        pname = self.name_display.display(self.person)
+        pname = self.nd.display(self.person)
         event = self.birth
         event.set_date_object(Date.Date(self.birth_date_object))
         def_placename = unicode(self.bplace.get_text())
@@ -1235,7 +1235,7 @@ class EditPerson:
         
         import EventEdit
         self.update_death = True
-        pname = self.name_display.display(self.person)
+        pname = self.nd.display(self.person)
         event = self.death
         event.set_date_object(Date.Date(self.death_date_object))
         def_placename = unicode(self.dplace.get_text())
@@ -1292,7 +1292,7 @@ class EditPerson:
         the close window"""
         
         if self.did_data_change() and not GrampsKeys.get_dont_ask():
-            n = "<i>%s</i>" % self.person.get_primary_name().get_regular_name()
+            n = "<i>%s</i>" % self.nd.display(self.person)
             SaveDialog(_('Save changes to %s?') % n,
                        _('If you close without saving, the changes you '
                          'have made will be lost'),
@@ -1308,7 +1308,7 @@ class EditPerson:
         """If the data has changed, give the user a chance to cancel
         the close window"""
         if self.did_data_change() and not GrampsKeys.get_dont_ask():
-            n = "<i>%s</i>" % self.person.get_primary_name().get_regular_name()
+            n = "<i>%s</i>" % self.nd.display(self.person)
             SaveDialog(_('Save Changes to %s?') % n,
                        _('If you close without saving, the changes you '
                          'have made will be lost'),
@@ -1472,7 +1472,7 @@ class EditPerson:
         store,node = self.atree.get_selected()
         if node:
             attr = self.atree.get_object(node)
-            pname = self.name_display.display(self.person)
+            pname = self.nd.display(self.person)
             AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes,
                                      self.attr_edit_callback,self.window)
 
@@ -1488,7 +1488,7 @@ class EditPerson:
         import UrlEdit
         store,node = self.wtree.get_selected()
         if node:
-            pname = self.name_display.display(self.person)
+            pname = self.nd.display(self.person)
             url = self.wtree.get_object(node)
             UrlEdit.UrlEditor(self,pname,url,self.url_edit_callback,self.window)
 
@@ -1498,7 +1498,7 @@ class EditPerson:
         store,node = self.etree.get_selected()
         if not node:
             return
-        pname = self.name_display.display(self.person)
+        pname = self.nd.display(self.person)
         event = self.etree.get_object(node)
         EventEdit.EventEditor(
             self,pname,const.personalEvents,
@@ -1737,7 +1737,7 @@ class EditPerson:
             if not person:
                 self.person.set_gramps_id(idval)
             else:
-                n = self.name_display.display(person)
+                n = self.nd.display(person)
                 msg1 = _("GRAMPS ID value was not changed.")
                 msg2 = _("You have attempted to change the GRAMPS ID to a value "
                          "of %(grampsid)s. This value is already used by %(person)s.") % {
@@ -1894,7 +1894,7 @@ class EditPerson:
             if not self.person.get_gramps_id():
                 self.person.set_gramps_id(self.db.find_next_person_gramps_id())
             self.db.commit_person(self.person, trans)
-        n = self.person.get_primary_name().get_regular_name()
+        n = self.nd.display(self.person)
         self.db.transaction_commit(trans,_("Edit Person (%s)") % n)
         if self.callback:
             self.callback(self,self.retval)
@@ -2042,7 +2042,7 @@ class EditPerson:
 
     def write_primary_name(self):
         # initial values
-        name = '<span size="larger" weight="bold">%s</span>' % self.name_display.display(self.person)
+        name = '<span size="larger" weight="bold">%s</span>' % self.nd.display(self.person)
         self.get_widget("activepersonTitle").set_text(name)
         self.get_widget("activepersonTitle").set_use_markup(True)
         self.suffix.set_text(self.pname.get_suffix())

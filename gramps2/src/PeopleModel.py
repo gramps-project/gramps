@@ -124,11 +124,8 @@ class PeopleModel(gtk.GenericTreeModel):
         while node:
             if node[0] in flist:
                 primary_name = node[1][_NAME_COL]
-                if primary_name.group_as:
-                    surname = primary_name.group_as
-                else:
-                    surname = self.db.get_name_group_mapping(primary_name.surname)
-                self.sortnames[node[0]] = primary_name.sname
+                surname = NameDisplay.displayer.name_grouping_name(self.db,primary_name)
+                self.sortnames[node[0]] = NameDisplay.displayer.sorted_name(primary_name)
 
                 if self.temp_sname_sub.has_key(surname):
                     self.temp_sname_sub[surname].append(node[0])
