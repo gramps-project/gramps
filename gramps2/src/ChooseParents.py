@@ -555,20 +555,21 @@ class ChooseParents:
                 self.type = "Partners"
                 father_handle = self.father.get_handle()
                 mother_handle = self.mother.get_handle()
-            self.family = self.find_family(father_handle,mother_handle,trans)
-        else:    
-            self.family = None
 
-        if self.family:
-            if self.person.get_handle() in (father_handle,mother_handle):
-                ErrorDialog(_("Error selecting a child"),
-                            _("A person cannot be linked as his/her own parent"),
-                            self.window)
-                return
+        if self.person.get_handle() in (father_handle,mother_handle):
+            ErrorDialog(_("Error selecting a child"),
+                        _("A person cannot be linked as his/her own parent"),
+                        self.window)
+            return
+
+        if father_handle or mother_handle:
+            self.family = self.find_family(father_handle,mother_handle,trans)
             self.family.add_child_handle(self.person.get_handle())
             self.family.set_relationship(self.type)
             self.change_family_type(self.family,mother_rel,father_rel)
             self.db.commit_family(self.family,trans)
+        else:    
+            self.family = None
         self.db.transaction_commit(trans,_("Choose Parents"))
         self.close(None)
 
