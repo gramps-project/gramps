@@ -1,3 +1,10 @@
+2005-07-27  Don Allingham  <don@gramps-project.org>
+	* src/FamilyView.py: try to prevent adding a spouse that has 
+	already been added
+	* src/ReadXML.py: prevent adding a spouse that has already been
+	added
+	* src/plugins/Check.py: remove identical families in family list
+
 2005-07-26  Alex Roitman  <shura@gramps-project.org>
 	* src/ChooseParents.py (save_parents_clicked): Do not create
 	family if parent is self.

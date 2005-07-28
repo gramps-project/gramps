@@ -29,6 +29,7 @@
 #-------------------------------------------------------------------------
 import os
 import cStringIO
+import sets
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -77,6 +78,7 @@ def runTool(database,active_person,callback,parent=None):
             checker.check_for_broken_family_links()
             checker.check_parent_relationships()
             checker.cleanup_empty_families(0)
+            checker.cleanup_duplicate_spouses()
 
             total = checker.family_errors()
 
@@ -110,6 +112,7 @@ class CheckIntegrity:
         self.removed_photo = []
         self.empty_family = []
         self.broken_links = []
+        self.duplicate_links = []
         self.broken_parent_links = []
         self.fam_rel = []
         self.invalid_events = []
@@ -119,7 +122,25 @@ class CheckIntegrity:
         self.invalid_source_references = []
 
     def family_errors(self):
-        return len(self.broken_parent_links) + len(self.broken_links) + len(self.empty_family)
+        return len(self.broken_parent_links) + len(self.broken_links) + len(self.empty_family) + len(self.duplicate_links)
+
+    def cleanup_duplicate_spouses(self):
+        cursor = self.db.get_person_cursor()
+        data = cursor.first()
+        while data:
+            (handle,value) = data
+            p = RelLib.Person(value)
+            splist = p.get_family_handle_list()
+            if len(splist) != len(sets.Set(splist)):
+                new_list = []
+                for value in splist:
+                    if value not in new_list:
+                        new_list.append(value)
+                        self.duplicate_links.append((handle,value))
+                p.set_family_handle_list(new_list)
+                self.db.commit_person(p,self.trans)
+            data = cursor.next()
+        cursor.close()
 
     def check_for_broken_family_links(self):
         # Check persons referenced by the family objects
@@ -556,6 +577,7 @@ class CheckIntegrity:
         efam = len(self.empty_family)
         blink = len(self.broken_links)
         plink = len(self.broken_parent_links)
+        slink = len(self.duplicate_links)
         rel = len(self.fam_rel)
         event_invalid = len(self.invalid_events)
         birth_invalid = len(self.invalid_birth_events)
@@ -612,6 +634,25 @@ class CheckIntegrity:
                     pn = Utils.family_name(family,self.db)
                 else:
                     pn = family_handle
+                self.text.write('\t')
+                self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
+
+        if slink > 0:
+            if slink == 1:
+                self.text.write(_("1 duplicate spouse/family link was found\n"))
+            else:
+                self.text.write(_("%d duplicate spouse/family links were found\n") % slink)
+            for (person_handle,family_handle) in self.broken_parent_links:
+                person = self.db.get_person_from_handle(person_handle)
+                if person:
+                    cn = person.get_primary_name().get_name()
+                else:
+                    cn = _("Non existing person")
+                family = self.db.get_family_from_handle(family_handle)
+                if family:
+                    pn = Utils.family_name(family,self.db)
+                else:
+                    pn = family.gramps_id
                 self.text.write('\t')
                 self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
 

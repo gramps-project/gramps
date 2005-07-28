@@ -709,6 +709,9 @@ class FamilyView:
         family.set_handle(fhandle)
         family.set_gramps_id(self.parent.db.find_next_family_gramps_id())
 
+        if fhandle in old_person.get_family_handle_list():
+            return
+        
         old_person.add_family_handle(fhandle)
         new_person.add_family_handle(fhandle)
 
