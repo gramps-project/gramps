@@ -1334,7 +1334,7 @@ class ReportDialog(BareReportDialog):
                              _('_Change filename'),None)
                              
             if a.get_response() == gtk.RESPONSE_YES:
-                return
+                return None
         
         self.set_default_directory(os.path.dirname(self.target_path) + os.sep)
         self.options.handler.output = self.target_path
@@ -1408,7 +1408,7 @@ class ReportDialog(BareReportDialog):
 
         # Is there a filename?  This should also test file permissions, etc.
         if not self.parse_target_frame():
-            return
+            self.window.run()
 
         # Preparation
         self.parse_format_frame()
