@@ -1569,7 +1569,7 @@ class CommandLineReport:
             'style'     : self.option_class.handler.get_default_stylesheet_name(),
             'papers'    : self.option_class.handler.get_paper_name(),
             'papero'    : self.option_class.handler.get_orientation(),
-            'template'  : self.option_class.handler.get_orientation(),
+            'template'  : self.option_class.handler.get_template_name(),
             'id'        : ''
             }
 
