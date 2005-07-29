@@ -376,6 +376,9 @@ def sanitize_person(db,person):
     
     return new_person
 
+def dont_restrict(db,person):
+    return person
+
 def restrict_with_names(db,person):
     return restrict_person(db,person,False)
 

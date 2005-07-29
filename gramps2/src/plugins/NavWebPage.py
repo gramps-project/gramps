@@ -24,12 +24,6 @@
 Narrative Web Page generator.
 """
 
-#
-# TODO:
-#
-#  1) Privacy options
-#
-
 #------------------------------------------------------------------------
 #
 # python modules
@@ -138,9 +132,14 @@ class BasePage:
         self.levels = levels
         
     def copy_media(self,photo):
-        if (photo.get_handle() != self.photo_list
-            and photo.get_handle() not in self.photo_list):
-            self.photo_list.append(photo.get_handle())
+
+        handle = photo.get_handle()
+        if self.photo_list.has_key(handle):
+            if self.person.handle not in self.photo_list[handle]:
+                self.photo_list[handle].append(self.person.handle)
+        else:
+            self.photo_list[handle] = [self.person.handle]
+
         newpath = photo.gramps_id + os.path.splitext(photo.get_path())[1]
         real_path = os.path.join('images',newpath)
         thumb_path = os.path.join('thumb',newpath)
@@ -673,8 +672,6 @@ class PlacePage(BasePage):
         of.write('</table>\n')
         of.write('</div>\n')
 
-        # TODO: Add more information
-
         self.display_additional_images_as_gallery(of, db, place.get_media_list())
         self.display_note_object(of, place.get_note_object())
         self.display_url_list(of, place.get_url_list())
@@ -762,7 +759,7 @@ class MediaPage(BasePage):
 
         self.display_note_object(of, photo.get_note_object())
         self.display_attr_list(of, photo.get_attribute_list())
-
+        self.display_references(of,db,media_list)
         self.display_footer(of,db)
         self.close_file(of)
 
@@ -1035,8 +1032,9 @@ class GalleryPage(BasePage):
         self.db = db
 
         index = 1
-        media_list.sort(self.by_media_title)
-        for handle in media_list:
+        mlist = media_list.keys()
+        mlist.sort(self.by_media_title)
+        for handle in mlist:
             media = db.get_object_from_handle(handle)
             of.write('<tr><td class="category">%d.</td>\n' % index)
             of.write('<td class="data">')
@@ -1654,7 +1652,7 @@ class WebReport(Report.Report):
     def get_progressbar_data(self):
         return (_("Generate HTML reports - GRAMPS"),
                 '<span size="larger" weight="bold">%s</span>' %
-                _("Creating Web Pages"))
+                _("Creating individual web pages"))
 
     def write_report(self):
         if not self.use_archive:
@@ -1732,13 +1730,15 @@ class WebReport(Report.Report):
             to_path = os.path.join("images","somerights20.gif")
             self.store_file(archive,self.target_path,from_path,to_path)
 
-        photo_list = []
-
         if len(ind_list) > 9000:
             levels = 2
         else:
             levels = 1
         
+        place_list = {}
+        source_list = {}
+        photo_list = {}
+
         HomePage(self.database, self.title, self.options, archive,
                  photo_list, levels)
         if self.inc_contact:
@@ -1752,9 +1752,6 @@ class WebReport(Report.Report):
             IntroductionPage(self.database, self.title, self.options,
                              archive, photo_list, levels)
         
-        place_list = {}
-        source_list = {}
-
         for person_handle in ind_list:
             person = self.database.get_person_from_handle(person_handle)
             
@@ -1772,10 +1769,7 @@ class WebReport(Report.Report):
             idoc = IndividualPage(self.database, person, self.title,
                                   ind_list, place_list, source_list,
                                   self.options, archive, photo_list, levels)
-            
             self.progress_bar_step()
-            while gtk.events_pending():
-                gtk.main_iteration()
             
         if len(ind_list) > 1:
             IndividualListPage(self.database, self.title, ind_list,
@@ -1787,30 +1781,36 @@ class WebReport(Report.Report):
             SurnameListPage(self.database, self.title, ind_list,
                             self.options, archive, photo_list,
                             levels, SurnameListPage.ORDER_BY_COUNT)
-            self.progress_bar_step()
-            while gtk.events_pending():
-                gtk.main_iteration()
 
         local_list = sort_people(self.database,ind_list)
+
+        self.progress_bar_title(_("Creating surname pages"),len(local_list))
+
         for (surname,handle_list) in local_list:
             SurnamePage(self.database, surname, handle_list,
                         self.options, archive, photo_list, levels)
+            self.progress_bar_step()
 
         PlaceListPage(self.database, self.title, place_list,
                       source_list,self.options, archive,
                       photo_list, levels)
         
+        self.progress_bar_title(_("Creating place pages"),len(place_list))
+
         for place in place_list.keys():
             PlacePage(self.database, self.title, place, source_list,
                       place_list, self.options, archive, photo_list,
                       levels)
+            self.progress_bar_step()
             
         SourcesPage(self.database,self.title, source_list.keys(),
                     self.options, archive, photo_list, levels)
 
+        self.progress_bar_title(_("Creating source pages"),len(source_list))
         for key in list(source_list):
             SourcePage(self.database,self.title, key, source_list,
                        self.options, archive, photo_list, levels)
+            self.progress_bar_step()
 
         GalleryPage(self.database, self.title, source_list,
                     self.options, archive, photo_list, levels)
@@ -1818,14 +1818,18 @@ class WebReport(Report.Report):
         prev = None
         total = len(photo_list)
         index = 1
-        for photo_handle in photo_list:
+        photo_keys = photo_list.keys()
+        self.progress_bar_title(_("Creating media pages"),len(photo_keys))
+        
+        for photo_handle in photo_keys:
             if index == total:
                 next = None
             else:
-                next = photo_list[index]
+                next = photo_keys[index]
             MediaPage(self.database, self.title, photo_handle, source_list,
-                      self.options, archive, photo_list,
+                      self.options, archive, photo_list[photo_handle],
                       (prev, next, index, total), levels)
+            self.progress_bar_step()
             prev = photo_handle
             index += 1
         

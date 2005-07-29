@@ -252,6 +252,18 @@ class Report:
         put at the top of the contents of the dialog box."""
         return ("%s - GRAMPS" % _("Progress Report"), _("Working"))
 
+    def progress_bar_title(self,name,length):
+        markup = '<span size="larger" weight="bold">%s</span>'
+        self.lbl.set_text(markup % name)
+        self.lbl.set_use_markup(True)
+        self.pbar.set_fraction(0.0)
+
+        progress_steps = length
+        if length > 1:
+            progress_steps = progress_steps+1
+        progress_steps = progress_steps+1
+        self.pbar_max = length
+        
     def progress_bar_setup(self,total):
         """Create a progress dialog.  This routine calls a
         customization function to find out how to fill out the dialog.
@@ -265,10 +277,12 @@ class Report:
         self.ptop = gtk.Dialog()
         self.ptop.set_has_separator(False)
         self.ptop.set_title(title)
-        lbl = gtk.Label(header)
-        lbl.set_use_markup(True)
-        self.ptop.vbox.add(lbl)
+        self.ptop.set_border_width(12)
+        self.lbl = gtk.Label(header)
+        self.lbl.set_use_markup(True)
+        self.ptop.vbox.add(self.lbl)
         self.ptop.vbox.set_spacing(10)
+        self.ptop.vbox.set_border_width(24)
         self.pbar = gtk.ProgressBar()
         self.pbar_max = total
         self.pbar_index = 0.0
@@ -288,6 +302,8 @@ class Report:
         
         self.pbar.set_text("%d of %d (%.1f%%)" % (self.pbar_index,self.pbar_max,(val*100)))
         self.pbar.set_fraction(val)
+        while gtk.events_pending():
+            gtk.main_iteration()
 
     def progress_bar_done(self):
         """Done with the progress bar.  It can be destroyed now."""
