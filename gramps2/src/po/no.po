@@ -3021,23 +3021,23 @@ msgstr "%(male_name)s døde i en alder av %(age)d dager."
 
 #: ReportUtils.py:1300
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s."
-msgstr "%(female_name)s døde %(month_date)s, %(death_place)s."
+msgstr "%(female_name)s døde %(death_date)s, %(death_place)s."
 
 #: ReportUtils.py:1305
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "%(female_name)s døde %(month_date)s, %(death_place)s i en alder av %(age)d år."
+msgstr "%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
 
 #: ReportUtils.py:1312
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "%(female_name)s døde %(month_date)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:1319
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "%(female_name)s døde %(month_date)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:1327
 msgid "%(female_name)s died on %(death_date)s."
-msgstr "%(female_name)s døde %(month_date)s."
+msgstr "%(female_name)s døde %(death_date)s."
 
 #: ReportUtils.py:1330
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d years."

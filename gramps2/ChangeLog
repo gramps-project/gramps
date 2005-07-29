@@ -1,6 +1,7 @@
 2005-07-29  Alex Roitman  <shura@gramps-project.org>
 	* src/GenericFilter.py (GrampsFilterComboBox.get_value): Do not
 	convert key to unicode.
+	* src/po/no.po, src/po/nb.po: Typos.
 
 2005-07-28  Don Allingham  <don@gramps-project.org>
 	* src/MergePeople.py: prevent attempts to merge a person and his/her
