@@ -2380,7 +2380,7 @@ class GrampsFilterComboBox(gtk.ComboBox):
         active = self.get_active()
         if active < 0:
             return None
-        key = unicode(self.store[active][0])
+        key = self.store[active][0]
         return self.map[key]
 
 
