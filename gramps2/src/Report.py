@@ -698,8 +698,9 @@ class BareReportDialog:
             self.extra_menu.set_sensitive(len(extra_map) > 1)
             self.add_tooltip(self.extra_menu,em_tip)
             table.attach(self.extra_menu_label, 1, 2, row, row+1,
-                         gtk.SHRINK|gtk.FILL)
-            table.attach(self.extra_menu,2,3,row,row+1)
+                         gtk.SHRINK|gtk.FILL, gtk.SHRINK)
+            table.attach(self.extra_menu, 2, 3, row, row+1,
+                         yoptions=gtk.SHRINK)
             row += 1
             
         # Now the "extra" text box
@@ -716,8 +717,9 @@ class BareReportDialog:
             self.extra_textbox.set_editable(1)
             self.add_tooltip(self.extra_textbox,et_tip)
             table.attach(self.extra_textbox_label, 1, 2, row, row+1,
-                         gtk.SHRINK|gtk.FILL)
-            table.attach(swin,2,3,row,row+1)
+                         gtk.SHRINK|gtk.FILL,gtk.SHRINK)
+            table.attach(swin, 2, 3, row, row+1,
+                         yoptions=gtk.SHRINK)
             row += 1
 
         # Setup requested widgets
@@ -725,10 +727,13 @@ class BareReportDialog:
             if text:
                 text_widget = gtk.Label("%s:" % text)
                 text_widget.set_alignment(0.0,0.0)
-                table.attach(text_widget,1,2,row,row+1,gtk.SHRINK|gtk.FILL)
-                table.attach(widget,2,3,row,row+1)
+                table.attach(text_widget, 1, 2, row, row+1,
+                             gtk.SHRINK|gtk.FILL, gtk.SHRINK)
+                table.attach(widget, 2, 3, row, row+1,
+                             yoptions=gtk.SHRINK)
             else:
-                table.attach(widget,2,3,row,row+1)
+                table.attach(widget, 2, 3, row, row+1,
+                             yoptions=gtk.SHRINK)
             row += 1
 
     def setup_other_frames(self):
@@ -747,10 +752,13 @@ class BareReportDialog:
                 if text:
                     text_widget = gtk.Label('%s:' % text)
                     text_widget.set_alignment(0.0,0.5)
-                    table.attach(text_widget,1,2,row,row+1,gtk.SHRINK|gtk.FILL)
-                    table.attach(widget,2,3,row,row+1)
+                    table.attach(text_widget, 1, 2, row, row+1,
+                                 gtk.SHRINK|gtk.FILL, gtk.SHRINK)
+                    table.attach(widget, 2, 3, row, row+1,
+                                 yoptions=gtk.SHRINK)
                 else:
-                    table.attach(widget,2,3,row,row+1)
+                    table.attach(widget, 2, 3, row, row+1,
+                                 yoptions=gtk.SHRINK)
                 row = row + 1
 
     #------------------------------------------------------------------------

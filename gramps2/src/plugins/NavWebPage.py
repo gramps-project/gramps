@@ -1613,7 +1613,9 @@ class WebReport(Report.Report):
         filter
         od
         NWEBrestrictinfo
+        NWEBrestrictyears
         NWEBincpriv
+        NWEBnonames
         NWEBidxcol
         NWEBincid
         NWEBext
@@ -1637,6 +1639,7 @@ class WebReport(Report.Report):
         self.encoding = options.handler.options_dict['NWEBencoding']
         self.css = options.handler.options_dict['NWEBcss']
         self.restrict = options.handler.options_dict['NWEBrestrictinfo']
+        self.restrict_years = options.handler.options_dict['NWEBrestrictyears']
         self.exclude_private = options.handler.options_dict['NWEBincpriv']
         self.noid = options.handler.options_dict['NWEBnoid']
         self.title = options.handler.options_dict['NWEBtitle']
@@ -1699,10 +1702,18 @@ class WebReport(Report.Report):
         if not self.exclude_private:
             new_list = []
             for key in ind_list:
-                if not self.database.get_person_from_handle(key).private:
+                if not self.database.get_person_from_handle(key).private :
                     new_list.append(key)
             ind_list = new_list
-        
+
+        if self.restrict:
+            new_list = []
+            for key in ind_list:
+                if not Utils.probably_alive(self.database.get_person_from_handle(key),
+                                            self.database):
+                    new_list.append(key)
+            ind_list = new_list
+
         progress_steps = len(ind_list)
         if len(ind_list) > 1:
             progress_steps = progress_steps+1
@@ -1746,13 +1757,22 @@ class WebReport(Report.Report):
 
         for person_handle in ind_list:
             person = self.database.get_person_from_handle(person_handle)
+            
             if not self.exclude_private:
                 person = ReportUtils.sanitize_person(self.database,person)
-                
+
+            if self.restrict:
+                years = time.localtime(time.time())[0] - self.restrict_years
+            else:
+                years = None
+
+            if self.restrict and Utils.probably_alive(person,self.database,years):
+                person = ReportUtils.restrict_no_names(self.database,person)
+
             idoc = IndividualPage(self.database, person, self.title,
                                   ind_list, place_list, source_list,
-                                  self.options, archive,
-                                  photo_list, levels)
+                                  self.options, archive, photo_list, levels)
+            
             self.progress_bar_step()
             while gtk.events_pending():
                 gtk.main_iteration()
@@ -1855,7 +1875,9 @@ class WebReportOptions(ReportOptions.ReportOptions):
             'NWEBod'            : './',
             'NWEBcopyright'     : 0,
             'NWEBrestrictinfo'  : 0,
+            'NWEBrestrictyears' : 30,
             'NWEBincpriv'       : 0,
+            'NWEBnonames'       : 0,
             'NWEBnoid'          : 0,
             'NWEBcontact'       : '', 
             'NWEBheader'        : '', 
@@ -1913,6 +1935,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
     def add_user_options(self,dialog):
         priv_msg = _("Do not include records marked private")
         restrict_msg = _("Restrict information on living people")
+        restrict_years = _("Years to restrict from person's death")
         imgdir_msg = _("Image subdirectory")
         title_msg = _("Web site title")
         ext_msg = _("File extension")
@@ -1928,7 +1951,18 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.noid.set_active(self.options_dict['NWEBnoid'])
 
         self.restrict_living = gtk.CheckButton(restrict_msg)
+        self.restrict_living.connect('toggled',self.restrict_toggled)
+
+        self.restrict_years = gtk.Entry()
+        self.restrict_years.set_text(str(self.options_dict['NWEBrestrictyears']))
+        self.restrict_years.set_sensitive(False)
+        
         self.restrict_living.set_active(self.options_dict['NWEBrestrictinfo'])
+        self.hbox = gtk.HBox()
+        self.hbox.set_spacing(12)
+        self.hbox.pack_start(gtk.Label("     "),False,False)
+        self.hbox.pack_start(gtk.Label("%s:" % restrict_years),False,False)
+        self.hbox.add(self.restrict_years)
 
         self.inc_download = gtk.CheckButton(download_msg)
         self.inc_download.set_active(self.options_dict['NWEBdownload'])
@@ -2032,6 +2066,10 @@ class WebReportOptions(ReportOptions.ReportOptions):
         title = _("Privacy")
         dialog.add_frame_option(title,None,self.no_private)
         dialog.add_frame_option(title,None,self.restrict_living)
+        dialog.add_frame_option(title,None,self.hbox)
+
+    def restrict_toggled(self,obj):
+        self.restrict_years.set_sensitive(obj.get_active())
 
     def parse_user_options(self,dialog):
         """Parse the privacy options frame of the dialog.  Save the

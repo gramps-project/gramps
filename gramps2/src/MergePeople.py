@@ -86,14 +86,13 @@ class Compare:
             QuestionDialog.ErrorDialog(
                 _("Cannot merge people"),
                 _("Spouses cannot be merged. To merge these people, "
-                  "you must first break the relationship between the "
-                  "two people."))
+                  "you must first break the relationship between them."))
         elif check_for_child(self.p1,self.p2):
             QuestionDialog.ErrorDialog(
                 _("Cannot merge people"),
                 _("A parent and child cannot be merged. To merge these "
                   "people, you must first break the relationship between "
-                  "the two people."))
+                  "them."))
         else:
             if self.glade.get_widget('select1').get_active():
                 merge = MergePeople(self.db,self.p1,self.p2)
