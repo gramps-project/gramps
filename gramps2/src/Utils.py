@@ -469,7 +469,7 @@ def probably_alive(person,db,current_year=None):
         death = db.get_event_from_handle(person.death_handle)
         if death.get_date_object().get_start_date() != Date.EMPTY:
             death_year = death.get_date_object().get_year()
-            if death.get_date_object().get_year() < current_year:
+            if death_year < current_year:
                 return False
     
     # Look for Cause Of Death, Burial or Cremation events.

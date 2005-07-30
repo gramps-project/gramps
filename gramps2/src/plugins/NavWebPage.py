@@ -185,6 +185,7 @@ class BasePage:
     def lnkfmt(self,text):
         return md5.new(text).hexdigest()
 
+
     def display_footer(self,of,db):
 
         of.write('</div>\n')
@@ -1704,11 +1705,13 @@ class WebReport(Report.Report):
                     new_list.append(key)
             ind_list = new_list
 
+        years = time.localtime(time.time())[0] - self.restrict_years
+
         if self.restrict:
             new_list = []
             for key in ind_list:
-                if not Utils.probably_alive(self.database.get_person_from_handle(key),
-                                            self.database):
+                p = self.database.get_person_from_handle(key)
+                if not Utils.probably_alive(p,self.database,years):
                     new_list.append(key)
             ind_list = new_list
 
@@ -1757,14 +1760,6 @@ class WebReport(Report.Report):
             
             if not self.exclude_private:
                 person = ReportUtils.sanitize_person(self.database,person)
-
-            if self.restrict:
-                years = time.localtime(time.time())[0] - self.restrict_years
-            else:
-                years = None
-
-            if self.restrict and Utils.probably_alive(person,self.database,years):
-                person = ReportUtils.restrict_no_names(self.database,person)
 
             idoc = IndividualPage(self.database, person, self.title,
                                   ind_list, place_list, source_list,
@@ -2080,6 +2075,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         user selected choices for later use."""
         
         self.options_dict['NWEBrestrictinfo'] = int(self.restrict_living.get_active())
+        self.options_dict['NWEBrestrictyears'] = int(self.restrict_years.get_text())
         self.options_dict['NWEBincpriv'] = int(not self.no_private.get_active())
         self.options_dict['NWEBnoid'] = int(self.noid.get_active())
         self.options_dict['NWEBcontact'] = unicode(self.contact.get_handle())
@@ -2219,7 +2215,7 @@ class WebReportDialog(Report.ReportDialog):
     def parse_format_frame(self):
         """The format frame is not used in this dialog."""
         pass
-    
+
     def make_report(self):
         """Create the object that will produce the web pages."""
 
