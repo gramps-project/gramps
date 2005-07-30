@@ -355,6 +355,7 @@ class GrampsBSDDB(GrampsDbBase):
                 self.name_group.delete(name)
             else:
                 self.name_group[name] = group
+            self.emit('person-rebuild')
             
     def get_surname_list(self):
         names = self.surnames.keys()
