@@ -1,3 +1,6 @@
+2005-07-31  Alexander Roitman  <shura@gramps-project.org>
+	* src/docgen/OpenOfficeDoc.py: Typo.
+
 2005-07-30  Don Allingham  <don@gramps-project.org>
 	* src/docgen/OpenOfficeDoc.org: remove ^L and ^Z from output, use
 	xml.sax.saxutils.escape to handle XML entities
