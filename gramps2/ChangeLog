@@ -187,7 +187,7 @@
 	* src/ChooseParents.py (LikelyFilter): Add labels to the filter.
 	* src/SelectiChild.py (LikelyFilter): Add labesl to the filter.
 	* src/gramps_main.py (init_filters): Instantiate filters with
-	corrent number of arguments.	
+	correct number of arguments.
 
 2005-07-13  Don Allingham  <don@gramps-project.org>
 	* src/GrampsInMemDB.py: add get_event_cursor
