@@ -52,9 +52,17 @@ from ReportUtils import pt2cm
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-
+from xml.sax.saxutils import escape
 
 _apptype = 'application/vnd.sun.xml.writer'
+
+_esc_map = {
+    '\x1a'           : '',
+    '\x0c'           : '',
+    '\n'             : '<text:line-break/>',
+    '&lt;super&gt;'  :  '<text:span text:style-name="GSuper">',
+    '&lt;/super&gt;' : '</text:span>')
+    }
 
 #-------------------------------------------------------------------------
 #
@@ -704,16 +712,12 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
                 self.end_paragraph()
 
     def write_text(self,text):
-        text = text.replace('&','&amp;')       # Must be first
-        text = text.replace('<','&lt;')
-        text = text.replace('>','&gt;')
-        text = text.replace('\x1a','')
-        text = text.replace('\x0c','')
-        text = text.replace('\n','<text:line-break/>')
-        text = text.replace('&lt;super&gt;',
-                            '<text:span text:style-name="GSuper">')
-        text = text.replace('&lt;/super&gt;','</text:span>')
-        self.cntnt.write(text)
+        """
+        Uses the xml.sax.saxutils.escape function to convert XML
+        entities. The _esc_map dictionary allows us to add our own
+        mappings.
+        """
+        self.cntnt.write(escape(text,_esc_map))
 
     def _write_manifest(self):
         self.mfile = StringIO()
