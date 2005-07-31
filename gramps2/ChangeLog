@@ -1,3 +1,6 @@
+2005-07-30  Don Allingham  <don@gramps-project.org>
+	* src/docgen/OpenOfficeDoc.org: remove ^L and ^Z from output
+
 2005-07-29  Don Allingham  <don@gramps-project.org>
 	* src/GrampsBSDDB.py: issue complete redraw on name grouping change
 	* src/Utils.py: use intermediate variable

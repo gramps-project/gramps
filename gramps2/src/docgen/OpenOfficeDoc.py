@@ -707,6 +707,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         text = text.replace('&','&amp;')       # Must be first
         text = text.replace('<','&lt;')
         text = text.replace('>','&gt;')
+        text = text.replace('\x1a','')
+        text = text.replace('\x0c','')
         text = text.replace('\n','<text:line-break/>')
         text = text.replace('&lt;super&gt;',
                             '<text:span text:style-name="GSuper">')
