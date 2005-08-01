@@ -1,3 +1,7 @@
+2005-08-01  Don Allingham  <don@gramps-project.org>
+	* src/WriteGedcom.py: Fix media handling, issue error message
+	on write failure
+
 2005-08-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gramps_main.py: Use gobject.timeout_add instead of gtk.
 
