@@ -1858,7 +1858,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.bookmarks.add(self.active_person.get_handle())
             name = NameDisplay.displayer.display(self.active_person)
             self.status_text(_("%s has been bookmarked") % name)
-            gtk.timeout_add(5000,self.modify_statusbar)
+            gobject.timeout_add(5000,self.modify_statusbar)
         else:
             WarningDialog(_("Could Not Set a Bookmark"),
                           _("A bookmark could not be set because "

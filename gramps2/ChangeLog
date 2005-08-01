@@ -1,3 +1,6 @@
+2005-08-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/gramps_main.py: Use gobject.timeout_add instead of gtk.
+
 2005-07-31  Alexander Roitman  <shura@gramps-project.org>
 	* src/docgen/OpenOfficeDoc.py: Typo.
 
