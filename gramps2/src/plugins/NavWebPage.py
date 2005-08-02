@@ -157,17 +157,17 @@ class BasePage:
         return (real_path,thumb_path)
 
     def create_file(self,name):
+        self.cur_name = self.build_name("",name)
         if self.archive:
             self.string_io = StringIO()
             of = codecs.EncodedFile(self.string_io,'utf-8',self.encoding)
-            self.cur_name = name + "." + self.ext
         else:
-            page_name = os.path.join(self.html_dir,name + "." + self.ext)
+            page_name = os.path.join(self.html_dir,self.cur_name)
             of = codecs.EncodedFile(open(page_name, "w"),'utf-8',self.encoding)
         return of
 
     def link_path(self,name,path):
-        base = name + "." + self.ext
+        base = self.build_name("",name)
         if self.levels == 2:
             dirpath = os.path.join(path,name[0],name[1],base)
         else:
@@ -186,7 +186,7 @@ class BasePage:
                 dirname = os.path.join(self.html_dir,path,name[0],name[1])
             if not os.path.isdir(dirname):
                 os.makedirs(dirname)
-            page_name = os.path.join(dirname,name + "." + self.ext)
+            page_name = self.build_name(dirname,name)
             of = codecs.EncodedFile(open(page_name, "w"),'utf-8',self.encoding)
         return of
 
@@ -414,6 +414,12 @@ class BasePage:
             else:
                 return "%s/%s" % (dirroot,handle[0])
             
+    def build_name(self,path,base):
+        if path:
+            return path + "/" + base + "." + self.ext
+        else:
+            return base + "." + self.ext
+
     def person_link(self,of,path,name,gid=""):
         if self.levels == 1:
             path = "../../" + path
@@ -520,7 +526,7 @@ class IndividualListPage(BasePage):
                     of.write('&nbsp')
                 of.write('</td><td class="data">')
                 path = self.build_path(person.handle,"ppl",False)
-                self.person_link(of, path + "/" + person.handle + "." + self.ext,
+                self.person_link(of, self.build_name(path,person.handle),
                                  person.get_primary_name().get_first_name(),
                                  person.gramps_id)
                 of.write('</td><td class="field">')
@@ -566,7 +572,7 @@ class SurnamePage(BasePage):
             person = db.get_person_from_handle(person_handle)
             of.write('<tr><td class="category">')
             path = self.build_path(person.handle,"ppl",False)
-            self.person_link(of, path + "/" + person.handle + "." + self.ext,
+            self.person_link(of, self.build_name(path,person.handle),
                              person.get_primary_name().get_first_name(),
                              person.gramps_id)
             of.write('</td><td class="field">')
@@ -1392,7 +1398,7 @@ class IndividualPage(BasePage):
         if use_link:
             child_name = nameof(child, self.exclude_private)
             path = self.build_path(child_handle,"ppl",False)
-            self.person_link(of, path + "/" + child_handle + "." + self.ext,
+            self.person_link(of, self.build_name(path,child_handle),
                              child_name, gid)
         else:
             of.write(nameof(child,self.exclude_private))
@@ -1406,7 +1412,7 @@ class IndividualPage(BasePage):
         val = person.gramps_id
         if use_link:
             path = self.build_path(handle,"ppl",False)
-            fname = path + "/" + handle + "." + self.ext
+            fname = self.build_name(path,handle)
             self.person_link(of, fname, nameof(person,self.exclude_private),
                              val)
         else:
@@ -1515,7 +1521,7 @@ class IndividualPage(BasePage):
             if use_link:
                 spouse_name = nameof(spouse,self.exclude_private)
                 path = self.build_path(spouse.handle,"ppl",False)
-                fname = path + "/" + spouse.handle + "." + self.ext
+                fname = self.build_name(path,spouse.handle)
                 self.person_link(of, fname, spouse_name, gid)
             else:
                 of.write(name)
@@ -1555,7 +1561,7 @@ class IndividualPage(BasePage):
         if person_link:
             person_name = nameof(person,self.exclude_private)
             path = self.build_path(person.handle,"ppl",False)
-            fname = path + "/" + person.handle + "." + self.ext
+            fname = self.build_name(path,person.handle)
             self.person_link(of, fname, person_name)
         else:
             of.write(nameof(person,self.exclude_private))
