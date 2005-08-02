@@ -374,7 +374,6 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
     def commit_family_event(self,event,transaction,change_time=None):
         self.family_event_names.add(event.name)
         self.commit_event(event,transaction,change_time)
-        print self.family_event_names
 
     def commit_event(self,event,transaction,change_time=None):
         """
@@ -1056,7 +1055,6 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Returns the list of personal event types contained within the
         database. The function must be overridden in the derived class.
         """
-        print self.individual_event_names
         return list(self.individual_event_names)
 
     def get_bookmarks(self):
@@ -1104,7 +1102,6 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
     def get_person_event_types(self):
         """returns a list of all Event types assocated with Person
         instances in the database"""
-        print self.individual_event_names
         return list(self.individual_event_names)
 
     def get_person_attribute_types(self):
