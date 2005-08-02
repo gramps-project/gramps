@@ -63,7 +63,7 @@ import ReportOptions
 import BaseDoc
 import ReportUtils
 import ImgManip
-from QuestionDialog import ErrorDialog
+from QuestionDialog import ErrorDialog, WarningDialog
 from NameDisplay import displayer as _nd
 from DateHandler import displayer as _dd
 
@@ -314,7 +314,7 @@ class BasePage:
                                 photo.get_description(),up=True)
                 of.write('</div>\n')
             except (IOError,OSError),msg:
-                ErrorDialog(str(msg))
+                WarningDialog(_("Could not add photo to page"),str(msg))
 
     def display_additional_images_as_gallery( self, of, db, photolist=None):
 
@@ -334,7 +334,7 @@ class BasePage:
                     self.media_link(of,photo_handle,newpath,
                                     photo.get_description(),up=True)
                 except (IOError,OSError),msg:
-                    ErrorDialog(str(msg))
+                    WarningDialog(_("Could not add photo to page"),str(msg))
         of.write('</blockquote>')
 
     def display_note_object(self,of,noteobj=None):
@@ -770,7 +770,7 @@ class MediaPage(BasePage):
                 of.write('src="../../%s" alt="%s"/>' % (newpath, self.page_title))
                 of.write('</div>\n')
             except (IOError,OSError),msg:
-                ErrorDialog(str(msg))
+                WarningDialog(_("Could not add photo to page"),str(msg))
 
         of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
         of.write('border="0">\n')
@@ -898,7 +898,7 @@ class IntroductionPage(BasePage):
                     of.write('alt="%s" />' % obj.get_description())
                     of.write('</div>\n')
                 except (IOError,OSError),msg:
-                    ErrorDialog(str(msg))
+                    WarningDialog(_("Could not add photo to page"),str(msg))
     
             note_obj = obj.get_note_object()
             if note_obj:
@@ -945,7 +945,7 @@ class HomePage(BasePage):
                     of.write('alt="%s" />' % obj.get_description())
                     of.write('</div>\n')
                 except (IOError,OSError),msg:
-                    ErrorDialog(str(msg))
+                    WarningDialog(_("Could not add photo to page"),str(msg))
 
             note_obj = obj.get_note_object()
             if note_obj:
@@ -1146,7 +1146,7 @@ class ContactPage(BasePage):
                     of.write('</td></tr></table>\n')
                     of.write('</div>\n')
                 except (IOError,OSError),msg:
-                    ErrorDialog(str(msg))
+                    WarningDialog(_("Could not add photo to page"),str(msg))
 
         r = get_researcher()
 
@@ -1867,9 +1867,12 @@ class WebReport(Report.Report):
                 next = None
             else:
                 next = photo_keys[index]
-            MediaPage(self.database, self.title, photo_handle, source_list,
-                      self.options, archive, photo_list[photo_handle],
-                      (prev, next, index, total), levels)
+            try:
+                MediaPage(self.database, self.title, photo_handle, source_list,
+                          self.options, archive, photo_list[photo_handle],
+                          (prev, next, index, total), levels)
+            except (IOError,OSError),msg:
+                WarningDialog(_("Missing media object"),str(msg))
             self.progress_bar_step()
             prev = photo_handle
             index += 1
@@ -2175,10 +2178,7 @@ class WebReportDialog(Report.ReportDialog):
 
         response = self.window.run()
         if response == gtk.RESPONSE_OK:
-            try:
-                self.make_report()
-            except (IOError,OSError),msg:
-                ErrorDialog(str(msg))
+            self.make_report()
         self.window.destroy()
 
     def setup_style_frame(self):
@@ -2272,7 +2272,6 @@ class WebReportDialog(Report.ReportDialog):
         except Errors.FilterError, msg:
             (m1,m2) = msg.messages()
             ErrorDialog(m1,m2)
-
 
 def sort_people(db,handle_list):
     import sets
