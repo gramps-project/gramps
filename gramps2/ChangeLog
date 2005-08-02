@@ -1,3 +1,7 @@
+2005-08-02  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/Bookmarks.py (edit): Dont crash if bookmark list contains
+	nonexisting person.
+
 2005-08-01  Don Allingham  <don@gramps-project.org>
 	* src/NavWebPage.py: fix references to places
 	* src/WriteGedcom.py: Fix media handling, issue error message

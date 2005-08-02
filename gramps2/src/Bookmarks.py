@@ -145,10 +145,11 @@ class Bookmarks :
         index = 0
         for person_handle in self.bookmarks:
             person = self.db.get_person_from_handle(person_handle)
-            name = NameDisplay.displayer.display(person)
-            self.namelist.append([name])
-            self.namelist.set_row_data(index,person_handle)
-            index = index + 1
+            if person:
+                name = NameDisplay.displayer.display(person)
+                self.namelist.append([name])
+                self.namelist.set_row_data(index,person_handle)
+                index = index + 1
 
         self.response = self.top.run()
         if self.response == gtk.RESPONSE_OK:
