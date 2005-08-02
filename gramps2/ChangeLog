@@ -1,4 +1,5 @@
 2005-08-01  Don Allingham  <don@gramps-project.org>
+	* src/NavWebPage.py: fix references to places
 	* src/WriteGedcom.py: Fix media handling, issue error message
 	on write failure
 

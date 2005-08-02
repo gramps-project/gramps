@@ -112,8 +112,9 @@ _cc = [
 
 
 class BasePage:
-    def __init__(self, title, options, archive, photo_list, levels):
+    def __init__(self, title, options, archive, photo_list, levels, gid):
         self.title_str = title
+        self.gid = gid
         self.inc_download = options.handler.options_dict['NWEBdownload']
         self.html_dir = options.handler.options_dict['NWEBod']
         self.copyright = options.handler.options_dict['NWEBcopyright']
@@ -131,14 +132,24 @@ class BasePage:
         self.exclude_private = not options.handler.options_dict['NWEBincpriv']
         self.levels = levels
         
-    def copy_media(self,photo):
+    def store_file(self,archive,html_dir,from_path,to_path):
+        if archive:
+            imagefile = open(from_path,"r")
+            archive.add_file(to_path,time.time(),imagefile)
+            imagefile.close()
+        else:
+            shutil.copyfile(from_path,os.path.join(html_dir,to_path))
+
+    def copy_media(self,photo,store_ref=True):
 
         handle = photo.get_handle()
-        if self.photo_list.has_key(handle):
-            if self.person.handle not in self.photo_list[handle]:
-                self.photo_list[handle].append(self.person.handle)
-        else:
-            self.photo_list[handle] = [self.person.handle]
+        if store_ref:
+            lnk = (self.cur_name,self.page_title,self.gid)
+            if self.photo_list.has_key(handle):
+                if lnk not in self.photo_list[handle]:
+                    self.photo_list[handle].append(lnk)
+            else:
+                self.photo_list[handle] = [lnk]
 
         newpath = photo.gramps_id + os.path.splitext(photo.get_path())[1]
         real_path = os.path.join('images',newpath)
@@ -155,15 +166,19 @@ class BasePage:
             of = codecs.EncodedFile(open(page_name, "w"),'utf-8',self.encoding)
         return of
 
+    def link_path(self,name,path):
+        base = name + "." + self.ext
+        if self.levels == 2:
+            dirpath = os.path.join(path,name[0],name[1],base)
+        else:
+            dirpath = os.path.join(path,name[0],base)
+        return dirpath
+
     def create_link_file(self,name,path):
+        self.cur_name = self.link_path(name,path)
         if self.archive:
             self.string_io = StringIO()
             of = codecs.EncodedFile(self.string_io,'utf-8',self.encoding)
-            if self.levels == 1:
-                base = name + "." + self.ext
-            else:
-                base = name[1],name + "." + self.ext
-            self.cur_name = os.path.join(path,name[0],base)
         else:
             if self.levels == 1:
                 dirname = os.path.join(self.html_dir,path,name[0])
@@ -184,7 +199,6 @@ class BasePage:
 
     def lnkfmt(self,text):
         return md5.new(text).hexdigest()
-
 
     def display_footer(self,of,db):
 
@@ -379,11 +393,9 @@ class BasePage:
         of.write('cellspacing="0" border="0">\n')
 
         index = 1
-        for handle in handlelist:
-            person = db.get_person_from_handle(handle)
+        for (path,name,gid) in handlelist:
             of.write('<tr><td class="field">%d. ' % index)
-            self.person_link(of,handle,nameof(person,self.exclude_private),
-                             person.gramps_id,True)
+            self.person_link(of,path,name,gid)
             of.write('</td></tr>\n')
             index = index + 1
         of.write('</table>\n')
@@ -392,18 +404,23 @@ class BasePage:
         if up:
             if self.levels == 1:
                 return '../../%s/%s' % (dirroot,handle[0])
-            else:
+            elif self.levels == 2:
                 return '../../../%s/%s/%s' % (dirroot,handle[0],handle[1])
-        else:
-            if self.levels == 1:
-                return "%s/%s" % (dirroot,handle[0])
             else:
+                return '%s/%s' % (dirroot,handle[0])
+        else:
+            if self.levels == 2:
                 return "%s/%s/%s" % (dirroot,handle[0],handle[1])
+            else:
+                return "%s/%s" % (dirroot,handle[0])
             
-    def person_link(self,of,handle,name,gid="",up=False):
-        dirpath = self.build_path(handle,'ppl',up)
+    def person_link(self,of,path,name,gid=""):
+        if self.levels == 1:
+            path = "../../" + path
+        elif self.levels == 2:
+            path = "../../../" + path
             
-        of.write('<a href="%s/%s.%s">%s' % (dirpath,handle,self.ext,name))
+        of.write('<a href="%s">%s' % (path,name))
         if not self.noid and gid != "":
             of.write('&nbsp;<span class="grampsid">[%s]</span>' % gid)
         of.write('</a>')
@@ -469,7 +486,7 @@ class IndividualListPage(BasePage):
 
     def __init__(self, db, title, person_handle_list, options, archive,
                  media_list, levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels)
+        BasePage.__init__(self, title, options, archive, media_list, levels, "")
 
         of = self.create_file("individuals")
         self.display_header(of,db,_('Individuals'),
@@ -502,7 +519,8 @@ class IndividualListPage(BasePage):
                 else:
                     of.write('&nbsp')
                 of.write('</td><td class="data">')
-                self.person_link(of,person.handle,
+                path = self.build_path(person.handle,"ppl",False)
+                self.person_link(of, path + "/" + person.handle + "." + self.ext,
                                  person.get_primary_name().get_first_name(),
                                  person.gramps_id)
                 of.write('</td><td class="field">')
@@ -526,7 +544,7 @@ class SurnamePage(BasePage):
 
     def __init__(self, db, title, person_handle_list, options, archive,
                  media_list, levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels)
+        BasePage.__init__(self, title, options, archive, media_list, levels, "")
 
         of = self.create_link_file(md5.new(title).hexdigest(),'srn')
         self.display_header(of,db,title,get_researcher().get_name(),True)
@@ -547,9 +565,10 @@ class SurnamePage(BasePage):
         for person_handle in person_handle_list:
             person = db.get_person_from_handle(person_handle)
             of.write('<tr><td class="category">')
-            self.person_link(of,person.handle,
+            path = self.build_path(person.handle,"ppl",False)
+            self.person_link(of, path + "/" + person.handle + "." + self.ext,
                              person.get_primary_name().get_first_name(),
-                             person.gramps_id,up=True)
+                             person.gramps_id)
             of.write('</td><td class="field">')
             birth_handle = person.get_birth_handle()
             if birth_handle:
@@ -569,7 +588,7 @@ class PlaceListPage(BasePage):
 
     def __init__(self, db, title, place_handles, src_list, options, archive,
                  media_list, levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels)
+        BasePage.__init__(self, title, options, archive, media_list, levels, "")
         of = self.create_file("places")
         self.display_header(of,db,_('Places'),
                             get_researcher().get_name())
@@ -632,16 +651,17 @@ class PlacePage(BasePage):
     def __init__(self, db, title, place_handle, src_list, place_list, options,
                  archive, media_list, levels):
         place = db.get_place_from_handle( place_handle)
-        BasePage.__init__(self, title, options, archive, media_list, levels)
+        BasePage.__init__(self, title, options, archive, media_list, levels,
+                          place.gramps_id)
         of = self.create_link_file(place.get_handle(),"plc")
-        place_name = ReportUtils.place_name(db,place_handle)
-        self.display_header(of,db,"%s - %s" % (_('Places'), place_name),
+        self.page_title = ReportUtils.place_name(db,place_handle)
+        self.display_header(of,db,"%s - %s" % (_('Places'), self.page_title),
                             get_researcher().get_name(),up=True)
 
         self.display_first_image_as_thumbnail(of, db, place.get_media_list())
 
         of.write('<div class="summaryarea">\n')
-        of.write('<h3>%s</h3>\n' % place_name)
+        of.write('<h3>%s</h3>\n' % self.page_title)
         of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
         of.write('border="0">\n')
 
@@ -692,7 +712,8 @@ class MediaPage(BasePage):
 
         (prev, next, page_number, total_pages) = info
         photo = db.get_object_from_handle(handle)
-        BasePage.__init__(self, title, options, archive, media_list, levels)
+        BasePage.__init__(self, title, options, archive, media_list, levels,
+                          photo.gramps_id)
         of = self.create_link_file(handle,"img")
 
         newpath = photo.gramps_id + os.path.splitext(photo.get_path())[1]
@@ -716,12 +737,12 @@ class MediaPage(BasePage):
         else:
             shutil.copyfile(from_path,os.path.join(self.html_dir,to_path))
 
-        title = photo.get_description()
+        self.page_title = photo.get_description()
         self.display_header(of,db, "%s - %s" % (_('Gallery'), title),
                             get_researcher().get_name(),up=True)
         
         of.write('<div class="summaryarea">\n')
-        of.write('<h3>%s</h3>\n' % title)
+        of.write('<h3>%s</h3>\n' % self.page_title)
 
         # gallery navigation
         of.write('<div class="img_navbar">')
@@ -740,7 +761,7 @@ class MediaPage(BasePage):
             try:
                 of.write('<div align="center">\n')
                 of.write('<img border="0" ')
-                of.write('src="../../%s" alt="%s"/>' % (newpath, title))
+                of.write('src="../../%s" alt="%s"/>' % (newpath, self.page_title))
                 of.write('</div>\n')
             except (IOError,OSError),msg:
                 ErrorDialog(str(msg))
@@ -774,7 +795,7 @@ class SurnameListPage(BasePage):
     ORDER_BY_COUNT = 1
     def __init__(self, db, title, person_handle_list, options, archive,
                  media_list, levels, order_by=ORDER_BY_NAME):
-        BasePage.__init__(self, title, options, archive, media_list, levels)
+        BasePage.__init__(self, title, options, archive, media_list, levels, "")
         if order_by == self.ORDER_BY_NAME:
             of = self.create_file("surnames")
             self.display_header(of,db,_('Surnames'),get_researcher().get_name())
@@ -847,7 +868,7 @@ class SurnameListPage(BasePage):
 class IntroductionPage(BasePage):
 
     def __init__(self, db, title, options, archive, media_list, levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels)
+        BasePage.__init__(self, title, options, archive, media_list, levels, "")
         note_id = options.handler.options_dict['NWEBintronote']
 
         of = self.create_file("introduction")
@@ -862,7 +883,9 @@ class IntroductionPage(BasePage):
             mime_type = obj.get_mime_type()
             if mime_type and mime_type.startswith("image"):
                 try:
-                    (newpath,thumb_path) = self.copy_media(obj)
+                    (newpath,thumb_path) = self.copy_media(obj,False)
+                    self.store_file(archive,self.html_dir,obj.get_path(),
+                                    newpath)
                     of.write('<div align="center">\n')
                     of.write('<img border="0" ')
                     of.write('src="%s" ' % newpath)
@@ -892,7 +915,7 @@ class IntroductionPage(BasePage):
 class HomePage(BasePage):
 
     def __init__(self, db, title, options, archive, media_list, levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels)
+        BasePage.__init__(self, title, options, archive, media_list, levels, "")
 
         note_id = options.handler.options_dict['NWEBhomenote']
         of = self.create_file("index")
@@ -907,7 +930,9 @@ class HomePage(BasePage):
             mime_type = obj.get_mime_type()
             if mime_type and mime_type.startswith("image"):
                 try:
-                    (newpath,thumb_path) = self.copy_media(obj)
+                    (newpath,thumb_path) = self.copy_media(obj,False)
+                    self.store_file(archive,self.html_dir,obj.get_path(),
+                                    newpath)
                     of.write('<div align="center">\n')
                     of.write('<img border="0" ')
                     of.write('src="%s" ' % newpath)
@@ -938,7 +963,7 @@ class SourcesPage(BasePage):
 
     def __init__(self, db, title, handle_set, options, archive, media_list,
                  levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels)
+        BasePage.__init__(self, title, options, archive, media_list, levels, "")
 
         of = self.create_file("sources")
         author = get_researcher().get_name()
@@ -978,16 +1003,17 @@ class SourcePage(BasePage):
     def __init__(self, db, title, handle, src_list, options, archive,
                  media_list, levels):
         source = db.get_source_from_handle( handle)
-        BasePage.__init__(self, title, options, archive, media_list, levels)
+        BasePage.__init__(self, title, options, archive, media_list, levels,
+                          source.gramps_id)
         of = self.create_link_file(source.get_handle(),"src")
-        source_name = source.get_title()
-        self.display_header(of,db,"%s - %s" % (_('Sources'), source_name),
+        self.page_title = source.get_title()
+        self.display_header(of,db,"%s - %s" % (_('Sources'), self.page_title),
                             get_researcher().get_name(),up=True)
 
         self.display_first_image_as_thumbnail(of, db, source.get_media_list())
 
         of.write('<div class="summaryarea">\n')
-        of.write('<h3>%s</h3>\n' % source_name)
+        of.write('<h3>%s</h3>\n' % self.page_title)
         of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
         of.write('border="0">\n')
 
@@ -1018,7 +1044,7 @@ class SourcePage(BasePage):
 class GalleryPage(BasePage):
 
     def __init__(self, db, title, handle_set, options, archive, media_list, levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels)
+        BasePage.__init__(self, title, options, archive, media_list, levels, "")
 
         of = self.create_file("gallery")
         self.display_header(of,db, _('Gallery'), get_researcher().get_name())
@@ -1065,7 +1091,7 @@ class GalleryPage(BasePage):
 class DownloadPage(BasePage):
 
     def __init__(self, db, title, options, archive, media_list, levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels)
+        BasePage.__init__(self, title, options, archive, media_list, levels, "")
 
         of = self.create_file("download")
         self.display_header(of,db,_('Download'),
@@ -1084,7 +1110,7 @@ class DownloadPage(BasePage):
 class ContactPage(BasePage):
 
     def __init__(self, db, title, options, archive, media_list, levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels)
+        BasePage.__init__(self, title, options, archive, media_list, levels, "")
 
         of = self.create_file("contact")
         self.display_header(of,db,_('Contact'),
@@ -1101,7 +1127,9 @@ class ContactPage(BasePage):
         
             if mime_type and mime_type.startswith("image"):
                 try:
-                    (newpath,thumb_path) = self.copy_media(obj)
+                    (newpath,thumb_path) = self.copy_media(obj,False)
+                    self.store_file(archive,self.html_dir,obj.get_path(),
+                                    newpath)
                     of.write('<div class="rightwrap">\n')
                     of.write('<table cellspacing="0" cellpadding="0" ')
                     of.write('border="0"><tr>')
@@ -1159,7 +1187,8 @@ class IndividualPage(BasePage):
     
     def __init__(self, db, person, title, ind_list, place_list, src_list,
                  options, archive, media_list, levels):
-        BasePage.__init__(self, title, options, archive, media_list, levels)
+        BasePage.__init__(self, title, options, archive, media_list, levels,
+                          person.gramps_id)
         self.person = person
         self.db = db
         self.ind_list = ind_list
@@ -1205,12 +1234,13 @@ class IndividualPage(BasePage):
 
         index = 1
         for sref in sreflist:
+            lnk = (self.cur_name, self.page_title, self.gid)
             shandle = sref.get_base_handle()
-            if self.src_list.has_key(shandle):
-                if self.person.handle not in self.src_list[shandle]:
-                    self.src_list[shandle].append(self.person.handle)
+            if self.src_list.has_key(lnk):
+                if lnk not in self.src_list[shandle]:
+                    self.src_list[shandle].append(lnk)
             else:
-                self.src_list[shandle] = [self.person.handle]
+                self.src_list[shandle] = [lnk]
 
             source = self.db.get_source_from_handle(shandle)
             title = source.get_title()
@@ -1275,6 +1305,7 @@ class IndividualPage(BasePage):
         of.write('</td>\n</tr>\n</table>\n')
 
     def display_ind_general(self,of):
+        self.page_title = self.sort_name
         self.display_first_image_as_thumbnail(of, self.db, self.person.get_media_list())
 
         of.write('<div class="summaryarea">\n')
@@ -1360,20 +1391,24 @@ class IndividualPage(BasePage):
         gid = child.get_gramps_id()
         if use_link:
             child_name = nameof(child, self.exclude_private)
-            self.person_link(of, child_handle, child_name, gid, True)
+            path = self.build_path(child_handle,"ppl",False)
+            self.person_link(of, path + "/" + child_handle + "." + self.ext,
+                             child_name, gid)
         else:
             of.write(nameof(child,self.exclude_private))
         of.write(u"<br>\n")
 
     def display_parent(self, of, handle, title, rel):
-        use_link = handle in self.ind_list
+        use_link = handle in self.ind_list 
         person = self.db.get_person_from_handle(handle)
         of.write('<td class="field">%s</td>\n' % title)
         of.write('<td class="data">')
         val = person.gramps_id
         if use_link:
-            self.person_link(of,handle,nameof(person,self.exclude_private),
-                             val,up=True)
+            path = self.build_path(handle,"ppl",False)
+            fname = path + "/" + handle + "." + self.ext
+            self.person_link(of, fname, nameof(person,self.exclude_private),
+                             val)
         else:
             of.write(nameof(person,self.exclude_private))
         if rel != RelLib.Person.CHILD_REL_BIRTH:
@@ -1479,7 +1514,9 @@ class IndividualPage(BasePage):
             gid = spouse.get_gramps_id()
             if use_link:
                 spouse_name = nameof(spouse,self.exclude_private)
-                self.person_link(of, spouse.handle, spouse_name, gid, True)
+                path = self.build_path(spouse.handle,"ppl",False)
+                fname = path + "/" + spouse.handle + "." + self.ext
+                self.person_link(of, fname, spouse_name, gid)
             else:
                 of.write(name)
         of.write('</td>\n</tr>\n')
@@ -1517,7 +1554,9 @@ class IndividualPage(BasePage):
         of.write('%s ' % bullet)
         if person_link:
             person_name = nameof(person,self.exclude_private)
-            self.person_link(of, person.handle, person_name, up=True)
+            path = self.build_path(person.handle,"ppl",False)
+            fname = path + "/" + person.handle + "." + self.ext
+            self.person_link(of, fname, person_name)
         else:
             of.write(nameof(person,self.exclude_private))
         of.write('<br>\n')
@@ -1539,25 +1578,27 @@ class IndividualPage(BasePage):
 
     def format_event(self,event):
         gid_list = []
+        lnk = (self.cur_name, self.page_title, self.gid)
+
         for sref in event.get_source_references():
             handle = sref.get_base_handle()
             gid_list.append(sref)
 
             if self.src_list.has_key(handle):
-                if self.person.handle not in self.src_list[handle]:
-                    self.src_list[handle].append(self.person.handle)
+                if lnk not in self.src_list[handle]:
+                    self.src_list[handle].append(lnk)
             else:
-                self.src_list[handle] = [self.person.handle]
+                self.src_list[handle] = [lnk]
             self.src_refs.append(sref)
             
         descr = event.get_description()
         place_handle = event.get_place_handle()
         if place_handle:
             if self.place_list.has_key(place_handle):
-                if self.person.handle not in self.place_list[place_handle]:
-                    self.place_list[place_handle].append(self.person.handle)
+                if lnk not in self.place_list[place_handle]:
+                    self.place_list[place_handle].append(lnk)
             else:
-                self.place_list[place_handle] = [self.person.handle]
+                self.place_list[place_handle] = [lnk]
                 
             place = self.place_link_str(place_handle,
                                         ReportUtils.place_name(self.db,place_handle),
@@ -1768,14 +1809,13 @@ class WebReport(Report.Report):
             
         if len(ind_list) > 1:
             IndividualListPage(self.database, self.title, ind_list,
-                               self.options, archive, photo_list,
-                               levels)
+                               self.options, archive, photo_list, 0)
             SurnameListPage(self.database, self.title, ind_list,
                             self.options, archive, photo_list,
-                            levels, SurnameListPage.ORDER_BY_NAME)
+                            0, SurnameListPage.ORDER_BY_NAME)
             SurnameListPage(self.database, self.title, ind_list,
                             self.options, archive, photo_list,
-                            levels, SurnameListPage.ORDER_BY_COUNT)
+                            0, SurnameListPage.ORDER_BY_COUNT)
 
         local_list = sort_people(self.database,ind_list)
 
