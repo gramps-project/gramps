@@ -32,6 +32,7 @@ must hold all of their data in memory.
 #-------------------------------------------------------------------------
 from RelLib import *
 from GrampsDbBase import *
+import sets
 
 class GrampsInMemCursor(GrampsCursor):
     """
@@ -83,7 +84,6 @@ class GrampsInMemDB(GrampsDbBase):
         self.fid_trans  = {}
         self.sid_trans  = {}
         self.oid_trans  = {}
-        self.eventnames = {}
         self.undodb     = []
 
     def load(self,name,callback):
@@ -124,15 +124,6 @@ class GrampsInMemDB(GrampsDbBase):
         for person_id in iter(self.person_map):
             p = self.get_person_from_handle(person_id)
             a[p.get_primary_name().get_group_as()] = 1
-        vals = a.keys()
-        vals.sort()
-        return vals
-
-    def get_person_event_type_list(self):
-        names = self.eventnames.keys()
-        a = {}
-        for name in names:
-            a[unicode(name)] = 1
         vals = a.keys()
         vals.sort()
         return vals

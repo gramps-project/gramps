@@ -1,3 +1,21 @@
+2005-08-02  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: call new PersonEventEditor
+	* src/Marriage.py: call new FamilyEventEditor
+	* src/EditSource.py: call the correct EventEditor
+	* src/EventEdit.py: Add PersonEventEditor and FamilyEventEditor to
+	correctly manage event types
+	* src/GrampsBSDDB.py: use commit_event to handle personal vs. family
+	event types
+	* src/GrampsInMem.py: use commit_event to handle personal vs. family
+	event types
+	* src/GrampsDbBase.py: use commit_event to handle personal vs. family
+	event types
+	* src/ReadXML: use commit_event to handle personal vs. family
+	event types
+	* src/ReadGedcom: use commit_event to handle personal vs. family
+	event types
+
+	
 2005-08-02  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/Bookmarks.py (edit): Dont crash if bookmark list contains
 	nonexisting person.

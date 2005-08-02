@@ -596,7 +596,10 @@ class GrampsParser:
     def start_event(self,attrs):
         self.event = RelLib.Event()
         self.db.add_event(self.event,self.trans)
-        self.event_type = const.save_event(attrs["type"])
+        if self.family:
+            self.event_type = const.display_pevent(attrs["type"])
+        else:
+            self.event_type = const.display_fevent(attrs["type"])
         if attrs.has_key("conf"):
             self.event.conf = int(attrs["conf"])
         else:
@@ -1107,6 +1110,7 @@ class GrampsParser:
 
         if self.family:
             self.family.add_event_handle(self.event.get_handle())
+            self.db.commit_family_event(self.event,self.trans,self.change)
         else:
             if self.event_type == "Birth":
                 self.person.set_birth_handle(self.event.get_handle())
@@ -1114,7 +1118,7 @@ class GrampsParser:
                 self.person.set_death_handle(self.event.get_handle())
             else:
                 self.person.add_event_handle(self.event.get_handle())
-        self.db.commit_event(self.event,self.trans,self.change)
+            self.db.commit_personal_event(self.event,self.trans,self.change)
         self.event = None
 
     def stop_name(self,tag):

@@ -729,9 +729,8 @@ class Marriage:
     def on_add_clicked(self,*obj):
         import EventEdit
         name = Utils.family_name(self.family,self.db)
-        EventEdit.EventEditor(
-            self,name, const.marriageEvents, const.family_events,
-            None, None, 0, self.event_edit_callback,
+        EventEdit.FamilyEventEditor(
+            self, name, None, None, False, self.event_edit_callback,
             const.defaultMarriageEvent, self.db.readonly)
 
     def on_event_update_clicked(self,obj):
@@ -741,9 +740,9 @@ class Marriage:
             return
         event = self.etree.get_object(node)
         name = Utils.family_name(self.family,self.db)
-        EventEdit.EventEditor(
-            self, name, const.marriageEvents, const.family_events,event,
-            None, 0,self.event_edit_callback, None, self.db.readonly)
+        EventEdit.FamilyEventEditor(
+            self, name, event, None, False, self.event_edit_callback,
+            None, self.db.readonly)
 
     def on_delete_clicked(self,obj):
         if Utils.delete_selected(obj,self.elist):

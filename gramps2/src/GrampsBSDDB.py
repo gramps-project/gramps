@@ -32,6 +32,7 @@ Provides the Berkeley DB (BSDDB) database backend for GRAMPS
 import os
 import time
 import locale
+import sets
 from gettext import gettext as _
 from bsddb import dbshelve, db
 
@@ -43,7 +44,7 @@ from bsddb import dbshelve, db
 from RelLib import *
 from GrampsDbBase import *
 
-_DBVERSION = 7
+_DBVERSION = 8
 
 def find_surname(key,data):
     return str(data[3].get_surname())
@@ -53,9 +54,6 @@ def find_idmap(key,data):
 
 def find_fidmap(key,data):
     return str(data[1])
-
-def find_eventname(key,data):
-    return str(data[2])
 
 class GrampsBSDDBCursor(GrampsCursor):
 
@@ -174,10 +172,6 @@ class GrampsBSDDB(GrampsDbBase):
         self.oid_trans.set_flags(db.DB_DUP)
         self.oid_trans.open(name, "oidtrans", db.DB_HASH, flags=openflags)
 
-        self.eventnames = db.DB(self.env)
-        self.eventnames.set_flags(db.DB_DUP)
-        self.eventnames.open(name, "eventnames", db.DB_HASH, flags=openflags)
-
         if not self.readonly:
             self.person_map.associate(self.surnames,  find_surname, openflags)
             self.person_map.associate(self.id_trans,  find_idmap, openflags)
@@ -185,12 +179,13 @@ class GrampsBSDDB(GrampsDbBase):
             self.place_map.associate(self.pid_trans,  find_idmap, openflags)
             self.media_map.associate(self.oid_trans, find_idmap, openflags)
             self.source_map.associate(self.sid_trans, find_idmap, openflags)
-            self.event_map.associate(self.eventnames, find_eventname, openflags)
             self.undodb = db.DB()
             self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
 
         self.metadata   = self.dbopen(name, "meta")
         self.bookmarks = self.metadata.get('bookmarks')
+        self.family_event_names = sets.Set(self.metadata.get('fevent_names',[]))
+        self.individual_event_names = sets.Set(self.metadata.get('pevent_names',[]))
 
         gstats = self.metadata.get('gender_stats')
 
@@ -289,20 +284,6 @@ class GrampsBSDDB(GrampsDbBase):
             self.source_map[key] = self.source_map[key]
         self.source_map.sync()
 
-        # Repair secondary indices related to event_map
-
-        self.eventnames.close()
-        self.eventnames = db.DB(self.env)
-        self.eventnames.set_flags(db.DB_DUP)
-        self.eventnames.open(self.save_name, "eventnames", db.DB_HASH,
-                            flags=db.DB_CREATE)
-        self.eventnames.truncate()
-        self.event_map.associate(self.eventnames, find_eventname, db.DB_CREATE)
-
-        for key in self.event_map.keys():
-            self.event_map[key] = self.event_map[key]
-        self.event_map.sync()
-
     def abort_changes(self):
         while self.undo():
             pass
@@ -321,9 +302,10 @@ class GrampsBSDDB(GrampsDbBase):
         if not self.readonly:
             self.metadata['bookmarks'] = self.bookmarks
             self.metadata['gender_stats'] = self.genderStats.save_stats()
+            self.metadata['fevent_names'] = list(self.family_event_names)
+            self.metadata['pevent_names'] = list(self.individual_event_names)
         self.metadata.close()
         self.surnames.close()
-        self.eventnames.close()
         self.id_trans.close()
         self.fid_trans.close()
         self.oid_trans.close()
@@ -364,16 +346,6 @@ class GrampsBSDDB(GrampsDbBase):
             a[unicode(name)] = 1
         vals = a.keys()
         vals.sort(locale.strcoll)
-        return vals
-
-    def get_person_event_type_list(self):
-        names = self.eventnames.keys()
-        a = {}
-        for name in names:
-            
-            a[unicode(name)] = 1
-        vals = a.keys()
-        vals.sort()
         return vals
 
     def remove_person(self,handle,transaction):
@@ -500,7 +472,6 @@ class GrampsBSDDB(GrampsDbBase):
         self.pid_trans.sync()
         self.sid_trans.sync()
         self.oid_trans.sync()
-        self.eventnames.sync()
         self.undodb.sync()
 
     def upgrade(self):
@@ -522,6 +493,8 @@ class GrampsBSDDB(GrampsDbBase):
             self.upgrade_6()
         if version < 7:
             self.upgrade_7()
+        if version < 8:
+            self.upgrade_8()
         self.metadata['version'] = _DBVERSION
         print 'Successfully finished all upgrades'
 
@@ -851,3 +824,29 @@ class GrampsBSDDB(GrampsDbBase):
             self.genderStats.count_person(p,self)
             data = cursor.next()
         cursor.close()
+
+    def upgrade_8(self):
+        print "Upgrading to DB version 8"
+
+        cursor = self.get_person_cursor()
+        data = cursor.first()
+        while data:
+            handle,val = data
+            handle_list = val[8]
+            for handle in handle_list:
+                event = self.get_event_from_handle(handle)
+                self.individual_event_names.add(event.name)
+            data = cursor.next()
+        cursor.close()
+
+        cursor = self.get_family_cursor()
+        data = cursor.first()
+        while data:
+            handle,val = data
+            handle_list = val[6]
+            for handle in handle_list:
+                event = self.get_event_from_handle(handle)
+                self.family_event_names.add(event.name)
+            data = cursor.next()
+        cursor.close()
+                

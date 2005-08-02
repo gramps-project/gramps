@@ -1203,11 +1203,8 @@ class EditPerson:
         """Brings up the EventEditor for a new event"""
         import EventEdit
         pname = self.nd.display(self.person)
-        EventEdit.EventEditor(
-            self,pname,const.personalEvents,
-            const.personal_events,None,None,0,
-            self.event_edit_callback,
-            noedit=self.db.readonly)
+        EventEdit.PersonEventEditor(self, pname, None, None, False,
+            self.event_edit_callback, noedit=self.db.readonly)
 
     def on_edit_birth_clicked(self,obj):
         """Brings up the EventEditor for the birth record, event
@@ -1223,11 +1220,8 @@ class EditPerson:
         p = self.get_place(self.bplace)
         if p:
             event.set_place_handle(p)
-        EventEdit.EventEditor(
-            self,pname, const.personalEvents,
-            const.personal_events,event,def_placename,1,
-            self.event_edit_callback,
-            noedit=self.db.readonly)
+        EventEdit.PersonEventEditor(self,pname, event, def_placename, True,
+            self.event_edit_callback, noedit=self.db.readonly)
 
     def on_edit_death_clicked(self,obj):
         """Brings up the EventEditor for the death record, event
@@ -1243,11 +1237,9 @@ class EditPerson:
         p = self.get_place(self.dplace)
         if p:
             event.set_place_handle(p)
-        EventEdit.EventEditor(
-            self,pname,const.personalEvents,
-            const.personal_events,event,def_placename,1,
-            self.event_edit_callback,
-            noedit=self.db.readonly)
+        EventEdit.PersonEventEditor(self, pname, event, def_placename,
+                                    True, self.event_edit_callback,
+                                    noedit=self.db.readonly)
 
     def on_aka_delete_clicked(self,obj):
         """Deletes the selected name from the name list"""
@@ -1500,10 +1492,8 @@ class EditPerson:
             return
         pname = self.nd.display(self.person)
         event = self.etree.get_object(node)
-        EventEdit.EventEditor(
-            self,pname,const.personalEvents,
-            const.personal_events,event,None,0,
-            self.event_edit_callback,noedit=self.db.readonly)
+        EventEdit.PersonEventEditor(self, pname, event, None, False,
+            self.event_edit_callback, noedit=self.db.readonly)
         
     def on_event_select_row(self,obj):
         store,node = obj.get_selected()
@@ -1786,7 +1776,7 @@ class EditPerson:
             if self.orig_birth.is_empty():
                 self.db.add_event(self.birth,trans)
                 self.person.set_birth_handle(self.birth.get_handle())
-            self.db.commit_event(self.birth,trans)
+            self.db.commit_personal_event(self.birth,trans)
 
         # Update each of the families child lists to reflect any
         # change in ordering due to the new birth date
@@ -1807,7 +1797,7 @@ class EditPerson:
             if self.orig_death.is_empty():
                 self.db.add_event(self.death,trans)
                 self.person.set_death_handle(self.death.get_handle())
-            self.db.commit_event(self.death,trans)
+            self.db.commit_personal_event(self.death,trans)
 
         male = self.is_male.get_active()
         female = self.is_female.get_active()

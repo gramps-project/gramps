@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import sets
 
 #-------------------------------------------------------------------------
 #
@@ -83,15 +84,10 @@ class EventEditor:
         self.dp = DateHandler.parser
         self.dd = DateHandler.displayer
 
-        values = {}
-        for v in elist:
-            values[v] = 1
-        for vv in self.db.get_person_event_type_list():
-            if vv not in ("Birth","Death"):
-                v = _(vv)
-                values[v] = 1
-            
-        self.elist = values.keys()
+        # build list for menu
+        values = sets.Set(elist)
+        values.union(self.get_event_names())
+        self.elist = list(values)
         self.elist.sort()
 
         for key in self.parent.db.get_place_handles():
@@ -105,11 +101,6 @@ class EventEditor:
                 self.witnesslist = []
             self.date = Date.Date(self.event.get_date_object())
             transname = const.display_event(event.get_name())
-            # add the name to the list if it is not already there. This
-            # tends to occur in translated languages with the 'Death'
-            # event, which is a partial match to other events
-            #if not transname in elist:
-            #    elist.append(transname)
         else:
             self.srcreflist = []
             self.witnesslist = []
@@ -402,7 +393,7 @@ class EventEditor:
         if self.event.get_privacy() != priv:
             self.event.set_privacy(priv)
             self.parent.lists_changed = 1
-        self.db.commit_event(self.event,trans)
+        self.commit(self.event,trans)
 
     def on_switch_page(self,obj,a,page):
         buf = self.note_field.get_buffer()
@@ -411,3 +402,41 @@ class EventEditor:
             Utils.bold_label(self.notes_label)
         else:
             Utils.unbold_label(self.notes_label)
+
+    def commit(self,event,trans):
+        self.db.commit_event(event,trans)
+
+    def get_event_names(self):
+        data = sets.Set(self.db.get_family_event_types())
+        data.union(self.db.get_person_event_types())
+        return list(data)
+
+class FamilyEventEditor(EventEditor):
+
+    def __init__(self,parent,name,event,def_placename,
+                 read_only, cb, def_event=None, noedit=False):
+
+        EventEditor.__init__(self, parent, name, const.marriageEvents,
+                             const.family_events, event, def_placename,
+                             read_only, cb, def_event, noedit)
+
+    def commit(self,event,trans):
+        self.db.commit_family_event(event,trans)
+
+    def get_event_names(self):
+        return self.db.get_family_event_types()
+
+class PersonEventEditor(EventEditor):
+
+    def __init__(self,parent,name,event,def_placename,
+                 read_only, cb, def_event=None, noedit=False):
+        
+        EventEditor.__init__(self, parent, name, const.personalEvents,
+                             const.personal_events, event, def_placename,
+                             read_only, cb, def_event, noedit)
+
+    def commit(self,event,trans):
+        self.db.commit_personal_event(event,trans)
+
+    def get_event_names(self):
+        return self.db.get_person_event_types()
