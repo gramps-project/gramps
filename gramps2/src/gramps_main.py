@@ -1337,6 +1337,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.gtop.get_widget('merge').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('fast_merge1').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('default_person1').set_sensitive(not self.db.readonly)
+        self.gtop.get_widget('add_bookmark').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('edit_bookmarks').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('tools_menu').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('tools').set_sensitive(not self.db.readonly)
@@ -1693,23 +1694,29 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.enable_buttons(1)
             self.people_view.goto_active_person()
             self.merge_button.set_sensitive(1)
+            self.gtop.get_widget('add_bookmark').set_sensitive(not self.db.readonly)
         elif page == FAMILY_VIEW1 or page == FAMILY_VIEW2:
             self.enable_buttons(1)
             self.merge_button.set_sensitive(0)
             self.family_view.load_family()
+            self.gtop.get_widget('add_bookmark').set_sensitive(not self.db.readonly)
         elif page == PEDIGREE_VIEW:
             self.enable_buttons(0)
             self.merge_button.set_sensitive(0)
             self.pedigree_view.load_canvas(self.active_person)
+            self.gtop.get_widget('add_bookmark').set_sensitive(not self.db.readonly)
         elif page == SOURCE_VIEW:
             self.enable_buttons(1)
             self.merge_button.set_sensitive(1)
+            self.gtop.get_widget('add_bookmark').set_sensitive(0)
         elif page == PLACE_VIEW:
             self.enable_buttons(1)
             self.merge_button.set_sensitive(1)
+            self.gtop.get_widget('add_bookmark').set_sensitive(0)
         elif page == MEDIA_VIEW:
             self.enable_buttons(1)
             self.merge_button.set_sensitive(0)
+            self.gtop.get_widget('add_bookmark').set_sensitive(0)
             
     def on_apply_filter_clicked(self,obj):
         self.people_view.apply_filter_clicked()

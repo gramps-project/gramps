@@ -1,6 +1,8 @@
 2005-08-02  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/Bookmarks.py (edit): Dont crash if bookmark list contains
 	nonexisting person.
+	* src/gramps_main.py: Disable "add bookmark" menu entry on readonly
+	database and only enable it in person/family/pedigree view.
 
 2005-08-01  Don Allingham  <don@gramps-project.org>
 	* src/NavWebPage.py: fix references to places
