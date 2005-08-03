@@ -810,3 +810,61 @@ def strip_context(msgid,sep='|'):
     if msgval == msgid and sep_idx != -1:
         msgval = msgid[sep_idx+1:]
     return msgval
+
+class ProgressMeter:
+    """
+    Progress meter class for GRAMPS.
+    """
+    def __init__(self,title,header):
+        """
+        Specify the title and the current pass header.
+        """
+        self.ptop = gtk.Dialog()
+        self.ptop.set_has_separator(False)
+        self.ptop.set_title(title)
+        self.ptop.set_border_width(12)
+        self.ptop.vbox.set_spacing(10)
+        lbl = gtk.Label('<span size="larger" weight="bold">%s</span>' % title)
+        lbl.set_use_markup(True)
+        self.lbl = gtk.Label(header)
+        self.lbl.set_use_markup(True)
+        self.ptop.vbox.add(lbl)
+        self.ptop.vbox.add(self.lbl)
+        self.ptop.vbox.set_border_width(24)
+        self.pbar = gtk.ProgressBar()
+
+        self.ptop.set_size_request(350,125)
+        self.ptop.vbox.add(self.pbar)
+        self.ptop.show_all()
+
+    def set_pass(self,header,total):
+        """
+        Reset for another pass. Provide a new header and define number
+        of steps to be used.
+        """
+        self.pbar_max = total
+        self.pbar_index = 0.0
+        self.lbl.set_text(header)
+        self.pbar.set_fraction(0.0)
+        while gtk.events_pending():
+            gtk.main_iteration()
+
+    def step(self):
+        """Click the progress bar over to the next value.  Be paranoid
+        and insure that it doesn't go over 100%."""
+        self.pbar_index = self.pbar_index + 1.0
+        if (self.pbar_index > self.pbar_max):
+            self.pbar_index = self.pbar_max
+
+        val = self.pbar_index/self.pbar_max
+        
+        self.pbar.set_text("%d of %d (%.1f%%)" % (self.pbar_index,self.pbar_max,(val*100)))
+        self.pbar.set_fraction(val)
+        while gtk.events_pending():
+            gtk.main_iteration()
+
+    def close(self):
+        """
+        Close the progress meter
+        """
+        self.ptop.destroy()

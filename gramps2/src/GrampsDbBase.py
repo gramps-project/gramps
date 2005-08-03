@@ -783,6 +783,36 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         """
         return len(self.person_map)
 
+    def get_number_of_families(self):
+        """
+        Returns the number of families currently in the databse.
+        """
+        return len(self.family_map)
+
+    def get_number_of_events(self):
+        """
+        Returns the number of events currently in the databse.
+        """
+        return len(self.event_map)
+
+    def get_number_of_places(self):
+        """
+        Returns the number of places currently in the databse.
+        """
+        return len(self.place_map)
+
+    def get_number_of_sources(self):
+        """
+        Returns the number of sources currently in the databse.
+        """
+        return len(self.source_map)
+
+    def get_number_of_media_objects(self):
+        """
+        Returns the number of media objects currently in the databse.
+        """
+        return len(self.media_map)
+
     def get_person_handles(self,sort_handles=True):
         """
         Returns a list of database handles, one handle for each Person in

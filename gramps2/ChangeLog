@@ -1,3 +1,9 @@
+2005-08-03  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbBase.py: provide functions for indicating the number
+	of items in each table
+	* src/Check.py: Add ProgressMeter calls
+	* src/Utils.py: Define new ProgressMeter class
+
 2005-08-02  Alex Roitman  <shura@gramps-project.org>
 	* src/Bookmarks.py: Convert from CList to ListModel and TreeView;
 	Remove Cancel and OK buttons, Add Close button; make all changes
