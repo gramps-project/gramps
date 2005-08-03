@@ -181,7 +181,8 @@ class NameEditor:
             if self.name and self.name.get_group_as() != self.name.get_surname():
                 val = self.name.get_group_as()
             else:
-                val = self.db.get_name_group_mapping(self.surname_field.get_text())
+                name = unicode(self.surname_field.get_text())
+                val = self.db.get_name_group_mapping(name)
             self.group_as.set_text(val)
         
     def on_group_over_toggled(self,obj):
@@ -189,7 +190,7 @@ class NameEditor:
             self.group_as.set_sensitive(True)
             self.group_as.set_editable(True)
         else:
-            field_value = self.surname_field.get_text()
+            field_value = unicode(self.surname_field.get_text())
             mapping = self.db.get_name_group_mapping(field_value)
             self.group_as.set_text(mapping)
             self.group_as.set_sensitive(False)
@@ -268,8 +269,8 @@ class NameEditor:
         
         self.name.set_source_reference_list(self.srcreflist)
 
-        grp_as = self.group_as.get_text()
-        srn = self.surname_field.get_text()
+        grp_as = unicode(self.group_as.get_text())
+        srn = unicode(self.surname_field.get_text())
 
         if self.name.get_display_as() != self.display_as.get_active():
             self.name.set_display_as(self.display_as.get_active())

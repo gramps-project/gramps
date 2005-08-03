@@ -121,24 +121,26 @@ class PeopleModel(gtk.GenericTreeModel):
         self.sortnames = {}
         cursor = self.db.get_person_cursor()
         node = cursor.next()
+
+        ngn = NameDisplay.displayer.name_grouping_name
+        nsn = NameDisplay.displayer.sorted_name
         while node:
             if node[0] in flist:
                 primary_name = node[1][_NAME_COL]
-                surname = NameDisplay.displayer.name_grouping_name(self.db,primary_name)
-                self.sortnames[node[0]] = NameDisplay.displayer.sorted_name(primary_name)
-
+                surname = unicode(ngn(self.db,primary_name))
+                self.sortnames[node[0]] = unicode(nsn(primary_name))
                 if self.temp_sname_sub.has_key(surname):
                     self.temp_sname_sub[surname].append(node[0])
                 else:
                     self.temp_sname_sub[surname] = [node[0]]
             node = cursor.next()
         cursor.close()
-        
+
         self.temp_top_path2iter = self.temp_sname_sub.keys()
         self.temp_top_path2iter.sort(locale.strcoll)
         for name in self.temp_top_path2iter:
             self.build_sub_entry(name)
-
+        
     def build_sub_entry(self,name):
         slist = map(lambda x: (self.sortnames[x],x),self.temp_sname_sub[name])
         slist.sort(self.byname)
