@@ -203,6 +203,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             TipOfDay.TipOfDay(self)
 
         self.db.set_researcher(GrampsCfg.get_researcher())
+        self.db.connect('person-delete',self.on_remove_bookmark)
 
     def welcome(self):
         if GrampsKeys.get_welcome() >= 200:
@@ -1870,6 +1871,13 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             WarningDialog(_("Could Not Set a Bookmark"),
                           _("A bookmark could not be set because "
                             "no one was selected."))
+
+    def on_remove_bookmark(self,handle_list):
+        """
+        Callback to remove people from bookmark lists *outside*
+        the Bookmark Editor.
+        """
+        self.bookmarks.remove_people(handle_list)
 
     def on_edit_bookmarks_activate(self,obj):
         self.bookmarks.edit()

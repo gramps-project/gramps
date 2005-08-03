@@ -1,3 +1,13 @@
+2005-08-02  Alex Roitman  <shura@gramps-project.org>
+	* src/Bookmarks.py: Convert from CList to ListModel and TreeView;
+	Remove Cancel and OK buttons, Add Close button; make all changes
+	immediate conforming to the HIG; (remove_people): Add method for
+	removing people outside bookmark editor (useful for connecting to
+	signals).
+	* src/gramps_main.py (on_remove_bookmark): Add handler for
+	removing deleted people; (__init__): Connect new handler to the
+	'person-delete' signal.
+
 2005-08-02  Don Allingham  <don@gramps-project.org>
 	* src/NameEdit.py: convert names to unicode
 	* src/PeopleModel.py: convert names to uncode
