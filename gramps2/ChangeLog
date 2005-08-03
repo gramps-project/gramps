@@ -3,6 +3,11 @@
 	of items in each table
 	* src/Check.py: Add ProgressMeter calls
 	* src/Utils.py: Define new ProgressMeter class
+	* src/GrampsBSDDB.py: call callback for rebuilding secondary indices
+	* src/plugins/Merge.py: use ProgressMeter
+	* src/plugins/Rebuild.py: use ProgressMeter
+	* src/plugins/ReorderIds.py: use ProgressMeter
+	* src/plugins/Verify.py: use ProgressMeter
 
 2005-08-02  Alex Roitman  <shura@gramps-project.org>
 	* src/Bookmarks.py: Convert from CList to ListModel and TreeView;

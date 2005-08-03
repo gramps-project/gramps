@@ -815,7 +815,7 @@ class ProgressMeter:
     """
     Progress meter class for GRAMPS.
     """
-    def __init__(self,title,header):
+    def __init__(self,title,header=''):
         """
         Specify the title and the current pass header.
         """
@@ -836,12 +836,18 @@ class ProgressMeter:
         self.ptop.set_size_request(350,125)
         self.ptop.vbox.add(self.pbar)
         self.ptop.show_all()
+        if header == '':
+            self.lbl.hide()
 
     def set_pass(self,header,total):
         """
         Reset for another pass. Provide a new header and define number
         of steps to be used.
         """
+        if header == '':
+            self.lbl.hide()
+        else:
+            self.lbl.show()
         self.pbar_max = total
         self.pbar_index = 0.0
         self.lbl.set_text(header)

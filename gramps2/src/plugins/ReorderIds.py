@@ -70,22 +70,31 @@ class ReorderIds:
 
         self.db = db
 
+        self.progress = Utils.ProgressMeter(_('Reording GRAMPS IDs'),'')
+                                            
         self.trans = db.transaction_begin()
+
+        self.progress.set_pass(_('Reordering People IDs'),db.get_number_of_people())
         self.reorder(RelLib.Person, db.get_person_from_gramps_id, db.get_person_from_handle,
                      db.find_next_person_gramps_id, db.get_person_cursor, db.commit_person,
                      db.iprefix)
+        self.progress.set_pass(_('Reordering Family IDs'),db.get_number_of_families())
         self.reorder(RelLib.Family,db.get_family_from_gramps_id, db.get_family_from_handle,
                      db.find_next_family_gramps_id, db.get_family_cursor, db.commit_family,
                      db.fprefix)
+        self.progress.set_pass(_('Reordering Media Object IDs'),db.get_number_of_media_objects())
         self.reorder(RelLib.MediaObject, db.get_object_from_gramps_id, db.get_object_from_handle,
                      db.find_next_object_gramps_id, db.get_media_cursor, db.commit_media_object,
                      db.oprefix)
+        self.progress.set_pass(_('Reordering Source IDs'),db.get_number_of_sources())
         self.reorder(RelLib.Source, db.get_source_from_gramps_id, db.get_source_from_handle,
                      db.find_next_source_gramps_id, db.get_source_cursor, db.commit_source,
                      db.sprefix)
+        self.progress.set_pass(_('Reordering Place IDs'),db.get_number_of_places())
         self.reorder(RelLib.Place, db.get_place_from_gramps_id, db.get_place_from_handle,
                      db.find_next_place_gramps_id, db.get_place_cursor, db.commit_place,
                      db.pprefix)
+        self.progress.close()
         db.transaction_commit(self.trans,_("Reorder gramps IDs"))
         
     def reorder(self, class_type, find_from_id, find_from_handle, find_next_id, get_cursor, commit, prefix):
@@ -98,6 +107,7 @@ class ReorderIds:
         cursor = get_cursor()
         data = cursor.first()
         while data:
+            self.progress.step()
             (handle,sdata) = data
 
             obj = class_type()
@@ -134,7 +144,9 @@ class ReorderIds:
         # go through the duplicates, looking for the first availble
         # handle that matches the new scheme.
     
+        self.progress.set_pass(_('Finding and assigning unused IDs'),len(dups))
         for handle in dups:
+            self.progress.step()
             obj = find_from_handle(handle)
             obj.set_gramps_id(find_next_id())
             commit(obj,self.trans)

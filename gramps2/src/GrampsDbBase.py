@@ -194,7 +194,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self.place2title = {}
         self.name_group = {}
 
-    def rebuild_secondary(self):
+    def rebuild_secondary(self,callback=None):
         pass
 
     def version_supported(self):

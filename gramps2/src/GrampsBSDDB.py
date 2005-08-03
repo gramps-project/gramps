@@ -201,7 +201,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.genderStats = GenderStats(gstats)
         return 1
 
-    def rebuild_secondary(self):
+    def rebuild_secondary(self,callback=None):
 
         # Repair secondary indices related to person_map
         
@@ -224,6 +224,8 @@ class GrampsBSDDB(GrampsDbBase):
         self.person_map.associate(self.id_trans, find_idmap, db.DB_CREATE)
 
         for key in self.person_map.keys():
+            if callback:
+                callback()
             self.person_map[key] = self.person_map[key]
 
         self.person_map.sync()
@@ -239,6 +241,8 @@ class GrampsBSDDB(GrampsDbBase):
         self.family_map.associate(self.fid_trans, find_idmap, db.DB_CREATE)
 
         for key in self.family_map.keys():
+            if callback:
+                callback()
             self.family_map[key] = self.family_map[key]
         self.family_map.sync()
 
@@ -253,6 +257,8 @@ class GrampsBSDDB(GrampsDbBase):
         self.place_map.associate(self.pid_trans, find_idmap, db.DB_CREATE)
 
         for key in self.place_map.keys():
+            if callback:
+                callback()
             self.place_map[key] = self.place_map[key]
         self.place_map.sync()
 
@@ -267,6 +273,8 @@ class GrampsBSDDB(GrampsDbBase):
         self.media_map.associate(self.oid_trans, find_idmap, db.DB_CREATE)
 
         for key in self.media_map.keys():
+            if callback:
+                callback()
             self.media_map[key] = self.media_map[key]
         self.media_map.sync()
 
@@ -281,6 +289,8 @@ class GrampsBSDDB(GrampsDbBase):
         self.source_map.associate(self.sid_trans, find_idmap, db.DB_CREATE)
 
         for key in self.source_map.keys():
+            if callback:
+                callback()
             self.source_map[key] = self.source_map[key]
         self.source_map.sync()
 

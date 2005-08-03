@@ -61,10 +61,17 @@ def runTool(database,active_person,callback,parent=None):
             # TODO: split plugin in a check and repair part to support
             # checking of a read only database
             return
-        
+
+        total = database.get_number_of_people() + database.get_number_of_families() + \
+                database.get_number_of_places() + database.get_number_of_sources() + \
+                database.get_number_of_media_objects()
+
+        progress = Utils.ProgressMeter(_('Rebuilding Secondary Indices'))
+        progress.set_pass('',total)
         database.disable_signals()
-        database.rebuild_secondary()
+        database.rebuild_secondary(progress.step)
         database.enable_signals()
+        progress.close()
         OkDialog(_("Secondary indices rebuilt"),
                  _('All secondary indices have been rebuilt.'))
     except:
