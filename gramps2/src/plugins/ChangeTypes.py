@@ -128,6 +128,8 @@ class ChangeTypes:
         original = unicode(self.auto1.child.get_text())
         new = unicode(self.auto2.child.get_text())
 
+        progress = Utils.ProgressMeter(_('Analyzing events'),'')
+        progress.set_pass('',self.db.get_number_of_people())
         for person_handle in self.db.get_person_handles(sort_handles=False):
             person = self.db.get_person_from_handle(person_handle)
             for event_handle in person.get_event_list():
@@ -138,13 +140,15 @@ class ChangeTypes:
                     event.set_name(new)
                     modified = modified + 1
                     self.db.commit_event(event,self.trans)
+            progress.step()
+        progress.close()
 
         if modified == 1:
             msg = _("1 event record was modified")
         else:
             msg = _("%d event records were modified") % modified
             
-        OkDialog(_('Change types'),msg,self.parent)
+        OkDialog(_('Change types'),msg,self.parent.topWindow)
         self.db.transaction_commit(self.trans,_('Change types'))
         self.close(None)
 

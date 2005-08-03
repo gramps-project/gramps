@@ -204,6 +204,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
 
         self.db.set_researcher(GrampsCfg.get_researcher())
         self.db.connect('person-delete',self.on_remove_bookmark)
+        self.db.connect('person-update',self.on_update_bookmark)
 
     def welcome(self):
         if GrampsKeys.get_welcome() >= 200:
@@ -559,7 +560,8 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.db.disable_signals()
         self.db.undo()
         self.db.enable_signals()
-        self.db.request_rebuild()        
+        self.db.request_rebuild()
+        self.bookmarks.redraw()
         if self.active_person:
             p = self.db.get_person_from_handle(self.active_person.get_handle())
             self.change_active_person(p)
@@ -1878,6 +1880,15 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         the Bookmark Editor.
         """
         self.bookmarks.remove_people(handle_list)
+
+    def on_update_bookmark(self,handle_list):
+        """
+        Callback to update the labels on the Bookmark menu,
+        in case name was changed on the bookmarked people.
+        """
+        if [handle for handle in handle_list
+            if handle in self.bookmarks.bookmarks]:
+            self.bookmarks.redraw()
 
     def on_edit_bookmarks_activate(self,obj):
         self.bookmarks.edit()

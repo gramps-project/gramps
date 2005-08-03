@@ -120,7 +120,7 @@ class CheckIntegrity:
         self.invalid_death_events = []
         self.invalid_place_references = []
         self.invalid_source_references = []
-        self.progress = Utils.ProgressMeter('Checking database','')
+        self.progress = Utils.ProgressMeter(_('Checking database'),'')
 
     def family_errors(self):
         return len(self.broken_parent_links) + len(self.broken_links) + len(self.empty_family) + len(self.duplicate_links)

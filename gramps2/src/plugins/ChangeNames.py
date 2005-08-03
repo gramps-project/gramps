@@ -79,14 +79,20 @@ class ChangeNames:
             return
         self.win_key = self.__class__
         self.name_list = []
+        self.progress = Utils.ProgressMeter(_('Checking family names'),'')
 
+        
+        self.progress.set_pass(_('Searching family names'),
+                               len(self.db.get_surname_list()))
         for name in self.db.get_surname_list():
             if name != name.capitalize():
                 self.name_list.append(name)
+            self.progress.step()
         
         if self.name_list:
             self.display()
         else:
+            self.progress.close()
             OkDialog(_('No modifications made'),
                      _("No capitalization changes were detected."))
 
@@ -126,12 +132,15 @@ class ChangeNames:
         self.list.set_model(self.model)
 
         self.iter_list = []
+        self.progress.set_pass(_('Building display'),len(self.name_list))
         for name in self.name_list:
             handle = self.model.append()
             self.model.set_value(handle,0,1)
             self.model.set_value(handle,1,name)
             self.model.set_value(handle,2,name.capitalize())
             self.iter_list.append(handle)
+            self.progress.step()
+        self.progress.close()
             
         self.add_itself_to_menu()
         self.window.show()
@@ -186,6 +195,7 @@ class ChangeNames:
         self.db.transaction_commit(self.trans,_("Capitalization changes"))
         self.db.enable_signals()
         self.db.request_rebuild()
+        self.parent.bookmarks.redraw()
         self.close(obj)
         self.cb(None,1)
         
