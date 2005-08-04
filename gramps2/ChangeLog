@@ -1,3 +1,8 @@
+2005-08-03  Don Allingham  <don@gramps-project.org>
+	* src/NavWebPage.py: use new ProgressMeter, add ability to
+	not generate a CSS style sheet.
+	* src/WebPage.py: add deprecation notice
+	
 2005-08-03  Alex Roitman  <shura@gramps-project.org>
 	* src/gramps_main.py (undo): Rebuild bookmarks menu on undo.
 	* src/plugins/ChangeNames.py: Add ProgressMeter.

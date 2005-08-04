@@ -1972,7 +1972,12 @@ register_report(
     report_class = WebReportDialog,
     options_class = cl_report,
     modes = Report.MODE_GUI | Report.MODE_CLI,
-    translated_name = _("Generate Web Site"),
-    status=(_("Beta")),
-    description=_("Generates web (HTML) pages for individuals, or a set of individuals."),
+    translated_name = _("Generate Web Site (deprecated)"),
+    author_name="Donald N. Allingham",
+    author_email="don@gramps-project.org",
+    status=(_("Deprecated")),
+    description=_("Generates web (HTML) pages for individuals, "
+                  "or a set of individuals. This report is considered "
+                  "to be deprecated. Please migrate to the new "
+                  "Narrative Web Page generator."),
     )

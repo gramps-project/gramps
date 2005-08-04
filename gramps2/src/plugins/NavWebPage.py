@@ -76,11 +76,12 @@ _NARRATIVE = "narrative.css"
 _NAME_COL  = 3
 
 _css_files = [
-    [_("Modern"),     'main1.css'],
-    [_("Business"),   'main2.css'],
-    [_("Certificate"),'main3.css'],
-    [_("Antique"),    'main4.css'],
-    [_("Tranquil"),   'main5.css'],
+    [_("Modern"),         'main1.css'],
+    [_("Business"),       'main2.css'],
+    [_("Certificate"),    'main3.css'],
+    [_("Antique"),        'main4.css'],
+    [_("Tranquil"),       'main5.css'],
+    [_("No style sheet"), ''],
     ]
 
 _character_sets = [
@@ -310,8 +311,7 @@ class BasePage:
             try:
                 (real_path,newpath) = self.copy_media(photo)
                 of.write('<div class="snapshot">\n')
-                self.media_link(of,photo_handle,newpath,
-                                photo.get_description(),up=True)
+                self.media_link(of,photo_handle,newpath,'',up=True)
                 of.write('</div>\n')
             except (IOError,OSError),msg:
                 WarningDialog(_("Could not add photo to page"),str(msg))
@@ -1312,7 +1312,8 @@ class IndividualPage(BasePage):
 
     def display_ind_general(self,of):
         self.page_title = self.sort_name
-        self.display_first_image_as_thumbnail(of, self.db, self.person.get_media_list())
+        self.display_first_image_as_thumbnail(of, self.db,
+                                              self.person.get_media_list())
 
         of.write('<div class="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % self.sort_name)
@@ -1465,7 +1466,6 @@ class IndividualPage(BasePage):
 
     def display_ind_relationships(self,of):
         family_list = self.person.get_family_handle_list()
-
         if not family_list:
             return
         
@@ -1697,11 +1697,6 @@ class WebReport(Report.Report):
         self.use_archive = options.handler.options_dict['NWEBarchive']
         self.use_intro = options.handler.options_dict['NWEBintronote'] != u""
         
-    def get_progressbar_data(self):
-        return (_("Generate HTML reports - GRAMPS"),
-                '<span size="larger" weight="bold">%s</span>' %
-                _("Creating individual web pages"))
-
     def write_report(self):
         if not self.use_archive:
             dir_name = self.target_path
@@ -1742,12 +1737,18 @@ class WebReport(Report.Report):
                             image_dir_name)
                 return
 
+        progress = Utils.ProgressMeter(_("Generate HTML reports"),'')
+
         ind_list = self.database.get_person_handles(sort_handles=False)
+        progress.set_pass(_('Filtering'),1)
         ind_list = self.filter.apply(self.database,ind_list)
 
         if not self.exclude_private:
             new_list = []
+
+            progress.set_pass(_('Applying privacy filter'),len(ind_list))
             for key in ind_list:
+                progress.step()
                 if not self.database.get_person_from_handle(key).private :
                     new_list.append(key)
             ind_list = new_list
@@ -1756,17 +1757,13 @@ class WebReport(Report.Report):
 
         if self.restrict:
             new_list = []
+            progress.set_pass(_('Filtering living people'),len(ind_list))
             for key in ind_list:
+                progress.step()
                 p = self.database.get_person_from_handle(key)
                 if not Utils.probably_alive(p,self.database,years):
                     new_list.append(key)
             ind_list = new_list
-
-        progress_steps = len(ind_list)
-        if len(ind_list) > 1:
-            progress_steps = progress_steps+1
-        progress_steps = progress_steps+1
-        self.progress_bar_setup(float(progress_steps))
 
         if self.use_archive:
             import TarFile
@@ -1774,7 +1771,9 @@ class WebReport(Report.Report):
         else:
             archive = None
 
-        self.write_css(archive,self.target_path,self.css)
+        if self.css != '':
+            self.write_css(archive,self.target_path,self.css)
+            
         if 1 < self.copyright < 7:
             from_path = os.path.join(const.dataDir,"somerights20.gif")
             to_path = os.path.join("images","somerights20.gif")
@@ -1802,7 +1801,9 @@ class WebReport(Report.Report):
             IntroductionPage(self.database, self.title, self.options,
                              archive, photo_list, levels)
         
+        progress.set_pass(_('Creating individual pages'),len(ind_list))
         for person_handle in ind_list:
+            progress.step()
             person = self.database.get_person_from_handle(person_handle)
             
             if not self.exclude_private:
@@ -1811,7 +1812,6 @@ class WebReport(Report.Report):
             idoc = IndividualPage(self.database, person, self.title,
                                   ind_list, place_list, source_list,
                                   self.options, archive, photo_list, levels)
-            self.progress_bar_step()
             
         if len(ind_list) > 1:
             IndividualListPage(self.database, self.title, ind_list,
@@ -1825,33 +1825,33 @@ class WebReport(Report.Report):
 
         local_list = sort_people(self.database,ind_list)
 
-        self.progress_bar_title(_("Creating surname pages"),len(local_list))
+        progress.set_pass(_("Creating surname pages"),len(local_list))
 
         for (surname,handle_list) in local_list:
             SurnamePage(self.database, surname, handle_list,
                         self.options, archive, photo_list, levels)
-            self.progress_bar_step()
+            progress.step()
 
         PlaceListPage(self.database, self.title, place_list,
                       source_list,self.options, archive,
                       photo_list, levels)
         
-        self.progress_bar_title(_("Creating place pages"),len(place_list))
+        progress.set_pass(_("Creating place pages"),len(place_list))
 
         for place in place_list.keys():
             PlacePage(self.database, self.title, place, source_list,
                       place_list, self.options, archive, photo_list,
                       levels)
-            self.progress_bar_step()
+            progress.step()
             
         SourcesPage(self.database,self.title, source_list.keys(),
                     self.options, archive, photo_list, levels)
 
-        self.progress_bar_title(_("Creating source pages"),len(source_list))
+        progress.set_pass(_("Creating source pages"),len(source_list))
         for key in list(source_list):
             SourcePage(self.database,self.title, key, source_list,
                        self.options, archive, photo_list, levels)
-            self.progress_bar_step()
+            progress.step()
 
         GalleryPage(self.database, self.title, source_list,
                     self.options, archive, photo_list, levels)
@@ -1860,7 +1860,8 @@ class WebReport(Report.Report):
         total = len(photo_list)
         index = 1
         photo_keys = photo_list.keys()
-        self.progress_bar_title(_("Creating media pages"),len(photo_keys))
+
+        progress.set_pass(_("Creating media pages"),len(photo_keys))
         
         for photo_handle in photo_keys:
             if index == total:
@@ -1873,13 +1874,13 @@ class WebReport(Report.Report):
                           (prev, next, index, total), levels)
             except (IOError,OSError),msg:
                 WarningDialog(_("Missing media object"),str(msg))
-            self.progress_bar_step()
+            progress.step()
             prev = photo_handle
             index += 1
         
         if archive:
             archive.close()
-        self.progress_bar_done()
+        progress.close()
 
     def write_css(self,archive,html_dir,css_file):
         if archive:
@@ -2422,6 +2423,8 @@ register_report(
     options_class = cl_report,
     modes = Report.MODE_GUI | Report.MODE_CLI,
     translated_name = _("Narrative Web Site"),
+    author_name="Donald N. Allingham",
+    author_email="don@gramps-project.org",
     status=(_("Beta")),
     description=_("Generates web (HTML) pages for individuals, or a set of individuals."),
     )
