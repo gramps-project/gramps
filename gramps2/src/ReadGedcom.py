@@ -1086,7 +1086,7 @@ class GedcomParser:
                     event.set_name("Death")
                     self.person.set_death_handle(event.get_handle())
                 self.parse_person_event(event,2)
-                self.db.commit_peronal_event(event, self.trans)
+                self.db.commit_personal_event(event, self.trans)
             elif matches[1] == "EVEN":
                 event = RelLib.Event()
                 if matches[2]:

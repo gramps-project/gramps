@@ -30,6 +30,7 @@ import time
 import locale
 import cgi
 import sets
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -70,6 +71,25 @@ _BIRTH_COL = 7
 _EVENT_COL = 8
 _FAMILY_COL= 9
 _CHANGE_COL= 21
+
+#-------------------------------------------------------------------------
+#
+# python 2.3 has a bug in the unicode sorting using locale.strcoll. Seems
+# to have a buffer overrun. We can convince it to do the right thing by
+# forcing the string to be nul terminated, sorting, then stripping off the
+# nul.
+#
+#-------------------------------------------------------------------------
+
+if sys.version_info[0:2] == (2,3):
+    def locale_sort(mylist):
+        mylist = map(lambda x: x + "\x00", mylist)
+        mylist.sort(locale.strcoll)
+        return map(lambda x: x[:-1], mylist)
+else:
+    def locale_sort(mylist):
+        mylist.sort(locale.strcoll)
+        return mylist
 
 #-------------------------------------------------------------------------
 #
@@ -136,8 +156,7 @@ class PeopleModel(gtk.GenericTreeModel):
             node = cursor.next()
         cursor.close()
 
-        self.temp_top_path2iter = self.temp_sname_sub.keys()
-        self.temp_top_path2iter.sort(locale.strcoll)
+        self.temp_top_path2iter = locale_sort(self.temp_sname_sub.keys())
         for name in self.temp_top_path2iter:
             self.build_sub_entry(name)
         

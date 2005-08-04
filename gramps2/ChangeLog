@@ -1,3 +1,9 @@
+2005-08-04  Don Allingham  <don@gramps-project.org>
+	* src/PeopleModel.py: provide a work around for the python 2.3 bug unicode
+	sorting problem with locale.strcoll. For a nul termination during sorting,
+	strip it off after sorting. Only used for python2.3, since this bug was
+	fixed in python 2.4.
+
 2005-08-03  Don Allingham  <don@gramps-project.org>
 	* src/NavWebPage.py: use new ProgressMeter, add ability to
 	not generate a CSS style sheet.
