@@ -1,3 +1,9 @@
+2005-08-04  Alex Roitman  <shura@gramps-project.org>
+	* NEWS: Update.
+	* src/MergePeople.py: Typos.
+	* src/plugins/NavWebPage.py: Typos.
+	* src/po/template.po: Update for upcoming 2.0.6.
+
 2005-08-04  Don Allingham  <don@gramps-project.org>
 	* src/PeopleModel.py: provide a work around for the python 2.3 bug unicode
 	sorting problem with locale.strcoll. For a nul termination during sorting,
