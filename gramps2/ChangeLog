@@ -13,12 +13,16 @@
 	* src/po/template.po: Update for upcoming 2.0.6.
 	* src/Report.py (parse_report_options_frame): Fallback to trivial
 	filter on filter failure.
-
+	* src/ArgHandler.py (parse_args): Use mime type to identify gramps
+	XML data.
+	* doc/gramps.1.in: Update man page.
+	* doc/gramps-manual/C/cmdline.xml: Update manual.
+	
 2005-08-04  Don Allingham  <don@gramps-project.org>
-	* src/PeopleModel.py: provide a work around for the python 2.3 bug unicode
-	sorting problem with locale.strcoll. For a nul termination during sorting,
-	strip it off after sorting. Only used for python2.3, since this bug was
-	fixed in python 2.4.
+	* src/PeopleModel.py: provide a work around for the python 2.3 bug
+	unicode sorting problem with locale.strcoll. For a nul termination
+	during sorting, strip it off after sorting. Only used for
+	python2.3, since this bug was fixed in python 2.4.
 
 2005-08-03  Don Allingham  <don@gramps-project.org>
 	* src/NavWebPage.py: use new ProgressMeter, add ability to

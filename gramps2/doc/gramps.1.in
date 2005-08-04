@@ -1,4 +1,4 @@
-.TH gramps 1 "@VERSION@" "May 2005" "@VERSION@"
+.TH gramps 1 "@VERSION@" "August 2005" "@VERSION@"
 .SH NAME
 gramps \- Genealogical Research and Analysis Management Programming System.
 
@@ -59,8 +59,8 @@ the format of that file is guessed according to its extension.
 
 Formats 
 available for opening are \fBgrdb\fR (guessed if \fIFILE\fR ends with
-\fB.grdb\fR), \fBgramps\-xml\fR (guessed if \fIFILE\fR is a 
-directory), and \fBgedcom\fR (guessed if \fIFILE\fR ends with \fB.ged\fR). 
+\fB.grdb\fR), \fBgramps\-xml\fR (guessed if \fIFILE\fR ends with
+\fB.gramps\fR), and \fBgedcom\fR (guessed if \fIFILE\fR ends with \fB.ged\fR).
 .br
 
 Formats 
@@ -80,10 +80,6 @@ Open \fIFILE\fR.
 Only \fBgrdb\fR, \fBgramps\-xml\fR, and \fBgedcom\fR formats can be
 opened directly. For other formats, you will need to use the import option
 which will set up the empty database and then import data into it.
-For \fBgramps\-xml\fR format, the \fIFILE\fR 
-is actually the name of directory under which the gramps database resides. 
-For \fBgrdb\fR and \fBgedcom\fR, the \fIFILE\fR is the name of 
-the corresponding file. 
 .br
 
 Only a single file can be opened. If you need to combine data from several
@@ -91,11 +87,7 @@ sources, you will need to use the import option.
 
 .TP 
 .BI \-i,\-\^\-import= " FILE"
-Import data from \fIFILE\fR. For \fBgramps\-xml\fR format, the \fIFILE\fR 
-is actually the name of directory under which the gramps database resides. 
-For \fBgrdb\fR, \fBgedcom\fR, \fBgramps\-pkg\fR, and \fBgeneweb\fR,
-the \fIFILE\fR is
-the name of the corresponding file. 
+Import data from \fIFILE\fR.
 .br
 
 When more than one input file is given, each has to be preceded by \fB\-i\fR 
@@ -106,9 +98,9 @@ gramps IDs in the resulting database.
 
 .TP 
 .BI \-o,\-\^\-output= " FILE"
-Export data into \fIFILE\fR. For \fBgramps\-xml\fR and \fBiso\fR formats, the 
-\fIFILE\fR is actually the name of directory the gramps database will be 
-written into. For \fBgrdb\fR, \fBgedcom\fR, \fBwft\fR, \fBgramps\-pkg\fR, 
+Export data into \fIFILE\fR. For \fBiso\fR format, the \fIFILE\fR is actually
+the name of directory the gramps database will be written into. 
+For \fBgrdb\fR, \fBgramps\-xml\fR, \fBgedcom\fR, \fBwft\fR, \fBgramps\-pkg\fR, 
 and \fBgeneweb\fR, the \fIFILE\fR is the name of the resulting file. 
 .br
 
@@ -205,16 +197,16 @@ of \fIstdout\fR and \fIstderr\fR to save messages and errors in files.
 .SH EXAMPLES
 .TP 
 To import four databases (whose formats can be determined from their names) and then check the resulting database for errors, one may type: 
-\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3\fR \fB\-i\fR \fIfile4.wft\fR \fB\-a\fR \fIcheck\fR 
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-i\fR \fIfile4.wft\fR \fB\-a\fR \fIcheck\fR 
 .TP 
 To explicitly specify the formats in the above example, append filenames with appropriate \fB\-f\fR options: 
-\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-f\fR \fIgedcom\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-f\fR \fIgramps-pkg\fR \fB\-i\fR \fI~/db3\fR \fB\-f\fR \fIgramps\fR \fB\-i\fR \fIfile4.wft\fR \fB\-f\fR \fIwft\fR  \fB\-a\fR \fIcheck\fR 
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-f\fR \fIgedcom\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-f\fR \fIgramps-pkg\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-f\fR \fIgramps-xml\fR \fB\-i\fR \fIfile4.wft\fR \fB\-f\fR \fIwft\fR  \fB\-a\fR \fIcheck\fR 
 .TP 
 To record the database resulting from all imports, supply \fB\-o\fR flag (use \fB\-f\fR if the filename does not allow gramps to guess the format):
 \fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-o\fR \fI~/new-package\fR \fB\-f\fR \fIgramps-pkg\fR 
 .TP 
 To import three databases and start interactive gramps session with the result: 
-\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3\fR 
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR 
 .TP 
 Finally, to start normal interactive session type: 
 \fBgramps\fR 

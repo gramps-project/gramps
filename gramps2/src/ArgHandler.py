@@ -127,7 +127,8 @@ class ArgHandler:
             o,v = options[opt_ix]
             if o in ( '-O', '--open'):
                 fname = v
-                ftype = GrampsMime.get_type(os.path.abspath(os.path.expanduser(fname)))
+                ftype = GrampsMime.get_type(
+                    os.path.abspath(os.path.expanduser(fname)))
                 if opt_ix<len(options)-1 \
                             and options[opt_ix+1][0] in ( '-f', '--format'): 
                     format = options[opt_ix+1][1]
@@ -137,7 +138,7 @@ class ArgHandler:
                         continue
                 elif ftype == const.app_gedcom:
                     format = 'gedcom'
-                elif ftype == "x-directory/normal":
+                elif ftype == const.app_gramps_xml:
                     format = 'gramps-xml'
                 elif ftype == const.app_gramps:
                     format = 'grdb'
@@ -148,11 +149,16 @@ class ArgHandler:
                 self.open = (fname,format)
             elif o in ( '-i', '--import'):
                 fname = v
-                ftype = GrampsMime.get_type(os.path.abspath(os.path.expanduser(fname)))
+                ftype = GrampsMime.get_type(
+                    os.path.abspath(os.path.expanduser(fname)))
                 if opt_ix<len(options)-1 \
                             and options[opt_ix+1][0] in ( '-f', '--format'): 
                     format = options[opt_ix+1][1]
-                    if format not in ('gedcom','gramps-xml','gramps-pkg','grdb','geneweb'):
+                    if format not in ('gedcom',
+                                      'gramps-xml',
+                                      'gramps-pkg',
+                                      'grdb',
+                                      'geneweb'):
                         print "Invalid format:  %s" % format
                         print "Ignoring input file:  %s" % fname
                         continue
@@ -160,7 +166,7 @@ class ArgHandler:
                     format = 'gedcom'
                 elif ftype == const.app_gramps_package:
                     format = 'gramps-pkg'
-                elif ftype == "x-directory/normal":
+                elif ftype == const.app_gramps_xml:
                     format = 'gramps-xml'
                 elif ftype == const.app_gramps:
                     format = 'grdb'
@@ -176,7 +182,13 @@ class ArgHandler:
                 if opt_ix<len(options)-1 \
                             and options[opt_ix+1][0] in ( '-f', '--format'): 
                     outformat = options[opt_ix+1][1]
-                    if outformat not in ('gedcom','gramps-xml','gramps-pkg','grdb','iso','wft','geneweb'):
+                    if outformat not in ('gedcom',
+                                         'gramps-xml',
+                                         'gramps-pkg',
+                                         'grdb',
+                                         'iso',
+                                         'wft',
+                                         'geneweb'):
                         print "Invalid format:  %s" % outformat
                         print "Ignoring output file:  %s" % outfname
                         continue
@@ -188,14 +200,7 @@ class ArgHandler:
                     outformat = 'wft'
                 elif outfname[-2:].upper() == "GW":
                     outformat = 'geneweb'
-                elif not os.path.isfile(outfname):
-                    if not os.path.isdir(outfname):
-                        try:
-                            os.makedirs(outfname,0700)
-                        except:
-                            print "Cannot create directory %s" % outfname
-                            print "Ignoring output file:  %s" % outfname
-                            continue
+                elif outfname[-6:].upper() == "GRAMPS":
                     outformat = 'gramps-xml'
                 elif fname[-3:].upper() == "GRDB":
                     format = 'grdb'
@@ -286,7 +291,8 @@ class ArgHandler:
                 if not prompter.chooser():
                     QuestionDialog.ErrorDialog( 
                         _("New GRAMPS database was not set up"),
-                        _('GRAMPS cannot open non-native data without setting up new GRAMPS database.'))
+                        _('GRAMPS cannot open non-native data '
+                          'without setting up new GRAMPS database.'))
                     print "Cannot continue without native database. Exiting..." 
                     os._exit(1)
                 elif filetype == const.app_gramps_package:
@@ -297,7 +303,9 @@ class ArgHandler:
                 print "Unknown file type: %s" % filetype
                 QuestionDialog.ErrorDialog( 
                         _("Could not open file: %s") % filename,
-                        _('File type "%s" is unknown to GRAMPS.\n\nValid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM.') % filetype)
+                        _('File type "%s" is unknown to GRAMPS.\n\n'
+                          'Valid types are: GRAMPS database, GRAMPS XML, '
+                          'GRAMPS package, and GEDCOM.') % filetype)
                 print "Exiting..." 
                 os._exit(1)
             if success:
@@ -339,11 +347,13 @@ class ArgHandler:
                 os._exit(1)
 
         if self.imports:
-            self.parent.cl = bool(self.exports or self.actions or self.parent.cl)
+            self.parent.cl = bool(self.exports or
+                                  self.actions or self.parent.cl)
 
             # Create dir for imported database(s)
             self.impdir_path = os.path.expanduser("~/.gramps/import" )
-            self.imp_db_path = os.path.expanduser("~/.gramps/import/import_db.grdb" )
+            self.imp_db_path = os.path.expanduser(
+                "~/.gramps/import/import_db.grdb" )
             if not os.path.isdir(self.impdir_path):
                 try:
                     os.mkdir(self.impdir_path,0700)
@@ -432,8 +442,7 @@ class ArgHandler:
                 os._exit(1)
         elif format == 'gramps-xml':
             try:
-                dbname = os.path.join(filename,const.xmlFile)
-                ReadXML.importData(self.parent.db,dbname,None,self.parent.cl)
+                ReadXML.importData(self.parent.db,filename,None,self.parent.cl)
             except:
                 print "Error importing %s" % filename
                 os._exit(1)
@@ -452,7 +461,8 @@ class ArgHandler:
                 try:
                     os.mkdir(tmpdir_path,0700)
                 except:
-                    print "Could not create temporary directory %s" % tmpdir_path 
+                    print "Could not create temporary directory %s" \
+                          % tmpdir_path 
                     os._exit(1)
             elif not os.access(tmpdir_path,os.W_OK):
                 print "Temporary directory %s is not writable" % tmpdir_path 
@@ -510,12 +520,11 @@ class ArgHandler:
                 os._exit(1)
         elif format == 'gramps-xml':
             filename = os.path.normpath(os.path.abspath(filename))
-            dbname = os.path.join(filename,const.xmlFile)
             if filename:
                 try:
                     import WriteXML
                     g = WriteXML.XmlWriter(self.parent.db,None,1,1)
-                    ret = g.write(dbname)
+                    ret = g.write(filename)
                 except:
                     print "Error exporting %s" % filename
                     os._exit(1)
@@ -546,7 +555,8 @@ class ArgHandler:
         elif format == 'geneweb':
             import WriteGeneWeb
             try:
-                writer = WriteGeneWeb.GeneWebWriter(self.parent.db,None,1,filename)
+                writer = WriteGeneWeb.GeneWebWriter(self.parent.db,
+                                                    None,1,filename)
                 ret = writer.export_data()
             except:
                 print "Error exporting %s" % filename
@@ -599,7 +609,8 @@ class ArgHandler:
                     options_class = item[3]
                     if category in (const.CATEGORY_BOOK,const.CATEGORY_CODE,
                                     const.CATEGORY_WEB):
-                        options_class(self.parent.db,name,category,options_str_dict)
+                        options_class(self.parent.db,name,
+                                      category,options_str_dict)
                     else:
                         Report.cl_report(self.parent.db,name,category,
                                 report_class,options_class,options_str_dict)
