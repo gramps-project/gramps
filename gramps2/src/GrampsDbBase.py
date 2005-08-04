@@ -155,6 +155,8 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
 
         self.family_event_names = sets.Set()
         self.individual_event_names = sets.Set()
+        self.individual_attributes = sets.Set()
+        self.family_attributes = sets.Set()
 
         self.set_person_id_prefix(GrampsKeys.get_person_id_prefix())
         self.set_object_id_prefix(GrampsKeys.get_object_id_prefix())
@@ -297,6 +299,9 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
                 self.genderStats.count_person(person,self)
         else:
             self.genderStats.count_person(person,self)
+
+        for attr in person.attribute_list:
+            self.individual_attributes.add(attr.type)
             
         self.person_map[handle] = person.serialize()
         if old_data:
@@ -408,6 +413,9 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         if transaction != None:
             transaction.add(FAMILY_KEY,handle,old_data)
         self.family_map[handle] = family.serialize()
+
+        for attr in family.attribute_list:
+            self.family_attributes.add(attr.type)
 
         if old_data:
             self.emit('family-update',([handle],))
@@ -1137,12 +1145,12 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
     def get_person_attribute_types(self):
         """returns a list of all Attribute types assocated with Person
         instances in the database"""
-        return []
+        return list(self.individual_attributes)
 
     def get_family_attribute_types(self):
         """returns a list of all Attribute types assocated with Family
         instances in the database"""
-        return []
+        return list(self.family_attributes)
 
     def get_family_event_types(self):
         """returns a list of all Event types assocated with Family

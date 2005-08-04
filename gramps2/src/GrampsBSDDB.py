@@ -186,6 +186,8 @@ class GrampsBSDDB(GrampsDbBase):
         self.bookmarks = self.metadata.get('bookmarks')
         self.family_event_names = sets.Set(self.metadata.get('fevent_names',[]))
         self.individual_event_names = sets.Set(self.metadata.get('pevent_names',[]))
+        self.family_attributes = sets.Set(self.metadata.get('fattr_names',[]))
+        self.individual_attributes = sets.Set(self.metadata.get('pattr_names',[]))
 
         gstats = self.metadata.get('gender_stats')
 
@@ -314,6 +316,8 @@ class GrampsBSDDB(GrampsDbBase):
             self.metadata['gender_stats'] = self.genderStats.save_stats()
             self.metadata['fevent_names'] = list(self.family_event_names)
             self.metadata['pevent_names'] = list(self.individual_event_names)
+            self.metadata['fattr_names'] = list(self.family_attributes)
+            self.metadata['pattr_names'] = list(self.individual_attributes)
         self.metadata.close()
         self.surnames.close()
         self.id_trans.close()

@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 import cPickle as pickle
 from gettext import gettext as _
+import sets
 
 #-------------------------------------------------------------------------
 #
@@ -814,9 +815,9 @@ class Marriage:
             name = NameDisplay.displayer.display(father)
         else:
             name = NameDisplay.displayer.display(mother)
+        attr_list = list(sets.Set(const.familyAttributes + self.db.get_family_attribute_types()))
         AttrEdit.AttributeEditor(
-            self, attr, name, const.familyAttributes,
-            self.attr_edit_callback, self.window)
+            self, attr, name, attr_list, self.attr_edit_callback, self.window)
 
     def on_delete_attr_clicked(self,obj):
         if Utils.delete_selected(obj,self.alist):
@@ -837,9 +838,9 @@ class Marriage:
             name = NameDisplay.displayer.display(father)
         else:
             name = NameDisplay.displayer.display(mother)
+        attr_list = list(sets.Set(const.familyAttributes + self.db.get_family_attribute_types()))
         AttrEdit.AttributeEditor(
-            self, None, name, const.familyAttributes,
-            self.attr_edit_callback, self.window)
+            self, None, name, attr_list, self.attr_edit_callback, self.window)
 
     def move_element(self,list,src,dest):
         if src == -1:

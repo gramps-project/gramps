@@ -64,7 +64,7 @@ class AttributeEditor:
     """
     Displays a dialog that allows the user to edit an attribute.
     """
-    def __init__(self, parent, attrib, title, list, callback,
+    def __init__(self, parent, attrib, title, data_list, callback,
                  parent_window=None):
         """
         Displays the dialog box.
@@ -88,7 +88,7 @@ class AttributeEditor:
         self.attrib = attrib
         self.callback = callback
         self.child_windows = {}
-        self.alist = list
+        self.alist = data_list
 
         self.top = gtk.glade.XML(const.dialogFile, "attr_edit","gramps")
         self.slist  = self.top.get_widget("slist")
@@ -122,7 +122,7 @@ class AttributeEditor:
         l = self.top.get_widget("title")
         Utils.set_titles(self.window,l,title,_('Attribute Editor'))
 
-        AutoComp.fill_combo(self.attrib_menu,list)
+        AutoComp.fill_combo(self.attrib_menu,data_list)
 
         if attrib != None:
             self.type_field.set_text(const.display_attr(attrib.get_type()))

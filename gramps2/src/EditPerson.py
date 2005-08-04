@@ -28,6 +28,7 @@
 import cPickle as pickle
 import os
 import locale
+import sets
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -1182,8 +1183,9 @@ class EditPerson:
         """Brings up the AttributeEditor for a new attribute"""
         import AttrEdit
         pname = self.nd.display(self.person)
-        AttrEdit.AttributeEditor(self,None,pname,const.personalAttributes,
-                                 self.attr_edit_callback,self.window)
+        attr_list = list(sets.Set(const.personalAttributes + self.db.get_person_attribute_types()))
+        AttrEdit.AttributeEditor(
+            self,None,pname, attr_list, self.attr_edit_callback,self.window)
 
     def on_up_clicked(self,obj):
         sel = obj.get_selection()
@@ -1465,7 +1467,8 @@ class EditPerson:
         if node:
             attr = self.atree.get_object(node)
             pname = self.nd.display(self.person)
-            AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes,
+            attr_list = list(sets.Set(const.personalAttributes + self.db.get_person_attribute_types()))
+            AttrEdit.AttributeEditor(self,attr,pname,attr_list,
                                      self.attr_edit_callback,self.window)
 
     def on_update_addr_clicked(self,obj):
