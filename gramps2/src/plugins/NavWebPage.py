@@ -2421,7 +2421,7 @@ register_report(
     category = const.CATEGORY_WEB,
     report_class = WebReportDialog,
     options_class = cl_report,
-    modes = Report.MODE_GUI | Report.MODE_CLI,
+    modes = Report.MODE_GUI,
     translated_name = _("Narrative Web Site"),
     author_name="Donald N. Allingham",
     author_email="don@gramps-project.org",
