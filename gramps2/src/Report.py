@@ -834,9 +834,13 @@ class BareReportDialog:
             self.options.handler.set_report_generations(self.max_gen,self.pg_brk)
 
         if self.filter_combo:
-            self.filter = self.filter_combo.get_value()
-            active = self.filter_combo.get_active()
-            self.options.handler.set_filter_number(active)
+            try:
+                self.filter = self.filter_combo.get_value()
+                active = self.filter_combo.get_active()
+                self.options.handler.set_filter_number(active)
+            except:
+                print "Error setting filter. Proceeding with 'Everyone'"
+                self.filter = GenericFilter.Everyone([])
         else:
             self.filter = None
 
