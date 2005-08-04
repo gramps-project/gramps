@@ -1,4 +1,5 @@
 2005-08-04  Don Allingham  <don@gramps-project.org>
+	* src/ImageSelect.py: fixed thumbnail dnd selection
 	* src/AttrEdit.py: don't used reserved word "list"
 	* src/EditPerson.py: Pass correct attribute list to editor
 	* src/GrampsBSDDB.py: persistently load/save attribute lists

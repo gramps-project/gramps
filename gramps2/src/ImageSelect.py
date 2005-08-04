@@ -290,10 +290,18 @@ class Gallery(ImageSelect):
                                            int(event.x),int(event.y)):
                 self.drag_item = widget.get_item_at(self.remember_x,
                                                     self.remember_y)
-                icon_index = self.get_index(widget,event.x,event.y)-1
+                icon_index = self.get_index(widget,event.x,event.y)
                 if icon_index == -1:
                     return
+                for i in self.dataobj.get_media_list():
+                    handle = i.get_reference_handle()
+                    m = self.db.get_object_from_handle(handle)
+                
                 self.sel_obj = self.dataobj.get_media_list()[icon_index]
+
+                handle = self.sel_obj.get_reference_handle()
+                media_obj = self.db.get_object_from_handle(handle)
+                
                 if self.drag_item:
                     widget.drag_begin([DdTargets.MEDIAOBJ.target()]+_drag_targets,
                                       gtk.gdk.ACTION_COPY|gtk.gdk.ACTION_MOVE,
@@ -335,13 +343,6 @@ class Gallery(ImageSelect):
                 return True
         elif event.type == gtk.gdk.BUTTON_RELEASE:
             self.button = 0
-#         elif event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-#             item = widget.get_item_at(event.x,event.y)
-#             if item:
-#                 (i,t,b,self.photo,oid) = self.p_map[item]
-#                 LocalMediaProperties(self.photo,self.path,self,self.parent_window)
-#             self.in_event = 0
-#             return True
         elif event.type == gtk.gdk.MOTION_NOTIFY:
             if event.state & gtk.gdk.BUTTON1_MASK:
                 # Get the new position and move by the difference
@@ -460,9 +461,9 @@ class Gallery(ImageSelect):
             Utils.unbold_label(self.parent.gallery_label)
 
     def get_index(self,obj,x,y):
-        x_offset = x/(_IMAGEX+_PAD)
-        y_offset = y/(_IMAGEY+_PAD)
-        index = (y_offset*(1+self.max))+x_offset
+        x_offset = int(x)/(_IMAGEX+_PAD)
+        y_offset = int(y)/(_IMAGEY+_PAD)
+        index = (y_offset*(self.max))+x_offset
         return min(index,len(self.dataobj.get_media_list()))
 
     def on_photolist_drag_data_received(self,w, context, x, y, data, info, time):
