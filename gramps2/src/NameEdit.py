@@ -49,6 +49,7 @@ import NameDisplay
 import Date
 import DateEdit
 import DateHandler
+import Spell
 
 #-------------------------------------------------------------------------
 #
@@ -103,6 +104,8 @@ class NameEditor:
 
         self.type_combo = self.top.get_widget("name_type")
         self.note_field = self.top.get_widget("alt_note")
+        self.spell = Spell.Spell(self.note_field)
+        
         self.slist = self.top.get_widget('slist')
         self.priv = self.top.get_widget("priv")
         self.sources_label = self.top.get_widget("sourcesName")

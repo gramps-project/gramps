@@ -61,6 +61,7 @@ import Date
 import DateHandler
 import TransTable
 import NameDisplay
+import Spell
 
 from QuestionDialog import WarningDialog, ErrorDialog, SaveDialog, QuestionDialog2
 
@@ -159,6 +160,7 @@ class EditPerson:
 
         self.notes_field = self.get_widget("personNotes")
         self.notes_field.set_editable(mod)
+        self.spell_notes = Spell.Spell(self.notes_field)
         self.flowed = self.get_widget("flowed")
         self.flowed.set_sensitive(mod)
         self.preform = self.get_widget("preform")

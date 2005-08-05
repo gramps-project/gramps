@@ -65,6 +65,7 @@ import DateEdit
 import DateHandler
 import Date
 import ImgManip
+import Spell
 from QuestionDialog import ErrorDialog
 from DdTargets import DdTargets
 
@@ -719,6 +720,7 @@ class LocalMediaProperties:
         mt = Utils.get_mime_description(mtype)
         self.change_dialog.get_widget("type").set_text(mt)
         self.notes = self.change_dialog.get_widget("notes")
+        self.spell = Spell.Spell(self.notes)
         if self.photo.get_note():
             self.notes.get_buffer().set_text(self.photo.get_note())
             Utils.bold_label(self.notes_label)
@@ -739,7 +741,9 @@ class LocalMediaProperties:
             })
 
         media_obj = self.db.get_object_from_handle(self.photo.get_reference_handle())
-        global_note = self.change_dialog.get_widget('global_notes').get_buffer()
+        gnote = self.change_dialog.get_widget('global_notes')
+        spell = Spell.Spell(gnote)
+        global_note = gnote.get_buffer()
         global_note.insert_at_cursor(media_obj.get_note())
         
         self.redraw_attr_list()
@@ -927,15 +931,14 @@ class GlobalMediaProperties:
         
         self.notes = self.change_dialog.get_widget("notes")
         self.notes.set_editable(mode)
-
+        self.spell = Spell.Spell(self.notes)
+        
         self.date_edit = self.change_dialog.get_widget("date_edit")
         self.date_edit.set_sensitive(mode)
         
         self.date_check = DateEdit.DateEdit(
-            self.date_object,
-            self.date_entry,
-            self.date_edit,
-            self.window)
+            self.date_object, self.date_entry,
+            self.date_edit, self.window)
         
         self.pixmap = self.change_dialog.get_widget("pixmap")
         self.attr_type = self.change_dialog.get_widget("attr_type")

@@ -57,6 +57,7 @@ import GrampsKeys
 import NameDisplay
 import Date
 import DateEdit
+import Spell
 
 from QuestionDialog import QuestionDialog, WarningDialog, SaveDialog
 from DdTargets import DdTargets
@@ -175,6 +176,7 @@ class Marriage:
         self.type_field.set_sensitive(mode)
         self.notes_field = self.get_widget("marriageNotes")
         self.notes_field.set_editable(mode)
+        self.spell = Spell.Spell(self.notes_field)
         self.gid = self.get_widget("gid")
         self.gid.set_editable(mode)
         self.attr_list = self.get_widget("attr_list")

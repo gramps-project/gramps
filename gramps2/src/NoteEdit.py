@@ -36,6 +36,7 @@ import gtk.glade
 from gettext import gettext as _
 import const
 import Utils
+import Spell
 
 #-------------------------------------------------------------------------
 #
@@ -80,6 +81,7 @@ class NoteEditor:
         self.entry = self.glade.get_widget('note')
         self.entry.get_buffer().set_text(self.data.get_note())
         self.entry.set_editable(not self.readonly)
+        self.spellcheck = Spell.Spell(self.entry)
 
         cancel_button = self.glade.get_widget('cancel')
         ok_button = self.glade.get_widget('ok')

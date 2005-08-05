@@ -48,9 +48,9 @@ import Utils
 import Sources
 import ImageSelect
 import NameDisplay
+import Spell
 
 from DdTargets import DdTargets
-
 
 #-------------------------------------------------------------------------
 #
@@ -116,6 +116,7 @@ class EditPlace:
         self.latitude.set_editable(mode)
         self.note = self.top_window.get_widget("place_note")
         self.note.set_editable(mode)
+        self.spell = Spell.Spell(self.note)
 
         self.web_list = self.top_window.get_widget("web_list")
         self.web_url = self.top_window.get_widget("web_url")

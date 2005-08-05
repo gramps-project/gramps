@@ -53,6 +53,8 @@ import Utils
 import Sources
 import AutoComp
 import RelLib
+import Spell
+
 from QuestionDialog import WarningDialog
 
 #-------------------------------------------------------------------------
@@ -94,6 +96,7 @@ class AttributeEditor:
         self.slist  = self.top.get_widget("slist")
         self.value_field = self.top.get_widget("attr_value")
         self.note_field = self.top.get_widget("attr_note")
+        self.spell = Spell.Spell(self.note_field)
         self.attrib_menu = self.top.get_widget("attr_menu")
         self.type_field  = self.attrib_menu.child
         self.source_field = self.top.get_widget("attr_source")

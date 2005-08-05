@@ -47,6 +47,7 @@ import ImageSelect
 import ListModel
 import RelLib
 import NameDisplay
+import Spell
 
 #-------------------------------------------------------------------------
 #
@@ -97,6 +98,7 @@ class EditSource:
         self.abbrev = self.top_window.get_widget("abbrev")
         self.note = self.top_window.get_widget("source_note")
         self.note.set_editable(mode)
+        self.spell = Spell.Spell(self.note)
         self.notes_buffer = self.note.get_buffer()
         self.gallery_label = self.top_window.get_widget("gallerySourceEditor")
         self.refs_label = self.top_window.get_widget("refsSourceEditor")

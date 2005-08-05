@@ -52,6 +52,8 @@ import Date
 import DateHandler
 import ImageSelect
 import DateEdit
+import Spell
+
 from QuestionDialog import WarningDialog, ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -132,6 +134,7 @@ class EventEditor:
         self.descr_field.set_editable(not noedit)
         self.note_field = self.top.get_widget("eventNote")
         self.note_field.set_editable(not noedit)
+        self.spell = Spell.Spell(self.note_field)
         self.event_menu = self.top.get_widget("personal_events")
         self.priv = self.top.get_widget("priv")
         self.priv.set_sensitive(not noedit)
