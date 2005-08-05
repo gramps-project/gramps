@@ -1,7 +1,6 @@
 Version 2.0.6 -- the "Just like my dear Papa!" release
 * New Narrative Web Page added to create a more complete web site.
 * Progress meters in plugins.
-* Spell checking in Notes (requires gnome-python-extras).
 * Numerous bug fixes.
 
 Version 2.0.5 -- the "It's certainly uncontaminated by cheese" release
