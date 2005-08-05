@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,32 +18,41 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-"""
+# $Id$
 
+"""
 Provide an interface to the gtkspell interface. This requires
 python-gnome-extras package. If the gtkspell package is not
 present, we default to no spell checking.
 
 """
 
+success = False
 try:
+    import gtk
     import gtkspell
     import locale
 
-    class Spell:
+    text_view = gtk.TextView()
+    spell = gtkspell.Spell(text_view)
+    lang = locale.getlocale()[0]
+    spell.set_language(lang)
+    success = True
 
+except ImportError, msg:
+    print "Spell.py:", msg
+except RuntimeError,msg:
+    print "Spell.py:", msg
+except SystemError,msg:
+    print "Spell.py:", msg
+
+if success:
+    class Spell:
         def __init__(self,obj):
             self.spell = gtkspell.Spell(obj)
-            try:
-                lang = locale.getlocale()[0]
-                self.spell.set_language(lang)
-            except RuntimeError,msg:
-                print "Spellchecker:", msg
-
-except ImportError:
-    
+            lang = locale.getlocale()[0]
+            self.spell.set_language(lang)
+else:
     class Spell:
-        
         def __init__(self,obj):
             pass
-
