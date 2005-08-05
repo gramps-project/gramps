@@ -1,7 +1,10 @@
 2005-08-05  Alex Roitman  <shura@gramps-project.org>
 	* src/Spell.py: Make more robust to failure.
 	* src/Makefile.am: Ship new file.
-	* NEWS: Update.
+	
+	* src/EditPerson.py (did_data_change,on_apply_person_clicked):
+	Convert date text to unicode before parsing.
+	* src/Spell.py: Comment out to disable spell-checking for 2.0.6.
 
 2005-08-05  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/Checkpoint.py (rcs): define variable comment before using it. 

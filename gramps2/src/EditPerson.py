@@ -1324,8 +1324,8 @@ class EditPerson:
         orig record"""
 
         surname = unicode(self.surname.get_text())
-        self.birth_date_object = self.dp.parse(self.bdate.get_text())
-        self.death_date_object = self.dp.parse(self.ddate.get_text())
+        self.birth_date_object = self.dp.parse(unicode(self.bdate.get_text()))
+        self.death_date_object = self.dp.parse(unicode(self.ddate.get_text()))
 
         self.birth.set_date_object(self.birth_date_object)
         self.death.set_date_object(self.death_date_object)
@@ -1721,8 +1721,8 @@ class EditPerson:
 
         name = self.pname
 
-        self.birth_date_object = self.dp.parse(self.bdate.get_text())
-        self.death_date_object = self.dp.parse(self.ddate.get_text())
+        self.birth_date_object = self.dp.parse(unicode(self.bdate.get_text()))
+        self.death_date_object = self.dp.parse(unicode(self.ddate.get_text()))
 
         self.birth.set_date_object(self.birth_date_object)
         self.birth.set_place_handle(self.get_place(self.bplace,1))

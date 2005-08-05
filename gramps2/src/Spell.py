@@ -27,26 +27,28 @@ present, we default to no spell checking.
 
 """
 
-success = False
-try:
-    import gtk
-    import gtkspell
-    import locale
+#### FIXME: Uncomment after 2.0.6 is released.
 
-    text_view = gtk.TextView()
-    spell = gtkspell.Spell(text_view)
-    lang = locale.getlocale()[0]
-    spell.set_language(lang)
-    success = True
+## success = False
+## try:
+##     import gtk
+##     import gtkspell
+##     import locale
 
-except ImportError, msg:
-    print "Spell.py:", msg
-except RuntimeError,msg:
-    print "Spell.py:", msg
-except SystemError,msg:
-    print "Spell.py:", msg
+##     text_view = gtk.TextView()
+##     spell = gtkspell.Spell(text_view)
+##     lang = locale.getlocale()[0]
+##     spell.set_language(lang)
+##     success = True
 
-if success:
+## except ImportError, msg:
+##     print "Spell.py:", msg
+## except RuntimeError,msg:
+##     print "Spell.py:", msg
+## except SystemError,msg:
+##     print "Spell.py:", msg
+
+if False:
     class Spell:
         def __init__(self,obj):
             self.spell = gtkspell.Spell(obj)
