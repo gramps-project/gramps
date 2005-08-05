@@ -70,7 +70,7 @@ class ReorderIds:
 
         self.db = db
 
-        self.progress = Utils.ProgressMeter(_('Reording GRAMPS IDs'),'')
+        self.progress = Utils.ProgressMeter(_('Reordering GRAMPS IDs'),'')
                                             
         self.trans = db.transaction_begin()
 
@@ -95,7 +95,7 @@ class ReorderIds:
                      db.find_next_place_gramps_id, db.get_place_cursor, db.commit_place,
                      db.pprefix)
         self.progress.close()
-        db.transaction_commit(self.trans,_("Reorder gramps IDs"))
+        db.transaction_commit(self.trans,_("Reorder GRAMPS IDs"))
         
     def reorder(self, class_type, find_from_id, find_from_handle, find_next_id, get_cursor, commit, prefix):
         dups = []
@@ -160,8 +160,7 @@ from PluginMgr import register_tool
 
 register_tool(
     runTool,
-    _("Reorder gramps IDs"),
+    _("Reorder GRAMPS IDs"),
     category=_("Database Processing"),
     description=_("Reorders the gramps IDs according to gramps' default rules.")
     )
-

@@ -17,6 +17,7 @@
 	XML data.
 	* doc/gramps.1.in: Update man page.
 	* doc/gramps-manual/C/cmdline.xml: Update manual.
+	* src/po/ru.po: Partial update.
 	
 2005-08-04  Don Allingham  <don@gramps-project.org>
 	* src/PeopleModel.py: provide a work around for the python 2.3 bug
