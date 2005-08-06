@@ -143,3 +143,46 @@ except:
     print "Date displayer for",_lang,"not available, using default"
     displayer = _lang_to_display["C"](val)
     
+
+#--------------------------------------------------------------
+#
+# Convenience functions
+#
+#--------------------------------------------------------------
+
+def set_date(date_base, text) :
+    """
+    Sets the date of the DateBase instance.
+    
+    The date is parsed into a L{Date} instance.
+    
+    @param date: String representation of a date. The locale specific
+        L{DateParser} is used to parse the string into a GRAMPS L{Date}
+        object.
+    @type date: str
+    """
+    parser.set_date(date_base.get_date_object(),text)
+
+def get_date(date_base) :
+    """
+    Returns a string representation of the date of the DateBase instance.
+    
+    This representation is based off the default date display format
+    determined by the locale's L{DateDisplay} instance.
+    @return: Returns a string representing the DateBase date
+    @rtype: str
+    """
+    return displayer.display(date_base.get_date_object())
+
+def get_quote_date(self) :
+    """
+    Returns a string representation of the date of the DateBase instance.
+    
+    This representation is based off the default date display format
+    determined by the locale's L{DateDisplay} instance. The date is
+    enclosed in quotes if the L{Date} is not a valid date.
+    
+    @return: Returns a string representing the DateBase date
+    @rtype: str
+    """
+    return displayer.quote_display(date_base.get_date_object())

@@ -1,3 +1,7 @@
+2005-08-05  Don Allingham  <don@gramps-project.org>
+	* various: remove set_date/get_date removal to be replaced by
+	DateHandler calls
+
 2005-07-08  Alex Roitman  <shura@gramps-project.org>
 	* various: merge changes made in gramps20 branch with main trunk.
 

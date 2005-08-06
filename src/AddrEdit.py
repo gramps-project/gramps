@@ -51,6 +51,7 @@ import Date
 import RelLib
 import Sources
 import DateEdit
+import DateHandler
 
 #-------------------------------------------------------------------------
 #
@@ -109,7 +110,7 @@ class AddressEditor:
         if self.addr:
             self.srcreflist = self.addr.get_source_references()
             self.addr_date_obj = Date.Date(self.addr.get_date_object())
-            self.addr_start.set_text(self.addr.get_date())
+            self.addr_start.set_text(DateHandler.get_date(self.addr))
             self.street.set_text(self.addr.get_street())
             self.city.set_text(self.addr.get_city())
             self.state.set_text(self.addr.get_state())

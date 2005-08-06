@@ -47,6 +47,7 @@ from gnome import help_display
 #-------------------------------------------------------------------------
 import const
 import TreeTips
+import DateHandler
 
 from DdTargets import DdTargets
 
@@ -136,7 +137,7 @@ class ScratchPadAddress(ScratchPadGrampsTypeWrapper):
     def __init__(self,model,obj):
         ScratchPadGrampsTypeWrapper.__init__(self,model,obj)
         self._type  = _("Address")
-        self._title = self._obj.get_date()
+        self._title = DateHandler.get_date(self._obj)
         self._value = "%s %s %s %s" % (self._obj.get_street(),self._obj.get_city(),
                                        self._obj.get_state(),self._obj.get_country())
 
@@ -153,7 +154,7 @@ class ScratchPadAddress(ScratchPadGrampsTypeWrapper):
             "\t\t%s\n"\
             "\t<b>%s:</b>\t%s\n" % (
             _("Address"),
-            _("Date"), escape(self._obj.get_date()),
+            _("Date"), escape(DateHandler.get_date(self._obj)),
             _("Location"),
             escape(self._obj.get_street()),
             escape(self._obj.get_city()),
@@ -197,7 +198,7 @@ class ScratchPadEvent(ScratchPadGrampsTypeWrapper):
             "\t<b>%s:</b>\t%s\n" % (
             _("Event"),
             _("Type"),escape(const.display_pevent(self._obj.get_name())),
-            _("Date"),escape(self._obj.get_date()),
+            _("Date"),escape(DateHander.get_date(self._obj)),
             _("Place"),escape(place_title(self._db,self._obj)),
             _("Cause"),escape(self._obj.get_cause()),
             _("Description"), escape(self._obj.get_description()))
@@ -239,7 +240,7 @@ class ScratchPadFamilyEvent(ScratchPadGrampsTypeWrapper):
             "\t<b>%s:</b>\t%s\n" % (
             _("Family Event"),
             _("Type"),escape(const.display_fevent(self._obj.get_name())),
-            _("Date"),escape(self._obj.get_date()),
+            _("Date"),escape(DateHander.get_date(self._obj)),
             _("Place"),escape(place_title(self.db,self._obj)),
             _("Cause"),escape(self._obj.get_cause()),
             _("Description"), escape(self._obj.get_description()))
@@ -465,8 +466,9 @@ class ScratchPersonLink(ScratchPadWrapper):
         birth_handle = person.get_birth_handle()
         if birth_handle:
             birth = self._db.get_event_from_handle(birth_handle)
-            if birth.get_date() and birth.get_date() != "":
-                self._value = escape(birth.get_date())
+            date_str = DateHandler.get_date(birth)
+            if date_str != "":
+                self._value = escape(date_str)
 
 
     def tooltip(self):

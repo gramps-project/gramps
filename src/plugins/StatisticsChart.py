@@ -58,7 +58,7 @@ import Report
 import ReportUtils
 import ReportOptions
 import GenericFilter
-from DateHandler import displayer as _dd
+import DateHandler
 
 #------------------------------------------------------------------------
 #
@@ -190,7 +190,7 @@ class Extract:
         if date:
             month = date.get_month()
             if month:
-                return [_dd._months[month]]
+                return [DateHandler.displayer._months[month]]
         return [_("Date(s) missing")]
 
     def get_cause(self, event):

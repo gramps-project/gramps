@@ -45,6 +45,7 @@ import const
 import Utils
 import ListModel
 import RelLib
+import DateHandler
 
 #-------------------------------------------------------------------------
 #
@@ -95,7 +96,7 @@ class SelectEvent:
                 pname = self.db.get_place_from_handle(place_handle).get_title()
             else:
                 pname = u''
-            date = event.get_date()
+            date = DateHandler.get_date(event)
             cause = event.get_cause()
             self.model.add([desc,the_id,name,date,pname,cause],handle)
 

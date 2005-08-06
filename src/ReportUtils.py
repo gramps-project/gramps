@@ -30,6 +30,7 @@ import Date
 import DateHandler
 import RelLib
 from NameDisplay import displayer as _nd
+import DateHandler
 import time
 from gettext import gettext as _
 
@@ -443,7 +444,7 @@ def get_birth_death_strings(database,person,empty_date="",empty_place=""):
     birth_handle = person.get_birth_handle()
     if birth_handle:
         birth = database.get_event_from_handle(birth_handle)
-        bdate = birth.get_date()
+        bdate = DateHandler.get_date(birth)
         bplace_handle = birth.get_place_handle()
         if bplace_handle:
             bplace = database.get_place_from_handle(bplace_handle).get_title()
@@ -453,7 +454,7 @@ def get_birth_death_strings(database,person,empty_date="",empty_place=""):
     death_handle = person.get_death_handle()
     if death_handle:
         death = database.get_event_from_handle(death_handle)
-        ddate = death.get_date()
+        ddate = DateHandler.get_date(death)
         dplace_handle = death.get_place_handle()
         if dplace_handle:
             dplace = database.get_place_from_handle(dplace_handle).get_title()
@@ -808,7 +809,7 @@ def married_str(database,person,spouse,event,endnotes=None,
     place = empty_place
     spouse_name = _nd.display(spouse)
 
-    mdate = event.get_date()
+    mdate = DateHandler.get_date(event)
     if mdate:
         date = mdate
     place_handle = event.get_place_handle()
@@ -1462,7 +1463,7 @@ def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
             break
 
     if burial:
-        bdate = burial.get_date()
+        bdate = DateHandler.get_date(burial)
         bplace_handle = burial.get_place_handle()
         if bplace_handle:
             bplace = database.get_place_from_handle(bplace_handle).get_title()

@@ -42,6 +42,7 @@ __version__ = "$Revision$"
 #------------------------------------------------------------------------
 
 import NameDisplay
+import DateHandler
 
 #------------------------------------------------------------------------
 #
@@ -84,14 +85,14 @@ class SubstKeywords:
         birth_handle = person.get_birth_handle()
         if birth_handle:
             birth = database.get_event_from_handle(birth_handle)
-            self.b = birth.get_date()
+            self.b = DateHandler.get_date(birth)
             bplace_handle = birth.get_place_handle()
             if bplace_handle:
                 self.B = database.get_place_from_handle(bplace_handle).get_title()
         death_handle = person.get_death_handle()
         if death_handle:
             death = database.get_event_from_handle(death_handle)
-            self.d = death.get_date()
+            self.d = DateHandler.get_date(death)
             dplace_handle = death.get_place_handle()
             if dplace_handle:
                 self.D = database.get_place_from_handle(dplace_handle).get_title()
@@ -117,7 +118,7 @@ class SubstKeywords:
                     continue
                 e = database.get_event_from_handle(e_id)
                 if e.get_name() == 'Marriage':
-                    self.m = e.get_date()
+                    self.m = DateHandler.get_date(e)
                     mplace_handle = e.get_place_handle()
                     if mplace_handle:
                         self.M = database.get_place_from_handle(mplace_handle).get_title()

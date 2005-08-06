@@ -230,7 +230,6 @@ class EditPerson:
             Utils.bold_label(self.gallery_label)
 
         # event display
-
         self.event_box = ListBox.EventListBox(
             self, self.person, self.event_ref_list, events_label,
             [event_add_btn,event_edit_btn,event_delete_btn,event_sel_btn])
@@ -491,7 +490,7 @@ class EditPerson:
             stat = lds_ord.get_status()
         else:
             stat = 0
-        date.set_text(lds_ord.get_date())
+        date.set_text(DateHandler.get_date(lds_ord))
 
         build_dropdown(place,self.place_list)
         if lds_ord and lds_ord.get_place_handle():

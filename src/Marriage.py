@@ -57,6 +57,7 @@ import GrampsKeys
 import NameDisplay
 import Date
 import DateEdit
+import DateHandler
 
 from QuestionDialog import QuestionDialog, WarningDialog, SaveDialog
 from DdTargets import DdTargets
@@ -235,7 +236,7 @@ class Marriage:
                 place = self.db.get_place_from_handle( place_handle)
                 if place:
                     self.lds_place.child.set_text( place.get_title())
-            self.lds_date.set_text(lds_ord.get_date())
+            self.lds_date.set_text(DateHandler.get_date(lds_ord))
             self.seal_stat = lds_ord.get_status()
             self.lds_date_object = lds_ord.get_date_object()
         else:
@@ -746,7 +747,7 @@ class Marriage:
             return
         event = self.etree.get_object(node)
     
-        self.date_field.set_text(event.get_date())
+        self.date_field.set_text(DateHandler.get_date(event))
         place_handle = event.get_place_handle()
         if place_handle:
             place_name = self.db.get_place_from_handle(place_handle).get_title()

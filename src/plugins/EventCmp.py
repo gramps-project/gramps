@@ -51,6 +51,7 @@ import Utils
 import BaseDoc
 import OpenSpreadSheet
 import const
+import DateHandler
 from QuestionDialog import WarningDialog
 
 #------------------------------------------------------------------------
@@ -323,7 +324,7 @@ class DisplayChart:
             bplace = ""
             if birth_handle:
                 birth = self.db.get_event_from_handle(birth_handle)
-                bdate = birth.get_date()
+                bdate = DateHandler.get_date(birth)
                 bplace_handle = birth.get_place_handle()
                 if bplace_handle:
                     bplace = self.db.get_place_from_handle(bplace_handle).get_title()
@@ -332,7 +333,7 @@ class DisplayChart:
             dplace = ""
             if death_handle:
                 death = self.db.get_event_from_handle(death_handle)
-                ddate = death.get_date()
+                ddate = DateHandler.get_date(death)
                 dplace_handle = death.get_place_handle()
                 if dplace_handle:
                     dplace = self.db.get_place_from_handle(dplace_handle).get_title()
@@ -365,7 +366,7 @@ class DisplayChart:
                         place = ""
                         if event_handle:
                             event = self.db.get_event_from_handle(event_handle)
-                            date = event.get_date()
+                            date = DateHandler.get_date(event)
                             place_handle = event.get_place_handle()
                             if place_handle:
                                 place = self.db.get_place_from_handle(place_handle).get_title()

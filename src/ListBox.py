@@ -55,6 +55,7 @@ import EventEdit
 import AddrEdit
 import NameDisplay
 import Utils
+import DateHandler
 
 class ListBox:
     """
@@ -433,7 +434,7 @@ class EventListBox(ReorderListBox):
             role = ref_role[1]
         else:
             role = self.role_dict[ref_role[0]]
-        return [name, event.get_description(), event.get_date(),
+        return [name, event.get_description(), DateHandler.get_date(event),
                 pname, role, has_source, has_note]
 
 class NameListBox(ReorderListBox):
@@ -563,7 +564,7 @@ class AddressListBox(ReorderListBox):
     def display_data(self,item):
         has_note = item.get_note()
         has_source = len(item.get_source_references())> 0
-        return [item.get_date(),item.get_street(),
+        return [DateHandler.get_date(item),item.get_street(),
                 item.get_city(), item.get_state(),
                 item.get_country(), has_source,has_note]
 
@@ -585,7 +586,7 @@ class UrlListBox(ReorderListBox):
             (_('Description'), NOSORT,   100,  TEXT, None, self.set_description),
             ]
         self.data = person.get_url_list()[:]
-        ReorderListBox.__init__(self, person, person, obj, label,
+        ReorderListBox.__init__(self, parent, person, obj, label,
                                 button_list, titles, DdTargets.URL)
 
     def set_path(self,index,value):

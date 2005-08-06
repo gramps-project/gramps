@@ -42,7 +42,7 @@ import BaseDoc
 import RelLib
 import ReportUtils
 import ReportOptions
-from DateHandler import displayer as dd
+import DateHandler
 import const
 
 #------------------------------------------------------------------------
@@ -182,8 +182,9 @@ class FtmDescendantReport(Report.Report):
             self.doc.start_paragraph('FTD-Endnotes',"%d." % key)
             self.doc.write_text(base.get_title())
 
-            for item in [ base.get_author(), base.get_publication_info(), base.get_abbreviation(),
-                          dd.display(srcref.get_date_object()),]:
+            for item in [ base.get_author(), base.get_publication_info(),
+                          base.get_abbreviation(),
+                          DateHandler.get_date(srcref),]:
                 if item:
                     self.doc.write_text('; %s' % item)
 
@@ -267,7 +268,7 @@ class FtmDescendantReport(Report.Report):
             if not event_handle:
                 continue
             event = self.database.get_event_from_handle(event_handle)
-            date = event.get_date()
+            date = DateHandler.get_date(event)
             place_handle = event.get_place_handle()
             if place_handle:
                 place = self.database.get_place_from_handle(place_handle)
@@ -323,7 +324,7 @@ class FtmDescendantReport(Report.Report):
                 if not event_handle:
                     continue
                 event = self.database.get_event_from_handle(event_handle)
-                date = event.get_date()
+                date = DateHandler.get_date(event)
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = self.database.get_place_from_handle(place_handle)
