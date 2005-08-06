@@ -47,6 +47,7 @@ import Relationship
 import NameDisplay
 import RelLib
 import Utils
+import DateHandler
 
 #-------------------------------------------------------------------------
 #
@@ -689,12 +690,12 @@ class PedigreeView:
             event = self.db.get_event_from_handle(event_ref.ref)
             if event:
                 if line_count < 3:
-                    return event.get_date()
+                    return DateHandler.get_date(event)
                 i,s = event.get_type()
                 name = Utils.family_relations[i]
                 text += name
                 text += "\n"
-                text += event.get_date()
+                text += DateHandler.get_date(event)
                 text += "\n"
                 text += self.get_place_name(event.get_place_handle())
                 if line_count < 5:
@@ -725,14 +726,14 @@ class PedigreeView:
         bp=""
         if birth_ref:
             birth = self.db.get_event_from_handle(birth_ref.ref)
-            bd = birth.get_date()
+            bd = DateHandler.get_date(birth)
             bp = self.get_place_name(birth.get_place_handle())
         death_ref = person.get_death_ref()
         dd=""
         dp=""
         if death_ref:
             death = self.db.get_event_from_handle(death_ref.ref)
-            dd = death.get_date()
+            dd = DateHandler.get_date(death)
             dp = self.get_place_name(death.get_place_handle())
         if line_count < 5:
             return "%s\n* %s\n+ %s" % (name,bd,dd)
@@ -790,7 +791,7 @@ def build_detail_string(db,person):
     def format_event(db, label, event):
         if not event:
             return u""
-        ed = event.get_date()
+        ed = DateHandler.get_date(event)
         ep = None
         place_handle = event.get_place_handle()
         if place_handle:

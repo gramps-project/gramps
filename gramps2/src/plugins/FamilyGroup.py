@@ -46,7 +46,7 @@ import Report
 import BaseDoc
 import ReportOptions
 import const
-from DateHandler import displayer as _dd
+import DateHandler
 
 #------------------------------------------------------------------------
 #
@@ -179,7 +179,7 @@ class FamilyGroup(Report.Report):
         bplace = ""
         if birth_handle:
             birth = self.database.get_event_from_handle(birth_handle)
-            bdate = birth.get_date()
+            bdate = DateHandler.get_date(birth)
             bplace_handle = birth.get_place_handle()
             if bplace_handle:
                 bplace = self.database.get_place_from_handle(bplace_handle).get_title()
@@ -189,7 +189,7 @@ class FamilyGroup(Report.Report):
         dplace = ""
         if death_handle:
             death = self.database.get_event_from_handle(death_handle)
-            ddate = death.get_date()
+            ddate = DateHandler.get_date(death)
             dplace_handle = death.get_place_handle()
             if dplace_handle:
                 dplace = self.database.get_place_from_handle(dplace_handle).get_title()
@@ -274,7 +274,7 @@ class FamilyGroup(Report.Report):
         date = ""
         place = ""
         if event:
-            date = event.get_date()
+            date = DateHandler.get_date(event)
             place_handle = event.get_place_handle()
             if place_handle:
                 place = self.database.get_place_from_handle(place_handle).get_title()

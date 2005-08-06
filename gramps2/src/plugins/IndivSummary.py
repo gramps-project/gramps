@@ -47,6 +47,7 @@ import const
 import BaseDoc
 import Report
 import ReportOptions
+import DateHandler
 import const
 
 #------------------------------------------------------------------------
@@ -94,7 +95,7 @@ class IndivSummary(Report.Report):
         if event == None:
             return
         name = const.display_event(event.get_name())
-        date = event.get_date()
+        date = DateHandler.get_date(event)
         place_handle = event.get_place_handle()
         if place_handle:
             place_obj = self.database.get_place_from_handle(place_handle)

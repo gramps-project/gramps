@@ -49,6 +49,7 @@ import ReportOptions
 import GenericFilter
 import const
 import RelLib
+import DateHandler
 from BaseDoc import PAPER_LANDSCAPE
 from latin_utf8 import utf8_to_latin
 from QuestionDialog import ErrorDialog
@@ -370,7 +371,7 @@ class GraphViz:
             if self.just_years:
                 return '%i' % event.get_date_object().get_year()
             else:
-                return event.get_date()
+                return DateHandler.get_date(event)
         elif self.placecause:
             place_handle = event.get_place_handle()
             place = self.database.get_place_from_handle(place_handle)

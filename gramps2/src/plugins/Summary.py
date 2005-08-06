@@ -47,6 +47,7 @@ import Utils
 import RelLib
 import const
 import Report
+import DateHandler
 
 #------------------------------------------------------------------------
 #
@@ -95,7 +96,7 @@ def build_report(database,person):
         birth_handle = person.get_birth_handle()
         if birth_handle:
             birth = database.get_event_from_handle(birth_handle)
-            if not birth.get_date():
+            if not DateHandler.get_date(birth):
                 missing_bday = missing_bday + 1
         else:
             missing_bday = missing_bday + 1

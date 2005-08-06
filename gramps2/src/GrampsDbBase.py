@@ -304,6 +304,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
 
         if transaction.batch:
             data_map[handle] = obj.serialize()
+            old_data = None
         else:
             old_data = data_map.get(handle)
             transaction.add(key,handle,old_data)
@@ -313,14 +314,15 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
                 add_list.append((handle,obj.serialize()))
 
         # committing person, do gender stats here
-        if old_data and key == PERSON_KEY:
-            old_person = Person(old_data)
-            if (old_data[2] != person.gender or
-                old_data[3].first_name != obj.primary_name.first_name):
-                self.genderStats.uncount_person(old_person)
+        if key == PERSON_KEY:
+            if old_data:
+                old_person = Person(old_data)
+                if (old_data[2] != person.gender or
+                    old_data[3].first_name != obj.primary_name.first_name):
+                    self.genderStats.uncount_person(old_person)
+                    self.genderStats.count_person(obj,self)
+            else:
                 self.genderStats.count_person(obj,self)
-        else:
-            self.genderStats.count_person(obj,self)
 
     def commit_person(self,person,transaction,change_time=None):
         """
@@ -649,7 +651,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
             obj.handle = self.create_id()
         commit_func(obj,transaction)
         if obj.__class__.__name__ == 'Person':
-            self.genderStats.count_person (person, self)
+            self.genderStats.count_person (obj, self)
         return obj.handle
 
     def add_person(self,person,transaction):

@@ -47,6 +47,7 @@ import Utils
 import NameDisplay
 import ListModel
 import PluginMgr
+import DateHandler
 
 #-------------------------------------------------------------------------
 #
@@ -103,7 +104,7 @@ class RelCalc:
                 continue
             bh = p.get_birth_handle()
             if bh:
-                bdate = self.db.get_event_from_handle(bh).get_date()
+                bdate = DateHandler.get_date(self.db.get_event_from_handle(bh))
             else:
                 bdate = ""
             name = p.get_primary_name()

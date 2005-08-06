@@ -47,6 +47,7 @@ import pango
 #-------------------------------------------------------------------------
 from RelLib import *
 import NameDisplay
+import DateHandler
 
 #-------------------------------------------------------------------------
 #
@@ -307,30 +308,34 @@ class PeopleModel(gtk.GenericTreeModel):
     def column_birth_day(self,data,node):
         if data[_BIRTH_COL]:
             birth = self.db.get_event_from_handle(data[_BIRTH_COL].ref)
-            if birth.get_date() and birth.get_date() != "":
-                return cgi.escape(birth.get_date())
+            date_str = DateHandler.get_date(birth)
+            if date_str != "":
+                return cgi.escape(date_str)
         
         for event_ref in data[_EVENT_COL]:
             event = self.db.get_event_from_handle(event_ref.ref)
             etype = event.get_type()[0]
+            date_str = DateHandler.get_date(event)
             if (etype in [Event.BAPTISM, Event.CHRISTEN]
-                and event.get_date() != ""):
-                return "<i>" + cgi.escape(event.get_date()) + "</i>"
+                and date_str != ""):
+                return "<i>" + cgi.escape(date_str) + "</i>"
         
         return u""
 
     def column_death_day(self,data,node):
         if data[_DEATH_COL]:
             death = self.db.get_event_from_handle(data[_DEATH_COL].ref)
-            if death.get_date() and death.get_date() != "":
-                return cgi.escape(death.get_date())
+            date_str = DateHandler.get_date(death)
+            if date_str != "":
+                return cgi.escape(date_str)
         
         for event_ref in data[_EVENT_COL]:
             event = self.db.get_event_from_handle(event_ref.ref)
             etype = event.get_type()[0]
+            date_str = DateHandler.get_date(event)
             if (etype in [Event.BURIAL, Event.CREMATION]
-                and event.get_date() != ""):
-                return "<i>" + cgi.escape(event.get_date()) + "</i>"
+                and date_str != ""):
+                return "<i>" + cgi.escape(date_str) + "</i>"
         
         return u""
 

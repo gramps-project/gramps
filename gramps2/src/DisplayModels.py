@@ -220,7 +220,8 @@ class ChildModel(gtk.ListStore):
     def column_birth_day(self,data):
         event_ref = data.get_birth_ref()
         if event_ref and event_ref.ref:
-            return self.db.get_event_from_handle(event_ref.ref).get_date()
+            event = self.db.get_event_from_handle(event_ref.ref)
+            return DateHandler.get_date(event)
         else:
             return u""
 
@@ -235,7 +236,8 @@ class ChildModel(gtk.ListStore):
     def column_death_day(self,data):
         event_ref = data.get_death_ref()
         if event_ref and event_ref.ref:
-            return self.db.get_event_from_handle(event_ref.ref).get_date()
+            event = self.db.get_event_from_handle(event_ref.ref)
+            return DateHandler.get_date(event)
         else:
             return u""
 

@@ -46,6 +46,7 @@ import ReportUtils
 import Utils
 import NameDisplay
 import const
+import DateHandler
 
 sex = ( _("female"), _("male"), _("unknown"))
 
@@ -189,7 +190,7 @@ class Compare:
         place = ""
         if handle:
             event = self.db.get_event_from_handle(handle)
-            date = event.get_date()
+            date = DateHandler.get_date(event)
             place = self.place_name(event)
             if date:
                 if place:

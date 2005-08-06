@@ -46,6 +46,7 @@ import BaseDoc
 import Report
 import GenericFilter
 import ReportOptions
+import DateHandler
 
 #------------------------------------------------------------------------
 #
@@ -113,7 +114,7 @@ class IndivCompleteReport(Report.Report):
         if event == None:
             return
         name = _(event.get_name())
-        date = event.get_date()
+        date = DateHandler.get_date(event)
         place_handle = event.get_place_handle()
         if place_handle:
             place = self.database.get_place_from_handle(place_handle).get_title()

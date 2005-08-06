@@ -43,7 +43,6 @@ from warnings import warn
 #
 #-------------------------------------------------------------------------
 import Date
-import DateHandler
 
 #-------------------------------------------------------------------------
 #
@@ -643,47 +642,47 @@ class DateBase:
         else:
             self.date = None
 
-    def set_date(self, date) :
-        """
-        Sets the date of the DateBase instance.
+#     def set_date(self, date) :
+#         """
+#         Sets the date of the DateBase instance.
         
-        The date is parsed into a L{Date} instance.
+#         The date is parsed into a L{Date} instance.
 
-        @param date: String representation of a date. The locale specific
-            L{DateParser} is used to parse the string into a GRAMPS L{Date}
-            object.
-        @type date: str
-        """
-        self.date = DateHandler.parser.parse(date)
+#         @param date: String representation of a date. The locale specific
+#             L{DateParser} is used to parse the string into a GRAMPS L{Date}
+#             object.
+#         @type date: str
+#         """
+#         self.date = DateHandler.parser.parse(date)
 
-    def get_date(self) :
-        """
-        Returns a string representation of the date of the DateBase instance.
+#     def get_date(self) :
+#         """
+#         Returns a string representation of the date of the DateBase instance.
         
-        This representation is based off the default date display format
-        determined by the locale's L{DateDisplay} instance.
+#         This representation is based off the default date display format
+#         determined by the locale's L{DateDisplay} instance.
 
-        @return: Returns a string representing the DateBase date
-        @rtype: str
-        """
-        if self.date:
-            return DateHandler.displayer.display(self.date)
-        return u""
+#         @return: Returns a string representing the DateBase date
+#         @rtype: str
+#         """
+#         if self.date:
+#             return DateHandler.displayer.display(self.date)
+#         return u""
 
-    def get_quote_date(self) :
-        """
-        Returns a string representation of the date of the DateBase instance.
+#     def get_quote_date(self) :
+#         """
+#         Returns a string representation of the date of the DateBase instance.
         
-        This representation is based off the default date display format
-        determined by the locale's L{DateDisplay} instance. The date is
-        enclosed in quotes if the L{Date} is not a valid date.
+#         This representation is based off the default date display format
+#         determined by the locale's L{DateDisplay} instance. The date is
+#         enclosed in quotes if the L{Date} is not a valid date.
 
-        @return: Returns a string representing the DateBase date
-        @rtype: str
-        """
-        if self.date:
-            return DateHandler.displayer.quote_display(self.date)
-        return u""
+#         @return: Returns a string representing the DateBase date
+#         @rtype: str
+#         """
+#         if self.date:
+#             return DateHandler.displayer.quote_display(self.date)
+#         return u""
 
     def get_date_object(self):
         """
@@ -2288,8 +2287,9 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.description,self.type[1],self.cause,
-                self.get_date(),self.gramps_id]
+        return [self.description,self.type[1],self.cause,self.gramps_id]
+        #return [self.description,self.type[1],self.cause,
+        #        self.get_date(),self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -2812,7 +2812,8 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.path,self.mime,self.desc,self.get_date(),self.gramps_id]
+        return [self.path,self.mime,self.desc,self.gramps_id]
+        #return [self.path,self.mime,self.desc,self.get_date(),self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -3140,7 +3141,8 @@ class LdsOrd(SourceNote,DateBase,PlaceBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.temple,self.get_date()]
+        return [self.temple]
+        #return [self.temple,self.get_date()]
 
     def get_text_data_child_list(self):
         """
@@ -3648,7 +3650,9 @@ class Address(PrivateSourceNote,DateBase):
         @rtype: list
         """
         return [self.street,self.city,self.state,self.country,
-                self.postal,self.phone,self.get_date()]
+                self.postal,self.phone]
+        #return [self.street,self.city,self.state,self.country,
+        #        self.postal,self.phone,self.get_date()]
 
     def get_text_data_child_list(self):
         """
@@ -3772,7 +3776,9 @@ class Name(PrivateSourceNote,DateBase):
         @rtype: list
         """
         return [self.first_name,self.surname,self.suffix,self.title,
-                self.type[1],self.prefix,self.patronymic,self.get_date()]
+                self.type[1],self.prefix,self.patronymic]
+        #return [self.first_name,self.surname,self.suffix,self.title,
+        #        self.type[1],self.prefix,self.patronymic,self.get_date()]
 
     def get_text_data_child_list(self):
         """
@@ -4135,7 +4141,8 @@ class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.page,self.text,self.get_date()]
+        return [self.page,self.text]
+        #return [self.page,self.text,self.get_date()]
 
     def get_text_data_child_list(self):
         """
