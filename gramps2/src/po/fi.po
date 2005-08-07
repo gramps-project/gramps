@@ -1,3 +1,4 @@
+# translation of fi-new.po to Suomi
 # translation of fi.po to Suomi
 # GRAMPS
 # Eero Tamminen <eerot at sf>, 2005.
@@ -8,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fi\n"
 "POT-Creation-Date: Thu Aug  4 21:01:02 2005\n"
-"PO-Revision-Date: 2005-07-03 00:20+0300\n"
+"PO-Revision-Date: 2005-08-08 01:32+0300\n"
 "Last-Translator: Eero Tamminen <eerot@sf>\n"
 "Language-Team: Suomi\n"
 "MIME-Version: 1.0\n"
@@ -1596,24 +1597,20 @@ msgid "Matches people who have a particular source"
 msgstr "Poimii henkilöt, joilla on tietty lähde"
 
 #: GenericFilter.py:1834
-#, fuzzy
 msgid "People having notes"
-msgstr "Henkilöt, joista on kuvia"
+msgstr "Henkilöt, joista on huomioita"
 
 #: GenericFilter.py:1835
-#, fuzzy
 msgid "Matches people that have a note"
-msgstr "Poimii henkilöt, joilla ei ole puolisoa"
+msgstr "Poimii henkilöt, joista on huomioita"
 
 #: GenericFilter.py:1848
-#, fuzzy
 msgid "People having notes containing <subtring>"
-msgstr "Poimii henkilöt, joiden tiedoista löytyy <merkkijono>"
+msgstr "Poimii henkilöt, joiden huomioista löytyy <merkkijono>"
 
 #: GenericFilter.py:1849
-#, fuzzy
 msgid "Matches people whose notes contain text matching a substring"
-msgstr "Poimii henkilöt, joiden tiedoista löytyy annettu merkkijonon osa"
+msgstr "Poimii henkilöt, joiden huomioista löytyy annettu merkkijonon osa"
 
 #: GrampsCfg.py:62
 msgid "Father's surname"
@@ -1785,17 +1782,16 @@ msgid "Compare People"
 msgstr "Vertaa henkilöitä"
 
 #: MergePeople.py:87 MergePeople.py:92 MergePeople.py:276 MergePeople.py:281
-#, fuzzy
 msgid "Cannot merge people"
-msgstr "Henkilöiden liittäminen ei onnistu."
+msgstr "Henkilöiden liittäminen ei onnistu"
 
 #: MergePeople.py:88 MergePeople.py:277
 msgid "Spouses cannot be merged. To merge these people, you must first break the relationship between them."
-msgstr ""
+msgstr "Puolisoita ei voi liittää yhdeksi henkilöksi.  Liittääksesi nämä henkilöt, poista ensin heidän välinen suhteensa."
 
 #: MergePeople.py:93 MergePeople.py:282
 msgid "A parent and child cannot be merged. To merge these people, you must first break the relationship between them."
-msgstr ""
+msgstr "Lasta ja hänen vanhempaansa ei voi liittää yhdeksi henkilöksi.  Liittääksesi nämä henkilöt, poista ensin heidän välinen suhteensa."
 
 #: MergePeople.py:131 plugins/IndivComplete.py:232
 msgid "Alternate Names"
@@ -5992,7 +5988,6 @@ msgid "<b>Name Information</b>"
 msgstr "<b>Nimen tiedot</b>"
 
 #: gramps.glade:31195
-#, fuzzy
 msgid ""
 "Default (based on locale)\n"
 "Family name, Given name [Patronymic]\n"
@@ -6001,15 +5996,16 @@ msgid ""
 "Given name"
 msgstr ""
 "Oletus (lokaalin mukaan)\n"
-"Sukunimi, Etunimi\n"
-"Etunimi, Sukunimi"
+"Sukunimi, Etunimi [Patronyymi]\n"
+"Etunimi, Sukunimi\n"
+"Patronyymi, Etunimi\n"
+"Etunimi"
 
 #: gramps.glade:31327
 msgid "_Override"
 msgstr "_Ylikirjoita"
 
 #: gramps.glade:31361
-#, fuzzy
 msgid ""
 "Default (based on locale)\n"
 "Given name [Patronymic] Family name\n"
@@ -6018,8 +6014,10 @@ msgid ""
 "Given name\n"
 msgstr ""
 "Oletus (lokaalin mukaan)\n"
-"Etunimi Sukunimi\n"
+"Etunimi [Patronyymi] Sukunimi\n"
 "Sukunimi Etunimi\n"
+"Etunimi Patronyymi\n"
+"Etunimi\n"
 
 #: gramps.glade:31927
 msgid "_Comment:"
@@ -6217,14 +6215,12 @@ msgid "People with records matching regular expression..."
 msgstr "Henkilöt, joiden tiedot täsmäävät regular expressioniin..."
 
 #: gramps_main.py:1055
-#, fuzzy
 msgid "People with notes"
-msgstr "Henkilöt, joista on kuvia"
+msgstr "Henkilöt, joista on huomioita"
 
 #: gramps_main.py:1060
-#, fuzzy
 msgid "People with notes containing..."
-msgstr "Henkilöt , joiden nimi sisältää..."
+msgstr "Henkilöt , joiden huomiot sisältävät..."
 
 #: gramps_main.py:1087 gramps_main.py:1099 gramps_main.py:1117
 #: gramps_main.py:1129
@@ -6832,14 +6828,12 @@ msgid "Creates a book containing several reports."
 msgstr "Luo kirjan, joka sisältää useita raportteja."
 
 #: plugins/ChangeNames.py:82
-#, fuzzy
 msgid "Checking family names"
-msgstr "_Vaihda tiedoston nimeä"
+msgstr "Tarkistetaan sukunimet"
 
 #: plugins/ChangeNames.py:85
-#, fuzzy
 msgid "Searching family names"
-msgstr "Näytä perheyksiköt"
+msgstr "Haetaan sukunimet"
 
 #: plugins/ChangeNames.py:96 plugins/PatchNames.py:153
 msgid "No modifications made"
@@ -6862,9 +6856,8 @@ msgid "Capitalization Change"
 msgstr "Alkukirjaimen muutos"
 
 #: plugins/ChangeNames.py:135 plugins/EventCmp.py:321
-#, fuzzy
 msgid "Building display"
-msgstr "Päivitetään näyttöä..."
+msgstr "Päivitetään näyttö"
 
 #: plugins/ChangeNames.py:211
 msgid "Fix capitalization of family names"
@@ -6884,9 +6877,8 @@ msgid "Change Event Types"
 msgstr "Muuta tapahtumatyyppejä"
 
 #: plugins/ChangeTypes.py:131
-#, fuzzy
 msgid "Analyzing events"
-msgstr "Perhetapahtuma:"
+msgstr "Analysoidaan tapahtumia"
 
 #: plugins/ChangeTypes.py:147
 msgid "1 event record was modified"
@@ -6913,22 +6905,20 @@ msgid "Check Integrity"
 msgstr "Tarkista sisäinen eheys"
 
 #: plugins/Check.py:123
-#, fuzzy
 msgid "Checking database"
-msgstr "Avaa tietokanta"
+msgstr "Tarkistetaan tietokanta"
 
 #: plugins/Check.py:130
-#, fuzzy
 msgid "Looking for duplicate spouses"
-msgstr "Etsi mahdolliset henkilöiden kahdennukset"
+msgstr "Etsitään mahdolliset puolisoiden kahdennukset"
 
 #: plugins/Check.py:155
 msgid "Looking for broken family links"
-msgstr ""
+msgstr "Etsitään rikkinäisiä perhesiteitä"
 
 #: plugins/Check.py:246
 msgid "Looking for unused objects"
-msgstr ""
+msgstr "Etsitään käyttämättömiä objekteja"
 
 #: plugins/Check.py:305 plugins/WriteCD.py:230 plugins/WritePkg.py:147
 msgid "Select file"
@@ -6946,24 +6936,23 @@ msgstr ""
 
 #: plugins/Check.py:344
 msgid "Looking for empty families"
-msgstr ""
+msgstr "Etsitään tyhjiä perheitä"
 
 #: plugins/Check.py:382
-#, fuzzy
 msgid "Looking for broken parent relationships"
-msgstr "Muokkaa lapsi/vanhempi-suhteita"
+msgstr "Etsitään rikkinäisiä lapsi/vanhempi-suhteita"
 
 #: plugins/Check.py:433
 msgid "Looking for event problems"
-msgstr ""
+msgstr "Etsiin rikkinäisiä tapahtumia"
 
 #: plugins/Check.py:481
 msgid "Looking for place reference problems"
-msgstr ""
+msgstr "Etsitään rikkinäisiä paikkaviitteitä"
 
 #: plugins/Check.py:503
 msgid "Looking for source reference problems"
-msgstr ""
+msgstr "Etsitään rikkinäisiä lähdeviitteitä"
 
 #: plugins/Check.py:651
 msgid "No errors were found"
@@ -7006,14 +6995,12 @@ msgid "%s was restored to the family of %s\n"
 msgstr "%s palautettiin perheeseen %s\n"
 
 #: plugins/Check.py:697
-#, fuzzy
 msgid "1 duplicate spouse/family link was found\n"
-msgstr "Yksi viallinen puoliso/perhe linkki/suhde korjattu\n"
+msgstr "Yksi viallinen puoliso/perhe linkki löydetty\n"
 
 #: plugins/Check.py:699
-#, fuzzy
 msgid "%d duplicate spouse/family links were found\n"
-msgstr "Löydetty %d viallista puoliso/perhe linkkiä/suhdetta\n"
+msgstr "Löydetty %d viallista puoliso/perhe linkkiä\n"
 
 #: plugins/Check.py:715
 msgid "1 empty family was found\n"
@@ -7096,14 +7083,12 @@ msgid "%d places were referenced, but not found\n"
 msgstr "%d paikkaan oli viitteitä, mutta niitä ei löytynyt\n"
 
 #: plugins/Check.py:755
-#, fuzzy
 msgid "1 source was referenced but not found\n"
-msgstr "Yhteen paikkaan oli viite, mutta sitä ei löytynyt\n"
+msgstr "Yhteen lähteeseen oli viite, mutta sitä ei löytynyt\n"
 
 #: plugins/Check.py:757
-#, fuzzy
 msgid "%d sources were referenced, but not found\n"
-msgstr "%d paikkaan oli viitteitä, mutta niitä ei löytynyt\n"
+msgstr "%d lähteeseen oli viitteitä, mutta niitä ei löytynyt\n"
 
 #: plugins/Check.py:784
 msgid "Integrity Check Results"
@@ -7114,9 +7099,8 @@ msgid "Check and repair database"
 msgstr "Tarkista ja korjaa tietokanta"
 
 #: plugins/Check.py:826 plugins/Rebuild.py:91
-#, fuzzy
 msgid "Database Repair"
-msgstr "Tietokannan tarkistus"
+msgstr "Tietokannan korjaus"
 
 #: plugins/Check.py:827
 msgid "Checks the database for integrity problems, fixing the problems that it can"
@@ -7239,9 +7223,8 @@ msgid "More about %(person_name)s:"
 msgstr "%(person_name)s:n lisätietoja:"
 
 #: plugins/DetAncestralReport.py:278 plugins/DetDescendantReport.py:301
-#, fuzzy
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
-msgstr "%(event_name)s: %(date)s%(endnotes)s. "
+msgstr "%(name_kind)s: %(name)s%(endnotes)s"
 
 #: plugins/DetAncestralReport.py:305 plugins/DetDescendantReport.py:328
 #: plugins/FtmStyleAncestors.py:255 plugins/FtmStyleDescendants.py:288
@@ -7262,9 +7245,8 @@ msgid "%(event_name)s: %(place)s%(endnotes)s. "
 msgstr "%(event_name)s: %(place)s%(endnotes)s. "
 
 #: plugins/DetAncestralReport.py:321 plugins/DetDescendantReport.py:344
-#, fuzzy
 msgid "%(event_name)s: "
-msgstr "%(female_name)s."
+msgstr "%(event_name)s: "
 
 #: plugins/DetAncestralReport.py:398 plugins/DetDescendantReport.py:422
 msgid "Children of %s and %s are:"
@@ -7298,19 +7280,16 @@ msgid "The style used for the first personal entry."
 msgstr "Ensimmäisen henkilökohtaisen kohdan tyyli."
 
 #: plugins/DetAncestralReport.py:692 plugins/DetDescendantReport.py:717
-#, fuzzy
 msgid "The style used for the More About header."
-msgstr "Huomioita kappaleen otsakkeen tyyli."
+msgstr "Lisätietoja kappaleen otsakkeen tyyli."
 
 #: plugins/DetAncestralReport.py:700 plugins/DetDescendantReport.py:725
-#, fuzzy
 msgid "The style used for additional detail data."
-msgstr "Tiedoille käytetty yleistyyli."
+msgstr "Lisätiedoille käytetty tyyli."
 
 #: plugins/DetAncestralReport.py:714 plugins/DetDescendantReport.py:739
-#, fuzzy
 msgid "The basic style used for the endnotes text display."
-msgstr "Perustyyli tekstin näyttöön."
+msgstr "Perustyyli loppuhuomioiden tekstin näyttöön."
 
 #: plugins/DetAncestralReport.py:724 plugins/DetDescendantReport.py:749
 msgid "Use first names instead of pronouns"
@@ -7353,19 +7332,16 @@ msgid "Include Photo/Images from Gallery"
 msgstr "Lisää valo/kuvat Galleriasta"
 
 #: plugins/DetAncestralReport.py:764 plugins/DetDescendantReport.py:789
-#, fuzzy
 msgid "Include alternative names"
-msgstr "Vaihtoehtoiset nimet"
+msgstr "Lisää vaihtoehtoiset nimet"
 
 #: plugins/DetAncestralReport.py:768 plugins/DetDescendantReport.py:793
-#, fuzzy
 msgid "Include events"
-msgstr "Lisää huomiot"
+msgstr "Lisää tapahtumat"
 
 #: plugins/DetAncestralReport.py:772 plugins/DetDescendantReport.py:797
-#, fuzzy
 msgid "Include sources"
-msgstr "Jätä _lähteet pois"
+msgstr "Lisää lähteet"
 
 #: plugins/DetAncestralReport.py:779 plugins/DetAncestralReport.py:780
 #: plugins/DetAncestralReport.py:781 plugins/DetAncestralReport.py:782
@@ -7436,14 +7412,12 @@ msgid "Event Comparison tool"
 msgstr "Tapahtumien vertailutyökalu"
 
 #: plugins/EventCmp.py:203 plugins/EventCmp.py:328
-#, fuzzy
 msgid "Comparing events"
-msgstr "Vertaa yksittäisiä tapahtumia"
+msgstr "Verrataan tapahtumia"
 
 #: plugins/EventCmp.py:204
-#, fuzzy
 msgid "Selecting people"
-msgstr "Valitse tiedosto"
+msgstr "Valitaan henkilöitä"
 
 #: plugins/EventCmp.py:212
 msgid "No matches were found"
@@ -7455,7 +7429,7 @@ msgstr "Tapahtumien vertailutulokset"
 
 #: plugins/EventCmp.py:329
 msgid "Building data"
-msgstr ""
+msgstr "Rakennetaan tietoja"
 
 #: plugins/EventCmp.py:462
 msgid "Compare individual events"
@@ -7874,7 +7848,7 @@ msgstr "Sivuasetukset"
 
 #: plugins/GraphViz.py:689
 msgid "Margin size"
-msgstr ""
+msgstr "Marginaali"
 
 #: plugins/GraphViz.py:701
 msgid "Number of Horizontal Pages"
@@ -8026,22 +8000,20 @@ msgid "No potential duplicate people were found"
 msgstr "Mahdollisia henkilöiden kahdennuksia ei löytynyt"
 
 #: plugins/Merge.py:180
-#, fuzzy
 msgid "Find duplicates"
-msgstr "Etsi mahdolliset henkilöiden kahdennukset"
+msgstr "Etsi kahdennukset"
 
 #: plugins/Merge.py:181
-#, fuzzy
 msgid "Looking for duplicate people"
-msgstr "Etsi mahdolliset henkilöiden kahdennukset"
+msgstr "Etsitään mahdolliset henkilöiden kahdennukset"
 
 #: plugins/Merge.py:189
 msgid "Pass 1: Building preliminary lists"
-msgstr ""
+msgstr "Vaihe 1: Alustavien listojen rakentaminen"
 
 #: plugins/Merge.py:207
 msgid "Pass 2: Calculating potential matches"
-msgstr ""
+msgstr "Vaihe 2: Mahdollisten vastaavuuksien laskenta"
 
 #: plugins/Merge.py:252
 msgid "Potential Merges"
@@ -8068,51 +8040,45 @@ msgid "Searches the entire database, looking for individual entries that may rep
 msgstr "Etsii koko tietokannasta yksilöitä, jotka saattavat olla yksi ja sama henkilö."
 
 #: plugins/NavWebPage.py:79
-#, fuzzy
 msgid "Modern"
-msgstr "Miehet"
+msgstr "Moderni"
 
 #: plugins/NavWebPage.py:80
-#, fuzzy
 msgid "Business"
-msgstr "Todistaja"
+msgstr "Talous"
 
 #: plugins/NavWebPage.py:81
-#, fuzzy
 msgid "Certificate"
-msgstr "Pystysuuntaan"
+msgstr "Sertifikaatti"
 
 #: plugins/NavWebPage.py:82
-#, fuzzy
 msgid "Antique"
-msgstr "Ominaisuus"
+msgstr "Antiikki"
 
 #: plugins/NavWebPage.py:83
 msgid "Tranquil"
-msgstr ""
+msgstr "Rauhaisa"
 
 #: plugins/NavWebPage.py:84
-#, fuzzy
 msgid "No style sheet"
-msgstr "Ei valittua sääntöä"
+msgstr "Ei tyylitiedostoa"
 
 #: plugins/NavWebPage.py:88
 msgid "Unicode (recommended)"
-msgstr ""
+msgstr "Unicode (suositeltu)"
 
 #: plugins/NavWebPage.py:212
 msgid "&copy; %(year)d %(person)s"
-msgstr ""
+msgstr "&copy; %(year)d %(person)s"
 
 #: plugins/NavWebPage.py:275
 msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
-msgstr ""
+msgstr "Tuottanut <a href=\"http://gramps-project.org\">GRAMPS</a>, %(date)s"
 
 #: plugins/NavWebPage.py:284 plugins/NavWebPage.py:882
 #: plugins/NavWebPage.py:884
-#, fuzzy
 msgid "Introduction"
-msgstr "Koulutus"
+msgstr "Johdanto"
 
 #: plugins/NavWebPage.py:285 plugins/NavWebPage.py:807
 #: plugins/NavWebPage.py:808 plugins/StatisticsChart.py:98
@@ -8126,156 +8092,137 @@ msgstr "Henkilöt"
 
 #: plugins/NavWebPage.py:288 plugins/NavWebPage.py:599
 #: plugins/NavWebPage.py:606 plugins/NavWebPage.py:664
-#, fuzzy
 msgid "Places"
-msgstr "Paikka"
+msgstr "Paikat"
 
 #: plugins/NavWebPage.py:291 plugins/NavWebPage.py:1103
 #: plugins/NavWebPage.py:1106
 msgid "Download"
-msgstr ""
+msgstr "Kopioi"
 
 #: plugins/NavWebPage.py:293 plugins/NavWebPage.py:1122
 #: plugins/NavWebPage.py:1126
-#, fuzzy
 msgid "Contact"
-msgstr "Sisältö"
+msgstr "Yhteystiedot"
 
 #: plugins/NavWebPage.py:317 plugins/NavWebPage.py:337
 #: plugins/NavWebPage.py:773 plugins/NavWebPage.py:901
 #: plugins/NavWebPage.py:948 plugins/NavWebPage.py:1149
-#, fuzzy
 msgid "Could not add photo to page"
-msgstr "Henkilöön siirtyminen epäonnistui"
+msgstr "Kuvan lisäys sivulle epäonnistui"
 
 #: plugins/NavWebPage.py:346 plugins/NavWebPage.py:1547
-#, fuzzy
 msgid "Narrative"
-msgstr "Naimisissa"
+msgstr "Kertova"
 
 #: plugins/NavWebPage.py:357
-#, fuzzy
 msgid "Weblinks"
-msgstr "Sisarukset"
+msgstr "WWW-linkit"
 
 #: plugins/NavWebPage.py:501
 msgid "This page contains an index of all the individuals in the database, sorted by their last names. Selecting the person's name will take you to that person's individual page."
-msgstr ""
+msgstr "Tällä sivulla on lista kaikista tietokannan henkilöistä sukunimen mukaan aakkostettuna.  Henkilön nimen klikkaaminen vie sinut henkilön sivulle."
 
 #: plugins/NavWebPage.py:510 plugins/NavWebPage.py:827
-#, fuzzy
 msgid "Surname"
-msgstr "Sukunimet"
+msgstr "Sukunimi"
 
 #: plugins/NavWebPage.py:558
 msgid "This page contains an index of all the individuals in the database with the surname of %s. Selecting the person's name will take you to that person's individual page."
-msgstr ""
+msgstr "Tällä sivulla on lista kaikista tietokannan henkilöistä, joiden sukunimi on %s.  Henkilön nimen klikkaaminen vie sinut henkilön sivulle."
 
 #: plugins/NavWebPage.py:602
 msgid "This page contains an index of all the places in the database, sorted by their title. Clicking on a place's title will take you to that place's page."
-msgstr ""
+msgstr "Tällä sivulla on lista kaikista tietokannan paikoista niiden nimen mukaan aakkostettuna.  Paikan nimen klikkaaminen vie sinut paikan sivulle."
 
 #: plugins/NavWebPage.py:613 plugins/NavWebPage.py:825
-#, fuzzy
 msgid "Letter"
-msgstr "_Keskitä"
+msgstr "Kirje"
 
 #: plugins/NavWebPage.py:675 plugins/NavWebPage.py:779
 #: plugins/NavWebPage.py:1026 plugins/NavWebPage.py:1326
-#, fuzzy
 msgid "GRAMPS ID"
-msgstr "GRAMPS tunnus:"
+msgstr "GRAMPS tunnus"
 
 #: plugins/NavWebPage.py:682
-#, fuzzy
 msgid "State/Province"
-msgstr "Maakunta:"
+msgstr "Maakunta"
 
 #: plugins/NavWebPage.py:683
-#, fuzzy
 msgid "Postal Code"
 msgstr "Postinumero"
 
 #: plugins/NavWebPage.py:756
-#, fuzzy
 msgid "Previous"
-msgstr "Esikatsele"
+msgstr "Edellinen"
 
 #: plugins/NavWebPage.py:757
 msgid "%(page_number)d of %(total_pages)d"
-msgstr ""
+msgstr "%(page_number)d / %(total_pages)d"
 
 #: plugins/NavWebPage.py:761
-#, fuzzy
 msgid "Next"
-msgstr "_Seuraava"
+msgstr "Seuraava"
 
 #: plugins/NavWebPage.py:782
-#, fuzzy
 msgid "MIME type"
-msgstr "Tapahtumatyypit"
+msgstr "MIME-tyyppi"
 
 #: plugins/NavWebPage.py:811 plugins/NavWebPage.py:813
 msgid "Surnames by person count"
-msgstr ""
+msgstr "Sukunimet henkilöittäin määrä"
 
 #: plugins/NavWebPage.py:815
 msgid "This page contains an index of all the surnames in the database. Selecting a link will lead to a list of individuals in the database with this same surname."
-msgstr ""
+msgstr "Tällä sivulla listataan kaikki tietokannan sukunimet.  Nimen klikkaaminen vie sivulle, jolla on listattu tämän sukunimen omaavat henkilöt."
 
 #: plugins/NavWebPage.py:829
-#, fuzzy
 msgid "Number of people"
-msgstr "Sarakkeiden määrä"
+msgstr "Henkilöiden määrä"
 
 #: plugins/NavWebPage.py:980
 msgid "This page contains an index of all the sources in the database, sorted by their title. Clicking on a source's title will take you to that source's page."
-msgstr ""
+msgstr "Tällä sivulla on lista kaikista tietokannan lähteistä aakkostettuna niiden otsikon mukaan.  Otsikon klikkaaminen vie sinut valitun lähteen sivulle."
 
 #: plugins/NavWebPage.py:1028
-#, fuzzy
 msgid "Publication information"
-msgstr "Julkaisutiedot:"
+msgstr "Julkaisutiedot"
 
 #: plugins/NavWebPage.py:1060
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object's page"
-msgstr ""
+msgstr "Tällä sivulla on lista kaikista media-tiedostoista tietokannassa aakkostettuna niiden nimen mukaan.  Nimen klikkaaminen vie sinut media-tiedoston sivulle."
 
 #: plugins/NavWebPage.py:1236
-#, fuzzy
 msgid "Source References"
-msgstr "Lähdeviite"
+msgstr "Lähdeviitteet"
 
 #: plugins/NavWebPage.py:1259 plugins/ScratchPad.py:355
 msgid "Page"
 msgstr "Sivu"
 
 #: plugins/NavWebPage.py:1260
-#, fuzzy
 msgid "Confidence"
-msgstr "Luottamus:"
+msgstr "Luottamus"
 
 #: plugins/NavWebPage.py:1285
-#, fuzzy
 msgid "Pedigree"
-msgstr "Tutkinto"
+msgstr "Sukupuu"
 
 #: plugins/NavWebPage.py:1502 plugins/NavWebPage.py:1504
-#, fuzzy
 msgid "Partner"
-msgstr "Isä"
+msgstr "Kumppani"
 
 #: plugins/NavWebPage.py:1619
 msgid "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
-msgstr ""
+msgstr "%(description)s,&nbsp;&nbsp;%(date)s,&nbsp;&nbsp;%(place)s"
 
 #: plugins/NavWebPage.py:1621
 msgid "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;"
-msgstr ""
+msgstr "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;"
 
 #: plugins/NavWebPage.py:1625
 msgid "%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
-msgstr ""
+msgstr "%(date)s,&nbsp;&nbsp;%(place)s"
 
 #: plugins/NavWebPage.py:1708 plugins/WebPage.py:1117
 msgid "Neither %s nor %s are directories"
@@ -8289,58 +8236,48 @@ msgid "Could not create the directory: %s"
 msgstr "Hakemiston '%s' luonti epäonnistui"
 
 #: plugins/NavWebPage.py:1740
-#, fuzzy
 msgid "Generate HTML reports"
-msgstr "Tuota raportteja"
+msgstr "Tuota HTML-raportteja"
 
 #: plugins/NavWebPage.py:1743
-#, fuzzy
 msgid "Filtering"
-msgstr "Suodin"
+msgstr "Suodatus"
 
 #: plugins/NavWebPage.py:1749
 msgid "Applying privacy filter"
-msgstr ""
+msgstr "Käytetään yksityisyyssuodinta"
 
 #: plugins/NavWebPage.py:1760
-#, fuzzy
 msgid "Filtering living people"
-msgstr "_Rajoita tiedot elossaoleviin henkilöihin"
+msgstr "Rajoitetaan tiedot elossaoleviin henkilöihin"
 
 #: plugins/NavWebPage.py:1804
-#, fuzzy
 msgid "Creating individual pages"
-msgstr "Vertaa yksittäisiä tapahtumia"
+msgstr "Luodaan henkilösivut"
 
 #: plugins/NavWebPage.py:1828
-#, fuzzy
 msgid "Creating surname pages"
-msgstr "WWW-sivujen luonti"
+msgstr "Luodaan sukunimisivut"
 
 #: plugins/NavWebPage.py:1839
-#, fuzzy
 msgid "Creating place pages"
-msgstr "WWW-sivujen luonti"
+msgstr "Luodaan paikkasivut"
 
 #: plugins/NavWebPage.py:1850
-#, fuzzy
 msgid "Creating source pages"
-msgstr "WWW-sivujen luonti"
+msgstr "Luodaan lähdesivut"
 
 #: plugins/NavWebPage.py:1864
-#, fuzzy
 msgid "Creating media pages"
-msgstr "WWW-sivujen luonti"
+msgstr "Luodaan mediasivut"
 
 #: plugins/NavWebPage.py:1876
-#, fuzzy
 msgid "Missing media object"
-msgstr "Puuttuvia mediatiedostoja"
+msgstr "Puuttuva mediatiedosto"
 
 #: plugins/NavWebPage.py:1935
-#, fuzzy
 msgid "My Family Tree"
-msgstr "_Web Family Tree"
+msgstr "Sukupuuni"
 
 #: plugins/NavWebPage.py:1971 plugins/WebPage.py:1341
 msgid "Descendant Families of %s"
@@ -8356,16 +8293,15 @@ msgstr "Rajoita tiedot elossaoleviin henkilöihin"
 
 #: plugins/NavWebPage.py:1987
 msgid "Years to restrict from person's death"
-msgstr ""
+msgstr "Rajoita vuosia henkilön kuolemasta"
 
 #: plugins/NavWebPage.py:1988 plugins/WebPage.py:1364
 msgid "Image subdirectory"
 msgstr "Alihakemisto kuville"
 
 #: plugins/NavWebPage.py:1989
-#, fuzzy
 msgid "Web site title"
-msgstr "Valitse nimike"
+msgstr "WWW-sivuston otsikko"
 
 #: plugins/NavWebPage.py:1990 plugins/WebPage.py:1366
 msgid "File extension"
@@ -8381,81 +8317,71 @@ msgstr "Lisää lyhyt sukupuu esivanhemmista"
 
 #: plugins/NavWebPage.py:1993
 msgid "Publisher contact/Note ID"
-msgstr ""
+msgstr "Julkaisijan yhteystiedot/Note ID"
 
 #: plugins/NavWebPage.py:1994
-#, fuzzy
 msgid "Include download page"
-msgstr "Lisää huomiot"
+msgstr "Lisää kopiointisivu"
 
 #: plugins/NavWebPage.py:1999
-#, fuzzy
 msgid "Suppress GRAMPS ID"
-msgstr "GRAMPS tunnukset"
+msgstr "Jätä pois GRAMPS tunnukset"
 
 #: plugins/NavWebPage.py:2037
-#, fuzzy
 msgid "Standard copyright"
 msgstr "Normaali tekijänoikeus"
 
 #: plugins/NavWebPage.py:2038
-#, fuzzy
 msgid "Creative Commons - By attribution"
-msgstr "Luo uusi ominaisuus"
+msgstr "Creative Commons - lähdeviitteellä"
 
 #: plugins/NavWebPage.py:2039
 msgid "Creative Commons - By attribution, No derivations"
-msgstr ""
+msgstr "Creative Commons - lähdeviitteellä, ei johdannaisia"
 
 #: plugins/NavWebPage.py:2040
 msgid "Creative Commons - By attribution, Share-alike"
-msgstr ""
+msgstr "Creative Commons - lähdeviitteellä, johdannaiset jaettavissa"
 
 #: plugins/NavWebPage.py:2041
 msgid "Creative Commons - By attribution, Non-commercial"
-msgstr ""
+msgstr "Creative Commons - lähdeviitteellä, ei-kaupallinen"
 
 #: plugins/NavWebPage.py:2042
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
-msgstr ""
+msgstr "Creative Commons - lähdeviitteellä, ei-kaupallinen, ei johdannaisia"
 
 #: plugins/NavWebPage.py:2043
 msgid "Creative Commons - By attribution, Non-commerical, Share-alike"
-msgstr ""
+msgstr "Creative Commons - lähdeviitteellä, ei-kaupallinen, johdannaiset jaettavissa"
 
 #: plugins/NavWebPage.py:2044
-#, fuzzy
 msgid "No copyright notice"
 msgstr "Ei tekijänoikeutta"
 
 #: plugins/NavWebPage.py:2078
-#, fuzzy
 msgid "Character set encoding"
-msgstr "Kaste"
+msgstr "Merkistön enkoodaus"
 
 #: plugins/NavWebPage.py:2079
-#, fuzzy
 msgid "Stylesheet"
-msgstr "Tyyli"
+msgstr "Tyylitiedosto"
 
 #: plugins/NavWebPage.py:2080
-#, fuzzy
 msgid "Copyright"
-msgstr "_Tekijänoikeudet/lisenssi:"
+msgstr "Tekijänoikeudet/lisenssi"
 
 #: plugins/NavWebPage.py:2082
-#, fuzzy
 msgid "Page Generation"
-msgstr "%s sukupolvi"
+msgstr "Sivun luonti"
 
 #: plugins/NavWebPage.py:2105
 msgid "Home Media/Note ID"
-msgstr ""
+msgstr "Koti Media/Note ID"
 
 #: plugins/NavWebPage.py:2107
-#, fuzzy
 msgid "Introduction Media/Note ID"
-msgstr "Johdanto lapsiin."
+msgstr "Johdanto Media/Note ID"
 
 #: plugins/NavWebPage.py:2115 plugins/WebPage.py:1499
 msgid "Privacy"
@@ -8468,29 +8394,27 @@ msgstr "Tuota WWW-sivusto"
 
 #: plugins/NavWebPage.py:2212
 msgid "Store web pages in .tar.gz archive"
-msgstr ""
+msgstr "Talleta www-sivut .tar.gz arkistoon"
 
 #: plugins/NavWebPage.py:2235 plugins/WebPage.py:1792
 msgid "Target Directory"
 msgstr "Kohdehakemisto"
 
 #: plugins/NavWebPage.py:2425
-#, fuzzy
 msgid "Narrative Web Site"
-msgstr "Tuota WWW-sivusto"
+msgstr "Kerronnallinen www-sivusto"
 
 #: plugins/NavWebPage.py:2429
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr "Tuottaa WWW (HTML) sivuja henkilöistä."
 
 #: plugins/PatchNames.py:107
-#, fuzzy
 msgid "Extracting information from names"
-msgstr "Eriytä tietoja nimistä"
+msgstr "Eriytetään tietoja nimistä"
 
 #: plugins/PatchNames.py:108
 msgid "Analyzing names"
-msgstr ""
+msgstr "Analysoidaan nimiä"
 
 #: plugins/PatchNames.py:154
 msgid "No titles or nicknames were found"
@@ -8501,9 +8425,8 @@ msgid "Name and title extraction tool"
 msgstr "Nimen ja tittelin eriytystyökalu"
 
 #: plugins/PatchNames.py:208
-#, fuzzy
 msgid "Bulding display"
-msgstr "Päivitetään näyttöä..."
+msgstr "Rakennetaan näyttö"
 
 #: plugins/PatchNames.py:218
 msgid "Nickname"
@@ -8539,23 +8462,23 @@ msgstr "GRAMPS paketti"
 
 #: plugins/Rebuild.py:69
 msgid "Rebuilding Secondary Indices"
-msgstr ""
+msgstr "Uudelleenluodaan toissijaisia indeksejä"
 
 #: plugins/Rebuild.py:75
 msgid "Secondary indices rebuilt"
-msgstr ""
+msgstr "toissijaiset indeksit luotu"
 
 #: plugins/Rebuild.py:76
 msgid "All secondary indices have been rebuilt."
-msgstr ""
+msgstr "Kaikki toissijaisia indeksit luotu."
 
 #: plugins/Rebuild.py:90
 msgid "Rebuild secondary indices"
-msgstr ""
+msgstr "Uudelleenluo toissijaiset indeksit"
 
 #: plugins/Rebuild.py:92
 msgid "Rebuilds secondary indices"
-msgstr ""
+msgstr "Uudelleenluo toissijaiset indeksit"
 
 #: plugins/RelCalc.py:82
 msgid "Relationship calculator: %(person_name)s"
@@ -8594,43 +8517,36 @@ msgid "Calculates the relationship between two people"
 msgstr "Laskee kahden henkilön välisen suhteen"
 
 #: plugins/ReorderIds.py:73
-#, fuzzy
 msgid "Reordering GRAMPS IDs"
-msgstr "GRAMPS tunnukset"
+msgstr "Uudelleenjärjestetään GRAMPS tunnuksia"
 
 #: plugins/ReorderIds.py:77
-#, fuzzy
 msgid "Reordering People IDs"
-msgstr "Uudelleenjärjestä GRAMPS tunnukset"
+msgstr "Uudelleenjärjestetään henkilöiden tunnuksia"
 
 #: plugins/ReorderIds.py:81
-#, fuzzy
 msgid "Reordering Family IDs"
-msgstr "Uudelleenjärjestä GRAMPS tunnukset"
+msgstr "Uudelleenjärjestetään perhetunnuksia"
 
 #: plugins/ReorderIds.py:85
-#, fuzzy
 msgid "Reordering Media Object IDs"
-msgstr "Poista mediatiedosto"
+msgstr "Uudelleenjärjestetään mediatiedostojen tunnuksia"
 
 #: plugins/ReorderIds.py:89
-#, fuzzy
 msgid "Reordering Source IDs"
-msgstr "Uudelleenjärjestä GRAMPS tunnukset"
+msgstr "Uudelleenjärjestetään lähdetunnuksia"
 
 #: plugins/ReorderIds.py:93
-#, fuzzy
 msgid "Reordering Place IDs"
-msgstr "Uudelleenjärjestä GRAMPS tunnukset"
+msgstr "Uudelleenjärjestetään paikkatunnuksia"
 
 #: plugins/ReorderIds.py:98 plugins/ReorderIds.py:163
-#, fuzzy
 msgid "Reorder GRAMPS IDs"
-msgstr "GRAMPS tunnukset"
+msgstr "Uudelleenjärjestä GRAMPS tunnukset"
 
 #: plugins/ReorderIds.py:147
 msgid "Finding and assigning unused IDs"
-msgstr ""
+msgstr "Etsitään ja uudelleensijoitetaan käyttämättömät tunnukset"
 
 #: plugins/ReorderIds.py:165
 msgid "Reorders the gramps IDs according to gramps' default rules."
@@ -9076,7 +8992,7 @@ msgstr "Tarkista tietokanta"
 
 #: plugins/Verify.py:158
 msgid "Checking data"
-msgstr ""
+msgstr "Tarkistetaan tietoja"
 
 #: plugins/Verify.py:185
 msgid "Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
@@ -9487,18 +9403,16 @@ msgid "The style used for the URL information."
 msgstr "Tyyli URL-tiedoille."
 
 #: plugins/WebPage.py:1975
-#, fuzzy
 msgid "Generate Web Site (deprecated)"
-msgstr "Tuota WWW-sivusto"
+msgstr "Tuota WWW-sivusto (vanhentunut)"
 
 #: plugins/WebPage.py:1978
-#, fuzzy
 msgid "Deprecated"
-msgstr "Tutkinto"
+msgstr "Vanhentunut"
 
 #: plugins/WebPage.py:1979
 msgid "Generates web (HTML) pages for individuals, or a set of individuals. This report is considered to be deprecated. Please migrate to the new Narrative Web Page generator."
-msgstr ""
+msgstr "Tuottaa www-sivuja henkilöistä.  Tämä raportti ei ole enää ajankohtainen.  Siirry käyttämään Kerronnallista www-sivuston raporttia, kiitos!"
 
 #: plugins/WriteCD.py:60
 msgid "Export to CD"
@@ -9891,45 +9805,3 @@ msgstr "<b>Valittu sääntö</b>"
 msgid "<b>Values</b>"
 msgstr "<b>Arvot</b>"
 
-#~ msgid "Top & Bottom Margins"
-#~ msgstr "Ylä- ja Alamarginaalit"
-
-#~ msgid "Left & Right Margins"
-#~ msgstr "Vasemman ja oikean sivun marginaalit"
-
-#~ msgid "Determining possible merges"
-#~ msgstr "Mahdollisten liitosten ratkaiseminen"
-
-#~ msgid "Generate testcases"
-#~ msgstr "Tuota testitapauksia"
-
-#~ msgid "Generate Database errors"
-#~ msgstr "Tuota tietokantavirheitä"
-
-#~ msgid "Generate date tests"
-#~ msgstr "Tuota päivämäärätestejä"
-
-#~ msgid "Generate dummy families"
-#~ msgstr "Luo testiperheitä"
-
-#~ msgid "Don't block transactions"
-#~ msgstr "Älä estä transaktioita"
-
-#~ msgid ""
-#~ "Generating persons and families.\n"
-#~ "Please wait."
-#~ msgstr ""
-#~ "Luon henkilöitä ja perheitä.\n"
-#~ "Odota."
-
-#~ msgid "Testcase generator"
-#~ msgstr "Testitapausten luonti"
-
-#~ msgid "Testcase generator step %d"
-#~ msgstr "Testitapausten luonti, vaihe %d"
-
-#~ msgid "Generate Testcases for persons and families"
-#~ msgstr "Luo testitapauksia henkilöille ja perheille"
-
-#~ msgid "The testcase generator will generate some persons and families that have broken links in the database or data that is in conflict to a relation."
-#~ msgstr "Testitapauksissa luodaan henkilöitä ja perheitä, joilla on viallisia linkkejä tietokannassa tai tietoja, jotka eivät vastaa ao. suhdetta."
