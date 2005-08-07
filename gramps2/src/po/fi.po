@@ -8137,7 +8137,7 @@ msgstr "Tällä sivulla on lista kaikista tietokannan paikoista niiden nimen muk
 
 #: plugins/NavWebPage.py:613 plugins/NavWebPage.py:825
 msgid "Letter"
-msgstr "Kirje"
+msgstr "Kirjain"
 
 #: plugins/NavWebPage.py:675 plugins/NavWebPage.py:779
 #: plugins/NavWebPage.py:1026 plugins/NavWebPage.py:1326
