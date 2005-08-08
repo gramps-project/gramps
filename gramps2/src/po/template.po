@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Thu Aug  4 21:01:02 2005\n"
+"POT-Creation-Date: Mon Aug  8 10:47:43 2005\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,15 +15,15 @@ msgstr ""
 "Generated-By: pygettext.py 1.4\n"
 
 
-#: AddMedia.py:91 ImageSelect.py:120
+#: AddMedia.py:91 ImageSelect.py:121
 msgid "Select a media object"
 msgstr ""
 
-#: AddMedia.py:124 ImageSelect.py:174
+#: AddMedia.py:124 ImageSelect.py:175
 msgid "Cannot import %s"
 msgstr ""
 
-#: AddMedia.py:125 ImageSelect.py:175
+#: AddMedia.py:125 ImageSelect.py:176
 msgid "The filename supplied could not be found."
 msgstr ""
 
@@ -39,8 +39,8 @@ msgstr ""
 msgid "Choose Spouse/Partner"
 msgstr ""
 
-#: AddSpouse.py:142 Bookmarks.py:130 ChooseParents.py:252 EditPerson.py:344
-#: EditSource.py:309 FamilyView.py:74 ImageSelect.py:1105 PeopleView.py:59
+#: AddSpouse.py:142 Bookmarks.py:130 ChooseParents.py:252 EditPerson.py:346
+#: EditSource.py:311 FamilyView.py:74 ImageSelect.py:1108 PeopleView.py:59
 #: PeopleView.py:135 SelectChild.py:129 SelectPerson.py:78
 #: plugins/BookReport.py:631 plugins/FilterEditor.py:459
 #: plugins/IndivComplete.py:405 plugins/IndivSummary.py:226
@@ -55,10 +55,10 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: AddSpouse.py:146 Bookmarks.py:130 ChooseParents.py:261 EditSource.py:309
-#: FamilyView.py:73 ImageSelect.py:1105 MediaView.py:58 MergePeople.py:122
+#: AddSpouse.py:146 Bookmarks.py:130 ChooseParents.py:261 EditSource.py:311
+#: FamilyView.py:73 ImageSelect.py:1108 MediaView.py:58 MergePeople.py:122
 #: PeopleView.py:60 PlaceView.py:50 SelectChild.py:134 SelectObject.py:85
-#: SelectPerson.py:84 SourceView.py:52 Sources.py:108 Sources.py:242
+#: SelectPerson.py:84 SourceView.py:52 Sources.py:109 Sources.py:243
 #: Witness.py:64 plugins/PatchNames.py:189
 msgid "ID"
 msgstr ""
@@ -120,11 +120,11 @@ msgstr ""
 msgid "General filters"
 msgstr ""
 
-#: AddrEdit.py:106 AddrEdit.py:174
+#: AddrEdit.py:108 AddrEdit.py:176
 msgid "Address Editor"
 msgstr ""
 
-#: AddrEdit.py:168 EditPerson.py:338 plugins/ScratchPad.py:120
+#: AddrEdit.py:170 EditPerson.py:340 plugins/ScratchPad.py:120
 #: plugins/ScratchPad.py:137
 msgid "Address"
 msgstr ""
@@ -157,28 +157,28 @@ msgid ""
 "Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
 msgstr ""
 
-#: AttrEdit.py:119 AttrEdit.py:123 AttrEdit.py:181
+#: AttrEdit.py:122 AttrEdit.py:126 AttrEdit.py:184
 msgid "Attribute Editor"
 msgstr ""
 
-#: AttrEdit.py:121
+#: AttrEdit.py:124
 msgid "Attribute Editor for %s"
 msgstr ""
 
-#: AttrEdit.py:170 AttrEdit.py:174
+#: AttrEdit.py:173 AttrEdit.py:177
 msgid "New Attribute"
 msgstr ""
 
-#: AttrEdit.py:175 EditPerson.py:332 ImageSelect.py:683 ImageSelect.py:955
-#: Marriage.py:221 plugins/ScratchPad.py:273 plugins/ScratchPad.py:281
+#: AttrEdit.py:178 EditPerson.py:334 ImageSelect.py:684 ImageSelect.py:958
+#: Marriage.py:223 plugins/ScratchPad.py:273 plugins/ScratchPad.py:281
 msgid "Attribute"
 msgstr ""
 
-#: AttrEdit.py:213
+#: AttrEdit.py:216
 msgid "New attribute type created"
 msgstr ""
 
-#: AttrEdit.py:214
+#: AttrEdit.py:217
 msgid ""
 "The \"%s\" attribute type has been added to this database.\n"
 "It will now appear in the attribute menus for this database"
@@ -433,8 +433,8 @@ msgstr ""
 msgid "female"
 msgstr ""
 
-#: DisplayModels.py:468 ImageSelect.py:984 MediaView.py:243 MediaView.py:251
-#: NoteEdit.py:104 Utils.py:155 gramps.glade:5501 gramps.glade:16531
+#: DisplayModels.py:468 ImageSelect.py:987 MediaView.py:243 MediaView.py:251
+#: NoteEdit.py:106 Utils.py:155 gramps.glade:5501 gramps.glade:16531
 #: gramps.glade:27702 gramps.glade:28750 gramps.glade:30203 gramps.glade:31734
 msgid "Note"
 msgstr ""
@@ -452,46 +452,46 @@ msgstr ""
 msgid "Internal Error"
 msgstr ""
 
-#: EditPerson.py:138 EditPerson.py:641
+#: EditPerson.py:139 EditPerson.py:643
 msgid "Edit Person"
 msgstr ""
 
-#: EditPerson.py:259
+#: EditPerson.py:261
 msgid "Patronymic:"
 msgstr ""
 
-#: EditPerson.py:312 EditSource.py:329 EventEdit.py:269 ImageSelect.py:1126
-#: Marriage.py:220 plugins/ScratchPad.py:166 plugins/ScratchPad.py:180
+#: EditPerson.py:314 EditSource.py:331 EventEdit.py:272 ImageSelect.py:1129
+#: Marriage.py:222 plugins/ScratchPad.py:166 plugins/ScratchPad.py:180
 msgid "Event"
 msgstr ""
 
-#: EditPerson.py:313 EditPerson.py:350 EditPlace.py:131 const.py:435
+#: EditPerson.py:315 EditPerson.py:352 EditPlace.py:132 const.py:435
 #: plugins/ScratchPad.py:185 plugins/ScratchPad.py:227
 #: plugins/ScratchPad.py:262
 msgid "Description"
 msgstr ""
 
-#: EditPerson.py:314 EditPerson.py:338 Marriage.py:220 MediaView.py:62
+#: EditPerson.py:316 EditPerson.py:340 Marriage.py:222 MediaView.py:62
 #: plugins/ScratchPad.py:138 plugins/ScratchPad.py:182
 #: plugins/ScratchPad.py:224
 msgid "Date"
 msgstr ""
 
-#: EditPerson.py:315 EditPlace.py:289 EditSource.py:335 ImageSelect.py:1132
-#: Marriage.py:220 gramps.glade:13109 plugins/NavWebPage.py:615
+#: EditPerson.py:317 EditPlace.py:290 EditSource.py:337 ImageSelect.py:1135
+#: Marriage.py:222 gramps.glade:13109 plugins/NavWebPage.py:615
 #: plugins/ScratchPad.py:183 plugins/ScratchPad.py:225
 msgid "Place"
 msgstr ""
 
-#: EditPerson.py:332 EditSource.py:160 ImageSelect.py:683 ImageSelect.py:955
-#: Marriage.py:221 gramps.glade:13691 plugins/FilterEditor.py:459
+#: EditPerson.py:334 EditSource.py:162 ImageSelect.py:684 ImageSelect.py:958
+#: Marriage.py:223 gramps.glade:13691 plugins/FilterEditor.py:459
 #: plugins/PatchNames.py:195 plugins/ScratchPad.py:284
 #: plugins/ScratchPad.py:317 plugins/ScratchPad.py:543
 #: plugins/ScratchPad.py:549
 msgid "Value"
 msgstr ""
 
-#: EditPerson.py:344 EditSource.py:309 ImageSelect.py:1105 MediaView.py:59
+#: EditPerson.py:346 EditSource.py:311 ImageSelect.py:1108 MediaView.py:59
 #: MergePeople.py:167 SelectObject.py:86 plugins/BookReport.py:631
 #: plugins/BookReport.py:632 plugins/PatchNames.py:192
 #: plugins/ScratchPad.py:181 plugins/ScratchPad.py:223
@@ -501,234 +501,234 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: EditPerson.py:350 EditPlace.py:130 MediaView.py:60
+#: EditPerson.py:352 EditPlace.py:131 MediaView.py:60
 #: plugins/ScratchPad.py:260
 msgid "Path"
 msgstr ""
 
-#: EditPerson.py:573 ImageSelect.py:611 ImageSelect.py:1042 MediaView.py:277
+#: EditPerson.py:575 ImageSelect.py:612 ImageSelect.py:1045 MediaView.py:277
 #: plugins/ScratchPad.py:424 plugins/ScratchPad.py:432
 msgid "Media Object"
 msgstr ""
 
-#: EditPerson.py:579 ImageSelect.py:617 docgen/AbiWord2Doc.py:335
+#: EditPerson.py:581 ImageSelect.py:618 docgen/AbiWord2Doc.py:335
 #: docgen/AsciiDoc.py:371 docgen/HtmlDoc.py:486 docgen/KwordDoc.py:494
 #: docgen/PdfDoc.py:631 docgen/RTFDoc.py:427
 msgid "Open in %s"
 msgstr ""
 
-#: EditPerson.py:582 ImageSelect.py:620 MediaView.py:290
+#: EditPerson.py:584 ImageSelect.py:621 MediaView.py:290
 msgid "Edit with the GIMP"
 msgstr ""
 
-#: EditPerson.py:584 ImageSelect.py:622
+#: EditPerson.py:586 ImageSelect.py:623
 msgid "Edit Object Properties"
 msgstr ""
 
-#: EditPerson.py:635
+#: EditPerson.py:637
 msgid "New Person"
 msgstr ""
 
-#: EditPerson.py:760 GrampsCfg.py:63 const.py:233 const.py:246
+#: EditPerson.py:762 GrampsCfg.py:63 const.py:233 const.py:246
 msgid "None"
 msgstr ""
 
-#: EditPerson.py:1290
+#: EditPerson.py:1292
 msgid "Save changes to %s?"
 msgstr ""
 
-#: EditPerson.py:1291 EditPerson.py:1307 Marriage.py:629 Marriage.py:642
+#: EditPerson.py:1293 EditPerson.py:1309 Marriage.py:631 Marriage.py:644
 msgid "If you close without saving, the changes you have made will be lost"
 msgstr ""
 
-#: EditPerson.py:1306
+#: EditPerson.py:1308
 msgid "Save Changes to %s?"
 msgstr ""
 
-#: EditPerson.py:1654
+#: EditPerson.py:1656
 msgid "Make the selected name the preferred name"
 msgstr ""
 
-#: EditPerson.py:1698
+#: EditPerson.py:1700
 msgid "Unknown gender specified"
 msgstr ""
 
-#: EditPerson.py:1699
+#: EditPerson.py:1701
 msgid "The gender of the person is currently unknown. Usually, this is a mistake. You may choose to either continue saving, or returning to the Edit Person dialog to fix the problem."
 msgstr ""
 
-#: EditPerson.py:1703
+#: EditPerson.py:1705
 msgid "Continue saving"
 msgstr ""
 
-#: EditPerson.py:1703
+#: EditPerson.py:1705
 msgid "Return to window"
 msgstr ""
 
-#: EditPerson.py:1734 Marriage.py:661
+#: EditPerson.py:1736 Marriage.py:663
 msgid "GRAMPS ID value was not changed."
 msgstr ""
 
-#: EditPerson.py:1735
+#: EditPerson.py:1737
 msgid "You have attempted to change the GRAMPS ID to a value of %(grampsid)s. This value is already used by %(person)s."
 msgstr ""
 
-#: EditPerson.py:1847
+#: EditPerson.py:1849
 msgid "Problem changing the gender"
 msgstr ""
 
-#: EditPerson.py:1848
+#: EditPerson.py:1850
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
 msgstr ""
 
-#: EditPerson.py:1891
+#: EditPerson.py:1893
 msgid "Edit Person (%s)"
 msgstr ""
 
-#: EditPerson.py:1907 ImageSelect.py:1166
+#: EditPerson.py:1909 ImageSelect.py:1169
 msgid "Add Place (%s)"
 msgstr ""
 
-#: EditPlace.py:91 EditPlace.py:295
+#: EditPlace.py:91 EditPlace.py:296
 msgid "Place Editor"
 msgstr ""
 
-#: EditPlace.py:150 PlaceView.py:53 plugins/NavWebPage.py:681
+#: EditPlace.py:151 PlaceView.py:53 plugins/NavWebPage.py:681
 msgid "City"
 msgstr ""
 
-#: EditPlace.py:150 PlaceView.py:54 plugins/NavWebPage.py:682
+#: EditPlace.py:151 PlaceView.py:54 plugins/NavWebPage.py:682
 msgid "County"
 msgstr ""
 
-#: EditPlace.py:151 PlaceView.py:55
+#: EditPlace.py:152 PlaceView.py:55
 msgid "State"
 msgstr ""
 
-#: EditPlace.py:151 PlaceView.py:56 plugins/NavWebPage.py:683
+#: EditPlace.py:152 PlaceView.py:56 plugins/NavWebPage.py:683
 msgid "Country"
 msgstr ""
 
-#: EditPlace.py:284 EditPlace.py:288
+#: EditPlace.py:285 EditPlace.py:289
 msgid "New Place"
 msgstr ""
 
-#: EditPlace.py:391
+#: EditPlace.py:392
 msgid "Place title is already in use"
 msgstr ""
 
-#: EditPlace.py:392
+#: EditPlace.py:393
 msgid "Each place must have a unique title, and title you have selected is already used by another place"
 msgstr ""
 
-#: EditPlace.py:427
+#: EditPlace.py:428
 msgid "Edit Place (%s)"
 msgstr ""
 
-#: EditPlace.py:546
+#: EditPlace.py:547
 msgid "People"
 msgstr ""
 
-#: EditPlace.py:548 EditPlace.py:557
+#: EditPlace.py:549 EditPlace.py:558
 msgid ""
 "%s [%s]: event %s\n"
 msgstr ""
 
-#: EditPlace.py:555 plugins/NavWebPage.py:1472
+#: EditPlace.py:556 plugins/NavWebPage.py:1472
 msgid "Families"
 msgstr ""
 
-#: EditPlace.py:563 Utils.py:110
+#: EditPlace.py:564 Utils.py:110
 msgid "%(father)s and %(mother)s"
 msgstr ""
 
-#: EditPlace.py:633 PlaceView.py:224
+#: EditPlace.py:634 PlaceView.py:224
 msgid "Delete Place (%s)"
 msgstr ""
 
-#: EditSource.py:90 EditSource.py:249
+#: EditSource.py:91 EditSource.py:251
 msgid "Source Editor"
 msgstr ""
 
-#: EditSource.py:160
+#: EditSource.py:162
 msgid "Key"
 msgstr ""
 
-#: EditSource.py:238 EditSource.py:242 Sources.py:451 Sources.py:453
+#: EditSource.py:240 EditSource.py:244 Sources.py:458 Sources.py:460
 msgid "New Source"
 msgstr ""
 
-#: EditSource.py:243 EditSource.py:341 ImageSelect.py:1138 Utils.py:160
+#: EditSource.py:245 EditSource.py:343 ImageSelect.py:1141 Utils.py:160
 #: Utils.py:162
 msgid "Source"
 msgstr ""
 
-#: EditSource.py:317 ImageSelect.py:1114 plugins/EventCmp.py:422
+#: EditSource.py:319 ImageSelect.py:1117 plugins/EventCmp.py:422
 msgid "Person"
 msgstr ""
 
-#: EditSource.py:323 ImageSelect.py:1120
+#: EditSource.py:325 ImageSelect.py:1123
 msgid "Family"
 msgstr ""
 
-#: EditSource.py:347
+#: EditSource.py:349
 msgid "Media"
 msgstr ""
 
-#: EditSource.py:401
+#: EditSource.py:403
 msgid "Edit Source (%s)"
 msgstr ""
 
-#: EditSource.py:468
+#: EditSource.py:470
 msgid "Delete Source (%s)"
 msgstr ""
 
-#: EventEdit.py:115 EventEdit.py:120 EventEdit.py:275
+#: EventEdit.py:117 EventEdit.py:122 EventEdit.py:278
 msgid "Event Editor"
 msgstr ""
 
-#: EventEdit.py:117
+#: EventEdit.py:119
 msgid "Event Editor for %s"
 msgstr ""
 
-#: EventEdit.py:264 EventEdit.py:268
+#: EventEdit.py:267 EventEdit.py:271
 msgid "New Event"
 msgstr ""
 
-#: EventEdit.py:312
+#: EventEdit.py:315
 msgid "Event does not have a type"
 msgstr ""
 
-#: EventEdit.py:313
+#: EventEdit.py:316
 msgid "You must specify an event type before you can save the event"
 msgstr ""
 
-#: EventEdit.py:330 MergePeople.py:125 const.py:233 const.py:241
+#: EventEdit.py:333 MergePeople.py:125 const.py:233 const.py:241
 #: plugins/EventCmp.py:422 plugins/FamilyGroup.py:200
 #: plugins/FamilyGroup.py:334 plugins/NavWebPage.py:1373
 #: plugins/ScratchPad.py:464
 msgid "Birth"
 msgstr ""
 
-#: EventEdit.py:330 MergePeople.py:127 plugins/EventCmp.py:422
+#: EventEdit.py:333 MergePeople.py:127 plugins/EventCmp.py:422
 #: plugins/FamilyGroup.py:218 plugins/FamilyGroup.py:336
 #: plugins/FamilyGroup.py:338 plugins/NavWebPage.py:1381
 msgid "Death"
 msgstr ""
 
-#: EventEdit.py:332
+#: EventEdit.py:335
 msgid "New event type created"
 msgstr ""
 
-#: EventEdit.py:333
+#: EventEdit.py:336
 msgid ""
 "The \"%s\" event type has been added to this database.\n"
 "It will now appear in the event menus for this database"
 msgstr ""
 
-#: EventEdit.py:347
+#: EventEdit.py:350
 msgid "Edit Event"
 msgstr ""
 
@@ -1615,43 +1615,43 @@ msgstr ""
 msgid "_Undo %s"
 msgstr ""
 
-#: ImageSelect.py:487 ImageSelect.py:508
+#: ImageSelect.py:488 ImageSelect.py:509
 msgid "Drag Media Object"
 msgstr ""
 
-#: ImageSelect.py:498 RelImage.py:51
+#: ImageSelect.py:499 RelImage.py:51
 msgid "Could not import %s"
 msgstr ""
 
-#: ImageSelect.py:569 plugins/SimpleBookTitle.py:237
+#: ImageSelect.py:570 plugins/SimpleBookTitle.py:237
 msgid "Select an Object"
 msgstr ""
 
-#: ImageSelect.py:671
+#: ImageSelect.py:672
 msgid "Media Reference Editor"
 msgstr ""
 
-#: ImageSelect.py:767
+#: ImageSelect.py:771
 msgid "Media Reference"
 msgstr ""
 
-#: ImageSelect.py:773
+#: ImageSelect.py:777
 msgid "Reference Editor"
 msgstr ""
 
-#: ImageSelect.py:829 ImageSelect.py:1197 MediaView.py:347
+#: ImageSelect.py:833 ImageSelect.py:1200 MediaView.py:347
 msgid "Edit Media Object"
 msgstr ""
 
-#: ImageSelect.py:913
+#: ImageSelect.py:917
 msgid "Media Properties Editor"
 msgstr ""
 
-#: ImageSelect.py:1048
+#: ImageSelect.py:1051
 msgid "Properties Editor"
 msgstr ""
 
-#: ImageSelect.py:1294
+#: ImageSelect.py:1297
 msgid "Remove Media Object"
 msgstr ""
 
@@ -1659,32 +1659,32 @@ msgstr ""
 msgid "Location Editor"
 msgstr ""
 
-#: Marriage.py:113 Marriage.py:367
+#: Marriage.py:114 Marriage.py:369
 msgid "Marriage/Relationship Editor"
 msgstr ""
 
-#: Marriage.py:153 Marriage.py:811 Marriage.py:834 Utils.py:130
+#: Marriage.py:154 Marriage.py:813 Marriage.py:836 Utils.py:130
 msgid "%s and %s"
 msgstr ""
 
-#: Marriage.py:361
+#: Marriage.py:363
 msgid "New Relationship"
 msgstr ""
 
-#: Marriage.py:628 Marriage.py:641
+#: Marriage.py:630 Marriage.py:643
 msgid "Save Changes?"
 msgstr ""
 
-#: Marriage.py:662
+#: Marriage.py:664
 msgid "The GRAMPS ID that you chose for this relationship is already being used."
 msgstr ""
 
-#: Marriage.py:718
+#: Marriage.py:720
 msgid "Edit Marriage"
 msgstr ""
 
 #: MediaView.py:57 MediaView.py:174 SelectObject.py:85 SourceView.py:51
-#: SourceView.py:116 Sources.py:108 Sources.py:242
+#: SourceView.py:116 Sources.py:109 Sources.py:243
 #: plugins/AncestorChart2.py:482 plugins/BookReport.py:789
 #: plugins/PatchNames.py:230 plugins/ScratchPad.py:354
 #: plugins/ScratchPad.py:542 plugins/ScratchPad.py:548
@@ -1806,39 +1806,39 @@ msgstr ""
 msgid "Merge People"
 msgstr ""
 
-#: NameEdit.py:124 NameEdit.py:128 NameEdit.py:227
+#: NameEdit.py:127 NameEdit.py:131 NameEdit.py:230
 msgid "Name Editor"
 msgstr ""
 
-#: NameEdit.py:126
+#: NameEdit.py:129
 msgid "Name Editor for %s"
 msgstr ""
 
-#: NameEdit.py:216 NameEdit.py:220
+#: NameEdit.py:219 NameEdit.py:223
 msgid "New Name"
 msgstr ""
 
-#: NameEdit.py:221
+#: NameEdit.py:224
 msgid "Alternate Name"
 msgstr ""
 
-#: NameEdit.py:295
+#: NameEdit.py:298
 msgid "Group all people with the same name?"
 msgstr ""
 
-#: NameEdit.py:296
+#: NameEdit.py:299
 msgid "You have the choice of grouping all people with the name of %(surname)s with the name of %(group_name)s, or just mapping this particular name."
 msgstr ""
 
-#: NameEdit.py:300
+#: NameEdit.py:303
 msgid "Group all"
 msgstr ""
 
-#: NameEdit.py:301
+#: NameEdit.py:304
 msgid "Group this name only"
 msgstr ""
 
-#: NoteEdit.py:71
+#: NoteEdit.py:72
 msgid "Note Editor"
 msgstr ""
 
@@ -3242,19 +3242,19 @@ msgstr ""
 msgid "Exactly two sources must be selected to perform a merge. A second source can be selected by holding down the control key while clicking on the desired source."
 msgstr ""
 
-#: Sources.py:85
+#: Sources.py:86
 msgid "Source Reference Selection"
 msgstr ""
 
-#: Sources.py:145 Sources.py:454
+#: Sources.py:146 Sources.py:461
 msgid "Source Reference"
 msgstr ""
 
-#: Sources.py:151
+#: Sources.py:152
 msgid "Reference Selector"
 msgstr ""
 
-#: Sources.py:378 Sources.py:460
+#: Sources.py:379 Sources.py:467
 msgid "Source Information"
 msgstr ""
 
@@ -8279,6 +8279,14 @@ msgstr ""
 
 #: plugins/NavWebPage.py:2107
 msgid "Introduction Media/Note ID"
+msgstr ""
+
+#: plugins/NavWebPage.py:2110
+msgid "HTML user header"
+msgstr ""
+
+#: plugins/NavWebPage.py:2111
+msgid "HTML user footer"
 msgstr ""
 
 #: plugins/NavWebPage.py:2115 plugins/WebPage.py:1499

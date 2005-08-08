@@ -258,7 +258,7 @@ class BasePage:
             of.write('<link href="%s" ' % _NARRATIVE)
         of.write('rel="stylesheet" type="text/css">\n')
         of.write('<link href="favicon.png" rel="Shortcut Icon">\n')
-        of.write('<!-- $Id$ -->')
+        of.write('<!-- %sId%s -->' % ('$','$'))
         of.write('</head>\n')
         of.write('<body>\n')
         if self.header:
@@ -2107,8 +2107,8 @@ class WebReportOptions(ReportOptions.ReportOptions):
         dialog.add_frame_option(title,_('Introduction Media/Note ID'),
                                 self.intro_note)
         dialog.add_frame_option(title,contact_msg,self.contact)
-        dialog.add_frame_option(title,('HTML user header'),self.header)
-        dialog.add_frame_option(title,('HTML user footer'),self.footer)
+        dialog.add_frame_option(title,_('HTML user header'),self.header)
+        dialog.add_frame_option(title,_('HTML user footer'),self.footer)
         dialog.add_frame_option(title,None,self.inc_download)
         dialog.add_frame_option(title,None,self.noid)
 

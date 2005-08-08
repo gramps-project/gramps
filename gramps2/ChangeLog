@@ -1,3 +1,9 @@
+2005-08-08  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/NavWebPage.py (add_user_options): Mark translatable
+	strings.
+	* src/po/template.po: Update template.
+	* src/po/ru.po: Translation update.
+
 2005-08-08  Eero Tamminen  <eerot@sf>
 	* src/po/fi.po: Updated translated to latest template
 
