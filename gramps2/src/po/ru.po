@@ -8,23 +8,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 2.0.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Aug  4 21:01:02 2005\n"
-"PO-Revision-Date: 2005-08-05 12:48-0500\n"
+"POT-Creation-Date: Mon Aug  8 10:47:43 2005\n"
+"PO-Revision-Date: 2005-08-08 10:51-0500\n"
 "Last-Translator: Alexander Roitman <shura@gramps-project.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit"
 
-#: AddMedia.py:91 ImageSelect.py:120
+#: AddMedia.py:91 ImageSelect.py:121
 msgid "Select a media object"
 msgstr "Выбрать документ"
 
-#: AddMedia.py:124 ImageSelect.py:174
+#: AddMedia.py:124 ImageSelect.py:175
 msgid "Cannot import %s"
 msgstr "Не могу импортировать %s"
 
-#: AddMedia.py:125 ImageSelect.py:175
+#: AddMedia.py:125 ImageSelect.py:176
 msgid "The filename supplied could not be found."
 msgstr "Указанный файл не найден."
 
@@ -40,8 +40,8 @@ msgstr "Выбрать супруга/партнёра для %s"
 msgid "Choose Spouse/Partner"
 msgstr "Выбрать супруга/партнёра"
 
-#: AddSpouse.py:142 Bookmarks.py:130 ChooseParents.py:252 EditPerson.py:344
-#: EditSource.py:309 FamilyView.py:74 ImageSelect.py:1105 PeopleView.py:59
+#: AddSpouse.py:142 Bookmarks.py:130 ChooseParents.py:252 EditPerson.py:346
+#: EditSource.py:311 FamilyView.py:74 ImageSelect.py:1108 PeopleView.py:59
 #: PeopleView.py:135 SelectChild.py:129 SelectPerson.py:78
 #: plugins/BookReport.py:631 plugins/FilterEditor.py:459
 #: plugins/IndivComplete.py:405 plugins/IndivSummary.py:226
@@ -56,10 +56,10 @@ msgstr "Выбрать супруга/партнёра"
 msgid "Name"
 msgstr "Имя"
 
-#: AddSpouse.py:146 Bookmarks.py:130 ChooseParents.py:261 EditSource.py:309
-#: FamilyView.py:73 ImageSelect.py:1105 MediaView.py:58 MergePeople.py:122
+#: AddSpouse.py:146 Bookmarks.py:130 ChooseParents.py:261 EditSource.py:311
+#: FamilyView.py:73 ImageSelect.py:1108 MediaView.py:58 MergePeople.py:122
 #: PeopleView.py:60 PlaceView.py:50 SelectChild.py:134 SelectObject.py:85
-#: SelectPerson.py:84 SourceView.py:52 Sources.py:108 Sources.py:242
+#: SelectPerson.py:84 SourceView.py:52 Sources.py:109 Sources.py:243
 #: Witness.py:64 plugins/PatchNames.py:189
 msgid "ID"
 msgstr "ID"
@@ -134,11 +134,11 @@ msgstr "Добавить Супруга"
 msgid "General filters"
 msgstr "Общие фильтры"
 
-#: AddrEdit.py:106 AddrEdit.py:174
+#: AddrEdit.py:108 AddrEdit.py:176
 msgid "Address Editor"
 msgstr "Редактор адресов"
 
-#: AddrEdit.py:168 EditPerson.py:338 plugins/ScratchPad.py:120
+#: AddrEdit.py:170 EditPerson.py:340 plugins/ScratchPad.py:120
 #: plugins/ScratchPad.py:137
 msgid "Address"
 msgstr "Адрес"
@@ -180,28 +180,28 @@ msgstr ""
 "\n"
 "Известные типы: база данных GRAMPS, GRAMPS XML, пакет GRAMPS и GEDCOM."
 
-#: AttrEdit.py:119 AttrEdit.py:123 AttrEdit.py:181
+#: AttrEdit.py:122 AttrEdit.py:126 AttrEdit.py:184
 msgid "Attribute Editor"
 msgstr "Редактор атрибутов"
 
-#: AttrEdit.py:121
+#: AttrEdit.py:124
 msgid "Attribute Editor for %s"
 msgstr "Редактор атрибутов для %s"
 
-#: AttrEdit.py:170 AttrEdit.py:174
+#: AttrEdit.py:173 AttrEdit.py:177
 msgid "New Attribute"
 msgstr "Новый Атрибут"
 
-#: AttrEdit.py:175 EditPerson.py:332 ImageSelect.py:683 ImageSelect.py:955
-#: Marriage.py:221 plugins/ScratchPad.py:273 plugins/ScratchPad.py:281
+#: AttrEdit.py:178 EditPerson.py:334 ImageSelect.py:684 ImageSelect.py:958
+#: Marriage.py:223 plugins/ScratchPad.py:273 plugins/ScratchPad.py:281
 msgid "Attribute"
 msgstr "Атрибут"
 
-#: AttrEdit.py:213
+#: AttrEdit.py:216
 msgid "New attribute type created"
 msgstr "Создан новый атрибут"
 
-#: AttrEdit.py:214
+#: AttrEdit.py:217
 msgid ""
 "The \"%s\" attribute type has been added to this database.\n"
 "It will now appear in the attribute menus for this database"
@@ -460,8 +460,8 @@ msgstr "мужской"
 msgid "female"
 msgstr "женский"
 
-#: DisplayModels.py:468 ImageSelect.py:984 MediaView.py:243 MediaView.py:251
-#: NoteEdit.py:104 Utils.py:155 gramps.glade:5501 gramps.glade:16531
+#: DisplayModels.py:468 ImageSelect.py:987 MediaView.py:243 MediaView.py:251
+#: NoteEdit.py:106 Utils.py:155 gramps.glade:5501 gramps.glade:16531
 #: gramps.glade:27702 gramps.glade:28750 gramps.glade:30203 gramps.glade:31734
 msgid "Note"
 msgstr "Комментарий"
@@ -484,46 +484,46 @@ msgstr ""
 msgid "Internal Error"
 msgstr "Внутренняя ошибка"
 
-#: EditPerson.py:138 EditPerson.py:641
+#: EditPerson.py:139 EditPerson.py:643
 msgid "Edit Person"
 msgstr "Правка личной информации"
 
-#: EditPerson.py:259
+#: EditPerson.py:261
 msgid "Patronymic:"
 msgstr "Отчество:"
 
-#: EditPerson.py:312 EditSource.py:329 EventEdit.py:269 ImageSelect.py:1126
-#: Marriage.py:220 plugins/ScratchPad.py:166 plugins/ScratchPad.py:180
+#: EditPerson.py:314 EditSource.py:331 EventEdit.py:272 ImageSelect.py:1129
+#: Marriage.py:222 plugins/ScratchPad.py:166 plugins/ScratchPad.py:180
 msgid "Event"
 msgstr "Событие"
 
-#: EditPerson.py:313 EditPerson.py:350 EditPlace.py:131 const.py:435
+#: EditPerson.py:315 EditPerson.py:352 EditPlace.py:132 const.py:435
 #: plugins/ScratchPad.py:185 plugins/ScratchPad.py:227
 #: plugins/ScratchPad.py:262
 msgid "Description"
 msgstr "Описание"
 
-#: EditPerson.py:314 EditPerson.py:338 Marriage.py:220 MediaView.py:62
+#: EditPerson.py:316 EditPerson.py:340 Marriage.py:222 MediaView.py:62
 #: plugins/ScratchPad.py:138 plugins/ScratchPad.py:182
 #: plugins/ScratchPad.py:224
 msgid "Date"
 msgstr "Дата"
 
-#: EditPerson.py:315 EditPlace.py:289 EditSource.py:335 ImageSelect.py:1132
-#: Marriage.py:220 gramps.glade:13109 plugins/NavWebPage.py:615
+#: EditPerson.py:317 EditPlace.py:290 EditSource.py:337 ImageSelect.py:1135
+#: Marriage.py:222 gramps.glade:13109 plugins/NavWebPage.py:615
 #: plugins/ScratchPad.py:183 plugins/ScratchPad.py:225
 msgid "Place"
 msgstr "Место"
 
-#: EditPerson.py:332 EditSource.py:160 ImageSelect.py:683 ImageSelect.py:955
-#: Marriage.py:221 gramps.glade:13691 plugins/FilterEditor.py:459
+#: EditPerson.py:334 EditSource.py:162 ImageSelect.py:684 ImageSelect.py:958
+#: Marriage.py:223 gramps.glade:13691 plugins/FilterEditor.py:459
 #: plugins/PatchNames.py:195 plugins/ScratchPad.py:284
 #: plugins/ScratchPad.py:317 plugins/ScratchPad.py:543
 #: plugins/ScratchPad.py:549
 msgid "Value"
 msgstr "Значение"
 
-#: EditPerson.py:344 EditSource.py:309 ImageSelect.py:1105 MediaView.py:59
+#: EditPerson.py:346 EditSource.py:311 ImageSelect.py:1108 MediaView.py:59
 #: MergePeople.py:167 SelectObject.py:86 plugins/BookReport.py:631
 #: plugins/BookReport.py:632 plugins/PatchNames.py:192
 #: plugins/ScratchPad.py:181 plugins/ScratchPad.py:223
@@ -533,60 +533,60 @@ msgstr "Значение"
 msgid "Type"
 msgstr "Тип"
 
-#: EditPerson.py:350 EditPlace.py:130 MediaView.py:60
+#: EditPerson.py:352 EditPlace.py:131 MediaView.py:60
 #: plugins/ScratchPad.py:260
 msgid "Path"
 msgstr "Путь"
 
-#: EditPerson.py:573 ImageSelect.py:611 ImageSelect.py:1042 MediaView.py:277
+#: EditPerson.py:575 ImageSelect.py:612 ImageSelect.py:1045 MediaView.py:277
 #: plugins/ScratchPad.py:424 plugins/ScratchPad.py:432
 msgid "Media Object"
 msgstr "Документ"
 
-#: EditPerson.py:579 ImageSelect.py:617 docgen/AbiWord2Doc.py:335
+#: EditPerson.py:581 ImageSelect.py:618 docgen/AbiWord2Doc.py:335
 #: docgen/AsciiDoc.py:371 docgen/HtmlDoc.py:486 docgen/KwordDoc.py:494
 #: docgen/PdfDoc.py:631 docgen/RTFDoc.py:427
 msgid "Open in %s"
 msgstr "Открыть в %s"
 
-#: EditPerson.py:582 ImageSelect.py:620 MediaView.py:290
+#: EditPerson.py:584 ImageSelect.py:621 MediaView.py:290
 msgid "Edit with the GIMP"
 msgstr "Правка в GIMP"
 
-#: EditPerson.py:584 ImageSelect.py:622
+#: EditPerson.py:586 ImageSelect.py:623
 msgid "Edit Object Properties"
 msgstr "Правка свойств"
 
-#: EditPerson.py:635
+#: EditPerson.py:637
 msgid "New Person"
 msgstr "Новое Лицо"
 
-#: EditPerson.py:760 GrampsCfg.py:63 const.py:233 const.py:246
+#: EditPerson.py:762 GrampsCfg.py:63 const.py:233 const.py:246
 msgid "None"
 msgstr "Нет"
 
-#: EditPerson.py:1290
+#: EditPerson.py:1292
 msgid "Save changes to %s?"
 msgstr "Сохранить изменения в %s?"
 
-#: EditPerson.py:1291 EditPerson.py:1307 Marriage.py:629 Marriage.py:642
+#: EditPerson.py:1293 EditPerson.py:1309 Marriage.py:631 Marriage.py:644
 msgid "If you close without saving, the changes you have made will be lost"
 msgstr ""
 "Если вы закроете без сохранения, произведённые изменения будут потеряны"
 
-#: EditPerson.py:1306
+#: EditPerson.py:1308
 msgid "Save Changes to %s?"
 msgstr "Сохранить изменения для %s?"
 
-#: EditPerson.py:1654
+#: EditPerson.py:1656
 msgid "Make the selected name the preferred name"
 msgstr "Сделать выделенное имя предпочитаемым"
 
-#: EditPerson.py:1698
+#: EditPerson.py:1700
 msgid "Unknown gender specified"
 msgstr "Указан неизвестный пол"
 
-#: EditPerson.py:1699
+#: EditPerson.py:1701
 msgid ""
 "The gender of the person is currently unknown. Usually, this is a mistake. "
 "You may choose to either continue saving, or returning to the Edit Person "
@@ -596,19 +596,19 @@ msgstr ""
 "сохранение или вернуться к диалогу правки личной информации, чтобы исправить "
 "ошибку."
 
-#: EditPerson.py:1703
+#: EditPerson.py:1705
 msgid "Continue saving"
 msgstr "Продолжить сохранение"
 
-#: EditPerson.py:1703
+#: EditPerson.py:1705
 msgid "Return to window"
 msgstr "Вернуться к окну"
 
-#: EditPerson.py:1734 Marriage.py:661
+#: EditPerson.py:1736 Marriage.py:663
 msgid "GRAMPS ID value was not changed."
 msgstr "Значение GRAMPS ID не было изменено."
 
-#: EditPerson.py:1735
+#: EditPerson.py:1737
 msgid ""
 "You have attempted to change the GRAMPS ID to a value of %(grampsid)s. This "
 "value is already used by %(person)s."
@@ -616,11 +616,11 @@ msgstr ""
 "Вы попытались изменить GRAMPS ID на %(grampsid)s. Оно уже используется (%"
 "(person)s)."
 
-#: EditPerson.py:1847
+#: EditPerson.py:1849
 msgid "Problem changing the gender"
 msgstr "Проблема при изменении пола"
 
-#: EditPerson.py:1848
+#: EditPerson.py:1850
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
@@ -628,149 +628,149 @@ msgstr ""
 "Изменение пола привело к конфликту в информации о браках данного лица.\n"
 "Проверьте их."
 
-#: EditPerson.py:1891
+#: EditPerson.py:1893
 msgid "Edit Person (%s)"
 msgstr "Правка личной информации (%s)"
 
-#: EditPerson.py:1907 ImageSelect.py:1166
+#: EditPerson.py:1909 ImageSelect.py:1169
 msgid "Add Place (%s)"
 msgstr "Добавить Место (%s)"
 
-#: EditPlace.py:91 EditPlace.py:295
+#: EditPlace.py:91 EditPlace.py:296
 msgid "Place Editor"
 msgstr "Редактор мест"
 
-#: EditPlace.py:150 PlaceView.py:53 plugins/NavWebPage.py:681
+#: EditPlace.py:151 PlaceView.py:53 plugins/NavWebPage.py:681
 msgid "City"
 msgstr "Город"
 
-#: EditPlace.py:150 PlaceView.py:54 plugins/NavWebPage.py:682
+#: EditPlace.py:151 PlaceView.py:54 plugins/NavWebPage.py:682
 msgid "County"
 msgstr "Область/Район/Уезд"
 
-#: EditPlace.py:151 PlaceView.py:55
+#: EditPlace.py:152 PlaceView.py:55
 msgid "State"
 msgstr "Республика"
 
-#: EditPlace.py:151 PlaceView.py:56 plugins/NavWebPage.py:683
+#: EditPlace.py:152 PlaceView.py:56 plugins/NavWebPage.py:683
 msgid "Country"
 msgstr "Государство/Страна"
 
-#: EditPlace.py:284 EditPlace.py:288
+#: EditPlace.py:285 EditPlace.py:289
 msgid "New Place"
 msgstr "Новое Место"
 
-#: EditPlace.py:391
+#: EditPlace.py:392
 msgid "Place title is already in use"
 msgstr "Название места уже используется"
 
-#: EditPlace.py:392
+#: EditPlace.py:393
 msgid ""
 "Each place must have a unique title, and title you have selected is already "
 "used by another place"
 msgstr ""
-"Каждое место должно иметь уникальное название. Выбранное название "
-"уже использованно другим местом"
+"Каждое место должно иметь уникальное название. Выбранное название уже "
+"использованно другим местом"
 
-#: EditPlace.py:427
+#: EditPlace.py:428
 msgid "Edit Place (%s)"
 msgstr "Правка Места (%s)"
 
-#: EditPlace.py:546
+#: EditPlace.py:547
 msgid "People"
 msgstr "Люди"
 
-#: EditPlace.py:548 EditPlace.py:557
+#: EditPlace.py:549 EditPlace.py:558
 msgid "%s [%s]: event %s\n"
 msgstr "%s [%s]: событие %s\n"
 
-#: EditPlace.py:555 plugins/NavWebPage.py:1472
+#: EditPlace.py:556 plugins/NavWebPage.py:1472
 msgid "Families"
 msgstr "Семьи"
 
-#: EditPlace.py:563 Utils.py:110
+#: EditPlace.py:564 Utils.py:110
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s и %(mother)s"
 
-#: EditPlace.py:633 PlaceView.py:224
+#: EditPlace.py:634 PlaceView.py:224
 msgid "Delete Place (%s)"
 msgstr "Удалить Место (%s)"
 
-#: EditSource.py:90 EditSource.py:249
+#: EditSource.py:91 EditSource.py:251
 msgid "Source Editor"
 msgstr "Редактор источников"
 
-#: EditSource.py:160
+#: EditSource.py:162
 msgid "Key"
 msgstr "Ключ"
 
-#: EditSource.py:238 EditSource.py:242 Sources.py:451 Sources.py:453
+#: EditSource.py:240 EditSource.py:244 Sources.py:458 Sources.py:460
 msgid "New Source"
 msgstr "Новый Источник"
 
-#: EditSource.py:243 EditSource.py:341 ImageSelect.py:1138 Utils.py:160
+#: EditSource.py:245 EditSource.py:343 ImageSelect.py:1141 Utils.py:160
 #: Utils.py:162
 msgid "Source"
 msgstr "Источник"
 
-#: EditSource.py:317 ImageSelect.py:1114 plugins/EventCmp.py:422
+#: EditSource.py:319 ImageSelect.py:1117 plugins/EventCmp.py:422
 msgid "Person"
 msgstr "Лицо"
 
-#: EditSource.py:323 ImageSelect.py:1120
+#: EditSource.py:325 ImageSelect.py:1123
 msgid "Family"
 msgstr "Семья"
 
-#: EditSource.py:347
+#: EditSource.py:349
 msgid "Media"
 msgstr "Альбом"
 
-#: EditSource.py:401
+#: EditSource.py:403
 msgid "Edit Source (%s)"
 msgstr "Правка Источника (%s)"
 
-#: EditSource.py:468
+#: EditSource.py:470
 msgid "Delete Source (%s)"
 msgstr "Удалить Источник (%s)"
 
-#: EventEdit.py:115 EventEdit.py:120 EventEdit.py:275
+#: EventEdit.py:117 EventEdit.py:122 EventEdit.py:278
 msgid "Event Editor"
 msgstr "Редактор событий"
 
-#: EventEdit.py:117
+#: EventEdit.py:119
 msgid "Event Editor for %s"
 msgstr "Редактор событий для %s"
 
-#: EventEdit.py:264 EventEdit.py:268
+#: EventEdit.py:267 EventEdit.py:271
 msgid "New Event"
 msgstr "Новое Событие"
 
-#: EventEdit.py:312
+#: EventEdit.py:315
 msgid "Event does not have a type"
 msgstr "Событие без типа"
 
-#: EventEdit.py:313
+#: EventEdit.py:316
 msgid "You must specify an event type before you can save the event"
 msgstr "Перед сохранением события необходимо указать его тип"
 
-#: EventEdit.py:330 MergePeople.py:125 const.py:233 const.py:241
+#: EventEdit.py:333 MergePeople.py:125 const.py:233 const.py:241
 #: plugins/EventCmp.py:422 plugins/FamilyGroup.py:200
 #: plugins/FamilyGroup.py:334 plugins/NavWebPage.py:1373
 #: plugins/ScratchPad.py:464
 msgid "Birth"
 msgstr "Рождение"
 
-#: EventEdit.py:330 MergePeople.py:127 plugins/EventCmp.py:422
+#: EventEdit.py:333 MergePeople.py:127 plugins/EventCmp.py:422
 #: plugins/FamilyGroup.py:218 plugins/FamilyGroup.py:336
 #: plugins/FamilyGroup.py:338 plugins/NavWebPage.py:1381
 msgid "Death"
 msgstr "Смерть"
 
-#: EventEdit.py:332
+#: EventEdit.py:335
 msgid "New event type created"
 msgstr "Создан новый тип событий"
 
-#: EventEdit.py:333
+#: EventEdit.py:336
 msgid ""
 "The \"%s\" event type has been added to this database.\n"
 "It will now appear in the event menus for this database"
@@ -778,7 +778,7 @@ msgstr ""
 "Событие \"%s\" было добавлено в базу данных.\n"
 "Теперь оно появится в меню этой базы."
 
-#: EventEdit.py:347
+#: EventEdit.py:350
 msgid "Edit Event"
 msgstr "Правка События"
 
@@ -1756,43 +1756,43 @@ msgstr "Информация об исследователе"
 msgid "_Undo %s"
 msgstr "_Откатить %s"
 
-#: ImageSelect.py:487 ImageSelect.py:508
+#: ImageSelect.py:488 ImageSelect.py:509
 msgid "Drag Media Object"
 msgstr "Перетянуть Документ"
 
-#: ImageSelect.py:498 RelImage.py:51
+#: ImageSelect.py:499 RelImage.py:51
 msgid "Could not import %s"
 msgstr "Ошибка импорта %s"
 
-#: ImageSelect.py:569 plugins/SimpleBookTitle.py:237
+#: ImageSelect.py:570 plugins/SimpleBookTitle.py:237
 msgid "Select an Object"
 msgstr "Выбрать объект"
 
-#: ImageSelect.py:671
+#: ImageSelect.py:672
 msgid "Media Reference Editor"
 msgstr "Редактор Ссылки на Документ"
 
-#: ImageSelect.py:767
+#: ImageSelect.py:771
 msgid "Media Reference"
 msgstr "Ссылка на Документ"
 
-#: ImageSelect.py:773
+#: ImageSelect.py:777
 msgid "Reference Editor"
 msgstr "Редактор Ссылок"
 
-#: ImageSelect.py:829 ImageSelect.py:1197 MediaView.py:347
+#: ImageSelect.py:833 ImageSelect.py:1200 MediaView.py:347
 msgid "Edit Media Object"
 msgstr "Правка Документа"
 
-#: ImageSelect.py:913
+#: ImageSelect.py:917
 msgid "Media Properties Editor"
 msgstr "Редактор Свойств Документа"
 
-#: ImageSelect.py:1048
+#: ImageSelect.py:1051
 msgid "Properties Editor"
 msgstr "Редактор Свойств"
 
-#: ImageSelect.py:1294
+#: ImageSelect.py:1297
 msgid "Remove Media Object"
 msgstr "Удалить Документ"
 
@@ -1800,33 +1800,33 @@ msgstr "Удалить Документ"
 msgid "Location Editor"
 msgstr "Редактор мест"
 
-#: Marriage.py:113 Marriage.py:367
+#: Marriage.py:114 Marriage.py:369
 msgid "Marriage/Relationship Editor"
 msgstr "Редактор браков/отношений"
 
-#: Marriage.py:153 Marriage.py:811 Marriage.py:834 Utils.py:130
+#: Marriage.py:154 Marriage.py:813 Marriage.py:836 Utils.py:130
 msgid "%s and %s"
 msgstr "%s и %s"
 
-#: Marriage.py:361
+#: Marriage.py:363
 msgid "New Relationship"
 msgstr "Новое Отношение"
 
-#: Marriage.py:628 Marriage.py:641
+#: Marriage.py:630 Marriage.py:643
 msgid "Save Changes?"
 msgstr "Сохранить изменения?"
 
-#: Marriage.py:662
+#: Marriage.py:664
 msgid ""
 "The GRAMPS ID that you chose for this relationship is already being used."
 msgstr "Выбранный GRAMPS ID уже используется."
 
-#: Marriage.py:718
+#: Marriage.py:720
 msgid "Edit Marriage"
 msgstr "Правка Брака"
 
 #: MediaView.py:57 MediaView.py:174 SelectObject.py:85 SourceView.py:51
-#: SourceView.py:116 Sources.py:108 Sources.py:242
+#: SourceView.py:116 Sources.py:109 Sources.py:243
 #: plugins/AncestorChart2.py:482 plugins/BookReport.py:789
 #: plugins/PatchNames.py:230 plugins/ScratchPad.py:354
 #: plugins/ScratchPad.py:542 plugins/ScratchPad.py:548
@@ -1900,16 +1900,16 @@ msgid ""
 "Spouses cannot be merged. To merge these people, you must first break the "
 "relationship between them."
 msgstr ""
-"Слияние супругов не разрешено. Для слияния этих людей Вы должны "
-"сначала удалить между ними связь."
+"Слияние супругов не разрешено. Для слияния этих людей Вы должны сначала "
+"удалить между ними связь."
 
 #: MergePeople.py:93 MergePeople.py:282
 msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them."
 msgstr ""
-"Слияние детей и рожителей не разрешено. Для слияния этих людей "
-"Вы должны сначала удалить между ними связь."
+"Слияние детей и рожителей не разрешено. Для слияния этих людей Вы должны "
+"сначала удалить между ними связь."
 
 #: MergePeople.py:131 plugins/IndivComplete.py:232
 msgid "Alternate Names"
@@ -1962,27 +1962,27 @@ msgstr "Адреса"
 msgid "Merge People"
 msgstr "Слияние Людей"
 
-#: NameEdit.py:124 NameEdit.py:128 NameEdit.py:227
+#: NameEdit.py:127 NameEdit.py:131 NameEdit.py:230
 msgid "Name Editor"
 msgstr "Редактор Имён"
 
-#: NameEdit.py:126
+#: NameEdit.py:129
 msgid "Name Editor for %s"
 msgstr "Редактор Имён для %s"
 
-#: NameEdit.py:216 NameEdit.py:220
+#: NameEdit.py:219 NameEdit.py:223
 msgid "New Name"
 msgstr "Новое Имя"
 
-#: NameEdit.py:221
+#: NameEdit.py:224
 msgid "Alternate Name"
 msgstr "Альтернативное Имя"
 
-#: NameEdit.py:295
+#: NameEdit.py:298
 msgid "Group all people with the same name?"
 msgstr "Групировать все лица с такой же фамилией?"
 
-#: NameEdit.py:296
+#: NameEdit.py:299
 msgid ""
 "You have the choice of grouping all people with the name of %(surname)s with "
 "the name of %(group_name)s, or just mapping this particular name."
@@ -1990,15 +1990,15 @@ msgstr ""
 "Вы можете сгруппировать всех лиц с фамилией %(surname)s в группу %"
 "(group_name)s, или сделать это только для данного имени данного лица."
 
-#: NameEdit.py:300
+#: NameEdit.py:303
 msgid "Group all"
 msgstr "Группировать все"
 
-#: NameEdit.py:301
+#: NameEdit.py:304
 msgid "Group this name only"
 msgstr "Группировать только это имя"
 
-#: NoteEdit.py:71
+#: NoteEdit.py:72
 msgid "Note Editor"
 msgstr "Редактор Записок"
 
@@ -3618,19 +3618,19 @@ msgstr ""
 "быть выбран нажатием и удержанием клавиши Control в момент щелчка по "
 "названию желаемого источника."
 
-#: Sources.py:85
+#: Sources.py:86
 msgid "Source Reference Selection"
 msgstr "Выбор ссылки на источник"
 
-#: Sources.py:145 Sources.py:454
+#: Sources.py:146 Sources.py:461
 msgid "Source Reference"
 msgstr "Ссылка на Источник"
 
-#: Sources.py:151
+#: Sources.py:152
 msgid "Reference Selector"
 msgstr "Выбор Ссылки"
 
-#: Sources.py:378 Sources.py:460
+#: Sources.py:379 Sources.py:467
 msgid "Source Information"
 msgstr "Информация об источнике"
 
@@ -4497,11 +4497,10 @@ msgid ""
 "family is related (by blood, not marriage) to you. Precise relationships as "
 "well as the common ancestors are reported."
 msgstr ""
-"<b>Определение отношений</b>: Этот инструмент из категории "
-"<b>Инструменты > Утилиты</b> позволяет проверить, состоит ли "
-"данное лицо в родственных отношениях с Вами (по крови, не по "
-"женитьбе). Результатом является точное название отношения и "
-"имя общего предка."
+"<b>Определение отношений</b>: Этот инструмент из категории <b>Инструменты > "
+"Утилиты</b> позволяет проверить, состоит ли данное лицо в родственных "
+"отношениях с Вами (по крови, не по женитьбе). Результатом является точное "
+"название отношения и имя общего предка."
 
 #: data/tips.xml:122
 msgid ""
@@ -4529,9 +4528,10 @@ msgid ""
 "<b>GRAMPS Reports</b>: GRAMPS offers a wide variety of reports. The Text "
 "Reports are particularly useful if you want to send the results of your "
 "family tree to members of the family via email."
-msgstr "<b>Отчёты GRAMPS</b>: GRAMPS предлагает широкий выбор отчётов. "
-"Текстовые Отчёты особенно удобны для пересылки результатов членам "
-"Вашей семьи по электронной почте."
+msgstr ""
+"<b>Отчёты GRAMPS</b>: GRAMPS предлагает широкий выбор отчётов. Текстовые "
+"Отчёты особенно удобны для пересылки результатов членам Вашей семьи по "
+"электронной почте."
 
 #: data/tips.xml:142
 msgid ""
@@ -9074,7 +9074,8 @@ msgstr "&copy; %(year)d %(person)s"
 msgid ""
 "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
 msgstr ""
-"Генерировано с помощью <a·href=\"http://gramps-project.org\">GRAMPS</a> %(date)s"
+"Генерировано с помощью <a·href=\"http://gramps-project.org\">GRAMPS</a> %"
+"(date)s"
 
 #: plugins/NavWebPage.py:284 plugins/NavWebPage.py:882
 #: plugins/NavWebPage.py:884
@@ -9126,7 +9127,6 @@ msgid ""
 "by their last names. Selecting the person's name will take you to that "
 "person's individual page."
 msgstr ""
-""
 
 #: plugins/NavWebPage.py:510 plugins/NavWebPage.py:827
 msgid "Surname"
@@ -9138,16 +9138,16 @@ msgid ""
 "surname of %s. Selecting the person's name will take you to that person's "
 "individual page."
 msgstr ""
-"Эта страница содержит список всех лиц из базы данных с фамилией "
-"%s. Выбор имени ведёт к индивидуальной странице данного лица."
+"Эта страница содержит список всех лиц из базы данных с фамилией %s. Выбор "
+"имени ведёт к индивидуальной странице данного лица."
 
 #: plugins/NavWebPage.py:602
 msgid ""
 "This page contains an index of all the places in the database, sorted by "
 "their title. Clicking on a place's title will take you to that place's page."
 msgstr ""
-"Эта страница содержит список всех мест из базы данных, отсортированный"
-"по названию. Выбор названия ведёт к странице данного места."
+"Эта страница содержит список всех мест из базы данных, отсортированныйпо "
+"названию. Выбор названия ведёт к странице данного места."
 
 #: plugins/NavWebPage.py:613 plugins/NavWebPage.py:825
 msgid "Letter"
@@ -9205,9 +9205,8 @@ msgid ""
 "their title. Clicking on a source's title will take you to that source's "
 "page."
 msgstr ""
-"Эта страница содержит список всех источников из базы данных, "
-"отсортированный по названию. Выбор линка ведёт к странице "
-"данного источника."
+"Эта страница содержит список всех источников из базы данных, отсортированный "
+"по названию. Выбор линка ведёт к странице данного источника."
 
 #: plugins/NavWebPage.py:1028
 msgid "Publication information"
@@ -9219,10 +9218,8 @@ msgid ""
 "by their title. Clicking on the title will take you to that media object's "
 "page"
 msgstr ""
-""
-"Эта страница содержит список всех документов из базы данных, "
-"отсортированный по названию. Выбор названия ведёт к странице "
-"данного документа"
+"Эта страница содержит список всех документов из базы данных, отсортированный "
+"по названию. Выбор названия ведёт к странице данного документа"
 
 #: plugins/NavWebPage.py:1236
 msgid "Source References"
@@ -9381,11 +9378,15 @@ msgstr "Creative Commons - С указанием авторства, неком�
 
 #: plugins/NavWebPage.py:2042
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
-msgstr "Creative Commons - С указанием авторства, некоммерческое использованиеб без изменений"
+msgstr ""
+"Creative Commons - С указанием авторства, некоммерческое использованиеб без "
+"изменений"
 
 #: plugins/NavWebPage.py:2043
 msgid "Creative Commons - By attribution, Non-commerical, Share-alike"
-msgstr "Creative Commons - С указанием авторства, некоммерческое использование, Share-alike"
+msgstr ""
+"Creative Commons - С указанием авторства, некоммерческое использование, "
+"Share-alike"
 
 #: plugins/NavWebPage.py:2044
 msgid "No copyright notice"
@@ -9414,6 +9415,14 @@ msgstr "Документ/Записка для Домашней Страницы
 #: plugins/NavWebPage.py:2107
 msgid "Introduction Media/Note ID"
 msgstr "Документ/Записка для Вводной Страницы"
+
+#: plugins/NavWebPage.py:2110
+msgid "HTML user header"
+msgstr "Дополнительный заголовок (HTML)"
+
+#: plugins/NavWebPage.py:2111
+msgid "HTML user footer"
+msgstr "Дополнительный подвал (HTML)"
 
 #: plugins/NavWebPage.py:2115 plugins/WebPage.py:1499
 msgid "Privacy"
@@ -10599,9 +10608,9 @@ msgid ""
 "report is considered to be deprecated. Please migrate to the new Narrative "
 "Web Page generator."
 msgstr ""
-"Создаёт веб (HTML) страницы для людей или групп людей. Этот "
-"отчёт не рекумендуется к использованию. Пожалуйста, пользуйтесь "
-"новым генератором Повествовательного Веб Отчётов."
+"Создаёт веб (HTML) страницы для людей или групп людей. Этот отчёт не "
+"рекумендуется к использованию. Пожалуйста, пользуйтесь новым генератором "
+"Повествовательного Веб Отчётов."
 
 #: plugins/WriteCD.py:60
 msgid "Export to CD"
