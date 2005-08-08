@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: German Translation\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Mon Aug  8 10:47:43 2005\n"
-"PO-Revision-Date: 2005-08-08 18:42+0200\n"
+"PO-Revision-Date: 2005-08-08 21:47+0200\n"
 "Last-Translator: Anton Huber <anton_huber@gmx.de>\n"
 "Language-Team: German <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -9591,7 +9591,7 @@ msgstr "Standard Copyright"
 
 #: plugins/NavWebPage.py:2038
 msgid "Creative Commons - By attribution"
-msgstr "Creative Commons - durch Angabe"
+msgstr "Creative·Commons·-·By·attribution"
 
 #: plugins/NavWebPage.py:2039
 msgid "Creative Commons - By attribution, No derivations"
@@ -9599,20 +9599,19 @@ msgstr "Creative·Commons·-·Durch Angabe, keine genaue Herkunftsangabe"
 
 #: plugins/NavWebPage.py:2040
 msgid "Creative Commons - By attribution, Share-alike"
-msgstr "Creative Commons - durch Angabe, verbreiten erlaubt"
+msgstr "Creative·Commons - By·attribution,·Share-alike"
 
 #: plugins/NavWebPage.py:2041
 msgid "Creative Commons - By attribution, Non-commercial"
-msgstr "Creative Commons - Durch Angabe, nicht kommerziell"
+msgstr "Creative·Commons·-·By·attribution,·Non-commercial"
 
 #: plugins/NavWebPage.py:2042
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
-msgstr ""
-"Creative Commons - Durch Angabe, nicht kommerziell, keine Herkunftsangabe"
+msgstr "Creative·Commons·-·By·attribution,·Non-commercial,·No·derivations"
 
 #: plugins/NavWebPage.py:2043
 msgid "Creative Commons - By attribution, Non-commerical, Share-alike"
-msgstr "Creative Commons - Durch Angabe, nicht kommerziell, Verbreiten erlaubt"
+msgstr "Creative·Commons·-·By·attribution,·Non-commerical,·Share-alike"
 
 #: plugins/NavWebPage.py:2044
 msgid "No copyright notice"
