@@ -137,9 +137,9 @@ class ExistingDbPrompter:
     
     """
     
-    def __init__(self,parent,parent_window=None):
-        self.parent = parent
-        self.parent_window = parent_window
+    def __init__(self,state):
+        self.state = state
+        self.parent_window = state.window
 
     def chooser(self):
         """
@@ -197,7 +197,7 @@ class ExistingDbPrompter:
                                 const.app_gedcom]:
     
                 try:
-                    return open_native(self.parent,filename,filetype)
+                    return self.open_native(self.state,filename,filetype)
                 except db.DBInvalidArgError, msg:
                     QuestionDialog.ErrorDialog(
                         _("Could not open file: %s") % filename, msg[1])
@@ -221,8 +221,8 @@ class ExistingDbPrompter:
                         self.parent_window)
                     prompter = NewNativeDbPrompter(self.parent,self.parent_window)
                     if prompter.chooser():
-                        importData(self.parent.db,filename)
-                        self.parent.import_tool_callback()
+                        importData(self.state.db,filename)
+                        #self.parent.import_tool_callback()
                         return True
                     else:
                         return False
@@ -400,7 +400,7 @@ class NewNativeDbPrompter:
                 except:
                     pass
                 self.parent.db = GrampsBSDDB.GrampsBSDDB()
-                self.parent.read_file(filename)
+                self.read_file(filename)
                 # Add the file to the recent items
                 RecentFiles.recent_files(filename,const.app_gramps)
                 self.parent.build_recent_menu()
@@ -497,7 +497,7 @@ class NewSaveasDbPrompter:
                     WriteGedcom.exportData(self.parent.db,filename,None,None)
                     self.parent.db.close()
                     self.parent.db = GrampsGEDDB.GrampsGEDDB()
-                self.parent.read_file(filename)
+                self.read_file(filename)
                 # Add the file to the recent items
                 RecentFiles.recent_files(filename,const.app_gramps)
                 self.parent.build_recent_menu()
@@ -508,47 +508,104 @@ class NewSaveasDbPrompter:
         choose.destroy()
         return False
 
-#-------------------------------------------------------------------------
-#
-# Helper function
-#
-#-------------------------------------------------------------------------
-def open_native(parent,filename,filetype):
-    """
-    Open native database and return the status.
-    """
+    def read_file(self,filename,callback=None):
+        mode = "w"
+        filename = os.path.normpath(os.path.abspath(filename))
+        
+        if os.path.isdir(filename):
+            ErrorDialog(_('Cannot open database'),
+                        _('The selected file is a directory, not '
+                          'a file.\nA GRAMPS database must be a file.'))
+            return 0
+        elif os.path.exists(filename):
+            if not os.access(filename,os.R_OK):
+                ErrorDialog(_('Cannot open database'),
+                            _('You do not have read access to the selected '
+                              'file.'))
+                return 0
+            elif not os.access(filename,os.W_OK):
+                mode = "r"
+                WarningDialog(_('Read only database'),
+                              _('You do not have write access to the selected '
+                                'file.'))
 
-    (the_path,the_file) = os.path.split(filename)
-    GrampsKeys.save_last_import_dir(the_path)
+        try:
+            if self.load_database(filename,callback,mode=mode) == 1:
+                if filename[-1] == '/':
+                    filename = filename[:-1]
+                name = os.path.basename(filename)
+                if self.state.db.readonly:
+                    self.state.window.set_title("%s (%s) - GRAMPS" % (name,_('Read Only')))
+                else:
+                    self.state.window.set_title("%s - GRAMPS" % name)
+            else:
+                GrampsKeys.save_last_file("")
+                ErrorDialog(_('Cannot open database'),
+                            _('The database file specified could not be opened.'))
+                return False
+        except ( IOError, OSError, Errors.FileVersionError), msg:
+            ErrorDialog(_('Cannot open database'),str(msg))
+            return False
+        except (db.DBAccessError,db.DBError), msg:
+            ErrorDialog(_('Cannot open database'),
+                        _('%s could not be opened.' % filename) + '\n' + msg[1])
+            return False
+        except Exception:
+            DisplayTrace.DisplayTrace()
+            return False
+        
+        return True
 
-    success = False
-    if filetype == const.app_gramps:
-        parent.db = GrampsBSDDB.GrampsBSDDB()
-        msgxml = gtk.glade.XML(const.gladeFile, "load_message","gramps")
-        msg_top = msgxml.get_widget('load_message')
-        msg_label = msgxml.get_widget('message')
+    def load_database(self,name,callback=None,mode="w"):
 
-        def update_msg(msg):
-            msg_label.set_text("<i>%s</i>" % msg)
-            msg_label.set_use_markup(True)
-            while gtk.events_pending():
-                gtk.main_iteration()
+        filename = name
 
-        success = parent.read_file(filename,update_msg)
-        msg_top.destroy()
-    elif filetype == const.app_gramps_xml:
-        parent.db = GrampsXMLDB.GrampsXMLDB()
-        success = parent.read_file(filename)
-    elif filetype == const.app_gedcom:
-        parent.db = GrampsGEDDB.GrampsGEDDB()
-        success = parent.read_file(filename)
+        if self.state.db.load(filename,callback,mode) == 0:
+            return 0
 
-    if success:
+        #val = self.post_load(name,callback)
+        return val
+
+
+    def open_native(self,filename,filetype):
+        """
+        Open native database and return the status.
+        """
+        
+        (the_path,the_file) = os.path.split(filename)
+        GrampsKeys.save_last_import_dir(the_path)
+        
+        success = False
+        if filetype == const.app_gramps:
+            state.db = GrampsBSDDB.GrampsBSDDB()
+            msgxml = gtk.glade.XML(const.gladeFile, "load_message","gramps")
+            msg_top = msgxml.get_widget('load_message')
+            msg_label = msgxml.get_widget('message')
+            
+            def update_msg(msg):
+                msg_label.set_text("<i>%s</i>" % msg)
+                msg_label.set_use_markup(True)
+                while gtk.events_pending():
+                    gtk.main_iteration()
+
+            success = self.read_file(filename,update_msg)
+            msg_top.destroy()
+        elif filetype == const.app_gramps_xml:
+            state.db = GrampsXMLDB.GrampsXMLDB()
+            success = self.read_file(filename)
+        elif filetype == const.app_gedcom:
+            state.db = GrampsGEDDB.GrampsGEDDB()
+            success = self.read_file(filename)
+
+        #if success:
         # Add the file to the recent items
-        RecentFiles.recent_files(filename,filetype)
-        parent.build_recent_menu()
+        #RecentFiles.recent_files(filename,filetype)
+        #parent.build_recent_menu()
 
-    return success
+        return success
+
+
+
 
 #-------------------------------------------------------------------------
 #

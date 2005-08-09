@@ -1,3 +1,10 @@
+2005-08-08  Don Allingham  <don@gramps-project.org>
+	* src/DbState.py: Added new class to keep track of database
+	status
+	* src/PageView.py: base class for pluggable views
+	* src/PersonView.py: new version of PeopleView
+	* src/ViewManager.py: view and database management class
+
 2005-08-05  Don Allingham  <don@gramps-project.org>
 	* various: remove set_date/get_date removal to be replaced by
 	DateHandler calls

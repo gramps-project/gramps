@@ -796,7 +796,8 @@ class EditPerson:
         return changed
 
     def check_lds(self):
-        self.lds_baptism.set_date(unicode(self.ldsbap_date.get_text()))
+        date_str = unicode(self.ldsbap_date.get_text())
+        DateHandler.set_date(self.lds_baptism,date_str)
         temple = _temple_names[self.ldsbap_temple.get_active()]
         if const.lds_temple_codes.has_key(temple):
             self.lds_baptism.set_temple(const.lds_temple_codes[temple])
@@ -804,7 +805,8 @@ class EditPerson:
             self.lds_baptism.set_temple("")
         self.lds_baptism.set_place_handle(self.get_place(self.ldsbapplace,1))
 
-        self.lds_endowment.set_date(unicode(self.ldsend_date.get_text()))
+        date_str = unicode(self.ldsend_date.get_text())
+        DateHandler.set_date(self.lds_endowment,date_str)
         temple = _temple_names[self.ldsend_temple.get_active()]
         if const.lds_temple_codes.has_key(temple):
             self.lds_endowment.set_temple(const.lds_temple_codes[temple])
@@ -812,7 +814,8 @@ class EditPerson:
             self.lds_endowment.set_temple("")
         self.lds_endowment.set_place_handle(self.get_place(self.ldsendowplace,1))
 
-        self.lds_sealing.set_date(unicode(self.ldsseal_date.get_text()))
+        date_str = unicode(self.ldsseal_date.get_text())
+        DateHandler.set_date(self.lds_sealing,date_str)
         temple = _temple_names[self.ldsseal_temple.get_active()]
         if const.lds_temple_codes.has_key(temple):
             self.lds_sealing.set_temple(const.lds_temple_codes[temple])

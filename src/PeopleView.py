@@ -78,6 +78,7 @@ class PeopleView:
         self.parent = parent
 
         self.parent.connect('database-changed',self.change_db)
+        self.parent.connect('active-changed',self.change_db)
 
         all = GenericFilter.GenericFilter()
         all.set_name(_("Entire Database"))
@@ -243,15 +244,15 @@ class PeopleView:
         self.apply_filter()
         self.goto_active_person()
 
-    def goto_active_person(self):
-        if not self.parent.active_person or self.inactive:
+    def goto_active_person(self,obj=None):
+        if not self.state.active or self.inactive:
             return
         self.inactive = True
-        p = self.parent.active_person
+        p = self.state.active
         try:
             path = self.person_model.on_get_path(p.get_handle())
             group_name = p.get_primary_name().get_group_name()
-            top_name = self.parent.db.get_name_group_mapping(group_name)
+            top_name = self.state.db.get_name_group_mapping(group_name)
             top_path = self.person_model.on_get_path(top_name)
             self.person_tree.expand_row(top_path,0)
 
@@ -264,7 +265,7 @@ class PeopleView:
         except KeyError:
             self.person_selection.unselect_all()
             print "Person not currently available due to filter"
-            self.parent.active_person = p
+            self.state.active = p
         self.inactive = False
 
     def alpha_event(self,*obj):

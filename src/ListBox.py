@@ -384,7 +384,7 @@ class EventListBox(ReorderListBox):
         self.change_list.add(self.data[index])
 
     def set_date(self,index,value):
-        self.data[index][1].set_date(value)
+        DateHandler.set_date(self.data[index][1],value)
         self.change_list.add(self.data[index])
 
     def add(self,obj):
@@ -536,7 +536,7 @@ class AddressListBox(ReorderListBox):
                                 button_list, titles, DdTargets.ADDRESS)
 
     def set_date(self,index,value):
-        self.data[index].set_date(value)
+        DateHandler.set_date(self.data[index],value)
 
     def set_addr(self,index,value):
         self.data[index].set_street(value)

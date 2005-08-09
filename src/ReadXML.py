@@ -1264,9 +1264,9 @@ class GrampsParser:
     def stop_date(self,tag):
         if tag:
             if self.address:
-                self.address.set_date(tag)
+                DateHandler.set_date(self.address,tag)
             else:
-                self.event.set_date(tag)
+                DateHandler.set_date(self.event,tag)
 
     def stop_first(self,tag):
         self.name.set_first_name(tag)
