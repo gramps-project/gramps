@@ -684,7 +684,7 @@ class Marriage:
         if not lds_ord:
             if date or temple or place or self.seal_stat:
                 lds_ord = RelLib.LdsOrd()
-                lds_ord.set_date(date)
+                DateHandler.set_date(lds_ord,date)
                 temple_code = const.lds_temple_codes.get(temple,"")
                 lds_ord.set_temple(temple_code)
                 lds_ord.set_status(self.seal_stat)
