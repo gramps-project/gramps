@@ -41,6 +41,7 @@ import gtk.gdk
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
+import PageView
 import const
 import GrampsCfg
 import Relationship
@@ -70,48 +71,40 @@ _CREM = _('crem.')
 # PedigreeView
 #
 #-------------------------------------------------------------------------
-class PedigreeView:
-    def __init__(self,parent,canvas,update,status_bar,edit_person):
-        self.parent = parent
+class PedView(PageView.PageView):
 
-        self.relcalc = Relationship.RelationshipCalculator(self.parent.db)
-        self.parent.connect('database-changed',self.change_db)
-        self.parent.connect('active-changed',self.active_changed)
+    def __init__(self,state):
+        PageView.PageView.__init__(self,'Pedigree View',state)
+        self.inactive = False
+        state.connect('database-changed',self.change_db)
+        state.connect('active-changed',self.goto_active_person)
+        self.force_size = 0 # Automatic resize
 
-        # FIXME: Hack to avoid changing the glade file
-        # Replace canvas by notebook
-        self.parent_container = canvas.get_parent()
-        canvas.destroy()
+    def build_widget(self):
         self.notebook = gtk.Notebook()
+        self.notebook.connect("button-press-event", self.on_show_option_menu_cb)
         self.notebook.set_show_border(False)
         self.notebook.set_show_tabs(False)
-        self.parent_container.add_with_viewport(self.notebook)
-        # ###
             
         self.table_2 = gtk.Table(1,1,False)
+        self.table_2.connect("button-press-event", self.on_show_option_menu_cb)
         self.add_table_to_notebook( self.table_2)
 
         self.table_3 = gtk.Table(1,1,False)
+        self.table_3.connect("button-press-event", self.on_show_option_menu_cb)
         self.add_table_to_notebook( self.table_3)
 
         self.table_4 = gtk.Table(1,1,False)
+        self.table_4.connect("button-press-event", self.on_show_option_menu_cb)
         self.add_table_to_notebook( self.table_4)
 
         self.table_5 = gtk.Table(1,1,False)
+        self.table_5.connect("button-press-event", self.on_show_option_menu_cb)
         self.add_table_to_notebook( self.table_5)
 
-        self.parent_container.connect("size-allocate", self.size_request_cb)
+        #self.parent_container.connect("size-allocate", self.size_request_cb)
 
-        self.notebook.show_all()
-
-        self.update = update
-        self.sb = status_bar
-        self.edit_person = edit_person
-    
-        self.change_db(self.parent.db)
-        self.distance = self.relcalc.get_relationship_distance
-        
-        self.force_size = 0 # Automatic resize
+        return self.notebook
 
     def add_table_to_notebook( self, table):
         frame = gtk.ScrolledWindow(None,None)
@@ -123,6 +116,34 @@ class PedigreeView:
             # for PyGtk < 2.4
             self.notebook.append_page(frame,gtk.Label(""))
 
+    def define_actions(self):
+        #self.add_action('Add',    gtk.STOCK_ADD,       "_Add",     callback=self.add)
+        #self.add_action('Edit',   gtk.STOCK_EDIT,      "_Edit",    callback=self.edit)
+        #self.add_action('Remove', gtk.STOCK_REMOVE,    "_Remove",  callback=self.remove)
+        #self.add_action('Forward',gtk.STOCK_GO_FORWARD,"_Forward", callback=self.fwd_clicked)
+        #self.add_action('Back',   gtk.STOCK_GO_BACK,   "_Back",    callback=self.back_clicked)
+        self.add_action('HomePerson', gtk.STOCK_HOME,  "_Home",    callback=self.home)
+        #self.add_toggle_action('Filter',  None,        '_Filter',  callback=self.filter_toggle)
+
+    def ui_definition(self):
+        return '''<ui>
+          <menubar name="MenuBar">
+            <menu action="GoMenu">
+              <placeholder name="CommonGo">
+                <menuitem action="HomePerson"/>
+              </placeholder>
+            </menu>
+          </menubar>
+          <toolbar name="ToolBar">
+            <placeholder name="CommonNavigation">
+              <toolitem action="HomePerson"/>
+            </placeholder>
+          </toolbar>
+        </ui>'''
+
+    def get_stock(self):
+        return 'gramps-pedigree'
+
     def change_db(self,db):
         # Reconnect signals
         self.db = db
@@ -130,7 +151,6 @@ class PedigreeView:
         db.connect('person-update', self.person_updated_cb)
         db.connect('person-delete', self.person_updated_cb)
         db.connect('person-rebuild', self.person_rebuild)
-        self.relcalc.set_db(db)
         self.active_person = None
 
     def person_updated_cb(self,handle_list):
@@ -139,7 +159,8 @@ class PedigreeView:
     def person_rebuild(self):
         self.rebuild_trees(self.active_person)
 
-    def active_changed(self,handle):
+    def goto_active_person(self,handle):
+        print "PedView.goto_active_person"
         if handle:
             self.active_person = self.db.get_person_from_handle(handle)
             self.rebuild_trees(self.active_person)
@@ -147,7 +168,7 @@ class PedigreeView:
             self.rebuild_trees(None)
     
     def request_resize(self):
-        self.size_request_cb(self.parent_container,None,None)
+        self.size_request_cb(self.notebook.parent,None,None)
         
     def size_request_cb(self, widget, event, data=None):
         if self.force_size == 0:
@@ -227,6 +248,7 @@ class PedigreeView:
         gobject.idle_add(self.request_resize)
 
     def rebuild( self, table_widget, positions, active_person):
+        print "PedView.rebuild"
         # Build ancestor tree
         lst = [None]*31
         self.find_tree(self.active_person,0,1,lst)
@@ -354,6 +376,12 @@ class PedigreeView:
         else:
             area.window.draw_line(gc, alloc.width, alloc.height/2, alloc.width/2, alloc.height)
     
+    def home(self,obj):
+        print "PedView.home"
+        defperson = self.state.db.get_default_person()
+        if defperson:
+            self.state.change_active_person(defperson)
+
     def edit_person_cb(self,obj):
         person_handle = obj.get_data(_PERSON)
         person = self.db.get_person_from_handle(person_handle)
@@ -362,6 +390,12 @@ class PedigreeView:
             return True
         return 0
 
+    def on_show_option_menu_cb(self,obj,data=None):
+        myMenu = gtk.Menu()
+        self.add_settings_to_menu(myMenu)
+        myMenu.popup(None,None,None,0,0)
+        return(True);
+    
     def on_show_child_menu(self,obj):
         """User clicked button to move to child of active person"""
 
@@ -403,14 +437,14 @@ class PedigreeView:
 
         person_handle = obj.get_data(_PERSON)
         if person_handle:
-            self.parent.emit("active-changed", (person_handle,))
-            return 1
-        return 0
+            self.state.change_active_handle(person_handle)
+            return True
+        return False
     
     def change_force_size_cb(self,event,data):
         if data in [0,2,3,4,5]:
             self.force_size = data
-            self.size_request_cb(self.parent_container,None) # switch to matching size
+            self.size_request_cb(self.notebook.parent,None) # switch to matching size
     
     def find_tree(self,person,index,depth,lst,val=0):
         """Recursively build a list of ancestors"""
@@ -446,14 +480,14 @@ class PedigreeView:
         to the context menu. Used by both build_nav_menu() and 
         build_full_nav_menu() methods. 
         """
-        back_sensitivity = self.parent.hindex > 0 
-        fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
+        #back_sensitivity = self.parent.hindex > 0 
+        #fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
         entries = [
-            (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
-            (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
+            #(gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
+            #(gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
             #FIXME: revert to stock item when German gtk translation is fixed
             #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
-            (_("Home"),self.parent.on_home_clicked,1),
+            (_("Home"),self.home,1),
             (None,None,0),
             #(_("Set anchor"),self.on_anchor_set,1),
             #(_("Remove anchor"),self.on_anchor_removed,1),
@@ -813,10 +847,10 @@ def build_detail_string(db,person):
     else:
         for event_ref in person.get_event_ref_list():
             event = db.get_event_from_handle(event_ref.ref)
-            if event and event.get_name() == "Baptism":
+            if event and event.get_type()[0] == RelLib.Event.BAPTISM:
                 detail_text += format_event(db, _BAPT, event)
                 break
-            if event and event.get_name() == "Christening":
+            if event and event.get_type()[0] == RelLib.Event.CHRISTEN:
                 detail_text += format_event(db, _CHRI, event)
                 break
 
@@ -827,10 +861,10 @@ def build_detail_string(db,person):
     else:
         for event_ref in person.get_event_ref_list():
             event = db.get_event_from_handle(event_ref.ref)
-            if event and event.get_name() == "Burial":
+            if event and event.get_type()[0] == RelLib.Event.BURIAL:
                 detail_text += format_event(db, _BURI, event)
                 break
-            if event and event.get_name() == "Cremation":
+            if event and event.get_type()[0] == RelLib.Event.CREMATION:
                 detail_text += format_event(db, _CREM, event)
                 break
 

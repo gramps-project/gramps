@@ -23,6 +23,7 @@
 import gtk
 import ViewManager
 import PersonView
+import PedView
 import ArgHandler
 import DisplayTrace
 import GrampsKeys
@@ -30,6 +31,7 @@ import GrampsCfg
 import const
 import Errors
 import PluginMgr
+import TipOfDay
 
 from GrampsMime import mime_type_is_defined
 from QuestionDialog import ErrorDialog
@@ -37,13 +39,14 @@ from QuestionDialog import ErrorDialog
 import gnome
 
 
-iconpaths = ["/usr/share/gramps","~/devel/srcx"]
+iconpaths = [".","/usr/share/gramps","~/devel/srcx"]
 
 def register_stock_icons ():
     import os
     items = {
         'people48.png': ('gramps-person', 'Person', gtk.gdk.CONTROL_MASK, 0, ''),
         'family48.png': ('gramps-family', 'Family', gtk.gdk.CONTROL_MASK, 0, ''),
+        'ped24.png'   : ('gramps-pedigree', 'Pedigree', gtk.gdk.CONTROL_MASK, 0, ''),
         'repos.png'   : ('gramps-repository', 'Repositories', gtk.gdk.CONTROL_MASK, 0, ''),
         'sources.png' : ('gramps-source', 'Sources', gtk.gdk.CONTROL_MASK, 0, ''),
         'events.png'  : ('gramps-event', 'Events', gtk.gdk.CONTROL_MASK, 0, ''),
@@ -182,6 +185,7 @@ class Gramps:
         register_stock_icons()
         a = ViewManager.ViewManager()
         a.register_view(PersonView.PersonView)
+        a.register_view(PedView.PedView)
         a.init_interface()
         
         if GrampsKeys.get_usetips():
@@ -249,8 +253,3 @@ class Gramps:
             self.toolbar.unset_style()
         else:
             self.toolbar.set_style(the_style)
-
-
-
-    
-

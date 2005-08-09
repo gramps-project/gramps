@@ -34,7 +34,10 @@ class PageView:
         self.ui = ""
         
     def get_stock(self):
-        return gtk.STOCK_MEDIA_MISSING
+        try:
+            return gtk.STOCK_MEDIA_MISSING
+        except AttributeError:
+            return gtk.STOCK_MISSING_IMAGE
         
     def get_ui(self):
         return self.ui

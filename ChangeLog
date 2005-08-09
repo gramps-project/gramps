@@ -1,3 +1,11 @@
+2005-08-09  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DbState.py: change_active_person now emits the signal,
+ 	change_active_handle is only a wrapper for that.
+	* src/PageView.py (get_stock): Work around not existing definition
+	of gtk.STOCK_MEDIA_MISSING by using gtk.STOCK_MISSING_IMAGE.
+	* src/PedView.py: Start using new PageView logic. Unfinished.
+	* src/gramps_main.py: Enable PedView
+
 2005-08-08  Don Allingham  <don@gramps-project.org>
 	* src/DbState.py: Added new class to keep track of database
 	status
