@@ -41,12 +41,10 @@ import gtk.gdk
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import PageView
-import const
-import GrampsCfg
-import Relationship
-import NameDisplay
 import RelLib
+import PageView
+import EditPerson
+import NameDisplay
 import Utils
 import DateHandler
 
@@ -55,8 +53,6 @@ import DateHandler
 # Constants
 #
 #-------------------------------------------------------------------------
-_PAD       = 3
-_CANVASPAD = 3
 _PERSON    = "p"
 _BORN = _('b.')
 _DIED = _('d.')
@@ -83,6 +79,7 @@ class PedView(PageView.PageView):
     def build_widget(self):
         self.notebook = gtk.Notebook()
         self.notebook.connect("button-press-event", self.on_show_option_menu_cb)
+        self.bootstrap_handler = self.notebook.connect("expose-event", self.init_parent_signals_cb)
         self.notebook.set_show_border(False)
         self.notebook.set_show_tabs(False)
             
@@ -102,10 +99,14 @@ class PedView(PageView.PageView):
         self.table_5.connect("button-press-event", self.on_show_option_menu_cb)
         self.add_table_to_notebook( self.table_5)
 
-        #self.parent_container.connect("size-allocate", self.size_request_cb)
-
         return self.notebook
 
+    def init_parent_signals_cb(self, widget, event):
+        print "PedView.init_parent_signals_cb"
+        self.notebook.disconnect(self.bootstrap_handler)
+        self.notebook.parent.connect("size-allocate", self.size_request_cb)
+        self.size_request_cb(widget.parent,event)
+        
     def add_table_to_notebook( self, table):
         frame = gtk.ScrolledWindow(None,None)
         frame.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
@@ -171,6 +172,7 @@ class PedView(PageView.PageView):
         self.size_request_cb(self.notebook.parent,None,None)
         
     def size_request_cb(self, widget, event, data=None):
+        print "PedView.size_request_cb"
         if self.force_size == 0:
             v = widget.get_allocation()
             page_list = range(0,self.notebook.get_n_pages())
@@ -386,9 +388,9 @@ class PedView(PageView.PageView):
         person_handle = obj.get_data(_PERSON)
         person = self.db.get_person_from_handle(person_handle)
         if person:
-            self.edit_person(person)
+            EditPerson.EditPerson(self.state, person, self.state.db, None)
             return True
-        return 0
+        return False
 
     def on_show_option_menu_cb(self,obj,data=None):
         myMenu = gtk.Menu()
