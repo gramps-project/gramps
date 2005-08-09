@@ -96,9 +96,13 @@ class DbState(GrampsDBCallback.GrampsDBCallback):
 
     def change_active_person(self,person):
         self.active = person
+        try:
+            self.emit('active-changed',(person.handle,))
+        except:
+            self.emit('active-changed',(None,))
 
     def change_active_handle(self,handle):
-        self.emit('active-changed',(handle,))
+        self.change_active_person(self.db.get_person_from_handle(handle))
 
     def get_active_person(self):
         return self.active
