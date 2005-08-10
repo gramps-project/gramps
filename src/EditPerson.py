@@ -88,9 +88,10 @@ class EditPerson:
 
     use_patronymic = locale.getlocale(locale.LC_TIME)[0] in _use_patronymic
     
-    def __init__(self,parent,person,db,callback=None):
+    def __init__(self,state,person,callback=None):
         """Creates an edit window.  Associates a person with the window."""
 
+        self.state = state
         self.retval = const.UPDATE_PERSON
         
         self.dp = DateHandler.parser
@@ -100,17 +101,16 @@ class EditPerson:
         # done to ensure that the person object is not stale, as it could
         # have been changed by something external (merge, tool, etc).
         if self.orig_handle:
-            person = db.get_person_from_handle(self.orig_handle)
+            person = self.state.db.get_person_from_handle(self.orig_handle)
         self.person = person
         self.orig_surname = self.person.get_primary_name().get_group_name()
-        self.parent = parent
-        if self.parent.child_windows.has_key(self.orig_handle):
-            self.parent.child_windows[self.orig_handle].present(None)
-            return
-        self.db = db
+        #if self.parent_window.child_windows.has_key(self.orig_handle):
+        #    self.parent_window.child_windows[self.orig_handle].present(None)
+        #    return
+        self.db = self.state.db
         self.callback = callback
         self.child_windows = {}
-        self.path = db.get_save_path()
+        self.path = self.db.get_save_path()
         self.not_loaded = True
         self.lds_not_loaded = True
         self.lists_changed = False
@@ -121,8 +121,8 @@ class EditPerson:
                                     person.get_gender () ==
                                     RelLib.Person.UNKNOWN)
 
-        for key in db.get_place_handles():
-            p = db.get_place_from_handle(key).get_display_info()
+        for key in self.db.get_place_handles():
+            p = self.db.get_place_from_handle(key).get_display_info()
             self.pdmap[p[0]] = key
 
         mod = not self.db.readonly
@@ -454,14 +454,15 @@ class EditPerson:
         self.window.destroy()
         
     def add_itself_to_winsmenu(self):
-        self.parent.child_windows[self.orig_handle] = self
+        return
+        self.parent_window.child_windows[self.orig_handle] = self
         win_menu_label = self.name_display.display(self.person)
         if not win_menu_label.strip():
             win_menu_label = _("New Person")
         self.win_menu_item = gtk.MenuItem(win_menu_label)
         self.win_menu_item.set_submenu(gtk.Menu())
         self.win_menu_item.show()
-        self.parent.winsmenu.append(self.win_menu_item)
+        self.state.winsmenu.append(self.win_menu_item)
         self.winsmenu = self.win_menu_item.get_submenu()
         self.menu_item = gtk.MenuItem(_('Edit Person'))
         self.menu_item.connect("activate",self.present)
@@ -469,7 +470,8 @@ class EditPerson:
         self.winsmenu.append(self.menu_item)
 
     def remove_itself_from_winsmenu(self):
-        del self.parent.child_windows[self.orig_handle]
+        return 
+        del self.parent_window.child_windows[self.orig_handle]
         self.menu_item.destroy()
         self.winsmenu.destroy()
         self.win_menu_item.destroy()

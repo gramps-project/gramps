@@ -44,7 +44,6 @@ import GrampsDBCallback
 import GrampsKeys
 import NameDisplay
 
-
 class History:
 
     def __init__(self):
@@ -75,14 +74,43 @@ class History:
         for c in range(mhc):
             self.mhistory.remove(del_id)
 
+    def push(self,person_handle):
+        self.prune()
+        if len(self.history) == 0 or person_handle != self.history[-1]:
+            self.history.append(person_handle)
+            self.mhistory.append(person_handle)
+            self.index += 1
+
+    def forward(self,step=1):
+        self.index += step
+        self.mhistory.append(self.history[self.index])
+        return str(self.history[self.index])
+
+    def back(self,step=1):
+        self.index -= step
+        self.mhistory.append(self.history[self.index])
+        return str(self.history[self.index])
+
+    def at_end(self):
+        return self.index+1 == len(self.history)
+
+    def at_front(self):
+        return self.index == 0
+
+    def prune(self):
+        if not self.at_end():
+            self.history = self.history[0:self.index+1]
+
 class DbState(GrampsDBCallback.GrampsDBCallback):
 
     __signals__ = {
         'database-changed' : (GrampsDbBase.GrampsDbBase,),
-        'active-changed' : (str,),
+        'active-changed'   : (str,),
+        'no-database'      :  None,
         }
 
-    def __init__(self,window,status):
+    def __init__(self,window,status,uimanager):
+        self.uimanager = uimanager
         self.window = window
         GrampsDBCallback.GrampsDBCallback.__init__(self)
         self.db     = GrampsDbBase.GrampsDbBase()
@@ -91,15 +119,19 @@ class DbState(GrampsDBCallback.GrampsDBCallback):
         self.status_id = status.get_context_id('GRAMPS')
         self.phistory = History()
 
+    def get_widget(self,path):
+        return self.uimanager.get_widget(path)
+
     def clear_history(self):
         self.phistory.clear()
 
     def change_active_person(self,person):
         self.active = person
-        try:
-            self.emit('active-changed',(person.handle,))
-        except:
-            self.emit('active-changed',(None,))
+        if person:
+            try:
+                self.emit('active-changed',(person.handle,))
+            except:
+                self.emit('active-changed',("",))
 
     def change_active_handle(self,handle):
         self.change_active_person(self.db.get_person_from_handle(handle))
@@ -109,7 +141,11 @@ class DbState(GrampsDBCallback.GrampsDBCallback):
 
     def change_database(self,db):
         self.db = db
-        self.emit('database-changed',(self.db,))        
+        self.emit('database-changed',(self.db,))
+
+    def no_database(self):
+        self.db = GrampsDbBase.GrampsDbBase()
+        self.emit('no-database')
 
     def modify_statusbar(self):
         

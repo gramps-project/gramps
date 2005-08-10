@@ -141,7 +141,6 @@ class ViewManager:
         self.window.set_size_request(775,500)
 
         self.statusbar = gtk.Statusbar()
-        self.state = DbState.DbState(self.window,self.statusbar)
 
         self.RelClass = PluginMgr.relationship_class
 
@@ -161,18 +160,21 @@ class ViewManager:
         hbox.pack_start(self.notebook,True)
         self.menubar = self.uimanager.get_widget('/MenuBar')
         self.toolbar = self.uimanager.get_widget('/ToolBar')
+        print self.uimanager.get_widget('/MenuBar/GoMenu')
         vbox.pack_start(self.menubar, False)
         vbox.pack_start(self.toolbar, False)
         vbox.add(hbox)
         vbox.pack_end(self.statusbar,False)
 
         self.notebook.connect('switch-page',self.change_page)
-
+        self.state = DbState.DbState(self.window,self.statusbar,self.uimanager)
         self.window.show_all()
 
     def init_interface(self):
         self.create_pages()
         self.change_page(None,None,0)
+        self.state.no_database()
+        self.actiongroup.set_visible(False)
 
     def set_color(self,obj):
         style = obj.get_style().copy()
@@ -192,28 +194,34 @@ class ViewManager:
         self.window.add_accel_group(accelgroup)
 
         self.actiongroup = gtk.ActionGroup('MainWindow')
+        self.fileactions = gtk.ActionGroup('FileWindow')
+        self.fileactions.add_actions([
+            ('FileMenu',   None,                 '_File'),
+            ('New',        gtk.STOCK_NEW,        '_New', "<control>n", None, self.on_new_activate),
+            ('Open',       gtk.STOCK_OPEN,       '_Open', "<control>o", None, self.on_open_activate),
+            ('OpenRecent', gtk.STOCK_OPEN,       'Open _Recent'),
+            ('Quit',       gtk.STOCK_QUIT,       '_Quit', '<control>q', None, gtk.main_quit),
+            ('ViewMenu',   None,                 '_View'),
+            ('Preferences',gtk.STOCK_PREFERENCES,'_Preferences'),
+            ('ColumnEdit', gtk.STOCK_PROPERTIES, '_Column Editor'),
+            ('HelpMenu',   None,                 '_Help'),
+            ('About',      gtk.STOCK_ABOUT,      '_About'),
+            ])
+
         self.actiongroup.add_actions([
             # Name         Stock Icon                 Label
-            ('FileMenu',   None,                      '_File'),
-            ('New',        gtk.STOCK_NEW,             '_New', "<control>n", None, self.on_new_activate),
-            ('Open',       gtk.STOCK_OPEN,            '_Open', "<control>o", None, self.on_open_activate),
-            ('OpenRecent', gtk.STOCK_OPEN,            'Open _Recent'),
-            ('Import',     gtk.STOCK_CONVERT,         '_Import'),
             ('SaveAs',     gtk.STOCK_SAVE_AS,         '_Save As'),
             ('Export',     gtk.STOCK_SAVE_AS,         '_Export'),
             ('Abandon',    gtk.STOCK_REVERT_TO_SAVED, '_Abandon changes and quit'),
-            ('Quit',       gtk.STOCK_QUIT,            '_Quit', '<control>q', None, gtk.main_quit),
             ('Undo',       gtk.STOCK_UNDO,            '_Undo', '<control>z' ),
-            ('Preferences',gtk.STOCK_PREFERENCES,     '_Preferences'),
-            ('ColumnEdit', gtk.STOCK_PROPERTIES,      '_Column Editor'),
             ('CmpMerge',   None,                      '_Compare and merge'),
             ('FastMerge',  None,                      '_Fast merge'),
             ('ScratchPad', gtk.STOCK_PASTE,           '_ScratchPad', None, None, self.on_scratchpad),
+            ('Import',     gtk.STOCK_CONVERT,         '_Import', None, None, self.on_import),
             ('Reports',    gtk.STOCK_DND_MULTIPLE,    '_Reports'),
             ('Tools',      gtk.STOCK_EXECUTE,         '_Tools'),
             ('EditMenu',   None,                      '_Edit'),
             ('GoMenu',     None,                      '_Go'),
-            ('ViewMenu',   None,                      '_View'),
             ('BookMenu',   None,                      '_Bookmarks'),
             ('AddBook',    gtk.STOCK_INDEX,           '_Add bookmark', '<control>d'),
             ('EditBook',   None,                      '_Edit bookmarks', '<control>b'),
@@ -221,16 +229,15 @@ class ViewManager:
             ('ReportsMenu',None,                      '_Reports'),
             ('ToolsMenu',  None,                      '_Tools'),
             ('WindowsMenu',None,                      '_Windows'),
-            ('HelpMenu',   None,                      '_Help'),
-            ('About',      gtk.STOCK_ABOUT,           '_About'),
             ])
 
-        self.actiongroup.add_toggle_actions([
+        self.fileactions.add_toggle_actions([
             ('Sidebar', None, '_Sidebar', None, None, self.sidebar_toggle),
             ('Toolbar', None, '_Toolbar', None, None, self.toolbar_toggle),
             ])
 
         merge_id = self.uimanager.add_ui_from_string(uidefault)
+        self.uimanager.insert_action_group(self.fileactions,1)
         self.uimanager.insert_action_group(self.actiongroup,1)
 
     def sidebar_toggle(self,obj):
@@ -287,12 +294,16 @@ class ViewManager:
         if self.merge_id:
             self.uimanager.remove_ui(self.merge_id)
         if self.active_page:
-            self.uimanager.remove_action_group(self.active_page.get_actions())
+            groups = self.active_page.get_actions()
+            for grp in groups:
+                self.uimanager.remove_action_group(grp)
 
         if len(self.pages) > 0:
             self.active_page = self.pages[num]
+            groups = self.active_page.get_actions()
 
-            self.uimanager.insert_action_group(self.active_page.get_actions(),1)
+            for grp in groups:
+                self.uimanager.insert_action_group(grp,1)
             self.merge_id = self.uimanager.add_ui_from_string(self.active_page.ui_definition())
 
     def on_open_activate(self,obj):
@@ -523,6 +534,7 @@ class ViewManager:
         #self.undo_callback(None)
         #self.redo_callback(None)
         #self.goto_active_person()
+        self.actiongroup.set_visible(True)
         return 1
 
     def load_database(self,name,callback=None,mode="w"):
@@ -573,7 +585,89 @@ class ViewManager:
 
     def on_scratchpad(self,obj):
         import ScratchPad
-        ScratchPad.ScratchPadWindow(self.db, self)
+        ScratchPad.ScratchPadWindow(self.state, self)
+
+    def on_import(self,obj):
+        print "import"
+        choose = gtk.FileChooserDialog(_('GRAMPS: Import database'),
+                                           self.state.window,
+                                           gtk.FILE_CHOOSER_ACTION_OPEN,
+                                           (gtk.STOCK_CANCEL,
+                                            gtk.RESPONSE_CANCEL,
+                                            gtk.STOCK_OPEN,
+                                            gtk.RESPONSE_OK))
+        choose.set_local_only(False)
+        # Always add automatic (macth all files) filter
+        add_all_files_filter(choose)
+        add_grdb_filter(choose)
+        add_xml_filter(choose)
+        add_gedcom_filter(choose)
+
+        format_list = [const.app_gramps,const.app_gramps_xml,const.app_gedcom]
+
+        # Add more data type selections if opening existing db
+        for (importData,mime_filter,mime_type,native_format,format_name) in PluginMgr.import_list:
+            if not native_format:
+                choose.add_filter(mime_filter)
+                format_list.append(mime_type)
+                _KNOWN_FORMATS[mime_type] = format_name
+
+        (box,type_selector) = format_maker(format_list)
+        choose.set_extra_widget(box)
+
+        # Suggested folder: try last open file, import, then last export, 
+        # then home.
+        default_dir = GrampsKeys.get_last_import_dir()
+        if len(default_dir)<=1:
+            default_dir = os.path.split(GrampsKeys.get_lastfile())[0] + os.path.sep
+        if len(default_dir)<=1:
+            default_dir = GrampsKeys.get_last_export_dir()
+        if len(default_dir)<=1:
+            default_dir = '~/'
+
+        choose.set_current_folder(default_dir)
+        response = choose.run()
+        if response == gtk.RESPONSE_OK:
+            filename = choose.get_filename()
+            filetype = type_selector.get_value()
+            if filetype == 'auto':
+                try:
+                    filetype = get_mime_type(filename)
+                except RuntimeError,msg:
+                    QuestionDialog.ErrorDialog(
+                        _("Could not open file: %s") % filename,
+                        str(msg))
+                    return False
+                    
+            if filetype == const.app_gramps:
+                choose.destroy()
+                ReadGrdb.importData(self.state.db,filename)
+                self.parent.import_tool_callback()
+                return True
+            elif filetype == const.app_gramps_xml:
+                choose.destroy()
+                import ReadXML
+                ReadXML.importData(self.state.db,filename)
+                return True
+            elif filetype == const.app_gedcom:
+                choose.destroy()
+                import ReadGedcom
+                ReadGedcom.importData(self.state.db,filename)
+                return True
+
+            (the_path,the_file) = os.path.split(filename)
+            GrampsKeys.save_last_import_dir(the_path)
+            for (importData,mime_filter,mime_type,native_format,format_name) in PluginMgr.import_list:
+                if filetype == mime_type or the_file == mime_type:
+                    choose.destroy()
+                    importData(self.state.db,filename)
+                    self.parent.import_tool_callback()
+                    return True
+            QuestionDialog.ErrorDialog(
+                _("Could not open file: %s") % filename,
+                _('File type "%s" is unknown to GRAMPS.\n\nValid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM.') % filetype)
+        choose.destroy()
+        return False
 
 def add_all_files_filter(chooser):
     """

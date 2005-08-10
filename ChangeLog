@@ -1,3 +1,13 @@
+2005-08-09  Don Allingham  <don@gramps-project.org>
+	* src/ScratchPad.py: added
+	* src/stock_link.png: added
+	* src/DbState.py: better ui management, history management
+	* src/EditPerson.py: better ui management
+	* src/GrampsDbBase.py: better ui management
+	* src/PageView.py: better ui management
+	* src/PersonView.py: better ui management, history management
+	* src/ViewManager.py: better ui management
+
 2005-08-09  Alex Roitman  <shura@gramps-project.org>
 	* src/const.py.in: Remove obsolete constants.
 

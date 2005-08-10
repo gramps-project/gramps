@@ -30,9 +30,20 @@ class PageView:
         self.action_list = []
         self.action_toggle_list = []
         self.action_group = None
+        self.additional_action_groups = []
         self.widget = None
         self.ui = ""
-        
+        self.state.connect('no-database',self.disable_action_group)
+        self.state.connect('database-changed',self.enable_action_group)
+
+    def disable_action_group(self):
+        if self.action_group:
+            self.action_group.set_visible(False)
+
+    def enable_action_group(self,obj):
+        if self.action_group:
+            self.action_group.set_visible(True)
+
     def get_stock(self):
         try:
             return gtk.STOCK_MEDIA_MISSING
@@ -73,4 +84,7 @@ class PageView:
         if not self.action_group:
             self.define_actions()
             self._build_action_group()
-        return self.action_group
+        return [self.action_group] + self.additional_action_groups
+
+    def add_action_group(self,group):
+        self.additional_action_groups.append(group)
