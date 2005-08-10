@@ -32,6 +32,7 @@ import const
 import Errors
 import PluginMgr
 import TipOfDay
+import DbState
 
 from GrampsMime import mime_type_is_defined
 from QuestionDialog import ErrorDialog
@@ -39,7 +40,7 @@ from QuestionDialog import ErrorDialog
 import gnome
 
 
-iconpaths = [".","/usr/share/gramps","~/devel/srcx"]
+iconpaths = [".","/usr/share/gramps"]
 
 def register_stock_icons ():
     import os
@@ -183,7 +184,10 @@ class Gramps:
 #                                    self.date_format_key_update)
 
         register_stock_icons()
-        a = ViewManager.ViewManager()
+
+        state = DbState.DbState()
+        
+        a = ViewManager.ViewManager(state)
         a.register_view(PersonView.PersonView)
         a.register_view(PedView.PedView)
         a.init_interface()

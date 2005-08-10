@@ -312,26 +312,24 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
                 update_list.append((handle,obj.serialize()))
             else:
                 add_list.append((handle,obj.serialize()))
-
-        # committing person, do gender stats here
-        if key == PERSON_KEY:
-            if old_data:
-                old_person = Person(old_data)
-                if (old_data[2] != person.gender or
-                    old_data[3].first_name != obj.primary_name.first_name):
-                    self.genderStats.uncount_person(old_person)
-                    self.genderStats.count_person(obj,self)
-            else:
-                self.genderStats.count_person(obj,self)
+        return old_data
 
     def commit_person(self,person,transaction,change_time=None):
         """
         Commits the specified Person to the database, storing the changes
         as part of the transaction.
         """
-        self._commit_base(person, self.person_map, PERSON_KEY,
-                          transaction.person_update, transaction.person_add,
-                          transaction, change_time)
+        old_data = self._commit_base(
+            person, self.person_map, PERSON_KEY, transaction.person_update,
+            transaction.person_add, transaction, change_time)
+        if old_data:
+            old_person = Person(old_data)
+            if (old_data[2] != person.gender or
+                old_data[3].first_name != person.primary_name.first_name):
+                self.genderStats.uncount_person(old_person)
+                self.genderStats.count_person(person,self)
+        else:
+            self.genderStats.count_person(person,self)
           
     def commit_media_object(self,obj,transaction,change_time=None):
         """
