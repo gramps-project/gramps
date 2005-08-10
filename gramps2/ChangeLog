@@ -1,3 +1,7 @@
+2005-08-10  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Updated translations to latest template and
+	  fixed some new web page report translations
+
 2005-08-10  Jérôme  <romjerome@yahoo.fr>
 	* configure.in: Enable fr manual.
 	* doc/gramps-manual/Makefile.am: Enable fr manual.

@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fi\n"
-"POT-Creation-Date: Thu Aug  4 21:01:02 2005\n"
-"PO-Revision-Date: 2005-08-08 01:32+0300\n"
+"POT-Creation-Date: Mon Aug  8 10:47:43 2005\n"
+"PO-Revision-Date: 2005-08-10 23:50+0300\n"
 "Last-Translator: Eero Tamminen <eerot@sf>\n"
 "Language-Team: Suomi\n"
 "MIME-Version: 1.0\n"
@@ -19,15 +19,15 @@ msgstr ""
 "X-Generator: KBabel 1.3.1\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: AddMedia.py:91 ImageSelect.py:120
+#: AddMedia.py:91 ImageSelect.py:121
 msgid "Select a media object"
 msgstr "Valitse mediatiedosto"
 
-#: AddMedia.py:124 ImageSelect.py:174
+#: AddMedia.py:124 ImageSelect.py:175
 msgid "Cannot import %s"
 msgstr "%s: avaus ei onnistu"
 
-#: AddMedia.py:125 ImageSelect.py:175
+#: AddMedia.py:125 ImageSelect.py:176
 msgid "The filename supplied could not be found."
 msgstr "Annettu tiedosto ei löytynyt."
 
@@ -43,8 +43,8 @@ msgstr "Valitse %s:n puoliso/kumppani"
 msgid "Choose Spouse/Partner"
 msgstr "Valitse puoliso/kumppani"
 
-#: AddSpouse.py:142 Bookmarks.py:130 ChooseParents.py:252 EditPerson.py:344
-#: EditSource.py:309 FamilyView.py:74 ImageSelect.py:1105 PeopleView.py:59
+#: AddSpouse.py:142 Bookmarks.py:130 ChooseParents.py:252 EditPerson.py:346
+#: EditSource.py:311 FamilyView.py:74 ImageSelect.py:1108 PeopleView.py:59
 #: PeopleView.py:135 SelectChild.py:129 SelectPerson.py:78
 #: plugins/BookReport.py:631 plugins/FilterEditor.py:459
 #: plugins/IndivComplete.py:405 plugins/IndivSummary.py:226
@@ -59,10 +59,10 @@ msgstr "Valitse puoliso/kumppani"
 msgid "Name"
 msgstr "Nimi"
 
-#: AddSpouse.py:146 Bookmarks.py:130 ChooseParents.py:261 EditSource.py:309
-#: FamilyView.py:73 ImageSelect.py:1105 MediaView.py:58 MergePeople.py:122
+#: AddSpouse.py:146 Bookmarks.py:130 ChooseParents.py:261 EditSource.py:311
+#: FamilyView.py:73 ImageSelect.py:1108 MediaView.py:58 MergePeople.py:122
 #: PeopleView.py:60 PlaceView.py:50 SelectChild.py:134 SelectObject.py:85
-#: SelectPerson.py:84 SourceView.py:52 Sources.py:108 Sources.py:242
+#: SelectPerson.py:84 SourceView.py:52 Sources.py:109 Sources.py:243
 #: Witness.py:64 plugins/PatchNames.py:189
 msgid "ID"
 msgstr "Tunnus"
@@ -124,11 +124,11 @@ msgstr "Lisää puoliso"
 msgid "General filters"
 msgstr "Yleiset suotimet"
 
-#: AddrEdit.py:106 AddrEdit.py:174
+#: AddrEdit.py:108 AddrEdit.py:176
 msgid "Address Editor"
 msgstr "Osoite-editori"
 
-#: AddrEdit.py:168 EditPerson.py:338 plugins/ScratchPad.py:120
+#: AddrEdit.py:170 EditPerson.py:340 plugins/ScratchPad.py:120
 #: plugins/ScratchPad.py:137
 msgid "Address"
 msgstr "Osoite"
@@ -164,28 +164,28 @@ msgstr ""
 "\n"
 "Tiedostotyyppi voi olla joko: GRAMPS tietokanta, GRAMPS XML, GRAMPS paketti, tai GEDCOM."
 
-#: AttrEdit.py:119 AttrEdit.py:123 AttrEdit.py:181
+#: AttrEdit.py:122 AttrEdit.py:126 AttrEdit.py:184
 msgid "Attribute Editor"
 msgstr "Ominaisuus-editori"
 
-#: AttrEdit.py:121
+#: AttrEdit.py:124
 msgid "Attribute Editor for %s"
 msgstr "%s:n ominaisuus-editori"
 
-#: AttrEdit.py:170 AttrEdit.py:174
+#: AttrEdit.py:173 AttrEdit.py:177
 msgid "New Attribute"
 msgstr "Uusi ominaisuus"
 
-#: AttrEdit.py:175 EditPerson.py:332 ImageSelect.py:683 ImageSelect.py:955
-#: Marriage.py:221 plugins/ScratchPad.py:273 plugins/ScratchPad.py:281
+#: AttrEdit.py:178 EditPerson.py:334 ImageSelect.py:684 ImageSelect.py:958
+#: Marriage.py:223 plugins/ScratchPad.py:273 plugins/ScratchPad.py:281
 msgid "Attribute"
 msgstr "Ominaisuus"
 
-#: AttrEdit.py:213
+#: AttrEdit.py:216
 msgid "New attribute type created"
 msgstr "Uusi ominaisuustyyppi luotu"
 
-#: AttrEdit.py:214
+#: AttrEdit.py:217
 msgid ""
 "The \"%s\" attribute type has been added to this database.\n"
 "It will now appear in the attribute menus for this database"
@@ -442,8 +442,8 @@ msgstr "mies"
 msgid "female"
 msgstr "nainen"
 
-#: DisplayModels.py:468 ImageSelect.py:984 MediaView.py:243 MediaView.py:251
-#: NoteEdit.py:104 Utils.py:155 gramps.glade:5501 gramps.glade:16531
+#: DisplayModels.py:468 ImageSelect.py:987 MediaView.py:243 MediaView.py:251
+#: NoteEdit.py:106 Utils.py:155 gramps.glade:5501 gramps.glade:16531
 #: gramps.glade:27702 gramps.glade:28750 gramps.glade:30203 gramps.glade:31734
 msgid "Note"
 msgstr "Huomioita"
@@ -466,46 +466,46 @@ msgstr ""
 msgid "Internal Error"
 msgstr "Sisäinen virhe"
 
-#: EditPerson.py:138 EditPerson.py:641
+#: EditPerson.py:139 EditPerson.py:643
 msgid "Edit Person"
 msgstr "Muokkaa henkilöä"
 
-#: EditPerson.py:259
+#: EditPerson.py:261
 msgid "Patronymic:"
 msgstr "Patronyymi:"
 
-#: EditPerson.py:312 EditSource.py:329 EventEdit.py:269 ImageSelect.py:1126
-#: Marriage.py:220 plugins/ScratchPad.py:166 plugins/ScratchPad.py:180
+#: EditPerson.py:314 EditSource.py:331 EventEdit.py:272 ImageSelect.py:1129
+#: Marriage.py:222 plugins/ScratchPad.py:166 plugins/ScratchPad.py:180
 msgid "Event"
 msgstr "Tapahtuma"
 
-#: EditPerson.py:313 EditPerson.py:350 EditPlace.py:131 const.py:435
+#: EditPerson.py:315 EditPerson.py:352 EditPlace.py:132 const.py:435
 #: plugins/ScratchPad.py:185 plugins/ScratchPad.py:227
 #: plugins/ScratchPad.py:262
 msgid "Description"
 msgstr "Kuvaus"
 
-#: EditPerson.py:314 EditPerson.py:338 Marriage.py:220 MediaView.py:62
+#: EditPerson.py:316 EditPerson.py:340 Marriage.py:222 MediaView.py:62
 #: plugins/ScratchPad.py:138 plugins/ScratchPad.py:182
 #: plugins/ScratchPad.py:224
 msgid "Date"
 msgstr "Päivämäärä"
 
-#: EditPerson.py:315 EditPlace.py:289 EditSource.py:335 ImageSelect.py:1132
-#: Marriage.py:220 gramps.glade:13109 plugins/NavWebPage.py:615
+#: EditPerson.py:317 EditPlace.py:290 EditSource.py:337 ImageSelect.py:1135
+#: Marriage.py:222 gramps.glade:13109 plugins/NavWebPage.py:615
 #: plugins/ScratchPad.py:183 plugins/ScratchPad.py:225
 msgid "Place"
 msgstr "Paikka"
 
-#: EditPerson.py:332 EditSource.py:160 ImageSelect.py:683 ImageSelect.py:955
-#: Marriage.py:221 gramps.glade:13691 plugins/FilterEditor.py:459
+#: EditPerson.py:334 EditSource.py:162 ImageSelect.py:684 ImageSelect.py:958
+#: Marriage.py:223 gramps.glade:13691 plugins/FilterEditor.py:459
 #: plugins/PatchNames.py:195 plugins/ScratchPad.py:284
 #: plugins/ScratchPad.py:317 plugins/ScratchPad.py:543
 #: plugins/ScratchPad.py:549
 msgid "Value"
 msgstr "Arvo"
 
-#: EditPerson.py:344 EditSource.py:309 ImageSelect.py:1105 MediaView.py:59
+#: EditPerson.py:346 EditSource.py:311 ImageSelect.py:1108 MediaView.py:59
 #: MergePeople.py:167 SelectObject.py:86 plugins/BookReport.py:631
 #: plugins/BookReport.py:632 plugins/PatchNames.py:192
 #: plugins/ScratchPad.py:181 plugins/ScratchPad.py:223
@@ -515,83 +515,83 @@ msgstr "Arvo"
 msgid "Type"
 msgstr "Tyyppi"
 
-#: EditPerson.py:350 EditPlace.py:130 MediaView.py:60
+#: EditPerson.py:352 EditPlace.py:131 MediaView.py:60
 #: plugins/ScratchPad.py:260
 msgid "Path"
 msgstr "Polku"
 
-#: EditPerson.py:573 ImageSelect.py:611 ImageSelect.py:1042 MediaView.py:277
+#: EditPerson.py:575 ImageSelect.py:612 ImageSelect.py:1045 MediaView.py:277
 #: plugins/ScratchPad.py:424 plugins/ScratchPad.py:432
 msgid "Media Object"
 msgstr "Mediatiedosto"
 
-#: EditPerson.py:579 ImageSelect.py:617 docgen/AbiWord2Doc.py:335
+#: EditPerson.py:581 ImageSelect.py:618 docgen/AbiWord2Doc.py:335
 #: docgen/AsciiDoc.py:371 docgen/HtmlDoc.py:486 docgen/KwordDoc.py:494
 #: docgen/PdfDoc.py:631 docgen/RTFDoc.py:427
 msgid "Open in %s"
 msgstr "Aukaise %s:ä käyttäen"
 
-#: EditPerson.py:582 ImageSelect.py:620 MediaView.py:290
+#: EditPerson.py:584 ImageSelect.py:621 MediaView.py:290
 msgid "Edit with the GIMP"
 msgstr "Muokkaa GIMP:llä"
 
-#: EditPerson.py:584 ImageSelect.py:622
+#: EditPerson.py:586 ImageSelect.py:623
 msgid "Edit Object Properties"
 msgstr "Muokkaa objektin ominaisuuksia"
 
-#: EditPerson.py:635
+#: EditPerson.py:637
 msgid "New Person"
 msgstr "Uusi henkilö"
 
-#: EditPerson.py:760 GrampsCfg.py:63 const.py:233 const.py:246
+#: EditPerson.py:762 GrampsCfg.py:63 const.py:233 const.py:246
 msgid "None"
 msgstr "Tyhjä"
 
-#: EditPerson.py:1290
+#: EditPerson.py:1292
 msgid "Save changes to %s?"
 msgstr "Tallenna muutokset %s:n?"
 
-#: EditPerson.py:1291 EditPerson.py:1307 Marriage.py:629 Marriage.py:642
+#: EditPerson.py:1293 EditPerson.py:1309 Marriage.py:631 Marriage.py:644
 msgid "If you close without saving, the changes you have made will be lost"
 msgstr "Tallentamatta sulkuminen hävittää tekemäsi muutokset"
 
-#: EditPerson.py:1306
+#: EditPerson.py:1308
 msgid "Save Changes to %s?"
 msgstr "Tallenna muutokset %s:n?"
 
-#: EditPerson.py:1654
+#: EditPerson.py:1656
 msgid "Make the selected name the preferred name"
 msgstr "Tee valitusta nimestä ensisijainen nimi"
 
-#: EditPerson.py:1698
+#: EditPerson.py:1700
 msgid "Unknown gender specified"
 msgstr "Annettu tuntematon sukupuoli"
 
-#: EditPerson.py:1699
+#: EditPerson.py:1701
 msgid "The gender of the person is currently unknown. Usually, this is a mistake. You may choose to either continue saving, or returning to the Edit Person dialog to fix the problem."
 msgstr "Henkilön sukupuoli on tuntematon. Yleensä tämä on virhe. Voit joko jatkaa tallentamista, tai palata Henkilön muokkausdialogiin korjataksesi ongelman."
 
-#: EditPerson.py:1703
+#: EditPerson.py:1705
 msgid "Continue saving"
 msgstr "Jatka tallentamista"
 
-#: EditPerson.py:1703
+#: EditPerson.py:1705
 msgid "Return to window"
 msgstr "Palaa ikkunaan"
 
-#: EditPerson.py:1734 Marriage.py:661
+#: EditPerson.py:1736 Marriage.py:663
 msgid "GRAMPS ID value was not changed."
 msgstr "GRAMPS tunnuksen arvoa ei muutettu."
 
-#: EditPerson.py:1735
+#: EditPerson.py:1737
 msgid "You have attempted to change the GRAMPS ID to a value of %(grampsid)s. This value is already used by %(person)s."
 msgstr "Yritit muuttaa GRAMPS tunnuksen arvoon %(grampsid)s. %(person)s käyttää jo ao. arvoa."
 
-#: EditPerson.py:1847
+#: EditPerson.py:1849
 msgid "Problem changing the gender"
 msgstr "Sukupuolenvaihdosongelma"
 
-#: EditPerson.py:1848
+#: EditPerson.py:1850
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
@@ -599,145 +599,145 @@ msgstr ""
 "Sukupuolenvaihto aiheuttaa ongelmia avioitumistietojen kanssa.\n"
 "Tarkista henkilön avioliitot."
 
-#: EditPerson.py:1891
+#: EditPerson.py:1893
 msgid "Edit Person (%s)"
 msgstr "Muokkaa henkilöä (%s)"
 
-#: EditPerson.py:1907 ImageSelect.py:1166
+#: EditPerson.py:1909 ImageSelect.py:1169
 msgid "Add Place (%s)"
 msgstr "Lisää paikka (%s)"
 
-#: EditPlace.py:91 EditPlace.py:295
+#: EditPlace.py:91 EditPlace.py:296
 msgid "Place Editor"
 msgstr "Paikka-editori"
 
-#: EditPlace.py:150 PlaceView.py:53 plugins/NavWebPage.py:681
+#: EditPlace.py:151 PlaceView.py:53 plugins/NavWebPage.py:681
 msgid "City"
 msgstr "Kaupunki"
 
-#: EditPlace.py:150 PlaceView.py:54 plugins/NavWebPage.py:682
+#: EditPlace.py:151 PlaceView.py:54 plugins/NavWebPage.py:682
 msgid "County"
 msgstr "Kunta"
 
-#: EditPlace.py:151 PlaceView.py:55
+#: EditPlace.py:152 PlaceView.py:55
 msgid "State"
 msgstr "Osavaltio"
 
-#: EditPlace.py:151 PlaceView.py:56 plugins/NavWebPage.py:683
+#: EditPlace.py:152 PlaceView.py:56 plugins/NavWebPage.py:683
 msgid "Country"
 msgstr "Maa"
 
-#: EditPlace.py:284 EditPlace.py:288
+#: EditPlace.py:285 EditPlace.py:289
 msgid "New Place"
 msgstr "Uusi paikka"
 
-#: EditPlace.py:391
+#: EditPlace.py:392
 msgid "Place title is already in use"
 msgstr "Paikannimi on jo käytössä"
 
-#: EditPlace.py:392
+#: EditPlace.py:393
 msgid "Each place must have a unique title, and title you have selected is already used by another place"
 msgstr "Joka paikalla pitää olla ainutkertainen nimi, mutta valitsemasi paikan nimi on jo käytössä"
 
-#: EditPlace.py:427
+#: EditPlace.py:428
 msgid "Edit Place (%s)"
 msgstr "Muokkaa paikkaa (%s)"
 
-#: EditPlace.py:546
+#: EditPlace.py:547
 msgid "People"
 msgstr "Henkilöt"
 
-#: EditPlace.py:548 EditPlace.py:557
+#: EditPlace.py:549 EditPlace.py:558
 msgid "%s [%s]: event %s\n"
 msgstr "%s [%s]: tapahtuma %s\n"
 
-#: EditPlace.py:555 plugins/NavWebPage.py:1472
+#: EditPlace.py:556 plugins/NavWebPage.py:1472
 msgid "Families"
 msgstr "Perheet"
 
-#: EditPlace.py:563 Utils.py:110
+#: EditPlace.py:564 Utils.py:110
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s ja %(mother)s"
 
-#: EditPlace.py:633 PlaceView.py:224
+#: EditPlace.py:634 PlaceView.py:224
 msgid "Delete Place (%s)"
 msgstr "Poista paikka (%s)"
 
-#: EditSource.py:90 EditSource.py:249
+#: EditSource.py:91 EditSource.py:251
 msgid "Source Editor"
 msgstr "Lähde-editori"
 
-#: EditSource.py:160
+#: EditSource.py:162
 msgid "Key"
 msgstr "Avain"
 
-#: EditSource.py:238 EditSource.py:242 Sources.py:451 Sources.py:453
+#: EditSource.py:240 EditSource.py:244 Sources.py:458 Sources.py:460
 msgid "New Source"
 msgstr "Uusi lähde"
 
-#: EditSource.py:243 EditSource.py:341 ImageSelect.py:1138 Utils.py:160
+#: EditSource.py:245 EditSource.py:343 ImageSelect.py:1141 Utils.py:160
 #: Utils.py:162
 msgid "Source"
 msgstr "Lähde"
 
-#: EditSource.py:317 ImageSelect.py:1114 plugins/EventCmp.py:422
+#: EditSource.py:319 ImageSelect.py:1117 plugins/EventCmp.py:422
 msgid "Person"
 msgstr "Henkilö"
 
-#: EditSource.py:323 ImageSelect.py:1120
+#: EditSource.py:325 ImageSelect.py:1123
 msgid "Family"
 msgstr "Perhe"
 
-#: EditSource.py:347
+#: EditSource.py:349
 msgid "Media"
 msgstr "Media"
 
-#: EditSource.py:401
+#: EditSource.py:403
 msgid "Edit Source (%s)"
 msgstr "Muokkaa lähdettä (%s)"
 
-#: EditSource.py:468
+#: EditSource.py:470
 msgid "Delete Source (%s)"
 msgstr "Poista lähde (%s)"
 
-#: EventEdit.py:115 EventEdit.py:120 EventEdit.py:275
+#: EventEdit.py:117 EventEdit.py:122 EventEdit.py:278
 msgid "Event Editor"
 msgstr "Tapahtuma-editori"
 
-#: EventEdit.py:117
+#: EventEdit.py:119
 msgid "Event Editor for %s"
 msgstr "Tapahtuma-editori %s:lle"
 
-#: EventEdit.py:264 EventEdit.py:268
+#: EventEdit.py:267 EventEdit.py:271
 msgid "New Event"
 msgstr "Uusi tapahtuma"
 
-#: EventEdit.py:312
+#: EventEdit.py:315
 msgid "Event does not have a type"
 msgstr "Tapahtuman tyyppi puuttuu"
 
-#: EventEdit.py:313
+#: EventEdit.py:316
 msgid "You must specify an event type before you can save the event"
 msgstr "Sinun pitää valita tapahtumalle tyyppi ennen kuin voit tallentaa sen"
 
-#: EventEdit.py:330 MergePeople.py:125 const.py:233 const.py:241
+#: EventEdit.py:333 MergePeople.py:125 const.py:233 const.py:241
 #: plugins/EventCmp.py:422 plugins/FamilyGroup.py:200
 #: plugins/FamilyGroup.py:334 plugins/NavWebPage.py:1373
 #: plugins/ScratchPad.py:464
 msgid "Birth"
 msgstr "Syntymä"
 
-#: EventEdit.py:330 MergePeople.py:127 plugins/EventCmp.py:422
+#: EventEdit.py:333 MergePeople.py:127 plugins/EventCmp.py:422
 #: plugins/FamilyGroup.py:218 plugins/FamilyGroup.py:336
 #: plugins/FamilyGroup.py:338 plugins/NavWebPage.py:1381
 msgid "Death"
 msgstr "Kuolema"
 
-#: EventEdit.py:332
+#: EventEdit.py:335
 msgid "New event type created"
 msgstr "Uusi tapahtumatyyppi luotu"
 
-#: EventEdit.py:333
+#: EventEdit.py:336
 msgid ""
 "The \"%s\" event type has been added to this database.\n"
 "It will now appear in the event menus for this database"
@@ -745,7 +745,7 @@ msgstr ""
 "%s tapahtumatyyppi on lisätty tietokantaan.\n"
 "Lisäys näkyy nyt tietokannan valikoissa"
 
-#: EventEdit.py:347
+#: EventEdit.py:350
 msgid "Edit Event"
 msgstr "Muokkaa tapahtumaa"
 
@@ -1652,43 +1652,43 @@ msgstr "Tutkijan tiedot"
 msgid "_Undo %s"
 msgstr "_Peru %s"
 
-#: ImageSelect.py:487 ImageSelect.py:508
+#: ImageSelect.py:488 ImageSelect.py:509
 msgid "Drag Media Object"
 msgstr "Vedä mediatiedosto"
 
-#: ImageSelect.py:498 RelImage.py:51
+#: ImageSelect.py:499 RelImage.py:51
 msgid "Could not import %s"
 msgstr "%s:n tuonti epäonnistui"
 
-#: ImageSelect.py:569 plugins/SimpleBookTitle.py:237
+#: ImageSelect.py:570 plugins/SimpleBookTitle.py:237
 msgid "Select an Object"
 msgstr "Valitse objekti"
 
-#: ImageSelect.py:671
+#: ImageSelect.py:672
 msgid "Media Reference Editor"
 msgstr "Median viite-editori"
 
-#: ImageSelect.py:767
+#: ImageSelect.py:771
 msgid "Media Reference"
 msgstr "Mediaviite"
 
-#: ImageSelect.py:773
+#: ImageSelect.py:777
 msgid "Reference Editor"
 msgstr "Viite-editori"
 
-#: ImageSelect.py:829 ImageSelect.py:1197 MediaView.py:347
+#: ImageSelect.py:833 ImageSelect.py:1200 MediaView.py:347
 msgid "Edit Media Object"
 msgstr "Muokkaa mediatiedostoa"
 
-#: ImageSelect.py:913
+#: ImageSelect.py:917
 msgid "Media Properties Editor"
 msgstr "Mediaominaisuus-editori"
 
-#: ImageSelect.py:1048
+#: ImageSelect.py:1051
 msgid "Properties Editor"
 msgstr "Ominaisuus-editori"
 
-#: ImageSelect.py:1294
+#: ImageSelect.py:1297
 msgid "Remove Media Object"
 msgstr "Poista mediatiedosto"
 
@@ -1696,32 +1696,32 @@ msgstr "Poista mediatiedosto"
 msgid "Location Editor"
 msgstr "Sijainti-editori"
 
-#: Marriage.py:113 Marriage.py:367
+#: Marriage.py:114 Marriage.py:369
 msgid "Marriage/Relationship Editor"
 msgstr "Avio/suhde-editori"
 
-#: Marriage.py:153 Marriage.py:811 Marriage.py:834 Utils.py:130
+#: Marriage.py:154 Marriage.py:813 Marriage.py:836 Utils.py:130
 msgid "%s and %s"
 msgstr "%s ja %s"
 
-#: Marriage.py:361
+#: Marriage.py:363
 msgid "New Relationship"
 msgstr "Uusi suhde"
 
-#: Marriage.py:628 Marriage.py:641
+#: Marriage.py:630 Marriage.py:643
 msgid "Save Changes?"
 msgstr "Tallenna muutokset?"
 
-#: Marriage.py:662
+#: Marriage.py:664
 msgid "The GRAMPS ID that you chose for this relationship is already being used."
 msgstr "Suhteelle valitsemasi GRAMPS tunnus on jo käytössä."
 
-#: Marriage.py:718
+#: Marriage.py:720
 msgid "Edit Marriage"
 msgstr "Muokkaa avioliittoa"
 
 #: MediaView.py:57 MediaView.py:174 SelectObject.py:85 SourceView.py:51
-#: SourceView.py:116 Sources.py:108 Sources.py:242
+#: SourceView.py:116 Sources.py:109 Sources.py:243
 #: plugins/AncestorChart2.py:482 plugins/BookReport.py:789
 #: plugins/PatchNames.py:230 plugins/ScratchPad.py:354
 #: plugins/ScratchPad.py:542 plugins/ScratchPad.py:548
@@ -1843,39 +1843,39 @@ msgstr "Osoitteet"
 msgid "Merge People"
 msgstr "Yhdistä henkilöitä"
 
-#: NameEdit.py:124 NameEdit.py:128 NameEdit.py:227
+#: NameEdit.py:127 NameEdit.py:131 NameEdit.py:230
 msgid "Name Editor"
 msgstr "Nimi-editori"
 
-#: NameEdit.py:126
+#: NameEdit.py:129
 msgid "Name Editor for %s"
 msgstr "Nimi-editori %s:lle"
 
-#: NameEdit.py:216 NameEdit.py:220
+#: NameEdit.py:219 NameEdit.py:223
 msgid "New Name"
 msgstr "Uusi nimi"
 
-#: NameEdit.py:221
+#: NameEdit.py:224
 msgid "Alternate Name"
 msgstr "Vaihtoehtoinen nimi"
 
-#: NameEdit.py:295
+#: NameEdit.py:298
 msgid "Group all people with the same name?"
 msgstr "Liitä kaikki henkilöt, joilla on sama nimi?"
 
-#: NameEdit.py:296
+#: NameEdit.py:299
 msgid "You have the choice of grouping all people with the name of %(surname)s with the name of %(group_name)s, or just mapping this particular name."
 msgstr "Voit joko liittää kaikki henkilöt, joilla on nimi %(surname)s, nimeen %(group_name)s, tai liittää vain tämän yhden nimen."
 
-#: NameEdit.py:300
+#: NameEdit.py:303
 msgid "Group all"
 msgstr "Liitä kaikki"
 
-#: NameEdit.py:301
+#: NameEdit.py:304
 msgid "Group this name only"
 msgstr "Liitä vain tämä nimi"
 
-#: NoteEdit.py:71
+#: NoteEdit.py:72
 msgid "Note Editor"
 msgstr "Huomioita-editori"
 
@@ -3284,19 +3284,19 @@ msgstr "Lähteiden yhdistys ei onnistu."
 msgid "Exactly two sources must be selected to perform a merge. A second source can be selected by holding down the control key while clicking on the desired source."
 msgstr "Tasan kaksi lähdettä pitää olla valittuna yhdistettäväksi. Toinen lähde voidaan valita pitämällä Control-näppäintä alhaalla klikatessa."
 
-#: Sources.py:85
+#: Sources.py:86
 msgid "Source Reference Selection"
 msgstr "Lähdeviitteen valinta"
 
-#: Sources.py:145 Sources.py:454
+#: Sources.py:146 Sources.py:461
 msgid "Source Reference"
 msgstr "Lähdeviite"
 
-#: Sources.py:151
+#: Sources.py:152
 msgid "Reference Selector"
 msgstr "Viitevalitsin"
 
-#: Sources.py:378 Sources.py:460
+#: Sources.py:379 Sources.py:467
 msgid "Source Information"
 msgstr "Lähteen tiedot"
 
@@ -4340,7 +4340,7 @@ msgstr "_Älä lisää tietueita, jotka on merkitty yksityisiksi"
 #: gedcomexport.glade:351 plugins/genewebexport.glade:199
 #: plugins/writeftree.glade:195
 msgid "_Restrict data on living people"
-msgstr "_Rajoita tiedot elossaoleviin henkilöihin"
+msgstr "_Rajoita elossaolevien henkilöiden tietoja"
 
 #: gedcomexport.glade:383 plugins/genewebexport.glade:231
 msgid "Exclude _notes"
@@ -8098,7 +8098,7 @@ msgstr "Paikat"
 #: plugins/NavWebPage.py:291 plugins/NavWebPage.py:1103
 #: plugins/NavWebPage.py:1106
 msgid "Download"
-msgstr "Kopioi"
+msgstr "Kopiointi"
 
 #: plugins/NavWebPage.py:293 plugins/NavWebPage.py:1122
 #: plugins/NavWebPage.py:1126
@@ -8241,7 +8241,7 @@ msgstr "Tuota HTML-raportteja"
 
 #: plugins/NavWebPage.py:1743
 msgid "Filtering"
-msgstr "Suodatus"
+msgstr "Suodatetaan"
 
 #: plugins/NavWebPage.py:1749
 msgid "Applying privacy filter"
@@ -8249,7 +8249,7 @@ msgstr "Käytetään yksityisyyssuodinta"
 
 #: plugins/NavWebPage.py:1760
 msgid "Filtering living people"
-msgstr "Rajoitetaan tiedot elossaoleviin henkilöihin"
+msgstr "Suodatetaan elossaolevia henkilöitä"
 
 #: plugins/NavWebPage.py:1804
 msgid "Creating individual pages"
@@ -8289,11 +8289,11 @@ msgstr "Älä lisää tietoja, jotka on merkitty yksityisiksi"
 
 #: plugins/NavWebPage.py:1986 plugins/WebPage.py:1357
 msgid "Restrict information on living people"
-msgstr "Rajoita tiedot elossaoleviin henkilöihin"
+msgstr "Rajoita elossaolevien henkilöiden tietoja"
 
 #: plugins/NavWebPage.py:1987
 msgid "Years to restrict from person's death"
-msgstr "Rajoita vuosia henkilön kuolemasta"
+msgstr "Montako vuotta henkilön kuoleman jälkeen on rajoitettu"
 
 #: plugins/NavWebPage.py:1988 plugins/WebPage.py:1364
 msgid "Image subdirectory"
@@ -8317,7 +8317,7 @@ msgstr "Lisää lyhyt sukupuu esivanhemmista"
 
 #: plugins/NavWebPage.py:1993
 msgid "Publisher contact/Note ID"
-msgstr "Julkaisijan yhteystiedot/Note ID"
+msgstr "Julkaisijan yhteystietojen/huomioiden tunnus"
 
 #: plugins/NavWebPage.py:1994
 msgid "Include download page"
@@ -8377,11 +8377,19 @@ msgstr "Sivun luonti"
 
 #: plugins/NavWebPage.py:2105
 msgid "Home Media/Note ID"
-msgstr "Koti Media/Note ID"
+msgstr "Kotisivun mediatiedoston/huomioiden tunnus"
 
 #: plugins/NavWebPage.py:2107
 msgid "Introduction Media/Note ID"
-msgstr "Johdanto Media/Note ID"
+msgstr "Johdantosivun mediatiedoston/huomioiden tunnus"
+
+#: plugins/NavWebPage.py:2110
+msgid "HTML user header"
+msgstr "HTML ylätunniste"
+
+#: plugins/NavWebPage.py:2111
+msgid "HTML user footer"
+msgstr "HTML alatunniste"
 
 #: plugins/NavWebPage.py:2115 plugins/WebPage.py:1499
 msgid "Privacy"
