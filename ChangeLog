@@ -1,3 +1,6 @@
+2005-08-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/PedView.py: Better autoscaling; better ui management
+
 2005-08-09  Don Allingham  <don@gramps-project.org>
 	* src/ScratchPad.py: added
 	* src/stock_link.png: added
