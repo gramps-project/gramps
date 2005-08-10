@@ -1,3 +1,17 @@
+2005-08-10  Jérôme  <romjerome@yahoo.fr>
+	* configure.in: Enable fr manual.
+	* doc/gramps-manual/Makefile.am: Enable fr manual.
+	* doc/gramps-manual/fr/Makefile.am: Add new files to the installed
+	list.
+	* doc/gramps-manual/fr/cmdline.xml,
+	doc/gramps-manual/fr/custom.xml,
+	doc/gramps-manual/fr/faq.xml, doc/gramps-manual/fr/filtref.xml
+	doc/gramps-manual/fr/getstart.xml,
+	doc/gramps-manual/fr/gramps-manual.xml,
+	doc/gramps-manual/fr/keybind.xml, doc/gramps-manual/fr/legal.xml, 
+	doc/gramps-manual/fr/mainwin.xml, doc/gramps-manual/fr/usage.xml:
+	Update manual.
+
 2005-08-10  Alex Roitman  <shura@gramps-project.org>
 	* src/po/nl.po: Typo.
 
