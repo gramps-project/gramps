@@ -8181,7 +8181,7 @@ msgstr "Bestand opslaan"
 
 #: plugins/IndivComplete.py:132 plugins/IndivSummary.py:115
 msgid "%(date)s in %(place)s."
-msgstr "%(date)s in %(place)en"
+msgstr "%(date)s in %(place)s."
 
 #: plugins/IndivComplete.py:191
 msgid "Alternate Parents"
