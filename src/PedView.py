@@ -41,10 +41,12 @@ import gtk.gdk
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import RelLib
 import PageView
-import EditPerson
+import const
+import GrampsCfg
+import Relationship
 import NameDisplay
+import RelLib
 import Utils
 import DateHandler
 
@@ -53,6 +55,8 @@ import DateHandler
 # Constants
 #
 #-------------------------------------------------------------------------
+_PAD       = 3
+_CANVASPAD = 3
 _PERSON    = "p"
 _BORN = _('b.')
 _DIED = _('d.')
@@ -69,17 +73,19 @@ _CREM = _('crem.')
 #-------------------------------------------------------------------------
 class PedView(PageView.PageView):
 
-    def __init__(self,state):
-        PageView.PageView.__init__(self,'Pedigree View',state)
+    def __init__(self,dbstate,uistate):
+        PageView.PageView.__init__(self,'Pedigree View',dbstate,uistate)
         self.inactive = False
-        state.connect('database-changed',self.change_db)
-        state.connect('active-changed',self.goto_active_person)
+        dbstate.connect('database-changed',self.change_db)
+        dbstate.connect('active-changed',self.goto_active_person)
         self.force_size = 0 # Automatic resize
+
+    def navigation_type(self):
+        return PageView.NAVIGATION_PERSON
 
     def build_widget(self):
         self.notebook = gtk.Notebook()
         self.notebook.connect("button-press-event", self.on_show_option_menu_cb)
-        self.bootstrap_handler = self.notebook.connect("expose-event", self.init_parent_signals_cb)
         self.notebook.set_show_border(False)
         self.notebook.set_show_tabs(False)
             
@@ -99,16 +105,10 @@ class PedView(PageView.PageView):
         self.table_5.connect("button-press-event", self.on_show_option_menu_cb)
         self.add_table_to_notebook( self.table_5)
 
-        self.rebuild_trees(None)
+        #self.parent_container.connect("size-allocate", self.size_request_cb)
 
         return self.notebook
 
-    def init_parent_signals_cb(self, widget, event):
-        print "PedView.init_parent_signals_cb"
-        self.notebook.disconnect(self.bootstrap_handler)
-        self.notebook.parent.connect("size-allocate", self.size_request_cb)
-        self.size_request_cb(widget.parent,event)
-        
     def add_table_to_notebook( self, table):
         frame = gtk.ScrolledWindow(None,None)
         frame.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
@@ -123,49 +123,10 @@ class PedView(PageView.PageView):
         #self.add_action('Add',    gtk.STOCK_ADD,       "_Add",     callback=self.add)
         #self.add_action('Edit',   gtk.STOCK_EDIT,      "_Edit",    callback=self.edit)
         #self.add_action('Remove', gtk.STOCK_REMOVE,    "_Remove",  callback=self.remove)
-        self.add_action('Forward',gtk.STOCK_GO_FORWARD,"_Forward", callback=self.home)#callback=self.fwd_clicked)
-        self.add_action('Back',   gtk.STOCK_GO_BACK,   "_Back",    callback=self.home)#callback=self.back_clicked)
+        #self.add_action('Forward',gtk.STOCK_GO_FORWARD,"_Forward", callback=self.fwd_clicked)
+        #self.add_action('Back',   gtk.STOCK_GO_BACK,   "_Back",    callback=self.back_clicked)
         self.add_action('HomePerson', gtk.STOCK_HOME,  "_Home",    callback=self.home)
         #self.add_toggle_action('Filter',  None,        '_Filter',  callback=self.filter_toggle)
-        # add the Forward action group to handle the Forward button
-        self.fwd_action = gtk.ActionGroup(self.title + '/Forward')
-        self.fwd_action.add_actions([
-            ('Forward',gtk.STOCK_GO_FORWARD,"_Forward", None, None, self.home)#callback=self.fwd_clicked)
-            ])
-
-        # add the Backward action group to handle the Forward button
-        self.back_action = gtk.ActionGroup(self.title + '/Backward')
-        self.back_action.add_actions([
-            ('Back',gtk.STOCK_GO_BACK,"_Back", None, None, self.home)#callback=self.back_clicked)
-            ])
-
-        self.add_action_group(self.back_action)
-        self.add_action_group(self.fwd_action)
-
-    def disable_action_group(self):
-        """
-        Normally, this would not be overridden from the base class. However,
-        in this case, we have additional action groups that need to be
-        handled correctly.
-        """
-        PageView.PageView.disable_action_group(self)
-        
-        self.fwd_action.set_visible(False)
-        self.back_action.set_visible(False)
-
-    def enable_action_group(self,obj):
-        """
-        Normally, this would not be overridden from the base class. However,
-        in this case, we have additional action groups that need to be
-        handled correctly.
-        """
-        PageView.PageView.enable_action_group(self,obj)
-        
-        self.fwd_action.set_visible(True)
-        self.back_action.set_visible(True)
-        hobj = self.state.phistory
-        self.fwd_action.set_sensitive(not hobj.at_end())
-        self.back_action.set_sensitive(not hobj.at_front())
 
     def ui_definition(self):
         return '''<ui>
@@ -178,8 +139,6 @@ class PedView(PageView.PageView):
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>  
-              <toolitem action="Forward"/>  
               <toolitem action="HomePerson"/>
             </placeholder>
           </toolbar>
@@ -195,32 +154,26 @@ class PedView(PageView.PageView):
         db.connect('person-update', self.person_updated_cb)
         db.connect('person-delete', self.person_updated_cb)
         db.connect('person-rebuild', self.person_rebuild)
-        self.rebuild_trees(None)
- 
+        self.active_person = None
+
     def person_updated_cb(self,handle_list):
-        print "PedView.person_updated_cb"
-        self.rebuild_trees(self.state.active)
+        self.rebuild_trees(self.active_person)
 
     def person_rebuild(self):
-        print "PedView.person_rebuild"
-        self.rebuild_trees(self.state.active)
-
-    def person_edited_cb(self, p1=None, p2=None):
-        print "PedView.person_edited_cb"
+        self.rebuild_trees(self.active_person)
 
     def goto_active_person(self,handle):
         print "PedView.goto_active_person"
         if handle:
-            self.rebuild_trees(self.db.get_person_from_handle(handle))
+            self.active_person = self.db.get_person_from_handle(handle)
+            self.rebuild_trees(self.active_person)
         else:
             self.rebuild_trees(None)
     
     def request_resize(self):
-        print "PedView.request_resize"
         self.size_request_cb(self.notebook.parent,None,None)
         
     def size_request_cb(self, widget, event, data=None):
-        print "PedView.size_request_cb"
         if self.force_size == 0:
             v = widget.get_allocation()
             page_list = range(0,self.notebook.get_n_pages())
@@ -295,14 +248,13 @@ class PedView(PageView.PageView):
         self.rebuild( self.table_4, pos_4, person)
         self.rebuild( self.table_5, pos_5, person)
         
-        #gobject.idle_add(self.request_resize)
-
+        gobject.idle_add(self.request_resize)
 
     def rebuild( self, table_widget, positions, active_person):
         print "PedView.rebuild"
         # Build ancestor tree
         lst = [None]*31
-        self.find_tree(active_person,0,1,lst)
+        self.find_tree(self.active_person,0,1,lst)
 
         # Purge current table content
         for child in table_widget.get_children():
@@ -429,17 +381,17 @@ class PedView(PageView.PageView):
     
     def home(self,obj):
         print "PedView.home"
-        defperson = self.state.db.get_default_person()
+        defperson = self.dbstate.db.get_default_person()
         if defperson:
-            self.state.change_active_person(defperson)
+            self.dbstate.change_active_person(defperson)
 
     def edit_person_cb(self,obj):
         person_handle = obj.get_data(_PERSON)
         person = self.db.get_person_from_handle(person_handle)
         if person:
-            EditPerson.EditPerson(self.state, person, self.person_edited_cb)
+            self.edit_person(person)
             return True
-        return False
+        return 0
 
     def on_show_option_menu_cb(self,obj,data=None):
         myMenu = gtk.Menu()
@@ -450,16 +402,16 @@ class PedView(PageView.PageView):
     def on_show_child_menu(self,obj):
         """User clicked button to move to child of active person"""
 
-        if self.state.active:
+        if self.active_person:
             # Build and display the menu attached to the left pointing arrow
             # button. The menu consists of the children of the current root
             # person of the tree. Attach a child to each menu item.
 
-            childlist = find_children(self.db,self.state.active)
+            childlist = find_children(self.db,self.active_person)
             if len(childlist) == 1:
                 child = self.db.get_person_from_handle(childlist[0])
                 if child:
-                    self.state.change_active_person(child)
+                    self.parent.change_active_person(child)
             elif len(childlist) > 1:
                 myMenu = gtk.Menu()
                 for child_handle in childlist:
@@ -488,7 +440,7 @@ class PedView(PageView.PageView):
 
         person_handle = obj.get_data(_PERSON)
         if person_handle:
-            self.state.change_active_handle(person_handle)
+            self.dbstate.change_active_handle(person_handle)
             return True
         return False
     

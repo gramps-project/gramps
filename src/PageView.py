@@ -22,19 +22,34 @@
 
 import gtk
 
+NAVIGATION_NONE   = -1
+NAVIGATION_PERSON = 0
+
+
 class PageView:
     
-    def __init__(self,title,state):
+    def __init__(self,title,dbstate,uistate):
         self.title = title
-        self.state = state
+        self.dbstate = dbstate
+        self.uistate = uistate
         self.action_list = []
         self.action_toggle_list = []
         self.action_group = None
         self.additional_action_groups = []
+        self.additional_uis = []
         self.widget = None
-        self.ui = ""
-        self.state.connect('no-database',self.disable_action_group)
-        self.state.connect('database-changed',self.enable_action_group)
+        self.ui = '<ui></ui>'
+        self.dbstate.connect('no-database',self.disable_action_group)
+        self.dbstate.connect('database-changed',self.enable_action_group)
+
+    def navigation_type(self):
+        return NAVIGATION_NONE
+    
+    def ui_definition(self):
+        return self.ui
+
+    def additional_ui_definitions(self):
+        return self.additional_uis
 
     def disable_action_group(self):
         if self.action_group:
@@ -50,9 +65,6 @@ class PageView:
         except AttributeError:
             return gtk.STOCK_MISSING_IMAGE
         
-    def get_ui(self):
-        return self.ui
-
     def get_title(self):
         return self.title
 
@@ -88,3 +100,5 @@ class PageView:
 
     def add_action_group(self,group):
         self.additional_action_groups.append(group)
+
+

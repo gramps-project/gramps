@@ -44,9 +44,15 @@ import GrampsDBCallback
 import GrampsKeys
 import NameDisplay
 
-class History:
+class History(GrampsDBCallback.GrampsDBCallback):
+
+    __signals__ = {
+        'changed'      : (list,),
+        'menu-changed' : (list,),
+        }
 
     def __init__(self):
+        GrampsDBCallback.GrampsDBCallback.__init__(self)
         self.history = []
         self.mhistory = []
         self.index = -1
@@ -73,22 +79,33 @@ class History:
         mhc = self.mhistory.count(del_id)
         for c in range(mhc):
             self.mhistory.remove(del_id)
+        self.emit('changed',(self.history,))
+        self.emit('menu-changed',(self.mhistory,))
 
     def push(self,person_handle):
         self.prune()
         if len(self.history) == 0 or person_handle != self.history[-1]:
             self.history.append(person_handle)
-            self.mhistory.append(person_handle)
+            if person_handle not in self.mhistory:
+                self.mhistory.append(person_handle)
+                self.emit('menu-changed',(self.mhistory,))
             self.index += 1
+        self.emit('changed',(self.history,))
 
     def forward(self,step=1):
         self.index += step
-        self.mhistory.append(self.history[self.index])
+        person_handle = self.history[self.index]
+        if person_handle not in self.mhistory:
+            self.mhistory.append(person_handle)
+            self.emit('menu-changed',(self.mhistory,))
         return str(self.history[self.index])
 
     def back(self,step=1):
         self.index -= step
-        self.mhistory.append(self.history[self.index])
+        person_handle = self.history[self.index]
+        if person_handle not in self.mhistory:
+            self.mhistory.append(person_handle)
+            self.emit('menu-changed',(self.mhistory,))
         return str(self.history[self.index])
 
     def at_end(self):
@@ -109,21 +126,10 @@ class DbState(GrampsDBCallback.GrampsDBCallback):
         'no-database'      :  None,
         }
 
-    def __init__(self,window,status,uimanager):
-        self.uimanager = uimanager
-        self.window = window
+    def __init__(self):
         GrampsDBCallback.GrampsDBCallback.__init__(self)
         self.db     = GrampsDbBase.GrampsDbBase()
         self.active = None
-        self.status = status
-        self.status_id = status.get_context_id('GRAMPS')
-        self.phistory = History()
-
-    def get_widget(self,path):
-        return self.uimanager.get_widget(path)
-
-    def clear_history(self):
-        self.phistory.clear()
 
     def change_active_person(self,person):
         self.active = person
@@ -147,15 +153,28 @@ class DbState(GrampsDBCallback.GrampsDBCallback):
         self.db = GrampsDbBase.GrampsDbBase()
         self.emit('no-database')
 
-    def modify_statusbar(self):
-        
+class DisplayState(GrampsDBCallback.GrampsDBCallback):
+
+    __signals__ = {
+        }
+
+    def __init__(self,window,status,uimanager,dbstate):
+        self.dbstate = dbstate
+        self.uimanager = uimanager
+        self.window = window
+        GrampsDBCallback.GrampsDBCallback.__init__(self)
+        self.status = status
+        self.status_id = status.get_context_id('GRAMPS')
+        self.phistory = History()
+
+    def modify_statusbar(self,active=None):
         self.status.pop(self.status_id)
-        if self.active == None:
+        if self.dbstate.active == None:
             self.status.push(self.status_id,"")
         else:
             if GrampsKeys.get_statusbar() <= 1:
-                pname = NameDisplay.displayer.display(self.active)
-                name = "[%s] %s" % (self.active.get_gramps_id(),pname)
+                pname = NameDisplay.displayer.display(self.dbstate.active)
+                name = "[%s] %s" % (self.dbstate.active.get_gramps_id(),pname)
             else:
                 name = self.display_relationship()
             self.status.push(self.status_id,name)

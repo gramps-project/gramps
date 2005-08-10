@@ -88,10 +88,11 @@ class EditPerson:
 
     use_patronymic = locale.getlocale(locale.LC_TIME)[0] in _use_patronymic
     
-    def __init__(self,state,person,callback=None):
+    def __init__(self,state,uistate,person,callback=None):
         """Creates an edit window.  Associates a person with the window."""
 
         self.state = state
+        self.uistate = uistate
         self.retval = const.UPDATE_PERSON
         
         self.dp = DateHandler.parser
@@ -462,7 +463,7 @@ class EditPerson:
         self.win_menu_item = gtk.MenuItem(win_menu_label)
         self.win_menu_item.set_submenu(gtk.Menu())
         self.win_menu_item.show()
-        self.state.winsmenu.append(self.win_menu_item)
+        self.uistate.winsmenu.append(self.win_menu_item)
         self.winsmenu = self.win_menu_item.get_submenu()
         self.menu_item = gtk.MenuItem(_('Edit Person'))
         self.menu_item.connect("activate",self.present)

@@ -57,6 +57,9 @@ import GrampsCfg
 import Errors
 import DisplayTrace
 import Utils
+import QuestionDialog
+import PageView
+import Navigation
 
 #-------------------------------------------------------------------------
 #
@@ -99,6 +102,7 @@ uidefault = '''<ui>
   </menu>
   <menu action="GoMenu">
     <placeholder name="CommonGo"/>
+    <placeholder name="CommonHistory"/>
   </menu>
   <menu action="BookMenu">
     <menuitem action="AddBook"/>
@@ -132,8 +136,14 @@ uidefault = '''<ui>
 
 class ViewManager:
 
-    def __init__(self):
+    def __init__(self,state):
 
+        self.navigation_type = {
+            PageView.NAVIGATION_NONE: (None, None),
+            PageView.NAVIGATION_PERSON: (None,None),
+            }
+
+        self.state = state
         self.active_page = None
         self.views = []
         self.window = gtk.Window()
@@ -160,14 +170,17 @@ class ViewManager:
         hbox.pack_start(self.notebook,True)
         self.menubar = self.uimanager.get_widget('/MenuBar')
         self.toolbar = self.uimanager.get_widget('/ToolBar')
-        print self.uimanager.get_widget('/MenuBar/GoMenu')
         vbox.pack_start(self.menubar, False)
         vbox.pack_start(self.toolbar, False)
         vbox.add(hbox)
         vbox.pack_end(self.statusbar,False)
 
         self.notebook.connect('switch-page',self.change_page)
-        self.state = DbState.DbState(self.window,self.statusbar,self.uimanager)
+        self.uistate = DbState.DisplayState(self.window, self.statusbar,
+                                            self.uimanager, self.state)
+
+        person_nav = Navigation.PersonNavigation(self.uistate)
+        self.navigation_type[PageView.NAVIGATION_PERSON] = (person_nav,None)
         self.window.show_all()
 
     def init_interface(self):
@@ -187,7 +200,7 @@ class ViewManager:
         obj.set_style(style)
 
     def build_ui_manager(self):
-        self.merge_id = 0
+        self.merge_ids = []
         self.uimanager = gtk.UIManager()
 
         accelgroup = self.uimanager.get_accel_group()
@@ -259,10 +272,12 @@ class ViewManager:
 
     def create_pages(self):
         self.pages = []
+        self.prev_nav = PageView.NAVIGATION_NONE
+        
         index = 0
         self.set_color(self.ebox)
         for page_def in self.views:
-            page = page_def(self.state)
+            page = page_def(self.state,self.uistate)
 
             # create icon/label for notebook
             hbox = gtk.HBox()
@@ -291,8 +306,8 @@ class ViewManager:
             self.bbox.pack_start(button,False)
 
     def change_page(self,obj,page,num):
-        if self.merge_id:
-            self.uimanager.remove_ui(self.merge_id)
+        for mergeid in self.merge_ids:
+            self.uimanager.remove_ui(mergeid)
         if self.active_page:
             groups = self.active_page.get_actions()
             for grp in groups:
@@ -300,16 +315,28 @@ class ViewManager:
 
         if len(self.pages) > 0:
             self.active_page = self.pages[num]
+
+            old_nav = self.navigation_type[self.prev_nav]
+            if old_nav[0] != None:
+                old_nav[0].disable
+
+            nav_type = self.navigation_type[self.active_page.navigation_type()]
+            if nav_type[0] != None:
+                nav_type[0].enable()
+            
             groups = self.active_page.get_actions()
 
             for grp in groups:
                 self.uimanager.insert_action_group(grp,1)
-            self.merge_id = self.uimanager.add_ui_from_string(self.active_page.ui_definition())
+            self.merge_ids = [self.uimanager.add_ui_from_string(self.active_page.ui_definition())]
+            for ui in self.active_page.additional_ui_definitions():
+                mergeid = self.uimanager.add_ui_from_string(ui)
+                self.merge_ids.append(mergeid)
 
     def on_open_activate(self,obj):
 
         choose = gtk.FileChooserDialog(_('GRAMPS: Open database'),
-                                           self.state.window,
+                                           self.uistate.window,
                                            gtk.FILE_CHOOSER_ACTION_OPEN,
                                            (gtk.STOCK_CANCEL,
                                             gtk.RESPONSE_CANCEL,
@@ -396,7 +423,7 @@ class ViewManager:
     def on_new_activate(self,obj):
 
         choose = gtk.FileChooserDialog(_('GRAMPS: Create GRAMPS database'),
-                                           self.state.window,
+                                           self.uistate.window,
                                            gtk.FILE_CHOOSER_ACTION_SAVE,
                                            (gtk.STOCK_CANCEL,
                                             gtk.RESPONSE_CANCEL,
@@ -501,9 +528,9 @@ class ViewManager:
                 return 0
             elif not os.access(filename,os.W_OK):
                 mode = "r"
-                WarningDialog(_('Read only database'),
-                              _('You do not have write access to the selected '
-                                'file.'))
+                QuestionDialog.WarningDialog(_('Read only database'),
+                                             _('You do not have write access '
+                                               'to the selected file.'))
 
         try:
             if self.load_database(filename,callback,mode=mode) == 1:
@@ -511,19 +538,19 @@ class ViewManager:
                     filename = filename[:-1]
                 name = os.path.basename(filename)
                 if self.state.db.readonly:
-                    self.state.window.set_title("%s (%s) - GRAMPS" % (name,_('Read Only')))
+                    self.uistate.window.set_title("%s (%s) - GRAMPS" % (name,_('Read Only')))
                 else:
-                    self.state.window.set_title("%s - GRAMPS" % name)
+                    self.uistate.window.set_title("%s - GRAMPS" % name)
             else:
                 GrampsKeys.save_last_file("")
-                ErrorDialog(_('Cannot open database'),
+                QuestionDialog.ErrorDialog(_('Cannot open database'),
                             _('The database file specified could not be opened.'))
                 return 0
         except ( IOError, OSError, Errors.FileVersionError), msg:
-            ErrorDialog(_('Cannot open database'),str(msg))
+            QuestionDialog.ErrorDialog(_('Cannot open database'),str(msg))
             return 0
         except (db.DBAccessError,db.DBError), msg:
-            ErrorDialog(_('Cannot open database'),
+            QuestionDialog.ErrorDialog(_('Cannot open database'),
                         _('%s could not be opened.' % filename) + '\n' + msg[1])
             return 0
         except Exception:
@@ -588,9 +615,8 @@ class ViewManager:
         ScratchPad.ScratchPadWindow(self.state, self)
 
     def on_import(self,obj):
-        print "import"
         choose = gtk.FileChooserDialog(_('GRAMPS: Import database'),
-                                           self.state.window,
+                                           self.uistate.window,
                                            gtk.FILE_CHOOSER_ACTION_OPEN,
                                            (gtk.STOCK_CANCEL,
                                             gtk.RESPONSE_CANCEL,

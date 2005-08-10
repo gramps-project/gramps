@@ -1,3 +1,15 @@
+2005-08-10  Don Allingham  <don@gramps-project.org>
+	* src/DbState.py: separate database class from display class
+	* src/EditPerson.py: separate database class from display class
+	* src/GrampsDbBase.py: separate database class from display class
+	* src/PageView.py: separate database class from display class
+	* src/PedView.py: separate database class from display class
+	* src/PersonView.py: separate database class from display class
+	* src/RelLib.py: separate database class from display class
+	* src/ViewManager.py: separate database class from display class
+	* src/gramps_main.py: separate database class from display class
+	* src/Navigation.py: provides navigation ability for the history menu
+	
 2005-08-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py: Better autoscaling; better ui management
 
