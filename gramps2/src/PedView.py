@@ -67,18 +67,14 @@ _CREM = _('crem.')
 # PedigreeView
 #
 #-------------------------------------------------------------------------
-class PedView(PageView.PageView):
+class PedView(PageView.PersonNavView):
 
     def __init__(self,dbstate,uistate):
         print "PedView.__init__"
-        PageView.PageView.__init__(self,'Pedigree View',dbstate,uistate)
+        PageView.PersonNavView.__init__(self,'Pedigree View',dbstate,uistate)
         dbstate.connect('database-changed',self.change_db)
         dbstate.connect('active-changed',self.goto_active_person)
         self.force_size = 0 # Automatic resize
-
-    def navigation_type(self):
-        print "PedView.navigation_type"
-        return PageView.NAVIGATION_PERSON
 
     def init_parent_signals_cb(self, widget, event):
         print "PedView.init_parent_signals_cb"
@@ -95,54 +91,6 @@ class PedView(PageView.PageView):
         except:
             # for PyGtk < 2.4
             self.notebook.append_page(frame,gtk.Label(""))
-
-    def define_actions(self):
-        print "PedView.define_actions"
-        self.add_action('Forward',gtk.STOCK_GO_FORWARD,"_Forward", callback=self.fwd_clicked)
-        self.add_action('Back',   gtk.STOCK_GO_BACK,   "_Back",    callback=self.back_clicked)
-        self.add_action('HomePerson', gtk.STOCK_HOME,  "_Home",    callback=self.home)
-
-        # add the Forward action group to handle the Forward button
-        self.fwd_action = gtk.ActionGroup(self.title + '/Forward')
-        self.fwd_action.add_actions([
-            ('Forward',gtk.STOCK_GO_FORWARD,"_Forward", None, None, self.fwd_clicked)
-            ])
-
-        # add the Backward action group to handle the Forward button
-        self.back_action = gtk.ActionGroup(self.title + '/Backward')
-        self.back_action.add_actions([
-            ('Back',gtk.STOCK_GO_BACK,"_Back", None, None, self.back_clicked)
-            ])
-
-        self.add_action_group(self.back_action)
-        self.add_action_group(self.fwd_action)
-
-    def disable_action_group(self):
-        print "PedView.disable_action_group"
-        """
-        Normally, this would not be overridden from the base class. However,
-        in this case, we have additional action groups that need to be
-        handled correctly.
-        """
-        PageView.PageView.disable_action_group(self)
-        
-        self.fwd_action.set_visible(False)
-        self.back_action.set_visible(False)
-
-    def enable_action_group(self,obj):
-        print "PedView.enable_action_group"
-        """
-        Normally, this would not be overridden from the base class. However,
-        in this case, we have additional action groups that need to be
-        handled correctly.
-        """
-        PageView.PageView.enable_action_group(self,obj)
-        
-        self.fwd_action.set_visible(True)
-        self.back_action.set_visible(True)
-        hobj = self.uistate.phistory
-        self.fwd_action.set_sensitive(not hobj.at_end())
-        self.back_action.set_sensitive(not hobj.at_front())
 
     def get_stock(self):
         """
@@ -211,6 +159,23 @@ class PedView(PageView.PageView):
           </toolbar>
         </ui>'''
 
+    def define_actions(self):
+        """
+        Required define_actions function for PageView. Builds the action
+        group information required. We extend beyond the normal here,
+        since we want to have more than one action group for the PersonView.
+        Most PageViews really won't care about this.
+
+        Special action groups for Forward and Back are created to allow the
+        handling of navigation buttons. Forward and Back allow the user to
+        advance or retreat throughout the history, and we want to have these
+        be able to toggle these when you are at the end of the history or
+        at the beginning of the history.
+        """
+
+        PageView.PersonNavView.define_actions(self)
+        self.add_action('HomePerson',gtk.STOCK_HOME,  "_Home",  callback=self.home)
+
     def change_db(self,db):
         print "PedView.change_db"
         """
@@ -230,16 +195,12 @@ class PedView(PageView.PageView):
     def goto_active_person(self,handle=None):
         print "PedView.goto_active_person"
         if handle:
-            self.rebuild_trees(self.db.get_person_from_handle(handle))
+            person = self.db.get_person_from_handle(handle)
+            self.rebuild_trees(person)
+            self.handle_history(person.handle)
         else:
             self.rebuild_trees(None)
     
-    def fwd_clicked(self,obj,step=1):
-        pass
-    
-    def back_clicked(self,obj,step=1):
-        pass
-        
     def person_updated_cb(self,handle_list):
         print "PedView.person_updated_cb"
         self.rebuild_trees(self.dbstate.active)

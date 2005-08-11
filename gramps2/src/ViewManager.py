@@ -288,6 +288,7 @@ class ViewManager:
             hbox.show_all()
 
             # create notebook page and add to notebook
+            page.define_actions()
             page_display = page.get_display()
             page_display.show_all()
             self.notebook.append_page(page_display,hbox)
@@ -323,7 +324,7 @@ class ViewManager:
             nav_type = self.navigation_type[self.active_page.navigation_type()]
             if nav_type[0] != None:
                 nav_type[0].enable()
-            
+                            
             groups = self.active_page.get_actions()
 
             for grp in groups:
@@ -332,6 +333,8 @@ class ViewManager:
             for ui in self.active_page.additional_ui_definitions():
                 mergeid = self.uimanager.add_ui_from_string(ui)
                 self.merge_ids.append(mergeid)
+
+            self.active_page.change_page()
 
     def on_open_activate(self,obj):
 

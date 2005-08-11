@@ -101,4 +101,120 @@ class PageView:
     def add_action_group(self,group):
         self.additional_action_groups.append(group)
 
+    def change_page(self):
+        pass
+    
+class PersonNavView(PageView):
+    def __init__(self,title,dbstate,uistate):
+        PageView.__init__(self,title,dbstate,uistate)
 
+    def navigation_type(self):
+        return NAVIGATION_PERSON
+
+    def define_actions(self):
+        # add the Forward action group to handle the Forward button
+
+        self.fwd_action = gtk.ActionGroup(self.title + '/Forward')
+        self.fwd_action.add_actions([
+            ('Forward',gtk.STOCK_GO_FORWARD,"_Forward", None, None, self.fwd_clicked)
+            ])
+
+        # add the Backward action group to handle the Forward button
+        self.back_action = gtk.ActionGroup(self.title + '/Backward')
+        self.back_action.add_actions([
+            ('Back',gtk.STOCK_GO_BACK,"_Back", None, None, self.back_clicked)
+            ])
+
+        self.add_action_group(self.back_action)
+        self.add_action_group(self.fwd_action)
+
+    def disable_action_group(self):
+        """
+        Normally, this would not be overridden from the base class. However,
+        in this case, we have additional action groups that need to be
+        handled correctly.
+        """
+        PageView.disable_action_group(self)
+        
+        self.fwd_action.set_visible(False)
+        self.back_action.set_visible(False)
+
+    def enable_action_group(self,obj):
+        """
+        Normally, this would not be overridden from the base class. However,
+        in this case, we have additional action groups that need to be
+        handled correctly.
+        """
+        PageView.enable_action_group(self,obj)
+        
+        self.fwd_action.set_visible(True)
+        self.back_action.set_visible(True)
+        hobj = self.uistate.phistory
+        self.fwd_action.set_sensitive(not hobj.at_end())
+        self.back_action.set_sensitive(not hobj.at_front())
+
+    def home(self,obj):
+        defperson = self.dbstate.db.get_default_person()
+        if defperson:
+            self.dbstate.change_active_person(defperson)
+
+    def fwd_clicked(self,obj,step=1):
+        hobj = self.uistate.phistory
+        hobj.lock = True
+        if not hobj.at_end():
+            try:
+                handle = hobj.forward()
+                self.dbstate.active = self.dbstate.db.get_person_from_handle(handle)
+                self.uistate.modify_statusbar()
+                self.dbstate.change_active_handle(handle)
+                hobj.mhistory.append(hobj.history[hobj.index])
+                #self.redraw_histmenu()
+                self.fwd_action.set_sensitive(not hobj.at_end())
+                self.back_action.set_sensitive(True)
+            except:
+                hobj.clear()
+                self.fwd_action.set_sensitive(False)
+                self.back_action.set_sensitive(False)
+        else:
+            self.fwd_action.set_sensitive(False)
+            self.back_action.set_sensitive(True)
+        hobj.lock = False
+
+    def back_clicked(self,obj,step=1):
+        hobj = self.uistate.phistory
+        hobj.lock = True
+        if not hobj.at_front():
+            try:
+                handle = hobj.back()
+                self.active = self.dbstate.db.get_person_from_handle(handle)
+                self.uistate.modify_statusbar()
+                self.dbstate.change_active_handle(handle)
+                hobj.mhistory.append(hobj.history[hobj.index])
+#                self.redraw_histmenu()
+                self.back_action.set_sensitive(not hobj.at_front())
+                self.fwd_action.set_sensitive(True)
+            except:
+                hobj.clear()
+                self.fwd_action.set_sensitive(False)
+                self.back_action.set_sensitive(False)
+        else:
+            self.back_action.set_sensitive(False)
+            self.fwd_action.set_sensitive(True)
+        hobj.lock = False
+        
+    def handle_history(self, handle):
+        """
+        Updates the person history information
+        """
+        hobj = self.uistate.phistory
+        if handle and not hobj.lock:
+            hobj.push(handle)
+            #self.redraw_histmenu()
+            self.fwd_action.set_sensitive(not hobj.at_end())
+            self.back_action.set_sensitive(not hobj.at_front())
+
+    def change_page(self):
+        hobj = self.uistate.phistory
+        print hobj.at_end(), hobj.at_front()
+        self.fwd_action.set_sensitive(not hobj.at_end())
+        self.back_action.set_sensitive(not hobj.at_front())

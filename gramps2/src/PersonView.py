@@ -67,16 +67,13 @@ column_names = [
     ]
 
 
-class PersonView(PageView.PageView):
+class PersonView(PageView.PersonNavView):
 
     def __init__(self,dbstate,uistate):
-        PageView.PageView.__init__(self,'Person View',dbstate,uistate)
+        PageView.PersonNavView.__init__(self,'Person View',dbstate,uistate)
         self.inactive = False
         dbstate.connect('database-changed',self.change_db)
         dbstate.connect('active-changed',self.goto_active_person)
-
-    def navigation_type(self):
-        return PageView.NAVIGATION_PERSON
 
     def define_actions(self):
         """
@@ -92,52 +89,14 @@ class PersonView(PageView.PageView):
         at the beginning of the history.
         """
 
+        PageView.PersonNavView.define_actions(self)
+        
         self.add_action('Add',       gtk.STOCK_ADD,   "_Add",   callback=self.add)
         self.add_action('Edit',      gtk.STOCK_EDIT,  "_Edit",  callback=self.edit)
         self.add_action('Remove',    gtk.STOCK_REMOVE,"_Remove",callback=self.remove)
         self.add_action('HomePerson',gtk.STOCK_HOME,  "_Home",  callback=self.home)
         
         self.add_toggle_action('Filter', None, '_Filter', callback=self.filter_toggle)
-
-        # add the Forward action group to handle the Forward button
-        self.fwd_action = gtk.ActionGroup(self.title + '/Forward')
-        self.fwd_action.add_actions([
-            ('Forward',gtk.STOCK_GO_FORWARD,"_Forward", None, None, self.fwd_clicked)
-            ])
-
-        # add the Backward action group to handle the Forward button
-        self.back_action = gtk.ActionGroup(self.title + '/Backward')
-        self.back_action.add_actions([
-            ('Back',gtk.STOCK_GO_BACK,"_Back", None, None, self.back_clicked)
-            ])
-
-        self.add_action_group(self.back_action)
-        self.add_action_group(self.fwd_action)
-
-    def disable_action_group(self):
-        """
-        Normally, this would not be overridden from the base class. However,
-        in this case, we have additional action groups that need to be
-        handled correctly.
-        """
-        PageView.PageView.disable_action_group(self)
-        
-        self.fwd_action.set_visible(False)
-        self.back_action.set_visible(False)
-
-    def enable_action_group(self,obj):
-        """
-        Normally, this would not be overridden from the base class. However,
-        in this case, we have additional action groups that need to be
-        handled correctly.
-        """
-        PageView.PageView.enable_action_group(self,obj)
-        
-        self.fwd_action.set_visible(True)
-        self.back_action.set_visible(True)
-        hobj = self.uistate.phistory
-        self.fwd_action.set_sensitive(not hobj.at_end())
-        self.back_action.set_sensitive(not hobj.at_front())
 
     def get_stock(self):
         """
@@ -315,17 +274,6 @@ class PersonView(PageView.PageView):
 
         # update history
         self.handle_history(p.handle)
-
-    def handle_history(self, handle):
-        """
-        Updates the person history information
-        """
-        hobj = self.uistate.phistory
-        if handle and not hobj.lock:
-            hobj.push(handle)
-            #self.redraw_histmenu()
-            self.fwd_action.set_sensitive(not hobj.at_end())
-            self.back_action.set_sensitive(not hobj.at_front())
         
     def setup_filter(self):
         """
@@ -823,51 +771,3 @@ class PersonView(PageView.PageView):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_fwdhistmenu(event)
 
-    def fwd_clicked(self,obj,step=1):
-        hobj = self.uistate.phistory
-        hobj.lock = True
-        if not hobj.at_end():
-            try:
-                handle = hobj.forward()
-                self.dbstate.active = self.dbstate.db.get_person_from_handle(handle)
-                self.uistate.modify_statusbar()
-                self.dbstate.change_active_handle(handle)
-                hobj.mhistory.append(hobj.history[hobj.index])
-                #self.redraw_histmenu()
-                self.fwd_action.set_sensitive(not hobj.at_end())
-                self.back_action.set_sensitive(True)
-            except:
-                hobj.clear()
-                self.fwd_action.set_sensitive(False)
-                self.back_action.set_sensitive(False)
-        else:
-            self.fwd_action.set_sensitive(False)
-            self.back_action.set_sensitive(True)
-        hobj.lock = False
-
-    def back_clicked(self,obj,step=1):
-        hobj = self.uistate.phistory
-        hobj.lock = True
-        if not hobj.at_front():
-            try:
-                handle = hobj.back()
-                self.active = self.dbstate.db.get_person_from_handle(handle)
-                self.uistate.modify_statusbar()
-                self.dbstate.change_active_handle(handle)
-                hobj.mhistory.append(hobj.history[hobj.index])
-#                self.redraw_histmenu()
-                self.back_action.set_sensitive(not hobj.at_front())
-                self.fwd_action.set_sensitive(True)
-            except:
-                hobj.clear()
-                self.fwd_action.set_sensitive(False)
-                self.back_action.set_sensitive(False)
-        else:
-            self.back_action.set_sensitive(False)
-            self.fwd_action.set_sensitive(True)
-        hobj.lock = False
-
-    def home(self,obj):
-        defperson = self.dbstate.db.get_default_person()
-        if defperson:
-            self.dbstate.change_active_person(defperson)
