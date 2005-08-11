@@ -1,11 +1,13 @@
 2005-08-11  Don Allingham  <don@gramps-project.org>
 	* src/DbState.py: handle self.index == -1
 	* src/PageView.py: Provide PersonNavPage to handle page views
-	that to person navigation
+	that to person navigation, add start of a ListView
 	* src/PedView.py: Derive from PersonNavPage
 	* src/PersonView.py: Derive from PersonNavPage
 	* src/ViewManager.py: Call new change_page to make sure history 
 	buttons are correct for the view.
+	* src/EventView.py: merged in new EventView.
+	* src/gramps_main.py: register EventView
 	
 2005-08-11  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py: More work on it.

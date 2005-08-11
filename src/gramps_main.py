@@ -25,6 +25,7 @@ import ViewManager
 import PersonView
 import PedView
 import MapView
+import EventView
 import ArgHandler
 import DisplayTrace
 import GrampsKeys
@@ -191,6 +192,7 @@ class Gramps:
         a = ViewManager.ViewManager(state)
         a.register_view(PersonView.PersonView)
         a.register_view(PedView.PedView)
+        a.register_view(EventView.EventView)
         a.register_view(MapView.MapView)
         a.init_interface()
         

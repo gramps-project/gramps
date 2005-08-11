@@ -90,27 +90,27 @@ def get_place(field,pmap,db):
 #-------------------------------------------------------------------------
 class EventEditor:
 
-    def __init__(self,event,db,parent,parent_window):
-        self.parent = parent
-        self.db = db
+    def __init__(self,event,dbstate,uistate):
+        #self.parent = parent
+        self.db = dbstate.db
         read_only = self.db.readonly
         noedit = self.db.readonly
-        if event:
-            if self.parent.child_windows.has_key(event.get_handle()):
-                self.parent.child_windows[event.get_handle()].present(None)
-                return
-            else:
-                self.win_key = event.get_handle()
-        else:
-            self.win_key = self
+#        if event:
+#            if self.parent.child_windows.has_key(event.get_handle()):
+#                self.parent.child_windows[event.get_handle()].present(None)
+#                return
+#            else:
+#                self.win_key = event.get_handle()
+#        else:
+#            self.win_key = self
         self.event = event
-        self.child_windows = {}
+#        self.child_windows = {}
         self.path = self.db.get_save_path()
         self.plist = []
         self.pmap = {}
 
-        for key in self.parent.db.get_place_handles():
-            title = self.parent.db.get_place_from_handle(key).get_title()
+        for key in self.db.get_place_handles():
+            title = self.db.get_place_from_handle(key).get_title()
             self.pmap[title] = key
 
         if event:
@@ -247,11 +247,11 @@ class EventEditor:
 
         Utils.bold_label(self.general_label)
 
-        try:
-            self.window.set_transient_for(self.parent.window)
-        except AttributeError:
-            pass
-        self.add_itself_to_menu()
+#        try:
+#            self.window.set_transient_for(self.parent.window)
+#        except AttributeError:
+#            pass
+#        self.add_itself_to_menu()
         self.window.show()
 
     def on_delete_event(self,obj,b):
@@ -266,11 +266,13 @@ class EventEditor:
         self.window.destroy()
 
     def close_child_windows(self):
+        return
         for child_window in self.child_windows.values():
             child_window.close(None)
         self.child_windows = {}
 
     def add_itself_to_menu(self):
+        return
         self.parent.child_windows[self.win_key] = self
         if not self.event:
             label = _("New Event")
@@ -294,6 +296,7 @@ class EventEditor:
         self.winsmenu.append(self.menu_item)
 
     def remove_itself_from_menu(self):
+        return
         if self.window:
             del self.parent.child_windows[self.win_key]
         self.menu_item.destroy()
@@ -301,6 +304,7 @@ class EventEditor:
         self.parent_menu_item.destroy()
 
     def present(self,obj):
+        return
         self.window.present()
 
     def on_help_clicked(self,obj):
@@ -425,8 +429,8 @@ class EventRefEditor:
         self.child_windows = {}
 
         self.pmap = {}
-        for key in self.parent.db.get_place_handles():
-            title = self.parent.db.get_place_from_handle(key).get_title()
+        for key in self.db.get_place_handles():
+            title = self.db.get_place_from_handle(key).get_title()
             self.pmap[title] = key
 
         self.title = _('Event Reference Editor')
@@ -594,6 +598,7 @@ class EventRefEditor:
         self.winsmenu.append(self.menu_item)
 
     def remove_itself_from_menu(self):
+        return
         del self.win_parent.child_windows[self.win_key]
         self.menu_item.destroy()
         self.winsmenu.destroy()
