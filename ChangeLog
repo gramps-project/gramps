@@ -1,3 +1,12 @@
+2005-08-11  Don Allingham  <don@gramps-project.org>
+	* src/DbState.py: handle self.index == -1
+	* src/PageView.py: Provide PersonNavPage to handle page views
+	that to person navigation
+	* src/PedView.py: Derive from PersonNavPage
+	* src/PersonView.py: Derive from PersonNavPage
+	* src/ViewManager.py: Call new change_page to make sure history 
+	buttons are correct for the view.
+	
 2005-08-11  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py: More work on it.
 	* src/MapView.py: New View showing locations on a map. Early unfinished version.

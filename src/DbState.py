@@ -112,7 +112,7 @@ class History(GrampsDBCallback.GrampsDBCallback):
         return self.index+1 == len(self.history)
 
     def at_front(self):
-        return self.index == 0
+        return self.index <= 0
 
     def prune(self):
         if not self.at_end():
