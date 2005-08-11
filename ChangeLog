@@ -1,3 +1,11 @@
+2005-08-11  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/PedView.py: More work on it.
+	* src/MapView.py: New View showing locations on a map. Early unfinished version.
+	* src/gramps_main.py: Enable MapView
+	* src/land_shallow_topo_2048.jpg:
+	* src/land_shallow_topo_350.jpg: Two new map images downloaded from NASA
+	so the are assumed to be public domain.
+
 2005-08-10  Don Allingham  <don@gramps-project.org>
 	* src/DbState.py: separate database class from display class
 	* src/EditPerson.py: separate database class from display class
