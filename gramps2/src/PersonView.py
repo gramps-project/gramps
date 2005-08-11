@@ -136,6 +136,7 @@ class PersonView(PageView.PersonNavView):
         self.person_tree = gtk.TreeView()
         self.person_tree.set_rules_hint(True)
         self.person_tree.set_headers_visible(True)
+        self.person_tree.connect('key-press-event',self.key_press)
 
         scrollwindow = gtk.ScrolledWindow()
         scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)

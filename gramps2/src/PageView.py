@@ -103,6 +103,13 @@ class PageView:
 
     def change_page(self):
         pass
+
+    def key_press(self,obj,event):
+        ret_key = gtk.gdk.keyval_from_name("Return")
+        if event.keyval == ret_key and not event.state:
+            self.edit(obj)
+            return True
+        return False
     
 class PersonNavView(PageView):
     def __init__(self,title,dbstate,uistate):
@@ -218,3 +225,146 @@ class PersonNavView(PageView):
         print hobj.at_end(), hobj.at_front()
         self.fwd_action.set_sensitive(not hobj.at_end())
         self.back_action.set_sensitive(not hobj.at_front())
+
+class ListView(PageView):
+
+    def __init__(self, title, dbstate, uistate, columns, handle_col,
+                 make_model, signal_map):
+        PageView.__init__(self, title, dbstate, uistate)
+        self.renderer = gtk.CellRendererText()
+        self.sort_col = 0
+        self.columns = []
+        self.colinfo = columns
+        self.handle_col = handle_col
+        self.make_model = make_model
+        self.signal_map = signal_map
+        dbstate.connect('database-changed',self.change_db)
+
+    def build_widget(self):
+        """
+        Builds the interface and returns a gtk.Container type that
+        contains the interface. This containter will be inserted into
+        a gtk.Notebook page.
+        """
+        self.list = gtk.TreeView()
+        self.list.set_rules_hint(True)
+        self.list.set_headers_visible(True)
+        self.list.set_headers_clickable(True)
+        #self.list.connect('button-press-event',self.button_press)
+        self.list.connect('key-press-event',self.key_press)
+
+        scrollwindow = gtk.ScrolledWindow()
+        scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        scrollwindow.set_shadow_type(gtk.SHADOW_ETCHED_IN)
+        scrollwindow.add(self.list)
+
+        self.renderer = gtk.CellRendererText()
+        self.inactive = False
+
+        self.columns = []
+        self.build_columns()
+        self.selection = self.list.get_selection()
+        #self.selection.connect('changed',self.row_changed)
+
+        return scrollwindow
+    
+    def column_clicked(self,obj,data):
+        if self.sort_col != data:
+            order = gtk.SORT_ASCENDING
+        else:
+            if (self.columns[data].get_sort_order() == gtk.SORT_DESCENDING
+                or self.columns[data].get_sort_indicator() == False):
+                order = gtk.SORT_ASCENDING
+            else:
+                order = gtk.SORT_DESCENDING
+        self.sort_col = data
+        handle = self.first_selected()
+        self.model = DisplayModels.EventModel(self.dbstate.db,
+                                               self.sort_col,order)
+        self.list.set_model(self.model)
+        colmap = self.dbstate.db.get_repository_column_order()
+
+        if handle:
+            path = self.model.on_get_path(handle)
+            self.selection.select_path(path)
+            self.list.scroll_to_cell(path,None,1,0.5,0)
+        for i in range(0,len(self.columns)):
+            self.columns[i].set_sort_indicator(i==colmap[data][1]-1)
+        self.columns[self.sort_col].set_sort_order(order)
+
+    def build_columns(self):
+        for column in self.columns:
+            self.list.remove_column(column)
+            
+        self.columns = []
+
+        index = 0
+        for pair in self.dbstate.db.get_event_column_order():
+            if not pair[0]:
+                continue
+            name = self.colinfo[pair[1]]
+            column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
+            column.connect('clicked',self.column_clicked,index)
+            column.set_resizable(True)
+            column.set_min_width(75)
+            column.set_clickable(True)
+            self.columns.append(column)
+            self.list.append_column(column)
+            index += 1
+    
+    def blist(self,store,path,iter,sel_list):
+        handle = store.get_value(iter,self.handle_col)
+        sel_list.append(handle)
+
+    def first_selected(self):
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
+        if mlist:
+            return mlist[0]
+        else:
+            return None
+
+    def build_tree(self):
+        self.model = self.make_model(self.dbstate.db,self.sort_col)
+        self.list.set_model(self.model)
+        self.selection = self.list.get_selection()
+
+    def change_db(self,db):
+        for sig in self.signal_map:
+            db.connect(sig, self.signal_map[sig])
+        self.model = self.make_model(self.dbstate.db,0)
+        self.list.set_model(self.model)
+        self.build_columns()
+        self.build_tree()
+
+    def row_add(self,handle_list):
+        for handle in handle_list:
+            self.model.add_row_by_handle(handle)
+
+    def row_update(self,handle_list):
+        for handle in handle_list:
+            self.model.update_row_by_handle(handle)
+
+    def row_delete(self,handle_list):
+        for handle in handle_list:
+            self.model.delete_row_by_handle(handle)
+
+    def define_actions(self):
+        """
+        Required define_actions function for PageView. Builds the action
+        group information required. We extend beyond the normal here,
+        since we want to have more than one action group for the PersonView.
+        Most PageViews really won't care about this.
+        """
+
+        self.add_action('Add',       gtk.STOCK_ADD,   "_Add",   callback=self.add)
+        self.add_action('Edit',      gtk.STOCK_EDIT,  "_Edit",  callback=self.edit)
+        self.add_action('Remove',    gtk.STOCK_REMOVE,"_Remove",callback=self.remove)
+
+    def key_press(self,obj,event):
+        ret_key = gtk.gdk.keyval_from_name("Return")
+        if event.keyval == ret_key and not event.state:
+            self.edit(obj)
+            return True
+        return False
+
