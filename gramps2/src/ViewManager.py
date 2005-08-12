@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,12 +18,13 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-
 from gettext import gettext as _
 from bsddb import db
 import os
@@ -44,7 +45,7 @@ except:
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import DbState
+import DisplayState
 import DbPrompter
 import const
 import PluginMgr
@@ -176,7 +177,7 @@ class ViewManager:
         vbox.pack_end(self.statusbar,False)
 
         self.notebook.connect('switch-page',self.change_page)
-        self.uistate = DbState.DisplayState(self.window, self.statusbar,
+        self.uistate = DisplayState.DisplayState(self.window, self.statusbar,
                                             self.uimanager, self.state)
 
         person_nav = Navigation.PersonNavigation(self.uistate)
@@ -797,4 +798,3 @@ def format_maker(formats):
     box.add(type_selector)
     box.show_all()
     return (box,type_selector)
-

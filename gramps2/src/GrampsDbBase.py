@@ -1496,3 +1496,38 @@ class Transaction:
         if self.last and self.first:
             return self.last - self.first + 1
         return 0
+
+class DbState(GrampsDBCallback.GrampsDBCallback):
+
+    __signals__ = {
+        'database-changed' : (GrampsDbBase,),
+        'active-changed'   : (str,),
+        'no-database'      :  None,
+        }
+
+    def __init__(self):
+        GrampsDBCallback.GrampsDBCallback.__init__(self)
+        self.db     = GrampsDbBase()
+        self.active = None
+
+    def change_active_person(self,person):
+        self.active = person
+        if person:
+            try:
+                self.emit('active-changed',(person.handle,))
+            except:
+                self.emit('active-changed',("",))
+
+    def change_active_handle(self,handle):
+        self.change_active_person(self.db.get_person_from_handle(handle))
+
+    def get_active_person(self):
+        return self.active
+
+    def change_database(self,db):
+        self.db = db
+        self.emit('database-changed',(self.db,))
+
+    def no_database(self):
+        self.db = GrampsDbBase()
+        self.emit('no-database')

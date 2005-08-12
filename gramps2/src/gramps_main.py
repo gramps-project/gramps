@@ -36,7 +36,7 @@ import const
 import Errors
 import PluginMgr
 import TipOfDay
-import DbState
+import GrampsDbBase
 
 from GrampsMime import mime_type_is_defined
 from QuestionDialog import ErrorDialog
@@ -44,19 +44,20 @@ from QuestionDialog import ErrorDialog
 import gnome
 
 
-iconpaths = [".","/usr/share/gramps"]
+iconpaths = [".",const.rootDir]
 
 def register_stock_icons ():
     import os
     items = [
-        ('people48.png',('gramps-person', 'Person', gtk.gdk.CONTROL_MASK, 0, '')),
-        ('family48.png',('gramps-family', 'Family', gtk.gdk.CONTROL_MASK, 0, '')),
-        ('ped24.png',('gramps-pedigree', 'Pedigree', gtk.gdk.CONTROL_MASK, 0, '')),
-        ('repos.png',('gramps-repository', 'Repositories', gtk.gdk.CONTROL_MASK, 0, '')),
-        ('sources.png',('gramps-source', 'Sources', gtk.gdk.CONTROL_MASK, 0, '')),
-        ('events.png',('gramps-event', 'Events', gtk.gdk.CONTROL_MASK, 0, '')),
-        ('place.png',('gramps-place', 'Places', gtk.gdk.CONTROL_MASK, 0, '')),
-        ('place.png',('gramps-map',   'Map', gtk.gdk.CONTROL_MASK, 0, '')),
+        ('people48.png',('gramps-person','Person',gtk.gdk.CONTROL_MASK,0,'')),
+        ('family48.png',('gramps-family','Family',gtk.gdk.CONTROL_MASK,0,'')),
+        ('ped24.png',('gramps-pedigree','Pedigree',gtk.gdk.CONTROL_MASK,0,'')),
+        ('repos.png',('gramps-repository','Repositories',
+                      gtk.gdk.CONTROL_MASK,0,'')),
+        ('sources.png',('gramps-source','Sources',gtk.gdk.CONTROL_MASK,0,'')),
+        ('events.png',('gramps-event','Events',gtk.gdk.CONTROL_MASK,0,'')),
+        ('place.png',('gramps-place','Places',gtk.gdk.CONTROL_MASK,0,'')),
+        ('place.png',('gramps-map','Map',gtk.gdk.CONTROL_MASK,0,'')),
         ]
     
     # Register our stock items
@@ -86,6 +87,12 @@ def register_stock_icons ():
             print 'failed to load GTK logo for toolbar'
 
 class Gramps:
+    """
+    Main class corresponding to a running gramps process.
+
+    There can be only one instance of this class per gramps application
+    process. It may spawn several windows and control several databases.
+    """
 
     def __init__(self,args):
 
@@ -107,9 +114,10 @@ class Gramps:
             ErrorDialog(_("Configuration error"),str(msg))
             return
         except Errors.GConfSchemaError, val:
-            ErrorDialog(_("Configuration error"),
-                        str(val) + _("\n\nPossibly the installation of GRAMPS was incomplete."
-                          " Make sure the GConf schema of GRAMPS is properly installed."))
+            ErrorDialog(_("Configuration error"),str(val) +
+                        _("\n\nPossibly the installation of GRAMPS "
+                          "was incomplete. Make sure the GConf schema "
+                          "of GRAMPS is properly installed."))
             gtk.main_quit()
             return
         except:
@@ -118,9 +126,11 @@ class Gramps:
             
         if not mime_type_is_defined(const.app_gramps):
             ErrorDialog(_("Configuration error"),
-                        _("A definition for the MIME-type %s could not be found"
-                          "\n\nPossibly the installation of GRAMPS was incomplete."
-                          " Make sure the MIME-types of GRAMPS are properly installed.") % const.app_gramps)
+                        _("A definition for the MIME-type %s could not "
+                          "be found \n\nPossibly the installation of GRAMPS "
+                          "was incomplete. Make sure the MIME-types "
+                          "of GRAMPS are properly installed.")
+                        % const.app_gramps)
             gtk.main_quit()
             return
 
@@ -150,7 +160,7 @@ class Gramps:
 
         register_stock_icons()
 
-        state = DbState.DbState()
+        state = GrampsDbBase.DbState()
         
         a = ViewManager.ViewManager(state)
         a.register_view(PersonView.PersonView)
