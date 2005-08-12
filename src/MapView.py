@@ -364,10 +364,11 @@ class MapView(PageView.PageView):
         self.zoom_map.set_guide(self.guide_map)
         
         # And the place list
-        d = self.get_xearth_markers()
-        if not d:
-            d = data
-        self.place_list_view = MapPlacesList( d)
+	try:
+            d = self.get_xearth_markers()
+            self.place_list_view = MapPlacesList( d)
+	except:
+            self.place_list_view = MapPlacesList( data)
         self.place_list_view.set_size_request(128,-1)
         vport = gtk.ScrolledWindow()
         vbox.pack_start(vport,True,True,0)

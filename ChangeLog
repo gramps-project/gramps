@@ -1,3 +1,6 @@
+2005-08-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/MapView.py: Dont fail if xearth is not installed
+	
 2005-08-12  Don Allingham  <don@gramps-project.org>
 	* src/Navigation.py: Don't disable the interface all the time.
 
@@ -6,8 +9,8 @@
 	* src/gramps_main.py: Run ArgHandler with new arguments.
 
 2005-08-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
-	* src/MapView.py: Corrected coordinate handling; Show all location in map;
-	fetch locations from xearth config file
+	* src/MapView.py: Corrected coordinate handling; Show all locations
+	in map; fetch locations from xearth config file
 
 2005-08-12  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
         * src/EditRepository.py: changes to work with ViewManager changes
