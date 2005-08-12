@@ -420,12 +420,13 @@ class BasePage:
         else:
             return base + "." + self.ext
 
-    def person_link(self,of,path,name,gid=""):
-        if self.levels == 1:
-            path = "../../" + path
-        elif self.levels == 2:
-            path = "../../../" + path
-            
+    def person_link(self,of,path,name,gid="",up=True):
+        if up:
+            if self.levels == 1:
+                path = "../../" + path
+            elif self.levels == 2:
+                path = "../../../" + path
+
         of.write('<a href="%s">%s' % (path,name))
         if not self.noid and gid != "":
             of.write('&nbsp;<span class="grampsid">[%s]</span>' % gid)
@@ -513,7 +514,7 @@ class IndividualListPage(BasePage):
         of.write('</tr>\n')
 
         person_handle_list = sort_people(db,person_handle_list)
-        
+
         for (surname,handle_list) in person_handle_list:
             first = True
             of.write('<tr><td colspan="2">&nbsp;</td></tr>\n')
@@ -528,7 +529,7 @@ class IndividualListPage(BasePage):
                 path = self.build_path(person.handle,"ppl",False)
                 self.person_link(of, self.build_name(path,person.handle),
                                  person.get_primary_name().get_first_name(),
-                                 person.gramps_id)
+                                 person.gramps_id,False)
                 of.write('</td><td class="field">')
                 birth_handle = person.get_birth_handle()
                 if birth_handle:
@@ -574,7 +575,7 @@ class SurnamePage(BasePage):
             path = self.build_path(person.handle,"ppl",False)
             self.person_link(of, self.build_name(path,person.handle),
                              person.get_primary_name().get_first_name(),
-                             person.gramps_id)
+                             person.gramps_id,False)
             of.write('</td><td class="field">')
             birth_handle = person.get_birth_handle()
             if birth_handle:
@@ -1818,7 +1819,7 @@ class WebReport(Report.Report):
                                   ind_list, place_list, source_list,
                                   self.options, archive, photo_list, levels)
             
-        if len(ind_list) > 1:
+        if len(ind_list) > 0:
             IndividualListPage(self.database, self.title, ind_list,
                                self.options, archive, photo_list, levels)
             SurnameListPage(self.database, self.title, ind_list,
