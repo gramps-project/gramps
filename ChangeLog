@@ -1,3 +1,7 @@
+2005-08-11  Don Allingham  <don@gramps-project.org>
+	* src/RepositoryView.py: added back in
+	* src/gramps_main.py: added repository view
+
 2005-08-11  Alex Roitman  <shura@gramps-project.org>
 	* src/DbState.py: Remove modeule.
 	* src/DisplayState.py: Rename from DbState, kepp only DisplayState
