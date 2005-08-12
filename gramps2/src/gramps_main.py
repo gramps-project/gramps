@@ -20,7 +20,19 @@
 
 # $Id$
 
+#-------------------------------------------------------------------------
+#
+# GTK+/GNOME modules
+#
+#-------------------------------------------------------------------------
 import gtk
+import gnome
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS  modules
+#
+#-------------------------------------------------------------------------
 import ViewManager
 import PersonView
 import RepositoryView
@@ -41,8 +53,6 @@ import GrampsDbBase
 
 from GrampsMime import mime_type_is_defined
 from QuestionDialog import ErrorDialog
-
-import gnome
 
 
 iconpaths = [".",const.rootDir]
@@ -135,8 +145,23 @@ class Gramps:
             gtk.main_quit()
             return
 
-        ArgHandler.ArgHandler(self,args)
 
+        register_stock_icons()
+        
+        state = GrampsDbBase.DbState()
+        vm = ViewManager.ViewManager(state)
+        vm.register_view(PersonView.PersonView)
+        vm.register_view(PedView.PedView)
+        vm.register_view(EventView.EventView)
+        vm.register_view(SourceView.SourceView)
+        vm.register_view(PlaceView.PlaceView)
+        vm.register_view(MapView.MapView)
+        vm.register_view(RepositoryView.RepositoryView)
+
+        ArgHandler.ArgHandler(state,vm,args)
+
+        vm.init_interface()
+        
         # Don't show main window until ArgHandler is done.
         # This prevents a window from annoyingly popping up when
         # the command line args are sufficient to operate without it.
@@ -159,20 +184,6 @@ class Gramps:
 #        GrampsKeys.client.notify_add("/apps/gramps/preferences/date-format",
 #                                    self.date_format_key_update)
 
-        register_stock_icons()
-
-        state = GrampsDbBase.DbState()
-        
-        a = ViewManager.ViewManager(state)
-        a.register_view(PersonView.PersonView)
-        a.register_view(PedView.PedView)
-        a.register_view(EventView.EventView)
-        a.register_view(SourceView.SourceView)
-        a.register_view(PlaceView.PlaceView)
-        a.register_view(MapView.MapView)
-        a.register_view(RepositoryView.RepositoryView)
-        a.init_interface()
-        
         if GrampsKeys.get_usetips():
             TipOfDay.TipOfDay(self)
 
