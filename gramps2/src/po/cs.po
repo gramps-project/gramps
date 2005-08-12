@@ -4103,7 +4103,6 @@ msgstr "Domovskou stránku GRAMPSu najdete na http://gramps-project.org/"
 #: data/tips.xml:392
 msgid "GRAMPS has some unique features, including the ability to input any piece of information directly into GRAMPS. All data in the data base can be rearranged/manipulated to assist the user in doing research, analysis and correlation with the potential of filling relationship gaps."
 msgstr "GRAMPS má některé jedinečné rysy, včetně možnosti zadat jakoukoli informaci přímo do GRAMPSu. Všechna data v databázi mohou být zpracována/přeuspořádána, aby byla uživateli nápomocna při výzkumu, analýze a doplnění chybějících vztahů."
-o
 
 #: data/tips.xml:398
 msgid "GRAMPS helps you to keep personal information secure by allowing you to mark information as private. Data marked as private can be excluded from reports and data exports."
