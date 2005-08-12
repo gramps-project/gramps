@@ -1,3 +1,7 @@
+2005-08-12  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: fix surname list when size is
+	greater that 9K people.
+
 2005-08-12  Tino Meinen  <a.t.meinen@chello.nl>
 	* src/po/nl.po: Updated Dutch translation
 

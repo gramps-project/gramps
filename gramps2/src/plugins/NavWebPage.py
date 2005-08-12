@@ -434,6 +434,8 @@ class BasePage:
     def surname_link(self,of,name,opt_val=None,up=False):
         handle = self.lnkfmt(name)
         dirpath = self.build_path(handle,'srn',up)
+
+        print self.levels, dirpath
             
         of.write('<a href="%s/%s.%s">%s' % (dirpath,handle,self.ext,name))
         if opt_val != None:
@@ -1815,13 +1817,13 @@ class WebReport(Report.Report):
             
         if len(ind_list) > 1:
             IndividualListPage(self.database, self.title, ind_list,
-                               self.options, archive, photo_list, 0)
+                               self.options, archive, photo_list, levels)
             SurnameListPage(self.database, self.title, ind_list,
                             self.options, archive, photo_list,
-                            0, SurnameListPage.ORDER_BY_NAME)
+                            levels, SurnameListPage.ORDER_BY_NAME)
             SurnameListPage(self.database, self.title, ind_list,
                             self.options, archive, photo_list,
-                            0, SurnameListPage.ORDER_BY_COUNT)
+                            levels, SurnameListPage.ORDER_BY_COUNT)
 
         local_list = sort_people(self.database,ind_list)
 
