@@ -251,7 +251,6 @@ class PersonNavView(PageView):
 
     def change_page(self):
         hobj = self.uistate.phistory
-        print hobj.at_end(), hobj.at_front()
         self.fwd_action.set_sensitive(not hobj.at_end())
         self.back_action.set_sensitive(not hobj.at_front())
 

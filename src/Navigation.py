@@ -80,7 +80,10 @@ class BaseNavigation:
         Builds the UI and action group. 
         """
         self.items = items
-        self.disable()
+
+        if self.active != DISABLED:
+            self.uistate.uimanager.remove_ui(self.active)
+            self.uistate.uimanager.remove_action_group(self.action_group)
 
         data = map(lambda x: '<menuitem action="%s%02d"/>' % (self.title,x), range(0,len(items)))
         self.ui = _top + "".join(data) + _btm
@@ -119,8 +122,8 @@ class PersonNavigation(BaseNavigation):
         Builds a name in the format of 'NAME [GRAMPSID]'
         """
         person = self.uistate.dbstate.db.get_person_from_handle(item)
-        name = "%s [%s]" % (NameDisplay.displayer.display(person),
-                            person.gramps_id)
+        return  "%s [%s]" % (NameDisplay.displayer.display(person),
+                             person.gramps_id)
 
     def f0(self,obj):
         self.uistate.dbstate.change_active_handle(self.items[0])
