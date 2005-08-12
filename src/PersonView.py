@@ -151,9 +151,7 @@ class PersonView(PageView.PersonNavView):
 
         self.columns = []
         self.build_columns()
-        self.person_tree.connect('row_activated', self.alpha_event)
-        self.person_tree.connect('button-press-event',
-                                 self.on_plist_button_press)
+        self.person_tree.connect('button-press-event', self.on_button_press)
         self.person_tree.connect('drag_data_get', self.person_drag_data_get)
 
 
@@ -206,6 +204,15 @@ class PersonView(PageView.PersonNavView):
               <toolitem action="Remove"/>
             </placeholder>
           </toolbar>
+          <popup name="Popup">
+            <menuitem action="Back"/>
+            <menuitem action="Forward"/>
+            <menuitem action="HomePerson"/>
+            <separator/>
+            <menuitem action="Add"/>
+            <menuitem action="Edit"/>
+            <menuitem action="Remove"/>
+          </popup>
         </ui>'''
 
     def change_db(self,db):
@@ -552,12 +559,12 @@ class PersonView(PageView.PersonNavView):
                                              ACTION_COPY)
         self.uistate.modify_statusbar()
         
-    def alpha_event(self,*obj):
-        EditPerson.EditPerson(self.dbstate, self.dbstate.active)
-
-    def on_plist_button_press(self,obj,event):
+    def on_button_press(self,obj,event):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_people_context_menu(event)
+            menu = self.uistate.uimanager.get_widget('/Popup')
+            menu.popup(None,None,None,event.button,event.time)
+            return True
+        return False
 
     def person_drag_data_get(self, widget, context, sel_data, info, time):
         selected_ids = self.get_selected_objects()
@@ -710,65 +717,15 @@ class PersonView(PageView.PersonNavView):
         elif row == 0 and self.person_model.on_get_iter(path):
             self.person_selection.select_path(path)
 
-    def build_backhistmenu(self,event):
-        """Builds and displays the menu with the back portion of the history"""
-        hobj = self.uistate.phistory
-        if hobj.index > 0:
-            backhistmenu = gtk.Menu()
-            backhistmenu.set_title(_('Back Menu'))
-            pids = hobj.history[:hobj.index]
-            pids.reverse()
-            num = 1
-            for pid in pids:
-                if num <= 10:
-                    f,r = divmod(num,10)
-                    hotkey = "_%d" % r
-                elif num <= 20:
-                    hotkey = "_%s" % chr(ord('a')+num-11)
-                elif num >= 21:
-                    break
-                person = self.dbstate.db.get_person_from_handle(pid)
-                item = gtk.MenuItem("%s. %s [%s]" % 
-                    (hotkey,
-                     NameDisplay.displayer.display(person),
-                     person.get_gramps_id()))
-                item.connect("activate",self.back_clicked,num)
-                item.show()
-                backhistmenu.append(item)
-                num = num + 1
-            backhistmenu.popup(None,None,None,event.button,event.time)
-
-    def back_pressed(self,obj,event):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_backhistmenu(event)
-
-    def build_fwdhistmenu(self,event):
-        """Builds and displays the menu with the forward portion of the history"""
-        if self.hindex < len(self.history)-1:
-            fwdhistmenu = gtk.Menu()
-            fwdhistmenu.set_title(_('Forward Menu'))
-            pids = self.history[self.hindex+1:]
-            num = 1
-            for pid in pids:
-                if num <= 10:
-                    f,r = divmod(num,10)
-                    hotkey = "_%d" % r
-                elif num <= 20:
-                    hotkey = "_%s" % chr(ord('a')+num-11)
-                elif num >= 21:
-                    break
-                person = self.db.get_person_from_handle(pid)
-                item = gtk.MenuItem("%s. %s [%s]" % 
-                    (hotkey,
-                     NameDisplay.displayer.display(person),
-                     person.get_gramps_id()))
-                item.connect("activate",self.fwd_clicked,num)
-                item.show()
-                fwdhistmenu.append(item)
-                num = num + 1
-            fwdhistmenu.popup(None,None,None,event.button,event.time)
-
-    def fwd_pressed(self,obj,event):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_fwdhistmenu(event)
+    def button_press(self,obj,event):
+        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+            handle = self.first_selected()
+            person = self.dbstate.db.get_person_from_handle(handle)
+            EditPerson.EditPerson(self.dbstate, self.uistate,person)
+            return True
+        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            menu = self.uistate.uimanager.get_widget('/Popup')
+            menu.popup(None,None,None,event.button,event.time)
+            return True
+        return False
 

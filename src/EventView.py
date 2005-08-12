@@ -77,6 +77,9 @@ class EventView(PageView.ListView):
                                    DisplayModels.EventModel,
                                    signal_map)
 
+    def column_order(self):
+        return self.dbstate.db.get_event_column_order()
+
     def get_stock(self):
         return 'gramps-event'
 
@@ -98,56 +101,23 @@ class EventView(PageView.ListView):
               <toolitem action="Remove"/>
             </placeholder>
           </toolbar>
+          <popup name="Popup">
+            <menuitem action="Add"/>
+            <menuitem action="Edit"/>
+            <menuitem action="Remove"/>
+          </popup>
         </ui>'''
 
-    def button_press(self,obj,event):
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            mlist = []
-            self.selection.selected_foreach(self.blist,mlist)
-            handle = mlist[0]
-            the_event = self.dbstate.db.get_event_from_handle(handle)
-            EventEdit.EventEditor(the_event,self.dbstate, self.uistate)
-            return True
-        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_context_menu(event)
-            return True
-        return False
-
-    def build_context_menu(self,event):
-        """Builds the menu with editing operations on the repository's list"""
-        
-        mlist = []
-        self.selection.selected_foreach(self.blist,mlist)
-        if mlist:
-            sel_sensitivity = 1
-        else:
-            sel_sensitivity = 0
-
-        entries = [
-            (gtk.STOCK_ADD, self.on_add_clicked,1),
-            (gtk.STOCK_REMOVE, self.on_deletze_clicked,sel_sensitivity),
-            (_("Edit"), self.on_edit_clicked,sel_sensitivity),
-        ]
-
-        menu = gtk.Menu()
-        menu.set_title(_('Event Menu'))
-        for stock_id,callback,sensitivity in entries:
-            item = gtk.ImageMenuItem(stock_id)
-            if callback:
-                item.connect("activate",callback)
-            item.set_sensitive(sensitivity)
-            item.show()
-            menu.append(item)
-        menu.popup(None,None,None,event.button,event.time)
+    def on_double_click(self,obj,event):
+        handle = self.first_selected()
+        the_event = self.dbstate.db.get_event_from_handle(handle)
+        EventEdit.EventEditor(the_event,self.dbstate, self.uistate)
 
     def add(self,obj):
         EventEdit.EventEditor(RelLib.Event(),self.dbstate, self.uistate)
 
     def remove(self,obj):
-        mlist = []
-        self.selection.selected_foreach(self.blist,mlist)
-
-        for event_handle in mlist:
+        for event_handle in self.selected_handles():
             db = self.dbstate.db
             person_list = [ handle for handle in
                             db.get_person_handles(False)
@@ -169,9 +139,12 @@ class EventView(PageView.ListView):
                 msg = _('Deleting event will remove it from the database.')
             
             msg = "%s %s" % (msg,Utils.data_recover_msg)
-            QuestionDialog(_('Delete %s?') % event.get_gramps_id(), msg,
-                           _('_Delete Event'),ans.query_response,
-                           self.topWindow)
+            descr = event.get_description()
+            if descr == "":
+                descr = event.get_gramps_id()
+                
+            QuestionDialog(_('Delete %s?') % descr, msg,
+                           _('_Delete Event'),ans.query_response)
 
     def edit(self,obj):
         mlist = []

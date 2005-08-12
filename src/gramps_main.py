@@ -25,7 +25,9 @@ import ViewManager
 import PersonView
 import PedView
 import MapView
+import PlaceView
 import EventView
+import SourceView
 import ArgHandler
 import DisplayTrace
 import GrampsKeys
@@ -46,26 +48,25 @@ iconpaths = [".","/usr/share/gramps"]
 
 def register_stock_icons ():
     import os
-    items = {
-        'people48.png': ('gramps-person', 'Person', gtk.gdk.CONTROL_MASK, 0, ''),
-        'family48.png': ('gramps-family', 'Family', gtk.gdk.CONTROL_MASK, 0, ''),
-        'ped24.png'   : ('gramps-pedigree', 'Pedigree', gtk.gdk.CONTROL_MASK, 0, ''),
-        'repos.png'   : ('gramps-repository', 'Repositories', gtk.gdk.CONTROL_MASK, 0, ''),
-        'sources.png' : ('gramps-source', 'Sources', gtk.gdk.CONTROL_MASK, 0, ''),
-        'events.png'  : ('gramps-event', 'Events', gtk.gdk.CONTROL_MASK, 0, ''),
-        'place.png'   : ('gramps-place', 'Places', gtk.gdk.CONTROL_MASK, 0, ''),
-        }
+    items = [
+        ('people48.png',('gramps-person', 'Person', gtk.gdk.CONTROL_MASK, 0, '')),
+        ('family48.png',('gramps-family', 'Family', gtk.gdk.CONTROL_MASK, 0, '')),
+        ('ped24.png',('gramps-pedigree', 'Pedigree', gtk.gdk.CONTROL_MASK, 0, '')),
+        ('repos.png',('gramps-repository', 'Repositories', gtk.gdk.CONTROL_MASK, 0, '')),
+        ('sources.png',('gramps-source', 'Sources', gtk.gdk.CONTROL_MASK, 0, '')),
+        ('events.png',('gramps-event', 'Events', gtk.gdk.CONTROL_MASK, 0, '')),
+        ('place.png',('gramps-place', 'Places', gtk.gdk.CONTROL_MASK, 0, '')),
+        ('place.png',('gramps-map',   'Map', gtk.gdk.CONTROL_MASK, 0, '')),
+        ]
     
     # Register our stock items
-    gtk.stock_add (items.values())
+    gtk.stock_add (map(lambda x: x[1],items))
     
     # Add our custom icon factory to the list of defaults
     factory = gtk.IconFactory ()
     factory.add_default ()
-
     
-    keys = items.keys()
-    for key in keys:
+    for (key,data) in items:
 
         for dirname in iconpaths:
             icon_file = os.path.expanduser(os.path.join(dirname,key))
@@ -80,47 +81,9 @@ def register_stock_icons ():
         # Register icon to accompany stock item
         if pixbuf:
             icon_set = gtk.IconSet (pixbuf)
-            factory.add (items[key][0], icon_set)
+            factory.add (data[0], icon_set)
         else:
             print 'failed to load GTK logo for toolbar'
-
-# class EventView(ListView):
-
-#     def __init__(self):
-#         PageView.__init__(self,'Events')
-
-#     def define_actions(self):
-#         self.add_action('Add',   gtk.STOCK_ADD,   '_Add', callback=self.add),
-#         self.add_action('Edit',  gtk.STOCK_EDIT,  "_Edit")
-#         self.add_action('Remove',gtk.STOCK_REMOVE,"_Remove")
-
-#     def get_stock(self):
-#         return 'gramps-event'
-    
-#     def ui_definition(self):
-#         return '''<ui>
-#           <menubar name="MenuBar">
-#             <menu action="EditMenu">
-#               <placeholder name="CommonEdit">
-#                 <menuitem action="Add"/>
-#                 <menuitem action="Edit"/>
-#                 <menuitem action="Remove"/>
-#               </placeholder>
-#             </menu>
-#           </menubar>
-#           <toolbar name="ToolBar">
-#             <placeholder name="CommonEdit">
-#               <toolitem action="Add"/>
-#               <toolitem action="Edit"/>
-#               <toolitem action="Remove"/>
-#             </placeholder>
-#           </toolbar>
-#         </ui>'''
-
-#     def add(self,obj):
-#         print "Event Add"
-
-
 
 class Gramps:
 
@@ -193,6 +156,8 @@ class Gramps:
         a.register_view(PersonView.PersonView)
         a.register_view(PedView.PedView)
         a.register_view(EventView.EventView)
+        a.register_view(SourceView.SourceView)
+        a.register_view(PlaceView.PlaceView)
         a.register_view(MapView.MapView)
         a.init_interface()
         
