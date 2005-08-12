@@ -161,6 +161,8 @@ class Gramps:
         ArgHandler.ArgHandler(state,vm,args)
 
         vm.init_interface()
+        state.emit("database-changed", (state.db,))
+        state.change_active_person(state.db.get_default_person())
         
         # Don't show main window until ArgHandler is done.
         # This prevents a window from annoyingly popping up when
