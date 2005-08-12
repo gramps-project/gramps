@@ -187,7 +187,7 @@ class ViewManager:
     def init_interface(self):
         self.create_pages()
         self.change_page(None,None,0)
-        self.state.no_database()
+        #self.state.no_database()
         self.actiongroup.set_visible(False)
 
     def set_color(self,obj):
