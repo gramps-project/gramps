@@ -59,14 +59,14 @@ import RepositoryRefEdit
 #-------------------------------------------------------------------------
 
 class ReposSrcListModel(gtk.ListStore):
-    def __init__(self, model, repos=None):
+    def __init__(self, db, repos=None):
         gtk.ListStore.__init__(self,
                                object,   # source
                                object    # repostory reference
                                )
         
         self.original_item_list = []
-        self.set_model(model)
+        self.set_model(db)
         self.set_repos(repos)
 
     def rebuild(self):
@@ -131,7 +131,7 @@ class ReposSrcListModel(gtk.ListStore):
 
     def set_model(self, model):
         self._model = model
-        self._db = model.db
+        self._db = model
 
     def get_deleted_items(self):
         # These are the ones that are in the original sources list
@@ -202,11 +202,11 @@ class ReposSrcListModel(gtk.ListStore):
         
 class ReposSrcListView:
 
-    def __init__(self, model, widget):
-        self._gramps_model = model
+    def __init__(self, db, widget):
+        self._db = db
         
-        self.database_changed(self._gramps_model.db)
-        self._gramps_model.connect('database-changed', self.database_changed)
+        self.database_changed(self._db)
+        self._db.connect('database-changed', self.database_changed)
 
         self._widget = widget
 
@@ -269,24 +269,24 @@ class ReposSrcListView:
 
 class EditRepository:
 
-    def __init__(self,repository,db,parent,parent_window=None,readonly=False):
+    def __init__(self,repository,dbstate,parent_window=None,readonly=False):
         if repository:
             self.repository = repository
         else:
             self.repository = RelLib.Repository()
-        self.db = db
-        self.parent = parent
+        self.db = dbstate.db
+        #self.parent = parent
         self.name_display = NameDisplay.displayer.display
         if repository:
-            if parent and self.parent.child_windows.has_key(repository.get_handle()):
-                self.parent.child_windows[repository.get_handle()].present(None)
-                return
-            else:
-                self.win_key = repository.get_handle()
+            #    if parent and self.parent.child_windows.has_key(repository.get_handle()):
+            #        self.parent.child_windows[repository.get_handle()].present(None)
+            #        return
+            #    else:
+            self.win_key = repository.get_handle()
         else:
             self.win_key = self
         self.child_windows = {}
-        self.path = db.get_save_path()
+        self.path = self.db.get_save_path()
         self.not_loaded = 1
         self.ref_not_loaded = 1
         self.lists_changed = 0
@@ -373,9 +373,9 @@ class EditRepository:
                 self.flowed.set_active(1)
 
         # Setup source reference tab
-        self.repos_source_view = ReposSrcListView(self.parent,
+        self.repos_source_view = ReposSrcListView(self.db,
                                                   self.top_window.get_widget("repository_sources"))
-        self.repos_source_model = ReposSrcListModel(self.parent,repository)
+        self.repos_source_model = ReposSrcListModel(self.db,repository)
         self.repos_source_view.set_model(self.repos_source_model)
 
         self.top_window.signal_autoconnect({
@@ -428,6 +428,8 @@ class EditRepository:
         self.child_windows = {}
 
     def add_itself_to_menu(self):
+        #FIXME
+        return    
         self.parent.child_windows[self.win_key] = self
         if not self.repository:
             label = _("New Repository")
@@ -447,6 +449,8 @@ class EditRepository:
         self.winsmenu.append(self.menu_item)
 
     def remove_itself_from_menu(self):
+        # FIXME
+        return
         del self.parent.child_windows[self.win_key]
         self.menu_item.destroy()
         self.winsmenu.destroy()

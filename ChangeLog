@@ -1,3 +1,6 @@
+2005-05-27  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+        * src/EditRepository.py: changes to work with ViewManager changes
+
 2005-08-11  Don Allingham  <don@gramps-project.org>
 	* src/RepositoryView.py: added back in
 	* src/gramps_main.py: added repository view
