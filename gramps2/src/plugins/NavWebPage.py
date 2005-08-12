@@ -435,8 +435,6 @@ class BasePage:
         handle = self.lnkfmt(name)
         dirpath = self.build_path(handle,'srn',up)
 
-        print self.levels, dirpath
-            
         of.write('<a href="%s/%s.%s">%s' % (dirpath,handle,self.ext,name))
         if opt_val != None:
             of.write('&nbsp;(%d)' % opt_val)
@@ -1360,7 +1358,12 @@ class IndividualPage(BasePage):
         of.write('</tr>\n</table>\n</div>\n')
 
     def display_ind_events(self,of):
-        if len(self.person.get_event_list()) == 0:
+        all_events = [handle for handle in [self.person.get_birth_handle(),
+                                            self.person.get_death_handle()]
+                      if handle] + self.person.get_event_list()
+        print all_events
+
+        if not all_events:
             return
         
         of.write('<h4>%s</h4>\n' % _('Events'))

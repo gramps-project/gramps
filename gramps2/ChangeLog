@@ -4,7 +4,7 @@
 	events; Replace garbage event_list with empty list for both
 	types.
 	* src/plugins/NavWebPage.py (display_ind_events,display_spouse):
-	Use translated event names.
+	Use translated event names; properly test for events.
 
 2005-08-12  Jiri Pejchal  <jiri.pejchal@gmail.com>
 	* src/po/cs.po: Updated Czech translation.
