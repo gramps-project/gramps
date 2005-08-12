@@ -1387,7 +1387,7 @@ class IndividualPage(BasePage):
         for event_id in self.person.get_event_list():
             event = self.db.get_event_from_handle(event_id)
 
-            of.write('<tr><td class="field">%s</td>\n' % event.get_name())
+            of.write('<tr><td class="field">%s</td>\n' % _(event.get_name()))
             of.write('<td class="data">\n')
             of.write(self.format_event(event))
             of.write('</td>\n')
@@ -1533,7 +1533,7 @@ class IndividualPage(BasePage):
             event = self.db.get_event_from_handle(event_id)
 
             of.write('<tr><td>&nbsp;</td>\n')
-            of.write('<td class="field">%s</td>\n' % event.get_name())
+            of.write('<td class="field">%s</td>\n' % _(event.get_name()))
             of.write('<td class="data">\n')
             of.write(self.format_event(event))
             of.write('</td>\n</tr>\n')

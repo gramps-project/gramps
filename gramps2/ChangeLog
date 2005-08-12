@@ -3,6 +3,8 @@
 	* src/plugins/Check.py (check_events): Add checks for family
 	events; Replace garbage event_list with empty list for both
 	types.
+	* src/plugins/NavWebPage.py (display_ind_events,display_spouse):
+	Use translated event names.
 
 2005-08-12  Jiri Pejchal  <jiri.pejchal@gmail.com>
 	* src/po/cs.po: Updated Czech translation.
