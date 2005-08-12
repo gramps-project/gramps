@@ -1,3 +1,14 @@
+2005-08-11  Alex Roitman  <shura@gramps-project.org>
+	* src/DbState.py: Remove modeule.
+	* src/DisplayState.py: Rename from DbState, kepp only DisplayState
+	class.
+	* src/GrampsDbBase.py: Add DbState class.
+	* src/MapView.py: Swap zoom_in and zoom_out to reflect reality;
+	add place list with the ScrollableWindow, request size for the
+	place list.
+	* src/ViewManager.py: Use DisplayState.DisplayState.
+	* src/gramps_main.py: Use GrampsDbBase.DbState; add docstring;
+
 2005-08-11  Don Allingham  <don@gramps-project.org>
 	* various: added new views
 	* src/DbState.py: handle self.index == -1
