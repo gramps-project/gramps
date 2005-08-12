@@ -1,3 +1,9 @@
+2005-08-12  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsBSDDB.py (upgrade_8): Insert check for event_list.
+	* src/plugins/Check.py (check_events): Add checks for family
+	events; Replace garbage event_list with empty list for both
+	types.
+
 2005-08-12  Jiri Pejchal  <jiri.pejchal@gmail.com>
 	* src/po/cs.po: Updated Czech translation.
 

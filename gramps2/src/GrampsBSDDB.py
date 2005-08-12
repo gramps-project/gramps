@@ -847,9 +847,11 @@ class GrampsBSDDB(GrampsDbBase):
         while data:
             handle,val = data
             handle_list = val[8]
-            for handle in handle_list:
-                event = self.get_event_from_handle(handle)
-                self.individual_event_names.add(event.name)
+            if type(handle_list) == list:
+            # Check to prevent crash on corrupted data (event_list=None)
+                for handle in handle_list:
+                    event = self.get_event_from_handle(handle)
+                    self.individual_event_names.add(event.name)
             data = cursor.next()
         cursor.close()
 
@@ -858,9 +860,10 @@ class GrampsBSDDB(GrampsDbBase):
         while data:
             handle,val = data
             handle_list = val[6]
-            for handle in handle_list:
-                event = self.get_event_from_handle(handle)
-                self.family_event_names.add(event.name)
+            if type(handle_list) == list:
+            # Check to prevent crash on corrupted data (event_list=None)
+                for handle in handle_list:
+                    event = self.get_event_from_handle(handle)
+                    self.family_event_names.add(event.name)
             data = cursor.next()
         cursor.close()
-                

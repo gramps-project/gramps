@@ -431,7 +431,8 @@ class CheckIntegrity:
 
     def check_events(self):
         self.progress.set_pass(_('Looking for event problems'),
-                               self.db.get_number_of_people())
+                               self.db.get_number_of_people()
+                               +self.db.get_number_of_families())
         
         for key in self.db.get_person_handles(sort_handles=False):
             self.progress.step()
@@ -441,7 +442,8 @@ class CheckIntegrity:
             if birth_handle:
                 birth = self.db.get_event_from_handle(birth_handle)
                 if not birth:
-                    # The birth event referenced by the birth handle does not exist in the database
+                    # The birth event referenced by the birth handle
+                    # does not exist in the database
                     person.set_birth_handle("")
                     self.db.commit_person(person,self.trans)
                     self.invalid_events.append(key)
@@ -455,7 +457,8 @@ class CheckIntegrity:
             if death_handle:
                 death = self.db.get_event_from_handle(death_handle)
                 if not death:
-                    # The death event referenced by the death handle does not exist in the database
+                    # The death event referenced by the death handle
+                    # does not exist in the database
                     person.set_death_handle("")
                     self.db.commit_person(person,self.trans)
                     self.invalid_events.append(key)
@@ -465,15 +468,42 @@ class CheckIntegrity:
                         death.set_name("Death");
                         self.db.commit_event(death,self.trans)
                         self.invalid_death_events.append(key)
+
             if person.get_event_list():
                 for event_handle in person.get_event_list():
                     event = self.db.get_event_from_handle(event_handle)
                     if not event:
-                        # The event referenced by the person does not exist in the database
+                        # The event referenced by the person
+                        # does not exist in the database
                         #TODO: There is no better way?
-                        person.set_event_list( person.get_event_list().remove(event_handle))
+                        person.set_event_list(
+                            person.get_event_list().remove(event_handle))
                         self.db.commit_person(person,self.trans)
                         self.invalid_events.append(key)
+            elif type(person.get_event_list()) != list:
+                # event_list is None or other garbage
+                person.set_event_list([])
+                self.db.commit_person(person,self.trans)
+                self.invalid_events.append(key)
+
+        for key in self.db.get_family_handles():
+            self.progress.step()
+            family = self.db.get_family_from_handle(key)
+            if family.get_event_list():
+                for event_handle in family.get_event_list():
+                    event = self.db.get_event_from_handle(event_handle)
+                    if not event:
+                        # The event referenced by the family
+                        # does not exist in the database
+                        family.set_event_list(
+                            family.get_event_list().remove(event_handle))
+                        self.db.commit_family(family,self.trans)
+                        self.invalid_events.append(key)
+            elif type(family.get_event_list()) != list:
+                # event_list is None or other garbage
+                family.set_event_list([])
+                self.db.commit_family(family,self.trans)
+                self.invalid_events.append(key)
 
     def check_place_references(self):
         elist = self.db.get_event_handles()
