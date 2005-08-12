@@ -85,8 +85,9 @@ class ArgHandler:
     interactive session will not be launched. 
     """
 
-    def __init__(self,parent,args):
-        self.parent = parent
+    def __init__(self,state,vm,args):
+        self.state = state
+        self.vm = vm
         self.args = args
 
         self.open_gui = None
@@ -221,24 +222,13 @@ class ArgHandler:
     #
     #-------------------------------------------------------------------------
     def auto_save_load(self,filename):
-        self.parent.active_person = None
         filename = os.path.normpath(os.path.abspath(filename))
         filetype = GrampsMime.get_type(filename)
-        if filetype == const.app_gramps:
-            import GrampsBSDDB
-            self.parent.db.close()
-            self.parent.db = GrampsBSDDB.GrampsBSDDB()
-            return self.parent.read_file(filename)
-        elif filetype == const.app_gramps_xml:
-            import GrampsXMLDB
-            self.parent.db.close()
-            self.parent.db = GrampsXMLDB.GrampsXMLDB()
-            return self.parent.read_file(filename)
-        elif filetype == const.app_gedcom:
-            import GrampsGEDDB
-            self.parent.db.close()
-            self.parent.db = GrampsGEDDB.GrampsGEDDB()
-            return self.parent.read_file(filename)
+        if filetype in (const.app_gramps,
+                        const.app_gramps_xml,
+                        const.app_gedcom):
+            print "Here"
+            return self.vm.open_native(filename,filetype)
         else:
             return 0
 
