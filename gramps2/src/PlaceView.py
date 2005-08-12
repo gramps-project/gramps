@@ -70,10 +70,10 @@ class PlaceView(PageView.ListView):
     def __init__(self,dbstate,uistate):
 
         signal_map = {
-            'event-add'     : self.row_add,
-            'event-update'  : self.row_update,
-            'event-delete'  : self.row_delete,
-            'event-rebuild' : self.build_tree,
+            'place-add'     : self.row_add,
+            'place-update'  : self.row_update,
+            'place-delete'  : self.row_delete,
+            'place-rebuild' : self.build_tree,
             }
 
         PageView.ListView.__init__(self,'Place View',dbstate,uistate,

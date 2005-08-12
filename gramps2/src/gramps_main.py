@@ -23,6 +23,7 @@
 import gtk
 import ViewManager
 import PersonView
+import RepositoryView
 import PedView
 import MapView
 import PlaceView
@@ -169,6 +170,7 @@ class Gramps:
         a.register_view(SourceView.SourceView)
         a.register_view(PlaceView.PlaceView)
         a.register_view(MapView.MapView)
+        a.register_view(RepositoryView.RepositoryView)
         a.init_interface()
         
         if GrampsKeys.get_usetips():

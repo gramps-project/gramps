@@ -65,10 +65,10 @@ class SourceView(PageView.ListView):
     def __init__(self,dbstate,uistate):
 
         signal_map = {
-            'event-add'     : self.row_add,
-            'event-update'  : self.row_update,
-            'event-delete'  : self.row_delete,
-            'event-rebuild' : self.build_tree,
+            'source-add'     : self.row_add,
+            'source-update'  : self.row_update,
+            'source-delete'  : self.row_delete,
+            'source-rebuild' : self.build_tree,
             }
 
         PageView.ListView.__init__(self,'Source View',dbstate,uistate,
