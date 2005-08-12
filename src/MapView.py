@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 import gc
+import re
 
 #-------------------------------------------------------------------------
 #
@@ -77,15 +78,11 @@ class GuideMap(gtk.DrawingArea):
     
     # Set hightlight region
     def hightlight_area( self, area):
-        print "GuideMap.hightlight_area"
-        print area
         self.current_area = area
         self.queue_draw()
         
     # Redraw the image
     def expose_cb(self,widget,event):
-        a = widget.get_allocation()
-        print "GuideMap.expose_cb (%dx%d)" % (a.width,a.height)
         if not self.gc:
             self.gc = self.window.new_gc()
             self.gc.set_foreground( self.get_colormap().alloc_color("red"))
@@ -102,8 +99,6 @@ class GuideMap(gtk.DrawingArea):
 
     # Scale backbuffer
     def size_allocate_cb(self,widget,allocation):
-        a = allocation
-        print "GuideMap.size_allocate_cb (%dx%d)" % (a.width,a.height)
         # Always request a height, that is half of the width
         w = max( 128,allocation.width)
         self.set_size_request(-1,w/2)
@@ -142,15 +137,20 @@ class ZoomMap( gtk.DrawingArea):
         self.current_area = (0,0,0,0)
         self.magnifer = 0.5
         self.guide = None
+        self.textlayout = self.create_pango_layout("")
     
     # Set the guide map that should follow the zoom area
     def set_guide( self, guide):
         self.guide = guide
+
+    def set_location_model( self, model, idx_name, idx_long, idx_lat):
+        self.location_model = model
+        self.idx_name = idx_name
+        self.idx_long = idx_long
+        self.idx_lat = idx_lat
         
     # Redraw the image
     def expose_cb(self,widget,event):
-        a = widget.get_allocation()
-        print "GuideMap.expose_cb (%dx%d)" % (a.width,a.height)
         if not self.gc:
             self.gc = self.window.new_gc()
             self.gc.set_foreground( self.get_colormap().alloc_color("red"))
@@ -159,10 +159,29 @@ class ZoomMap( gtk.DrawingArea):
             self.size_allocate_cb( self,self.get_allocation())
         if self.backbuf and self.gc:
             self.window.draw_pixbuf( self.gc, self.backbuf, 0,0, 0,0, -1,-1)
-            px = int((float(self.zoom_pos[1]) + 180.0) / 360.0
-                     * self.backbuf.get_width())
-            py = int((90-float(self.zoom_pos[0])) / 180.0
-                     * self.backbuf.get_height())
+            
+            # draw all available locations
+            if self.location_model:
+                iter = self.location_model.get_iter_first()
+                while iter:
+                    (n,x,y) = self.location_model.get( iter, self.idx_name, self.idx_long, self.idx_lat)
+                    (px,py) = self.map_to_screen( x, y)
+                    self.window.draw_pixbuf(
+                        self.gc,
+                        self.place_marker_pixbuf,
+                        0,0,
+                        px-self.place_marker_pixbuf.get_width()/2,
+                        py-self.place_marker_pixbuf.get_height()/2,
+                       -1,-1)
+                    self.textlayout.set_text(n)
+                    self.window.draw_layout(
+                        self.gc,
+                        px,py,
+                        self.textlayout)
+                    iter = self.location_model.iter_next( iter)
+            
+            # hightlight current location
+            (px,py) = self.map_to_screen( self.zoom_pos[0], self.zoom_pos[1])
             self.window.draw_pixbuf(
                 self.gc,
                 self.hightlight_marker_pixbuf,
@@ -170,13 +189,17 @@ class ZoomMap( gtk.DrawingArea):
                 px-self.hightlight_marker_pixbuf.get_width()/2,
                 py-self.hightlight_marker_pixbuf.get_height()/2,
                 -1,-1)
-            self.window.draw_rectangle( self.gc, False, px-3,py-3, 6,6)
+            #self.window.draw_rectangle( self.gc, False, px-3,py-3, 6,6)
 
+    def map_to_screen( self, long, lat):
+        px = int(self.backbuf.get_width() / self.current_map_area[2] *
+                    (float(long) - self.current_map_area[0]))
+        py = int(self.backbuf.get_height() / self.current_map_area[3] *
+                    (-float(lat) + self.current_map_area[1]))
+        return( px, py)
+        
     # Scale backbuffer
     def size_allocate_cb(self,widget,allocation):
-        a = allocation
-        print "GuideMap.size_allocate_cb (%dx%d)" % (a.width,a.height)
-        
         # only create new backbuffer if size is different
         new_size = (allocation.width,allocation.height)
         if new_size is not self.old_size or not self.backbuf:
@@ -186,36 +209,35 @@ class ZoomMap( gtk.DrawingArea):
             pw = int(self.old_size[0]*self.magnifer)
             ph = int(self.old_size[1]*self.magnifer)
             
-            px = int((float(self.zoom_pos[1]) + 180.0) / 360.0
+            px = int((float(self.zoom_pos[0]) + 180.0) / 360.0
                      * self.map_pixbuf.get_width())
-            py = int((90-float(self.zoom_pos[0])) / 180.0
+            py = int((90-float(self.zoom_pos[1])) / 180.0
                      * self.map_pixbuf.get_height())
 
             px = max( pw/2, px)
             py = max( ph/2, py)
             
-            px = min( px, self.map_pixbuf.get_width()-pw/2)
-            py = min( py, self.map_pixbuf.get_height()-ph/2)
+            px = min( px, self.map_pixbuf.get_width()-1-pw/2)
+            py = min( py, self.map_pixbuf.get_height()-1-ph/2)
             
             zoomebuf = self.map_pixbuf.subpixbuf( int(px-pw/2),
                                                   int(py-ph/2), pw,ph)
-            print ( px-pw/2, py-ph/2, pw,ph)
-            
             self.backbuf = zoomebuf.scale_simple(self.old_size[0],
                                                  self.old_size[1],
                                                  gtk.gdk.INTERP_BILINEAR)
             gc.collect()
-            if self.guide:
-                mx = 360.0 / self.map_pixbuf.get_width() * (px-pw/2.0) - 180.0
-                my = 90.0 - 180.0 / self.map_pixbuf.get_height() * (py-ph/2.0)
-                mw = 360.0 / self.map_pixbuf.get_width() * pw
-                mh = 180.0 / self.map_pixbuf.get_height() * ph
-                self.guide.hightlight_area( (mx,my,mw,mh))
+            mx = 360.0 / self.map_pixbuf.get_width() * (px-pw/2.0) - 180.0
+            my = 90.0 - 180.0 / self.map_pixbuf.get_height() * (py-ph/2.0)
+            mw = 360.0 / self.map_pixbuf.get_width() * pw
+            mh = 180.0 / self.map_pixbuf.get_height() * ph
             self.current_area = (px-pw/2, py-ph/2, pw,ph)
+            self.current_map_area = (mx, my, mw, mh)
+            if self.guide:
+                self.guide.hightlight_area( (mx,my,mw,mh))
 
     # Scroll to requested position
-    def scroll_to( self, lat, lon):
-        self.zoom_pos = ( min(90,(max(-90,lon))), min(180,(max(-180,lat))))
+    def scroll_to( self, long, lat):
+        self.zoom_pos = ( min(180,(max(-180,long))), min(90,(max(-90,lat))))
         self.backbuf = None
         self.queue_draw()
 
@@ -281,11 +303,9 @@ class MapView(PageView.PageView):
         self.current_marker = None
 
     def navigation_type(self):
-        print "MapView.navigation_type"
         return PageView.NAVIGATION_NONE
 
     def define_actions(self):
-        print "MapView.define_actions"
         self.add_action('ZoomIn',gtk.STOCK_ZOOM_IN,
                         "Zoom _In",callback=self.zoom_in_cb)
         self.add_action('ZoomOut',gtk.STOCK_ZOOM_OUT,
@@ -302,6 +322,22 @@ class MapView(PageView.PageView):
         GNOME as a stock icon.
         """
         return 'gramps-map'
+
+
+    # For debugging: Reads in location from xearth
+    def get_xearth_markers(self):
+        data = []
+        f = open("/etc/xearth/xearth.markers")
+        l = f.readline()
+        #linere = re.compile('[^0-9.-]*(-?[0-9]+\.[0-9]+)[^0-9.-]*(-?[0-9]+\.[0-9]+).*"([^"])".*', "I")
+        while l:
+            if not l[0] == "#":
+                l = l.strip().replace('"',"").replace("    "," ").replace("   "," ").replace("  "," ").replace(" # ",", ")
+                m = l.split( None, 2)
+                if len(m) == 3:
+                    data.append( (m[2],float(m[1]),float(m[0])))
+            l = f.readline()
+        return data
 
     def build_widget(self):
         hbox = gtk.HBox( False, 4)
@@ -328,12 +364,17 @@ class MapView(PageView.PageView):
         self.zoom_map.set_guide(self.guide_map)
         
         # And the place list
-        self.place_list_view = MapPlacesList( data)
+        d = self.get_xearth_markers()
+        if not d:
+            d = data
+        self.place_list_view = MapPlacesList( d)
         self.place_list_view.set_size_request(128,-1)
         vport = gtk.ScrolledWindow()
         vbox.pack_start(vport,True,True,0)
         vport.add( self.place_list_view)
-        
+
+        self.zoom_map.set_location_model(self.place_list_view.get_model(), 0,1,2)
+
         self.place_list_view.connect("cursor-changed", self.entry_select_cb)
        
         return hbox
@@ -353,7 +394,6 @@ class MapView(PageView.PageView):
         </ui>'''
 
     def change_db(self,db):
-        print "MapView.change_db"
         """
         Callback associated with DbState. Whenenver the database
         changes, this task is called. In this case, we rebuild the
