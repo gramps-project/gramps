@@ -7,7 +7,7 @@
 	add place list with the ScrollableWindow, request size for the
 	place list.
 	* src/ViewManager.py: Use DisplayState.DisplayState.
-	* src/gramps_main.py: Use GrampsDbBase.DbState; add docstring;
+	* src/gramps_main.py: Use GrampsDbBase.DbState; add docstring.
 
 2005-08-11  Don Allingham  <don@gramps-project.org>
 	* various: added new views
