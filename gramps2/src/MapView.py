@@ -277,7 +277,7 @@ class MapView(PageView.PageView):
         This assumes that this icon has already been registered with
         GNOME as a stock icon.
         """
-        return 'gramps-place'
+        return 'gramps-map'
 
     def build_widget(self):
         hbox = gtk.HBox( False, 4)

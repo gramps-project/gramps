@@ -165,7 +165,8 @@ class ReposRefListView:
         
 class EditSource:
 
-    def __init__(self,source,db,parent,parent_window=None,readonly=False):
+    def __init__(self,source,dbstate,uistate,readonly=False):
+        self.dbstate = dbstate
         if source:
             self.source = source
         else:
@@ -174,19 +175,18 @@ class EditSource:
             self.ref_not_loaded = 1
         else:
             self.ref_not_loaded = 0
-        self.db = db
-        self.parent = parent
+        self.db = dbstate.db
         self.name_display = NameDisplay.displayer.display
-        if source:
-            if parent and self.parent.child_windows.has_key(source.get_handle()):
-                self.parent.child_windows[source.get_handle()].present(None)
-                return
-            else:
-                self.win_key = source.get_handle()
-        else:
-            self.win_key = self
-        self.child_windows = {}
-        self.path = db.get_save_path()
+#         if source:
+#             if parent and self.parent.child_windows.has_key(source.get_handle()):
+#                 self.parent.child_windows[source.get_handle()].present(None)
+#                 return
+#             else:
+#                 self.win_key = source.get_handle()
+#         else:
+#             self.win_key = self
+#         self.child_windows = {}
+        self.path = self.db.get_save_path()
         self.not_loaded = 1
         self.lists_changed = 0
         self.gallery_ok = 0
@@ -199,8 +199,10 @@ class EditSource:
                          _('Source Editor'))
         
         plwidget = self.top_window.get_widget("iconlist")
-        self.gallery = ImageSelect.Gallery(source, db.commit_place, self.path,
-                                           plwidget, db, self, self.top)
+        self.gallery = ImageSelect.Gallery(source, self.db.commit_place,
+                                           self.path,
+                                           plwidget,
+                                           self.db, self, self.top)
         self.author = self.top_window.get_widget("author")
         self.pubinfo = self.top_window.get_widget("pubinfo")
         self.abbrev = self.top_window.get_widget("abbrev")
@@ -234,10 +236,10 @@ class EditSource:
         self.top_window.get_widget('sel_photo').set_sensitive(mode)
         self.top_window.get_widget('delete_photo').set_sensitive(mode)
 
-        self.repos_ref_view = ReposRefListView(self.parent,
-                                              self.top_window.get_widget('repository_ref_list'))
-        self.repos_ref_model = ReposRefListModel(self.source)
-        self.repos_ref_view.set_model(self.repos_ref_model)
+#        self.repos_ref_view = ReposRefListView(self.parent,
+#                                              self.top_window.get_widget('repository_ref_list'))
+#        self.repos_ref_model = ReposRefListModel(self.source)
+#        self.repos_ref_view.set_model(self.repos_ref_model)
         
         self.top_window.get_widget('add_repos_ref').set_sensitive(mode)
         self.top_window.get_widget('edit_repos_ref').set_sensitive(mode)
@@ -313,14 +315,14 @@ class EditSource:
         else:
             Utils.unbold_label(self.data_label)
 
-        if parent_window:
-            self.top.set_transient_for(parent_window)
+#        if parent_window:
+#           self.top.set_transient_for(parent_window)
 
         self.top_window.get_widget('ok').set_sensitive(not self.db.readonly)
 
-        if parent_window:
-            self.top.set_transient_for(parent_window)
-        self.add_itself_to_menu()
+#        if parent_window:
+#            self.top.set_transient_for(parent_window)
+#        self.add_itself_to_menu()
         self.top.show()
         if self.ref_not_loaded:
             self.ref_not_loaded = 0
@@ -386,11 +388,13 @@ class EditSource:
         self.top.destroy()
         
     def close_child_windows(self):
+        return
         for child_window in self.child_windows.values():
             child_window.close(None)
         self.child_windows = {}
 
     def add_itself_to_menu(self):
+        return
         self.parent.child_windows[self.win_key] = self
         if not self.source:
             label = _("New Source")
@@ -410,12 +414,14 @@ class EditSource:
         self.winsmenu.append(self.menu_item)
 
     def remove_itself_from_menu(self):
+        return
         del self.parent.child_windows[self.win_key]
         self.menu_item.destroy()
         self.winsmenu.destroy()
         self.parent_menu_item.destroy()
 
     def present(self,obj):
+        return
         self.top.present()
 
     def button_press(self,obj):

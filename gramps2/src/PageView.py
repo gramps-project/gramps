@@ -25,7 +25,11 @@ import gtk
 NAVIGATION_NONE   = -1
 NAVIGATION_PERSON = 0
 
-
+#----------------------------------------------------------------
+#
+# PageView
+#
+#----------------------------------------------------------------
 class PageView:
     
     def __init__(self,title,dbstate,uistate):
@@ -86,10 +90,12 @@ class PageView:
         if len(self.action_toggle_list) > 0:
             self.action_group.add_toggle_actions(self.action_toggle_list)
 
-    def add_action(self, name, stock_icon, label, accel=None, tip=None, callback=None):
+    def add_action(self, name, stock_icon, label, accel=None, tip=None,
+                   callback=None):
         self.action_list.append((name,stock_icon,label,accel,tip,callback))
 
-    def add_toggle_action(self, name, stock_icon, label, accel=None, tip=None, callback=None):
+    def add_toggle_action(self, name, stock_icon, label, accel=None,
+                          tip=None, callback=None):
         self.action_toggle_list.append((name,stock_icon,label,accel,tip,callback))
 
     def get_actions(self):
@@ -110,8 +116,31 @@ class PageView:
             self.edit(obj)
             return True
         return False
-    
+
+    def blist(self,store,path,iter,sel_list):
+        handle = store.get_value(iter,self.handle_col)
+        sel_list.append(handle)
+
+    def selected_handles(self):
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
+        return mlist
+
+    def first_selected(self):
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
+        if mlist:
+            return mlist[0]
+        else:
+            return None
+
+#----------------------------------------------------------------
+#
+# PersonNavView
+#
+#----------------------------------------------------------------
 class PersonNavView(PageView):
+
     def __init__(self,title,dbstate,uistate):
         PageView.__init__(self,title,dbstate,uistate)
 
@@ -226,6 +255,11 @@ class PersonNavView(PageView):
         self.fwd_action.set_sensitive(not hobj.at_end())
         self.back_action.set_sensitive(not hobj.at_front())
 
+#----------------------------------------------------------------
+#
+# ListView
+#
+#----------------------------------------------------------------
 class ListView(PageView):
 
     def __init__(self, title, dbstate, uistate, columns, handle_col,
@@ -240,6 +274,9 @@ class ListView(PageView):
         self.signal_map = signal_map
         dbstate.connect('database-changed',self.change_db)
 
+    def column_order(self):
+        assert False
+ 
     def build_widget(self):
         """
         Builds the interface and returns a gtk.Container type that
@@ -250,7 +287,7 @@ class ListView(PageView):
         self.list.set_rules_hint(True)
         self.list.set_headers_visible(True)
         self.list.set_headers_clickable(True)
-        #self.list.connect('button-press-event',self.button_press)
+        self.list.connect('button-press-event',self.button_press)
         self.list.connect('key-press-event',self.key_press)
 
         scrollwindow = gtk.ScrolledWindow()
@@ -279,10 +316,9 @@ class ListView(PageView):
                 order = gtk.SORT_DESCENDING
         self.sort_col = data
         handle = self.first_selected()
-        self.model = DisplayModels.EventModel(self.dbstate.db,
-                                               self.sort_col,order)
+        self.model = self.make_model(self.dbstate.db, self.sort_col,order)
         self.list.set_model(self.model)
-        colmap = self.dbstate.db.get_repository_column_order()
+        colmap = self.column_order()
 
         if handle:
             path = self.model.on_get_path(handle)
@@ -298,8 +334,15 @@ class ListView(PageView):
             
         self.columns = []
 
+        column = gtk.TreeViewColumn(self.colinfo[0], self.renderer,text=0)
+        column.set_resizable(True)
+        column.set_min_width(225)
+        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        self.list.append_column(column)
+        self.columns = [column]
+
         index = 0
-        for pair in self.dbstate.db.get_event_column_order():
+        for pair in self.column_order():
             if not pair[0]:
                 continue
             name = self.colinfo[pair[1]]
@@ -312,18 +355,6 @@ class ListView(PageView):
             self.list.append_column(column)
             index += 1
     
-    def blist(self,store,path,iter,sel_list):
-        handle = store.get_value(iter,self.handle_col)
-        sel_list.append(handle)
-
-    def first_selected(self):
-        mlist = []
-        self.selection.selected_foreach(self.blist,mlist)
-        if mlist:
-            return mlist[0]
-        else:
-            return None
-
     def build_tree(self):
         self.model = self.make_model(self.dbstate.db,self.sort_col)
         self.list.set_model(self.model)
@@ -361,6 +392,16 @@ class ListView(PageView):
         self.add_action('Edit',      gtk.STOCK_EDIT,  "_Edit",  callback=self.edit)
         self.add_action('Remove',    gtk.STOCK_REMOVE,"_Remove",callback=self.remove)
 
+    def button_press(self,obj,event):
+        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+            self.double_click(obj,event)
+            return True
+        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            menu = self.uistate.uimanager.get_widget('/Popup')
+            menu.popup(None,None,None,event.button,event.time)
+            return True
+        return False
+    
     def key_press(self,obj,event):
         ret_key = gtk.gdk.keyval_from_name("Return")
         if event.keyval == ret_key and not event.state:
@@ -368,3 +409,5 @@ class ListView(PageView):
             return True
         return False
 
+    def double_click(self,obj,event):
+        return False

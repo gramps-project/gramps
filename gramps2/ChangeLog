@@ -1,4 +1,5 @@
 2005-08-11  Don Allingham  <don@gramps-project.org>
+	* various: added new views
 	* src/DbState.py: handle self.index == -1
 	* src/PageView.py: Provide PersonNavPage to handle page views
 	that to person navigation, add start of a ListView

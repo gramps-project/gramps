@@ -51,7 +51,6 @@ import NameDisplay
 
 from DdTargets import DdTargets
 
-
 #-------------------------------------------------------------------------
 #
 # EditPlace
@@ -59,23 +58,25 @@ from DdTargets import DdTargets
 #-------------------------------------------------------------------------
 class EditPlace:
 
-    def __init__(self,parent,place,parent_window=None):
-        self.parent = parent
-        if place and place.get_handle():
-            if self.parent.child_windows.has_key(place.get_handle()):
-                self.parent.child_windows[place.get_handle()].present(None)
-                return
-            else:
-                self.win_key = place.get_handle()
-            self.ref_not_loaded = 1
-        else:
-            self.win_key = self
-            self.ref_not_loaded = 0
+    def __init__(self,parent,place,dbstate,uistate):
+        #self.parent = parent
+        self.dbstate = dbstate
+        self.uistate = uistate
+#        if place and place.get_handle():
+#            if self.parent.child_windows.has_key(place.get_handle()):
+#                self.parent.child_windows[place.get_handle()].present(None)
+#                return
+#            else:
+#                self.win_key = place.get_handle()
+#            self.ref_not_loaded = 1
+#        else:
+#            self.win_key = self
+#            self.ref_not_loaded = 0
         self.name_display = NameDisplay.displayer.display
         self.place = place
         self.db = parent.db
-        self.child_windows = {}
-        self.path = parent.db.get_save_path()
+#        self.child_windows = {}
+#        self.path = parent.db.get_save_path()
         self.not_loaded = 1
         self.lists_changed = 0
         if place:
@@ -93,7 +94,7 @@ class EditPlace:
         self.glry = ImageSelect.Gallery(place, self.db.commit_place, self.path,
                                         self.iconlist, self.db, self,self.top)
 
-        mode = not self.parent.db.readonly
+        mode = not self.dbstate.db.readonly
         self.title = self.top_window.get_widget("place_title")
         self.title.set_editable(mode)
         self.city = self.top_window.get_widget("city")
@@ -220,9 +221,9 @@ class EditPlace:
             self.top_window.get_widget('add_src'),
             self.top_window.get_widget('edit_src'),
             self.top_window.get_widget('del_src'),
-            self.parent.db.readonly)
+            self.dbstate.db.readonly)
         
-        if self.place.get_handle() == None or self.parent.db.readonly:
+        if self.place.get_handle() == None or self.dbstate.db.readonly:
             self.top_window.get_widget("add_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
@@ -283,6 +284,7 @@ class EditPlace:
         self.child_windows = {}
 
     def add_itself_to_menu(self):
+        return
         self.parent.child_windows[self.win_key] = self
         if not self.place.get_title():
             label = _("New Place")
@@ -302,6 +304,7 @@ class EditPlace:
         self.winsmenu.append(self.menu_item)
 
     def remove_itself_from_menu(self):
+        return
         del self.parent.child_windows[self.win_key]
         self.menu_item.destroy()
         self.winsmenu.destroy()
