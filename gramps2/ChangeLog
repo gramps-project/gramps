@@ -1,3 +1,13 @@
+2005-08-13  Jérôme  <romjerome@yahoo.fr>
+	* doc/gramps-manual/fr/figures/comp-people.png,
+	doc/gramps-manual/fr/figures/date-selection.png,
+	doc/gramps-manual/fr/figures/merge-people.png,
+	doc/gramps-manual/fr/figures/merge-plc.png,
+	doc/gramps-manual/fr/figures/merge-src.png,
+	doc/gramps-manual/fr/figures/prefs.png,
+	doc/gramps-manual/fr/figures/scratch-pad.png,
+	doc/gramps-manual/fr/figures/find-people.png: Add figures.
+
 2005-08-12  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsBSDDB.py (upgrade_8): Insert check for event_list.
 	* src/plugins/Check.py (check_events): Add checks for family
