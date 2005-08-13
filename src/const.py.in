@@ -93,6 +93,8 @@ custom_filters = "~/.gramps/custom_filters.xml"
 report_options = "~/.gramps/report_options.xml"
 icon           = "%s/gramps.png" % rootDir
 logo           = "%s/logo.png" % rootDir
+splash         = "%s/splash.jpg" % rootDir
+license        = "%s/COPYING" % rootDir
 gladeFile      = "%s/gramps.glade" % rootDir
 placesFile     = "%s/gramps.glade" % rootDir
 imageselFile   = "%s/gramps.glade" % rootDir
@@ -126,7 +128,7 @@ dnd_images     = 1
 # About box information
 #
 #-------------------------------------------------------------------------
-progName     = "GRAMPS"
+program_name = "GRAMPS"
 version      = "@VERSIONSTRING@"
 copyright    = unicode("© 2001-2005 Donald N. Allingham","iso-8859-1")
 comments     = _("GRAMPS (Genealogical Research and Analysis "
