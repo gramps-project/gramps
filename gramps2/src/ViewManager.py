@@ -117,6 +117,13 @@ uidefault = '''<ui>
   <menu action="WindowsMenu">
   </menu>
   <menu action="HelpMenu">
+    <menuitem action="UserManual"/>
+    <menuitem action="FAQ"/>
+    <separator/>
+    <menuitem action="HomePage"/>
+    <menuitem action="MailingLists"/>
+    <menuitem action="ReportBug"/>
+    <separator/>
     <menuitem action="About"/>
   </menu>
 </menubar>
@@ -211,15 +218,20 @@ class ViewManager:
         self.fileactions = gtk.ActionGroup('FileWindow')
         self.fileactions.add_actions([
             ('FileMenu',   None,                 '_File'),
-            ('New',        gtk.STOCK_NEW,        '_New', "<control>n", None, self.on_new_activate),
+            ('New',        gtk.STOCK_NEW,        '_New',  "<control>n", None, self.on_new_activate),
             ('Open',       gtk.STOCK_OPEN,       '_Open', "<control>o", None, self.on_open_activate),
             ('OpenRecent', gtk.STOCK_OPEN,       'Open _Recent'),
-            ('Quit',       gtk.STOCK_QUIT,       '_Quit', '<control>q', None, gtk.main_quit),
+            ('Quit',       gtk.STOCK_QUIT,       '_Quit', "<control>q", None, gtk.main_quit),
             ('ViewMenu',   None,                 '_View'),
             ('Preferences',gtk.STOCK_PREFERENCES,'_Preferences'),
             ('ColumnEdit', gtk.STOCK_PROPERTIES, '_Column Editor'),
             ('HelpMenu',   None,                 '_Help'),
-            ('About',      gtk.STOCK_ABOUT,      '_About'),
+            ('HomePage',   None,                 _('GRAMPS _home page'), None, None, self.home_page_activate),
+            ('MailingLists',None,                _('GRAMPS _mailing lists'), None, None, self.mailing_lists_activate),
+            ('ReportBug',  None,                 _('_Report a bug'), None, None, self.report_bug_activate),
+            ('About',      gtk.STOCK_ABOUT,      '_About', None, None, self.about),
+            ('FAQ',        None,                 '_FAQ', None, None, self.faq_activate),
+            ('UserManual', gtk.STOCK_HELP,       '_User Manual', 'F1', None, self.manual_activate),
             ])
 
         self.actiongroup.add_actions([
@@ -253,6 +265,50 @@ class ViewManager:
         merge_id = self.uimanager.add_ui_from_string(uidefault)
         self.uimanager.insert_action_group(self.fileactions,1)
         self.uimanager.insert_action_group(self.actiongroup,1)
+
+    def home_page_activate(self,obj):
+        gnome.url_show(_HOMEPAGE)
+
+    def mailing_lists_activate(self,obj):
+        gnome.url_show(_MAILLIST)
+
+    def report_bug_activate(self,obj):
+        gnome.url_show(_BUGREPORT)
+
+    def manual_activate(self,obj):
+        """Display the GRAMPS manual"""
+        try:
+            gnome.help_display('gramps-manual','index')
+        except gobject.GError, msg:
+            ErrorDialog(_("Could not open help"),str(msg))
+
+    def faq_activate(self,obj):
+        """Display FAQ"""
+        try:
+            gnome.help_display('gramps-manual','faq')
+        except gobject.GError, msg:
+            ErrorDialog(_("Could not open help"),str(msg))
+
+    def about(self,obj):
+        about = gtk.AboutDialog()
+        about.set_name(const.program_name)
+        about.set_version(const.version)
+        about.set_copyright(const.copyright)
+        try:
+            f = open(const.license,"r")
+            about.set_license(f.read().replace('\x0c',''))
+            f.close()
+        except:
+            pass
+        about.set_comments(const.comments)
+        about.set_website_label(_('GRAMPS Homepage'))
+        about.set_website('http://gramps-project.org')
+        about.set_authors(const.authors)
+        about.set_translator_credits(_(const.translators))
+        about.set_documenters(const.documenters)
+        about.set_logo(gtk.gdk.pixbuf_new_from_file(const.splash))
+        about.show()
+        about.run()
 
     def sidebar_toggle(self,obj):
         if obj.get_active():
@@ -537,7 +593,7 @@ class ViewManager:
                                                'to the selected file.'))
 
         try:
-            if self.load_database(filename,callback,mode=mode) == 1:
+            if self.load_database(filename,callback,mode=mode):
                 if filename[-1] == '/':
                     filename = filename[:-1]
                 name = os.path.basename(filename)
@@ -566,7 +622,7 @@ class ViewManager:
         #self.redo_callback(None)
         #self.goto_active_person()
         self.actiongroup.set_visible(True)
-        return 1
+        return True
 
     def load_database(self,name,callback=None,mode="w"):
 
@@ -606,13 +662,22 @@ class ViewManager:
         self.relationship = self.RelClass(self.state.db)
         self.state.emit("database-changed", (self.state.db,))
 
-        #self.change_active_person(self.find_initial_person())
+        self.state.change_active_person(self.find_initial_person())
         #self.goto_active_person()
         
         #if callback:
         #    callback(_('Setup complete'))
         #self.enable_buttons(True)
-        return 1
+        return True
+
+    def find_initial_person(self):
+        person = self.state.db.get_default_person()
+        if not person:
+            the_ids = self.state.db.get_person_handles(sort_handles=False)
+            if the_ids:
+                the_ids.sort()
+                person = self.state.db.get_person_from_handle(the_ids[0])
+        return person
 
     def on_scratchpad(self,obj):
         import ScratchPad
