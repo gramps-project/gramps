@@ -1,3 +1,11 @@
+2005-08-13  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbBase.py: keep track of open files
+	* src/MediaView.py: convert MediaView to handle pluggable views
+	* src/PersonView.py: update filter on page change
+	* src/ViewManager.py: change_database handling
+	* src/gramps.glade: remove unused blocks
+	* src/gramps_main.py: Add in MediaView
+
 2005-08-12  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: set up about box and other HELP menu items
 	* src/const.py.in: strings for about box

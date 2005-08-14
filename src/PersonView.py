@@ -75,6 +75,9 @@ class PersonView(PageView.PersonNavView):
         dbstate.connect('database-changed',self.change_db)
         dbstate.connect('active-changed',self.goto_active_person)
 
+    def change_page(self):
+        self.on_filter_name_changed(None)
+        
     def define_actions(self):
         """
         Required define_actions function for PageView. Builds the action
@@ -91,12 +94,17 @@ class PersonView(PageView.PersonNavView):
 
         PageView.PersonNavView.define_actions(self)
         
-        self.add_action('Add',       gtk.STOCK_ADD,   "_Add",   callback=self.add)
-        self.add_action('Edit',      gtk.STOCK_EDIT,  "_Edit",  callback=self.edit)
-        self.add_action('Remove',    gtk.STOCK_REMOVE,"_Remove",callback=self.remove)
-        self.add_action('HomePerson',gtk.STOCK_HOME,  "_Home",  callback=self.home)
+        self.add_action('Add', gtk.STOCK_ADD, "_Add",
+                        callback=self.add)
+        self.add_action('Edit', gtk.STOCK_EDIT, "_Edit",
+                        callback=self.edit)
+        self.add_action('Remove', gtk.STOCK_REMOVE, "_Remove",
+                        callback=self.remove)
+        self.add_action('HomePerson', gtk.STOCK_HOME, "_Home",
+                        callback=self.home)
 
-        self.add_toggle_action('Filter', None, '_Filter', callback=self.filter_toggle)
+        self.add_toggle_action('Filter', None, '_Filter',
+                               callback=self.filter_toggle)
 
     def get_stock(self):
         """
@@ -129,9 +137,7 @@ class PersonView(PageView.PersonNavView):
         self.filterbar.pack_start(self.filter_invert,False)
         self.filterbar.pack_end(self.filter_button,False)
 
-        self.filter_text.hide()
-        self.filter_text.set_sensitive(0)
-        self.filter_label.hide()
+        self.filter_text.set_sensitive(False)
 
         self.person_tree = gtk.TreeView()
         self.person_tree.set_rules_hint(True)
@@ -159,8 +165,9 @@ class PersonView(PageView.PersonNavView):
         self.person_selection.set_mode(gtk.SELECTION_MULTIPLE)
         self.person_selection.connect('changed',self.row_changed)
 
-        self.vbox.set_focus_chain([self.person_tree,self.filter_list, self.filter_text,
-                                   self.filter_invert, self.filter_button])
+        self.vbox.set_focus_chain([self.person_tree, self.filter_list,
+                                   self.filter_text, self.filter_invert,
+                                   self.filter_button])
 
         self.setup_filter()
         return self.vbox
@@ -686,12 +693,12 @@ class PersonView(PageView.PersonNavView):
         qual = mime_filter.need_param
         if qual:
             self.filter_text.show()
-            self.filter_text.set_sensitive(1)
+            self.filter_text.set_sensitive(True)
             self.filter_label.show()
             self.filter_label.set_text(mime_filter.get_rules()[0].labels[0])
         else:
             self.filter_text.hide()
-            self.filter_text.set_sensitive(0)
+            self.filter_text.set_sensitive(False)
             self.filter_label.hide()
 
     def apply_filter(self,current_model=None):

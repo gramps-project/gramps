@@ -1508,6 +1508,7 @@ class DbState(GrampsDBCallback.GrampsDBCallback):
     def __init__(self):
         GrampsDBCallback.GrampsDBCallback.__init__(self)
         self.db     = GrampsDbBase()
+        self.open   = False
         self.active = None
 
     def change_active_person(self,person):
@@ -1526,8 +1527,10 @@ class DbState(GrampsDBCallback.GrampsDBCallback):
 
     def change_database(self,db):
         self.db = db
+        self.open = True
         self.emit('database-changed',(self.db,))
 
     def no_database(self):
         self.db = GrampsDbBase()
+        self.open = False
         self.emit('no-database')

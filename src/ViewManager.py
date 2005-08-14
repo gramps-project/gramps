@@ -185,7 +185,7 @@ class ViewManager:
 
         self.notebook.connect('switch-page',self.change_page)
         self.uistate = DisplayState.DisplayState(self.window, self.statusbar,
-                                            self.uimanager, self.state)
+                                                 self.uimanager, self.state)
 
         person_nav = Navigation.PersonNavigation(self.uistate)
         self.navigation_type[PageView.NAVIGATION_PERSON] = (person_nav,None)
@@ -193,8 +193,7 @@ class ViewManager:
 
     def init_interface(self):
         self.create_pages()
-        self.change_page(None,None,0)
-        #self.state.no_database()
+        self.change_page(None,None)
         self.actiongroup.set_visible(False)
 
     def set_color(self,obj):
@@ -217,21 +216,21 @@ class ViewManager:
         self.actiongroup = gtk.ActionGroup('MainWindow')
         self.fileactions = gtk.ActionGroup('FileWindow')
         self.fileactions.add_actions([
-            ('FileMenu',   None,                 '_File'),
-            ('New',        gtk.STOCK_NEW,        '_New',  "<control>n", None, self.on_new_activate),
-            ('Open',       gtk.STOCK_OPEN,       '_Open', "<control>o", None, self.on_open_activate),
-            ('OpenRecent', gtk.STOCK_OPEN,       'Open _Recent'),
-            ('Quit',       gtk.STOCK_QUIT,       '_Quit', "<control>q", None, gtk.main_quit),
-            ('ViewMenu',   None,                 '_View'),
-            ('Preferences',gtk.STOCK_PREFERENCES,'_Preferences'),
+            ('FileMenu', None, '_File'),
+            ('New', gtk.STOCK_NEW, '_New', "<control>n", None, self.new_activate),
+            ('Open', gtk.STOCK_OPEN, '_Open', "<control>o", None, self.open_activate),
+            ('OpenRecent', gtk.STOCK_OPEN, 'Open _Recent'),
+            ('Quit', gtk.STOCK_QUIT, '_Quit', "<control>q", None, gtk.main_quit),
+            ('ViewMenu', None, '_View'),
+            ('Preferences', gtk.STOCK_PREFERENCES, '_Preferences'),
             ('ColumnEdit', gtk.STOCK_PROPERTIES, '_Column Editor'),
-            ('HelpMenu',   None,                 '_Help'),
-            ('HomePage',   None,                 _('GRAMPS _home page'), None, None, self.home_page_activate),
-            ('MailingLists',None,                _('GRAMPS _mailing lists'), None, None, self.mailing_lists_activate),
-            ('ReportBug',  None,                 _('_Report a bug'), None, None, self.report_bug_activate),
-            ('About',      gtk.STOCK_ABOUT,      '_About', None, None, self.about),
-            ('FAQ',        None,                 '_FAQ', None, None, self.faq_activate),
-            ('UserManual', gtk.STOCK_HELP,       '_User Manual', 'F1', None, self.manual_activate),
+            ('HelpMenu', None, '_Help'),
+            ('HomePage', None, _('GRAMPS _home page'), None, None, self.home_page_activate),
+            ('MailingLists', None, _('GRAMPS _mailing lists'), None, None, self.mailing_lists_activate),
+            ('ReportBug', None, _('_Report a bug'), None, None, self.report_bug_activate),
+            ('About', gtk.STOCK_ABOUT, '_About', None, None, self.about),
+            ('FAQ', None, '_FAQ', None, None, self.faq_activate),
+            ('UserManual', gtk.STOCK_HELP, '_User Manual', 'F1', None, self.manual_activate),
             ])
 
         self.actiongroup.add_actions([
@@ -242,8 +241,8 @@ class ViewManager:
             ('Undo',       gtk.STOCK_UNDO,            '_Undo', '<control>z' ),
             ('CmpMerge',   None,                      '_Compare and merge'),
             ('FastMerge',  None,                      '_Fast merge'),
-            ('ScratchPad', gtk.STOCK_PASTE,           '_ScratchPad', None, None, self.on_scratchpad),
-            ('Import',     gtk.STOCK_CONVERT,         '_Import', None, None, self.on_import),
+            ('ScratchPad', gtk.STOCK_PASTE,           '_ScratchPad', None, None, self.scratchpad),
+            ('Import',     gtk.STOCK_CONVERT,         '_Import', None, None, self.import_data),
             ('Reports',    gtk.STOCK_DND_MULTIPLE,    '_Reports'),
             ('Tools',      gtk.STOCK_EXECUTE,         '_Tools'),
             ('EditMenu',   None,                      '_Edit'),
@@ -356,44 +355,52 @@ class ViewManager:
             button.set_border_width(4)
             button.set_relief(gtk.RELIEF_NONE)
             button.set_alignment(0,0.5)
-            button.connect('clicked',lambda x,y : self.notebook.set_current_page(y),
-                           index)
+            button.connect('clicked',
+                           lambda x,y : self.notebook.set_current_page(y), index)
             self.set_color(button)
             button.show()
             index += 1
             self.bbox.pack_start(button,False)
 
-    def change_page(self,obj,page,num):
-        for mergeid in self.merge_ids:
-            self.uimanager.remove_ui(mergeid)
-        if self.active_page:
-            groups = self.active_page.get_actions()
-            for grp in groups:
-                self.uimanager.remove_action_group(grp)
+    def change_page(self,obj,page,num=-1):
+        if num == -1:
+            num = self.notebook.get_current_page()
+        if self.state.open == True:
 
-        if len(self.pages) > 0:
-            self.active_page = self.pages[num]
+            for mergeid in self.merge_ids:
+                self.uimanager.remove_ui(mergeid)
+            
+            if self.active_page:
+                groups = self.active_page.get_actions()
+                for grp in groups:
+                    self.uimanager.remove_action_group(grp)
 
-            old_nav = self.navigation_type[self.prev_nav]
-            if old_nav[0] != None:
-                old_nav[0].disable
+            if len(self.pages) > 0:
+                self.active_page = self.pages[num]
 
-            nav_type = self.navigation_type[self.active_page.navigation_type()]
-            if nav_type[0] != None:
-                nav_type[0].enable()
-                            
-            groups = self.active_page.get_actions()
+                old_nav = self.navigation_type[self.prev_nav]
+                if old_nav[0] != None:
+                    old_nav[0].disable()
 
-            for grp in groups:
-                self.uimanager.insert_action_group(grp,1)
-            self.merge_ids = [self.uimanager.add_ui_from_string(self.active_page.ui_definition())]
-            for ui in self.active_page.additional_ui_definitions():
-                mergeid = self.uimanager.add_ui_from_string(ui)
-                self.merge_ids.append(mergeid)
+                nav_type = self.navigation_type[self.active_page.navigation_type()]
+                if nav_type[0] != None:
+                    nav_type[0].enable()
 
-            self.active_page.change_page()
+                groups = self.active_page.get_actions()
 
-    def on_open_activate(self,obj):
+                for grp in groups:
+                    self.uimanager.insert_action_group(grp,1)
+
+                ui = self.active_page.ui_definition()
+                self.merge_ids = [self.uimanager.add_ui_from_string(ui)]
+            
+                for ui in self.active_page.additional_ui_definitions():
+                    mergeid = self.uimanager.add_ui_from_string(ui)
+                    self.merge_ids.append(mergeid)
+
+                self.pages[num].change_page()
+
+    def open_activate(self,obj):
 
         choose = gtk.FileChooserDialog(_('GRAMPS: Open database'),
                                            self.uistate.window,
@@ -410,8 +417,14 @@ class ViewManager:
         add_gedcom_filter(choose)
 
         format_list = [const.app_gramps,const.app_gramps_xml,const.app_gedcom]
+
         # Add more data type selections if opening existing db
-        for (importData,mime_filter,mime_type,native_format,format_name) in PluginMgr.import_list:
+        for data in PluginMgr.import_list:
+            mime_filter = data[1]
+            mime_type = data[2]
+            native_format = data[2]
+            format_name = data[3]
+            
             if not native_format:
                 choose.add_filter(mime_filter)
                 format_list.append(mime_type)
@@ -480,7 +493,7 @@ class ViewManager:
         choose.destroy()
         return False
 
-    def on_new_activate(self,obj):
+    def new_activate(self,obj):
 
         choose = gtk.FileChooserDialog(_('GRAMPS: Create GRAMPS database'),
                                            self.uistate.window,
@@ -522,8 +535,10 @@ class ViewManager:
                     self.state.db.close()
                 except:
                     pass
-                self.state.db = GrampsBSDDB.GrampsBSDDB()
+                self.state.change_database(GrampsBSDDB.GrampsBSDDB())
                 self.read_file(filename)
+                self.state.db.request_rebuild()
+                self.change_page(None,None)
                 # Add the file to the recent items
                 #RecentFiles.recent_files(filename,const.app_gramps)
                 #self.parent.build_recent_menu()
@@ -544,7 +559,7 @@ class ViewManager:
         
         success = False
         if filetype == const.app_gramps:
-            self.state.db = GrampsBSDDB.GrampsBSDDB()
+            self.state.change_database(GrampsBSDDB.GrampsBSDDB())
             msgxml = gtk.glade.XML(const.gladeFile, "load_message","gramps")
             msg_top = msgxml.get_widget('load_message')
             msg_label = msgxml.get_widget('message')
@@ -556,13 +571,19 @@ class ViewManager:
                     gtk.main_iteration()
 
             success = self.read_file(filename,update_msg)
+            self.state.db.request_rebuild()
+            self.change_page(None,None)
             msg_top.destroy()
         elif filetype == const.app_gramps_xml:
-            self.state.db = GrampsXMLDB.GrampsXMLDB()
+            self.state.change_database(GrampsXMLDB.GrampsXMLDB())
             success = self.read_file(filename)
+            self.state.db.request_rebuild()
+            self.change_page(None,None)
         elif filetype == const.app_gedcom:
-            self.state.db = GrampsGEDDB.GrampsGEDDB()
+            self.state.change_database(GrampsGEDDB.GrampsGEDDB())
             success = self.read_file(filename)
+            self.state.db.request_rebuild()
+            self.change_page(None,None)
 
         #if success:
         # Add the file to the recent items
@@ -579,13 +600,13 @@ class ViewManager:
             ErrorDialog(_('Cannot open database'),
                         _('The selected file is a directory, not '
                           'a file.\nA GRAMPS database must be a file.'))
-            return 0
+            return False
         elif os.path.exists(filename):
             if not os.access(filename,os.R_OK):
                 ErrorDialog(_('Cannot open database'),
                             _('You do not have read access to the selected '
                               'file.'))
-                return 0
+                return False
             elif not os.access(filename,os.W_OK):
                 mode = "r"
                 QuestionDialog.WarningDialog(_('Read only database'),
@@ -598,24 +619,26 @@ class ViewManager:
                     filename = filename[:-1]
                 name = os.path.basename(filename)
                 if self.state.db.readonly:
-                    self.uistate.window.set_title("%s (%s) - GRAMPS" % (name,_('Read Only')))
+                    msg =  "%s (%s) - GRAMPS" % (name,_('Read Only'))
+                    self.uistate.window.set_title(msg)
                 else:
-                    self.uistate.window.set_title("%s - GRAMPS" % name)
+                    msg = "%s - GRAMPS" % name
+                    self.uistate.window.set_title(msg)
             else:
                 GrampsKeys.save_last_file("")
                 QuestionDialog.ErrorDialog(_('Cannot open database'),
                             _('The database file specified could not be opened.'))
-                return 0
+                return False
         except ( IOError, OSError, Errors.FileVersionError), msg:
             QuestionDialog.ErrorDialog(_('Cannot open database'),str(msg))
-            return 0
+            return False
         except (db.DBAccessError,db.DBError), msg:
             QuestionDialog.ErrorDialog(_('Cannot open database'),
                         _('%s could not be opened.' % filename) + '\n' + msg[1])
-            return 0
+            return False
         except Exception:
             DisplayTrace.DisplayTrace()
-            return 0
+            return False
         
         # Undo/Redo always start with standard labels and insensitive state
         #self.undo_callback(None)
@@ -625,19 +648,16 @@ class ViewManager:
         return True
 
     def load_database(self,name,callback=None,mode="w"):
-
-        filename = name
-
-        if self.state.db.load(filename,callback,mode) == 0:
-            return 0
-        val = self.post_load(name,callback)
-        return val
+        if not self.state.db.load(name,callback,mode):
+            return False
+        return self.post_load(name,callback)
 
     def post_load(self,name,callback=None):
         if not self.state.db.version_supported():
             raise Errors.FileVersionError(
-                    "The database version is not supported by this version of GRAMPS.\n"
-                    "Please upgrade to the corresponding version or use XML for porting"
+                    "The database version is not supported by this "
+                    "version of GRAMPS.\nPlease upgrade to the "
+                    "corresponding version or use XML for porting"
                     "data between different database versions.")
         
         self.state.db.set_save_path(name)
@@ -660,14 +680,9 @@ class ViewManager:
         GrampsKeys.save_last_file(name)
     
         self.relationship = self.RelClass(self.state.db)
-        self.state.emit("database-changed", (self.state.db,))
-
         self.state.change_active_person(self.find_initial_person())
-        #self.goto_active_person()
-        
-        #if callback:
-        #    callback(_('Setup complete'))
-        #self.enable_buttons(True)
+        self.change_page(None,None)
+        self.actiongroup.set_visible(True)
         return True
 
     def find_initial_person(self):
@@ -679,11 +694,11 @@ class ViewManager:
                 person = self.state.db.get_person_from_handle(the_ids[0])
         return person
 
-    def on_scratchpad(self,obj):
+    def scratchpad(self,obj):
         import ScratchPad
         ScratchPad.ScratchPadWindow(self.state, self)
 
-    def on_import(self,obj):
+    def import_data(self,obj):
         choose = gtk.FileChooserDialog(_('GRAMPS: Import database'),
                                            self.uistate.window,
                                            gtk.FILE_CHOOSER_ACTION_OPEN,
@@ -701,7 +716,12 @@ class ViewManager:
         format_list = [const.app_gramps,const.app_gramps_xml,const.app_gedcom]
 
         # Add more data type selections if opening existing db
-        for (importData,mime_filter,mime_type,native_format,format_name) in PluginMgr.import_list:
+        for data in PluginMgr.import_list:
+            mime_filter = data[1]
+            mime_type = data[2]
+            native_format = data[3]
+            format_name = data[4]
+
             if not native_format:
                 choose.add_filter(mime_filter)
                 format_list.append(mime_type)
@@ -714,7 +734,8 @@ class ViewManager:
         # then home.
         default_dir = GrampsKeys.get_last_import_dir()
         if len(default_dir)<=1:
-            default_dir = os.path.split(GrampsKeys.get_lastfile())[0] + os.path.sep
+            base_path = os.path.split(GrampsKeys.get_lastfile())[0]
+            default_dir = base_path + os.path.sep
         if len(default_dir)<=1:
             default_dir = GrampsKeys.get_last_export_dir()
         if len(default_dir)<=1:
@@ -831,7 +852,7 @@ class GrampsFormatWidget(gtk.ComboBox):
         
         for format,label in format_list:
             self.store.append(row=[label])
-        self.set_active(0)
+        self.set_active(False)
 
     def get_value(self):
         active = self.get_active()
