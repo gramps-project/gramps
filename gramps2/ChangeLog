@@ -1,3 +1,6 @@
+2005-08-14  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/ExportVCalendar.py: Fix typo
+	
 2005-08-13  Jérôme  <romjerome@yahoo.fr>
 	* doc/gramps-manual/fr/figures/comp-people.png,
 	doc/gramps-manual/fr/figures/date-selection.png,

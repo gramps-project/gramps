@@ -82,7 +82,7 @@ class CalendarWriterOptionBox:
         all.set_name(_("Entire Database"))
         all.add_rule(GenericFilter.Everyone([]))
 
-        if person:
+        if self.person:
             des = GenericFilter.GenericFilter()
             des.set_name(_("Descendants of %s") %
                          self.person.get_primary_name().get_name())
