@@ -41,6 +41,7 @@ import MapView
 import PlaceView
 import EventView
 import SourceView
+import MediaView
 import ArgHandler
 import DisplayTrace
 import GrampsKeys
@@ -62,6 +63,7 @@ def register_stock_icons ():
     items = [
         ('people48.png',('gramps-person','Person',gtk.gdk.CONTROL_MASK,0,'')),
         ('family48.png',('gramps-family','Family',gtk.gdk.CONTROL_MASK,0,'')),
+        ('media.png',('gramps-media','Media',gtk.gdk.CONTROL_MASK,0,'')),
         ('ped24.png',('gramps-pedigree','Pedigree',gtk.gdk.CONTROL_MASK,0,'')),
         ('repos.png',('gramps-repository','Repositories',
                       gtk.gdk.CONTROL_MASK,0,'')),
@@ -155,13 +157,14 @@ class Gramps:
         vm.register_view(EventView.EventView)
         vm.register_view(SourceView.SourceView)
         vm.register_view(PlaceView.PlaceView)
+        vm.register_view(MediaView.MediaView)
         vm.register_view(MapView.MapView)
         vm.register_view(RepositoryView.RepositoryView)
 
         ArgHandler.ArgHandler(state,vm,args)
 
         vm.init_interface()
-        state.emit("database-changed", (state.db,))
+        state.db.request_rebuild()
         state.change_active_person(state.db.get_default_person())
         
         # Don't show main window until ArgHandler is done.
