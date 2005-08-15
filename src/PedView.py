@@ -75,6 +75,7 @@ class PedView(PageView.PersonNavView):
         dbstate.connect('database-changed',self.change_db)
         dbstate.connect('active-changed',self.goto_active_person)
         self.force_size = 0 # Automatic resize
+        self.db = dbstate.db
 
     def init_parent_signals_cb(self, widget, event):
         print "PedView.init_parent_signals_cb"

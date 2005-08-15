@@ -44,6 +44,11 @@ import GrampsDBCallback
 import GrampsKeys
 import NameDisplay
 
+#-------------------------------------------------------------------------
+#
+# History manager
+#
+#-------------------------------------------------------------------------
 class History(GrampsDBCallback.GrampsDBCallback):
 
     __signals__ = {
@@ -118,6 +123,148 @@ class History(GrampsDBCallback.GrampsDBCallback):
         if not self.at_end():
             self.history = self.history[0:self.index+1]
 
+#-------------------------------------------------------------------------
+#
+# Window manager
+#
+#-------------------------------------------------------------------------
+class GrampsWindowManager:
+
+    def __init__(self):
+        self.window_tree = []
+        self.id2item = {}
+
+    def get_item_from_node(self,node):
+        item = self.window_tree
+        for index in node:
+            item = item[index]
+        return item
+
+    def get_window_from_id(self,window_id):
+        return self.id2item.get(window_id,None)
+    
+    def close_node(self,node):
+        item = self.get_item_from_node(node)
+        self.close_item_recursively(item)
+        self.remove_node(node)
+
+    def close_item_recursively(self,item):
+        if type(item) == list:
+            for sub_item in item[1:]:
+                self.close_item_recursively(sub_item)
+        else:
+            if item.window_id:
+                del self.id2item[window_id]
+            item.window.destroy()
+    
+    def add_item(self,node,item):
+        if item.window_id:
+            self.id2item[window_id] = item
+
+        parent_item = self.get_item_from_node(node)
+        assert type(parent_item) == list or node == [], \
+               "Gwm: add_item: Incorrect node."
+        if item.submenu_label:
+            # This is an item with potential children
+            new_item = [item]
+        else:
+            # This is an item without children
+            new_item = item
+        parent_item.append(new_item)
+        new_node = node + [len(parent_item) + 1]
+        return new_node
+
+    def remove_node(self,node):
+        parent_node = node[:-1]
+        child_in_parent = node[-1:][0]
+        item = self.get_item_from_node(parent_node)
+        item.pop(child_in_parent)
+
+    def call_back_factory(self,item):
+        if type(item) != list:
+            def f(obj):
+                if item.window_id and self.get_window_from_id(window_id):
+                    self.get_window_from_id(window__id).present()
+        else:
+            def f(obj):
+                pass
+        return f
+
+    def built_windows_menu(self):
+        pass
+
+#-------------------------------------------------------------------------
+#
+# Gramps Managed Window class
+#
+#-------------------------------------------------------------------------
+class ManagedWindow:
+    """
+    Managed window base class.
+    
+    This class provides all the goodies necessary for user-friendly window
+    management in GRAMPS: registering the menu item under the Windows
+    menu, keeping track of child windows, closing them on close/delete
+    event, and presenting itself when selected or attempted to create again.
+    """
+
+    def __init__(self,uistate,node,window_key,submenu_label,menu_label):
+        """
+        Create child windows and add itself to menu, if not there already.
+
+
+        The usage from derived classes is envisioned as follows:
+
+
+        import DisplayState
+        class SomeWindowClass(DisplayState.ManagedWindow):
+            def __init__(self,uistate,dbstate,node):
+                window_id = self        # Or e.g. window_id = person.handle
+                submenu_label = None    # This window cannot have children
+                menu_label = 'Menu label for this window'
+                DisplayState.ManagedWindow.__init__(self,
+                                                    uistate,
+                                                    node,
+                                                    window_id,
+                                                    submenu_label,
+                                                    menu_label)
+                if self.already_exist:
+                    return
+
+                # Proceed with the class.
+                ...
+
+        """
+        if uistate.gwm.get_window_from_id(window_id):
+            uistate.gwm.get_window_from_id(window_id).present()
+            self.already_exist = True
+        else:
+            self.already_exist = False
+            self.window_id = window_id
+            self.submenu_label = submenu_label
+            self.menu_label = menu_label
+            self.uistate = uistate
+            self.node = self.uistate.gwm.add_item(node,self)
+
+    def close(self):
+        """
+        Close itself.
+
+        Takes care of closing children and removing itself from menu.
+        """
+        self.uistate.gwm.close_node(self.node)
+
+    def present(self):
+        """
+        Present window (unroll/unminimize/bring to top).
+        """
+        self.window.present()
+
+#-------------------------------------------------------------------------
+#
+# Gramps Display State class
+#
+#-------------------------------------------------------------------------
 class DisplayState(GrampsDBCallback.GrampsDBCallback):
 
     __signals__ = {
@@ -131,6 +278,7 @@ class DisplayState(GrampsDBCallback.GrampsDBCallback):
         self.status = status
         self.status_id = status.get_context_id('GRAMPS')
         self.phistory = History()
+        self.gwm = GrampsWindowManager()
 
     def modify_statusbar(self,active=None):
         self.status.pop(self.status_id)
