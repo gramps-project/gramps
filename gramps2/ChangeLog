@@ -1,3 +1,9 @@
+2005-08-14  Alex Roitman  <shura@gramps-project.org>
+	* src/PedView.py (__init__): Define database variable.
+	* src/ViewManager.py (__init__): Define empty pages list.
+	* src/DisplayState.py (GrampsWindowManager,ManagedWindow): Add
+	classes for window management. Still unfinished.
+
 2005-08-13  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbBase.py: keep track of open files
 	* src/MediaView.py: convert MediaView to handle pluggable views

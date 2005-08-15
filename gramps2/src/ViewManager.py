@@ -154,6 +154,7 @@ class ViewManager:
         self.state = state
         self.active_page = None
         self.views = []
+        self.pages = []
         self.window = gtk.Window()
         self.window.connect('destroy', lambda w: gtk.main_quit())
         self.window.set_size_request(775,500)
