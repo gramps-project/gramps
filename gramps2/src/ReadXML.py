@@ -596,10 +596,7 @@ class GrampsParser:
     def start_event(self,attrs):
         self.event = RelLib.Event()
         self.db.add_event(self.event,self.trans)
-        if self.family:
-            self.event_type = const.display_pevent(attrs["type"])
-        else:
-            self.event_type = const.display_fevent(attrs["type"])
+        self.event_type = const.save_event(attrs["type"])
         if attrs.has_key("conf"):
             self.event.conf = int(attrs["conf"])
         else:

@@ -16,6 +16,12 @@ then
   VERSIONSTRING="$VERSION-$RELEASE"
 fi
 
+dnl Checking for gconftool-2
+AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
+if test "x$GCONFTOOL" = xno; then
+  AC_MSG_ERROR([gconftool-2 executable not found in your path - should be installed with GConf])
+fi
+
 AM_GCONF2_REPLACEMENT
 AM_SHARED_MIME
 AM_PACKAGER

@@ -1,6 +1,6 @@
 dnl AM_GCONF2_REPLACEMENT
 dnl Defines GCONF_SCHEMA_CONFIG_SOURCE which is where you should install schemas
-dnl  (i.e. pass to gconftool-2
+dnl  (i.e. pass to $GCONFTOOL
 dnl Defines GCONF_SCHEMA_FILE_DIR which is a filesystem directory where
 dnl  you should install foo.schemas files
 dnl
@@ -10,7 +10,7 @@ dnl By copying it here we remove the requirement for having it on the system.
 AC_DEFUN([AM_GCONF2_REPLACEMENT],
 [
   if test "x$GCONF_SCHEMA_INSTALL_SOURCE" = "x"; then
-    GCONF_SCHEMA_CONFIG_SOURCE=`gconftool-2 --get-default-source`
+    GCONF_SCHEMA_CONFIG_SOURCE=`$GCONFTOOL --get-default-source`
   else
     GCONF_SCHEMA_CONFIG_SOURCE=$GCONF_SCHEMA_INSTALL_SOURCE
   fi

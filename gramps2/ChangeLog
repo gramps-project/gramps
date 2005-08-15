@@ -1,3 +1,10 @@
+2005-08-14  Eero Tamminen  <eerot@sf>
+	* src/ReadXML.py (start_event): Correctly set event type.
+
+2005-08-14  Alex Roitman  <shura@gramps-project.org>
+	* acinclude.m4, configure.in, gramps.spe.in, src/data/Makefile.am:
+	Properly test for gconftool-2 binary.
+
 2005-08-14  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/ExportVCalendar.py: Fix typo
 	
