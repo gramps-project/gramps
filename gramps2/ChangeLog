@@ -1,3 +1,6 @@
+2005-08-15  Alex Roitman  <shura@gramps-project.org>
+	* NEWS: Update.
+
 2005-08-14  Eero Tamminen  <eerot@sf>
 	* src/ReadXML.py (start_event): Correctly set event type.
 
