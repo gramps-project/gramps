@@ -527,6 +527,10 @@ class SourceEditor:
             src = self.db.get_source_from_handle(src_id)
             title = src.get_title()
             gid = src.get_gramps_id()
+
+            if len(title) > 40:
+                title = title[0:37] + "..."
+            
             store.append(row=["%s [%s]" % (title,gid)])
             self.handle_list.append(src_id)
             if selected_handle == src_id:

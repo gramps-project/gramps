@@ -1,5 +1,6 @@
 2005-08-16  Don Allingham  <don@gramps-project.org>
 	* src/plugins/NavWebPage.py: fix paths in surname page
+	* src/Sources.py: Limit the source title to 40 characters
 
 2005-08-15  Alex Roitman  <shura@gramps-project.org>
 	* NEWS: Update.
