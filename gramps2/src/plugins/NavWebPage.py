@@ -572,7 +572,7 @@ class SurnamePage(BasePage):
         for person_handle in person_handle_list:
             person = db.get_person_from_handle(person_handle)
             of.write('<tr><td class="category">')
-            path = self.build_path(person.handle,"ppl",False)
+            path = self.build_path(person.handle,"ppl",True)
             self.person_link(of, self.build_name(path,person.handle),
                              person.get_primary_name().get_first_name(),
                              person.gramps_id,False)
@@ -1362,8 +1362,6 @@ class IndividualPage(BasePage):
         all_events = [handle for handle in [self.person.get_birth_handle(),
                                             self.person.get_death_handle()]
                       if handle] + self.person.get_event_list()
-        print all_events
-
         if not all_events:
             return
         
