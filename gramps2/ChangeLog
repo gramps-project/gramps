@@ -1,3 +1,6 @@
+2005-08-17  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Fix/improve Finnish translations
+
 2005-08-16  Don Allingham  <don@gramps-project.org>
 	* src/plugins/NavWebPage.py: fix paths in surname page
 	* src/Sources.py: Limit the source title to 40 characters

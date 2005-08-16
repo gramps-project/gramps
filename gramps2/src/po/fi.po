@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fi\n"
 "POT-Creation-Date: Mon Aug  8 10:47:43 2005\n"
-"PO-Revision-Date: 2005-08-10 23:50+0300\n"
+"PO-Revision-Date: 2005-08-17 00:58+0300\n"
 "Last-Translator: Eero Tamminen <eerot@sf>\n"
 "Language-Team: Suomi\n"
 "MIME-Version: 1.0\n"
@@ -384,7 +384,7 @@ msgstr "GRAMPS: Tuo tietokanta"
 
 #: DbPrompter.py:361
 msgid "GRAMPS: Create GRAMPS database"
-msgstr "GRAMPS: Luo GRAMPS tietokanta"
+msgstr "GRAMPS: Luo GRAMPS-tietokanta"
 
 #: DbPrompter.py:434
 msgid "GRAMPS: Select filename for a new database"
@@ -456,7 +456,7 @@ msgid ""
 "email message to gramps-bugs@lists.sourceforge.net\n"
 "\n"
 msgstr ""
-"GRAMPS:n sisäinen virhe.\n"
+"GRAMPSin sisäinen virhe.\n"
 "Kopioi allaoleva viesti ja lähetä vikaraportti osoitteeseen:\n"
 "http://sourceforge.net/projects/gramps tai postita se:\n"
 "gramps-bugs@lists.sourceforge.net sähköpostilistalle\n"
@@ -765,9 +765,9 @@ msgid ""
 "\n"
 "If you change your mind during this process, you can safely press the Cancel button at any time and your present database will still be intact."
 msgstr ""
-"Normaalisti sinun ei tarvitse GRAMPS:ssä erikseen tallentaa muutoksia. Kaikki tekemäsi muutokset tallennetaan välittömästi tietokantaan.\n"
+"Normaalisti sinun ei tarvitse GRAMPSissä erikseen tallentaa muutoksia. Kaikki tekemäsi muutokset tallennetaan välittömästi tietokantaan.\n"
 "\n"
-"Tämä prosessi auttaa sinua tallentamaan kopion tiedoistasi johonkin muuhun GRAMPS:n tukemaan muotoon. Voit käyttää tätä tietojesi kopiointiin, niiden varmuuskopiointiin, tai muuttaaksesi ne muotoon, jota jokin toinen ohjelma tukee.\n"
+"Tämä prosessi auttaa sinua tallentamaan kopion tiedoistasi johonkin muuhun GRAMPSin tukemaan muotoon. Voit käyttää tätä tietojesi kopiointiin, niiden varmuuskopiointiin, tai muuttaaksesi ne muotoon, jota jokin toinen ohjelma tukee.\n"
 "\n"
 "Jos muutat mielesi, voit turvallisesti keskeyttää prosessin milloin tahansa sen aikana. Nykyinen tietokantasi säilyy muuttumattomana."
 
@@ -1229,7 +1229,7 @@ msgstr "Poimii suotimen hyväksymien henkilöiden sisarukset"
 
 #: GenericFilter.py:627
 msgid "Descendant family members of <person>"
-msgstr "<Henkilön> jälkeläisen perheenjäsen"
+msgstr "<Henkilön> jälkeläiset perheineen"
 
 #: GenericFilter.py:629
 msgid "Matches people that are descendants or the spouse of a descendant of a specified person"
@@ -3332,8 +3332,8 @@ msgid ""
 "Welcome to GRAMPS, the Genealogical Research and Analysis Management Programming System.\n"
 "Several options and information need to be gathered before GRAMPS is ready to be used. Any of this information can be changed in the future in the Preferences dialog under the Settings menu."
 msgstr ""
-"Tervetuloa GRAMPS:n (Pappaan); sukutiedon tutkimisen ja analysoinnin hallinnointiohjelmistoon (Genealogical Research and Analysis Management Programming System).\n"
-"GRAMPS tarvitsee muutamia tietoja ja valintoja, ennen kuin se on valmis käytettäväksi. Voit muuttaa antamasi tiedot myöhemmin Asetukset-dialogista Asetukset-valikon alta."
+"Tervetuloa GRAMPS (Pappa), sukutiedon tutkimisen ja analysoinnin hallinnointiohjelmiston, pariin.\n"
+"GRAMPS tarvitsee muutamia tietoja ja valintoja, ennen kuin se on valmis käytettäväksi. Voit muuttaa antamasi tiedot myöhemmin Asetukset-dialogista Muokkaa-valikon alta."
 
 #: StartupDialog.py:191
 msgid "Complete"
@@ -3345,9 +3345,9 @@ msgid ""
 "\n"
 "Please enjoy using GRAMPS."
 msgstr ""
-"GRAMPS on avoin (Open Source) ohjelmistoprojekti. Sen menestys riippuu käyttäjistä. Käyttäjäpalaute on tärkeää; liity postituslistoille, lähetä virheraportteja, ehdoita parannuksia ja mieti, miten voisit auttaa.\n"
+"GRAMPS on avoin (Open Source) ohjelmistoprojekti. Sen menestys riippuu käyttäjistä, joten käyttäjäpalaute on tärkeää.  Liity postituslistoille, lähetä virheraportteja, ehdota parannuksia ja mieti, miten voisit auttaa.\n"
 "\n"
-"Toivomme sinun nauttivan GRAMPS:n käytöstä!"
+"Toivomme sinun nauttivan GRAMPSin käytöstä!"
 
 #: StartupDialog.py:232
 msgid "In order to create valid GEDCOM files, the following information needs to be entered. If you do not plan to generate GEDCOM files, you may leave this empty."
@@ -3396,7 +3396,7 @@ msgstr "Gconf skeemoja ei löytynyt. Yritä ajaa 'pkill gconfd' ja uudelleenkäy
 
 #: StartupDialog.py:291
 msgid "LDS extensions"
-msgstr "LDS laajennukset"
+msgstr "MAP laajennukset"
 
 #: StartupDialog.py:300
 msgid ""
@@ -3406,13 +3406,15 @@ msgid ""
 "You may choose to either enable or disable this support. You may\n"
 "change this option in the future in the Preferences dialog."
 msgstr ""
-"GRAMPS tukee \"LDS Ordinances\" erikoistapahtumatyyppejä, jotka liittyvät mormoonikirkkoon.\n"
+"GRAMPS tukee \"MAP-tapahtumia\", jotka ovat Myöhempien Aikojen Pyhien\n"
+"Jeesuksen Kristuksen kirkkoon (=mormonikirkkoon) liittyviä erikoistapahtumia.\n"
+"\n"
 "Voit joko ottaa tuen käyttöön tai jättää sen pois päältä.\n"
-"Voit vaihtaa sen myöhemmin Asetukset dialogista."
+"Voit vaihtaa sen myöhemmin Asetukset-dialogista."
 
 #: StartupDialog.py:311
 msgid "Enable LDS ordinance support"
-msgstr "Ota käyttöön \"LDS Ordinances\" tuki"
+msgstr "Ota käyttöön \"MAP-tapahtumien\" tuki"
 
 #: StyleEditor.py:71
 msgid "Document Styles"
@@ -3517,7 +3519,7 @@ msgstr "GE_DCOM"
 
 #: WriteGedcom.py:1282
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input. "
-msgstr "GEDCOM tiedostomuotoa käytetään tiedon siirtämiseen eri sukututkimusohjelmien välillä. Useimmat sukututkimusohjelmat pystyvät lukemaan GEDCOM tiedostoja."
+msgstr "GEDCOM-tiedostomuotoa käytetään tiedon siirtämiseen eri sukututkimusohjelmien välillä. Useimmat sukututkimusohjelmat pystyvät lukemaan GEDCOM-tiedostoja."
 
 #: WriteGedcom.py:1284
 msgid "GEDCOM export options"
@@ -3932,7 +3934,7 @@ msgstr "<b>Haastattele sukulaisiasi ennen kuin se on liian myöhäistä</b>: Van
 
 #: data/tips.xml:42
 msgid "<b>Example of a Family Tree</b>: To see an example of what a family looks like in GRAMPS, check <b>Help > Open example database</b>. You will then be viewing the elaborate Smith family database, which includes 42 individuals and 15 families, with fairly complete data about many of the individuals."
-msgstr "<b>Sukupuuesimerkki</b>: Nähdäksesi esimerkin, miltä suku GRAMPS:ssä näyttää, avaa <b>Ohjeet > Avaa esimerkkitietokanta</b>. Näet sitten esimerkin Smith-suvun tietokannasta, joka sisältää 42 henkilöä ja 15 perhettä, kohtuullisen täysillä tiedoilla monista suvun jäsenistä."
+msgstr "<b>Sukupuuesimerkki</b>: Nähdäksesi esimerkin, miltä suku GRAMPSissä näyttää, avaa <b>Ohjeet > Avaa esimerkkitietokanta</b>. Näet sitten esimerkin Smith-suvun tietokannasta, joka sisältää 42 henkilöä ja 15 perhettä, kohtuullisen täysillä tiedoilla monista suvun jäsenistä."
 
 #: data/tips.xml:51
 msgid "<b>The People View</b>: The People View shows a list of all individuals in the database. The listings can be sorted by simply clicking on a heading such as name, gender, birth date or death date. Clicking the heading a second time will reverse the sort."
@@ -4092,7 +4094,7 @@ msgstr "Suotimilla voit rajoittaa henkilönäkymässä näkyviä henkilöitä. M
 
 #: data/tips.xml:349
 msgid "GRAMPS allows you to import from, and export to, GEDCOM format. There is extensive support for the industry standard GEDCOM version 5.5, so you can exchange GRAMPS information to and from users of most other genealogy programs."
-msgstr "GRAMPS sallii sinun tuoda ja viedä tietoja GEDCOM tiedostomuodosta. Standardille GEDCOM versiolle 5.5 on laaja tuki, joten voit vaihtaa GRAMPSin sisältämiä tietoja useimpien sukututkimusohjelmien kanssa."
+msgstr "GRAMPS sallii sinun tuoda ja viedä tietoja GEDCOM-tiedostomuodosta. GEDCOM standardin versiolle 5.5 on laaja tuki, joten voit vaihtaa GRAMPSin sisältämiä tietoja useimpien sukututkimusohjelmien kanssa."
 
 #: data/tips.xml:358
 msgid "You can convert your data into a GRAMPS package, which is a compressed file containing your family tree data and includes all other files used by the database, such as images. This file is completely portable so is useful for backups or sharing with other GRAMPS users. This format has advantages over GEDCOM in that no information is ever lost in exporting and importing."
@@ -4212,7 +4214,7 @@ msgstr "Ajaaksesi GRAMPS ohjelmaa, sinun täytyy <i>asentaa</i> GNOME työpöyt�
 
 #: data/tips.xml:531
 msgid "GRAMPS makes every effort to maintain compatibility with GEDCOM, the general standard of recording genealogical information. Filters exist that make importing and exporting GEDCOM files trivial."
-msgstr "GRAMPS tekee kaikkensa ollakseen yhteensopiva GEDCOM tiedostojen kanssa (GEDCOM on yleinen standardi sukutietojen talletukseen). Olemassaolevat suotimet tekevät GEDCOM tiedostojen viennin ja tuonnin helpoksi."
+msgstr "GRAMPS tekee kaikkensa ollakseen yhteensopiva GEDCOM-tiedostojen kanssa (GEDCOM on yleinen standardi sukutietojen talletukseen). Olemassaolevat suotimet tekevät GEDCOM-tiedostojen viennin ja tuonnin helpoksi."
 
 #: docgen/AbiWord2Doc.py:340
 msgid "AbiWord document"
@@ -4315,7 +4317,7 @@ msgstr "_Kohde:"
 
 #: gedcomexport.glade:233
 msgid "Standard GEDCOM 5.5"
-msgstr "Normaali GEDCOM 5.5"
+msgstr "Standardi GEDCOM 5.5"
 
 #: gedcomexport.glade:253
 msgid "_Copyright:"
@@ -4424,7 +4426,7 @@ msgstr "<span size=\"larger\" weight=\"bold\">GEDCOM merkistökoodaus</span>"
 
 #: gedcomimport.glade:591
 msgid "This GEDCOM file has identified itself as using ANSEL enconding. Sometimes, this is in error. If the imported data contains unusual characters, undo the import, and override the character set by selecting a different encoding below."
-msgstr "Tämä GEDCOM tiedosto kertoo käyttävänsä ANSEL merkistökoodausta. Joskus tämä on virhe. Jos tuoduissa tiedoissa on kummallisia merkkejä, peru tuonti ja vaihda merkistö valitsemalla alta jokin toinen merkistäkoodaus."
+msgstr "GEDCOM-tiedosto kertoo käyttävänsä ANSEL merkistökoodausta. Joskus tämä on virhe. Jos tuoduissa tiedoissa on kummallisia merkkejä, peru tuonti ja vaihda merkistö valitsemalla alta jokin toinen merkistäkoodaus."
 
 #: gedcomimport.glade:629
 msgid "Encoding: "
@@ -5309,11 +5311,11 @@ msgstr "Internet"
 
 #: gramps.glade:11784
 msgid "<b>LDS baptism</b>"
-msgstr "<b>Mormonikaste</b>"
+msgstr "<b>Upotuskaste</b>"
 
 #: gramps.glade:11841
 msgid "LDS _temple:"
-msgstr "Mormoni_temppeli:"
+msgstr "MAP _temppeli:"
 
 #: gramps.glade:11873 gramps.glade:12107 gramps.glade:12204 gramps.glade:14786
 msgid "Sources..."
@@ -5325,11 +5327,11 @@ msgstr "Huomioita..."
 
 #: gramps.glade:11965
 msgid "<b>Endowment</b>"
-msgstr "<b>Lahjoitus</b>"
+msgstr "<b>Temppelipyhitys</b>"
 
 #: gramps.glade:12025
 msgid "LDS te_mple:"
-msgstr "Mormonite_mppeli:"
+msgstr "MAP te_mppeli:"
 
 #: gramps.glade:12053 gramps.glade:18925
 msgid "P_lace:"
@@ -5341,7 +5343,7 @@ msgstr "P_äivämäärä:"
 
 #: gramps.glade:12175
 msgid "LD_S temple:"
-msgstr "Mormo_nitemppeli:"
+msgstr "MAP temppe_li:"
 
 #: gramps.glade:12223
 msgid "Pla_ce:"
@@ -5965,7 +5967,7 @@ msgstr "_Yksityinen tietue"
 
 #: gramps.glade:30809
 msgid "Family _prefix:"
-msgstr "Perheen et_uliite:"
+msgstr "Sukunimen et_uliite:"
 
 #: gramps.glade:30926
 msgid "P_atronymic:"
@@ -6152,35 +6154,35 @@ msgid ""
 msgstr ""
 "Tervetuloa GRAMPS 2.0.x sarjaan! \n"
 "\n"
-"Tämä versio eroaa radikaalisti 1.0.x sarjasta muutamassa asiassa.\n"
-"Kannattaa lukea huolella, koska se saattaa vaikuttaa siihen,\n"
+"Tämä versio eroaa merkittävästi 1.0.x sarjasta muutamassa asiassa.\n"
+"Kannattaa allaoleva lukea huolella, se saattaa vaikuttaa siihen,\n"
 "miten käytät ohjelmaa.\n"
 "\n"
-"1. Tietojen talletukseen käytetään Berkeley-DB tietokantaa.\n"
-"   Tästä johtuen tiedot talletaan levylle välittömästi ja GRAMPS\n"
-"   pystyy nyt käsittelemään kymmeniä tuhansia henkilöitä.\n"
-"   Erillistä tallenna toiminnallisuutta EI enää ole!\n"
-"2. GRAMPS ei hallinnoi mediatiedostoja.\n"
-"   Enää ei ole paikallisia tiedostoja (kuvia jne.), ainoastaan ulkoisia.\n"
-"   Olet itse vastuussa tiedostoistasi.  Jos poistat kuvatiedoston\n"
-"   levyltä, sitä ei enää ole!\n"
+"1. Tietojen talletukseen käytetään nyt Berkeley-DB tietokantaa.\n"
+"   Tästä johtuen tiedot talletaan levylle välittömästi ja\n"
+"   erillistä tallenna-toimintoa EI enää ole!\n"
+"2. GRAMPS ei hallinnoi media (kuva ym.) -tiedostoja.\n"
+"   Sillä ei ole enää omaa kopioita tiedostoista, vain viite\n"
+"   valitsemaasi tiedostoon, joten olet itse vastuussa tiedostoistasi.\n"
+"   Jos poistat kuvatiedoston levyltä, sitä ei enää ole!\n"
 "3. Aikaisempien GRAMPS versioiden tarjoama versionhallinta\n"
 "   on poistettu.  Voit halutessa käyttää versionhallintaa tiedoillesi,\n"
-"   mutta sinun pitää hoitaa se GRAMPS:n ulkopuolella.\n"
+"   mutta sinun pitää tehdä se GRAMPSin ulkopuolella.\n"
 "4. Voit suoraan aukaista (aikaisemman version käyttämiä)\n"
-"   GRAMPS XML tietokantoja, kuten myös GEDCOM standardin\n"
+"   GRAMPS XML -tietokantoja, kuten myös GEDCOM standardin\n"
 "   mukaisia tiedostoja (joita useat muut sukututkimusohjelmat\n"
 "   tukevat).  Muista kuitenkin, että kaikki tekemäsi muutokset\n"
-"   kirjataan levylle lopettaessasi GRAMPS:n.  GEDCOM tiedostojen\n"
-"   tapauksessa tämä voi johtaa tietojen häviämiseen, koska jotkut\n"
-"   GEDCOM tiedostot sisältävät GEDCOM standardiin kuulumattomia\n"
-"   tietoja, joita GRAMPS ei pysty tulkitsemaan.  Jos et ole varma\n"
-"   asiasta, luo tyhjä grdb tietokanta (GRAMPS:n uusi tietokantamuoto)\n"
-"   ja tuo GEDCOM tiedoston tiedot siihen.  Tällöin alkuperäinen\n"
-"   GEDCOM tiedosto säilyy muuttumattomana.\n"
+"   kirjataan levylle sulkiessasi GRAMPSin.  GEDCOM tiedostojen\n"
+"   tapauksessa tämä saattaa johtaa muiden sukututkimusohjelmien\n"
+"   tiedostoon tallentamien tietojen häviämiseen, koska jotkut\n"
+"   GEDCOM-tiedostot sisältävät standardiin kuulumattomia tietoja,\n"
+"   joita GRAMPS ei pysty tulkitsemaan.  Varminta on luoda tyhjä\n"
+"   grdb tietokanta (GRAMPSin uusi tietokantamuoto) ja tuoda\n"
+"   GEDCOM-tiedoston tiedot siihen.  Tällöin alkuperäinen\n"
+"   GEDCOM-tiedosto säilyy muuttumattomana.\n"
 "\n"
 "Miellyttäviä hetkiä ohjelman parissa!\n"
-"GRAMPS projekti\n"
+"  GRAMPS-projekti\n"
 
 #: gramps_main.py:526
 msgid "File does not exist"
@@ -7405,7 +7407,7 @@ msgstr "Tarjoaa ikkunan, jossa voit suorittaa python koodia"
 
 #: plugins/EventCmp.py:152
 msgid "Event comparison filter selection"
-msgstr "Tapahtumienvertailusäätimen valinta"
+msgstr "Tapahtumienvertailusuotimen valinta"
 
 #: plugins/EventCmp.py:180
 msgid "Event Comparison tool"
@@ -7541,7 +7543,7 @@ msgstr "Henkilö ei kelpaa"
 
 #: plugins/FilterEditor.py:326
 msgid "User defined filters"
-msgstr "Käyttäjän omat säätimet"
+msgstr "Käyttäjän omat suotimet"
 
 #: plugins/FilterEditor.py:339 plugins/ScratchPad.py:357
 msgid "Comment"
