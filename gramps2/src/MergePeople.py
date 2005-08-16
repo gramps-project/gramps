@@ -98,9 +98,9 @@ class Compare:
                 merge = MergePeople(self.db,self.p1,self.p2)
             else:
                 merge = MergePeople(self.db,self.p2,self.p1)
-                self.top.destroy()
-                merge.merge()
-                self.update()
+            self.top.destroy()
+            merge.merge()
+            self.update()
 
     def add(self, tobj, tag, text):
         text += "\n"
