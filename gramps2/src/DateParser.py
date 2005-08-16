@@ -285,8 +285,6 @@ class DateParser:
                            re.IGNORECASE)
         self._itext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % self._imon_str,
                            re.IGNORECASE)
-        self._range2   = re.compile('%s\s+(\d+)-(\d+)\s*,?\s*((\d+)(/\d+)?)?' % self._mon_str,
-                           re.IGNORECASE)
         self._numeric  = re.compile("((\d+)[/\.])?((\d+)[/\.])?(\d+)")
         self._iso      = re.compile("(\d+)-(\d+)-(\d+)")
         self._rfc      = re.compile("(%s,)?\s+(\d|\d\d)\s+%s\s+(\d+)\s+\d\d:\d\d(:\d\d)?\s+(\+|-)\d\d\d\d" 
@@ -476,31 +474,6 @@ class DateParser:
             return 1
         return 0
 
-    def match_range2(self,text,cal,qual,date):
-        """
-        Try matching numerical range date.
-        
-        On success, set the date and return 1. On failure return 0.
-        """
-        match = self._range2.match(text)
-        if match:
-            grps = match.groups()
-            m = self.month_to_int[grps[0].lower()]
-
-            d0 = self._get_int(grps[1])
-            d1 = self._get_int(grps[2])
-
-            if grps[3] == None:
-                y = 0
-                s = None
-            else:
-                y = int(grps[3])
-                s = grps[4] != None
-            date.set(qual,Date.MOD_RANGE,Date.CAL_GREGORIAN,
-                     (d0,m,y,s,d1,m,y,s))
-            return 1
-        return 0
-
     def match_bce(self,text):
         """
         Try matching BCE qualifier.
@@ -555,8 +528,6 @@ class DateParser:
         if self.match_span(text,cal,qual,date):
             return
         if self.match_range(text,cal,qual,date):
-            return
-        if self.match_range2(text,cal,qual,date):
             return
 
         (text,bc) = self.match_bce(text)

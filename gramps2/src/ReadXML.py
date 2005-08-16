@@ -754,8 +754,6 @@ class GrampsParser:
             family = self.db.find_family_from_handle(attrs['hlink'],self.trans)
         except KeyError:
             family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
-        if attrs["ref"] == "F60":
-            print family.get_handle(),self.person.get_gramps_id()
         self.person.add_family_handle(family.get_handle())
 
     def start_name(self,attrs):
