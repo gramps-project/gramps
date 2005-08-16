@@ -423,8 +423,9 @@ class ScratchMediaObj(ScratchPadWrapper):
         ScratchPadWrapper.__init__(self,model,obj)
         self._type  = _("Media Object")
 
-        self._title = ""
-        self._value = ""
+        mobj = self._db.get_object_from_handle(obj)
+        self._title = mobj.get_description()
+        self._value = mobj.get_path()
 
     def tooltip(self):
         global escape
@@ -677,6 +678,7 @@ class ScratchPadListView:
             return 
         
         # Find a wrapper class
+
         possible_wrappers = [target for target in context.targets \
                              if target in self._target_type_to_wrapper_class_map.keys()]
 
@@ -685,6 +687,7 @@ class ScratchPadListView:
             return
 
         # Just select the first match.
+
         wrapper_class = self._target_type_to_wrapper_class_map[str(possible_wrappers[0])]
 
         o = wrapper_class(self._gramps_model,sel_data)

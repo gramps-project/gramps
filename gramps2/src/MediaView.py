@@ -89,6 +89,7 @@ class MediaView:
         self.list.set_model(self.model)
 
         DND_TARGETS = [
+            ('mediaobj', 0, 0),
             ('STRING', 0, 0),
             ('text/plain',0,0),
             ('text/uri-list',0,2),
