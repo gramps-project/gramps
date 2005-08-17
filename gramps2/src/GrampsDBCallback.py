@@ -36,6 +36,7 @@
     or the UI code.
 """
 import sys
+import os
 import types
 import traceback
 import inspect
@@ -213,7 +214,11 @@ class GrampsDBCallback(object):
 
     # If this is True logging will be turned on for all instances
     # whether or not instance based logging is enabled.
-    __LOG_ALL = False
+    try:
+        __LOG_ALL = int(os.environ.get('GRAMPS_SIGNAL',"0")) == 1
+        print __LOG_ALL
+    except:
+        __LOG_ALL = False
     
     def __init__(self):
         self.__enable_logging = False # controls whether lots of debug
