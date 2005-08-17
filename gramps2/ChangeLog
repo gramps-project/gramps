@@ -1,3 +1,13 @@
+2005-08-18  Eero Tamminen  <eerot@sf>
+	* src/GenericFilter.py, src/Marriage.py, src/plugins/TimeLine.py,
+	  src/plugins/SimpleBookTitle.py: add localization context for
+	  "Title" string (needed in Finnish)
+	* src/ReportUtils.py: Add header option for draw_legend()
+	* src/plugins/StatisticsChart.py: add headers to legends and
+	  barcharts, change chart type names to singular form, add
+	  support for ProgressMeter, swap bar&text position as text
+	  rightaligning in Gramps is broken (it can't know font metrics)
+
 2005-08-17  Don Allingham  <don@gramps-project.org>
 	* src/Marriage.py: fix lds_data_object problem
 	* src/GrampsDBCallback.py: look for GRAMPS_SIGNAL environment
