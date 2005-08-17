@@ -47,6 +47,7 @@ from gnome import help_display
 #-------------------------------------------------------------------------
 import const
 import TreeTips
+import DateHandler
 
 from DdTargets import DdTargets
 
@@ -69,10 +70,10 @@ BLANK_PIC = gtk.gdk.Pixbuf(0,0,8,1,1)
 
 class ScratchPadWrapper(object):
 
-    def __init__(self,model,obj):
-        self._gramps_model = model
-        self.database_changed(model.db)
-        self._gramps_model.connect('database-changed', self.database_changed)
+    def __init__(self,dbstate,obj):
+        self.dbstate = dbstate
+        self.database_changed(dbstate.db)
+        self._db.connect('database-changed', self.database_changed)
 
         self._obj = obj
         self._type  = _("Unknown")
@@ -94,10 +95,13 @@ class ScratchPadWrapper(object):
     def pack(self):
         return str(self._obj)
 
-class ScratchPadGrampsTypeWrapper(ScratchPadWrapper):
+    def is_valid(self):
+        return True
 
-    def __init__(self,model,obj):
-        ScratchPadWrapper.__init__(self,model,obj)
+class ScratchPadGrampsTypeWrapper(ScratchPadWrapper):
+        
+    def __init__(self,dbstate,obj):
+        ScratchPadWrapper.__init__(self,dbstate,obj)
 
         #unpack object
         exec 'unpack_data = %s' % self._obj
@@ -108,6 +112,21 @@ class ScratchPadGrampsTypeWrapper(ScratchPadWrapper):
     def pack(self):
         return self._pickle
 
+    def is_valid(self):
+        valid_func_map = {'Person': self._db.get_person_from_handle,
+                          'Family': self._db.get_family_from_handle,
+                          'Event':  self._db.get_event_from_handle,
+                          'Place': self._db.get_place_from_handle,
+                          'MediaObject': self._db.get_object_from_handle,
+                          'Source': self._db.get_source_from_handle}
+
+        for (classname,handle) in self._obj.get_referenced_handles_recursively():
+            if classname in valid_func_map.keys():
+                if not valid_func_map[classname](handle):
+                    return False
+            
+        return True
+
 
 class ScratchPadAddress(ScratchPadGrampsTypeWrapper):
 
@@ -115,10 +134,10 @@ class ScratchPadAddress(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.ADDRESS
     ICON         = BLANK_PIC
     
-    def __init__(self,model,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,model,obj)
+    def __init__(self,dbstate,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
         self._type  = _("Address")
-        self._title = self._obj.get_date()
+        self._title = DateHandler.get_date(self._obj)
         self._value = "%s %s %s %s" % (self._obj.get_street(),self._obj.get_city(),
                                        self._obj.get_state(),self._obj.get_country())
 
@@ -135,7 +154,7 @@ class ScratchPadAddress(ScratchPadGrampsTypeWrapper):
             "\t\t%s\n"\
             "\t<b>%s:</b>\t%s\n" % (
             _("Address"),
-            _("Date"), escape(self._obj.get_date()),
+            _("Date"), escape(DateHandler.get_date(self._obj)),
             _("Location"),
             escape(self._obj.get_street()),
             escape(self._obj.get_city()),
@@ -161,8 +180,8 @@ class ScratchPadEvent(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.EVENT
     ICON         = LINK_PIC
 
-    def __init__(self,model,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,model,obj)
+    def __init__(self,dbstate,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
         self._type  = _("Event")
         self._title = const.display_pevent(self._obj.get_name())
         self._value = self._obj.get_description()
@@ -179,7 +198,7 @@ class ScratchPadEvent(ScratchPadGrampsTypeWrapper):
             "\t<b>%s:</b>\t%s\n" % (
             _("Event"),
             _("Type"),escape(const.display_pevent(self._obj.get_name())),
-            _("Date"),escape(self._obj.get_date()),
+            _("Date"),escape(DateHander.get_date(self._obj)),
             _("Place"),escape(place_title(self._db,self._obj)),
             _("Cause"),escape(self._obj.get_cause()),
             _("Description"), escape(self._obj.get_description()))
@@ -203,8 +222,8 @@ class ScratchPadFamilyEvent(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.FAMILY_EVENT
     ICON         = BLANK_PIC
     
-    def __init__(self,model,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,model,obj)
+    def __init__(self,dbstate,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
         self._type  = _("Family Event")
         self._title = const.display_fevent(self._obj.get_name())
         self._value = self._obj.get_description()
@@ -221,7 +240,7 @@ class ScratchPadFamilyEvent(ScratchPadGrampsTypeWrapper):
             "\t<b>%s:</b>\t%s\n" % (
             _("Family Event"),
             _("Type"),escape(const.display_fevent(self._obj.get_name())),
-            _("Date"),escape(self._obj.get_date()),
+            _("Date"),escape(DateHander.get_date(self._obj)),
             _("Place"),escape(place_title(self.db,self._obj)),
             _("Cause"),escape(self._obj.get_cause()),
             _("Description"), escape(self._obj.get_description()))
@@ -245,8 +264,8 @@ class ScratchPadUrl(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.URL
     ICON         = BLANK_PIC
 
-    def __init__(self,model,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,model,obj)
+    def __init__(self,dbstate,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
         self._type  = _("Url")
         self._title = self._obj.get_path()
         self._value = self._obj.get_description()
@@ -268,8 +287,8 @@ class ScratchPadAttribute(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.ATTRIBUTE
     ICON         = BLANK_PIC
 
-    def __init__(self,model,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,model,obj)
+    def __init__(self,dbstate,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
         self._type  = _("Attribute")
         self._title = const.display_pattr(self._obj.get_type())
         self._value = self._obj.get_value()
@@ -301,8 +320,8 @@ class ScratchPadFamilyAttribute(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.FAMILY_ATTRIBUTE
     ICON         = BLANK_PIC
 
-    def __init__(self,model,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,model,obj)
+    def __init__(self,dbstate,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
         self._type  = _("Family Attribute")
         self._title = const.display_fattr(self._obj.get_type())
         self._value = self._obj.get_value()
@@ -334,8 +353,8 @@ class ScratchPadSourceRef(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.SOURCEREF
     ICON         = BLANK_PIC
 
-    def __init__(self,model,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,model,obj)
+    def __init__(self,dbstate,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
         self._type  = _("SourceRef")
 
         base = self._db.get_source_from_handle(self._obj.get_base_handle())
@@ -364,8 +383,8 @@ class ScratchPadName(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.NAME
     ICON         = BLANK_PIC
 
-    def __init__(self,model,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,model,obj)
+    def __init__(self,dbstate,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
         self._type  = _("Name")
         self._title = self._obj.get_name()
         self._value = self._obj.get_type()
@@ -400,8 +419,8 @@ class ScratchPadText(ScratchPadWrapper):
     DRAG_TARGET  = DdTargets.TEXT
     ICON         = BLANK_PIC
 
-    def __init__(self,model,obj):
-        ScratchPadWrapper.__init__(self,model,obj)
+    def __init__(self,dbstate,obj):
+        ScratchPadWrapper.__init__(self,dbstate,obj)
         self._type  = _("Text")
 
         self._title = ""
@@ -419,8 +438,8 @@ class ScratchMediaObj(ScratchPadWrapper):
     DRAG_TARGET  = DdTargets.MEDIAOBJ
     ICON         = LINK_PIC
 
-    def __init__(self,model,obj):
-        ScratchPadWrapper.__init__(self,model,obj)
+    def __init__(self,dbstate,obj):
+        ScratchPadWrapper.__init__(self,dbstate,obj)
         self._type  = _("Media Object")
 
         self._title = ""
@@ -438,8 +457,8 @@ class ScratchPersonLink(ScratchPadWrapper):
     DRAG_TARGET  = DdTargets.PERSON_LINK
     ICON         = LINK_PIC
 
-    def __init__(self,model,obj):
-        ScratchPadWrapper.__init__(self,model,obj)
+    def __init__(self,dbstate,obj):
+        ScratchPadWrapper.__init__(self,dbstate,obj)
         self._type  = _("Person Link")
 
         person = self._db.get_person_from_handle(self._obj)
@@ -447,8 +466,9 @@ class ScratchPersonLink(ScratchPadWrapper):
         birth_handle = person.get_birth_handle()
         if birth_handle:
             birth = self._db.get_event_from_handle(birth_handle)
-            if birth.get_date() and birth.get_date() != "":
-                self._value = escape(birth.get_date())
+            date_str = DateHandler.get_date(birth)
+            if date_str != "":
+                self._value = escape(date_str)
 
 
     def tooltip(self):
@@ -527,12 +547,32 @@ class ScratchPadListView:
     LOCAL_DRAG_TARGET = ('MY_TREE_MODEL_ROW', gtk.TARGET_SAME_WIDGET, 0)
     LOCAL_DRAG_TYPE   = 'MY_TREE_MODEL_ROW'
     
-    def __init__(self, model, widget):
-        self._gramps_model = model
+    def __init__(self, db, widget):
         
-        self.database_changed(self._gramps_model.db)
-        self._gramps_model.connect('database-changed', self.database_changed)
+        self.database_changed(db)
+        self._db.connect('database-changed', self.database_changed)
 
+        db_signals = (
+            'person-update',
+            'person-delete',
+            'person-rebuild',
+            'family-update',
+            'family-delete',
+            'family-rebuild',
+            'source-update',
+            'source-delete',
+            'source-rebuild',
+            'place-update',
+            'place-delete',
+            'place-rebuild',
+            'media-update',
+            'media-delete',
+            'media-rebuild'
+            )
+
+        for signal in db_signals:
+            self._db.connect(signal,self.remove_invalid_objects)
+            
         self._widget = widget
 
         self._target_type_to_wrapper_class_map = {}
@@ -593,6 +633,13 @@ class ScratchPadListView:
     def database_changed(self,db):
         self._db = db
 
+    def remove_invalid_objects(self,dummy=None):
+        model = self._widget.get_model()
+
+        for o in model:
+            if not o.is_valid():
+                model.remove(o)
+    
     # Method to manage the wrapper classes.
     
     def register_wrapper_classes(self):
@@ -687,7 +734,7 @@ class ScratchPadListView:
         # Just select the first match.
         wrapper_class = self._target_type_to_wrapper_class_map[str(possible_wrappers[0])]
 
-        o = wrapper_class(self._gramps_model,sel_data)
+        o = wrapper_class(self._db,sel_data)
 
         # If the wrapper object is a subclass of ScratchDropList then
         # the drag data was a list of objects and we need to decode
@@ -726,7 +773,10 @@ class ScratchPadListView:
 
     def get_selection(self):
         return self._widget.get_selection()
-        
+
+    def set_search_column(self,col):
+        return self._widget.set_search_column(col)
+
 #-------------------------------------------------------------------------
 #
 # ScatchPadWindow class
@@ -761,25 +811,26 @@ class ScratchPadWindow:
         """Initializes the ScratchPad class, and displays the window"""
 
         self.parent = parent
-        if self.parent.child_windows.has_key(self.__class__):
-            self.parent.child_windows[self.__class__].present(None)
-            return
-        self.win_key = self.__class__
+#         if self.parent.child_windows.has_key(self.__class__):
+#             self.parent.child_windows[self.__class__].present(None)
+#             return
+#         self.win_key = self.__class__
 
 
         self.database_changed(database)
-        self.parent.connect('database-changed', self.database_changed)
+        self.db.connect('database-changed', self.database_changed)
 
         base = os.path.dirname(__file__)
         self.glade_file = "%s/%s" % (base,"scratchpad.glade")
 
         self.top = gtk.glade.XML(self.glade_file,"scratch_pad","gramps")
         self.window = self.top.get_widget("scratch_pad")
-        self.window.set_icon(self.parent.topWindow.get_icon())
+        #FIXME: how do we get the icon now?
+        #self.window.set_icon(self.parent.topWindow.get_icon())
         self.clear_all_btn = self.top.get_widget("btn_clear_all")
         self.clear_btn = self.top.get_widget("btn_clear")
         
-        self.object_list = ScratchPadListView(self.parent,self.top.get_widget('objectlist'))
+        self.object_list = ScratchPadListView(self.db,self.top.get_widget('objectlist'))
         self.object_list.get_selection().connect('changed',self.set_clear_btn_sensitivity)
         self.set_clear_btn_sensitivity(sel=self.object_list.get_selection())
         
@@ -802,7 +853,7 @@ class ScratchPadWindow:
             })
 
         self.clear_all_btn.connect_object('clicked', gtk.ListStore.clear, ScratchPadWindow.otree)
-        self.parent.connect('database-changed', lambda x: ScratchPadWindow.otree.clear())
+        self.db.connect('database-changed', lambda x: ScratchPadWindow.otree.clear())
         
         self.add_itself_to_menu()
         self.window.show()
@@ -831,6 +882,7 @@ class ScratchPadWindow:
         main GRAMPS interface. If this is the first instance to be
         created a submenu is created, if it is not the first instance
         then an entry is created in the existing sub menu."""
+        return
         self.parent.child_windows[self.win_key] = self
         self.parent_menu_item = gtk.MenuItem(_('Scratch Pad'))
         self.parent_menu_item.connect("activate",self.present)
@@ -841,7 +893,7 @@ class ScratchPadWindow:
         """Remove the instance of the pad from the Window menu in the
         main GRAMPS window. If this is the last pad then remove the
         ScratchPad sub menu as well."""
-        
+        return 
         del self.parent.child_windows[self.win_key]
         self.parent_menu_item.destroy()
 
@@ -883,8 +935,8 @@ def place_title(db,event):
 #
 #
 #-------------------------------------------------------------------------
-def ScratchPad(state,person,callback,parent=None):
-    ScratchPadWindow(state.db,parent)
+def ScratchPad(database,person,callback,parent=None):
+    ScratchPadWindow(database,parent)
     
 #-------------------------------------------------------------------------
 #
