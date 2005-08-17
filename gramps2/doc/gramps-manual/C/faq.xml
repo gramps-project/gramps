@@ -289,18 +289,6 @@ The best thing you can do is to fix the bug and send the patch to
 <ulink url="mailto:gramps-devel@lists.sf.net" 
 type="mailto">gramps-devel@lists.sf.net</ulink> :-)</para>
 
-<para>
-The next best thing would be to submit a good bug report. This can be done in
-one of the two ways: (1) send your report to 
-<ulink url="mailto:gramps-bugs@lists.sf.net" 
-type="mailto">gramps-bugs@lists.sf.net</ulink>
-or (2) file your report with the bug tracker system at 
-<ulink url="http://sf.net/tracker/?group_id=25770" type="http">
-http://sf.net/tracker/?group_id=25770&amp;atid=385137</ulink>
-(this function is also available by selecting 
-<menuchoice><guisubmenu>Help</guisubmenu><guimenuitem>Report a 
-bug</guimenuitem></menuchoice> from gramps main menu). </para>
-
 <para>A good bug report would include: </para>
 
 <itemizedlist>

@@ -226,17 +226,6 @@
     <releaseinfo>This manual describes version &appversion; of GRAMPS.
     </releaseinfo> 
 
-    <legalnotice> 
-      <title>Feedback</title> 
-    <para>
-      To report a bug or make a suggestion regarding this application or
-      this manual, use the help menu in &app;, or follow the directions 
-      found on <ulink url="http://gramps-project.org/index.php?module=pagemaster&amp;PAGE_user_op=view_page&amp;PAGE_id=3"
-      type="http">this site</ulink>.
-    </para>
-
-<!-- Translators may also add here feedback address for translations -->
-    </legalnotice> 
   </bookinfo> 
 
 <!-- ============= Document Body ============================= -->

@@ -244,7 +244,9 @@ class Marriage:
         AutoComp.fill_combo(self.lds_place, place_list)
 
         lds_ord = self.family.get_lds_sealing()
+        self.seal_stat = 0
         
+        self.lds_date_object = Date.Date()
         if GrampsKeys.get_uselds() or lds_ord:
             if lds_ord:
                 place_handle = lds_ord.get_place_handle()
@@ -257,8 +259,6 @@ class Marriage:
                 self.lds_date_object = lds_ord.get_date_object()
             else:
                 self.lds_place.child.set_text("")
-                self.seal_stat = 0
-                self.lds_date_object = Date.Date()
             self.lds_label.show()
             self.get_widget('lds_page').show()
         else:
