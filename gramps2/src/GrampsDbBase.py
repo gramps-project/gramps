@@ -281,7 +281,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         as part of the transaction.
         """
         if self.readonly or not person or not person.get_handle():
-            return 
+            return
         if change_time:
             person.change = int(change_time)
         else:

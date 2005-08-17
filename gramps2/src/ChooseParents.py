@@ -91,10 +91,11 @@ class ChooseParents:
         self.parent_selected = 0
         self.renderer = gtk.CellRendererText()
 
-        db.connect('person-add', self.person_added)
-        db.connect('person-update', self.redraw)
-        db.connect('person-delete', self.redraw)
-        db.connect('person-rebuild', self.redraw_all)
+        self.sig_keys = [
+            db.connect('person-add', self.person_added),
+            db.connect('person-update', self.redraw),
+            db.connect('person-delete', self.redraw),
+            db.connect('person-rebuild', self.redraw_all)]
 
         # set default filters
         self.all_males_filter = GenericFilter.GenericFilter()
@@ -400,7 +401,7 @@ class ChooseParents:
             self.mother_filter = self.likely_females_filter
         self.redrawm()
         
-    def find_family(self,father_handle,mother_handle,trans):
+    def find_family(self,father_handle,mother_handle):
         """
         Finds the family associated with the father and mother.
         If one does not exist, it is created.
@@ -413,30 +414,25 @@ class ChooseParents:
             if (family.get_father_handle() == father_handle and
                 family.get_mother_handle() == mother_handle):
                 family.add_child_handle(self.person.get_handle())
-                self.db.commit_family(family,trans)
                 return family
             elif (family.get_father_handle() == mother_handle and
                   family.get_mother_handle() == father_handle):
                 family.add_child_handle(self.person.get_handle())
-                self.db.commit_family(family,trans)
                 return family
 
         family = RelLib.Family()
         family.set_father_handle(father_handle)
         family.set_mother_handle(mother_handle)
         family.add_child_handle(self.person.get_handle())
-        self.db.add_family(family,trans)
+        family.set_handle(self.db.create_id())
+        family.set_gramps_id(self.db.find_next_family_gramps_id())
 
         if father_handle:
             self.father = self.db.get_person_from_handle(father_handle)
             self.father.add_family_handle(family.get_handle())
-            self.db.commit_person(self.father,trans)
         if mother_handle:
             self.mother = self.db.get_person_from_handle(mother_handle)
             self.mother.add_family_handle(family.get_handle())
-            self.db.commit_person(self.mother,trans)
-
-        self.db.commit_family(family,trans)
         return family
 
     def father_select_function(self,store,path,iter,id_list):
@@ -514,6 +510,10 @@ class ChooseParents:
         Called with the OK button is pressed. Saves the selected people
         as parents of the main person.
         """
+
+        for key in self.sig_keys:
+            self.db.disconnect(key)
+
         try:
             mother_rel = self.mcombo.get_active()
         except KeyError:
@@ -563,10 +563,15 @@ class ChooseParents:
             return
 
         if father_handle or mother_handle:
-            self.family = self.find_family(father_handle,mother_handle,trans)
+            self.family = self.find_family(father_handle,mother_handle)
             self.family.add_child_handle(self.person.get_handle())
             self.family.set_relationship(self.type)
-            self.change_family_type(self.family,mother_rel,father_rel)
+            self.change_family_type(self.family,mother_rel,father_rel,trans)
+            self.db.commit_person(self.person,trans)
+            if self.father:
+                self.db.commit_person(self.father,trans)
+            if self.mother:
+                self.db.commit_person(self.mother,trans)
             self.db.commit_family(self.family,trans)
         else:    
             self.family = None
@@ -629,7 +634,7 @@ class ChooseParents:
             import DisplayTrace
             DisplayTrace.DisplayTrace()
 
-    def change_family_type(self,family,mother_rel,father_rel):
+    def change_family_type(self,family,mother_rel,father_rel,trans):
         """
         Changes the family type of the specified family. If the family
         is None, the the relationship type shoud be deleted.
@@ -649,15 +654,6 @@ class ChooseParents:
         else:
             self.person.add_parent_family_handle(family_handle,
                                                  mother_rel,father_rel)
-
-        trans = self.db.transaction_begin()
-        self.db.commit_person(self.person,trans)
-        self.db.commit_family(family,trans)
-        if self.father:
-            self.db.commit_person(self.father,trans)
-        if self.mother:
-            self.db.commit_person(self.mother,trans)
-        self.db.transaction_commit(trans,_("Choose Parents"))
 
 #-------------------------------------------------------------------------
 #
