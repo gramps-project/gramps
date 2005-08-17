@@ -187,6 +187,11 @@ class GrampsPreferences:
         auto.connect('toggled',
                 lambda obj: GrampsKeys.save_autoload(obj.get_active()))
 
+        spell = self.top.get_widget("spellcheck")
+        spell.set_active(GrampsKeys.get_spellcheck())
+        spell.connect('toggled',
+                lambda obj: GrampsKeys.save_spellcheck(obj.get_active()))
+
         lds = self.top.get_widget("uselds")
         lds.set_active(GrampsKeys.get_uselds())
         lds.connect('toggled',

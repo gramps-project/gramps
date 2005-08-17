@@ -34,6 +34,7 @@ NL = "\n" # FIX: newlines on Mac/Windows, if different?
 
 _ini_schema = {
  'behavior/autoload' : '0',
+ 'behavior/spellcheck' : '1',
  'behavior/betawarn' : '0',
  'behavior/welcome' : '100',
  'preferences/date-format' : '0',
@@ -304,8 +305,14 @@ def save_screen_size_checked(val):
 def get_autoload():
     return get_bool("behavior", "autoload")
 
+def get_spellcheck():
+    return get_bool("behavior", "spellcheck")
+
 def save_autoload(val):
     set_bool("behavior", "autoload",val)
+
+def save_spellcheck(val):
+    set_bool("behavior", "spellcheck",val)
 
 def get_betawarn():
     return get_bool("behavior", "betawarn")

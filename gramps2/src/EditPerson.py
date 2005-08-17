@@ -380,6 +380,9 @@ class EditPerson:
                         or (not self.lds_endowment.is_empty()) \
                         or (not self.lds_sealing.is_empty()):
                 Utils.bold_label(self.lds_tab)
+        else:
+            self.get_widget("lds_tab").hide()
+            self.get_widget("lds_page").hide()
 
         types = const.NameTypesMap.get_values()
         types.sort()

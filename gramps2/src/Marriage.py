@@ -244,19 +244,26 @@ class Marriage:
         AutoComp.fill_combo(self.lds_place, place_list)
 
         lds_ord = self.family.get_lds_sealing()
-        if lds_ord:
-            place_handle = lds_ord.get_place_handle()
-            if place_handle:
-                place = self.db.get_place_from_handle( place_handle)
-                if place:
-                    self.lds_place.child.set_text( place.get_title())
-            self.lds_date.set_text(lds_ord.get_date())
-            self.seal_stat = lds_ord.get_status()
-            self.lds_date_object = lds_ord.get_date_object()
+        
+        if GrampsKeys.get_uselds() or lds_ord:
+            if lds_ord:
+                place_handle = lds_ord.get_place_handle()
+                if place_handle:
+                    place = self.db.get_place_from_handle( place_handle)
+                    if place:
+                        self.lds_place.child.set_text( place.get_title())
+                self.lds_date.set_text(lds_ord.get_date())
+                self.seal_stat = lds_ord.get_status()
+                self.lds_date_object = lds_ord.get_date_object()
+            else:
+                self.lds_place.child.set_text("")
+                self.seal_stat = 0
+                self.lds_date_object = Date.Date()
+            self.lds_label.show()
+            self.get_widget('lds_page').show()
         else:
-            self.lds_place.child.set_text("")
-            self.seal_stat = 0
-            self.lds_date_object = Date.Date()
+            self.lds_label.hide()
+            self.get_widget('lds_page').hide()
 
         self.lds_date_check = DateEdit.DateEdit(
             self.lds_date_object, self.lds_date,

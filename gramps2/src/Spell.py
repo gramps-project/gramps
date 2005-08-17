@@ -27,34 +27,30 @@ present, we default to no spell checking.
 
 """
 
-#### FIXME: Uncomment after 2.0.6 is released.
+import GrampsKeys
 
-## success = False
-## try:
-##     import gtk
-##     import gtkspell
-##     import locale
+success = False
+try:
+    import gtk
+    import gtkspell
+    import locale
 
-##     text_view = gtk.TextView()
-##     spell = gtkspell.Spell(text_view)
-##     lang = locale.getlocale()[0]
-##     spell.set_language(lang)
-##     success = True
+    text_view = gtk.TextView()
+    spell = gtkspell.Spell(text_view)
+    lang = locale.getlocale()[0]
+    spell.set_language(lang)
+    success = True
 
-## except ImportError, msg:
-##     print "Spell.py:", msg
-## except RuntimeError,msg:
-##     print "Spell.py:", msg
-## except SystemError,msg:
-##     print "Spell.py:", msg
+except ImportError, msg:
+    print "Spell.py:", msg
+except RuntimeError,msg:
+    print "Spell.py:", msg
+except SystemError,msg:
+    print "Spell.py:", msg
 
-if False:
-    class Spell:
-        def __init__(self,obj):
+class Spell:
+    def __init__(self,obj):
+        if success and GrampsKeys.get_spellcheck():
             self.spell = gtkspell.Spell(obj)
             lang = locale.getlocale()[0]
             self.spell.set_language(lang)
-else:
-    class Spell:
-        def __init__(self,obj):
-            pass

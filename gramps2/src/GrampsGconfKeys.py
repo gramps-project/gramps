@@ -155,8 +155,14 @@ def save_screen_size_checked(val):
 def get_autoload():
     return get_bool("/apps/gramps/behavior/autoload")
 
+def get_spellcheck():
+    return get_bool("/apps/gramps/behavior/spellcheck")
+
 def save_autoload(val):
     set_bool("/apps/gramps/behavior/autoload",val)
+
+def save_spellcheck(val):
+    set_bool("/apps/gramps/behavior/spellcheck",val)
 
 def get_betawarn():
     return get_bool("/apps/gramps/behavior/betawarn")
