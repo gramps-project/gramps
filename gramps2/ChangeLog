@@ -1,3 +1,7 @@
+2005-08-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/Makefile.am
+	* src/plugins/Makefile.am: ScratchPad moved folder.
+
 2005-08-17  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/RepositoryView.py: remove method now works again.
 	
