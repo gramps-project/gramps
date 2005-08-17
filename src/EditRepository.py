@@ -269,11 +269,12 @@ class ReposSrcListView:
 
 class EditRepository:
 
-    def __init__(self,repository,dbstate,parent_window=None,readonly=False):
+    def __init__(self,repository,dbstate,uistate,parent_window=None,readonly=False):
         if repository:
             self.repository = repository
         else:
             self.repository = RelLib.Repository()
+        self.dbstate = dbstate
         self.db = dbstate.db
         #self.parent = parent
         self.name_display = NameDisplay.displayer.display
@@ -366,7 +367,9 @@ class EditRepository:
 
         if repository.get_note():
             self.notes_buffer.set_text(repository.get_note())
-            Utils.bold_label(self.notes_label)
+            # FIXME: this get a 'gtk.Label' object has no attribute 'get_children'
+            # from Utils.py", line 650
+            #Utils.bold_label(self.notes_label)
             if repository.get_note_format() == 1:
                 self.preform.set_active(1)
             else:
@@ -462,7 +465,7 @@ class EditRepository:
     def on_add_repos_ref_clicked(self,widget):
         RepositoryRefEdit.RepositoryRefSourceEdit(RelLib.RepoRef(),
                                                   None,
-                                                  self.db,
+                                                  self.dbstate,
                                                   self.repos_source_model.update,
                                                   self)
 
@@ -485,7 +488,7 @@ class EditRepository:
 
             RepositoryRefEdit.RepositoryRefSourceEdit(repos_ref,
                                                       source,
-                                                      self.db,
+                                                      self.dbstate,
                                                       self.repos_source_model.update,
                                                       self)
 
@@ -632,7 +635,7 @@ class EditRepository:
         pass
 
 
-class DelReposQuery:
+class DelRepositoryQuery:
     def __init__(self,repository,db,sources):
         self.repository = repository
         self.db = db

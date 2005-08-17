@@ -90,11 +90,10 @@ class ReposRefListModel(gtk.ListStore):
 
 class ReposRefListView:
 
-    def __init__(self, model, widget):
-        self._gramps_model = model
-        
-        self.database_changed(self._gramps_model.db)
-        self._gramps_model.connect('database-changed', self.database_changed)
+    def __init__(self, dbstate, widget):
+        self._dbstate = dbstate        
+        self.database_changed(self._dbstate.db)
+        self._db.connect('database-changed', self.database_changed)
 
         self._widget = widget
 
@@ -236,10 +235,10 @@ class EditSource:
         self.top_window.get_widget('sel_photo').set_sensitive(mode)
         self.top_window.get_widget('delete_photo').set_sensitive(mode)
 
-#        self.repos_ref_view = ReposRefListView(self.parent,
-#                                              self.top_window.get_widget('repository_ref_list'))
-#        self.repos_ref_model = ReposRefListModel(self.source)
-#        self.repos_ref_view.set_model(self.repos_ref_model)
+        self.repos_ref_view = ReposRefListView(self.dbstate,
+                                              self.top_window.get_widget('repository_ref_list'))
+        self.repos_ref_model = ReposRefListModel(self.source)
+        self.repos_ref_view.set_model(self.repos_ref_model)
         
         self.top_window.get_widget('add_repos_ref').set_sensitive(mode)
         self.top_window.get_widget('edit_repos_ref').set_sensitive(mode)
@@ -347,7 +346,7 @@ class EditSource:
             model.remove(node)
 
     def on_add_repos_ref_clicked(self,widget):
-        RepositoryRefEdit.RepositoryRefEdit(RelLib.RepoRef(),self.db,
+        RepositoryRefEdit.RepositoryRefEdit(RelLib.RepoRef(),self.dbstate,
                                             self.repos_ref_model.update,self)
 
     def on_delete_repos_ref_clicked(self,widget):
@@ -365,7 +364,7 @@ class EditSource:
         if iter:
             repos_ref = model.get_value(iter,0)
             
-            RepositoryRefEdit.RepositoryRefEdit(repos_ref,self.db,
+            RepositoryRefEdit.RepositoryRefEdit(repos_ref,self.dbstate,
                                                 self.repos_ref_model.update,self)
 
 

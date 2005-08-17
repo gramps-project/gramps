@@ -114,47 +114,47 @@ class RepositoryView(PageView.ListView):
 
     def on_double_click(self,obj,event):
         handle = self.first_selected()
-        place = self.dbstate.db.get_place_from_handle(handle)
-        EditRepository.EditRepository(place,self.dbstate, self.uistate)
+        repos = self.dbstate.db.get_repository_from_handle(handle)
+        EditRepository.EditRepository(repos,self.dbstate, self.uistate)
 
     def add(self,obj):
         EditRepository.EditRepository(RelLib.Repository(),self.dbstate, self.uistate)
 
     def remove(self,obj):
-        for event_handle in self.selected_handles():
-            db = self.dbstate.db
-            person_list = [ handle for handle in
-                            db.get_person_handles(False)
-                            if db.get_person_from_handle(handle).has_handle_reference('Repository',event_handle) ]
-            family_list = [ handle for handle in
-                            db.get_family_handles()
-                            if db.get_family_from_handle(handle).has_handle_reference('Repository',event_handle) ]
+        db = self.dbstate.db
+#         for event_handle in self.selected_handles():
+#             person_list = [ handle for handle in
+#                             db.get_person_handles(False)
+#                             if db.get_person_from_handle(handle).has_handle_reference('Repository',event_handle) ]
+#             family_list = [ handle for handle in
+#                             db.get_family_handles()
+#                             if db.get_family_from_handle(handle).has_handle_reference('Repository',event_handle) ]
             
-            event = db.get_event_from_handle(event_handle)
+#             event = db.get_event_from_handle(event_handle)
 
-            ans = EditRepository.DelRepositoryQuery(event,db,
-                                          person_list,family_list)
+#             ans = EditRepository.DelRepositoryQuery(event,db,
+#                                           person_list,family_list)
 
-            if len(person_list) + len(family_list) > 0:
-                msg = _('This place is currently being used. Deleting it '
-                        'will remove it from the database and from all '
-                        'people and families that reference it.')
-            else:
-                msg = _('Deleting place will remove it from the database.')
+#             if len(person_list) + len(family_list) > 0:
+#                 msg = _('This place is currently being used. Deleting it '
+#                         'will remove it from the database and from all '
+#                         'people and families that reference it.')
+#             else:
+#                 msg = _('Deleting place will remove it from the database.')
             
-            msg = "%s %s" % (msg,Utils.data_recover_msg)
-            descr = event.get_description()
-            if descr == "":
-                descr = event.get_gramps_id()
+#             msg = "%s %s" % (msg,Utils.data_recover_msg)
+#             descr = event.get_description()
+#             if descr == "":
+#                 descr = event.get_gramps_id()
                 
-            QuestionDialog(_('Delete %s?') % descr, msg,
-                           _('_Delete Repository'),ans.query_response)
+#             QuestionDialog(_('Delete %s?') % descr, msg,
+#                            _('_Delete Repository'),ans.query_response)
 
     def edit(self,obj):
         mlist = []
         self.selection.selected_foreach(self.blist,mlist)
 
         for handle in mlist:
-            place = self.dbstate.db.get_place_from_handle(handle)
-            EditRepository.EditRepository(place, self.dbstate, self.uistate)
+            repos = self.dbstate.db.get_repository_from_handle(handle)
+            EditRepository.EditRepository(repos, self.dbstate, self.uistate)
 
