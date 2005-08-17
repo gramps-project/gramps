@@ -1,3 +1,9 @@
+2005-08-17  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/plugins/ExportVCalendar.py: fixed import for localtime,
+	corrected type of Utils and params to Until.family_name
+	made "Version" upper case as demanded by Korganiser and
+	the spec (I think).
+	
 2005-08-17  Eero Tamminen  <eerot@sf>
 	* src/po/fi.po: Fix/improve Finnish translations
 
