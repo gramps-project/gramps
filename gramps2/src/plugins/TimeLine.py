@@ -30,6 +30,7 @@ Timeline report
 #
 #------------------------------------------------------------------------
 from gettext import gettext as _
+from Utils import strip_context as __
 
 #------------------------------------------------------------------------
 #
@@ -453,7 +454,7 @@ class TimeLineOptions(ReportOptions.ReportOptions):
         else:
             self.title_box.set_text(dialog.get_header(dialog.person.get_primary_name().get_name()))
         self.title_box.show()
-        dialog.add_option(_('Title'),self.title_box)
+        dialog.add_option(__('report|Title'),self.title_box)
 
     def parse_user_options(self,dialog):
         """

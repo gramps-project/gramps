@@ -39,6 +39,7 @@ from xml.sax import make_parser,handler,SAXParseException
 import os
 import sets
 from gettext import gettext as _
+from Utils import strip_context as __
 
 #-------------------------------------------------------------------------
 #
@@ -1287,7 +1288,7 @@ class HasNameOf(Rule):
     labels      = [ _('Given name:'),
                     _('Family name:'),
                     _('Suffix:'),
-                    _('Title:')]
+                    __('person|Title:')]
     name        = _('People with the <name>')
     description = _("Matches people with a specified (partial) name")
     category    = _('General filters')
