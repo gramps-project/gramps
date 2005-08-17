@@ -113,10 +113,11 @@ def draw_pie_chart(doc, center_x, center_y, radius, data, start=0):
         doc.draw_wedge(item[0], center_x, center_y, radius, start, start + incr)
         start += incr
 
-def draw_legend(doc, start_x, start_y, data):
+def draw_legend(doc, start_x, start_y, data, title=None):
     """
     Draws a legend for a graph in the specified document. The data passed is
-    used to define the legend.
+    used to define the legend.  First item style is used for the optional
+    Legend title.
 
     @param doc: Document to which the legend chart should be added
     @type doc: BaseDoc derived class
@@ -136,7 +137,10 @@ def draw_legend(doc, start_x, start_y, data):
         gstyle = doc.get_draw_style(format)
         pstyle = gstyle.get_paragraph_style()
         size = pt2cm(doc.get_style(pstyle).get_font().get_size())
-        
+        if title:
+	    doc.write_at(pstyle, title, start_x + (3*size), start_y - (size*0.25))
+	    start_y += size * 1.3
+	    title = None
         doc.draw_bar(format, start_x, start_y, start_x + (2*size), start_y + size)
         doc.write_at(pstyle, legend, start_x + (3*size), start_y - (size*0.25))
         start_y += size * 1.3
