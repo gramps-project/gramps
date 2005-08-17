@@ -1,4 +1,10 @@
-2005-08-12  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+2005-08-17  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/ScratchPad.py: fix some issues with new window management and dbstate
+	* src/scratchpad.glade: moved from src/plugins
+	* src/plugins/ScratchPad.py: removed
+	* src/plugins/scratchpad.glade: removed
+
+2005-08-17  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/EditRepository.py: fixes for lack of parent window handles 
 	use of dbstate. Commented out code to bold labels for now as
 	Utils.bold_label does not work. Renamed DelReposQuery.
