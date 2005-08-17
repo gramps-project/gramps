@@ -92,6 +92,7 @@ gdir_PYTHON = \
 	RelLib.py\
 	Report.py\
 	ReportUtils.py\
+	ScratchPad.py\
 	SelectChild.py\
 	SelectObject.py\
 	Sort.py\
@@ -134,7 +135,8 @@ GLADEFILES = \
 	gedcomexport.glade\
 	gedcomimport.glade\
 	plugins.glade\
-	rule.glade
+	rule.glade\
+	scratchpad.glade
 
 GRAPHICS = \
 	bad.png\

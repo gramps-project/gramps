@@ -37,7 +37,6 @@ pkgdata_PYTHON = \
 	ReadPkg.py\
 	RelCalc.py\
 	ReorderIds.py\
-	ScratchPad.py\
 	SoundGen.py\
 	StatisticsChart.py\
 	Summary.py\
@@ -84,7 +83,6 @@ GLADEFILES = \
 	book.glade\
 	writeftree.glade\
 	genewebexport.glade\
-	scratchpad.glade\
     vcardexport.glade\
     vcalendarexport.glade
 
