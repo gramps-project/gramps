@@ -66,22 +66,24 @@ import AutoComp
 
 class RepositoryRefEditBase:
 
-    def __init__(self, reposref, database, update, parent):
+    def __init__(self, reposref, dbstate, update, parent):
 
-        self.db = database
+        self.dbstate = dbstate
+        self.db = dbstate.db
         self.parent = parent
-        if self.parent.__dict__.has_key('child_windows'):
-            self.win_parent = self.parent
-        else:
-            self.win_parent = self.parent.parent
-        if reposref:
-            if self.win_parent.child_windows.has_key(reposref):
-                self.win_parent.child_windows[reposref].present(None)
-                return
-            else:
-                self.win_key = reposref
-        else:
-            self.win_key = self
+        # FIXME: window manangement
+        # if self.parent.__dict__.has_key('child_windows'):
+#             self.win_parent = self.parent
+#         else:
+#             self.win_parent = self.parent.parent
+#         if reposref:
+#             if self.win_parent.child_windows.has_key(reposref):
+#                 self.win_parent.child_windows[reposref].present(None)
+#                 return
+#             else:
+#                 self.win_key = reposref
+#         else:
+#             self.win_key = self
         self.update = update
         self.repos_ref = reposref
         self.child_windows = {}
@@ -132,6 +134,8 @@ class RepositoryRefEditBase:
         self.child_windows = {}
 
     def add_itself_to_menu(self):
+        # FIXME
+        return
         self.win_parent.child_windows[self.win_key] = self
         label = _('Repository Reference')
         self.parent_menu_item = gtk.MenuItem(label)
@@ -145,6 +149,8 @@ class RepositoryRefEditBase:
         self.winsmenu.append(self.menu_item)
 
     def remove_itself_from_menu(self):
+        #FIXME
+        return
         del self.win_parent.child_windows[self.win_key]
         self.menu_item.destroy()
         self.winsmenu.destroy()
@@ -168,9 +174,9 @@ class RepositoryRefEditBase:
 
 class RepositoryRefEdit(RepositoryRefEditBase):
 
-    def __init__(self, reposref, database, update, parent):
+    def __init__(self, reposref, dbstate, update, parent):
         RepositoryRefEditBase.__init__(self, reposref,
-                                       database, update,
+                                       dbstate, update,
                                        parent)
 
         self.top_window = gtk.glade.XML(const.gladeFile,"repositoryRefEditor","gramps")
@@ -301,16 +307,16 @@ class RepositoryRefEdit(RepositoryRefEditBase):
 
     def add_repos_clicked(self,obj):
         import EditRepository
-        EditRepository.EditRepository(RelLib.Repository(),self.db, self)
+        EditRepository.EditRepository(RelLib.Repository(),self.dbstate, self)
 
 
 
 class RepositoryRefSourceEdit(RepositoryRefEditBase):
     """Edit a Repository Reference from the perspective of the Repository."""
 
-    def __init__(self, reposref, source, database, update, parent):
+    def __init__(self, reposref, source, dbstate, update, parent):
         RepositoryRefEditBase.__init__(self, reposref,
-                                       database, update,
+                                       dbstate, update,
                                        parent)
 
         self.top_window = gtk.glade.XML(const.gladeFile,"repositoryRefSourceEditor","gramps")
@@ -431,4 +437,4 @@ class RepositoryRefSourceEdit(RepositoryRefEditBase):
         
     def add_source_clicked(self,obj):
         import EditSource
-        EditSource.EditSource(RelLib.Source(),self.db, self.parent)
+        EditSource.EditSource(RelLib.Source(),self.dbstate, self.parent)

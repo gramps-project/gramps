@@ -1,3 +1,13 @@
+2005-08-12  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/EditRepository.py: fixes for lack of parent window handles 
+	use of dbstate. Commented out code to bold labels for now as
+	Utils.bold_label does not work. Renamed DelReposQuery.
+	* src/EditSource.py: fixed repository ref edit code to use dbstate.
+	* src/RepositoryRefEdit.py: fixes for dbstate and commented out window
+	management code. 
+	* src/RepositoryView.py: fixes for dbstate, commented out remove repos
+	code for now as it does not work. Fixes edit repository call.
+	
 2005-08-14  Alex Roitman  <shura@gramps-project.org>
 	* src/PedView.py (__init__): Define database variable.
 	* src/ViewManager.py (__init__): Define empty pages list.
