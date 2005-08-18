@@ -60,9 +60,9 @@ import Report
 import Errors
 import Utils
 import ReportOptions
-import BaseDoc
 import ReportUtils
 import ImgManip
+import TarFile
 from QuestionDialog import ErrorDialog, WarningDialog
 from NameDisplay import displayer as _nd
 from DateHandler import displayer as _dd
@@ -378,10 +378,8 @@ class BasePage:
         of.write('cellspacing="0" border="0">\n')
 
         for attr in attrlist:
-            type = attr.get_type()
-            value = attr.get_value()
-            of.write('<tr><td class="field">%s</td>' % _(type))
-            of.write('<td class="data">%s</td></tr>\n' % value)
+            of.write('<tr><td class="field">%s</td>' % _(attr.get_type()))
+            of.write('<td class="data">%s</td></tr>\n' % attr.get_value())
         of.write('</table>\n')
 
     def display_references(self,of,db,handlelist):
@@ -619,7 +617,6 @@ class PlaceListPage(BasePage):
         self.sort = Sort.Sort(db)
         handle_list = place_handles.keys()
         handle_list.sort(self.sort.by_place_title)
-        last_name = ""
         last_letter = ''
         
         for handle in handle_list:
@@ -1541,11 +1538,9 @@ class IndividualPage(BasePage):
             of.write(self.format_event(event))
             of.write('</td>\n</tr>\n')
         for attr in family.get_attribute_list():
-            type = attr.get_type()
-            value = attr.get_value()
             of.write('<tr><td>&nbsp;</td>\n')
-            of.write('<td class="field">%s</td>' % _(type))
-            of.write('<td class="data">%s</td>\n</tr>\n' % value)
+            of.write('<td class="field">%s</td>' % _(attr.get_type()))
+            of.write('<td class="data">%s</td>\n</tr>\n' % attr.get_value())
         nobj = family.get_note_object()
         if nobj:
             of.write('<tr><td>&nbsp;</td>\n')
@@ -1741,6 +1736,18 @@ class WebReport(Report.Report):
                 ErrorDialog(_("Could not create the directory: %s") % \
                             image_dir_name)
                 return
+            archive = None
+        else:
+            if os.path.isdir(self.target_path):
+                ErrorDialog(_('Invalid file name'),
+                            _('The archive file must be a file, not a directory'))
+                return
+            try:
+                archive = TarFile.TarFile(self.target_path)
+            except (OSError,IOError),value:
+                ErrorDialog(_("Could not create %s") % self.target_path,
+                            value)
+                return
 
         progress = Utils.ProgressMeter(_("Generate HTML reports"),'')
 
@@ -1769,12 +1776,6 @@ class WebReport(Report.Report):
                 if not Utils.probably_alive(p,self.database,years):
                     new_list.append(key)
             ind_list = new_list
-
-        if self.use_archive:
-            import TarFile
-            archive = TarFile.TarFile(self.target_path)
-        else:
-            archive = None
 
         if self.css != '':
             self.write_css(archive,self.target_path,self.css)
@@ -1814,9 +1815,9 @@ class WebReport(Report.Report):
             if not self.exclude_private:
                 person = ReportUtils.sanitize_person(self.database,person)
 
-            idoc = IndividualPage(self.database, person, self.title,
-                                  ind_list, place_list, source_list,
-                                  self.options, archive, photo_list, levels)
+            IndividualPage(self.database, person, self.title,
+                           ind_list, place_list, source_list,
+                           self.options, archive, photo_list, levels)
             
         if len(ind_list) > 0:
             IndividualListPage(self.database, self.title, ind_list,
@@ -1962,7 +1963,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
             gramps_id = person.get_gramps_id()
         else:
             name = 'PERSON'
-            gramps_is = ''
+            gramps_id = ''
 
         all = GenericFilter.GenericFilter()
         all.set_name(_("Entire Database"))
@@ -1990,11 +1991,8 @@ class WebReportOptions(ReportOptions.ReportOptions):
         priv_msg = _("Do not include records marked private")
         restrict_msg = _("Restrict information on living people")
         restrict_years = _("Years to restrict from person's death")
-        imgdir_msg = _("Image subdirectory")
         title_msg = _("Web site title")
         ext_msg = _("File extension")
-        sep_alpha_msg = _("Split alphabetical sections to separate pages")
-        tree_msg = _("Include short ancestor tree")
         contact_msg = _("Publisher contact/Note ID")
         download_msg = _("Include download page")
 
@@ -2280,8 +2278,6 @@ class WebReportDialog(Report.ReportDialog):
             ErrorDialog(m1,m2)
 
 def sort_people(db,handle_list):
-    import sets
-
     flist = sets.Set(handle_list)
 
     sname_sub = {}
