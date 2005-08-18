@@ -1243,7 +1243,7 @@ class IndividualPage(BasePage):
         for sref in sreflist:
             lnk = (self.cur_name, self.page_title, self.gid)
             shandle = sref.get_base_handle()
-            if self.src_list.has_key(lnk):
+            if self.src_list.has_key(shandle):
                 if lnk not in self.src_list[shandle]:
                     self.src_list[shandle].append(lnk)
             else:
@@ -1337,11 +1337,12 @@ class IndividualPage(BasePage):
             for nsref in name.get_source_references():
                 self.src_refs.append(nsref)
                 nsh = nsref.get_base_handle()
+                lnk = (self.cur_name, self.page_title, self.gid)
                 if self.src_list.has_key(nsh):
                     if self.person.handle not in self.src_list[nsh]:
-                        self.src_list[nsh].append(self.person.handle)
+                        self.src_list[nsh].append(lnk)
                 else:
-                    self.src_list[nsh] = [self.person.handle]
+                    self.src_list[nsh] = [lnk]
                 nshl.append(nsref)
             if nshl:
                 of.write( " <sup>")
