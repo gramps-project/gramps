@@ -848,6 +848,7 @@ class FamilyView:
                 temp = self.parent.db.get_person_from_handle(family.get_father_handle())
                 temp.get_family_handle_list().remove(family.get_handle())
             self.parent.db.remove_family(family.get_handle(),trans)
+            self.parent.db.commit_person(temp,trans)
         else:
             self.parent.db.commit_family(family,trans)
 
@@ -1077,7 +1078,7 @@ class FamilyView:
                 self.spouse_selection.select_iter(node)
             else:
                 self.display_marriage(None)
-        except KeyError:
+        except KeyError,msg:
             WarningDialog(_('Database corruption detected'),
                           _('A problem was detected with the database. Please '
                             'run the Check and Repair Database tool to fix the '

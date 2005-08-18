@@ -216,7 +216,6 @@ class GrampsDBCallback(object):
     # whether or not instance based logging is enabled.
     try:
         __LOG_ALL = int(os.environ.get('GRAMPS_SIGNAL',"0")) == 1
-        print __LOG_ALL
     except:
         __LOG_ALL = False
     
