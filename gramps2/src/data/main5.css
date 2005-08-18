@@ -4,35 +4,46 @@
 /* Standard Tags {{{1
  */
 BODY {
-	font-family: "Bistream Vera Sans", "Arial", "Arial", "Helvetica", sans-serif;
+	font-family: "Verdana", "Bitstream Vera Sans", "Arial", "Helvetica", sans-serif;
 	text-align: justify;
 	background-color: #fff;
 	color: #010;
 }
-
-P,BLOCKQUOTE {
-	font-size: 14px;
-	margin-left: 7em;
-	margin-right: 7em;
+A:link {
+	color: #252;
+	text-decoration: underline;
 }
-
+A:hover {
+	background-color: #eaf0ea;
+	color: #000;
+	text-decoration: underline;
+}
+A:active {
+	background-color: #eaf0ea;
+	color: #000;
+	text-decoration: none;
+}
+A:visited {
+	color: #565;
+	text-decoration: underline;
+}
 DIV {
 	margin: 2px;
 	padding: 2px;
 }
-
-TD {
-	vertical-align: top;
+P {
+	font-size: 14px;
+	margin-left: 7em;
+	margin-right: 7em;
 }
-
 H1 {
-	font-family: "Verdana", "Bistream Vera Sans", "Arial", "Helvetica", sans-serif;
+	font-family: "Verdana", "Bitstream Vera Sans", "Arial", "Helvetica", sans-serif;
 	font-weight: bolder;
 	font-size:	160%;
 	margin: 2px;
 }
 H2 {
-	font-family: "Verdana", "Bistream Vera Sans", "Arial", "Helvetica", sans-serif;
+	font-family: "Verdana", "Bitstream Vera Sans", "Arial", "Helvetica", sans-serif;
 	font-weight: bolder;
 	font-style: italic;
 	font-size:	150%;
@@ -65,134 +76,44 @@ H6 {
 	margin-top: 1.3em;
 	margin-bottom: 0.8em;
 }
-
-HR {
-	height: 0;
-	width: 0;
-	margin: 0;
-	margin-top: 1px;
-	margin-bottom: 1px;
-	padding: 0;
-	border-top: 0;	/* Hack: Mozilla work-around to eliminate "groove" */
-	border-color: #e0e6e0;
+IMG {
+	border: none;
 }
-
-A:link {
-	color: #252;
-	text-decoration: underline;
-}
-A:visited {
-	color: #565;
-	text-decoration: underline;
-}
-A:hover {
-	background-color: #eaf0ea;
-	color: #000;
-	text-decoration: underline;
-}
-A:active {
-	background-color: #eaf0ea;
-	color: #000;
-	text-decoration: none;
-}
-
 SUP {
     line-height: 0;
 }
+TABLE {
+	border: none;
+	border-collapse: collapse;
+}
+TH {
+	padding: 1px;
+	padding-right: 3em;
+	font-weight: bold;
+	text-align: left;
+}
+TD {
+	vertical-align: top;
+	padding: 0;
+}
+
 /* Custom {{{1
  */
-
-.navheader {
-	padding: 4px;
-	background-color: #e0e6e0;
-	margin: 2px;
-}
-.navtitle {
-	font-size:	160%;
-	color: #e0e6e0;
-	margin: 2px;
-	background-color: #454;
-	padding: 4px;
-	padding-left: 3.5em;
-
-}
-.navbyline {
-	float: right;
-	font-size: 14px;
-	margin: 2px;
-	padding: 0;
-	padding-top: 1em;
-	padding-right: 7em;
-	color: #e0e6e0;
-}
-.nav {
-	margin: 0;
-	margin-bottom: 4px;
-	padding: 0;
-	padding-left: 6.5em;
-	font-size: 14px;
-	font-weight: bold;
-
-
-
-}
-
-
-.summaryarea {
-    min-height: 100px;
-    /* Hack: IE Dynamic Expression to set the width */
-    height: expression(document.body.clientHeight < 1 ? "100px" : "100px" );
-}
-
-.portrait {
-	justify: center;
-	margin: 5px;
-	margin-right: 20px;
-	padding: 3px;
-	border-color: #363;
-	border-width: 1px;
-}
-.snapshot {
-	float: right;
-	margin: 5px;
-
-	padding: 3px;
-	padding-right: 6em;
-
-}
-.thumbnail {
-	height: 100px;
-	border-color: #363;
-	border-width: 1px;
-}
-
-.leftwrap {
-	float: left;
-	margin: 5px;
-	margin-right: 1em;
-	margin-left: 6em;
-}
-.rightwrap {
-	float: right;
-	margin: 5px;
-	margin-left: 1em;
-	margin-right: 6em;
-}
-
+/* main data table */
 TABLE.infolist {
 	border: 0;
 	/*width: 100%;*/
 	font-size: 14px;
-	margin-left: 7em;
-	margin-right: 7em;
+	margin: 0em 4em 0em 8em;
 }
-.img_navbar {
-  	margin: 0;
-  	margin-bottom: 4px;
-  	padding: 10px;
-  	font-size: 14px;
-  	font-weight: bold;
-	text-align: center;
+TABLE.infolist TH {
+	border-bottom: 1px solid #454;
+}
+TABLE.infolist TH A {
+	text-decoration: none;
+}
+TABLE.infolist TR > TD:first-child {
+	min-width: 6em;
 }
 TD.category {
 	padding: 3px;	/* Defines spacing between rows */
@@ -211,32 +132,142 @@ TD.data {
 	padding-right: 3em;
 	font-weight: bold;
 }
-
-
-.pedigree {
+/* float left and right */
+.leftwrap {
+	float: left;
+	margin: 5px;
+	margin-right: 1em;
+	margin-left: 6em;
+}
+.rightwrap {
+	float: right;
+	margin: 5px;
+	margin-left: 1em;
+	margin-right: 6em;
+}
+.centered {
+	text-align: center;
+}
+/* navigation links */
+#navheader {
+	padding: 4px;
+	background-color: #e0e6e0;
+	margin: 2px;
+}
+.navtitle {
+	font-size:	160%;
+	color: #e0e6e0;
+	margin: 2px;
+	background-color: #454;
+	padding: 4px;
+	padding-left: 3.5em;
+}
+.navbyline {
+	float: right;
+	font-size: 14px;
+	margin: 2px;
+	padding: 0;
+	padding-top: 1em;
+	padding-right: 7em;
+	color: #e0e6e0;
+}
+.navbyline A {
+	color: #e0e6e0;
+}
+.nav {
+	margin: 0 0 4px 0;
+	padding: 0 0 0 2em;
+	font-size: 14px;
+	font-weight: bold;
+	word-spacing: 0.5em;
+}
+/* image display */
+.img_navbar {
+  	margin: 0;
+  	margin-bottom: 4px;
+  	padding: 10px;
+  	font-size: 14px;
+  	font-weight: bold;
+	text-align: center;
+}
+.portrait {
+	text-align: center;
+	margin: 5px;
+	margin-right: 20px;
+	padding: 3px;
+	border-color: #363;
+	border-width: 1px;
+}
+.snapshot {
+	float: right;
+	margin: 5px;
+	padding: 3px;
+	padding-right: 4em;
+}
+.thumbnail {
+	margin: 0em 0em 0em 7em;
+}
+.thumbnail p {
 	margin: 0;
-	margin-left: 7em;
+	padding: 0;
+	font-size: smaller;
+}
+/* pedigree display */
+#pedigree { }
+.pedigreebox {
+	margin: 0.5em 2em 0em 7em;
 	padding: 0;
 	background-color: #e0e6e0;
 	border: 1px;
 }
-.pedigreeind {
+.pedigreegen {
 	font-size: 14px;
 	margin: 0;
 	padding: 2em;
 	padding-top: 0.25em;
 	padding-bottom: 0.5em;
 }
-
-
-.footer {
-	margin: 1em;
-	font-size: 12px;
-	text-align: center;
+.spouse {
+	font-style: italic;
 }
-
+.spouse:before {
+	content: "+ ";
+}
+.thisperson {
+	font-weight: bold;
+}
+/* other section ids */
+#content { }
+#summaryarea {
+    min-height: 100px;
+    /* Hack: IE Dynamic Expression to set the width */
+    height: expression(document.body.clientHeight < 1 ? "100px" : "100px" );
+}
+#footer {
+	background-color: #454;
+ 	padding: 0;
+ 	margin: 1em 0 0 0;
+ 	clear: both;
+}
+.fullclear {
+	clear: both;
+}
+#copyright {
+	margin: 0.5em 1em 0 0;
+	font-size: 12px;
+	float: right;
+}
+#attributes { }
+#events { }
+#families { }
+#gallery { }
+#narrative { }
+#parents { }
+#references { }
+#researcher { }
+#sourcerefs { }
+#weblinks { }
 
 /* 1}}}
  vim:foldmethod=marker
-/*
-
+*/

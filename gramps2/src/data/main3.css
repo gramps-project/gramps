@@ -8,20 +8,31 @@ BODY {
 	background-color: #fffffd;
 
 }
-
-P,BLOCKQUOTE {
-	font-size: 14px;
+A:link {
+	color: #110;
+	text-decoration: underline;
 }
-
+A:hover {
+	background-color: #eed;
+	color: #110;
+	text-decoration: underline;
+}
+A:active {
+	background-color: #eee;
+	color: #110;
+	text-decoration: none;
+}
+A:visited {
+	color: #665;
+	text-decoration: underline;
+}
 DIV {
 	margin: 2px;
 	padding: 2px;
 }
-
-TD {
-	vertical-align: top;
+P {
+	font-size: 14px;
 }
-
 H1 {
 	font-weight: bolder;
 	font-size:	160%;
@@ -37,14 +48,11 @@ H3 {
 	margin: 0;
 	padding-left: 2em;
 	padding-bottom: 10px;
-
 }
 H4 {
 	margin-top: 1em;
 	margin-bottom: 0.3em;
 	padding-left: 2em;
-
-
 }
 H5 {
 	margin-bottom: 0.5em;
@@ -57,46 +65,79 @@ H6 {
 	margin-top: 1.3em;
 	margin-bottom: 0.8em;
 }
-
-HR {
-	height: 0;
-	width: 0;
-	margin: 0;
-	margin-top: 1px;
-	margin-bottom: 1px;
-	padding: 0;
-	border-top: 1;	/* Hack: Mozilla work-around to eliminate "groove" */
-	border-color: #ccf;
+IMG {
+	border: none;
 }
-
-A:link {
-	color: #110;
-	text-decoration: underline;
-}
-A:visited {
-	color: #665;
-	text-decoration: underline;
-}
-A:hover {
-	background-color: #eed;
-	color: #110;
-	text-decoration: underline;
-}
-A:active {
-	background-color: #eee;
-	color: #110;
-	text-decoration: none;
-}
-
 SUP {
     line-height: 0;
 }
+TABLE {
+	border: none;
+	border-collapse: collapse;
+}
+TH {
+	padding: 1px;
+	padding-right: 3em;
+	font-weight: bold;
+	text-align: left;
+}
+TD {
+	vertical-align: top;
+	padding: 0;
+}
+
 /* Custom {{{1
  */
-
-.navheader {
+/* main data table */
+TABLE.infolist {
+	border: 0;
+	/*width: 100%;*/
+	font-size: 14px;
+	margin: 0em 2em 0em 2em;
+}
+TABLE.infolist TH {
+	background-color: #f6f6f0;
+}
+TABLE.infolist TH A {
+	text-decoration: none;
+}
+TABLE.infolist TR > TD:first-child {
+	min-width: 6em;
+}
+TD.category {
+	padding: 4px;	/* Defines spacing between rows */
+	padding-right: 3em;
+	/*width: 10%;*/
+	font-weight: bold;
+}
+TD.data {
+	padding: 4px;	/* Defines spacing between rows */
+	padding-right: 3em;
+	font-weight: bold;
+}
+TD.field {
+	padding: 4px;	/* Defines spacing between rows */
+	padding-right: 3em;
+	/*width: 20%;*/
+	background-color: #f6f6f0;
+}
+/* float left and right */
+.leftwrap {
+	float: left;
+	margin: 2px;
+	margin-right: 10px;
+}
+.rightwrap {
+	float: right;
+	margin: 2px;
+	margin-left: 10px;
+}
+.centered {
+	text-align: center;
+}
+/* navigation links */
+#navheader {
 	padding: 4px;
-
 	margin: 2px;
 }
 .navtitle {
@@ -120,17 +161,19 @@ SUP {
 	text-align: center;
 	padding: 4px;
 	background-color: #ddddcc;
+	word-spacing: 0.5em;
 }
-
-
-.summaryarea {
-    min-height: 100px;
-    /* Hack: IE Dynamic Expression to set the width */
-    height: expression(document.body.clientHeight < 1 ? "100px" : "100px" );
+/* image display */
+.img_navbar {
+  	margin: 0;
+  	margin-bottom: 4px;
+  	padding: 10px;
+  	font-size: 14px;
+  	font-weight: bold;
+	text-align: center;
 }
-
 .portrait {
-	justify: center;
+	text-align: center;
 	margin: 5px;
 	margin-right: 20px;
 	padding: 3px;
@@ -144,78 +187,69 @@ SUP {
 	padding: 3px;
 }
 .thumbnail {
-	height: 100px;
-	border-color: #110;
-	border-width: 1px;
+	margin: 0em 2em 0em 2em;
 }
-
-.leftwrap {
-	float: left;
-	margin: 2px;
-	margin-right: 10px;
-}
-.rightwrap {
-	float: right;
-	margin: 2px;
-	margin-left: 10px;
-}
-
-TABLE.infolist {
-	border: 0;
-	/*width: 100%;*/
-	font-size: 14px;
-}
-.img_navbar {
-  	margin: 0;
-  	margin-bottom: 4px;
-  	padding: 10px;
-  	font-size: 14px;
-  	font-weight: bold;
-	text-align: center;
-}
-TD.category {
-	padding: 4px;	/* Defines spacing between rows */
-	padding-right: 3em;
-	/*width: 10%;*/
-	font-weight: bold;
-}
-TD.field {
-	padding: 4px;	/* Defines spacing between rows */
-	padding-right: 3em;
-	/*width: 20%;*/
-	background-color: #f6f6f0;
-}
-TD.data {
-	padding: 4px;	/* Defines spacing between rows */
-	padding-right: 3em;
-	font-weight: bold;
-}
-
-
-.pedigree {
+.thumbnail p {
 	margin: 0;
-	margin-left: 2em;
+	padding: 0;
+	font-size: smaller;
+}
+/* pedigree display */
+#pedigree { }
+.pedigreebox {
+	margin: 0.5em 2em 0 2em;
 	padding: 0;
 	background-color: #f6f6f0;
 	border: 1px;
 }
-.pedigreeind {
+.pedigreegen {
 	font-size: 14px;
 	margin: 0;
 	padding: 2em;
 	padding-top: 0.25em;
 	padding-bottom: 0.5em;
 }
-
-
-.footer {
-	margin: 1em;
-	margin-left: 2em;
-	font-size: 12px;
-	/*float: right;*/
+.spouse {
+	font-style: italic;
 }
-
+.spouse:before {
+	content: "+ ";
+}
+.thisperson {
+	font-weight: bold;
+}
+/* other section ids */
+#content { }
+#summaryarea {
+    min-height: 100px;
+    /* Hack: IE Dynamic Expression to set the width */
+    height: expression(document.body.clientHeight < 1 ? "100px" : "100px" );
+}
+#footer {
+	background-color: #ddddcc;
+ 	padding: 0;
+ 	margin: 1em 0 0 0;
+ 	clear: both;
+}
+.fullclear {
+	clear: both;
+}
+#copyright {
+	margin: 0.5em 1em 0 0;
+	font-size: 12px;
+	float: right;
+}
+#attributes { }
+#events { }
+#families { }
+#gallery { }
+#narrative { }
+#parents { }
+#references { }
+#researcher { }
+#sourcerefs { }
+#weblinks { }
 
 /* 1}}}
  vim:foldmethod=marker
-/*
+*/

@@ -103,12 +103,12 @@ _character_sets = [
     ]
 
 _cc = [
-    '<a rel="license" href="http://creativecommons.org/licenses/by/2.5/"><img alt="Creative Commons License" border="0" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/"><img alt="Creative Commons License" border="0" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/"><img alt="Creative Commons License" border="0" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/"><img alt="Creative Commons License" border="0" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/"><img alt="Creative Commons License" border="0" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/"><img alt="Creative Commons License" border="0" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by/2.5/"><img alt="Creative Commons License" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/"><img alt="Creative Commons License" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/"><img alt="Creative Commons License" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/"><img alt="Creative Commons License" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/"><img alt="Creative Commons License" src="#PATH#images/somerights20.gif" /></a>',
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/"><img alt="Creative Commons License" src="#PATH#images/somerights20.gif" /></a>',
     ]
 
 
@@ -204,7 +204,7 @@ class BasePage:
     def display_footer(self,of,db):
 
         of.write('</div>\n')
-        of.write('<div class="footer">\n')
+        of.write('<div id="footer">\n')
         if self.copyright == 0:
             if self.author:
                 self.author = self.author.replace(',,,','')
@@ -212,9 +212,9 @@ class BasePage:
                 cright = _('&copy; %(year)d %(person)s') % {
                     'person' : self.author,
                     'year' : year }
-                of.write('<br>%s\n' % cright)
+                of.write('<br />%s\n' % cright)
         elif self.copyright <=6:
-            of.write('<div align="center">')
+            of.write('<div id="copyright">')
             text = _cc[self.copyright-1]
             if self.up:
                 if self.levels == 1:
@@ -224,14 +224,15 @@ class BasePage:
             else:
                 text = text.replace('#PATH#','')
             of.write(text)
-            of.write('</div>')
-        of.write('</div><br><br><br><hr>\n')
+            of.write('</div>\n')
+        of.write('<div class="fullclear"></div>\n')
+        of.write('</div>\n')
         if self.footer:
             obj = db.get_object_from_handle(self.footer)
             if obj:
                 of.write('<div class="user_footer">\n')
                 of.write(obj.get_note())
-                of.write('  </div>\n')
+                of.write('</div>\n')
         of.write('</body>\n')
         of.write('</html>\n')
     
@@ -246,19 +247,52 @@ class BasePage:
             path = ""
             
         self.author = author
-        of.write('<!DOCTYPE HTML PUBLIC ')
-        of.write('"-//W3C//DTD HTML 4.01 Transitional//EN">\n')
-        of.write('<html>\n<head>\n')
+        of.write('<!DOCTYPE html PUBLIC ')
+        of.write('"-//W3C//DTD XHTML 1.0 Strict//EN" ')
+        of.write('"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
+        of.write('<html xmlns="http://www.w3.org/1999/xhtml" ')
+        of.write('xml:lang="en" lang="en">\n<head>\n')
         of.write('<title>%s - %s</title>\n' % (self.title_str, title))
         of.write('<meta http-equiv="Content-Type" content="text/html; ')
-        of.write('charset=%s">\n' % self.encoding)
+        of.write('charset=%s" />\n' % self.encoding)
         if path:
             of.write('<link href="%s/%s" ' % (path,_NARRATIVE))
         else:
             of.write('<link href="%s" ' % _NARRATIVE)
-        of.write('rel="stylesheet" type="text/css">\n')
-        of.write('<link href="favicon.png" rel="Shortcut Icon">\n')
-        of.write('<!-- %sId%s -->' % ('$','$'))
+        of.write('rel="stylesheet" type="text/css" />\n')
+        
+#        if path:
+#            of.write('<link href="%s/main1.css" ' % path)
+#        else:
+#            of.write('<link href="main1.css" ')
+#        of.write('rel="stylesheet" title="Modern" type="text/css" />\n')
+#        
+#        if path:
+#            of.write('<link href="%s/main2.css" ' % path)
+#        else:
+#            of.write('<link href="main2.css" ')
+#        of.write('rel="alternate stylesheet" title="Business" type="text/css" />\n')
+#                
+#        if path:
+#            of.write('<link href="%s/main3.css" ' % path)
+#        else:
+#            of.write('<link href="main3.css" ')
+#        of.write('rel="alternate stylesheet" title="Certificate" type="text/css" />\n')
+#        
+#        if path:
+#            of.write('<link href="%s/main4.css" ' % path)
+#        else:
+#            of.write('<link href="main4.css" ')
+#        of.write('rel="alternate stylesheet" title="Antique" type="text/css" />\n')
+#        
+#        if path:
+#            of.write('<link href="%s/main5.css" ' % path)
+#        else:
+#            of.write('<link href="main5.css" ')
+#        of.write('rel="alternate stylesheet" title="Tranquil" type="text/css" />\n')
+               
+        of.write('<link href="/favicon.ico" rel="Shortcut Icon" />\n')
+        of.write('<!-- %sId%s -->\n' % ('$','$'))
         of.write('</head>\n')
         of.write('<body>\n')
         if self.header:
@@ -267,7 +301,7 @@ class BasePage:
                 of.write('  <div class="user_header">\n')
                 of.write(obj.get_note())
                 of.write('  </div>\n')
-        of.write('<div class="navheader">\n')
+        of.write('<div id="navheader">\n')
 
         format = locale.nl_langinfo(locale.D_FMT)
         value = time.strftime(format,time.localtime(time.time()))
@@ -277,7 +311,6 @@ class BasePage:
 
         of.write('<div class="navbyline">%s</div>\n' % msg)
         of.write('<h1 class="navtitle">%s</h1>\n' % self.title_str)
-        of.write('<hr>\n')
         of.write('<div class="nav">\n')
         self.show_link(of,'index',_('Home'),path)
         if self.use_intro:
@@ -292,13 +325,13 @@ class BasePage:
         if self.use_contact:
             self.show_link(of,'contact',_('Contact'),path)
         of.write('</div>\n</div>\n')
-        of.write('  <div class="content">\n')
+        of.write('<div id="content">\n')
 
     def show_link(self,of,lpath,title,path):
         if path:
-            of.write('<a href="%s/%s.%s">%s</a> &nbsp;' % (path,lpath,self.ext,title))
+            of.write('   <a href="%s/%s.%s">%s</a>\n' % (path,lpath,self.ext,title))
         else:
-            of.write('<a href="%s.%s">%s</a> &nbsp;' % (lpath,self.ext,title))
+            of.write('   <a href="%s.%s">%s</a>\n' % (lpath,self.ext,title))
 
     def display_first_image_as_thumbnail( self, of, db, photolist=None):
         if not photolist:
@@ -321,9 +354,8 @@ class BasePage:
         if not photolist and len(photolist) == 0:
             return
             
+        of.write('<div id="gallery">\n')
         of.write('<h4>%s</h4>\n' % _('Gallery'))
-        of.write('<hr>\n')
-        of.write('<blockquote>')
         for mediaref in photolist:
             photo_handle = mediaref.get_reference_handle()
             photo = db.get_object_from_handle(photo_handle)
@@ -335,7 +367,7 @@ class BasePage:
                                     photo.get_description(),up=True)
                 except (IOError,OSError),msg:
                     WarningDialog(_("Could not add photo to page"),str(msg))
-        of.write('</blockquote>')
+        of.write('</div>\n')
 
     def display_note_object(self,of,noteobj=None):
         if not noteobj:
@@ -343,21 +375,21 @@ class BasePage:
         format = noteobj.get_format()
         text = noteobj.get()
         if text:
+            of.write('<div id="narrative">\n')
             of.write('<h4>%s</h4>\n' % _('Narrative'))
-            of.write('<hr>\n')
             if format:
-                text = u"<pre>" + u"<br>".join(text.split("\n"))+u"</pre>"
+                text = u"<pre>" + u"<br />".join(text.split("\n"))+u"</pre>"
             else:
                 text = u"</p><p>".join(text.split("\n"))
             of.write('<p>%s</p>\n' % text)
+            of.write('</div>\n')
 
     def display_url_list(self,of,urllist=None):
         if not urllist:
             return
+        of.write('<div id="weblinks">\n')
         of.write('<h4>%s</h4>\n' % _('Weblinks'))
-        of.write('<hr>\n')
-        of.write('<table class="infolist" cellpadding="0" ')
-        of.write('cellspacing="0" border="0">\n')
+        of.write('<table class="infolist">\n')
 
         index = 1
         for url in urllist:
@@ -368,27 +400,27 @@ class BasePage:
             of.write('</td></tr>\n')
             index = index + 1
         of.write('</table>\n')
+        of.write('</div>\n')
 
     def display_attr_list(self,of,attrlist=None):
         if not attrlist:
             return
+        of.write('<div id="attributes">\n')
         of.write('<h4>%s</h4>\n' % _('Attributes'))
-        of.write('<hr>\n')
-        of.write('<table class="infolist" cellpadding="0" ')
-        of.write('cellspacing="0" border="0">\n')
+        of.write('<table class="infolist">\n')
 
         for attr in attrlist:
             of.write('<tr><td class="field">%s</td>' % _(attr.get_type()))
             of.write('<td class="data">%s</td></tr>\n' % attr.get_value())
         of.write('</table>\n')
+        of.write('</div>\n')
 
     def display_references(self,of,db,handlelist):
         if not handlelist:
             return
+        of.write('<div id="references">\n')
         of.write('<h4>%s</h4>\n' % _('References'))
-        of.write('<hr>\n')
-        of.write('<table class="infolist" cellpadding="0" ')
-        of.write('cellspacing="0" border="0">\n')
+        of.write('<table class="infolist">\n')
 
         index = 1
         for (path,name,gid) in handlelist:
@@ -397,6 +429,7 @@ class BasePage:
             of.write('</td></tr>\n')
             index = index + 1
         of.write('</table>\n')
+        of.write('</div>\n')
 
     def build_path(self,handle,dirroot,up):
         if up:
@@ -446,17 +479,19 @@ class BasePage:
 
     def media_link(self,of,handle,path,name,up,usedescr=True):
         dirpath = self.build_path(handle,'img',up)
-        of.write('<a href="%s/%s.%s">' % (
+        of.write('<div class="thumbnail">\n')
+        of.write('<p><a href="%s/%s.%s">' % (
             dirpath,handle,self.ext))
-        of.write('<img class="thumbnail" border="0" ')
+        of.write('<img ')
         if self.levels == 1:
             of.write('src="../../%s" ' % path)
         else:
             of.write('src="../../../%s" ' % path)
-        of.write('height="%d", alt="%s"></a>' % (const.thumbScale,name))
+        of.write('height="%d" alt="%s" /></a>' % (const.thumbScale,name))
+        of.write('</p>\n')
         if usedescr:
-            of.write('<div class="thumbname">%s</div>' % name)
-        of.write('</a>')
+            of.write('<p>%s</p>\n' % name)
+        of.write('</div>\n')
 
     def source_link(self,of,handle,name,gid="",up=False):
         dirpath = self.build_path(handle,'src',up)
@@ -503,13 +538,11 @@ class IndividualListPage(BasePage):
 
         of.write('<h3>%s</h3>\n' % _('Individuals'))
         of.write('<p>%s</p>\n' % msg)
-        of.write('<blockquote>\n')
-        of.write('<table class="infolist" cellspacing="0" ')
-        of.write('cellpadding="0" border="0">\n')
-        of.write('<tr><td class="field"><u><b>%s</b></u></td>\n' % _('Surname'))
-        of.write('<td class="field"><u><b>%s</b></u></td>\n' % _('Name'))
-        of.write('<td class="field"><u><b>%s</b></u></td>\n' % _('Birth date'))
-        of.write('</tr>\n')
+        of.write('<table class="infolist">\n<thead><tr>\n')
+        of.write('<th>%s</th>\n' % _('Surname'))
+        of.write('<th>%s</th>\n' % _('Name'))
+        of.write('<th>%s</th>\n' % _('Birth date'))
+        of.write('</tr></thead>\n<tbody>\n')
 
         person_handle_list = sort_people(db,person_handle_list)
 
@@ -536,7 +569,7 @@ class IndividualListPage(BasePage):
                 of.write('</td></tr>\n')
                 first = False
             
-        of.write('</table>\n</blockquote>\n')
+        of.write('</tbody>\n</table>\n')
         self.display_footer(of,db)
         self.close_file(of)
 
@@ -560,12 +593,10 @@ class SurnamePage(BasePage):
 
         of.write('<h3>%s</h3>\n' % title)
         of.write('<p>%s</p>\n' % msg)
-        of.write('<blockquote>\n')
-        of.write('<table class="infolist" cellspacing="0" ')
-        of.write('cellpadding="0" border="0">\n')
-        of.write('<tr><td class="field"><u><b>%s</b></u></td>\n' % _('Name'))
-        of.write('<td class="field"><u><b>%s</b></u></td>\n' % _('Birth date'))
-        of.write('</tr>\n')
+        of.write('<table class="infolist">\n<thead><tr>\n')
+        of.write('<th>%s</b></th>\n' % _('Name'))
+        of.write('<th>%s</b></th>\n' % _('Birth date'))
+        of.write('</tr></thead>\n<tbody>\n')
 
         for person_handle in person_handle_list:
             person = db.get_person_from_handle(person_handle)
@@ -580,7 +611,7 @@ class SurnamePage(BasePage):
                 birth = db.get_event_from_handle(birth_handle)
                 of.write(birth.get_date())
             of.write('</td></tr>\n')
-        of.write('</table>\n</blockquote>\n')
+        of.write('<tbody>\n</table>\n')
         self.display_footer(of,db)
         self.close_file(of)
 
@@ -605,14 +636,10 @@ class PlaceListPage(BasePage):
         of.write('<h3>%s</h3>\n' % _('Places'))
         of.write('<p>%s</p>\n' % msg )
 
-        of.write('<blockquote>\n')
-        of.write('<table class="infolist" cellspacing="0" ')
-        of.write('cellpadding="0" border="0">\n')
-        of.write('<tr><td class="field"><u>')
-        of.write('<b>%s</b></u></td>\n' % _('Letter'))
-        of.write('<td class="field"><u>')
-        of.write('<b>%s</b></u></td>\n' % _('Place'))
-        of.write('</tr>\n')
+        of.write('<table class="infolist">\n<thead><tr>\n')
+        of.write('<th>%s</th>\n' % _('Letter'))
+        of.write('<th>%s</th>\n' % _('Place'))
+        of.write('</tr></thead>\n<tbody>\n')
 
         self.sort = Sort.Sort(db)
         handle_list = place_handles.keys()
@@ -641,7 +668,7 @@ class PlaceListPage(BasePage):
                 of.write('</td></tr>')
                 last_surname = n
             
-        of.write('</table>\n</blockquote>\n')
+        of.write('</tbody>\n</table>\n')
         self.display_footer(of,db)
         self.close_file(of)
 
@@ -664,10 +691,9 @@ class PlacePage(BasePage):
 
         self.display_first_image_as_thumbnail(of, db, place.get_media_list())
 
-        of.write('<div class="summaryarea">\n')
+        of.write('<div id="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % self.page_title)
-        of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
-        of.write('border="0">\n')
+        of.write('<table class="infolist">\n')
 
         if not self.noid:
             of.write('<tr><td class="field">%s</td>\n' % _('GRAMPS ID'))
@@ -745,7 +771,7 @@ class MediaPage(BasePage):
         self.display_header(of,db, "%s - %s" % (_('Gallery'), title),
                             get_researcher().get_name(),up=True)
         
-        of.write('<div class="summaryarea">\n')
+        of.write('<div id="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % self.page_title)
 
         # gallery navigation
@@ -758,20 +784,19 @@ class MediaPage(BasePage):
         if next:
             self.media_ref_link(of,next,_('Next'),True)
 
-        of.write('</div><br>\n')
+        of.write('</div>\n')
 
         mime_type = photo.get_mime_type()
         if mime_type and mime_type.startswith("image"):
             try:
-                of.write('<div align="center">\n')
-                of.write('<img border="0" ')
-                of.write('src="../../%s" alt="%s"/>' % (newpath, self.page_title))
+                of.write('<div class="centered">\n')
+                of.write('<img ')
+                of.write('src="../../%s" alt="%s" />\n' % (newpath, self.page_title))
                 of.write('</div>\n')
             except (IOError,OSError),msg:
                 WarningDialog(_("Could not add photo to page"),str(msg))
 
-        of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
-        of.write('border="0">\n')
+        of.write('<table class="infolist">\n')
 
         if not self.noid:
             of.write('<tr><td class="field">%s</td>\n' % _('GRAMPS ID'))
@@ -816,16 +841,11 @@ class SurnameListPage(BasePage):
             'will lead to a list of individuals in the '
             'database with this same surname.'))
 
-        of.write('<blockquote>\n')
-        of.write('<table class="infolist" cellspacing="0" ')
-        of.write('cellpadding="0" border="0">\n')
-        of.write('<tr><td class="field"><u>')
-        of.write('<b>%s</b></u></td>\n' % _('Letter'))
-        of.write('<td class="field"><u>')
-        of.write('<b><a href="%s.%s">%s</a></b></u></td>\n' % ("surnames", self.ext, _('Surname')))
-        of.write('<td class="field"><u>')
-        of.write('<b><a href="%s.%s">%s</a></b></u></td>\n' % ("surnames_count", self.ext, _('Number of people')))
-        of.write('</tr>\n')
+        of.write('<table class="infolist">\n<thead><tr>\n')
+        of.write('<th>%s</th>\n' % _('Letter'))
+        of.write('<th><a href="%s.%s">%s</a></th>\n' % ("surnames", self.ext, _('Surname')))
+        of.write('<th><a href="%s.%s">%s</a></th>\n' % ("surnames_count", self.ext, _('Number of people')))
+        of.write('</tr></thead>\n<tbody>\n')
 
         person_handle_list = sort_people(db,person_handle_list)
         if order_by == self.ORDER_BY_COUNT:
@@ -859,7 +879,7 @@ class SurnameListPage(BasePage):
                 last_surname = surname
             of.write('<td class="field">%d</td></tr>' % len(data_list))
             
-        of.write('</table>\n</blockquote>\n')
+        of.write('</tbody>\n</table>\n')
         self.display_footer(of,db)
         self.close_file(of)
         return
@@ -890,8 +910,8 @@ class IntroductionPage(BasePage):
                     (newpath,thumb_path) = self.copy_media(obj,False)
                     self.store_file(archive,self.html_dir,obj.get_path(),
                                     newpath)
-                    of.write('<div align="center">\n')
-                    of.write('<img border="0" ')
+                    of.write('<div class="centered">\n')
+                    of.write('<img ')
                     of.write('src="%s" ' % newpath)
                     of.write('alt="%s" />' % obj.get_description())
                     of.write('</div>\n')
@@ -937,8 +957,8 @@ class HomePage(BasePage):
                     (newpath,thumb_path) = self.copy_media(obj,False)
                     self.store_file(archive,self.html_dir,obj.get_path(),
                                     newpath)
-                    of.write('<div align="center">\n')
-                    of.write('<img border="0" ')
+                    of.write('<div class="centered">\n')
+                    of.write('<img ')
                     of.write('src="%s" ' % newpath)
                     of.write('alt="%s" />' % obj.get_description())
                     of.write('</div>\n')
@@ -981,7 +1001,7 @@ class SourcesPage(BasePage):
 
         of.write('<h3>%s</h3>\n<p>' % _('Sources'))
         of.write(msg)
-        of.write('</p>\n<blockquote>\n<table class="infolist">\n')
+        of.write('</p>\n<table class="infolist">\n')
 
         index = 1
         for handle in handle_list:
@@ -992,7 +1012,7 @@ class SourcesPage(BasePage):
             of.write('</td></tr>\n')
             index += 1
             
-        of.write('</table>\n</blockquote>\n')
+        of.write('</table>\n')
 
         self.display_footer(of,db)
         self.close_file(of)
@@ -1016,10 +1036,9 @@ class SourcePage(BasePage):
 
         self.display_first_image_as_thumbnail(of, db, source.get_media_list())
 
-        of.write('<div class="summaryarea">\n')
+        of.write('<div id="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % self.page_title)
-        of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
-        of.write('border="0">\n')
+        of.write('<table class="infolist">\n')
 
         for (label,val) in [(_('GRAMPS ID'),source.gramps_id),
                             (_('Author'),source.author),
@@ -1057,8 +1076,8 @@ class GalleryPage(BasePage):
 
         of.write(_("This page contains an index of all the media objects "
                    "in the database, sorted by their title. Clicking on "
-                   "the title will take you to that media object's page"))
-        of.write('</p>\n<blockquote>\n<table class="infolist">\n')
+                   "the title will take you to that media object's page."))
+        of.write('</p>\n<table class="infolist">\n')
 
         self.db = db
 
@@ -1073,7 +1092,7 @@ class GalleryPage(BasePage):
             of.write('</td></tr>\n')
             index += 1
             
-        of.write('</table>\n</blockquote>\n')
+        of.write('</table>\n')
 
         self.display_footer(of,db)
         self.close_file(of)
@@ -1120,7 +1139,7 @@ class ContactPage(BasePage):
         self.display_header(of,db,_('Contact'),
                             get_researcher().get_name())
 
-        of.write('<div class="summaryarea">\n')
+        of.write('<div id="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % _('Contact'))
 
         note_id = options.handler.options_dict['NWEBcontact']
@@ -1135,10 +1154,9 @@ class ContactPage(BasePage):
                     self.store_file(archive,self.html_dir,obj.get_path(),
                                     newpath)
                     of.write('<div class="rightwrap">\n')
-                    of.write('<table cellspacing="0" cellpadding="0" ')
-                    of.write('border="0"><tr>')
+                    of.write('<table><tr>')
                     of.write('<td height="205">')
-                    of.write('<img border="0" height="200" ')
+                    of.write('<img height="200" ')
                     of.write('src="%s.%s" ' % (note_id,self.ext))
                     of.write('alt="%s" />' % obj.get_description())
                     of.write('</td></tr></table>\n')
@@ -1148,13 +1166,14 @@ class ContactPage(BasePage):
 
         r = get_researcher()
 
-        of.write('<blockquote>\n')
-        of.write('%s<br>\n' % r.name)
-        of.write('%s<br>\n' % r.addr)
-        of.write('%s, %s, %s<br>\n' % (r.city,r.state,r.postal))
-        of.write('%s<br>\n' % r.country)
-        of.write('%s<br>\n' % r.email)
-        of.write('</blockquote>\n')
+        of.write('<div id="researcher">\n')
+        of.write('%s<br />\n' % r.name)
+        of.write('%s<br />\n' % r.addr)
+        of.write('%s, %s, %s<br />\n' % (r.city,r.state,r.postal))
+        of.write('%s<br />\n' % r.country)
+        of.write('%s<br />\n' % r.email)
+        of.write('</div>\n')
+        of.write('<div class="fullclear"></div>\n')
 
         if obj:
             nobj = obj.get_note_object()
@@ -1163,14 +1182,11 @@ class ContactPage(BasePage):
                 text = nobj.get()
     
                 if format:
-                    text = u"<pre>" + u"<br>".join(text.split("\n"))+u"</pre>"
+                    text = u"<pre>" + u"<br />".join(text.split("\n"))+u"</pre>"
                 else:
                     text = u"</p><p>".join(text.split("\n"))
                 of.write('<p>%s</p>\n' % text)
-            else:
-                of.write('<br><br><br><br>\n')
-        else:
-            of.write('<br><br><br><br>\n')
+
         of.write('</div>\n')
 
         self.display_footer(of,db)
@@ -1231,10 +1247,9 @@ class IndividualPage(BasePage):
         sreflist = self.src_refs + self.person.get_source_references()
         if not sreflist:
             return
+        of.write('<div id="sourcerefs">\n')
         of.write('<h4>%s</h4>\n' % _('Source References'))
-        of.write('<hr>\n')
-        of.write('<table class="infolist" cellpadding="0" ')
-        of.write('cellspacing="0" border="0">\n')
+        of.write('<table class="infolist">\n')
 
         index = 1
         for sref in sreflist:
@@ -1252,7 +1267,6 @@ class IndividualPage(BasePage):
             of.write('<a name="sref%d">%d.</a></td>' % (index,index))
             of.write('<td class="field">')
             self.source_link(of,source.handle,title,source.gramps_id,True)
-            of.write('</a>')
             tmp = []
             for (label,data) in [(_('Page'),sref.page),
                                  (_('Confidence'),const.confidence[sref.confidence]),
@@ -1260,10 +1274,11 @@ class IndividualPage(BasePage):
                 if data:
                     tmp.append("%s: %s" % (label,data))
             if len(tmp) > 0:
-                of.write('<br>' + '<br>'.join(tmp))
+                of.write('<br />' + '<br />'.join(tmp))
             of.write('</td></tr>\n')
             index += 1
         of.write('</table>\n')
+        of.write('</div>\n')
 
     def display_ind_pedigree(self,of):
 
@@ -1280,44 +1295,42 @@ class IndividualPage(BasePage):
             father = None
             mother = None
         
+        of.write('<div id="pedigree">\n')
         of.write('<h4>%s</h4>\n' % _('Pedigree'))
-        of.write('<hr>\n<br>\n')
-        of.write('<table class="pedigree">\n')
-        of.write('<tr><td>\n')
+        of.write('<div class="pedigreebox">\n')
         if father or mother:
-            of.write('<blockquote class="pedigreeind">\n')
+            of.write('<div class="pedigreegen">\n')
             if father:
                 self.pedigree_person(of,father)
             if mother:
-                self.pedigree_person(of,mother)
-        of.write('<blockquote class="pedigreeind">\n')
+                self.pedigree_person(of,mother,True)
+        of.write('<div class="pedigreegen">\n')
         if family:
             for child_handle in family.get_child_handle_list():
                 if child_handle == self.person.handle:
-                    of.write('| <strong>%s</strong><br>\n' % self.name)
+                    of.write('<span class="thisperson">%s</span><br />\n' % self.name)
                     self.pedigree_family(of)
                 else:
                     child = self.db.get_person_from_handle(child_handle)
                     self.pedigree_person(of,child)
         else:
-            of.write('| <strong>%s</strong><br>\n' % self.name)
+            of.write('<span class="thisperson">%s</span><br />\n' % self.name)
             self.pedigree_family(of)
 
-        of.write('</blockquote>\n')
+        of.write('</div>\n')
         if father or mother:
-            of.write('</blockquote>\n')
-        of.write('</td>\n</tr>\n</table>\n')
+            of.write('</div>\n')
+        of.write('</div>\n</div>\n')
 
     def display_ind_general(self,of):
         self.page_title = self.sort_name
         self.display_first_image_as_thumbnail(of, self.db,
                                               self.person.get_media_list())
 
-        of.write('<div class="summaryarea">\n')
+        of.write('<div id="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % self.sort_name)
             
-        of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
-        of.write('border="0">\n')
+        of.write('<table class="infolist">\n')
 
         # GRAMPS ID
         if not self.noid:
@@ -1363,10 +1376,9 @@ class IndividualPage(BasePage):
         if not all_events:
             return
         
+        of.write('<div id="events">\n')
         of.write('<h4>%s</h4>\n' % _('Events'))
-        of.write('<hr>\n')
-        of.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
-        of.write('border="0">\n')
+        of.write('<table class="infolist">\n')
 
         # Birth
         handle = self.person.get_birth_handle()
@@ -1393,6 +1405,7 @@ class IndividualPage(BasePage):
             of.write('</td>\n')
             of.write('</tr>\n')
         of.write('</table>\n')
+        of.write('</div>\n')
 
     def display_child_link(self, of, child_handle):
         use_link = child_handle in self.ind_list
@@ -1405,7 +1418,7 @@ class IndividualPage(BasePage):
                              child_name, gid)
         else:
             of.write(nameof(child,self.exclude_private))
-        of.write(u"<br>\n")
+        of.write(u"<br />\n")
 
     def display_parent(self, of, handle, title, rel):
         use_link = handle in self.ind_list 
@@ -1430,10 +1443,9 @@ class IndividualPage(BasePage):
         if not parent_list:
             return
         
+        of.write('<div id="parents">\n')
         of.write('<h4>%s</h4>\n' % _("Parents"))
-        of.write('<hr>\n')
-        of.write('<table class="infolist" cellpadding="0" ')
-        of.write('cellspacing="0" border="0">\n')
+        of.write('<table class="infolist">\n')
 
         first = True
         if parent_list:
@@ -1447,12 +1459,14 @@ class IndividualPage(BasePage):
 
                 father_handle = family.get_father_handle()
                 if father_handle:
+                    of.write('<tr>\n')
                     self.display_parent(of,father_handle,_('Father'),frel)
-                of.write('<tr>\n')
+                    of.write('</tr>\n')
                 mother_handle = family.get_mother_handle()
                 if mother_handle:
+                    of.write('<tr>\n')
                     self.display_parent(of,mother_handle,_('Mother'),mrel)
-                of.write('</tr>\n')
+                    of.write('</tr>\n')
                 first = False
                 childlist = family.get_child_handle_list()
                 if len(childlist) > 1:
@@ -1465,16 +1479,16 @@ class IndividualPage(BasePage):
                     of.write('</td>\n</tr>\n')
             of.write('<tr><td colspan="3">&nbsp;</td></tr>\n')
         of.write('</table>\n')
+        of.write('</div>\n')
 
     def display_ind_relationships(self,of):
         family_list = self.person.get_family_handle_list()
         if not family_list:
             return
         
+        of.write('<div id="families">\n')
         of.write('<h4>%s</h4>\n' % _("Families"))
-        of.write('<hr>\n')
-        of.write('<table class="infolist" cellpadding="0" ')
-        of.write('cellspacing="0" border="0">\n')
+        of.write('<table class="infolist">\n')
 
         first = True
         for family_handle in family_list:
@@ -1490,6 +1504,7 @@ class IndividualPage(BasePage):
                     self.display_child_link(of,child_handle)
                 of.write('</td>\n</tr>\n')
         of.write('</table>\n')
+        of.write('</div>\n')
 
     def display_spouse(self,of,family,first=True):
         gender = self.person.get_gender()
@@ -1549,15 +1564,16 @@ class IndividualPage(BasePage):
             format = nobj.get_format()
             text = nobj.get()
             if format:
-                of.write( u"<pre>" + u"<br>".join(text.split("\n"))+u"</pre>")
+                of.write( u"<pre>" + u"<br />".join(text.split("\n"))+u"</pre>")
             else:
                 of.write( u"</p><p>".join(text.split("\n")))
             of.write('</td>\n</tr>\n')
             
 
-    def pedigree_person(self,of,person,bullet='|'):
+    def pedigree_person(self,of,person,is_spouse=False):
         person_link = person.handle in self.ind_list
-        of.write('%s ' % bullet)
+        if is_spouse:
+            of.write('<span class="spouse">')
         if person_link:
             person_name = nameof(person,self.exclude_private)
             path = self.build_path(person.handle,"ppl",False)
@@ -1565,7 +1581,9 @@ class IndividualPage(BasePage):
             self.person_link(of, fname, person_name)
         else:
             of.write(nameof(person,self.exclude_private))
-        of.write('<br>\n')
+        if is_spouse:
+            of.write('</span>')
+        of.write('<br />\n')
 
     def pedigree_family(self,of):
         for family_handle in self.person.get_family_handle_list():
@@ -1573,14 +1591,14 @@ class IndividualPage(BasePage):
             spouse_handle = ReportUtils.find_spouse(self.person,rel_family)
             if spouse_handle:
                 spouse = self.db.get_person_from_handle(spouse_handle)
-                self.pedigree_person(of,spouse,'&bull;')
+                self.pedigree_person(of,spouse,True)
             childlist = rel_family.get_child_handle_list()
             if childlist:
-                of.write('<blockquote class="pedigreeind">\n')
+                of.write('<div class="pedigreegen">\n')
                 for child_handle in childlist:
                     child = self.db.get_person_from_handle(child_handle)
                     self.pedigree_person(of,child)
-                of.write('</blockquote>\n')
+                of.write('</div>\n')
 
     def format_event(self,event):
         gid_list = []

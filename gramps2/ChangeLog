@@ -1,3 +1,10 @@
+2005-08-18  Don Allingham  <don@gramps-project.org>
+	* src/AddSpouse.py: remove unnecessary commit via add_family
+
+2005-08-18  Mark Knoop  <mark@markknoop.com>
+	* src/NavWebPage.py: move more HTML commands to CSS
+	* src/data/main*.css: add support for HTML control from NavWebPage
+
 2005-08-18  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* doc/gramps-manual/C/custom.xml: Match against DTD
 	* doc/gramps-manual/C/usage.xml: Match against DTD
