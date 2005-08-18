@@ -29,6 +29,7 @@
 import os
 import time
 import re
+import shutil
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -53,7 +54,7 @@ import Errors
 import ansel_utf8
 import Utils
 import NameDisplay
-from QuestionDialog import ErrorDialog
+from QuestionDialog import ErrorDialog, WarningDialog
 
 def keep_utf8(s):
     return s
@@ -129,6 +130,11 @@ def add_familys_sources(db,family_handle,slist,private):
 #
 #-------------------------------------------------------------------------
 def add_persons_sources(db,person,slist,private):
+    for source_ref in person.get_source_references():
+        sbase = source_ref.get_base_handle()
+        if sbase != None and not slist.has_key(sbase):
+            slist[sbase] = 1
+        
     elist = person.get_event_list()[:]
 
     elist.append(person.get_birth_handle())
@@ -916,8 +922,7 @@ class GedcomWriter:
                 else:
                     self.writeln("1 EVEN")
                     if value:
-                        self.writeln("2 TYPE %s %s" % (self.cnvtxt(name), value
-))
+                        self.writeln("2 TYPE %s %s" % (self.cnvtxt(name), value))
                     else:
                         self.writeln("2 TYPE %s" % self.cnvtxt(name))
                 if attr.get_note():
@@ -966,28 +971,33 @@ class GedcomWriter:
                     continue
                 photo_obj_id = photo.get_reference_handle()
                 photo_obj = self.db.get_object_from_handle(photo_obj_id)
+                print photo_obj, photo_obj.get_mime_type()
                 if photo_obj and photo_obj.get_mime_type() == "image/jpeg":
                     path = photo_obj.get_path ()
+                    imgdir = os.path.join(self.dirname,self.images_path)
                     if not os.path.isfile(path):
                         continue
+                    try:
+                        if not os.path.isdir(imgdir):
+                            os.makedirs(imgdir)
+                    except:
+                        continue
+                    basename = os.path.basename(path)
+                    dest = os.path.join (imgdir, basename)
+                    try:
+                        shutil.copyfile(path, dest)
+                    except (IOError,OSError),msg:
+                        msg2 = _("Could not create %s") % dest
+                        WarningDialog(msg2,str(msg))
+                        continue
+                        
                     self.writeln('1 OBJE')
                     self.writeln('2 FORM jpeg')
                     dirname = os.path.join (self.dirname, self.images_path)
                     basename = os.path.basename (path)
                     self.writeln('2 FILE %s' % os.path.join(self.images_path,
                                                            basename))
-                    try:
-                        if not os.path.isdir(dirname):
-                            os.mkdir (dirname)
-                    except:
-                        continue
-                    dest = os.path.join (dirname, basename)
-                    try:
-                        os.link (path, dest)
-                    except OSError:
-                        file (dest,
-                              "wb").writelines (file (path,
-                                                      "rb").xreadlines ())
+
 
         for family in person.get_parent_family_handle_list():
             if self.flist.has_key(family[0]):

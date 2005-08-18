@@ -248,7 +248,7 @@ class SelectChild:
 
         self.db.commit_person(select_child,trans)
         self.db.commit_family(self.family,trans)
-        n = select_child.get_primary_name().get_regular_name()
+        n = NameDisplay.displayer.display(select_child)
         self.db.transaction_commit(trans,_("Add Child to Family (%s)") % n)
         self.close(obj)
         self.callback()
@@ -317,7 +317,8 @@ class SelectChild:
 #-------------------------------------------------------------------------
 class LikelyFilter(GenericFilter.Rule):
 
-    category    = _('General filters')
+    labels   = [ 'Person handle' ]
+    category = _('General filters')
     
     def prepare(self,db):
         person = db.get_person_from_handle(self.list[0])

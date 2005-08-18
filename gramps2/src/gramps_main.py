@@ -192,6 +192,12 @@ class Gramps:
         if GrampsKeys.get_usetips():
             TipOfDay.TipOfDay(self)
 
+##         # FIXME: THESE will have to be added (ViewManager?)
+##         # once bookmarks work again
+##         self.db.set_researcher(GrampsCfg.get_researcher())
+##         self.db.connect('person-delete',self.on_remove_bookmark)
+##         self.db.connect('person-update',self.on_update_bookmark)
+
     def welcome(self):
         if GrampsKeys.get_welcome() >= 200:
             return

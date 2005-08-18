@@ -201,7 +201,13 @@ class EventComparison:
     def on_apply_clicked(self,obj):
         cfilter = self.filter_menu.get_active().get_data("filter")
 
-        plist = cfilter.apply(self.db,self.db.get_person_handles(sort_handles=False))
+        progress_bar = Utils.ProgressMeter(_('Comparing events'),'')
+        progress_bar.set_pass(_('Selecting people'),1)
+
+        plist = cfilter.apply(self.db,
+                              self.db.get_person_handles(sort_handles=False))
+        progress_bar.step()
+        progress_bar.close()
 
         if len(plist) == 0:
             WarningDialog(_("No matches were found"))
@@ -312,10 +318,17 @@ class DisplayChart:
             index = index + 1
             
         self.list = ListModel.ListModel(self.eventlist,titles)
+
+        self.progress_bar.set_pass(_('Building display'),len(self.row_data))
         for data in self.row_data:
             self.list.add(data)
+            self.progress_bar.step()
+        self.progress_bar.close()
 
     def build_row_data(self):
+        self.progress_bar = Utils.ProgressMeter(_('Comparing events'),'')
+        self.progress_bar.set_pass(_('Building data'),
+                              self.db.get_number_of_people())
         for individual_id in self.my_list:
             individual = self.db.get_person_from_handle(individual_id)
             name = individual.get_primary_name().get_name()
@@ -382,6 +395,7 @@ class DisplayChart:
                     done = 1
                 else:
                     self.row_data.append(tlist)
+            self.progress_bar.step()
 
     def make_event_titles(self):
         """Creates the list of unique event types, along with the person's

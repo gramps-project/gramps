@@ -120,3 +120,9 @@ def get_thumbnail_image(path):
         return gtk.gdk.pixbuf_new_from_file(filename)
     except gobject.GError:
         return None
+
+def get_thumbnail_path(path):
+    filename = _build_thumb_path(path)
+    if not os.path.isfile(filename):
+        set_thumbnail_image(path)
+    return filename

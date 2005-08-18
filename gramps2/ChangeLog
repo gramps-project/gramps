@@ -1,3 +1,6 @@
+2005-08-17  Alex Roitman  <shura@gramps-project.org>
+	* various: merge changes made in gramps20 branch with main trunk.
+
 2005-08-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/Makefile.am
 	* src/plugins/Makefile.am: ScratchPad moved folder.
@@ -1142,6 +1145,7 @@
 2005-04-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py: Removed navigation buttons in flavour of a menu;
 
+<<<<<<< ChangeLog
 2005-04-23  Don Allingham  <don@gramps-project.org>
 	* src/ListModel.py: keep track of data index
 	* src/EventEdit.py: use new label scheme for tabs that uses an
@@ -1170,6 +1174,77 @@
 2005-04-23  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GrampsDbBase.py (_find_from_handle,find_object_from_handle,
 	find_place_from_handle): Fix typo
+=======
+2005-04-24  Don Allingham  <don@gramps-project.org>
+	* src/gramps.glade: remove REDO menu item
+
+2005-04-24  Eero Tamminen  <eerot@sf>
+	* configure.in: Add Finnish back to installed languages
+	* src/po/fi.po: Make translations more consistent + some fixes
+
+2005-04-24  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/rel_ru.py (get_parents): Remove gettext string.
+
+	* src/ReportUtils.py (list_person_str): Add missing periods;
+	Use burial_date and burial_place for named format string parameters.
+
+	* src/ReportUtils.py (died_str): Typo.
+	* src/gramps_main.py (on_home_clicked): Typo.
+	* src/rule.glade: Translate label.
+	* src/po/fi.po: Add to gramps20 branch.
+	* src/po/template.po: Update translation template.
+	* src/po/ru.po: Translation update.
+
+	* src/EditSource.py (button_press): Proper invokation of editors.
+	* src/ImageSelect.py: Remove workarounds for window management.
+
+	* src/Report.py (GrampsStyleComboBox): Use non-translated style name.
+
+2005-04-23  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/po/es.po: Nearly complete update, but completely untested
+
+2005-04-23  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Improved translations for style and filter names
+	  and some other things.  Still not tested
+
+2005-04-22  Don Allingham  <don@gramps-project.org>
+	* src/Date.py (__cmp__): check for Date instance before compare
+
+2005-04-21  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/ReadGedcom.py (parse_family_object): Set MediaRef properly;
+	(parse_individual): Set Adoption event properly;
+	(importData): Dont crash because of a short line;
+	Support _WITN, _WTN and _GODP; Ignore _LOC extended locations
+	* src/Marriage.py (__init__): Properly get place title
+
+2005-04-20  Don Allingham  <don@gramps-project.org>
+	* src/DbPrompter.py: handle runtime errors issued by 
+	gnomevfs.get_mime_type
+
+2005-04-21  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Translation updated, but not yet tested & fixed
+
+2005-04-20  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/ExportVCalendar.py: Mark strings for translation; use
+	proper family name
+
+2005-04-20  Eero Tamminen  <eerot@sf>
+	* src/plugins/changenames.glade: fix typo
+	* src/plugins/TestcaseGenerator.py: fix typos in description
+	* src/plugins/DetAncestralReport.py: fix gettext usage
+	* src/plugins/DetDescendantReport.py: fix gettext usage
+	* src/plugins/ChangeNames.py: fix typo
+
+2005-04-20  Don Allingham  <don@gramps-project.org>
+	* src/plugins/DetAncestralReport.py: fixed i18n strings
+	* src/ReadGedcom.py: handle FTM style of child/parent relationship
+	translation
+	* src/gedcomimport.py: 
+	* src/DisplayModels.py: fix bad index into list
+	* src/Relationship.py: handle race condition where the screen 
+	wants to update with a stale family handle after the database
+	has been closed and the internal data has not be rebuilt.
+>>>>>>> 1.1547.2.407
 
 2005-04-19  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py: Replaced gnome canvas by an implementation

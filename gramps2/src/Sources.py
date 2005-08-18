@@ -51,6 +51,7 @@ import Date
 import DateEdit
 import DateHandler
 import GrampsDBCallback
+import Spell
 
 from DdTargets import DdTargets
 
@@ -418,6 +419,12 @@ class SourceEditor:
             self.date_obj, self.date_entry_field,
             date_stat, self.sourceDisplay)
 
+        self.spage = self.get_widget("spage")
+        self.scom = self.get_widget("scomment")
+        self.spell1 = Spell.Spell(self.scom)
+        self.stext = self.get_widget("stext")
+        self.spell2 = Spell.Spell(self.stext)
+
         self.draw(self.active_source,fresh=True)
         self.set_button()
         if self.parent:
@@ -477,9 +484,9 @@ class SourceEditor:
 
     def set_button(self):
         if self.active_source:
-            self.ok.set_sensitive(1)
+            self.ok.set_sensitive(True)
         else:
-            self.ok.set_sensitive(0)
+            self.ok.set_sensitive(False)
 
     def get_widget(self,name):
         """returns the widget associated with the specified name"""
@@ -487,14 +494,10 @@ class SourceEditor:
 
     def draw(self,sel=None,fresh=False):
         if self.source_ref and fresh:
-            spage = self.get_widget("spage")
-            spage.get_buffer().set_text(self.source_ref.get_page())
+            self.spage.get_buffer().set_text(self.source_ref.get_page())
 
-            text = self.get_widget("stext")
-            text.get_buffer().set_text(self.source_ref.get_text())
-
-            scom = self.get_widget("scomment")
-            scom.get_buffer().set_text(self.source_ref.get_note())
+            self.stext.get_buffer().set_text(self.source_ref.get_text())
+            self.scom.get_buffer().set_text(self.source_ref.get_note())
             idval = self.source_ref.get_base_handle()
             src = self.db.get_source_from_handle(idval)
             self.active_source = src
@@ -545,15 +548,15 @@ class SourceEditor:
         
         conf = self.get_widget("conf").get_active()
 
-        buf = self.get_widget("scomment").get_buffer()
+        buf = self.scom.get_buffer()
         comments = unicode(buf.get_text(buf.get_start_iter(),
                                         buf.get_end_iter(),False))
 
-        buf = self.get_widget("stext").get_buffer()
+        buf = self.stext.get_buffer()
         text = unicode(buf.get_text(buf.get_start_iter(),
                                     buf.get_end_iter(),False))
 
-        buf = self.get_widget('spage').get_buffer()
+        buf = self.spage.get_buffer()
         page = unicode(buf.get_text(buf.get_start_iter(),
                                     buf.get_end_iter(),False))
 

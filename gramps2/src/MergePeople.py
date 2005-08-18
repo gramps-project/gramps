@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import sets
 
 #-------------------------------------------------------------------------
 #
@@ -47,6 +48,7 @@ import Utils
 import NameDisplay
 import const
 import DateHandler
+import QuestionDialog
 
 sex = ( _("female"), _("male"), _("unknown"))
 
@@ -80,13 +82,26 @@ class Compare:
         help_display('gramps-manual','adv-merge-people')
 
     def merge(self,obj):
-        if self.glade.get_widget('select1').get_active():
-            merge = MergePeople(self.db,self.p1,self.p2)
+
+        if check_for_spouse(self.p1,self.p2):
+            QuestionDialog.ErrorDialog(
+                _("Cannot merge people"),
+                _("Spouses cannot be merged. To merge these people, "
+                  "you must first break the relationship between them."))
+        elif check_for_child(self.p1,self.p2):
+            QuestionDialog.ErrorDialog(
+                _("Cannot merge people"),
+                _("A parent and child cannot be merged. To merge these "
+                  "people, you must first break the relationship between "
+                  "them."))
         else:
-            merge = MergePeople(self.db,self.p2,self.p1)
-        self.top.destroy()
-        merge.merge()
-        self.update()
+            if self.glade.get_widget('select1').get_active():
+                merge = MergePeople(self.db,self.p1,self.p2)
+            else:
+                merge = MergePeople(self.db,self.p2,self.p1)
+                self.top.destroy()
+                merge.merge()
+                self.update()
 
     def add(self, tobj, tag, text):
         text += "\n"
@@ -214,6 +229,23 @@ class Compare:
             return ""
 
 
+def check_for_spouse(p1, p2):
+
+    f1 = sets.Set(p1.get_family_handle_list())
+    f2 = sets.Set(p2.get_family_handle_list())
+
+    return len(f1.intersection(f2)) != 0
+
+def check_for_child(p1, p2):
+
+    fs1 = sets.Set(p1.get_family_handle_list())
+    fp1 = sets.Set(map(lambda x: x[0], p1.get_parent_family_handle_list()))
+
+    fs2 = sets.Set(p2.get_family_handle_list())
+    fp2 = sets.Set(map(lambda x: x[0], p2.get_parent_family_handle_list()))
+
+    return len(fs1.intersection(fp2)) != 0 or len(fs2.intersection(fp1))
+
 #-------------------------------------------------------------------------
 #
 # Merge People UI
@@ -239,12 +271,25 @@ class MergePeopleUI:
             ret = top.run()
         
         if ret == gtk.RESPONSE_OK:
-            if p1.get_active():
-                merge = MergePeople(db,person1,person2)
+
+            if check_for_spouse(person1,person2):
+                QuestionDialog.ErrorDialog(
+                    _("Cannot merge people"),
+                    _("Spouses cannot be merged. To merge these people, "
+                      "you must first break the relationship between them."))
+            elif check_for_child(person1,person2):
+                QuestionDialog.ErrorDialog(
+                    _("Cannot merge people"),
+                    _("A parent and child cannot be merged. To merge these "
+                      "people, you must first break the relationship between "
+                      "them."))
             else:
-                merge = MergePeople(db,person2,person1)
-            merge.merge()
-            update()
+                if p1.get_active():
+                    merge = MergePeople(db,person1,person2)
+                else:
+                    merge = MergePeople(db,person2,person1)
+                merge.merge()
+                update()
         top.destroy()
 
     def help(self,obj):

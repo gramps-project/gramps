@@ -137,9 +137,9 @@ class DateParser:
         }
 
     french_to_int = {
-        u'vend\xc3\xa9miaire'   : 1,    'brumaire'   : 2,
+        u'vend\xc3\xa9miaire'  : 1,    'brumaire'   : 2,
         'frimaire'             : 3,    u'niv\xc3\xb4se  ': 4,
-        u'pluvi\xc3\xb4se'      : 5,    u'vent\xc3\xb4se' : 6,
+        u'pluvi\xc3\xb4se'     : 5,    u'vent\xc3\xb4se' : 6,
         'germinal'             : 7,    u'flor\xc3\xa9al' : 8,
         'prairial'             : 9,    'messidor'   : 10,
         'thermidor'            : 11,   'fructidor'  : 12,
@@ -239,6 +239,7 @@ class DateParser:
         self._mod_str  = '(' + '|'.join(
             [ key.replace('.','\.') for key in self.modifier_to_int.keys() ]
             ) + ')'
+
         # Need to reverse-sort the keys, so that April matches before Apr does.
         # Otherwise, 'april 2000' would be matched as 'apr' + garbage ('il 2000')
         _month_keys = self.month_to_int.keys()
@@ -263,6 +264,7 @@ class DateParser:
                            re.IGNORECASE)
         self._modifier = re.compile('%s\s+(.*)' % self._mod_str,
                            re.IGNORECASE)
+        self._abt2     = re.compile('<(.*)>',re.IGNORECASE)
         self._text     = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % self._mon_str,
                            re.IGNORECASE)
         self._text2    = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str,
@@ -282,8 +284,6 @@ class DateParser:
         self._itext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % self._imon_str,
                            re.IGNORECASE)
         self._itext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % self._imon_str,
-                           re.IGNORECASE)
-        self._range2   = re.compile('%s\s+(\d+)-(\d+)\s*,?\s*((\d+)(/\d+)?)?' % self._mon_str,
                            re.IGNORECASE)
         self._numeric  = re.compile("((\d+)[/\.])?((\d+)[/\.])?(\d+)")
         self._iso      = re.compile("(\d+)-(\d+)-(\d+)")
@@ -474,31 +474,6 @@ class DateParser:
             return 1
         return 0
 
-    def match_range2(self,text,cal,qual,date):
-        """
-        Try matching numerical range date.
-        
-        On success, set the date and return 1. On failure return 0.
-        """
-        match = self._range2.match(text)
-        if match:
-            grps = match.groups()
-            m = self.month_to_int[grps[0].lower()]
-
-            d0 = self._get_int(grps[1])
-            d1 = self._get_int(grps[2])
-
-            if grps[3] == None:
-                y = 0
-                s = None
-            else:
-                y = int(grps[3])
-                s = grps[4] != None
-            date.set(qual,Date.MOD_RANGE,Date.CAL_GREGORIAN,
-                     (d0,m,y,s,d1,m,y,s))
-            return 1
-        return 0
-
     def match_bce(self,text):
         """
         Try matching BCE qualifier.
@@ -527,8 +502,18 @@ class DateParser:
                 date.set(qual,mod,cal,self.invert_year(start))
             else:
                 date.set(qual,mod,cal,start)
-            return 1
-        return 0
+            return True
+        match = self._abt2.match(text)
+        if match:
+            grps = match.groups()
+            start = self._parse_subdate(grps[0])
+            mod = Date.MOD_ABOUT
+            if bc:
+                date.set(qual,mod,cal,self.invert_year(start))
+            else:
+                date.set(qual,mod,cal,start)
+            return True
+        return False
 
     def set_date(self,date,text):
         """
@@ -543,8 +528,6 @@ class DateParser:
         if self.match_span(text,cal,qual,date):
             return
         if self.match_range(text,cal,qual,date):
-            return
-        if self.match_range2(text,cal,qual,date):
             return
 
         (text,bc) = self.match_bce(text)

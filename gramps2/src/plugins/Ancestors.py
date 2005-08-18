@@ -351,10 +351,10 @@ class ComprehensiveAncestorsReport (Report.Report):
 
                 spouse = []
                 if from_family:
-                    from_family_father = from_family.get_father_handle ()
-                    from_family_mother = from_family.get_mother_handle ()
+                    from_family_father_id = from_family.get_father_handle ()
+                    from_family_mother_id = from_family.get_mother_handle ()
                 else:
-                    from_family_father = from_family_mother = None
+                    from_family_father_id = from_family_mother = None
 
                 for family_handle in person.get_family_handle_list ():
                     family = self.database.get_family_from_handle(family_handle)
@@ -365,8 +365,8 @@ class ComprehensiveAncestorsReport (Report.Report):
                             continue
 
                         if (suppress_children or
-                            (partner != from_family_father and
-                             partner != from_family_mother)):
+                            (partner_id != from_family_father_id and
+                             partner_id != from_family_mother_id)):
                             for media_ref in partner.get_media_list ()[:1]:
                                 object_handle = media_ref.get_reference_handle()
                                 mobject = self.database.get_object_from_handle(object_handle)

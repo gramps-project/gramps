@@ -53,6 +53,8 @@ import Utils
 import Sources
 import AutoComp
 import RelLib
+import Spell
+
 from QuestionDialog import WarningDialog
 
 #-------------------------------------------------------------------------
@@ -64,7 +66,7 @@ class AttributeEditor:
     """
     Displays a dialog that allows the user to edit an attribute.
     """
-    def __init__(self, parent, attrib, title, list, callback,
+    def __init__(self, parent, attrib, title, data_list, callback,
                  parent_window=None):
         """
         Displays the dialog box.
@@ -88,12 +90,13 @@ class AttributeEditor:
         self.attrib = attrib
         self.callback = callback
         self.child_windows = {}
-        self.alist = list
+        self.alist = data_list
 
         self.top = gtk.glade.XML(const.dialogFile, "attr_edit","gramps")
         self.slist  = self.top.get_widget("slist")
         self.value_field = self.top.get_widget("attr_value")
         self.note_field = self.top.get_widget("attr_note")
+        self.spell = Spell.Spell(self.note_field)
         self.attrib_menu = self.top.get_widget("attr_menu")
 #        self.type_field  = self.attrib_menu.child
         self.source_field = self.top.get_widget("attr_source")

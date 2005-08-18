@@ -36,6 +36,7 @@ import random
 import locale
 import re
 from sys import maxint
+import sets
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -174,6 +175,11 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self.omap_index = 0
         self.rmap_index = 0
 
+        self.family_event_names = sets.Set()
+        self.individual_event_names = sets.Set()
+        self.individual_attributes = sets.Set()
+        self.family_attributes = sets.Set()
+
         self.set_person_id_prefix(GrampsKeys.get_person_id_prefix())
         self.set_object_id_prefix(GrampsKeys.get_object_id_prefix())
         self.set_family_id_prefix(GrampsKeys.get_family_id_prefix())
@@ -201,7 +207,6 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self.repository_map  = None
         self.media_map  = None
         self.event_map  = None
-        self.eventnames = None
         self.metadata   = None
         self.name_group = None
         self.undo_callback = None
@@ -216,6 +221,9 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self.path = ""
         self.place2title = {}
         self.name_group = {}
+
+    def rebuild_secondary(self,callback=None):
+        pass
 
     def version_supported(self):
         """ Returns True when the file has a supported version"""
@@ -330,7 +338,10 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
                 self.genderStats.count_person(person,self)
         else:
             self.genderStats.count_person(person,self)
-          
+
+        for attr in person.attribute_list:
+            self.individual_attributes.add(attr.type)
+            
     def commit_media_object(self,obj,transaction,change_time=None):
         """
         Commits the specified MediaObject to the database, storing the changes
@@ -358,6 +369,14 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
                           transaction.place_update, transaction.place_add,
                           transaction, change_time)
 
+    def commit_personal_event(self,event,transaction,change_time=None):
+        self.individual_event_names.add(event.name)
+        self.commit_event(event,transaction,change_time)
+
+    def commit_family_event(self,event,transaction,change_time=None):
+        self.family_event_names.add(event.name)
+        self.commit_event(event,transaction,change_time)
+
     def commit_event(self,event,transaction,change_time=None):
         """
         Commits the specified Event to the database, storing the changes
@@ -375,6 +394,9 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self._commit_base(family, self.family_map, FAMILY_KEY,
                           transaction.family_update, transaction.family_add,
                           transaction, change_time)
+
+        for attr in family.attribute_list:
+            self.family_attributes.add(attr.type)
 
     def commit_repository(self,repository,transaction,change_time=None):
         """
@@ -740,6 +762,36 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         """
         return len(self.person_map)
 
+    def get_number_of_families(self):
+        """
+        Returns the number of families currently in the databse.
+        """
+        return len(self.family_map)
+
+    def get_number_of_events(self):
+        """
+        Returns the number of events currently in the databse.
+        """
+        return len(self.event_map)
+
+    def get_number_of_places(self):
+        """
+        Returns the number of places currently in the databse.
+        """
+        return len(self.place_map)
+
+    def get_number_of_sources(self):
+        """
+        Returns the number of sources currently in the databse.
+        """
+        return len(self.source_map)
+
+    def get_number_of_media_objects(self):
+        """
+        Returns the number of media objects currently in the databse.
+        """
+        return len(self.media_map)
+
     def get_person_handles(self,sort_handles=True):
         """
         Returns a list of database handles, one handle for each Person in
@@ -1082,7 +1134,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Returns the list of personal event types contained within the
         database. The function must be overridden in the derived class.
         """
-        assert False, "Needs to be overridden in the derived class"
+        return list(self.individual_event_names)
 
     def get_bookmarks(self):
         """returns the list of Person handles in the bookmarks"""
@@ -1130,22 +1182,23 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
     def get_person_event_types(self):
         """returns a list of all Event types assocated with Person
         instances in the database"""
-        return []
+        return list(self.individual_event_names)
 
     def get_person_attribute_types(self):
         """returns a list of all Attribute types assocated with Person
         instances in the database"""
-        return []
+        return list(self.individual_attributes)
 
     def get_family_attribute_types(self):
         """returns a list of all Attribute types assocated with Family
         instances in the database"""
-        return []
+        return list(self.family_attributes)
 
     def get_family_event_types(self):
         """returns a list of all Event types assocated with Family
         instances in the database"""
-        return []
+        return list(self.family_event_names)
+
 
     def get_media_attribute_types(self):
         """returns a list of all Attribute types assocated with Media

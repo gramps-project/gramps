@@ -1260,6 +1260,58 @@ class WebReportOptions(ReportOptions.ReportOptions):
         }
 
         self.options_help = {
+            'HTMLod'            : ("=str","Output directory for the web site",
+                                   "/full/name/of/the/dir"),
+            'HTMLimg'           : ("=num","Inclusion of images",
+                                   ["No images at all",
+                                    "No images for living people",
+                                    "Images for all people"], True
+                                   ),
+            'HTMLrestrictinfo'  : ("=0/1",
+                                   "Restrict information on living people",
+                                   ["Do not restrict", "Restrict"], True),
+            'HTMLincpriv'       : ("=0/1","Inclusion of people marked private",
+                                   ["Do not include","Include"], True),
+            'HTMLcmtxtsi'       : ("=0/1","Inclusion of comments and text "
+                                   "in source information",
+                                   ["Do not include","Include"], True),
+            'HTMLlnktoalphabet' : ("=0/1","Include links to alphabetical "
+                                   "sections in index page",
+                                   ["Do not include","Include"], True), 
+            'HTMLsplita'        : ("=0/1","Split alphabetical sections "
+                                   "to different pages",
+                                   ["Do not split sections","Split sections"],
+                                   True), 
+            'HTMLshorttree'     : ("=0/1","Include short ancestor tree",
+                                   ["Do not include","Include"], True),
+            'HTMLimagedir'      : ("=str","Image subdirectory",
+                                   "image_subdir_name"),
+            'HTMLincid'         : ("=0/1","Include GRAMPS ID in the report",
+                                   ["Do not include","Include"], True),
+            'HTMLidurl'         : ("=str","URL for links from GRAMPS IDs",
+                                   "the_url_value"),
+            'HTMLlinktidx'      : ("=0/1","Include links to the index page",
+                                   ["Do not include","Include"], True),
+            'HTMLext'           : ("=str","Extension for generated files",
+                                   "Any extension you like: html, htm, "
+                                   "php, asp, etc."),
+            'HTMLtreed'         : ("=num","Depth of ancestor tree",
+                                   "Any integer number"),
+            'HTMLidxt'          : ("=str","Template name for the index page",
+                                   "/full/path/to/the/tpkg"),
+            'HTMLidxcol'        : ("=num",
+                                   "Number of columns in the index page",
+                                   "Any integer number"),
+            'HTMLgendex'        : ("=0/1","Create a GENDEX index",
+                                   ["Do not create","Create"], True),
+            'HTMLidxbirth'      : ("=0/1","Append birth dates to the names "
+                                   "on the index page",
+                                   ["Do not append","Append"], True),
+            'HTMLplaceidx'      : ("=0/1","Create an index of all Places",
+                                   ["Do not create","Create"], True),
+            'HTMLyearso'        : ("=0/1","Use only birth year "
+                                   "on the index page",
+                                   ["Use full date","Use just year"], True),
         }
 
     def enable_options(self):
@@ -1920,7 +1972,12 @@ register_report(
     report_class = WebReportDialog,
     options_class = cl_report,
     modes = Report.MODE_GUI | Report.MODE_CLI,
-    translated_name = _("Generate Web Site"),
-    status=(_("Beta")),
-    description=_("Generates web (HTML) pages for individuals, or a set of individuals."),
+    translated_name = _("Generate Web Site (deprecated)"),
+    author_name="Donald N. Allingham",
+    author_email="don@gramps-project.org",
+    status=(_("Deprecated")),
+    description=_("Generates web (HTML) pages for individuals, "
+                  "or a set of individuals. This report is considered "
+                  "to be deprecated. Please migrate to the new "
+                  "Narrative Web Page generator."),
     )

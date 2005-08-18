@@ -1202,7 +1202,6 @@ class GrampsParser:
                     'family' : Utils.family_name(self.family,self.db),
                     }
                 self.event.set_description(text)
-
         else:
             ref = RelLib.EventRef()
             ref.set_reference_handle(self.event.get_handle())
@@ -1240,8 +1239,10 @@ class GrampsParser:
         self.name = None
 
     def stop_ref(self,tag):
+##         # FIXME: Work this out when Witness is working again
+##         person = self.find_person_by_gramps_id(self.map_gid(tag))
+##         self.witness = RelLib.Witness(RelLib.Event.ID,person.get_handle())
         return
-        self.witness = RelLib.Witness(RelLib.Event.ID,tag)
 
     def stop_place(self,tag):
         if self.placeobj == None:

@@ -67,14 +67,14 @@ class Sort:
         name1 = first.get_primary_name()
         name2 = second.get_primary_name()
 
-        fsn = name1.get_surname().upper()
-        ssn = name2.get_surname().upper()
+        fsn = name1.get_surname()
+        ssn = name2.get_surname()
 
         if fsn == ssn :
-            ffn = name1.get_first_name().upper()
-            sfn = name2.get_first_name().upper()
+            ffn = name1.get_first_name()
+            sfn = name2.get_first_name()
             if ffn == sfn:
-                return locale.strcoll(name1.get_suffix().upper(), name2.get_suffix().upper())
+                return locale.strcoll(name1.get_suffix(), name2.get_suffix())
             else:
                 return locale.strcoll(ffn, sfn)
         else:
@@ -111,7 +111,10 @@ class Sort:
         else:
             date2 = Date.Date()
 
-        val = cmp(date1,date2)
+        dsv1 = date1.get_sort_value()
+        dsv2 = date2.get_sort_value()
+
+        val = cmp(dsv1,dsv2)
         if val == 0:
             return self.by_last_name(first_id,second_id)
         return val

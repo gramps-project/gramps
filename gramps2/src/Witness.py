@@ -165,14 +165,15 @@ class WitnessEditor:
                 self.idval = self.ref.get_value()
                 if self.db.has_person_handle(self.idval):
                     person = self.db.get_person_from_handle(self.idval)
-                    self.name.set_text(person.get_primary_name().get_regular_name())
-                    self.in_db.set_active(1)
+                    name = NameDisplay.displayer.display(person)
+                    self.name.set_text(name)
+                    self.in_db.set_active(True)
                 else:
                     self.name.set_text(_("Unknown"))
-                    self.in_db.set_active(0)
+                    self.in_db.set_active(False)
             else:
                 self.name.set_text(self.ref.get_value())
-                self.in_db.set_active(0)
+                self.in_db.set_active(False)
             self.comment.get_buffer().set_text(self.ref.get_comment())
             self.private.set_active(self.ref.get_privacy())
 
@@ -213,24 +214,25 @@ class WitnessEditor:
 
     def choose(self,obj):
         import SelectPerson
-        sel_person = SelectPerson.SelectPerson(self.db,_('Select Person'),parent_window=self.window)
+        sel_person = SelectPerson.SelectPerson(self.db,_('Select Person'),
+                                               parent_window=self.window)
         new_person = sel_person.run()
         if new_person:
             self.new_person = new_person
             self.idval = new_person.get_handle()
-            new_name = new_person.get_primary_name().get_regular_name()
+            new_name = NameDisplay.displayer.display(new_person)
             if new_name:
                 self.name.set_text(new_name)
         
     def on_toggled(self,obj):
         if self.in_db.get_active():
-            self.name.set_editable(0)
-            self.name.set_sensitive(0)
-            self.select.set_sensitive(1)
+            self.name.set_editable(False)
+            self.name.set_sensitive(False)
+            self.select.set_sensitive(True)
         else:
-            self.name.set_editable(1)
-            self.name.set_sensitive(1)
-            self.select.set_sensitive(0)
+            self.name.set_editable(True)
+            self.name.set_sensitive(True)
+            self.select.set_sensitive(False)
         
     def ok_clicked(self,obj):
         if not self.ref:

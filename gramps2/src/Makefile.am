@@ -1,10 +1,12 @@
 # $Id$
+
 # This is the src level Makefile for Gramps
 SUBDIRS = docgen plugins dates data po 
 
 # For intl. support, how do we compile?
 MOSTLYCLEANFILES = 
 CLEANFILES = const.pyc const.pyo
+
 # What are the PYTHON scripts for this package that need to be handled?
 #
 # We only want optimized byte-compiled (.pyo) versions, no .pyc
@@ -123,7 +125,8 @@ gdir_PYTHON = \
 	ReadGrdb.py\
 	WriteGrdb.py\
 	EventView.py\
-	SelectEvent.py
+	SelectEvent.py\
+	Spell.py
 
 # Could use GNU make's ':=' syntax for nice wildcard use.
 # If not using GNU make, then list all files individually

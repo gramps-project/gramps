@@ -406,7 +406,8 @@ class AddSpouse:
 #-------------------------------------------------------------------------
 class LikelyFilter(GenericFilter.Rule):
 
-    category    = _('General filters')
+    labels   = [ 'Person handle', 'Person gender' ]
+    category = _('General filters')
 
     def prepare(self,db):
         person = db.get_person_from_handle(self.list[0])

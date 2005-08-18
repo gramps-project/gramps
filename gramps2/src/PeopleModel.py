@@ -30,6 +30,7 @@ import time
 import locale
 import cgi
 import sets
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -71,6 +72,25 @@ _BIRTH_COL = 7
 _EVENT_COL = 8
 _FAMILY_COL= 9
 _CHANGE_COL= 21
+
+#-------------------------------------------------------------------------
+#
+# python 2.3 has a bug in the unicode sorting using locale.strcoll. Seems
+# to have a buffer overrun. We can convince it to do the right thing by
+# forcing the string to be nul terminated, sorting, then stripping off the
+# nul.
+#
+#-------------------------------------------------------------------------
+
+if sys.version_info[0:2] == (2,3):
+    def locale_sort(mylist):
+        mylist = map(lambda x: x + "\x00", mylist)
+        mylist.sort(locale.strcoll)
+        return map(lambda x: x[:-1], mylist)
+else:
+    def locale_sort(mylist):
+        mylist.sort(locale.strcoll)
+        return mylist
 
 #-------------------------------------------------------------------------
 #
@@ -122,27 +142,25 @@ class PeopleModel(gtk.GenericTreeModel):
         self.sortnames = {}
         cursor = self.db.get_person_cursor()
         node = cursor.next()
+
+        ngn = NameDisplay.displayer.name_grouping_name
+        nsn = NameDisplay.displayer.sorted_name
         while node:
             if node[0] in flist:
                 primary_name = node[1][_NAME_COL]
-                if primary_name.group_as:
-                    surname = primary_name.group_as
-                else:
-                    surname = self.db.get_name_group_mapping(primary_name.surname)
-                self.sortnames[node[0]] = primary_name.sname
-
+                surname = unicode(ngn(self.db,primary_name))
+                self.sortnames[node[0]] = unicode(nsn(primary_name))
                 if self.temp_sname_sub.has_key(surname):
                     self.temp_sname_sub[surname].append(node[0])
                 else:
                     self.temp_sname_sub[surname] = [node[0]]
             node = cursor.next()
         cursor.close()
-        
-        self.temp_top_path2iter = self.temp_sname_sub.keys()
-        self.temp_top_path2iter.sort(locale.strcoll)
+
+        self.temp_top_path2iter = locale_sort(self.temp_sname_sub.keys())
         for name in self.temp_top_path2iter:
             self.build_sub_entry(name)
-
+        
     def build_sub_entry(self,name):
         slist = map(lambda x: (self.sortnames[x],x),self.temp_sname_sub[name])
         slist.sort(self.byname)

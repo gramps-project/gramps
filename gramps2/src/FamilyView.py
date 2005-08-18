@@ -712,6 +712,9 @@ class FamilyView:
         family.set_handle(fhandle)
         family.set_gramps_id(self.parent.db.find_next_family_gramps_id())
 
+        if fhandle in old_person.get_family_handle_list():
+            return
+        
         old_person.add_family_handle(fhandle)
         new_person.add_family_handle(fhandle)
 
@@ -853,7 +856,7 @@ class FamilyView:
 
         # commit the transaction
         self.parent.db.commit_person(child,trans)
-        n = child.get_primary_name().get_regular_name()
+        n = NameDisplay.displayer.display(child)
         self.parent.db.transaction_commit(trans,_("Remove Child (%s)") % n)
         self.parent.db.enable_all_signals()
         self.parent.db.emit('family-update',([family.get_handle()],))
@@ -904,7 +907,7 @@ class FamilyView:
 
         person_id = cur_person.get_handle()
         self.person = self.parent.db.get_person_from_handle(person_id)
-        n = self.person.get_primary_name().get_regular_name()
+        n = NameDisplay.displayer.display(self.person)
         self.parent.db.transaction_commit(trans,_("Remove Spouse (%s)") % n)
 
         if len(self.person.get_family_handle_list()) <= 1:
@@ -1430,7 +1433,7 @@ class FamilyView:
                     self.parent.db.remove_family(fam,trans)
 
         self.parent.db.commit_person(person,trans)
-        n = person.get_primary_name().get_regular_name()
+        n = NameDisplay.displayer.display(person)
         self.parent.db.transaction_commit(trans,_("Remove Parents (%s)") % n)
         
         self.load_family()

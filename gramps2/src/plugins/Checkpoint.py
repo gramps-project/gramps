@@ -116,6 +116,8 @@ class Checkpoint:
         """
         (archive_base,ext) = os.path.splitext(self.db.get_save_path())
 
+        comment = self.timestamp()
+
         archive = archive_base + ",v"
         if not os.path.exists(archive):
             proc = popen2.Popen3('rcs -i -U -q -t-"GRAMPS database" %s' % archive,True)
@@ -130,8 +132,6 @@ class Checkpoint:
         
         xmlwrite = WriteXML.XmlWriter(self.db,self.callback,False,False)
         xmlwrite.write(archive_base)
-
-        comment = self.timestamp()
 
         proc = popen2.Popen3("ci %s" % archive_base,True)
         proc.tochild.write(comment)

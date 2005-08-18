@@ -1,0 +1,222 @@
+
+/* GRAMPS Cascading Style Sheet */
+
+/* Standard Tags {{{1
+ */
+BODY {
+	font-family: "Arial", "Helvetica", sans-serif;
+	background-color: #fafaff;
+	color: #003;
+}
+
+P,BLOCKQUOTE {
+	font-size: 14px;
+}
+
+DIV {
+	margin: 2px;
+	padding: 2px;
+}
+
+TD {
+	vertical-align: top;
+}
+
+H1 {
+	font-family: "Verdana", "Bistream Vera Sans", "Arial", "Helvetica", sans-serif;
+	font-weight: bolder;
+	font-size:	160%;
+	margin: 2px;
+}
+H2 {
+	font-family: "Verdana", "Bistream Vera Sans", "Arial", "Helvetica", sans-serif;
+	font-weight: bolder;
+	font-style: italic;
+	font-size:	150%;
+}
+H3 {
+	font-weight: bold;
+	margin: 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: #336;
+}
+H4 {
+	margin-top: 1em;
+	margin-bottom: 0.3em;
+	padding-left: 4px;
+	background-color: #667;
+	color: #fff;
+}
+H5 {
+	margin-bottom: 0.5em;
+}
+H6 {
+	font-weight: normal;
+	font-style: italic;
+	font-size:	100%;
+	margin-left: 1em;
+	margin-top: 1.3em;
+	margin-bottom: 0.8em;
+}
+
+HR {
+	height: 0;
+	width: 0;
+	margin: 0;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	padding: 0;
+	border-top: 0;	/* Hack: Mozilla work-around to eliminate "groove" */
+	border-color: #e0e0e9;
+}
+
+A:link {
+	color: #006;
+	text-decoration: underline;
+}
+A:visited {
+	color: #669;
+	text-decoration: underline;
+}
+A:hover {
+	background-color: #eef;
+	color: #000;
+	text-decoration: underline;
+}
+A:active {
+	background-color: #eef;
+	color: #000;
+	text-decoration: none;
+}
+SUP {
+    line-height: 0;
+}
+
+/* Custom {{{1
+ */
+
+.navheader {
+	padding: 4px;
+	background-color: #e0e0e9;
+	margin: 2px;
+}
+.navtitle {
+	font-size:	160%;
+	color: #669;
+	margin: 2px;
+
+}
+.navbyline {
+	float: right;
+	font-size: 14px;
+	margin: 2px;
+	padding: 4px;
+}
+.nav {
+	margin: 0;
+	margin-bottom: 4px;
+	padding: 0;
+	font-size: 14px;
+	font-weight: bold;
+
+
+
+}
+
+
+.summaryarea {
+    min-height: 100px;
+    /* Hack: IE Dynamic Expression to set the width */
+    height: expression(document.body.clientHeight < 1 ? "100px" : "100px" );
+}
+
+.portrait {
+	justify: center;
+	margin: 5px;
+	margin-right: 20px;
+	padding: 3px;
+	border-color: #336;
+	border-width: 1px;
+}
+.snapshot {
+	float: right;
+	margin: 5px;
+	margin-right: 20px;
+	padding: 3px;
+}
+.thumbnail {
+	height: 100px;
+	border-color: #336;
+	border-width: 1px;
+}
+
+.leftwrap {
+	float: left;
+	margin: 2px;
+	margin-right: 10px;
+}
+.rightwrap {
+	float: right;
+	margin: 2px;
+	margin-left: 10px;
+}
+
+TABLE.infolist {
+	border: 0;
+	/*width: 100%;*/
+	font-size: 14px;
+}
+.img_navbar {
+  	margin: 0;
+  	margin-bottom: 4px;
+  	padding: 10px;
+  	font-size: 14px;
+  	font-weight: bold;
+	text-align: center;
+}
+TD.category {
+	padding: 3px;	/* Defines spacing between rows */
+	padding-right: 3em;
+	/*width: 10%;*/
+	font-weight: bold;
+}
+TD.field {
+	padding: 3px;	/* Defines spacing between rows */
+	padding-right: 3em;
+	/*width: 15%;*/
+
+}
+TD.data {
+	padding: 3px;	/* Defines spacing between rows */
+	padding-right: 3em;
+	font-weight: bold;
+}
+
+
+.pedigree {
+	margin: 0;
+	margin-left: 2em;
+	padding: 0;
+	background-color: #e0e0e9;
+	border: 1px;
+}
+.pedigreeind {
+	font-size: 14px;
+	margin: 0;
+	padding: 2em;
+	padding-top: 0.25em;
+	padding-bottom: 0.5em;
+}
+
+
+.footer {
+	margin: 1em;
+	font-size: 12px;
+	float: right;
+}
+
+
+/* 1}}}
+ vim:foldmethod=marker
+/*

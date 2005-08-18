@@ -176,25 +176,21 @@ class Merge:
         else:
             self.show()
     
-    def progress_update(self,val):
-        self.progress.set_fraction(val/100.0)
-        while gtk.events_pending():
-            gtk.main_iteration()
-
     def find_potentials(self,thresh):
-        top = gtk.glade.XML(self.glade_file,"message","gramps")
-        self.topWin = top.get_widget("message")
-        self.topWin.set_icon(self.parent.topWindow.get_icon())
-        self.progress = top.get_widget("progressbar1")
+        self.progress = Utils.ProgressMeter(_('Find duplicates'),
+                                          _('Looking for duplicate people'))
 
-        Utils.set_titles(self.topWin,top.get_widget('title'),
-                         _('Determining possible merges'))
-        
         index = 0
-
         males = {}
         females = {}
+
+        length = len(self.person_list)
+
+        self.progress.set_pass(_('Pass 1: Building preliminary lists'),
+                               length)
+        
         for p1_id in self.person_list:
+            self.progress.step()
             p1 = self.db.get_person_from_handle(p1_id)
             key = self.gen_key(p1.get_primary_name().get_surname())
             if p1.get_gender() == RelLib.Person.MALE:
@@ -208,14 +204,12 @@ class Merge:
                 else:
                     females[key] = [p1_id]
                 
-        length = len(self.person_list)
+        self.progress.set_pass(_('Pass 2: Calculating potential matches'),
+                               length)
 
-        num = 0
         for p1key in self.person_list:
+            self.progress.step()
             p1 = self.db.get_person_from_handle(p1key)
-            if num % 25 == 0:
-                self.progress_update((float(num)/float(length))*100)
-            num = num + 1
 
             key = self.gen_key(p1.get_primary_name().get_surname())
             if p1.get_gender() == RelLib.Person.MALE:
@@ -246,7 +240,7 @@ class Merge:
         self.list = self.map.keys()
         self.list.sort()
         self.length = len(self.list)
-        self.topWin.destroy()
+        self.progress.close()
         self.dellist = {}
 
     def show(self):
@@ -602,8 +596,6 @@ class Merge:
                             value = self.name_match(mname1,mname2)
                             if value != -1:
                                 chance = chance + value
-
-        print p1.get_gramps_id(), p2.get_gramps_id(), chance
         return chance
 
 #-------------------------------------------------------------------------

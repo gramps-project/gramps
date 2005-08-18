@@ -113,7 +113,7 @@ class DateDisplayFR(DateDisplay):
 
     _mod_str = ("",u"avant ",u"après ",u"vers ","","","")
     
-    _qual_str = ("","calculated ","estimated ")
+    _qual_str = ("","estimated ","calculated ")
 
     formats = (
         "AAAA-MM-DD (ISO)", "Numérique", "Mois Jour, Année",

@@ -153,7 +153,12 @@ class Verify:
         error = cStringIO.StringIO()
         warn = cStringIO.StringIO()
 
+        progress = Utils.ProgressMeter(_('Verify the database'),'')
+
+        progress.set_pass(_('Checking data'),self.db.get_number_of_people())
+        
         for person_handle in personList:
+            progress.step()
             person = self.db.get_person_from_handle(person_handle)
             idstr = "%s (%s)" % (person.get_primary_name().get_name(),person.get_gramps_id())
 
@@ -290,6 +295,7 @@ class Verify:
             prev_maryear=0
             prev_sdyear=0
             fnum = 0
+
             for family_handle in person.get_family_handle_list():
                 family = self.db.get_family_from_handle(family_handle)
                 fnum = fnum + 1
@@ -473,6 +479,7 @@ class Verify:
                 warn.write(_("Too many children (%(num_children)d) for %(person_name)s.\n") % {
                     'num_children' : total_children, 'person_name' : idstr })
 
+        progress.close()
         text = ""
         err_text = error.getvalue()
         warn_text = warn.getvalue()
