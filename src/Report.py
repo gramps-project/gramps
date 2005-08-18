@@ -252,6 +252,18 @@ class Report:
         put at the top of the contents of the dialog box."""
         return ("%s - GRAMPS" % _("Progress Report"), _("Working"))
 
+    def progress_bar_title(self,name,length):
+        markup = '<span size="larger" weight="bold">%s</span>'
+        self.lbl.set_text(markup % name)
+        self.lbl.set_use_markup(True)
+        self.pbar.set_fraction(0.0)
+
+        progress_steps = length
+        if length > 1:
+            progress_steps = progress_steps+1
+        progress_steps = progress_steps+1
+        self.pbar_max = length
+        
     def progress_bar_setup(self,total):
         """Create a progress dialog.  This routine calls a
         customization function to find out how to fill out the dialog.
@@ -265,10 +277,12 @@ class Report:
         self.ptop = gtk.Dialog()
         self.ptop.set_has_separator(False)
         self.ptop.set_title(title)
-        lbl = gtk.Label(header)
-        lbl.set_use_markup(True)
-        self.ptop.vbox.add(lbl)
+        self.ptop.set_border_width(12)
+        self.lbl = gtk.Label(header)
+        self.lbl.set_use_markup(True)
+        self.ptop.vbox.add(self.lbl)
         self.ptop.vbox.set_spacing(10)
+        self.ptop.vbox.set_border_width(24)
         self.pbar = gtk.ProgressBar()
         self.pbar_max = total
         self.pbar_index = 0.0
@@ -288,6 +302,8 @@ class Report:
         
         self.pbar.set_text("%d of %d (%.1f%%)" % (self.pbar_index,self.pbar_max,(val*100)))
         self.pbar.set_fraction(val)
+        while gtk.events_pending():
+            gtk.main_iteration()
 
     def progress_bar_done(self):
         """Done with the progress bar.  It can be destroyed now."""
@@ -522,7 +538,7 @@ class BareReportDialog:
         """Set up the title bar of the dialog.  This function relies
         on the get_title() customization function for what the title
         should be."""
-        self.name = self.person.get_primary_name().get_regular_name()
+        self.name = NameDisplay.displayer.display(self.person)
         self.window.set_title(self.get_title())
 
     def setup_header(self):
@@ -545,7 +561,7 @@ class BareReportDialog:
         label.set_use_markup(1)
         label.set_alignment(0.0,0.5)
         self.tbl.set_border_width(12)
-        self.tbl.attach(label,0,4,self.col,self.col+1)
+        self.tbl.attach(label, 0, 4, self.col, self.col+1, gtk.FILL|gtk.EXPAND)
         self.col += 1
 
     def setup_center_person(self): 
@@ -559,7 +575,7 @@ class BareReportDialog:
         self.tbl.attach(center_label,0,4,self.col,self.col+1)
         self.col += 1
 
-        name = self.person.get_primary_name().get_regular_name()
+        name = NameDisplay.displayer.display(self.person)
         self.person_label = gtk.Label( "%s" % name )
         self.person_label.set_alignment(0.0,0.5)
         self.tbl.attach(self.person_label,2,3,self.col,self.col+1)
@@ -698,8 +714,9 @@ class BareReportDialog:
             self.extra_menu.set_sensitive(len(extra_map) > 1)
             self.add_tooltip(self.extra_menu,em_tip)
             table.attach(self.extra_menu_label, 1, 2, row, row+1,
-                         gtk.SHRINK|gtk.FILL)
-            table.attach(self.extra_menu,2,3,row,row+1)
+                         gtk.SHRINK|gtk.FILL, gtk.SHRINK)
+            table.attach(self.extra_menu, 2, 3, row, row+1,
+                         yoptions=gtk.SHRINK)
             row += 1
             
         # Now the "extra" text box
@@ -716,8 +733,9 @@ class BareReportDialog:
             self.extra_textbox.set_editable(1)
             self.add_tooltip(self.extra_textbox,et_tip)
             table.attach(self.extra_textbox_label, 1, 2, row, row+1,
-                         gtk.SHRINK|gtk.FILL)
-            table.attach(swin,2,3,row,row+1)
+                         gtk.SHRINK|gtk.FILL,gtk.SHRINK)
+            table.attach(swin, 2, 3, row, row+1,
+                         yoptions=gtk.SHRINK)
             row += 1
 
         # Setup requested widgets
@@ -725,10 +743,13 @@ class BareReportDialog:
             if text:
                 text_widget = gtk.Label("%s:" % text)
                 text_widget.set_alignment(0.0,0.0)
-                table.attach(text_widget,1,2,row,row+1,gtk.SHRINK|gtk.FILL)
-                table.attach(widget,2,3,row,row+1)
+                table.attach(text_widget, 1, 2, row, row+1,
+                             gtk.SHRINK|gtk.FILL, gtk.SHRINK)
+                table.attach(widget, 2, 3, row, row+1,
+                             yoptions=gtk.SHRINK)
             else:
-                table.attach(widget,2,3,row,row+1)
+                table.attach(widget, 2, 3, row, row+1,
+                             yoptions=gtk.SHRINK)
             row += 1
 
     def setup_other_frames(self):
@@ -747,10 +768,13 @@ class BareReportDialog:
                 if text:
                     text_widget = gtk.Label('%s:' % text)
                     text_widget.set_alignment(0.0,0.5)
-                    table.attach(text_widget,1,2,row,row+1,gtk.SHRINK|gtk.FILL)
-                    table.attach(widget,2,3,row,row+1)
+                    table.attach(text_widget, 1, 2, row, row+1,
+                                 gtk.SHRINK|gtk.FILL, gtk.SHRINK)
+                    table.attach(widget, 2, 3, row, row+1,
+                                 yoptions=gtk.SHRINK)
                 else:
-                    table.attach(widget,2,3,row,row+1)
+                    table.attach(widget, 2, 3, row, row+1,
+                                 yoptions=gtk.SHRINK)
                 row = row + 1
 
     #------------------------------------------------------------------------
@@ -810,9 +834,13 @@ class BareReportDialog:
             self.options.handler.set_report_generations(self.max_gen,self.pg_brk)
 
         if self.filter_combo:
-            self.filter = self.filter_combo.get_value()
-            active = self.filter_combo.get_active()
-            self.options.handler.set_filter_number(active)
+            try:
+                self.filter = self.filter_combo.get_value()
+                active = self.filter_combo.get_active()
+                self.options.handler.set_filter_number(active)
+            except:
+                print "Error setting filter. Proceeding with 'Everyone'"
+                self.filter = GenericFilter.Everyone([])
         else:
             self.filter = None
 
@@ -869,7 +897,7 @@ class BareReportDialog:
         new_person = sel_person.run()
         if new_person:
             self.new_person = new_person
-            new_name = new_person.get_primary_name().get_regular_name()
+            new_name = NameDisplay.displayer.display(new_person)
             if new_name:
                 self.person_label.set_text( "<i>%s</i>" % new_name )
                 self.person_label.set_use_markup(True)
@@ -1079,7 +1107,7 @@ class ReportDialog(BareReportDialog):
         label.set_use_markup(1)
         label.set_alignment(0.0,0.5)
         self.tbl.set_border_width(12)
-        self.tbl.attach(label,0,4,self.col,self.col+1)
+        self.tbl.attach(label, 0, 4, self.col, self.col+1, gtk.FILL)
         self.col += 1
         
         hid = self.get_stylesheet_savefile()
@@ -1090,13 +1118,15 @@ class ReportDialog(BareReportDialog):
 
         if self.get_target_is_directory():
             self.target_fileentry.set_directory_entry(1)
-            label = gtk.Label("%s:" % _("Directory"))
+            self.doc_label = gtk.Label("%s:" % _("Directory"))
         else:
-            label = gtk.Label("%s:" % _("Filename"))
-        label.set_alignment(0.0,0.5)
+            self.doc_label = gtk.Label("%s:" % _("Filename"))
+        self.doc_label.set_alignment(0.0,0.5)
 
-        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
-        self.tbl.attach(self.target_fileentry,2,4,self.col,self.col+1)
+        self.tbl.attach(self.doc_label, 1, 2, self.col, self.col+1,
+                        gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(self.target_fileentry, 2, 4, self.col, self.col+1,
+                        gtk.EXPAND|gtk.FILL)
         self.col += 1
         
         spath = self.get_default_directory()
@@ -1332,7 +1362,7 @@ class ReportDialog(BareReportDialog):
                              _('_Change filename'),None)
                              
             if a.get_response() == gtk.RESPONSE_YES:
-                return
+                return None
         
         self.set_default_directory(os.path.dirname(self.target_path) + os.sep)
         self.options.handler.output = self.target_path
@@ -1406,7 +1436,7 @@ class ReportDialog(BareReportDialog):
 
         # Is there a filename?  This should also test file permissions, etc.
         if not self.parse_target_frame():
-            return
+            self.window.run()
 
         # Preparation
         self.parse_format_frame()
@@ -1567,7 +1597,7 @@ class CommandLineReport:
             'style'     : self.option_class.handler.get_default_stylesheet_name(),
             'papers'    : self.option_class.handler.get_paper_name(),
             'papero'    : self.option_class.handler.get_orientation(),
-            'template'  : self.option_class.handler.get_orientation(),
+            'template'  : self.option_class.handler.get_template_name(),
             'id'        : ''
             }
 

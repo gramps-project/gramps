@@ -21,8 +21,8 @@ pkgdata_PYTHON = \
 	DetAncestralReport.py\
 	DetDescendantReport.py\
 	EventCmp.py\
-    ExportVCalendar.py\
-    ExportVCard.py\
+	ExportVCalendar.py\
+	ExportVCard.py\
 	FamilyGroup.py\
 	FanChart.py\
 	FtmStyleAncestors.py\
@@ -31,10 +31,12 @@ pkgdata_PYTHON = \
 	GraphViz.py\
 	IndivComplete.py\
 	IndivSummary.py\
-    ImportvCard.py\
+	ImportvCard.py\
 	Merge.py\
+	NavWebPage.py\
 	PatchNames.py\
 	ReadPkg.py\
+	Rebuild.py\
 	RelCalc.py\
 	ReorderIds.py\
 	SoundGen.py\

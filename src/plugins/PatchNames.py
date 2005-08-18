@@ -103,6 +103,11 @@ class PatchNames:
         self.prefix1_list = []
         self.prefix2_list = []
 
+        self.progress = Utils.ProgressMeter(
+            _('Extracting information from names'),'')
+        self.progress.set_pass(_('Analyzing names'),
+                               self.db.get_number_of_people())
+
         for key in self.db.get_person_handles(sort_handles=False):
         
             person = self.db.get_person_from_handle(key)
@@ -139,10 +144,12 @@ class PatchNames:
             if match:
                 groups = match.groups()
                 self.prefix2_list.append((key,groups[1],groups[0]))
+            self.progress.step()
 
         if self.nick_list or self.title_list or self.prefix1_list or self.prefix2_list:
             self.display()
         else:
+            self.progress.close()
             OkDialog(_('No modifications made'),
                      _("No titles or nicknames were found"))
 
@@ -197,7 +204,11 @@ class PatchNames:
         self.title_hash = {}
         self.prefix1_hash = {}
         self.prefix2_hash = {}
-        
+
+        self.progress.set_pass(_('Bulding display'),
+                               len(self.nick_list)+len(self.title_list)
+                               +len(self.prefix1_list)+len(self.prefix2_list))
+
         for (id,name,nick) in self.nick_list:
             p = self.db.get_person_from_handle(id)
             gid = p.get_gramps_id()
@@ -208,6 +219,7 @@ class PatchNames:
             self.model.set_value(handle,3,nick)
             self.model.set_value(handle,4,p.get_primary_name().get_name())
             self.nick_hash[id] = handle
+            self.progress.step()
             
         for (id,title,nick) in self.title_list:
             p = self.db.get_person_from_handle(id)
@@ -219,6 +231,7 @@ class PatchNames:
             self.model.set_value(handle,3,nick)
             self.model.set_value(handle,4,p.get_primary_name().get_name())
             self.title_hash[id] = handle
+            self.progress.step()
 
         for (id,prefix,fname) in self.prefix1_list:
             p = self.db.get_person_from_handle(id)
@@ -230,6 +243,7 @@ class PatchNames:
             self.model.set_value(handle,3,fname)
             self.model.set_value(handle,4,p.get_primary_name().get_name())
             self.prefix1_hash[id] = handle
+            self.progress.step()
 
         for (id,prefix,fname) in self.prefix2_list:
             p = self.db.get_person_from_handle(id)
@@ -241,7 +255,9 @@ class PatchNames:
             self.model.set_value(handle,3,fname)
             self.model.set_value(handle,4,p.get_primary_name().get_name())
             self.prefix2_hash[id] = handle
+            self.progress.step()
 
+        self.progress.close()
         self.add_itself_to_menu()
         self.window.show()
 

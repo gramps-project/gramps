@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,6 +27,13 @@ __version__ = "$Revision$"
 
 #-------------------------------------------------------------------------
 #
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -38,8 +45,8 @@ import gnome
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
 import NameDisplay
+import ListModel
 
 #-------------------------------------------------------------------------
 #
@@ -51,7 +58,7 @@ class Bookmarks :
     
     def __init__(self,db,bookmarks,menu,callback):
         """
-        Creates a the bookmark editor
+        Creates a the bookmark editor.
 
         bookmarks - list of People
         menu - parent menu to attach users
@@ -81,6 +88,21 @@ class Bookmarks :
             self.bookmarks.append(person_handle)
             self.redraw()
 
+    def remove_people(self,person_handle_list):
+        """
+        Removes people from the list of bookmarked people.
+
+        This function is for use *outside* the bookmark editor
+        (removal when person is deleted or merged away).
+        """
+        modified = False
+        for person_handle in person_handle_list:
+            if person_handle in self.bookmarks:
+                self.bookmarks.remove(person_handle)
+                modified = True
+        if modified:
+            self.redraw()
+
     def add_to_menu(self,person_handle):
         """adds a person's name to the drop down menu"""
         person = self.db.get_person_from_handle(person_handle)
@@ -98,12 +120,18 @@ class Bookmarks :
         self.top.set_default_size(400,350)
         self.top.set_has_separator(False)
         self.top.vbox.set_spacing(5)
-        label = gtk.Label('<span size="larger" weight="bold">%s</span>' % _("Edit Bookmarks"))
+        label = gtk.Label('<span size="larger" weight="bold">%s</span>'
+                          % _("Edit Bookmarks"))
         label.set_use_markup(True)
         self.top.vbox.pack_start(label,0,0,5)
         box = gtk.HBox()
         self.top.vbox.pack_start(box,1,1,5)
-        self.namelist = gtk.CList(1)
+        
+        name_titles = [(_('Name'),-1,-1),(_('ID'),-1,-1),('',-1,0)]
+        self.namelist = gtk.TreeView()
+        self.namemodel = ListModel.ListModel(self.namelist,name_titles)
+        self.namemodel_cols = len(name_titles)
+
         slist = gtk.ScrolledWindow()
         slist.add_with_viewport(self.namelist)
         slist.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -111,20 +139,13 @@ class Bookmarks :
         bbox = gtk.VButtonBox()
         bbox.set_layout(gtk.BUTTONBOX_START)
         bbox.set_spacing(6)
-        up = gtk.Button()
-        up.set_label(gtk.STOCK_GO_UP)
-        up.set_use_stock(1)
-        down = gtk.Button()
-        down.set_label(gtk.STOCK_GO_DOWN)
-        down.set_use_stock(1)
-        delete = gtk.Button()
-        delete.set_label(gtk.STOCK_REMOVE)
-        delete.set_use_stock(1)
+        up = gtk.Button(stock=gtk.STOCK_GO_UP)
+        down = gtk.Button(stock=gtk.STOCK_GO_DOWN)
+        delete = gtk.Button(stock=gtk.STOCK_REMOVE)
         up.connect('clicked', self.up_clicked)
         down.connect('clicked',self.down_clicked)
         delete.connect('clicked',self.delete_clicked)
-        self.top.add_button(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL)
-        self.top.add_button(gtk.STOCK_OK,gtk.RESPONSE_OK)
+        self.top.add_button(gtk.STOCK_CLOSE,gtk.RESPONSE_CLOSE)
         self.top.add_button(gtk.STOCK_HELP,gtk.RESPONSE_HELP)
         bbox.add(up)
         bbox.add(down)
@@ -142,50 +163,53 @@ class Bookmarks :
         list is not empty, or -1 if it is.
         """
         self.draw_window()
-        index = 0
         for person_handle in self.bookmarks:
             person = self.db.get_person_from_handle(person_handle)
-            name = NameDisplay.displayer.display(person)
-            self.namelist.append([name])
-            self.namelist.set_row_data(index,person_handle)
-            index = index + 1
+            if person:
+                name = NameDisplay.displayer.display(person)
+                gramps_id = person.get_gramps_id()
+                new_iter = self.namemodel.add([name,gramps_id,person_handle])
+        self.namemodel.connect_model()
 
         self.response = self.top.run()
-        if self.response == gtk.RESPONSE_OK:
-            self.ok_clicked()
-        elif self.response == gtk.RESPONSE_HELP:
+        if self.response == gtk.RESPONSE_HELP:
             self.help_clicked()
         self.top.destroy()
 
     def delete_clicked(self,obj):
         """Removes the current selection from the list"""
-        if len(self.namelist.selection) > 0:
-            self.namelist.remove(self.namelist.selection[0])
+        store,the_iter = self.namemodel.get_selected()
+        if not the_iter:
+            return
+        row = self.namemodel.get_selected_row()
+        self.bookmarks.pop(row)
+        self.namemodel.remove(the_iter)
 
     def up_clicked(self,obj):
         """Moves the current selection up one row"""
-        if len(self.namelist.selection) > 0:
-            index = self.namelist.selection[0]
-            self.namelist.swap_rows(index-1,index)
+        row = self.namemodel.get_selected_row()
+        if not row or row == -1:
+            return
+        store,the_iter = self.namemodel.get_selected()
+        data = self.namemodel.get_data(the_iter,range(self.namemodel_cols))
+        self.namemodel.remove(the_iter)
+        self.namemodel.insert(row-1,data,None,1)
+        handle = self.bookmarks.pop(row)
+        self.bookmarks.insert(row-1,handle)
 
     def down_clicked(self,obj):
         """Moves the current selection down one row"""
-        if len(self.namelist.selection) > 0:
-            index = self.namelist.selection[0]
-            if index != self.namelist.rows-1:
-                self.namelist.swap_rows(index+1,index)
-
-    def ok_clicked(self):
-        """Saves the current bookmarks from the list"""
-        del self.bookmarks[0:]
-        for index in range(0,self.namelist.rows):
-            person_handle = self.namelist.get_row_data(index)
-            if person_handle:
-                self.bookmarks.append(person_handle)
-        self.redraw()
+        row = self.namemodel.get_selected_row()
+        if row + 1 >= self.namemodel.count or row == -1:
+            return
+        store,the_iter = self.namemodel.get_selected()
+        data = self.namemodel.get_data(the_iter,range(self.namemodel_cols))
+        self.namemodel.remove(the_iter)
+        self.namemodel.insert(row+1,data,None,1)
+        handle = self.bookmarks.pop(row)
+        self.bookmarks.insert(row+1,handle)
 
     def help_clicked(self):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-nav')
         self.response = self.top.run()
-

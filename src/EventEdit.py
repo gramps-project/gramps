@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import sets
 
 #-------------------------------------------------------------------------
 #
@@ -51,6 +52,8 @@ import Date
 from DateHandler import parser as _dp, displayer as _dd
 import ImageSelect
 import DateEdit
+import Spell
+
 from QuestionDialog import WarningDialog, ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -109,6 +112,15 @@ class EventEditor:
         self.plist = []
         self.pmap = {}
 
+        self.dp = DateHandler.parser
+        self.dd = DateHandler.displayer
+
+        # build list for menu
+        values = sets.Set(elist)
+        values.union(self.get_event_names())
+        self.elist = list(values)
+        self.elist.sort()
+
         for key in self.db.get_place_handles():
             title = self.db.get_place_from_handle(key).get_title()
             self.pmap[title] = key
@@ -141,6 +153,7 @@ class EventEditor:
         self.descr_field.set_editable(not noedit)
         self.note_field = self.top.get_widget("eventNote")
         self.note_field.set_editable(not noedit)
+        self.spell = Spell.Spell(self.note_field)
         self.event_menu = self.top.get_widget("personal_events")
         self.priv = self.top.get_widget("priv")
         self.priv.set_sensitive(not noedit)
@@ -400,6 +413,15 @@ class EventEditor:
             Utils.bold_label(self.notes_label)
         else:
             Utils.unbold_label(self.notes_label)
+
+    def commit(self,event,trans):
+        self.db.commit_event(event,trans)
+
+    def get_event_names(self):
+        data = sets.Set(self.db.get_family_event_types())
+        data.union(self.db.get_person_event_types())
+        return list(data)
+
 
 #-------------------------------------------------------------------------
 #

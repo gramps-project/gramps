@@ -29,6 +29,7 @@
 #-------------------------------------------------------------------------
 import os
 import cStringIO
+import sets
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -77,6 +78,7 @@ def runTool(database,active_person,callback,parent=None):
             checker.check_for_broken_family_links()
             checker.check_parent_relationships()
             checker.cleanup_empty_families(0)
+            checker.cleanup_duplicate_spouses()
 
             total = checker.family_errors()
 
@@ -110,6 +112,7 @@ class CheckIntegrity:
         self.removed_photo = []
         self.empty_family = []
         self.broken_links = []
+        self.duplicate_links = []
         self.broken_parent_links = []
         self.fam_rel = []
         self.invalid_events = []
@@ -117,13 +120,42 @@ class CheckIntegrity:
         self.invalid_death_events = []
         self.invalid_place_references = []
         self.invalid_source_references = []
+        self.progress = Utils.ProgressMeter(_('Checking database'),'')
 
     def family_errors(self):
-        return len(self.broken_parent_links) + len(self.broken_links) + len(self.empty_family)
+        return len(self.broken_parent_links) + len(self.broken_links) + len(self.empty_family) + len(self.duplicate_links)
+
+    def cleanup_duplicate_spouses(self):
+
+        self.progress.set_pass(_('Looking for duplicate spouses'),
+                               self.db.get_number_of_people())
+
+        cursor = self.db.get_person_cursor()
+        data = cursor.first()
+        while data:
+            (handle,value) = data
+            p = RelLib.Person(value)
+            splist = p.get_family_handle_list()
+            if len(splist) != len(sets.Set(splist)):
+                new_list = []
+                for value in splist:
+                    if value not in new_list:
+                        new_list.append(value)
+                        self.duplicate_links.append((handle,value))
+                p.set_family_handle_list(new_list)
+                self.db.commit_person(p,self.trans)
+            data = cursor.next()
+            self.progress.step()
+        cursor.close()
 
     def check_for_broken_family_links(self):
         # Check persons referenced by the family objects
-        for family_handle in self.db.get_family_handles():
+
+        fhandle_list = self.db.get_family_handles()
+        self.progress.set_pass(_('Looking for broken family links'),
+                               len(fhandle_list) + self.db.get_number_of_people())
+        
+        for family_handle in fhandle_list:
             family = self.db.get_family_from_handle(family_handle)
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
@@ -172,7 +204,8 @@ class CheckIntegrity:
                     family.remove_child_handle(child_handle)
                     self.db.commit_family(family,self.trans)
                     self.broken_links.append((child_handle,family_handle))
-
+            self.progress.step()
+            
         # Check persons membership in referenced families
         for person_handle in self.db.get_person_handles():
             person = self.db.get_person_from_handle(person_handle)
@@ -206,8 +239,13 @@ class CheckIntegrity:
                 person.remove_family_handle(family_handle)
                 self.db.commit_person(person,self.trans)
                 self.broken_links.append((person_handle,family_handle))
+            self.progress.step()
 
     def cleanup_missing_photos(self,cl=0):
+
+        self.progress.set_pass(_('Looking for unused objects'),
+                               len(self.db.get_media_object_handles()))
+                               
         missmedia_action = 0
         #-------------------------------------------------------------------------
         def remove_clicked():
@@ -297,9 +335,17 @@ class CheckIntegrity:
                         leave_clicked()
                     elif missmedia_action == 3:
                         select_clicked()
+            self.progress.step()
 
     def cleanup_empty_families(self,automatic):
-        for family_handle in self.db.get_family_handles():
+
+        fhandle_list = self.db.get_family_handles()
+
+        self.progress.set_pass(_('Looking for empty families'),
+                               len(fhandle_list))
+        for family_handle in fhandle_list:
+            self.progress.step()
+            
             family = self.db.get_family_from_handle(family_handle)
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
@@ -331,7 +377,12 @@ class CheckIntegrity:
         self.db.remove_family(family_handle,self.trans)
 
     def check_parent_relationships(self):
-        for family_handle in self.db.get_family_handles():
+
+        fhandle_list = self.db.get_family_handles()
+        self.progress.set_pass(_('Looking for broken parent relationships'),
+                               len(fhandle_list))
+        
+        for family_handle in fhandle_list:
             family = self.db.get_family_from_handle(family_handle)
             mother_handle = family.get_mother_handle()
             father_handle = family.get_father_handle()
@@ -379,13 +430,20 @@ class CheckIntegrity:
                     self.db.commit_family(family,self.trans)
 
     def check_events(self):
+        self.progress.set_pass(_('Looking for event problems'),
+                               self.db.get_number_of_people()
+                               +self.db.get_number_of_families())
+        
         for key in self.db.get_person_handles(sort_handles=False):
+            self.progress.step()
+            
             person = self.db.get_person_from_handle(key)
             birth_handle = person.get_birth_handle()
             if birth_handle:
                 birth = self.db.get_event_from_handle(birth_handle)
                 if not birth:
-                    # The birth event referenced by the birth handle does not exist in the database
+                    # The birth event referenced by the birth handle
+                    # does not exist in the database
                     person.set_birth_handle("")
                     self.db.commit_person(person,self.trans)
                     self.invalid_events.append(key)
@@ -399,7 +457,8 @@ class CheckIntegrity:
             if death_handle:
                 death = self.db.get_event_from_handle(death_handle)
                 if not death:
-                    # The death event referenced by the death handle does not exist in the database
+                    # The death event referenced by the death handle
+                    # does not exist in the database
                     person.set_death_handle("")
                     self.db.commit_person(person,self.trans)
                     self.invalid_events.append(key)
@@ -409,18 +468,50 @@ class CheckIntegrity:
                         death.set_name("Death");
                         self.db.commit_event(death,self.trans)
                         self.invalid_death_events.append(key)
+
             if person.get_event_list():
                 for event_handle in person.get_event_list():
                     event = self.db.get_event_from_handle(event_handle)
                     if not event:
-                        # The event referenced by the person does not exist in the database
+                        # The event referenced by the person
+                        # does not exist in the database
                         #TODO: There is no better way?
-                        person.set_event_list( person.get_event_list().remove(event_handle))
+                        person.set_event_list(
+                            person.get_event_list().remove(event_handle))
                         self.db.commit_person(person,self.trans)
                         self.invalid_events.append(key)
+            elif type(person.get_event_list()) != list:
+                # event_list is None or other garbage
+                person.set_event_list([])
+                self.db.commit_person(person,self.trans)
+                self.invalid_events.append(key)
+
+        for key in self.db.get_family_handles():
+            self.progress.step()
+            family = self.db.get_family_from_handle(key)
+            if family.get_event_list():
+                for event_handle in family.get_event_list():
+                    event = self.db.get_event_from_handle(event_handle)
+                    if not event:
+                        # The event referenced by the family
+                        # does not exist in the database
+                        family.set_event_list(
+                            family.get_event_list().remove(event_handle))
+                        self.db.commit_family(family,self.trans)
+                        self.invalid_events.append(key)
+            elif type(family.get_event_list()) != list:
+                # event_list is None or other garbage
+                family.set_event_list([])
+                self.db.commit_family(family,self.trans)
+                self.invalid_events.append(key)
 
     def check_place_references(self):
-        for key in self.db.get_event_handles():
+        elist = self.db.get_event_handles()
+        
+        self.progress.set_pass(_('Looking for place reference problems'),
+                               len(elist))
+        
+        for key in elist:
             event = self.db.get_event_from_handle(key)
             place_handle = event.get_place_handle()
             if place_handle:
@@ -433,10 +524,19 @@ class CheckIntegrity:
 
     def check_source_references(self):
         known_handles = self.db.get_source_handles()
+
+        total = self.db.get_number_of_people() + self.db.get_number_of_families() + \
+                self.db.get_number_of_events() + self.db.get_number_of_places() + \
+                self.db.get_number_of_media_objects() + \
+                self.db.get_number_of_sources()
+
+        self.progress.set_pass(_('Looking for source reference problems'),
+                               total)
         
         cursor = self.db.get_person_cursor()
         data = cursor.first()
         while data:
+            self.progress.step()
             handle,info = data
             person = RelLib.Person()
             person.unserialize(info)
@@ -456,6 +556,7 @@ class CheckIntegrity:
         cursor = self.db.get_family_cursor()
         data = cursor.first()
         while data:
+            self.progress.step()
             handle,info = data
             family = RelLib.Family()
             family.unserialize(info)
@@ -475,6 +576,7 @@ class CheckIntegrity:
         cursor = self.db.get_place_cursor()
         data = cursor.first()
         while data:
+            self.progress.step()
             handle,info = data
             place = RelLib.Place()
             place.unserialize(info)
@@ -494,6 +596,7 @@ class CheckIntegrity:
         cursor = self.db.get_source_cursor()
         data = cursor.first()
         while data:
+            self.progress.step()
             handle,info = data
             source = RelLib.Source()
             source.unserialize(info)
@@ -513,6 +616,7 @@ class CheckIntegrity:
         cursor = self.db.get_media_cursor()
         data = cursor.first()
         while data:
+            self.progress.step()
             handle,info = data
             obj = RelLib.MediaObject()
             obj.unserialize(info)
@@ -532,6 +636,7 @@ class CheckIntegrity:
         cursor = self.db.get_event_cursor()
         data = cursor.first()
         while data:
+            self.progress.step()
             handle,info = data
             event = RelLib.Event()
             event.unserialize(info)
@@ -549,6 +654,7 @@ class CheckIntegrity:
         cursor.close()
 
     def build_report(self,cl=0):
+        self.progress.close()
         bad_photos = len(self.bad_photo)
         replaced_photos = len(self.replaced_photo)
         removed_photos = len(self.removed_photo)
@@ -556,6 +662,7 @@ class CheckIntegrity:
         efam = len(self.empty_family)
         blink = len(self.broken_links)
         plink = len(self.broken_parent_links)
+        slink = len(self.duplicate_links)
         rel = len(self.fam_rel)
         event_invalid = len(self.invalid_events)
         birth_invalid = len(self.invalid_birth_events)
@@ -612,6 +719,25 @@ class CheckIntegrity:
                     pn = Utils.family_name(family,self.db)
                 else:
                     pn = family_handle
+                self.text.write('\t')
+                self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
+
+        if slink > 0:
+            if slink == 1:
+                self.text.write(_("1 duplicate spouse/family link was found\n"))
+            else:
+                self.text.write(_("%d duplicate spouse/family links were found\n") % slink)
+            for (person_handle,family_handle) in self.broken_parent_links:
+                person = self.db.get_person_from_handle(person_handle)
+                if person:
+                    cn = person.get_primary_name().get_name()
+                else:
+                    cn = _("Non existing person")
+                family = self.db.get_family_from_handle(family_handle)
+                if family:
+                    pn = Utils.family_name(family,self.db)
+                else:
+                    pn = family.gramps_id
                 self.text.write('\t')
                 self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
 
@@ -727,6 +853,6 @@ from PluginMgr import register_tool
 register_tool(
     runTool,
     _("Check and repair database"),
-    category=_("Database Processing"),
+    category=_("Database Repair"),
     description=_("Checks the database for integrity problems, fixing the problems that it can")
     )

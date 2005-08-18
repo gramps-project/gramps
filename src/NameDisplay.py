@@ -83,8 +83,12 @@ class NameDisplay:
         @rtype: str
         """
         name = person.get_primary_name()
-        if name.get_sort_as() == RelLib.Name.FNLN:
+        if name.sort_as == RelLib.Name.FNLN:
             return self._fnln(name)
+        elif name.sort_as == RelLib.Name.PTFN:
+            return self._ptfn(name)
+        elif name.sort_as == RelLib.Name.FN:
+            return name.first_name
         else:
             return self._lnfn(name)
 
@@ -99,8 +103,12 @@ class NameDisplay:
         @returns: Returns the L{RelLib.Name} string representation
         @rtype: str
         """
-        if name.get_sort_as() == RelLib.Name.FNLN:
+        if name.sort_as == RelLib.Name.FNLN:
             return self._fnln(name)
+        elif name.sort_as == RelLib.Name.PTFN:
+            return self._ptfn(name)
+        elif name.sort_as == RelLib.Name.FN:
+            return name.first_name
         else:
             return self._lnfn(name)
 
@@ -136,9 +144,37 @@ class NameDisplay:
             return ""
         elif name.display_as == RelLib.Name.LNFN:
             return self._lnfn(name)
+        elif name.display_as == RelLib.Name.PTFN:
+            return self._ptfn(name)
         else:
             return self._fnln(name)
 
+    def _ptfn(self,name):
+        """
+        Prints the Western style first name, last name style.
+        Typically this is::
+
+           SurnamePrefix Patronymic SurnameSuffix, FirstName
+        """
+
+        first = name.first_name
+
+        if self.force_upper:
+            last = name.patronymic.upper()
+        else:
+            last = name.patronymic
+            
+        if name.suffix == "":
+            if name.prefix:
+                return "%s %s, %s" % (name.prefix, last, first)
+            else:
+                return "%s, %s" % (last, first)
+        else:
+            if name.prefix:
+                return "%s %s %s, %s" % (name.prefix, last, name.suffix, first)
+            else:
+                return "%s %s, %s" % (last, name.suffix, first)
+        
     def _fnln(self,name):
         """
         Prints the Western style first name, last name style.
@@ -166,6 +202,21 @@ class NameDisplay:
                 return "%s %s %s, %s" % (first, name.prefix, last, name.suffix)
             else:
                 return "%s %s, %s" % (first, last, name.suffix)
+
+    def name_grouping(self,db,person):
+        return self.name_grouping_name(db,person.primary_name)
+
+    def name_grouping_name(self,db,pn):
+        sv = pn.sort_as
+        if pn.group_as:
+            return pn.group_as
+        if sv <= RelLib.Name.LNFN:
+            val = pn.surname
+        elif sv == RelLib.Name.PTFN:
+            val = pn.patronymic
+        else:
+            val = pn.first_name
+        return db.get_name_group_mapping(val)
         
     def _lnfn(self,name):
         """

@@ -172,4 +172,3 @@ class MediaView(PageView.ListView):
             import NoteEdit
             NoteEdit.NoteEditor(obj,self.parent,self.topWindow,
                                 self.note_callback)
-

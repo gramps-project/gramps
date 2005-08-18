@@ -120,8 +120,8 @@ class ChooseParents:
         self.all_females_filter = GenericFilter.GenericFilter()
         self.all_females_filter.add_rule(GenericFilter.IsFemale([]))
 
-        bh = person.birth_handle
-        if bh and self.db.get_event_from_handle(bh).date.sortval != 0:
+        bev = self.db.get_event_from_handle(person.birth_handle)
+        if bev and bev.date and bev.date.sortval != 0:
             self.likely_females_filter = self.build_likely(False)
             self.likely_males_filter = self.build_likely(True)
         else:
@@ -571,20 +571,21 @@ class ChooseParents:
                 self.type = CIVIL_UNION_REL
                 father_handle = self.father.get_handle()
                 mother_handle = self.mother.get_handle()
-            self.family = self.find_family(father_handle,mother_handle,trans)
-        else:    
-            self.family = None
 
-        if self.family:
-            if self.person.get_handle() in (father_handle,mother_handle):
-                ErrorDialog(_("Error selecting a child"),
-                            _("A person cannot be linked as his/her own parent"),
-                            self.window)
-                return
+        if self.person.get_handle() in (father_handle,mother_handle):
+            ErrorDialog(_("Error selecting a child"),
+                        _("A person cannot be linked as his/her own parent"),
+                        self.window)
+            return
+
+        if father_handle or mother_handle:
+            self.family = self.find_family(father_handle,mother_handle,trans)
             self.family.add_child_handle(self.person.get_handle())
             self.family.set_relationship(self.type)
             self.change_family_type(self.family,mother_rel,father_rel)
             self.db.commit_family(self.family,trans)
+        else:    
+            self.family = None
         self.db.transaction_commit(trans,_("Choose Parents"))
         self.close(None)
 
@@ -822,7 +823,8 @@ class ModifyParents:
 #-------------------------------------------------------------------------
 class LikelyFilter(GenericFilter.Rule):
 
-    category    = _('General filters')
+    labels   = [ 'Person handle' ] 
+    category = _('General filters')
 
     def prepare(self,db):
         person = db.get_person_from_handle(self.list[0])

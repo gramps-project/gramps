@@ -52,9 +52,17 @@ from ReportUtils import pt2cm
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-
+from xml.sax.saxutils import escape
 
 _apptype = 'application/vnd.sun.xml.writer'
+
+_esc_map = {
+    '\x1a'           : '',
+    '\x0c'           : '',
+    '\n'             : '<text:line-break/>',
+    '&lt;super&gt;'  :  '<text:span text:style-name="GSuper">',
+    '&lt;/super&gt;' : '</text:span>',
+    }
 
 #-------------------------------------------------------------------------
 #
@@ -152,9 +160,9 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             self.cntnt.write('draw:fill-color="#%02x%02x%02x" ' % style.get_fill_color())
 
             if style.get_line_style() == BaseDoc.DASHED:
-                self.cntnt.write('draw:color="#cccccc" ')
+                self.cntnt.write('svg:stroke-color="#cccccc" ')
             else:
-                self.cntnt.write('draw:color="#%02x%02x%02x" ' % style.get_color())
+                self.cntnt.write('svg:stroke-color="#%02x%02x%02x" ' % style.get_color())
                 
             if style.get_line_width():
                 self.cntnt.write('draw:stroke="solid" ')
@@ -304,10 +312,10 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 
         #Begin photo style
         self.cntnt.write('<style:style style:name="Left" style:family="graphics"')
-        self.cntnt.write(' style:parent-name="photo">')
+        self.cntnt.write(' style:parent-style-name="photo">')
         self.cntnt.write('<style:properties style:run-through="foreground"')
         self.cntnt.write(' style:wrap="parallel"')
-        self.cntnt.write(' style:numer-wrapped-paragraphs="no-limit"')
+        self.cntnt.write(' style:number-wrapped-paragraphs="no-limit"')
         self.cntnt.write(' style:wrap-contour="false" style:vertical-pos="from-top"')
         self.cntnt.write(' style:vertical-rel="paragraph-content"')
         self.cntnt.write(' style:horizontal-pos="left"')
@@ -320,10 +328,10 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('</style:style>\n')
 
         self.cntnt.write('<style:style style:name="Right" style:family="graphics"')
-        self.cntnt.write(' style:parent-name="photo">')
+        self.cntnt.write(' style:parent-style-name="photo">')
         self.cntnt.write('<style:properties style:run-through="foreground"')
         self.cntnt.write(' style:wrap="parallel"')
-        self.cntnt.write(' style:numer-wrapped-paragraphs="no-limit"')
+        self.cntnt.write(' style:number-wrapped-paragraphs="no-limit"')
         self.cntnt.write(' style:wrap-contour="false" style:vertical-pos="from-top"')
         self.cntnt.write(' style:vertical-rel="paragraph-content"')
         self.cntnt.write(' style:horizontal-pos="right"')
@@ -336,7 +344,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('</style:style>\n')
 
         self.cntnt.write('<style:style style:name="Single" style:family="graphics"')
-        self.cntnt.write(' style:parent-name="Graphics">')
+        self.cntnt.write(' style:parent-style-name="Graphics">')
         self.cntnt.write('<style:properties style:vertical-pos="from-top"')
         self.cntnt.write(' style:mirror="none" fo:clip="rect(0cm 0cm 0cm 0cm)"')
         self.cntnt.write(' draw:luminance="0%" draw:contrast="0" draw:red="0%"')
@@ -346,7 +354,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('</style:style>\n')
 
         self.cntnt.write('<style:style style:name="Row" style:family="graphics"')
-        self.cntnt.write(' style:parent-name="Graphics">')
+        self.cntnt.write(' style:parent-style-name="Graphics">')
         self.cntnt.write('<style:properties style:vertical-pos="from-top"')
         self.cntnt.write(' style:vertical-rel="paragraph"')
         self.cntnt.write(' style:horizontal-pos="from-left"')
@@ -512,7 +520,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.sfile.write('xmlns:math="http://www.w3.org/1998/Math/MathML" ')
         self.sfile.write('xmlns:form="http://openoffice.org/2000/form" ')
         self.sfile.write('xmlns:script="http://openoffice.org/2000/script" ')
-        self.sfile.write('office:class="text" office:version="0.9">\n')
+        self.sfile.write('office:version="0.9">\n')
         self.sfile.write('<office:font-decls>\n')
         self.sfile.write('<style:font-decl style:name="Times New Roman" ')
         self.sfile.write('fo:font-family="&apos;Times New Roman&apos;" ')
@@ -629,22 +637,15 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.sfile.write('</style:page-master>\n')
         self.sfile.write('</office:automatic-styles>\n')
         self.sfile.write('<office:master-styles>\n')
+        self.sfile.write('<draw:layer-set>\n')
+        self.sfile.write('<draw:layer draw:name="layout"/>\n')
+        self.sfile.write('<draw:layer draw:name="background"/>\n')
+        self.sfile.write('<draw:layer draw:name="backgroundobjects"/>\n')
+        self.sfile.write('<draw:layer draw:name="controls"/>\n')
+        self.sfile.write('<draw:layer draw:name="measurelines"/>\n')
+        self.sfile.write('</draw:layer-set>\n')
         self.sfile.write('<style:master-page style:name="Standard" ')
         self.sfile.write('style:page-master-name="pm1"/>\n')
-        self.sfile.write('<draw:layer-set>\n')
-        self.sfile.write('<draw:layer draw:name="layout" draw:locked="false" ')
-        self.sfile.write('draw:printable="true" draw:visible="true"/>\n')
-        self.sfile.write('<draw:layer draw:name="background" draw:locked="false" ')
-        self.sfile.write('draw:printable="true" draw:visible="true"/>\n')
-        self.sfile.write('<draw:layer draw:name="backgroundobjects" ')
-        self.sfile.write('draw:locked="false" draw:printable="true" draw:visible="true"/>\n')
-        self.sfile.write('<draw:layer draw:name="controls" draw:locked="false" ')
-        self.sfile.write('draw:printable="true" draw:visible="true"/>\n')
-        self.sfile.write('<draw:layer draw:name="measurelines" draw:locked="false" ')
-        self.sfile.write('draw:printable="true" draw:visible="true"/>\n')
-        self.sfile.write('</draw:layer-set>\n')
-        self.sfile.write('<style:master-page style:name="Home" ')
-        self.sfile.write('style:page-master-name="PM0" draw:style-name="dp1"/>\n')
         self.sfile.write('</office:master-styles>\n')
         self.sfile.write('</office:document-styles>\n')
 
@@ -711,14 +712,12 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
                 self.end_paragraph()
 
     def write_text(self,text):
-        text = text.replace('&','&amp;')       # Must be first
-        text = text.replace('<','&lt;')
-        text = text.replace('>','&gt;')
-        text = text.replace('\n','<text:line-break/>')
-        text = text.replace('&lt;super&gt;',
-                            '<text:span text:style-name="GSuper">')
-        text = text.replace('&lt;/super&gt;','</text:span>')
-        self.cntnt.write(text)
+        """
+        Uses the xml.sax.saxutils.escape function to convert XML
+        entities. The _esc_map dictionary allows us to add our own
+        mappings.
+        """
+        self.cntnt.write(escape(text,_esc_map))
 
     def _write_manifest(self):
         self.mfile = StringIO()
@@ -755,7 +754,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.meta.write('xmlns:xlink="http://www.w3.org/1999/xlink" ')
         self.meta.write('xmlns:dc="http://purl.org/dc/elements/1.1/" ')
         self.meta.write('xmlns:meta="http://openoffice.org/2000/meta" ')
-        self.meta.write('office:class="text" office:version="0.9">\n');
+        self.meta.write('office:version="0.9">\n');
         self.meta.write('<office:meta>\n')
         self.meta.write('<meta:generator>')
         self.meta.write(const.progName + ' ' + const.version)
@@ -834,7 +833,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         y = int((miny)*1000)
         
         self.cntnt.write('svg:x="%d" svg:y="%d" ' % (x,y))
-        self.cntnt.write('svg:viewBox="0 0 %d %d" ' % (int(maxx-minx)*1000,int(maxy-miny)*1000))
+        self.cntnt.write('svg:viewBox="0 0 %d %d" ' % (int((maxx-minx)*1000),int((maxy-miny)*1000)))
         self.cntnt.write('svg:width="%.4fcm" ' % (maxx-minx))
         self.cntnt.write('svg:height="%.4fcm" ' % (maxy-miny))
         
@@ -850,7 +849,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('"/>\n')
 
     def draw_line(self,style,x1,y1,x2,y2):
-        self.cntnt.write('<draw:line draw:style="%s" '% style)
+        self.cntnt.write('<draw:line draw:style-name="%s" '% style)
         self.cntnt.write('svg:x1="%.3fcm" ' % x1)
         self.cntnt.write('svg:y1="%.3fcm" ' % y1)
         self.cntnt.write('svg:x2="%.3fcm" ' % x2)

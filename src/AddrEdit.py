@@ -52,6 +52,7 @@ import RelLib
 import Sources
 import DateEdit
 import DateHandler
+import Spell
 
 #-------------------------------------------------------------------------
 #
@@ -95,6 +96,7 @@ class AddressEditor:
         self.postal = self.top.get_widget("postal")
         self.phone = self.top.get_widget("phone")
         self.note_field = self.top.get_widget("addr_note")
+        self.spell = Spell.Spell(self.note_field)
         self.priv = self.top.get_widget("priv")
         self.slist = self.top.get_widget("slist")
         self.sources_label = self.top.get_widget("sources_tab")

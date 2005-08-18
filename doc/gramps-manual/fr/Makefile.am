@@ -10,6 +10,10 @@ entities = legal.xml\
 	faq.xml\
 	keybind.xml\
 	filtref.xml\
-	cmdline.xml 
+	cmdline.xml \
+	authors.xml \
+	bugs.xml \
+	preface.xml
+
 include $(top_srcdir)/doc/xmldocs.make
 dist-hook: app-dist-hook

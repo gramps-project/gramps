@@ -295,7 +295,6 @@ def sanitize_person(db,person):
     name = person.get_primary_name()
     if name.get_privacy() or person.get_privacy():
         name = RelLib.Name()
-        name.set_first_name(_('Private'))
         name.set_surname(_('Private'))
     else:
         new_person.set_nick_name(person.get_nick_name())
@@ -308,7 +307,6 @@ def sanitize_person(db,person):
     # copy Family reference list
     for item in person.get_parent_family_handle_list():
         new_person.add_parent_family_handle(item[0],item[1],item[2])
-
 
     if person.get_privacy():
         return new_person
@@ -348,6 +346,11 @@ def sanitize_person(db,person):
         if not attribute.get_privacy():
             new_person.add_attribute(RelLib.Attribute(attribute))
 
+    # copy source references
+    for ref in person.get_source_references():
+        if not ref.get_privacy():
+            new_person.add_source_reference(RelLib.SourceRef(ref))
+
     # copy URL list
     for url in person.get_url_list():
         if not url.get_privacy():
@@ -369,7 +372,59 @@ def sanitize_person(db,person):
     ordinance = person.get_lds_sealing()
     if ordinance:
         new_person.set_lds_sealing(ordinance)
+
+    new_person.set_note(person.get_note())
     
+    return new_person
+
+def dont_restrict(db,person):
+    return person
+
+def restrict_with_names(db,person):
+    return restrict_person(db,person,False)
+
+def restrict_no_names(db,person):
+    return restrict_person(db,person,True)
+
+def restrict_person(db,person,no_names=False):
+    """
+    Creates a new Person instance based off the passed Person
+    instance. The returned instance has all private records
+    removed from it.
+    
+    @param db: GRAMPS database to which the Person object belongs
+    @type db: GrampsDbBase
+    @param person: source Person object that will be copied with
+    privacy records removed
+    @type person: Person
+    @returns: 'cleansed' Person object
+    @rtype: Person
+    """
+    new_person = RelLib.Person()
+
+    # copy gender
+    new_person.set_gender(person.get_gender())
+    new_person.set_gramps_id(person.get_gramps_id())
+    new_person.set_handle(person.get_handle())
+    
+    # copy names if not private
+    if no_names:
+        name = RelLib.Name()
+        name.set_surname(_('Private'))
+    else:
+        name = person.get_primary_name()
+        name.set_source_reference_list([])
+
+    new_person.set_primary_name(name)
+
+    # copy Family reference list
+    for handle in person.get_family_handle_list():
+        new_person.add_family_handle(handle)
+
+    # copy Family reference list
+    for item in person.get_parent_family_handle_list():
+        new_person.add_parent_family_handle(item[0],item[1],item[2])
+
     return new_person
 
 #-------------------------------------------------------------------------

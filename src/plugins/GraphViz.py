@@ -129,8 +129,7 @@ class GraphViz:
         rankdir    - Graph direction
         color      - Whether to use outline, colored outline or filled color in graph
         dashedl    - Whether to use dashed lines for non-birth relationships.
-        margtb     - Top & bottom margins, in cm.
-        marglr     - Left & right margins, in cm.
+        margin     - Margins, in cm.
         pagesh     - Number of pages in horizontal direction.
         pagesv     - Number of pages in vertical direction.
         """
@@ -157,8 +156,12 @@ class GraphViz:
         options = options_class.handler.options_dict
         self.hpages = options['pagesh']
         self.vpages = options['pagesv']
-        self.lr_margin = options['marglr']
-        self.tb_margin = options['margtb']
+        margin_cm = options['margin']
+        self.margin = round(margin_cm/2.54,2)
+        if margin_cm > 0.1:
+            self.margin_small = round((margin_cm-0.1)/2.54,2)
+        else:
+            self.margin_small = 0
         self.includeid = options['incid']
         self.includedates = options['incdate']
         self.includeurl = options['url']
@@ -203,15 +206,19 @@ class GraphViz:
         self.f.write("bgcolor=white;\n")
         self.f.write("rankdir=%s;\n" % self.rankdir)
         self.f.write("center=1;\n")
-        self.f.write("margin=0.5;\n")
+        self.f.write("margin=%3.2f;\n" % self.margin_small)
         self.f.write("ratio=fill;\n")
-        self.f.write("size=\"%3.1f,%3.1f\";\n" % (
-                (self.width*self.hpages)-(self.lr_margin*2)
-                        -((self.hpages-1)*1.0),
-                (self.height*self.vpages)-(self.tb_margin*2)
-                        -((self.vpages-1)*1.0))
-        )
-        self.f.write("page=\"%3.1f,%3.1f\";\n" % (self.width,self.height))
+        if self.orient == PAPER_LANDSCAPE:
+            self.f.write("size=\"%3.2f,%3.2f\";\n" % (
+                (self.height-self.margin*2)*self.hpages,
+                (self.width-self.margin*2)*self.vpages
+                ))
+        else:
+            self.f.write("size=\"%3.2f,%3.2f\";\n" % (
+                (self.width-self.margin*2)*self.hpages,
+                (self.height-self.margin*2)*self.vpages
+                ))
+        self.f.write("page=\"%3.2f,%3.2f\";\n" % (self.width,self.height))
 
         if self.orient == PAPER_LANDSCAPE:
             self.f.write("rotate=90;\n")
@@ -400,12 +407,11 @@ class GraphViz:
         self.f.write(" *   colorize           : %s\n" % bool(self.colorize))
         self.f.write(" *   dotted adoptions   : %s\n" % bool(self.adoptionsdashed))
         self.f.write(" *   show family nodes  : %s\n" % bool(self.show_families))
-        self.f.write(" *   margins top/bottom : %s\n" % self.tb_margin)
-        self.f.write(" *           left/right : %s\n" % self.lr_margin)
+        self.f.write(" *   margin             : %3.2fin\n" % self.margin_small)
         self.f.write(" *   pages horizontal   : %s\n" % self.hpages)
         self.f.write(" *         vertical     : %s\n" % self.vpages)
-        self.f.write(" *   page width         : %sin\n" % self.width)
-        self.f.write(" *        height        : %sin\n" % self.height)
+        self.f.write(" *   page width         : %3.2fin\n" % self.width)
+        self.f.write(" *        height        : %3.2fin\n" % self.height)
         self.f.write(" *\n")
         self.f.write(" * Generated on %s by GRAMPS\n" % asctime())
         self.f.write(" */\n\n")
@@ -439,8 +445,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
             'rankdir'    : "LR",
             'color'      : "filled",
             'dashedl'    : 1,
-            'margtb'     : 0.5,
-            'marglr'     : 0.5,
+            'margin'     : 1.0,
             'pagesh'     : 1,
             'pagesv'     : 1,
             'gvof'       : 'ps',
@@ -483,10 +488,8 @@ class GraphVizOptions(ReportOptions.ReportOptions):
             'dashedl'   : ("=0/1","Whether to use dotted lines for non-birth relationships.",
                             ["Do not use dotted lines","Use dotted lines"],
                             True),
-            'margtb'    : ("=num","Top & bottom margins.",
-                            "Floating point values, in cm"),
-            'marglr'    : ("=num","Left & right margins.",
-                            "Floating point values, in cm"),
+            'margin'    : ("=num","Margin size.",
+                            "Floating point value, in cm"),
             'pagesh'    : ("=num","Number of pages in horizontal direction.",
                             "Integer values"),
             'pagesv'    : ("=num","Number of pages in vertical direction.",
@@ -678,20 +681,14 @@ class GraphVizOptions(ReportOptions.ReportOptions):
                                 "to parents and children."))
 
         # Page options tab
-        tb_margin_adj = gtk.Adjustment(value=self.options_dict['margtb'],
-                        lower=0.25, upper=100.0, step_incr=0.25)
-        lr_margin_adj = gtk.Adjustment(value=self.options_dict['marglr'],
-                        lower=0.25, upper=100.0, step_incr=0.25)
+        margin_adj = gtk.Adjustment(value=self.options_dict['margin'],
+                        lower=0.0, upper=10.0, step_incr=1.0)
 
-        self.tb_margin_sb = gtk.SpinButton(adjustment=tb_margin_adj, digits=2)
-        self.lr_margin_sb = gtk.SpinButton(adjustment=lr_margin_adj, digits=2)
+        self.margin_sb = gtk.SpinButton(adjustment=margin_adj, digits=1)
 
         dialog.add_frame_option(_("Page Options"),
-                              _("Top & Bottom Margins"),
-                              self.tb_margin_sb)
-        dialog.add_frame_option(_("Page Options"),
-                              _("Left & Right Margins"),
-                              self.lr_margin_sb)
+                              _("Margin size"),
+                              self.margin_sb)
 
         hpages_adj = gtk.Adjustment(value=self.options_dict['pagesh'],
                     lower=1, upper=25, step_incr=1)
@@ -724,8 +721,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
     def parse_user_options(self,dialog):
         self.options_dict['incdate'] = int(self.includedates_cb.get_active())
         self.options_dict['url'] = int(self.includeurl_cb.get_active())
-        self.options_dict['margtb'] = self.tb_margin_sb.get_value()
-        self.options_dict['marglr'] = self.lr_margin_sb.get_value()
+        self.options_dict['margin'] = self.margin_sb.get_value()
         self.options_dict['dashedl'] = int(self.adoptionsdashed_cb.get_active())
         self.options_dict['pagesh'] = self.hpages_sb.get_value_as_int()
         self.options_dict['pagesv'] = self.vpages_sb.get_value_as_int()

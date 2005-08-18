@@ -32,6 +32,7 @@ Provides the Berkeley DB (BSDDB) database backend for GRAMPS
 import os
 import time
 import locale
+import sets
 from gettext import gettext as _
 from bsddb import dbshelve, db
 
@@ -137,6 +138,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.env.open(os.path.dirname(name), flags)
             
         name = os.path.basename(name)
+        self.save_name = name
 
         self.family_map     = self.dbopen(name, "family")
         self.place_map      = self.dbopen(name, "places")
@@ -206,12 +208,15 @@ class GrampsBSDDB(GrampsDbBase):
             self.place_map.associate(self.pid_trans,  find_idmap, openflags)
             self.media_map.associate(self.oid_trans, find_idmap, openflags)
             self.source_map.associate(self.sid_trans, find_idmap, openflags)
-            self.event_map.associate(self.eventnames, find_eventname, openflags)
             self.undodb = db.DB()
             self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
 
         self.metadata   = self.dbopen(name, "meta")
         self.bookmarks = self.metadata.get('bookmarks')
+        self.family_event_names = sets.Set(self.metadata.get('fevent_names',[]))
+        self.individual_event_names = sets.Set(self.metadata.get('pevent_names',[]))
+        self.family_attributes = sets.Set(self.metadata.get('fattr_names',[]))
+        self.individual_attributes = sets.Set(self.metadata.get('pattr_names',[]))
 
         gstats = self.metadata.get('gender_stats')
 
@@ -226,6 +231,99 @@ class GrampsBSDDB(GrampsDbBase):
 
         self.genderStats = GenderStats(gstats)
         return 1
+
+    def rebuild_secondary(self,callback=None):
+
+        # Repair secondary indices related to person_map
+        
+        self.id_trans.close()
+        self.surnames.close()
+
+        self.id_trans = db.DB(self.env)
+        self.id_trans.set_flags(db.DB_DUP)
+        self.id_trans.open(self.save_name, "idtrans", db.DB_HASH,
+                           flags=db.DB_CREATE)
+        self.id_trans.truncate()
+
+        self.surnames = db.DB(self.env)
+        self.surnames.set_flags(db.DB_DUP)
+        self.surnames.open(self.save_name, "surnames", db.DB_HASH,
+                           flags=db.DB_CREATE)
+        self.surnames.truncate()
+
+        self.person_map.associate(self.surnames, find_surname, db.DB_CREATE)
+        self.person_map.associate(self.id_trans, find_idmap, db.DB_CREATE)
+
+        for key in self.person_map.keys():
+            if callback:
+                callback()
+            self.person_map[key] = self.person_map[key]
+
+        self.person_map.sync()
+
+        # Repair secondary indices related to family_map
+
+        self.fid_trans.close()
+        self.fid_trans = db.DB(self.env)
+        self.fid_trans.set_flags(db.DB_DUP)
+        self.fid_trans.open(self.save_name, "fidtrans", db.DB_HASH,
+                            flags=db.DB_CREATE)
+        self.fid_trans.truncate()
+        self.family_map.associate(self.fid_trans, find_idmap, db.DB_CREATE)
+
+        for key in self.family_map.keys():
+            if callback:
+                callback()
+            self.family_map[key] = self.family_map[key]
+        self.family_map.sync()
+
+        # Repair secondary indices related to place_map
+
+        self.pid_trans.close()
+        self.pid_trans = db.DB(self.env)
+        self.pid_trans.set_flags(db.DB_DUP)
+        self.pid_trans.open(self.save_name, "pidtrans", db.DB_HASH,
+                            flags=db.DB_CREATE)
+        self.pid_trans.truncate()
+        self.place_map.associate(self.pid_trans, find_idmap, db.DB_CREATE)
+
+        for key in self.place_map.keys():
+            if callback:
+                callback()
+            self.place_map[key] = self.place_map[key]
+        self.place_map.sync()
+
+        # Repair secondary indices related to media_map
+
+        self.oid_trans.close()
+        self.oid_trans = db.DB(self.env)
+        self.oid_trans.set_flags(db.DB_DUP)
+        self.oid_trans.open(self.save_name, "oidtrans", db.DB_HASH,
+                            flags=db.DB_CREATE)
+        self.oid_trans.truncate()
+        self.media_map.associate(self.oid_trans, find_idmap, db.DB_CREATE)
+
+        for key in self.media_map.keys():
+            if callback:
+                callback()
+            self.media_map[key] = self.media_map[key]
+        self.media_map.sync()
+
+        # Repair secondary indices related to source_map
+
+        self.sid_trans.close()
+        self.sid_trans = db.DB(self.env)
+        self.sid_trans.set_flags(db.DB_DUP)
+        self.sid_trans.open(self.save_name, "sidtrans", db.DB_HASH,
+                            flags=db.DB_CREATE)
+        self.sid_trans.truncate()
+        self.source_map.associate(self.sid_trans, find_idmap, db.DB_CREATE)
+
+        for key in self.source_map.keys():
+            if callback:
+                callback()
+            self.source_map[key] = self.source_map[key]
+        self.source_map.sync()
 
     def abort_changes(self):
         while self.undo():
@@ -246,6 +344,10 @@ class GrampsBSDDB(GrampsDbBase):
         if not self.readonly:
             self.metadata['bookmarks'] = self.bookmarks
             self.metadata['gender_stats'] = self.genderStats.save_stats()
+            self.metadata['fevent_names'] = list(self.family_event_names)
+            self.metadata['pevent_names'] = list(self.individual_event_names)
+            self.metadata['fattr_names'] = list(self.family_attributes)
+            self.metadata['pattr_names'] = list(self.individual_attributes)
         self.metadata.close()
         self.surnames.close()
         self.eventnames.close()
@@ -305,6 +407,7 @@ class GrampsBSDDB(GrampsDbBase):
                 self.name_group.delete(name)
             else:
                 self.name_group[name] = group
+            self.emit('person-rebuild')
             
     def get_surname_list(self):
         names = self.surnames.keys()
@@ -319,7 +422,6 @@ class GrampsBSDDB(GrampsDbBase):
         names = self.eventnames.keys()
         a = {}
         for name in names:
-            
             a[unicode(name)] = 1
         vals = a.keys()
         vals.sort()
@@ -496,7 +598,6 @@ class GrampsBSDDB(GrampsDbBase):
         self.sid_trans.sync()
         self.rid_trans.sync()
         self.oid_trans.sync()
-        self.eventnames.sync()
         self.undodb.sync()
 
     def upgrade(self):
@@ -519,10 +620,8 @@ class GrampsBSDDB(GrampsDbBase):
         if version < 7:
             self.upgrade_7()
         if version < 8:
-            #self.upgrade_7()
-            raise Exception("Currently there is no database upgrade available")
-        else:
-            print 'Successfully finished all upgrades'
+            self.upgrade_9()
+
         self.metadata['version'] = _DBVERSION
 
     def upgrade_2(self,child_rel_notrans):
@@ -866,6 +965,34 @@ class GrampsBSDDB(GrampsDbBase):
 
     def upgrade_8(self):
         print "Upgrading to DB version 8"
+        cursor = self.get_person_cursor()
+        data = cursor.first()
+        while data:
+            handle,val = data
+            handle_list = val[8]
+            if type(handle_list) == list:
+            # Check to prevent crash on corrupted data (event_list=None)
+                for handle in handle_list:
+                    event = self.get_event_from_handle(handle)
+                    self.individual_event_names.add(event.name)
+            data = cursor.next()
+        cursor.close()
+
+        cursor = self.get_family_cursor()
+        data = cursor.first()
+        while data:
+            handle,val = data
+            handle_list = val[6]
+            if type(handle_list) == list:
+            # Check to prevent crash on corrupted data (event_list=None)
+                for handle in handle_list:
+                    event = self.get_event_from_handle(handle)
+                    self.family_event_names.add(event.name)
+            data = cursor.next()
+        cursor.close()
+
+    def upgrade_9(self):
+        print "Upgrading to DB version 9"
         # First, make sure the stored default person handle is str, not unicode
         try:
             handle = self.metadata['default']
@@ -887,4 +1014,4 @@ class GrampsBSDDB(GrampsDbBase):
             self.commit_source(source,trans)
             data = cursor.next()
         cursor.close()
-        self.transaction_commit(trans,"Upgrade to DB version 7")
+        self.transaction_commit(trans,"Upgrade to DB version 9")

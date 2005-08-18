@@ -6,8 +6,14 @@ pkgdatadir = $(datadir)/@PACKAGE@/data
 
 dist_pkgdata_DATA = \
 	gedcom.xml \
+	somerights20.gif \
 	papersize.xml \
-	tips.xml
+	tips.xml\
+	main1.css\
+	main2.css\
+	main3.css\
+	main4.css\
+	main5.css
 
 EXTRA_DIST = \
 	gramps.desktop \
@@ -34,12 +40,12 @@ if !PACKAGER_MODE
 if GCONF_SCHEMAS_INSTALL
 GCONF_SCHEMAS_INSTALLATION += \
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
-		gconftool-2 --makefile-install-rule $(DESTDIR)$(GCONF_SCHEMA_FILE_DIR)/gramps.schemas ;\
+		$(GCONFTOOL) --makefile-install-rule $(DESTDIR)$(GCONF_SCHEMA_FILE_DIR)/gramps.schemas ;\
 	pkill gconfd ; echo Restarting gconfd
 
 GCONF_SCHEMAS_UNINSTALLATION += \
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
-		gconftool-2 --makefile-uninstall-rule $(DESTDIR)$(GCONF_SCHEMA_FILE_DIR)/gramps.schemas
+		$(GCONFTOOL) --makefile-uninstall-rule $(DESTDIR)$(GCONF_SCHEMA_FILE_DIR)/gramps.schemas
 endif
 if SHARED_MIME_INSTALL
 SHARED_MIME_INSTALLATION += \

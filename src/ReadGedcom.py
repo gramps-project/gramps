@@ -917,7 +917,7 @@ class GedcomParser:
                 self.db.add_event(event,self.trans)
                 self.family.add_event_handle(event.get_handle())
                 self.parse_family_event(event,2)
-                self.db.commit_event(event, self.trans)
+                self.db.commit_family_event(event, self.trans)
                 del event
 
     def parse_note_base(self,matches,obj,level,old_note,task):
@@ -1004,8 +1004,10 @@ class GedcomParser:
                     self.person.set_gender(RelLib.Person.UNKNOWN)
                 elif matches[2][0] == "M":
                     self.person.set_gender(RelLib.Person.MALE)
-                else:
+                elif matches[2][0] == "F":
                     self.person.set_gender(RelLib.Person.FEMALE)
+                else:
+                    self.person.set_gender(RelLib.Person.UNKNOWN)
             elif matches[1] in [ "BAPL", "ENDL", "SLGC" ]:
                 lds_ord = RelLib.LdsOrd()
                 if matches[1] == "BAPL":
@@ -1063,14 +1065,14 @@ class GedcomParser:
                     event.set_name("Birth")
                     self.person.set_birth_handle(event.get_handle())
                 self.parse_person_event(event,2)
-                self.db.commit_event(event, self.trans)
+                self.db.commit_personal_event(event, self.trans)
             elif matches[1] == "ADOP":
                 event = RelLib.Event()
                 self.db.add_event(event, self.trans)
                 event.set_name("Adopted")
                 self.person.add_event_handle(event.get_handle())
                 self.parse_adopt_event(event,2)
-                self.db.commit_event(event, self.trans)
+                self.db.commit_personal_event(event, self.trans)
             elif matches[1] == "DEAT":
                 event = RelLib.Event()
                 if matches[2]:
@@ -1083,7 +1085,7 @@ class GedcomParser:
                     event.set_name("Death")
                     self.person.set_death_handle(event.get_handle())
                 self.parse_person_event(event,2)
-                self.db.commit_event(event, self.trans)
+                self.db.commit_personal_event(event, self.trans)
             elif matches[1] == "EVEN":
                 event = RelLib.Event()
                 if matches[2]:

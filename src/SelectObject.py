@@ -123,7 +123,10 @@ class SelectObject:
         self.preview.set_from_pixbuf(image)
         
         self.object_handle.set_text(obj.get_gramps_id())
-        self.object_type.set_text(the_type)
+        if the_type:
+            self.object_type.set_text(the_type)
+        else:
+            self.object_type.set_text("")
         self.object_desc.set_text(obj.get_description())
         if len(path) == 0:
             self.object_path.set_text(_("The file no longer exists"))

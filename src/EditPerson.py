@@ -28,6 +28,7 @@
 import os
 import locale
 import ListBox
+import sets
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -60,6 +61,7 @@ import DateHandler
 import NameDisplay
 import NameEdit
 import NoteEdit
+import Spell
 
 from QuestionDialog import WarningDialog, ErrorDialog, SaveDialog, QuestionDialog2
 
@@ -97,6 +99,7 @@ class EditPerson:
         
         self.dp = DateHandler.parser
         self.dd = DateHandler.displayer
+        self.nd = NameDisplay.displayer
         self.orig_handle = person.get_handle()
         # UGLY HACK to refresh person object from handle if that exists
         # done to ensure that the person object is not stale, as it could
@@ -117,7 +120,6 @@ class EditPerson:
         self.lists_changed = False
         self.pdmap = {}
         self.add_places = []
-        self.name_display = NameDisplay.displayer
         self.should_guess_gender = (not person.get_gramps_id() and
                                     person.get_gender () ==
                                     RelLib.Person.UNKNOWN)
@@ -165,6 +167,7 @@ class EditPerson:
 
         self.notes_field = self.get_widget("personNotes")
         self.notes_field.set_editable(mod)
+        self.spell_notes = Spell.Spell(self.notes_field)
         self.flowed = self.get_widget("flowed")
         self.flowed.set_sensitive(mod)
         self.preform = self.get_widget("preform")
@@ -455,20 +458,20 @@ class EditPerson:
         self.window.destroy()
         
     def add_itself_to_winsmenu(self):
+##         self.parent_window.child_windows[self.orig_handle] = self
+##         win_menu_label = self.name_display.display(self.person)
+##         if not win_menu_label.strip():
+##             win_menu_label = _("New Person")
+##         self.win_menu_item = gtk.MenuItem(win_menu_label)
+##         self.win_menu_item.set_submenu(gtk.Menu())
+##         self.win_menu_item.show()
+##         self.uistate.winsmenu.append(self.win_menu_item)
+##         self.winsmenu = self.win_menu_item.get_submenu()
+##         self.menu_item = gtk.MenuItem(_('Edit Person'))
+##         self.menu_item.connect("activate",self.present)
+##         self.menu_item.show()
+##         self.winsmenu.append(self.menu_item)
         return
-        self.parent_window.child_windows[self.orig_handle] = self
-        win_menu_label = self.name_display.display(self.person)
-        if not win_menu_label.strip():
-            win_menu_label = _("New Person")
-        self.win_menu_item = gtk.MenuItem(win_menu_label)
-        self.win_menu_item.set_submenu(gtk.Menu())
-        self.win_menu_item.show()
-        self.uistate.winsmenu.append(self.win_menu_item)
-        self.winsmenu = self.win_menu_item.get_submenu()
-        self.menu_item = gtk.MenuItem(_('Edit Person'))
-        self.menu_item.connect("activate",self.present)
-        self.menu_item.show()
-        self.winsmenu.append(self.menu_item)
 
     def remove_itself_from_winsmenu(self):
         return 
@@ -692,7 +695,7 @@ class EditPerson:
         the close window"""
         
         if self.did_data_change() and not GrampsKeys.get_dont_ask():
-            n = "<i>%s</i>" % self.person.get_primary_name().get_regular_name()
+            n = "<i>%s</i>" % self.nd.display(self.person)
             SaveDialog(_('Save changes to %s?') % n,
                        _('If you close without saving, the changes you '
                          'have made will be lost'),
@@ -708,7 +711,7 @@ class EditPerson:
         """If the data has changed, give the user a chance to cancel
         the close window"""
         if self.did_data_change() and not GrampsKeys.get_dont_ask():
-            n = "<i>%s</i>" % self.person.get_primary_name().get_regular_name()
+            n = "<i>%s</i>" % self.nd.display(self.person)
             SaveDialog(_('Save Changes to %s?') % n,
                        _('If you close without saving, the changes you '
                          'have made will be lost'),
@@ -909,7 +912,7 @@ class EditPerson:
             if not person:
                 self.person.set_gramps_id(idval)
             else:
-                n = self.name_display.display(person)
+                n = self.nd.display(person)
                 msg1 = _("GRAMPS ID value was not changed.")
                 msg2 = _("You have attempted to change the GRAMPS ID to a value "
                          "of %(grampsid)s. This value is already used by %(person)s.") % {
@@ -946,11 +949,6 @@ class EditPerson:
 
         self.build_pdmap()
 
-#         if not self.orig_birth.are_equal(self.birth):
-#             if self.orig_birth.is_empty():
-#                 self.db.add_event(self.birth,trans)
-#                 self.person.set_birth_handle(self.birth.get_handle())
-#             self.db.commit_event(self.birth,trans)
 
         # Update each of the families child lists to reflect any
         # change in ordering due to the new birth date
@@ -1047,7 +1045,8 @@ class EditPerson:
             if not self.person.get_gramps_id():
                 self.person.set_gramps_id(self.db.find_next_person_gramps_id())
             self.db.commit_person(self.person, trans)
-        n = self.person.get_primary_name().get_regular_name()
+
+        n = self.nd.display(self.person)
 
         for (event_ref,event) in self.event_box.get_changed_objects():
             self.db.commit_event(event,trans)

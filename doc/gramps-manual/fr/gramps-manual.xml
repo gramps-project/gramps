@@ -1,24 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0"?>
+<?yelp:chunk-depth 3?>
 <!--
-         User Manual for Gramps - a GTK+/GNOME based genealogy program
+	  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-         Copyright (C) 2003  Alexander Roitman
+	  Copyright (C) 2003-2005  Alexander Roitman
 
-         Permission is granted to copy, distribute and/or modify this
-         document under the terms of the GNU Free Documentation
-         License (GFDL), Version 1.1 or any later version published
-         by the Free Software Foundation with no Invariant Sections,
-         no Front-Cover Texts, and no Back-Cover Texts.
-         A copy of the license is included in the file COPYING-DOCS
-         distributed with this manual.
+	  This document is free software; you can redistribute it and/or modify
+	  it under the terms of the GNU General Public License as published by
+	  the Free Software Foundation; either version 2 of the License, or
+	  (at your option) any later version.
+
+	  This document is distributed in the hope that it will be useful,
+	  but WITHOUT ANY WARRANTY; without even the implied warranty of
+	  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	  GNU General Public License for more details.
+
+	  You should have received a copy of the GNU General Public License
+	  along with this program; if not, write to the Free Software
+	  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
 
 <!-- $Id$ -->
 
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+
+  <!-- Information about the entities
+       The legal.xml file contains legal information, there is no need to edit the file. 
+       Use the appversion entity to specify the version of the application.
+       Use the manrevision entity to specify the revision number of this manual.
+       Use the date entity to specify the release date of this manual.
+       Use the app entity to specify the name of the application. -->
+
   <!ENTITY legal SYSTEM "legal.xml">
+
+  <!ENTITY appversion "2.0.0">
+  <!ENTITY manrevision "2.6">
+  <!ENTITY date "May 2005">
+  <!ENTITY app "GRAMPS">
+
+  <!-- The rest of the entities is simply the chapters of the manual.. -->
+
+  <!ENTITY preface SYSTEM "preface.xml">
   <!ENTITY getstart SYSTEM "getstart.xml">
   <!ENTITY mainwin SYSTEM "mainwin.xml">
   <!ENTITY usage SYSTEM "usage.xml">
@@ -27,16 +50,8 @@
   <!ENTITY keybind SYSTEM "keybind.xml">
   <!ENTITY filtref SYSTEM "filtref.xml">
   <!ENTITY cmdline SYSTEM "cmdline.xml">
-  <!ENTITY appversion "1.0.0">
-  <!ENTITY manrevision "2.5">
-  <!ENTITY date "February 2004">
-  <!ENTITY app "<application>GRAMPS</application>">
-  <!-- Information about the entities
-       The legal.xml file contains legal information, there is no need to edit the file. 
-       Use the appversion entity to specify the version of the application.
-       Use the manrevision entity to specify the revision number of this manual.
-       Use the date entity to specify the release date of this manual.
-       Use the app entity to specify the name of the application. -->
+  <!ENTITY bugs SYSTEM "bugs.xml">
+  <!ENTITY authors SYSTEM "authors.xml">
 ]>
 <!-- 
       (Do not remove this comment block.)
@@ -46,30 +61,31 @@
   Template last modified Apr 11, 2002
 -->
 <!-- =============Document Header ============================= -->
-<article id="index" lang="fr">
+<book id="index" lang="fr">
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
-  <articleinfo> 
-    <title>gramps Manuel V&manrevision;</title>       
+  <bookinfo> 
+    <title>GRAMPS Manual V&manrevision;</title>       
 
     <copyright> <year>2001</year> <holder>Donald N. Allingham</holder> </copyright>
-    <copyright> <year>2003-2004</year> <holder>Alex Roitman</holder> </copyright> 
+    <copyright> <year>2003-2005</year> <holder>Alex Roitman</holder> </copyright> 
 
+<!-- translators: uncomment this:
 
   <copyright>
-   <year>2003-2004</year>
-   <holder>Michel Guitel (french translation)</holder>
+   <year>2002</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
   </copyright>
 
+   -->
 <!-- An address can be added to the publisher information.  If a role is 
      not specified, the publisher/author is the same for all versions of the 
      document.  -->
     <publisher> <publishername> GRAMPS Project </publishername> </publisher> 
 
    &legal;
-   <!-- This file  contains link to license for the documentation (GNU FDL), and 
-        other legal stuff such as "NO WARRANTY" statement. Please do not change 
-	any of this. -->
+   <!-- This file  contains link to license for the documentation (GNU GPL), and 
+        other legal stuff such as "NO WARRANTY" statement.  -->
 
     <authorgroup> 
       <author> 
@@ -77,7 +93,7 @@
 		<surname>Roitman</surname> 
 		<affiliation> 
 	  		<orgname>GRAMPS Project</orgname> 
-	  		<address> <email>shura@alex.neuro.umn.edu</email> </address> 
+	  		<address> <email>shura@gramps-project.org</email> </address> 
 		</affiliation> 
       </author> 
       <author> 
@@ -85,27 +101,26 @@
 		<surname>Allingham</surname> 
 		<affiliation> 
 	  		<orgname>GRAMPS Project</orgname> 
-	  		<address> <email>dallingham@users.sourceforge.net</email> </address> 
+	  		<address> <email>don@gramps-project.org</email> </address> 
 		</affiliation> 
       </author> 
       
 <!-- This is appropriate place for other contributors: translators,
      maintainers,  etc. Commented out by default.
--->     
+     
       <othercredit role="translator">
-		<firstname>Michel</firstname> 
-		<surname>Guitel</surname> 
+		<firstname>Latin</firstname> 
+		<surname>Translator 1</surname> 
 		<affiliation> 
-	  		<orgname>French Translation Team</orgname> 
-	  		<address> <email>michel.guitel@free.fr</email> </address> 
+	  		<orgname>Latin Translation Team</orgname> 
+	  		<address> <email>translator@gnome.org</email> </address> 
 		</affiliation>
-		<contrib>French translation</contrib>
+		<contrib>Latin translation</contrib>
       </othercredit>
-<!--
 -->
     </authorgroup>
 
-<!-- According to GNU FDL, revision history is mandatory if you are -->
+<!-- According to GNU GPL, revision history is mandatory if you are -->
 <!-- modifying/reusing someone else's document.  If not, you can omit it. -->
 <!-- Remember to remove the &manrevision; entity from the revision entries other
 -->
@@ -124,7 +139,16 @@
 		<date>&date;</date> 
 		<revdescription> 
 	  	<para role="author">Alex Roitman
-		    	<email>shura@alex.neuro.umn.edu</email></para>
+		    	<email>shura@gramps-project.org</email></para>
+                <para role="publisher">GRAMPS Project</para>
+		</revdescription> 
+      </revision> 
+      <revision> 
+		<revnumber>GRAMPS Manual V2.5</revnumber> 
+		<date>February 2004</date> 
+		<revdescription> 
+	  	<para role="author">Alex Roitman
+		    	<email>shura@gramps-project.org</email></para>
                 <para role="publisher">GRAMPS Project</para>
 		</revdescription> 
       </revision> 
@@ -133,25 +157,25 @@
 		<date>December 2003</date> 
 		<revdescription> 
 	  	<para role="author">Alex Roitman
-		    	<email>shura@alex.neuro.umn.edu</email></para>
+		    	<email>shura@gramps-project.org</email></para>
                 <para role="publisher">GRAMPS Project</para>
 		</revdescription> 
       </revision> 
       <revision> 
-                <revnumber>GRAMPS Manual V2.3</revnumber>
-                <date>September 2003</date>
-                <revdescription>
-                <para role="author">Alex Roitman
-                        <email>shura@alex.neuro.umn.edu</email></para>
-                  <para role="publisher">GRAMPS Project</para>
-                </revdescription>
-        </revision>
-        <revision>
+		<revnumber>GRAMPS Manual V2.3</revnumber> 
+		<date>September 2003</date> 
+		<revdescription> 
+	  	<para role="author">Alex Roitman
+		    	<email>shura@gramps-project.org</email></para>
+                <para role="publisher">GRAMPS Project</para>
+		</revdescription> 
+      </revision> 
+      <revision> 
 		<revnumber>GRAMPS Manual V2.2</revnumber> 
 		<date>July 2003</date> 
 		<revdescription> 
 	  	<para role="author">Alex Roitman
-	    		<email>shura@alex.neuro.umn.edu</email></para>
+	    		<email>shura@gramps-project.org</email></para>
   		<para role="author">Donald A. Peterson
 		    	<email>dpeterson@sigmaxi.org</email></para>
   		<para role="publisher">GRAMPS Project</para>
@@ -162,7 +186,7 @@
 		<date>May 2003</date> 
 		<revdescription> 
 	  		<para role="author">Alex Roitman
-	    	<email>shura@alex.neuro.umn.edu</email>
+	    	<email>shura@gramps-project.org</email>
 	  		</para>
 	  		<para role="publisher">GRAMPS Project</para>
 		</revdescription> 
@@ -172,7 +196,7 @@
 		<date>April 2003</date> 
 		<revdescription> 
 	  		<para role="author">Alex Roitman
-	    	<email>shura@alex.neuro.umn.edu</email>
+	    	<email>shura@gramps-project.org</email>
 	  		</para>
 	  		<para role="publisher">GRAMPS Project</para>
 		</revdescription> 
@@ -182,7 +206,7 @@
 		<date>2001</date> 
 		<revdescription> 
 	  		<para role="author">Donald N. Allingham 
-	    	<email>dallingham@users.sourceforge.net</email>
+	    	<email>don@gramps-project.org</email>
 	  		</para>
 	  		<para role="publisher">GRAMPS Project</para>
 		</revdescription> 
@@ -192,137 +216,44 @@
 		<date>2001</date> 
 		<revdescription> 
 	  		<para role="author">Donald N. Allingham 
-	    	<email>dallingham@users.sourceforge.net</email>
+	    	<email>don@gramps-project.org</email>
 	  		</para>
 	  		<para role="publisher">GRAMPS Project</para>
 		</revdescription> 
       </revision> 
     </revhistory> 
 
-    <releaseinfo>This manual describes version &appversion; of GRAMPS.
+    <releaseinfo>Ce manuel décrit la version &appversion; de GRAMPS.
     </releaseinfo> 
+
     <legalnotice> 
-      <title>Feedback</title> 
-      <para>To report a bug or make a suggestion regarding the &app; application or
-      this manual, follow the directions in the <ulink url="ghelp:gnome-feedback"
-	  type="help">GNOME Feedback Page</ulink>. 
-      </para>
-<!-- Translators may also add here feedback address for translations -->
-      <title>Signalements</title> 
-      <para>Pour signaler une erreur ou faire une suggestion sur &app; 
-      ou sur ce manuel, allez à la <ulink url="ghelp:gnome-feedback"
-	  type="help">Page GNOME</ulink>. 
-      </para>
-    </legalnotice> 
-  </articleinfo> 
-
-  <indexterm zone="index"> <primary>GRAMPS</primary> </indexterm> 
-  <indexterm zone="index"> <primary>gramps</primary> </indexterm>
-
-<!-- ============= Document Body ============================= -->
-<!-- ============= Introduction ============================== -->
-  <sect1 id="gramps-intro"> 
-    <title>Introduction</title> 
-    <para> &app; est une application de généalogie.
-    &app; est l'acronyme pour 
-    Genealogical Research and Analysis Management Programming System 
-    (Systeme de Programmation pour Recherche, Analyse et Gestion de données généalogiques). 
-    En bref, il vous permet de conserver, modifier et chercher des données de généalogie
-    à l'aide d'un ordinateur. Il est semblable à d'autres programmes de généalogie
-    mais il offre en plus des possibilités qui lui sont uniques. </para> 
-
-    <sect2 id="why-gramps">
-      <title>Pourquoi gramps? </title>
-      <para> &app; a été pensé avec l'idée que la plupart des logiciels
-      de généalogie permettent de saisir des données. Ils suivent en général
-      le modèle de données standard Gedcom. Habituellement, on peut afficher
-      des arbres ascendants ou descendants sur l'écran ou bien les imprimer. 
-      On peut ajouter des images aux données. On peut souvent saisir des
-      informations sur des personnes ou des familles non obligatoirement
-      liées avec l'objet de la recherche. D'autres extensions portent sur
-      l'importation ou l'exportation de données ainsi que sur les impressions
-      d'états. </para>
-      
-      <para> &app; cherche à fournir toutes les fonctions
-      communes de ces logiciels et aussi la capacité d'intégrer des informations
-      éparses directement, puis de traiter/réorganiser 
-      n'importe quel évènement et/ou donnée dans toute la base de données,
-      pour aider l'utilisateur dans ses recherches, analyses, recoupements
-      et éventuellement mises en relation de données. En bref, cet outil
-      traite toutes les données en un lieu unique avec l'aide de l'ordinateur,
-      en remplaçant le crayon et les montagnes de papier. </para>
-    </sect2>
-  </sect1> <!-- ================ End Intro ================================ -->
-  
-  &getstart;	<!-- Getting Started -->
-  &mainwin;		<!-- Main window -->
-  &usage;		<!-- Usage -->
-  &custom;		<!-- Customization -->
-	
-  
-<!-- ============= Bugs ================================== -->
-<!-- This section is optional and is commented out by default. 
-     You can use it to describe known bugs and limitations of the 
-	  program if there are any - please be frank and list all
-     problems you know of. 
--->
-  
-  <sect1 id="mayapp-bugs">
-  <title>Erreurs connues, limitations</title>
-  <para>Pour le moment, &app; charge toutes ses données en mémoire ce qui 
-  charge lourdement le système quand la base de données est très grande
-  (au dessus de 15000 individus sur une configuration moyenne). 
-  Ceci sera traité dans la version 1.2 par l'utilisation d'une base de données
-  intégrée. L'utilisation mémoire comme les performances seront grandement améliorées. </para>
-  
-  <para>L'envoi direct sur une imprimante n'est pas supporté. 
-  Il est prévu de corriger celà après la version stable 1.0 par le recours
-  à l'architecture gnome-print.</para>
-  
-  <para>Les impressions PS et PDF génèrent des caractères erronés à la
-  place des caractères Unicode. gnome-print devrait aussi régler ce problème. 
-  En attendant, la solution est de produire des états au format
-  OpenOffice.org puis de les convertir en PDF avec OpenOffice.</para>
- </sect1>
-<!-- ============= About ================================== -->
-<!-- This section contains info about the program (not docs), such as
-      author's name(s), web page, license, feedback address. This
-      section is optional: primary place for this info is "About.." box of
-      the program. However, if you do wish to include this info in the
-      manual, this is the place to put it. 
-      Alternatively, you can put this information in the title page.-->
-  <sect1 id="gramps-about"> 
-    <title>A propos de gramps</title> 
-    <para> &app; est écrit par Donald N. Allingham
-      (<email>dallingham@users.sourceforge.net</email>). 
-      Si vous cherchez plus d'information sur &app;, allez à l'URL de la 
-      <ulink url="http://gramps.sourceforge.net" type="http">Page Web du 
-      Projet GRAMPS</ulink>. </para>
+      <title>Retour</title> 
     <para>
-      Si vous désirez signaler une erreur du programme, ou faire une suggestion
-      à propos du programme ou du manuel, utilisez le menu d'aide
-      de &app; ou suivez le lien
-      <ulink url="ghelp:gnome-feedback" type="help">suggestions</ulink>.
+      Pour rapporter un bug ou faire une suggestion concernant cette application ou ce manuel, employer le menu d'aide de GRAMPS, ou <ulink url="http://gramps-project.org/index.php?module=pagemaster&amp;PAGE_user_op=view_page&amp;PAGE_id=3"
+      type="http">ce lien</ulink>.
     </para>
 
-    <para> This program is distributed under the terms of the GNU
-      General Public license as published by the Free Software
-      Foundation; either version 2 of the License, or (at your option)
-      any later version. A copy of this license can be found at this
-      <ulink url="ghelp:gpl" type="help">link</ulink>, or in the file
-      COPYING included with the source code of this program. </para>
+<!-- Translators may also add here feedback address for translations -->
+    </legalnotice> 
+  </bookinfo> 
 
-  </sect1> <!-- ============= End About ============================= -->
+<!-- ============= Document Body ============================= -->
 
-<!-- ============= Appendices ================================== -->
-  <sect1 id="appendices">
-    <title>Appendices</title>
-  
-      &faq;             <!-- FAQ -->
-      &keybind;         <!-- Keybindings reference -->
-      &filtref;		<!-- Filter rule reference -->
-      &cmdline;		<!-- Command line reference -->
+	<!-- Preface -->
+	&preface;
+
+	 <!-- Regular chapters -->
+	&getstart;      <!-- Getting Started -->
+	&mainwin;		<!-- Main window -->
+	&usage;		<!-- Usage -->
+	&custom;		<!-- Customization -->
+
+	<!-- Appendices -->
+	&faq;		    <!-- FAQ -->
+	&keybind;		<!-- Keybindings reference -->
+	&filtref;		<!-- Filter rule reference -->
+	&cmdline;		<!-- Command line reference -->
+	&bugs;		<!-- Bugs and problems -->
+	&authors;		<!-- About authors -->
       
-  </sect1>
-
-</article>
+</book>

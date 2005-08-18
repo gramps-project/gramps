@@ -335,7 +335,7 @@ class PersonView(PageView.PersonNavView):
 
         all = GenericFilter.ParamFilter()
         all.set_name(_("People with names containing..."))
-        all.add_rule(GenericFilter.SearchName([]))
+        all.add_rule(GenericFilter.SearchName(['']))
         filter_list.append(all)
 
         all = GenericFilter.GenericFilter()
@@ -385,7 +385,7 @@ class PersonView(PageView.PersonNavView):
 
         all = GenericFilter.ParamFilter()
         all.set_name(_("People probably alive"))
-        all.add_rule(GenericFilter.ProbablyAlive([]))
+        all.add_rule(GenericFilter.ProbablyAlive(['']))
         filter_list.append(all)
 
         all = GenericFilter.GenericFilter()
@@ -395,17 +395,17 @@ class PersonView(PageView.PersonNavView):
 
         all = GenericFilter.GenericFilter()
         all.set_name(_("Witnesses"))
-        all.add_rule(GenericFilter.IsWitness([]))
+        all.add_rule(GenericFilter.IsWitness(['','']))
         filter_list.append(all)
 
         all = GenericFilter.ParamFilter()
         all.set_name(_("People with records containing..."))
-        all.add_rule(GenericFilter.HasTextMatchingSubstringOf([]))
+        all.add_rule(GenericFilter.HasTextMatchingSubstringOf(['',0,0]))
         filter_list.append(all)
 
         all = GenericFilter.ParamFilter()
         all.set_name(_("People with records matching regular expression..."))
-        all.add_rule(GenericFilter.HasTextMatchingRegexpOf([]))
+        all.add_rule(GenericFilter.HasTextMatchingRegexpOf(['',0,1]))
         filter_list.append(all)
 
         all = GenericFilter.GenericFilter()
@@ -415,7 +415,7 @@ class PersonView(PageView.PersonNavView):
 
         all = GenericFilter.ParamFilter()
         all.set_name(_("People with notes containing..."))
-        all.add_rule(GenericFilter.HasNoteMatchingSubstringOf([]))
+        all.add_rule(GenericFilter.HasNoteMatchingSubstringOf(['']))
         filter_list.append(all)
 
         self.filter_model = GenericFilter.FilterStore(filter_list)
