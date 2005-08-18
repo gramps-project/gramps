@@ -255,10 +255,10 @@
 
 
 	<varlistentry><term>Adjusting viewing controls</term>
-	<listitem>Whether the toolbar, the sidebar, or the filter (People View
+	<listitem><para>Whether the toolbar, the sidebar, or the filter (People View
     only) are displayed in the main window is adjusted through
     the <guimenu>View</guimenu> menu.
-	</listitem>
+	</para></listitem>
 	</varlistentry>
 
   	</variablelist>

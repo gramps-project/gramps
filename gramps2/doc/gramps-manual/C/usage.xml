@@ -1259,41 +1259,40 @@ dialog described in detail below, see <xref linkend="adv-dates-gui"/> </para></t
         check the date using graphical user interface. The <guilabel>Date selection</guilabel>
         dialog can be invoked by clicking the color circle button (also known as the LED
         button) next to the date entry field. </para>
-        </sect3>
 
-	<!-- ==== Figure: Date selection dialog ==== -->
-	<figure id="adv-dates-gui-fig"> 
-	<title>Date selection dialog</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/date-selection.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Date selection dialog. </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
-
-	<para>The <guilabel>Calendar</guilabel> menu allows the choice
-	of any supported calendar. The <guilabel>Quality</guilabel> menu
-	provides choices of Regular, Estimated, or Calculated quality. The
-	<guilabel>Type</guilabel> menu allows to adjust the exact date type:
-	Regular, Before, After, About, Range, Span, and Text only.
-	A set of controls labeled <guilabel>Date</guilabel> allows setting
-	the day, the month, and the year for a date. The second set of controls,
-	<guilabel>Second date</guilabel>, is disabled for all dates except
-	for those of Range and Span type. For ranges and spans, the
-	<guilabel>Second date</guilabel> controls allow setting the details
-	of the second date. Finally, the <guilabel>Text comment</guilabel>
-	text entry field allows storing an arbitrary text string along with the date.
-	</para>
-	
-	<note><para>If you enter the date outside this dialog, i.e. as a text
-	in any date entry field, that text will be copied and stored as the text
-	comment string during parsing of entered text.</para>
-	
-	<para>Therefore, the comment only lives until the next parsing.
-	If you have some important text corresponding to the date, you
-	are probably better off by saving that text as a Note for the
-	corresponding event.</para></note>
-
+        <!-- ==== Figure: Date selection dialog ==== -->
+        <para><figure id="adv-dates-gui-fig"> 
+        <title>Date selection dialog</title> 
+        <screenshot><mediaobject><imageobject><imagedata 
+            fileref="figures/date-selection.png" format="PNG"/></imageobject>
+        <textobject> 
+        <phrase>Shows Date selection dialog. </phrase>
+        </textobject></mediaobject></screenshot></figure></para>
+        <!-- ==== End of Figure ==== -->
+    
+        <para>The <guilabel>Calendar</guilabel> menu allows the choice
+        of any supported calendar. The <guilabel>Quality</guilabel> menu
+        provides choices of Regular, Estimated, or Calculated quality. The
+        <guilabel>Type</guilabel> menu allows to adjust the exact date type:
+        Regular, Before, After, About, Range, Span, and Text only.
+        A set of controls labeled <guilabel>Date</guilabel> allows setting
+        the day, the month, and the year for a date. The second set of controls,
+        <guilabel>Second date</guilabel>, is disabled for all dates except
+        for those of Range and Span type. For ranges and spans, the
+        <guilabel>Second date</guilabel> controls allow setting the details
+        of the second date. Finally, the <guilabel>Text comment</guilabel>
+        text entry field allows storing an arbitrary text string along with the date.
+        </para>
+        
+        <note><para>If you enter the date outside this dialog, i.e. as a text
+        in any date entry field, that text will be copied and stored as the text
+        comment string during parsing of entered text.</para>
+        
+        <para>Therefore, the comment only lives until the next parsing.
+        If you have some important text corresponding to the date, you
+        are probably better off by saving that text as a Note for the
+        corresponding event.</para></note>
+    </sect3>
       </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->

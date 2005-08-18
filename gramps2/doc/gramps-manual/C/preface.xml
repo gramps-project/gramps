@@ -194,25 +194,25 @@
 	<para>
           In this book, we some words are marked with special typography:
           <itemizedlist>
-	    <listitem><application>Applications</application></listitem>
-	    <listitem><command>Commands</command> you type at the command 
-            line</listitem>
-            <listitem><filename>Filenames</filename></listitem>
-            <listitem><replaceable>Replaceable text</replaceable></listitem>
-	    <listitem><guilabel>Labels</guilabel> for buttons and other
-             portions of the graphical interface</listitem>
+	    <listitem><simpara><application>Applications</application></simpara></listitem>
+	    <listitem><simpara><command>Commands</command> you type at the command 
+            line</simpara></listitem>
+            <listitem><simpara><filename>Filenames</filename></simpara></listitem>
+            <listitem><simpara><replaceable>Replaceable text</replaceable></simpara></listitem>
+	    <listitem><simpara><guilabel>Labels</guilabel> for buttons and other
+             portions of the graphical interface</simpara></listitem>
 
-            <listitem> Menu selections look like this:
+            <listitem><simpara>Menu selections look like this:
                        <menuchoice>
                           <guimenu>Menu</guimenu>
                           <guisubmenu>Submenu</guisubmenu> 
                           <guimenuitem>Menu Item</guimenuitem>
                      </menuchoice>
-            </listitem>
-	    <listitem><guibutton>Buttons</guibutton> you can
-            click</listitem> 
-            <listitem><userinput>Anything you type
-            in</userinput></listitem>
+            </simpara></listitem>
+	    <listitem><simpara><guibutton>Buttons</guibutton> you can
+            click</simpara></listitem> 
+            <listitem><simpara><userinput>Anything you type
+            in</userinput></simpara></listitem>
 	 </itemizedlist>
         </para>
 
