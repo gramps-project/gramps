@@ -63,13 +63,14 @@ _codeset = locale.nl_langinfo(locale.CODESET)
 #-------------------------------------------------------------------------
 class BaseModel(gtk.GenericTreeModel):
 
-    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
+    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING,tooltip_column=None):
         gtk.GenericTreeModel.__init__(self)
         self.set_property("leak_references",False)
         self.db = db
         self.sort_func = self.smap[scol]
         self.sort_col = scol
         self.reverse = (order == gtk.SORT_DESCENDING)
+        self.tooltip_column = tooltip_column
         self.rebuild_data()
 
     def set_sort_column(self,col):
@@ -288,6 +289,7 @@ class SourceModel(BaseModel):
             self.column_pubinfo,
             self.column_change,
             self.column_handle,
+            self.column_tooltip
             ]
         self.smap = [
             self.column_title,
@@ -297,7 +299,7 @@ class SourceModel(BaseModel):
             self.column_pubinfo,
             self.sort_change,
             ]
-        BaseModel.__init__(self,db,scol,order)
+        BaseModel.__init__(self,db,scol,order,tooltip_column=7)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
@@ -326,6 +328,9 @@ class SourceModel(BaseModel):
     def sort_change(self,data):
         return time.localtime(data[8])
 
+    def column_tooltip(self,data):
+        return unicode(data[2])
+
 #-------------------------------------------------------------------------
 #
 # PlaceModel
@@ -349,6 +354,7 @@ class PlaceModel(BaseModel):
             self.column_latitude,
             self.column_change,
             self.column_handle,
+            self.column_tooltip
             ]
         self.smap = [
             self.column_name,
@@ -364,7 +370,7 @@ class PlaceModel(BaseModel):
             self.column_change,
             self.column_handle,
             ]
-        BaseModel.__init__(self,db,scol,order)
+        BaseModel.__init__(self,db,scol,order,tooltip_column=12)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
@@ -427,6 +433,9 @@ class PlaceModel(BaseModel):
         return unicode(time.strftime(_date_format,time.localtime(data[11])),
                             _codeset)
 
+    def column_tooltip(self,data):
+        return unicode(data[2])
+
 #-------------------------------------------------------------------------
 #
 # MediaModel
@@ -446,6 +455,7 @@ class MediaModel(BaseModel):
             self.column_change,
             self.column_date,
             self.column_handle,
+            self.column_tooltip
             ]
         self.smap = [
             self.column_description,
@@ -456,7 +466,7 @@ class MediaModel(BaseModel):
             self.column_date,
             self.column_handle,
             ]
-        BaseModel.__init__(self,db,scol,order)
+        BaseModel.__init__(self,db,scol,order,tooltip_column=7)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
@@ -491,6 +501,9 @@ class MediaModel(BaseModel):
         return unicode(time.strftime(_date_format,time.localtime(data[8])),
                             _codeset)
 
+    def column_tooltip(self,data):
+        return unicode(data[4])
+
 #-------------------------------------------------------------------------
 #
 # EventModel
@@ -511,6 +524,7 @@ class EventModel(BaseModel):
             self.column_cause,
             self.column_change,
             self.column_handle,
+            self.column_tooltip,
             ]
         self.smap = [
             self.column_description,
@@ -522,7 +536,7 @@ class EventModel(BaseModel):
             self.sort_change,
             self.column_handle,
             ]
-        BaseModel.__init__(self,db,scol,order)
+        BaseModel.__init__(self,db,scol,order,tooltip_column=8)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
@@ -567,6 +581,9 @@ class EventModel(BaseModel):
         return unicode(time.strftime(_date_format,time.localtime(data[11])),
                             _codeset)
 
+    def column_tooltip(self,data):
+        return unicode(data[4])
+
 
 #-------------------------------------------------------------------------
 #
@@ -577,6 +594,7 @@ class RepositoryModel(BaseModel):
 
     def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING):
         self.gen_cursor = db.get_repository_cursor
+        self.get_handles = db.get_repository_handles
         self.map = db.repository_map
         self.fmap = [
             self.column_name,
@@ -590,8 +608,10 @@ class RepositoryModel(BaseModel):
             self.column_country,
             self.column_email,
             self.column_search_url,            
-            self.column_handle,            
+            self.column_handle,
+            self.column_tooltip
             ]
+        
         self.smap = [
             self.column_name,
             self.column_id,
@@ -606,7 +626,8 @@ class RepositoryModel(BaseModel):
             self.column_search_url,            
             self.column_handle,            
             ]
-        BaseModel.__init__(self,db,scol,order)
+        
+        BaseModel.__init__(self,db,scol,order,tooltip_column=12)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
@@ -673,3 +694,6 @@ class RepositoryModel(BaseModel):
     
     def column_home_url(self,data):
         return unicode(data[7])
+
+    def column_tooltip(self,data):
+        return unicode(data[3])

@@ -50,6 +50,7 @@ import EditPerson
 import NameDisplay
 import Utils
 import QuestionDialog
+import TreeTips
 
 from DdTargets import DdTargets
 
@@ -432,6 +433,10 @@ class PersonView(PageView.PersonNavView):
         self.person_model = PeopleModel.PeopleModel(
             self.dbstate.db, self.DataFilter, self.filter_invert.get_active())
         self.person_tree.set_model(self.person_model)
+
+        if self.person_model.tooltip_column != None:
+            self.tooltips = TreeTips.TreeTips(self.person_tree,self.person_model.tooltip_column,True)
+
 
     def filter_toggle(self,obj):
         if obj.get_active():

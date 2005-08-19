@@ -1,3 +1,8 @@
+2005-08-17  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+        * src/DisplayModels.py: added basic tooltip support to models
+	* src/PageView.py: added basic tooltip support
+	* src/PeopleModel.py: added basic tooltip support
+	
 2005-08-17  Alex Roitman  <shura@gramps-project.org>
 	* various: merge changes made in gramps20 branch with main trunk.
 

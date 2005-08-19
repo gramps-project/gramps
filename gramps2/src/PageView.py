@@ -21,6 +21,7 @@
 # $Id$
 
 import gtk
+import TreeTips
 
 NAVIGATION_NONE   = -1
 NAVIGATION_PERSON = 0
@@ -353,11 +354,15 @@ class ListView(PageView):
             self.columns.append(column)
             self.list.append_column(column)
             index += 1
-    
+
+
     def build_tree(self):
         self.model = self.make_model(self.dbstate.db,self.sort_col)
         self.list.set_model(self.model)
         self.selection = self.list.get_selection()
+
+        if self.model.tooltip_column != None:
+            self.tooltips = TreeTips.TreeTips(self.list,self.model.tooltip_column,True)
 
     def change_db(self,db):
         for sig in self.signal_map:
