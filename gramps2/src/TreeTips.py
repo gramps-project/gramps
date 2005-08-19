@@ -40,7 +40,7 @@ class TreeTips(gtk.Widget):
         'delay' : (gobject.TYPE_INT,
                 'MSecs before displaying the tooltip.',
                 'The delay between the mouse pausing over the widget and the display of the tooltip in msec.',
-                0, 60000, 500,
+                0, 60000, 2000,
                 gobject.PARAM_READWRITE),
         'enabled' : (gobject.TYPE_BOOLEAN,
                 'If TRUE the tooltips are enabled',
@@ -87,7 +87,7 @@ class TreeTips(gtk.Widget):
         gobject.GObject.__init__(self)
 
         self.view = treeview or None
-        self.delay = 500
+        self.delay = 2000
         self.enabled = True
         self.column = column or 0
         self.markup_enabled = markup_enabled
