@@ -194,7 +194,7 @@ class PersonTip:
             _("Birth"),birth_str)
 
         if len(self._obj.get_source_references()) > 0:
-            psrc_ref = person.get_source_references()[0]
+            psrc_ref = self._obj.get_source_references()[0]
             psrc_id = psrc_ref.get_base_handle()
             psrc = self._db.get_source_from_handle(psrc_id)
 
