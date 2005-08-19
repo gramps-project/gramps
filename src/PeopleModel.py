@@ -49,6 +49,7 @@ import pango
 from RelLib import *
 import NameDisplay
 import DateHandler
+import ToolTips
 
 #-------------------------------------------------------------------------
 #
@@ -409,7 +410,8 @@ class PeopleModel(gtk.GenericTreeModel):
         return u""
 
     def column_tooltip(self,data,node):
-        return NameDisplay.displayer.sorted_name(data[_NAME_COL])
+        return ToolTips.TipFromFunction(self.db, lambda: self.db.get_person_from_handle(data[0]))
+        
 
     def column_int_id(self,data,node):
         return node
@@ -439,7 +441,7 @@ COLUMN_DEFS = [
     # the order of the above columns must match PeopleView.column_names
 
     # these columns are hidden, and must always be last in the list
-    (PeopleModel.column_tooltip,    None,                      str),    
+    (PeopleModel.column_tooltip,    None,                      object),    
     (PeopleModel.column_sort_name,  None,                      str),
     (PeopleModel.column_int_id,     None,                      str),
     ]

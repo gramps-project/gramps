@@ -45,6 +45,8 @@ import NameDisplay
 import DateHandler
 import RelLib
 import Utils
+import ToolTips
+import DisplayTrace
 
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
@@ -143,6 +145,8 @@ class BaseModel(gtk.GenericTreeModel):
         return self.indexlist[node]
 
     def on_get_column_type(self,index):
+        if index == self.tooltip_column:
+            return object
         return gobject.TYPE_STRING
 
     def on_get_iter(self, path):
@@ -329,11 +333,12 @@ class SourceModel(BaseModel):
         return time.localtime(data[8])
 
     def column_tooltip(self,data):
-        return unicode(data[2])
-
-#-------------------------------------------------------------------------
-#
-# PlaceModel
+        try:
+            t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_source_from_handle(data[0]))
+        except:
+            DisplayTrace.DisplayTrace()
+        return t
+        
 #
 #-------------------------------------------------------------------------
 class PlaceModel(BaseModel):
@@ -434,7 +439,11 @@ class PlaceModel(BaseModel):
                             _codeset)
 
     def column_tooltip(self,data):
-        return unicode(data[2])
+        try:
+            t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_place_from_handle(data[0]))
+        except:
+            DisplayTrace.DisplayTrace()
+        return t
 
 #-------------------------------------------------------------------------
 #
@@ -502,7 +511,11 @@ class MediaModel(BaseModel):
                             _codeset)
 
     def column_tooltip(self,data):
-        return unicode(data[4])
+        try:
+            t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_object_from_handle(data[0]))
+        except:
+            DisplayTrace.DisplayTrace()
+        return t
 
 #-------------------------------------------------------------------------
 #
@@ -582,7 +595,11 @@ class EventModel(BaseModel):
                             _codeset)
 
     def column_tooltip(self,data):
-        return unicode(data[4])
+        try:
+            t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_event_from_handle(data[0]))
+        except:
+            DisplayTrace.DisplayTrace()
+        return t
 
 
 #-------------------------------------------------------------------------
@@ -696,4 +713,8 @@ class RepositoryModel(BaseModel):
         return unicode(data[7])
 
     def column_tooltip(self,data):
-        return unicode(data[3])
+        try:
+            t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_repository_from_handle(data[0]))
+        except:
+            DisplayTrace.DisplayTrace()
+        return t
