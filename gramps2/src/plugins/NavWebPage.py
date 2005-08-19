@@ -260,37 +260,6 @@ class BasePage:
         else:
             of.write('<link href="%s" ' % _NARRATIVE)
         of.write('rel="stylesheet" type="text/css" />\n')
-        
-#        if path:
-#            of.write('<link href="%s/main1.css" ' % path)
-#        else:
-#            of.write('<link href="main1.css" ')
-#        of.write('rel="stylesheet" title="Modern" type="text/css" />\n')
-#        
-#        if path:
-#            of.write('<link href="%s/main2.css" ' % path)
-#        else:
-#            of.write('<link href="main2.css" ')
-#        of.write('rel="alternate stylesheet" title="Business" type="text/css" />\n')
-#                
-#        if path:
-#            of.write('<link href="%s/main3.css" ' % path)
-#        else:
-#            of.write('<link href="main3.css" ')
-#        of.write('rel="alternate stylesheet" title="Certificate" type="text/css" />\n')
-#        
-#        if path:
-#            of.write('<link href="%s/main4.css" ' % path)
-#        else:
-#            of.write('<link href="main4.css" ')
-#        of.write('rel="alternate stylesheet" title="Antique" type="text/css" />\n')
-#        
-#        if path:
-#            of.write('<link href="%s/main5.css" ' % path)
-#        else:
-#            of.write('<link href="main5.css" ')
-#        of.write('rel="alternate stylesheet" title="Tranquil" type="text/css" />\n')
-               
         of.write('<link href="/favicon.ico" rel="Shortcut Icon" />\n')
         of.write('<!-- %sId%s -->\n' % ('$','$'))
         of.write('</head>\n')
@@ -1767,37 +1736,17 @@ class WebReport(Report.Report):
                             value)
                 return
 
-        progress = Utils.ProgressMeter(_("Generate HTML reports"),'')
+        self.progress = Utils.ProgressMeter(_("Generate HTML reports"),'')
 
-        ind_list = self.database.get_person_handles(sort_handles=False)
-        progress.set_pass(_('Filtering'),1)
-        ind_list = self.filter.apply(self.database,ind_list)
+        # Build the person list
+        ind_list = self.build_person_list()
 
-        if not self.exclude_private:
-            new_list = []
-
-            progress.set_pass(_('Applying privacy filter'),len(ind_list))
-            for key in ind_list:
-                progress.step()
-                if not self.database.get_person_from_handle(key).private :
-                    new_list.append(key)
-            ind_list = new_list
-
-        years = time.localtime(time.time())[0] - self.restrict_years
-
-        if self.restrict:
-            new_list = []
-            progress.set_pass(_('Filtering living people'),len(ind_list))
-            for key in ind_list:
-                progress.step()
-                p = self.database.get_person_from_handle(key)
-                if not Utils.probably_alive(p,self.database,years):
-                    new_list.append(key)
-            ind_list = new_list
-
+        # Generate the CSS file if requested
         if self.css != '':
             self.write_css(archive,self.target_path,self.css)
-            
+
+        # Copy the Creative Commons icon if the a Creative Commons
+        # license is requested
         if 1 < self.copyright < 7:
             from_path = os.path.join(const.dataDir,"somerights20.gif")
             to_path = os.path.join("images","somerights20.gif")
@@ -1810,103 +1759,67 @@ class WebReport(Report.Report):
         
         place_list = {}
         source_list = {}
-        photo_list = {}
+        self.photo_list = {}
 
-        HomePage(self.database, self.title, self.options, archive,
-                 photo_list, levels)
-        if self.inc_contact:
-            ContactPage(self.database, self.title, self.options,
-                        archive, photo_list, levels)
-        if self.inc_download:
-            DownloadPage(self.database, self.title, self.options,
-                         archive, photo_list, levels)
-        
-        if self.use_intro:
-            IntroductionPage(self.database, self.title, self.options,
-                             archive, photo_list, levels)
-        
-        progress.set_pass(_('Creating individual pages'),len(ind_list))
-        for person_handle in ind_list:
-            progress.step()
-            person = self.database.get_person_from_handle(person_handle)
-            
-            if not self.exclude_private:
-                person = ReportUtils.sanitize_person(self.database,person)
-
-            IndividualPage(self.database, person, self.title,
-                           ind_list, place_list, source_list,
-                           self.options, archive, photo_list, levels)
-            
-        if len(ind_list) > 0:
-            IndividualListPage(self.database, self.title, ind_list,
-                               self.options, archive, photo_list, levels)
-            SurnameListPage(self.database, self.title, ind_list,
-                            self.options, archive, photo_list,
-                            levels, SurnameListPage.ORDER_BY_NAME)
-            SurnameListPage(self.database, self.title, ind_list,
-                            self.options, archive, photo_list,
-                            levels, SurnameListPage.ORDER_BY_COUNT)
-
-        local_list = sort_people(self.database,ind_list)
-
-        progress.set_pass(_("Creating surname pages"),len(local_list))
-
-        for (surname,handle_list) in local_list:
-            SurnamePage(self.database, surname, handle_list,
-                        self.options, archive, photo_list, levels)
-            progress.step()
-
-        PlaceListPage(self.database, self.title, place_list,
-                      source_list,self.options, archive,
-                      photo_list, levels)
-        
-        progress.set_pass(_("Creating place pages"),len(place_list))
-
-        for place in place_list.keys():
-            PlacePage(self.database, self.title, place, source_list,
-                      place_list, self.options, archive, photo_list,
-                      levels)
-            progress.step()
-            
-        SourcesPage(self.database,self.title, source_list.keys(),
-                    self.options, archive, photo_list, levels)
-
-        progress.set_pass(_("Creating source pages"),len(source_list))
-        for key in list(source_list):
-            SourcePage(self.database,self.title, key, source_list,
-                       self.options, archive, photo_list, levels)
-            progress.step()
-
-        GalleryPage(self.database, self.title, source_list,
-                    self.options, archive, photo_list, levels)
-
-        prev = None
-        total = len(photo_list)
-        index = 1
-        photo_keys = photo_list.keys()
-
-        progress.set_pass(_("Creating media pages"),len(photo_keys))
-        
-        for photo_handle in photo_keys:
-            if index == total:
-                next = None
-            else:
-                next = photo_keys[index]
-            try:
-                MediaPage(self.database, self.title, photo_handle, source_list,
-                          self.options, archive, photo_list[photo_handle],
-                          (prev, next, index, total), levels)
-            except (IOError,OSError),msg:
-                WarningDialog(_("Missing media object"),str(msg))
-            progress.step()
-            prev = photo_handle
-            index += 1
+        self.base_pages(self.photo_list, archive, levels)
+        self.person_pages(ind_list, place_list, source_list, levels, archive)
+        self.surname_pages(ind_list,archive, levels)
+        self.place_pages(place_list, source_list, archive, levels)
+        self.source_pages(source_list, self.photo_list, archive, levels)
+        self.gallery_pages(self.photo_list, source_list, archive, levels)
         
         if archive:
             archive.close()
-        progress.close()
+        self.progress.close()
+
+    def build_person_list(self):
+        """
+        Builds the person list. Gets all the handles from the database
+        and then:
+
+          1) Applies the chosen filter.
+          2) Applies the privacy filter if requested.
+          3) Applies the living person filter if requested
+        """
+
+        # gets the person list and applies the requested filter
+        
+        ind_list = self.database.get_person_handles(sort_handles=False)
+        self.progress.set_pass(_('Filtering'),1)
+        ind_list = self.filter.apply(self.database,ind_list)
+
+        # if private records need to be filtered out, strip out any person
+        # that has the private flag set.
+        if not self.exclude_private:
+            self.progress.set_pass(_('Applying privacy filter'),len(ind_list))
+            ind_list = filter(self.filter_private,ind_list)
+
+        years = time.localtime(time.time())[0] - self.restrict_years
+
+        # Filter out people who are restricted due to the living
+        # people rule
+        if self.restrict:
+            self.progress.set_pass(_('Filtering living people'),len(ind_list))
+            new_list = []
+            for key in ind_list:
+                self.progress.step()
+                p = self.database.get_person_from_handle(key)
+                if not Utils.probably_alive(p,self.database,years):
+                    new_list.append(key)
+            ind_list = new_list
+        return ind_list
+
+    def filter_private(self,key):
+        """
+        Return True if the person is not marked private.
+        """
+        self.progress.step()
+        return not self.database.get_person_from_handle(key).private
 
     def write_css(self,archive,html_dir,css_file):
+        """
+        Copy the CSS file to the destination.
+        """
         if archive:
             f = open(os.path.join(const.dataDir,css_file),"r")
             archive.add_file(_NARRATIVE,time.time(),f)
@@ -1915,7 +1828,122 @@ class WebReport(Report.Report):
             shutil.copyfile(os.path.join(const.dataDir,css_file),
                             os.path.join(html_dir,_NARRATIVE))
 
+    def person_pages(self, ind_list, place_list, source_list, levels, archive):
+
+        self.progress.set_pass(_('Creating individual pages'),len(ind_list))
+
+        IndividualListPage(
+            self.database, self.title, ind_list, self.options, archive,
+            self.photo_list, levels)
+
+        for person_handle in ind_list:
+            self.progress.step()
+            person = self.database.get_person_from_handle(person_handle)
+            
+            if not self.exclude_private:
+                person = ReportUtils.sanitize_person(self.database,person)
+
+            IndividualPage(
+                self.database, person, self.title, ind_list, place_list,
+                source_list, self.options, archive, self.photo_list, levels)
+            
+    def surname_pages(self, ind_list, archive, levels):
+        """
+        Generates the surname related pages from list of individual
+        people.
+        """
+        
+        local_list = sort_people(self.database,ind_list)
+        self.progress.set_pass(_("Creating surname pages"),len(local_list))
+
+        SurnameListPage(
+            self.database, self.title, ind_list, self.options, archive,
+            self.photo_list, levels, SurnameListPage.ORDER_BY_NAME)
+        
+        SurnameListPage(
+            self.database, self.title, ind_list, self.options, archive,
+            self.photo_list, levels, SurnameListPage.ORDER_BY_COUNT)
+
+        for (surname,handle_list) in local_list:
+            SurnamePage(self.database, surname, handle_list,
+                        self.options, archive, self.photo_list, levels)
+            self.progress.step()
+        
+    def source_pages(self, source_list, photo_list, archive, levels):
+        
+        self.progress.set_pass(_("Creating source pages"),len(source_list))
+
+        SourcesPage(self.database,self.title, source_list.keys(),
+                    self.options, archive, photo_list, levels)
+
+        for key in list(source_list):
+            SourcePage(self.database, self.title, key, source_list,
+                       self.options, archive, photo_list, levels)
+            self.progress.step()
+        
+
+    def place_pages(self, place_list, source_list, archive, levels):
+
+        self.progress.set_pass(_("Creating place pages"),len(place_list))
+
+        PlaceListPage(
+            self.database, self.title, place_list, source_list, self.options,
+            archive, self.photo_list, levels)
+
+        for place in place_list.keys():
+            PlacePage(
+                self.database, self.title, place, source_list, place_list,
+                self.options, archive, self.photo_list, levels)
+            self.progress.step()
+
+    def gallery_pages(self, photo_list, source_list, archive, levels):
+        
+        self.progress.set_pass(_("Creating media pages"),len(photo_list))
+
+        GalleryPage(self.database, self.title, source_list,
+                    self.options, archive, self.photo_list, levels)
+
+        prev = None
+        total = len(self.photo_list)
+        index = 1
+        photo_keys = self.photo_list.keys()
+        
+        for photo_handle in photo_keys:
+            if index == total:
+                next = None
+            else:
+                next = photo_keys[index]
+            try:
+                MediaPage(self.database, self.title, photo_handle, source_list,
+                          self.options, archive, self.photo_list[photo_handle],
+                          (prev, next, index, total), levels)
+            except (IOError,OSError),msg:
+                WarningDialog(_("Missing media object"),str(msg))
+            self.progress.step()
+            prev = photo_handle
+            index += 1
+
+    def base_pages(self, photo_list, archive, levels):
+        
+        HomePage(self.database, self.title, self.options, archive,
+                 photo_list, levels)
+
+        if self.inc_contact:
+            ContactPage(self.database, self.title, self.options,
+                        archive, photo_list, levels)
+            
+        if self.inc_download:
+            DownloadPage(self.database, self.title, self.options,
+                         archive, photo_list, levels)
+        
+        if self.use_intro:
+            IntroductionPage(self.database, self.title, self.options,
+                             archive, photo_list, levels)
+
     def store_file(self,archive,html_dir,from_path,to_path):
+        """
+        Store the file in the destination.
+        """
         if archive:
             imagefile = open(from_path,"r")
             archive.add_file(to_path,time.time(),imagefile)
