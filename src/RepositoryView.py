@@ -38,6 +38,7 @@ import EditRepository
 import DisplayModels
 import const
 import Utils
+
 from QuestionDialog import QuestionDialog, ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -75,14 +76,16 @@ class RepositoryView(PageView.ListView):
             'repository-delete'  : self.row_delete,
             'repository-rebuild' : self.build_tree,
             }
-
+        
         PageView.ListView.__init__(self,'Repository View',dbstate,uistate,
                                    column_names,len(column_names),
                                    DisplayModels.RepositoryModel,
                                    signal_map)
 
+
     def column_order(self):
         return self.dbstate.db.get_repository_column_order()
+
 
     def get_stock(self):
         return 'gramps-repository'
