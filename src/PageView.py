@@ -398,7 +398,7 @@ class ListView(PageView):
 
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            self.double_click(obj,event)
+            self.edit(obj)
             return True
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             menu = self.uistate.uimanager.get_widget('/Popup')
