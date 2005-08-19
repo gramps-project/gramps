@@ -93,8 +93,11 @@ class History(GrampsDBCallback.GrampsDBCallback):
             self.history.append(person_handle)
             if person_handle not in self.mhistory:
                 self.mhistory.append(person_handle)
-                self.emit('menu-changed',(self.mhistory,))
+            else:
+                self.mhistory.remove(person_handle)
+                self.mhistory.push(person_handle)
             self.index += 1
+        self.emit('menu-changed',(self.mhistory,))
         self.emit('changed',(self.history,))
 
     def forward(self,step=1):
@@ -154,12 +157,12 @@ class GrampsWindowManager:
                 self.close_item_recursively(sub_item)
         else:
             if item.window_id:
-                del self.id2item[window_id]
+                del self.id2item[item.window_id]
             item.window.destroy()
     
     def add_item(self,node,item):
         if item.window_id:
-            self.id2item[window_id] = item
+            self.id2item[item.window_id] = item
 
         parent_item = self.get_item_from_node(node)
         assert type(parent_item) == list or node == [], \
@@ -172,6 +175,7 @@ class GrampsWindowManager:
             new_item = item
         parent_item.append(new_item)
         new_node = node + [len(parent_item) + 1]
+        self.build_windows_menu()
         return new_node
 
     def remove_node(self,node):
@@ -179,18 +183,21 @@ class GrampsWindowManager:
         child_in_parent = node[-1:][0]
         item = self.get_item_from_node(parent_node)
         item.pop(child_in_parent)
+        self.build_windows_menu()
 
     def call_back_factory(self,item):
         if type(item) != list:
             def f(obj):
-                if item.window_id and self.get_window_from_id(window_id):
-                    self.get_window_from_id(window__id).present()
+                if item.window_id and self.get_window_from_id(item.window_id):
+                    self.get_window_from_id(item.window_id).present()
         else:
             def f(obj):
                 pass
         return f
 
-    def built_windows_menu(self):
+    def build_windows_menu(self):
+        print self.window_tree
+        print self.id2item
         pass
 
 #-------------------------------------------------------------------------
@@ -235,12 +242,12 @@ class ManagedWindow:
                 ...
 
         """
-        if uistate.gwm.get_window_from_id(window_id):
-            uistate.gwm.get_window_from_id(window_id).present()
+        if uistate.gwm.get_window_from_id(window_key):
+            uistate.gwm.get_window_from_id(window_key).present()
             self.already_exist = True
         else:
             self.already_exist = False
-            self.window_id = window_id
+            self.window_id = window_key
             self.submenu_label = submenu_label
             self.menu_label = menu_label
             self.uistate = uistate

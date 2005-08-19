@@ -62,6 +62,7 @@ import NameDisplay
 import NameEdit
 import NoteEdit
 import Spell
+import DisplayState
 
 from QuestionDialog import WarningDialog, ErrorDialog, SaveDialog, QuestionDialog2
 
@@ -86,21 +87,36 @@ _use_patronymic = [
 # EditPerson class
 #
 #-------------------------------------------------------------------------
-class EditPerson:
+class EditPerson(DisplayState.ManagedWindow):
 
     use_patronymic = locale.getlocale(locale.LC_TIME)[0] in _use_patronymic
     
     def __init__(self,state,uistate,person,callback=None):
         """Creates an edit window.  Associates a person with the window."""
 
+        self.dp = DateHandler.parser
+        self.dd = DateHandler.displayer
+        self.nd = NameDisplay.displayer
+
+        win_menu_label = self.nd.display(person)
+        if not win_menu_label.strip():
+            win_menu_label = _("New Person")
+
+        DisplayState.ManagedWindow.__init__(
+            self, uistate, [], self, win_menu_label, _('Edit Person'))
+
+        if self.already_exist:
+            return
+
         self.state = state
         self.uistate = uistate
         self.retval = const.UPDATE_PERSON
         
-        self.dp = DateHandler.parser
-        self.dd = DateHandler.displayer
-        self.nd = NameDisplay.displayer
-        self.orig_handle = person.get_handle()
+        if person:
+            self.orig_handle = person.get_handle()
+        else:
+            self.orig_handle = ""
+            
         # UGLY HACK to refresh person object from handle if that exists
         # done to ensure that the person object is not stale, as it could
         # have been changed by something external (merge, tool, etc).
@@ -336,7 +352,6 @@ class EditPerson:
         self.url_box.redraw()
         self.get_widget("notebook").set_current_page(0)
         self.surname.grab_focus()
-        self.add_itself_to_winsmenu()
 
         if self.db.readonly:
             for i in ["ok", "aka_add", "aka_del", "event_add", "event_del",
@@ -445,43 +460,6 @@ class EditPerson:
             obj = self.db.get_object_from_handle(object_handle)
             ImageSelect.LocalMediaProperties(ph,obj.get_path(),self,
                                              self.window)
-
-    def close_child_windows(self):
-        for child_window in self.child_windows.values():
-            child_window.close(None)
-        self.child_windows = {}
-
-    def close(self):
-        #self.gallery.close()
-        self.close_child_windows()
-        self.remove_itself_from_winsmenu()
-        self.window.destroy()
-        
-    def add_itself_to_winsmenu(self):
-##         self.parent_window.child_windows[self.orig_handle] = self
-##         win_menu_label = self.name_display.display(self.person)
-##         if not win_menu_label.strip():
-##             win_menu_label = _("New Person")
-##         self.win_menu_item = gtk.MenuItem(win_menu_label)
-##         self.win_menu_item.set_submenu(gtk.Menu())
-##         self.win_menu_item.show()
-##         self.uistate.winsmenu.append(self.win_menu_item)
-##         self.winsmenu = self.win_menu_item.get_submenu()
-##         self.menu_item = gtk.MenuItem(_('Edit Person'))
-##         self.menu_item.connect("activate",self.present)
-##         self.menu_item.show()
-##         self.winsmenu.append(self.menu_item)
-        return
-
-    def remove_itself_from_winsmenu(self):
-        return 
-        del self.parent_window.child_windows[self.orig_handle]
-        self.menu_item.destroy()
-        self.winsmenu.destroy()
-        self.win_menu_item.destroy()
-
-    def present(self,obj):
-        self.window.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""

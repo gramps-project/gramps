@@ -1,3 +1,9 @@
+2005-08-19  Don Allingham  <don@gramps-project.org>
+	* src/DisplayState.py: fixe some window management syntax errros
+	* src/PageView.py: enable double click to edit
+	* src/EditPerson.py: tried to enable window management
+	* src/PersonView.py: make more compatible with base class
+
 2005-08-19  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/EventEditor.py: hacked about to make add work at least.
 
