@@ -112,14 +112,14 @@ class EventEditor:
         self.plist = []
         self.pmap = {}
 
-        self.dp = DateHandler.parser
-        self.dd = DateHandler.displayer
+        self.dp = _dp
+        self.dd = _dd
 
         # build list for menu
-        values = sets.Set(elist)
-        values.union(self.get_event_names())
-        self.elist = list(values)
-        self.elist.sort()
+       ##  values = sets.Set(elist)
+##         values.union(self.get_event_names())
+##         self.elist = list(values)
+        ##self.elist.sort()
 
         for key in self.db.get_place_handles():
             title = self.db.get_place_from_handle(key).get_title()
@@ -362,31 +362,32 @@ class EventEditor:
         self.close(obj)
 
     def update_event(self,the_type,date,place,desc,note,format,priv,cause):
-        self.parent.lists_changed = 0
+        # FIXME: commented because we no longer have parent
+        #self.parent.lists_changed = 0
         if place:
             if self.event.get_place_handle() != place.get_handle():
                 self.event.set_place_handle(place.get_handle())
-                self.parent.lists_changed = 1
+                #self.parent.lists_changed = 1
         else:
             if self.event.get_place_handle():
                 self.event.set_place_handle("")
-                self.parent.lists_changed = 1
+                #self.parent.lists_changed = 1
         
         if self.event.get_type() != the_type:
             self.event.set_type(the_type)
-            self.parent.lists_changed = 1
+            #self.parent.lists_changed = 1
         
         if self.event.get_description() != desc:
             self.event.set_description(desc)
-            self.parent.lists_changed = 1
+            #self.parent.lists_changed = 1
 
         if self.event.get_note() != note:
             self.event.set_note(note)
-            self.parent.lists_changed = 1
+            #self.parent.lists_changed = 1
 
         if self.event.get_note_format() != format:
             self.event.set_note_format(format)
-            self.parent.lists_changed = 1
+            #self.parent.lists_changed = 1
 
         dobj = self.event.get_date_object()
 
@@ -394,15 +395,15 @@ class EventEditor:
         
         if not dobj.is_equal(date):
             self.event.set_date_object(date)
-            self.parent.lists_changed = 1
+            #self.parent.lists_changed = 1
 
         if self.event.get_cause() != cause:
             self.event.set_cause(cause)
-            self.parent.lists_changed = 1
+            #self.parent.lists_changed = 1
 
         if self.event.get_privacy() != priv:
             self.event.set_privacy(priv)
-            self.parent.lists_changed = 1
+            #self.parent.lists_changed = 1
 
     def on_switch_page(self,obj,a,page):
         buf = self.note_field.get_buffer()
