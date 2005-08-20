@@ -1,4 +1,6 @@
 2005-08-19  Don Allingham  <don@gramps-project.org>
+	* src/NameDisplay.py: handle patronymic names in given name
+	* src/plugins/NavWebPage.py: handle patronymic names in given name
 	* src/GenericFilter.py: fix unicode problem with menu store
 
 2005-08-18  Don Allingham  <don@gramps-project.org>

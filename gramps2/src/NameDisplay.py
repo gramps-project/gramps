@@ -112,6 +112,13 @@ class NameDisplay:
         else:
             return self._lnfn(name)
 
+    def display_given(self,person):
+        name = person.get_primary_name()
+        if name.patronymic:
+            return "%s %s" % (name.first_name, name.patronymic)
+        else:
+            return name.first_name
+
     def display(self,person):
         """
         Returns a text string representing the L{RelLib.Person} instance's

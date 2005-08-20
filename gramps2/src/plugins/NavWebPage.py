@@ -528,8 +528,7 @@ class IndividualListPage(BasePage):
                 of.write('</td><td class="data">')
                 path = self.build_path(person.handle,"ppl",False)
                 self.person_link(of, self.build_name(path,person.handle),
-                                 person.get_primary_name().get_first_name(),
-                                 person.gramps_id,False)
+                                 _nd.display_given(person), person.gramps_id,False)
                 of.write('</td><td class="field">')
                 birth_handle = person.get_birth_handle()
                 if birth_handle:
