@@ -1,3 +1,9 @@
+2005-08-21  Don Allingham  <don@gramps-project.org>
+	* src/ImgManip.py: add support for PDF thumbnailing
+	* src/plugins/NavWebPage.py: Always use two levels instead of
+	one level of subdirectories, use subdirectories for thumbnails
+	and media objects
+
 2005-08-19  Don Allingham  <don@gramps-project.org>
 	* src/NameDisplay.py: handle patronymic names in given name
 	* src/plugins/NavWebPage.py: handle patronymic names in given name

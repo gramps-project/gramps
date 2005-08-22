@@ -97,32 +97,38 @@ def _build_thumb_path(path):
     m = md5.md5(path)
     return os.path.join(base,m.hexdigest()+'.jpg')
 
-def set_thumbnail_image(path):
-    try:
-        pixbuf = gtk.gdk.pixbuf_new_from_file(path)
-        w = pixbuf.get_width()
-        h = pixbuf.get_height()
-        scale = const.thumbScale / (float(max(w,h)))
-        
-        pw = int(w*scale)
-        ph = int(h*scale)
-        
-        pixbuf = pixbuf.scale_simple(pw,ph,gtk.gdk.INTERP_BILINEAR)
-        pixbuf.save(_build_thumb_path(path),"jpeg")
-    except:
-        print "Could not create thumbnail for",path
+def set_thumbnail_image(path,mtype=None):
+    if mtype == "application/pdf":
+        if os.fork() == 0:
+            os.execvp('evince-thumbnailer',['evince-thumbnailer', path,
+                                            _build_thumb_path(path)])
+        os.wait()[0]
+    else:
+        try:
+            pixbuf = gtk.gdk.pixbuf_new_from_file(path)
+            w = pixbuf.get_width()
+            h = pixbuf.get_height()
+            scale = const.thumbScale / (float(max(w,h)))
+            
+            pw = int(w*scale)
+            ph = int(h*scale)
+            
+            pixbuf = pixbuf.scale_simple(pw,ph,gtk.gdk.INTERP_BILINEAR)
+            pixbuf.save(_build_thumb_path(path),"jpeg")
+        except:
+            print "Could not create thumbnail for",path,mtype
 
-def get_thumbnail_image(path):
+def get_thumbnail_image(path,mtype=None):
     filename = _build_thumb_path(path)
     if not os.path.isfile(filename):
-        set_thumbnail_image(path)
+        set_thumbnail_image(path,type)
     try:
         return gtk.gdk.pixbuf_new_from_file(filename)
     except gobject.GError:
         return None
 
-def get_thumbnail_path(path):
+def get_thumbnail_path(path,mtype=None):
     filename = _build_thumb_path(path)
     if not os.path.isfile(filename):
-        set_thumbnail_image(path)
+        set_thumbnail_image(path,mtype)
     return filename
