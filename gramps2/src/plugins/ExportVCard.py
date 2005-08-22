@@ -204,7 +204,7 @@ class CardWriter:
                 state = address.get_state()
                 zip = address.get_postal_code()
                 country = address.get_country()
-                if street or city or state or zip or coutry:
+                if street or city or state or zip or country:
                     self.writeln("ADR:%s;%s;%s;%s;%s;%s;%s" % (postbox,ext,street,city,state,zip,country))
                 
                 phone = address.get_phone()

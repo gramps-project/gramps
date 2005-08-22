@@ -1,3 +1,6 @@
+2005-08-22  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/ExportVCard.py (write_person): Fix typo
+
 2005-08-21  Don Allingham  <don@gramps-project.org>
 	* src/ImgManip.py: add support for PDF thumbnailing
 	* src/plugins/NavWebPage.py: Always use two levels instead of
