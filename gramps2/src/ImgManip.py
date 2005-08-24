@@ -26,6 +26,7 @@ import gtk
 import gobject
 
 import GrampsKeys
+import Utils
 
 class ImgManip:
     def __init__(self,source):
