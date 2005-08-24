@@ -1,3 +1,19 @@
+2005-08-23  Don Allingham  <don@gramps-project.org>
+	* gramps.sh.in: escape the arguments to prevent spaces in
+	filenames to be parsed as to seperate arguments
+	* src/ImageSelect.py: pass the mime_type to the thumbnail generator
+	* src/ImgManip.py: query the gconf database to find appropriate
+	thumbnail generators
+	* src/NameDisplay.py: don't force a comma if the last name does 
+	not exist
+	* src/WriteGedcom.py: don't copy a file on top of itself
+	* src/plugins/Ancestors.py: verify the existance of a file
+	* src/plugins/NavWebPage.py: don't use HOME page if it would be 
+	empty
+
+2005-08-23  Tim Allen  <tim@proximity.com.au>
+	* src/plugins/Ancestors.py: fix pagebreak and borders around image
+
 2005-08-22  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/ExportVCard.py (write_person): Fix typo
 

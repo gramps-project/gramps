@@ -242,16 +242,19 @@ class NameDisplay:
         else:
             last = name.surname
 
+        if last:
+            last += ","
+
         if name.suffix:
             if name.prefix:
-                return "%s %s, %s %s" % (name.prefix, last, first, name.suffix)
+                return "%s %s %s %s" % (name.prefix, last, first, name.suffix)
             else:
-                return "%s, %s %s" % (last, first, name.suffix)
+                return "%s %s %s" % (last, first, name.suffix)
         else:
             if name.prefix:
-                return "%s %s, %s" % (name.prefix, last, first)
+                return "%s %s %s" % (name.prefix, last, first)
             else:
-                return "%s, %s" % (last, first)
+                return "%s %s" % (last, first)
 
     
 displayer = NameDisplay()

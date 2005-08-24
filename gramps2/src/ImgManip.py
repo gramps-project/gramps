@@ -25,12 +25,17 @@ import md5
 import gtk
 import gobject
 
+import GrampsKeys
+
 class ImgManip:
     def __init__(self,source):
         self.src = source
 
     def size(self):
-        img = gtk.gdk.pixbuf_new_from_file(self.src)
+        try:
+            img = gtk.gdk.pixbuf_new_from_file(self.src)
+        except GError:
+            return (0,0)
         return (img.get_width(),img.get_height())
     
     def fmt_thumbnail(self,dest,width,height,cnv):
@@ -97,12 +102,24 @@ def _build_thumb_path(path):
     m = md5.md5(path)
     return os.path.join(base,m.hexdigest()+'.jpg')
 
+def run_thumbnailer(cmd, frm, to):
+    sublist = {
+        '%s' : "%dx%d" % (int(const.thumbScale),int(const.thumbScale)),
+        '%u' : frm,
+        '%o' : to,
+        }
+    cmdlist = map(lambda x: sublist.get(x,x),cmd.split())
+    if os.fork() == 0:
+        os.execvp(cmdlist[0],cmdlist)
+    os.wait()
+
 def set_thumbnail_image(path,mtype=None):
-    if mtype == "application/pdf":
-        if os.fork() == 0:
-            os.execvp('evince-thumbnailer',['evince-thumbnailer', path,
-                                            _build_thumb_path(path)])
-        os.wait()[0]
+    if mtype and not mtype.startswith('image/'):
+        base = '/desktop/gnome/thumbnailers/%s' % mtype.replace('/','@')
+        thumbnailer = GrampsKeys.client.get_string(base + '/command')
+        enable = GrampsKeys.client.get_bool(base + '/enable')
+        if thumbnailer and enable:
+            run_thumbnailer(thumbnailer,path,_build_thumb_path(path))
     else:
         try:
             pixbuf = gtk.gdk.pixbuf_new_from_file(path)
@@ -121,11 +138,14 @@ def set_thumbnail_image(path,mtype=None):
 def get_thumbnail_image(path,mtype=None):
     filename = _build_thumb_path(path)
     if not os.path.isfile(filename):
-        set_thumbnail_image(path,type)
+        set_thumbnail_image(path,mtype)
     try:
         return gtk.gdk.pixbuf_new_from_file(filename)
     except gobject.GError:
-        return None
+        if mtype:
+            return Utils.find_mime_type_pixbuf(mtype)
+        else:
+            return gtk.gdk.pixbuf_new_from_file(os.path.join(const.dataDir,"document.png"))
 
 def get_thumbnail_path(path,mtype=None):
     filename = _build_thumb_path(path)

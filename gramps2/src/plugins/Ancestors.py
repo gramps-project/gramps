@@ -27,6 +27,7 @@
 #
 #------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 #------------------------------------------------------------------------
 #
@@ -120,10 +121,6 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         cell = BaseDoc.TableCellStyle ()
         cell.set_padding (0.1)
-        cell.set_left_border (1)
-        cell.set_top_border (1)
-        cell.set_right_border (1)
-        cell.set_bottom_border (1)
         self.doc.add_cell_style ("AR-NoPhoto", cell)
 
         cell = BaseDoc.TableCellStyle ()
@@ -155,6 +152,9 @@ class ComprehensiveAncestorsReport (Report.Report):
                              [self.start_person.get_handle()])
 
         if len (self.sources) > 0:
+	    if self.pgbrk:
+                self.doc.page_break()
+
             self.doc.start_paragraph ("AR-Heading")
             self.doc.write_text (_("Sources"))
             self.doc.end_paragraph ()
@@ -370,11 +370,12 @@ class ComprehensiveAncestorsReport (Report.Report):
                             for media_ref in partner.get_media_list ()[:1]:
                                 object_handle = media_ref.get_reference_handle()
                                 mobject = self.database.get_object_from_handle(object_handle)
-                                mime_type = mobject.get_mime_type()
-                                if mime_type and mime_type.startswith("image"):
-                                    spouse.append ((self.doc.add_media_object,
-                                                    [mobject.get_path (),
-                                                     'right', 2, 2]))
+                                if os.path.isfile(mobject.get_path()):
+                                    mime_type = mobject.get_mime_type()
+                                    if mime_type and mime_type.startswith("image"):
+                                        spouse.append ((self.doc.add_media_object,
+                                                        [mobject.get_path (),
+                                                         'right', 2, 2]))
 
                 if suppress_children and len (already_described):
                     style = "AR-Child"
@@ -396,7 +397,6 @@ class ComprehensiveAncestorsReport (Report.Report):
                 if len (photos) == 0:
                     ret.append ((self.doc.start_cell, ["AR-NoPhoto"]))
                     ret.append ((self.doc.start_paragraph, ["AR-NoPhotoText"]))
-                    ret.append ((self.doc.write_text, [_("(no photo)")]))
                     ret.append ((self.doc.end_paragraph, []))
                     ret.append ((self.doc.end_cell, []))
                 else:
@@ -405,7 +405,8 @@ class ComprehensiveAncestorsReport (Report.Report):
                         object_handle = media_ref.get_reference_handle()
                         mobject = self.database.get_object_from_handle(object_handle)
                         mime_type = mobject.get_mime_type()
-                        if mime_type and mime_type.startswith("image"):
+                        if os.path.isfile(mobject.get_path()) and \
+                               mime_type and mime_type.startswith("image"):
                             ret.append ((self.doc.add_media_object,
                                          [mobject.get_path (), 'left', 2, 2]))
                         ret.append ((self.doc.end_cell, []))

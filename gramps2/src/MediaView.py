@@ -235,10 +235,7 @@ class MediaView:
         path = mobj.get_path()
         if mtype:
             type_name = Utils.get_mime_description(mtype)
-            if mtype[0:5] == "image":
-                image = ImgManip.get_thumbnail_image(path)
-            else:
-                image = Utils.find_mime_type_pixbuf(mtype)
+            image = ImgManip.get_thumbnail_image(path,mtype)
         else:
             image = Utils.find_mime_type_pixbuf('text/plain')
             type_name = _('Note')
@@ -379,7 +376,8 @@ class MediaView:
             handle = store.get_value(node,_HANDLE_COL)
             obj = self.db.get_object_from_handle(handle)
             if obj.get_path():
-                image = ImgManip.get_thumbnail_image(obj.get_path())
+                image = ImgManip.get_thumbnail_image(obj.get_path(),
+                                                     obj.get_mime_type())
                 context.set_icon_pixbuf(image,0,0)
 
     def on_drag_data_get(self, w, context, selection_data, info, time):

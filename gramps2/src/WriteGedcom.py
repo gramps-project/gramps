@@ -984,12 +984,13 @@ class GedcomWriter:
                         continue
                     basename = os.path.basename(path)
                     dest = os.path.join (imgdir, basename)
-                    try:
-                        shutil.copyfile(path, dest)
-                    except (IOError,OSError),msg:
-                        msg2 = _("Could not create %s") % dest
-                        WarningDialog(msg2,str(msg))
-                        continue
+                    if dest != path:
+                        try:
+                            shutil.copyfile(path, dest)
+                        except (IOError,OSError),msg:
+                            msg2 = _("Could not create %s") % dest
+                            WarningDialog(msg2,str(msg))
+                            continue
                         
                     self.writeln('1 OBJE')
                     self.writeln('2 FORM jpeg')

@@ -36,4 +36,4 @@ else
     export PYTHONPATH=$GRAMPSDIR:$GRAMPSLIBDIR:$GRAMPSPLUGINSDIR:$PYTHONPATH
 fi
 
-exec @PYTHON@ $GRAMPSDIR/gramps.py $*
+exec @PYTHON@ $GRAMPSDIR/gramps.py "$*"

@@ -267,10 +267,16 @@ class BasePage:
         of.write('<div class="navbyline">%s</div>\n' % msg)
         of.write('<h1 class="navtitle">%s</h1>\n' % self.title_str)
         of.write('<div class="nav">\n')
-        self.show_link(of,'index',_('Home'),path)
+
+        use_home = self.options.handler.options_dict['NWEBhomenote'] != ""
+        if use_home:
+            self.show_link(of,'index',_('Home'),path)
         if self.use_intro:
             self.show_link(of,'introduction',_('Introduction'),path)
-        self.show_link(of,'surnames',_('Surnames'),path)
+        if not use_home and not self.use_intro:
+            self.show_link(of,'index',_('Surnames'),path)
+        else:
+            self.show_link(of,'surnames',_('Surnames'),path)
         self.show_link(of,'individuals',_('Individuals'),path)
         self.show_link(of,'sources',_('Sources'),path)
         self.show_link(of,'places',_('Places'),path)
@@ -305,6 +311,14 @@ class BasePage:
                     of.write('</div>\n')
                 except (IOError,OSError),msg:
                     WarningDialog(_("Could not add photo to page"),str(msg))
+            elif mime_type.startswith('video/'):
+                try:
+                    (real_path,newpath) = self.copy_media(photo)
+                    of.write('<div class="snapshot">\n')
+                    self.media_link(of,photo_handle,newpath,'',up=True)
+                    of.write('</div>\n')
+                except (IOError,OSError),msg:
+                    WarningDialog(_("Could not add photo to page"),str(msg))
             else:
                 try:
                     (real_path,newpath) = self.copy_media(photo)
@@ -327,6 +341,13 @@ class BasePage:
 
             mime_type = photo.get_mime_type()
             if mime_type.startswith('image') or mime_type == "application/pdf":
+                try:
+                    (real_path,newpath) = self.copy_media(photo)
+                    self.media_link(of,photo_handle,newpath,
+                                    photo.get_description(),up=True)
+                except (IOError,OSError),msg:
+                    WarningDialog(_("Could not add photo to page"),str(msg))
+            elif mime_type.startswith('video/'):
                 try:
                     (real_path,newpath) = self.copy_media(photo)
                     self.media_link(of,photo_handle,newpath,
@@ -730,20 +751,28 @@ class MediaPage(BasePage):
 
         mime_type = photo.get_mime_type()
         if mime_type and (mime_type.startswith("image") or
+                          mime_type.startswith('video') or
                           mime_type == "application/pdf"):
             ext = os.path.splitext(photo.get_path())[1]
             to_dir = self.build_path(handle,'thumb')
             to_path = os.path.join(to_dir,handle+ext)
             from_path = ImgManip.get_thumbnail_path(photo.get_path(),mime_type)
+            if not os.path.isfile(from_path):
+                from_path = os.path.join(const.dataDir,"document.png")
+
             if self.archive:
                 imagefile = open(from_path,"r")
                 self.archive.add_file(to_path,time.time(),imagefile)
                 imagefile.close()
             else:
                 to_dir = os.path.join(self.html_dir,to_dir)
+                dest = os.path.join(self.html_dir,to_path)
                 if not os.path.isdir(to_dir):
                     os.makedirs(to_dir)
-                shutil.copyfile(from_path,os.path.join(self.html_dir,to_path))
+                try:
+                    shutil.copyfile(from_path,dest)
+                except IOError:
+                    print "Could not copy file"
 
         self.page_title = photo.get_description()
         self.display_header(of,db, "%s - %s" % (_('Gallery'), title),
@@ -769,7 +798,7 @@ class MediaPage(BasePage):
             of.write('<img ')
             of.write('src="../../../%s" alt="%s" />\n' % (newpath, self.page_title))
             of.write('</div>\n')
-        elif mime_type and mime_type == "application/pdf":
+        elif mime_type and mime_type == "application/pdf" or mime_type.startswith('video/'):
             ext = os.path.splitext(photo.get_path())[1]
             to_dir = self.build_path(handle,'thumb')
             path = os.path.join(to_dir,handle+ext)
@@ -815,10 +844,10 @@ class SurnameListPage(BasePage):
     ORDER_BY_NAME = 0
     ORDER_BY_COUNT = 1
     def __init__(self, db, title, person_handle_list, options, archive,
-                 media_list, order_by=ORDER_BY_NAME):
+                 media_list, order_by=ORDER_BY_NAME,filename="surnames"):
         BasePage.__init__(self, title, options, archive, media_list, "")
         if order_by == self.ORDER_BY_NAME:
-            of = self.create_file("surnames")
+            of = self.create_file(filename)
             self.display_header(of,db,_('Surnames'),get_researcher().get_name())
             of.write('<h3>%s</h3>\n' % _('Surnames'))
         else:
@@ -1706,6 +1735,7 @@ class WebReport(Report.Report):
         self.user_footer = options.handler.options_dict['NWEBfooter']
         self.use_archive = options.handler.options_dict['NWEBarchive']
         self.use_intro = options.handler.options_dict['NWEBintronote'] != u""
+        self.use_home = options.handler.options_dict['NWEBhomenote'] != u""
         
     def write_report(self):
         if not self.use_archive:
@@ -1878,9 +1908,13 @@ class WebReport(Report.Report):
         local_list = sort_people(self.database,ind_list)
         self.progress.set_pass(_("Creating surname pages"),len(local_list))
 
+        if self.use_home:
+            defname="surnames"
+        else:
+            defname="index"
         SurnameListPage(
             self.database, self.title, ind_list, self.options, archive,
-            self.photo_list, SurnameListPage.ORDER_BY_NAME)
+            self.photo_list, SurnameListPage.ORDER_BY_NAME,defname)
         
         SurnameListPage(
             self.database, self.title, ind_list, self.options, archive,
@@ -1946,8 +1980,9 @@ class WebReport(Report.Report):
             index += 1
 
     def base_pages(self, photo_list, archive):
-        
-        HomePage(self.database, self.title, self.options, archive, photo_list)
+
+        if self.use_home:
+            HomePage(self.database, self.title, self.options, archive, photo_list)
 
         if self.inc_contact:
             ContactPage(self.database, self.title, self.options, archive, photo_list)

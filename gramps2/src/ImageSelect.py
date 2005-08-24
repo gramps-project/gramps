@@ -384,12 +384,7 @@ class Gallery(ImageSelect):
 
             try:
                 mtype = media_obj.get_mime_type()
-                if mtype and mtype.startswith("image"):
-                    image = ImgManip.get_thumbnail_image(media_obj.get_path())
-                else:
-                    image = Utils.find_mime_type_pixbuf(mtype)
-                if not image:
-                    image = gtk.gdk.pixbuf_new_from_file(const.icon)
+                image = ImgManip.get_thumbnail_image(media_obj.get_path(),mtype)
             except gobject.GError,msg:
                 ErrorDialog(str(msg))
                 image = gtk.gdk.pixbuf_new_from_file(const.icon)
@@ -709,7 +704,7 @@ class LocalMediaProperties:
         descr_window.set_text(self.obj.get_description())
         mtype = self.obj.get_mime_type()
 
-        self.pix = ImgManip.get_thumbnail_image(self.obj.get_path())
+        self.pix = ImgManip.get_thumbnail_image(self.obj.get_path(),mtype)
         self.pixmap.set_from_pixbuf(self.pix)
 
         self.change_dialog.get_widget("private").set_active(photo.get_privacy())
@@ -979,7 +974,7 @@ class GlobalMediaProperties:
         self.descr_window.set_text(self.obj.get_description())
         mtype = self.obj.get_mime_type()
         if mtype:
-            pb = ImgManip.get_thumbnail_image(self.obj.get_path())
+            pb = ImgManip.get_thumbnail_image(self.obj.get_path(),mtype)
             self.pixmap.set_from_pixbuf(pb)
             descr = Utils.get_mime_description(mtype)
             self.change_dialog.get_widget("type").set_text(descr)
