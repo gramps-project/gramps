@@ -1,3 +1,6 @@
+2005-08-18  Mark Knoop  <mark@markknoop.com>
+	* src/data/main6.css: new "Sharp" style sheet
+
 2005-08-23  Don Allingham  <don@gramps-project.org>
 	* gramps.sh.in: escape the arguments to prevent spaces in
 	filenames to be parsed as to seperate arguments

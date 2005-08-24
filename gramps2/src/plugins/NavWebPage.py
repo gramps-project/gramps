@@ -81,6 +81,7 @@ _css_files = [
     [_("Certificate"),    'main3.css'],
     [_("Antique"),        'main4.css'],
     [_("Tranquil"),       'main5.css'],
+    [_("Sharp"),          'main6.css'],
     [_("No style sheet"), ''],
     ]
 
