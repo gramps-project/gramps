@@ -190,7 +190,7 @@ class Gramps:
 #                                    self.date_format_key_update)
 
         if GrampsKeys.get_usetips():
-            TipOfDay.TipOfDay(self)
+            TipOfDay.TipOfDay(vm.uistate)
 
 ##         # FIXME: THESE will have to be added (ViewManager?)
 ##         # once bookmarks work again

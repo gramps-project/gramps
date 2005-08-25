@@ -1,3 +1,9 @@
+2005-08-25  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/gramps_main.py: pass DisplayState to TipOfDay
+	* src/TipOfDay.py: Use DisplayState
+	* src/const.py.in: add GRAMPS websites
+	* src/ViewManager.py: Add TipOfDay; Make GRAMPS websites work again
+
 2005-08-19  Don Allingham  <don@gramps-project.org>
 	* src/DisplayState.py: fixe some window management syntax errros
 	* src/PageView.py: enable double click to edit
