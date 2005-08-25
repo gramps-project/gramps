@@ -1527,10 +1527,25 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                 self.db.commit_family(family,trans)
 
         for (family_handle,mrel,frel) in self.active_person.get_parent_family_handle_list():
-            if family_handle:
-                family = self.db.get_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
+            if family:
                 family.remove_child_handle(self.active_person.get_handle())
                 self.db.commit_family(family,trans)
+                
+                # Purge empty family
+                if len(family.get_child_handle_list()) == 0:
+                    if not family.get_father_handle():
+                        mother = self.db.get_person_from_handle( family.get_mother_handle())
+                        if mother:
+                            mother.remove_family_handle( family_handle)
+                            self.db.commit_person( mother,trans)
+                            self.db.remove_family(family_handle,trans)
+                    if not family.get_mother_handle():
+                        father = self.db.get_person_from_handle( family.get_father_handle())
+                        if father:
+                            father.remove_family_handle( family_handle)
+                            self.db.commit_person( father,trans)
+                            self.db.remove_family(family_handle,trans)
 
         handle = self.active_person.get_handle()
 

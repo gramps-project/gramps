@@ -206,7 +206,15 @@ class SelectChild:
             else:	
                 self.family.set_mother_handle(self.person.get_handle())
             self.db.commit_family(self.family,trans)
-                
+
+        # check that selected child is not already a child in family
+        if handle in self.family.get_child_handle_list():
+            ErrorDialog(_("Error selecting a child"),
+                        _("The person is already linked as child"),
+                        self.top)
+            return
+        
+        # check that selected child is not already a spouse in family
         if handle in (self.family.get_father_handle(),self.family.get_mother_handle()):
             ErrorDialog(_("Error selecting a child"),
                         _("A person cannot be linked as his/her own child"),
