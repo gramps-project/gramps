@@ -57,6 +57,7 @@ from ansel_utf8 import ansel_to_utf8
 import latin_utf8 
 import Utils
 import GrampsMime
+from bsddb import db
 from GedcomInfo import *
 from QuestionDialog import ErrorDialog
 
@@ -206,6 +207,13 @@ def import2(database, filename, cb, codeset, use_trans):
         (m1,m2) = val.messages()
         Utils.destroy_passed_object(statusWindow)
         ErrorDialog(m1,m2)
+        return
+    except db.DBSecondaryBadError, msg:
+        Utils.destroy_passed_object(statusWindow)
+        WarningDialog(_('Database corruption detected'),
+                      _('A problem was detected with the database. Please '
+                        'run the Check and Repair Database tool to fix the '
+                        'problem.'))
         return
     except:
         Utils.destroy_passed_object(statusWindow)

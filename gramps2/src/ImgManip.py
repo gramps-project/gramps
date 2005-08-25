@@ -35,7 +35,7 @@ class ImgManip:
     def size(self):
         try:
             img = gtk.gdk.pixbuf_new_from_file(self.src)
-        except GError:
+        except gobject.GError:
             return (0,0)
         return (img.get_width(),img.get_height())
     
@@ -101,7 +101,7 @@ class ImgManip:
 def _build_thumb_path(path):
     base = os.path.expanduser('~/.gramps/thumb')
     m = md5.md5(path)
-    return os.path.join(base,m.hexdigest()+'.jpg')
+    return os.path.join(base,m.hexdigest()+'.png')
 
 def run_thumbnailer(cmd, frm, to):
     sublist = {
@@ -132,7 +132,7 @@ def set_thumbnail_image(path,mtype=None):
             ph = int(h*scale)
             
             pixbuf = pixbuf.scale_simple(pw,ph,gtk.gdk.INTERP_BILINEAR)
-            pixbuf.save(_build_thumb_path(path),"jpeg")
+            pixbuf.save(_build_thumb_path(path),"png")
         except:
             print "Could not create thumbnail for",path,mtype
 

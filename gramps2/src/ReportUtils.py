@@ -273,6 +273,13 @@ def estimate_age(db, person, end_handle=None, start_handle=None):
         age = (lower,upper)
     return age
 
+def sanitize_list(obj_list,exclude_private):
+    if exclude_private:
+        return [obj for obj in obj_list if not obj.private]
+    else:
+        return obj_list
+
+
 def sanitize_person(db,person):
     """
     Creates a new Person instance based off the passed Person

@@ -128,6 +128,7 @@ class BasePage:
         self.noid = options.handler.options_dict['NWEBnoid']
         self.use_intro = options.handler.options_dict['NWEBintronote'] != u""
         self.use_contact = options.handler.options_dict['NWEBcontact'] != u""
+        self.use_gallery = options.handler.options_dict['NWEBgallery']
         self.header = options.handler.options_dict['NWEBheader']
         self.footer = options.handler.options_dict['NWEBfooter']
         self.photo_list = photo_list
@@ -153,8 +154,8 @@ class BasePage:
                 self.photo_list[handle] = [lnk]
 
         ext = os.path.splitext(photo.get_path())[1]
-        real_path = os.path.join(self.build_path(handle,'images'),handle+ext)
-        thumb_path = os.path.join(self.build_path(handle,'thumb'),handle+ext)
+        real_path = "%s/%s" % (self.build_path(handle,'images'),handle+ext)
+        thumb_path = "%s/%s" % (self.build_path(handle,'thumb'),handle+ext)
         return (real_path,thumb_path)
 
     def create_file(self,name):
@@ -281,7 +282,8 @@ class BasePage:
         self.show_link(of,'individuals',_('Individuals'),path)
         self.show_link(of,'sources',_('Sources'),path)
         self.show_link(of,'places',_('Places'),path)
-        self.show_link(of,'gallery',_('Gallery'),path)
+        if self.use_gallery:
+            self.show_link(of,'gallery',_('Gallery'),path)
         if self.inc_download:
             self.show_link(of,'download',_('Download'),path)
         if self.use_contact:
@@ -296,7 +298,8 @@ class BasePage:
             of.write('   <a href="%s.%s">%s</a>\n' % (lpath,self.ext,title))
 
     def display_first_image_as_thumbnail( self, of, db, photolist=None):
-        if not photolist:
+
+        if not photolist or not self.use_gallery:
             return
             
         photo_handle = photolist[0].get_reference_handle()
@@ -304,30 +307,13 @@ class BasePage:
         mime_type = photo.get_mime_type()
 
         if mime_type:
-            if mime_type.startswith('image') or mime_type == "application/pdf":
-                try:
-                    (real_path,newpath) = self.copy_media(photo)
-                    of.write('<div class="snapshot">\n')
-                    self.media_link(of,photo_handle,newpath,'',up=True)
-                    of.write('</div>\n')
-                except (IOError,OSError),msg:
-                    WarningDialog(_("Could not add photo to page"),str(msg))
-            elif mime_type.startswith('video/'):
-                try:
-                    (real_path,newpath) = self.copy_media(photo)
-                    of.write('<div class="snapshot">\n')
-                    self.media_link(of,photo_handle,newpath,'',up=True)
-                    of.write('</div>\n')
-                except (IOError,OSError),msg:
-                    WarningDialog(_("Could not add photo to page"),str(msg))
-            else:
-                try:
-                    (real_path,newpath) = self.copy_media(photo)
-                    of.write('<div class="snapshot">\n')
-                    self.doc_link(of,photo_handle, '', up=True)
-                    of.write('</div>\n')
-                except (IOError,OSError),msg:
-                    WarningDialog(_("Could not add photo to page"),str(msg))
+            try:
+                (real_path,newpath) = self.copy_media(photo)
+                of.write('<div class="snapshot">\n')
+                self.media_link(of,photo_handle,newpath,'',up=True)
+                of.write('</div>\n')
+            except (IOError,OSError),msg:
+                WarningDialog(_("Could not add photo to page"),str(msg))
 
     def display_additional_images_as_gallery( self, of, db, photolist=None):
 
@@ -341,14 +327,7 @@ class BasePage:
             photo = db.get_object_from_handle(photo_handle)
 
             mime_type = photo.get_mime_type()
-            if mime_type.startswith('image') or mime_type == "application/pdf":
-                try:
-                    (real_path,newpath) = self.copy_media(photo)
-                    self.media_link(of,photo_handle,newpath,
-                                    photo.get_description(),up=True)
-                except (IOError,OSError),msg:
-                    WarningDialog(_("Could not add photo to page"),str(msg))
-            elif mime_type.startswith('video/'):
+            if mime_type:
                 try:
                     (real_path,newpath) = self.copy_media(photo)
                     self.media_link(of,photo_handle,newpath,
@@ -466,8 +445,7 @@ class BasePage:
         of.write('<div class="thumbnail">\n')
         of.write('<p><a href="%s/%s.%s">' % (dirpath,handle,self.ext))
         of.write('<img src="../../../%s" ' % path)
-        of.write('height="%d" alt="%s" /></a>' % (const.thumbScale,name))
-        of.write('</p>\n')
+        of.write('alt="%s" /></a></p>\n' % name)
         if usedescr:
             of.write('<p>%s</p>\n' % name)
         of.write('</div>\n')
@@ -713,7 +691,9 @@ class PlacePage(BasePage):
         of.write('</table>\n')
         of.write('</div>\n')
 
-        self.display_additional_images_as_gallery(of, db, place.get_media_list())
+        if self.use_gallery:
+            plist = place.get_media_list()
+            self.display_additional_images_as_gallery(of, db, plist)
         self.display_note_object(of, place.get_note_object())
         self.display_url_list(of, place.get_url_list())
         self.display_references(of,db,place_list[place.handle])
@@ -751,12 +731,10 @@ class MediaPage(BasePage):
                             os.path.join(self.html_dir,newpath))
 
         mime_type = photo.get_mime_type()
-        if mime_type and (mime_type.startswith("image") or
-                          mime_type.startswith('video') or
-                          mime_type == "application/pdf"):
+        if mime_type:
             ext = os.path.splitext(photo.get_path())[1]
             to_dir = self.build_path(handle,'thumb')
-            to_path = os.path.join(to_dir,handle+ext)
+            to_path = os.path.join(to_dir,handle+".png")
             from_path = ImgManip.get_thumbnail_path(photo.get_path(),mime_type)
             if not os.path.isfile(from_path):
                 from_path = os.path.join(const.dataDir,"document.png")
@@ -799,24 +777,17 @@ class MediaPage(BasePage):
             of.write('<img ')
             of.write('src="../../../%s" alt="%s" />\n' % (newpath, self.page_title))
             of.write('</div>\n')
-        elif mime_type and mime_type == "application/pdf" or mime_type.startswith('video/'):
-            ext = os.path.splitext(photo.get_path())[1]
-            to_dir = self.build_path(handle,'thumb')
-            path = os.path.join(to_dir,handle+ext)
-            of.write('<div class="centered">\n')
-            of.write('<a href="../../../%s" alt="%s" />\n' % (newpath, self.page_title))
-            of.write('<img ')
-            of.write('src="../../../%s" alt="%s" />\n' % (path, self.page_title))
-            of.write('</a>\n')
-            of.write('</div>\n')
         else:
-            path = os.path.join('images','document.png')
+            thmb_path = ImgManip.get_thumbnail_path(photo.get_path(),photo.get_mime_type())
+            if os.path.isfile(thmb_path):
+                path = "%s/%s.png" % (self.build_path(photo.handle,"images"),photo.handle)
+            else:
+                path = os.path.join('images','document.png')
             of.write('<div class="centered">\n')
             of.write('<a href="../../../%s" alt="%s" />\n' % (newpath, self.page_title))
             of.write('<img ')
             of.write('src="../../../%s" alt="%s" />\n' % (path, self.page_title))
-            of.write('</a>\n')
-            of.write('</div>\n')
+            of.write('</a>\n</div>\n')
 
         of.write('<table class="infolist">\n')
 
@@ -1250,12 +1221,18 @@ class IndividualPage(BasePage):
         self.display_ind_relationships(of)
         
         media_list = []
-        photolist = self.person.get_media_list()
+        photolist = ReportUtils.sanitize_list(self.person.get_media_list(),
+                                              self.exclude_private)
         if len(photolist) > 1:
             media_list = photolist[1:]
         for handle in self.person.get_family_handle_list():
             family = self.db.get_family_from_handle(handle)
-            media_list = media_list + family.get_media_list()
+            media_list += ReportUtils.sanitize_list(family.get_media_list(),
+                                                    self.exclude_private)
+        for handle in self.person.get_event_list():
+            event = self.db.get_event_from_handle(handle)
+            media_list += ReportUtils.sanitize_list(event.get_media_list(),
+                                                    self.exclude_private)
 
         self.display_additional_images_as_gallery(of, db, media_list)
         self.display_note_object(of, self.person.get_note_object())
@@ -1730,6 +1707,7 @@ class WebReport(Report.Report):
         self.noid = options.handler.options_dict['NWEBnoid']
         self.title = options.handler.options_dict['NWEBtitle']
         self.sort = Sort.Sort(self.database)
+        self.inc_gallery = bool(options.handler.options_dict['NWEBgallery'])
         self.inc_contact = options.handler.options_dict['NWEBcontact'] != u""
         self.inc_download = options.handler.options_dict['NWEBdownload']
         self.user_header = options.handler.options_dict['NWEBheader']
@@ -1819,7 +1797,8 @@ class WebReport(Report.Report):
         self.surname_pages(ind_list,archive)
         self.place_pages(place_list, source_list, archive)
         self.source_pages(source_list, self.photo_list, archive)
-        self.gallery_pages(self.photo_list, source_list, archive)
+        if self.inc_gallery:
+            self.gallery_pages(self.photo_list, source_list, archive)
         
         if archive:
             archive.close()
@@ -1964,7 +1943,8 @@ class WebReport(Report.Report):
         total = len(self.photo_list)
         index = 1
         photo_keys = self.photo_list.keys()
-
+        photo_keys.sort(self.by_media_title)
+        
         for photo_handle in photo_keys:
             if index == total:
                 next = None
@@ -1979,6 +1959,14 @@ class WebReport(Report.Report):
             self.progress.step()
             prev = photo_handle
             index += 1
+
+    def by_media_title(self,a_id,b_id):
+        """Sort routine for comparing two events by their dates. """
+        if not (a_id and b_id):
+            return False
+        a = self.database.get_object_from_handle(a_id)
+        b = self.database.get_object_from_handle(b_id)
+        return cmp(a.desc,b.desc)
 
     def base_pages(self, photo_list, archive):
 
@@ -2036,6 +2024,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
             'NWEBnonames'       : 0,
             'NWEBnoid'          : 0,
             'NWEBcontact'       : '', 
+            'NWEBgallery'       : 1, 
             'NWEBheader'        : '', 
             'NWEBfooter'        : '', 
             'NWEBdownload'      : 0, 
@@ -2095,6 +2084,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         title_msg = _("Web site title")
         ext_msg = _("File extension")
         contact_msg = _("Publisher contact/Note ID")
+        gallery_msg = _("Include images and media objects")
         download_msg = _("Include download page")
 
         self.no_private = gtk.CheckButton(priv_msg)
@@ -2105,6 +2095,9 @@ class WebReportOptions(ReportOptions.ReportOptions):
 
         self.restrict_living = gtk.CheckButton(restrict_msg)
         self.restrict_living.connect('toggled',self.restrict_toggled)
+
+        self.include_gallery = gtk.CheckButton(gallery_msg)
+        self.include_gallery.set_active(self.options_dict['NWEBgallery'])
 
         self.restrict_years = gtk.Entry()
         self.restrict_years.set_text(str(self.options_dict['NWEBrestrictyears']))
@@ -2200,11 +2193,11 @@ class WebReportOptions(ReportOptions.ReportOptions):
         media_list.sort()
         html_list.sort()
 
-        self.home_note = build_combo_box(media_list,self.options_dict['NWEBhomenote'])
-        self.intro_note = build_combo_box(media_list,self.options_dict['NWEBintronote'])
-        self.contact = build_combo_box(media_list,self.options_dict['NWEBcontact'])
-        self.header = build_combo_box(html_list,self.options_dict['NWEBheader'])
-        self.footer = build_combo_box(html_list,self.options_dict['NWEBfooter'])
+        self.home_note = mk_combobox(media_list,self.options_dict['NWEBhomenote'])
+        self.intro_note = mk_combobox(media_list,self.options_dict['NWEBintronote'])
+        self.contact = mk_combobox(media_list,self.options_dict['NWEBcontact'])
+        self.header = mk_combobox(html_list,self.options_dict['NWEBheader'])
+        self.footer = mk_combobox(html_list,self.options_dict['NWEBfooter'])
 
         dialog.add_frame_option(title,_('Home Media/Note ID'),
                                 self.home_note)
@@ -2213,6 +2206,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         dialog.add_frame_option(title,contact_msg,self.contact)
         dialog.add_frame_option(title,_('HTML user header'),self.header)
         dialog.add_frame_option(title,_('HTML user footer'),self.footer)
+        dialog.add_frame_option(title,'',self.include_gallery)
         dialog.add_frame_option(title,None,self.inc_download)
         dialog.add_frame_option(title,None,self.noid)
 
@@ -2233,6 +2227,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.options_dict['NWEBincpriv'] = int(not self.no_private.get_active())
         self.options_dict['NWEBnoid'] = int(self.noid.get_active())
         self.options_dict['NWEBcontact'] = unicode(self.contact.get_handle())
+        self.options_dict['NWEBgallery'] = self.include_gallery.get_active()
         self.options_dict['NWEBheader'] = unicode(self.header.get_handle())
         self.options_dict['NWEBfooter'] = unicode(self.footer.get_handle())
         self.options_dict['NWEBdownload'] = int(self.inc_download.get_active())
@@ -2480,7 +2475,7 @@ class GrampsNoteComboBox(gtk.ComboBox):
             handle = self.local_store.get_value(active,1)
         return handle
 
-def build_combo_box(media_list,select_value):
+def mk_combobox(media_list,select_value):
     store = gtk.ListStore(str,str)
     node = None
     
