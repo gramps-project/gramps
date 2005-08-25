@@ -35,6 +35,7 @@ import os
 #
 #-------------------------------------------------------------------------
 import gtk
+import gnome
 try:
     from gnomevfs import get_mime_type
 except:
@@ -61,6 +62,7 @@ import Utils
 import QuestionDialog
 import PageView
 import Navigation
+import TipOfDay
 
 #-------------------------------------------------------------------------
 #
@@ -119,6 +121,7 @@ uidefault = '''<ui>
   <menu action="HelpMenu">
     <menuitem action="UserManual"/>
     <menuitem action="FAQ"/>
+    <menuitem action="TipOfDay"/>
     <separator/>
     <menuitem action="HomePage"/>
     <menuitem action="MailingLists"/>
@@ -232,6 +235,7 @@ class ViewManager:
             ('About', gtk.STOCK_ABOUT, '_About', None, None, self.about),
             ('FAQ', None, '_FAQ', None, None, self.faq_activate),
             ('UserManual', gtk.STOCK_HELP, '_User Manual', 'F1', None, self.manual_activate),
+            ('TipOfDay', None, 'Tip of the day', None, None, self.tip_of_day_activate),
             ])
 
         self.actiongroup.add_actions([
@@ -267,13 +271,13 @@ class ViewManager:
         self.uimanager.insert_action_group(self.actiongroup,1)
 
     def home_page_activate(self,obj):
-        gnome.url_show(_HOMEPAGE)
+        gnome.url_show( const.url_homepage)
 
     def mailing_lists_activate(self,obj):
-        gnome.url_show(_MAILLIST)
+        gnome.url_show( const.url_mailinglist)
 
     def report_bug_activate(self,obj):
-        gnome.url_show(_BUGREPORT)
+        gnome.url_show( const.url_bugtracker)
 
     def manual_activate(self,obj):
         """Display the GRAMPS manual"""
@@ -288,6 +292,10 @@ class ViewManager:
             gnome.help_display('gramps-manual','faq')
         except gobject.GError, msg:
             ErrorDialog(_("Could not open help"),str(msg))
+
+    def tip_of_day_activate(self,obj):
+        """Display Tip of the day"""
+        TipOfDay.TipOfDay(self.uistate)
 
     def about(self,obj):
         about = gtk.AboutDialog()

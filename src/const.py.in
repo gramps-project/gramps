@@ -24,6 +24,15 @@
 
 #-------------------------------------------------------------------------
 #
+# Standard GRAMPS Websites
+#
+#-------------------------------------------------------------------------
+url_homepage    = "http://gramps-project.org/"
+url_mailinglist = "http://sourceforge.net/mail/?group_id=25770"
+url_burtracker  = "http://sourceforge.net/tracker/?group_id=25770&atid=385137"
+
+#-------------------------------------------------------------------------
+#
 # Standard python modules
 #
 #-------------------------------------------------------------------------

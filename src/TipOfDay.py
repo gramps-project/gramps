@@ -51,7 +51,7 @@ import GrampsKeys
 #
 #-------------------------------------------------------------------------
 class TipOfDay:
-    def __init__(self,parent):
+    def __init__(self,uistate):
         xml = gtk.glade.XML(const.gladeFile, "tod", "gramps")
         top = xml.get_widget("tod")
         tip = xml.get_widget("tip")
@@ -64,7 +64,7 @@ class TipOfDay:
         new_index = range(len(tip_list))
         Random().shuffle(new_index)
 
-        top.set_transient_for(parent.topWindow)
+        top.set_transient_for(uistate.window)
 
         index = 0
         rval = 0
