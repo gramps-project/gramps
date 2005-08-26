@@ -305,7 +305,11 @@ class DescendChart(Report.Report):
         g.set_height(self.box_height)
         g.set_width(self.box_width)
         g.set_paragraph_style("DC2-Normal")
-        g.set_shadow(1,self.box_gap/self.scale)
+        if self.scale < 1:
+            g.set_shadow(1,self.box_gap)
+        else:
+            g.set_shadow(1,self.box_gap/self.scale)
+            
         g.set_line_width(g.get_line_width()/self.scale)
         g.set_fill_color((255,255,255))
         self.doc.add_draw_style("DC2-box",g)
