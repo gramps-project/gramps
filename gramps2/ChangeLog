@@ -1,3 +1,7 @@
+2005-08-25  Don Allingham  <don@gramps-project.org>
+	* src/SubstKeywords: Add new % options
+	* src/plugins/DescendChart.py: New descendant wall chart report
+
 2005-08-25  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/SelectChild.py (on_save_child_clicke): Dont add the same person
 	multiple times as child
