@@ -119,10 +119,10 @@ class DescendChart(Report.Report):
         This report needs the following parameters (class variables)
         that come in the options class.
         
-        gen       - Maximum number of generations to include.
         dispf     - Display format for the output box.
         singlep   - Whether to scale to fit on a single page.
         title     - Title of the report displayed on top.
+        maxgen    - Maximum number of generations to include.
         """
         Report.Report.__init__(self,database,person,options_class)
 
@@ -131,6 +131,7 @@ class DescendChart(Report.Report):
         self.display = options_class.handler.options_dict['dispf']
         self.force_fit = options_class.handler.options_dict['singlep']
         self.title = options_class.handler.options_dict['title'].strip()
+        self.max_gen = options_class.handler.options_dict['maxgen']
 
         self.map = {}
         self.text = {}
@@ -153,6 +154,9 @@ class DescendChart(Report.Report):
         """traverse the ancestors recursively until either the end
         of a line is found, or until we reach the maximum number of 
         generations that we want to deal with"""
+
+        if x/2 >= self.max_gen:
+            return 0
 
         self.genchart.set_xy(x,y,person_handle)
         
@@ -383,6 +387,7 @@ class DescendChartOptions(ReportOptions.ReportOptions):
         self.options_dict = {
             'singlep'   : 1,
             'title'     : '',
+            'maxgen'    : 32,
         }
         self.options_help = {
             'singlep'   : ("=0/1","Whether to scale to fit on a single page.",
@@ -410,10 +415,6 @@ class DescendChartOptions(ReportOptions.ReportOptions):
         """
         dialog.get_report_extra_textbox_info = self.get_textbox_info
 
-        self.scale = gtk.CheckButton(_('Sc_ale to fit on a single page'))
-        self.scale.set_active(self.options_dict['singlep'])
-        dialog.add_option('',self.scale)
-
         self.title_box = gtk.Entry()
         if self.options_dict['title']:
             self.title_box.set_text(self.options_dict['title'])
@@ -422,12 +423,22 @@ class DescendChartOptions(ReportOptions.ReportOptions):
             self.title_box.set_text(dialog.get_header(name))
         dialog.add_option(_('Title'),self.title_box)
 
+        self.scale = gtk.CheckButton(_('Sc_ale to fit on a single page'))
+        self.scale.set_active(self.options_dict['singlep'])
+        dialog.add_option('',self.scale)
+
+        self.max_gen = gtk.SpinButton(gtk.Adjustment(1,1,100,1))
+        self.max_gen.set_value(self.options_dict['maxgen'])
+        dialog.add_option(_('Generations'),self.max_gen)
+
+
     def parse_user_options(self,dialog):
         """
         Parses the custom options that we have added.
         """
         self.options_dict['singlep'] = int(self.scale.get_active ())
         self.options_dict['title'] = unicode(self.title_box.get_text()).strip()
+        self.options_dict['maxgen'] = int(self.max_gen.get_value_as_int())
 
     def make_default_style(self,default_style):
         """Make the default output style for the Ancestor Chart report."""

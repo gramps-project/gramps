@@ -1,5 +1,6 @@
 2005-08-26  Don Allingham  <don@gramps-project.org>
-	* src/plugins/DescendChart.py: Fix spacing and line drawing
+	* src/plugins/DescendChart.py: Fix spacing and line drawing,
+	added maximum number of generations
 
 2005-08-25  Don Allingham  <don@gramps-project.org>
 	* src/SubstKeywords: Add new % options
