@@ -64,14 +64,6 @@ _LINE_ANGLE      = 3
 
 #------------------------------------------------------------------------
 #
-# log2val
-#
-#------------------------------------------------------------------------
-def log2(val):
-    return int(math.log10(val)/math.log10(2))
-
-#------------------------------------------------------------------------
-#
 # Layout class
 #
 #------------------------------------------------------------------------
@@ -85,8 +77,6 @@ class GenChart:
         self.max_x = 0
         self.max_y = 0
         
-        #self.ad = (self.size,generations)
-
     def get_xy(self,x,y):
         if not self.array.has_key(y):
             return 0
@@ -103,13 +93,6 @@ class GenChart:
     def dimensions(self):
         return (self.max_y+1,self.max_x+1)
 
-    def display(self):
-        for y in range(0,self.max_y+1):
-            print "%04d " % y, 
-            for x in range(0,self.max_x+1):
-                print self.get_xy(x,y), 
-            print ""
-            
     def not_blank(self,line):
         for i in line:
             if i and type(i) == tuple:
@@ -202,7 +185,7 @@ class DescendChart(Report.Report):
 
     def add_lines(self):
 
-        (maxx,maxy) = self.genchart.dimensions()
+        (maxy,maxx) = self.genchart.dimensions()
 
         for y in range(0,maxy+1):
             for x in range(0,maxx+1):
@@ -216,11 +199,6 @@ class DescendChart(Report.Report):
                 if self.genchart.get_xy(x,y) and self.genchart.get_xy(x+2,y):
                     self.genchart.set_xy(x+1,y,_LINE_HORIZONTAL)
                 else:
-                    continue
-
-                # shortcut - if the spot directly below is used, then
-                # we have no more children, and can break
-                if self.genchart.get_xy(x,y+1):
                     continue
 
                 # look through the entries below this one. All people in the
@@ -247,7 +225,7 @@ class DescendChart(Report.Report):
         page = 1
         (maxy,maxx) = self.genchart.dimensions()
         maxx = (maxx-1)*2
-        maxh = int(self.uh/self.box_height)
+        maxh = int(self.uh/(self.box_height*1.25))
 
         if self.force_fit:
             self.print_page(0,maxx,0,maxy,0,0)
@@ -294,7 +272,7 @@ class DescendChart(Report.Report):
             (maxy,maxx) = self.genchart.dimensions()
 
             bw = (calc_width/(uw/(maxx+1)))
-            bh = self.box_height/(self.uh/maxy)
+            bh = (self.box_height*(1.25))/(self.uh/maxy)
             
             self.scale = max(bw/2,bh)
             self.box_width = self.box_width/self.scale
@@ -302,7 +280,7 @@ class DescendChart(Report.Report):
             self.box_pad_pts = self.box_pad_pts/self.scale
             self.box_gap = self.box_gap/self.scale
 
-        maxh = int(self.uh/(self.box_height+self.box_gap))
+        maxh = int((self.uh)/(self.box_height+self.box_gap))
         maxw = int(uw/calc_width) 
 
         # build array of x indices
