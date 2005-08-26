@@ -69,6 +69,9 @@ class TestcaseGenerator:
         self.person_count = 0
         self.persons_todo = []
         self.parents_todo = []
+        if active_person:
+            self.persons_todo.append(active_person.get_handle())
+            self.parents_todo.append(active_person.get_handle())
         
     def run(self):
         title = "%s - GRAMPS" % _("Generate testcases")
@@ -96,6 +99,10 @@ class TestcaseGenerator:
         self.check_trans.set_active(False)
         self.top.vbox.pack_start(self.check_trans,0,0,5)
 
+        self.check_longnames = gtk.CheckButton( _("Generate long names"))
+        self.check_longnames.set_active(False)
+        self.top.vbox.pack_start(self.check_longnames,0,0,5)
+
         self.entry_count = gtk.Entry()
         self.entry_count.set_text("2000")
         self.top.vbox.pack_start(self.entry_count,0,0,5)
@@ -106,18 +113,19 @@ class TestcaseGenerator:
         self.top.show_all()
 
         response = self.top.run()
-        bugs = self.check_bugs.get_active()
-        dates = self.check_dates.get_active()
-        persons = self.check_persons.get_active()
-        multiple_trans = self.check_trans.get_active()
-        person_count = int(self.entry_count.get_text())
+        self.generate_bugs = self.check_bugs.get_active()
+        self.generate_dates = self.check_dates.get_active()
+        self.generate_persons = self.check_persons.get_active()
+        self.param_multiple_trans = self.check_trans.get_active()
+        self.param_longnames = int(self.check_longnames.get_active())
+        self.max_person_count = int(self.entry_count.get_text())
         self.top.destroy()
 
         if response == gtk.RESPONSE_OK:
-            self.run_generator(bugs,dates,persons,person_count,multiple_trans)
+            self.run_generator()
 
 
-    def run_generator( self, generate_bugs = 1, generate_dates = 1, generate_families = 1, generate_max_persons = 2000, multiple_transactions=False):
+    def run_generator( self):
         title = "%s - GRAMPS" % _("Generate testcases")
         self.top = gtk.Window()
         self.top.set_title(title)
@@ -135,17 +143,14 @@ class TestcaseGenerator:
         while gtk.events_pending():
             gtk.main_iteration()
         
-        self.max_person_count = generate_max_persons
-
-        self.multiple_transactions = multiple_transactions
         self.transaction_count = 0;
         
         self.trans = self.db.transaction_begin()
-        if not self.multiple_transactions:
+        if not self.param_multiple_trans:
             self.trans.set_batch(True)
             self.db.disable_signals()
 
-        if self.multiple_transactions:
+        if self.param_multiple_trans:
     
             print "TESTING SIGNALS..."
     
@@ -247,7 +252,7 @@ class TestcaseGenerator:
             print "DONE."
         
         
-        if generate_bugs or generate_dates or generate_families:
+        if self.generate_bugs or self.generate_dates or self.generate_persons:
             self.default_source = RelLib.Source()
             self.default_source.set_title("TestcaseGenerator")
             self.db.add_source(self.default_source, self.trans)
@@ -264,14 +269,15 @@ class TestcaseGenerator:
             self.default_mediaref = RelLib.MediaRef()
             self.default_mediaref.set_reference_handle(self.default_media.get_handle())
 
-        if generate_bugs:
+        if self.generate_bugs:
             self.generate_broken_relations()
         
-        if generate_dates:
+        if self.generate_dates:
             self.generate_date_tests()
 
-        if generate_families:
-            self.persons_todo.append( self.generate_person(0))
+        if self.generate_persons:
+            if not self.persons_todo:
+                self.persons_todo.append( self.generate_person(0))
             for person_h in self.persons_todo:
                 self.generate_family(person_h)
                 if randint(0,3) == 0:
@@ -286,7 +292,7 @@ class TestcaseGenerator:
                         break
             
         self.db.transaction_commit(self.trans,_("Testcase generator"))
-        if not self.multiple_transactions:
+        if not self.param_multiple_trans:
             self.db.enable_signals()
             self.db.request_rebuild()
         self.top.destroy()
@@ -514,6 +520,30 @@ class TestcaseGenerator:
         self.db.commit_person(person,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
+        # Creates a person with a birth event pointing to nonexisting place
+        person_h = self.generate_person(None,"Broken17",None)
+        event = RelLib.Event()
+        event.set_name("Birth")
+        event.set_place_handle("InvalidHandle7")
+        event.set_description("Test for Broken17")
+        event_h = self.db.add_event(event,self.trans)
+        person = self.db.get_person_from_handle(person_h)
+        person.set_birth_handle(event_h)
+        self.db.commit_person(person,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
+
+        # Creates a person with an event pointing to nonexisting place
+        person_h = self.generate_person(None,"Broken18",None)
+        event = RelLib.Event()
+        event.set_name("Birth")
+        event.set_place_handle("InvalidHandle8")
+        event.set_description("Test for Broken18")
+        event_h = self.db.add_event(event,self.trans)
+        person = self.db.get_person_from_handle(person_h)
+        person.add_event_handle(event_h)
+        self.db.commit_person(person,self.trans)
+        self.commit_transaction()   # COMMIT TRANSACTION STEP
+
 
     def generate_date_tests(self):
         dates = []
@@ -640,8 +670,13 @@ class TestcaseGenerator:
 
         name = RelLib.Name()
         firstname = ""
-        for i in range(0,randint(1,5)):
-            for j in range(0,randint(2,5)):
+        maxnames = 5
+        maxsyllables = 5
+        if not self.param_longnames:
+            maxnames = 2
+            maxsyllables = 3
+        for i in range(0,randint(1,maxnames)):
+            for j in range(0,randint(2,maxsyllables)):
                 firstname = firstname + choice(syllables2)
             if gender == RelLib.Person.FEMALE:
                 firstname = firstname + choice(("a","e","i","o","u"))
@@ -649,7 +684,7 @@ class TestcaseGenerator:
         firstname = firstname.title().strip()
         if not lastname:
             lastname = ""
-            for i in range(0,randint(2,5)):
+            for i in range(0,randint(2,maxsyllables)):
                 lastname = lastname + choice(syllables1)
         n = randint(0,2)
         if n == 0:
@@ -750,7 +785,7 @@ class TestcaseGenerator:
         object.add_event_handle(e.get_handle())
         
     def commit_transaction(self):
-        if self.multiple_transactions:
+        if self.param_multiple_trans:
             self.db.transaction_commit(self.trans,_("Testcase generator step %d") % self.transaction_count)
             self.transaction_count += 1
             self.trans = self.db.transaction_begin()
