@@ -36,7 +36,10 @@ import random
 import locale
 import re
 import sets
+import sys
 from gettext import gettext as _
+
+log = sys.stderr.write
 
 #-------------------------------------------------------------------------
 #
@@ -135,6 +138,14 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         'media-rebuild'  : None,
         }
     
+
+    # If this is True logging will be turned on.
+    try:
+        __LOG_ALL = int(os.environ.get('GRAMPS_SIGNAL',"0")) == 1
+    except:
+        __LOG_ALL = False
+
+
     def __init__(self):
         """
         Creates a new GrampsDbBase instance. A new GrampDbBase class should
@@ -996,12 +1007,16 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         has no effect until it is committed using the transaction_commit function of
         the this database object.
         """
+        if self.__LOG_ALL:
+            log("%s: Transaction begin '%s'\n" % (self.__class__.__name__, str(msg)))
         return Transaction(msg,self.undodb)
 
     def transaction_commit(self,transaction,msg):
         """
         Commits the transaction to the assocated UNDO database.
         """
+        if self.__LOG_ALL:
+            log("%s: Transaction commit '%s'\n" % (self.__class__.__name__, str(msg)))
         if not len(transaction) or self.readonly:
             return
         transaction.set_description(msg)
