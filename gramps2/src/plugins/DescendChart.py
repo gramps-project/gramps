@@ -229,7 +229,7 @@ class DescendChart(Report.Report):
         page = 1
         (maxy,maxx) = self.genchart.dimensions()
         maxx = (maxx-1)*2
-        maxh = int(self.uh/(self.box_height*1.25))
+        maxh = int((self.uh-0.75)/(self.box_height*1.25))
 
         if self.force_fit:
             self.print_page(0,maxx,0,maxy,0,0)
@@ -242,7 +242,6 @@ class DescendChart(Report.Report):
                 while startx < maxx:
                     stopx = min(maxx,startx+self.generations_per_page*2)
                     stopy = min(maxy,starty+maxh)
-                    print startx, stopx
                     self.print_page(startx,stopx,starty,stopy,colx,coly)
                     colx += 1
                     startx += self.generations_per_page*2
@@ -276,7 +275,7 @@ class DescendChart(Report.Report):
             (maxy,maxx) = self.genchart.dimensions()
 
             bw = (calc_width/(uw/(maxx+1)))
-            bh = (self.box_height*(1.25))/(self.uh/maxy)
+            bh = (self.box_height*(1.25)+self.box_gap)/(self.uh/maxy)
             
             self.scale = max(bw/2,bh)
             self.box_width = self.box_width/self.scale
@@ -305,10 +304,7 @@ class DescendChart(Report.Report):
         g.set_height(self.box_height)
         g.set_width(self.box_width)
         g.set_paragraph_style("DC2-Normal")
-        if self.scale < 1:
-            g.set_shadow(1,self.box_gap)
-        else:
-            g.set_shadow(1,self.box_gap/self.scale)
+        g.set_shadow(1,min(self.box_gap,0.2))
             
         g.set_line_width(g.get_line_width()/self.scale)
         g.set_fill_color((255,255,255))
