@@ -17,6 +17,7 @@ pkgdata_PYTHON = \
 	CountAncestors.py\
 	Desbrowser.py\
 	DescendReport.py\
+	DescendChart.py\
 	DesGraph.py\
 	DetAncestralReport.py\
 	DetDescendantReport.py\
