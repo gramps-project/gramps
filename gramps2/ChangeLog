@@ -1,3 +1,6 @@
+2005-08-26  Don Allingham  <don@gramps-project.org>
+	* src/data/document.png: added
+
 2005-08-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/TestcaseGenerator.py: Changed param handling;
 	add more tests; make names shorter and configurable
