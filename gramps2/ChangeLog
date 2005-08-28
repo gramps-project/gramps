@@ -1,3 +1,7 @@
+2005-08-28  Don Allingham  <don@gramps-project.org>
+	* src/plugins/AncestorChart2.py: add support for %n style
+	of keyword substitution
+
 2005-08-27  Don Allingham  <don@gramps-project.org>
 	* src/data/Makefile.am: install document.png
 	* src/plugins/Makefile.am: install DescendChart.py

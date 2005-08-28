@@ -226,13 +226,13 @@ class AncestorChart(Report.Report):
 
         self.text[index] = []
 
+        em = self.doc.string_width(self.font,"m")
+
         subst = SubstKeywords(self.database,person_handle)
-        
-        for line in self.display:
-            self.text[index].append(subst.replace(line))
+        self.text[index] = subst.replace_and_clean(self.display)
 
         for line in self.text[index]:
-            this_box_width = self.doc.string_width(self.font,line)
+            this_box_width = self.doc.string_width(self.font,line) + 2*em
             self.box_width = max(self.box_width,this_box_width)
 
         self.lines = max(self.lines,len(self.text[index]))    
