@@ -2,6 +2,8 @@
 	* src/plugins/NavWebPage.py: Correct link to Surname list page;
 	Better handling for not existing media object files and note-only
 	objects; thumbnails are always png images
+	* src/plugins/Check.py: Files of note-only objects are no longer
+	reported as missing
 
 2005-08-28  Don Allingham  <don@gramps-project.org>
 	* src/plugins/NavWebPage.py: handle resticted living people
