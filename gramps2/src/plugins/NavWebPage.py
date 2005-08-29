@@ -1876,7 +1876,7 @@ class WebReport(Report.Report):
             self.progress.set_pass(_('Applying privacy filter'),len(ind_list))
             ind_list = filter(self.filter_private,ind_list)
 
-        years = time.localtime(time.time())[0] - self.restrict_years
+        years = time.localtime(time.time())[0]
 
         # Filter out people who are restricted due to the living
         # people rule
@@ -1886,7 +1886,7 @@ class WebReport(Report.Report):
             for key in ind_list:
                 self.progress.step()
                 p = self.database.get_person_from_handle(key)
-                if Utils.probably_alive(p,self.database,years):
+                if Utils.probably_alive(p,self.database,years,self.restrict_years):
                     restrict_list.add(key)
 
         return (ind_list,restrict_list)

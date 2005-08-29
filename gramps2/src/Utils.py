@@ -450,7 +450,7 @@ def create_id():
     return s
 
 
-def probably_alive(person,db,current_year=None):
+def probably_alive(person,db,current_year=None,limit=0):
     """Returns true if the person may be alive.
 
     This works by a process of emlimination. If we can't find a good
@@ -469,9 +469,9 @@ def probably_alive(person,db,current_year=None):
         death = db.get_event_from_handle(person.death_handle)
         if death.get_date_object().get_start_date() != Date.EMPTY:
             death_year = death.get_date_object().get_year()
-            if death_year < current_year:
+            if death_year - limit < current_year:
                 return False
-    
+
     # Look for Cause Of Death, Burial or Cremation events.
     # These are fairly good indications that someone's not alive.
     for ev_handle in person.event_list:
@@ -483,7 +483,7 @@ def probably_alive(person,db,current_year=None):
             if not death_year:
                 death_year = ev.get_date_object().get_year()
             if ev.get_date_object().get_start_date() != Date.EMPTY:
-                if ev.get_date_object().get_year() < current_year:
+                if ev.get_date_object().get_year() - limit < current_year:
                     return False
 
     if not current_year:
@@ -498,21 +498,15 @@ def probably_alive(person,db,current_year=None):
         if birth.get_date_object().get_start_date() != Date.EMPTY:
             if not birth_year:
                 birth_year = birth.get_date_object().get_year()
-            if birth.get_date_object().get_year() > current_year:
-                # person is not yet born
-                return False
             r = not_too_old(birth.get_date_object(),current_year)
             if r:
-                #print person.get_primary_name().get_name(), " is alive because they were born late enough."
                 return True
-    
     
     if not birth_year and death_year:
         if death_year > current_year + 110:
             # person died more tha 110 after current year
             return False
             
-
     # Neither birth nor death events are available.  Try looking
     # for descendants that were born more than a lifespan ago.
 
@@ -615,7 +609,6 @@ def probably_alive(person,db,current_year=None):
                     return True
 
         return False
-
 
     # If there are ancestors that would be too old in the current year
     # then assume our person must be dead too.
