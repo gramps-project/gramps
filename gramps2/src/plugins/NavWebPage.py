@@ -155,7 +155,7 @@ class BasePage:
 
         ext = os.path.splitext(photo.get_path())[1]
         real_path = "%s/%s" % (self.build_path(handle,'images'),handle+ext)
-        thumb_path = "%s/%s" % (self.build_path(handle,'thumb'),handle+ext)
+        thumb_path = "%s/%s.png" % (self.build_path(handle,'thumb'),handle)
         return (real_path,thumb_path)
 
     def create_file(self,name):
@@ -314,10 +314,21 @@ class BasePage:
                 of.write('</div>\n')
             except (IOError,OSError),msg:
                 WarningDialog(_("Could not add photo to page"),str(msg))
+        else:
+            of.write('<div class="snapshot">\n')
+            self.doc_link(of,photo_handle,
+                          photo.get_description(),up=True)
+            of.write('</div>\n')
+            lnk = (self.cur_name,self.page_title,self.gid)
+            if self.photo_list.has_key(photo_handle):
+                if lnk not in self.photo_list[photo_handle]:
+                    self.photo_list[photo_handle].append(lnk)
+            else:
+                self.photo_list[photo_handle] = [lnk]
 
     def display_additional_images_as_gallery( self, of, db, photolist=None):
 
-        if not photolist and len(photolist) == 0:
+        if not photolist or not self.use_gallery:
             return
             
         of.write('<div id="gallery">\n')
@@ -338,6 +349,12 @@ class BasePage:
                 try:
                     self.doc_link(of,photo_handle,
                                   photo.get_description(),up=True)
+                    lnk = (self.cur_name,self.page_title,self.gid)
+                    if self.photo_list.has_key(photo_handle):
+                        if lnk not in self.photo_list[photo_handle]:
+                            self.photo_list[photo_handle].append(lnk)
+                    else:
+                        self.photo_list[photo_handle] = [lnk]
                 except (IOError,OSError),msg:
                     WarningDialog(_("Could not add photo to page"),str(msg))
                 
@@ -719,26 +736,37 @@ class MediaPage(BasePage):
         ext = os.path.splitext(photo.get_path())[1]
         to_dir = self.build_path(handle,'images')
         newpath = os.path.join(to_dir,handle+ext)
-        if self.archive:
-            imagefile = open(photo.get_path(),"r")
-            self.archive.add_file(newpath,time.time(),imagefile)
-            imagefile.close()
-        else:
-            to_dir = os.path.join(self.html_dir,to_dir)
-            if not os.path.isdir(to_dir):
-                os.makedirs(to_dir)
-            shutil.copyfile(photo.get_path(),
-                            os.path.join(self.html_dir,newpath))
-
+        target_exists = True
+        note_only = photo.get_path() == None or photo.get_path() == ''
+        
+        if not note_only:
+            try:
+                if self.archive:
+                    imagefile = open(photo.get_path(),"r")
+                    self.archive.add_file(newpath,time.time(),imagefile)
+                    imagefile.close()
+                else:
+                    to_dir = os.path.join(self.html_dir,to_dir)
+                    if not os.path.isdir(to_dir):
+                        os.makedirs(to_dir)
+                    shutil.copyfile(photo.get_path(),
+                                    os.path.join(self.html_dir,newpath))
+            except (IOError,OSError),msg:
+                WarningDialog(_("Missing media object"),str(msg))            
+                target_exists = False
+        
         mime_type = photo.get_mime_type()
         if mime_type:
             ext = os.path.splitext(photo.get_path())[1]
             to_dir = self.build_path(handle,'thumb')
             to_path = os.path.join(to_dir,handle+".png")
-            from_path = ImgManip.get_thumbnail_path(photo.get_path(),mime_type)
-            if not os.path.isfile(from_path):
+            if not note_only:
+                from_path = ImgManip.get_thumbnail_path(photo.get_path(),mime_type)
+                if not os.path.isfile(from_path):
+                    from_path = os.path.join(const.dataDir,"document.png")
+            else:
                 from_path = os.path.join(const.dataDir,"document.png")
-
+            
             if self.archive:
                 imagefile = open(from_path,"r")
                 self.archive.add_file(to_path,time.time(),imagefile)
@@ -774,20 +802,29 @@ class MediaPage(BasePage):
 
         if mime_type and mime_type.startswith("image"):
             of.write('<div class="centered">\n')
-            of.write('<img ')
-            of.write('src="../../../%s" alt="%s" />\n' % (newpath, self.page_title))
+            if target_exists:
+                of.write('<img ')
+                of.write('src="../../../%s" alt="%s" />\n' % (newpath, self.page_title))
+            else:
+                of.write('<br /><span>(%s)</span>' % _("The file has been moved or deleted"))
             of.write('</div>\n')
         else:
-            thmb_path = ImgManip.get_thumbnail_path(photo.get_path(),photo.get_mime_type())
-            if os.path.isfile(thmb_path):
+            if not note_only:
+                thmb_path = ImgManip.get_thumbnail_path(photo.get_path(),photo.get_mime_type())
+            if not note_only and os.path.isfile(thmb_path):
                 path = "%s/%s.png" % (self.build_path(photo.handle,"images"),photo.handle)
             else:
                 path = os.path.join('images','document.png')
             of.write('<div class="centered">\n')
-            of.write('<a href="../../../%s" alt="%s" />\n' % (newpath, self.page_title))
+            if target_exists:
+                of.write('<a href="../../../%s" alt="%s" />\n' % (newpath, self.page_title))
             of.write('<img ')
             of.write('src="../../../%s" alt="%s" />\n' % (path, self.page_title))
-            of.write('</a>\n</div>\n')
+            if target_exists:
+                of.write('</a>\n')
+            else:
+                of.write('<br /><span>(%s)</span>' % _("The file has been moved or deleted"))
+            of.write('</div>\n')
 
         of.write('<table class="infolist">\n')
 
@@ -836,7 +873,13 @@ class SurnameListPage(BasePage):
 
         of.write('<table class="infolist">\n<thead><tr>\n')
         of.write('<th>%s</th>\n' % _('Letter'))
-        of.write('<th><a href="%s.%s">%s</a></th>\n' % ("surnames", self.ext, _('Surname')))
+
+        use_home = self.options.handler.options_dict['NWEBhomenote'] != ""
+        if not use_home and not self.use_intro:
+            of.write('<th><a href="%s.%s">%s</a></th>\n' % ("index", self.ext, _('Surname')))
+        else:
+            of.write('<th><a href="%s.%s">%s</a></th>\n' % ("surnames", self.ext, _('Surname')))
+
         of.write('<th><a href="%s.%s">%s</a></th>\n' % ("surnames_count", self.ext, _('Number of people')))
         of.write('</tr></thead>\n<tbody>\n')
 
@@ -1956,12 +1999,9 @@ class WebReport(Report.Report):
                 next = None
             else:
                 next = photo_keys[index]
-            try:
-                MediaPage(self.database, self.title, photo_handle, source_list,
-                          self.options, archive, self.photo_list[photo_handle],
-                          (prev, next, index, total))
-            except (IOError,OSError),msg:
-                WarningDialog(_("Missing media object"),str(msg))
+            MediaPage(self.database, self.title, photo_handle, source_list,
+                      self.options, archive, self.photo_list[photo_handle],
+                      (prev, next, index, total))
             self.progress.step()
             prev = photo_handle
             index += 1
