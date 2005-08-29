@@ -805,7 +805,7 @@ class MediaPage(BasePage):
             if target_exists:
                 of.write('<img ')
                 of.write('src="../../../%s" alt="%s" />\n' % (newpath, self.page_title))
-            else:
+            elif not note_only:
                 of.write('<br /><span>(%s)</span>' % _("The file has been moved or deleted"))
             of.write('</div>\n')
         else:
@@ -816,13 +816,13 @@ class MediaPage(BasePage):
             else:
                 path = os.path.join('images','document.png')
             of.write('<div class="centered">\n')
-            if target_exists:
+            if target_exists and not note_only:
                 of.write('<a href="../../../%s" alt="%s" />\n' % (newpath, self.page_title))
             of.write('<img ')
             of.write('src="../../../%s" alt="%s" />\n' % (path, self.page_title))
-            if target_exists:
+            if target_exists and not note_only:
                 of.write('</a>\n')
-            else:
+            elif not note_only:
                 of.write('<br /><span>(%s)</span>' % _("The file has been moved or deleted"))
             of.write('</div>\n')
 
@@ -832,8 +832,9 @@ class MediaPage(BasePage):
             of.write('<tr><td class="field">%s</td>\n' % _('GRAMPS ID'))
             of.write('<td class="data">%s</td>\n' % photo.gramps_id)
             of.write('</tr>\n')
-        of.write('<tr><td class="field">%s</td>\n' % _('MIME type'))
-        of.write('<td class="data">%s</td>\n' % photo.mime)
+        if not note_only:
+            of.write('<tr><td class="field">%s</td>\n' % _('MIME type'))
+            of.write('<td class="data">%s</td>\n' % photo.mime)
         of.write('</tr>\n')
         of.write('</table>\n')
         of.write('</div>\n')
