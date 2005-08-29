@@ -133,7 +133,7 @@ class BasePage:
         self.footer = options.handler.options_dict['NWEBfooter']
         self.photo_list = photo_list
         self.exclude_private = not options.handler.options_dict['NWEBincpriv']
-        
+
     def store_file(self,archive,html_dir,from_path,to_path):
         if archive:
             imagefile = open(from_path,"r")
@@ -493,8 +493,8 @@ class BasePage:
 #------------------------------------------------------------------------
 class IndividualListPage(BasePage):
 
-    def __init__(self, db, title, person_handle_list, options, archive,
-                 media_list):
+    def __init__(self, db, title, person_handle_list,
+                 options, archive, media_list):
         BasePage.__init__(self, title, options, archive, media_list, "")
 
         of = self.create_file("individuals")
@@ -1198,11 +1198,12 @@ class IndividualPage(BasePage):
         RelLib.Person.UNKNOWN : const.unknown,
         }
     
-    def __init__(self, db, person, title, ind_list, place_list, src_list,
-                 options, archive, media_list):
+    def __init__(self, db, person, title, ind_list, restrict_list,
+                 place_list, src_list, options, archive, media_list):
         BasePage.__init__(self, title, options, archive, media_list,
                           person.gramps_id)
         self.person = person
+        self.restrict = person.handle in restrict_list
         self.db = db
         self.ind_list = ind_list
         self.src_list = src_list
@@ -1219,22 +1220,24 @@ class IndividualPage(BasePage):
         self.display_attr_list(of, self.person.get_attribute_list())
         self.display_ind_parents(of)
         self.display_ind_relationships(of)
-        
-        media_list = []
-        photolist = ReportUtils.sanitize_list(self.person.get_media_list(),
-                                              self.exclude_private)
-        if len(photolist) > 1:
-            media_list = photolist[1:]
-        for handle in self.person.get_family_handle_list():
-            family = self.db.get_family_from_handle(handle)
-            media_list += ReportUtils.sanitize_list(family.get_media_list(),
-                                                    self.exclude_private)
-        for handle in self.person.get_event_list():
-            event = self.db.get_event_from_handle(handle)
-            media_list += ReportUtils.sanitize_list(event.get_media_list(),
-                                                    self.exclude_private)
 
-        self.display_additional_images_as_gallery(of, db, media_list)
+        if not self.restrict:
+            media_list = []
+            photolist = ReportUtils.sanitize_list(self.person.get_media_list(),
+                                              self.exclude_private)
+            if len(photolist) > 1:
+                media_list = photolist[1:]
+            for handle in self.person.get_family_handle_list():
+                family = self.db.get_family_from_handle(handle)
+                media_list += ReportUtils.sanitize_list(family.get_media_list(),
+                                                    self.exclude_private)
+            for handle in self.person.get_event_list():
+                event = self.db.get_event_from_handle(handle)
+                media_list += ReportUtils.sanitize_list(event.get_media_list(),
+                                                        self.exclude_private)
+
+            self.display_additional_images_as_gallery(of, db, media_list)
+            
         self.display_note_object(of, self.person.get_note_object())
         self.display_url_list(of, self.person.get_url_list())
         self.display_ind_sources(of)
@@ -1244,7 +1247,7 @@ class IndividualPage(BasePage):
 
     def display_ind_sources(self,of):
         sreflist = self.src_refs + self.person.get_source_references()
-        if not sreflist:
+        if not sreflist or self.restrict:
             return
         of.write('<div id="sourcerefs">\n')
         of.write('<h4>%s</h4>\n' % _('Source References'))
@@ -1342,23 +1345,24 @@ class IndividualPage(BasePage):
             pname = name_nameof(name,self.exclude_private)
             of.write('<tr><td class="field">%s</td>\n' % _(name.get_type()))
             of.write('<td class="data">%s' % pname)
-            nshl = []
-            for nsref in name.get_source_references():
-                self.src_refs.append(nsref)
-                nsh = nsref.get_base_handle()
-                lnk = (self.cur_name, self.page_title, self.gid)
-                if self.src_list.has_key(nsh):
-                    if self.person.handle not in self.src_list[nsh]:
-                        self.src_list[nsh].append(lnk)
-                else:
-                    self.src_list[nsh] = [lnk]
-                nshl.append(nsref)
-            if nshl:
-                of.write( " <sup>")
-                for nsh in nshl:
-                    index = self.src_refs.index(nsh)+1
-                    of.write(' <a href="#sref%d">%d</a>' % (index,index))
-                of.write( " </sup>")
+            if not self.restrict:
+                nshl = []
+                for nsref in name.get_source_references():
+                    self.src_refs.append(nsref)
+                    nsh = nsref.get_base_handle()
+                    lnk = (self.cur_name, self.page_title, self.gid)
+                    if self.src_list.has_key(nsh):
+                        if self.person.handle not in self.src_list[nsh]:
+                            self.src_list[nsh].append(lnk)
+                    else:
+                        self.src_list[nsh] = [lnk]
+                    nshl.append(nsref)
+                if nshl:
+                    of.write( " <sup>")
+                    for nsh in nshl:
+                        index = self.src_refs.index(nsh)+1
+                        of.write(' <a href="#sref%d">%d</a>' % (index,index))
+                    of.write( " </sup>")
 
             of.write('</td>\n</tr>\n')
 
@@ -1372,7 +1376,7 @@ class IndividualPage(BasePage):
         all_events = [handle for handle in [self.person.get_birth_handle(),
                                             self.person.get_death_handle()]
                       if handle] + self.person.get_event_list()
-        if not all_events:
+        if not all_events or self.restrict:
             return
         
         of.write('<div id="events">\n')
@@ -1543,6 +1547,9 @@ class IndividualPage(BasePage):
                 of.write(name)
         of.write('</td>\n</tr>\n')
 
+        if self.restrict:
+            return
+        
         for event_id in family.get_event_list():
             event = self.db.get_event_from_handle(event_id)
 
@@ -1564,11 +1571,9 @@ class IndividualPage(BasePage):
             text = nobj.get()
             if format:
                 of.write( u"<pre>" + u"<br />".join(text.split("\n"))+u"</pre>")
-            else:
-                of.write( u"</p><p>".join(text.split("\n")))
+            else:                of.write( u"</p><p>".join(text.split("\n")))
             of.write('</td>\n</tr>\n')
             
-
     def pedigree_person(self,of,person,is_spouse=False):
         person_link = person.handle in self.ind_list
         if is_spouse:
@@ -1771,7 +1776,7 @@ class WebReport(Report.Report):
         self.progress = Utils.ProgressMeter(_("Generate HTML reports"),'')
 
         # Build the person list
-        ind_list = self.build_person_list()
+        ind_list,restrict_list = self.build_person_list()
 
         # Generate the CSS file if requested
         if self.css != '':
@@ -1793,7 +1798,7 @@ class WebReport(Report.Report):
         self.photo_list = {}
 
         self.base_pages(self.photo_list, archive)
-        self.person_pages(ind_list, place_list, source_list, archive)
+        self.person_pages(ind_list, restrict_list, place_list, source_list, archive)
         self.surname_pages(ind_list,archive)
         self.place_pages(place_list, source_list, archive)
         self.source_pages(source_list, self.photo_list, archive)
@@ -1819,6 +1824,7 @@ class WebReport(Report.Report):
         ind_list = self.database.get_person_handles(sort_handles=False)
         self.progress.set_pass(_('Filtering'),1)
         ind_list = self.filter.apply(self.database,ind_list)
+        restrict_list = sets.Set()
 
         # if private records need to be filtered out, strip out any person
         # that has the private flag set.
@@ -1836,10 +1842,10 @@ class WebReport(Report.Report):
             for key in ind_list:
                 self.progress.step()
                 p = self.database.get_person_from_handle(key)
-                if not Utils.probably_alive(p,self.database,years):
-                    new_list.append(key)
-            ind_list = new_list
-        return ind_list
+                if Utils.probably_alive(p,self.database,years):
+                    restrict_list.add(key)
+
+        return (ind_list,restrict_list)
 
     def filter_private(self,key):
         """
@@ -1860,13 +1866,13 @@ class WebReport(Report.Report):
             shutil.copyfile(os.path.join(const.dataDir,css_file),
                             os.path.join(html_dir,_NARRATIVE))
 
-    def person_pages(self, ind_list, place_list, source_list, archive):
+    def person_pages(self, ind_list, restrict_list, place_list, source_list, archive):
 
         self.progress.set_pass(_('Creating individual pages'),len(ind_list))
 
         IndividualListPage(
-            self.database, self.title, ind_list, self.options, archive,
-            self.photo_list)
+            self.database, self.title, ind_list, 
+            self.options, archive, self.photo_list)
 
         for person_handle in ind_list:
             self.progress.step()
@@ -1876,8 +1882,8 @@ class WebReport(Report.Report):
                 person = ReportUtils.sanitize_person(self.database,person)
 
             IndividualPage(
-                self.database, person, self.title, ind_list, place_list,
-                source_list, self.options, archive, self.photo_list)
+                self.database, person, self.title, ind_list, restrict_list,
+                place_list, source_list, self.options, archive, self.photo_list)
             
     def surname_pages(self, ind_list, archive):
         """
