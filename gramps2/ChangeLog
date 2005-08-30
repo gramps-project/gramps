@@ -1,3 +1,9 @@
+2005-08-30  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/NavWebPage.py: Encode using 'xmlcharrefreplace'
+	* src/plugins/WriteGeneWeb.py: Remove empty families before running
+	the export. this gives now an error instead of writing an empty file;
+	Encode using 'xmlcharrefreplace'
+
 2005-08-29  Don Allingham  <don@gramps-project.org>
 	* src/GenericFilter.py: fixed "only one" filter rule, and matching
 	the descendents of a filter

@@ -162,10 +162,10 @@ class BasePage:
         self.cur_name = self.build_name("",name)
         if self.archive:
             self.string_io = StringIO()
-            of = codecs.EncodedFile(self.string_io,'utf-8',self.encoding)
+            of = codecs.EncodedFile(self.string_io,'utf-8',self.encoding,'xmlcharrefreplace')
         else:
             page_name = os.path.join(self.html_dir,self.cur_name)
-            of = codecs.EncodedFile(open(page_name, "w"),'utf-8',self.encoding)
+            of = codecs.EncodedFile(open(page_name, "w"),'utf-8',self.encoding,'xmlcharrefreplace')
         return of
 
     def link_path(self,name,path):
@@ -176,13 +176,13 @@ class BasePage:
         self.cur_name = self.link_path(name,path)
         if self.archive:
             self.string_io = StringIO()
-            of = codecs.EncodedFile(self.string_io,'utf-8',self.encoding)
+            of = codecs.EncodedFile(self.string_io,'utf-8',self.encoding,'xmlcharrefreplace')
         else:
             dirname = os.path.join(self.html_dir,path,name[0],name[1])
             if not os.path.isdir(dirname):
                 os.makedirs(dirname)
             page_name = self.build_name(dirname,name)
-            of = codecs.EncodedFile(open(page_name, "w"),'utf-8',self.encoding)
+            of = codecs.EncodedFile(open(page_name, "w"),'utf-8',self.encoding,'xmlcharrefreplace')
         return of
 
     def close_file(self,of):
