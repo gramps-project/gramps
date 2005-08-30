@@ -561,7 +561,7 @@ class GeneWebWriter:
         return retval
 
     def iso8859(self,s):
-        return s.encode('iso-8859-1')
+        return s.encode('iso-8859-1','replace')
 
 #-------------------------------------------------------------------------
 #
