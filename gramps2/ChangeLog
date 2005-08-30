@@ -1,4 +1,5 @@
-2005-08-29    Don Allingham  <don@gramps-project.org>
+2005-08-29  Don Allingham  <don@gramps-project.org>
+	* src/ImageSelect.py: fix note media object added from a gallery
 	* src/po/template.po: updated translation template
 	* src/Utils.py: fix probably_alive to handle year offset properly
 	* src/plugins/NavWebPage.py: handle new probably_alive function

@@ -102,6 +102,9 @@ class ImageSelect:
         "should be overrridden"
         pass
 
+    def internal_toggled(self, obj):
+        self.fname.set_sensitive(not obj.get_active())
+
     def create_add_dialog(self):
         """Create the gnome dialog for selecting a new photo and entering
         its description.""" 
@@ -114,6 +117,8 @@ class ImageSelect:
 
         self.fname       = self.glade.get_widget("fname")
         self.image       = self.glade.get_widget("image")
+        self.internal    = self.glade.get_widget("internal")
+        self.internal.connect('toggled',self.internal_toggled)
         self.description = self.glade.get_widget("photoDescription")
         self.temp_name   = ""
 
@@ -171,36 +176,44 @@ class ImageSelect:
         
         description = unicode(self.description.get_text())
 
-        if os.path.exists(filename) == 0:
-            msgstr = _("Cannot import %s")
-            msgstr2 = _("The filename supplied could not be found.")
-            ErrorDialog(msgstr % filename, msgstr2)
-            return
+        internal = self.internal.get_active()
 
-        already_imported = None
+        if not internal:
+            if os.path.exists(filename) == 0:
+                msgstr = _("Cannot import %s")
+                msgstr2 = _("The filename supplied could not be found.")
+                ErrorDialog(msgstr % filename, msgstr2)
+                return
 
-        trans = self.db.transaction_begin()
-        for o_id in self.db.get_media_object_handles():
-            o = self.db.get_object_from_handle(o_id)
-            if o.get_path() == filename:
-                already_imported = o
-                break
+            already_imported = None
 
-        if (already_imported):
-            oref = RelLib.MediaRef()
-            oref.set_reference_handle(already_imported.get_handle())
-            self.dataobj.add_media_reference(oref)
-            self.add_thumbnail(oref)
+            trans = self.db.transaction_begin()
+            for o_id in self.db.get_media_object_handles():
+                o = self.db.get_object_from_handle(o_id)
+                if o.get_path() == filename:
+                    already_imported = o
+                    break
+
+            if already_imported:
+                oref = RelLib.MediaRef()
+                oref.set_reference_handle(already_imported.get_handle())
+                self.dataobj.add_media_reference(oref)
+                self.add_thumbnail(oref)
+            else:
+                mtype = GrampsMime.get_type(filename)
+                mobj = RelLib.MediaObject()
+                if description == "":
+                    description = os.path.basename(filename)
+                mobj.set_description(description)
+                mobj.set_mime_type(mtype)
+                mobj.set_path(filename)
         else:
-            mtype = GrampsMime.get_type(filename)
+            trans = self.db.transaction_begin()
             mobj = RelLib.MediaObject()
-            if description == "":
-                description = os.path.basename(filename)
             mobj.set_description(description)
-            mobj.set_mime_type(mtype)
-            mobj.set_path(filename)
-            self.savephoto(mobj,trans)
+            mobj.set_mime_type(None)
 
+        self.savephoto(mobj,trans)
         self.db.transaction_commit(trans,'Edit Media Objects')
             
         self.parent.lists_changed = 1
