@@ -1,3 +1,11 @@
+2005-08-30  Don Allingham  <don@gramps-project.org>
+	* src/ImageSelect.py: specify mime type to get_thumbnail_image
+	* src/ImgManip.py: make thumbnailing routine more generic
+	* src/SelectObject.py: specify mime type to get_thumbnail_image
+	* src/plugins/NavWebpage.py: produce larger preview images for media
+	pages if a thumbnailer exists
+	* src/plugins/SimpleBookTitle.py: specify mime type to get_thumbnail_image
+
 2005-08-30  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/NavWebPage.py: Encode using 'xmlcharrefreplace'
 	* src/plugins/WriteGeneWeb.py: Remove empty families before running

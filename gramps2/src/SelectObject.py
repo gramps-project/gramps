@@ -117,7 +117,7 @@ class SelectObject:
         path = obj.get_path()
 
         if the_type and the_type[0:5] == "image":
-            image = ImgManip.get_thumbnail_image(path)
+            image = ImgManip.get_thumbnail_image(path,the_type)
         else:
             image = Utils.find_mime_type_pixbuf(the_type)
         self.preview.set_from_pixbuf(image)

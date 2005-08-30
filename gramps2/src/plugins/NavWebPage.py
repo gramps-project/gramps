@@ -140,7 +140,11 @@ class BasePage:
             archive.add_file(to_path,time.time(),imagefile)
             imagefile.close()
         else:
-            shutil.copyfile(from_path,os.path.join(html_dir,to_path))
+            dest = os.path.join(html_dir,to_path)
+            dirname = os.path.dirname(dest)
+            if not os.path.isdir(dirname):
+                os.makedirs(dirname)
+            shutil.copyfile(from_path,dest)
 
     def copy_media(self,photo,store_ref=True):
 
@@ -732,55 +736,18 @@ class MediaPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list,
                           photo.gramps_id)
         of = self.create_link_file(handle,"img")
-
-        ext = os.path.splitext(photo.get_path())[1]
-        to_dir = self.build_path(handle,'images')
-        newpath = os.path.join(to_dir,handle+ext)
-        target_exists = True
-        note_only = photo.get_path() == None or photo.get_path() == ''
+            
+        mime_type = photo.get_mime_type()
+        note_only = mime_type == None
         
         if not note_only:
-            try:
-                if self.archive:
-                    imagefile = open(photo.get_path(),"r")
-                    self.archive.add_file(newpath,time.time(),imagefile)
-                    imagefile.close()
-                else:
-                    to_dir = os.path.join(self.html_dir,to_dir)
-                    if not os.path.isdir(to_dir):
-                        os.makedirs(to_dir)
-                    shutil.copyfile(photo.get_path(),
-                                    os.path.join(self.html_dir,newpath))
-            except (IOError,OSError),msg:
-                WarningDialog(_("Missing media object"),str(msg))            
-                target_exists = False
-        
-        mime_type = photo.get_mime_type()
-        if mime_type:
-            ext = os.path.splitext(photo.get_path())[1]
-            to_dir = self.build_path(handle,'thumb')
-            to_path = os.path.join(to_dir,handle+".png")
-            if not note_only:
-                from_path = ImgManip.get_thumbnail_path(photo.get_path(),mime_type)
-                if not os.path.isfile(from_path):
-                    from_path = os.path.join(const.dataDir,"document.png")
-            else:
-                from_path = os.path.join(const.dataDir,"document.png")
-            
-            if self.archive:
-                imagefile = open(from_path,"r")
-                self.archive.add_file(to_path,time.time(),imagefile)
-                imagefile.close()
-            else:
-                to_dir = os.path.join(self.html_dir,to_dir)
-                dest = os.path.join(self.html_dir,to_path)
-                if not os.path.isdir(to_dir):
-                    os.makedirs(to_dir)
-                try:
-                    shutil.copyfile(from_path,dest)
-                except IOError:
-                    print "Could not copy file"
+            newpath = self.copy_source_file(handle, photo)
+            target_exists = newpath != None
+        else:
+            target_exists = False
 
+        self.copy_thumbnail(handle, photo)
+            
         self.page_title = photo.get_description()
         self.display_header(of,db, "%s - %s" % (_('Gallery'), title),
                             get_researcher().get_name(),up=True)
@@ -800,30 +767,43 @@ class MediaPage(BasePage):
 
         of.write('</div>\n')
 
-        if mime_type and mime_type.startswith("image"):
-            of.write('<div class="centered">\n')
-            if target_exists:
-                of.write('<img ')
-                of.write('src="../../../%s" alt="%s" />\n' % (newpath, self.page_title))
-            elif not note_only:
-                of.write('<br /><span>(%s)</span>' % _("The file has been moved or deleted"))
-            of.write('</div>\n')
-        else:
-            if not note_only:
-                thmb_path = ImgManip.get_thumbnail_path(photo.get_path(),photo.get_mime_type())
-            if not note_only and os.path.isfile(thmb_path):
-                path = "%s/%s.png" % (self.build_path(photo.handle,"images"),photo.handle)
+        if mime_type:
+            if mime_type.startswith("image/"):
+                of.write('<div class="centered">\n')
+                if target_exists:
+                    of.write('<img ')
+                    of.write('src="../../../%s" alt="%s" />\n' % (newpath, self.page_title))
+                else:
+                    of.write('<br /><span>(%s)</span>' % _("The file has been moved or deleted"))
+                of.write('</div>\n')
             else:
-                path = os.path.join('images','document.png')
+                import tempfile
+
+                dirname = tempfile.mkdtemp()
+                thmb_path = os.path.join(dirname,"temp.png")
+                if ImgManip.run_thumbnailer(mime_type, photo.get_path(), thmb_path, 320):
+                    path = "%s/%s.png" % (self.build_path(photo.handle,"preview"),photo.handle)
+                    self.store_file(archive, self.html_dir, thmb_path, path)
+                    os.unlink(thmb_path)
+                else:
+                    path = os.path.join('images','document.png')
+                os.rmdir(dirname)
+                    
+                of.write('<div class="centered">\n')
+                if target_exists:
+                    of.write('<a href="../../../%s" alt="%s" />\n' % (newpath, self.page_title))
+                of.write('<img ')
+                of.write('src="../../../%s" alt="%s" />\n' % (path, self.page_title))
+                if target_exists:
+                    of.write('</a>\n')
+                else:
+                    of.write('<br /><span>(%s)</span>' % _("The file has been moved or deleted"))
+                of.write('</div>\n')
+        else:
+            path = os.path.join('images','document.png')
             of.write('<div class="centered">\n')
-            if target_exists and not note_only:
-                of.write('<a href="../../../%s" alt="%s" />\n' % (newpath, self.page_title))
             of.write('<img ')
             of.write('src="../../../%s" alt="%s" />\n' % (path, self.page_title))
-            if target_exists and not note_only:
-                of.write('</a>\n')
-            elif not note_only:
-                of.write('<br /><span>(%s)</span>' % _("The file has been moved or deleted"))
             of.write('</div>\n')
 
         of.write('<table class="infolist">\n')
@@ -845,6 +825,62 @@ class MediaPage(BasePage):
         self.display_footer(of,db)
         self.close_file(of)
 
+    def copy_source_file(self,handle,photo):
+        ext = os.path.splitext(photo.get_path())[1]
+        to_dir = self.build_path(handle,'images')
+        newpath = os.path.join(to_dir,handle+ext)
+
+        try:
+            if self.archive:
+                imagefile = open(photo.get_path(),"r")
+                self.archive.add_file(newpath,time.time(),imagefile)
+                imagefile.close()
+            else:
+                to_dir = os.path.join(self.html_dir,to_dir)
+                if not os.path.isdir(to_dir):
+                    os.makedirs(to_dir)
+                shutil.copyfile(photo.get_path(),
+                                os.path.join(self.html_dir,newpath))
+            return newpath
+        except (IOError,OSError),msg:
+            WarningDialog(_("Missing media object"),str(msg))            
+            return None
+
+    def copy_thumbnail(self,handle,photo):
+        ext = os.path.splitext(photo.get_path())[1]
+        to_dir = self.build_path(handle,'thumb')
+        to_path = os.path.join(to_dir,handle+".png")
+        if photo.get_mime_type():
+            from_path = ImgManip.get_thumbnail_path(photo.get_path(),photo.get_mime_type())
+            if not os.path.isfile(from_path):
+                from_path = os.path.join(const.dataDir,"document.png")
+        else:
+            from_path = os.path.join(const.dataDir,"document.png")
+            
+        if self.archive:
+            imagefile = open(from_path,"r")
+            self.archive.add_file(to_path,time.time(),imagefile)
+            imagefile.close()
+        else:
+            to_dir = os.path.join(self.html_dir,to_dir)
+            dest = os.path.join(self.html_dir,to_path)
+            if not os.path.isdir(to_dir):
+                os.makedirs(to_dir)
+            try:
+                shutil.copyfile(from_path,dest)
+            except IOError:
+                print "Could not copy file"
+
+    def copy_preview_image(handle,photo):
+        base = '/desktop/gnome/thumbnailers/%s' % mtype.replace('/','@')
+        thumbnailer = GrampsKeys.client.get_string(base + '/command')
+        enable = GrampsKeys.client.get_bool(base + '/enable')
+        if thumbnailer and enable:
+            run_thumbnailer(thumbnailer,path,_build_thumb_path(path),320)
+            return path
+        else:
+            return None
+        
 #------------------------------------------------------------------------
 #
 # 

@@ -103,24 +103,28 @@ def _build_thumb_path(path):
     m = md5.md5(path)
     return os.path.join(base,m.hexdigest()+'.png')
 
-def run_thumbnailer(cmd, frm, to):
+def run_thumbnailer(mtype, frm, to, size=const.thumbScale):
     sublist = {
-        '%s' : "%dx%d" % (int(const.thumbScale),int(const.thumbScale)),
+        '%s' : "%dx%d" % (int(size),int(size)),
         '%u' : frm,
         '%o' : to,
         }
-    cmdlist = map(lambda x: sublist.get(x,x),cmd.split())
-    if os.fork() == 0:
-        os.execvp(cmdlist[0],cmdlist)
-    os.wait()
+
+    base = '/desktop/gnome/thumbnailers/%s' % mtype.replace('/','@')
+    cmd = GrampsKeys.client.get_string(base + '/command')
+    enable = GrampsKeys.client.get_bool(base + '/enable')
+
+    if cmd and enable:
+        cmdlist = map(lambda x: sublist.get(x,x),cmd.split())
+        if os.fork() == 0:
+            os.execvp(cmdlist[0],cmdlist)
+        os.wait()
+        return True
+    return False
 
 def set_thumbnail_image(path,mtype=None):
     if mtype and not mtype.startswith('image/'):
-        base = '/desktop/gnome/thumbnailers/%s' % mtype.replace('/','@')
-        thumbnailer = GrampsKeys.client.get_string(base + '/command')
-        enable = GrampsKeys.client.get_bool(base + '/enable')
-        if thumbnailer and enable:
-            run_thumbnailer(thumbnailer,path,_build_thumb_path(path))
+        run_thumbnailer(mtype,path,_build_thumb_path(path))
     else:
         try:
             pixbuf = gtk.gdk.pixbuf_new_from_file(path)
@@ -134,7 +138,7 @@ def set_thumbnail_image(path,mtype=None):
             pixbuf = pixbuf.scale_simple(pw,ph,gtk.gdk.INTERP_BILINEAR)
             pixbuf.save(_build_thumb_path(path),"png")
         except:
-            print "Could not create thumbnail for",path,mtype
+            pass
 
 def get_thumbnail_image(path,mtype=None):
     filename = _build_thumb_path(path)
@@ -151,5 +155,6 @@ def get_thumbnail_image(path,mtype=None):
 def get_thumbnail_path(path,mtype=None):
     filename = _build_thumb_path(path)
     if not os.path.isfile(filename):
+        print "setting",filename
         set_thumbnail_image(path,mtype)
     return filename
