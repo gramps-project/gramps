@@ -1,4 +1,7 @@
 2005-08-29  Don Allingham  <don@gramps-project.org>
+	* src/GenericFilter.py: fixed "only one" filter rule, and matching
+	the descendents of a filter
+	* src/SelectObject.py: Fix sorting order for title
 	* src/plugins/WriteGeneWeb.py: use 'replace' for 'iso-8859-1' encoding
 	* src/po/fr.po: fix named parameter
 	* src/ImageSelect.py: fix note media object added from a gallery

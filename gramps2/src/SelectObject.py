@@ -82,7 +82,7 @@ class SelectObject:
 
         Utils.set_titles(self.top,title_label,title)
 
-        titles = [(_('Title'),4,350), (_('ID'),1,50),
+        titles = [(_('Title'),0,350), (_('ID'),1,50),
                     (_('Type'),2,70), ('Path',3,150), ('',4,0) ] 
         self.ncols = len(titles)      
 

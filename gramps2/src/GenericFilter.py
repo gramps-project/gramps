@@ -417,7 +417,7 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
     """Rule that checks for a person that is a descendant
     of someone matched by a filter"""
 
-    labels      = [ _('Filter name:'), _('Inclusive:') ]
+    labels      = [ _('Filter name:') ]
     name        = _('Descendants of <filter> match')
     category    = _('Descendant filters')
     description = _("Matches people that are descendants of anybody matched by a filter")
@@ -436,8 +436,8 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
                 first = 1
         except IndexError:
             first = 1
-            
-        filt = MatchesFilter(self.list)
+
+        filt = MatchesFilter(self.list[0:1])
         filt.prepare(db)
         for person_handle in db.get_person_handles(sort_handles=False):
             person = db.get_person_from_handle( person_handle)
@@ -725,7 +725,7 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
     """Rule that checks for a person that is an ancestor of
     someone matched by a filter"""
 
-    labels      = [ _('Filter name:'), _('Inclusive:') ]
+    labels      = [ _('Filter name:') ]
     name        = _('Ancestors of <filter> match')
     category    =  _("Ancestral filters")
     description = _("Matches people that are ancestors "
@@ -746,7 +746,7 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         except IndexError:
             first = 1
             
-        filt = MatchesFilter(self.list)
+        filt = MatchesFilter(self.list[0:1])
         filt.prepare(db)
         for person_handle in db.get_person_handles(sort_handles=False):
             person = db.get_person_from_handle( person_handle)
@@ -1991,7 +1991,7 @@ class GenericFilter:
                 if count:
                     return False
                 count += 1
-        return count != 1
+        return count == 1
 
     def or_test(self,db,person):
         for rule in self.flist:
@@ -2269,8 +2269,14 @@ class FilterParser(handler.ContentHandler):
 
     def endElement(self,tag):
         if tag == "rule" and self.r != None:
-            if len(self.r.labels) != len(self.a):
-                    print "ERROR: Invalid number of arguments in filter '%s'!" %\
+            if len(self.r.labels) < len(self.a):
+                print "WARNING: Invalid number of arguments in filter '%s'!" %\
+                      self.f.get_name()
+                nargs = len(self.r.labels)
+                rule = self.r(self.a[0:nargs])
+                self.f.add_rule(rule)
+            elif len(self.r.labels) > len(self.a):
+                print "ERROR: Invalid number of arguments in filter '%s'!" %\
                             self.f.get_name()
             else:
                 rule = self.r(self.a)
