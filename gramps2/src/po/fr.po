@@ -3299,7 +3299,7 @@ msgstr ""
 
 #: ReportUtils.py:1382
 msgid "%(female_name)s died on %(death_date)s."
-msgstr "%(female_name)s est décédée le %(deathdate)s."
+msgstr "%(female_name)s est décédée le %(death_date)s."
 
 #: ReportUtils.py:1385
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d years."
@@ -3311,7 +3311,7 @@ msgstr "%(female_name)s décédée le %(death_date)s à l'âge de %(age)d mois."
 
 #: ReportUtils.py:1395
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr "%(female_name)s est décédée le %(deathdate)s à l'âge de %(age)d jours."
+msgstr "%(female_name)s est décédée le %(death_date)s à l'âge de %(age)d jours."
 
 #: ReportUtils.py:1402
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s."
