@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Mon Aug 29 13:28:30 2005\n"
+"POT-Creation-Date: Tue Aug 30 13:54:34 2005\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,15 +15,15 @@ msgstr ""
 "Generated-By: pygettext.py 1.4\n"
 
 
-#: AddMedia.py:91 ImageSelect.py:121
+#: AddMedia.py:91 ImageSelect.py:126
 msgid "Select a media object"
 msgstr ""
 
-#: AddMedia.py:124 ImageSelect.py:175
+#: AddMedia.py:124 ImageSelect.py:183
 msgid "Cannot import %s"
 msgstr ""
 
-#: AddMedia.py:125 ImageSelect.py:176
+#: AddMedia.py:125 ImageSelect.py:184
 msgid "The filename supplied could not be found."
 msgstr ""
 
@@ -40,12 +40,12 @@ msgid "Choose Spouse/Partner"
 msgstr ""
 
 #: AddSpouse.py:142 Bookmarks.py:130 ChooseParents.py:253 EditPerson.py:346
-#: EditSource.py:311 FamilyView.py:74 ImageSelect.py:1103 PeopleView.py:59
+#: EditSource.py:311 FamilyView.py:74 ImageSelect.py:1117 PeopleView.py:59
 #: PeopleView.py:135 SelectChild.py:129 SelectPerson.py:78
 #: plugins/BookReport.py:631 plugins/DumpGenderStats.py:39
 #: plugins/FilterEditor.py:459 plugins/IndivComplete.py:405
-#: plugins/IndivSummary.py:226 plugins/NavWebPage.py:529
-#: plugins/NavWebPage.py:582 plugins/PatchNames.py:198 plugins/RelCalc.py:95
+#: plugins/IndivSummary.py:226 plugins/NavWebPage.py:533
+#: plugins/NavWebPage.py:586 plugins/PatchNames.py:198 plugins/RelCalc.py:95
 #: plugins/ScratchPad.py:154 plugins/ScratchPad.py:195
 #: plugins/ScratchPad.py:237 plugins/ScratchPad.py:294
 #: plugins/ScratchPad.py:327 plugins/ScratchPad.py:369
@@ -56,7 +56,7 @@ msgid "Name"
 msgstr ""
 
 #: AddSpouse.py:146 Bookmarks.py:130 ChooseParents.py:262 EditSource.py:311
-#: FamilyView.py:73 ImageSelect.py:1103 MediaView.py:58 MergePeople.py:122
+#: FamilyView.py:73 ImageSelect.py:1117 MediaView.py:58 MergePeople.py:122
 #: PeopleView.py:60 PlaceView.py:50 SelectChild.py:134 SelectObject.py:85
 #: SelectPerson.py:84 SourceView.py:52 Sources.py:109 Sources.py:243
 #: Witness.py:64 plugins/PatchNames.py:189
@@ -64,7 +64,7 @@ msgid "ID"
 msgstr ""
 
 #: AddSpouse.py:150 ChooseParents.py:272 SelectChild.py:139 SelectPerson.py:90
-#: plugins/NavWebPage.py:530 plugins/NavWebPage.py:583
+#: plugins/NavWebPage.py:534 plugins/NavWebPage.py:587
 msgid "Birth date"
 msgstr ""
 
@@ -169,7 +169,7 @@ msgstr ""
 msgid "New Attribute"
 msgstr ""
 
-#: AttrEdit.py:178 EditPerson.py:334 ImageSelect.py:679 ImageSelect.py:953
+#: AttrEdit.py:178 EditPerson.py:334 ImageSelect.py:693 ImageSelect.py:967
 #: Marriage.py:223 plugins/ScratchPad.py:273 plugins/ScratchPad.py:281
 msgid "Attribute"
 msgstr ""
@@ -236,7 +236,7 @@ msgstr ""
 #: ChooseParents.py:713 FamilyView.py:1116 MergePeople.py:151
 #: plugins/FamilyGroup.py:261 plugins/IndivComplete.py:215
 #: plugins/IndivComplete.py:217 plugins/IndivComplete.py:450
-#: plugins/IndivSummary.py:290 plugins/NavWebPage.py:1515
+#: plugins/IndivSummary.py:290 plugins/NavWebPage.py:1551
 #: plugins/WebPage.py:340 plugins/WebPage.py:343
 msgid "Mother"
 msgstr ""
@@ -244,7 +244,7 @@ msgstr ""
 #: ChooseParents.py:714 FamilyView.py:1114 MergePeople.py:149
 #: plugins/FamilyGroup.py:248 plugins/IndivComplete.py:206
 #: plugins/IndivComplete.py:208 plugins/IndivComplete.py:445
-#: plugins/IndivSummary.py:276 plugins/NavWebPage.py:1510
+#: plugins/IndivSummary.py:276 plugins/NavWebPage.py:1546
 #: plugins/WebPage.py:339 plugins/WebPage.py:342
 msgid "Father"
 msgstr ""
@@ -414,12 +414,12 @@ msgid "GEDCOM files"
 msgstr ""
 
 #: DisplayModels.py:47 GrampsMime.py:46 GrampsMime.py:53 MergePeople.py:52
-#: PeopleModel.py:408 Utils.py:118 const.py:169
+#: PeopleModel.py:408 Utils.py:119 const.py:169
 #: plugins/DetAncestralReport.py:387 plugins/DetAncestralReport.py:394
 #: plugins/DetDescendantReport.py:411 plugins/DetDescendantReport.py:418
 #: plugins/DumpGenderStats.py:27 plugins/FamilyGroup.py:458
 #: plugins/IndivComplete.py:281 plugins/IndivSummary.py:165
-#: plugins/NavWebPage.py:1575 plugins/RelCalc.py:115 plugins/WebPage.py:656
+#: plugins/NavWebPage.py:1611 plugins/RelCalc.py:115 plugins/WebPage.py:656
 msgid "unknown"
 msgstr ""
 
@@ -433,8 +433,8 @@ msgstr ""
 msgid "female"
 msgstr ""
 
-#: DisplayModels.py:468 ImageSelect.py:982 MediaView.py:241 MediaView.py:249
-#: NoteEdit.py:106 Utils.py:155 gramps.glade:5501 gramps.glade:16531
+#: DisplayModels.py:468 ImageSelect.py:996 MediaView.py:241 MediaView.py:249
+#: NoteEdit.py:106 Utils.py:156 gramps.glade:5501 gramps.glade:16531
 #: gramps.glade:27752 gramps.glade:28800 gramps.glade:30253 gramps.glade:31784
 msgid "Note"
 msgstr ""
@@ -460,7 +460,7 @@ msgstr ""
 msgid "Patronymic:"
 msgstr ""
 
-#: EditPerson.py:314 EditSource.py:331 EventEdit.py:272 ImageSelect.py:1124
+#: EditPerson.py:314 EditSource.py:331 EventEdit.py:272 ImageSelect.py:1138
 #: Marriage.py:222 plugins/ScratchPad.py:166 plugins/ScratchPad.py:180
 msgid "Event"
 msgstr ""
@@ -477,13 +477,13 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: EditPerson.py:317 EditPlace.py:290 EditSource.py:337 ImageSelect.py:1130
-#: Marriage.py:222 gramps.glade:13109 plugins/NavWebPage.py:626
+#: EditPerson.py:317 EditPlace.py:290 EditSource.py:337 ImageSelect.py:1144
+#: Marriage.py:222 gramps.glade:13109 plugins/NavWebPage.py:630
 #: plugins/ScratchPad.py:183 plugins/ScratchPad.py:225
 msgid "Place"
 msgstr ""
 
-#: EditPerson.py:334 EditSource.py:162 ImageSelect.py:679 ImageSelect.py:953
+#: EditPerson.py:334 EditSource.py:162 ImageSelect.py:693 ImageSelect.py:967
 #: Marriage.py:223 gramps.glade:13691 plugins/FilterEditor.py:459
 #: plugins/PatchNames.py:195 plugins/ScratchPad.py:284
 #: plugins/ScratchPad.py:317 plugins/ScratchPad.py:544
@@ -491,7 +491,7 @@ msgstr ""
 msgid "Value"
 msgstr ""
 
-#: EditPerson.py:346 EditSource.py:311 ImageSelect.py:1103 MediaView.py:59
+#: EditPerson.py:346 EditSource.py:311 ImageSelect.py:1117 MediaView.py:59
 #: MergePeople.py:167 SelectObject.py:86 plugins/BookReport.py:631
 #: plugins/BookReport.py:632 plugins/PatchNames.py:192
 #: plugins/ScratchPad.py:181 plugins/ScratchPad.py:223
@@ -506,22 +506,22 @@ msgstr ""
 msgid "Path"
 msgstr ""
 
-#: EditPerson.py:578 ImageSelect.py:607 ImageSelect.py:1040 MediaView.py:275
+#: EditPerson.py:578 ImageSelect.py:621 ImageSelect.py:1054 MediaView.py:275
 #: plugins/ScratchPad.py:424 plugins/ScratchPad.py:433
 msgid "Media Object"
 msgstr ""
 
-#: EditPerson.py:584 ImageSelect.py:613 docgen/AbiWord2Doc.py:335
+#: EditPerson.py:584 ImageSelect.py:627 docgen/AbiWord2Doc.py:335
 #: docgen/AsciiDoc.py:371 docgen/HtmlDoc.py:486 docgen/KwordDoc.py:494
 #: docgen/PdfDoc.py:631 docgen/RTFDoc.py:427
 msgid "Open in %s"
 msgstr ""
 
-#: EditPerson.py:587 ImageSelect.py:616 MediaView.py:288
+#: EditPerson.py:587 ImageSelect.py:630 MediaView.py:288
 msgid "Edit with the GIMP"
 msgstr ""
 
-#: EditPerson.py:589 ImageSelect.py:618
+#: EditPerson.py:589 ImageSelect.py:632
 msgid "Edit Object Properties"
 msgstr ""
 
@@ -587,7 +587,7 @@ msgstr ""
 msgid "Edit Person (%s)"
 msgstr ""
 
-#: EditPerson.py:1912 ImageSelect.py:1164
+#: EditPerson.py:1912 ImageSelect.py:1178
 msgid "Add Place (%s)"
 msgstr ""
 
@@ -595,11 +595,11 @@ msgstr ""
 msgid "Place Editor"
 msgstr ""
 
-#: EditPlace.py:151 PlaceView.py:53 plugins/NavWebPage.py:690
+#: EditPlace.py:151 PlaceView.py:53 plugins/NavWebPage.py:694
 msgid "City"
 msgstr ""
 
-#: EditPlace.py:151 PlaceView.py:54 plugins/NavWebPage.py:691
+#: EditPlace.py:151 PlaceView.py:54 plugins/NavWebPage.py:695
 msgid "County"
 msgstr ""
 
@@ -607,7 +607,7 @@ msgstr ""
 msgid "State"
 msgstr ""
 
-#: EditPlace.py:152 PlaceView.py:56 plugins/NavWebPage.py:692
+#: EditPlace.py:152 PlaceView.py:56 plugins/NavWebPage.py:696
 msgid "Country"
 msgstr ""
 
@@ -636,11 +636,11 @@ msgid ""
 "%s [%s]: event %s\n"
 msgstr ""
 
-#: EditPlace.py:556 plugins/NavWebPage.py:1537
+#: EditPlace.py:556 plugins/NavWebPage.py:1573
 msgid "Families"
 msgstr ""
 
-#: EditPlace.py:564 Utils.py:110
+#: EditPlace.py:564 Utils.py:111
 msgid "%(father)s and %(mother)s"
 msgstr ""
 
@@ -660,16 +660,16 @@ msgstr ""
 msgid "New Source"
 msgstr ""
 
-#: EditSource.py:245 EditSource.py:343 ImageSelect.py:1136 Utils.py:160
-#: Utils.py:162
+#: EditSource.py:245 EditSource.py:343 ImageSelect.py:1150 Utils.py:161
+#: Utils.py:163
 msgid "Source"
 msgstr ""
 
-#: EditSource.py:319 ImageSelect.py:1112 plugins/EventCmp.py:422
+#: EditSource.py:319 ImageSelect.py:1126 plugins/EventCmp.py:422
 msgid "Person"
 msgstr ""
 
-#: EditSource.py:325 ImageSelect.py:1118
+#: EditSource.py:325 ImageSelect.py:1132
 msgid "Family"
 msgstr ""
 
@@ -707,14 +707,14 @@ msgstr ""
 
 #: EventEdit.py:333 MergePeople.py:125 const.py:233 const.py:241
 #: plugins/EventCmp.py:422 plugins/FamilyGroup.py:200
-#: plugins/FamilyGroup.py:334 plugins/NavWebPage.py:1434
+#: plugins/FamilyGroup.py:334 plugins/NavWebPage.py:1470
 #: plugins/ScratchPad.py:465
 msgid "Birth"
 msgstr ""
 
 #: EventEdit.py:333 MergePeople.py:127 plugins/EventCmp.py:422
 #: plugins/FamilyGroup.py:218 plugins/FamilyGroup.py:336
-#: plugins/FamilyGroup.py:338 plugins/NavWebPage.py:1442
+#: plugins/FamilyGroup.py:338 plugins/NavWebPage.py:1478
 msgid "Death"
 msgstr ""
 
@@ -829,7 +829,7 @@ msgstr ""
 
 #: FamilyView.py:75 MergePeople.py:123 PeopleView.py:61
 #: plugins/IndivComplete.py:418 plugins/IndivSummary.py:240
-#: plugins/NavWebPage.py:1414 plugins/RelCalc.py:95
+#: plugins/NavWebPage.py:1450 plugins/RelCalc.py:95
 #: plugins/StatisticsChart.py:103 plugins/WebPage.py:330
 #: plugins/WebPage.py:332 plugins/WebPage.py:334
 msgid "Gender"
@@ -857,8 +857,8 @@ msgstr ""
 #: FamilyView.py:612 FamilyView.py:1180 FamilyView.py:1186 FamilyView.py:1219
 #: FamilyView.py:1225 PedView.py:564 PedView.py:573 PeopleView.py:289
 #: PeopleView.py:307 gramps.glade:822 gramps_main.py:662
-#: plugins/NavWebPage.py:275 plugins/NavWebPage.py:985
-#: plugins/NavWebPage.py:987
+#: plugins/NavWebPage.py:279 plugins/NavWebPage.py:1021
+#: plugins/NavWebPage.py:1023
 msgid "Home"
 msgstr ""
 
@@ -1117,8 +1117,7 @@ msgstr ""
 msgid "Matches all people with unknown gender"
 msgstr ""
 
-#: GenericFilter.py:372 GenericFilter.py:420 GenericFilter.py:674
-#: GenericFilter.py:728 plugins/FilterEditor.py:692
+#: GenericFilter.py:372 GenericFilter.py:674 plugins/FilterEditor.py:692
 msgid "Inclusive:"
 msgstr ""
 
@@ -1614,43 +1613,43 @@ msgstr ""
 msgid "_Undo %s"
 msgstr ""
 
-#: ImageSelect.py:483 ImageSelect.py:504
+#: ImageSelect.py:497 ImageSelect.py:518
 msgid "Drag Media Object"
 msgstr ""
 
-#: ImageSelect.py:494 RelImage.py:51
+#: ImageSelect.py:508 RelImage.py:51
 msgid "Could not import %s"
 msgstr ""
 
-#: ImageSelect.py:565 plugins/SimpleBookTitle.py:238
+#: ImageSelect.py:579 plugins/SimpleBookTitle.py:238
 msgid "Select an Object"
 msgstr ""
 
-#: ImageSelect.py:667
+#: ImageSelect.py:681
 msgid "Media Reference Editor"
 msgstr ""
 
-#: ImageSelect.py:766
+#: ImageSelect.py:780
 msgid "Media Reference"
 msgstr ""
 
-#: ImageSelect.py:772
+#: ImageSelect.py:786
 msgid "Reference Editor"
 msgstr ""
 
-#: ImageSelect.py:828 ImageSelect.py:1195 MediaView.py:345
+#: ImageSelect.py:842 ImageSelect.py:1209 MediaView.py:345
 msgid "Edit Media Object"
 msgstr ""
 
-#: ImageSelect.py:912
+#: ImageSelect.py:926
 msgid "Media Properties Editor"
 msgstr ""
 
-#: ImageSelect.py:1046
+#: ImageSelect.py:1060
 msgid "Properties Editor"
 msgstr ""
 
-#: ImageSelect.py:1292
+#: ImageSelect.py:1306
 msgid "Remove Media Object"
 msgstr ""
 
@@ -1662,7 +1661,7 @@ msgstr ""
 msgid "Marriage/Relationship Editor"
 msgstr ""
 
-#: Marriage.py:154 Marriage.py:820 Marriage.py:843 Utils.py:130
+#: Marriage.py:154 Marriage.py:820 Marriage.py:843 Utils.py:131
 msgid "%s and %s"
 msgstr ""
 
@@ -1760,11 +1759,11 @@ msgid "Alternate Names"
 msgstr ""
 
 #: MergePeople.py:137 gramps.glade:9573 gramps.glade:13652
-#: plugins/NavWebPage.py:1427
+#: plugins/NavWebPage.py:1463
 msgid "Events"
 msgstr ""
 
-#: MergePeople.py:144 PedView.py:696 plugins/NavWebPage.py:1494
+#: MergePeople.py:144 PedView.py:696 plugins/NavWebPage.py:1530
 msgid "Parents"
 msgstr ""
 
@@ -1885,13 +1884,13 @@ msgstr ""
 msgid "Remove anchor"
 msgstr ""
 
-#: PedView.py:632 plugins/NavWebPage.py:1521 plugins/WebPage.py:715
+#: PedView.py:632 plugins/NavWebPage.py:1557 plugins/WebPage.py:715
 #: plugins/WebPage.py:722
 msgid "Siblings"
 msgstr ""
 
 #: PedView.py:662 plugins/FamilyGroup.py:400 plugins/IndivComplete.py:295
-#: plugins/IndivSummary.py:179 plugins/NavWebPage.py:1548
+#: plugins/IndivSummary.py:179 plugins/NavWebPage.py:1584
 #: plugins/WebPage.py:674
 msgid "Children"
 msgstr ""
@@ -1907,7 +1906,7 @@ msgstr ""
 #: PeopleView.py:84 WriteGedcom.py:335 gramps_main.py:955
 #: plugins/EventCmp.py:158 plugins/ExportVCalendar.py:83
 #: plugins/ExportVCard.py:84 plugins/GraphViz.py:517
-#: plugins/IndivComplete.py:510 plugins/NavWebPage.py:2106
+#: plugins/IndivComplete.py:510 plugins/NavWebPage.py:2142
 #: plugins/StatisticsChart.py:846 plugins/TimeLine.py:412
 #: plugins/WebPage.py:1333 plugins/WriteFtree.py:86 plugins/WriteGeneWeb.py:87
 msgid "Entire Database"
@@ -1926,7 +1925,7 @@ msgstr ""
 msgid "Place Name"
 msgstr ""
 
-#: PlaceView.py:51 plugins/NavWebPage.py:690
+#: PlaceView.py:51 plugins/NavWebPage.py:694
 msgid "Church Parish"
 msgstr ""
 
@@ -1934,11 +1933,11 @@ msgstr ""
 msgid "ZIP/Postal Code"
 msgstr ""
 
-#: PlaceView.py:57 plugins/NavWebPage.py:699
+#: PlaceView.py:57 plugins/NavWebPage.py:703
 msgid "Longitude"
 msgstr ""
 
-#: PlaceView.py:58 plugins/NavWebPage.py:704
+#: PlaceView.py:58 plugins/NavWebPage.py:708
 msgid "Latitude"
 msgstr ""
 
@@ -2156,7 +2155,7 @@ msgstr ""
 msgid "GRAMPS XML import"
 msgstr ""
 
-#: RelImage.py:52 plugins/NavWebPage.py:809 plugins/NavWebPage.py:826
+#: RelImage.py:52 plugins/NavWebPage.py:777 plugins/NavWebPage.py:800
 msgid "The file has been moved or deleted"
 msgstr ""
 
@@ -2228,7 +2227,7 @@ msgstr ""
 msgid "User Defined Template"
 msgstr ""
 
-#: Report.py:152 Report.py:172 Utils.py:274
+#: Report.py:152 Report.py:172 Utils.py:275
 msgid "default"
 msgstr ""
 
@@ -2412,11 +2411,11 @@ msgstr ""
 msgid "Save As"
 msgstr ""
 
-#: Report.py:1121 plugins/NavWebPage.py:2369
+#: Report.py:1121 plugins/NavWebPage.py:2405
 msgid "Directory"
 msgstr ""
 
-#: Report.py:1123 plugins/NavWebPage.py:2366
+#: Report.py:1123 plugins/NavWebPage.py:2402
 msgid "Filename"
 msgstr ""
 
@@ -2453,8 +2452,8 @@ msgstr ""
 msgid "Page Count"
 msgstr ""
 
-#: Report.py:1284 Report.py:1289 plugins/NavWebPage.py:2350
-#: plugins/NavWebPage.py:2355
+#: Report.py:1284 Report.py:1289 plugins/NavWebPage.py:2386
+#: plugins/NavWebPage.py:2391
 msgid "HTML Options"
 msgstr ""
 
@@ -2470,7 +2469,7 @@ msgstr ""
 msgid "Choose File"
 msgstr ""
 
-#: Report.py:1352 plugins/NavWebPage.py:1810
+#: Report.py:1352 plugins/NavWebPage.py:1846
 msgid "Invalid file name"
 msgstr ""
 
@@ -2496,9 +2495,9 @@ msgstr ""
 msgid "_Change filename"
 msgstr ""
 
-#: ReportUtils.py:308 ReportUtils.py:423 Utils.py:165 Utils.py:167
-#: plugins/NavWebPage.py:2541 plugins/NavWebPage.py:2547
-#: plugins/NavWebPage.py:2553
+#: ReportUtils.py:308 ReportUtils.py:423 Utils.py:166 Utils.py:168
+#: plugins/NavWebPage.py:2577 plugins/NavWebPage.py:2583
+#: plugins/NavWebPage.py:2589
 msgid "Private"
 msgstr ""
 
@@ -3210,11 +3209,11 @@ msgstr ""
 msgid "Add Child to Family (%s)"
 msgstr ""
 
-#: SourceView.py:53 plugins/NavWebPage.py:1081
+#: SourceView.py:53 plugins/NavWebPage.py:1117
 msgid "Author"
 msgstr ""
 
-#: SourceView.py:54 plugins/NavWebPage.py:1083
+#: SourceView.py:54 plugins/NavWebPage.py:1119
 msgid "Abbreviation"
 msgstr ""
 
@@ -3393,8 +3392,12 @@ msgstr ""
 msgid "Internet Address Editor for %s"
 msgstr ""
 
-#: Utils.py:67
+#: Utils.py:68
 msgid "The data can only be recovered by Undo operation or by quitting with abandoning changes."
+msgstr ""
+
+#: Utils.py:526
+msgid "Database error: %s is defined as his or her own ancestor"
 msgstr ""
 
 #: Witness.py:64
@@ -3419,7 +3422,7 @@ msgstr ""
 #: WriteGedcom.py:340 plugins/DescendReport.py:116
 #: plugins/ExportVCalendar.py:88 plugins/ExportVCard.py:89
 #: plugins/FtmStyleDescendants.py:121 plugins/GraphViz.py:521
-#: plugins/IndivComplete.py:514 plugins/NavWebPage.py:2110
+#: plugins/IndivComplete.py:514 plugins/NavWebPage.py:2146
 #: plugins/StatisticsChart.py:850 plugins/TimeLine.py:416
 #: plugins/WebPage.py:1337 plugins/WriteFtree.py:91 plugins/WriteGeneWeb.py:92
 msgid "Descendants of %s"
@@ -3428,7 +3431,7 @@ msgstr ""
 #: WriteGedcom.py:346 plugins/Ancestors.py:138 plugins/ExportVCalendar.py:94
 #: plugins/ExportVCard.py:95 plugins/FtmStyleAncestors.py:96
 #: plugins/GraphViz.py:525 plugins/IndivComplete.py:518
-#: plugins/NavWebPage.py:2118 plugins/StatisticsChart.py:854
+#: plugins/NavWebPage.py:2154 plugins/StatisticsChart.py:854
 #: plugins/TimeLine.py:420 plugins/WebPage.py:1345 plugins/WriteFtree.py:97
 #: plugins/WriteGeneWeb.py:98
 msgid "Ancestors of %s"
@@ -3436,7 +3439,7 @@ msgstr ""
 
 #: WriteGedcom.py:352 plugins/ExportVCalendar.py:100
 #: plugins/ExportVCard.py:101 plugins/GraphViz.py:529
-#: plugins/IndivComplete.py:522 plugins/NavWebPage.py:2122
+#: plugins/IndivComplete.py:522 plugins/NavWebPage.py:2158
 #: plugins/StatisticsChart.py:858 plugins/TimeLine.py:424
 #: plugins/WebPage.py:1349 plugins/WriteFtree.py:103
 #: plugins/WriteGeneWeb.py:104
@@ -3456,20 +3459,24 @@ msgstr ""
 #: docgen/SvgDrawDoc.py:75 docgen/SvgDrawDoc.py:77
 #: plugins/ExportVCalendar.py:179 plugins/ExportVCalendar.py:183
 #: plugins/ExportVCard.py:162 plugins/ExportVCard.py:166
-#: plugins/NavWebPage.py:1816 plugins/WriteGeneWeb.py:219
-#: plugins/WriteGeneWeb.py:223
+#: plugins/NavWebPage.py:1852 plugins/WriteGeneWeb.py:232
+#: plugins/WriteGeneWeb.py:236
 msgid "Could not create %s"
 msgstr ""
 
-#: WriteGedcom.py:1282
+#: WriteGedcom.py:1273
+msgid "Export failed"
+msgstr ""
+
+#: WriteGedcom.py:1284
 msgid "GE_DCOM"
 msgstr ""
 
-#: WriteGedcom.py:1283
+#: WriteGedcom.py:1285
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input. "
 msgstr ""
 
-#: WriteGedcom.py:1285
+#: WriteGedcom.py:1287
 msgid "GEDCOM export options"
 msgstr ""
 
@@ -3837,7 +3844,7 @@ msgstr ""
 msgid "Code Generators"
 msgstr ""
 
-#: const.py:944 plugins/NavWebPage.py:2376 plugins/WebPage.py:1787
+#: const.py:944 plugins/NavWebPage.py:2412 plugins/WebPage.py:1787
 msgid "Web Page"
 msgstr ""
 
@@ -3849,7 +3856,7 @@ msgstr ""
 msgid "Books"
 msgstr ""
 
-#: const.py:950 plugins/NavWebPage.py:1319 plugins/ScratchPad.py:356
+#: const.py:950 plugins/NavWebPage.py:1355 plugins/ScratchPad.py:356
 #: plugins/ScratchPad.py:405 plugins/ScratchPad.py:413
 #: plugins/SimpleBookTitle.py:170 plugins/SimpleBookTitle.py:171
 #: plugins/SimpleBookTitle.py:172
@@ -4912,14 +4919,14 @@ msgid "Edit the properties of the selected object"
 msgstr ""
 
 #: gramps.glade:5854 gramps.glade:11386 gramps.glade:14634 gramps.glade:16931
-#: gramps.glade:28153 plugins/NavWebPage.py:286 plugins/NavWebPage.py:335
-#: plugins/NavWebPage.py:785 plugins/NavWebPage.py:1110
-#: plugins/NavWebPage.py:1112 plugins/WebPage.py:432
+#: gramps.glade:28153 plugins/NavWebPage.py:290 plugins/NavWebPage.py:339
+#: plugins/NavWebPage.py:752 plugins/NavWebPage.py:1146
+#: plugins/NavWebPage.py:1148 plugins/WebPage.py:432
 msgid "Gallery"
 msgstr ""
 
 #: gramps.glade:5906 gramps.glade:17359 gramps.glade:25473
-#: plugins/NavWebPage.py:413
+#: plugins/NavWebPage.py:417
 msgid "References"
 msgstr ""
 
@@ -5165,7 +5172,7 @@ msgid "Delete the selected attribute"
 msgstr ""
 
 #: gramps.glade:10062 gramps.glade:14124 gramps.glade:24157 gramps.glade:25260
-#: plugins/NavWebPage.py:400
+#: plugins/NavWebPage.py:404
 msgid "Attributes"
 msgstr ""
 
@@ -5213,8 +5220,8 @@ msgstr ""
 #: gramps.glade:11184 gramps.glade:14445 gramps.glade:16716 gramps.glade:24342
 #: gramps.glade:25658 gramps.glade:27587 gramps.glade:28637 gramps.glade:30090
 #: gramps.glade:31620 plugins/Ancestors.py:159 plugins/IndivComplete.py:324
-#: plugins/NavWebPage.py:283 plugins/NavWebPage.py:1031
-#: plugins/NavWebPage.py:1039 plugins/NavWebPage.py:1071
+#: plugins/NavWebPage.py:287 plugins/NavWebPage.py:1067
+#: plugins/NavWebPage.py:1075 plugins/NavWebPage.py:1107
 #: plugins/ScratchPad.py:153 plugins/ScratchPad.py:293
 #: plugins/ScratchPad.py:326 plugins/WebPage.py:224
 msgid "Sources"
@@ -6370,7 +6377,7 @@ msgstr ""
 #: plugins/FtmStyleAncestors.py:422 plugins/FtmStyleDescendants.py:572
 #: plugins/GraphViz.py:968 plugins/GraphViz.py:982
 #: plugins/IndivComplete.py:595 plugins/IndivSummary.py:391
-#: plugins/NavWebPage.py:2572 plugins/Summary.py:178 plugins/TimeLine.py:480
+#: plugins/NavWebPage.py:2608 plugins/Summary.py:178 plugins/TimeLine.py:480
 msgid "Beta"
 msgstr ""
 
@@ -6475,7 +6482,7 @@ msgstr ""
 #: plugins/DetDescendantReport.py:668 plugins/FamilyGroup.py:506
 #: plugins/FtmStyleAncestors.py:375 plugins/FtmStyleDescendants.py:521
 #: plugins/IndivComplete.py:552 plugins/IndivSummary.py:348
-#: plugins/SimpleBookTitle.py:266 plugins/StatisticsChart.py:831
+#: plugins/SimpleBookTitle.py:267 plugins/StatisticsChart.py:831
 #: plugins/TimeLine.py:399 plugins/WebPage.py:1629
 msgid "The style used for the title of the page."
 msgstr ""
@@ -7454,11 +7461,11 @@ msgstr ""
 msgid "vCard export options"
 msgstr ""
 
-#: plugins/FamilyGroup.py:163 plugins/NavWebPage.py:1562
+#: plugins/FamilyGroup.py:163 plugins/NavWebPage.py:1598
 msgid "Husband"
 msgstr ""
 
-#: plugins/FamilyGroup.py:165 plugins/NavWebPage.py:1564
+#: plugins/FamilyGroup.py:165 plugins/NavWebPage.py:1600
 msgid "Wife"
 msgstr ""
 
@@ -8027,349 +8034,349 @@ msgstr ""
 msgid "Unicode (recommended)"
 msgstr ""
 
-#: plugins/NavWebPage.py:206
+#: plugins/NavWebPage.py:210
 msgid "&copy; %(year)d %(person)s"
 msgstr ""
 
-#: plugins/NavWebPage.py:266
+#: plugins/NavWebPage.py:270
 msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
 msgstr ""
 
-#: plugins/NavWebPage.py:277 plugins/NavWebPage.py:938
-#: plugins/NavWebPage.py:940
+#: plugins/NavWebPage.py:281 plugins/NavWebPage.py:974
+#: plugins/NavWebPage.py:976
 msgid "Introduction"
 msgstr ""
 
-#: plugins/NavWebPage.py:279 plugins/NavWebPage.py:281
-#: plugins/NavWebPage.py:861 plugins/NavWebPage.py:862
+#: plugins/NavWebPage.py:283 plugins/NavWebPage.py:285
+#: plugins/NavWebPage.py:897 plugins/NavWebPage.py:898
 msgid "Surnames"
 msgstr ""
 
-#: plugins/NavWebPage.py:282 plugins/NavWebPage.py:518
-#: plugins/NavWebPage.py:525 plugins/Summary.py:109
+#: plugins/NavWebPage.py:286 plugins/NavWebPage.py:522
+#: plugins/NavWebPage.py:529 plugins/Summary.py:109
 msgid "Individuals"
 msgstr ""
 
-#: plugins/NavWebPage.py:284 plugins/NavWebPage.py:614
-#: plugins/NavWebPage.py:621 plugins/NavWebPage.py:674
+#: plugins/NavWebPage.py:288 plugins/NavWebPage.py:618
+#: plugins/NavWebPage.py:625 plugins/NavWebPage.py:678
 msgid "Places"
 msgstr ""
 
-#: plugins/NavWebPage.py:288 plugins/NavWebPage.py:1157
-#: plugins/NavWebPage.py:1160
+#: plugins/NavWebPage.py:292 plugins/NavWebPage.py:1193
+#: plugins/NavWebPage.py:1196
 msgid "Download"
 msgstr ""
 
-#: plugins/NavWebPage.py:290 plugins/NavWebPage.py:1176
-#: plugins/NavWebPage.py:1180
+#: plugins/NavWebPage.py:294 plugins/NavWebPage.py:1212
+#: plugins/NavWebPage.py:1216
 msgid "Contact"
 msgstr ""
 
-#: plugins/NavWebPage.py:316 plugins/NavWebPage.py:347
-#: plugins/NavWebPage.py:359 plugins/NavWebPage.py:957
-#: plugins/NavWebPage.py:1004 plugins/NavWebPage.py:1202
+#: plugins/NavWebPage.py:320 plugins/NavWebPage.py:351
+#: plugins/NavWebPage.py:363 plugins/NavWebPage.py:993
+#: plugins/NavWebPage.py:1040 plugins/NavWebPage.py:1238
 msgid "Could not add photo to page"
 msgstr ""
 
-#: plugins/NavWebPage.py:370 plugins/NavWebPage.py:1612
+#: plugins/NavWebPage.py:374 plugins/NavWebPage.py:1648
 msgid "Narrative"
 msgstr ""
 
-#: plugins/NavWebPage.py:382
+#: plugins/NavWebPage.py:386
 msgid "Weblinks"
 msgstr ""
 
-#: plugins/NavWebPage.py:521
+#: plugins/NavWebPage.py:525
 msgid "This page contains an index of all the individuals in the database, sorted by their last names. Selecting the person's name will take you to that person's individual page."
 msgstr ""
 
-#: plugins/NavWebPage.py:528 plugins/NavWebPage.py:880
-#: plugins/NavWebPage.py:882 plugins/StatisticsChart.py:99
+#: plugins/NavWebPage.py:532 plugins/NavWebPage.py:916
+#: plugins/NavWebPage.py:918 plugins/StatisticsChart.py:99
 msgid "Surname"
 msgstr ""
 
-#: plugins/NavWebPage.py:575
+#: plugins/NavWebPage.py:579
 msgid "This page contains an index of all the individuals in the database with the surname of %s. Selecting the person's name will take you to that person's individual page."
 msgstr ""
 
-#: plugins/NavWebPage.py:617
+#: plugins/NavWebPage.py:621
 msgid "This page contains an index of all the places in the database, sorted by their title. Clicking on a place's title will take you to that place's page."
 msgstr ""
 
-#: plugins/NavWebPage.py:625 plugins/NavWebPage.py:876
+#: plugins/NavWebPage.py:629 plugins/NavWebPage.py:912
 msgid "Letter"
 msgstr ""
 
-#: plugins/NavWebPage.py:684 plugins/NavWebPage.py:832
-#: plugins/NavWebPage.py:1080 plugins/NavWebPage.py:1383
+#: plugins/NavWebPage.py:688 plugins/NavWebPage.py:812
+#: plugins/NavWebPage.py:1116 plugins/NavWebPage.py:1419
 msgid "GRAMPS ID"
 msgstr ""
 
-#: plugins/NavWebPage.py:691
+#: plugins/NavWebPage.py:695
 msgid "State/Province"
 msgstr ""
 
-#: plugins/NavWebPage.py:692
+#: plugins/NavWebPage.py:696
 msgid "Postal Code"
 msgstr ""
 
-#: plugins/NavWebPage.py:755
-msgid "Missing media object"
-msgstr ""
-
-#: plugins/NavWebPage.py:794
+#: plugins/NavWebPage.py:761
 msgid "Previous"
 msgstr ""
 
-#: plugins/NavWebPage.py:795
+#: plugins/NavWebPage.py:762
 msgid "%(page_number)d of %(total_pages)d"
 msgstr ""
 
-#: plugins/NavWebPage.py:799
+#: plugins/NavWebPage.py:766
 msgid "Next"
 msgstr ""
 
-#: plugins/NavWebPage.py:836
+#: plugins/NavWebPage.py:816
 msgid "MIME type"
 msgstr ""
 
-#: plugins/NavWebPage.py:865 plugins/NavWebPage.py:867
+#: plugins/NavWebPage.py:846
+msgid "Missing media object"
+msgstr ""
+
+#: plugins/NavWebPage.py:901 plugins/NavWebPage.py:903
 msgid "Surnames by person count"
 msgstr ""
 
-#: plugins/NavWebPage.py:869
+#: plugins/NavWebPage.py:905
 msgid "This page contains an index of all the surnames in the database. Selecting a link will lead to a list of individuals in the database with this same surname."
 msgstr ""
 
-#: plugins/NavWebPage.py:884
+#: plugins/NavWebPage.py:920
 msgid "Number of people"
 msgstr ""
 
-#: plugins/NavWebPage.py:1035
+#: plugins/NavWebPage.py:1071
 msgid "This page contains an index of all the sources in the database, sorted by their title. Clicking on a source's title will take you to that source's page."
 msgstr ""
 
-#: plugins/NavWebPage.py:1082
+#: plugins/NavWebPage.py:1118
 msgid "Publication information"
 msgstr ""
 
-#: plugins/NavWebPage.py:1114
+#: plugins/NavWebPage.py:1150
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object's page."
 msgstr ""
 
-#: plugins/NavWebPage.py:1297
+#: plugins/NavWebPage.py:1333
 msgid "Source References"
 msgstr ""
 
-#: plugins/NavWebPage.py:1317 plugins/ScratchPad.py:355
+#: plugins/NavWebPage.py:1353 plugins/ScratchPad.py:355
 msgid "Page"
 msgstr ""
 
-#: plugins/NavWebPage.py:1318
+#: plugins/NavWebPage.py:1354
 msgid "Confidence"
 msgstr ""
 
-#: plugins/NavWebPage.py:1345
+#: plugins/NavWebPage.py:1381
 msgid "Pedigree"
 msgstr ""
 
-#: plugins/NavWebPage.py:1566 plugins/NavWebPage.py:1568
+#: plugins/NavWebPage.py:1602 plugins/NavWebPage.py:1604
 msgid "Partner"
 msgstr ""
 
-#: plugins/NavWebPage.py:1685
+#: plugins/NavWebPage.py:1721
 msgid "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
 msgstr ""
 
-#: plugins/NavWebPage.py:1687
+#: plugins/NavWebPage.py:1723
 msgid "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;"
 msgstr ""
 
-#: plugins/NavWebPage.py:1691
+#: plugins/NavWebPage.py:1727
 msgid "%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
 msgstr ""
 
-#: plugins/NavWebPage.py:1776 plugins/WebPage.py:1117
+#: plugins/NavWebPage.py:1812 plugins/WebPage.py:1117
 msgid "Neither %s nor %s are directories"
 msgstr ""
 
-#: plugins/NavWebPage.py:1783 plugins/NavWebPage.py:1787
-#: plugins/NavWebPage.py:1800 plugins/NavWebPage.py:1804
+#: plugins/NavWebPage.py:1819 plugins/NavWebPage.py:1823
+#: plugins/NavWebPage.py:1836 plugins/NavWebPage.py:1840
 #: plugins/WebPage.py:1124 plugins/WebPage.py:1128 plugins/WebPage.py:1140
 #: plugins/WebPage.py:1144
 msgid "Could not create the directory: %s"
 msgstr ""
 
-#: plugins/NavWebPage.py:1811
+#: plugins/NavWebPage.py:1847
 msgid "The archive file must be a file, not a directory"
 msgstr ""
 
-#: plugins/NavWebPage.py:1820
+#: plugins/NavWebPage.py:1856
 msgid "Generate HTML reports"
 msgstr ""
 
-#: plugins/NavWebPage.py:1869
+#: plugins/NavWebPage.py:1905
 msgid "Filtering"
 msgstr ""
 
-#: plugins/NavWebPage.py:1876
+#: plugins/NavWebPage.py:1912
 msgid "Applying privacy filter"
 msgstr ""
 
-#: plugins/NavWebPage.py:1884
+#: plugins/NavWebPage.py:1920
 msgid "Filtering living people"
 msgstr ""
 
-#: plugins/NavWebPage.py:1915
+#: plugins/NavWebPage.py:1951
 msgid "Creating individual pages"
 msgstr ""
 
-#: plugins/NavWebPage.py:1939
+#: plugins/NavWebPage.py:1975
 msgid "Creating surname pages"
 msgstr ""
 
-#: plugins/NavWebPage.py:1960
+#: plugins/NavWebPage.py:1996
 msgid "Creating source pages"
 msgstr ""
 
-#: plugins/NavWebPage.py:1973
+#: plugins/NavWebPage.py:2009
 msgid "Creating place pages"
 msgstr ""
 
-#: plugins/NavWebPage.py:1987
+#: plugins/NavWebPage.py:2023
 msgid "Creating media pages"
 msgstr ""
 
-#: plugins/NavWebPage.py:2078
+#: plugins/NavWebPage.py:2114
 msgid "My Family Tree"
 msgstr ""
 
-#: plugins/NavWebPage.py:2114 plugins/WebPage.py:1341
+#: plugins/NavWebPage.py:2150 plugins/WebPage.py:1341
 msgid "Descendant Families of %s"
 msgstr ""
 
-#: plugins/NavWebPage.py:2128 plugins/WebPage.py:1356
+#: plugins/NavWebPage.py:2164 plugins/WebPage.py:1356
 msgid "Do not include records marked private"
 msgstr ""
 
-#: plugins/NavWebPage.py:2129 plugins/WebPage.py:1357
+#: plugins/NavWebPage.py:2165 plugins/WebPage.py:1357
 msgid "Restrict information on living people"
 msgstr ""
 
-#: plugins/NavWebPage.py:2130
+#: plugins/NavWebPage.py:2166
 msgid "Years to restrict from person's death"
 msgstr ""
 
-#: plugins/NavWebPage.py:2131
+#: plugins/NavWebPage.py:2167
 msgid "Web site title"
 msgstr ""
 
-#: plugins/NavWebPage.py:2132 plugins/WebPage.py:1366
+#: plugins/NavWebPage.py:2168 plugins/WebPage.py:1366
 msgid "File extension"
 msgstr ""
 
-#: plugins/NavWebPage.py:2133
+#: plugins/NavWebPage.py:2169
 msgid "Publisher contact/Note ID"
 msgstr ""
 
-#: plugins/NavWebPage.py:2134
+#: plugins/NavWebPage.py:2170
 msgid "Include images and media objects"
 msgstr ""
 
-#: plugins/NavWebPage.py:2135
+#: plugins/NavWebPage.py:2171
 msgid "Include download page"
 msgstr ""
 
-#: plugins/NavWebPage.py:2140
+#: plugins/NavWebPage.py:2176
 msgid "Suppress GRAMPS ID"
 msgstr ""
 
-#: plugins/NavWebPage.py:2181
+#: plugins/NavWebPage.py:2217
 msgid "Standard copyright"
 msgstr ""
 
-#: plugins/NavWebPage.py:2182
+#: plugins/NavWebPage.py:2218
 msgid "Creative Commons - By attribution"
 msgstr ""
 
-#: plugins/NavWebPage.py:2183
+#: plugins/NavWebPage.py:2219
 msgid "Creative Commons - By attribution, No derivations"
 msgstr ""
 
-#: plugins/NavWebPage.py:2184
+#: plugins/NavWebPage.py:2220
 msgid "Creative Commons - By attribution, Share-alike"
 msgstr ""
 
-#: plugins/NavWebPage.py:2185
+#: plugins/NavWebPage.py:2221
 msgid "Creative Commons - By attribution, Non-commercial"
 msgstr ""
 
-#: plugins/NavWebPage.py:2186
+#: plugins/NavWebPage.py:2222
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
 msgstr ""
 
-#: plugins/NavWebPage.py:2187
+#: plugins/NavWebPage.py:2223
 msgid "Creative Commons - By attribution, Non-commerical, Share-alike"
 msgstr ""
 
-#: plugins/NavWebPage.py:2188
+#: plugins/NavWebPage.py:2224
 msgid "No copyright notice"
 msgstr ""
 
-#: plugins/NavWebPage.py:2222
+#: plugins/NavWebPage.py:2258
 msgid "Character set encoding"
 msgstr ""
 
-#: plugins/NavWebPage.py:2223
+#: plugins/NavWebPage.py:2259
 msgid "Stylesheet"
 msgstr ""
 
-#: plugins/NavWebPage.py:2224
+#: plugins/NavWebPage.py:2260
 msgid "Copyright"
 msgstr ""
 
-#: plugins/NavWebPage.py:2226
+#: plugins/NavWebPage.py:2262
 msgid "Page Generation"
 msgstr ""
 
-#: plugins/NavWebPage.py:2249
+#: plugins/NavWebPage.py:2285
 msgid "Home Media/Note ID"
 msgstr ""
 
-#: plugins/NavWebPage.py:2251
+#: plugins/NavWebPage.py:2287
 msgid "Introduction Media/Note ID"
 msgstr ""
 
-#: plugins/NavWebPage.py:2254
+#: plugins/NavWebPage.py:2290
 msgid "HTML user header"
 msgstr ""
 
-#: plugins/NavWebPage.py:2255
+#: plugins/NavWebPage.py:2291
 msgid "HTML user footer"
 msgstr ""
 
-#: plugins/NavWebPage.py:2260 plugins/WebPage.py:1499
+#: plugins/NavWebPage.py:2296 plugins/WebPage.py:1499
 msgid "Privacy"
 msgstr ""
 
-#: plugins/NavWebPage.py:2319 plugins/NavWebPage.py:2376
+#: plugins/NavWebPage.py:2355 plugins/NavWebPage.py:2412
 #: plugins/WebPage.py:1771 plugins/WebPage.py:1787
 msgid "Generate Web Site"
 msgstr ""
 
-#: plugins/NavWebPage.py:2358
+#: plugins/NavWebPage.py:2394
 msgid "Store web pages in .tar.gz archive"
 msgstr ""
 
-#: plugins/NavWebPage.py:2381 plugins/WebPage.py:1792
+#: plugins/NavWebPage.py:2417 plugins/WebPage.py:1792
 msgid "Target Directory"
 msgstr ""
 
-#: plugins/NavWebPage.py:2569
+#: plugins/NavWebPage.py:2605
 msgid "Narrative Web Site"
 msgstr ""
 
-#: plugins/NavWebPage.py:2573
+#: plugins/NavWebPage.py:2609
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr ""
 
@@ -8604,15 +8611,15 @@ msgstr ""
 msgid "Image"
 msgstr ""
 
-#: plugins/SimpleBookTitle.py:276
+#: plugins/SimpleBookTitle.py:277
 msgid "The style used for the subtitle."
 msgstr ""
 
-#: plugins/SimpleBookTitle.py:286
+#: plugins/SimpleBookTitle.py:287
 msgid "The style used for the footer."
 msgstr ""
 
-#: plugins/SimpleBookTitle.py:301
+#: plugins/SimpleBookTitle.py:302
 msgid "Title Page"
 msgstr ""
 
@@ -9556,19 +9563,19 @@ msgstr ""
 msgid "Web Family Tree export options"
 msgstr ""
 
-#: plugins/WriteGeneWeb.py:227
+#: plugins/WriteGeneWeb.py:240
 msgid "No families matched by selected filter"
 msgstr ""
 
-#: plugins/WriteGeneWeb.py:586
+#: plugins/WriteGeneWeb.py:599
 msgid "G_eneWeb"
 msgstr ""
 
-#: plugins/WriteGeneWeb.py:587
+#: plugins/WriteGeneWeb.py:600
 msgid "GeneWeb is a web based genealogy program."
 msgstr ""
 
-#: plugins/WriteGeneWeb.py:588
+#: plugins/WriteGeneWeb.py:601
 msgid "GeneWeb export options"
 msgstr ""
 

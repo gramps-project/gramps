@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 import os
 import locale
+import sets
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -514,7 +515,17 @@ def probably_alive(person,db,current_year=None,limit=0):
     max_generation = 60
     max_age_difference = 60
 
-    def descendants_too_old (person, years):
+    def descendants_too_old (person, years, current=None):
+        if current == None:
+            current = sets.Set()
+
+        if person.handle not in current:
+            current.add(person.handle)
+        else:
+            import Errors
+            raise Errors.DatabaseError(_("Database error: %s is defined as his or her own ancestor") %
+                                       NameDisplay.displayer.display(person))
+        
         for family_handle in person.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
             family_list = family.get_child_handle_list()
@@ -539,7 +550,7 @@ def probably_alive(person,db,current_year=None,limit=0):
                         if not not_too_old (dobj,current_year):
                             return True
 
-                if descendants_too_old (child, years + min_generation):
+                if descendants_too_old (child, years + min_generation,current):
                     return True
                 
         return False

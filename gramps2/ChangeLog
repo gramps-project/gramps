@@ -1,4 +1,11 @@
 2005-08-30  Don Allingham  <don@gramps-project.org>
+	* doc/gramps-manual/C/getstart.xml: fixed spelling
+	* doc/gramps-manual/C/mainwin.xml: fixed spelling
+	* src/Errors.py: Add a DatabaseError type
+	* src/Utils.py: detect database loops in descendants_too_old
+	* src/WriteGedcom.py: report error message when database loop is detected
+	* src/po/template.po: added new error message. May be too late for some
+	translations to get this message.
 	* src/ImageSelect.py: specify mime type to get_thumbnail_image
 	* src/ImgManip.py: make thumbnailing routine more generic
 	* src/SelectObject.py: specify mime type to get_thumbnail_image

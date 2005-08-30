@@ -1269,6 +1269,8 @@ def exportData(database,filename,person,option_box):
     try:
         gw = GedcomWriter(database,person,0,filename,option_box)
         ret = gw.export_data(filename)
+    except Errors.DatabaseError,msg:
+        ErrorDialog(_("Export failed"),str(msg))
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()

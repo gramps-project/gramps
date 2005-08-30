@@ -428,7 +428,7 @@
 	context menu. Among other useful items, the context menu has submenus
 	listing <guilabel>Spouses</guilabel>, <guilabel>Siblings</guilabel>,
 	<guilabel>Children</guilabel>, and <guilabel>Parents</guilabel>
-	of that person. Insensitive (greyed out) submenus indicate the absence
+	of that person. Insensitive (grayed out) submenus indicate the absence
 	of the data in the appropriate category. Similarly to the children menu above,
 	children's and parents' menus distinguish continuing lines from dead ends.
 	</para>
