@@ -1,3 +1,6 @@
+2005-08-31  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Translation update for 2.0.7.
+
 2005-08-31  Don Allingham  <don@gramps-project.org>
 	* src/ReadGedcom.py: handle attributes if value is on the same line as the
 	keyword
