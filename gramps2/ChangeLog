@@ -1,3 +1,6 @@
+2005-08-31  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/ReportUtils.py (insert_images): Warn about non existing files
+
 2005-08-30  Alex Roitman  <shura@gramps-project.org>
 	* src/po/ru.po: Translation update for 2.0.7.
 

@@ -30,7 +30,9 @@ import Date
 import DateHandler
 import RelLib
 from NameDisplay import displayer as _nd
+from QuestionDialog import WarningDialog
 import time
+import os
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -486,7 +488,11 @@ def insert_images(database, doc, person, w_cm=4.0, h_cm=4.0):
         mime_type = media_object.get_mime_type()
         if mime_type and mime_type.startswith("image"):
             filename = media_object.get_path()
-            doc.add_media_object(filename,"row",w_cm,h_cm)
+            if os.path.exists(filename):
+                doc.add_media_object(filename,"row",w_cm,h_cm)
+            else:
+                WarningDialog(_("Could not add photo to page"),
+                              "%s: %s" % (filename, _('File does not exist')))
 
 #-------------------------------------------------------------------------
 #
