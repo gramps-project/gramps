@@ -70,6 +70,12 @@
 1 EDUC
 2 DATE BET. 1979 - 1984
 2 PLAC UC Berkeley
+1 SSN 123-456-7890
+1 CAST cast keyword
+1 DSCR dscr keyword
+1 IDNO idno keyword
+1 NATI nati keyword
+1 NCHI nchi keyword
 1 _DEG
 2 DATE 1984
 2 PLAC B.S.E.E.

@@ -1133,7 +1133,7 @@ class GedcomParser:
                 elif self.gedattr.has_key(n):
                     attr = RelLib.Attribute()
                     attr.set_type(self.gedattr[n])
-                    attr.set_value(event.get_description())
+                    attr.set_value(event.get_description() + matches[2])
                     self.person.add_attribute(attr)
                     self.parse_person_attr(attr,2)
                     continue

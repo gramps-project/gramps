@@ -1,3 +1,7 @@
+2005-08-31  Don Allingham  <don@gramps-project.org>
+	* src/ReadGedcom.py: handle attributes if value is on the same line as the
+	keyword
+
 2005-08-31  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/ReportUtils.py (insert_images): Warn about non existing files
 
