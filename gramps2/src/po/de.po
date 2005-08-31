@@ -8357,7 +8357,7 @@ msgstr "Mehr über %(person_name)s:"
 
 #: plugins/DetAncestralReport.py:278 plugins/DetDescendantReport.py:301
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
-msgstr "%(event_name)s: %(date)s%(endnotes)s.  "
+msgstr "%(name_kind)s: %(name)s%(endnotes)s.  "
 
 #: plugins/DetAncestralReport.py:305 plugins/DetDescendantReport.py:328
 #: plugins/FtmStyleAncestors.py:255 plugins/FtmStyleDescendants.py:288
