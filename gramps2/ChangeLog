@@ -2,6 +2,8 @@
 	* src/po/fi.po: Translation update for 2.0.7.
 
 2005-08-31  Don Allingham  <don@gramps-project.org>
+	* src/PedView.py: force an update of the cached person
+	* src/gramps_main.py: force an update of the cached person
 	* src/ReadGedcom.py: handle attributes if value is on the same line as the
 	keyword
 
@@ -47,7 +49,7 @@
 2005-08-29  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/NavWebPage.py: Correct link to Surname list page;
 	Better handling for not existing media object files and note-only
-	objects; thumbnails are always png images
+	objects; thxumbnails are always png images
 	* src/plugins/Check.py: Files of note-only objects are no longer
 	reported as missing
 

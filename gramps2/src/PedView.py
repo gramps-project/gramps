@@ -197,6 +197,8 @@ class PedigreeView:
         self.active_person = None
 
     def person_updated_cb(self,handle_list):
+        if self.active_person and self.active_person.handle == handle_list[0]:
+            self.active_person = self.db.get_person_from_handle(handle_list[0])
         self.load_canvas(self.active_person)
 
     def person_rebuild(self):
@@ -220,7 +222,10 @@ class PedigreeView:
            as the root person of the tree."""
 
         self.clear()
-        
+
+        if person:
+            person = self.db.get_person_from_handle(person.handle)
+
         if person is not self.active_person:
             self.active_person = person
         if person == None:
@@ -237,7 +242,7 @@ class PedigreeView:
         font = gtk.gdk.font_from_description(style.font_desc)
 
         lst = [None]*31
-        self.find_tree(self.active_person,0,1,lst)
+        self.find_tree(person,0,1,lst)
 
         # determine the largest string width and height for calcuation
         # of box sizes.
@@ -280,7 +285,7 @@ class PedigreeView:
             anchor=gtk.ANCHOR_WEST)
         self.canvas_items.append(self.anchor_txt)
 
-        for family_handle in self.active_person.get_family_handle_list():
+        for family_handle in person.get_family_handle_list():
             family = self.db.get_family_from_handle(family_handle)
             if not family:
                 continue

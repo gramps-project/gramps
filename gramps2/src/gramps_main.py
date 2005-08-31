@@ -1224,7 +1224,8 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         if page == PERSON_VIEW:
             self.people_view.apply_filter()
         elif page == PEDIGREE_VIEW:
-            self.pedigree_view.load_canvas(self.active_person)
+            person = self.db.get_person_from_handle(self.active_person.handle)
+            self.pedigree_view.load_canvas(person)
 
     def on_tools_clicked(self,obj):
         if self.active_person:
