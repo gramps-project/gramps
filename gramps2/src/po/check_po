@@ -1,0 +1,103 @@
+#! /usr/bin/env python
+
+NONE   = 0
+MSGID  = 1
+MSGSTR = 2
+
+import sys
+import re
+f = open(sys.argv[1],"r")
+
+
+mode = NONE
+
+string_map = {}
+current_msgid = ""
+current_msgstr = ""
+
+for line in f.readlines():
+    data = line.split(None,1)
+    if mode == NONE:
+        if len(data) > 0 and data[0] == "msgid":
+            mode = MSGID
+            
+            current_msgid = data[1].split('"')[1]
+    elif mode == MSGID:
+        if data[0][0] == '"':
+            current_msgid += line.split('"')[1]
+        elif data[0] == "msgstr":
+            mode = MSGSTR
+            current_msgstr = data[1].split('"')[1]
+    elif mode == MSGSTR:
+        if line == "" or line[0] == "#":
+            mode = NONE
+            string_map[current_msgid] = current_msgstr
+        elif len(data) > 0 and data[0][0] == '"':
+            current_msgstr += line.split('"')[1]
+
+f.close()
+
+named = re.compile('%\((\w+)\)\d*s')
+bnamed = re.compile('%\((\w+)\)\d*[^sd]')
+
+total = len(string_map)
+untranslated = 0
+percent_s = 0
+percent_s_list = []
+named_s = 0
+named_s_list = []
+bnamed_s = 0
+bnamed_s_list = []
+
+
+for i in string_map.keys():
+    if string_map[i] == "":
+        untranslated += 1
+
+    cnt1 = i.count('%s')
+    cnt2 = string_map[i].count('%s')
+    if cnt1 != cnt2:
+        percent_s += 1
+        percent_s_list.append(i)
+
+    list1 = named.findall(i)
+    list2 = named.findall(string_map[i])
+    if len(list1) != len(list2):
+        percent_s += 1
+        percent_s_list.append(i)
+
+    list1.sort()
+    list2.sort()
+    if list1 != list2:
+        named_s += 1
+        named_s_list.append(i)
+
+    match = bnamed.match(string_map[i])
+    if match:
+        bnamed_s +=1
+        bnamed_s_list.append(i)
+
+coverage = (1.0 - (float(untranslated)/float(total))) * 100
+
+print "Total:           %d" % total
+print "Untranslated:    %d" % untranslated
+print "%%s mismatches:   %d" % percent_s
+print "%%()s mismatches: %d" % named_s
+print "%%() missing s/d: %d" % bnamed_s
+print "Coverage:        %5.2f%%" % coverage
+
+if percent_s:
+    print "\n-------- %s mismatches --------------"
+    for i in percent_s_list:
+        print "'%s' : '%s'" % (i, string_map[i])
+
+if named_s:
+    print "\n-------- %()s mismatches ------------"
+    for i in named_s_list:
+        print "'%s' : '%s'" % (i, string_map[i])
+
+if bnamed_s:
+    print "\n-------- %() missing s or d ---------"
+    for i in bnamed_s_list:
+        print "'%s' : '%s'" % (i, string_map[i])
+
