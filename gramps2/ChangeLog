@@ -1,3 +1,7 @@
+2005-09-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/po/check_po: Support for multiple files as command line
+	arguments; untranslated strings dont need mismatch tests
+
 2005-08-31  Don Allingham  <don@gramps-project.org>
 	* src/plugins/RelCalc.py: use PeopleModel instead of ListModel,
 	check to the person being compared to him/herself
