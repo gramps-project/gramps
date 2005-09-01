@@ -1,4 +1,7 @@
 2005-08-31  Don Allingham  <don@gramps-project.org>
+	* src/plugins/RelCalc.py: use PeopleModel instead of ListModel,
+	check to the person being compared to him/herself
+	* src/plugins/relcalc.glade: increase the width of the window.
 	* src/Report.py: Catch thrown Database error
 	* src/GraphLayout.py: catch database loops
 	* src/po/de.po: fix %()s mismatches
