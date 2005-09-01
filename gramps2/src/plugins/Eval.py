@@ -79,7 +79,7 @@ class EvalWindow:
             })
 
         Utils.set_titles(self.top,self.glade.get_widget('title'),
-                         _("Python Evaluation Window"))
+                         _("Python evaluation window"))
 
         self.add_itself_to_menu()
         self.top.show()
@@ -93,7 +93,7 @@ class EvalWindow:
 
     def add_itself_to_menu(self):
         self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(_('Python Evaluation Window'))
+        self.parent_menu_item = gtk.MenuItem(_('Python evaluation window'))
         self.parent_menu_item.connect("activate",self.present)
         self.parent_menu_item.show()
         self.parent.winsmenu.append(self.parent_menu_item)

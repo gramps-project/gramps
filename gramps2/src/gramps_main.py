@@ -1084,7 +1084,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             mlist = self.people_view.get_selected_objects()
 
             if len(mlist) != 2:
-                msg = _("Cannot merge people.")
+                msg = _("Cannot merge people")
                 msg2 = _("Exactly two people must be selected to perform a merge. "
                          "A second person can be selected by holding down the "
                          "control key while clicking on the desired person.")
@@ -1096,7 +1096,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                 if p1 and p2:
                     merger = MergePeople.MergePeopleUI(self.db,p1,p2,self.merge_update)
                 else:
-                    msg = _("Cannot merge people.")
+                    msg = _("Cannot merge people")
                     msg2 = _("Exactly two people must be selected to perform a merge. "
                              "A second person can be selected by holding down the "
                              "control key while clicking on the desired person.")
@@ -1114,7 +1114,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             mlist = self.people_view.get_selected_objects()
 
             if len(mlist) != 2:
-                msg = _("Cannot merge people.")
+                msg = _("Cannot merge people")
                 msg2 = _("Exactly two people must be selected to perform a merge. "
                          "A second person can be selected by holding down the "
                          "control key while clicking on the desired person.")
@@ -1126,7 +1126,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                 if p1 and p2:
                     merger = MergePeople.Compare(self.db,p1,p2,self.merge_update)
                 else:
-                    msg = _("Cannot merge people.")
+                    msg = _("Cannot merge people")
                     msg2 = _("Exactly two people must be selected to perform a merge. "
                              "A second person can be selected by holding down the "
                              "control key while clicking on the desired person.")

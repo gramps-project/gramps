@@ -810,8 +810,8 @@ class ComprehensiveAncestorsReport (Report.Report):
         if (len (event_handles) + len (addresses) + len (names)) > 0:
             paras.append ((self.doc.start_paragraph, ['AR-SubEntry']))
             paras.append ((self.doc.write_text,
-                           [_("More about %(name)s:") %
-                            {'name': self.first_name_or_nick (person)}]))
+                           [_("More about %(person_name)s:") %
+                            {'person_name': self.first_name_or_nick (person)}]))
             paras.append ((self.doc.end_paragraph, []))
 
         for name in names:

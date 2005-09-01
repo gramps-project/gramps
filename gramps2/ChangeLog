@@ -1,4 +1,11 @@
 2005-09-01  Don Allingham  <don@gramps-project.org>
+	* src/PeopleView.py: replace unique string with one already translated
+	* src/gramps_main.py: replace unique string with one already translated
+	* src/plugins/Ancestors.py: replace unique string with one already translated
+	* src/plugins/Eval.py: replace unique string with one already translated
+	* src/plugins/WriteCD.py: replace unique string with one already translated
+	* src/po/check_po: produce a sorted list of used text strings,
+	split strings better
 	* src/ImageSelect.py: Local edit of a media Note type now 
 	brings up the Note editor instead of the media editor.
 	* src/plugins/Verify.py: don't complain about difference in
