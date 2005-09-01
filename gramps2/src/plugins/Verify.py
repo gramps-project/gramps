@@ -324,7 +324,7 @@ class Verify:
                             idstr,family.get_gramps_id(), spouse.get_primary_name().get_name() ) )
                     sdyear = self.get_year( spouse.get_death_handle() )
                     sbyear = self.get_year( spouse.get_birth_handle() )
-                    if abs(sbyear-byear) > hwdif:
+                    if sbyear != 0 and byear != 0 and abs(sbyear-byear) > hwdif:
                         warn.write( _("Large age difference between husband and wife: %s in family %s, and %s.\n") % (
                             idstr,family.get_gramps_id(), spouse.get_primary_name().get_name() ) )
                         

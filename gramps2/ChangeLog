@@ -1,6 +1,8 @@
 2005-09-01  Don Allingham  <don@gramps-project.org>
 	* src/ImageSelect.py: Local edit of a media Note type now 
 	brings up the Note editor instead of the media editor.
+	* src/plugins/Verify.py: don't complain about difference in
+	ages between spouses if birth year is unknown.
 
 2005-09-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/po/check_po: Support for multiple files as command line
