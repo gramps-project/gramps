@@ -8218,7 +8218,7 @@ msgstr "%(event_name)s: %(place)s%(endnotes)s. "
 
 #: plugins/DetAncestralReport.py:321 plugins/DetDescendantReport.py:344
 msgid "%(event_name)s: "
-msgstr "%(name_event)s: "
+msgstr "%(event_name)s: "
 
 #: plugins/DetAncestralReport.py:398 plugins/DetDescendantReport.py:422
 msgid "Children of %s and %s are:"

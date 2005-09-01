@@ -2297,7 +2297,7 @@ msgstr ""
 
 #: ReadGedcom.py:438
 msgid "Warning: Premature end of file at line %d.\n"
-msgstr "Warnung: Vorzeitiges Ende der Datei in Zeile %s.\n"
+msgstr "Warnung: Vorzeitiges Ende der Datei in Zeile %d.\n"
 
 #: ReadGedcom.py:464
 msgid "Warning: line %d was blank, so it was ignored.\n"
@@ -8220,7 +8220,7 @@ msgstr "1 ungültiger Geburtsereignis-Name wurde korrigiert\n"
 
 #: plugins/Check.py:775
 msgid "%d invalid birth event names were fixed\n"
-msgstr "%s ungültige Geburtsereignis-Namen wurden korrigiert\n"
+msgstr "%d ungültige Geburtsereignis-Namen wurden korrigiert\n"
 
 #: plugins/Check.py:777
 msgid "1 invalid death event name was fixed\n"
