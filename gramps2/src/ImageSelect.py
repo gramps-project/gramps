@@ -298,7 +298,8 @@ class Gallery(ImageSelect):
     def item_event(self, widget, event=None):
 
         if self.in_event:
-            return
+            return False
+        
         self.in_event = 1
         if self.button and event.type == gtk.gdk.MOTION_NOTIFY :
             if widget.drag_check_threshold(int(self.remember_x),int(self.remember_y),
@@ -311,8 +312,12 @@ class Gallery(ImageSelect):
                 for i in self.dataobj.get_media_list():
                     handle = i.get_reference_handle()
                     m = self.db.get_object_from_handle(handle)
-                
-                self.sel_obj = self.dataobj.get_media_list()[icon_index]
+
+                media_list = self.dataobj.get_media_list()
+
+                if icon_index >= len(media_list):
+                    return False
+                self.sel_obj = media_list[icon_index]
 
                 handle = self.sel_obj.get_reference_handle()
                 media_obj = self.db.get_object_from_handle(handle)
@@ -611,8 +616,20 @@ class Gallery(ImageSelect):
 
         if self.sel:
             (i,t,b,photo,oid) = self.p_map[self.sel]
-            LocalMediaProperties(photo,self.path,self,self.parent_window)
+            base_obj = self.db.get_object_from_handle(photo.get_reference_handle())
+            
+            if base_obj.get_mime_type():
+                LocalMediaProperties(photo,self.path,self,self.parent_window)
+            else:
+                import NoteEdit
+                NoteEdit.NoteEditor(base_obj,self.parent,self.parent_window,
+                                    self.note_callback)
         
+    def note_callback(self,data):
+        trans = self.db.transaction_begin()
+        self.db.commit_media_object(data,trans)
+        self.db.transaction_commit(trans,_("Edit Media Object"))
+
     def show_popup(self, photo, event):
         """Look for right-clicks on a picture and create a popup
         menu of the available actions."""
