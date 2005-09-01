@@ -1804,6 +1804,8 @@ def report(database,person,report_class,options_class,translated_name,name,categ
         except Errors.ReportError, msg:
             (m1,m2) = msg.messages()
             ErrorDialog(m1,m2)
+        except Errors.DatabaseError,msg:
+            ErrorDialog(_("Report could not be created"),str(msg))
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()
