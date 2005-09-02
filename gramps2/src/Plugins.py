@@ -484,7 +484,7 @@ def build_report_menu(top_menu,callback):
         submenu.show()
         entry.set_submenu(submenu)
         lst = hash_data[key]
-        lst.sort()
+        lst.sort(by_menu_name)
         for name in lst:
             subentry = gtk.MenuItem("%s..." % name[2])
             subentry.show()
@@ -492,6 +492,9 @@ def build_report_menu(top_menu,callback):
             submenu.append(subentry)
     top_menu.set_submenu(report_menu)
 
+
+def by_menu_name(a,b):
+    return cmp(a[2],b[2])
 
 #-------------------------------------------------------------------------
 #
