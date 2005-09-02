@@ -24,8 +24,3 @@ SUFFIXES = .po .mo
 	$(MSGFMT) temp.po -o $@
 	rm temp.po
 
-zh_CN.mo: $(top_srcdir)/src/po/zh_CN.po
-	$(ICONV) -f GB2312 -t UTF-8 $< > temp.po
-	$(MSGFMT) temp.po -o $@
-	rm temp.po
-
