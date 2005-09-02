@@ -1,4 +1,7 @@
 2005-09-01  Don Allingham  <don@gramps-project.org>
+	* doc/gramps-manual/C/preface.xml: wording fixes.
+
+2005-09-01  Don Allingham  <don@gramps-project.org>
 	* src/docgen/OpenOfficeDoc.py: fix font point size handling
 	* src/Plugins.py: sort submenu entries properly
 	* src/PeopleView.py: replace unique string with one already translated
