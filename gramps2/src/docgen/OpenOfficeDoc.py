@@ -218,8 +218,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
                 self.cntnt.write('style:font-name="Arial" ')
             else:
                 self.cntnt.write('style:font-name="Times New Roman" ')
-            self.cntnt.write('fo:font-size="%dpt" ' % font.get_size())
-            self.cntnt.write('style:font-size-asian="%dpt" ' % font.get_size())
+            self.cntnt.write('fo:font-size="%.3fpt" ' % font.get_size())
+            self.cntnt.write('style:font-size-asian="%.3fpt" ' % font.get_size())
             color = font.get_color()
             self.cntnt.write('fo:color="#%02x%02x%02x" ' % color)
             if font.get_bold():
@@ -258,8 +258,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
                 self.cntnt.write('fo:font-weight="bold" ')
             if font.get_italic():
                 self.cntnt.write('fo:font-style="italic" ')
-            self.cntnt.write('fo:font-size="%dpt" ' % font.get_size())
-            self.cntnt.write('style:font-size-asian="%dpt"/> ' % font.get_size())
+            self.cntnt.write('fo:font-size="%.3fpt" ' % font.get_size())
+            self.cntnt.write('style:font-size-asian="%.3fpt"/> ' % font.get_size())
             self.cntnt.write('</style:style>\n')
 
         for style_name in self.table_styles.keys():
@@ -578,7 +578,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
                 self.sfile.write('style:font-name="Arial" ')
             else:
                 self.sfile.write('style:font-name="Times New Roman" ')
-            self.sfile.write('fo:font-size="' + str(font.get_size()) + 'pt" ')
+            self.sfile.write('fo:font-size="%.3fpt" ' % font.get_size())
             color = font.get_color()
             self.sfile.write('fo:color="#%02x%02x%02x" ' % color)
             if font.get_bold():
@@ -941,7 +941,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('draw:style-name="%s" ' % style)
         self.cntnt.write('draw:z-index="0" ')
         self.cntnt.write('svg:width="%.3fcm" ' % size)
-        self.cntnt.write('svg:height="%dpt" ' % (font.get_size()*1.1))
+        self.cntnt.write('svg:height="%.3fpt" ' % (font.get_size()*1.1))
 
         self.cntnt.write('svg:x="%.3fcm" ' % (x-(size/2.0)))
         self.cntnt.write('svg:y="%.3fcm">\n' % float(y))
@@ -961,7 +961,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('<draw:text-box text:anchor-type="paragraph" ')
         self.cntnt.write('draw:z-index="0" ')
         self.cntnt.write('svg:width="%.3fcm" ' % size)
-        self.cntnt.write('svg:height="%dpt" ' % font.get_size())
+        self.cntnt.write('svg:height="%.3fpt" ' % font.get_size())
 
         self.cntnt.write('svg:x="%.3fcm" ' % x)
         self.cntnt.write('svg:y="%.3fcm">\n' % float(y))
