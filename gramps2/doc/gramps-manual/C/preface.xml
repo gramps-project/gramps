@@ -235,10 +235,10 @@
 	    A new report -- Statistics Chart -- has been added to &app;.
 	  </para><para>
             An overall change of the whole report framework has been
-	    acomplished.  All reports now remember their options. It
+	    accomplished.  All reports now remember their options. It
 	    is possible to generate reports from the command line,
 	    without launching the interactive &app; session. The
-	    report API is much simpler now, making it easy to write
+	    report API is much simpler now, making it easy to write a
 	    custom report. A single code instance may be used for a
 	    standalone report, a book item, and a command-line
 	    report. 
@@ -253,7 +253,7 @@
             The new command line functionality includes opening the
 	    filename argument given without any flags, as well as new
 	    flags and options for report generation.  Also, the
-	    addition of new formats leads to addition of available
+	    addition of new formats leads to additional available
 	    format options.
           </para>
         </listitem> 
@@ -271,7 +271,7 @@
             The internationalization of names have also been improved.
             Names can be grouped under a non-default
             string. Patronymic names are supported, and it is easy to
-            program new ways on displaying names, as may be required
+            program new ways of displaying names, as may be required
             by various cultures and languages.
 	  </para>
         </listitem>
@@ -286,7 +286,7 @@
 	    handler. Double-clicking on a file with any of these
 	    formats will launch &app; and open that file. &app; also
 	    added support for the recent documents
-	    functionailty. This is on both the GNOME-wide level
+	    functionality. This is on both the GNOME-wide level
 	    and within the &app;.  
           </para><para>
             The preferences are now properly stored using GConf, with

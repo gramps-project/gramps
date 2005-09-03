@@ -1,6 +1,7 @@
 2005-09-02  Don Allingham  <don@gramps-project.org>
 	* src/GrampsBSDDB.py: fixed unicode/str problem
 	* doc/gramps-manual/C/preface.xml: wording fixes.
+	* doc/gramps-manual/C/mainwin.xml: wording fixes.
 
 2005-09-01  Don Allingham  <don@gramps-project.org>
 	* src/docgen/OpenOfficeDoc.py: fix font point size handling

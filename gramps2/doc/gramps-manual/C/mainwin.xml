@@ -22,324 +22,469 @@
 
 <!-- $Id$ -->
 
-    <title>Main Window</title> 
-    <para>When you open a database (either existing or brand new), 
-    the following window is displayed.</para>
+  <title>Main Window</title> 
  
-	<!-- ==== Figure: Main Window  ==== -->
-	<figure id="mainwin-fig"> 
-	<title>GRAMPS Main Window</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/mainwin.png" format="PNG"/></imageobject>
+  <para>
+    When you open a database (either existing or brand new), the
+    following window is displayed.
+  </para>
+ 
+<!-- ==== Figure: Main Window  ==== -->
+
+  <figure id="mainwin-fig" pgwide="1"> 
+    <title>GRAMPS Main Window</title> 
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/mainwin.png" format="PNG"/>
+        </imageobject>
 	<textobject> 
-	<phrase>Shows GRAMPS main window. Contains titlebar, menubar, 
-	      toolbar, sidebar, display area, statusbar, progressbar, and
-	      scrollbars. Menubar contains File, Edit, View, Go, Bookmarks, 
-	      Reports, Tools, Settings, and Help menus.  </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+	  <phrase>
+            Shows GRAMPS main window. Contains titlebar, menubar, 
+	    toolbar, sidebar, display area, statusbar, progressbar, and
+	    scrollbars. Menubar contains File, Edit, View, Go, Bookmarks, 
+	    Reports, Tools, Settings, and Help menus.  
+          </phrase>
+	</textobject>
+      </mediaobject>
+    </screenshot>
+  </figure>
+	
+<!-- ==== End of Figure ==== -->
 
-    <para>The &app; window contains the following elements: </para>
+  <para>
+    The &app; window contains the following elements: 
+  </para>
+
+  <variablelist>
+
+    <varlistentry>
+      <term>Menubar</term>
+      <listitem>
+        <para>
+          The menubar is located at the very top of the window (right
+          below the window title) and provides access to all features
+          of &app; through its menus.
+        </para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Toolbar</term>
+      <listitem>
+        <para> 
+          The toolbar is located immediately below the menubar.  The
+          toolbar provides access to the most frequently used
+          functions of &app;. The appearance of the toolbar can be
+          adjusted in the <guilabel>Preferences</guilabel> dialog.
+        </para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Progressbar</term>
+      <listitem>
+        <para>
+          The progressbar is located in the lower left corner of the
+	  &app; window. It displays the progress of time consuming
+	  operations, such as opening and saving large data bases,
+	  importing and exporting to other formats, generating web
+	  sites, etc.
+        </para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Statusbar</term>
+      <listitem>
+        <para>
+          The statusbar is located to the right of the progressbar, on
+          the very bottom of the &app; window.  It displays
+          information about current &app; activity and contextual
+          information about the menu items.  The behavior of the
+          statusbar can be adjusted in
+          <guilabel>Preferences</guilabel> dialog.
+        </para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Display area</term>
+      <listitem>
+        <para>
+          The largest area in the center of the &app; window is the
+	  display area.  It shows certain aspects of genealogical
+	  information, depending on the currently selected View. The
+	  following six Views are available in &app;:
+  	    <itemizedlist>	
+	      <listitem><para>People View</para></listitem>
+	      <listitem><para>Family View</para></listitem>
+	      <listitem><para>Pedigree View</para></listitem>
+	      <listitem><para>Sources View</para></listitem>
+  	      <listitem><para>Places View</para></listitem>
+	      <listitem><para>Media View</para></listitem>
+ 	    </itemizedlist>
+	</para>
+      </listitem>
+    </varlistentry>
+  </variablelist> 
+
+<!-- ================ Main Window Subsection  -->
+
+  <sect1 id="gramps-views">
+    <title>Views</title>
+    <para>
+      Views are the various ways to display different aspects of
+      genealogical information, as described below. Since the relevant
+      information is very broad and non-uniform in both context and
+      modality, it is best to split its display into smaller
+      categories, uniform in context and modality. Each View
+      represents such a split and displays a certain portion of
+      overall available information. Before the detailed description
+      of available Views, let us guide you through the ways of
+      switching between the Views.
+    </para> 
+
+<!-- ================ Main Window Sub-subsection  -->
+
+    <sect2 id="view-modes">
+      <title>Switching Views and Viewing Modes</title>
+      <para>
+        Depending on the state of the <menuchoice>
+	<guimenu>View</guimenu><guimenuitem>Sidebar</guimenuitem>
+	</menuchoice> menu item, the View could be switched either in
+	the sidebar or in the notebook tabs in the top part of the
+	window.
+      </para>
+
       <variablelist>
-      <varlistentry><term>Menubar</term>
-	<listitem><para>The menubar is located at the very top of the window
-        (right below the window title) and provides access to all features of
-	&app; through its menus.</para></listitem>
-      </varlistentry>
-      <varlistentry><term>Toolbar</term>
-	<listitem><para> The toolbar is located immediately below the menubar. 
-        The toolbar provides access to the most frequently used functions 
-        of &app;. The appearance of the toolbar 
-        can be adjusted in the <guilabel>Preferences</guilabel> 
-	dialog. </para></listitem>
-      </varlistentry>
-      <varlistentry><term>Progressbar</term>
-	<listitem><para>The progressbar is located in the lower left corner 
-	of the &app; window. It displays the 
-	progress of time consuming operations, such as opening and saving 
-	large data bases, importing and exporting to other formats, generating 
-	web sites, etc. </para></listitem>
-      </varlistentry>
-      <varlistentry><term>Statusbar</term>
-	<listitem><para>The statusbar is located to the right of the 
-        progressbar, on the very bottom of the &app; window. 
-	It displays information about current &app; 
-	activity and contextual information about the menu items. 
-	The behavior of the statusbar can be adjusted in 
-	<guilabel>Preferences</guilabel> dialog. </para></listitem>
-      </varlistentry>
-      <varlistentry><term>Display area</term>
-	<listitem><para>The largest area in the center of the
-	&app; window is the display area.  
-	It shows certain aspects of genealogical information, depending on the 
-	currently selected View. The following six Views are available 
-	in &app;: 
-	<itemizedlist>	
-	<listitem><para>People View</para></listitem>
-	<listitem><para>Family View</para></listitem>
-	<listitem><para>Pedigree View</para></listitem>
-	<listitem><para>Sources View</para></listitem>
-	<listitem><para>Places View</para></listitem>
-	<listitem><para>Media View</para></listitem>
+	<varlistentry>
+          <term>
+            To switch the View while in a Sidebar mode, 
+	    click on the desired sidebar icon.
+          </term>
+	  <listitem>
 
-	</itemizedlist>
-	</para></listitem>
-      </varlistentry>
+<!-- ==== Figure: Sidebar Mode ==== -->
+
+	    <figure id="side-nofilt-fig"> 
+	      <title>Sidebar Viewing Mode</title> 
+	      <screenshot>
+                <mediaobject>
+                  <imageobject>
+                    <imagedata fileref="figures/mainwin.png" format="PNG"/>
+                   </imageobject>
+  	           <textobject> 
+	             <phrase>Shows sidebar viewing mode.</phrase>
+  	           </textobject>
+                </mediaobject>
+              </screenshot>
+            </figure>
+
+ <!-- ==== End of Figure ==== -->
+
+	  </listitem>
+        </varlistentry>
+
+	<varlistentry>
+          <term>
+            To switch the View while in a Tabbed mode, 
+	    click on the desired notebook tab.
+          </term>
+	  <listitem>
+
+ <!-- ==== Figure: Tabbed Notebook Mode ==== -->
+ 	  
+            <figure id="noside-nofilt-fig"> 
+	      <title>Tabbed Viewing Mode</title> 
+	      <screenshot>
+                <mediaobject>
+                  <imageobject>
+                    <imagedata fileref="figures/noside-nofilt.png" format="PNG"/>
+                  </imageobject>
+	          <textobject> 
+	            <phrase>Shows tabbed viewing mode.</phrase>
+  	          </textobject>
+                </mediaobject>
+              </screenshot>
+            </figure>
+<!-- ==== End of Figure ==== -->
+	  </listitem>
+        </varlistentry>
       </variablelist>
 
-    <!-- ================ Main Window Subsection  -->
-    <sect1 id="gramps-views">
-      <title>Views</title>
-      <para>Views are the various ways to display different aspects of 
-      genealogical information, as described below. Since the relevant 
-      information is very broad and non-uniform in both context and modality, 
-      it is best to split its display into smaller categories, uniform in 
-      context and modality. Each View represents such a split and displays a 
-      certain portion of overall available information. Before the detailed 
-      description of available Views, let us  guide you through the ways of 
-      switching between the Views.</para> 
-
-    <!-- ================ Main Window Sub-subsection  -->
-      <sect2 id="view-modes">
-        <title>Switching Views and Viewing Modes</title>
-	<para>Depending on the state of the <menuchoice> 
-	<guimenu>View</guimenu><guimenuitem>Sidebar</guimenuitem> 
-	</menuchoice> menu item, the View could be switched either in the 
-	sidebar or in the notebook tabs in the top part of the window. 
-	</para>
-
-	<variablelist>
-	<varlistentry><term>To switch the View while in a Sidebar mode, 
-	click on the desired sidebar icon.</term>
-	  <listitem>
-	  <!-- ==== Figure: Sidebar Mode ==== -->
-	  <figure id="side-nofilt-fig"> 
-	  <title>Sidebar Viewing Mode</title> 
-	  <screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/mainwin.png" format="PNG"/></imageobject>
-	  <textobject> 
-	  <phrase>Shows sidebar viewing mode.  </phrase>
-	  </textobject></mediaobject></screenshot></figure>
-	  <!-- ==== End of Figure ==== -->
-	  </listitem></varlistentry>
-
-	<varlistentry><term>To switch the View while in a Tabbed mode, 
-		click on the desired notebook tab.</term>
-	  <listitem>
-	  <!-- ==== Figure: Tabbed Notebook Mode ==== -->
-	  <figure id="noside-nofilt-fig"> 
-	  <title>Tabbed Viewing Mode</title> 
-	  <screenshot><mediaobject><imageobject><imagedata 
-	  	fileref="figures/noside-nofilt.png" format="PNG"/></imageobject>
-	  <textobject> 
-	  <phrase>Shows tabbed viewing mode.  </phrase>
-	  </textobject></mediaobject></screenshot></figure>
-	  <!-- ==== End of Figure ==== -->
-	  </listitem></varlistentry>
-	</variablelist>
-
-	<para>To switch between sidebar and tabbed viewing modes, 
-	choose <menuchoice> <guimenu>View</guimenu> 
-	<guimenuitem>Sidebar</guimenuitem> 
-	</menuchoice> from the &app; menu.</para>
+      <para>
+        To switch between sidebar and tabbed viewing modes, choose
+	<menuchoice> <guimenu>View</guimenu>
+	<guimenuitem>Sidebar</guimenuitem> </menuchoice> from the
+	&app; menu.
+      </para>
     
-      </sect2>
+    </sect2>
 
-    <!-- ================ Main Window Sub-subsection  -->
-      <sect2 id="people-view">
-        <title>People View</title>
-	<para>When &app; first opens a database, 
-	the View is set to the People View (<xref linkend="side-nofilt-fig"/> 
-	and <xref linkend="noside-nofilt-fig"/>). The People View lists 
-        individuals whose data is stored in the database.</para>
-        
-        <para> The individuals are arranged in a tree-like structure, 
-        according to their family names. Every family name is a node of the 
-        tree. Clicking the arrow on the left of the node will toggle its 
-        expansion state. When expanded, the node's content is listed in the 
-        window. When collapsed, the contents is rolled up and not visible. 
-        However, all the data is still intact, it is just not being displayed.
-        </para>
-        
-        <para>The People View in its default state
-        displays people's <guilabel>Names</guilabel>, 
-        &app; <guilabel>ID</guilabel> numbers, 
-        <guilabel>Gender</guilabel>, and 
-	their <guilabel>Birth</guilabel> and <guilabel>Death dates</guilabel>. 
-	The list can be ordered by any field. </para> 
+<!-- ================ Main Window Sub-subsection  -->
+
+    <sect2 id="people-view">
+      <title>People View</title>
+      <para>
+        When &app; first opens a database, the View is set to the
+	People View (<xref linkend="side-nofilt-fig"/> and <xref
+	linkend="noside-nofilt-fig"/>). The People View lists
+	individuals whose data is stored in the database.
+      </para>
+      <para> 
+        The individuals are arranged in a tree-like structure,
+        according to their family names. Every family name is a node
+        of the tree. Clicking the arrow on the left of the node will
+        toggle its expansion state. When expanded, the node's content
+        is listed in the window. When collapsed, the contents is
+        rolled up and not visible.  However, all the data is still
+        intact, it is just not being displayed.
+      </para>
+      <para>
+        The People View in its default state displays people's
+        <guilabel>Names</guilabel>, &app; <guilabel>ID</guilabel>
+        numbers, <guilabel>Gender</guilabel>, and their
+        <guilabel>Birth</guilabel> and <guilabel>Death
+        dates</guilabel>.  The list can be ordered by any field.
+      </para>
 	
-	<tip id="columns-tip"><title>Order list by selected column</title>
-	<para>To order list by the Birth date, click on the
-	<guilabel>Birth date</guilabel> column heading. To order list in 
-	reverse	(descending) order, click one more time on the desired column
-	heading. </para> </tip>
+      <tip id="columns-tip">
+        <title>Order list by selected column</title>
+	<para>
+          To order list by the Birth date, click on the
+	  <guilabel>Birth date</guilabel> column heading. To order
+	  list in reverse (descending) order, click one more time on
+	  the desired column heading.
+        </para> 
+      </tip>
 
-	<para>The columns of the view may be
-	added, removed, or reordered in a <guilabel>Column Editor Dialog</guilabel>,
-	see <xref linkend="column-editor-fig"/>. Only checked columns will be shown
-	in the view. To change their order, drag any column to its desired place inside
-	the editor. Clicking <guibutton>OK</guibutton> will reflect the changes
-	in the People View. To invoke <guilabel>Column Editor Dialog</guilabel>,
-	choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Column
+      <para>
+        The columns of the view may be added, removed, or reordered in
+	a <guilabel>Column Editor Dialog</guilabel>, see <xref
+	linkend="column-editor-fig"/>. Only checked columns will be
+	shown in the view. To change their order, drag any column to
+	its desired place inside the editor. Clicking
+	<guibutton>OK</guibutton> will reflect the changes in the
+	People View. To invoke <guilabel>Column Editor
+	Dialog</guilabel>, choose
+	<menuchoice><guimenu>Edit</guimenu><guimenuitem>Column
 	Editor</guimenuitem></menuchoice>.
-	</para>
+      </para>
 
-	<tip id="columns-tip2"><title>Other Views</title>
-	<para>The <guilabel>Column Editor</guilabel> is available
-	and works in the same way for all list views, not only People View.</para> </tip>
+      <tip id="columns-tip2">
+        <title>Other Views</title>
+	<para>
+          The <guilabel>Column Editor</guilabel> is available and
+	  works in the same way for all list views, not only People
+	  View.
+        </para> 
+      </tip>
 
-	<!-- ==== Figure: Enabled Filter ==== -->
-	<figure id="column-editor-fig"> 
+<!-- ==== Figure: Enabled Filter ==== -->
+
+      <figure id="column-editor-fig"> 
 	<title>Column Editor Dialog</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/column-editor.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows column editor dialog. </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	
+	<screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/column-editor.png" format="PNG"/>
+            </imageobject>
+	    <textobject> 
+	      <phrase>Shows column editor dialog. </phrase>
+  	    </textobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
 
-    <!-- ================ Main Window Sub-sub-subsection  -->
-        <sect3 id="filters">
-          <title>Filters</title>
-	  <para>Genealogical databases may contain huge numbers of people. 
-	  Since the long lists are hard for humans to handle,
-	  &app; provides a convenient way to limit 
-	  the scope of browsing by using the filter. To save screen space, 
-	  filter controls may be hidden, depending on the state of 
-	  <menuchoice> <guimenu>View</guimenu> 
-	  <guimenuitem>Filter</guimenuitem> </menuchoice> menu item.</para> 
+<!-- ================ Main Window Sub-sub-subsection  -->
+
+      <sect3 id="filters">
+        <title>Filters</title>
+        <para>
+          Genealogical databases may contain huge numbers of people.
+	  Since the long lists are hard for humans to handle, &app;
+	  provides a convenient way to limit the scope of browsing by
+	  using the filter. To save screen space, filter controls may
+	  be hidden, depending on the state of <menuchoice>
+	  <guimenu>View</guimenu> <guimenuitem>Filter</guimenuitem>
+	  </menuchoice> menu item.
+        </para>
 	  
-	<!-- ==== Figure: Enabled Filter ==== -->
+<!-- ==== Figure: Enabled Filter ==== -->
+
 	<figure id="side-filt-fig"> 
-	<title>Filter Controls Displayed</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/side-filt.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows filter controls.  </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+  	  <title>Filter Controls Displayed</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/side-filt.png" format="PNG"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows filter controls.</phrase>
+  	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
 
-	  <para>When &app; opens a database, the 
-	  filter is set to the trivial filter called <guilabel>All
-	  people</guilabel>, i.e. no filtering is in effect. To choose a 
-	  filter, use the pop-up <guilabel>Filter</guilabel> menu above the 
-	  people's list. Once the filter is chosen, click the 
-	  <guibutton>Apply</guibutton> button in the upper right corner of the 
-	  window. The filtering will take effect upon clicking the 
-	  <guibutton>Apply</guibutton> button. </para>
+<!-- ==== End of Figure ==== -->
+
+	<para>
+          When &app; opens a database, the filter is set to the
+	  trivial filter called <guilabel>All people</guilabel>,
+	  i.e. no filtering is in effect. To choose a filter, use the
+	  pop-up <guilabel>Filter</guilabel> menu above the people's
+	  list. Once the filter is chosen, click the
+	  <guibutton>Apply</guibutton> button in the upper right
+	  corner of the window. The filtering will take effect upon
+	  clicking the <guibutton>Apply</guibutton> button.
+         </para>
 	  
-	  <tip id="filt-tip"><title>Example filter use</title>
-	  <para>To show males only, choose 
-	  <guilabel>Males</guilabel> filter, then click the 
-	  <guibutton>Apply</guibutton> button. To cancel any filtering, set 
-	  the filter to <guilabel>Entire Database</guilabel>  
-	  and then click the <guibutton>Apply</guibutton> button.</para>
+	 <tip id="filt-tip">
+           <title>Example filter use</title>
+	   <para>
+             To show males only, choose <guilabel>Males</guilabel>
+	     filter, then click the <guibutton>Apply</guibutton>
+	     button. To cancel any filtering, set the filter to
+	     <guilabel>Entire Database</guilabel> and then click the
+	     <guibutton>Apply</guibutton> button.
+            </para>
 	  </tip>
 	  
 	  <note id="filt-note">
-	  <title>Filtering is persistent</title>
-	  <para> Even if the filter controls are not displayed 
-	  (<menuchoice> <guimenu>View</guimenu> 
-	  <guimenuitem>Filter</guimenuitem> </menuchoice> menu item is
-	  unchecked), the filtering might still be in place. In other words, 
-	  the visibility of the filter controls is not related to the actual 
-	  filtering imposed on the list.</para>
-	  
-	  <para>This may be a cause of confusion, when
-	  you enable the filtering and then remove the controls from the
-	  display. If in doubt, enable the display of filter controls by 
-	  checking <menuchoice> <guimenu>View</guimenu> 
-	  <guimenuitem>Filter</guimenuitem> </menuchoice> menu item and check 
-	  what kind of filtering is currently set.</para> 
+ 	    <title>Filtering is persistent</title>
+	    <para> 
+              Even if the filter controls are not displayed
+	      (<menuchoice> <guimenu>View</guimenu>
+	      <guimenuitem>Filter</guimenuitem> </menuchoice> menu
+	      item is unchecked), the filtering might still be in
+	      place. In other words, the visibility of the filter
+	      controls is not related to the actual filtering imposed
+	      on the list.
+            </para>
+	    <para>
+              This may be a cause of confusion, when you enable the
+	      filtering and then remove the controls from the
+	      display. If in doubt, enable the display of filter
+	      controls by checking <menuchoice>
+	      <guimenu>View</guimenu>
+	      <guimenuitem>Filter</guimenuitem> </menuchoice> menu
+	      item and check what kind of filtering is currently set.
+            </para> 
 	  </note>
         </sect3>
-
       </sect2>
       
-    <!-- ================ Main Window Sub-subsection  -->
+<!-- ================ Main Window Sub-subsection  -->
+
       <sect2 id="family-view">
         <title>Family View</title>
-	<para>Family View displays the family information of a currently 
-	selected (or Active) person. Specifically, this view shows the 
-	relationships (e.g marriages, partnerships, etc.) of the active 
-	person, his/her parents (or step parents, or guardians, etc), and 
-	his/her children (could be step children, adopted children, etc.).
-	</para>
+	<para>
+          Family View displays the family information of a currently
+	  selected (or Active) person. Specifically, this view shows
+	  the relationships (e.g marriages, partnerships, etc.) of the
+	  active person, his/her parents (or step parents, or
+	  guardians, etc), and his/her children (could be step
+	  children, adopted children, etc.).
+        </para>
 	
-	<!-- ==== Figure: Family View ==== -->
+<!-- ==== Figure: Family View ==== -->
+
 	<figure id="family-fig"> 
-	<title>Family View</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/family.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Family View.  </phrase>
-	</textobject></mediaobject></screenshot></figure>
+ 	  <title>Family View</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/family.png" format="PNG"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows Family View.</phrase>
+	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
 	<!-- ==== End of Figure ==== -->
 
-	<para>The Active person's data is in the list box in the upper left 
-	corner of the window. Directly below it, another box lists the Spouse's
-	data, for each relationship of Active person (can be more than one). 
-	The double-arrow button to the right of the Active person list box 
-	allows you to exchange the currently selected spouse (Current spouse) 
-	with the Active person. Double-clicking on the Active person allows the 
-	editing of Active person's data. Double-clicking on the Current spouse 
-	allows you to edit their relationship information. Shift-clicking on 
-        the Current spouse allows the editing of the Current spouse's data.</para>
+	<para>
+          The Active person's data is in the list box in the upper
+	  left corner of the window. Directly below it, another box
+	  lists the Spouse's data, for each relationship of Active
+	  person (can be more than one).  The double-arrow button to
+	  the right of the Active person list box allows you to
+	  exchange the currently selected spouse (Current spouse) with
+	  the Active person. Double-clicking on the Active person
+	  allows the editing of Active person's data. Double-clicking
+	  on the Current spouse allows you to edit their relationship
+	  information. Shift-clicking on the Current spouse allows the
+	  editing of the Current spouse's data.
+        </para>
+        <para> 
+           To add a new relationship, use one of the two upper buttons
+          to the right of the spouse box. Click the top one to add a
+          new person to a database and to the new relationship. Click
+          the middle one to add a person already existing in the
+          database to the new relationship.  To remove Current spouse,
+          click the lowest button (<guibutton>-</guibutton>) to the
+          right of the spouse box. Note that removing a spouse from
+          the relationship does not remove the person from the
+          database. Most of these functions are also available by
+          right-clicking into the spouse box and selecting an
+          appropriate item from the context menu.
+        </para>
+	<para>
+          The parents of both the Active person and the Current spouse
+	  are listed in the corresponding list boxes in the right-hand
+	  part of the window (Active person's parents on top, Current
+	  spouse parents on the bottom). Both list boxes have a set of
+	  three buttons on their right side. The
+	  <guibutton>+</guibutton> and <guibutton>-</guibutton>
+	  buttons allow you to add and remove parents of the Active
+	  person and the Current spouse, respectively. Clicking the
+	  right arrow button makes the family in the corresponding
+	  list box an active family.  That is, it makes the selected
+	  Father the Active person, and the selected Mother the
+	  Current spouse. Most of these functions are also available
+	  by right-clicking into the parent box and selecting an
+	  appropriate item from the context menu.
+        </para>
+	<para>
+          The bottom list box displays children of the Active person
+	  and the Current Spouse. The Children's list can be ordered
+	  by the Birth date in the usual way of clicking on the
+	  <guilabel>Birth date</guilabel> column header. In addition
+	  to the <guilabel>Name</guilabel>, <guilabel>ID</guilabel>,
+	  <guilabel>Gender</guilabel>, and <guilabel>Birth
+	  date</guilabel> columns, the list includes a
+	  <guilabel>Status</guilabel> column. The pair of status words
+	  reflect the relationship between the child and his
+	  Father/Mother (such as Birth, Adoption,
+	  etc.). <guilabel>Column Editor Dialog</guilabel> can be used
+	  to change column arrangement.  Four buttons are available on
+	  the right side of the children list box. The top (left
+	  arrow) button makes the selected child the Active
+	  person. The next two buttons add a new child to the family:
+	  the upper one adds a new person to the database and to the
+	  family, the lower one just adds a person existing in the
+	  database to the family. Finally, the lowest
+	  <guibutton>-</guibutton> button removes the selected child
+	  from the family. Note that removing a child from the family
+	  does not remove the person from the database. Most of these
+	  functions are also available by right-clicking into the
+	  children box and selecting an appropriate item from the
+	  context menu.
+        </para> 
+	<para>
+          The layout of the Family View can be switched from the
+          left-to-right arrangement (shown above) to the top-to-bottom
+          arrangement (shown below). This can be done in the
+          <guilabel>Display</guilabel> section of the
+          <guilabel>Preferences</guilabel> dialog. The top-to-bottom
+          view has the same functionality as the left-to-right view.
+        </para>
 
-        <para> To add a new relationship, use one of the two upper buttons to the
-        right of the spouse box. Click the top one to add a new person to a
-        database and to the new relationship. Click the middle one to add a
-        person already existing in the database to the new relationship. 
-	To remove Current spouse, click the lowest button 
-        (<guibutton>-</guibutton>) to the 
-	right of the spouse box. Note that removing a spouse from the
-        relationship does not remove the person from the database. Most of these
-        functions are also available by right-clicking into the spouse box and
-        selecting an appropriate item from the context menu. </para>
-	
-	<para>The parents of both the Active person and the Current spouse 
-	are listed in the corresponding list boxes in the right-hand part of 
-	the window (Active person's parents on top, Current spouse parents 
-	on the bottom). Both list boxes have a set of three buttons on their 
-	right side. The <guibutton>+</guibutton> and <guibutton>-</guibutton>
-	buttons allow you to add and remove parents of the Active person and the 
-	Current spouse, respectively. Clicking the right arrow button
-	makes the family in the corresponding list box an active family. 
-	That is, it makes the selected Father the Active person, and the 
-	selected Mother the Current spouse. Most of these
-        functions are also available by right-clicking into the parent box and
-        selecting an appropriate item from the context menu. </para>
-	
-	<para>The bottom list box displays children of the Active person and 
-	the Current  Spouse. The Children's list can be ordered by the Birth date 
-	in the usual way of clicking on the <guilabel>Birth date</guilabel> column 
-	header. In addition to the <guilabel>Name</guilabel>,
-	<guilabel>ID</guilabel>, <guilabel>Gender</guilabel>, and
-	<guilabel>Birth date</guilabel> columns, the list includes a  
-	<guilabel>Status</guilabel> column. The pair of status words reflect the
-	relationship between the child and his Father/Mother (such as Birth, Adoption, 
-	etc.). <guilabel>Column Editor Dialog</guilabel> can be used to change
-	column arrangement.
-	Four buttons are available on the right side of the 
-	children list box. The top (left arrow) button makes 
-	the selected child the Active person. The next two buttons add a new
-        child to the family: the upper one adds a new person to the database 
-        and to the family, the lower one just adds a person existing in the
-        database to the family. Finally, the lowest <guibutton>-</guibutton> 
-        button removes the selected child from the family. Note that removing 
-        a child from the family does not remove the person from the 
-        database. Most of these functions are also available by right-clicking 
-        into the children box and selecting an appropriate item from the 
-        context menu.</para> 
+<!-- ==== Figure: Family View ==== -->
 
-	<para>The layout of the Family View can be switched from the 
-        left-to-right arrangement (shown above) to the top-to-bottom 
-        arrangement (shown below). This can be done in the 
-        <guilabel>Display</guilabel> section of the 
-        <guilabel>Preferences</guilabel> dialog. The top-to-bottom view 
-        has the same functionality as the left-to-right view. </para>
-
-	<!-- ==== Figure: Family View ==== -->
 	<figure id="family-alt-fig"> 
 	<title>Alternative Family View</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
@@ -351,19 +496,27 @@
 
       </sect2>
 
-    <!-- ================ Main Window Sub-subsection  -->
+<!-- ================ Main Window Sub-subsection  -->
       <sect2 id="pedigree-view">
         <title>Pedigree View</title>
 
-	<!-- ==== Figure: Pedigree View ==== -->
+<!-- ==== Figure: Pedigree View ==== -->
+
 	<figure id="pedigree-fig"> 
-	<title>Pedigree View</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/pedigree.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Pedigree View.  </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+  	  <title>Pedigree View</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/pedigree.png" format="PNG"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows Pedigree View.</phrase>
+ 	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+<!-- ==== End of Figure ==== -->
 
 	<para>The Pedigree View helps to visualize the place of the Active 
 	person in the tree of his/her ancestors. The Pedigree View shows four 
