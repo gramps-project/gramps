@@ -397,7 +397,7 @@ class GrampsBSDDB(GrampsDbBase):
     def remove_place(self,handle,transaction):
         if not self.readonly and handle and str(handle) in self.place_map:
             if transaction != None:
-                old_data = self.place_map.get(handle)
+                old_data = self.place_map.get(str(handle))
                 transaction.add(PLACE_KEY,handle,old_data)
                 self.emit('place-delete',([handle],))
             self.place_map.delete(str(handle))
@@ -405,7 +405,7 @@ class GrampsBSDDB(GrampsDbBase):
     def remove_object(self,handle,transaction):
         if not self.readonly and handle and str(handle) in self.media_map:
             if transaction != None:
-                old_data = self.media_map.get(handle)
+                old_data = self.media_map.get(str(handle))
                 transaction.add(MEDIA_KEY,handle,old_data)
                 self.emit('media-delete',([handle],))
             self.media_map.delete(str(handle))
