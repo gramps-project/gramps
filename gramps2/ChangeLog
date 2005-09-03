@@ -1,3 +1,6 @@
+2005-09-03  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/po/es.po: Translation update
+
 2005-09-02  Don Allingham  <don@gramps-project.org>
 	* src/GrampsBSDDB.py: fixed unicode/str problem
 	* doc/gramps-manual/C/preface.xml: wording fixes.
