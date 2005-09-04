@@ -2901,15 +2901,15 @@ msgstr "%(male_name)s døde %(death_date)s."
 
 #: ReportUtils.py:1265
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)s år."
+msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d år."
 
 #: ReportUtils.py:1270
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)s måneder."
+msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d måneder."
 
 #: ReportUtils.py:1275
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)s dager."
+msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d dager."
 
 #: ReportUtils.py:1282
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s."
@@ -3065,15 +3065,15 @@ msgstr "%(female_name)s døde i en alder av %(age)d dager."
 
 #: ReportUtils.py:1543
 msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(male_name)s ble begravet %(birth_date)s, %(birth_place)s."
+msgstr "%(male_name)s ble begravet %(burial_date)s, %(burial_place)s."
 
 #: ReportUtils.py:1548
 msgid "%(male_name)s was buried on %(burial_date)s."
-msgstr "%(male_name)s ble begravet %(birth_date)s."
+msgstr "%(male_name)s ble begravet %(burial_date)s."
 
 #: ReportUtils.py:1552
 msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(male_name)s ble begravet %(month_year)s, %(birth_place)s."
+msgstr "%(male_name)s ble begravet %(month_year)s, %(burial_place)s."
 
 #: ReportUtils.py:1557
 msgid "%(male_name)s was buried in %(month_year)s."
@@ -3081,7 +3081,7 @@ msgstr "%(male_name)s ble begravet %(month_year)s."
 
 #: ReportUtils.py:1561
 msgid "%(male_name)s was buried in %(burial_place)s."
-msgstr "%(male_name)s ble begravet %(birth_place)s."
+msgstr "%(male_name)s ble begravet %(burial_place)s."
 
 #: ReportUtils.py:1564
 msgid "%(male_name)s was buried."
@@ -3089,15 +3089,15 @@ msgstr "%(male_name)s ble begravet."
 
 #: ReportUtils.py:1569
 msgid "%(female_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(female_name)s ble begravet %(birth_date)s, %(birth_place)s."
+msgstr "%(female_name)s ble begravet %(burial_date)s, %(burial_place)s."
 
 #: ReportUtils.py:1574
 msgid "%(female_name)s was buried on %(burial_date)s."
-msgstr "%(female_name)s ble begravet %(birth_date)s."
+msgstr "%(female_name)s ble begravet %(burial_date)s."
 
 #: ReportUtils.py:1578
 msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(female_name)s ble begravet %(month_year)s, %(birth_place)s."
+msgstr "%(female_name)s ble begravet %(month_year)s, %(burial_place)s."
 
 #: ReportUtils.py:1583
 msgid "%(female_name)s was buried in %(month_year)s."
@@ -3105,7 +3105,7 @@ msgstr "%(female_name)s ble begravet %(month_year)s."
 
 #: ReportUtils.py:1587
 msgid "%(female_name)s was buried in %(burial_place)s."
-msgstr "%(female_name)s ble begravet %(birth_place)s."
+msgstr "%(female_name)s ble begravet %(burial_place)s."
 
 #: ReportUtils.py:1590
 msgid "%(female_name)s was buried."

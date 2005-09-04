@@ -9530,7 +9530,7 @@ msgstr "Meervoudig ouderschap voor %s.\n"
 
 #: plugins/Verify.py:277
 msgid "Married often: %(male_name)s married %(nfam)d times.\n"
-msgstr "Vaak getrouwd: %s(male_name)s is %(nfam)d keer getrouwd.\n"
+msgstr "Vaak getrouwd: %(male_name)s is %(nfam)d keer getrouwd.\n"
 
 #: plugins/Verify.py:280
 msgid "Married often: %(female_name)s married %(nfam)d times.\n"

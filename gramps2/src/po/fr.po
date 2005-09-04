@@ -1383,7 +1383,7 @@ msgstr "Assortir les ascendants d'un individu aux résultats du filtrage"
 #: GenericFilter.py:911
 #, fuzzy
 msgid "People with a common ancestor with <person>"
-msgstr "Personnes dont l'ancêtre commun est %s"
+msgstr "Personnes dont l'ancêtre commun est <personne>"
 
 #: GenericFilter.py:913
 msgid "Matches people that have a common ancestor with a specified person"
@@ -2026,7 +2026,7 @@ msgid ""
 "the name of %(group_name)s, or just mapping this particular name."
 msgstr ""
 "Vous pouvez choisir de regrouper toutes les personnes du nom de %(surname)s "
-"avec le nom de %(group_name), ou juste d'associer ce nom en particulier."
+"avec le nom de %(group_name)s, ou juste d'associer ce nom en particulier."
 
 #: NameEdit.py:300
 msgid "Group all"
@@ -7190,7 +7190,7 @@ msgstr ""
 #: gramps_main.py:1984 gramps_main.py:1986
 #, fuzzy
 msgid "Could not create example database"
-msgstr "Impossible de créer %s"
+msgstr "N'a pas pu créer la base de données d'exemple"
 
 #: gramps_main.py:1963 gramps_main.py:1967 gramps_main.py:1971
 #, fuzzy
@@ -8069,7 +8069,7 @@ msgstr "Encore à propos de %(person_name)s :"
 #: plugins/DetAncestralReport.py:278 plugins/DetDescendantReport.py:301
 #, fuzzy
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
-msgstr "%(event_name)s : %(date)s%(endnotes)s"
+msgstr "%(name_kind)s : %(name)s%(endnotes)s"
 
 #: plugins/DetAncestralReport.py:305 plugins/DetDescendantReport.py:328
 #: plugins/FtmStyleAncestors.py:255 plugins/FtmStyleDescendants.py:288
@@ -8092,7 +8092,7 @@ msgstr "%(event_name)s : %(place)s%(endnotes)s"
 #: plugins/DetAncestralReport.py:321 plugins/DetDescendantReport.py:344
 #, fuzzy
 msgid "%(event_name)s: "
-msgstr "%(female_name)s."
+msgstr "%(event_name)s: "
 
 #: plugins/DetAncestralReport.py:398 plugins/DetDescendantReport.py:422
 msgid "Children of %s and %s are:"
@@ -9373,7 +9373,7 @@ msgstr "_Copyright :"
 #: plugins/NavWebPage.py:2118
 #, fuzzy
 msgid "Page Generation"
-msgstr "%s Génération"
+msgstr "Génération De Page"
 
 #: plugins/NavWebPage.py:2141
 msgid "Home Media/Note ID"
