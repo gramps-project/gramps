@@ -46,20 +46,19 @@ class DescendLine(GraphLayout):
 
     def layout(self):
         self.elist = [(0,0)]
-        self.space_for(self.person_handle)
+        try:
+            self.space_for(self.person_handle)
+        except RuntimeError,msg:
+            person = self.database.get_person_from_handle(self.person_handle)
+            raise Errors.DatabaseError(
+                _("Database error: %s is defined as his or her own ancestor") %
+                NameDisplay.displayer.display(person))
+        
         return (self.v,self.e[1:])
     
-    def space_for(self,person_handle,level=1.0,pos=1.0, current=None):
-        if current == None:
-            current = sets.Set()
+    def space_for(self,person_handle,level=1.0,pos=1.0):
 
         person = self.database.get_person_from_handle(person_handle)
-
-        if person_handle not in current:
-            current.add(person_handle)
-        else:
-            raise Errors.DatabaseError(_("Database error: %s is defined as his or her own ancestor") %
-                                       NameDisplay.displayer.display(person))
             
         last = self.elist[-1]
         self.elist.append((level,pos))
@@ -73,7 +72,7 @@ class DescendLine(GraphLayout):
         for family_handle in person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
             for child_handle in family.get_child_handle_list():
-                self.space_for(child_handle,level+1.0,pos,current)
+                self.space_for(child_handle,level+1.0,pos)
                 pos = pos + max(self.depth(child_handle),1)
                 if pos > self.maxy:
                     self.maxy = pos

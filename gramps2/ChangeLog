@@ -1,3 +1,7 @@
+2005-09-03  Don Allingham  <don@gramps-project.org>
+	* src/GraphLayout.py: use recursion limit to detect db loops
+	* src/Utils.py: use recursion limit to detect db loops
+
 2005-09-03  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/po/es.po: Translation update
 

@@ -53,6 +53,7 @@ import const
 import GrampsMime
 import NameDisplay
 import Date
+import Errors
 
 #-------------------------------------------------------------------------
 #
@@ -515,17 +516,7 @@ def probably_alive(person,db,current_year=None,limit=0):
     max_generation = 60
     max_age_difference = 60
 
-    def descendants_too_old (person, years, current=None):
-        if current == None:
-            current = sets.Set()
-
-        if person.handle not in current:
-            current.add(person.handle)
-        else:
-            import Errors
-            raise Errors.DatabaseError(_("Database error: %s is defined as his or her own ancestor") %
-                                       NameDisplay.displayer.display(person))
-        
+    def descendants_too_old (person, years):
         for family_handle in person.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
             family_list = family.get_child_handle_list()
@@ -550,17 +541,21 @@ def probably_alive(person,db,current_year=None,limit=0):
                         if not not_too_old (dobj,current_year):
                             return True
 
-                if descendants_too_old (child, years + min_generation,current):
+                if descendants_too_old (child, years + min_generation):
                     return True
                 
         return False
 
     # If there are descendants that are too old for the person to have
     # been alive in the current year then they must be dead.
-    if descendants_too_old (person, min_generation):
-        #print person.get_primary_name().get_name(), " is dead because descendants are too old."
-        return False
 
+    try:
+        if descendants_too_old (person, min_generation):
+            return False
+    except RuntimeError,msg:
+        raise Errors.DatabaseError(
+            _("Database error: %s is defined as his or her own ancestor") %
+            NameDisplay.displayer.display(person))
 
     average_generation_gap = 20
 
