@@ -119,6 +119,7 @@ class DateParser:
         unicode(locale.nl_langinfo(locale.ABMON_12),_codeset).lower(): 12,
        }
 
+    # modifiers before the date
     modifier_to_int = {
         'before' : Date.MOD_BEFORE, 'bef'    : Date.MOD_BEFORE,
         'bef.'   : Date.MOD_BEFORE, 'after'  : Date.MOD_AFTER,
@@ -127,6 +128,9 @@ class DateParser:
         'abt'    : Date.MOD_ABOUT,  'circa'  : Date.MOD_ABOUT,
         'c.'     : Date.MOD_ABOUT,  'around' : Date.MOD_ABOUT,
         }
+    # in some languages some of above listed modifiers are after the date,
+    # in that case the subclass should put them into this dictionary instead
+    modifier_after_to_int = {}
 
     hebrew_to_int = {
         "tishri"  : 1,   "heshvan" : 2,   "kislev"  : 3,
@@ -239,6 +243,9 @@ class DateParser:
         self._mod_str  = '(' + '|'.join(
             [ key.replace('.','\.') for key in self.modifier_to_int.keys() ]
             ) + ')'
+        self._mod_after_str  = '(' + '|'.join(
+            [ key.replace('.','\.') for key in self.modifier_after_to_int.keys() ]
+            ) + ')'
 
         # Need to reverse-sort the keys, so that April matches before Apr does.
         # Otherwise, 'april 2000' would be matched as 'apr' + garbage ('il 2000')
@@ -263,6 +270,8 @@ class DateParser:
         self._range    = re.compile("(bet|bet.|between)\s+(?P<start>.+)\s+and\s+(?P<stop>.+)",
                            re.IGNORECASE)
         self._modifier = re.compile('%s\s+(.*)' % self._mod_str,
+                           re.IGNORECASE)
+        self._modifier_after = re.compile('(.*)\s+%s' % self._mod_after_str,
                            re.IGNORECASE)
         self._abt2     = re.compile('<(.*)>',re.IGNORECASE)
         self._text     = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % self._mon_str,
@@ -493,11 +502,23 @@ class DateParser:
         
         On success, set the date and return 1. On failure return 0.
         """
+        # modifiers before the date
         match = self._modifier.match(text)
         if match:
             grps = match.groups()
             start = self._parse_subdate(grps[1])
             mod = self.modifier_to_int.get(grps[0].lower(),Date.MOD_NONE)
+            if bc:
+                date.set(qual,mod,cal,self.invert_year(start))
+            else:
+                date.set(qual,mod,cal,start)
+            return True
+        # modifiers after the date
+        match = self._modifier_after.match(text)
+        if match:
+            grps = match.groups()
+            start = self._parse_subdate(grps[0])
+            mod = self.modifier_after_to_int.get(grps[1].lower(),Date.MOD_NONE)
             if bc:
                 date.set(qual,mod,cal,self.invert_year(start))
             else:

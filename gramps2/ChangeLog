@@ -1,3 +1,10 @@
+2005-09-04  Eero Tamminen  <eerot@sf>
+	* src/DateParser.py: Added support for modifiers being both
+	  before and after a date
+	* src/dates/Date_fi.py: Completed first version of Finnish
+	  date handling
+	* src/dates/Makefile.am: Install Date_fi.py
+
 2005-09-03  Don Allingham  <don@gramps-project.org>
 	* src/GraphLayout.py: use recursion limit to detect db loops
 	* src/Utils.py: use recursion limit to detect db loops
