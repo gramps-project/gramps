@@ -98,7 +98,7 @@
       <screenshot>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="figures/researcher.png" format="PNG"/>
+            <imagedata fileref="figures/researcher.png" format="PNG" width="510" depth="369"/>
           </imageobject>
 	  <textobject> 
 	    <phrase>Shows Researcher Information Window. </phrase>
