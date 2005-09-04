@@ -327,6 +327,7 @@ class GrampsParser:
             "status"     : (self.start_status, None),
             "sealed_to"  : (self.start_sealed_to, None),
             "coord"      : (self.start_coord,None),
+            "patronymic" : (None, self.stop_patronymic),
             "pos"        : (self.start_pos, None),
             "postal"     : (None, self.stop_postal),
             "researcher" : (None, self.stop_research),
@@ -1248,6 +1249,10 @@ class GrampsParser:
     def stop_suffix(self,tag):
         if self.name:
             self.name.set_suffix(tag)
+
+    def stop_patronymic(self,tag):
+        if self.name:
+            self.name.set_patronymic(tag)
 
     def stop_title(self,tag):
         if self.name:

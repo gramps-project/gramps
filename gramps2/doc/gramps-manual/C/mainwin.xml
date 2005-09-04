@@ -36,7 +36,7 @@
     <screenshot>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="figures/mainwin.png" format="PNG"/>
+          <imagedata fileref="figures/mainwin.png" format="PNG" width="500" depth="352"/>
         </imageobject>
 	<textobject> 
 	  <phrase>
