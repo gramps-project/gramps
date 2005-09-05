@@ -1,3 +1,6 @@
+2005-09-05  Eero Tamminen  <eerot@sf>
+	* src/DateParser.py: Fixed what I broke
+
 2005-09-04  Don Allingham  <don@gramps-project.org>
 	* NEWS: update for 2.0.7 release
 	* src/DateDisplay.py: handle BCE better

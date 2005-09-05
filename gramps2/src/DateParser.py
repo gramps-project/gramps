@@ -514,16 +514,17 @@ class DateParser:
                 date.set(qual,mod,cal,start)
             return True
         # modifiers after the date
-        match = self._modifier_after.match(text)
-        if match:
-            grps = match.groups()
-            start = self._parse_subdate(grps[0])
-            mod = self.modifier_after_to_int.get(grps[1].lower(),Date.MOD_NONE)
-            if bc:
-                date.set(qual,mod,cal,self.invert_year(start))
-            else:
-                date.set(qual,mod,cal,start)
-            return True
+        if self.modifier_after_to_int:
+            match = self._modifier_after.match(text)
+            if match:
+                grps = match.groups()
+                start = self._parse_subdate(grps[0])
+                mod = self.modifier_after_to_int.get(grps[1].lower(),Date.MOD_NONE)
+                if bc:
+                    date.set(qual,mod,cal,self.invert_year(start))
+                else:
+                    date.set(qual,mod,cal,start)
+                return True
         match = self._abt2.match(text)
         if match:
             grps = match.groups()
