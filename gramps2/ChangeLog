@@ -1,4 +1,5 @@
 2005-09-04  Don Allingham  <don@gramps-project.org>
+	* NEWS: update for 2.0.7 release
 	* src/DateDisplay.py: handle BCE better
 	* src/ReadXML.py: read the patronymic portion of a name properly.
 
