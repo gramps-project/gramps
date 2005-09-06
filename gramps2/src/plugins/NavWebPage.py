@@ -782,9 +782,12 @@ class MediaPage(BasePage):
                 dirname = tempfile.mkdtemp()
                 thmb_path = os.path.join(dirname,"temp.png")
                 if ImgManip.run_thumbnailer(mime_type, photo.get_path(), thmb_path, 320):
-                    path = "%s/%s.png" % (self.build_path(photo.handle,"preview"),photo.handle)
-                    self.store_file(archive, self.html_dir, thmb_path, path)
-                    os.unlink(thmb_path)
+                    try:
+                        path = "%s/%s.png" % (self.build_path(photo.handle,"preview"),photo.handle)
+                        self.store_file(archive, self.html_dir, thmb_path, path)
+                        os.unlink(thmb_path)
+                    except IOError:
+                        path = os.path.join('images','document.png')
                 else:
                     path = os.path.join('images','document.png')
                 os.rmdir(dirname)

@@ -1,3 +1,8 @@
+2005-09-05  Don Allingham  <don@gramps-project.org>
+	* NEWS: update for 2.0.8
+	* src/data/Makefile.am: install main6.css
+	* src/plugins/NavWebPage.py: Catch exception if thumbnailer fails.
+
 2005-09-05  Eero Tamminen  <eerot@sf>
 	* src/DateParser.py: Fixed what I broke
 
