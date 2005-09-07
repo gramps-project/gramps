@@ -26,7 +26,7 @@
  
   <para>
     When you open a database (either existing or brand new), the
-    following window is displayed.
+    following window is displayed:
   </para>
  
 <!-- ==== Figure: Main Window  ==== -->
@@ -36,7 +36,7 @@
     <screenshot>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="figures/mainwin.png" format="PNG" width="500" depth="352"/>
+          <imagedata fileref="figures/mainwin.png" format="PNG" width="500" depth="352" scale="70"/>
         </imageobject>
 	<textobject> 
 	  <phrase>
@@ -135,13 +135,13 @@
     <title>Views</title>
     <para>
       Views are the various ways to display different aspects of
-      genealogical information, as described below. Since the relevant
-      information is very broad and non-uniform in both context and
-      modality, it is best to split its display into smaller
-      categories, uniform in context and modality. Each View
-      represents such a split and displays a certain portion of
-      overall available information. Before the detailed description
-      of available Views, let us guide you through the ways of
+      genealogical information. It is best to split the relevent
+      informatin display into smaller categories, uniform in context
+      and modality; since it is very broad and non-uniform in both
+      cntext and modality. Each View represents such a split and
+      displays a certain portion of overall available
+      information. Before reviewing the detailed description of
+      available Views, you will be guided through the ways of
       switching between the Views.
     </para> 
 
@@ -172,7 +172,7 @@
 	      <screenshot>
                 <mediaobject>
                   <imageobject>
-                    <imagedata fileref="figures/mainwin.png" format="PNG"/>
+                    <imagedata fileref="figures/mainwin.png" format="PNG" width="500" depth="352" scale="75"/>
                    </imageobject>
   	           <textobject> 
 	             <phrase>Shows sidebar viewing mode.</phrase>
@@ -200,7 +200,7 @@
 	      <screenshot>
                 <mediaobject>
                   <imageobject>
-                    <imagedata fileref="figures/noside-nofilt.png" format="PNG"/>
+                    <imagedata fileref="figures/noside-nofilt.png" format="PNG" width="500" depth="393" scale="75"/>
                   </imageobject>
 	          <textobject> 
 	            <phrase>Shows tabbed viewing mode.</phrase>
@@ -237,12 +237,12 @@
         according to their family names. Every family name is a node
         of the tree. Clicking the arrow on the left of the node will
         toggle its expansion state. When expanded, the node's content
-        is listed in the window. When collapsed, the contents is
-        rolled up and not visible.  However, all the data is still
-        intact, it is just not being displayed.
+        is listed in the window. When collapsed, the content is
+        rolled up and not visible.  All the data is still
+        intact. It is just not being displayed.
       </para>
       <para>
-        The People View in its default state displays people's
+        The People View, in its default state, displays people's
         <guilabel>Names</guilabel>, &app; <guilabel>ID</guilabel>
         numbers, <guilabel>Gender</guilabel>, and their
         <guilabel>Birth</guilabel> and <guilabel>Death
@@ -264,7 +264,7 @@
 	a <guilabel>Column Editor Dialog</guilabel>, see <xref
 	linkend="column-editor-fig"/>. Only checked columns will be
 	shown in the view. To change their order, drag any column to
-	its desired place inside the editor. Clicking
+	its desired location inside the editor. Clicking
 	<guibutton>OK</guibutton> will reflect the changes in the
 	People View. To invoke <guilabel>Column Editor
 	Dialog</guilabel>, choose
@@ -288,7 +288,7 @@
 	<screenshot>
           <mediaobject>
             <imageobject>
-              <imagedata fileref="figures/column-editor.png" format="PNG"/>
+              <imagedata fileref="figures/column-editor.png" format="PNG" width="444" depth="437" scale="75"/>
             </imageobject>
 	    <textobject> 
 	      <phrase>Shows column editor dialog. </phrase>
@@ -303,7 +303,7 @@
         <title>Filters</title>
         <para>
           Genealogical databases may contain huge numbers of people.
-	  Since the long lists are hard for humans to handle, &app;
+	  Since the long lists are hard for humans to manage, &app;
 	  provides a convenient way to limit the scope of browsing by
 	  using the filter. To save screen space, filter controls may
 	  be hidden, depending on the state of <menuchoice>
@@ -318,7 +318,7 @@
 	  <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata fileref="figures/side-filt.png" format="PNG"/>
+                <imagedata fileref="figures/side-filt.png" format="PNG" width="500" depth="352" scale="75"/>
               </imageobject>
 	      <textobject> 
 	        <phrase>Shows filter controls.</phrase>
@@ -382,7 +382,7 @@
 	<para>
           Family View displays the family information of a currently
 	  selected (or Active) person. Specifically, this view shows
-	  the relationships (e.g marriages, partnerships, etc.) of the
+	  the relationships (e.g. marriages, partnerships, etc.) of the
 	  active person, his/her parents (or step parents, or
 	  guardians, etc), and his/her children (could be step
 	  children, adopted children, etc.).
@@ -395,7 +395,7 @@
 	  <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata fileref="figures/family.png" format="PNG"/>
+                <imagedata fileref="figures/family.png" format="PNG" width="500" depth="352" scale="75"/>
               </imageobject>
 	      <textobject> 
 	        <phrase>Shows Family View.</phrase>
@@ -486,13 +486,20 @@
 <!-- ==== Figure: Family View ==== -->
 
 	<figure id="family-alt-fig"> 
-	<title>Alternative Family View</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/family-alt.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Alternative Family View.  </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+	  <title>Alternative Family View</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/family-alt.png" format="PNG" width="500" depth="352" scale="75"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows Alternative Family View.</phrase>
+  	      </textobject>
+            </mediaobject> 
+          </screenshot>
+        </figure>
+
+<!-- ==== End of Figure ==== -->
 
       </sect2>
 
@@ -507,7 +514,7 @@
 	  <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata fileref="figures/pedigree.png" format="PNG"/>
+                <imagedata fileref="figures/pedigree.png" format="PNG" width="500" depth="352" scale="75"/>
               </imageobject>
 	      <textobject> 
 	        <phrase>Shows Pedigree View.</phrase>
@@ -518,195 +525,285 @@
 
 <!-- ==== End of Figure ==== -->
 
-	<para>The Pedigree View helps to visualize the place of the Active 
-	person in the tree of his/her ancestors. The Pedigree View shows four 
-	generations, going back in time from the Active person
-	<guilabel>1</guilabel> to his/her parents <guilabel>2</guilabel>, 
-	to grandparents <guilabel>3</guilabel>, to great-grandparents 
-	<guilabel>4</guilabel>. 
-	Each person is denoted by a box bearing the person's name. 
-	The two lines that converge on the box represent ties with the 
-	person's Father (top line) and mother (bottom line). Solid lines 
-	represent birth relations, while dashed lines represent non-birth 
-	relations (such as adoption, step-parenthood, guardianship, etc.). 
-	When the mouse moves over the white box, it expands to display the 
-	corresponding person's dates of birth and death. When the mouse is 
-	placed over the family line, the line becomes highlighted to indicate 
-	an active link: double-clicking on the line makes the corresponding 
-	ancestor the Active person. The display in that case is re-adjusted 
-	to show four generations, starting from the newly selected Active 
-	person. </para>
+	<para>
+
+          The Pedigree View helps to visualize the place of the Active
+	  person in the tree of his/her ancestors. The Pedigree View
+	  shows four generations, going back in time from the Active
+	  person <guilabel>1</guilabel> to his/her parents
+	  <guilabel>2</guilabel>, to grandparents
+	  <guilabel>3</guilabel>, to great-grandparents
+	  <guilabel>4</guilabel>.  Each person is denoted by a box
+	  bearing the person's name.  The two lines that converge on
+	  the box represent ties with the person's Father (top line)
+	  and mother (bottom line). Solid lines represent birth
+	  relations, while dashed lines represent non-birth relations
+	  (such as adoption, step-parenthood, guardianship, etc.).
+	  When the mouse moves over the white box, it expands to
+	  display the corresponding person's dates of birth and
+	  death. When the mouse is placed over the family line, the
+	  line becomes highlighted to indicate an active link:
+	  double-clicking on the line makes the corresponding ancestor
+	  the Active person. The display in that case is re-adjusted
+	  to show four generations, starting from the newly selected
+	  Active person.
+
+        </para>
 	
-	<!-- ==== Figure: Pedigree View ==== -->
+<!-- ==== Figure: Pedigree View ==== -->
+
 	<figure id="pedigree-child-cut-fig"> 
-	<title>Children Menu</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/pedigree-child-cut.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Children Menu in Pedigree View.  </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+	  <title>Children Menu</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/pedigree-child-cut.png" format="PNG" width="303" depth="195" scale="75"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows Children Menu in Pedigree View.</phrase>
+ 	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
 
-	<para>The left-hand side of the window shows the left arrow button. 
-	Upon clicking, the button expands to the menu listing the children 
-	of the Active person. Selecting the menu item makes the corresponding 
-	child the Active person. The appearance of the children's names 
-	in the menu serves to differentiate the "dead ends" of the tree from 
-	the continuing branches as follows. The children who have children 
-	appear in the menu in the boldface and italic typeset, while the 
-	children without children ("dead ends") appear in a regular 
-	font. If the Active person has a single child, no menu will be 
-	displayed (since there is no choice) and the child will become 
-	the Active person upon clicking	the arrow button. </para>
+<!-- ==== End of Figure ==== -->
 
-	<para>The right-hand side of the window shows two right arrow buttons. 
-	When the top button is clicked, the Father of the Active person 
-	becomes the Active person. Clicking the bottom button makes the Mother of 
-	the Active person the Active person. Again, the display is re-adjusted 
-	to show four generations, starting from the newly selected Active 
-	person.</para> 
+	<para>
 
-	<!-- ==== Figure: Pedigree View ==== -->
+          The left-hand side of the window shows the left arrow
+	  button.  Upon clicking, the button expands to the menu
+	  listing the children of the Active person. Selecting the
+	  menu item makes the corresponding child the Active
+	  person. The appearance of the children's names in the menu
+	  serves to differentiate the "dead ends" of the tree from the
+	  continuing branches as follows. The children who have
+	  children appear in the menu in the boldface and italic
+	  typeset, while the children without children ("dead ends")
+	  appear in a regular font. If the Active person has a single
+	  child, no menu will be displayed (since there is no choice)
+	  and the child will become the Active person upon clicking
+	  the arrow button.
+
+       </para><para>
+
+          The right-hand side of the window shows two right arrow
+	  buttons.  When the top button is clicked, the Father of the
+	  Active person becomes the Active person. Clicking the bottom
+	  button makes the Mother of the Active person the Active
+	  person. Again, the display is re-adjusted to show four
+	  generations, starting from the newly selected Active person.
+
+        </para> 
+
+<!-- ==== Figure: Pedigree View ==== -->
+
 	<figure id="pedigree-siblings-cut-fig"> 
-	<title>Personal Context Menu</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/pedigree-siblings-cut.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Context Menu in Pedigree View.  </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+ 	  <title>Personal Context Menu</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/pedigree-siblings-cut.png" format="PNG" width="500" depth="253" scale="75"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows Context Menu in Pedigree View.</phrase>
+ 	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+<!-- ==== End of Figure ==== -->
 	
 	<para>
-	Right-clicking on any person's box in the Pedigree View will bring up the
-	context menu. Among other useful items, the context menu has submenus
-	listing <guilabel>Spouses</guilabel>, <guilabel>Siblings</guilabel>,
-	<guilabel>Children</guilabel>, and <guilabel>Parents</guilabel>
-	of that person. Insensitive (grayed out) submenus indicate the absence
-	of the data in the appropriate category. Similarly to the children menu above,
-	children's and parents' menus distinguish continuing lines from dead ends.
+
+	  Right-clicking on any person's box in the Pedigree View will
+	  bring up the context menu. Among other useful items, the
+	  context menu has submenus listing
+	  <guilabel>Spouses</guilabel>, <guilabel>Siblings</guilabel>,
+	  <guilabel>Children</guilabel>, and
+	  <guilabel>Parents</guilabel> of that person. Insensitive
+	  (grayed out) submenus indicate the absence of the data in
+	  the appropriate category. Similarly to the children menu
+	  above, children's and parents' menus distinguish continuing
+	  lines from dead ends.
+
 	</para>
 
 
-	<!-- ==== Figure: Pedigree View ==== -->
+<!-- ==== Figure: Pedigree View ==== -->
+
 	<figure id="pedigree-anchor-fig"> 
-	<title>Pedigree View with the Anchor</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/pedigree-anchor.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Pedigree View with the anchor set.  </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+	  <title>Pedigree View with the Anchor</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/pedigree-anchor.png" format="PNG" width="500" depth="353" scale="75"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows Pedigree View with the anchor set.</phrase>
+	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+<!-- ==== End of Figure ==== -->
     
-    <para>An additional advanced scheme of labeling generations exists in 
-    Pedigree View. It becomes available by setting the anchor on some active 
-    person. If the anchor is set, the generations are labeled as follows. 
-    The anchor
-    person (and his/her generation) is labeled as <guilabel>0</guilabel>. 
-    The ancestor generations are numbered with positive integers 
-    (<guilabel>1</guilabel>, <guilabel>2</guilabel>, <guilabel>3</guilabel>, 
-    etc.) while the descendant generations are numbered with negative integers
-    (<guilabel>-1</guilabel>, <guilabel>-2</guilabel>, <guilabel>-3</guilabel>, 
-    etc.). In all cases, the number represents the number of generations 
-    between the labeled generation and the anchor person. In this mode, 
-    you can travel along the extensive pedigree line and see the number 
-    of generations counting from the anchor person.</para>
-    
-    <para>To set the anchor, select the <guilabel>Set anchor</guilabel> menu
-    item from the right-click context menu, when the desired person is the 
-    Active person in the Pedigree View. The labels will change immediately, 
-    and the name of the anchor person will appear at the lower left corner
-    of the display area. 
-    The set anchor person will stay in effect until either the anchor is 
-    removed (by selecting the <guilabel>Remove anchor</guilabel> item from the 
-    context menu), or until the active person chosen is unrelated to the anchor 
-    person. The latter move can be made using extensive navigation tools 
-    available in &app;, see <xref linkend="gramps-nav"/> for the detailed 
-    reference. 
-    </para>
+        <para>
+
+          An additional advanced scheme of labeling generations exists
+          in Pedigree View. It becomes available by setting the anchor
+          on some active person. If the anchor is set, the generations
+          are labeled as follows.  The anchor person (and his/her
+          generation) is labeled as <guilabel>0</guilabel>.  The
+          ancestor generations are numbered with positive integers
+          (<guilabel>1</guilabel>, <guilabel>2</guilabel>,
+          <guilabel>3</guilabel>, etc.) while the descendant
+          generations are numbered with negative integers
+          (<guilabel>-1</guilabel>, <guilabel>-2</guilabel>,
+          <guilabel>-3</guilabel>, etc.). In all cases, the number
+          represents the number of generations between the labeled
+          generation and the anchor person. In this mode, you can
+          travel along the extensive pedigree line and see the number
+          of generations counting from the anchor person.
+
+        </para><para>
+
+          To set the anchor, select the <guilabel>Set
+          anchor</guilabel> menu item from the right-click context
+          menu, when the desired person is the Active person in the
+          Pedigree View. The labels will change immediately, and the
+          name of the anchor person will appear at the lower left
+          corner of the display area.  The set anchor person will stay
+          in effect until either the anchor is removed (by selecting
+          the <guilabel>Remove anchor</guilabel> item from the context
+          menu), or until the active person chosen is unrelated to the
+          anchor person. The latter move can be made using extensive
+          navigation tools available in &app;, see <xref
+          linkend="gramps-nav"/> for the detailed reference.
+
+        </para>
 
       </sect2>
 
-    <!-- ================ Main Window Sub-subsection  -->
+<!-- ================ Main Window Sub-subsection  -->
+
       <sect2 id="sources-view">
         <title>Sources View</title>
 
-	<!-- ==== Figure: Sources View ==== -->
+<!-- ==== Figure: Sources View ==== -->
+
 	<figure id="sources-fig"> 
-	<title>Sources View</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/sources.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Sources View.  </phrase>
-	</textobject></mediaobject></screenshot></figure>
+	  <title>Sources View</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/sources.png" format="PNG" width="500" depth="353" scale="75"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows Sources View.</phrase>
+	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>The Sources View lists the sources of information stored in the 
-	database. This can include various documents (birth, death, and 
-	marriage certificates, etc.), books, films, journals, private diaries, 
-	i.e. virtually anything that can be classified as a source of 
-	information. The sources can be used as a reference for any event 
-	stored in the database. The Source View lists the 
-	<guilabel>Title</guilabel>, <guilabel>ID</guilabel>, and the 
-	<guilabel>Author</guilabel> of the source. Any column can be 
-	used for sorting the list. The usual rules apply: one click for 
-	ascending order, another click for descending order.
-	<guilabel>Column Editor Dialog</guilabel> may be used to rearrange
-	the displayed columns.</para> 
+	<para>
+
+          The Sources View lists the sources of information stored in
+	  the database. This can include various documents (birth,
+	  death, and marriage certificates, etc.), books, films,
+	  journals, private diaries; virtually anything that can
+	  be classified as a source of information. The sources can be
+	  used as a reference for any event stored in the
+	  database. The Source View lists the
+	  <guilabel>Title</guilabel>, <guilabel>ID</guilabel>, and the
+	  <guilabel>Author</guilabel> of the source. Any column can be
+	  used for sorting the list. The usual rules apply: one click
+	  for ascending order, another click for descending order.
+	  <guilabel>Column Editor Dialog</guilabel> may be used to
+	  rearrange the displayed columns.
+
+        </para>
       </sect2>
 
-    <!-- ================ Main Window Sub-subsection  -->
+<!-- ================ Main Window Sub-subsection  -->
+
       <sect2 id="places-view">
         <title>Places View</title>
 
-	<!-- ==== Figure: Places View ==== -->
-	<figure id="places-fig"> 
-	<title>Places View</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/places.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Places View.  </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+<!-- ==== Figure: Places View ==== -->
+  	
+          <figure id="places-fig"> 
+	    <title>Places View</title> 
+	    <screenshot>
+              <mediaobject>
+                <imageobject>
+                  <imagedata fileref="figures/places.png" format="PNG" width="500" depth="353" scale="75"/>
+                </imageobject>
+	        <textobject> 
+	          <phrase>Shows Places View.</phrase>
+	        </textobject>
+              </mediaobject>
+            </screenshot>
+          </figure>
 
-	<para>The Places View lists the geographical places in which the events 
-	of the database took place. These could be places of birth, death, 
-	and marriages of people, as well as their home, employment, education 
-	addresses, or any other conceivable reference to the geographical 
-	location. The Places View lists the places' <guilabel>Name</guilabel>,
-	<guilabel>ID</guilabel>, <guilabel>Church Parish</guilabel>,
-	<guilabel>City</guilabel>, <guilabel>County</guilabel>,
-	<guilabel>State</guilabel>, and <guilabel>Country</guilabel>. All of
-	these columns can be used for sorting by the usual sorting rules. 
-	<guilabel>Column Editor Dialog</guilabel> may be used to rearrange
-	the displayed columns.</para> 
+<!-- ==== End of Figure ==== -->
+
+	<para>
+          The Places View lists the geographical places in which the
+	  events of the database took place. These could be places of
+	  birth, death, and marriages of people, as well as their
+	  home, employment, education addresses, or any other
+	  conceivable reference to the geographical location. The
+	  Places View lists the places' <guilabel>Name</guilabel>,
+	  <guilabel>ID</guilabel>, <guilabel>Church Parish</guilabel>,
+	  <guilabel>City</guilabel>, <guilabel>County</guilabel>,
+	  <guilabel>State</guilabel>, and
+	  <guilabel>Country</guilabel>. All of these columns can be
+	  used for sorting by the usual sorting rules.
+	  <guilabel>Column Editor Dialog</guilabel> may be used to
+	  rearrange the displayed columns.
+        </para> 
       </sect2>
 
-    <!-- ================ Main Window Sub-subsection  -->
+<!-- ================ Main Window Sub-subsection  -->
+
       <sect2 id="media-view">
         <title>Media View</title>
 
-	<!-- ==== Figure: Media View ==== -->
-	<figure id="media-fig"> 
-	<title>Media View</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/media.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Media View.  </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+<!-- ==== Figure: Media View ==== -->
 
-	<para>The Media View is a list of Media Objects used in the database. 
-	Media Objects are any files that relate somehow to the stored 
-	genealogical data. Technically, any file can be stored as a Media 
-	Object. Most frequently, these are images, audio files, animation 
-	files, etc. The list box on the bottom lists the <guilabel>Name</guilabel>, 
-    <guilabel>ID</guilabel>, <guilabel>Type</guilabel>, and 
-	<guilabel>Path</guilabel> of the Media Object.
-    <guilabel>Column Editor Dialog</guilabel>
-	may be used to rearrange the displayed columns, which obey usual
-	sorting rules. The top part of the GRAMPS window shows 
-	a preview (if available) and information about the Media 
-	Object. </para> 
+	<figure id="media-fig"> 
+	  <title>Media View</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/media.png" format="PNG" width="500" depth="353" scale="75"/>
+              </imageobject>
+	      <textobject> 
+ 	        <phrase>Shows Media View.</phrase>
+	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+<!-- ==== End of Figure ==== -->
+
+	<para>
+         
+          The Media View is a list of Media Objects used in the
+	  database.  Media Objects are any files that relate somehow
+	  to the stored genealogical data. Technically, any file can
+	  be stored as a Media Object. Most frequently, these are
+	  images, audio files, animation files, etc. The list box on
+	  the bottom lists the <guilabel>Name</guilabel>,
+	  <guilabel>ID</guilabel>, <guilabel>Type</guilabel>, and
+	  <guilabel>Path</guilabel> of the Media Object.
+	  <guilabel>Column Editor Dialog</guilabel> may be used to
+	  rearrange the displayed columns, which obey usual sorting
+	  rules. The top part of the GRAMPS window shows a preview (if
+	  available) and information about the Media Object.
+ 
+        </para> 
       </sect2>
 
     </sect1>

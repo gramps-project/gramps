@@ -21,928 +21,1220 @@
 <!-- $Id$ -->
 
 <chapter id="gramps-usage"> 
-    <title>Usage</title> 
-    <para>As commonly encountered in everyday life, in
-    &app; there is usually more than one way to
-    accomplish something. The alternatives to some actions will therefore 
-    be listed as appropriate.</para> 
 
-    <!-- ================ Usage Subsection ================================ -->
-    <sect1 id="new-db"> 
-      <title>Starting a New Database</title> 
-      <para>To start a new database, choose <menuchoice><guimenu>File</guimenu>
-      <guimenuitem>New</guimenuitem></menuchoice>. You will then be 
-      prompted with the <guilabel>Create GRAMPS database</guilabel> dialog asking 
-      to specify the name under which the new database will be stored. 
-      The new database will be created in the BSDDB format, with <filename>.grdb</filename>
-      as the default extension.</para> 
+  <title>Usage</title> 
+  <para>
+    As commonly encountered in everyday life, in &app; there is
+    usually more than one way to accomplish something. The
+    alternatives to some actions will therefore be listed as
+    appropriate.
+  </para> 
 
-          <note id="new-db-notdir-note">
-               <title>Selecting file</title>
-	      <para>
-	      Unlike the version 1.0.X of &app;, this version does not require selecting directory
-	      for the database. Please select filename, as you would in any other application.
-	      </para>
-           </note>
+<!-- ================ Usage Subsection ================================ -->
 
-    </sect1>
+  <sect1 id="new-db"> 
+    <title>Starting a New Database</title> 
+    <para>
+      To start a new database, choose
+      <menuchoice><guimenu>File</guimenu>
+      <guimenuitem>New</guimenuitem></menuchoice>. You will then be
+      prompted with the <guilabel>Create GRAMPS database</guilabel>
+      dialog asking to specify the name under which the new database
+      will be stored.  The new database will be created in the BSDDB
+      format, with <filename>.grdb</filename> as the default
+      extension.
+    </para> 
 
-    <!-- ================ Usage Subsection ================================ -->
-    <sect1 id="open-db"> 
-      <title>Opening a Database</title> 
-      <para>To open a database, either choose <menuchoice>
+    <note id="new-db-notdir-note">
+      <title>Selecting file</title>
+      <para>
+        Unlike the version 1.0.X of &app;, this version does not
+        require selecting directory for the database. Please select
+        filename, as you would in any other application.
+      </para>
+    </note>
+  </sect1>
+
+<!-- ================ Usage Subsection ================================ -->
+
+  <sect1 id="open-db"> 
+    <title>Opening a Database</title> 
+    <para>
+      To open a database, either choose <menuchoice>
       <guimenu>File</guimenu><guimenuitem>Open</guimenuitem></menuchoice>
-      or click the <guibutton>Open</guibutton> button on the Toolbar. 
-      The <guilabel>Open database</guilabel> dialog will appear. 
-      </para>
-      
+      or click the <guibutton>Open</guibutton> button on the Toolbar.
+      The <guilabel>Open database</guilabel> dialog will appear.
+    </para><para>
+      The filetype filter in the <guilabel>Open database</guilabel>
+      dialog allows you to display files of a certain type. If the
+      <guilabel>All files</guilabel> filter is selected (the default),
+      all the files will be shown. The type will be determined by the
+      extension of the selected filename.
+    </para>
+    <note id="open-db-note">
+      <title>Selecting file</title>
       <para>
-      The filetype filter in the <guilabel>Open database</guilabel> dialog allows
-      you to display files of a certain type. If the <guilabel>All files</guilabel>
-      filter is selected (the default), all the files will be shown. The type will
-      be determined by the extension of the selected filename.
+        Unlike the version 1.0.X of &app;, this version does not
+        require selecting directory for the database. Please select
+        filename, as you would in any other application.
       </para>
-
-      <note id="open-db-note"><title>Selecting file</title>
+    </note>
+    <para>
+      If you do not have write permissions for the selected database,
+      it will be opened in a Read Only mode. In this mode, the data
+      may be viewed, but no changes will be made to the database. To
+      indicate this mode, the title of the main window will be
+      appended with <guilabel>(Read Only)</guilabel> text.
+    </para>
+    <note id="open-db-note2">
+      <title>Opening XML and GEDCOM databases</title>
       <para>
-	      Unlike the version 1.0.X of &app;, this version does not require selecting directory
-	      for the database. Please select filename, as you would in any other application.
-	      </para>
-      </note>
-      
-      <para>If you do not have write permissions for the selected database, it will
-      be opened in a Read Only mode. In this mode, the data may be viewed, but
-      no changes will be made to the database. To indicate this mode, the title of the
-      main window will be appended with <guilabel>(Read Only)</guilabel> text.
+        This version allows direct opening and editing of &app; XML
+        and GEDCOM databases. Please keep in mind that, unlike using
+        the native grdb format, these formats require holding all data
+        in memory. This leads to performance and memory consumption
+        problems which grdb was designed to solve.
+      </para><para>
+        While direct opening of a &app; XML or GEDCOM file is
+        convenient for a small database, it may prove burdensome for
+        large databases.  If you experience this, please consider
+        creating a new native (grdb) database and importing your XML
+        or GEDCOM data into it. This will make accessing your data
+        much more efficient and quick.
       </para>
+    </note>
 
-      <note id="open-db-note2"><title>Opening XML and GEDCOM databases</title>
+    <warning id="open-db-warn">
+      <title>GEDCOM Editing</title>
       <para>
-      This version allows direct opening and editing of &app; XML and GEDCOM
-      databases. Please keep in mind that, unlike using the native grdb format,
-      these formats require holding all data in memory. This leads to performance
-      and memory consumption problems which grdb was designed to solve.</para>
-      
-      <para>While direct opening of a &app; XML or GEDCOM file is convenient
-      for a small database, it may prove burdensome for large databases.
-      If you experience this, please consider creating a new native (grdb) database
-      and importing your XML or GEDCOM data into it. This will make accessing
-      your data much more efficient and quick.
-	      </para>
-      </note>
+	Please keep in mind that some information in GEDCOM file may
+	be lost during import into &app;. Simply opening and viewing
+	the file will not change it.  However, if any changes were
+	made and they were not abandoned upon exit, exiting &app; will
+	save the data, with the possible data loss.
+      </para>
+    </warning>                
 
-      <warning id="open-db-warn">
-               <title>GEDCOM Editing</title>
-	      <para>
-		Please keep in mind that some information in GEDCOM file may be lost
-		during import into &app;. Simply opening and viewing the file will not change it.
-		However, if any changes were made and they were not abandoned upon exit,
-		exiting &app; will save the data, with the possible data loss.
-	      </para>
-           </warning>                
-
-      <para>To open a recently opened database, choose <menuchoice>
+    <para>
+      To open a recently opened database, choose <menuchoice>
       <guimenu>File</guimenu><guimenuitem>Open
-      Recent</guimenuitem></menuchoice> and select the filename from the list.
-      You can also use <menuchoice><guimenu>Actions</guimenu>
-      <guimenuitem>Recent Documents</guimenuitem></menuchoice>
-      from the GNOME <guilabel>Actions</guilabel> menu. 
-      </para>
+      Recent</guimenuitem></menuchoice> and select the filename from
+      the list.  You can also use
+      <menuchoice><guimenu>Actions</guimenu> <guimenuitem>Recent
+      Documents</guimenuitem></menuchoice> from the GNOME
+      <guilabel>Actions</guilabel> menu.
+    </para>
+  </sect1>
 
-    </sect1>
+<!-- ================ Usage Subsection ================================ -->
 
-    <!-- ================ Usage Subsection ================================ -->
-    <sect1 id="save-db"> 
-      <title>Saving a Database</title>
-
-      <para>A consequence of the new database backend is that the changes, once approved
-      by the user, are applied immediately. In short, once you click <guibutton>OK</guibutton> 
-      in the Person, Family, Source, Place, Media object, or Event editor, all the changes made to 
-      this object are recorded in the database. No saving is necessary, or even possible.
-      </para>
-
-      <para>Choosing <menuchoice><guimenu>Edit</guimenu><guimenuitem>Undo</guimenuitem>
-      </menuchoice> allows you to undo the changes you made, one step at a time.</para>
+  <sect1 id="save-db"> 
+    <title>Saving a Database</title>
+    <para>
+      A consequence of the new database backend is that the changes,
+      once approved by the user, are applied immediately. In short,
+      once you click <guibutton>OK</guibutton> in the Person, Family,
+      Source, Place, Media object, or Event editor, all the changes
+      made to this object are recorded in the database. No saving is
+      necessary, or even possible.
+    </para><para>
+      Choosing
+      <menuchoice><guimenu>Edit</guimenu><guimenuitem>Undo</guimenuitem>
+      </menuchoice> allows you to undo the changes you made, one step
+      at a time.
+    </para>
       
-      <tip id="save-tip"><title>Reverting the whole session</title>
-      <para>If you would like to revert the whole editing session, choose
-      <menuchoice><guimenu>File</guimenu><guimenuitem>Abandon changes
-      and quit</guimenuitem></menuchoice>. This will be analogous to quitting
-      without saving any changes in other applications. 
+    <tip id="save-tip">
+      <title>Reverting the whole session</title>
+      <para>
+        If you would like to revert the whole editing session, choose
+        <menuchoice><guimenu>File</guimenu><guimenuitem>Abandon
+        changes and quit</guimenuitem></menuchoice>. This will be
+        analogous to quitting without saving any changes in other
+        applications.
       </para>
-      </tip>
-      
-      <para>If you would like to save your database under a different name,
+    </tip>
+    <para>
+      If you would like to save your database under a different name,
       you can do so by choosing <menuchoice><guimenu>File</guimenu>
-      <guimenuitem>Save as...</guimenuitem></menuchoice> and specifying
-      the name (and, optionally, format) of your new database.
+      <guimenuitem>Save as...</guimenuitem></menuchoice> and
+      specifying the name (and, optionally, format) of your new
+      database.
+    </para>
+      
+    <note id="save-as-note">
+      <title>&quot;Save as&quot; continues editing</title>
+      <para>
+        If you use the <guilabel>Save as...</guilabel> function, the
+        editing in the main window is performed on the newly made
+        copy. If this is not what you want to do, please consider
+        using <guilabel>Export...</guilabel> instead.
       </para>
+    </note>
       
-      <note id="save-as-note"><title>&quot;Save as&quot; continues editing</title>
-      <para>If you use the <guilabel>Save as...</guilabel> function, the editing in the
-      main window is performed on the newly made copy. If this is not what you want
-      to do, please consider using <guilabel>Export...</guilabel> instead.
-      </para></note>
-      
-    </sect1>
+  </sect1>
 
-    <!-- ================ Usage Subsection ================================ -->
-    <sect1 id="import-data"> 
-      <title>Importing Data</title> 
-      <para>Importing allows you to incorporate the data from other 
-      databases into your currently open &app; database. Currently, 
-      &app; can import data from the following formats: &app; database (grdb),
-      GEDCOM, &app; XML, &app; package, and GeneWeb. All of these are
-      available by choosing <menuchoice><guimenu>File</guimenu>
-      <guisubmenu>Import</guisubmenu></menuchoice> and
-      selecting an appropriate file.</para>
-      
-      <para>&app; database (grdb), &app; XML, and &app; package are
-      all native &app; formats in that there is no information loss resulting
-      from reading from and writing into these formats.
+<!-- ================ Usage Subsection ================================ -->
+
+  <sect1 id="import-data"> 
+    <title>Importing Data</title> 
+    <para>
+
+      Importing allows you to incorporate the data from other
+      databases into your currently open &app; database. Currently,
+      &app; can import data from the following formats: &app; database
+      (grdb), GEDCOM, &app; XML, &app; package, and GeneWeb. All of
+      these are available by choosing
+      <menuchoice><guimenu>File</guimenu>
+      <guisubmenu>Import</guisubmenu></menuchoice> and selecting an
+      appropriate file.
+    </para><para>
+      &app; database (grdb), &app; XML, and &app; package are all
+      native &app; formats in that there is no information loss
+      resulting from reading from and writing into these formats.
+
       <variablelist>
+        <varlistentry>
+          <term>&app; database (grdb)</term>
+          <listitem>
+            <para>
+              The native &app; database format is a specific form of
+              Berkeley database (BSDDB) with special structure of data
+              tables. This format is binary and
+              architecture-dependent.  It is very quick and efficient,
+              but not generally portable across computers with
+              different binary architecture (e.g. i386 vs alpha).
+            </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>&app; XML</term>
+          <listitem>
+            <para>
 
-      <varlistentry><term>&app; database (grdb)</term>
-      <listitem><para>
-      The native &app; database format is a specific form of Berkeley database (BSDDB)
-      with special structure of data tables. This format is binary and architecture-dependent.
-      It is very quick and efficient, but not generally portable across computers with
-      different binary architecture (e.g. i386 vs alpha).
-      </para></listitem>
-      </varlistentry>
+              The &app; XML file was the default format for the
+              previous stable version of &app;. Unlike the grdb
+              format, it is architecture independent and
+              human-readable. The database may also have references to
+              non-local (external) media objects, therefore it is not
+              guaranteed to be completely portable. The &app; XML
+              database is created by saving
+              (<menuchoice><guimenu>File</guimenu><guimenuitem>Save
+              As...</guimenuitem></menuchoice>) or exporting
+              (<menuchoice>
+              <guimenu>File</guimenu><guimenuitem>Export...</guimenuitem>
+              </menuchoice>) data in that format
+            </para>
+          </listitem>
+        </varlistentry>
 
-      <varlistentry><term>&app; XML</term>
-      <listitem><para>
-      The &app; XML file was the default format for the previous stable
-      version of &app;. Unlike the grdb format, it is architecture
-      independent and human-readable. The database may also have references 
-      to non-local (external) media objects, therefore it is not guaranteed 
-      to be completely portable. The &app; XML database is created by saving 
-      (<menuchoice><guimenu>File</guimenu><guimenuitem>Save
-      As...</guimenuitem></menuchoice>) or exporting (<menuchoice>
-      <guimenu>File</guimenu><guimenuitem>Export...</guimenuitem>
-      </menuchoice>) data in that format.
-      </para></listitem>
-      </varlistentry>
-
-      <varlistentry><term>&app; package</term>
-      <listitem><para>
-      The package is a compressed archive containing the &app; XML
-      file and all media objects (images, sound files, etc.) to which the 
-      database refers. The &app; package is created by exporting
-      (<menuchoice> <guimenu>File</guimenu><guimenuitem>
-      Export...</guimenuitem></menuchoice>) data in that format.
-      </para></listitem>
-      </varlistentry>
-
+        <varlistentry>
+          <term>&app; package</term>
+          <listitem>
+            <para>
+              The package is a compressed archive containing the &app;
+              XML file and all media objects (images, sound files,
+              etc.) to which the database refers. The &app; package is
+              created by exporting (<menuchoice>
+              <guimenu>File</guimenu><guimenuitem>
+              Export...</guimenuitem></menuchoice>) data in that
+              format.
+            </para>
+          </listitem>
+        </varlistentry>
       </variablelist>
 
-      </para>
+    </para>
 
-      <tip id="import-tip"><title>Opening vs importing</title>
-      <para>The difference between opening &app; database (in any format) and 
-      importing from &app; or GEDCOM database is that importing incorporates all the 
-      data into your currently open database, if any. In contrast, opening the database
-      will switch from editing your current data to editing another file.</para></tip>
-      
-      <para>After choosing an import format, you will be prompted with the 
-      <guilabel>Import database</guilabel> dialog asking you to specify the
-      file name from which to import. 
-      </para> 
-
-      <note id="import-note"><title>Selecting file</title>
+    <tip id="import-tip">
+      <title>Opening vs importing</title>
       <para>
-	      Unlike the version 1.0.X of &app;, this version does not require selecting directory
-	      for the database. Please select filename, as you would in any other application.
-	      </para>
-      </note>
 
-      <para>Upon starting the GEDCOM import, &app; 
-      will display the following GEDCOM import dialog with the summary of the 
-      information about the data. The information is updated as the import
-      progresses. </para>
+        The difference between opening &app; database (in any format)
+        and importing from &app; or GEDCOM database is that importing
+        incorporates all the data into your currently open database,
+        if any. In contrast, opening the database will switch from
+        editing your current data to editing another file.
 
-	<!-- ==== Figure: GEDCOM Import ==== -->
-	<figure id="gedcom-import-fig"> 
-	<title>GEDCOM Import</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/gedcom-import.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows GEDCOM Import Window. </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+      </para>
+    </tip>
+    <para>
+      After choosing an import format, you will be prompted with the
+      <guilabel>Import database</guilabel> dialog asking you to
+      specify the file name from which to import.
+    </para> 
 
-      <para>Upon starting the &app; database or &app; package import, 
-      &app; will display the progress in the 
-      progressbar of its main window.</para>
+    <note id="import-note"><title>Selecting file</title>
+      <para>
 
-      <para>If a media file is not found during import, the following dialog
-      will prompt you for the possible actions:</para>
+        Unlike the version 1.0.X of &app;, this version does not
+	require selecting directory for the database. Please select
+	filename, as you would in any other application.
 
-	<!-- ==== Figure: Missing media window  ==== -->
-	<figure id="missing-media-im"> 
-	<title>Missing Media dialog</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/missing-media.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Missing Media dialog.  </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+      </para>
+    </note>
 
-     <itemizedlist>	
-     <listitem>
-     <para>To remove the object corresponding to the missing file as well as
-      all the references to that object from various database records, click the 
-      <guibutton>Remove Object</guibutton> button. This will alter your 
-      database so that it will be in a consistent state, but all the 
-      references to the missing file will be gone. Use this option if the 
-      file is irrevocably lost and there is no possibility of ever replacing 
-      it. </para>
+    <para>
+      Upon starting the GEDCOM import, &app; will display the
+      following GEDCOM import dialog with the summary of the
+      information about the data. The information is updated as the
+      import progresses.
+    </para>
+
+<!-- ==== Figure: GEDCOM Import ==== -->
+
+    <figure id="gedcom-import-fig"> 
+      <title>GEDCOM Import</title> 
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata 	fileref="figures/gedcom-import.png" format="PNG" width="510" depth="490" scale="75"/>
+          </imageobject>
+	  <textobject> 
+	    <phrase>Shows GEDCOM Import Window.</phrase>
+	  </textobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+<!-- ==== End of Figure ==== -->
+
+    <para>
+
+      Upon starting the &app; database or &app; package import, &app;
+      will display the progress in the progressbar of its main window.
+
+    </para><para>
+
+      If a media file is not found during import, the following dialog
+      will prompt you for the possible actions:
+ 
+    </para>
+
+<!-- ==== Figure: Missing media window  ==== -->
+
+    <figure id="missing-media-im"> 
+      <title>Missing Media dialog</title> 
+	<screenshot><mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/missing-media.png" format="PNG" width="493" depth="264" scale="75"/>
+          </imageobject>
+	  <textobject> 
+	    <phrase>Shows Missing Media dialog.</phrase>
+ 	  </textobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+<!-- ==== End of Figure ==== -->
+
+    <itemizedlist>	
+      <listitem>
+        <para>
+          To remove the object corresponding to the missing file as
+          well as all the references to that object from various
+          database records, click the <guibutton>Remove
+          Object</guibutton> button. This will alter your database so
+          that it will be in a consistent state, but all the
+          references to the missing file will be gone. Use this option
+          if the file is irrevocably lost and there is no possibility
+          of ever replacing it.
+        </para>
       </listitem>
+      <listitem>
+        <para>
+          To keep the reference to the object corresponding to the
+          missing file, click the <guibutton>Keep
+          Reference</guibutton> button.  This will leave things as is,
+          i.e. in an inconsistent state.  You could supply the missing
+          file later, in which case you will have to copy it into your
+          database directory. Choose this option if the replacement is
+          possible, but not available right now.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          To supply the missing file during import, click the
+          <guibutton>Select File</guibutton> button. This will copy
+          the file you select in place of the missing file. No
+          references will be altered in the database, and it will be
+          in the consistent state. Use this option if the replacement
+          is readily available.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          To automatically use the selection made in this dialog for
+          all missing media files, check the <guilabel>Use this
+          selection for all missing media files</guilabel> box. This
+          will remember your choice and use it for all media files
+          missing during this import, so that no further dialogs will
+          be presented. Use this option if you anticipate many missing
+          files and want to deal with all of them in the same manner.
+        </para>
+      </listitem>
+    </itemizedlist>	
+  </sect1>  
 
-     <listitem>
-     <para>To keep the reference to the object corresponding to the missing 
-     file, click the <guibutton>Keep Reference</guibutton> button. 
-     This will leave things as is, i.e. in an inconsistent state.
-     You could supply the missing file later, in which case you will have
-     to copy it into your database directory. Choose this option if the
-     replacement is possible, but not available right now. </para></listitem>
-
-     <listitem>
-     <para>To supply the missing file during import, click the 
-     <guibutton>Select File</guibutton> button. This will copy the file you
-     select in place of the missing file. No references will be altered
-     in the database, and it will be in the consistent state. Use this option
-     if the replacement is readily available. 
-     </para></listitem>
-
-     <listitem>
-     <para>To automatically use the selection made in this dialog for 
-     all missing media files, check the <guilabel>Use this selection for all 
-     missing media files</guilabel> box. This will remember your choice
-     and use it for all media files missing during this import, so that no 
-     further dialogs will be presented. Use this option if you anticipate 
-     many missing files and want to deal with all of them in the same manner.
-     </para></listitem>
-    
-     </itemizedlist>	
-
-    </sect1>  
-
-    <!-- ================ Usage Subsection ================================ -->
-    <sect1 id="export-data"> 
-      <title>Exporting Data</title> 
+<!-- ================ Usage Subsection ================================ -->
+  <sect1 id="export-data"> 
+    <title>Exporting Data</title> 
+    <para>
+      Exporting allows you to share any portion of your &app; database
+      with other researchers as well as to make your database
+      completely portable to another computer. Currently, &app; can
+      export data to the following formats: &app; database (grdb),
+      &app; XML, GEDCOM, &app; package, Web Family Tree, and GeneWeb.
+    </para>
       
-      <para>Exporting allows you to share any portion of your &app; database 
-      with other researchers as well as to make your database completely 
-      portable to another computer. Currently, &app; 
-      can export data  to the following formats: &app; database (grdb), &app; XML,
-      GEDCOM, &app; package, Web Family Tree, and GeneWeb.</para>
-      
-      <note id="export-note"><title>Export is saving a copy</title>
-      <para>Exporting will create another file with the copy of your data.
-      The database currently opened in your &app; window is NOT
-      the file saved by your export. Future editing of the currently
-      opened database will not alter the copy produced by the export.
-      </para></note>
-
-
+    <note id="export-note">
+      <title>Export is saving a copy</title>
       <para>
-      To export data, choose <menuchoice><guimenu>File</guimenu>  
-      <guimenuitem>Export</guimenuitem></menuchoice>. This will bring up the 
-      <guilabel>Export</guilabel> druid. Its pages will guide you through the
-      format selection (see <xref linkend="export-druid-fig"/>), file selection,
-      and format specific export options (see <xref linkend="gedcom-export-fig"/>).
-      After a final confirmation page, the export will be performed according
-      to the choices you have made. At any time, you can click the
-      <guibutton>Back</guibutton> and revise any selection, and then go
-      forward to redo the export.
+         Exporting will create another file with the copy of your data.
+        The database currently opened in your &app; window is NOT the
+        file saved by your export. Future editing of the currently
+        opened database will not alter the copy produced by the
+        export.
       </para>
+    </note>
 
-	<!-- ==== Figure: GEDCOM Export ==== -->
-	<figure id="export-druid-fig"> 
-	<title>Export druid: format selection</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/export-druid.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows format selection page of an Export druid</phrase>
-	</textobject></mediaobject></screenshot></figure>
+    <para>
+      To export data, choose <menuchoice><guimenu>File</guimenu>
+      <guimenuitem>Export</guimenuitem></menuchoice>. This will bring
+      up the <guilabel>Export</guilabel> druid. Its pages will guide
+      you through the format selection (see <xref
+      linkend="export-druid-fig"/>), file selection, and format
+      specific export options (see <xref
+      linkend="gedcom-export-fig"/>).  After a final confirmation
+      page, the export will be performed according to the choices you
+      have made. At any time, you can click the
+      <guibutton>Back</guibutton> and revise any selection, and then
+      go forward to redo the export.
+    </para>
+
+<!-- ==== Figure: GEDCOM Export ==== -->
+
+    <figure id="export-druid-fig"> 
+      <title>Export druid: format selection</title> 
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/export-druid.png" format="PNG" width="500" depth="383" scale="75"/>
+          </imageobject>
+	  <textobject> 
+	    <phrase>Shows format selection page of an Export druid</phrase>
+   	  </textobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
 
     <sect2 id="export-gedcom"> 
       <title>GEDCOM export</title> 
-
-      <para> GEDCOM export options allow you to fine tune your export
-      (see <xref linkend="gedcom-export-fig"/>).
-      Choose the desired <guilabel>Encoding</guilabel> of the exported file. 
-      Use the <guilabel>Filter</guilabel>
-      pop-up menu to limit the scope of the export according to the stated rule. 
-      Use the <guilabel>Target</guilabel> menu to select the desired GEDCOM 
-      dialect. Select your copyright statement from the 
-      <guilabel>Copyright</guilabel> menu. Check <guilabel>Do not include
-      records marked private</guilabel> to disable the output of private
-      records. Check <guilabel>Restrict data on living people</guilabel>
-      to limit living people's data to family ties. With this option, 
-      information concerning birth, death, addresses, various events, 
-      etc. will be omitted in the exported GEDCOM file. If this option is selected, 
-      you can further choose whether to use the word "Living" as first name, exclude
-      notes, and exclude sources for the living people. Check <guilabel>Reference 
-      images from path</guilabel> to tell &app; to use the specific path for your 
-      images when writing image references in GEDCOM. 
+      <para> 
+        GEDCOM export options allow you to fine tune your export (see
+        <xref linkend="gedcom-export-fig"/>).  Choose the desired
+        <guilabel>Encoding</guilabel> of the exported file.  Use the
+        <guilabel>Filter</guilabel> pop-up menu to limit the scope of
+        the export according to the stated rule.  Use the
+        <guilabel>Target</guilabel> menu to select the desired GEDCOM
+        dialect. Select your copyright statement from the
+        <guilabel>Copyright</guilabel> menu. Check <guilabel>Do not
+        include records marked private</guilabel> to disable the
+        output of private records. Check <guilabel>Restrict data on
+        living people</guilabel> to limit living people's data to
+        family ties. With this option, information concerning birth,
+        death, addresses, various events, etc. will be omitted in the
+        exported GEDCOM file. If this option is selected, you can
+        further choose whether to use the word "Living" as first name,
+        exclude notes, and exclude sources for the living
+        people. Check <guilabel>Reference images from path</guilabel>
+        to tell &app; to use the specific path for your images when
+        writing image references in GEDCOM.
       </para>
 
-	<!-- ==== Figure: GEDCOM Export ==== -->
-	<figure id="gedcom-export-fig"> 
+<!-- ==== Figure: GEDCOM Export ==== -->
+      <figure id="gedcom-export-fig"> 
 	<title>Export druid: GEDCOM options</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/gedcom-export.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows GEDCOM options page of an Export druid</phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Export ==== -->
-	</sect2>
+	<screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/gedcom-export.png" format="PNG" width="500" depth="481" scale="75"/>
+            </imageobject>
+	    <textobject> 
+	      <phrase>Shows GEDCOM options page of an Export druid</phrase>
+	    </textobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+<!-- ==== End of Export ==== -->
+    </sect2>
 
     <sect2 id="export-gramps-formats"> 
-    <title>Export into &app; formats</title>
-
+      <title>Export into &app; formats</title>
       <variablelist>
-            <varlistentry><term>&app; database (grdb) export</term>
-    <listitem><para>Exporting to the native format will simply make a copy
-    of your data under another name. It also may be useful if you have
-    directly opened XML or GEDCOM file and would like to save it
-    as the grdb file.</para></listitem></varlistentry>
+        <varlistentry>
+          <term>&app; database (grdb) export</term>
+          <listitem>
+            <para>
+               Exporting to the native format will simply make a copy
+               of your data under another name. It also may be useful
+               if you have directly opened XML or GEDCOM file and
+               would like to save it as the grdb file.
+            </para>
+          </listitem>
+        </varlistentry>
 
-            <varlistentry><term>&app; XML database export</term>
-      <listitem><para>Exporting into &app; XML format will
-      produce a database compatible with the previous versions of &app;.
-      As XML is a text-based human-readable format, you may also use it
-      to take a look at your data.
-      </para></listitem></varlistentry>
+        <varlistentry>
+          <term>&app; XML database export</term>
+          <listitem>
+            <para>
+              Exporting into &app; XML format will produce a database
+              compatible with the previous versions of &app;.  As XML
+              is a text-based human-readable format, you may also use
+              it to take a look at your data.
+            </para>
+          </listitem>
+        </varlistentry>
 
-            <varlistentry><term>&app; package export</term>
-    <listitem><para>Exporting to &app; package will create a gzip-compressed tar 
-      archive (also known as tarball) which contains gramps database
-      and copies of all media objects files. This is a
-      useful format for moving your database to another machine or for sharing 
-      it with somebody, while retaining all the features provided 
-      by &app;.
-      </para></listitem></varlistentry>
+        <varlistentry>
+          <term>&app; package export</term>
+          <listitem>
+            <para>
+              Exporting to &app; package will create a gzip-compressed
+              tar archive (also known as tarball) which contains
+              gramps database and copies of all media objects
+              files. This is a useful format for moving your database
+              to another machine or for sharing it with somebody,
+              while retaining all the features provided by &app; .
+            </para>
+          </listitem>
+        </varlistentry>
 
-    <varlistentry><term>Export to CD</term>
-    <listitem>
-      <para>Exporting to CD will prepare your database and copies of all media
-      objects files to be recorded to the CD. This is done through the 
-      <guilabel>burn:///</guilabel> location in Nautilus. After exporting to 
-      CD, go to the <guilabel>burn:///</guilabel> location by  
-      selecting <menuchoice><guimenu>Go</guimenu>  
-      <guisubmenu>CD Creator</guisubmenu></menuchoice> in Nautilus menu
-      (unless this location is already displayed by &app;). Your 
-      database directory will show up. To record it on to the CD, click the CD 
-      icon on the Nautilus toolbar, or select <menuchoice><guimenu>File</guimenu> 
-      <guisubmenu>Write to CD</guisubmenu></menuchoice> in Nautilus menu.
-      </para></listitem></varlistentry>
-
+        <varlistentry>
+          <term>Export to CD</term>
+          <listitem>
+            <para>
+              Exporting to CD will prepare your database and copies of
+              all media objects files to be recorded to the CD. This
+              is done through the <guilabel>burn:///</guilabel>
+              location in Nautilus. After exporting to CD, go to the
+              <guilabel>burn:///</guilabel> location by selecting
+              <menuchoice><guimenu>Go</guimenu> <guisubmenu>CD
+              Creator</guisubmenu></menuchoice> in Nautilus menu
+              (unless this location is already displayed by
+              &app;). Your database directory will show up. To record
+              it on to the CD, click the CD icon on the Nautilus
+              toolbar, or select <menuchoice><guimenu>File</guimenu>
+              <guisubmenu>Write to CD</guisubmenu></menuchoice> in
+              Nautilus menu.
+            </para>
+          </listitem>
+        </varlistentry>
       </variablelist>
 
-      <para>If a media file is not found during export, the following dialog
-      will prompt you for the possible actions:</para>
+      <para>
+         If a media file is not found during export, the following
+         dialog will prompt you for the possible actions:
+      </para>
 
-	<!-- ==== Figure: Missing media window  ==== -->
-	<figure id="missing-media-ex"> 
+<!-- ==== Figure: Missing media window  ==== -->
+
+      <figure id="missing-media-ex"> 
 	<title>Missing Media dialog</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/missing-media.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Missing Media dialog.  </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+	<screenshot>
+          <mediaobject> 
+            <imageobject>
+              <imagedata fileref="figures/missing-media.png" format="PNG" width="434" depth="264" scale="75"/>
+            </imageobject>
+	    <textobject> 
+	      <phrase>Shows Missing Media dialog.</phrase>
+	    </textobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
 
-     <itemizedlist>	
-     <listitem>
-     <para>To remove the object corresponding to the missing file as well as
-      all the references to that object from various database records, click
-      the <guibutton>Remove Object</guibutton> button. This will alter your 
-      database so that it will be in the consistent state, but all the 
-      references to the missing file will be gone. Use this option if the 
-      file is irrevocably lost and there is no possibility of ever replacing 
-      it. </para>
-      </listitem>
+<!-- ==== End of Figure ==== -->
 
-     <listitem>
-     <para>To keep the reference to the object corresponding to the missing 
-     file, click the <guibutton>Keep Reference</guibutton> button. 
-     This will leave things as is, i.e. in the inconsistent state.
-     You could supply the missing file later, in which case you will have
-     to copy it into your database directory. Choose this option if the
-     replacement is possible, but not available right now. </para></listitem>
-
-     <listitem>
-     <para>To supply the missing file during export, click the 
-     <guibutton>Select File</guibutton> button. This will copy the file you
-     select in place of the missing file. No references will be altered
-     in the database, and it will be in the consistent state. Use this option
-     if the replacement is readily available. 
-     </para></listitem>
-    
-     <listitem>
-     <para>To automatically use the selection made in this dialog for 
-     all missing media files, check the <guilabel>Use this selection for all 
-     missing media files</guilabel> box. This will remember your choice
-     and use it for all media files missing during this export, so that no 
-     further dialogs will be presented. Use this option if you anticipate 
-     many missing files and want to deal with all of them in the same manner.
-     </para></listitem>
-
-     </itemizedlist>	
-
-
-      </sect2>
+      <itemizedlist>	
+        <listitem>
+          <para>
+            To remove the object corresponding to the missing file
+            as well as all the references to that object from
+            various database records, click the <guibutton>Remove
+            Object</guibutton> button. This will alter your database
+            so that it will be in the consistent state, but all the
+            references to the missing file will be gone. Use this
+            option if the file is irrevocably lost and there is no
+            possibility of ever replacing it.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            To keep the reference to the object corresponding to the
+            missing file, click the <guibutton>Keep
+            Reference</guibutton> button.  This will leave things as
+            is, i.e. in the inconsistent state.  You could supply
+            the missing file later, in which case you will have to
+            copy it into your database directory. Choose this option
+            if the replacement is possible, but not available right
+            now.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            To supply the missing file during export, click the
+            <guibutton>Select File</guibutton> button. This will
+            copy the file you select in place of the missing
+            file. No references will be altered in the database, and
+            it will be in the consistent state. Use this option if
+            the replacement is readily available.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            To automatically use the selection made in this dialog
+            for all missing media files, check the <guilabel>Use
+            this selection for all missing media files</guilabel>
+            box. This will remember your choice and use it for all
+            media files missing during this export, so that no
+            further dialogs will be presented. Use this option if
+            you anticipate many missing files and want to deal with
+            all of them in the same manner.
+          </para>
+        </listitem>
+      </itemizedlist>	
+    </sect2>
 
     <sect2 id="export-other-formats"> 
-    <title>Export into other formats</title>
-
+      <title>Export into other formats</title>
       <variablelist>
-            <varlistentry><term>Web Family Tree</term>
-    <listitem>
-      <para>Exporting to Web Family Tree will create the text file suitable 
-      as an input for the WFT program. Specific options include filter selecton
-      and the ability to restrict data on living people, that is to limit living 
-      people's data to family ties.
-      </para></listitem></varlistentry>
+        <varlistentry>
+          <term>Web Family Tree</term>
+          <listitem>
+            <para>
+              Exporting to Web Family Tree will create the text file
+              suitable as an input for the WFT program. Specific
+              options include filter selecton and the ability to
+              restrict data on living people, that is to limit living
+              people's data to family ties.
+            </para>
+          </listitem>
+        </varlistentry>
 
-            <varlistentry><term>GeneWeb</term>
-    <listitem>
-      <para>Exporting to GeneWeb will save a copy of your data into
-      a popular web genealogy format. To find out more about GeneWeb
-            and its format, visit <ulink url="http://cristal.inria.fr/~ddr/GeneWeb/en/"
-       type="http">this site.</ulink>
-      </para></listitem></varlistentry>
+        <varlistentry>
+          <term>GeneWeb</term>
+          <listitem>
+            <para>
+              Exporting to GeneWeb will save a copy of your data into
+              a popular web genealogy format. To find out more about
+              GeneWeb and its format, visit <ulink
+              url="http://cristal.inria.fr/~ddr/GeneWeb/en/"
+              type="http">this site.</ulink>
+            </para>
+          </listitem>
+        </varlistentry>
 
-            <varlistentry><term>vCalendar and vCard</term>
-    <listitem>
-      <para>Exporting to vCalendar or vCard will save information in a 
-      format used in many calendaring and addressbook applications,
-      sometimes called PIM for Personal Information Manager.
-      </para></listitem></varlistentry>
-
+        <varlistentry>
+          <term>vCalendar and vCard</term>
+          <listitem>
+            <para>
+              Exporting to vCalendar or vCard will save information in
+              a format used in many calendaring and addressbook
+              applications, sometimes called PIM for Personal
+              Information Manager.
+            </para>
+          </listitem>
+        </varlistentry>
       </variablelist>
-      </sect2>
+    </sect2>
 
-    </sect1>
+  </sect1>
 
-    <!-- ================ Usage Subsection ================================ -->
-    <sect1 id="gramps-edit-quick"> 
-      <title>Editing Data: Quick Start</title> 
-	<para> Editing any portion of data allows you to amend and/or 
-	modify information stored in the database. The available editing 
-	options include editing personal data, relationship data, data about
-	children and parents, and information about sources, places, and media
-	objects used in the database. In short, any data stored in the 
-	database can be edited! Adding a new piece of information is the process
- 	of creating an appropriate empty data structure and subsequently 
-	editing that empty structure. </para>
-    
-    <para>This section refers mainly to the menu items and buttons as the main 
-    way of interacting with &app;. In addition to this, &app; provides an 
-    extensive set of keybindings. The detailed reference to the keybindings 
-    is found in the <xref linkend="append-keybind"/>.
+ <!-- ================ Usage Subsection ================================ -->
+  <sect1 id="gramps-edit-quick"> 
+    <title>Editing Data: Quick Start</title> 
+      <para> 
+        Editing any portion of data allows you to amend and/or modify
+	information stored in the database. The available editing
+	options include editing personal data, relationship data, data
+	about children and parents, and information about sources,
+	places, and media objects used in the database. In short, any
+	data stored in the database can be edited! Adding a new piece
+	of information is the process of creating an appropriate empty
+	data structure and subsequently editing that empty structure.
+      </para><para>
+         This section refers mainly to the menu items and buttons as
+         the main way of interacting with &app;. In addition to this,
+         &app; provides an extensive set of keybindings. The detailed
+         reference to the keybindings is found in the <xref
+         linkend="append-keybind"/>.
+       </para>
+
+<!-- ================ Usage Sub-subsection ================ -->
+    <sect2 id="gramps-add-pers"> 
+      <title>To Add a Person</title> 
+      <para> 
+        To add a person to the database, switch to the People View
+	(<xref linkend="side-nofilt-fig"/>) and then click the
+	<guibutton>Add</guibutton> on the toolbar.  Enter any data
+	you know about this person into the <guilabel>Edit
+	Person</guilabel> Dialog (see <xref
+	linkend="edit-pers-fig"/> for details). To edit information
+	about a person already present in the database, select an
+	entry you would like to view/modify, and then click the
+	<guibutton>Edit</guibutton> icon on the toolbar.
+      </para><para>
+         You can also use <guilabel>Add...</guilabel> and
+         <guilabel>Edit...</guilabel> menu items available under the
+         <guimenu>Edit</guimenu>. Or you can right-click on the
+         person and select <guilabel>Add...</guilabel> or
+         <guilabel>Edit...</guilabel> from the invoked context menu.
+      </para>
+    </sect2>
+
+ <!-- ================ Usage Sub-subsection ================ -->
+    <sect2 id="gramps-spec-rel"> 
+      <title>To Specify a Relationship</title> 
+       <para>
+
+        To specify a relationship, first switch to the Family View
+	(<xref linkend="family-fig"/>). Then click one of the two top
+	buttons on the right of the spouse box. The topmost button
+	adds a new person to the database and to the relationship,
+	while the second top button adds a person that is already in a
+	database to the relationship.
+      </para><para> 
+        If using the second button, select the spouse/partner from the
+        list and specify the relationship using the menu at the
+        bottom. If necessary, you can add a person to the list by
+        clicking the <guibutton>+</guibutton> button. &app; will
+        filter the displayed list of people based on the apparent
+        relation possibility. Specifically, shown are the people who
+        could possibly be in relationship with the active person, as
+        judged by the available birth and death information. To
+        override this and display all people from the database, check
+        the <guilabel>Show all</guilabel> box.
+      </para><para>
+	To edit information about a relationship already present in
+        the database, move the mouse over the
+        <guilabel>Spouse</guilabel> box and double-click.  If the
+        relationship lists has more than one person, you can specify
+        the preferred spouse/partner by selecting an appropriate item
+        from the context menu available upon right-clicking into the
+        spouse box. Also, most of the above function are available
+        from the items of this context menu.
+      </para>
+    </sect2>
+
+<!-- ================ Usage Sub-subsection ================ -->
+
+    <sect2 id="gramps-spec-par"> 
+      <title>To Specify Parents</title> 
+      <para>
+        To specify parents of an active person, first switch to the
+	Family View (<xref linkend="family-fig"/>). Then click the
+	<guibutton>+</guibutton> button on the right of the active
+	person's parents list box. Select the parents from two lists
+	and specify the parents' relationships to the active person
+	using menus at the bottom.  You can also specify parents'
+	relationship to each other.  If necessary, you can add a
+	person to the list by clicking the
+	<guibutton>Add...</guibutton> button.
+      </para><para> 
+        The top and bottom lists contain males and females,
+	respectively. By default, &app; will limit both lists to
+	people who could possibly be the parents (judged by the date
+	of birth) of the active person. To override this, check the
+	<guilabel>Show all</guilabel> box for each list.
+      </para><para>
+        To specify parents of the active person's spouse, switch to
+	the Family View and then click the <guibutton>+</guibutton>
+	button on the right of the spouse's parents list box. To edit
+	information about parents already present in the database,
+	move the mouse over the corresponding parents' box and
+	double-click. All these functions can also be performed by
+	right-clicking on the parents' box and selecting an
+	appropriate item from the context menu.
+      </para>
+    </sect2>
+
+<!-- ================ Usage Sub-subsection ================ -->
+
+    <sect2 id="gramps-spec-ch"> 
+      <title>To Specify Children</title> 
+      <para>
+        To specify children of an active person, switch to the Family
+	View (<xref linkend="family-fig"/>) and then click either the
+	second or the third button from the top on the right of the
+	children list box. The second button adds a child to the
+	database and to the family, while the third button adds a
+	child already present in the database to the family.
+      </para><para> 
+        If using the third button, select a child from the list and
+	specify the child's relationship with father and mother using
+	menus at the bottom. If necessary, you can add a person to the
+	list by clicking the <guibutton>Add...</guibutton> button. By
+	default, &app; will limit the lists to people who could
+	possibly be the child (judged by the date of birth) of the
+	active person. To override this, check the <guilabel>Show
+	all</guilabel> box.
+      </para><para>
+        The relationship of the child to the parents can be modified
+        by selecting an appropriate item from the context menu
+        available upon right-clicking into the children box. Also,
+        most of the above function are available from the items of
+        this context menu.
+      </para>
+    </sect2>
+
+<!-- ================ Usage Sub-subsection ================ -->
+
+    <sect2 id="gramps-add-img"> 
+      <title>To Add Images</title> 
+      <para>
+        You can add images (as well as other media objects) to
+	individual people, events, sources, places, as well as images
+	generally related to the database (e.g. group family photos).
+      </para><para> 
+        To add images related to a single person, switch to the People
+	View (<xref linkend="side-nofilt-fig"/>), select a person, and
+	then click the <guibutton>Edit</guibutton> icon on the toolbar
+	to invoke the <guilabel>Edit Person</guilabel> Dialog (<xref
+	linkend="edit-pers-fig"/>). Then, select the
+	<guilabel>Gallery</guilabel> tab, and click the
+	<guibutton>+</guibutton> button to invoke the <guilabel>Select
+	a media object</guilabel> dialog. Type the filename or select
+	a file with the image, then provide a title for that
+	image. Keep adding images until you are done.
+      </para><para> 
+        To add images related to a relationship (e.g. marriage),
+	switch to the Family View (<xref linkend="family-fig"/>) and
+	then double-click on the Spouse box invoke the
+	<guilabel>Marriage/Relationship editor</guilabel>
+	dialog. Select the <guilabel>Gallery</guilabel> tab and click
+	the <guibutton>+</guibutton> button to add an image.
+      </para><para> 
+        To add images related to a source or a place, first switch to
+	the Sources View (<xref linkend="sources-fig"/>) or Places
+	View (<xref linkend="places-fig"/>), respectively. Then select
+	the appropriate source or place and then either double-click
+	on it or click the <guibutton>Edit</guibutton> icon on the
+	toolbar to invoke the <guilabel>Source Editor</guilabel> (or
+	<guilabel>Place Editor</guilabel>) dialog. Select the
+	<guilabel>Gallery</guilabel> tab and click the
+	<guibutton>+</guibutton> button to add an image.
+      </para><para> 
+        Finally, to add images that are generally related to the
+	database but not limited to any person, relationship, source,
+	or place in particular, switch to the Media View (<xref
+	linkend="media-fig"/>).  Then click the
+	<guibutton>Add</guibutton> icon on the toolbar to add an
+	image.  If you have already added any images to any individual
+	galleries, you will also find them listed in the Media View.
+      </para><para> 
+        In any gallery, you can also use the
+	<guibutton>Edit</guibutton> and <guibutton>-</guibutton>
+	buttons to edit image information and to remove the image
+	reference from that gallery. Note that in all galleries
+	removing the reference to the image does not remove the image
+	from the database. To completely remove the image from the
+	database, delete it from Media View by first selecting it and
+	then clicking the <guibutton>Remove</guibutton> icon on the
+	toolbar.
+      </para>
+    </sect2>
+
+<!-- ================ Usage Sub-subsection ================ -->
+
+    <sect2 id="gramps-edit-src-plc"> 
+      <title>To Edit Sources and Places</title> 
+      <para> 
+        To add a source or a place to the database, switch to the
+	appropriate Sources View (<xref linkend="sources-fig"/>) or
+	Places View (<xref linkend="places-fig"/>).  Then click the
+	<guibutton>Add</guibutton> icon on the toolbar to add a
+	source/place. Enter the information into the <guilabel>Source
+	Editor</guilabel> (or <guilabel>Place Editor</guilabel>)
+	dialog.
+      </para><para> 
+        To edit information about sources and places already present
+	in the database, switch to the appropriate view, select an
+	entry you would like to view/modify, and then click the
+	<guibutton>Edit</guibutton> icon on the
+	toolbar. Alternatively, you may double-click on the entry to
+	edit it.
+      </para>
+    </sect2>
+  </sect1>
+
+<!-- ================ Usage Subsection ================================ -->
+
+  <sect1 id="gramps-edit-complete"> 
+    <title>Editing Data: Complete Description</title> 
+    <para> 
+      This section provides a complete description of all editing
+      options for all pieces of data in the &app; database. It refers
+      mainly to the menu items and buttons as the main way of
+      interacting with &app;.  In addition to this, &app; provides an
+      extensive set of keybindings.  The detailed reference to the
+      keybindings is found in the <xref linkend="append-keybind"/>.
     </para>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="gramps-add-pers"> 
-        <title>To Add a Person</title> 
-	<para> To add a person to the database, switch to the People View 
-	(<xref linkend="side-nofilt-fig"/>) and then click the 
-	<guibutton>Add</guibutton> on the toolbar. 
-	Enter any data you know about this person into the <guilabel>Edit 
-	Person</guilabel> Dialog (see <xref linkend="edit-pers-fig"/> 
-	for details). To edit information about a person already present 
-	in the database, select an entry you would like to view/modify, 
-	and then click the <guibutton>Edit</guibutton> icon on the toolbar. </para> 
-        
-        <para>You can also use <guilabel>Add...</guilabel> and 
-        <guilabel>Edit...</guilabel> menu items available under 
-        the <guimenu>Edit</guimenu>. Or you can right-click on the person
-        and select <guilabel>Add...</guilabel> or <guilabel>Edit...</guilabel>
-        from the invoked context menu. 
+    <note id="edit-button-note">
+      <title>Add, Remove, and Edit buttons</title>
+      <para>
+         In order to save precious screen space, most of the
+         <guibutton>Add</guibutton>, <guibutton>Remove</guibutton>,
+         and <guibutton>Edit</guibutton> buttons no longer are labeled
+         with text. Instead, the first two use
+         <guibutton>+</guibutton> and <guibutton>-</guibutton> icons,
+         and the third uses the icon depicting a pen on top of a paper
+         sheet.
+      </para><para>
+        We will continue referring to the latter as the
+        <guibutton>Edit</guibutton> button, while using
+        <guibutton>+</guibutton> and <guibutton>-</guibutton> to
+        denote the former two buttons.
+      </para>
+    </note>
+
+<!-- ================ Usage Sub-subsection ================ -->
+
+    <sect2 id="adv-pers"> 
+      <title>Personal Information</title> 
+	<para> 
+          Editing of personal data can be performed in the following
+	  ways:
         </para>
-      </sect2>
-
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="gramps-spec-rel"> 
-        <title>To Specify a Relationship</title> 
-	<para>To specify a relationship, first switch to the Family View 
-	(<xref linkend="family-fig"/>). Then click one of the two top buttons on 
-        the right of the spouse box. The topmost button adds a new person to the 
-        database and to the relationship, while the second top button adds a person 
-        that is already in a database to the relationship. </para>
-
-	<para> If using the second button, select the spouse/partner from the list 
-        and specify the relationship using the menu at the bottom. If necessary, you 
-        can add a person to the list by clicking the <guibutton>+</guibutton> 
-        button. &app; will filter the displayed list of people based on the apparent
-        relation possibility. Specifically, shown are the people who could possibly
-        be in relationship with the active person, as judged by the available birth
-        and death information. To override this and display all people from the
-        database, check the <guilabel>Show all</guilabel> box. 
-	</para>
-
-	<para>
-	To edit information about a relationship already present in the database, 
-        move the mouse over the <guilabel>Spouse</guilabel> box and double-click. 
-        If the relationship lists has more than one person, you can specify the 
-        preferred spouse/partner by selecting an appropriate item from the context 
-        menu available upon right-clicking into the spouse box. Also, most of the 
-        above function are available from the items of this context menu. 
-	</para>
-      </sect2>
-
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="gramps-spec-par"> 
-        <title>To Specify Parents</title> 
-	<para>To specify parents of an active person, first switch to the 
-	Family View (<xref linkend="family-fig"/>). Then click the 
-	<guibutton>+</guibutton> button on the right of the active person's
-	parents list box. Select the parents from two lists and specify the
-	parents' relationships to the active person using menus at the bottom. 
-	You can also specify parents' relationship to each other. 
-	If necessary, you can add a person to the list by clicking the 
-	<guibutton>Add...</guibutton> button. </para>
-	
-	<para> The top and bottom lists contain males and females, 
-	respectively. By default, &app; will
-	limit both lists to people who could possibly be the parents (judged
-	by the date of birth) of the active person. To override this, check
-	the <guilabel>Show all</guilabel> box for each list. 
-	</para>
-	
-	<para>To specify parents of the active person's spouse, switch to the 
-	Family View and then click the <guibutton>+</guibutton> button on the 
-	right of the spouse's parents list box. To edit information about 
-	parents already present in the database, move the mouse over 
-	the corresponding parents' box and double-click. All these functions can
-        also be performed by right-clicking on the parents' box and selecting
-        an appropriate item from the context menu. </para>
-      </sect2>
-
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="gramps-spec-ch"> 
-        <title>To Specify Children</title> 
-	<para>To specify children of an active person, switch to the 
-	Family View (<xref linkend="family-fig"/>) and then click either the 
-        second or the third button from the top on the right of the children list 
-        box. The second button adds a child to the database and to the family, while
-        the third button adds a child already present in the database to the family.
-	</para>
-
-	<para> If using the third button, select a child from the list and 
-	specify	the child's relationship with father and mother using menus 
-	at the bottom. If necessary, you can add a person to the list by 
-	clicking the <guibutton>Add...</guibutton> button. By default, &app; will
-	limit the lists to people who could possibly be the child (judged
-	by the date of birth) of the active person. To override this, check
-	the <guilabel>Show all</guilabel> box. 
-	</para>
-        
-	<para>
-        The relationship of the child to the parents can be modified by selecting 
-        an appropriate item from the context menu available upon right-clicking 
-        into the children box. Also, most of the above function are available from 
-        the items of this context menu.
-	</para>
-      </sect2>
-
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="gramps-add-img"> 
-        <title>To Add Images</title> 
-	<para>You can add images (as well as other media objects) to 
-	individual people, events, sources, places, as well as images 
-	generally related to the database (e.g. group family photos). </para>
-	
-	<para> To add images related to a single person, switch to the 
-	People View (<xref linkend="side-nofilt-fig"/>), select a person, and 
-	then click the <guibutton>Edit</guibutton> icon on the toolbar to 
-        invoke the <guilabel>Edit Person</guilabel> Dialog 
-	(<xref linkend="edit-pers-fig"/>). Then, select the 
-	<guilabel>Gallery</guilabel> tab, and click the 
-	<guibutton>+</guibutton> button to invoke 
-    the <guilabel>Select a media 
-	object</guilabel> dialog. Type the filename or select a file with the 
-	image, then provide a title for that image. Keep adding images until you are 
-	done. </para>
-
-	<para> To add images related to a relationship (e.g. marriage), 
-	switch to the Family View (<xref linkend="family-fig"/>) and then
-	double-click on the Spouse box invoke the <guilabel>Marriage/Relationship 
-	editor</guilabel> dialog. Select the <guilabel>Gallery</guilabel> 
-	tab and click the <guibutton>+</guibutton> button to add 
-    an image. </para>
-
-	<para> To add images related to a source or a place, first switch to 
-	the Sources View (<xref linkend="sources-fig"/>) or Places 
-	View (<xref linkend="places-fig"/>), respectively. Then select the 
-	appropriate source or place and then either double-click on it 
-	or click the <guibutton>Edit</guibutton> icon on the toolbar to invoke the 
-	<guilabel>Source Editor</guilabel> (or <guilabel>Place 
-	Editor</guilabel>) dialog. Select the <guilabel>Gallery</guilabel> 
-	tab and click the <guibutton>+</guibutton> button to add 
-        an image. </para>
-
-	<para> Finally, to add images that are generally related to the 
-	database but not limited to any person, relationship, source, or place 
-	in particular, switch to the Media View (<xref linkend="media-fig"/>). 
-	Then click the <guibutton>Add</guibutton> icon on the toolbar to 
-    add an image. 
-	If you have already added any images to any individual galleries, 
-	you will also find them listed in the Media View. </para>
-
-	<para> In any gallery, you can also use the <guibutton>Edit</guibutton> 
-	and <guibutton>-</guibutton> buttons to edit image information
-	and to remove the image reference from that gallery. Note that in all
-	galleries removing the reference to the image does not remove the image
-	from the database. To completely remove the image from the database, 
-	delete it from Media View by first selecting it and then 
-	clicking the <guibutton>Remove</guibutton> icon on the toolbar. </para>
-
-      </sect2>
-
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="gramps-edit-src-plc"> 
-        <title>To Edit Sources and Places</title> 
-
-	<para> To add a source or a place to the database, switch to 
-	the appropriate Sources View (<xref linkend="sources-fig"/>) or 
-	Places View (<xref linkend="places-fig"/>). 
-	Then click the <guibutton>Add</guibutton> icon on the toolbar to add a
-	source/place. Enter the information into the <guilabel>Source 
-	Editor</guilabel> (or <guilabel>Place Editor</guilabel>) dialog. 
-	</para>
-
-	<para> To edit information about sources and places already present
-	in the database, switch to the appropriate view, select an entry
-	you would like to view/modify, and then click the 
-	<guibutton>Edit</guibutton> icon on the toolbar. Alternatively, you 
-        may double-click on the entry to edit it. 
-	</para>
-
-      </sect2>
-    </sect1>
-      
-    <!-- ================ Usage Subsection ================================ -->
-    <sect1 id="gramps-edit-complete"> 
-      <title>Editing Data: Complete Description</title> 
-      <para> This section provides a complete description of all editing 
-      options for all pieces of data in the &app; database. It refers mainly 
-      to the menu items and buttons as the main way of interacting with &app;. 
-      In addition to this, &app; provides an extensive set of keybindings. 
-      The detailed reference to the keybindings is found in 
-      the <xref linkend="append-keybind"/>.</para>
-
-<note id="edit-button-note">
-<title>Add, Remove, and Edit buttons</title>
-<para>In order to save precious screen space, most of the
-<guibutton>Add</guibutton>, <guibutton>Remove</guibutton>,
-and <guibutton>Edit</guibutton> buttons no longer are labeled
-with text. Instead, the first two use <guibutton>+</guibutton> and
-<guibutton>-</guibutton> icons, and the third uses the icon
-depicting a pen on top of a paper sheet.</para>
-
-<para>We will continue referring to the latter as the <guibutton>Edit</guibutton>
-button, while using <guibutton>+</guibutton> and
-<guibutton>-</guibutton> to denote the former two buttons.
-</para></note>
-
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect2 id="adv-pers"> 
-        <title>Personal Information</title> 
-	<para> Editing of personal data can be performed in the 
-	following ways: </para>
 	<variablelist>
-	<varlistentry><term>From the People View:</term><listitem><para> 
-	  Double-click the name of the person whose data you would like 
-	  to edit, or select the name by single click and then click the 
-	  <guibutton>Edit</guibutton> icon on the toolbar. You may also select 
-      the name and then press <keycap>Enter</keycap>. Finally, you may select 
-      <guimenuitem>Edit...</guimenuitem> from the <guisubmenu>Edit</guisubmenu>
-      menu of &app; or choose <guimenuitem>Edit</guimenuitem> from the context 
-      menu that appears upon right-click on the name.
-	  </para></listitem></varlistentry>
+  	  <varlistentry>
+            <term>From the People View:</term>
+            <listitem>
+              <para> 
+  	        Double-click the name of the person whose data you
+	        would like to edit, or select the name by single click
+	        and then click the <guibutton>Edit</guibutton> icon on
+	        the toolbar. You may also select the name and then
+	        press <keycap>Enter</keycap>. Finally, you may select
+	        <guimenuitem>Edit...</guimenuitem> from the
+	        <guisubmenu>Edit</guisubmenu> menu of &app; or choose
+	        <guimenuitem>Edit</guimenuitem> from the context menu
+	        that appears upon right-click on the name.
+  	      </para>
+            </listitem>
+          </varlistentry>
 
-	<varlistentry><term>From the Family View:</term><listitem><para>
-	  To edit active person's data, move the mouse into the
-	  <guilabel>Active person</guilabel> box, then double-click,
-	  or use any of the menu items described above.
-	  To edit Spouse's data, Shift-click desired spouse entry. Also, from
-	  <guilabel>Spouse</guilabel> and <guilabel>Children</guilabel> boxes
-	  you may select the desired person, right-click, and then select the
-	  menu item from the context menu to edit the selected person's data.
-	  </para></listitem></varlistentry>
+	  <varlistentry>
+            <term>From the Family View:</term>
+            <listitem>
+              <para>
+   	        To edit active person's data, move the mouse into the
+	        <guilabel>Active person</guilabel> box, then
+	        double-click, or use any of the menu items described
+	        above.  To edit Spouse's data, Shift-click desired
+	        spouse entry. Also, from <guilabel>Spouse</guilabel>
+	        and <guilabel>Children</guilabel> boxes you may select
+	        the desired person, right-click, and then select the
+	        menu item from the context menu to edit the selected
+	        person's data.
+	      </para>
+            </listitem>
+          </varlistentry>
 
-	<varlistentry><term>From the Pedigree View:</term><listitem><para>
-	  Move the mouse into the box bearing the name of the person whose
-	  data you would like to edit, then double-click.
-	  </para></listitem></varlistentry>
-	  
+	  <varlistentry>
+            <term>From the Pedigree View:</term>
+            <listitem>
+              <para>
+ 	        Move the mouse into the box bearing the name of the
+	        person whose data you would like to edit, then
+	        double-click.
+	      </para> 
+            </listitem>
+          </varlistentry>
 	</variablelist>
 	
-	<para> With either method, the following <guilabel>Edit 
-	Person</guilabel> dialog will appear: </para>
+	<para> 
+          With either method, the following <guilabel>Edit
+	  Person</guilabel> dialog will appear:
+        </para>
 
-	<!-- ==== Figure: Edit Person dialog ==== -->
-	<figure id="edit-pers-fig"> 
-	<title>Edit Person dialog</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/edit-person.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Edit Person dialog. </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+<!-- ==== Figure: Edit Person dialog ==== -->
+
+ 	<figure id="edit-pers-fig"> 
+	  <title>Edit Person dialog</title> 
+	  <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/edit-person.png" format="PNG" width="500" depth="413" scale="75"/>
+              </imageobject>
+	      <textobject> 
+	        <phrase>Shows Edit Person dialog. </phrase>
+	      </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+<!-- ==== End of Figure ==== -->
 	
-	<para> The top of the window shows the name of the person whose 
-	data is being edited. The main part of the window displays ten 
-	notebook tabs containing different categories of available 
-	information. You can bring any tab to the top for viewing
-	or editing by clicking on the appropriate tab heading. 
-	The bottom part has <guibutton>OK</guibutton> and
-	<guibutton>Cancel</guibutton> buttons. Clicking the 
-        <guibutton>OK</guibutton> button 
-	at any time will apply all the changes made in all tabs and close the
-	dialog window. Clicking the <guibutton>Cancel</guibutton> button at any time will 
-	close the window without applying any changes. If any of the data
-	in any tab were modified, the alert window will appear with the 
-	choices of closing the dialog without saving changes, canceling the
-	initial cancel request, or saving the changes. 
+	<para> 
+          The top of the window shows the name of the person whose
+	  data is being edited. The main part of the window displays
+	  ten notebook tabs containing different categories of
+	  available information. You can bring any tab to the top for
+	  viewing or editing by clicking on the appropriate tab
+	  heading.  The bottom part has <guibutton>OK</guibutton> and
+	  <guibutton>Cancel</guibutton> buttons. Clicking the
+	  <guibutton>OK</guibutton> button at any time will apply all
+	  the changes made in all tabs and close the dialog
+	  window. Clicking the <guibutton>Cancel</guibutton> button at
+	  any time will close the window without applying any
+	  changes. If any of the data in any tab were modified, the
+	  alert window will appear with the choices of closing the
+	  dialog without saving changes, canceling the initial cancel
+	  request, or saving the changes.
 	</para>
 
-<note><para>Clicking <guibutton>OK</guibutton> will immediately
-save changes to the database (write on disk). Unlike previous versions,
-this version of &app; does not have a separate saving function,
-all changes are immediate.</para></note>
+        <note>
+          <para>
+            Clicking <guibutton>OK</guibutton> will immediately save
+            changes to the database (write on disk). Unlike previous
+            versions, this version of &app; does not have a separate
+            saving function, all changes are immediate.
+          </para>
+        </note>
 
-	<tip><para>
-    The tab labels reflect the presence of corresponding information: if the 
-    tab contains any data, its label appears boldface; if the tab has no data
-    then its label appears regular (not bold). </para></tip>
+	<tip>
+          <para>
+             The tab labels reflect the presence of corresponding
+             information: if the tab contains any data, its label
+             appears boldface; if the tab has no data then its label
+             appears regular (not bold).
+          </para>
+        </tip>
     
-    <para>The tabs provide the following information categories of 
-	personal data:
+        <para>
+          The tabs provide the following information categories of
+	  personal data:
 	</para>
 
 	<variablelist>
-		<varlistentry><term><guilabel>General</guilabel></term>
-		<listitem><para> 
-	The <guilabel>General</guilabel> tab allows editing of 
-	general information about the person. This includes the text 
-	entry fields of <guilabel>Given name</guilabel>, 
-	<guilabel>Family name</guilabel>, <guilabel>Family prefix</guilabel> 
-	(such as de or van), <guilabel>Suffix</guilabel> (e.g. Jr. or III), 
-	<guilabel>Title</guilabel> (e.g. Dr. or Rev.), 
-	<guilabel>Nickname</guilabel> (Bob for Robert), 
-	<guilabel>Type</guilabel> of the name (birth name, married name, etc.)
-	and <guilabel>Date</guilabel> and <guilabel>Place</guilabel> of birth 
-	and death. Some of these (<guilabel>Family name</guilabel>,
-	<guilabel>Type</guilabel>, and both <guilabel>Place</guilabel> fields), 
-	also provide autocompletion feature: as you type in these fields, the menu
-	is displayed below the field with the available entries from the database
-	that are compatible with your partial input. This allows for a quick selection
-	of an available entry by selecting in from the menu, either using
-	the mouse or arrows and <keycap>Enter</keycap> key.
-</para>
-
-<para>The <guilabel>Edit</guilabel> button located by the <guilabel>Family name</guilabel>
-entry allows editing the preferred name in complete detail, by invoking the <guilabel>Name
-Editor</guilabel> dialog (see <xref linkend="adv-an"/>).
-
-</para>
-	
-	<para>
-	The <guilabel>Gender</guilabel> radio buttons offer
-	the choice of person's gender between <guilabel>male</guilabel>,
-	<guilabel>female</guilabel>, and <guilabel>unknown</guilabel>. 
-	Clicking the colored circle buttons (green, yellow, or red, also called LED buttons)
-	located next to 
-    the birth and death Date fields will bring up the <guilabel>Date Selection</guilabel>
-    dialog allowing detailed modification of the date, see <xref linkend="adv-dates"/>.
-    Clicking either <guibutton>Edit</guibutton> button located next to 
-    the birth and death LED buttons will bring up a dialog allowing you to 
-    edit the corresponding event (birth or death) details, see <xref linkend="adv-ev"/>. 
-        
-	The field <guilabel>ID</guilabel> displays an internal 
-	&app; ID number which identifies the user in the
-	database. The <guilabel>Image</guilabel> area shows the first
-	image available in the <guilabel>Gallery</guilabel> of this 
-        person (if any exist).
-	</para>
-	
-	<para>Finally, the <guilabel>Information is complete</guilabel> and
-	<guilabel>Information is private</guilabel>  check buttons provides
-	the way to mark whether this person's record is complete or 	not and
-	whether it is a private record. </para>
-		</listitem></varlistentry>
+	  <varlistentry>
+            <term><guilabel>General</guilabel></term>
+	    <listitem>
+              <para> 
+   	        The <guilabel>General</guilabel> tab allows editing of
+ 	        general information about the person. This includes
+ 	        the text entry fields of <guilabel>Given
+ 	        name</guilabel>, <guilabel>Family name</guilabel>,
+ 	        <guilabel>Family prefix</guilabel> (such as de or
+ 	        van), <guilabel>Suffix</guilabel> (e.g. Jr. or III),
+ 	        <guilabel>Title</guilabel> (e.g. Dr. or Rev.),
+ 	        <guilabel>Nickname</guilabel> (Bob for Robert),
+ 	        <guilabel>Type</guilabel> of the name (birth name,
+ 	        married name, etc.)  and <guilabel>Date</guilabel> and
+ 	        <guilabel>Place</guilabel> of birth and death. Some of
+ 	        these (<guilabel>Family name</guilabel>,
+ 	        <guilabel>Type</guilabel>, and both
+ 	        <guilabel>Place</guilabel> fields), also provide
+ 	        autocompletion feature: as you type in these fields,
+ 	        the menu is displayed below the field with the
+ 	        available entries from the database that are
+ 	        compatible with your partial input. This allows for a
+ 	        quick selection of an available entry by selecting in
+ 	        from the menu, either using the mouse or arrows and
+ 	        <keycap>Enter</keycap> key.
+              </para><para>
+                 The <guilabel>Edit</guilabel> button located by the
+                 <guilabel>Family name</guilabel> entry allows editing
+                 the preferred name in complete detail, by invoking
+                 the <guilabel>Name Editor</guilabel> dialog (see
+                 <xref linkend="adv-an"/>).
+               </para><para>
+	         The <guilabel>Gender</guilabel> radio buttons offer
+	         the choice of person's gender between
+	         <guilabel>male</guilabel>,
+	         <guilabel>female</guilabel>, and
+	         <guilabel>unknown</guilabel>.  Clicking the colored
+	         circle buttons (green, yellow, or red, also called
+	         LED buttons) located next to the birth and death Date
+	         fields will bring up the <guilabel>Date
+	         Selection</guilabel> dialog allowing detailed
+	         modification of the date, see <xref
+	         linkend="adv-dates"/>.  Clicking either
+	         <guibutton>Edit</guibutton> button located next to
+	         the birth and death LED buttons will bring up a
+	         dialog allowing you to edit the corresponding event
+	         (birth or death) details, see <xref
+	         linkend="adv-ev"/>.  The field
+	         <guilabel>ID</guilabel> displays an internal &app; ID
+	         number which identifies the user in the database. The
+	         <guilabel>Image</guilabel> area shows the first image
+	         available in the <guilabel>Gallery</guilabel> of this
+	         person (if any exist).
+ 	      </para><para>
+                 Finally, the <guilabel>Information is
+	         complete</guilabel> and <guilabel>Information is
+	         private</guilabel> check buttons provides the way to
+	         mark whether this person's record is complete or not
+	         and whether it is a private record.
+               </para>
+	     </listitem>
+           </varlistentry>
 	</variablelist>
 	
 	<variablelist>
-		<varlistentry><term><guilabel>Names</guilabel></term>
-		<listitem>
+  	  <varlistentry>
+            <term><guilabel>Names</guilabel></term>
+	    <listitem>
 
-	<!-- ==== Figure: Edit Person dialog - Names ==== -->
-	<figure id="edit-pers-names-fig"> 
-	<title>Edit Person dialog - Names</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/edit-person-names.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Names Tab of Edit Person dialog. </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+<!-- ==== Figure: Edit Person dialog - Names ==== -->
 
-	<para> The <guilabel>Names</guilabel> tab displays information concerning 
-	alternate names of the person and the controls allowing their
-	modification. The bottom part displays the list of all alternate names
-	of the person stored in the database. The top part shows the details 
-	of the currently selected name in the list (if any). The buttons
-	<guibutton>+</guibutton>, <guibutton>Edit</guibutton>, 
-	and <guibutton>-</guibutton> allow the addition, 
-	modification, and removal of an alternate name record from the database. 
-	Note that the <guibutton>Edit</guibutton> and 
-	<guibutton>-</guibutton> buttons become available only when 
-	an alternate name is selected from the list.  
-	</para>
-		</listitem></varlistentry>
-	</variablelist>
+ 	    <figure id="edit-pers-names-fig"> 
+	      <title>Edit Person dialog - Names</title> 
+ 	      <screenshot>
+                <mediaobject>
+                  <imageobject>
+                    <imagedata fileref="figures/edit-person-names.png" format="PNG" width="500" depth="252" scale="75"/>
+                  </imageobject>
+ 	          <textobject> 
+	            <phrase>Shows Names Tab of Edit Person dialog.</phrase>
+ 	          </textobject>
+                </mediaobject>
+              </screenshot>
+            </figure>
+
+<!-- ==== End of Figure ==== -->
+
+	    <para> 
+              The <guilabel>Names</guilabel> tab displays information
+ 	      concerning alternate names of the person and the
+ 	      controls allowing their modification. The bottom part
+ 	      displays the list of all alternate names of the person
+ 	      stored in the database. The top part shows the details
+ 	      of the currently selected name in the list (if any). The
+ 	      buttons <guibutton>+</guibutton>,
+ 	      <guibutton>Edit</guibutton>, and
+ 	      <guibutton>-</guibutton> allow the addition,
+ 	      modification, and removal of an alternate name record
+ 	      from the database.  Note that the
+ 	      <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
+ 	      buttons become available only when an alternate name is
+ 	      selected from the list.
+  	    </para>
+	  </listitem>
+        </varlistentry>
+      </variablelist>
 	
-	<variablelist>
-		<varlistentry><term><guilabel>Events</guilabel></term>
-		<listitem>
+      <variablelist>
+	<varlistentry>
+          <term><guilabel>Events</guilabel></term>
+	  <listitem>
 
-	<!-- ==== Figure: Edit Person dialog - Events ==== -->
-	<figure id="edit-pers-events-fig"> 
-	<title>Edit Person dialog - Events</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/edit-person-events.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Events Tab of Edit Person dialog. </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+<!-- ==== Figure: Edit Person dialog - Events ==== -->
 
-	<para>The <guilabel>Events</guilabel> tab displays information about 
-	the events relevant to the person and controls allowing its
-	modification. The bottom part displays the list of all such events 
-	stored in the database. The top part shows the details 
-	of the currently selected event in the list (if any). The buttons
-	<guibutton>+</guibutton>, <guibutton>Edit</guibutton>, 
-	and <guibutton>-</guibutton> allow you to correspondingly add, 
-	modify, and remove an event record from the database. 
-	Note that the <guibutton>Edit</guibutton> and 
-	<guibutton>-</guibutton> buttons become available only when 
-	an event is selected from the list.  
-	</para>
-		</listitem></varlistentry>
-	</variablelist>
+	    <figure id="edit-pers-events-fig"> 
+  	      <title>Edit Person dialog - Events</title> 
+ 	      <screenshot>
+                <mediaobject>
+                  <imageobject>
+                    <imagedata fileref="figures/edit-person-events.png" format="PNG" width="500" depth="278" scale="75"/>
+                  </imageobject>
+	          <textobject> 
+ 	            <phrase>Shows Events Tab of Edit Person dialog.</phrase>
+	          </textobject>
+                </mediaobject>
+              </screenshot>
+            </figure>
 
-	<variablelist>
-		<varlistentry><term><guilabel>Attributes</guilabel></term>
-		<listitem>
+<!-- ==== End of Figure ==== -->
 
-	<!-- ==== Figure: Edit Person dialog - Attributes ==== -->
-	<figure id="edit-pers-attributes-fig"> 
-	<title>Edit Person dialog - Attributes</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/edit-person-attributes.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Attributes Tab of Edit Person dialog. </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+	    <para>
+              The <guilabel>Events</guilabel> tab displays information
+	      about the events relevant to the person and controls
+	      allowing its modification. The bottom part displays the
+	      list of all such events stored in the database. The top
+	      part shows the details of the currently selected event
+	      in the list (if any). The buttons
+	      <guibutton>+</guibutton>, <guibutton>Edit</guibutton>,
+	      and <guibutton>-</guibutton> allow you to
+	      correspondingly add, modify, and remove an event record
+	      from the database.  Note that the
+	      <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
+	      buttons become available only when an event is selected
+	      from the list.
+ 	    </para>
+	  </listitem>
+        </varlistentry>
+      </variablelist>
 
-	<para>The <guilabel>Attributes</guilabel> tab displays information about 
-	the attributes of the person and controls allowing their
-	modification. These could be any personal attributes of a person whose
-	description naturally fits into Parameter-Value pairs (e.g. enormous
-	generosity can be stored as the parameter "Generosity" with the 
-	value "Enormous", etc.). The bottom part displays the list of all  
-	attributes stored in the database. The top part shows the details 
-	of the currently selected attribute in the list (if any). The buttons
-	<guibutton>+</guibutton>, <guibutton>Edit</guibutton>, 
-	and <guibutton>-</guibutton> allow you to correspondingly add, 
-	modify, and remove an attribute record from the database. 
-	Note that the <guibutton>Edit</guibutton> and 
-	<guibutton>-</guibutton> buttons become available only when 
-	an attribute is selected from the list.  
-	</para>
-		</listitem></varlistentry>
-	</variablelist>
+      <variablelist>
+	<varlistentry>
+          <term><guilabel>Attributes</guilabel></term>
+	  <listitem>
 
-	<variablelist>
-		<varlistentry><term><guilabel>Addresses</guilabel></term>
-		<listitem>
+<!-- ==== Figure: Edit Person dialog - Attributes ==== -->
 
-	<!-- ==== Figure: Edit Person dialog - Addresses ==== -->
-	<figure id="edit-pers-addresses-fig"> 
-	<title>Edit Person dialog - Addresses</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/edit-person-addresses.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Addresses Tab of Edit Person dialog. </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
+  	    <figure id="edit-pers-attributes-fig"> 
+ 	      <title>Edit Person dialog - Attributes</title> 
+	      <screenshot>
+                <mediaobject>
+                  <imageobject>
+                    <imagedata fileref="figures/edit-person-attributes.png" format="PNG" width="500" depth="231" scale="80"/>
+                  </imageobject>
+	          <textobject> 
+	            <phrase>Shows Attributes Tab of Edit Person dialog.</phrase>
+                  </textobject>
+                </mediaobject>
+              </screenshot>
+            </figure>
+
+<!-- ==== End of Figure ==== -->
+
+	    <para>
+              The <guilabel>Attributes</guilabel> tab displays
+	      information about the attributes of the person and
+	      controls allowing their modification. These could be any
+	      personal attributes of a person whose description
+	      naturally fits into Parameter-Value pairs (e.g. enormous
+	      generosity can be stored as the parameter "Generosity"
+	      with the value "Enormous", etc.). The bottom part
+	      displays the list of all attributes stored in the
+	      database. The top part shows the details of the
+	      currently selected attribute in the list (if any). The
+	      buttons <guibutton>+</guibutton>,
+	      <guibutton>Edit</guibutton>, and
+	      <guibutton>-</guibutton> allow you to correspondingly
+	      add, modify, and remove an attribute record from the
+	      database.  Note that the <guibutton>Edit</guibutton> and
+	      <guibutton>-</guibutton> buttons become available only
+	      when an attribute is selected from the list.
+    	    </para>
+	  </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+	<varlistentry>
+          <term><guilabel>Addresses</guilabel></term>
+	  <listitem>
+
+<!-- ==== Figure: Edit Person dialog - Addresses ==== -->
+
+	    <figure id="edit-pers-addresses-fig"> 
+ 	      <title>Edit Person dialog - Addresses</title> 
+	      <screenshot>
+                <mediaobject>
+                  <imageobject>
+                    <imagedata fileref="figures/edit-person-addresses.png" format="PNG" width="500" depth="272" scale="80"/>
+                  </imageobject>
+ 	         <textobject> 
+ 	           <phrase>Shows Addresses Tab of Edit Person dialog.</phrase>
+	         </textobject>
+               </mediaobject>
+             </screenshot>
+           </figure>
+
+<!-- ==== End of Figure ==== -->
 
 	<para>The <guilabel>Addresses</guilabel> tab displays information about 
 	the addresses of the person and the controls allowing their
