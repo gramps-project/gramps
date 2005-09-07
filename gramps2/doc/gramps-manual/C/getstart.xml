@@ -140,7 +140,7 @@
       <screenshot>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="figures/first-open.png" format="PNG" width="311" depth="199" scale="75"/>
+            <imagedata fileref="figures/first-open.png" format="PNG" width="311" depth="199"/>
           </imageobject>
 	  <textobject> 
 	    <phrase>Shows Open Database Window.</phrase>

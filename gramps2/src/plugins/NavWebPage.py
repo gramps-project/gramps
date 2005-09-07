@@ -514,7 +514,7 @@ class BasePage:
 #------------------------------------------------------------------------
 class IndividualListPage(BasePage):
 
-    def __init__(self, db, title, person_handle_list,
+    def __init__(self, db, title, person_handle_list, restrict_list,
                  options, archive, media_list):
         BasePage.__init__(self, title, options, archive, media_list, "")
 
@@ -551,10 +551,14 @@ class IndividualListPage(BasePage):
                 self.person_link(of, self.build_name(path,person.handle),
                                  _nd.display_given(person), person.gramps_id,False)
                 of.write('</td><td class="field">')
-                birth_handle = person.get_birth_handle()
-                if birth_handle:
-                    birth = db.get_event_from_handle(birth_handle)
-                    of.write(birth.get_date())
+
+                if person.handle in restrict_list:
+                    of.write(_('restricted'))
+                else:
+                    birth_handle = person.get_birth_handle()
+                    if birth_handle:
+                        birth = db.get_event_from_handle(birth_handle)
+                        of.write(birth.get_date())
                 of.write('</td></tr>\n')
                 first = False
             
@@ -569,8 +573,9 @@ class IndividualListPage(BasePage):
 #------------------------------------------------------------------------
 class SurnamePage(BasePage):
 
-    def __init__(self, db, title, person_handle_list, options, archive,
-                 media_list):
+    def __init__(self, db, title, person_handle_list, restrict_list,
+                 options, archive, media_list):
+        
         BasePage.__init__(self, title, options, archive, media_list, "")
 
         of = self.create_link_file(md5.new(title).hexdigest(),'srn')
@@ -595,10 +600,13 @@ class SurnamePage(BasePage):
                              person.get_primary_name().get_first_name(),
                              person.gramps_id,False)
             of.write('</td><td class="field">')
-            birth_handle = person.get_birth_handle()
-            if birth_handle:
-                birth = db.get_event_from_handle(birth_handle)
-                of.write(birth.get_date())
+            if person.handle in restrict_list:
+                of.write(_('restricted'))
+            else:
+                birth_handle = person.get_birth_handle()
+                if birth_handle:
+                    birth = db.get_event_from_handle(birth_handle)
+                    of.write(birth.get_date())
             of.write('</td></tr>\n')
         of.write('<tbody>\n</table>\n')
         self.display_footer(of,db)
@@ -894,6 +902,7 @@ class SurnameListPage(BasePage):
     ORDER_BY_COUNT = 1
     def __init__(self, db, title, person_handle_list, options, archive,
                  media_list, order_by=ORDER_BY_NAME,filename="surnames"):
+        
         BasePage.__init__(self, title, options, archive, media_list, "")
         if order_by == self.ORDER_BY_NAME:
             of = self.create_file(filename)
@@ -1882,7 +1891,7 @@ class WebReport(Report.Report):
 
         self.base_pages(self.photo_list, archive)
         self.person_pages(ind_list, restrict_list, place_list, source_list, archive)
-        self.surname_pages(ind_list,archive)
+        self.surname_pages(ind_list, restrict_list, archive)
         self.place_pages(place_list, source_list, archive)
         self.source_pages(source_list, self.photo_list, archive)
         if self.inc_gallery:
@@ -1954,7 +1963,7 @@ class WebReport(Report.Report):
         self.progress.set_pass(_('Creating individual pages'),len(ind_list))
 
         IndividualListPage(
-            self.database, self.title, ind_list, 
+            self.database, self.title, ind_list, restrict_list, 
             self.options, archive, self.photo_list)
 
         for person_handle in ind_list:
@@ -1968,7 +1977,7 @@ class WebReport(Report.Report):
                 self.database, person, self.title, ind_list, restrict_list,
                 place_list, source_list, self.options, archive, self.photo_list)
             
-    def surname_pages(self, ind_list, archive):
+    def surname_pages(self, ind_list, restrict_list, archive):
         """
         Generates the surname related pages from list of individual
         people.
@@ -1990,7 +1999,7 @@ class WebReport(Report.Report):
             self.photo_list, SurnameListPage.ORDER_BY_COUNT)
 
         for (surname,handle_list) in local_list:
-            SurnamePage(self.database, surname, handle_list,
+            SurnamePage(self.database, surname, handle_list, restrict_list,
                         self.options, archive, self.photo_list)
             self.progress.step()
         

@@ -1,4 +1,6 @@
 2005-09-06  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: suppress dates on list pages for restricted
+	people
 	* doc/gramps-manual/C/getstart.xml: text and graphics improvements
 	* doc/gramps-manual/C/mainwin.xml: text and graphics improvements
 	* doc/gramps-manual/C/usage.xml: text and graphics improvements

@@ -315,9 +315,10 @@
 
     <figure id="missing-media-im"> 
       <title>Missing Media dialog</title> 
-	<screenshot><mediaobject>
+      <screenshot>
+        <mediaobject>
           <imageobject>
-            <imagedata fileref="figures/missing-media.png" format="PNG" width="493" depth="264" scale="75"/>
+            <imagedata fileref="figures/missing-media.png" format="PNG" width="493" depth="264"/>
           </imageobject>
 	  <textobject> 
 	    <phrase>Shows Missing Media dialog.</phrase>
@@ -544,7 +545,7 @@
 	<screenshot>
           <mediaobject> 
             <imageobject>
-              <imagedata fileref="figures/missing-media.png" format="PNG" width="434" depth="264" scale="75"/>
+              <imagedata fileref="figures/missing-media.png" format="PNG" width="434" depth="264"/>
             </imageobject>
 	    <textobject> 
 	      <phrase>Shows Missing Media dialog.</phrase>
