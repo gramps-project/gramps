@@ -134,8 +134,6 @@ class PeopleView:
             
         column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
         column.set_resizable(True)
-        #column.set_clickable(True)
-        #column.connect('clicked',self.sort_clicked)
         column.set_min_width(225)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
         self.person_tree.append_column(column)

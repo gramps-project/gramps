@@ -187,7 +187,6 @@ class ImageSelect:
 
             already_imported = None
 
-            trans = self.db.transaction_begin()
             for o_id in self.db.get_media_object_handles():
                 o = self.db.get_object_from_handle(o_id)
                 if o.get_path() == filename:
@@ -208,13 +207,14 @@ class ImageSelect:
                 mobj.set_mime_type(mtype)
                 mobj.set_path(filename)
         else:
-            trans = self.db.transaction_begin()
             mobj = RelLib.MediaObject()
             mobj.set_description(description)
             mobj.set_mime_type(None)
 
-        self.savephoto(mobj,trans)
-        self.db.transaction_commit(trans,'Edit Media Objects')
+        if not already_imported:
+            trans = self.db.transaction_begin()
+            self.savephoto(mobj,trans)
+            self.db.transaction_commit(trans,'Edit Media Objects')
             
         self.parent.lists_changed = 1
         self.load_images()

@@ -1,3 +1,7 @@
+2005-09-10  Don Allingham  <don@gramps-project.org>
+	* src/ImageSelect.py: fix adding a new image that is actually
+	already in the database.
+
 2005-09-06  Don Allingham  <don@gramps-project.org>
 	* src/plugins/NavWebPage.py: suppress dates on list pages for restricted
 	people
