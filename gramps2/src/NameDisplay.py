@@ -133,9 +133,9 @@ class NameDisplay:
         """
         name = person.get_primary_name()
         if name.display_as == RelLib.Name.LNFN:
-            return self._lnfn(name)
+            return self._lnfn(name,person.get_nick_name())
         else:
-            return self._fnln(name)
+            return self._fnln(name,person.get_nick_name())
 
     def display_name(self,name):
         """
@@ -182,17 +182,21 @@ class NameDisplay:
             else:
                 return "%s %s, %s" % (last, name.suffix, first)
         
-    def _fnln(self,name):
+    def _fnln(self,name,nickname=""):
         """
         Prints the Western style first name, last name style.
         Typically this is::
 
            FirstName Patronymic SurnamePrefix Surname SurnameSuffix
         """
+
+        first = name.first_name
+
+        if nickname:
+            first = '%s "%s"' % (first,nickname)
+            
         if name.patronymic:
-            first = "%s %s" % (name.first_name, name.patronymic)
-        else:
-            first = name.first_name
+            first = "%s %s" % (first, name.patronymic)
 
         if self.force_upper:
             last = name.surname.upper()
@@ -225,17 +229,21 @@ class NameDisplay:
             val = pn.first_name
         return db.get_name_group_mapping(val)
         
-    def _lnfn(self,name):
+    def _lnfn(self,name,nickname=u""):
         """
         Prints the Western style last name, first name style.
         Typically this is::
 
             SurnamePrefix Surname, FirstName Patronymic SurnameSuffix
         """
+
+        first = name.first_name
+
+        if nickname:
+            first = '%s "%s"' % (first,nickname)
+            
         if name.patronymic:
-            first = "%s %s" % (name.first_name, name.patronymic)
-        else:
-            first = name.first_name
+            first = "%s %s" % (first, name.patronymic)
 
         if self.force_upper:
             last = name.surname.upper()

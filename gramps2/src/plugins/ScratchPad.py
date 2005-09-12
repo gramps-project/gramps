@@ -690,6 +690,9 @@ class ScratchPadListView:
 
         wrapper_class = self._target_type_to_wrapper_class_map[str(possible_wrappers[0])]
 
+        if not sel_data:
+            return
+        
         o = wrapper_class(self._gramps_model,sel_data)
 
         # If the wrapper object is a subclass of ScratchDropList then
