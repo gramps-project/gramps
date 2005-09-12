@@ -27,6 +27,7 @@
 #------------------------------------------------------------------------
 import cPickle as pickle
 import os
+import locale
 from xml.sax.saxutils import escape
 from gettext import gettext as _
 
@@ -405,7 +406,8 @@ class ScratchPadText(ScratchPadWrapper):
         self._type  = _("Text")
 
         self._title = ""
-        self._obj = unicode(self._obj)
+        if type(self._obj) == str:
+            self._obj = unicode(self._obj,locale.getpreferredencoding())
         self._value = self._obj
 
     def tooltip(self):
