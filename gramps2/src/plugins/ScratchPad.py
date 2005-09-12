@@ -405,6 +405,7 @@ class ScratchPadText(ScratchPadWrapper):
         self._type  = _("Text")
 
         self._title = ""
+        self._obj = unicode(self._obj)
         self._value = self._obj
 
     def tooltip(self):
@@ -629,7 +630,6 @@ class ScratchPadListView:
     def object_title(self, column, cell, model, iter, user_data=None):
         o = model.get_value(iter, 1)
         cell.set_property('text', o.get_title())
-
     
     def object_value(self, column, cell, model, iter, user_data=None):
         o = model.get_value(iter, 1)
