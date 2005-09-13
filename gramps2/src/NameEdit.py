@@ -261,7 +261,7 @@ class NameEditor:
 
         if const.NameTypesMap.has_value(mtype):
             mtype = const.NameTypesMap.find_key(mtype)
-        else:
+        if not mtype:
             mtype = "Also Known As"
         
         if self.name == None:
