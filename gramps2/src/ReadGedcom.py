@@ -268,7 +268,7 @@ class GedcomParser:
         self.fmap = {}
         self.smap = {}
         self.nmap = {}
-        self.share_note = []
+        self.share_note = {}
         self.refn = {}
         self.added = {}
         self.gedmap = GedcomInfoDB()
@@ -541,8 +541,12 @@ class GedcomParser:
             return None
 
     def break_note_links(self):
-        for o in self.share_note:
-            o.unique_note()
+        for handle in self.share_note.keys():
+            p = self.db.get_person_from_handle(handle)
+            if p:
+                note_id = self.share_note[handle]
+                p.set_note_object(self.nmap[note_id])
+                self.db.commit_person(p,self.trans)
             
     def parse_trailer(self):
         matches = self.get_next()
@@ -679,13 +683,9 @@ class GedcomParser:
                 source.set_title( matches[2][5:])
                 self.db.commit_source(source, self.trans)
             elif matches[2][0:4] == "NOTE":
-                if self.nmap.has_key(matches[1]):
-                    noteobj = self.nmap[matches[1]]
-                else:
-                    noteobj = RelLib.Note()
-                    self.nmap[matches[1]] = noteobj
+                noteobj = RelLib.Note()
+                self.nmap[matches[1]] = noteobj
                 text =  matches[2][4:]
-#                noteobj.append(text + self.parse_continue_data(1))
                 noteobj.append(text + self.parse_note_continue(1))
                 self.parse_note_data(1)
             elif matches[2] == "_LOC":
@@ -930,15 +930,8 @@ class GedcomParser:
 
     def parse_note_base(self,matches,obj,level,old_note,task):
         note = old_note
-        if matches[2] and matches[2][0] == "@":
-            if self.nmap.has_key(matches[2]):
-                self.share_note.append(obj)
-                obj.set_note_object(self.nmap[matches[2]])
-            else:
-                noteobj = RelLib.Note()
-                self.nmap[matches[2]] = noteobj
-                self.share_note.append(obj)
-                obj.set_note_object(noteobj)
+        if matches[2] and matches[2][0] == "@":  # reference to a named note defined elsewhere
+            self.share_note[obj.get_handle()] = matches[2]
         else:
             if old_note:
                 note = "%s\n%s%s" % (old_note,matches[2],self.parse_continue_data(level))
