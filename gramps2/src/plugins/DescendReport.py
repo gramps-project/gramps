@@ -41,7 +41,9 @@ import Errors
 import Sort
 from QuestionDialog import ErrorDialog
 import ReportOptions
+import ReportUtils
 import const
+import NameDisplay
 
 #------------------------------------------------------------------------
 #
@@ -88,44 +90,77 @@ class DescendantReport(Report.Report):
     def dump_dates(self, person):
         birth_handle = person.get_birth_handle()
         if birth_handle:
-            birth = self.database.get_event_from_handle(birth_handle).get_date_object()
-            birth_year_valid = birth.get_year_valid()
+            birth = self.database.get_event_from_handle(birth_handle)
+            birth_date = birth.get_date_object()
+            birth_year_valid = birth_date.get_year_valid()
         else:
             birth_year_valid = 0
+            birth = None
 
         death_handle = person.get_death_handle()
         if death_handle:
-            death = self.database.get_event_from_handle(death_handle).get_date_object()
-            death_year_valid = death.get_year_valid()
+            death = self.database.get_event_from_handle(death_handle)
+            death_date = death.get_date_object()
+            death_year_valid = death_date.get_year_valid()
         else:
+            death = None
             death_year_valid = 0
 
         if birth_year_valid or death_year_valid:
             self.doc.write_text(' (')
+
+            birth_place = ""
+            if birth:
+                bplace_handle = birth.get_place_handle()
+                if bplace_handle:
+                    birth_place = self.database.get_place_from_handle(bplace_handle).get_title()
+
+            death_place = ""
+            if death:
+                dplace_handle = death.get_place_handle()
+                if dplace_handle:
+                    death_place = self.database.get_place_from_handle(dplace_handle).get_title()
+
             if birth_year_valid:
-                self.doc.write_text("%s %d" % (_BORN,birth.get_year()))
+                if birth_place:
+                    self.doc.write_text(_("b. %(birth_year)d - %(place)s") % {
+                        'birth_year' : birth_date.get_year(),
+                        'place' : birth_place,
+                        })
+                else:
+                    self.doc.write_text(_("b. %(birth_year)d") % {
+                        'birth_year' : birth_date.get_year()
+                        })
+
             if death_year_valid:
                 if birth_year_valid:
                     self.doc.write_text(', ')
-                self.doc.write_text("%s %d" % (_DIED,death.get_year()))
+                if death_place:
+                    self.doc.write_text(_("d. %(death_year)d - %(place)s") % {
+                        'death_year' : death_date.get_year(),
+                        'place' : death_place,
+                        })
+                else:
+                    self.doc.write_text(_("d. %(death_year)d") % {
+                        'death_year' : death_date.get_year()
+                        })
+
             self.doc.write_text(')')
         
     def write_report(self):
         self.doc.start_paragraph("DR-Title")
-        name = self.start_person.get_primary_name().get_regular_name()
+        name = NameDisplay.displayer.display(self.start_person)
         self.doc.write_text(_("Descendants of %s") % name)
-        self.dump_dates(self.start_person)
         self.doc.end_paragraph()
-        self.dump(0,self.start_person)
+        self.dump(1,self.start_person)
 
     def dump(self,level,person):
 
-        if level != 0:
-            self.doc.start_paragraph("DR-Level%d" % level)
-            self.doc.write_text("%d." % level)
-            self.doc.write_text(person.get_primary_name().get_regular_name())
-            self.dump_dates(person)
-            self.doc.end_paragraph()
+        self.doc.start_paragraph("DR-Level%d" % level)
+        self.doc.write_text("%d. " % level)
+        self.doc.write_text(NameDisplay.displayer.display(person))
+        self.dump_dates(person)
+        self.doc.end_paragraph()
 
         if level >= self.max_generations:
             return
@@ -133,13 +168,23 @@ class DescendantReport(Report.Report):
         childlist = []
         for family_handle in person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
+
+            spouse_handle = ReportUtils.find_spouse(person,family)
+            if spouse_handle:
+                spouse = self.database.get_person_from_handle(spouse_handle)
+                self.doc.start_paragraph("DR-Spouse%d" % level)
+                name = NameDisplay.displayer.display(spouse)
+                self.doc.write_text(_("sp. %(spouse)s") % {'spouse':name})
+                self.dump_dates(spouse)
+                self.doc.end_paragraph()
+
             for child_handle in family.get_child_handle_list():
                 childlist.append(child_handle)
 
-        childlist.sort(self.by_birthdate)
-        for child_handle in childlist:
-            child = self.database.get_person_from_handle(child_handle)
-            self.dump(level+1,child)
+            childlist.sort(self.by_birthdate)
+            for child_handle in childlist:
+                child = self.database.get_person_from_handle(child_handle)
+                self.dump(level+1,child)
 
 #------------------------------------------------------------------------
 #
@@ -165,22 +210,34 @@ class DescendantOptions(ReportOptions.ReportOptions):
     def make_default_style(self,default_style):
         """Make the default output style for the Descendant Report."""
         f = BaseDoc.FontStyle()
-        f.set_size(14)
+        f.set_size(12)
         f.set_type_face(BaseDoc.FONT_SANS_SERIF)
         f.set_bold(1)
         p = BaseDoc.ParagraphStyle()
         p.set_header_level(1)
+        p.set_bottom_border(1)
+        p.set_padding(ReportUtils.pt2cm(6))
         p.set_font(f)
+        p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
         default_style.add_style("DR-Title",p)
 
         f = BaseDoc.FontStyle()
+        f.set_size(10)
         for i in range(1,32):
             p = BaseDoc.ParagraphStyle()
             p.set_font(f)
+            p.set_padding(ReportUtils.pt2cm(f.get_size()*0.25))
             p.set_left_margin(min(10.0,float(i-1)))
             p.set_description(_("The style used for the level %d display.") % i)
             default_style.add_style("DR-Level%d" % i,p)
+
+            p = BaseDoc.ParagraphStyle()
+            p.set_font(f)
+            p.set_padding(ReportUtils.pt2cm(f.get_size()*0.25))
+            p.set_left_margin(min(10.0,float(i-1)+0.5))
+            p.set_description(_("The style used for the spouse level %d display.") % i)
+            default_style.add_style("DR-Spouse%d" % i,p)
 
 #------------------------------------------------------------------------
 #

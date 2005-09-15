@@ -559,6 +559,14 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 
             if style.get_padding() != 0.0:
                self.sfile.write('fo:padding="%.3fcm" ' % style.get_padding())
+            if style.get_top_border():
+               self.sfile.write('fo:border-top="0.002cm solid #000000" ')
+            if style.get_bottom_border():
+               self.sfile.write('fo:border-bottom="0.002cm solid #000000" ')
+            if style.get_right_border():
+               self.sfile.write('fo:border-right="0.002cm solid #000000" ')
+            if style.get_left_border():
+               self.sfile.write('fo:border-left="0.002cm solid #000000" ')
             if style.get_header_level() > 0:
                 self.sfile.write('fo:keep-with-next="true" ')
 
