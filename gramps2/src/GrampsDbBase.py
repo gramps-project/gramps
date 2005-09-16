@@ -492,6 +492,8 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         return index
 
     def _get_from_handle(self, handle, class_type, data_map):
+        if not data_map:
+            return
         data = data_map.get(str(handle))
         if data:
             newobj = class_type()
@@ -1198,7 +1200,6 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         """returns a list of all Event types assocated with Family
         instances in the database"""
         return list(self.family_event_names)
-
 
     def get_media_attribute_types(self):
         """returns a list of all Attribute types assocated with Media
