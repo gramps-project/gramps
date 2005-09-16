@@ -1,5 +1,16 @@
 2005-09-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* Makefile.am: Disable install, show warning instead.
+	* src/PageView.py (button_press): Catch problem with no loaded database
+	* src/PersonView.py (button_press): Catch problem with no loaded database
+	* src/GrampsDbBase.py (_get_from_handle): Catch problem with no loaded database
+	* src/MapView.py: Updates
+	* src/EditPerson.py: Change complete flag into marker combo
+	* src/GrampsDbBase.py: Add map for custom marker values
+	* src/PeopleModel.py: Add support for colored markers
+	* src/PersonView.py: Add support for colored markers
+	* src/RelLib.py: Change complete flag into marker combo
+	* src/Utils.py: Add marker types
+	* src/edit_person.glade: Change complete flag into marker combo
 
 2005-09-15  Don Allingham  <don@gramps-project.org>
 	* src/EditPlace.py: fix windowing history

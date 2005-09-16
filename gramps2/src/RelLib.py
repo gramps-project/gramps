@@ -196,6 +196,11 @@ class PrimaryObject(BaseObject):
     handle is used as the record number for the database, and the GRAMPS
     ID is the user visible version.
     """
+    
+    MARKER_NONE = -1
+    MARKER_CUSTOM = 0
+    MARKER_COMPLETE = 1
+    MARKER_TODO = 2
 
     def __init__(self,source=None):
         """
@@ -211,10 +216,12 @@ class PrimaryObject(BaseObject):
             self.gramps_id = source.gramps_id
             self.handle = source.handle
             self.change = source.change
+            self.marker = source.marker
         else:
             self.gramps_id = None
             self.handle = None
             self.change = 0
+            self.marker = (PrimaryObject.MARKER_NONE,"")
 
     def get_change_time(self):
         """
@@ -340,6 +347,12 @@ class PrimaryObject(BaseObject):
     def _replace_handle_reference(self,classname,old_handle,new_handle):
         pass
 
+    def set_marker(self,marker):
+        self.marker = marker
+    
+    def get_marker(self):
+        return self.marker
+    
 class NoteBase:
     """
     Base class for storing notes.
@@ -929,7 +942,6 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
             self.lds_bapt = None
             self.lds_endow = None
             self.lds_seal = None
-            self.complete = False
         
         # We hold a reference to the GrampsDB so that we can maintain
         # its genderStats.  It doesn't get set here, but from
@@ -957,7 +969,7 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
                 self.event_ref_list, self.family_list, self.parent_family_list,
                 self.media_list, self.address_list, self.attribute_list,
                 self.urls, self.lds_bapt, self.lds_endow, self.lds_seal,
-                self.complete, self.source_list, self.note, self.change,
+                self.source_list, self.note, self.change, self.marker,
                 self.private)
 
     def unserialize(self,data):
@@ -974,8 +986,8 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
          self.birth_ref, self.event_ref_list, self.family_list,
          self.parent_family_list, self.media_list, self.address_list,
          self.attribute_list, self.urls, self.lds_bapt, self.lds_endow,
-         self.lds_seal, self.complete, self.source_list, self.note,
-         self.change,self.private) = (data + (False,))[0:23]
+         self.lds_seal, self.source_list, self.note, self.change,
+         self.marker, self.private) = (data + (False,))[0:23]
             
     def _has_handle_reference(self,classname,handle):
         if classname == 'Event':
@@ -1100,26 +1112,19 @@ class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
                + self.event_ref_list
 
     def set_complete_flag(self,val):
-        """
-        Sets or clears the complete flag, which is used to indicate that the
-        Person's data is considered to be complete.
-
-        @param val: True indicates the Person object is considered to be
-            complete
-        @type val: bool
-        """
-        self.complete = val
+        warn( "Use set_marker instead of set_complete_flag", DeprecationWarning, 2)
+        # Wrapper for old API
+        # remove when transitition done.
+        if val:
+            self.marker = (PrimaryObject.MARKER_COMPLETE, "")
+        else:
+            self.marker = (PrimaryObject.MARKER_NONE, "")
 
     def get_complete_flag(self):
-        """
-        Returns the complete flag, which is used to indicate that the
-        Person's data is considered to be complete.
-
-        @return: True indicates that the Person's record is considered to
-            be complete.
-        @rtype: bool
-        """
-        return self.complete
+        warn( "Use get_marker instead of get_complete_flag", DeprecationWarning, 2)
+        # Wrapper for old API
+        # remove when transitition done.
+        return self.marker[0] == PrimaryObject.MARKER_COMPLETE
 
     def set_primary_name(self,name):
         """
@@ -1799,7 +1804,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
                 self.child_list, self.type, self.event_ref_list,
                 self.media_list, self.attribute_list, self.lds_seal,
                 self.complete, self.source_list, self.note,
-                self.change)
+                self.change, self.marker)
 
     def unserialize(self, data):
         """
@@ -1809,7 +1814,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
          self.child_list, self.type, self.event_ref_list,
          self.media_list, self.attribute_list, self.lds_seal,
-         self.complete, self.source_list, self.note, self.change) = data
+         self.complete, self.source_list, self.note, self.change, self.marker) = data
 
     def _has_handle_reference(self,classname,handle):
         if classname == 'Event':
@@ -2252,7 +2257,8 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         """
         return (self.handle, self.gramps_id, self.type, self.date,
                 self.description, self.place, self.cause, self.private,
-                self.source_list, self.note, self.media_list, self.change)
+                self.source_list, self.note, self.media_list, self.change,
+                self.marker)
 
     def unserialize(self,data):
         """
@@ -2265,7 +2271,8 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         """
         (self.handle, self.gramps_id, self.type, self.date,
          self.description, self.place, self.cause, self.private,
-         self.source_list, self.note, self.media_list, self.change) = data
+         self.source_list, self.note, self.media_list, self.change,
+         self.marker) = data
 
     def _has_handle_reference(self,classname,handle):
         if classname == 'Place':
@@ -2531,7 +2538,7 @@ class Place(PrimaryObject,SourceNote,MediaBase):
         """
         return (self.handle, self.gramps_id, self.title, self.long, self.lat,
                 self.main_loc, self.alt_loc, self.urls, self.media_list,
-                self.source_list, self.note, self.change)
+                self.source_list, self.note, self.change, self.marker)
 
     def unserialize(self,data):
         """
@@ -2544,7 +2551,7 @@ class Place(PrimaryObject,SourceNote,MediaBase):
         """
         (self.handle, self.gramps_id, self.title, self.long, self.lat,
          self.main_loc, self.alt_loc, self.urls, self.media_list,
-         self.source_list, self.note, self.change) = data
+         self.source_list, self.note, self.change, self.marker) = data
             
     def get_text_data_list(self):
         """
@@ -2791,7 +2798,7 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
         """
         return (self.handle, self.gramps_id, self.path, self.mime,
                 self.desc, self.attribute_list, self.source_list, self.note,
-                self.change, self.date)
+                self.change, self.date, self.marker)
 
     def unserialize(self,data):
         """
@@ -2803,7 +2810,7 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
         """
         (self.handle, self.gramps_id, self.path, self.mime, self.desc,
          self.attribute_list, self.source_list, self.note, self.change,
-         self.date) = data
+         self.date, self.marker) = data
 
     def get_text_data_list(self):
         """
@@ -2900,7 +2907,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         return (self.handle, self.gramps_id, unicode(self.title),
                 unicode(self.author), unicode(self.pubinfo),
                 self.note, self.media_list, unicode(self.abbrev),
-                self.change,self.datamap,self.reporef_list)
+                self.change,self.datamap,self.reporef_list, self.marker)
 
     def unserialize(self,data):
         """
@@ -2909,7 +2916,8 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         """
         (self.handle, self.gramps_id, self.title, self.author,
          self.pubinfo, self.note, self.media_list,
-         self.abbrev, self.change, self.datamap, self.reporef_list) = data
+         self.abbrev, self.change, self.datamap, self.reporef_list,
+         self.marker) = data
         
     def get_text_data_list(self):
         """

@@ -31,6 +31,7 @@ import locale
 import cgi
 import sets
 import sys
+import traceback
 
 #-------------------------------------------------------------------------
 #
@@ -72,7 +73,8 @@ _DEATH_COL = 6
 _BIRTH_COL = 7
 _EVENT_COL = 8
 _FAMILY_COL= 9
-_CHANGE_COL= 21
+_CHANGE_COL= 20
+_MARKER_COL=21
 
 #-------------------------------------------------------------------------
 #
@@ -108,7 +110,8 @@ class PeopleModel(gtk.GenericTreeModel):
         self.top_visible = {}
         self.invert_result = invert_result
         self.sortnames = {}
-        self.tooltip_column = 10
+        self.marker_color_column = 11
+        self.tooltip_column = 12
         self.rebuild_data(data_filter)
     
     def rebuild_data(self,data_filter=None,skip=None):
@@ -219,6 +222,9 @@ class PeopleModel(gtk.GenericTreeModel):
     def on_get_value(self,node,col):
         # test for header or data row-type
         if self.sname_sub.has_key(node):
+            # Header rows dont get the background color set
+            if col==self.marker_color_column:
+                return None
             # test for 'header' column being empty (most are)
             if not COLUMN_DEFS[col][COLUMN_DEF_HEADER]:
                 return u''
@@ -232,6 +238,7 @@ class PeopleModel(gtk.GenericTreeModel):
             try:
                 return COLUMN_DEFS[col][COLUMN_DEF_LIST](self,self.db.person_map[str(node)],node)
             except:
+                print "".join(traceback.format_exception(*sys.exc_info()))
                 return u'error'
 
     def reset_visible(self):
@@ -409,6 +416,30 @@ class PeopleModel(gtk.GenericTreeModel):
         
         return u""
 
+    def column_marker_text(self,data,node):
+        try:
+            if data[_MARKER_COL]:
+                if data[_MARKER_COL][0] == PrimaryObject.MARKER_CUSTOM:
+                    return data[_MARKER_COL][1]
+                elif data[_MARKER_COL][0] in Utils.marker_types:
+                    return Utils.marker_types[data[_MARKER_COL][0]]
+        except IndexError:
+            return ""
+        return ""
+
+    def column_marker_color(self,data,node):
+        try:
+            if data[_MARKER_COL]:
+                if data[_MARKER_COL][0] == PrimaryObject.MARKER_COMPLETE:
+                    return u"#46a046"   # green
+                if data[_MARKER_COL][0] == PrimaryObject.MARKER_TODO:
+                    return u"#df421e"   # red
+                if data[_MARKER_COL][0] == PrimaryObject.MARKER_CUSTOM:
+                    return u"#eed680"  # blue
+        except IndexError:
+            pass
+        return None
+
     def column_tooltip(self,data,node):
         return ToolTips.TipFromFunction(self.db, lambda: self.db.get_person_from_handle(data[0]))
         
@@ -438,6 +469,8 @@ COLUMN_DEFS = [
     (PeopleModel.column_spouse,     None,                      str),
     (PeopleModel.column_change,     None,                      str),
     (PeopleModel.column_cause_of_death, None,                  str),
+    (PeopleModel.column_marker_text, None,                  str),
+    (PeopleModel.column_marker_color, None,                  str),
     # the order of the above columns must match PeopleView.column_names
 
     # these columns are hidden, and must always be last in the list

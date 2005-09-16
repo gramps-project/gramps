@@ -158,8 +158,19 @@ class EditPerson(DisplayState.ManagedWindow):
 
         self.build_gallery(self.get_widget('iconbox'))
 
-        self.complete = self.get_widget('complete')
-        self.complete.set_sensitive(mod)
+        self.marker = self.get_widget('marker')
+        self.marker.set_sensitive(mod)
+        if person:
+            try:
+                defval = person.get_marker()[0]
+            except:
+                defval = (RelLib.PrimaryObject.MARKER_NONE,"")
+        else:
+            defval = None
+        self.marker_type_selector = AutoComp.StandardCustomSelector(
+            Utils.marker_types, self.marker,
+            RelLib.PrimaryObject.MARKER_CUSTOM, defval)
+        
         self.gender = self.get_widget('gender')
         self.gender.set_sensitive(mod)
         self.private = self.get_widget('private')
@@ -335,7 +346,6 @@ class EditPerson(DisplayState.ManagedWindow):
             self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
             self.top.get_widget('del_src'), self.db.readonly)
 
-        self.complete.set_active(self.person.get_complete_flag())
         self.private.set_active(self.person.get_privacy())
 
         self.eventbox.connect('button-press-event',self.image_button_press)
@@ -722,8 +732,9 @@ class EditPerson(DisplayState.ManagedWindow):
         changed = False
         name = self.person.get_primary_name()
 
-        if self.complete.get_active() != self.person.get_complete_flag():
-            changed = True
+        
+        #TODO#if self.complete.get_active() != self.person.get_complete_flag():
+        #    changed = True
         if self.private.get_active() != self.person.get_privacy():
             changed = True
 
@@ -992,7 +1003,7 @@ class EditPerson(DisplayState.ManagedWindow):
         if format != self.person.get_note_format():
             self.person.set_note_format(format)
 
-        self.person.set_complete_flag(self.complete.get_active())
+        self.person.set_marker(self.marker_type_selector.get_values())
         self.person.set_privacy(self.private.get_active())
 
         if not self.lds_not_loaded:
