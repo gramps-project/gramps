@@ -335,16 +335,19 @@ class MapView(PageView.PageView):
     # For debugging: Reads in location from xearth
     def get_xearth_markers(self):
         data = []
-        f = open("/etc/xearth/xearth.markers")
-        l = f.readline()
-        #linere = re.compile('[^0-9.-]*(-?[0-9]+\.[0-9]+)[^0-9.-]*(-?[0-9]+\.[0-9]+).*"([^"])".*', "I")
-        while l:
-            if not l[0] == "#":
-                l = l.strip().replace('"',"").replace("    "," ").replace("   "," ").replace("  "," ").replace(" # ",", ")
-                m = l.split( None, 2)
-                if len(m) == 3:
-                    data.append( (m[2],float(m[1]),float(m[0])))
+        try:
+            f = open("/etc/xearth/xearth.markers")
             l = f.readline()
+            #linere = re.compile('[^0-9.-]*(-?[0-9]+\.[0-9]+)[^0-9.-]*(-?[0-9]+\.[0-9]+).*"([^"])".*', "I")
+            while l:
+                if not l[0] == "#":
+                    l = l.strip().replace('"',"").replace("    "," ").replace("   "," ").replace("  "," ").replace(" # ",", ")
+                    m = l.split( None, 2)
+                    if len(m) == 3:
+                        data.append( (m[2],float(m[1]),float(m[0])))
+                l = f.readline()
+        except IOError:
+            pass
         return data
 
     # Reads in locations from current GRAMPS database
@@ -365,8 +368,8 @@ class MapView(PageView.PageView):
     def parse_nima_countryfile(self, filename):
         import csv
         data = []
-        csvreader = csv.reader(open(filename), "excel-tab")
         try:
+            csvreader = csv.reader(open(filename), "excel-tab")
             l = csvreader.next()    # skip header
             l = csvreader.next()
             line = 1
@@ -380,7 +383,7 @@ class MapView(PageView.PageView):
                         data.append( (city, lon, lat))
                 l = csvreader.next()
                 line = line + 1
-        except StopIteration:
+        except (IOError,StopIteration):
             pass
         return data
 
