@@ -156,8 +156,7 @@ class DescendantReport(Report.Report):
 
     def dump(self,level,person):
 
-        self.doc.start_paragraph("DR-Level%d" % level)
-        self.doc.write_text("%d. " % level)
+        self.doc.start_paragraph("DR-Level%d" % level,"%d." % level)
         self.doc.write_text(NameDisplay.displayer.display(person))
         self.dump_dates(person)
         self.doc.end_paragraph()
@@ -228,14 +227,15 @@ class DescendantOptions(ReportOptions.ReportOptions):
             p = BaseDoc.ParagraphStyle()
             p.set_font(f)
             p.set_padding(ReportUtils.pt2cm(f.get_size()*0.25))
-            p.set_left_margin(min(10.0,float(i-1)))
+            p.set_first_indent(-0.5)
+            p.set_left_margin(min(10.0,float(i-0.5)))
             p.set_description(_("The style used for the level %d display.") % i)
             default_style.add_style("DR-Level%d" % i,p)
 
             p = BaseDoc.ParagraphStyle()
             p.set_font(f)
             p.set_padding(ReportUtils.pt2cm(f.get_size()*0.25))
-            p.set_left_margin(min(10.0,float(i-1)+0.5))
+            p.set_left_margin(min(10.0,float(i-0.5)))
             p.set_description(_("The style used for the spouse level %d display.") % i)
             default_style.add_style("DR-Spouse%d" % i,p)
 

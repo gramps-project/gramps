@@ -1,3 +1,6 @@
+2005-09-15  Don Allingham  <don@gramps-project.org>
+	* src/DescendReport.py: fix indentation
+
 2005-09-14  Don Allingham  <don@gramps-project.org>
 	* src/CalSdn.py: fix Hebrew date parsing
 	* src/DescendReport.py: enhanced to add spouses and places
