@@ -115,12 +115,10 @@ class NameEditor:
         self.preform = self.top.get_widget("alt_preform")
         self.group_over = self.top.get_widget('group_over')
 
-        self.type_selector = \
-                           AutoComp.StandardCustomSelector(Utils.name_types,
-                                                           self.type_combo,
-                                                           RelLib.Name.CUSTOM,
-                                                           RelLib.Name.BIRTH)
-        
+        self.type_selector = AutoComp.StandardCustomSelector(
+            Utils.name_types, self.type_combo, RelLib.Name.CUSTOM,
+            RelLib.Name.BIRTH)
+
         full_name = NameDisplay.displayer.display_name(name)
 
         alt_title = self.top.get_widget("title")

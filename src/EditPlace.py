@@ -48,6 +48,7 @@ import Utils
 import Sources
 import ImageSelect
 import NameDisplay
+import DisplayState
 import Spell
 
 from DdTargets import DdTargets
@@ -57,28 +58,18 @@ from DdTargets import DdTargets
 # EditPlace
 #
 #-------------------------------------------------------------------------
-class EditPlace:
+class EditPlace(DisplayState.ManagedWindow):
 
-    def __init__(self,parent,place,dbstate,uistate):
-        #self.parent = parent
+    def __init__(self,place,dbstate,uistate):
         self.dbstate = dbstate
         self.uistate = uistate
-#        if place and place.get_handle():
-#            if self.parent.child_windows.has_key(place.get_handle()):
-#                self.parent.child_windows[place.get_handle()].present(None)
-#                return
-#            else:
-#                self.win_key = place.get_handle()
-#            self.ref_not_loaded = 1
-#        else:
-#            self.win_key = self
-#            self.ref_not_loaded = 0
+
+        self.ref_not_loaded = place and place.get_handle()
         self.name_display = NameDisplay.displayer.display
         self.place = place
-        self.db = parent.db
-#        self.child_windows = {}
-#        self.path = parent.db.get_save_path()
-        self.not_loaded = 1
+        self.db = dbstate.db
+        self.path = dbstate.db.get_save_path()
+        self.not_loaded = True
         self.lists_changed = 0
         if place:
             self.srcreflist = place.get_source_references()
@@ -245,11 +236,15 @@ class EditPlace:
 
         self.redraw_url_list()
         self.redraw_location_list()
-        if parent_window:
-            self.top.set_transient_for(parent_window)
-        self.add_itself_to_menu()
         self.top_window.get_widget('ok').set_sensitive(not self.db.readonly)
         self.top.show()
+
+        win_menu_label = place.get_title()
+        if not win_menu_label.strip():
+            win_menu_label = _("New Place")
+
+        DisplayState.ManagedWindow.__init__(
+            self, uistate, [], self, win_menu_label, _('Edit Place'))
 
         self.pdmap = {}
         self.build_pdmap()
@@ -257,7 +252,7 @@ class EditPlace:
         if self.ref_not_loaded:
             Utils.temp_label(self.refs_label,self.top)
             gobject.idle_add(self.display_references)
-            self.ref_not_loaded = 0
+            self.ref_not_loaded = False
 
     def build_pdmap(self):
         self.pdmap.clear()
@@ -271,46 +266,11 @@ class EditPlace:
 
     def on_delete_event(self,obj,b):
         self.glry.close()
-        self.close_child_windows()
         self.remove_itself_from_menu()
 
     def close(self,obj):
         self.glry.close()
-        self.close_child_windows()
-        self.remove_itself_from_menu()
         self.top.destroy()
-
-    def close_child_windows(self):
-        for child_window in self.child_windows.values():
-            child_window.close(None)
-        self.child_windows = {}
-
-    def add_itself_to_menu(self):
-        return
-        self.parent.child_windows[self.win_key] = self
-        if not self.place.get_title():
-            label = _("New Place")
-        else:
-            label = self.place.get_title()
-        if not label.strip():
-            label = _("New Place")
-        label = "%s: %s" % (_('Place'),label)
-        self.parent_menu_item = gtk.MenuItem(label)
-        self.parent_menu_item.set_submenu(gtk.Menu())
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
-        self.winsmenu = self.parent_menu_item.get_submenu()
-        self.menu_item = gtk.MenuItem(_('Place Editor'))
-        self.menu_item.connect("activate",self.present)
-        self.menu_item.show()
-        self.winsmenu.append(self.menu_item)
-
-    def remove_itself_from_menu(self):
-        return
-        del self.parent.child_windows[self.win_key]
-        self.menu_item.destroy()
-        self.winsmenu.destroy()
-        self.parent_menu_item.destroy()
 
     def present(self,obj):
         self.top.present()
@@ -439,10 +399,10 @@ class EditPlace:
 
     def on_switch_page(self,obj,a,page):
         if page == 4 and self.not_loaded:
-            self.not_loaded = 0
+            self.not_loaded = False
             self.glry.load_images()
         elif page == 6 and self.ref_not_loaded:
-            self.ref_not_loaded = 0
+            self.ref_not_loaded = False
             Utils.temp_label(self.refs_label,self.top)
             gobject.idle_add(self.display_references)
         text = unicode(self.note_buffer.get_text(self.note_buffer.get_start_iter(),
@@ -538,14 +498,20 @@ class EditPlace:
         msg = ""
         for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
-            for event_handle in [p.get_birth_handle(), p.get_death_handle()] + p.get_event_list():
-                event = self.db.get_event_from_handle(event_handle)
+            
+            ref_list = [p.get_birth_ref(), p.get_death_ref()] + p.get_event_ref_list()
+            ref_list = [ ref for ref in ref_list if ref ]
+            
+            for event_ref in ref_list:
+                event = self.db.get_event_from_handle(event_ref.ref)
                 if event and event.get_place_handle() == self.place.get_handle():
                     pevent.append((p,event))
+                    
         for family_handle in self.db.get_family_handles():
             f = self.db.get_family_from_handle(family_handle)
-            for event_handle in f.get_event_list():
-                event = self.db.get_event_from_handle(event_handle)
+
+            for event_ref in f.get_event_ref_list():
+                event = self.db.get_event_from_handle(event_ref.ref)
                 if event and event.get_place_handle() == self.place.get_handle():
                     fevent.append((f,event))
 
@@ -557,7 +523,7 @@ class EditPlace:
             t = _("%s [%s]: event %s\n")
 
             for e in pevent:
-                msg = msg + ( t % (self.name_display(e[0]),e[0].get_gramps_id(),_(e[1].get_name())))
+                msg = msg + ( t % (self.name_display(e[0]),e[0].get_gramps_id(),_(e[1].get_type())))
 
         if len(fevent) > 0:
             any = 1
@@ -577,7 +543,7 @@ class EditPlace:
                 else:
                     fname = self.name_display( self.db.get_person_from_handle( mother))
 
-                msg = msg + ( t % (fname,e[0].get_gramps_id(),_(e[1].get_name())))
+                msg = msg + ( t % (fname,e[0].get_gramps_id(),_(e[1].get_type())))
 
         self.refinfo.get_buffer().set_text(msg)
         if any:
