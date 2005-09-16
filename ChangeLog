@@ -1,3 +1,7 @@
+2005-09-16  Don Allingham  <don@gramps-project.org>
+	* src/DisplayState.py: remove relationship display stuff for the time
+	being.
+
 2005-09-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* Makefile.am: Disable install, show warning instead.
 	* src/PageView.py (button_press): Catch problem with no loaded database
