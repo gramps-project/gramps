@@ -451,7 +451,8 @@ class PersonView(PageView.PersonNavView):
         EditPerson.EditPerson(self.dbstate, self.uistate, person)
 
     def edit(self,obj):
-        EditPerson.EditPerson(self.dbstate, self.uistate, self.dbstate.active)
+        if self.dbstate.active:
+            EditPerson.EditPerson(self.dbstate, self.uistate, self.dbstate.active)
 
     def remove(self,obj):
         mlist = self.get_selected_objects()
