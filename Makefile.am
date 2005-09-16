@@ -23,3 +23,9 @@ distuninstallcheck:
 	@:
 
 CLEANFILES = gramps
+
+install:
+	@echo "############################################################"
+	@echo "This development version is currently broken and not usable."
+	@echo "Use CVS branch 'gramps20' to get the current stable version."
+	@echo "############################################################"

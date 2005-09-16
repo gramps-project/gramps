@@ -1,3 +1,6 @@
+2005-09-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* Makefile.am: Disable install, show warning instead.
+
 2005-09-15  Don Allingham  <don@gramps-project.org>
 	* src/EditPlace.py: fix windowing history
 
