@@ -234,6 +234,14 @@ repository_types = {
     RelLib.Repository.COLLECTION : _("Collection"),
     RelLib.Repository.SAFE       : _("Safe"),
     }
+
+
+marker_types = {
+    RelLib.PrimaryObject.MARKER_NONE        : "",
+    RelLib.PrimaryObject.MARKER_CUSTOM      : _("Custom"),
+    RelLib.PrimaryObject.MARKER_COMPLETE    : _("Information is complete"),
+    RelLib.PrimaryObject.MARKER_TODO        : _("TODO"),
+}
 #-------------------------------------------------------------------------
 #
 # Integer to GEDCOM tag mappings for constants

@@ -179,6 +179,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self.individual_event_names = sets.Set()
         self.individual_attributes = sets.Set()
         self.family_attributes = sets.Set()
+        self.marker_names = sets.Set()
 
         self.set_person_id_prefix(GrampsKeys.get_person_id_prefix())
         self.set_object_id_prefix(GrampsKeys.get_object_id_prefix())
@@ -341,6 +342,8 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
 
         for attr in person.attribute_list:
             self.individual_attributes.add(attr.type)
+            
+        self.marker_names.add(person.marker[1])
             
     def commit_media_object(self,obj,transaction,change_time=None):
         """
@@ -1201,6 +1204,10 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         instances in the database"""
         return list(self.family_event_names)
 
+    def get_marker_types():
+        """return a list of all marker types available in the database"""
+        return list(self.marker_names)
+        
     def get_media_attribute_types(self):
         """returns a list of all Attribute types assocated with Media
         instances in the database"""

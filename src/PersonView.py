@@ -437,6 +437,7 @@ class PersonView(PageView.PersonNavView):
 
         if self.model.tooltip_column != None:
             self.tooltips = TreeTips.TreeTips(self.tree,self.model.tooltip_column,True)
+        self.build_columns()
 
 
     def filter_toggle(self,obj):
@@ -527,8 +528,10 @@ class PersonView(PageView.PersonNavView):
     def build_columns(self):
         for column in self.columns:
             self.tree.remove_column(column)
-            
-        column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
+        try:
+            column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0,background=self.model.marker_color_column)
+        except AttributeError:
+            column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
         column.set_resizable(True)
         #column.set_clickable(True)
         #column.connect('clicked',self.sort_clicked)
@@ -541,7 +544,10 @@ class PersonView(PageView.PersonNavView):
             if not pair[0]:
                 continue
             name = column_names[pair[1]]
-            column = gtk.TreeViewColumn(name, self.renderer, markup=pair[1])
+            try:
+                column = gtk.TreeViewColumn(name, self.renderer, markup=pair[1],background=self.model.marker_color_column)
+            except AttributeError:
+                column = gtk.TreeViewColumn(name, self.renderer, markup=pair[1])
             column.set_resizable(True)
             column.set_min_width(60)
             column.set_sizing(gtk.TREE_VIEW_COLUMN_GROW_ONLY)
@@ -736,4 +742,3 @@ class PersonView(PageView.PersonNavView):
                 menu.popup(None,None,None,event.button,event.time)
                 return True
         return False
-
