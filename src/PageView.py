@@ -402,8 +402,9 @@ class ListView(PageView):
             return True
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             menu = self.uistate.uimanager.get_widget('/Popup')
-            menu.popup(None,None,None,event.button,event.time)
-            return True
+            if menu:
+                menu.popup(None,None,None,event.button,event.time)
+                return True
         return False
     
     def key_press(self,obj,event):

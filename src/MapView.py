@@ -45,12 +45,14 @@ import gtk.gdk
 #-------------------------------------------------------------------------
 import RelLib
 import PageView
+import DisplayTrace
 
-data = (("_Center", 0,0),
-        ("_North",0,80),
-        ("_South",0,-80),
-        ("_West",-170,0),
-        ("_East",170,0),
+glob_loc_data = [ # (Name, longitude, latitude)
+        ("_Center", 0,0),
+        ("_North",0,90),
+        ("_South",0,-90),
+        ("_West",-180,0),
+        ("_East",180,0),
         ("Chicago",-87.75,41.83),
         ("Berlin",13.42,52.53),
         ("Honolulu",-157.83,21.32),
@@ -61,7 +63,7 @@ data = (("_Center", 0,0),
         ("Rio de Janeiro",-43.28,-22.88),
         ("Tokyo",139.75,35.67),
         ("Cape Town",18.47,-33.93),
-        ("Anchorage",-150.00,61.17))
+        ("Anchorage",-150.00,61.17)]
 
 
 # Draws a map image and tries to allocate space in the correct aspect ratio
@@ -71,7 +73,6 @@ class GuideMap(gtk.DrawingArea):
         self.map_pixbuf = map_pixbuf
         self.connect("expose-event", self.expose_cb)
         self.connect("size-allocate", self.size_allocate_cb)
-        #self.connect("size-request", self.size_request_cb)
         self.gc = None
         self.current_area = None
         self.old_size = (-1,-1)
@@ -166,18 +167,20 @@ class ZoomMap( gtk.DrawingArea):
                 while iter:
                     (n,x,y) = self.location_model.get( iter, self.idx_name, self.idx_long, self.idx_lat)
                     (px,py) = self.map_to_screen( x, y)
-                    self.window.draw_pixbuf(
-                        self.gc,
-                        self.place_marker_pixbuf,
-                        0,0,
-                        px-self.place_marker_pixbuf.get_width()/2,
-                        py-self.place_marker_pixbuf.get_height()/2,
-                       -1,-1)
-                    self.textlayout.set_text(n)
-                    self.window.draw_layout(
-                        self.gc,
-                        px,py,
-                        self.textlayout)
+                    if px > 0 and py > 0 and px < self.backbuf.get_width() and py < self.backbuf.get_height():
+                        # draw only visible markers
+                        #self.window.draw_pixbuf(
+                        #    self.gc,
+                        #    self.place_marker_pixbuf,
+                        #    0,0,
+                        #    px-self.place_marker_pixbuf.get_width()/2,
+                        #    py-self.place_marker_pixbuf.get_height()/2,
+                        #   -1,-1)
+                        self.textlayout.set_text(n)
+                        self.window.draw_layout(
+                            self.gc,
+                            px,py,
+                            self.textlayout)
                     iter = self.location_model.iter_next( iter)
             
             # hightlight current location
@@ -220,8 +223,9 @@ class ZoomMap( gtk.DrawingArea):
             px = min( px, self.map_pixbuf.get_width()-1-pw/2)
             py = min( py, self.map_pixbuf.get_height()-1-ph/2)
             
-            zoomebuf = self.map_pixbuf.subpixbuf( int(px-pw/2),
-                                                  int(py-ph/2), pw,ph)
+            zoomebuf = self.map_pixbuf.subpixbuf( max(0,int(px-pw/2)),max(0,int(py-ph/2)),
+                                                    min(self.map_pixbuf.get_width(),pw),
+                                                    min(self.map_pixbuf.get_height(),ph))
             self.backbuf = zoomebuf.scale_simple(self.old_size[0],
                                                  self.old_size[1],
                                                  gtk.gdk.INTERP_BILINEAR)
@@ -265,19 +269,14 @@ class ZoomMap( gtk.DrawingArea):
 # Place list widget
 class MapPlacesList(gtk.TreeView):
     def __init__(self, data):
-        lstore = gtk.ListStore(
+        self.lstore = gtk.ListStore(
             gobject.TYPE_STRING,
             gobject.TYPE_FLOAT,
             gobject.TYPE_FLOAT)
         
-        for item in data:
-            iter = lstore.append()
-            lstore.set(iter,
-                0, item[0],
-                1, item[1],
-                2, item[2])
+        self.change_data( data)
 
-        gtk.TreeView.__init__(self, lstore)
+        gtk.TreeView.__init__(self, self.lstore)
         self.set_rules_hint(True)
         self.set_search_column(0)
 
@@ -292,6 +291,15 @@ class MapPlacesList(gtk.TreeView):
         column = gtk.TreeViewColumn('Long', gtk.CellRendererText(),text=2)
         column.set_sort_column_id(2)
         self.append_column(column)
+
+    def change_data( self, data):
+        self.lstore.clear()
+        for item in data:
+            iter = self.lstore.append()
+            self.lstore.set(iter,
+                0, item[0],
+                1, item[1],
+                2, item[2])
 
 
 
@@ -339,6 +347,43 @@ class MapView(PageView.PageView):
             l = f.readline()
         return data
 
+    # Reads in locations from current GRAMPS database
+    def get_markers_from_database(self, db):
+        data = []
+        for place_handle in db.get_place_handles():
+            place = db.get_place_from_handle( place_handle)
+            if place:
+                try:
+                    data.append( (place.get_title(),float(place.get_longitude()),float(place.get_latitude())))
+                except (TypeError, ValueError):
+                    # ignore places that dont have usable data
+                    pass
+        return data
+
+    # Reads in textfiles from NIMA:
+    # http://earth-info.nga.mil/gns/html/cntry_files.html
+    def parse_nima_countryfile(self, filename):
+        import csv
+        data = []
+        csvreader = csv.reader(open(filename), "excel-tab")
+        try:
+            l = csvreader.next()    # skip header
+            l = csvreader.next()
+            line = 1
+            while l:
+                if l[17] == "N" and l[9] == "P":
+                    city = l[22]
+                    lat = float( l[3])
+                    lon = float( l[4])
+                    
+                    if line % 10 == 0:
+                        data.append( (city, lon, lat))
+                l = csvreader.next()
+                line = line + 1
+        except StopIteration:
+            pass
+        return data
+
     def build_widget(self):
         hbox = gtk.HBox( False, 4)
         hbox.set_border_width( 4)
@@ -363,21 +408,17 @@ class MapView(PageView.PageView):
         
         self.zoom_map.set_guide(self.guide_map)
         
-        # And the place list
-	try:
-            d = self.get_xearth_markers()
-            self.place_list_view = MapPlacesList( d)
-	except:
-            self.place_list_view = MapPlacesList( data)
+        # and the place list
+        self.place_list_view = MapPlacesList( [])
+        self.zoom_map.set_location_model(self.place_list_view.get_model(), 0,1,2)
+        self.place_list_view.connect("cursor-changed", self.entry_select_cb)
         self.place_list_view.set_size_request(128,-1)
         vport = gtk.ScrolledWindow()
         vbox.pack_start(vport,True,True,0)
         vport.add( self.place_list_view)
 
-        self.zoom_map.set_location_model(self.place_list_view.get_model(), 0,1,2)
-
-        self.place_list_view.connect("cursor-changed", self.entry_select_cb)
-       
+        self.rebuild_places()
+        
         return hbox
 
     def ui_definition(self):
@@ -402,7 +443,18 @@ class MapView(PageView.PageView):
         is no need to store the database, since we will get the value
         from self.state.db
         """
-        self.db = db
+        db.connect('place-rebuild',self.rebuild_places)
+        db.connect('place-update',self.rebuild_places)
+    
+    def rebuild_places(self,handle_list=None):
+        d = glob_loc_data
+        try:
+            d = d + self.get_xearth_markers()
+            #d = self.parse_nima_countryfile("/tmp/gm.txt")
+            d = d + self.get_markers_from_database( self.dbstate.db)
+        except:
+            DisplayTrace.DisplayTrace()
+        self.place_list_view.change_data( d)
 
     def entry_select_cb(self,treeview):
         s = treeview.get_selection()

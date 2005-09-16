@@ -727,11 +727,13 @@ class PersonView(PageView.PersonNavView):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             handle = self.first_selected()
             person = self.dbstate.db.get_person_from_handle(handle)
-            EditPerson.EditPerson(self.dbstate, self.uistate,person)
-            return True
+            if person:
+                EditPerson.EditPerson(self.dbstate, self.uistate,person)
+                return True
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             menu = self.uistate.uimanager.get_widget('/Popup')
-            menu.popup(None,None,None,event.button,event.time)
-            return True
+            if menu:
+                menu.popup(None,None,None,event.button,event.time)
+                return True
         return False
 
