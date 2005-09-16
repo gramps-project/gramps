@@ -5,7 +5,8 @@
 2005-09-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* Makefile.am: Disable install, show warning instead.
 	* src/PageView.py (button_press): Catch problem with no loaded database
-	* src/PersonView.py (button_press): Catch problem with no loaded database
+	* src/PersonView.py (button_press): Catch problem with no loaded
+	database; (edit): Work with missing active person
 	* src/GrampsDbBase.py (_get_from_handle): Catch problem with no loaded database
 	* src/MapView.py: Updates
 	* src/EditPerson.py: Change complete flag into marker combo
