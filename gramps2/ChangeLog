@@ -1,5 +1,8 @@
 2005-09-20  Alex Roitman  <shura@gramps-project.org>
 	* INSTALL: Provide correct examples for the local install.
+	* gramps.sh.in: Revert escaping the arguments, as this lumps all
+	the args into a single word. If filenames contain spaces then they
+	should be escaped by the user.
 
 2005-09-19  Don Allingham  <don@gramps-project.org>
 	* src/ReportUtils.py: better string handling
