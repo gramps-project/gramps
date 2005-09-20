@@ -22,14 +22,17 @@ But be careful if you're using the non-default options or would like
 to install without being root.
 
 The latter is possible, but you should supply additional arguments to
-autogen or configrue:
-   --with-gconf-source=xml::$HOME/.gconf --with-mime-dir=$HOME/.local/share
+autogen or configure:
+   --with-gconf-source=xml::$HOME/.gconf
+   --with-gconf-schema-file-dir=$HOME
+   --with-mime-dir=$HOME/.local/share/mime
 Most likely, such local install will also need some prefix with write
 permissions for you:
    --prefix=$HOME/my_gramps_path
 
-Whether you're doing local install or regular install, YOU MUST INSTALL
-GCONF SCHEMAS AND MIME TYPES. YOU HAVE BEEN WARNED!
+Whether you're doing local install or regular install,
+YOU MUST INSTALL GCONF SCHEMAS AND MIME TYPES.
+YOU HAVE BEEN WARNED!
 
 
 Packager's issues
