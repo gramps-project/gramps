@@ -621,7 +621,7 @@
 	  <guilabel>Spouses</guilabel>, <guilabel>Siblings</guilabel>,
 	  <guilabel>Children</guilabel>, and
 	  <guilabel>Parents</guilabel> of that person. Insensitive
-	  (grayed out) submenus indicate the absence of the data in
+	  (grayed out) sub-menus indicate the absence of the data in
 	  the appropriate category. Similarly to the children menu
 	  above, children's and parents' menus distinguish continuing
 	  lines from dead ends.

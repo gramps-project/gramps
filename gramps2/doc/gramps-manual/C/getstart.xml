@@ -64,7 +64,7 @@
             filename as a command line argument:
           </para>
 	  <para>
-	    <command>gramps</command> <filename>filename.grdb</filename>
+	    <filename>gramps filename.grdb</filename>
     	  </para> 
     	  <para>
             where <filename>filename.grdb</filename> is the name of
@@ -83,7 +83,7 @@
   <sect1 id="run-1st-time">
     <title>Running GRAMPS for the first time</title>
     <para> 
-      The first time you run the program, GRAMPS will display its 
+      The first time you run the program, GRAMPS will display the 
       Getting Started dialogs. Follow the directions that guide you through
       <guilabel>Researcher information</guilabel>, <guilabel>Numerical date 
       formats</guilabel>, <guilabel>Alternate calendar support</guilabel>,

@@ -1,3 +1,9 @@
+2005-09-19  Don Allingham  <don@gramps-project.org>
+	* src/ReportUtils.py: better string handling
+	* doc/gramps-manual/C/getstart.xml: updates from editors
+	* doc/gramps-manual/C/mainwin.xml: updates from editors
+	* doc/gramps-manual/C/usage.xml: updates from editors
+
 2005-09-15  Don Allingham  <don@gramps-project.org>
 	* src/DescendReport.py: fix indentation
 
