@@ -525,25 +525,23 @@ class ChooseParents:
             father_rel = RelLib.Person.CHILD_REL_BIRTH
 
         trans = self.db.transaction_begin()
+        father_handle = None
+        mother_handle = None
         if self.father or self.mother:
             if self.mother and not self.father:
                 if self.mother.get_gender() == RelLib.Person.MALE:
                     self.father = self.mother
                     father_handle = self.father.get_handle()
                     self.mother = None
-                    mother_handle = None
                 else:
                     mother_handle = self.mother.get_handle()
-                    father_handle = None
             elif self.father and not self.mother: 
                 if self.father.get_gender() == RelLib.Person.FEMALE:
                     self.mother = self.father
                     self.father = None
                     mother_handle = self.mother.get_handle()
-                    father_handle = None
                 else:
                     father_handle = self.father.get_handle()
-                    mother_handle = None
             elif self.mother.get_gender() != self.father.get_gender():
                 if self.type == "Partners":
                     self.type = "Unknown"

@@ -1,4 +1,6 @@
 2005-09-21  Don Allingham  <don@gramps-project.org>
+	* src/ChooseParents.py: fix unbound variable when neither parents
+	exist.
 	* src/plugins/DetAncestralReport.py: fix endnotes for null sources
 	* src/plugins/DetDescendantReport.py: fix endnotes for null sources
 	* src/plugins/FtmStyleAncestors.py: fix endnotes for null sources
