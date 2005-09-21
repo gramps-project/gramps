@@ -282,9 +282,7 @@ class DetDescendantReport(Report.Report):
 
         if person.get_note() and self.includeNotes:
             self.doc.start_paragraph("DDR-NoteHeader")
-            self.doc.start_bold()
             self.doc.write_text(_("Notes for %s") % name)
-            self.doc.end_bold()
             self.doc.end_paragraph()
             self.doc.write_note(person.get_note(),person.get_note_format(),"DDR-Entry")
 
@@ -418,10 +416,8 @@ class DetDescendantReport(Report.Report):
             father_name = _("unknown")
 
         self.doc.start_paragraph("DDR-ChildTitle")
-        self.doc.start_bold()
         self.doc.write_text(_("Children of %s and %s are:") % 
                                         (mother_name,father_name))
-        self.doc.end_bold()
         self.doc.end_paragraph()
 
         for child_handle in family.get_child_handle_list():
@@ -678,7 +674,7 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         default_style.add_style("DDR-Generation",para)
 
         font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=0, bold=0)
+        font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=0, bold=1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         #para.set_header_level(3)
@@ -695,7 +691,10 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         para.set_description(_('The style used for the children list.'))
         default_style.add_style("DDR-ChildList",para)
 
+        font = BaseDoc.FontStyle()
+        font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=0, bold=1)
         para = BaseDoc.ParagraphStyle()
+        para.set_font(font)
         para.set(first_indent=0.0,lmargin=1.0,pad=0.25)
         para.set_description(_('The style used for the notes section header.'))
         default_style.add_style("DDR-NoteHeader",para)

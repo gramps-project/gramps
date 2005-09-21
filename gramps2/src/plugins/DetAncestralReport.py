@@ -259,9 +259,7 @@ class DetAncestorReport(Report.Report):
 
         if person.get_note() != "" and self.includeNotes:
             self.doc.start_paragraph("DAR-NoteHeader")
-            self.doc.start_bold()
             self.doc.write_text(_("Notes for %s") % name)
-            self.doc.end_bold()
             self.doc.end_paragraph()
             self.doc.write_note(person.get_note(),person.get_note_format(),"DAR-Entry")
 
@@ -394,10 +392,8 @@ class DetAncestorReport(Report.Report):
             father_name = _("unknown")
 
         self.doc.start_paragraph("DAR-ChildTitle")
-        self.doc.start_bold()
         self.doc.write_text(_("Children of %s and %s are:") % 
                                         (mother_name,father_name))
-        self.doc.end_bold()
         self.doc.end_paragraph()
 
         for child_handle in family.get_child_handle_list():
@@ -653,7 +649,7 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         default_style.add_style("DAR-Generation",para)
 
         font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=0, bold=0)
+        font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=0, bold=1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         #para.set_header_level(3)
@@ -670,7 +666,10 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         para.set_description(_('The style used for the children list.'))
         default_style.add_style("DAR-ChildList",para)
 
+        font = BaseDoc.FontStyle()
+        font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=0, bold=1)
         para = BaseDoc.ParagraphStyle()
+        para.set_font(font)
         para.set(first_indent=0.0,lmargin=0.0,pad=0.25)
         default_style.add_style("DAR-NoteHeader",para)
 

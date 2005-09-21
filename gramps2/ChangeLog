@@ -3,6 +3,13 @@
 	* gramps.sh.in: Revert escaping the arguments, as this lumps all
 	the args into a single word. If filenames contain spaces then they
 	should be escaped by the user.
+	* src/plugins/DetAncestralReport.py (write_person,write_children):
+	Remove boldface, since it should be handled by the style;
+	(make_default_style): handle boldface heading by the style.
+	* src/plugins/DetDescendantReport.py (write_person,
+	write_children): Remove boldface, since it should be handled by
+	the style; (make_default_style): handle boldface heading by the
+	style.
 
 2005-09-19  Don Allingham  <don@gramps-project.org>
 	* src/ReportUtils.py: better string handling
