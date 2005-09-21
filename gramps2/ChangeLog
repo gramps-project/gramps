@@ -1,3 +1,8 @@
+2005-09-21  Don Allingham  <don@gramps-project.org>
+	* src/ReportUtils.py: fix typo
+	* src/plugins/NavWebPage.py: handle contact page issues, including
+	random commas and missing image.
+
 2005-09-20  Don Allingham  <don@gramps-project.org>
 	* src/ImgManip.py: update thumbnail if out of date
 

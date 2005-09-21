@@ -1238,11 +1238,14 @@ class ContactPage(BasePage):
                     (newpath,thumb_path) = self.copy_media(obj,False)
                     self.store_file(archive,self.html_dir,obj.get_path(),
                                     newpath)
+
+                    dirpath = self.build_path(note_id,'img')
+
                     of.write('<div class="rightwrap">\n')
                     of.write('<table><tr>')
                     of.write('<td height="205">')
                     of.write('<img height="200" ')
-                    of.write('src="%s.%s" ' % (note_id,self.ext))
+                    of.write('src="%s" ' % thumb_path)
                     of.write('alt="%s" />' % obj.get_description())
                     of.write('</td></tr></table>\n')
                     of.write('</div>\n')
@@ -1252,11 +1255,18 @@ class ContactPage(BasePage):
         r = get_researcher()
 
         of.write('<div id="researcher">\n')
-        of.write('%s<br />\n' % r.name)
-        of.write('%s<br />\n' % r.addr)
-        of.write('%s, %s, %s<br />\n' % (r.city,r.state,r.postal))
-        of.write('%s<br />\n' % r.country)
-        of.write('%s<br />\n' % r.email)
+        if r.name:
+            of.write('%s<br />\n' % r.name.replace(',,,',''))
+        if r.addr:
+            of.write('%s<br />\n' % r.addr)
+
+        text = "".join([r.city,r.state,r.postal])
+        if text:
+            of.write('%s<br />\n' % text)
+        if r.country:
+            of.write('%s<br />\n' % r.country)
+        if r.email:
+            of.write('%s<br />\n' % r.email)
         of.write('</div>\n')
         of.write('<div class="fullclear"></div>\n')
 

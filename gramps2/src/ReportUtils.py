@@ -1602,7 +1602,7 @@ def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
         'male_name'     : person_name, 
         'female_name'   : person_name, 
         'burial_date'   : bdate,
-        'burial_place'  : bplace
+        'burial_place'  : bplace,
         'month_year'    : bdate,
         'modified_date' : bdate,
         }
