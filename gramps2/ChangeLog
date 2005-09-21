@@ -1,4 +1,7 @@
 2005-09-21  Don Allingham  <don@gramps-project.org>
+	* src/plugins/DetAncestralReport.py: fix endnotes for null sources
+	* src/plugins/DetDescendantReport.py: fix endnotes for null sources
+	* src/plugins/FtmStyleAncestors.py: fix endnotes for null sources
 	* src/ReportUtils.py: fix typo
 	* src/plugins/NavWebPage.py: handle contact page issues, including
 	random commas and missing image.

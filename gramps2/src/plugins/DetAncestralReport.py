@@ -520,7 +520,7 @@ class DetAncestorReport(Report.Report):
             self.doc.end_paragraph()
 
     def endnotes(self,obj):
-        if not self.includeSources:
+        if not obj or not self.includeSources:
             return ""
         msg = cStringIO.StringIO()
         slist = obj.get_source_references()

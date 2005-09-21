@@ -175,6 +175,8 @@ class FtmAncestorReport(Report.Report):
             self.doc.end_paragraph()
 
     def endnotes(self,obj):
+        if not obj:
+            return ""
         msg = cStringIO.StringIO()
         slist = obj.get_source_references()
         if slist:
@@ -197,9 +199,9 @@ class FtmAncestorReport(Report.Report):
                     self.sref_map[self.sref_index] = ref
                     msg.write("%d" % self.sref_index)
             msg.write('</super>')
-        str = msg.getvalue()
+        value = msg.getvalue()
         msg.close()
-        return str
+        return value
 
     def print_notes(self,person):
         note = person.get_note()

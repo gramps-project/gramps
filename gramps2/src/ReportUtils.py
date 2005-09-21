@@ -1314,7 +1314,7 @@ def married_rel_str(database,person,family,is_first=True):
             if person.get_gender() == RelLib.Person.MALE:
                 text = _('He had an unmarried relationship with %(spouse)s.') % values
             else:
-                text = _('She hand an unmarried relationship with %(spouse)s.') % values
+                text = _('She had an unmarried relationship with %(spouse)s.') % values
         else:
             if person.get_gender() == RelLib.Person.MALE:
                 text = _('He had relationship with %(spouse)s.') % values
@@ -1330,7 +1330,7 @@ def married_rel_str(database,person,family,is_first=True):
             if person.get_gender() == RelLib.Person.MALE:
                 text = _('He had an unmarried relationship with %(spouse)s.') % values
             else:
-                text = _('She hand an unmarried relationship with %(spouse)s.') % values
+                text = _('She had an unmarried relationship with %(spouse)s.') % values
         else:
             if person.get_gender() == RelLib.Person.MALE:
                 text = _('He also had relationship with %(spouse)s.') % values
