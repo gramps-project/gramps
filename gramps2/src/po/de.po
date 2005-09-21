@@ -1359,7 +1359,7 @@ msgstr "Ist ein Vorfahre eines <Filter>treffers"
 msgid "Matches people that are ancestors of anybody matched by a filter"
 msgstr ""
 "Entspricht Personen, die Vorfahren von jemandem sind, der/die "
-"im·Filter·enthalten·ist/sind"
+"im Filter enthalten ist/sind"
 
 #: GenericFilter.py:773
 msgid "Ancestors of <person> not more than <N> generations away"
@@ -1393,7 +1393,7 @@ msgstr "Ist Vater oder Mutter eines <Filter>treffers"
 #: GenericFilter.py:877
 msgid "Matches parents of anybody matched by a filter"
 msgstr ""
-"Entspricht Personen, die Vorfahren von jemandem sind, der/die·im Filter "
+"Entspricht Personen, die Vorfahren von jemandem sind, der/die im Filter "
 "enthalten ist/sind"
 
 #: GenericFilter.py:912
@@ -1414,7 +1414,7 @@ msgstr "Hat gemeinsame Vorfahren mit einem <Filter>treffer"
 msgid ""
 "Matches people that have a common ancestor with anybody matched by a filter"
 msgstr ""
-"Entspricht Personen, die gemeinsame Vorfahren mit jemandem haben, der/die·im "
+"Entspricht Personen, die gemeinsame Vorfahren mit jemandem haben, der/die im "
 "Filter enthalten ist/sind"
 
 #: GenericFilter.py:983 gramps_main.py:965 plugins/Summary.py:112
@@ -1594,7 +1594,7 @@ msgstr "Ist ein (Ehe-)Partner eines <Filter>treffers"
 #: GenericFilter.py:1406
 msgid "Matches people married to anybody matching a filter"
 msgstr ""
-"Entspricht Personen, die mit jemandem verheiratet ist, die·im Filter "
+"Entspricht Personen, die mit jemandem verheiratet ist, die im Filter "
 "enthalten sind"
 
 #: GenericFilter.py:1428 gramps_main.py:985
@@ -2348,7 +2348,7 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different database versions."
 msgstr ""
-"Die·Version·der·Datenbank·wird·nicht·von·dieser·GRAMPS·Version·unterstützt.\n"
+"Die Version der Datenbank wird nicht von dieser GRAMPS Version unterstützt.\n"
 "Bitte updaten Sie die entsprechende Version oder verwenden Sie XML um die "
 "Daten zwischen verschiedenen Datenbankversionen zu portieren."
 
@@ -2732,11 +2732,11 @@ msgstr "Der Bericht konnte nicht erzeugt werden"
 
 #: ReportUtils.py:46
 msgid "He was born on %(birth_date)s in %(birth_place)s."
-msgstr "Er wurde ·am %(birth_date)s·in·%(birth_place)s geboren."
+msgstr "Er wurde  am %(birth_date)s in %(birth_place)s geboren."
 
 #: ReportUtils.py:47
 msgid "She was born on %(birth_date)s in %(birth_place)s."
-msgstr "Sie wurde am %(birth_date)s·in·%(birth_place)s geboren."
+msgstr "Sie wurde am %(birth_date)s in %(birth_place)s geboren."
 
 #: ReportUtils.py:50
 msgid "%(male_name)s was born on %(birth_date)s in %(birth_place)s."
@@ -2748,27 +2748,27 @@ msgstr "%(female_name)s wurde geboren am %(birth_date)s in %(birth_place)s."
 
 #: ReportUtils.py:57
 msgid "He was born %(modified_date)s in %(birth_place)s."
-msgstr "Er wurde ·%(modified_date)s·in·%(birth_place)s geboren."
+msgstr "Er wurde  %(modified_date)s in %(birth_place)s geboren."
 
 #: ReportUtils.py:58
 msgid "She was born %(modified_date)s in %(birth_place)s."
-msgstr "Sie·wurde· %(modified_date)s in %(birth_place)s·geboren."
+msgstr "Sie wurde  %(modified_date)s in %(birth_place)s geboren."
 
 #: ReportUtils.py:61
 msgid "%(male_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(male_name)s·wurde·%(modified_date)s·in·%(birth_place)s geboren."
+msgstr "%(male_name)s wurde %(modified_date)s in %(birth_place)s geboren."
 
 #: ReportUtils.py:62
 msgid "%(female_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(female_name)s·wurde am·%(modified_date)s·in·%(birth_place)s geboren."
+msgstr "%(female_name)s wurde am %(modified_date)s in %(birth_place)s geboren."
 
 #: ReportUtils.py:68
 msgid "He was born on %(birth_date)s."
-msgstr "Er wurde am·%(birth_date)s geboren."
+msgstr "Er wurde am %(birth_date)s geboren."
 
 #: ReportUtils.py:69
 msgid "She was born on %(birth_date)s."
-msgstr "Sie wurde am·%(birth_date)s geboren."
+msgstr "Sie wurde am %(birth_date)s geboren."
 
 #: ReportUtils.py:72
 msgid "%(male_name)s was born on %(birth_date)s."
@@ -2780,27 +2780,27 @@ msgstr "%(female_name)s wurde geboren am %(birth_date)s."
 
 #: ReportUtils.py:79
 msgid "He was born %(modified_date)s."
-msgstr "Er wurde·%(modified_date)s geboren."
+msgstr "Er wurde %(modified_date)s geboren."
 
 #: ReportUtils.py:80
 msgid "She was born %(modified_date)s."
-msgstr "Sie wurde·%(modified_date)s geboren."
+msgstr "Sie wurde %(modified_date)s geboren."
 
 #: ReportUtils.py:83
 msgid "%(male_name)s was born on %(modified_date)s."
-msgstr "%(male_name)s wurde ·%(modified_date)s geboren."
+msgstr "%(male_name)s wurde  %(modified_date)s geboren."
 
 #: ReportUtils.py:84
 msgid "%(female_name)s was born on %(modified_date)s."
-msgstr "%(female_name)s·wurde·%(modified_date)s geboren."
+msgstr "%(female_name)s wurde %(modified_date)s geboren."
 
 #: ReportUtils.py:90
 msgid "He was born in %(month_year)s in %(birth_place)s."
-msgstr "Er wurde im·%(month_year)s·in·%(birth_place)s geboren."
+msgstr "Er wurde im %(month_year)s in %(birth_place)s geboren."
 
 #: ReportUtils.py:91
 msgid "She was born in %(month_year)s in %(birth_place)s."
-msgstr "Sie wurde·im %(month_year)s·in·%(birth_place)s geboren."
+msgstr "Sie wurde im %(month_year)s in %(birth_place)s geboren."
 
 #: ReportUtils.py:94
 msgid "%(male_name)s was born in %(month_year)s in %(birth_place)s."
@@ -2812,7 +2812,7 @@ msgstr "%(female_name)s wurde geboren im %(month_year)s in %(birth_place)s."
 
 #: ReportUtils.py:101
 msgid "He was born in %(month_year)s."
-msgstr "Er wurde·im %(month_year)s geboren."
+msgstr "Er wurde im %(month_year)s geboren."
 
 #: ReportUtils.py:102
 msgid "She was born in %(month_year)s."
@@ -2828,11 +2828,11 @@ msgstr "%(female_name)s wurde geboren im %(month_year)s."
 
 #: ReportUtils.py:112
 msgid "He was born in %(birth_place)s."
-msgstr "Er wurde in·%(birth_place)s geboren"
+msgstr "Er wurde in %(birth_place)s geboren"
 
 #: ReportUtils.py:113
 msgid "She was born in %(birth_place)s."
-msgstr "Sie wurde·in·%(birth_place)s geboren."
+msgstr "Sie wurde in %(birth_place)s geboren."
 
 #: ReportUtils.py:116
 msgid "%(male_name)s was born in %(birth_place)s."
@@ -2844,46 +2844,46 @@ msgstr "%(female_name)s wurde geboren in %(birth_place)s."
 
 #: ReportUtils.py:129
 msgid "He died on %(death_date)s in %(death_place)s."
-msgstr "Er starb am·%(death_date)s·in·%(death_place)s."
+msgstr "Er starb am %(death_date)s in %(death_place)s."
 
 #: ReportUtils.py:130
 msgid ""
 "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "Er starb am·%(death_date)s·in·%(death_place)s·im Alter von·%(age)d·Jahren."
+msgstr "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ReportUtils.py:131
 msgid ""
 "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
-"Er·starb·am %(death_date)s in %(death_place)s im·Alter·von %(age)d Monaten"
+"Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten"
 
 #: ReportUtils.py:132
 msgid ""
 "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
-"Er starb am·%(death_date)s·in·%(death_place)s·im Alter von·%(age)d·Tagen"
+"Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen"
 
 #: ReportUtils.py:135
 msgid "She died on %(death_date)s in %(death_place)s."
-msgstr "Sie starb am %(death_date)s·in·%(death_place)s."
+msgstr "Sie starb am %(death_date)s in %(death_place)s."
 
 #: ReportUtils.py:136
 msgid ""
 "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
-"Sie starb am·%(death_date)s·in·%(death_place)s·im Alter von·%(age)d·Jahren."
+"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ReportUtils.py:137
 msgid ""
 "She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
-"Sie·starb·am %(death_date)s in %(death_place)s im·Alter·von %(age)d Monaten."
+"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
 
 #: ReportUtils.py:138
 msgid ""
 "She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
-"Sie·starb·am %(death_date)s in %(death_place)s im·Alter·von %(age)d Tagen."
+"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
 
 #: ReportUtils.py:142
 msgid "%(male_name)s died on %(death_date)s in %(death_place)s."
@@ -2943,40 +2943,40 @@ msgstr ""
 
 #: ReportUtils.py:158
 msgid "He died %(death_date)s in %(death_place)s."
-msgstr "Er starb am·%(death_date)s·in·%(death_place)s."
+msgstr "Er starb am %(death_date)s in %(death_place)s."
 
 #: ReportUtils.py:159
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
-"Er starb am·%(death_date)s·in·%(death_place)s·im Alter von·%(age)d·Jahren."
+"Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ReportUtils.py:160
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
-"Er starb am·%(death_date)s·in·%(death_place)s·im Alter von·%(age)d·Monaten."
+"Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
 
 #: ReportUtils.py:161
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
-"Er·starb·am %(death_date)s in %(death_place)s im·Alter·von %(age)d Tagen."
+"Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
 
 #: ReportUtils.py:164
 msgid "She died %(death_date)s in %(death_place)s."
-msgstr "Sie starb am·%(death_date)s·in·%(death_place)s."
+msgstr "Sie starb am %(death_date)s in %(death_place)s."
 
 #: ReportUtils.py:165
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "Sie starb am·%(death_date)s·in·%(death_place)s·im Alter von·%(age)d·Jahren."
+msgstr "Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ReportUtils.py:166
 msgid ""
 "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
-"Sie starb am%(death_date)s·in·%(death_place)s·im Alter von·%(age)d·Monaten."
+"Sie starb am%(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
 
 #: ReportUtils.py:167
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "Sie·starb·am%(death_date)s in %(death_place)s im·Alter·von %(age)d Tagen."
+msgstr "Sie starb am%(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
 
 #: ReportUtils.py:171
 msgid "%(male_name)s died %(death_date)s in %(death_place)s."
@@ -3048,11 +3048,11 @@ msgstr "Er starb am %(death_date)s im Altern von %(age)d Monaten."
 
 #: ReportUtils.py:190
 msgid "He died on %(death_date)s at the age of %(age)d days."
-msgstr "Er starb am·%(death_date)s·im Alter von·%(age)d·Tagen."
+msgstr "Er starb am %(death_date)s im Alter von %(age)d Tagen."
 
 #: ReportUtils.py:193
 msgid "She died on %(death_date)s."
-msgstr "Sie starb am·%(death_date)s."
+msgstr "Sie starb am %(death_date)s."
 
 #: ReportUtils.py:194
 msgid "She died on %(death_date)s at the age of %(age)d years."
@@ -3170,7 +3170,7 @@ msgstr "%(male_name)s starb im %(month_year)s in %(death_place)s. "
 msgid ""
 "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
-"Er starb un·%(month_year)s·in·%(death_place)s·im Alter von·%(age)d·Jahren."
+"Er starb un %(month_year)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ReportUtils.py:247
 msgid ""
@@ -3445,103 +3445,103 @@ msgstr "%(female_name)s starb im Alter von %(age)d Tagen."
 
 #: ReportUtils.py:368
 msgid "He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Er heiratete %(spouse)s·im%(partial_date)s·in·%(place)s%(endnotes)s."
+msgstr "Er heiratete %(spouse)s im%(partial_date)s in %(place)s%(endnotes)s."
 
 #: ReportUtils.py:369
 msgid "He married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Er heiratete %(spouse)s·am·%(full_date)s·in·%(place)s%(endnotes)s."
+msgstr "Er heiratete %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ReportUtils.py:370
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Er heiratete %(spouse)s·%(modified_date)s·in·%(place)s%(endnotes)s."
+msgstr "Er heiratete %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ReportUtils.py:373
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Sie heiratete·%(spouse)s·im·%(partial_date)s·in·%(place)s%(endnotes)s."
+msgstr "Sie heiratete %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ReportUtils.py:374
 msgid "She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Sie heiratete %(spouse)s·am·%(full_date)s·in·%(place)s%(endnotes)s."
+msgstr "Sie heiratete %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ReportUtils.py:375
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Sie heiratete ·%(spouse)s·%(modified_date)s·in·%(place)s%(endnotes)s."
+msgstr "Sie heiratete  %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ReportUtils.py:381
 msgid ""
 "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Er heiratete auch %(spouse)s·im·%(partial_date)s·in·%(place)s%(endnotes)s."
+"Er heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ReportUtils.py:382
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Er heiratete auch %(spouse)s·am·%(full_date)s·in·%(place)s%(endnotes)s."
+msgstr "Er heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ReportUtils.py:383
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Er heiratete auch %(spouse)s·%(modified_date)s·in·%(place)s%(endnotes)s."
+msgstr "Er heiratete auch %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ReportUtils.py:386
 msgid ""
 "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Sie heiratete auch %(spouse)s·im·%(partial_date)s·in·%(place)s%(endnotes)s"
+"Sie heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s"
 
 #: ReportUtils.py:387
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Sie heiratete auch %(spouse)s·am·%(full_date)s·in·%(place)s%(endnotes)s."
+msgstr "Sie heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ReportUtils.py:388
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Sie heiratete auch %(spouse)s·%(modified_date)s·in·%(place)s%(endnotes)s."
+msgstr "Sie heiratete auch %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ReportUtils.py:394
 msgid "He married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Er heiratete %(spouse)s·im·%(partial_date)s%(endnotes)s."
+msgstr "Er heiratete %(spouse)s im %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:395
 msgid "He married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Er heiratete %(spouse)s·am·%(full_date)s%(endnotes)s."
+msgstr "Er heiratete %(spouse)s am %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:396
 msgid "He married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Er heiratete %(spouse)s·%(modified_date)s%(endnotes)s."
+msgstr "Er heiratete %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:399
 msgid "She married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Sie heiratete %(spouse)s·im·%(partial_date)s%(endnotes)s."
+msgstr "Sie heiratete %(spouse)s im %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:400
 msgid "She married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Sie heiratete %(spouse)s·am %(full_date)s%(endnotes)s."
+msgstr "Sie heiratete %(spouse)s am %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:401
 msgid "She married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Er heiratete%(spouse)s·%(modified_date)s%(endnotes)s."
+msgstr "Er heiratete%(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:407
 msgid "He also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Er heiratete auch %(spouse)s·im·%(partial_date)s%(endnotes)s."
+msgstr "Er heiratete auch %(spouse)s im %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:408
 msgid "He also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Er heiratete auch %(spouse)s·am·%(full_date)s%(endnotes)s."
+msgstr "Er heiratete auch %(spouse)s am %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:409
 msgid "He also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Er heiratete auch %(spouse)s·%(modified_date)s%(endnotes)s."
+msgstr "Er heiratete auch %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:412
 msgid "She also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Sie heiratete auch %(spouse)s·im·%(partial_date)s%(endnotes)s."
+msgstr "Sie heiratete auch %(spouse)s im %(partial_date)s%(endnotes)s."
 
 #: ReportUtils.py:413
 msgid "She also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Sie heiratete auch %(spouse)s·am·%(full_date)s%(endnotes)s."
+msgstr "Sie heiratete auch %(spouse)s am %(full_date)s%(endnotes)s."
 
 #: ReportUtils.py:414
 msgid "She also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Er heiratete auch %(spouse)s·%(modified_date)s%(endnotes)s."
+msgstr "Er heiratete auch %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ReportUtils.py:419
 msgid "He married %(spouse)s in %(place)s%(endnotes)s."
@@ -3944,7 +3944,7 @@ msgstr "%(male_name)s wurde begraben am %(burial_date)s."
 
 #: ReportUtils.py:1618
 msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(male_name)s wurde am %(burial_date)s in %(burial_place)s·begraben."
+msgstr "%(male_name)s wurde am %(burial_date)s in %(burial_place)s begraben."
 
 #: ReportUtils.py:1620
 msgid "%(male_name)s was buried %(modified_date)s."
@@ -3980,7 +3980,7 @@ msgstr "%(female_name)s wurde am %(burial_date)s in %(burial_place)s begraben."
 
 #: ReportUtils.py:1640
 msgid "%(female_name)s was buried %(modified_date)s."
-msgstr "%(female_name)s wurde am %(burial_date)s ·begraben."
+msgstr "%(female_name)s wurde am %(burial_date)s  begraben."
 
 #: ReportUtils.py:1643
 msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s."
@@ -5233,7 +5233,7 @@ msgid ""
 msgstr ""
 "Genau zwei Personen müssen ausgewählt sein um eine Zusammenfassung "
 "durchzuführen. Eine zweite Person kann durch Anklicken bei gehaltener Strg-"
-"Taste gewählt werden. Danach ·klicken Sie·auf·<b>Bearbeiten > Schnell "
+"Taste gewählt werden. Danach  klicken Sie auf <b>Bearbeiten > Schnell "
 "zusammenfassen/</b>."
 
 #: data/tips.xml:180
@@ -5336,7 +5336,7 @@ msgstr ""
 "<b>GRAMPS verbessern</b>: Benutzer sind dazu angeregt, Weiterentwicklungen "
 "an GRAMPS vorzuschlagen. Vorschläge zur Weiterentwicklung  können  zu den "
 "gramps-users oder gramps-devel Mailinglisten gesendet werden, oder am besten "
-"erstellen Sie eine \"Request for Enhancement\" (RFE) auf ·http://sourceforge."
+"erstellen Sie eine \"Request for Enhancement\" (RFE) auf  http://sourceforge."
 "net/tracker/?group_id=25770&amp;atid=385140."
 
 #: data/tips.xml:245
@@ -5363,7 +5363,7 @@ msgid ""
 "introducing yourself. Subscription information can be found at lists.sf.net."
 msgstr ""
 "<b> Mitarbeiten an GRAMPS</b>: Wollen sie bei GRAMPS helfen, können aber "
-"nicht programmieren? Kein Problem. Ein so·großes Projekt wie GRAMPS benötigt "
+"nicht programmieren? Kein Problem. Ein so großes Projekt wie GRAMPS benötigt "
 "Menschen mit vielen unterschiedlichen Qualifikationen. Mitarbeit kann sowohl "
 "das Schreiben von Dokumentation, das Teasten von Entwicklungsversionen als "
 "auch das Helfen bei der Webseite beinhalten. Beginnen Sie mit dem Eintragen "
@@ -5377,7 +5377,7 @@ msgid ""
 "research genealogical data. Gramps database back end is so robust that some "
 "users are managing genealogies containing hundreds of thousands of people."
 msgstr ""
-"GRAMPS ist ein \"Genealogical·Research·and·Analysis·Management·Program·System"
+"GRAMPS ist ein \"Genealogical Research and Analysis Management Program System"
 "\" (auf Deutsch: Genealogisches Forschungs- und Analyseverwaltungsprogramm) "
 "Es ist ein voll funktionales Ahnenforschungsprogramm um genealogische Daten "
 "abzulegen, zu bearbeiten und zu erforschen. Das Datenbank backend von Gramps "
@@ -5663,7 +5663,7 @@ msgid ""
 "listinfo/gramps-announce"
 msgstr ""
 "Sind Sie daran interessiert informiert zu werden, wenn eine neue Version von "
-"GRAMPS erscheint? Treten Sie der offenen gramps Mailingliste auf ·http://"
+"GRAMPS erscheint? Treten Sie der offenen gramps Mailingliste auf  http://"
 "lists.sourceforge.net/lists/listinfo/gramps-announce bei"
 
 #: data/tips.xml:446
@@ -7829,7 +7829,7 @@ msgid ""
 msgstr ""
 "Willkommen zu den 2.0.x Versionen von GRAMPS!\n"
 "\n"
-"Diese Version unterscheidet sich in·einigen·Dingen erheblich von den 1.0.x "
+"Diese Version unterscheidet sich in einigen Dingen erheblich von den 1.0.x "
 "Versionen\n"
 ". Bitte lesen Sie den folgenden Text genau, da es bei der Benutzung des "
 "Programmes helfen kann.\n"
@@ -9160,15 +9160,15 @@ msgstr "Erstellt eine graphische Nachkommentafel in Baumstruktur."
 
 #: plugins/DescendReport.py:126
 msgid "b. %(birth_year)d - %(place)s"
-msgstr "geb.·%(birth_year)d·-·%(place)s"
+msgstr "geb. %(birth_year)d - %(place)s"
 
 #: plugins/DescendReport.py:131
 msgid "b. %(birth_year)d"
-msgstr "geb.·%(birth_year)d"
+msgstr "geb. %(birth_year)d"
 
 #: plugins/DescendReport.py:139
 msgid "d. %(death_year)d - %(place)s"
-msgstr "gest.·%(death_year)d·-·%(place)s"
+msgstr "gest. %(death_year)d - %(place)s"
 
 #: plugins/DescendReport.py:144
 msgid "d. %(death_year)d"
@@ -9914,7 +9914,7 @@ msgstr "GRAMPS-IDs neu ordnen"
 
 #: plugins/MakePlace.py:93
 msgid "fix places"
-msgstr "fix·places"
+msgstr "fix places"
 
 #: plugins/MakePlace.py:95 plugins/ReorderIds.py:165
 msgid "Reorders the gramps IDs according to gramps' default rules."
@@ -10014,13 +10014,13 @@ msgstr "Unicode (empfohlen)"
 
 #: plugins/NavWebPage.py:210
 msgid "&copy; %(year)d %(person)s"
-msgstr "&copy;·%(year)d·%(person)s"
+msgstr "&copy; %(year)d %(person)s"
 
 #: plugins/NavWebPage.py:270
 msgid ""
 "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
 msgstr ""
-"Erstellt von·<a·href=\"http://gramps-project.org\">GRAMPS</a>·am·%(date)s"
+"Erstellt von <a href=\"http://gramps-project.org\">GRAMPS</a> am %(date)s"
 
 #: plugins/NavWebPage.py:281 plugins/NavWebPage.py:986
 #: plugins/NavWebPage.py:988
@@ -10121,7 +10121,7 @@ msgstr "Zurück"
 
 #: plugins/NavWebPage.py:770
 msgid "%(page_number)d of %(total_pages)d"
-msgstr "%(page_number)d·of·%(total_pages)d"
+msgstr "%(page_number)d of %(total_pages)d"
 
 #: plugins/NavWebPage.py:774
 msgid "Next"
@@ -10312,27 +10312,27 @@ msgstr "Standard Copyright"
 
 #: plugins/NavWebPage.py:2240
 msgid "Creative Commons - By attribution"
-msgstr "Creative·Commons·-·By·attribution"
+msgstr "Creative Commons - By attribution"
 
 #: plugins/NavWebPage.py:2241
 msgid "Creative Commons - By attribution, No derivations"
-msgstr "Creative·Commons·-·Durch Angabe, keine genaue Herkunftsangabe"
+msgstr "Creative Commons - Durch Angabe, keine genaue Herkunftsangabe"
 
 #: plugins/NavWebPage.py:2242
 msgid "Creative Commons - By attribution, Share-alike"
-msgstr "Creative·Commons - By·attribution,·Share-alike"
+msgstr "Creative Commons - By attribution, Share-alike"
 
 #: plugins/NavWebPage.py:2243
 msgid "Creative Commons - By attribution, Non-commercial"
-msgstr "Creative·Commons·-·By·attribution,·Non-commercial"
+msgstr "Creative Commons - By attribution, Non-commercial"
 
 #: plugins/NavWebPage.py:2244
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
-msgstr "Creative·Commons·-·By·attribution,·Non-commercial,·No·derivations"
+msgstr "Creative Commons - By attribution, Non-commercial, No derivations"
 
 #: plugins/NavWebPage.py:2245
 msgid "Creative Commons - By attribution, Non-commerical, Share-alike"
-msgstr "Creative·Commons·-·By·attribution,·Non-commerical,·Share-alike"
+msgstr "Creative Commons - By attribution, Non-commerical, Share-alike"
 
 #: plugins/NavWebPage.py:2246
 msgid "No copyright notice"
@@ -10830,7 +10830,7 @@ msgstr "Diagramme sichern..."
 
 #: plugins/StatisticsChart.py:696 plugins/StatisticsChart.py:729
 msgid "%s (persons):"
-msgstr "%s·(persons):"
+msgstr "%s (persons):"
 
 #: plugins/StatisticsChart.py:822
 msgid "The style used for the items and values."
