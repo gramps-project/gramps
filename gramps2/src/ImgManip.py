@@ -142,9 +142,12 @@ def set_thumbnail_image(path,mtype=None):
 
 def get_thumbnail_image(path,mtype=None):
     filename = _build_thumb_path(path)
-    if not os.path.isfile(filename):
-        set_thumbnail_image(path,mtype)
+
     try:
+        if not os.path.isfile(filename):
+            set_thumbnail_image(path,mtype)
+        elif os.path.getmtime(path) > os.path.getmtime(filename):
+            set_thumbnail_image(path,mtype)
         return gtk.gdk.pixbuf_new_from_file(filename)
     except gobject.GError:
         if mtype:
@@ -155,6 +158,5 @@ def get_thumbnail_image(path,mtype=None):
 def get_thumbnail_path(path,mtype=None):
     filename = _build_thumb_path(path)
     if not os.path.isfile(filename):
-        print "setting",filename
         set_thumbnail_image(path,mtype)
     return filename

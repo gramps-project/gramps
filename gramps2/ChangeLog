@@ -1,3 +1,6 @@
+2005-09-20  Don Allingham  <don@gramps-project.org>
+	* src/ImgManip.py: update thumbnail if out of date
+
 2005-09-20  Alex Roitman  <shura@gramps-project.org>
 	* INSTALL: Provide correct examples for the local install.
 	* gramps.sh.in: Revert escaping the arguments, as this lumps all
