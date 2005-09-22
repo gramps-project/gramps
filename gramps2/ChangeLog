@@ -1,3 +1,11 @@
+2005-09-21  Don Allingham  <don@gramps-project.org>
+	* src/ReportUtils.py: More UNKNOWN gender handling, and more 
+	complete burial strings
+	* src/plugins/DetAncestralReport.py: defer pronoun handling to
+	ReportUtils
+	* src/plugins/DetDescendantReport.py: defer pronoun handling to
+	ReportUtils
+
 2005-09-21  Alex Roitman  <shura@gramps-project.org>
 	* src/ReportUtils.py: Add UNKNOWN gender case throughout.
 

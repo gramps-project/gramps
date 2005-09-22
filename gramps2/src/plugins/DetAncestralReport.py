@@ -420,9 +420,9 @@ class DetAncestorReport(Report.Report):
             ind_handle = None
             if mate.get_gender() == RelLib.Person.MALE:
                 ind_handle = family.get_mother_handle()
-                heshe = _("She")
+                heshe = 0
             else:
-                heshe = _("He")
+                heshe = 0
                 ind_handle = family.get_father_handle()
             if ind_handle:
                 ind = self.database.get_person_from_handle(ind_handle)
