@@ -1,3 +1,6 @@
+2005-09-24  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GrampsDbBase.py: Properly validate ID prefix strings
+	
 2005-09-23  Alex Roitman  <shura@gramps-project.org>
 	Merge changes done in the TOOL_OPT branch as follows:
 	* src/Tool.py: Add to CVS: Generic tool interface.

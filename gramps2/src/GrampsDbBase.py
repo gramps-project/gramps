@@ -56,7 +56,6 @@ import GrampsDBCallback
 #
 #-------------------------------------------------------------------------
 _UNDO_SIZE = 1000
-_id_reg    = re.compile("%\d+d")
 
 PERSON_KEY     = 0
 FAMILY_KEY     = 1
@@ -917,19 +916,29 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
             return self.family_map.keys()
         return []
 
+    def _validated_id_prefix(self, val, default):
+        if val:
+            try:
+                junk = val % 1
+                prefix_var = val    # use the prefix as is because it works fine
+            except:
+                try:
+                    val = val + "%d"
+                    junk = val % 1
+                    prefix_var = val    # format string was missing
+                except:
+                    prefix_var = default+"%04d" # use default
+        else:
+            prefix_var = default+"%04d"
+        return prefix_var
+    
     def set_person_id_prefix(self,val):
         """
         Sets the naming template for GRAMPS Person ID values. The string is expected
         to be in the form of a simple text string, or in a format that contains
         a C/Python style format string using %d, such as I%d or I%04d.
         """
-        if val:
-            if _id_reg.search(val):
-                self.iprefix = val
-            else:
-                self.iprefix = val + "%d"
-        else:
-            self.iprefix = "I%04d"
+        self.iprefix = self._validated_id_prefix(val,"I")
             
     def set_source_id_prefix(self,val):
         """
@@ -937,13 +946,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         to be in the form of a simple text string, or in a format that contains
         a C/Python style format string using %d, such as S%d or S%04d.
         """
-        if val:
-            if _id_reg.search(val):
-                self.sprefix = val
-            else:
-                self.sprefix = val + "%d"
-        else:
-            self.sprefix = "S%04d"
+        self.sprefix = self._validated_id_prefix(val,"S")
             
     def set_object_id_prefix(self,val):
         """
@@ -951,13 +954,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         to be in the form of a simple text string, or in a format that contains
         a C/Python style format string using %d, such as O%d or O%04d.
         """
-        if val:
-            if _id_reg.search(val):
-                self.oprefix = val
-            else:
-                self.oprefix = val + "%d"
-        else:
-            self.oprefix = "O%04d"
+        self.oprefix = self._validated_id_prefix(val,"O")
 
     def set_place_id_prefix(self,val):
         """
@@ -965,13 +962,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         to be in the form of a simple text string, or in a format that contains
         a C/Python style format string using %d, such as P%d or P%04d.
         """
-        if val:
-            if _id_reg.search(val):
-                self.pprefix = val
-            else:
-                self.pprefix = val + "%d"
-        else:
-            self.pprefix = "P%04d"
+        self.pprefix = self._validated_id_prefix(val,"P")
 
     def set_family_id_prefix(self,val):
         """
@@ -979,13 +970,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         to be in the form of a simple text string, or in a format that contains
         a C/Python style format string using %d, such as F%d or F%04d.
         """
-        if val:
-            if _id_reg.search(val):
-                self.fprefix = val
-            else:
-                self.fprefix = val + "%d"
-        else:
-            self.fprefix = "F%04d"
+        self.fprefix = self._validated_id_prefix(val,"F")
 
     def set_event_id_prefix(self,val):
         """
@@ -993,13 +978,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         to be in the form of a simple text string, or in a format that contains
         a C/Python style format string using %d, such as E%d or E%04d.
         """
-        if val:
-            if _id_reg.search(val):
-                self.eprefix = val
-            else:
-                self.eprefix = val + "%d"
-        else:
-            self.eprefix = "E%04d"
+        self.eprefix = self._validated_id_prefix(val,"E")
             
     def transaction_begin(self,msg=""):
         """
