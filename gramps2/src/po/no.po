@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Mon Aug 29 13:28:30 2005\n"
-"PO-Revision-Date: 2005-09-03 00:42+0200\n"
+"PO-Revision-Date: 2005-09-12 23:38+0200\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -4129,28 +4129,34 @@ msgid "You can convert your data into a GRAMPS package, which is a compressed fi
 msgstr "Du kan konvertere dataene dine til en GRAMPS-pakke, som er en komprimert fil som inneholder dine familetre-data og denne inneholder alle andre filer brukt av databasen, som bilder. Denne fila er fullstendig portabel så den er fint brukbar som sikkerhetskopi eller deling med andre GRAMPS brukere. Dette formatet har den fordelen over GEDCOM med at ingen informasjon blir borte ved eksport eller import."
 
 #: data/tips.xml:363
+#, fuzzy
 msgid "Make your data portable --- your family tree data and media can be exported directly to the GNOME file manager (Nautilus), for burning onto a CD."
-msgstr ""
+msgstr "Gjør dine data portable --- dataene for ditt familietre og media kan eksporteres direkte til GNOME filbehandleren (Nautilus), for brenning til en CD."
 
 #: data/tips.xml:369
+#, fuzzy
 msgid "GRAMPS can export data to the Web Family Tree (WFT) format. This format allows a family tree to be displayed online using a single file, instead of many html files."
-msgstr ""
+msgstr "GRAMPS kan eksportere data til Web Family Tree (WFT) formatet. Dette formatet tillater at et familie tre kan vises på nett, ved å bruke en enkelt fil, i stede for mange html filer."
 
 #: data/tips.xml:375
+#, fuzzy
 msgid "You can easily export your family tree to a web page. Select the entire database, family lines or selected individuals to a collection of web pages ready for upload to the World Wide Web."
-msgstr ""
+msgstr "Du kan enkelt eksportere ditt familietre til en webside. Velg hele databasen, familielinjer, eller enkelt individer, for å lage en samling med nettsider som er klare for å legges opp på internett."
 
 #: data/tips.xml:380
+#, fuzzy
 msgid "The best way to report a bug in GRAMPS is to use the GRAMPS Bug Tracker at Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
-msgstr ""
+msgstr "Den beste måten å rapportere en feil i GRAMPS på, er GRAMPS Bug Tracker på Sourceforge,  http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
 
 #: data/tips.xml:384
+#, fuzzy
 msgid "The GRAMPS homepage is at http://gramps-project.org/"
-msgstr ""
+msgstr "Hjemmesiden for GRAMPS er på adressen http://gramps-project.org/"
 
 #: data/tips.xml:392
+#, fuzzy
 msgid "GRAMPS has some unique features, including the ability to input any piece of information directly into GRAMPS. All data in the data base can be rearranged/manipulated to assist the user in doing research, analysis and correlation with the potential of filling relationship gaps."
-msgstr ""
+msgstr "GRAMPS har noen unike trekk, som egenskapen til å ta inn hvilke som helst informasjon direkte inn i GRAMPS. Alle data i databasen kan bli omorganisert/manipulert til å bistå brukere i å gjøre forskning, analyse og "
 
 #: data/tips.xml:398
 msgid "GRAMPS helps you to keep personal information secure by allowing you to mark information as private. Data marked as private can be excluded from reports and data exports."
@@ -8341,21 +8347,19 @@ msgstr "Arkiv filen må være en fil ikke en katalog"
 
 #: plugins/NavWebPage.py:1820
 msgid "Generate HTML reports"
-msgstr "Lag HTML rapporter"
+msgstr "Lager HTML rapporter"
 
 #: plugins/NavWebPage.py:1869
-#, fuzzy
 msgid "Filtering"
 msgstr "Filter"
 
 #: plugins/NavWebPage.py:1876
-#, fuzzy
 msgid "Applying privacy filter"
-msgstr "Bruk filter for private opplysninger"
+msgstr "Filtrerer bort private opplysninger"
 
 #: plugins/NavWebPage.py:1884
 msgid "Filtering living people"
-msgstr "Filtrer levende personer"
+msgstr "Filtrerer levende personer"
 
 #: plugins/NavWebPage.py:1915
 msgid "Creating individual pages"
@@ -8517,7 +8521,7 @@ msgstr "Målmappe"
 
 #: plugins/NavWebPage.py:2569
 msgid "Narrative Web Site"
-msgstr "Oppsummeringsnettsted"
+msgstr "Lag nettsted"
 
 #: plugins/NavWebPage.py:2573
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
@@ -9605,11 +9609,11 @@ msgstr "Stil som blir brukt på lenkeinformasjonen."
 
 #: plugins/WebPage.py:1975
 msgid "Generate Web Site (deprecated)"
-msgstr "Lag nettsted (erstattet)"
+msgstr "Lag nettsted (ut datert)"
 
 #: plugins/WebPage.py:1978
 msgid "Deprecated"
-msgstr "Erstattet"
+msgstr "Ut datert"
 
 #: plugins/WebPage.py:1979
 msgid "Generates web (HTML) pages for individuals, or a set of individuals. This report is considered to be deprecated. Please migrate to the new Narrative Web Page generator."
