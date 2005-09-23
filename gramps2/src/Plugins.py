@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -59,6 +59,7 @@ import Utils
 import GrampsKeys
 import Errors
 import Report
+import Tool
 import PluginMgr
 
 #-------------------------------------------------------------------------
@@ -421,16 +422,19 @@ class PluginStatus:
 # Building pulldown menus
 #
 #-------------------------------------------------------------------------
-def build_menu(top_menu,list,callback):
+def build_tools_menu(top_menu,callback):
     report_menu = gtk.Menu()
     report_menu.show()
     
     hash_data = {}
-    for report in list:
-        if hash_data.has_key(report[1]):
-            hash_data[report[1]].append((report[2],report[0]))
+    for tool in PluginMgr.tool_list:
+        tool_category = const.tool_categories[tool[3]]
+        if hash_data.has_key(tool_category):
+            hash_data[tool_category].append(
+                (tool[0],tool[1],tool[2],tool[4],tool[3]))
         else:
-            hash_data[report[1]] = [(report[2],report[0])]
+            hash_data[tool_category] = [
+                (tool[0],tool[1],tool[2],tool[4],tool[3])]
 
     catlist = hash_data.keys()
     catlist.sort()
@@ -442,11 +446,12 @@ def build_menu(top_menu,list,callback):
         submenu.show()
         entry.set_submenu(submenu)
         lst = hash_data[key]
-        lst.sort()
+        lst.sort(by_menu_name)
         for name in lst:
-            subentry = gtk.MenuItem("%s..." % name[0])
+            subentry = gtk.MenuItem("%s..." % name[2])
             subentry.show()
-            subentry.connect("activate",callback,name[1])
+            subentry.connect("activate",callback,Tool.gui_tool,
+                             name[0],name[1],name[2],name[3],name[4])
             submenu.append(subentry)
     top_menu.set_submenu(report_menu)
 
@@ -456,8 +461,6 @@ def build_menu(top_menu,list,callback):
 #
 #-------------------------------------------------------------------------
 def build_report_menu(top_menu,callback):
-#    build_menu(top_menu,_reports,callback)
-#def build_menu(top_menu,list,callback):
     report_menu = gtk.Menu()
     report_menu.show()
     
@@ -488,7 +491,8 @@ def build_report_menu(top_menu,callback):
         for name in lst:
             subentry = gtk.MenuItem("%s..." % name[2])
             subentry.show()
-            subentry.connect("activate",callback,Report.report,name[0],name[1],name[2],name[3],name[4])
+            subentry.connect("activate",callback,Report.report,
+                             name[0],name[1],name[2],name[3],name[4])
             submenu.append(subentry)
     top_menu.set_submenu(report_menu)
 
@@ -501,8 +505,8 @@ def by_menu_name(a,b):
 # build_tools_menu
 #
 #-------------------------------------------------------------------------
-def build_tools_menu(top_menu,callback):
-    build_menu(top_menu,PluginMgr.tool_list,callback)
+#def build_tools_menu(top_menu,callback):
+#    build_menu(top_menu,PluginMgr.tool_list,callback)
 
 #-------------------------------------------------------------------------
 #
@@ -724,9 +728,9 @@ def reload_plugins(obj=None,junk1=None,junk2=None,junk3=None):
 # Register the plugin reloading tool
 #
 #-------------------------------------------------------------------------
-PluginMgr.register_tool(
-    reload_plugins,
-    _("Reload plugins"),
-    category=_("Debug"),
-    description=_("Attempt to reload plugins. Note: This tool itself is not reloaded!"),
-    )
+## PluginMgr.register_tool(
+##     reload_plugins,
+##     _("Reload plugins"),
+##     category=_("Debug"),
+##     description=_("Attempt to reload plugins. Note: This tool itself is not reloaded!"),
+##     )

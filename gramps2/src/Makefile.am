@@ -122,6 +122,8 @@ gdir_PYTHON = \
 	ReportOptions.py\
 	ReadGrdb.py\
 	WriteGrdb.py\
+	Options.py\
+	Tool.py\
 	Spell.py
 
 # Could use GNU make's ':=' syntax for nice wildcard use.

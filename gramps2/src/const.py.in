@@ -100,6 +100,7 @@ caution_xpm    = "%s/caution.png" % rootDir
 system_filters = "%s/system_filters.xml" % rootDir
 custom_filters = "~/.gramps/custom_filters.xml"
 report_options = "~/.gramps/report_options.xml"
+tool_options   = "~/.gramps/tool_options.xml"
 icon           = "%s/gramps.png" % rootDir
 logo           = "%s/logo.png" % rootDir
 gladeFile      = "%s/gramps.glade" % rootDir
@@ -950,3 +951,19 @@ book_categories = {
     CATEGORY_TEXT : _("Text"),
     CATEGORY_DRAW : _("Graphics"),
 }
+
+TOOL_DEBUG  = -1
+TOOL_ANAL   = 0
+TOOL_DBPROC = 1
+TOOL_DBFIX  = 2
+TOOL_REVCTL = 3
+TOOL_UTILS  = 4
+
+tool_categories = {
+    TOOL_DEBUG  : _("Debug"),
+    TOOL_ANAL   : _("Analysis and Exploration"),
+    TOOL_DBPROC : _("Database Processing"),
+    TOOL_DBFIX  : _("Database Repair"),
+    TOOL_REVCTL : _("Revision Control"),
+    TOOL_UTILS  : _("Utilities"),
+    }

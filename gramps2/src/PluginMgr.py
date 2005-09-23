@@ -45,6 +45,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import const
 import Errors
+import Tool
 
 #-------------------------------------------------------------------------
 #
@@ -64,6 +65,7 @@ drawdoc_list = []
 failmsg_list = []
 bkitems_list = []
 cl_list = []
+cli_tool_list = []
 
 _success_list = []
 
@@ -77,6 +79,7 @@ _relcalc_class = Relationship.RelationshipCalculator
 
 #-------------------------------------------------------------------------
 #
+# Constants
 #
 #-------------------------------------------------------------------------
 _unavailable = _("No description was provided"),
@@ -154,16 +157,48 @@ def register_import(task, ffilter, mime=None, native_format=0, format_name=""):
         import_list.append((task, ffilter, mime, native_format, format_name))
 
 
+#-------------------------------------------------------------------------
+#
+# Tool registration
+#
+#-------------------------------------------------------------------------
 def register_tool(
-    task,
     name,
-    category=_("Uncategorized"),
-    description=_unavailable,
+    category,
+    tool_class,
+    options_class,
+    modes,
+    translated_name,
     status=_("Unknown"),
+    description=_unavailable,
     author_name=_("Unknown"),
     author_email=_("Unknown")
     ):
-    """Register a tool with the plugin system"""
+    """
+    Register a tool with the plugin system.
+
+    This function should be used to register tool in GUI and/or
+    command-line mode. The low-level functions (starting with '_')
+    should not be used on their own. Instead, this functino will call
+    them as needed.
+    """
+
+    (junk,gui_task) = divmod(modes,2**Tool.MODE_GUI)
+    if gui_task:
+        _register_gui_tool(tool_class,options_class,translated_name,
+                           name,category,description,
+                           status,author_name,author_email)
+
+    (junk,cli_task) = divmod(modes-gui_task,2**Tool.MODE_CLI)
+    if cli_task:
+        _register_cli_tool(name,category,tool_class,options_class)
+
+def _register_gui_tool(tool_class,options_class,translated_name,
+                       name,category,
+                       description=_unavailable,
+                       status=_("Unknown"),
+                       author_name=_("Unknown"),
+                       author_email=_("Unknown")):
     del_index = -1
     for i in range(0,len(tool_list)):
         val = tool_list[i]
@@ -171,8 +206,15 @@ def register_tool(
             del_index = i
     if del_index != -1:
         del tool_list[del_index]
-    tool_list.append((task, category, name, description,
-                      status, author_name, author_name))
+    tool_list.append((tool_class,options_class,translated_name,
+                      category,name,description,status,
+                      author_name,author_email))
+
+def _register_cli_tool(name,category,tool_class,options_class):
+    for n in cli_tool_list:
+        if n[0] == name:
+            return
+    cli_tool_list.append((name,category,tool_class,options_class))
 
 #-------------------------------------------------------------------------
 #
@@ -194,7 +236,8 @@ def register_report(
     """
     Registers report for all possible flavors.
 
-    This function should be used to register report as a stand-alone,    book item, or command-line flavor in any combination of those.
+    This function should be used to register report as a stand-alone,
+    book item, or command-line flavor in any combination of those.
     The low-level functions (starting with '_') should not be used
     on their own. Instead, this function will call them as needed.
     """

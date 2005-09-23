@@ -1963,10 +1963,13 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             task(self.db,self.active_person,report_class,
                  options_class,translated_name,name,category)
 
-    def menu_tools(self,obj,task):
+    def menu_tools(self,obj,task,tool_class,options_class,
+                    translated_name,name,category):
         """Call the tool plugin selected from the menus"""
         if self.active_person:
-            task(self.db,self.active_person,self.tool_callback,self)
+            task(self.db,self.active_person,tool_class,options_class,
+                 translated_name,name,category,
+                 self.tool_callback,self)
     
     def open_example(self,obj):
         import shutil

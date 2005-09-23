@@ -50,6 +50,7 @@ import GrampsKeys
 import RecentFiles
 import PluginMgr
 import Report
+import Tool
 
 #-------------------------------------------------------------------------
 #
@@ -211,7 +212,7 @@ class ArgHandler:
                 self.exports.append((outfname,outformat))
             elif o in ( '-a', '--action' ):
                 action = v
-                if action not in ( 'check', 'summary', 'report' ):
+                if action not in ( 'check', 'summary', 'report', 'tool' ):
                     print "Unknown action: %s. Ignoring." % action
                     continue
                 options_str = ""
@@ -618,6 +619,31 @@ class ArgHandler:
 
             print "Unknown report name. Available names are:"
             for item in PluginMgr.cl_list:
+                print "   %s" % item[0]
+        elif action == "tool":
+            try:
+                options_str_dict = dict( [ tuple(chunk.split('=')) for
+                                           chunk in options_str.split(',') ] )
+            except:
+                options_str_dict = {}
+                print "Ignoring invalid options string."
+
+            name = options_str_dict.pop('name',None)
+            if not name:
+                print "Tool name not given. Please use name=toolname"
+                os._exit(1)
+
+            for item in PluginMgr.cli_tool_list:
+                if name == item[0]:
+                    category = item[1]
+                    tool_class = item[2]
+                    options_class = item[3]
+                    Tool.cli_tool(self.parent.db,name,category,
+                                  tool_class,options_class,options_str_dict)
+                    return
+
+            print "Unknown tool name. Available names are:"
+            for item in PluginMgr.cli_tool_list:
                 print "   %s" % item[0]
         else:
             print "Unknown action: %s." % action

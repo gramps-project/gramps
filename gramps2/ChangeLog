@@ -1,3 +1,20 @@
+2005-09-23  Alex Roitman  <shura@gramps-project.org>
+	Merge changes done in the TOOL_OPT branch as follows:
+	* src/Tool.py: Add to CVS: Generic tool interface.
+	* src/ArgHandler.py: Support command line mode for tools.
+	* src/PluginMgr.py: New tool registration scheme.
+	* src/Plugins.py: Convert to tool registration scheme.
+	* src/const.py.in: Add tool categories. 
+	* src/plugins/ChangeTypes.py: Convert to new scheme.
+	* src/Options.py: Add to CVS: generic options interface.
+	* src/ReportOptions.py: Keep only report-specific option
+	handling.
+	* src/Makefile.am: Ship new files.
+
+2005-09-23  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Checkpoint.py: Minor improvements for the RCS.
+	* src/plugins/Makefile.am: Ship Checkpoint.py.
+
 2005-09-22  Don Allingham  <don@gramps-project.org>
 	* doc/gramps-manual/C/*.xml
 
