@@ -119,17 +119,36 @@ class Checkpoint:
         comment = self.timestamp()
 
         archive = archive_base + ",v"
+
+        # If the archive file does not exist, we either set it up
+        # or die trying
         if not os.path.exists(archive):
-            proc = popen2.Popen3('rcs -i -U -q -t-"GRAMPS database" %s' % archive,True)
+            proc = popen2.Popen3(
+                'rcs -i -U -q -t-"GRAMPS database" %s' % archive,
+                True)
             proc.tochild.write(comment)
             proc.tochild.close()
             status = proc.wait()
-            if status:
-                ErrorDialog(_("Checkpoint failed"),
-                            "\n".join(proc.childerr.readlines()))
+            message = "\n".join(proc.childerr.readlines())
             del proc
-            return
+
+            if status:
+                ErrorDialog(_("Checkpoint Archive Creation Failed"),
+                            _("No checkpointing archive was found. "
+                              "An attempt to create it has failed with the "
+                              "following message:\n\n%s")
+                            % message)
+                return
+            else:
+                OkDialog(_("Checkpoint Archive Created"),
+                         _("No checkpointing archive was found, "
+                           "so it was created to enable archiving.\n\n"
+                           "The archive file name is %s\n"
+                           "Deleting this file will lose the archive and make "
+                           "impossible to extract archived data from it.")
+                         % archive)
         
+        # At this point, we have an existing archive file
         xmlwrite = WriteXML.XmlWriter(self.db,self.callback,False,False)
         xmlwrite.write(archive_base)
 
@@ -137,10 +156,15 @@ class Checkpoint:
         proc.tochild.write(comment)
         proc.tochild.close()
         status = proc.wait()
-        if status:
-            ErrorDialog(_("Checkpoint failed"),
-                        "\n".join(proc.childerr.readlines()))
+        message = "\n".join(proc.childerr.readlines())
         del proc
+        if status:
+            ErrorDialog(_("Checkpoint Failed"),
+                        _("An attempt to archive the data failed "
+                          "with the following message:\n\n%s") % message)
+        else:
+            OkDialog(_("Checkpoint Succeeded "),
+                     _("The data was successfully archived."))
 
     def callback(self,value):
         """

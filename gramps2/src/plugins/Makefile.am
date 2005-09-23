@@ -65,7 +65,8 @@ pkgdata_PYTHON = \
 	rel_sv.py\
 	ImportGeneWeb.py\
 	WriteGeneWeb.py\
-	rel_es.py
+	rel_es.py\
+	Checkpoint.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
@@ -88,8 +89,8 @@ GLADEFILES = \
 	writeftree.glade\
 	genewebexport.glade\
 	scratchpad.glade\
-    vcardexport.glade\
-    vcalendarexport.glade
+	vcardexport.glade\
+	vcalendarexport.glade
 
 GRAPHICS = \
 	stock_link.png
