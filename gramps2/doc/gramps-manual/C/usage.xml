@@ -666,7 +666,7 @@
             <para>
               Exporting to Web Family Tree will create the text file
               suitable as an input for the WFT program. Specific
-              options include filter selecton and the ability to
+              options include filter selection and the ability to
               restrict data on living people, that is to limit living
               people's data to family ties.
             </para>
@@ -1937,7 +1937,7 @@
           <listitem>
             <para>
               The <guilabel>Notes</guilabel> tab displays information
-	      about the otes concerning the relationship. These could
+	      about the notes concerning the relationship. These could
 	      be any notes which do not naturally fit into the
 	      Parameter-Value pairs available to Attributes. To add a
 	      note or modify existing notes simply edit the text in
@@ -2006,7 +2006,7 @@
           <listitem>
             <para>
               The <guilabel>Gallery</guilabel> tab displays
-	      information about edia objects associated with the
+	      information about media objects associated with the
 	      relationship and the controls allowing modification of
 	      such. The central part shows the list of all such media
 	      objects.  For media object which are valid image files
@@ -2218,7 +2218,7 @@
           <listitem>
             <para>
               The <guilabel>References</guilabel> tab displays
-	      information about atabase records that refer to this
+	      information about database records that refer to this
 	      source. If the source is not referenced from any
 	      database record, the tab shows an empty list.  If the
 	      source is referenced from many records, the tab will
@@ -2333,7 +2333,7 @@
           <listitem>
             <para> 
 	      The <guilabel>Other names</guilabel> tab displays
-	      information concerning ther names by which the place
+	      information concerning other names by which the place
 	      might be known and the controls allowing their
 	      modification. The bottom part displays the list of all
 	      other names of the place stored in the database. The top
@@ -3359,7 +3359,7 @@
       <tip>
         <para>
 
-          If the person you would like to add as a wittness is in fact
+          If the person you would like to add as a witness is in fact
 	  a member of the database, it is better to use the first
 	  method below.
 
@@ -4363,7 +4363,7 @@
             <para>
 
 	      This report generates a graph of people who are
-	      escendants of the Active person. Specific options
+	      descendants of the Active person. Specific options
 	      include the format of the displayed entries.
 
             </para>
@@ -4411,7 +4411,7 @@
 	      and gender-based limit for inclusion into statistics.
 	      You can also set the minimum number of items to qualify
 	      for the bar chart, so that the charts with fewer items
-	      will generate a pice chart instead.  The <guilabel>Chart
+	      will generate a pie chart instead.  The <guilabel>Chart
 	      Selection</guilabel> tab allows you to check which
 	      charts you want to include in your report.
 
@@ -5215,7 +5215,7 @@
 	  textual information of notes and comments. To store any type
 	  of these records, simply drag the existing record on to the
 	  Scratch Pad from the corresponding editor dialog. To reuse
-	  the record, drag it from the Scratch Pad onlto the
+	  the record, drag it from the Scratch Pad on to the
 	  corresponding place in the editor, e.g. Address tab,
 	  Attribute tab, etc.
 
@@ -5259,7 +5259,7 @@
 		people in the database. Please visit the <ulink
 		url="http://www.archives.gov/research_room/genealogy/census/soundex.html"
 		type="http">NARA Soundex Indexing page</ulink> to
-		learn more about Soudex Indexing System.
+		learn more about Soundex Indexing System.
 
 	      </para>
             </listitem>

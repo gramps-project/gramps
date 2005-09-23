@@ -130,7 +130,7 @@ families. Yet other people think of a table, text report, etc. </para>
 
 <para>
 &app; can produce any of the above, and many more different charts and 
-reports. Moreover, the plugin architechture enables users (you) to create 
+reports. Moreover, the plugin architecture enables users (you) to create 
 their own plugins which could be new reports, charts, or research tools. 
       </para></listitem>
       </varlistentry>
@@ -171,9 +171,9 @@ knowledge of programming in Python.
 
       <varlistentry><term>What standards does &app; support?</term>
       <listitem><para> 
-The nice thing about the standards is that there never is a shortage of 
+The nice thing about standards is that there never is a shortage of 
 them. &app; is tested to support the following flavors of GEDCOM: 
-GEDCOM5.5, Brother's Keeper, Family Origins, Familty Tree Maker, Ftree, 
+GEDCOM5.5, Brother's Keeper, Family Origins, Family Tree Maker, Ftree, 
 GeneWeb, Legacy, Personal Ancestral File, Pro-Gen, Reunion, and 
 Visual Genealogie. 
       </para></listitem>
@@ -184,7 +184,7 @@ Visual Genealogie.
       <listitem><para> 
 &app; has no hard limits on the size of a database that it can handle. 
 Starting with this release, &app; no longer loads all data into memory,
-which allows it to work with much larger database than before.
+which allows it to work with a much larger database than before.
 In reality, however, there are practical limits. The main limiting factors
 are the available memory on the system and the cache size used for BSDDB
 database access. With common memory sizes these days, &app; should have
@@ -210,7 +210,7 @@ memory you have.
       Is there a way around loading all the data into memory?</term>
       <listitem><para> 
 Starting with this release, &app; no longer loads all data into memory,
-which allows it to work with much larger database than before.
+which allows it to work with a much larger database than before.
       </para></listitem>
       </varlistentry>
 
@@ -351,13 +351,7 @@ If, however, you would like the &app; project to to adopt your strategy,
 you would need to convince &app; developers that your strategy is good
 for &app; and superior to the present development strategy.</para>
 
-<tip><para>                                                                                
-If &app; developers are still not convinced after about three
-messages sent to gramps-devel, maybe you are better off on your own
-rather than with a company of retards who can't fully realize the
-potential of your great idea :-)
-
-      </para></tip></listitem>
+</listitem>
       </varlistentry>
 
       </variablelist>

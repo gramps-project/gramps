@@ -1948,136 +1948,78 @@ def list_person_str(database,person,person_name=None,empty_date="",empty_place="
     text = ""
 
     values = {
-        'unknown_gender_name' : person_name, 
-        'male_name'           : person_name, 
-        'female_name'         : person_name, 
-        'birth_date'          : bdate,
-        'birth_place'         : bplace,
-        'death_date'          : ddate,
-        'death_place'         : dplace,
+        'name'        : person_name, 
+        'birth_date'  : bdate,
+        'birth_place' : bplace,
+        'death_date'  : ddate,
+        'death_place' : dplace,
         }
     
-    if person.get_gender() == RelLib.Person.MALE:
-        if bdate:
-            if bplace:
-                if ddate:
-                    if dplace:
-                        text = _("%(male_name)s "
-                            "Born: %(birth_date)s %(birth_place)s "
-                            "Died: %(death_date)s %(death_place)s.") % values
-                    else:
-                        text = _("%(male_name)s "
-                            "Born: %(birth_date)s %(birth_place)s "
-                            "Died: %(death_date)s.") % values
+    if bdate:
+        if bplace:
+            if ddate:
+                if dplace:
+                    text = _("%(name)s "
+                             "Born: %(birth_date)s %(birth_place)s "
+                             "Died: %(death_date)s %(death_place)s.") % values
                 else:
-                    if dplace:
-                        text = _("%(male_name)s "
-                            "Born: %(birth_date)s %(birth_place)s "
-                            "Died: %(death_place)s.") % values
-                    else:
-                        text = _("%(male_name)s "
-                            "Born: %(birth_date)s %(birth_place)s.") % values
+                    text = _("%(name)s "
+                             "Born: %(birth_date)s %(birth_place)s "
+                             "Died: %(death_date)s.") % values
             else:
-                if ddate:
-                    if dplace:
-                        text = _("%(male_name)s Born: %(birth_date)s "
-                            "Died: %(death_date)s %(death_place)s.") % values
-                    else:
-                        text = _("%(male_name)s "
-                            "Born: %(birth_date)s Died: %(death_date)s.") % values
+                if dplace:
+                    text = _("%(name)s "
+                             "Born: %(birth_date)s %(birth_place)s "
+                             "Died: %(death_place)s.") % values
                 else:
-                    if dplace:
-                        text = _("%(male_name)s "
-                            "Born: %(birth_date)s Died: %(death_place)s.") % values
-                    else:
-                        text = _("%(male_name)s Born: %(birth_date)s.") % values
+                    text = _("%(name)s "
+                             "Born: %(birth_date)s %(birth_place)s.") % values
         else:
-            if bplace:
-                if ddate:
-                    if dplace:
-                        text = _("%(male_name)s "
-                            "Born: %(birth_place)s "
-                            "Died: %(death_date)s %(death_place)s.") % values
-                    else:
-                        text = _("%(male_name)s "
-                            "Born: %(birth_place)s "
-                            "Died: %(death_date)s.") % values
+            if ddate:
+                if dplace:
+                    text = _("%(name)s Born: %(birth_date)s "
+                             "Died: %(death_date)s %(death_place)s.") % values
                 else:
-                    if dplace:
-                        text = _("%(male_name)s "
-                            "Born: %(birth_place)s "
-                            "Died: %(death_place)s.") % values
-                    else:
-                        text = _("%(male_name)s "
-                            "Born: %(birth_place)s.") % values
+                    text = _("%(name)s "
+                             "Born: %(birth_date)s Died: %(death_date)s.") % values
             else:
-                if ddate:
-                    if dplace:
-                        text = _("%(male_name)s "
-                            "Died: %(death_date)s %(death_place)s.") % values
-                    else:
-                        text = _("%(male_name)s "
-                            "Died: %(death_date)s.") % values
+                if dplace:
+                    text = _("%(name)s "
+                             "Born: %(birth_date)s Died: %(death_place)s.") % values
                 else:
-                    if dplace:
-                        text = _("%(male_name)s Died: %(death_place)s.") % values
-                    else:
-                        text = _("%(male_name)s.") % values
+                    text = _("%(name)s Born: %(birth_date)s.") % values
     else:
-        if bdate:
-            if bplace:
-                if ddate:
-                    if dplace:
-                        text = _("%(female_name)s "
-                            "Born: %(birth_date)s %(birth_place)s "
-                            "Died: %(death_date)s %(death_place)s.") % values
-                    else:
-                        text = _("%(female_name)s "
-                            "Born: %(birth_date)s %(birth_place)s "
-                            "Died: %(death_date)s.") % values
+        if bplace:
+            if ddate:
+                if dplace:
+                    text = _("%(name)s "
+                             "Born: %(birth_place)s "
+                             "Died: %(death_date)s %(death_place)s.") % values
                 else:
-                    if dplace:
-                        text = _("%(female_name)s "
-                            "Born: %(birth_date)s %(birth_place)s "
-                            "Died: %(death_place)s.") % values
-                    else:
-                        text = _("%(female_name)s "
-                            "Born: %(birth_date)s %(birth_place)s.") % values
+                    text = _("%(name)s "
+                             "Born: %(birth_place)s "
+                             "Died: %(death_date)s.") % values
             else:
-                if ddate:
-                    if dplace:
-                        text = _("%(female_name)s Born: %(birth_date)s "
-                            "Died: %(death_date)s %(death_place)s.") % values
-                    else:
-                        text = _("%(female_name)s Born: %(birth_date)s Died: %(death_date)s.") % values
+                if dplace:
+                    text = _("%(name)s "
+                             "Born: %(birth_place)s "
+                             "Died: %(death_place)s.") % values
                 else:
-                    if dplace:
-                        text = _("%(female_name)s Born: %(birth_date)s Died: %(death_place)s.") % values
-                    else:
-                        text = _("%(female_name)s Born: %(birth_date)s.") % values
+                    text = _("%(name)s "
+                             "Born: %(birth_place)s.") % values
         else:
-            if bplace:
-                if ddate:
-                    if dplace:
-                        text = _("%(female_name)s Born: %(birth_place)s Died: %(death_date)s %(death_place)s.") % values
-                    else:
-                        text = _("%(female_name)s Born: %(birth_place)s Died: %(death_date)s.") % values
+            if ddate:
+                if dplace:
+                    text = _("%(name)s "
+                             "Died: %(death_date)s %(death_place)s.") % values
                 else:
-                    if dplace:
-                        text = _("%(female_name)s Born: %(birth_place)s Died: %(death_place)s.") % values
-                    else:
-                        text = _("%(female_name)s Born: %(birth_place)s.") % values
+                    text = _("%(name)s "
+                             "Died: %(death_date)s.") % values
             else:
-                if ddate:
-                    if dplace:
-                        text = _("%(female_name)s Died: %(death_date)s %(death_place)s.") % values
-                    else:
-                        text = _("%(female_name)s Died: %(death_date)s.") % values
+                if dplace:
+                    text = _("%(name)s Died: %(death_place)s.") % values
                 else:
-                    if dplace:
-                        text = _("%(female_name)s Died: %(death_place)s.") % values
-                    else:
-                        text = _("%(female_name)s.") % values
+                    text = _("%(name)s.") % values
 
     if text:
         text = "- %s " % text

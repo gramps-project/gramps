@@ -94,7 +94,7 @@
 	<tip><para>The ID prefixes use formatting conventions common for
 	C, Python, and other programming languages. For example, the %04d
 	expands to an integer, prepended with zeros to have the total
-	width of founr digits. If you would like IDs to be 1, 2, 3, etc,
+	width of four digits. If you would like IDs to be 1, 2, 3, etc,
 	simply set the formatting parameter to %d.
 	</para></tip>
 	</listitem>

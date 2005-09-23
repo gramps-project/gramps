@@ -26,7 +26,7 @@
     <para>
 
     &app; is a software package designed to help you with
-    genealogical resarch. It allows you to store, edit, and research
+    genealogical research. It allows you to store, edit, and research
     genealogical data using your computer. Although similar to other
     genealogical programs, it offers some unique and powerful
     features.  GRAMPS is an open source software package, which means
@@ -45,7 +45,7 @@
       descendant or ancestral relationships through graphical
       displays, charts, or reports. Some allow pictures or other media
       to be inserted to enhance the raw data. Most provide a means to
-      include data on individuals or familys that may or may not be
+      include data on individuals or families that may or may not be
       related to the primary family being researched.  And they may
       include other features such as exporting or importing to and
       from other programs and printing data contained in various
@@ -62,7 +62,7 @@
 
       </para><para>
 
-      &app; has the power to let you rearrage your data in any order
+      &app; has the power to let you rearrange your data in any order
       or sequence and to help you fill gaps in genealogical
       relationships.
 
@@ -205,14 +205,12 @@
             <warning id="gedcom-inmem1-warn">
               <title>GEDCOM Editing</title>
 	      <para>
-		
 		Please keep in mind that some information in GEDCOM
 		file may be lost during import into &app;. Simply
 		opening and viewing the file will not change it.
 		However, if any changes were made and they were not
 		abandoned upon exit, exiting &app; will save the data,
 		with the possible data loss.
-
 	      </para>
            </warning>                
   	  </para>
@@ -376,7 +374,7 @@
          </para>
 
         <para>
-         Finally, there are warnings, notifiying you where you should be careful:
+         Finally, there are warnings, notifying you where you should be careful:
 
 	    <warning id="example-warning">
 	      <title>Example Warning</title>

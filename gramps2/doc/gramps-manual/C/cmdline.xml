@@ -1,7 +1,7 @@
 <appendix id="append-cmdline">
 
 <!--
-	  User Manual for Gramps - a GTK+/GNOME based genealogy program
+	  User Manual for GRAMPS - a GTK+/GNOME based genealogy program
 
 	  Copyright (C) 2003-2005  Alexander Roitman
 
@@ -175,7 +175,7 @@
             -i <filename>file2</filename> 
             -i <filename>file1</filename>
           </command>
-          might produce different gramps IDs in the resulting database.
+          might produce different GRAMPS IDs in the resulting database.
           </para></sect2>
 
           <sect2 id="cmdline-opt-export"><title>Export options</title>
@@ -187,7 +187,7 @@
           If not specified, the guess will be attempted based on 
           the <filename>filename</filename>. For iso format, 
           the <filename>filename</filename> 
-          is actually the name of directory the gramps database will be written 
+          is actually the name of directory the &app; database will be written 
           into. For grdb, gramps-xml, gedcom, wft, geneweb,
           and gramps-pkg, the <filename>filename</filename> 
           is the name of the resulting file.
@@ -254,7 +254,7 @@
           and values. 
           </para></listitem>
 
-          <listitem><para>Withing a pair, option name and value must be
+          <listitem><para>Within a pair, option name and value must be
           separated by the equal sign.
           </para></listitem>
 
@@ -339,7 +339,7 @@
        the further command line parameters.
        </para>
        
-       <note><para>Only one file can be opened in a single invokation
+       <note><para>Only one file can be opened in a single invocation
        of &app;. If you need to get data from multiple sources, use
        the importing options by using <command>-i</command> flag.
        </para></note>
@@ -363,14 +363,14 @@
        
        <listitem>                                                                         
        <para>If no <command>-O</command> or <command>-i</command> 
-       option is given, gramps will launch 
+       option is given, &app; will launch 
        its main window and start the usual interactive session with the empty 
        database, since there is no data to process, anyway.
        </para></listitem>
                                                                                 
        <listitem>                                                                       
        <para>If no <command>-o</command> or <command>-a</command> options 
-       are given, gramps will launch its main window and start the usual 
+       are given, &app; will launch its main window and start the usual 
        interactive session with the database resulted from opening 
        and all imports (if any). This database resides in the  
        <filename>import_db.grdb</filename> file under the
@@ -379,7 +379,7 @@
        
        <listitem>                                                                       
        <para>Any errors encountered during import, export, or action, will 
-       be either dumped to stdout (if these are exceptions handled by gramps) 
+       be either dumped to stdout (if these are exceptions handled by &app;) 
        or or to stderr (if these are not handled). Use usual shell redirections 
        of stdout and stderr to save messages and errors in files.
        </para></listitem>
@@ -427,7 +427,7 @@
         <varlistentry>
        <term>To record the database resulting from all imports, supply 
        <command>-o</command> flag (use <command>-f</command>
-       if the filename does not allow gramps to guess the format):</term>
+       if the filename does not allow &app; to guess the format):</term>
        <listitem>
         <para><command>gramps 
             -i <filename>file1.ged</filename> 
@@ -453,7 +453,7 @@
         </varlistentry>
 
         <varlistentry>
-       <term>To import three databases and start interactive gramps 
+       <term>To import three databases and start interactive &app; 
        session with the result:</term>
        <listitem>
         <para><command>gramps 
