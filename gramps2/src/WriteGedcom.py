@@ -1157,7 +1157,7 @@ class GedcomWriter:
             self.writeln("%s %s" % (prefix,self.cnvtxt(date.get_text())))
 
     def write_person_name(self,name,nick):
-        firstName = self.cnvtxt(name.get_first_name())
+        firstName = self.cnvtxt("%s %s" % (name.get_first_name(),name.get_patronymic())).strip()
         surName = self.cnvtxt(name.get_surname())
         surName = surName.replace('/','?')
         surPref = self.cnvtxt(name.get_surname_prefix())
@@ -1175,7 +1175,7 @@ class GedcomWriter:
             else:
                 self.writeln("1 NAME %s/%s %s/%s" % (firstName,surPref,surName,suffix))
 
-        if name.get_first_name():
+        if firstName:
             self.writeln("2 GIVN %s" % firstName)
         if self.prefix:
             if surPref:

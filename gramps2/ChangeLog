@@ -1,3 +1,6 @@
+2005-09-24  Don Allingham  <dona@gramps-project.org>
+	* src/WriteGedcom.py: handle patronymics
+
 2005-09-24  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GrampsDbBase.py: Properly validate ID prefix strings
 	
