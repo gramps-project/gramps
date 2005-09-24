@@ -54,12 +54,26 @@ import Date
 import DateParser
 import DisplayTrace
 from ansel_utf8 import ansel_to_utf8
-import latin_utf8 
 import Utils
 import GrampsMime
 from bsddb import db
 from GedcomInfo import *
 from QuestionDialog import ErrorDialog
+
+#-------------------------------------------------------------------------
+#
+# latin/utf8 conversions
+#
+#-------------------------------------------------------------------------
+
+def utf8_to_latin(s):
+    return s.encode('iso-8859-1','replace')
+
+def latin_to_utf8(s):
+    if type(s) == type(u''):
+        return s
+    else:
+        return unicode(s,'iso-8859-1')
 
 #-------------------------------------------------------------------------
 #
@@ -312,7 +326,7 @@ class GedcomParser:
             if self.override == 1:
                 self.cnv = ansel_to_utf8
             elif self.override == 2:
-                self.cnv = latin_utf8.latin_to_utf8
+                self.cnv = latin_to_utf8
             else:
                 self.cnv = nocnv
         else:
@@ -1791,7 +1805,7 @@ class GedcomParser:
                 elif matches[2] == "ANSEL":
                     self.cnv = ansel_to_utf8
                 else:
-                    self.cnv = latin_utf8.latin_to_utf8
+                    self.cnv = latin_to_utf8
                 self.ignore_sub_junk(2)
                 if self.window:
                     self.update(self.encoding_obj,matches[2])

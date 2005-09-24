@@ -29,26 +29,40 @@ present, we default to no spell checking.
 
 import GrampsKeys
 
+#-----------------------------------------------------------
+#
+# Attempt to instantiate a gtkspell instance to check for
+# any errors. If it succeeds, set a success flag so that we
+# know to use the spelling check in the future
+#
+#------------------------------------------------------------
+
 success = False
 try:
     import gtk
     import gtkspell
     import locale
 
-    text_view = gtk.TextView()
-    spell = gtkspell.Spell(text_view)
     lang = locale.getlocale()[0]
-    spell.set_language(lang)
+    gtkspell.Spell(gtk.TextView()).set_language(lang)
     success = True
 
 except ImportError, msg:
-    print "Spell.py:", msg
+    print "Spell.py: ", msg
 except RuntimeError,msg:
-    print "Spell.py:", msg
+    print "Spell.py: ", msg
 except SystemError,msg:
-    print "Spell.py:", msg
+    msg = _("Spelling checker is not available for %s") % lang
+    print "Spell.py: %s" % msg
 
+#-----------------------------------------------------------
+#
+# Spell - if the initial test succeeded, attach a gtkspell
+#         instance to the passed TextView instance
+#
+#------------------------------------------------------------
 class Spell:
+
     def __init__(self,obj):
         if success and GrampsKeys.get_spellcheck():
             self.spell = gtkspell.Spell(obj)

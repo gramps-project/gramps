@@ -1,3 +1,8 @@
+2005-09-24  Don Allingham  <don@gramps-project.org>
+	* src/latin_utf8.py: removed
+	* src/ReadGedcom.py: added latin_utf8 functions
+	* src/Spell.py: better error checking on import
+
 2005-09-23  Don Allingham  <don@gramps-project.org>
 	* doc/gramps-manual/C/faq.xml: more updates
 	* doc/gramps-manual/C/getstart.xml: more updates
