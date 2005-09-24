@@ -45,7 +45,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import const
 import Errors
-import Tool
 
 #-------------------------------------------------------------------------
 #
@@ -183,6 +182,7 @@ def register_tool(
     them as needed.
     """
 
+    import Tool
     (junk,gui_task) = divmod(modes,2**Tool.MODE_GUI)
     if gui_task:
         _register_gui_tool(tool_class,options_class,translated_name,
