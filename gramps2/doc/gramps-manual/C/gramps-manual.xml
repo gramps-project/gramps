@@ -66,9 +66,14 @@
 <!-- appropriate code -->
   <bookinfo> 
     <title>GRAMPS Manual V&manrevision;</title>       
-
-    <copyright> <year>2001</year> <holder>Donald N. Allingham</holder> </copyright>
-    <copyright> <year>2003-2005</year> <holder>Alex Roitman</holder> </copyright> 
+    <copyright>
+      <year>2001</year>
+      <holder>Donald N. Allingham</holder>
+    </copyright>
+    <copyright>
+      <year>2003-2005</year>
+      <holder>Alex Roitman</holder>
+    </copyright> 
 
 <!-- translators: uncomment this:
 
@@ -84,11 +89,17 @@
   not specified, the publisher/author is the same for all versions of the 
   document. 
  -->
-    <publisher> <publishername> GRAMPS Project </publishername> </publisher> 
+
+  <publisher>
+    <publishername>GRAMPS Project</publishername>
+  </publisher> 
 
    &legal;
-   <!-- This file  contains link to license for the documentation (GNU GPL), and 
-        other legal stuff such as "NO WARRANTY" statement.  -->
+
+<!-- 
+   This file  contains link to license for the documentation (GNU GPL), and 
+   other legal stuff such as "NO WARRANTY" statement.  
+-->
 
     <authorgroup> 
       <author> 
@@ -96,9 +107,7 @@
 	<surname>Roitman</surname> 
 	<affiliation> 
   	  <orgname>GRAMPS Project</orgname> 
-	  <address> 
-            <email>shura@gramps-project.org</email> 
-          </address> 
+	  <address><email>shura@gramps-project.org</email></address> 
 	</affiliation> 
       </author> 
       <author> 
@@ -106,9 +115,7 @@
 	<surname>Allingham</surname> 
 	<affiliation> 
 	  <orgname>GRAMPS Project</orgname> 
-	  <address> 
-            <email>don@gramps-project.org</email> 
-          </address> 
+	  <address><email>don@gramps-project.org</email></address> 
 	</affiliation> 
       </author> 
       

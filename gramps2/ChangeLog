@@ -1,3 +1,10 @@
+2005-09-23  Don Allingham  <don@gramps-project.org>
+	* doc/gramps-manual/C/faq.xml: more updates
+	* doc/gramps-manual/C/getstart.xml: more updates
+	* doc/gramps-manual/C/gramps-manual.xml: more updates
+	* doc/gramps-manual/C/mainwin.xml: more updates
+	* doc/gramps-manual/C/usage.xml: more updates
+
 2005-09-24  Don Allingham  <dona@gramps-project.org>
 	* src/WriteGedcom.py: handle patronymics
 

@@ -98,7 +98,8 @@
       <screenshot>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="figures/researcher.png" format="PNG" width="510px" depth="369px" scale="75"/>
+            <imagedata fileref="figures/researcher.png" format="PNG" 
+	               width="510" depth="369" scale="75"/>
           </imageobject>
 	  <textobject> 
 	    <phrase>Shows Researcher Information Window. </phrase>
@@ -140,7 +141,8 @@
       <screenshot>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="figures/first-open.png" format="PNG" width="311" depth="199"/>
+            <imagedata fileref="figures/first-open.png" format="PNG" 
+	               width="311" depth="199" scale="80"/>
           </imageobject>
 	  <textobject> 
 	    <phrase>Shows Open Database Window.</phrase>

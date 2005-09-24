@@ -3618,7 +3618,7 @@
             <mediaobject>
               <imageobject>
                 <imagedata fileref="figures/merge-src.png" format="PNG"
-		           width="500" depth="224" scale="80"/>
+		           width="500" depth="224" scale="75"/>
               </imageobject>
               <textobject>
                 <phrase>Shows Merge Sources dialog. </phrase>
@@ -4083,45 +4083,160 @@
   <sect1 id="gen-reports">
     <title>Generating Reports</title>
     <para> 
-
-        Reports are the most common form of the output produced by
-	genealogical research. The majority of genealogical software
-	puts a lot of emphasis on developing nice looking
-	reports. &app; is no exception in this regard, offering a
-	choice of a variety of reports.  &app; can generate reports in
-	a multitude of open formats, both text based and
-	graphical. &app; can also produce screen based reports that
-	are convenient for viewing a summary of your database.
-	Finally, &app; can generate a web site suitable for immediate
-	posting on the Internet. All of these are almost infinitely
-	flexible.  If you wish to modify or extend the default format
-	of &app; report, you can design and choose the style for each
-	of your reports.
-
-      </para>
-      <para> 
-
-        All reports can be accessed through the menu by choosing
-
-	<menuchoice>
-	  <guimenu>Reports</guimenu>
-	  <guisubmenu>
-	    <replaceable>Report Type</replaceable>
-	  </guisubmenu>
-          <guimenuitem>
-	    <replaceable>Particular Report</replaceable>
-	  </guimenuitem>
-	</menuchoice>. 
-
-	Alternatively, you can browse the complete selection of
-	available reports along with their brief descriptions in a
-	<guilabel>Report Selection</guilabel> dialog invoked by
-	clicking the <guibutton>Reports</guibutton> icon on the
-	toolbar.
-
-	</para>
+      Reports are the most common form of the output produced by
+      genealogical research. The majority of genealogical software
+      puts a lot of emphasis on developing nice looking reports. &app;
+      is no exception in this regard, offering a choice of a variety
+      of reports.  &app; can generate reports in a multitude of open
+      formats, both text based and graphical. &app; can also produce
+      screen based reports that are convenient for viewing a summary
+      of your database.  Finally, &app; can generate a web site
+      suitable for immediate posting on the Internet. All of these are
+      almost infinitely flexible.  If you wish to modify or extend the
+      default format of &app; report, you can design and choose the
+      style for each of your reports.
+    </para>
+    <para> 
+      All reports can be accessed through the menu by choosing
+      <menuchoice>
+	<guimenu>Reports</guimenu>
+	<guisubmenu>
+	  <replaceable>Report Type</replaceable>
+	</guisubmenu>
+        <guimenuitem>
+	  <replaceable>Particular Report</replaceable>
+	</guimenuitem>
+      </menuchoice>. 
+      Alternatively, you can browse the complete selection of
+      available reports along with their brief descriptions in a
+      <guilabel>Report Selection</guilabel> dialog invoked by clicking
+      the <guibutton>Reports</guibutton> icon on the toolbar.
+    </para>
 
 <!-- =============== Usage Sub-subsection ================ -->
+
+    <sect2 id="subst-values">
+      <title>Substitution Values</title>
+      <para>
+        Many of the graphical reports allow you to customize the 
+        information on the display. Variable substituions are used
+        to substitute date for a particular symbol. There are two 
+	styles of variables. The difference between the two styles 
+	is how empty data is handled.
+      </para>
+      <para>
+        The first style of variables are preceeded by a '$'. If
+	the variable evaluates to an empty string, the variable is
+	replaced with the empty string. The second style of 
+	variables are preceeded by a '%'. If the variable evaluates
+	to an empty string, the line that contains the variable is
+	removed from the output.
+      </para>
+      <variablelist>
+        <varlistentry>
+	  <term>$n/%n</term>
+	  <listitem>
+	    <para>
+	      Displays the person's name in the form of FirstName LastName
+	    </para>
+          </listitem>
+	</varlistentry>
+
+        <varlistentry>
+	  <term>$N/%N</term>
+	  <listitem>
+	    <para>
+	      Displays the person's name in the form of LastName, FirstName
+	    </para>
+          </listitem>
+	</varlistentry>
+
+        <varlistentry>
+	  <term>$i/%i</term>
+	  <listitem>
+	    <para>
+	      Displays the GRAMPS ID associated with the person.
+	    </para>
+          </listitem>
+	</varlistentry>
+ 
+        <varlistentry>
+	  <term>$b/%b</term>
+	  <listitem>
+	    <para>
+	      Displays the person's date of birth
+	    </para>
+          </listitem>
+	</varlistentry>
+
+        <varlistentry>
+	  <term>$B/%B</term>
+	  <listitem>
+	    <para>
+	      Displays the person's place of birth
+	    </para>
+          </listitem>
+	</varlistentry>
+
+        <varlistentry>
+	  <term>$d/%d</term>
+	  <listitem>
+	    <para>
+	      Displays the person's date of death
+	    </para>
+          </listitem>
+	</varlistentry>
+
+        <varlistentry>
+	  <term>$D/%D</term>
+	  <listitem>
+	    <para>
+	      Displays the person's place of death
+	    </para>
+          </listitem>
+	</varlistentry>
+
+        <varlistentry>
+	  <term>$s/%s</term>
+	  <listitem>
+	    <para>
+	      Displays the name of the person's preferred spouse in
+	      the form of FirstName LastName
+	    </para>
+          </listitem>
+	</varlistentry>
+
+        <varlistentry>
+	  <term>$S/%S</term>
+	  <listitem>
+	    <para>
+	      Displays the name of the person's preferred spouse in
+	      the form of LastName, FirstName.
+	    </para>
+          </listitem>
+	</varlistentry>
+
+        <varlistentry>
+	  <term>$m/%m</term>
+	  <listitem>
+	    <para>
+	      Displays the marriage date of the person and the preferred
+	      spouse.
+	    </para>
+          </listitem>
+	</varlistentry>
+
+        <varlistentry>
+	  <term>$M/%M</term>
+	  <listitem>
+	    <para>
+	      Displays the place assocated with the marriage of the 
+	      person and the preferred spouse.
+	    </para>
+          </listitem>
+	</varlistentry>
+      </variablelist>
+    </sect2> 
 
     <sect2 id="rep-books">
       <title>Books</title>

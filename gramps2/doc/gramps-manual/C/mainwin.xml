@@ -288,7 +288,7 @@
 	<screenshot>
           <mediaobject>
             <imageobject>
-              <imagedata fileref="figures/column-editor.png" format="PNG" width="444" depth="437"/>
+              <imagedata fileref="figures/column-editor.png" format="PNG" width="444" depth="437" scale="75"/>
             </imageobject>
 	    <textobject> 
 	      <phrase>Shows column editor dialog. </phrase>
