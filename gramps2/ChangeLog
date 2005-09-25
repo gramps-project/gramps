@@ -1,4 +1,6 @@
 2005-09-24  Don Allingham  <don@gramps-project.org>
+	* src/data/tips.xml: removed the tip mentioning column sorting
+	in people view.
 	* src/latin_utf8.py: removed
 	* src/ReadGedcom.py: added latin_utf8 functions
 	* src/Spell.py: better error checking on import
