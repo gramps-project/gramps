@@ -1,3 +1,6 @@
+2005-09-26  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/ChangeNames.py: Convert to the new scheme.
+
 2005-09-24  Don Allingham  <don@gramps-project.org>
 	* src/data/tips.xml: removed the tip mentioning column sorting
 	in people view.
