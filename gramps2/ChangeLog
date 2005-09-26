@@ -1,6 +1,11 @@
 2005-09-26  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/ChangeNames.py: Convert to the new scheme.
 
+2005-09-25  Stefan Bjork  <skalman@acc.umu.se>
+	* src/po/sv.po: up to date with 2.0.9
+	* src/date/Date_sv.py: date parser/displayer for swedish locale
+	* src/date/Makefile.am: include Date_sv.py
+
 2005-09-24  Don Allingham  <don@gramps-project.org>
 	* src/data/tips.xml: removed the tip mentioning column sorting
 	in people view.
