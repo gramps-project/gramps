@@ -377,7 +377,7 @@ def gfloat(val):
     return 0.0
 
 def gformat(val):
-    """Performs ("%.3f" % val) formatting with the resulting string always 
+    """Performs ('%.3f' % val) formatting with the resulting string always 
     using dot ('.') as a decimal point.
     
     Useful for writing float values into XML when under non-English locale.

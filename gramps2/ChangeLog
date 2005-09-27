@@ -1,3 +1,8 @@
+2005-09-26  Don Allingham  <don@gramps-project.org>
+	* src/docgen/PSDrawDoc.py: locale independent floating point 
+	* src/DateDisplay.py: Better french republican date handling
+	* src/DateParser.py: Better french republican date handling
+	
 2005-09-26  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/ChangeNames.py: Convert to the new scheme.
 	* src/plugins/Checkpoint.py: Convert to new scheme, improve.

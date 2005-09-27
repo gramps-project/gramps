@@ -209,6 +209,7 @@ class DateParser:
         self.parser = {
             Date.CAL_GREGORIAN : self._parse_greg_julian,
             Date.CAL_JULIAN    : self._parse_greg_julian,
+            Date.CAL_FRENCH    : self._parse_french,
             Date.CAL_PERSIAN   : self._parse_persian,
             Date.CAL_HEBREW    : self._parse_hebrew,
             Date.CAL_ISLAMIC   : self._parse_islamic,
@@ -541,6 +542,8 @@ class DateParser:
         """
         Parses the text and sets the date according to the parsing.
         """
+
+        
         date.set_text_value(text)
         qual = Date.QUAL_NONE
         cal  = Date.CAL_GREGORIAN
@@ -555,27 +558,13 @@ class DateParser:
         (text,bc) = self.match_bce(text)
         if self.match_modifier(text,cal,qual,bc,date):
             return
-    
-        subdate = self._parse_subdate(text)
-        if subdate == Date.EMPTY:
-            subdate = self._parse_hebrew(text)
-            if subdate == Date.EMPTY:
-                subdate = self._parse_persian(text)
-                if subdate == Date.EMPTY:
-                    subdate = self._parse_islamic(text)
-                    if subdate == Date.EMPTY:
-                        subdate = self._parse_french(text)
-                        if subdate == Date.EMPTY:
-                            date.set_as_text(text)
-                            return
-                        else:
-                            cal = Date.CAL_FRENCH
-                    else:
-                        cal = Date.CAL_ISLAMIC
-                else:
-                    cal = Date.CAL_PERSIAN
-            else:
-                cal = Date.CAL_HEBREW
+
+
+        try:
+            subdate = self._parse_subdate(text,self.parser[cal])
+        except:
+            date.set_as_text(text)
+            return
 
         if bc:
             date.set(qual,Date.MOD_NONE,cal,self.invert_year(subdate))

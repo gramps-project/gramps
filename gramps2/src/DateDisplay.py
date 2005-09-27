@@ -290,9 +290,22 @@ class DateDisplay:
         else:
             return value
 
-
     def _display_french(self,date_val):
-        return self._display_calendar(date_val,self._french)
+        year = abs(date_val[2])
+        if self.format == 0 or self.format == 1:
+            return self.display_iso(date_val)
+        else:
+            if date_val[0] == 0:
+                if date_val[1] == 0:
+                    value = year
+                else:
+                    value = u"%s %d" % (self._french[date_val[1]],year)
+            else:
+                value = u"%d %s %s" % (date_val[0],self._french[date_val[1]],year)
+        if date_val[2] < 0:
+            return self._bce_str % value
+        else:
+            return value
 
     def _display_hebrew(self,date_val):
         return self._display_calendar(date_val,self._hebrew)
