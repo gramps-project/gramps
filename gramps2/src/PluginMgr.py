@@ -43,7 +43,6 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
 import Errors
 
 #-------------------------------------------------------------------------
@@ -251,7 +250,7 @@ def register_report(
 
     (junk,book_item_task) = divmod(modes-standalone_task,2**Report.MODE_BKI)
     if book_item_task:
-        book_item_category = const.book_categories[category]
+        book_item_category = Report.book_categories[category]
         register_book_item(translated_name,book_item_category,
                     report_class,options_class,name)
 

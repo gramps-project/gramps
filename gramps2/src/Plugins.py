@@ -268,7 +268,7 @@ class PluginDialog:
         # build the tree items and group together based on the category name
         item_hash = {}
         for report in item_list:
-            category = const.standalone_categories[report[3]]
+            category = Report.standalone_categories[report[3]]
             if item_hash.has_key(category):
                 item_hash[category].append(report)
             else:
@@ -466,7 +466,7 @@ def build_report_menu(top_menu,callback):
     
     hash_data = {}
     for report in PluginMgr.report_list:
-        standalone_category = const.standalone_categories[report[3]]
+        standalone_category = Report.standalone_categories[report[3]]
         if hash_data.has_key(standalone_category):
             hash_data[standalone_category].append(
                     (report[0],report[1],report[2],report[4],report[3]))

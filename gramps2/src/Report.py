@@ -985,7 +985,7 @@ class ReportDialog(BareReportDialog):
     def get_title(self):
         """The window title for this dialog"""
         name = self.report_name
-        category = const.standalone_categories[self.category]
+        category = standalone_categories[self.category]
         return "%s - %s - GRAMPS" % (name,category)
 
     def get_header(self, name):
