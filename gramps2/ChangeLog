@@ -1,5 +1,8 @@
 2005-09-26  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/ChangeNames.py: Convert to the new scheme.
+	* src/plugins/Checkpoint.py: Convert to new scheme, improve.
+	* src/plugins/checkpoint.glade: Add to CVS.
+	* src/plugins/Makefile.am: Ship new glade file.
 
 2005-09-25  Stefan Bjork  <skalman@acc.umu.se>
 	* src/po/sv.po: up to date with 2.0.9

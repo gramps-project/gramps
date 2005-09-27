@@ -90,7 +90,8 @@ GLADEFILES = \
 	genewebexport.glade\
 	scratchpad.glade\
 	vcardexport.glade\
-	vcalendarexport.glade
+	vcalendarexport.glade\
+	checkpoint.glade
 
 GRAPHICS = \
 	stock_link.png
