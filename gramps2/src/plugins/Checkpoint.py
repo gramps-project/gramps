@@ -67,6 +67,50 @@ cust_ret_list = [
     'cvs up',
     ]
 
+#-------------------------------------------------------------------------
+#
+# Some message strings
+#
+#-------------------------------------------------------------------------
+rcs_setup_failure_msg = [
+    _("Checkpoint Archive Creation Failed"),
+    _("No checkpointing archive was found. "
+      "An attempt to create it has failed with the "
+      "following message:\n\n%s")
+    ]
+
+rcs_setup_success_msg = [
+    _("Checkpoint Archive Created"),
+    _("No checkpointing archive was found, "
+      "so it was created to enable archiving.\n\n"
+      "The archive file name is %s\n"
+      "Deleting this file will lose the archive "
+      "and make impossible to extract archived data "
+      "from it.")
+    ]
+
+archive_failure_msg = [
+    _("Checkpoint Failed"),
+    _("An attempt to archive the data failed "
+      "with the following message:\n\n%s")
+    ]
+
+archive_success_msg = [
+    _("Checkpoint Succeeded "),
+    _("The data was successfully archived.")
+    ]
+
+retrieve_failure_msg = [
+    _("Checkpoint Failed"),
+    _("An attempt to retrieve the data failed "
+      "with the following message:\n\n%s")
+    ]
+
+retrieve_success_msg = [
+    _("Checkpoint Succeeded "),
+    _("The data was successfully retrieved.")
+    ]
+
 
 #-------------------------------------------------------------------------
 #
@@ -264,30 +308,22 @@ class Checkpoint(Tool.Tool):
             del proc
 
             if status:
-                msg1 = _("Checkpoint Archive Creation Failed")
-                msg2 = _("No checkpointing archive was found. "
-                         "An attempt to create it has failed with the "
-                         "following message:\n\n%s") % message
-                if cli:
-                    print msg1
-                    print msg2
-                else:
-                    ErrorDialog(msg1,msg2)
-
-                return
+                msg1 = rcs_setup_failure_msg[0]
+                msg2 = rcs_setup_failure_msg[1] % message
+                dialog = ErrorDialog
             else:
-                msg1 = _("Checkpoint Archive Created")
-                msg2 = _("No checkpointing archive was found, "
-                         "so it was created to enable archiving.\n\n"
-                         "The archive file name is %s\n"
-                         "Deleting this file will lose the archive "
-                         "and make impossible to extract archived data "
-                         "from it.") % archive
-                if cli:
-                    print msg1
-                    print msg2
-                else:
-                    OkDialog(msg1,msg2)
+                msg1 = rcs_setup_success_msg[0]
+                msg2 = rcs_setup_success_msg[1] % archive
+                dialog = OkDialog
+                           
+            if cli:
+                print msg1
+                print msg2
+            else:
+                dialog(msg1,msg2)
+
+            if status:
+                return
 
         if checkin:
             # At this point, we have an existing archive file
@@ -300,23 +336,21 @@ class Checkpoint(Tool.Tool):
             status = proc.wait()
             message = "\n".join(proc.childerr.readlines())
             del proc
+
             if status:
-                msg1 = _("Checkpoint Failed")
-                msg2 = _("An attempt to archive the data failed "
-                         "with the following message:\n\n%s") % message
-                if cli:
-                    print msg1
-                    print msg2
-                else:
-                    ErrorDialog(msg1,msg2)
+                msg1 = archive_failure_msg[0]
+                msg2 = archive_failure_msg[1] % message
+                dialog = ErrorDialog
             else:
-                msg1 = _("Checkpoint Succeeded ")
-                msg2 = _("The data was successfully archived.")
-                if cli:
-                    print msg1
-                    print msg2
-                else:
-                    OkDialog(msg1,msg2)
+                msg1 = archive_success_msg[0]
+                msg2 = archive_success_msg[1]
+                dialog = OkDialog
+                           
+            if cli:
+                print msg1
+                print msg2
+            else:
+                dialog(msg1,msg2)
         else:
             proc = popen2.Popen3("co -p %s > %s.gramps"
                                  % (archive_base,archive_base),
@@ -326,22 +360,19 @@ class Checkpoint(Tool.Tool):
             message = "\n".join(proc.childerr.readlines())
             del proc
             if status:
-                msg1 = _("Checkpoint Failed")
-                msg2 = _("An attempt to retrieve the data failed "
-                         "with the following message:\n\n%s") % message
-                if cli:
-                    print msg1
-                    print msg2
-                else:
-                    ErrorDialog(msg1,msg2)
+                msg1 = retrieve_failure_msg[0]
+                msg2 = retrieve_failure_msg[1] % message
+                dialog = ErrorDialog
             else:
-                msg1 = _("Checkpoint Succeeded ")
-                msg2 = _("The data was successfully retrieved.")
-                if cli:
-                    print msg1
-                    print msg2
-                else:
-                    OkDialog(msg1,msg2)
+                msg1 = retrieve_success_msg[0]
+                msg2 = retrieve_success_msg[1]
+                dialog = OkDialog
+                           
+            if cli:
+                print msg1
+                print msg2
+            else:
+                dialog(msg1,msg2)
 
     def callback(self,value):
         """
