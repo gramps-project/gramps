@@ -209,7 +209,7 @@ class ChangeTypesOptions(Tool.ToolOptions):
 from PluginMgr import register_tool
 register_tool(
     name = 'chtype',
-    category = const.TOOL_DBPROC,
+    category = Tool.TOOL_DBPROC,
     tool_class = ChangeTypes,
     options_class = ChangeTypesOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,

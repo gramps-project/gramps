@@ -929,19 +929,3 @@ notes_formats = [
     _("Flowed"), 
     _("Preformatted"),
 ]
-
-TOOL_DEBUG  = -1
-TOOL_ANAL   = 0
-TOOL_DBPROC = 1
-TOOL_DBFIX  = 2
-TOOL_REVCTL = 3
-TOOL_UTILS  = 4
-
-tool_categories = {
-    TOOL_DEBUG  : _("Debug"),
-    TOOL_ANAL   : _("Analysis and Exploration"),
-    TOOL_DBPROC : _("Database Processing"),
-    TOOL_DBFIX  : _("Database Repair"),
-    TOOL_REVCTL : _("Revision Control"),
-    TOOL_UTILS  : _("Utilities"),
-    }

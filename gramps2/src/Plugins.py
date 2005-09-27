@@ -428,7 +428,7 @@ def build_tools_menu(top_menu,callback):
     
     hash_data = {}
     for tool in PluginMgr.tool_list:
-        tool_category = const.tool_categories[tool[3]]
+        tool_category = Tool.tool_categories[tool[3]]
         if hash_data.has_key(tool_category):
             hash_data[tool_category].append(
                 (tool[0],tool[1],tool[2],tool[4],tool[3]))

@@ -46,7 +46,6 @@ from gnome import help_display
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
 import Utils
 from QuestionDialog import OkDialog
 import Tool
@@ -210,7 +209,7 @@ from PluginMgr import register_tool
 
 register_tool(
     name = 'chname',
-    category = const.TOOL_DBPROC,
+    category = Tool.TOOL_DBPROC,
     tool_class = ChangeNames,
     options_class = ChangeNamesOptions,
     modes = Tool.MODE_GUI,

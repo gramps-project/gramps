@@ -1,5 +1,11 @@
 2005-09-26  Alex Roitman  <shura@gramps-project.org>
 	* all reports: switch categories from const to Report module.
+	* src/const.py.in: Remove report and tool categories.
+	* src/Plugins.py: Switch report and tool category constants.
+	* src/PluginMgr.py: Switch report and tool category constants.
+	* src/Report.py, src/Tool.py: Move constants.
+	* src/plugins/ChangeNames.py, src/plugins/ChangeTypes.py,
+	src/plugins/Checkpoint.py: switch category constants.	
 
 2005-09-26  Don Allingham  <don@gramps-project.org>
 	* src/docgen/PSDrawDoc.py: locale independent floating point 

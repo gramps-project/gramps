@@ -47,7 +47,6 @@ from gnome import help_display
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
 from QuestionDialog import OkDialog, ErrorDialog
 import WriteXML
 import Tool
@@ -439,7 +438,7 @@ from PluginMgr import register_tool
 
 register_tool(
     name = 'chkpoint',
-    category = const.TOOL_REVCTL,
+    category = Tool.TOOL_REVCTL,
     tool_class = Checkpoint,
     options_class = CheckpointOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,

@@ -25,7 +25,13 @@
 __author__ =  "Alex Roitman"
 __version__ = "$Revision$"
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 from types import ClassType, InstanceType
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -46,6 +52,23 @@ import Options
 # Modes for running tools
 MODE_GUI = 1    # Standrt tool using GUI
 MODE_CLI = 2    # Command line interface (CLI)
+
+# Tool categories
+TOOL_DEBUG  = -1
+TOOL_ANAL   = 0
+TOOL_DBPROC = 1
+TOOL_DBFIX  = 2
+TOOL_REVCTL = 3
+TOOL_UTILS  = 4
+
+tool_categories = {
+    TOOL_DEBUG  : _("Debug"),
+    TOOL_ANAL   : _("Analysis and Exploration"),
+    TOOL_DBPROC : _("Database Processing"),
+    TOOL_DBFIX  : _("Database Repair"),
+    TOOL_REVCTL : _("Revision Control"),
+    TOOL_UTILS  : _("Utilities"),
+    }
 
 #-------------------------------------------------------------------------
 #
