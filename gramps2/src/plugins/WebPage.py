@@ -1770,7 +1770,7 @@ class WebReportDialog(Report.ReportDialog):
         name = "webpage"
         translated_name = _("Generate Web Site")
         self.options_class = WebReportOptions(name)
-        self.category = const.CATEGORY_WEB
+        self.category = Report.CATEGORY_WEB
         Report.ReportDialog.__init__(self,database,person,self.options_class,
                                     name,translated_name)
 
@@ -1968,7 +1968,7 @@ def cl_report(database,name,category,options_str_dict):
 from PluginMgr import register_report
 register_report(
     name = 'webpage',
-    category = const.CATEGORY_WEB,
+    category = Report.CATEGORY_WEB,
     report_class = WebReportDialog,
     options_class = cl_report,
     modes = Report.MODE_GUI | Report.MODE_CLI,

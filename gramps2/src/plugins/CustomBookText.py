@@ -43,7 +43,6 @@ import gtk
 #------------------------------------------------------------------------
 import Report
 import BaseDoc
-import const
 import ReportOptions
 
 #------------------------------------------------------------------------
@@ -213,7 +212,7 @@ class CustomTextOptions(ReportOptions.ReportOptions):
 from PluginMgr import register_report
 register_report(
     name = 'custom_text',
-    category = const.CATEGORY_TEXT,
+    category = Report.CATEGORY_TEXT,
     report_class = CustomText,
     options_class = CustomTextOptions,
     modes = Report.MODE_BKI,

@@ -46,7 +46,6 @@ import BaseDoc
 import Report
 from SubstKeywords import SubstKeywords
 from ReportUtils import pt2cm, cm2pt
-import const
 import ReportOptions
 import NameDisplay
 
@@ -467,7 +466,7 @@ class DescendChartOptions(ReportOptions.ReportOptions):
 from PluginMgr import register_report
 register_report(
     name = 'descend_chart2',
-    category = const.CATEGORY_DRAW,
+    category = Report.CATEGORY_DRAW,
     report_class = DescendChart,
     options_class = DescendChartOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,

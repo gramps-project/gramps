@@ -47,7 +47,6 @@ import gtk
 import Report
 import ReportOptions
 import GenericFilter
-import const
 import RelLib
 from BaseDoc import PAPER_LANDSCAPE
 from latin_utf8 import utf8_to_latin
@@ -754,7 +753,7 @@ class GraphVizDialog(Report.ReportDialog):
         name = "rel_graph"
         translated_name = _("Relationship Graph")
         self.options_class = GraphVizOptions(name)
-        self.category = const.CATEGORY_CODE
+        self.category = Report.CATEGORY_CODE
         Report.ReportDialog.__init__(self,database,person,self.options_class,
                                     name,translated_name)
 
@@ -960,7 +959,7 @@ def get_description_graphics():
 from PluginMgr import register_report
 register_report(
     name = 'rel_graph',
-    category = const.CATEGORY_CODE,
+    category = Report.CATEGORY_CODE,
     report_class = GraphVizDialog,
     options_class = cl_report,
     modes = Report.MODE_GUI | Report.MODE_CLI,
@@ -974,7 +973,7 @@ register_report(
 if dot_found:
     register_report(
         name = 'rel_graph2',
-        category = const.CATEGORY_DRAW,
+        category = Report.CATEGORY_DRAW,
         report_class = GraphVizGraphics,
         options_class = GraphVizOptions,
         modes = Report.MODE_GUI | Report.MODE_CLI,

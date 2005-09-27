@@ -87,6 +87,28 @@ MODE_GUI = 1    # Standalone report using GUI
 MODE_BKI = 2    # Book Item interface using GUI
 MODE_CLI = 4    # Command line interface (CLI)
 
+# Report categories
+CATEGORY_TEXT = 0
+CATEGORY_DRAW = 1
+CATEGORY_CODE = 2
+CATEGORY_WEB  = 3
+CATEGORY_VIEW = 4
+CATEGORY_BOOK = 5
+
+standalone_categories = {
+    CATEGORY_TEXT : _("Text Reports"),
+    CATEGORY_DRAW : _("Graphical Reports"),
+    CATEGORY_CODE : _("Code Generators"),
+    CATEGORY_WEB  : _("Web Page"),
+    CATEGORY_VIEW : _("View"),
+    CATEGORY_BOOK : _("Books"),
+}
+
+book_categories = {
+    CATEGORY_TEXT : _("Text"),
+    CATEGORY_DRAW : _("Graphics"),
+}
+
 #-------------------------------------------------------------------------
 #
 # Support for printing generated files
@@ -1465,7 +1487,7 @@ class TextReportDialog(ReportDialog):
         """Initialize a dialog to request that the user select options
         for a basic text report.  See the ReportDialog class for more
         information."""
-        self.category = const.CATEGORY_TEXT
+        self.category = CATEGORY_TEXT
         ReportDialog.__init__(self,database,person,options,name,translated_name)
 
     #------------------------------------------------------------------------
@@ -1503,7 +1525,7 @@ class DrawReportDialog(ReportDialog):
         """Initialize a dialog to request that the user select options
         for a basic drawing report.  See the ReportDialog class for
         more information."""
-        self.category = const.CATEGORY_DRAW
+        self.category = CATEGORY_DRAW
         ReportDialog.__init__(self,database,person,opt,name,translated_name)
 
     #------------------------------------------------------------------------
@@ -1677,7 +1699,7 @@ class CommandLineReport:
         self.option_class.handler.output = self.options_dict['of']
         self.options_help['of'].append(os.path.expanduser("~/whatever_name"))
                 
-        if self.category == const.CATEGORY_TEXT:
+        if self.category == CATEGORY_TEXT:
             for item in PluginMgr.textdoc_list:
                 if item[7] == self.options_dict['off']:
                     self.format = item[1]
@@ -1685,7 +1707,7 @@ class CommandLineReport:
                 [ item[7] for item in PluginMgr.textdoc_list ]
             )
             self.options_help['off'].append(False)
-        elif self.category == const.CATEGORY_DRAW:
+        elif self.category == CATEGORY_DRAW:
             for item in PluginMgr.drawdoc_list:
                 if item[6] == self.options_dict['off']:
                     self.format = item[1]
@@ -1693,7 +1715,7 @@ class CommandLineReport:
                 [ item[6] for item in PluginMgr.drawdoc_list ]
             )
             self.options_help['off'].append(False)
-        elif self.category == const.CATEGORY_BOOK:
+        elif self.category == CATEGORY_BOOK:
             for item in PluginMgr.bookdoc_list:
                 if item[6] == self.options_dict['off']:
                     self.format = item[1]
@@ -1722,7 +1744,7 @@ class CommandLineReport:
         self.template_name = self.options_dict['template']
         self.options_help['template'].append(os.path.expanduser("~/whatever_name"))
 
-        if self.category in (const.CATEGORY_TEXT,const.CATEGORY_DRAW):
+        if self.category in (CATEGORY_TEXT,CATEGORY_DRAW):
             default_style = BaseDoc.StyleSheet()
             self.option_class.make_default_style(default_style)
 
@@ -1778,12 +1800,12 @@ def report(database,person,report_class,options_class,translated_name,name,categ
     its arguments.
     """
 
-    if category == const.CATEGORY_TEXT:
+    if category == CATEGORY_TEXT:
         dialog_class = TextReportDialog
-    elif category == const.CATEGORY_DRAW:
+    elif category == CATEGORY_DRAW:
         dialog_class = DrawReportDialog
-    elif category in (const.CATEGORY_BOOK,const.CATEGORY_VIEW,
-                        const.CATEGORY_CODE,const.CATEGORY_WEB):
+    elif category in (CATEGORY_BOOK,CATEGORY_VIEW,
+                        CATEGORY_CODE,CATEGORY_WEB):
         report_class(database,person)
         return
     else:

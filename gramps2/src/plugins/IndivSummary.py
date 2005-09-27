@@ -47,7 +47,6 @@ import const
 import BaseDoc
 import Report
 import ReportOptions
-import const
 
 #------------------------------------------------------------------------
 #
@@ -383,7 +382,7 @@ from PluginMgr import register_report
 
 register_report(
     name = 'individual_summary',
-    category = const.CATEGORY_TEXT,
+    category = Report.CATEGORY_TEXT,
     report_class = IndivSummary,
     options_class = IndivSummaryOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,

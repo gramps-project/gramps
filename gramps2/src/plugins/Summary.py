@@ -45,7 +45,6 @@ import gtk.glade
 #------------------------------------------------------------------------
 import Utils
 import RelLib
-import const
 import Report
 
 #------------------------------------------------------------------------
@@ -170,7 +169,7 @@ from PluginMgr import register_report
 
 register_report(
     name = 'summary',
-    category = const.CATEGORY_VIEW,
+    category = Report.CATEGORY_VIEW,
     report_class = SummaryReport,
     options_class = None,
     modes = Report.MODE_GUI,

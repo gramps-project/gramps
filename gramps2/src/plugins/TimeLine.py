@@ -51,7 +51,6 @@ import GenericFilter
 import Sort
 import ReportOptions
 from QuestionDialog import ErrorDialog
-import const
 
 #------------------------------------------------------------------------
 #
@@ -472,7 +471,7 @@ from PluginMgr import register_report
 
 register_report(
     name = 'timeline',
-    category = const.CATEGORY_DRAW,
+    category = Report.CATEGORY_DRAW,
     report_class = TimeLine,
     options_class = TimeLineOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,

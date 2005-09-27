@@ -961,7 +961,7 @@ class ComprehensiveAncestorsOptions(ReportOptions.ReportOptions):
 #------------------------------------------------------------------------
 PluginMgr.register_report(
     name = 'ancestors_report',
-    category = const.CATEGORY_TEXT,
+    category = Report.CATEGORY_TEXT,
     report_class = ComprehensiveAncestorsReport,
     options_class = ComprehensiveAncestorsOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,

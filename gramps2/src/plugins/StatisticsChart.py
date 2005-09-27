@@ -52,7 +52,6 @@ import gtk
 # Person and relation types
 from RelLib import Person, Family
 # gender and report type names
-import const
 import BaseDoc
 import Report
 import ReportUtils
@@ -974,7 +973,7 @@ from PluginMgr import register_report
 
 register_report(
     name = 'statistics_chart',
-    category = const.CATEGORY_DRAW,
+    category = Report.CATEGORY_DRAW,
     report_class = StatisticsChart,
     options_class = StatisticsChartOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,

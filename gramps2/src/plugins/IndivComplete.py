@@ -587,7 +587,7 @@ from PluginMgr import register_report
 
 register_report(
     name = 'indiv_complete',
-    category = const.CATEGORY_TEXT,
+    category = Report.CATEGORY_TEXT,
     report_class = IndivCompleteReport,
     options_class = IndivCompleteOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,

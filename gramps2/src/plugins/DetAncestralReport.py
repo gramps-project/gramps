@@ -816,7 +816,7 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
 from PluginMgr import register_report
 register_report(
     name = 'det_ancestor_report',
-    category = const.CATEGORY_TEXT,
+    category = Report.CATEGORY_TEXT,
     report_class = DetAncestorReport,
     options_class = DetAncestorOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,

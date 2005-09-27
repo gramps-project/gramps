@@ -608,8 +608,8 @@ class ArgHandler:
                     category = item[1]
                     report_class = item[2]
                     options_class = item[3]
-                    if category in (const.CATEGORY_BOOK,const.CATEGORY_CODE,
-                                    const.CATEGORY_WEB):
+                    if category in (Report.CATEGORY_BOOK,Report.CATEGORY_CODE,
+                                    Report.CATEGORY_WEB):
                         options_class(self.parent.db,name,
                                       category,options_str_dict)
                     else:

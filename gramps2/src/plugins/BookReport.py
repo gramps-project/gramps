@@ -56,7 +56,6 @@ import gtk.glade
 #-------------------------------------------------------------------------
 from RelLib import Person
 
-import const
 import Utils
 import ListModel
 import PluginMgr
@@ -1109,7 +1108,7 @@ def cl_report(database,name,category,options_str_dict):
 #------------------------------------------------------------------------
 PluginMgr.register_report(
     name = 'book',
-    category = const.CATEGORY_BOOK,
+    category = Report.CATEGORY_BOOK,
     report_class = BookReportSelector,
     options_class = cl_report,
     modes = Report.MODE_GUI | Report.MODE_CLI,

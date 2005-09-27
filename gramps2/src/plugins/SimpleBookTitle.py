@@ -45,7 +45,6 @@ import Report
 import BaseDoc
 import SelectObject
 import AddMedia
-import const
 import ReportOptions
 import ImgManip
 
@@ -295,7 +294,7 @@ class SimpleBookTitleOptions(ReportOptions.ReportOptions):
 from PluginMgr import register_report
 register_report(
     name = 'simple_book_title',
-    category = const.CATEGORY_TEXT,
+    category = Report.CATEGORY_TEXT,
     report_class = SimpleBookTitle,
     options_class = SimpleBookTitleOptions,
     modes = Report.MODE_BKI,

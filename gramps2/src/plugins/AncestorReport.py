@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,7 +28,6 @@
 #
 #------------------------------------------------------------------------
 import os
-import string
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -43,7 +42,6 @@ import Errors
 from DateHandler import displayer as _dd
 from QuestionDialog import ErrorDialog
 import ReportOptions
-import const
 
 #------------------------------------------------------------------------
 #
@@ -160,7 +158,7 @@ class AncestorReport(Report.Report):
             buried = None
             for event_handle in person.get_event_list():
                 event = self.database.get_event_from_handle(event_handle)
-                if string.lower(event.get_name()) == "burial":
+                if event.get_name().lower() == "burial":
                     buried = event
         
             death_handle = person.get_death_handle()
@@ -298,7 +296,7 @@ class AncestorOptions(ReportOptions.ReportOptions):
 from PluginMgr import register_report
 register_report(
     name = 'ancestor_report',
-    category = const.CATEGORY_TEXT,
+    category = Report.CATEGORY_TEXT,
     report_class = AncestorReport,
     options_class = AncestorOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,

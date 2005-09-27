@@ -2376,7 +2376,7 @@ class WebReportDialog(Report.ReportDialog):
         name = "navwebpage"
         translated_name = _("Generate Web Site")
         self.options = WebReportOptions(name,database)
-        self.category = const.CATEGORY_WEB
+        self.category = Report.CATEGORY_WEB
         Report.ReportDialog.__init__(self,database,person,self.options,
                                     name,translated_name)
         self.style_name = None
@@ -2620,7 +2620,7 @@ def sort_nameof(person, private):
 from PluginMgr import register_report
 register_report(
     name = 'navwebpage',
-    category = const.CATEGORY_WEB,
+    category = Report.CATEGORY_WEB,
     report_class = WebReportDialog,
     options_class = cl_report,
     modes = Report.MODE_GUI,

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,7 +42,6 @@ import Sort
 from QuestionDialog import ErrorDialog
 import ReportOptions
 import ReportUtils
-import const
 import NameDisplay
 
 #------------------------------------------------------------------------
@@ -247,7 +246,7 @@ class DescendantOptions(ReportOptions.ReportOptions):
 from PluginMgr import register_report
 register_report(
     name = 'descend_report',
-    category = const.CATEGORY_TEXT,
+    category = Report.CATEGORY_TEXT,
     report_class = DescendantReport,
     options_class = DescendantOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,

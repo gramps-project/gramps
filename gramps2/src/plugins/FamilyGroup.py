@@ -45,7 +45,6 @@ import RelLib
 import Report
 import BaseDoc
 import ReportOptions
-import const
 from DateHandler import displayer as _dd
 
 #------------------------------------------------------------------------
@@ -541,7 +540,7 @@ class FamilyGroupOptions(ReportOptions.ReportOptions):
 from PluginMgr import register_report
 register_report(
     name = 'family_group',
-    category = const.CATEGORY_TEXT,
+    category = Report.CATEGORY_TEXT,
     report_class = FamilyGroup,
     options_class = FamilyGroupOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
