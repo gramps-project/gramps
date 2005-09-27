@@ -259,8 +259,11 @@ class Checkpoint(Tool.Tool):
         Passed the generated XML file to the specified command.
         """
         proc = popen2.Popen3(cmd, True)
-        xmlwrite = WriteXML.XmlWriter(self.db,self.callback,False,False)
-        xmlwrite.write_handle(proc.tochild)
+        if checkin:
+            xmlwrite = WriteXML.XmlWriter(self.db,self.callback,False,False)
+            xmlwrite.write_handle(proc.tochild)
+        else:
+            pass
         proc.tochild.close()
         status = proc.wait()
         message = "\n".join(proc.childerr.readlines())
