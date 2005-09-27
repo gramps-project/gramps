@@ -242,9 +242,9 @@ class Checkpoint(Tool.Tool):
         if self.options.handler.options_dict['rcs']:
             self.rcs(archive,cli)
         elif archive:
-            self.custom(self.options.handler.options_dict['cacmd'],cli)
+            self.custom(self.options.handler.options_dict['cacmd'],True,cli)
         else:
-            self.custom(self.options.handler.options_dict['crcmd'],cli)
+            self.custom(self.options.handler.options_dict['crcmd'],False,cli)
         
         if not cli:
             self.parent.progress.set_fraction(0)
@@ -254,7 +254,7 @@ class Checkpoint(Tool.Tool):
         format = locale.nl_langinfo(locale.D_T_FMT)
         return unicode(time.strftime(format,time.localtime(time.time())))
 
-    def custom(self,cmd,cli):
+    def custom(self,cmd,checkin,cli):
         """
         Passed the generated XML file to the specified command.
         """
@@ -266,23 +266,31 @@ class Checkpoint(Tool.Tool):
         message = "\n".join(proc.childerr.readlines())
         del proc
         
-        if status:
-            msg1 = _("Checkpoint Failed")
-            msg2 = _("An attempt to archive the data failed "
-                     "with the following message:\n\n%s") % message
-            if cli:
-                print msg1
-                print msg2
+        if checkin:
+            if status:
+                msg1 = archive_failure_msg[0]
+                msg2 = archive_failure_msg[1] % message
+                dialog = ErrorDialog
             else:
-                ErrorDialog(msg1,msg2)
+                msg1 = archive_success_msg[0]
+                msg2 = archive_success_msg[1]
+                dialog = OkDialog
         else:
-            msg1 = _("Checkpoint Succeeded ")
-            msg2 = _("The data was successfully archived.")
-            if cli:
-                print msg1
-                print msg2
+            if status:
+                msg1 = retrieve_failure_msg[0]
+                msg2 = retrieve_failure_msg[1] % message
+                dialog = ErrorDialog
             else:
-                OkDialog(msg1,msg2)
+                msg1 = retrieve_success_msg[0]
+                msg2 = retrieve_success_msg[1]
+                dialog = OkDialog
+
+        if cli:
+            print msg1
+            print msg2
+        else:
+            dialog(msg1,msg2)
+
 
     def rcs(self,checkin,cli):
         """
