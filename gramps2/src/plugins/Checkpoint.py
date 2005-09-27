@@ -55,9 +55,11 @@ import Utils
 
 #-------------------------------------------------------------------------
 #
-# Constant strings that we offer as custom commands
+# Constants
 #
 #-------------------------------------------------------------------------
+
+# Some strings that we offer as custom commands
 cust_arch_list = [
     'cvs ci -m "$(date)"',
     ]
@@ -66,11 +68,7 @@ cust_ret_list = [
     'cvs up',
     ]
 
-#-------------------------------------------------------------------------
-#
 # Some message strings
-#
-#-------------------------------------------------------------------------
 rcs_setup_failure_msg = [
     _("Checkpoint Archive Creation Failed"),
     _("No checkpointing archive was found. "
@@ -110,10 +108,9 @@ retrieve_success_msg = [
     _("The data was successfully retrieved.")
     ]
 
-
 #-------------------------------------------------------------------------
 #
-# Checkpoint
+# Checkpoint class
 #
 #-------------------------------------------------------------------------
 class Checkpoint(Tool.Tool):
@@ -292,7 +289,6 @@ class Checkpoint(Tool.Tool):
             print msg2
         else:
             dialog(msg1,msg2)
-
 
     def rcs(self,checkin,cli):
         """
