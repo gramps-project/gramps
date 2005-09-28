@@ -1,3 +1,6 @@
+2005-09-28  Eero Tamminen  <eerot@sf>
+	* src/po/fi.po: Translation update for 2.0.9.
+
 2005-09-28  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/TestcaseGenerator.py: Use new tool/option api 
 
