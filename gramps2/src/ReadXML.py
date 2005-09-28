@@ -78,6 +78,9 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
     change = os.path.getmtime(filename)
     parser = GrampsParser(database,callback,basefile,change,filename)
 
+    ro = database.readonly
+    database.readonly = False
+    
     if gzip_ok:
         use_gzip = 1
         try:
@@ -145,6 +148,8 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
             return
 
     xml_file.close()
+
+    database.readonly = ro
 
     # copy all local images into <database>.images directory
     db_dir = os.path.abspath(os.path.dirname(database.get_save_path()))
