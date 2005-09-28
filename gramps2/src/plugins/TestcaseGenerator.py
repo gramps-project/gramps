@@ -53,6 +53,8 @@ import Date
 import RelLib
 import latin_utf8 
 import Utils
+import Tool
+import AutoComp
 import const
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
@@ -63,17 +65,27 @@ from DateHandler import displayer as _dd
 #
 #
 #-------------------------------------------------------------------------
-class TestcaseGenerator:
-    def __init__(self,database,active_person,callback,parent):
-        self.db = database
+class TestcaseGenerator(Tool.Tool):
+
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        if db.readonly:
+            return
+        
+        Tool.Tool.__init__(self,db,person,options_class,name)
+
         self.person_count = 0
         self.persons_todo = []
         self.parents_todo = []
-        if active_person:
-            self.persons_todo.append(active_person.get_handle())
-            self.parents_todo.append(active_person.get_handle())
-        
-    def run(self):
+        if person:
+            self.persons_todo.append(person.get_handle())
+            self.parents_todo.append(person.get_handle())
+
+        if parent:
+            self.init_gui(parent)
+        else:
+            self.run_tool(cli=True)
+
+    def init_gui(self,parent):
         title = "%s - GRAMPS" % _("Generate testcases")
         self.top = gtk.Dialog(title)
         self.top.set_default_size(400,150)
@@ -84,27 +96,27 @@ class TestcaseGenerator:
         self.top.vbox.pack_start(label,0,0,5)
 
         self.check_bugs = gtk.CheckButton( _("Generate Database errors"))
-        self.check_bugs.set_active(True)
+        self.check_bugs.set_active( self.options.handler.options_dict['bugs'])
         self.top.vbox.pack_start(self.check_bugs,0,0,5)
 
         self.check_dates = gtk.CheckButton( _("Generate date tests"))
-        self.check_dates.set_active(True)
+        self.check_dates.set_active( self.options.handler.options_dict['dates'])
         self.top.vbox.pack_start(self.check_dates,0,0,5)
 
         self.check_persons = gtk.CheckButton( _("Generate dummy families"))
-        self.check_persons.set_active(True)
+        self.check_persons.set_active( self.options.handler.options_dict['persons'])
         self.top.vbox.pack_start(self.check_persons,0,0,5)
 
         self.check_trans = gtk.CheckButton( _("Don't block transactions"))
-        self.check_trans.set_active(False)
+        self.check_trans.set_active( self.options.handler.options_dict['no_trans'])
         self.top.vbox.pack_start(self.check_trans,0,0,5)
 
         self.check_longnames = gtk.CheckButton( _("Generate long names"))
-        self.check_longnames.set_active(False)
+        self.check_longnames.set_active( self.options.handler.options_dict['long_names'])
         self.top.vbox.pack_start(self.check_longnames,0,0,5)
 
         self.entry_count = gtk.Entry()
-        self.entry_count.set_text("2000")
+        self.entry_count.set_text( unicode( self.options.handler.options_dict['person_count']))
         self.top.vbox.pack_start(self.entry_count,0,0,5)
 
         self.top.add_button(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL)
@@ -113,44 +125,53 @@ class TestcaseGenerator:
         self.top.show_all()
 
         response = self.top.run()
-        self.generate_bugs = self.check_bugs.get_active()
-        self.generate_dates = self.check_dates.get_active()
-        self.generate_persons = self.check_persons.get_active()
-        self.param_multiple_trans = self.check_trans.get_active()
-        self.param_longnames = int(self.check_longnames.get_active())
-        self.max_person_count = int(self.entry_count.get_text())
+        self.options.handler.options_dict['bugs']  = int(
+            self.check_bugs.get_active())
+        self.options.handler.options_dict['dates']  = int(
+            self.check_dates.get_active())
+        self.options.handler.options_dict['persons']  = int(
+            self.check_persons.get_active())
+        self.options.handler.options_dict['no_trans']  = int(
+            self.check_trans.get_active())
+        self.options.handler.options_dict['long_names']  = int(
+            self.check_longnames.get_active())
+        self.options.handler.options_dict['person_count']  = int(
+            self.entry_count.get_text())
         self.top.destroy()
 
         if response == gtk.RESPONSE_OK:
-            self.run_generator()
-
-
-    def run_generator( self):
-        title = "%s - GRAMPS" % _("Generate testcases")
-        self.top = gtk.Window()
-        self.top.set_title(title)
-        self.top.set_position(gtk.WIN_POS_MOUSE)
-        self.top.set_modal(True)
-        self.top.set_default_size(400,150)
-        vbox = gtk.VBox()
-        self.top.add(vbox)
-        label = gtk.Label(_("Generating persons and families.\nPlease wait."))
-        vbox.pack_start(label,0,0,5)
-        self.progress = gtk.ProgressBar()
-        self.progress.set_fraction(0.0)
-        vbox.pack_end(self.progress,0,0,5)
-        self.top.show_all()
-        while gtk.events_pending():
-            gtk.main_iteration()
+            self.run_tool( cli=False)
+            # Save options
+            self.options.handler.save_options()
+        
+    def run_tool(self, cli=False):
+        self.cli = cli
+        if( not cli):
+            title = "%s - GRAMPS" % _("Generate testcases")
+            self.top = gtk.Window()
+            self.top.set_title(title)
+            self.top.set_position(gtk.WIN_POS_MOUSE)
+            self.top.set_modal(True)
+            self.top.set_default_size(400,150)
+            vbox = gtk.VBox()
+            self.top.add(vbox)
+            label = gtk.Label(_("Generating persons and families.\nPlease wait."))
+            vbox.pack_start(label,0,0,5)
+            self.progress = gtk.ProgressBar()
+            self.progress.set_fraction(0.0)
+            vbox.pack_end(self.progress,0,0,5)
+            self.top.show_all()
+            while gtk.events_pending():
+                gtk.main_iteration()
         
         self.transaction_count = 0;
         
         self.trans = self.db.transaction_begin()
-        if not self.param_multiple_trans:
+        if not self.options.handler.options_dict['no_trans']:
             self.trans.set_batch(True)
             self.db.disable_signals()
 
-        if self.param_multiple_trans:
+        if self.options.handler.options_dict['no_trans']:
     
             print "TESTING SIGNALS..."
     
@@ -252,7 +273,10 @@ class TestcaseGenerator:
             print "DONE."
         
         
-        if self.generate_bugs or self.generate_dates or self.generate_persons:
+        if self.options.handler.options_dict['bugs']\
+            or self.options.handler.options_dict['dates']\
+            or self.options.handler.options_dict['persons']:
+            
             self.default_source = RelLib.Source()
             self.default_source.set_title("TestcaseGenerator")
             self.db.add_source(self.default_source, self.trans)
@@ -269,13 +293,13 @@ class TestcaseGenerator:
             self.default_mediaref = RelLib.MediaRef()
             self.default_mediaref.set_reference_handle(self.default_media.get_handle())
 
-        if self.generate_bugs:
+        if self.options.handler.options_dict['bugs']:
             self.generate_broken_relations()
         
-        if self.generate_dates:
+        if self.options.handler.options_dict['dates']:
             self.generate_date_tests()
 
-        if self.generate_persons:
+        if self.options.handler.options_dict['persons']:
             if not self.persons_todo:
                 self.persons_todo.append( self.generate_person(0))
             for person_h in self.persons_todo:
@@ -284,18 +308,19 @@ class TestcaseGenerator:
                     self.generate_family(person_h)
                 if randint(0,7) == 0:
                     self.generate_family(person_h)
-                if self.person_count > self.max_person_count:
+                if self.person_count > self.options.handler.options_dict['person_count']:
                     break
                 for child_h in self.parents_todo:
                     self.generate_parents(child_h)
-                    if self.person_count > self.max_person_count:
+                    if self.person_count > self.options.handler.options_dict['person_count']:
                         break
             
         self.db.transaction_commit(self.trans,_("Testcase generator"))
-        if not self.param_multiple_trans:
+        if not self.options.handler.options_dict['no_trans']:
             self.db.enable_signals()
             self.db.request_rebuild()
-        self.top.destroy()
+        if( not cli):
+            self.top.destroy()
         
 
     def generate_broken_relations(self):
@@ -644,10 +669,11 @@ class TestcaseGenerator:
         self.commit_transaction()   # COMMIT TRANSACTION STEP
     
     def generate_person(self,gender=None,lastname=None,note=None):
-        self.progress.set_fraction(min(1.0,max(0.0, 1.0*self.person_count/self.max_person_count)))
-        if self.person_count % 10 == 0:
-            while gtk.events_pending():
-                gtk.main_iteration()
+        if not self.cli:
+            self.progress.set_fraction(min(1.0,max(0.0, 1.0*self.person_count/self.options.handler.options_dict['person_count'])))
+            if self.person_count % 10 == 0:
+                while gtk.events_pending():
+                    gtk.main_iteration()
 
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
@@ -672,7 +698,7 @@ class TestcaseGenerator:
         firstname = ""
         maxnames = 5
         maxsyllables = 5
-        if not self.param_longnames:
+        if not self.options.handler.options_dict['long_names']:
             maxnames = 2
             maxsyllables = 3
         for i in range(0,randint(1,maxnames)):
@@ -785,21 +811,58 @@ class TestcaseGenerator:
         object.add_event_handle(e.get_handle())
         
     def commit_transaction(self):
-        if self.param_multiple_trans:
+        if self.options.handler.options_dict['no_trans']:
             self.db.transaction_commit(self.trans,_("Testcase generator step %d") % self.transaction_count)
             self.transaction_count += 1
             self.trans = self.db.transaction_begin()
 
 
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
+# 
 #
-#
-#-------------------------------------------------------------------------
-def TestcaseGeneratorPlugin(database,active_person,callback,parent=None):
-    if not database.readonly:
-        fg = TestcaseGenerator(database,active_person,callback,parent)
-        fg.run()
+#------------------------------------------------------------------------
+class TestcaseGeneratorOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
+
+    def set_new_options(self):
+        # Options specific for this report
+        self.options_dict = {
+            'bugs'          : 0,
+            'dates'         : 1,
+            'persons'       : 1,
+            'person_count'  : 2000,
+            'no_trans'      : 0,
+            'long_names'    : 0,
+        }
+        self.options_help = {
+            'bugs'          : ("=0/1",
+                                "Whether to create invalid database references.",
+                                ["Valid Datavase","Invalid Database"],
+                                False),
+            'archive'       : ("=0/1",
+                                "Whether to create test for date handling.",
+                                ["Skip test","Create Date tests"],
+                                True),
+            'persons'       : ("=0/1",
+                                "Whether to create a bunch of dummy persons",
+                                ["Dont create persons","Create dummy persons"],
+                                True),
+            'person_count'  : ("=int",
+                                "Number of dummy persons to generate",
+                                2000),
+            'no_trans'      : ("=0/1",
+                                "Wheter to use one transaction or multiple small ones",
+                                ["One oransaction","Multiple transactions"]),
+            'long_names'    : ("=0/1",
+                                "Wheter to create sort or long names",
+                                ["Short names","Long names"]),
+        }
 
 #-------------------------------------------------------------------------
 #
@@ -809,9 +872,15 @@ def TestcaseGeneratorPlugin(database,active_person,callback,parent=None):
 from PluginMgr import register_tool
 
 register_tool(
-    TestcaseGeneratorPlugin,
-    _("Generate Testcases for persons and families"),
-    category=_("Debug"),
-    description=_("The testcase generator will generate some persons and families"
+    name = 'testcasegenerator',
+    category = Tool.TOOL_DEBUG,
+    tool_class = TestcaseGenerator,
+    options_class = TestcaseGeneratorOptions,
+    modes = Tool.MODE_GUI | Tool.MODE_CLI,
+    translated_name = _("Generate Testcases for persons and families"),
+    status = _("Beta"),
+    author_name = "Martin Hawlisch",
+    author_email = "martin@hawlisch.de",
+    description = _("The testcase generator will generate some persons and families"
                     " that have broken links in the database or data that is in conflict to a relation.")
     )
