@@ -515,7 +515,6 @@
 2 DATE 26 JUN 34 B.C.
 2 PLAC Hayward, Alameda Co., CA
 0 @F01@ FAM
-1 HUSB @I01@
 1 WIFE @I40@
 1 CHIL @I42@
 2 _FREL Adopted
@@ -533,9 +532,6 @@
 1 HUSB @I18@
 1 WIFE @I02@
 1 CHIL @I29@
-2 _FREL Adopted
-2 _MREL Adopted
-1 CHIL @I01@
 2 _FREL Adopted
 2 _MREL Adopted
 1 MARR
