@@ -137,6 +137,24 @@ class NameDisplay:
         else:
             return self._fnln(name,person.get_nick_name())
 
+    def display_formal(self,person):
+        """
+        Returns a text string representing the L{RelLib.Person} instance's
+        L{RelLib.Name} in a manner that should be used for normal displaying.
+
+        @param person: L{RelLib.Person} instance that contains the
+        L{RelLib.Name} that is to be displayed. The primary name is used for
+        the display.
+        @type person: L{RelLib.Person}
+        @returns: Returns the L{RelLib.Person} instance's name
+        @rtype: str
+        """
+        name = person.get_primary_name()
+        if name.display_as == RelLib.Name.LNFN:
+            return self._lnfn(name,'')
+        else:
+            return self._fnln(name,'')
+
     def display_name(self,name):
         """
         Returns a text string representing the L{RelLib.Name} instance

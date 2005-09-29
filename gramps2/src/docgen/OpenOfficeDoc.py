@@ -679,10 +679,10 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         else:
             self.cntnt.write('<text:h text:style-name="')
             self.cntnt.write(name)
-            self.cntnt.write('" text:level="' + str(self.level) + '">\n')
+            self.cntnt.write('" text:level="%d">' % self.level)
         if leader != None:
             self.cntnt.write(leader)
-            self.cntnt.write('<text:tab-stop/>\n')
+            self.cntnt.write('<text:tab-stop/>')
         self.new_cell = 0
 
     def end_paragraph(self):

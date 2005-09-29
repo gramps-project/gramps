@@ -1,6 +1,13 @@
+2005-09-28  Don Allingham  <don@gramps-project.org>
+	* src/NameDisplay.py: Add display_formal
+	* src/Report.py: remove generation strings
+	* src/docgen/OpenOfficeDoc.py: Fix leading space after tab.
+	* src/plugins/AncestorReport.py: Use ReportUtils strings
+	instead of local strings
+
 2005-09-28  Eero Tamminen  <eerot@sf>
 	* src/po/fi.po: Translation update for 2.0.9.
-
+p
 2005-09-28  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/TestcaseGenerator.py: Use new tool/option api 
 

@@ -27,7 +27,7 @@
 # python modules
 #
 #------------------------------------------------------------------------
-import os
+import math
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -36,12 +36,19 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import Report
+import ReportUtils
 import BaseDoc
-import RelLib
 import Errors
-from DateHandler import displayer as _dd
-from QuestionDialog import ErrorDialog
+import NameDisplay
 import ReportOptions
+
+#------------------------------------------------------------------------
+#
+# log2val
+#
+#------------------------------------------------------------------------
+def log2(val):
+    return int(math.log10(val)/math.log10(2))
 
 #------------------------------------------------------------------------
 #
@@ -90,10 +97,9 @@ class AncestorReport(Report.Report):
 
         self.apply_filter(self.start_person.get_handle(),1)
 
-        name = self.start_person.get_primary_name().get_regular_name()
+        name = NameDisplay.displayer.display_formal(self.start_person)
         self.doc.start_paragraph("AHN-Title")
-        title = _("Ahnentafel Report for %s") % name
-        self.doc.write_text(title)
+        self.doc.write_text(_("Ahnentafel Report for %s") % name)
         self.doc.end_paragraph()
     
         keys = self.map.keys()
@@ -101,22 +107,21 @@ class AncestorReport(Report.Report):
         generation = 0
 
         for key in keys :
-            if generation == 0 or key >= ( 1 << 30):
+            if generation == log2(key):
                 if self.pgbrk and generation > 0:
                     self.doc.page_break()
+                generation += 1
                 self.doc.start_paragraph("AHN-Generation")
-                t = _("%s Generation") % AncestorReport.gen[generation+1]
-                self.doc.write_text(t)
+                self.doc.write_text(_("Generation %d") % generation)
                 self.doc.end_paragraph()
-                generation = generation + 1
 
-            self.doc.start_paragraph("AHN-Entry","%s." % str(key))
+            self.doc.start_paragraph("AHN-Entry","%d." % key)
             person_handle = self.map[key]
             person = self.database.get_person_from_handle(person_handle)
-            name = person.get_primary_name().get_regular_name()
+            name = NameDisplay.displayer.display_formal(person)
         
             self.doc.start_bold()
-            self.doc.write_text(name)
+            self.doc.write_text(name.strip())
             self.doc.end_bold()
             if name[-1:] == '.':
                 self.doc.write_text(" ")
@@ -124,121 +129,10 @@ class AncestorReport(Report.Report):
                 self.doc.write_text(". ")
 
             # Check birth record
-        
-            birth_handle = person.get_birth_handle()
-            if birth_handle:
-                birth = self.database.get_event_from_handle(birth_handle)
-                date = birth.get_date_object()
-                date_text = _dd.display(date)
-                place_handle = birth.get_place_handle()
-                if place_handle:
-                    place = self.database.get_place_from_handle(place_handle).get_title()
-                else:
-                    place = u''
-                if place[-1:] == '.':
-                    place = place[:-1]
-                if date_text != "" or place_handle:
-                    if date_text != "":
-                        if date.get_day_valid() and date.get_month_valid():
-                            if place != "":
-                                t = _("%s was born on %s in %s. ") % \
-                                    (name,date_text,place)
-                            else:
-                                t = _("%s was born on %s. ") % \
-                                    (name,date_text)
-                        else:
-                            if place != "":
-                                t = _("%s was born in the year %s in %s. ") % \
-                                    (name,date_text,place)
-                            else:
-                                t = _("%s was born in the year %s. ") % \
-                                    (name,date_text)
-                        self.doc.write_text(t)
 
-            buried = None
-            for event_handle in person.get_event_list():
-                event = self.database.get_event_from_handle(event_handle)
-                if event.get_name().lower() == "burial":
-                    buried = event
-        
-            death_handle = person.get_death_handle()
-            if death_handle:
-                death = self.database.get_event_from_handle(death_handle)
-                date = death.get_date_object()
-                date_text = _dd.display(date)
-                place_handle = death.get_place_handle()
-                if place_handle:
-                    place = self.database.get_place_from_handle(place_handle).get_title()
-                else:
-                    place = u''
-                if place[-1:] == '.':
-                    place = place[:-1]
-                if date_text != "" or place_handle:
-                    if person.get_gender() == RelLib.Person.MALE:
-                        male = 1
-                    else:
-                        male = 0
-
-                    if date_text != "":
-                        if date.get_day_valid() and date.get_month_valid():
-                            if male:
-                                if place != "":
-                                    t = _("He died on %s in %s") % \
-                                        (date_text,place)
-                                else:
-                                    t = _("He died on %s") % date_text
-                            else:
-                                if place != "":
-                                    t = _("She died on %s in %s") % \
-                                        (date_text,place)
-                                else:
-                                    t = _("She died on %s") % date_text
-                        else:
-                            if male:
-                                if place != "":
-                                    t = _("He died in the year %s in %s") % \
-                                        (date_text,place)
-                                else:
-                                    t = _("He died in the year %s") % date_text
-                            else:
-                                if place != "":
-                                    t = _("She died in the year %s in %s") % \
-                                        (date_text,place)
-                                else:
-                                    t = _("She died in the year %s") % date_text
-
-                        self.doc.write_text(t)
-
-                    if buried:
-                        date = buried.get_date_object()
-                        date_text = _dd.display(date)
-                        place_handle = buried.get_place_handle()
-                        if place_handle:
-                            place = self.database.get_place_from_handle(place_handle).get_title()
-                        else:
-                            place = u''
-                        if place[-1:] == '.':
-                            place = place[:-1]
-                        if date_text != "" or place_handle:
-                            if date_text != "":
-                                if date.get_day_valid() and date.get_month_valid():
-                                    if place != "":
-                                        t = _(", and was buried on %s in %s.") % \
-                                            (date_text,place)
-                                    else:
-                                        t = _(", and was buried on %s.") % date_text
-                                else:
-                                    if place != "":
-                                        t = _(", and was buried in the year %s in %s.") % \
-                                            (date_text,place)
-                                    else:
-                                        t = _(", and was buried in the year %s.") % \
-                                            date_text
-                            else:
-                                t = _(" and was buried in %s.") % place
-                        self.doc.write_text(t)
-                    else:
-                        self.doc.write_text(".")
+            self.doc.write_text(ReportUtils.born_str(self.database,person))
+            self.doc.write_text(ReportUtils.died_str(self.database,person,0))
+            self.doc.write_text(ReportUtils.buried_str(self.database,person,0))
                         
             self.doc.end_paragraph()
 
@@ -290,7 +184,7 @@ class AncestorOptions(ReportOptions.ReportOptions):
 
 #------------------------------------------------------------------------
 #
-# 
+# Register the plugin
 #
 #------------------------------------------------------------------------
 from PluginMgr import register_report
@@ -301,8 +195,8 @@ register_report(
     options_class = AncestorOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
     translated_name = _("Ahnentafel Report"),
-    status=(_("Beta")),
+    status=(_("Stable")),
     description= _("Produces a textual ancestral report"),
     author_name="Donald N. Allingham",
-    author_email="dallingham@users.sourceforge.net"
+    author_email="don@gramps-project.org"
     )
