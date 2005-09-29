@@ -1,3 +1,11 @@
+2005-09-29  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/ExportVCalendar.py: Removed unused code
+	* src/plugins/ExportVCard.py: Removed unused code
+	* src/plugins/ImportGeneWeb.py: Removed unused code
+	* src/plugins/ImportvCard.py: Removed unused code
+	* src/plugins/TestcaseGenerator.py: Removed unused code
+	* src/plugins/WriteGeneWeb.py: Removed unused code
+	
 2005-09-29  Don Allingham  <don@gramps-project.org>
 	* src/WriteGedcom.py: handle broken family
 	* src/ReportUtils.py: fix born_str to not depend on death date

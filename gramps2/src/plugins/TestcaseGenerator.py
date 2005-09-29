@@ -27,9 +27,6 @@
 # standard python modules
 #
 #-------------------------------------------------------------------------
-import os
-import re
-import time
 import traceback
 import sys
 from random import randint,choice
@@ -51,9 +48,7 @@ import gtk.glade
 import Errors
 import Date
 import RelLib
-import Utils
 import Tool
-import AutoComp
 import const
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp

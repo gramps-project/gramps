@@ -28,8 +28,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-import time
-import re
 
 #-------------------------------------------------------------------------
 #
@@ -38,23 +36,18 @@ import re
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import RelLib
 import GenericFilter
 import const
-import Utils
 import Date
 import Errors
 from gettext import gettext as _
 from QuestionDialog import ErrorDialog
-
-_title_string = _("Export to vCard")
 
 #-------------------------------------------------------------------------
 #

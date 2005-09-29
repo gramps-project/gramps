@@ -27,7 +27,6 @@
 # standard python modules
 #
 #-------------------------------------------------------------------------
-import os
 import re
 import time
 from gettext import gettext as _
@@ -47,7 +46,6 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import Errors
 import RelLib
-import Utils
 import const
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
@@ -309,7 +307,6 @@ class GeneWebParser:
         return None
     
     def parse_marriage(self,fields,idx):
-        mdate = self.parse_date(fields[idx])
         mariageDataRe = re.compile("^[+#-0-9].*$")
 
         mar_date = None
@@ -385,11 +382,6 @@ class GeneWebParser:
         return idx
 
     def parse_person(self,fields,idx,gender,father_surname):
-        firstname = ""
-        surname = ""
-        occupation = ""
-        birthplace = ""
-        alias = ""
         
         if not father_surname:
             if not idx < len(fields):
