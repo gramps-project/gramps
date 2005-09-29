@@ -47,7 +47,6 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import Errors
 import RelLib
-import latin_utf8 
 import Utils
 import const
 from QuestionDialog import ErrorDialog

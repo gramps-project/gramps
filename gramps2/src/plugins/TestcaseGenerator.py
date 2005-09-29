@@ -51,7 +51,6 @@ import gtk.glade
 import Errors
 import Date
 import RelLib
-import latin_utf8 
 import Utils
 import Tool
 import AutoComp

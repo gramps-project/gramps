@@ -47,7 +47,6 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import Errors
 import RelLib
-import latin_utf8 
 import Utils
 import const
 from QuestionDialog import ErrorDialog
@@ -100,7 +99,7 @@ class GeneWebParser:
         self.lineno += 1
         line = self.f.readline()
         if line:
-            line = line.strip()
+            line = unicode( line.strip())
         else:
             line = None
         return line
@@ -282,7 +281,7 @@ class GeneWebParser:
         if not self.current_family:
             print "Unknown family of child in line %d!" % self.lineno
             return None
-        self.current_family.set_note(self.cnv(line))
+        self.current_family.set_note(line)
         self.db.commit_family(self.current_family,self.trans)
         return None
 
@@ -301,9 +300,9 @@ class GeneWebParser:
                 continue
             else:
                 if note_txt:
-                    note_txt = note_txt + "\n" + self.cnv(line)
+                    note_txt = note_txt + "\n" + line
                 else:
-                    note_txt = note_txt + self.cnv(line)
+                    note_txt = note_txt + line
         if note_txt:
             person.set_note(note_txt)
             self.db.commit_person(person,self.trans)
@@ -327,7 +326,8 @@ class GeneWebParser:
         #Alex: this failed when fields[idx] was an empty line. Fixed.
         #while idx < len(fields) and not fields[idx][0] == "+":
         while idx < len(fields) and not (fields[idx] and fields[idx][0] == "+"):
-            print "Unknown field: '%s' in line %d!" %(fields[idx],self.lineno)
+            if fields[idx]:
+                print "Unknown field: '%s' in line %d!" %(fields[idx],self.lineno)
             idx = idx + 1
 
         while idx < len(fields) and mariageDataRe.match(fields[idx]):
@@ -403,11 +403,11 @@ class GeneWebParser:
         if not idx < len(fields):
             print "Missing firstname of person in line %d!" % self.lineno
             return (idx,None)
-        firstname = self.decode(self.cnv(fields[idx]))
+        firstname = self.decode(fields[idx])
         idx = idx + 1
         if idx < len(fields) and father_surname:
             noSurnameRe = re.compile("^[({\[~><?0-9#].*$")
-            if not noSurnameRe.match(self.cnv(fields[idx])):
+            if not noSurnameRe.match(fields[idx]):
                 surname = self.decode(fields[idx])
                 idx = idx + 1
 
@@ -699,7 +699,7 @@ class GeneWebParser:
         return sref
 
     def decode(self,s):
-        s = latin_utf8.latin_to_utf8( s.replace('_',' '))
+        s = s.replace('_',' ')
         charref_re = re.compile('(&#)(x?)([0-9a-zA-Z]+)(;)')
         for match in charref_re.finditer(s):
             try:
@@ -722,9 +722,6 @@ class GeneWebParser:
                 pass
         
         return( s)
-
-    def cnv(seld,s):
-        return( latin_utf8.latin_to_utf8(s))
 
 #-------------------------------------------------------------------------
 #
