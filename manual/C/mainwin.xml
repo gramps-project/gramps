@@ -117,12 +117,12 @@
 	  information, depending on the currently selected View. The
 	  following six Views are available in &app;:
   	    <itemizedlist>	
-	      <listitem><para>People View</para></listitem>
-	      <listitem><para>Family View</para></listitem>
-	      <listitem><para>Pedigree View</para></listitem>
-	      <listitem><para>Sources View</para></listitem>
-  	      <listitem><para>Places View</para></listitem>
-	      <listitem><para>Media View</para></listitem>
+	      <listitem><para>People View, see <xref linkend="people-view"/></para></listitem>
+	      <listitem><para>Family View, see <xref linkend="family-view"/></para></listitem>
+	      <listitem><para>Pedigree View, see <xref linkend="pedigree-view"/></para></listitem>
+	      <listitem><para>Sources View, see <xref linkend="sources-view"/></para></listitem>
+  	      <listitem><para>Places View, see <xref linkend="places-view"/></para></listitem>
+	      <listitem><para>Media View, see <xref linkend="media-view"/></para></listitem>
  	    </itemizedlist>
 	</para>
       </listitem>
@@ -331,7 +331,7 @@
 
 	<para>
           When &app; opens a database, the filter is set to the
-	  trivial filter called <guilabel>All people</guilabel>,
+	  trivial filter called <guilabel>Entire Database</guilabel>,
 	  i.e. no filtering is in effect. To choose a filter, use the
 	  pop-up <guilabel>Filter</guilabel> menu above the people's
 	  list. Once the filter is chosen, click the
@@ -339,7 +339,15 @@
 	  corner of the window. The filtering will take effect upon
 	  clicking the <guibutton>Apply</guibutton> button.
          </para>
-	  
+
+	<para>
+          GRAMPS provides a way to create cutom filters to easily show
+      specific parts of the database. This is achieved using the 
+      <guilabel>Custom Filter Editor</guilabel> in the <menuchoice>
+      <guimenu>Tools</guimenu> <guimenuitem>Utilities</guimenuitem>
+      </menuchoice> menu. See <xref linkend="tools-util-cfe" />
+         </para>
+
 	 <tip id="filt-tip">
            <title>Example filter use</title>
 	   <para>

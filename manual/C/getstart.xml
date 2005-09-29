@@ -120,7 +120,7 @@
     </para>
     <para>
       This information can be entered at any time in the
-      <guilabel>Preferences</guilabel> dialog, under the
+      <guilabel>Preferences</guilabel> dialog (see <xref linkend="gramps-prefs" />), under the
       <guilabel>Database/Researcher Information</guilabel> category.
     </para>
   </sect1>
@@ -157,9 +157,9 @@
       If you would like to open an existing database, check the top
       radio button and click the <guibutton>OK</guibutton>
       button. You will then be asked to specify the name of your
-      existing database. If you would like to immediately create a
+      existing database (see <xref linkend="open-db" />). If you would like to immediately create a
       brand new database from scratch right away, choose new
-      database.
+      database (see <xref linkend="new-db" />).
     </para> 
 
     <note id="file-notdir-note">
@@ -188,7 +188,7 @@
         <term>User manual</term>
 	<listitem> 
           <para>
-            Select this item to access this manual in the help browser.  
+            Select this item to access this manual in the help browser.
           </para>
         </listitem>
       </varlistentry>
@@ -200,6 +200,9 @@
             Select this item to read the Frequently Asked Questions about
             &app; in the browser.
           </para>
+          <para>
+            See: <xref linkend="faq" />
+          </para>
         </listitem>
       </varlistentry>
 
@@ -208,7 +211,10 @@
    	<listitem>
           <para> 
             Select this item to open the home page of &app; in your
-	    default web browser. 
+	    default web browser.
+          </para>
+          <para>
+            See: <ulink url="http://gramps-project.org/" type="http">http://gramps-project.org/</ulink>
           </para>
         </listitem>
       </varlistentry> 
@@ -218,7 +224,10 @@
 	<listitem>
           <para>
             Select this item to direct your web browser 
- 	    to the &app; mailing list archives. 
+ 	    to the &app; mailing list archives.
+          </para>
+          <para>
+            See: <ulink url="http://sourceforge.net/mail/?group_id=25770" type="http">http://sourceforge.net/mail/?group_id=25770</ulink>
           </para>
         </listitem>
       </varlistentry>
@@ -228,7 +237,10 @@
 	<listitem>
           <para> 
             Select this item to file a bug report regarding &app; 
-	    with the bug tracking system.  
+	    with the bug tracking system.
+          </para>
+          <para>
+            See: <ulink url="http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137" type="http">http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137</ulink>
           </para>
         </listitem>
       </varlistentry>
