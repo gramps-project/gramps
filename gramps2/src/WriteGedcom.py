@@ -1126,7 +1126,9 @@ class GedcomWriter:
         self.print_date("%d DATE" % (index + 1), ord.get_date_object())
         if ord.get_family_handle():
             family_id = ord.get_family_handle()
-            self.writeln('%d FAMC @%s@' % (index+1,self.fid(family_id)))
+            f = self.db.get_family_from_handle(family_id)
+            if f:
+                self.writeln('%d FAMC @%s@' % (index+1,self.fid(family_id)))
         if ord.get_temple():
             self.writeln('%d TEMP %s' % (index+1,ord.get_temple()))
         if ord.get_place_handle():

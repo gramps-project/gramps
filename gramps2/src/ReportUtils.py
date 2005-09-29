@@ -1731,24 +1731,24 @@ def born_str(database,person,person_name=None,empty_date="",empty_place=""):
 
     gender = person.get_gender()
 
-    if ddate:
-        if ddate_mod:
+    if bdate:
+        if bdate_mod:
             if dplace:
                 text = born_modified_date_with_place[name_index][gender] % value_map
             else:
                 text = born_modified_date_no_place[name_index][gender] % value_map
-        elif ddate_full:
-            if dplace:
+        elif bdate_full:
+            if bplace:
                 text = born_full_date_with_place[name_index][gender] % value_map
             else:
                 text = born_full_date_no_place[name_index][gender] % value_map
         else:
-            if dplace:
+            if bplace:
                 text = born_partial_date_with_place[name_index][gender] % value_map
             else:
                 text = born_partial_date_no_place[name_index][gender] % value_map
     else:
-        if dplace:
+        if bplace:
             text = born_no_date_with_place[name_index][gender] % value_map
         else:
             text = ""
