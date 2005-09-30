@@ -160,9 +160,7 @@ class DetAncestorReport(Report.Report):
                 if self.pgbrk and generation > 0:
                     self.doc.page_break()
                 self.doc.start_paragraph("DAR-Generation")
-                text = self.gen.get(generation+1,
-                            _("Generation %(generation_number)d") % {
-                                    'generation_number' : generation+1 })
+                text = _("Generation %d") % generation+1
                 self.doc.write_text(text)
                 self.doc.end_paragraph()
                 generation = generation + 1

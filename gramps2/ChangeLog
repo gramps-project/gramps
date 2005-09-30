@@ -1,3 +1,7 @@
+2005-09-29  Don Allingham  <don@gramps-project.org>
+	* src/plugins/DetAncestralReport.py: Fixed generation string
+	* src/plugins/DetDescendantReport.py: Fixed generation string
+
 2005-09-29  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/ExportVCalendar.py: Removed unused code
 	* src/plugins/ExportVCard.py: Removed unused code
