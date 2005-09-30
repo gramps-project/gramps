@@ -49,7 +49,6 @@ import ReportOptions
 import GenericFilter
 import RelLib
 from BaseDoc import PAPER_LANDSCAPE
-from latin_utf8 import utf8_to_latin
 from QuestionDialog import ErrorDialog
 
 #------------------------------------------------------------------------
@@ -321,7 +320,7 @@ class GraphViz:
                 else:
                     self.f.write('%s=%s, ' % (style, self.colors['unknown']))
             if self.latin:
-                label = utf8_to_latin(label)
+                label = label.encode('iso-8859-1')
             self.f.write('fontname="%s", label="%s"];\n' % (self.fontname,label))
 
             # Output families's nodes.

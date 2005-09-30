@@ -38,7 +38,6 @@ import PluginMgr
 import ImgManip
 import GrampsMime
 
-from latin_utf8 import latin_to_utf8
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------

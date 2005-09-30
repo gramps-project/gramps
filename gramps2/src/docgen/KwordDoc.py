@@ -298,7 +298,7 @@ class KwordDoc(BaseDoc.BaseDoc):
 
         self.f.write('<PARAGRAPH>\n')
         self.f.write('<TEXT>')
-        self.f.write(latin_to_utf8(self.text))
+        self.f.write(unicode(self.text))
         self.f.write('</TEXT>\n')
         self.f.write('<FORMATS>\n')
         for format in self.format_list:
