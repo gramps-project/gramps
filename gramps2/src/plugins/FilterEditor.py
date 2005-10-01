@@ -53,7 +53,13 @@ import AutoComp
 import ListModel
 import Utils
 import SelectPerson
+import Tool
 
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
 _name2list = {
     _('Personal event:')     : const.personal_events,
     _('Family event:')       : const.family_events,
@@ -916,16 +922,35 @@ class ShowResults:
 #
 #
 #-------------------------------------------------------------------------
-def CustomFilterEditor(database,person,callback,parent=None):
-    FilterEditor(const.custom_filters,database,parent)
+class CustomFilterEditor(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
+
+        FilterEditor(const.custom_filters,db,parent)
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-def SystemFilterEditor(database,person,callback,parent=None):
-    FilterEditor(const.system_filters,database,parent)
+class SystemFilterEditor(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
+
+        FilterEditor(const.system_filters,database,parent)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class FilterEditorOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
 
 #-------------------------------------------------------------------------
 #
@@ -935,9 +960,15 @@ def SystemFilterEditor(database,person,callback,parent=None):
 from PluginMgr import register_tool
 
 register_tool(
-    CustomFilterEditor,
-    _("Custom Filter Editor"),
-    category=_("Utilities"),
+    name = 'sfilted',
+    category = Tool.TOOL_UTILS,
+    tool_class = CustomFilterEditor,
+    options_class = FilterEditorOptions,
+    modes = Tool.MODE_GUI,
+    translated_name = _("Custom Filter Editor"),
+    status = _("Beta"),
+    author_name = "Donald N. Allingham",
+    author_email = "dallingham@users.sourceforge.net",
     description=_("The Custom Filter Editor builds custom "
                   "filters that can be used to select people "
                   "included in reports, exports, and other utilities.")
@@ -948,9 +979,15 @@ if ((os.path.exists(const.system_filters) and
     (os.path.exists(os.path.dirname(const.system_filters)) and
      os.access(os.path.dirname(const.system_filters), os.W_OK))):
     register_tool(
-        SystemFilterEditor,
-        _("System Filter Editor"),
-        category=_("Utilities"),
+        name = 'sfilted',
+        category = Tool.TOOL_UTILS,
+        tool_class = SystemFilterEditor,
+        options_class = FilterEditorOptions,
+        modes = Tool.MODE_GUI,
+        translated_name = _("System Filter Editor"),
+        status = _("Beta"),
+        author_name = "Donald N. Allingham",
+        author_email = "dallingham@users.sourceforge.net",
         description=_("The System Filter Editor builds custom "
                       "filters that can be used by anyone on the system "
                       "to select people included in reports, exports, "

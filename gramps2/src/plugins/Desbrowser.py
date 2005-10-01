@@ -37,6 +37,7 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import Utils
 import NameDisplay
+import Tool
 
 #------------------------------------------------------------------------
 #
@@ -53,17 +54,12 @@ from gnome import help_display
 # 
 #
 #------------------------------------------------------------------------
-def runTool(database,person,callback,parent=None):
-    try:
-        DesBrowse(database,person,callback,parent)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+class DesBrowse(Tool.Tool):
 
-class DesBrowse:
-    def __init__(self,database,person,callback,parent):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
+
         self.active = person
-        self.db = database
         self.callback = callback
         self.parent = parent
         self.win_key = self
@@ -158,13 +154,29 @@ class DesBrowse:
 # 
 #
 #------------------------------------------------------------------------
+class DesBrowseOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 from PluginMgr import register_tool
 
 register_tool(
-    runTool,
-    _("Interactive descendant browser"),
-    category=_("Analysis and Exploration"),
+    name = 'dbrowse',
+    category = Tool.TOOL_ANAL,
+    tool_class = DesBrowse,
+    options_class = DesBrowseOptions,
+    modes = Tool.MODE_GUI,
+    translated_name = _("Interactive descendant browser"),
+    author_name = "Donald N. Allingham",
+    author_email = "dallingham@users.sourceforge.net",
     description=_("Provides a browsable hierarchy based on the active person"),
-    author_name="Donald N. Allingham",
-    author_email="dallingham@users.sourceforge.net"
     )

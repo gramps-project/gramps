@@ -21,7 +21,6 @@
 # $Id$
 
 import BaseDoc
-from latin_utf8 import latin_to_utf8
 
 import time
 import cStringIO
