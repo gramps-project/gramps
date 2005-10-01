@@ -1,5 +1,7 @@
 2005-10-01  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/Verify.py: Convert to new API.
+	* src/plugins/verigy.glade: Use separate windows for errors and
+	warnings.
 
 2005-09-30  Alex Roitman  <shura@gramps-project.org>
 	* src/docgen/KwordDoc.py: Remove unused latin_utf8 import.
