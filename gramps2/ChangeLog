@@ -1,3 +1,10 @@
+2005-10-02  Don Allingham  <don@gramps-project.org>
+	* src/ReportUtils.py: add pronoun/name support to child strings
+	* src/plugin/DetAncestralReport.py: Add support for ReportUtils
+	* src/plugin/DetDescendantReport.py: Add support for ReportUtils
+	* src/plugins/ImportGenweb.py: fix date handling to support
+	date ranges and date modifiers.
+
 2005-10-02  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/TestcaseGenerator.py: corrected options help dict
 

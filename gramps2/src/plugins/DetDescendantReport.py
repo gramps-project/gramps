@@ -187,7 +187,7 @@ class DetDescendantReport(Report.Report):
             if self.pgbrk and generation > 0:
                 self.doc.page_break()
             self.doc.start_paragraph("DDR-Generation")
-            text = _("Generation %d") % generation+1
+            text = _("Generation %d") % (generation+1)
             self.doc.write_text(text)
             self.doc.end_paragraph()
             if self.childRef:

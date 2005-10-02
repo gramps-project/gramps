@@ -160,7 +160,7 @@ class DetAncestorReport(Report.Report):
                 if self.pgbrk and generation > 0:
                     self.doc.page_break()
                 self.doc.start_paragraph("DAR-Generation")
-                text = _("Generation %d") % generation+1
+                text = _("Generation %d") % (generation+1)
                 self.doc.write_text(text)
                 self.doc.end_paragraph()
                 generation = generation + 1
@@ -192,18 +192,17 @@ class DetAncestorReport(Report.Report):
 
         self.doc.start_paragraph("DAR-First-Entry","%s." % str(key))
 
-        name = _nd.display(person)
-
-        if self.firstName:
-            firstName = person.get_primary_name().get_first_name()
-        elif person.get_gender() == RelLib.Person.MALE:
-            firstName = _("He")
-        else:
-            firstName = _("She")
+        name = _nd.display_formal(person)
 
         self.doc.start_bold()
         self.doc.write_text(name)
+        if name[-1:] == '.':
+            self.doc.write_text(" ")
+        else:
+            self.doc.write_text(". ")
         self.doc.end_bold()
+        # Output the global source references for this person
+        self.endnotes(person)
 
         if self.dupPerson:
             # Check for duplicate record (result of distant cousins marrying)
@@ -218,35 +217,24 @@ class DetAncestorReport(Report.Report):
                     self.doc.end_paragraph()
                     return 1    # Duplicate person
 
-        # Output the global source references for this person
-        self.endnotes(person)
         # Check birth record
+        self.doc.write_text(ReportUtils.born_str(self.database,person,0,
+                                                 self.EMPTY_DATE,self.EMPTY_PLACE))
+        
         birth_handle = person.get_birth_handle()
         if birth_handle:
-            text = ReportUtils.born_str(self.database,person,"",
-                        self.EMPTY_DATE,self.EMPTY_PLACE)
-            if text:
-                self.doc.write_text(text)
-                self.endnotes(self.database.get_event_from_handle(birth_handle))
-            else:
-                self.doc.write_text('. ')
-        else:
-            self.doc.write_text('. ')
+            self.endnotes(self.database.get_event_from_handle(birth_handle))
 
-        death_handle = person.get_death_handle()
+        self.doc.write_text(ReportUtils.died_str(self.database,person,0,
+                                                 self.EMPTY_DATE,self.EMPTY_PLACE))
+        death_handle = person.get_birth_handle()
         if death_handle:
-            age,units = self.calc_age(person)
-            text = ReportUtils.died_str(self.database,person,firstName,
-                        self.EMPTY_DATE,self.EMPTY_PLACE,age,units)
-            if text:
-                self.doc.write_text(text)
-                self.endnotes(self.database.get_event_from_handle(death_handle))
+            self.endnotes(self.database.get_event_from_handle(death_handle))
 
-        text = ReportUtils.buried_str(self.database,person,firstName,
-                    self.EMPTY_DATE,self.EMPTY_PLACE)
-        if text:
-            self.doc.write_text(text)
-            # Missing source reference for burial
+        self.doc.write_text(ReportUtils.buried_str(self.database,person,0,
+                                                   self.EMPTY_DATE,self.EMPTY_PLACE))
+
+        firstName = person.get_primary_name().get_first_name()
 
         self.write_parents(person, firstName)
         self.write_marriage(person)
@@ -339,9 +327,9 @@ class DetAncestorReport(Report.Report):
             else:
                 father_name = ""
                 
-            text = ReportUtils.child_str(person,
-                                father_name,mother_name,
-                                bool(person.get_death_handle()))
+            text = ReportUtils.child_str(person, father_name, mother_name,
+                                         bool(person.get_death_handle()),
+                                         firstName)
             if text:
                 self.doc.write_text(text)
 
@@ -776,16 +764,16 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         dialog.add_frame_option(_('Content'),'',self.first_name_option)
         dialog.add_frame_option(_('Content'),'',self.full_date_option)
         dialog.add_frame_option(_('Content'),'',self.list_children_option)
-        dialog.add_frame_option(_('Content'),'',self.include_notes_option)
-        dialog.add_frame_option(_('Content'),'',self.place_option)
-        dialog.add_frame_option(_('Content'),'',self.date_option)
         dialog.add_frame_option(_('Content'),'',self.age_option)
         dialog.add_frame_option(_('Content'),'',self.dupPersons_option)
         dialog.add_frame_option(_('Content'),'',self.childRef_option)
-        dialog.add_frame_option(_('Content'),'',self.image_option)
-        dialog.add_frame_option(_('Content'),'',self.include_names_option)
-        dialog.add_frame_option(_('Content'),'',self.include_events_option)
-        dialog.add_frame_option(_('Content'),'',self.include_sources_option)
+        dialog.add_frame_option(_('Include'),'',self.image_option)
+        dialog.add_frame_option(_('Include'),'',self.include_notes_option)
+        dialog.add_frame_option(_('Include'),'',self.include_names_option)
+        dialog.add_frame_option(_('Include'),'',self.include_events_option)
+        dialog.add_frame_option(_('Include'),'',self.include_sources_option)
+        dialog.add_frame_option(_('Missing information'),'',self.place_option)
+        dialog.add_frame_option(_('Missing information'),'',self.date_option)
 
     def parse_user_options(self,dialog):
         """

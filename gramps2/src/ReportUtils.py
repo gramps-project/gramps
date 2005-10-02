@@ -703,46 +703,100 @@ marriage_also_only = {
 
 child_father_mother = {
     RelLib.Person.UNKNOWN: [
-      _("This person is the child of %(father)s and %(mother)s."),
-      _("This person was the child of %(father)s and %(mother)s."),
+      [
+        _("This person is the child of %(father)s and %(mother)s."),
+        _("This person was the child of %(father)s and %(mother)s."),
+      ],
+      [
+        _("%(male_name)s is the child of %(father)s and %(mother)s."),
+        _("%(male_name)s was the child of %(father)s and %(mother)s."),
+      ],
     ],
     RelLib.Person.MALE : [
-      _("He is the son of %(father)s and %(mother)s."),
-      _("He was the son of %(father)s and %(mother)s."),
+      [
+        _("He is the son of %(father)s and %(mother)s."),
+        _("He was the son of %(father)s and %(mother)s."),
+      ],
+      [
+        _("%(male_name)s is the child of %(father)s and %(mother)s."),
+        _("%(male_name)s was the child of %(father)s and %(mother)s."),
+      ]
     ],
     RelLib.Person.FEMALE : [
-      _("She is the daughter of %(father)s and %(mother)s."),
-      _("She was the daughter of %(father)s and %(mother)s."),
+     [
+        _("She is the daughter of %(father)s and %(mother)s."),
+        _("She was the daughter of %(father)s and %(mother)s."),
+     ],
+     [
+        _("%(female_name)s is the child of %(father)s and %(mother)s."),
+        _("%(female_name)s was the child of %(father)s and %(mother)s."),
+     ],
     ]
 }
 
 child_father = {
     RelLib.Person.UNKNOWN : [
-    _("This person is the child of %(father)s."),
-    _("This person was the child of %(father)s."),
+      [
+        _("This person is the child of %(father)s."),
+        _("This person was the child of %(father)s."),
+      ],
+      [
+        _("%(male_name)s is the child of %(father)s."),
+        _("%(male_name)s was the child of %(father)s."),
+      ],
     ],
     RelLib.Person.MALE : [
-    _("He is the son of %(father)s."),
-    _("He was the son of %(father)s."),
+      [
+        _("He is the son of %(father)s."),
+        _("He was the son of %(father)s."),
+      ],
+      [
+        _("%(male_name)s is the child of %(father)s."),
+        _("%(male_name)s was the child of %(father)s."),
+      ],
     ],
     RelLib.Person.FEMALE : [
-    _("She is the daughter of %(father)s."),
-    _("She was the daughter of %(father)s."),
+      [
+        _("She is the daughter of %(father)s."),
+        _("She was the daughter of %(father)s."),
+      ],  
+      [
+        _("%(female_name)s is the child of %(father)s."),
+        _("%(female_name)s was the child of %(father)s."),
+      ],
     ],
 }
 
 child_mother = {
     RelLib.Person.UNKNOWN : [
-    _("This person is the child of %(mother)s."),
-    _("This person was the child of %(mother)s."),
+      [
+        _("This person is the child of %(mother)s."),
+        _("This person was the child of %(mother)s."),
+      ],
+      [
+        _("%(male_name)s is the child of %(mother)s."),
+        _("%(male_name)s was the child of %(mother)s."),
+      ],
     ],
     RelLib.Person.MALE : [
-    _("He is the son of %(mother)s."),
-    _("He was the son of %(mother)s."),
+      [
+        _("He is the son of %(mother)s."),
+        _("He was the son of %(mother)s."),
+      ],
+      [
+        _("%(male_name)s is the child of %(mother)s."),
+        _("%(male_name)s was the child of %(mother)s."),
+      ],
     ],
     RelLib.Person.FEMALE : [
-    _("She is the daughter of %(mother)s."),
-    _("She was the daughter of %(mother)s."),
+      [
+        _("She is the daughter of %(mother)s."),
+        _("She was the daughter of %(mother)s."),
+      ],
+      [
+        _("%(female_name)s is the child of %(mother)s."),
+        _("%(female_name)s was the child of %(mother)s."),
+      ],
    ],
 }
 
@@ -1630,7 +1684,7 @@ def married_rel_str(database,person,family,is_first=True):
 # child_str
 #
 #-------------------------------------------------------------------------
-def child_str(person,father_name="",mother_name="",dead=0):
+def child_str(person, father_name="", mother_name="", dead=0, person_name=0):
     """
     Composes a string describing person being a child.
     
@@ -1649,22 +1703,32 @@ def child_str(person,father_name="",mother_name="",dead=0):
     @returns: A composed string
     @rtype: unicode
     """
-    
+
     values = {
-        'father' : father_name,
-        'mother' : mother_name,
+        'father'      : father_name,
+        'mother'      : mother_name,
+        'male_name'   : person_name,
+        'female_name' : person_name,
         }
+
+    if person_name == 0:
+        index = 0
+    else:
+        index = 1
+
+    print person_name, index
 
     gender = person.get_gender()
 
     if mother_name and father_name:
-        text = child_father_mother[gender][dead] % values
+        text = child_father_mother[gender][index][dead] % values
     elif mother_name:
-        text = child_mother[gender][dead] % values
+        text = child_mother[gender][index][dead] % values
     elif father_name:
-        text = child_father[gender][dead] % values
+        text = child_father[gender][index][dead] % values
     if text:
         text = text + " "
+    print text
     return text
 
 #-------------------------------------------------------------------------
