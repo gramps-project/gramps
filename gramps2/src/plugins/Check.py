@@ -48,6 +48,7 @@ import gtk.glade
 import RelLib
 import Utils
 import const
+import Tool
 from QuestionDialog import OkDialog, MissingMediaDialog
 
 #-------------------------------------------------------------------------
@@ -55,46 +56,51 @@ from QuestionDialog import OkDialog, MissingMediaDialog
 # runTool
 #
 #-------------------------------------------------------------------------
-def runTool(database,active_person,callback,parent=None):
+class Check(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
 
-    try:
-        if database.readonly:
-            # TODO: split plugin in a check and repair part to support
-            # checking of a read only database
-            return
-        
-        trans = database.transaction_begin()
-        trans.set_batch(True)
-        database.disable_signals()
-        checker = CheckIntegrity(database,parent,trans)
-        checker.cleanup_missing_photos(0)
+        # def runTool(database,active_person,callback,parent=None):
+        cli = int(parent == None)
 
-        prev_total = -1
-        total = 0
+        try:
+            if db.readonly:
+                # TODO: split plugin in a check and repair part to support
+                # checking of a read only database
+                return
         
-        while prev_total != total:
-            prev_total = total
+            trans = db.transaction_begin()
+            trans.set_batch(True)
+            db.disable_signals()
+            checker = CheckIntegrity(db,parent,trans)
+            checker.cleanup_missing_photos(cli)
+
+            prev_total = -1
+            total = 0
+        
+            while prev_total != total:
+                prev_total = total
             
-            checker.check_for_broken_family_links()
-            checker.check_parent_relationships()
-            checker.cleanup_empty_families(0)
-            checker.cleanup_duplicate_spouses()
+                checker.check_for_broken_family_links()
+                checker.check_parent_relationships()
+                checker.cleanup_empty_families(cli)
+                checker.cleanup_duplicate_spouses()
 
-            total = checker.family_errors()
+                total = checker.family_errors()
 
-        checker.check_events()
-        checker.check_place_references()
-        checker.check_source_references()
-        database.transaction_commit(trans, _("Check Integrity"))
-        database.enable_signals()
-        database.request_rebuild()
+            checker.check_events()
+            checker.check_place_references()
+            checker.check_source_references()
+            db.transaction_commit(trans, _("Check Integrity"))
+            db.enable_signals()
+            db.request_rebuild()
 
-        errs = checker.build_report(0)
-        if errs:
-            Report(checker.text.getvalue(),parent)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+            errs = checker.build_report(cli)
+            if errs:
+                Report(checker.text.getvalue(),parent)
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
 
 #-------------------------------------------------------------------------
 #
@@ -848,11 +854,29 @@ class Report:
 # 
 #
 #------------------------------------------------------------------------
+class CheckOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 from PluginMgr import register_tool
 
 register_tool(
-    runTool,
-    _("Check and repair database"),
-    category=_("Database Repair"),
+    name = 'check',
+    category = Tool.TOOL_DBFIX,
+    tool_class = Check,
+    options_class = CheckOptions,
+    modes = Tool.MODE_GUI | Tool.MODE_CLI,
+    translated_name = _("Check and repair database"),
+    author_name = "Donald N. Allingham",
+    author_email = "dallingham@users.sourceforge.net",
     description=_("Checks the database for integrity problems, fixing the problems that it can")
     )
