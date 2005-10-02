@@ -3,6 +3,9 @@
 	* src/plugins/verify.glade: Use separate windows for errors and
 	warnings.
 	* src/plugins/Check.py: Convert to new API.
+	* src/plugins/DesGraph.py: Use correct constant.
+	* src/plugins/Eval.py: Convert to new API.
+	* src/plugins/Leak.py: Convert to new API.
 
 2005-09-30  Alex Roitman  <shura@gramps-project.org>
 	* src/docgen/KwordDoc.py: Remove unused latin_utf8 import.

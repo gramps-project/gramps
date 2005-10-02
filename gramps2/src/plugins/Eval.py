@@ -47,15 +47,17 @@ import gtk.glade
 #
 #------------------------------------------------------------------------
 import Utils
+import Tool
 
 #-------------------------------------------------------------------------
 #
 # Actual tool
 #
 #-------------------------------------------------------------------------
-class EvalWindow:
+class Eval(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
 
-    def __init__(self,parent):
         self.parent = parent
         if self.parent.child_windows.has_key(self.__class__):
             self.parent.child_windows[self.__class__].present(None)
@@ -129,14 +131,29 @@ class EvalWindow:
 # 
 #
 #------------------------------------------------------------------------
+class EvalOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 from PluginMgr import register_tool
 
-def runtool(database,person,callback,parent):
-    EvalWindow(parent)
-
 register_tool(
-    runtool,
-    _("Python evaluation window"),
-    category=_("Debug"),
+    name = 'eval',
+    category = Tool.TOOL_DEBUG,
+    tool_class = Eval,
+    options_class = EvalOptions,
+    modes = Tool.MODE_GUI,
+    translated_name = _("Python evaluation window"),
+    author_name = "Donald N. Allingham",
+    author_email = "dallingham@users.sourceforge.net",
     description=_("Provides a window that can evaluate python code")
     )

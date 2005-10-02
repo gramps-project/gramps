@@ -46,7 +46,6 @@ import Report
 import BaseDoc
 from SubstKeywords import SubstKeywords
 from ReportUtils import pt2cm
-import const
 import ReportOptions
 
 #------------------------------------------------------------------------
@@ -341,7 +340,7 @@ class DescendantGraphOptions(ReportOptions.ReportOptions):
 from PluginMgr import register_report
 register_report(
     name = 'descendant_graph',
-    category = const.CATEGORY_DRAW,
+    category = Report.CATEGORY_DRAW,
     report_class = DescendantGraph,
     options_class = DescendantGraphOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
