@@ -550,6 +550,7 @@ class DateParser:
         
         (text,cal) = self.match_calendar(text,cal)
         (text,qual) = self.match_quality(text,qual)
+
         if self.match_span(text,cal,qual,date):
             return
         if self.match_range(text,cal,qual,date):
@@ -559,9 +560,11 @@ class DateParser:
         if self.match_modifier(text,cal,qual,bc,date):
             return
 
-
         try:
             subdate = self._parse_subdate(text,self.parser[cal])
+            if subdate == Date.EMPTY and text != "":
+                date.set_as_text(text)
+                return
         except:
             date.set_as_text(text)
             return

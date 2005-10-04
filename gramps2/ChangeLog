@@ -1,3 +1,6 @@
+2005-10-04  Don Allingham  <don@gramps-project.org>
+	* src/DateParser.py: handle non-matching dates as strings properly
+
 2005-10-04  Stefan Bjork  <skalman@acc.umu.se>
 	* src/dates/Date_sv.py: Fixes. No differences from english version
 	on test data.
