@@ -1,3 +1,7 @@
+2005-10-04  Stefan Bjork  <skalman@acc.umu.se>
+	* src/dates/Date_sv.py: Fixes. No differences from english version
+	on test data.
+
 2005-10-03  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/EventCmp.py: Convert to new API.
 	* src/plugins/Merge.py: Convert to new API.

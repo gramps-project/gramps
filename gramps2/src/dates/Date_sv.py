@@ -56,24 +56,12 @@ class DateParserSv(DateParser):
     # modifiers before the date
     modifier_to_int = {
         u'före'    : Date.MOD_BEFORE,
-        u'för'     : Date.MOD_BEFORE,
-        u'för.'    : Date.MOD_BEFORE,
         u'innan'   : Date.MOD_BEFORE,
         u'efter'   : Date.MOD_AFTER,
-        u'eft'     : Date.MOD_AFTER,
-        u'eft.'    : Date.MOD_AFTER,
         u'omkring' : Date.MOD_ABOUT,
-        u'omkr'    : Date.MOD_ABOUT,
-        u'omkr.'   : Date.MOD_ABOUT,
-        u'circa'   : Date.MOD_ABOUT,
-        u'cirka'   : Date.MOD_ABOUT,
-        u'cirkus'  : Date.MOD_ABOUT,
-        u'ca'      : Date.MOD_ABOUT,
-        u'ca.'     : Date.MOD_ABOUT,
-        u'runt'    : Date.MOD_ABOUT,
         }
 
-    bce = ["f Kr", "f\.Kr\.", "f\. Kr\."]
+    bce = ["f Kr"]
 
     calendar_to_int = {
         u'gregoriansk   '      : Date.CAL_GREGORIAN,
@@ -93,28 +81,24 @@ class DateParserSv(DateParser):
         }
     
     quality_to_int = {
-        u'uppskattad' : Date.QUAL_ESTIMATED,
         u'uppskattat' : Date.QUAL_ESTIMATED,
-        u'bedömd'     : Date.QUAL_ESTIMATED,
+        u'uppskattad' : Date.QUAL_ESTIMATED,
         u'bedömt'     : Date.QUAL_ESTIMATED,
-        u'bed'        : Date.QUAL_ESTIMATED,
-        u'bed.'       : Date.QUAL_ESTIMATED,
-        u'beräknad'   : Date.QUAL_CALCULATED,
+        u'bedömd'     : Date.QUAL_ESTIMATED,
         u'beräknat'   : Date.QUAL_CALCULATED,
-        u'ber'        : Date.QUAL_CALCULATED,
-        u'ber.'       : Date.QUAL_CALCULATED,
+        u'beräknad'   : Date.QUAL_CALCULATED,
         }
     
     def init_strings(self):
         DateParser.init_strings(self)
-        self._span     = re.compile("(från)\s+(?P<start>.+)\s+till\s+(?P<stop>.+)",
-                           re.IGNORECASE)
-        self._range    = re.compile("(mellan)\s+(?P<start>.+)\s+och\s+(?P<stop>.+)",
-                           re.IGNORECASE)
+        self._span     = re.compile(u"(från)\s+(?P<start>.+)\s+till\s+(?P<stop>.+)",
+                                    re.IGNORECASE)
+        self._range    = re.compile(u"(mellan)\s+(?P<start>.+)\s+och\s+(?P<stop>.+)",
+                                    re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
-# Swedish display
+# Swedish display class
 #
 #-------------------------------------------------------------------------
 class DateDisplaySv(DateDisplay):
@@ -123,20 +107,28 @@ class DateDisplaySv(DateDisplay):
     """
 
     formats = (
-        "YYYY-MM-DD (ISO)", "Numerisk", "Månad Dag, År",
-        "MÅN DAG ÅR", "Dag Månad År", "DAG MÅN ÅR"
+        u"YYYY-MM-DD (ISO)",
+        u"Numerisk",
+        u"Månad dag, år",
+        u"MÅN DAG ÅR",
+        u"Dag månad år",
+        u"DAG MÅN ÅR",
         )
 
     calendar = (
-        ""," (juliansk)"," (hebreisk)"," (fransk republikansk)",
-        " (persisk)"," (islamisk)"
+        "",
+        " (juliansk)",
+        " (hebreisk)",
+        " (fransk republikansk)",
+        " (persisk)",
+        " (islamisk)"
         )
     
-    _mod_str = ("","före ","efter ","omkring ","","","")
+    _mod_str = ("",u"före ",u"efter ",u"omkring ","","","")
 
-    _qual_str = ("","uppskattat ","beräknat ")
+    _qual_str = ("",u"uppskattat ",u"beräknat ")
     
-    _bce_str = "%s f. Kr."
+    _bce_str = "%s f Kr"
 
     def display(self,date):
         """
@@ -148,7 +140,7 @@ class DateDisplaySv(DateDisplay):
         start = date.get_start_date()
 
         qual_str = self._qual_str[qual]
-        
+
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
         elif start == Date.EMPTY:
@@ -156,11 +148,11 @@ class DateDisplaySv(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%sfrån %s till %s%s" % (qual_str,d1,d2,self.calendar[cal])
+            return u"%sfrån %s till %s%s" % (qual_str,d1,d2,self.calendar[cal])
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%smellan %s och %s%s" % (qual_str,d1,d2,
+            return u"%smellan %s och %s%s" % (qual_str,d1,d2,
                                               self.calendar[cal])
         else:
             text = self.display_cal[date.get_calendar()](start)
