@@ -1,3 +1,7 @@
+2005-10-03  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/EventCmp.py: Convert to new API.
+	* src/plugins/Merge.py: Convert to new API.
+
 2005-10-03  Don Allingham  <don@gramps-project.org>
 	* src/Utils.py: grab the first word of a command line string
 	* src/plugins/DetAncestralReport.py: work on spouse information

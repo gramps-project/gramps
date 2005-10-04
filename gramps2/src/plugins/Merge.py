@@ -50,6 +50,18 @@ import soundex
 import NameDisplay
 import ListModel
 import MergePeople
+import Tool
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+_val2label = {
+    0.25 : _("Low"),
+    1.0  : _("Medium"),
+    2.0  : _("High"),
+    }
 
 #-------------------------------------------------------------------------
 #
@@ -70,10 +82,10 @@ def is_initial(name):
 #
 #
 #-------------------------------------------------------------------------
-class Merge:
+class Merge(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
 
-    def __init__(self,database,callback,parent):
-        self.db = database
         self.parent = parent
         if self.parent.child_windows.has_key(self.__class__):
             self.parent.child_windows[self.__class__].present(None)
@@ -88,28 +100,31 @@ class Merge:
         self.update = callback
         self.use_soundex = 1
 
-        self.family_list = database.get_family_handles()[:]
-        self.person_list = database.get_person_handles(sort_handles=False)[:]
+        self.family_list = self.db.get_family_handles()[:]
+        self.person_list = self.db.get_person_handles(sort_handles=False)[:]
 
         base = os.path.dirname(__file__)
         self.glade_file = "%s/%s" % (base,"merge.glade")
         top = gtk.glade.XML(self.glade_file,"dialog","gramps")
-        
+
+        # retrieve options
+        threshold = self.options.handler.options_dict['threshold']
+        use_soundex = self.options.handler.options_dict['soundex']
+
         my_menu = gtk.Menu()
-        item = gtk.MenuItem(_("Low"))
-        item.set_data("v",0.25)
-        item.show()
-        my_menu.append(item)
-        item = gtk.MenuItem(_("Medium"))
-        item.set_data("v",1.0)
-        item.show()
-        my_menu.append(item)
-        item = gtk.MenuItem(_("High"))
-        item.set_data("v",2.0)
-        item.show()
-        my_menu.append(item)
+        vals = _val2label.keys()
+        vals.sort()
+        for val in vals:
+            item = gtk.MenuItem(_val2label[val])
+            item.set_data("v",val)
+            item.show()
+            my_menu.append(item)
+        my_menu.set_active(vals.index(threshold))
 
         self.soundex_obj = top.get_widget("soundex")
+        self.soundex_obj.set_active(use_soundex)
+        self.soundex_obj.show()
+        
         self.menu = top.get_widget("menu")
         self.menu.set_menu(my_menu)
 
@@ -164,10 +179,16 @@ class Merge:
             self.ancestors_of(f1.get_mother_handle(),id_list)
 
     def on_merge_ok_clicked(self,obj):
-        active = self.menu.get_menu().get_active().get_data("v")
-        self.use_soundex = self.soundex_obj.get_active()
+        threshold = self.menu.get_menu().get_active().get_data("v")
+        self.use_soundex = int(self.soundex_obj.get_active())
         self.close(obj)
-        self.find_potentials(active)
+        self.find_potentials(threshold)
+
+        self.options.handler.options_dict['threshold'] = threshold
+        self.options.handler.options_dict['soundex'] = self.use_soundex
+        # Save options
+        self.options.handler.save_options()
+
         if len(self.map) == 0:
             import QuestionDialog
             QuestionDialog.ErrorDialog(
@@ -178,7 +199,7 @@ class Merge:
     
     def find_potentials(self,thresh):
         self.progress = Utils.ProgressMeter(_('Find duplicates'),
-                                          _('Looking for duplicate people'))
+                                            _('Looking for duplicate people'))
 
         index = 0
         males = {}
@@ -619,20 +640,36 @@ def get_name_obj(person):
 #
 #
 #-------------------------------------------------------------------------
-def runTool(database,active_person,callback,parent=None):
-    try:
-        Merge(database,callback,parent)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def by_id(p1,p2):
     return cmp(p1.get_handle(),p2.get_handle())
+
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class MergeOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
+
+    def set_new_options(self):
+        # Options specific for this report
+        self.options_dict = {
+            'soundex'   : 1,
+            'threshold' : 0.25,
+        }
+        self.options_help = {
+            'soundex'   : ("=0/1","Whether to use SoundEx codes",
+                           ["Do not use SoundEx","Use SoundEx"],
+                           True),
+            'threshold' : ("=num","Threshold for tolerance",
+                           "Floating point number")
+            }
 
 #-------------------------------------------------------------------------
 #
@@ -642,9 +679,14 @@ def by_id(p1,p2):
 from PluginMgr import register_tool
 
 register_tool(
-    runTool,
-    _("Find possible duplicate people"),
-    category=_("Database Processing"),
+    name = 'dupfind',
+    category = Tool.TOOL_DBPROC,
+    tool_class = Merge,
+    options_class = MergeOptions,
+    modes = Tool.MODE_GUI,
+    translated_name = _("Find possible duplicate people"),
+    author_name = "Donald N. Allingham",
+    author_email = "dallingham@users.sourceforge.net",
     description=_("Searches the entire database, looking for "
                   "individual entries that may represent the same person.")
     )
