@@ -388,6 +388,7 @@ def gformat(val):
     return return_val.replace(decimal_point,'.')
 
 def search_for(name):
+    name = name.split()[0]
     for i in os.environ['PATH'].split(':'):
         fname = os.path.join(i,name)
         if os.access(fname,os.X_OK) and not os.path.isdir(fname):

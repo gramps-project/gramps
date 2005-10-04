@@ -406,23 +406,20 @@ class DetAncestorReport(Report.Report):
             ind_handle = None
             if mate.get_gender() == RelLib.Person.MALE:
                 ind_handle = family.get_mother_handle()
-                heshe = 0
             else:
-                heshe = 0
                 ind_handle = family.get_father_handle()
             if ind_handle:
                 ind = self.database.get_person_from_handle(ind_handle)
                 person_name = _nd.display(ind)
                 firstName = ind.get_primary_name().get_first_name()
+            else:
+                firstName = 0
 
             if person_name:
                 if self.addImages:
                     ReportUtils.insert_images(self.database,self.doc,ind)
 
                 self.doc.start_paragraph("DAR-Entry")
-
-                if not self.firstName:
-                    firstName = heshe
 
                 self.doc.write_text(person_name)
 
@@ -432,12 +429,12 @@ class DetAncestorReport(Report.Report):
                     self.doc.write_text(text)
 
                 age,units = self.calc_age(ind)
-                text = ReportUtils.died_str(self.database,ind,heshe,
+                text = ReportUtils.died_str(self.database,ind,0,
                     self.EMPTY_DATE,self.EMPTY_PLACE,age,units)
                 if text:
                     self.doc.write_text(text)
                 
-                text = ReportUtils.buried_str(self.database,ind,heshe,
+                text = ReportUtils.buried_str(self.database,ind,0,
                         self.EMPTY_DATE,self.EMPTY_PLACE)
                 if text:
                     self.doc.write_text(text)
@@ -446,8 +443,7 @@ class DetAncestorReport(Report.Report):
 
                 self.doc.end_paragraph()
 
-                if self.listChildren \
-                           and mate.get_gender() == RelLib.Person.MALE:
+                if self.listChildren and mate.get_gender()==RelLib.Person.MALE:
                     self.write_children(family)
 
     def calc_age(self,ind):
@@ -660,7 +656,7 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         default_style.add_style("DAR-NoteHeader",para)
 
         para = BaseDoc.ParagraphStyle()
-        para.set(first_indent=0.5,lmargin=1.0,pad=0.25)
+        para.set(lmargin=1.0,pad=0.25)
         para.set_description(_('The basic style used for the text display.'))
         default_style.add_style("DAR-Entry",para)
 
