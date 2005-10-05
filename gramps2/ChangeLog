@@ -1,3 +1,11 @@
+2005-10-05  Alex Roitman  <shura@gramps-project.org>
+	* doc/grampsxml.dtd: Add to CVS (replaces gramps.dtd).
+	* src/WriteXML.py: Bring in sync with the DTD: 
+	  + add PUBLIC declaration of the DTD file
+	  + remove db stats as attributes of the database element
+	  + prepend all handles and hlinks with "_" (conform to XML ID)
+	  + replace "aka" with "name", "name" with "name preferred=1"
+
 2005-10-05  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/plugins/ReorderIds.py: handle more cases correctly
 
