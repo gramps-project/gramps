@@ -48,6 +48,7 @@ import NameDisplay
 import ListModel
 import PluginMgr
 import PeopleModel
+import Tool
 
 column_names = [
     _('Name'),
@@ -67,24 +68,17 @@ column_names = [
 #
 #
 #-------------------------------------------------------------------------
-def runTool(database,person,callback,parent=None):
-    RelCalc(database,person,parent)
+class RelCalc(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-class RelCalc:
-    """
-    Relationship calculator class.
-    """
+        """
+        Relationship calculator class.
+        """
 
-    def __init__(self,database,person,parent):
         self.person = person
-        self.db = database
         self.RelClass = PluginMgr.relationship_class
-        self.relationship = self.RelClass(database)
+        self.relationship = self.RelClass(self.db)
         self.parent = parent
         self.win_key = self
 
@@ -216,15 +210,32 @@ class RelCalc:
 
         text1.set_text("%s %s" % (rstr, commontext))
     
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
+# 
 #
-#
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
+class RelCalcOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
 
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 PluginMgr.register_tool(
-    runTool,
-    _("Relationship calculator"),
-    category=_("Utilities"),
+    name = 'relcalc',
+    category = Tool.TOOL_UTILS,
+    tool_class = RelCalc,
+    options_class = RelCalcOptions,
+    modes = Tool.MODE_GUI,
+    translated_name = _("Relationship calculator"),
+    author_name = "Donald N. Allingham",
+    author_email = "dallingham@users.sourceforge.net",
     description=_("Calculates the relationship between two people")
     )

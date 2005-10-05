@@ -47,6 +47,7 @@ import gtk.glade
 import RelLib
 import Utils
 import const
+import Tool
 from QuestionDialog import OkDialog
 
 #-------------------------------------------------------------------------
@@ -54,40 +55,71 @@ from QuestionDialog import OkDialog
 # runTool
 #
 #-------------------------------------------------------------------------
-def runTool(database,active_person,callback,parent=None):
+class Rebuild(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
 
-    try:
-        if database.readonly:
-            # TODO: split plugin in a check and repair part to support
-            # checking of a read only database
-            return
+        try:
+            if db.readonly:
+                # TODO: split plugin in a check and repair part to support
+                # checking of a read only database
+                return
 
-        total = database.get_number_of_people() + database.get_number_of_families() + \
-                database.get_number_of_places() + database.get_number_of_sources() + \
-                database.get_number_of_media_objects()
+            total = db.get_number_of_people() + \
+                    db.get_number_of_families() + \
+                    db.get_number_of_places() + \
+                    db.get_number_of_sources() + \
+                    db.get_number_of_media_objects()
 
-        progress = Utils.ProgressMeter(_('Rebuilding Secondary Indices'))
-        progress.set_pass('',total)
-        database.disable_signals()
-        database.rebuild_secondary(progress.step)
-        database.enable_signals()
-        progress.close()
-        OkDialog(_("Secondary indices rebuilt"),
-                 _('All secondary indices have been rebuilt.'))
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+            db.disable_signals()
+            if parent:
+                progress = Utils.ProgressMeter(
+                    _('Rebuilding Secondary Indices'))
+                progress.set_pass('',total)
+                db.rebuild_secondary(progress.step)
+                progress.close()
+                OkDialog(_("Secondary indices rebuilt"),
+                         _('All secondary indices have been rebuilt.'))
+            else:
+                print "Rebuilding Secondary Indices..."
+                db.rebuild_secondary(self.empty)
+                print "All secondary indices have been rebuilt."
+            db.enable_signals()
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
+
+    def empty(self):
+        pass
 
 #------------------------------------------------------------------------
 #
 # 
 #
 #------------------------------------------------------------------------
+class RebuildOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 from PluginMgr import register_tool
 
 register_tool(
-    runTool,
-    _("Rebuild secondary indices"),
-    category=_("Database Repair"),
+    name = 'rebuild',
+    category = Tool.TOOL_DBFIX,
+    tool_class = Rebuild,
+    options_class = RebuildOptions,
+    modes = Tool.MODE_GUI | Tool.MODE_CLI,
+    translated_name = _("Rebuild secondary indices"),
+    author_name = "Donald N. Allingham",
+    author_email = "dallingham@users.sourceforge.net",
     description=_("Rebuilds secondary indices")
     )
