@@ -155,7 +155,7 @@ class ReorderIds(Tool.Tool):
                     elif find_from_id(newgramps_id) != None:
                         dups.append(obj.get_handle())
                     else:
-                        data.set_gramps_id(newgramps_id)
+                        obj.set_gramps_id(newgramps_id)
                         commit(obj,self.trans)
                         newids[newgramps_id] = gramps_id
                 except:
