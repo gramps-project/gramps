@@ -22,14 +22,14 @@
 
 "Export Report and Tools commandline parameters to DocBook XML"
 
-import os
-
 #-------------------------------------------------------------------------
 #
 # python modules
 #
 #-------------------------------------------------------------------------
+import os
 import tempfile
+from cgi import escape
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -40,6 +40,7 @@ from gettext import gettext as _
 import Tool
 import Utils
 import PluginMgr
+import Report
 
 #-------------------------------------------------------------------------
 #
@@ -55,75 +56,90 @@ class CmdRef(Tool.Tool):
         f = tempfile.NamedTemporaryFile()
         fname = f.name
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+        f.write('<?yelp:chunk-depth 2?>\n')
         f.write('<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" ')
         f.write('   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">\n')
-        f.write('<appendix id="plugin_ref" lang="en">\n')
+        f.write('<article id="index" lang="en">\n')
         f.write('  <title>Reports and Tools parameter reference</title>\n')
         f.write('  <sect1 id="reps">\n')
         f.write('    <title>Reports</title>\n')
+        counter=0
         for item in PluginMgr.cl_list:
-            self.write_ref( f, item)
+            category = item[1]
+            if category in (Report.CATEGORY_BOOK,
+                            Report.CATEGORY_CODE,
+                            Report.CATEGORY_WEB):
+                self.write_ref(f,item,counter,category)
+            else:
+                self.write_ref( f, item, counter, None)
+            counter = counter + 1
         f.write('  </sect1>\n')
-        f.write('  <sect1 id="plugin_ref_tools">\n')
+        f.write('  <sect1 id="tools">\n')
         f.write('    <title>Tools</title>\n')
         for item in PluginMgr.cli_tool_list:
-            self.write_ref( f, item)
-        f.write('  </sect1>')
-        f.write('  ')
-        f.write('  ')
-        f.write('  ')
-        f.write('</appendix>')
+            self.write_ref( f, item, counter)
+            counter = counter + 1
+        f.write('  </sect1>\n')
+        f.write('  \n')
+        f.write('  \n')
+        f.write('  \n')
+        f.write('</article>\n')
         f.flush()
         os.spawnlp( os.P_WAIT, "yelp", "yelp", fname)
         f.close()
 
-    def fix(self,line):
-        l = line.strip()
-        l = l.replace('&','&amp;')
-        l = l.replace('>','&gt;')
-        l = l.replace('<','&lt;')
-        return l.replace('"','&quot;')
-
-    def write_ref( self, f, item):
-        f.write('<sect2 id="tool_opt_%s">\n' % item[0])
-        f.write('  <title>%s</title>\n' % self.fix(item[0]))
-        try:    # For Tools
+    def write_ref( self, f, item,counter,category=None):
+        f.write('<sect2 id="sect2id%d">\n' % counter)
+        f.write('  <title>%s</title>\n' % item[0])
+        f.write('  <simplesect>\n')
+        f.write('    <title>Options</title>\n')
+        f.write('    <variablelist>\n')
+        if category == None:
             oclass = item[3]( item[0])
-        except: # For Reports
-            oclass = item[3]
-        try:
-            ohelp = oclass.options_help
-        except:
-            ohelp = None
-        if ohelp:
-            f.write('  <simplesect>\n')
-            f.write('    <title>Options</title>\n')
-            f.write('    <variablelist>\n')
-            for arg in ohelp.keys():
-                f.write('      <variablelist>\n')
-                f.write('        <varlistentry>\n')
-                f.write('          <term><command>%s</command>: %s</term>\n' % (self.fix(arg), self.fix(ohelp[arg][0])))
-                f.write('          <listitem>\n')
-                f.write('            <para>%s</para>\n' % self.fix(ohelp[arg][1]))
-                if type(ohelp[arg][2]) in [list,tuple]:
-                    if ohelp[arg][3]:
-                        f.write('          <orderedlist>\n')
-                        for val in ohelp[arg][2]:
-                            f.write( "      <listitem>%s</listitem>\n" % self.fix(val))
-                        f.write('          </orderedlist>\n')
-                    else:
-                        f.write('          <itemizedlist>\n')
-                        for val in ohelp[arg][2]:
-                            f.write( "      <listitem>%s</listitem>\n" % self.fix(val))
-                        f.write('          </itemizedlist>\n')
+        elif category == Report.CATEGORY_BOOK:
+            import BookReport
+            oclass = BookReport.BookOptions(item[0])
+        elif category == Report.CATEGORY_CODE:
+            import GraphViz
+            oclass = GraphViz.GraphVizOptions(item[0])
+        elif category == Report.CATEGORY_WEB:
+            if item[0] == "webpage":
+                import WebPage
+                oclass = WebPage.WebReportOptions(item[0])
+            elif item[0] == "navwebpage":
+                import NavWebPage
+                oclass = NavWebPage.WebReportOptions(item[0])
+                
+        for arg in oclass.options_help.keys():
+            f.write('      <variablelist>\n')
+            f.write('        <varlistentry>\n')
+            f.write('          <term><command>%s</command>: %s</term>\n'
+                    % (escape(arg), escape(oclass.options_help[arg][0])))
+            f.write('          <listitem>\n')
+            f.write('            <para>%s</para>\n'
+                    % escape(oclass.options_help[arg][1]))
+            if type(oclass.options_help[arg][2]) in [list,tuple]:
+                if oclass.options_help[arg][3]:
+                    f.write('          <orderedlist>\n')
+                    for val in oclass.options_help[arg][2]:
+                        f.write( "      <listitem>%s</listitem>\n"
+                                 % escape(val))
+                    f.write('          </orderedlist>\n')
                 else:
-                    f.write('            <para>Value: <userinput>%s</userinput></para>\n' % self.fix(ohelp[arg][2]))
-                f.write('          </listitem>\n')
-                f.write('        </varlistentry>\n')
-                f.write('      </variablelist>\n')
+                    f.write('          <itemizedlist>\n')
+                    for val in oclass.options_help[arg][2]:
+                        f.write( "      <listitem>%s</listitem>\n"
+                                 % escape(val))
+                    f.write('          </itemizedlist>\n')
+            else:
+                f.write('            <para>Value: <userinput>%s</userinput></para>\n'
+                        % escape(oclass.options_help[arg][2]))
+            f.write('          </listitem>\n')
+            f.write('        </varlistentry>\n')
+            f.write('      </variablelist>\n')
 
-            f.write('    </variablelist>\n')
-            f.write('  </simplesect>\n')
+        f.write('    </variablelist>\n')
+        f.write('  </simplesect>\n')
         f.write('</sect2>\n')
     
 #------------------------------------------------------------------------
@@ -139,8 +155,10 @@ register_tool(
     tool_class = CmdRef,
     options_class = Tool.ToolOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,
-    translated_name = _("Generate Commandline Reference for Reports and Tools"),
+    translated_name = _("Generate Commandline Reference "
+                        "for Reports and Tools"),
     author_name = "Martin Hawlisch",
     author_email = "martin@hawlisch.de",
-    description=_("Generates a DocBook XML file that contains a parameter reference of Reports and Tools.")
+    description=_("Generates a DocBook XML file that contains "
+                  "a parameter reference of Reports and Tools.")
     )

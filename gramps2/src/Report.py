@@ -1596,7 +1596,7 @@ class CommandLineReport:
 
     def init_options(self):
         self.options_dict = {
-            'of'        : self.option_class.handler.report_name,
+            'of'        : self.option_class.handler.module_name,
             'off'       : self.option_class.handler.get_format_name(),
             'style'     : self.option_class.handler.get_default_stylesheet_name(),
             'papers'    : self.option_class.handler.get_paper_name(),
