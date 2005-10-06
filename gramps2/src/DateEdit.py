@@ -119,6 +119,7 @@ class DateEdit:
         self.parent_window = parent_window
 
         self.pixmap_obj = button_obj.get_child()
+        
         self.text_obj.connect('focus-out-event',self.parse_and_check)
         self.button_obj.connect('clicked',self.invoke_date_editor)
         
@@ -130,11 +131,11 @@ class DateEdit:
         Check current date object and display LED indicating the validity.
         """
         if self.date_obj.get_modifier() == Date.MOD_TEXTONLY:
-            self.pixmap_obj.set_from_pixbuf(self.bad)
+            self.pixmap_obj.set_from_pixbuf(self.pixmap_obj.render_icon(gtk.STOCK_DIALOG_ERROR,gtk.ICON_SIZE_MENU))
         elif self.date_obj.is_regular():
-            self.pixmap_obj.set_from_pixbuf(self.good)
+            self.pixmap_obj.set_from_pixbuf(self.pixmap_obj.render_icon(gtk.STOCK_YES,gtk.ICON_SIZE_MENU))
         else:
-            self.pixmap_obj.set_from_pixbuf(self.caution)
+            self.pixmap_obj.set_from_pixbuf(self.pixmap_obj.render_icon(gtk.STOCK_DIALOG_WARNING,gtk.ICON_SIZE_MENU))
         
     def parse_and_check(self,obj,val):
         """

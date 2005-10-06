@@ -668,7 +668,7 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=0, bold=1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(first_indent=0.0,lmargin=0.0,pad=0.25)
+        para.set(first_indent=0.0,lmargin=1.0,pad=0.25)
         default_style.add_style("DAR-NoteHeader",para)
 
         para = BaseDoc.ParagraphStyle()
