@@ -527,7 +527,8 @@ class GrampsParser:
 
     def start_sealed_to(self,attrs):
         try:
-            family = self.db.find_family_from_handle(attrs['hlink'],self.trans)
+            family = self.db.find_family_from_handle(
+                attrs['hlink'].replace('_',''),self.trans)
         except KeyError:
             handle = self.map_fid(attrs['ref'])
             family = self.find_family_by_gramps_id(handle)
@@ -535,7 +536,8 @@ class GrampsParser:
         
     def start_place(self,attrs):
         try:
-            self.placeobj = self.db.find_place_from_handle(attrs['hlink'],self.trans)
+            self.placeobj = self.db.find_place_from_handle(
+                attrs['hlink'].replace('_',''),self.trans)
         except KeyError:
             handle = self.map_pid(attrs['ref'])
             self.placeobj = self.find_place_by_gramps_id(handle)
@@ -543,7 +545,8 @@ class GrampsParser:
     def start_placeobj(self,attrs):
         handle = self.map_pid(attrs['id'])
         try:
-            self.placeobj = self.db.find_place_from_handle(attrs['handle'],self.trans)
+            self.placeobj = self.db.find_place_from_handle(
+                attrs['handle'].replace('_',''),self.trans)
             self.placeobj.set_gramps_id(handle)
         except KeyError:
             self.placeobj = self.find_place_by_gramps_id(handle)
@@ -586,7 +589,8 @@ class GrampsParser:
         self.in_witness = 1
         self.witness_comment = ""
         if attrs.has_key('hlink'):
-            self.witness = RelLib.Witness(RelLib.Event.ID,attrs['hlink'])
+            self.witness = RelLib.Witness(RelLib.Event.ID,
+                                          attrs['hlink'].replace('_',''))
         elif attrs.has_key('ref'):
             person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
             self.witness = RelLib.Witness(RelLib.Event.ID,person.get_handle())
@@ -645,7 +649,8 @@ class GrampsParser:
 
     def start_bmark(self,attrs):
         try:
-            person = self.db.find_person_from_handle(attrs['hlink'],self.trans)
+            person = self.db.find_person_from_handle(
+                attrs['hlink'].replace('_',''),self.trans)
         except KeyError:
             handle = self.map_gid(attrs["ref"])
             person = self.find_person_by_gramps_id(handle)
@@ -656,7 +661,8 @@ class GrampsParser:
             self.callback(True)
         new_id = self.map_gid(attrs['id'])
         try:
-            self.person = self.db.find_person_from_handle(attrs['handle'],self.trans)
+            self.person = self.db.find_person_from_handle(
+                attrs['handle'].replace('_',''),self.trans)
             self.person.set_gramps_id(new_id)
         except KeyError:
             self.person = self.find_person_by_gramps_id(new_id)
@@ -668,27 +674,30 @@ class GrampsParser:
 
     def start_people(self,attrs):
         if attrs.has_key('home'):
-            self.home = attrs['home']
+            self.home = attrs['home'].replace('_','')
         elif attrs.has_key("default"):
             self.tempDefault = attrs["default"]
 
     def start_father(self,attrs):
         try:
-            person = self.db.find_person_from_handle(attrs['hlink'],self.trans)
+            person = self.db.find_person_from_handle(
+                attrs['hlink'].replace('_',''),self.trans)
         except KeyError:
             person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
         self.family.set_father_handle(person.get_handle())
 
     def start_mother(self,attrs):
         try:
-            person = self.db.find_person_from_handle(attrs['hlink'],self.trans)
+            person = self.db.find_person_from_handle(
+                attrs['hlink'].replace('_',''),self.trans)
         except KeyError:
             person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
         self.family.set_mother_handle(person.get_handle())
     
     def start_child(self,attrs):
         try:
-            person = self.db.find_person_from_handle(attrs['hlink'],self.trans)
+            person = self.db.find_person_from_handle(
+                attrs['hlink'].replace('_',''),self.trans)
         except KeyError:
             person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
         self.family.add_child_handle(person.get_handle())
@@ -720,7 +729,8 @@ class GrampsParser:
         self.count = self.count + 1
         handle = self.map_fid(attrs["id"])
         try:
-            self.family = self.db.find_family_from_handle(attrs["handle"],self.trans)
+            self.family = self.db.find_family_from_handle(
+                attrs['handle'].replace('_',''),self.trans)
             self.family.set_gramps_id(handle)
         except KeyError:
             self.family = self.find_family_by_gramps_id(handle)
@@ -735,7 +745,8 @@ class GrampsParser:
 
     def start_childof(self,attrs):
         try:
-            family = self.db.find_family_from_handle(attrs["hlink"],self.trans)
+            family = self.db.find_family_from_handle(
+                attrs["hlink"].replace('_',''),self.trans)
         except KeyError:
             family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
             
@@ -757,7 +768,8 @@ class GrampsParser:
 
     def start_parentin(self,attrs):
         try:
-            family = self.db.find_family_from_handle(attrs['hlink'],self.trans)
+            family = self.db.find_family_from_handle(
+                attrs['hlink'].replace('_',''),self.trans)
         except KeyError:
             family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
         self.person.add_family_handle(family.get_handle())
@@ -777,6 +789,10 @@ class GrampsParser:
                 self.name.conf = 2
             if attrs.has_key("priv"):
                 self.name.set_privacy(int(attrs["priv"]))
+            if attrs.has_key("alt"):
+                self.alt_name = int(attrs["alt"])
+            else:
+                self.alt_name = 0
 
     def start_last(self,attrs):
         if attrs.has_key('prefix'):
@@ -793,7 +809,8 @@ class GrampsParser:
     def start_sourceref(self,attrs):
         self.source_ref = RelLib.SourceRef()
         try:
-            source = self.db.find_source_from_handle(attrs["hlink"],self.trans)
+            source = self.db.find_source_from_handle(
+                attrs["hlink"].replace('_',''),self.trans)
         except KeyError:
             source = self.find_source_by_gramps_id(self.map_sid(attrs["ref"]))
             
@@ -828,7 +845,8 @@ class GrampsParser:
     def start_source(self,attrs):
         handle = self.map_sid(attrs["id"])
         try:
-            self.source = self.db.find_source_from_handle(attrs["handle"],self.trans)
+            self.source = self.db.find_source_from_handle(
+                attrs['handle'].replace('_',''),self.trans)
             self.source.set_gramps_id(handle)
         except KeyError:
             self.source = self.find_source_by_gramps_id(handle)
@@ -836,7 +854,8 @@ class GrampsParser:
     def start_objref(self,attrs):
         self.objref = RelLib.MediaRef()
         try:
-            obj = self.db.find_object_from_handle(attrs['hlink'],self.trans)
+            obj = self.db.find_object_from_handle(
+                attrs['hlink'].replace('_',''),self.trans)
         except KeyError:
             obj = self.find_object_by_gramps_id(self.map_oid(attrs['ref']))
             
@@ -859,7 +878,8 @@ class GrampsParser:
     def start_object(self,attrs):
         handle = self.map_oid(attrs['id'])
         try:
-            self.object = self.db.find_object_from_handle(attrs['handle'],self.trans)
+            self.object = self.db.find_object_from_handle(
+                attrs['handle'].replace('_',''),self.trans)
             self.object.set_gramps_id(handle)
         except KeyError:
             self.object = self.find_object_by_gramps_id(handle)
@@ -1126,10 +1146,17 @@ class GrampsParser:
         if self.in_witness:
             self.witness = RelLib.Witness(RelLib.Event.NAME,tag)
         else:
-            if self.name.get_type() == "":
-                self.name.set_type("Birth Name")
-            self.person.set_primary_name (self.name)
-            self.person.get_primary_name().build_sort_name()
+            if self.alt_name:
+                # former aka tag -- alternate name
+                if self.name.get_type() == "":
+                    self.name.set_type("Also Known As")
+                self.person.add_alternate_name(self.name)
+            else:
+                if self.name.get_type() == "":
+                    self.name.set_type("Birth Name")
+                self.person.set_primary_name (self.name)
+                self.person.get_primary_name().build_sort_name()
+
             self.name = None
 
     def stop_ref(self,tag):

@@ -263,9 +263,9 @@ class XmlWriter:
                     self.write_line("gender","F",3)
                 else:
                     self.write_line("gender","U",3)
-                self.dump_name(person.get_primary_name(),True,3)
+                self.dump_name(person.get_primary_name(),False,3)
                 for name in person.get_alternate_names():
-                    self.dump_name(name,False,3)
+                    self.dump_name(name,True,3)
             
                 self.write_line("nick",person.get_nick_name(),3)
                 birth = self.db.get_event_from_handle(person.get_birth_handle())
@@ -651,12 +651,12 @@ class XmlWriter:
         if value != None:
             self.g.write('%s<%s>%s</%s>\n' % ('  '*indent,label,self.fix(value),label))
 
-    def dump_name(self,name,preferred=False,index=1):
+    def dump_name(self,name,alternative=False,index=1):
         sp = "  "*index
         name_type = name.get_type()
         self.g.write('%s<name' % sp)
-        if preferred:
-            self.g.write(' preferred="1"')
+        if alternative:
+            self.g.write(' alt="1"')
         if name_type:
             self.g.write(' type="%s"' % name_type)
         if name.get_privacy() != 0:

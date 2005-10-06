@@ -6,6 +6,10 @@
 	* src/plugins/CmdRef.py: Work out Report docs.
 	* src/Report.py: Typo.
 
+	* src/WriteXML.py: Switch from preferred to alt name attribute.
+	* doc/grampsxml.dtd: Update.
+	* src/ReadXML.py: Bring in sync with format changes.
+
 2005-10-06  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/CmdRef.py: New file.
 

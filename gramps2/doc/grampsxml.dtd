@@ -109,7 +109,7 @@ GENDER has values of M, F, or U.
 <!ELEMENT name    (first?,last?,suffix?,patronymic?,title?,
                   (daterange|dateval|datestr)?,note?,sourceref?)>
 <!ATTLIST name    
-        preferred (0|1) #IMPLIED
+        alt       (0|1) #IMPLIED
         type      CDATA #IMPLIED
         priv      (0|1) #IMPLIED
         sort      CDATA #IMPLIED
