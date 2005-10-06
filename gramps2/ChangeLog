@@ -1,3 +1,6 @@
+2005-10-06  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/CmdRef.py: New file.
+
 2005-10-06  Don Allingham  <don@gramps-project.org>
 	* src/docgen/AbiWord2Doc.py: handle superscript properly
 	* src/ReportUtils.py: remove name generation from list_person_str
