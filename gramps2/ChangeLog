@@ -1,3 +1,8 @@
+2005-10-06  Don Allingham  <don@gramps-project.org>
+	* src/docgen/AbiWord2Doc.py: handle superscript properly
+	* src/ReportUtils.py: remove name generation from list_person_str
+	* src/plugins/DetAncestralReport.py: fix child list, use roman numerals
+
 2005-10-06  Alex Roitman  <shura@gramps-project.org>
 	* src/TreeTips.py: Typo.
 	* src/plugins/ScratchPad.py: Convert to new API.

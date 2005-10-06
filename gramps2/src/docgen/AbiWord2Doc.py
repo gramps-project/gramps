@@ -221,10 +221,10 @@ class AbiWordDoc(BaseDoc.BaseDoc):
                      % (start_p,tag_number,act_height,act_width,end_p))
 
     def start_superscript(self):
-        self.text = self.text + '<c props="text-position:superscript">'
+        self.f.write('<c props="text-position:superscript">')
 
     def end_superscript(self):
-        self.text = self.text + '</c>'
+        self.f.write('</c>')
 
     def start_paragraph(self,style_name,leader=None):
         self.in_paragraph = 1

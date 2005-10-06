@@ -218,25 +218,35 @@ class DetAncestorReport(Report.Report):
                     return 1    # Duplicate person
 
         # Check birth record
-        self.doc.write_text(ReportUtils.born_str(self.database,person,0,
-                                                 self.EMPTY_DATE,self.EMPTY_PLACE))
-        
-        birth_handle = person.get_birth_handle()
-        if birth_handle:
-            self.endnotes(self.database.get_event_from_handle(birth_handle))
 
-        self.doc.write_text(ReportUtils.died_str(self.database,person,0,
-                                                 self.EMPTY_DATE,self.EMPTY_PLACE))
-        death_handle = person.get_birth_handle()
-        if death_handle:
-            self.endnotes(self.database.get_event_from_handle(death_handle))
+        first = person.get_primary_name().get_first_name()
+        text = ReportUtils.born_str(self.database,person,first,
+                                    self.EMPTY_DATE,self.EMPTY_PLACE)
+        if text:
+            self.doc.write_text(text)
+            birth_handle = person.get_birth_handle()
+            if birth_handle:
+                self.endnotes(self.database.get_event_from_handle(birth_handle))
+            first = 0
 
-        self.doc.write_text(ReportUtils.buried_str(self.database,person,0,
-                                                   self.EMPTY_DATE,self.EMPTY_PLACE))
+        text = ReportUtils.died_str(self.database,person,first,
+                                    self.EMPTY_DATE,self.EMPTY_PLACE)
+        if text:
+            self.doc.write_text(text)
+            death_handle = person.get_birth_handle()
+            if death_handle:
+                self.endnotes(self.database.get_event_from_handle(death_handle))
+            first = 0
 
-        firstName = person.get_primary_name().get_first_name()
 
-        self.write_parents(person, firstName)
+        text = ReportUtils.buried_str(self.database,person,first,
+                                      self.EMPTY_DATE,self.EMPTY_PLACE)
+        if text:
+            self.doc.write_text(text)
+
+        first = person.get_primary_name().get_first_name()
+
+        self.write_parents(person, first)
         self.write_marriage(person)
         self.doc.end_paragraph()
 
@@ -378,22 +388,28 @@ class DetAncestorReport(Report.Report):
             father_name = _("unknown")
 
         self.doc.start_paragraph("DAR-ChildTitle")
-        self.doc.write_text(_("Children of %s and %s are:") % 
-                                        (mother_name,father_name))
+        self.doc.write_text(_("Children of %s and %s") % 
+                            (mother_name,father_name))
         self.doc.end_paragraph()
 
+        cnt = 1
         for child_handle in family.get_child_handle_list():
-            self.doc.start_paragraph("DAR-ChildList")
             child = self.database.get_person_from_handle(child_handle)
             child_name = _nd.display(child)
 
             if self.childRef and self.prev_gen_handles.get(child_handle):
-                child_name = "[%s] %s" % (
-                            str(self.prev_gen_handles.get(child_handle)),
-                            child_name)
+                value = str(self.prev_gen_handles.get(child_handle))
+                child_name += " [%s]" % value
 
-            text = ReportUtils.list_person_str(self.database,child,child_name)
-            self.doc.write_text(text)
+            self.doc.start_paragraph("DAR-ChildList",ReportUtils.roman(cnt).lower() + ".")
+            cnt += 1
+
+            self.doc.write_text(child_name)
+            text = ReportUtils.list_person_str(self.database,child)
+            if text:
+                self.doc.write_text(" : %s" % text)
+            else:
+                self.doc.write_text(".")
 
             self.doc.end_paragraph()
 
@@ -644,7 +660,7 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         font.set(face=BaseDoc.FONT_SANS_SERIF,size=9)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(first_indent=0.0,lmargin=1.0,pad=0.25)
+        para.set(first_indent=-0.5,lmargin=1.5,pad=0.25)
         para.set_description(_('The style used for the children list.'))
         default_style.add_style("DAR-ChildList",para)
 
