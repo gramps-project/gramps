@@ -36,7 +36,6 @@ from gettext import gettext as _
 import gobject
 import gtk
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -48,6 +47,7 @@ import RelLib
 import const
 import Utils
 import DateHandler
+import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -333,7 +333,7 @@ class GrampsPreferences:
             self.panel.set_current_page(self.imap[path])
         
     def on_propertybox_help(self,obj):
-        gnome.help_display('gramps-manual','gramps-prefs')
+        GrampsDisplay.help('gramps-prefs')
 
     def on_close_clicked(self,obj):
         Utils.destroy_passed_object(self.window)

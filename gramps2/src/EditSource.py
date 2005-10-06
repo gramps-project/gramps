@@ -34,7 +34,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gobject
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -48,6 +47,7 @@ import ListModel
 import RelLib
 import NameDisplay
 import Spell
+import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -221,7 +221,7 @@ class EditSource:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-src')
+        GrampsDisplay.help('adv-src')
 
     def close(self,obj):
         self.gallery.close()

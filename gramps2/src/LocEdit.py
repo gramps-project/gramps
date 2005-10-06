@@ -27,7 +27,6 @@
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -37,6 +36,7 @@ import gnome
 import const
 import Utils
 import RelLib
+import GrampsDisplay
 
 from gettext import gettext as _
 
@@ -116,7 +116,7 @@ class LocationEditor:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-complete')
+        GrampsDisplay.help('gramps-edit-complete')
 
     def on_location_edit_ok_clicked(self,obj):
         city = unicode(self.city.get_text())

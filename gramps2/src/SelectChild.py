@@ -34,7 +34,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk.glade
-import gnome
 import gobject
 
 #-------------------------------------------------------------------------
@@ -49,6 +48,7 @@ import PeopleModel
 import NameDisplay
 import GenericFilter
 import Date
+import GrampsDisplay
 
 from QuestionDialog import ErrorDialog
 
@@ -164,7 +164,7 @@ class SelectChild:
 
     def on_child_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-quick')
+        GrampsDisplay.help('gramps-edit-quick')
 
     def redraw_child_list(self):
         self.refmodel = PeopleModel.PeopleModel(self.db,self.active_filter)

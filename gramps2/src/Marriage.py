@@ -37,7 +37,6 @@ import sets
 import gtk
 import gtk.gdk
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -58,6 +57,7 @@ import NameDisplay
 import Date
 import DateEdit
 import Spell
+import GrampsDisplay
 
 from QuestionDialog import QuestionDialog, WarningDialog, SaveDialog
 from DdTargets import DdTargets
@@ -389,7 +389,7 @@ class Marriage:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-rel')
+        GrampsDisplay.help('adv-rel')
 
     def ev_drag_begin(self, context, a):
         return

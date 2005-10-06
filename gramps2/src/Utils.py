@@ -37,13 +37,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk
 import gtk.gdk
-import gnome
 
-try:
-    from gnomevfs import get_mime_type, mime_get_description
-except:
-    from gnome.vfs import get_mime_type, mime_get_description
-    
 #-------------------------------------------------------------------------
 #
 # Gramps modules
@@ -251,11 +245,7 @@ def find_mime_type_pixbuf(mime_type):
     
 def get_mime_description(mime_type):
     try:
-        value = mime_get_description(mime_type)
-        if value:
-            return value
-        else:
-            return ''
+        return GrampsMime.get_description(mime_type)
     except:
         return ''
 

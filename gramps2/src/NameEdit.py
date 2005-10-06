@@ -33,7 +33,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -50,6 +49,7 @@ import Date
 import DateEdit
 import DateHandler
 import Spell
+import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -243,7 +243,7 @@ class NameEditor:
 
     def on_help_clicked(self,*obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-an')
+        GrampsDisplay.help('adv-an')
 
     def on_name_edit_ok_clicked(self,obj):
         first = unicode(self.given_field.get_text())

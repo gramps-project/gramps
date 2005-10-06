@@ -41,7 +41,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -54,6 +53,7 @@ import Sources
 import AutoComp
 import RelLib
 import Spell
+import GrampsDisplay
 
 from QuestionDialog import WarningDialog
 
@@ -197,7 +197,7 @@ class AttributeEditor:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-at')
+        GrampsDisplay.help('adv-at')
 
     def on_ok_clicked(self,obj):
         """

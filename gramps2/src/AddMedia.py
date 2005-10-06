@@ -46,7 +46,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 from QuestionDialog import ErrorDialog
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -58,6 +57,7 @@ import Utils
 import RelImage
 import RelLib
 import GrampsMime
+import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -102,7 +102,7 @@ class AddMediaObject:
         
     def on_help_imagesel_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-quick')
+        GrampsDisplay.help('gramps-edit-quick')
         self.val = self.window.run()
 
     def on_savephoto_clicked(self):

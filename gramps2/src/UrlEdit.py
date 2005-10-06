@@ -33,7 +33,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -43,6 +42,7 @@ import gnome
 import const
 import Utils
 import RelLib
+import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -119,7 +119,7 @@ class UrlEditor:
 
     def on_help_clicked(self,*obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-complete')
+        GrampsDisplay.help('gramps-edit-complete')
 
     def on_url_edit_ok_clicked(self,obj):
         des = unicode(self.des.get_text())

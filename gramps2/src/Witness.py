@@ -34,7 +34,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -46,6 +45,7 @@ import Utils
 import RelLib
 import ListModel
 import NameDisplay
+import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -205,7 +205,7 @@ class WitnessEditor:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-wit')
+        GrampsDisplay.help('adv-wit')
 
     def choose(self,obj):
         import SelectPerson

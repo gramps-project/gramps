@@ -52,7 +52,6 @@ import gtk
 import gtk.gdk
 import gtk.glade
 import gobject
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -64,6 +63,7 @@ import DateHandler
 import const
 import Utils
 import QuestionDialog
+import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -258,10 +258,8 @@ class DateEditorDialog:
         while 1:
             response = self.top_window.run()
             if response == gtk.RESPONSE_HELP:
-                try:
-                    gnome.help_display('gramps-manual','adv-dates')
-                except gobject.GError, msg:
-                    QuestionDialog.ErrorDialog(_("Could not open help"),str(msg))
+                GrampsDisplay.help('adv-dates')
+
             elif response == gtk.RESPONSE_OK:
                 (the_quality,the_modifier,the_calendar,the_value,the_text) = \
                                         self.build_date_from_ui()

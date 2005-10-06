@@ -43,13 +43,13 @@ from gettext import gettext as _
 import gtk.glade
 import gtk.gdk
 import gobject
-import gnome
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import GrampsDisplay
 import RelLib
 import const
 import Utils
@@ -314,7 +314,7 @@ class ChooseParents:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-quick')
+        GrampsDisplay.help('gramps-edit-quick')
 
     def person_added(self,handle_list):
         update_father = False
@@ -759,7 +759,7 @@ class ModifyParents:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-spec-par')
+        GrampsDisplay.help('gramps-spec-par')
         self.val = self.window.run()
 
     def save_parents_clicked(self):

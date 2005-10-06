@@ -34,7 +34,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gnome
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK, INTERP_BILINEAR, pixbuf_new_from_file
 from gobject import TYPE_PYOBJECT
 import cPickle as pickle
@@ -51,6 +50,7 @@ import Date
 import DateEdit
 import DateHandler
 import GrampsDBCallback
+import GrampsDisplay
 import Spell
 
 from DdTargets import DdTargets
@@ -165,7 +165,7 @@ class SourceSelector:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-complete')
+        GrampsDisplay.help('gramps-edit-complete')
 
     def selection_changed(self,obj):
         (store,node) = self.selection.get_selected()
@@ -480,7 +480,7 @@ class SourceEditor:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-si')
+        GrampsDisplay.help('adv-si')
 
     def set_button(self):
         if self.active_source:

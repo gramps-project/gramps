@@ -36,7 +36,6 @@ importers, exporters, and document generators.
 import gobject
 import gtk
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -61,6 +60,7 @@ import Errors
 import Report
 import Tool
 import PluginMgr
+import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -412,7 +412,7 @@ class PluginStatus:
 
     def help(self,obj):
         """Display the GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-getting-started')
+        GrampsDisplay.help('gramps-getting-started')
 
     def pop_button_update(self, client,cnxn_id,entry,data):
         self.pop_button.set_active(GrampsKeys.get_pop_plugin_status())

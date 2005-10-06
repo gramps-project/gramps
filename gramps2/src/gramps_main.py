@@ -51,6 +51,7 @@ import gtk.gdk
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import GrampsDisplay
 import RelLib
 import GrampsDbBase
 import GrampsBSDDB
@@ -123,6 +124,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                                               args, const.popt_table)
         except:
             self.program = gnome.program_init('gramps',const.version)
+
         self.program.set_property('app-libdir','%s/lib' % const.prefixdir)
         self.program.set_property('app-datadir','%s/share/gramps' % const.prefixdir)
         self.program.set_property('app-sysconfdir','%s/etc' % const.prefixdir)
@@ -1068,13 +1070,13 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.filter_text.set_sensitive(0)
         
     def home_page_activate(self,obj):
-        gnome.url_show(_HOMEPAGE)
+        GrampsDisplay.url(_HOMEPAGE)
 
     def mailing_lists_activate(self,obj):
-        gnome.url_show(_MAILLIST)
+        GrampsDisplay.url(_MAILLIST)
 
     def report_bug_activate(self,obj):
-        gnome.url_show(_BUGREPORT)
+        GrampsDisplay.url(_BUGREPORT)
 
     def on_fast_merge_activate(self,obj):
         """Calls up the merge dialog for the selection"""
@@ -1175,17 +1177,11 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
     
     def on_contents_activate(self,obj):
         """Display the GRAMPS manual"""
-        try:
-            gnome.help_display('gramps-manual','index')
-        except gobject.GError, msg:
-            ErrorDialog(_("Could not open help"),str(msg))
+        GrampsDisplay.help('index')
 
     def on_faq_activate(self,obj):
         """Display FAQ"""
-        try:
-            gnome.help_display('gramps-manual','faq')
-        except gobject.GError, msg:
-            ErrorDialog(_("Could not open help"),str(msg))
+        GrampsDisplay.help('faq')
 
     def on_new_clicked(self,obj):
         """Prompt for permission to close the current database"""

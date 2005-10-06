@@ -36,8 +36,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gobject
 import gtk
-import gnome
-import gnome.ui
 import gtk.glade
 
 try:
@@ -66,6 +64,8 @@ import DateHandler
 import Date
 import ImgManip
 import Spell
+import GrampsDisplay
+
 from QuestionDialog import ErrorDialog
 from DdTargets import DdTargets
 
@@ -143,7 +143,7 @@ class ImageSelect:
 
     def on_help_imagesel_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-quick')
+        GrampsDisplay.help('gramps-edit-quick')
         self.val = self.window.run()
 
     def on_name_changed(self, obj):
@@ -860,7 +860,7 @@ class LocalMediaProperties:
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-complete')
+        GrampsDisplay.help('gramps-edit-complete')
         
     def on_ok_clicked(self,obj):
         self.on_apply_clicked()
@@ -1227,7 +1227,7 @@ class GlobalMediaProperties:
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-media')
+        GrampsDisplay.help('adv-media')
         
     def on_ok_clicked(self, obj):
         self.on_apply_clicked(obj)

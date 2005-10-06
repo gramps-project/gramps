@@ -1,3 +1,9 @@
+2005-10-05  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDisplay.py: move gnome help and url control into this
+	module
+	* various: switch from direct gnome calls to GrampsDisplay calls
+	* src/TreeTips.py: don't register type if pygtk > 2.8.0
+
 2005-10-05  Alex Roitman  <shura@gramps-project.org>
 	* doc/grampsxml.dtd: Add to CVS (replaces gramps.dtd).
 	* src/WriteXML.py: Bring in sync with the DTD: 

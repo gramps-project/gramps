@@ -35,7 +35,6 @@ import sets
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -53,6 +52,7 @@ import DateHandler
 import ImageSelect
 import DateEdit
 import Spell
+import GrampsDisplay
 
 from QuestionDialog import WarningDialog, ErrorDialog
 
@@ -292,7 +292,7 @@ class EventEditor:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-ev')
+        GrampsDisplay.help('adv-ev')
 
     def get_place(self,field,trans):
         text = unicode(field.get_text().strip())

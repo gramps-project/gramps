@@ -41,7 +41,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk.glade
-import gnome
 import gobject
 
 #-------------------------------------------------------------------------
@@ -49,6 +48,7 @@ import gobject
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import GrampsDisplay
 import RelLib
 import const
 import Utils
@@ -153,7 +153,7 @@ class AddSpouse:
 
     def on_spouse_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-edit-quick')
+        GrampsDisplay.help('gramps-edit-quick')
 
     def get_selected_ids(self):
         mlist = []

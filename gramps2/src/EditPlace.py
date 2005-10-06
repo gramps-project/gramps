@@ -36,7 +36,6 @@ from gettext import gettext as _
 import gobject
 import gtk
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -49,6 +48,7 @@ import Sources
 import ImageSelect
 import NameDisplay
 import Spell
+import GrampsDisplay
 
 from DdTargets import DdTargets
 
@@ -309,7 +309,7 @@ class EditPlace:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-plc')
+        GrampsDisplay.help('adv-plc')
 
     def build_columns(self,tree,list):
         cnum = 0
@@ -372,7 +372,8 @@ class EditPlace:
     def on_web_go_clicked(self,obj):
         text = obj.get()
         if text != "":
-            gnome.url_show(text)
+            import GrampsDisplay
+            GrampsDisplay.url(text)
 
     def set(self,field,getf,setf):
         text = unicode(field.get_text())

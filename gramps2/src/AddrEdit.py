@@ -38,13 +38,13 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk.glade
-import gnome
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import GrampsDisplay
 import const
 import Utils
 import Date
@@ -189,7 +189,7 @@ class AddressEditor:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-ad')
+        GrampsDisplay.help('adv-ad')
 
     def ok_clicked(self,obj):
         """

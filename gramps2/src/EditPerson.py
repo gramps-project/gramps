@@ -38,8 +38,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gobject
-import gnome
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK, INTERP_BILINEAR, pixbuf_new_from_file
 
 #-------------------------------------------------------------------------
@@ -62,6 +60,7 @@ import DateHandler
 import TransTable
 import NameDisplay
 import Spell
+import GrampsDisplay
 
 from QuestionDialog import WarningDialog, ErrorDialog, SaveDialog, QuestionDialog2
 
@@ -659,7 +658,7 @@ class EditPerson:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-pers')
+        GrampsDisplay.help('adv-pers')
 
     def build_columns(self,tree,list):
         cnum = 0
@@ -1284,7 +1283,8 @@ class EditPerson:
         """Attempts to display the selected URL in a web browser"""
         text = obj.get()
         if text:
-            gnome.url_show(text)
+            import GrampsDisplay
+            GrampsDisplay.url(text)
         
     def on_cancel_edit(self,obj):
         """If the data has changed, give the user a chance to cancel

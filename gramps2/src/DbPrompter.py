@@ -35,8 +35,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gobject
-import gnome
 
 try:
     from gnomevfs import get_mime_type
@@ -61,6 +59,7 @@ import ReadGrdb
 import WriteGrdb
 import WriteXML
 import WriteGedcom
+import GrampsDisplay
 
 from bsddb import db
 
@@ -113,10 +112,7 @@ class DbPrompter:
             elif response == gtk.RESPONSE_CANCEL:
                 break
             elif response == gtk.RESPONSE_HELP:
-                try:
-                    gnome.help_display('gramps-manual','choose-db-start')
-                except gobject.GError,msg:
-                    QuestionDialog.ErrorDialog(_('Help not available'),msg)
+                GrampsDisplay.help('choose-db-start')
 
         top.destroy()
         if response == gtk.RESPONSE_CANCEL:
