@@ -256,5 +256,5 @@ class TreeTips(gtk.Widget):
         return x, y
 
 
-if gtk.pygtk_version < (2.8.0):
+if gtk.pygtk_version < (2,8,0):
     gobject.type_register(TreeTips)

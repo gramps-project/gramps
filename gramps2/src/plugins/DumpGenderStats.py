@@ -24,6 +24,7 @@
 
 import gtk
 import ListModel
+import Tool
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
 #-------------------------------------------------------------------------
@@ -31,24 +32,56 @@ _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 #
 #
 #-------------------------------------------------------------------------
-def DumpGenderStatsPlugin(database,active_person,callback,parent=None):
-    stats_list = []
-    for name in database.genderStats.stats.keys():
-        stats_list.append((name,)+database.genderStats.stats[name]+(_GENDER[database.genderStats.guess_gender(name)],))
+class DumpGenderStats(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
 
-    titles = [(_('Name'),1,100), (_('Male'),2,70),
-              (_('Female'),3,70), ('Unknown',4,70), (_('Guess'),5,70) ]
-    treeview = gtk.TreeView()
-    model = ListModel.ListModel(treeview,titles)
-    for entry in stats_list:
-        model.add(entry,entry[0])
-    w = gtk.Window()
-    w.set_position(gtk.WIN_POS_MOUSE)
-    w.set_default_size(400,300)
-    s=gtk.ScrolledWindow()
-    s.add(treeview)
-    w.add(s)
-    w.show_all()
+        stats_list = []
+
+        for name in db.genderStats.stats.keys():
+            stats_list.append(
+                (name,)
+                + db.genderStats.stats[name]
+                + (_GENDER[db.genderStats.guess_gender(name)],)
+                )
+
+        if parent:
+            titles = [
+                (_('Name'),1,100), (_('Male'),2,70),
+                (_('Female'),3,70), (_('Unknown'),4,70),
+                (_('Guess'),5,70)
+                ]
+        
+            treeview = gtk.TreeView()
+            model = ListModel.ListModel(treeview,titles)
+            for entry in stats_list:
+                model.add(entry,entry[0])
+            w = gtk.Window()
+            w.set_transient_for(parent.topWindow)
+            w.set_position(gtk.WIN_POS_MOUSE)
+            w.set_default_size(400,300)
+            s = gtk.ScrolledWindow()
+            s.add(treeview)
+            w.add(s)
+            w.show_all()
+        else:
+            print "\t%s\t%s\t%s\t%s\t%s\n" % (
+                'Name','Male','Female','Unknown','Guess')
+            for entry in stats_list:
+                print "\t%s\t%s\t%s\t%s\t%s" % entry
+            
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class DumpGenderStatsOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
 
 #-------------------------------------------------------------------------
 #
@@ -58,8 +91,12 @@ def DumpGenderStatsPlugin(database,active_person,callback,parent=None):
 from PluginMgr import register_tool
 
 register_tool(
-    DumpGenderStatsPlugin,
-    _("Dumps gender statistics"),
-    category=_("Debug"),
-    description=_("Will dump the statistics for the gender guessing from the first name.")
+    name = 'dgenstats',
+    category = Tool.TOOL_DEBUG,
+    tool_class = DumpGenderStats,
+    options_class = DumpGenderStatsOptions,
+    modes = Tool.MODE_GUI | Tool.MODE_CLI,
+    translated_name = _("Dumps gender statistics"),
+    description = _("Will dump the statistics for the gender guessing "
+                    "from the first name.")
     )

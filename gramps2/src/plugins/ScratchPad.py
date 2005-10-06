@@ -48,9 +48,8 @@ from gnome import help_display
 #-------------------------------------------------------------------------
 import const
 import TreeTips
-
+import Tool
 from DdTargets import DdTargets
-
 
 #-------------------------------------------------------------------------
 #
@@ -891,9 +890,25 @@ def place_title(db,event):
 #
 #
 #-------------------------------------------------------------------------
-def ScratchPad(database,person,callback,parent=None):
-    ScratchPadWindow(database,parent)
-    
+class ScratchPad(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
+
+        ScratchPadWindow(db,parent)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class ScratchPadOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
+
 #-------------------------------------------------------------------------
 #
 #
@@ -902,9 +917,12 @@ def ScratchPad(database,person,callback,parent=None):
 from PluginMgr import register_tool
 
 register_tool(
-    ScratchPad,
-    _("Scratch Pad"),
-    category=_("Utilities"),
-    description=_("The Scratch Pad provides a temporary note pad to store "
-                  "objects for easy reuse.")
+    name = 'scratchpad',
+    category = Tool.TOOL_UTILS,
+    tool_class = ScratchPad,
+    options_class = ScratchPadOptions,
+    modes = Tool.MODE_GUI,
+    translated_name = _("Scratch Pad"),
+    description=_("The Scratch Pad provides a temporary note pad "
+                  "to store objects for easy reuse.")
     )
