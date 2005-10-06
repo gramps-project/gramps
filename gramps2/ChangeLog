@@ -12,7 +12,7 @@
 	  + prepend all handles and hlinks with "_" (conform to XML ID)
 	  + replace "aka" with "name", "name" with "name preferred=1"
 	* src/Plugins.py: Factor out common code for plugins; fix tool
-	dialog.
+	dialog; Convert plugin reloading tool to new API.
 
 2005-10-05  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/plugins/ReorderIds.py: handle more cases correctly

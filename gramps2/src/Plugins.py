@@ -584,81 +584,98 @@ class GrampsBookFormatComboBox(gtk.ComboBox):
 
 #-------------------------------------------------------------------------
 #
-# reload_plugins
+# Reload plugins
 #
 #-------------------------------------------------------------------------
-def reload_plugins(obj=None,junk1=None,junk2=None,junk3=None):
-    """Treated as a callback, causes all plugins to get reloaded. This is
-    useful when writing and debugging a plugin"""
+class Reload(Tool.Tool):
+    def __init__(self,db,person,options_class,name,callback=None,parent=None):
+        Tool.Tool.__init__(self,db,person,options_class,name)
+
+        """
+        Treated as a callback, causes all plugins to get reloaded.
+        This is useful when writing and debugging a plugin.
+        """
     
-    pymod = re.compile(r"^(.*)\.py$")
+        pymod = re.compile(r"^(.*)\.py$")
 
-    oldfailmsg = PluginMgr.failmsg_list[:]
-    PluginMgr.failmsg_list = []
+        oldfailmsg = PluginMgr.failmsg_list[:]
+        PluginMgr.failmsg_list = []
 
-    # attempt to reload all plugins that have succeeded in the past
-    for plugin in PluginMgr._success_list:
-        filename = os.path.basename(plugin.__file__)
-        filename = filename.replace('pyc','py')
-        filename = filename.replace('pyo','py')
-        try: 
-            reload(plugin)
-        except:
-            PluginMgr.failmsg_list.append((filename,sys.exc_info()))
+        # attempt to reload all plugins that have succeeded in the past
+        for plugin in PluginMgr._success_list:
+            filename = os.path.basename(plugin.__file__)
+            filename = filename.replace('pyc','py')
+            filename = filename.replace('pyo','py')
+            try: 
+                reload(plugin)
+            except:
+                PluginMgr.failmsg_list.append((filename,sys.exc_info()))
             
-    # attempt to load the plugins that have failed in the past
+        # attempt to load the plugins that have failed in the past
     
-    for (filename,message) in oldfailmsg:
-        name = os.path.split(filename)
-        match = pymod.match(name[1])
-        if not match:
-            continue
-        PluginMgr.attempt_list.append(filename)
-        plugin = match.groups()[0]
-        try: 
-            # For some strange reason second importing of a failed plugin
-            # results in success. Then reload reveals the actual error.
-            # Looks like a bug in Python.
-            a = __import__(plugin)
-            reload(a)
-            PluginMgr._success_list.append(a)
-        except:
-            PluginMgr.failmsg_list.append((filename,sys.exc_info()))
-
-    # attempt to load any new files found
-    for directory in PluginMgr.loaddir_list:
-        for filename in os.listdir(directory):
+        for (filename,message) in oldfailmsg:
             name = os.path.split(filename)
             match = pymod.match(name[1])
             if not match:
                 continue
-            if filename in PluginMgr.attempt_list:
-                continue
             PluginMgr.attempt_list.append(filename)
             plugin = match.groups()[0]
             try: 
+                # For some strange reason second importing of a failed plugin
+                # results in success. Then reload reveals the actual error.
+                # Looks like a bug in Python.
                 a = __import__(plugin)
-                if a not in PluginMgr._success_list:
-                    PluginMgr._success_list.append(a)
+                reload(a)
+                PluginMgr._success_list.append(a)
             except:
                 PluginMgr.failmsg_list.append((filename,sys.exc_info()))
 
-    if GrampsKeys.get_pop_plugin_status() and len(PluginMgr.failmsg_list):
-        PluginStatus()
-    else:
-        global status_up
-        if status_up:
-        	status_up.close(None)
-        status_up = None
+        # attempt to load any new files found
+        for directory in PluginMgr.loaddir_list:
+            for filename in os.listdir(directory):
+                name = os.path.split(filename)
+                match = pymod.match(name[1])
+                if not match:
+                    continue
+                if filename in PluginMgr.attempt_list:
+                    continue
+                PluginMgr.attempt_list.append(filename)
+                plugin = match.groups()[0]
+                try: 
+                    a = __import__(plugin)
+                    if a not in PluginMgr._success_list:
+                        PluginMgr._success_list.append(a)
+                except:
+                    PluginMgr.failmsg_list.append((filename,sys.exc_info()))
+
+        if GrampsKeys.get_pop_plugin_status() and len(PluginMgr.failmsg_list):
+            PluginStatus()
+        else:
+            global status_up
+            if status_up:
+                status_up.close(None)
+            status_up = None
+
+class ReloadOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
 
 #-------------------------------------------------------------------------
 #
 # Register the plugin reloading tool
 #
 #-------------------------------------------------------------------------
-## PluginMgr.register_tool(
-##     reload_plugins,
-##     _("Reload plugins"),
-##     category=_("Debug"),
-##     description=_("Attempt to reload plugins. Note: This tool itself is not reloaded!"),
-##     )
+PluginMgr.register_tool(
+    name = 'reload',
+    category = Tool.TOOL_DEBUG,
+    tool_class = Reload,
+    options_class = ReloadOptions,
+    modes = Tool.MODE_GUI,
+    translated_name = _("Reload plugins"),
+    description=_("Attempt to reload plugins. "
+                  "Note: This tool itself is not reloaded!"),
+    )
