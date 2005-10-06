@@ -54,65 +54,67 @@ class CmdRef(Tool.Tool):
 
         f = tempfile.NamedTemporaryFile()
         fname = f.name
-        f.write('<?xml version="1.0" encoding="UTF-8"?>')
-        f.write('<?yelp:chunk-depth 3?>')
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         f.write('<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" ')
-        f.write('   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">')
-        f.write('<book id="index" lang="en">')
-        f.write('  <title>Reports and Tools parameter reference</title>')
-        f.write('  <sect1>')
-        f.write('    <title>Reports</title>')
+        f.write('   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">\n')
+        f.write('<article id="index" lang="en">\n')
+        f.write('  <title>Reports and Tools parameter reference</title>\n')
+        f.write('  <sect1 id="reps">\n')
+        f.write('    <title>Reports</title>\n')
+        counter=0
         for item in PluginMgr.cl_list:
-	    pass
-            #self.write_ref( f, item)
-        f.write('  </sect1>')
-        f.write('  <sect1>')
-        f.write('    <title>Tools</title>')
+            # self.write_ref( f, item,counter)
+            # counter = counter + 1
+            pass
+        f.write('  </sect1>\n')
+        f.write('  <sect1 id="tools">\n')
+        f.write('    <title>Tools</title>\n')
         for item in PluginMgr.cli_tool_list:
-            self.write_ref( f, item)
-        f.write('  </sect1>')
-        f.write('  ')
-        f.write('  ')
-        f.write('  ')
-        f.write('</book>')
+            self.write_ref( f, item, counter)
+            counter = counter + 1
+        f.write('  </sect1>\n')
+        f.write('  \n')
+        f.write('  \n')
+        f.write('  \n')
+        f.write('</article>\n')
         f.flush()
         os.spawnlp( os.P_WAIT, "yelp", "yelp", fname)
         f.close()
 
-    def write_ref( self, f, item):
-        f.write('<sect2>')
-        f.write('  <title>%s</title>' % item[0])
-        f.write('  <simlesect>')
-        f.write('    <title>Options</title>')
-        f.write('    <variablelist>')
+    def write_ref( self, f, item,counter):
+        f.write('<sect2 id="sect2id%d">\n' % counter)
+        f.write('  <title>%s</title>\n' % item[0])
+        f.write('  <simplesect>\n')
+        f.write('    <title>Options</title>\n')
+        f.write('    <variablelist>\n')
         oclass = item[3]( item[0])
         print oclass
         for arg in oclass.options_help.keys():
-            f.write('      <variablelist>')
-            f.write('        <varlistentry>')
-            f.write('          <term><command>%s</command>: %s</term>' % (arg, oclass.options_help[arg][0]))
-            f.write('          <listitem>')
-            f.write('            <para>%s</para>' % oclass.options_help[arg][1])
+            f.write('      <variablelist>\n')
+            f.write('        <varlistentry>\n')
+            f.write('          <term><command>%s</command>: %s</term>\n' % (arg, oclass.options_help[arg][0]))
+            f.write('          <listitem>\n')
+            f.write('            <para>%s</para>\n' % oclass.options_help[arg][1])
             if type(oclass.options_help[arg][2]) in [list,tuple]:
                 if oclass.options_help[arg][3]:
-                    f.write('          <orderedlist>')
+                    f.write('          <orderedlist>\n')
                     for val in oclass.options_help[arg][2]:
-                        f.write( "      <listitem>%s</listitem>" % val)
-                    f.write('          </orderedlist>')
+                        f.write( "      <listitem>%s</listitem>\n" % val)
+                    f.write('          </orderedlist>\n')
                 else:
-                    f.write('          <itemizedlist>')
+                    f.write('          <itemizedlist>\n')
                     for val in oclass.options_help[arg][2]:
-                        f.write( "      <listitem>%s</listitem>" % val)
-                    f.write('          </itemizedlist>')
+                        f.write( "      <listitem>%s</listitem>\n" % val)
+                    f.write('          </itemizedlist>\n')
             else:
-                f.write('            <para>Value: <userinput>%s</userinput></para>' % oclass.options_help[arg][2])
-            f.write('          </listitem>')
-            f.write('        </varlistentry>')
-            f.write('      </variablelist>')
+                f.write('            <para>Value: <userinput>%s</userinput></para>\n' % oclass.options_help[arg][2])
+            f.write('          </listitem>\n')
+            f.write('        </varlistentry>\n')
+            f.write('      </variablelist>\n')
 
-        f.write('    </variablelist>')
-        f.write('  </simlesect>')
-        f.write('</sect2>')
+        f.write('    </variablelist>\n')
+        f.write('  </simplesect>\n')
+        f.write('</sect2>\n')
     
 #------------------------------------------------------------------------
 #
