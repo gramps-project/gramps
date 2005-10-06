@@ -11,6 +11,8 @@
 	  + remove db stats as attributes of the database element
 	  + prepend all handles and hlinks with "_" (conform to XML ID)
 	  + replace "aka" with "name", "name" with "name preferred=1"
+	* src/Plugins.py: Factor out common code for plugins; fix tool
+	dialog.
 
 2005-10-05  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/plugins/ReorderIds.py: handle more cases correctly

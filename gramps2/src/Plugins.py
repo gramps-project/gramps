@@ -64,6 +64,14 @@ import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
+# Constants
+#
+#-------------------------------------------------------------------------
+REPORTS = 0
+TOOLS   = 1
+
+#-------------------------------------------------------------------------
+#
 # PluginDialog interface class
 #
 #-------------------------------------------------------------------------
@@ -72,8 +80,8 @@ class PluginDialog:
     """Displays the dialog box that allows the user to select the
     report that is desired."""
 
-    def __init__(self,parent,db,active,item_list,msg,label=None,
-                 button_label=None,tool_tip=None):
+    def __init__(self,parent,db,active,item_list,categories,msg,label=None,
+                 button_label=None,tool_tip=None,content=REPORTS):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
@@ -87,6 +95,7 @@ class PluginDialog:
         self.update = None
         self.imap = {}
         self.msg = msg
+        self.content = content
         
         self.dialog = gtk.glade.XML(const.pluginsFile,"report","gramps")
         self.dialog.signal_autoconnect({
@@ -133,12 +142,8 @@ class PluginDialog:
             except AttributeError:
                 pass
 
-        self.run_tool = None
-        self.report_vs_tool = len(item_list[0]) == 9
-        if self.report_vs_tool:
-            self.build_report_tree(item_list)
-        else:
-            self.build_tool_tree(item_list)
+        self.item = None
+        self.build_plugin_tree(item_list,categories)
         self.add_itself_to_menu()
         self.top.show()
 
@@ -166,15 +171,14 @@ class PluginDialog:
     def on_apply_clicked(self,obj):
         """Execute the selected report"""
 
-        if self.report_vs_tool:
-            (report_class,options_class,title,category,name) = self.run_tool
+        (item_class,options_class,title,category,name) = self.item
+        if self.content == REPORTS:
             Report.report(self.db,self.active,
-                        report_class,options_class,title,name,category)
-        elif self.run_tool:
-            if self.update:
-                self.run_tool(self.db,self.active,self.update,self.parent)
-            else:
-                self.run_tool(self.db,self.active)
+                          item_class,options_class,title,name,category)
+        else:
+            Tool.gui_tool(self.db,self.active,
+                          item_class,options_class,title,name,category,
+                          self.update,self.parent)
 
     def on_node_selected(self,obj):
         """Updates the informational display on the right hand side of
@@ -189,90 +193,38 @@ class PluginDialog:
         self.statbox.show()
         data = self.imap[path]
 
-        if self.report_vs_tool:
-            (report_class,options_class,title,
-                category,name,doc,status,author,email) = data
-        else:
-            title = data[0]
-            task = data[1]
-            doc = data[2]
-            status = data[3]
-            author = data[4]
-            email = data[5]
-
+        (report_class,options_class,title,category,name,
+         doc,status,author,email) = data
         self.description.set_text(doc)
         self.status.set_text(status)
         self.title.set_text('<span weight="bold" size="larger">%s</span>' % title)
         self.title.set_use_markup(1)
         self.author_name.set_text(author)
         self.author_email.set_text(email)
-        if self.report_vs_tool:
-            self.run_tool = (report_class,options_class,title,category,name)
-        else:
-            self.run_tool = task
+        self.item = (report_class,options_class,title,category,name)
 
-    def build_tool_tree(self,item_list):
+    def build_plugin_tree(self,item_list,categories):
         """Populates a GtkTree with each menu item assocated with a entry
         in the lists. The list must consist of a tuples with the following
         format:
         
-        (task_to_call, category, report name, description, image, status, author_name, author_email)
-        
-        Items in the same category are grouped under the same submen. The
-        task_to_call is bound to the 'select' callback of the menu entry."""
+        (item_class,options_class,title,category,name,
+         doc,status,author,email)
+
+        Items in the same category are grouped under the same submenu.
+        The categories must be dicts from integer to string.
+        """
 
         ilist = []
 
         # build the tree items and group together based on the category name
         item_hash = {}
-        for report in item_list:
-            t = (report[2],report[0],report[3],report[4],report[5],report[6])
-            if item_hash.has_key(report[1]):
-                item_hash[report[1]].append(t)
-            else:
-                item_hash[report[1]] = [t]
-
-        # add a submenu for each category, and populate it with the
-        # GtkTreeItems that are associated with it.
-        key_list = item_hash.keys()
-        key_list.sort()
-        key_list.reverse()
-        
-        prev = None
-        for key in key_list:
-            data = item_hash[key]
-            node = self.store.insert_after(None,prev)
-            self.store.set(node,0,key)
-            next = None
-            data.sort()
-            for item in data:
-                next = self.store.insert_after(node,next)
-                ilist.append((next,item))
-                self.store.set(next,0,item[0])
-        for next,tab in ilist:
-            path = self.store.get_path(next)
-            self.imap[path] = tab
-
-    def build_report_tree(self,item_list):
-        """Populates a GtkTree with each menu item assocated with a entry
-        in the lists. The list must consist of a tuples with the following
-        format:
-        
-        (task_to_call, category, report name, description, image, status, author_name, author_email)
-        
-        Items in the same category are grouped under the same submen. The
-        task_to_call is bound to the 'select' callback of the menu entry."""
-
-        ilist = []
-
-        # build the tree items and group together based on the category name
-        item_hash = {}
-        for report in item_list:
-            category = Report.standalone_categories[report[3]]
+        for plugin in item_list:
+            category = categories[plugin[3]]
             if item_hash.has_key(category):
-                item_hash[category].append(report)
+                item_hash[category].append(plugin)
             else:
-                item_hash[category] = [report]
+                item_hash[category] = [plugin]
 
         # add a submenu for each category, and populate it with the
         # GtkTreeItems that are associated with it.
@@ -312,9 +264,12 @@ class ReportPlugins(PluginDialog):
             self,parent,
             db,
             active,
-            PluginMgr.report_list,_("Report Selection"),
+            PluginMgr.report_list,
+            Report.standalone_categories,
+            _("Report Selection"),
             _("Select a report from those available on the left."),
-            _("_Generate"), _("Generate selected report"))
+            _("_Generate"), _("Generate selected report"),
+            REPORTS)
 
 #-------------------------------------------------------------------------
 #
@@ -336,10 +291,12 @@ class ToolPlugins(PluginDialog):
             db,
             active,
             PluginMgr.tool_list,
+            Tool.tool_categories,
             _("Tool Selection"),
             _("Select a tool from those available on the left."),
             _("_Run"),
-            _("Run selected tool"))
+            _("Run selected tool"),
+            TOOLS)
         self.update = update
 
 #-------------------------------------------------------------------------
@@ -423,66 +380,37 @@ class PluginStatus:
 #
 #-------------------------------------------------------------------------
 def build_tools_menu(top_menu,callback):
-    report_menu = gtk.Menu()
-    report_menu.show()
+    build_plugin_menu(PluginMgr.tool_list,
+                      Tool.tool_categories,
+                      Tool.gui_tool,
+                      top_menu,callback)
     
-    hash_data = {}
-    for tool in PluginMgr.tool_list:
-        tool_category = Tool.tool_categories[tool[3]]
-        if hash_data.has_key(tool_category):
-            hash_data[tool_category].append(
-                (tool[0],tool[1],tool[2],tool[4],tool[3]))
-        else:
-            hash_data[tool_category] = [
-                (tool[0],tool[1],tool[2],tool[4],tool[3])]
-
-    catlist = hash_data.keys()
-    catlist.sort()
-    for key in catlist:
-        entry = gtk.MenuItem(key)
-        entry.show()
-        report_menu.append(entry)
-        submenu = gtk.Menu()
-        submenu.show()
-        entry.set_submenu(submenu)
-        lst = hash_data[key]
-        lst.sort(by_menu_name)
-        for name in lst:
-            subentry = gtk.MenuItem("%s..." % name[2])
-            subentry.show()
-            subentry.connect("activate",callback,Tool.gui_tool,
-                             name[0],name[1],name[2],name[3],name[4])
-            submenu.append(subentry)
-    top_menu.set_submenu(report_menu)
-
-#-------------------------------------------------------------------------
-#
-# build_report_menu
-#
-#-------------------------------------------------------------------------
 def build_report_menu(top_menu,callback):
-    report_menu = gtk.Menu()
-    report_menu.show()
+    build_plugin_menu(PluginMgr.report_list,
+                      Report.standalone_categories,
+                      Report.report,
+                      top_menu,callback)
+
+def build_plugin_menu(item_list,categories,func,top_menu,callback):
+    menu = gtk.Menu()
+    menu.show()
     
     hash_data = {}
-    for report in PluginMgr.report_list:
-        standalone_category = Report.standalone_categories[report[3]]
-        if hash_data.has_key(standalone_category):
-            hash_data[standalone_category].append(
-                    (report[0],report[1],report[2],report[4],report[3]))
+    for item in item_list:
+        category = categories[item[3]]
+        if hash_data.has_key(category):
+            hash_data[category].append(
+                    (item[0],item[1],item[2],item[4],item[3]))
         else:
-            hash_data[standalone_category] = [
-                    (report[0],report[1],report[2],report[4],report[3])]
-
-#   0               1               2           3       4
-#report_class, options_class, translated_name, name, category,
+            hash_data[category] = [
+                    (item[0],item[1],item[2],item[4],item[3])]
 
     catlist = hash_data.keys()
     catlist.sort()
     for key in catlist:
         entry = gtk.MenuItem(key)
         entry.show()
-        report_menu.append(entry)
+        menu.append(entry)
         submenu = gtk.Menu()
         submenu.show()
         entry.set_submenu(submenu)
@@ -491,10 +419,10 @@ def build_report_menu(top_menu,callback):
         for name in lst:
             subentry = gtk.MenuItem("%s..." % name[2])
             subentry.show()
-            subentry.connect("activate",callback,Report.report,
+            subentry.connect("activate",callback,func,
                              name[0],name[1],name[2],name[3],name[4])
             submenu.append(subentry)
-    top_menu.set_submenu(report_menu)
+    top_menu.set_submenu(menu)
 
 
 def by_menu_name(a,b):
