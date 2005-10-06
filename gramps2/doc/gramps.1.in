@@ -174,8 +174,8 @@ exports, and actions specified further on the command line by using \fB\-i\fR,
 
 .LP
 The order of \fB\-i\fR, \fB\-o\fR, or \fB\-a\fR options does not matter. The
-actual order always is: all imports (if any) -> all exports (if any) -> 
-all actions (if any). But opening must always be first!
+actual order always is: all imports (if any) -> all actions (if any)
+-> all exports (if any). But opening must always be first!
 
 .LP
 If no \fB\-O\fR or \fB\-i\fR option is given, gramps will launch its main 

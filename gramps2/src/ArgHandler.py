@@ -385,16 +385,16 @@ class ArgHandler:
             print "Launching interactive session..."
 
         if self.parent.cl:
-            for expt in self.exports:
-                print "Exporting: file %s, format %s." % expt
-                self.cl_export(expt[0],expt[1])
-
             for (action,options_str) in self.actions:
                 print "Performing action: %s." % action
                 if options_str:
                     print "Using options string: %s" % options_str
                 self.cl_action(action,options_str)
             
+            for expt in self.exports:
+                print "Exporting: file %s, format %s." % expt
+                self.cl_export(expt[0],expt[1])
+
             print "Cleaning up."
             # remove import db after use
             self.parent.db.close()

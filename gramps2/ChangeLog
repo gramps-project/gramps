@@ -2,6 +2,8 @@
 	* src/TreeTips.py: Typo.
 	* src/plugins/ScratchPad.py: Convert to new API.
 	* src/plugins/DumpGenderStats.py: Convert to new API.
+	* src/ArgHandler.py: Do actions prior to exports.
+	* doc/gramps.1.in: Document new execution order.
 
 2005-10-06  Stefan Bjork  <skalman@acc.umu.se>
 	* src/plugins/rel_sv.py: Obviosly, level=1 to get_parents means
