@@ -1584,17 +1584,18 @@ class CommandLineReport:
     
     """
 
-    def __init__(self,database,name,category,option_class,options_str_dict):
+    def __init__(self,database,name,category,option_class,options_str_dict,
+                 noopt=False):
         self.database = database
         self.category = category
         self.option_class = option_class(name)
         self.show = options_str_dict.pop('show',None)
         self.options_str_dict = options_str_dict
-        self.init_options()
+        self.init_options(noopt)
         self.parse_option_str()
         self.show_options()
 
-    def init_options(self):
+    def init_options(self,noopt):
         self.options_dict = {
             'of'        : self.option_class.handler.module_name,
             'off'       : self.option_class.handler.get_format_name(),
@@ -1618,6 +1619,9 @@ class CommandLineReport:
             'pagebbg'   : ["=0/1","Page break between generations."],
             'dispf'     : ["=str","Display format for the outputbox."],
             }
+
+        if noopt:
+            return
 
         # Add report-specific options
         for key in self.option_class.handler.options_dict.keys():

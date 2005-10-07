@@ -105,25 +105,29 @@ class CommandLineTool:
     
     """
 
-    def __init__(self,database,name,category,option_class,options_str_dict):
+    def __init__(self,database,name,category,option_class,options_str_dict,
+                 noopt=False):
         self.database = database
         self.category = category
         self.option_class = option_class(name)
         self.show = options_str_dict.pop('show',None)
         self.options_str_dict = options_str_dict
-        self.init_options()
+        self.init_options(noopt)
         self.parse_option_str()
         self.show_options()
 
-    def init_options(self):
+    def init_options(self,noopt):
         self.options_dict = {
             'id'        : ''
             }
 
         self.options_help = {
-            'id'        : ["=ID","Gramps ID of a central person. MANDATORY"],
+            'id'        : ["=ID","Gramps ID of a central person."],
             'filter'    : ["=num","Filter number."],
             }
+
+        if noopt:
+            return
 
         # Add tool-specific options
         for key in self.option_class.handler.options_dict.keys():

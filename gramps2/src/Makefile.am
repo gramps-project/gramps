@@ -176,3 +176,6 @@ pycheck:
 docs:
 	epydoc -o doc --url http://gramps.sourceforge.net --name GRAMPS --html $(docfiles)
 	epydoc --pdf $(docfiles)
+
+cmdplug:
+	./build_cmdplug

@@ -614,7 +614,8 @@ class ArgHandler:
                                       category,options_str_dict)
                     else:
                         Report.cl_report(self.parent.db,name,category,
-                                report_class,options_class,options_str_dict)
+                                         report_class,options_class,
+                                         options_str_dict)
                     return
 
             print "Unknown report name. Available names are:"

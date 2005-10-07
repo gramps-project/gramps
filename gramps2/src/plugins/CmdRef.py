@@ -44,56 +44,118 @@ import Report
 
 #-------------------------------------------------------------------------
 #
-# runTool
+# Constants
+#
+#-------------------------------------------------------------------------
+_tags = [
+    'article',
+    'sect1',
+    'sect2',
+    'sect3'
+    ]
+
+#-------------------------------------------------------------------------
+#
+# 
 #
 #-------------------------------------------------------------------------
 class CmdRef(Tool.Tool):
     def __init__(self,db,person,options_class,name,callback=None,parent=None):
         Tool.Tool.__init__(self,db,person,options_class,name)
 
+        # retrieve options
+        include = self.options.handler.options_dict['include']
+        target  = self.options.handler.options_dict['target']
+
+        if include:
+            level = 1
+        else:
+            level = 0
+
         cli = int(parent == None)
 
         f = tempfile.NamedTemporaryFile()
         fname = f.name
-        f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-        f.write('<?yelp:chunk-depth 2?>\n')
-        f.write('<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" ')
-        f.write('   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">\n')
-        f.write('<article id="index" lang="en">\n')
-        f.write('  <title>Reports and Tools parameter reference</title>\n')
-        f.write('  <sect1 id="reps">\n')
+        id_counter = 0
+
+        if not include:
+            f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+            f.write('<?yelp:chunk-depth 2?>\n')
+            f.write('<!DOCTYPE book PUBLIC ')
+            f.write('"-//OASIS//DTD DocBook XML V4.1.2//EN" ')
+            f.write('   "http://www.oasis-open.org/docbook/'
+                    'xml/4.1.2/docbookx.dtd">\n')
+            
+        # Top section and title
+        f.write('<%s id="cmdplug-id%d">\n' % (_tags[level],id_counter) )
+        id_counter = id_counter + 1
+        f.write('  <title>Detailed plugin option reference</title>\n')
+
+        # Reports
+        f.write('  <%s id="cmdplug-reps">\n' % _tags[level+1])
         f.write('    <title>Reports</title>\n')
-        counter=0
+
+        # Common report options
+        item = PluginMgr.cl_list[0]
+        clr = Report.CommandLineReport(db,item[0],item[1],item[3],{},True)
+        self.write_ref(f,clr,level+2,id_counter,True)
+        id_counter = id_counter + 1
+
         for item in PluginMgr.cl_list:
             category = item[1]
             if category in (Report.CATEGORY_BOOK,
                             Report.CATEGORY_CODE,
                             Report.CATEGORY_WEB):
-                self.write_ref(f,item,counter,category)
+                self.write_ref(f,item,level+2,id_counter,category)
             else:
-                self.write_ref( f, item, counter, None)
-            counter = counter + 1
-        f.write('  </sect1>\n')
-        f.write('  <sect1 id="tools">\n')
+                self.write_ref(f,item,level+2,id_counter,None)
+            id_counter = id_counter + 1
+        f.write('  </%s>\n' % _tags[level+1] )
+
+        # Tools
+        f.write('  <%s id="cmdplug-tools">\n ' % _tags[level+1] )
         f.write('    <title>Tools</title>\n')
+
+        # Common tool options
+        item = PluginMgr.cli_tool_list[0]
+        clr = Tool.CommandLineTool(db,item[0],item[1],item[3],{},True)
+        self.write_ref(f,clr,level+2,id_counter,True)
+        id_counter = id_counter + 1
+
         for item in PluginMgr.cli_tool_list:
-            self.write_ref( f, item, counter)
-            counter = counter + 1
-        f.write('  </sect1>\n')
+            self.write_ref(f,item,level+2,id_counter)
+            id_counter = id_counter + 1
+        f.write('  </%s>\n' % _tags[level+1] )
         f.write('  \n')
-        f.write('  \n')
-        f.write('  \n')
-        f.write('</article>\n')
+        f.write('</%s>\n' %_tags[level])
         f.flush()
-        os.spawnlp( os.P_WAIT, "yelp", "yelp", fname)
+        if include:
+            os.spawnlp( os.P_WAIT, "cp", "cp", fname, target)
+        else:
+            os.spawnlp( os.P_WAIT, "yelp", "yelp", fname)
         f.close()
 
-    def write_ref( self, f, item,counter,category=None):
-        f.write('<sect2 id="sect2id%d">\n' % counter)
-        f.write('  <title>%s</title>\n' % item[0])
-        f.write('  <simplesect>\n')
-        f.write('    <title>Options</title>\n')
+    def write_ref(self,f,item,level,id_counter,category=None):
+        # Section and title
+        f.write('<%s id="cmdplug-id%d">\n' % (_tags[level],id_counter) )
+        if category == True:
+            title = 'Common Options'
+        else:
+            title = item[4]
+        f.write('  <title>%s</title>\n' % title)
+        
+        # Show command-line name
         f.write('    <variablelist>\n')
+
+        if category != True:
+            f.write('        <varlistentry>\n')
+            f.write('          <term><command>name</command>:</term>\n')
+            f.write('          <listitem>\n')
+            f.write('            <para>%s</para>\n' % item[0])
+            f.write('          </listitem>\n')
+            f.write('        </varlistentry>\n')
+
+        # Instantiate options class
         if category == None:
             oclass = item[3]( item[0])
         elif category == Report.CATEGORY_BOOK:
@@ -109,39 +171,71 @@ class CmdRef(Tool.Tool):
             elif item[0] == "navwebpage":
                 import NavWebPage
                 oclass = NavWebPage.WebReportOptions(item[0])
+        elif category == True:
+            # This is the common options case
+            # so class is already instantiated
+            oclass = item
                 
+        # Spit out all options
         for arg in oclass.options_help.keys():
-            f.write('      <variablelist>\n')
             f.write('        <varlistentry>\n')
             f.write('          <term><command>%s</command>: %s</term>\n'
                     % (escape(arg), escape(oclass.options_help[arg][0])))
             f.write('          <listitem>\n')
             f.write('            <para>%s</para>\n'
                     % escape(oclass.options_help[arg][1]))
-            if type(oclass.options_help[arg][2]) in [list,tuple]:
-                if oclass.options_help[arg][3]:
-                    f.write('          <orderedlist>\n')
-                    for val in oclass.options_help[arg][2]:
-                        f.write( "      <listitem>%s</listitem>\n"
-                                 % escape(val))
-                    f.write('          </orderedlist>\n')
+
+            if len(oclass.options_help[arg])>2:
+                if type(oclass.options_help[arg][2]) in [list,tuple]:
+                    if oclass.options_help[arg][3]:
+                        f.write('          <orderedlist>\n')
+                        for val in oclass.options_help[arg][2]:
+                            f.write( "      <listitem>%s</listitem>\n"
+                                     % escape(val))
+                        f.write('          </orderedlist>\n')
+                    else:
+                        f.write('          <itemizedlist>\n')
+                        for val in oclass.options_help[arg][2]:
+                            f.write( "      <listitem>%s</listitem>\n"
+                                     % escape(val))
+                        f.write('          </itemizedlist>\n')
                 else:
-                    f.write('          <itemizedlist>\n')
-                    for val in oclass.options_help[arg][2]:
-                        f.write( "      <listitem>%s</listitem>\n"
-                                 % escape(val))
-                    f.write('          </itemizedlist>\n')
-            else:
-                f.write('            <para>Value: <userinput>%s</userinput></para>\n'
-                        % escape(oclass.options_help[arg][2]))
+                    f.write('            '
+                            '<para>Value: <userinput>%s</userinput></para>\n'
+                            % escape(oclass.options_help[arg][2]))
             f.write('          </listitem>\n')
             f.write('        </varlistentry>\n')
-            f.write('      </variablelist>\n')
 
         f.write('    </variablelist>\n')
-        f.write('  </simplesect>\n')
-        f.write('</sect2>\n')
+        f.write('</%s>\n' % _tags[level])
     
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class CmdRefOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        Tool.ToolOptions.__init__(self,name,person_id)
+
+    def set_new_options(self):
+        # Options specific for this report
+        self.options_dict = {
+            'include' : 0,
+            'target'  : '../doc/gramps-manual/C/cmdplug.xml',
+        }
+        self.options_help = {
+            'include' : ("=0/1","Whether to include into the manual",
+                         ["Do not include","Include"],
+                         True),
+            'target'  : ("=str","Pathname to the target file",
+                         "Any valid pathname")
+            }
+
 #------------------------------------------------------------------------
 #
 # 
@@ -153,10 +247,9 @@ register_tool(
     name = 'cmdref',
     category = Tool.TOOL_DEBUG,
     tool_class = CmdRef,
-    options_class = Tool.ToolOptions,
+    options_class = CmdRefOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,
-    translated_name = _("Generate Commandline Reference "
-                        "for Reports and Tools"),
+    translated_name = _("Generate Commandline Plugin Reference"),
     author_name = "Martin Hawlisch",
     author_email = "martin@hawlisch.de",
     description=_("Generates a DocBook XML file that contains "

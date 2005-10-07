@@ -190,7 +190,8 @@ def register_tool(
 
     (junk,cli_task) = divmod(modes-gui_task,2**Tool.MODE_CLI)
     if cli_task:
-        _register_cli_tool(name,category,tool_class,options_class)
+        _register_cli_tool(name,category,tool_class,options_class,
+                           translated_name)
 
 def _register_gui_tool(tool_class,options_class,translated_name,
                        name,category,
@@ -209,11 +210,13 @@ def _register_gui_tool(tool_class,options_class,translated_name,
                       category,name,description,status,
                       author_name,author_email))
 
-def _register_cli_tool(name,category,tool_class,options_class):
+def _register_cli_tool(name,category,tool_class,options_class,
+                       translated_name):
     for n in cli_tool_list:
         if n[0] == name:
             return
-    cli_tool_list.append((name,category,tool_class,options_class))
+    cli_tool_list.append((name,category,tool_class,options_class,
+                          translated_name))
 
 #-------------------------------------------------------------------------
 #
@@ -257,7 +260,8 @@ def register_report(
     (junk,command_line_task) = divmod(modes-standalone_task-book_item_task,
                                         2**Report.MODE_CLI)
     if command_line_task:
-        _register_cl_report(name,category,report_class,options_class)
+        _register_cl_report(name,category,report_class,options_class,
+                            translated_name)
 
 def _register_standalone(report_class, options_class, translated_name, 
                     name, category,
@@ -290,11 +294,13 @@ def register_book_item(translated_name, category, report_class,
     bkitems_list.append((translated_name, category, report_class,
                          option_class, name))
 
-def _register_cl_report(name,category,report_class,options_class):
+def _register_cl_report(name,category,report_class,options_class,
+                        translated_name):
     for n in cl_list:
         if n[0] == name:
             return
-    cl_list.append((name,category,report_class,options_class))
+    cl_list.append((name,category,report_class,options_class,
+                    translated_name))
 
 #-------------------------------------------------------------------------
 #

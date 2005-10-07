@@ -1,3 +1,21 @@
+2005-10-07  Alex Roitman  <shura@gramps-project.org>
+	* doc/gramps-manual/C/cmdplug.xml: Add new section documenting
+	plugin options (Reports and Tools).
+	* src/build_cmdplug: Add script to refresh the new doc section.
+	* doc/gramps-manual/C/Makefile.am: Ship new file.
+	* doc/gramps-manual/C/gramps-manual.xml: Define new entity.
+	* doc/gramps-manual/C/cmdline.xml: Include new section.
+	* src/Makefile.am: Define new make target (cmdplug).
+	* src/PluginMgr.py: Include human-readable names in CLI plugins
+	registration.
+	* src/Report.py: Allow instantiation of command-line report
+	without adding item-specific options.
+	* src/Tool.py: Allow instantiation of command-line tool
+	without adding item-specific options.
+	* src/plugins/CmdRef.py: Add options for inclusion into the manual
+	and the target filename; Use human-readable names for titles; Add
+	section with common options; Add name option.
+
 2005-10-06  Don Allingham  <don@gramps-project.org>
 	* src/plugins/DetAncestralReport.py: fix margin on note paragraph
 	* src/DateEdit.py: try using standard icons
