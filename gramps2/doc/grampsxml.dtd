@@ -92,8 +92,8 @@ PEOPLE
 >
 
 <!ELEMENT person (gender, name*, nick?, event*, lds_ord*,
-                  objref*, url*, childof*, address*, parentin*,
-                  sourceref?, attribute*, note?)>
+                  objref*, address*, attribute*, url*,
+                  childof*,  parentin*, note?, sourceref*)>
 <!ATTLIST person
         id        CDATA #REQUIRED
         handle    ID    #REQUIRED
@@ -158,7 +158,7 @@ FAMILY
 <!ELEMENT families (family)*>
 
 <!ELEMENT family (father?,mother?,event*,lds_ord*,
-                  objref*,child*,attribute*,note?)>
+                  objref*,child*,attribute*,note?,sourceref*)>
 <!ATTLIST family
         id       CDATA #REQUIRED
         handle   ID    #REQUIRED
@@ -323,5 +323,14 @@ EVENT
         description CDATA #IMPLIED
 >
 
-<!ELEMENT objref (attribute)*>
-<!ATTLIST objref hlink IDREF #REQUIRED>
+<!ELEMENT objref (attribute*,sourceref*,note?)>
+<!ATTLIST objref 
+        hlink IDREF #REQUIRED
+        priv (0|1)  #IMPLIED
+>
+
+<!ELEMENT data_item EMPTY>
+<!ATTLIST data_item
+        key   CDATA #REQUIRED
+        value CDATA #REQUIRED
+>
