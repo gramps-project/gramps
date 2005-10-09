@@ -29,6 +29,7 @@
 #
 #------------------------------------------------------------------------
 from gettext import gettext as _
+import cStringIO
 
 #------------------------------------------------------------------------
 #
@@ -48,9 +49,9 @@ import BaseDoc
 import ReportOptions
 import const
 import ReportUtils
+
 from DateHandler import displayer as _dd
 from NameDisplay import displayer as _nd
-import cStringIO
 
 #------------------------------------------------------------------------
 #
@@ -495,7 +496,8 @@ class DetAncestorReport(Report.Report):
             self.doc.start_paragraph('DAR-Endnotes',"%d." % key)
             self.doc.write_text(base.get_title())
 
-            for item in [ base.get_author(), base.get_publication_info(), base.get_abbreviation(),
+            for item in [ base.get_author(), base.get_publication_info(),
+                          base.get_abbreviation(),
                           _dd.display(srcref.get_date_object()),]:
                 if item:
                     self.doc.write_text('; %s' % item)

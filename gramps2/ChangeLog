@@ -1,3 +1,8 @@
+2005-10-08  Don Allingham  <don@gramps-project.org>
+	* src/Bookmarks.py: use GrampsDisplay for help
+	* src/MergeData.py: use GrampsDisplay for help
+	* src/MergePeople.py: use GrampsDisplay for help
+
 2005-10-07  Alex Roitman  <shura@gramps-project.org>
 	* doc/grampsxml.dtd: Fix order, add missing contents.
 

@@ -35,7 +35,6 @@ import sets
 #-------------------------------------------------------------------------
 import gtk
 import pango
-from gnome import help_display
 
 #-------------------------------------------------------------------------
 #
@@ -48,6 +47,7 @@ import Utils
 import NameDisplay
 import const
 import QuestionDialog
+import GrampsDisplay
 
 sex = ( _("female"), _("male"), _("unknown"))
 
@@ -78,7 +78,7 @@ class Compare:
 
     def help(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help_display('gramps-manual','adv-merge-people')
+        GrampsDisplay.help('adv-merge-people')
 
     def merge(self,obj):
 
@@ -293,7 +293,7 @@ class MergePeopleUI:
 
     def help(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help_display('gramps-manual','adv-merge-people')
+        GrampsDisplay.help('adv-merge-people')
 
 
 def name_of(p):

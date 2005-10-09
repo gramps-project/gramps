@@ -33,7 +33,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-from gnome import help_display
 
 #-------------------------------------------------------------------------
 #
@@ -42,6 +41,7 @@ from gnome import help_display
 #-------------------------------------------------------------------------
 import Utils
 import const
+import GrampsDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -80,7 +80,7 @@ class MergePlaces:
 
     def help(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help_display('gramps-manual','adv-merge-places')
+        GrampsDisplay.help('adv-merge-places')
 
     def on_merge_places_clicked(self,obj):
         """
