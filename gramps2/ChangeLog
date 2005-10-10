@@ -1,4 +1,8 @@
 2005-10-09  Don Allingham  <don@gramps-project.org>
+	* src/Spell.py: give more intelligent error message if spelling
+	checker is not found.
+	* src/plugins/DescendChart.py: fixed type detection to handle both
+	unicode and str.
 	* src/plugins/NavWebPage.py: fixed typo in Creative Commons messages
 
 2005-10-08  Don Allingham  <don@gramps-project.org>

@@ -331,7 +331,7 @@ class DescendChart(Report.Report):
             phys_x = 0
             for x in range(startx,stopx):
                 value = self.genchart.get_xy(x,y)
-                if type(value) == str:
+                if type(value) == str or type(value) == unicode:
                     text = '\n'.join(self.text[(x,y)])
                     xbegin = phys_x*self.delta
                     yend   = phys_y*bh+self.offset

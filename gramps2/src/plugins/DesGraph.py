@@ -269,7 +269,6 @@ class DescendantGraph(Report.Report):
                     ny2 = (y2-1)*(self.height+_sep) + top + self.height/2.0
                 if y1 < 0 and y2 < 0:
                     half = (nx1+nx2)/2.0
-                    print x1,x2,y1,y2,nx1,nx2,half
                     self.doc.draw_line("line",half,ny1,half,ny2)
                 elif ny1 != ny2:
                     if x1 == -x2:

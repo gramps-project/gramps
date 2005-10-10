@@ -48,7 +48,7 @@ try:
     success = True
 
 except ImportError, msg:
-    print "Spell.py: ", msg
+    print _("Spelling checker is not installed")
 except RuntimeError,msg:
     print "Spell.py: ", msg
 except SystemError,msg:
