@@ -2242,6 +2242,7 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         """
         if other == None:
             other = Event (None)
+
         if (self.name != other.name or 
             ((self.place or other.place) and (self.place != other.place)) or
             self.description != other.description or self.cause != other.cause or
@@ -2262,6 +2263,7 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
         if (witness_list and not other_list) or \
                         (other_list and not witness_list):
             return False
+
         if witness_list and other_list:
             another_list = other_list[:]
             for a in witness_list:
@@ -3983,12 +3985,7 @@ class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase):
         if self.ref and other.ref:
             if self.page != other.page:
                 return False
-            if (self.date and other.date and \
-                                        not self.date.is_equal(other.date)) \
-                        or ((not self.date) and other.date and \
-                                not other.date.is_empty()) \
-                        or ((not other.date) and self.date and \
-                                not self.date.is_empty()):
+            if not self.get_date_object().is_equal(other.get_date_object()):
                 return False
             if self.get_text() != other.get_text():
                 return False

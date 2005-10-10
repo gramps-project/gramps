@@ -1,3 +1,8 @@
+2005-10-10  Don Allingham  <don@gramps-project.org>
+	* src/Date.py: set default modifier properly, fix compare and sortval
+	assignment
+	* src/RelLib.py: fix source reference date comparison
+	
 2005-10-09  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/WriteGedcom.py: fixed error caused by incomplete migration to
 	handle-based storage API
