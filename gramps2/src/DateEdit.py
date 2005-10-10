@@ -80,8 +80,8 @@ MOD_TEXT = (
     (Date.MOD_TEXTONLY   , _('Text only')) )
 
 QUAL_TEXT = (
-    (Date.QUAL_NONE, _('Regular')), 
-    (Date.QUAL_ESTIMATED, _('Estimated')), 
+    (Date.QUAL_NONE,       _('Regular')), 
+    (Date.QUAL_ESTIMATED,  _('Estimated')), 
     (Date.QUAL_CALCULATED, _('Calculated')) )
 
 CAL_TO_MONTHS_NAMES = { 

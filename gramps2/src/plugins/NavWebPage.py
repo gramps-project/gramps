@@ -2242,7 +2242,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
             _('Creative Commons - By attribution, Share-alike'),
             _('Creative Commons - By attribution, Non-commercial'),
             _('Creative Commons - By attribution, Non-commercial, No derivations'),
-            _('Creative Commons - By attribution, Non-commerical, Share-alike'),
+            _('Creative Commons - By attribution, Non-commercial, Share-alike'),
             _('No copyright notice'),
             ]
         for text in self.copy_options:
