@@ -687,7 +687,7 @@ class GedcomWriter:
         for (gramps_id, family_handle, family) in sorted:
             father_alive = mother_alive = 0
             self.writeln("0 @%s@ FAM" % gramps_id)
-            self.frefn(family_handle)
+            self.frefn(family)
             person_handle = family.get_father_handle()
             if person_handle != None and self.plist.has_key(person_handle):
                 person = self.db.get_person_from_handle(person_handle)
@@ -1252,8 +1252,8 @@ class GedcomWriter:
         if match:
             self.writeln('1 REFN %d' % int(match.groups()[0]))
 
-    def frefn(self,family_handle):
-        match = _get_int.search(family_handle)
+    def frefn(self,family):
+        match = _get_int.search(family.get_gramps_id())
         if match:
             self.writeln('1 REFN %d' % int(match.groups()[0]))
     

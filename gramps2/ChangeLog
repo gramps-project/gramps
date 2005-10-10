@@ -1,3 +1,7 @@
+2005-10-09  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/WriteGedcom.py: fixed error caused by incomplete migration to
+	handle-based storage API
+
 2005-10-09  Don Allingham  <don@gramps-project.org>
 	* src/Spell.py: give more intelligent error message if spelling
 	checker is not found.
