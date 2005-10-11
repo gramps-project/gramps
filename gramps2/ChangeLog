@@ -1,3 +1,6 @@
+2005-10-11  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: handle adding death/birth record correctly
+
 2005-10-11  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/GraphViz.py: Typos.
 

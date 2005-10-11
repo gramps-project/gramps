@@ -260,16 +260,17 @@ class EditPerson:
             self.prefix_label.set_text(_('Patronymic:'))
             self.prefix_label.set_use_underline(True)
 
-        birth_handle = person.get_birth_handle()
-        if birth_handle:
-            self.orig_birth = self.db.get_event_from_handle(birth_handle)
+        self.birth_handle = person.get_birth_handle()
+        if self.birth_handle:
+            self.orig_birth = self.db.get_event_from_handle(self.birth_handle)
+            
         else:
             self.orig_birth = RelLib.Event()
             self.orig_birth.set_name("Birth")
 
-        death_handle = person.get_death_handle()
-        if death_handle:
-            self.orig_death = self.db.get_event_from_handle(death_handle)
+        self.death_handle = person.get_death_handle()
+        if self.death_handle:
+            self.orig_death = self.db.get_event_from_handle(self.death_handle)
         else:
             self.orig_death = RelLib.Event()
             self.orig_death.set_name("Death")
@@ -1780,8 +1781,11 @@ class EditPerson:
 
         self.build_pdmap()
 
+        self.birth.set_date_object(self.birth_date_object)
+        self.birth.set_place_handle(self.get_place(self.bplace,1))
+
         if not self.orig_birth.are_equal(self.birth):
-            if self.orig_birth.is_empty():
+            if not self.birth_handle:
                 self.db.add_event(self.birth,trans)
                 self.person.set_birth_handle(self.birth.get_handle())
             self.db.commit_personal_event(self.birth,trans)
@@ -1802,7 +1806,7 @@ class EditPerson:
         self.death.set_place_handle(self.get_place(self.dplace,1))
 
         if not self.orig_death.are_equal(self.death):
-            if self.orig_death.is_empty():
+            if not self.death_handle:
                 self.db.add_event(self.death,trans)
                 self.person.set_death_handle(self.death.get_handle())
             self.db.commit_personal_event(self.death,trans)
@@ -1892,6 +1896,7 @@ class EditPerson:
             if not self.person.get_gramps_id():
                 self.person.set_gramps_id(self.db.find_next_person_gramps_id())
             self.db.commit_person(self.person, trans)
+
         n = self.nd.display(self.person)
         self.db.transaction_commit(trans,_("Edit Person (%s)") % n)
         if self.callback:
