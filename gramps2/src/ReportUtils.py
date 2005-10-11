@@ -21,6 +21,10 @@
 
 # $Id$
 
+"""
+A collection of utilities to aid in the generation of reports.
+"""
+
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -1053,6 +1057,17 @@ def estimate_age(db, person, end_handle=None, start_handle=None):
     return age
 
 def sanitize_list(obj_list,exclude_private):
+    """
+    Removes private objects from the list.
+
+    @param obj_list: objects that have a privacy flag
+    @type obj_list: list
+    @param exclude_private: indicates if objects marked private
+    are eliminated from the list
+    @type obj_list: bool
+    @returns: objects that match the privacy request
+    @rtype: list
+    """
     if exclude_private:
         return [obj for obj in obj_list if not obj.private]
     else:
@@ -1317,17 +1332,13 @@ def get_birth_death_strings(database,person,empty_date="",empty_place=""):
 def born_died_str(database,person,endnotes=None,name_object=None,person_name=None):
     """
     Composes a string describing birth and death of a person.
-    
-    The string is composed in the following form:
-        "Such-and-such was born on-a-date in a-place, 
-        and died on-a-date in a-place"
     Missing information will be omitted without loss of readability.
     Optional references may be added to birth and death events.
     Optional Name object may be used to override a person's Name instance.
     Optional string may be used to override the string representation of a name.
     
-    @param database GRAMPS database to which the Person object belongs
-    @type db: GrampsDbBase
+    @param database: GRAMPS database to which the Person object belongs
+    @type database: GrampsDbBase
     @param person: Person instance for which the string has to be composed
     @type person: Person
     @param endnotes: Function to use for reference composition. If None
@@ -1530,15 +1541,11 @@ def born_died_str(database,person,endnotes=None,name_object=None,person_name=Non
 def married_str(database,person,spouse,event,endnotes=None,
                 empty_date="",empty_place="",is_first=True):
     """
-    Composes a string describing marriage of a person.
+    Composes a string describing marriage of a person. Missing information will
+    be omitted without loss of readability. Optional references may be added to
+    birth and death events.
     
-    The string is composed in the following form:
-        "He/She married such-and-such on-a-date" or 
-        "He/She married such-and-such in a-place", 
-    Missing information will be omitted without loss of readability.
-    Optional references may be added to birth and death events.
-    
-    @param database GRAMPS database to which the Person object belongs
+    @param database: GRAMPS database to which the Person object belongs
     @type db: GrampsDbBase
     @param person: Person instance whose marriage is discussed
     @type person: Person
@@ -1620,6 +1627,22 @@ def married_str(database,person,spouse,event,endnotes=None,
 #
 #-------------------------------------------------------------------------
 def married_rel_str(database,person,family,is_first=True):
+    """
+    Composes a string describing marriage of a person. Missing information will
+    be omitted without loss of readability. Optional references may be added to
+    birth and death events.
+    
+    @param database: GRAMPS database to which the Person object belongs
+    @type db: GrampsDbBase
+    @param person: Person instance whose marriage is discussed
+    @type person: Person
+    @param family: Family instance whose marriage is discussed
+    @type family: Family
+    @param is_first: Indicates if this is a first marriage
+    @type is_first: bool
+    @returns: A composed string
+    @rtype: unicode
+    """
     spouse_handle = find_spouse(person,family)
     spouse = database.get_person_from_handle(spouse_handle)
 
@@ -2079,7 +2102,6 @@ _rtype = {
 def relationship_name(rtype):
     return _rtype.get(rtype)
 
-
 def old_calc_age(database,person):
     """
     Calulate age. 
@@ -2130,3 +2152,8 @@ def old_calc_age(database,person):
     return (age,units)
 
     
+def common_name(person,use_nick=False):
+    if use_nick and person.get_nick_name():
+        return person.get_nick_name()
+    else:
+        return person.get_primary_name().get_first_name()

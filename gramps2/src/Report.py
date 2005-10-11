@@ -369,7 +369,7 @@ class BareReportDialog:
         self.ok.connect('clicked',self.on_ok_clicked)
         self.cancel.connect('clicked',self.on_cancel)
 
-        self.window.set_resize_mode(0)
+        self.window.set_default_size(600,-1)
 
         # Set up and run the dialog.  These calls are not in top down
         # order when looking at the dialog box as there is some

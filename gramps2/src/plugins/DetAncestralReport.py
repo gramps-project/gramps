@@ -100,10 +100,10 @@ class DetAncestorReport(Report.Report):
         (self.max_generations,self.pgbrk) \
                         = options_class.get_report_generations()
 
-        self.firstName     = options_class.handler.options_dict['firstnameiop']
         self.fullDate      = options_class.handler.options_dict['fulldates']
         self.listChildren  = options_class.handler.options_dict['listc']
         self.includeNotes  = options_class.handler.options_dict['incnotes']
+        self.usenick       = options_class.handler.options_dict['usenick']
         self.blankPlace    = options_class.handler.options_dict['repplace']
         self.blankDate     = options_class.handler.options_dict['repdate']
         self.calcAgeFlag   = options_class.handler.options_dict['computeage']
@@ -147,7 +147,7 @@ class DetAncestorReport(Report.Report):
 
         name = _nd.display_name(self.start_person.get_primary_name())
         self.doc.start_paragraph("DAR-Title")
-        title = _("Detailed Ancestral Report for %s") % name
+        title = _("Ancestral Report for %s") % name
         self.doc.write_text(title)
         self.doc.end_paragraph()
 
@@ -220,7 +220,7 @@ class DetAncestorReport(Report.Report):
 
         # Check birth record
 
-        first = person.get_primary_name().get_first_name()
+        first = ReportUtils.common_name(person,self.usenick)
         text = ReportUtils.born_str(self.database,person,first,
                                     self.EMPTY_DATE,self.EMPTY_PLACE)
         if text:
@@ -245,7 +245,7 @@ class DetAncestorReport(Report.Report):
         if text:
             self.doc.write_text(text)
 
-        first = person.get_primary_name().get_first_name()
+        first = ReportUtils.common_name(person,self.usenick)
 
         self.write_parents(person, first)
         self.write_marriage(person)
@@ -260,7 +260,7 @@ class DetAncestorReport(Report.Report):
             self.doc.end_paragraph()
             self.doc.write_note(person.get_note(),person.get_note_format(),"DAR-Entry")
 
-        first = 1
+        first = True
         if self.includeNames:
             for alt_name in person.get_alternate_names():
                 if first:
@@ -268,7 +268,7 @@ class DetAncestorReport(Report.Report):
                     self.doc.write_text(_('More about %(person_name)s:') % { 
                         'person_name' : name })
                     self.doc.end_paragraph()
-                    first = 0
+                    first = False
                 self.doc.start_paragraph('DAR-MoreDetails')
                 self.doc.write_text(_('%(name_kind)s: %(name)s%(endnotes)s') % {
                     'name_kind' : const.NameTypesMap.find_value(alt_name.get_type()),
@@ -290,7 +290,7 @@ class DetAncestorReport(Report.Report):
                 if first:
                     self.doc.start_paragraph('DAR-MoreHeader')
                     self.doc.write_text(_('More about %(person_name)s:') % { 
-                        'person_name' : person.get_primary_name().get_regular_name() })
+                        'person_name' : _nd.display(person) })
                     self.doc.end_paragraph()
                     first = 0
 
@@ -428,7 +428,7 @@ class DetAncestorReport(Report.Report):
             if ind_handle:
                 ind = self.database.get_person_from_handle(ind_handle)
                 person_name = _nd.display(ind)
-                firstName = ind.get_primary_name().get_first_name()
+                firstName = ReportUtils.common_name(ind,self.usenick)
             else:
                 firstName = 0
 
@@ -569,6 +569,7 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
             'fulldates'     : 1,
             'listc'         : 1,
             'incnotes'      : 1,
+            'usenick'       : 1,
             'repplace'      : 0,
             'repdate'       : 0,
             'computeage'    : 1,
@@ -591,6 +592,9 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
                             True),
             'incnotes'      : ("=0/1","Whether to include notes.",
                             ["Do not include notes","Include notes"],
+                            True),
+            'usenick'       : ("=0/1","Whether to use the nick name as the first name.",
+                            ["Do not use nick name","Use nick name"],
                             True),
             'repplace'      : ("=0/1","Whether to replace missing Places with blanks.",
                             ["Do not replace missing Places","Replace missing Places"],
@@ -652,17 +656,16 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=0, bold=1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        #para.set_header_level(3)
         para.set_left_margin(1.0)   # in centimeters
         para.set(pad=0.5)
         para.set_description(_('The style used for the children list title.'))
         default_style.add_style("DAR-ChildTitle",para)
 
         font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF,size=9)
+        font.set(size=10)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(first_indent=-0.5,lmargin=1.5,pad=0.25)
+        para.set(first_indent=-0.75,lmargin=1.75,pad=0.25)
         para.set_description(_('The style used for the children list.'))
         default_style.add_style("DAR-ChildList",para)
 
@@ -684,15 +687,15 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         default_style.add_style("DAR-First-Entry",para)
 
         font = BaseDoc.FontStyle()
-        font.set(bold=1)
+        font.set(size=10,face=BaseDoc.FONT_SANS_SERIF,bold=1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(first_indent=0.0,lmargin=0.0,pad=0.25)
+        para.set(first_indent=0.0,lmargin=1.0,pad=0.25)
         para.set_description(_('The style used for the More About header.'))
         default_style.add_style("DAR-MoreHeader",para)
 
         font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF,size=9)
+        font.set(face=BaseDoc.FONT_SERIF,size=10)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         para.set(first_indent=0.0,lmargin=1.0,pad=0.25)
@@ -709,7 +712,7 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         default_style.add_style("DAR-Endnotes-Header",para)
 
         para = BaseDoc.ParagraphStyle()
-        para.set(first_indent=0.5,lmargin=1.0,pad=0.25)
+        para.set(first_indent=-0.5,lmargin=1.5,pad=0.25)
         para.set_description(_('The basic style used for the endnotes text display.'))
         default_style.add_style("DAR-Endnotes",para)
 
@@ -718,10 +721,6 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         Override the base class add_user_options task to add a menu that allows
         the user to select the sort method.
         """
-
-        # Pronoun instead of first name
-        self.first_name_option = gtk.CheckButton(_("Use first names instead of pronouns"))
-        self.first_name_option.set_active(self.options_dict['firstnameiop'])
 
         # Full date usage
         self.full_date_option = gtk.CheckButton(_("Use full dates instead of only the year"))
@@ -734,6 +733,10 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         # Print notes
         self.include_notes_option = gtk.CheckButton(_("Include notes"))
         self.include_notes_option.set_active(self.options_dict['incnotes'])
+
+        # Print notes
+        self.usenick = gtk.CheckButton(_("Use nickname for common name"))
+        self.usenick.set_active(self.options_dict['usenick'])
 
         # Replace missing Place with ___________
         self.place_option = gtk.CheckButton(_("Replace missing places with ______"))
@@ -775,7 +778,7 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         # if you want to put everyting in the generic "Options" category, use
         # self.add_option(text,widget) instead of self.add_frame_option(category,text,widget)
 
-        dialog.add_frame_option(_('Content'),'',self.first_name_option)
+        dialog.add_frame_option(_('Content'),'',self.usenick)
         dialog.add_frame_option(_('Content'),'',self.full_date_option)
         dialog.add_frame_option(_('Content'),'',self.list_children_option)
         dialog.add_frame_option(_('Content'),'',self.age_option)
@@ -794,10 +797,10 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         Parses the custom options that we have added.
         """
 
-        self.options_dict['firstnameiop'] = int(self.first_name_option.get_active())
         self.options_dict['fulldates'] = int(self.full_date_option.get_active())
         self.options_dict['listc'] = int(self.list_children_option.get_active())
         self.options_dict['incnotes'] = int(self.include_notes_option.get_active())
+        self.options_dict['usenick'] = int(self.usenick.get_active())
         self.options_dict['repplace'] = int(self.place_option.get_active())
         self.options_dict['repdate'] = int(self.date_option.get_active())
         self.options_dict['computeage'] = int(self.age_option.get_active())

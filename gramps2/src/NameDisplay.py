@@ -133,9 +133,9 @@ class NameDisplay:
         """
         name = person.get_primary_name()
         if name.display_as == RelLib.Name.LNFN:
-            return self._lnfn(name,person.get_nick_name())
+            return self._lnfn(name,"")
         else:
-            return self._fnln(name,person.get_nick_name())
+            return self._fnln(name,"")
 
     def display_formal(self,person):
         """

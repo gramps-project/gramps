@@ -1,4 +1,10 @@
 2005-10-10  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDBCallback.py: doc changes
+	* src/NameDisplay.py: remove nickname support
+	* src/QuestionDialog.py: handle missing icons for pychecker
+	* src/Report.py: set a default size for the window (600)
+	* src/ReportUtils.py: doc changes, add common_name
+	* src/plugins/DetAncestralReport.py:
 	* src/Date.py: set default modifier properly, fix compare and sortval
 	assignment
 	* src/RelLib.py: fix source reference date comparison
