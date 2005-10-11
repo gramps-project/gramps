@@ -533,7 +533,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
         pass
 
     def add_user_options(self,dialog):
-        if self.handler.report_name == "rel_graph2":
+        if self.handler.module_name == "rel_graph2":
             dialog.make_doc_menu = self.make_doc_menu
             dialog.format_menu = GraphicsFormatComboBox()
             dialog.format_menu.set(self.options_dict['gvof'])
@@ -736,7 +736,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
                 _options.fonts[self.font_box.get_active()][0]
         self.options_dict['latin'] = \
                 _options.fonts[self.font_box.get_active()][3]
-        if self.handler.report_name == "rel_graph2":
+        if self.handler.module_name == "rel_graph2":
             self.options_dict['gvof'] = dialog.format_menu.get_format_str()
 
 #------------------------------------------------------------------------
