@@ -1376,6 +1376,7 @@ def born_died_str(database,person,endnotes=None,name_object=None,person_name=Non
 
     values = {
         'unknown_gender_name' : person_name,
+        'name'                : person_name,
         'male_name'           : person_name,
         'female_name'         : person_name,
         'endnotes'            : endnotes(name_object),
@@ -1728,10 +1729,12 @@ def child_str(person, father_name="", mother_name="", dead=0, person_name=0):
     """
 
     values = {
-        'father'      : father_name,
-        'mother'      : mother_name,
-        'male_name'   : person_name,
-        'female_name' : person_name,
+        'father'              : father_name,
+        'mother'              : mother_name,
+        'male_name'           : person_name,
+        'name'                : person_name,
+        'female_name'         : person_name,
+        'unknown_gender_name' : person_name,
         }
 
     if person_name == 0:
@@ -1804,13 +1807,14 @@ def born_str(database,person,person_name=None,empty_date="",empty_place=""):
                 get_birth_death_strings(database,person,empty_date,empty_place)
 
     value_map = {
-        'name'          : person_name, 
-        'male_name'     : person_name, 
-        'female_name'   : person_name, 
-        'birth_date'    : bdate,
-        'birth_place'   : bplace,
-        'month_year'    : bdate,
-        'modified_date' : bdate,
+        'name'                : person_name, 
+        'male_name'           : person_name, 
+        'unknown_gender_name' : person_name, 
+        'female_name'         : person_name, 
+        'birth_date'          : bdate,
+        'birth_place'         : bplace,
+        'month_year'          : bdate,
+        'modified_date'       : bdate,
         }
 
     gender = person.get_gender()
@@ -1887,14 +1891,15 @@ def died_str(database,person,person_name=None,empty_date="",empty_place="",
                 get_birth_death_strings(database,person,empty_date,empty_place)
 
     value_map = {
-        'name'          : person_name, 
-        'male_name'     : person_name, 
-        'female_name'   : person_name, 
-        'death_date'    : ddate,
-        'modified_date' : ddate,
-        'death_place'   : dplace,
-        'age'           : age ,
-        'month_year'    : ddate,
+        'name'                : person_name, 
+        'unknown_gender_name' : person_name, 
+        'male_name'           : person_name, 
+        'female_name'         : person_name, 
+        'death_date'          : ddate,
+        'modified_date'       : ddate,
+        'death_place'         : dplace,
+        'age'                 : age ,
+        'month_year'          : ddate,
         }
 
     gender = person.get_gender()
@@ -1977,6 +1982,7 @@ def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
     values = {
         'unknown_gender_name' : person_name, 
         'male_name'           : person_name, 
+        'name'                : person_name, 
         'female_name'         : person_name, 
         'burial_date'         : bdate,
         'burial_place'        : bplace,

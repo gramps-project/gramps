@@ -1,3 +1,6 @@
+2005-10-12  Don Allingham  <don@gramps-project.org>
+	* src/ReportUtils.py: handle "unknown_gender_name" in parameter arrays
+
 2005-10-11  Don Allingham  <don@gramps-project.org>
 	* src/plugins/NavWebPage.py: first pass at ancestor map
 	* src/data/main*.css: ancestor css styles
