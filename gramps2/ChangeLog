@@ -1,4 +1,6 @@
 2005-10-12  Don Allingham  <don@gramps-project.org>
+	* src/data/main*.css: improved css styles for ancestor graphs
+	* src/plugins/NavWebPage.py: 4 generation ancestor graph
 	* src/ReportUtils.py: handle "unknown_gender_name" in parameter arrays
 
 2005-10-11  Don Allingham  <don@gramps-project.org>

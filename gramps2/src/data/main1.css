@@ -232,12 +232,12 @@ TD.field {
 #sourcerefs { }
 #weblinks { }
 
-.box    { font-size: 10pt; height: 55px; padding: 5px; }
+.box    { font-size: 10pt; height: 48px; padding: 5px; vertical-align: middle;}
 .bvline { position: absolute; background-color: #000000; font-size: 0pt; z-index: 3; height: 1px;}
 .bhline { position: absolute; background-color: #000000; font-size: 0pt; z-index: 3; width: 1px;}
-.border { position: absolute; background-color: #000000; font-size: 0pt; z-index: 4; width: 153px; height: 57px; }
-.boxbg  { position: absolute; background-color: #cccccc; z-index: 5; width: 151px; height: 55px;}
-.shadow { position: absolute; background-color: #999999; z-index: 1; width: 153px; height: 57px; }
+.border { position: absolute; background-color: #000000; font-size: 0pt; z-index: 4; width: 160px; height: 50px; }
+.boxbg  { position: absolute; background-color: #eeeeee; z-index: 5; width: 158px; height: 48px;}
+.shadow { position: absolute; background-color: #999999; z-index: 1; width: 158px; height: 48px; }
 .ghline { position: absolute; background-color: #999999; font-size: 0pt; z-index: 1; width: 1px;}
 .gvline { position: absolute; background-color: #999999; font-size: 0pt; z-index: 1; height: 1px;}
 

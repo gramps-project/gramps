@@ -75,6 +75,13 @@ from DateHandler import displayer as _dd
 _NARRATIVE = "narrative.css"
 _NAME_COL  = 3
 
+WIDTH=160
+HEIGHT=50
+VGAP=10
+HGAP=30
+SHADOW=5
+XOFFSET=5
+
 _css_files = [
     [_("Modern"),         'main1.css'],
     [_("Business"),       'main2.css'],
@@ -1348,6 +1355,55 @@ class IndividualPage(BasePage):
         self.display_footer(of,db)
         self.close_file(of)
 
+    def draw_box(self,of,center,col,person):
+        top = center - HEIGHT/2
+        xoff = XOFFSET+col*(WIDTH+HGAP)
+        
+        of.write('<div class="boxbg" style="top: %dpx; left: %dpx;">\n' % (top,xoff+1))
+        of.write('<table><tr><td class="box">')
+        person_link = person.handle in self.ind_list
+        if person_link:
+            person_name = nameof(person,self.exclude_private)
+            path = self.build_path(person.handle,"ppl",False)
+            fname = self.build_name(path,person.handle)
+            self.person_link(of, fname, person_name)
+        else:
+            of.write(nameof(person,self.exclude_private))
+        of.write('</td></tr></table>\n')
+        of.write('</div>\n')
+        of.write('<div class="shadow" style="top: %dpx; left: %dpx;"></div>\n' % (top+SHADOW,xoff+SHADOW))
+        of.write('<div class="border" style="top: %dpx; left: %dpx;"></div>\n' % (top-1, xoff))
+
+    def extend_line(self,of,y0,x0):
+        of.write('<div class="bvline" style="top: %dpx; left: %dpx; width: %dpx;"></div>\n' %
+                 (y0,x0,HGAP/2))
+        of.write('<div class="gvline" style="top: %dpx; left: %dpx; width: %dpx;"></div>\n' % 
+                 (y0+SHADOW,x0,HGAP/2+SHADOW))
+
+    def connect_line(self,of,y0,y1,col):
+        if y0 < y1:
+            y = y0
+        else:
+            y = y1
+            
+        x0 = XOFFSET + col * WIDTH + (col-1)*HGAP + HGAP/2
+        of.write('<div class="bvline" style="top: %dpx; left: %dpx; width: %dpx;"></div>\n' %
+                 (y1,x0,HGAP/2))
+        of.write('<div class="gvline" style="top: %dpx; left: %dpx; width: %dpx;"></div>\n' %
+                 (y1+SHADOW,x0+SHADOW,HGAP/2+SHADOW))
+        of.write('<div class="bhline" style="top: %dpx; left: %dpx; height: %dpx;"></div>\n' %
+                 (y,x0,abs(y0-y1)))
+        of.write('<div class="ghline" style="top: %dpx; left: %dpx; height: %dpx;"></div>\n' %
+                 (y+SHADOW,x0+SHADOW,abs(y0-y1)))
+
+    def draw_connected_box(self,of,center1,center2,col,handle):
+        if not handle:
+            return None
+        person = self.db.get_person_from_handle(handle)
+        self.draw_box(of,center2,col,person)
+        self.connect_line(of,center1,center2,col)
+        return person
+    
     def display_tree(self,of):
         family_handle = self.person.get_main_parents_family_handle()
         if not family_handle:
@@ -1358,115 +1414,100 @@ class IndividualPage(BasePage):
         of.write('<h4>%s</h4>\n' % _('Ancestors'))
         of.write('<div style="position: relative;" align="left">\n')
 
-        # self
-        
-        of.write('<div class="boxbg" style="top: 107px; left: 2px;">\n')
-        of.write('<table><tr><td class="box">%s</td></tr></table>\n' % _nd.display(self.person))
-        of.write('</div>\n')
-        of.write('<div class="shadow" style="top: 110px; left: 5px;"></div>\n')
-        of.write('<div class="border" style="top: 106px; left: 1px;"></div>\n')
+        # self - first box, centered, flush left
+
+        GENERATIONS = 4
+
+        max_in_col = 1 <<(GENERATIONS-1)
+        max_size = HEIGHT*max_in_col + VGAP*(max_in_col+1)
+
+        center0 = max_size / 2
+        self.draw_box(of,center0,0,self.person)
+        self.extend_line(of,center0,XOFFSET+WIDTH)
 
         father_handle = family.get_father_handle()
         if father_handle:
-            father = self.db.get_person_from_handle(father_handle)
-            of.write('<div class="boxbg" style="top: 36px; left: 184px;">\n')
-            of.write('<table><tr><td class="box">%s</td></tr></table>\n' % _nd.display(father))
-            of.write('</div>\n')
-            of.write('<div class="shadow" style="top: 39px; left: 187px;"></div>\n')
-            of.write('<div class="border" style="top: 35px; left: 183px;"></div>\n')
-            of.write('<div class="bvline" style="top: 64px; left: 169px; width: 17px;"></div>\n')
-            of.write('<div class="gvline" style="top: 69px; left: 174px; width: 17px;"></div>\n')
-            of.write('<div class="bhline" style="top: 64px; left: 169px; height: 73px;"></div>\n')
-            of.write('<div class="ghline" style="top: 69px; left: 174px; height: 73px;"></div>\n')
+            center1 = int(max_size/4)
+            father = self.draw_connected_box(of,center0,center1,1,father_handle)
 
             f_family_handle = father.get_main_parents_family_handle()
             if f_family_handle:
-                of.write('<div class="bvline" style="top: 64px; left: 335px; width: 16px;"></div>\n')
-                of.write('<div class="gvline" style="top: 69px; left: 340px; width: 16px;"></div>\n')
-                
+                self.extend_line(of,center1,XOFFSET+2*WIDTH+HGAP)
                 f_family = self.db.get_family_from_handle(f_family_handle)
-                f_father_handle = f_family.get_father_handle()
 
-                if f_father_handle:
-                    f_father = self.db.get_person_from_handle(f_father_handle)
-                    of.write('<div class="boxbg" style="top: 1px; left: 366px;">\n')
-                    of.write('<table><tr><td class="box"">%s</td></tr></table>\n' % _nd.display(f_father))
-                    of.write('</div>\n')
-                    of.write('<div class="shadow" style="top: 4px; left: 369px;"></div>\n')
-                    of.write('<div class="border" style="top: 0px; left: 365px;"></div>\n')
-                    of.write('<div class="bvline" style="top: 28px; left: 351px; width: 17px;"></div>\n')
-                    of.write('<div class="gvline" style="top: 33px; left: 356px; width: 17px;"></div>\n')
-                    of.write('<div class="bhline" style="top: 28px; left: 351px; height: 37px;"></div>\n')
-                    of.write('<div class="ghline" style="top: 33px; left: 356px; height: 37px;"></div>\n')
+                center2 = int(max_size/8)
+                f_father = self.draw_connected_box(of,center1,center2,2,f_family.get_father_handle())
 
-                f_mother_handle = f_family.get_mother_handle()
+                if f_father:
+                    ff_family_handle = f_father.get_main_parents_family_handle()
+                    if ff_family_handle:
+                        self.extend_line(of,center2,XOFFSET+3*WIDTH+2*HGAP)
+                        ff_family = self.db.get_family_from_handle(ff_family_handle)
 
-                if f_mother_handle:
-                    f_mother = self.db.get_person_from_handle(f_mother_handle)
+                        center3 = int(max_size)/16
+                        self.draw_connected_box(of,center2,center3,3,ff_family.get_father_handle())
 
-                    of.write('<div class="boxbg" style="top: 73px; left: 366px;">\n')
-                    of.write('<table><tr><td class="box">%s</td></tr></table>\n' % _nd.display(f_mother))
-                    of.write('</div>\n')
-                    of.write('<div class="shadow" style="top: 76px; left: 369px;"></div>\n')
-                    of.write('<div class="border" style="top: 72px; left: 365px;"></div>\n')
-                    of.write('<div class="bvline" style="top: 100px; left: 351px; width: 17px;"></div>\n')
-                    of.write('<div class="gvline" style="top: 105px; left: 356px; width: 17px;"></div>\n')
-                    of.write('<div class="bhline" style="top: 65px; left: 351px; height: 36px;"></div>\n')
-                    of.write('<div class="ghline" style="top: 70px; left: 356px; height: 36px;"></div>\n')
+                        center3 = int(max_size)/16*3
+                        self.draw_connected_box(of,center2,center3,3,ff_family.get_mother_handle())
+
+                center2 = int(max_size/8)*3
+                f_mother = self.draw_connected_box(of,center1,center2,2,f_family.get_mother_handle())
+
+                if f_mother:
+                    ff_family_handle = f_mother.get_main_parents_family_handle()
+                    if ff_family_handle:
+                        self.extend_line(of,center2,XOFFSET+3*WIDTH+2*HGAP)
+                        ff_family = self.db.get_family_from_handle(ff_family_handle)
+
+                        center3 = int(max_size)/16*5
+                        self.draw_connected_box(of,center2,center3,3,ff_family.get_father_handle())
+
+                        center3 = int(max_size)/16*7
+                        self.draw_connected_box(of,center2,center3,3,ff_family.get_mother_handle())
 
         mother_handle = family.get_mother_handle()
         if mother_handle:
-            mother = self.db.get_person_from_handle(mother_handle)
-
-            of.write('<div class="boxbg" style="top: 180px; left: 184px;">\n')
-            of.write('<table><tr><td class="box">%s</td></tr></table>\n' % _nd.display(mother))
-            of.write('</div>\n')
-            of.write('<div class="shadow" style="top: 183px; left: 187px;"></div>\n')
-            of.write('<div class="border" style="top: 179px; left: 183px;"></div>\n')
-            of.write('<div class="bvline" style="top: 208px; left: 169px; width: 17px;"></div>\n')
-            of.write('<div class="gvline" style="top: 213px; left: 174px; width: 17px;"></div>\n')
-            of.write('<div class="bvline" style="top: 208px; left: 335px; width: 16px;"></div>\n')
-            of.write('<div class="gvline" style="top: 213px; left: 340px; width: 16px;"></div>\n')
-            of.write('<div class="bhline" style="top: 137px; left: 169px; height: 72px;"></div>\n')
-            of.write('<div class="ghline" style="top: 142px; left: 174px; height: 72px;"></div>\n')
+            center1 = int(max_size/4)*3
+            mother = self.draw_connected_box(of,center0,center1,1,mother_handle)
 
             m_family_handle = mother.get_main_parents_family_handle()
             if m_family_handle:
-                of.write('<div class="bvline" style="top: 136px; left: 153px; width: 16px;"></div>\n')
-                of.write('<div class="gvline" style="top: 141px; left: 158px; width: 16px;"></div>\n')
-
+                self.extend_line(of,center1,XOFFSET+2*WIDTH+HGAP)
                 m_family = self.db.get_family_from_handle(m_family_handle)
-                m_father_handle = m_family.get_father_handle()
 
-                if m_father_handle:
-                    m_father = self.db.get_person_from_handle(m_father_handle)
+                center2 = int(max_size/8)*5
+                f_father = self.draw_connected_box(of,center1,center2,2,m_family.get_father_handle())
 
-                    of.write('<div class="boxbg" style="top: 145px; left: 366px;">\n')
-                    of.write('<table><tr><td class="box">%s</td></tr></table>\n' % _nd.display(m_father))
-                    of.write('</div>\n')
-                    of.write('<div class="border" style="top: 144px; left: 365px;"></div>\n')
-                    of.write('<div class="shadow" style="top: 148px; left: 369px;"></div>\n')
-                    of.write('<div class="bvline" style="top: 172px; left: 351px; width: 17px;"></div>\n')
-                    of.write('<div class="gvline" style="top: 177px; left: 356px; width: 17px;"></div>\n')
-                    of.write('<div class="bhline" style="top: 172px; left: 351px; height: 37px;"></div>\n')
-                    of.write('<div class="ghline" style="top: 177px; left: 356px; height: 37px;"></div>\n')
+                if f_father:
+                    ff_family_handle = f_father.get_main_parents_family_handle()
+                    if ff_family_handle:
+                        self.extend_line(of,center2,XOFFSET+3*WIDTH+2*HGAP)
+                        ff_family = self.db.get_family_from_handle(ff_family_handle)
 
-                m_mother_handle = m_family.get_mother_handle()
+                        center3 = int(max_size)/16*9
+                        self.draw_connected_box(of,center2,center3,3,ff_family.get_father_handle())
 
-                if m_mother_handle:
-                    m_mother = self.db.get_person_from_handle(m_mother_handle)
-                    of.write('<div class="boxbg" style="top: 217px; left: 366px;">\n')
-                    of.write('<table><tr><td class="box">%s</td></tr></table>\n' % _nd.display(m_mother))
-                    of.write('</div>\n')
-                    of.write('<div class="border" style="top: 216px; left: 365px;"></div>\n')
-                    of.write('<div class="shadow" style="top: 220px; left: 369px;"></div>\n')
-                    of.write('<div class="bvline" style="top: 244px; left: 351px; width: 17px;"></div>\n')
-                    of.write('<div class="gvline" style="top: 249px; left: 356px; width: 17px;"></div>\n')
-                    of.write('<div class="bhline" style="top: 209px; left: 351px; height: 36px;"></div>\n')
-                    of.write('<div class="ghline" style="top: 214px; left: 356px; height: 36px;"></div>\n')
+                        center3 = int(max_size)/16*11
+                        self.draw_connected_box(of,center2,center3,3,ff_family.get_mother_handle())
+
+                center2 = int(max_size/8)*7
+                f_mother = self.draw_connected_box(of,center1,center2,2,m_family.get_mother_handle())
+
+                if f_mother:
+                    ff_family_handle = f_mother.get_main_parents_family_handle()
+                    if ff_family_handle:
+                        self.extend_line(of,center2,XOFFSET+3*WIDTH+2*HGAP)
+                        ff_family = self.db.get_family_from_handle(ff_family_handle)
+
+                        center3 = int(max_size)/16*13
+                        self.draw_connected_box(of,center2,center3,3,ff_family.get_father_handle())
+
+                        center3 = int(max_size)/16*15
+                        self.draw_connected_box(of,center2,center3,3,ff_family.get_mother_handle())
 
         of.write('</div>\n')
-        of.write('<table style="height: 400px; width: 500px;"><tr><td></td></tr></table>\n')
+        of.write('<table style="height: %dpx; width: %dx;"><tr><td></td></tr></table>\n' %
+                 (max_size,3*WIDTH+2*HGAP+2*XOFFSET))
 
     def display_ind_sources(self,of):
         sreflist = self.src_refs + self.person.get_source_references()
