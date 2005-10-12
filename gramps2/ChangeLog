@@ -1,4 +1,6 @@
 2005-10-11  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: first pass at ancestor map
+	* src/data/main*.css: ancestor css styles
 	* src/EditPerson.py: handle adding death/birth record correctly
 
 2005-10-11  Alex Roitman  <shura@gramps-project.org>
