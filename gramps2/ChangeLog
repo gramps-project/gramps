@@ -1,3 +1,6 @@
+2005-10-13  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/TestcaseGenerator.py: Randomize more; Add LDS events
+
 2005-10-12  Don Allingham  <don@gramps-project.org>
 	* src/plugins/NavWebPage.py: option for choosing the ancestor graph
 

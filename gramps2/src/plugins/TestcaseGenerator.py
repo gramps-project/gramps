@@ -71,7 +71,39 @@ class TestcaseGenerator(Tool.Tool):
         self.persons_todo = []
         self.parents_todo = []
         self.person_dates = {}
+        
+        self.random_marrtype_list = (RelLib.Family.UNMARRIED, RelLib.Family.CIVIL_UNION,
+                                     RelLib.Family.UNKNOWN, RelLib.Family.OTHER)
+        self.random_childrel_list = (RelLib.Person.CHILD_REL_NONE, RelLib.Person.CHILD_REL_ADOPT,
+                                     RelLib.Person.CHILD_REL_STEP, RelLib.Person.CHILD_REL_SPONS,
+                                     RelLib.Person.CHILD_REL_FOST, RelLib.Person.CHILD_REL_UNKWN,
+                                     RelLib.Person.CHILD_REL_OTHER)
+        
+        # If an active persons exists the generated tree is connected to that person
         if person:
+            # try to get birth and death year
+            try:
+                bh = person.get_birth_handle()
+                b = self.db.get_event_from_handle( bh)
+                do = b.get_date_object()
+                birth = do.get_year()
+            except AttributeError:
+                birth = None
+            try:
+                dh = person.get_death_handle()
+                b = self.db.get_event_from_handle( dh)
+                do = b.get_date_object()
+                death = do.get_year()
+            except AttributeError:
+                death = None
+            if not birth and not death:
+                birth = randint(1700,1900)
+            if birth and not death:
+                death = birth + randint(20,90)
+            if death and not birth:
+                birth = death - randint(20,90)
+            self.person_dates[person.get_handle()] = (birth,death)
+            
             self.persons_todo.append(person.get_handle())
             self.parents_todo.append(person.get_handle())
 
@@ -704,6 +736,8 @@ class TestcaseGenerator(Tool.Tool):
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         np = RelLib.Person()
+        np.set_privacy( randint(0,5) == 1)
+        np.set_complete_flag( randint(0,5) == 1)
         
         self.add_defaults(np)
         
@@ -720,32 +754,11 @@ class TestcaseGenerator(Tool.Tool):
             np.set_gender(gender)
         
         # Name
-        syllables1 = ["sa","li","na","ma","no","re","mi","cha","ki","du","ba","ku","el"]
-        syllables2 = ["as","il","an","am","on","er","im","ach","ik","ud","ab","ul","le"]
-
         name = RelLib.Name()
-        firstname = ""
-        maxnames = 5
-        maxsyllables = 5
-        if not self.options.handler.options_dict['long_names']:
-            maxnames = 2
-            maxsyllables = 3
-        for i in range(0,randint(1,maxnames)):
-            for j in range(0,randint(2,maxsyllables)):
-                firstname = firstname + choice(syllables2)
-            if gender == RelLib.Person.FEMALE:
-                firstname = firstname + choice(("a","e","i","o","u"))
-            firstname = firstname + " "
-        firstname = firstname.title().strip()
-        if not lastname:
-            lastname = ""
-            for i in range(0,randint(2,maxsyllables)):
-                lastname = lastname + choice(syllables1)
-        n = randint(0,2)
-        if n == 0:
-            lastname = lastname.title()
-        elif n == 1:
-            lastname = lastname.upper()
+        name.set_privacy( randint(0,5) == 1)
+        (firstname,lastname) = self.rand_name(lastname, gender)
+        if alive_in_year:
+            firstname = "%s (%d)" % (firstname, alive_in_year)
         name.set_first_name(firstname)
         name.set_surname(lastname)
         name.add_source_reference(self.default_sourceref)
@@ -754,6 +767,7 @@ class TestcaseGenerator(Tool.Tool):
         
         # generate some slightly different alternate name
         alt_name = RelLib.Name(name)
+        alt_name.set_privacy( randint(0,5) == 1)
         firstname2 = firstname.replace("m", "n").replace("l", "i").replace("b", "d")
         if firstname2 != firstname:
             alt_name.set_first_name( firstname2)
@@ -795,6 +809,17 @@ class TestcaseGenerator(Tool.Tool):
             (bur_year, e) = self.rand_event( choice( ("Burial", "Cremation")), dy, dy+2)
             self.db.add_event(e, self.trans)
             np.add_event_handle(e.get_handle())
+        
+        #LDS
+        if randint(0,1) == 1:
+            lds = self.rand_ldsord( const.lds_baptism)
+            np.set_lds_baptism( lds)
+        if randint(0,1) == 1:
+            lds = self.rand_ldsord( const.lds_baptism)
+            np.set_lds_endowment( lds)
+        if randint(0,1) == 1:
+            lds = self.rand_ldsord( const.lds_csealing)
+            np.set_lds_sealing( lds)
 
         person_handle = self.db.add_person(np,self.trans)
         
@@ -833,7 +858,12 @@ class TestcaseGenerator(Tool.Tool):
         self.add_defaults(fam)
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship(RelLib.Family.MARRIED)
+        if randint(0,2) == 1:
+            fam.set_relationship( choice( self.random_marrtype_list))
+        else:
+            fam.set_relationship( RelLib.Family.MARRIED)
+        lds = self.rand_ldsord( const.lds_ssealing)
+        fam.set_lds_sealing( lds)
         fam_h = self.db.add_family(fam,self.trans)
         fam = self.db.commit_family(fam,self.trans)
         person1 = self.db.get_person_from_handle(person1_h)
@@ -856,7 +886,13 @@ class TestcaseGenerator(Tool.Tool):
             fam.add_child_handle(child_h)
             self.db.commit_family(fam,self.trans)
             child = self.db.get_person_from_handle(child_h)
-            child.add_parent_family_handle(fam_h,RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
+            rel1 = RelLib.Person.CHILD_REL_BIRTH
+            if randint(0,2) == 1:
+                rel1 = choice( self.random_childrel_list)
+            rel2 = RelLib.Person.CHILD_REL_BIRTH
+            if randint(0,2) == 1:
+                rel2 = choice( self.random_childrel_list)
+            child.add_parent_family_handle(fam_h, rel1, rel2)
             self.db.commit_person(child,self.trans)
             if randint(0,3) > 0:
                 self.persons_todo.append(child_h)
@@ -868,7 +904,6 @@ class TestcaseGenerator(Tool.Tool):
             return
 
         lastname = child.get_primary_name().get_surname()
-        
         if child_h in self.person_dates:
             (born,died) = self.person_dates[child_h]
             person1_h = self.generate_person(1,lastname, alive_in_year=born)
@@ -883,9 +918,15 @@ class TestcaseGenerator(Tool.Tool):
             self.parents_todo.append(person2_h)
             
         fam = RelLib.Family()
+        self.add_defaults(fam)
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship(RelLib.Family.MARRIED)
+        if randint(0,2) == 1:
+            fam.set_relationship( choice( self.random_marrtype_list))
+        else:
+            fam.set_relationship( RelLib.Family.MARRIED)
+        lds = self.rand_ldsord( const.lds_ssealing)
+        fam.set_lds_sealing( lds)
         fam.add_child_handle(child_h)
         fam_h = self.db.add_family(fam,self.trans)
         fam = self.db.commit_family(fam,self.trans)
@@ -895,8 +936,13 @@ class TestcaseGenerator(Tool.Tool):
         person2 = self.db.get_person_from_handle(person2_h)
         person2.add_family_handle(fam_h)
         self.db.commit_person(person2,self.trans)
-
-        child.add_parent_family_handle(fam_h,RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
+        rel1 = RelLib.Person.CHILD_REL_BIRTH
+        if randint(0,2) == 1:
+            rel1 = choice( self.random_childrel_list)
+        rel2 = RelLib.Person.CHILD_REL_BIRTH
+        if randint(0,2) == 1:
+            rel2 = choice( self.random_childrel_list)
+        child.add_parent_family_handle(fam_h, rel1, rel2)
         self.db.commit_person(child,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
@@ -904,24 +950,66 @@ class TestcaseGenerator(Tool.Tool):
         object.add_source_reference(self.default_sourceref)
         object.add_media_reference(self.default_mediaref)
         e = RelLib.Event()
+        e.set_privacy( randint(0,5) == 1)
         e.set_name("TestcaseGenerator")
         e.set_note("Generated by TestcaseGenerator")
         e.set_cause("Test cause")
         e.set_description("Test description")
-        e.add_source_reference(self.default_sourceref)
-        e.add_media_reference(self.default_mediaref)
+        sref = RelLib.SourceRef(self.default_sourceref)
+        sref.set_privacy( randint(0,5) == 1)
+        e.add_source_reference(sref)
+        mref = RelLib.MediaRef(self.default_mediaref)
+        mref.set_privacy( randint(0,5) == 1)
+        e.add_media_reference(mref)
         e.set_place_handle(self.default_place.get_handle())
         (year,d) = self.rand_date()
         e.set_date_object( d)
         self.db.add_event(e, self.trans)
         object.add_event_handle(e.get_handle())
-        object.add_attribute( self.default_attribute)
+        attr = RelLib.Attribute(self.default_attribute)
+        attr.set_privacy( randint(0,5) == 1)
+        object.add_attribute( attr)
         try:
-            object.add_url(self.default_url)
-            object.add_address(self.default_address)
+            url = RelLib.Url(self.default_url)
+            url.set_privacy( randint(0,5) == 1)
+            object.add_url(url)
+            addr = RelLib.Address(self.default_address)
+            addr.set_privacy( randint(0,5) == 1)
+            object.add_address(addr)
         except AttributeError:
             pass    # family does not have an url
         object.set_note("Generated by TestcaseGenerator")
+    
+    def rand_name( self, lastname=None, gender=None):
+        syllables1 = ["sa","li","na","ma","no","re","mi","cha","ki","du","ba","ku","el"]
+        syllables2 = ["as","il","an","am","on","er","im","ach","ik","ud","ab","ul","le"]
+
+        firstname = ""
+        if not gender:
+            gender = choice((RelLib.Person.MALE, RelLib.Person.FEMALE))
+        maxnames = 5
+        maxsyllables = 5
+        if not self.options.handler.options_dict['long_names']:
+            maxnames = 2
+            maxsyllables = 3
+        for i in range(0,randint(1,maxnames)):
+            for j in range(0,randint(2,maxsyllables)):
+                firstname = firstname + choice(syllables2)
+            if gender == RelLib.Person.FEMALE:
+                firstname = firstname + choice(("a","e","i","o","u"))
+            firstname = firstname + " "
+        firstname = firstname.title().strip()
+        if not lastname:
+            lastname = ""
+            for i in range(0,randint(2,maxsyllables)):
+                lastname = lastname + choice(syllables1)
+        n = randint(0,2)
+        if n == 0:
+            lastname = lastname.title()
+        elif n == 1:
+            lastname = lastname.upper()
+        
+        return (firstname,lastname)
     
     def rand_date( self, start=None, end=None):
         """
@@ -981,15 +1069,49 @@ class TestcaseGenerator(Tool.Tool):
         if randint(0,1) == 1:
             e.set_description("Test description")
         if randint(0,1) == 1:
-            e.add_source_reference(self.default_sourceref)
+            sref = self.default_sourceref
+            sref.set_privacy( randint(0,5) == 1)
+            e.add_source_reference( sref)
         if randint(0,1) == 1:
-            e.add_media_reference(self.default_mediaref)
+            mref = self.default_mediaref
+            mref.set_privacy( randint(0,5) == 1)
+            e.add_media_reference( mref)
         if randint(0,1) == 1:
             e.set_place_handle(self.default_place.get_handle())
         (year, d) = self.rand_date( start, end)
         e.set_date_object( d)
+        if randint(0,5) == 1:
+            w = RelLib.Witness()
+            w.set_privacy( randint(0,5) == 1)
+            w.set_comment("Generated by TestcaseGenerator")
+            if randint(0,1) == 1:
+                w.set_type( RelLib.Event.ID)
+                wph = self.generate_person( alive_in_year=year)
+                w.set_value( wph)
+            else:
+                w.set_type( RelLib.Event.NAME)
+                w.set_value( "%s %s" % self.rand_name())
+            e.add_witness(w)
         return (year, e)
     
+    def rand_ldsord( self, status_list):
+        lds = RelLib.LdsOrd()
+        if randint(0,1) == 1:
+            lds.set_status( randint(0,len(status_list)-1))
+        if randint(0,1) == 1:
+            lds.set_temple( choice( const.lds_temple_to_abrev.keys()))
+        if randint(0,1) == 1:
+            lds.set_place_handle( self.default_place.get_handle())
+        if randint(0,1) == 1:
+            sref = self.default_sourceref
+            sref.set_privacy( randint(0,5) == 1)
+            lds.add_source_reference( sref)
+        if randint(0,1) == 1:
+            lds.set_note("Generated by TestcaseGenerator")
+        if randint(0,1) == 1:
+            (year,d) = self.rand_date( )
+            lds.set_date_object( d)
+        return lds
 
     
     def commit_transaction(self):
