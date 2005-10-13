@@ -98,7 +98,7 @@ PEOPLE
         id        CDATA #REQUIRED
         handle    ID    #REQUIRED
         change    CDATA #REQUIRED
-        commplete (0|1) #IMPLIED
+        complete (0|1) #IMPLIED
 >
 
 <!--
