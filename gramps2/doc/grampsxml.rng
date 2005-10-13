@@ -29,100 +29,208 @@
 -->
 
 
-<grammar datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"  
-ns="http://gramps-project.org/" xmlns="http://relaxng.org/ns/structure/1.0">
+<grammar
+  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"  
+  ns="http://gramps-project.org/"
+  xmlns="http://relaxng.org/ns/structure/1.0">
 
-  <start>
-    <element name="database">
+  <start><element name="database">
     
       <element name="header">
         <element name="created">
-          <attribute name="date"><data type="date"/></attribute>
-          <attribute name="version"><text/></attribute>
+            <attribute name="date"><data type="date"/></attribute>
+            <attribute name="version"><text/></attribute>
         </element>
-        <optional>
-          <element name="researcher">
+        <optional><element name="researcher">
             <ref name="researcher-content"/>
-          </element>
-        </optional>
+        </element></optional>
       </element>
 
-      <optional>
-        <element name="people">
-          <optional>
-            <attribute name="default"><text/></attribute>
-          </optional>
-          <optional>
-            <attribute name="home"><data type="ID"/></attribute>
-          </optional>
-          <zeroOrMore>
-            <element name="person">
+      <optional><element name="people">
+          <optional><attribute name="default"><text/></attribute></optional>
+          <optional><attribute name="home">
+              <data type="IDREF"/>
+          </attribute></optional>
+          <zeroOrMore><element name="person">
               <ref name="person-content"/>
-            </element>
-          </zeroOrMore>
-        </element>
-      </optional>
+          </element></zeroOrMore>
+      </element></optional>
 
-      <optional>
-        <element name="families">
-          <zeroOrMore>
-            <element name="family">
+      <optional><element name="families">
+          <zeroOrMore><element name="family">
               <ref name="family-content"/>
-            </element>
-          </zeroOrMore>
-        </element>
-      </optional>
+          </element></zeroOrMore>
+      </element></optional>
 
-      <optional>
-        <element name="sources">
-          <zeroOrMore>
-            <element name="source">
+      <optional><element name="sources">
+          <zeroOrMore><element name="source">
               <ref name="source-content"/>
-            </element>
-          </zeroOrMore>
-        </element>
-      </optional>
+          </element></zeroOrMore>
+      </element></optional>
 
-      <optional>
-        <element name="places">
-          <zeroOrMore>
-            <element name="place">
+      <optional><element name="places">
+          <zeroOrMore><element name="place">
               <ref name="place-content"/>
-            </element>
-          </zeroOrMore>
-        </element>
-      </optional>
+          </element></zeroOrMore>
+      </element></optional>
 
-      <optional>
-        <element name="objects">
-          <zeroOrMore>
-            <element name="object">
+      <optional><element name="objects">
+          <zeroOrMore><element name="object">
               <ref name="object-content"/>
-            </element>
-          </zeroOrMore>
-        </element>
-      </optional>
+          </element></zeroOrMore>
+      </element></optional>
 
-      <optional>
-        <element name="bookmarks">
-          <zeroOrMore>
-            <element name="bookmark">
+      <optional><element name="bookmarks">
+          <zeroOrMore><element name="bookmark">
               <ref name="bookmark-content"/>
-            </element>
-          </zeroOrMore>
-        </element>
-      </optional>
+          </element></zeroOrMore>
+      </element></optional>
 
-    </element>
-  </start>
+  </element></start>
 
   <define name="researcher-content">
-    <text/>
+      <element name="resname"><text/></element>
+      <optional><element name="resaddr"><text/></element></optional>
+      <optional><element name="rescity"><text/></element></optional>
+      <optional><element name="resstate"><text/></element></optional>
+      <optional><element name="rescountry"><text/></element></optional>
+      <optional><element name="respostal"><text/></element></optional>
+      <optional><element name="resphone"><text/></element></optional>
+      <optional><element name="resemail"><text/></element></optional>
   </define>
 
   <define name="person-content">
-    <attribute name="handle"><data type="IDREF"/></attribute>
-    <text/>
+    <attribute name="id"><text/></attribute>
+    <attribute name="handle"><data type="ID"/></attribute>
+    <attribute name="change"><text/></attribute>
+    <optional><attribute name="complete"><choice>
+        <value>0</value>
+        <value>1</value>
+    </choice></attribute></optional>
+    <element name="gender"><choice>
+        <value>M</value>
+        <value>F</value>
+        <value>U</value>
+    </choice></element>
+    <zeroOrMore><element name="name">
+        <ref name="name-contents"/>
+    </element></zeroOrMore>
+    <optional><element name="nick"><text/></element></optional>
+    <zeroOrMore><element name="event">
+        <ref name="event-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="lds_ord">
+        <ref name="lds-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="objref">
+        <ref name="objref-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="address">
+        <ref name="address-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="attribute">
+        <ref name="attribute-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="url">
+        <ref name="url-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="childof">
+        <attribute name="hlink"><data type="IDREF"/></attribute>
+        <optional><attribute name="mrel">
+            <ref name="child-rel"/>
+        </attribute></optional>
+        <optional><attribute name="frel">
+            <ref name="child-rel"/>
+        </attribute></optional>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="parentin">
+        <attribute name="hlink"><data type="IDREF"/></attribute>
+    </element></zeroOrMore>
+    <optional><element name="note">
+        <ref name="note-content"/>
+    </element></optional>
+    <zeroOrMore><element name="sourceref">
+        <ref name="sourceref-content"/>
+    </element></zeroOrMore>
+  </define>
+
+  <define name="child-rel">
+    <choice>
+      <value>None</value>
+      <value>Birth</value>
+      <value>Adopted</value>
+      <value>Sponsored</value>
+      <value>Foster</value>
+      <value>Other</value>
+      <value>Unknown</value>
+    </choice>
+  </define>
+
+  <define name="name-content">
+    <optional><attribute name="alt"><choice>
+        <value>0</value>
+        <value>1</value>
+    </choice></attribute></optional>
+    <optional><attribute name="priv"><choice>
+        <value>0</value>
+        <value>1</value>
+    </choice></attribute></optional>
+    <optional><attribute name="type"><text/></attribute></optional>
+    <optional><attribute name="sort"><text/></attribute></optional>
+    <optional><attribute name="display"><text/></attribute></optional>
+    <optional><element name="first"><text/></element></optional>
+    <optional><element name="last">
+        <optional><attribute name="prefix"><text/></attribute></optional>
+        <optional><attribute name="group"><text/></attribute></optional>
+        <text/>
+    </element></optional>
+    <optional><element name="suffix"><text/></element></optional>
+    <optional><element name="patronymic"><text/></element></optional>
+    <optional><element name="title"><text/></element></optional>
+  </define>
+
+  <define name="address-content">
+    <optional><attribute name="priv"><choice>
+        <value>0</value>
+        <value>1</value>
+    </choice></attribute></optional>
+    <ref name="date-content"/>
+    <optional><element name="street"><text/></element></optional>
+    <optional><element name="city"><text/></element></optional>
+    <optional><element name="state"><text/></element></optional>
+    <optional><element name="country"><text/></element></optional>
+    <optional><element name="postal"><text/></element></optional>
+    <optional><element name="phone"><text/></element></optional>
+    <optional><element name="note">
+        <ref name="note-content"/>
+    </element></optional>
+    <optional><element name="sourceref">
+        <ref name="sourceref-content"/>
+    </element></optional>
+  </define>
+
+  <define name="date-content">
+    <optional>
+      <choice>
+        <element name="daterange">
+            <attribute name="start"><data type="date"/></attribute>
+            <attribute name="stop"><data type="date"/></attribute>
+            <optional><attribute name="cformat"><text/></attribute></optional>
+        </element>
+        <element name="dateval">
+            <attribute name="val"><data type="date"/></attribute>
+            <optional><attribute name="cformat"><text/></attribute></optional>
+            <optional><attribute name="type"><choice>
+                <value>before</value>
+                <value>after</value>
+                <value>about</value>
+            </choice></attribute></optional>
+        </element>
+        <element name="datestr">
+            <attribute name="val"><text/></attribute>
+        </element>
+      </choice>
+    </optional>
   </define>
 
   <define name="family-content">
