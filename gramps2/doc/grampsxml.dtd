@@ -285,7 +285,7 @@ SHARED ELEMENTS
 
 <!ELEMENT attribute  (sourceref*,note?)>
 <!ATTLIST attribute
-        priv 	CDATA 	#IMPLIED
+        priv 	(0|1) 	#IMPLIED
         type	CDATA	#REQUIRED
         value	CDATA	#REQUIRED
 >
@@ -333,4 +333,23 @@ EVENT
 <!ATTLIST data_item
         key   CDATA #REQUIRED
         value CDATA #REQUIRED
+>
+
+<!ELEMENT lds_ord (temple?,place?,status?,sealed_to?,note?,sourceref*)>
+<!ATTLIST lds_ord
+        type   CDATA #REQUIRED
+>
+
+<!ELEMENt temple #EMPTY>
+<!ATTLIST temple
+        val   CDATA #REQUIRED
+>
+
+<!ELEMENt status #EMPTY>
+<!ATTLIST status
+        val   CDATA #REQUIRED
+>
+<!ELEMENt sealed_to #EMPTY>
+<!ATTLIST sealed_to
+        hlink IDREF #REQUIRED
 >

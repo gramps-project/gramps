@@ -1,8 +1,9 @@
-<?xml version="1.0"?>
-<!DOCTYPE database SYSTEM "gramps.dtd" []>
-<database>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.0.0//EN"
+"http://gramps-project.org/xml/1.0.0/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/">
   <header>
-    <created date="2 APR 2003" version="0.9.1-pre1" people="42" families="15" sources="4" places="25"/>
+    <created date="13 OCT 2005" version="2.0.9-0.CVS20050926"/>
     <researcher>
       <resname>Joe Smith</resname>
       <resaddr>Over There</resaddr>
@@ -14,200 +15,37 @@
       <resemail>bobsmith@somewhere.net</resemail>
     </researcher>
   </header>
-  <people default="I37">
-    <person id="I28">
+  <people default="I37" home="_PSNT6D0DDHJOBCFJWX">
+    <person id="I0" handle="_VHNT6DQCEELKZP0M2W" change="1091595207">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Anna</first>
-        <last>Streiffert</last>
+        <last>Hansdotter</last>
       </name>
       <event type="Birth">
-        <dateval val="1860-09-23"/>
-        <place ref="P14"/>
+        <dateval val="1864-10-02"/>
+        <place hlink="_HINT6DP8JGGL0KKB8J"/>
       </event>
       <event type="Death">
-        <dateval val="1927-02-02"/>
-        <place ref="P3"/>
+        <dateval val="1945-09-29"/>
+        <place hlink="_S1NT6DPOBYC1JGMR1P"/>
       </event>
-      <parentin ref="F11"/>
+      <parentin hlink="_KKMT6D5KWF1VP03K4B"/>
     </person>
-    <person id="I29">
+    <person id="I1" handle="_PGNT6DESJOESEQNP22" change="1091595207">
       <gender>M</gender>
       <name type="Birth Name">
-        <first>Craig Peter</first>
+        <first>Keith Lloyd</first>
         <last>Smith</last>
       </name>
       <event type="Birth">
-        <dateval val="1966" type="after"/>
-        <place ref="P2"/>
+        <dateval val="1966-08-11"/>
+        <place hlink="_67MT6DB6KWOVMBAXSY"/>
       </event>
-      <event type="Census">
-        <witness name="John Doe">This is a simple test.</witness>
-      </event>
-      <childof ref="F8"/>
+      <objref hlink="_HHNT6D73QPKC0KWK2Y"/>
+      <childof hlink="_S7MT6D1JSGX9PZO27F"/>
     </person>
-    <person id="I39">
-      <gender>M</gender>
-      <name type="Birth Name">
-        <first>Martin</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <daterange start="1794" stop="1796"/>
-        <place ref="P27"/>
-      </event>
-      <event type="Death">
-        <place ref="P11"/>
-      </event>
-      <childof ref="F1"/>
-      <parentin ref="F0"/>
-    </person>
-    <person id="I16">
-      <gender>F</gender>
-      <name type="Birth Name">
-        <first>Jennifer</first>
-        <last>Anderson</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1907-11-05"/>
-        <place ref="P3"/>
-      </event>
-      <event type="Death">
-        <dateval val="1985-05-29"/>
-        <place ref="P2"/>
-      </event>
-      <parentin ref="F14"/>
-    </person>
-    <person id="I19">
-      <gender>M</gender>
-      <name type="Birth Name">
-        <first>Eric Lloyd</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1963-08-28"/>
-        <place ref="P2"/>
-      </event>
-      <childof ref="F8" mrel="Adopted" frel="Adopted"/>
-      <parentin ref="F10"/>
-    </person>
-    <person id="I18">
-      <gender>M</gender>
-      <name type="Birth Name">
-        <first>John Hjalmar</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1932-01-30"/>
-        <place ref="P2"/>
-      </event>
-      <childof ref="F6"/>
-      <parentin ref="F12"/>
-    </person>
-    <person id="I8">
-      <gender>M</gender>
-      <name type="Birth Name">
-        <first>Hjalmar</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1895-04-07"/>
-        <place ref="P3"/>
-      </event>
-      <event type="Death">
-        <dateval val="1975-06-26"/>
-        <place ref="P10"/>
-      </event>
-      <event type="Baptism">
-        <dateval val="1895-06-03"/>
-        <place ref="P28"/>
-      </event>
-      <event type="Immi">
-        <dateval val="1912-11-14"/>
-        <place ref="P13"/>
-      </event>
-      <childof ref="F3"/>
-      <parentin ref="F6"/>
-      <note>BIOGRAPHY
-
-Hjalmar sailed from Copenhagen, Denmark on the OSCAR II, 14 November 1912 arriving in New York 27 November 1912. He was seventeen years old. On the ship passenger list his trade was listed as a Blacksmith.  He came to Reno, Nevada and lived with his sister Marie for a time before settling in Sparks. He worked for Southern Pacific Railroad as a car inspector for a time, then went to work for Standard Oil
-Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corporal in the Medical Corp until his discharge 12 August 1919 at the Presidio in San Francisco, California. Both he and Marjorie are buried in the Masonic Memorial Gardens Mausoleum in Reno, he the 30th June 1975, and she the 25th of June 1980.</note>
-    </person>
-    <person id="I15">
-      <gender>M</gender>
-      <name type="Birth Name">
-        <first>Gus</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1897-09-11"/>
-        <place ref="P3"/>
-      </event>
-      <event type="Death">
-        <dateval val="1963-10-21"/>
-        <place ref="P2"/>
-      </event>
-      <childof ref="F3"/>
-      <parentin ref="F7"/>
-    </person>
-    <person id="I14">
-      <gender>F</gender>
-      <name type="Birth Name">
-        <first>Marjorie Lee</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1934-11-04"/>
-        <place ref="P10"/>
-      </event>
-      <childof ref="F6"/>
-    </person>
-    <person id="I31">
-      <gender>F</gender>
-      <name type="Birth Name">
-        <first>Marjorie</first>
-        <last>Ohman</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1903-06-03"/>
-        <place ref="P19"/>
-      </event>
-      <event type="Death">
-        <dateval val="1980-06-22"/>
-        <place ref="P10"/>
-      </event>
-      <parentin ref="F6"/>
-    </person>
-    <person id="I23">
-      <gender>F</gender>
-      <name type="Birth Name">
-        <first>Astrid Shermanna Augusta</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1889-01-31"/>
-        <place ref="P3"/>
-      </event>
-      <event type="Death">
-        <dateval val="1963-12-21"/>
-        <place ref="P2"/>
-      </event>
-      <childof ref="F3"/>
-      <parentin ref="F5"/>
-    </person>
-    <person id="I11">
-      <gender>F</gender>
-      <name type="Birth Name">
-        <first>Hanna</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1821-01-29"/>
-        <place ref="P4"/>
-      </event>
-      <childof ref="F0"/>
-    </person>
-    <person id="I10">
+    <person id="I10" handle="_ETMT6DLEIYYGW8SHM5" change="1091595207">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Hans Peter</first>
@@ -215,17 +53,44 @@ Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corpo
       </name>
       <event type="Birth">
         <dateval val="1904-04-17"/>
-        <place ref="P3"/>
+        <place hlink="_4ZLT6DVCWT9LTZRDCS"/>
       </event>
       <event type="Death">
         <dateval val="1977-01-29"/>
-        <place ref="P2"/>
+        <place hlink="_67MT6DB6KWOVMBAXSY"/>
       </event>
-      <childof ref="F3"/>
-      <parentin ref="F9"/>
-      <parentin ref="F14"/>
+      <childof hlink="_KKMT6D5KWF1VP03K4B"/>
+      <parentin hlink="_MUMT6DOHKMWL7LLQVA"/>
+      <parentin hlink="_GDMT6D6CWMU9NW5BON"/>
     </person>
-    <person id="I13">
+    <person id="I11" handle="_BSMT6D9XTIXAG0TCNL" change="1091595207">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Hanna</first>
+        <last>Smith</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1821-01-29"/>
+        <place hlink="_XSMT6DNISHYRCR1E78"/>
+      </event>
+      <childof hlink="_NBMT6D6WBZODJRXOG"/>
+    </person>
+    <person id="I12" handle="_VVMT6D4M4VVILJ8Q1S" change="1091595207">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Herman Julius</first>
+        <last>Nielsen</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1889-08-31"/>
+        <place hlink="_4ZLT6DVCWT9LTZRDCS"/>
+      </event>
+      <event type="Death">
+        <dateval val="1945"/>
+      </event>
+      <parentin hlink="_XRMT6DSAZG2Y37ETQ5"/>
+    </person>
+    <person id="I13" handle="_ZUMT6D4W8L3JZLJ5I1" change="1091595207">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Evelyn</first>
@@ -234,57 +99,183 @@ Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corpo
       <event type="Birth">
         <dateval val="1897" type="about"/>
       </event>
-      <parentin ref="F7"/>
+      <parentin hlink="_MMMT6D6NGNO5YERSLM"/>
     </person>
-    <person id="I12">
-      <gender>M</gender>
-      <name type="Birth Name">
-        <first>Herman Julius</first>
-        <last>Nielsen</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1889-08-31"/>
-        <place ref="P3"/>
-      </event>
-      <event type="Death">
-        <dateval val="1945"/>
-      </event>
-      <parentin ref="F5"/>
-    </person>
-    <person id="I38">
+    <person id="I14" handle="_YMMT6DJYFFJ38JZTNN" change="1091595207">
       <gender>F</gender>
       <name type="Birth Name">
-        <first>Kerstina</first>
-        <last>Hansdotter</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1832-11-29"/>
-        <place ref="P26"/>
-      </event>
-      <event type="Death">
-        <dateval val="1908" type="before"/>
-        <place ref="P11"/>
-      </event>
-      <parentin ref="F2"/>
-    </person>
-    <person id="I26">
-      <gender>F</gender>
-      <name type="Birth Name">
-        <first>Kirsti Marie</first>
+        <first>Marjorie Lee</first>
         <last>Smith</last>
       </name>
       <event type="Birth">
-        <dateval val="1886-12-15"/>
-        <place ref="P3"/>
+        <dateval val="1934-11-04"/>
+        <place hlink="_7JMT6DN2LOF54KXHTU"/>
+      </event>
+      <childof hlink="_UGMT6DU82BP5D3IPO3"/>
+    </person>
+    <person id="I15" handle="_CLMT6DTNTB1PFIXZPC" change="1091595207">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Gus</first>
+        <last>Smith</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1897-09-11"/>
+        <place hlink="_4ZLT6DVCWT9LTZRDCS"/>
       </event>
       <event type="Death">
-        <dateval val="1966-07-18"/>
-        <place ref="P2"/>
+        <dateval val="1963-10-21"/>
+        <place hlink="_67MT6DB6KWOVMBAXSY"/>
       </event>
-      <childof ref="F3"/>
-      <parentin ref="F4"/>
+      <childof hlink="_KKMT6D5KWF1VP03K4B"/>
+      <parentin hlink="_MMMT6D6NGNO5YERSLM"/>
     </person>
-    <person id="I24">
+    <person id="I16" handle="_ZBMT6DX6U16KP4ESHL" change="1091595207">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Jennifer</first>
+        <last>Anderson</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1907-11-05"/>
+        <place hlink="_4ZLT6DVCWT9LTZRDCS"/>
+      </event>
+      <event type="Death">
+        <dateval val="1985-05-29"/>
+        <place hlink="_67MT6DB6KWOVMBAXSY"/>
+      </event>
+      <parentin hlink="_GDMT6D6CWMU9NW5BON"/>
+    </person>
+    <person id="I17" handle="_NDNT6D8O7D3QRKP07N" change="1091595207">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Lillie Harriet</first>
+        <last>Jones</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1910-05-02"/>
+        <place hlink="_4ZLT6DVCWT9LTZRDCS"/>
+      </event>
+      <event type="Death">
+        <dateval val="1990-06-26"/>
+      </event>
+      <parentin hlink="_MUMT6DOHKMWL7LLQVA"/>
+    </person>
+    <person id="I18" handle="_2GMT6DXW6RJVMKLQEH" change="1091595207">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>John Hjalmar</first>
+        <last>Smith</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1932-01-30"/>
+        <place hlink="_67MT6DB6KWOVMBAXSY"/>
+      </event>
+      <childof hlink="_UGMT6DU82BP5D3IPO3"/>
+      <parentin hlink="_1HMT6DNWTSPXIL2FDM"/>
+    </person>
+    <person id="I19" handle="_RDMT6D6113RO3X299I" change="1091595207">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Eric Lloyd</first>
+        <last>Smith</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1963-08-28"/>
+        <place hlink="_67MT6DB6KWOVMBAXSY"/>
+      </event>
+      <childof hlink="_S7MT6D1JSGX9PZO27F" mrel="Adopted" frel="Adopted"/>
+      <parentin hlink="_RFMT6D6XB73EFWFHAA"/>
+    </person>
+    <person id="I2" handle="_SKNT6D7FA4WHUUE7Z6" change="1091595207">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Amber Marie</first>
+        <last>Smith</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1998-04-12"/>
+        <place hlink="_ELNT6DS8GN8WI7Z4SO"/>
+      </event>
+      <event type="Christening">
+        <dateval val="1998-04-26"/>
+        <place hlink="_XLNT6DUONITFPPEGVH"/>
+      </event>
+      <childof hlink="_CGNT6DV02D0CQTGBAO"/>
+    </person>
+    <person id="I20" handle="_K3NT6DMBYAXNTXOO3F" change="1091595207">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Carl Emil</first>
+        <last>Smith</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1899-12-20"/>
+        <place hlink="_4ZLT6DVCWT9LTZRDCS"/>
+      </event>
+      <event type="Death">
+        <dateval val="1959-01-28"/>
+        <place hlink="_7JMT6DN2LOF54KXHTU"/>
+      </event>
+      <childof hlink="_KKMT6D5KWF1VP03K4B"/>
+    </person>
+    <person id="I21" handle="_XWNT6DP0HAPXFDCGY8" change="1091595207">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Hjalmar</first>
+        <last>Smith</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1893-01-31"/>
+        <place hlink="_4ZLT6DVCWT9LTZRDCS"/>
+      </event>
+      <event type="Death">
+        <dateval val="1894-09-25"/>
+        <place hlink="_4ZLT6DVCWT9LTZRDCS"/>
+      </event>
+      <childof hlink="_KKMT6D5KWF1VP03K4B"/>
+    </person>
+    <person id="I22" handle="_9YNT6DXDSDPO56MX19" change="1091595207">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Martin</first>
+        <last>Smith</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1830-11-19"/>
+        <place hlink="_XSMT6DNISHYRCR1E78"/>
+      </event>
+      <event type="Death">
+        <daterange start="1899" stop="1905"/>
+        <place hlink="_A9MT6DHVWGWRP59DEV"/>
+      </event>
+      <event type="Baptism">
+        <dateval val="1830-11-23"/>
+        <place hlink="_XSMT6DNISHYRCR1E78"/>
+      </event>
+      <childof hlink="_NBMT6D6WBZODJRXOG"/>
+      <parentin hlink="_GYMT6D8WYROEUHX0IN"/>
+      <note>BIOGRAPHY
+Martin was listed as being a Husman, (owning a house as opposed to a farm) in the house records of Gladsax.</note>
+    </person>
+    <person id="I23" handle="_NQMT6DX5NIOGMEGJA3" change="1091595207">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Astrid Shermanna Augusta</first>
+        <last>Smith</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1889-01-31"/>
+        <place hlink="_4ZLT6DVCWT9LTZRDCS"/>
+      </event>
+      <event type="Death">
+        <dateval val="1963-12-21"/>
+        <place hlink="_67MT6DB6KWOVMBAXSY"/>
+      </event>
+      <childof hlink="_KKMT6D5KWF1VP03K4B"/>
+      <parentin hlink="_XRMT6DSAZG2Y37ETQ5"/>
+    </person>
+    <person id="I24" handle="_J0NT6D9BY50LEA4VGY" change="1091595207">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Gustaf</first>
@@ -293,270 +284,26 @@ Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corpo
       </name>
       <event type="Birth">
         <dateval val="1862-11-28"/>
-        <place ref="P12"/>
+        <place hlink="_61NT6D3G1JMOTO6Z7Y"/>
       </event>
       <event type="Death">
         <dateval val="1930-07-23" type="before"/>
-        <place ref="P1"/>
+        <place hlink="_S1NT6DPOBYC1JGMR1P"/>
       </event>
       <event type="Immi">
         <dateval val="1908-05-21"/>
-        <place ref="P13"/>
+        <place hlink="_AKMT6DMEYZDTG9J6DS"/>
       </event>
       <event type="Christening">
         <dateval val="1862-12-07"/>
-        <place ref="P4"/>
+        <place hlink="_XSMT6DNISHYRCR1E78"/>
       </event>
-      <objref ref="O1"/>
-      <objref ref="O2"/>
-      <childof ref="F2"/>
-      <parentin ref="F3"/>
+      <objref hlink="_W2NT6D87SPI9V7G27P"/>
+      <objref hlink="_43NT6DHH0TBN0PKVC"/>
+      <childof hlink="_GYMT6D8WYROEUHX0IN"/>
+      <parentin hlink="_KKMT6D5KWF1VP03K4B"/>
     </person>
-    <person id="I20">
-      <gender>M</gender>
-      <name type="Birth Name">
-        <first>Carl Emil</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1899-12-20"/>
-        <place ref="P3"/>
-      </event>
-      <event type="Death">
-        <dateval val="1959-01-28"/>
-        <place ref="P10"/>
-      </event>
-      <childof ref="F3"/>
-    </person>
-    <person id="I27">
-      <gender>M</gender>
-      <name type="Birth Name">
-        <first>Ingeman</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1770" type="about"/>
-        <place ref="P11"/>
-      </event>
-      <parentin ref="F1"/>
-    </person>
-    <person id="I34">
-      <gender>F</gender>
-      <name type="Birth Name">
-        <first>Alice Paula</first>
-        <last>Perkins</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1933-11-22"/>
-        <place ref="P1"/>
-      </event>
-      <parentin ref="F12"/>
-    </person>
-    <person id="I9">
-      <gender>M</gender>
-      <name type="Birth Name">
-        <first>Emil</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1860-09-27"/>
-        <place ref="P15"/>
-      </event>
-      <childof ref="F2"/>
-    </person>
-    <person id="I35">
-      <gender>M</gender>
-      <name type="Birth Name">
-        <first>Lars Peter</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1991-09-16"/>
-        <place ref="P21"/>
-      </event>
-      <childof ref="F10" mrel="Adopted" frel="Adopted"/>
-    </person>
-    <person id="I36">
-      <gender>F</gender>
-      <name type="Birth Name">
-        <first>Elna</first>
-        <last>Jefferson</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1800-09-14"/>
-        <place ref="P4"/>
-      </event>
-      <event type="Death">
-        <place ref="P11"/>
-      </event>
-      <event type="Christening">
-        <dateval val="1800-09-16"/>
-        <place ref="P4"/>
-      </event>
-      <parentin ref="F0"/>
-    </person>
-    <person id="I17">
-      <gender>F</gender>
-      <name type="Birth Name">
-        <first>Lillie Harriet</first>
-        <last>Jones</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1910-05-02"/>
-        <place ref="P3"/>
-      </event>
-      <event type="Death">
-        <dateval val="1990-06-26"/>
-      </event>
-      <parentin ref="F9"/>
-    </person>
-    <person id="I30">
-      <gender>F</gender>
-      <name type="Birth Name">
-        <first>Janice Ann</first>
-        <last>Adams</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1965-08-26"/>
-        <place ref="P16"/>
-      </event>
-      <event type="Occupation">
-        <description>Retail Manager</description>
-      </event>
-      <event type="Degree">
-        <dateval val="1988"/>
-        <description>Business Management</description>
-      </event>
-      <parentin ref="F13"/>
-    </person>
-    <person id="I1">
-      <gender>M</gender>
-      <name type="Birth Name">
-        <first>Keith Lloyd</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1966-08-11"/>
-        <place ref="P2"/>
-      </event>
-      <objref ref="O0"/>
-      <childof ref="F8"/>
-    </person>
-    <person id="I0">
-      <gender>F</gender>
-      <name type="Birth Name">
-        <first>Anna</first>
-        <last>Hansdotter</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1864-10-02"/>
-        <place ref="P0"/>
-      </event>
-      <event type="Death">
-        <dateval val="1945-09-29"/>
-        <place ref="P1"/>
-      </event>
-      <parentin ref="F3"/>
-    </person>
-    <person id="I3">
-      <gender>M</gender>
-      <name type="Birth Name">
-        <first>Magnes</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1858-10-06"/>
-        <place ref="P15"/>
-      </event>
-      <event type="Death">
-        <dateval val="1910-02-20"/>
-        <place ref="P3"/>
-      </event>
-      <childof ref="F2"/>
-      <parentin ref="F11"/>
-    </person>
-    <person id="I2">
-      <gender>F</gender>
-      <name type="Birth Name">
-        <first>Amber Marie</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1998-04-12"/>
-        <place ref="P8"/>
-      </event>
-      <event type="Christening">
-        <dateval val="1998-04-26"/>
-        <place ref="P9"/>
-      </event>
-      <childof ref="F13"/>
-    </person>
-    <person id="I5">
-      <gender>M</gender>
-      <name type="Birth Name">
-        <first>Mason Michael</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1996-06-26"/>
-        <place ref="P8"/>
-      </event>
-      <event type="Christening">
-        <dateval val="1996-07-10"/>
-        <place ref="P9"/>
-      </event>
-      <objref ref="O5"/>
-      <childof ref="F13"/>
-    </person>
-    <person id="I4">
-      <gender>M</gender>
-      <name type="Birth Name">
-        <first>Ingeman</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1826-01-29"/>
-        <place ref="P4"/>
-      </event>
-      <childof ref="F0"/>
-    </person>
-    <person id="I7">
-      <gender>F</gender>
-      <name type="Birth Name">
-        <first>Ingar</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1823" type="after"/>
-        <place ref="P4"/>
-      </event>
-      <childof ref="F0"/>
-    </person>
-    <person id="I6">
-      <gender>M</gender>
-      <name type="Birth Name">
-        <first>Edwin</first>
-        <last>Willard</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1886" type="about"/>
-      </event>
-      <parentin ref="F4"/>
-    </person>
-    <person id="I33">
-      <gender>M</gender>
-      <name type="Birth Name">
-        <first>Lloyd</first>
-        <last>Smith</last>
-      </name>
-      <event type="Birth">
-        <dateval val="1935-03-13"/>
-        <place ref="P2"/>
-      </event>
-      <childof ref="F9"/>
-      <parentin ref="F8"/>
-    </person>
-    <person id="I25">
+    <person id="I25" handle="_RRNT6D5K0MU6QUAMAY" change="1091595207">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Marta</first>
@@ -564,40 +311,127 @@ Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corpo
       </name>
       <event type="Birth">
         <dateval val="1775" type="about"/>
-        <place ref="P11"/>
+        <place hlink="_A9MT6DHVWGWRP59DEV"/>
       </event>
-      <parentin ref="F1"/>
+      <parentin hlink="_GBMT6DJUGJ9453RW5I"/>
     </person>
-    <person id="I37">
-      <gender>M</gender>
+    <person id="I26" handle="_SYMT6DIHTYHLWHEE2K" change="1091595207">
+      <gender>F</gender>
       <name type="Birth Name">
-        <first>Edwin Michael</first>
+        <first>Kirsti Marie</first>
         <last>Smith</last>
-        <sourceref ref="S1"/>
       </name>
       <event type="Birth">
-        <dateval val="1961-05-24"/>
-        <place ref="P22"/>
-        <sourceref ref="S3"/>
+        <dateval val="1886-12-15"/>
+        <place hlink="_4ZLT6DVCWT9LTZRDCS"/>
+      </event>
+      <event type="Death">
+        <dateval val="1966-07-18"/>
+        <place hlink="_67MT6DB6KWOVMBAXSY"/>
+      </event>
+      <childof hlink="_KKMT6D5KWF1VP03K4B"/>
+      <parentin hlink="_80NT6DS6LKILTLEZIG"/>
+    </person>
+    <person id="I27" handle="_X4NT6DHD3QU8ADPPZT" change="1091595207">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Ingeman</first>
+        <last>Smith</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1770" type="about"/>
+        <place hlink="_A9MT6DHVWGWRP59DEV"/>
+      </event>
+      <parentin hlink="_GBMT6DJUGJ9453RW5I"/>
+    </person>
+    <person id="I28" handle="_5XLT6DXJ1J9NNI3QNT" change="1091595207">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Anna</first>
+        <last>Streiffert</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1860-09-23"/>
+        <place hlink="_DYLT6DF4DX2MNZICJ8"/>
+      </event>
+      <event type="Death">
+        <dateval val="1927-02-02"/>
+        <place hlink="_4ZLT6DVCWT9LTZRDCS"/>
+      </event>
+      <parentin hlink="_FZLT6D0QU0MC200P1O"/>
+    </person>
+    <person id="I29" handle="_RZLT6DH4XGWLSK1Q0Z" change="1091595207">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Craig Peter</first>
+        <last>Smith</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1966" type="after"/>
+        <place hlink="_67MT6DB6KWOVMBAXSY"/>
+      </event>
+      <event type="Census">
+        <dateval val="????"/>
+        <witness name="John Doe">
+          <comment>This is a simple test.</comment>
+       </witness>
+      </event>
+      <childof hlink="_S7MT6D1JSGX9PZO27F"/>
+    </person>
+    <person id="I3" handle="_DJNT6D3IOTYV1HTLO1" change="1091595207">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Magnes</first>
+        <last>Smith</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1858-10-06"/>
+        <place hlink="_AANT6D026O5SHNUCDH"/>
+      </event>
+      <event type="Death">
+        <dateval val="1910-02-20"/>
+        <place hlink="_4ZLT6DVCWT9LTZRDCS"/>
+      </event>
+      <childof hlink="_GYMT6D8WYROEUHX0IN"/>
+      <parentin hlink="_FZLT6D0QU0MC200P1O"/>
+    </person>
+    <person id="I30" handle="_VENT6DO89X29B69M6" change="1091595207">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Janice Ann</first>
+        <last>Adams</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1965-08-26"/>
+        <place hlink="_HFNT6D12ZC0KOWY69T"/>
       </event>
       <event type="Occupation">
-        <witness ref="I7"></witness>
-        <witness name="No Name"></witness>
-        <description>Software Engineer</description>
-      </event>
-      <event type="Education">
-        <daterange start="1979" stop="1984"/>
-        <place ref="P24"/>
+        <dateval val="????"/>
+        <description>Retail Manager</description>
       </event>
       <event type="Degree">
-        <dateval val="1984"/>
-        <description>B.S.E.E.</description>
+        <dateval val="1988"/>
+        <description>Business Management</description>
       </event>
-      <objref ref="O3"/>
-      <childof ref="F12"/>
-      <parentin ref="F13"/>
+      <parentin hlink="_CGNT6DV02D0CQTGBAO"/>
     </person>
-    <person id="I32">
+    <person id="I31" handle="_VNMT6DM95BAHK1X04I" change="1091595207">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Marjorie</first>
+        <last>Ohman</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1903-06-03"/>
+        <place hlink="_RPMT6DTQR8J7LK98HJ"/>
+      </event>
+      <event type="Death">
+        <dateval val="1980-06-22"/>
+        <place hlink="_7JMT6DN2LOF54KXHTU"/>
+      </event>
+      <parentin hlink="_UGMT6DU82BP5D3IPO3"/>
+    </person>
+    <person id="I32" handle="_SVNT6DMAE9YEH6MICF" change="1091595207">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Darcy</first>
@@ -605,50 +439,150 @@ Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corpo
       </name>
       <event type="Birth">
         <dateval val="1966-07-02"/>
-        <place ref="P20"/>
+        <place hlink="_GWNT6D12ZV06PK969X"/>
       </event>
-      <parentin ref="F10"/>
+      <parentin hlink="_RFMT6D6XB73EFWFHAA"/>
     </person>
-    <person id="I21">
+    <person id="I33" handle="_SQNT6DPEBXJPNWNCPX" change="1091595207">
       <gender>M</gender>
       <name type="Birth Name">
-        <first>Hjalmar</first>
+        <first>Lloyd</first>
         <last>Smith</last>
       </name>
       <event type="Birth">
-        <dateval val="1893-01-31"/>
-        <place ref="P3"/>
+        <dateval val="1935-03-13"/>
+        <place hlink="_67MT6DB6KWOVMBAXSY"/>
+      </event>
+      <childof hlink="_MUMT6DOHKMWL7LLQVA"/>
+      <parentin hlink="_S7MT6D1JSGX9PZO27F"/>
+    </person>
+    <person id="I34" handle="_Y5NT6DLKFG3SBM9QQ4" change="1091595207">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Alice Paula</first>
+        <last>Perkins</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1933-11-22"/>
+        <place hlink="_S1NT6DPOBYC1JGMR1P"/>
+      </event>
+      <parentin hlink="_1HMT6DNWTSPXIL2FDM"/>
+    </person>
+    <person id="I35" handle="_UANT6D04R90NFDKTBP" change="1091595207">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Lars Peter</first>
+        <last>Smith</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1991-09-16"/>
+        <place hlink="_FBNT6DL92NDY0Z5SGP"/>
+      </event>
+      <childof hlink="_RFMT6D6XB73EFWFHAA" mrel="Adopted" frel="Adopted"/>
+    </person>
+    <person id="I36" handle="_XBNT6DUEXL3CM228BN" change="1091595207">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Elna</first>
+        <last>Jefferson</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1800-09-14"/>
+        <place hlink="_XSMT6DNISHYRCR1E78"/>
       </event>
       <event type="Death">
-        <dateval val="1894-09-25"/>
-        <place ref="P3"/>
+        <dateval val="????"/>
+        <place hlink="_A9MT6DHVWGWRP59DEV"/>
       </event>
-      <childof ref="F3"/>
+      <event type="Christening">
+        <dateval val="1800-09-16"/>
+        <place hlink="_XSMT6DNISHYRCR1E78"/>
+      </event>
+      <parentin hlink="_NBMT6D6WBZODJRXOG"/>
     </person>
-    <person id="I22">
+    <person id="I37" handle="_PSNT6D0DDHJOBCFJWX" change="1129226675">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Edwin Michael</first>
+        <last>Smith</last>
+        <dateval val="????"/>
+        <sourceref hlink="_4TNT6DX8JM3BW08CUR">
+          <dateval val="????"/>
+        </sourceref>
+      </name>
+      <event type="Birth">
+        <dateval val="1961-05-24"/>
+        <place hlink="_LTNT6DKZ5CR8PZSVUS"/>
+        <sourceref hlink="_VTNT6DYLDJMSJSCJMU">
+          <dateval val="????"/>
+        </sourceref>
+      </event>
+      <event type="Occupation">
+        <dateval val="????"/>
+        <witness hlink="_YONT6DJYH1B5NKQTR7">
+        </witness>
+        <witness name="No Name">
+        </witness>
+        <description>Software Engineer</description>
+      </event>
+      <event type="Education">
+        <daterange start="1979" stop="1984"/>
+        <place hlink="_PUNT6D1XHS0DJW9QP6"/>
+      </event>
+      <event type="Degree">
+        <dateval val="1984"/>
+        <description>B.S.E.E.</description>
+      </event>
+      <objref hlink="_CVNT6DHG5ICZ1UGUO9"/>
+      <childof hlink="_1HMT6DNWTSPXIL2FDM"/>
+      <parentin hlink="_CGNT6DV02D0CQTGBAO"/>
+    </person>
+    <person id="I38" handle="_3XMT6DJVLX4BSJ8T9B" change="1091595207">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Kerstina</first>
+        <last>Hansdotter</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1832-11-29"/>
+        <place hlink="_PXMT6DBL0WSBL76WD7"/>
+      </event>
+      <event type="Death">
+        <dateval val="1908" type="before"/>
+        <place hlink="_A9MT6DHVWGWRP59DEV"/>
+      </event>
+      <parentin hlink="_GYMT6D8WYROEUHX0IN"/>
+    </person>
+    <person id="I39" handle="_48MT6DRK875RYW6APJ" change="1091595207">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Martin</first>
         <last>Smith</last>
       </name>
       <event type="Birth">
-        <dateval val="1830-11-19"/>
-        <place ref="P4"/>
+        <daterange start="1794" stop="1796"/>
+        <place hlink="_R8MT6DRIZVNRYDK0VN"/>
       </event>
       <event type="Death">
-        <daterange start="1899" stop="1905"/>
-        <place ref="P11"/>
+        <dateval val="????"/>
+        <place hlink="_A9MT6DHVWGWRP59DEV"/>
       </event>
-      <event type="Baptism">
-        <dateval val="1830-11-23"/>
-        <place ref="P4"/>
-      </event>
-      <childof ref="F0"/>
-      <parentin ref="F2"/>
-      <note>BIOGRAPHY
-Martin was listed as being a Husman, (owning a house as opposed to a farm) in the house records of Gladsax.</note>
+      <childof hlink="_GBMT6DJUGJ9453RW5I"/>
+      <parentin hlink="_NBMT6D6WBZODJRXOG"/>
     </person>
-    <person id="I40">
+    <person id="I4" handle="_0ONT6DJS5KD5W6EA1P" change="1091595207">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Ingeman</first>
+        <last>Smith</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1826-01-29"/>
+        <place hlink="_XSMT6DNISHYRCR1E78"/>
+      </event>
+      <childof hlink="_NBMT6D6WBZODJRXOG"/>
+    </person>
+    <person id="I40" handle="_60OT6D7XUEURYJRN78" change="1091595207">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Marjorie Alice</first>
@@ -656,12 +590,12 @@ Martin was listed as being a Husman, (owning a house as opposed to a farm) in th
       </name>
       <event type="Birth">
         <dateval val="1960-02-05"/>
-        <place ref="P22"/>
+        <place hlink="_LTNT6DKZ5CR8PZSVUS"/>
       </event>
-      <objref ref="O4"/>
-      <childof ref="F12"/>
+      <objref hlink="_Y0OT6DM7FW06A1SLMS"/>
+      <childof hlink="_1HMT6DNWTSPXIL2FDM"/>
     </person>
-    <person id="I41">
+    <person id="I41" handle="_C1OT6DUBMZ3HAD998D" change="1091595207">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Janis Elaine</first>
@@ -670,205 +604,282 @@ Martin was listed as being a Husman, (owning a house as opposed to a farm) in th
       <event type="Birth">
         <dateval val="1935-12-02"/>
       </event>
-      <parentin ref="F8"/>
+      <parentin hlink="_S7MT6D1JSGX9PZO27F"/>
+    </person>
+    <person id="I5" handle="_EMNT6DXUP8PCCU5MQG" change="1091595207">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Mason Michael</first>
+        <last>Smith</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1996-06-26"/>
+        <place hlink="_ELNT6DS8GN8WI7Z4SO"/>
+      </event>
+      <event type="Christening">
+        <dateval val="1996-07-10"/>
+        <place hlink="_XLNT6DUONITFPPEGVH"/>
+      </event>
+      <objref hlink="_MNNT6D27G3L8SGVQJV"/>
+      <childof hlink="_CGNT6DV02D0CQTGBAO"/>
+    </person>
+    <person id="I6" handle="_YPNT6DU0BWARYZ2ZZM" change="1091595207">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Edwin</first>
+        <last>Willard</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1886" type="about"/>
+      </event>
+      <parentin hlink="_80NT6DS6LKILTLEZIG"/>
+    </person>
+    <person id="I7" handle="_YONT6DJYH1B5NKQTR7" change="1091595207">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Ingar</first>
+        <last>Smith</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1823" type="after"/>
+        <place hlink="_XSMT6DNISHYRCR1E78"/>
+      </event>
+      <childof hlink="_NBMT6D6WBZODJRXOG"/>
+    </person>
+    <person id="I8" handle="_DHMT6D0PQJCVXWD1FT" change="1091595207">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Hjalmar</first>
+        <last>Smith</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1895-04-07"/>
+        <place hlink="_4ZLT6DVCWT9LTZRDCS"/>
+      </event>
+      <event type="Death">
+        <dateval val="1975-06-26"/>
+        <place hlink="_7JMT6DN2LOF54KXHTU"/>
+      </event>
+      <event type="Baptism">
+        <dateval val="1895-06-03"/>
+        <place hlink="_QJMT6DGII29FWCPX2E"/>
+      </event>
+      <event type="Immi">
+        <dateval val="1912-11-14"/>
+        <place hlink="_AKMT6DMEYZDTG9J6DS"/>
+      </event>
+      <childof hlink="_KKMT6D5KWF1VP03K4B"/>
+      <parentin hlink="_UGMT6DU82BP5D3IPO3"/>
+      <note>BIOGRAPHY
+
+Hjalmar sailed from Copenhagen, Denmark on the OSCAR II, 14 November 1912 arriving in New York 27 November 1912. He was seventeen years old. On the ship passenger list his trade was listed as a Blacksmith.  He came to Reno, Nevada and lived with his sister Marie for a time before settling in Sparks. He worked for Southern Pacific Railroad as a car inspector for a time, then went to work for Standard Oil
+Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corporal in the Medical Corp until his discharge 12 August 1919 at the Presidio in San Francisco, California. Both he and Marjorie are buried in the Masonic Memorial Gardens Mausoleum in Reno, he the 30th June 1975, and she the 25th of June 1980.</note>
+    </person>
+    <person id="I9" handle="_W6NT6DAWXC9FUOHYI2" change="1091595207">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Emil</first>
+        <last>Smith</last>
+      </name>
+      <event type="Birth">
+        <dateval val="1860-09-27"/>
+        <place hlink="_AANT6D026O5SHNUCDH"/>
+      </event>
+      <childof hlink="_GYMT6D8WYROEUHX0IN"/>
     </person>
   </people>
   <families>
-    <family id="F0" type="Married">
-      <father ref="I39"/>
-      <mother ref="I36"/>
+    <family id="F0" handle="_NBMT6D6WBZODJRXOG" change="1091595207" type="Married">
+      <father hlink="_48MT6DRK875RYW6APJ"/>
+      <mother hlink="_XBNT6DUEXL3CM228BN"/>
       <event type="Marriage">
         <dateval val="1816" type="about"/>
-        <place ref="P4"/>
+        <place hlink="_XSMT6DNISHYRCR1E78"/>
       </event>
-      <child ref="I11"/>
-      <child ref="I7"/>
-      <child ref="I4"/>
-      <child ref="I22"/>
+      <child hlink="_BSMT6D9XTIXAG0TCNL"/>
+      <child hlink="_YONT6DJYH1B5NKQTR7"/>
+      <child hlink="_0ONT6DJS5KD5W6EA1P"/>
+      <child hlink="_9YNT6DXDSDPO56MX19"/>
     </family>
-    <family id="F1" type="Married">
-      <father ref="I27"/>
-      <mother ref="I25"/>
+    <family id="F1" handle="_GBMT6DJUGJ9453RW5I" change="1091595207" type="Married">
+      <father hlink="_X4NT6DHD3QU8ADPPZT"/>
+      <mother hlink="_RRNT6D5K0MU6QUAMAY"/>
       <event type="Marriage">
         <dateval val="1790" type="about"/>
-        <place ref="P11"/>
+        <place hlink="_A9MT6DHVWGWRP59DEV"/>
       </event>
-      <child ref="I39"/>
+      <child hlink="_48MT6DRK875RYW6APJ"/>
     </family>
-    <family id="F2" type="Married">
-      <father ref="I22"/>
-      <mother ref="I38"/>
+    <family id="F10" handle="_RFMT6D6XB73EFWFHAA" change="1091595207" type="Married">
+      <father hlink="_RDMT6D6113RO3X299I"/>
+      <mother hlink="_SVNT6DMAE9YEH6MICF"/>
+      <event type="Marriage">
+        <dateval val="1986-07-12"/>
+        <place hlink="_QBOT6DN7UCCTZQ055"/>
+      </event>
+      <child hlink="_UANT6D04R90NFDKTBP"/>
+    </family>
+    <family id="F11" handle="_FZLT6D0QU0MC200P1O" change="1091595207" type="Married">
+      <father hlink="_DJNT6D3IOTYV1HTLO1"/>
+      <mother hlink="_5XLT6DXJ1J9NNI3QNT"/>
+      <event type="Marriage">
+        <dateval val="1884-08-24"/>
+        <place hlink="_4ZLT6DVCWT9LTZRDCS"/>
+      </event>
+    </family>
+    <family id="F12" handle="_1HMT6DNWTSPXIL2FDM" change="1091595207" type="Married">
+      <father hlink="_2GMT6DXW6RJVMKLQEH"/>
+      <mother hlink="_Y5NT6DLKFG3SBM9QQ4"/>
+      <event type="Marriage">
+        <dateval val="1954-06-04"/>
+        <place hlink="_S1NT6DPOBYC1JGMR1P"/>
+        <sourceref hlink="_H9OT6DH812QJAQS5A8">
+          <dateval val="????"/>
+        </sourceref>
+      </event>
+      <child hlink="_60OT6D7XUEURYJRN78"/>
+      <child hlink="_PSNT6D0DDHJOBCFJWX"/>
+    </family>
+    <family id="F13" handle="_CGNT6DV02D0CQTGBAO" change="1091595207" type="Married">
+      <father hlink="_PSNT6D0DDHJOBCFJWX"/>
+      <mother hlink="_VENT6DO89X29B69M6"/>
+      <event type="Marriage">
+        <dateval val="1995-05-27"/>
+        <place hlink="_BAOT6D1WY6J4O4ARRN"/>
+      </event>
+      <event type="Engagement">
+        <dateval val="1994-10-05"/>
+        <place hlink="_67MT6DB6KWOVMBAXSY"/>
+      </event>
+      <objref hlink="_MNNT6D27G3L8SGVQJV"/>
+      <child hlink="_EMNT6DXUP8PCCU5MQG"/>
+      <child hlink="_SKNT6D7FA4WHUUE7Z6"/>
+    </family>
+    <family id="F14" handle="_GDMT6D6CWMU9NW5BON" change="1091595207" type="Married">
+      <father hlink="_ETMT6DLEIYYGW8SHM5"/>
+      <mother hlink="_ZBMT6DX6U16KP4ESHL"/>
+    </family>
+    <family id="F2" handle="_GYMT6D8WYROEUHX0IN" change="1091595207" type="Married">
+      <father hlink="_9YNT6DXDSDPO56MX19"/>
+      <mother hlink="_3XMT6DJVLX4BSJ8T9B"/>
       <event type="Marriage">
         <dateval val="1856" type="about"/>
       </event>
-      <child ref="I3"/>
-      <child ref="I9"/>
-      <child ref="I24"/>
+      <child hlink="_DJNT6D3IOTYV1HTLO1"/>
+      <child hlink="_W6NT6DAWXC9FUOHYI2"/>
+      <child hlink="_J0NT6D9BY50LEA4VGY"/>
     </family>
-    <family id="F3" type="Married">
-      <father ref="I24"/>
-      <mother ref="I0"/>
+    <family id="F3" handle="_KKMT6D5KWF1VP03K4B" change="1091595207" type="Married">
+      <father hlink="_J0NT6D9BY50LEA4VGY"/>
+      <mother hlink="_VHNT6DQCEELKZP0M2W"/>
       <event type="Marriage">
         <dateval val="1885-11-27"/>
-        <place ref="P3"/>
+        <place hlink="_4ZLT6DVCWT9LTZRDCS"/>
       </event>
-      <child ref="I26"/>
-      <child ref="I23"/>
-      <child ref="I21"/>
-      <child ref="I8"/>
-      <child ref="I15"/>
-      <child ref="I20"/>
-      <child ref="I10"/>
+      <child hlink="_SYMT6DIHTYHLWHEE2K"/>
+      <child hlink="_NQMT6DX5NIOGMEGJA3"/>
+      <child hlink="_XWNT6DP0HAPXFDCGY8"/>
+      <child hlink="_DHMT6D0PQJCVXWD1FT"/>
+      <child hlink="_CLMT6DTNTB1PFIXZPC"/>
+      <child hlink="_K3NT6DMBYAXNTXOO3F"/>
+      <child hlink="_ETMT6DLEIYYGW8SHM5"/>
     </family>
-    <family id="F4" type="Married">
-      <father ref="I6"/>
-      <mother ref="I26"/>
+    <family id="F4" handle="_80NT6DS6LKILTLEZIG" change="1091595207" type="Married">
+      <father hlink="_YPNT6DU0BWARYZ2ZZM"/>
+      <mother hlink="_SYMT6DIHTYHLWHEE2K"/>
       <event type="Marriage">
         <dateval val="1910" type="about"/>
       </event>
     </family>
-    <family id="F5" type="Married">
-      <father ref="I12"/>
-      <mother ref="I23"/>
+    <family id="F5" handle="_XRMT6DSAZG2Y37ETQ5" change="1091595207" type="Married">
+      <father hlink="_VVMT6D4M4VVILJ8Q1S"/>
+      <mother hlink="_NQMT6DX5NIOGMEGJA3"/>
       <event type="Marriage">
         <dateval val="1912-11-30"/>
-        <place ref="P3"/>
+        <place hlink="_4ZLT6DVCWT9LTZRDCS"/>
       </event>
     </family>
-    <family id="F6" type="Married">
-      <father ref="I8"/>
-      <mother ref="I31"/>
+    <family id="F6" handle="_UGMT6DU82BP5D3IPO3" change="1091595207" type="Married">
+      <father hlink="_DHMT6D0PQJCVXWD1FT"/>
+      <mother hlink="_VNMT6DM95BAHK1X04I"/>
       <event type="Marriage">
         <dateval val="1927-10-31"/>
-        <place ref="P10"/>
+        <place hlink="_7JMT6DN2LOF54KXHTU"/>
       </event>
-      <child ref="I18"/>
-      <child ref="I14"/>
+      <child hlink="_2GMT6DXW6RJVMKLQEH"/>
+      <child hlink="_YMMT6DJYFFJ38JZTNN"/>
     </family>
-    <family id="F7" type="Married">
-      <father ref="I15"/>
-      <mother ref="I13"/>
+    <family id="F7" handle="_MMMT6D6NGNO5YERSLM" change="1091595207" type="Married">
+      <father hlink="_CLMT6DTNTB1PFIXZPC"/>
+      <mother hlink="_ZUMT6D4W8L3JZLJ5I1"/>
       <event type="Marriage">
         <dateval val="1920" type="about"/>
       </event>
     </family>
-    <family id="F8" type="Married">
-      <father ref="I33"/>
-      <mother ref="I41"/>
+    <family id="F8" handle="_S7MT6D1JSGX9PZO27F" change="1091595207" type="Married">
+      <father hlink="_SQNT6DPEBXJPNWNCPX"/>
+      <mother hlink="_C1OT6DUBMZ3HAD998D"/>
       <event type="Marriage">
         <dateval val="1958-08-10"/>
-        <place ref="P2"/>
+        <place hlink="_67MT6DB6KWOVMBAXSY"/>
       </event>
-      <child ref="I19"/>
-      <child ref="I1"/>
-      <child ref="I29"/>
+      <child hlink="_RDMT6D6113RO3X299I"/>
+      <child hlink="_PGNT6DESJOESEQNP22"/>
+      <child hlink="_RZLT6DH4XGWLSK1Q0Z"/>
     </family>
-    <family id="F9" type="Married">
-      <father ref="I10"/>
-      <mother ref="I17"/>
-      <child ref="I33"/>
-    </family>
-    <family id="F12" type="Married">
-      <father ref="I18"/>
-      <mother ref="I34"/>
-      <event type="Marriage">
-        <dateval val="1954-06-04"/>
-        <place ref="P1"/>
-        <sourceref ref="S0"/>
-      </event>
-      <child ref="I40"/>
-      <child ref="I37"/>
-    </family>
-    <family id="F13" type="Married">
-      <father ref="I37"/>
-      <mother ref="I30"/>
-      <event type="Marriage">
-        <dateval val="1995-05-27"/>
-        <place ref="P30"/>
-      </event>
-      <event type="Engagement">
-        <dateval val="1994-10-05"/>
-        <place ref="P2"/>
-      </event>
-      <objref ref="O5"/>
-      <child ref="I5"/>
-      <child ref="I2"/>
-    </family>
-    <family id="F10" type="Married">
-      <father ref="I19"/>
-      <mother ref="I32"/>
-      <event type="Marriage">
-        <dateval val="1986-07-12"/>
-        <place ref="P29"/>
-      </event>
-      <child ref="I35"/>
-    </family>
-    <family id="F11" type="Married">
-      <father ref="I3"/>
-      <mother ref="I28"/>
-      <event type="Marriage">
-        <dateval val="1884-08-24"/>
-        <place ref="P3"/>
-      </event>
-    </family>
-    <family id="F14" type="Married">
-      <father ref="I10"/>
-      <mother ref="I16"/>
+    <family id="F9" handle="_MUMT6DOHKMWL7LLQVA" change="1091595207" type="Married">
+      <father hlink="_ETMT6DLEIYYGW8SHM5"/>
+      <mother hlink="_NDNT6D8O7D3QRKP07N"/>
+      <child hlink="_SQNT6DPEBXJPNWNCPX"/>
     </family>
   </families>
   <sources>
-    <source id="S3">
-      <stitle>Birth, Death and Marriage Records</stitle>
-    </source>
-    <source id="S2">
-      <stitle>Birth Records</stitle>
-    </source>
-    <source id="S1">
+    <source id="S1" handle="_4TNT6DX8JM3BW08CUR" change="1091595207">
       <stitle>Birth Certificate</stitle>
     </source>
-    <source id="S0">
+    <source id="S2" handle="_ADOT6D7LW5QJGMWY1V" change="1091595207">
+      <stitle>Birth Records</stitle>
+    </source>
+    <source id="S0" handle="_H9OT6DH812QJAQS5A8" change="1091595207">
       <stitle></stitle>
+    </source>
+    <source id="S3" handle="_VTNT6DYLDJMSJSCJMU" change="1091595207">
+      <stitle>Birth, Death and Marriage Records</stitle>
     </source>
   </sources>
   <places>
-    <placeobj id="P2" title="San Francisco, San Francisco Co., CA"/>
-    <placeobj id="P3" title="Ronne, Bornholm, Denmark"/>
-    <placeobj id="P0" title="Loderup, Malmous Lan, Sweden"/>
-    <placeobj id="P1" title="Sparks, Washoe Co., NV"/>
-    <placeobj id="P4" title="Gladsax, Kristianstad Lan, Sweden"/>
-    <placeobj id="P8" title="Hayward, Alameda Co., CA"/>
-    <placeobj id="P9" title="Community Presbyterian Church, Danville, CA"/>
-    <placeobj id="P26" title="Smestorp, Kristianstad Lan, Sweden"/>
-    <placeobj id="P25" title="Bí"/>
-    <placeobj id="P11" title="Sweden"/>
-    <placeobj id="P19" title="Denver, Denver Co., CO"/>
-    <placeobj id="P27" title="Tommarp, Kristianstad Lan, Sweden"/>
-    <placeobj id="P10" title="Reno, Washoe Co., NV"/>
-    <placeobj id="P24" title="UC Berkeley"/>
-    <placeobj id="P12" title="Grostorp, Kristianstad Lan, Sweden"/>
-    <placeobj id="P13" title="Copenhagen, Denmark"/>
-    <placeobj id="P21" title="Santa Rosa, Sonoma Co., CA"/>
-    <placeobj id="P15" title="Simrishamn, Kristianstad Lan, Sweden"/>
-    <placeobj id="P16" title="Fremont, Alameda Co., CA"/>
-    <placeobj id="P22" title="San Jose, Santa Clara Co., CA"/>
-    <placeobj id="P14" title="Hoya/Jona/Hoia, Sweden"/>
-    <placeobj id="P30" title="San Ramon, Conta Costa Co., CA"/>
-    <placeobj id="P29" title="Woodland, Yolo Co., CA"/>
-    <placeobj id="P28" title="Ronne Bornholm, Denmark"/>
-    <placeobj id="P20" title="Sacramento, Sacramento Co., CA"/>
+    <placeobj id="P3" handle="_4ZLT6DVCWT9LTZRDCS" change="1091595207" title="Ronne, Bornholm, Denmark"/>
+    <placeobj id="P12" handle="_61NT6D3G1JMOTO6Z7Y" change="1091595207" title="Grostorp, Kristianstad Lan, Sweden"/>
+    <placeobj id="P2" handle="_67MT6DB6KWOVMBAXSY" change="1091595207" title="San Francisco, San Francisco Co., CA"/>
+    <placeobj id="P10" handle="_7JMT6DN2LOF54KXHTU" change="1091595207" title="Reno, Washoe Co., NV"/>
+    <placeobj id="P11" handle="_A9MT6DHVWGWRP59DEV" change="1091595207" title="Sweden"/>
+    <placeobj id="P15" handle="_AANT6D026O5SHNUCDH" change="1091595207" title="Simrishamn, Kristianstad Lan, Sweden"/>
+    <placeobj id="P13" handle="_AKMT6DMEYZDTG9J6DS" change="1091595207" title="Copenhagen, Denmark"/>
+    <placeobj id="P30" handle="_BAOT6D1WY6J4O4ARRN" change="1091595207" title="San Ramon, Conta Costa Co., CA"/>
+    <placeobj id="P14" handle="_DYLT6DF4DX2MNZICJ8" change="1091595207" title="Hoya/Jona/Hoia, Sweden"/>
+    <placeobj id="P8" handle="_ELNT6DS8GN8WI7Z4SO" change="1091595207" title="Hayward, Alameda Co., CA"/>
+    <placeobj id="P21" handle="_FBNT6DL92NDY0Z5SGP" change="1091595207" title="Santa Rosa, Sonoma Co., CA"/>
+    <placeobj id="P20" handle="_GWNT6D12ZV06PK969X" change="1091595207" title="Sacramento, Sacramento Co., CA"/>
+    <placeobj id="P16" handle="_HFNT6D12ZC0KOWY69T" change="1091595207" title="Fremont, Alameda Co., CA"/>
+    <placeobj id="P0" handle="_HINT6DP8JGGL0KKB8J" change="1091595207" title="Loderup, Malmous Lan, Sweden"/>
+    <placeobj id="P25" handle="_IEOT6DOW3RE8AQ94HH" change="1091595207" title="Bí"/>
+    <placeobj id="P22" handle="_LTNT6DKZ5CR8PZSVUS" change="1091595207" title="San Jose, Santa Clara Co., CA"/>
+    <placeobj id="P24" handle="_PUNT6D1XHS0DJW9QP6" change="1091595207" title="UC Berkeley"/>
+    <placeobj id="P26" handle="_PXMT6DBL0WSBL76WD7" change="1091595207" title="Smestorp, Kristianstad Lan, Sweden"/>
+    <placeobj id="P29" handle="_QBOT6DN7UCCTZQ055" change="1091595207" title="Woodland, Yolo Co., CA"/>
+    <placeobj id="P28" handle="_QJMT6DGII29FWCPX2E" change="1091595207" title="Ronne Bornholm, Denmark"/>
+    <placeobj id="P27" handle="_R8MT6DRIZVNRYDK0VN" change="1091595207" title="Tommarp, Kristianstad Lan, Sweden"/>
+    <placeobj id="P19" handle="_RPMT6DTQR8J7LK98HJ" change="1091595207" title="Denver, Denver Co., CO"/>
+    <placeobj id="P1" handle="_S1NT6DPOBYC1JGMR1P" change="1091595207" title="Sparks, Washoe Co., NV"/>
+    <placeobj id="P9" handle="_XLNT6DUONITFPPEGVH" change="1091595207" title="Community Presbyterian Church, Danville, CA"/>
+    <placeobj id="P4" handle="_XSMT6DNISHYRCR1E78" change="1091595207" title="Gladsax, Kristianstad Lan, Sweden"/>
   </places>
   <objects>
-    <object id="O5" src="O5.jpg" mime="image/jpeg" description="Edwin &amp; Janice Smith"/>
-    <object id="O4" src="O4.jpg" mime="image/jpeg" description="Marjorie Alice Smith"/>
-    <object id="O3" src="O3.jpg" mime="image/jpeg" description="Edwin Michael Smith"/>
-    <object id="O2" src="O2.jpg" mime="image/jpeg" description="Emil &amp; Gustaf Smith"/>
-    <object id="O1" src="O1.jpg" mime="image/jpeg" description="Arriving 1910"/>
-    <object id="O0" src="O0.jpg" mime="image/jpeg" description="Keith Lloyd Smith"/>
+    <object id="O0" handle="_HHNT6D73QPKC0KWK2Y" change="1091595207" src="O0.jpg" mime="image/jpeg" description="Keith Lloyd Smith"/>
+    <object id="O1" handle="_W2NT6D87SPI9V7G27P" change="1091595207" src="O1.jpg" mime="image/jpeg" description="Arriving 1910"/>
+    <object id="O2" handle="_43NT6DHH0TBN0PKVC" change="1091595207" src="O2.jpg" mime="image/jpeg" description="Emil &amp; Gustaf Smith"/>
+    <object id="O3" handle="_CVNT6DHG5ICZ1UGUO9" change="1091595207" src="O3.jpg" mime="image/jpeg" description="Edwin Michael Smith"/>
+    <object id="O4" handle="_Y0OT6DM7FW06A1SLMS" change="1091595207" src="O4.jpg" mime="image/jpeg" description="Marjorie Alice Smith"/>
+    <object id="O5" handle="_MNNT6D27G3L8SGVQJV" change="1091595207" src="O5.jpg" mime="image/jpeg" description="Edwin &amp; Janice Smith"/>
   </objects>
-  <bookmarks>
-    <bookmark ref="I10"/>
-    <bookmark ref="I13"/>
-    <bookmark ref="I41"/>
-    <bookmark ref="I6"/>
-  </bookmarks>
 </database>
