@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2005  Donald N. Allingham
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+# Written by Alex Roitman
+
+# $Id$
+-->
+
+<!--
+    This is the RELAX NG schema for the GRAMPS XML genealogy data format.
+-->
+
+
+<grammar  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"  
+	ns="http://gramps-project.org/" xmlns="http://relaxng.org/ns/structure/1.0">
+
+    <start>
+        <element name="database">
+    
+            <element name="header">
+                <element name="created">
+                    <attribute name="date"><data type="date"/></attribute>
+                    <attribute name="version"><text/></attribute>
+                </element>
+                <optional><element name="researcher">
+                    <ref name="researcher-content"/>
+                </element></optional>
+            </element>
+
+            <optional>
+                <element name="people">
+                    <optional><attribute name="default"><text/></attribute></optional>
+                    <optional><attribute name="home"><data type="ID"/></attribute></optional>
+                    <zeroOrMore>
+                        <element name="person">
+                            <ref name="person-content"/>
+                        </element>
+                    </zeroOrMore>
+                </element>
+            </optional>
+
+            <optional>
+                <element name="families">
+                    <zeroOrMore>
+                        <element name="family">
+                            <ref name="family-content"/>
+                        </element>
+                    </zeroOrMore>
+                </element>
+            </optional>
+
+            <optional>
+                <element name="sources">
+                    <zeroOrMore>
+                        <element name="source">
+                            <ref name="source-content"/>
+                        </element>
+                    </zeroOrMore>
+                </element>
+            </optional>
+
+            <optional>
+                <element name="places">
+                    <zeroOrMore>
+                        <element name="place">
+                            <ref name="place-content"/>
+                        </element>
+                    </zeroOrMore>
+                </element>
+            </optional>
+
+            <optional>
+                <element name="objects">
+                    <zeroOrMore>
+                        <element name="object">
+                            <ref name="object-content"/>
+                        </element>
+                    </zeroOrMore>
+                </element>
+            </optional>
+
+            <optional>
+                <element name="bookmarks">
+                    <zeroOrMore>
+                        <element name="bookmark">
+                            <ref name="bookmark-content"/>
+                        </element>
+                    </zeroOrMore>
+                </element>
+            </optional>
+
+        </element>
+    </start>
+
+    <define name="researcher-content">
+        <text/>
+    </define>
+
+    <define name="person-content">
+        <attribute name="handle"><data type="IDREF"/></attribute>
+        <text/>
+    </define>
+
+    <define name="family-content">
+        <attribute name="handle"><data type="IDREF"/></attribute>
+        <text/>
+    </define>
+
+    <define name="source-content">
+        <attribute name="handle"><data type="IDREF"/></attribute>
+        <text/>
+    </define>
+
+    <define name="place-content">
+        <attribute name="handle"><data type="IDREF"/></attribute>
+        <text/>
+    </define>
+
+    <define name="object-content">
+        <attribute name="handle"><data type="IDREF"/></attribute>
+        <text/>
+    </define>
+
+    <define name="bookmark-content">
+        <attribute name="handle"><data type="IDREF"/></attribute>
+        <text/>
+    </define>
+
+</grammar>
