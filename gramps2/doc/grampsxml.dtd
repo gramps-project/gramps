@@ -335,21 +335,22 @@ EVENT
         value CDATA #REQUIRED
 >
 
-<!ELEMENT lds_ord (temple?,place?,status?,sealed_to?,note?,sourceref*)>
+<!ELEMENT lds_ord ((daterange|dateval|datestr)?,temple?,place?,status?,
+                   sealed_to?,note?,sourceref*)>
 <!ATTLIST lds_ord
         type   CDATA #REQUIRED
 >
 
-<!ELEMENt temple #EMPTY>
+<!ELEMENT temple EMPTY>
 <!ATTLIST temple
         val   CDATA #REQUIRED
 >
 
-<!ELEMENt status #EMPTY>
+<!ELEMENT status EMPTY>
 <!ATTLIST status
         val   CDATA #REQUIRED
 >
-<!ELEMENt sealed_to #EMPTY>
+<!ELEMENT sealed_to EMPTY>
 <!ATTLIST sealed_to
         hlink IDREF #REQUIRED
 >

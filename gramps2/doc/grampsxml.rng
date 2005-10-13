@@ -160,11 +160,12 @@
 
   <define name="child-rel">
     <choice>
-      <value>None</value>
       <value>Birth</value>
       <value>Adopted</value>
+      <value>Stepchild</value>
       <value>Sponsored</value>
       <value>Foster</value>
+      <value>None</value>
       <value>Other</value>
       <value>Unknown</value>
     </choice>
@@ -247,7 +248,7 @@
 
   <define name="family-content">
     <ref name="primary-object"/>
-    <optional><attribute name="comlpete"><choice>
+    <optional><attribute name="complete"><choice>
         <value>0</value>
         <value>1</value>
     </choice></attribute></optional>
@@ -275,6 +276,16 @@
     </element></zeroOrMore>
     <zeroOrMore><element name="child">
         <attribute name="hlink"><data type="IDREF"/></attribute>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="attribute">
+        <ref name="attribute-content"/>
+    </element></zeroOrMore>
+    <optional><element name="note">
+        <ref name="note-content"/>
+    </element></optional>
+    <optional><ref name="date-content"/></optional>
+    <zeroOrMore><element name="sourceref">
+        <ref name="sourceref-content"/>
     </element></zeroOrMore>
   </define>
 
@@ -378,16 +389,24 @@
     </attribute></optional>
     <attribute name="type"><text/></attribute>
     <attribute name="value"><text/></attribute>
+    <zeroOrMore><element name="sourceref">
+        <ref name="sourceref-content"/>
+    </element></zeroOrMore>
+    <optional><element name="note">
+        <ref name="note-content"/>
+    </element></optional>
   </define>
 
   <define name="event-content">
     <attribute name="type"><text/></attribute>
-        <optional><attribute name="priv">
+    <optional><attribute name="priv">
         <ref name="priv-content"/>
     </attribute></optional>
     <optional><ref name="date-content"/></optional>
     <zeroOrMore><element name="witness">
-        <optional><attribute name="hlink"><data type="IDREF"/></attribute></optional>
+        <optional><attribute name="hlink">
+            <data type="IDREF"/>
+        </attribute></optional>
         <optional><attribute name="name"><text/></attribute></optional>
         <optional><element name="comment"><text/></element></optional>
     </element></zeroOrMore>
@@ -434,6 +453,7 @@
 
   <define name="lds-content">
     <attribute name="type"><text/></attribute>
+    <optional><ref name="date-content"/></optional>
     <optional><element name="temple">
         <attribute name="val"><text/></attribute>
     </element></optional>
