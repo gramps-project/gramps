@@ -140,6 +140,7 @@ class BasePage:
         self.footer = options.handler.options_dict['NWEBfooter']
         self.photo_list = photo_list
         self.exclude_private = not options.handler.options_dict['NWEBincpriv']
+        self.usegraph = options.handler.options_dict['NWEBgraph']
 
     def store_file(self,archive,html_dir,from_path,to_path):
         if archive:
@@ -1351,7 +1352,8 @@ class IndividualPage(BasePage):
         self.display_url_list(of, self.person.get_url_list())
         self.display_ind_sources(of)
         self.display_ind_pedigree(of)
-        self.display_tree(of)
+        if self.usegraph:
+            self.display_tree(of)
         self.display_footer(of,db)
         self.close_file(of)
 
@@ -2283,6 +2285,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         # Options specific for this report
         self.options_dict = {
             'NWEBarchive'       : 0,
+            'NWEBgraph'         : 1,
             'NWEBod'            : './',
             'NWEBcopyright'     : 0,
             'NWEBrestrictinfo'  : 0,
@@ -2353,9 +2356,13 @@ class WebReportOptions(ReportOptions.ReportOptions):
         contact_msg = _("Publisher contact/Note ID")
         gallery_msg = _("Include images and media objects")
         download_msg = _("Include download page")
+        graph_msg = _("Include ancestor graph")
 
         self.no_private = gtk.CheckButton(priv_msg)
         self.no_private.set_active(not self.options_dict['NWEBincpriv'])
+
+        self.inc_graph = gtk.CheckButton(graph_msg)
+        self.inc_graph.set_active(self.options_dict['NWEBgraph'])
 
         self.noid = gtk.CheckButton(_('Suppress GRAMPS ID'))
         self.noid.set_active(self.options_dict['NWEBnoid'])
@@ -2442,6 +2449,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         dialog.add_option(_('Character set encoding'),self.encoding)
         dialog.add_option(_('Stylesheet'),self.css)
         dialog.add_option(_('Copyright'),self.copy)
+        dialog.add_option(None,self.inc_graph)
 
         title = _("Page Generation")
 
@@ -2501,6 +2509,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.options_dict['NWEBtitle'] = unicode(self.title.get_text())
         self.options_dict['NWEBintronote'] = unicode(self.intro_note.get_handle())
         self.options_dict['NWEBhomenote'] = unicode(self.home_note.get_handle())
+        self.options_dict['NWEBgraph'] = int(self.inc_graph.get_active())
 
         index = self.ext.get_active()
         if index >= 0:
