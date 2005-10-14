@@ -626,7 +626,7 @@ class ChooseParents:
         class to create a new person."""
         
         person = RelLib.Person()
-        person.set_gender(RelLib.Person.MALE)
+        person.set_gender(RelLib.Person.UNKNOWN)
         
         try:
             import EditPerson

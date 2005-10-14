@@ -1,3 +1,7 @@
+2005-10-14  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/ChooseParents.py: give unknown sex to the new parent, so that
+	guessing works
+
 2005-10-13  Don Allingham  <don@gramps-project.org>
 	* various: add explict calls to garbage collection
 
