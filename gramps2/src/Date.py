@@ -511,7 +511,8 @@ class Date:
         """
         Returns True if the date contains no information (empty text).
         """
-        return self.modifier == MOD_TEXTONLY and not self.text
+        return (self.modifier == MOD_TEXTONLY and not self.text) or \
+               (self.get_start_date()==EMPTY and self.get_stop_date()==EMPTY)
         
     def is_compound(self):
         """
