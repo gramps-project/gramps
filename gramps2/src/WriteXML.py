@@ -209,10 +209,11 @@ class XmlWriter:
 
         self.g.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.g.write('<!DOCTYPE database '
-                     'PUBLIC "-//GRAMPS//DTD GRAMPS XML V%s//EN"\n'
+                     'PUBLIC "-//GRAMPS//DTD GRAMPS XML %s//EN"\n'
                      '"http://gramps-project.org/xml/%s/grampsxml.dtd">\n'
                      % (_xml_version,_xml_version))
-        self.g.write("<database xmlns=\"http://gramps-project.org/\">\n")
+        self.g.write('<database xmlns="http://gramps-project.org/xml/%s/">\n'
+                     % _xml_version)
         self.g.write("  <header>\n")
         self.g.write('    <created date="%04d-%02d-%02d\"' %
                      (date[0],date[1],date[2]) )
