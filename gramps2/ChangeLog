@@ -1,6 +1,9 @@
 2005-10-14  Alex Roitman  <shura@gramps-project.org>
 	* src/Date.py (is_empty): Consider non-text-only date with
 	empty numerical fields an empty date.
+	* src/gramps.glade: Use spinbuttons for selection coords in the
+	media reference dialog.
+	* src/ImageSelect.py (LocalMediaProperties): Support selection.
 
 2005-10-14  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/TestcaseGenerator.py: Randomize SourceRefs

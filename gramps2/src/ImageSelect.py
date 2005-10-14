@@ -695,7 +695,8 @@ class LocalMediaProperties:
         self.lists_changed = 0
         
         fname = self.obj.get_path()
-        self.change_dialog = gtk.glade.XML(const.imageselFile,"change_description","gramps")
+        self.change_dialog = gtk.glade.XML(const.imageselFile,
+                                           "change_description","gramps")
 
         title = _('Media Reference Editor')
         self.window = self.change_dialog.get_widget('change_description')
@@ -723,7 +724,8 @@ class LocalMediaProperties:
         self.slist  = self.change_dialog.get_widget("src_list")
         self.sources_label = self.change_dialog.get_widget("source_label")
         if self.obj:
-            self.srcreflist = [RelLib.SourceRef(ref) for ref in self.photo.get_source_references()]
+            self.srcreflist = [RelLib.SourceRef(ref)
+                               for ref in self.photo.get_source_references()]
         else:
             self.srcreflist = []
     
@@ -741,6 +743,13 @@ class LocalMediaProperties:
         self.pixmap.set_from_pixbuf(self.pix)
 
         self.change_dialog.get_widget("private").set_active(photo.get_privacy())
+        coord = photo.get_rectangle()
+        if coord and type(coord) == tuple:
+            self.change_dialog.get_widget("upperx").set_value(coord[0])
+            self.change_dialog.get_widget("uppery").set_value(coord[1])
+            self.change_dialog.get_widget("lowerx").set_value(coord[2])
+            self.change_dialog.get_widget("lowery").set_value(coord[3])
+        
         self.change_dialog.get_widget("gid").set_text(self.obj.get_gramps_id())
 
         self.change_dialog.get_widget("path").set_text(fname)
@@ -841,17 +850,29 @@ class LocalMediaProperties:
     def on_apply_clicked(self):
         priv = self.change_dialog.get_widget("private").get_active()
 
+        coord = (
+            self.change_dialog.get_widget("upperx").get_value_as_int(),
+            self.change_dialog.get_widget("uppery").get_value_as_int(),
+            self.change_dialog.get_widget("lowerx").get_value_as_int(),
+            self.change_dialog.get_widget("lowery").get_value_as_int(),
+            )
+        if (coord[0] == None and coord[1] == None
+            and coord[2] == None and coord[3] == None):
+            coord = None
+
         t = self.notes.get_buffer()
         text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),False))
         note = self.photo.get_note()
         format = self.preform.get_active()
-        if text != note or priv != self.photo.get_privacy():
+        if text != note or priv != self.photo.get_privacy() \
+               or coord != self.photo.get_rectangle() \
+               or format != self.photo.get_note_format():
+            self.photo.set_rectangle(coord)
             self.photo.set_note(text)
             self.photo.set_privacy(priv)
+            self.photo.set_note_format(format)
             self.parent.lists_changed = 1
             self.parent.parent.lists_changed = 1
-        if format != self.photo.get_note_format():
-            self.photo.set_note_format(format)
         if self.lists_changed:
             self.photo.set_attribute_list(self.alist)
             self.photo.set_source_reference_list(self.srcreflist)
