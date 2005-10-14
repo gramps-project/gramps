@@ -197,7 +197,7 @@ class XmlWriter:
             
     def write_xml_data(self):
 
-        date = time.ctime(time.time()).split()
+        date = time.localtime(time.time())
         owner = self.db.get_researcher()
         person_len = self.db.get_number_of_people()
         family_len = len(self.db.get_family_handles())
@@ -212,11 +212,10 @@ class XmlWriter:
                      'PUBLIC "-//GRAMPS//DTD GRAMPS XML V%s//EN"\n'
                      '"http://gramps-project.org/xml/%s/grampsxml.dtd">\n'
                      % (_xml_version,_xml_version))
-
         self.g.write("<database xmlns=\"http://gramps-project.org/\">\n")
         self.g.write("  <header>\n")
-        self.g.write("    <created date=\"%s %s %s\"" % \
-                     (date[2],date[1].upper(),date[4]))
+        self.g.write('    <created date="%04d-%02d-%02d\"' %
+                     (date[0],date[1],date[2]) )
         self.g.write(" version=\"" + const.version + "\"")
         self.g.write("/>\n")
         self.g.write("    <researcher>\n")
@@ -614,7 +613,12 @@ class XmlWriter:
             d = ''
         else:
             d = "-%02d" % date[0]
-        return "%s%s%s" % (y,m,d)
+        ret = "%s%s%s" % (y,m,d)
+        # If the result does not contain anything beyond dashes
+        # and question marks then it's as good as empty
+        if ret.replace('-','').replace('?','') == '':
+            ret = ''
+        return ret
 
     def write_date(self,date,indent=1):
         sp = '  '*indent
@@ -625,27 +629,41 @@ class XmlWriter:
         else:
             calstr = ''
 
+        qual = date.get_quality()
+        if qual == Date.QUAL_ESTIMATED:
+            qual_str = ' quality="estimated"'
+        elif qual == Date.QUAL_CALCULATED:
+            qual_str = ' quality="calculated"'
+        else:
+            qual_str = ""
+            
         mode = date.get_modifier()
         
         if date.is_compound():
             d1 = self.get_iso_date(date.get_start_date())
             d2 = self.get_iso_date(date.get_stop_date())
-            self.g.write('%s<daterange start="%s" stop="%s"%s/>\n' % (sp,d1,d2,calstr))
+            if d1 != "" or d2 != "":
+                self.g.write('%s<daterange start="%s" stop="%s"%s%s/>\n'
+                             % (sp,d1,d2,qual_str,calstr))
         elif mode != Date.MOD_TEXTONLY:
-            dstr = self.get_iso_date(date.get_start_date())
+            date_str = self.get_iso_date(date.get_start_date())
+            if date_str == "":
+                return
             
             if mode == Date.MOD_BEFORE:
-                pref = ' type="before"'
+                mode_str = ' type="before"'
             elif mode == Date.MOD_AFTER:
-                pref = ' type="after"'
+                mode_str = ' type="after"'
             elif mode == Date.MOD_ABOUT:
-                pref = ' type="about"'
+                mode_str = ' type="about"'
             else:
-                pref = ""
-            
-            self.g.write('%s<dateval val="%s"%s%s/>\n' % (sp,dstr,pref,calstr))
+                mode_str = ""
+
+            self.g.write('%s<dateval val="%s"%s%s%s/>\n'
+                         % (sp,date_str,mode_str,qual_str,calstr))
         else:
-            self.g.write('%s<datestr val="%s"/>\n' %(sp,self.fix(date.get_text())))
+            self.g.write('%s<datestr val="%s"/>\n'
+                         %(sp,self.fix(date.get_text())))
 
     def write_force_line(self,label,value,indent=1):
         if value != None:

@@ -38,7 +38,7 @@
     
       <element name="header">
         <element name="created">
-            <attribute name="date"><text/></attribute>
+            <attribute name="date"><data type="date"/></attribute>
             <attribute name="version"><text/></attribute>
         </element>
         <optional><element name="researcher">
@@ -229,6 +229,10 @@
         <element name="daterange">
             <attribute name="start"><text/></attribute>
             <attribute name="stop"><text/></attribute>
+            <optional><attribute name="quality"><choice>
+                <value>estimated</value>
+                <value>calculated</value>
+            </choice></attribute></optional>
             <optional><attribute name="cformat"><text/></attribute></optional>
         </element>
         <element name="dateval">
@@ -238,6 +242,10 @@
                 <value>before</value>
                 <value>after</value>
                 <value>about</value>
+            </choice></attribute></optional>
+            <optional><attribute name="quality"><choice>
+                <value>estimated</value>
+                <value>calculated</value>
             </choice></attribute></optional>
         </element>
         <element name="datestr">

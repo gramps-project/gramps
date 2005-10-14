@@ -256,14 +256,16 @@ SHARED ELEMENTS
 <!ATTLIST daterange
         start   CDATA #REQUIRED
         stop    CDATA #REQUIRED
+        quality (estimated|calculated) #IMPLIED
         cformat CDATA #IMPLIED
 >
 
 <!ELEMENT dateval    EMPTY>
 <!ATTLIST dateval
-        val     CDATA                #REQUIRED
-        type    (before|after|about) #IMPLIED
-        cformat CDATA                #IMPLIED
+        val     CDATA                  #REQUIRED
+        type    (before|after|about)   #IMPLIED
+        quality (estimated|calculated) #IMPLIED
+        cformat CDATA                  #IMPLIED
 >
 
 <!ELEMENT datestr    EMPTY>

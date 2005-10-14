@@ -2,6 +2,11 @@
 	* example/gramps/data.gramps: Update example data to conform with
 	the format changes and the DTD.
 	* doc/grampsxml.dtd, doc/grampsxml.rng: Update.
+	* src/WriteXML.py (write_xml_data): Use ISO date in the created
+	attribute; (get_iso_date): Return empty string on empty date;
+	(write_date): Write quality attributes, if any.
+	* src/ReadXML.py (start_daterange,start_dateval): Parse quality
+	attributes.
 
 2005-10-13  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/TestcaseGenerator.py: Randomize more; Add LDS events

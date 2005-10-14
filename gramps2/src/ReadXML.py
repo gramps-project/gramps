@@ -990,7 +990,18 @@ class GrampsParser:
         else:
             cal = Date.CAL_GREGORIAN
 
-        dv.set(Date.QUAL_NONE,Date.MOD_RANGE,cal,(d,m,y,False,rd,rm,ry,False))
+        if attrs.has_key('quality'):
+            val = attrs['quality']
+            if val == 'estimated':
+                qual = Date.QUAL_ESTIMATED
+            elif val == 'calculated':
+                qual = Date.QUAL_CALCULATED
+            else:
+                qual = Date.QUAL_NONE
+        else:
+            qual = Date.QUAL_NONE
+        
+        dv.set(qual,Date.MOD_RANGE,cal,(d,m,y,False,rd,rm,ry,False))
 
     def start_dateval(self,attrs):
         if self.source_ref:
@@ -1042,8 +1053,19 @@ class GrampsParser:
                 mod = Date.MOD_BEFORE
         else:
             mod = Date.MOD_NONE
+
+        if attrs.has_key('quality'):
+            val = attrs['quality']
+            if val == 'estimated':
+                qual = Date.QUAL_ESTIMATED
+            elif val == 'calculated':
+                qual = Date.QUAL_CALCULATED
+            else:
+                qual = Date.QUAL_NONE
+        else:
+            qual = Date.QUAL_NONE
         
-        dv.set(Date.QUAL_NONE,mod,cal,(d,m,y,False))
+        dv.set(qual,mod,cal,(d,m,y,False))
 
     def start_datestr(self,attrs):
         if self.source_ref:
