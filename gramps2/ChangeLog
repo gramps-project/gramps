@@ -1,3 +1,6 @@
+2005-10-14  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/TestcaseGenerator.py: Randomize SourceRefs
+
 2005-10-14  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/ChooseParents.py: give unknown sex to the new parent, so that
 	guessing works
