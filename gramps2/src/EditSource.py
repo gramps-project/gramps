@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -218,6 +219,7 @@ class EditSource:
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        gc.collect()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -228,6 +230,7 @@ class EditSource:
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.top.destroy()
+        gc.collect()
         
     def close_child_windows(self):
         for child_window in self.child_windows.values():

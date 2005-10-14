@@ -34,6 +34,7 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -280,11 +281,13 @@ class ChooseParents:
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()
         self.close_child_windows()
+        gc.collect()
 
     def close(self,obj):
         self.remove_itself_from_menu()
         self.close_child_windows()
         self.window.destroy()
+        gc.collect()
         
     def close_child_windows(self):
         for child_window in self.child_windows.values():
@@ -749,6 +752,7 @@ class ModifyParents:
         if self.val == gtk.RESPONSE_OK:
             self.save_parents_clicked()
         self.window.destroy()
+        gc.collect()
 
     def build_list(self,opt_menu,sel):
         store = gtk.ListStore(str)

@@ -42,6 +42,7 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -275,6 +276,7 @@ class DateEditorDialog:
             else:
                 break
         self.top_window.destroy()
+        gc.collect()
 
     def build_date_from_ui(self):
         """

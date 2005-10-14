@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -130,11 +131,13 @@ class SourceSelector:
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        gc.collect()
 
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.window.destroy()
+        gc.collect()
 
     def close_child_windows(self):
         for child_window in self.child_windows.values():
@@ -439,11 +442,13 @@ class SourceEditor:
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        gc.collect()
 
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.sourceDisplay.destroy()
+        gc.collect()
 
     def close_child_windows(self):
         for child_window in self.child_windows.values():

@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+import gc
 import urlparse
 from gettext import gettext as _
 
@@ -140,6 +141,7 @@ class ImageSelect:
         if self.val == gtk.RESPONSE_OK:
             self.on_savephoto_clicked()
         self.window.destroy()
+        gc.collect()
 
     def on_help_imagesel_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -781,11 +783,13 @@ class LocalMediaProperties:
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        gc.collect()
 
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.window.destroy()
+        gc.collect()
 
     def close_child_windows(self):
         for child_window in self.child_windows.values():
@@ -1055,11 +1059,13 @@ class GlobalMediaProperties:
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        gc.collect()
 
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.window.destroy()
+        gc.collect()
 
     def close_child_windows(self):
         for child_window in self.child_windows.values():

@@ -27,6 +27,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -143,10 +144,12 @@ class SelectChild:
 
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()
+        gc.collect()
 
     def close(self,obj):
         self.remove_itself_from_menu()
         self.top.destroy()
+        gc.collect()
 
     def add_itself_to_menu(self):
         self.parent.child_windows[self] = self

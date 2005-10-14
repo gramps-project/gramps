@@ -34,6 +34,7 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -295,6 +296,7 @@ class AddSpouse:
         self.db.transaction_commit(trans,_("Add Spouse"))
 
         Utils.destroy_passed_object(obj)
+        gc.collect()
         m = Marriage.Marriage(self.parent, self.active_family, self.parent.db)
         m.on_add_clicked()
 

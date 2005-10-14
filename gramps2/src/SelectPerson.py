@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -109,7 +110,9 @@ class SelectPerson:
             else:
                 return_value = None
             self.top.destroy()
+            gc.collect()
 	    return return_value
         else:
             self.top.destroy()
+            gc.collect()
             return None

@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 import cPickle as pickle
 import os
+import gc
 import locale
 import sets
 from gettext import gettext as _
@@ -136,7 +137,7 @@ class EditPerson:
         self.top = gtk.glade.XML(const.editPersonFile, "editPerson","gramps")
         self.window = self.get_widget("editPerson")
         self.window.set_title("%s - GRAMPS" % _('Edit Person'))
-        
+
         self.icon_list = self.top.get_widget("iconlist")
         self.gallery = ImageSelect.Gallery(person, self.db.commit_person,
                                            self.path, self.icon_list,
@@ -622,6 +623,7 @@ class EditPerson:
         self.child_windows = {}
 
     def close(self):
+    
         event_list = []
         for col in self.event_list.get_columns():
             event_list.append(self.event_trans.find_key(col.get_title()))
@@ -632,6 +634,7 @@ class EditPerson:
         self.close_child_windows()
         self.remove_itself_from_winsmenu()
         self.window.destroy()
+        gc.collect()
         
     def add_itself_to_winsmenu(self):
         self.parent.child_windows[self.orig_handle] = self

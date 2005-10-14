@@ -31,6 +31,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -148,7 +149,9 @@ class SelectObject:
             else:
                 return_value = None
             self.top.destroy()
+            gc.collect()
 	    return return_value
         else:
             self.top.destroy()
+            gc.collect()
             return None

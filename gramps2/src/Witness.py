@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -184,10 +185,12 @@ class WitnessEditor:
 
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()
+        gc.collect()
 
     def close(self,obj):
         self.remove_itself_from_menu()
         self.window.destroy()
+        gc.collect()
 
     def add_itself_to_menu(self):
         self.parent.parent.child_windows[self.win_key] = self

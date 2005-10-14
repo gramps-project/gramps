@@ -30,6 +30,7 @@ Provides the interface to allow a person to add a media object to the database.
 #
 #-------------------------------------------------------------------------
 import os
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -172,10 +173,12 @@ class AddMediaObject:
             if val == gtk.RESPONSE_OK:
                 self.on_savephoto_clicked()
                 self.window.destroy()
+                gc.collect()
                 return self.object
             elif val == gtk.RESPONSE_HELP: 
                 self.on_help_imagesel_clicked(None)
             else:
                 self.window.destroy()
+                gc.collect()
                 return None
         return None
