@@ -6530,7 +6530,6 @@ Other</property>
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="has_separator">False</property>
-  <signal name="delete_event" handler="on_delete_event"/>
 
   <child internal-child="vbox">
     <widget class="GtkVBox" id="vbox4">
@@ -6554,7 +6553,6 @@ Other</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="editPerson"/>
 	    </widget>
 	  </child>
 
@@ -6570,7 +6568,6 @@ Other</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="on_apply_person_clicked" object="editPerson"/>
 	    </widget>
 	  </child>
 
@@ -6584,7 +6581,6 @@ Other</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">-11</property>
-	      <signal name="clicked" handler="on_help_person_clicked" last_modification_time="Tue, 18 Nov 2003 03:55:10 GMT"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -6626,7 +6622,6 @@ Other</property>
 	  <property name="tab_pos">GTK_POS_TOP</property>
 	  <property name="scrollable">False</property>
 	  <property name="enable_popup">False</property>
-	  <signal name="switch_page" handler="on_editperson_switch_page" object="editPerson"/>
 
 	  <child>
 	    <widget class="GtkVBox" id="vbox28">
@@ -6934,7 +6929,6 @@ Other</property>
 			      <property name="active">False</property>
 			      <property name="inconsistent">False</property>
 			      <property name="draw_indicator">True</property>
-			      <signal name="toggled" handler="on_gender_activate" last_modification_time="Tue, 24 Jun 2003 13:34:54 GMT"/>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -6955,7 +6949,6 @@ Other</property>
 			      <property name="inconsistent">False</property>
 			      <property name="draw_indicator">True</property>
 			      <property name="group">genderMale</property>
-			      <signal name="toggled" handler="on_gender_activate" last_modification_time="Tue, 24 Jun 2003 13:34:29 GMT"/>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -6976,7 +6969,6 @@ Other</property>
 			      <property name="inconsistent">False</property>
 			      <property name="draw_indicator">True</property>
 			      <property name="group">genderMale</property>
-			      <signal name="toggled" handler="on_gender_activate" last_modification_time="Tue, 24 Jun 2003 13:34:11 GMT"/>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -7138,7 +7130,6 @@ Other</property>
 			  <property name="has_frame">True</property>
 			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
-			  <signal name="focus_out_event" handler="on_given_focus_out" last_modification_time="Thu, 30 Sep 2004 16:30:21 GMT"/>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -7177,7 +7168,6 @@ Other</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
-			  <signal name="clicked" handler="on_edit_name_clicked" last_modification_time="Tue, 28 Sep 2004 19:54:46 GMT"/>
 
 			  <child>
 			    <widget class="GtkImage" id="image2261">
@@ -7432,7 +7422,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_edit_birth_clicked" object="editPerson"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2262">
@@ -7590,7 +7579,6 @@ Other</property>
 				  <property name="can_focus">True</property>
 				  <property name="relief">GTK_RELIEF_NONE</property>
 				  <property name="focus_on_click">True</property>
-				  <signal name="clicked" handler="on_edit_date_death_clicked" last_modification_time="Sat, 18 Sep 2004 02:30:11 GMT"/>
 
 				  <child>
 				    <widget class="GtkImage" id="death_stat_child">
@@ -7626,7 +7614,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_edit_death_clicked" object="editPerson"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2263">
@@ -8267,7 +8254,6 @@ Other</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
-			  <signal name="clicked" handler="on_add_aka_clicked" object="nameList"/>
 
 			  <child>
 			    <widget class="GtkImage" id="image2265">
@@ -8296,7 +8282,6 @@ Other</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
-			  <signal name="clicked" handler="on_aka_update_clicked" last_modification_time="Sat, 01 Mar 2003 18:36:24 GMT"/>
 
 			  <child>
 			    <widget class="GtkImage" id="image2266">
@@ -8324,7 +8309,6 @@ Other</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
-			  <signal name="clicked" handler="on_aka_delete_clicked" object="nameList"/>
 
 			  <child>
 			    <widget class="GtkImage" id="image2267">
@@ -8846,7 +8830,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_event_add_clicked" object="eventList"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2268">
@@ -8875,7 +8858,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_event_update_clicked" last_modification_time="Sat, 01 Mar 2003 03:46:07 GMT"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2269">
@@ -8903,7 +8885,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_event_delete_clicked" object="eventList"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2270">
@@ -9288,7 +9269,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_add_attr_clicked" object="attr_list"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2271">
@@ -9317,7 +9297,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_update_attr_clicked" last_modification_time="Sat, 01 Mar 2003 18:35:12 GMT"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2272">
@@ -9345,7 +9324,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_delete_attr_clicked" object="attr_list"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2273">
@@ -9996,7 +9974,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_add_address_clicked" object="address_list"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2274">
@@ -10025,7 +10002,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_update_address_clicked" last_modification_time="Sat, 01 Mar 2003 20:35:27 GMT"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2275">
@@ -10053,7 +10029,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_delete_address_clicked" object="address_list"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2276">
@@ -10491,7 +10466,6 @@ Other</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
-			  <signal name="clicked" handler="on_addphoto_clicked" object="editPerson"/>
 
 			  <child>
 			    <widget class="GtkImage" id="image2280">
@@ -10519,7 +10493,6 @@ Other</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
-			  <signal name="clicked" handler="on_selectphoto_clicked" object="editPerson" last_modification_time="Fri, 12 Dec 2003 04:11:28 GMT"/>
 
 			  <child>
 			    <widget class="GtkImage" id="image2281">
@@ -10547,7 +10520,6 @@ Other</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
-			  <signal name="clicked" handler="on_editphoto_clicked" last_modification_time="Mon, 03 Mar 2003 03:41:19 GMT"/>
 
 			  <child>
 			    <widget class="GtkImage" id="image2282">
@@ -10574,7 +10546,6 @@ Other</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
-			  <signal name="clicked" handler="on_deletephoto_clicked" object="editPerson"/>
 
 			  <child>
 			    <widget class="GtkImage" id="image2283">
@@ -10823,7 +10794,6 @@ Other</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
-			  <signal name="clicked" handler="on_add_url_clicked" object="web_list"/>
 
 			  <child>
 			    <widget class="GtkImage" id="image2284">
@@ -10852,7 +10822,6 @@ Other</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
-			  <signal name="clicked" handler="on_update_url_clicked" last_modification_time="Mon, 03 Mar 2003 03:48:46 GMT"/>
 
 			  <child>
 			    <widget class="GtkImage" id="image2285">
@@ -10879,7 +10848,6 @@ Other</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
-			  <signal name="clicked" handler="on_web_go_clicked" object="web_url"/>
 
 			  <child>
 			    <widget class="GtkImage" id="image2286">
@@ -10908,7 +10876,6 @@ Other</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
-			  <signal name="clicked" handler="on_delete_url_clicked" object="web_list"/>
 
 			  <child>
 			    <widget class="GtkImage" id="image2287">
@@ -11066,7 +11033,6 @@ Other</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
-		  <signal name="clicked" handler="on_ldsbap_src_clicked" object="editPerson"/>
 		</widget>
 		<packing>
 		  <property name="left_attach">3</property>
@@ -11135,7 +11101,6 @@ Other</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
-		  <signal name="clicked" handler="on_ldsbap_note_clicked" object="editPerson"/>
 		</widget>
 		<packing>
 		  <property name="left_attach">3</property>
@@ -11280,7 +11245,6 @@ Other</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
-		  <signal name="clicked" handler="on_ldsendow_src_clicked" object="editPerson"/>
 		</widget>
 		<packing>
 		  <property name="left_attach">3</property>
@@ -11300,7 +11264,6 @@ Other</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
-		  <signal name="clicked" handler="on_ldsendow_note_clicked" object="editPerson"/>
 		</widget>
 		<packing>
 		  <property name="left_attach">3</property>
@@ -11369,7 +11332,6 @@ Other</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
-		  <signal name="clicked" handler="on_ldsseal_src_clicked" object="editPerson"/>
 		</widget>
 		<packing>
 		  <property name="left_attach">3</property>
@@ -11438,7 +11400,6 @@ Other</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
-		  <signal name="clicked" handler="on_ldsseal_note_clicked" object="editPerson"/>
 		</widget>
 		<packing>
 		  <property name="left_attach">3</property>
@@ -13941,7 +13902,6 @@ Other</property>
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="has_separator">False</property>
-  <signal name="delete_event" handler="on_delete_event" last_modification_time="Thu, 26 Feb 2004 02:47:40 GMT"/>
 
   <child internal-child="vbox">
     <widget class="GtkVBox" id="dialog-vbox12">
@@ -13964,7 +13924,6 @@ Other</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">-6</property>
-	      <signal name="clicked" handler="on_cancel_clicked" last_modification_time="Thu, 26 Feb 2004 02:49:16 GMT"/>
 	    </widget>
 	  </child>
 
@@ -13979,7 +13938,6 @@ Other</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">-5</property>
-	      <signal name="clicked" handler="on_apply_clicked"/>
 	    </widget>
 	  </child>
 
@@ -13993,7 +13951,6 @@ Other</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">-11</property>
-	      <signal name="clicked" handler="on_help_clicked" last_modification_time="Wed, 19 Nov 2003 04:57:02 GMT"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -14041,7 +13998,6 @@ Other</property>
 	      <property name="tab_pos">GTK_POS_TOP</property>
 	      <property name="scrollable">False</property>
 	      <property name="enable_popup">False</property>
-	      <signal name="switch_page" handler="on_switch_page" object="placeEditor"/>
 
 	      <child>
 		<widget class="GtkTable" id="table19">
@@ -15071,7 +15027,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_add_loc_clicked" object="loc_list"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2311">
@@ -15098,7 +15053,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_update_loc_clicked" last_modification_time="Thu, 08 May 2003 17:20:46 GMT"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2312">
@@ -15124,7 +15078,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_delete_loc_clicked" object="loc_list"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2313">
@@ -15588,7 +15541,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_addphoto_clicked" object="placeEditor"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2317">
@@ -15616,7 +15568,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_selectphoto_clicked" object="placeEditor" last_modification_time="Fri, 12 Dec 2003 05:12:18 GMT"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2318">
@@ -15644,7 +15595,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_edit_photo_clicked" last_modification_time="Thu, 08 May 2003 17:23:49 GMT"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2319">
@@ -15671,7 +15621,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_deletephoto_clicked" object="placeEditor"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2320">
@@ -15931,7 +15880,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_add_url_clicked" object="web_list"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2321">
@@ -15958,7 +15906,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_update_url_clicked" last_modification_time="Thu, 08 May 2003 17:24:09 GMT"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2322">
@@ -15984,7 +15931,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_web_go_clicked" object="web_url"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2323">
@@ -16011,7 +15957,6 @@ Other</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
-			      <signal name="clicked" handler="on_delete_url_clicked" object="web_list"/>
 
 			      <child>
 				<widget class="GtkImage" id="image2324">
@@ -18579,7 +18524,6 @@ Very High</property>
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="has_separator">False</property>
-  <signal name="delete_event" handler="on_srcsel_delete_event" last_modification_time="Fri, 20 Feb 2004 04:09:31 GMT"/>
 
   <child internal-child="vbox">
     <widget class="GtkVBox" id="dialog-vbox18">
@@ -18602,7 +18546,6 @@ Very High</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">-6</property>
-	      <signal name="clicked" handler="on_cancel_srcsel_clicked" last_modification_time="Fri, 20 Feb 2004 04:09:00 GMT"/>
 	    </widget>
 	  </child>
 
@@ -18616,7 +18559,6 @@ Very High</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">-5</property>
-	      <signal name="clicked" handler="on_ok_srcsel_clicked" last_modification_time="Fri, 20 Feb 2004 04:09:14 GMT"/>
 	    </widget>
 	  </child>
 
@@ -18630,7 +18572,6 @@ Very High</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">-11</property>
-	      <signal name="clicked" handler="on_help_srcsel_clicked" last_modification_time="Wed, 19 Nov 2003 04:27:36 GMT"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -18715,7 +18656,6 @@ Very High</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
-		      <signal name="clicked" handler="on_add_src_clicked" object="slist"/>
 
 		      <child>
 			<widget class="GtkImage" id="image2325">
@@ -18742,7 +18682,6 @@ Very High</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
-		      <signal name="clicked" handler="on_edit_src_clicked" last_modification_time="Mon, 03 Mar 2003 04:20:04 GMT"/>
 
 		      <child>
 			<widget class="GtkImage" id="image2326">
@@ -18768,7 +18707,6 @@ Very High</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
-		      <signal name="clicked" handler="on_del_src_clicked" object="slist"/>
 
 		      <child>
 			<widget class="GtkImage" id="image2327">

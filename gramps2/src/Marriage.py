@@ -120,10 +120,6 @@ class Marriage:
         self.top.signal_autoconnect({
             "destroy_passed_object" : self.on_cancel_edit,
             "on_help_marriage_editor" : self.on_help_clicked,
-            "on_up_clicked" : self.on_up_clicked,
-            "on_down_clicked" : self.on_down_clicked,
-            "on_attr_up_clicked" : self.on_attr_up_clicked,
-            "on_attr_down_clicked" : self.on_attr_down_clicked,
             "on_add_attr_clicked" : self.on_add_attr_clicked,
             "on_delete_attr_clicked" : self.on_delete_attr_clicked,
             "on_addphoto_clicked" : self.gallery.on_add_media_clicked,
@@ -426,40 +422,6 @@ class Marriage:
             lds_ord = RelLib.LdsOrd()
             self.family.set_lds_sealing(lds_ord)
         NoteEdit.NoteEditor(lds_ord,self,self.window,readonly=self.db.readonly)
-
-    def on_up_clicked(self,obj):
-        model,node = self.etree.get_selected()
-        if not node:
-            return
-        
-        row = self.etree.get_row(node)
-        if row != 0:
-            self.etree.select_row(row-1)
-
-    def on_down_clicked(self,obj):
-        model,node = self.etree.get_selected()
-        if not node:
-            return
-
-        row = self.etree.get_row(node)
-        self.etree.select_row(row+1)
-
-    def on_attr_up_clicked(self,obj):
-        model,node = self.atree.get_selected()
-        if not node:
-            return
-        
-        row = self.atree.get_row(node)
-        if row != 0:
-            self.atree.select_row(row-1)
-
-    def on_attr_down_clicked(self,obj):
-        model,node = self.atree.get_selected()
-        if not node:
-            return
-
-        row = self.atree.get_row(node)
-        self.atree.select_row(row+1)
 
     def ev_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
         row = self.etree.get_row_at(x,y)

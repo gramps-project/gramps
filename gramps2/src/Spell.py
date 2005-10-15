@@ -29,6 +29,8 @@ present, we default to no spell checking.
 
 import GrampsKeys
 
+from gettext import gettext as _
+
 #-----------------------------------------------------------
 #
 # Attempt to instantiate a gtkspell instance to check for

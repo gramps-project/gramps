@@ -39,7 +39,7 @@ from xml.sax import make_parser,handler,SAXParseException
 import os
 import sets
 from gettext import gettext as _
-from Utils import strip_context as __
+from TransUtils import strip_context as __
 
 #-------------------------------------------------------------------------
 #

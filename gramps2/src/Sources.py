@@ -55,6 +55,7 @@ import GrampsDisplay
 import Spell
 
 from DdTargets import DdTargets
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -81,21 +82,21 @@ class SourceSelector:
             self.list.append(RelLib.SourceRef(s))
         self.update=update
         self.top = gtk.glade.XML(const.srcselFile,"sourcesel","gramps")
+        self.gladeif = GladeIf(self.top)
+        
         self.window = self.top.get_widget("sourcesel")
 
         Utils.set_titles(self.window, self.top.get_widget('title'),
                          _('Source Reference Selection'))
-        
-        self.top.signal_autoconnect({
-            "on_add_src_clicked" : self.add_src_clicked,
-            "on_del_src_clicked" : self.del_src_clicked,
-            "on_edit_src_clicked" : self.edit_src_clicked,
-            "on_help_srcsel_clicked" : self.on_help_clicked,
-            "on_cancel_srcsel_clicked" : self.close,
-            "on_ok_srcsel_clicked" : self.src_ok_clicked,
-            "on_srcsel_delete_event" : self.on_delete_event,
-            })
 
+        self.gladeif.connect('sourcesel', 'delete_event', self.on_delete_event)
+        self.gladeif.connect('button138','clicked', self.close)
+        self.gladeif.connect('ok', 'clicked', self.src_ok_clicked)
+        self.gladeif.connect('button145', 'clicked', self.on_help_clicked)
+        self.gladeif.connect('add', 'clicked', self.add_src_clicked)
+        self.gladeif.clicked('edit', 'clicked', self.edit_src_clicked)
+        self.gladeif.clicked('delete', 'clicked', self.del_src_clicked)
+        
         self.slist = self.top.get_widget("slist")
         self.edit = self.top.get_widget('edit')
         self.delete = self.top.get_widget('delete')
@@ -129,6 +130,7 @@ class SourceSelector:
         self.window.show()
 
     def on_delete_event(self,obj,b):
+        self.gladeif.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
         gc.collect()
@@ -136,6 +138,7 @@ class SourceSelector:
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
         self.window.destroy()
         gc.collect()
 

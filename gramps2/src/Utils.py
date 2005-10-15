@@ -778,29 +778,6 @@ def get_type_converter_by_name(val_str):
         return unicode
     return unicode
 
-def strip_context(msgid,sep='|'):
-    """
-    Strip the context used for resolving translation ambiguities.
-    
-    The translation of msgid is returned unless the translation is
-    not available and the msgid contains the separator. In that case,
-    the returned value is the portion of msgid following the last
-    separator. Default separator is '|'.
-
-    @param msgid: The string to translated.
-    @type msgid: unicode
-    @param sep: The separator marking the context.
-    @type sep: unicode
-    @return: Translation or the original with context stripped.
-    @rtype: unicode
-
-    """
-    msgval = _(msgid)
-    sep_idx = msgid.rfind(sep)
-    if msgval == msgid and sep_idx != -1:
-        msgval = msgid[sep_idx+1:]
-    return msgval
-
 class ProgressMeter:
     """
     Progress meter class for GRAMPS.

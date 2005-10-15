@@ -1,3 +1,19 @@
+2005-10-14  Don Allingham  <don@gramps-project.org>
+	* src/EditPerson.py: remove signal_autoconnect to fix glade 
+	memory leak
+	* src/EditPlace.py: remove signal_autoconnect to fix glade 
+	memory leak
+	* src/GenericFilter.py: use TransUtils.py
+	* src/Makefile.am: add TransUtils.py and WindowUtils.py
+	* src/Marriage.py: remove signal_autoconnect to fix glade 
+	memory leak
+	* src/Sources.py: remove signal_autoconnect to fix glade 
+	memory leak
+	* src/Spell.py: import gettext
+	* src/Relationship.py: use TransUtils.py
+	* src/TransUtils.py: added to remove cyclic import
+	* src/WindowUtils.py: glade/signal interface class
+	
 2005-10-14  Alex Roitman  <shura@gramps-project.org>
 	* src/Date.py (is_empty): Consider non-text-only date with
 	empty numerical fields an empty date.

@@ -52,6 +52,7 @@ import Spell
 import GrampsDisplay
 
 from DdTargets import DdTargets
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -85,6 +86,8 @@ class EditPlace:
             self.srcreflist = []
 
         self.top_window = gtk.glade.XML(const.placesFile,"placeEditor","gramps")
+        self.gladeif = GladeIf(self.top_window)
+
         self.top = self.top_window.get_widget("placeEditor")
         self.iconlist = self.top_window.get_widget('iconlist')
         title_label = self.top_window.get_widget('title')
@@ -192,26 +195,23 @@ class EditPlace:
         if self.place.get_media_list():
             Utils.bold_label(self.gallery_label)
 
-        self.top_window.signal_autoconnect({
-            "on_switch_page"            : self.on_switch_page,
-            "on_addphoto_clicked"       : self.glry.on_add_media_clicked,
-            "on_selectphoto_clicked"    : self.glry.on_select_media_clicked,
-            "on_deletephoto_clicked"    : self.glry.on_delete_media_clicked,
-            "on_edit_photo_clicked"     : self.glry.on_edit_media_clicked,
-            "on_edit_properties_clicked": self.glry.popup_change_description,
-            "on_add_url_clicked"        : self.on_add_url_clicked,
-            "on_delete_url_clicked"     : self.on_delete_url_clicked,
-            "on_update_url_clicked"     : self.on_update_url_clicked,
-            "on_add_loc_clicked"        : self.on_add_loc_clicked,
-            "on_delete_loc_clicked"     : self.on_delete_loc_clicked,
-            "on_update_loc_clicked"     : self.on_update_loc_clicked,
-            "on_web_go_clicked"         : self.on_web_go_clicked,
-            "on_help_clicked"           : self.on_help_clicked,
-            "on_delete_event"           : self.on_delete_event,
-            "on_cancel_clicked"         : self.close,
-            "on_apply_clicked"          : self.on_place_apply_clicked,
-            })
-
+        self.gladeif.connect('placeEditor', 'delete_event', self.on_delete_event)
+        self.gladeif.connect('button127', 'clicked', self.close)
+        self.gladeif.connect('ok', 'clicked', self.on_place_apply_clicked)
+        self.gladeif.connect('button135', 'clicked', self.on_help_clicked)
+        self.gladeif.connect('notebook3', 'switch_page', self.on_switch_page)
+        self.gladeif.connect('add_name', 'clicked', self.on_add_loc_clicked)
+        self.gladeif.connect('loc_edit', 'clicked', self.on_update_loc_clicked)
+        self.gladeif.connect('del_name', 'clicked', self.on_delete_loc_clicked)
+        self.gladeif.connect('add_photo', 'clicked', self.glry.on_add_media_clicked)
+        self.gladeif.connect('sel_photo', 'clicked', self.glry.on_select_media_clicked)
+        self.gladeif.connect('button134', 'clicked', self.glry.on_edit_media_clicked)
+        self.gladeif.connect('delete_photo', 'clicked', self.glry.on_delete_media_clicked)
+        self.gladeif.connect('add_url', 'clicked', self.on_add_url_clicked)
+        self.gladeif.connect('web_edit', 'clicked', self.on_update_url_clicked)
+        self.gladeif.connect('web_go', 'clicked', self.on_web_go_clicked)
+        self.gladeif.connect('del_url', 'clicked', self.on_delete_url_clicked)
+        
         self.sourcetab = Sources.SourceTab(
             self.srcreflist,self,
             self.top_window,self.top,self.slist,
@@ -265,6 +265,7 @@ class EditPlace:
         cursor.close()
 
     def on_delete_event(self,obj,b):
+        self.gladeif.close()
         self.glry.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
@@ -274,6 +275,7 @@ class EditPlace:
         self.glry.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
         self.top.destroy()
         gc.collect()
 

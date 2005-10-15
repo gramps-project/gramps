@@ -125,7 +125,9 @@ gdir_PYTHON = \
 	WriteGrdb.py\
 	Options.py\
 	Tool.py\
-	Spell.py
+	TransUtils.py\
+	Spell.py\
+	WindowUtils.py
 
 # Could use GNU make's ':=' syntax for nice wildcard use.
 # If not using GNU make, then list all files individually

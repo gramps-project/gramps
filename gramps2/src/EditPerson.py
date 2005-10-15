@@ -63,10 +63,9 @@ import NameDisplay
 import Spell
 import GrampsDisplay
 
+from WindowUtils import GladeIf
 from QuestionDialog import WarningDialog, ErrorDialog, SaveDialog, QuestionDialog2
-
 from DdTargets import DdTargets
-
 
 #-------------------------------------------------------------------------
 #
@@ -84,7 +83,7 @@ _temple_names = [""] + _temple_names
 _use_patronymic = [
     "ru","RU","ru_RU","koi8r","ru_koi8r","russian","Russian",
     ]
-    
+
 #-------------------------------------------------------------------------
 #
 # EditPerson class
@@ -135,7 +134,9 @@ class EditPerson:
             
         self.load_obj = None
         self.top = gtk.glade.XML(const.editPersonFile, "editPerson","gramps")
-        self.window = self.get_widget("editPerson")
+        self.gladeif = GladeIf(self.top)
+        
+        self.window = self.top.get_widget("editPerson")
         self.window.set_title("%s - GRAMPS" % _('Edit Person'))
 
         self.icon_list = self.top.get_widget("iconlist")
@@ -143,9 +144,9 @@ class EditPerson:
                                            self.path, self.icon_list,
                                            self.db, self, self.window)
 
-        self.complete = self.get_widget('complete')
+        self.complete = self.top.get_widget('complete')
         self.complete.set_sensitive(mod)
-        self.private = self.get_widget('private')
+        self.private = self.top.get_widget('private')
         self.private.set_sensitive(mod)
         self.name_delete_btn = self.top.get_widget('aka_delete')
         self.name_edit_btn = self.top.get_widget('aka_edit')
@@ -158,104 +159,104 @@ class EditPerson:
         self.addr_delete_btn = self.top.get_widget('addr_del')
         self.addr_edit_btn = self.top.get_widget('addr_edit_btn')
 
-        self.notes_field = self.get_widget("personNotes")
+        self.notes_field = self.top.get_widget("personNotes")
         self.notes_field.set_editable(mod)
         self.spell_notes = Spell.Spell(self.notes_field)
-        self.flowed = self.get_widget("flowed")
+        self.flowed = self.top.get_widget("flowed")
         self.flowed.set_sensitive(mod)
-        self.preform = self.get_widget("preform")
+        self.preform = self.top.get_widget("preform")
         self.preform.set_sensitive(mod)
-        self.event_name_field  = self.get_widget("eventName")
-        self.event_place_field = self.get_widget("eventPlace")
-        self.event_cause_field = self.get_widget("eventCause")
-        self.event_date_field  = self.get_widget("eventDate")
-        self.event_descr_field = self.get_widget("eventDescription")
-        self.event_src_field = self.get_widget("event_srcinfo")
-        self.event_conf_field = self.get_widget("event_conf")
-        self.attr_conf_field = self.get_widget("attr_conf")
-        self.addr_conf_field = self.get_widget("addr_conf")
-        self.name_conf_field = self.get_widget("name_conf")
-        self.attr_src_field = self.get_widget("attr_srcinfo")
-        self.name_src_field = self.get_widget("name_srcinfo")
-        self.addr_src_field = self.get_widget("addr_srcinfo")
-        self.attr_list = self.get_widget("attr_list")
-        self.attr_type = self.get_widget("attr_type")
-        self.attr_value = self.get_widget("attr_value")
-        self.web_list = self.get_widget("web_list")
-        self.web_url = self.get_widget("web_url")
-        self.web_go = self.get_widget("web_go")
-        self.web_description = self.get_widget("url_des")
-        self.addr_list = self.get_widget("address_list")
-        self.addr_start = self.get_widget("address_start")
-        self.addr_street = self.get_widget("street")
-        self.addr_city = self.get_widget("city")
-        self.addr_state = self.get_widget("state")
-        self.addr_country = self.get_widget("country")
-        self.addr_postal = self.get_widget("postal")
-        self.addr_phone = self.get_widget("phone")
-        self.event_list = self.get_widget("eventList")
-        self.edit_person = self.get_widget("editPerson")
-        self.name_list = self.get_widget("nameList")
-        self.alt_given_field = self.get_widget("alt_given")
-        self.alt_last_field = self.get_widget("alt_last")
-        self.alt_title_field = self.get_widget("alt_title")
-        self.alt_suffix_field = self.get_widget("alt_suffix")
-        self.alt_prefix_field = self.get_widget("alt_prefix")
-        self.name_type_field = self.get_widget("name_type")
-        self.ntype_field = self.get_widget("ntype")
+        self.event_name_field  = self.top.get_widget("eventName")
+        self.event_place_field = self.top.get_widget("eventPlace")
+        self.event_cause_field = self.top.get_widget("eventCause")
+        self.event_date_field  = self.top.get_widget("eventDate")
+        self.event_descr_field = self.top.get_widget("eventDescription")
+        self.event_src_field = self.top.get_widget("event_srcinfo")
+        self.event_conf_field = self.top.get_widget("event_conf")
+        self.attr_conf_field = self.top.get_widget("attr_conf")
+        self.addr_conf_field = self.top.get_widget("addr_conf")
+        self.name_conf_field = self.top.get_widget("name_conf")
+        self.attr_src_field = self.top.get_widget("attr_srcinfo")
+        self.name_src_field = self.top.get_widget("name_srcinfo")
+        self.addr_src_field = self.top.get_widget("addr_srcinfo")
+        self.attr_list = self.top.get_widget("attr_list")
+        self.attr_type = self.top.get_widget("attr_type")
+        self.attr_value = self.top.get_widget("attr_value")
+        self.web_list = self.top.get_widget("web_list")
+        self.web_url = self.top.get_widget("web_url")
+        self.web_go = self.top.get_widget("web_go")
+        self.web_description = self.top.get_widget("url_des")
+        self.addr_list = self.top.get_widget("address_list")
+        self.addr_start = self.top.get_widget("address_start")
+        self.addr_street = self.top.get_widget("street")
+        self.addr_city = self.top.get_widget("city")
+        self.addr_state = self.top.get_widget("state")
+        self.addr_country = self.top.get_widget("country")
+        self.addr_postal = self.top.get_widget("postal")
+        self.addr_phone = self.top.get_widget("phone")
+        self.event_list = self.top.get_widget("eventList")
+        self.edit_person = self.top.get_widget("editPerson")
+        self.name_list = self.top.get_widget("nameList")
+        self.alt_given_field = self.top.get_widget("alt_given")
+        self.alt_last_field = self.top.get_widget("alt_last")
+        self.alt_title_field = self.top.get_widget("alt_title")
+        self.alt_suffix_field = self.top.get_widget("alt_suffix")
+        self.alt_prefix_field = self.top.get_widget("alt_prefix")
+        self.name_type_field = self.top.get_widget("name_type")
+        self.ntype_field = self.top.get_widget("ntype")
         self.ntype_field.set_sensitive(mod)
-        self.suffix = self.get_widget("suffix")
+        self.suffix = self.top.get_widget("suffix")
         self.suffix.set_editable(mod)
-        self.prefix = self.get_widget("prefix")
+        self.prefix = self.top.get_widget("prefix")
         self.prefix.set_editable(mod)
-        self.given = self.get_widget("givenName")
+        self.given = self.top.get_widget("givenName")
         self.given.set_editable(mod)
-        self.nick = self.get_widget("nickname")
+        self.nick = self.top.get_widget("nickname")
         self.nick.set_editable(mod)
-        self.title = self.get_widget("title")
+        self.title = self.top.get_widget("title")
         self.title.set_editable(mod)
-        self.bdate  = self.get_widget("birthDate")
+        self.bdate  = self.top.get_widget("birthDate")
         self.bdate.set_editable(mod)
-        self.bplace = self.get_widget("birth_place")
+        self.bplace = self.top.get_widget("birth_place")
         self.bplace.set_editable(mod)
-        self.surname = self.get_widget("surname")
+        self.surname = self.top.get_widget("surname")
         self.surname.set_editable(mod)
-        self.ddate  = self.get_widget("deathDate")
+        self.ddate  = self.top.get_widget("deathDate")
         self.ddate.set_editable(mod)
-        self.dplace = self.get_widget("death_place")
+        self.dplace = self.top.get_widget("death_place")
         self.dplace.set_editable(mod)
-        self.is_male = self.get_widget("genderMale")
+        self.is_male = self.top.get_widget("genderMale")
         self.is_male.set_sensitive(mod)
-        self.is_female = self.get_widget("genderFemale")
+        self.is_female = self.top.get_widget("genderFemale")
         self.is_female.set_sensitive(mod)
-        self.is_unknown = self.get_widget("genderUnknown")
+        self.is_unknown = self.top.get_widget("genderUnknown")
         self.is_unknown.set_sensitive(mod)
-        self.addr_note = self.get_widget("addr_note")
-        self.addr_source = self.get_widget("addr_source")
-        self.attr_note = self.get_widget("attr_note")
-        self.attr_source = self.get_widget("attr_source")
-        self.name_note = self.get_widget("name_note")
-        self.name_source = self.get_widget("name_source")
-        self.gid = self.get_widget("gid")
+        self.addr_note = self.top.get_widget("addr_note")
+        self.addr_source = self.top.get_widget("addr_source")
+        self.attr_note = self.top.get_widget("attr_note")
+        self.attr_source = self.top.get_widget("attr_source")
+        self.name_note = self.top.get_widget("name_note")
+        self.name_source = self.top.get_widget("name_source")
+        self.gid = self.top.get_widget("gid")
         self.gid.set_editable(mod)
-        self.slist = self.get_widget("slist")
-        self.general_label = self.get_widget("general_label")
-        self.names_label = self.get_widget("names_label")
-        self.events_label = self.get_widget("events_label")
-        self.attr_label = self.get_widget("attr_label")
-        self.addr_label = self.get_widget("addr_label")
-        self.notes_label = self.get_widget("notes_label")
-        self.sources_label = self.get_widget("sources_label")
-        self.inet_label = self.get_widget("inet_label")
-        self.gallery_label = self.get_widget("gallery_label")
-        self.lds_tab = self.get_widget("lds_tab")
-        self.person_photo = self.get_widget("personPix")
-        self.eventbox = self.get_widget("eventbox1")
+        self.slist = self.top.get_widget("slist")
+        self.general_label = self.top.get_widget("general_label")
+        self.names_label = self.top.get_widget("names_label")
+        self.events_label = self.top.get_widget("events_label")
+        self.attr_label = self.top.get_widget("attr_label")
+        self.addr_label = self.top.get_widget("addr_label")
+        self.notes_label = self.top.get_widget("notes_label")
+        self.sources_label = self.top.get_widget("sources_label")
+        self.inet_label = self.top.get_widget("inet_label")
+        self.gallery_label = self.top.get_widget("gallery_label")
+        self.lds_tab = self.top.get_widget("lds_tab")
+        self.person_photo = self.top.get_widget("personPix")
+        self.eventbox = self.top.get_widget("eventbox1")
 
-        self.get_widget("birth_stat").set_sensitive(mod)
-        self.get_widget("death_stat").set_sensitive(mod)
+        self.top.get_widget("birth_stat").set_sensitive(mod)
+        self.top.get_widget("death_stat").set_sensitive(mod)
 
-        self.prefix_label = self.get_widget('prefix_label')
+        self.prefix_label = self.top.get_widget('prefix_label')
 
         if self.use_patronymic:
             self.prefix_label.set_text(_('Patronymic:'))
@@ -375,15 +376,15 @@ class EditPerson:
                         or (not self.lds_baptism.is_empty()) \
                         or (not self.lds_endowment.is_empty()) \
                         or (not self.lds_sealing.is_empty()):
-            self.get_widget("lds_tab").show()
-            self.get_widget("lds_page").show()
+            self.top.get_widget("lds_tab").show()
+            self.top.get_widget("lds_page").show()
             if (not self.lds_baptism.is_empty()) \
                         or (not self.lds_endowment.is_empty()) \
                         or (not self.lds_sealing.is_empty()):
                 Utils.bold_label(self.lds_tab)
         else:
-            self.get_widget("lds_tab").hide()
-            self.get_widget("lds_page").hide()
+            self.top.get_widget("lds_tab").hide()
+            self.top.get_widget("lds_page").hide()
 
         types = const.NameTypesMap.get_values()
         types.sort()
@@ -410,113 +411,73 @@ class EditPerson:
                 self.flowed.set_active(1)
             Utils.bold_label(self.notes_label)
 
-        self.name_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                      [DdTargets.NAME.target()],
-                                      ACTION_COPY)
-        self.name_list.drag_source_set(BUTTON1_MASK,
-                                        [DdTargets.NAME.target()],
-                                        ACTION_COPY)
-        self.name_list.connect('drag_data_get', self.name_drag_data_get)
-        self.name_list.connect('drag_begin', self.name_drag_begin)
-        self.name_list.connect('drag_data_received',
-                                self.name_drag_data_received)
+        self.set_list_dnd(self.name_list, self.name_drag_data_get,
+                          self.name_drag_begin, self.name_drag_data_received)
 
-        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                      [DdTargets.EVENT.target()],
-                                      ACTION_COPY)
-        self.event_list.drag_source_set(BUTTON1_MASK,
-                                        [DdTargets.EVENT.target()],
-                                        ACTION_COPY)
-        self.event_list.connect('drag_data_get', self.ev_drag_data_get)
-        self.event_list.connect('drag_begin', self.ev_drag_begin)
-        self.event_list.connect('drag_data_received',
-                                self.ev_drag_data_received)
+        self.set_list_dnd(self.event_list, self.ev_drag_data_get,
+                          self.ev_drag_begin, self.ev_drag_data_received)
 
-        self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                    [DdTargets.URL.target()],
-                                    ACTION_COPY)
-        self.web_list.drag_source_set(BUTTON1_MASK,
-                                      [DdTargets.URL.target()],
-                                      ACTION_COPY)
-        self.web_list.connect('drag_data_get', self.url_drag_data_get)
-        self.web_list.connect('drag_begin', self.url_drag_begin)
-        self.web_list.connect('drag_data_received',self.url_drag_data_received)
-        
-        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                     [DdTargets.ATTRIBUTE.target()],
-                                     ACTION_COPY)
-        self.attr_list.drag_source_set(BUTTON1_MASK,
-                                       [DdTargets.ATTRIBUTE.target()],
-                                       ACTION_COPY)
-        self.attr_list.connect('drag_data_get', self.at_drag_data_get)
-        self.attr_list.connect('drag_data_received',self.at_drag_data_received)
-        self.attr_list.connect('drag_begin', self.at_drag_begin)
+        self.set_list_dnd(self.web_list,self.url_drag_data_get,
+                          self.url_drag_begin, self.url_drag_data_received)
 
-        self.addr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                     [DdTargets.ADDRESS.target()],
-                                     ACTION_COPY)
-        self.addr_list.drag_source_set(BUTTON1_MASK,
-                                       [DdTargets.ADDRESS.target()],
-                                       ACTION_COPY)
-        self.addr_list.connect('drag_data_get', self.ad_drag_data_get)
-        self.addr_list.connect('drag_data_received',self.ad_drag_data_received)
-        self.addr_list.connect('drag_begin', self.ad_drag_begin)
+        self.set_list_dnd(self.attr_list, self.at_drag_data_get, 
+                          self.at_drag_begin, self.at_drag_data_received)
+
+        self.set_list_dnd(self.addr_list, self.ad_drag_data_get,
+                          self.ad_drag_begin, self.ad_drag_data_received)
 
         self.birth_date_object = self.birth.get_date_object()
         self.death_date_object = self.death.get_date_object()
 
         self.bdate_check = DateEdit.DateEdit(
             self.birth_date_object, self.bdate,
-            self.get_widget("birth_stat"), self.window)
+            self.top.get_widget("birth_stat"), self.window)
 
         self.ddate_check = DateEdit.DateEdit(
             self.death_date_object, self.ddate,
-            self.get_widget("death_stat"), self.window)
+            self.top.get_widget("death_stat"), self.window)
 
         self.update_birth_death()
 
-        self.top.signal_autoconnect({
-            "destroy_passed_object"     : self.on_cancel_edit,
-            "on_up_clicked"             : self.on_up_clicked,
-            "on_down_clicked"           : self.on_down_clicked,
-            "on_add_address_clicked"    : self.on_add_addr_clicked,
-            "on_add_aka_clicked"        : self.on_add_aka_clicked,
-            "on_add_attr_clicked"       : self.on_add_attr_clicked,
-            "on_add_url_clicked"        : self.on_add_url_clicked,
-            "on_addphoto_clicked"       : self.gallery.on_add_media_clicked,
-            "on_selectphoto_clicked"    : self.gallery.on_select_media_clicked,
-            "on_aka_delete_clicked"     : self.on_aka_delete_clicked,
-            "on_aka_update_clicked"     : self.on_aka_update_clicked,
-            "on_apply_person_clicked"   : self.on_apply_person_clicked,
-            "on_edit_birth_clicked"     : self.on_edit_birth_clicked,
-            "on_edit_death_clicked"     : self.on_edit_death_clicked,
-            "on_delete_address_clicked" : self.on_delete_addr_clicked,
-            "on_delete_attr_clicked"    : self.on_delete_attr_clicked,
-            "on_delete_event"           : self.on_delete_event,
-            "on_delete_url_clicked"     : self.on_delete_url_clicked,
-            "on_deletephoto_clicked"    : self.gallery.on_delete_media_clicked,
-            "on_edit_properties_clicked": self.gallery.popup_change_description,
-            "on_editphoto_clicked"      : self.gallery.on_edit_media_clicked,
-            "on_editperson_switch_page" : self.on_switch_page,
-            "on_event_add_clicked"      : self.on_event_add_clicked,
-            "on_event_delete_clicked"   : self.on_event_delete_clicked,
-            "on_event_update_clicked"   : self.on_event_update_clicked,
-            "on_edit_name_clicked"      : self.on_edit_name_clicked,
-            "on_ldsbap_note_clicked"    : self.on_ldsbap_note_clicked,
-            "on_ldsendow_note_clicked"  : self.on_ldsendow_note_clicked,
-            "on_ldsseal_note_clicked"   : self.on_ldsseal_note_clicked,
-            "on_ldsbap_src_clicked"     : self.on_ldsbap_source_clicked,
-            "on_ldsendow_src_clicked"   : self.on_ldsendow_source_clicked,
-            "on_ldsseal_src_clicked"    : self.on_ldsseal_source_clicked,
-            "on_update_address_clicked" : self.on_update_addr_clicked,
-            "on_update_attr_clicked"    : self.on_update_attr_clicked,
-            "on_update_url_clicked"     : self.on_update_url_clicked,
-            "on_web_go_clicked"         : self.on_web_go_clicked,
-            "on_gender_activate"        : self.on_gender_activate,
-            "on_given_focus_out"        : self.on_given_focus_out_event,
-            "on_help_person_clicked"    : self.on_help_clicked,
-            })
-
+        self.gladeif.connect("editPerson", "delete_event", self.on_delete_event)
+        self.gladeif.connect("button15", "clicked", self.on_cancel_edit)
+        self.gladeif.connect("ok", "clicked", self.on_apply_person_clicked)
+        self.gladeif.connect("button134", "clicked", self.on_help_clicked)
+        self.gladeif.connect("notebook", "switch_page", self.on_switch_page)
+        self.gladeif.connect("genderMale", "toggled", self.on_gender_activate)
+        self.gladeif.connect("genderFemale", "toggled", self.on_gender_activate)
+        self.gladeif.connect("genderUnknown", "toggled", self.on_gender_activate)
+        self.gladeif.connect("givenName", "focus_out_event", self.on_given_focus_out_event)
+        self.gladeif.connect("button177", "clicked", self.on_edit_name_clicked)
+        self.gladeif.connect("button99", "clicked", self.on_edit_birth_clicked)
+        self.gladeif.connect("button126", "clicked", self.on_edit_death_clicked)
+        self.gladeif.connect("add_aka", "clicked", self.on_add_aka_clicked)
+        self.gladeif.connect("aka_edit", "clicked", self.on_aka_update_clicked)
+        self.gladeif.connect("aka_delete", "clicked", self.on_aka_delete_clicked)
+        self.gladeif.connect("event_add", "clicked" , self.on_event_add_clicked)
+        self.gladeif.connect("event_edit_btn", "clicked" ,self.on_event_update_clicked)
+        self.gladeif.connect("event_del", "clicked", self.on_event_delete_clicked)
+        self.gladeif.connect("attr_add", "clicked" , self.on_add_attr_clicked)
+        self.gladeif.connect("attr_edit_btn", "clicked", self.on_update_attr_clicked)
+        self.gladeif.connect("attr_del", "clicked", self.on_delete_attr_clicked)
+        self.gladeif.connect("addr_add", "clicked", self.on_add_addr_clicked)
+        self.gladeif.connect("addr_edit_btn", "clicked", self.on_update_addr_clicked)
+        self.gladeif.connect("addr_del", "clicked", self.on_delete_addr_clicked)
+        self.gladeif.connect("media_add", "clicked", self.gallery.on_add_media_clicked)
+        self.gladeif.connect("media_sel", "clicked", self.gallery.on_select_media_clicked)
+        self.gladeif.connect("image_edit_btn", "clicked", self.gallery.on_edit_media_clicked)
+        self.gladeif.connect("media_del", "clicked", self.gallery.on_delete_media_clicked)
+        self.gladeif.connect("add_url", "clicked", self.on_add_url_clicked)
+        self.gladeif.connect("edit_url", "clicked", self.on_update_url_clicked,)
+        self.gladeif.connect("web_go", "clicked", self.on_web_go_clicked)
+        self.gladeif.connect("delete_url", "clicked", self.on_delete_url_clicked)
+        self.gladeif.connect("button131", "clicked", self.on_ldsbap_source_clicked,)
+        self.gladeif.connect("button128", "clicked", self.on_ldsbap_note_clicked)
+        self.gladeif.connect("button132", "clicked", self.on_ldsendow_source_clicked)
+        self.gladeif.connect("button129", "clicked", self.on_ldsendow_note_clicked)
+        self.gladeif.connect("button133", "clicked", self.on_ldsseal_source_clicked)
+        self.gladeif.connect("button130", "clicked", self.on_ldsseal_note_clicked)
+        
         self.sourcetab = Sources.SourceTab(
             self.srcreflist, self, self.top, self.window, self.slist,
             self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
@@ -532,7 +493,7 @@ class EditPerson:
         self.redraw_addr_list() 
         self.redraw_name_list()
         self.redraw_url_list()
-        self.get_widget("notebook").set_current_page(0)
+        self.top.get_widget("notebook").set_current_page(0)
         self.given.grab_focus()
         self.add_itself_to_winsmenu()
 
@@ -540,9 +501,18 @@ class EditPerson:
                   "event_add", "attr_add", "attr_del", "addr_add",
                   "addr_del", "media_add", "media_sel", "media_del",
                   "add_url", "delete_url", "add_src", "del_src" ]:
-            self.get_widget(i).set_sensitive(not self.db.readonly)
+            self.top.get_widget(i).set_sensitive(not self.db.readonly)
 
         self.window.show()
+
+    def set_list_dnd(self,obj, get, begin, receive):
+        obj.drag_dest_set(gtk.DEST_DEFAULT_ALL, [DdTargets.NAME.target()],
+                          ACTION_COPY)
+        obj.drag_source_set(BUTTON1_MASK,[DdTargets.NAME.target()],
+                            ACTION_COPY)
+        obj.connect('drag_data_get', get)
+        obj.connect('drag_begin', begin)
+        obj.connect('drag_data_received', receive)
 
     def build_pdmap(self):
         self.pdmap.clear()
@@ -633,6 +603,7 @@ class EditPerson:
         self.gallery.close()
         self.close_child_windows()
         self.remove_itself_from_winsmenu()
+        self.gladeif.close()
         self.window.destroy()
         gc.collect()
         
@@ -695,51 +666,51 @@ class EditPerson:
         """Draws the LDS window. This window is not always drawn, and in
         may cases is hidden."""
 
-        self.ldsbap_date = self.get_widget("ldsbapdate")
+        self.ldsbap_date = self.top.get_widget("ldsbapdate")
         self.ldsbap_date.set_editable(not self.db.readonly)
-        self.ldsbap_temple = self.get_widget("ldsbaptemple")
+        self.ldsbap_temple = self.top.get_widget("ldsbaptemple")
         self.ldsbap_temple.set_sensitive(not self.db.readonly)
-        self.ldsbapplace = self.get_widget("lds_bap_place")
+        self.ldsbapplace = self.top.get_widget("lds_bap_place")
         self.ldsbapplace.set_editable(not self.db.readonly)
-        self.ldsbap_date_led = self.get_widget("ldsbap_stat")
+        self.ldsbap_date_led = self.top.get_widget("ldsbap_stat")
         self.ldsbap_date_led.set_sensitive(not self.db.readonly)
         self.ldsbap_date_check = DateEdit.DateEdit(
             self.lds_baptism.get_date_object(), self.ldsbap_date,
             self.ldsbap_date_led, self.window)
 
-        self.ldsend_date = self.get_widget("endowdate")
+        self.ldsend_date = self.top.get_widget("endowdate")
         self.ldsend_date.set_editable(not self.db.readonly)
-        self.ldsend_temple = self.get_widget("endowtemple")
+        self.ldsend_temple = self.top.get_widget("endowtemple")
         self.ldsend_temple.set_sensitive(not self.db.readonly)
-        self.ldsendowplace = self.get_widget("lds_end_place")
+        self.ldsendowplace = self.top.get_widget("lds_end_place")
         self.ldsendowplace.set_editable(not self.db.readonly)
-        self.ldsendowstat = self.get_widget("endowstat")
+        self.ldsendowstat = self.top.get_widget("endowstat")
         self.ldsendowstat.set_sensitive(not self.db.readonly)
-        self.ldsend_date_led = self.get_widget("endow_stat")
+        self.ldsend_date_led = self.top.get_widget("endow_stat")
         self.ldsend_date_led.set_sensitive(not self.db.readonly)
         self.ldsend_date_check = DateEdit.DateEdit(
             self.lds_endowment.get_date_object(), self.ldsend_date,
             self.ldsend_date_led, self.window)
 
-        self.ldsseal_date = self.get_widget("sealdate")
-        self.ldsseal_temple = self.get_widget("sealtemple")
-        self.ldssealplace = self.get_widget("lds_seal_place")
+        self.ldsseal_date = self.top.get_widget("sealdate")
+        self.ldsseal_temple = self.top.get_widget("sealtemple")
+        self.ldssealplace = self.top.get_widget("lds_seal_place")
         self.ldsseal_date.set_editable(not self.db.readonly)
         self.ldsseal_temple.set_sensitive(not self.db.readonly)
         self.ldssealplace.set_editable(not self.db.readonly)
-        self.ldsseal_date_led = self.get_widget("seal_stat")
+        self.ldsseal_date_led = self.top.get_widget("seal_stat")
         self.ldsseal_date_led.set_sensitive(not self.db.readonly)
         self.ldsseal_date_check = DateEdit.DateEdit(
             self.lds_sealing.get_date_object(), self.ldsseal_date,
             self.ldsseal_date_led, self.window)
         
-        self.ldsseal_fam = self.get_widget("sealparents")
+        self.ldsseal_fam = self.top.get_widget("sealparents")
         self.ldsseal_fam.set_sensitive(not self.db.readonly)
         
-        self.ldsbapstat = self.get_widget("ldsbapstat")
+        self.ldsbapstat = self.top.get_widget("ldsbapstat")
         self.ldsbapstat.set_sensitive(not self.db.readonly)
 
-        self.ldssealstat = self.get_widget("sealstat")
+        self.ldssealstat = self.top.get_widget("sealstat")
         self.ldssealstat.set_sensitive(not self.db.readonly)
 
 
@@ -1033,10 +1004,6 @@ class EditPerson:
     def menu_changed(self,obj):
         self.ldsfam = self.lds_fam_list[obj.get_active()]
         
-    def get_widget(self,str):
-        """returns the widget related to the passed string"""
-        return self.top.get_widget(str)
-
     def redraw_name_list(self):
         """redraws the name list"""
         self.ntree.clear()
@@ -1195,20 +1162,6 @@ class EditPerson:
         AttrEdit.AttributeEditor(
             self,None,pname, attr_list, self.attr_edit_callback,self.window)
 
-    def on_up_clicked(self,obj):
-        sel = obj.get_selection()
-        store,node = sel.get_selected()
-        if node:
-            row = store.get_path(node)
-            sel.select_path((row[0]-1))
-
-    def on_down_clicked(self,obj):
-        sel = obj.get_selection()
-        store,node = sel.get_selected()
-        if node:
-            row = store.get_path(node)
-            sel.select_path((row[0]+1))
-
     def on_event_add_clicked(self,obj):
         """Brings up the EventEditor for a new event"""
         import EventEdit
@@ -1287,7 +1240,6 @@ class EditPerson:
         """Attempts to display the selected URL in a web browser"""
         text = obj.get()
         if text:
-            import GrampsDisplay
             GrampsDisplay.url(text)
         
     def on_cancel_edit(self,obj):
@@ -2049,8 +2001,8 @@ class EditPerson:
     def write_primary_name(self):
         # initial values
         name = '<span size="larger" weight="bold">%s</span>' % self.nd.display(self.person)
-        self.get_widget("activepersonTitle").set_text(name)
-        self.get_widget("activepersonTitle").set_use_markup(True)
+        self.top.get_widget("activepersonTitle").set_text(name)
+        self.top.get_widget("activepersonTitle").set_use_markup(True)
         self.suffix.set_text(self.pname.get_suffix())
         if self.use_patronymic:
             self.prefix.set_text(self.pname.get_patronymic())
