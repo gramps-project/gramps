@@ -1,3 +1,6 @@
+2005-10-16  Alex Roitman  <shura@gramps-project.org>
+	* doc/gramps-manual/*/gramps-manual-*.omf: Update.
+
 2005-10-14  Don Allingham  <don@gramps-project.org>
 	* src/EditPerson.py: remove signal_autoconnect to fix glade 
 	memory leak
