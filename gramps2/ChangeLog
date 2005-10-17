@@ -1,3 +1,6 @@
+2005-10-18  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/WriteGedcom.py: Add description and notes for media objects
+
 2005-10-17  Stefan Bjork  <skalman@acc.umu.se>
 	* src/po/template.po: Broken and recreated.
 

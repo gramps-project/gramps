@@ -994,10 +994,13 @@ class GedcomWriter:
                         
                     self.writeln('1 OBJE')
                     self.writeln('2 FORM jpeg')
+                    self.writeln('2 TITL %s' % photo_obj.get_description())
                     dirname = os.path.join (self.dirname, self.images_path)
                     basename = os.path.basename (path)
                     self.writeln('2 FILE %s' % os.path.join(self.images_path,
                                                            basename))
+                    if photo_obj.get_note():
+                        self.write_long_text("NOTE",2,self.cnvtxt(photo_obj.get_note()))
 
 
         for family in person.get_parent_family_handle_list():
