@@ -175,6 +175,13 @@ TD.field {
 .thumbnail {
 	margin: 0em 2em 0em 2em;
 }
+#gallery .thumbnail {
+	margin: 1em;
+    float:left;
+    width:150px;
+    height:150px;
+    text-align:center;
+}
 .thumbnail p {
 	margin: 0;
 	padding: 0;

@@ -370,6 +370,7 @@ class BasePage:
                 except (IOError,OSError),msg:
                     WarningDialog(_("Could not add photo to page"),str(msg))
                 
+        of.write('<br clear="all" />\n')
         of.write('</div>\n')
 
     def display_note_object(self,of,noteobj=None):

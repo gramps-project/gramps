@@ -1,3 +1,7 @@
+2005-10-18  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/NavWebPage.py: Support side-by-side gallery images
+	* src/data/main*.css: Support side-by-side gallery images
+	
 2005-10-18  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/CmdRef.py: Use <para> withing the <listitem>.
 	* doc/graps-manual/C/cmdplug.xml: Update.
