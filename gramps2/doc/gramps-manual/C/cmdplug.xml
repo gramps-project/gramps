@@ -10,7 +10,7 @@
           <listitem>
             <para>Style name.</para>
           <itemizedlist>
-      <listitem>default</listitem>
+      <listitem><para>default</para></listitem>
           </itemizedlist>
           </listitem>
         </varlistentry>
@@ -25,11 +25,11 @@
           <listitem>
             <para>Output file format.</para>
           <itemizedlist>
-      <listitem>print</listitem>
-      <listitem>sxw</listitem>
-      <listitem>ps</listitem>
-      <listitem>pdf</listitem>
-      <listitem>svg</listitem>
+      <listitem><para>print</para></listitem>
+      <listitem><para>sxw</para></listitem>
+      <listitem><para>ps</para></listitem>
+      <listitem><para>pdf</para></listitem>
+      <listitem><para>svg</para></listitem>
           </itemizedlist>
           </listitem>
         </varlistentry>
@@ -45,8 +45,8 @@
           <listitem>
             <para>Paper orientation number.</para>
           <itemizedlist>
-      <listitem>0	Portrait</listitem>
-      <listitem>1	Landscape</listitem>
+      <listitem><para>0	Portrait</para></listitem>
+      <listitem><para>1	Landscape</para></listitem>
           </itemizedlist>
           </listitem>
         </varlistentry>
@@ -74,25 +74,25 @@
           <listitem>
             <para>Paper size name.</para>
           <itemizedlist>
-      <listitem>Letter</listitem>
-      <listitem>Legal</listitem>
-      <listitem>A0</listitem>
-      <listitem>A1</listitem>
-      <listitem>A2</listitem>
-      <listitem>A3</listitem>
-      <listitem>A4</listitem>
-      <listitem>A5</listitem>
-      <listitem>B0</listitem>
-      <listitem>B1</listitem>
-      <listitem>B2</listitem>
-      <listitem>B3</listitem>
-      <listitem>B4</listitem>
-      <listitem>B5</listitem>
-      <listitem>B6</listitem>
-      <listitem>B</listitem>
-      <listitem>C</listitem>
-      <listitem>D</listitem>
-      <listitem>E</listitem>
+      <listitem><para>Letter</para></listitem>
+      <listitem><para>Legal</para></listitem>
+      <listitem><para>A0</para></listitem>
+      <listitem><para>A1</para></listitem>
+      <listitem><para>A2</para></listitem>
+      <listitem><para>A3</para></listitem>
+      <listitem><para>A4</para></listitem>
+      <listitem><para>A5</para></listitem>
+      <listitem><para>B0</para></listitem>
+      <listitem><para>B1</para></listitem>
+      <listitem><para>B2</para></listitem>
+      <listitem><para>B3</para></listitem>
+      <listitem><para>B4</para></listitem>
+      <listitem><para>B5</para></listitem>
+      <listitem><para>B6</para></listitem>
+      <listitem><para>B</para></listitem>
+      <listitem><para>C</para></listitem>
+      <listitem><para>D</para></listitem>
+      <listitem><para>E</para></listitem>
           </itemizedlist>
           </listitem>
         </varlistentry>
@@ -137,8 +137,8 @@
           <listitem>
             <para>Whether to scale to fit on a single page.</para>
           <orderedlist>
-      <listitem>Do not scale to fit</listitem>
-      <listitem>Scale to fit</listitem>
+      <listitem><para>Do not scale to fit</para></listitem>
+      <listitem><para>Scale to fit</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -147,8 +147,8 @@
           <listitem>
             <para>Whether to compress chart.</para>
           <orderedlist>
-      <listitem>Do not compress chart</listitem>
-      <listitem>Compress chart</listitem>
+      <listitem><para>Do not compress chart</para></listitem>
+      <listitem><para>Compress chart</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -186,14 +186,33 @@
           <listitem>
             <para>Whether to cite sources.</para>
           <orderedlist>
-      <listitem>Do not cite sources</listitem>
-      <listitem>Cite sources</listitem>
+      <listitem><para>Do not cite sources</para></listitem>
+      <listitem><para>Cite sources</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
     </variablelist>
 </sect3>
 <sect3 id="cmdplug-id6">
+  <title>Book Report</title>
+    <variablelist>
+        <varlistentry>
+          <term><command>name</command>:</term>
+          <listitem>
+            <para>book</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>bookname</command>: =name</term>
+          <listitem>
+            <para>Name of the book. MANDATORY</para>
+          <itemizedlist>
+          </itemizedlist>
+          </listitem>
+        </varlistentry>
+    </variablelist>
+</sect3>
+<sect3 id="cmdplug-id7">
   <title>Descendant Graph</title>
     <variablelist>
         <varlistentry>
@@ -204,7 +223,35 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id7">
+<sect3 id="cmdplug-id8">
+  <title>Descendant Wall Chart</title>
+    <variablelist>
+        <varlistentry>
+          <term><command>name</command>:</term>
+          <listitem>
+            <para>descend_chart2</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>singlep</command>: =0/1</term>
+          <listitem>
+            <para>Whether to scale to fit on a single page.</para>
+          <orderedlist>
+      <listitem><para>Do not scale to fit</para></listitem>
+      <listitem><para>Scale to fit</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>title</command>: =str</term>
+          <listitem>
+            <para>Title string for the report</para>
+            <para>Value: <userinput>Whatever String You Wish</userinput></para>
+          </listitem>
+        </varlistentry>
+    </variablelist>
+</sect3>
+<sect3 id="cmdplug-id9">
   <title>Descendant Report</title>
     <variablelist>
         <varlistentry>
@@ -215,7 +262,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id8">
+<sect3 id="cmdplug-id10">
   <title>Detailed Ancestral Report</title>
     <variablelist>
         <varlistentry>
@@ -229,8 +276,8 @@
           <listitem>
             <para>Whether to replace missing Dates with blanks.</para>
           <orderedlist>
-      <listitem>Do not replace missing Dates</listitem>
-      <listitem>Replace missing Dates</listitem>
+      <listitem><para>Do not replace missing Dates</para></listitem>
+      <listitem><para>Replace missing Dates</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -239,8 +286,8 @@
           <listitem>
             <para>Whether to list children.</para>
           <orderedlist>
-      <listitem>Do not list children</listitem>
-      <listitem>List children</listitem>
+      <listitem><para>Do not list children</para></listitem>
+      <listitem><para>List children</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -249,8 +296,8 @@
           <listitem>
             <para>Whether to include source references.</para>
           <orderedlist>
-      <listitem>Do not include sources</listitem>
-      <listitem>Include sources</listitem>
+      <listitem><para>Do not include sources</para></listitem>
+      <listitem><para>Include sources</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -259,8 +306,8 @@
           <listitem>
             <para>Whether to include images.</para>
           <orderedlist>
-      <listitem>Do not include images</listitem>
-      <listitem>Include images</listitem>
+      <listitem><para>Do not include images</para></listitem>
+      <listitem><para>Include images</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -269,8 +316,8 @@
           <listitem>
             <para>Whether to add descendant references in child list.</para>
           <orderedlist>
-      <listitem>Do not add references</listitem>
-      <listitem>Add references</listitem>
+      <listitem><para>Do not add references</para></listitem>
+      <listitem><para>Add references</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -279,8 +326,8 @@
           <listitem>
             <para>Whether to compute age.</para>
           <orderedlist>
-      <listitem>Do not compute age</listitem>
-      <listitem>Compute age</listitem>
+      <listitem><para>Do not compute age</para></listitem>
+      <listitem><para>Compute age</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -289,8 +336,8 @@
           <listitem>
             <para>Whether to use full dates instead of just year.</para>
           <orderedlist>
-      <listitem>Do not use full dates</listitem>
-      <listitem>Use full dates</listitem>
+      <listitem><para>Do not use full dates</para></listitem>
+      <listitem><para>Use full dates</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -299,8 +346,8 @@
           <listitem>
             <para>Whether to include other names.</para>
           <orderedlist>
-      <listitem>Do not include other names</listitem>
-      <listitem>Include other names</listitem>
+      <listitem><para>Do not include other names</para></listitem>
+      <listitem><para>Include other names</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -309,8 +356,8 @@
           <listitem>
             <para>Whether to use first names instead of pronouns</para>
           <orderedlist>
-      <listitem>Do not use first names</listitem>
-      <listitem>Use first names</listitem>
+      <listitem><para>Do not use first names</para></listitem>
+      <listitem><para>Use first names</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -319,8 +366,18 @@
           <listitem>
             <para>Whether to include events.</para>
           <orderedlist>
-      <listitem>Do not include events</listitem>
-      <listitem>Include events</listitem>
+      <listitem><para>Do not include events</para></listitem>
+      <listitem><para>Include events</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>usenick</command>: =0/1</term>
+          <listitem>
+            <para>Whether to use the nick name as the first name.</para>
+          <orderedlist>
+      <listitem><para>Do not use nick name</para></listitem>
+      <listitem><para>Use nick name</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -329,8 +386,8 @@
           <listitem>
             <para>Whether to include notes.</para>
           <orderedlist>
-      <listitem>Do not include notes</listitem>
-      <listitem>Include notes</listitem>
+      <listitem><para>Do not include notes</para></listitem>
+      <listitem><para>Include notes</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -339,8 +396,8 @@
           <listitem>
             <para>Whether to omit duplicate ancestors.</para>
           <orderedlist>
-      <listitem>Do not omit duplicates</listitem>
-      <listitem>Omit duplicates</listitem>
+      <listitem><para>Do not omit duplicates</para></listitem>
+      <listitem><para>Omit duplicates</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -349,14 +406,14 @@
           <listitem>
             <para>Whether to replace missing Places with blanks.</para>
           <orderedlist>
-      <listitem>Do not replace missing Places</listitem>
-      <listitem>Replace missing Places</listitem>
+      <listitem><para>Do not replace missing Places</para></listitem>
+      <listitem><para>Replace missing Places</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id9">
+<sect3 id="cmdplug-id11">
   <title>Detailed Descendant Report</title>
     <variablelist>
         <varlistentry>
@@ -370,8 +427,8 @@
           <listitem>
             <para>Whether to replace missing Dates with blanks.</para>
           <orderedlist>
-      <listitem>Do not replace missing Dates</listitem>
-      <listitem>Replace missing Dates</listitem>
+      <listitem><para>Do not replace missing Dates</para></listitem>
+      <listitem><para>Replace missing Dates</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -380,8 +437,8 @@
           <listitem>
             <para>Whether to list children.</para>
           <orderedlist>
-      <listitem>Do not list children</listitem>
-      <listitem>List children</listitem>
+      <listitem><para>Do not list children</para></listitem>
+      <listitem><para>List children</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -390,8 +447,8 @@
           <listitem>
             <para>Whether to include source references.</para>
           <orderedlist>
-      <listitem>Do not include sources</listitem>
-      <listitem>Include sources</listitem>
+      <listitem><para>Do not include sources</para></listitem>
+      <listitem><para>Include sources</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -400,8 +457,8 @@
           <listitem>
             <para>Whether to include images.</para>
           <orderedlist>
-      <listitem>Do not include images</listitem>
-      <listitem>Include images</listitem>
+      <listitem><para>Do not include images</para></listitem>
+      <listitem><para>Include images</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -410,8 +467,8 @@
           <listitem>
             <para>Whether to add descendant references in child list.</para>
           <orderedlist>
-      <listitem>Do not add references</listitem>
-      <listitem>Add references</listitem>
+      <listitem><para>Do not add references</para></listitem>
+      <listitem><para>Add references</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -420,8 +477,8 @@
           <listitem>
             <para>Whether to compute age.</para>
           <orderedlist>
-      <listitem>Do not compute age</listitem>
-      <listitem>Compute age</listitem>
+      <listitem><para>Do not compute age</para></listitem>
+      <listitem><para>Compute age</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -430,8 +487,8 @@
           <listitem>
             <para>Whether to use full dates instead of just year.</para>
           <orderedlist>
-      <listitem>Do not use full dates</listitem>
-      <listitem>Use full dates</listitem>
+      <listitem><para>Do not use full dates</para></listitem>
+      <listitem><para>Use full dates</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -440,8 +497,8 @@
           <listitem>
             <para>Whether to include other names.</para>
           <orderedlist>
-      <listitem>Do not include other names</listitem>
-      <listitem>Include other names</listitem>
+      <listitem><para>Do not include other names</para></listitem>
+      <listitem><para>Include other names</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -450,8 +507,8 @@
           <listitem>
             <para>Whether to use first names instead of pronouns</para>
           <orderedlist>
-      <listitem>Do not use first names</listitem>
-      <listitem>Use first names</listitem>
+      <listitem><para>Do not use first names</para></listitem>
+      <listitem><para>Use first names</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -460,8 +517,8 @@
           <listitem>
             <para>Whether to include events.</para>
           <orderedlist>
-      <listitem>Do not include events</listitem>
-      <listitem>Include events</listitem>
+      <listitem><para>Do not include events</para></listitem>
+      <listitem><para>Include events</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -470,8 +527,8 @@
           <listitem>
             <para>Whether to include notes.</para>
           <orderedlist>
-      <listitem>Do not include notes</listitem>
-      <listitem>Include notes</listitem>
+      <listitem><para>Do not include notes</para></listitem>
+      <listitem><para>Include notes</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -480,8 +537,8 @@
           <listitem>
             <para>Whether to omit duplicate ancestors.</para>
           <orderedlist>
-      <listitem>Do not omit duplicates</listitem>
-      <listitem>Omit duplicates</listitem>
+      <listitem><para>Do not omit duplicates</para></listitem>
+      <listitem><para>Omit duplicates</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -490,14 +547,14 @@
           <listitem>
             <para>Whether to replace missing Places with blanks.</para>
           <orderedlist>
-      <listitem>Do not replace missing Places</listitem>
-      <listitem>Replace missing Places</listitem>
+      <listitem><para>Do not replace missing Places</para></listitem>
+      <listitem><para>Replace missing Places</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id10">
+<sect3 id="cmdplug-id12">
   <title>Family Group Report</title>
     <variablelist>
         <varlistentry>
@@ -515,7 +572,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id11">
+<sect3 id="cmdplug-id13">
   <title>Fan Chart</title>
     <variablelist>
         <varlistentry>
@@ -526,7 +583,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id12">
+<sect3 id="cmdplug-id14">
   <title>FTM Style Ancestor Report</title>
     <variablelist>
         <varlistentry>
@@ -537,7 +594,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id13">
+<sect3 id="cmdplug-id15">
   <title>FTM Style Descendant Report</title>
     <variablelist>
         <varlistentry>
@@ -548,7 +605,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id14">
+<sect3 id="cmdplug-id16">
   <title>Relationship Graph</title>
     <variablelist>
         <varlistentry>
@@ -562,8 +619,8 @@
           <listitem>
             <para>Graph direction.</para>
           <itemizedlist>
-      <listitem>LR	Horizontal</listitem>
-      <listitem>RL	Vertical</listitem>
+      <listitem><para>LR	Horizontal</para></listitem>
+      <listitem><para>RL	Vertical</para></listitem>
           </itemizedlist>
           </listitem>
         </varlistentry>
@@ -572,8 +629,8 @@
           <listitem>
             <para>Whether to use years only.</para>
           <orderedlist>
-      <listitem>Do not use years only</listitem>
-      <listitem>Use years only</listitem>
+      <listitem><para>Do not use years only</para></listitem>
+      <listitem><para>Use years only</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -582,8 +639,8 @@
           <listitem>
             <para>Needs to be set if font doesn't support unicode.</para>
           <orderedlist>
-      <listitem>Supports unicode</listitem>
-      <listitem>Supports only Latin1</listitem>
+      <listitem><para>Supports unicode</para></listitem>
+      <listitem><para>Supports only Latin1</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -592,10 +649,10 @@
           <listitem>
             <para>Arrow styles for heads and tails.</para>
           <itemizedlist>
-      <listitem>d	Descendants &lt;- Ancestors</listitem>
-      <listitem>a	Descendants -&gt; Ancestors</listitem>
-      <listitem>da	Descendants &lt;-&gt; Ancestors</listitem>
-      <listitem>	Descendants - Ancestors</listitem>
+      <listitem><para>d	Descendants &lt;- Ancestors</para></listitem>
+      <listitem><para>a	Descendants -&gt; Ancestors</para></listitem>
+      <listitem><para>da	Descendants &lt;-&gt; Ancestors</para></listitem>
+      <listitem><para>	Descendants - Ancestors</para></listitem>
           </itemizedlist>
           </listitem>
         </varlistentry>
@@ -604,8 +661,8 @@
           <listitem>
             <para>Whether to use dotted lines for non-birth relationships.</para>
           <orderedlist>
-      <listitem>Do not use dotted lines</listitem>
-      <listitem>Use dotted lines</listitem>
+      <listitem><para>Do not use dotted lines</para></listitem>
+      <listitem><para>Use dotted lines</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -614,8 +671,8 @@
           <listitem>
             <para>Whether to include URLs.</para>
           <orderedlist>
-      <listitem>Do not include URLs</listitem>
-      <listitem>Include URLs</listitem>
+      <listitem><para>Do not include URLs</para></listitem>
+      <listitem><para>Include URLs</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -631,8 +688,8 @@
           <listitem>
             <para>Whether to replace missing dates with place/cause.</para>
           <orderedlist>
-      <listitem>Do not replace blank dates</listitem>
-      <listitem>Replace blank dates</listitem>
+      <listitem><para>Do not replace blank dates</para></listitem>
+      <listitem><para>Replace blank dates</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -641,12 +698,12 @@
           <listitem>
             <para>Output format to convert dot file into.</para>
           <itemizedlist>
-      <listitem>ps	Postscript</listitem>
-      <listitem>svg	Structured Vector Graphics (SVG)</listitem>
-      <listitem>svgz	Compressed Structured Vector Graphics (SVG)</listitem>
-      <listitem>png	PNG image</listitem>
-      <listitem>jpg	JPEG image</listitem>
-      <listitem>gif	GIF image</listitem>
+      <listitem><para>ps	Postscript</para></listitem>
+      <listitem><para>svg	Structured Vector Graphics (SVG)</para></listitem>
+      <listitem><para>svgz	Compressed Structured Vector Graphics (SVG)</para></listitem>
+      <listitem><para>png	PNG image</para></listitem>
+      <listitem><para>jpg	JPEG image</para></listitem>
+      <listitem><para>gif	GIF image</para></listitem>
           </itemizedlist>
           </listitem>
         </varlistentry>
@@ -655,9 +712,9 @@
           <listitem>
             <para>Whether and how to colorize graph.</para>
           <itemizedlist>
-      <listitem>outline	B&amp;W Outline</listitem>
-      <listitem>colored	Colored outline</listitem>
-      <listitem>filled	Color fill</listitem>
+      <listitem><para>outline	B&amp;W Outline</para></listitem>
+      <listitem><para>colored	Colored outline</para></listitem>
+      <listitem><para>filled	Color fill</para></listitem>
           </itemizedlist>
           </listitem>
         </varlistentry>
@@ -666,8 +723,8 @@
           <listitem>
             <para>Whether to include IDs.</para>
           <orderedlist>
-      <listitem>Do not include IDs</listitem>
-      <listitem>Include IDs</listitem>
+      <listitem><para>Do not include IDs</para></listitem>
+      <listitem><para>Include IDs</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -676,8 +733,8 @@
           <listitem>
             <para>Whether to include dates.</para>
           <orderedlist>
-      <listitem>Do not include dates</listitem>
-      <listitem>Include dates</listitem>
+      <listitem><para>Do not include dates</para></listitem>
+      <listitem><para>Include dates</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -693,9 +750,9 @@
           <listitem>
             <para>Font to use in the report.</para>
           <itemizedlist>
-      <listitem>	Default</listitem>
-      <listitem>Helvetica	Postscript / Helvetica</listitem>
-      <listitem>FreeSans	Truetype / FreeSans</listitem>
+      <listitem><para>	Default</para></listitem>
+      <listitem><para>Helvetica	Postscript / Helvetica</para></listitem>
+      <listitem><para>FreeSans	Truetype / FreeSans</para></listitem>
           </itemizedlist>
           </listitem>
         </varlistentry>
@@ -711,14 +768,14 @@
           <listitem>
             <para>Whether to show family nodes.</para>
           <orderedlist>
-      <listitem>Do not show family nodes</listitem>
-      <listitem>Show family nodes</listitem>
+      <listitem><para>Do not show family nodes</para></listitem>
+      <listitem><para>Show family nodes</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id15">
+<sect3 id="cmdplug-id17">
   <title>Relationship Graph</title>
     <variablelist>
         <varlistentry>
@@ -732,8 +789,8 @@
           <listitem>
             <para>Graph direction.</para>
           <itemizedlist>
-      <listitem>LR	Horizontal</listitem>
-      <listitem>RL	Vertical</listitem>
+      <listitem><para>LR	Horizontal</para></listitem>
+      <listitem><para>RL	Vertical</para></listitem>
           </itemizedlist>
           </listitem>
         </varlistentry>
@@ -742,8 +799,8 @@
           <listitem>
             <para>Whether to use years only.</para>
           <orderedlist>
-      <listitem>Do not use years only</listitem>
-      <listitem>Use years only</listitem>
+      <listitem><para>Do not use years only</para></listitem>
+      <listitem><para>Use years only</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -752,8 +809,8 @@
           <listitem>
             <para>Needs to be set if font doesn't support unicode.</para>
           <orderedlist>
-      <listitem>Supports unicode</listitem>
-      <listitem>Supports only Latin1</listitem>
+      <listitem><para>Supports unicode</para></listitem>
+      <listitem><para>Supports only Latin1</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -762,10 +819,10 @@
           <listitem>
             <para>Arrow styles for heads and tails.</para>
           <itemizedlist>
-      <listitem>d	Descendants &lt;- Ancestors</listitem>
-      <listitem>a	Descendants -&gt; Ancestors</listitem>
-      <listitem>da	Descendants &lt;-&gt; Ancestors</listitem>
-      <listitem>	Descendants - Ancestors</listitem>
+      <listitem><para>d	Descendants &lt;- Ancestors</para></listitem>
+      <listitem><para>a	Descendants -&gt; Ancestors</para></listitem>
+      <listitem><para>da	Descendants &lt;-&gt; Ancestors</para></listitem>
+      <listitem><para>	Descendants - Ancestors</para></listitem>
           </itemizedlist>
           </listitem>
         </varlistentry>
@@ -774,8 +831,8 @@
           <listitem>
             <para>Whether to use dotted lines for non-birth relationships.</para>
           <orderedlist>
-      <listitem>Do not use dotted lines</listitem>
-      <listitem>Use dotted lines</listitem>
+      <listitem><para>Do not use dotted lines</para></listitem>
+      <listitem><para>Use dotted lines</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -784,8 +841,8 @@
           <listitem>
             <para>Whether to include URLs.</para>
           <orderedlist>
-      <listitem>Do not include URLs</listitem>
-      <listitem>Include URLs</listitem>
+      <listitem><para>Do not include URLs</para></listitem>
+      <listitem><para>Include URLs</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -801,8 +858,8 @@
           <listitem>
             <para>Whether to replace missing dates with place/cause.</para>
           <orderedlist>
-      <listitem>Do not replace blank dates</listitem>
-      <listitem>Replace blank dates</listitem>
+      <listitem><para>Do not replace blank dates</para></listitem>
+      <listitem><para>Replace blank dates</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -811,12 +868,12 @@
           <listitem>
             <para>Output format to convert dot file into.</para>
           <itemizedlist>
-      <listitem>ps	Postscript</listitem>
-      <listitem>svg	Structured Vector Graphics (SVG)</listitem>
-      <listitem>svgz	Compressed Structured Vector Graphics (SVG)</listitem>
-      <listitem>png	PNG image</listitem>
-      <listitem>jpg	JPEG image</listitem>
-      <listitem>gif	GIF image</listitem>
+      <listitem><para>ps	Postscript</para></listitem>
+      <listitem><para>svg	Structured Vector Graphics (SVG)</para></listitem>
+      <listitem><para>svgz	Compressed Structured Vector Graphics (SVG)</para></listitem>
+      <listitem><para>png	PNG image</para></listitem>
+      <listitem><para>jpg	JPEG image</para></listitem>
+      <listitem><para>gif	GIF image</para></listitem>
           </itemizedlist>
           </listitem>
         </varlistentry>
@@ -825,9 +882,9 @@
           <listitem>
             <para>Whether and how to colorize graph.</para>
           <itemizedlist>
-      <listitem>outline	B&amp;W Outline</listitem>
-      <listitem>colored	Colored outline</listitem>
-      <listitem>filled	Color fill</listitem>
+      <listitem><para>outline	B&amp;W Outline</para></listitem>
+      <listitem><para>colored	Colored outline</para></listitem>
+      <listitem><para>filled	Color fill</para></listitem>
           </itemizedlist>
           </listitem>
         </varlistentry>
@@ -836,8 +893,8 @@
           <listitem>
             <para>Whether to include IDs.</para>
           <orderedlist>
-      <listitem>Do not include IDs</listitem>
-      <listitem>Include IDs</listitem>
+      <listitem><para>Do not include IDs</para></listitem>
+      <listitem><para>Include IDs</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -846,8 +903,8 @@
           <listitem>
             <para>Whether to include dates.</para>
           <orderedlist>
-      <listitem>Do not include dates</listitem>
-      <listitem>Include dates</listitem>
+      <listitem><para>Do not include dates</para></listitem>
+      <listitem><para>Include dates</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -863,9 +920,9 @@
           <listitem>
             <para>Font to use in the report.</para>
           <itemizedlist>
-      <listitem>	Default</listitem>
-      <listitem>Helvetica	Postscript / Helvetica</listitem>
-      <listitem>FreeSans	Truetype / FreeSans</listitem>
+      <listitem><para>	Default</para></listitem>
+      <listitem><para>Helvetica	Postscript / Helvetica</para></listitem>
+      <listitem><para>FreeSans	Truetype / FreeSans</para></listitem>
           </itemizedlist>
           </listitem>
         </varlistentry>
@@ -881,14 +938,14 @@
           <listitem>
             <para>Whether to show family nodes.</para>
           <orderedlist>
-      <listitem>Do not show family nodes</listitem>
-      <listitem>Show family nodes</listitem>
+      <listitem><para>Do not show family nodes</para></listitem>
+      <listitem><para>Show family nodes</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id16">
+<sect3 id="cmdplug-id18">
   <title>Complete Individual Report</title>
     <variablelist>
         <varlistentry>
@@ -902,14 +959,14 @@
           <listitem>
             <para>Whether to cite sources.</para>
           <orderedlist>
-      <listitem>Do not cite sources</listitem>
-      <listitem>Cite sources</listitem>
+      <listitem><para>Do not cite sources</para></listitem>
+      <listitem><para>Cite sources</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id17">
+<sect3 id="cmdplug-id19">
   <title>Individual Summary</title>
     <variablelist>
         <varlistentry>
@@ -920,35 +977,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id18">
-  <title>Timeline Graph</title>
-    <variablelist>
-        <varlistentry>
-          <term><command>name</command>:</term>
-          <listitem>
-            <para>timeline</para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>sortby</command>: =num</term>
-          <listitem>
-            <para>Number of a sorting function</para>
-          <orderedlist>
-      <listitem>Birth Date</listitem>
-      <listitem>Name</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>title</command>: =str</term>
-          <listitem>
-            <para>Title string for the report</para>
-            <para>Value: <userinput>Whatever String You Wish</userinput></para>
-          </listitem>
-        </varlistentry>
-    </variablelist>
-</sect3>
-<sect3 id="cmdplug-id19">
+<sect3 id="cmdplug-id20">
   <title>Generate Web Site (deprecated)</title>
     <variablelist>
         <varlistentry>
@@ -983,8 +1012,8 @@
           <listitem>
             <para>Split alphabetical sections to different pages</para>
           <orderedlist>
-      <listitem>Do not split sections</listitem>
-      <listitem>Split sections</listitem>
+      <listitem><para>Do not split sections</para></listitem>
+      <listitem><para>Split sections</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -993,8 +1022,8 @@
           <listitem>
             <para>Inclusion of people marked private</para>
           <orderedlist>
-      <listitem>Do not include</listitem>
-      <listitem>Include</listitem>
+      <listitem><para>Do not include</para></listitem>
+      <listitem><para>Include</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -1003,8 +1032,8 @@
           <listitem>
             <para>Include GRAMPS ID in the report</para>
           <orderedlist>
-      <listitem>Do not include</listitem>
-      <listitem>Include</listitem>
+      <listitem><para>Do not include</para></listitem>
+      <listitem><para>Include</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -1020,8 +1049,8 @@
           <listitem>
             <para>Inclusion of comments and text in source information</para>
           <orderedlist>
-      <listitem>Do not include</listitem>
-      <listitem>Include</listitem>
+      <listitem><para>Do not include</para></listitem>
+      <listitem><para>Include</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -1030,8 +1059,8 @@
           <listitem>
             <para>Include links to alphabetical sections in index page</para>
           <orderedlist>
-      <listitem>Do not include</listitem>
-      <listitem>Include</listitem>
+      <listitem><para>Do not include</para></listitem>
+      <listitem><para>Include</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -1040,8 +1069,8 @@
           <listitem>
             <para>Create a GENDEX index</para>
           <orderedlist>
-      <listitem>Do not create</listitem>
-      <listitem>Create</listitem>
+      <listitem><para>Do not create</para></listitem>
+      <listitem><para>Create</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -1064,8 +1093,8 @@
           <listitem>
             <para>Include links to the index page</para>
           <orderedlist>
-      <listitem>Do not include</listitem>
-      <listitem>Include</listitem>
+      <listitem><para>Do not include</para></listitem>
+      <listitem><para>Include</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -1074,8 +1103,8 @@
           <listitem>
             <para>Restrict information on living people</para>
           <orderedlist>
-      <listitem>Do not restrict</listitem>
-      <listitem>Restrict</listitem>
+      <listitem><para>Do not restrict</para></listitem>
+      <listitem><para>Restrict</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -1084,8 +1113,8 @@
           <listitem>
             <para>Use only birth year on the index page</para>
           <orderedlist>
-      <listitem>Use full date</listitem>
-      <listitem>Use just year</listitem>
+      <listitem><para>Use full date</para></listitem>
+      <listitem><para>Use just year</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -1094,8 +1123,8 @@
           <listitem>
             <para>Append birth dates to the names on the index page</para>
           <orderedlist>
-      <listitem>Do not append</listitem>
-      <listitem>Append</listitem>
+      <listitem><para>Do not append</para></listitem>
+      <listitem><para>Append</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -1104,8 +1133,8 @@
           <listitem>
             <para>Include short ancestor tree</para>
           <orderedlist>
-      <listitem>Do not include</listitem>
-      <listitem>Include</listitem>
+      <listitem><para>Do not include</para></listitem>
+      <listitem><para>Include</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -1114,9 +1143,9 @@
           <listitem>
             <para>Inclusion of images</para>
           <orderedlist>
-      <listitem>No images at all</listitem>
-      <listitem>No images for living people</listitem>
-      <listitem>Images for all people</listitem>
+      <listitem><para>No images at all</para></listitem>
+      <listitem><para>No images for living people</para></listitem>
+      <listitem><para>Images for all people</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -1132,329 +1161,9 @@
           <listitem>
             <para>Create an index of all Places</para>
           <orderedlist>
-      <listitem>Do not create</listitem>
-      <listitem>Create</listitem>
+      <listitem><para>Do not create</para></listitem>
+      <listitem><para>Create</para></listitem>
           </orderedlist>
-          </listitem>
-        </varlistentry>
-    </variablelist>
-</sect3>
-<sect3 id="cmdplug-id20">
-  <title>Book Report</title>
-    <variablelist>
-        <varlistentry>
-          <term><command>name</command>:</term>
-          <listitem>
-            <para>book</para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>bookname</command>: =name</term>
-          <listitem>
-            <para>Name of the book. MANDATORY</para>
-          <itemizedlist>
-          </itemizedlist>
-          </listitem>
-        </varlistentry>
-    </variablelist>
-</sect3>
-<sect3 id="cmdplug-id21">
-  <title>Statistics Chart</title>
-    <variablelist>
-        <varlistentry>
-          <term><command>name</command>:</term>
-          <listitem>
-            <para>statistics_chart</para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_sname</command>: =0/1</term>
-          <listitem>
-            <para>Surname</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_age</command>: =0/1</term>
-          <listitem>
-            <para>Age</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_ccount</command>: =0/1</term>
-          <listitem>
-            <para>Number of children</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>bar_items</command>: =num</term>
-          <listitem>
-            <para>Use barchart instead of piechart with this many or more items</para>
-            <para>Value: <userinput>Number of items with which piecharts still look good...</userinput></para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_byear</command>: =0/1</term>
-          <listitem>
-            <para>Birth year</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_dmonth</command>: =0/1</term>
-          <listitem>
-            <para>Death month</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_mage</command>: =0/1</term>
-          <listitem>
-            <para>Age at marriage</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>year_from</command>: =num</term>
-          <listitem>
-            <para>Birth year from which to include people</para>
-            <para>Value: <userinput>Earlier than 'year_to' value</userinput></para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_mcount</command>: =0/1</term>
-          <listitem>
-            <para>Number of relationships</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_bmonth</command>: =0/1</term>
-          <listitem>
-            <para>Birth month</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_fname</command>: =0/1</term>
-          <listitem>
-            <para>Forename</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_dplace</command>: =0/1</term>
-          <listitem>
-            <para>Death place</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_fchild</command>: =0/1</term>
-          <listitem>
-            <para>Age when first child born</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_title</command>: =0/1</term>
-          <listitem>
-            <para>Title</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_lchild</command>: =0/1</term>
-          <listitem>
-            <para>Age when last child born</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_dage</command>: =0/1</term>
-          <listitem>
-            <para>Age at death</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_mplace</command>: =0/1</term>
-          <listitem>
-            <para>Marriage place</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_dyear</command>: =0/1</term>
-          <listitem>
-            <para>Death year</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_bplace</command>: =0/1</term>
-          <listitem>
-            <para>Birth place</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>reverse</command>: =0/1</term>
-          <listitem>
-            <para>Whether to sort in reverse order</para>
-          <orderedlist>
-      <listitem>Do not sort in reverse</listitem>
-      <listitem>Sort in reverse</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>gender</command>: =num</term>
-          <listitem>
-            <para>Genders included</para>
-          <itemizedlist>
-      <listitem>2	Both</listitem>
-      <listitem>1	Men</listitem>
-      <listitem>0	Women</listitem>
-          </itemizedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_etypes</command>: =0/1</term>
-          <listitem>
-            <para>Event type</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>no_years</command>: =0/1</term>
-          <listitem>
-            <para>Whether to include people without known birth years</para>
-          <orderedlist>
-      <listitem>Do not include</listitem>
-      <listitem>Include</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>sortby</command>: =num</term>
-          <listitem>
-            <para>Sort chart items by</para>
-          <itemizedlist>
-      <listitem>0	Item count</listitem>
-      <listitem>1	Item name</listitem>
-          </itemizedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>year_to</command>: =num</term>
-          <listitem>
-            <para>Birth year until which to include people</para>
-            <para>Value: <userinput>Smaller than 2005</userinput></para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_gender</command>: =0/1</term>
-          <listitem>
-            <para>Gender</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>data_dcause</command>: =0/1</term>
-          <listitem>
-            <para>Cause of death</para>
-          <orderedlist>
-      <listitem>Leave chart with this data out</listitem>
-      <listitem>Include chart with this data</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-    </variablelist>
-</sect3>
-<sect3 id="cmdplug-id22">
-  <title>Descendant Wall Chart</title>
-    <variablelist>
-        <varlistentry>
-          <term><command>name</command>:</term>
-          <listitem>
-            <para>descend_chart2</para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>singlep</command>: =0/1</term>
-          <listitem>
-            <para>Whether to scale to fit on a single page.</para>
-          <orderedlist>
-      <listitem>Do not scale to fit</listitem>
-      <listitem>Scale to fit</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>title</command>: =str</term>
-          <listitem>
-            <para>Title string for the report</para>
-            <para>Value: <userinput>Whatever String You Wish</userinput></para>
           </listitem>
         </varlistentry>
     </variablelist>
@@ -1462,7 +1171,7 @@
   </sect2>
   <sect2 id="cmdplug-tools">
      <title>Tools</title>
-<sect3 id="cmdplug-id23">
+<sect3 id="cmdplug-id21">
   <title>Common Options</title>
     <variablelist>
         <varlistentry>
@@ -1481,7 +1190,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id24">
+<sect3 id="cmdplug-id22">
   <title>Rename personal event types</title>
     <variablelist>
         <varlistentry>
@@ -1506,7 +1215,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id25">
+<sect3 id="cmdplug-id23">
   <title>Check and repair database</title>
     <variablelist>
         <varlistentry>
@@ -1517,7 +1226,74 @@
         </varlistentry>
     </variablelist>
 </sect3>
+<sect3 id="cmdplug-id24">
+  <title>Checkpoint the database</title>
+    <variablelist>
+        <varlistentry>
+          <term><command>name</command>:</term>
+          <listitem>
+            <para>chkpoint</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>crcmd</command>: =str</term>
+          <listitem>
+            <para>Custom command line for retrieval</para>
+            <para>Value: <userinput>Custom command string</userinput></para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>cacmd</command>: =str</term>
+          <listitem>
+            <para>Custom command line for archiving</para>
+            <para>Value: <userinput>Custom command string</userinput></para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>archive</command>: =0/1</term>
+          <listitem>
+            <para>Whether to archive or retrieve.</para>
+          <orderedlist>
+      <listitem><para>Retrieve</para></listitem>
+      <listitem><para>Archive</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>rcs</command>: =0/1</term>
+          <listitem>
+            <para>Whether to use RCS (ignores custom commands).</para>
+          <orderedlist>
+      <listitem><para>Do not use RCS</para></listitem>
+      <listitem><para>Use RCS</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+    </variablelist>
+</sect3>
+<sect3 id="cmdplug-id25">
+  <title>Dumps gender statistics</title>
+    <variablelist>
+        <varlistentry>
+          <term><command>name</command>:</term>
+          <listitem>
+            <para>dgenstats</para>
+          </listitem>
+        </varlistentry>
+    </variablelist>
+</sect3>
 <sect3 id="cmdplug-id26">
+  <title>Rebuild secondary indices</title>
+    <variablelist>
+        <varlistentry>
+          <term><command>name</command>:</term>
+          <listitem>
+            <para>rebuild</para>
+          </listitem>
+        </varlistentry>
+    </variablelist>
+</sect3>
+<sect3 id="cmdplug-id27">
   <title>Reorder GRAMPS IDs</title>
     <variablelist>
         <varlistentry>
@@ -1528,7 +1304,75 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id27">
+<sect3 id="cmdplug-id28">
+  <title>Generate Testcases for persons and families</title>
+    <variablelist>
+        <varlistentry>
+          <term><command>name</command>:</term>
+          <listitem>
+            <para>testcasegenerator</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>dates</command>: =0/1</term>
+          <listitem>
+            <para>Whether to create test for date handling.</para>
+          <orderedlist>
+      <listitem><para>Skip test</para></listitem>
+      <listitem><para>Create date tests</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>person_count</command>: =int</term>
+          <listitem>
+            <para>Number of dummy persons to generate</para>
+            <para>Value: <userinput>Number of persons</userinput></para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>no_trans</command>: =0/1</term>
+          <listitem>
+            <para>Wheter to use one transaction or multiple small ones</para>
+          <orderedlist>
+      <listitem><para>One transaction</para></listitem>
+      <listitem><para>Multiple transactions</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>long_names</command>: =0/1</term>
+          <listitem>
+            <para>Wheter to create short or long names</para>
+          <orderedlist>
+      <listitem><para>Short names</para></listitem>
+      <listitem><para>Long names</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>bugs</command>: =0/1</term>
+          <listitem>
+            <para>Whether to create invalid database references.</para>
+          <orderedlist>
+      <listitem><para>Skip test</para></listitem>
+      <listitem><para>Create invalid Database references</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>persons</command>: =0/1</term>
+          <listitem>
+            <para>Whether to create a bunch of dummy persons</para>
+          <orderedlist>
+      <listitem><para>Dont create persons</para></listitem>
+      <listitem><para>Create dummy persons</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+    </variablelist>
+</sect3>
+<sect3 id="cmdplug-id29">
   <title>Verify the database</title>
     <variablelist>
         <varlistentry>
@@ -1570,8 +1414,8 @@
           <listitem>
             <para>Whether to estimate missing dates</para>
           <orderedlist>
-      <listitem>Do not estimate</listitem>
-      <listitem>Estimate dates</listitem>
+      <listitem><para>Do not estimate</para></listitem>
+      <listitem><para>Estimate dates</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -1647,143 +1491,8 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id28">
-  <title>Generate Testcases for persons and families</title>
-    <variablelist>
-        <varlistentry>
-          <term><command>name</command>:</term>
-          <listitem>
-            <para>testcasegenerator</para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>dates</command>: =0/1</term>
-          <listitem>
-            <para>Whether to create test for date handling.</para>
-          <orderedlist>
-      <listitem>Skip test</listitem>
-      <listitem>Create date tests</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>person_count</command>: =int</term>
-          <listitem>
-            <para>Number of dummy persons to generate</para>
-            <para>Value: <userinput>Number of persons</userinput></para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>no_trans</command>: =0/1</term>
-          <listitem>
-            <para>Wheter to use one transaction or multiple small ones</para>
-          <orderedlist>
-      <listitem>One transaction</listitem>
-      <listitem>Multiple transactions</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>long_names</command>: =0/1</term>
-          <listitem>
-            <para>Wheter to create short or long names</para>
-          <orderedlist>
-      <listitem>Short names</listitem>
-      <listitem>Long names</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>bugs</command>: =0/1</term>
-          <listitem>
-            <para>Whether to create invalid database references.</para>
-          <orderedlist>
-      <listitem>Skip test</listitem>
-      <listitem>Create invalid Database references</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>persons</command>: =0/1</term>
-          <listitem>
-            <para>Whether to create a bunch of dummy persons</para>
-          <orderedlist>
-      <listitem>Dont create persons</listitem>
-      <listitem>Create dummy persons</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-    </variablelist>
-</sect3>
-<sect3 id="cmdplug-id29">
-  <title>Checkpoint the database</title>
-    <variablelist>
-        <varlistentry>
-          <term><command>name</command>:</term>
-          <listitem>
-            <para>chkpoint</para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>crcmd</command>: =str</term>
-          <listitem>
-            <para>Custom command line for retrieval</para>
-            <para>Value: <userinput>Custom command string</userinput></para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>cacmd</command>: =str</term>
-          <listitem>
-            <para>Custom command line for archiving</para>
-            <para>Value: <userinput>Custom command string</userinput></para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>archive</command>: =0/1</term>
-          <listitem>
-            <para>Whether to archive or retrieve.</para>
-          <orderedlist>
-      <listitem>Retrieve</listitem>
-      <listitem>Archive</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>rcs</command>: =0/1</term>
-          <listitem>
-            <para>Whether to use RCS (ignores custom commands).</para>
-          <orderedlist>
-      <listitem>Do not use RCS</listitem>
-      <listitem>Use RCS</listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-    </variablelist>
-</sect3>
 <sect3 id="cmdplug-id30">
-  <title>Rebuild secondary indices</title>
-    <variablelist>
-        <varlistentry>
-          <term><command>name</command>:</term>
-          <listitem>
-            <para>rebuild</para>
-          </listitem>
-        </varlistentry>
-    </variablelist>
-</sect3>
-<sect3 id="cmdplug-id31">
-  <title>Dumps gender statistics</title>
-    <variablelist>
-        <varlistentry>
-          <term><command>name</command>:</term>
-          <listitem>
-            <para>dgenstats</para>
-          </listitem>
-        </varlistentry>
-    </variablelist>
-</sect3>
-<sect3 id="cmdplug-id32">
-  <title>Generate Commandline Reference for Reports and Tools</title>
+  <title>Generate Commandline Plugin Reference</title>
     <variablelist>
         <varlistentry>
           <term><command>name</command>:</term>
@@ -1796,8 +1505,8 @@
           <listitem>
             <para>Whether to include into the manual</para>
           <orderedlist>
-      <listitem>Do not include</listitem>
-      <listitem>Include</listitem>
+      <listitem><para>Do not include</para></listitem>
+      <listitem><para>Include</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>

@@ -190,13 +190,13 @@ class CmdRef(Tool.Tool):
                     if oclass.options_help[arg][3]:
                         f.write('          <orderedlist>\n')
                         for val in oclass.options_help[arg][2]:
-                            f.write( "      <listitem>%s</listitem>\n"
+                            f.write( "      <listitem><para>%s</para></listitem>\n"
                                      % escape(val))
                         f.write('          </orderedlist>\n')
                     else:
                         f.write('          <itemizedlist>\n')
                         for val in oclass.options_help[arg][2]:
-                            f.write( "      <listitem>%s</listitem>\n"
+                            f.write( "      <listitem><para>%s</para></listitem>\n"
                                      % escape(val))
                         f.write('          </itemizedlist>\n')
                 else:
