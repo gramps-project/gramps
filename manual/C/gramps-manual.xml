@@ -50,6 +50,7 @@
   <!ENTITY keybind SYSTEM "keybind.xml">
   <!ENTITY filtref SYSTEM "filtref.xml">
   <!ENTITY cmdline SYSTEM "cmdline.xml">
+  <!ENTITY cmdplug SYSTEM "cmdplug.xml">
   <!ENTITY bugs SYSTEM "bugs.xml">
   <!ENTITY authors SYSTEM "authors.xml">
 ]>
