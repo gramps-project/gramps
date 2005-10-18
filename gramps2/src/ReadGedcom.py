@@ -277,7 +277,7 @@ concRE = re.compile(r"\s*\d+\s+CONC\s(.*)$")
 
 class NoteParser:
     def __init__(self, filename,broken):
-        self.nmap = {}
+        self.name_map = {}
         
         f = open(filename,"rU")
         innote = False
@@ -302,13 +302,13 @@ class NoteParser:
                 if match:
                     data = match.groups()[0]
                     noteobj = RelLib.Note()
-                    self.nmap["@%s@" % data] = noteobj
+                    self.name_map["@%s@" % data] = noteobj
                     noteobj.append(match.groups()[1])
                     innote = True
         f.close()
 
     def get_map(self):
-        return self.nmap
+        return self.name_map
 
 #-------------------------------------------------------------------------
 #
@@ -320,7 +320,7 @@ class GedcomParser:
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
 
-    def __init__(self, dbase, filename, window, codeset, smap):
+    def __init__(self, dbase, filename, window, codeset, note_map):
         self.dp = GedcomDateParser()
         self.db = dbase
         self.person = None
@@ -328,7 +328,7 @@ class GedcomParser:
         self.media_map = {}
         self.fmap = {}
         self.smap = {}
-        self.nmap = smap
+        self.note_map = note_map
         self.refn = {}
         self.added = {}
         self.gedmap = GedcomInfoDB()
@@ -978,9 +978,9 @@ class GedcomParser:
     def parse_note_base(self,matches,obj,level,old_note,task):
         note = old_note
         if matches[2] and matches[2][0] == "@":  # reference to a named note defined elsewhere
-            nobj = self.nmap.get(matches[2])
-            if nobj:
-                return nobj.get()
+            note_obj = self.note_map.get(matches[2])
+            if note_obj:
+                return note_obj.get()
             else:
                 return u""
         else:

@@ -1,9 +1,11 @@
 2005-10-17  Don Allingham  <don@gramps-project.org>
+	* src/gedcomimport.glade: use expanders for information and
+	warning windows.
 	* src/AddSpouse.py: remove signal_autoconnect
 	* src/DisplayTrace.py: remove signal_autoconnect
 	* src/EditSource.py: remove signal_autoconnect
 	* src/ReadGedcom.py: two pass approach for handling forward
-	refererencing notes
+	refererencing notes, less obscure names
 	* src/gramps.glade: remove signal mappings
 	* src/plugins.glade: remove signal mappings
 
