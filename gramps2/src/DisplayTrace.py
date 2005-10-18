@@ -107,7 +107,9 @@ class DisplayTrace:
 
         window.get_buffer().set_text(msg.getvalue())
         print msg.getvalue()
-        self.glade.signal_autoconnect({'on_close_clicked':self.close})
+
+        window.connect('delete_event',self.close)
+        self.glade.get_widget('button107').connect('clicked',self.close)
 
     def close(self,obj):
         self.top.destroy()

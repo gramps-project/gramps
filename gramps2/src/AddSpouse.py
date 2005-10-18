@@ -60,6 +60,7 @@ import Marriage
 import NameDisplay
 import GenericFilter
 from QuestionDialog import ErrorDialog, QuestionDialog2
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -94,6 +95,7 @@ class AddSpouse:
         # the same gender as the current person.
 
         self.glade = gtk.glade.XML(const.gladeFile, "spouseDialog","gramps")
+        self.gladeif = GladeIf(self.glade)
 
         self.relation_def = self.glade.get_widget("reldef")
         self.rel_combo = self.glade.get_widget("rel_combo")
@@ -118,18 +120,24 @@ class AddSpouse:
         Utils.set_titles(self.window,
                          self.glade.get_widget('title'),title,
                          _('Choose Spouse/Partner'))
-            
-        self.glade.signal_autoconnect({
-            "on_select_spouse_clicked" : self.select_spouse_clicked,
-            "on_spouse_help_clicked"   : self.on_spouse_help_clicked,
-            "on_show_toggled"          : self.on_show_toggled,
-            "on_new_spouse_clicked"    : self.new_spouse_clicked,
-            "destroy_passed_object"    : Utils.destroy_passed_object
-            })
 
+        self.gladeif.connect('button117','clicked',self.close)
+        self.gladeif.connect('spouseDialog','delete_event',self.delete_event)
+        self.gladeif.connect('spouse_ok','clicked',self.select_spouse_clicked)
+        self.gladeif.connect('spouse_help','clicked',self.on_spouse_help_clicked)
+        self.gladeif.connect('spouseNewPerson','clicked',self.new_spouse_clicked)
+        self.gladeif.connect('show_all','clicked',self.on_show_toggled)
+            
         self.rel_combo.set_active(RelLib.Family.MARRIED)
         self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         gobject.idle_add(self.update_data)
+
+    def delete_event(self,obj):
+        self.gladeif.close()
+
+    def close(self,obj):
+        self.gladeif.close()
+        self.window.close()
 
     def build_all(self):
         return None

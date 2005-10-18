@@ -197,7 +197,8 @@ def import2(database, filename, cb, codeset, use_trans):
         })
 
     try:
-        g = GedcomParser(database,filename,statusTop, codeset)
+        np = NoteParser(filename, False)
+        g = GedcomParser(database,filename,statusTop, codeset, np.get_map())
     except IOError,msg:
         Utils.destroy_passed_object(statusWindow)
         ErrorDialog(_("%s could not be opened\n") % filename,str(msg))
@@ -268,12 +269,58 @@ class GedcomDateParser(DateParser.DateParser):
 #
 #
 #-------------------------------------------------------------------------
+
+noteRE = re.compile(r"\s*\d+\s+\@(\S+)\@\s+NOTE(.*)$")
+contRE = re.compile(r"\s*\d+\s+CONT\s(.*)$")
+concRE = re.compile(r"\s*\d+\s+CONC\s(.*)$")
+
+
+class NoteParser:
+    def __init__(self, filename,broken):
+        self.nmap = {}
+        
+        f = open(filename,"rU")
+        innote = False
+        
+        for line in f.xreadlines():
+
+            if innote:
+                match = contRE.match(line)
+                if match:
+                    noteobj.append("\n" + match.groups()[0])
+
+                match = concRE.match(line)
+                if match:
+                    if broken:
+                        noteobj.append(" " + match.groups()[0])
+                    else:
+                        noteobj.append(match.groups()[0])
+                    continue
+                innote = False
+            else:
+                match = noteRE.match(line)
+                if match:
+                    data = match.groups()[0]
+                    noteobj = RelLib.Note()
+                    self.nmap["@%s@" % data] = noteobj
+                    noteobj.append(match.groups()[1])
+                    innote = True
+        f.close()
+
+    def get_map(self):
+        return self.nmap
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 class GedcomParser:
 
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
 
-    def __init__(self, dbase, filename, window, codeset):
+    def __init__(self, dbase, filename, window, codeset, smap):
         self.dp = GedcomDateParser()
         self.db = dbase
         self.person = None
@@ -281,8 +328,7 @@ class GedcomParser:
         self.media_map = {}
         self.fmap = {}
         self.smap = {}
-        self.nmap = {}
-        self.share_note = {}
+        self.nmap = smap
         self.refn = {}
         self.added = {}
         self.gedmap = GedcomInfoDB()
@@ -537,7 +583,6 @@ class GedcomParser:
                 src.set_note(note)
             self.db.add_source(src,self.trans)
             
-        self.break_note_links()
         t = time.time() - t
         msg = _('Import Complete: %d seconds') % t
 
@@ -554,14 +599,6 @@ class GedcomParser:
             print "Individuals: %d" % self.indi_count
             return None
 
-    def break_note_links(self):
-        for handle in self.share_note.keys():
-            p = self.db.get_person_from_handle(handle)
-            if p:
-                note_id = self.share_note[handle]
-                p.set_note_object(self.nmap[note_id])
-                self.db.commit_person(p,self.trans)
-            
     def parse_trailer(self):
         matches = self.get_next()
         if matches[0] >= 0 and matches[1] != "TRLR":
@@ -697,11 +734,7 @@ class GedcomParser:
                 source.set_title( matches[2][5:])
                 self.db.commit_source(source, self.trans)
             elif matches[2][0:4] == "NOTE":
-                noteobj = RelLib.Note()
-                self.nmap[matches[1]] = noteobj
-                text =  matches[2][4:]
-                noteobj.append(text + self.parse_note_continue(1))
-                self.parse_note_data(1)
+                self.ignore_sub_junk(1)
             elif matches[2] == "_LOC":
                 # TODO: Add support for extended Locations.
                 # See: http://en.wiki.genealogy.net/index.php/Gedcom_5.5EL
@@ -945,7 +978,11 @@ class GedcomParser:
     def parse_note_base(self,matches,obj,level,old_note,task):
         note = old_note
         if matches[2] and matches[2][0] == "@":  # reference to a named note defined elsewhere
-            self.share_note[obj.get_handle()] = matches[2]
+            nobj = self.nmap.get(matches[2])
+            if nobj:
+                return nobj.get()
+            else:
+                return u""
         else:
             if old_note:
                 note = "%s\n%s%s" % (old_note,matches[2],self.parse_continue_data(level))
@@ -969,6 +1006,8 @@ class GedcomParser:
             
             if int(matches[0]) < 1:
                 self.backup()
+                if note:
+                    self.person.set_note(note)
                 return
             elif matches[1] == "NAME":
                 name = RelLib.Name()
@@ -2090,3 +2129,9 @@ def extract_temple(matches):
 
 def create_id():
     return Utils.create_id()
+
+
+if __name__ == "__main__":
+    import sys
+
+    a = NoteParser(sys.argv[1],False)

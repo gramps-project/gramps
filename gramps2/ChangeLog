@@ -1,3 +1,12 @@
+2005-10-17  Don Allingham  <don@gramps-project.org>
+	* src/AddSpouse.py: remove signal_autoconnect
+	* src/DisplayTrace.py: remove signal_autoconnect
+	* src/EditSource.py: remove signal_autoconnect
+	* src/ReadGedcom.py: two pass approach for handling forward
+	refererencing notes
+	* src/gramps.glade: remove signal mappings
+	* src/plugins.glade: remove signal mappings
+
 2005-10-18  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/WriteGedcom.py: Add description and notes for media objects
 

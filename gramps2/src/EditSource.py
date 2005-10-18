@@ -49,6 +49,7 @@ import RelLib
 import NameDisplay
 import Spell
 import GrampsDisplay
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -87,6 +88,7 @@ class EditSource:
 
         self.top_window = gtk.glade.XML(const.gladeFile,"sourceEditor","gramps")
         self.top = self.top_window.get_widget("sourceEditor")
+        self.gladeif = GladeIf(self.top_window)
 
         Utils.set_titles(self.top,self.top_window.get_widget('title'),
                          _('Source Editor'))
@@ -138,20 +140,17 @@ class EditSource:
         if self.source.get_media_list():
             Utils.bold_label(self.gallery_label)
 
-        self.top_window.signal_autoconnect({
-            "on_switch_page" : self.on_switch_page,
-            "on_addphoto_clicked" : self.gallery.on_add_media_clicked,
-            "on_selectphoto_clicked"    : self.gallery.on_select_media_clicked,
-            "on_deletephoto_clicked" : self.gallery.on_delete_media_clicked,
-            "on_editphoto_clicked"     : self.gallery.on_edit_media_clicked,
-            "on_edit_properties_clicked": self.gallery.popup_change_description,
-            "on_sourceEditor_help_clicked" : self.on_help_clicked,
-            "on_sourceEditor_ok_clicked" : self.on_source_apply_clicked,
-            "on_sourceEditor_cancel_clicked" : self.close,
-            "on_sourceEditor_delete_event" : self.on_delete_event,
-            "on_delete_data_clicked" : self.on_delete_data_clicked,
-            "on_add_data_clicked" : self.on_add_data_clicked,
-            })
+        self.gladeif.connect('sourceEditor','delete_event',self.on_delete_event)
+        self.gladeif.connect('button90','clicked',self.close)
+        self.gladeif.connect('ok','clicked',self.on_source_apply_clicked)
+        self.gladeif.connect('button166','clicked',self.on_help_clicked)
+        self.gladeif.connect('notebook2','switch_page',self.on_switch_page)
+        self.gladeif.connect('add_data','clicked',self.on_add_data_clicked)
+        self.gladeif.connect('del_data','clicked',self.on_delete_data_clicked)
+        self.gladeif.connect('add_photo','clicked',self.gallery.on_add_media_clicked)
+        self.gladeif.connect('sel_photo','clicked',self.gallery.on_select_media_clicked)
+        self.gladeif.connect('edit_photo','clicked',self.gallery.on_edit_media_clicked)
+        self.gladeif.connect('delete_photo','clicked',self.gallery.on_delete_media_clicked)
 
         if self.source.get_handle() == None or self.db.readonly:
             self.top_window.get_widget("edit_photo").set_sensitive(False)
@@ -219,6 +218,7 @@ class EditSource:
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
         gc.collect()
 
     def on_help_clicked(self,obj):
@@ -229,6 +229,7 @@ class EditSource:
         self.gallery.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
         self.top.destroy()
         gc.collect()
         
