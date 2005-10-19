@@ -1,3 +1,6 @@
+2005-10-19  Stefan Bjork  <skalman@acc.umu.se>
+	* src/po/sv.po: Updates.
+
 2005-10-19  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/TestcaseGenerator.py: More randomisation; new test options
 	* src/RelLib.py (Source.get_text_data_list): Add missing fields
