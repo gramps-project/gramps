@@ -54,6 +54,8 @@ import Sources
 import DateEdit
 import Spell
 
+from WindowUtils import GladeIf
+
 #-------------------------------------------------------------------------
 #
 # AddressEditor class
@@ -87,6 +89,8 @@ class AddressEditor:
 
         # Get the important widgets from the glade description
         self.top = gtk.glade.XML(const.dialogFile, "addr_edit","gramps")
+        self.gladeif = GladeIf(self.top)
+        
         self.window = self.top.get_widget("addr_edit")
         self.addr_start = self.top.get_widget("address_start")
         self.street = self.top.get_widget("street")
@@ -139,13 +143,11 @@ class AddressEditor:
         self.date_check = DateEdit.DateEdit(
             self.addr_date_obj, self.addr_start, date_stat, self.window)
 
-        self.top.signal_autoconnect({
-            "on_switch_page" : self.on_switch_page,
-            "on_help_addr_clicked" : self.on_help_clicked,
-            "on_ok_addr_clicked" : self.ok_clicked,
-            "on_cancel_addr_clicked" : self.close,
-            "on_addr_edit_delete_event" : self.on_delete_event,
-            })
+        self.gladeif.connect('addr_edit','delete_event',self.on_delete_event)
+        self.gladeif.connect('button122','clicked',self.close)
+        self.gladeif.connect('button121','clicked',self.ok_clicked)
+        self.gladeif.connect('button129','clicked',self.on_help_clicked)
+        self.gladeif.connect('notebook2','switch_page',self.on_switch_page)
 
         if parent_window:
             self.window.set_transient_for(parent_window)
@@ -155,11 +157,13 @@ class AddressEditor:
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
         gc.collect()
 
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
         self.window.destroy()
         gc.collect()
 

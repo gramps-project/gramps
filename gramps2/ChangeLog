@@ -1,3 +1,6 @@
+2005-10-19  Don Allingham  <don@gramps-project.org>
+	* src/Sources.py: fix typo on gladeif call
+
 2005-10-19  Stefan Bjork  <skalman@acc.umu.se>
 	* src/po/sv.po: Updates.
 

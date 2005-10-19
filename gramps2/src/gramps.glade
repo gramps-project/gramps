@@ -27235,7 +27235,6 @@ Very High</property>
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="has_separator">False</property>
-  <signal name="delete_event" handler="on_addr_edit_delete_event" last_modification_time="Fri, 20 Feb 2004 01:16:24 GMT"/>
 
   <child internal-child="vbox">
     <widget class="GtkVBox" id="vbox34">
@@ -27258,7 +27257,6 @@ Very High</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">-6</property>
-	      <signal name="clicked" handler="on_cancel_addr_clicked" object="addr_edit" last_modification_time="Fri, 20 Feb 2004 01:16:51 GMT"/>
 	    </widget>
 	  </child>
 
@@ -27274,7 +27272,6 @@ Very High</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">-5</property>
-	      <signal name="clicked" handler="on_ok_addr_clicked" last_modification_time="Fri, 20 Feb 2004 01:17:10 GMT"/>
 	    </widget>
 	  </child>
 
@@ -27288,7 +27285,6 @@ Very High</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">-11</property>
-	      <signal name="clicked" handler="on_help_addr_clicked" last_modification_time="Tue, 18 Nov 2003 04:04:45 GMT"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -27336,7 +27332,6 @@ Very High</property>
 	      <property name="tab_pos">GTK_POS_TOP</property>
 	      <property name="scrollable">False</property>
 	      <property name="enable_popup">False</property>
-	      <signal name="switch_page" handler="on_switch_page" last_modification_time="Wed, 12 Nov 2003 18:09:04 GMT"/>
 
 	      <child>
 		<widget class="GtkTable" id="table26">

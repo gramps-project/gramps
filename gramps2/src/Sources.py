@@ -94,8 +94,8 @@ class SourceSelector:
         self.gladeif.connect('ok', 'clicked', self.src_ok_clicked)
         self.gladeif.connect('button145', 'clicked', self.on_help_clicked)
         self.gladeif.connect('add', 'clicked', self.add_src_clicked)
-        self.gladeif.clicked('edit', 'clicked', self.edit_src_clicked)
-        self.gladeif.clicked('delete', 'clicked', self.del_src_clicked)
+        self.gladeif.connect('edit', 'clicked', self.edit_src_clicked)
+        self.gladeif.connect('delete', 'clicked', self.del_src_clicked)
         
         self.slist = self.top.get_widget("slist")
         self.edit = self.top.get_widget('edit')
