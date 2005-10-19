@@ -1,3 +1,7 @@
+2005-10-19  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/TestcaseGenerator.py: More randomisation; new test options
+	* src/RelLib.py (Source.get_text_data_list): Add missing fields
+
 2005-10-18  Don Allingham  <don@gramps-project.org>
 	* src/Report.py: bumped the maximum generations to 999 from 31
 

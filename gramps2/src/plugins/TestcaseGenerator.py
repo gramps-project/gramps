@@ -81,6 +81,9 @@ class TestcaseGenerator(Tool.Tool):
         self.parents_todo = []
         self.person_dates = {}
         self.generated_sources = []
+        self.generated_media = []
+        self.generated_places = []
+        self.text_serial_number = 1
         
         self.random_marrtype_list = (RelLib.Family.UNMARRIED, RelLib.Family.CIVIL_UNION,
                                      RelLib.Family.UNKNOWN, RelLib.Family.OTHER)
@@ -154,6 +157,14 @@ class TestcaseGenerator(Tool.Tool):
         self.check_longnames.set_active( self.options.handler.options_dict['long_names'])
         self.top.vbox.pack_start(self.check_longnames,0,0,5)
 
+        self.check_specialchars = gtk.CheckButton( _("Add special characters"))
+        self.check_specialchars.set_active( self.options.handler.options_dict['specialchars'])
+        self.top.vbox.pack_start(self.check_specialchars,0,0,5)
+
+        self.check_serial = gtk.CheckButton( _("Add serial number"))
+        self.check_serial.set_active( self.options.handler.options_dict['add_serial'])
+        self.top.vbox.pack_start(self.check_serial,0,0,5)
+
         self.entry_count = gtk.Entry()
         self.entry_count.set_text( unicode( self.options.handler.options_dict['person_count']))
         self.top.vbox.pack_start(self.entry_count,0,0,5)
@@ -174,6 +185,10 @@ class TestcaseGenerator(Tool.Tool):
             self.check_trans.get_active())
         self.options.handler.options_dict['long_names']  = int(
             self.check_longnames.get_active())
+        self.options.handler.options_dict['specialchars']  = int(
+            self.check_specialchars.get_active())
+        self.options.handler.options_dict['add_serial']  = int(
+            self.check_serial.get_active())
         self.options.handler.options_dict['person_count']  = int(
             self.entry_count.get_text())
         self.top.destroy()
@@ -315,68 +330,10 @@ class TestcaseGenerator(Tool.Tool):
         if self.options.handler.options_dict['bugs']\
             or self.options.handler.options_dict['dates']\
             or self.options.handler.options_dict['persons']:
+            # bootstrap random source and media
+            self.rand_source()
+            self.rand_media()
             
-            self.default_url = RelLib.Url()
-            self.default_url.set_path("http://www.gramps-project.org/")
-            self.default_url.set_description( self.rand_text(self.SHORT))
-            self.default_source = RelLib.Source()
-            self.default_source.set_title( self.rand_text(self.SHORT))
-            self.default_source.set_author( self.rand_text(self.SHORT))
-            self.default_source.set_publication_info( self.rand_text(self.LONG))
-            self.default_source.set_abbreviation( self.rand_text(self.SHORT))
-            self.default_source.set_note( self.rand_text(self.NOTE))
-            self.default_source.set_data_item( self.rand_text(self.SHORT), self.rand_text(self.SHORT))
-            self.db.add_source(self.default_source, self.trans)
-            self.generated_sources.append( self.default_source.get_handle())
-            self.default_attribute = RelLib.Attribute()
-            self.default_attribute.set_type( self.rand_text(self.SHORT))
-            self.default_attribute.set_value( self.rand_text(self.SHORT))
-            self.default_attribute.set_note( self.rand_text(self.NOTE))
-            self.default_attribute.add_source_reference( self.rand_sourceref())
-            (y,d) = self.rand_date()
-            self.default_media = RelLib.MediaObject()
-            self.default_media.set_description( self.rand_text(self.SHORT))
-            self.default_media.set_path("/tmp/TestcaseGenerator.png")
-            self.default_media.set_mime_type("image/png")
-            self.default_media.set_note( self.rand_text(self.NOTE))
-            self.default_media.set_date_object(d)
-            self.default_media.add_source_reference( self.rand_sourceref())
-            self.default_media.add_attribute(self.default_attribute)
-            self.db.add_object(self.default_media, self.trans)
-            self.default_mediaref = RelLib.MediaRef()
-            self.default_mediaref.set_reference_handle(self.default_media.get_handle())
-            self.default_mediaref.set_note( self.rand_text(self.NOTE))
-            self.default_mediaref.add_source_reference( self.rand_sourceref())
-            self.default_mediaref.add_attribute(self.default_attribute)
-            self.default_source.add_media_reference(self.default_mediaref)
-            self.db.commit_source(self.default_source, self.trans)
-            loc = RelLib.Location()
-            loc.set_city( self.rand_text(self.SHORT))
-            loc.set_postal_code( self.rand_text(self.SHORT))
-            loc.set_phone( self.rand_text(self.SHORT))
-            loc.set_parish( self.rand_text(self.SHORT))
-            loc.set_county( self.rand_text(self.SHORT))
-            loc.set_state( self.rand_text(self.SHORT))
-            loc.set_country( self.rand_text(self.SHORT))
-            self.default_place = RelLib.Place()
-            self.default_place.set_main_location( loc)
-            self.default_place.set_title( self.rand_text(self.SHORT))
-            self.default_place.set_note( self.rand_text(self.NOTE))
-            self.default_place.set_longitude( self.rand_text(self.SHORT))
-            self.default_place.set_latitude( self.rand_text(self.SHORT))
-            self.default_place.add_source_reference( self.rand_sourceref())
-            self.default_place.add_media_reference(self.default_mediaref)
-            self.default_place.add_url(self.default_url)
-            self.db.add_place(self.default_place, self.trans)
-            self.default_address = RelLib.Address()
-            self.default_address.set_street( self.rand_text(self.SHORT))
-            self.default_address.set_phone( self.rand_text(self.SHORT))
-            self.default_address.set_city( self.rand_text(self.SHORT))
-            self.default_address.set_state( self.rand_text(self.SHORT))
-            self.default_address.set_country( self.rand_text(self.SHORT))
-            self.default_address.set_postal_code( self.rand_text(self.SHORT))
-            self.default_address.set_note( self.rand_text(self.NOTE))
-            self.default_address.add_source_reference( self.rand_sourceref())
 
         if self.options.handler.options_dict['bugs']:
             self.generate_broken_relations()
@@ -784,8 +741,6 @@ class TestcaseGenerator(Tool.Tool):
         name = RelLib.Name()
         name.set_privacy( randint(0,5) == 1)
         (firstname,lastname) = self.rand_name(lastname, gender)
-        if alive_in_year:
-            firstname = "%s (%d)" % (firstname, alive_in_year)
         name.set_first_name(firstname)
         name.set_surname(lastname)
         name.add_source_reference( self.rand_sourceref())
@@ -805,6 +760,16 @@ class TestcaseGenerator(Tool.Tool):
             alt_name.add_source_reference( self.rand_sourceref())
             alt_name.set_note( self.rand_text(self.NOTE))
             np.add_alternate_name( alt_name)
+        firstname2 = firstname.replace("a", "e").replace("o", "u").replace("r", "p")
+        if firstname2 != firstname:
+            alt_name.set_first_name( firstname2)
+            alt_name.set_title( self.rand_text(self.SHORT))
+            alt_name.set_patronymic( self.rand_text(self.FIRSTNAME_MALE))
+            alt_name.set_surname_prefix( self.rand_text(self.SHORT))
+            alt_name.set_suffix( self.rand_text(self.SHORT))
+            alt_name.add_source_reference( self.rand_sourceref())
+            alt_name.set_note( self.rand_text(self.NOTE))
+            np.add_alternate_name( alt_name)
 
         if not alive_in_year:
             alive_in_year = randint(1700,2000)
@@ -815,26 +780,22 @@ class TestcaseGenerator(Tool.Tool):
         # birth
         if randint(0,1) == 1:
             (birth_year, e) = self.rand_event( "Birth", by,by)
-            self.db.add_event(e, self.trans)
             np.set_birth_handle(e.get_handle())
 
         # baptism
         if randint(0,1) == 1:
             (bapt_year, e) = self.rand_event( choice( ("Baptism", "Christening")), by, by+2)
-            self.db.add_event(e, self.trans)
             np.add_event_handle(e.get_handle())
 
         # death
         death_year = None
         if randint(0,1) == 1:
             (death_year, e) = self.rand_event( "Death", dy,dy)
-            self.db.add_event(e, self.trans)
             np.set_death_handle(e.get_handle())
 
         # burial
         if randint(0,1) == 1:
             (bur_year, e) = self.rand_event( choice( ("Burial", "Cremation")), dy, dy+2)
-            self.db.add_event(e, self.trans)
             np.add_event_handle(e.get_handle())
         
         #LDS
@@ -974,35 +935,22 @@ class TestcaseGenerator(Tool.Tool):
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
     def add_defaults(self,object,ref_text = ""):
-        object.add_source_reference( self.rand_sourceref())
-        object.add_media_reference(self.default_mediaref)
-        e = RelLib.Event()
-        e.set_privacy( randint(0,5) == 1)
-        e.set_name( self.rand_text(self.SHORT))
-        e.set_note( self.rand_text(self.NOTE))
-        e.set_cause( self.rand_text(self.SHORT))
-        e.set_description( self.rand_text(self.SHORT))
-        e.add_source_reference( self.rand_sourceref())
-        mref = RelLib.MediaRef(self.default_mediaref)
-        mref.set_privacy( randint(0,5) == 1)
-        e.add_media_reference(mref)
-        e.set_place_handle(self.default_place.get_handle())
-        (year,d) = self.rand_date()
-        e.set_date_object( d)
-        self.db.add_event(e, self.trans)
-        object.add_event_handle(e.get_handle())
-        attr = RelLib.Attribute(self.default_attribute)
-        attr.set_privacy( randint(0,5) == 1)
-        object.add_attribute( attr)
+        while randint(0,1) == 1:
+            object.add_source_reference( self.rand_sourceref())
+        while randint(0,1) == 1:
+            object.add_media_reference( self.rand_mediaref())
+        while randint(0,1) == 1:
+            (year,e) = self.rand_event()
+            object.add_event_handle( e.get_handle())
+        while randint(0,1) == 1:
+            object.add_attribute( self.rand_attribute())
         try:
-            url = RelLib.Url(self.default_url)
-            url.set_privacy( randint(0,5) == 1)
-            object.add_url(url)
-            addr = RelLib.Address(self.default_address)
-            addr.set_privacy( randint(0,5) == 1)
-            object.add_address(addr)
+            while randint(0,1) == 1:
+                object.add_url( self.rand_url())
+            while randint(0,1) == 1:
+                object.add_address( self.rand_address())
         except AttributeError:
-            pass    # family does not have an url
+            pass    # family does not have an url and address
         object.set_note( self.rand_text(self.NOTE))
     
     def rand_name( self, lastname=None, gender=None):
@@ -1065,7 +1013,7 @@ class TestcaseGenerator(Tool.Tool):
     def rand_event( self, type=None, start=None, end=None):
         e = RelLib.Event()
         if not type:
-            type = choice( ("Census", "Degree", "Emigration", "Immigration"))
+            type = choice( (self.rand_text(self.SHORT), "Census", "Degree", "Emigration", "Immigration"))
         e.set_name( type)
         if randint(0,1) == 1:
             e.set_note( self.rand_text(self.NOTE))
@@ -1073,14 +1021,12 @@ class TestcaseGenerator(Tool.Tool):
             e.set_cause( self.rand_text(self.SHORT))
         if randint(0,1) == 1:
             e.set_description( self.rand_text(self.LONG))
-        if randint(0,1) == 1:
+        while randint(0,1) == 1:
             e.add_source_reference( self.rand_sourceref())
+        while randint(0,1) == 1:
+            e.add_media_reference( self.rand_mediaref())
         if randint(0,1) == 1:
-            mref = self.default_mediaref
-            mref.set_privacy( randint(0,5) == 1)
-            e.add_media_reference( mref)
-        if randint(0,1) == 1:
-            e.set_place_handle(self.default_place.get_handle())
+            e.set_place_handle( self.rand_place())
         (year, d) = self.rand_date( start, end)
         e.set_date_object( d)
         if randint(0,5) == 1:
@@ -1095,6 +1041,7 @@ class TestcaseGenerator(Tool.Tool):
                 w.set_type( RelLib.Event.NAME)
                 w.set_value( "%s %s" % self.rand_name())
             e.add_witness(w)
+        self.db.add_event( e, self.trans)
         return (year, e)
     
     def rand_ldsord( self, status_list):
@@ -1104,8 +1051,8 @@ class TestcaseGenerator(Tool.Tool):
         if randint(0,1) == 1:
             lds.set_temple( choice( const.lds_temple_to_abrev.keys()))
         if randint(0,1) == 1:
-            lds.set_place_handle( self.default_place.get_handle())
-        if randint(0,1) == 1:
+            lds.set_place_handle( self.rand_place())
+        while randint(0,1) == 1:
             lds.add_source_reference( self.rand_sourceref())
         if randint(0,1) == 1:
             lds.set_note( self.rand_text(self.NOTE))
@@ -1114,7 +1061,28 @@ class TestcaseGenerator(Tool.Tool):
             lds.set_date_object( d)
         return lds
 
+    def rand_source( self):
+        source = RelLib.Source()
+        source.set_title( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            source.set_author( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            source.set_publication_info( self.rand_text(self.LONG))
+        if randint(0,1) == 1:
+            source.set_abbreviation( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            source.set_note( self.rand_text(self.NOTE))
+        while randint(0,1) == 1:
+            source.set_data_item( self.rand_text(self.SHORT), self.rand_text(self.SHORT))
+        while randint(0,1) == 1 and self.generated_media:
+            source.add_media_reference( self.rand_mediaref())
+        self.db.add_source( source, self.trans)
+        self.generated_sources.append( source.get_handle())
+        return source
+    
     def rand_sourceref( self):
+        if not self.generated_sources or randint(0,10) == 1:
+            self.rand_source()
         sref = RelLib.SourceRef()
         sref.set_base_handle( choice( self.generated_sources))
         if randint(0,1) == 1:
@@ -1130,6 +1098,117 @@ class TestcaseGenerator(Tool.Tool):
         sref.set_confidence_level( choice( self.random_confidence_list))
         return sref
 
+    def rand_media( self):
+        media = RelLib.MediaObject()
+        media.set_description( self.rand_text(self.SHORT))
+        media.set_path("/tmp/TestcaseGenerator.png")
+        media.set_mime_type("image/png")
+        if randint(0,1) == 1:
+            media.set_note( self.rand_text(self.NOTE))
+        if randint(0,1) == 1:
+            (year,d) = self.rand_date()
+            media.set_date_object(d)
+        while randint(0,1) == 1:
+            media.add_source_reference( self.rand_sourceref())
+        while randint(0,1) == 1:
+            media.add_attribute( self.rand_attribute())
+        self.db.add_object( media, self.trans)
+        self.generated_media.append( media.get_handle())
+        return media
+        
+    def rand_mediaref( self):
+        if not self.generated_media or randint(0,10) == 1:
+            self.rand_media()
+        mref = RelLib.MediaRef()
+        mref.set_reference_handle( choice( self.generated_media))
+        if randint(0,1) == 1:
+            mref.set_note( self.rand_text(self.NOTE))
+        while randint(0,1) == 1:
+            mref.add_source_reference( self.rand_sourceref())
+        while randint(0,1) == 1:
+            mref.add_attribute( self.rand_attribute())
+        mref.set_privacy( randint(0,5) == 1)
+        return mref
+
+    def rand_address( self):
+        addr = RelLib.Address()
+        if randint(0,1) == 1:
+            addr.set_street( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            addr.set_phone( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            addr.set_city( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            addr.set_state( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            addr.set_country( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            addr.set_postal_code( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            addr.set_note( self.rand_text(self.NOTE))
+        while randint(0,1) == 1:
+            addr.add_source_reference( self.rand_sourceref())
+        addr.set_privacy( randint(0,5) == 1)
+        return addr
+    
+    def rand_url( self):
+        url = RelLib.Url()
+        url.set_path("http://www.gramps-project.org/")
+        url.set_description( self.rand_text(self.SHORT))
+        url.set_privacy( randint(0,5) == 1)
+        return url
+
+    def rand_attribute( self):
+        attr = RelLib.Attribute()
+        attr.set_type( self.rand_text(self.SHORT))
+        attr.set_value( self.rand_text(self.SHORT))
+        attr.set_note( self.rand_text(self.NOTE))
+        while randint(0,1) == 1:
+            attr.add_source_reference( self.rand_sourceref())
+        attr.set_privacy( randint(0,5) == 1)
+        return attr
+        
+    def rand_location( self):
+        loc = RelLib.Location()
+        if randint(0,1) == 1:
+            loc.set_city( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            loc.set_postal_code( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            loc.set_phone( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            loc.set_parish( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            loc.set_county( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            loc.set_state( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            loc.set_country( self.rand_text(self.SHORT))
+        return loc
+    
+    def rand_place( self):
+        if not self.generated_places or randint(0,10) == 1:
+            place = RelLib.Place()
+            place.set_main_location( self.rand_location())
+            while randint(0,1) == 1:
+                place.add_alternate_locations( self.rand_location())
+            place.set_title( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                place.set_note( self.rand_text(self.NOTE))
+            if randint(0,1) == 1:
+                place.set_longitude( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                place.set_latitude( self.rand_text(self.SHORT))
+            while randint(0,1) == 1:
+                    place.add_source_reference( self.rand_sourceref())
+            while randint(0,1) == 1:
+                    place.add_media_reference( self.rand_mediaref())
+            if randint(0,1) == 1:
+                place.add_url( self.rand_url())
+            self.db.add_place( place, self.trans)
+            self.generated_places.append( place.get_handle())
+        return choice( self.generated_places)        
+        
     def rand_text(self, type=None):
         # for lastnamesnames
         syllables1 = ["sa","li","na","ma","no","re","mi","cha","ki","du","ba","ku","el"]
@@ -1144,7 +1223,12 @@ class TestcaseGenerator(Tool.Tool):
         minsyllables = 2
         maxsyllables = 5
 
-        result = u"ä<ö&ü%ß"
+        result = ""
+        if self.options.handler.options_dict['specialchars']:
+            result = result + u"ä<ö&ü%ß'\""
+        if self.options.handler.options_dict['add_serial']:
+            result = result + "#+#%06d#-#" % self.text_serial_number
+            self.text_serial_number = self.text_serial_number + 1
         
         if not type:
             type = self.SHORT
@@ -1251,6 +1335,8 @@ class TestcaseGeneratorOptions(Tool.ToolOptions):
             'person_count'  : 2000,
             'no_trans'      : 0,
             'long_names'    : 0,
+            'specialchars'  : 0,
+            'add_serial'    : 0,
         }
         self.options_help = {
             'bugs'          : ("=0/1",
@@ -1275,6 +1361,14 @@ class TestcaseGeneratorOptions(Tool.ToolOptions):
             'long_names'    : ("=0/1",
                                 "Wheter to create short or long names",
                                 ["Short names","Long names"],
+                                True),
+            'specialchars'    : ("=0/1",
+                                "Wheter to ass some special characters to every text field",
+                                ["No special characters","Add special characters"],
+                                True),
+            'add_serial'    : ("=0/1",
+                                "Wheter to add a serial number to every text field",
+                                ["No serial","Add serial number"],
                                 True),
         }
 

@@ -2770,7 +2770,9 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.title,self.author,self.pubinfo,self.abbrev,self.gramps_id]
+        return [self.title,self.author,self.pubinfo,self.abbrev,self.gramps_id]\
+                + self.datamap.keys() + self.datamap.values()
+        
 
     def get_text_data_child_list(self):
         """
