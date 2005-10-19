@@ -689,7 +689,7 @@ class BareReportDialog:
         if self.max_gen:
             self.generations_spinbox = gtk.SpinButton(digits=0)
             self.generations_spinbox.set_numeric(1)
-            adjustment = gtk.Adjustment(self.max_gen,1,31,1,0)
+            adjustment = gtk.Adjustment(self.max_gen,1,999,1,0)
             self.generations_spinbox.set_adjustment(adjustment)
             adjustment.value_changed()
             label = gtk.Label("%s:" % _("Generations"))

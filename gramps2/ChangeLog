@@ -1,3 +1,6 @@
+2005-10-18  Don Allingham  <don@gramps-project.org>
+	* src/Report.py: bumped the maximum generations to 999 from 31
+
 2005-10-18  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/NavWebPage.py: Support side-by-side gallery images
 	* src/data/main*.css: Support side-by-side gallery images
