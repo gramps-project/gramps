@@ -31,6 +31,7 @@ import gc
 import locale
 import sets
 from gettext import gettext as _
+from cgi import escape
 
 #-------------------------------------------------------------------------
 #
@@ -1247,7 +1248,7 @@ class EditPerson:
         the close window"""
         
         if self.did_data_change() and not GrampsKeys.get_dont_ask():
-            n = "<i>%s</i>" % self.nd.display(self.person)
+            n = "<i>%s</i>" % escape(self.nd.display(self.person))
             SaveDialog(_('Save changes to %s?') % n,
                        _('If you close without saving, the changes you '
                          'have made will be lost'),
@@ -1263,7 +1264,7 @@ class EditPerson:
         """If the data has changed, give the user a chance to cancel
         the close window"""
         if self.did_data_change() and not GrampsKeys.get_dont_ask():
-            n = "<i>%s</i>" % self.nd.display(self.person)
+            n = "<i>%s</i>" % escape(self.nd.display(self.person))
             SaveDialog(_('Save Changes to %s?') % n,
                        _('If you close without saving, the changes you '
                          'have made will be lost'),
@@ -2000,8 +2001,8 @@ class EditPerson:
 
     def write_primary_name(self):
         # initial values
-        name = '<span size="larger" weight="bold">%s</span>' % self.nd.display(self.person)
-        self.top.get_widget("activepersonTitle").set_text(name)
+        name = '<span size="larger" weight="bold">%s</span>' % escape(self.nd.display(self.person))
+        self.top.get_widget("activepersonTitle").set_text( name)
         self.top.get_widget("activepersonTitle").set_use_markup(True)
         self.suffix.set_text(self.pname.get_suffix())
         if self.use_patronymic:

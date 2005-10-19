@@ -35,6 +35,7 @@ __version__ = "$Revision$"
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 import gc
+from cgi import escape
 
 #-------------------------------------------------------------------------
 #
@@ -122,7 +123,7 @@ class AttributeEditor:
         if title == ", ":
             title = _("Attribute Editor")
         else:
-            title = _("Attribute Editor for %s") % title
+            title = _("Attribute Editor for %s") % escape(title)
         l = self.top.get_widget("title")
         Utils.set_titles(self.window,l,title,_('Attribute Editor'))
 

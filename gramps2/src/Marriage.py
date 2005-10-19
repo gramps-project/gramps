@@ -28,6 +28,7 @@
 import cPickle as pickle
 from gettext import gettext as _
 import sets
+from cgi import escape
 
 #-------------------------------------------------------------------------
 #
@@ -147,8 +148,8 @@ class Marriage:
         father = self.db.get_person_from_handle(fid)
         mother = self.db.get_person_from_handle(mid)
         
-        self.title = _("%s and %s") % (NameDisplay.displayer.display(father),
-                                       NameDisplay.displayer.display(mother))
+        self.title = _("%s and %s") % (escape(NameDisplay.displayer.display(father)),
+                                       escape(NameDisplay.displayer.display(mother)))
 
         Utils.set_title_label(self.top,self.title)
         

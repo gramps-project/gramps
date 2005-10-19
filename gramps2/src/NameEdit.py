@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 import gc
+from cgi import escape
 
 #-------------------------------------------------------------------------
 #
@@ -127,7 +128,7 @@ class NameEditor:
         if full_name == "":
             tmsg = _("Name Editor")
         else:
-            tmsg = _("Name Editor for %s") % full_name
+            tmsg = _("Name Editor for %s") % escape(full_name)
 
         Utils.set_titles(self.window, alt_title, tmsg, _('Name Editor'))
 

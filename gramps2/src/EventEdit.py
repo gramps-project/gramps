@@ -28,6 +28,7 @@
 from gettext import gettext as _
 import sets
 import gc
+from cgi import escape
 
 #-------------------------------------------------------------------------
 #
@@ -117,7 +118,7 @@ class EventEditor:
         if name == ", ":
             etitle = _('Event Editor')
         else:
-            etitle = _('Event Editor for %s') % name
+            etitle = _('Event Editor for %s') % escape(name)
 
         Utils.set_titles(self.window,title_label, etitle,
                          _('Event Editor'))

@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+from cgi import escape
 
 #-------------------------------------------------------------------------
 #
@@ -678,9 +679,9 @@ class PedigreeView:
                 child_menu = item.get_submenu()
 
             if find_children(self.db,child):
-                label = gtk.Label('<b><i>%s</i></b>' % NameDisplay.displayer.display(child))
+                label = gtk.Label('<b><i>%s</i></b>' % escape(NameDisplay.displayer.display(child)))
             else:
-                label = gtk.Label(NameDisplay.displayer.display(child))
+                label = gtk.Label(escape(NameDisplay.displayer.display(child)))
 
             child_item = gtk.MenuItem(None)
             label.set_use_markup(True)
@@ -712,9 +713,9 @@ class PedigreeView:
                 par_menu = item.get_submenu()
 
             if find_parents(self.db,par):
-                label = gtk.Label('<b><i>%s</i></b>' % NameDisplay.displayer.display(par))
+                label = gtk.Label('<b><i>%s</i></b>' % escape(NameDisplay.displayer.display(par)))
             else:
-                label = gtk.Label(NameDisplay.displayer.display(par))
+                label = gtk.Label(escape(NameDisplay.displayer.display(par)))
 
             par_item = gtk.MenuItem(None)
             label.set_use_markup(True)

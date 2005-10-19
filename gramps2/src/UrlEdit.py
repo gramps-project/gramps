@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 import gc
+from cgi import escape
 
 #-------------------------------------------------------------------------
 #
@@ -74,7 +75,7 @@ class UrlEditor:
         if not name or name == ", ":
             etitle =_('Internet Address Editor')
         else:
-            etitle =_('Internet Address Editor for %s') % name,
+            etitle =_('Internet Address Editor for %s') % escape(name),
             
 
         Utils.set_titles(self.window,title_label, etitle,
