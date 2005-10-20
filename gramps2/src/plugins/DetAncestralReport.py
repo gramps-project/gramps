@@ -405,13 +405,12 @@ class DetAncestorReport(Report.Report):
             self.doc.start_paragraph("DAR-ChildList",ReportUtils.roman(cnt).lower() + ".")
             cnt += 1
 
-            self.doc.write_text(child_name)
-            text = ReportUtils.list_person_str(self.database,child)
-            if text:
-                self.doc.write_text(" : %s" % text)
-            else:
-                self.doc.write_text(".")
-
+            self.doc.write_text("%s. " % child_name)
+            self.doc.write_text(ReportUtils.born_str(self.database, child, 0,
+                                                     self.EMPTY_DATE, self.EMPTY_PLACE))
+            self.doc.write_text(ReportUtils.died_str(self.database, child, 0, 
+                                                     self.EMPTY_DATE, self.EMPTY_PLACE))
+            
             self.doc.end_paragraph()
 
     def write_mate(self, mate):
