@@ -1,3 +1,8 @@
+2005-10-20  Don Allingham  <don@gramps-project.org>
+	* src/plugins/DetDescendantReport.py: bring in line with 
+	DetAncestralReport
+	* src/plugins/DetAncestralReport.py: remove firstname option
+
 2005-10-19  Don Allingham  <don@gramps-project.org>
 	* src/plugins/DetAncestralReport.py: fix child strings
 	* src/GrampsBSDDB.py: use cursors to rebuild secondary indices.

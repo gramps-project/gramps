@@ -50,6 +50,7 @@ import ReportOptions
 import const
 import ReportUtils
 
+from QuestionDialog import ErrorDialog
 from DateHandler import displayer as _dd
 from NameDisplay import displayer as _nd
 
@@ -564,7 +565,6 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
     def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
-            'firstnameiop'  : 0,
             'fulldates'     : 1,
             'listc'         : 1,
             'incnotes'      : 1,
@@ -580,9 +580,6 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
             'incsources'    : 0,
         }
         self.options_help = {
-            'firstnameiop'  : ("=0/1","Whether to use first names instead of pronouns",
-                            ["Do not use first names","Use first names"],
-                            True),
             'fulldates'     : ("=0/1","Whether to use full dates instead of just year.",
                             ["Do not use full dates","Use full dates"],
                             True),
@@ -733,7 +730,7 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         self.include_notes_option = gtk.CheckButton(_("Include notes"))
         self.include_notes_option.set_active(self.options_dict['incnotes'])
 
-        # Print notes
+        # Print nickname
         self.usenick = gtk.CheckButton(_("Use nickname for common name"))
         self.usenick.set_active(self.options_dict['usenick'])
 
