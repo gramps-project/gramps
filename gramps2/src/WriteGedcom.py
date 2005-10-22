@@ -751,6 +751,16 @@ class GedcomWriter:
             for srcref in family.get_source_references():
                 self.write_source_ref(1,srcref)
 
+            if self.images:
+                photos = family.get_media_list ()
+            else:
+                photos = []
+
+            for photo in photos:
+                if self.private and photo.get_privacy():
+                    continue
+                self.write_photo(photo,1)
+
             self.write_change(1,family.get_change_time())
             
     def write_sources(self):
@@ -969,39 +979,7 @@ class GedcomWriter:
             for photo in photos:
                 if self.private and photo.get_privacy():
                     continue
-                photo_obj_id = photo.get_reference_handle()
-                photo_obj = self.db.get_object_from_handle(photo_obj_id)
-                print photo_obj, photo_obj.get_mime_type()
-                if photo_obj and photo_obj.get_mime_type() == "image/jpeg":
-                    path = photo_obj.get_path ()
-                    imgdir = os.path.join(self.dirname,self.images_path)
-                    if not os.path.isfile(path):
-                        continue
-                    try:
-                        if not os.path.isdir(imgdir):
-                            os.makedirs(imgdir)
-                    except:
-                        continue
-                    basename = os.path.basename(path)
-                    dest = os.path.join (imgdir, basename)
-                    if dest != path:
-                        try:
-                            shutil.copyfile(path, dest)
-                        except (IOError,OSError),msg:
-                            msg2 = _("Could not create %s") % dest
-                            WarningDialog(msg2,str(msg))
-                            continue
-                        
-                    self.writeln('1 OBJE')
-                    self.writeln('2 FORM jpeg')
-                    self.writeln('2 TITL %s' % photo_obj.get_description())
-                    dirname = os.path.join (self.dirname, self.images_path)
-                    basename = os.path.basename (path)
-                    self.writeln('2 FILE %s' % os.path.join(self.images_path,
-                                                           basename))
-                    if photo_obj.get_note():
-                        self.write_long_text("NOTE",2,self.cnvtxt(photo_obj.get_note()))
-
+                self.write_photo(photo,1)
 
         for family in person.get_parent_family_handle_list():
             if self.flist.has_key(family[0]):
@@ -1246,6 +1224,41 @@ class GedcomWriter:
         if ref.get_note():
             self.write_long_text("NOTE",level+1,self.cnvtxt(ref.get_note()))
         
+    def write_photo(self,photo,level):
+        photo_obj_id = photo.get_reference_handle()
+        photo_obj = self.db.get_object_from_handle(photo_obj_id)
+        print photo_obj, photo_obj.get_mime_type()
+        if photo_obj and photo_obj.get_mime_type() == "image/jpeg":
+            path = photo_obj.get_path ()
+            imgdir = os.path.join(self.dirname,self.images_path)
+            if not os.path.isfile(path):
+                return
+            try:
+                if not os.path.isdir(imgdir):
+                    os.makedirs(imgdir)
+            except:
+                return
+            basename = os.path.basename(path)
+            dest = os.path.join (imgdir, basename)
+            if dest != path:
+                try:
+                    shutil.copyfile(path, dest)
+                    shutil.copystat(path, dest)
+                except (IOError,OSError),msg:
+                    msg2 = _("Could not create %s") % dest
+                    WarningDialog(msg2,str(msg))
+                    return
+
+            self.writeln('%d OBJE' % level)
+            self.writeln('%d FORM jpeg' % (level+1) )
+            self.writeln('%d TITL %s' % (level+1, photo_obj.get_description()))
+            dirname = os.path.join (self.dirname, self.images_path)
+            basename = os.path.basename (path)
+            self.writeln('%d FILE %s' % (level+1,os.path.join(self.images_path,
+                                                              basename)))
+            if photo_obj.get_note():
+                self.write_long_text("NOTE",level+1,self.cnvtxt(photo_obj.get_note()))
+
     def fid(self,id):
         family = self.db.get_family_from_handle (id)
         return family.get_gramps_id ()
