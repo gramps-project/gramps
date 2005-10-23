@@ -1,3 +1,7 @@
+2005-10-24  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/AddSpouse.py: signal fix
+	* src/EventEdit.py: signal fix
+
 2005-10-22  Don Allingham  <don@gramps-project.org>
 	* src/AddMedia.py: signal_autoconnect changes
 	* src/AddSpouse.py: signal_autoconnect changes

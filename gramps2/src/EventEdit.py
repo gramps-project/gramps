@@ -229,7 +229,7 @@ class EventEditor:
         self.gladeif.connect('button111','clicked',self.close)
         self.gladeif.connect('ok','clicked',self.on_event_edit_ok_clicked)
         self.gladeif.connect('button126','clicked',self.on_help_clicked)
-        self.gladeif.connect('notebook','on_switch_page',self.on_switch_page)
+        self.gladeif.connect('notebook','switch_page',self.on_switch_page)
         self.gladeif.connect('add_obj','clicked',self.gallery.on_add_media_clicked)
         self.gladeif.connect('sel_obj','clicked',self.gallery.on_select_media_clicked)
         self.gladeif.connect('button172','clicked',self.gallery.on_edit_media_clicked)

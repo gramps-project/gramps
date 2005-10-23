@@ -125,7 +125,7 @@ class AddSpouse:
         self.gladeif.connect('spouse_ok','clicked',self.select_spouse_clicked)
         self.gladeif.connect('spouse_help','clicked',self.on_spouse_help_clicked)
         self.gladeif.connect('spouseNewPerson','clicked',self.new_spouse_clicked)
-        self.gladeif.connect('show_all','clicked',self.on_show_toggled)
+        self.gladeif.connect('showall','clicked',self.on_show_toggled)
             
         self.rel_combo.set_active(RelLib.Family.MARRIED)
         self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
