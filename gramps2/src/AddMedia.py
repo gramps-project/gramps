@@ -46,6 +46,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from QuestionDialog import ErrorDialog
+from WindowUtils import GladeIf
 import gtk.glade
 
 #-------------------------------------------------------------------------
@@ -90,12 +91,9 @@ class AddMediaObject:
 
         Utils.set_titles(self.window,self.glade.get_widget('title'),
                          _('Select a media object'))
-        
-        self.glade.signal_autoconnect({
-            "on_fname_update_preview" : self.on_name_changed,
-            "on_help_imagesel_clicked" : self.on_help_imagesel_clicked,
-            })
-        
+
+        self.gladeif = GladeIf(self.glade)
+        self.gladeif.connect('fname', 'update_preview', self.on_name_changed)
         self.window.show()
 
     def internal_toggled(self, obj):

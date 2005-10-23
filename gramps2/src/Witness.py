@@ -47,6 +47,7 @@ import RelLib
 import ListModel
 import NameDisplay
 import GrampsDisplay
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -139,14 +140,14 @@ class WitnessEditor:
         self.update = update
         self.ref = ref
         self.show_witness = gtk.glade.XML(const.dialogFile, "witness_edit","gramps")
-        self.show_witness.signal_autoconnect({
-            "on_toggled"   : self.on_toggled,
-            "on_witness_edit_delete_event"   : self.on_delete_event,
-            "on_cancel_witness_clicked"   : self.close,
-            "on_help_witness_clicked"   : self.on_help_clicked,
-            "on_ok_witness_clicked"   : self.ok_clicked,
-            })
+        self.gladeif = GladeIf(self.show_witness)
 
+        self.gladeif.connect('name_edit','delete_event',self.on_delete_event)
+        self.gladeif.connect('cancelbutton1','clicked',self.close)
+        self.gladeif.connect('ok','clicked',self.ok_clicked)
+        self.gladeif.connect('button132','clicked',self.on_help_clicked)
+        self.gladeif.connect('in_db','toggled',self.on_toggled)
+        
         self.window = self.show_witness.get_widget('witness_edit')
         self.name = self.show_witness.get_widget("name")
         self.private = self.show_witness.get_widget("priv")
@@ -184,10 +185,12 @@ class WitnessEditor:
         self.window.show()
 
     def on_delete_event(self,obj,b):
+        self.gladeif.close()
         self.remove_itself_from_menu()
         gc.collect()
 
     def close(self,obj):
+        self.gladeif.close()
         self.remove_itself_from_menu()
         self.window.destroy()
         gc.collect()

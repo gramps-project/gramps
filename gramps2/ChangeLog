@@ -1,3 +1,26 @@
+2005-10-22  Don Allingham  <don@gramps-project.org>
+	* src/AddMedia.py: signal_autoconnect changes
+	* src/AddSpouse.py: signal_autoconnect changes
+	* src/AttrEdit.py: signal_autoconnect changes
+	* src/Bookmarks.py: signal_autoconnect changes
+	* src/ChooseParents.py: signal_autoconnect changes
+	* src/DateEdit.py: signal_autoconnect changes
+	* src/EventEdit.py: signal_autoconnect changes
+	* src/Exporter.py: signal_autoconnect changes
+	* src/GenericFilter.py: signal_autoconnect changes
+	* src/ImageSelect.py: signal_autoconnect changes
+	* src/LocEdit.py: signal_autoconnect changes
+	* src/Marriage.py: signal_autoconnect changes
+	* src/MediaView.py: signal_autoconnect changes
+	* src/NameEdit.py: signal_autoconnect changes
+	* src/SelectChild.py: signal_autoconnect changes
+	* src/Sources.py: signal_autoconnect changes
+	* src/TransUtils.py: signal_autoconnect changes
+	* src/UrlEdit.py: signal_autoconnect changes
+	* src/Utils.py: signal_autoconnect changes
+	* src/Witness.py: signal_autoconnect changes
+	* src/gramps.glade: signal_autoconnect changes
+
 2005-10-22  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/WriteGedcom.py: Media objects for families, preparation for 
 	media objects for other entities

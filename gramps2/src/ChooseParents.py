@@ -60,6 +60,7 @@ import NameDisplay
 import DateHandler
 import GenericFilter
 from QuestionDialog import ErrorDialog, WarningDialog
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -124,6 +125,7 @@ class ChooseParents:
             self.father = None
 
         self.glade = gtk.glade.XML(const.gladeFile,"familyDialog","gramps")
+        self.gladeif = GladeIf(self.glade)
         self.window = self.glade.get_widget("familyDialog")
         self.flabel = self.glade.get_widget("flabel")
         self.mlabel = self.glade.get_widget("mlabel")
@@ -167,18 +169,15 @@ class ChooseParents:
             self.type = RelLib.Family.MARRIED
 
         self.prel.set_active(self.type)
-        
-        self.glade.signal_autoconnect({
-            "on_add_parent_clicked"        : self.add_parent_clicked,
-            "on_prel_changed"              : self.parent_relation_changed,
-            "destroy_passed_object"        : self.close,
-            "on_showallf_toggled"          : self.showallf_toggled,
-            "on_showallm_toggled"          : self.showallm_toggled,
-            "on_save_parents_clicked"      : self.save_parents_clicked,
-            "on_help_familyDialog_clicked" : self.on_help_clicked,
-            "on_familyDialog_delete_event" : self.on_delete_event,
-            })
 
+        self.gladeif.connect('familyDialog','delete_event', self.on_delete_event)
+        self.gladeif.connect('button44','clicked', self.close)
+        self.gladeif.connect('button42','clicked', self.save_parents_clicked)
+        self.gladeif.connect('button167','clicked', self.on_help_clicked)
+        self.gladeif.connect('button123','clicked', self.add_parent_clicked)
+        self.gladeif.connect('showallf','toggled', self.showallf_toggled)
+        self.gladeif.connect('prel_combo','changed', self.parent_relation_changed)
+        
         self.keys = const.child_rel_list
         self.build_list(self.mcombo,mrel)
         self.build_list(self.fcombo,frel)
@@ -279,11 +278,13 @@ class ChooseParents:
         tree.append_column(column)
 
     def on_delete_event(self,obj,b):
+        self.gladeif.close()
         self.remove_itself_from_menu()
         self.close_child_windows()
         gc.collect()
 
     def close(self,obj):
+        self.gladeif.close()
         self.remove_itself_from_menu()
         self.close_child_windows()
         self.window.destroy()
@@ -680,6 +681,7 @@ class ModifyParents:
         self.mother = self.db.get_person_from_handle(mid)
 
         self.glade = gtk.glade.XML(const.gladeFile,"modparents","gramps")
+        self.gladeif = GladeIf(self.glade)
         self.window = self.glade.get_widget("modparents")
         self.title = self.glade.get_widget("title")
 
@@ -701,9 +703,7 @@ class ModifyParents:
                 self.orig_mrel = mr
                 self.orig_frel = fr
 
-        self.glade.signal_autoconnect({
-            "on_parents_help_clicked"  : self.on_help_clicked,
-            })
+        self.gladeif.connect('button165','clicked', self.on_help_clicked)
 
         self.title.set_use_markup(True)
 
@@ -751,6 +751,7 @@ class ModifyParents:
         self.val = self.window.run()
         if self.val == gtk.RESPONSE_OK:
             self.save_parents_clicked()
+        self.gladeif.close()
         self.window.destroy()
         gc.collect()
 

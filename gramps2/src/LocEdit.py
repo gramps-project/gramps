@@ -37,6 +37,7 @@ import const
 import Utils
 import RelLib
 import GrampsDisplay
+from WindowUtils import GladeIf
 
 from gettext import gettext as _
 
@@ -59,6 +60,8 @@ class LocationEditor:
             self.win_key = self
         self.location = location
         self.top = gtk.glade.XML(const.dialogFile, "loc_edit","gramps")
+        self.gladeif = GladeIf(self.top)
+        
         self.window = self.top.get_widget("loc_edit")
         self.city   = self.top.get_widget("city")
         self.state  = self.top.get_widget("state")
@@ -81,22 +84,23 @@ class LocationEditor:
             self.parish.set_text(location.get_parish())
 
         self.window.set_data("o",self)
-        self.top.signal_autoconnect({
-            "on_help_loc_clicked" : self.on_help_clicked,
-            "on_ok_loc_clicked" : self.on_location_edit_ok_clicked,
-            "on_cancel_loc_clicked" : self.close,
-            "on_loc_delete_event" : self.on_delete_event,
-           })
 
+        self.gladeif.connect('loc_edit','delete_event',self.on_delete_event)
+        self.gladeif.connect('button119','clicked',self.close)
+        self.gladeif.connect('button118','clicked',self.on_ok_clicked)
+        self.gladeif.connect('button128','clicked',self.on_help_clicked)
+        
         if parent_window:
             self.window.set_transient_for(parent_window)
         self.add_itself_to_menu()
         self.window.show()
 
     def on_delete_event(self,obj,b):
+        self.gladeif.close()
         self.remove_itself_from_menu()
 
     def close(self,obj):
+        self.gladeif.close()
         self.remove_itself_from_menu()
         self.window.destroy()
         
@@ -118,7 +122,7 @@ class LocationEditor:
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('gramps-edit-complete')
 
-    def on_location_edit_ok_clicked(self,obj):
+    def on_ok_clicked(self,obj):
         city = unicode(self.city.get_text())
         county = unicode(self.county.get_text())
         country = unicode(self.country.get_text())

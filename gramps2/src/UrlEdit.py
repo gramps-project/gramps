@@ -45,6 +45,7 @@ import const
 import Utils
 import RelLib
 import GrampsDisplay
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -66,6 +67,8 @@ class UrlEditor:
         self.url = url
         self.callback = callback
         self.top = gtk.glade.XML(const.dialogFile, "url_edit","gramps")
+        self.gladeif = GladeIf(self.top)
+        
         self.window = self.top.get_widget("url_edit")
         self.des  = self.top.get_widget("url_des")
         self.addr = self.top.get_widget("url_addr")
@@ -85,12 +88,10 @@ class UrlEditor:
             self.addr.set_text(url.get_path())
             self.priv.set_active(url.get_privacy())
 
-        self.top.signal_autoconnect({
-            "on_help_url_clicked" : self.on_help_clicked,
-            "on_ok_url_clicked" : self.on_url_edit_ok_clicked,
-            "on_cancel_url_clicked" : self.close,
-            "on_url_edit_delete_event" : self.on_delete_event,
-            })
+        self.gladeif.connect('url_edit','delete_event', self.on_delete_event)
+        self.gladeif.connect('button125','clicked', self.close)
+        self.gladeif.connect('button124','clicked', self.on_url_edit_ok_clicked)
+        self.gladeif.connect('button130','clicked', self.on_help_clicked)
 
         if parent_window:
             self.window.set_transient_for(parent_window)
@@ -98,10 +99,12 @@ class UrlEditor:
         self.window.show()
 
     def on_delete_event(self,*obj):
+        self.gladeif.close()
         self.remove_itself_from_menu()
         gc.collect()
 
     def close(self,*obj):
+        self.gladeif.close()
         self.remove_itself_from_menu()
         self.window.destroy()
         gc.collect()

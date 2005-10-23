@@ -612,7 +612,7 @@ class IsSiblingOfFilterMatch(Rule):
         fam = self.db.get_family_from_handle(fam_id)
         if fam:
             for child_handle in fam.get_child_handle_list():
-                if child_handle != handle:
+                if child_handle != person.handle:
                     self.map[child_handle] = 1
 
 #-------------------------------------------------------------------------
@@ -1981,7 +1981,7 @@ class GenericFilter:
     def xor_test(self,db,person):
         test = False
         for rule in self.flist:
-            test = test ^ rule.apply(db,handle)
+            test = test ^ rule.apply(db,person)
         return test
 
     def one_test(self,db,person):

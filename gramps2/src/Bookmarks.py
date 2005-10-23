@@ -168,7 +168,7 @@ class Bookmarks :
             if person:
                 name = NameDisplay.displayer.display(person)
                 gramps_id = person.get_gramps_id()
-                new_iter = self.namemodel.add([name,gramps_id,person_handle])
+                self.namemodel.add([name,gramps_id,person_handle])
         self.namemodel.connect_model()
 
         self.response = self.top.run()

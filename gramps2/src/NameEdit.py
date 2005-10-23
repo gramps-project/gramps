@@ -53,6 +53,8 @@ import DateHandler
 import Spell
 import GrampsDisplay
 
+from WindowUtils import GladeIf
+
 #-------------------------------------------------------------------------
 #
 # NameEditor class
@@ -76,6 +78,7 @@ class NameEditor:
         self.callback = callback
         self.child_windows = {}
         self.top = gtk.glade.XML(const.dialogFile, "name_edit","gramps")
+        self.gladeif = GladeIf(self.top)
         self.window = self.top.get_widget("name_edit")
         self.given_field  = self.top.get_widget("alt_given")
         self.sort_as  = self.top.get_widget("sort_as")
@@ -139,14 +142,12 @@ class NameEditor:
         
         self.note_buffer = self.note_field.get_buffer()
         
-        self.top.signal_autoconnect({
-            "on_help_name_clicked"        : self.on_help_clicked,
-            "on_name_edit_ok_clicked"     : self.on_name_edit_ok_clicked,
-            "on_name_edit_cancel_clicked" : self.close, 
-            "on_name_edit_delete_event"   : self.on_delete_event,
-            "on_group_over_toggled"       : self.on_group_over_toggled,
-            "on_switch_page"              : self.on_switch_page
-            })
+        self.gladeif.connect('name_edit','delete_event',self.on_delete_event)
+        self.gladeif.connect('button119','clicked',self.close)
+        self.gladeif.connect('button118','clicked',self.on_name_edit_ok_clicked)
+        self.gladeif.connect('button131','clicked',self.on_help_clicked)
+        self.gladeif.connect('notebook3','switch_page',self.on_switch_page)
+        self.gladeif.connect('group_over','toggled',self.on_group_over_toggled)
 
         if name != None:
             self.given_field.set_text(name.get_first_name())
@@ -202,11 +203,13 @@ class NameEditor:
             self.group_as.set_editable(False)
 
     def on_delete_event(self,*obj):
+        self.gladeif.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
         gc.collect()
 
     def close(self,*obj):
+        self.gladeif.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.window.destroy()

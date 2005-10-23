@@ -58,6 +58,7 @@ import Spell
 import GrampsDisplay
 
 from QuestionDialog import WarningDialog
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -142,13 +143,12 @@ class AttributeEditor:
             	else:
                     self.flowed.set_active(1)
 
-        self.top.signal_autoconnect({
-            "on_help_attr_clicked" : self.on_help_clicked,
-            "on_ok_attr_clicked" : self.on_ok_clicked,
-            "on_cancel_attr_clicked" : self.close,
-            "on_attr_edit_delete_event" : self.on_delete_event,
-            "on_switch_page" : self.on_switch_page
-            })
+        self.gladeif = GladeIf(self.top)
+        self.gladeif.connect('attr_edit','delete_event', self.on_delete_event)
+        self.gladeif.connect('button116', 'clicked', self.close)
+        self.gladeif.connect('button115', 'clicked', self.on_ok_clicked)
+        self.gladeif.connect('button127', 'clicked', self.on_help_clicked)
+        self.gladeif.connect('notebook', 'on_switch_page', self.on_switch_page)
 
         if parent_window:
             self.window.set_transient_for(parent_window)
@@ -158,11 +158,13 @@ class AttributeEditor:
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
         gc.collect()
 
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
         self.window.destroy()
         gc.collect()
 

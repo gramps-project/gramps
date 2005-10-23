@@ -504,13 +504,10 @@ def probably_alive(person,db,current_year=None,limit=0):
     # for descendants that were born more than a lifespan ago.
 
     min_generation = 13
-    max_generation = 60
-    max_age_difference = 60
 
     def descendants_too_old (person, years):
         for family_handle in person.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
-            family_list = family.get_child_handle_list()
             
             for child_handle in family.get_child_handle_list():
                 child = db.get_person_from_handle(child_handle)
@@ -543,7 +540,7 @@ def probably_alive(person,db,current_year=None,limit=0):
     try:
         if descendants_too_old (person, min_generation):
             return False
-    except RuntimeError,msg:
+    except RuntimeError:
         raise Errors.DatabaseError(
             _("Database error: %s is defined as his or her own ancestor") %
             NameDisplay.displayer.display(person))

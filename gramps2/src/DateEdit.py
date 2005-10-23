@@ -52,7 +52,6 @@ import gc
 import gtk
 import gtk.gdk
 import gtk.glade
-import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -63,7 +62,6 @@ import Date
 import DateHandler
 import const
 import Utils
-import QuestionDialog
 import GrampsDisplay
 
 #-------------------------------------------------------------------------

@@ -62,6 +62,7 @@ import GrampsDisplay
 
 from QuestionDialog import QuestionDialog, WarningDialog, SaveDialog
 from DdTargets import DdTargets
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -109,6 +110,8 @@ class Marriage:
             self.pmap[p[0]] = key
 
         self.top = gtk.glade.XML(const.marriageFile,"marriageEditor","gramps")
+        self.gladeif = GladeIf(self.top)
+        
         self.window = self.get_widget("marriageEditor")
 
         Utils.set_titles(self.window, self.top.get_widget('title'),
@@ -118,27 +121,23 @@ class Marriage:
         self.gallery = ImageSelect.Gallery(family, self.db.commit_family,
                                            self.path, self.icon_list, db, self)
 
-        self.top.signal_autoconnect({
-            "destroy_passed_object" : self.on_cancel_edit,
-            "on_help_marriage_editor" : self.on_help_clicked,
-            "on_add_attr_clicked" : self.on_add_attr_clicked,
-            "on_delete_attr_clicked" : self.on_delete_attr_clicked,
-            "on_addphoto_clicked" : self.gallery.on_add_media_clicked,
-            "on_selectphoto_clicked" : self.gallery.on_select_media_clicked,
-            "on_close_marriage_editor" : self.on_close_marriage_editor,
-            "on_delete_event" : self.on_delete_event,
-            "on_lds_src_clicked" : self.lds_src_clicked,
-            "on_lds_note_clicked" : self.lds_note_clicked,
-            "on_deletephoto_clicked" : self.gallery.on_delete_media_clicked,
-            "on_edit_photo_clicked" : self.gallery.on_edit_media_clicked,
-            "on_edit_properties_clicked": self.gallery.popup_change_description,
-            "on_marriageAddBtn_clicked" : self.on_add_clicked,
-            "on_event_update_clicked" : self.on_event_update_clicked,
-            "on_attr_update_clicked" : self.on_update_attr_clicked,
-            "on_marriageDeleteBtn_clicked" : self.on_delete_clicked,
-            "on_switch_page" : self.on_switch_page
-            })
-
+        self.gladeif.connect('marriageEditor','delete_event',self.on_delete_event)
+        self.gladeif.connect('button108','clicked',self.on_cancel_edit)
+        self.gladeif.connect('ok','clicked',self.on_close)
+        self.gladeif.connect('button119','clicked',self.on_help_clicked)
+        self.gladeif.connect('notebook4','switch_page',self.on_switch_page)
+        self.gladeif.connect('marriage_add','clicked',self.on_add_clicked)
+        self.gladeif.connect('button116','clicked',self.on_event_update_clicked)
+        self.gladeif.connect('marriage_del','clicked',self.on_delete_clicked)
+        self.gladeif.connect('attr_add','clicked',self.on_add_attr_clicked)
+        self.gladeif.connect('button118','clicked',self.on_update_attr_clicked)
+        self.gladeif.connect('attr_del','clicked',self.on_delete_attr_clicked)
+        self.gladeif.connect('media_add','clicked',self.gallery.on_add_media_clicked)
+        self.gladeif.connect('media_sel','clicked',self.gallery.on_select_media_clicked)
+        self.gladeif.connect('button117','clicked',self.gallery.on_edit_media_clicked)
+        self.gladeif.connect('media_del','clicked',self.gallery.on_delete_media_clicked)
+        self.gladeif.connect('button114','clicked',self.lds_src_clicked)
+        self.gladeif.connect('button115','clicked',self.lds_note_clicked)
 
         mode = not self.db.readonly
 
@@ -355,6 +354,7 @@ class Marriage:
         self.child_windows = {}
 
     def close(self):
+        self.gladeif.close()
         self.gallery.close()
         self.close_child_windows()
         self.remove_itself_from_winsmenu()
@@ -606,7 +606,7 @@ class Marriage:
             self.close()
 
     def save(self):
-        self.on_close_marriage_editor(None)
+        self.on_close(None)
 
     def on_delete_event(self,obj,b):
         if self.did_data_change() and not GrampsKeys.get_dont_ask():
@@ -620,7 +620,7 @@ class Marriage:
             self.close()
             return False
 
-    def on_close_marriage_editor(self,*obj):
+    def on_close(self,*obj):
 
         trans = self.db.transaction_begin()
 

@@ -244,7 +244,10 @@ class MediaView:
         gc.collect()
 
         self.mid.set_text(mobj.get_gramps_id())
-        self.mtype.set_text(type_name)
+        if type_name:
+            self.mtype.set_text(type_name)
+        else:
+            self.mtype.set_text(_('unknown'))
         self.mdesc.set_text(mobj.get_description())
         if type_name == _('Note'):
             self.mpath.set_text('')

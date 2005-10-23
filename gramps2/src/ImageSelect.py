@@ -69,6 +69,7 @@ import GrampsDisplay
 
 from QuestionDialog import ErrorDialog
 from DdTargets import DdTargets
+from WindowUtils import GladeIf
 
 _IMAGEX = 140
 _IMAGEY = 150
@@ -76,6 +77,12 @@ _PAD = 5
 
 _last_path = ""
 _iconlist_refs = []
+
+_drag_targets = [
+    ('STRING', 0, 0),
+    ('text/plain',0,0),
+    ('text/uri-list',0,2),
+    ('application/x-rootwin-drop',0,1)]
 
 #-------------------------------------------------------------------------
 #
@@ -224,12 +231,6 @@ class ImageSelect:
     def savephoto(self, photo, transaction):
         """Save the photo in the dataobj object - must be overridden"""
         pass
-
-_drag_targets = [
-    ('STRING', 0, 0),
-    ('text/plain',0,0),
-    ('text/uri-list',0,2),
-    ('application/x-rootwin-drop',0,1)]
 
 #-------------------------------------------------------------------------
 #
@@ -766,17 +767,16 @@ class LocalMediaProperties:
             else:
                 self.flowed.set_active(1)
 
-        self.change_dialog.signal_autoconnect({
-            "on_add_attr_clicked": self.on_add_attr_clicked,
-            "on_notebook_switch_page": self.on_notebook_switch_page,
-            "on_update_attr_clicked": self.on_update_attr_clicked,
-            "on_delete_attr_clicked" : self.on_delete_attr_clicked,
-            "on_help_clicked" : self.on_help_clicked,
-            "on_ok_clicked" : self.on_ok_clicked,
-            "on_cancel_clicked" : self.close,
-            "on_local_delete_event" : self.on_delete_event,
-            })
-
+        self.gladeif = GladeIf(self.change_dialog)
+        self.gladeif.connect('change_description','delete_event',self.on_delete_event)
+        self.gladeif.connect('button84','clicked',self.close)
+        self.gladeif.connect('ok','clicked',self.on_ok_clicked)
+        self.gladeif.connect('button104','clicked',self.on_help_clicked)
+        self.gladeif.connect('notebook1','switch_page',self.on_notebook_switch_page)
+        self.gladeif.connect('button86','clicked',self.on_add_attr_clicked)
+        self.gladeif.connect('button100','clicked',self.on_update_attr_clicked)
+        self.gladeif.connect('button88','clicked',self.on_delete_attr_clicked)
+            
         media_obj = self.db.get_object_from_handle(self.photo.get_reference_handle())
         gnote = self.change_dialog.get_widget('global_notes')
         spell = Spell.Spell(gnote)
@@ -790,11 +790,13 @@ class LocalMediaProperties:
         self.window.show()
 
     def on_delete_event(self,obj,b):
+        self.gladeif.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
         gc.collect()
 
     def close(self,obj):
+        self.gladeif.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.window.destroy()
@@ -946,6 +948,7 @@ class GlobalMediaProperties:
                 self.win_key = obj.get_handle()
         else:
             self.win_key = self
+        self.pdmap = {}
         self.child_windows = {}
         self.obj = obj
         self.lists_changed = 0
@@ -962,6 +965,7 @@ class GlobalMediaProperties:
         self.path = self.db.get_save_path()
         self.change_dialog = gtk.glade.XML(const.imageselFile,
                                            "change_global","gramps")
+        self.gladeif = GladeIf(self.change_dialog)
 
         mode = not self.db.readonly
         
@@ -1033,7 +1037,8 @@ class GlobalMediaProperties:
             pb = ImgManip.get_thumbnail_image(self.obj.get_path(),mtype)
             self.pixmap.set_from_pixbuf(pb)
             descr = Utils.get_mime_description(mtype)
-            self.change_dialog.get_widget("type").set_text(descr)
+            if descr:
+                self.change_dialog.get_widget("type").set_text(descr)
         else:
             self.change_dialog.get_widget("type").set_text(_('Note'))
             self.pixmap.hide()
@@ -1050,20 +1055,14 @@ class GlobalMediaProperties:
             else:
                 self.flowed.set_active(1)
 
-        self.change_dialog.signal_autoconnect({
-            "on_cancel_clicked"      : self.close,
-            "on_up_clicked"          : self.on_up_clicked,
-            "on_down_clicked"        : self.on_down_clicked,
-            "on_ok_clicked"          : self.on_ok_clicked,
-            "on_apply_clicked"       : self.on_apply_clicked,
-            "on_add_attr_clicked"    : self.on_add_attr_clicked,
-            "on_notebook_switch_page": self.on_notebook_switch_page,
-            "on_delete_attr_clicked" : self.on_delete_attr_clicked,
-            "on_update_attr_clicked" : self.on_update_attr_clicked,
-            "on_help_clicked"        : self.on_help_clicked,
-            "on_global_delete_event" : self.on_delete_event,
-            })
-
+        self.gladeif.connect('change_global','delete_event',self.on_delete_event)
+        self.gladeif.connect('button91','clicked',self.close)
+        self.gladeif.connect('ok','clicked',self.on_ok_clicked)
+        self.gladeif.connect('button102','clicked',self.on_help_clicked)
+        self.gladeif.connect('notebook2','switch_page',self.on_notebook_switch_page)
+        self.gladeif.connect('add_attr','clicked',self.on_add_attr_clicked)
+        self.gladeif.connect('button101','clicked',self.on_update_attr_clicked)
+        self.gladeif.connect('del_attr','clicked',self.on_delete_attr_clicked)
 
         for name in ['gl_del_src','gl_add_src','add_attr','del_attr','ok']:
             self.change_dialog.get_widget(name).set_sensitive(mode)
@@ -1221,7 +1220,6 @@ class GlobalMediaProperties:
                 self.db.add_place(place,trans)
                 self.db.transaction_commit(trans,_('Add Place (%s)' % text))
                 self.pdmap[text] = place.get_handle()
-                self.add_places.append(place)
                 return place.get_handle()
             else:
                 return None

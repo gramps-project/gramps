@@ -383,14 +383,14 @@ class SourceEditor:
         Utils.set_titles(self.sourceDisplay,
                          self.showSource.get_widget('title'),
                          _('Source Information'))
+
+        self.gladeif = GladeIf(self.showSource)
+        self.gladeif.connect('sourceDisplay','delete_event', self.on_delete_event)
+        self.gladeif.connect('button95','clicked',self.close)
+        self.gladeif.connect('ok','clicked',self.on_sourceok_clicked)
+        self.gladeif.connect('button144','clicked', self.on_help_clicked)
+        self.gladeif.connect('button143','clicked',self.add_src_clicked)
         
-        self.showSource.signal_autoconnect({
-            "on_add_src_clicked"            : self.add_src_clicked,
-            "on_help_srcDisplay_clicked"    : self.on_help_clicked,
-            "on_ok_srcDisplay_clicked"      : self.on_sourceok_clicked,
-            "on_cancel_srcDisplay_clicked"  : self.close,
-            "on_sourceDisplay_delete_event" : self.on_delete_event,
-            })
         self.source_field = self.get_widget("sourceList")
 
         # setup menu
@@ -445,11 +445,13 @@ class SourceEditor:
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
         gc.collect()
 
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.gladeif.close()
         self.sourceDisplay.destroy()
         gc.collect()
 

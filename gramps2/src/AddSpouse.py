@@ -55,7 +55,6 @@ import const
 import Utils
 import PeopleModel
 import Date
-import DateHandler
 import Marriage
 import NameDisplay
 import GenericFilter
@@ -310,57 +309,6 @@ class AddSpouse:
 
     def relation_type_changed(self,obj):
         gobject.idle_add(self.update_data)
-
-    def all_filter(self, person):
-        return person.get_gender() != self.sgender
-
-    def likely_filter(self, person):
-        if person.get_gender() == self.sgender:
-            return False
-
-        pd_id = person.get_death_handle()
-        pb_id = person.get_birth_handle()
-                
-        if pd_id:
-            pdday = self.db.get_event_from_handle(pd_id).get_date_object()
-        else:
-            pdday = Date.Date()
-
-        if pb_id:
-            pbday = self.db.get_event_from_handle(pb_id).get_date_object()
-        else:
-            pbday = Date.Date()
-                    
-        if self.bday.get_year_valid():
-            if pbday.get_year_valid():
-                # reject if person birthdate differs more than
-                # 100 years from spouse birthdate 
-                if abs(pbday.get_year() - self.bday.get_year()) > 100:
-                    return 0
-
-            if pdday.get_year_valid():
-                # reject if person birthdate is after the spouse deathdate 
-                if self.bday.get_year() + 10 > pdday.get_high_year():
-                    return 0
-                
-                # reject if person birthdate is more than 100 years 
-                # before the spouse deathdate
-                if self.bday.get_high_year() + 100 < pdday.get_year():
-                    return 0
-
-        if self.dday.get_year_valid():
-            if pbday.get_year_valid():
-                # reject if person deathdate was prior to 
-                # the spouse birthdate 
-                if self.dday.get_high_year() < pbday.get_year() + 10:
-                    return 0
-
-            if pdday.get_year_valid():
-                # reject if person deathdate differs more than
-                # 100 years from spouse deathdate 
-                if abs(pdday.get_year() - self.dday.get_year()) > 100:
-                    return 0
-        return 1
 
     def set_gender(self):
         if self.rel_combo.get_active() == RelLib.Family.CIVIL_UNION:
