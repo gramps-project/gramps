@@ -198,7 +198,8 @@ def import2(database, filename, cb, codeset, use_trans):
 
     try:
         np = NoteParser(filename, False)
-        g = GedcomParser(database,filename,statusTop, codeset, np.get_map())
+        g = GedcomParser(database,filename,statusTop, codeset, np.get_map(),
+                         np.get_lines())
     except IOError,msg:
         Utils.destroy_passed_object(statusWindow)
         ErrorDialog(_("%s could not be opened\n") % filename,str(msg))
@@ -234,7 +235,7 @@ def import2(database, filename, cb, codeset, use_trans):
         Utils.destroy_passed_object(statusWindow)
         DisplayTrace.DisplayTrace()
         return
-    
+
     statusTop.get_widget("close").set_sensitive(True)
     statusWindow.set_modal(False)
     if close:
@@ -278,12 +279,14 @@ concRE = re.compile(r"\s*\d+\s+CONC\s(.*)$")
 class NoteParser:
     def __init__(self, filename,broken):
         self.name_map = {}
-        
+
+        self.count = 0
         f = open(filename,"rU")
         innote = False
         
         for line in f.xreadlines():
 
+            self.count += 1
             if innote:
                 match = contRE.match(line)
                 if match:
@@ -310,6 +313,9 @@ class NoteParser:
     def get_map(self):
         return self.name_map
 
+    def get_lines(self):
+        return self.count
+
 #-------------------------------------------------------------------------
 #
 #
@@ -320,7 +326,8 @@ class GedcomParser:
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
 
-    def __init__(self, dbase, filename, window, codeset, note_map):
+    def __init__(self, dbase, filename, window, codeset, note_map, lines):
+        self.maxlines = float(lines)
         self.dp = GedcomDateParser()
         self.db = dbase
         self.person = None
@@ -396,9 +403,12 @@ class GedcomParser:
             self.close_done = window.get_widget('close_done')
             self.error_text_obj = window.get_widget("error_text")
             self.info_text_obj = window.get_widget("info_text")
+            self.progressbar = window.get_widget('progressbar')
             
         self.error_count = 0
-
+        self.current = 0.0
+        self.oldval = 0.0
+        
         amap = const.personalConstantAttributes
         self.attrs = amap.values()
         self.gedattr = {}
@@ -489,6 +499,15 @@ class GedcomParser:
     def get_next(self):
         if self.backoff == 0:
             next_line = self.f.readline()
+            self.current += 1.0
+
+            newval = self.current/self.maxlines
+            if newval != self.oldval:
+                self.progressbar.set_fraction(min(newval,1.0))
+                self.progressbar.set_text("%d%%" % int(newval*100))
+                self.oldval = newval
+                while gtk.events_pending():
+                    gtk.main_iteration()
             
             # EOF ?
             if next_line == "":
@@ -586,6 +605,8 @@ class GedcomParser:
         t = time.time() - t
         msg = _('Import Complete: %d seconds') % t
 
+        self.progressbar.set_fraction(1.0)
+        self.progressbar.set_text(_("Complete"))
         if use_trans:
             self.db.transaction_commit(self.trans,_("GEDCOM import"))
         self.db.enable_signals()
