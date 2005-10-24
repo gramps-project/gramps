@@ -413,6 +413,27 @@ def save_event(st):
 
 #-------------------------------------------------------------------------
 #
+# GEDCOM tags representing attributes that may take a parameter, value or
+# description on the same line as the tag
+#
+#-------------------------------------------------------------------------
+personalGedcomAttributeTakesParam = {
+    "CAST" : 1,
+    "DSCR" : 1,
+    "EDUC" : 1,
+    "IDNO" : 1,
+    "NATI" : 1,
+    "NCHI" : 1,
+    "NMR"  : 1,
+    "OCCU" : 1,
+    "PROP" : 1,
+    "RELI" : 1,
+    "SSN"  : 1,
+    "TITL" : 1
+    }
+
+#-------------------------------------------------------------------------
+#
 # 
 #
 #-------------------------------------------------------------------------
