@@ -2,7 +2,7 @@
 	* src/WriteGedcom.py: export more objects, better conformance with
 	the spec, preserve timestamps on objects
 	* src/const.py.in: add table of GEDCOM tags that take a value on the
-	same line
+	* src/ImageSelect.py: signal fix
 
 2005-10-23  Don Allingham  <don@gramps-project.org>
 	* src/ReadGedcom.py: handle progress bar

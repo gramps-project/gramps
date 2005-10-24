@@ -770,7 +770,7 @@ class LocalMediaProperties:
         self.gladeif = GladeIf(self.change_dialog)
         self.gladeif.connect('change_description','delete_event',self.on_delete_event)
         self.gladeif.connect('button84','clicked',self.close)
-        self.gladeif.connect('ok','clicked',self.on_ok_clicked)
+        self.gladeif.connect('button82','clicked',self.on_ok_clicked)
         self.gladeif.connect('button104','clicked',self.on_help_clicked)
         self.gladeif.connect('notebook1','switch_page',self.on_notebook_switch_page)
         self.gladeif.connect('button86','clicked',self.on_add_attr_clicked)
