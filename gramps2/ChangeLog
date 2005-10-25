@@ -1,3 +1,6 @@
+2005-10-25  Alex Roitman  <shura@gramps-project.org>
+	* src/ReadGedcom.py (parse_source_reference): Ignore empty QUAY.
+
 2005-10-24  Don Allingham  <don@gramps-project.org>
 	* src/GrampsCfg.py: signal_autoconnect changes
 	* src/ImageSelect.py: signal_autoconnect changes

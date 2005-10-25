@@ -1722,7 +1722,10 @@ class GedcomParser:
             elif matches[1] in ["OBJE","REFN","TEXT"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "QUAY":
-                val = int(matches[2])
+                try:
+                    val = int(matches[2])
+                except ValueError:
+                    return
                 if val > 1:
                     source.set_confidence_level(val+1)
                 else:
