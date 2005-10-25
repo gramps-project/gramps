@@ -542,7 +542,6 @@
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="status"/>
 	    </widget>
 	  </child>
 	</widget>

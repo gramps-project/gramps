@@ -119,7 +119,7 @@ class ImageSelect:
 
         if self.path == '':
             return
-            
+
         self.glade       = gtk.glade.XML(const.imageselFile,"imageSelect","gramps")
         self.window      = self.glade.get_widget("imageSelect")
 
@@ -133,10 +133,9 @@ class ImageSelect:
         Utils.set_titles(self.window,self.glade.get_widget('title'),
                          _('Select a media object'))
         
-        self.glade.signal_autoconnect({
-            "on_fname_update_preview" : self.on_name_changed,
-            "on_help_imagesel_clicked" : self.on_help_imagesel_clicked,
-            })
+
+        self.gladeif = GladeIf(self.glade)
+        self.gladeif.connect('fname', 'update_preview', self.on_name_changed)
 
         if os.path.isdir(_last_path):
             self.fname.set_current_folder(_last_path)

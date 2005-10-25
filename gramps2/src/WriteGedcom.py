@@ -438,28 +438,6 @@ class GedcomWriterOptionBox:
 
         self.nl = self.cnvtxt(self.target_ged.get_endl())
 
-#        glade_file = "%s/gedcomexport.glade" % os.path.dirname(__file__)
-#
-#        self.exprogress = gtk.glade.XML(glade_file,"exportprogress","gramps")
-#        self.exprogress.signal_autoconnect({
-#            "on_close_clicked" : Utils.destroy_passed_object
-#            })
-#
-#        Utils.set_titles(self.exprogress.get_widget('exportprogress'),
-#                         self.exprogress.get_widget('title'),
-#                         _('GEDCOM export'))
-#
-#        self.fbar = self.exprogress.get_widget("fbar")
-#        self.pbar = self.exprogress.get_widget("pbar")
-#        self.sbar = self.exprogress.get_widget("sbar")
-#        self.progress = self.exprogress.get_widget('exportprogress')
-#
-#        closebtn = self.exprogress.get_widget("close")
-#        closebtn.connect("clicked",Utils.destroy_passed_object)
-#        closebtn.set_sensitive(0)
-#
-#        self.export_data(name)
-#        closebtn.set_sensitive(1)
 
 class GedcomWriter:
     def __init__(self,database,person,cl=0,filename="",option_box=None):
@@ -570,11 +548,9 @@ class GedcomWriter:
         except IOError,msg:
             msg2 = _("Could not create %s") % filename
             ErrorDialog(msg2,str(msg))
-#            self.progress.destroy()
             return 0
         except:
             ErrorDialog(_("Could not create %s") % filename)
-#            self.progress.destroy()
             return 0
 
         date = time.ctime(time.time()).split()

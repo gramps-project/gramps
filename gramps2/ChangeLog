@@ -1,3 +1,11 @@
+2005-10-24  Don Allingham  <don@gramps-project.org>
+	* src/GrampsCfg.py: signal_autoconnect changes
+	* src/ImageSelect.py: signal_autoconnect changes
+	* src/ReadGedcom.py: signal_autoconnect changes
+	* src/WriteGedcom.py: signal_autoconnect changes
+	* src/gedcomimport.glade: signal_autoconnect changes
+	* src/gramps.glade: signal_autoconnect changes
+
 2005-10-24  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/WriteGedcom.py: export more objects, better conformance with
 	the spec, preserve timestamps on objects

@@ -48,6 +48,7 @@ import const
 import Utils
 import DateHandler
 import GrampsDisplay
+from WindowUtils import GladeIf
 
 #-------------------------------------------------------------------------
 #
@@ -143,12 +144,11 @@ class GrampsPreferences:
         self.built = 0
         self.db = db
         self.top = gtk.glade.XML(const.prefsFile,"preferences","gramps")
-        self.top.signal_autoconnect({
-            "on_close_clicked" : self.on_close_clicked,
-            "on_help_clicked" : self.on_propertybox_help,
-            "on_tree_select_row" : self.select
-            })
+        self.gladeif = GladeIf(self.top)
 
+        self.gladeif.connect('button6','clicked',self.on_close_clicked)
+        self.gladeif.connect('button7','clicked',self.on_propertybox_help)
+        
         self.window = self.top.get_widget("preferences")
         self.tree = self.top.get_widget("tree")
         self.store = gtk.TreeStore(gobject.TYPE_STRING)
@@ -336,7 +336,8 @@ class GrampsPreferences:
         GrampsDisplay.help('gramps-prefs')
 
     def on_close_clicked(self,obj):
-        Utils.destroy_passed_object(self.window)
+        self.gladeif.close()
+        self.window.destroy()
     
 #-------------------------------------------------------------------------
 #

@@ -186,26 +186,25 @@ def import2(database, filename, cb, codeset, use_trans):
         glade_file = "plugins/gedcomimport.glade"
 
     statusTop = gtk.glade.XML(glade_file,"status","gramps")
-    statusWindow = statusTop.get_widget("status")
+    status_window = statusTop.get_widget("status")
 
-    Utils.set_titles(statusWindow,statusTop.get_widget('title'),
+    Utils.set_titles(status_window,statusTop.get_widget('title'),
                      _('GEDCOM import status'))
-    
-    statusTop.get_widget("close").set_sensitive(0)
-    statusTop.signal_autoconnect({
-        "destroy_passed_object" : Utils.destroy_passed_object
-        })
 
+    closebtn = statusTop.get_widget("close")
+    closebtn.set_sensitive(0)
+    closebtn.connect('clicked',lambda x: Utils.destroy_passed_object(status_window))
+    
     try:
         np = NoteParser(filename, False)
         g = GedcomParser(database,filename,statusTop, codeset, np.get_map(),
                          np.get_lines())
     except IOError,msg:
-        Utils.destroy_passed_object(statusWindow)
+        status_window.destroy()
         ErrorDialog(_("%s could not be opened\n") % filename,str(msg))
         return
     except:
-        Utils.destroy_passed_object(statusWindow)
+        status_window.destroy()
         DisplayTrace.DisplayTrace()
         return
 
@@ -215,17 +214,17 @@ def import2(database, filename, cb, codeset, use_trans):
     try:
         close = g.parse_gedcom_file(use_trans)
     except IOError,msg:
-        Utils.destroy_passed_object(statusWindow)
+        status_window.destroy()
         errmsg = _("%s could not be opened\n") % filename
         ErrorDialog(errmsg,str(msg))
         return
     except Errors.GedcomError, val:
         (m1,m2) = val.messages()
-        Utils.destroy_passed_object(statusWindow)
+        status_window.destroy()
         ErrorDialog(m1,m2)
         return
     except db.DBSecondaryBadError, msg:
-        Utils.destroy_passed_object(statusWindow)
+        status_window.destroy()
         WarningDialog(_('Database corruption detected'),
                       _('A problem was detected with the database. Please '
                         'run the Check and Repair Database tool to fix the '
@@ -237,15 +236,16 @@ def import2(database, filename, cb, codeset, use_trans):
         return
 
     statusTop.get_widget("close").set_sensitive(True)
-    statusWindow.set_modal(False)
+    status_window.set_modal(False)
     if close:
-        statusWindow.destroy()
-
-    if cb:
-        statusWindow.destroy()
+        status_window.destroy()
+    elif cb:
+        status_window.destroy()
         cb(1)
     elif callback:
         callback()
+
+    
 
 #-------------------------------------------------------------------------
 #
