@@ -718,7 +718,7 @@ class Marriage:
             None, self.db.readonly)
 
     def on_delete_clicked(self,obj):
-        if Utils.delete_selected(obj,self.elist):
+        if Utils.delete_selected(self.event_list,self.elist):
             self.lists_changed = 1
             self.redraw_event_list()
 

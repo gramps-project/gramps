@@ -136,7 +136,7 @@ class AddSpouse:
 
     def close(self,obj):
         self.gladeif.close()
-        self.window.close()
+        self.window.destroy()
 
     def build_all(self):
         return None

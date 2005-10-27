@@ -1239,7 +1239,7 @@ class EditPerson:
 
     def on_web_go_clicked(self,obj):
         """Attempts to display the selected URL in a web browser"""
-        text = obj.get()
+        test = self.web_url.get()
         if text:
             GrampsDisplay.url(text)
         
@@ -1412,7 +1412,7 @@ class EditPerson:
 
     def on_event_delete_clicked(self,obj):
         """Delete the selected event"""
-        if Utils.delete_selected(obj,self.elist):
+        if Utils.delete_selected(self.event_list,self.elist):
             self.lists_changed = True
             self.redraw_event_list()
 

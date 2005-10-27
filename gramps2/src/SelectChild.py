@@ -69,7 +69,7 @@ class SelectChild:
         self.family = family
         self.renderer = gtk.CellRendererText()
         self.xml = gtk.glade.XML(const.gladeFile,"select_child","gramps")
-        self.gladeif = Gladeif(self.xml)
+        self.gladeif = GladeIf(self.xml)
     
         if person:
             self.default_name = person.get_primary_name().get_surname().upper()

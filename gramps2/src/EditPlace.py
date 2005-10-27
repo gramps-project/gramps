@@ -375,7 +375,7 @@ class EditPlace:
             Utils.unbold_label(self.names_label)
 
     def on_web_go_clicked(self,obj):
-        text = obj.get()
+        text = self.web_url.get()
         if text != "":
             import GrampsDisplay
             GrampsDisplay.url(text)
@@ -471,12 +471,12 @@ class EditPlace:
             LocEdit.LocationEditor(self,loc,self.top)
 
     def on_delete_url_clicked(self,obj):
-        if Utils.delete_selected(obj,self.ulist):
+        if Utils.delete_selected(self.web_list,self.ulist):
             self.lists_changed = 1
             self.redraw_url_list()
 
     def on_delete_loc_clicked(self,obj):
-        if Utils.delete_selected(obj,self.llist):
+        if Utils.delete_selected(self.loc_list,self.llist):
             self.lists_changed = 1
             self.redraw_location_list()
 

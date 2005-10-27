@@ -148,7 +148,7 @@ class AttributeEditor:
         self.gladeif.connect('button116', 'clicked', self.close)
         self.gladeif.connect('button115', 'clicked', self.on_ok_clicked)
         self.gladeif.connect('button127', 'clicked', self.on_help_clicked)
-        self.gladeif.connect('notebook', 'on_switch_page', self.on_switch_page)
+        self.gladeif.connect('notebook', 'switch_page', self.on_switch_page)
 
         if parent_window:
             self.window.set_transient_for(parent_window)

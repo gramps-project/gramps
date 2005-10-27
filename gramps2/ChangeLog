@@ -1,3 +1,11 @@
+2005-10-27  Don Allingham  <don@gramps-project.org>
+	* src/AddSpouse.py: glade fixes caught by Martin
+	* src/AttrEdit.py: glade fixes caught by Martin
+	* src/EditPerson.py: glade fixes caught by Martin
+	* src/EditPlace.py: glade fixes caught by Martin
+	* src/Marriage.py: glade fixes caught by Martin
+	* src/SelectChild.py: glade fixes caught by Martin
+
 2005-10-26  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/CmdRef.py (write_ref): Only write itemizedlist if
 	there is any contents for it.
