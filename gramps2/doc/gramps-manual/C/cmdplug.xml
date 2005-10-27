@@ -106,8 +106,6 @@
           <term><command>id</command>: =ID</term>
           <listitem>
             <para>Gramps ID of a central person. MANDATORY</para>
-          <itemizedlist>
-          </itemizedlist>
           </listitem>
         </varlistentry>
     </variablelist>
@@ -194,25 +192,6 @@
     </variablelist>
 </sect3>
 <sect3 id="cmdplug-id6">
-  <title>Book Report</title>
-    <variablelist>
-        <varlistentry>
-          <term><command>name</command>:</term>
-          <listitem>
-            <para>book</para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>bookname</command>: =name</term>
-          <listitem>
-            <para>Name of the book. MANDATORY</para>
-          <itemizedlist>
-          </itemizedlist>
-          </listitem>
-        </varlistentry>
-    </variablelist>
-</sect3>
-<sect3 id="cmdplug-id7">
   <title>Descendant Graph</title>
     <variablelist>
         <varlistentry>
@@ -223,35 +202,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id8">
-  <title>Descendant Wall Chart</title>
-    <variablelist>
-        <varlistentry>
-          <term><command>name</command>:</term>
-          <listitem>
-            <para>descend_chart2</para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>singlep</command>: =0/1</term>
-          <listitem>
-            <para>Whether to scale to fit on a single page.</para>
-          <orderedlist>
-      <listitem><para>Do not scale to fit</para></listitem>
-      <listitem><para>Scale to fit</para></listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>title</command>: =str</term>
-          <listitem>
-            <para>Title string for the report</para>
-            <para>Value: <userinput>Whatever String You Wish</userinput></para>
-          </listitem>
-        </varlistentry>
-    </variablelist>
-</sect3>
-<sect3 id="cmdplug-id9">
+<sect3 id="cmdplug-id7">
   <title>Descendant Report</title>
     <variablelist>
         <varlistentry>
@@ -262,7 +213,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id10">
+<sect3 id="cmdplug-id8">
   <title>Detailed Ancestral Report</title>
     <variablelist>
         <varlistentry>
@@ -278,16 +229,6 @@
           <orderedlist>
       <listitem><para>Do not replace missing Dates</para></listitem>
       <listitem><para>Replace missing Dates</para></listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>listc</command>: =0/1</term>
-          <listitem>
-            <para>Whether to list children.</para>
-          <orderedlist>
-      <listitem><para>Do not list children</para></listitem>
-      <listitem><para>List children</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -352,12 +293,12 @@
           </listitem>
         </varlistentry>
         <varlistentry>
-          <term><command>firstnameiop</command>: =0/1</term>
+          <term><command>listc</command>: =0/1</term>
           <listitem>
-            <para>Whether to use first names instead of pronouns</para>
+            <para>Whether to list children.</para>
           <orderedlist>
-      <listitem><para>Do not use first names</para></listitem>
-      <listitem><para>Use first names</para></listitem>
+      <listitem><para>Do not list children</para></listitem>
+      <listitem><para>List children</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -413,7 +354,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id11">
+<sect3 id="cmdplug-id9">
   <title>Detailed Descendant Report</title>
     <variablelist>
         <varlistentry>
@@ -429,16 +370,6 @@
           <orderedlist>
       <listitem><para>Do not replace missing Dates</para></listitem>
       <listitem><para>Replace missing Dates</para></listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>listc</command>: =0/1</term>
-          <listitem>
-            <para>Whether to list children.</para>
-          <orderedlist>
-      <listitem><para>Do not list children</para></listitem>
-      <listitem><para>List children</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -503,12 +434,12 @@
           </listitem>
         </varlistentry>
         <varlistentry>
-          <term><command>firstnameiop</command>: =0/1</term>
+          <term><command>listc</command>: =0/1</term>
           <listitem>
-            <para>Whether to use first names instead of pronouns</para>
+            <para>Whether to list children.</para>
           <orderedlist>
-      <listitem><para>Do not use first names</para></listitem>
-      <listitem><para>Use first names</para></listitem>
+      <listitem><para>Do not list children</para></listitem>
+      <listitem><para>List children</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -519,6 +450,16 @@
           <orderedlist>
       <listitem><para>Do not include events</para></listitem>
       <listitem><para>Include events</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>usenick</command>: =0/1</term>
+          <listitem>
+            <para>Whether to use the nick name as the first name.</para>
+          <orderedlist>
+      <listitem><para>Do not use nick name</para></listitem>
+      <listitem><para>Use nick name</para></listitem>
           </orderedlist>
           </listitem>
         </varlistentry>
@@ -554,7 +495,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id12">
+<sect3 id="cmdplug-id10">
   <title>Family Group Report</title>
     <variablelist>
         <varlistentry>
@@ -572,7 +513,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id13">
+<sect3 id="cmdplug-id11">
   <title>Fan Chart</title>
     <variablelist>
         <varlistentry>
@@ -583,7 +524,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id14">
+<sect3 id="cmdplug-id12">
   <title>FTM Style Ancestor Report</title>
     <variablelist>
         <varlistentry>
@@ -594,7 +535,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id15">
+<sect3 id="cmdplug-id13">
   <title>FTM Style Descendant Report</title>
     <variablelist>
         <varlistentry>
@@ -605,7 +546,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id16">
+<sect3 id="cmdplug-id14">
   <title>Relationship Graph</title>
     <variablelist>
         <varlistentry>
@@ -775,7 +716,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id17">
+<sect3 id="cmdplug-id15">
   <title>Relationship Graph</title>
     <variablelist>
         <varlistentry>
@@ -945,7 +886,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id18">
+<sect3 id="cmdplug-id16">
   <title>Complete Individual Report</title>
     <variablelist>
         <varlistentry>
@@ -966,7 +907,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id19">
+<sect3 id="cmdplug-id17">
   <title>Individual Summary</title>
     <variablelist>
         <varlistentry>
@@ -977,7 +918,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id20">
+<sect3 id="cmdplug-id18">
   <title>Generate Web Site (deprecated)</title>
     <variablelist>
         <varlistentry>
@@ -1168,6 +1109,51 @@
         </varlistentry>
     </variablelist>
 </sect3>
+<sect3 id="cmdplug-id19">
+  <title>Book Report</title>
+    <variablelist>
+        <varlistentry>
+          <term><command>name</command>:</term>
+          <listitem>
+            <para>book</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>bookname</command>: =name</term>
+          <listitem>
+            <para>Name of the book. MANDATORY</para>
+          </listitem>
+        </varlistentry>
+    </variablelist>
+</sect3>
+<sect3 id="cmdplug-id20">
+  <title>Descendant Wall Chart</title>
+    <variablelist>
+        <varlistentry>
+          <term><command>name</command>:</term>
+          <listitem>
+            <para>descend_chart2</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>singlep</command>: =0/1</term>
+          <listitem>
+            <para>Whether to scale to fit on a single page.</para>
+          <orderedlist>
+      <listitem><para>Do not scale to fit</para></listitem>
+      <listitem><para>Scale to fit</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>title</command>: =str</term>
+          <listitem>
+            <para>Title string for the report</para>
+            <para>Value: <userinput>Whatever String You Wish</userinput></para>
+          </listitem>
+        </varlistentry>
+    </variablelist>
+</sect3>
   </sect2>
   <sect2 id="cmdplug-tools">
      <title>Tools</title>
@@ -1184,8 +1170,6 @@
           <term><command>id</command>: =ID</term>
           <listitem>
             <para>Gramps ID of a central person.</para>
-          <itemizedlist>
-          </itemizedlist>
           </listitem>
         </varlistentry>
     </variablelist>
@@ -1227,73 +1211,6 @@
     </variablelist>
 </sect3>
 <sect3 id="cmdplug-id24">
-  <title>Checkpoint the database</title>
-    <variablelist>
-        <varlistentry>
-          <term><command>name</command>:</term>
-          <listitem>
-            <para>chkpoint</para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>crcmd</command>: =str</term>
-          <listitem>
-            <para>Custom command line for retrieval</para>
-            <para>Value: <userinput>Custom command string</userinput></para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>cacmd</command>: =str</term>
-          <listitem>
-            <para>Custom command line for archiving</para>
-            <para>Value: <userinput>Custom command string</userinput></para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>archive</command>: =0/1</term>
-          <listitem>
-            <para>Whether to archive or retrieve.</para>
-          <orderedlist>
-      <listitem><para>Retrieve</para></listitem>
-      <listitem><para>Archive</para></listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>rcs</command>: =0/1</term>
-          <listitem>
-            <para>Whether to use RCS (ignores custom commands).</para>
-          <orderedlist>
-      <listitem><para>Do not use RCS</para></listitem>
-      <listitem><para>Use RCS</para></listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-    </variablelist>
-</sect3>
-<sect3 id="cmdplug-id25">
-  <title>Dumps gender statistics</title>
-    <variablelist>
-        <varlistentry>
-          <term><command>name</command>:</term>
-          <listitem>
-            <para>dgenstats</para>
-          </listitem>
-        </varlistentry>
-    </variablelist>
-</sect3>
-<sect3 id="cmdplug-id26">
-  <title>Rebuild secondary indices</title>
-    <variablelist>
-        <varlistentry>
-          <term><command>name</command>:</term>
-          <listitem>
-            <para>rebuild</para>
-          </listitem>
-        </varlistentry>
-    </variablelist>
-</sect3>
-<sect3 id="cmdplug-id27">
   <title>Reorder GRAMPS IDs</title>
     <variablelist>
         <varlistentry>
@@ -1304,75 +1221,7 @@
         </varlistentry>
     </variablelist>
 </sect3>
-<sect3 id="cmdplug-id28">
-  <title>Generate Testcases for persons and families</title>
-    <variablelist>
-        <varlistentry>
-          <term><command>name</command>:</term>
-          <listitem>
-            <para>testcasegenerator</para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>dates</command>: =0/1</term>
-          <listitem>
-            <para>Whether to create test for date handling.</para>
-          <orderedlist>
-      <listitem><para>Skip test</para></listitem>
-      <listitem><para>Create date tests</para></listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>person_count</command>: =int</term>
-          <listitem>
-            <para>Number of dummy persons to generate</para>
-            <para>Value: <userinput>Number of persons</userinput></para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>no_trans</command>: =0/1</term>
-          <listitem>
-            <para>Wheter to use one transaction or multiple small ones</para>
-          <orderedlist>
-      <listitem><para>One transaction</para></listitem>
-      <listitem><para>Multiple transactions</para></listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>long_names</command>: =0/1</term>
-          <listitem>
-            <para>Wheter to create short or long names</para>
-          <orderedlist>
-      <listitem><para>Short names</para></listitem>
-      <listitem><para>Long names</para></listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>bugs</command>: =0/1</term>
-          <listitem>
-            <para>Whether to create invalid database references.</para>
-          <orderedlist>
-      <listitem><para>Skip test</para></listitem>
-      <listitem><para>Create invalid Database references</para></listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><command>persons</command>: =0/1</term>
-          <listitem>
-            <para>Whether to create a bunch of dummy persons</para>
-          <orderedlist>
-      <listitem><para>Dont create persons</para></listitem>
-      <listitem><para>Create dummy persons</para></listitem>
-          </orderedlist>
-          </listitem>
-        </varlistentry>
-    </variablelist>
-</sect3>
-<sect3 id="cmdplug-id29">
+<sect3 id="cmdplug-id25">
   <title>Verify the database</title>
     <variablelist>
         <varlistentry>
@@ -1487,6 +1336,161 @@
           <listitem>
             <para>Maximum number of years between children</para>
             <para>Value: <userinput>Number of years</userinput></para>
+          </listitem>
+        </varlistentry>
+    </variablelist>
+</sect3>
+<sect3 id="cmdplug-id26">
+  <title>Generate Testcases for persons and families</title>
+    <variablelist>
+        <varlistentry>
+          <term><command>name</command>:</term>
+          <listitem>
+            <para>testcasegenerator</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>dates</command>: =0/1</term>
+          <listitem>
+            <para>Whether to create test for date handling.</para>
+          <orderedlist>
+      <listitem><para>Skip test</para></listitem>
+      <listitem><para>Create date tests</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>person_count</command>: =int</term>
+          <listitem>
+            <para>Number of dummy persons to generate</para>
+            <para>Value: <userinput>Number of persons</userinput></para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>no_trans</command>: =0/1</term>
+          <listitem>
+            <para>Wheter to use one transaction or multiple small ones</para>
+          <orderedlist>
+      <listitem><para>One transaction</para></listitem>
+      <listitem><para>Multiple transactions</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>long_names</command>: =0/1</term>
+          <listitem>
+            <para>Wheter to create short or long names</para>
+          <orderedlist>
+      <listitem><para>Short names</para></listitem>
+      <listitem><para>Long names</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>bugs</command>: =0/1</term>
+          <listitem>
+            <para>Whether to create invalid database references.</para>
+          <orderedlist>
+      <listitem><para>Skip test</para></listitem>
+      <listitem><para>Create invalid Database references</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>persons</command>: =0/1</term>
+          <listitem>
+            <para>Whether to create a bunch of dummy persons</para>
+          <orderedlist>
+      <listitem><para>Dont create persons</para></listitem>
+      <listitem><para>Create dummy persons</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>add_serial</command>: =0/1</term>
+          <listitem>
+            <para>Wheter to add a serial number to every text field</para>
+          <orderedlist>
+      <listitem><para>No serial</para></listitem>
+      <listitem><para>Add serial number</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>specialchars</command>: =0/1</term>
+          <listitem>
+            <para>Wheter to ass some special characters to every text field</para>
+          <orderedlist>
+      <listitem><para>No special characters</para></listitem>
+      <listitem><para>Add special characters</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+    </variablelist>
+</sect3>
+<sect3 id="cmdplug-id27">
+  <title>Checkpoint the database</title>
+    <variablelist>
+        <varlistentry>
+          <term><command>name</command>:</term>
+          <listitem>
+            <para>chkpoint</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>crcmd</command>: =str</term>
+          <listitem>
+            <para>Custom command line for retrieval</para>
+            <para>Value: <userinput>Custom command string</userinput></para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>cacmd</command>: =str</term>
+          <listitem>
+            <para>Custom command line for archiving</para>
+            <para>Value: <userinput>Custom command string</userinput></para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>archive</command>: =0/1</term>
+          <listitem>
+            <para>Whether to archive or retrieve.</para>
+          <orderedlist>
+      <listitem><para>Retrieve</para></listitem>
+      <listitem><para>Archive</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><command>rcs</command>: =0/1</term>
+          <listitem>
+            <para>Whether to use RCS (ignores custom commands).</para>
+          <orderedlist>
+      <listitem><para>Do not use RCS</para></listitem>
+      <listitem><para>Use RCS</para></listitem>
+          </orderedlist>
+          </listitem>
+        </varlistentry>
+    </variablelist>
+</sect3>
+<sect3 id="cmdplug-id28">
+  <title>Rebuild secondary indices</title>
+    <variablelist>
+        <varlistentry>
+          <term><command>name</command>:</term>
+          <listitem>
+            <para>rebuild</para>
+          </listitem>
+        </varlistentry>
+    </variablelist>
+</sect3>
+<sect3 id="cmdplug-id29">
+  <title>Dumps gender statistics</title>
+    <variablelist>
+        <varlistentry>
+          <term><command>name</command>:</term>
+          <listitem>
+            <para>dgenstats</para>
           </listitem>
         </varlistentry>
     </variablelist>

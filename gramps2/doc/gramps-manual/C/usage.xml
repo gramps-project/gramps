@@ -4793,50 +4793,206 @@
 
     <sect2 id="rep-web">
       <title>Web Page</title>
-      <para>
-
-        This category includes reports producing web sites based on
-	your data.
-
+      <para>The only available report in this category
+      is the Narrative Web Site report. It generates a 
+      web site (that is, a set of linked web pages), for
+      a set of selected individuals.
       </para>
+      
+      <sect3 id="rep-web-narr">
+      <title>Narrative Web Site</title>
+
       <variablelist>
         <varlistentry>
-          <term>Generate Web Site</term>
+          <term>Introduction</term>
           <listitem>
-            <para> 
-
-	      This report generates web pages, either for a selected
-	      individual (active person) or a set of individuals. The
-	      options for this report are broken down into contents,
-	      privacy, and advanced options. The contents options
-	      include the filter (determine the scope of the database
-	      to consider), destination directory for the images, an
-	      optional short ancestor tree, and a link to the index
-	      page.  Privacy options allow you to omit private
-	      records, restrict information on living people, skip
-	      images (either all or only those of living people), and
-	      omit comments and text in source information. Finally,
-	      the advanced options allow you to include the optional
-	      &app; ID, create a GENDEX index, and specify the
-	      extension of the resulting files.
-
-	    </para>
+            <para>
+			&app; 2.0.6 introduced the Narrative Web generator.
+			The new tool provides considerably more functionality
+			than the older web generator. Instead of using HTML
+			templates to customize the pages, CSS style sheets are used.
+			</para>
+			
+			<para>
+			More information is now displayed about each person, 
+			along with information about sources, places, and media
+			objects. Introduction pages can be added to provide additional
+			information, such as family history.</para>
           </listitem>
         </varlistentry>
         <varlistentry>
-          <term>Narrative Web Site</term>
+          <term>Selecting the output</term>
           <listitem>
-            <para>
+          <para>
+          Genealogy records can generate a lot of files. Many web
+          servers have a difficult time with many files in a single
+          directory. The Narrative Web Generator strives to keep the
+          number of files per directory to a managable level. To do
+          this, a hierarchy of directores is created. The generated
+          files names are not intuitive, but are unique per person.
+          Subsequent runs will geneate identical file names, making
+          it easy to replace files.</para>
+          
+          <para>
+          By default, the output files are written to the specified
+          directory. Because of the number of files and directories
+          that are created, it may be difficult to transfer the files
+          to an external web host. To aid in this, you may directly
+          create a gzip'd tar file to more easily upload the data.
+          This is the format that should be used if you would like
+          to take advantage of the free genealogy page hosting at the
+          <ulink url="http://family.gramps-project.org"
+          type="http">GRAMPS web hosting site</ulink>.</para>
+          
+          <para>To select the gzip'd tar file, select the <guilabel>Store
+          web pages in .tar.gz archive</guilabel> option.</para>
+          </listitem></varlistentry>
 
-	      This report is an alternative web site generator,
-	      producing the narrative set of web pages. It is still in
-	      development, with the goal of producing a more complete,
-	      better looking, and easily adjustable web site.
+        <varlistentry>
+          <term>Applying a filter</term>
+          <listitem>
+          <para>
+          Like the previous web page generator, and most of the other
+          &app; reports, you can control what is included in the output
+          by choosing a filter. Several default filters are provided for
+          you, but you are free to use the Custom Filter Editor tool to
+          create your own.</para>
+          
+          <para>Any person matching this filter who is not excluded due
+          to the privacy rules, will be included in the output. The default
+          filter includes all people in the database.</para>
+          </listitem></varlistentry>
 
-	    </para>
+        <varlistentry>
+          <term>Applying a style sheet</term>
+          <listitem>
+          <para>GRAMPS provides six built in style sheets for your web page.
+          Each of these style sheets produces a unique look for your pages.
+          The generated style sheet is named <filename>narrative.css</filename>.
+          You may edit this file if you wish to further customize your
+          site.</para>
+          
+          <para>
+          If you make modifications to your style sheet, you need to be aware
+          the regenerating the pages with the same output directory will
+          overwrite your changes to this file. To prevent this from happening,
+          make sure you choose <guilabel>No style sheet</guilabel> for subsequent
+          runs.</para>
+          </listitem></varlistentry>
+
+        <varlistentry>
+          <term>Character set encoding</term>
+          <listitem>
+          <para>
+          Because of GRAMPS internationalization ability, the default character
+          set for the HTML pages is UTF-8. This provides support for virtually
+          all characters.</para>
+          
+          <para>The Apache web server is sometimes misconfigured to override
+          the character set specified in an HTML page. This causes problems with
+          the UTF-8 character set generated by GRAMPS, distorting characters on
+          the screen.</para>
+          
+          <para>If your web server is misconfigured and you do not have priveledge
+          to fix the configururation, you may solve this problem by overriding the
+          default character set to match what your web server may be expecting.</para>
+          </listitem></varlistentry>
+
+        <varlistentry>
+          <term>Copyright notice</term>
+          <listitem>
+          <para>International copyright law reserves all rights to your data.
+          You own the data, and people must get your permission to use it.
+          In genealogy, however, sharing data is a common ideal. It this case, you
+          may wish to grant the user more rights.</para>
+
+          <para>While the default for GRAMPS is to place a notice indicating that
+          all rights are reserved, we give you the option to place your site under
+          one of several of the Create Commons licenses. With a Creative Commons
+          license, you grant user's certain permission to use your data without
+          requiring them to contact you directly for permission.</para>
+
+          <para>See the <ulink url="http://creativecommons.org/"  type="http">Creative
+          Commons</ulink> web site for more information.</para>
+          </listitem></varlistentry>
+
+        <varlistentry>
+          <term>Controlling page generation</term>
+          <listitem>
+          <para>Three additional pages can be generated by the web page generator.
+          The Home page is a page that will display an image and a whatever text
+          you wish. To enable this page, choose a Media Object
+          from the <guilabel>Home Media/Note ID</guilabel> menu on the <guilabel>Page
+          Generation</guilabel> tab. If the Media Object contains an image, the image
+          is displayed at the top of the page. If the Media Object contains a Note,
+          the Note's text is used for the text of the page. A second page, the
+          Introduction page, works similarly. Just choose the Media Object in the
+          <guilabel>Introduction Media/Note ID</guilabel> menu.</para>
+          
+          <para>If you choose to include a contact page, the researcher information
+          stored in the database is displayed, along with the information specified
+          in the <guilabel>Publisher contact/Note ID</guilabel> menu. Please use
+          this page with caution,
+          since you may consider your contact information to be private.</para>
+          </listitem></varlistentry>
+
+        <varlistentry>
+          <term>Privacy</term>
+          <listitem>
+          <para>Privacy of personal information is an important issue on the web
+          today. &app; tries to give you control over the information that is presented.
+          </para>
+          
+          <para>&app; provides two options to control the privacy of your information.
+          If you select the <guilabel>Do not include records marked private</guilabel>
+          option, any data that is marked as private will not be displayed on the
+          generated site. If you select <guilabel>Restrict information on living people</guilabel>,
+          &app; will attempt to determine which people have the potential of still
+          being alive, and will omit these people from the database. Some countries
+          have laws that indicate that a certain number of years must pass after
+          someone's death before information can be published. The <guilabel>Years
+          to restrict from person's death</guilabel> option allows you to specifiy
+          how many years a person must be deceased before the information is included.
+          </para>
+
+          <para>Please note that it is your responsibility to double check all
+          information in the pages for any privacy information. &app; cannot be held
+          responsible for any privacy issues.</para>
+          </listitem></varlistentry>
+
+        <varlistentry>
+          <term>Adding custom code your pages</term>
+          <listitem>
+          <para>If you are not interested in customizing your pages, you may skip
+          the section.</para>
+          
+          <para>The previous web generator allowed you to customize your pages
+          using HTML templates. Your data would be substituted for certain markers
+          in the code.</para>
+          
+          <para>This method proved to be too cumbersome for most users. The Narrative
+          Web Page Generator introduces a simpler mechanism. On the <guilabel>Page
+          Generation</guilabel> tab, you may specify text (including HTML code) that
+          will be inserted into each page, separately for the header and the
+          footer.</para>
+          
+          <para>To create this code, you need to create a Media Object marked as an
+          internal note. To create this, add a new Media Object in the Media View,
+          and select the internal note option. You may then enter your HTML code.
+          </para>
+          
+          <para>
+          To insert the code from the internal notes into the web pages,
+          select the appropriate Media Objects from the <guilabel>HTML user
+          header</guilabel> and <guilabel>HTML user footer</guilabel> menus.
+          Two div sections will be added to the pages &mdash; userheader and userfooter.
+          The corresponding HTML code is inserted into the HTML page surrounded by div
+          markers. You can customize your style sheet to provide additional formatting
+          and positioning information to control these sections.</para>
           </listitem>
         </varlistentry>
       </variablelist>
+      </sect3>
     </sect2>
   </sect1>
 <!-- ================ Usage Subsection ================================ -->

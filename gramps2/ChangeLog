@@ -1,3 +1,10 @@
+2005-10-26  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/CmdRef.py (write_ref): Only write itemizedlist if
+	there is any contents for it.
+	* doc/gramps-manual/C/cmdplug.xml: Update to a valid docbook.
+	* doc/gramps-manual/C/usage.xml: Add manual on the Narrative web
+	page generator.	
+
 2005-10-25  Don Allingham  <don@gramps-project.org>
 	* src/latin_utf8.py: removed
 	* src/Makefile.am: remove latin_utf8.py
