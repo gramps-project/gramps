@@ -1,3 +1,8 @@
+2005-10-28  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/TimeLine.py: Import strip_context correctly.
+	* src/plugins/SimpleBookText.py: Import strip_context correctly.
+	* src/plugins/StatisticsChart.py: Import strip_context correctly.
+
 2005-10-27  Don Allingham  <don@gramps-project.org>
 	* src/AddSpouse.py: glade fixes caught by Martin
 	* src/AttrEdit.py: glade fixes caught by Martin

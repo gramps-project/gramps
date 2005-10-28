@@ -58,7 +58,8 @@ import ReportUtils
 import ReportOptions
 import GenericFilter
 from DateHandler import displayer as _dd
-from Utils import ProgressMeter, strip_context as __
+from Utils import ProgressMeter
+from TransUtils import strip_context as __
 
 #------------------------------------------------------------------------
 #

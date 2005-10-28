@@ -27,7 +27,7 @@
 import os
 import time
 from gettext import gettext as _
-from Utils import strip_context as __
+from TransUtils import strip_context as __
 
 #------------------------------------------------------------------------
 #
