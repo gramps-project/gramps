@@ -414,7 +414,7 @@ class Marriage:
         if lds_ord == None:
             lds_ord = RelLib.LdsOrd()
             self.family.set_lds_sealing(lds_ord)
-        Sources.SourceSelector(lds_ord.get_source_references(),self,self.window)
+        Sources.SourceSelector(lds_ord.get_source_references(),self)
 
     def lds_note_clicked(self,obj):
         import NoteEdit

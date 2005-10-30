@@ -1,3 +1,6 @@
+2005-10-29  Don Allingham  <don@gramps-project.org>
+	* src/Sources.py: fix callback (caught by Martin)
+
 2005-10-28  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/TimeLine.py: Import strip_context correctly.
 	* src/plugins/SimpleBookText.py: Import strip_context correctly.
