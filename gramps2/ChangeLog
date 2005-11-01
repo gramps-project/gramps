@@ -1,3 +1,6 @@
+2005-10-31  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: use builtin python tarfile module
+
 2005-10-29  Don Allingham  <don@gramps-project.org>
 	* src/Sources.py: fix callback (caught by Martin)
 

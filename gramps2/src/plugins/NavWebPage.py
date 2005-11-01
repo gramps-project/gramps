@@ -36,6 +36,7 @@ import locale
 import shutil
 import codecs
 import sets
+import tarfile
 from gettext import gettext as _
 from cStringIO import StringIO
 
@@ -62,7 +63,6 @@ import Utils
 import ReportOptions
 import ReportUtils
 import ImgManip
-import TarFile
 from QuestionDialog import ErrorDialog, WarningDialog
 from NameDisplay import displayer as _nd
 from DateHandler import displayer as _dd
@@ -144,9 +144,7 @@ class BasePage:
 
     def store_file(self,archive,html_dir,from_path,to_path):
         if archive:
-            imagefile = open(from_path,"r")
-            archive.add_file(to_path,time.time(),imagefile)
-            imagefile.close()
+            archive.add(from_path,to_path)
         else:
             dest = os.path.join(html_dir,to_path)
             dirname = os.path.dirname(dest)
@@ -199,7 +197,13 @@ class BasePage:
 
     def close_file(self,of):
         if self.archive:
-            self.archive.add_file(self.cur_name,time.time(),self.string_io)
+            tarinfo = tarfile.TarInfo(self.cur_name)
+            tarinfo.size = len(self.string_io.getvalue())
+            tarinfo.mtime = time.time()
+            tarinfo.uid = os.getuid()
+            tarinfo.gid = os.getgid()
+            self.string_io.seek(0)
+            self.archive.addfile(tarinfo,self.string_io)
             of.close()
         else:
             of.close()
@@ -852,9 +856,7 @@ class MediaPage(BasePage):
 
         try:
             if self.archive:
-                imagefile = open(photo.get_path(),"r")
-                self.archive.add_file(newpath,time.time(),imagefile)
-                imagefile.close()
+                self.archive.add(photo.get_path(),newpath)
             else:
                 to_dir = os.path.join(self.html_dir,to_dir)
                 if not os.path.isdir(to_dir):
@@ -878,9 +880,7 @@ class MediaPage(BasePage):
             from_path = os.path.join(const.dataDir,"document.png")
             
         if self.archive:
-            imagefile = open(from_path,"r")
-            self.archive.add_file(to_path,time.time(),imagefile)
-            imagefile.close()
+            self.archive.add(from_path,to_path)
         else:
             to_dir = os.path.join(self.html_dir,to_dir)
             dest = os.path.join(self.html_dir,to_path)
@@ -2034,7 +2034,7 @@ class WebReport(Report.Report):
                             _('The archive file must be a file, not a directory'))
                 return
             try:
-                archive = TarFile.TarFile(self.target_path)
+                archive = tarfile.open(self.target_path,"w:gz")
             except (OSError,IOError),value:
                 ErrorDialog(_("Could not create %s") % self.target_path,
                             value)
@@ -2126,9 +2126,8 @@ class WebReport(Report.Report):
         Copy the CSS file to the destination.
         """
         if archive:
-            f = open(os.path.join(const.dataDir,css_file),"r")
-            archive.add_file(_NARRATIVE,time.time(),f)
-            f.close()
+            fname = os.path.join(const.dataDir,css_file)
+            archive.add(fname,_NARRATIVE)
         else:
             shutil.copyfile(os.path.join(const.dataDir,css_file),
                             os.path.join(html_dir,_NARRATIVE))
@@ -2258,9 +2257,7 @@ class WebReport(Report.Report):
         Store the file in the destination.
         """
         if archive:
-            imagefile = open(from_path,"r")
-            archive.add_file(to_path,time.time(),imagefile)
-            imagefile.close()
+            archive.add(from_path,to_path)
         else:
             shutil.copyfile(from_path,os.path.join(html_dir,to_path))
 
