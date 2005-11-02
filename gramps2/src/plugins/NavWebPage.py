@@ -2176,7 +2176,7 @@ class WebReport(Report.Report):
         
         SurnameListPage(
             self.database, self.title, ind_list, self.options, archive,
-            self.photo_list, SurnameListPage.ORDER_BY_COUNT)
+            self.photo_list, SurnameListPage.ORDER_BY_COUNT,"surnames_count")
 
         for (surname,handle_list) in local_list:
             SurnamePage(self.database, surname, handle_list, restrict_list,
