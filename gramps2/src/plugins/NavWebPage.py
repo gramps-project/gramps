@@ -172,10 +172,12 @@ class BasePage:
         self.cur_name = self.build_name("",name)
         if self.archive:
             self.string_io = StringIO()
-            of = codecs.EncodedFile(self.string_io,'utf-8',self.encoding,'xmlcharrefreplace')
+            of = codecs.EncodedFile(self.string_io,'utf-8',self.encoding,
+                                    'xmlcharrefreplace')
         else:
             page_name = os.path.join(self.html_dir,self.cur_name)
-            of = codecs.EncodedFile(open(page_name, "w"),'utf-8',self.encoding,'xmlcharrefreplace')
+            of = codecs.EncodedFile(open(page_name, "w"),'utf-8',
+                                    self.encoding,'xmlcharrefreplace')
         return of
 
     def link_path(self,name,path):
@@ -186,13 +188,15 @@ class BasePage:
         self.cur_name = self.link_path(name,path)
         if self.archive:
             self.string_io = StringIO()
-            of = codecs.EncodedFile(self.string_io,'utf-8',self.encoding,'xmlcharrefreplace')
+            of = codecs.EncodedFile(self.string_io,'utf-8',
+                                    self.encoding,'xmlcharrefreplace')
         else:
             dirname = os.path.join(self.html_dir,path,name[0],name[1])
             if not os.path.isdir(dirname):
                 os.makedirs(dirname)
             page_name = self.build_name(dirname,name)
-            of = codecs.EncodedFile(open(page_name, "w"),'utf-8',self.encoding,'xmlcharrefreplace')
+            of = codecs.EncodedFile(open(page_name, "w"),'utf-8',
+                                    self.encoding,'xmlcharrefreplace')
         return of
 
     def close_file(self,of):
@@ -1819,6 +1823,8 @@ class IndividualPage(BasePage):
         
         for event_id in family.get_event_list():
             event = self.db.get_event_from_handle(event_id)
+            if self.exclude_private and event.private:
+                continue
 
             of.write('<tr><td>&nbsp;</td>\n')
             of.write('<td class="field">%s</td>\n' % _(event.get_name()))

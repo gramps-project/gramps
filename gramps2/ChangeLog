@@ -1,3 +1,6 @@
+2005-11-01  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: fix private family records
+
 2005-10-31  Don Allingham  <don@gramps-project.org>
 	* src/plugins/NavWebPage.py: use builtin python tarfile module
 
