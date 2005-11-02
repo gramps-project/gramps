@@ -1,5 +1,6 @@
 2005-11-02  Don Allingham  <don@gramps-project.org>
-	* src/plugins/NavWebPage.py: fix surnames/surnames_count problem
+	* src/plugins/NavWebPage.py: fix surnames/surnames_count problem,
+	fix intro/home page naming issue
 
 2005-11-01  Don Allingham  <don@gramps-project.org>
 	* src/plugins/NavWebPage.py: fix private family records
@@ -109,7 +110,6 @@
 	* src/NameEdit.py: escape xml-specialchars because of use_markup
 	* src/PedView.py: escape xml-specialchars because of use_markup
 	* src/UrlEdit.py: escape xml-specialchars because of use_markup
-
 
 2005-10-18  Don Allingham  <don@gramps-project.org>
 	* src/Report.py: bumped the maximum generations to 999 from 31

@@ -141,6 +141,7 @@ class BasePage:
         self.photo_list = photo_list
         self.exclude_private = not options.handler.options_dict['NWEBincpriv']
         self.usegraph = options.handler.options_dict['NWEBgraph']
+        self.use_home = self.options.handler.options_dict['NWEBhomenote'] != ""
 
     def store_file(self,archive,html_dir,from_path,to_path):
         if archive:
@@ -290,15 +291,24 @@ class BasePage:
         of.write('<h1 class="navtitle">%s</h1>\n' % self.title_str)
         of.write('<div class="nav">\n')
 
-        use_home = self.options.handler.options_dict['NWEBhomenote'] != ""
-        if use_home:
-            self.show_link(of,'index',_('Home'),path)
-        if self.use_intro:
-            self.show_link(of,'introduction',_('Introduction'),path)
-        if not use_home and not self.use_intro:
-            self.show_link(of,'index',_('Surnames'),path)
+        if self.use_home:
+            index_page = "index"
+            surname_page = "surnames"
+            intro_page = "introduction"
+        elif self.use_intro:
+            index_page = ""
+            surname_page = "surnames"
+            intro_page = "index"
         else:
-            self.show_link(of,'surnames',_('Surnames'),path)
+            index_page = ""
+            surname_page = "index"
+            intro_page = ""
+
+        if self.use_home:
+            self.show_link(of,index_page,_('Home'),path)
+        if self.use_intro:
+            self.show_link(of,intro_page,_('Introduction'),path)
+        self.show_link(of,surname_page,_('Surnames'),path)
         self.show_link(of,'individuals',_('Individuals'),path)
         self.show_link(of,'sources',_('Sources'),path)
         self.show_link(of,'places',_('Places'),path)
@@ -936,8 +946,7 @@ class SurnameListPage(BasePage):
         of.write('<table class="infolist">\n<thead><tr>\n')
         of.write('<th>%s</th>\n' % _('Letter'))
 
-        use_home = self.options.handler.options_dict['NWEBhomenote'] != ""
-        if not use_home and not self.use_intro:
+        if not self.use_home and not self.use_intro:
             of.write('<th><a href="%s.%s">%s</a></th>\n' % ("index", self.ext, _('Surname')))
         else:
             of.write('<th><a href="%s.%s">%s</a></th>\n' % ("surnames", self.ext, _('Surname')))
@@ -994,7 +1003,11 @@ class IntroductionPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list, "")
         note_id = options.handler.options_dict['NWEBintronote']
 
-        of = self.create_file("introduction")
+        if self.use_home:
+            of = self.create_file("introduction")
+        else:
+            of = self.create_file("index")
+            
         author = get_researcher().get_name()
         self.display_header(of, db, _('Introduction'), author)
 
@@ -2166,10 +2179,11 @@ class WebReport(Report.Report):
         local_list = sort_people(self.database,ind_list)
         self.progress.set_pass(_("Creating surname pages"),len(local_list))
 
-        if self.use_home:
+        if self.use_home or self.use_intro:
             defname="surnames"
         else:
             defname="index"
+
         SurnameListPage(
             self.database, self.title, ind_list, self.options, archive,
             self.photo_list, SurnameListPage.ORDER_BY_NAME,defname)
@@ -2244,6 +2258,19 @@ class WebReport(Report.Report):
         return cmp(a.desc,b.desc)
 
     def base_pages(self, photo_list, archive):
+
+        if self.use_home:
+            index_page = "index"
+            surname_page = "surnames"
+            intro_page = "introduction"
+        elif self.use_intro:
+            index_page = ""
+            surname_page = "surnames"
+            intro_page = "index"
+        else:
+            index_page = ""
+            surname_page = "index"
+            intro_page = ""
 
         if self.use_home:
             HomePage(self.database, self.title, self.options, archive, photo_list)
