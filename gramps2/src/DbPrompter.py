@@ -392,7 +392,7 @@ class NewNativeDbPrompter:
                     filename = filename + ".grdb"
                 choose.destroy()
                 try:
-                    self.parent.db.close()
+                    close(self.parent)
                 except:
                     pass
                 self.parent.db = GrampsBSDDB.GrampsBSDDB()
@@ -483,15 +483,15 @@ class NewSaveasDbPrompter:
                     return False
                 if filetype == const.app_gramps:
                     WriteGrdb.exportData(self.parent.db,filename,None,None)
-                    self.parent.db.close()
+                    close(self.parent)
                     self.parent.db = GrampsBSDDB.GrampsBSDDB()
                 elif filetype == const.app_gramps_xml:
                     WriteXML.exportData(self.parent.db,filename,None,None)
-                    self.parent.db.close()
+                    close(self.parent)
                     self.parent.db = GrampsXMLDB.GrampsXMLDB()
                 elif filetype == const.app_gedcom:
                     WriteGedcom.exportData(self.parent.db,filename,None,None)
-                    self.parent.db.close()
+                    close(self.parent)
                     self.parent.db = GrampsGEDDB.GrampsGEDDB()
                 self.parent.read_file(filename)
                 # Add the file to the recent items
@@ -506,13 +506,21 @@ class NewSaveasDbPrompter:
 
 #-------------------------------------------------------------------------
 #
-# Helper function
+# Helper functions
 #
 #-------------------------------------------------------------------------
+def close(parent):
+    # Close existing dialogs
+    for window in parent.child_windows.values():
+        window.close()
+    parent.db.close()
+
 def open_native(parent,filename,filetype):
     """
     Open native database and return the status.
     """
+
+    close(parent)
 
     (the_path,the_file) = os.path.split(filename)
     GrampsKeys.save_last_import_dir(the_path)
