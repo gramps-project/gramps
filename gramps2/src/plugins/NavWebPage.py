@@ -331,7 +331,7 @@ class BasePage:
 
         if not photolist or not self.use_gallery:
             return
-            
+        
         photo_handle = photolist[0].get_reference_handle()
         photo = db.get_object_from_handle(photo_handle)
         mime_type = photo.get_mime_type()
@@ -366,7 +366,6 @@ class BasePage:
         for mediaref in photolist:
             photo_handle = mediaref.get_reference_handle()
             photo = db.get_object_from_handle(photo_handle)
-
             mime_type = photo.get_mime_type()
             if mime_type:
                 try:
@@ -568,6 +567,8 @@ class IndividualListPage(BasePage):
             of.write('<tr><td colspan="2">&nbsp;</td></tr>\n')
             for person_handle in handle_list:
                 person = db.get_person_from_handle(person_handle)
+                if self.exclude_private:
+                    person = ReportUtils.sanitize_person(db,person)
                 of.write('<tr><td class="category">')
                 if first:
                     of.write('<a name="%s">%s</a>' % (self.lnkfmt(surname),surname))
@@ -621,6 +622,8 @@ class SurnamePage(BasePage):
 
         for person_handle in person_handle_list:
             person = db.get_person_from_handle(person_handle)
+            if self.exclude_private:
+                person = ReportUtils.sanitize_person(db,person)
             of.write('<tr><td class="category">')
             path = self.build_path(person.handle,"ppl",True)
             self.person_link(of, self.build_name(path,person.handle),
@@ -713,7 +716,9 @@ class PlacePage(BasePage):
         self.display_header(of,db,"%s - %s" % (_('Places'), self.page_title),
                             get_researcher().get_name(),up=True)
 
-        self.display_first_image_as_thumbnail(of, db, place.get_media_list())
+        media_list = place.get_media_list()
+        media_list = ReportUtils.sanitize_list( media_list, self.exclude_private)
+        self.display_first_image_as_thumbnail(of, db, media_list)
 
         of.write('<div id="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % self.page_title)
@@ -748,10 +753,9 @@ class PlacePage(BasePage):
         of.write('</div>\n')
 
         if self.use_gallery:
-            plist = place.get_media_list()
-            self.display_additional_images_as_gallery(of, db, plist)
+            self.display_additional_images_as_gallery(of, db, media_list)
         self.display_note_object(of, place.get_note_object())
-        self.display_url_list(of, place.get_url_list())
+        self.display_url_list(of, ReportUtils.sanitize_list( place.get_url_list(), self.exclude_private))
         self.display_references(of,db,place_list[place.handle])
         self.display_footer(of,db)
         self.close_file(of)
@@ -858,7 +862,7 @@ class MediaPage(BasePage):
         of.write('</div>\n')
 
         self.display_note_object(of, photo.get_note_object())
-        self.display_attr_list(of, photo.get_attribute_list())
+        self.display_attr_list(of, ReportUtils.sanitize_list( photo.get_attribute_list(), self.exclude_private))
         self.display_references(of,db,media_list)
         self.display_footer(of,db)
         self.close_file(of)
@@ -1145,7 +1149,9 @@ class SourcePage(BasePage):
         self.display_header(of,db,"%s - %s" % (_('Sources'), self.page_title),
                             get_researcher().get_name(),up=True)
 
-        self.display_first_image_as_thumbnail(of, db, source.get_media_list())
+        media_list = source.get_media_list()
+        media_list = ReportUtils.sanitize_list( media_list, self.exclude_private)
+        self.display_first_image_as_thumbnail(of, db, media_list)
 
         of.write('<div id="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % self.page_title)
@@ -1163,8 +1169,7 @@ class SourcePage(BasePage):
         of.write('</table>\n')
         of.write('</div>\n')
 
-        source_media = source.get_media_list()
-        self.display_additional_images_as_gallery(of, db, source_media)
+        self.display_additional_images_as_gallery(of, db, media_list)
         self.display_note_object(of, source.get_note_object())
         self.display_references(of,db,src_list[source.handle])
         self.display_footer(of,db)
@@ -1420,6 +1425,8 @@ class IndividualPage(BasePage):
         if not handle:
             return None
         person = self.db.get_person_from_handle(handle)
+        if self.exclude_private:
+            person = ReportUtils.sanitize_person( self.db, person)
         self.draw_box(of,center2,col,person)
         self.connect_line(of,center1,center2,col)
         return person
@@ -1575,7 +1582,11 @@ class IndividualPage(BasePage):
             father_id = family.get_father_handle()
             mother_id = family.get_mother_handle()
             mother = self.db.get_person_from_handle(mother_id)
+            if mother and self.exclude_private:
+                mother = ReportUtils.sanitize_person( self.db, mother)
             father = self.db.get_person_from_handle(father_id)
+            if father and self.exclude_private:
+                father = ReportUtils.sanitize_person( self.db, father)
         else:
             family = None
             father = None
@@ -1598,6 +1609,8 @@ class IndividualPage(BasePage):
                     self.pedigree_family(of)
                 else:
                     child = self.db.get_person_from_handle(child_handle)
+                    if child and self.exclude_private:
+                        child = ReportUtils.sanitize_person( self.db, child)
                     self.pedigree_person(of,child)
         else:
             of.write('<span class="thisperson">%s</span><br />\n' % self.name)
@@ -1697,6 +1710,8 @@ class IndividualPage(BasePage):
     def display_child_link(self, of, child_handle):
         use_link = child_handle in self.ind_list
         child = self.db.get_person_from_handle(child_handle)
+        if self.exclude_private:
+            child = ReportUtils.sanitize_person( self.db, child)
         gid = child.get_gramps_id()
         if use_link:
             child_name = nameof(child, self.exclude_private)
@@ -1710,6 +1725,8 @@ class IndividualPage(BasePage):
     def display_parent(self, of, handle, title, rel):
         use_link = handle in self.ind_list 
         person = self.db.get_person_from_handle(handle)
+        if self.exclude_private:
+            person = ReportUtils.sanitize_person( self.db, person)
         of.write('<td class="field">%s</td>\n' % title)
         of.write('<td class="data">')
         val = person.gramps_id
@@ -1810,6 +1827,8 @@ class IndividualPage(BasePage):
         spouse_id = ReportUtils.find_spouse(self.person,family)
         if spouse_id:
             spouse = self.db.get_person_from_handle(spouse_id)
+            if self.exclude_private:
+                spouse = ReportUtils.sanitize_person( self.db, spouse)
             name = nameof(spouse,self.exclude_private)
         else:
             name = _("unknown")
@@ -1845,6 +1864,8 @@ class IndividualPage(BasePage):
             of.write(self.format_event(event))
             of.write('</td>\n</tr>\n')
         for attr in family.get_attribute_list():
+            if self.exclude_private and attr.private:
+                continue
             of.write('<tr><td>&nbsp;</td>\n')
             of.write('<td class="field">%s</td>' % _(attr.get_type()))
             of.write('<td class="data">%s</td>\n</tr>\n' % attr.get_value())
@@ -1881,12 +1902,16 @@ class IndividualPage(BasePage):
             spouse_handle = ReportUtils.find_spouse(self.person,rel_family)
             if spouse_handle:
                 spouse = self.db.get_person_from_handle(spouse_handle)
+                if self.exclude_private:
+                    spouse = ReportUtils.sanitize_person( self.db, spouse)
                 self.pedigree_person(of,spouse,True)
             childlist = rel_family.get_child_handle_list()
             if childlist:
                 of.write('<div class="pedigreegen">\n')
                 for child_handle in childlist:
                     child = self.db.get_person_from_handle(child_handle)
+                    if self.exclude_private:
+                        child = ReportUtils.sanitize_person( self.db, child)
                     self.pedigree_person(of,child)
                 of.write('</div>\n')
 
@@ -1895,6 +1920,8 @@ class IndividualPage(BasePage):
         lnk = (self.cur_name, self.page_title, self.gid)
 
         for sref in event.get_source_references():
+            if self.exclude_private and sref.private:
+                continue
             handle = sref.get_base_handle()
             gid_list.append(sref)
 
@@ -2690,11 +2717,15 @@ def sort_people(db,handle_list):
     while node:
         if node[0] in flist:
             primary_name = node[1][_NAME_COL]
-            if primary_name.group_as:
-                surname = primary_name.group_as
+            if primary_name.private:
+                surname = _('Private')
+                sortnames[node[0]] = _('Private')
             else:
-                surname = db.get_name_group_mapping(primary_name.surname)
-            sortnames[node[0]] = primary_name.sname
+                if primary_name.group_as:
+                    surname = primary_name.group_as
+                else:
+                    surname = db.get_name_group_mapping(primary_name.surname)
+                sortnames[node[0]] = primary_name.sname
             if sname_sub.has_key(surname):
                 sname_sub[surname].append(node[0])
             else:

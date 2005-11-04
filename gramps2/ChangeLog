@@ -1,3 +1,7 @@
+2005-11-04  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/ReportUtils.py (sanitize_person): Restrict Media reference list
+	* src/plugins/NavWebPage.py: Add many more filtering of private data
+
 2005-11-02  Alex Roitman  <shura@gramps-project.org>
 	* src/DbPrompter.py: Close database in all cases; close dialogs
 	prior to that.

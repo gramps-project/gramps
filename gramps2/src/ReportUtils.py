@@ -1161,7 +1161,8 @@ def sanitize_person(db,person):
 
     # copy Media reference list
     for obj in person.get_media_list():
-        new_person.add_media_reference(RelLib.MediaRef(obj))
+        if not obj.get_privacy():
+            new_person.add_media_reference(RelLib.MediaRef(obj))
 
     # LDS ordinances
     ordinance = person.get_lds_baptism()
