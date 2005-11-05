@@ -139,10 +139,12 @@ class WitnessEditor:
             self.win_key = self
         self.update = update
         self.ref = ref
-        self.show_witness = gtk.glade.XML(const.dialogFile, "witness_edit","gramps")
+        self.show_witness = gtk.glade.XML(const.dialogFile,
+                                          "witness_edit","gramps")
         self.gladeif = GladeIf(self.show_witness)
 
-        self.gladeif.connect('name_edit','delete_event',self.on_delete_event)
+        self.gladeif.connect('witness_edit','delete_event',
+                             self.on_delete_event)
         self.gladeif.connect('cancelbutton1','clicked',self.close)
         self.gladeif.connect('ok','clicked',self.ok_clicked)
         self.gladeif.connect('button132','clicked',self.on_help_clicked)

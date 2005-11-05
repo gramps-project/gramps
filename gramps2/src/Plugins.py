@@ -611,8 +611,31 @@ class Reload(Tool.Tool):
             except:
                 PluginMgr.failmsg_list.append((filename,sys.exc_info()))
             
+        # Remove previously good plugins that are now bad
+        # from the registered lists
+        (PluginMgr.export_list,
+         PluginMgr.import_list,
+         PluginMgr.tool_list,
+         PluginMgr.cli_tool_list,
+         PluginMgr.report_list,
+         PluginMgr.bkitems_list,
+         PluginMgr.cl_list,
+         PluginMgr.textdoc_list,
+         PluginMgr.bookdoc_list,
+         PluginMgr.drawdoc_list) = PluginMgr.purge_failed(
+            PluginMgr.failmsg_list,
+            PluginMgr.export_list,
+            PluginMgr.import_list,
+            PluginMgr.tool_list,
+            PluginMgr.cli_tool_list,
+            PluginMgr.report_list,
+            PluginMgr.bkitems_list,
+            PluginMgr.cl_list,
+            PluginMgr.textdoc_list,
+            PluginMgr.bookdoc_list,
+            PluginMgr.drawdoc_list)
+
         # attempt to load the plugins that have failed in the past
-    
         for (filename,message) in oldfailmsg:
             name = os.path.split(filename)
             match = pymod.match(name[1])
@@ -655,6 +678,9 @@ class Reload(Tool.Tool):
             if status_up:
                 status_up.close(None)
             status_up = None
+
+        # Re-generate tool and report menus
+        parent.build_plugin_menus(rebuild=True)
 
 class ReloadOptions(Tool.ToolOptions):
     """

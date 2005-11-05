@@ -147,13 +147,26 @@ def register_export(exportData,title,description='',config=None,filename=''):
     and the list of patterns for the filename matching.
     """
     if description and filename:
+        del_index = -1
+        for i in range(0,len(export_list)):
+            if export_list[i][1] == title:
+                del_index = i
+        if del_index != -1:
+            del export_list[del_index]
+
         export_list.append((exportData,title,description,config,filename))
 
 def register_import(task, ffilter, mime=None, native_format=0, format_name=""):
     """Register an import filter, taking the task and file filter"""
     if mime:
-        import_list.append((task, ffilter, mime, native_format, format_name))
+        del_index = -1
+        for i in range(0,len(import_list)):
+            if import_list[i][2] == mime:
+                del_index = i
+        if del_index != -1:
+            del import_list[del_index]
 
+        import_list.append((task, ffilter, mime, native_format, format_name))
 
 #-------------------------------------------------------------------------
 #
@@ -202,7 +215,7 @@ def _register_gui_tool(tool_class,options_class,translated_name,
     del_index = -1
     for i in range(0,len(tool_list)):
         val = tool_list[i]
-        if val[2] == name:
+        if val[4] == name:
             del_index = i
     if del_index != -1:
         del tool_list[del_index]
@@ -212,9 +225,13 @@ def _register_gui_tool(tool_class,options_class,translated_name,
 
 def _register_cli_tool(name,category,tool_class,options_class,
                        translated_name):
-    for n in cli_tool_list:
-        if n[0] == name:
-            return
+    del_index = -1
+    for i in range(0,len(cli_tool_list)):
+        val = cli_tool_list[i]
+        if val[0] == name:
+            del_index = i
+    if del_index != -1:
+        del cli_tool_list[del_index]
     cli_tool_list.append((name,category,tool_class,options_class,
                           translated_name))
 
@@ -277,7 +294,7 @@ def _register_standalone(report_class, options_class, translated_name,
     del_index = -1
     for i in range(0,len(report_list)):
         val = report_list[i]
-        if val[2] == name:
+        if val[4] == name:
             del_index = i
     if del_index != -1:
         del report_list[del_index]
@@ -288,17 +305,26 @@ def register_book_item(translated_name, category, report_class,
                         option_class, name):
     """Register a book item"""
     
-    for n in bkitems_list:
-        if n[0] == name:
-            return
+    del_index = -1
+    for i in range(0,len(bkitems_list)):
+        val = bkitems_list[i]
+        if val[4] == name:
+            del_index = i
+    if del_index != -1:
+        del bkitems_list[del_index]
+
     bkitems_list.append((translated_name, category, report_class,
                          option_class, name))
 
 def _register_cl_report(name,category,report_class,options_class,
                         translated_name):
-    for n in cl_list:
-        if n[0] == name:
-            return
+    del_index = -1
+    for i in range(0,len(cl_list)):
+        val = cl_list[i]
+        if val[0] == name:
+            del_index = i
+    if del_index != -1:
+        del cl_list[del_index]
     cl_list.append((name,category,report_class,options_class,
                     translated_name))
 
@@ -310,11 +336,17 @@ def _register_cl_report(name,category,report_class,options_class,
 def register_text_doc(name,classref, table, paper, style, ext,
                       print_report_label=None,clname=''):
     """Register a text document generator"""
-    for n in textdoc_list:
-        if n[0] == name:
-            return
+    del_index = -1
+    for i in range(0,len(textdoc_list)):
+        val = textdoc_list[i]
+        if val[0] == name:
+            del_index = i
+    if del_index != -1:
+        del textdoc_list[del_index]
+
     if not clname:
         clname = ext[1:]
+
     textdoc_list.append(
         (name, classref, table, paper, style,
          ext, print_report_label, clname))
@@ -326,9 +358,14 @@ def register_text_doc(name,classref, table, paper, style, ext,
 #-------------------------------------------------------------------------
 def register_book_doc(name,classref, table, paper, style, ext, clname=''):
     """Register a text document generator"""
-    for n in bookdoc_list:
-        if n[0] == name:
-            return
+    del_index = -1
+    for i in range(0,len(bookdoc_list)):
+        val = bookdoc_list[i]
+        if val[0] == name:
+            del_index = i
+    if del_index != -1:
+        del bookdoc_list[del_index]
+
     if not clname:
         clname = ext[1:]
     bookdoc_list.append((name,classref,table,paper,style,ext,None,clname))
@@ -341,13 +378,59 @@ def register_book_doc(name,classref, table, paper, style, ext, clname=''):
 def register_draw_doc(name,classref,paper,style, ext,
                       print_report_label=None,clname=''):
     """Register a drawing document generator"""
-    for n in drawdoc_list:
-        if n[0] == name:
-            return
+    del_index = -1
+    for i in range(0,len(drawdoc_list)):
+        val = drawdoc_list[i]
+        if val[0] == name:
+            del_index = i
+    if del_index != -1:
+        del drawdoc_list[del_index]
     if not clname:
         clname = ext[1:]
     drawdoc_list.append((name, classref, paper,style, ext,
                          print_report_label, clname))
+
+#-------------------------------------------------------------------------
+#
+# Remove plugins whose reloading failed from the already-registered lists
+#
+#-------------------------------------------------------------------------
+def purge_failed(failed_list,export_list,import_list,tool_list,cli_tool_list,
+                 report_list,bkitems_list,cl_list,textdoc_list,bookdoc_list,
+                 drawdoc_list):
+    failed_module_names = [
+        os.path.splitext(os.path.basename(filename))[0]
+        for filename,junk in failed_list
+        ]
+
+    export_list = [ item for item in export_list
+                    if item[0].__module__ not in failed_module_names ]
+    import_list = [ item for item in import_list
+                    if item[0].__module__ not in failed_module_names ]
+    tool_list = [ item for item in tool_list
+                  if item[0].__module__ not in failed_module_names ]
+    cli_tool_list = [ item for item in cli_tool_list
+                      if item[2].__module__ not in failed_module_names ]
+    report_list = [ item for item in report_list
+                    if item[0].__module__ not in failed_module_names ]
+    bkitems_list = [ item for item in bkitems_list
+                     if item[2].__module__ not in failed_module_names ]
+    cl_list = [ item for item in cl_list
+                if item[2].__module__ not in failed_module_names ]
+    textdoc_list = [ item for item in textdoc_list
+                     if item[1].__module__ not in failed_module_names ]
+    bookdoc_list = [ item for item in bookdoc_list
+                     if item[1].__module__ not in failed_module_names ]
+    drawdoc_list = [ item for item in drawdoc_list
+                     if item[1].__module__ not in failed_module_names ]
+
+    # For some funky reason this module's global variables
+    # are not seen inside this function. But they are seen
+    # from other modules, so we pass them back and forth.
+    # Sucks, but I don't know why this happens :-(
+    return (export_list,import_list,tool_list,cli_tool_list,
+            report_list,bkitems_list,cl_list,textdoc_list,bookdoc_list,
+            drawdoc_list)
 
 #-------------------------------------------------------------------------
 #

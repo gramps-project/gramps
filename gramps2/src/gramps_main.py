@@ -924,26 +924,31 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         else:
             self.toolbardock.hide()
 
-    def build_plugin_menus(self):
+    def build_plugin_menus(self,rebuild=False):
         self.report_menu = self.gtop.get_widget("reports_menu")
         self.tools_menu  = self.gtop.get_widget("tools_menu")
 
-        self.report_menu.set_sensitive(0)
-        self.tools_menu.set_sensitive(0)
+        if not rebuild:
+            self.report_menu.set_sensitive(0)
+            self.tools_menu.set_sensitive(0)
+            error = self.load_plugins()
+            if GrampsKeys.get_pop_plugin_status() and error:
+                Plugins.PluginStatus(self)
 
-        error  = PluginMgr.load_plugins(const.docgenDir)
-        error |= PluginMgr.load_plugins(os.path.expanduser("~/.gramps/docgen"))
-        error |= PluginMgr.load_plugins(const.pluginsDir)
-        error |= PluginMgr.load_plugins(os.path.expanduser("~/.gramps/plugins"))
-
-        if GrampsKeys.get_pop_plugin_status() and error:
-            Plugins.PluginStatus(self)
         Plugins.build_report_menu(self.report_menu,self.menu_report)
         Plugins.build_tools_menu(self.tools_menu,self.menu_tools)
 
         self.RelClass = PluginMgr.relationship_class
         self.relationship = self.RelClass(self.db)
 
+    def load_plugins(self):
+        error  = PluginMgr.load_plugins(const.docgenDir)
+        error |= PluginMgr.load_plugins(os.path.expanduser("~/.gramps/docgen"))
+        error |= PluginMgr.load_plugins(const.pluginsDir)
+        error |= PluginMgr.load_plugins(
+            os.path.expanduser("~/.gramps/plugins"))
+        return error
+    
     def init_filters(self):
 
         cell = gtk.CellRendererText()
