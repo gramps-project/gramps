@@ -114,7 +114,10 @@ class BookItem:
         for item in PluginMgr.bkitems_list:
             if item[4] == name:
                 self.translated_name = item[0]
-                self.category = item[1]
+                if item[5]:
+                    self.category = Plugins.UNSUPPORTED
+                else:
+                    self.category = item[1]
                 self.write_item = item[2]
                 self.name = item[4]
                 self.option_class = item[3](self.name)
@@ -654,7 +657,12 @@ class BookReportSelector:
             return
 
         for book_item in PluginMgr.bkitems_list:
-            data = [ book_item[0], book_item[1], book_item[4] ] 
+            if book_item[5]:
+                category = Plugins.UNSUPPORTED
+            else:
+                category = book_item[1]
+            
+            data = [ book_item[0], category, book_item[4] ] 
             new_iter = self.av_model.add(data)
 
         self.av_model.connect_model()
