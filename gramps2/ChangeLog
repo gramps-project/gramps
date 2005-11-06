@@ -1,3 +1,11 @@
+2005-11-05  Alex Roitman  <shura@gramps-project.org>
+	* src/PluginMgr.py: Add the optional argument indicating the
+	unsupported status to all registrations.
+	* src/Plugins.py: Reflect unsupported status in menus and trees.
+	* src/plugins/BookReport.py: Reflect unsupported status.
+	* src/plugins/WebPage.py, src/plugins/FtmStyleAncestors.py,
+	src/plugins/FtmStyleDescendants.py: Declare unsupported status.
+
 2005-11-05  Don Allingham  <don@gramps-project.org>
 	* src/plugins/*.py: updated email addresses and status
 
