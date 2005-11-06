@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 import gc
+import time
 
 #-------------------------------------------------------------------------
 #
@@ -190,10 +191,17 @@ class EditSource:
             self.top.set_transient_for(parent_window)
         self.add_itself_to_menu()
         self.top.show()
+        self.person_list = []
+        self.family_list = []
+        self.event_list = []
+        self.place_list = []
+        self.source_list = []
+        self.media_list = []
         if self.ref_not_loaded:
             self.ref_not_loaded = 0
             Utils.temp_label(self.refs_label,self.top)
-            gobject.idle_add(self.display_references)
+            self.cursor_type = None
+            gobject.idle_add(self.disp_references)
         self.data_sel = self.datalist.get_selection()
 
     def on_add_data_clicked(self,widget):
@@ -302,13 +310,108 @@ class EditSource:
             ImageSelect.GlobalMediaProperties(self.db,media,self)
 
     def display_references(self):
-        
-        (person_list,family_list,event_list,
-            place_list,source_list,media_list
-            ) = Utils.get_source_referents(self.source.get_handle(),self.db)
+        ct = time.time()
+        source_handle = self.source.get_handle()
 
-        any = person_list or family_list or event_list \
-                or place_list or source_list or media_list
+        if not self.cursor_type:
+            self.cursor_type = 'Person'
+            self.cursor = self.db.get_person_cursor()
+            self.data = self.cursor.first()
+
+        if self.cursor_type == 'Person':
+            while self.data:
+                handle,val = self.data
+                obj = RelLib.Person()
+                obj.unserialize(val)
+                if obj.has_source_reference(source_handle):
+                    self.person_list.append(handle)
+                self.data = self.cursor.next()
+                if time.time() - ct > 0.1:
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Family'
+            self.cursor = self.db.get_family_cursor()
+            self.data = self.cursor.first()
+
+        if self.cursor_type == 'Family':
+            while self.data:
+                handle,val = self.data
+                obj = RelLib.Family()
+                obj.unserialize(val)
+                if obj.has_source_reference(source_handle):
+                    self.family_list.append(handle)
+                self.data = self.cursor.next()
+                if time.time() - ct > 0.1:
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Event'
+            self.cursor = self.db.get_event_cursor()
+            self.data = self.cursor.first()
+
+        if self.cursor_type == 'Event':
+            while self.data:
+                handle,val = self.data
+                obj = RelLib.Event()
+                obj.unserialize(val)
+                if obj.has_source_reference(source_handle):
+                    self.event_list.append(handle)
+                self.data = self.cursor.next()
+                if time.time() - ct > 0.1:
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Place'
+            self.cursor = self.db.get_place_cursor()
+            self.data = self.cursor.first()
+
+        if self.cursor_type == 'Place':
+            while self.data:
+                handle,val = self.data
+                obj = RelLib.Place()
+                obj.unserialize(val)
+                if obj.has_source_reference(source_handle):
+                    self.place_list.append(handle)
+                self.data = self.cursor.next()
+                if time.time() - ct > 0.1:
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Source'
+            self.cursor = self.db.get_source_cursor()
+            self.data = self.cursor.first()
+
+        if self.cursor_type == 'Source':
+            while self.data:
+                handle,val = self.data
+                obj = RelLib.Source()
+                obj.unserialize(val)
+                if obj.has_source_reference(source_handle):
+                    self.source_list.append(handle)
+                self.data = self.cursor.next()
+                if time.time() - ct > 0.1:
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Media'
+            self.cursor = self.db.get_media_cursor()
+            self.data = self.cursor.first()
+
+        if self.cursor_type == 'Media':
+            while self.data:
+                handle,val = self.data
+                obj = RelLib.MediaObject()
+                obj.unserialize(val)
+                if obj.has_source_reference(source_handle):
+                    self.media_list.append(handle)
+                self.data = self.cursor.next()
+                if time.time() - ct > 0.1:
+                    return True
+            self.cursor.close()
+
+        any = self.person_list or self.family_list or self.event_list \
+                or self.place_list or self.source_list or self.media_list
 
         slist = self.top_window.get_widget('slist')
 
@@ -316,37 +419,37 @@ class EditSource:
         
         self.model = ListModel.ListModel(slist,titles,event_func=self.button_press)
 
-        for handle in person_list:
+        for handle in self.person_list:
             person = self.db.get_person_from_handle(handle)
             name = self.name_display(person)
             gramps_id = person.get_gramps_id()
             self.model.add([_("Person"),gramps_id,name],(0,handle))
 
-        for handle in family_list:
+        for handle in self.family_list:
             family = self.db.get_family_from_handle(handle)
             name = Utils.family_name(family,self.db)
             gramps_id = family.get_gramps_id()
             self.model.add([_("Family"),gramps_id,name],(1,handle))
 
-        for handle in event_list:
+        for handle in self.event_list:
             event = self.db.get_event_from_handle(handle)
             name = event.get_name()
             gramps_id = event.get_gramps_id()
             self.model.add([_("Event"),gramps_id,name],(2,handle))
 
-        for handle in place_list:
+        for handle in self.place_list:
             place = self.db.get_place_from_handle(handle)
             name = place.get_title()
             gramps_id = place.get_gramps_id()
             self.model.add([_("Place"),gramps_id,name],(3,handle))
 
-        for handle in source_list:
+        for handle in self.source_list:
             source = self.db.get_source_from_handle(handle)
             name = source.get_title()
             gramps_id = source.get_gramps_id()
             self.model.add([_("Source"),gramps_id,name],(4,handle))
 
-        for handle in media_list:
+        for handle in self.media_list:
             media = self.db.get_object_from_handle(handle)
             name = media.get_description()
             gramps_id = media.get_gramps_id()
@@ -358,6 +461,14 @@ class EditSource:
             Utils.unbold_label(self.refs_label,self.top)
             
         self.ref_not_loaded = 0
+
+        self.person_list = []
+        self.family_list = []
+        self.event_list = []
+        self.place_list = []
+        self.source_list = []
+        self.media_list = []
+        return False
 
     def on_source_apply_clicked(self,obj):
 
@@ -414,6 +525,12 @@ class EditSource:
         elif page == 3 and self.ref_not_loaded:
             self.ref_not_loaded = 0
             Utils.temp_label(self.refs_label,self.top)
+            self.person_list = []
+            self.family_list = []
+            self.event_list = []
+            self.place_list = []
+            self.source_list = []
+            self.media_list = []
             gobject.idle_add(self.display_references)
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                 self.notes_buffer.get_end_iter(),False))

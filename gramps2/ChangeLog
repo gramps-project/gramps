@@ -1,3 +1,9 @@
+2005-11-06  Alex Roitman  <shura@gramps-project.org>
+	* src/EditSource.py (display_references): Check for elapsed time
+	and return control to the main loop after 0.1 sec from the idle
+	callback; convert callback to being able to store its state and
+	continue from the middle.
+
 2005-11-05  Alex Roitman  <shura@gramps-project.org>
 	* src/PluginMgr.py: Add the optional argument indicating the
 	unsupported status to all registrations.
