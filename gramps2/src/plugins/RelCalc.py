@@ -235,7 +235,8 @@ PluginMgr.register_tool(
     options_class = RelCalcOptions,
     modes = Tool.MODE_GUI,
     translated_name = _("Relationship calculator"),
+    status=(_("Stable")),
     author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
+    author_email = "don@gramps-project.org",
     description=_("Calculates the relationship between two people")
     )

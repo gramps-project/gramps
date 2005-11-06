@@ -685,8 +685,9 @@ register_tool(
     options_class = MergeOptions,
     modes = Tool.MODE_GUI,
     translated_name = _("Find possible duplicate people"),
+    status = _("Stable"),
     author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
+    author_email = "don@gramps-project.org",
     description=_("Searches the entire database, looking for "
                   "individual entries that may represent the same person.")
     )

@@ -153,7 +153,8 @@ register_tool(
     options_class = EvalOptions,
     modes = Tool.MODE_GUI,
     translated_name = _("Python evaluation window"),
+    status = _("Stable"),
     author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
+    author_email = "don@gramps-project.org",
     description=_("Provides a window that can evaluate python code")
     )

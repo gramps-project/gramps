@@ -251,6 +251,7 @@ register_tool(
     options_class = CmdRefOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,
     translated_name = _("Generate Commandline Plugin Reference"),
+    status = _("Stable"),
     author_name = "Martin Hawlisch",
     author_email = "martin@hawlisch.de",
     description=_("Generates a DocBook XML file that contains "

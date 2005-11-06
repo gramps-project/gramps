@@ -966,9 +966,9 @@ register_tool(
     options_class = FilterEditorOptions,
     modes = Tool.MODE_GUI,
     translated_name = _("Custom Filter Editor"),
-    status = _("Beta"),
+    status = _("Stable"),
     author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
+    author_email = "don@gramps-project.org",
     description=_("The Custom Filter Editor builds custom "
                   "filters that can be used to select people "
                   "included in reports, exports, and other utilities.")
@@ -985,9 +985,9 @@ if ((os.path.exists(const.system_filters) and
         options_class = FilterEditorOptions,
         modes = Tool.MODE_GUI,
         translated_name = _("System Filter Editor"),
-        status = _("Beta"),
+        status = _("Stable"),
         author_name = "Donald N. Allingham",
-        author_email = "dallingham@users.sourceforge.net",
+        author_email = "don@gramps-project.org",
         description=_("The System Filter Editor builds custom "
                       "filters that can be used by anyone on the system "
                       "to select people included in reports, exports, "

@@ -214,9 +214,9 @@ register_tool(
     options_class = ChangeTypesOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,
     translated_name = _("Rename personal event types"),
-    status = _("Beta"),
+    status = _("Stable"),
     author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
+    author_email = "don@gramps-project.org",
     description = _("Allows all the events of a certain name "
                     "to be renamed to a new name.")
     )

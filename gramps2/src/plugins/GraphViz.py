@@ -963,10 +963,10 @@ register_report(
     options_class = cl_report,
     modes = Report.MODE_GUI | Report.MODE_CLI,
     translated_name = _("Relationship Graph"),
-    status = _("Beta"),
+    status = _("Stable"),
     description= get_description(),
     author_name="Donald N. Allingham",
-    author_email="dallingham@users.sourceforge.net"
+    author_email="don@gramps-project.org"
     )
 
 if dot_found:
@@ -977,8 +977,8 @@ if dot_found:
         options_class = GraphVizOptions,
         modes = Report.MODE_GUI | Report.MODE_CLI,
         translated_name = _("Relationship Graph"),
-        status = _("Beta"),
+        status = _("Stable"),
         description= get_description_graphics(),
         author_name="Donald N. Allingham",
-        author_email="dallingham@users.sourceforge.net"
+        author_email="don@gramps-project.org"
     )

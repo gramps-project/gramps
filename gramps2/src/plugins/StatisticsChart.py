@@ -979,7 +979,7 @@ register_report(
     options_class = StatisticsChartOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
     translated_name = _("Statistics Chart"),
-    status = (_("Alpha")),
+    status = (_("Stable")),
     author_name="Eero Tamminen",
     author_email="",
     description= _("Generates statistical bar and pie charts of the people in the database.")

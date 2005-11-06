@@ -1121,8 +1121,8 @@ PluginMgr.register_report(
     options_class = cl_report,
     modes = Report.MODE_GUI | Report.MODE_CLI,
     translated_name = _("Book Report"),
-    status = _("Beta"),
+    status = _("Stable"),
     description = _("Creates a book containing several reports."),
     author_name = "Alex Roitman",
-    author_email = "shura@alex.neuro.umn.edu"
+    author_email = "shura@gramps-project.org"
     )

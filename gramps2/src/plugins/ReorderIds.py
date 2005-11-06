@@ -206,8 +206,9 @@ register_tool(
     options_class = ReorderIdsOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,
     translated_name = _("Reorder GRAMPS IDs"),
+    status=(_("Stable")),
     author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
+    author_email = "don@gramps-project.org",
     description=_("Reorders the gramps IDs "
                   "according to gramps' default rules.")
     )

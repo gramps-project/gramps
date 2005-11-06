@@ -1,3 +1,6 @@
+2005-11-05  Don Allingham  <don@gramps-project.org>
+	* src/plugins/*.py: updated email addresses and status
+
 2005-11-04  Alex Roitman  <shura@gramps-project.org>
 	* src/Witness.py (WitnessEditor.__init__): Typo.
 	* src/PluginMgr.py: Update all lists properly on any registration;
@@ -1007,7 +1010,7 @@ p
 2005-08-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gramps_main.py: Use gobject.timeout_add instead of gtk.
 
-2005-07-31  Alexander Roitman  <shura@gramps-project.org>
+2005-07-31  Alex Roitman  <shura@gramps-project.org>
 	* src/docgen/OpenOfficeDoc.py: Typo.
 
 2005-07-30  Don Allingham  <don@gramps-project.org>
@@ -1069,7 +1072,7 @@ p
 	* src/NavWebPage.py: Catch missing header/footer notes; Add Surname
 	page that is sorted by the number of persons.
 
-2005-07-25  Alexander Roitman  <shura@gramps-project.org>
+2005-07-25  Alex Roitman  <shura@gramps-project.org>
 	* src/gramps.glade (editPerson,marriageEditor): Use Title for the
 	source titles.
 
@@ -1116,7 +1119,7 @@ p
 	* src/plugins/DetDescendantReport.py: Names, events and sources.
 	* src/plugins/DetAncestralReport.py (add_user_options): Names, events and sources.
 
-2005-07-20  Alexander Roitman  <shura@gramps-project.org>
+2005-07-20  Alex Roitman  <shura@gramps-project.org>
 	* configure.in: Put release number back to CVS+date.
 	* src/po/de.po: Typo.
 	* src/plugins/Ancestors.py (person): correctly compare handles.
@@ -1269,7 +1272,7 @@ p
 2005-07-03  Eero Tamminen  <eerot@sf>
 	* src/po/fi.po: Updated translated to latest template
 
-2005-07-02  Alexander Roitman  <shura@gramps-project.org>
+2005-07-02  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib.py (Family.get_handle_referents): Typo;
 	(Event.get_handle_referents): Work around possible None for
 	witness. 
@@ -1326,7 +1329,7 @@ p
 	proper german translation.
 	* srx/po/de.po: Updated
 
-2005-06-24  Alexander Roitman  <shura@gramps-project.org>
+2005-06-24  Alex Roitman  <shura@gramps-project.org>
 	* src/po/fr.po: Add missing format line parameters.
 
 2005-06-23  Don Allingham  <don@gramps-project.org>
@@ -1351,7 +1354,7 @@ p
 	* src/PlaceView.py: fix sorting
 	* src/SourceView.py: fix sorting
 
-2005-06-22  Alexander Roitman  <shura@gramps-project.org>
+2005-06-22  Alex Roitman  <shura@gramps-project.org>
 	* src/GenericFilter.py (IsDescendantOfFilterMatch.__init__):
 	Remove unneeded method.
 	* src/FamilyView.py (remove_child_clicked): Prevent signal race.
@@ -1364,7 +1367,7 @@ p
 2005-06-21  Don Allingham  <don@gramps-project.org>
 	* src/GenericFilter.py: optimize a few filters
 
-2005-06-21  Alexander Roitman  <shura@gramps-project.org>
+2005-06-21  Alex Roitman  <shura@gramps-project.org>
 	* src/po/fr.po: Remove extra "%" signs.
 	* src/Report.py (CommandLineReport.parse_option_str): Fix indentation.
 
@@ -1381,7 +1384,7 @@ p
 	serialized data
 	* src/SelectChild.py: accept Person instead of handle
 
-2005-06-20  Alexander Roitman  <shura@gramps-project.org>
+2005-06-20  Alex Roitman  <shura@gramps-project.org>
 	* src/SelectChild.py (LikelyFilter.prepare,LikelyFilter.apply):
 	Handle absent birth of a parent.
 	* src/AddSpouse.py (LikelyFilter.prepare,LikelyFilter.apply):
@@ -1510,7 +1513,7 @@ p
 	* src/EditPerson.py: Don't add empty strings to pdmap
 	* src/AutoComp.py: don't add empty strings to completion
 
-2005-06-03  Alexander Roitman  <shura@gramps-project.org>
+2005-06-03  Alex Roitman  <shura@gramps-project.org>
 	* src/Utils.py (bold_label,unbold_label,temp_label): optionally
 	set cursor.
 	* src/EditSource.py (__init__,on_switch_page): Call

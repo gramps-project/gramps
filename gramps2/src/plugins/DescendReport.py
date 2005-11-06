@@ -251,8 +251,8 @@ register_report(
     options_class = DescendantOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
     translated_name = _("Descendant Report"),
-    status=(_("Beta")),
+    status=(_("Stable")),
     description=_("Generates a list of descendants of the active person"),
     author_name="Donald N. Allingham",
-    author_email="dallingham@users.sourceforge.net"
+    author_email="don@gramps-project.org"
     )

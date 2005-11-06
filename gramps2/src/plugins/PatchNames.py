@@ -354,8 +354,9 @@ register_tool(
     options_class = PatchNamesOptions,
     modes = Tool.MODE_GUI,
     translated_name = _("Extract information from names"),
+    status=(_("Stable")),
     author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
+    author_email = "don@gramps-project.org",
     description=_("Searches the entire database and attempts to "
                   "extract titles, nicknames and surname prefixes "
                   "that may be embedded in a person's given name field.")

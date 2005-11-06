@@ -545,8 +545,9 @@ register_report(
     options_class = FamilyGroupOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
     translated_name = _("Family Group Report"),
-    status = _("Beta"),
+    status = _("Stable"),
     author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
-    description=_("Creates a family group report, showing information on a set of parents and their children."),
+    author_email = "don@gramps-project.org",
+    description=_("Creates a family group report, showing information "
+                  "on a set of parents and their children."),
     )

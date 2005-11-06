@@ -169,7 +169,8 @@ register_tool(
     options_class = SoundGenOptions,
     modes = Tool.MODE_GUI,
     translated_name = _("Generate SoundEx codes"),
+    status=(_("Stable")),
     author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
+    author_email = "don@gramps-project.org",
     description=_("Generates SoundEx codes for names")
     )

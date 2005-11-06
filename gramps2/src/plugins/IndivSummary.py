@@ -387,8 +387,8 @@ register_report(
     options_class = IndivSummaryOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
     translated_name = _("Individual Summary"),
-    status=(_("Beta")),
+    status=(_("Stable")),
     description=_("Produces a detailed report on the selected person."),
     author_name="Donald N. Allingham",
-    author_email="dallingham@users.sourceforge.net"
+    author_email="don@gramps-project.org"
     )

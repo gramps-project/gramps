@@ -344,8 +344,8 @@ register_report(
     options_class = DescendantGraphOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
     translated_name = _("Descendant Graph"),
-    status = _("Alpha"),
+    status = _("Stable"),
     author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
+    author_email = "don@gramps-project.org",
     description = _("Generates a graph of descendants of the active person"),
     )

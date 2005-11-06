@@ -715,8 +715,6 @@ register_tool(
     options_class = VerifyOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,
     translated_name = _("Verify the database"),
-    author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
     description = _("Lists exceptions to assertions or checks "
                     "about the database")
     )

@@ -1947,7 +1947,8 @@ class MiniTree:
 #------------------------------------------------------------------------
 def cl_report(database,name,category,options_str_dict):
 
-    clr = Report.CommandLineReport(database,name,category,WebReportOptions,options_str_dict)
+    clr = Report.CommandLineReport(database,name,category,
+                                   WebReportOptions,options_str_dict)
 
     # Exit here if show option was given
     if clr.show:
@@ -1972,10 +1973,10 @@ register_report(
     report_class = WebReportDialog,
     options_class = cl_report,
     modes = Report.MODE_GUI | Report.MODE_CLI,
-    translated_name = _("Generate Web Site (deprecated)"),
+    translated_name = _("Generate Web Site"),
     author_name="Donald N. Allingham",
     author_email="don@gramps-project.org",
-    status=(_("Deprecated")),
+    status=(_("Unsupported")),
     description=_("Generates web (HTML) pages for individuals, "
                   "or a set of individuals. This report is considered "
                   "to be deprecated. Please migrate to the new "

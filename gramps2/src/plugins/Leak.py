@@ -149,7 +149,8 @@ register_tool(
     options_class = LeakOptions,
     modes = Tool.MODE_GUI,
     translated_name = _("Show uncollected objects"),
+    status = _("Stable"),
     author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
+    author_email = "don@gramps-project.org",
     description=_("Provide a window listing all uncollected objects"),
     )

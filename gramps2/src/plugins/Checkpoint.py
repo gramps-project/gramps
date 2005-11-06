@@ -439,9 +439,9 @@ register_tool(
     options_class = CheckpointOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,
     translated_name = _("Checkpoint the database"),
-    status = _("Beta"),
-    author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
+    status = _("Stable"),
+    author_name = "Alex Roitman",
+    author_email = "shura@gramps-project.org",
     description = _("Store a snapshot of the current database into "
                     "a revision control system")
     )

@@ -2858,8 +2858,8 @@ register_report(
     options_class = cl_report,
     modes = Report.MODE_GUI,
     translated_name = _("Narrative Web Site"),
+    status = _("Stable"),
     author_name="Donald N. Allingham",
     author_email="don@gramps-project.org",
-    status=(_("Beta")),
     description=_("Generates web (HTML) pages for individuals, or a set of individuals."),
     )

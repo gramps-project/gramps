@@ -214,9 +214,9 @@ register_tool(
     options_class = ChangeNamesOptions,
     modes = Tool.MODE_GUI,
     translated_name = _("Fix capitalization of family names"),
-    status = _("Beta"),
+    status = _("Stable"),
     author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
+    author_email = "don@gramps-project.org",
     description = _("Searches the entire database and attempts to "
                     "fix capitalization of the names.")
     )

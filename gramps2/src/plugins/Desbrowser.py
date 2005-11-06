@@ -176,7 +176,8 @@ register_tool(
     options_class = DesBrowseOptions,
     modes = Tool.MODE_GUI,
     translated_name = _("Interactive descendant browser"),
+    status = _("Stable"),
     author_name = "Donald N. Allingham",
-    author_email = "dallingham@users.sourceforge.net",
+    author_email = "don@gramps-project.org",
     description=_("Provides a browsable hierarchy based on the active person"),
     )
