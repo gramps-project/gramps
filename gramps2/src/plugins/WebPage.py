@@ -1980,4 +1980,5 @@ register_report(
                   "or a set of individuals. This report is considered "
                   "to be deprecated. Please migrate to the new "
                   "Narrative Web Page generator."),
+    unsupported=True
     )

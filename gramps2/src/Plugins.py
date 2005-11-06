@@ -69,6 +69,7 @@ import GrampsDisplay
 #-------------------------------------------------------------------------
 REPORTS = 0
 TOOLS   = 1
+UNSUPPORTED = _("Unsupported")
 
 #-------------------------------------------------------------------------
 #
@@ -126,6 +127,7 @@ class PluginDialog:
         
         self.author_name = self.dialog.get_widget("author_name")
         self.author_email = self.dialog.get_widget("author_email")
+        
         self.statbox = self.dialog.get_widget("statbox")
         
         self.apply_button = self.dialog.get_widget("apply")
@@ -194,8 +196,10 @@ class PluginDialog:
         data = self.imap[path]
 
         (report_class,options_class,title,category,name,
-         doc,status,author,email) = data
+         doc,status,author,email,unsupported) = data
         self.description.set_text(doc)
+        if unsupported:
+            status = UNSUPPORTED
         self.status.set_text(status)
         self.title.set_text('<span weight="bold" size="larger">%s</span>' % title)
         self.title.set_use_markup(1)
@@ -220,7 +224,10 @@ class PluginDialog:
         # build the tree items and group together based on the category name
         item_hash = {}
         for plugin in item_list:
-            category = categories[plugin[3]]
+            if plugin[9]:
+                category = UNSUPPORTED
+            else:
+                category = categories[plugin[3]]
             if item_hash.has_key(category):
                 item_hash[category].append(plugin)
             else:
@@ -228,11 +235,22 @@ class PluginDialog:
 
         # add a submenu for each category, and populate it with the
         # GtkTreeItems that are associated with it.
-        key_list = item_hash.keys()
+        key_list = [ item for item in item_hash.keys() if item != UNSUPPORTED]
         key_list.sort()
         key_list.reverse()
         
         prev = None
+        if item_hash.has_key(UNSUPPORTED):
+            key = UNSUPPORTED
+            data = item_hash[key]
+            node = self.store.insert_after(None,prev)
+            self.store.set(node,0,key)
+            next = None
+            data.sort(lambda x,y: cmp(x[2],y[2]))
+            for item in data:
+                next = self.store.insert_after(node,next)
+                ilist.append((next,item))
+                self.store.set(next,0,item[2])
         for key in key_list:
             data = item_hash[key]
             node = self.store.insert_after(None,prev)
@@ -397,7 +415,10 @@ def build_plugin_menu(item_list,categories,func,top_menu,callback):
     
     hash_data = {}
     for item in item_list:
-        category = categories[item[3]]
+        if item[9]:
+            category = UNSUPPORTED
+        else:
+            category = categories[item[3]]
         if hash_data.has_key(category):
             hash_data[category].append(
                     (item[0],item[1],item[2],item[4],item[3]))
@@ -405,7 +426,8 @@ def build_plugin_menu(item_list,categories,func,top_menu,callback):
             hash_data[category] = [
                     (item[0],item[1],item[2],item[4],item[3])]
 
-    catlist = hash_data.keys()
+    # Sort categories, skipping the unsupported
+    catlist = [item for item in hash_data.keys() if item != UNSUPPORTED]
     catlist.sort()
     for key in catlist:
         entry = gtk.MenuItem(key)
@@ -422,19 +444,33 @@ def build_plugin_menu(item_list,categories,func,top_menu,callback):
             subentry.connect("activate",callback,func,
                              name[0],name[1],name[2],name[3],name[4])
             submenu.append(subentry)
-    top_menu.set_submenu(menu)
 
+    # If there are any unsupported items we add separator
+    # and the unsupported category at the end of the menu
+    if hash_data.has_key(UNSUPPORTED):
+        entry = gtk.MenuItem(None)
+        entry.show()
+        menu.append(entry)
+        key = UNSUPPORTED
+        entry = gtk.MenuItem(key)
+        entry.show()
+        menu.append(entry)
+        submenu = gtk.Menu()
+        submenu.show()
+        entry.set_submenu(submenu)
+        lst = hash_data[key]
+        lst.sort(by_menu_name)
+        for name in lst:
+            subentry = gtk.MenuItem("%s..." % name[2])
+            subentry.show()
+            subentry.connect("activate",callback,func,
+                             name[0],name[1],name[2],name[3],name[4])
+            submenu.append(subentry)
+
+    top_menu.set_submenu(menu)
 
 def by_menu_name(a,b):
     return cmp(a[2],b[2])
-
-#-------------------------------------------------------------------------
-#
-# build_tools_menu
-#
-#-------------------------------------------------------------------------
-#def build_tools_menu(top_menu,callback):
-#    build_menu(top_menu,PluginMgr.tool_list,callback)
 
 #-------------------------------------------------------------------------
 #

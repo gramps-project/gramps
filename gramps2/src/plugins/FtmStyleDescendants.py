@@ -571,5 +571,6 @@ register_report(
     status = _("Beta"),
     description= _("Produces a textual descendant report similar to Family Tree Maker."),
     author_name="Alex Roitman",
-    author_email="shura@alex.neuro.umn.edu"
+    author_email="shura@alex.neuro.umn.edu",
+    unsupported=True
     )

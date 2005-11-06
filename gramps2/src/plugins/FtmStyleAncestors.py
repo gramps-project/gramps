@@ -423,5 +423,6 @@ register_report(
     status=(_("Beta")),
     description= _("Produces a textual ancestral report similar to Family Tree Maker."),
     author_name="Donald N. Allingham",
-    author_email="dallingham@users.sourceforge.net"
+    author_email="dallingham@users.sourceforge.net",
+    unsupported=True
     )
