@@ -191,17 +191,11 @@ class EditSource:
             self.top.set_transient_for(parent_window)
         self.add_itself_to_menu()
         self.top.show()
-        self.person_list = []
-        self.family_list = []
-        self.event_list = []
-        self.place_list = []
-        self.source_list = []
-        self.media_list = []
         if self.ref_not_loaded:
             self.ref_not_loaded = 0
             Utils.temp_label(self.refs_label,self.top)
             self.cursor_type = None
-            gobject.idle_add(self.disp_references)
+            self.idle = gobject.idle_add(self.display_references)
         self.data_sel = self.datalist.get_selection()
 
     def on_add_data_clicked(self,widget):
@@ -239,6 +233,7 @@ class EditSource:
         self.remove_itself_from_menu()
         self.gladeif.close()
         self.top.destroy()
+        gobject.source_remove(self.idle)
         gc.collect()
         
     def close_child_windows(self):
@@ -314,6 +309,13 @@ class EditSource:
         source_handle = self.source.get_handle()
 
         if not self.cursor_type:
+            self.person_list = []
+            self.family_list = []
+            self.event_list = []
+            self.place_list = []
+            self.source_list = []
+            self.media_list = []
+
             self.cursor_type = 'Person'
             self.cursor = self.db.get_person_cursor()
             self.data = self.cursor.first()
@@ -525,13 +527,7 @@ class EditSource:
         elif page == 3 and self.ref_not_loaded:
             self.ref_not_loaded = 0
             Utils.temp_label(self.refs_label,self.top)
-            self.person_list = []
-            self.family_list = []
-            self.event_list = []
-            self.place_list = []
-            self.source_list = []
-            self.media_list = []
-            gobject.idle_add(self.display_references)
+            self.idle = gobject.idle_add(self.display_references)
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                 self.notes_buffer.get_end_iter(),False))
         if text:
