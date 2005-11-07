@@ -50,6 +50,7 @@ import ImageSelect
 import NameDisplay
 import Spell
 import GrampsDisplay
+import RelLib
 
 from DdTargets import DdTargets
 from WindowUtils import GladeIf
@@ -251,7 +252,8 @@ class EditPlace:
         
         if self.ref_not_loaded:
             Utils.temp_label(self.refs_label,self.top)
-            gobject.idle_add(self.display_references)
+            self.cursor_type = None
+            self.idle = gobject.idle_add(self.display_references)
             self.ref_not_loaded = 0
 
     def build_pdmap(self):
@@ -277,6 +279,7 @@ class EditPlace:
         self.remove_itself_from_menu()
         self.gladeif.close()
         self.top.destroy()
+        gobject.source_remove(self.idle)
         gc.collect()
 
     def close_child_windows(self):
@@ -442,7 +445,7 @@ class EditPlace:
         elif page == 6 and self.ref_not_loaded:
             self.ref_not_loaded = 0
             Utils.temp_label(self.refs_label,self.top)
-            gobject.idle_add(self.display_references)
+            self.idle = gobject.idle_add(self.display_references)
         text = unicode(self.note_buffer.get_text(self.note_buffer.get_start_iter(),
                                 self.note_buffer.get_end_iter(),False))
         if text:
@@ -531,57 +534,95 @@ class EditPlace:
             self.loc_country.set_text(loc.get_country())
 
     def display_references(self):
-        pevent = []
-        fevent = []
-        msg = ""
-        for key in self.db.get_person_handles(sort_handles=False):
-            p = self.db.get_person_from_handle(key)
-            for event_handle in [p.get_birth_handle(), p.get_death_handle()] + p.get_event_list():
-                event = self.db.get_event_from_handle(event_handle)
-                if event and event.get_place_handle() == self.place.get_handle():
-                    pevent.append((p,event))
-        for family_handle in self.db.get_family_handles():
-            f = self.db.get_family_from_handle(family_handle)
-            for event_handle in f.get_event_list():
-                event = self.db.get_event_from_handle(event_handle)
-                if event and event.get_place_handle() == self.place.get_handle():
-                    fevent.append((f,event))
+        place_handle = self.place.get_handle()
+        t = _("%s [%s]: event %s\n")
 
-        any = 0
-        if len(pevent) > 0:
-            any = 1
-            msg = msg + _("People") + "\n"
-            msg = msg + "_________________________\n\n"
-            t = _("%s [%s]: event %s\n")
+        # Initialize things if we're entering this functioin
+        # for the first time
+        if not self.cursor_type:
+            self.cursor_type = 'Person'
+            self.cursor = self.db.get_person_cursor()
+            self.data = self.cursor.first()
+        
+            self.msg_people = ""
+            self.msg_families = ""
 
-            for e in pevent:
-                msg = msg + ( t % (self.name_display(e[0]),e[0].get_gramps_id(),_(e[1].get_name())))
+        if self.cursor_type == 'Person':
+            while self.data:
+                handle,val = self.data
+                person = RelLib.Person()
+                person.unserialize(val)
+                for event_handle in [person.get_birth_handle(),
+                                     person.get_death_handle()] \
+                                     + person.get_event_list():
+                    event = self.db.get_event_from_handle(event_handle)
+                    if event and event.get_place_handle() == place_handle:
+                        self.msg_people = self.msg_people + \
+                                          ( t % (self.name_display(person),
+                                                 person.get_gramps_id(),
+                                                 _(event.get_name())))
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Family'
+            self.cursor = self.db.get_family_cursor()
+            self.data = self.cursor.first()
 
-        if len(fevent) > 0:
-            any = 1
-            msg = msg + "\n%s\n" % _("Families")
-            msg = msg + "_________________________\n\n"
-            t = _("%s [%s]: event %s\n")
+        if self.cursor_type == 'Family':
+            while self.data:
+                handle,val = self.data
+                family = RelLib.Family()
+                family.unserialize(val)
+                for event_handle in family.get_event_list():
+                    event = self.db.get_event_from_handle(event_handle)
+                    if event and event.get_place_handle() == place_handle:
+                        father = family.get_father_handle()
+                        mother = family.get_mother_handle()
+                        if father and mother:
+                            fname = _("%(father)s and %(mother)s")  % {
+                                "father" : self.name_display(
+                                self.db.get_person_from_handle(father)),
+                                "mother" : self.name_display(
+                                self.db.get_person_from_handle(mother))
+                                }
+                        elif father:
+                            fname = self.name_display(
+                                self.db.get_person_from_handle(father))
+                        else:
+                            fname = self.name_display(
+                                self.db.get_person_from_handle(mother))
 
-            for e in fevent:
-                father = e[0].get_father_handle()
-                mother = e[0].get_mother_handle()
-                if father and mother:
-                    fname = _("%(father)s and %(mother)s")  % {
-                                "father" : self.name_display( self.db.get_person_from_handle( father)),
-                                "mother" : self.name_display( self.db.get_person_from_handle( mother)) }
-                elif father:
-                    fname = self.name_display( self.db.get_person_from_handle( father))
-                else:
-                    fname = self.name_display( self.db.get_person_from_handle( mother))
+                        self.msg_families = self.msg_families + \
+                                          ( t % (fname,
+                                                 family.get_gramps_id(),
+                                                 _(event.get_name())))
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
 
-                msg = msg + ( t % (fname,e[0].get_gramps_id(),_(e[1].get_name())))
+        if self.msg_people:
+            self.msg_people = _("People") + "\n" \
+                              + "_________________________\n\n" \
+                              + self.msg_people
+                        
+        if self.msg_families:
+            self.msg_families = "\n%s\n" % _("Families") \
+                                + "_________________________\n\n" \
+                                + self.msg_families
 
-        self.refinfo.get_buffer().set_text(msg)
-        if any:
+        self.refinfo.get_buffer().set_text(self.msg_people + self.msg_families)
+        
+        if self.msg_people or self.msg_families:
             Utils.bold_label(self.refs_label,self.top)
         else:
             Utils.unbold_label(self.refs_label,self.top)
+
+        self.ref_not_loaded = 0
+        self.cursor_type = None
+        return False
         
 #-------------------------------------------------------------------------
 #

@@ -1,4 +1,10 @@
 2005-11-06  Alex Roitman  <shura@gramps-project.org>
+	* src/EditSource.py (display_references): Return control if the
+	events are pending, not every 0.1 sec; Draw references as they
+	are found instead of deferring.
+	* src/EditPlace.py (display_references): Make nice.
+	* src/ImageSelect.py (GlobalMediaProperties.display_refs): Make nice.
+
 	* src/EditSource.py (display_references): Check for elapsed time
 	and return control to the main loop after 0.1 sec from the idle
 	callback; convert callback to being able to store its state and

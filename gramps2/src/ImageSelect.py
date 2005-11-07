@@ -1018,7 +1018,8 @@ class GlobalMediaProperties:
         self.slist  = self.change_dialog.get_widget("src_list")
         self.sources_label = self.change_dialog.get_widget("sourcesGlobal")
         if self.obj:
-            self.srcreflist = [RelLib.SourceRef(ref) for ref in self.obj.get_source_references()]
+            self.srcreflist = [RelLib.SourceRef(ref)
+                               for ref in self.obj.get_source_references()]
         else:
             self.srcreflist = []
     
@@ -1054,11 +1055,13 @@ class GlobalMediaProperties:
             else:
                 self.flowed.set_active(1)
 
-        self.gladeif.connect('change_global','delete_event',self.on_delete_event)
+        self.gladeif.connect('change_global','delete_event',
+                             self.on_delete_event)
         self.gladeif.connect('button91','clicked',self.close)
         self.gladeif.connect('ok','clicked',self.on_ok_clicked)
         self.gladeif.connect('button102','clicked',self.on_help_clicked)
-        self.gladeif.connect('notebook2','switch_page',self.on_notebook_switch_page)
+        self.gladeif.connect('notebook2','switch_page',
+                             self.on_notebook_switch_page)
         self.gladeif.connect('add_attr','clicked',self.on_add_attr_clicked)
         self.gladeif.connect('button101','clicked',self.on_update_attr_clicked)
         self.gladeif.connect('del_attr','clicked',self.on_delete_attr_clicked)
@@ -1073,7 +1076,8 @@ class GlobalMediaProperties:
         self.window.show()
         if not self.refs:
             Utils.temp_label(self.refs_label,self.window)
-            gobject.idle_add(self.display_refs)
+            self.cursor_type = None
+            self.idle = gobject.idle_add(self.display_refs)
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()
@@ -1084,6 +1088,7 @@ class GlobalMediaProperties:
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.window.destroy()
+        gobject.source_remove(self.idle)
         gc.collect()
 
     def close_child_windows(self):
@@ -1149,57 +1154,135 @@ class GlobalMediaProperties:
             return
             
     def display_refs(self):
+        media_handle = self.obj.get_handle()
         self.refs = 1
 
-        (person_list,family_list,event_list,place_list,source_list
-            ) = Utils.get_media_referents(self.obj.get_handle(),self.db)
+        # Initialize things if we're entering this functioin
+        # for the first time
+        if not self.cursor_type:
+            self.cursor_type = 'Person'
+            self.cursor = self.db.get_person_cursor()
+            self.data = self.cursor.first()
 
-        any = person_list or family_list or event_list or place_list or source_list
+            self.any_refs = False
+            titles = [(_('Type'),0,150),(_('ID'),1,75),(_('Name'),2,150)]
+            self.refmodel = ListModel.ListModel(
+                self.change_dialog.get_widget("refinfo"),
+                titles,
+                event_func=self.button_press)
 
-        titles = [(_('Type'),0,150),(_('ID'),1,75),(_('Name'),2,150)]
-        self.refmodel = ListModel.ListModel(
-                                self.change_dialog.get_widget("refinfo"),
-                                titles,event_func=self.button_press)
+        # (person_list,family_list,event_list,place_list,source_list
+        #     ) = Utils.get_media_referents(self.obj.get_handle(),self.db)
 
-        for handle in person_list:
-            person = self.db.get_person_from_handle(handle)
-            name = NameDisplay.displayer.display(person)
-            gramps_id = person.get_gramps_id()
-            self.refmodel.add([_("Person"),gramps_id,name])
 
-        for handle in family_list:
-            family = self.db.get_family_from_handle(handle)
-            name = Utils.family_name(family,self.db)
-            gramps_id = family.get_gramps_id()
-            self.refmodel.add([_("Family"),gramps_id,name])
+        if self.cursor_type == 'Person':
+            while self.data:
+                handle,val = self.data
+                person = RelLib.Person()
+                person.unserialize(val)
+                if media_handle in [photo.get_reference_handle()
+                                    for photo in person.get_media_list()]:
+                    name = NameDisplay.displayer.display(person)
+                    gramps_id = person.get_gramps_id()
+                    self.refmodel.add([_("Person"),gramps_id,name])
+                    self.any_refs = True
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Family'
+            self.cursor = self.db.get_family_cursor()
+            self.data = self.cursor.first()
 
-        for handle in event_list:
-            event = self.db.get_event_from_handle(handle)
-            name = event.get_name()
-            gramps_id = event.get_gramps_id()
-            self.refmodel.add([_("Event"),gramps_id,name])
+        if self.cursor_type == 'Family':
+            while self.data:
+                handle,val = self.data
+                family = RelLib.Family()
+                family.unserialize(val)
+                if media_handle in [photo.get_reference_handle()
+                                    for photo in family.get_media_list()]:
+                    name = Utils.family_name(family,self.db)
+                    gramps_id = family.get_gramps_id()
+                    self.refmodel.add([_("Family"),gramps_id,name])
+                    self.any_refs = True
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Event'
+            self.cursor = self.db.get_event_cursor()
+            self.data = self.cursor.first()
 
-        for handle in place_list:
-            place = self.db.get_place_from_handle(handle)
-            name = place.get_title()
-            gramps_id = place.get_gramps_id()
-            self.refmodel.add([_("Place"),gramps_id,name])
+        if self.cursor_type == 'Event':
+            while self.data:
+                handle,val = self.data
+                event = RelLib.Event()
+                event.unserialize(val)
+                if media_handle in [photo.get_reference_handle()
+                                    for photo in event.get_media_list()]:
+                    name = event.get_name()
+                    gramps_id = event.get_gramps_id()
+                    self.refmodel.add([_("Event"),gramps_id,name])
+                    self.any_refs = True
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Place'
+            self.cursor = self.db.get_place_cursor()
+            self.data = self.cursor.first()
 
-        for handle in source_list:
-            source = self.db.get_source_from_handle(handle)
-            name = source.get_title()
-            gramps_id = source.get_gramps_id()
-            self.refmodel.add([_("Source"),gramps_id,name])
+        if self.cursor_type == 'Place':
+            while self.data:
+                handle,val = self.data
+                place = RelLib.Place()
+                place.unserialize(val)
+                if media_handle in [photo.get_reference_handle()
+                                    for photo in place.get_media_list()]:
+                    name = place.get_title()
+                    gramps_id = place.get_gramps_id()
+                    self.refmodel.add([_("Place"),gramps_id,name])
+                    self.any_refs = True
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
+            
+            self.cursor_type = 'Source'
+            self.cursor = self.db.get_source_cursor()
+            self.data = self.cursor.first()
 
-        if any:
+        if self.cursor_type == 'Source':
+            while self.data:
+                handle,val = self.data
+                source = RelLib.Source()
+                source.unserialize(val)
+                if media_handle in [photo.get_reference_handle()
+                                    for photo in source.get_media_list()]:
+                    name = source.get_title()
+                    gramps_id = source.get_gramps_id()
+                    self.refmodel.add([_("Source"),gramps_id,name])
+                    self.any_refs = True
+                self.data = self.cursor.next()
+                if gtk.events_pending():
+                    return True
+            self.cursor.close()
+
+        if self.any_refs:
             Utils.bold_label(self.refs_label,self.window)
         else:
             Utils.unbold_label(self.refs_label,self.window)
+
+        self.cursor_type = None
+        return False
         
     def on_notebook_switch_page(self,obj,junk,page):
         if page == 3 and not self.refs:
             Utils.temp_label(self.refs_label,self.window)
-            gobject.idle_add(self.display_refs)
+            self.idle = gobject.idle_add(self.display_refs)
         t = self.notes.get_buffer()
         text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),False))
         if text:

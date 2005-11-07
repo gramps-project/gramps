@@ -27,7 +27,6 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 import gc
-import time
 
 #-------------------------------------------------------------------------
 #
@@ -305,30 +304,34 @@ class EditSource:
             ImageSelect.GlobalMediaProperties(self.db,media,self)
 
     def display_references(self):
-        ct = time.time()
         source_handle = self.source.get_handle()
 
+        # Initialize things if we're entering this functioin
+        # for the first time
         if not self.cursor_type:
-            self.person_list = []
-            self.family_list = []
-            self.event_list = []
-            self.place_list = []
-            self.source_list = []
-            self.media_list = []
-
             self.cursor_type = 'Person'
             self.cursor = self.db.get_person_cursor()
             self.data = self.cursor.first()
 
+            self.any_refs = False
+            slist = self.top_window.get_widget('slist')
+            titles = [(_('Type'),0,150),(_('ID'),1,75),(_('Name'),2,150)]
+            self.model = ListModel.ListModel(slist,
+                                             titles,
+                                             event_func=self.button_press)
+
         if self.cursor_type == 'Person':
             while self.data:
                 handle,val = self.data
-                obj = RelLib.Person()
-                obj.unserialize(val)
-                if obj.has_source_reference(source_handle):
-                    self.person_list.append(handle)
+                person = RelLib.Person()
+                person.unserialize(val)
+                if person.has_source_reference(source_handle):
+                    name = self.name_display(person)
+                    gramps_id = person.get_gramps_id()
+                    self.model.add([_("Person"),gramps_id,name],(0,handle))
+                    self.any_refs = True
                 self.data = self.cursor.next()
-                if time.time() - ct > 0.1:
+                if gtk.events_pending():
                     return True
             self.cursor.close()
             
@@ -339,12 +342,15 @@ class EditSource:
         if self.cursor_type == 'Family':
             while self.data:
                 handle,val = self.data
-                obj = RelLib.Family()
-                obj.unserialize(val)
-                if obj.has_source_reference(source_handle):
-                    self.family_list.append(handle)
+                family = RelLib.Family()
+                family.unserialize(val)
+                if family.has_source_reference(source_handle):
+                    name = Utils.family_name(family,self.db)
+                    gramps_id = family.get_gramps_id()
+                    self.model.add([_("Family"),gramps_id,name],(1,handle))
+                    self.any_refs = True
                 self.data = self.cursor.next()
-                if time.time() - ct > 0.1:
+                if gtk.events_pending():
                     return True
             self.cursor.close()
             
@@ -355,12 +361,15 @@ class EditSource:
         if self.cursor_type == 'Event':
             while self.data:
                 handle,val = self.data
-                obj = RelLib.Event()
-                obj.unserialize(val)
-                if obj.has_source_reference(source_handle):
-                    self.event_list.append(handle)
+                event = RelLib.Event()
+                event.unserialize(val)
+                if event.has_source_reference(source_handle):
+                    name = event.get_name()
+                    gramps_id = event.get_gramps_id()
+                    self.model.add([_("Event"),gramps_id,name],(2,handle))
+                    self.any_refs = True
                 self.data = self.cursor.next()
-                if time.time() - ct > 0.1:
+                if gtk.events_pending():
                     return True
             self.cursor.close()
             
@@ -371,12 +380,15 @@ class EditSource:
         if self.cursor_type == 'Place':
             while self.data:
                 handle,val = self.data
-                obj = RelLib.Place()
-                obj.unserialize(val)
-                if obj.has_source_reference(source_handle):
-                    self.place_list.append(handle)
+                place = RelLib.Place()
+                place.unserialize(val)
+                if place.has_source_reference(source_handle):
+                    name = place.get_title()
+                    gramps_id = place.get_gramps_id()
+                    self.model.add([_("Place"),gramps_id,name],(3,handle))
+                    self.any_refs = True
                 self.data = self.cursor.next()
-                if time.time() - ct > 0.1:
+                if gtk.events_pending():
                     return True
             self.cursor.close()
             
@@ -387,12 +399,15 @@ class EditSource:
         if self.cursor_type == 'Source':
             while self.data:
                 handle,val = self.data
-                obj = RelLib.Source()
-                obj.unserialize(val)
-                if obj.has_source_reference(source_handle):
-                    self.source_list.append(handle)
+                source = RelLib.Source()
+                source.unserialize(val)
+                if source.has_source_reference(source_handle):
+                    name = source.get_title()
+                    gramps_id = source.get_gramps_id()
+                    self.model.add([_("Source"),gramps_id,name],(4,handle))
+                    self.any_refs = True
                 self.data = self.cursor.next()
-                if time.time() - ct > 0.1:
+                if gtk.events_pending():
                     return True
             self.cursor.close()
             
@@ -406,70 +421,22 @@ class EditSource:
                 obj = RelLib.MediaObject()
                 obj.unserialize(val)
                 if obj.has_source_reference(source_handle):
-                    self.media_list.append(handle)
+                    name = obj.get_description()
+                    gramps_id = obj.get_gramps_id()
+                    self.model.add([_("Media"),gramps_id,name],(5,handle))
+                    self.any_refs = True
                 self.data = self.cursor.next()
-                if time.time() - ct > 0.1:
+                if gtk.events_pending():
                     return True
             self.cursor.close()
 
-        any = self.person_list or self.family_list or self.event_list \
-                or self.place_list or self.source_list or self.media_list
-
-        slist = self.top_window.get_widget('slist')
-
-        titles = [(_('Type'),0,150),(_('ID'),1,75),(_('Name'),2,150)]
-        
-        self.model = ListModel.ListModel(slist,titles,event_func=self.button_press)
-
-        for handle in self.person_list:
-            person = self.db.get_person_from_handle(handle)
-            name = self.name_display(person)
-            gramps_id = person.get_gramps_id()
-            self.model.add([_("Person"),gramps_id,name],(0,handle))
-
-        for handle in self.family_list:
-            family = self.db.get_family_from_handle(handle)
-            name = Utils.family_name(family,self.db)
-            gramps_id = family.get_gramps_id()
-            self.model.add([_("Family"),gramps_id,name],(1,handle))
-
-        for handle in self.event_list:
-            event = self.db.get_event_from_handle(handle)
-            name = event.get_name()
-            gramps_id = event.get_gramps_id()
-            self.model.add([_("Event"),gramps_id,name],(2,handle))
-
-        for handle in self.place_list:
-            place = self.db.get_place_from_handle(handle)
-            name = place.get_title()
-            gramps_id = place.get_gramps_id()
-            self.model.add([_("Place"),gramps_id,name],(3,handle))
-
-        for handle in self.source_list:
-            source = self.db.get_source_from_handle(handle)
-            name = source.get_title()
-            gramps_id = source.get_gramps_id()
-            self.model.add([_("Source"),gramps_id,name],(4,handle))
-
-        for handle in self.media_list:
-            media = self.db.get_object_from_handle(handle)
-            name = media.get_description()
-            gramps_id = media.get_gramps_id()
-            self.model.add([_("Media"),gramps_id,name],(5,handle))
-
-        if any:
+        if self.any_refs:
             Utils.bold_label(self.refs_label,self.top)
         else:
             Utils.unbold_label(self.refs_label,self.top)
             
         self.ref_not_loaded = 0
-
-        self.person_list = []
-        self.family_list = []
-        self.event_list = []
-        self.place_list = []
-        self.source_list = []
-        self.media_list = []
+        self.cursor_type = None
         return False
 
     def on_source_apply_clicked(self,obj):
@@ -478,8 +445,10 @@ class EditSource:
         author = unicode(self.author.get_text())
         pubinfo = unicode(self.pubinfo.get_text())
         abbrev = unicode(self.abbrev.get_text())
-        note = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                  self.notes_buffer.get_end_iter(),False))
+        note = unicode(
+            self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
+                                       self.notes_buffer.get_end_iter(),
+                                       False))
         format = self.preform.get_active()
 
         if author != self.source.get_author():
@@ -528,8 +497,11 @@ class EditSource:
             self.ref_not_loaded = 0
             Utils.temp_label(self.refs_label,self.top)
             self.idle = gobject.idle_add(self.display_references)
-        text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                self.notes_buffer.get_end_iter(),False))
+        text = unicode(
+            self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
+                                       self.notes_buffer.get_end_iter(),
+                                       False)
+            )
         if text:
             Utils.bold_label(self.notes_label)
         else:
