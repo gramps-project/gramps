@@ -298,6 +298,9 @@ class EditSource:
             import EditPlace
             place = self.db.get_place_from_handle(handle)
             EditPlace.EditPlace(self.parent,place)
+        elif data_type == 4:
+            source = self.db.get_source_from_handle(handle)
+            EditSource(source,self.db,self.parent,None,self.db.readonly)
         elif data_type == 5:
             import ImageSelect
             media = self.db.get_object_from_handle(handle)

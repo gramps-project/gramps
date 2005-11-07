@@ -1149,9 +1149,40 @@ class GlobalMediaProperties:
             Utils.unbold_label(self.attr_label)
 
     def button_press(self,obj):
-        store,node = self.refmodel.selection.get_selected()
-        if not node:
+        data = self.refmodel.get_selected_objects()
+        if not data:
             return
+        (data_type,handle) = data[0]
+        if data_type == 0:
+            import EditPerson
+            person = self.db.get_person_from_handle(handle)
+            EditPerson.EditPerson(self.parent.parent,person,self.db)
+        elif data_type == 1:
+            import Marriage
+            family = self.db.get_family_from_handle(handle)
+            Marriage.Marriage(self.parent.parent,family,self.db)
+        elif data_type == 2:
+            import EventEdit
+            event = self.db.get_event_from_handle(handle)
+            event_name = event.get_name()
+            if const.family_events.has_key(event_name):
+                EventEdit.FamilyEventEditor(
+                    self,", ", event, None, 0, None, None, self.db.readonly)
+            elif const.personal_events.has_key(event_name):
+                EventEdit.PersonEventEditor(
+                    self,", ", event, None, 0, None, None, self.db.readonly)
+            elif event_name in ["Birth","Death"]:
+                EventEdit.PersonEventEditor(
+                    self,", ", event, None, 1, None, None, self.db.readonly)
+        elif data_type == 3:
+            import EditPlace
+            place = self.db.get_place_from_handle(handle)
+            EditPlace.EditPlace(self.parent.parent,place)
+        elif data_type == 4:
+            source = self.db.get_source_from_handle(handle)
+            import EditSource
+            EditSource.EditSource(source,self.db,self.parent.parent,
+                                  None,self.db.readonly)
             
     def display_refs(self):
         media_handle = self.obj.get_handle()
@@ -1171,20 +1202,16 @@ class GlobalMediaProperties:
                 titles,
                 event_func=self.button_press)
 
-        # (person_list,family_list,event_list,place_list,source_list
-        #     ) = Utils.get_media_referents(self.obj.get_handle(),self.db)
-
-
         if self.cursor_type == 'Person':
             while self.data:
                 handle,val = self.data
                 person = RelLib.Person()
                 person.unserialize(val)
-                if media_handle in [photo.get_reference_handle()
-                                    for photo in person.get_media_list()]:
+                if person.has_media_reference(media_handle):
                     name = NameDisplay.displayer.display(person)
                     gramps_id = person.get_gramps_id()
-                    self.refmodel.add([_("Person"),gramps_id,name])
+                    self.refmodel.add([_("Person"),gramps_id,name],
+                                      (0,handle))
                     self.any_refs = True
                 self.data = self.cursor.next()
                 if gtk.events_pending():
@@ -1200,11 +1227,11 @@ class GlobalMediaProperties:
                 handle,val = self.data
                 family = RelLib.Family()
                 family.unserialize(val)
-                if media_handle in [photo.get_reference_handle()
-                                    for photo in family.get_media_list()]:
+                if family.has_media_reference(media_handle):
                     name = Utils.family_name(family,self.db)
                     gramps_id = family.get_gramps_id()
-                    self.refmodel.add([_("Family"),gramps_id,name])
+                    self.refmodel.add([_("Family"),gramps_id,name],
+                                      (1,handle))
                     self.any_refs = True
                 self.data = self.cursor.next()
                 if gtk.events_pending():
@@ -1220,11 +1247,11 @@ class GlobalMediaProperties:
                 handle,val = self.data
                 event = RelLib.Event()
                 event.unserialize(val)
-                if media_handle in [photo.get_reference_handle()
-                                    for photo in event.get_media_list()]:
+                if event.has_media_reference(media_handle):
                     name = event.get_name()
                     gramps_id = event.get_gramps_id()
-                    self.refmodel.add([_("Event"),gramps_id,name])
+                    self.refmodel.add([_("Event"),gramps_id,name],
+                                      (2,handle))
                     self.any_refs = True
                 self.data = self.cursor.next()
                 if gtk.events_pending():
@@ -1240,11 +1267,11 @@ class GlobalMediaProperties:
                 handle,val = self.data
                 place = RelLib.Place()
                 place.unserialize(val)
-                if media_handle in [photo.get_reference_handle()
-                                    for photo in place.get_media_list()]:
+                if place.has_media_reference(media_handle):
                     name = place.get_title()
                     gramps_id = place.get_gramps_id()
-                    self.refmodel.add([_("Place"),gramps_id,name])
+                    self.refmodel.add([_("Place"),gramps_id,name],
+                                      (3,handle))
                     self.any_refs = True
                 self.data = self.cursor.next()
                 if gtk.events_pending():
@@ -1260,11 +1287,11 @@ class GlobalMediaProperties:
                 handle,val = self.data
                 source = RelLib.Source()
                 source.unserialize(val)
-                if media_handle in [photo.get_reference_handle()
-                                    for photo in source.get_media_list()]:
+                if source.has_media_reference(media_handle):
                     name = source.get_title()
                     gramps_id = source.get_gramps_id()
-                    self.refmodel.add([_("Source"),gramps_id,name])
+                    self.refmodel.add([_("Source"),gramps_id,name],
+                                      (4,handle))
                     self.any_refs = True
                 self.data = self.cursor.next()
                 if gtk.events_pending():

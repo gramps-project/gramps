@@ -1,6 +1,8 @@
 2005-11-07  Alex Roitman  <shura@gramps-project.org>
 	* src/EditPlace.py: Convert References to the list view.
 	* src/gramps.glade: Replace TextView with TreeView.
+	* src/EditSource.py: Support editing Source from References tab.
+	* src/ImageSelect.py: Support editing objects through References.
 
 2005-11-07  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gramps_main.py: Fix improper active person handling
