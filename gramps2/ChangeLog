@@ -1,3 +1,6 @@
+2005-11-07  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/gramps_main.py: Fix improper active person handling
+
 2005-11-06  Alex Roitman  <shura@gramps-project.org>
 	* src/EditSource.py (display_references): Return control if the
 	events are pending, not every 0.1 sec; Draw references as they

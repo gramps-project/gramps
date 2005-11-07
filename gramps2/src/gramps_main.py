@@ -773,7 +773,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.tools_menu.set_sensitive(val)
         self.report_button.set_sensitive(val)
         self.tool_button.set_sensitive(val)
-        if self.views.get_current_page() == PERSON_VIEW:
+        if self.views.get_current_page() in [PERSON_VIEW, FAMILY_VIEW1, FAMILY_VIEW2]:
             self.remove_button.set_sensitive(val)
             self.edit_button.set_sensitive(val)
             self.remove_item.set_sensitive(val)
@@ -1449,7 +1449,13 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
     def load_selected_people(self,obj):
         """Display the selected people in the EditPerson display"""
         mlist = self.people_view.get_selected_objects()
-        if mlist and self.active_person.get_handle() == mlist[0]:
+        try:
+            active_handle = self.active_person.get_handle()
+        except AttributeError:
+            self.set_active = None
+            return
+            
+        if mlist and active_handle == mlist[0]:
             self.load_person(self.active_person)
 
     def load_active_person(self,obj):
@@ -1468,7 +1474,10 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         if cpage == PERSON_VIEW:
             mlist = self.people_view.get_selected_objects()
         else:
-            mlist = [ self.active_person.get_handle() ]
+            try:
+                mlist = [ self.active_person.get_handle() ]
+            except AttributeError:
+                mlist = []
 
         if len(mlist) == 0:
             return
@@ -1476,6 +1485,8 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         for sel in mlist:
             p = self.db.get_person_from_handle(sel)
             self.active_person = p
+            if not p:
+                continue
             name = NameDisplay.displayer.display(p) 
 
             msg = _('Deleting the person will remove the person '
@@ -1557,7 +1568,9 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.db.remove_person(handle, trans)
 
         if self.hindex >= 0:
-            self.active_person = self.db.get_person_from_handle(self.history[self.hindex])
+            p = self.db.get_person_from_handle(self.history[self.hindex])
+            self.change_active_person(p)
+            self.goto_active_person()
         else:
             self.change_active_person(None)
             self.goto_active_person()
