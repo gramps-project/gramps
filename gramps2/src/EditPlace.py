@@ -539,19 +539,19 @@ class EditPlace:
         if not data:
             return
         (data_type,handle) = data[0]
-        if data_type == 2:
-            import EventEdit
-            event = self.db.get_event_from_handle(handle)
-            event_name = event.get_name()
-            if const.family_events.has_key(event_name):
-                EventEdit.FamilyEventEditor(
-                    self,", ", event, None, 0, None, None, self.db.readonly)
-            elif const.personal_events.has_key(event_name):
-                EventEdit.PersonEventEditor(
-                    self,", ", event, None, 0, None, None, self.db.readonly)
-            elif event_name in ["Birth","Death"]:
+        import EventEdit
+        event = self.db.get_event_from_handle(handle)
+        event_name = event.get_name()
+        if data_type == 0:
+            if event_name in ["Birth","Death"]:
                 EventEdit.PersonEventEditor(
                     self,", ", event, None, 1, None, None, self.db.readonly)
+            else:
+                EventEdit.PersonEventEditor(
+                    self,", ", event, None, 0, None, None, self.db.readonly)
+        elif data_type == 1:
+            EventEdit.FamilyEventEditor(
+                self,", ", event, None, 0, None, None, self.db.readonly)
 
     def display_references(self):
         place_handle = self.place.get_handle()
@@ -585,7 +585,7 @@ class EditPlace:
                         ename = event.get_name()
                         self.model.add(
                             [_("Personal Event"),pname,gramps_id,ename],
-                            (2,event_handle))
+                            (0,event_handle))
                         self.any_refs = True
                 self.data = self.cursor.next()
                 if gtk.events_pending():
@@ -624,7 +624,7 @@ class EditPlace:
                         ename = event.get_name()
                         self.model.add(
                             [_("Family Event"),fname,gramps_id,ename],
-                            (2,event_handle))
+                            (1,event_handle))
                         self.any_refs = True
                 self.data = self.cursor.next()
                 if gtk.events_pending():
