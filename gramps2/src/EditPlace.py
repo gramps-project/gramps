@@ -51,6 +51,7 @@ import NameDisplay
 import Spell
 import GrampsDisplay
 import RelLib
+import ListModel
 
 from DdTargets import DdTargets
 from WindowUtils import GladeIf
@@ -170,7 +171,7 @@ class EditPlace:
         self.country.set_text(mloc.get_country())
         self.longitude.set_text(place.get_longitude())
         self.latitude.set_text(place.get_latitude())
-        self.refinfo = self.top_window.get_widget("refinfo")
+        self.plist = self.top_window.get_widget("plist")
         self.slist = self.top_window.get_widget("slist")
         self.sources_label = self.top_window.get_widget("sourcesPlaceEdit")
         self.names_label = self.top_window.get_widget("namesPlaceEdit")
@@ -533,9 +534,27 @@ class EditPlace:
             self.loc_parish.set_text(loc.get_parish())
             self.loc_country.set_text(loc.get_country())
 
+    def button_press(self,obj):
+        data = self.model.get_selected_objects()
+        if not data:
+            return
+        (data_type,handle) = data[0]
+        if data_type == 2:
+            import EventEdit
+            event = self.db.get_event_from_handle(handle)
+            event_name = event.get_name()
+            if const.family_events.has_key(event_name):
+                EventEdit.FamilyEventEditor(
+                    self,", ", event, None, 0, None, None, self.db.readonly)
+            elif const.personal_events.has_key(event_name):
+                EventEdit.PersonEventEditor(
+                    self,", ", event, None, 0, None, None, self.db.readonly)
+            elif event_name in ["Birth","Death"]:
+                EventEdit.PersonEventEditor(
+                    self,", ", event, None, 1, None, None, self.db.readonly)
+
     def display_references(self):
         place_handle = self.place.get_handle()
-        t = _("%s [%s]: event %s\n")
 
         # Initialize things if we're entering this functioin
         # for the first time
@@ -544,8 +563,12 @@ class EditPlace:
             self.cursor = self.db.get_person_cursor()
             self.data = self.cursor.first()
         
-            self.msg_people = ""
-            self.msg_families = ""
+            self.any_refs = False
+            titles = [(_('Type'),0,150),(_('Name'),1,150),
+                      (_('ID'),2,75),(_('Event Name'),3,150)]
+            self.model = ListModel.ListModel(self.plist,
+                                             titles,
+                                             event_func=self.button_press)
 
         if self.cursor_type == 'Person':
             while self.data:
@@ -557,10 +580,13 @@ class EditPlace:
                                      + person.get_event_list():
                     event = self.db.get_event_from_handle(event_handle)
                     if event and event.get_place_handle() == place_handle:
-                        self.msg_people = self.msg_people + \
-                                          ( t % (self.name_display(person),
-                                                 person.get_gramps_id(),
-                                                 _(event.get_name())))
+                        pname = self.name_display(person)
+                        gramps_id = person.get_gramps_id()
+                        ename = event.get_name()
+                        self.model.add(
+                            [_("Personal Event"),pname,gramps_id,ename],
+                            (2,event_handle))
+                        self.any_refs = True
                 self.data = self.cursor.next()
                 if gtk.events_pending():
                     return True
@@ -594,28 +620,18 @@ class EditPlace:
                             fname = self.name_display(
                                 self.db.get_person_from_handle(mother))
 
-                        self.msg_families = self.msg_families + \
-                                          ( t % (fname,
-                                                 family.get_gramps_id(),
-                                                 _(event.get_name())))
+                        gramps_id = family.get_gramps_id()
+                        ename = event.get_name()
+                        self.model.add(
+                            [_("Family Event"),fname,gramps_id,ename],
+                            (2,event_handle))
+                        self.any_refs = True
                 self.data = self.cursor.next()
                 if gtk.events_pending():
                     return True
             self.cursor.close()
 
-        if self.msg_people:
-            self.msg_people = _("People") + "\n" \
-                              + "_________________________\n\n" \
-                              + self.msg_people
-                        
-        if self.msg_families:
-            self.msg_families = "\n%s\n" % _("Families") \
-                                + "_________________________\n\n" \
-                                + self.msg_families
-
-        self.refinfo.get_buffer().set_text(self.msg_people + self.msg_families)
-        
-        if self.msg_people or self.msg_families:
+        if self.any_refs:
             Utils.bold_label(self.refs_label,self.top)
         else:
             Utils.unbold_label(self.refs_label,self.top)
