@@ -952,6 +952,7 @@ class GlobalMediaProperties:
         self.obj = obj
         self.lists_changed = 0
         self.db = db
+        self.idle = None
         if obj:
             self.date_object = Date.Date(self.obj.get_date_object())
             self.alist = self.obj.get_attribute_list()[:]
@@ -1088,7 +1089,8 @@ class GlobalMediaProperties:
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.window.destroy()
-        gobject.source_remove(self.idle)
+        if self.idle != None:
+            gobject.source_remove(self.idle)
         gc.collect()
 
     def close_child_windows(self):

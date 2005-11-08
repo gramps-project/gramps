@@ -1,3 +1,8 @@
+2005-11-08  Alex Roitman  <shura@gramps-project.org>
+	* src/EditPlace.py: Fix idle for new objects.
+	* src/EditSource.py: Fix idle for new objects.
+	* src/ImageSelect.py: Fix idle for new objects.
+
 2005-11-07  Alex Roitman  <shura@gramps-project.org>
 	* src/EditPlace.py: Convert References to the list view.
 	* src/gramps.glade: Replace TextView with TreeView.

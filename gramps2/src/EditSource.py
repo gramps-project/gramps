@@ -68,6 +68,7 @@ class EditSource:
             self.ref_not_loaded = 1
         else:
             self.ref_not_loaded = 0
+        self.idle = None
         self.db = db
         self.parent = parent
         self.name_display = NameDisplay.displayer.display
@@ -232,7 +233,8 @@ class EditSource:
         self.remove_itself_from_menu()
         self.gladeif.close()
         self.top.destroy()
-        gobject.source_remove(self.idle)
+        if self.idle != None:
+            gobject.source_remove(self.idle)
         gc.collect()
         
     def close_child_windows(self):
