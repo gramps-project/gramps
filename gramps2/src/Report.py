@@ -839,7 +839,7 @@ class BareReportDialog:
         if self.filter_combo:
             try:
                 self.filter = self.filter_combo.get_value()
-                active = self.filter_combo.get_active()
+                active = max(0,self.filter_combo.get_active())
                 self.options.handler.set_filter_number(active)
             except:
                 print "Error setting filter. Proceeding with 'Everyone'"
