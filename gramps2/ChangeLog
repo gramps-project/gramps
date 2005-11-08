@@ -1,3 +1,8 @@
+2005-11-08  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DbPrompter.py (DbPrompter): Give possibility to open
+	the recent file
+	* src/gramps.glade: Add recent file to DbPrompter
+	
 2005-11-08  Alex Roitman  <shura@gramps-project.org>
 	* src/EditPlace.py: Fix idle for new objects.
 	* src/EditSource.py: Fix idle for new objects.

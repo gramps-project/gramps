@@ -92,16 +92,50 @@ class DbPrompter:
         title = opendb.get_widget('title')
 
         Utils.set_titles(top,title,_('Open a database'))
-
+        
+        recent = opendb.get_widget("recent")
+        existing = opendb.get_widget("existing")
         new = opendb.get_widget("new")
-        new.set_active(want_new)
+
+        # write in recent file
+        gramps_rf = RecentFiles.GrampsRecentFiles()
+        gramps_rf.gramps_recent_files.sort()
+        gramps_rf.gramps_recent_files.reverse()
+        if gramps_rf.gramps_recent_files:
+            self.recent_file = gramps_rf.gramps_recent_files[0].get_path()
+            try:
+                self.recent_filetype = get_mime_type(self.recent_file)
+                filename = os.path.basename(self.recent_file).replace("_", "__")
+                recent.set_label( _("_Recent file: %s") % filename)
+            except RuntimeError:
+                recent.set_sensitive(False)
+                self.recent_file = None
+        else:
+            recent.set_sensitive(False)
+            self.recent_file = None
+        
+        if want_new:
+            new.set_active(True)
+        else:
+            if not self.recent_file:
+                existing.set_active(True)
 
         while 1:
             top.show()
             response = top.run()
             top.hide()
             if response == gtk.RESPONSE_OK:
-                if new.get_active():
+                if recent.get_active():
+                    try:
+                        if open_native(self.parent,self.recent_file,self.recent_filetype):
+                            break
+                    except RuntimeError,msg:
+                        QuestionDialog.ErrorDialog(
+                            _("Could not open file: %s") % self.recent_file,
+                            str(msg))
+                        recent.set_sensitive(False)
+                    continue
+                elif new.get_active():
                     prompter = NewNativeDbPrompter(self.parent,
                                                    self.parent_window)
                 else:
