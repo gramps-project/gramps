@@ -7,6 +7,8 @@
 	* src/BaseDoc.py: Support space above/below paragraph.
 	* src/StyleEditor.py: Support space above/below paragraph.
 	* src/gramps.glade: Support space above/below paragraph.
+	* src/Report.py: Minor tweaks for file selection.
+	* src/docgen//OpenOfficeDoc.py: Correct output for spacing.
 
 2005-11-09  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DbPrompter.py (DbPrompter): Use Combo to list multiple rcecent files

@@ -219,7 +219,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             else:
                 self.cntnt.write('style:font-name="Times New Roman" ')
             self.cntnt.write('fo:font-size="%.3fpt" ' % font.get_size())
-            self.cntnt.write('style:font-size-asian="%.3fpt" ' % font.get_size())
+            self.cntnt.write('style:font-size-asian="%.3fpt" '
+                             % font.get_size())
             color = font.get_color()
             self.cntnt.write('fo:color="#%02x%02x%02x" ' % color)
             if font.get_bold():
@@ -229,11 +230,16 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             if font.get_underline():
                 self.cntnt.write('style:text-underline="single" ')
                 self.cntnt.write('style:text-underline-color="font-color" ')
-            self.cntnt.write('fo:text-indent="%.2fcm" ' % style.get_first_indent())
-            self.cntnt.write('fo:margin-right="%.2fcm" ' % style.get_right_margin())
-            self.cntnt.write('fo:margin-left="%.2fcm" ' % style.get_left_margin())
-            self.cntnt.write('fo:margin-top="0cm" ')
-            self.cntnt.write('fo:margin-bottom="0.212cm"')
+            self.cntnt.write('fo:text-indent="%.2fcm" '
+                             % style.get_first_indent())
+            self.cntnt.write('fo:margin-right="%.2fcm" '
+                             % style.get_right_margin())
+            self.cntnt.write('fo:margin-left="%.2fcm" '
+                             % style.get_left_margin())
+            self.cntnt.write('fo:margin-top="%.2fcm" '
+                             % style.get_top_margin())
+            self.cntnt.write('fo:margin-bottom="%.2fcm"'
+                             % style.get_bottom_margin())
             self.cntnt.write('/>\n')
             self.cntnt.write('</style:style>\n')
 
@@ -596,11 +602,16 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             if font.get_underline():
                 self.sfile.write('style:text-underline="single" ')
                 self.sfile.write('style:text-underline-color="font-color" ')
-            self.sfile.write('fo:text-indent="%.2fcm" ' % style.get_first_indent())
-            self.sfile.write('fo:margin-right="%.2fcm" ' % style.get_right_margin())
-            self.sfile.write('fo:margin-left="%.2fcm" ' % style.get_left_margin())
-            self.sfile.write('fo:margin-top="0cm" ')
-            self.sfile.write('fo:margin-bottom="0.212cm"')
+            self.sfile.write('fo:text-indent="%.2fcm" '
+                             % style.get_first_indent())
+            self.sfile.write('fo:margin-right="%.2fcm" '
+                             % style.get_right_margin())
+            self.sfile.write('fo:margin-left="%.2fcm" '
+                             % style.get_left_margin())
+            self.sfile.write('fo:margin-top="%.2fcm" '
+                             % style.get_top_margin())
+            self.sfile.write('fo:margin-bottom="%.2fcm"'
+                             % style.get_bottom_margin())
             self.sfile.write('/>\n')
             self.sfile.write('</style:style>\n')
 

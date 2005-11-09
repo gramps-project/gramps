@@ -69,7 +69,7 @@ class FileEntry(gtk.HBox):
                                            gtk.STOCK_OPEN,
                                            gtk.RESPONSE_OK))
 
-        f.set_current_name(self.entry.get_text())
+        f.set_current_name(os.path.basename(self.entry.get_text()))
         f.set_current_folder(self.spath)
         status = f.run()
         if status == gtk.RESPONSE_OK:
@@ -84,7 +84,7 @@ class FileEntry(gtk.HBox):
         else:
             self.spath = os.getcwd()
             self.defname = path
-        self.entry.set_text(self.defname)
+        self.entry.set_text(os.path.join(self.spath,self.defname))
 
     def gtk_entry(self):
         return self.entry
