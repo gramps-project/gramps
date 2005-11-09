@@ -80,7 +80,7 @@ _SUPER_ELEVATION_FRACTION = 0.3
 _SUPER_SIZE_REDUCTION = 2
 
 # Factor which multiplies the font size to get line spacing for the font
-_EXTRA_SPACING_FACTOR = 1.1
+_EXTRA_SPACING_FACTOR = 1.2
 
 # Grey color to use for box shadows
 _SHADOW_COLOR = (192,192,192)
@@ -383,8 +383,10 @@ class GnomePrintParagraph:
                     end_word = len(textlist)
 
         self.lines.append((start_piece,start_word,end_piece,end_word,avail_width))
-        self.height = nlines * self.fontstyle.get_size() * _EXTRA_SPACING_FACTOR \
-                    + cm2u(self.style.get_padding())
+        self.height = nlines * self.fontstyle.get_size() \
+                      * _EXTRA_SPACING_FACTOR \
+                      + cm2u(self.style.get_top_margin()
+                             +self.style.get_bottom_margin())
     
     def get_lines(self):
         """
@@ -839,8 +841,8 @@ class LPRDoc(BaseDoc.BaseDoc):
             x = left_margin
             y = self.y
 
-        #if y != self.top_margin:
-        #    y = y - cm2u(paragraph.style.get_padding())
+        if y != self.top_margin:
+            y = y - cm2u(paragraph.style.get_top_margin())
 
         # Loop over lines which were assembled by paragraph.format()
         for (start_piece,start_word,end_piece,end_word,avail_width) \
@@ -911,7 +913,7 @@ class LPRDoc(BaseDoc.BaseDoc):
             x = left_margin
 
         x = x - cm2u(paragraph.style.get_left_margin())
-        #y = y - cm2u(paragraph.style.get_padding())
+        y = y - cm2u(paragraph.style.get_bottom_margin())
         return (x,y)
 
     def output_table(self):
