@@ -29,6 +29,13 @@ __version__ = "$Revision$"
 
 #------------------------------------------------------------------------
 #
+# Python modules
+#
+#------------------------------------------------------------------------
+from gettext import gettext as _
+
+#------------------------------------------------------------------------
+#
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
@@ -43,9 +50,12 @@ import Utils
 import const
 import BaseDoc
 import ListModel
-import locale
-from gettext import gettext as _
 
+#------------------------------------------------------------------------
+#
+# StyleList class
+#
+#------------------------------------------------------------------------
 class StyleListDisplay:
     """
     Shows the available paragraph/font styles. Allows the user to select,
@@ -129,8 +139,8 @@ class StyleListDisplay:
             
     def on_edit_clicked(self,obj):
         """
-        Called with the EDIT button is clicked. Calls the StyleEditor to edit the
-        selected style.
+        Called with the EDIT button is clicked.
+        Calls the StyleEditor to edit the selected style.
         """
         store,node = self.list.selection.get_selected()
         if not node:
@@ -149,10 +159,15 @@ class StyleListDisplay:
         self.sheetlist.delete_style_sheet(name)
         self.redraw()
 
+#------------------------------------------------------------------------
+#
+# StyleEditor class
+#
+#------------------------------------------------------------------------
 class StyleEditor:
     """
-    Edits the current style definition. Presents a dialog allowing the values of
-    the paragraphs in the style to be altered.
+    Edits the current style definition. Presents a dialog allowing the values
+    of the paragraphs in the style to be altered.
     """
     
     def __init__(self,name,style,parent):
@@ -227,10 +242,12 @@ class StyleEditor:
             self.top.get_widget("calign").set_active(1)
         else:
             self.top.get_widget("jalign").set_active(1)
-        self.top.get_widget("rmargin").set_text(locale.str(p.get_right_margin()))
-        self.top.get_widget("lmargin").set_text(locale.str(p.get_left_margin()))
-        self.top.get_widget("pad").set_text(locale.str(p.get_padding()))
-        self.top.get_widget("indent").set_text(locale.str(p.get_first_indent()))
+        self.top.get_widget("rmargin").set_value(p.get_right_margin())
+        self.top.get_widget("lmargin").set_value(p.get_left_margin())
+        self.top.get_widget("pad").set_value(p.get_padding())
+        self.top.get_widget("tmargin").set_value(p.get_top_margin())
+        self.top.get_widget("bmargin").set_value(p.get_bottom_margin())
+        self.top.get_widget("indent").set_value(p.get_first_indent())
         self.top.get_widget("tborder").set_active(p.get_top_border())
         self.top.get_widget("lborder").set_active(p.get_left_border())
         self.top.get_widget("rborder").set_active(p.get_right_border())
@@ -255,7 +272,7 @@ class StyleEditor:
         """Saves the current paragraph displayed on the dialog"""
         
         font = p.get_font()
-        font.set_size(int(self.top.get_widget("size").get_value()))
+        font.set_size(self.top.get_widget("size").get_value_as_int())
     
         if self.top.get_widget("roman").get_active():
             font.set_type_face(BaseDoc.FONT_SERIF)
@@ -274,10 +291,12 @@ class StyleEditor:
         else:
             p.set_alignment(BaseDoc.PARA_ALIGN_JUSTIFY)            
 
-        p.set_right_margin(Utils.gfloat(self.top.get_widget("rmargin").get_text()))
-        p.set_left_margin(Utils.gfloat(self.top.get_widget("lmargin").get_text()))
-        p.set_padding(Utils.gfloat(self.top.get_widget("pad").get_text()))
-        p.set_first_indent(Utils.gfloat(self.top.get_widget("indent").get_text()))
+        p.set_right_margin(self.top.get_widget("rmargin").get_value())
+        p.set_left_margin(self.top.get_widget("lmargin").get_value())
+        p.set_top_margin(self.top.get_widget("tmargin").get_value())
+        p.set_bottom_margin(self.top.get_widget("bmargin").get_value())
+        p.set_padding(self.top.get_widget("pad").get_value())
+        p.set_first_indent(self.top.get_widget("indent").get_value())
         p.set_top_border(self.top.get_widget("tborder").get_active())
         p.set_left_border(self.top.get_widget("lborder").get_active())
         p.set_right_border(self.top.get_widget("rborder").get_active())

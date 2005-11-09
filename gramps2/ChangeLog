@@ -4,6 +4,9 @@
 
 2005-11-09  Alex Roitman  <shura@gramps-project.org>
 	* src/docgen/LPRDoc.py: Use paragraph padding correctly.
+	* src/BaseDoc.py: Support space above/below paragraph.
+	* src/StyleEditor.py: Support space above/below paragraph.
+	* src/gramps.glade: Support space above/below paragraph.
 
 2005-11-09  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DbPrompter.py (DbPrompter): Use Combo to list multiple rcecent files
