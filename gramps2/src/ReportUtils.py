@@ -1268,23 +1268,21 @@ def place_name(db,place_handle):
 # Functions commonly used in reports
 #
 #-------------------------------------------------------------------------
-def insert_images(database, doc, person, w_cm=4.0, h_cm=4.0):
+def insert_image(database, doc, photo, w_cm=4.0, h_cm=4.0):
     """
     Insert pictures of a person into the document.
     """
 
-    photos = person.get_media_list()
-    for photo in photos :
-        object_handle = photo.get_reference_handle()
-        media_object = database.get_object_from_handle(object_handle)
-        mime_type = media_object.get_mime_type()
-        if mime_type and mime_type.startswith("image"):
-            filename = media_object.get_path()
-            if os.path.exists(filename):
-                doc.add_media_object(filename,"row",w_cm,h_cm)
-            else:
-                WarningDialog(_("Could not add photo to page"),
-                              "%s: %s" % (filename, _('File does not exist')))
+    object_handle = photo.get_reference_handle()
+    media_object = database.get_object_from_handle(object_handle)
+    mime_type = media_object.get_mime_type()
+    if mime_type and mime_type.startswith("image"):
+        filename = media_object.get_path()
+        if os.path.exists(filename):
+            doc.add_media_object(filename,"right",w_cm,h_cm)
+        else:
+            WarningDialog(_("Could not add photo to page"),
+                          "%s: %s" % (filename, _('File does not exist')))
 
 #-------------------------------------------------------------------------
 #

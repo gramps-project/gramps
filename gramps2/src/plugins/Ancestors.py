@@ -969,5 +969,6 @@ PluginMgr.register_report(
     status = _("Beta"),
     description= _("Produces a detailed ancestral report."),
     author_name="Tim Waugh",
-    author_email="twaugh@redhat.com"
+    author_email="twaugh@redhat.com",
+    unsupported=True
     )

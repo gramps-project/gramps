@@ -40,7 +40,64 @@ from types import ClassType, InstanceType
 #
 #-------------------------------------------------------------------------
 import gtk
-from gnome.ui import FileEntry
+
+
+class FileEntry(gtk.HBox):
+    def __init__(self,defname,title):
+        gtk.HBox.__init__(self)
+
+        self.title = title
+        self.dir = False
+        self.entry = gtk.Entry()
+        self.entry.set_text(defname)
+        self.set_filename(defname)
+        self.set_spacing(6)
+        self.set_homogeneous(False)
+        self.button = gtk.Button()
+        im = gtk.Image()
+        im.set_from_stock(gtk.STOCK_OPEN,gtk.ICON_SIZE_BUTTON)
+        self.button.add(im)
+        self.button.connect('clicked',self.select_file)
+        self.pack_start(self.entry,True,True)
+        self.pack_end(self.button,False,False)
+
+    def select_file(self,obj):
+        f = gtk.FileChooserDialog(self.title,
+                                  action=gtk.FILE_CHOOSER_ACTION_SAVE,
+                                  buttons=(gtk.STOCK_CANCEL,
+                                           gtk.RESPONSE_CANCEL,
+                                           gtk.STOCK_OPEN,
+                                           gtk.RESPONSE_OK))
+
+        f.set_current_name(self.entry.get_text())
+        f.set_current_folder(self.spath)
+        status = f.run()
+        if status == gtk.RESPONSE_OK:
+            self.set_filename(f.get_filename())
+        f.destroy()
+
+    def set_filename(self,path):
+        if os.path.dirname(path):
+            self.spath = os.path.dirname(path)
+            self.defname = os.path.basename(path)
+
+        else:
+            self.spath = os.getcwd()
+            self.defname = path
+        self.entry.set_text(self.defname)
+
+    def gtk_entry(self):
+        return self.entry
+
+    def get_full_path(self,val):
+        return self.entry.get_text()
+
+    def set_directory_entry(self,opt):
+        self.dir = False
+
+    
+        
+#from gnome.ui import FileEntry
 
 #-------------------------------------------------------------------------
 #
@@ -1118,7 +1175,6 @@ class ReportDialog(BareReportDialog):
         if hid[-4:]==".xml":
             hid = hid[0:-4]
         self.target_fileentry = FileEntry(hid,_("Save As"))
-        self.target_fileentry.set_modal(True)
 
         if self.get_target_is_directory():
             self.target_fileentry.set_directory_entry(1)
@@ -1135,7 +1191,6 @@ class ReportDialog(BareReportDialog):
         
         spath = self.get_default_directory()
 
-        self.target_fileentry.set_default_path(spath)
         self.target_fileentry.set_filename(spath)
         self.target_fileentry.gtk_entry().set_position(len(spath))
 
@@ -1322,7 +1377,6 @@ class ReportDialog(BareReportDialog):
         self.html_table.attach(label, 1, 2, 2, 3, gtk.SHRINK|gtk.FILL)
         self.html_fileentry = FileEntry("HTML_Template",
                                         _("Choose File"))
-        self.html_fileentry.set_modal(True)
         if template_name and not active_index:
             active_index = template_index
             user_template = template_name
