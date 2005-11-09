@@ -1,3 +1,19 @@
+Version 2.0.9 -- the "Bring out your dead" release
+* Numerous web generator improvements.
+* Support forward-referencing named notes in GEDCOM import.
+* Manual updates.
+* New Checkpoing tool plugin.
+* Support for running tools from command line.
+* Persistent options for tools, as applicable.
+* Export patronymic names into GEDCOM.
+* Updates for Swedish translation and date localization (Stefan Bjork).
+* Fully formalized XML format (DTD and RELAX NG schema).
+* New plugin documenting command line reference.
+* Memory leak in libbglade worked around.
+* Limitation of 31 generations reports removed.
+* Improved responsiveness when working with large databases.
+* Numerous bug fixes.
+
 Version 2.0.8 -- the "Romani ite domum" release
 
 Version 2.0.7 -- the "Romanes eunt domus" release

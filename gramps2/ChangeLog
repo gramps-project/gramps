@@ -9,7 +9,7 @@
 	* src/ImageSelect.py: Fix idle for new objects.
 	* src/Report.py (parse_report_options_frame): Do not allow
 	negative-numbered selection in the filter menu.
-	
+	* NEWS: Update.
 
 2005-11-07  Alex Roitman  <shura@gramps-project.org>
 	* src/EditPlace.py: Convert References to the list view.
