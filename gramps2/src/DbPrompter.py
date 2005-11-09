@@ -96,28 +96,42 @@ class DbPrompter:
         recent = opendb.get_widget("recent")
         existing = opendb.get_widget("existing")
         new = opendb.get_widget("new")
+        filelist = opendb.get_widget("filelist")
 
-        # write in recent file
+        # write in recent file into UI
         gramps_rf = RecentFiles.GrampsRecentFiles()
         gramps_rf.gramps_recent_files.sort()
         gramps_rf.gramps_recent_files.reverse()
+        self.recent_files = []
         if gramps_rf.gramps_recent_files:
-            self.recent_file = gramps_rf.gramps_recent_files[0].get_path()
-            try:
-                self.recent_filetype = get_mime_type(self.recent_file)
-                filename = os.path.basename(self.recent_file).replace("_", "__")
-                recent.set_label( _("_Recent file: %s") % filename)
-            except RuntimeError:
+            # if recent files have been stored
+            cell = gtk.CellRendererText()
+            filelist.pack_start(cell,True)
+            filelist.add_attribute(cell,'text',0)
+            store = gtk.ListStore(str)
+            for item in gramps_rf.gramps_recent_files:
+                try:
+                    filename = os.path.basename(item.get_path())
+                    filetype = get_mime_type(item.get_path())
+                    node = store.append()
+                    store.set(node,0,unicode(filename))
+                    self.recent_files.append( (item.get_path(), filetype))
+                except RuntimeError:
+                    pass    # ignore no longer existing files
+            if self.recent_files:
+                filelist.set_model(store)
+                filelist.set_active(0)
+            else:
                 recent.set_sensitive(False)
-                self.recent_file = None
+                filelist.set_sensitive(False)
         else:
             recent.set_sensitive(False)
-            self.recent_file = None
+            filelist.set_sensitive(False)
         
         if want_new:
             new.set_active(True)
         else:
-            if not self.recent_file:
+            if not self.recent_files:
                 existing.set_active(True)
 
         while 1:
@@ -127,13 +141,13 @@ class DbPrompter:
             if response == gtk.RESPONSE_OK:
                 if recent.get_active():
                     try:
-                        if open_native(self.parent,self.recent_file,self.recent_filetype):
+                        (filename,filetype) = self.recent_files[filelist.get_active()]
+                        if open_native(self.parent,filename,filetype):
                             break
                     except RuntimeError,msg:
                         QuestionDialog.ErrorDialog(
                             _("Could not open file: %s") % self.recent_file,
                             str(msg))
-                        recent.set_sensitive(False)
                     continue
                 elif new.get_active():
                     prompter = NewNativeDbPrompter(self.parent,

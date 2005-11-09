@@ -1,3 +1,7 @@
+2005-11-09  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DbPrompter.py (DbPrompter): Use Combo to list multiple rcecent files
+	* src/gramps.glade: Use Combo to list multiple rcecent files
+	
 2005-11-08  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DbPrompter.py (DbPrompter): Give possibility to open
 	the recent file
