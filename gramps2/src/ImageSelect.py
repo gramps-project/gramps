@@ -1343,6 +1343,9 @@ class GlobalMediaProperties:
         desc = unicode(self.descr_window.get_text())
         note = self.obj.get_note()
         path = self.change_dialog.get_widget('path').get_text()
+        if path != self.obj.get_path():
+            mime = GrampsMime.get_type(path)
+            self.obj.set_mime_type(mime)
         self.obj.set_path(path)
 
         if not self.date_object.is_equal(self.obj.get_date_object()):

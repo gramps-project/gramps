@@ -1,5 +1,6 @@
 2005-11-10  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/plugins/rel_es.py: More detail for some relationships
+	* src/ImageSelect.py: Recompute mime type in case of path change
 
 2005-11-09  Don Allingham  <don@gramps-project.org>
 	* src/plugins/DetAncestralReport.py: fix spacing
