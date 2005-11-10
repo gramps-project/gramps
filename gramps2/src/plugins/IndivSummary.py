@@ -390,5 +390,6 @@ register_report(
     status=(_("Stable")),
     description=_("Produces a detailed report on the selected person."),
     author_name="Donald N. Allingham",
-    author_email="don@gramps-project.org"
+    author_email="don@gramps-project.org",
+    unsupported = True
     )

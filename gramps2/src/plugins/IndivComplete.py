@@ -116,7 +116,8 @@ class IndivCompleteReport(Report.Report):
         date = event.get_date()
         place_handle = event.get_place_handle()
         if place_handle:
-            place = self.database.get_place_from_handle(place_handle).get_title()
+            place = self.database.get_place_from_handle(
+                place_handle).get_title()
         else:
             place = ""
         description = event.get_description()
@@ -193,8 +194,10 @@ class IndivCompleteReport(Report.Report):
         self.doc.end_cell()
         self.doc.end_row()
         
-        for (family_handle,mrel,frel) in self.start_person.get_parent_family_handle_list():
-            if family_handle == self.start_person.get_main_parents_family_handle():
+        for (family_handle,mrel,frel) \
+                in self.start_person.get_parent_family_handle_list():
+            if family_handle == \
+                   self.start_person.get_main_parents_family_handle():
                 continue
             
             family = self.database.get_family_from_handle(family_handle)
@@ -304,7 +307,8 @@ class IndivCompleteReport(Report.Report):
                     else:
                         self.doc.write_text('\n')
                     child = self.database.get_person_from_handle(child_handle)
-                    self.doc.write_text(child.get_primary_name().get_regular_name())
+                    self.doc.write_text(
+                        child.get_primary_name().get_regular_name())
                 self.doc.end_paragraph()
                 self.doc.end_cell()
                 self.doc.end_row()
@@ -345,8 +349,10 @@ class IndivCompleteReport(Report.Report):
         self.doc.end_cell()
         self.doc.end_row()
 
-        event_handle_list = [ self.start_person.get_birth_handle(), self.start_person.get_death_handle() ]
-        event_handle_list = event_handle_list + self.start_person.get_event_list()
+        event_handle_list = [ self.start_person.get_birth_handle(),
+                              self.start_person.get_death_handle() ]
+        event_handle_list = event_handle_list \
+                            + self.start_person.get_event_list()
         for event_handle in event_handle_list:
             if event_handle:
                 event = self.database.get_event_from_handle(event_handle)
@@ -371,7 +377,8 @@ class IndivCompleteReport(Report.Report):
             
         count = 0
         for person_handle in ind_list:
-            self.start_person = self.database.get_person_from_handle(person_handle)
+            self.start_person = self.database.get_person_from_handle(
+                person_handle)
             self.write_person(count)
             count = count + 1
 
@@ -427,13 +434,15 @@ class IndivCompleteReport(Report.Report):
             family = self.database.get_family_from_handle(family_handle)
             father_inst_id = family.get_father_handle()
             if father_inst_id:
-                father_inst = self.database.get_person_from_handle(father_inst_id)
+                father_inst = self.database.get_person_from_handle(
+                    father_inst_id)
                 father = father_inst.get_primary_name().get_regular_name()
             else:
                 father = ""
             mother_inst_id = family.get_mother_handle()
             if mother_inst_id:
-                mother_inst = self.database.get_person_from_handle(mother_inst_id) 
+                mother_inst = self.database.get_person_from_handle(
+                    mother_inst_id) 
                 mother = mother_inst.get_primary_name().get_regular_name()
             else:
                 mother = ""
@@ -592,6 +601,8 @@ register_report(
     options_class = IndivCompleteOptions,
     modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
     translated_name = _("Complete Individual Report"),
-    status=(_("Beta")),
+    status=(_("Stable")),
+    author_name="Donald N. Allingham",
+    author_email="don@gramps-project.org",
     description=_("Produces a complete report on the selected people."),
     )

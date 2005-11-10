@@ -1,5 +1,8 @@
 2005-11-10  Alex Roitman  <shura@gramps-project.org>
 	* src/po/nl.po: Typo.
+	* src/plugins/IndivSummary.py: Move to Unsupported (duplicates
+	a subset of the IndivComplete report functionality).
+	* src/plugins/IndivComplete.py: Add author.
 
 2005-11-10  Don Allingham  <don@gramps-project.org>
 	* doc/xmldocs.make: fix for GNOME 2.12 help path
