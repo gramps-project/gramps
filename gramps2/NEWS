@@ -12,6 +12,7 @@ Version 2.0.9 -- the "Nobody expects the Spanish inquisition!" release
 * Memory leak in libbglade worked around.
 * Limitation of 31 generations in reports removed.
 * Improved responsiveness when working with large databases.
+* Select from recent files on startup.
 * Numerous bug fixes.
 
 Version 2.0.8 -- the "Romani ite domum" release

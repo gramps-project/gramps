@@ -13,6 +13,8 @@
 	* src/docgen/LPRDoc.py: Properly use space above/below.
 	* src/docgen/LPRDoc.py: Support post-leader directive.
 	* src/docgen/LPRDoc.py: Remove extra line after the paragraph.
+	* NEWS: Update.
+	* example/gramps/*: Add new example data.
 
 2005-11-09  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DbPrompter.py (DbPrompter): Use Combo to list multiple rcecent files
