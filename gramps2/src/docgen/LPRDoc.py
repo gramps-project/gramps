@@ -141,6 +141,7 @@ _LINE_BREAK = "Break"
 _BOLD       = "Bold"
 _SUPER      = "Super"
 _MONO       = "Mono"
+_POSTLEADER = "Postleader"
 
 #------------------------------------------------------------------------
 #
@@ -571,7 +572,8 @@ class LPRDoc(BaseDoc.BaseDoc):
         # Add previously held text to the paragraph, 
         # then add line break directive, 
         # then start accumulating further text 
-        append_to_paragraph(self.paragraph,self.paragraph_directive,self.paragraph_text)
+        append_to_paragraph(self.paragraph,self.paragraph_directive,
+                            self.paragraph_text)
         self.paragraph.add_piece(_LINE_BREAK,"")
         self.paragraph_text = ""
         self.brand_new_page = 0
@@ -582,10 +584,12 @@ class LPRDoc(BaseDoc.BaseDoc):
         We assume a linebreak at the end of each paragraph."""
         # Instantiate paragraph object and initialize buffers
         self.paragraph = GnomePrintParagraph(self.style_list[style_name])
-        self.paragraph_directive = ""
-        self.paragraph_text = ""
         if leader:
-            self.paragraph_text += leader + " "
+            append_to_paragraph(self.paragraph,"",leader)
+            self.paragraph_directive = _POSTLEADER
+        else:
+            self.paragraph_directive = ""
+        self.paragraph_text = ""
         self.brand_new_page = 0
     
     def end_paragraph(self):
@@ -833,9 +837,11 @@ class LPRDoc(BaseDoc.BaseDoc):
 
         left_margin = x
         no_space = 0
+        next_no_space = 0
         first = 1
 
-        if y - paragraph.fontstyle.get_size() * _EXTRA_SPACING_FACTOR < self.bottom_margin:
+        if y - paragraph.fontstyle.get_size() * _EXTRA_SPACING_FACTOR \
+               < self.bottom_margin:
             self.end_page()
             self.start_page()
             x = left_margin
@@ -846,7 +852,7 @@ class LPRDoc(BaseDoc.BaseDoc):
 
         # Loop over lines which were assembled by paragraph.format()
         for (start_piece,start_word,end_piece,end_word,avail_width) \
-                                                    in paragraph.get_lines():
+                in paragraph.get_lines():
 
             if paragraph.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
                 x = x + 0.5 * avail_width
@@ -875,7 +881,10 @@ class LPRDoc(BaseDoc.BaseDoc):
                     y = y + _SUPER_ELEVATION_FRACTION * fontstyle.get_size()
                 elif directive == _MONO:
                     fontstyle.set_type_face(BaseDoc.FONT_MONOSPACE)
-
+                elif directive == _POSTLEADER:
+                    x = left_margin
+                    if text == '':
+                        next_no_space = 1
                 textlist = text.split()
                 if start_piece == end_piece:
                     the_textlist = textlist[start_word:end_word]
@@ -889,6 +898,8 @@ class LPRDoc(BaseDoc.BaseDoc):
                 the_text = ' '.join(the_textlist)
                 if piece_num == start_piece \
                                 or directive == _SUPER \
+                                or directive == _POSTLEADER \
+                                or next_no_space \
                                 or no_space \
                                 or (the_text and the_text[0] in punctuation):
                     spacer = ""
@@ -902,6 +913,8 @@ class LPRDoc(BaseDoc.BaseDoc):
                 x = x + get_text_width(the_text,fontstyle)
                 if directive == _SUPER:
                     y = y - _SUPER_ELEVATION_FRACTION * fontstyle.get_size()
+                if directive != _POSTLEADER and next_no_space:
+                    next_no_space = 0
 
             # If this was the linebreak, no space on the next line's start
             if end_word:
