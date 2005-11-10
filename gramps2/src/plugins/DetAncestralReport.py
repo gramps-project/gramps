@@ -189,8 +189,11 @@ class DetAncestorReport(Report.Report):
 
         person_handle = self.map[key]
         person = self.database.get_person_from_handle(person_handle)
-        if self.addImages:
-            ReportUtils.insert_images(self.database,self.doc,person)
+        plist = person.get_media_list()
+        
+        if self.addImages and len(plist) > 0:
+            photo = plist[0]
+            ReportUtils.insert_image(self.database,self.doc,photo)
 
         self.doc.start_paragraph("DAR-First-Entry","%s." % str(key))
 
@@ -214,8 +217,9 @@ class DetAncestorReport(Report.Report):
                 if dkey >= key: 
                     break
                 if self.map[key] == self.map[dkey]:
-                    self.doc.write_text(_("%(name)s is the same person as [%(id_str)s].") % 
-                                        { 'name' : '', 'id_str' : str(dkey) })
+                    self.doc.write_text(
+                        _("%(name)s is the same person as [%(id_str)s].") % 
+                        { 'name' : '', 'id_str' : str(dkey) })
                     self.doc.end_paragraph()
                     return 1    # Duplicate person
 
@@ -271,8 +275,10 @@ class DetAncestorReport(Report.Report):
                     self.doc.end_paragraph()
                     first = False
                 self.doc.start_paragraph('DAR-MoreDetails')
-                self.doc.write_text(_('%(name_kind)s: %(name)s%(endnotes)s') % {
-                    'name_kind' : const.NameTypesMap.find_value(alt_name.get_type()),
+                atype = alt_name.get_type()
+                self.doc.write_text(
+                    _('%(name_kind)s: %(name)s%(endnotes)s') % {
+                    'name_kind' : const.NameTypesMap.find_value(atype),
                     'name' : alt_name.get_regular_name(),
                     'endnotes' : self.endnotes(alt_name),
                     })
@@ -282,9 +288,9 @@ class DetAncestorReport(Report.Report):
             for event_handle in person.get_event_list():
                 event = self.database.get_event_from_handle(event_handle)
                 date = event.get_date()
-                place_handle = event.get_place_handle()
-                if place_handle:
-                    place = self.database.get_place_from_handle(place_handle).get_title()
+                ph = event.get_place_handle()
+                if ph:
+                    place = self.database.get_place_from_handle(ph).get_title()
                 else:
                     place = u''
                 
@@ -298,18 +304,21 @@ class DetAncestorReport(Report.Report):
 
                 self.doc.start_paragraph('DAR-MoreDetails')
                 if date and place:
-                    self.doc.write_text(_('%(event_name)s: %(date)s, %(place)s%(endnotes)s. ') % {
+                    self.doc.write_text(
+                        _('%(event_name)s: %(date)s, %(place)s%(endnotes)s. ') % {
                         'event_name' : _(event.get_name()),
                         'date' : date,
                         'endnotes' : self.endnotes(event),
                         'place' : place })
                 elif date:
-                    self.doc.write_text(_('%(event_name)s: %(date)s%(endnotes)s. ') % {
+                    self.doc.write_text(
+                        _('%(event_name)s: %(date)s%(endnotes)s. ') % {
                         'event_name' : _(event.get_name()),
                         'endnotes' : self.endnotes(event),
                         'date' : date})
                 elif place:
-                    self.doc.write_text(_('%(event_name)s: %(place)s%(endnotes)s. ') % {
+                    self.doc.write_text(
+                        _('%(event_name)s: %(place)s%(endnotes)s. ') % {
                         'event_name' : _(event.get_name()),
                         'endnotes' : self.endnotes(event),
                         'place' : place })
@@ -433,9 +442,6 @@ class DetAncestorReport(Report.Report):
                 firstName = 0
 
             if person_name:
-                if self.addImages:
-                    ReportUtils.insert_images(self.database,self.doc,ind)
-
                 self.doc.start_paragraph("DAR-Entry")
 
                 self.doc.write_text(person_name)
@@ -491,7 +497,8 @@ class DetAncestorReport(Report.Report):
         keys.sort()
         for key in keys:
             srcref = self.sref_map[key]
-            base = self.database.get_source_from_handle(srcref.get_base_handle())
+            sh = srcref.get_base_handle()
+            base = self.database.get_source_from_handle(sh)
             
             self.doc.start_paragraph('DAR-Endnotes',"%d." % key)
             self.doc.write_text(base.get_title())
@@ -635,7 +642,8 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         para.set_header_level(1)
-        para.set(pad=0.5)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the title of the page.'))
         default_style.add_style("DAR-Title",para)
 
@@ -644,7 +652,8 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         para.set_header_level(2)
-        para.set(pad=0.5)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the generation header.'))
         default_style.add_style("DAR-Generation",para)
 
@@ -653,7 +662,8 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         para.set_left_margin(1.0)   # in centimeters
-        para.set(pad=0.5)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the children list title.'))
         default_style.add_style("DAR-ChildTitle",para)
 
@@ -661,7 +671,9 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         font.set(size=10)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(first_indent=-0.75,lmargin=1.75,pad=0.25)
+        para.set(first_indent=-0.75,lmargin=1.75)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the children list.'))
         default_style.add_style("DAR-ChildList",para)
 
@@ -669,16 +681,22 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=0, bold=1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(first_indent=0.0,lmargin=1.0,pad=0.25)
+        para.set(first_indent=0.0,lmargin=1.0)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         default_style.add_style("DAR-NoteHeader",para)
 
         para = BaseDoc.ParagraphStyle()
-        para.set(lmargin=1.0,pad=0.25)
+        para.set(lmargin=1.0)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         para.set_description(_('The basic style used for the text display.'))
         default_style.add_style("DAR-Entry",para)
 
         para = BaseDoc.ParagraphStyle()
-        para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
+        para.set(first_indent=-1.0,lmargin=1.0)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the first personal entry.'))
         default_style.add_style("DAR-First-Entry",para)
 
@@ -686,7 +704,9 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         font.set(size=10,face=BaseDoc.FONT_SANS_SERIF,bold=1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(first_indent=0.0,lmargin=1.0,pad=0.25)
+        para.set(first_indent=0.0,lmargin=1.0)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the More About header.'))
         default_style.add_style("DAR-MoreHeader",para)
 
@@ -694,7 +714,9 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         font.set(face=BaseDoc.FONT_SERIF,size=10)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(first_indent=0.0,lmargin=1.0,pad=0.25)
+        para.set(first_indent=0.0,lmargin=1.0)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         para.set_description(_('The style used for additional detail data.'))
         default_style.add_style("DAR-MoreDetails",para)
 
@@ -703,12 +725,15 @@ class DetAncestorOptions(ReportOptions.ReportOptions):
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         para.set_header_level(2)
-        para.set(pad=0.5)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the generation header.'))
         default_style.add_style("DAR-Endnotes-Header",para)
 
         para = BaseDoc.ParagraphStyle()
-        para.set(first_indent=-0.5,lmargin=1.5,pad=0.25)
+        para.set(first_indent=-0.5,lmargin=1.5)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         para.set_description(_('The basic style used for the endnotes text display.'))
         default_style.add_style("DAR-Endnotes",para)
 
