@@ -231,7 +231,7 @@ def import2(database, filename, cb, codeset, use_trans):
                         'problem.'))
         return
     except:
-        Utils.destroy_passed_object(statusWindow)
+        Utils.destroy_passed_object(status_window)
         DisplayTrace.DisplayTrace()
         return
 
