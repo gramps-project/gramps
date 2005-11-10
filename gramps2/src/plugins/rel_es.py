@@ -158,17 +158,24 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         else:
             return "sobrina %d-ésima" % level 
 
-    def get_male_relative(self,level):
-        if level<len(_level_name_male_a):
-            return "pariente en %s grado" % (_level_name_male_a[level])
+    def get_male_relative(self,level1,level2):
+        if level1<len(_level_name_male_a):
+            level1_str = _level_name_male_a[level1]
         else:
-            return "pariente en %d-ésimo grado" % level
+            level1_str = "%d-ésimo" % level1
+        if level2<len(_level_name_male_a):
+            level2_str = _level_name_male_a[level2]
+        else:
+            level2_str = "%d-ésimo" % level2
+        level = level1 + level2
+        if level<len(_level_name_male_a):
+            level_str = _level_name_male_a[level]
+        else:
+            level_str = "%d-ésimo" % level
+        return "pariente en %s grado (%s con %s)" % (level_str,level1_str,level2_str)
 
-    def get_female_relative(self,level):
-        if level<len(_level_name_male_a):
-            return "pariente en %s grado" % (_level_name_male_a[level])
-        else:
-            return "pariente en %d-ésimo grado" % level
+    def get_female_relative(self,level1,level2):
+        return self.get_male_relative(level1,level2)
 
     def get_parents(self,level):
         if level<len(_parents_level):
@@ -314,9 +321,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 return (self.get_distant_aunt(firstRel),common)
         else:
             if other_person.get_gender() == RelLib.Person.MALE:
-                return (self.get_male_relative(firstRel+secondRel),common)
+                return (self.get_male_relative(firstRel,secondRel),common)
             else:
-                return (self.get_female_relative(firstRel+secondRel),common)
+                return (self.get_female_relative(firstRel,secondRel),common)
 
 #-------------------------------------------------------------------------
 #
