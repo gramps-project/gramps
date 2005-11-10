@@ -5,6 +5,7 @@
 	* src/plugins/IndivComplete.py: Add author.
 
 2005-11-10  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels.py: fix datalist[0] problem running with accessbility enabled
 	* doc/xmldocs.make: fix for GNOME 2.12 help path
 	* doc/gramps-manual/C/gramps-manual-C.omf: fix for GNOME 2.12 help path.
 

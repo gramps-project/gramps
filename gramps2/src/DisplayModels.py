@@ -163,7 +163,7 @@ class BaseModel(gtk.GenericTreeModel):
 
     def on_iter_children(self,node):
         """Return the first child of the node"""
-        if node == None:
+        if node == None and self.datalist:
             return self.datalist[0]
         return None
 
