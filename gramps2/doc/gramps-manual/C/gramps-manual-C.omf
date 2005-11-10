@@ -5,7 +5,7 @@
     <title>GRAMPS Manual</title>
     <date>2005-10-16</date>
     <version identifier="2.6" date="2004-10-16" description="GNOME2 Compliant GRAMPS Manual"/>
-    <subject category="GNOME|Applications"/>
+    <subject category="Applications"/>
     <description>User Manual for GRAMPS.</description>
     <type>User Manual</type>
     <format mime="text/xml" dtd="-//OASIS//DTD DocBook XML V4.1.2//EN"/>

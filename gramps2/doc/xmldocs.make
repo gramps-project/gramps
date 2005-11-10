@@ -37,7 +37,7 @@
 # ************* Begin of section some packagers may need to modify  **************
 # This variable (docdir) specifies where the documents should be installed.
 # This default value should work for most packages.
-docdir = $(datadir)/@PACKAGE@/gnome/help/@PACKAGE@/$(lang)
+docdir = $(datadir)/gnome/help/@PACKAGE@/$(lang)
 
 # **************  You should not have to edit below this line  *******************
 xml_files = $(entities) $(docname).xml
