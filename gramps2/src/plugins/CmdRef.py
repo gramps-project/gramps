@@ -242,18 +242,21 @@ class CmdRefOptions(Tool.ToolOptions):
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_tool
 
-register_tool(
-    name = 'cmdref',
-    category = Tool.TOOL_DEBUG,
-    tool_class = CmdRef,
-    options_class = CmdRefOptions,
-    modes = Tool.MODE_GUI | Tool.MODE_CLI,
-    translated_name = _("Generate Commandline Plugin Reference"),
-    status = _("Stable"),
-    author_name = "Martin Hawlisch",
-    author_email = "martin@hawlisch.de",
-    description=_("Generates a DocBook XML file that contains "
-                  "a parameter reference of Reports and Tools.")
-    )
+if __debug__:
+
+    from PluginMgr import register_tool
+
+    register_tool(
+        name = 'cmdref',
+        category = Tool.TOOL_DEBUG,
+        tool_class = CmdRef,
+        options_class = CmdRefOptions,
+        modes = Tool.MODE_GUI | Tool.MODE_CLI,
+        translated_name = _("Generate Commandline Plugin Reference"),
+        status = _("Stable"),
+        author_name = "Martin Hawlisch",
+        author_email = "martin@hawlisch.de",
+        description=_("Generates a DocBook XML file that contains "
+                      "a parameter reference of Reports and Tools.")
+        )

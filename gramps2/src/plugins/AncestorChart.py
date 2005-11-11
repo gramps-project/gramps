@@ -273,4 +273,5 @@ register_report(
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",
     description = _("Produces a graphical ancestral tree graph"),
+    unsupported = True,
     )

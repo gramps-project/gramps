@@ -1,3 +1,18 @@
+2005-11-10  Don Allingham  <don@gramps-project.org>
+	* src/GraphLayout.py: removed, incorporated into DesGraph
+	* src/Makefile.am: removed GraphLayout.py
+	* src/Plugins.py: don't enter into menus if not in debug mode
+	* src/plugins/CmdRef.py: don't enter into menus if not in debug mode
+	* src/plugins/Eval.py: don't enter into menus if not in debug mode
+	* src/plugins/Leak.py: don't enter into menus if not in debug mode
+	* src/plugins/TestcaseGenerator.py: don't enter into menus if not 
+	in debug mode
+	* src/plugins/DumpGenderStats.py: don't enter into menus if not 
+	* src/AncestorChart.py: Move to unsupported
+	* src/DesGraph.py: Move to unsupported
+	* src/AncestorChart2.py: More consistent name
+	* src/DescendChart.py: More consistent name
+
 2005-11-10  Alex Roitman  <shura@gramps-project.org>
 	* src/po/nl.po: Typo.
 	* src/plugins/IndivSummary.py: Move to Unsupported (duplicates

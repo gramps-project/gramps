@@ -144,17 +144,19 @@ class EvalOptions(Tool.ToolOptions):
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_tool
 
-register_tool(
-    name = 'eval',
-    category = Tool.TOOL_DEBUG,
-    tool_class = Eval,
-    options_class = EvalOptions,
-    modes = Tool.MODE_GUI,
-    translated_name = _("Python evaluation window"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description=_("Provides a window that can evaluate python code")
-    )
+if __debug__:
+    from PluginMgr import register_tool
+
+    register_tool(
+        name = 'eval',
+        category = Tool.TOOL_DEBUG,
+        tool_class = Eval,
+        options_class = EvalOptions,
+        modes = Tool.MODE_GUI,
+        translated_name = _("Python evaluation window"),
+        status = _("Stable"),
+        author_name = "Donald N. Allingham",
+        author_email = "don@gramps-project.org",
+        description=_("Provides a window that can evaluate python code")
+        )

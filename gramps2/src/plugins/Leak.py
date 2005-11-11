@@ -140,17 +140,19 @@ class LeakOptions(Tool.ToolOptions):
 # 
 #
 #------------------------------------------------------------------------
-from PluginMgr import register_tool
 
-register_tool(
-    name = 'eval',
-    category = Tool.TOOL_DEBUG,
-    tool_class = Leak,
-    options_class = LeakOptions,
-    modes = Tool.MODE_GUI,
-    translated_name = _("Show uncollected objects"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description=_("Provide a window listing all uncollected objects"),
-    )
+if __debug__:
+    from PluginMgr import register_tool
+
+    register_tool(
+        name = 'eval',
+        category = Tool.TOOL_DEBUG,
+        tool_class = Leak,
+        options_class = LeakOptions,
+        modes = Tool.MODE_GUI,
+        translated_name = _("Show uncollected objects"),
+        status = _("Stable"),
+        author_name = "Donald N. Allingham",
+        author_email = "don@gramps-project.org",
+        description=_("Provide a window listing all uncollected objects"),
+        )

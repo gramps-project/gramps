@@ -1377,18 +1377,22 @@ class TestcaseGeneratorOptions(Tool.ToolOptions):
 #
 #
 #-------------------------------------------------------------------------
-from PluginMgr import register_tool
 
-register_tool(
-    name = 'testcasegenerator',
-    category = Tool.TOOL_DEBUG,
-    tool_class = TestcaseGenerator,
-    options_class = TestcaseGeneratorOptions,
-    modes = Tool.MODE_GUI | Tool.MODE_CLI,
-    translated_name = _("Generate Testcases for persons and families"),
-    status = _("Beta"),
-    author_name = "Martin Hawlisch",
-    author_email = "martin@hawlisch.de",
-    description = _("The testcase generator will generate some persons and families"
-                    " that have broken links in the database or data that is in conflict to a relation.")
-    )
+if __debug__:
+    from PluginMgr import register_tool
+    
+    register_tool(
+        name = 'testcasegenerator',
+        category = Tool.TOOL_DEBUG,
+        tool_class = TestcaseGenerator,
+        options_class = TestcaseGeneratorOptions,
+        modes = Tool.MODE_GUI | Tool.MODE_CLI,
+        translated_name = _("Generate Testcases for persons and families"),
+        status = _("Beta"),
+        author_name = "Martin Hawlisch",
+        author_email = "martin@hawlisch.de",
+        description = _("The testcase generator will generate some persons "
+                        "and families that have broken links in the database "
+                        "or data that is in conflict to a relation.")
+        )
+    

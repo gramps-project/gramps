@@ -65,7 +65,6 @@ gdir_PYTHON = \
 	GrampsMime.py\
 	gramps_main.py\
 	gramps.py\
-	GraphLayout.py\
 	ImageSelect.py\
 	ImgManip.py\
 	latin_ansel.py\

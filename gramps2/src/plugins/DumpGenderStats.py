@@ -88,15 +88,18 @@ class DumpGenderStatsOptions(Tool.ToolOptions):
 #
 #
 #-------------------------------------------------------------------------
-from PluginMgr import register_tool
 
-register_tool(
-    name = 'dgenstats',
-    category = Tool.TOOL_DEBUG,
-    tool_class = DumpGenderStats,
-    options_class = DumpGenderStatsOptions,
-    modes = Tool.MODE_GUI | Tool.MODE_CLI,
-    translated_name = _("Dumps gender statistics"),
-    description = _("Will dump the statistics for the gender guessing "
-                    "from the first name.")
-    )
+if __debug__:
+    
+    from PluginMgr import register_tool
+    
+    register_tool(
+        name = 'dgenstats',
+        category = Tool.TOOL_DEBUG,
+        tool_class = DumpGenderStats,
+        options_class = DumpGenderStatsOptions,
+        modes = Tool.MODE_GUI | Tool.MODE_CLI,
+        translated_name = _("Dumps gender statistics"),
+        description = _("Will dump the statistics for the gender guessing "
+                        "from the first name.")
+        )

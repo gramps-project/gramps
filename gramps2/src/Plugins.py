@@ -731,13 +731,15 @@ class ReloadOptions(Tool.ToolOptions):
 # Register the plugin reloading tool
 #
 #-------------------------------------------------------------------------
-PluginMgr.register_tool(
-    name = 'reload',
-    category = Tool.TOOL_DEBUG,
-    tool_class = Reload,
-    options_class = ReloadOptions,
-    modes = Tool.MODE_GUI,
-    translated_name = _("Reload plugins"),
-    description=_("Attempt to reload plugins. "
-                  "Note: This tool itself is not reloaded!"),
-    )
+
+if __debug__:
+    PluginMgr.register_tool(
+        name = 'reload',
+        category = Tool.TOOL_DEBUG,
+        tool_class = Reload,
+        options_class = ReloadOptions,
+        modes = Tool.MODE_GUI,
+        translated_name = _("Reload plugins"),
+        description=_("Attempt to reload plugins. "
+                      "Note: This tool itself is not reloaded!"),
+        )
