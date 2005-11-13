@@ -156,10 +156,10 @@ class PdfDoc(BaseDoc.BaseDoc):
 
             pdf_style.rightIndent = style.get_right_margin()*cm
             pdf_style.leftIndent = style.get_left_margin()*cm
-            pdf_style.firstLineIndent = style.get_left_margin()*cm + \
-                                        style.get_first_indent()*cm
-            pdf_style.bulletIndent = pdf_style.firstLineIndent
-
+            pdf_style.firstLineIndent = style.get_first_indent()*cm
+            pdf_style.bulletIndent = pdf_style.firstLineIndent + \
+                                     pdf_style.leftIndent
+            
             align = style.get_alignment()
             if align == BaseDoc.PARA_ALIGN_RIGHT:
                 pdf_style.alignment = TA_RIGHT
@@ -204,6 +204,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         if leader==None:
             self.text = ''
         else:
+            self.current_para.firstLineIndent = 0
             self.text = '<bullet>%s</bullet>' % leader
 
     def end_paragraph(self):
