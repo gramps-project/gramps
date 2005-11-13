@@ -61,6 +61,7 @@ from QuestionDialog import ErrorDialog
 #
 #------------------------------------------------------------------------
 EMPTY_ENTRY = "_____________"
+HENRY = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 #------------------------------------------------------------------------
 #
@@ -119,6 +120,7 @@ class DetDescendantReport(Report.Report):
         self.gen_handles = {}
         self.prev_gen_handles= {}
         self.gen_keys = []
+        self.henry = {}
 
         if self.blankDate:
             self.EMPTY_DATE = EMPTY_ENTRY
@@ -133,9 +135,10 @@ class DetDescendantReport(Report.Report):
         self.sref_map = {}
         self.sref_index = 0
 
-    def apply_filter(self,person_handle,index,cur_gen=1):
+    def apply_filter(self,person_handle,index,pid,cur_gen=1):
         if (not person_handle) or (cur_gen > self.max_generations):
-            return 
+            return
+        self.henry[person_handle] = pid
         self.map[index] = person_handle
 
         if len(self.gen_keys) < cur_gen:
@@ -144,15 +147,18 @@ class DetDescendantReport(Report.Report):
             self.gen_keys[cur_gen-1].append(index)
 
         person = self.database.get_person_from_handle(person_handle)
+        index = 0
         for family_handle in person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
             for child_handle in family.get_child_handle_list():
                 child = self.database.get_family_from_handle(child_handle)
                 ix = max(self.map.keys())
-                self.apply_filter(child_handle, ix+1, cur_gen+1)
+                self.apply_filter(child_handle, ix+1,
+                                  pid+HENRY[index], cur_gen+1)
+                index += 1
 
     def write_report(self):
-        self.apply_filter(self.start_person.get_handle(),1)
+        self.apply_filter(self.start_person.get_handle(),1,"1")
 
         name = _nd.display_name(self.start_person.get_primary_name())
 
@@ -214,7 +220,8 @@ class DetDescendantReport(Report.Report):
         if self.addImages:
             ReportUtils.insert_images(self.database,self.doc,person)
 
-        self.doc.start_paragraph("DDR-First-Entry","%s." % str(key))
+        val = self.henry[person_handle]
+        self.doc.start_paragraph("DDR-First-Entry","%s." % val)
 
         name = _nd.display_formal(person)
 
@@ -281,7 +288,8 @@ class DetDescendantReport(Report.Report):
             self.doc.start_paragraph("DDR-NoteHeader")
             self.doc.write_text(_("Notes for %s") % name)
             self.doc.end_paragraph()
-            self.doc.write_note(person.get_note(),person.get_note_format(),"DDR-Entry")
+            self.doc.write_note(person.get_note(),person.get_note_format(),
+                                "DDR-Entry")
 
         first = True
         if self.includeNames:
@@ -425,15 +433,20 @@ class DetDescendantReport(Report.Report):
                 value = str(self.prev_gen_handles.get(child_handle))
                 child_name += " [%s]" % value
 
-            self.doc.start_paragraph("DDR-ChildList",ReportUtils.roman(cnt).lower() + ".")
+            self.doc.start_paragraph("DDR-ChildList",
+                                     ReportUtils.roman(cnt).lower() + ".")
             cnt += 1
 
-            self.doc.write_text("%s. " % child_name)
-            self.doc.write_text(ReportUtils.born_str(self.database, child, 0,
-                                                     self.EMPTY_DATE, self.EMPTY_PLACE))
-            self.doc.write_text(ReportUtils.died_str(self.database, child, 0, 
-                                                     self.EMPTY_DATE, self.EMPTY_PLACE))
-            
+            if self.henry[child_handle]:
+                self.doc.write_text("%s [%s]. " % (child_name,
+                                                   self.henry[child_handle]))
+            else:
+                self.doc.write_text("%s. " % child_name)
+                
+            self.doc.write_text(ReportUtils.born_str(
+                self.database, child, 0, self.EMPTY_DATE, self.EMPTY_PLACE))
+            self.doc.write_text(ReportUtils.died_str(
+                self.database, child, 0, self.EMPTY_DATE, self.EMPTY_PLACE))
             self.doc.end_paragraph()
 
     def write_mate(self, mate):
@@ -587,7 +600,6 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
     def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
-            'firstnameiop'  : 0,
             'fulldates'     : 1,
             'listc'         : 1,
             'incnotes'      : 1,
@@ -658,7 +670,8 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         para.set_header_level(1)
-        para.set(pad=0.5)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the title of the page.'))
         default_style.add_style("DDR-Title",para)
 
@@ -667,7 +680,8 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         para.set_header_level(2)
-        para.set(pad=0.5)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the generation header.'))
         default_style.add_style("DDR-Generation",para)
 
@@ -675,8 +689,9 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=0, bold=1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set_left_margin(1.0)   # in centimeters
-        para.set(pad=0.5)
+        para.set_left_margin(1.5)   # in centimeters
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the children list title.'))
         default_style.add_style("DDR-ChildTitle",para)
 
@@ -684,7 +699,9 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         font.set(size=10)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(first_indent=-0.75,lmargin=1.75,pad=0.25)
+        para.set(first_indent=-0.75,lmargin=2.25)
+        para.set_top_margin(0.125)
+        para.set_bottom_margin(0.125)
         para.set_description(_('The style used for the children list.'))
         default_style.add_style("DDR-ChildList",para)
 
@@ -692,16 +709,22 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=0, bold=1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(first_indent=0.0,lmargin=1.0,pad=0.25)
+        para.set(first_indent=0.0,lmargin=1.5)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         default_style.add_style("DDR-NoteHeader",para)
 
         para = BaseDoc.ParagraphStyle()
-        para.set(lmargin=1.0,pad=0.25)
+        para.set(lmargin=1.5)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         para.set_description(_('The basic style used for the text display.'))
         default_style.add_style("DDR-Entry",para)
 
         para = BaseDoc.ParagraphStyle()
-        para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
+        para.set(first_indent=-1.5,lmargin=1.5)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)        
         para.set_description(_('The style used for the first personal entry.'))
         default_style.add_style("DDR-First-Entry",para)
 
@@ -709,7 +732,9 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         font.set(size=10,face=BaseDoc.FONT_SANS_SERIF,bold=1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(first_indent=0.0,lmargin=1.0,pad=0.25)
+        para.set(first_indent=0.0,lmargin=1.5)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the More About header.'))
         default_style.add_style("DDR-MoreHeader",para)
 
@@ -717,7 +742,9 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         font.set(face=BaseDoc.FONT_SERIF,size=10)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(first_indent=0.0,lmargin=1.0,pad=0.25)
+        para.set(first_indent=0.0,lmargin=1.5)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         para.set_description(_('The style used for additional detail data.'))
         default_style.add_style("DDR-MoreDetails",para)
 
@@ -726,12 +753,15 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         para.set_header_level(2)
-        para.set(pad=0.5)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the generation header.'))
         default_style.add_style("DDR-Endnotes-Header",para)
 
         para = BaseDoc.ParagraphStyle()
-        para.set(first_indent=-0.5,lmargin=1.5,pad=0.25)
+        para.set(first_indent=-0.5,lmargin=1.5)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
         para.set_description(_('The basic style used for the endnotes text display.'))
         default_style.add_style("DDR-Endnotes",para)
 
@@ -740,10 +770,6 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         Override the base class add_user_options task to add a menu that allows
         the user to select the sort method.
         """
-
-        # Pronoun instead of first name
-        self.first_name_option = gtk.CheckButton(_("Use first names instead of pronouns"))
-        self.first_name_option.set_active(self.options_dict['firstnameiop'])
 
         # Full date usage
         self.full_date_option = gtk.CheckButton(_("Use full dates instead of only the year"))
@@ -801,7 +827,6 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         # if you want to put everyting in the generic "Options" category, use
         # self.add_option(text,widget) instead of self.add_frame_option(category,text,widget)
 
-        dialog.add_frame_option(_('Content'),'',self.first_name_option)
         dialog.add_frame_option(_('Content'),'',self.full_date_option)
         dialog.add_frame_option(_('Content'),'',self.list_children_option)
         dialog.add_frame_option(_('Content'),'',self.include_notes_option)
@@ -820,7 +845,6 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
         Parses the custom options that we have added.
         """
 
-        self.options_dict['firstnameiop'] = int(self.first_name_option.get_active())
         self.options_dict['fulldates'] = int(self.full_date_option.get_active())
         self.options_dict['listc'] = int(self.list_children_option.get_active())
         self.options_dict['incnotes'] = int(self.include_notes_option.get_active())

@@ -1,3 +1,7 @@
+2005-11-12  Don Allingham  <don@gramps-project.org>
+	* src/plugins/DetDescendantReport.py: add support for Henry
+	numbers for descendants
+
 2005-11-12  Alex Roitman  <shura@gramps-project.org>
 	* src/docgen/PdfDoc.py: Minor fixes.
 
