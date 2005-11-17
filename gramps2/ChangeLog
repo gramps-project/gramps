@@ -1,3 +1,10 @@
+2005-11-16  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels.py: try to handle encoding errors
+	* src/ImageSelect.py: call fix_encoding to handle path names
+	* src/Utils.py: provide a routine to attempt to fix encoding of
+	str values
+	* src/plugins/Check.py: repair bad filenames
+
 2005-11-16  Eero Tamminen  <eerot@sf>
 	* src/po/fi.po: Translation update to latest template,
 	  finetune keyboard shortcuts.

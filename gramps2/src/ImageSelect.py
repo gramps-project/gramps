@@ -486,10 +486,10 @@ class Gallery(ImageSelect):
     def on_photolist_drag_data_received(self,w, context, x, y, data, info, time):
         if data and data.format == 8:
             icon_index = self.get_index(w,x,y)
-            d = data.data.replace('\0',' ').strip()
+            d = Utils.fix_encoding(data.data.replace('\0',' ').strip())
             protocol,site,mfile,j,k,l = urlparse.urlparse(d)
             if protocol == "file":
-                name = mfile
+                name = Utils.fix_encoding(mfile)
                 mime = GrampsMime.get_type(name)
                 photo = RelLib.MediaObject()
                 photo.set_path(name)
@@ -515,6 +515,7 @@ class Gallery(ImageSelect):
                     t = _("Could not import %s") % d
                     ErrorDialog(t,str(msg))
                     return
+                tfile = Utils.fix_encoding(tfile)
                 mime = GrampsMime.get_type(tfile)
                 photo = RelLib.MediaObject()
                 photo.set_mime_type(mime)

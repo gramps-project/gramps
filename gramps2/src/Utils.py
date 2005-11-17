@@ -63,6 +63,19 @@ def history_broken():
 data_recover_msg = _('The data can only be recovered by Undo operation '
             'or by quitting with abandoning changes.')
 
+def fix_encoding(value):
+    import locale
+    if type(value) != unicode:
+        try:
+            return unicode(value)
+        except:
+            codeset = locale.getpreferredencoding()
+            if codeset == 'UTF-8':
+                codeset = 'latin1'
+            return unicode(value,codeset)
+    else:
+        return value
+
 #-------------------------------------------------------------------------
 #
 # force_unicode
