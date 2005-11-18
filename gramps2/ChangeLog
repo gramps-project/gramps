@@ -1,3 +1,13 @@
+2005-11-18  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/Utils.py (find_file): new method that tries to check the existance
+	  of a file by trying out multiple encoding variants for the filename. 
+	* src/ImgManip.py (get_thumbnail_image): Use Utils.find_file to fix
+	  encoding problems, additionally catch OSError
+	* src/ImageSelect.py (on_name_changed): Use Utils.find_file
+	* src/AddMedia.py (on_name_changed): Use Utils.find_file
+	* src/plugins/Check.py (encoding) dont encode a utf-8 string as again,
+	  (cleanup_missing_photos) Use Utils.find_file to fix encoding problems 
+
 2005-11-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gramps.glade,
 	  src/TipOfDay.py: Add window title

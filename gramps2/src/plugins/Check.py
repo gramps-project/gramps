@@ -157,11 +157,6 @@ class CheckIntegrity:
 
 
     def fix_encoding(self):
-        import locale
-        codeset = locale.nl_langinfo(locale.CODESET)
-        if codeset == 'UTF-8':
-            codeset = 'latin1'
-        
         self.progress.set_pass(_('Looking for character encoding errors'),
                                self.db.get_number_of_media_objects())
 
@@ -171,10 +166,8 @@ class CheckIntegrity:
             (handle,data) = value
             if type(data[2]) != unicode or type(data[4]) != unicode:
                 obj = self.db.get_object_from_handle(handle)
-                if type(obj.path) != unicode:
-                    obj.path = unicode(obj.path,codeset)
-                if type(obj.desc) != unicode:
-                    obj.desc = unicode(obj.desc,codeset)
+                obj.path = Utils.fix_encoding( obj.path)
+                obj.desc = Utils.fix_encoding( obj.desc)
                 self.db.commit_media_object(obj,self.trans)
             self.progress.step()
             value = cursor.next()
@@ -346,7 +339,7 @@ class CheckIntegrity:
         for ObjectId in self.db.get_media_object_handles():
             obj = self.db.get_object_from_handle(ObjectId)
             photo_name = obj.get_path()
-            if photo_name is not None and photo_name != "" and not os.path.isfile(photo_name):
+            if photo_name is not None and photo_name != "" and not Utils.find_file(photo_name):
                 if cl:
                     print "Warning: media file %s was not found." \
                         % os.path.basename(photo_name)

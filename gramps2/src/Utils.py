@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 import locale
 import sets
 from gettext import gettext as _
@@ -261,6 +262,29 @@ def get_mime_description(mime_type):
         return GrampsMime.get_description(mime_type)
     except:
         return ''
+
+def find_file( filename):
+    # try the filename we got
+    try:
+        fname = filename
+        if os.path.isfile( filename):
+            return( filename)
+    except:
+        pass
+    
+    # Build list of elternate encodings
+    encodings = [sys.getfilesystemencoding(), locale.getpreferredencoding(), 'UTF-8', 'ISO-8859-1']
+    encodings = list(sets.Set(encodings))
+    for enc in encodings:
+        try:
+            fname = filename.encode(enc)
+            if os.path.isfile( fname):
+                return fname
+        except:
+            pass
+
+    # not found
+    return ''
 
 #-------------------------------------------------------------------------
 #

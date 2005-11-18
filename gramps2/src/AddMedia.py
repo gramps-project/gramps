@@ -155,8 +155,9 @@ class AddMediaObject:
         if old_title == '' or old_title == self.temp_name:
             self.description.set_text(root)
         self.temp_name = root
-
-        if os.path.isfile(filename):
+        
+        filename = Utils.find_file( filename)
+        if filename:
             mtype = GrampsMime.get_type(filename)
             if mtype and mtype.startswith("image"):
                 image = RelImage.scale_image(filename,const.thumbScale)

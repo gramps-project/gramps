@@ -144,12 +144,13 @@ def get_thumbnail_image(path,mtype=None):
     filename = _build_thumb_path(path)
 
     try:
+        path = Utils.find_file( path)
         if not os.path.isfile(filename):
             set_thumbnail_image(path,mtype)
         elif os.path.getmtime(path) > os.path.getmtime(filename):
             set_thumbnail_image(path,mtype)
         return gtk.gdk.pixbuf_new_from_file(filename)
-    except gobject.GError:
+    except (gobject.GError, OSError):
         if mtype:
             return Utils.find_mime_type_pixbuf(mtype)
         else:
