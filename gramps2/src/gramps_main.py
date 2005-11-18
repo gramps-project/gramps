@@ -522,7 +522,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.open_recent.set_submenu(recent_menu)
 
     def recent_callback(self,obj,filename,filetype):
-        if os.path.exists(filename):
+        if Utils.find_file(filename):
             DbPrompter.open_native(self,filename,filetype)
         else:
             ErrorDialog(_('File does not exist'),
@@ -1289,12 +1289,12 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         mode = "w"
         filename = os.path.normpath(os.path.abspath(filename))
         
-        if os.path.isdir(filename):
+        if Utils.find_folder(filename):
             ErrorDialog(_('Cannot open database'),
                         _('The selected file is a directory, not '
                           'a file.\nA GRAMPS database must be a file.'))
             return 0
-        elif os.path.exists(filename):
+        elif Utils.find_file(filename):
             if not os.access(filename,os.R_OK):
                 ErrorDialog(_('Cannot open database'),
                             _('You do not have read access to the selected '

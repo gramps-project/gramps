@@ -8,6 +8,10 @@
 	* src/plugins/Check.py (encoding) dont encode a utf-8 string as again,
 	  (cleanup_missing_photos) Use Utils.find_file to fix encoding problems 
 
+	* src/Utils.py (find_folder): new method
+	* src/gramps_main.py: Use Utils.find_file and Utils.find_folder to enable
+	  using unicode names for gramps databases
+
 2005-11-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gramps.glade,
 	  src/TipOfDay.py: Add window title

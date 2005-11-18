@@ -286,6 +286,29 @@ def find_file( filename):
     # not found
     return ''
 
+def find_folder( filename):
+    # try the filename we got
+    try:
+        fname = filename
+        if os.path.isdir( filename):
+            return( filename)
+    except:
+        pass
+    
+    # Build list of elternate encodings
+    encodings = [sys.getfilesystemencoding(), locale.getpreferredencoding(), 'UTF-8', 'ISO-8859-1']
+    encodings = list(sets.Set(encodings))
+    for enc in encodings:
+        try:
+            fname = filename.encode(enc)
+            if os.path.isdir( fname):
+                return fname
+        except:
+            pass
+
+    # not found
+    return ''
+
 #-------------------------------------------------------------------------
 #
 #
