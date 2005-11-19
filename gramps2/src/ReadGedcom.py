@@ -1863,7 +1863,7 @@ class GedcomParser:
                     self.gedsource = self.gedmap.get_from_source_tag(matches[2])
                     self.broken_conc = self.gedsource.get_conc()
             elif matches[1] == "CHAR" and not self.override:
-                if matches[2] == "UNICODE" or matches[2] == "UTF-8" or matches[2] == "UTF8":
+                if matches[2] in ["UNICODE","UTF-8","UTF8"]:
                     self.cnv = nocnv
                 elif matches[2] == "ANSEL":
                     self.cnv = ansel_to_utf8

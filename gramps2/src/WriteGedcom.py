@@ -1162,14 +1162,14 @@ class GedcomWriter:
         title = self.cnvtxt(name.get_title())
         if suffix == "":
             if surPref == "":
-                self.writeln("1 NAME %s/%s/" % (firstName,surName))
+                self.writeln("1 NAME %s /%s/" % (firstName,surName))
             else:
-                self.writeln("1 NAME %s/%s %s/" % (firstName,surPref,surName))
+                self.writeln("1 NAME %s /%s %s/" % (firstName,surPref,surName))
         else:
             if surPref == "":
-                self.writeln("1 NAME %s/%s/%s" % (firstName,surName,suffix))
+                self.writeln("1 NAME %s /%s/ %s" % (firstName,surName,suffix))
             else:
-                self.writeln("1 NAME %s/%s %s/%s" % (firstName,surPref,surName,suffix))
+                self.writeln("1 NAME %s /%s %s/ %s" % (firstName,surPref,surName,suffix))
 
         if firstName:
             self.writeln("2 GIVN %s" % firstName)

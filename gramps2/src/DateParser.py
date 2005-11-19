@@ -275,28 +275,28 @@ class DateParser:
         self._modifier_after = re.compile('(.*)\s+%s' % self._mod_after_str,
                            re.IGNORECASE)
         self._abt2     = re.compile('<(.*)>',re.IGNORECASE)
-        self._text     = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % self._mon_str,
+        self._text     = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._mon_str,
                            re.IGNORECASE)
-        self._text2    = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str,
+        self._text2    = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$' % self._mon_str,
                            re.IGNORECASE)
-        self._jtext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % self._jmon_str,
+        self._jtext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._jmon_str,
                            re.IGNORECASE)
-        self._jtext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % self._jmon_str,
+        self._jtext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$' % self._jmon_str,
                            re.IGNORECASE)
-        self._ftext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % self._fmon_str,
+        self._ftext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._fmon_str,
                            re.IGNORECASE)
-        self._ftext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % self._fmon_str,
+        self._ftext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$' % self._fmon_str,
                            re.IGNORECASE)
-        self._ptext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % self._pmon_str,
+        self._ptext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._pmon_str,
                            re.IGNORECASE)
-        self._ptext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % self._pmon_str,
+        self._ptext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$' % self._pmon_str,
                            re.IGNORECASE)
-        self._itext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % self._imon_str,
+        self._itext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._imon_str,
                            re.IGNORECASE)
-        self._itext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % self._imon_str,
+        self._itext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$' % self._imon_str,
                            re.IGNORECASE)
-        self._numeric  = re.compile("((\d+)[/\.])?((\d+)[/\.])?(\d+)")
-        self._iso      = re.compile("(\d+)-(\d+)-(\d+)")
+        self._numeric  = re.compile("((\d+)[/\.])?((\d+)[/\.])?(\d+)\s*$")
+        self._iso      = re.compile("(\d+)-(\d+)-(\d+)\s*$")
         self._rfc      = re.compile("(%s,)?\s+(\d|\d\d)\s+%s\s+(\d+)\s+\d\d:\d\d(:\d\d)?\s+(\+|-)\d\d\d\d" 
                         % (self._rfc_day_str,self._rfc_mon_str))
 
