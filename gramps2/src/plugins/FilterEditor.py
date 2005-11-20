@@ -937,7 +937,7 @@ class SystemFilterEditor(Tool.Tool):
     def __init__(self,db,person,options_class,name,callback=None,parent=None):
         Tool.Tool.__init__(self,db,person,options_class,name)
 
-        FilterEditor(const.system_filters,database,parent)
+        FilterEditor(const.system_filters,db,parent)
 
 #------------------------------------------------------------------------
 #
@@ -960,7 +960,7 @@ class FilterEditorOptions(Tool.ToolOptions):
 from PluginMgr import register_tool
 
 register_tool(
-    name = 'sfilted',
+    name = 'cfilted',
     category = Tool.TOOL_UTILS,
     tool_class = CustomFilterEditor,
     options_class = FilterEditorOptions,
