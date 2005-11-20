@@ -762,7 +762,7 @@ class CheckIntegrity:
                 if family:
                     pn = Utils.family_name(family,self.db)
                 else:
-                    pn = family.gramps_id
+                    pn = _("None")
                 self.text.write('\t')
                 self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
 

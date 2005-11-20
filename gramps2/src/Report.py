@@ -397,8 +397,8 @@ class BareReportDialog:
         self.init_interface()
 
     def init_interface(self):
-        self.output_notebook = None
-        self.notebook_page = 1
+        #self.output_notebook = None
+        #self.notebook_page = 1
         self.pagecount_menu = None
         self.filter_combo = None
         self.extra_menu = None
@@ -449,11 +449,17 @@ class BareReportDialog:
         self.setup_target_frame()
         self.setup_format_frame()
         self.setup_style_frame()
-        self.setup_output_notebook()
+        #self.setup_output_notebook()
+        
+        self.notebook = gtk.Notebook()
+        self.notebook.set_border_width(6)
+        self.window.vbox.add(self.notebook)
+
         self.setup_paper_frame()
         self.setup_html_frame()
         self.setup_report_options_frame()
         self.setup_other_frames()
+        self.notebook.set_current_page(0)
         self.window.show_all()
 
     def get_title(self):
@@ -717,16 +723,8 @@ class BareReportDialog:
         label.set_alignment(0.0,0.5)
         label.set_use_markup(True)
         
-        if len(self.frame_names) == 0:
-            table.attach(label,0,3,0,1)
-            table.set_border_width(12)
-            self.window.vbox.add(table)
-        else:
-            table.set_border_width(6)
-            self.notebook = gtk.Notebook()
-            self.notebook.set_border_width(6)
-            self.window.vbox.add(self.notebook)
-            self.notebook.append_page(table,label)
+        table.set_border_width(6)
+        self.notebook.append_page(table,label)
         row += 1
 
         if len(self.local_filters):
@@ -1003,6 +1001,7 @@ class ReportDialog(BareReportDialog):
         for a basic *stand-alone* report."""
         
         self.style_name = "default"
+        self.page_html_added = False
         BareReportDialog.__init__(self,database,person,option_class,
                                   name,translated_name)
 
@@ -1124,15 +1123,18 @@ class ReportDialog(BareReportDialog):
         # Is this to be a printed report or an electronic report
         # (i.e. a set of web pages)
 
+        if self.page_html_added:
+            self.notebook.remove_page(0)
         if obj.get_paper() == 1:
-            self.notebook_page = 0
+            self.paper_label = gtk.Label('<b>%s</b>'%_("Paper Options"))
+            self.paper_label.set_use_markup(True)
+            self.notebook.insert_page(self.paper_table,self.paper_label,0)
+            self.paper_table.show_all()
         else:
-            self.notebook_page = 1
-            
-        if self.output_notebook == None:
-            return
-        
-        self.output_notebook.set_current_page(self.notebook_page)
+            self.html_label = gtk.Label('<b>%s</b>' % _("HTML Options"))
+            self.html_label.set_use_markup(True)
+            self.notebook.insert_page(self.html_table,self.html_label,0)
+            self.html_table.show_all()
 
         if not self.get_target_is_directory():
             fname = self.target_fileentry.get_full_path(0)
@@ -1149,6 +1151,7 @@ class ReportDialog(BareReportDialog):
         if self.style_button:
             self.style_button.set_sensitive(obj.get_styles())
             self.style_menu.set_sensitive(obj.get_styles())
+        self.page_html_added = True
 
     #------------------------------------------------------------------------
     #
@@ -1227,13 +1230,7 @@ class ReportDialog(BareReportDialog):
         """Set up the output notebook of the dialog.  This sole
         purpose of this function is to grab a pointer for later use in
         the callback from when the file format is changed."""
-
-        self.output_notebook = gtk.Notebook()
-        self.output_notebook.set_show_tabs(0)
-        self.output_notebook.set_show_border(0)
-        self.output_notebook.set_border_width(12)
-        self.output_notebook.set_current_page(self.notebook_page)
-        self.window.vbox.add(self.output_notebook)
+        pass
 
     def size_changed(self,obj):
         (paper,name) = self.papersize_menu.get_value()
@@ -1261,13 +1258,7 @@ class ReportDialog(BareReportDialog):
         self.paper_table.set_col_spacings(12)
         self.paper_table.set_row_spacings(6)
         self.paper_table.set_border_width(0)
-        self.output_notebook.append_page(self.paper_table,gtk.Label(_("Paper Options")))
             
-        paper_label = gtk.Label("<b>%s</b>" % _("Paper Options"))
-        paper_label.set_use_markup(True)
-        paper_label.set_alignment(0.0,0.5)
-        self.paper_table.attach(paper_label,0,6,0,1,gtk.SHRINK|gtk.FILL)
-
         self.papersize_menu = PaperMenu.GrampsPaperComboBox()
         self.papersize_menu.connect('changed',self.size_changed)
         
@@ -1340,13 +1331,6 @@ class ReportDialog(BareReportDialog):
         self.html_table.set_col_spacings(12)
         self.html_table.set_row_spacings(6)
         self.html_table.set_border_width(0)
-        html_label = gtk.Label("<b>%s</b>" % _("HTML Options"))
-        html_label.set_alignment(0.0,0.5)
-        html_label.set_use_markup(True)
-        self.html_table.attach(html_label,0,3,0,1)
-
-        label = gtk.Label(_("HTML Options"))
-        self.output_notebook.append_page(self.html_table,label)
 
         label = gtk.Label("%s:" % _("Template"))
         label.set_alignment(0.0,0.5)

@@ -1,3 +1,11 @@
+2005-11-20  Don Allingham  <don@gramps-project.org>
+	* src/Report.py: shortened report dialog by making the Paper
+	Options a tab of the rest of the options
+	* src/plugins/AncestorReport.py: fix paragraph spacing
+	* src/plugins/Check.py: handle None for family
+	* src/plugins/DescendReport.py: fix paragraph spacing
+	* src/plugins/IndivComplete.py: fix paragraph spacing
+
 2005-11-20  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/FilterEditor.py: Corrected plugin registration
 	* src/GrampsCfg.py: Add validation for GRAMPS ID prefixes

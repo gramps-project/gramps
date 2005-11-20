@@ -44,6 +44,7 @@ import RelLib
 import const
 import BaseDoc
 import Report
+import ReportUtils
 import GenericFilter
 import ReportOptions
 
@@ -557,6 +558,8 @@ class IndivCompleteOptions(ReportOptions.ReportOptions):
         font.set_size(16)
         p = BaseDoc.ParagraphStyle()
         p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        p.set_top_margin(ReportUtils.pt2cm(8))
+        p.set_bottom_margin(ReportUtils.pt2cm(8))
         p.set_font(font)
         p.set_description(_("The style used for the title of the page."))
         default_style.add_style("IDS-Title",p)
@@ -568,6 +571,8 @@ class IndivCompleteOptions(ReportOptions.ReportOptions):
         font.set_italic(1)
         p = BaseDoc.ParagraphStyle()
         p.set_font(font)
+        p.set_top_margin(ReportUtils.pt2cm(3))
+        p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_description(_("The style used for category labels."))
         default_style.add_style("IDS-TableTitle",p)
 
@@ -577,6 +582,8 @@ class IndivCompleteOptions(ReportOptions.ReportOptions):
         font.set_size(12)
         p = BaseDoc.ParagraphStyle()
         p.set_font(font)
+        p.set_top_margin(ReportUtils.pt2cm(3))
+        p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_description(_("The style used for the spouse's name."))
         default_style.add_style("IDS-Spouse",p)
 
@@ -584,6 +591,8 @@ class IndivCompleteOptions(ReportOptions.ReportOptions):
         font.set_size(12)
         p = BaseDoc.ParagraphStyle()
         p.set_font(font)
+        p.set_top_margin(ReportUtils.pt2cm(3))
+        p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_description(_('The basic style used for the text display.'))
         default_style.add_style("IDS-Normal",p)
 
