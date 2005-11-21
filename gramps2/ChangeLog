@@ -1,3 +1,6 @@
+2005-11-21  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/MediaView.py (media_update): Redisplay the media object at the top
+
 2005-11-20  Don Allingham  <don@gramps-project.org>
 	* src/Report.py: shortened report dialog by making the Paper
 	Options a tab of the rest of the options

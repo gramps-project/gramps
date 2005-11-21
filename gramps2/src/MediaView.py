@@ -201,6 +201,7 @@ class MediaView:
     def media_update(self,handle_list):
         for handle in handle_list:
             self.model.update_row_by_handle(handle)
+        self.on_select_row()
 
     def media_delete(self,handle_list):
         for handle in handle_list:
@@ -221,7 +222,7 @@ class MediaView:
         self.list.set_model(self.model)
         self.selection = self.list.get_selection()
 
-    def on_select_row(self,obj):
+    def on_select_row(self,obj=None):
         fexists = 1
 
         store,node = self.selection.get_selected()
