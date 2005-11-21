@@ -651,13 +651,9 @@ class GedcomParser:
 
     def parse_source(self,name,level):
         self.source = self.find_or_create_source(name[1:-1])
-
-        note = ""
         while 1:
             matches = self.get_next()
             if int(matches[0]) < level:
-                if note:
-                    self.source.set_note(note)
                 if not self.source.get_title():
                     self.source.set_title("No title - ID %s" % self.source.get_gramps_id())
                 self.db.commit_source(self.source, self.trans)
@@ -676,25 +672,28 @@ class GedcomParser:
                 self.source.set_author(matches[2] + self.parse_continue_data(level+1))
             elif matches[1] == "PUBL":
                 self.source.set_publication_info(matches[2] + self.parse_continue_data(level+1))
-            elif matches[1] == "OBJE":
-                self.ignore_sub_junk(2)
             elif matches[1] == "NOTE":
                 note = self.parse_note(matches,self.source,level+1,note)
+                self.source.set_note(note)
             elif matches[1] == "TEXT":
                 note = self.source.get_note()
                 d = self.parse_continue_data(level+1)
                 if note:
-                    note = "%s\n%s %s%s" % (note,matches[1],matches[2],d)
+                    note = "%s\n%s %s" % (note,matches[2],d)
                 else:
-                    note = "%s %s%s" % (matches[1],matches[2],d)
+                    note = "%s %s" % (matches[2],d)
+                self.source.set_note(note.strip())
             elif matches[1] == "ABBR":
                 self.source.set_abbreviation(matches[2] + self.parse_continue_data(level+1))
+            elif matches[1] in ["OBJE","CHAN","_CAT"]:
+                self.ignore_sub_junk(2)
             else:
                 note = self.source.get_note()
                 if note:
                     note = "%s\n%s %s" % (note,matches[1],matches[2])
                 else:
                     note = "%s %s" % (matches[1],matches[2])
+                self.source.set_note(note.strip())
 
     def parse_record(self):
         while True:
@@ -1707,6 +1706,7 @@ class GedcomParser:
             matches = self.get_next()
 
             if int(matches[0]) < level:
+                source.set_note(note)
                 self.backup()
                 return
             elif matches[1] == "PAGE":
@@ -1719,7 +1719,7 @@ class GedcomParser:
                     d = self.dp.parse(date)
                     source.set_date_object(d)
                 source.set_text(text)
-            elif matches[1] in ["OBJE","REFN","TEXT"]:
+            elif matches[1] in ["OBJE","REFN"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "QUAY":
                 try:
@@ -1730,8 +1730,9 @@ class GedcomParser:
                     source.set_confidence_level(val+1)
                 else:
                     source.set_confidence_level(val)
-            elif matches[1] == "NOTE":
+            elif matches[1] in ["NOTE","TEXT"]:
                 note = self.parse_comment(matches,source,level+1,note)
+                print note
             else:
                 self.barf(level+1)
         

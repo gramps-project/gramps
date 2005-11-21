@@ -1,3 +1,7 @@
+2005-11-21  Don Allingham  <don@gramps-project.org>
+	* src/ReadGedcom.py: Properly handle TEXT field in SOUR instances when
+	undefined or unhandled fields are present
+
 2005-11-21  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/MediaView.py (media_update): Redisplay the media object at the top
 	* src/FamilyView.py (drag_data_get): Avoid Traceback when dragging from empty list
