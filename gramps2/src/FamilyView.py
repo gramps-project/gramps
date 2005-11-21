@@ -1534,6 +1534,8 @@ class FamilyView:
         if not node:
             return
         handle = self.child_model.get_value(node,_HANDLE_COL)
+        if not handle:
+            return
         bits_per = 8; # we're going to pass a string
 
         if sel_data.target == DdTargets.PERSON_LINK.drag_type:

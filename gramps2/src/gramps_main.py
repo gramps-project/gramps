@@ -1294,7 +1294,11 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                         _('The selected file is a directory, not '
                           'a file.\nA GRAMPS database must be a file.'))
             return 0
-        elif Utils.find_file(filename):
+        nfilename = Utils.find_file(filename)
+        if nfilename:
+            # the file exists but the filename may be different due to
+            # a different encoding of the filename
+            filename = nfilename
             if not os.access(filename,os.R_OK):
                 ErrorDialog(_('Cannot open database'),
                             _('You do not have read access to the selected '
@@ -1305,7 +1309,10 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
                 WarningDialog(_('Read only database'),
                               _('You do not have write access to the selected '
                                 'file.'))
-
+        else:
+            # File not found. continue here to get the error message
+            # displayed by the following try .. except
+            pass
         try:
             if self.load_database(filename,callback,mode=mode) == 1:
                 if filename[-1] == '/':
