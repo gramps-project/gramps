@@ -667,8 +667,10 @@ class BareReportDialog:
         self.style_button.connect('clicked',self.on_style_edit_clicked)
 
         self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
-        self.tbl.attach(self.style_menu,2,3,self.col,self.col+1)
-        self.tbl.attach(self.style_button,3,4,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(self.style_menu,2,3,self.col,self.col+1,
+                        yoptions=gtk.SHRINK)
+        self.tbl.attach(self.style_button,3,4,self.col,self.col+1,
+                        xoptions=gtk.SHRINK|gtk.FILL,yoptions=gtk.SHRINK)
         self.col += 1
         
         # Build the default style set for this report.
@@ -759,7 +761,8 @@ class BareReportDialog:
             msg = _("Page break between generations")
             self.pagebreak_checkbox = gtk.CheckButton(msg)
             self.pagebreak_checkbox.set_active(self.page_breaks)
-            table.attach(self.pagebreak_checkbox,2,3,row,row+1)
+            table.attach(self.pagebreak_checkbox,2,3,row,row+1,
+                         yoptions=gtk.SHRINK)
             row += 1
 
         # Now the "extra" option menu
@@ -1187,9 +1190,9 @@ class ReportDialog(BareReportDialog):
         self.doc_label.set_alignment(0.0,0.5)
 
         self.tbl.attach(self.doc_label, 1, 2, self.col, self.col+1,
-                        gtk.SHRINK|gtk.FILL)
+                        xoptions=gtk.SHRINK|gtk.FILL,yoptions=gtk.SHRINK)
         self.tbl.attach(self.target_fileentry, 2, 4, self.col, self.col+1,
-                        gtk.EXPAND|gtk.FILL)
+                        xoptions=gtk.EXPAND|gtk.FILL,yoptions=gtk.SHRINK)
         self.col += 1
         
         spath = self.get_default_directory()
@@ -1203,7 +1206,8 @@ class ReportDialog(BareReportDialog):
         work."""
 
         self.print_report = gtk.CheckButton (_("Print a copy"))
-        self.tbl.attach(self.print_report,2,4,self.col,self.col+1)
+        self.tbl.attach(self.print_report,2,4,self.col,self.col+1,
+                        yoptions=gtk.SHRINK)
         self.col += 1
 
         self.make_doc_menu(self.options.handler.get_format_name())
@@ -1211,7 +1215,8 @@ class ReportDialog(BareReportDialog):
         label = gtk.Label("%s:" % _("Output Format"))
         label.set_alignment(0.0,0.5)
         self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
-        self.tbl.attach(self.format_menu,2,4,self.col,self.col+1)
+        self.tbl.attach(self.format_menu,2,4,self.col,self.col+1,
+                        yoptions=gtk.SHRINK)
         self.col += 1
 
         ext = self.format_menu.get_ext()
@@ -1252,12 +1257,12 @@ class ReportDialog(BareReportDialog):
         (pagecount_map, start_text) = self.get_print_pagecount_map()
 
         if pagecount_map:
-            self.paper_table = gtk.Table(3,6)
+            self.paper_table = gtk.Table(2,6)
         else:
-            self.paper_table = gtk.Table(4,6)
+            self.paper_table = gtk.Table(3,6)
         self.paper_table.set_col_spacings(12)
         self.paper_table.set_row_spacings(6)
-        self.paper_table.set_border_width(0)
+        self.paper_table.set_border_width(6)
             
         self.papersize_menu = PaperMenu.GrampsPaperComboBox()
         self.papersize_menu.connect('changed',self.size_changed)
@@ -1266,35 +1271,37 @@ class ReportDialog(BareReportDialog):
         l = gtk.Label("%s:" % _("Size"))
         l.set_alignment(0.0,0.5)
         
-        self.paper_table.attach(l,1,2,1,2,gtk.SHRINK|gtk.FILL)
-        self.paper_table.attach(self.papersize_menu,2,3,1,2)
+        self.paper_table.attach(l,1,2,0,1,gtk.SHRINK|gtk.FILL)
+        self.paper_table.attach(self.papersize_menu,2,3,0,1,
+                                yoptions=gtk.SHRINK)
         l = gtk.Label("%s:" % _("Height"))
         l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,3,4,1,2,gtk.SHRINK|gtk.FILL)
+        self.paper_table.attach(l,3,4,0,1,gtk.SHRINK|gtk.FILL)
 
         self.pheight = gtk.Entry()
         self.pheight.set_sensitive(0)
-        self.paper_table.attach(self.pheight,4,5,1,2)
+        self.paper_table.attach(self.pheight,4,5,0,1)
         
         l = gtk.Label(_("cm"))
         l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,5,6,1,2,gtk.SHRINK|gtk.FILL)
+        self.paper_table.attach(l,5,6,0,1,gtk.SHRINK|gtk.FILL)
 
         l = gtk.Label("%s:" % _("Orientation"))
         l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,1,2,2,3,gtk.SHRINK|gtk.FILL)
-        self.paper_table.attach(self.orientation_menu,2,3,2,3)
+        self.paper_table.attach(l,1,2,1,2,gtk.SHRINK|gtk.FILL)
+        self.paper_table.attach(self.orientation_menu,2,3,1,2,
+                                yoptions=gtk.SHRINK)
         l = gtk.Label("%s:" % _("Width"))
         l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,3,4,2,3,gtk.SHRINK|gtk.FILL)
+        self.paper_table.attach(l,3,4,1,2,gtk.SHRINK|gtk.FILL)
 
         self.pwidth = gtk.Entry()
         self.pwidth.set_sensitive(0)
-        self.paper_table.attach(self.pwidth,4,5,2,3)
+        self.paper_table.attach(self.pwidth,4,5,1,2)
 
         l = gtk.Label(_("cm"))
         l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,5,6,2,3,gtk.SHRINK|gtk.FILL)
+        self.paper_table.attach(l,5,6,1,2,gtk.SHRINK|gtk.FILL)
 
         self.papersize_menu.set(PaperMenu.paper_sizes,
                                 self.options.handler.get_paper_name())
@@ -1307,8 +1314,8 @@ class ReportDialog(BareReportDialog):
             self.pagecount_menu.set_menu(myMenu)
             l = gtk.Label("%s:" % _("Page Count"))
             l.set_alignment(0.0,0.5)
-            self.paper_table.attach(l,1,2,3,4,gtk.SHRINK|gtk.FILL)
-            self.paper_table.attach(self.pagecount_menu,2,3,3,4)
+            self.paper_table.attach(l,1,2,2,3,gtk.SHRINK|gtk.FILL)
+            self.paper_table.attach(self.pagecount_menu,2,3,2,3)
 
     def html_file_enable(self,obj):
         active = obj.get_active()
