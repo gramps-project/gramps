@@ -207,7 +207,8 @@ class FamilyView:
                                          ACTION_COPY)
         self.spouse_list.connect('drag_data_get',
                                  self.sp_drag_data_get)
-        self.spouse_list.connect('drag_data_received',
+        if not self.parent.db.readonly:
+            self.spouse_list.connect('drag_data_received',
                                  self.sp_drag_data_received)
 
     def init_interface(self):
@@ -263,7 +264,8 @@ class FamilyView:
                                         [DdTargets.CHILD.target()],
                                         ACTION_COPY)
         self.child_list.connect('drag_data_get', self.drag_data_get)
-        self.child_list.connect('drag_data_received',self.drag_data_received)
+        if not self.parent.db.readonly:
+            self.child_list.connect('drag_data_received',self.drag_data_received)
 
         if not already_init:
             self.child_list.connect('button-press-event',
@@ -1417,6 +1419,8 @@ class FamilyView:
         self.load_family()
 
     def drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        if self.parent.db.readonly:  # no DnD on readonly database
+            return
 
         if DdTargets.PERSON_LINK.drag_type in context.targets:
             drop_person_handle = sel_data.data
@@ -1494,6 +1498,8 @@ class FamilyView:
             self.load_family(self.family)
 
     def sp_drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        if self.parent.db.readonly:  # no DnD on readonly database
+            return
         self.in_drag = True
         path = self.spouse_list.get_path_at_pos(x,y)
         if path == None:

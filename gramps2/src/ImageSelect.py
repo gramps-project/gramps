@@ -249,7 +249,8 @@ class Gallery(ImageSelect):
                                     [DdTargets.MEDIAOBJ.target()]+_drag_targets,
                                     gtk.gdk.ACTION_COPY | gtk.gdk.ACTION_MOVE)
             icon_list.connect('event',self.item_event)
-            icon_list.connect("drag_data_received",
+            if not db.readonly:
+                icon_list.connect("drag_data_received",
                               self.on_photolist_drag_data_received)
             icon_list.connect("drag_data_get",
                               self.on_photolist_drag_data_get)
@@ -757,7 +758,10 @@ class LocalMediaProperties:
         self.change_dialog.get_widget("path").set_text(fname)
 
         mt = Utils.get_mime_description(mtype)
-        self.change_dialog.get_widget("type").set_text(mt)
+        if mt:
+            self.change_dialog.get_widget("type").set_text(mt)
+        else:
+            self.change_dialog.get_widget("type").set_text("")
         self.notes = self.change_dialog.get_widget("notes")
         self.spell = Spell.Spell(self.notes)
         if self.photo.get_note():

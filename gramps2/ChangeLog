@@ -1,3 +1,18 @@
+2005-11-22  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/AddrEdit.py,
+	* src/AttrEdit.py,
+	* src/EditPerson.py,
+	* src/EditPlace.py,
+	* src/EventEdit.py,
+	* src/FamilyView.py,
+	* src/MediaView.py,
+	* src/NameEdit.py,
+	* src/Sources.py: Better support for readonly DB;
+	* src/ImageSelect.py: Better support for readonly DB;
+	  dont crash if mimetype could not get retrieved
+	* src/Marriage.py: Better support for readonly DB;
+	  Avoid Traceback on DnD in empty list
+
 2005-11-21  Don Allingham  <don@gramps-project.org>
 	* src/ReadGedcom.py: Properly handle TEXT field in SOUR instances when
 	undefined or unhandled fields are present

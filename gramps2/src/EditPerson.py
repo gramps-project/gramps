@@ -513,7 +513,8 @@ class EditPerson:
                             ACTION_COPY)
         obj.connect('drag_data_get', get)
         obj.connect('drag_begin', begin)
-        obj.connect('drag_data_received', receive)
+        if not self.db.readonly:
+            obj.connect('drag_data_received', receive)
 
     def build_pdmap(self):
         self.pdmap.clear()
@@ -832,6 +833,9 @@ class EditPerson:
         t.drag_source_set_icon(t.get_colormap(),icon,mask)
 
     def name_drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        if self.db.readonly:  # no DnD on readonly database
+            return
+
         row = self.ntree.get_row_at(x,y)
         
         if sel_data and sel_data.data:
@@ -855,6 +859,9 @@ class EditPerson:
             self.redraw_name_list()
 
     def ev_drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        if self.db.readonly:  # no DnD on readonly database
+            return
+
         row = self.etree.get_row_at(x,y)
         
         if sel_data and sel_data.data:
@@ -905,6 +912,9 @@ class EditPerson:
         t.drag_source_set_icon(t.get_colormap(),icon,mask)
 
     def url_drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        if self.db.readonly:  # no DnD on readonly database
+            return
+
         row = self.wtree.get_row_at(x,y)
         
         if sel_data and sel_data.data:
@@ -934,6 +944,9 @@ class EditPerson:
             sel_data.set(sel_data.target, bits_per, data)
 
     def at_drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        if self.db.readonly:  # no DnD on readonly database
+            return
+
         row = self.atree.get_row_at(x,y)
 
         if sel_data and sel_data.data:
@@ -968,6 +981,9 @@ class EditPerson:
             sel_data.set(sel_data.target, bits_per, data)
             
     def ad_drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        if self.db.readonly:  # no DnD on readonly database
+            return
+
         row = self.ptree.get_row_at(x,y)
 
         if sel_data and sel_data.data:
@@ -1247,7 +1263,7 @@ class EditPerson:
         """If the data has changed, give the user a chance to cancel
         the close window"""
         
-        if self.did_data_change() and not GrampsKeys.get_dont_ask():
+        if not self.db.readonly and self.did_data_change() and not GrampsKeys.get_dont_ask():
             n = "<i>%s</i>" % escape(self.nd.display(self.person))
             SaveDialog(_('Save changes to %s?') % n,
                        _('If you close without saving, the changes you '
@@ -1263,7 +1279,7 @@ class EditPerson:
     def on_delete_event(self,obj,b):
         """If the data has changed, give the user a chance to cancel
         the close window"""
-        if self.did_data_change() and not GrampsKeys.get_dont_ask():
+        if not self.db.readonly and self.did_data_change() and not GrampsKeys.get_dont_ask():
             n = "<i>%s</i>" % escape(self.nd.display(self.person))
             SaveDialog(_('Save Changes to %s?') % n,
                        _('If you close without saving, the changes you '

@@ -116,8 +116,8 @@ class MediaView:
             DND_TARGETS,
             gtk.gdk.ACTION_COPY|gtk.gdk.ACTION_MOVE
             )
-
-        self.list.connect("drag-data-received", self.on_drag_data_received)
+        if not self.db.readonly:
+            self.list.connect("drag-data-received", self.on_drag_data_received)
         self.list.connect("drag-data-get", self.on_drag_data_get)
         self.list.connect("drag-begin", self.on_drag_begin)
         self.list.connect("drag-drop", self.on_drag_drop)

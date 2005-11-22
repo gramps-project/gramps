@@ -285,7 +285,8 @@ class Marriage:
                                         gtk.gdk.ACTION_COPY)
         self.event_list.connect('drag_data_get',
                                 self.ev_source_drag_data_get)
-        self.event_list.connect('drag_data_received',
+        if not self.db.readonly:
+            self.event_list.connect('drag_data_received',
                                 self.ev_dest_drag_data_received)
         self.event_list.connect('drag_begin', self.ev_drag_begin)
 
@@ -297,7 +298,8 @@ class Marriage:
                                        gtk.gdk.ACTION_COPY)
         self.attr_list.connect('drag_data_get',
                                self.at_source_drag_data_get)
-        self.attr_list.connect('drag_data_received',
+        if not self.db.readonly:
+            self.attr_list.connect('drag_data_received',
                                self.at_dest_drag_data_received)
         self.attr_list.connect('drag_begin', self.at_drag_begin)
 
@@ -425,6 +427,8 @@ class Marriage:
         NoteEdit.NoteEditor(lds_ord,self,self.window,readonly=self.db.readonly)
 
     def ev_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
+        if self.db.readonly:  # no DnD on readonly database
+            return
         row = self.etree.get_row_at(x,y)
         if selection_data and selection_data.data:
             exec 'data = %s' % selection_data.data
@@ -456,6 +460,8 @@ class Marriage:
 
     def ev_source_drag_data_get(self,widget, context, selection_data, info, time):
         ev = self.etree.get_selected_objects()
+        if not ev:
+            return
         
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev[0]);
@@ -464,6 +470,8 @@ class Marriage:
         selection_data.set(selection_data.target, bits_per, data)
 
     def at_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
+        if self.db.readonly:  # no DnD on readonly database
+            return
         row = self.atree.get_row_at(x,y)
         if selection_data and selection_data.data:
             exec 'data = %s' % selection_data.data
@@ -491,6 +499,8 @@ class Marriage:
 
     def at_source_drag_data_get(self,widget, context, selection_data, info, time):
         ev = self.atree.get_selected_objects()
+        if not ev:
+            return
 
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev[0]);
@@ -609,7 +619,7 @@ class Marriage:
         self.on_close(None)
 
     def on_delete_event(self,obj,b):
-        if self.did_data_change() and not GrampsKeys.get_dont_ask():
+        if not self.db.readonly and self.did_data_change() and not GrampsKeys.get_dont_ask():
             SaveDialog(_('Save Changes?'),
                        _('If you close without saving, the changes you '
                          'have made will be lost'),

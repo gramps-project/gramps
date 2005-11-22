@@ -213,9 +213,11 @@ class EventEditor:
                 self.event_menu.child.set_text(def_event)
             if def_placename:
                 self.place_field.set_text(def_placename)
+        date_stat = self.top.get_widget("date_stat")
+        date_stat.set_sensitive(not self.db.readonly)
         self.date_check = DateEdit.DateEdit(self.date,
                                         self.date_field,
-                                        self.top.get_widget("date_stat"),
+                                        date_stat,
                                         self.window)
 
         if not event:

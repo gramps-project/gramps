@@ -235,7 +235,8 @@ class EditPlace:
                                       gtk.gdk.ACTION_COPY)
         self.web_list.connect('drag_data_get',
                               self.url_source_drag_data_get)
-        self.web_list.connect('drag_data_received',
+        if not self.db.readonly:
+            self.web_list.connect('drag_data_received',
                               self.url_dest_drag_data_received)
 
         for name in ['del_name','add_name','sel_photo','add_url','del_url']:

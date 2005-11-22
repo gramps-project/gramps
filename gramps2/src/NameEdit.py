@@ -81,14 +81,22 @@ class NameEditor:
         self.gladeif = GladeIf(self.top)
         self.window = self.top.get_widget("name_edit")
         self.given_field  = self.top.get_widget("alt_given")
+        self.given_field.set_editable(not self.db.readonly)
         self.sort_as  = self.top.get_widget("sort_as")
+        self.sort_as.set_sensitive(not self.db.readonly)
         self.display_as  = self.top.get_widget("display_as")
+        self.display_as.set_sensitive(not self.db.readonly)
         self.group_as  = self.top.get_widget("group_as")
         self.title_field  = self.top.get_widget("alt_title")
+        self.title_field.set_editable(not self.db.readonly)
         self.suffix_field = self.top.get_widget("alt_suffix")
+        self.suffix_field.set_editable(not self.db.readonly)
         self.patronymic_field = self.top.get_widget("patronymic")
+        self.patronymic_field.set_editable(not self.db.readonly)
         self.combo = self.top.get_widget("alt_surname_list")
+        self.combo.set_sensitive(not self.db.readonly)
         self.date = self.top.get_widget('date')
+        self.date.set_editable(not self.db.readonly)
 
         if self.name:
             self.srcreflist = self.name.get_source_references()
@@ -99,25 +107,34 @@ class NameEditor:
 
         self.date.set_text(DateHandler.displayer.display(self.date_obj))
 
+        date_stat = self.top.get_widget("date_stat")
+        date_stat.set_sensitive(not self.db.readonly)
         self.date_check = DateEdit.DateEdit(
             self.date_obj, self.date,
-            self.top.get_widget("date_stat"), self.window)
+            date_stat, self.window)
 
         AutoComp.fill_combo(self.combo,self.parent.db.get_surname_list())
         self.surname_field = self.combo.get_child()
         self.prefix_field = self.top.get_widget("alt_prefix")
+        self.prefix_field.set_editable(not self.db.readonly)
 
         self.type_combo = self.top.get_widget("name_type")
+        self.type_combo.set_sensitive(not self.db.readonly)
         self.note_field = self.top.get_widget("alt_note")
+        self.note_field.set_editable(not self.db.readonly)
         self.spell = Spell.Spell(self.note_field)
         
         self.slist = self.top.get_widget('slist')
         self.priv = self.top.get_widget("priv")
+        self.priv.set_sensitive(not self.db.readonly)
         self.sources_label = self.top.get_widget("sourcesName")
         self.notes_label = self.top.get_widget("noteName")
         self.flowed = self.top.get_widget("alt_flowed")
+        self.flowed.set_sensitive(not self.db.readonly)
         self.preform = self.top.get_widget("alt_preform")
+        self.preform.set_sensitive(not self.db.readonly)
         self.group_over = self.top.get_widget('group_over')
+        self.group_over.set_sensitive(not self.db.readonly)
 
         types = const.NameTypesMap.get_values()
         types.sort()
@@ -145,6 +162,8 @@ class NameEditor:
         self.gladeif.connect('name_edit','delete_event',self.on_delete_event)
         self.gladeif.connect('button119','clicked',self.close)
         self.gladeif.connect('button118','clicked',self.on_name_edit_ok_clicked)
+        okbtn = self.top.get_widget('button118')
+        okbtn.set_sensitive(not self.db.readonly)
         self.gladeif.connect('button131','clicked',self.on_help_clicked)
         self.gladeif.connect('notebook3','switch_page',self.on_switch_page)
         self.gladeif.connect('group_over','toggled',self.on_group_over_toggled)

@@ -138,9 +138,9 @@ class AttributeEditor:
             if attrib.get_note():
                 self.note_field.get_buffer().set_text(attrib.get_note())
                 Utils.bold_label(self.notes_label)
-            	if attrib.get_note_format() == 1:
+                if attrib.get_note_format() == 1:
                     self.preform.set_active(1)
-            	else:
+                else:
                     self.flowed.set_active(1)
 
         self.gladeif = GladeIf(self.top)
@@ -150,6 +150,16 @@ class AttributeEditor:
         self.gladeif.connect('button127', 'clicked', self.on_help_clicked)
         self.gladeif.connect('notebook', 'switch_page', self.on_switch_page)
 
+        if self.db.readonly:
+            w = self.top.get_widget("button115")
+            w.set_sensitive(False)
+            self.value_field.set_editable(False)
+            self.note_field.set_editable(False)
+            self.attrib_menu.set_sensitive(False)
+            self.priv.set_sensitive(False)
+            self.flowed.set_sensitive(False)
+            self.preform.set_sensitive(False)
+            
         if parent_window:
             self.window.set_transient_for(parent_window)
         self.add_itself_to_menu()
