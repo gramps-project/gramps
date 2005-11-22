@@ -291,6 +291,7 @@ class NoteParser:
                 match = contRE.match(line)
                 if match:
                     noteobj.append("\n" + match.groups()[0])
+                    continue
 
                 match = concRE.match(line)
                 if match:
