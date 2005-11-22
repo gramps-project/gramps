@@ -1,3 +1,6 @@
+2005-11-22  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NavWebPage.py: Fix output_notebook remains.
+
 2005-11-22  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/AddrEdit.py,
 	* src/AttrEdit.py,

@@ -2639,9 +2639,6 @@ class WebReportDialog(Report.ReportDialog):
         html_label.set_use_markup(True)
         self.html_table.attach(html_label, 0, 3, 0, 1, gtk.FILL)
 
-        label = gtk.Label(_("HTML Options"))
-        self.output_notebook.append_page(self.html_table,label)
-
         self.archive = gtk.CheckButton(_('Store web pages in .tar.gz archive'))
         self.archive.set_alignment(0.0,0.5)
         self.archive.connect('toggled',self.archive_toggle)
@@ -2690,7 +2687,7 @@ class WebReportDialog(Report.ReportDialog):
         """The format frame is not used in this dialog.  Hide it, and
         set the output notebook to always display the html template
         page."""
-        self.output_notebook.set_current_page(1)
+        pass
 
     def parse_format_frame(self):
         """The format frame is not used in this dialog."""
