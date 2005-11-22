@@ -437,7 +437,7 @@ class DetDescendantReport(Report.Report):
                                      ReportUtils.roman(cnt).lower() + ".")
             cnt += 1
 
-            if self.henry[child_handle]:
+            if self.henry.has_key(child_handle):
                 self.doc.write_text("%s [%s]. " % (child_name,
                                                    self.henry[child_handle]))
             else:
@@ -495,8 +495,6 @@ class DetDescendantReport(Report.Report):
 
                 self.doc.end_paragraph()
 
-                if self.listChildren and mate.get_gender()==RelLib.Person.MALE:
-                    self.write_children(family)
 
     def calc_age(self,ind):
         """

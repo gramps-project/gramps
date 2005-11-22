@@ -1,3 +1,7 @@
+2005-11-22  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/DetDescendantReport.py (write_write_children):
+	Properly check for henry number; (write_mate): omit children list.
+
 2005-11-22  Don Allingham  <don@gramps-project.org>
 	* src/plugins/NavWebPage.py: Fix output_notebook remains.
 
