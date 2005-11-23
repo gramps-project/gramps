@@ -1,4 +1,5 @@
 2005-11-22  Don Allingham  <don@gramps-project.org>
+	* src/plugins/DetDescendantReport.py: fixed insert_image
 	* src/ReadGedcom.py: Fix handling of CONT
 
 2005-11-22  Alex Roitman  <shura@gramps-project.org>

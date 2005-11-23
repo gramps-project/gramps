@@ -217,8 +217,10 @@ class DetDescendantReport(Report.Report):
 
         person_handle = self.map[key]
         person = self.database.get_person_from_handle(person_handle)
-        if self.addImages:
-            ReportUtils.insert_images(self.database,self.doc,person)
+        plist = person.get_media_list()
+        if self.addImages and len(plist) > 0:
+            photo = plist[0]
+            ReportUtils.insert_image(self.database,self.doc,photo)
 
         val = self.henry[person_handle]
         self.doc.start_paragraph("DDR-First-Entry","%s." % val)
@@ -468,9 +470,6 @@ class DetDescendantReport(Report.Report):
                 firstName = 0
 
             if person_name:
-                if self.addImages:
-                    ReportUtils.insert_images(self.database,self.doc,ind)
-
                 self.doc.start_paragraph("DDR-Entry")
 
                 self.doc.write_text(person_name)
