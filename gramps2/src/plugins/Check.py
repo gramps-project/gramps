@@ -408,6 +408,7 @@ class CheckIntegrity:
                                len(fhandle_list))
         
         for family_handle in fhandle_list:
+            self.progress.step()
             family = self.db.get_family_from_handle(family_handle)
             mother_handle = family.get_mother_handle()
             father_handle = family.get_father_handle()

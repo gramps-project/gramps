@@ -203,8 +203,8 @@ class ArgHandler:
                     outformat = 'geneweb'
                 elif outfname[-6:].upper() == "GRAMPS":
                     outformat = 'gramps-xml'
-                elif outfname[-3:].upper() == "GRDB":
-                    format = 'grdb'
+                elif outfname[-4:].upper() == "GRDB":
+                    outformat = 'grdb'
                 else:
                     print "Unrecognized format for output file %s" % outfname
                     print "Ignoring output file:  %s" % outfname
@@ -511,7 +511,14 @@ class ArgHandler:
         Try to write into filename using the format.
         Any errors will cause the os._exit(1) call.
         """
-        if format == 'gedcom':
+        if format == 'grdb':
+            import WriteGrdb
+            try:
+                WriteGrdb.exportData(self.parent.db,filename)
+            except:
+                print "Error exporting %s" % filename
+                os._exit(1)
+        elif format == 'gedcom':
             import WriteGedcom
             try:
                 gw = WriteGedcom.GedcomWriter(self.parent.db,None,1,filename)
