@@ -203,7 +203,7 @@ class ArgHandler:
                     outformat = 'geneweb'
                 elif outfname[-6:].upper() == "GRAMPS":
                     outformat = 'gramps-xml'
-                elif fname[-3:].upper() == "GRDB":
+                elif outfname[-3:].upper() == "GRDB":
                     format = 'grdb'
                 else:
                     print "Unrecognized format for output file %s" % outfname

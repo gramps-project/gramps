@@ -406,9 +406,6 @@ class PSDrawDoc(BaseDoc.BaseDoc):
             self.f.write(fdef)
             lines = text.split('\n')
 
-            print text
-            print lines
-            
             nlines = len(lines)
             mar = 10/28.35
             f_in_cm = p.get_font().get_size()/28.35
