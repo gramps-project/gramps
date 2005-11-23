@@ -993,8 +993,13 @@ class SheetParser(handler.ContentHandler):
             self.p.set_right_margin(Utils.gfloat(attrs['rmargin']))
             self.p.set_left_margin(Utils.gfloat(attrs['lmargin']))
             self.p.set_first_indent(Utils.gfloat(attrs['first']))
-            self.p.set_top_margin(Utils.gfloat(attrs['tmargin']))
-            self.p.set_bottom_margin(Utils.gfloat(attrs['bmargin']))
+            try:
+                # This is needed to read older style files
+                # lacking tmargin and bmargin
+                self.p.set_top_margin(Utils.gfloat(attrs['tmargin']))
+                self.p.set_bottom_margin(Utils.gfloat(attrs['bmargin']))
+            except KeyError:
+                pass
             self.p.set_padding(Utils.gfloat(attrs['pad']))
             self.p.set_alignment(int(attrs['align']))
             self.p.set_right_border(int(attrs['rborder']))
