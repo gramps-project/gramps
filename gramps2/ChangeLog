@@ -1,4 +1,5 @@
 2005-11-22  Don Allingham  <don@gramps-project.org>
+	* src/docgen/AbiWord2Doc.py: fix spacing for top and bottom margin
 	* src/ArgHandler.py: fix typo
 	* src/docgen/PSDrawDoc.py: removed print statements
 	* src/plugins/DetDescendantReport.py: fixed insert_image
