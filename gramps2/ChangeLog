@@ -9,6 +9,7 @@
 	* src/plugins/DetDescendantReport.py (write_write_children):
 	Properly check for henry number; (write_mate): omit children list.
 	* src/Report.py: Better packing in vertical direction.
+	* test/runtest.sh: Switch to doing many reports in one call.
 
 2005-11-22  Don Allingham  <don@gramps-project.org>
 	* src/plugins/NavWebPage.py: Fix output_notebook remains.
