@@ -9,6 +9,10 @@
 	tmargin and bmargin (when reading older style files).
 	* src/docgen/PSDrawDoc.py (encode): Add tolerant encoder;
 	(patch_text): Remove unused method.
+	* src/docgen/AsciiDoc.py (reformat_para): Add optional argument
+	for the first line indent; (start_paragraph): remove leader
+	handling; (end_paragraph): Handle all formatting, including leader
+	and first line indent.
 
 2005-11-22  Don Allingham  <don@gramps-project.org>
 	* src/docgen/AbiWord2Doc.py: fix spacing for top and bottom margin
