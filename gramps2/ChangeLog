@@ -1,3 +1,7 @@
+2005-11-23  Wayne Bergeron  <wb@vallnet.com>
+	* src/GenericFilter.py (IsLessThanNthGenerationAncestorOfBookmarked):
+	Add new filter rule.
+
 2005-11-23  Alex Roitman  <shura@gramps-project.org>
 	* src/ArgHandler.py (cl_export): Add grdb export from the CLI.
 	* src/plugins/Check.py (check_parent_relationships): Step through
