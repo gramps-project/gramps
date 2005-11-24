@@ -23,7 +23,7 @@ OPTS="-i $EXAMPLE_XML"
 GRPH_FMT="sxw ps pdf svg"
 TEXT_FMT="sxw pdf kwd abw rtf txt"
 
-GRPH_REP="ancestor_chart ancestor_chart2 descendant_graph"
+GRPH_REP="ancestor_chart2 descend_chart2 fan_chart statistics_chart timeline"
 TEXT_REP="ancestor_report ancestors_report descend_report det_ancestor_report det_descendant_report family_group"
 
 # Single run with all graphical reports in all formats

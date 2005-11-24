@@ -7,6 +7,8 @@
 	* example/gramps/example.gramps: Correct errors.
 	* src/BaseDoc.py (SheetParser.startElement): Tolerate missing
 	tmargin and bmargin (when reading older style files).
+	* src/docgen/PSDrawDoc.py (encode): Add tolerant encoder;
+	(patch_text): Remove unused method.
 
 2005-11-22  Don Allingham  <don@gramps-project.org>
 	* src/docgen/AbiWord2Doc.py: fix spacing for top and bottom margin

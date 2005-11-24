@@ -154,13 +154,17 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write('showpage\n')
         self.f.write('%%PageTrailer\n')
 
-    def encode_text(self,p,text):
-        fdef = self.fontdef(p)
+    def encode(self,text):
         try:
             orig = unicode(text)
             new_text = orig.encode('iso-8859-1')
         except:
-            new_text = "?"
+            new_text = "?"*len(text)
+        return new_text
+
+    def encode_text(self,p,text):
+        fdef = self.fontdef(p)
+        new_text = self.encode(text)
         return (new_text,fdef)
 
     def center_text(self,style,text,x,y):
@@ -274,7 +278,8 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         y = ((size * val)/2.0) - size
 
         for line in text:
-            self.f.write('(%s) dup stringwidth pop -2 div  '% line.encode('iso-8859-1'))
+            self.f.write('(%s) dup stringwidth pop -2 div  '
+                         % self.encode(line))
             self.f.write("%s moveto show\n" % gformat(y))
             y -= size
  
@@ -324,9 +329,6 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write('2 setlinecap\n')
         self.f.write('%s %s %s setrgbcolor stroke\n' % lrgb(stype.get_color()))
         self.f.write('grestore\n')
-
-    def patch_text(self,text):
-        return text.encode('iso-8859-1')
 
     def write_at(self,style,text,x,y):
         para_style = self.style_list[style]
