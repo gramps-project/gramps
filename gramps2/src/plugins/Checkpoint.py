@@ -309,7 +309,6 @@ class Checkpoint(Tool.Tool):
             proc = popen2.Popen3(
                 'rcs -i -U -q -t-"GRAMPS database" %s' % archive,
                 True)
-            proc.tochild.write(comment)
             proc.tochild.close()
             status = proc.wait()
             message = "\n".join(proc.childerr.readlines())

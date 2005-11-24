@@ -20,6 +20,9 @@
 	for the first line indent; (start_paragraph): remove leader
 	handling; (end_paragraph): Handle all formatting, including leader
 	and first line indent.
+	* src/plugins/Checkpoint.py (rcs): Do not write comment on
+	initialization.
+	* test/tools.sh: Add test set for tools.
 
 2005-11-22  Don Allingham  <don@gramps-project.org>
 	* src/docgen/AbiWord2Doc.py: fix spacing for top and bottom margin
