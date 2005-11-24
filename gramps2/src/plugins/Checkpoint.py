@@ -119,8 +119,10 @@ class Checkpoint(Tool.Tool):
         Tool.Tool.__init__(self,db,person,options_class,name)
 
         if parent:
+            self.callback = self.callback_real
             self.init_gui(parent)
         else:
+            self.callback = lambda a: None
             self.run_tool(cli=True)
 
     def init_gui(self,parent):
@@ -380,7 +382,7 @@ class Checkpoint(Tool.Tool):
             else:
                 dialog(msg1,msg2)
 
-    def callback(self,value):
+    def callback_real(self,value):
         """
         Call back function for the WriteXML function that updates the
         status progress bar.
