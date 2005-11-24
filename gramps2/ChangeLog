@@ -1,3 +1,6 @@
+2005-11-23  Don Allingham  <don@gramps-project.org>
+	* src/docgen/KwordDoc.py: fix margins and fonts.
+
 2005-11-23  Wayne Bergeron  <wb@vallnet.com>
 	* src/GenericFilter.py (IsLessThanNthGenerationAncestorOfBookmarked):
 	Add new filter rule.
