@@ -1,5 +1,7 @@
 2005-11-25  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
-	* src/GenericFilter.py (HasCommonAncestorWith): Catch no longer existing person
+	* src/GenericFilter.py (HasCommonAncestorWith): Catch no longer
+	existing person; (IsSpouseOfFilterMatch) Call prepare for recursive
+	filter
 
 2005-11-24  Don Allingham  <don@gramps-project.org>
 	* src/po/template.po: updated translation file

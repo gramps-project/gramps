@@ -1409,8 +1409,11 @@ class IsSpouseOfFilterMatch(Rule):
     description = _("Matches people married to anybody matching a filter")
     category    = _('Family filters')
 
+    def prepare(self,db):
+        self.filt = MatchesFilter (self.list)
+        self.filt.prepare(db)
+        
     def apply(self,db,person):
-        filt = MatchesFilter (self.list)
         for family_handle in person.get_family_handle_list ():
             family = db.get_family_from_handle(family_handle)
             for spouse_id in [family.get_father_handle (), family.get_mother_handle ()]:
@@ -1418,7 +1421,7 @@ class IsSpouseOfFilterMatch(Rule):
                     continue
                 if spouse_id == person.handle:
                     continue
-                if filt.apply (db, db.get_person_from_handle( spouse_id)):
+                if self.filt.apply (db, db.get_person_from_handle( spouse_id)):
                     return True
         return False
 
