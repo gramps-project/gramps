@@ -1,3 +1,6 @@
+2005-11-24  Don Allingham  <don@gramps-project.org>
+	* src/po/template.po: updated translation file
+
 2005-11-24  Alex Roitman  <shura@gramps-project.org>
 	* NEWS: Update.
 	* src/docgen/HtmlDoc.py (build_style_declaration): Use top- and
