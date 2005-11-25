@@ -1,3 +1,8 @@
+2005-11-24  Alex Roitman  <shura@gramps-project.org>
+	* NEWS: Update.
+	* src/docgen/HtmlDoc.py (build_style_declaration): Use top- and
+	bottom- margins for paragraph styles.
+
 2005-11-23  Don Allingham  <don@gramps-project.org>
 	* src/docgen/KwordDoc.py: fix margins and fonts.
 
@@ -82,18 +87,18 @@
 	* src/DateParser.py: match end of string for regex matching
 
 2005-11-18  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
-	* src/Utils.py (find_file): new method that tries to check the existance
-	  of a file by trying out multiple encoding variants for the filename. 
+	* src/Utils.py (find_file): new method that tries to check the
+	  existance of a file by trying out multiple encoding variants for
+	  the filename.
 	* src/ImgManip.py (get_thumbnail_image): Use Utils.find_file to fix
 	  encoding problems, additionally catch OSError
 	* src/ImageSelect.py (on_name_changed): Use Utils.find_file
 	* src/AddMedia.py (on_name_changed): Use Utils.find_file
 	* src/plugins/Check.py (encoding) dont encode a utf-8 string as again,
-	  (cleanup_missing_photos) Use Utils.find_file to fix encoding problems 
-
+	  (cleanup_missing_photos) Use Utils.find_file to fix encoding problems
 	* src/Utils.py (find_folder): new method
-	* src/gramps_main.py: Use Utils.find_file and Utils.find_folder to enable
-	  using unicode names for gramps databases
+	* src/gramps_main.py: Use Utils.find_file and Utils.find_folder to
+	  enable using unicode names for gramps databases
 
 2005-11-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gramps.glade,
