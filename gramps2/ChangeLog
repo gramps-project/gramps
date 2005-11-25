@@ -1,3 +1,7 @@
+2005-11-25  Don Allingham  <don@gramps-project.org>
+	* src/gramps.glade: enable word wrap on publication information
+	on the source display
+
 2005-11-25  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GenericFilter.py (HasCommonAncestorWith): Catch no longer
 	existing person; (IsSpouseOfFilterMatch) Call prepare for recursive
