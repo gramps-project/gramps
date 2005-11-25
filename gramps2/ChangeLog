@@ -1,3 +1,6 @@
+2005-11-25  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GenericFilter.py (HasCommonAncestorWith): Catch no longer existing person
+
 2005-11-24  Don Allingham  <don@gramps-project.org>
 	* src/po/template.po: updated translation file
 

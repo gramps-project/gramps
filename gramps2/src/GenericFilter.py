@@ -927,10 +927,13 @@ class HasCommonAncestorWith(Rule):
 
     def init_ancestor_cache(self,db):
         # list[0] is an Id, but we need to pass a Person to for_each_ancestor.
-        handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
-        if handle:
-            def init(self,handle): self.ancestor_cache[handle] = 1
-            for_each_ancestor(db,[handle],init,self)
+        try:
+            handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
+            if handle:
+                def init(self,handle): self.ancestor_cache[handle] = 1
+                for_each_ancestor(db,[handle],init,self)
+        except:
+            pass
 
     def apply(self,db,person):
         # On the first call, we build the ancestor cache for the
