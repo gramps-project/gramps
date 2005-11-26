@@ -2082,6 +2082,62 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
     def reset(self):
         self.map = {}
 
+#-------------------------------------------------------------------------
+#
+# IsLessThanNthGenerationAncestorOfDefaultPerson
+#
+#-------------------------------------------------------------------------
+class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
+    # Submitted by Wayne Bergeron
+    """Rule that checks for a person that is an ancestor of the default person
+    not more than N generations away"""
+
+    labels      = [ _('Number of generations:') ]
+    name        = _('Ancestors of the default person '
+                    'not more than <N> generations away')
+    category    = _('Ancestral filters')
+    description = _("Matches ancestors of the default person "
+                    "not more than N generations away")
+
+    def prepare(self,db):
+	self.db = db
+	p = db.get_default_person()
+        if p == 0:
+            self.apply = lambda db,p: False
+        else:
+            self.def_handle = p.get_handle()
+            self.apply = self.apply_real
+            self.map = {}
+            self.init_ancestor_list(self.def_handle, 1)
+
+
+    def init_ancestor_list(self,handle,gen):
+#        if self.map.has_key(p.get_handle()) == 1:
+#            loop_error(self.orig,p)
+        if not handle:
+            return
+        if gen:
+            self.map[handle] = 1
+            if gen >= int(self.list[0]):
+                return
+        
+        p = self.db.get_person_from_handle(handle)
+        fam_id = p.get_main_parents_family_handle()
+        fam = self.db.get_family_from_handle(fam_id)
+        if fam:
+            f_id = fam.get_father_handle()
+            m_id = fam.get_mother_handle()
+        
+            if f_id:
+                self.init_ancestor_list(f_id,gen+1)
+            if m_id:
+                self.init_ancestor_list(m_id,gen+1)
+
+    def apply_real(self,db,person):
+        return person.handle in self.map
+
+    def reset(self):
+        self.map = {}
 
 #-------------------------------------------------------------------------
 #
@@ -2177,6 +2233,7 @@ editor_rule_list = [
     IsWitness,
     IsDescendantOf,
     IsDescendantFamilyOf,
+    IsLessThanNthGenerationAncestorOfDefaultPerson,
     IsDescendantOfFilterMatch,
     IsLessThanNthGenerationDescendantOf,
     IsMoreThanNthGenerationDescendantOf,

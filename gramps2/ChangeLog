@@ -1,3 +1,7 @@
+2005-11-25  Wayne Bergeron  <wb@vallnet.com>
+	* src/GenericFilter.py
+	(IsLessThanNthGenerationAncestorOfDefaultPerson): Add new filter rule.
+
 2005-11-25  Don Allingham  <don@gramps-project.org>
 	* src/gramps.glade: enable word wrap on publication information
 	on the source display
