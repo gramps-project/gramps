@@ -1726,8 +1726,9 @@ class EditPerson:
             if prefix != name.get_surname_prefix():
                 name.set_surname_prefix(prefix)
 
-        if const.NameTypesMap.has_value(ntype):
-            ntype = const.NameTypesMap.find_key(ntype)
+        if ntype:
+            if const.NameTypesMap.has_value(ntype):
+                ntype = const.NameTypesMap.find_key(ntype)
         else:
             ntype = "Birth Name"
 
