@@ -140,6 +140,7 @@ snameRegexp= re.compile(r"/([^/]*)/([^/]*)")
 calRegexp = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
 rangeRegexp = re.compile(r"\s*BET\s+@#D([^@]+)@\s*(.*)\s+AND\s+@#D([^@]+)@\s*(.*)$")
 spanRegexp = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
+whitespaceRegexp = re.compile(r"\s+")
 
 #-------------------------------------------------------------------------
 #
@@ -532,7 +533,7 @@ class GedcomParser:
                 self.text = string.translate(self.text,self.transtable2)
             
             self.index += 1
-            l = self.text.split(' ', 2)
+            l = whitespaceRegexp.split(self.text, 2)
             ln = len(l)
             try:
                 if ln == 2:

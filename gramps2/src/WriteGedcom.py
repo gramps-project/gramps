@@ -106,6 +106,11 @@ _get_int = re.compile('([0-9]+)')
 #-------------------------------------------------------------------------
 def add_familys_sources(db,family_handle,slist,private):
     family = db.get_family_from_handle(family_handle)
+    for source_ref in family.get_source_references():
+        sbase = source_ref.get_base_handle()
+        if sbase != None and not slist.has_key(sbase):
+            slist[sbase] = 1
+        
     for event_handle in family.get_event_list():
         if event_handle:
             event = db.get_event_from_handle(event_handle)

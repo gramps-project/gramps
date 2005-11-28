@@ -1,3 +1,12 @@
+2005-11-28  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/DateParser.py: match modifiers in reverse length order so that
+	multiword modifiers work even if other modifier matches the first
+	words of the longer modifier
+	* src/ReadGedcom.py: be more tolerant w.r.t. whitespace in input,
+	to parse the output from tools that try (incorrectly) to make
+	the GEDCOM easier to read.  Gedcom.pm is one example.
+	* src/WriteGedcom.py: make sure referenced family sources are output
+
 2005-11-27  Don Allingham  <don@gramps-project.org>
 	* src/MergeData.py: fix dangling family after a merge.
 

@@ -241,8 +241,10 @@ class DateParser:
         self._qual_str = '(' + '|'.join(
             [ key.replace('.','\.') for key in self.quality_to_int.keys() ]
             ) + ')'
+        keys = self.modifier_to_int.keys()
+        keys.sort(lambda x, y: cmp(len(y), len(x)))
         self._mod_str  = '(' + '|'.join(
-            [ key.replace('.','\.') for key in self.modifier_to_int.keys() ]
+            [ key.replace('.','\.') for key in keys ]
             ) + ')'
         self._mod_after_str  = '(' + '|'.join(
             [ key.replace('.','\.') for key in self.modifier_after_to_int.keys() ]
