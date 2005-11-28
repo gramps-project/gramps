@@ -1,3 +1,6 @@
+2005-11-27  Alex Roitman  <shura@gramps-project.org>
+	* src/po/template.po: Update.
+
 2005-11-26  Don Allingham  <don@gramps-project.org>
 	* src/EditPerson.py: properly handled added name types for the
 	preferred name
