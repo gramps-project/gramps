@@ -1,3 +1,6 @@
+2005-11-28  Alex Roitman  <shura@gramps-project.org>
+	* src/GenericFilter.py (MatchesFilter.apply): Typo.
+
 2005-11-28  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* NEWS: Better support for unicode filenames
 	* src/FamilyView.py (change_families): Avoid exception if family

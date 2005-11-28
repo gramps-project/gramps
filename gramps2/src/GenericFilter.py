@@ -1389,7 +1389,7 @@ class MatchesFilter(Rule):
     def apply(self,db,person):
         for filt in SystemFilters.get_filters():
             if filt.get_name() == self.list[0]:
-                return filt.check(person.handle)
+                return filt.check(db,person.handle)
         for filt in CustomFilters.get_filters():
             if filt.get_name() == self.list[0]:
                 return filt.check(db,person.handle)
