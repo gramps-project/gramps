@@ -769,6 +769,7 @@ class CheckIntegrity:
 
         if efam == 1:
             self.text.write(_("1 empty family was found\n"))
+            self.text.write("\t%s\n" % self.empty_family[0])
         elif efam > 1:
             self.text.write(_("%d empty families were found\n") % efam)
         if rel == 1:

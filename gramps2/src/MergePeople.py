@@ -167,8 +167,8 @@ class Compare:
                 self.add(tobj,indent,"%s:\t%s" % (_('Type'),relstr))
                 event = ReportUtils.find_marriage(self.db,family)
                 if event:
-                    self.add(tobj,indent,"%s:\t%s" % (_('Marriage'),
-                                                      self.get_event_info(event.get_handle())))
+                    self.add(tobj,indent,"%s:\t%s" % (
+                        _('Marriage'), self.get_event_info(event.get_handle())))
                 for child_id in family.get_child_handle_list():
                     child = self.db.get_person_from_handle(child_id)
                     self.add(tobj,indent,"%s:\t%s" % (_('Child'),name_of(child)))
@@ -354,7 +354,11 @@ class MergePeople:
         trans = self.db.transaction_begin()
 
         self.merge_person_information(new,trans)
+        self.debug_person(new, "NEW")
+
         self.merge_family_information(new,trans)
+        self.debug_person(new, "NEW")
+
         self.db.commit_person(new,trans)
         self.debug_person(new, "NEW")
         self.db.remove_person(self.old_handle,trans)
@@ -537,6 +541,7 @@ class MergePeople:
         """
         self.merge_parents(new, trans)
         self.merge_relationships(new, trans)
+        self.debug_person(new, "NEW")
         
     def merge_parents(self, new, trans):
         """
@@ -557,6 +562,8 @@ class MergePeople:
         for fid in self.p2.get_parent_family_handle_list():
             if fid not in parent_list:
                 parent_list.append(fid)
+                if __debug__:
+                    print "Adding family to parent list", fid
 
         # loop through the combined list, converting the child handles
         # of the families, and adding the families to the merged
@@ -599,6 +606,7 @@ class MergePeople:
         
         family_num = 0
         family_list = self.p1.get_family_handle_list()
+        new.set_family_handle_list(family_list)
         
         for src_handle in self.p2.get_family_handle_list():
 
@@ -635,6 +643,8 @@ class MergePeople:
                 for fid in self.p1.get_family_handle_list():
                     if fid not in new.get_family_handle_list():
                         new.add_family_handle(fid)
+                        if __debug__:
+                            print "Adding family %s" % fid
 
             if src_handle in new.get_family_handle_list():
                 continue
@@ -749,6 +759,8 @@ class MergePeople:
             if child_handle != self.new_handle:
                 child = self.db.get_person_from_handle(child_handle)
             if child.remove_parent_family_handle(src_family_handle):
+                if __debug__:
+                    print "Remove parent family %s from %s" % (src_family_handle,child_handle)
                 self.db.commit_person(child,trans)
 
         # delete the old source family

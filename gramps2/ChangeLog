@@ -1,3 +1,6 @@
+2005-11-27  Don Allingham  <don@gramps-project.org>
+	* src/MergeData.py: fix dangling family after a merge.
+
 2005-11-27  Alex Roitman  <shura@gramps-project.org>
 	* src/po/template.po: Update.
 
