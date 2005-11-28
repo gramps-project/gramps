@@ -4,8 +4,8 @@ Version 2.0.9 -- the "Nobody expects the Spanish inquisition!" release
 * Smaller number of supported reports.
 * Report rendering improvements in OOo, PDF, gnome-print, PS, HTML, 
   abw, and kwd formats.
-* New filter rule: Ancestor of bookmarked person less than N generations
-  away (Wayne Bergeron). 
+* New filter rules: Ancestor of bookmarked/default person
+  less than N generations away (Wayne Bergeron). 
 * Numerous web generator improvements.
 * GEDCOM import supports forward-referencing named notes.
 * User manual updates.
