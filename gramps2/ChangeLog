@@ -1,3 +1,6 @@
+2005-11-28  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* NEWS: Better support for unicode filenames
+
 2005-11-28  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/DateParser.py: match modifiers in reverse length order so that
 	multiword modifiers work even if other modifier matches the first

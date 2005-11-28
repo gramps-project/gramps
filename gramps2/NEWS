@@ -20,6 +20,7 @@ Version 2.0.9 -- the "Nobody expects the Spanish inquisition!" release
 * Limitation of 31 generations in reports removed.
 * Improved responsiveness when working with large databases.
 * Select from recent files on startup.
+* Better support for unicode filenames
 * Numerous bug fixes.
 
 Version 2.0.8 -- the "Romani ite domum" release
