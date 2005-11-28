@@ -941,8 +941,11 @@ class FamilyView:
 
         if family.get_father_handle():
             person_handle = family.get_father_handle()
-        else:
+        elif family.get_mother_handle():
             person_handle = family.get_mother_handle()
+        else:
+            #family does not contain parants
+            return
         person = self.parent.db.get_person_from_handle(person_handle)
         self.parent.change_active_person(person)
 
