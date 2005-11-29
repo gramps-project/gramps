@@ -21,6 +21,7 @@ Version 2.0.9 -- the "Nobody expects the Spanish inquisition!" release
 * Improved responsiveness when working with large databases.
 * Select from recent files on startup.
 * Better support for unicode filenames
+* Better support for media objects in GEDCOM output
 * Numerous bug fixes.
 
 Version 2.0.8 -- the "Romani ite domum" release
