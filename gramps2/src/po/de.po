@@ -1825,7 +1825,7 @@ msgid ""
 msgstr ""
 "Das GRAMPs Prefix wird in einem unüblichen Format angezeigt und es kann "
 "deshalb beim Exportieren der Datebank in das GEDCOM Format zu Problemen "
-"kommen."
+"kommen.\n"
 
 #: GrampsCfg.py:361
 msgid "Unsuited GRAMPS ID prefix"
@@ -1837,7 +1837,7 @@ msgid ""
 "different objects.\n"
 msgstr ""
 "Das GRAMPS ID Prefix wurde nicht eingeordnet, da nicht zwischen "
-"verschiedenen Objekten unterschieden werden konnte. "
+"verschiedenen Objekten unterschieden werden konnte.\n"
 
 #: GrampsDbBase.py:1009 GrampsDbBase.py:1047
 msgid "_Undo %s"
