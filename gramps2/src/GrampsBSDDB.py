@@ -225,15 +225,10 @@ class GrampsBSDDB(GrampsDbBase):
         self.person_map.associate(self.surnames, find_surname, db.DB_CREATE)
         self.person_map.associate(self.id_trans, find_idmap, db.DB_CREATE)
 
-        cursor = self.get_person_cursor()
-        data = cursor.first()
-        while data:
+        for key in self.person_map.keys():
             if callback:
                 callback()
-            self.person_map[data[0]] = data[1]
-            data = cursor.next()
-        cursor.close()
-
+            self.person_map[key] = self.person_map[key]
         self.person_map.sync()
 
         # Repair secondary indices related to family_map
@@ -246,15 +241,10 @@ class GrampsBSDDB(GrampsDbBase):
         self.fid_trans.truncate()
         self.family_map.associate(self.fid_trans, find_idmap, db.DB_CREATE)
 
-
-        cursor = self.get_family_cursor()
-        data = cursor.first()
-        while data:
+        for key in self.family_map.keys():
             if callback:
                 callback()
-            self.family_map[data[0]] = data[1]
-            data = cursor.next()
-        cursor.close()
+            self.family_map[key] = self.family_map[key]
         self.family_map.sync()
 
         # Repair secondary indices related to place_map
@@ -267,14 +257,10 @@ class GrampsBSDDB(GrampsDbBase):
         self.pid_trans.truncate()
         self.place_map.associate(self.pid_trans, find_idmap, db.DB_CREATE)
 
-        cursor = self.get_place_cursor()
-        data = cursor.first()
-        while data:
+        for key in self.place_map.keys():
             if callback:
                 callback()
-            self.place_map[data[0]] = data[1]
-            data = cursor.next()
-        cursor.close()
+            self.place_map[key] = self.place_map[key]
         self.place_map.sync()
 
         # Repair secondary indices related to media_map
@@ -287,14 +273,10 @@ class GrampsBSDDB(GrampsDbBase):
         self.oid_trans.truncate()
         self.media_map.associate(self.oid_trans, find_idmap, db.DB_CREATE)
 
-        cursor = self.get_media_cursor()
-        data = cursor.first()
-        while data:
+        for key in self.media_map.keys():
             if callback:
                 callback()
-            self.media_map[data[0]] = data[1]
-            data = cursor.next()
-        cursor.close()
+            self.media_map[key] = self.media_map[key]
         self.media_map.sync()
 
         # Repair secondary indices related to source_map
@@ -307,14 +289,10 @@ class GrampsBSDDB(GrampsDbBase):
         self.sid_trans.truncate()
         self.source_map.associate(self.sid_trans, find_idmap, db.DB_CREATE)
 
-        cursor = self.get_source_cursor()
-        data = cursor.first()
-        while data:
+        for key in self.source_map.keys():
             if callback:
                 callback()
-            self.source_map[data[0]] = data[1]
-            data = cursor.next()
-        cursor.close()
+            self.source_map[key] = self.source_map[key]
         self.source_map.sync()
 
     def abort_changes(self):
