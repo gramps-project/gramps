@@ -156,6 +156,8 @@ _niece_level = [ "", "niece", "grandniece", "great grandniece", "second great gr
 #
 #-------------------------------------------------------------------------
 
+MAX_DEPTH = 15
+
 class RelationshipCalculator:
 
     def __init__(self,db):
@@ -164,19 +166,27 @@ class RelationshipCalculator:
     def set_db(self,db):
         self.db = db
 
-    def apply_filter(self,person,rel_str,plist,pmap):
-        if person == None:
+    def apply_filter(self,person,rel_str,plist,pmap,current_gen=1):
+        if person == None or current_gen > MAX_DEPTH:
             return
-        plist.append(person.get_handle())
-        pmap[person.get_handle()] = rel_str
+        current_gen += 1
+        plist.append(person.handle)
+        pmap[person.handle] = rel_str
 
         family_handle = person.get_main_parents_family_handle()
-        family = self.db.get_family_from_handle(family_handle)
-        if family_handle != None and family:
-            father = self.db.get_person_from_handle(family.get_father_handle())
-            mother = self.db.get_person_from_handle(family.get_mother_handle())
-            self.apply_filter(father,rel_str+'f',plist,pmap)
-            self.apply_filter(mother,rel_str+'m',plist,pmap)
+        try:
+            if family_handle:
+                family = self.db.get_family_from_handle(family_handle)
+                fhandle = family.father_handle
+                if fhandle:
+                    father = self.db.get_person_from_handle(fhandle)
+                    self.apply_filter(father,rel_str+'f',plist,pmap,current_gen)
+                mhandle = family.mother_handle
+                if mhandle:
+                    mother = self.db.get_person_from_handle(mhandle)
+                    self.apply_filter(mother,rel_str+'m',plist,pmap,current_gen)
+        except:
+            return
 
     def get_cousin(self,level,removed):
         if removed > len(_removed_level)-1 or level>len(_level_name)-1:

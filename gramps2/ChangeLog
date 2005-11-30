@@ -1,3 +1,6 @@
+2005-11-29  Don Allingham  <don@gramps-project.org>
+	* src/Relationship.py: limit search depth to 15 generations.
+
 2005-11-29  Alex Roitman  <shura@gramps-project.org>
 	* doc/xmldocs.make: Revert help path to keep under gramps dir.
 	* doc/gramps-manual/Makefile.am: Add symlink to keep all gnome
