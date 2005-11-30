@@ -50,7 +50,6 @@ from gnome import help_display
 from QuestionDialog import OkDialog, ErrorDialog
 import WriteXML
 import Tool
-import AutoComp
 import Utils
 
 #-------------------------------------------------------------------------
@@ -58,15 +57,6 @@ import Utils
 # Constants
 #
 #-------------------------------------------------------------------------
-
-# Some strings that we offer as custom commands
-cust_arch_list = [
-    'cvs ci -m "$(date)"',
-    ]
-
-cust_ret_list = [
-    'cvs up',
-    ]
 
 # Some message strings
 rcs_setup_failure_msg = [
@@ -143,11 +133,9 @@ class Checkpoint(Tool.Tool):
         self.cust_rb = self.glade.get_widget("custom")
         
         # Fill in the stored values
-        AutoComp.fill_combo(self.cust_arch_cb,cust_arch_list)
-        AutoComp.fill_combo(self.cust_ret_cb,cust_ret_list)
-        self.cust_arch_cb.child.set_text(
+        self.cust_arch_cb.set_text(
             self.options.handler.options_dict['cacmd'])
-        self.cust_ret_cb.child.set_text(
+        self.cust_ret_cb.set_text(
             self.options.handler.options_dict['crcmd'])
 
         # Display controls according to the state
@@ -209,7 +197,7 @@ class Checkpoint(Tool.Tool):
 
     def on_archive_clicked(self,obj):
         self.options.handler.options_dict['cacmd'] = unicode(
-            self.cust_arch_cb.child.get_text())
+            self.cust_arch_cb.get_text())
         self.options.handler.options_dict['rcs']  = int(
             self.rcs_rb.get_active())
         
@@ -219,7 +207,7 @@ class Checkpoint(Tool.Tool):
 
     def on_retrieve_clicked(self,obj):
         self.options.handler.options_dict['crcmd'] = unicode(
-            self.cust_ret_cb.child.get_text())
+            self.cust_ret_cb.get_text())
         self.options.handler.options_dict['rcs']  = int(
             self.rcs_rb.get_active())
         
