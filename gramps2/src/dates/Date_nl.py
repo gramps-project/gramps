@@ -21,6 +21,8 @@
 
 # $Id$
 
+# Written by Benny Malengier
+
 """
 Dutch-specific classes for parsing and displaying dates.
 """

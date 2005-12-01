@@ -3,6 +3,8 @@
 
 2005-12-01  Alex Roitman  <shura@gramps-project.org>
 	* src/ReportUtils.py (child_str): Initialize text.
+
+2005-12-01  Benny Malengier  <bm@cage.UGent.be>
 	* src/dates/Date_nl.py: Add to CVS (bmcage).
 	* src/dates/Makefile.am: Ship new file.
 
