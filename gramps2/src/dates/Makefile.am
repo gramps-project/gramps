@@ -11,7 +11,8 @@ pkgdata_PYTHON = \
 	Date_fr.py\
 	Date_es.py\
 	Date_fi.py\
-	Date_sv.py
+	Date_sv.py\
+	Date_nl.py
 
 pkgpyexecdir = @pkgpyexecdir@/dates
 pkgpythondir = @pkgpythondir@/dates
