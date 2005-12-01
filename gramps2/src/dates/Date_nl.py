@@ -22,7 +22,7 @@
 # $Id$
 
 """
-German-specific classes for parsing and displaying dates.
+Dutch-specific classes for parsing and displaying dates.
 """
 
 #-------------------------------------------------------------------------
@@ -49,7 +49,8 @@ from DateDisplay import DateDisplay
 class DateParserNL(DateParser):
 
     month_to_int = DateParser.month_to_int
-    # Always add dutch and flemish name variants no matter what the current locale is
+    # Always add dutch and flemish name variants
+    # no matter what the current locale is
     month_to_int[u"januari"] = 1
     month_to_int[u"jan"]    = 1
     # Add other common latin, local and historical variants  
@@ -104,15 +105,21 @@ class DateParserNL(DateParser):
         u'ber.'      : Date.QUAL_CALCULATED,
         }
 
-    bce = DateParser.bce + ["voor onze tijdrekening", "voor Christus", "v\. Chr\."]
+    bce = DateParser.bce + ["voor onze tijdrekening",
+                            "voor Christus",
+                            "v\. Chr\."]
     
     def init_strings(self):
         DateParser.init_strings(self)
-        self._span  = re.compile("(van)\s+(?P<start>.+)\s+(tot)\s+(?P<stop>.+)",re.IGNORECASE)
-        self._range = re.compile("tussen\s+(?P<start>.+)\s+en\s+(?P<stop>.+)", re.IGNORECASE)
-        self._text2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str,
+        self._span = re.compile("(van)\s+(?P<start>.+)\s+(tot)\s+(?P<stop>.+)",
+                                re.IGNORECASE)
+        self._range = re.compile("tussen\s+(?P<start>.+)\s+en\s+(?P<stop>.+)",
                                  re.IGNORECASE)
-        self._jtext2= re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._jmon_str,
+        self._text2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
+                                 % self._mon_str,
+                                 re.IGNORECASE)
+        self._jtext2= re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
+                                 % self._jmon_str,
                                  re.IGNORECASE)
 
 #-------------------------------------------------------------------------
@@ -135,7 +142,8 @@ class DateDisplayNL(DateDisplay):
 
     formats = (
         "JJJJ-MM-DD (ISO)", "Numerisch", "Maand Dag Jaar",
-        "MAAND Dag Jaar", "Dag. Maand Jaar", "Dag. MAAND Jaar", "Dag Maand Jaar"
+        "MAAND Dag Jaar", "Dag. Maand Jaar", "Dag. MAAND Jaar",
+        "Dag Maand Jaar"
         )
 
     def _display_gregorian(self,date_val):
@@ -229,4 +237,5 @@ class DateDisplayNL(DateDisplay):
 #
 #-------------------------------------------------------------------------
 from DateHandler import register_datehandler
-register_datehandler(('nl_NL','dutch','nl_BE','nl'),DateParserNL, DateDisplayNL)
+register_datehandler(('nl_NL','dutch','nl_BE','nl'),
+                     DateParserNL, DateDisplayNL)
