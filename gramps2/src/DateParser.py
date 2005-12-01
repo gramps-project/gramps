@@ -383,6 +383,8 @@ class DateParser:
         """
         if subparser == None:
             subparser = self._parse_greg_julian
+
+        if subparser == self._parse_greg_julian:
             check = gregorian_valid
         else:
             check = None

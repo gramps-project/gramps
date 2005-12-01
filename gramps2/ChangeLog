@@ -1,3 +1,6 @@
+2005-12-01  Don Allingham  <don@gramps-project.org>
+	* src/DateParser.py: properly call the date checking routine
+
 2005-12-01  Alex Roitman  <shura@gramps-project.org>
 	* src/ReportUtils.py (child_str): Initialize text.
 	* src/dates/Date_nl.py: Add to CVS (bmcage).
