@@ -1743,6 +1743,7 @@ def child_str(person, father_name="", mother_name="", dead=0, person_name=0):
 
     gender = person.get_gender()
 
+    text = ""
     if mother_name and father_name:
         text = child_father_mother[gender][index][dead] % values
     elif mother_name:
