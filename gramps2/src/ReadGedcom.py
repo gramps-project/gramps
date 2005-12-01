@@ -653,7 +653,8 @@ class GedcomParser:
 
     def parse_source(self,name,level):
         self.source = self.find_or_create_source(name[1:-1])
-        while 1:
+        note = ""
+        while True:
             matches = self.get_next()
             if int(matches[0]) < level:
                 if not self.source.get_title():
@@ -1734,7 +1735,6 @@ class GedcomParser:
                     source.set_confidence_level(val)
             elif matches[1] in ["NOTE","TEXT"]:
                 note = self.parse_comment(matches,source,level+1,note)
-                print note
             else:
                 self.barf(level+1)
         

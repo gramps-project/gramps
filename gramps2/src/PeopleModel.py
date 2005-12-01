@@ -102,8 +102,6 @@ class PeopleModel(gtk.GenericTreeModel):
         gtk.GenericTreeModel.__init__(self)
 
         self.db = db
-        self.visible = {}
-        self.top_visible = {}
         self.invert_result = invert_result
         self.sortnames = {}
         self.rebuild_data(data_filter)
@@ -231,12 +229,6 @@ class PeopleModel(gtk.GenericTreeModel):
             except:
                 return u'error'
 
-    def reset_visible(self):
-        pass
-
-    def set_visible(self,node,val):
-        pass
-
     def on_iter_next(self, node):
         '''returns the next node at this level of the tree'''
         try:
@@ -316,8 +308,8 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_change(self,data,node):
         return unicode(time.strftime(_date_format,
-                                        time.localtime(data[_CHANGE_COL])),
-                            _codeset)
+                                     time.localtime(data[_CHANGE_COL])),
+                       _codeset)
 
     def column_gender(self,data,node):
         return _GENDER[data[_GENDER_COL]]
@@ -355,45 +347,37 @@ class PeopleModel(gtk.GenericTreeModel):
             return u""
         
     def column_birth_place(self,data,node):
-        if data[_BIRTH_COL]:
-            event = self.db.get_event_from_handle(data[_BIRTH_COL])
-            if event:
-                  place_handle = event.get_place_handle()
-                  if place_handle:
-                    place_title = self.db.get_place_from_handle(place_handle).get_title()
-                    if place_title != "":
-                        return cgi.escape(place_title)
+        data_birth = data[_BIRTH_COL]
+        if data_birth:
+            event = self.db.get_event_from_handle(data_birth)
+            if event and event.place:
+                place_title = self.db.get_place_from_handle(event.place).title
+                if place_title != "":
+                    return cgi.escape(place_title)
         
         for event_handle in data[_EVENT_COL]:
             event = self.db.get_event_from_handle(event_handle)
-            if event.name in ["Baptism", "Christening"]:
-                place_handle = event.get_place_handle()
-                if place_handle:
-                    place_title = self.db.get_place_from_handle(place_handle).get_title()
-                    if place_title != "":
-                        return "<i>" + cgi.escape(place_title) + "</i>"
-        
+            if event.name in ["Baptism", "Christening"] and event.place:
+                place_title = self.db.get_place_from_handle(event.place).title
+                if place_title != "":
+                    return "<i>" + cgi.escape(place_title) + "</i>"
         return u""
 
     def column_death_place(self,data,node):
-        if data[_DEATH_COL]:
-            event = self.db.get_event_from_handle(data[_DEATH_COL])
-            if event:
-                  place_handle = event.get_place_handle()
-                  if place_handle:
-                    place_title = self.db.get_place_from_handle(place_handle).get_title()
-                    if place_title != "":
-                        return cgi.escape(place_title)
+        data_death = data[_DEATH_COL]
+        if data_death:
+            event = self.db.get_event_from_handle(data_death)
+            if event and event.place:
+                place_title = self.db.get_place_from_handle(event.place).title
+                if place_title != "":
+                    return cgi.escape(place_title)
         
         for event_handle in data[_EVENT_COL]:
             event = self.db.get_event_from_handle(event_handle)
-            if event.name in ["Burial", "Cremation"]:
-                place_handle = event.get_place_handle()
-                if place_handle:
-                    place_title = self.db.get_place_from_handle(place_handle).get_title()
-                    if place_title != "":
-                        return "<i>" + cgi.escape(place_title) + "</i>"
-        
+            if event.name in ["Burial", "Cremation"] and event.place:
+                place_title = self.db.get_place_from_handle(event.place).title
+                if place_title != "":
+                    return "<i>" + cgi.escape(place_title) + "</i>"
         return u""
 
     def column_int_id(self,data,node):
