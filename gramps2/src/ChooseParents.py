@@ -811,6 +811,10 @@ class LikelyFilter(GenericFilter.Rule):
     labels   = [ 'Person handle' ] 
     category = _('General filters')
 
+    def __init__(self,data_list,gender):
+        GenericFilter.Rule.__init__(self,data_list)
+        self.gender = gender
+
     def prepare(self,db):
         person = db.get_person_from_handle(self.list[0])
         birth = db.get_event_from_handle(person.birth_handle)
@@ -833,12 +837,10 @@ class LikelyFilter(GenericFilter.Rule):
 class LikelyFather(LikelyFilter):
 
     name        = _('Likely Father')
-    description = _('Matches likely fathers')
+    description = _('Matches likely fathersn')
 
     def __init__(self,data_list):
-        GenericFilter.Rule.__init__(self,data_list)
-        self.gender = RelLib.Person.MALE
-
+        LikelyFilter.__init__(self,data_list,RelLib.Person.MALE)
 
 class LikelyMother(LikelyFilter):
 
@@ -846,6 +848,5 @@ class LikelyMother(LikelyFilter):
     description = _('Matches likely mothers')
 
     def __init__(self,data_list):
-        GenericFilter.Rule.__init__(self,data_list)
-        self.gender = RelLib.Person.FEMALE
+        LikelyFilter.__init__(self,data_list,RelLib.Person.FEMALE)
 

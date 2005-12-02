@@ -441,7 +441,7 @@ class SourceNote(BaseObject,NoteBase):
         @param source: Object used to initialize the new object
         @type source: SourceNote
         """
-        
+        BaseObject.__init__(self)
         NoteBase.__init__(self,source)
         if source:
             self.source_list = [SourceRef(sref) for sref in source.source_list]
@@ -3096,6 +3096,7 @@ class Location(BaseObject):
     
     def __init__(self,source=None):
         """creates a Location object, copying from the source object if it exists"""
+        BaseObject.__init__(self)
         if source:
             self.city = source.city
             self.parish = source.parish
@@ -3196,6 +3197,7 @@ class Note(BaseObject):
         """
         Creates a new Note object, initializing from the passed string.
         """
+        BaseObject.__init__(self)
         self.text = text
         self.format = 0
 
@@ -3800,6 +3802,7 @@ class Url(BaseObject,PrivacyBase):
 
     def __init__(self,source=None):
         """creates a new URL instance, copying from the source if present"""
+        BaseObject.__init__(self)
         PrivacyBase.__init__(self,source)
         if source:
             self.path = source.path
@@ -3853,6 +3856,7 @@ class Witness(BaseObject,PrivacyBase):
     the person's name.
     """
     def __init__(self,type=Event.NAME,val="",comment=""):
+        BaseObject.__init__(self)
         PrivacyBase.__init__(self)
         self.set_type(type)
         self.set_value(val)
@@ -3904,6 +3908,7 @@ class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase):
     
     def __init__(self,source=None):
         """creates a new SourceRef, copying from the source if present"""
+        BaseObject.__init__(self)
         DateBase.__init__(self,source)
         PrivacyBase.__init__(self,source)
         NoteBase.__init__(self,source)

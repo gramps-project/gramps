@@ -58,7 +58,7 @@ import Utils
 import GrampsMime
 from bsddb import db
 from GedcomInfo import *
-from QuestionDialog import ErrorDialog
+from QuestionDialog import ErrorDialog, WarningDialog
 
 #-------------------------------------------------------------------------
 #
@@ -85,8 +85,6 @@ UNICODE = 2
 UPDATE = 25
 
 callback = None
-
-_title_string = _("GEDCOM")
 
 def nocnv(s):
     return unicode(s)

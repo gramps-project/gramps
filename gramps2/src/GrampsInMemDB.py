@@ -86,7 +86,7 @@ class GrampsInMemDB(GrampsDbBase):
         self.oid_trans  = {}
         self.undodb     = []
 
-    def load(self,name,callback):
+    def load(self,name,callback,mode="w"):
         pass
 
     def get_person_cursor(self):

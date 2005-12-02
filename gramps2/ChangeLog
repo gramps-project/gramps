@@ -1,4 +1,5 @@
 2005-12-01  Don Allingham  <don@gramps-project.org>
+	* various: pychecker fixes
 	* src/DateParser.py: properly call the date checking routine
 
 2005-12-01  Alex Roitman  <shura@gramps-project.org>

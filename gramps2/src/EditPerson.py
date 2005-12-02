@@ -1255,7 +1255,7 @@ class EditPerson:
 
     def on_web_go_clicked(self,obj):
         """Attempts to display the selected URL in a web browser"""
-        test = self.web_url.get()
+        text = self.web_url.get()
         if text:
             GrampsDisplay.url(text)
         

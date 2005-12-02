@@ -251,7 +251,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
     def get_event_cursor(self):
         assert False, "Needs to be overridden in the derived class"
 
-    def load(self,name,callback):
+    def load(self,name,callback,mode="w"):
         """
         Opens the specified database. The method needs to be overridden
         in the derived class.

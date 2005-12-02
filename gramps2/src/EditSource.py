@@ -304,7 +304,6 @@ class EditSource:
             source = self.db.get_source_from_handle(handle)
             EditSource(source,self.db,self.parent,None,self.db.readonly)
         elif data_type == 5:
-            import ImageSelect
             media = self.db.get_object_from_handle(handle)
             ImageSelect.GlobalMediaProperties(self.db,media,self)
 

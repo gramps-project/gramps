@@ -220,7 +220,7 @@ class MergeSources:
 
     def help(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        help_display('gramps-manual','adv-merge-sources')
+        GrampsDisplay.help('adv-merge-sources')
 
     def merge(self,obj):
         """

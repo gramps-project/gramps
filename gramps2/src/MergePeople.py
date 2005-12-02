@@ -156,9 +156,9 @@ class Compare:
         slist = person.get_family_handle_list()
         if len(slist) > 0:
             for fid in slist:
-                (fn,mn,id) = self.get_parent_info(fid)
+                (fn,mn,pid) = self.get_parent_info(fid)
                 family = self.db.get_family_from_handle(fid)
-                self.add(tobj,normal,"%s:\t%s" % (_('Family ID'),id))
+                self.add(tobj,normal,"%s:\t%s" % (_('Family ID'),pid))
                 spouse_id = ReportUtils.find_spouse(person,family)
                 if spouse_id:
                     spouse = self.db.get_person_from_handle(spouse_id)

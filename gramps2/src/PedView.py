@@ -47,7 +47,6 @@ except:
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import GrampsCfg
 import Relationship
 import NameDisplay
 import RelLib

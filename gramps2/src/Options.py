@@ -416,7 +416,6 @@ class Options:
 
         if self.enable_dict:
             self.options_dict.update(self.enable_dict)
-        print name
         self.handler = OptionHandler(name,self.options_dict,person_id)
 
     def set_new_options(self):

@@ -384,7 +384,6 @@ class EditPlace:
     def on_web_go_clicked(self,obj):
         text = self.web_url.get()
         if text != "":
-            import GrampsDisplay
             GrampsDisplay.url(text)
 
     def set(self,field,getf,setf):
