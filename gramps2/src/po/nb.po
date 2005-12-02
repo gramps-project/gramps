@@ -11,26 +11,26 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
-"POT-Creation-Date: Mon Aug 29 13:28:30 2005\n"
-"PO-Revision-Date: 2005-09-12 23:38+0200\n"
+"POT-Creation-Date: Tue Aug 30 13:54:34 2005\n"
+"PO-Revision-Date: 2005-12-02 18:30+0100\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
-"Language-Team: Norsk Bokmål\n"
+"Language-Team: Norsk Bokmål <Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>\n"
 "Generated-By: pygettext.py 1.4\n"
-"X-Generator: KBabel 1.9.1\n"
+"X-Generator: KBabel 1.10.2\n"
 
-#: AddMedia.py:91 ImageSelect.py:121
+#: AddMedia.py:91 ImageSelect.py:126
 msgid "Select a media object"
 msgstr "Velg et mediaobjekt"
 
-#: AddMedia.py:124 ImageSelect.py:175
+#: AddMedia.py:124 ImageSelect.py:183
 msgid "Cannot import %s"
 msgstr "Kan ikke importere %s"
 
-#: AddMedia.py:125 ImageSelect.py:176
+#: AddMedia.py:125 ImageSelect.py:184
 msgid "The filename supplied could not be found."
 msgstr "Fant ikke den angitte fila."
 
@@ -47,12 +47,12 @@ msgid "Choose Spouse/Partner"
 msgstr "Velg ektefelle/partner"
 
 #: AddSpouse.py:142 Bookmarks.py:130 ChooseParents.py:253 EditPerson.py:346
-#: EditSource.py:311 FamilyView.py:74 ImageSelect.py:1103 PeopleView.py:59
+#: EditSource.py:311 FamilyView.py:74 ImageSelect.py:1117 PeopleView.py:59
 #: PeopleView.py:135 SelectChild.py:129 SelectPerson.py:78
 #: plugins/BookReport.py:631 plugins/DumpGenderStats.py:39
 #: plugins/FilterEditor.py:459 plugins/IndivComplete.py:405
-#: plugins/IndivSummary.py:226 plugins/NavWebPage.py:529
-#: plugins/NavWebPage.py:582 plugins/PatchNames.py:198 plugins/RelCalc.py:95
+#: plugins/IndivSummary.py:226 plugins/NavWebPage.py:533
+#: plugins/NavWebPage.py:586 plugins/PatchNames.py:198 plugins/RelCalc.py:95
 #: plugins/ScratchPad.py:154 plugins/ScratchPad.py:195
 #: plugins/ScratchPad.py:237 plugins/ScratchPad.py:294
 #: plugins/ScratchPad.py:327 plugins/ScratchPad.py:369
@@ -63,7 +63,7 @@ msgid "Name"
 msgstr "Navn"
 
 #: AddSpouse.py:146 Bookmarks.py:130 ChooseParents.py:262 EditSource.py:311
-#: FamilyView.py:73 ImageSelect.py:1103 MediaView.py:58 MergePeople.py:122
+#: FamilyView.py:73 ImageSelect.py:1117 MediaView.py:58 MergePeople.py:122
 #: PeopleView.py:60 PlaceView.py:50 SelectChild.py:134 SelectObject.py:85
 #: SelectPerson.py:84 SourceView.py:52 Sources.py:109 Sources.py:243
 #: Witness.py:64 plugins/PatchNames.py:189
@@ -71,7 +71,7 @@ msgid "ID"
 msgstr "ID"
 
 #: AddSpouse.py:150 ChooseParents.py:272 SelectChild.py:139 SelectPerson.py:90
-#: plugins/NavWebPage.py:530 plugins/NavWebPage.py:583
+#: plugins/NavWebPage.py:534 plugins/NavWebPage.py:587
 msgid "Birth date"
 msgstr "Fødselsdato"
 
@@ -179,7 +179,7 @@ msgstr "Egenskapsbehandler for %s"
 msgid "New Attribute"
 msgstr "Ny egenskap"
 
-#: AttrEdit.py:178 EditPerson.py:334 ImageSelect.py:679 ImageSelect.py:953
+#: AttrEdit.py:178 EditPerson.py:334 ImageSelect.py:693 ImageSelect.py:967
 #: Marriage.py:223 plugins/ScratchPad.py:273 plugins/ScratchPad.py:281
 msgid "Attribute"
 msgstr "Egenskap"
@@ -248,7 +248,7 @@ msgstr "Endre foreldre"
 #: ChooseParents.py:713 FamilyView.py:1116 MergePeople.py:151
 #: plugins/FamilyGroup.py:261 plugins/IndivComplete.py:215
 #: plugins/IndivComplete.py:217 plugins/IndivComplete.py:450
-#: plugins/IndivSummary.py:290 plugins/NavWebPage.py:1515
+#: plugins/IndivSummary.py:290 plugins/NavWebPage.py:1551
 #: plugins/WebPage.py:340 plugins/WebPage.py:343
 msgid "Mother"
 msgstr "Mor"
@@ -256,7 +256,7 @@ msgstr "Mor"
 #: ChooseParents.py:714 FamilyView.py:1114 MergePeople.py:149
 #: plugins/FamilyGroup.py:248 plugins/IndivComplete.py:206
 #: plugins/IndivComplete.py:208 plugins/IndivComplete.py:445
-#: plugins/IndivSummary.py:276 plugins/NavWebPage.py:1510
+#: plugins/IndivSummary.py:276 plugins/NavWebPage.py:1546
 #: plugins/WebPage.py:339 plugins/WebPage.py:342
 msgid "Father"
 msgstr "Far"
@@ -426,12 +426,12 @@ msgid "GEDCOM files"
 msgstr "GEDCOM-filer"
 
 #: DisplayModels.py:47 GrampsMime.py:46 GrampsMime.py:53 MergePeople.py:52
-#: PeopleModel.py:408 Utils.py:118 const.py:169
+#: PeopleModel.py:408 Utils.py:119 const.py:169
 #: plugins/DetAncestralReport.py:387 plugins/DetAncestralReport.py:394
 #: plugins/DetDescendantReport.py:411 plugins/DetDescendantReport.py:418
 #: plugins/DumpGenderStats.py:27 plugins/FamilyGroup.py:458
 #: plugins/IndivComplete.py:281 plugins/IndivSummary.py:165
-#: plugins/NavWebPage.py:1575 plugins/RelCalc.py:115 plugins/WebPage.py:656
+#: plugins/NavWebPage.py:1611 plugins/RelCalc.py:115 plugins/WebPage.py:656
 msgid "unknown"
 msgstr "ukjent"
 
@@ -445,8 +445,8 @@ msgstr "mann"
 msgid "female"
 msgstr "kvinne"
 
-#: DisplayModels.py:468 ImageSelect.py:982 MediaView.py:241 MediaView.py:249
-#: NoteEdit.py:106 Utils.py:155 gramps.glade:5501 gramps.glade:16531
+#: DisplayModels.py:468 ImageSelect.py:996 MediaView.py:241 MediaView.py:249
+#: NoteEdit.py:106 Utils.py:156 gramps.glade:5501 gramps.glade:16531
 #: gramps.glade:27752 gramps.glade:28800 gramps.glade:30253 gramps.glade:31784
 msgid "Note"
 msgstr "Kommentar"
@@ -477,7 +477,7 @@ msgstr "Rediger person"
 msgid "Patronymic:"
 msgstr "Avstamningsnavn:"
 
-#: EditPerson.py:314 EditSource.py:331 EventEdit.py:272 ImageSelect.py:1124
+#: EditPerson.py:314 EditSource.py:331 EventEdit.py:272 ImageSelect.py:1138
 #: Marriage.py:222 plugins/ScratchPad.py:166 plugins/ScratchPad.py:180
 msgid "Event"
 msgstr "Hendelse"
@@ -494,13 +494,13 @@ msgstr "Beskrivelse"
 msgid "Date"
 msgstr "Dato"
 
-#: EditPerson.py:317 EditPlace.py:290 EditSource.py:337 ImageSelect.py:1130
-#: Marriage.py:222 gramps.glade:13109 plugins/NavWebPage.py:626
+#: EditPerson.py:317 EditPlace.py:290 EditSource.py:337 ImageSelect.py:1144
+#: Marriage.py:222 gramps.glade:13109 plugins/NavWebPage.py:630
 #: plugins/ScratchPad.py:183 plugins/ScratchPad.py:225
 msgid "Place"
 msgstr "Sted"
 
-#: EditPerson.py:334 EditSource.py:162 ImageSelect.py:679 ImageSelect.py:953
+#: EditPerson.py:334 EditSource.py:162 ImageSelect.py:693 ImageSelect.py:967
 #: Marriage.py:223 gramps.glade:13691 plugins/FilterEditor.py:459
 #: plugins/PatchNames.py:195 plugins/ScratchPad.py:284
 #: plugins/ScratchPad.py:317 plugins/ScratchPad.py:544
@@ -508,7 +508,7 @@ msgstr "Sted"
 msgid "Value"
 msgstr "Verdi"
 
-#: EditPerson.py:346 EditSource.py:311 ImageSelect.py:1103 MediaView.py:59
+#: EditPerson.py:346 EditSource.py:311 ImageSelect.py:1117 MediaView.py:59
 #: MergePeople.py:167 SelectObject.py:86 plugins/BookReport.py:631
 #: plugins/BookReport.py:632 plugins/PatchNames.py:192
 #: plugins/ScratchPad.py:181 plugins/ScratchPad.py:223
@@ -523,22 +523,22 @@ msgstr "Type"
 msgid "Path"
 msgstr "Sti"
 
-#: EditPerson.py:578 ImageSelect.py:607 ImageSelect.py:1040 MediaView.py:275
+#: EditPerson.py:578 ImageSelect.py:621 ImageSelect.py:1054 MediaView.py:275
 #: plugins/ScratchPad.py:424 plugins/ScratchPad.py:433
 msgid "Media Object"
 msgstr "Mediaobjekt"
 
-#: EditPerson.py:584 ImageSelect.py:613 docgen/AbiWord2Doc.py:335
+#: EditPerson.py:584 ImageSelect.py:627 docgen/AbiWord2Doc.py:335
 #: docgen/AsciiDoc.py:371 docgen/HtmlDoc.py:486 docgen/KwordDoc.py:494
 #: docgen/PdfDoc.py:631 docgen/RTFDoc.py:427
 msgid "Open in %s"
 msgstr "Åpne i %s"
 
-#: EditPerson.py:587 ImageSelect.py:616 MediaView.py:288
+#: EditPerson.py:587 ImageSelect.py:630 MediaView.py:288
 msgid "Edit with the GIMP"
 msgstr "Rediger med GIMP"
 
-#: EditPerson.py:589 ImageSelect.py:618
+#: EditPerson.py:589 ImageSelect.py:632
 msgid "Edit Object Properties"
 msgstr "Rediger objekt-egenskapene"
 
@@ -606,7 +606,7 @@ msgstr ""
 msgid "Edit Person (%s)"
 msgstr "Rediger person (%s)"
 
-#: EditPerson.py:1912 ImageSelect.py:1164
+#: EditPerson.py:1912 ImageSelect.py:1178
 msgid "Add Place (%s)"
 msgstr "Legg til sted (%s)"
 
@@ -614,11 +614,11 @@ msgstr "Legg til sted (%s)"
 msgid "Place Editor"
 msgstr "Stedsbehandler"
 
-#: EditPlace.py:151 PlaceView.py:53 plugins/NavWebPage.py:690
+#: EditPlace.py:151 PlaceView.py:53 plugins/NavWebPage.py:694
 msgid "City"
 msgstr "By"
 
-#: EditPlace.py:151 PlaceView.py:54 plugins/NavWebPage.py:691
+#: EditPlace.py:151 PlaceView.py:54 plugins/NavWebPage.py:695
 msgid "County"
 msgstr "Fylke"
 
@@ -626,7 +626,7 @@ msgstr "Fylke"
 msgid "State"
 msgstr "Stat"
 
-#: EditPlace.py:152 PlaceView.py:56 plugins/NavWebPage.py:692
+#: EditPlace.py:152 PlaceView.py:56 plugins/NavWebPage.py:696
 msgid "Country"
 msgstr "Land"
 
@@ -654,11 +654,11 @@ msgstr "Personer"
 msgid "%s [%s]: event %s\n"
 msgstr "%s [%s] hendelse %s\n"
 
-#: EditPlace.py:556 plugins/NavWebPage.py:1537
+#: EditPlace.py:556 plugins/NavWebPage.py:1573
 msgid "Families"
 msgstr "Familier"
 
-#: EditPlace.py:564 Utils.py:110
+#: EditPlace.py:564 Utils.py:111
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s og %(mother)s"
 
@@ -678,16 +678,16 @@ msgstr "Tast"
 msgid "New Source"
 msgstr "Ny kilde"
 
-#: EditSource.py:245 EditSource.py:343 ImageSelect.py:1136 Utils.py:160
-#: Utils.py:162
+#: EditSource.py:245 EditSource.py:343 ImageSelect.py:1150 Utils.py:161
+#: Utils.py:163
 msgid "Source"
 msgstr "Kilde"
 
-#: EditSource.py:319 ImageSelect.py:1112 plugins/EventCmp.py:422
+#: EditSource.py:319 ImageSelect.py:1126 plugins/EventCmp.py:422
 msgid "Person"
 msgstr "Person"
 
-#: EditSource.py:325 ImageSelect.py:1118
+#: EditSource.py:325 ImageSelect.py:1132
 msgid "Family"
 msgstr "Familie"
 
@@ -725,14 +725,14 @@ msgstr "Du må angi en hendelsestype før du kan lagre hendelsen"
 
 #: EventEdit.py:333 MergePeople.py:125 const.py:233 const.py:241
 #: plugins/EventCmp.py:422 plugins/FamilyGroup.py:200
-#: plugins/FamilyGroup.py:334 plugins/NavWebPage.py:1434
+#: plugins/FamilyGroup.py:334 plugins/NavWebPage.py:1470
 #: plugins/ScratchPad.py:465
 msgid "Birth"
 msgstr "Født"
 
 #: EventEdit.py:333 MergePeople.py:127 plugins/EventCmp.py:422
 #: plugins/FamilyGroup.py:218 plugins/FamilyGroup.py:336
-#: plugins/FamilyGroup.py:338 plugins/NavWebPage.py:1442
+#: plugins/FamilyGroup.py:338 plugins/NavWebPage.py:1478
 msgid "Death"
 msgstr "Død"
 
@@ -867,7 +867,7 @@ msgstr "#"
 
 #: FamilyView.py:75 MergePeople.py:123 PeopleView.py:61
 #: plugins/IndivComplete.py:418 plugins/IndivSummary.py:240
-#: plugins/NavWebPage.py:1414 plugins/RelCalc.py:95
+#: plugins/NavWebPage.py:1450 plugins/RelCalc.py:95
 #: plugins/StatisticsChart.py:103 plugins/WebPage.py:330
 #: plugins/WebPage.py:332 plugins/WebPage.py:334
 msgid "Gender"
@@ -895,8 +895,8 @@ msgstr "Dødssted"
 #: FamilyView.py:612 FamilyView.py:1180 FamilyView.py:1186 FamilyView.py:1219
 #: FamilyView.py:1225 PedView.py:564 PedView.py:573 PeopleView.py:289
 #: PeopleView.py:307 gramps.glade:822 gramps_main.py:662
-#: plugins/NavWebPage.py:275 plugins/NavWebPage.py:985
-#: plugins/NavWebPage.py:987
+#: plugins/NavWebPage.py:279 plugins/NavWebPage.py:1021
+#: plugins/NavWebPage.py:1023
 msgid "Home"
 msgstr "Hjem"
 
@@ -1158,8 +1158,7 @@ msgstr "Personer med ukjent kjønn"
 msgid "Matches all people with unknown gender"
 msgstr "Samsvarer med alle personer med ukjent kjønn"
 
-#: GenericFilter.py:372 GenericFilter.py:420 GenericFilter.py:674
-#: GenericFilter.py:728 plugins/FilterEditor.py:692
+#: GenericFilter.py:372 GenericFilter.py:674 plugins/FilterEditor.py:692
 msgid "Inclusive:"
 msgstr "Inkludert:"
 
@@ -1295,7 +1294,7 @@ msgstr "Samsvare med personer som er foreldre til noen samsvarer med et filter"
 #: GenericFilter.py:912
 #, fuzzy
 msgid "People with a common ancestor with <person>"
-msgstr "Personer med felles ane som <person>"
+msgstr "Personer med felles ane med <person>"
 
 #: GenericFilter.py:914
 msgid "Matches people that have a common ancestor with a specified person"
@@ -1485,7 +1484,7 @@ msgstr "Samsvarer med personer fra et bestemt filter"
 #: GenericFilter.py:1405
 #, fuzzy
 msgid "Spouses of <filter> match"
-msgstr "Ektefelle av et <filter> treff"
+msgstr "Ektefelle av et <filter> søk"
 
 #: GenericFilter.py:1406
 msgid "Matches people married to anybody matching a filter"
@@ -1669,43 +1668,43 @@ msgstr "Forskerinformasjon"
 msgid "_Undo %s"
 msgstr "_Angre %s"
 
-#: ImageSelect.py:483 ImageSelect.py:504
+#: ImageSelect.py:497 ImageSelect.py:518
 msgid "Drag Media Object"
 msgstr "Dra media objekt"
 
-#: ImageSelect.py:494 RelImage.py:51
+#: ImageSelect.py:508 RelImage.py:51
 msgid "Could not import %s"
 msgstr "Kan ikke importere %s"
 
-#: ImageSelect.py:565 plugins/SimpleBookTitle.py:238
+#: ImageSelect.py:579 plugins/SimpleBookTitle.py:238
 msgid "Select an Object"
 msgstr "Velg et objekt"
 
-#: ImageSelect.py:667
+#: ImageSelect.py:681
 msgid "Media Reference Editor"
 msgstr "Mediareferansebehandler"
 
-#: ImageSelect.py:766
+#: ImageSelect.py:780
 msgid "Media Reference"
 msgstr "Mediareferanse"
 
-#: ImageSelect.py:772
+#: ImageSelect.py:786
 msgid "Reference Editor"
 msgstr "Referansebehandler"
 
-#: ImageSelect.py:828 ImageSelect.py:1195 MediaView.py:345
+#: ImageSelect.py:842 ImageSelect.py:1209 MediaView.py:345
 msgid "Edit Media Object"
 msgstr "Rediger mediaobjekt"
 
-#: ImageSelect.py:912
+#: ImageSelect.py:926
 msgid "Media Properties Editor"
 msgstr "Mediaegenskapsbehandler"
 
-#: ImageSelect.py:1046
+#: ImageSelect.py:1060
 msgid "Properties Editor"
 msgstr "Egenskapsbehandler"
 
-#: ImageSelect.py:1292
+#: ImageSelect.py:1306
 msgid "Remove Media Object"
 msgstr "Fjern mediaobjekt"
 
@@ -1717,7 +1716,7 @@ msgstr "Stedsbehandler"
 msgid "Marriage/Relationship Editor"
 msgstr "Ekteskap-/relasjonsbehandler"
 
-#: Marriage.py:154 Marriage.py:820 Marriage.py:843 Utils.py:130
+#: Marriage.py:154 Marriage.py:820 Marriage.py:843 Utils.py:131
 msgid "%s and %s"
 msgstr "%s og %s"
 
@@ -1815,11 +1814,11 @@ msgid "Alternate Names"
 msgstr "Alternative navn"
 
 #: MergePeople.py:137 gramps.glade:9573 gramps.glade:13652
-#: plugins/NavWebPage.py:1427
+#: plugins/NavWebPage.py:1463
 msgid "Events"
 msgstr "Hendelser"
 
-#: MergePeople.py:144 PedView.py:696 plugins/NavWebPage.py:1494
+#: MergePeople.py:144 PedView.py:696 plugins/NavWebPage.py:1530
 msgid "Parents"
 msgstr "Foreldre"
 
@@ -1940,13 +1939,13 @@ msgstr "Sett anker"
 msgid "Remove anchor"
 msgstr "Fjern anker"
 
-#: PedView.py:632 plugins/NavWebPage.py:1521 plugins/WebPage.py:715
+#: PedView.py:632 plugins/NavWebPage.py:1557 plugins/WebPage.py:715
 #: plugins/WebPage.py:722
 msgid "Siblings"
 msgstr "Søsken"
 
 #: PedView.py:662 plugins/FamilyGroup.py:400 plugins/IndivComplete.py:295
-#: plugins/IndivSummary.py:179 plugins/NavWebPage.py:1548
+#: plugins/IndivSummary.py:179 plugins/NavWebPage.py:1584
 #: plugins/WebPage.py:674
 msgid "Children"
 msgstr "Barn"
@@ -1962,7 +1961,7 @@ msgstr "Dødsårsak"
 #: PeopleView.py:84 WriteGedcom.py:335 gramps_main.py:955
 #: plugins/EventCmp.py:158 plugins/ExportVCalendar.py:83
 #: plugins/ExportVCard.py:84 plugins/GraphViz.py:517
-#: plugins/IndivComplete.py:510 plugins/NavWebPage.py:2106
+#: plugins/IndivComplete.py:510 plugins/NavWebPage.py:2142
 #: plugins/StatisticsChart.py:846 plugins/TimeLine.py:412
 #: plugins/WebPage.py:1333 plugins/WriteFtree.py:86 plugins/WriteGeneWeb.py:87
 msgid "Entire Database"
@@ -1981,7 +1980,7 @@ msgstr "Rediger"
 msgid "Place Name"
 msgstr "Stedsnavn"
 
-#: PlaceView.py:51 plugins/NavWebPage.py:690
+#: PlaceView.py:51 plugins/NavWebPage.py:694
 msgid "Church Parish"
 msgstr "Sogn"
 
@@ -1989,11 +1988,11 @@ msgstr "Sogn"
 msgid "ZIP/Postal Code"
 msgstr "Postnummer"
 
-#: PlaceView.py:57 plugins/NavWebPage.py:699
+#: PlaceView.py:57 plugins/NavWebPage.py:703
 msgid "Longitude"
 msgstr "Lengdegrad"
 
-#: PlaceView.py:58 plugins/NavWebPage.py:704
+#: PlaceView.py:58 plugins/NavWebPage.py:708
 msgid "Latitude"
 msgstr "Breddegrad"
 
@@ -2213,7 +2212,7 @@ msgstr "Kunne ikke kopiere fila"
 msgid "GRAMPS XML import"
 msgstr "GRAMPS XML-import"
 
-#: RelImage.py:52 plugins/NavWebPage.py:809 plugins/NavWebPage.py:826
+#: RelImage.py:52 plugins/NavWebPage.py:777 plugins/NavWebPage.py:800
 msgid "The file has been moved or deleted"
 msgstr "Fila har blitt flyttet eller slettet"
 
@@ -2285,7 +2284,7 @@ msgstr "Standardmaler"
 msgid "User Defined Template"
 msgstr "Selvvalgte maler"
 
-#: Report.py:152 Report.py:172 Utils.py:274
+#: Report.py:152 Report.py:172 Utils.py:275
 msgid "default"
 msgstr "standard"
 
@@ -2469,11 +2468,11 @@ msgstr "Skriv ut en kopi"
 msgid "Save As"
 msgstr "Lagre som"
 
-#: Report.py:1121 plugins/NavWebPage.py:2369
+#: Report.py:1121 plugins/NavWebPage.py:2405
 msgid "Directory"
 msgstr "Mappe"
 
-#: Report.py:1123 plugins/NavWebPage.py:2366
+#: Report.py:1123 plugins/NavWebPage.py:2402
 msgid "Filename"
 msgstr "Filnavn"
 
@@ -2510,8 +2509,8 @@ msgstr "Bredde"
 msgid "Page Count"
 msgstr "Vis antall sider"
 
-#: Report.py:1284 Report.py:1289 plugins/NavWebPage.py:2350
-#: plugins/NavWebPage.py:2355
+#: Report.py:1284 Report.py:1289 plugins/NavWebPage.py:2386
+#: plugins/NavWebPage.py:2391
 msgid "HTML Options"
 msgstr "HTML-valg"
 
@@ -2527,7 +2526,7 @@ msgstr "Brukermal"
 msgid "Choose File"
 msgstr "Velg fil"
 
-#: Report.py:1352 plugins/NavWebPage.py:1810
+#: Report.py:1352 plugins/NavWebPage.py:1846
 msgid "Invalid file name"
 msgstr "Ugyldig filnavn"
 
@@ -2555,9 +2554,9 @@ msgstr "_Overskriv"
 msgid "_Change filename"
 msgstr "Endre filnavn"
 
-#: ReportUtils.py:308 ReportUtils.py:423 Utils.py:165 Utils.py:167
-#: plugins/NavWebPage.py:2541 plugins/NavWebPage.py:2547
-#: plugins/NavWebPage.py:2553
+#: ReportUtils.py:308 ReportUtils.py:423 Utils.py:166 Utils.py:168
+#: plugins/NavWebPage.py:2577 plugins/NavWebPage.py:2583
+#: plugins/NavWebPage.py:2589
 msgid "Private"
 msgstr "Privat"
 
@@ -3269,11 +3268,11 @@ msgstr "Personen er allerede angitt som barn"
 msgid "Add Child to Family (%s)"
 msgstr "Legg til barn i familien (%s)"
 
-#: SourceView.py:53 plugins/NavWebPage.py:1081
+#: SourceView.py:53 plugins/NavWebPage.py:1117
 msgid "Author"
 msgstr "Forfatter"
 
-#: SourceView.py:54 plugins/NavWebPage.py:1083
+#: SourceView.py:54 plugins/NavWebPage.py:1119
 msgid "Abbreviation"
 msgstr "Forkortelse"
 
@@ -3465,9 +3464,14 @@ msgstr "Internettadressebehandler"
 msgid "Internet Address Editor for %s"
 msgstr "Internettadressebehandler for %s"
 
-#: Utils.py:67
+#: Utils.py:68
 msgid "The data can only be recovered by Undo operation or by quitting with abandoning changes."
 msgstr "Dataene kan kun gjenopprettes ved hjelp av «Angre»-operasjonen, eller ved å avslutte uten å lagre endringene som er gjort."
+
+#: Utils.py:526
+#, fuzzy
+msgid "Database error: %s is defined as his or her own ancestor"
+msgstr "Database feil: %s er deffinert som sin egen ane"
 
 #: Witness.py:64
 msgid "Witness"
@@ -3494,7 +3498,7 @@ msgstr ""
 #: WriteGedcom.py:340 plugins/DescendReport.py:116
 #: plugins/ExportVCalendar.py:88 plugins/ExportVCard.py:89
 #: plugins/FtmStyleDescendants.py:121 plugins/GraphViz.py:521
-#: plugins/IndivComplete.py:514 plugins/NavWebPage.py:2110
+#: plugins/IndivComplete.py:514 plugins/NavWebPage.py:2146
 #: plugins/StatisticsChart.py:850 plugins/TimeLine.py:416
 #: plugins/WebPage.py:1337 plugins/WriteFtree.py:91 plugins/WriteGeneWeb.py:92
 msgid "Descendants of %s"
@@ -3503,7 +3507,7 @@ msgstr "Etterkommere av %s"
 #: WriteGedcom.py:346 plugins/Ancestors.py:138 plugins/ExportVCalendar.py:94
 #: plugins/ExportVCard.py:95 plugins/FtmStyleAncestors.py:96
 #: plugins/GraphViz.py:525 plugins/IndivComplete.py:518
-#: plugins/NavWebPage.py:2118 plugins/StatisticsChart.py:854
+#: plugins/NavWebPage.py:2154 plugins/StatisticsChart.py:854
 #: plugins/TimeLine.py:420 plugins/WebPage.py:1345 plugins/WriteFtree.py:97
 #: plugins/WriteGeneWeb.py:98
 msgid "Ancestors of %s"
@@ -3511,7 +3515,7 @@ msgstr "Aner av %s"
 
 #: WriteGedcom.py:352 plugins/ExportVCalendar.py:100
 #: plugins/ExportVCard.py:101 plugins/GraphViz.py:529
-#: plugins/IndivComplete.py:522 plugins/NavWebPage.py:2122
+#: plugins/IndivComplete.py:522 plugins/NavWebPage.py:2158
 #: plugins/StatisticsChart.py:858 plugins/TimeLine.py:424
 #: plugins/WebPage.py:1349 plugins/WriteFtree.py:103
 #: plugins/WriteGeneWeb.py:104
@@ -3531,20 +3535,25 @@ msgstr "Personer med felles ane som %s"
 #: docgen/SvgDrawDoc.py:75 docgen/SvgDrawDoc.py:77
 #: plugins/ExportVCalendar.py:179 plugins/ExportVCalendar.py:183
 #: plugins/ExportVCard.py:162 plugins/ExportVCard.py:166
-#: plugins/NavWebPage.py:1816 plugins/WriteGeneWeb.py:219
-#: plugins/WriteGeneWeb.py:223
+#: plugins/NavWebPage.py:1852 plugins/WriteGeneWeb.py:232
+#: plugins/WriteGeneWeb.py:236
 msgid "Could not create %s"
 msgstr "Kunne ikke lage %s"
 
-#: WriteGedcom.py:1282
+#: WriteGedcom.py:1273
+#, fuzzy
+msgid "Export failed"
+msgstr "Eksport feilet"
+
+#: WriteGedcom.py:1284
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: WriteGedcom.py:1283
+#: WriteGedcom.py:1285
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input. "
 msgstr "GEDCOM brukes til å overføre data mellom slektsforskningsprogrammer. De fleste slektsforskningsprogram vil godta en GEDCOM-fil som inndata."
 
-#: WriteGedcom.py:1285
+#: WriteGedcom.py:1287
 msgid "GEDCOM export options"
 msgstr "GEDCOM-eksportinnstillinger"
 
@@ -3912,7 +3921,7 @@ msgstr "Grafiske rapporter"
 msgid "Code Generators"
 msgstr "Kodegeneratorer"
 
-#: const.py:944 plugins/NavWebPage.py:2376 plugins/WebPage.py:1787
+#: const.py:944 plugins/NavWebPage.py:2412 plugins/WebPage.py:1787
 msgid "Web Page"
 msgstr "Nettside"
 
@@ -3924,7 +3933,7 @@ msgstr "Vis"
 msgid "Books"
 msgstr "Bøker"
 
-#: const.py:950 plugins/NavWebPage.py:1319 plugins/ScratchPad.py:356
+#: const.py:950 plugins/NavWebPage.py:1355 plugins/ScratchPad.py:356
 #: plugins/ScratchPad.py:405 plugins/ScratchPad.py:413
 #: plugins/SimpleBookTitle.py:170 plugins/SimpleBookTitle.py:171
 #: plugins/SimpleBookTitle.py:172
@@ -4019,7 +4028,7 @@ msgstr "Usikker på hva en knapp gjør? Hold musa over knappen, og et verktøytips 
 #: data/tips.xml:156
 #, fuzzy
 msgid "<b>Unsure of a Date?</b> If you're unsure about the date an event occurred (for example birth or death), GRAMPS allows you to enter a wide range of date formats based on a guess or an estimate. For instance, \"about 1908\" is a valid entry for a birth date in GRAMPS. See section 3.7.2.2 of the GRAMPS manual for a complete description of date entry options."
-msgstr "<b>Usikker på en dato?</b> Hvis du er usikker på datoen for når en hendelse skjedde (for eksempel fødsel eller død), så tillater GRAMPS en rekke forskjellige dato formater basert på gjetning eller estimater. For eksempel \"Omkring 1908\" er en gyldig føselsdato i GRAMPS. Andre dato muligheter er: før, etter, omkring, området, periode. Se seksjon 3.7.2.2. i GRAMPS manualen for en komplett beskrivelse av dato opsjoner."
+msgstr "<b>Usikker på en dato?</b> Hvis du er usikker på datoen for når en hendelse skjedde (for eksempel fødsel eller død), så tillater GRAMPS en rekke forskjellige dato formater basert på gjetning eller estimater. For eksempel \"Omkring 1908\" er en gyldig fødselsdato i GRAMPS. Andre dato muligheter er: før, etter, omkring, området, periode. Se seksjon 3.7.2.2. i GRAMPS manualen for en komplett beskrivelse av dato opsjoner."
 
 #: data/tips.xml:162
 msgid "<b>Duplicate Entries</b>: <b>Tools > Database Processing > Find possible duplicate</b> people allows you to located (and merge) entries of the same person entered more than once in the database."
@@ -4159,20 +4168,24 @@ msgid "GRAMPS has some unique features, including the ability to input any piece
 msgstr "GRAMPS har noen unike trekk, som egenskapen til å ta inn hvilke som helst informasjon direkte inn i GRAMPS. Alle data i databasen kan bli omorganisert/manipulert til å bistå brukere i å gjøre forskning, analyse og "
 
 #: data/tips.xml:398
+#, fuzzy
 msgid "GRAMPS helps you to keep personal information secure by allowing you to mark information as private. Data marked as private can be excluded from reports and data exports."
-msgstr ""
+msgstr "GRAMPS hjelper deg å holde personlig informasjon sikkert, bed å tillatte at du kan merke informasjonen som privat. Data markert private kan holdes ute fra rapporter og eksporter."
 
 #: data/tips.xml:406
+#, fuzzy
 msgid "Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source."
-msgstr ""
+msgstr "Vær nøyaktig når du samler slektsinformasjon. Ikke gjør antagelser når du samler primær informasjon, skriv det nøyaktig som du ser det. Skriv tekst i parenteser for å indikere tillegg, sletting, eller kommentarer. Bruk av det latinske 'sic' er anbefalt for å bekrefte nøyaktig gjengiving av hva som kan se ut som en feil i en kilde."
 
 #: data/tips.xml:411
+#, fuzzy
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
-msgstr ""
+msgstr "Du kan lenke alle typer elektroniske media (inkludert ikke-tekst informasjon) og andre filtyper til dit GRAMPS familietre."
 
 #: data/tips.xml:420
+#, fuzzy
 msgid "GRAMPS allows you to generate a number of reports (both text and graphical) based on your genealogical information. There is great flexibility in selecting what people are included in the reports as well as the output format (html, pdf, OpenOffice, RTF, AbiWord, KWord, LaTeX and plain text). Experiment with the reports under the <b>Reports</b> menu to get an idea of how powerful GRAMPS is."
-msgstr ""
+msgstr "GRAMPS har muligheten for å lage flere rapporter (både tekst og grafisk) basert på ditt slektsforskningsmateriale. Det er fleksibilitet i utvalgsmuligheter av hvilke personer som er inkludert i rapportene, så vel som for lagringsformater (html, pdf, OpenOffice, RTF, AbiWord, Kword, LaTeX og ren tekst). Eksprimenter med rapportene under <b>Reports</b> menyen for å få en ide om hvor kraftig GRAMPS er."
 
 #: data/tips.xml:426
 msgid "Custom reports can be created by advanced users under the \"plugin\" system. More information on custom reports can be found at http://developers.gramps-project.org"
@@ -5010,14 +5023,14 @@ msgid "Edit the properties of the selected object"
 msgstr "Endre egenskapene til det valgte objektet"
 
 #: gramps.glade:5854 gramps.glade:11386 gramps.glade:14634 gramps.glade:16931
-#: gramps.glade:28153 plugins/NavWebPage.py:286 plugins/NavWebPage.py:335
-#: plugins/NavWebPage.py:785 plugins/NavWebPage.py:1110
-#: plugins/NavWebPage.py:1112 plugins/WebPage.py:432
+#: gramps.glade:28153 plugins/NavWebPage.py:290 plugins/NavWebPage.py:339
+#: plugins/NavWebPage.py:752 plugins/NavWebPage.py:1146
+#: plugins/NavWebPage.py:1148 plugins/WebPage.py:432
 msgid "Gallery"
 msgstr "Galleri"
 
 #: gramps.glade:5906 gramps.glade:17359 gramps.glade:25473
-#: plugins/NavWebPage.py:413
+#: plugins/NavWebPage.py:417
 msgid "References"
 msgstr "Referanser"
 
@@ -5263,7 +5276,7 @@ msgid "Delete the selected attribute"
 msgstr "Slett den valgte egenskapen"
 
 #: gramps.glade:10062 gramps.glade:14124 gramps.glade:24157 gramps.glade:25260
-#: plugins/NavWebPage.py:400
+#: plugins/NavWebPage.py:404
 msgid "Attributes"
 msgstr "Egenskaper"
 
@@ -5311,8 +5324,8 @@ msgstr "Fjern den valgte kilden"
 #: gramps.glade:11184 gramps.glade:14445 gramps.glade:16716 gramps.glade:24342
 #: gramps.glade:25658 gramps.glade:27587 gramps.glade:28637 gramps.glade:30090
 #: gramps.glade:31620 plugins/Ancestors.py:159 plugins/IndivComplete.py:324
-#: plugins/NavWebPage.py:283 plugins/NavWebPage.py:1031
-#: plugins/NavWebPage.py:1039 plugins/NavWebPage.py:1071
+#: plugins/NavWebPage.py:287 plugins/NavWebPage.py:1067
+#: plugins/NavWebPage.py:1075 plugins/NavWebPage.py:1107
 #: plugins/ScratchPad.py:153 plugins/ScratchPad.py:293
 #: plugins/ScratchPad.py:326 plugins/WebPage.py:224
 msgid "Sources"
@@ -6523,7 +6536,7 @@ msgstr "Slektstavle"
 #: plugins/FtmStyleAncestors.py:422 plugins/FtmStyleDescendants.py:572
 #: plugins/GraphViz.py:968 plugins/GraphViz.py:982
 #: plugins/IndivComplete.py:595 plugins/IndivSummary.py:391
-#: plugins/NavWebPage.py:2572 plugins/Summary.py:178 plugins/TimeLine.py:480
+#: plugins/NavWebPage.py:2608 plugins/Summary.py:178 plugins/TimeLine.py:480
 msgid "Beta"
 msgstr "Beta"
 
@@ -6629,7 +6642,7 @@ msgstr ", og ble begravd i %s."
 #: plugins/DetDescendantReport.py:668 plugins/FamilyGroup.py:506
 #: plugins/FtmStyleAncestors.py:375 plugins/FtmStyleDescendants.py:521
 #: plugins/IndivComplete.py:552 plugins/IndivSummary.py:348
-#: plugins/SimpleBookTitle.py:266 plugins/StatisticsChart.py:831
+#: plugins/SimpleBookTitle.py:267 plugins/StatisticsChart.py:831
 #: plugins/TimeLine.py:399 plugins/WebPage.py:1629
 msgid "The style used for the title of the page."
 msgstr "Stilen som brukes på sidens tittel."
@@ -7590,11 +7603,11 @@ msgstr "vCard brukes av mange adressebok og «sjette sans»-programmer."
 msgid "vCard export options"
 msgstr "vCard eksportvalg"
 
-#: plugins/FamilyGroup.py:163 plugins/NavWebPage.py:1562
+#: plugins/FamilyGroup.py:163 plugins/NavWebPage.py:1598
 msgid "Husband"
 msgstr "Ektemann"
 
-#: plugins/FamilyGroup.py:165 plugins/NavWebPage.py:1564
+#: plugins/FamilyGroup.py:165 plugins/NavWebPage.py:1600
 msgid "Wife"
 msgstr "Kone"
 
@@ -8166,364 +8179,364 @@ msgstr "Ingen stil"
 msgid "Unicode (recommended)"
 msgstr "Unicode (anbefalt)"
 
-#: plugins/NavWebPage.py:206
+#: plugins/NavWebPage.py:210
 msgid "&copy; %(year)d %(person)s"
 msgstr "&kopi; %(year)d %(person)s"
 
-#: plugins/NavWebPage.py:266
+#: plugins/NavWebPage.py:270
 msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
 msgstr "Generert av <a href=\"http://gramps-project.org\">GRAMPS</a> %(date)s"
 
-#: plugins/NavWebPage.py:277 plugins/NavWebPage.py:938
-#: plugins/NavWebPage.py:940
+#: plugins/NavWebPage.py:281 plugins/NavWebPage.py:974
+#: plugins/NavWebPage.py:976
 msgid "Introduction"
 msgstr "Introduksjon"
 
-#: plugins/NavWebPage.py:279 plugins/NavWebPage.py:281
-#: plugins/NavWebPage.py:861 plugins/NavWebPage.py:862
+#: plugins/NavWebPage.py:283 plugins/NavWebPage.py:285
+#: plugins/NavWebPage.py:897 plugins/NavWebPage.py:898
 msgid "Surnames"
 msgstr "Etternavn"
 
-#: plugins/NavWebPage.py:282 plugins/NavWebPage.py:518
-#: plugins/NavWebPage.py:525 plugins/Summary.py:109
+#: plugins/NavWebPage.py:286 plugins/NavWebPage.py:522
+#: plugins/NavWebPage.py:529 plugins/Summary.py:109
 msgid "Individuals"
 msgstr "Personer"
 
-#: plugins/NavWebPage.py:284 plugins/NavWebPage.py:614
-#: plugins/NavWebPage.py:621 plugins/NavWebPage.py:674
+#: plugins/NavWebPage.py:288 plugins/NavWebPage.py:618
+#: plugins/NavWebPage.py:625 plugins/NavWebPage.py:678
 msgid "Places"
 msgstr "Steder"
 
-#: plugins/NavWebPage.py:288 plugins/NavWebPage.py:1157
-#: plugins/NavWebPage.py:1160
+#: plugins/NavWebPage.py:292 plugins/NavWebPage.py:1193
+#: plugins/NavWebPage.py:1196
 msgid "Download"
 msgstr "Last ned"
 
-#: plugins/NavWebPage.py:290 plugins/NavWebPage.py:1176
-#: plugins/NavWebPage.py:1180
+#: plugins/NavWebPage.py:294 plugins/NavWebPage.py:1212
+#: plugins/NavWebPage.py:1216
 msgid "Contact"
 msgstr "Kontakt"
 
-#: plugins/NavWebPage.py:316 plugins/NavWebPage.py:347
-#: plugins/NavWebPage.py:359 plugins/NavWebPage.py:957
-#: plugins/NavWebPage.py:1004 plugins/NavWebPage.py:1202
+#: plugins/NavWebPage.py:320 plugins/NavWebPage.py:351
+#: plugins/NavWebPage.py:363 plugins/NavWebPage.py:993
+#: plugins/NavWebPage.py:1040 plugins/NavWebPage.py:1238
 msgid "Could not add photo to page"
 msgstr "Kunne ikke legge til bilde på siden"
 
-#: plugins/NavWebPage.py:370 plugins/NavWebPage.py:1612
+#: plugins/NavWebPage.py:374 plugins/NavWebPage.py:1648
 msgid "Narrative"
 msgstr "Oppsummering"
 
-#: plugins/NavWebPage.py:382
+#: plugins/NavWebPage.py:386
 msgid "Weblinks"
 msgstr "Nettlenker"
 
-#: plugins/NavWebPage.py:521
+#: plugins/NavWebPage.py:525
 msgid "This page contains an index of all the individuals in the database, sorted by their last names. Selecting the person's name will take you to that person's individual page."
 msgstr "Denne siden inneholder en oversikt over alle personene i databasen, sortert etter etternavn. Ved å klikke på personens navn, vil du komme til en egen side for denne personen."
 
-#: plugins/NavWebPage.py:528 plugins/NavWebPage.py:880
-#: plugins/NavWebPage.py:882 plugins/StatisticsChart.py:99
+#: plugins/NavWebPage.py:532 plugins/NavWebPage.py:916
+#: plugins/NavWebPage.py:918 plugins/StatisticsChart.py:99
 msgid "Surname"
 msgstr "Etternavn"
 
-#: plugins/NavWebPage.py:575
+#: plugins/NavWebPage.py:579
 msgid "This page contains an index of all the individuals in the database with the surname of %s. Selecting the person's name will take you to that person's individual page."
 msgstr "Denne siden inneholder en oversikt over alle personene i databasen med %s som etternavn. Ved å klikke på personens navn, vil du komme til en egen side for denne personen."
 
-#: plugins/NavWebPage.py:617
+#: plugins/NavWebPage.py:621
 msgid "This page contains an index of all the places in the database, sorted by their title. Clicking on a place's title will take you to that place's page."
 msgstr "Denne siden inneholder en oversikt over alle stedene i databasen, sortert etter stedsnavn. Ved å klikke på stedsnavnet, vil du komme til en egen side for dette stedet."
 
-#: plugins/NavWebPage.py:625 plugins/NavWebPage.py:876
+#: plugins/NavWebPage.py:629 plugins/NavWebPage.py:912
 msgid "Letter"
 msgstr "Bokstav"
 
-#: plugins/NavWebPage.py:684 plugins/NavWebPage.py:832
-#: plugins/NavWebPage.py:1080 plugins/NavWebPage.py:1383
+#: plugins/NavWebPage.py:688 plugins/NavWebPage.py:812
+#: plugins/NavWebPage.py:1116 plugins/NavWebPage.py:1419
 msgid "GRAMPS ID"
 msgstr "GRAMPS ID"
 
-#: plugins/NavWebPage.py:691
+#: plugins/NavWebPage.py:695
 msgid "State/Province"
 msgstr "Delstat/provins"
 
-#: plugins/NavWebPage.py:692
+#: plugins/NavWebPage.py:696
 msgid "Postal Code"
 msgstr "Postnummer"
 
-#: plugins/NavWebPage.py:755
-msgid "Missing media object"
-msgstr "Manglende mediaobjekter"
-
-#: plugins/NavWebPage.py:794
+#: plugins/NavWebPage.py:761
 msgid "Previous"
 msgstr "Forrige"
 
-#: plugins/NavWebPage.py:795
+#: plugins/NavWebPage.py:762
 msgid "%(page_number)d of %(total_pages)d"
 msgstr "%(page_number)d av %(total_pages)d"
 
-#: plugins/NavWebPage.py:799
+#: plugins/NavWebPage.py:766
 msgid "Next"
 msgstr "Neste"
 
-#: plugins/NavWebPage.py:836
+#: plugins/NavWebPage.py:816
 #, fuzzy
 msgid "MIME type"
 msgstr "MIME type"
 
-#: plugins/NavWebPage.py:865 plugins/NavWebPage.py:867
+#: plugins/NavWebPage.py:846
+msgid "Missing media object"
+msgstr "Manglende mediaobjekter"
+
+#: plugins/NavWebPage.py:901 plugins/NavWebPage.py:903
 #, fuzzy
 msgid "Surnames by person count"
 msgstr "Opptelling av personer etter etternavn"
 
-#: plugins/NavWebPage.py:869
+#: plugins/NavWebPage.py:905
 msgid "This page contains an index of all the surnames in the database. Selecting a link will lead to a list of individuals in the database with this same surname."
 msgstr "Register over alle fornavn i prosjektet. Lenkene fører til en liste med personer i databasen med dette fornavnet."
 
-#: plugins/NavWebPage.py:884
+#: plugins/NavWebPage.py:920
 msgid "Number of people"
 msgstr "Antall personer"
 
-#: plugins/NavWebPage.py:1035
+#: plugins/NavWebPage.py:1071
 msgid "This page contains an index of all the sources in the database, sorted by their title. Clicking on a source's title will take you to that source's page."
 msgstr "Denne siden inneholder en oversikt over alle kilder i databasen, sortert etter tittel. Ved å klikke på en kildetittel, vil du komme til en egen side for denne kilden."
 
-#: plugins/NavWebPage.py:1082
+#: plugins/NavWebPage.py:1118
 msgid "Publication information"
 msgstr "Publikasjonsinformasjon"
 
-#: plugins/NavWebPage.py:1114
+#: plugins/NavWebPage.py:1150
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object's page."
 msgstr "Denne siden inneholder en oversikt over alle mediaobjektene i databasen, sortert etter tittel. Ved å klikke på mediaobjektstittelen, vil du komme til en egen side for dette mediaobjektet."
 
-#: plugins/NavWebPage.py:1297
+#: plugins/NavWebPage.py:1333
 msgid "Source References"
 msgstr "Kildehenvisning"
 
-#: plugins/NavWebPage.py:1317 plugins/ScratchPad.py:355
+#: plugins/NavWebPage.py:1353 plugins/ScratchPad.py:355
 msgid "Page"
 msgstr "Side"
 
-#: plugins/NavWebPage.py:1318
+#: plugins/NavWebPage.py:1354
 msgid "Confidence"
 msgstr "Troverdighet"
 
-#: plugins/NavWebPage.py:1345
+#: plugins/NavWebPage.py:1381
 msgid "Pedigree"
 msgstr "Stamtavle"
 
-#: plugins/NavWebPage.py:1566 plugins/NavWebPage.py:1568
+#: plugins/NavWebPage.py:1602 plugins/NavWebPage.py:1604
 msgid "Partner"
 msgstr "Partner"
 
-#: plugins/NavWebPage.py:1685
+#: plugins/NavWebPage.py:1721
 msgid "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
 msgstr "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; ved &nbsp;&ndsp; %(place)s"
 
-#: plugins/NavWebPage.py:1687
+#: plugins/NavWebPage.py:1723
 msgid "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;"
 msgstr "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp;"
 
-#: plugins/NavWebPage.py:1691
+#: plugins/NavWebPage.py:1727
 msgid "%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
 msgstr "%(date)s &nbsp;&nbsp; ved &nbsp;&nbsp; %(place)s"
 
-#: plugins/NavWebPage.py:1776 plugins/WebPage.py:1117
+#: plugins/NavWebPage.py:1812 plugins/WebPage.py:1117
 msgid "Neither %s nor %s are directories"
 msgstr "Hverken %s eller %s er mapper"
 
-#: plugins/NavWebPage.py:1783 plugins/NavWebPage.py:1787
-#: plugins/NavWebPage.py:1800 plugins/NavWebPage.py:1804
+#: plugins/NavWebPage.py:1819 plugins/NavWebPage.py:1823
+#: plugins/NavWebPage.py:1836 plugins/NavWebPage.py:1840
 #: plugins/WebPage.py:1124 plugins/WebPage.py:1128 plugins/WebPage.py:1140
 #: plugins/WebPage.py:1144
 msgid "Could not create the directory: %s"
 msgstr "Klarte ikke å opprette mappa: %s"
 
-#: plugins/NavWebPage.py:1811
+#: plugins/NavWebPage.py:1847
 msgid "The archive file must be a file, not a directory"
 msgstr "Arkiv filen må være en fil ikke en katalog"
 
-#: plugins/NavWebPage.py:1820
+#: plugins/NavWebPage.py:1856
 msgid "Generate HTML reports"
 msgstr "Lager HTML rapporter"
 
-#: plugins/NavWebPage.py:1869
+#: plugins/NavWebPage.py:1905
 msgid "Filtering"
 msgstr "Filter"
 
-#: plugins/NavWebPage.py:1876
+#: plugins/NavWebPage.py:1912
 msgid "Applying privacy filter"
 msgstr "Filtrerer bort private opplysninger"
 
-#: plugins/NavWebPage.py:1884
+#: plugins/NavWebPage.py:1920
 msgid "Filtering living people"
 msgstr "Filtrerer levende personer"
 
-#: plugins/NavWebPage.py:1915
+#: plugins/NavWebPage.py:1951
 msgid "Creating individual pages"
 msgstr "Lager individuelle sider"
 
-#: plugins/NavWebPage.py:1939
+#: plugins/NavWebPage.py:1975
 msgid "Creating surname pages"
 msgstr "Lager side over etternavn"
 
-#: plugins/NavWebPage.py:1960
+#: plugins/NavWebPage.py:1996
 msgid "Creating source pages"
 msgstr "Lager side over kilder"
 
-#: plugins/NavWebPage.py:1973
+#: plugins/NavWebPage.py:2009
 msgid "Creating place pages"
 msgstr "Lager side over steder"
 
-#: plugins/NavWebPage.py:1987
+#: plugins/NavWebPage.py:2023
 msgid "Creating media pages"
 msgstr "Lag side over mediaobjekter"
 
-#: plugins/NavWebPage.py:2078
+#: plugins/NavWebPage.py:2114
 msgid "My Family Tree"
 msgstr "Mitt familietre"
 
-#: plugins/NavWebPage.py:2114 plugins/WebPage.py:1341
+#: plugins/NavWebPage.py:2150 plugins/WebPage.py:1341
 msgid "Descendant Families of %s"
 msgstr "Familier som nedstammer fra %s"
 
-#: plugins/NavWebPage.py:2128 plugins/WebPage.py:1356
+#: plugins/NavWebPage.py:2164 plugins/WebPage.py:1356
 msgid "Do not include records marked private"
 msgstr "Ikke ta med opplysninger som er markert som private"
 
-#: plugins/NavWebPage.py:2129 plugins/WebPage.py:1357
+#: plugins/NavWebPage.py:2165 plugins/WebPage.py:1357
 msgid "Restrict information on living people"
 msgstr "Begrens informasjon om levende personer"
 
-#: plugins/NavWebPage.py:2130
+#: plugins/NavWebPage.py:2166
 msgid "Years to restrict from person's death"
 msgstr "År å begrense etter en persons død"
 
-#: plugins/NavWebPage.py:2131
+#: plugins/NavWebPage.py:2167
 msgid "Web site title"
 msgstr "Nettsidetittel"
 
-#: plugins/NavWebPage.py:2132 plugins/WebPage.py:1366
+#: plugins/NavWebPage.py:2168 plugins/WebPage.py:1366
 msgid "File extension"
 msgstr "Filetternavn"
 
-#: plugins/NavWebPage.py:2133
+#: plugins/NavWebPage.py:2169
 #, fuzzy
 msgid "Publisher contact/Note ID"
 msgstr "Utgivers kontakt/notat ID"
 
-#: plugins/NavWebPage.py:2134
+#: plugins/NavWebPage.py:2170
 msgid "Include images and media objects"
 msgstr "Ta med bilder og mediaobjekter"
 
-#: plugins/NavWebPage.py:2135
+#: plugins/NavWebPage.py:2171
 msgid "Include download page"
 msgstr "Ta med nedlastningsside"
 
-#: plugins/NavWebPage.py:2140
+#: plugins/NavWebPage.py:2176
 msgid "Suppress GRAMPS ID"
 msgstr "Undertrykk GRAMPS ID"
 
-#: plugins/NavWebPage.py:2181
+#: plugins/NavWebPage.py:2217
 msgid "Standard copyright"
 msgstr "Alminnelig opphavsrett"
 
-#: plugins/NavWebPage.py:2182
+#: plugins/NavWebPage.py:2218
 #, fuzzy
 msgid "Creative Commons - By attribution"
 msgstr "Creative Commons - Etter egenskap"
 
-#: plugins/NavWebPage.py:2183
+#: plugins/NavWebPage.py:2219
 #, fuzzy
 msgid "Creative Commons - By attribution, No derivations"
 msgstr "Creative Commons - Etter egenskap, Ingen avtegnelser"
 
-#: plugins/NavWebPage.py:2184
+#: plugins/NavWebPage.py:2220
 #, fuzzy
 msgid "Creative Commons - By attribution, Share-alike"
 msgstr "Creative Commons - Etter egenskap, Del-likt"
 
-#: plugins/NavWebPage.py:2185
+#: plugins/NavWebPage.py:2221
 #, fuzzy
 msgid "Creative Commons - By attribution, Non-commercial"
 msgstr "Creative Commons - Etter egenskap, Ikke komersiel"
 
-#: plugins/NavWebPage.py:2186
+#: plugins/NavWebPage.py:2222
 #, fuzzy
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
 msgstr "Creative Commons - Etter egenskap, Ikke komersiel, Ingen avtegnelser"
 
-#: plugins/NavWebPage.py:2187
+#: plugins/NavWebPage.py:2223
 #, fuzzy
 msgid "Creative Commons - By attribution, Non-commerical, Share-alike"
 msgstr "Creative Commons - Etter egenskap, Ikke komersiel, Del-likt"
 
-#: plugins/NavWebPage.py:2188
+#: plugins/NavWebPage.py:2224
 msgid "No copyright notice"
 msgstr "Ingen opphavsrett"
 
-#: plugins/NavWebPage.py:2222
+#: plugins/NavWebPage.py:2258
 #, fuzzy
 msgid "Character set encoding"
 msgstr "Tegnsett"
 
-#: plugins/NavWebPage.py:2223
+#: plugins/NavWebPage.py:2259
 msgid "Stylesheet"
 msgstr "Stilark"
 
-#: plugins/NavWebPage.py:2224
+#: plugins/NavWebPage.py:2260
 msgid "Copyright"
 msgstr "Opphavsrett"
 
-#: plugins/NavWebPage.py:2226
+#: plugins/NavWebPage.py:2262
 #, fuzzy
 msgid "Page Generation"
 msgstr "Side generasjon"
 
-#: plugins/NavWebPage.py:2249
+#: plugins/NavWebPage.py:2285
 #, fuzzy
 msgid "Home Media/Note ID"
 msgstr "Hjem media/notat ID"
 
-#: plugins/NavWebPage.py:2251
+#: plugins/NavWebPage.py:2287
 #, fuzzy
 msgid "Introduction Media/Note ID"
 msgstr "Introduksjons media/notat ID"
 
-#: plugins/NavWebPage.py:2254
+#: plugins/NavWebPage.py:2290
 #, fuzzy
 msgid "HTML user header"
 msgstr "HTML bruker start"
 
-#: plugins/NavWebPage.py:2255
+#: plugins/NavWebPage.py:2291
 #, fuzzy
 msgid "HTML user footer"
 msgstr "HTML bruker slutt"
 
-#: plugins/NavWebPage.py:2260 plugins/WebPage.py:1499
+#: plugins/NavWebPage.py:2296 plugins/WebPage.py:1499
 msgid "Privacy"
 msgstr "Privat"
 
-#: plugins/NavWebPage.py:2319 plugins/NavWebPage.py:2376
+#: plugins/NavWebPage.py:2355 plugins/NavWebPage.py:2412
 #: plugins/WebPage.py:1771 plugins/WebPage.py:1787
 msgid "Generate Web Site"
 msgstr "Lag nettsted"
 
-#: plugins/NavWebPage.py:2358
+#: plugins/NavWebPage.py:2394
 msgid "Store web pages in .tar.gz archive"
 msgstr "Lagre nettsted i .tar.gz arkiv"
 
-#: plugins/NavWebPage.py:2381 plugins/WebPage.py:1792
+#: plugins/NavWebPage.py:2417 plugins/WebPage.py:1792
 msgid "Target Directory"
 msgstr "Målmappe"
 
-#: plugins/NavWebPage.py:2569
+#: plugins/NavWebPage.py:2605
 msgid "Narrative Web Site"
 msgstr "Lag nettsted"
 
-#: plugins/NavWebPage.py:2573
+#: plugins/NavWebPage.py:2609
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr "Lager nettsider (HTML) for personer, eller for en gruppe med personer."
 
@@ -8758,15 +8771,15 @@ msgstr "Forhåndsvisning"
 msgid "Image"
 msgstr "Bilde"
 
-#: plugins/SimpleBookTitle.py:276
+#: plugins/SimpleBookTitle.py:277
 msgid "The style used for the subtitle."
 msgstr "Stil som blir brukt på undertitler."
 
-#: plugins/SimpleBookTitle.py:286
+#: plugins/SimpleBookTitle.py:287
 msgid "The style used for the footer."
 msgstr "Stil som blir brukt på bunnteksten."
 
-#: plugins/SimpleBookTitle.py:301
+#: plugins/SimpleBookTitle.py:302
 msgid "Title Page"
 msgstr "Tittelside"
 
@@ -9656,19 +9669,19 @@ msgstr "«Web Family Tree»-format."
 msgid "Web Family Tree export options"
 msgstr "«Web Family Tree»-eksportvalg"
 
-#: plugins/WriteGeneWeb.py:227
+#: plugins/WriteGeneWeb.py:240
 msgid "No families matched by selected filter"
 msgstr "Søket ga ingen familier med dette filteret"
 
-#: plugins/WriteGeneWeb.py:586
+#: plugins/WriteGeneWeb.py:599
 msgid "G_eneWeb"
 msgstr "G_eneWeb"
 
-#: plugins/WriteGeneWeb.py:587
+#: plugins/WriteGeneWeb.py:600
 msgid "GeneWeb is a web based genealogy program."
 msgstr "«GeneWeb» er et nettbasert slektsforskningsprogram."
 
-#: plugins/WriteGeneWeb.py:588
+#: plugins/WriteGeneWeb.py:601
 msgid "GeneWeb export options"
 msgstr "«GeneWeb»-eksportvalg"
 
