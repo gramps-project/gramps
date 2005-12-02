@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # Modifications and feature additions:
 #               2002-2003  Donald A. Peterson
@@ -25,6 +25,7 @@
 #
 
 # $Id$
+
 """LaTeX document generator"""
 
 #------------------------------------------------------------------------
@@ -32,7 +33,7 @@
 # python modules 
 #
 #------------------------------------------------------------------------
-import string
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -44,8 +45,65 @@ import PluginMgr
 import ImgManip
 import Errors
 
-from gettext import gettext as _
+#------------------------------------------------------------------------
+#
+# Convert from roman to arabic numbers
+#
+#------------------------------------------------------------------------
+def roman2arabic(strval):
+    """
+    Roman to arabic converter for 0 < num < 4000.
 
+    Always returns an integer.
+    On an invalid input zero is returned.
+    """
+    # Return zero if the type is not str
+    try:
+        strval = str(strval).upper()
+        if not strval:
+            return 0
+    except:
+        return 0
+
+    # Return None if there are chars outside of valid roman numerals
+    if [char for char in strval if char not in 'MDCLXVI']:
+        return 0
+
+    vals2 = ['CM', 'CD', 'XC', 'XL', 'IX', 'IV']
+    nums2 = ( 900,  400,   90,   40,    9,    4)
+
+    vals1 = [ 'M', 'D', 'C', 'L', 'X', 'V', 'I']
+    nums1 = (1000, 500, 100,  50,  10,   5,   1)
+
+    ret = 0
+    max_num = 1000
+    # Start unrolling strval from left to right,
+    # up to the penultimate char
+    i = 0
+    while i < len(strval):
+        first_index = vals1.index(strval[i])
+
+        if i+1 < len(strval) and strval[i:i+2] in vals2:
+            this_num = nums2[vals2.index(strval[i:i+2])]
+            if first_index+1 < len(nums1):
+                new_max_num = nums1[first_index+1]
+            else:
+                new_max_num = 0
+            i += 2
+        else:
+            this_num = nums1[first_index]
+            new_max_num = this_num
+            i += 1
+
+        # prohibit larger numbers following smaller ones,
+        # except for the above 2-char combinations
+        if this_num >  max_num:
+            return 0
+        ret += this_num
+        max_num = new_max_num
+
+    return ret
+            
 #------------------------------------------------------------------------
 #
 # Paragraph Handling
@@ -266,7 +324,24 @@ class LaTeXDoc(BaseDoc.BaseDoc):
             self.f.write('\\begin{enumerate}\n')
             self.in_list = 1
         if leader != None:
-	    self.f.write('  \\setcounter{enumi}{%s} ' % leader[:-1])
+            # try obtaining integer
+            leader_1 = leader[:-1]
+            num = roman2arabic(leader_1)
+            if num == 0:
+                # Not roman, try arabic or fallback to 1
+                try:
+                    num = int(leader_1)
+                except ValueError:
+                    num = 1
+                self.f.write('  \\renewcommand\\theenumi{\\arabic{enumi}}')
+            else:
+                # roman, set the case correctly
+                if leader_1.islower():
+                    self.f.write('  \\renewcommand\\theenumi{\\roman{enumi}}')
+                else:
+                    self.f.write('  \\renewcommand\\theenumi{\\Roman{enumi}}')
+
+	    self.f.write('  \\setcounter{enumi}{%d} ' % num)
 	    self.f.write('  \\addtocounter{enumi}{-1}\n')
             self.f.write('  \\item ')
 
@@ -413,10 +488,11 @@ class LaTeXDoc(BaseDoc.BaseDoc):
         """Write the text to the file"""
 	if text == '\n':
 	    text = '\\newline\n'
-        text = string.replace(text,'#','\#')
-        text = string.replace(text,'&','\&')
+        text = text.replace('#','\#')
+        text = text.replace('&','\&')
         text = text.replace('<super>','\\textsuperscript{')
         text = text.replace('</super>','}')
+        text = text.replace('_____________','\\underline{\hspace{3cm}}')
         self.f.write(text)
 
 
