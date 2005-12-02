@@ -962,6 +962,7 @@ class BookReportDialog(Report.ReportDialog):
 
     def __init__(self,database,person,book,options):
         self.options = options
+        self.page_html_added = False
         Report.BareReportDialog.__init__(self,database,person,options,
                     'book',_("Book Report"))
         self.book = book

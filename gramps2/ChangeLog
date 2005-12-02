@@ -5,6 +5,8 @@
 	* src/ReportUtils.py (child_str): Initialize text.
 	* src/docgen/LaTeXDoc.py: support "____"; support roman numerals
 	in paragraph leaders.
+	* src/plugins/BookReport.py (BookReportDialog.__init__):
+	Initialize page_html_added before instantiating dialog class.
 
 2005-12-01  Benny Malengier  <bm@cage.UGent.be>
 	* src/dates/Date_nl.py: Add to CVS (bmcage).
