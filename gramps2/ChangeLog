@@ -1,3 +1,6 @@
+2005-12-02  Alex Roitman  <shura@gramps-project.org>
+	* src/po/ru.po: Partial translation update.
+
 2005-12-02  Don Allingham  <don@gramps-project.org>
 	* src/ReportOptions.py: fix inheritence
 
