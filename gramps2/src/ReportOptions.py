@@ -495,7 +495,13 @@ class ReportOptions(Options.Options):
         Initializes the class, performing usual house-keeping tasks.
         Subclasses MUST call this in their __init__() method.
         """
-        Options.Options.__init__(self,name,person_id)
+
+        self.set_new_options()
+        self.enable_options()
+
+        if self.enable_dict:
+            self.options_dict.update(self.enable_dict)
+        self.handler = OptionHandler(name,self.options_dict,person_id)
 
     def make_default_style(self,default_style):
         """
