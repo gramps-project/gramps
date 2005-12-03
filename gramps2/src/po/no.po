@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Tue Aug 30 13:54:34 2005\n"
-"PO-Revision-Date: 2005-12-02 18:30+0100\n"
+"PO-Revision-Date: 2005-12-03 17:36+0100\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål <Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>>\n"
 "MIME-Version: 1.0\n"
@@ -4185,83 +4185,102 @@ msgstr "Du kan lenke alle typer elektroniske media (inkludert ikke-tekst informa
 #: data/tips.xml:420
 #, fuzzy
 msgid "GRAMPS allows you to generate a number of reports (both text and graphical) based on your genealogical information. There is great flexibility in selecting what people are included in the reports as well as the output format (html, pdf, OpenOffice, RTF, AbiWord, KWord, LaTeX and plain text). Experiment with the reports under the <b>Reports</b> menu to get an idea of how powerful GRAMPS is."
-msgstr "GRAMPS har muligheten for å lage flere rapporter (både tekst og grafisk) basert på ditt slektsforskningsmateriale. Det er fleksibilitet i utvalgsmuligheter av hvilke personer som er inkludert i rapportene, så vel som for lagringsformater (html, pdf, OpenOffice, RTF, AbiWord, Kword, LaTeX og ren tekst). Eksprimenter med rapportene under <b>Reports</b> menyen for å få en ide om hvor kraftig GRAMPS er."
+msgstr "GRAMPS har muligheten for å lage flere rapporter (både tekst og grafisk) basert på ditt slektsforskningsmateriale. Det er fleksibilitet i utvalgsmuligheter av hvilke personer som er inkludert i rapportene, så vel som for lagringsformater (html, pdf, OpenOffice, RTF, AbiWord, Kword, LaTeX og ren tekst). Eksperimenter med rapportene under <b>Reports</b> menyen for å få en ide om hvor kraftig GRAMPS er."
 
 #: data/tips.xml:426
+#, fuzzy
 msgid "Custom reports can be created by advanced users under the \"plugin\" system. More information on custom reports can be found at http://developers.gramps-project.org"
-msgstr ""
+msgstr "Tilpassede rapporter kan lages av avanserte brukere under \"plugin\" systemet. Mer informasjon om tilpassede rapporter kan du finne på http://developers.gramps-project.org"
 
 #: data/tips.xml:432
+#, fuzzy
 msgid "The Book report, <b>Reports > Books > Book Report</b>, allows users to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed."
-msgstr ""
+msgstr "Bok rapporten, <b>Rapporter > Bok > Bok rapport</b>, lar brukere samle en mengde rapporter i et enkelt dokument. Denne rapporten er enklere å distribuere en flere rapporter, spesielt når den er skrevet ut."
 
 #: data/tips.xml:438
+#, fuzzy
 msgid "Interested in getting notified when a new version of GRAMPS is released? Join the gramps-announce mailing list at http://lists.sourceforge.net/lists/listinfo/gramps-announce"
-msgstr ""
+msgstr "Interesert i å bli informert om når en ny versjon av GRAMPS blir sluppet? Meld deg på gramps-announce mail listen ved å gå inn på http://lists.sourceforge.net/lists/listinfo/gramps-announce"
 
 #: data/tips.xml:446
+#, fuzzy
 msgid "<b>Good genealogy tip</b>: Information collected about your family is only as good as the source it came from. Take time and trouble to record all the details of where the information came from. Whenever possible get a copy of original documents."
-msgstr ""
+msgstr "<b>Godt slektsforsknings tips</b>: Informasjon samlet om din familie er kun så bra som kilden det kommer i fra. Ta deg tiden og utfordringene det er å samle alle detaljene fra hvor informasjonen kom fra. Hvis mulig så tak i en kopi av orginale dokumenter."
 
 #: data/tips.xml:453
+#, fuzzy
 msgid "Go from what you know to what you do not. Always record everything that is known before making conjecture. Often the facts at hand suggest plenty of direction for more research. Don't waste time looking through thousands of records hoping for a trail when you have other unexplored leads."
-msgstr ""
+msgstr "Gå fra hva du vet til hva du ikke vet. Skriv inn alt som er kjent før du konkluderer. Ofte viser de faktaene man har for hånd, mange mulige retninger for videre forskning. Ikke missbruk tid ved å lete gjennom tusener av skrifter etter et håp om en videre retning, når du har andre ikke utforskede muligheter."
 
 #: data/tips.xml:460
+#, fuzzy
 msgid "Genealogy isn't only about dates and names. It is about people. Be descriptive. Include the <b>why</b> of how things happened, and how descendants might have been shaped by the events they went through. Narratives go a long way in making your family history come alive."
-msgstr ""
+msgstr "Slektsforskning er ikke bare om datoer og navn. Det handler om menesker. Vær beskrivende. Ta med <b>hvorfor</b> tingene skjedde, og hvordan etterfølgerne kan ha blitt formet av hendelsene de gikk gjennom. Små historier(?) bidrar til at din slektshistorie blir levende."
 
 #: data/tips.xml:466
+#, fuzzy
 msgid "GRAMPS has been translated to 15 languages. If GRAMPS supports your language and it is not being displayed, set the default language on your machine and restart GRAMPS."
-msgstr ""
+msgstr "GRAMPS har blitt oversatt til 15 språk. Hvis GRAMPS støtter ditt språk, og dette ikke vises, sett standard språket for maskinen din, og start GRAMPS på nytt."
 
 #: data/tips.xml:472
+#, fuzzy
 msgid "GRAMPS has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net"
-msgstr ""
+msgstr "GRAMPS har blitt utviklet så nye oversettelser enkelt kan legges til. Hvis du er interessert i å bidra, vennligst send en mail til gramps-devel@lists.sf.net"
 
 #: data/tips.xml:476
+#, fuzzy
 msgid "Relationship calculators in GRAMPS are available in ten languages."
-msgstr ""
+msgstr "Relasjonskalkulatorer i GRAMPS er tilgjengelig på 10 språk."
 
 #: data/tips.xml:481
+#, fuzzy
 msgid "GRAMPS offers full Unicode support. Characters for all languages are properly displayed."
-msgstr ""
+msgstr "GRAMPS tilbyr full Unicode støtte. Særtegn for alle språk skal vises riktig."
 
 #: data/tips.xml:487
+#, fuzzy
 msgid "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit -> Set Home Person</b>. The home person is the person who is selected when the database is opened or when the home button is pressed."
-msgstr ""
+msgstr "Hvem som helst kan settes som hjemperson i GRAMPS. Bruk <b>Rediger -> Sett hjemperson</b>. Hjempersonen er personen som blir valgt når databasen blir åpnet, eller når man trykker på hjempersons knappen."
 
 #: data/tips.xml:492
+#, fuzzy
 msgid "Multiple names can be specified for individuals. Examples are birth name, marriage name or aliases."
-msgstr ""
+msgstr "Flere navn kan spesifiserer for individer. Eksempler er fødselsnavn, ekteskapsnavn og aliaser."
 
 #: data/tips.xml:497
+#, fuzzy
 msgid "An alternate name can be selected as a person's preferred name by selecting the desired name in the person's name list, bringing up the context menu by clicking the right mouse button, and selecting from the menu."
-msgstr ""
+msgstr "Et alternativt navn kan velges som en person foretrukne navn, ved å velge det ønskede navnet, i personens navneliste, og høyreklikke dette, og sett navnet som foretrukket fra menyen."
 
 #: data/tips.xml:504
+#, fuzzy
 msgid "GRAMPS is written in a computer language called Python using the GTK and GNOME libraries for the graphical interface. GRAMPS is supported on any computer system where these programs have been ported."
-msgstr ""
+msgstr "GRAMPS er skrevet i et programmeringspråk som heter Python, og brukere GTK og GNOME bibliotekene for den grafiske fremvisningen. GRAMPS er støttet på alle datasystemer hvor disse programmene offisielt kjører."
 
 #: data/tips.xml:510
+#, fuzzy
 msgid "The Free/Libre and Open Source Software (FLOSS) development model means GRAMPS can be extended by any programmer since all of the source code is freely available under its license."
-msgstr ""
+msgstr "Den \"Free/Libre and Open Source Software\" (FLOSS) utviklingsmodellen betyr at GRAMPS kan utvides av alle programmer siden all kildekode er fritt tilgjengelig under den åpne lisensen."
 
 #: data/tips.xml:515
+#, fuzzy
 msgid "GRAMPS is freely distributable under the General Public License, see http://www.gnu.org/licenses/licenses.html#GPL"
-msgstr ""
+msgstr "GRAMPS kan fritt distribueres under General Public Licesne, se http://www.gnu.org/licenses/licenses.html#GPL"
 
 #: data/tips.xml:520
+#, fuzzy
 msgid "GRAMPS works even when using KDE, as long as the required GNOME libraries are installed."
-msgstr ""
+msgstr "GRAMPS fungerer også når man bruker KDE, så lenge de nødvendige GNOME bibliotekene er installert."
 
 #: data/tips.xml:525
+#, fuzzy
 msgid "To run GRAMPS, you need to have GNOME installed. But you do not need to be running the GNOME desktop."
-msgstr ""
+msgstr "For å kjøre GRAMPS, må du ha GNOME installert. Men du trenger ikke å kjøre GNOME skrivebordet."
 
 #: data/tips.xml:531
+#, fuzzy
 msgid "GRAMPS makes every effort to maintain compatibility with GEDCOM, the general standard of recording genealogical information. Filters exist that make importing and exporting GEDCOM files trivial."
-msgstr ""
+msgstr "GRAMPS, er så godt det lar seg gjøre, kompatibel med GEDCOM, den generelle standarden for å lagre slektsforsknings informasjon. Det eksisterer filtre, som gjøre import og eksport av GEDCOM filer enkelt."
 
 #: docgen/AbiWord2Doc.py:340
 msgid "AbiWord document"
