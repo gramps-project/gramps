@@ -768,7 +768,8 @@ class MergePeople:
         if __debug__:
             print "Deleted src_family %s" % src_family_handle
         self.db.commit_family(tgt_family,trans)
-        new.add_family_handle(tgt_family.get_handle())
+        if tgt_family.get_handle() not in new.get_family_handle_list():
+            new.add_family_handle(tgt_family.get_handle())
 
     def merge_family_pair(self,tgt_family,src_family,trans):
 

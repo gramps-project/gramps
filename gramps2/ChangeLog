@@ -1,3 +1,7 @@
+2005-12-03  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/MergePeople.py: Avoid creating duplicate spouse-to-family links
+	* src/po/es.po: Partial translation update.
+
 2005-12-02  Alex Roitman  <shura@gramps-project.org>
 	* src/po/ru.po: Partial translation update.
 
