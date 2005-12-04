@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: gramps 2.0.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Sun Nov 27 16:06:29 2005\n"
-"PO-Revision-Date: 2005-12-02 21:21-0800\n"
+"PO-Revision-Date: 2005-12-04 15:07-0800\n"
 "Last-Translator: Alexander Roitman <shura@gramps-project.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1710,30 +1710,26 @@ msgstr ""
 "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
 
 #: GenericFilter.py:2038
-#, fuzzy
 msgid "Ancestors of bookmarked people not more than <N> generations away"
-msgstr "Предки <лица>, отстоящие от него не более чем на <N> поколений"
+msgstr "Предки лица с закладкой, отстоящие от него не более чем на <N> поколений"
 
 #: GenericFilter.py:2041
-#, fuzzy
 msgid ""
 "Matches ancestors of the people on the bookmark listnot more than N "
 "generations away"
 msgstr ""
-"Выбирает предков указанного лица, отстоящих от него не более чем на N "
+"Выбирает предков лица с закладкой, отстоящих от него не более чем на N "
 "поколений"
 
 #: GenericFilter.py:2096
-#, fuzzy
 msgid "Ancestors of the default person not more than <N> generations away"
-msgstr "Предки <лица>, отстоящие от него не более чем на <N> поколений"
+msgstr "Предки лица по умолчанию, отстоящие от него не более чем на <N> поколений"
 
 #: GenericFilter.py:2099
-#, fuzzy
 msgid ""
 "Matches ancestors of the default person not more than N generations away"
 msgstr ""
-"Выбирает предков указанного лица, отстоящих от него не более чем на N "
+"Выбирает предков лица по умолчанию, отстоящих от него не более чем на N "
 "поколений"
 
 #: GrampsCfg.py:65
@@ -2854,114 +2850,97 @@ msgid "This person died on %(death_date)s in %(death_place)s."
 msgstr "Этот человек умер %(death_date)s в %(death_place)s."
 
 #: ReportUtils.py:148
-#, fuzzy
 msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
 msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d лет.."
+"Этот человек умер %(death_date)s в %(death_place)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:149
-#, fuzzy
 msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
 msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d "
+"Этот человек умер %(death_date)s в %(death_place)s в возрасте %(age)d "
 "месяцев."
 
 #: ReportUtils.py:150
-#, fuzzy
 msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
 msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
+"Этот человек умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:153
-#, fuzzy
 msgid "He died on %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s умер %(death_date)s в %(death_place)s."
+msgstr "Он умер %(death_date)s в %(death_place)s."
 
 #: ReportUtils.py:154
-#, fuzzy
 msgid ""
 "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d лет.."
+"Он умер %(death_date)s в %(death_place)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:155
-#, fuzzy
 msgid ""
 "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d "
-"месяцев."
+"Он умер %(death_date)s в %(death_place)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:156
-#, fuzzy
 msgid ""
 "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
+"Он умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:159
-#, fuzzy
 msgid "She died on %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s умер %(death_date)s в %(death_place)s."
+msgstr "Она умерла %(death_date)s в %(death_place)s."
 
 #: ReportUtils.py:160
-#, fuzzy
 msgid ""
 "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d лет.."
+"Она умерла %(death_date)s в %(death_place)s в возрасте %(age)d лет.."
 
 #: ReportUtils.py:161
-#, fuzzy
 msgid ""
 "She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d "
-"месяцев."
+"Она умерла %(death_date)s в %(death_place)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:162
-#, fuzzy
 msgid ""
 "She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
+"Она умерла %(death_date)s в %(death_place)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:166
-#, fuzzy
 msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s."
-msgstr "%(female_name)s умерла %(death_date)s в %(death_place)s."
+msgstr "%(unknown_gender_name)s умер(ла) %(death_date)s в %(death_place)s."
 
 #: ReportUtils.py:167
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)d years."
 msgstr ""
-"%(female_name)s умерла %(death_date)s в %(death_place)s в возрасте %(age)d "
+"%(unknown_gender_name)s умер(ла) %(death_date)s в %(death_place)s в возрасте %(age)d "
 "лет."
 
 #: ReportUtils.py:168
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)d months."
 msgstr ""
-"%(female_name)s умерла %(death_date)s в %(death_place)s в возрасте %(age)d "
+"%(unknown_gender_name)s умер(ла) %(death_date)s в %(death_place)s в возрасте %(age)d "
 "месяцев."
 
 #: ReportUtils.py:169
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)d days."
 msgstr ""
-"%(female_name)s умерла %(death_date)s в %(death_place)s в возрасте %(age)d "
+"%(unknown_gender_name)s умер(ла) %(death_date)s в %(death_place)s в возрасте %(age)d "
 "дней."
 
 #: ReportUtils.py:172
@@ -3019,131 +2998,105 @@ msgstr ""
 "дней."
 
 #: ReportUtils.py:188
-#, fuzzy
 msgid "This person died %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s умер %(death_date)s в %(death_place)s."
+msgstr "Этот человек умер %(death_date)s в %(death_place)s."
 
 #: ReportUtils.py:189
-#, fuzzy
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
 msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d лет.."
+"Этот человек умер %(death_date)s в %(death_place)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:190
-#, fuzzy
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
 msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d "
+"Этот человек умер %(death_date)s в %(death_place)s в возрасте %(age)d "
 "месяцев."
 
 #: ReportUtils.py:191
-#, fuzzy
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
 msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
+"Этот человек умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:194
-#, fuzzy
 msgid "He died %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s умер %(death_date)s в %(death_place)s."
+msgstr "Он умер %(death_date)s в %(death_place)s."
 
 #: ReportUtils.py:195
-#, fuzzy
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d лет.."
+msgstr "Он умер %(death_date)s в %(death_place)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:196
-#, fuzzy
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d "
-"месяцев."
+msgstr "Он умер %(death_date)s в %(death_place)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:197
-#, fuzzy
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
+msgstr "Он умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:200
-#, fuzzy
 msgid "She died %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s умер %(death_date)s в %(death_place)s."
+msgstr "Она умерла %(death_date)s в %(death_place)s."
 
 #: ReportUtils.py:201
-#, fuzzy
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d лет.."
+msgstr "Она умерла %(death_date)s в %(death_place)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:202
-#, fuzzy
 msgid ""
 "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d "
-"месяцев."
+"Она умерла %(death_date)s в %(death_place)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:203
-#, fuzzy
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
+msgstr "Она умерла %(death_date)s в %(death_place)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:207
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s."
-msgstr "%(female_name)s умерла %(death_date)s в %(death_place)s."
+msgstr "%(unknown_gender_name)s умер(ла) %(death_date)s в %(death_place)s."
 
 #: ReportUtils.py:208
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of "
 "%(age)d years."
 msgstr ""
-"%(female_name)s умерла %(death_date)s в %(death_place)s в возрасте %(age)d "
+"%(unknown_gender_name)s умер(ла) %(death_date)s в %(death_place)s в возрасте %(age)d "
 "лет."
 
 #: ReportUtils.py:209
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of "
 "%(age)d months."
 msgstr ""
-"%(female_name)s умерла %(death_date)s в %(death_place)s в возрасте %(age)d "
+"%(unknown_gender_name)s умер(ла) %(death_date)s в %(death_place)s в возрасте %(age)d "
 "месяцев."
 
 #: ReportUtils.py:210
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of "
 "%(age)d days."
 msgstr ""
-"%(female_name)s умерла %(death_date)s в %(death_place)s в возрасте %(age)d "
+"%(unknown_gender_name)s умер(ла) %(death_date)s в %(death_place)s в возрасте %(age)d "
 "дней."
 
 #: ReportUtils.py:213
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s in %(death_place)s."
 msgstr "%(male_name)s умер %(death_date)s в %(death_place)s."
 
 #: ReportUtils.py:214
-#, fuzzy
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
 msgstr ""
-"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d лет.."
+"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:215
-#, fuzzy
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
@@ -3152,7 +3105,6 @@ msgstr ""
 "месяцев."
 
 #: ReportUtils.py:216
-#, fuzzy
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
@@ -3160,12 +3112,10 @@ msgstr ""
 "%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:219
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s in %(death_place)s."
 msgstr "%(female_name)s умерла %(death_date)s в %(death_place)s."
 
 #: ReportUtils.py:220
-#, fuzzy
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
@@ -3174,7 +3124,6 @@ msgstr ""
 "лет."
 
 #: ReportUtils.py:221
-#, fuzzy
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
@@ -3183,7 +3132,6 @@ msgstr ""
 "месяцев."
 
 #: ReportUtils.py:222
-#, fuzzy
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
@@ -3192,87 +3140,74 @@ msgstr ""
 "дней."
 
 #: ReportUtils.py:229
-#, fuzzy
 msgid "This person died on %(death_date)s."
-msgstr "%(male_name)s умер %(death_date)s."
+msgstr "Этот человек умер %(death_date)s."
 
 #: ReportUtils.py:230
-#, fuzzy
 msgid "This person died on %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d лет."
+msgstr "Этот человек умер %(death_date)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:231
-#, fuzzy
 msgid "This person died on %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d месяцев."
+msgstr "Этот человек умер %(death_date)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:232
-#, fuzzy
 msgid "This person died on %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d дней."
+msgstr "Этот человек умер %(death_date)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:235
-#, fuzzy
 msgid "He died on %(death_date)s."
-msgstr "%(male_name)s умер %(death_date)s."
+msgstr "Он умер %(death_date)s."
 
 #: ReportUtils.py:236
-#, fuzzy
 msgid "He died on %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d лет."
+msgstr "Он умер %(death_date)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:237
-#, fuzzy
 msgid "He died on %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d месяцев."
+msgstr "Он умер %(death_date)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:238
-#, fuzzy
 msgid "He died on %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d дней."
+msgstr "Он умер %(death_date)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:241
-#, fuzzy
 msgid "She died on %(death_date)s."
-msgstr "%(male_name)s умер %(death_date)s."
+msgstr "Она умерла %(death_date)s."
 
 #: ReportUtils.py:242
-#, fuzzy
 msgid "She died on %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d лет."
+msgstr "Она умерла %(death_date)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:243
-#, fuzzy
 msgid "She died on %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d месяцев."
+msgstr "Она умерла %(death_date)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:244
-#, fuzzy
 msgid "She died on %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d дней."
+msgstr "Она умерла %(death_date)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:248
-#, fuzzy
 msgid "%(unknown_gender_name)s died on %(death_date)s."
-msgstr "%(female_name)s умерла %(death_date)s."
+msgstr "%(unknown_gender_name)s умер(ла) %(death_date)s."
 
 #: ReportUtils.py:249
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr "%(female_name)s умерла %(death_date)s в возрасте %(age)d лет."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) %(death_date)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:250
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr "%(female_name)s умерла %(death_date)s в возрасте %(age)d месяцев."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) %(death_date)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:251
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr "%(female_name)s умерла %(death_date)s в возрасте %(age)d дней."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) %(death_date)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:254
 msgid "%(male_name)s died on %(death_date)s."
@@ -3307,245 +3242,205 @@ msgid "%(female_name)s died on %(death_date)s at the age of %(age)d days."
 msgstr "%(female_name)s умерла %(death_date)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:270
-#, fuzzy
 msgid "This person died %(death_date)s."
-msgstr " у. %(death_date)s"
+msgstr "Этот человек умер %(death_date)s."
 
 #: ReportUtils.py:271
-#, fuzzy
 msgid "This person died %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d лет."
+msgstr "Этот человек умер %(death_date)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:272
-#, fuzzy
 msgid "This person died %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d месяцев."
+msgstr "Этот человек умер %(death_date)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:273
-#, fuzzy
 msgid "This person died %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d дней."
+msgstr "Этот человек умер %(death_date)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:276
-#, fuzzy
 msgid "He died %(death_date)s."
-msgstr " у. %(death_date)s"
+msgstr "Он умер %(death_date)s."
 
 #: ReportUtils.py:277
-#, fuzzy
 msgid "He died %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d лет."
+msgstr "Он умер %(death_date)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:278
-#, fuzzy
 msgid "He died %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d месяцев."
+msgstr "Он умер %(death_date)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:279
-#, fuzzy
 msgid "He died %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d дней."
+msgstr "Он умер %(death_date)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:282
-#, fuzzy
 msgid "She died %(death_date)s."
-msgstr " у. %(death_date)s"
+msgstr "Она умерла %(death_date)s."
 
 #: ReportUtils.py:283
-#, fuzzy
 msgid "She died %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d лет."
+msgstr "Она умерла %(death_date)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:284
-#, fuzzy
 msgid "She died %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d месяцев."
+msgstr "Она умерла %(death_date)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:285
-#, fuzzy
 msgid "She died %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d дней."
+msgstr "Она умерла %(death_date)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:289
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s."
-msgstr "%(female_name)s умерла %(death_date)s."
+msgstr "%(unknown_gender_name)s умер(ла) %(death_date)s."
 
 #: ReportUtils.py:290
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
-msgstr "%(female_name)s умерла %(death_date)s в возрасте %(age)d лет."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) %(death_date)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:291
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
-msgstr "%(female_name)s умерла %(death_date)s в возрасте %(age)d месяцев."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) %(death_date)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:292
-#, fuzzy
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d days."
-msgstr "%(female_name)s умерла %(death_date)s в возрасте %(age)d дней."
+msgstr "%(unknown_gender_name)s умер(ла) %(death_date)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:295
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s."
 msgstr "%(male_name)s умер %(death_date)s."
 
 #: ReportUtils.py:296
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d years."
 msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:297
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d months."
 msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:298
-#, fuzzy
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d days."
 msgstr "%(male_name)s умер %(death_date)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:301
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s."
 msgstr "%(female_name)s умерла %(death_date)s."
 
 #: ReportUtils.py:302
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d years."
 msgstr "%(female_name)s умерла %(death_date)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:303
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d months."
 msgstr "%(female_name)s умерла %(death_date)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:304
-#, fuzzy
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d days."
 msgstr "%(female_name)s умерла %(death_date)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:311
-#, fuzzy
 msgid "This person died in %(month_year)s in %(death_place)s."
-msgstr "%(male_name)s умер в %(month_year)s в %(death_place)s."
+msgstr "Этот человек умер в %(month_year)s в %(death_place)s."
 
 #: ReportUtils.py:312
-#, fuzzy
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)d "
 "years."
 msgstr ""
-"%(male_name)s умер в %(month_year)s в %(death_place)s в возрасте %(age)d лет."
+"Этот человек умер в %(month_year)s в %(death_place)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:313
-#, fuzzy
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)d "
 "months."
 msgstr ""
-"%(male_name)s умер в %(month_year)s в %(death_place)s в возрасте %(age)d "
+"Этот человек умер в %(month_year)s в %(death_place)s в возрасте %(age)d "
 "месяцев."
 
 #: ReportUtils.py:314
-#, fuzzy
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)d "
 "days."
 msgstr ""
-"%(male_name)s умер в %(month_year)s в %(death_place)s в возрасте %(age)d "
+"Этот человек умер в %(month_year)s в %(death_place)s в возрасте %(age)d "
 "дней."
 
 #: ReportUtils.py:317
-#, fuzzy
 msgid "He died in %(month_year)s in %(death_place)s."
-msgstr "%(male_name)s умер в %(month_year)s в %(death_place)s."
+msgstr "Он умер в %(month_year)s в %(death_place)s."
 
 #: ReportUtils.py:318
-#, fuzzy
 msgid ""
 "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
-"%(male_name)s умер в %(month_year)s в %(death_place)s в возрасте %(age)d лет."
+"Он умер в %(month_year)s в %(death_place)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:319
-#, fuzzy
 msgid ""
 "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
-"%(male_name)s умер в %(month_year)s в %(death_place)s в возрасте %(age)d "
+"Он умер в %(month_year)s в %(death_place)s в возрасте %(age)d "
 "месяцев."
 
 #: ReportUtils.py:320
-#, fuzzy
 msgid ""
 "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
-"%(male_name)s умер в %(month_year)s в %(death_place)s в возрасте %(age)d "
+"Он умер в %(month_year)s в %(death_place)s в возрасте %(age)d "
 "дней."
 
 #: ReportUtils.py:323
-#, fuzzy
 msgid "She died in %(month_year)s in %(death_place)s."
-msgstr "%(male_name)s умер в %(month_year)s в %(death_place)s."
+msgstr "Она умерла в %(month_year)s в %(death_place)s."
 
 #: ReportUtils.py:324
-#, fuzzy
 msgid ""
 "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
-"%(male_name)s умер в %(month_year)s в %(death_place)s в возрасте %(age)d лет."
+"Она умерла в %(month_year)s в %(death_place)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:325
-#, fuzzy
 msgid ""
 "She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
-"%(male_name)s умер в %(month_year)s в %(death_place)s в возрасте %(age)d "
-"месяцев."
+"Она умерла в %(month_year)s в %(death_place)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:326
-#, fuzzy
 msgid ""
 "She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
-"%(male_name)s умер в %(month_year)s в %(death_place)s в возрасте %(age)d "
-"дней."
+"Она умерла в %(month_year)s в %(death_place)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:330
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."
-msgstr "%(female_name)s умерла в %(month_year)s в %(death_place)s."
+msgstr "%(unknown_gender_name)s умер(ла) в %(month_year)s в %(death_place)s."
 
 #: ReportUtils.py:331
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)d years."
 msgstr ""
-"%(female_name)s умерла в %(month_year)s в %(death_place)s в возрасте %(age)d "
-"лет."
+"%(unknown_gender_name)s умер(ла) в %(month_year)s в %(death_place)s в возрасте "
+"%(age)d лет."
 
 #: ReportUtils.py:332
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)d months."
 msgstr ""
-"%(female_name)s умерла в %(month_year)s в %(death_place)s в возрасте %(age)d "
-"месяцев."
+"%(unknown_gender_name)s умер(ла) в %(month_year)s в %(death_place)s в возрасте "
+"%(age)d месяцев."
 
 #: ReportUtils.py:333
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)d days."
 msgstr ""
-"%(female_name)s умерла в %(month_year)s в %(death_place)s в возрасте %(age)d "
-"дней."
+"%(unknown_gender_name)s умер(ла) в %(month_year)s в %(death_place)s в возрасте "
+"%(age)d дней."
 
 #: ReportUtils.py:336
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s."
@@ -3603,87 +3498,74 @@ msgstr ""
 "дней."
 
 #: ReportUtils.py:352
-#, fuzzy
 msgid "This person died in %(month_year)s."
-msgstr "%(male_name)s умер в %(month_year)s."
+msgstr "Этот человек умер в %(month_year)s."
 
 #: ReportUtils.py:353
-#, fuzzy
 msgid "This person died in %(month_year)s at the age of %(age)d years."
-msgstr "%(male_name)s умер в %(month_year)s в возрасте %(age)d лет."
+msgstr "Этот человек умер в %(month_year)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:354
-#, fuzzy
 msgid "This person died in %(month_year)s at the age of %(age)d months."
-msgstr "%(male_name)s умер в %(month_year)s в возрасте %(age)d месяцев."
+msgstr "Этот человек умер в %(month_year)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:355
-#, fuzzy
 msgid "This person died in %(month_year)s at the age of %(age)d days."
-msgstr "%(male_name)s умер в %(month_year)s в возрасте %(age)d дней."
+msgstr "Этот человек умер в %(month_year)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:358
-#, fuzzy
 msgid "He died in %(month_year)s."
-msgstr "%(male_name)s умер в %(month_year)s."
+msgstr "Он умер в %(month_year)s."
 
 #: ReportUtils.py:359
-#, fuzzy
 msgid "He died in %(month_year)s at the age of %(age)d years."
-msgstr "%(male_name)s умер в %(month_year)s в возрасте %(age)d лет."
+msgstr "Он умер в %(month_year)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:360
-#, fuzzy
 msgid "He died in %(month_year)s at the age of %(age)d months."
-msgstr "%(male_name)s умер в %(month_year)s в возрасте %(age)d месяцев."
+msgstr "Он умер в %(month_year)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:361
-#, fuzzy
 msgid "He died in %(month_year)s at the age of %(age)d days."
-msgstr "%(male_name)s умер в %(month_year)s в возрасте %(age)d дней."
+msgstr "Он умер в %(month_year)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:364
-#, fuzzy
 msgid "She died in %(month_year)s."
-msgstr "%(male_name)s умер в %(month_year)s."
+msgstr "Она умерла в %(month_year)s."
 
 #: ReportUtils.py:365
-#, fuzzy
 msgid "She died in %(month_year)s at the age of %(age)d years."
-msgstr "%(male_name)s умер в %(month_year)s в возрасте %(age)d лет."
+msgstr "Она умерла в %(month_year)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:366
-#, fuzzy
 msgid "She died in %(month_year)s at the age of %(age)d months."
-msgstr "%(male_name)s умер в %(month_year)s в возрасте %(age)d месяцев."
+msgstr "Она умерла в %(month_year)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:367
-#, fuzzy
 msgid "She died in %(month_year)s at the age of %(age)d days."
-msgstr "%(male_name)s умер в %(month_year)s в возрасте %(age)d дней."
+msgstr "Она умерла в %(month_year)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:371
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(month_year)s."
-msgstr "%(female_name)s умерла в %(month_year)s."
+msgstr "%(unknown_gender_name)s умер(ла) в %(month_year)s."
 
 #: ReportUtils.py:372
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr "%(female_name)s умерла в %(month_year)s в возрасте %(age)d лет."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) в %(month_year)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:373
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr "%(female_name)s умерла в %(month_year)s в возрасте %(age)d месяцев."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) в %(month_year)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:374
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr "%(female_name)s умерла в %(month_year)s в возрасте %(age)d дней."
+msgstr ""
+" в %(month_year)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:377
 msgid "%(male_name)s died in %(month_year)s."
@@ -3718,87 +3600,72 @@ msgid "%(female_name)s died in %(month_year)s at the age of %(age)d days."
 msgstr "%(female_name)s умерла в %(month_year)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:394
-#, fuzzy
 msgid "This person died in %(death_place)s."
-msgstr "%(male_name)s умер в %(death_place)s."
+msgstr "Этот человек умер в %(death_place)s."
 
 #: ReportUtils.py:395
-#, fuzzy
 msgid "This person died in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s умер в %(death_place)s в возрасте %(age)d лет."
+msgstr "Этот человек умер в %(death_place)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:396
-#, fuzzy
 msgid "This person died in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s умер в %(death_place)s в возрасте %(age)d месяцев."
+msgstr "Этот человек умер в %(death_place)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:397
-#, fuzzy
 msgid "This person died in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s умер в %(death_place)s в возрасте %(age)d дней."
+msgstr "Этот человек умер в %(death_place)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:400
-#, fuzzy
 msgid "He died in %(death_place)s."
-msgstr "%(male_name)s умер в %(death_place)s."
+msgstr "Он умер в %(death_place)s."
 
 #: ReportUtils.py:401
-#, fuzzy
 msgid "He died in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s умер в %(death_place)s в возрасте %(age)d лет."
+msgstr "Он умер в %(death_place)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:402
-#, fuzzy
 msgid "He died in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s умер в %(death_place)s в возрасте %(age)d месяцев."
+msgstr "Он умер в %(death_place)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:403
-#, fuzzy
 msgid "He died in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s умер в %(death_place)s в возрасте %(age)d дней."
+msgstr "Он умер в %(death_place)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:406
-#, fuzzy
 msgid "She died in %(death_place)s."
-msgstr "%(male_name)s умер в %(death_place)s."
+msgstr "Она умерла в %(death_place)s."
 
 #: ReportUtils.py:407
-#, fuzzy
 msgid "She died in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s умер в %(death_place)s в возрасте %(age)d лет."
+msgstr "Она умерла в %(death_place)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:408
-#, fuzzy
 msgid "She died in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s умер в %(death_place)s в возрасте %(age)d месяцев."
+msgstr "Она умерла в %(death_place)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:409
-#, fuzzy
 msgid "She died in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s умер в %(death_place)s в возрасте %(age)d дней."
+msgstr "Она умерла в %(death_place)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:413
-#, fuzzy
 msgid "%(unknown_gender_name)s died in %(death_place)s."
-msgstr "%(female_name)s умерла в %(death_place)s."
+msgstr "%(unknown_gender_name)s умер(ла) в %(death_place)s."
 
 #: ReportUtils.py:414
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr "%(female_name)s умерла в %(death_place)s в возрасте %(age)d лет."
+msgstr "%(unknown_gender_name)s умер(ла) в %(death_place)s в возрасте %(age)d лет."
 
 #: ReportUtils.py:415
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
-msgstr "%(female_name)s умерла в %(death_place)s в возрасте %(age)d месяцев."
+msgstr "%(unknown_gender_name)s умер(ла) в %(death_place)s в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:416
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr "%(female_name)s умерла в %(death_place)s в возрасте %(age)d дней."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) в %(death_place)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:419
 msgid "%(male_name)s died in %(death_place)s."
@@ -3833,67 +3700,55 @@ msgid "%(female_name)s died in %(death_place)s at the age of %(age)d days."
 msgstr "%(female_name)s умерла в %(death_place)s в возрасте %(age)d дней."
 
 #: ReportUtils.py:436
-#, fuzzy
 msgid "This person died at the age of %(age)d years."
-msgstr "%(male_name)s умер в возрасте %(age)d лет."
+msgstr "Этот человек умер в возрасте %(age)d лет."
 
 # !!!FIXME!!!
 #: ReportUtils.py:437
-#, fuzzy
 msgid "This person died at the age of %(age)d months."
-msgstr "%(male_name)s умер в возрасте %(age)d месяцев."
+msgstr "Этот человек умер в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:438
-#, fuzzy
 msgid "This person died at the age of %(age)d days."
-msgstr "%(male_name)s умер в возрасте %(age)d дней."
+msgstr "Этот человек умер в возрасте %(age)d дней."
 
 #: ReportUtils.py:442
-#, fuzzy
 msgid "He died at the age of %(age)d years."
-msgstr "%(male_name)s умер в возрасте %(age)d лет."
+msgstr "Он умер в возрасте %(age)d лет."
 
 # !!!FIXME!!!
 #: ReportUtils.py:443
-#, fuzzy
 msgid "He died at the age of %(age)d months."
-msgstr "%(male_name)s умер в возрасте %(age)d месяцев."
+msgstr "Он умер в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:444
-#, fuzzy
 msgid "He died at the age of %(age)d days."
-msgstr "%(male_name)s умер в возрасте %(age)d дней."
+msgstr "Он умер в возрасте %(age)d дней."
 
 #: ReportUtils.py:448
-#, fuzzy
 msgid "She died at the age of %(age)d years."
-msgstr "%(male_name)s умер в возрасте %(age)d лет."
+msgstr "Она умерла в возрасте %(age)d лет."
 
 # !!!FIXME!!!
 #: ReportUtils.py:449
-#, fuzzy
 msgid "She died at the age of %(age)d months."
-msgstr "%(male_name)s умер в возрасте %(age)d месяцев."
+msgstr "Она умерла в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:450
-#, fuzzy
 msgid "She died at the age of %(age)d days."
-msgstr "%(male_name)s умер в возрасте %(age)d дней."
+msgstr "Она умерла в возрасте %(age)d дней."
 
 #: ReportUtils.py:455
-#, fuzzy
 msgid "%(unknown_gender_name)s died at the age of %(age)d years."
-msgstr "%(female_name)s умерла в возрасте %(age)d лет."
+msgstr "%(unknown_gender_name)s умер(ла) в возрасте %(age)d лет."
 
 #: ReportUtils.py:456
-#, fuzzy
 msgid "%(unknown_gender_name)s died at the age of %(age)d months."
-msgstr "%(female_name)s умерла в возрасте %(age)d месяцев."
+msgstr "%(unknown_gender_name)s умер(ла) в возрасте %(age)d месяцев."
 
 #: ReportUtils.py:457
-#, fuzzy
 msgid "%(unknown_gender_name)s died at the age of %(age)d days."
-msgstr "%(female_name)s умерла в возрасте %(age)d дней."
+msgstr "%(unknown_gender_name)s умер(ла) в возрасте %(age)d дней."
 
 #: ReportUtils.py:461
 msgid "%(male_name)s died at the age of %(age)d years."
@@ -5219,14 +5074,12 @@ msgid "No description available"
 msgstr "Описание недоступно"
 
 #: TipOfDay.py:62
-#, fuzzy
 msgid "GRAMPS' Tip of the Day"
-msgstr "_Показывать Совет Дня"
+msgstr "Совет Дня GRAMPS"
 
 #: TipOfDay.py:63
-#, fuzzy
 msgid "Tip of the Day"
-msgstr "_Показывать Совет Дня"
+msgstr "Совет Дня"
 
 #: Tool.py:65
 msgid "Debug"
@@ -5245,9 +5098,8 @@ msgid "Database Repair"
 msgstr "Починка Базы Данных"
 
 #: Tool.py:69
-#, fuzzy
 msgid "Revision Control"
-msgstr "Контроль версий"
+msgstr "Контроль Версий"
 
 #: Tool.py:70
 msgid "Utilities"
@@ -7215,9 +7067,8 @@ msgid "References"
 msgstr "Ссылки"
 
 #: gramps.glade:6048
-#, fuzzy
 msgid "Open recent file: "
-msgstr "Открыть не_давнее"
+msgstr "Открыть недавний файл: "
 
 #: gramps.glade:6088
 msgid "Open an _existing database"
@@ -7958,7 +7809,6 @@ msgid "Double click will edit the selected source"
 msgstr "Двойной щелчок откроет окно редактирования выделенного источника"
 
 #: gramps.glade:21218
-#, fuzzy
 msgid "Style n_ame:"
 msgstr "На_звание стиля:"
 
@@ -8033,14 +7883,12 @@ msgid "<b>Alignment</b>"
 msgstr "<b>Выравнивание</b>"
 
 #: gramps.glade:21903
-#, fuzzy
 msgid "<b>Background color</b>"
-msgstr "<b>Фон</b>"
+msgstr "<b>Цвет фона</b>"
 
 #: gramps.glade:21950
-#, fuzzy
 msgid "First li_ne:"
-msgstr "<b>Первая строка</b>"
+msgstr "Первая стро_ка:"
 
 #: gramps.glade:22063
 msgid "R_ight:"
@@ -8051,9 +7899,8 @@ msgid "L_eft:"
 msgstr "Л_евый край:"
 
 #: gramps.glade:22121
-#, fuzzy
 msgid "<b>Spacing</b>"
-msgstr "<b>Кодировка</b>"
+msgstr "<b>Интервал</b>"
 
 #: gramps.glade:22149
 msgid "Abo_ve:"
@@ -8088,9 +7935,8 @@ msgid "_Bottom"
 msgstr "По _нижнему краю"
 
 #: gramps.glade:22591
-#, fuzzy
 msgid "<b>Indentation</b>"
-msgstr "<b>Идентификация</b>"
+msgstr "<b>Отступ</b>"
 
 #: gramps.glade:22625
 msgid "<b>Paragraph options</b>"
@@ -8782,9 +8628,8 @@ msgstr "Карта предков"
 #: plugins/PatchNames.py:357 plugins/Rebuild.py:122 plugins/RelCalc.py:238
 #: plugins/ReorderIds.py:209 plugins/SoundGen.py:172
 #: plugins/StatisticsChart.py:982 plugins/TimeLine.py:479
-#, fuzzy
 msgid "Stable"
-msgstr "Республика"
+msgstr "Государство/Штат"
 
 #: plugins/AncestorChart.py:275 plugins/AncestorChart2.py:526
 msgid "Produces a graphical ancestral tree graph"
@@ -8805,9 +8650,8 @@ msgid "The basic style used for the title display."
 msgstr "Основной стиль заголовков."
 
 #: plugins/AncestorChart2.py:522
-#, fuzzy
 msgid "Ancestor Graph"
-msgstr "Глубина дерева предков"
+msgstr "Граф Предков"
 
 #: plugins/AncestorReport.py:102
 msgid "Ahnentafel Report for %s"
@@ -8815,9 +8659,8 @@ msgstr "Таблица предков для %s"
 
 #: plugins/AncestorReport.py:115 plugins/DetAncestralReport.py:165
 #: plugins/DetDescendantReport.py:194
-#, fuzzy
 msgid "Generation %d"
-msgstr "Поколение 1"
+msgstr "Поколение %d"
 
 #: plugins/AncestorReport.py:170 plugins/Ancestors.py:895
 #: plugins/DescendReport.py:221 plugins/DetAncestralReport.py:647
@@ -9137,28 +8980,24 @@ msgid "Change types"
 msgstr "Изменить типы"
 
 #: plugins/ChangeTypes.py:133
-#, fuzzy
 msgid "No event record was modified."
-msgstr "1 запись о событиях изменено"
+msgstr "Ни одна запись о событиях не изменена"
 
 #: plugins/ChangeTypes.py:135
-#, fuzzy
 msgid "1 event record was modified."
-msgstr "1 запись о событиях изменено"
+msgstr "1 запись о событиях изменена."
 
 #: plugins/ChangeTypes.py:137
-#, fuzzy
 msgid "%d event records were modified."
-msgstr "%d записей о событиях изменено"
+msgstr "%d записей о событиях изменено."
 
 #: plugins/ChangeTypes.py:216
 msgid "Rename personal event types"
 msgstr "Переименовать личные события"
 
 #: plugins/ChangeTypes.py:220
-#, fuzzy
 msgid "Allows all the events of a certain name to be renamed to a new name."
-msgstr "Помогает выполнить глобальную замену определённого события на другое"
+msgstr "Позволяет глобальную замену определённого события на другое."
 
 #: plugins/Check.py:95
 msgid "Check Integrity"
@@ -9173,9 +9012,8 @@ msgid "Looking for duplicate spouses"
 msgstr "Ищу дублированных супругов"
 
 #: plugins/Check.py:160
-#, fuzzy
 msgid "Looking for character encoding errors"
-msgstr "Ищу сломанные ссылки на места"
+msgstr "Ищу ошибки кодировки символов"
 
 #: plugins/Check.py:180
 msgid "Looking for broken family links"
@@ -9402,9 +9240,8 @@ msgstr ""
 "Проверяет целостность базы данных, по мере возможности исправляя ошибки"
 
 #: plugins/Checkpoint.py:73
-#, fuzzy
 msgid "Checkpoint Archive Creation Failed"
-msgstr "Ошибка подготовки экспорта на CD"
+msgstr "Создание Архива Не Удалось"
 
 #: plugins/Checkpoint.py:74
 msgid ""
@@ -9418,9 +9255,8 @@ msgstr ""
 "%s"
 
 #: plugins/Checkpoint.py:80
-#, fuzzy
 msgid "Checkpoint Archive Created"
-msgstr "Сохранить состояние базы данных"
+msgstr "Архив создан"
 
 #: plugins/Checkpoint.py:81
 msgid ""
@@ -9436,9 +9272,8 @@ msgstr ""
 "Удаление этого файла приведёт к потере архива и невозможности восстановить данные из него."
 
 #: plugins/Checkpoint.py:90 plugins/Checkpoint.py:101
-#, fuzzy
 msgid "Checkpoint Failed"
-msgstr "Сохранение состояния базы данных не удалось"
+msgstr "Архивирование Не Удалось"
 
 #: plugins/Checkpoint.py:91
 msgid ""
@@ -9451,14 +9286,12 @@ msgstr ""
 "%s"
 
 #: plugins/Checkpoint.py:96 plugins/Checkpoint.py:107
-#, fuzzy
 msgid "Checkpoint Succeeded "
-msgstr "Сохранение состояния базы данных не удалось"
+msgstr "Архивирование Удалось "
 
 #: plugins/Checkpoint.py:97
-#, fuzzy
 msgid "The data was successfully archived."
-msgstr "Все модули были загружены успешно."
+msgstr "Данные успешно архивированы."
 
 #: plugins/Checkpoint.py:102
 msgid ""
@@ -9476,9 +9309,8 @@ msgid "The data was successfully retrieved."
 msgstr "Данные успешно восстановлены."
 
 #: plugins/Checkpoint.py:163
-#, fuzzy
 msgid "Checkpoint Data"
-msgstr "Проверяю данные"
+msgstr "Архивировать Данные"
 
 #: plugins/Checkpoint.py:238
 msgid "Checkpointing database..."
@@ -9582,38 +9414,32 @@ msgid "Produces a graphical descendant tree graph"
 msgstr "Производит графическое дерево потомков"
 
 #: plugins/DescendReport.py:125
-#, fuzzy
 msgid "b. %(birth_year)d - %(place)s"
-msgstr " р. %(birth_date)s"
+msgstr "р. %(birth_year)d - %(place)s"
 
 #: plugins/DescendReport.py:130
-#, fuzzy
 msgid "b. %(birth_year)d"
-msgstr " р. %(birth_date)s"
+msgstr "р. %(birth_year)d"
 
 #: plugins/DescendReport.py:138
-#, fuzzy
 msgid "d. %(death_year)d - %(place)s"
-msgstr "%(date)s в %(place)s."
+msgstr "у. %(death_year)d - %(place)s"
 
 #: plugins/DescendReport.py:143
-#, fuzzy
 msgid "d. %(death_year)d"
-msgstr " у. %(death_date)s"
+msgstr "у. %(death_date)d"
 
 #: plugins/DescendReport.py:175
-#, fuzzy
 msgid "sp. %(spouse)s"
-msgstr "Он женился на %(spouse)s."
+msgstr "супр. %(spouse)s"
 
 #: plugins/DescendReport.py:233
 msgid "The style used for the level %d display."
 msgstr "Стиль для %d-го поколения."
 
 #: plugins/DescendReport.py:241
-#, fuzzy
 msgid "The style used for the spouse level %d display."
-msgstr "Стиль для %d-го поколения."
+msgstr "Стиль для супругов %d-го уровня ."
 
 #: plugins/DescendReport.py:256
 msgid "Descendant Report"
@@ -9624,9 +9450,8 @@ msgid "Generates a list of descendants of the active person"
 msgstr "Генерирует список потомков активного лица"
 
 #: plugins/DetAncestralReport.py:151
-#, fuzzy
 msgid "Ancestral Report for %s"
-msgstr "Таблица предков для %s"
+msgstr "Отчёт о Предках для %s"
 
 #: plugins/DetAncestralReport.py:221 plugins/DetDescendantReport.py:248
 msgid "%(name)s is the same person as [%(id_str)s]."
@@ -9663,9 +9488,8 @@ msgid "%(event_name)s: "
 msgstr "%(event_name)s: "
 
 #: plugins/DetAncestralReport.py:402 plugins/DetDescendantReport.py:425
-#, fuzzy
 msgid "Children of %s and %s"
-msgstr "Дети %s и %s:"
+msgstr "Дети %s и %s"
 
 #: plugins/DetAncestralReport.py:494 plugins/DetDescendantReport.py:520
 #: plugins/FtmStyleAncestors.py:143 plugins/FtmStyleDescendants.py:172
@@ -9772,15 +9596,13 @@ msgstr "Содержание"
 #: plugins/DetAncestralReport.py:812 plugins/DetDescendantReport.py:833
 #: plugins/DetDescendantReport.py:834 plugins/DetDescendantReport.py:835
 #: plugins/DetDescendantReport.py:836
-#, fuzzy
 msgid "Include"
-msgstr "Включать ID"
+msgstr "Включать"
 
 #: plugins/DetAncestralReport.py:813 plugins/DetAncestralReport.py:814
 #: plugins/DetDescendantReport.py:837 plugins/DetDescendantReport.py:838
-#, fuzzy
 msgid "Missing information"
-msgstr "Информация о публикации"
+msgstr "Отсутствующая информация"
 
 #: plugins/DetAncestralReport.py:847
 msgid "Detailed Ancestral Report"
@@ -9791,9 +9613,8 @@ msgid "Produces a detailed ancestral report"
 msgstr "Создаёт подробный отчёт о предках"
 
 #: plugins/DetDescendantReport.py:180
-#, fuzzy
 msgid "Descendant Report for %(person_name)s"
-msgstr "Подробный Отчёт о Потомках для %(person_name)s"
+msgstr "Отчёт о Потомках для %(person_name)s"
 
 #: plugins/DetDescendantReport.py:870
 msgid "Detailed Descendant Report"
@@ -10621,9 +10442,8 @@ msgid "Surname"
 msgstr "Фамилия"
 
 #: plugins/NavWebPage.py:584 plugins/NavWebPage.py:634
-#, fuzzy
 msgid "restricted"
-msgstr "Оценка"
+msgstr "ограничено"
 
 #: plugins/NavWebPage.py:612
 msgid ""
@@ -10719,9 +10539,8 @@ msgstr ""
 "по названию. Выбор названия ведёт к странице данного документа."
 
 #: plugins/NavWebPage.py:1441
-#, fuzzy
 msgid "Ancestors"
-msgstr "Предки %s"
+msgstr "Предки"
 
 #: plugins/NavWebPage.py:1544
 msgid "Source References"
@@ -10852,9 +10671,8 @@ msgid "Include download page"
 msgstr "Включить страницу загрузки"
 
 #: plugins/NavWebPage.py:2417
-#, fuzzy
 msgid "Include ancestor graph"
-msgstr "Включить краткое дерево предков"
+msgstr "Включить дерево предков"
 
 #: plugins/NavWebPage.py:2425
 msgid "Suppress GRAMPS ID"
@@ -10887,10 +10705,8 @@ msgstr ""
 "изменений"
 
 #: plugins/NavWebPage.py:2472
-#, fuzzy
 msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
-msgstr ""
-"Creative Commons - С указанием авторства, некоммерческое использование, "
+msgstr "Creative Commons - С указанием авторства, Некоммерческое использование, "
 "Share-alike"
 
 #: plugins/NavWebPage.py:2473
@@ -11055,9 +10871,8 @@ msgid "Their common ancestors are : "
 msgstr "Их общие предки: "
 
 #: plugins/RelCalc.py:203
-#, fuzzy
 msgid "%s and %s are the same person."
-msgstr "и [%s] - одно и то же лицо."
+msgstr "%s и %s -- одно и то же лицо."
 
 #: plugins/RelCalc.py:205
 msgid "%(person)s and %(active_person)s are not related."
@@ -11283,9 +11098,8 @@ msgid "Marriage place"
 msgstr "Место брака"
 
 #: plugins/StatisticsChart.py:121
-#, fuzzy
 msgid "Number of relationships"
-msgstr "Число отношений:"
+msgstr "Число отношений"
 
 #: plugins/StatisticsChart.py:123
 msgid "Age when first child born"
@@ -11300,9 +11114,8 @@ msgid "Number of children"
 msgstr "Число детей"
 
 #: plugins/StatisticsChart.py:129
-#, fuzzy
 msgid "Age at marriage"
-msgstr "Альтернативный брак"
+msgstr "Возраст вступления в брак"
 
 #: plugins/StatisticsChart.py:131
 msgid "Age at death"
@@ -11578,9 +11391,8 @@ msgid "Add special characters"
 msgstr "Добавить специальные символы"
 
 #: plugins/TestcaseGenerator.py:164
-#, fuzzy
 msgid "Add serial number"
-msgstr "Добавить Документ"
+msgstr "Добавить порядковый номер"
 
 #: plugins/TestcaseGenerator.py:212
 msgid ""
@@ -12356,9 +12168,8 @@ msgid "_New event type:"
 msgstr "_Заменить на:"
 
 #: plugins/checkpoint.glade:109
-#, fuzzy
 msgid "R_etrieve"
-msgstr "Уход на пенсию"
+msgstr "Извлеч_ь"
 
 #: plugins/checkpoint.glade:181
 msgid "_Archive"
@@ -12373,14 +12184,12 @@ msgstr ""
 "с использованием выбранной Вами системы контроля версий."
 
 #: plugins/checkpoint.glade:275
-#, fuzzy
 msgid "<b>Revision control system</b>"
-msgstr "<b>Контроль версий</b>"
+msgstr "<b>Система контроля версий</b>"
 
 #: plugins/checkpoint.glade:300
-#, fuzzy
 msgid "_RCS"
-msgstr "RCS"
+msgstr "_RCS"
 
 #: plugins/checkpoint.glade:322
 msgid "C_ustom commands"
@@ -12557,14 +12366,12 @@ msgid "<b>Men</b>"
 msgstr "<b>Мужчины</b>"
 
 #: plugins/verify.glade:1068
-#, fuzzy
 msgid "<b>Warnings:</b>"
-msgstr "<b>Поля</b>"
+msgstr "<b>Предупреждения:</b>"
 
 #: plugins/verify.glade:1130
-#, fuzzy
 msgid "<b>Errors:</b>"
-msgstr "<b>Окно ошибок</b>"
+msgstr "<b>Ошибки:</b>"
 
 #: rule.glade:132
 msgid "Add another rule to the filter"
