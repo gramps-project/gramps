@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: gramps 2.0.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Sun Nov 27 16:06:29 2005\n"
-"PO-Revision-Date: 2005-12-04 15:07-0800\n"
+"PO-Revision-Date: 2005-12-04 15:16-0800\n"
 "Last-Translator: Alexander Roitman <shura@gramps-project.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -3780,170 +3780,146 @@ msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s."
 msgstr "%(male_name)s был похоронен %(burial_date)s в %(burial_place)s."
 
 #: ReportUtils.py:483
-#, fuzzy
 msgid "He was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(male_name)s был похоронен %(burial_date)s в %(burial_place)s."
+msgstr "Он был похоронен %(burial_date)s в %(burial_place)s."
 
 #: ReportUtils.py:486
 msgid "%(female_name)s was buried on %(burial_date)s in %(burial_place)s."
 msgstr "%(female_name)s была похоронена %(burial_date)s в %(burial_place)s."
 
 #: ReportUtils.py:487
-#, fuzzy
 msgid "She was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(male_name)s был похоронен %(burial_date)s в %(burial_place)s."
+msgstr "Она была похоронена %(burial_date)s в %(burial_place)s."
 
 #: ReportUtils.py:490
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(female_name)s была похоронена %(burial_date)s в %(burial_place)s."
+msgstr ""
+"%(unknown_gender_name)s был(а) похоронен(а) %(burial_date)s в %(burial_place)s."
 
 #: ReportUtils.py:491
-#, fuzzy
 msgid "This person was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(male_name)s был похоронен %(burial_date)s в %(burial_place)s."
+msgstr "Этот человек был похоронен %(burial_date)s в %(burial_place)s."
 
 #: ReportUtils.py:497
 msgid "%(male_name)s was buried on %(burial_date)s."
 msgstr "%(male_name)s был похоронен %(burial_date)s."
 
 #: ReportUtils.py:498
-#, fuzzy
 msgid "He was buried on %(burial_date)s."
-msgstr "%(male_name)s был похоронен %(burial_date)s."
+msgstr "Он был похоронен %(burial_date)s."
 
 #: ReportUtils.py:501
 msgid "%(female_name)s was buried on %(burial_date)s."
 msgstr "%(female_name)s была похоронена %(burial_date)s."
 
 #: ReportUtils.py:502
-#, fuzzy
 msgid "She was buried on %(burial_date)s."
-msgstr "%(male_name)s был похоронен %(burial_date)s."
+msgstr "Она была похоронена %(burial_date)s."
 
 #: ReportUtils.py:505
-#, fuzzy
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s."
-msgstr "%(female_name)s была похоронена %(burial_date)s."
+msgstr "%(unknown_gender_name)s был(а) похоронен(а) %(burial_date)s."
 
 #: ReportUtils.py:506
-#, fuzzy
 msgid "This person was buried on %(burial_date)s."
-msgstr "%(male_name)s был похоронен %(burial_date)s."
+msgstr "Этот человек был похоронен %(burial_date)s."
 
 #: ReportUtils.py:512
 msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s."
 msgstr "%(male_name)s был похоронен в %(month_year)s в %(burial_place)s."
 
 #: ReportUtils.py:513
-#, fuzzy
 msgid "He was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(male_name)s был похоронен в %(month_year)s в %(burial_place)s."
+msgstr "Он был похоронен в %(month_year)s в %(burial_place)s."
 
 #: ReportUtils.py:516
 msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s."
 msgstr "%(female_name)s была похоронена в %(month_year)s в %(burial_place)s."
 
 #: ReportUtils.py:517
-#, fuzzy
 msgid "She was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(male_name)s был похоронен в %(month_year)s в %(burial_place)s."
+msgstr "Она была похоронена в %(month_year)s в %(burial_place)s."
 
 #: ReportUtils.py:520
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(female_name)s была похоронена в %(month_year)s в %(burial_place)s."
+msgstr ""
+"%(unknown_gender_name)s был(а) похоронен(а) в %(month_year)s в %(burial_place)s."
 
 #: ReportUtils.py:521
-#, fuzzy
 msgid "This person was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(male_name)s был похоронен в %(month_year)s в %(burial_place)s."
+msgstr "Этот человек был похоронен в %(month_year)s в %(burial_place)s."
 
 #: ReportUtils.py:527
 msgid "%(male_name)s was buried in %(month_year)s."
 msgstr "%(male_name)s был похоронен в %(month_year)s."
 
 #: ReportUtils.py:528
-#, fuzzy
 msgid "He was buried on %(month_year)s."
-msgstr "%(male_name)s был похоронен в %(month_year)s."
+msgstr "Он был похоронен в %(month_year)s."
 
 #: ReportUtils.py:531
 msgid "%(female_name)s was buried in %(month_year)s."
 msgstr "%(female_name)s была похоронена в %(month_year)s."
 
 #: ReportUtils.py:532
-#, fuzzy
 msgid "She was buried in %(month_year)s."
-msgstr "%(male_name)s был похоронен в %(month_year)s."
+msgstr "Она была похоронена в %(month_year)s."
 
 #: ReportUtils.py:535
-#, fuzzy
 msgid "%(unknown_gender_name)s was buried in %(month_year)s."
-msgstr "%(female_name)s была похоронена в %(month_year)s."
+msgstr "%(unknown_gender_name)s был(а) похоронен(а) в %(month_year)s."
 
 #: ReportUtils.py:536
-#, fuzzy
 msgid "This person was buried in %(month_year)s."
-msgstr "%(male_name)s был похоронен в %(month_year)s."
+msgstr "Этот человек был похоронен в %(month_year)s."
 
 #: ReportUtils.py:542
-#, fuzzy
 msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(male_name)s был похоронен %(burial_date)s в %(burial_place)s."
+msgstr "%(male_name)s был похоронен %(modified_date)s в %(burial_place)s."
 
 #: ReportUtils.py:543
-#, fuzzy
 msgid "He was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(male_name)s был похоронен %(burial_date)s в %(burial_place)s."
+msgstr "Он был похоронен %(modified_date)s в %(burial_place)s."
 
 #: ReportUtils.py:546
-#, fuzzy
 msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(female_name)s была похоронена %(burial_date)s в %(burial_place)s."
+msgstr "%(female_name)s была похоронена %(modified_date)s в %(burial_place)s."
 
 #: ReportUtils.py:547
-#, fuzzy
 msgid "She was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(male_name)s был похоронен %(burial_date)s в %(burial_place)s."
+msgstr "Она была похоронена %(modified_date)s в %(burial_place)s."
 
 #: ReportUtils.py:550
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(female_name)s была похоронена %(burial_date)s в %(burial_place)s."
+msgstr ""
+"%(unknown_gender_name)s был(а) похоронен(а) %(modified_date)s в %(burial_place)s."
 
 #: ReportUtils.py:551
-#, fuzzy
 msgid "This person was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(male_name)s был похоронен %(burial_date)s в %(burial_place)s."
+msgstr "Этот человек был похоронен %(modified_date)s в %(burial_place)s."
 
 #: ReportUtils.py:557
-#, fuzzy
 msgid "%(male_name)s was buried %(modified_date)s."
-msgstr "%(male_name)s был похоронен %(burial_date)s."
+msgstr "%(male_name)s был похоронен %(modified_date)s."
 
 #: ReportUtils.py:558
-#, fuzzy
 msgid "He was buried %(modified_date)s."
-msgstr "%(male_name)s был похоронен %(burial_date)s."
+msgstr "Он был похоронен %(modified_date)s."
 
 #: ReportUtils.py:561
-#, fuzzy
 msgid "%(female_name)s was buried %(modified_date)s."
-msgstr "%(female_name)s была похоронена %(burial_date)s."
+msgstr "%(female_name)s была похоронена %(modified_date)s."
 
 #: ReportUtils.py:562
-#, fuzzy
 msgid "She was buried %(modified_date)s."
-msgstr "%(male_name)s был похоронен %(burial_date)s."
+msgstr "Она была похоронена %(modified_date)s."
 
 #: ReportUtils.py:565
-#, fuzzy
 msgid "%(unknown_gender_name)s was buried %(modified_date)s."
-msgstr "%(female_name)s была похоронена %(burial_date)s."
+msgstr "%(unknown_gender_name)s был(а) похоронен(а) %(modified_date)s."
 
 #: ReportUtils.py:566
 msgid "This person was buried %(modified_date)s."
@@ -3954,62 +3930,54 @@ msgid "%(male_name)s was buried in %(burial_place)s."
 msgstr "%(male_name)s был похоронен в %(burial_place)s."
 
 #: ReportUtils.py:573
-#, fuzzy
 msgid "He was buried in %(burial_place)s."
-msgstr "%(male_name)s был похоронен в %(burial_place)s."
+msgstr "Он был похоронен в %(burial_place)s."
 
 #: ReportUtils.py:576
 msgid "%(female_name)s was buried in %(burial_place)s."
 msgstr "%(female_name)s была похоронена в %(burial_place)s."
 
 #: ReportUtils.py:577
-#, fuzzy
 msgid "She was buried in %(burial_place)s."
-msgstr "%(male_name)s был похоронен в %(burial_place)s."
+msgstr "Она была похоронена в %(burial_place)s."
 
 #: ReportUtils.py:580
-#, fuzzy
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s."
-msgstr "%(female_name)s была похоронена в %(burial_place)s."
+msgstr "%(unknown_gender_name)s был(а) похоронен(а) в %(burial_place)s."
 
 #: ReportUtils.py:581
-#, fuzzy
 msgid "This person was buried in %(burial_place)s."
-msgstr "%(male_name)s был похоронен в %(burial_place)s."
+msgstr "Этот человек был похоронен в %(burial_place)s."
 
 #: ReportUtils.py:587
 msgid "%(male_name)s was buried."
 msgstr "%(male_name)s был похоронен."
 
 #: ReportUtils.py:588
-#, fuzzy
 msgid "He was buried."
-msgstr "и был(а) похоронен(а) в %s."
+msgstr "Он был похоронен."
 
 #: ReportUtils.py:591
 msgid "%(female_name)s was buried."
 msgstr "%(female_name)s была похоронена."
 
 #: ReportUtils.py:592
-#, fuzzy
 msgid "She was buried."
-msgstr "%(male_name)s был похоронен."
+msgstr "Она была похоронена."
 
 #: ReportUtils.py:595
-#, fuzzy
 msgid "%(unknown_gender_name)s was buried."
-msgstr "%(female_name)s была похоронена."
+msgstr "%(unknown_gender_name)s был(а) похоронен(а)."
 
 #: ReportUtils.py:596
-#, fuzzy
 msgid "This person was buried."
-msgstr "и был(а) похоронен(а) в %s."
+msgstr "Этот человек был похоронен."
 
 #: ReportUtils.py:608
-#, fuzzy
 msgid ""
 "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Она вышла замуж за %(spouse)s в %(date)s в %(place)s%(endnotes)s."
+msgstr ""
+"Этот человек вступил в брак с %(spouse)s в %(partial_date)s в %(place)s%(endnotes)s."
 
 #: ReportUtils.py:609
 #, fuzzy
