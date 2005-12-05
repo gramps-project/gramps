@@ -2,11 +2,10 @@
 
 SUBDIRS = C fr
 
-topdocdir1=$(datadir)/@PACKAGE@/gnome/help/@PACKAGE@
-topdocdir2=$(datadir)/@PACKAGE@/gnome/help/@PACKAGE@/@PACKAGE@
+topdocdir=$(datadir)/@PACKAGE@/gnome/help/@PACKAGE@
 
 install-data-local:
-	ln -s $(DESTDIR)$(topdocdir1) $(DESTDIR)$(topdocdir2)
+	cd $(DESTDIR)$(topdocdir); ln -s . gramps
 
 uninstall-local:
-	-rm $(DESTDIR)$(topdocdir2)
+	-rm $(DESTDIR)$(topdocdir)/gramps

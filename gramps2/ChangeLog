@@ -1,3 +1,6 @@
+2005-12-05  Alex Roitman  <shura@gramps-project.org>
+	* doc/gramps-manual/Makefile.am: Change symlink creation.
+
 2005-12-04  Alex Roitman  <shura@gramps-project.org>
 	* src/po/ru.po: Partial translation update.
 
