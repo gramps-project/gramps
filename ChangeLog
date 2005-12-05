@@ -1,3 +1,7 @@
+2005-12-04  Don Allingham  <don@gramps-project.org>
+	* src/FamilyView.py: start of a new family view.
+	* src/gramps_main.py: register FamilyView
+
 2005-09-16  Don Allingham  <don@gramps-project.org>
 	* src/DisplayState.py: remove relationship display stuff for the time
 	being.

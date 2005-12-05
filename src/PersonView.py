@@ -150,6 +150,7 @@ class PersonView(PageView.PersonNavView):
         scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         scrollwindow.set_shadow_type(gtk.SHADOW_ETCHED_IN)
         scrollwindow.add(self.tree)
+        scrollwindow.show_all()
 
         self.vbox.pack_start(self.filterbar,False)
         self.vbox.pack_start(scrollwindow,True)

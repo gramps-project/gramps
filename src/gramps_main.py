@@ -38,6 +38,7 @@ import PersonView
 import RepositoryView
 import PedView
 import MapView
+import FamilyView
 import PlaceView
 import EventView
 import SourceView
@@ -153,6 +154,7 @@ class Gramps:
         state = GrampsDbBase.DbState()
         vm = ViewManager.ViewManager(state)
         vm.register_view(PersonView.PersonView)
+        vm.register_view(FamilyView.FamilyView)
         vm.register_view(PedView.PedView)
         vm.register_view(EventView.EventView)
         vm.register_view(SourceView.SourceView)
