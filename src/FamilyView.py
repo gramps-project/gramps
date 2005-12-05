@@ -41,6 +41,12 @@ class Glabel(gtk.Label):
         self.set_use_underline(True)
         self.set_alignment(0,0.5)
 
+class Slabel(gtk.Label):
+
+    def __init__(self,val):
+        gtk.Label.__init__(self, val)
+        self.set_alignment(0,0.5)
+
 class FamilyView(PageView.PageView):
 
     def __init__(self,dbstate,uistate):
@@ -65,7 +71,7 @@ class FamilyView(PageView.PageView):
         self.person_birth = gtk.Label()
         self.person_death = gtk.Label()
         self.marriage_type = gtk.Label()
-        self.marriage_info = gtk.Entry()
+        self.marriage_info = gtk.Label()
         scrollwindow = gtk.ScrolledWindow()
         scrollwindow.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         scrollwindow.set_shadow_type(gtk.SHADOW_IN)
@@ -77,38 +83,44 @@ class FamilyView(PageView.PageView):
         edit_active = Gbutton(gtk.STOCK_EDIT)
         new_spouse = Gbutton(gtk.STOCK_NEW)
         spouse_select = Gbutton(gtk.STOCK_INDEX)
+        rel_edit = Gbutton(gtk.STOCK_EDIT)
+        parents_down = Gbutton(gtk.STOCK_GO_DOWN)
 
         table = gtk.Table(9,10)
         table.set_col_spacings(12)
         table.set_row_spacings(6)
-        table.set_border_width(12)
+        table.set_border_width(6)
         
         table.attach(Glabel(_('_Father')),0,3, 0,1, fill, 0,0,0)
         table.attach(self.father_box,     1,3, 1,2, fill, 0,0,0)
-
+        table.attach(parents_down,        3,4, 1,2, 0,0,0,0)
+                     
         table.attach(Glabel(_('_Mother')),5,9, 0,1, fill, 0,0,0)
         table.attach(self.mother_box,     6,9, 1,2, fill, 0,0,0)
 
         table.attach(Glabel(_('_Active person')), 0,3, 3,4, fill,0,0,0)
         table.attach(self.person_name,   1,3, 4,5, fill,0,0,0)
-        table.attach(gtk.Label(_('b.')), 1,2, 5,6, 0,0,0,0)
-        table.attach(gtk.Label(_('d.')), 1,2, 6,7, 0,0,0,0)
+        table.attach(Slabel(_('b.')), 1,2, 5,6, 0,0,0,0)
+        table.attach(Slabel(_('d.')), 1,2, 6,7, 0,0,0,0)
         table.attach(self.person_birth,  2,3, 5,6, fill,0,0,0)
         table.attach(self.person_death,  2,3, 6,7, fill,0,0,0)
 
-        table.attach(switch, 4,5, 4,5, 0,0,0,0)
-        table.attach(edit_active, 4,5, 5,6, 0,0,0,0)
+        table.attach(switch, 3,4, 4,5, 0,0,0,0)
+        table.attach(edit_active, 3,4, 5,6, 0,0,0,0)
         table.attach(new_spouse, 9,10, 4,5, 0,0,0,0)
         table.attach(spouse_select, 9,10, 5,6, 0,0,0,0)
+        table.attach(rel_edit, 9,10, 6,7, 0,0,0,0)
 
         table.attach(Glabel(_('_Spouse/partner')), 5,9, 3,4, fill,0,0,0)
         table.attach(self.spouse_box, 6,9, 4,5, fill, 0,0,0)
-        table.attach(gtk.Label(_('Type:')), 7,8, 5,6, 0, 0,0,0)
-        table.attach(self.marriage_type, 8,9, 5,6, fill, 0,0,0)
-        table.attach(self.marriage_info, 8,9, 5,6, fill, 0,0,0)
+        table.attach(Slabel(_('Type:')), 6,7, 5,6, gtk.FILL, 0,0,0)
+        table.attach(self.marriage_type, 7,8, 5,6, fill, 0,0,0)
+        table.attach(Slabel(_('Marriage:')), 6,7, 6,7, gtk.FILL, 0,0,0)
+        table.attach(self.marriage_info, 7,8, 6,7, fill, 0,0,0)
+        table.attach(Slabel(_('ID:')), 6,7, 7,8, gtk.FILL, 0,0,0)
 
-        table.attach(Glabel(_('_Children')), 0,8, 7,8, fill, 0,0,0)
-        table.attach(scrollwindow, 1,9, 8,9, fill, fill, 0,0)
+        table.attach(Glabel(_('_Children')), 0,8, 8,9, fill, 0,0,0)
+        table.attach(scrollwindow, 1,9, 9,10, fill, fill, 0,0)
 
         bbox = gtk.VBox()
         bbox.set_spacing(6)
@@ -121,7 +133,7 @@ class FamilyView(PageView.PageView):
         bbox.add(child_sel)
         bbox.add(child_del)
         
-        table.attach(bbox, 9, 10, 8,9, 0, 0, 0, 0)
+        table.attach(bbox, 9,10, 9,10, 0, 0, 0, 0)
                      
         return table
 
