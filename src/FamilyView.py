@@ -25,6 +25,14 @@ import PageView
 import DisplayTrace
 import DisplayModels
 
+class Gbutton(gtk.Button):
+
+    def __init__(self,stock_name):
+        gtk.Button.__init__(self)
+        image = gtk.Image()
+        image.set_from_stock(stock_name,gtk.ICON_SIZE_BUTTON)
+        self.add(image)
+
 class Glabel(gtk.Label):
 
     def __init__(self,val):
@@ -54,9 +62,9 @@ class FamilyView(PageView.PageView):
         self.mother_box = gtk.ComboBox()
         self.spouse_box = gtk.ComboBox()
         self.person_name = gtk.Entry()
-        self.person_birth = gtk.Entry()
-        self.person_death = gtk.Entry()
-        self.marriage_type = gtk.Entry()
+        self.person_birth = gtk.Label()
+        self.person_death = gtk.Label()
+        self.marriage_type = gtk.Label()
         self.marriage_info = gtk.Entry()
         scrollwindow = gtk.ScrolledWindow()
         scrollwindow.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
@@ -65,7 +73,12 @@ class FamilyView(PageView.PageView):
         self.child_model = DisplayModels.ChildModel([],self.dbstate.db)
         scrollwindow.add(self.child_list)
 
-        table = gtk.Table(9,11)
+        switch = Gbutton(gtk.STOCK_GO_BACK)
+        edit_active = Gbutton(gtk.STOCK_EDIT)
+        new_spouse = Gbutton(gtk.STOCK_NEW)
+        spouse_select = Gbutton(gtk.STOCK_INDEX)
+
+        table = gtk.Table(9,10)
         table.set_col_spacings(12)
         table.set_row_spacings(6)
         table.set_border_width(12)
@@ -83,6 +96,11 @@ class FamilyView(PageView.PageView):
         table.attach(self.person_birth,  2,3, 5,6, fill,0,0,0)
         table.attach(self.person_death,  2,3, 6,7, fill,0,0,0)
 
+        table.attach(switch, 4,5, 4,5, 0,0,0,0)
+        table.attach(edit_active, 4,5, 5,6, 0,0,0,0)
+        table.attach(new_spouse, 9,10, 4,5, 0,0,0,0)
+        table.attach(spouse_select, 9,10, 5,6, 0,0,0,0)
+
         table.attach(Glabel(_('_Spouse/partner')), 5,9, 3,4, fill,0,0,0)
         table.attach(self.spouse_box, 6,9, 4,5, fill, 0,0,0)
         table.attach(gtk.Label(_('Type:')), 7,8, 5,6, 0, 0,0,0)
@@ -91,6 +109,19 @@ class FamilyView(PageView.PageView):
 
         table.attach(Glabel(_('_Children')), 0,8, 7,8, fill, 0,0,0)
         table.attach(scrollwindow, 1,9, 8,9, fill, fill, 0,0)
+
+        bbox = gtk.VBox()
+        bbox.set_spacing(6)
+        child_up = Gbutton(gtk.STOCK_GO_UP)
+        child_new = Gbutton(gtk.STOCK_NEW)
+        child_sel = Gbutton(gtk.STOCK_INDEX)
+        child_del = Gbutton(gtk.STOCK_REMOVE)
+        bbox.add(child_up)
+        bbox.add(child_new)
+        bbox.add(child_sel)
+        bbox.add(child_del)
+        
+        table.attach(bbox, 9, 10, 8,9, 0, 0, 0, 0)
                      
         return table
 

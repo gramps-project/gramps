@@ -481,11 +481,8 @@ class GedcomParser:
 
     def parse_gedcom_file(self,use_trans=True):
 
-        if use_trans:
-            self.trans = self.db.transaction_begin()
-            self.trans.set_batch(True)
-        else:
-            self.trans = None
+        self.trans = self.db.transaction_begin()
+        self.trans.set_batch(not use_trans)
         self.db.disable_signals()
         t = time.time()
         self.index = 0
