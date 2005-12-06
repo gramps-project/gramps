@@ -372,24 +372,24 @@ class ArgHandler:
                 "supply at least one input file to process."
             print "Launching interactive session..."
 
-        if self.parent.cl:
-            for (action,options_str) in self.actions:
-                print "Performing action: %s." % action
-                if options_str:
-                    print "Using options string: %s" % options_str
-                self.cl_action(action,options_str)
+#         if self.parent.cl:
+#             for (action,options_str) in self.actions:
+#                 print "Performing action: %s." % action
+#                 if options_str:
+#                     print "Using options string: %s" % options_str
+#                 self.cl_action(action,options_str)
 
-            for expt in self.exports:
-                print "Exporting: file %s, format %s." % expt
-                self.cl_export(expt[0],expt[1])
+#             for expt in self.exports:
+#                 print "Exporting: file %s, format %s." % expt
+#                 self.cl_export(expt[0],expt[1])
 
-            print "Cleaning up."
-            # remove import db after use
-            self.parent.db.close()
-            if self.imports:
-                os.remove(self.imp_db_path)
-            print "Exiting."
-            os._exit(0)
+#             print "Cleaning up."
+#             # remove import db after use
+#             self.parent.db.close()
+#             if self.imports:
+#                 os.remove(self.imp_db_path)
+#             print "Exiting."
+#             os._exit(0)
 
         if self.imports:
             self.parent.import_tool_callback()
